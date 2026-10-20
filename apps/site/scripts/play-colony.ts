@@ -31,6 +31,7 @@ import type { PlaceId } from '../src/colony/sim/map.ts';
 import { type AppealChip, inferAction, type OrderInput } from '../src/colony/sim/orders.ts';
 import { Playback } from '../src/colony/sim/playback.ts';
 import { VILLAGERS, type VillagerId } from '../src/colony/sim/world-types.ts';
+import { harnessCommands } from '../src/shared/harness-commands.ts';
 import {
   bubbleLine,
   composerLine,
@@ -455,8 +456,17 @@ async function main(): Promise<void> {
     const a = argv[i] ?? '';
     if (a === '--state') stateFile = argv[++i] ?? null;
     else if (a === '--seed') cmds.unshift(`new ${argv[++i] ?? DEFAULT_SEED}`);
-    else cmds.push(...a.split(';'));
+    else cmds.push(a);
   }
+  const parsed = harnessCommands(
+    cmds,
+    new Set(
+      'help new look wait until pause resume speed autopause predict order use skip cancel log inspect why results continue export load'.split(
+        ' ',
+      ),
+    ),
+  );
+  cmds.splice(0, cmds.length, ...parsed);
   if (cmds.length === 0) cmds.push('help');
   const h = new Harness();
   let loaded = false;

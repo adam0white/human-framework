@@ -1926,6 +1926,7 @@ export class VoiceGame {
     }
     const chronicle = h.chronicle ?? [];
     this.report = buildReport({
+      legacyLedgerWords: this.rules === 1,
       withYou: chronicleBetween(this.halil.chronicle ?? [], 1, TOWN_EID_DAY - 1),
       withoutYou: chronicleBetween(chronicle, TOWN_EID_DAY, TOWN_EID_DAY + EPILOGUE_DAYS),
       after: epi,

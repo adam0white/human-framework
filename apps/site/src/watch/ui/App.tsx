@@ -14,6 +14,7 @@
  */
 import { useEffect, useRef, useState } from 'react';
 import { FullscreenButton, useWakeLock } from '../../shared/fullscreen.tsx';
+import { gameLabs, LabControls } from '../../shared/lab.tsx';
 import type { PageInfo } from '../protocol.ts';
 import { type PostId, postSection, SECTIONS, type SectionId, type WatcherId } from '../sim/config.ts';
 import type { Moment } from '../sim/moments.ts';
@@ -174,6 +175,14 @@ export function App() {
 
   return (
     <div className={`watch phase-${frame.phase}${frame.slowed ? ' is-slowed' : ''}`}>
+      <LabControls
+        lab={gameLabs.watch}
+        screen={frame.phase === 'goal' ? 'title' : frame.phase === 'fallen' ? 'ending' : 'play'}
+        onSend={async () => {
+          const run = await actions.exportRun();
+          gameLabs.watch.openSendDialog({ getRun: () => run });
+        }}
+      />
       <header className="w-top">
         <a className="w-home" href="/" aria-label="Human Framework home">
           HF

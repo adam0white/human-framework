@@ -731,3 +731,11 @@ Review this list by 2026-11-05; the owner decides which T1 items to schedule and
 - T3, **Q49**: pregnancy through HF `conceive`/`deliver`. This changes every run (gestation 268 days, not 200), so it needs a scenario bump.
 - T3, **Q51**: households leave by a game formula, not through `decide` over leave and stay offers.
 - T3, **P10**: the yearbook grows by one record a person a year and is never shown. Either show it or drop it.
+
+## Consistency fixes (2026-10-19)
+
+Scenario 10 holds a proposal between the same pair for one year after it opens or settles. It prevents the daily courtship hook from answering a second proposal while the first card is still open. This is a host pacing rule; HF still decides whether to propose and how to answer. The optional `proposalHolds` record is saved and included in the rule hash. Scenario 9 exports still replay under their original proposal rules. Older saved pages retain their rules when the record is absent and keep their origin stamp.
+
+At the thaw, the displayed souls question includes households who left after its saved flag was settled. The chronicle uses the same display result. The stored historical flag is retained for exact legacy continuation. A breach on a night with no grain lost no longer claims sacks were stolen. `show` keeps an open chronicle visible in the text harness.
+
+- Map-name report (2026-10-19): no mismatch in the three retained exports' final frames; investigate the reported earlier Mara/Joss frame during replay by 2026-10-20. No speculative rename was applied.

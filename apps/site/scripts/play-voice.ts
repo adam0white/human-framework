@@ -99,9 +99,9 @@ const VOICE_NAMES: Record<string, string> = {
   doctor: 'The doctor',
 };
 const UNASKED_MARK: Record<UnaskedItem['state'], string> = {
-  yes: '✓',
-  no: '✗ not yet',
-  unknown: '– no chance yet',
+  yes: '✓ chose it',
+  no: '✗ chose something else',
+  unknown: '– not observed',
 };
 const MAX_WHISPERS = 2;
 /** The page's tick is one animation frame; the worker caps a tick at 250 ms. 250 ms keeps the harness quick. */
@@ -121,6 +121,7 @@ interface Ui {
   touched: boolean;
   prefillKey: string;
   picked: StandingWhisper[];
+  optionOrder?: { minute: number; ids: string[] };
   /** Id of the last log entry already printed. */
   seen: string | undefined;
   silent?: { seed: number; facts: MonthFacts };
@@ -295,7 +296,8 @@ function composer(f: Frame): void {
   const lean = f.options.find((o) => o.id === f.leaning?.optionId) ?? f.options.find((o) => o.leaning);
   say('Composer (Say something):');
   if (lean) say(`  He’s leaning toward ${lean.label}${f.leaning?.why ? ` — ${f.leaning.why}` : ''}`);
-  f.options.slice(0, 6).forEach((o, i) => {
+  const order = pinnedOptions(f);
+  order.slice(0, 6).forEach((o, i) => {
     const on = ui.draft?.optionId === o.id ? '*' : ' ';
     say(`  ${on}${i + 1}. ${o.label}${o.leaning ? '   (his leaning)' : ''}`);
   });
@@ -324,6 +326,21 @@ function composer(f: Frame): void {
   } else say('  Pick something to hear how he’d answer.    [nothing] Say nothing');
 }
 
+/** Keep the displayed numbers fixed while editing the same decision. */
+function pinnedOptions(f: Frame): Frame['options'] {
+  if (!ui.optionOrder || ui.optionOrder.minute !== f.minute) {
+    ui.optionOrder = { minute: f.minute, ids: f.options.map((o) => o.id) };
+  }
+  const ids = ui.optionOrder.ids;
+  return [...f.options].sort((a, b) => {
+    const rank = (id: string) => {
+      const i = ids.indexOf(id);
+      return i < 0 ? ids.length : i;
+    };
+    return rank(a.id) - rank(b.id);
+  });
+}
+
 function halilPane(f: Frame): void {
   const h = f.halil;
   say('-- Halil --');
@@ -345,7 +362,10 @@ function halilPane(f: Frame): void {
   say(`  Money: ${h.money} in hand; ${h.owed} owed to Osman`);
 }
 
-function unaskedLine(items: UnaskedItem[] | undefined, lead = 'He’d now do unasked:'): void {
+function unaskedLine(
+  items: UnaskedItem[] | undefined,
+  lead = 'Last choices without your voice (not completed acts):',
+): void {
   if (!items || items.length === 0) return;
   say(
     `  ${lead} ${items.map((u) => `${u.label} ${UNASKED_MARK[u.state]}${u.day ? ` (${u.day})` : ''}`).join('; ')}`,
@@ -717,7 +737,7 @@ async function command(words: string[]): Promise<number> {
     }
     case 'pick': {
       composerOpen();
-      const o = f?.options[Number(a) - 1];
+      const o = f ? pinnedOptions(f)[Number(a) - 1] : undefined;
       if (!o) throw new Error(`no option ${a}`);
       edit({ optionId: o.id });
       break;
@@ -878,7 +898,7 @@ async function main(): Promise<void> {
     statePath = args[si + 1] ?? statePath;
     args.splice(si, 2);
   }
-  let cmds = split(args);
+  let cmds = split(args.flatMap((a) => a.split(/[;\s]+/).filter(Boolean)));
   if (args.length === 1 && args[0] === '-')
     cmds = readFileSync(0, 'utf8')
       .split('\n')

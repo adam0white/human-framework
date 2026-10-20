@@ -1,6 +1,6 @@
 {
   "name": "@adam0white/lab-client",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "The Human Framework game lab's client: anonymous play events and an opt-in \"send this run to the notebook\" dialog",
   "keywords": [
     "playtest",

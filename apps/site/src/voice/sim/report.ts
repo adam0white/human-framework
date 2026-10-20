@@ -29,6 +29,8 @@ import {
 } from './view.ts';
 
 export interface ReportInput {
+  /** Rules 1 hashes include the original report wording. */
+  legacyLedgerWords?: boolean;
   withYou: readonly DayRecord[];
   withoutYou: readonly DayRecord[];
   /** The epilogue clone at the end of day 37. */
@@ -98,7 +100,10 @@ function reasonWords(source: string): string {
 }
 
 /** "What you used to say": for each thing you said in Ramadan, what he did about it on Eid, and why. */
-function ledger(i: ReportInput): NonNullable<ReportView['ledger']> {
+export function eidLedger(
+  i: Pick<ReportInput, 'cells' | 'said' | 'weighs' | 'records' | 'legacyLedgerWords'>,
+): NonNullable<ReportView['ledger']> {
+  const absent = i.legacyLedgerWords ? 'Not at all' : 'Not on Eid';
   const eidStart = TOWN_EID_DAY * MINUTES_PER_DAY;
   const eid = i.cells.filter((c) => c.from >= eidStart && c.from < eidStart + MINUTES_PER_DAY);
   const rows: NonNullable<ReportView['ledger']> = [];
@@ -123,8 +128,8 @@ function ledger(i: ReportInput): NonNullable<ReportView['ledger']> {
           : key === 'see-doctor'
             ? `Not on Eid${heavy ? `; the clinic still ${heavy.word === 'dreads it' ? 'is something he dreads' : `feels ${heavy.word}`}` : ''}.`
             : heavy && heavy.word !== 'all right' && heavy.word !== 'good'
-              ? `Not at all; it still feels ${heavy.word}.`
-              : 'Not at all.';
+              ? `${absent}; it still feels ${heavy.word}.`
+              : `${absent}.`;
     } else {
       const first = done[0];
       const rec = first?.decisionId ? i.records?.get(first.decisionId) : undefined;
@@ -337,7 +342,7 @@ export function buildReport(i: ReportInput): ReportView {
       lines: i.eidLines.length ? eidLines(i.eidLines) : ['He kept to himself.'],
       summary: summary(i),
     },
-    ledger: ledger(i),
+    ledger: eidLedger(i),
     own: ownWithCalls(own, i),
     others: told,
     stopped,

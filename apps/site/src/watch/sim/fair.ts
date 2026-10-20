@@ -53,7 +53,7 @@ export function openFair(s: WatchState): void {
     pool.push({
       id: 'wall',
       label: `Raise ${wallName(wallAt)}`,
-      text: `Raise and lengthen ${wallName(wallAt)}: a third post there, for good. More wall than people to stand it. It costs a good share of grain in labour.`,
+      text: `Raise and lengthen ${wallName(wallAt)}: a third post there. Repeated breaches can still bring the wall down at a thaw. More wall than people to stand it. It costs a good share of grain in labour.`,
       cost: 4,
       target: wallAt,
     });

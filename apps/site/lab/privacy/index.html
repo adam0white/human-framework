@@ -49,14 +49,14 @@
                   and gone when you close the tab. It is not a cookie and is not derived from your device.
                 </td>
               </tr>
-              <tr><td>events</td><td>start; “service 3 done”; screen “night 2”; end. Names are fixed by the game; the server drops any name with an address or link in it.</td><td>where people stop, what they reach</td></tr>
+              <tr><td>events</td><td>start; “service 3 done”; screen “night 2: service”; end. The server accepts only reviewed screen and milestone names declared for that game.</td><td>where people stop, what they reach</td></tr>
               <tr><td>time</td><td>milliseconds since the session started</td><td>how long a visit lasts</td></tr>
               <tr><td>error</td><td>the type and place of an uncaught error, such as “TypeError at index-3f2a.js:12:345”, never its message; at most 5 per visit</td><td>to find broken builds</td></tr>
               <tr><td>build</td><td>commit 01601bc, HF 2.8.0, game 0.1.0</td><td>which build you played</td></tr>
               <tr><td>viewport class</td><td>phone, tablet or desktop (from the window width only)</td><td>to know if phones work</td></tr>
             </tbody>
           </table>
-          <p>The server adds one thing: the hour it was received (for example 2026-10-19T14). Nothing finer.</p>
+          <p>The event envelope records the receipt hour (for example 2026-10-19T14). Private storage also records the exact upload time on each object.</p>
           <p>
             <strong>Never collected:</strong> your name, email or account; cookies; IP address; user agent;
             location or country; screen size in pixels, fonts or any other fingerprint; what you type.
@@ -64,12 +64,12 @@
           <p>
             <strong>Turned off</strong> when your browser sends Do Not Track or Global Privacy Control (checked in
             the browser and again on the server), when you untick “anonymous play events” in a game’s send dialog
-            (remembered in that game’s localStorage), and on localhost.
+            (remembered in that game’s localStorage and shared across its open tabs), and on localhost.
           </p>
           <p>
-            <strong>Kept:</strong> raw batches are kept about two days. They are then folded into daily counts per
+            <strong>Kept:</strong> raw batches are eligible for cleanup when their UTC date is at least two calendar days behind today. Cleanup advances every ten minutes in bounded steps. Raw batches and private progress records containing session ids remain until the complete daily counts have been saved and deletion finishes; a backlog or outage extends retention. Recent counts may be sampled and remain provisional. The final daily counts per
             game (sessions, durations in five bands, milestone counts, last-screen counts, error counts, viewport
-            classes, builds) and deleted. Session ids do not survive that step. The daily counts are public on
+            classes, builds) contain no session ids. Session ids are removed from private progress records before raw deletion starts. Small completion markers without session ids remain to prevent stale workers from recreating those records. The daily counts are public on
             <a href="/lab/">the lab page</a> and in <a href="/lab/data.json">/lab/data.json</a>.
           </p>
         </section>
@@ -96,9 +96,9 @@
             After sending you get a reference like <code>r-abc123defg</code>. Nothing else ties a run to you, so
             quote that reference (or the time and the label you used) to have a run removed: open an issue at
             <a href="https://github.com/adam0white/human-framework/issues">github.com/adam0white/human-framework</a>
-            or tell Adam. Runs are kept until then or until the lab no longer needs them.
+            or tell Adam. Runs, notes, labels and their storage upload timestamps are kept until then or until the lab no longer needs them.
           </p>
-          <p>A run can be at most 2 MB compressed (8 MB uncompressed). A few runs a minute are accepted from one place, and at most 200 a day in all.</p>
+          <p>A run can be at most 2 MiB compressed and 4 MiB uncompressed, with limits on JSON complexity. The lab reserves up to 1,000 anonymous event batches per UTC day; further batches are refused. Older days above that processing bound remain private and are marked for offline recovery instead of being deleted. Upload rates are limited by address (IPv6 addresses share a /64 limit) and by Cloudflare location. A conditional storage counter reserves up to 200 uploads per UTC day across the lab. A failed storage write can use a reservation; contention can temporarily refuse an upload before the daily allowance is used.</p>
         </section>
 
         <section>

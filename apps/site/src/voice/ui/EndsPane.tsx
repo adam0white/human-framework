@@ -5,9 +5,9 @@ import { Icon } from './Icon.tsx';
 import { Meter } from './parts.tsx';
 
 const UNASKED_MARK: Record<UnaskedItem['state'], { glyph: string; word: string }> = {
-  yes: { glyph: '✓', word: 'yes' },
-  no: { glyph: '✗', word: 'not yet' },
-  unknown: { glyph: '–', word: 'no chance yet' },
+  yes: { glyph: '✓', word: 'chose it' },
+  no: { glyph: '✗', word: 'chose something else' },
+  unknown: { glyph: '–', word: 'not observed' },
 };
 
 /**
@@ -16,7 +16,7 @@ const UNASKED_MARK: Record<UnaskedItem['state'], { glyph: string; word: string }
  */
 export function UnaskedStrip({
   items,
-  lead = 'He’d now do unasked:',
+  lead = 'Choices without your voice (not completed acts):',
 }: {
   items?: UnaskedItem[];
   lead?: string;

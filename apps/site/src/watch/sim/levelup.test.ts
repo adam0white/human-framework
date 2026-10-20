@@ -60,7 +60,8 @@ const RUNS: [number, number][] = [
 
 describe('Night Watch level-up (2026-10-19)', () => {
   it('a scenario 9 export pinned today still replays to its rule hash (words changed, rules did not)', () => {
-    expect(pinned.scenario).toBe(WATCH_SCENARIO_VERSION);
+    expect(pinned.scenario).toBe(9);
+    expect(WATCH_SCENARIO_VERSION).toBeGreaterThanOrEqual(pinned.scenario);
     const s = replay(pinned);
     expect(ruleHash(s)).toBe(pinned.end.ruleHash);
   });

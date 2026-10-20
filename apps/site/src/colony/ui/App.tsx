@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useWakeLock } from '../../shared/fullscreen.tsx';
+import { gameLabs, LabControls } from '../../shared/lab.tsx';
 import { PlaytestMenu, PlaytestNotice } from '../../shared/PlaytestMenu.tsx';
 import type { MomentRecord } from '../sim/game.ts';
 import type { Bubble } from '../sim/human-side.ts';
@@ -317,6 +318,11 @@ export function App() {
 
   return (
     <div className={`colony ${composer.personId ? 'is-choosing' : ''}`}>
+      <LabControls
+        lab={gameLabs.well}
+        screen={starting ? 'title' : frame?.ended ? 'ending' : 'play'}
+        onSend={actions.sendPlaytest}
+      />
       <TopBar
         frame={frame}
         playback={playback}

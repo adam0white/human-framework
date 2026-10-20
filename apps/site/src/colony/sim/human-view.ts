@@ -403,7 +403,13 @@ export function needsOf(p: Person): NeedBar[] {
     { id: 'food', label: 'Food', value: round2(1 - per.hunger), urgent: per.hunger >= 0.7 },
     { id: 'water', label: 'Water', value: round2(1 - per.thirst), urgent: per.thirst >= 0.7 },
     { id: 'sleep', label: 'Sleep', value: round2(1 - per.sleepiness), urgent: per.sleepiness >= 0.85 },
-    { id: 'health', label: 'Health', value: round2(p.body.health), urgent: p.body.health < 0.4 },
+    { id: 'health', label: 'General health', value: round2(p.body.health), urgent: p.body.health < 0.4 },
+    {
+      id: 'injury',
+      label: 'Uninjured',
+      value: round2(1 - Math.max(0, ...p.body.injuries.map((i) => i.severity))),
+      urgent: p.body.injuries.some((i) => i.severity >= 0.4),
+    },
   ];
 }
 

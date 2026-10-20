@@ -351,6 +351,8 @@ export interface WatchState {
    * Lessons the Keeper blessed. `from` is the pupil's sling skill at the blessing, so the next thaw can say what came
    * of it (`told` once it has); both are absent on pairings from older saves.
    */
+  /** Last proposal by unordered pair; absent on legacy pages (legacy proposal rules). */
+  proposalHolds?: Record<string, number>;
   pairings: { who: WatcherId; with: WatcherId; until: number; from?: number; told?: true }[];
   /** Each watcher's words at the last dawn, so the next dawn says it differently (G3-4 review). */
   lastVoices: Record<WatcherId, string>;
@@ -539,6 +541,7 @@ export function createState(seed: number): WatchState {
     card: null,
     nextCardId: 1,
     pairings: [],
+    proposalHolds: {},
     lastVoices: {},
     expecting: [],
     newborns: [],

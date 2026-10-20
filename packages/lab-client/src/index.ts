@@ -130,17 +130,22 @@ export function createLab(options: LabOptions): Lab {
   const offKey = `${OFF_KEY}:${game}`;
   const local_ = g.location ? isLocalhost(g.location.hostname) : true;
   let off = getItem(local, offKey) === '1';
-  const blocked = () => privacySignal(g) || off || (local_ && !options.sendFromLocalhost);
+  const blocked = () => {
+    if (getItem(local, offKey) === '1') off = true;
+    if (off) queue.length = 0;
+    return privacySignal(g) || off || (local_ && !options.sendFromLocalhost);
+  };
 
   // Session id and start time: per tab, survive reloads in that tab, gone when the tab closes.
-  const stored = getItem(session, SID_KEY)?.split(':');
+  const sidKey = `${SID_KEY}:${game}`;
+  const stored = getItem(session, sidKey)?.split(':');
   let sid = stored?.[0] ?? '';
   let started = Number(stored?.[1]);
   const fresh = !/^[a-z0-9]{16}$/.test(sid) || !Number.isFinite(started);
   if (fresh) {
     sid = newSessionId();
     started = Date.now();
-    setItem(session, SID_KEY, `${sid}:${started}`);
+    setItem(session, sidKey, `${sid}:${started}`);
   }
   const at = () => Math.max(0, Date.now() - started);
 
@@ -154,31 +159,42 @@ export function createLab(options: LabOptions): Lab {
   const push = (e: Event) => {
     if (blocked()) return;
     queue.push(e);
-    if (queue.length >= 40) flush();
+    if (queue.length >= 40) flush(true);
   };
 
-  function flush() {
-    if (!queue.length || !buildKnown || blocked()) return;
-    const body = JSON.stringify({
-      v: 1,
-      g: game,
-      s: sid,
-      b: build,
-      vp: viewportClass(g.innerWidth ?? 1280),
-      e: queue.splice(0, 50),
-    });
-    // A plain string goes as text/plain, a CORS-safelisted type, so there is no preflight on page exit.
-    // keepalive lets it finish after the page closes, like sendBeacon, but without sending any cookies.
-    try {
-      void fetch(`${endpoint}/events`, {
-        method: 'POST',
-        body,
-        keepalive: true,
-        mode: 'cors',
-        credentials: 'omit',
-        referrerPolicy: 'no-referrer',
-      }).catch(() => {});
-    } catch {}
+  function flush(allowUnknownBuild = false) {
+    if (blocked() || !queue.length || (!buildKnown && !allowUnknownBuild)) return;
+    while (queue.length) {
+      let count = Math.min(queue.length, 50);
+      const encode = () =>
+        JSON.stringify({
+          v: 1,
+          g: game,
+          s: sid,
+          b: build,
+          vp: viewportClass(g.innerWidth ?? 1280),
+          e: queue.slice(0, count),
+        });
+      let body = encode();
+      while (count > 1 && new TextEncoder().encode(body).byteLength > 8192) {
+        count--;
+        body = encode();
+      }
+      queue.splice(0, count);
+      // A single oversized event is invalid; it must not block every later event.
+      if (new TextEncoder().encode(body).byteLength > 8192) continue;
+      // Plain text avoids preflight; keepalive permits completion after close, without cookies.
+      try {
+        void fetch(`${endpoint}/events`, {
+          method: 'POST',
+          body,
+          keepalive: true,
+          mode: 'cors',
+          credentials: 'omit',
+          referrerPolicy: 'no-referrer',
+        }).catch(() => {});
+      } catch {}
+    }
   }
 
   if (!buildKnown && typeof fetch === 'function') {
@@ -201,6 +217,11 @@ export function createLab(options: LabOptions): Lab {
   if (fresh) push(['start', 0]);
 
   if (typeof g.addEventListener === 'function') {
+    g.addEventListener('storage', (event: StorageEvent) => {
+      if (event.key !== offKey && event.key !== null) return;
+      off = getItem(local, offKey) === '1';
+      if (off) queue.length = 0;
+    });
     if (options.captureErrors !== false) {
       const onError = (label: string) => {
         if (errors >= 5) return;
@@ -214,10 +235,10 @@ export function createLab(options: LabOptions): Lab {
     }
     g.addEventListener('pagehide', () => {
       push(['end', at()]);
-      flush();
+      flush(true);
     });
     g.document?.addEventListener('visibilitychange', () => {
-      if (g.document.visibilityState === 'hidden') flush();
+      if (g.document.visibilityState === 'hidden') flush(true);
     });
     setInterval(flush, 20_000);
   }

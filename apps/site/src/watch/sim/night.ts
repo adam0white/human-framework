@@ -486,9 +486,13 @@ function enterDawn(s: WatchState): void {
     for (const kind of gotKinds) {
       const g = got[kind] ?? 0;
       parts.push(
-        kind === 'wolf'
-          ? `${capital(plural(kind, g))} got over ${the} and tore into the store.`
-          : `${capital(plural(kind, g))} got over ${the} and carried sacks off.`,
+        t.grainAtDusk === s.grain
+          ? `${capital(plural(kind, g))} got over ${the}, but took no grain.`
+          : s.proposalHolds
+            ? `${capital(plural(kind, g))} got over ${the} during the raid.`
+            : kind === 'wolf'
+              ? `${capital(plural(kind, g))} got over ${the} and tore into the store.`
+              : `${capital(plural(kind, g))} got over ${the} and carried sacks off.`,
       );
     }
     if (drivenKinds.length > 0) {

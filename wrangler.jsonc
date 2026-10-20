@@ -21,11 +21,12 @@
   "ratelimits": [
     { "name": "EVENTS_LIMIT", "namespace_id": "4101", "simple": { "limit": 30, "period": 60 } },
     { "name": "RUNS_LIMIT", "namespace_id": "4102", "simple": { "limit": 3, "period": 60 } },
-    // One shared key: a ceiling on all event batches together, per Cloudflare location (limits are not global). Runs also have a daily ceiling in the code.
-    { "name": "EVENTS_ALL", "namespace_id": "4103", "simple": { "limit": 600, "period": 60 } }
+    // Shared keys mitigate ingress per location. A conditional R2 counter reserves daily run capacity.
+    { "name": "EVENTS_ALL", "namespace_id": "4103", "simple": { "limit": 600, "period": 60 } },
+    { "name": "RUNS_ALL", "namespace_id": "4104", "simple": { "limit": 12, "period": 60 } }
   ],
-  // Daily: store yesterday's aggregates, delete raw event batches older than two days, rebuild the run index.
-  "triggers": { "crons": ["17 4 * * *"] },
+  // Every ten minutes: advance bounded aggregation/deletion and one private run-index page.
+  "triggers": { "crons": ["*/10 * * * *"] },
   // No request logs: the lab must not keep addresses or headers.
   "observability": { "enabled": false }
 }

@@ -229,8 +229,8 @@ export class Harness {
 
   private command(line: string): void {
     const [cmd = '', ...a] = line.trim().split(/\s+/);
-    // As the chronicle page says: any command but `chronicle` closes it.
-    if (cmd.toLowerCase() !== 'chronicle') this.ui.menu = false;
+    // Reading the screen preserves the open chronicle; a game command closes it.
+    if (!['chronicle', 'show', ''].includes(cmd.toLowerCase())) this.ui.menu = false;
     const f = this.frame();
     switch (cmd.toLowerCase()) {
       case '':
@@ -734,7 +734,13 @@ function seasonPanel(f: Frame, people: boolean): string[] {
     f.card.options.forEach((o, i) => {
       L.push(`  ${i + 1}. ${o.label}`);
     });
-    L.push('  …or say nothing; they will decide alone. The days slow while you think.');
+    L.push(
+      f.card.kind === 'proposal'
+        ? '  …or say nothing; they will decide alone. The days slow while you think.'
+        : f.card.kind === 'practise'
+          ? '  Without an answer, no lessons are arranged this summer. The days slow while you think.'
+          : '  You can leave the family to themselves. The days slow while you think.',
+    );
   }
   L.push(`Volume ${f.volume.numeral} · ${f.volume.title}`, `## ${f.date}`, f.volume.question);
   if (f.year <= 2)
@@ -843,7 +849,7 @@ function fallenPage(f: Frame): string[] {
 function menu(f: Frame): string[] {
   const L = [
     '## The chronicle',
-    'The clock stands still while the chronicle is open. (any command but chronicle closes it)',
+    'The clock stands still while the chronicle is open. (show keeps it open; a game command closes it)',
   ];
   L.push('The shelf:');
   const seen = new Set<number>();

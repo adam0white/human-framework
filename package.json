@@ -25,7 +25,7 @@
     "lint": "biome check .",
     "format": "biome format --write .",
     "dev": "npm run dev -w apps/site",
-    "build": "npm run build -w packages/human && npm run build -w apps/site",
+    "build": "npm run build -w packages/human && npm run build -w packages/lab-client && npm run build -w apps/site",
     "check": "npm run lint && npm run typecheck && npm test",
     "deploy": "node scripts/deploy.ts",
     "deploy:check": "node scripts/deploy.ts --dry-run",

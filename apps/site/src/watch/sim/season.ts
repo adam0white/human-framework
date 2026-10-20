@@ -331,8 +331,8 @@ function routineLine(s: WatchState): void {
   // Said differently each year (G3-4 review: the same sentence every thaw read as a form).
   const openers = [
     `The other ${nights} nights of winter went by routine, the wall stood in turns.`,
-    `The rest of the winter, ${nights} nights, passed in turns on the wall: cold, dark and uneventful.`,
-    `For ${nights} nights nothing came worth the lantern. The watch changed at midnight and the snow kept falling.`,
+    `The rest of the winter, ${nights} nights, passed by routine in turns on the wall through the cold and dark.`,
+    `For ${nights} routine nights the watch changed at midnight and the snow kept falling.`,
     `${nights} more nights went by without the lantern: frost, the stars and the long hours before dawn.`,
   ];
   const stoodWords = [

@@ -8,6 +8,8 @@
  * Privacy posture: docs/lab/privacy.md. Nothing here reads or stores an IP address, user agent or location.
  */
 
+import { declaredLabel, LAB_GAMES } from './games.ts';
+
 export const LAB_SCHEMA = 1;
 
 /** Event kinds: session start, milestone, screen shown, error, session end. */
@@ -53,12 +55,16 @@ export const LIMITS = {
   /** compressed run body */
   runBytes: 2 * 1024 * 1024,
   /** decompressed run body */
-  runInflatedBytes: 8 * 1024 * 1024,
+  runInflatedBytes: 4 * 1024 * 1024,
+  /** Pre-parse JSON complexity budget, including primitive values and object members. */
+  runJsonTokens: 120000,
+  runJsonContainers: 30000,
+  runJsonDepth: 64,
   /** a session longer than this is clamped when aggregating */
   sessionMs: 12 * 3600 * 1000,
 } as const;
 
-const GAME_ID = /^[a-z][a-z0-9-]{0,31}$/;
+const GAME_IDS = new Set(LAB_GAMES.map((g) => g.id));
 const SESSION_ID = /^[a-z0-9]{8,32}$/;
 const KINDS: ReadonlySet<string> = new Set(['start', 'ms', 'scr', 'err', 'end']);
 const VIEWPORTS: ReadonlySet<string> = new Set(['phone', 'tablet', 'desktop']);
@@ -130,7 +136,7 @@ export function parseBatch(text: string): { ok: true; batch: EventBatch } | { ok
   if (!raw || typeof raw !== 'object') return { ok: false, error: 'not an object' };
   const r = raw as Record<string, unknown>;
   if (r.v !== 1) return { ok: false, error: 'unknown version' };
-  if (typeof r.g !== 'string' || !GAME_ID.test(r.g)) return { ok: false, error: 'bad game' };
+  if (typeof r.g !== 'string' || !GAME_IDS.has(r.g)) return { ok: false, error: 'bad game' };
   if (typeof r.s !== 'string' || !SESSION_ID.test(r.s)) return { ok: false, error: 'bad session' };
   const vp = typeof r.vp === 'string' && VIEWPORTS.has(r.vp) ? (r.vp as Viewport) : 'desktop';
   if (!Array.isArray(r.e) || r.e.length === 0 || r.e.length > LIMITS.eventsPerBatch) {
@@ -142,15 +148,44 @@ export function parseBatch(text: string): { ok: true; batch: EventBatch } | { ok
     const [kind, at, name] = item as unknown[];
     if (typeof kind !== 'string' || !KINDS.has(kind)) return { ok: false, error: 'bad kind' };
     if (typeof at !== 'number' || !Number.isFinite(at) || at < 0) return { ok: false, error: 'bad time' };
-    const n = kind === 'err' ? errorLabel(name) : label(name);
+    const n = kind === 'err' ? errorLabel(name) : declaredLabel(r.g, kind, name);
     const t = Math.min(Math.round(at), LIMITS.sessionMs);
     events.push(n ? [kind as EventKind, t, n] : [kind as EventKind, t]);
   }
   return { ok: true, batch: { v: 1, g: r.g, s: r.s, b: cleanBuild(r.b), vp, e: events } };
 }
 
+/** Bounds allocation before JSON.parse. Ignore syntax inside quoted strings, including escaped quotes. */
+export function boundedRunJson(text: string): boolean {
+  if (text.length > LIMITS.runInflatedBytes) return false;
+  let depth = 0;
+  let tokens = 0;
+  let containers = 0;
+  let quoted = false;
+  let escaped = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (quoted) {
+      if (escaped) escaped = false;
+      else if (c === '\\') escaped = true;
+      else if (c === '"') quoted = false;
+      continue;
+    }
+    if (c === '"') quoted = true;
+    if (c === '{' || c === '[') {
+      if (++containers > LIMITS.runJsonContainers) return false;
+      if (++depth > LIMITS.runJsonDepth) return false;
+    } else if (c === '}' || c === ']') depth--;
+    if (c === '{' || c === '[' || c === ',' || c === ':') {
+      if (++tokens > LIMITS.runJsonTokens) return false;
+    }
+  }
+  return true;
+}
+
 /** Validates a decompressed run envelope. */
 export function parseRun(text: string): { ok: true; run: RunEnvelope } | { ok: false; error: string } {
+  if (!boundedRunJson(text)) return { ok: false, error: 'run too complex or too large' };
   let raw: unknown;
   try {
     raw = JSON.parse(text);
@@ -160,7 +195,7 @@ export function parseRun(text: string): { ok: true; run: RunEnvelope } | { ok: f
   if (!raw || typeof raw !== 'object') return { ok: false, error: 'not an object' };
   const r = raw as Record<string, unknown>;
   if (r.v !== 1) return { ok: false, error: 'unknown version' };
-  if (typeof r.game !== 'string' || !GAME_ID.test(r.game)) return { ok: false, error: 'bad game' };
+  if (typeof r.game !== 'string' || !GAME_IDS.has(r.game)) return { ok: false, error: 'bad game' };
   if (!r.run || typeof r.run !== 'object') return { ok: false, error: 'no run' };
   if (typeof r.note === 'string' && r.note.length > LIMITS.noteChars)
     return { ok: false, error: 'note too long' };
@@ -172,7 +207,7 @@ export function parseRun(text: string): { ok: true; run: RunEnvelope } | { ok: f
   return { ok: true, run: out };
 }
 
-/** The hour a message was received, as 'YYYY-MM-DDTHH' (UTC). Nothing finer is stored. */
+/** The event envelope's receipt hour. R2 also keeps its object upload timestamp. */
 export function hourOf(ms: number): string {
   return new Date(ms).toISOString().slice(0, 13);
 }
@@ -238,7 +273,24 @@ const bump = (map: Record<string, number>, key: string, by = 1) => {
 };
 
 /** Folds stored batches (any order) into a day aggregate. Sessions are joined by id within the day only. */
-export function aggregateDay(day: string, batches: readonly StoredBatch[]): DayAggregate {
+export type DaySnapshot = {
+  batches: number;
+  sessions: [
+    string,
+    {
+      g: string;
+      vp: string;
+      build: string;
+      last: number;
+      lastScreen?: string;
+      lastScreenAt: number;
+      ended: boolean;
+      milestones: string[];
+      errors: [string, number][];
+    },
+  ][];
+};
+export function dayAccumulator(day: string, snapshot?: DaySnapshot) {
   type Session = {
     g: string;
     vp: string;
@@ -250,8 +302,20 @@ export function aggregateDay(day: string, batches: readonly StoredBatch[]): DayA
     milestones: Set<string>;
     errors: Map<string, number>;
   };
-  const sessions = new Map<string, Session>();
-  for (const b of batches) {
+  const sessions = new Map<string, Session>(
+    (snapshot?.sessions ?? []).map(([id, s]) => [
+      id,
+      {
+        ...s,
+        lastScreen: s.lastScreen,
+        milestones: new Set(s.milestones),
+        errors: new Map(s.errors),
+      },
+    ]),
+  );
+  let batches = snapshot?.batches ?? 0;
+  const add = (b: StoredBatch) => {
+    batches++;
     const id = `${b.g}:${b.s}`;
     let s = sessions.get(id);
     if (!s) {
@@ -277,22 +341,45 @@ export function aggregateDay(day: string, batches: readonly StoredBatch[]): DayA
         s.lastScreenAt = at;
       } else if (kind === 'err' && name) s.errors.set(name, (s.errors.get(name) ?? 0) + 1);
     }
-  }
-  const games = dict<GameAggregate>();
-  for (const s of sessions.values()) {
-    const g = games[s.g] ?? emptyGame();
-    games[s.g] = g;
-    g.sessions++;
-    if (s.ended) g.ended++;
-    const min = s.last / 60_000;
-    g.minutes[min < 1 ? 0 : min < 5 ? 1 : min < 15 ? 2 : min < 60 ? 3 : 4]++;
-    for (const m of s.milestones) bump(g.milestones, m);
-    bump(g.quits, s.lastScreen ?? '(no screen named)');
-    for (const [e, n] of s.errors) bump(g.errors, e, n);
-    bump(g.viewports, s.vp);
-    bump(g.builds, s.build);
-  }
-  return { v: 1, day, games, batches: batches.length };
+  };
+  const finish = (): DayAggregate => {
+    const games = dict<GameAggregate>();
+    for (const s of sessions.values()) {
+      const g = games[s.g] ?? emptyGame();
+      games[s.g] = g;
+      g.sessions++;
+      if (s.ended) g.ended++;
+      const min = s.last / 60_000;
+      g.minutes[min < 1 ? 0 : min < 5 ? 1 : min < 15 ? 2 : min < 60 ? 3 : 4]++;
+      for (const m of s.milestones) bump(g.milestones, m);
+      bump(g.quits, s.lastScreen ?? '(no screen named)');
+      for (const [e, n] of s.errors) bump(g.errors, e, n);
+      bump(g.viewports, s.vp);
+      bump(g.builds, s.build);
+    }
+    return { v: 1, day, games, batches };
+  };
+  return {
+    add,
+    finish,
+    snapshot: (): DaySnapshot => ({
+      batches,
+      sessions: [...sessions].map(([id, s]) => [
+        id,
+        {
+          ...s,
+          milestones: [...s.milestones],
+          errors: [...s.errors],
+        },
+      ]),
+    }),
+  };
+}
+
+export function aggregateDay(day: string, batches: readonly StoredBatch[]): DayAggregate {
+  const acc = dayAccumulator(day);
+  for (const b of batches) acc.add(b);
+  return acc.finish();
 }
 
 /** Sums day aggregates. */

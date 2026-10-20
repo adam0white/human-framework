@@ -607,6 +607,23 @@ function fancy(s: WatchState, p: Person, at: number): Person | null {
   return best;
 }
 
+/** A pair gets a year to live with its answer. Historical pages retain their former rules. */
+export function proposalAvailable(s: WatchState, a: string, b: string, at: number): boolean {
+  if (!s.proposalHolds) return true;
+  if (
+    s.card?.kind === 'proposal' &&
+    [s.card.who, s.card.other].includes(a) &&
+    [s.card.who, s.card.other].includes(b)
+  )
+    return false;
+  const last = s.proposalHolds[JSON.stringify([a, b].sort())];
+  return last === undefined || at - last >= MINUTES_PER_YEAR;
+}
+
+export function holdProposal(s: WatchState, a: string, b: string, at: number): void {
+  if (s.proposalHolds) s.proposalHolds[JSON.stringify([a, b].sort())] = at;
+}
+
 /**
  * Courtship for the day: pairs who fancy each other meet on seeded days; a ready courtship may become a proposal.
  * Returns a proposal the Keeper can speak to (the caller opens a card), or resolves it at once when a card is open.
@@ -633,6 +650,7 @@ function courting(s: WatchState, at: number): void {
         p.id,
       );
     if (courtshipStage(p, q.id, at) !== 'ready' || courtshipStage(q, p.id, at) !== 'ready') continue;
+    if (!proposalAvailable(s, p.id, q.id, at)) continue;
     if (nextRandom(s) >= PROPOSE_CHANCE) continue;
     // Who asks: HF decides for each whether to propose now; the first in id order who does, asks.
     const lookup = lookupIn(s);
@@ -643,6 +661,7 @@ function courting(s: WatchState, at: number): void {
     });
     if (!asker) continue;
     const answerer = asker === p ? q : p;
+    holdProposal(s, asker.id, answerer.id, at);
     if (s.card) {
       settleProposal(s, asker, answerer, null, at);
     } else {
@@ -684,6 +703,7 @@ export function settleProposal(
   word: number | null,
   at: number,
 ): void {
+  holdProposal(s, asker.id, answerer.id, at);
   const lookup = lookupIn(s);
   const offers = proposalOffers(answerer, asker, { lookup });
   const approvals: { voiceId: string; approval: number }[] = [];
@@ -886,7 +906,15 @@ export function settleLifeCard(
         `${nameOf(s, card.who)} took sling lessons from ${nameOf(s, card.other)} in the summer evenings.`,
         card.who,
       );
-    } else if (choice === 'refuse') lift(card.who, -0.03);
+    } else {
+      if (choice === 'refuse') lift(card.who, -0.03);
+      chronicle(
+        s,
+        'courting',
+        `${nameOf(s, card.who)} had no sling lessons arranged this summer${choice === null ? '; the request went unanswered' : '; the fields came first'}.`,
+        card.who,
+      );
+    }
   }
 }
 

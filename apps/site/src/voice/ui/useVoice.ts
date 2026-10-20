@@ -4,6 +4,7 @@
  * from an earlier run (`gen`) and stale predictions (`requestId`) are dropped.
  */
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { gameLabs } from '../../shared/lab.tsx';
 import type { PlaytestStatus } from '../../shared/PlaytestMenu.tsx';
 import {
   downloadJson,
@@ -25,6 +26,7 @@ import type {
   WhyView,
 } from '../protocol.ts';
 import { SHIPPED_SEED, VOICE_SCENARIO_VERSION } from '../protocol.ts';
+import { ExportRequest } from './export-request.ts';
 import { openTransport, type Transport } from './transport.ts';
 
 export interface VoiceActions {
@@ -44,6 +46,7 @@ export interface VoiceActions {
   replay(seed?: number): void;
   /** Download this run as a playtest file. */
   exportPlaytest(): void;
+  sendPlaytest(): void;
   /** Replay a playtest file's text in the worker; it replaces this run only if it is valid. */
   loadPlaytest(text: string): void;
   clearPlaytest(): void;
@@ -80,6 +83,7 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
   const [error, setError] = useState<string | null>(null);
   const [mock, setMock] = useState(false);
   const [playtest, setPlaytest] = useState<PlaytestStatus>(null);
+  const exportRequest = useRef(new ExportRequest());
   const gen = useRef(0);
   /** The run number a playtest load will use; its replies are accepted once the worker says it replayed. */
   const pendingLoad = useRef(0);
@@ -117,16 +121,27 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
           if (msg.gen !== gen.current) return;
           switch (msg.type) {
             case 'playtest': {
+              const ticket = exportRequest.current.ticket(msg.gen);
+              if (ticket === null) return;
               const file = msg.file;
+              const toLab = exportRequest.current.destination(msg.gen);
               fetchBuild()
                 .then((build) => {
-                  downloadJson(PLAYTEST_FILE_NAME.voice, { ...file, build });
+                  if (exportRequest.current.ticket(msg.gen) !== ticket) return;
+                  if (toLab) {
+                    gameLabs.voice.openSendDialog({ getRun: () => ({ ...file, build }) });
+                  } else downloadJson(PLAYTEST_FILE_NAME.voice, { ...file, build });
+                  exportRequest.current.finish(msg.gen, ticket);
                   setPlaytest(null);
                 })
-                .catch((e: unknown) => setPlaytest({ error: `The download failed: ${String(e)}` }));
+                .catch((e: unknown) => {
+                  if (!exportRequest.current.finish(msg.gen, ticket)) return;
+                  setPlaytest({ error: `The download failed: ${String(e)}` });
+                });
               return;
             }
             case 'playtestError':
+              if (!exportRequest.current.finish(msg.gen)) return;
               setPlaytest({ error: msg.message });
               return;
             case 'replayed':
@@ -190,6 +205,7 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
       .catch((e: unknown) => setError(`The simulation failed to load: ${String(e)}`));
     return () => {
       cancelled = true;
+      exportRequest.current.reset();
       stopTicks();
       opened?.close();
       transport.current = null;
@@ -198,6 +214,8 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
 
   const actions = useMemo<VoiceActions>(() => {
     const resetRun = () => {
+      exportRequest.current.reset();
+      setPlaytest(null);
       frameRef.current = null;
       setFrame(null);
       setBetween(null);
@@ -249,11 +267,18 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
         setReport(null);
         send({ type: 'keepListening' });
       },
+      sendPlaytest: () => {
+        if (!exportRequest.current.begin(gen.current, true)) return;
+        setPlaytest({ busy: 'export' });
+        send({ type: 'exportPlaytest' });
+      },
       exportPlaytest: () => {
+        if (!exportRequest.current.begin(gen.current, false)) return;
         setPlaytest({ busy: 'export' });
         send({ type: 'exportPlaytest' });
       },
       loadPlaytest: (text) => {
+        exportRequest.current.reset();
         setPlaytest({ busy: 'load' });
         pendingLoad.current = Math.max(gen.current, pendingLoad.current) + 1;
         send({ type: 'loadPlaytest', gen: pendingLoad.current, text });

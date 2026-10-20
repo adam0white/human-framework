@@ -64,7 +64,14 @@ export function SeasonCardView({ card, actions }: { card: SeasonCard; actions: W
           </button>
         ))}
       </div>
-      <p className="w-moment-let">…or say nothing; they will decide alone. The days slow while you think.</p>
+      <p className="w-moment-let">
+        {card.kind === 'proposal'
+          ? '…or say nothing; they will decide alone.'
+          : card.kind === 'practise'
+            ? 'Without an answer, no lessons are arranged this summer.'
+            : 'You can leave the family to themselves.'}{' '}
+        The days slow while you think.
+      </p>
     </section>
   );
 }

@@ -4,6 +4,7 @@
  * Everything the worker sends passes through `contract.ts` first, so the rest of the UI reads one shape.
  */
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { gameLabs } from '../../shared/lab.tsx';
 import type { PlaytestStatus } from '../../shared/PlaytestMenu.tsx';
 import {
   downloadJson,
@@ -63,6 +64,7 @@ export interface ColonyActions {
   restart(): void;
   /** Download this run as a playtest file. */
   exportPlaytest(): void;
+  sendPlaytest(): void;
   /** Replay a playtest file's text in the worker; it replaces this run only if it is valid. */
   loadPlaytest(text: string): void;
   clearPlaytest(): void;
@@ -108,6 +110,8 @@ export function useColony(seed = DEFAULT_SEED): Colony {
   const [error, setError] = useState<string | null>(null);
   const [prediction, setPrediction] = useState<Colony['prediction']>(null);
   const [playtest, setPlaytest] = useState<PlaytestStatus>(null);
+  const sendToLab = useRef(false);
+  const exportPending = useRef(false);
   /** The run number a playtest load will use; its replies count once the worker says it replayed. */
   const pendingLoad = useRef(0);
   const predictSeq = useRef(0);
@@ -161,15 +165,26 @@ export function useColony(seed = DEFAULT_SEED): Colony {
       switch (msg.type) {
         case 'playtest': {
           const file = msg.file;
+          const toLab = sendToLab.current;
           fetchBuild()
             .then((build) => {
-              downloadJson(PLAYTEST_FILE_NAME.colony, { ...file, build });
+              if (toLab) {
+                sendToLab.current = false;
+                gameLabs.well.openSendDialog({ getRun: () => ({ ...file, build }) });
+              } else downloadJson(PLAYTEST_FILE_NAME.colony, { ...file, build });
               setPlaytest(null);
+              exportPending.current = false;
             })
-            .catch((err: unknown) => setPlaytest({ error: `The download failed: ${String(err)}` }));
+            .catch((err: unknown) => {
+              exportPending.current = false;
+              sendToLab.current = false;
+              setPlaytest({ error: `The download failed: ${String(err)}` });
+            });
           return;
         }
         case 'playtestError':
+          exportPending.current = false;
+          sendToLab.current = false;
           setPlaytest({ error: msg.message });
           return;
         case 'replayed':
@@ -285,6 +300,8 @@ export function useColony(seed = DEFAULT_SEED): Colony {
         send({ type: 'predict', requestId: predictSeq.current, input });
       },
       restart: () => {
+        exportPending.current = false;
+        sendToLab.current = false;
         setSummaries({});
         setWhy(null);
         setPrediction(null);
@@ -294,11 +311,23 @@ export function useColony(seed = DEFAULT_SEED): Colony {
         store.current = emptyStore();
         init(worker.current);
       },
+      sendPlaytest: () => {
+        if (exportPending.current) return;
+        exportPending.current = true;
+        sendToLab.current = true;
+        setPlaytest({ busy: 'export' });
+        send({ type: 'exportPlaytest' });
+      },
       exportPlaytest: () => {
+        if (exportPending.current) return;
+        exportPending.current = true;
+        sendToLab.current = false;
         setPlaytest({ busy: 'export' });
         send({ type: 'exportPlaytest' });
       },
       loadPlaytest: (text) => {
+        exportPending.current = false;
+        sendToLab.current = false;
         setPlaytest({ busy: 'load' });
         pendingLoad.current = Math.max(gen.current, pendingLoad.current) + 1;
         send({ type: 'loadPlaytest', gen: pendingLoad.current, text });

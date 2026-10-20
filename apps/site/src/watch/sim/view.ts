@@ -33,7 +33,7 @@ import { type Moment, readPosting, readWords } from './moments.ts';
 import { bellCarry, bellSwinging, litSection, nightEnd, presentIds, theSection } from './night.ts';
 import { familyWords, isHere, isPost, isWatcher, nameOf, type Place, personOf, villager } from './people.ts';
 import { type Impression, keeperImpressions } from './reads.ts';
-import { EAT_PER_HEAD } from './season.ts';
+import { EAT_PER_HEAD, SPRING_DAY } from './season.ts';
 import type {
   Alert,
   ChronicleLine,
@@ -720,8 +720,29 @@ function buildVillagers(s: WatchState): FrameVillager[] {
   return villagers;
 }
 
+/** The thaw includes departures that occur after the historical question flag was settled. */
+function winterQuestion(s: WatchState): WinterPlan['question'] {
+  const q = s.winter.question;
+  return q?.kind === 'souls' &&
+    q.met === true &&
+    s.chronicle.some(
+      (l) =>
+        l.year === s.year &&
+        l.minute <= ((s.year - 1) * 365 + SPRING_DAY) * DAY &&
+        (l.kind === 'leave' || l.kind === 'death'),
+    )
+    ? { ...q, met: false }
+    : q;
+}
+
 function yearFrame(s: WatchState) {
   const d = dayOfYear(s);
+  const question = winterQuestion(s);
+  const lines = s.chronicle.map((l) =>
+    question?.met === false && l.year === s.year && l.text === `Done: ${question.text}`
+      ? { ...l, text: `Not done: ${question.text}` }
+      : l,
+  );
   const inWinter = s.phase === 'dusk' || s.phase === 'night' || s.phase === 'dawn' || s.phase === 'thaw';
   const villagers = villagersOf(s);
   const fair = s.phase === 'fair' && s.fair ? s.fair : null;
@@ -743,10 +764,8 @@ function yearFrame(s: WatchState) {
               ? 'The granary is running low.'
               : null
         : null,
-    winter: inWinter
-      ? { night: s.winterNight, nights: s.winter.nights, why: s.winter.why, question: s.winter.question }
-      : null,
-    chronicle: s.chronicle.slice(-YEAR_LINES),
+    winter: inWinter ? { night: s.winterNight, nights: s.winter.nights, why: s.winter.why, question } : null,
+    chronicle: lines.slice(-YEAR_LINES),
     volume: frameVolume(s, s.volume),
     shelf: s.volumes.map((v) => frameVolume(s, v)),
     leaves: s.leaves,
@@ -770,7 +789,7 @@ function yearFrame(s: WatchState) {
       s.phase === 'thaw'
         ? {
             lines: [
-              ...s.chronicle.filter((l) => l.year === s.year && l.kind !== 'talk').map((l) => l.text),
+              ...lines.filter((l) => l.year === s.year && l.kind !== 'talk').map((l) => l.text),
               ...winterMarks(s),
             ],
             winter: winterWords(s.yearGrain.lostWinter, s.yearGrain.hungry),

@@ -31,6 +31,68 @@ const batch = (over: Record<string, unknown> = {}) =>
   });
 
 describe('lab core', () => {
+  it('accepts Rope season labels and rejects invented climbs or mountain names', () => {
+    const e = [
+      ['scr', 0, 'title'],
+      ['scr', 1, 'season'],
+      ['ms', 2, 'season done'],
+    ];
+    for (const [i, id] of ['hollin', 'tooth', 'kestrel'].entries()) {
+      for (const phase of ['hut', 'climb', 'debrief']) e.push(['scr', 3, `climb ${i + 1} ${id}: ${phase}`]);
+      for (const milestone of ['done', 'summit', 'all home'])
+        e.push(['ms', 4, `climb ${i + 1} ${milestone}`]);
+    }
+    const good = parseBatch(batch({ g: 'rope', e }));
+    expect(good.ok && good.batch.e).toEqual(e);
+    const bad = parseBatch(
+      batch({
+        g: 'rope',
+        e: [
+          ['scr', 0, 'climb 4 hollin: hut'],
+          ['scr', 1, 'climb 1 Jane Doe: hut'],
+        ],
+      }),
+    );
+    expect(bad.ok && bad.batch.e).toEqual([
+      ['scr', 0],
+      ['scr', 1],
+    ]);
+  });
+
+  it('rejects unknown games and drops undeclared prose and addresses', () => {
+    expect(parseBatch(batch({ g: 'zzz' })).ok).toBe(false);
+    expect(parseRun(JSON.stringify({ v: 1, game: 'zzz', run: {} })).ok).toBe(false);
+    for (const name of [
+      'My name is Jane Doe at 123 Main Street',
+      '192.168.1.1',
+      '2001:db8::1',
+      'visit evil dot example',
+    ]) {
+      const r = parseBatch(
+        batch({
+          e: [
+            ['scr', 1, name],
+            ['ms', 2, name],
+          ],
+        }),
+      );
+      expect(r.ok && r.batch.e).toEqual([
+        ['scr', 1],
+        ['ms', 2],
+      ]);
+    }
+  });
+
+  it('rejects structurally expensive JSON before parsing and accepts braces inside strings', () => {
+    const dense = JSON.stringify({ v: 1, game: 'pass', run: Array.from({ length: 40000 }, () => ({})) });
+    expect(parseRun(dense).ok).toBe(false);
+    const deep = `{"v":1,"game":"pass","run":${'['.repeat(100)}0${']'.repeat(100)}}`;
+    expect(parseRun(deep).ok).toBe(false);
+    expect(parseRun(JSON.stringify({ v: 1, game: 'pass', run: { text: '[{"'.repeat(40000) } })).ok).toBe(
+      true,
+    );
+  });
+
   it('accepts a well-formed batch and drops unknown fields', () => {
     const r = parseBatch(
       batch({
@@ -39,14 +101,14 @@ describe('lab core', () => {
         e: [
           ['start', 0],
           ['ms', 1200, 'service 1 done'],
-          ['scr', 1500.4, 'night 1'],
+          ['scr', 1500.4, 'night 1: service'],
         ],
       }),
     );
     expect(r.ok).toBe(true);
     if (!r.ok) return;
     expect(Object.keys(r.batch).sort()).toEqual(['b', 'e', 'g', 's', 'v', 'vp']);
-    expect(r.batch.e[2]).toEqual(['scr', 1500, 'night 1']);
+    expect(r.batch.e[2]).toEqual(['scr', 1500, 'night 1: service']);
   });
 
   it('rejects malformed batches', () => {
@@ -144,7 +206,7 @@ describe('lab core', () => {
     const day = aggregateDay('2026-10-19', [b('constructor', 'constructor'), b('pass', '__proto__')]);
     expect(day.games['constructor' as string]?.sessions).toBe(1);
     expect(Object.entries(mergeAggregates([day]).pass?.milestones ?? {})).toContainEqual(['__proto__', 1]);
-    expect(parseBatch(batch({ g: 'constructor' })).ok).toBe(true);
+    expect(parseBatch(batch({ g: 'constructor' })).ok).toBe(false);
   });
 
   it('keeps errors as type and place only, and names free of addresses', () => {
@@ -163,7 +225,7 @@ describe('lab core', () => {
     );
     expect(r.ok && r.batch.e).toEqual([
       ['err', 1, 'Error'],
-      ['scr', 2, 'night b2/b'],
+      ['scr', 2],
     ]);
   });
 
@@ -176,7 +238,10 @@ describe('lab core', () => {
 
 /** An in-memory stand-in for the R2 binding, with the subset the Worker uses. */
 function fakeEnv(limited = false) {
-  const store = new Map<string, { body: Uint8Array; meta?: Record<string, string> }>();
+  const store = new Map<
+    string,
+    { body: Uint8Array; meta?: Record<string, string>; uploaded?: Date; etag?: string }
+  >();
   const enc = new TextEncoder();
   const obj = (key: string) => {
     const o = store.get(key);
@@ -185,7 +250,8 @@ function fakeEnv(limited = false) {
     return {
       key,
       size: o.body.byteLength,
-      uploaded: new Date(),
+      uploaded: o.uploaded ?? new Date(),
+      etag: o.etag ?? key,
       customMetadata: o.meta,
       text: async () => text,
       json: async () => JSON.parse(text),
@@ -197,25 +263,57 @@ function fakeEnv(limited = false) {
       put: async (
         key: string,
         value: string | ArrayBuffer | Uint8Array,
-        opts?: { customMetadata?: Record<string, string> },
+        opts?: {
+          customMetadata?: Record<string, string>;
+          onlyIf?: { etagMatches?: string; etagDoesNotMatch?: string };
+        },
       ) => {
+        const old = store.get(key);
+        if (opts?.onlyIf?.etagDoesNotMatch === '*' && old) return null;
+        if (opts?.onlyIf?.etagMatches && (old?.etag ?? key) !== opts.onlyIf.etagMatches) return null;
         const body = typeof value === 'string' ? enc.encode(value) : new Uint8Array(value as ArrayBuffer);
-        store.set(key, { body, meta: opts?.customMetadata });
+        const saved = { body, meta: opts?.customMetadata, etag: String(Number(old?.etag ?? 0) + 1) };
+        store.set(key, saved);
+        return { key, size: body.byteLength, uploaded: new Date(), etag: saved.etag };
       },
       delete: async (keys: string | string[]) => {
         for (const k of Array.isArray(keys) ? keys : [keys]) store.delete(k);
       },
-      list: async ({ prefix = '' }: { prefix?: string } = {}) => ({
-        objects: [...store.keys()]
-          .filter((k) => k.startsWith(prefix))
-          .sort()
-          .flatMap((k) => obj(k) ?? []),
-        truncated: false,
-      }),
+      list: async ({
+        prefix = '',
+        cursor,
+        limit = 1000,
+        delimiter,
+      }: {
+        prefix?: string;
+        cursor?: string;
+        limit?: number;
+        delimiter?: string;
+      } = {}) => {
+        const all = [...store.keys()].filter((k) => k.startsWith(prefix) && (!cursor || k > cursor)).sort();
+        const entries = delimiter
+          ? [
+              ...new Set(
+                all.map((k) => {
+                  const end = k.indexOf(delimiter, prefix.length);
+                  return end < 0 ? k : k.slice(0, end + delimiter.length);
+                }),
+              ),
+            ].filter((k) => !cursor || k > cursor)
+          : all;
+        const page = entries.slice(0, Math.min(limit, 173)); // metadata can shorten R2 pages
+        return {
+          objects: page.flatMap((k) => obj(k) ?? []),
+          delimitedPrefixes: delimiter ? page.filter((k) => !store.has(k)) : [],
+          truncated: entries.length > page.length,
+          cursor: entries.length > page.length ? page.at(-1) : undefined,
+        };
+      },
     },
     EVENTS_LIMIT: { limit: async () => ({ success: !limited }) },
     RUNS_LIMIT: { limit: async () => ({ success: !limited }) },
     EVENTS_ALL: { limit: async () => ({ success: true }) },
+    RUNS_ALL: { limit: async () => ({ success: true }) },
     ASSETS: {
       fetch: async () =>
         Response.json({ app: '1.0.0', framework: '2.8.0', commit: 'f'.repeat(40), dirty: false }),
@@ -240,6 +338,165 @@ const post = (path: string, body: BodyInit, headers: Record<string, string> = {}
   });
 
 describe('lab worker', () => {
+  it('bounds the public rebuild below fifty total R2 and release subrequests', async () => {
+    vi.resetModules();
+    const freshWorker = (await import('../../worker/lab.ts')).default;
+    const { env, store } = fakeEnv();
+    for (const day of lastDays(Date.now(), 7)) {
+      for (let i = 0; i < 200; i++) {
+        store.set(`ev/${day}/10/${i}.json`, {
+          body: new TextEncoder().encode(batch({ s: `sess${String(i).padStart(8, '0')}` })),
+        });
+        store.set(`runs/${day}/${i}.gz`, { body: new Uint8Array(), meta: { game: 'pass' } });
+      }
+    }
+    let operations = 0;
+    const originals = { ...env.LAB };
+    for (const k of ['get', 'put', 'list', 'delete'] as const)
+      Object.assign(env.LAB, {
+        [k]: (...args: unknown[]) => {
+          operations++;
+          if (operations > 49) throw new Error('too many subrequests');
+          return Reflect.apply(originals[k], originals, args);
+        },
+      });
+    vi.stubGlobal('fetch', async () => {
+      operations++;
+      return Response.json({});
+    });
+    env.ASSETS.fetch = async () => {
+      operations++;
+      return Response.json({});
+    };
+    const res = await freshWorker.fetch(new Request('https://human.adamwhite.work/lab/data.json'), env, {
+      waitUntil() {},
+    });
+    expect(res.status).toBe(200);
+    expect(operations).toBeLessThan(50);
+    expect(((await res.json()) as { window: { sampled: boolean } }).window.sampled).toBe(true);
+  });
+
+  it('does not publish undeclared labels left in old stored batches', async () => {
+    vi.resetModules();
+    const freshWorker = (await import('../../worker/lab.ts')).default;
+    const { env, store } = fakeEnv();
+    const day = new Date().toISOString().slice(0, 10);
+    store.set(`ev/${day}/10/legacy.json`, {
+      body: new TextEncoder().encode(
+        batch({
+          e: [
+            ['scr', 1, 'Jane Doe at 123 Main Street'],
+            ['ms', 2, 'arbitrary text'],
+          ],
+        }),
+      ),
+    });
+    vi.stubGlobal('fetch', async () => Response.json({}));
+    const res = await freshWorker.fetch(new Request('https://human.adamwhite.work/lab/data.json'), env, {
+      waitUntil() {},
+    });
+    const text = await res.text();
+    expect(text).not.toContain('Jane Doe');
+    expect(text).not.toContain('arbitrary text');
+  });
+
+  it('abandons a stalled rebuild and lets the next request retry', async () => {
+    vi.resetModules();
+    const freshWorker = (await import('../../worker/lab.ts')).default;
+    const { env } = fakeEnv();
+    const get = env.LAB.get;
+    env.LAB.get = () => new Promise(() => {});
+    vi.stubGlobal('fetch', async () => Response.json({}));
+    vi.useFakeTimers();
+    try {
+      const res = freshWorker.fetch(new Request('https://human.adamwhite.work/lab/data.json'), env, {
+        waitUntil() {},
+      });
+      await vi.advanceTimersByTimeAsync(20001);
+      let status: number | undefined;
+      void res.then((r) => {
+        status = r.status;
+      });
+      await Promise.resolve();
+      expect(status).toBe(503);
+      env.LAB.get = get;
+      const retried = await freshWorker.fetch(
+        new Request('https://human.adamwhite.work/lab/data.json'),
+        env,
+        { waitUntil() {} },
+      );
+      expect(retried.status).toBe(200);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it('groups IPv6 clients by their /64 across expanded and compressed spellings', async () => {
+    const { env } = fakeEnv();
+    const seen: string[] = [];
+    env.EVENTS_LIMIT.limit = async ({ key }) => {
+      seen.push(key);
+      return { success: true };
+    };
+    for (const ip of [
+      '2001:db8:abcd:12::1',
+      '2001:0db8:abcd:0012:ffff:ffff:ffff:ffff',
+      '2001:db8:abcd:13::1',
+    ]) {
+      await call(post('/lab/api/events', batch(), { 'CF-Connecting-IP': ip }), env);
+    }
+    expect(seen[0]).toBe(seen[1]);
+    expect(seen[0]).not.toBe(seen[2]);
+  });
+
+  it('reserves daily event capacity before accepting concurrent batches', async () => {
+    const { env, store } = fakeEnv();
+    const day = new Date().toISOString().slice(0, 10);
+    store.set(`private/event-capacity/${day}.json`, {
+      body: new TextEncoder().encode('{"used":999}'),
+      etag: '1',
+    });
+    const responses = await Promise.all(
+      Array.from({ length: 20 }, () => call(post('/lab/api/events', batch()), env)),
+    );
+    expect(responses.filter((r) => r.status === 204)).toHaveLength(1);
+    expect([...store.keys()].filter((k) => k.startsWith('ev/'))).toHaveLength(1);
+  });
+
+  it('reserves daily capacity with conditional R2 writes under concurrency', async () => {
+    const { env, store } = fakeEnv();
+    const day = new Date().toISOString().slice(0, 10);
+    for (let i = 0; i < 199; i++) store.set(`runs/${day}/${i}.gz`, { body: new Uint8Array() });
+    const body = gzipSync(JSON.stringify({ v: 1, game: 'pass', run: { seed: 1, inputs: [] } }));
+    const responses = await Promise.all(
+      Array.from({ length: 20 }, () => call(post('/lab/api/run', body), env)),
+    );
+    expect(responses.filter((r) => r.status === 200)).toHaveLength(1);
+    expect([...store.keys()].filter((k) => k.startsWith('runs/'))).toHaveLength(200);
+    expect(responses.every((r) => r.status === 200 || r.status === 503)).toBe(true);
+  });
+
+  it('checks shared run ingress before listing or decompressing', async () => {
+    const { env } = fakeEnv();
+    env.RUNS_ALL.limit = async () => ({ success: false });
+    const list = vi.spyOn(env.LAB, 'list');
+    const replies = await Promise.all(
+      Array.from({ length: 250 }, () => call(post('/lab/api/run', 'bad'), env)),
+    );
+    expect(replies.every((r) => r.status === 429)).toBe(true);
+    expect(list).not.toHaveBeenCalled();
+  });
+
+  it('counts all pages before enforcing the daily run threshold', async () => {
+    const { env, store } = fakeEnv();
+    const day = new Date().toISOString().slice(0, 10);
+    for (let i = 0; i < 200; i++) store.set(`runs/${day}/${i}.gz`, { body: new Uint8Array() });
+    expect(
+      (await call(post('/lab/api/run', gzipSync(JSON.stringify({ v: 1, game: 'pass', run: {} }))), env))
+        .status,
+    ).toBe(503);
+  });
+
   afterEach(() => vi.unstubAllGlobals());
 
   it('stores an event batch under the hour, with CORS for the game origin', async () => {
@@ -247,8 +504,8 @@ describe('lab worker', () => {
     const res = await call(post('/lab/api/events', batch(), { 'Content-Type': 'text/plain' }), env);
     expect(res.status).toBe(204);
     expect(res.headers.get('Access-Control-Allow-Origin')).toBe('https://pass.adamwhite.work');
-    const keys = [...store.keys()];
-    expect(keys).toHaveLength(1);
+    const keys = [...store.keys()].filter((k) => k.startsWith('ev/'));
+    expect(keys.filter((k) => k.startsWith('ev/'))).toHaveLength(1);
     expect(keys[0]).toMatch(/^ev\/\d{4}-\d{2}-\d{2}\/\d{2}\/[0-9a-f]{16}\.json$/);
     const stored = JSON.parse(new TextDecoder().decode(store.get(keys[0] ?? '')?.body));
     expect(Object.keys(stored).sort()).toEqual(['b', 'e', 'g', 'h', 's', 'v', 'vp']);
@@ -351,7 +608,7 @@ describe('lab worker', () => {
         batch({
           e: [
             ['start', 0],
-            ['scr', 3, 'night 1'],
+            ['scr', 3, 'night 1: service'],
           ],
         }),
       ),
@@ -377,12 +634,183 @@ describe('lab worker', () => {
     const pass = data.games.find((g) => g.id === 'pass');
     expect(pass?.runs).toBe(1);
     expect(pass?.telemetry?.sessions).toBe(1);
-    expect(pass?.telemetry?.quits).toEqual([['night 1', 1]]);
+    expect(pass?.telemetry?.quits).toEqual([['night 1: service', 1]]);
     expect(pass?.live).toMatchObject({ framework: '2.8.0' });
   });
 });
 
+async function drainCleanup(env: Env, now: number, steps = 100): Promise<number> {
+  let total = 0;
+  for (let i = 0; i < steps; i++) total += await cleanup(env, now);
+  return total;
+}
+
 describe('lab retention', () => {
+  it('blocks checkpoint resurrection after another initial writer completes and deletes raw data', async () => {
+    const { env, store } = fakeEnv();
+    const day = '2026-10-17';
+    const key = `private/aggregation/${day}.json`;
+    store.set(`ev/${day}/10/one.json`, { body: new TextEncoder().encode(batch()) });
+    const put = env.LAB.put;
+    let paused = false;
+    let release: () => void = () => {};
+    let notify: () => void = () => {};
+    const blocked = new Promise<void>((r) => {
+      notify = r;
+    });
+    const gate = new Promise<void>((r) => {
+      release = r;
+    });
+    env.LAB.put = async (k, value, options) => {
+      if (k === key && options?.onlyIf?.etagDoesNotMatch === '*' && !paused) {
+        paused = true;
+        notify();
+        await gate;
+      }
+      return put(k, value, options);
+    };
+    const slow = cleanup(env, Date.UTC(2026, 9, 19));
+    await blocked;
+    await cleanup(env, Date.UTC(2026, 9, 19));
+    expect([...store.keys()].some((k) => k.startsWith(`ev/${day}/`))).toBe(false);
+    release();
+    await slow;
+    const retained = new TextDecoder().decode(store.get(key)?.body);
+    expect(retained).not.toContain('abcdefgh12345678');
+    expect(JSON.parse(retained)).toEqual({ done: true });
+  });
+
+  it('bounds each cron invocation and resumes without counting a session twice', async () => {
+    const { env, store } = fakeEnv();
+    const day = '2026-10-17';
+    for (let i = 0; i < 180; i++)
+      store.set(`ev/${day}/10/${String(i).padStart(5, '0')}.json`, {
+        body: new TextEncoder().encode(
+          batch({ s: i % 2 ? 'sharedsession01' : `sess${String(i).padStart(8, '0')}` }),
+        ),
+      });
+    for (let step = 0; step < 20; step++) {
+      let calls = 0;
+      const originals = { ...env.LAB };
+      for (const k of ['get', 'put', 'list', 'delete'] as const) {
+        // Count every R2 operation, as a free-plan invocation would.
+        Object.assign(env.LAB, {
+          [k]: (...args: unknown[]) => {
+            calls++;
+            if (calls > 45) throw new Error('invocation exceeded operation budget');
+            return Reflect.apply(originals[k], originals, args);
+          },
+        });
+      }
+      const pending: Promise<unknown>[] = [];
+      await worker.scheduled({}, env, { waitUntil: (p) => pending.push(p) });
+      await Promise.all(pending);
+      Object.assign(env.LAB, originals);
+      expect(calls).toBeLessThanOrEqual(45);
+    }
+    const agg = JSON.parse(new TextDecoder().decode(store.get(`agg/${day}.json`)?.body));
+    expect(agg.batches).toBe(180);
+    expect(agg.games.pass.sessions).toBe(91);
+    expect([...store.keys()].some((k) => k.startsWith(`ev/${day}/`))).toBe(false);
+    expect(JSON.parse(new TextDecoder().decode(store.get(`private/aggregation/${day}.json`)?.body))).toEqual({
+      done: true,
+    });
+  });
+
+  it('retains oversized legacy days and lets later days complete', async () => {
+    const { env, store } = fakeEnv();
+    for (let i = 0; i < 1001; i++)
+      store.set(`ev/2026-10-16/10/${String(i).padStart(5, '0')}.json`, {
+        body: new TextEncoder().encode(batch({ s: `sess${String(i).padStart(8, '0')}` })),
+      });
+    store.set('ev/2026-10-17/10/one.json', { body: new TextEncoder().encode(batch()) });
+    await drainCleanup(env, Date.UTC(2026, 9, 19, 12), 70);
+    expect([...store.keys()].filter((k) => k.startsWith('ev/2026-10-16/'))).toHaveLength(1001);
+    expect(store.has('agg/2026-10-16.json')).toBe(false);
+    expect(store.has('private/deferred/2026-10-16.json')).toBe(true);
+    expect(store.has('agg/2026-10-17.json')).toBe(true);
+  });
+
+  it('concurrent checkpoint writers do not double count or delete unfinished batches', async () => {
+    const { env, store } = fakeEnv();
+    for (let i = 0; i < 75; i++)
+      store.set(`ev/2026-10-17/10/${String(i).padStart(5, '0')}.json`, {
+        body: new TextEncoder().encode(batch({ s: `sess${String(i).padStart(8, '0')}` })),
+      });
+    for (let n = 0; n < 15; n++)
+      await Promise.all([cleanup(env, Date.UTC(2026, 9, 19)), cleanup(env, Date.UTC(2026, 9, 19))]);
+    const agg = JSON.parse(new TextDecoder().decode(store.get('agg/2026-10-17.json')?.body));
+    expect(agg.batches).toBe(75);
+    expect(agg.games.pass.sessions).toBe(75);
+  });
+
+  it('finalizes every batch across pages and replaces a previously sampled aggregate', async () => {
+    const { env, store } = fakeEnv();
+    const day = '2026-10-17';
+    for (let i = 0; i < 805; i++) {
+      store.set(`ev/${day}/10/${String(i).padStart(5, '0')}.json`, {
+        body: new TextEncoder().encode(batch({ s: `sess${String(i).padStart(8, '0')}` })),
+      });
+    }
+    store.set(`agg/${day}.json`, {
+      body: new TextEncoder().encode(JSON.stringify({ ...aggregateDay(day, []), sampled: true })),
+    });
+    expect(await drainCleanup(env, Date.UTC(2026, 9, 19, 12))).toBe(805);
+    const saved = JSON.parse(new TextDecoder().decode(store.get(`agg/${day}.json`)?.body));
+    expect(saved.batches).toBe(805);
+    expect(saved.games.pass.sessions).toBe(805);
+    expect(saved.sampled).toBeUndefined();
+  });
+
+  it('keeps a recent day provisional so a delayed midnight write survives finalization', async () => {
+    const { env, store } = fakeEnv();
+    const now = vi.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 9, 18, 23, 59, 59));
+    const original = env.LAB.put;
+    let release: () => void = () => {};
+    const gate = new Promise<void>((r) => {
+      release = r;
+    });
+    env.LAB.put = async (key, value, opts) => {
+      if (key.startsWith('ev/')) await gate;
+      return original(key, value, opts);
+    };
+    const upload = call(post('/lab/api/events', batch()), env);
+    await vi.waitFor(() => expect(env.LAB.put).toBeDefined());
+    // Let body read and the storage write begin before crossing midnight.
+    await new Promise((r) => setTimeout(r, 20));
+    now.mockReturnValue(Date.UTC(2026, 9, 19, 0, 0, 1));
+    const pending: Promise<unknown>[] = [];
+    await worker.scheduled({}, env, { waitUntil: (p) => pending.push(p) });
+    await Promise.all(pending);
+    expect(store.has('agg/2026-10-18.json')).toBe(false);
+    release();
+    expect((await upload).status).toBe(204);
+    await cleanup(env, Date.UTC(2026, 9, 20, 12));
+    const agg = JSON.parse(new TextDecoder().decode(store.get('agg/2026-10-18.json')?.body));
+    expect(agg.games.pass.sessions).toBe(1);
+    now.mockRestore();
+  });
+
+  it('retains the newest runs by upload time across the 5000-entry page boundary', async () => {
+    const { env, store } = fakeEnv();
+    for (let i = 0; i < 5001; i++)
+      store.set(`runs/2026-10-18/${String(i).padStart(5, '0')}.gz`, {
+        body: new Uint8Array(),
+        uploaded: new Date(Date.UTC(2026, 9, 18) + (5001 - i) * 1000),
+        meta: { game: 'pass' },
+      });
+    const pending: Promise<unknown>[] = [];
+    for (let n = 0; n < 35; n++) {
+      pending.length = 0;
+      await worker.scheduled({}, env, { waitUntil: (p) => pending.push(p) });
+      await Promise.all(pending);
+    }
+    const index = JSON.parse(new TextDecoder().decode(store.get('private/index.json')?.body));
+    expect(index.runs).toHaveLength(5000);
+    expect(index.runs[0].key).toBe('runs/2026-10-18/00000.gz');
+    expect(index.runs.some((r: { key: string }) => r.key.endsWith('05000.gz'))).toBe(false);
+  });
+
   it('deletes raw batches two or more days old after storing their aggregate', async () => {
     const { env, store } = fakeEnv();
     const now = Date.UTC(2026, 9, 19, 12);
@@ -405,7 +833,7 @@ describe('lab retention', () => {
     put('2026-10-17', 3);
     put('2026-10-10', 1);
     put('2025-06-01', 1); // left behind by a long cron outage
-    expect(await cleanup(env, now)).toBe(5);
+    expect(await drainCleanup(env, now)).toBe(5);
     const left = [...store.keys()];
     expect(left.filter((k) => k.startsWith('ev/')).sort()).toEqual([
       'ev/2026-10-18/10/0.json',

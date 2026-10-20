@@ -5,6 +5,7 @@
  */
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useWakeLock } from '../../shared/fullscreen.tsx';
+import { gameLabs, LabControls } from '../../shared/lab.tsx';
 import { PlaytestNotice } from '../../shared/PlaytestMenu.tsx';
 import type { Draft } from '../protocol.ts';
 import { Between } from './Between.tsx';
@@ -117,6 +118,11 @@ export function App() {
 
   return (
     <div className={`voice phase-${phase}`} data-tab={tab}>
+      <LabControls
+        lab={gameLabs.voice}
+        screen={phase === 'premise' ? 'title' : phase === 'report' ? 'ending' : 'play'}
+        onSend={actions.sendPlaytest}
+      />
       {frame && (
         <TopBar
           phase={frame.phase}
