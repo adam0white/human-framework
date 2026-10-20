@@ -82,6 +82,12 @@ Which human faculties these modules cover, and which they do not yet, is listed 
 | `sim/` | `Community` (host-side) | `Community` driver over a host `World` adapter: `createCommunity(people, prior?)`, `communityState`, `stepCommunity`, `runSilent`, `preview(p, affordances, suggestion, opts?)`, `interruptPerson`, `tellDeath` (1.8.0; `stepCommunity` tells deaths by default), joint protocol (`proposeJoint`, `acceptJoint`, `declineJoint`, `mirrorAffordance`), `jointSuccessChance` |
 | `scenarios/` | world state (`VillageState`) | reference host: `createVillage` (places: home, field, well, kitchen, mosque, forest), `villagerSpec`. Game worlds live in the games, not in the package |
 
+## Beliefs and trust
+
+HF keeps three separate trust stores. `social.relationships[].trust` is trust in a person as a partner; authored ties (`seedTie`, `seedRelationships`, `meet`), experienced social events (including forgiveness), observed acts (`judge`) and reputation testimony (`perceive` / `applyReputationBelief`) can move it. `will.voices[].trust` is trust in an advising voice; `seedVoice` authors it, outcomes of followed advice, insisting and commands move it, `noteVoicePromise` updates it when a voice keeps or breaks its word, and upbringing can pass on household voice trust through `adoptVoiceTrust`. `memory.sourceTrust`, read by `trustOf`, is trust in an information source; `seedSourceTrust` authors it and `confirm` recalibrates it against observed truth. `believe` and testimony received through `perceive` weight claims by this source trust. These stores do not copy trust between them, even when their ids match. `seedBelief` authors a belief directly without applying source trust; its optional source records a claim for later confirmation, while an omitted source records no observation.
+
+See [Host kit](host-kit.md) for host authoring recipes and save bookkeeping.
+
 ## Utility of an option
 
 `consider()` sums the following terms. Every term is kept in the trace so the UI can show why.

@@ -348,6 +348,7 @@ export function communityState(c: Community): CommunityState {
 /**
  * A community over `people`. With `prior` (from `communityState`, possibly through JSON), the host-side state is
  * resumed from it, so a run restored from people + community + world state continues exactly as it would have.
+ * `prior` is copied: after stepping, write back `communityState(c)`; the old `prior` stays stale.
  */
 export function createCommunity(people: Person[], prior?: CommunityState): Community {
   const sorted = [...people].sort((a, b) => cmpStr(a.id, b.id));
@@ -405,9 +406,23 @@ export function birth(c: Community, a: Person, b: Person, spec: ChildSpec): Pers
 /**
  * Tell `dead`'s death at `at` to everyone alive in the community who has a tie to them (1.8.0): a told `death`
  * percept through `perceive`, so they grieve, the tie is kept and marked, and a spouse is widowed. Each listener's
- * clock must be at or before `at`; the drivers call it when they notice the death.
+ * receipt time is at least their own `now`. `late: 'now'` explicitly permits listeners past `at`, as does the
+ * existing default. `late: 'throw'` requires all eligible listeners to be at or before `at` and throws before
+ * delivering any news if one is ahead. This changes no listener's clock.
  */
-export function tellDeath(c: Community, dead: Person, at: Minute): void {
+export function tellDeath(
+  c: Community,
+  dead: Person,
+  at: Minute,
+  opts: { late?: 'throw' | 'now' } = {},
+): void {
+  if (opts.late === 'throw') {
+    for (const q of c.people) {
+      if (q === dead || !q.body.alive || q.now <= at) continue;
+      if (q.social.relationships.some((r) => r.otherId === dead.id))
+        throw new Error(`tellDeath: listener ${q.id} is past the death minute`);
+    }
+  }
   for (const q of c.people) {
     if (q === dead || !q.body.alive) continue;
     if (!q.social.relationships.some((r) => r.otherId === dead.id)) continue;

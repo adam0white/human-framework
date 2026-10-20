@@ -128,7 +128,7 @@ export {
   forecastThresholds,
   PROSPECTION_DEFAULTS,
 } from './prospection/index.ts';
-export * from './restore.ts';
+export { fingerprint, restore, snapshot } from './restore.ts';
 export * from './review/index.ts';
 export * from './scenarios/index.ts';
 export * from './sim/index.ts';

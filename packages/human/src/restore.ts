@@ -34,6 +34,26 @@ export function snapshot(p: Person): Person {
   return structuredClone(p);
 }
 
+/**
+ * A deterministic 16-hex-digit digest of the canonical saved person. Canonicalization runs the saved form
+ * through `restore` (including migrations, defaults, bounds and optional-slice sanitizers), then sorts every
+ * object's keys recursively; array order stays significant. Thus key insertion order and empty optional slices
+ * that `restore` drops do not change the digest. Includes the engine stamp. Reads only; never mutates `p`.
+ * Uses 64-bit FNV-1a over JSON's UTF-16 code units, with no platform or crypto dependency. This is a change
+ * detector, not a cryptographic integrity check; collisions are possible. Invalid saves throw as in `restore`.
+ */
+export function fingerprint(p: Person): string {
+  const json = JSON.stringify(restore(snapshot(p)), (_key, value: unknown) => {
+    if (typeof value !== 'object' || value === null || Array.isArray(value)) return value;
+    return Object.fromEntries(Object.entries(value).sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0)));
+  });
+  let hash = 0xcbf29ce484222325n;
+  for (let i = 0; i < json.length; i++) {
+    hash = BigInt.asUintN(64, (hash ^ BigInt(json.charCodeAt(i))) * 0x100000001b3n);
+  }
+  return hash.toString(16).padStart(16, '0');
+}
+
 // Unlike core `isObj`, arrays pass: a required slice saved as an array is filled from defaults, not refused.
 const isObject = (x: unknown): x is Record<string, unknown> => typeof x === 'object' && x !== null;
 const isMinute = (x: unknown): x is number => isNum(x) && Math.abs(x) <= MAX_MINUTE;

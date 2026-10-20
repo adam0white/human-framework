@@ -12,6 +12,11 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+- Host setup: `seedSourceTrust` authors testimony trust and `seedBelief` authors starting knowledge without an observation marker or reputation update. Both clamp finite values; source trust rejects self ids. The architecture documents relationship, voice and source trust separately.
+- Saves: `fingerprint(person)` hashes the restored, recursively key-sorted saved form with a browser-safe 64-bit string hash. Key insertion order and optional empty slices removed by restore do not change the digest; this is a change detector, not a cryptographic check.
+- Host recipes: [host-kit](docs/host-kit.md) covers travel, effort and duration, need and work utility, community-state write-back and feeding residents, with executable tests.
+- Death news: `tellDeath` accepts `{ late: 'now' | 'throw' }`. The existing tolerant default is preserved; explicit strict mode rejects ahead-of-time listeners before delivering news to anyone. The reported default throw did not reproduce on this baseline.
+
 ## [2.9.0] - 2026-10-19
 
 Engine: 2.9.0. Takes the games' polish requests filed against 2.8.0 (The Two Voices 1, 2 and 5; The Pass 8), each opt-in or additive, plus doc notes (Voices 3 and 4). New state is optional and starts absent; engine 2.8.0 saves migrate by a version stamp. Persons that use no opt-in slice continue exactly (full-state digests match npm 2.3.0 with the engine stamp normalized); persons on the promptings and review slices without 2.9.0 options continue exactly as 2.8.0 (digests measured against the 2.8.0 release source, with the engine stamp and the new review-term `ref` normalized).
