@@ -237,6 +237,16 @@ export class MissingPlayControl extends Error {
     this.control = control;
   }
 }
+/** Keep the complete requested name, including live status. A stale name must be refused. */
+export async function clickNamedPlayControl<T>(
+  page: { getByRole(role: string, options: { name: string; exact: true }): T },
+  click: (target: T) => Promise<boolean>,
+  name: string,
+  role?: string,
+): Promise<boolean> {
+  if (await click(page.getByRole(role ?? 'button', { name, exact: true }))) return true;
+  return !role && click(page.getByRole('link', { name, exact: true }));
+}
 function requestedControlPresent(snapshot: PlaySnapshot | null, op: Record<string, unknown>): boolean | null {
   if (op.op !== 'tap' || (typeof op.name !== 'string' && typeof op.text !== 'string')) return null;
   if (!snapshot) return false;
@@ -244,7 +254,12 @@ function requestedControlPresent(snapshot: PlaySnapshot | null, op: Record<strin
   const wanted = normalize(typeof op.name === 'string' ? op.name : String(op.text));
   const roles = typeof op.role === 'string' ? [op.role] : ['button', 'link'];
   for (const line of snapshot.controls.split('\n')) {
-    const match = /^\s*-\s+(\S+)\s+"((?:\\.|[^"\\])*)"/.exec(line);
+    // ariaSnapshot emits a YAML single-quoted entry when the label contains ": ".
+    const entry = line.replace(/^\s*-\s+/, '');
+    const unquoted = entry.startsWith("'")
+      ? entry.slice(1, entry.lastIndexOf("'")).replace(/''/g, "'")
+      : entry;
+    const match = /^(\S+)\s+"((?:\\.|[^"\\])*)"/.exec(unquoted);
     if (!match?.[1] || match[2] === undefined) continue;
     let name: string;
     try {

@@ -14,6 +14,7 @@ import { homedir } from 'node:os';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import {
+  clickNamedPlayControl,
   MissingPlayControl,
   makeLogLine,
   makePlayReply,
@@ -258,22 +259,6 @@ async function main() {
         return false;
       }
     };
-    // A control whose name carries live status ("House Later: after I pray Fajr" becomes "House
-    // Will refuse: …" seconds later) may have changed since it was listed. Fall back to the
-    // longest word prefix of the requested name that starts exactly one visible control's name.
-    const clickByStem = async (role: string, name: string) => {
-      const words = name.trim().split(/\s+/);
-      for (let n = words.length - 1; n >= 1; n--) {
-        const stem = words.slice(0, n).join(' ');
-        if (stem.length < 3) break;
-        const escaped = stem.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        const matches = page.getByRole(role, { name: new RegExp(`^${escaped}`) }).filter({ visible: true });
-        const count = await matches.count();
-        if (count === 1) return click(matches);
-        if (count > 1) return false;
-      }
-      return false;
-    };
     // Whether a visible control by this name (or text) exists but is disabled: the game's answer.
     const disabledNamed = async (name: string) =>
       page.evaluate((wanted: string) => {
@@ -302,11 +287,7 @@ async function main() {
         case 'tap':
           if ('x' in op && typeof op.x === 'number' && typeof op.y === 'number') await tapPoint(op.x, op.y);
           else if ('name' in op && typeof op.name === 'string') {
-            if (
-              !(await click(page.getByRole(op.role ?? 'button', { name: op.name, exact: true }))) &&
-              (op.role || !(await click(page.getByRole('link', { name: op.name, exact: true })))) &&
-              !(await clickByStem(op.role ?? 'button', op.name))
-            ) {
+            if (!(await clickNamedPlayControl(page, click, op.name, op.role))) {
               if (await disabledNamed(op.name))
                 throw new Error(
                   `${op.name} is shown but disabled right now (game state, not a driver failure)`,
