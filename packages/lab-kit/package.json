@@ -1,6 +1,6 @@
 {
   "name": "@adam0white/lab-kit",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": false,
   "description": "Small plain-DOM Field Notebook components for lab games",
   "license": "MIT",
@@ -16,7 +16,8 @@
       "default": "./dist/index.js"
     },
     "./tokens.css": "./tokens.css",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./stage.css": "./stage.css"
   },
   "bin": {
     "stamp-release": "./bin/stamp-release"
@@ -25,6 +26,7 @@
     "dist/**/*.js",
     "dist/**/*.d.ts",
     "tokens.css",
+    "stage.css",
     "bin/stamp-release",
     "README.md"
   ],

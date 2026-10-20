@@ -2,7 +2,18 @@
   "extends": "./tsconfig.build.json",
   "compilerOptions": {
     "rootDir": "../..",
-    "types": ["node"]
+    "types": ["node"],
+    "composite": true,
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "declarationDir": ".types",
+    "tsBuildInfoFile": ".types/tsconfig.tsbuildinfo",
+    "rewriteRelativeImportExtensions": false
   },
-  "include": ["src", "test"]
+  "include": ["src", "test", "../../scripts/lab-phone-helpers.ts"],
+  "references": [
+    {
+      "path": "../lab-client"
+    }
+  ]
 }

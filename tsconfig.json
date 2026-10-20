@@ -11,6 +11,9 @@
       "path": "packages/lab-client"
     },
     {
+      "path": "packages/lab-kit"
+    },
+    {
       "path": "apps/site"
     }
   ]

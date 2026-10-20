@@ -1,6 +1,6 @@
 # @adam0white/lab-kit
 
-Small plain-DOM components for lab games. No framework, simulation logic, automatic telemetry or font downloads. Version 0.1.0 is prepared for review; it is not published.
+Small plain-DOM components for lab games. No framework, simulation logic, automatic telemetry or font downloads. Version 0.2.0 adds a CSS-first phone stage and browser layout audit; publication is separate.
 
 Import the CSS once. JavaScript exports are tree-shakeable; CSS is explicitly marked as a side effect.
 
@@ -13,7 +13,59 @@ import { introCard, notebookMenu, nextLine, setNext } from '@adam0white/lab-kit'
 
 `tokens.css` uses the exact palette in [Field Notebook](../../docs/design-language.md), with Literata and a Georgia fallback. Load Literata and Caveat yourself if desired. The default follows `prefers-color-scheme`; set `document.documentElement.dataset.theme` to `light` or `dark` to override it. Remove the attribute to follow the system again.
 
-Use `.now` for the one current instruction, `.happened` for the journal, and `.flavour` for optional background. Buttons have visible borders, links have accent underlines, and controls have visible focus and at least 44px targets. Games own their scene layout and must check it at 360×690 visible CSS pixels.
+Use `.now` for the one current instruction, `.happened` for the journal, and `.flavour` for optional background. Buttons have visible borders, links have accent underlines, and controls have visible focus and at least 44px targets. Games own their scene content and camera. The optional phone stage arranges the state strip, visible scene and one sheet. Check the rendered result at 360×690 visible CSS pixels, 320 px width and 200% text size.
+
+## Phone stage (0.2.0)
+
+Import `tokens.css` as before, or `@adam0white/lab-kit/stage.css` alone to keep a game's existing palette and typography (supply `--paper`, `--ink`, and `--ink-soft`). The stage is CSS-first: React can own every node and state change. A strip occupies its own row above the scene and sheet. Chips wrap; full sentences appear when `data-expanded="true"`. At 900 px wide the sheet docks beside the scene. Below that width it occupies the bottom of the stage. It never overlays the strip.
+
+```tsx
+const [height, setHeight] = useState('half');
+const [expanded, setExpanded] = useState(false);
+return <main className="lk-stage" data-sheet={height}>
+  <header className="lk-strip" data-expanded={expanded}>
+    <button aria-expanded={expanded} aria-controls="village-state"
+      onClick={() => setExpanded(!expanded)}>Village state</button>
+    <div className="lk-chips"><span className="lk-chip">Roof 7 of 10</span>
+      <span className="lk-chip">Meals 12</span><span className="lk-chip">Storm 19:00 tomorrow</span></div>
+    <div className="lk-strip-detail" id="village-state">Three roof beams remain before tomorrow's storm.</div>
+  </header>
+  <div className="lk-scene">{/* Game scene */}</div>
+  <section className="lk-sheet" hidden={height === 'closed'} aria-label="Order">
+    <header className="lk-sheet-head"><h2>Order</h2>
+      {['peek', 'half', 'full', 'fit'].map(h => <button key={h}
+        aria-pressed={height === h} onClick={() => setHeight(h)}>{h}</button>)}
+      <button onClick={() => setHeight('closed')}>Watch village</button>
+    </header>
+    <div className="lk-sheet-body">{/* Essential sentence and choices */}</div>
+    <footer className="lk-commit"><button>Confirm</button></footer>
+  </section>
+</main>;
+```
+
+`peek` shows the header and commit row, `half` uses about 45% of visible height and preserves at least 40% for the scene, `full` reaches the strip, and `fit` grows with content up to the strip. Keep essential explanations near the title and actions in `.lk-commit`; only `.lk-sheet-body` scrolls. Keep headers short. At enlarged text sizes a large header or commit row can consume the available space; reduce choices or use a labelled secondary view. Do not give text a fixed height or hide overflow in game CSS. Use `hidden` on a closed sheet for CSS-only consumers so its controls leave the accessibility tree. The scene stays interactive: this is a nonmodal region, not a modal dialog. Supply an accessible name with `aria-label` or `aria-labelledby`.
+
+Vanilla games can add the optional controller without giving it ownership of their DOM:
+
+```ts
+import { phoneStage } from '@adam0white/lab-kit';
+const stage = phoneStage(document.querySelector('.lk-stage')!, {
+  onChange(sheet, canBack) {
+    // Replace the content of the existing sheet using sheet?.id.
+    // Do not replace the stage root. Render one sheet, not stacked panels.
+    renderSheet(sheet?.id, canBack);
+  },
+  onSceneRect(rect) { camera.keepSelectedInside(rect); },
+});
+orderButton.onclick = () => stage.open({ id: 'order', height: 'half', opener: orderButton });
+placeButton.onclick = () => stage.open({ id: 'places', height: 'fit', opener: placeButton });
+// Destroy event listeners and the ResizeObserver when leaving the game.
+// stage.destroy();
+```
+
+Use `data-lk-snap="peek|half|full|fit"` on labelled buttons, `data-lk-back` for Back, `data-lk-close` for Close, and `data-lk-strip-toggle` with `aria-controls` and `aria-expanded` on the strip button. The controller updates `aria-pressed`, `aria-expanded`, sheet `hidden`/`aria-hidden`, `data-sheet`, `data-sheet-id` and `data-sheet-back`. A `.lk-sheet-handle` button supports pointer drag-to-snap; supply an accessible label and keep the height buttons alongside it. The controller starts closed; call `open` for the initial sheet. Each `open` remembers the previous id and height; `back` returns there and restores the nested opener's focus. Give recreated opener controls stable ids, or pass `openerSelector` when calling `open`, so focus can find the replacement after `onChange` renders. `close` returns to the scene and focuses the original opener. `Escape` calls `back`. The controller adds one same-document history entry while a sheet is open. Browser Back returns through nested origins, then closes the outer sheet. Closing or destroying removes that entry; the prior history state is preserved. Set `history: false` when a game router owns browser Back and calls `back()` itself.
+
+`refresh()` publishes viewport-coordinate `{ x, y, width, height }` bounds from the actual `.lk-scene` through `onSceneRect` and `--lk-scene-x`, `--lk-scene-y`, `--lk-scene-width`, `--lk-scene-height`. Root, strip, sheet and scene resizes trigger it. `visualViewport` resize/scroll updates `--lk-viewport-height` and `--lk-viewport-top`, and `--lk-available-height` subtracts the stage's position below other page controls, so the commit row follows the keyboard's visible bottom. When the visual viewport falls below 80% of the layout viewport, `data-lk-keyboard="true"` lets a half sheet borrow scene space to preserve its header and actions. The normal 40% scene reservation resumes when the keyboard closes. A React game using attributes alone owns its Back/Escape/focus and drag handlers and can measure its scene with `ResizeObserver`; use `observeOnly: true` to keep React in control of transitions. In that mode the controller only observes sizes, updates viewport variables and emits snap requests through `onChange`; React handles Back, Escape, focus, strip expansion and closed-sheet accessibility. Give React's root `data-sheet` and `data-sheet-id` attributes. Do not call `open`, `back` or `close` in observe-only mode. Respect reduced motion; the base stage adds no animated movement. Test keyboard-open layout on the target browser.
 
 ## One-time hints
 
@@ -126,7 +178,8 @@ Missing package versions fail the build. Missing Git evidence produces `commit: 
 
 | Piece | Checklist support | Game still owns |
 | --- | --- | --- |
-| Tokens and base | DL-2, DL-3, DL-8, DL-23, DL-25 | One accent focus, readable layout and content |
+| Tokens and base | DL-2, DL-3, DL-8, DL-23, DL-25, DL-30 | One accent focus, readable layout and content |
+| Phone stage and controller | DL-22, DL-23, DL-24, DL-25, DL-30, DL-31 | Essential copy, scene camera, React transitions, router Back and rendered checks |
 | `once`, `introCard` | DL-1, DL-6, DL-7, DL-11, DL-24 | Clear short goal, first meaningful choice, clock |
 | Terms and glossary | DL-20 | Accurate definitions and consistent names (DL-10) |
 | English dates | DL-20, DL-21 | Mapping game time to Gregorian dates |
@@ -150,3 +203,18 @@ npm pack -w packages/lab-kit --pack-destination /tmp
 ```
 
 Tests use Vitest and happy-dom, with Node-only subprocess tests for the stamp. No publication is part of this task.
+
+## Phone check (DL-30)
+
+`auditPhone(root = document.body)` reads actual browser layout and returns findings with a kind, short selector and visible text fragment. It checks clipped text, ellipsis, line clamps, covered or overlapping targets, small targets, horizontal page scroll and actions outside a scroll container's visible box. These are heuristics: review findings in the rendered screen. It also flags text forced to scroll inside its own small box (the Warren safety-response case); ordinary scrolling sheet bodies are allowed. Canvas contents are unmeasured.
+
+```sh
+npm run lab:phone -- https://example.com --steps steps.json --out /path/to/evidence
+```
+
+Steps are a JSON array, for example `[ {"click":"Play","name":"map"}, {"selector":".order-button"}, {"wait":500}, {"selector":"input","type":"Ada"} ]`. The command captures JSON and screenshots after load and each step at 360×690 with touch and light mode. Findings produce a nonzero exit. Playwright loads lazily; ordinary checks do not download a browser. Install Chromium when needed with `npm exec --package=playwright -- playwright install chromium`. The runner searches local and npm execution caches; `PLAYWRIGHT_MODULE` can point to an external package entry.
+
+## Changes
+
+- **0.2.0:** additive CSS phone stage with wrapping state strip, four sheet heights, docked desktop layout, persistent commit row, optional snap/origin/focus/scene controller, and browser phone audit. Existing 0.1.0 imports and components remain available.
+- **0.1.0:** Field Notebook tokens, hints, intro card, glossary, English dates, instruction line, notebook menu, JSON download and release stamp.
