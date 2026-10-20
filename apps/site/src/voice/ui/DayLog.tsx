@@ -1,6 +1,6 @@
 /**
- * The day, in his narration (voice.md §7.2). Scrolls inside its own panel and sticks to the bottom unless the player
- * has scrolled up. Consecutive entries of the same action collapse into one line with a time span.
+ * The day, in his narration (voice.md §7.2). Scrolls inside its own panel. A spoken answer holds the transcript until Latest is chosen;
+ * the simulation clock runs on. The held snapshot survives the worker trimming its recent log. Consecutive entries of the same action collapse into one line with a time span.
  */
 import { memo, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { BeatKind, LogEntry } from '../protocol.ts';
@@ -48,17 +48,33 @@ export const DayLog = memo(function DayLog({
   paused,
   onWhy,
   selected,
+  onRetainWhy,
 }: {
   log: LogEntry[];
   pauseBeat?: { kind: BeatKind; text: string };
   paused: boolean;
   onWhy: (decisionId: string) => void;
   selected?: string | null;
+  onRetainWhy?: (decisionId: string) => void;
 }) {
-  const rows = useMemo(() => collapse(log), [log]);
+  const [held, setHeld] = useState<LogEntry[] | null>(null);
+  const seen = useRef<string | undefined>(undefined);
+  const visible = held ?? log;
+  const rows = useMemo(() => collapse(visible), [visible]);
+  useLayoutEffect(() => {
+    const previous = seen.current;
+    seen.current = log.at(-1)?.id;
+    const start = previous ? log.findIndex((e) => e.id === previous) + 1 : 0;
+    if (held) return;
+    const answerIndex = log.findIndex((e, i) => i >= start && e.kind === 'answer');
+    if (answerIndex < 0) return;
+    const answer = log[answerIndex];
+    setHeld(log.slice(0, answerIndex + 1));
+    if (answer?.decisionId) onRetainWhy?.(answer.decisionId);
+  }, [log, held, onRetainWhy]);
   const scroller = useRef<HTMLDivElement>(null);
   const [stuck, setStuck] = useState(true);
-  const lastId = log[log.length - 1]?.id;
+  const lastId = visible.at(-1)?.id;
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: re-stick whenever a new entry lands.
   useLayoutEffect(() => {
@@ -74,7 +90,12 @@ export const DayLog = memo(function DayLog({
 
   return (
     <section className="v-day" aria-label="The day">
-      {pauseBeat && paused && (
+      {held && (
+        <div className="v-reading">
+          Reading his answer · {held.at(-1)?.clock}. {paused ? 'Clock paused.' : 'Clock continues.'}
+        </div>
+      )}
+      {!held && pauseBeat && paused && (
         <div className={`v-beat v-beat-${pauseBeat.kind}`} role="status">
           <span className="v-beat-kind">
             <Icon name={BEAT_ICON[pauseBeat.kind]} size={18} />
@@ -150,15 +171,16 @@ export const DayLog = memo(function DayLog({
           })}
         </ol>
       </div>
-      {!stuck && (
+      {(held || !stuck) && (
         <button
           type="button"
           className="v-log-jump"
           onClick={() => {
+            setHeld(null);
             setStuck(true);
           }}
         >
-          Latest ↓
+          Latest ↓{held && log.at(-1)?.id !== held.at(-1)?.id ? ' · newer entries' : ''}
         </button>
       )}
     </section>

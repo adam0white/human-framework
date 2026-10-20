@@ -38,6 +38,8 @@ export interface VoiceActions {
   suggest(draft: Draft): void;
   withdraw(): void;
   requestWhy(decisionId: string): void;
+  /** Keep the held answer readable after the worker’s recent trace expires. */
+  retainWhy(decisionId: string): void;
   clearWhy(): void;
   endDay(): void;
   advance(standing: StandingWhisper[]): void;
@@ -92,6 +94,7 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
   const predictSeq = useRef(0);
   const predictDrafts = useRef(new Map<number, Draft>());
   const whyWant = useRef<string | null>(null);
+  const retainedWhy = useRef<{ id: string; view: WhyView | null } | null>(null);
 
   const send = useCallback((msg: MainToWorker) => transport.current?.post(msg), []);
 
@@ -168,6 +171,7 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
               return;
             }
             case 'why':
+              if (retainedWhy.current?.id === msg.decisionId) retainedWhy.current.view = msg.why;
               if (msg.decisionId !== whyWant.current) return;
               setWhy(msg.why);
               setWhyMissing(msg.why === null);
@@ -225,6 +229,7 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
       setWhyOpen(false);
       setError(null);
       whyWant.current = null;
+      retainedWhy.current = null;
       predictDrafts.current.clear();
     };
     resetRef.current = resetRun;
@@ -244,7 +249,19 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
       },
       suggest: (draft) => send({ type: 'suggest', draft }),
       withdraw: () => send({ type: 'withdraw' }),
+      retainWhy: (decisionId) => {
+        retainedWhy.current = { id: decisionId, view: null };
+        send({ type: 'why', decisionId });
+      },
       requestWhy: (decisionId) => {
+        const retained = retainedWhy.current;
+        if (retained?.id === decisionId && retained.view) {
+          whyWant.current = decisionId;
+          setWhy(retained.view);
+          setWhyMissing(false);
+          setWhyOpen(true);
+          return;
+        }
         if (whyWant.current !== decisionId) setWhy(null);
         setWhyMissing(false);
         whyWant.current = decisionId;

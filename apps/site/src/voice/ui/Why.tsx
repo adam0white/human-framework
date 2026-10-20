@@ -1,11 +1,102 @@
 /**
- * Why (voice.md §8): stacked term bars for the top three options of one decision, labelled as estimates, plus the
- * memory it recalled and how a voice was answered. A drawer on desktop, a bottom sheet on phones.
+ * Why: the recorded influences in Halil’s words, strongest first within each option.
+ * Model values stay in a closed secondary disclosure. This reads the view only; it never reweighs a decision.
  */
 import { useEffect, useRef } from 'react';
 import type { WhyView } from '../protocol.ts';
 
-const PALETTE = ['#3f4a8a', '#a8552f', '#c98a2b', '#4f7a4a', '#7d4a7a', '#3e7c8a', '#9a7b4f', '#8a8f98'];
+/** Authored paraphrases of recorded influences, not additional causes or simulated speech. */
+function pullLine(label: string, toward: boolean): string {
+  const lines: Record<string, [string, string]> = {
+    grieving: ['My grief draws me toward this.', 'My grief makes this hard to face.'],
+    hunger: ['This would help with my hunger.', 'This would leave me hungrier.'],
+    thirst: ['This would help with my thirst.', 'This would leave me thirstier.'],
+    sleep: ['This would help me catch up on sleep.', 'This would cost me sleep.'],
+    rest: ['This would let me recover.', 'This would tire me further.'],
+    company: ['This would help me feel less alone.', 'This would leave me feeling more alone.'],
+    effort: ['I feel up to the effort.', 'The effort puts me off.'],
+    risk: ['The risk seems worth taking.', 'I am wary of what could happen.'],
+    habit: ['This is what I am used to doing.', 'This goes against what I am used to doing.'],
+    money: ['The money draws me to this.', 'The cost puts me off.'],
+    'your words': ['I am taking your words to heart.', 'Your words make me reluctant.'],
+    'not being pushed': ['I want to choose for myself.', 'I do not want to be pushed into this.'],
+    'what he expects from it': ['I expect this to help.', 'I do not expect this to go well.'],
+    'a goal': ['This serves something I want to do.', 'This gets in the way of something I want to do.'],
+    'keeping at it': ['I want to keep at what I started.', 'I am reluctant to keep at this.'],
+    'something he had set himself to': [
+      'I want to do what I set myself to.',
+      'This gets in the way of what I set myself to.',
+    ],
+    safety: ['This would help me feel safe.', 'This does not feel safe.'],
+    relief: ['This would ease my discomfort.', 'This would add to my discomfort.'],
+    'his own way': ['I want to do this my own way.', 'This does not feel like my choice.'],
+    standing: ['I want to keep my standing with people.', 'I worry how this will look to people.'],
+    meaning: ['This matters to me.', 'I find little meaning in this.'],
+    'doing it well': ['I want to do this well.', 'I do not feel able to do this well.'],
+    enjoyment: ['I would enjoy this.', 'I would not enjoy this.'],
+  };
+  const pair = lines[label];
+  if (pair) return pair[toward ? 0 : 1];
+  const emotions: Record<string, string> = {
+    anxious: 'worry',
+    afraid: 'fear',
+    ashamed: 'shame',
+    guilty: 'guilt',
+    proud: 'pride',
+    grateful: 'gratitude',
+    glad: 'joy',
+    upset: 'distress',
+    hopeful: 'hope',
+    relieved: 'relief',
+    'let down': 'disappointment',
+    fond: 'affection',
+    moved: 'awe',
+    content: 'contentment',
+    lonely: 'loneliness',
+    bored: 'boredom',
+    angry: 'anger',
+  };
+  if (emotions[label])
+    return toward
+      ? `My ${emotions[label]} draws me toward this.`
+      : `My ${emotions[label]} makes this hard to face.`;
+  if (label.startsWith('for '))
+    return toward
+      ? `I want to do this for ${label.slice(4)}.`
+      : `My concern for ${label.slice(4)} holds me back.`;
+  if (label === 'suhoor' || label === 'iftar')
+    return toward ? 'I want to make time for my meal.' : 'This would get in the way of my meal.';
+  if (label.startsWith('Osman:'))
+    return toward ? 'I want to keep my word to Osman.' : 'This gets in the way of my word to Osman.';
+  if (label.startsWith('his understanding:'))
+    return toward ? 'This fits how I understand my duties.' : 'This goes against how I understand my duties.';
+  if (/^(Fajr|Dhuhr|Asr|Maghrib|Isha|the fast|Eid prayer)/i.test(label))
+    return toward ? 'I want to make room for my practice.' : 'I am reluctant because of my practice.';
+  if (/^[A-ZİŞÇÖÜĞ][\p{L}ı]+(?:’s words| said so earlier)$/u.test(label))
+    return toward
+      ? `I am taking ${label.replace(/ said so earlier$/, '’s words')} to heart.`
+      : `${label.replace(/ said so earlier$/, '’s words')} make me reluctant.`;
+  return toward ? 'Another concern draws me toward this.' : 'I have other reservations about this.';
+}
+
+/** A verdict can name a limit that is absent from the considered options. */
+function answerReason(reason: string): string | null {
+  const limits: Record<string, string> = {
+    'he does not trust you enough for this': 'I do not trust you enough for this.',
+    'he is asleep': 'I am asleep.',
+    'he is not sleepy': 'I am not sleepy.',
+    'he is not up to it': 'I am not up to it.',
+    'it is not open to him now': 'I cannot do that just now.',
+    'he cannot': 'I cannot do that.',
+    'he does not know how': 'I do not know how.',
+    grieving: 'I am still grieving.',
+  };
+  if (limits[reason]) return limits[reason];
+  if (reason.startsWith('he had already said yes to ')) return reason.replace('he had', 'I had');
+  // Already-readable host reasons stay prose; model identifiers belong in the disclosure only.
+  if (!/[:_]|\d\.\d/.test(reason) && reason !== 'grieving') return reason;
+  return null;
+}
 
 export function Why({
   why,
@@ -37,14 +128,6 @@ export function Why({
     return () => window.removeEventListener('keydown', onKey);
   }, [onClose]);
 
-  const max = why
-    ? Math.max(
-        0.01,
-        ...why.options.map((o) => o.terms.reduce((s, t) => s + Math.max(0, t.value), 0)),
-        ...why.options.map((o) => o.terms.reduce((s, t) => s + Math.max(0, -t.value), 0)),
-      )
-    : 1;
-
   return (
     <aside className="v-why" aria-label="Why he chose this">
       <div className="v-why-head">
@@ -61,53 +144,66 @@ export function Why({
           <p className="v-why-chosen">
             He chose <em>{why.chosen}</em>.
           </p>
-          {why.note && <p className="v-why-voice">{why.note}</p>}
+          {why.note && (
+            <p className="v-why-voice">
+              {why.note.includes('insisted')
+                ? 'He went along because he was pressed to do it.'
+                : 'He was already set on this. The other possibilities did not draw him away.'}
+            </p>
+          )}
           {why.voice && (
             <p className="v-why-voice">
-              To your words he said <q>{why.voice.says}</q> <span>({why.voice.reason})</span>
+              To your words he said <q>{why.voice.says}</q>
+              {answerReason(why.voice.reason) && <span> {answerReason(why.voice.reason)}</span>}
             </p>
           )}
           {why.recalled && <p className="v-why-recall">{why.recalled}</p>}
+          <p className="v-why-note">
+            His pulls, put into words. The strongest comes first for each possibility.
+          </p>
           <ol className="v-why-options">
             {why.options.map((o) => (
               <li key={o.label}>
-                <div className="v-why-opt-head">
-                  <span>{o.label}</span>
-                  <span className="v-why-total">{o.total.toFixed(2)}</span>
-                </div>
-                <div className="v-why-bar" aria-hidden="true">
-                  {o.terms
-                    .filter((t) => t.value > 0)
-                    .map((t, i) => (
-                      <span
-                        key={t.label}
-                        style={{
-                          width: `${(t.value / max) * 100}%`,
-                          background: PALETTE[i % PALETTE.length],
-                        }}
-                        title={`${t.label} ${t.value.toFixed(2)}`}
-                      />
+                <div className="v-why-opt-head">{o.label}</div>
+                <ul className="v-why-pulls">
+                  {[...o.terms]
+                    .sort((a, b) => Math.abs(b.value) - Math.abs(a.value))
+                    .filter((t) => t.value !== 0)
+                    .map((t) => (
+                      <li key={`${t.label}-${t.value}`}>{pullLine(t.label, t.value > 0)}</li>
                     ))}
-                </div>
-                <ul className="v-why-terms">
-                  {o.terms.map((t, i) => (
-                    <li key={t.label} className={t.value < 0 ? 'is-neg' : ''}>
-                      <span
-                        className="v-why-swatch"
-                        style={{ background: t.value > 0 ? PALETTE[i % PALETTE.length] : 'transparent' }}
-                      />
-                      <span>{t.label}</span>
-                      <span className="v-why-val">
-                        {t.value >= 0 ? '+' : '−'}
-                        {Math.abs(t.value).toFixed(2)}
-                      </span>
-                    </li>
-                  ))}
+                  {!o.terms.some((t) => t.value !== 0) && <li>Nothing in particular draws me to this.</li>}
                 </ul>
               </li>
             ))}
           </ol>
-          <p className="v-why-note">Figures are estimates from his own weighing, not measurements.</p>
+          <details className="v-model-numbers" key={why.decisionId}>
+            <summary>Model numbers</summary>
+            <p className="v-why-note">
+              Simulation terms for lab readers. These are model values, not measurements of Halil’s feelings
+              or faith.
+            </p>
+            <ol className="v-why-options">
+              {why.options.map((o) => (
+                <li key={o.label}>
+                  <div className="v-why-opt-head">
+                    {o.label} <span className="v-why-total">{o.total.toFixed(2)}</span>
+                  </div>
+                  <ul>
+                    {o.terms.map((t) => (
+                      <li key={`${t.label}-${t.value}`}>
+                        {t.label}{' '}
+                        <span className="v-why-val">
+                          {t.value >= 0 ? '+' : '−'}
+                          {Math.abs(t.value).toFixed(2)}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ol>
+          </details>
         </div>
       )}
     </aside>

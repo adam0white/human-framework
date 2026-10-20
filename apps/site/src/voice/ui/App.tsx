@@ -141,10 +141,12 @@ export function App() {
           </div>
           <div className="v-col v-col-centre">
             <DayLog
+              key={frame.day}
               log={frame.log}
               pauseBeat={frame.pauseBeat}
               paused={frame.paused}
               onWhy={openWhy}
+              onRetainWhy={actions.retainWhy}
               selected={whyId}
             />
           </div>
