@@ -1,0 +1,145 @@
+# HF maintenance audit — 2026-10-20
+
+Read-only audit of `packages/human` at `d6552b9` (package/engine 2.9.0). Only this report changes. Completion: a committed ranked audit for the coordinator's Host kit sweep; no implementation, release or consumer upgrade is part of this task.
+
+**Recommendation:** retain the published APIs in 2.x. Split the three large coordinators, remove three private export keywords, and fix the documentation/checking gaps. No inspected game needs a deprecated overload, but the package README explicitly promises those overloads until 3.0. Removing an exported symbol or accepted overload is a semver breaking change even with zero observed users.
+
+## Ranked work
+
+Paths in this table are relative to `packages/human/` unless prefixed otherwise. Risk means risk of changing behaviour during the proposed edit. S ≈ up to half a day; M ≈ one day; L ≈ several days. “Neutral” means no fixture/hash changes, including serialized property order. Every refactor must retain the existing expected values.
+
+| Id | Area / modules and evidence | Risk | Effort | Neutral? | Disposition |
+|---|---|---|---|---|---|
+| M1 | Docs/tooling: `scripts/api-doc.ts:236` always writes and ignores `--check`; CI lacks API freshness and packed-consumer execution (`.github/workflows/ci.yml:34–39`, `publish.yml:77–90`). Generated reference is currently exact: 681 exports, 34 modules. Implement a read-only check and a temporary packed-package example smoke check. | low | S | yes | Host kit 2.9.1 sweep |
+| M2 | Will: `src/will/will.ts:677–1029`, `evaluate` (353 lines; module 1,630 lines). Extract veto preparation, score/selection, command arbitration, per-voice judgments and insistence arbitration into private helpers. Preserve stable tie ordering, raw/inertia score distinction and the supplied random draw. | high | M | yes | Host kit 2.9.1 sweep |
+| M3 | Composite: `src/person.ts:1356–1590`, `finish` (235 lines; module 1,641 lines). Extract realized need deltas, conscience response, participation and voice learning; keep cross-faculty sequencing visible in `finish`. Update stale tick scope at `:2–4` (hourly grid at `:532`, not only activity-end splitting). | high | M | yes | Host kit 2.9.1 sweep |
+| M4 | Driver: `src/sim/sim.ts:825–1111`, `stepCommunity` (287 lines; module 1,149 lines). Extract command synchronization, daily bookkeeping, decision options and joint-offer construction. Keep next-event selection and transition ordering in the loop. | high | M | yes | Host kit 2.9.1 sweep |
+| M5 | Private export hygiene: `src/cognition/cognition.ts:296,313` (`effortValue`, `materialValue`), `src/agenda/agenda.ts:547` (`goalValue`). No cross-file HF references; excluded from root public exports (`src/index.ts:38,95`). Remove only `export`, never the necessary functions. Site's same-named `goalValue` is unrelated (`apps/site/src/colony/ui/end-report.ts:9`). | low | S | yes | Host kit 2.9.1 sweep |
+| M6 | Test setup: `test/command.test.ts:24–34` and `test/will.test.ts:19–26` duplicate noon/villager/offers setup. Put exactly matching builders in `test/support.ts:33–99`; pass seeds, others and defaults explicitly. Avoid global mutable fixtures. | low | S | yes | Host kit 2.9.1 sweep |
+| M7 | Public compatibility: six `@deprecated` declarations below already target 3.0. `expit` and unused `_now` arguments have no deprecation note. As a discretionary 3.0 API decision (roadmap R2 3c), add a deprecation note to `expit`; make `_now` optional while retaining three-argument calls and document the target. No removal or game migration in 2.9.1. | low | S | yes | Host kit 2.9.1 sweep; removals 3.0 |
+| M8 | Docs consistency: `docs/framework.md:3` calls mutators “pure”; `:44` says eight-hour tick is O(1), despite the hourly loop. Say deterministic readers/mutators, and O(elapsed segments) for tick. `src/index.ts:1` still says “v1 public surface”; migration scope `src/migrate.ts:11` stops at 2.7 though the chain reaches 2.9. `docs/roadmap.md:3` says no next goal is set despite AGENTS' current bounded increment. | low | S | yes | Host kit 2.9.1 sweep |
+| M9 | Strictness: eight `Object.keys(...) as NeedId[]` sites: `src/person.ts:1403`, `src/cognition/cognition.ts:339,362`, `src/memory/memory.ts:597,598,658–660`. A helper in an internal `core/keys.ts` (not re-exported by the root) could centralize the assertion, preserving `Object.keys` order. It assumes a closed string-keyed record; it does not validate host input. | low | S | yes | Defer to 2.x follow-up by 2026-11-01; avoid overlap with coordinator splits |
+| M10 | Strictness: `src/prospection/prospection.ts:331` uses `r as unknown as ConsequenceRevision` only for identity comparison after validation. Construct the validated revision before duplicate comparison, or narrow the helper's structural input. Keep duplicate rejection unchanged. | low | S | yes | Host kit 2.9.1 sweep |
+| M11 | Restore hardening, roadmap Q36: `src/family/family.ts:103–108` accepts non-finite `conceivedAt`, `dueAt`, `seed` via `typeof`. Use finite checks with focused malformed-input tests. | low for valid saves | S | valid saves only; changes malformed-input acceptance | Defer to explicit hardening follow-up, 2.x by 2026-11-01 |
+| M12 | API design, roadmap Q5/Q13/Q15/Q16: freezing mutable public defaults, renaming composite/primitive APIs, renaming `skip`, unifying routine source shapes. These are public-contract decisions, not cleanup. Defaults freezing changes tuning-by-assignment; the public README advertises both routine APIs. | high | L | no for blanket changes | Defer defaults/names/routines to 3.0 (review 2026-11-15); drop `skip` rename unless 3.0 has a demonstrated need |
+| M13 | Performance, roadmap V11 and bench evidence: driver allocations at >500 people, quiet-machine timing, 50-year save growth. No measured allocation problem in this audit. | med | M | unproved | Defer measurement to “A thousand lives” bench, 2026-11-15; no optimization in sweep |
+| M14 | Roadmap Q52/Q50: authored habits/expectations, trust gestures and host-caused tiredness are additive features, not refactors. Coordinate with Host kit setters rather than implement a second API here. Community/world migration needs no sweep change. | med | M | additive, not proved here | Defer to Host kit API owner; community migration engine 2.15, world host recipe |
+
+## Deprecated symbols and other compatibility paths
+
+Consumer evidence is a local snapshot, not a claim about all public npm users. Inspected current source/docs in every named repository; all local Concordia heads were separately searched with `git for-each-ref refs/heads` and `git grep` over those refs. Source call forms were read after name searches; imports and unrelated same-named helpers do not count as calls. No other `@deprecated` declaration exists in `packages/human/src` (six total).
+
+### Consumer pins
+
+Pins come from each consumer's package.json, not its lockfile or served deployment. Current HEAD receipts: glance `60919d2`, goodhands `7c97bc6`, hearsay `7000ecd`, murmur `60a10ec`, pass `d3d3439`, rope `9711930`, stairwell `6c5396e`, valley `36324e4`, warren `2c286d6`, repair-game `cfd65a3`, concordia `38f0892`. These repositories may move independently. Site resolves the local workspace during development; its manifest still declares 2.8.0.
+
+| Consumer | Package manifest | HF pin |
+|---|---|---|
+| apps/site | `apps/site/package.json:13` | 2.8.0 |
+| glance | `~/code/glance/package.json:24` | 2.8.0 |
+| goodhands | `~/code/goodhands/package.json:24` | 2.9.0 |
+| hearsay | `~/code/hearsay/package.json:24` | 2.9.0 |
+| murmur | `~/code/murmur/package.json:24` | 2.8.0 |
+| pass | `~/code/pass/package.json:25` | 2.8.0 |
+| rope | `~/code/rope/package.json:24` | 2.8.0 |
+| stairwell | `~/code/stairwell/package.json:24` | 2.8.0 |
+| valley | `~/code/valley/package.json:24` | 2.8.0 |
+| warren | `~/code/warren/package.json:24` | 2.8.0 |
+| repair-game | `~/code/repair-game/package.json:24` | 2.8.0 |
+| concordia `main` | all package manifests on `refs/heads/main` | no HF pin |
+| concordia `neighbours` | `refs/heads/neighbours:neighbours/package.json:23` | 2.8.0 |
+| concordia `lab/neighbours-integration` | `refs/heads/lab/neighbours-integration:neighbours/package.json:23` | 2.8.0 |
+
+### Per-symbol usage and disposition
+
+`H/` = `packages/human/`; other paths are relative to the named consumer. Every runtime call listed for the first five APIs uses positional time. **No deprecated options-object consumer call was found.** Glance, Hearsay, Murmur, Rope, Stairwell, Warren, repair-game and all three Concordia heads use none of these nine symbols. Site's `watch/sim/levelup.test.ts:31,73,97,132` has an unrelated local `hear` helper.
+
+| Symbol / compatibility form | Consumer call sites (pin above) | Public README / HF tests | Recommendation and semver |
+|---|---|---|---|
+| `glimpse(..., {at, clarity})`, `H/src/social/impressions.ts:263` | Goodhands `src/sim/index.ts:1371`, `src/sim/v1/index.ts:1258`, `src/sim/v2/index.ts:1271` (current form only) | README `:211` promises old forms to 3.0. No direct old-form equivalence test found. | Keep existing 3.0 deprecation. Removing overload is breaking; zero observed old-form callers is insufficient for a patch removal. |
+| `glimpseOf(..., {at, clarity})`, `H/src/impression.ts:90` | Site `src/watch/sim/night.ts:1343,1353,1545`; Pass `src/sim/kitchen.ts:1439,2390`; Valley `src/sim/valley.ts:340,345,822,2575`. Valley docs `docs/design.md:22,68` name it. | README `:211` promises compatibility; `:255` current example. Old/current equivalence `H/test/impressions.test.ts:354–355`. | Keep to 3.0. Removing the overload is breaking; retain positional API and all current users. |
+| `hear(..., {at, weight})`, `H/src/social/impressions.ts:330` | Site `src/watch/sim/night.ts:536,1395`, `src/watch/sim/talk.ts:98,99,125,126,142,148`; Goodhands `src/sim/world.ts:1003`, `src/sim/index.ts:269,1943,1944,2236`, `src/sim/v1/world.ts:1003`, `src/sim/v1/index.ts:257,1733,1734,2007`, `src/sim/v2/world.ts:1003`, `src/sim/v2/index.ts:260,1773,1774,2047`. | README `:211` compatibility, `:255` current example; equivalence `H/test/impressions.test.ts:356–357`. | Keep to 3.0. Overload removal is breaking; no named-game migration required. |
+| `conceive(..., {at, seed})`, `H/src/family/family.ts:174` | Valley `src/sim/valley.ts:1623` | README `:211` compatibility, `:248` current example; equivalence `H/test/family.test.ts:64,71`. | Keep to 3.0; overload removal is breaking. |
+| `retell(..., {at, ...})`, `H/src/memory/memory.ts:359` | Site `src/watch/sim/life.ts:1207` | README `:211` compatibility, `:246` current example; equivalence `H/test/family.test.ts:299–302`. | Keep to 3.0; overload removal is breaking. |
+| `TRAIT_NAMES`, `H/src/social/impressions.ts:46–47` | None in any inspected consumer | No README executable example; generated public API `docs/api.md:1454`. Alias of `TRAIT_KEYS`; existing declaration promises 3.0. | Keep deprecation to 3.0. Export removal is breaking despite zero observed consumers. |
+| `expit`, `H/src/core/math.ts:42` | None in inspected consumers. Internal calls: beliefs `:188`; conversation `:238,256,313,347`; social `:638`. | No README example; public `docs/api.md:999`. Not currently deprecated; it is the exact `sigmoid` function alias. | If taking roadmap R2 3c, deprecate for 3.0; retain export in 2.x. This alias has no demonstrated correctness defect. Replacing internal imports is neutral but optional. Export removal is breaking. |
+| `repent(p,id,_now)`, `H/src/conscience/conscience.ts:402` | None in inspected consumers | No README example; public API `:949`; framework `:68` documents three args. HF calls `H/test/conscience.test.ts:238,240,243,245`. | Make third arg optional in 2.x, document removal in 3.0. Dropping a declared TS parameter breaks three-argument callers even if JS ignores extra arguments. |
+| `recordRepair(p,victimId,_now)`, `H/src/conscience/conscience.ts:411` | None in inspected consumers | No README example; public API `:948`; HF caller `H/test/conscience.test.ts:242`. | Same staged optional-argument treatment; signature removal is breaking. |
+
+No public API removal is recommended “now”. The only immediate removals are M5's private `export` keywords; the functions remain, neither reaches the package entry, and package.json permits no public source subpaths. README examples depend on none of those three private exports.
+
+### Save and narration compatibility: retain
+
+`src/migrate.ts:35–119` retains engine 1.4.0→2.9.0 steps, including `ambient.now`→`ambient.percept` at `:35–39`. Most steps only stamp metadata but form a necessary chain. No inspected external source directly uses `migrate`, `migratableVersions` or `MIGRATIONS`; **that does not make them dead**, because `restore` invokes migration. Public exports remain supported. Tests: `H/test/migrate.test.ts:89,112,165–181`; `H/test/methods.test.ts:29`. README `:195–201` promises restoration and host save assembly. Removing old-save acceptance changes that contract; retain without a removal target.
+
+HF `restore` call sites (not Canvas/game functions of the same name), all pins as above:
+
+| Consumer | Calls |
+|---|---|
+| Site | `src/colony/sim/human.ts:749` (`restorePerson`); `src/voice/sim/town-save.test.ts:63,78,89,90` |
+| Glance | `src/sim/dam.ts:1489` |
+| Murmur | `src/sim/game.ts:273,933` |
+| Pass | `src/sim/kitchen.ts:2463,2464,2864`; `scripts/measure-hands-on.ts:178`; `scripts/measure-hands-on-b.ts:234` |
+| Valley / Warren | `src/sim/game.ts:518,519` / `src/sim/game.ts:114` |
+| repair-game | `src/game/persistence.ts:409`; `tests/community.test.ts:137,185`; `tests/responsibility.test.ts:175`; `tests/evidence-context.test.ts:252`; `tests/people.test.ts:364,384` |
+| Concordia, both `neighbours` and `lab/neighbours-integration` | `neighbours/src/core/restore.ts:102`; `neighbours/scripts/probe-bench-choice.ts:78,84`; `neighbours/tests/handcart.test.ts:310`; `neighbours/tests/bench-opportunity.test.ts:202,203` |
+
+Goodhands, Hearsay, Rope, Stairwell and Concordia `main` have no HF `restore` call. These calls prove use of restore, not which historical save engines are held by players.
+
+`src/narrate/narrate.ts:157–158` accepts historical `emotion:<tag>` and current `emotion:<id>:<tag>` records via one final-segment lookup. No inspected host emits the old form; Site consumes the current one at `apps/site/src/voice/ui/obstacle.ts:53` (tests `obstacle.test.ts:16`, `composer-followup.test.ts:161`). No README example depends on the old spelling. Keep this tiny compatibility branch: lack of current emitters says nothing about saved records; removing accepted narration input changes public behaviour.
+
+Routine APIs are not deprecated shims. `src/longrun.ts:266–269` accepts a `Routine` or `(p,day)=>Routine`; `src/sim/longrun.ts:40` takes `(p,day,community)=>Routine`. No inspected external caller uses `liveRoutine` or `RoutineSource`. Site uses `liveCommunity` at `apps/site/src/watch/sim/season.ts:85–86`. README `:253–254` advertises **both** APIs; `H/test/longrun.test.ts:45–66,100,168–176` uses both. Retain; any consolidation should first add an adapter in 2.x and reserve removal for 3.0 (M12).
+
+## Dead code, strictness and scope
+
+Knip **6.42.1** ran with `ignoreExportsUsedInFile: true`, first with normal entry treatment, then `--include-entry-exports`, scoped to `packages/human`. Both exited 1 solely for the intentional `sigmoid`/`expit` duplicate export (`src/core/math.ts:37,42`); no unused files/exports were reported. Grep plus root-export tracing found M5's three unnecessary internal export keywords. No definite unused unexported function or unreachable branch was found. This is bounded static evidence, not a control-flow proof. Do not delete public wildcard exports merely because only their own module calls them: examples include `expectationKey` (`memory:540`), `chronicleState/consolidateDay/appendDay` (`chronicle:72,270,376`), `resolveKey` (`review:83`) and `valuesSimilarity/ageFit` (`partnering:267,273`).
+
+Strict TypeScript and `noUncheckedIndexedAccess` are enabled (`tsconfig.base.json:8–9`). A lexical scan of 77 source files found 195 assertion `as` tokens (32 `as const`, excluding four import/export aliases), zero explicit `any`, and zero postfix non-null assertions. These are lexical counts, not AST counts. Prioritize M9–M10 over blanket cast edits. There are 33 `Object.keys` calls; `src/character/character.ts:110–124,142–144` intentionally reconstructs saved property order. Replacing traversal with canonical trait/value arrays can break byte-identical JSON even if values match.
+
+Faculty scope paragraphs were present in the inspected modules. The concrete defects are stale scope claims (M3/M8), not missing faculty scope. Preserve the distinction between sources, interpretation and engineering assumptions; no faith-model change belongs in this sweep.
+
+## Refactor proofs and independent work packages
+
+Keep frozen full-state digests in `test/legacy-received-regression.test.ts:83–94`, `test/game-requests.test.ts:198–257`, `test/game-requests-29.test.ts:324–330` and their fixture helpers unchanged. Also retain `restore-bounds.test.ts:63` byte-identical restore, `examples.test.ts`, and all existing Site replay tests. These are broader than unit assertions but do not prove every unexercised branch.
+
+| Package | Exclusive files it may change | Work / existing proofs |
+|---|---|---|
+| WP-A composite | `src/person.ts`, `test/person.test.ts` | M3. `person.test.ts:262–351`; `game-requests-29.test.ts:134`; frozen controls above. Snapshot needs before deltas; learn memory before clearing activity; conscience/agenda before voice learning; chronicle before clear; body-mode exit/outcome percepts after clear. |
+| WP-B will | `src/will/will.ts`, `test/will-voices.test.ts` | M2. `will-voices.test.ts:67–203,258–331`; read/run `command`, `omission`, `crisis`, `game-requests.test.ts:110–123` unchanged. No new RNG draw. |
+| WP-C driver | `src/sim/sim.ts`, `test/gaps.test.ts`, `test/save-resume.test.ts` | M4. `village.test.ts:13–24` deterministic state/events/chunking; `save-resume.test.ts:17`; `gaps.test.ts:129–193,268–347` joint/begin/interrupt cases. |
+| WP-D private exports | `src/cognition/cognition.ts`, `src/agenda/agenda.ts` | M5 only. Full typecheck plus existing cognition/agenda/continuation tests. Do not touch same-named Site helpers. |
+| WP-E compatibility notes | `src/core/math.ts`, `src/conscience/conscience.ts` | M7; optional timestamps and 3.0 notes, retain aliases and overloads elsewhere. Existing core/conscience/formulas tests unchanged. |
+| WP-F test setup | `test/support.ts`, `test/command.test.ts`, `test/will.test.ts` | M6. Run both files and all support consumers. Preserve seed, defaults, object construction order and every assertion. |
+| WP-G validated types | `src/prospection/prospection.ts` | M10. Existing prospection, restore-bounds and continuation tests; no policy change. |
+| WP-H docs/tooling | `scripts/api-doc.ts`, `.github/workflows/ci.yml`, `docs/framework.md`, `docs/roadmap.md`, `src/index.ts` (comment only), `src/migrate.ts` (comment only) | M1/M8. Add read-only API freshness; smoke-test packed public README example outside workspace aliasing. Add final `docs/api.md` regeneration here after other packages merge. |
+
+All source/test paths in the package table are under `packages/human/`; scripts/workflows/docs are repo-root paths. File ownership does not overlap. Workers may run independently; one integration pass regenerates the reference and runs full checks after merging. WP-H owns `docs/api.md` exclusively. Deferred M9 spans WP-A/WP-D/memory and must wait; do not add it to parallel workers' scope. No package owns fixture/hash rewrites.
+
+## Test timing and verification
+
+Measured with Node 26.12.0 on this Apple Silicon machine after `PATH=/opt/homebrew/bin:$PATH; npm ci` and `npm run build -w packages/human`. Command: `npx vitest run --reporter=json --outputFile=/tmp/hf-maintenance-vitest-20261020.json`. Exit 0: **171 files, 1,579 passed, 4 skipped, 0 failed**; HF: **67 files, 728 tests, all passed**. Reporter start-to-last-result wall time: **326.38 s** across all workspaces; sum of HF file intervals: **98.83 s** (parallel work, not HF-only wall time). Other jobs were active; these are loaded-machine observations, not quiet-machine benchmarks.
+
+| Slowest HF files | File interval |
+|---|---:|
+| `test/village.test.ts` | 60.40 s |
+| `test/longrun.test.ts` | 25.00 s |
+| `test/retention.test.ts` | 4.62 s |
+| `test/promptings.test.ts` | 1.73 s |
+| `test/lifecourse-trajectories.test.ts` | 0.91 s |
+
+The longest whole-repo assertion intervals in the JSON report were Site's `src/voice/ui/scenes.test.ts` (206.70 s), `src/watch/sim/years.test.ts` (186.33 s), `src/voice/sim/game.test.ts` (162.57 s), and `src/watch/sim/levelup.test.ts` (144.99 s). JSON start/end intervals exclude some setup time: for example, the Voice balance file's assertion interval was only 0.77 s, while its separate setup is expensive. These are not complete per-file CPU profiles. Their maintenance belongs to the Site, not this framework sweep. Preserve scenario coverage; do not weaken assertions or raise timeouts to improve these numbers. M6's identical builders are the concrete HF dedup target; partial cast-literal fixtures in `test/conscience.test.ts:16`, `test/beliefs.test.ts:15`, and `test/social.test.ts:18` differ from `fullPerson` and need careful value comparison before any later consolidation.
+
+`api-doc` has no implemented `--check`: it unconditionally writes at `scripts/api-doc.ts:236`. A temporary copy of the generator redirected only its root/output constants, ran against the freshly built declarations, and produced a byte-identical `docs/api.md` (zero diff). No tracked generated file was rewritten. Knip commands: `npx --yes knip --workspace packages/human --config /tmp/hf-maintenance-knip.json --no-progress --reporter=json`, then the same with `--include-entry-exports`; config contained only `{"ignoreExportsUsedInFile":true}`. Exit 1 is the alias finding, not a tool failure.
+
+Required check attempts (no source, fixture, timeout or assertion changes):
+
+| Command | Observed outcome |
+|---|---|
+| `npm run check` | Lint/types passed; 1,578 tests passed, 1 failed, 4 skipped; 383.64 s. Site `watch/sim/lessons.test.ts:5` timed out at 81.04 s against 60 s; it passed at 38.37 s in the earlier full JSON run. |
+| `npm run check -- -- --maxWorkers=2` | Lint/types passed; non-passing marker for Site `voice/sim/balance.test.ts` (6 tests, 5 skipped, 360.89 s). Its `beforeAll` budget is 300 s (`:61–72`). Interrupted after that marker (exit 130); no final summary. Lower concurrency did not establish a remedy. |
+| Standard `npm run check` retry | Lint/types passed; the same Site lesson timed out at 61.53 s. Interrupted after the known failure (exit 130); no final summary. |
+| `npm run check -- -- --pool=threads --maxWorkers=4` | Lint/types passed; Site `voice/sim/town.test.ts` reported one failure: its long-run life-course test took 65.57 s against a 60 s limit (file interval 159.59 s). Interrupted after the known failure (exit 130); no final summary. |
+
+**Commit gate unresolved:** the earlier complete full-suite timing run passed, but no subsequent complete `npm run check` passed. The report remains uncommitted; the task's mandatory passing-check rule prevents committing it. No source or test edits were made to obtain a pass. Contention is a hypothesis supported by the timing spread, not an established cause. Existing lint output contains 61 warnings and 1 informational diagnostic, with exit 0; no fixes were applied. These validation problems belong to Site test scheduling; review with the Site owner by 2026-10-27 rather than changing test limits in this audit.
+
+Independent read-only reviews checked consumer/semver coverage and coordinator/module boundaries. Corrections applied: the exact `evaluate` boundary, the conception-equivalence citation, and the distinction between README documentation and observed callers. `expit` deprecation is explicitly discretionary.
