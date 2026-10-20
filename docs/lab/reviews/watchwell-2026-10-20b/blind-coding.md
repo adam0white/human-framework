@@ -1,0 +1,41 @@
+# Blind coding of 20 playtest reports
+
+Times are m:ss from session start, converted from the report's elapsed seconds. "Well" = Twice at the Well; "Watch" = The Night Watch; "Room" = A Dark Room.
+
+| code | game | earliest wish | category | passed? | final stop (time, reason) | verbatim quote (earliest wish) | would return |
+|---|---|---|---|---|---|---|---|
+| R01 | Well | 7:17.9 | CONFUSED | no | 7:26.3, CONFUSED | "I would put the phone down here." | unclear (tentative: "might try it once more another evening") |
+| R02 | Well | 9:58.8 (first run) | FRUSTRATED | yes (temporary; retried) | 15:14.1 (retry), FRUSTRATED | "I would put this down here." | yes (probably on desktop) |
+| R03 | Watch | 12:22.1 | BORED | yes (passed when watch needed intervention) | 14:06.3, TOOL (driver could not operate "Tamar" button) | "I would put the phone down here and let the rest of the night run." | yes |
+| R04 | Room | 7:25.8 | BORED | no | 7:55.1, BORED | "I would leave this running now and check back later." | yes |
+| R05 | Well | 6:14.2 | CONFUSED | no | 6:26.7, CONFUSED | "I want to put this down now." | unclear (tentative: "might return once... not tonight") |
+| R06 | Well | 6:08.4 | CONFUSED | no | 6:15.0, CONFUSED | "I would put this down now." | no ("would not return voluntarily tonight") |
+| R07 | Watch | none | other (TOOL stop only) | n/a | 2:37.7, TOOL (driver could not ring bell) | none; the logged want_quit says "This is a forced stop, not my wish to leave the game." | yes |
+| R08 | Watch | none | other (TOOL stop only) | n/a | 7:04.3, TOOL (driver could not operate Rest) | none; no want_quit logged | yes |
+| R09 | Room | 7:11.6 (log stamp; wait began ~6:46.4) | BORED | no | 8:35.6, BORED | "I want one more collection before stepping away." | yes |
+| R10 | Watch | none | other (TOOL stop only) | n/a | 11:17.4, TOOL (driver could not operate Rest) | none; report states no formal or informal wish | yes |
+| R11 | Well | 11:09.0 | FRUSTRATED | unclear (report: "did not fully pass") | 15:09, FINISHED (read ending at D3 05:00) | "I would put the phone down here." | unclear (not tonight; "might return another evening") |
+| R12 | Well | 10:01.0 | CONFUSED | yes (passed when dawn explained result; retried) | 15:13.5 (retry), FRUSTRATED | "I would put this down here." | yes, conditional on finding the Rush control |
+| R13 | Watch | 12:58 (per report) | CONFUSED | no | 15:11.9, CONFUSED | original wording not in report; closest: "The wish to put the phone down did not pass." (stop row) | yes (another evening) |
+| R14 | Watch | 6:53.2 (per report) | FRUSTRATED | yes (at 10:05.5); second wish at 11:10.4 | 15:08.5, FRUSTRATED | original wording not in report; closest: "The wish to put the phone down has passed for now" (10:05.5 note) | yes (once, on Slow) |
+| R15 | Well | 4:13.3 | FRUSTRATED | no | 4:17.0, FRUSTRATED | "I would put this down now." | unclear (no for this phone session; "might try this on a computer") |
+| R16 | Room | 6:14 (diary row stamped 6:39.0) | BORED | no | 6:51.1, BORED | "I would leave this tab open while I get a drink" | yes |
+| R17 | Watch | 6:08.9 | BORED | no | 6:18.5, BORED | "I would put the phone down here." | unclear (tentative: "might return for the people") |
+| R18 | Well | none | other (TOOL stop only) | n/a | 6:36.0, TOOL (driver could not operate "Insist") | none; report: "no expressed wish to leave" | yes |
+| R19 | Room | 10:56.7 | BORED | no | about 15:09 (last logged entry; stop row not in report), continued-exposure stop, BORED | "I would leave this running and come back later now." | yes |
+| R20 | Watch | 6:32.8 | CONFUSED | no | 6:59.6, CONFUSED | "I would put this down here." | no/unclear ("would not voluntarily start another watch tonight"; would close the game) |
+
+## Where the earliest wish differs from the tester's own logged want_quit
+
+- R07: the tester logged a want_quit at 2:37.6 (TOOL), but states it is a forced stop, not a wish to leave. I coded "none".
+- R09: the diary wording "one more collection before stepping away" appears at 7:11.6 (wait started about 6:46.4). The formal want_quit is 7:19.3. The report itself says the earliest wish falls inside the earlier wait.
+- R16: the tester says the feeling began about 6:14, in the final wait. The diary row is stamped 6:39.0 and the formal want_quit is 6:39.2.
+- R13 and R14: times match the formal log, but the verbatim want_quit entry is not in the report. R13 says it is "reproduced verbatim in the diary" and it is not there. I used the nearest quoted wish wording.
+- R15, R19 and R01: the diary has earlier mild dissatisfaction or "thin" or "just watching" comments. None states a wish to stop, so they are not coded. The earliest wish equals the formal time.
+- R08, R10 and R18: no want_quit logged and none found. Speeding up the clock (R08 at 6:30, R10 at 7:52) is not a wish to stop.
+
+## Uncertainties
+
+- R19's stop time is inferred from its last logged entry. The report has no stop row.
+- R11 stopped at the game's ending, not at the wish. "Passed" is unclear because the report says the wish "did not fully pass".
+- R03, R07, R08 and R10 ended on driver (TOOL) failures. Their final stop is not a voluntary stop.

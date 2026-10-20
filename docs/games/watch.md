@@ -636,6 +636,11 @@ Review this list by 2026-11-05; the owner decides which T1 items to schedule and
 **Round 2 retest (2026-10-20).**
 - Target **2026-11-03**, **a brief spoken warning at night.** Callum: “tapping him does not produce a direct warning.” No general spoken-warning input exists. The named bell rings, wears the rope and presses a hold command; relabelling it would conceal those costs. Accounts are read-only in this round. A warning needs a separately justified edition and exact legacy replay controls.
 
+**Round 3 retest (2026-10-20, [README](../lab/reviews/watchwell-2026-10-20b/README.md)).** No tester missed the night requests; none chose Milder winter or asked for an easier game.
+- Target **2026-11-03**, **say what a cover or call-back order did** (F-359, F-362). Sam: “I would rather stop than spend another night guessing what my orders mean.”
+- Target **2026-11-03**, **the relief and help sheets slow the clock like a watcher's decision** (F-361). Sam: “I want to make an order after reading it; I do not want to race the menu.”
+- Target **2026-11-05**, **a during-fight call** (F-360), a candidate only: the Keeper still does not fight. Sam: “I wanted to run the defence during the fight.”
+
 **Owner taste direction (2026-10-20).** "Don't become bland and objective neutral just to satisfy everyone. It's okay to have slight controversies, for example on difficulty." The 2026-10-20c night acts keep the pressure: each is an ask the watcher may refuse, the reliever's stretch thins or empties, nothing happens beyond the Keeper's voice, and no difficulty value changed. Done **2026-10-20**, **an opt-in easier watch** in scenario 12: Milder winter gives later packs and earlier movement warnings, chosen on the flyleaf and recorded in the export. Hard winter remains the default. See [the design change](#design-change-2026-10-20d-owner-may-veto). Fresh human acceptance is targeted for **2026-11-03**.
 
 **From the owner's playtest (2026-10-05).**

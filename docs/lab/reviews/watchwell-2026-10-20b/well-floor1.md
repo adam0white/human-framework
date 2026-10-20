@@ -1,0 +1,248 @@
+# Twice at the Well — Bram, phone playtest
+
+## Session
+
+Bram, 35, warehouse shift lead. I play Mini Motorways, RimWorld on PC and Bad North. I like giving quick orders and watching people carry them out. I am curious, at home in the evening, phone in hand.
+
+- URL: https://human.adamwhite.work/colony/
+- Build: no build identifier was visibly encountered.
+- Device: 360×690 CSS px, touch emulation, light mode, default text size. One post-stop look at 1280×800.
+- Access: the supplied `npm run lab:play` driver, port 43607, one persistent page. PID 23583 was stopped with `kill 23583` after the desktop screenshot. No driver or game repair was attempted.
+- Committed time: floor 15 real minutes; ceiling 25. First actionable screen at driver elapsed 0.433 s. Final stop at 909.464 s, about 15:09 from that screen. The run ended at or before the 769.139 s observation, about 12:49. The remaining time was spent reading and scrolling the normal ending report. It was not additional simulated play.
+- Game time: D1 05:00 through D3 05:00. Default 1× showed 8 game minutes per real second. Automatic suggestion slowdown showed 1 min/s. At 526.645 s I chose ½×, showing 4 min/s, to leave more time for reading and orders. I did not accelerate time or batch work orders.
+- Time continued between requests. The changing clock and controls were visible in later replies. Named controls sometimes disappeared or changed with the game; these were not treated as a driver block. One text scroll failed and a coordinate swipe worked. No visible control remained inoperable after retry.
+- No run was sent. Consent was unchanged. No playtest export was downloaded. Only the live player-facing replies and screenshots informed the findings.
+
+## First minute
+
+The original checkpoint note was entered at 64.621 s, about five seconds late. The driver independently captured `first-minute.png` at 60.034 s. The table uses only observations available by 60 s. Later learning about one-course orders, Home, panel sizing and the ending does not change these statuses.
+
+Original checkpoint, verbatim:
+
+> I need a roof and twelve meals before Day 2 at 19:00. Play, Choose person, worker names and place cards look tappable. Human is selected; roof and meals at the top draw me first. Confirm says choose a worker and place, and Maryam refuses because others would go unfed. Tariq accepted House then said after Fajr; I understand he will pray first, but not how long that is. A choice was there immediately; I first pressed Play at six seconds, selected Maryam at twelve and sent an accidental House order at seventeen while trying Tariq on the map. Named Tariq to House at twenty-nine worked. I can see progress and deadline while ordering. I like their spoken answers; the map tap selected the wrong thing once.
+
+| Item | Status | Evidence available in the first minute |
+|---|---|---|
+| DL-1 A reason to act | PASS | I need a roof, twelve meals and everyone alive before the storm. The opening says exactly that. `01-opening.png`. |
+| DL-2 What can I touch | FAIL | Play, Choose person, worker buttons and labelled place cards were recognisable. I thought Tariq’s map name was a selection target. My tap at (333,355), 17.159 s, instead sent Maryam → House. This is an observed mistaken target, not proof of an overlapping hit area. `02-maryam-order.png` precedes it. |
+| DL-3 Urgency and selection | PASS | Roof, meals and Day 2 19:00 draw me first. Human is selected. Maryam and then Tariq have a coloured name/status and selection mark. No competing emergency was encountered in this minute. `02-maryam-order.png`, `03-first-orders.png`. |
+| DL-4 Why the limit | PASS for encountered explanations | Disabled Confirm says choose a worker and place, then choose a place. Maryam’s House card says “Will refuse: the others would go unfed”; her answer says she will not leave the pot cold. Tariq says “After I pray Fajr, then I will.” I know he intends to pray first; I do not know the duration. Recovery of these limits was not established in this minute. |
+| DL-5 Readable situation | PASS | I can send the selected person to a labelled place. The House order is acknowledged as “waiting,” then “on it,” then “later, after I pray Fajr.” Roof and meals remain readable. `03-first-orders.png`. |
+| DL-6 A choice soon | PASS | The village variant choice is on the first screen at 0.433 s, before about 25 essential opening words. First input: Play at 6.025 s. Worker choices appear at 9.196 s; Maryam chosen at 11.508 s. First order input: accidental Maryam → House at 17.159 s. First intended order: Tariq → House at 28.603 s. |
+| DL-7 Learn by doing | PASS, limited to reached interactions | Two orders reached. Selecting Maryam exposed place-specific refusal reasons. Sending House produced waiting and a spoken refusal. Tariq’s order produced acceptance and then deferral. I learned that an order can receive an answer later. I had not yet learned how much work one order buys. No help was opened. Three visible interaction families—Rush, Suggestion and switching villages—were NOT TESTED in this minute. Cedar risk review and the end report were also unreached. |
+
+This was a text-and-screenshot driver, not a text-only harness. Visual findings below are restricted to the screenshots actually viewed; a controls list alone did not prove on-screen fit.
+
+## Important inputs and visible answers
+
+Elapsed times are the driver’s real elapsed times. The game clock in the diary is the original annotation supplied with the request. Some annotations describe the last screen rather than the resulting screen. For example, the 3-minute pulse was annotated D1 13:30 while its reply showed D1 13:16; the 9-minute pulse was annotated D2 15:34 while its reply showed D2 15:49. They remain unchanged in the diary.
+
+| Elapsed | Input or observation | Visible answer and my interpretation at that time |
+|---|---|---|
+| 0:00–0:06 | Open; Play | “Roof the house, store 12 meals and keep everyone alive before the storm.” Default village retained. |
+| 0:12–0:21 | Select Maryam; mistaken map tap; Order options | Maryam is Cooking. House predicts refusal. The tap sends Maryam → House. Her reply: “And leave the pot cold at noon? No. They eat from my hands.” |
+| 0:26–0:49 | Select Tariq; House | “House Likely yes.” Order waits, then “Good idea. On it.” Later: “After I pray Fajr, then I will.” |
+| 1:15; 2:24 | Try Suggestion | The control disappears as the game resumes 8 min/s. The replies explicitly say the page changed. I continued using fresh controls. |
+| 1:24–1:39 | Select Idris; expand state strip | Idris is already Gathering timber. The strip explains 2 of 10 roof stages, six meals and D2 19:00. A coordinate tap works after full-name taps race the meal count. |
+| 2:19–2:30 | Watch; History (2) | Roof reaches three then four. History says Tariq “Laid another course; House 4 of 10, work remains.” I learn “done” is an order, not the finished roof. |
+| 2:33–2:42 | More; Half panel; Suggestion; Skip | More opens Village actions and panel sizes. Suggestion proposes Maryam → Forest despite refusal for food. I skip it. The phone sheet shows almost none of that explanation. `05-suggestion.png`. |
+| 3:00–3:12 | Pulse; Classic; Human | Human shows 6 roof stages/12 meals; Classic later shows 8/8; Human after switching back shows 7/11. These are different moments, not a controlled causal comparison. |
+| 3:23–3:27 | More places; Kitchen with Yusuf selected | Choosing Kitchen sends an order immediately. I expected a preview because Confirm was in the sheet. Yusuf says “later, when the store runs low.” |
+| 4:06–4:13 | Evening House suggestion; Send order | “One more wall before dark, if he is not spent.” Yusuf → House waits and later completes another course. `07-evening-suggestion.png`. |
+| 4:46–5:14 | Injury alert; Send Idris home; watch | “Day 1 · 21:40 Idris (Human), hurt in the squall.” Direct Home control sends the order; reply becomes “Alright, I’ll do it.” I intend shelter. `08-idris-hurt.png`. |
+| 5:22–5:26 | Night Forest suggestion; Skip | “It is night and a squall is blowing. Forcing him may cost his trust.” I refuse to send Tariq out. |
+| 5:57–6:31 | Read Home history; Full panel; scroll | Home order is labelled “eat.” History says it asks them to eat once and does not keep them indoors. Human order says cannot, asleep. Full panel still leaves a short body on the phone; a coordinate swipe exposes more. `09-home-order-history.png`, `10-history-scroll.png`. |
+| 6:36–7:12 | Morning Forest suggestion; Send | Daylight has “only the usual small risk of a slip.” Tariq drinks first, then brings timber at D2 08:37. |
+| 7:15–7:58 | Insist on Samira → House; turn Rush off; Confirm | Preview warns “Under protest: busy with own work” and trust at risk. Rush was selected when opened; I disable it. Later “on it, under protest,” with visible “Build …fine.” `11-insist-preview.png`. |
+| 8:01–8:40 | Review Danyal → House; Confirm with Rush | I knowingly accept faster, hungrier work. Roof reaches nine; his course completion is dated D2 14:17. |
+| 8:47–9:31 | ½×; Order options → Place → House → Confirm | This place picker waits for Confirm, unlike my earlier More places → Kitchen route. Danyal’s new order becomes “on it.” I do not yet know it will lapse. |
+| 9:34–10:10 | Maryam cooking suggestion; Send; watch | “Nobody can cook from 19:00 until 03:00.” At D2 19:03, roof is nine and meals fourteen. Maryam’s cooking result is dated D2 17:52. |
+| 10:15–11:03 | Storm alerts; Show Yusuf; search places | Classic Samira, then Human Yusuf and Idris are hurt outside. Show Yusuf changes the visible/latest-order subject but the bottom Order options still says Maryam. Selecting Yusuf through the worker list succeeds. He is asleep. I do not find a shelter instruction. |
+| 11:09 | want_quit | FRUSTRATED. I would put the phone down and leave it running until morning. |
+| 11:39–12:49 | Watch night and dawn | Roof remains nine. The old work reply on Yusuf remains prominently labelled Latest order. D3 05:00 ends the run. |
+| 12:49–15:09 | Read and scroll ending | Human: roof 9/10, storm stock 14, everyone lives 6/6, dawn meals 9, injuries 6. Classic: 10/10, stock 13, 6/6 alive, dawn meals 0, injuries 2. Solo: 9/10, stock 16, 6/6 alive, dawn meals 3, injuries 5. These are the game’s displayed results, not independently replayed calculations. |
+| 15:09 | stop | FINISHED after reading the ending. |
+| 15:15 | Resize and one screenshot | 1280×800 ending report; more text and the bottom buttons fit. No further gameplay. `18-desktop-after-stop.png`. |
+
+## Best, worst, pulses and wanting to leave
+
+**Best moment:** about 4:51–5:26, sending injured Idris home and declining another dangerous night trip. I had a named person to protect and could decide quickly. Engagement was 4/5. This peak depends on what I believed Home did then; later learning does not erase that original reaction. The highest logged engagement was four, also at roughly three and nine minutes.
+
+**Worst moment:** about 11:09, looking for shelter after repeated storm injuries and finding sleeping people plus a Home action that meant food. The earlier discovery at 6:14 started that frustration.
+
+There was one formal want_quit: 669.007 s, **FRUSTRATED**. Its complete original wording appears in the diary. I wanted to put the phone down and leave the game running, not abandon the village forever. Earlier signs remain in the diary, including “That is the first answer that really bothers me” at 373.662 s; that was frustration, not a formally stated wish to leave.
+
+| Elapsed | Engagement | Original pulse |
+|---|---|---|
+| 3:00.239 | 4/5 | I like seeing them choose their own work and answer me, and the roof is progressing; the cramped sheet and disappearing suggestions make the controls feel slippery. |
+| 5:56.569 | 4/5 | Sending Idris home and refusing another dangerous night trip felt like real crew decisions. I am still curious whether the roof and food will hold through tomorrow. |
+| 8:56.754 | 4/5 | One course short makes me want to stay. I slowed the clock because reading and ordering at normal speed was eating the afternoon. |
+| 12:04.611 | 2/5 | I still care whether they survive, but I am mostly waiting for morning with no shelter order found. The old work replies on the map do not tell me how people are now. |
+| 15:09.398 | 3/5 | The ending gives me useful answers and everyone survived, but I am ready to stop rather than repeat the orders tonight. |
+
+**Hard, but kept going:** at 8:47 I chose the visible ½× control because reading and ordering had consumed the afternoon. The roof was one course short and I wanted to finish it. I stayed. Earlier I searched for Half panel and Full panel to make the sheets readable. That was a reading workaround, not a request to reduce the game’s default difficulty.
+
+## Clarity findings
+
+- **DL-2: I tried to choose Tariq on the map and sent Maryam to House instead.** The observed action and preceding layout are in the 17.159 s diary entry and `02-maryam-order.png`. I cannot establish whether a moving target, map hit area or my aim caused it. The player consequence is real; a source-level cause is unknown.
+- **DL-19, also DL-10: “Send Idris home” suggested shelter to me, but Home meant eat once.** Before tapping, I said I wanted him out of the weather. Later History explicitly says “Home asks them to eat once. After eating, they choose their own work again; it does not keep them indoors.” The alert and later explanation are `08-idris-hurt.png`, the 367.804 s reply and the Home history screenshots. The explanation was after the order. I am not claiming the game has no shelter rule; I could not find one.
+- **DL-22 and DL-30: the phone sheets left essential explanations outside the visible body.** In `04-orders.png`, the Orders heading and only the beginning of the first item fit; even the bottom buttons run into the screen edge. With the state paragraph expanded, `05-suggestion.png` shows the Suggestion heading and bottom action but not “Maryam · Will refuse: the others would go unfed” or the trust warning reported in the driver’s player-facing text. After folding the paragraph, `09-home-order-history.png` shows Idris → Home, “eat,” and the Classic completion, but the explanation about not keeping people indoors is below the visible body. `10-history-scroll.png` shows the lower fragment “again; it does not keep them indoors.” I had to scroll for the explanation. Full panel was selected before that history view; it did not make the explanation fit in the screenshot. These are layout findings from images, not an inference from a controls list.
+- **Unnumbered interaction confusion: two place pickers committed differently.** At 207.045 s, More places → Kitchen immediately sent Yusuf’s order. At 536.729 s, Order options → Place · Choose → House showed a preview and required Confirm. Both pickers included a Confirm control. I learned the distinction only by using them. This is not a claim that either input went unacknowledged.
+- **Current condition was hard for me to check:** `13-night-watch.png` prominently shows Yusuf’s old “House 8 of 10” completion while the village roof is nine and I am asking about safety. It is honestly labelled Latest order; I am not calling the completion false. I wanted his present location and condition instead. Show Yusuf also did not change the bottom Order options worker until I chose him explicitly. This contributed to the shelter search.
+
+## English, dates, phone layout and hands on
+
+| Item | Status | What I reached |
+|---|---|---|
+| DL-20 English | PASS for actions reached | Goals, food, roof, refusal reasons, trust warnings and clock were understandable in English. “After I pray Fajr” supplied the relevant action nearby; I did not know the prayer’s duration. Masjid was visible, but I did not issue that order or establish its first-use explanation. No necessary reached response required translation. |
+| DL-21 Dates | PASS for relative days; other calendar boundaries NOT TESTED | D1/D2/D3 plus 24-hour times let me compare the storm on Day 2 19:00 with today. I understood 19:00–03:00 as crossing midnight. There were no month/year deadlines. |
+| DL-22 Response on phone | FAIL in opened sheets; PASS in several direct responses | Roof, meals and deadline stayed at the top. The injury alert and Send home fit in `08-idris-hurt.png`; the evening suggestion and its two response buttons fit in `07-evening-suggestion.png`. The expanded-state suggestion and history explanation did not fit without more work, as above. |
+| DL-30 No cut-off essential text | FAIL | The history explanation required an inner-panel swipe; suggestion refusal and risk text was outside the visible slice in `05-suggestion.png`. See the quoted fragments and screenshot evidence above. No claim of missing text in the underlying game is made. |
+| DL-31 State while acting | PASS for the sheets viewed | `07-evening-suggestion.png` and `11-insist-preview.png` retain roof progress, meals and the storm deadline. The selected person remains in the visible map portion. Some order details were outside the sheet’s visible slice, covered under DL-30. |
+| DL-32 Longest stretch wanting an unavailable act | NOT TESTED as a global availability claim | From the shelter search/want_quit at 11:09 until the ending at about 12:49, roughly 100 seconds, I wanted to protect people and found no shelter command. Other order controls remained available, and I deliberately avoided random sleeping-worker orders. This is not proof that every meaningful act was unavailable for that whole stretch. The longest single explicit watch request was 30 real seconds. |
+| DL-33 Acts in the scene | PASS for ordinary sending reached; preview for exceptional orders | With a worker selected, tapping the House place sent the order directly. I also used worker/place sheets. Insisting and rushing used previews, warnings and Confirm. The core act here was sending people; I did not personally build or cook. |
+
+DL-13 input acknowledgement passed in the orders reached: waiting, acceptance, deferral and refusal were visible, and the order history retained outcomes. DL-14 known-risk warnings were present for the night trip, insisting and Rush. DL-15 was observed at default and half speed: pending suggestions slowed time, continued while I read, then returned to the chosen speed when cleared. The Samira preview remained open through reading and turning Rush off. DL-12 passed at dawn: Ended, a result dialog and restart choices clearly marked the end.
+
+Target sizes, zoom/200% text, other themes, reload/resume, sending, replay and every builder-only check are **NOT TESTED**. Panel scrolling was tested only where described. No export replay claim is made.
+
+## Stop and return
+
+I stopped at D3 05:00 after reading the ending, reason **FINISHED**, at 15:09 real elapsed time. I did not stop at the first wish to leave because this was the continued-exposure assignment. That wish did not fully pass. Learning everyone survived relieved me, and the result explanation interested me, but it did not resolve my wish to keep injured people under cover.
+
+I would not restart voluntarily tonight. I might return another evening because missing one course is a concrete unfinished goal. The winning line shown by the game sounds like more repeat ordering than I expected. That is my taste, not evidence that the default difficulty should change.
+
+## Changes I would want as Bram
+
+1. Tell me what “Send home” actually asks the injured person to do before I send it. If I can ask them to shelter or rest, let me find that response from the injury alert.
+2. Let me read the person’s refusal, risk and order result in the phone sheet without hunting through a narrow scrolling slice. Keep the short roof, meals and deadline strip.
+3. Make the two place pickers state whether tapping sends now or opens a preview. I want quick orders, but I want to know which tap gives one.
+
+## Verbatim diary
+
+The table below preserves every driver log entry in order, including empty-reaction navigation, failed operations, automatic first-minute capture and post-stop inspection. Reaction text is not rewritten. Input is the original JSON object. The full machine-readable original is `well-floor1-shots/wall-clock.jsonl`. Important visible answers are transcribed above because the log schema records inputs and reactions rather than whole page replies. A dash means that field was empty.
+
+| Elapsed s | Kind / op | Original game-clock annotation | Input | Original reaction | Engagement / reason / error |
+|---|---|---|---|---|---|
+| 0.433 | input / open | — | {} | I am looking for the people and the first job I can send them to. | — |
+| 3.000 | input / shot | D1 05:00 | {"file": "01-opening.png"} | Roof and meals before a storm. I can work with that; I will leave the default village. | — |
+| 6.025 | input / tap | D1 05:00 | {"name": "Play", "role": "button"} | Play is the clear start. Then I want to put someone on that roof. | — |
+| 9.196 | input / tap | D1 05:00 | {"name": "Choose person", "role": "button"} | I see a map, but Choose person seems the quickest way to get a worker. | — |
+| 11.508 | input / tap | D1 05:26 | {"name": "Maryam", "role": "button"} | Six people. I will start with Maryam and see what she can do. | — |
+| 14.875 | input / shot | D1 05:31 | {"file": "02-maryam-order.png"} | She is cooking already and will refuse the roof because others would go unfed. Fair enough. I want a builder instead. | — |
+| 17.159 | input / tap | D1 05:35 | {"x": 333, "y": 355} | Tariq is drawn beside the house. His name looks tappable; I will try him. | — |
+| 20.971 | input / tap | D1 05:37 | {"name": "Order options · Maryam", "role": "button"} | That sent Maryam to House, though I meant to select Tariq beside it. I need to undo or change the worker. | — |
+| 23.619 | input / tap | D1 05:41 | {"name": "Worker · Maryam", "role": "button"} | Her refusal came through in words. Good; the mistaken order did not drag her off cooking. | — |
+| 25.820 | input / tap | D1 05:43 | {"name": "Tariq", "role": "button"} | Now choosing Tariq by name. | — |
+| 28.602 | input / tap | D1 05:46 | {"name": "House Likely yes", "role": "button"} | House says likely yes, so I expect him to roof it when he can. | — |
+| 42.865 | input / wait | D1 05:48 | {"s": 12} | I will watch for his answer rather than keep clicking orders. | — |
+| 49.473 | input / shot | D1 06:03 | {"file": "03-first-orders.png"} | Good idea. On it. is the reply I wanted. Meals are already four; I have not had to assign everyone. | — |
+| 60.034 | first_minute / shot | — | {"file": "first-minute.png"} | — | — |
+| 64.585 | input / wait | D1 06:09 | {"s": 8} | — | — |
+| 64.621 | first_minute / log | D1 06:20 | — | I need a roof and twelve meals before Day 2 at 19:00. Play, Choose person, worker names and place cards look tappable. Human is selected; roof and meals at the top draw me first. Confirm says choose a worker and place, and Maryam refuses because others would go unfed. Tariq accepted House then said after Fajr; I understand he will pray first, but not how long that is. A choice was there immediately; I first pressed Play at six seconds, selected Maryam at twelve and sent an accidental House order at seventeen while trying Tariq on the map. Named Tariq to House at twenty-nine worked. I can see progress and deadline while ordering. I like their spoken answers; the map tap selected the wrong thing once. | — |
+| 74.749 | tool / tap | D1 06:24 | {"name": "Suggestion", "role": "button"} | The clock still says suggestion pending after his answer. I will look at Suggestion to see what is holding things up. | Suggestion is not on the page now; it was listed 10 s ago and the page has changed (game state, not a driver failure) |
+| 79.034 | input / tap | D1 07:10 | {"name": "Order options · Tariq", "role": "button"} | It cleared on its own. I want to see if another worker can bring in wood while Tariq roofs. | — |
+| 81.499 | input / tap | D1 07:44 | {"name": "Worker · Tariq", "role": "button"} | — | — |
+| 84.202 | input / tap | D1 08:00 | {"name": "Idris", "role": "button"} | I will try Idris for the forest. | — |
+| 87.998 | tool / tap | D1 08:03 | {"name": "Human · Roof 2 of 10 Meals 3 / 12 Storm Day 2 19:00", "role": "button"} | He is already gathering timber. Maybe I should inspect supplies before moving people about. | Human · Roof 2 of 10 Meals 3 / 12 Storm Day 2 19:00 is not on the page now; it was listed 4 s ago and the page has changed (game state, not a driver failure) |
+| 91.363 | tool / tap | D1 08:07 | {"text": "Human · Roof"} | The meals number changed while I reached for it; trying the same status strip again. | No visible clickable text: Human · Roof |
+| 95.468 | tool / tap | D1 08:10 | {"name": "Human · Roof 2 of 10 Meals 2 / 12 Storm Day 2 19:00", "role": "button"} | — | Human · Roof 2 of 10 Meals 2 / 12 Storm Day 2 19:00 is not on the page now; it was listed 4 s ago and the page has changed (game state, not a driver failure) |
+| 98.915 | input / tap | D1 08:14 | {"x": 175, "y": 83} | The changing meal count keeps changing the button name. I will tap the strip itself. | — |
+| 102.750 | input / tap | D1 08:17 | {"name": "Order options · Idris", "role": "button"} | Two roof stages still. I want to watch the crew work for a while, without another order pending. | — |
+| 105.965 | input / tap | D1 08:21 | {"name": "Watch village", "role": "button"} | — | — |
+| 139.075 | input / wait | D1 08:25 | {"s": 30} | I will give them a bit. I have a cook, a timber gatherer and a roof order in motion. | — |
+| 143.886 | tool / tap | D1 08:58 | {"name": "Suggestion", "role": "button"} | Watch village did not clear suggestion pending. What suggestion am I leaving unanswered? | Suggestion is not on the page now; it was listed 5 s ago and the page has changed (game state, not a driver failure) |
+| 146.895 | input / tap | D1 09:23 | {"name": "History (2)", "role": "button"} | It disappears just as I reach it again. I will read the two orders instead. | — |
+| 150.128 | input / shot | D1 09:47 | {"file": "04-orders.png"} | Done means one course, not the whole roof. That matters. The same mistaken Maryam order built in Classic but she refused here. | — |
+| 153.082 | input / tap | D1 10:13 | {"name": "More", "role": "button"} | The order sheet only shows its heading and the top of a row on my phone. More should let me actually read it. | — |
+| 156.065 | input / tap | D1 10:36 | {"name": "Half panel", "role": "button"} | More is a menu, with panel sizes. Half panel is what I was looking for. | — |
+| 158.603 | input / tap | D1 10:46 | {"name": "Suggestion", "role": "button"} | There is Suggestion again; opening it now. | — |
+| 162.141 | input / shot | D1 10:49 | {"file": "05-suggestion.png"} | Why suggest taking the cook off food when she says no? I want her cooking. I will skip this. | — |
+| 162.430 | input / tap | D1 10:49 | {"name": "Skip suggestion", "role": "button"} | — | — |
+| 168.045 | input / tap | D1 10:54 | {"x": 170, "y": 80} | The extra status paragraph takes a lot of room. I will fold it back up; the short roof, meal and storm lines are enough. | — |
+| 180.200 | input / wait | D1 10:54 | {"s": 12} | — | — |
+| 180.239 | pulse / log | D1 13:30 | — | I like seeing them choose their own work and answer me, and the roof is progressing; the cramped sheet and disappearing suggestions make the controls feel slippery. | 4/5 |
+| 186.848 | input / tap | D1 13:16 | {"name": "Classic · obey", "role": "button"} | I want a look at the village that obeyed both orders. Did getting Maryam onto the roof cost its food? | — |
+| 192.216 | input / shot | D1 14:09 | {"file": "06-classic-afternoon.png"} | Classic has eight roof stages and eight meals. Human had six and twelve a moment ago. That is an interesting trade, though I do not know what else changed. | — |
+| 192.395 | input / tap | D1 14:09 | {"name": "Human · decide", "role": "button"} | — | — |
+| 195.879 | input / tap | D1 14:53 | {"name": "Order options · Idris", "role": "button"} | The roof is seven now without another order. I want to see whether Yusuf can help with meals instead. | — |
+| 196.092 | input / tap | D1 14:53 | {"name": "Worker · Idris", "role": "button"} | — | — |
+| 198.980 | input / tap | D1 15:23 | {"name": "Yusuf", "role": "button"} | — | — |
+| 203.255 | input / tap | D1 15:46 | {"name": "More places (2)", "role": "button"} | He is already building, so I will leave him there. I still want to see the kitchen option before I decide. | — |
+| 207.045 | input / tap | D1 16:20 | {"name": "Kitchen", "role": "button"} | — | — |
+| 212.340 | note / log | D1 16:51 | — | That chose AND sent Kitchen. I expected choosing a place in the sheet to show options before Confirm, because Confirm was sitting below it. Instead Yusuf has an order now. He says later when the store runs low. | — |
+| 242.498 | input / wait | D1 16:51 | {"s": 30} | I will let his current roof work finish and see whether he decides the food is low enough. | — |
+| 245.863 | input / tap | D1 18:48 | {"name": "Suggestion", "role": "button"} | Another suggestion. I hope this one helps finish the roof. | — |
+| 249.232 | input / shot | D1 18:52 | {"file": "07-evening-suggestion.png"} | Yes, one more wall before dark is exactly what I want. I can still see seven of ten and tomorrow evening at the top. | — |
+| 252.976 | input / tap | D1 18:55 | {"name": "Send order", "role": "button"} | Sending Yusuf back to House before dark. | — |
+| 286.227 | input / wait | D1 18:59 | {"s": 30} | Now I want to see him finish that wall. I am leaving the speed at normal. | — |
+| 290.980 | input / shot | D1 21:48 | {"file": "08-idris-hurt.png"} | Idris hurt in the squall? I thought the storm was tomorrow. I want him out of the weather now. | — |
+| 291.162 | input / tap | D1 21:48 | {"name": "Send Idris home", "role": "button"} | Send Idris home is clear. Doing that before I touch anything else. | — |
+| 314.340 | input / wait | D1 21:53 | {"s": 20} | The injury gives me a reason to care about Idris. I want to see him reach home safely, not send more work. | — |
+| 319.561 | input / tap | D1 22:16 | {"name": "Show Idris", "role": "button"} | Show Idris should let me check where he is and how he is doing. | — |
+| 321.861 | input / tap | D1 22:22 | {"name": "Suggestion", "role": "button"} | He says he will do it. I will clear whatever suggestion is slowing the night. | — |
+| 326.374 | input / tap | D1 22:24 | {"name": "Skip suggestion", "role": "button"} | No. One hurt worker is enough. The roof can wait until daylight; I am not sending Tariq into that squall. | — |
+| 356.523 | input / wait | D1 22:24 | {"s": 30} | Letting the night pass while people shelter. | — |
+| 356.569 | pulse / log | D2 02:30 | — | Sending Idris home and refusing another dangerous night trip felt like real crew decisions. I am still curious whether the roof and food will hold through tomorrow. | 4/5 |
+| 362.855 | input / tap | D2 02:30 | {"name": "Order options · Idris", "role": "button"} | Can’t, I am asleep does not tell me whether he got home. I want to look at him before the morning rush. | — |
+| 363.022 | input / tap | D2 02:30 | {"name": "More", "role": "button"} | — | — |
+| 367.638 | input / tap | D2 03:22 | {"name": "Full panel", "role": "button"} | Trying Full panel so I can read the order history properly this time. | — |
+| 367.804 | input / tap | D2 03:22 | {"name": "History (5)", "role": "button"} | — | — |
+| 373.661 | input / shot | D2 04:01 | {"file": "09-home-order-history.png"} | Home means eat once, not stay indoors. I did not know that when the injury alert said Send Idris home. I wanted him sheltered; I have only asked him to eat. That is the first answer that really bothers me. | — |
+| 382.374 | tool / scroll | D2 04:47 | {"dy": 160, "text": "Home asks them to eat once."} | Even Full panel leaves only a slice of the order. I need to scroll to read the home explanation on the phone. | locator.scrollIntoViewIfNeeded: Timeout 5000ms exceeded.<br>Call log:<br>[2m  - waiting for getByText('Home asks them to eat once.', { exact: true }).visible().first()[22m<br> |
+| 385.721 | input / scroll | D2 05:57 | {"dy": 130, "x": 165, "y": 593} | Trying a normal swipe inside the order card instead. | — |
+| 391.108 | input / shot | D2 06:24 | {"file": "10-history-scroll.png"} | — | — |
+| 391.269 | input / tap | D2 06:24 | {"name": "Close", "role": "button"} | I can scroll the history, but I would rather be looking at the people. Closing this and getting back to the roof. | — |
+| 396.438 | input / tap | D2 07:01 | {"name": "Suggestion", "role": "button"} | Morning, two courses left. I am ready to send someone back onto that roof. | — |
+| 401.819 | input / tap | D2 07:06 | {"name": "Send order", "role": "button"} | Daylight and rested is a different proposition. Yes, get the timber in now. | — |
+| 431.955 | input / wait | D2 07:06 | {"s": 30} | Watching for Tariq to start and hoping timber is what the roof needed. | — |
+| 434.750 | input / tap | D2 09:16 | {"name": "Suggestion", "role": "button"} | Timber came in. I want the next job to turn it into those last two roof stages. | — |
+| 438.484 | input / tap | D2 09:19 | {"name": "Insist · may cost trust", "role": "button"} | We are close and the storm is today. I will ask Samira firmly once, knowing she may refuse and trust may suffer. | — |
+| 443.236 | input / shot | D2 09:23 | {"file": "11-insist-preview.png"} | The preview has Rush selected too. I asked to insist, not make her hungrier; food is only seven. I will turn Rush off. | — |
+| 443.400 | input / tap | D2 09:23 | {"name": "Rush · faster, hungrier", "role": "button"} | — | — |
+| 447.568 | input / tap | D2 09:28 | {"name": "Confirm", "role": "button"} | Confirming one firm House order, without Rush. | — |
+| 477.698 | input / wait | D2 09:28 | {"s": 30} | I want to see if she actually helps or tells me no. | — |
+| 481.316 | input / tap | D2 10:02 | {"name": "Suggestion", "role": "button"} | She is on it, under protest. I want the slowing suggestion out of the way while she works. | — |
+| 483.899 | input / tap | D2 10:06 | {"name": "Review order", "role": "button"} | Two courses left, so yes, let me see what sending Danyal would cost. | — |
+| 489.865 | input / tap | D2 10:08 | {"name": "Confirm", "role": "button"} | This time I will accept Rush. One quick course from Danyal could finish the roof while Samira helps. | — |
+| 520.003 | input / wait | D2 10:08 | {"s": 30} | Watching the roof crew now. I want the food problem to be the only job left. | — |
+| 526.644 | input / tap | D2 14:16 | {"name": "½×", "role": "button"} | It is already afternoon and the last course is not done. I want more room to read and manage food before 19:00, so I am choosing half speed. | — |
+| 530.277 | input / tap | D2 15:09 | {"name": "Order options · Danyal", "role": "button"} | Danyal finished his course. I want him on the last one rather than wandering back to the well. | — |
+| 532.894 | input / tap | D2 15:23 | {"name": "Place · Choose", "role": "button"} | — | — |
+| 536.729 | input / tap | D2 15:34 | {"name": "House", "role": "button"} | Sending him to House again. I now know choosing the place sends an ordinary order. | — |
+| 536.754 | pulse / log | D2 15:34 | — | One course short makes me want to stay. I slowed the clock because reading and ordering at normal speed was eating the afternoon. | 4/5 |
+| 540.763 | input / tap | D2 15:49 | {"name": "Confirm", "role": "button"} | This route did wait for Confirm. I cannot predict which place picker sends immediately. Confirming House now. | — |
+| 570.898 | input / wait | D2 15:49 | {"s": 30} | I am giving Danyal room to finish this one. | — |
+| 574.148 | input / tap | D2 16:54 | {"name": "Suggestion", "role": "button"} | Meals are twelve again. I hope this suggestion is not asking me to interrupt the cook right before the storm. | — |
+| 579.480 | input / tap | D2 16:57 | {"name": "Send order", "role": "button"} | Yes, cook another pot. The eight-hour fire outage makes that worthwhile even with twelve meals showing. | — |
+| 609.632 | input / wait | D2 16:57 | {"s": 30} | I am watching the roof and waiting for the extra food now. | — |
+| 614.948 | input / shot | D2 19:03 | {"file": "12-storm-deadline.png"} | The deadline passed with nine roof stages and fourteen meals. I missed the roof by one. I am waiting to see what that actually costs them. | — |
+| 645.109 | input / wait | D2 19:03 | {"s": 30} | I want to see the storm consequences before changing anyone’s work. | — |
+| 651.122 | input / tap | D2 21:25 | {"name": "Show Yusuf", "role": "button"} | Yusuf is hurt outside. I want to find a shelter or rest order, because I now know Home only means eat. | — |
+| 651.150 | tool / tap | D2 21:25 | {"name": "Order options · Yusuf", "role": "button"} | — | No actionable button named Order options · Yusuf |
+| 656.958 | input / tap | D2 21:49 | {"name": "Order options · Maryam", "role": "button"} | Show Yusuf moved the view but the order control still names Maryam. I will choose him through the worker list. | — |
+| 657.124 | input / tap | D2 21:49 | {"name": "Worker · Maryam", "role": "button"} | — | — |
+| 660.141 | input / tap | D2 22:13 | {"name": "Yusuf", "role": "button"} | Idris is hurt outside again too. I am looking for a safe place, not another food order. | — |
+| 662.860 | input / tap | D2 22:25 | {"name": "More places (4)", "role": "button"} | He is asleep. I still want to find whether Well-house is shelter, if Home is food. | — |
+| 669.007 | want_quit / log | D2 22:36 | — | I would put the phone down here. I want to get the hurt people under cover, but the offered home response is food and the people are asleep. I cannot find a shelter instruction. I would leave it running to see the morning rather than abandon this village for good. | FRUSTRATED |
+| 669.191 | input / tap | D2 22:36 | {"name": "Watch village", "role": "button"} | Keeping the session going. I will watch the night rather than send random orders. | — |
+| 699.328 | input / wait | D2 22:36 | {"s": 30} | — | — |
+| 724.589 | input / wait | D3 01:02 | {"s": 20} | I would normally leave this running overnight. For now I am watching for dawn and an answer about who made it through. | — |
+| 724.611 | pulse / log | D3 02:30 | — | I still care whether they survive, but I am mostly waiting for morning with no shelter order found. The old work replies on the map do not tell me how people are now. | 2/5 |
+| 738.995 | input / shot | D3 02:43 | {"file": "13-night-watch.png"} | I am looking for signs they are resting safely. The latest order text is still about yesterday’s wall, not Yusuf’s present condition. | — |
+| 769.138 | input / wait | D3 02:43 | {"s": 30} | Waiting for daylight, still at half speed. I would rather not issue work orders while they sleep. | — |
+| 776.929 | input / shot | D3 05:00 | {"file": "14-dawn-results-top.png"} | Everyone lived. I am relieved. Human missed the roof at nine of ten and had fourteen meals when the storm hit. The report says I added an injury versus leaving them alone; that stings. | — |
+| 785.458 | input / scroll | D3 05:00 | {"dy": 420, "x": 176, "y": 530} | Reading farther down the results to understand the missed course and what my orders changed. | — |
+| 785.630 | input / shot | D3 05:00 | {"file": "15-results-explanation.png"} | — | — |
+| 819.704 | input / wait | D3 05:00 | {"s": 30} | Reading the explanation. The missing course was eighty-six percent done. It says a winning line reorders five workers with Rush whenever orders end. I like having a concrete explanation, but that sounds like more repeat ordering than I wanted from a crew game. | — |
+| 827.022 | input / scroll | D3 05:00 | {"dy": 450, "x": 175, "y": 530} | I am checking my orders against what I thought I had asked them to do. | — |
+| 827.196 | input / shot | D3 05:00 | {"file": "16-results-orders.png"} | — | — |
+| 850.813 | input / wait | D3 05:00 | {"s": 20} | The report confirms my last Danyal order lapsed after food and rest delays. I thought he was still on the last course. I want a clearer current answer while I am watching, rather than finding that out here. | — |
+| 857.489 | input / scroll | D3 05:00 | {"dy": 650, "x": 177, "y": 531} | Finishing the report. I want to see how the people felt after all this. | — |
+| 857.680 | input / shot | D3 05:00 | {"file": "17-results-bottom.png"} | — | — |
+| 892.740 | input / wait | D3 05:00 | {"s": 30} | Reading the character outcomes and remembered moments. Heartened and getting acquainted sound hopeful. Maryam keeping the meals going is the part of this village I will remember. | — |
+| 909.356 | input / wait | D3 05:00 | {"s": 8} | I am done reading. I am not starting another day tonight. | — |
+| 909.398 | pulse / log | D3 05:00 | — | The ending gives me useful answers and everyone survived, but I am ready to stop rather than repeat the orders tonight. | 3/5 |
+| 909.464 | stop / log | D3 05:00 | — | Stopping after the dawn report and at least fifteen real minutes. My wish to leave at the storm did not fully pass; the outcome relieved me, but I still wanted a way to keep hurt people sheltered. I might return another evening to try the last roof course, but I would not restart voluntarily tonight. | FINISHED |
+| 914.976 | input / resize | D3 05:00 | {"width": 1280, "height": 800} | Post-stop desktop look only. | — |
+| 915.204 | input / shot | D3 05:00 | {"file": "18-desktop-after-stop.png"} | — | — |
