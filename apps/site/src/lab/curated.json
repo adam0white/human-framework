@@ -2852,9 +2852,9 @@
    "words": "During service the accent marks a speed button. 'The rail is clear.' and the cook-selection instruction compete; neither tells me which decision matters.",
    "verdict": "-",
    "routes": [
-    "fix:pass DL-5 say what the rail is waiting on (open)",
-    "fix:pass DL-22 jobs and request stay on screen at 360x690 after choosing a cook (open)",
-    "fix:pass DL-3 accent the task, not the speed control (open)",
+    "fix:pass DL-5 say what the rail is waiting on (done)",
+    "fix:pass DL-22 jobs and request stay on screen at 360x690 after choosing a cook (done)",
+    "fix:pass DL-3 accent the task, not the speed control (done)",
     "lesson:L20"
    ],
    "source": "docs/lab/reviews/clarity-audit-2026-10-20.md"
@@ -2868,9 +2868,9 @@
    "words": "'Tap a gauge to have it read. Tap a keeper to talk to him.' is generic. It does not name the current waiting job, next event or present danger.",
    "verdict": "-",
    "routes": [
-    "fix:glance DL-6 opening down to the goal and the first reading (open)",
-    "fix:glance DL-5 show the waiting job and its expected return (open)",
-    "fix:glance DL-22 gate sheet fits 690 px (open)",
+    "fix:glance DL-6 opening down to the goal and the first reading (done)",
+    "fix:glance DL-5 show the waiting job and its expected return (done)",
+    "fix:glance DL-22 gate sheet fits 690 px (done)",
     "lesson:L20"
    ],
    "source": "docs/lab/reviews/clarity-audit-2026-10-20.md"
@@ -2884,9 +2884,9 @@
    "words": "'There are two voices in her head. One is yours.' states the role, but no plain session goal or end condition.",
    "verdict": "-",
    "routes": [
-    "fix:murmur DL-1 one line on the reason to act and what the player's voice can change (open)",
-    "fix:murmur DL-3 the current choice outranks the rival voice (open)",
-    "fix:murmur DL-23 menu and silence targets 44 px (open)"
+    "fix:murmur DL-1 one line on the reason to act and what the player's voice can change (done)",
+    "fix:murmur DL-3 the current choice outranks the rival voice (done)",
+    "fix:murmur DL-23 menu and silence targets 44 px (done)"
    ],
    "source": "docs/lab/reviews/clarity-audit-2026-10-20.md"
   },
@@ -2899,9 +2899,9 @@
    "words": "When everyone refuses until the hut path is climbed, no persistent line says whether I should lead, wait, or follow.",
    "verdict": "-",
    "routes": [
-    "fix:rope DL-4 visible reason beside each unavailable verb, updated on refusal (open)",
-    "fix:rope DL-22 target, request and commit fit the phone (open)",
-    "fix:rope DL-6 shorter opening (open)"
+    "fix:rope DL-4 visible reason beside each unavailable verb, updated on refusal (done)",
+    "fix:rope DL-22 target, request and commit fit the phone (done)",
+    "fix:rope DL-6 shorter opening (done)"
    ],
    "source": "docs/lab/reviews/clarity-audit-2026-10-20.md"
   },
@@ -2914,9 +2914,9 @@
    "words": "Three conversation paragraphs precede the repair. 'Ask Sam to watch' competes with the task before the lantern and 'Try carrying it.'",
    "verdict": "-",
    "routes": [
-    "fix:repair DL-6 first repair action in the first viewport, conversation optional (open)",
-    "fix:repair DL-22 probe and read controls beside the meter instruction (open)",
-    "fix:repair DL-23 44 px secondary controls (open)"
+    "fix:repair DL-6 first repair action in the first viewport, conversation optional (done)",
+    "fix:repair DL-22 probe and read controls beside the meter instruction (done, by review)",
+    "fix:repair DL-23 44 px secondary controls (done, by review)"
    ],
    "source": "docs/lab/reviews/clarity-audit-2026-10-20.md"
   },
@@ -2946,9 +2946,9 @@
    "words": "'Anything new?' becomes disabled after one question without an adjacent reason.",
    "verdict": "-",
    "routes": [
-    "fix:stairwell DL-4 reason beside 'Anything new?' (open)",
-    "fix:stairwell DL-3 accent the bread job, not the speed control (open)",
-    "fix:stairwell DL-26 one game menu with export and send, Continue with the saved day (open)",
+    "fix:stairwell DL-4 reason beside 'Anything new?' (done)",
+    "fix:stairwell DL-3 accent the bread job, not the speed control (done)",
+    "fix:stairwell DL-26 one game menu with export and send, Continue with the saved day (done)",
     "lesson:L20"
    ],
    "source": "docs/lab/reviews/clarity-audit-2026-10-20.md"
@@ -2962,9 +2962,9 @@
    "words": "a normal narrative sentence is also a button: 'The barley stood ripe. Riders had burned two villages…' It looks like story, not a control.",
    "verdict": "-",
    "routes": [
-    "fix:warren DL-2 journal entries that open look like controls (open)",
-    "fix:warren DL-6 opening down to the refuge goal and the first chalk instruction (open)",
-    "fix:warren DL-21 English date (open)",
+    "fix:warren DL-2 journal entries that open look like controls (done)",
+    "fix:warren DL-6 opening down to the refuge goal and the first chalk instruction (done)",
+    "fix:warren DL-21 English date (done)",
     "lesson:L20"
    ],
    "source": "docs/lab/reviews/clarity-audit-2026-10-20.md"
@@ -2978,9 +2978,9 @@
    "words": "Enter town sits below a long introduction: first phone screenshot shows no start control. About 150+ words precede it.",
    "verdict": "-",
    "routes": [
-    "fix:neighbours DL-6 Enter town above the introduction (open)",
-    "fix:neighbours DL-5 the immediate verb above the resident description on phones (open)",
-    "fix:neighbours DL-26 one game menu (open)",
+    "fix:neighbours DL-6 Enter town above the introduction (done)",
+    "fix:neighbours DL-5 the immediate verb above the resident description on phones (done)",
+    "fix:neighbours DL-26 one game menu (done)",
     "lesson:L20"
    ],
    "source": "docs/lab/reviews/clarity-audit-2026-10-20.md"
@@ -2994,9 +2994,9 @@
    "words": "'Go up to the wall' is below the opening viewport (top y 819). Roughly 150 words of bell, voice, rope and watcher rules precede it.",
    "verdict": "-",
    "routes": [
-    "fix:watch DL-6 start under the goal, rules taught at first use (open)",
-    "fix:watch DL-3 only 'Begin the watch' takes the accent (open)",
-    "fix:watch DL-26 one game menu with resume, download and send (open)",
+    "fix:watch DL-6 start under the goal, rules taught at first use (done)",
+    "fix:watch DL-3 only 'Begin the watch' takes the accent (done)",
+    "fix:watch DL-26 one game menu with resume, download and send (done)",
     "lesson:L20"
    ],
    "source": "docs/lab/reviews/clarity-audit-2026-10-20.md"
@@ -3010,9 +3010,9 @@
    "words": "Opening text exceeds 200 words before 'Begin', including character history, four days, four ends and five other voices.",
    "verdict": "-",
    "routes": [
-    "fix:voice DL-6 opening down to the goal and one line on suggesting (open)",
-    "fix:voice DL-2 log entries that are controls look like controls (open)",
-    "fix:voice DL-21 English weekday and date beside each fasting day (open)",
+    "fix:voice DL-6 opening down to the goal and one line on suggesting (done)",
+    "fix:voice DL-2 log entries that are controls look like controls (done)",
+    "fix:voice DL-21 English weekday and date beside each fasting day (done)",
     "lesson:L20"
    ],
    "source": "docs/lab/reviews/clarity-audit-2026-10-20.md"
@@ -3026,9 +3026,9 @@
    "words": "At 05:30 the amber suggestion covers my current order controls.",
    "verdict": "-",
    "routes": [
-    "fix:well DL-22 suggestions never cover the order composer (open)",
-    "fix:well DL-6 shorter opening, suggestions taught when they arrive (open)",
-    "fix:well DL-17 describe mood, trust and need instead of exact values (open)"
+    "fix:well DL-22 suggestions never cover the order composer (done)",
+    "fix:well DL-6 shorter opening, suggestions taught when they arrive (done)",
+    "fix:well DL-17 describe mood, trust and need instead of exact values (done)"
    ],
    "source": "docs/lab/reviews/clarity-audit-2026-10-20.md"
   },
@@ -3160,6 +3160,228 @@
     "fix:hearsay a dilemma with Elif (open)"
    ],
    "source": "hearsay/docs/playtests/2026-10-20-r5-tester-g.md"
+  },
+  {
+   "id": "F-227",
+   "date": "2026-10-20",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Tomás (Codex source-unread clarity retest)",
+   "words": "This is running away while I read; I am pressing the single arrow to slow it down.\" … \"I would not voluntarily start Tuesday now. I enjoyed the one kitchen problem, but I wanted more of that and less watching.",
+   "verdict": "quit",
+   "routes": [
+    "fix:pass DL-15 say the clock rate and slow the first service while a cook request is open (open, target 2026-11-03)",
+    "fix:pass DL-20 gloss maghrib where it first appears (open, target 2026-11-03)",
+    "lesson:L20"
+   ],
+   "source": "docs/lab/reviews/clarity-retest-2026-10-20/pass.md"
+  },
+  {
+   "id": "F-228",
+   "date": "2026-10-20",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Priya (Codex source-unread clarity retest)",
+   "words": "Mill Lane slept dry. That is the outcome I wanted.\" … \"I would return voluntarily for Tuesday on another train ride. … a timestamp that may mean two different things is distracting.",
+   "verdict": "keep",
+   "routes": [
+    "fix:glance DL-13 one meaning per reading timestamp: when read or when reported (open, target 2026-11-03)",
+    "lesson:L20"
+   ],
+   "source": "docs/lab/reviews/clarity-retest-2026-10-20/glance.md"
+  },
+  {
+   "id": "F-229",
+   "date": "2026-10-20",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "Leyla (Codex source-unread clarity retest)",
+   "words": "Frustration began at about 2:17. I understood that she could refuse. I could not yet tell what I could do differently. At 3:09 I was close to feeling like a spectator.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:murmur DL-15 show the clock speed (open, target 2026-11-03)",
+    "fix:murmur DL-26 name the back page Game menu and Download this run (open, target 2026-11-03)",
+    "lesson:L13"
+   ],
+   "source": "docs/lab/reviews/clarity-retest-2026-10-20/murmur.md"
+  },
+  {
+   "id": "F-230",
+   "date": "2026-10-20",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Hanna (Codex source-unread clarity retest)",
+   "words": "The explanation at the top runs out of space after never a, so I cannot finish reading it there.",
+   "verdict": "quit",
+   "routes": [
+    "fix:rope DL-22 help text and movement controls fit the phone after the first request (open, target 2026-11-03)",
+    "fix:rope DL-13 say what 'We all turn' and rest did when refused again (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/clarity-retest-2026-10-20/rope.md"
+  },
+  {
+   "id": "F-231",
+   "date": "2026-10-20",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Ama (Codex source-unread clarity retest)",
+   "words": "The lantern still looks bright to me.",
+   "verdict": "keep",
+   "routes": [
+    "fix:repair DL-19 the lantern drawing goes dark when the carry fails (open, target 2026-11-03)",
+    "fix:repair DL-22 part list in view after Look inside (open, target 2026-11-03)",
+    "fix:repair DL-19 'Try the lantern' says it tests (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/clarity-retest-2026-10-20/repair.md"
+  },
+  {
+   "id": "F-232",
+   "date": "2026-10-20",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Deniz (Codex source-unread clarity retest)",
+   "words": "Give me enough time to read the first bread decision before the first loaf is already late. I want the first late delivery to feel like my choice.",
+   "verdict": "quit",
+   "routes": [
+    "fix:stairwell DL-15 first morning runs slow enough to read the first order (open, target 2026-11-03)",
+    "fix:stairwell DL-22 full deadlines and residents readable on the phone (open, target 2026-11-03)",
+    "fix:stairwell DL-13 the tapped action stays where it was (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/clarity-retest-2026-10-20/stairwell.md"
+  },
+  {
+   "id": "F-233",
+   "date": "2026-10-20",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "Ilse (Codex source-unread clarity retest)",
+   "words": "I wanted to keep everyone safe, and two people have been hurt while I was trying to find out what to do. The journal shows smoke gave half a day, maybe less; I missed that warning at the fast speed.",
+   "verdict": "quit",
+   "routes": [
+    "fix:warren DL-15 a raid warning slows time from fast speed (open, target 2026-11-03)",
+    "fix:warren DL-26 call the notebook button Game menu (open, target 2026-11-03)",
+    "fix:warren DL-24 closing a person returns to the people list (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/clarity-retest-2026-10-20/warren.md"
+  },
+  {
+   "id": "F-234",
+   "date": "2026-10-20",
+   "game": "watch",
+   "kind": "playtester",
+   "who": "Marek (Codex source-unread clarity retest)",
+   "words": "Give me enough time to read and answer a watcher's decision, including when I select Fast. Make the waiting cue match the actual time available.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:watch DL-15 a watcher's decision slows time until answered (open, target 2026-11-03)",
+    "fix:watch DL-22 bell action and its explanation on the phone screen (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/clarity-retest-2026-10-20/watch.md"
+  },
+  {
+   "id": "F-235",
+   "date": "2026-10-20",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Selin (Codex source-unread clarity retest)",
+   "words": "Then it gives me rest at home 0.02, grieving +0.02, wait 0.00 and talk with Hacer -0.01, with bars. I do not want to read his grief as a calculation. This is where I would leave.",
+   "verdict": "quit",
+   "routes": [
+    "fix:voice DL-17 Why? in Halil's words, numbers only behind Model numbers (done, round-2 retest)",
+    "fix:voice DL-13 a new answer stays readable before the log moves on (done, round-2 retest)",
+    "fix:voice DL-22 the midday shift choice fits the phone (done by implementer check, not reached in round-2 retest)",
+    "lesson:L20"
+   ],
+   "source": "docs/lab/reviews/clarity-retest-2026-10-20/voice.md"
+  },
+  {
+   "id": "F-236",
+   "date": "2026-10-20",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Kofi (Codex source-unread clarity retest)",
+   "words": "The upper house is going up, but the lower one is still 2/10. There are two villages?\" … \"Tell me early that one order goes to both villages and what 'Classic' and 'Human' mean.",
+   "verdict": "quit",
+   "routes": [
+    "fix:well DL-3 say on the phone that one order goes to both villages, and what Classic and Human mean (done, round-2 retest)",
+    "fix:well DL-21 storm deadline readable on the phone (done, round-2 retest)",
+    "fix:well DL-22 the answering person visible beside the composer (done, round-2 retest)",
+    "fix:well DL-19 'free until noon' matches her cooking duty (done by implementer check, not reached in round-2 retest)"
+   ],
+   "source": "docs/lab/reviews/clarity-retest-2026-10-20/well.md"
+  },
+  {
+   "id": "F-237",
+   "date": "2026-10-20",
+   "game": "neighbours",
+   "kind": "playtester",
+   "who": "Rafael (Codex source-unread clarity retest)",
+   "words": "Let me see one thing I can ask the selected person in the first phone view, alongside whether that person is here. I wanted to help Ada and then Ravi; I reached their descriptions instead.",
+   "verdict": "quit",
+   "routes": [
+    "fix:neighbours DL-3 show who could use help now (done: the Needs help cue drew the round-2 tester, selection feedback follows in F-241)",
+    "fix:neighbours DL-5 an ask first in the person sheet (done, round-2 retest)"
+   ],
+   "source": "docs/lab/reviews/clarity-retest-2026-10-20/neighbours.md"
+  },
+  {
+   "id": "F-238",
+   "date": "2026-10-20",
+   "game": "lab",
+   "kind": "harness",
+   "who": "Claude Opus (clarity driver, from retest screenshots)",
+   "words": "The site-wide \"Playtest notebook\" floating button covers the Human panel in Twice at the Well and The Day You Say Nothing at 360×690, and uses the retired word \"Notebook\".",
+   "verdict": "mixed",
+   "routes": [
+    "fix:lab DL-22 floating feedback button clears game panels on phones (open, target 2026-11-03)",
+    "fix:lab DL-26 rename to Game menu wording (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/clarity-retest-2026-10-20/README.md"
+  },
+  {
+   "id": "F-239",
+   "date": "2026-10-20",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Tomasz (Codex source-unread clarity retest, round 2)",
+   "words": "A new timber suggestion appeared and moved Confirm down. I tapped the button at its new position. This is starting to feel like chasing the controls.\" … \"I cannot tell whether the ticks mean the work finished or only that they accepted.",
+   "verdict": "quit",
+   "routes": [
+    "fix:well DL-13 Confirm stays put while a suggestion arrives (open, target 2026-11-03)",
+    "fix:well DL-22 a suggestion's Use reachable without scrolling at 360×690 (open, target 2026-11-03)",
+    "fix:well DL-5 order ticks say agreed or done (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/clarity-retest-2026-10-20/well-round2.md"
+  },
+  {
+   "id": "F-240",
+   "date": "2026-10-20",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Amara (Codex source-unread clarity retest, round 2)",
+   "words": "Iftar with Nuran at our table, last Ramadan — that catches me. I wanted more of that.\" … \"He did talk to Hacer at 10:00. Talk hacer? Fine. is all the exchange I can see. I wanted to hear two people talking; instead I have found a record that a task happened.",
+   "verdict": "quit",
+   "routes": [
+    "fix:voice DL-22 Say it and Say nothing reachable without scrolling at 360×690 (open, target 2026-11-03)",
+    "fix:voice DL-17 the How he feels panel in words, not bars (open, target 2026-11-03)",
+    "fix:voice conversations with other people read as exchanges, not task records (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/clarity-retest-2026-10-20/voice-round2.md"
+  },
+  {
+   "id": "F-241",
+   "date": "2026-10-20",
+   "game": "neighbours",
+   "kind": "playtester",
+   "who": "Grace (Codex source-unread clarity retest, round 2)",
+   "words": "I came to help, but I have mostly chased Ada and scrolled through controls. I would put this down now. I do not feel I have helped anyone.",
+   "verdict": "quit",
+   "routes": [
+    "fix:neighbours DL-2 tapping a place answers visibly, as tapping a person does (open, target 2026-11-03)",
+    "fix:neighbours DL-22 the offer and its promise button fit the first phone view of a conversation (open, target 2026-11-03)",
+    "fix:neighbours DL-13 a conversation that is loading keeps its person when they move (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/clarity-retest-2026-10-20/neighbours-round2.md"
   }
  ],
  "lessons": [
@@ -3725,8 +3947,8 @@
   }
  ],
  "routes": {
-  "fix": 165,
-  "lesson": 229,
+  "fix": 203,
+  "lesson": 233,
   "hf": 11,
   "calibration": 42,
   "none": 1
