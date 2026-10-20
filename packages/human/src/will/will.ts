@@ -681,10 +681,62 @@ function evaluate(
   given: readonly Suggestion[],
   draw: number | undefined,
 ): Evaluation {
-  const W = WILL_DEFAULTS;
   const cmd = ctx.command;
   // A commanding voice is not also weighed as a suggestion in the same decision.
   const suggestions = cmd ? given.filter((s) => s.voiceId !== cmd.voiceId) : given;
+  const prepared = prepareVetoes(p, input, ctx, suggestions);
+  const { considered, affById } = prepared;
+  const selection = selectOption(p, considered, ctx, draw);
+  const ev: Evaluation = {
+    chosenId: selection.winner?.affordanceId ?? null,
+    considered,
+    resolutions: [],
+    autonomyDelta: 0,
+    voices: [],
+  };
+  if (cmd && arbitrateCommand(p, ctx, cmd, suggestions, prepared, selection, ev)) return ev;
+  if (suggestions.length === 0) return withCommandRefusal(ev, cmd);
+  if (inBreak(p)) {
+    // During a mental break no voice reaches them; nothing is counted for or against any of them.
+    ev.resolutions = suggestions.map((s) => ({
+      voiceId: s.voiceId,
+      verdict: 'refused' as const,
+      kind: 'cannot' as const,
+      reason: 'break',
+      says: '',
+    }));
+    ev.voices = suggestions.map((s) => ({ id: s.voiceId, pressure: 0, accepted: 0, refused: 0 }));
+    if (ev.resolutions.length === 1) ev.suggestion = ev.resolutions[0];
+    return withCommandRefusal(ev, cmd);
+  }
+
+  const judged = judgeVoices(p, ctx, suggestions, prepared, selection);
+  arbitrateInsistence(p, judged, considered, affById, ev);
+
+  ev.resolutions = judged.map((j) => j.res);
+  ev.voices = judged.map((j) => j.side);
+  const chosen = considered.find((c) => c.affordanceId === ev.chosenId);
+  ev.suggestion =
+    creditedResolution(ev.resolutions, chosen) ??
+    (ev.resolutions.length === 1 ? ev.resolutions[0] : undefined);
+  return withCommandRefusal(ev, cmd);
+}
+
+interface VetoPreparation {
+  affById: ReadonlyMap<string, Affordance>;
+  duties: readonly Commitment[];
+  baseVeto: ReadonlyMap<string, Considered['vetoed']>;
+  distrustOf: ReadonlyMap<EntityId, string | undefined>;
+  considered: Considered[];
+}
+
+/** Apply capacity, conscience, per-voice distrust and omission vetoes, in that order. */
+function prepareVetoes(
+  p: Person,
+  input: readonly Considered[],
+  ctx: WillContext,
+  suggestions: readonly Suggestion[],
+): VetoPreparation {
   const affById = new Map(ctx.affordances.map((a) => [a.id, a]));
   const duties = closingDuties(p, ctx);
   const servesDuty = (aff: Affordance): boolean => duties.some((c) => keepsDuty(p, c, aff, ctx.now));
@@ -729,6 +781,24 @@ function evaluate(
     return out;
   });
 
+  return { affById, duties, baseVeto, distrustOf, considered };
+}
+
+interface Selection {
+  winner: Considered | undefined;
+  ranked: readonly Considered[];
+  /** Inertia-adjusted score; target ranking still uses raw utility. */
+  score: (c: Considered) => number;
+}
+
+/** Select once using the supplied draw; prediction passes no draw and stays deterministic. */
+function selectOption(
+  p: Person,
+  considered: readonly Considered[],
+  ctx: WillContext,
+  draw: number | undefined,
+): Selection {
+  const W = WILL_DEFAULTS;
   // Selection: inertia for the current activity, then argmax or softmax.
   const live = considered.filter((c) => !c.vetoed);
   const current = p.activity;
@@ -754,74 +824,80 @@ function evaluate(
       }
     }
   }
-  const ev: Evaluation = {
-    chosenId: winner?.affordanceId ?? null,
-    considered,
-    resolutions: [],
-    autonomyDelta: 0,
-    voices: [],
-  };
-  if (cmd) {
-    const co = commandOutcome(p, considered, ctx, cmd, winner, score, baseVeto, duties);
-    ev.command = co;
-    if (co.holds && co.targetAffordanceId !== undefined) {
-      // Direct control: the commanded option is done; every other voice is set aside (no counters) and a
-      // distrust veto another voice caused does not stand in the way.
-      ev.chosenId = co.targetAffordanceId;
-      for (const c of considered) if (c.vetoed?.reason === 'distrust') delete c.vetoed;
-      const res: SuggestionResolution = {
-        voiceId: cmd.voiceId,
-        verdict: 'commanded',
-        reason: 'command',
-        says: '',
-        margin: co.margin,
-      };
-      if (co.ownAffordanceId !== null && co.ownAffordanceId !== co.targetAffordanceId)
-        res.insteadAffordanceId = co.ownAffordanceId;
-      const all: SuggestionResolution[] = [
-        res,
-        ...suggestions.map(
-          (s): SuggestionResolution => ({
-            voiceId: s.voiceId,
-            verdict: 'refused',
-            kind: 'cannot',
-            reason: 'commanded',
-            says: '',
-          }),
-        ),
-      ].sort((a, b) => cmpStr(a.voiceId, b.voiceId));
-      ev.resolutions = all;
-      ev.voices = all.map((r) => ({ id: r.voiceId, pressure: 0, accepted: 0, refused: 0 }));
-      ev.suggestion = res;
-      return ev;
-    }
-  }
-  if (suggestions.length === 0) return withCommandRefusal(ev, cmd);
-  if (inBreak(p)) {
-    // During a mental break no voice reaches them; nothing is counted for or against any of them.
-    ev.resolutions = suggestions.map((s) => ({
-      voiceId: s.voiceId,
-      verdict: 'refused' as const,
-      kind: 'cannot' as const,
-      reason: 'break',
-      says: '',
-    }));
-    ev.voices = suggestions.map((s) => ({ id: s.voiceId, pressure: 0, accepted: 0, refused: 0 }));
-    if (ev.resolutions.length === 1) ev.suggestion = ev.resolutions[0];
-    return withCommandRefusal(ev, cmd);
-  }
+  return { winner, ranked, score };
+}
 
+/** Return true when a command holds and completes the evaluation ahead of all suggestions. */
+function arbitrateCommand(
+  p: Person,
+  ctx: WillContext,
+  cmd: Command,
+  suggestions: readonly Suggestion[],
+  prepared: VetoPreparation,
+  selection: Selection,
+  ev: Evaluation,
+): boolean {
+  const { considered, baseVeto, duties } = prepared;
+  const { winner, score } = selection;
+  const co = commandOutcome(p, considered, ctx, cmd, winner, score, baseVeto, duties);
+  ev.command = co;
+  if (co.holds && co.targetAffordanceId !== undefined) {
+    // Direct control: the commanded option is done; every other voice is set aside (no counters) and a
+    // distrust veto another voice caused does not stand in the way.
+    ev.chosenId = co.targetAffordanceId;
+    for (const c of considered) if (c.vetoed?.reason === 'distrust') delete c.vetoed;
+    const res: SuggestionResolution = {
+      voiceId: cmd.voiceId,
+      verdict: 'commanded',
+      reason: 'command',
+      says: '',
+      margin: co.margin,
+    };
+    if (co.ownAffordanceId !== null && co.ownAffordanceId !== co.targetAffordanceId)
+      res.insteadAffordanceId = co.ownAffordanceId;
+    const all: SuggestionResolution[] = [
+      res,
+      ...suggestions.map(
+        (s): SuggestionResolution => ({
+          voiceId: s.voiceId,
+          verdict: 'refused',
+          kind: 'cannot',
+          reason: 'commanded',
+          says: '',
+        }),
+      ),
+    ].sort((a, b) => cmpStr(a.voiceId, b.voiceId));
+    ev.resolutions = all;
+    ev.voices = all.map((r) => ({ id: r.voiceId, pressure: 0, accepted: 0, refused: 0 }));
+    ev.suggestion = res;
+    return true;
+  }
+  return false;
+}
+
+interface Judged {
+  s: Suggestion;
+  res: SuggestionResolution;
+  side: VoiceSide;
+  /** Insisted and would be complied with: the option and the utility gap it trailed by. */
+  comply?: { target: Considered; gap: number };
+  targetIds: Set<string>;
+}
+
+/** Judge each voice against the same selected option before resolving competing insistence. */
+function judgeVoices(
+  p: Person,
+  ctx: WillContext,
+  suggestions: readonly Suggestion[],
+  prepared: VetoPreparation,
+  selection: Selection,
+): Judged[] {
+  const W = WILL_DEFAULTS;
+  const { considered, affById, distrustOf } = prepared;
+  const { winner, ranked, score } = selection;
   const winnerAff = winner ? affById.get(winner.affordanceId) : undefined;
   const reason = dominantTerm(winner);
-  interface Judged {
-    s: Suggestion;
-    res: SuggestionResolution;
-    side: VoiceSide;
-    /** Insisted and would be complied with: the option and the utility gap it trailed by. */
-    comply?: { target: Considered; gap: number };
-    targetIds: Set<string>;
-  }
-  const judged: Judged[] = suggestions.map((s) => {
+  return suggestions.map((s) => {
     const suggested = considered.filter((c) => {
       const aff = affById.get(c.affordanceId);
       return aff !== undefined && suggestionTargets(s, aff);
@@ -957,7 +1033,17 @@ function evaluate(
       }),
     );
   });
+}
 
+/** Settle competing insistence in the existing voice order, preserving equal-trust/strength ties. */
+function arbitrateInsistence(
+  p: Person,
+  judged: Judged[],
+  considered: readonly Considered[],
+  affById: ReadonlyMap<string, Affordance>,
+  ev: Evaluation,
+): void {
+  const W = WILL_DEFAULTS;
   // Rule (a): at most one insisted option is complied with.
   const insisting = judged.filter((j) => j.comply !== undefined);
   let forcer: Judged | undefined;
@@ -1018,14 +1104,6 @@ function evaluate(
       }
     }
   }
-
-  ev.resolutions = judged.map((j) => j.res);
-  ev.voices = judged.map((j) => j.side);
-  const chosen = considered.find((c) => c.affordanceId === ev.chosenId);
-  ev.suggestion =
-    creditedResolution(ev.resolutions, chosen) ??
-    (ev.resolutions.length === 1 ? ev.resolutions[0] : undefined);
-  return withCommandRefusal(ev, cmd);
 }
 
 /** Add the commanding voice's refusal (a command that did not hold) to the resolutions, in voice-id order. */
