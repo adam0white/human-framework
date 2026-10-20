@@ -10,7 +10,8 @@
     "declarationDir": ".types",
     "paths": {
       "@adam0white/human-framework": ["../../packages/human/src/index.ts"],
-      "@adam0white/lab-client": ["../../packages/lab-client/src/index.ts"]
+      "@adam0white/lab-client": ["../../packages/lab-client/src/index.ts"],
+      "@adam0white/lab-kit": ["../../packages/lab-kit/src/index.ts"]
     }
   },
   "include": ["src", "test", "worker", "vite.config.ts"],
@@ -20,6 +21,9 @@
     },
     {
       "path": "../../packages/lab-client"
+    },
+    {
+      "path": "../../packages/lab-kit"
     }
   ]
 }

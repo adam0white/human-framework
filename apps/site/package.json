@@ -13,7 +13,8 @@
     "@adam0white/human-framework": "2.8.0",
     "@adam0white/lab-client": "0.1.2",
     "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "@adam0white/lab-kit": "0.2.0"
   },
   "devDependencies": {
     "@types/react": "19.3.0",

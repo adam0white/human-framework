@@ -18,7 +18,10 @@ export default defineConfig({
     // Workspace packages resolve to source, so tests run from a fresh `npm ci` without building their dist.
     alias: {
       '@adam0white/human-framework': resolve(root, '../../packages/human/src/index.ts'),
+      '@adam0white/lab-client/package.json': resolve(root, '../../packages/lab-client/package.json'),
       '@adam0white/lab-client': resolve(root, '../../packages/lab-client/src/index.ts'),
+      '@adam0white/lab-kit/stage.css': resolve(root, '../../packages/lab-kit/stage.css'),
+      '@adam0white/lab-kit': resolve(root, '../../packages/lab-kit/src/index.ts'),
     },
   },
   build: {

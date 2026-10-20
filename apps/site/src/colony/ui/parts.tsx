@@ -573,6 +573,7 @@ export function OrderReply({ cards }: { cards: OrderCard[] }) {
 
 export function SuggestionCard(props: {
   nudge: Nudge;
+  cards?: OrderCard[];
   minute: Minute;
   queued: number;
   active: boolean;
@@ -581,6 +582,18 @@ export function SuggestionCard(props: {
   onKeepWatching?(): void;
 }) {
   const n = props.nudge;
+  const refusal = [...(props.cards ?? [])]
+    .reverse()
+    .find(
+      (card) =>
+        card.order.personId === n.order.personId &&
+        (card.human.state === 'willNot' || card.human.state === 'notNow'),
+    );
+  const history = refusal
+    ? refusal.order.issuedAt >= n.minute
+      ? `Suggested at ${hhmm(n.minute)}, before ${shortName(n.order.personId)} answered “${refusal.human.label ?? 'Not now.'}” This is an old suggestion; Use checks the current answer.`
+      : `Suggested at ${hhmm(n.minute)}. This is an old suggestion. ${shortName(n.order.personId)} has answered “${refusal.human.label ?? 'Not now.'}” Use checks the current answer.`
+    : null;
   const left = Math.max(0, n.until - props.minute);
   const span = Math.max(1, n.until - n.minute);
   return (
@@ -590,8 +603,8 @@ export function SuggestionCard(props: {
           <p className="nudge-order">
             {shortName(n.order.personId)} → {PLACE_LABEL[n.order.placeId]}
           </p>
-          <p className="nudge-text">{n.text}</p>
-          {n.reason && <p className="nudge-reason">{n.reason}</p>}
+          <p className="nudge-text">{history ?? n.text}</p>
+          {n.reason && !history && <p className="nudge-reason">{n.reason}</p>}
         </div>
         <button type="button" className="btn btn-small nudge-use" onClick={() => props.onUse(n)}>
           {props.active ? 'In composer' : 'Use'}

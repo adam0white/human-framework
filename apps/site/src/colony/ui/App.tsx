@@ -13,6 +13,7 @@ import { GoalCard } from './GoalCard.tsx';
 import { Inspector } from './Inspector.tsx';
 import { Pane } from './Pane.tsx';
 import { PaneBody, PeopleRows } from './PeopleRows.tsx';
+import { PhoneSheet, VillageStrip } from './PhoneStage.tsx';
 import {
   AutoPauseToggle,
   Composer,
@@ -77,6 +78,8 @@ export function App() {
   const colony = useColony();
   const { frame, actions, playback } = colony;
   const bubbles = useMemo(() => new BubbleManager(), []);
+  const stageRoot = useRef<HTMLElement>(null);
+  const [sceneHeight, setSceneHeight] = useState(0);
   const [composer, setComposer] = useState<ComposerState>(EMPTY_COMPOSER);
   const [hoverPlace, setHoverPlace] = useState<PlaceId | null>(null);
   const [inspect, setInspect] = useState<{ personId: VillagerId; decisionId?: string } | null>(null);
@@ -86,6 +89,9 @@ export function App() {
   const [moment, setMoment] = useState<MomentRecord | null>(null);
   const [drawer, setDrawer] = useState(false);
   const [ordering, setOrdering] = useState(true);
+  const [phoneSheetHeight, setPhoneSheetHeight] = useState<'closed' | 'peek' | 'half' | 'full' | 'fit'>(
+    'half',
+  );
   const [watching, setWatching] = useState<VillagerId | null>(null);
   const [watchingPlace, setWatchingPlace] = useState<PlaceId | null>(null);
   const [followKey, setFollowKey] = useState(0);
@@ -296,6 +302,8 @@ export function App() {
       }
       if (keys.current.inspect) return;
       if (e.key === 'Escape') {
+        if (window.matchMedia('(max-width: 899px)').matches && stageRoot.current?.dataset.sheet !== 'closed')
+          return;
         if (keys.current.end) closeEnd();
         else setComposer(EMPTY_COMPOSER);
         return;
@@ -380,6 +388,8 @@ export function App() {
     hoverPlace: highlightPlace,
     destination: newsFollow ? null : ordering ? composer.placeId : watchingPlace,
     following: newsFollow !== null || returnedFollow || (!ordering && watching !== null),
+    frameSelection: phoneSheetHeight !== 'closed',
+    sceneHeight,
     followKey,
     holdKey,
     onSelect: pickWho,
@@ -418,161 +428,213 @@ export function App() {
       />
       <GoalStrip goals={frame?.goals ?? []} />
 
-      <main className={`stage show-${mapSide}`}>
-        <fieldset className="map-toggle">
-          <legend className="visually-hidden">Map shown</legend>
-          <button type="button" aria-pressed={mapSide === 'classic'} onClick={() => setMapSide('classic')}>
-            Classic · obey
-          </button>
-          <button type="button" aria-pressed={mapSide === 'human'} onClick={() => setMapSide('human')}>
-            Human · decide
-          </button>
-        </fieldset>
-        <section className="pane pane-classic" aria-label="Classic village">
-          <header className="pane-head">
-            <h2>
-              Classic <span>they obey</span>
-            </h2>
-            <PaneStats frame={frame} side="classic" />
-          </header>
-          <PaneBody
-            rows={
-              <PeopleRows frame={frame} side="classic" selectedId={composer.personId} onSelect={pickWho} />
-            }
-          >
-            <Pane side="classic" {...paneProps} />
-          </PaneBody>
-        </section>
-
-        <aside className="center">
-          {newsFollow && (
-            <div className="news-follow" role="status">
-              <span>
-                Watching {shortName(newsFollow.personId)} ·{' '}
-                {newsFollow.side === 'human' ? 'Human' : 'Classic'}
-              </span>
-              <button type="button" className="news-return" onClick={returnFromNews}>
-                {returnWorker ? `Back to ${shortName(returnWorker)}` : 'Back to village'}
-              </button>
-            </div>
-          )}
-          {!newsFollow && watching && !ordering && (
-            <p className="watching-worker" role="status">
-              Watching {shortName(watching)} ·{' '}
-              {(mapSide === 'human' ? frame?.human : frame?.classic)?.find((p) => p.id === watching)?.label ??
-                'waiting'}
-            </p>
-          )}
-          <div className="order-alerts">
-            {playback.pause && (
-              <PauseRibbon
-                pause={playback.pause}
-                paused={playback.paused}
-                onResume={() => actions.setPaused(false)}
-              />
-            )}
-            {moment && <MomentBanner moment={moment} />}
-            <HurtLine news={frame?.news ?? []} onShow={showNewsPerson} />
+      <main
+        ref={stageRoot}
+        className={`stage lk-stage show-${mapSide}`}
+        data-sheet={phoneSheetHeight}
+        data-inspecting={inspectOpen}
+      >
+        <VillageStrip frame={frame} side={mapSide} />
+        <div className="well-scenes lk-scene">
+          <div className="well-phone-status" role="status">
+            {flash && <p>{flash}</p>}
+            {newsFollow
+              ? `Watching ${shortName(newsFollow.personId)}`
+              : (composer.personId ?? watching)
+                ? `${shortName((composer.personId ?? watching) as VillagerId)} · ${(mapSide === 'human' ? frame?.human : frame?.classic)?.find((p) => p.id === (composer.personId ?? watching))?.label ?? 'waiting'}`
+                : ''}
             <OrderReply cards={cards} />
+            <HurtLine news={frame?.news ?? []} onShow={showNewsPerson} />
           </div>
-          <div className="composer-tray">
-            <p className="order-scope">Each order goes to both villages.</p>
-            <Composer
-              state={composer}
-              frame={frame}
-              job={job}
-              prediction={
-                colony.prediction &&
-                previewInput &&
-                JSON.stringify(colony.prediction.input) === JSON.stringify(previewInput)
-                  ? colony.prediction.prediction
-                  : null
+          <fieldset className="map-toggle">
+            <legend className="visually-hidden">Map shown</legend>
+            <button type="button" aria-pressed={mapSide === 'classic'} onClick={() => setMapSide('classic')}>
+              Classic · obey
+            </button>
+            <button type="button" aria-pressed={mapSide === 'human'} onClick={() => setMapSide('human')}>
+              Human · decide
+            </button>
+          </fieldset>
+          <section className="pane pane-classic" aria-label="Classic village">
+            <header className="pane-head">
+              <h2>
+                Classic <span>they obey</span>
+              </h2>
+              <PaneStats frame={frame} side="classic" />
+            </header>
+            <PaneBody
+              rows={
+                <PeopleRows frame={frame} side="classic" selectedId={composer.personId} onSelect={pickWho} />
               }
-              onChange={setComposer}
-              onWho={pickWho}
-              onWhere={pickWhere}
-              onHover={setHoverPlace}
-              onConfirm={confirm}
-              onInspect={inspectPersonCb}
-              onWatch={() => setOrdering(false)}
-              onCompose={() => {
-                setNewsFollow(null);
-                setReturnedFollow(false);
-                setOrdering(true);
-                setHoldKey((key) => key + 1);
-              }}
-            />
-          </div>
-          <section className={`queue ${drawer ? 'is-open' : ''}`} aria-label="Order log">
-            <div className="queue-head">
-              <h2 className="col-head">Orders</h2>
+            >
+              <Pane side="classic" {...paneProps} />
+            </PaneBody>
+          </section>
+
+          <aside className="center">
+            {newsFollow && (
+              <div className="news-follow" role="status">
+                <span>
+                  Watching {shortName(newsFollow.personId)} ·{' '}
+                  {newsFollow.side === 'human' ? 'Human' : 'Classic'}
+                </span>
+                <button type="button" className="news-return" onClick={returnFromNews}>
+                  {returnWorker ? `Back to ${shortName(returnWorker)}` : 'Back to village'}
+                </button>
+              </div>
+            )}
+            {!newsFollow && watching && !ordering && (
+              <p className="watching-worker" role="status">
+                Watching {shortName(watching)} ·{' '}
+                {(mapSide === 'human' ? frame?.human : frame?.classic)?.find((p) => p.id === watching)
+                  ?.label ?? 'waiting'}
+              </p>
+            )}
+            <div className="order-alerts">
+              {playback.pause && (
+                <PauseRibbon
+                  pause={playback.pause}
+                  paused={playback.paused}
+                  onResume={() => actions.setPaused(false)}
+                />
+              )}
+              {moment && <MomentBanner moment={moment} />}
+              <HurtLine news={frame?.news ?? []} onShow={showNewsPerson} />
+              <OrderReply cards={cards} />
+            </div>
+            <div className="composer-tray">
+              <p className="order-scope">Each order goes to both villages.</p>
+              <Composer
+                state={composer}
+                frame={frame}
+                job={job}
+                prediction={
+                  colony.prediction &&
+                  previewInput &&
+                  JSON.stringify(colony.prediction.input) === JSON.stringify(previewInput)
+                    ? colony.prediction.prediction
+                    : null
+                }
+                onChange={setComposer}
+                onWho={pickWho}
+                onWhere={pickWhere}
+                onHover={setHoverPlace}
+                onConfirm={confirm}
+                onInspect={inspectPersonCb}
+                onWatch={() => setOrdering(false)}
+                onCompose={() => {
+                  setNewsFollow(null);
+                  setReturnedFollow(false);
+                  setOrdering(true);
+                  setHoldKey((key) => key + 1);
+                }}
+              />
+            </div>
+            <section className={`queue ${drawer ? 'is-open' : ''}`} aria-label="Order log">
+              <div className="queue-head">
+                <h2 className="col-head">Orders</h2>
+                <button
+                  type="button"
+                  className="icon-x queue-close"
+                  aria-label="Close orders"
+                  onClick={() => setDrawer(false)}
+                >
+                  ×
+                </button>
+              </div>
+              <div className="queue-scroll">
+                <OrderLog cards={cards} onCancel={actions.cancel} />
+              </div>
+            </section>
+            <div className="sheet-tools">
               <button
                 type="button"
-                className="icon-x queue-close"
-                aria-label="Close orders"
-                onClick={() => setDrawer(false)}
+                className="order-toggle"
+                aria-expanded={ordering}
+                onClick={() => setOrdering((open) => !open)}
               >
-                ×
+                {ordering ? 'Watch village' : 'Give an order'}
+              </button>
+              {nudge && frame && (
+                <details
+                  onToggle={(e) => keepOneDisclosure(e.currentTarget)}
+                  className={`nudge-slot ${composer.nudgeId === nudge.id ? 'is-active' : ''}`}
+                  role="status"
+                  aria-live="polite"
+                >
+                  <summary>
+                    Suggestion<span className="nudge-who"> · {shortName(nudge.order.personId)}</span>
+                    <small>Use prepares; Confirm sends.</small>
+                  </summary>
+                  <SuggestionCard
+                    nudge={nudge}
+                    cards={cards}
+                    minute={frame.minute}
+                    queued={nudges.length - 1}
+                    active={composer.nudgeId === nudge.id}
+                    onUse={applyNudge}
+                    onSkip={skipNudge}
+                    onKeepWatching={() => {
+                      // A manual pause resumes into decision slowdown; the second resume acknowledges it.
+                      actions.setPaused(false);
+                      if (playback.paused) actions.setPaused(false);
+                    }}
+                  />
+                </details>
+              )}
+              <button type="button" className="orders-button" onClick={() => setDrawer(true)}>
+                Orders ({orderCount})
               </button>
             </div>
-            <div className="queue-scroll">
-              <OrderLog cards={cards} onCancel={actions.cancel} />
-            </div>
-          </section>
-          <div className="sheet-tools">
-            <button
-              type="button"
-              className="order-toggle"
-              aria-expanded={ordering}
-              onClick={() => setOrdering((open) => !open)}
-            >
-              {ordering ? 'Watch village' : 'Give an order'}
-            </button>
-            {nudge && frame && (
-              <details
-                onToggle={(e) => keepOneDisclosure(e.currentTarget)}
-                className={`nudge-slot ${composer.nudgeId === nudge.id ? 'is-active' : ''}`}
-                role="status"
-                aria-live="polite"
-              >
-                <summary>
-                  Suggestion<span className="nudge-who"> · {shortName(nudge.order.personId)}</span>
-                  <small>Use prepares; Confirm sends.</small>
-                </summary>
-                <SuggestionCard
-                  nudge={nudge}
-                  minute={frame.minute}
-                  queued={nudges.length - 1}
-                  active={composer.nudgeId === nudge.id}
-                  onUse={applyNudge}
-                  onSkip={skipNudge}
-                  onKeepWatching={() => {
-                    // A manual pause resumes into decision slowdown; the second resume acknowledges it.
-                    actions.setPaused(false);
-                    if (playback.paused) actions.setPaused(false);
-                  }}
-                />
-              </details>
-            )}
-            <button type="button" className="orders-button" onClick={() => setDrawer(true)}>
-              Orders ({orderCount})
-            </button>
-          </div>
-        </aside>
+          </aside>
 
-        <section className="pane pane-human" aria-label="Human village">
-          <header className="pane-head">
-            <h2>
-              Human <span>they decide</span>
-            </h2>
-            <PaneStats frame={frame} side="human" />
-          </header>
-          <PaneBody
-            rows={<PeopleRows frame={frame} side="human" selectedId={composer.personId} onSelect={pickWho} />}
-          >
-            <Pane side="human" {...paneProps} bubbles={bubbles} />
-          </PaneBody>
-        </section>
+          <section className="pane pane-human" aria-label="Human village">
+            <header className="pane-head">
+              <h2>
+                Human <span>they decide</span>
+              </h2>
+              <PaneStats frame={frame} side="human" />
+            </header>
+            <PaneBody
+              rows={
+                <PeopleRows frame={frame} side="human" selectedId={composer.personId} onSelect={pickWho} />
+              }
+            >
+              <Pane side="human" {...paneProps} bubbles={bubbles} />
+            </PaneBody>
+          </section>
+        </div>
+        <PhoneSheet
+          frame={frame}
+          state={composer}
+          ordering={ordering}
+          onOrdering={setOrdering}
+          prediction={
+            colony.prediction &&
+            previewInput &&
+            JSON.stringify(colony.prediction.input) === JSON.stringify(previewInput)
+              ? colony.prediction.prediction
+              : null
+          }
+          onChange={setComposer}
+          onWho={pickWho}
+          onWhere={pickWhere}
+          onConfirm={confirm}
+          onUse={applyNudge}
+          onSkip={skipNudge}
+          onCancel={actions.cancel}
+          onInspect={inspectPersonCb}
+          onSheet={setPhoneSheetHeight}
+          stageRoot={stageRoot}
+          onSceneHeight={setSceneHeight}
+          job={job}
+          inspecting={inspectOpen}
+          active={!starting && !showEnd}
+          onKeepWatching={() => {
+            actions.setPaused(false);
+            if (playback.paused) actions.setPaused(false);
+          }}
+        />
       </main>
 
       <div className="flash-region" role="status" aria-live="polite">

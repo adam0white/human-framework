@@ -25,6 +25,10 @@ export interface PaneProps {
   destination: PlaceId | null;
   /** Track only after confirmation or an explicit Follow. Composition preserves the displayed camera. */
   following?: boolean;
+  /** Fit worker and destination inside the phone scene after the sheet consumes its inset. */
+  frameSelection?: boolean;
+  /** Shared stage scene inset; invalidates selection framing when a sheet snaps. */
+  sceneHeight?: number;
   /** Increment to discard a manual pan and frame a confirmed order. */
   followKey?: number;
   /** Increment whenever a picker opens to hold the displayed camera, including after local Follow. */
@@ -122,7 +126,7 @@ export const Pane = memo(function Pane(props: PaneProps) {
     pan.current = null;
     localFollow.current = false;
     setPanned(false);
-  }, [props.followKey]);
+  }, [props.followKey, props.sceneHeight]);
   // biome-ignore lint/correctness/useExhaustiveDependencies: A new composition ends a local Follow override.
   useEffect(() => {
     if (props.following === false) localFollow.current = false;
@@ -179,7 +183,10 @@ export const Pane = memo(function Pane(props: PaneProps) {
       if (!f || cssW <= 0 || cssH <= 0) return;
       const p = live.current;
       const cooking = cookingNow(f, side);
-      const tracking = p.following !== false || localFollow.current;
+      const tracking =
+        p.following !== false ||
+        localFollow.current ||
+        (p.frameSelection === true && window.matchMedia('(max-width: 899px)').matches);
       // Moving people (interpolation), the hover outline, kitchen smoke, sleepers' z, lantern flicker and rain
       // animate on real time; anything else only changes with a new frame, a selection, a hover or a resize.
       const moving = s.prev !== null && now - s.at < s.interval;
