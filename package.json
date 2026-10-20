@@ -17,7 +17,8 @@
     "apps/*"
   ],
   "scripts": {
-    "test": "vitest run",
+    "wt": "bash scripts/agent-worktree.sh",
+    "test": "node scripts/suite-lock.ts -- vitest run",
     "test:watch": "vitest",
     "bench": "vitest run --config vitest.bench.config.ts --maxWorkers=1 --silent=false",
     "bench:hyperfine": "hyperfine --warmup 1 --runs 10 'node scripts/bench-village.ts'",
@@ -26,6 +27,8 @@
     "format": "biome format --write .",
     "dev": "npm run dev -w apps/site",
     "build": "npm run build -w packages/human && npm run build -w packages/lab-client && npm run build -w packages/lab-kit && npm run build -w apps/site",
+    "check:lane": "node scripts/lane.ts",
+    "check:fast": "npm run check:lane --",
     "check": "npm run lint && npm run typecheck && npm test",
     "deploy": "node scripts/deploy.ts",
     "deploy:check": "node scripts/deploy.ts --dry-run",

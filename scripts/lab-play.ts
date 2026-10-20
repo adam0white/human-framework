@@ -13,7 +13,16 @@ import { createRequire } from 'node:module';
 import { homedir } from 'node:os';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { makeLogLine, type PlayOp, parsePlayArgs, validatePlayOp } from './lab-play-helpers.ts';
+import {
+  MissingPlayControl,
+  makeLogLine,
+  makePlayReply,
+  type PlayOp,
+  type PlaySnapshot,
+  parsePlayArgs,
+  runPlayOperation,
+  validatePlayOp,
+} from './lab-play-helpers.ts';
 
 interface Locator {
   first(): Locator;
@@ -31,7 +40,7 @@ interface Locator {
 interface Page {
   goto(url: string, options: { waitUntil: string; timeout: number }): Promise<unknown>;
   locator(selector: string): Locator;
-  getByRole(role: string, options: { name: string; exact: boolean }): Locator;
+  getByRole(role: string, options: { name: string | RegExp; exact?: boolean }): Locator;
   getByLabel(name: string, options: { exact: boolean }): Locator;
   getByText(text: string, options: { exact: boolean }): Locator;
   evaluate<T, A>(fn: (arg: A) => T, arg: A): Promise<T>;
@@ -84,7 +93,8 @@ async function loadPlaywright(): Promise<Playwright> {
 const visible = (locator: Locator) => locator.filter({ visible: true }).first();
 const sleep = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));
 
-// An on-screen point where the element itself receives the tap, or null when it is covered.
+// An on-screen point where the element (or the container it sits in) receives the tap, or null
+// when something else covers it.
 function uncoveredPoint(el: Element, centre: boolean): { x: number; y: number } | null {
   if (centre) el.scrollIntoView({ block: 'center', inline: 'nearest' });
   const box = el.getBoundingClientRect();
@@ -94,7 +104,8 @@ function uncoveredPoint(el: Element, centre: boolean): { x: number; y: number } 
       const y = box.top + box.height * fy;
       if (x < 0 || y < 0 || x >= innerWidth || y >= innerHeight) continue;
       const hit = document.elementFromPoint(x, y);
-      if (hit && (hit === el || el.contains(hit))) return { x, y };
+      // An ancestor counts too: scene cards may pass taps to a delegating parent.
+      if (hit && (hit === el || el.contains(hit) || hit.contains(el))) return { x, y };
     }
   return null;
 }
@@ -175,7 +186,7 @@ async function main() {
     });
     let openedAt: number | null = null;
     let stopped = false;
-    let cached = { visible: '', controls: '' };
+    let cached: PlaySnapshot | null = null;
     let queue = Promise.resolve();
     let logQueue = Promise.resolve();
     const enqueue = (work: () => Promise<void>) => {
@@ -183,8 +194,18 @@ async function main() {
         console.error(error);
       });
     };
-    const log = (op: Record<string, unknown>, started: number, error?: string) => {
-      const line = makeLogLine(op, { now: Date.now(), openedAt, op_ms: Date.now() - started }, error);
+    const log = (
+      op: Record<string, unknown>,
+      started: number,
+      error?: string,
+      requestedControlPresentBefore: boolean | null = null,
+    ) => {
+      const line = makeLogLine(
+        op,
+        { now: Date.now(), openedAt, op_ms: Date.now() - started },
+        error,
+        requestedControlPresentBefore,
+      );
       logQueue = logQueue
         .catch(() => {})
         .then(() => appendFile(resolve(options.out, 'wall-clock.jsonl'), `${JSON.stringify(line)}\n`));
@@ -237,6 +258,36 @@ async function main() {
         return false;
       }
     };
+    // A control whose name carries live status ("House Later: after I pray Fajr" becomes "House
+    // Will refuse: …" seconds later) may have changed since it was listed. Fall back to the
+    // longest word prefix of the requested name that starts exactly one visible control's name.
+    const clickByStem = async (role: string, name: string) => {
+      const words = name.trim().split(/\s+/);
+      for (let n = words.length - 1; n >= 1; n--) {
+        const stem = words.slice(0, n).join(' ');
+        if (stem.length < 3) break;
+        const escaped = stem.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const matches = page.getByRole(role, { name: new RegExp(`^${escaped}`) }).filter({ visible: true });
+        const count = await matches.count();
+        if (count === 1) return click(matches);
+        if (count > 1) return false;
+      }
+      return false;
+    };
+    // Whether a visible control by this name (or text) exists but is disabled: the game's answer.
+    const disabledNamed = async (name: string) =>
+      page.evaluate((wanted: string) => {
+        const norm = (t: string) => t.replace(/\s+/g, ' ').trim().toLowerCase();
+        return [...document.querySelectorAll('button, [role=button], .button, .disabled')].some((el) => {
+          const box = el.getBoundingClientRect();
+          const off =
+            (el as HTMLButtonElement).disabled ||
+            el.getAttribute('aria-disabled') === 'true' ||
+            el.classList.contains('disabled');
+          const label = norm(el.getAttribute('aria-label') ?? el.textContent ?? '');
+          return off && box.width > 0 && box.height > 0 && label.startsWith(norm(wanted).slice(0, 40));
+        });
+      }, name);
     const tapPoint = async (x: number, y: number) => {
       if (phone) await page.touchscreen.tap(x, y);
       else await page.mouse.click(x, y);
@@ -253,15 +304,30 @@ async function main() {
           else if ('name' in op && typeof op.name === 'string') {
             if (
               !(await click(page.getByRole(op.role ?? 'button', { name: op.name, exact: true }))) &&
-              (op.role || !(await click(page.getByRole('link', { name: op.name, exact: true }))))
-            )
-              throw new Error(`No actionable ${op.role ?? 'button/link'} named ${op.name}`);
+              (op.role || !(await click(page.getByRole('link', { name: op.name, exact: true })))) &&
+              !(await clickByStem(op.role ?? 'button', op.name))
+            ) {
+              if (await disabledNamed(op.name))
+                throw new Error(
+                  `${op.name} is shown but disabled right now (game state, not a driver failure)`,
+                );
+              throw new MissingPlayControl(
+                op.name,
+                `No actionable ${op.role ?? 'button/link'} named ${op.name}`,
+              );
+            }
           } else if ('text' in op && typeof op.text === 'string') {
             if (await click(page.getByRole('button', { name: op.text, exact: true }))) break;
             if (await click(page.getByRole('link', { name: op.text, exact: true }))) break;
             if (await click(page.getByText(op.text, { exact: true }))) break;
             const point = await page.evaluate(textControlPoint, op.text);
-            if (!point) throw new Error(`No visible clickable text: ${op.text}`);
+            if (!point) {
+              if (await disabledNamed(op.text))
+                throw new Error(
+                  `${op.text} is shown but disabled right now (game state, not a driver failure)`,
+                );
+              throw new MissingPlayControl(op.text, `No visible clickable text: ${op.text}`);
+            }
             await tapPoint(point.x, point.y);
           }
           break;
@@ -331,48 +397,39 @@ async function main() {
       void body.then((parsed) => {
         enqueue(async () => {
           const started = Date.now();
-          let raw: Record<string, unknown> = { op: 'invalid' };
-          let status = 200;
-          let extra: { screenshot?: string; error?: string } = {};
-          try {
-            if (request.method !== 'POST' || request.url !== '/')
-              throw new Error('Use POST / with a JSON operation');
-            if ('error' in parsed) throw parsed.error;
-            const value = parsed.value;
-            if (value && typeof value === 'object' && !Array.isArray(value))
-              raw = value as Record<string, unknown>;
-            const op = validatePlayOp(value);
-            if (op.op !== 'log') {
-              if (openedAt !== null && Date.now() - openedAt >= options.ceiling * 60_000) await stop();
-              if (stopped) throw new Error('Session ceiling reached; browser operations are refused');
-              if (op.op !== 'open' && openedAt === null) throw new Error('Call open first');
-            }
-            const shot = await act(op);
-            if (shot) extra.screenshot = shot;
-            if (op.op !== 'log') await sleep(100);
-            if (op.op !== 'log')
-              cached = {
-                visible: await page.locator('body').innerText({ timeout: 5000 }),
-                controls: await page.locator('body').ariaSnapshot({ timeout: 5000 }),
-              };
-            await log(raw, started);
-          } catch (error) {
-            status = 500;
-            extra = { error: error instanceof Error ? error.message : String(error) };
-            await log(raw, started, extra.error).catch(console.error);
-          }
-          response.writeHead(status, {
+          const value = 'value' in parsed ? parsed.value : undefined;
+          const raw =
+            value && typeof value === 'object' && !Array.isArray(value)
+              ? (value as Record<string, unknown>)
+              : { op: 'invalid' };
+          const result = await runPlayOperation(raw, {
+            previous: cached,
+            act: async () => {
+              if (request.method !== 'POST' || request.url !== '/')
+                throw new Error('Use POST / with a JSON operation');
+              if ('error' in parsed) throw parsed.error;
+              const op = validatePlayOp(value);
+              if (op.op !== 'log') {
+                if (openedAt !== null && Date.now() - openedAt >= options.ceiling * 60_000) await stop();
+                if (stopped) throw new Error('Session ceiling reached; browser operations are refused');
+                if (op.op !== 'open' && openedAt === null) throw new Error('Call open first');
+              }
+              const shot = await act(op);
+              if (op.op !== 'log') await sleep(100);
+              return shot;
+            },
+            snapshot: async (timeout) => ({
+              visible: await page.locator('body').innerText({ timeout }),
+              controls: await page.locator('body').ariaSnapshot({ timeout }),
+            }),
+          });
+          cached = result.snapshot;
+          await log(raw, started, result.error, result.requested_control_present_before).catch(console.error);
+          response.writeHead(result.status, {
             'Content-Type': 'application/json; charset=utf-8',
             'Cache-Control': 'no-store',
           });
-          response.end(
-            JSON.stringify({
-              elapsed_s: openedAt === null ? 0 : (Date.now() - openedAt) / 1000,
-              op_ms: Date.now() - started,
-              ...cached,
-              ...extra,
-            }),
-          );
+          response.end(JSON.stringify(makePlayReply(result, { now: Date.now(), started, openedAt })));
         });
       });
     });

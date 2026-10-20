@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Island · a notebook of two minds</title>
+    <link rel="stylesheet" href="./viewer.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <a class="home" href="https://human.adamwhite.work/">◇ human framework</a>
+        <p class="eyebrow">Island / experiment notebook</p>
+        <h1>Two minds, one island.</h1>
+        <p class="intro">An HF person and a language model explored the same island, with the same observations,
+          legal actions, steps and resets. Three free episodes preceded one task: put cubes on the Spire.
+          This is an experiment, not a game. The HF arms are deterministic and replay exactly from the same
+          seed and state. This viewer shows recorded frames; it does not run a mind.</p>
+      </header>
+
+      <section class="source" aria-label="Recording source">
+        <p id="load-status" role="status">Loading recordings…</p>
+        <label class="file-control">Open recording JSON files
+          <input id="recording-files" type="file" accept=".json,application/json" multiple />
+        </label>
+        <p class="small">No installation or server is needed. Open this page and choose recording files above.
+          On a static website, the page reads <code>runs/index.json</code> beside it. The index may be a list of
+          filenames or <code>{"recordings": [{"file": "hf-1.json"}]}</code>. Files are relative to that index.</p>
+      </section>
+
+      <section class="transport" aria-label="Shared replay controls">
+        <div class="transport-row">
+          <button id="play" type="button" disabled>Play</button>
+          <label>Speed <select id="speed"><option value="1">1×</option><option value="4">4×</option><option value="16">16×</option></select></label>
+          <output id="position" for="scrubber">No frames</output>
+        </div>
+        <label class="scrub-label" for="scrubber">Shared episode and step</label>
+        <input id="scrubber" type="range" min="0" max="0" value="0" list="episode-ticks" disabled />
+        <datalist id="episode-ticks"></datalist>
+        <nav id="episode-markers" class="episode-markers" aria-label="Jump to an episode"></nav>
+      </section>
+      <p class="small">1× advances one recorded step per second. Both panels use the same episode and step.
+        Missing steps stay blank. Each trail shows up to 20 steps within the current episode.</p>
+
+      <section id="panels" class="panels" aria-label="Compare two recordings"></section>
+
+      <section class="measures" aria-labelledby="measures-heading">
+        <h2 id="measures-heading">Across the recordings</h2>
+        <p class="small">Measures are the recorder’s values, shown without recalculation. Fixture values are illustrations.</p>
+        <section id="measures-table" aria-label="Recording measures"></section>
+      </section>
+      <noscript>This replay viewer needs JavaScript enabled.</noscript>
+      <footer><a href="https://human.adamwhite.work/games/">◇ all notebooks</a></footer>
+    </main>
+    <!-- No inline script: the lab site's CSP allows only same-origin script files. Classic scripts also run from file://. -->
+    <script src="./viewer.js"></script>
+    <script src="./boot.js"></script>
+  </body>
+</html>

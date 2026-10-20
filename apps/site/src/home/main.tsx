@@ -6,6 +6,9 @@ import { GameList } from '../shared/GameList.tsx';
 import './home.css';
 import { SAMPLE_OUTPUT } from './sampleOutput.ts';
 
+const ACTIVE_GAMES = GAMES.filter((g) => g.status === 'active');
+const TOP_GAME = ACTIVE_GAMES[0] ?? { name: 'Twice at the Well', href: '/colony/' };
+
 const REPO = 'https://github.com/adam0white/human-framework';
 // Shortened from sample.ts; the printed answer is SAMPLE_OUTPUT, which sample.test.ts checks against the real API.
 const SNIPPET = `const answer = predict(aylin, offers, {
@@ -47,8 +50,8 @@ function Home() {
             <Answer kind="no">will not, it is theft</Answer>
           </p>
           <p className="ctas">
-            <a className="cta" href="/colony/">
-              Play Twice at the Well →
+            <a className="cta" href={TOP_GAME.href}>
+              Play {TOP_GAME.name} →
             </a>
             <a href="/games/">All games</a>
           </p>
@@ -56,7 +59,7 @@ function Home() {
 
         <section id="play" aria-labelledby="play-title">
           <h2 id="play-title">See it in play</h2>
-          <GameList games={GAMES.filter((g) => g.status === 'active').slice(0, 3)} />
+          <GameList games={ACTIVE_GAMES.slice(0, 3)} />
           <p className="note">
             <a className="ranking-link" href="/games/">
               All games, ranked →

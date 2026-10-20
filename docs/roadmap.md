@@ -124,6 +124,7 @@ Owner direction (2026-10-18, [owner-directions](owner-directions-2026-10-18.md))
 | Reading a quantity | `estimateQuantity(p, { truth, difficulty })` (Glance asked for `estimate`, already exported for impressions of others) returning value and confidence from body state (Glance 3) | Engine 2.13 (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
 | Bladder | A real voiding need, so hosts stop advertising pain `relief` for the toilet (Rope Kestrel) | Engine 2.13 (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
 | A duty held by a group | Shared commitment met by any member (Pass 6) | unscheduled, review 2026-11-15 |
+| Projects from what is seen (island pilot) | Hypothesis from the 2026-10-20 island pilot (findings): with free time and no task, an HF person wanders. First rerun with an adapter that uses place-linked memory, action-specific outcomes and novelty by effect (lab work, not HF). If it still wanders, design an opt-in way to adopt a concrete project from something seen (a tower on the Spire) as an agenda goal, with a free-time control | Adapter rerun 2026-11-01; design note, only if needed, 2026-11-15 |
 | Engagement and boredom on a seconds scale | The playtester's fast `engagement` store, if a second user needs it inside HF | unscheduled, review 2026-11-15 |
 | Neighbours: residents repair once | Not reproduced; may be the town running out of repairs | Review 2026-11-01 |
 | Several named commitments kept by one act | `Outcome.fulfills` naming two or more keeps each (Voices 1) | Done, engine 2.9.0 |

@@ -14,8 +14,9 @@ Report security problems privately, as described in [SECURITY.md](SECURITY.md).
 
 ## Rules
 
-- `npm run check` (lint, typecheck, tests) must pass before every commit. CI runs the same pieces plus the
-  build; its `ci` check gates `main`.
+- Before a commit, `npm run check:lane` runs the checks for the files you changed (the full `npm run check` for
+  the framework, shared packages and CI). CI runs lint, typecheck, the build and the full suite; its `ci` check
+  gates `main`.
 - **Determinism.** The simulation is deterministic and independent of LLMs and UI. Person state is plain JSON,
   and all randomness comes from the seeded RNG held in state. Do not use `Math.random`, `Date`,
   `performance.now` or other wall-clock or ambient inputs in simulation code; time comes from the host's

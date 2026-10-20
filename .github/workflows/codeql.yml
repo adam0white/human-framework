@@ -7,11 +7,14 @@ name: CodeQL
 # CODEQL_SCHEDULE, which scripts/after-public.sh sets to `true` once the repository is public. Do not also enable
 # CodeQL "default setup" in the repository settings: GitHub rejects uploads from an advanced-setup workflow like
 # this one while default setup is on. Use one or the other.
+# Docs-only pushes and pull requests skip scanning; the weekly schedule still runs.
 on:
   push:
     branches: [main]
+    paths-ignore: ['**/*.md', 'docs/**', 'research/**', 'archive/**', 'LICENSE']
   pull_request:
     branches: [main]
+    paths-ignore: ['**/*.md', 'docs/**', 'research/**', 'archive/**', 'LICENSE']
   schedule:
     - cron: '23 7 * * 1' # Mondays 07:23 UTC
   workflow_dispatch:

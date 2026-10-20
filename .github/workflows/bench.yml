@@ -3,14 +3,35 @@ name: Bench
 # Timing is informational on CI and never a required check. The budgets in *.timing.ts were set on a quiet Apple
 # Silicon dev machine; shared GitHub runners are slower and noisy, so the budgets run at 3x (BENCH_SCALE) and a miss
 # marks the step failed without failing the job. The hyperfine table in the job summary is the number to compare
-# across runs. A crash or a broken bench script still fails the job. Changes that touch only prose skip the bench.
+# across runs. A crash or a broken bench script still fails the job. Only engine, simulation, timing, bench config
+# and lockfile changes trigger push/PR runs; a weekly run covers drift.
 on:
   push:
     branches: [main]
-    paths-ignore: ['**/*.md', 'docs/**', 'research/**', 'archive/**', 'LICENSE']
+    paths:
+      - 'packages/human/src/**'
+      - 'packages/human/test/**/*.timing.ts'
+      - 'apps/site/src/**/sim/**'
+      - 'scripts/bench-village.ts'
+      - 'vitest.bench.config.ts'
+      - 'packages/*/vitest.bench.config.ts'
+      - 'apps/*/vitest.bench.config.ts'
+      - '.github/workflows/bench.yml'
+      - 'package-lock.json'
   pull_request:
     branches: [main]
-    paths-ignore: ['**/*.md', 'docs/**', 'research/**', 'archive/**', 'LICENSE']
+    paths:
+      - 'packages/human/src/**'
+      - 'packages/human/test/**/*.timing.ts'
+      - 'apps/site/src/**/sim/**'
+      - 'scripts/bench-village.ts'
+      - 'vitest.bench.config.ts'
+      - 'packages/*/vitest.bench.config.ts'
+      - 'apps/*/vitest.bench.config.ts'
+      - '.github/workflows/bench.yml'
+      - 'package-lock.json'
+  schedule:
+    - cron: '41 7 * * 1' # Mondays 07:41 UTC
   workflow_dispatch:
 
 permissions:

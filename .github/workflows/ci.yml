@@ -41,22 +41,17 @@ jobs:
       - name: Packed HF consumer example
         run: node scripts/pack-smoke.ts
 
-  # Vitest shards by a hash of the file path, not by duration, so shards are uneven. Measured 2026-10-05 on the
-  # 2-CPU private-repo runner (one worker per shard): the suite is about 420 s of test work; four shards ran
-  # 113/114/151/40 s. After the 2026-10-05 test reduction (shared simulation runs, mostly in the Game 2 tests: about 37 s of
-  # CI work less) and with apps/site/src/watch/sim/gate.test.ts expected at ~40 % of its ~77 s, three shards
-  # simulate at about 115/145/76 s: billed 8 job-minutes against 10 for four, for ~20 s more wall time. Each job pays
-  # ~25 s of setup and rounds up to a minute. Adding or renaming test files moves the slice boundaries; re-check the
-  # balance with --shard and the timing log when the slowest shard drifts past ~3 min. Vitest's default of one worker
-  # per 2 CPUs is kept: two workers pushed a 30 s-budget village test past its timeout.
+  # Public repositories have free minutes and 4-CPU runners. Use six shards to reduce wall time; before this
+  # change, three shards took 134/167/137 s in the Vitest step and about 195 s for the workflow run.
+  # Keep Vitest's default worker count. File-based sharding is uneven; re-check the slowest shard as tests grow.
   test:
-    name: test (shard ${{ matrix.shard }}/3)
+    name: test (shard ${{ matrix.shard }}/6)
     runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
       fail-fast: false
       matrix:
-        shard: [1, 2, 3]
+        shard: [1, 2, 3, 4, 5, 6]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -68,7 +63,7 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - name: Runner
         run: echo "$(nproc) CPUs, Node $(node --version)"
-      - run: npx vitest run --shard=${{ matrix.shard }}/3
+      - run: npx vitest run --shard=${{ matrix.shard }}/6
 
   ci:
     name: ci

@@ -1,0 +1,205 @@
+# The Night Watch — Sam, phone playtest
+
+## Session and stopping boundary
+
+- Persona: Sam, 40, warehouse supervisor. Plays Frostpunk, Kingdom Two Crowns and FTL. Likes defending a place and deciding who stands where. Patient; an evening at home, phone in hand.
+- URL: https://human.adamwhite.work/watch/
+- Build: no build identifier encountered in the player-facing screens.
+- Device: 360×690 CSS px, touch emulation, default text size, driver configured for light mode. The game itself rendered a dark palette. After stopping, one look at 1280×800; no desktop gameplay.
+- Access: the supplied `npm run lab:play` driver, one persistent live page, port 43503, PID 60061. No source, tests, bundles, network payloads, hidden state, debug APIs, prior reports or repository logs inspected. The two assigned game instruction files were read. Boundary deviation: a generic startup skill was also read in the initial brief-reading tool call; no additional game or repository material was read.
+- Committed time: floor 15 real minutes; ceiling 25 real minutes. **Floor not reached because of a driver block.** The failed attempt ended at 659.930 s; the required retry ended at 663.766 s. Formal stop logged at 677.393 s (11:17.4), reason `TOOL`.
+- Game reached: third night of the first winter, the small hours. Nine souls and grain described as “plenty above spring food needs.” The game had not ended.
+- No `want_quit` occurred. This is not a voluntary stop and gives no evidence of how long I would have stayed without the block.
+- No run sent, telemetry submitted, consent changed or export downloaded. The driver wrote its own wall-clock diary. Driver terminated using its exact PID; its process exited with code 0.
+
+Raw session record: [wall-clock.jsonl](watch-floor1-shots/wall-clock.jsonl). Screenshots are in [watch-floor1-shots](watch-floor1-shots/). I did not read that log back to explain play. Times below come from the driver replies during play. They are real elapsed seconds; game phases are separate.
+
+Exact launch command supplied and used:
+
+```sh
+cd (driver scratch)/deploy
+PLAYWRIGHT_MODULE=~/code/.lab-scratch/patterns/retest/well-cwd/node_modules/playwright npm run lab:play -- url=https://human.adamwhite.work/watch/ out=(driver scratch)/watch-floor1-shots port=43503 device=phone floor=15 ceiling=25
+```
+
+### Driver block
+
+At 656.560 s the reply showed Tamar’s account: “They appear asleep. No reply comes.” It listed `Rest` and `Send relief`, with “likely; leaves Kian at the Gate.” `Rest` was listed without a disabled marker.
+
+At 659.930 s, `{"op":"tap","name":"Rest","role":"button"}` returned `No actionable button named Rest`. The reply still listed the same enabled button. At 663.766 s, the required retry, `{"op":"tap","text":"Rest"}`, returned `No visible clickable text: Rest`. Again the reply listed it as enabled. Neither error said the control was disabled. I stopped under the brief’s driver-block rule. I did not inspect or repair the driver.
+
+The exact pixel visibility of Rest at those two instants was not captured. The evidence is the driver’s visible-text/control replies and its two failures. The post-stop phone screenshot is **not** a screenshot of the failed Rest control: time continued and a Kian decision had replaced Tamar’s account by then. This access failure is not evidence that the game refused Tamar’s rest request.
+
+## First minute
+
+The first usable screen was the opening at approximately 0 s. The checkpoint was logged at 64.693 s, about 4.7 s late. Its observations were reached before 60 s; no intervening gameplay input taught a new rule. The last pre-checkpoint reply was at 59.321 s. I have not used later learning to improve these statuses.
+
+Original checkpoint note, verbatim:
+
+> I am keeping six people and grain safe until thaw. Tracks at the gate drew me first. Watcher cards, wall labels, speed buttons and the gold start button look tappable. Gate is selected for the lantern. I asked Kian to the mill wall at 22 seconds; his asked post changed before his actual place. I can move the lantern or ring the bell now, but have seen no attack. No unavailable action met. Choosing a watcher opens Ask/Urge/Insist and posts; I used Ask and no help. A point at the old mill-label position did nothing after the sheet changed. First posting choice available at 8 seconds, watcher chosen at 16, post at 22. The phone shows the goal and current response at night; at dusk the watcher list runs below the bottom row.
+
+| Item | Status | My answer and evidence from the first minute |
+|---|---|---|
+| DL-1 A reason to act | PASS | Keep six people and the grain safe until thaw. Opening: “Bring every soul and the granary to the thaw.” Dusk added gate-road pack tracks. |
+| DL-2 What can I touch | PASS for controls reached | I named watcher cards, wall labels, speed buttons and the gold start button as tappable before using them. Kian’s card opened his posting choices; the named Mill wall button worked. A tap at the previous scene-label position did nothing after the layout changed. I did not establish that every drawn figure or post was tappable in this minute. Screenshots 01–03. |
+| DL-3 Urgency and selection | PASS | The gate tracks drew me first. The lantern’s Gate button had an outlined selected state and the gate was lit. There was no competing live threat yet. Screenshot 03. |
+| DL-4 Why the limit | NOT TESTED | No unavailable action encountered before the checkpoint. Later limits do not change this row. |
+| DL-5 Readable situation | PASS | The watch was underway. I could move the lantern or ring the bell. “Only the lantern’s stretch shows what approaches. Your voice reaches the next stretch.” |
+| DL-6 A choice soon | PASS | Posting choice available at 8.262 s, after the short opening. First gameplay choice input: Kian selected at 16.291 s; first post request accepted at 22.140 s. Opening start input was 8.262 s; Begin the watch was 25.604 s. Availability and choice input were both within 30 s. |
+| DL-7 Learn by doing | PASS for the one posting request reached | I understood Ask as a request Kian might refuse. After my Mill wall request, his card said “Mill wall, asked · on the Gate,” distinguishing the intended post from current position. No help used in the first minute. One posting request and starting the night reached. Urge, Insist, refusal, rest, relief, bell effects and dawn talks: NOT TESTED at this checkpoint. |
+
+These were text plus screenshot observations, not a text-only harness claim about layout.
+
+## Verbatim diary
+
+The reaction column preserves my original wording. The answer column records important player-visible results, not inferred simulation rules. Inputs with no reaction, including waits and screenshots, remain in the driver’s raw record. Selected waits are also listed where they explain elapsed time or the next observation.
+
+| Elapsed s | Input / game clock | Verbatim reaction | Important visible answer |
+|---:|---|---|---|
+| 0.472 | Open; before first night | — | Goal and Go up to the wall appeared. |
+| 3.396 | Screenshot 01; before first night | I have a place to protect and people to get through winter. Go up to the wall looks like the start; About keeping watch looks expandable. | Goal and start button fit on phone. |
+| 8.262 | Go up to the wall; before first night → first dusk | Let me see who I can put on the gate. | Three watchers, posting instruction, gate tracks, lantern selection. |
+| 11.660 | Screenshot 02; first dusk | Tracks at the gate make that my priority. Tamar is steady and already asked there; Mara can cover the west. I want to spread Kian out. | Tamar visible; Kian card partly below the fixed bottom row. |
+| 16.291 | Select Kian; first dusk | Kian looks tappable, but his card is partly below the action row. | Kian account; Ask/Urge/Insist and post choices. |
+| 19.389 | Tap scene point 226,272; first dusk | I will ask Kian for the mill wall by touching its scene label. I read Ask as a request he might refuse. | No changed post in reply. |
+| 22.140 | Mill wall button; first dusk | That point did not change his post; I will use the named Mill wall control. | Kian: “Mill wall, asked · on the Gate.” |
+| 25.604 | Begin the watch; first dusk → nightfall | Kian now says Mill wall, asked, but is still on the gate. That tells me the order is not a teleport. Keep the lantern on the tracked road. | Watch speed 4 min/s; wall settled in. |
+| 43.287 | Wait 15 s; first nightfall | I am watching the gate for an approach before ringing anything. | No attack in reply. |
+| 46.404 | Screenshot 03; first nightfall | The lantern is selected at the gate. I can move it or ring the bell; I do not yet see anything that needs a bell. | Lantern and bell controls on screen. |
+| 59.321 | Wait 10 s; first night | — | Phase changed to Night. |
+| 64.693 | First-minute note; first night | See the full verbatim checkpoint above. | Still Night, with six souls and plenty of grain. |
+| 68.970 | Tap Tamar figure; first night | I want to hear how Tamar is doing on the gate. | “I’m keeping watch. The scout warned us about this stretch. I can’t make anything out yet.” |
+| 72.570 | Screenshot 04; first night | Her account is useful, but I expected to be able to tell her something too. Right now this is just listening. | Account, Back to the wall; no request available. |
+| 76.796 | Back to the wall; first night | — | Lantern controls returned. |
+| 106.961 | Wait 30 s; first night → midnight | I am giving the gate time; I can check the other walls if nothing appears. | Midnight, no recent event shown. |
+| 110.726 | East wall; first midnight | Nothing at the gate yet. I want to check the empty east wall rather than stare at one road all night. | “The lantern is on its way.” |
+| 140.901 | Wait 30 s; first small hours | — | “Something at the foot of the gate.” “Grain is gone: something got over the gate.” |
+| 145.278 | Ring the bell; first small hours | Something got over the gate while I was away. Ring now; I thought Tamar would have covered it, but I do not know how she reacts yet. | Bell rang; east heard faintly, no answer there. Bell swinging disabled; rope fraying. |
+| 145.504 | Gate; first small hours | Bring the light back to where the trouble is. | Lantern moving. |
+| 149.885 | Screenshot 05; first small hours | Grain is gone sounds total, but the top still says plenty. I take it some grain was stolen, not the whole store. Bell swinging makes sense as a brief wait. | Top still said plenty; screenshot retained bell account, theft text had gone. |
+| 153.032 | Expand Watchers and bell; first small hours | I want to find out what I could have said to the watcher before the theft. | Help explained bell calls watchers back and wears the rope. |
+| 155.935 | Tamar button; first small hours | The help says the bell calls people back, not that it fights the intruder. I should hear Tamar before pulling again. | Tamar: “I’m hurt, but it’s a scratch.” Send down / Send help appeared. |
+| 158.587 | Send help; first small hours | She is scratched and I do not want to empty the gate. Send help sounds right. | Choices of Kian or Mara, each with the post that would be left empty. |
+| 161.765 | Screenshot 06; first small hours | Kian is fast and closer; I can accept leaving the mill wall empty to back Tamar at the known danger. | Both helpers and risks fit; goal, phase, Tamar and scene stayed visible. |
+| 165.810 | Send Kian to help Tamar; first small hours | Kian, cover her. | “Kian calls: ‘I’ll take the Gate.’” Send down now said it leaves Kian there. |
+| 170.230 | Pulse 4; first small hours | Now I have an actual staffing decision: Kian answered and I can rest the injured watcher without abandoning the gate. | — |
+| 170.524 | Send down; first small hours | Tamar can go down with Kian taking over. That is the sort of decision I came for. | Reply initially said someone already answering; subsequent control snapshot said Tamar gone to hall and Kian had Gate. |
+| 173.973 | Back to the wall; first small hours | She has gone to the hall. The request briefly said someone was already answering, then showed her departure; I did not need to repeat it. | “Off the wall: Tamar (gone to the hall).” Posts planned at dusk. |
+| 178.853 | Collapse Watchers and bell; first small hours | I will fold the explanation away so I can see the lantern controls again. | Compact night controls returned. |
+| 201.432 | Wait 20 s; first small hours | I am staying on the warned gate for the rest of this watch. | Kian climbing down, timed decision; automatic Slow, 1 min / 60 s; about 100 seconds to decide. |
+| 204.778 | Screenshot 07; first small hours | The game slowed itself for Kian. He says he cannot keep his eyes open, so calling back sounds pointless. The gate will be empty, which worries me. | Call back: “won’t (I’m asleep.)” |
+| 208.470 | Let Kian go; first small hours | Let him sleep. I would rather have him useful tomorrow than insist on someone asleep at his post. | Decision closed, clock returned toward Watch speed. |
+| 212.702 | Tap Mara figure; first before dawn | I would like Mara to cover the gate now. I will see whether speaking to her lets me change it. | Mara keeping watch; no move request. |
+| 216.517 | Note; first before dawn | Mara has no move request here. The help said posts are planned at dusk, so I understand the limit, but I want to plug the empty gate now. For now I can only keep the light there and wait for dawn. | — |
+| 216.729 | Back to the wall; first before dawn | — | Lantern and bell returned. |
+| 249.182 | Wait 30 s; first dawn | Waiting out dawn with the lantern at the gate. | Clock stopped; The wall was crossed; dawn talks and On to dusk. |
+| 253.695 | Screenshot 08; first dawn | The dawn summary explains Tamar did fight wolves, so my first guess was wrong. Kian calling the bell shadows makes sense if I rang too late. I want to ask Tamar how she is holding up. | Summary: wolves got over Gate; Tamar drove wolves off; Kian: “You rang us up for shadows.” |
+| 258.250 | Tap Tamar’s How are you holding up?; first dawn | Ask Tamar how she is holding up; one conversation is worth a little sleep after that injury. | “Fit to stand tonight.” Daylight enough for one more talk. |
+| 261.623 | Scroll 400; first dawn | Tamar says fit tonight; I will leave the others to sleep and find the way to dusk. | Scrolled report body. |
+| 264.712 | Screenshot 09; first dawn | — | Report and grain drawing visible; continuation still below viewport. |
+| 268.507 | Scroll 250; first dawn | The bottom report is scrollable. I have not yet got the On to dusk button on screen. | Continuation remained in driver’s control list. |
+| 271.381 | On to dusk; first dawn → second dusk | On to the next watch. I want to keep Kian at the gate this time rather than spread everyone out. | Mill-race tracks; Joss and Yunus joined, already asked to Mill wall. Eight souls. |
+| 274.990 | Mill wall lantern selection; second dusk | The scout changed the danger to the mill race. Two new people are already asked there, so I will keep them and put my lantern with them. Kian is tiring; I will not press him. | Mill wall selected. |
+| 277.688 | Begin the watch; second nightfall | Begin with light on the likely attack, and leave the bell alone unless someone actually needs calling back. | Watch 4 min/s, lantern at Mill wall. |
+| 310.443 | Wait 30 s; second night | Let the first part of the watch pass; I am choosing to watch the mill rather than shuffle people without a reason. | Wolves at mill race; Yunus and Joss each drove one off. |
+| 315.229 | Screenshot 10; second night | Good, they both drove wolves off. I feel better seeing the right people already in place rather than ringing after the damage. | The defense messages were visible over the scene. |
+| 318.090 | Tap Yunus figure; second night | I will check Yunus after that fight. | Keeping watch; no injury mentioned in that account. |
+| 321.235 | Back to the wall; second night | He seems all right. I will stay at the mill instead of chasing another empty stretch. | Lantern controls returned. |
+| 351.414 | Wait 30 s; second night | — | East-wall movement; Joss hears them near his two children. Timed choice and automatic Slow. |
+| 356.701 | Pulse 4; second night | Joss wants to protect his children while the mill still needs holding. I care about this decision more than moving a lamp back and forth. | — |
+| 357.221 | Screenshot 11; second night | Yunus is still at the mill, so I can let Joss go without stripping it bare. Sending Tamar might be unnecessary. | Three answer buttons; say-nothing option below fixed lantern row. |
+| 363.701 | Let Joss go to his two children; second night | Go to your children; Yunus can hold this stretch. The third option fits but the say-nothing line is below the lantern row on my phone. | Choice closed. No departure account in that immediate reply. |
+| 367.803 | East wall; second night | There is movement at the east wall; I will take the lantern there while Yunus stays at the mill. | Joss nodded off at mill; grain lost over east wall; lantern moving. |
+| 373.576 | Note; second night | I let Joss go to his children, but now the log says he nodded off at the mill wall. I cannot tell whether he refused, had not left yet, or the trip failed. The first text said let him go, which sounded more definite than what I saw. | — |
+| 393.825 | Wait 20 s; second midnight | — | Lantern at east wall, no recent messages. |
+| 397.284 | Tap point 295,348; second midnight | Kian was at the east wall. I want to know what happened there before moving again. | No watcher opened. |
+| 400.168 | Expand Watchers and bell; second midnight | I missed his figure or he has moved; the named list is easier. | Named watchers available. |
+| 403.027 | Kian; second midnight | — | Kian was on Gate, too far to call. Rest disabled; carry light to Gate. |
+| 406.284 | Back to the wall; second midnight | He is at the gate now, too far for my voice. The disabled Rest explains exactly where to go, which helps. | Wall controls returned. |
+| 409.504 | Gate; second midnight | Carry the light to Kian. Tamar is there too, so he should be able to rest without leaving it empty. | Lantern moving. |
+| 420.260 | Wait 8 s; second small hours | — | Lantern reached Gate; Kian nodded off. |
+| 427.521 | Kian; second small hours | He has nodded off already. I still want him down resting, if he can hear me now. | Asleep, no reply; Rest available, “likely; leaves Tamar at the Gate.” |
+| 432.027 | Rest; second small hours | Rest says likely despite no reply. I will try it once; Tamar can still hold the gate. | Kian answered and went home; Tamar nodded off. |
+| 435.589 | Back to the wall; second small hours | He did answer and go home. Tamar is asleep now too; I may have to accept a tired wall before dawn. | Something at foot of mill wall; Kian off wall. |
+| 465.927 | Wait 30 s; second before dawn | — | No recent messages; still eight souls and plenty of grain. |
+| 471.649 | Fast; second before dawn | I am speeding up this last quiet part before dawn. I want the next staffing decision rather than another empty stretch. | Fast 12 min/s. |
+| 485.304 | Wait 10 s; second dawn | — | Clock stopped, wall crossed; personal accounts. |
+| 489.541 | Note; second dawn | At dawn Joss says he went to his children, so that answers part of my earlier worry. Kian says he ran from the east wall. I like that they have their own account; I still cannot place exactly when Joss returned to the mill. | Joss: “I went to my two children. I’d go again.” |
+| 493.964 | How are the knees?; second dawn | Yunus took a bite. I want to hear whether he can stand tomorrow. | “It aches. It’ll hold.” One more talk available. |
+| 496.941 | On to dusk; second dawn → third dusk | He says it will hold. One talk is enough; let the rest sleep. | Ruslan joined. Gate tracks, Tamar tiring; nine souls. |
+| 504.089 | This winter; third dusk | It still says thaw is far off. I want to know what a winter means before I commit to many more watches. | Plus changed to minus; no new explanation in reply. |
+| 509.735 | Screenshot 12; third dusk | This winter expanded its minus sign, but I have no new explanation in the text reply. I may be missing a picture. | Minus This winter with no visible added explanation before Today. |
+| 514.158 | Select Kian; third dusk | Tracks are back at the gate and Tamar is tiring. I want Kian there from the beginning, with her, rather than wandering to an empty stretch. | Posting choices; Mill wall disabled without nearby reason in reply. |
+| 520.196 | Gate · tracks; third dusk | Ask him for the gate. I notice Mill wall is disabled; I guess it is full with two watchers, but that reason is not written here. | Kian Gate, asked, in village. |
+| 525.098 | Watch; third dusk | Back to Watch for a new night; I do not want the attacks to fly past at Fast. | Watch selected. |
+| 530.447 | Begin the watch; third nightfall | I have coverage at all four sections now, with two at the warned gate. Let us see whether that changes the outcome. | Watch 4 min/s. |
+| 536.724 | Pulse 3; third nightfall | I want this new arrangement to work, but the quiet parts are beginning to feel like waiting for the next personnel problem. | — |
+| 567.235 | Wait 30 s; third night | — | Kian and Tamar each drove wolves off gate road. |
+| 573.477 | Note; third night | Both gate watchers drove wolves off. That is satisfying; I can see my posting choice paying off. I do not need to keep fiddling with the lantern just to stay busy. | — |
+| 604.262 | Wait 30 s; third night | — | No recent messages. |
+| 611.941 | Tap Tamar figure; third midnight | Tamar was already tiring at dusk. I want to rest her before she nods off, while Kian is there. | Keeping watch; no Rest control. |
+| 617.976 | Note; third midnight | No Rest action for Tamar yet. I could rest Kian when he was tired, but I cannot schedule Tamar a break in advance here. I will leave her until her account changes. | — |
+| 618.765 | Back to the wall; third midnight | — | Lantern controls returned. |
+| 652.608 | Wait 30 s; third small hours | I want to make sure the gate holds this time, so I am leaving the light here. | Tamar nodded off. |
+| 656.560 | Tap Tamar figure; third small hours | Now she has nodded off. Is rest available at this point? | Rest and Send relief listed, “likely; leaves Kian at the Gate.” |
+| 659.930 | Rest by button name; third small hours | Yes, now Rest appears. Tamar, go down; Kian has the gate. | Driver error: No actionable button named Rest. |
+| 663.766 | Retry Rest by visible text; third small hours | That did not register; I will try the visible Rest text once more. | Driver error: No visible clickable text: Rest. |
+| 677.393 | Stop, TOOL; third small hours | I am stopping because the driver could not operate Tamar’s Rest control. It returned No actionable button named Rest, then No visible clickable text: Rest on the required retry, while both replies still listed Rest as an enabled button. This is an access stop, not my voluntary stopping point. | No further gameplay input. |
+| 685.381 | Post-stop screenshot 13; third small hours | — | Kian’s departure choice had appeared as the live clock continued. This is not a capture of the failed Rest control. |
+| 693.475 | Resize 1280×800; post-stop | Post-stop desktop look only; no further gameplay input. | Kian decision, state and scene all visible. |
+| 694.251 | Screenshot 14; post-stop | — | Desktop view captured; driver then terminated by PID 60061. |
+
+## Best, worst, pulses and wishes to leave
+
+**Best moment:** 165.810–173.973 s, first night. Kian answered “I’ll take the Gate,” and Tamar went down. I could protect an injured watcher and keep the threatened post staffed. My pulse was 4/5. The Joss choice at 351–364 s also reached 4/5 because his two children gave the staffing decision personal weight.
+
+**Worst moment:** 659.930–663.766 s, the failed Rest attempts. I had a clear intention and a listed response but could not carry it out through the driver. This is an access finding. Within the game, the hardest-to-read moment was letting Joss go and then seeing him nod off at the mill; his dawn account later confirmed he had gone to his children, without making the intervening sequence clear to me.
+
+| Elapsed | Engagement | Verbatim pulse |
+|---|---:|---|
+| 2:50.2 | 4/5 | Now I have an actual staffing decision: Kian answered and I can rest the injured watcher without abandoning the gate. |
+| 5:56.7 | 4/5 | Joss wants to protect his children while the mill still needs holding. I care about this decision more than moving a lamp back and forth. |
+| 8:56.7 | 3/5 | I want this new arrangement to work, but the quiet parts are beginning to feel like waiting for the next personnel problem. |
+
+No further three-minute pulse was due before the 11:17 stop. No formal or informal wish to leave the game occurred. At 471.649 s I wanted the next staffing decision and used Fast for the quiet end of the night; that was a wish to change the waiting pace, not to quit. At 536.724 s engagement dipped, then at 573.477 s the gate defense felt satisfying.
+
+**Hard, but kept going:** I lost grain and had watchers sleep or leave, then kept playing to try different staffing. I did not look for an easier difficulty or accessibility setting. I used the visible Fast setting at 471.649 s to shorten a quiet tail, then returned to Watch at 525.098 s because I did not want to miss a new night’s attacks. This is not a claim that I searched for an easier mode. Automatic Slow during Kian and Joss choices gave me time to read; I did not manually select Slow.
+
+## Clarity findings
+
+| ID / status | What I saw, in my words | Evidence and limits |
+|---|---|---|
+| DL-4 FAIL for one later limit | Mill wall was disabled while posting Kian. I guessed it was full because Joss and Yunus were assigned there, but the reason and way to free it were not written in the reply. | 514.158–520.196 s, third dusk. This is a transcript observation; no screenshot of that selection. Contrast the clear distance limit at 403.027 s: “Too far to call Kian from here; carry the light to the Gate.” |
+| DL-13 FAIL for the traceability I reached | I chose “Let Joss go to his two children.” The choice closed, then the log said he nodded off at the mill. I could not tell whether he had left, refused or returned. His dawn words later confirmed he went. | 363.701, 367.803, 373.576 and 489.541 s. Not a claim that the action failed; the immediate account did not make its outcome traceable to me. |
+| DL-19 FAIL for wording encountered | “Grain is gone” sounded like the store was empty while the state said “plenty above spring food needs.” I inferred a partial loss from the state and later faded sacks. | Theft text at 140.901 and 367.803 s; contemporaneous reaction at 149.885 s. Screenshot 05 shows the plenty state but the theft message had already left it; use transcript for the exact juxtaposition. |
+| DL-22 FAIL on the larger answer sheet | In Joss’s live choice I could see three answers, but the say-nothing response was below the fixed lantern row. I would need to scroll that decision area to find all responses. | Screenshot [11](watch-floor1-shots/11-joss-decision.png), 357.221 s. Ordinary compact night controls did fit, as in screenshot 03. |
+| DL-30 FAIL | The Joss choice’s “...or say nothing: they decide alone” response was in the text reply but not visible above the fixed controls. The dusk card list also continued behind/below the bottom action area. | Screenshots [11](watch-floor1-shots/11-joss-decision.png) and [02](watch-floor1-shots/02-dusk.png). No “Scroll ↓” label encountered. I did not see a sentence cut mid-word. The smaller Kian choice’s say-nothing text looked overprinted in [07](watch-floor1-shots/07-kian-choice.png) and post-stop [13](watch-floor1-shots/13-driver-block-phone.png); I could still read it. |
+
+The Rest block is kept separate from these game clarity findings. It may concern the driver, the page’s current layout or their interaction; I did not establish its cause.
+
+## English, dates, phone layout and hands on
+
+| Item | Status | Observation |
+|---|---|---|
+| DL-20 English | PASS for play reached | Actions, warnings, injury accounts, speed units and phases were in English. Character names did not require translation. No necessary untranslated local term encountered. |
+| DL-21 Dates | NOT TESTED for a comparable deadline | “The third night of the first winter” was understandable and distinguished nights and winters. I did not meet a dated deadline across months or years, return from a break, or a defined night count to thaw. “Early watches; the thaw is still far off” did not let me calculate remaining watches. Opening This winter changed its sign but did not give me an additional explanation in the reply or screenshot 12. I cannot assess the full deadline convention from this session. |
+| DL-22 Phone response | FAIL on Joss choice; compact night view worked | Goal, phase, grain and souls stayed at the top. Lantern and bell fit on the ordinary night view. The longer live choice hid one response below the fixed row. Dusk required scrolling through watcher cards; dawn required scrolling to reach On to dusk. Screenshots 02, 03, 08, 09, 11. |
+| DL-30 Text / overlap | FAIL for response hidden below fixed row | See screenshot 11. No stacked sheets or mid-word clipped sentence established. Full builder layout checks were NOT TESTED. |
+| DL-31 State while acting | PASS for screens reached, with a progress limit | Help choice screenshot 06 kept Tamar, Gate, night phase, grain and souls visible, along with the scene and both helper costs. Joss screenshot 11 kept the night, qualitative goal progress, souls and approximately 105-second decision deadline visible; Joss remained on the scene. Exact distance to thaw was not given, so I could only read the qualitative progress shown. No claim about unvisited sheets. |
+| DL-32 Hands on | NOT TESTED for the universal 20-second criterion | Longest bounded stretch with an unmet specific intention: approximately 44.6 s from selecting Tamar to rest her at 611.941 s until Rest appeared in her account at 656.560 s. I wanted a preventative break. Other actions, including lantern movement and speed changes, remained available, so this is not evidence of 44.6 s with no hands-on act at all. Earlier I wanted to move Mara to the empty Gate and learned posts were planned at dusk; I could still carry the light or wait faster. Quiet 30-second waits elsewhere were chosen watching, not proof that only waiting was available. |
+| DL-33 Scene acts / forms | PASS for lantern movement; planning and relief used choices | Moving the lantern was a single post-button act with visible “on its way” feedback and then changed light. Tapping a watcher opened their account. Posting used watcher → Ask/Urge/Insist → post; helping used watcher → Send help → helper. Rest was a single button inside an account, and worked for Kian. My wish to tell a healthy watcher something or move them during the night had no corresponding response in accounts reached. I cannot establish how other core verbs work outside these interactions. |
+
+Other bounded observations: day/night boundaries were clear (DL-12) and dawn explicitly stopped the clock. The game automatically slowed consequential choices (DL-15), and they remained answerable while I read; Kian’s first choice was answered about seven seconds after first observation, Joss’s about twelve seconds after first observation. I did not meet one while Fast was selected, so that specific DL-15 test is NOT TESTED. Requests and travel usually gave visible acknowledgments (DL-13), and helper choices showed the post left empty (DL-14). Feelings and fatigue appeared in words or drawings rather than percentages in play reached (DL-17). Game menu was visible without scrolling, but I did not open it (DL-26 save/run contents NOT TESTED). Reload/resume, sending, replay, measured hit areas, zoom, 320 px layout, theme switching and builder checks are NOT TESTED. Sending was outside authorization.
+
+## Stop and return
+
+I stopped at the third night’s small hours because the driver could not operate the listed Rest control after the required retry. **Reason: TOOL.** The 15-minute exposure requirement remains unmet under the specified exception. No game completion, voluntary quit time or later engagement recovery can be inferred.
+
+There was no first want_quit to pass or grow. I would return voluntarily with working controls to see whether the fuller roster can get through a watch intact. I would close the session at this point rather than deliberately leave a live night running unattended. The post-stop desktop look was diagnostic only: its side-by-side layout showed Kian’s answers, lantern controls, scene and state without the phone’s constrained choice area. It did not test desktop play or the failed Rest request.
+
+## Changes I would want as Sam, ranked
+
+1. Keep every live answer visible on the phone, including the say-nothing option, while I can still read the wall and state.
+2. Give me a clear account when someone leaves a post and when they return. Joss’s departure mattered to my next staffing choice.
+3. Let me ask for a planned break before a tiring watcher falls asleep, or tell me why that request is unavailable yet. I wanted to relieve Tamar while Kian was awake.
+
+These are player preferences from the interactions reached, not a difficulty recommendation or a review of the implementation.
