@@ -75,3 +75,11 @@ How this is read: HF gets its own forward plan so that game work does not crowd 
 "Check this out: https://thenextweb.com/news/mit-claude-agents-virtual-island-play. Also check cloudflare blog post about Clairic. Programming is already going through a seismic shift and now we have more systems and types of models to think about. I think we can consider experimenting with more tools and approaches and demonstrations for our lab. ... latest AI driven development practices to keep up with the pace. I've heard some people are forgoing testing or CI entirely or partially to speed up iteration. I don't want to become a slow enterprise, but always an R&D lab with cool futuristic ideas."
 
 The elision ("...") is the coordinator's, as received. How this is read: a scan and a set of proposals, not a launch. Agents create no accounts and publish nowhere new. Changes to the testing rule in AGENTS.md are a proposal for the owner. The scan, experiments and practice recommendation are [docs/lab/frontier-2026-10-20.md](lab/frontier-2026-10-20.md).
+
+## 2026-10-20, HF next increment approved (Adam, verbatim)
+
+"Sounds good and exciting to me. Keep pushing HF to new directions. It may become a game engine like standalone tool in the future or whatever we need to make more games"
+
+The same evening, as an addition (Adam, verbatim): "2.x should be a good excuse to do a sweep on maintenance and code quality and better practices and refactors and removing depreciations."
+
+How this is read: the recommended increment in [hf-roadmap-2026-10-20.md](hf-roadmap-2026-10-20.md) is approved. The Host kit ships first as a 2.x release and carries a maintenance sweep: an audit of `packages/human` (dead code, deprecated APIs, legacy shims, tangled modules, naming and docs, type strictness, test speed and duplication), then behaviour-preserving refactors with exact legacy continuation. A deprecated API is removed only where no released game pinning HF needs it; otherwise it keeps a deprecation note with a target version, or that game is upgraded. Then HF 2.10.0 / engine 2.10.0, *Word and witness*. The long-term direction, a game-engine-like standalone tool, is recorded as a long bet in the roadmap. Done is recorded in AGENTS.md.
