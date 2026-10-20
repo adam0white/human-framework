@@ -117,13 +117,18 @@ export function nearMisses(summary: EndSummary): { side: 'Classic' | 'Human'; te
   return out;
 }
 
-/** The hindsight sentence: what the simple good-order plan does from the latest branch that wins. */
+/**
+ * The hindsight sentence: what the simple good-order plan (`standing(GOOD2, 75, rush)`) did from the latest branch
+ * that wins. It says what the plan actually does (a fresh rushed order each time one ends, at most every 75 minutes,
+ * 05:00–21:30), because a single order at dawn ends or lapses and does not reproduce it (2026-10-19 playtest), and
+ * that the branch point depends on this run, so another run can get another line.
+ */
 export function hindsightLine(h: Hindsight): string {
   const from = h.from === 0 ? 'From dawn on Day 1' : `From ${dayClock(h.from)}`;
-  const cook = h.cook ? ', with Maryam cooking from D2 13:00,' : '';
-  const roof = h.roofAt !== null ? `roofs the house at ${dayClock(h.roofAt)}` : 'meets the goals';
-  const kept = h.from === 0 ? '' : ' Your orders before then are kept.';
-  return `${from}, rushing ${nameList(h.builders)} to the house${cook} ${roof} with ${h.stock} meals in store: all three goals met.${kept}`;
+  const cook = h.cook ? ', with Maryam sent to the kitchen D2 13:00–18:00,' : '';
+  const roof = h.roofAt !== null ? `roofed the house at ${dayClock(h.roofAt)}` : 'met the goals';
+  const kept = h.from === 0 ? '' : ' Your orders before then were kept; another run can give another line.';
+  return `${from}, re-ordering ${nameList(h.builders)} to the house with Rush each time an order ended (at most every 75 minutes, 05:00–21:30)${cook} ${roof} with ${h.stock} meals in store: all three goals met. One order at dawn is not enough: orders end.${kept}`;
 }
 
 // ---------------------------------------------------------------------------------------------
