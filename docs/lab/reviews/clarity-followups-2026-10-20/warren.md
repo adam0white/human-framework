@@ -1,0 +1,125 @@
+Screenshots stayed in the driver's scratch folder and are not kept.
+
+# Warren — Bao playtest
+
+## First minute
+
+Recorded before continuing at **73.7 seconds** after the first actionable title screen (2026-10-20 10:17:08.440 UTC). The checkpoint was late while I dealt with my browser driver's missing drag input. No gameplay input occurred between Begin at 20.4 seconds and this checkpoint. Screenshot: `warren-shots/05-checkpoint.png`. The title screen was actionable at 0 seconds; the refuge screen was observed at 26.1 seconds.
+
+| Item | Status | Original checkpoint answer |
+|---|---|---|
+| DL-1 A reason to act | PASS | I need to dig a refuge so the villagers can survive the riders. The opening says “Dig a refuge where the village can outlast the riders.” |
+| DL-2 What can I touch | PASS | Begin and More about the hill looked tappable. In the refuge, look, chalk, rub out, store, beds, lamp, door, the speed arrows, bell, Open journal, and Game menu look like controls. I have only tried Begin. Nothing I tried proved inert. Look has a heavier outline. |
+| DL-3 Urgency and selection | PASS | The red “Choose chalk, then drag across stone beside the cellar” draws me first. I take that as my immediate task. Look appears selected. I know riders are the danger, but I cannot yet say when they will arrive. |
+| DL-4 Why the limit | NOT TESTED | I have not encountered an unavailable action. |
+| DL-5 Readable situation | PASS | I can choose chalk and drag beside the cellar. There are nine souls, a few jars below, and a little water at the hearth. “Walk · 72 min/s” says time is moving. |
+| DL-6 A choice soon | PASS | Begin was available at 0 seconds; my first input was Begin at 20.4 seconds. The first gameplay tool choice was visible by 26.1 seconds, within 30 seconds. I had not made that choice at this checkpoint. The title instruction has about 22 mandatory story/instruction words. |
+| DL-7 Learn by doing | NOT TESTED | I reached the tool choices but have not used one. I understand the stated chalk gesture, but no action or consequence has taught me yet. Zero gameplay tool interactions tested; the seven visible tools remain untested. No help used. |
+
+## Assignment and limits
+
+Bao, 45: nurse manager; plays RimWorld and Banished at fast speed; protective of her people; on a phone during lunch. First visit to **https://warren.adamwhite.work**. The title says **The Warren**. No game build identifier was visible. The footer says “People by the Human Framework 2.8.0”; that is the visible framework version, not a verified game version.
+
+Headless Chromium, Playwright, 360×690 CSS px, mobile/touch emulation, light mode. Inputs were normal coordinate clicks and pointer drags. A persistent Node browser server kept the same mobile page open throughout play. Only the two supplied documents and rendered screenshots informed this report. No game source, bundles, network payloads, hidden DOM state, storage, exports, or game debug APIs were inspected. Consent settings were untouched; no run was sent or downloaded.
+
+The eight-minute budget was a ceiling. Play ran **10:15:54.723–10:20:37.748 UTC**, **4:43.025**, on 20 October 2026. I quit voluntarily, before the budget. This is wall-clock time, separate from the game's August–September calendar. The first-minute checkpoint was written before further gameplay, at 1:13.7 rather than 1:00. The browser driver's missing drag support consumed part of the opening; I added normal pointer-drag support to that running driver without replacing or reloading the page. The game continued during that delay. The delay is a testing limitation, not evidence of game friction. No browser command failed or required a new page.
+
+A fresh desktop context received exactly one 1280×800 first-screen look after the mobile session, at 10:20:42.838 UTC. No desktop gameplay followed. The title, purpose, Begin button, More about the hill, All games, footer, and Playtest privacy were visible without overlap. Screenshot: `warren-shots/26-desktop-first-screen.png`.
+
+Checkpoint clarification: the DL-5 answer above retains my original wording from the opening observation. The checkpoint screenshot itself reads “night, 21 August · Year 1 under the hill” and “jars below for a month or so.” My first tool input after the checkpoint was chalk at 1:57.6. The checkpoint's PASS for DL-6 concerns availability, not timely use; my first actual consequential placement was the chalk drag at about 2:03.8.
+
+## Verbatim diary
+
+These are the original reactions, unchanged. The JSONL log records UTC timestamps and elapsed milliseconds as they occurred. The separate action record below supplies inputs and visible answers. One tooling-note timestamp was not echoed to the terminal; its bounded elapsed interval is stated here rather than invented.
+
+| Elapsed | Original words |
+|---|---|
+| 0:20.402 | “I need a refuge before riders arrive. Begin and More about the hill look tappable. I want to get the villagers safe, so I will begin.” |
+| 0:52.349 | “First minute: I can see nine souls and a few jars below. Chalk is the obvious next action. I have not dug anything yet. I want to get started before the riders arrive.” |
+| Between 1:13.7 and 1:57.4; exact timestamp in JSONL | “Tooling: adding normal drag support while keeping the same browser page open.” |
+| 1:57.401 | “The days are going by while I sort out my mouse. That delay is my driver, not the game. I still want to dig beside the cellar.” |
+| 2:13.199 | “I drew a passage to the right of the cellar. Red crosses appeared and the page says, ‘They choose whether to dig.’ I think I have marked work, but red crosses also look like a refusal. I am going faster because I want to see whether anyone digs it.” |
+| 2:22.878 | “They did dig it. That is satisfying: the little room actually stretches out. Now it asks for a store for the harvest. I will put jars in the new passage.” |
+| 2:30.767 | “The store tap put jars at the far end. Now the picks have stopped because the chalked faces are dark. That is a reason I can act on. I will hang a lamp by that end.” |
+| 2:37.901 | “Smoke on the ridge. It slowed itself to 1 min/s and offers the bell or Keep watching. Good: I have time to get people below. I am ringing now, even though I have not put the lamp up.” |
+| 2:55.450 | “Four of us were hurt already? I rang the bell and expected them to get below. The journal preview says they rode off with grain, but I cannot tell why four people were exposed. I want the full entry before I do anything else. I am slowing to Walk to read.” |
+| 3:18.455 | “The journal does tell me where: Kerem, Musa, and Elif near the entrance; Hasan above ground. The far jars were safe. That makes deeper storage feel worthwhile. I still do not know why the bell left them there, or whether I can help the four who were struck. I will look at people.” |
+| 3:46.014 | “Hasan is ‘well enough’ now and ‘listens for the bell.’ That reassures me a little, but it does not explain the injury. The page wants beds so the village can sleep here. I will try beds before I leave; perhaps people were still living above ground.” |
+| 4:10.595 | “Closing Hasan returned me to the people list. I tried the beds position while that list was still open, then closed the list. Now I can see the actual beds button again.” |
+| 4:43.025 | “I can see two dark sleeping marks where I dragged, but the prompt still wants beds. I do not know how many people those cover. I am stopping here. I enjoyed cutting out the refuge, but I do not want to run another raid while guessing why people get caught at the entrance and whether my rooms protect them. On this lunch break I would close it.” |
+
+The entry labelled “First minute” at 0:52.349 was an early reaction, not the mandatory checkpoint. The checkpoint is the seven-row section above, recorded at 1:13.7. No later discovery has been used to upgrade its statuses.
+
+## Inputs and visible answers
+
+Screenshot filenames below are relative to `warren-shots/`. Full wall-clock input and screenshot records are in `wall-clock.jsonl`.
+
+| Elapsed | Input / visible answer | Screenshot |
+|---|---|---|
+| 0:00 | Title: “Dig a refuge where the village can outlast the riders.” “Choose chalk, then drag across stone beside the cellar.” | `01-first-screen.png` |
+| 0:20.4 | Tap Begin. Immediate capture still showed title; by 0:26.1 the refuge was visible. This was one tap, not a repeated input. | `02-begin.png`, `03-after-begin.png` |
+| 0:26.1 | “midday, 19 August · Year 1 under the hill”; nine souls; Walk · 72 min/s. The open cellar and tools were on screen. | `03-after-begin.png` |
+| 0:52.3; 1:13.7 | Look only; no new gameplay inputs. Dates and journal changed while time ran. | `04-first-minute.png`, `05-checkpoint.png` |
+| 1:57.6 | Select chalk. A heavier outline marks it. “They choose whether to dig.” | `06-chalk.png` |
+| About 2:03.8 | Drag from (209,246) to (280,246), rightward from the cellar. Red crosses appear in stone. | `07-chalk-line.png` |
+| 2:13.3 | Tap the fastest arrow. “Gallop · 1152 min/s.” Part of the chalked passage is now open. Journal preview: “Meryem broke through the first chalked wall and stood in the new space, coughing...” New prompt asks for a store for harvest jars. | `08-fastest.png` |
+| 2:22.9–2:23.0 | Select store, then tap open passage at (208,246). Jars appear there. On 1 September the prompt says “The chalked faces are dark. Hang a lamp beside open ground near the chalk.” Contextual store help says “Drag over open ground to make it a store. Grain goes where the jars are.” My single tap nevertheless produced visible jars. | `09-select-store.png`, `10-place-store.png` |
+| 2:30.8 | Select lamp. A raid warning has arrived: “Smoke on the ridge. Ring the bell to call people below, or keep watching.” Speed is “Slow · 1 min/s · raid warning.” Keep watching and bell are both visible. | `11-select-lamp.png` |
+| 2:38.0 | Ring bell, about 7.1 seconds after observing the warning. Choice remained available while I read it. Bell-wave drawing appears; prompt says “The bell is sounding; watch who comes below.” Speed returns to Gallop · 1152 min/s. | `12-ring-bell.png` |
+| 2:45.1 | Tap open ground near the chalk at (233,244) with lamp selected. By this capture it is 8 September. “They rode off north with some of our grain, and 4 of us were hurt. The near jars were...” A small lamp-like mark is visible. An overlay says “They hear it from the fields and the faces. What they do is theirs.” | `13-hang-lamp.png` |
+| 2:55.5 | Tap first speed arrow, intending Walk so I can read. | `14-walk-to-read.png` |
+| 2:58.8 | Tap Open journal. Game menu opens to journal. Checked entry: “Hang a lamp where the dark stops the picks.” Raid entry says near jars were found and far jars were not. | `15-open-journal.png` |
+| 3:04.4 | Scroll journal down. Kerem, Musa and Elif were “caught near the entrance and struck.” Hasan was “caught above ground and struck.” “You rang the bell” is logged on 2 September. Raid summary is dated 3 September. | `16-raid-journal.png` |
+| 3:18.5 | Scroll journal up. | `17-journal-top.png` |
+| 3:24.1 | Tap people. Three households and underlined names appear. | `18-people.png` |
+| 3:31.0 | Tap Hasan. His sheet: “Hasan 41, the Kaya house”; “sleep at home · well enough”; “Hasan listens for the bell.” No treatment response is visible on that sheet. Scene speed shows Slow · 18 min/s. | `19-hasan.png` |
+| 3:46.1 | Close Hasan. This returns to the people list. | `20-close-hasan.png` |
+| 3:50.8 | Tap where beds would be, before recognising that the people list still occupies that area. No bed placement resulted. | `21-select-beds.png` |
+| 4:02.1 | Close people list. Scene returns. “Slow · 18 min/s · reading” is visible. Prompt: “Jars are filling the cellar. Mark beds so the village can sleep here too.” | `22-close-people.png` |
+| 4:10.6 | Select beds. Outline changes. | `23-beds-tool.png` |
+| About 4:18.5 | Drag (218,237) to (248,237) across open passage. Two dark horizontal marks appear. Contextual text: “Drag over open ground for sleeping places below.” | `24-mark-beds.png` |
+| 4:33.3 | Look only. Marks remain. The bed prompt remains, and journal preview still says “Lamp hung.” | `25-after-beds.png` |
+| 4:43.025 | Record voluntary quit. No further mobile gameplay. | Final scene preserved in `25-after-beds.png` |
+
+I changed speed once to Gallop because I wanted to see work happen, and once to the first arrow because I wanted to read after the raid. I did not accelerate time by script or skip simulated waits. The scene later showed reading slowdown at 18 min/s; I cannot reconstruct every intermediate speed transition from the screenshots.
+
+## Best, worst, and leaving
+
+**Best:** seeing Meryem open the passage I had drawn. The change was concrete. Later, learning that the far jars escaped the raid made the geometry matter to me. I wanted a deeper refuge rather than a higher score.
+
+**Worst:** four people were hurt after I rang the bell. At 2:45 I saw the outcome, only about seven real seconds after ringing. At 2:55 I wanted an explanation before continuing. The journal supplied locations and names, which is useful. It did not give me enough understanding to distinguish a late response, an unsafe entrance, insufficient shelter, or people choosing to remain outside. Those are questions, not claims about the game's rules.
+
+I did not become bored. I became frustrated after the raid. Checking Hasan softened that reaction because he was “well enough.” I made one more practical attempt—beds—then quit at 4:43.025, with two sleeping marks in the passage and the bed prompt still showing. I would **not return voluntarily on this lunch break**. I might return if I understood how to judge whether the people were sheltered; I did not establish that understanding here.
+
+## Clarity findings
+
+| ID | Status / observation | Evidence |
+|---|---|---|
+| DL-5 Readable situation | **FAIL later in play:** after ringing the bell I could not judge the people's shelter status or readiness before the raid outcome. “Watch who comes below” asked me to observe tiny moving figures, but I could not account for nine people or tell who was still exposed. I could name the next construction action, but not the protective situation that mattered to me. This does not assert that such information or a rule is absent everywhere. | `12-ring-bell.png`, `13-hang-lamp.png`, `16-raid-journal.png` |
+| DL-19 Cues mean what they seem | **FAIL for my first reading of the chalk cue:** the red crosses looked like possible refusal/invalid placement. “They choose whether to dig” did not settle that interpretation. The later opened passage taught me that the marked area could be dug. I did not mistake the later injury location text for a promise of safety; my expectation that the bell would get everyone safe was an inference. | Original diary at 2:13.199; `07-chalk-line.png`, `08-fastest.png` |
+| DL-13 Input acknowledgement | **PASS for visible marks, with an unresolved question:** chalk crosses, jar marks, lamp journal entry, and sleeping marks acknowledged placements. I did not repeat a placement to force an answer. The persistent “Mark beds” prompt left me unsure whether two marks were enough, rather than unsure whether the drag happened at all. No duplication test was performed. | `07-chalk-line.png`, `10-place-store.png`, `15-open-journal.png`, `24-mark-beds.png`, `25-after-beds.png` |
+| DL-4 Limits | **PASS for the later encountered digging obstacle:** “Every chalked face is in the dark. A lamp hung beside one would start them again.” This explains both the obstacle and a response. Lamp placement later received a checked journal entry. Builder checks remain NOT TESTED. | `10-place-store.png`, `15-open-journal.png` |
+| DL-15 Time and response | **PASS for the warning encountered:** Gallop was visibly slowed to 1 min/s for the raid decision. I spent about seven seconds reading and choosing; the bell remained available. Gallop returned after I rang. I did not inspect a separate sheet during that pending warning, so that part is NOT TESTED. | `08-fastest.png`, `11-select-lamp.png`, `12-ring-bell.png` |
+| DL-17 Feelings/status | **PASS in the one person sheet inspected:** Hasan was described as “well enough” and sleeping at home. No mood or health bar was shown there. Other people were not inspected. | `19-hasan.png` |
+| DL-24 Sheet return | **PASS for this path:** journal → people → Hasan; closing Hasan returned to people; closing people returned to scene. My tap at the old beds position happened while the people sheet was still open. I do not count that mistaken tap as an inert game control. Keyboard and other sheet paths were NOT TESTED. | `18-people.png`–`23-beds-tool.png` |
+| DL-26 Game menu | **PASS for discovery and labels encountered:** Game menu stayed visible on the scene; opening the journal led to that menu with Save and run, journal, and people tabs. All games was a separate link. Save/run controls themselves were not exercised. | `03-after-begin.png`, `15-open-journal.png`, `18-people.png` |
+
+The harm was not wholly unexplained: the journal says who was caught and where. My remaining failure to understand **why the bell response left them exposed, and how I should judge shelter before the next raid**, is the reason I left. I did not test the door tool, inspect all people, open More about the hill, or try every possible aid. I make no claim that there is no safety rule or no way to help.
+
+## English, dates, and phone layout
+
+- **DL-20 PASS for encountered action-critical language.** Chalk, store, lamp, beds, bell, speed labels, warning, and journal were English. Hasan and Yusuf Usta appeared as names; no unexplained local term blocked an action.
+- **DL-21 PASS for the dates I actually compared.** The live screen used English August/September dates and “Year 1 under the hill.” On 16 September I could distinguish the raid entries dated 2 and 3 September. The warning preview included “Half a day...” but I did not open it to establish the complete deadline statement. Comparing an explicit deadline across months/years, and returning after a real break, are **NOT TESTED**.
+- **DL-22 PASS for the immediate decisions reached at 360×690.** The scene, short red prompt, speed status, tools, bell, and Game menu fit without scrolling. During the raid warning both bell and Keep watching were visible. The journal required scrolling for named injuries, as a long sheet; I could reach the relevant entries. The compact scene drawings were difficult for me to use as a nine-person safety account, recorded under DL-5 rather than claimed as an offscreen-response defect. Keyboard-open sheets were **NOT TESTED**.
+
+No horizontal overflow was apparent in the phone or single desktop screenshots. I did not measure hit areas, change text size, test 320 px, or use dark mode. DL-23's target dimensions and DL-25's full reflow requirements are **NOT TESTED**. The small drawn people and room cells felt less reliable to target than the labelled tools, but I cannot supply a measured hit-area failure.
+
+End-of-game clarity (DL-12), reload/resume (DL-27), sending (DL-28), replay/export (DL-29), all builder checks, and interactions not reached are **NOT TESTED**. I did not reach an ending. I did not test a healthcare interaction; no such action was presented on the one person sheet I inspected. No export was downloaded.
+
+## Changes I would want, ranked as Bao
+
+1. Let me check who is still exposed after the bell, and explain the known reason they are near the entrance or above ground. I want to understand what happened before risking them again.
+2. Make the chalk mark read clearly as a planned excavation. The red crosses first made me wonder whether the gesture was rejected.
+3. Tell me whether the sleeping area I marked can accommodate the people who need it. I saw two marks and nine souls, but could not connect them.
+
+Artifacts: this report; 26 PNG screenshots in `warren-shots/`; append-only wall-clock/action/diary log in `warren-shots/wall-clock.jsonl`. These are observations of one short run, not a source review or a replay claim.

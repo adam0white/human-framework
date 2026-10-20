@@ -3170,8 +3170,8 @@
    "words": "This is running away while I read; I am pressing the single arrow to slow it down.\" … \"I would not voluntarily start Tuesday now. I enjoyed the one kitchen problem, but I wanted more of that and less watching.",
    "verdict": "quit",
    "routes": [
-    "fix:pass DL-15 say the clock rate and slow the first service while a cook request is open (open, target 2026-11-03)",
-    "fix:pass DL-20 gloss maghrib where it first appears (open, target 2026-11-03)",
+    "fix:pass DL-15 say the clock rate and slow the first service while a cook request is open (done, round-3 retest)",
+    "fix:pass DL-20 gloss maghrib where it first appears (done, round-3 retest)",
     "lesson:L20"
    ],
    "source": "docs/lab/reviews/clarity-retest-2026-10-20/pass.md"
@@ -3185,7 +3185,7 @@
    "words": "Mill Lane slept dry. That is the outcome I wanted.\" … \"I would return voluntarily for Tuesday on another train ride. … a timestamp that may mean two different things is distracting.",
    "verdict": "keep",
    "routes": [
-    "fix:glance DL-13 one meaning per reading timestamp: when read or when reported (open, target 2026-11-03)",
+    "fix:glance DL-13 one meaning per reading timestamp: when read or when reported (done, round-3 retest)",
     "lesson:L20"
    ],
    "source": "docs/lab/reviews/clarity-retest-2026-10-20/glance.md"
@@ -3199,8 +3199,8 @@
    "words": "Frustration began at about 2:17. I understood that she could refuse. I could not yet tell what I could do differently. At 3:09 I was close to feeling like a spectator.",
    "verdict": "mixed",
    "routes": [
-    "fix:murmur DL-15 show the clock speed (open, target 2026-11-03)",
-    "fix:murmur DL-26 name the back page Game menu and Download this run (open, target 2026-11-03)",
+    "fix:murmur DL-15 show the clock speed (done, round-3 retest)",
+    "fix:murmur DL-26 name the back page Game menu and Download this run (done by implementer check)",
     "lesson:L13"
    ],
    "source": "docs/lab/reviews/clarity-retest-2026-10-20/murmur.md"
@@ -3214,8 +3214,8 @@
    "words": "The explanation at the top runs out of space after never a, so I cannot finish reading it there.",
    "verdict": "quit",
    "routes": [
-    "fix:rope DL-22 help text and movement controls fit the phone after the first request (open, target 2026-11-03)",
-    "fix:rope DL-13 say what 'We all turn' and rest did when refused again (open, target 2026-11-03)"
+    "fix:rope DL-22 help text and movement controls fit the phone after the first request (done by implementer check)",
+    "fix:rope DL-13 say what 'We all turn' and rest did when refused again (done, round-3 retest)"
    ],
    "source": "docs/lab/reviews/clarity-retest-2026-10-20/rope.md"
   },
@@ -3228,9 +3228,9 @@
    "words": "The lantern still looks bright to me.",
    "verdict": "keep",
    "routes": [
-    "fix:repair DL-19 the lantern drawing goes dark when the carry fails (open, target 2026-11-03)",
-    "fix:repair DL-22 part list in view after Look inside (open, target 2026-11-03)",
-    "fix:repair DL-19 'Try the lantern' says it tests (open, target 2026-11-03)"
+    "fix:repair DL-19 the lantern drawing goes dark when the carry fails (done, round-3 retest)",
+    "fix:repair DL-22 part list in view after Look inside (done by implementer check, other phone screens still fail, F-247)",
+    "fix:repair DL-19 'Try the lantern' says it tests (done, round-3 retest)"
    ],
    "source": "docs/lab/reviews/clarity-retest-2026-10-20/repair.md"
   },
@@ -3243,9 +3243,9 @@
    "words": "Give me enough time to read the first bread decision before the first loaf is already late. I want the first late delivery to feel like my choice.",
    "verdict": "quit",
    "routes": [
-    "fix:stairwell DL-15 first morning runs slow enough to read the first order (open, target 2026-11-03)",
-    "fix:stairwell DL-22 full deadlines and residents readable on the phone (open, target 2026-11-03)",
-    "fix:stairwell DL-13 the tapped action stays where it was (open, target 2026-11-03)"
+    "fix:stairwell DL-15 first morning runs slow enough to read the first order (done, round-3 retest, rate change still unexplained, F-248)",
+    "fix:stairwell DL-22 full deadlines and residents readable on the phone (done by implementer check)",
+    "fix:stairwell DL-13 the tapped action stays where it was (done, round-3 retest)"
    ],
    "source": "docs/lab/reviews/clarity-retest-2026-10-20/stairwell.md"
   },
@@ -3258,9 +3258,9 @@
    "words": "I wanted to keep everyone safe, and two people have been hurt while I was trying to find out what to do. The journal shows smoke gave half a day, maybe less; I missed that warning at the fast speed.",
    "verdict": "quit",
    "routes": [
-    "fix:warren DL-15 a raid warning slows time from fast speed (open, target 2026-11-03)",
-    "fix:warren DL-26 call the notebook button Game menu (open, target 2026-11-03)",
-    "fix:warren DL-24 closing a person returns to the people list (open, target 2026-11-03)"
+    "fix:warren DL-15 a raid warning slows time from fast speed (done, round-3 retest)",
+    "fix:warren DL-26 call the notebook button Game menu (done, round-3 retest)",
+    "fix:warren DL-24 closing a person returns to the people list (done by implementer check)"
    ],
    "source": "docs/lab/reviews/clarity-retest-2026-10-20/warren.md"
   },
@@ -3273,8 +3273,8 @@
    "words": "Give me enough time to read and answer a watcher's decision, including when I select Fast. Make the waiting cue match the actual time available.",
    "verdict": "mixed",
    "routes": [
-    "fix:watch DL-15 a watcher's decision slows time until answered (open, target 2026-11-03)",
-    "fix:watch DL-22 bell action and its explanation on the phone screen (open, target 2026-11-03)"
+    "fix:watch DL-15 a watcher's decision slows time until answered (done, round-3 retest)",
+    "fix:watch DL-22 bell action and its explanation on the phone screen (done, round-3 retest)"
    ],
    "source": "docs/lab/reviews/clarity-retest-2026-10-20/watch.md"
   },
@@ -3333,8 +3333,8 @@
    "words": "The site-wide \"Playtest notebook\" floating button covers the Human panel in Twice at the Well and The Day You Say Nothing at 360×690, and uses the retired word \"Notebook\".",
    "verdict": "mixed",
    "routes": [
-    "fix:lab DL-22 floating feedback button clears game panels on phones (open, target 2026-11-03)",
-    "fix:lab DL-26 rename to Game menu wording (open, target 2026-11-03)"
+    "fix:lab DL-22 floating feedback button clears game panels on phones (done, round-3 retest)",
+    "fix:lab DL-26 rename to Game menu wording (done, round-3 retest)"
    ],
    "source": "docs/lab/reviews/clarity-retest-2026-10-20/README.md"
   },
@@ -3347,9 +3347,9 @@
    "words": "A new timber suggestion appeared and moved Confirm down. I tapped the button at its new position. This is starting to feel like chasing the controls.\" … \"I cannot tell whether the ticks mean the work finished or only that they accepted.",
    "verdict": "quit",
    "routes": [
-    "fix:well DL-13 Confirm stays put while a suggestion arrives (open, target 2026-11-03)",
-    "fix:well DL-22 a suggestion's Use reachable without scrolling at 360×690 (open, target 2026-11-03)",
-    "fix:well DL-5 order ticks say agreed or done (open, target 2026-11-03)"
+    "fix:well DL-13 Confirm stays put while a suggestion arrives (done by implementer check)",
+    "fix:well DL-22 a suggestion's Use reachable without scrolling at 360×690 (done, round-3 retest)",
+    "fix:well DL-5 order ticks say agreed or done (done, round-3 retest)"
    ],
    "source": "docs/lab/reviews/clarity-retest-2026-10-20/well-round2.md"
   },
@@ -3362,9 +3362,9 @@
    "words": "Iftar with Nuran at our table, last Ramadan — that catches me. I wanted more of that.\" … \"He did talk to Hacer at 10:00. Talk hacer? Fine. is all the exchange I can see. I wanted to hear two people talking; instead I have found a record that a task happened.",
    "verdict": "quit",
    "routes": [
-    "fix:voice DL-22 Say it and Say nothing reachable without scrolling at 360×690 (open, target 2026-11-03)",
-    "fix:voice DL-17 the How he feels panel in words, not bars (open, target 2026-11-03)",
-    "fix:voice conversations with other people read as exchanges, not task records (open, target 2026-11-03)"
+    "fix:voice DL-22 Say it and Say nothing reachable without scrolling at 360×690 (done, round-3 retest, choice space still asked for, F-251)",
+    "fix:voice DL-17 the How he feels panel in words, not bars (done, round-3 retest)",
+    "fix:voice conversations with other people read as exchanges, not task records (done, round-3 retest, longer scenes asked for, F-251)"
    ],
    "source": "docs/lab/reviews/clarity-retest-2026-10-20/voice-round2.md"
   },
@@ -3377,11 +3377,297 @@
    "words": "I came to help, but I have mostly chased Ada and scrolled through controls. I would put this down now. I do not feel I have helped anyone.",
    "verdict": "quit",
    "routes": [
-    "fix:neighbours DL-2 tapping a place answers visibly, as tapping a person does (open, target 2026-11-03)",
-    "fix:neighbours DL-22 the offer and its promise button fit the first phone view of a conversation (open, target 2026-11-03)",
-    "fix:neighbours DL-13 a conversation that is loading keeps its person when they move (open, target 2026-11-03)"
+    "fix:neighbours DL-2 tapping a place answers visibly, as tapping a person does (done by implementer check)",
+    "fix:neighbours DL-22 the offer and its promise button fit the first phone view of a conversation (done, round-4 retest)",
+    "fix:neighbours DL-13 a conversation that is loading keeps its person when they move (done by implementer check)"
    ],
    "source": "docs/lab/reviews/clarity-retest-2026-10-20/neighbours-round2.md"
+  },
+  {
+   "id": "F-242",
+   "date": "2026-10-20",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Ngozi (Codex source-unread follow-up retest)",
+   "words": "At 245.668 s I tapped close and saw a stove request I had not meant to send.\" … \"I would return voluntarily to test a different approach to Dai's sleep.",
+   "verdict": "keep",
+   "routes": [
+    "fix:glance DL-13 a close tap only closes the panel (open, target 2026-11-03)",
+    "fix:glance DL-5 say a request will wait when Dai cannot answer (open, target 2026-11-03)",
+    "fix:glance DL-22 action buttons stay put while a report arrives (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/clarity-followups-2026-10-20/glance.md"
+  },
+  {
+   "id": "F-243",
+   "date": "2026-10-20",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Joon (Codex source-unread follow-up retest)",
+   "words": "I would not voluntarily return on another short break: asking cooks back to stations was more of the activity than the food, and I could not read the duration of those requests reliably.",
+   "verdict": "quit",
+   "routes": [
+    "fix:pass DL-22 cook controls and the selected cook stay put while a request is answered (open, target 2026-11-03)",
+    "fix:pass DL-5 say what a station request commits the cook to, and match the willingness line (open, target 2026-11-03)",
+    "fix:pass DL-1 more direct kitchen work during a quiet stretch (open, target 2026-11-03)",
+    "fix:pass design question for owner: cooks' autonomy versus coverage, a standing rota or arrangement (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/clarity-followups-2026-10-20/pass.md"
+  },
+  {
+   "id": "F-244",
+   "date": "2026-10-20",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Mateo (Codex source-unread follow-up retest)",
+   "words": "I would not voluntarily resume this run on the train. I would consider another try if I could understand movement toward a person and read every reply reliably.",
+   "verdict": "quit",
+   "routes": [
+    "fix:rope DL-22 every person's answer readable from the opening promise (open, target 2026-11-03)",
+    "fix:rope DL-5 say whether I am walking toward the selected person and why I have not reached them (open, target 2026-11-03)",
+    "fix:rope DL-16 a way to bring a pair together when distance prevents roping up (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/clarity-followups-2026-10-20/rope.md"
+  },
+  {
+   "id": "F-245",
+   "date": "2026-10-20",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "Farah (Codex source-unread follow-up retest)",
+   "words": "By 120.163 s I was already frustrated by the repeated instruction.\" … \"The premise and everyday situations interested me, but this sequence of taps felt too much like watching her follow the other voice.",
+   "verdict": "quit",
+   "routes": [
+    "fix:murmur DL-7 let press and hold be tried in an ordinary first interaction (open, target 2026-11-03)",
+    "fix:murmur DL-5 a different response after repeated refusals, not the same instruction (open, target 2026-11-03)",
+    "fix:murmur DL-13 show my suggestion beside her actual choice after the next moment arrives (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/clarity-followups-2026-10-20/murmur.md"
+  },
+  {
+   "id": "F-246",
+   "date": "2026-10-20",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "Bao (Codex source-unread follow-up retest)",
+   "words": "I did not become bored. I became frustrated after the raid.\" … \"I might return if I understood how to judge whether the people were sheltered; I did not establish that understanding here.",
+   "verdict": "quit",
+   "routes": [
+    "fix:warren DL-5 check who is still exposed after the bell and why (open, target 2026-11-03)",
+    "fix:warren DL-2 a chalk mark reads as a planned excavation, not a rejected gesture (open, target 2026-11-03)",
+    "fix:warren DL-4 say whether the marked sleeping area fits the people who need it (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/clarity-followups-2026-10-20/warren.md"
+  },
+  {
+   "id": "F-247",
+   "date": "2026-10-20",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Iris (Codex source-unread follow-up retest)",
+   "words": "At 217.610 s I wanted to stop: one repair felt complete and I had had enough scrolling. I would return for another small repair, with reservations about the phone handling and the amount of physical work shown.",
+   "verdict": "keep",
+   "routes": [
+    "fix:repair DL-5 show what cleaning or replacing did to the contact faces and the switch (open, target 2026-11-03)",
+    "fix:repair DL-22 instruction, repair response and next test reachable together on the phone (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/clarity-followups-2026-10-20/repair.md"
+  },
+  {
+   "id": "F-248",
+   "date": "2026-10-20",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Hamid (Codex source-unread follow-up retest)",
+   "words": "I stopped because one bread round was a satisfying phone break, not because the budget ended. I would return voluntarily for another short routine and to sit with Tarık.",
+   "verdict": "keep",
+   "routes": [
+    "fix:stairwell DL-15 say what rate a speed button uses after the bread round and mark the end of the slow period (open, target 2026-11-03)",
+    "fix:stairwell DL-5 travel duration and a clear go-to meaning on order cards (open, target 2026-11-03)",
+    "fix:stairwell DL-22 larger building and labels on the phone (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/clarity-followups-2026-10-20/stairwell.md"
+  },
+  {
+   "id": "F-249",
+   "date": "2026-10-20",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Aiko (Codex source-unread follow-up retest)",
+   "words": "I was frustrated more than bored.\" … \"I would not return voluntarily on this phone layout today.",
+   "verdict": "quit",
+   "routes": [
+    "fix:well DL-22 selected order, its reason and options readable together on the phone (open, target 2026-11-03)",
+    "fix:well DL-23 a labelled way to pick worker and destination without tiny moving figures (open, target 2026-11-03)",
+    "fix:well DL-15 ordinary moments stop the clock less often (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/clarity-followups-2026-10-20/well.md"
+  },
+  {
+   "id": "F-250",
+   "date": "2026-10-20",
+   "game": "watch",
+   "kind": "playtester",
+   "who": "Sofia (Codex source-unread follow-up retest)",
+   "words": "I would return voluntarily for a short session to hear Mara or Joss. I would not choose a whole-winter session during this quiet shift.",
+   "verdict": "keep",
+   "routes": [
+    "fix:watch DL-5 say what Let Joss go has done (open, target 2026-11-03)",
+    "fix:watch DL-22 watcher pressure choices and reasons visible without scrolling under the start button (open, target 2026-11-03)",
+    "fix:watch DL-5 let me reread the last few night messages (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/clarity-followups-2026-10-20/watch.md"
+  },
+  {
+   "id": "F-251",
+   "date": "2026-10-20",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Yusuf (Codex source-unread follow-up retest)",
+   "words": "I do not yet want to spend an evening choosing combinations of action, pressure and reason to reach the next human exchange.",
+   "verdict": "quit",
+   "routes": [
+    "fix:voice DL-15 stay with exchanges like Hacer's longer before the compliance messages (open, target 2026-11-03)",
+    "fix:voice DL-22 immediate choice and its reason together, clear of the Latest control (open, target 2026-11-03)",
+    "fix:voice DL-19 make the predicted obstacle understandable when I speak (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/clarity-followups-2026-10-20/voice.md"
+  },
+  {
+   "id": "F-252",
+   "date": "2026-10-20",
+   "game": "neighbours",
+   "kind": "playtester",
+   "who": "Kerem (Codex source-unread follow-up retest)",
+   "words": "I would not return voluntarily from this session. I had not yet found the helpful conversation I came for.",
+   "verdict": "quit",
+   "routes": [
+    "fix:neighbours DL-13 tell me at once that my walk request is waiting for Play (open, target 2026-11-03)",
+    "fix:neighbours DL-5 carry the inspector question into Ada's conversation with what I would promise (open, target 2026-11-03)",
+    "fix:neighbours DL-22 read each immediate hall response in full without the sheet moving (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/clarity-followups-2026-10-20/neighbours.md"
+  },
+  {
+   "id": "F-253",
+   "date": "2026-10-20",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "Lina (Codex source-unread follow-up retest, round 4)",
+   "words": "I wanted influence through suggestions, and I had not felt that influence yet. I would not return voluntarily on this evidence.",
+   "verdict": "quit",
+   "routes": [
+    "fix:murmur DL-7 a gentle suggestion draws a noticeable response early, even when refused (open, target 2026-11-03)",
+    "fix:murmur DL-15 remaining response time readable, and no mis-selection when a situation expires under my finger (open, target 2026-11-03)",
+    "fix:murmur DL-19 show whether an unforced suggestion stayed with her (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/clarity-followups-2026-10-20/murmur-round4.md"
+  },
+  {
+   "id": "F-254",
+   "date": "2026-10-20",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "Tunde (Codex source-unread follow-up retest, round 4)",
+   "words": "I quit because marking the small changing plan had become fiddly, and I could not discover how to close the door whose protective value the help had emphasized.",
+   "verdict": "quit",
+   "routes": [
+    "fix:warren DL-23 place a room accurately on the phone with stable location while the prompt changes (open, target 2026-11-03)",
+    "fix:warren DL-4 show how to shut a rolled-back door or what must happen first (open, target 2026-11-03)",
+    "fix:warren DL-22 shelter capacity and exposure check easy to consult while building (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/clarity-followups-2026-10-20/warren-round4.md"
+  },
+  {
+   "id": "F-255",
+   "date": "2026-10-20",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Signe (Codex source-unread follow-up retest, round 4)",
+   "words": "I would return voluntarily to finish the descent, but I would be reluctant to start another climb until I could read execution of a request more confidently.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:rope DL-5 tell accepted, being carried out and finished apart (open, target 2026-11-03)",
+    "fix:rope DL-3 identify each person and posture without overlapping names (open, target 2026-11-03)",
+    "fix:rope DL-22 every recorded answer readable on the phone (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/clarity-followups-2026-10-20/rope-round4.md"
+  },
+  {
+   "id": "F-256",
+   "date": "2026-10-20",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Rosa (Codex source-unread follow-up retest, round 4)",
+   "words": "grill is still empty, Rafi is still on dishes, and I do not want to keep pulling people back into place on my break. I would not start another service now.",
+   "verdict": "quit",
+   "routes": [
+    "fix:pass DL-4 keep coverage running while cooks take breaks and say who is leaving (open, target 2026-11-03)",
+    "fix:pass DL-5 say whether after I wash plates is a promise or a request to solve another way (open, target 2026-11-03)",
+    "fix:pass DL-3 keep current service separate from old departure messages (open, target 2026-11-03)",
+    "fix:pass design question for owner: cooks' autonomy versus coverage, a standing rota or arrangement (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/clarity-followups-2026-10-20/pass-round4.md"
+  },
+  {
+   "id": "F-257",
+   "date": "2026-10-20",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Esra (Codex source-unread follow-up retest, round 4)",
+   "words": "I would not voluntarily return tonight. I would be interested in another scene involving Selin or Nuran, but the repeated instruction sheets did not give me the company I came for.",
+   "verdict": "quit",
+   "routes": [
+    "fix:voice DL-5 more of an actual exchange between Halil and another person, around the clinic or Selin (open, target 2026-11-03)",
+    "fix:voice DL-5 Why? beside the cigarette answer is about the cigarette, or says it opens the reason for his current action (open, target 2026-11-03)",
+    "fix:voice DL-22 phone action choices show more than the top of the first row (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/clarity-followups-2026-10-20/voice-round4.md"
+  },
+  {
+   "id": "F-258",
+   "date": "2026-10-20",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Pedro (Codex source-unread follow-up retest, round 4)",
+   "words": "At 235.5s I wanted to leave and stopped.\" … \"I would not return voluntarily on this phone layout. The differences in people's replies interest me, but I want to see the people act.",
+   "verdict": "quit",
+   "routes": [
+    "fix:well DL-22 workers and the selected job visible while giving an order on the phone (open, target 2026-11-03)",
+    "fix:well DL-5 a suggested worker's availability agrees with the forecast, or says the suggestion may no longer fit (open, target 2026-11-03)",
+    "fix:well DL-13 keep the place selected when switching from a refusing worker to another (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/clarity-followups-2026-10-20/well-round4.md"
+  },
+  {
+   "id": "F-259",
+   "date": "2026-10-20",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "Mirela (Codex source-unread follow-up retest, round 5)",
+   "words": "I do not know how to make this shelter safe enough before I call them in. I would not spend the rest of my break repeating the bell.",
+   "verdict": "quit",
+   "routes": [
+    "fix:warren DL-4 inspect a marked sleeping space and the danger that still reaches it before calling people in (open, target 2026-11-03)",
+    "fix:warren DL-5 say whether the current bell call is still acted on, ended or needs renewing (open, target 2026-11-03)",
+    "fix:warren DL-5 show who can shut the stone door and what they are doing instead (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/clarity-followups-2026-10-20/warren-round5.md"
+  },
+  {
+   "id": "F-260",
+   "date": "2026-10-20",
+   "game": "neighbours",
+   "kind": "playtester",
+   "who": "Abena (Codex source-unread follow-up retest, round 4)",
+   "words": "I stopped at 149.7 s because the kind act had landed and this felt like a complete bus-sized visit. I would return voluntarily to see what happens with the Hall …",
+   "verdict": "keep",
+   "routes": [
+    "fix:neighbours DL-5 the inspector conversation cue matches the first action shown (open, target 2026-11-03)",
+    "fix:neighbours DL-22 the noticeboard explanation stays visible with the work offer on the phone (open, target 2026-11-03)",
+    "fix:neighbours DL-5 say the hour is queued for Play, and separate expected finish from the promise deadline (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/clarity-followups-2026-10-20/neighbours-round4.md"
   }
  ],
  "lessons": [
@@ -3947,7 +4233,7 @@
   }
  ],
  "routes": {
-  "fix": 203,
+  "fix": 261,
   "lesson": 233,
   "hf": 11,
   "calibration": 42,

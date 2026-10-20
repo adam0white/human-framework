@@ -1,0 +1,140 @@
+Screenshots stayed in the driver's scratch folder and are not kept.
+
+# The Day You Say Nothing — source-unread playtest
+
+## First minute
+
+Checkpoint recorded at **65.031 real seconds**, 2026-10-20 10:30:08.595 UTC. Five seconds late through tool/observation overhead. No further gameplay input was taken before writing this section. Original checkpoint answers below; later discoveries will not change these statuses. Screenshot: `voice-shots/13-first-minute.png`.
+
+| Item | Status | Original checkpoint answer |
+|---|---|---|
+| DL-1 A reason to act | PASS | I want to help Halil eat before the fast and eventually act without my prompting. The opening says “Help Halil toward his own ends, so that on Eid he does them without you.” His daughter told him to see the doctor. |
+| DL-2 What can I touch | PASS | Begin, More about Halil, the top speed controls, End day, Game menu, Say something and the bottom tabs look tappable. In the speech sheet the action cards, Mention/Urge/Insist, reasons, Say nothing and Say it look tappable. Eat at home has a border and HIS LEANING; Mention is filled. No inert decoration tried. A role-based automation click failed to find Say something; tapping its visible position worked on the same page. That is a tooling failure, not evidence that the control is inert. |
+| DL-3 Urgency and selection | PASS | The yellow AWAKE strip draws me first, then the Selin message. “Leaning: eat at home” and HIS LEANING identify his selection. The fast begins at 04:59, so eating feels timely. The clock and several top controls compete with the little conversation. |
+| DL-4 Why the limit | PASS | At first I cannot speak because he is asleep. “You can speak when he is awake and choosing” explains what must change. At the checkpoint he is asleep again, until about 08:00. No other unavailable action tested. Builder rule provenance is NOT TESTED. |
+| DL-5 Readable situation | PASS | He ate after my suggestion, replied “Fine,” and now sleeps. The banner says “Earlier answer · 03:59. Latest task at 05:14: I sleep. Clock continues.” I can wait until he wakes. |
+| DL-6 A choice soon | PASS | First actionable-screen clock started at 0 s; Begin input at 8.324 s. Say something and his leaning were available by 13.099 s. I opened the meaningful choices at 28.165 s, selected your health at 55.446 s and submitted at 55.514 s. The opening had about 23 story/instruction words before Begin; no long mandatory story blocked the first choice. |
+| DL-7 Learn by doing | PASS for the one suggestion reached | I thought I would choose words, but I choose an action, tone and reason. I kept eat at home, chose Mention and your health, then Say it. “I eat at home, because you asked” and “Fine” taught me that he can comply without sounding pleased. No help used. Urge, Insist, Say nothing, Withdraw and the other action types are NOT TESTED at this checkpoint (five interaction groups). |
+
+## Assignment and method
+
+- **Persona:** Yusuf, 48, a bookshop owner. Plays Night in the Woods and Kentucky Route Zero. Reads every line, wants people to talk to one another, dislikes dashboards. Playing on his phone in the evening.
+- **Game:** The Day You Say Nothing, https://human.adamwhite.work/voice/. No build identifier seen on the screens inspected.
+- **Device:** 360×690 CSS px, touch emulation, light mode, headless Chromium via Playwright. Mouse-position taps and wheel scrolling supplied normal page inputs. A role-based click failed once; coordinate tapping recovered on the same page.
+- **Timing:** first actionable-screen anchor 2026-10-20 10:29:03.564 UTC. Mobile play stopped voluntarily at 10:33:54.203 UTC, **290.639 s (4 min 50.639 s)**. Eight minutes was a ceiling. Reporting/checkpoint and tool overhead are included in real elapsed time. The game went from Ramadan 1, Monday 11 March, 03:40 to 12:45. Real seconds and game hours are different units.
+- **Access:** a Node HTTP server kept one Playwright page open across shell calls. The server wrote UTC timestamps, inputs, original reactions and rendered UI text to `voice-shots/session.jsonl` during play. Screenshots captured the viewport. Rendered-text snapshots can include text outside the viewport; the phone-layout findings use screenshots and actual scrolling. Some immediate screenshots caught transition frames; later settled screenshots are cited below.
+- **Boundary:** read the two authorized instruction documents. No game source, tests, repository material, prior reports, bundles, network payloads, storage or debug APIs were inspected. No model-number panel opened. No telemetry submission, consent change, export, save or run send was attempted. Browser installation and the local browser driver were tooling only.
+- **Desktop look:** after mobile play ended, resized to 1280×800 and reloaded for the requested first-screen look. Did not press Begin again. `40-desktop-first.png` shows a legible centered title card with Begin, More about Halil and Model notes. It fits without scrolling. This is not a desktop gameplay assessment or a save/resume test.
+
+## Verbatim diary
+
+The following reactions retain their original wording. Elapsed times are when the driver recorded each reaction. Important inputs and visible answers are supplied separately in the next section.
+
+| Real elapsed | Original reaction |
+|---|---|
+| 8.324 s | I like the title. Helping him do things without me sounds gentler than managing a town. Begin is the clear button; More about Halil looks like an expandable link. |
+| 13.099 s | He is asleep. I cannot speak yet; the screen says I can when he is awake and choosing. I want to hear what Selin said, but the only line is see the doctor. |
+| 24.081 s | I reached for Say something. The browser command did not find that button; I will look at the same page again. |
+| 32.815 s | These are actions, not a conversation. The bread and cheese since Nuran died catches me. Eat at home is already chosen, and Mention seems gentle. I can tell him to eat for his health. |
+| 45.298 s | The sheet shows the actions and Say it, but I have to scroll inside it to reach the reason and tone. My first scroll did not move it. |
+| 55.446 s | I choose your health with Mention. I want him to eat without pushing him around. |
+| 89.884 s | First minute — checkpoint at 65.031 seconds. I helped him eat, and he said Fine. That is a little colder than I expected. I can see he is sleeping again, but the older answer remains in front of me while the clock has reached 05:50. |
+| 94.650 s | I want to catch up with his morning. Latest looks like the way back to what is happening now. |
+| 99.680 s | I tapped Why by mistake while aiming for Latest. It says iftar with Nuran at our table, last Ramadan. I care more about that than the list of pulls. I do not want Model numbers. |
+| 110.845 s | Latest catches me up: he remembered Nuran, rested, prayed and slept. I want to know who he is before offering more advice, so I open Halil. |
+| 115.163 s | He dreads calling Selin and the clinic. That gives the doctor message some weight. The repair is on his mind before noon. I am curious what his own ends are. |
+| 127.227 s | The deadline is easy: today is Monday 11 March, and Osman wants 300 by Monday 25 March, two weeks away. The checklist of choices without my voice feels like a dashboard. I came for the daughter and the empty table. |
+| 137.463 s | I am a voice in his head. I will let him get on with his morning and see whom he meets. The triangle looks like play; I tap it without changing Slow or Auto. |
+| 163.581 s | He has worked and now wants a cigarette. I would rather encourage him to call his daughter. I open Say something to see whether that is possible. |
+| 172.346 s | The doctor is already selected. The preview says Not now, after I repair in the workshop, though I just read that he repaired until 10:00. Maybe he means more work; I cannot tell. I mention the doctor for his health anyway. |
+| 177.561 s | His actual answer is Not now. After I rest at home. That makes more sense than the preview. I will give him the rest. |
+| 202.758 s | He went to the clinic because Selin asked, after resting. I like that he followed her voice rather than merely obeying mine. Now I want to hear what the doctor said. |
+| 216.005 s | I pick talk with Hacer at the door. I want an ordinary conversation after all this resting and worrying. |
+| 224.025 s | Just Mention is enough. The preview says after his rest; I can wait for a conversation. |
+| 260.840 s | I tried to scroll the conversation and opened Why instead. The whole entry seems tappable. That interrupts the exchange I wanted to read. |
+| 290.639 s | Hacer says, You can tell me about Nuran, Halil. I have time. That is the first moment I feel someone is here with him. But underneath it I am back to Alright, I will do it and After I pray at home. I would leave here tonight. I want more of their conversation, not another round of prompts and reasons. |
+
+The first-minute table was written before resuming play. Its durable diary note was entered later, at 89.884 s; that is not the checkpoint time. One attempted reaction accompanied the failed role-based click, before the driver could save it: “Now he is awake. Say something looks tappable. I expect to choose words for him, perhaps about his daughter.” It belongs between 13.099 and 24.081 s; no exact saved elapsed timestamp is available for that attempted note.
+
+## Inputs and visible answers
+
+| Real elapsed | Input / observation | Visible answer and evidence |
+|---|---|---|
+| 0–13.099 s | Open page; Begin at 8.324 s | Opening explains the purpose. After Begin: “Asleep until about 03:59”; then “The drummer comes round for suhoor. He is waking.” `03-wait.png`. |
+| Between 13.099–24.081 s | Role-based Say something click | Playwright reported `locator.click: Timeout 3000ms exceeded`, waiting for `getByRole('button', { name: 'Say something', exact: true })`. Reconnected to the existing server/page. No reload or replacement run. |
+| 28.165 s | Tap visible Say something | Action cards and a speech sheet open. Eat at home is selected; Mention is selected. Likely answer: “Alright, I'll do it.” `07-choice.png`. |
+| 37.064–48.414 s | Scroll; reposition pointer inside sheet, scroll again | First scroll had no effect; later scroll exposed Mention/Urge/Insist and the reason row. `10-sheet-lower.png`. This first failed scroll is partly a tooling pointer-position limitation. |
+| 55.446–55.514 s | Choose your health; Say it | “You: mention · eat at home · your health”; “I eat at home, because you asked. · until 04:29”; “Fine.” The request remains “Still on his mind until 06:58.” |
+| 65.031 s | Observe only for checkpoint | Clock 05:50; older answer remains visible; latest task says sleep. `13-first-minute.png`. |
+| 94.650–106.331 s | Accidentally tap Why; Close; Latest | Why gives the memory “iftar with Nuran at our table, last Ramadan” and verbal reasons. Latest reveals rest, prayer and sleep. `15-why.png`, `16-caught-up.png`. |
+| 110.845–132.278 s | Halil tab, Ends & voices tab, ordinary scrolling | Worries, money, ends and relationships. Debt deadline includes Monday 25 March. `17-halil.png`, `19-ends-top.png`, `21-ends-lower.png`, `22-voices.png`. |
+| 137.463 s | Tap play triangle | Default Slow and Auto unchanged. After a real 15-second wait plus tool overhead, clock reads 10:00; repair finished, he rests, and “He wants a cigarette.” `24-morning.png`. |
+| 163.581–172.346 s | Open speech; keep prefilled doctor / Mention / your health; Say it | Preview: “Not now — after I repair in the workshop.” Actual response: “Not now. After I rest at home.” Request remains until 13:00. `26-doctor-preview.png`; transcript in `session.jsonl`. |
+| 177.561–202.758 s | Play; real 15-second wait; Latest | At 10:30: “I see the doctor at the clinic, because Selin asked.” At 11:30: “The doctor said the pressure is high and to rest, walk and stop smoking.” Memory: “the clinic, the day they found her illness.” `29-after-rest.png`, `30-clinic-result.png`. |
+| 206.060–224.025 s | Open speech, choose talk with Hacer, keep Mention with no reason; Say it | Before selecting: “No action selected,” “Choose an action,” disabled-looking Say it. After submitting: “After I rest at home, then I will.” `32-neighbour-sheet.png`, `33-hacer-preview.png`. |
+| 224.083–243.757 s | Play; real 15-second wait | At 12:00 he talks with Hacer until 12:30. Halil: “I was remembering iftar with Nuran at our table, last Ramadan.” Hacer: “You can tell me about Nuran, Halil. I have time.” At 12:30 he prays; another response about talking after prayer appears. `35-after-wait.png`, `38-conversation.png`. |
+| 252.661–280.471 s | Tap inside log to position scrolling; accidentally opens Why; scroll, Close, scroll log | A row tap opens the reasons sheet. After scrolling the sheet, Close is above the viewport; scroll back to reach it. Conversation becomes readable in the log. `36-why-again.png`, `37-why-top.png`, `38-conversation.png`. |
+| 290.639 s | Stop voluntarily; preserve screen | Ramadan 1, Monday 11 March, 12:45. Clock paused. No end-of-day or ending reached. `39-stop.png`. |
+
+I did not change speed or Auto. I used the visible play triangle three times to continue. The page itself advanced rapidly through some stretches and stopped at others; I did not accelerate its clock through code or batch decisions.
+
+## Best, worst and the point of leaving
+
+**Best:** Hacer making room for his memory. “I have time” answers his loneliness without a number or a task completion badge. The earlier bread-and-cheese detail and the memory of the clinic made this exchange matter. The clinic action being attributed to Selin also made her feel present in his decision.
+
+**Worst:** the doctor preview named the workshop as the obstacle after I had watched workshop time end. His actual answer named rest. I could not tell whether the preview was old, whether he meant more work, or whether it was simply an uncertain prediction. I can report the mismatch; I cannot establish its cause.
+
+**Interest weakening:** by 127.227 s, the “CHOICES WITHOUT YOUR VOICE” list felt like a dashboard. I still wanted to meet Hacer. At 260.840 s, another accidental Why opening interrupted that effort. At 290.639 s I wanted to leave: I had finally heard a tender exchange, but the surrounding repeated acceptance/deferment messages made the next step feel like more prompting rather than more conversation.
+
+## Clarity findings
+
+The first-minute statuses above are preserved. Later evidence does not change them.
+
+- **DL-22 FAIL — essential phone context requires scrolling.** In `07-choice.png` the action cards, outcome preview and Say it fit, but the explanation about the fast/bread and cheese, tone controls and reasons are outside the sheet viewport. `10-sheet-lower.png` exposes the latter by scrolling away from the action list. In `32-neighbour-sheet.png`, the Hacer card is partly cut off by the fixed response area. The fixed Say it button and selected-action summary are useful; they do not make all the immediate decision context visible at once. In `35-after-wait.png`, the conversation extends below the visible log and Latest overlays its lower portion; `38-conversation.png` shows the exchange only after scrolling.
+- **DL-15 FAIL for the observed continuous-time expectation; fast-speed test NOT TESTED.** Clock paused at 07:59 while I read tabs, at 10:00 for the cigarette pull, and again at 11:30/12:45. The triangle resumed it. The page explicitly said “Clock paused” in answer banners. This was more than a slowdown. I left the default Auto setting alone. I did not test from Fast, so I cannot assess whether the prescribed fast-speed live choice stays open long enough.
+- **DL-19 uncertainty, not a proven failure.** `26-doctor-preview.png` predicts “after I repair in the workshop”; the actual request log says “after I rest at home.” The preview's prerequisite confused me. It was presented as a likely reply, so a wrong prediction by itself does not prove a misleading rule. Do not infer stale state or an implementation defect from this report.
+- **DL-2 / DL-24 friction, not a general failed-control claim.** Tapping a log entry opened Why when I was trying to position a scroll. This happened through mouse-driven emulation, which required a click to reposition the pointer in this driver. A real touch swipe might behave differently. `36-why-again.png` shows that scrolling Why takes Close out of view; scrolling upward restored it and Close returned to the log. I found a way back. No stacked sheet observed.
+
+### Other checklist evidence
+
+| Item | Result within this session |
+|---|---|
+| DL-8 | PASS for encountered urgency: AWAKE, A PULL and ANOTHER VOICE banners distinguish the current issue. Story and action context compete for limited phone space; see DL-22. |
+| DL-9 | PASS for encountered obligations: doctor/clinic, debt and repair appear in Halil / Ends & voices outside the log. Unmet later obligations are NOT TESTED. |
+| DL-10 | PASS for encountered action names: eat at home, rest at home, doctor/clinic and talk with Hacer remain recognizable across controls and log. |
+| DL-11 | NOT TESTED as a full word-count/layout audit. Individual instructions are short; the speech sheet still needs scrolling. |
+| DL-12 | NOT TESTED — no day/chapter/game boundary reached. |
+| DL-13 | PASS for accepted suggestions: request, reply and pending duration appear immediately. Clinic and Hacer later execute and remain traceable in the log. No repeat-submit test performed. |
+| DL-14 | NOT TESTED beyond the likely-reply previews. I did not establish known costs for all consequential alternatives. |
+| DL-16 | PASS for doctor task encountered: a response existed, he deferred until rest ended, then went. Other ends were not completed or exhaustively tested. |
+| DL-17 | PASS on inspected screens: “fine,” “proud,” “dreads it,” and relationship words express feelings. No mood percentage/bar encountered. |
+| DL-18 | PASS for inspected ordinary numbers: time, money, debt and durations. Model numbers deliberately unopened; their content is NOT TESTED. |
+| DL-23 | NOT TESTED — no measured hit-area audit. I could tap the selected controls; this does not establish 44×44 bounds. |
+| DL-24 | PASS for the one Why sheet and speech sheet routes reached: Close returned to the scene, though Why needed upward scrolling. Keyboard/focus behavior NOT TESTED. |
+| DL-25 | NOT TESTED for 320 px, 200% text and both themes. No horizontal page overflow noticed at the requested fixture. |
+| DL-26 | PASS for discoverability only: Game menu stays visible at the top. Menu contents and the All games destination NOT TESTED. |
+| DL-27 | NOT TESTED — the post-session reload was only for the desktop opening look. No save/Continue workflow tested. |
+| DL-28 | NOT TESTED — sending was prohibited for this test; no submission or consent changes made. |
+| DL-29 | NOT TESTED — no export downloaded or player-facing replay tested. |
+
+## English, dates and phone layout
+
+**DL-20 PASS for actions reached.** I could act through English labels: eat at home, your health, see the doctor at the clinic, talk with Hacer at the door. Suhoor, Fajr, Dhuhr and iftar appear in context. The immediate eating choice has the nearby fast start time when its explanation is scrolled into view. I did not need to translate a term to select an action. Yusuf knows Turkish, so this is not evidence that every unfamiliar setting term is defined adequately for an English-only reader.
+
+**DL-21 PASS for the deadline encountered.** Today is Monday 11 March. “Ramadan 15 (Monday 25 March)” puts Osman's payment two weeks ahead without calendar conversion. Cross-month/year deadlines and returning after a break are **NOT TESTED**.
+
+**DL-22 FAIL on the 360×690 fixture**, for the concrete scrolling/context observations above. The immediate response summary and Say it stay available; full choice context and the conversation do not fit together. No claim about keyboard-open layout, safe areas or two-person artwork: those builder checks are **NOT TESTED**.
+
+## Where I stopped and whether I would return
+
+I stopped voluntarily at **290.639 real seconds**, **Ramadan 1, Monday 11 March, 12:45**, after reading Hacer's conversation. The game had not ended. The budget did not force the stop. I did not resume mobile play to complete the test.
+
+As Yusuf, I would not voluntarily start another session tonight. Hacer gives me a reason to be curious, but I do not yet want to spend an evening choosing combinations of action, pressure and reason to reach the next human exchange. That is my response to this short session, not a claim that later conversations are absent.
+
+## Changes I would want, ranked
+
+1. Let me remain with exchanges like Hacer's for longer. I want to hear Halil answer her, not immediately return to a stack of compliance and deferment messages.
+2. Let me read the immediate choice and its reason together on this phone. Keep the human conversation clear of the floating Latest control.
+3. Make the predicted obstacle understandable at the moment I speak. If the workshop is finished and he means rest, that is the distinction I need.
+
+No export path: none downloaded. Screenshots and timestamped session transcript are in `voice-shots/` beside this report. No replay claim.

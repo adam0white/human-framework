@@ -1,0 +1,149 @@
+Screenshots stayed in the driver's scratch folder and are not kept.
+
+## First minute
+
+Checkpoint captured at **62.639 real seconds**, 2026-10-20 10:51:12.113 UTC (2.639 s late due to tool scheduling). No gameplay input while writing these answers. First actionable title screen: 10:50:09.474 UTC. Evidence: `08-first-minute.png`, plus `00`–`07`.
+
+| Item | Status | Original checkpoint answer |
+|---|---|---|
+| DL-1 A reason to act | PASS | I need to run this inherited kitchen and get ₺5,200 to the bank by Saturday. The opening says the bank wants arrears by Saturday close; the till target stays at the top. |
+| DL-2 What can I touch | PASS | Open the doors, Load a playtest run and More about the kitchen looked tappable. In service, the framed cook buttons, framed jobs, × and three speed buttons look tappable. Selim and Dilek show double outlines when selected. I wondered whether the drawn stations could be used; my storeroom tap at 44.120 s opened nothing. I have not found any missed control yet. |
+| DL-3 Urgency and selection | PASS | The till target and clock draw me first, then the ticket when it appears. A double outline shows the selected cook and speed. Neither cook is selected now. There is no immediate crisis visible: both stations are covered, and it says “Waiting for the next ticket.” Saturday is the longer deadline. |
+| DL-4 Why the limit | NOT TESTED | I have not met a disabled action. Selim preferred grill and Dilek preferred cold; their other buttons offered reluctance such as “after I work the cold side.” I did not try those yet, so I cannot call them unavailable or say how refusal changes. |
+| DL-5 Readable situation | PASS | Both cooks are on their stations, money is coming in, and I can tap a cook to ask for a job. “Waiting for the next ticket” tells me why nothing needs doing just now. |
+| DL-6 A choice soon | PASS | First input: Open the doors at 6.625 s. First cook-selection input: 13.494 s. I first saw the meaningful job choices at 13.494 s, before 30 s, and first asked for one at 19.308 s. The opening was short, without a mandatory help page. |
+| DL-7 Learn by doing | PASS for interactions reached; NOT TESTED for unmet interactions | I selected two cooks and made two station-cover requests. Grill meant asking Selim to keep that station through 20:30, not cooking one dish myself. “They heard you,” “Waiting for Selim’s answer,” then his quoted agreement taught me the request is delayed. I used the on-screen “Tap a cook” and “Tap a job to ask. Hold it to insist” instructions, not optional help. Unmet: 4 other job types (opposite station, Take ten, Eat, Go home) and hold-to-insist; these are NOT TESTED at this checkpoint. |
+
+
+# The Pass — Rosa, source-unread live playtest
+
+The **First minute** section above was written before play continued. Its answers are preserved unchanged. Later observations below do not revise those statuses.
+
+## Assignment, access and timing
+
+- **Persona:** Rosa, 42, school-canteen manager. Plays Cook, Serve, Delicious and Two Point Hospital. Enjoys running a busy room, dislikes babysitting staff. Playing on a phone during a short break.
+- **Live URL:** https://pass.adamwhite.work
+- **Build:** No game build identifier seen. The footer visibly said “People by the Human Framework 2.8.0.” That is a framework attribution, not a confirmed game version.
+- **Device:** Headless Chromium through Playwright; 360×690 CSS px, touch emulation, device scale 1, light mode. Default text size. No scrolling during play.
+- **Method:** A Node Playwright HTTP server kept one browser page open throughout play. Screenshots, rendered visible text and normal button clicks/taps only. No game source, repository contents, tests, prior reports, bundles, network payloads, hidden state, storage or debug APIs were inspected. Only the two authorized instruction documents were read. npm installed Playwright; Chromium was available through the Playwright installer.
+- **Budget:** Eight real minutes, a ceiling. First actionable screen: **2026-10-20 10:50:09.474 UTC**. Final gameplay observation: **10:54:54.939 UTC**, **285.465 s / 4:45.465**. The quit diary was persisted at **10:55:11.089 UTC**, **301.615 s / 5:01.615**; it refers to that final observation. The last gameplay input was closing the cook panel at **266.682 s**. I stopped voluntarily before the ceiling.
+- **Checkpoint:** Captured at 62.639 s; writing completed at 85.776 s. No gameplay input between those points. The live game kept running during reading, notes and tool calls.
+- **Time:** Game time and wall time are separate. Monday and part of Tuesday were reached. I left the default chosen speed until **245.952 s**, when I selected the fastest visible arrow to finish my own portion sooner. Automatic speed changes were visible: “Rail clear” at 6 min/s, ordinary service at 1.5 min/s, and an uncovered station at 0.1 min/s. The selected fast setting later showed 3.5 min/s while awaiting Rafi’s answer. No script advanced the game clock or batched gameplay decisions.
+- **Tool failure:** At 209.452 s I tried the exact visible help label through Playwright's button lookup. It timed out after four seconds. I reconnected through the same server to the same page, observed it at 216.153 s, and tapped the visible help button at 221.517 s. No reload or new run was used to recover. That failed lookup is tooling evidence, not proof that the game button failed.
+- **After play:** One requested 1280×800 screenshot of the opening screen, after navigating back to the same URL at 10:55:18 UTC. It offered “Back to the kitchen (Tuesday, week 1).” I did not resume. The server's elapsed counter restarted on that navigation; the desktop capture is outside the play session. Touch emulation remained enabled for this viewport look.
+- **Consent/export:** No consent settings changed. No telemetry/run submission control used. No export downloaded. I saw “Save a playtest file” and “Send this run to the notebook” at Monday close and left both alone. Automatic site telemetry, if any, was not inspected.
+
+## Verbatim diary
+
+These are the original first-person notes, in their original wording. Times are seconds from the first actionable title screen. Notes sometimes describe the screen captured a few seconds earlier. Mistakes and subsequent corrections remain in place.
+
+| Elapsed | Original note |
+|---|---|
+| 3.462 s | I have inherited a kitchen and a Saturday bank deadline. Open the doors looks like the way in. Load a playtest run and More about the kitchen also look tappable. I want to see the room. |
+| 10.748 s | The room is tiny but readable. Tap a cook tells me where to start. Selim and Dilek look like buttons below the room; the named stations might be tappable too. The clock is moving. I will start with Selim. |
+| 17.156 s | They have started working by themselves. Good. Selim says yes to grill and would rather work grill than cold. I will ask him for grill cover; I do not need to fight him over that. |
+| 27.867 s | The answer stayed on screen: he will hold grill until 20:30. Now a table ticket is here, with dots I take to mean dishes left. Dilek wants cold. I can leave her there. The job buttons are below the bottom edge now, so I cannot see all the choices without scrolling. |
+| 32.790 s | Looking again, I was wrong: all five job buttons are visible. It is the instruction under them that touches the bottom. I can ask Dilek for cold without scrolling. |
+| 40.895 s | I have both stations covered. I like that food and money move without my tapping each plate. I am not sure what I should manage next. The speed label briefly said 6 min/s with Rail clear even though I did not change the speed. |
+| 48.054 s | I tried the storeroom label because I wondered about supplies. Nothing opened. I will watch the service a moment. |
+| 92.705 s | It is 20:11 and Selim says yes to a break. I will give him ten minutes and see whether Dilek can keep things going. This is the first choice that feels like managing a person rather than confirming where he already is. |
+| 110.543 s | Now Dilek is out back and Selim is still on grill. I asked Selim to take ten, so I do not understand that result yet. His break now says not with Dilek out, which is a sensible reason to wait for her. |
+| 118.542 s | The reply history says Selim agreed: Alright, I’ll do it. Now he is out back and Dilek is back on cold. So my request did lead to his break; I could not follow the timing while the other cook also went out. The rail is clear and says it is waiting for closing. |
+| 137.610 s | Fifteen out of fifteen fed feels good, but £—no, lira—600 is not enough. The £920-a-night style calculation is useful; it says ₺920 for the five nights left. Selim’s knees are hurting and he missed sunset prayer. I want to let him step away tomorrow. Clean plates will matter next. |
+| 146.702 s | There is Rafi and a dish station now. The line saying Selim and Dilek went home is confusing on the new night while their buttons say free. I think that is yesterday’s history, not that they are missing now. |
+| 154.717 s | Selim says after I work the grill for a break, even though he said tomorrow he would step away before the rush. I will ask once, not insist. I want him rested, not bullied. |
+| 170.714 s | He did agree, and both cooks are out back at once. Grill needs a cook; select a cook is clear, and the clock has slowed itself. I will move Rafi onto grill for this ticket. I had not expected to lose both cooking stations together. |
+| 188.998 s | That worked: another table was fed. Selim and Dilek have come back, but Rafi is still on grill too. His Dish pit button has a dot although he is on grill; I had taken the dot to mean current job. I will put him back on dishes now. |
+| 209.452 s | Now I can help table 5 by grilling one portion for five minutes. That is what I wanted: a useful bit of kitchen work myself. The prayer line does explain where Selim went, though I only noticed it after he was back. |
+| 221.478 s | My browser tool did not click the help button; its label lookup timed out. I am still on the same service. Grill now needs a cook again, and there are two Help buttons. I will tap the visible grill one directly. |
+| 245.893 s | I am preparing one portion until 19:23, but it still says grill needs a cook and the game is crawling at 0.1 min/s. I am working there; that warning feels odd. On a short break I want the portion to finish, so I will try the fastest arrow button. |
+| 250.697 s | Fast did not lift the slowdown. The game still wants a cook, not just my one portion. I will borrow Rafi again. I am starting to feel that I am chasing staff movements instead of running the room. |
+| 271.138 s | Rafi says after I wash plates, then I will. I cannot tell whether that is a queued move or a polite refusal. My own portion still says until 19:23 while the clock shows 19:23. I will give it another moment, but this is the first stretch where I am bored rather than watching the kitchen. |
+| 301.615 s; refers to final screen at 285.465 s | I am stopping at 285.465 seconds, Tuesday 19:25. My portion finished and the till rose to ₺1,000, so that worked. But grill is still empty, Rafi is still on dishes, and I do not want to keep pulling people back into place on my break. I would not start another service now. |
+
+The currency slips in the Monday-close note are mine. The screen consistently used ₺. The screenshot filename `18-break-refusal.png` is a mistaken capture label: the visible answer is **“Fine.”**, and the break was accepted.
+
+## Inputs and important visible answers
+
+Times below are recorded tool-result times, not precision measurements of the instant a finger landed. Images live in `pass4-shots/` beside this report. The wall-clock log records requests, results, visible text, errors and diary writes as they happened.
+
+| Elapsed | Input or observation | Visible answer and evidence |
+|---|---|---|
+| 0.038 s | First title screenshot | Inheritance, arrears by Saturday, Open the doors. `00-first-screen.png`. |
+| 6.625 s | Open the doors | Monday 17:25, ₺0 / ₺5,200 by Sat, “Tap a cook.” `01-open-kitchen.png`. |
+| 13.494 s | Tap Selim | On grill; station-cover request until 20:30; job responses shown. `02-selim.png`. |
+| 19.308 s | Tap Grill | “Waiting for Selim’s answer.” “They heard you.” `03-grill-request.png`. |
+| 22.527 s | Tap Dilek | Selim at 17:44: “Fine. I’ll hold the grill till the rush eases at 20:30.” Ticket present; Dilek selected. `04-dilek.png`. |
+| 32.842 s | Tap Cold side | “Waiting for Dilek’s answer.” `05-cold-request.png`. |
+| 35.877 s | Close cook panel | Dilek at 18:35: “Alright, I'll do it. I’ll hold the cold side till the rush eases at 20:30.” `06-room-wait.png`. |
+| 44.120 s | Tap storeroom drawing/label | No sheet or action appeared; service continued. `07-storeroom-tap.png`. |
+| 62.639 s | First-minute observation; stop inputs | Monday 19:28, ₺360, both cooks on stations, waiting for next ticket. `08-first-minute.png`. |
+| 88.789 s | Select Selim | Monday 20:11; Take ten showed “yes.” `09-after-checkpoint.png`. |
+| 92.737 s | Tap Take ten | Waiting for Selim’s answer; still visibly on grill at that instant. `10-take-ten.png`. |
+| 105.538 s | Observe | Monday 20:50; Dilek out back, Selim on grill; Take ten/Eat/Go home say “not with Dilek out.” `11-break-answer.png`. |
+| 114.970 s | Close panel | Monday 21:45; Selim out back, Dilek on cold. History: Selim “Alright, I'll do it.” Rail clear, waiting for closing. `12-service-history.png`. |
+| 131.974 s | Observe close | Monday after close: 15/15 tables fed, ₺600, about ₺920 per night for five nights left. Selim mentions missed maghrib and knees. `13-monday-close.png`. |
+| 141.772 s | Open on Tuesday | Rafi joins, free cook buttons. Lines say Selim and Dilek went home, while they are visible in the new service. `14-tuesday.png`. |
+| 146.756–154.771 s | Select Rafi, then Selim; ask Selim Take ten | Waiting for Selim’s answer. `15-rafi.png`, `16-selim-tuesday.png`, `17-early-break-request.png`. |
+| 163.587 s | Observe | Tuesday 17:54; Selim’s “Fine.” Both Selim and Dilek out back. “Grill needs a cook; select a cook.” Slow 0.1 min/s. `18-break-refusal.png`. |
+| 170.772–173.319 s | Select Rafi; tap Grill | Waiting for Rafi’s answer, returning to chosen Steady speed. `19-rafi-cover.png`, `20-rafi-grill-request.png`. |
+| 182.185 s | Observe | Tuesday 18:18, till ₺720. Selim and Rafi both “on grill,” Dilek on cold. Rafi says he is holding grill until 20:30; the dot remains beside Dish pit. `21-rafi-answer.png`. |
+| 189.053 s | Tap Dish pit | Waiting for Rafi’s answer. `22-back-to-dishes.png`. |
+| 203.754 s | Close panel | Tuesday 19:00, till ₺840. Rafi on dish. Visible Help table 5 button and history about Selim’s prayer. `23-tuesday-room.png`. |
+| 209.452 s onward | Try Help table 5 via visible-name lookup | Four-second timeout. No accepted input established. No `24` image was saved. Same-page recovery at 216.153 s: `25-after-missed-help.png`. |
+| 221.517 s | Direct tap on visible grill Help button | “Starting your portion on the next kitchen minute.” `26-help-grill-tap.png`. |
+| 237.051 s | Observe | Tuesday 19:20. “You’re preparing a grill portion for table 5, until 19:23.” Station warning and 0.1 min/s remain. `27-cooking-portion.png`. |
+| 245.952 s | Tap fastest arrow | Fast arrow selected; effective speed still Slow 0.1 min/s because station needs a cook. `28-fast-selected.png`. |
+| 250.752–252.983 s | Select Rafi; ask Grill again | “after I wash plates” forecast, then “They heard you” and Fast 3.5 min/s while awaiting answer. `29-borrow-rafi-again.png`, `30-second-cover-request.png`. |
+| 262.800 s | Observe | Rafi at 19:21: “After I wash plates, then I will.” Still on dish; grill still empty, Slow 0.1 min/s. `31-help-done.png`. Despite this capture label, my portion is not yet confirmed complete here. |
+| 266.682 s | Close panel; last gameplay input | Still preparing table 5 portion until 19:23; clock 19:23. `32-waiting-on-portion.png`. |
+| 285.465 s | Final gameplay observation | Tuesday 19:25, ₺1,000. “I finished a grill portion for table 5.” Table 5 no longer on rail. Grill empty; Selim out back, Dilek on cold, Rafi on dish. `33-stop.png`. |
+| After play | 1280×800 first-screen look | Readable centered opening, “Back to the kitchen (Tuesday, week 1),” “A new notebook,” “Load a playtest run,” “More about the kitchen.” `34-desktop-first-screen.png`. No resume input. |
+
+## What playing felt like
+
+**Best moment:** Borrowing Rafi for the uncovered grill on Tuesday, then seeing the next table fed. The red station warning gave me a concrete response, the slowdown let me read it, and someone useful was available. That briefly felt like running a room. Monday’s 15/15 close was satisfying too. The shortfall calculation gave the next night a reason.
+
+**Worst moment:** The second empty-grill stretch. I helped one portion myself, but the station warning stayed, the fastest arrow did not remove the slowdown, and Rafi’s “After I wash plates, then I will” left me unsure whether I should wait or ask someone else. The portion did finish. I am not reporting a broken cooking action.
+
+**Interest and frustration:** At 40.895 s I was mildly unsure what needed managing, but not bored. At 250.697 s I felt I was chasing staff movements. At 271.138 s I first explicitly recorded boredom. I stopped after the 285.465 s screen, with the quit note saved at 301.615 s. This was a voluntary stop, not a budget cutoff or completed game.
+
+**Would I return?** Not voluntarily on another short break in this state. I like the room, the cooks’ brief remarks and the clear end-of-night accounting. I dislike repeatedly moving staff back into coverage without being sure what a qualified answer commits them to. I did not reach Saturday or any later week.
+
+## Clarity findings and evidence limits
+
+These are player observations. They do not assert how the simulation is implemented.
+
+| ID | Status / observation | Visible evidence |
+|---|---|---|
+| DL-5 | **FAIL later in play:** I could identify a response, but I could not tell whether Rafi was now committed to move after washing plates or had declined the move. The opening-minute PASS remains unchanged. | “They heard you,” then “After I wash plates, then I will,” with Rafi still on dish and grill empty. `30`, `31`, `33`. I stopped before finding out whether he would eventually move. |
+| DL-8 | **FAIL in the Tuesday opening:** Old departures read like current staffing information. I had to infer that the lines belonged to the previous night. | “Selim hung up the apron and went home.” “Dilek hung up the apron and went home.” Both are visible in the room with “free” buttons on Tuesday at 17:25. `14-tuesday.png`. |
+| DL-19 | **FAIL:** I read the job dot as the current station because it had matched that station earlier. It later contradicted the explicit status. I could not tell what the dot actually meant. | Rafi’s selected card says “on grill” and the sentence says “I’m holding the grill until 20:30,” while the dot stays beside “Dish pit.” `21-rafi-answer.png`. This is a misleading cue for me, not a claim that his location was hidden. |
+| DL-13 | **PASS for accepted inputs reached:** Acknowledgements and delayed replies were visible. The Help tap said it would start next kitchen minute, then showed preparation, then completion. | `03`, `04`, `26`, `27`, `33`. The failed exact-label lookup is excluded as a tool failure. I did not deliberately repeat an uncertain input to test duplicates. |
+| DL-15 | **PASS for station-crisis slowdown and restoration reached:** The clock visibly slowed with the uncovered grill and returned to chosen speed while requests awaited answers. Selecting Fast did not override the station slowdown. | `18`–`21`, `28`, `30`, `31`. The first crisis remained readable while I took about ten real seconds to select Rafi and ask for grill. I did not reach a separate event-dialogue choice from Fast; that branch is NOT TESTED. |
+| DL-12 | **PASS for a day boundary:** Monday close clearly ended the service, counted tables and money, gave the remaining nightly need and offered Tuesday. | `13-monday-close.png`. Overall game ending NOT TESTED. |
+| DL-4 | **First-minute NOT TESTED stands.** Later I saw reasons such as “not with Dilek out” and “not with Selim and Dilek out.” They explained the coverage concern and suggested waiting for a return. I did not press those actions or establish that they were mechanically disabled. | `11-break-answer.png`, `19-rafi-cover.png`. Qualified “after” answers were not equivalent to a proven unavailable action. No builder-side limit check performed. |
+
+I initially thought Dilek’s job buttons were off screen, then corrected that immediately after looking again. **That is not a layout failure.** I also initially lost track of Selim’s Monday break. Later I saw his agreement and him out back. **That does not establish that the wrong cook received the request.** The help/cook distinction felt awkward, but one portion is visibly a narrower action than station cover; my discomfort alone does not prove a false rule or missing response.
+
+## English, dates and phone layout
+
+- **DL-20 — PASS for terms reached.** I could act in English. “Grill,” “Cold side,” “Dish pit,” “Take ten,” “Eat” and “Go home” were understandable. “maghrib (sunset prayer)” supplied its meaning nearby. “lokanta” appeared in an opening already described as “a kitchen”; it did not block my action. I did not request a glossary, so an on-request explanation is **NOT TESTED**.
+- **DL-21 — PASS for deadlines reached.** “Monday · wk 1,” “by Sat” and “Saturday close” let me place the bank deadline later in the current week. Monday close explicitly gave five nights left. I could compare station cover until 20:30 with the current 17:40, and preparation until 19:23 with current 19:20. Dates across months/years and a deadline check after resuming are **NOT TESTED**.
+- **DL-22 — PASS for screens reached at 360×690.** Cook selection, job buttons, immediate warning, tickets and Help responses fit without scrolling. Both Help actions were visible together in `25`; the preparation end time stayed visible in `27`; all six Tuesday jobs were visible in `16`. The scene shrank sharply when tickets and quoted replies appeared, and names within it became tiny, but the larger cook buttons supplied useful status. At Monday close, the next-day action and its dish-pit context were visible; further save/send content extended below the viewport. Keyboard-open sheets, long sheets and safe-area behavior were **NOT TESTED**.
+- **Desktop opening:** `34-desktop-first-screen.png` shows a readable 1280×800 opening without overlap. It offered a specific Tuesday/week-1 resume. **DL-27 remains NOT TESTED as a resume test:** I did not select it or verify preserved timing/state.
+- **Other untested scope:** No hold-to-insist, Go home request, Eat request, explicit Cold-side reassignment against preference, export, import/replay, sending, offline retry, 200% text, 320 px width, dark mode, keyboard interaction or game ending. No measured hit-area audit was performed. Builder checks were not performed. Unmet checks are evidence gaps, not game failures.
+
+## Up to three changes I would want as Rosa
+
+1. **Make coverage easier to keep running while cooks take their own breaks.** Tell me clearly when someone is leaving and what coverage needs my attention. I want to make an occasional staffing decision, not repeatedly discover an empty grill.
+2. **Tell me whether “after I wash plates” is a promise I am waiting on or a request I need to solve another way.** Keep that answer visible with the cook’s current commitment. Make the job dot’s meaning clear too.
+3. **Keep the current service separate from old departure messages.** Tuesday should not look as though my cooks have just gone home while their buttons say they are here.
+
+## Artifacts
+
+- Report: `pass4.md`
+- Screenshots: `pass4-shots/`
+- Contemporaneous timestamp, visible-text and diary log: `pass4-shots/wall-clock.jsonl`
+- 34 screenshots were saved: `00`–`23`, then `25`–`34`. The attempted `24` capture was not produced because the click timed out.
+- No downloaded export. No replay claim.

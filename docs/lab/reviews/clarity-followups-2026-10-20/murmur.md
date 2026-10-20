@@ -1,0 +1,132 @@
+Screenshots stayed in the driver's scratch folder and are not kept.
+
+# Murmur — source-unread playtest
+
+Farah, 38, primary-school teacher. I play Florence and 80 Days in the evening. I want to influence characters. I dislike feeling like a spectator. Phone on the sofa.
+
+Live URL: https://murmur.adamwhite.work. The visible cover calls the game **The Two Voices**. The Game menu identifies **Game 0.2.1**, **Human Framework 2.8.0**, Week 1843065751 (screenshot 18).
+
+Device: 360×690 CSS px, touch emulation, light mode, device scale factor 1. Access: headless Chromium through Playwright, controlled by a persistent local Node HTTP server with one mobile page. Observations used screenshots; actions used pointer clicks. No game source, hidden DOM, storage, network payloads, prior report, or debug API was inspected. Only the two assigned instruction documents were read. No send, consent, or telemetry control was used. No export was downloaded.
+
+Session ceiling: eight real minutes. First actionable cover: **2026-10-20 10:14:42.128 UTC** (05:14:42.128 CDT). Voluntary stop recorded at **10:17:32.923 UTC**, **170.794 seconds / 2:50.794** after that cover. The final mobile screenshot shows Monday 21:32, a bedtime choice. This was a voluntary stop before the budget, not a completed day or game. Browser cleanup later is not play time.
+
+After stopping, I took one 1280×800 look at a fresh-context opening screen, without playing it (screenshot 23). It showed the complete cover, explanation, and opening controls in a narrow central column with ample space. No desktop play or resume test was performed.
+
+Screenshots are in `murmur-shots/`, beside this report. `murmur-shots/session.jsonl` contains contemporaneous UTC timestamps, elapsed times, inputs, and original notes. Screenshot references below use their filename stems.
+
+## First minute
+
+Timing qualification: the checkpoint screen was captured at **58.534 s** (`09-first-minute`). I stopped taking gameplay inputs and wrote the checkpoint. Its text reached the timestamp file at **69.735 s**: treat the written checkpoint as **9.735 seconds late**. The original preamble said “Checkpoint at approximately 60 real seconds; no input taken while writing it.” That approximation was corrected in the log at 86.696 s. There were no gameplay inputs between 36.115 s and 86.766 s. The table preserves the original checkpoint answers; later observations do not upgrade them.
+
+| Item | Original checkpoint answer |
+|---|---|
+| DL-1 | **PASS** — I am accompanying Dilan through her week and trying to influence her choices. The opening promised my words could become hers; now she is late and Murat is asking Traffic? |
+| DL-2 | **PASS** — Wake her up, More about Dilan, Replay a run file, the boxed suggestions, say nothing, on with the day, and the top-right menu look tappable. I have used Wake, two suggestions and on with the day; none proved inert. I have not used the other controls. |
+| DL-3 | **PASS** — The bordered bottom choice card draws me first. She won’t wait long tells me there is urgency; Slow · 0.16 min/s · choice waiting explains the current pace. The red side mark and boxes identify current responses; no response is selected before I tap. |
+| DL-4 | **NOT TESTED** — No visibly unavailable action encountered. A refusal after a suggestion is an outcome, not a disabled action. |
+| DL-5 | **PASS** — Dilan is late, Murat asks Traffic?, and I can say she overslept, suggest the ring road, or say nothing. |
+| DL-6 | **PASS** — First meaningful choice observed at 9.618 s: Up. Feet on the floor. versus Five more. First meaningful input at 16.382 s. First input of any kind was Wake her up at 5.316 s. Choice was available before 30 s, after short opening and alarm text. |
+| DL-7 | **PASS for the two suggestion interactions reached** — I chose getting up and answering Aylin tonight. Her replies refused both and taught me that suggestions do not command her; she said press and hold to insist. No help opened. Press-and-hold, saying nothing, menu and replay remain **NOT TESTED** (four interaction types not reached). |
+
+The opening had roughly 20 purpose words and 12 alarm-context words before the first meaningful choice, rather than a long compulsory story screen. Choice labels and brief contextual instructions were also visible.
+
+## Verbatim diary
+
+These are the original reaction notes, including uncertainty and the mistaken wording about the accidental input. They have not been rewritten to make later choices seem intentional. Timestamps are elapsed from the actionable cover.
+
+**00:05.197** — “I like the promise that my words can become hers. Wake her up looks like the way in; More about Dilan and Replay a run file also look tappable. I want to meet her before reading background.”
+
+**00:16.329** — “The alarm choice is here already. Up. Feet on the floor. looks tappable, and so do Five more. and say nothing. I think the small words mean she is less keen on getting up. I am choosing getting up; I want to see whether she will listen.”
+
+**00:26.720** — “She put mine off. That is a proper answer, even though it is not what I asked for. Her reply tells me to press and hold next time to insist. I like that she can refuse. The pencil being bold now sounds like the other voice has gained confidence.”
+
+**00:36.058** — “She slept through the next alarms. Now there is a message about Mum. I want her to answer Aylin, even if it has to be tonight. These are small choices I recognise from a tired morning.”
+
+**01:26.711** — “I want her to tell Murat she overslept. The easy excuse is what the other voice wants; I want to give her a different nudge.”
+
+**01:37.359** — “Oh, I was too late. While I wrote the checkpoint she used the ring-road excuse. My tap landed on Talk her through it. for Ece instead; I had not seen that choice before tapping. She refused that too and sent the pin. Three deliberate nudges so far feel like no influence, but this last one was an accidental input caused by my stale screen.”
+
+**01:42.676** — “I do not want to laugh at a frightened new colleague. She found it, didn’t she? is the line I want to give her, even though she is against it. That third option matters more to me than getting out of bed.”
+
+**02:00.163** — “She laughed anyway. The repeated Another time, press and hold line is starting to feel like a correction aimed at me. Now she is tired; I will back the coffee she actually wants and see what agreeing feels like.”
+
+**02:14.142** — “Alright, I’ll do it. is a relief. At least a tap can be accepted. I am still mostly watching the day go by. I want to look at the menu before deciding whether to stay.”
+
+**02:31.350** — “The menu calls it Game 0.2.1, with Human Framework 2.8.0. Download, send, replay and back to cover are easy to find. I am not sending anything. I want to try one more thing: actually call Mum on the bus.”
+
+**02:50.794** — “I am stopping here. Call Mum got the same Not now and press-and-hold reply again, and she scrolled past her stop. I like her ordinary life, but tapping the choices I care about has mostly made me watch her do the other thing. I know the game has told me about holding to insist; I have not tried that. I would not start the next day tonight.”
+
+Diary clarification: “Three deliberate nudges” at 01:37 was imprecise. At that point there had been **two deliberate choice taps and one accidental choice tap**. Across the whole session there were five deliberate choice taps and one accidental choice tap. Five suggestions were refused; the coffee suggestion was accepted. The claim that a bold pencil means greater confidence was my interpretation, not an established rule.
+
+## Inputs and visible answers
+
+| Real elapsed | Input or observation | Visible answer / reference |
+|---|---|---|
+| 0.103 s | Opening screenshot | “Accompany Dilan through her week. Your words can change her choices and become her own.” `01-first-screen` |
+| 5.316 s | Click Wake her up | Monday 06:40; “Her alarm is about to go.” `02-wake` |
+| 9.618 s | First meaningful choice observed | Alarm; two suggestions and say nothing; Slow · 0.16 min/s · choice waiting. `03-alarm-choice` |
+| 16.382 s | Click Up. Feet on the floor. | Reading-reply state immediately. By 19.884 s: “After I sleep five more minutes, then I will. Another time, press and hold a suggestion to insist. I might listen.” “She put yours off, so the pencil’s way, for now.” `04-up-response`, `05-up-reply` |
+| 26.767 s | Click on with the day | Monday 07:16; Aylin’s message about calling Mum; choices visible. `06-on-with-day` |
+| 36.115 s | Click Tell Aylin: tonight, on the bus. | Reply observed at 39.568 s: “Not now. After I leave it for later.” The press-and-hold explanation repeats. `07-aylin-choice`, `08-aylin-reply` |
+| 58.534 s | No input; checkpoint screenshot | Monday 08:28, Murat asks “Traffic?”; Say you overslept. / The ring road. / say nothing. `09-first-minute` |
+| 69.735 s | Checkpoint written; no gameplay input | The game continued while I wrote. |
+| 86.766 s | Click last-seen overslept-button position | Stale screen: Murat’s choice had expired. Screenshot instead shows “WHILE YOU WERE AWAY,” “The ring road was solid,” and Ece’s later call at game 10:40. At 91.650 s the reply identifies my actual input as Talk her through it. `10-overslept`, `11-ece-reply` |
+| 91.650 s | Observe accidental input’s answer | “Not now. After I send her the pin.” She sent the pin and went back to the board. I did not intentionally choose this response to Ece. |
+| 97.401 s | Lunch choice observed | Murat imitates Ece crying; Laugh along. / Eat outside. / “She found it, didn’t she?” / say nothing. All fit. `12-next` |
+| 102.734 s | Click “She found it, didn’t she?” | “I’ll laugh along instead,” followed by the press-and-hold explanation. Next scene records “She laughed. The impression got a second act.” `13-defend-ece`, `14-lunch-reply` |
+| 120.214 s | Click Have the coffee. | By 127.165 s: “Alright, I’ll do it.” “The third coffee. The board was green by five.” `15-coffee`, `16-coffee-reply` |
+| 134.198 s | Click top-right menu icon | Game menu appears. At 137.494 s, clearly shows run controls and version. `17-menu`, `18-menu-open` |
+| 151.411 s | Click Close | Returns to bus-home choice. Game clock moved from 18:12 in the open-menu screenshot to 18:14 on return; I cannot establish precise menu-time behavior from these sparse samples. `19-menu-closed` |
+| 154.960 s | Click Call Mum. | By 162.163 s: “Not now. After I scroll for a bit.” Press-and-hold explanation repeats. “She scrolled to her stop, and two stops past it.” `20-call-mum`, `21-mum-reply` |
+| 170.794 s | Stop; no further mobile gameplay input | Monday 21:32 bedtime choice: Write the day down. / One more video. / Phone on the floor. Sleep. / say nothing. `22-stop` |
+| 171.148 s | Post-session desktop opening screenshot | Fresh context, 1280×800, opening cover only. `23-desktop-first-screen` |
+
+No manual speed control was used. Displayed speed changed automatically: fast between moments, slow while a choice waited, and a separate reading-reply state. The meaningful-choice window did not remain open throughout checkpoint writing. This is evidence about this run’s elapsed timing, not proof that the game gives an ordinary reader insufficient time.
+
+## Best, worst, and leaving
+
+**Best moment:** the lunch choice. I recognised the social pressure immediately and wanted to defend Ece. It gave me a concrete reason to care about what I said. The coffee acceptance later gave me the clearest confirmation that she could accept my words.
+
+**Worst moment:** Call Mum receiving another version of the same refusal and instruction. By 120.163 s I was already frustrated by the repeated instruction. At 170.794 s I chose to leave. I had not reached an ending; the bedtime choices were waiting.
+
+I would **not return voluntarily tonight**. The premise and everyday situations interested me, but this sequence of taps felt too much like watching her follow the other voice. That is my experience of this run, not evidence that the game has no influence mechanic.
+
+Important access limitation: the controller implemented individual clicks, not a sustained pointer hold. The game explicitly taught pressing and holding after the first refusal, but I did not test it. The report therefore cannot judge whether insisting would have provided the influence I wanted, how it works, or its costs. Repeated ordinary taps do not test that interaction.
+
+## Clarity findings and coverage
+
+**No definite DL clarity failure was established.** My main complaint was the experience of repeated refusals. The game acknowledged those inputs and explained another interaction. That complaint should not be recorded as proof of absent rules or broken agency.
+
+| DL | Status and evidence |
+|---|---|
+| DL-1–DL-7 | Original checkpoint above. DL-4 remains NOT TESTED. Later menu use does not change the original DL-7 evidence gap. |
+| DL-8 | PASS for scenes reached: the current bordered choice card stood apart from the prior log. Lunch’s context and response were clear (`12-next`). |
+| DL-9 | NOT TESTED: no independently established required obligation or deadline to locate outside the log. Mum’s call was a story concern; I did not establish it as mandatory. |
+| DL-10 | PASS for observed input/reply labels: Up. Feet on the floor., Have the coffee., and Call Mum. were recognisable in their replies. No unresolved alias encountered. |
+| DL-11 | PASS for observed decisions: short situation, other voice, and two or three suggestions. Essential decision text fit on the phone (`03`, `12`, `19`, `22`). Builder layout/word-count checks not performed. |
+| DL-12 | NOT TESTED: stopped before a day, chapter, or game ending. |
+| DL-13 | PASS for clicks reached: the page switched promptly to reading her reply, then showed acceptance or refusal. No duplicate test performed. The accidental Ece input came from my stale screenshot, not an observed duplicate or ignored click. |
+| DL-14 | NOT TESTED: did not establish a known mechanical cost or attempt insistence. Mood phrases were readable, but I cannot treat them as a complete cost explanation. |
+| DL-15 | PASS for visible continuous time, automatic slowdown, and answering live choices; partial coverage. Choice pace read “Slow · 0.16 min/s · choice waiting.” I answered lunch in about five real seconds after observing it. Murat’s earlier choice expired during checkpoint/reporting overhead. Manual speed selection and precise menu behavior NOT TESTED. |
+| DL-16 | PASS for problems met: alarm, messages, lateness, Ece’s distress, lunch pressure, tiredness, and Mum each offered a response. I did not establish any unresolved task with no response. |
+| DL-17 | PASS for observed mood/tiredness presentation: “her eyes keep closing” and phrases such as “she’s willing” and “she’s against it”; no feeling bar or percentage encountered. |
+| DL-18 | PASS for visible numbers reached: clocks, the third coffee, and forty drops belonged to the scene. This is not an audit of unseen numbers. |
+| DL-19 | PASS for tested mood cues: “she’d put it off” or “she’s against it” preceded refusals; “she’s willing” preceded the coffee acceptance. These were useful predictions, not established guarantees. |
+| DL-20 | PASS for encountered action-critical English. “the pencil is the other voice,” “Tap one to say it,” and “the small words are her mood about each” explained the local presentation at the first choice (`03-alarm-choice`). Names did not require translation. |
+| DL-21 | NOT TESTED: Monday and ordinary clock times were readable, but I met no deadline requiring comparison with today, no month/year boundary, and no return-from-break date test. |
+| DL-22 | PASS for observed 360×690 screens: immediate choices, context, and the reply fit without scrolling. The three-option lunch and bedtime cards fit, as did the menu’s Close control (`12`, `18`, `19`, `22`). I did not scroll. |
+| DL-23 | NOT TESTED quantitatively: no target overlap or mis-hit during intentional clicks was observed, but no hit-area measurements were made. The stale-screen accident does not establish a target-size failure. |
+| DL-24 | PASS for the single menu opened and closed: Close returned to the scene. Nested sheets, keyboard, and focus restoration NOT TESTED. |
+| DL-25 | NOT TESTED in full: no horizontal overflow observed at 360×690 or the one desktop cover look. 320 px, 200% text, and dark mode were not tested. |
+| DL-26 | PASS for discovery reached: top-right menu icon opened a sheet titled “Game menu,” containing Download this run, Send this run to the notebook, and Replay a run file (`18-menu-open`). All games was separate on the cover. |
+| DL-27 | NOT TESTED: no reload/resume. The desktop opening used a fresh context and is not resume evidence. |
+| DL-28 | NOT TESTED: sending was not authorized and was not attempted. |
+| DL-29 | NOT TESTED: neither download nor player-facing replay was attempted. No replay claim. |
+
+## Changes I would want as Farah
+
+1. Let me try pressing and holding through an ordinary first interaction, before I settle into repeating taps that she refuses. I understood the words of the instruction, but I did not put it into practice in this run. This is a player request; its benefit is untested here.
+2. Give me a different response after repeated refusals instead of repeating “Another time, press and hold a suggestion to insist. I might listen.” It began to feel like a correction rather than Dilan speaking.
+3. Let me revisit my suggestion alongside her actual choice after the next moment arrives. At the stale-screen moment, I needed to distinguish what I meant to say from what she had already done.
+
+These are ranked wishes from this short session, not implementation findings. No source review, hidden-state explanation, export analysis, send test, or completed-run claim is included.

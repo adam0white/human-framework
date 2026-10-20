@@ -1,0 +1,104 @@
+Screenshots stayed in the driver's scratch folder and are not kept.
+
+# Neighbours — source-unread playtest
+
+## First minute
+
+Recorded at 65.3 real seconds. No input after 47.4 s until this checkpoint was written. An automatic screenshot was saved at 60 s; the observed checkpoint screen is `09-first-minute-observed.png`. The clock began on the opening screen at 2026-10-20T11:16:00Z. The opening screenshot caught a fade; readable opening observed at 10.3 s.
+
+| Item | Status | Original checkpoint answer |
+|---|---|---|
+| DL-1 A reason to act | PASS | I want to help repair the flooded Hall. The opening says the town is rebuilding after a flood, and the Hall says Needs help. |
+| DL-2 What can I touch | PASS | Map places, round initials, the bottom Hall and people chips, Play, Step, Next, the speed selector, Game menu and tabs look tappable. I tried the Hall drawing, Walk and Play; all answered. I have not found an inert control. The sheet appeared after the first screenshot of my tap, so I scrolled once while looking for it. |
+| DL-3 Urgency and selection | PASS | Needs help drew me to the Hall. Choose a place to walk was the competing instruction. The Hall outline and then its named sheet told me what I selected. Now Paused for a new story and Read story compete with two talk buttons. I do not know what the story is yet. |
+| DL-4 Why the limit | PASS | While walking, Walk was unavailable and said Your walk must end before you can walk somewhere else. It told me to press Play to set off. The Hall is closed pending safe inspection, and Talk to Ada offers to leave a question for an inspector and wait up to two hours. I do not yet know whether that will reopen it. |
+| DL-5 Readable situation | PASS | I am at the Hall: You are here. The hall needs repairs. I can Talk to Ada about an inspector or Talk to Noor about a paid coordination shift. Play is stopped for a new story, with a Read story link. |
+| DL-6 A choice soon | PASS | Meaningful destinations were visible by 20.7 s. My first meaningful input was the Hall at 29.7 s. Enter town was at 15.0 s. A choice was available within 30 seconds, after the short opening. |
+| DL-7 Learn by doing | PASS for reached interactions; NOT TESTED for two talk interactions | Selecting a place opened its sheet; Walk queued a trip rather than moving immediately; Press Play to set off taught me how to begin. At the checkpoint I have arrived, so the walk made sense. I used no separate help. Talk to Ada and Talk to Noor are two interactions not yet tried. |
+
+## Session facts
+
+- Persona: Abena, 46, community nurse. Plays Spiritfarer and Animal Crossing. On the bus between visits, wants to do one kind thing for a neighbour and see it land.
+- Live page: https://neighbours.adamwhite.work. No build identifier was visibly available on the screens I met.
+- Access: headless Chromium through Playwright, one page held open by a local Node HTTP server. Screenshots and normal pointer clicks and scrolling only. Phone context used touch emulation and light mode at 360×690 CSS px. No speed changes.
+- Timing: first screen 2026-10-20T11:16:00Z; voluntary stop 11:18:29.805Z, 149.7 seconds elapsed. Budget was eight real minutes, not exhausted. Game clock went from Day 1, 08:00 to Day 1, 13:45. Report writing during the checkpoint took real time while the game was already paused for a story.
+- Post-session desktop look: same page resized to 1280×800 and reloaded. Opening screen observed at 171.3 s. No further gameplay. [Desktop first screen](neighbours4-shots/21-desktop-first-screen.png) shows a clear Enter town button and readable introductory text with space around it. I did not test continuing the saved town.
+- Only the two authorized instruction documents were read. No source, repository, prior report, hidden state, network payload or debug API was inspected. No telemetry submission, consent change, run send or export download was performed. No tool step failed.
+- Wall-clock event and original reaction records were appended during play to `neighbours4-shots/wall-clock.jsonl`. Screenshots are in `neighbours4-shots/`. Some immediate screenshots caught UI transitions; the settled screenshots below carry the observations.
+
+## Verbatim diary
+
+These reactions keep the wording recorded during play. Times are real elapsed seconds.
+
+**10.3 s:** “The heading says Neighbours. I can make out a town rebuilding after a flood, but the rest is still very faint. I am waiting for the page to settle.”
+
+**20.7 s:** “Enter town is the clear button, so I tapped it. I want to find someone whose day I can make easier. Now it says it is bringing Alder Quay to life.”
+
+**29.7 s:** “The Hall says Needs help, so that pulls me first. The map places, round initials, bottom Hall and people chips, Play, Step, Next and menu look tappable. I think the red line means Choose a place to walk is selected; I am guessing. I will go where help is needed.”
+
+**44.2 s:** “The Hall opened a sheet: I am at Riverside homes, and walking there costs about 45 minutes. I tapped Walk. It says Requesting your action, and The town is finishing another action. Wait for it to finish. I have not seen myself arrive yet.”
+
+**93.9 s:** “I have arrived. A paid shift sounds useful, but the inspector sounds like the thing that could get the Hall open for everyone. I will ask Ada first.”
+
+**109.9 s:** “I expected to ask about the inspector. Ada instead offers Cover an hour for Ada at the Workshop, and she gets the two-coin wage. That is a kind thing I can do. Her noticeboard question is cut off at the bottom, so I want to read it before choosing.”
+
+**128.1 s:** “Covering the hour became a promise to Ada, due Day 1 at 18:00. I thought the button meant I was starting a shift that ended at 11:00. The bottom does say Press Play to begin your hour, so I will do that. I want to see Ada actually get the help.”
+
+**149.7 s:** “There it is: Ada remembers. You covered that hour for me. I received the two coins. That feels like the thing I came for. The promise was kept, and she says so herself. I paused so I could read it. I would put the phone away here between visits; I do not need to fix the whole town today.”
+
+## Inputs and visible answers
+
+| Elapsed | Input or observation | Visible answer / evidence |
+|---|---|---|
+| 0.0–10.3 s | Open live URL; wait | Opening fade then “A town rebuilding after a flood.” “Watch a day unfold, or help your neighbours rebuild.” [Opening](neighbours4-shots/01-opening-settled.png). |
+| 15.0 s | Tap Enter town | “Bringing Alder Quay to life.” First visit downloads the Python runtime. [Loading](neighbours4-shots/02-enter-town.png). |
+| 20.7 s | Observe town | Day 1, 08:00, Rain. “Choose a place to walk”; Hall “Needs help.” Play stopped; 1×, 12.5 min/s. This is the first observed availability of a meaningful destination choice. [Town](neighbours4-shots/03-town-ready.png). |
+| 29.7 s | Tap Hall drawing | Hall outline appears; an immediate screenshot preceded the settled sheet. [Selection](neighbours4-shots/04-hall.png). |
+| 34.5 s | Scroll down once while looking for response | Flooded hall sheet visible. “Walk to Flooded hall · ~45 min”; “You are at Riverside homes”; “0/12 repairs; closed pending safe inspection.” I cannot establish whether the scroll was necessary or the sheet simply finished appearing. [Hall sheet](neighbours4-shots/05-hall-response.png). |
+| 38.6 s | Tap Walk | “Requesting your action…” and a temporary busy explanation. [Acknowledgment](neighbours4-shots/06-walk-command.png). |
+| 44.2 s | Observe settled answer | “Press Play to set off”; “Walking to Flooded hall, arriving about 08:45”; “Your walk must end before you can walk somewhere else.” [Queued walk](neighbours4-shots/07-walk-result.png). |
+| 47.4 s | Tap Play | Pause control appears. Walking remains visible. [Walking](neighbours4-shots/08-play.png). |
+| 60 s / 65.3 s | Automatic screenshot / observe checkpoint; no input | At Day 1, 09:30, “You are here.” Talk to Ada and Talk to Noor available. “Paused for a new story” / “Read story.” [Observed checkpoint](neighbours4-shots/09-first-minute-observed.png). |
+| 65.3–89.4 s | Write First minute; no gameplay input | Original checkpoint written before continuing. Game already paused for story. |
+| 94.1 s | Tap “Talk to Ada · Leave a question for an inspector and wait up to two hours” | Settled sheet instead foregrounds “Cover an hour for Ada.” “You could cover a paid hour at Workshop for Ada. Ada would receive the two-coin wage.” Cost: “90 min including the walk · ends Day 1 · 11:00. Starts your work now; no request in return.” [Ada sheet, 101.0 s](neighbours4-shots/12-ada-settled.png). |
+| 110.0 s | Scroll Ada sheet down | Noticeboard: “How can I tell whether the timber is safe?” “You can help with an hour of work while they wait.” Also “Ask Ada to do something” and “Your journal.” I did not open those. [Scrolled sheet](neighbours4-shots/13-ada-read.png). |
+| 114.2 s | Scroll back up | Return to Cover an hour for Ada. |
+| 117.6 s | Tap Cover an hour for Ada | By 120.5 s, “Your promises”; “To Ada: cover a paid shift for Ada, by Day 1 · 18:00. You are busy.” “Ada cannot talk here now.” Bottom cue: “Press Play to begin your hour.” [Accepted commitment](neighbours4-shots/16-cover-response.png). |
+| 128.1 s | Tap Play | Leave speed at 1×. Wait ten real seconds, then inspect. |
+| 142.9 s | Observe, no input | Day 1, 12:30. “Ada remembers”: “You covered that hour for me. I received the two coins.” “You covered a paid shift for Ada at Workshop; Ada received the 2-coin wage. That kept your promise to Ada.” [Kindness acknowledged](neighbours4-shots/18-hour-progress.png). |
+| 149.7 s | Tap Pause; stop voluntarily | Day 1, 13:45. Ada’s acknowledgment remains. “Ada is not with you. Only people at the same place, and awake, can hear you.” “Walk to Flooded hall to talk · ~30 min.” [Final phone screen](neighbours4-shots/20-stop.png). |
+
+## Best, worst and leaving
+
+**Best:** Ada says she received the two coins. It is a small, specific benefit to a named person, and she remembers it. I did not have to infer kindness from a score.
+
+**Worst:** I selected an inspector conversation and arrived at a work-cover offer. I could still find something worthwhile, but I briefly lost the thread I had chosen. Scrolling to read her noticeboard question added friction on the phone.
+
+I did not become bored or substantially frustrated. I stopped at 149.7 s because the kind act had landed and this felt like a complete bus-sized visit. I would return voluntarily to see what happens with the Hall and Ada’s inspector, but I did not continue just to finish a test. The game itself had not ended.
+
+## Clarity findings
+
+- **DL-19: FAIL for the inspector conversation cue.** I tapped “Talk to Ada · Leave a question for an inspector and wait up to two hours.” The first response offered “Cover an hour for Ada.” After scrolling, I learned Ada had already left a question. The selected cue led me to expect an inspector question action. The sheet led with a different action. Evidence: checkpoint screenshot 09, settled sheet 12, scrolled sheet 13. I did not establish whether another inspector action existed elsewhere.
+- **DL-22: FAIL for keeping the selected inspector context beside the response.** At 360×690, Cover an hour and its wage/time summary fit, but Ada’s noticeboard question and explanation continued below the visible sheet. I scrolled to finish that context; then the cover button was above the visible area and I scrolled back. This is a narrow failure for the conversation I selected, not a claim that all phone responses require scrolling. Evidence: screenshots 12 and 13. The later kindness acknowledgment, the walk cue, and Play all fit without scrolling (screenshots 07 and 20).
+- **DL-13: PASS for actions reached.** Map selection, queued walking, starting the clock and covering work all received visible answers. The temporary “Requesting your action…” resolved without another tap. I did not repeat an uncertain input and did not test duplicates.
+- **DL-14: PASS for the cover action reached.** Before committing I could read the recipient, two-coin wage, 90 minutes including the walk and estimated 11:00 finish. The later promise deadline of 18:00 briefly made me wonder whether I had merely promised instead of starting, but “Press Play to begin your hour” resolved my next input. I did not establish why that deadline differs from the estimated finish.
+- **DL-4 after the checkpoint: PASS for the new limit reached.** “Ada is not with you. Only people at the same place, and awake, can hear you,” with “Walk to Flooded hall to talk · ~30 min,” explains why I cannot talk and an available response. No builder checks were performed.
+- **DL-15: partly observed, full test NOT TESTED.** Clock, speed, Play/Pause and automatic story pause were visible. I did not change speed or test whether a live choice stays open at fast speed. I never opened Read story.
+
+These findings report player observations. The first-minute statuses remain as recorded; later learning does not change them. Noor’s interaction, requests, help beyond the contextual text, save/resume, the game ending, sending and replay were not tested. I did not measure target sizes, inspect reflow internals or perform any builder check.
+
+## English, dates and phone layout
+
+| Item | Status | Evidence and limits |
+|---|---|---|
+| DL-20 | PASS for reached play | Walk, Play, Talk, work-cover offer, wage, promise and outcome were understandable in English. Alder Quay was a place name. No necessary untranslated local term was encountered; that case is NOT TESTED. |
+| DL-21 | PASS on first encounter; returning after a break NOT TESTED | Day 1 and the clock made same-day times comparable. At 09:30 I could understand a 90-minute trip/work estimate ending 11:00, and the same-day 18:00 promise deadline as later today. No cross-month/year deadline was met. The post-session reload was only an opening-screen look, not a date/resume test. |
+| DL-22 | FAIL in Ada’s inspector context; other reached responses fit | See screenshots 12–13 and the narrow finding above. The work offer’s immediate button and cost fit, but finishing the selected inspector context required scrolling and hid that button. Final acknowledgment and Play were both visible in screenshot 20. Keyboard-open layout was NOT TESTED. |
+
+## Changes I would want, ranked
+
+1. Make Ada’s inspector conversation cue match the first action I see. I want to know whether I am asking about the Hall or covering her work.
+2. Keep her short noticeboard explanation visible with the work offer on my phone, so I can decide without scrolling down and back up.
+3. Say plainly that the hour is queued for Play, and distinguish the expected finish from the promise deadline in that same response.
+
+No export was downloaded. No replay claim is made.
