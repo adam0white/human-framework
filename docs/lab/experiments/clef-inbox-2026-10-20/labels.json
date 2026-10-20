@@ -1,0 +1,466 @@
+{
+  "labelled": "2026-10-20, by the Opus lead, before any model output",
+  "statements": [
+    {
+      "id": "S-01",
+      "run": "r-1hc66srngy",
+      "game": "murmur",
+      "kind": "owner",
+      "words": "Still so much fun. We both need more of the same as well as other campaigns.",
+      "category": "delight",
+      "severity": 0,
+      "doubt": false
+    },
+    {
+      "id": "S-02",
+      "run": "r-1hc66srngy",
+      "game": "murmur",
+      "kind": "owner",
+      "words": "The intentionally missing story parts are definitely something to keep doing, like that email about a subscription; is it a gym membership? We'll never know.",
+      "category": "delight",
+      "severity": 0,
+      "doubt": false
+    },
+    {
+      "id": "S-03",
+      "run": "r-1hc66srngy",
+      "game": "murmur",
+      "kind": "owner",
+      "words": "\"Coffee. Same as yesterday\" wasn't the same as yesterday.",
+      "category": "bug",
+      "severity": 1,
+      "doubt": false
+    },
+    {
+      "id": "S-04",
+      "run": "r-1hc66srngy",
+      "game": "murmur",
+      "kind": "owner",
+      "words": "Redundancy, let's eliminate it. Find an intuitive way to not show the outcome at the bottom and in the log.",
+      "category": "repetition",
+      "severity": 1,
+      "doubt": true
+    },
+    {
+      "id": "S-05",
+      "run": "r-1hc66srngy",
+      "game": "murmur",
+      "kind": "owner",
+      "words": "I am now connected to her. I am her. I want to keep pushing her to do better. I can do better. We can all do better, let's improve the game with more polish and expansion.",
+      "category": "delight",
+      "severity": 0,
+      "doubt": true
+    },
+    {
+      "id": "S-06",
+      "run": "r-1hc66srngy",
+      "game": "murmur",
+      "kind": "owner",
+      "words": "Sorry my firefox is having a signal and thus no anon events for you.",
+      "category": "tooling",
+      "severity": 0,
+      "doubt": false
+    },
+    {
+      "id": "S-07",
+      "run": "r-4btpch9kdq",
+      "game": "stairwell",
+      "kind": "owner",
+      "words": "This is gonna stay fun. Keep expanding on it.",
+      "category": "delight",
+      "severity": 0,
+      "doubt": false
+    },
+    {
+      "id": "S-08",
+      "run": "r-4btpch9kdq",
+      "game": "stairwell",
+      "kind": "owner",
+      "words": "Find ways to improve the UI on mobile and desktop, including making the building shown bigger.",
+      "category": "layout",
+      "severity": 1,
+      "doubt": false
+    },
+    {
+      "id": "S-09",
+      "run": "r-4sha5x28jz",
+      "game": "rope",
+      "kind": "owner",
+      "words": "Speed ran things, after auto ending the night it still didn't end",
+      "category": "bug",
+      "severity": 2,
+      "doubt": false
+    },
+    {
+      "id": "S-10",
+      "run": "r-5b2v5nmrbm",
+      "game": "glance",
+      "kind": "owner",
+      "words": "Love the font showing the sleep visibly. Love the simplicity and the hidden layer behind.",
+      "category": "delight",
+      "severity": 0,
+      "doubt": false
+    },
+    {
+      "id": "S-11",
+      "run": "r-5b2v5nmrbm",
+      "game": "glance",
+      "kind": "owner",
+      "words": "Only missing piece is a goal and a bit more knowledge at the beginning.",
+      "category": "unclear",
+      "severity": 1,
+      "doubt": true
+    },
+    {
+      "id": "S-12",
+      "run": "r-5b2v5nmrbm",
+      "game": "glance",
+      "kind": "owner",
+      "words": "I think showing the end-day report at the beginning for 10 seconds tutorial would be fair.",
+      "category": "direction",
+      "severity": 1,
+      "doubt": false
+    },
+    {
+      "id": "S-13",
+      "run": "r-9m8bdyfbac",
+      "game": "stairwell",
+      "kind": "owner",
+      "words": "Irresistibly enjoyable. I can't stop making up something about everyone (though good things only, for now at least)! I can't, you know, just shut up and only do the work. Coz there's nothing else to do lol! I now understand kapici people.",
+      "category": "delight",
+      "severity": 0,
+      "doubt": false
+    },
+    {
+      "id": "S-14",
+      "run": "r-9m8bdyfbac",
+      "game": "stairwell",
+      "kind": "owner",
+      "words": "This is a game of gossip, such relatable, and I need this to be expanded greatly. Actual backstories that progress and are well hidden from the player so it's difficult to untangle, but with real outcomes like hidden achievements or unlockable story paths and events.",
+      "category": "direction",
+      "severity": 0,
+      "doubt": false
+    },
+    {
+      "id": "S-15",
+      "run": "r-9m8bdyfbac",
+      "game": "stairwell",
+      "kind": "owner",
+      "words": "We might be able to give the log section more room on bigger screens, including phone.",
+      "category": "layout",
+      "severity": 1,
+      "doubt": false
+    },
+    {
+      "id": "S-16",
+      "run": "r-e0skfdstp7",
+      "game": "goodhands",
+      "kind": "owner",
+      "words": "Trial morning is stuck. No negotiation possible.",
+      "category": "bug",
+      "severity": 3,
+      "doubt": false
+    },
+    {
+      "id": "S-17",
+      "run": "r-e0skfdstp7",
+      "game": "goodhands",
+      "kind": "owner",
+      "words": "I'm able to interview anyone immediately.",
+      "category": "difficulty",
+      "severity": 1,
+      "doubt": true
+    },
+    {
+      "id": "S-18",
+      "run": "r-e0skfdstp7",
+      "game": "goodhands",
+      "kind": "owner",
+      "words": "Calling references again is useless and adds duplicate entries to the book.",
+      "category": "bug",
+      "severity": 1,
+      "doubt": true
+    },
+    {
+      "id": "S-19",
+      "run": "r-e0skfdstp7",
+      "game": "goodhands",
+      "kind": "owner",
+      "words": "The UI could be improved. The lost jobs still show.",
+      "category": "layout",
+      "severity": 1,
+      "doubt": true
+    },
+    {
+      "id": "S-20",
+      "run": "r-e0skfdstp7",
+      "game": "goodhands",
+      "kind": "owner",
+      "words": "No ability to talk to the families besides sending someone.",
+      "category": "agency",
+      "severity": 1,
+      "doubt": false
+    },
+    {
+      "id": "S-21",
+      "run": "r-e0skfdstp7",
+      "game": "goodhands",
+      "kind": "owner",
+      "words": "I think this game has very good potential if we can keep working on the back stories as well as play testers to polish it a lot more.",
+      "category": "direction",
+      "severity": 0,
+      "doubt": false
+    },
+    {
+      "id": "S-22",
+      "run": "r-fgwh2n18xw",
+      "game": "glance",
+      "kind": "owner",
+      "words": "is there an end to this? Can't tell. Definitely fun.",
+      "category": "unclear",
+      "severity": 1,
+      "doubt": true
+    },
+    {
+      "id": "S-23",
+      "run": "r-hg9afqattq",
+      "game": "glance",
+      "kind": "owner",
+      "words": "Still a bit confusing; the weir, the river, what to do, the gate levels; but getting better.",
+      "category": "unclear",
+      "severity": 2,
+      "doubt": false
+    },
+    {
+      "id": "S-24",
+      "run": "r-qax48tk58y",
+      "game": "hearsay",
+      "kind": "owner",
+      "words": "Current issues on mobile.",
+      "category": "layout",
+      "severity": 1,
+      "doubt": false
+    },
+    {
+      "id": "S-25",
+      "run": "r-qax48tk58y",
+      "game": "hearsay",
+      "kind": "owner",
+      "words": "Too little time to understand and react to events and things. Too many people to keep track of.",
+      "category": "difficulty",
+      "severity": 2,
+      "doubt": false
+    },
+    {
+      "id": "S-26",
+      "run": "r-qax48tk58y",
+      "game": "hearsay",
+      "kind": "owner",
+      "words": "The goals are not apparent after the intro.",
+      "category": "unclear",
+      "severity": 2,
+      "doubt": false
+    },
+    {
+      "id": "S-27",
+      "run": "r-qax48tk58y",
+      "game": "hearsay",
+      "kind": "owner",
+      "words": "Too much scrolling.",
+      "category": "layout",
+      "severity": 1,
+      "doubt": false
+    },
+    {
+      "id": "S-28",
+      "run": "r-qax48tk58y",
+      "game": "hearsay",
+      "kind": "owner",
+      "words": "Game should keep track of things to simply disallow me from repeating useless acts like telling about and event to someone again, or spreading old news and whatnot.",
+      "category": "direction",
+      "severity": 1,
+      "doubt": true
+    },
+    {
+      "id": "S-29",
+      "run": "r-qax48tk58y",
+      "game": "hearsay",
+      "kind": "owner",
+      "words": "Also the game is still running while I type this lol. The menu also didn't close when this one opened",
+      "category": "bug",
+      "severity": 1,
+      "doubt": false
+    },
+    {
+      "id": "S-30",
+      "run": "r-s3kb1atjbk",
+      "game": "murmur",
+      "kind": "owner",
+      "words": "Wow. It's just the right amount of expiring decisions, backstory, the buildup, habits, everything. Just wow.",
+      "category": "delight",
+      "severity": 0,
+      "doubt": false
+    },
+    {
+      "id": "S-31",
+      "run": "r-s3kb1atjbk",
+      "game": "murmur",
+      "kind": "owner",
+      "words": "Some sentences can be slightly longer to clear confusion.",
+      "category": "unclear",
+      "severity": 1,
+      "doubt": true
+    },
+    {
+      "id": "S-32",
+      "run": "r-s3kb1atjbk",
+      "game": "murmur",
+      "kind": "owner",
+      "words": "This one needs no further tutorial, it becomes self evident.",
+      "category": "delight",
+      "severity": 0,
+      "doubt": false
+    },
+    {
+      "id": "S-33",
+      "run": "r-yzbd6wq2da",
+      "game": "warren",
+      "kind": "owner",
+      "words": "Good start. We need improvements in UI, usability, game play, understanding.",
+      "category": "direction",
+      "severity": 1,
+      "doubt": true
+    },
+    {
+      "id": "S-34",
+      "run": "r-yzbd6wq2da",
+      "game": "warren",
+      "kind": "owner",
+      "words": "The UI has an extra scroll due to the privacy link.",
+      "category": "layout",
+      "severity": 1,
+      "doubt": false
+    },
+    {
+      "id": "S-35",
+      "run": "r-yzbd6wq2da",
+      "game": "warren",
+      "kind": "owner",
+      "words": "It can start as more zoomed in and go out as we build larger base.",
+      "category": "direction",
+      "severity": 1,
+      "doubt": true
+    },
+    {
+      "id": "S-36",
+      "run": "r-yzbd6wq2da",
+      "game": "warren",
+      "kind": "owner",
+      "words": "I need to understand the goals, and current state better, and just what are we doing here.",
+      "category": "unclear",
+      "severity": 2,
+      "doubt": false
+    }
+  ],
+  "notes": [
+    {
+      "id": "r-1hc66srngy",
+      "game": "murmur",
+      "kind": "owner",
+      "words": "Still so much fun. We both need more of the same as well as other campaigns. The intentionally missing story parts are definitely something to keep doing, like that email about a subscription; is it a gym membership? We'll never know.\n\"Coffee. Same as yesterday\" wasn't the same as yesterday.\nRedundancy, let's eliminate it. Find an intuitive way to not show the outcome at the bottom and in the log.\nI am now connected to her. I am her. I want to keep pushing her to do better. I can do better. We can all do better, let's improve the game with more polish and expansion. Sorry my firefox is having a signal and thus no anon events for you.",
+      "verdict": "keep",
+      "severity": 1,
+      "categories": ["delight", "bug", "repetition", "tooling", "direction"]
+    },
+    {
+      "id": "r-4btpch9kdq",
+      "game": "stairwell",
+      "kind": "owner",
+      "words": "This is gonna stay fun. Keep expanding on it. Find ways to improve the UI on mobile and desktop, including making the building shown bigger.",
+      "verdict": "keep",
+      "severity": 1,
+      "categories": ["delight", "layout", "direction"]
+    },
+    {
+      "id": "r-4sha5x28jz",
+      "game": "rope",
+      "kind": "owner",
+      "words": "Speed ran things, after auto ending the night it still didn't end",
+      "verdict": "mixed",
+      "severity": 2,
+      "categories": ["bug"]
+    },
+    {
+      "id": "r-5b2v5nmrbm",
+      "game": "glance",
+      "kind": "owner",
+      "words": "Love the font showing the sleep visibly. Love the simplicity and the hidden layer behind. Only missing piece is a goal and a bit more knowledge at the beginning. I think showing the end-day report at the beginning for 10 seconds tutorial would be fair. Good job.",
+      "verdict": "keep",
+      "severity": 1,
+      "categories": ["delight", "unclear", "direction"]
+    },
+    {
+      "id": "r-9m8bdyfbac",
+      "game": "stairwell",
+      "kind": "owner",
+      "words": "Irresistibly enjoyable. I can't stop making up something about everyone (though good things only, for now at least)! I can't, you know, just shut up and only do the work. Coz there's nothing else to do lol! I now understand kapici people. This is a game of gossip, such relatable, and I need this to be expanded greatly. Actual backstories that progress and are well hidden from the player so it's difficult to untangle, but with real outcomes like hidden achievements or unlockable story paths and events. I'll come back and play this more. We might be able to give the log section more room on bigger screens, including phone. This game is the second great success. Congrats!",
+      "verdict": "keep",
+      "severity": 1,
+      "categories": ["delight", "direction", "layout"]
+    },
+    {
+      "id": "r-e0skfdstp7",
+      "game": "goodhands",
+      "kind": "owner",
+      "words": "Trial morning is stuck. No negotiation possible. I'm able to interview anyone immediately. Calling references again is useless and adds duplicate entries to the book. The UI could be improved. The lost jobs still show. No ability to talk to the families besides sending someone. I think this game has very good potential if we can keep working on the back stories as well as play testers to polish it a lot more. Thanks",
+      "verdict": "mixed",
+      "severity": 3,
+      "categories": ["bug", "difficulty", "layout", "agency", "direction"]
+    },
+    {
+      "id": "r-fgwh2n18xw",
+      "game": "glance",
+      "kind": "owner",
+      "words": "is there an end to this? Can't tell. Definitely fun.",
+      "verdict": "keep",
+      "severity": 1,
+      "categories": ["unclear", "delight"]
+    },
+    {
+      "id": "r-hg9afqattq",
+      "game": "glance",
+      "kind": "owner",
+      "words": "Still a bit confusing; the weir, the river, what to do, the gate levels; but getting better.",
+      "verdict": "mixed",
+      "severity": 2,
+      "categories": ["unclear"]
+    },
+    {
+      "id": "r-qax48tk58y",
+      "game": "hearsay",
+      "kind": "owner",
+      "words": "This has good potential. Current issues on mobile. Too little time to understand and react to events and things. Too many people to keep track of. The goals are not apparent after the intro. Too much scrolling. Game should keep track of things to simply disallow me from repeating useless acts like telling about and event to someone again, or spreading old news and whatnot. Also the game is still running while I type this lol. The menu also didn't close when this one opened",
+      "verdict": "mixed",
+      "severity": 2,
+      "categories": ["layout", "difficulty", "unclear", "direction", "bug"]
+    },
+    {
+      "id": "r-s3kb1atjbk",
+      "game": "murmur",
+      "kind": "owner",
+      "words": "Wow. It's just the right amount of expiring decisions, backstory, the buildup, habits, everything. Just wow. This is like an indie game that I read on a blog winning awards or chosen as most innovative. Executed much better than my direction and ideas. Well done. If it's time that we rank the games, this goes to the top. We need more! Some sentences can be slightly longer to clear confusion. This one needs no further tutorial, it becomes self evident. And despite the low stakes, it connects with the player in such a deep level that the little achievements feel really good. Despite typing all this at almost 1 am (I slept and woke up, don't worry).",
+      "verdict": "keep",
+      "severity": 1,
+      "categories": ["delight", "unclear"]
+    },
+    {
+      "id": "r-yzbd6wq2da",
+      "game": "warren",
+      "kind": "owner",
+      "words": "Good start. We need improvements in UI, usability, game play, understanding. The UI has an extra scroll due to the privacy link. It can start as more zoomed in and go out as we build larger base. I need to understand the goals, and current state better, and just what are we doing here.",
+      "verdict": "mixed",
+      "severity": 2,
+      "categories": ["direction", "layout", "unclear"]
+    }
+  ]
+}

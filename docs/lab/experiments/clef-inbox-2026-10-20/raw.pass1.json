@@ -1,0 +1,2397 @@
+[
+ {
+  "unit": "statement",
+  "id": "S-01",
+  "ms": 3995.0694169999997,
+  "inTok": 534,
+  "usd": 0.00012816,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "delight",
+    "probabilities": {
+     "bug": 0.0028,
+     "unclear": 0.0024,
+     "layout": 0.0022,
+     "pacing": 0.0158,
+     "difficulty": 0.0039,
+     "repetition": 0.0189,
+     "agency": 0.0062,
+     "delight": 0.7446,
+     "direction": 0.1988,
+     "tooling": 0.0044
+    },
+    "confidence": 0.5497
+   },
+   "severity": {
+    "type": "score",
+    "score": 0.2658,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.7896,
+     "1": 0.1625,
+     "2": 0.0403,
+     "3": 0.0076
+    },
+    "confidence": 0.5354
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-02",
+  "ms": 402.4918749999997,
+  "inTok": 546,
+  "usd": 0.00013104,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "direction",
+    "probabilities": {
+     "bug": 0.0168,
+     "unclear": 0.0252,
+     "layout": 0.0057,
+     "pacing": 0.0179,
+     "difficulty": 0.0052,
+     "repetition": 0.0081,
+     "agency": 0.0114,
+     "delight": 0.1684,
+     "direction": 0.7325,
+     "tooling": 0.0088
+    },
+    "confidence": 0.5182
+   },
+   "severity": {
+    "type": "score",
+    "score": 0.3191,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.7302,
+     "1": 0.231,
+     "2": 0.0283,
+     "3": 0.0105
+    },
+    "confidence": 0.45
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-03",
+  "ms": 207.6608329999999,
+  "inTok": 530,
+  "usd": 0.0001272,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "repetition",
+    "probabilities": {
+     "bug": 0.3581,
+     "unclear": 0.0466,
+     "layout": 0.0048,
+     "pacing": 0.0124,
+     "difficulty": 0.0054,
+     "repetition": 0.4565,
+     "agency": 0.0674,
+     "delight": 0.0069,
+     "direction": 0.0309,
+     "tooling": 0.011
+    },
+    "confidence": 0.2718
+   },
+   "severity": {
+    "type": "score",
+    "score": 1.3507,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.0982,
+     "1": 0.4815,
+     "2": 0.3917,
+     "3": 0.0286
+    },
+    "confidence": 0.1943
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-04",
+  "ms": 375.4856669999999,
+  "inTok": 542,
+  "usd": 0.00013007999999999997,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "repetition",
+    "probabilities": {
+     "bug": 0.0102,
+     "unclear": 0.0177,
+     "layout": 0.0148,
+     "pacing": 0.0067,
+     "difficulty": 0.0038,
+     "repetition": 0.5061,
+     "agency": 0.0084,
+     "delight": 0.0052,
+     "direction": 0.4069,
+     "tooling": 0.0202
+    },
+    "confidence": 0.3588
+   },
+   "severity": {
+    "type": "score",
+    "score": 1.0235,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.1669,
+     "1": 0.6567,
+     "2": 0.1625,
+     "3": 0.0139
+    },
+    "confidence": 0.3142
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-05",
+  "ms": 303.32916600000044,
+  "inTok": 559,
+  "usd": 0.00013416,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "direction",
+    "probabilities": {
+     "bug": 0.0047,
+     "unclear": 0.0029,
+     "layout": 0.0028,
+     "pacing": 0.012,
+     "difficulty": 0.0064,
+     "repetition": 0.0032,
+     "agency": 0.0089,
+     "delight": 0.0575,
+     "direction": 0.8941,
+     "tooling": 0.0075
+    },
+    "confidence": 0.7812
+   },
+   "severity": {
+    "type": "score",
+    "score": 0.5936,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.5516,
+     "1": 0.3137,
+     "2": 0.124,
+     "3": 0.0107
+    },
+    "confidence": 0.2243
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-06",
+  "ms": 371.3311249999997,
+  "inTok": 531,
+  "usd": 0.00012743999999999999,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "tooling",
+    "probabilities": {
+     "bug": 0.0781,
+     "unclear": 0.0069,
+     "layout": 0.0075,
+     "pacing": 0.0081,
+     "difficulty": 0.0026,
+     "repetition": 0.0026,
+     "agency": 0.0223,
+     "delight": 0.0039,
+     "direction": 0.0137,
+     "tooling": 0.8543
+    },
+    "confidence": 0.7076
+   },
+   "severity": {
+    "type": "score",
+    "score": 1.1776,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.3371,
+     "1": 0.2805,
+     "2": 0.25,
+     "3": 0.1324
+    },
+    "confidence": 0.0298
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-07",
+  "ms": 386.210959,
+  "inTok": 527,
+  "usd": 0.00012648,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "delight",
+    "probabilities": {
+     "bug": 0.0034,
+     "unclear": 0.0023,
+     "layout": 0.0021,
+     "pacing": 0.0096,
+     "difficulty": 0.0035,
+     "repetition": 0.004,
+     "agency": 0.0043,
+     "delight": 0.6309,
+     "direction": 0.3365,
+     "tooling": 0.0034
+    },
+    "confidence": 0.4572
+   },
+   "severity": {
+    "type": "score",
+    "score": 0.1707,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.8561,
+     "1": 0.1228,
+     "2": 0.0153,
+     "3": 0.0058
+    },
+    "confidence": 0.6644
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-08",
+  "ms": 232.05925000000025,
+  "inTok": 534,
+  "usd": 0.00012816,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "direction",
+    "probabilities": {
+     "bug": 0.0059,
+     "unclear": 0.0059,
+     "layout": 0.1748,
+     "pacing": 0.0027,
+     "difficulty": 0.0023,
+     "repetition": 0.002,
+     "agency": 0.0077,
+     "delight": 0.0072,
+     "direction": 0.7871,
+     "tooling": 0.0044
+    },
+    "confidence": 0.6114
+   },
+   "severity": {
+    "type": "score",
+    "score": 1.036,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.2201,
+     "1": 0.5381,
+     "2": 0.2276,
+     "3": 0.0142
+    },
+    "confidence": 0.1866
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-09",
+  "ms": 247.06737500000054,
+  "inTok": 530,
+  "usd": 0.0001272,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "bug",
+    "probabilities": {
+     "bug": 0.5892,
+     "unclear": 0.0314,
+     "layout": 0.0072,
+     "pacing": 0.1059,
+     "difficulty": 0.0191,
+     "repetition": 0.0128,
+     "agency": 0.0894,
+     "delight": 0.0095,
+     "direction": 0.059,
+     "tooling": 0.0765
+    },
+    "confidence": 0.3081
+   },
+   "severity": {
+    "type": "score",
+    "score": 2.2236,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.0488,
+     "1": 0.1185,
+     "2": 0.393,
+     "3": 0.4397
+    },
+    "confidence": 0.1523
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-10",
+  "ms": 237.2967920000001,
+  "inTok": 533,
+  "usd": 0.00012792,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "delight",
+    "probabilities": {
+     "bug": 0.0053,
+     "unclear": 0.0083,
+     "layout": 0.0078,
+     "pacing": 0.0061,
+     "difficulty": 0.0045,
+     "repetition": 0.0047,
+     "agency": 0.0067,
+     "delight": 0.9269,
+     "direction": 0.021,
+     "tooling": 0.0087
+    },
+    "confidence": 0.8443
+   },
+   "severity": {
+    "type": "score",
+    "score": 0.0366,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.9773,
+     "1": 0.0134,
+     "2": 0.0048,
+     "3": 0.0045
+    },
+    "confidence": 0.9404
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-11",
+  "ms": 346.45849999999973,
+  "inTok": 531,
+  "usd": 0.00012743999999999999,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "direction",
+    "probabilities": {
+     "bug": 0.0082,
+     "unclear": 0.065,
+     "layout": 0.0043,
+     "pacing": 0.0655,
+     "difficulty": 0.0454,
+     "repetition": 0.0066,
+     "agency": 0.0255,
+     "delight": 0.0234,
+     "direction": 0.7497,
+     "tooling": 0.0064
+    },
+    "confidence": 0.5266
+   },
+   "severity": {
+    "type": "score",
+    "score": 1.0485,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.1726,
+     "1": 0.6287,
+     "2": 0.1764,
+     "3": 0.0223
+    },
+    "confidence": 0.2755
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-12",
+  "ms": 224.4620420000001,
+  "inTok": 536,
+  "usd": 0.00012864,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "direction",
+    "probabilities": {
+     "bug": 0.0048,
+     "unclear": 0.021,
+     "layout": 0.0088,
+     "pacing": 0.0099,
+     "difficulty": 0.0329,
+     "repetition": 0.0063,
+     "agency": 0.0066,
+     "delight": 0.0113,
+     "direction": 0.8872,
+     "tooling": 0.0112
+    },
+    "confidence": 0.7657
+   },
+   "severity": {
+    "type": "score",
+    "score": 0.7498,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.3675,
+     "1": 0.5288,
+     "2": 0.0901,
+     "3": 0.0136
+    },
+    "confidence": 0.2307
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-13",
+  "ms": 430.3839589999998,
+  "inTok": 575,
+  "usd": 0.000138,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "delight",
+    "probabilities": {
+     "bug": 0.011,
+     "unclear": 0.0086,
+     "layout": 0.0051,
+     "pacing": 0.2257,
+     "difficulty": 0.0097,
+     "repetition": 0.01,
+     "agency": 0.018,
+     "delight": 0.643,
+     "direction": 0.0552,
+     "tooling": 0.0137
+    },
+    "confidence": 0.4093
+   },
+   "severity": {
+    "type": "score",
+    "score": 0.4676,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.641,
+     "1": 0.2631,
+     "2": 0.0833,
+     "3": 0.0126
+    },
+    "confidence": 0.3162
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-14",
+  "ms": 314.2877090000002,
+  "inTok": 571,
+  "usd": 0.00013704,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "direction",
+    "probabilities": {
+     "bug": 0.0027,
+     "unclear": 0.005,
+     "layout": 0.0015,
+     "pacing": 0.052,
+     "difficulty": 0.0054,
+     "repetition": 0.0063,
+     "agency": 0.0072,
+     "delight": 0.0665,
+     "direction": 0.8518,
+     "tooling": 0.0016
+    },
+    "confidence": 0.7031
+   },
+   "severity": {
+    "type": "score",
+    "score": 0.883,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.4254,
+     "1": 0.29,
+     "2": 0.2608,
+     "3": 0.0238
+    },
+    "confidence": 0.1116
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-15",
+  "ms": 298.85312499999964,
+  "inTok": 534,
+  "usd": 0.00012816,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "layout",
+    "probabilities": {
+     "bug": 0.0062,
+     "unclear": 0.0068,
+     "layout": 0.7443,
+     "pacing": 0.0041,
+     "difficulty": 0.0031,
+     "repetition": 0.0031,
+     "agency": 0.0066,
+     "delight": 0.0072,
+     "direction": 0.2102,
+     "tooling": 0.0084
+    },
+    "confidence": 0.5539
+   },
+   "severity": {
+    "type": "score",
+    "score": 0.8753,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.2393,
+     "1": 0.6575,
+     "2": 0.0917,
+     "3": 0.0115
+    },
+    "confidence": 0.3308
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-16",
+  "ms": 247.54312500000015,
+  "inTok": 525,
+  "usd": 0.000126,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "bug",
+    "probabilities": {
+     "bug": 0.4255,
+     "unclear": 0.0185,
+     "layout": 0.0134,
+     "pacing": 0.1147,
+     "difficulty": 0.0558,
+     "repetition": 0.0279,
+     "agency": 0.2626,
+     "delight": 0.0066,
+     "direction": 0.0426,
+     "tooling": 0.0324
+    },
+    "confidence": 0.1895
+   },
+   "severity": {
+    "type": "score",
+    "score": 2.5551,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.0324,
+     "1": 0.0528,
+     "2": 0.2422,
+     "3": 0.6726
+    },
+    "confidence": 0.3532
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-17",
+  "ms": 573.1571249999997,
+  "inTok": 524,
+  "usd": 0.00012576,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "delight",
+    "probabilities": {
+     "bug": 0.0229,
+     "unclear": 0.0273,
+     "layout": 0.0205,
+     "pacing": 0.0636,
+     "difficulty": 0.042,
+     "repetition": 0.0244,
+     "agency": 0.0322,
+     "delight": 0.4817,
+     "direction": 0.2085,
+     "tooling": 0.0769
+    },
+    "confidence": 0.2117
+   },
+   "severity": {
+    "type": "score",
+    "score": 0.212,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.837,
+     "1": 0.1287,
+     "2": 0.0196,
+     "3": 0.0147
+    },
+    "confidence": 0.6236
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-18",
+  "ms": 205.14145800000006,
+  "inTok": 529,
+  "usd": 0.00012696,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "repetition",
+    "probabilities": {
+     "bug": 0.0832,
+     "unclear": 0.0297,
+     "layout": 0.0099,
+     "pacing": 0.0305,
+     "difficulty": 0.0079,
+     "repetition": 0.5842,
+     "agency": 0.0748,
+     "delight": 0.008,
+     "direction": 0.1378,
+     "tooling": 0.034
+    },
+    "confidence": 0.3066
+   },
+   "severity": {
+    "type": "score",
+    "score": 1.1658,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.1911,
+     "1": 0.4888,
+     "2": 0.2832,
+     "3": 0.0369
+    },
+    "confidence": 0.1427
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-19",
+  "ms": 374.385166,
+  "inTok": 528,
+  "usd": 0.00012672,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "direction",
+    "probabilities": {
+     "bug": 0.228,
+     "unclear": 0.1472,
+     "layout": 0.0921,
+     "pacing": 0.0104,
+     "difficulty": 0.0065,
+     "repetition": 0.0083,
+     "agency": 0.0523,
+     "delight": 0.0098,
+     "direction": 0.4291,
+     "tooling": 0.0163
+    },
+    "confidence": 0.1884
+   },
+   "severity": {
+    "type": "score",
+    "score": 1.2137,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.0996,
+     "1": 0.6059,
+     "2": 0.2756,
+     "3": 0.0189
+    },
+    "confidence": 0.2712
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-20",
+  "ms": 347.6649580000012,
+  "inTok": 527,
+  "usd": 0.00012648,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "direction",
+    "probabilities": {
+     "bug": 0.0711,
+     "unclear": 0.0467,
+     "layout": 0.0201,
+     "pacing": 0.0621,
+     "difficulty": 0.014,
+     "repetition": 0.0362,
+     "agency": 0.3304,
+     "delight": 0.0161,
+     "direction": 0.359,
+     "tooling": 0.0443
+    },
+    "confidence": 0.1703
+   },
+   "severity": {
+    "type": "score",
+    "score": 1.4519,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.14,
+     "1": 0.3415,
+     "2": 0.445,
+     "3": 0.0735
+    },
+    "confidence": 0.1196
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-21",
+  "ms": 209.12895799999933,
+  "inTok": 545,
+  "usd": 0.00013079999999999998,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "direction",
+    "probabilities": {
+     "bug": 0.0051,
+     "unclear": 0.0034,
+     "layout": 0.0022,
+     "pacing": 0.0085,
+     "difficulty": 0.003,
+     "repetition": 0.0026,
+     "agency": 0.0074,
+     "delight": 0.247,
+     "direction": 0.7164,
+     "tooling": 0.0044
+    },
+    "confidence": 0.5272
+   },
+   "severity": {
+    "type": "score",
+    "score": 0.3713,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.7089,
+     "1": 0.2202,
+     "2": 0.0615,
+     "3": 0.0094
+    },
+    "confidence": 0.4066
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-22",
+  "ms": 326.99566700000105,
+  "inTok": 530,
+  "usd": 0.0001272,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "delight",
+    "probabilities": {
+     "bug": 0.0136,
+     "unclear": 0.1639,
+     "layout": 0.0079,
+     "pacing": 0.1785,
+     "difficulty": 0.0225,
+     "repetition": 0.0281,
+     "agency": 0.0302,
+     "delight": 0.5298,
+     "direction": 0.0165,
+     "tooling": 0.009
+    },
+    "confidence": 0.2692
+   },
+   "severity": {
+    "type": "score",
+    "score": 0.727,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.4835,
+     "1": 0.3239,
+     "2": 0.1748,
+     "3": 0.0178
+    },
+    "confidence": 0.1594
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-23",
+  "ms": 367.72612499999923,
+  "inTok": 539,
+  "usd": 0.00012936,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "unclear",
+    "probabilities": {
+     "bug": 0.0137,
+     "unclear": 0.7932,
+     "layout": 0.0272,
+     "pacing": 0.0102,
+     "difficulty": 0.0257,
+     "repetition": 0.0067,
+     "agency": 0.0295,
+     "delight": 0.021,
+     "direction": 0.0641,
+     "tooling": 0.0087
+    },
+    "confidence": 0.596
+   },
+   "severity": {
+    "type": "score",
+    "score": 1.4903,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.0472,
+     "1": 0.4293,
+     "2": 0.5096,
+     "3": 0.0139
+    },
+    "confidence": 0.2618
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-24",
+  "ms": 320.50324999999975,
+  "inTok": 521,
+  "usd": 0.00012503999999999998,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "layout",
+    "probabilities": {
+     "bug": 0.1337,
+     "unclear": 0.0135,
+     "layout": 0.7485,
+     "pacing": 0.0064,
+     "difficulty": 0.0042,
+     "repetition": 0.0034,
+     "agency": 0.0357,
+     "delight": 0.0049,
+     "direction": 0.0383,
+     "tooling": 0.0114
+    },
+    "confidence": 0.5347
+   },
+   "severity": {
+    "type": "score",
+    "score": 1.766,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.1125,
+     "1": 0.2079,
+     "2": 0.4809,
+     "3": 0.1987
+    },
+    "confidence": 0.1022
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-25",
+  "ms": 189.33758300000045,
+  "inTok": 536,
+  "usd": 0.00012864,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "pacing",
+    "probabilities": {
+     "bug": 0.019,
+     "unclear": 0.1284,
+     "layout": 0.0226,
+     "pacing": 0.3251,
+     "difficulty": 0.2398,
+     "repetition": 0.0137,
+     "agency": 0.083,
+     "delight": 0.0132,
+     "direction": 0.1364,
+     "tooling": 0.0188
+    },
+    "confidence": 0.1186
+   },
+   "severity": {
+    "type": "score",
+    "score": 1.7243,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.0795,
+     "1": 0.2105,
+     "2": 0.6162,
+     "3": 0.0938
+    },
+    "confidence": 0.2522
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-26",
+  "ms": 327.08995799999866,
+  "inTok": 525,
+  "usd": 0.000126,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "unclear",
+    "probabilities": {
+     "bug": 0.0135,
+     "unclear": 0.6835,
+     "layout": 0.0155,
+     "pacing": 0.0554,
+     "difficulty": 0.027,
+     "repetition": 0.0105,
+     "agency": 0.0211,
+     "delight": 0.0101,
+     "direction": 0.153,
+     "tooling": 0.0104
+    },
+    "confidence": 0.4396
+   },
+   "severity": {
+    "type": "score",
+    "score": 1.575,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.0832,
+     "1": 0.3276,
+     "2": 0.5203,
+     "3": 0.0689
+    },
+    "confidence": 0.1863
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-27",
+  "ms": 347.82995800000026,
+  "inTok": 520,
+  "usd": 0.0001248,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "layout",
+    "probabilities": {
+     "bug": 0.0068,
+     "unclear": 0.0093,
+     "layout": 0.8041,
+     "pacing": 0.0623,
+     "difficulty": 0.0168,
+     "repetition": 0.0103,
+     "agency": 0.0195,
+     "delight": 0.0041,
+     "direction": 0.0616,
+     "tooling": 0.0052
+    },
+    "confidence": 0.6168
+   },
+   "severity": {
+    "type": "score",
+    "score": 1.6039,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.0683,
+     "1": 0.309,
+     "2": 0.5732,
+     "3": 0.0495
+    },
+    "confidence": 0.2415
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-28",
+  "ms": 667.842666999999,
+  "inTok": 548,
+  "usd": 0.00013152,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "direction",
+    "probabilities": {
+     "bug": 0.0075,
+     "unclear": 0.013,
+     "layout": 0.0014,
+     "pacing": 0.018,
+     "difficulty": 0.0021,
+     "repetition": 0.089,
+     "agency": 0.0278,
+     "delight": 0.0039,
+     "direction": 0.8348,
+     "tooling": 0.0025
+    },
+    "confidence": 0.6735
+   },
+   "severity": {
+    "type": "score",
+    "score": 1.2274,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.1517,
+     "1": 0.4845,
+     "2": 0.3485,
+     "3": 0.0153
+    },
+    "confidence": 0.1725
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-29",
+  "ms": 352.7945409999993,
+  "inTok": 538,
+  "usd": 0.00012912,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "bug",
+    "probabilities": {
+     "bug": 0.7016,
+     "unclear": 0.0183,
+     "layout": 0.0388,
+     "pacing": 0.0209,
+     "difficulty": 0.0066,
+     "repetition": 0.0165,
+     "agency": 0.0699,
+     "delight": 0.0211,
+     "direction": 0.0382,
+     "tooling": 0.0681
+    },
+    "confidence": 0.4515
+   },
+   "severity": {
+    "type": "score",
+    "score": 1.2541,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.1389,
+     "1": 0.5016,
+     "2": 0.3261,
+     "3": 0.0334
+    },
+    "confidence": 0.1711
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-30",
+  "ms": 193.94458300000042,
+  "inTok": 541,
+  "usd": 0.00012984,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "delight",
+    "probabilities": {
+     "bug": 0.0093,
+     "unclear": 0.0082,
+     "layout": 0.0071,
+     "pacing": 0.0156,
+     "difficulty": 0.0121,
+     "repetition": 0.0082,
+     "agency": 0.0112,
+     "delight": 0.883,
+     "direction": 0.0351,
+     "tooling": 0.0102
+    },
+    "confidence": 0.7577
+   },
+   "severity": {
+    "type": "score",
+    "score": 0.0566,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.9641,
+     "1": 0.0218,
+     "2": 0.0076,
+     "3": 0.0065
+    },
+    "confidence": 0.9068
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-31",
+  "ms": 283.5025000000005,
+  "inTok": 526,
+  "usd": 0.00012623999999999998,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "unclear",
+    "probabilities": {
+     "bug": 0.0138,
+     "unclear": 0.5492,
+     "layout": 0.0421,
+     "pacing": 0.0187,
+     "difficulty": 0.0141,
+     "repetition": 0.0165,
+     "agency": 0.0163,
+     "delight": 0.0192,
+     "direction": 0.3002,
+     "tooling": 0.0099
+    },
+    "confidence": 0.3281
+   },
+   "severity": {
+    "type": "score",
+    "score": 0.9941,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.1609,
+     "1": 0.6956,
+     "2": 0.1321,
+     "3": 0.0114
+    },
+    "confidence": 0.3698
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-32",
+  "ms": 370.7540420000005,
+  "inTok": 528,
+  "usd": 0.00012672,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "direction",
+    "probabilities": {
+     "bug": 0.0207,
+     "unclear": 0.2152,
+     "layout": 0.0124,
+     "pacing": 0.0312,
+     "difficulty": 0.032,
+     "repetition": 0.0342,
+     "agency": 0.0291,
+     "delight": 0.1208,
+     "direction": 0.4882,
+     "tooling": 0.0162
+    },
+    "confidence": 0.2268
+   },
+   "severity": {
+    "type": "score",
+    "score": 0.3393,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.7269,
+     "1": 0.22,
+     "2": 0.0399,
+     "3": 0.0132
+    },
+    "confidence": 0.4381
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-33",
+  "ms": 226.402333,
+  "inTok": 532,
+  "usd": 0.00012768,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "direction",
+    "probabilities": {
+     "bug": 0.0118,
+     "unclear": 0.12,
+     "layout": 0.0308,
+     "pacing": 0.011,
+     "difficulty": 0.0152,
+     "repetition": 0.0035,
+     "agency": 0.023,
+     "delight": 0.2973,
+     "direction": 0.4829,
+     "tooling": 0.0045
+    },
+    "confidence": 0.2645
+   },
+   "severity": {
+    "type": "score",
+    "score": 1.1532,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.3195,
+     "1": 0.2389,
+     "2": 0.4106,
+     "3": 0.031
+    },
+    "confidence": 0.1049
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-34",
+  "ms": 581.246459,
+  "inTok": 528,
+  "usd": 0.00012672,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "layout",
+    "probabilities": {
+     "bug": 0.0876,
+     "unclear": 0.0126,
+     "layout": 0.7733,
+     "pacing": 0.0066,
+     "difficulty": 0.0045,
+     "repetition": 0.0054,
+     "agency": 0.0167,
+     "delight": 0.0057,
+     "direction": 0.0774,
+     "tooling": 0.0102
+    },
+    "confidence": 0.5692
+   },
+   "severity": {
+    "type": "score",
+    "score": 1.1418,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.0787,
+     "1": 0.7158,
+     "2": 0.1904,
+     "3": 0.0151
+    },
+    "confidence": 0.4067
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-35",
+  "ms": 228.7312920000004,
+  "inTok": 533,
+  "usd": 0.00012792,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "direction",
+    "probabilities": {
+     "bug": 0.0026,
+     "unclear": 0.0026,
+     "layout": 0.0041,
+     "pacing": 0.0037,
+     "difficulty": 0.0032,
+     "repetition": 0.0016,
+     "agency": 0.0043,
+     "delight": 0.0069,
+     "direction": 0.9648,
+     "tooling": 0.0062
+    },
+    "confidence": 0.9232
+   },
+   "severity": {
+    "type": "score",
+    "score": 0.519,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.5374,
+     "1": 0.4139,
+     "2": 0.041,
+     "3": 0.0077
+    },
+    "confidence": 0.2825
+   }
+  }
+ },
+ {
+  "unit": "statement",
+  "id": "S-36",
+  "ms": 256.76679200000035,
+  "inTok": 536,
+  "usd": 0.00012864,
+  "answers": {
+   "category": {
+    "type": "choice",
+    "choice": "unclear",
+    "probabilities": {
+     "bug": 0.0198,
+     "unclear": 0.6012,
+     "layout": 0.0119,
+     "pacing": 0.0351,
+     "difficulty": 0.0129,
+     "repetition": 0.011,
+     "agency": 0.0291,
+     "delight": 0.0092,
+     "direction": 0.2168,
+     "tooling": 0.053
+    },
+    "confidence": 0.3492
+   },
+   "severity": {
+    "type": "score",
+    "score": 1.2958,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.2678,
+     "1": 0.273,
+     "2": 0.3548,
+     "3": 0.1044
+    },
+    "confidence": 0.044
+   }
+  }
+ },
+ {
+  "unit": "note",
+  "id": "r-1hc66srngy",
+  "ms": 409.151249999999,
+  "inTok": 1446,
+  "usd": 0.00034703999999999996,
+  "answers": {
+   "verdict": {
+    "type": "choice",
+    "choice": "keep",
+    "probabilities": {
+     "keep": 0.722,
+     "quit": 0.0072,
+     "mixed": 0.1917,
+     "none": 0.0791
+    },
+    "confidence": 0.4191
+   },
+   "severity": {
+    "type": "score",
+    "score": 1.1312,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.1462,
+     "1": 0.5891,
+     "2": 0.2519,
+     "3": 0.0128
+    },
+    "confidence": 0.2427
+   },
+   "has_bug": {
+    "type": "noul",
+    "noul": 0.3304
+   },
+   "has_unclear": {
+    "type": "noul",
+    "noul": 0.3813
+   },
+   "has_layout": {
+    "type": "noul",
+    "noul": 0.0293
+   },
+   "has_pacing": {
+    "type": "noul",
+    "noul": 0.0799
+   },
+   "has_difficulty": {
+    "type": "noul",
+    "noul": 0.0123
+   },
+   "has_repetition": {
+    "type": "noul",
+    "noul": 0.6329
+   },
+   "has_agency": {
+    "type": "noul",
+    "noul": 0.065
+   },
+   "has_delight": {
+    "type": "noul",
+    "noul": 0.9401
+   },
+   "has_direction": {
+    "type": "noul",
+    "noul": 0.8721
+   },
+   "has_tooling": {
+    "type": "noul",
+    "noul": 0.48
+   }
+  }
+ },
+ {
+  "unit": "note",
+  "id": "r-4btpch9kdq",
+  "ms": 390.31674999999996,
+  "inTok": 1326,
+  "usd": 0.00031824,
+  "answers": {
+   "verdict": {
+    "type": "choice",
+    "choice": "keep",
+    "probabilities": {
+     "keep": 0.7386,
+     "quit": 0.0049,
+     "mixed": 0.0594,
+     "none": 0.1971
+    },
+    "confidence": 0.4506
+   },
+   "severity": {
+    "type": "score",
+    "score": 0.6072,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.51,
+     "1": 0.3839,
+     "2": 0.095,
+     "3": 0.0111
+    },
+    "confidence": 0.2222
+   },
+   "has_bug": {
+    "type": "noul",
+    "noul": 0.014
+   },
+   "has_unclear": {
+    "type": "noul",
+    "noul": 0.0227
+   },
+   "has_layout": {
+    "type": "noul",
+    "noul": 0.52
+   },
+   "has_pacing": {
+    "type": "noul",
+    "noul": 0.0253
+   },
+   "has_difficulty": {
+    "type": "noul",
+    "noul": 0.0119
+   },
+   "has_repetition": {
+    "type": "noul",
+    "noul": 0.0206
+   },
+   "has_agency": {
+    "type": "noul",
+    "noul": 0.0213
+   },
+   "has_delight": {
+    "type": "noul",
+    "noul": 0.8656
+   },
+   "has_direction": {
+    "type": "noul",
+    "noul": 0.8846
+   },
+   "has_tooling": {
+    "type": "noul",
+    "noul": 0.021
+   }
+  }
+ },
+ {
+  "unit": "note",
+  "id": "r-4sha5x28jz",
+  "ms": 334.07950000000164,
+  "inTok": 1311,
+  "usd": 0.00031464,
+  "answers": {
+   "verdict": {
+    "type": "choice",
+    "choice": "mixed",
+    "probabilities": {
+     "keep": 0.0462,
+     "quit": 0.0994,
+     "mixed": 0.7118,
+     "none": 0.1426
+    },
+    "confidence": 0.3854
+   },
+   "severity": {
+    "type": "score",
+    "score": 2.0594,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.0568,
+     "1": 0.1672,
+     "2": 0.436,
+     "3": 0.34
+    },
+    "confidence": 0.1159
+   },
+   "has_bug": {
+    "type": "noul",
+    "noul": 0.8681
+   },
+   "has_unclear": {
+    "type": "noul",
+    "noul": 0.0774
+   },
+   "has_layout": {
+    "type": "noul",
+    "noul": 0.0101
+   },
+   "has_pacing": {
+    "type": "noul",
+    "noul": 0.3313
+   },
+   "has_difficulty": {
+    "type": "noul",
+    "noul": 0.0397
+   },
+   "has_repetition": {
+    "type": "noul",
+    "noul": 0.0232
+   },
+   "has_agency": {
+    "type": "noul",
+    "noul": 0.2957
+   },
+   "has_delight": {
+    "type": "noul",
+    "noul": 0.0289
+   },
+   "has_direction": {
+    "type": "noul",
+    "noul": 0.0464
+   },
+   "has_tooling": {
+    "type": "noul",
+    "noul": 0.2517
+   }
+  }
+ },
+ {
+  "unit": "note",
+  "id": "r-5b2v5nmrbm",
+  "ms": 263.625,
+  "inTok": 1352,
+  "usd": 0.00032448,
+  "answers": {
+   "verdict": {
+    "type": "choice",
+    "choice": "keep",
+    "probabilities": {
+     "keep": 0.8095,
+     "quit": 0.0077,
+     "mixed": 0.1314,
+     "none": 0.0514
+    },
+    "confidence": 0.567
+   },
+   "severity": {
+    "type": "score",
+    "score": 0.9379,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.2017,
+     "1": 0.6682,
+     "2": 0.1206,
+     "3": 0.0095
+    },
+    "confidence": 0.3357
+   },
+   "has_bug": {
+    "type": "noul",
+    "noul": 0.0079
+   },
+   "has_unclear": {
+    "type": "noul",
+    "noul": 0.2036
+   },
+   "has_layout": {
+    "type": "noul",
+    "noul": 0.0133
+   },
+   "has_pacing": {
+    "type": "noul",
+    "noul": 0.0698
+   },
+   "has_difficulty": {
+    "type": "noul",
+    "noul": 0.0157
+   },
+   "has_repetition": {
+    "type": "noul",
+    "noul": 0.0133
+   },
+   "has_agency": {
+    "type": "noul",
+    "noul": 0.0156
+   },
+   "has_delight": {
+    "type": "noul",
+    "noul": 0.9383
+   },
+   "has_direction": {
+    "type": "noul",
+    "noul": 0.8274
+   },
+   "has_tooling": {
+    "type": "noul",
+    "noul": 0.0216
+   }
+  }
+ },
+ {
+  "unit": "note",
+  "id": "r-9m8bdyfbac",
+  "ms": 269.8380419999994,
+  "inTok": 1449,
+  "usd": 0.00034776,
+  "answers": {
+   "verdict": {
+    "type": "choice",
+    "choice": "keep",
+    "probabilities": {
+     "keep": 0.9012,
+     "quit": 0.0083,
+     "mixed": 0.0551,
+     "none": 0.0354
+    },
+    "confidence": 0.7553
+   },
+   "severity": {
+    "type": "score",
+    "score": 0.5129,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.5475,
+     "1": 0.399,
+     "2": 0.0466,
+     "3": 0.0069
+    },
+    "confidence": 0.2816
+   },
+   "has_bug": {
+    "type": "noul",
+    "noul": 0.0106
+   },
+   "has_unclear": {
+    "type": "noul",
+    "noul": 0.0476
+   },
+   "has_layout": {
+    "type": "noul",
+    "noul": 0.3788
+   },
+   "has_pacing": {
+    "type": "noul",
+    "noul": 0.2089
+   },
+   "has_difficulty": {
+    "type": "noul",
+    "noul": 0.0919
+   },
+   "has_repetition": {
+    "type": "noul",
+    "noul": 0.0236
+   },
+   "has_agency": {
+    "type": "noul",
+    "noul": 0.0876
+   },
+   "has_delight": {
+    "type": "noul",
+    "noul": 0.9482
+   },
+   "has_direction": {
+    "type": "noul",
+    "noul": 0.8966
+   },
+   "has_tooling": {
+    "type": "noul",
+    "noul": 0.0187
+   }
+  }
+ },
+ {
+  "unit": "note",
+  "id": "r-e0skfdstp7",
+  "ms": 442.0994580000006,
+  "inTok": 1380,
+  "usd": 0.0003312,
+  "answers": {
+   "verdict": {
+    "type": "choice",
+    "choice": "mixed",
+    "probabilities": {
+     "keep": 0.3005,
+     "quit": 0.0183,
+     "mixed": 0.6279,
+     "none": 0.0533
+    },
+    "confidence": 0.3169
+   },
+   "severity": {
+    "type": "score",
+    "score": 1.9769,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.055,
+     "1": 0.1756,
+     "2": 0.5069,
+     "3": 0.2625
+    },
+    "confidence": 0.1462
+   },
+   "has_bug": {
+    "type": "noul",
+    "noul": 0.8606
+   },
+   "has_unclear": {
+    "type": "noul",
+    "noul": 0.0835
+   },
+   "has_layout": {
+    "type": "noul",
+    "noul": 0.063
+   },
+   "has_pacing": {
+    "type": "noul",
+    "noul": 0.3377
+   },
+   "has_difficulty": {
+    "type": "noul",
+    "noul": 0.1171
+   },
+   "has_repetition": {
+    "type": "noul",
+    "noul": 0.4411
+   },
+   "has_agency": {
+    "type": "noul",
+    "noul": 0.7215
+   },
+   "has_delight": {
+    "type": "noul",
+    "noul": 0.8475
+   },
+   "has_direction": {
+    "type": "noul",
+    "noul": 0.6084
+   },
+   "has_tooling": {
+    "type": "noul",
+    "noul": 0.0936
+   }
+  }
+ },
+ {
+  "unit": "note",
+  "id": "r-fgwh2n18xw",
+  "ms": 259.575667000001,
+  "inTok": 1311,
+  "usd": 0.00031464,
+  "answers": {
+   "verdict": {
+    "type": "choice",
+    "choice": "keep",
+    "probabilities": {
+     "keep": 0.4713,
+     "quit": 0.0225,
+     "mixed": 0.3832,
+     "none": 0.123
+    },
+    "confidence": 0.1794
+   },
+   "severity": {
+    "type": "score",
+    "score": 1.1455,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.2245,
+     "1": 0.435,
+     "2": 0.311,
+     "3": 0.0295
+    },
+    "confidence": 0.1163
+   },
+   "has_bug": {
+    "type": "noul",
+    "noul": 0.0232
+   },
+   "has_unclear": {
+    "type": "noul",
+    "noul": 0.8659
+   },
+   "has_layout": {
+    "type": "noul",
+    "noul": 0.0158
+   },
+   "has_pacing": {
+    "type": "noul",
+    "noul": 0.2857
+   },
+   "has_difficulty": {
+    "type": "noul",
+    "noul": 0.0174
+   },
+   "has_repetition": {
+    "type": "noul",
+    "noul": 0.0623
+   },
+   "has_agency": {
+    "type": "noul",
+    "noul": 0.0284
+   },
+   "has_delight": {
+    "type": "noul",
+    "noul": 0.9136
+   },
+   "has_direction": {
+    "type": "noul",
+    "noul": 0.0191
+   },
+   "has_tooling": {
+    "type": "noul",
+    "noul": 0.0185
+   }
+  }
+ },
+ {
+  "unit": "note",
+  "id": "r-hg9afqattq",
+  "ms": 276.52208299999984,
+  "inTok": 1320,
+  "usd": 0.0003168,
+  "answers": {
+   "verdict": {
+    "type": "choice",
+    "choice": "mixed",
+    "probabilities": {
+     "keep": 0.1681,
+     "quit": 0.0073,
+     "mixed": 0.7763,
+     "none": 0.0483
+    },
+    "confidence": 0.5112
+   },
+   "severity": {
+    "type": "score",
+    "score": 1.6183,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.0358,
+     "1": 0.327,
+     "2": 0.6203,
+     "3": 0.0169
+    },
+    "confidence": 0.3243
+   },
+   "has_bug": {
+    "type": "noul",
+    "noul": 0.0145
+   },
+   "has_unclear": {
+    "type": "noul",
+    "noul": 0.958
+   },
+   "has_layout": {
+    "type": "noul",
+    "noul": 0.0355
+   },
+   "has_pacing": {
+    "type": "noul",
+    "noul": 0.011
+   },
+   "has_difficulty": {
+    "type": "noul",
+    "noul": 0.0435
+   },
+   "has_repetition": {
+    "type": "noul",
+    "noul": 0.0094
+   },
+   "has_agency": {
+    "type": "noul",
+    "noul": 0.0305
+   },
+   "has_delight": {
+    "type": "noul",
+    "noul": 0.3546
+   },
+   "has_direction": {
+    "type": "noul",
+    "noul": 0.0533
+   },
+   "has_tooling": {
+    "type": "noul",
+    "noul": 0.0146
+   }
+  }
+ },
+ {
+  "unit": "note",
+  "id": "r-qax48tk58y",
+  "ms": 248.13354099999924,
+  "inTok": 1394,
+  "usd": 0.00033456,
+  "answers": {
+   "verdict": {
+    "type": "choice",
+    "choice": "mixed",
+    "probabilities": {
+     "keep": 0.0886,
+     "quit": 0.0273,
+     "mixed": 0.8523,
+     "none": 0.0318
+    },
+    "confidence": 0.6481
+   },
+   "severity": {
+    "type": "score",
+    "score": 1.925,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.0408,
+     "1": 0.1093,
+     "2": 0.7339,
+     "3": 0.116
+    },
+    "confidence": 0.4209
+   },
+   "has_bug": {
+    "type": "noul",
+    "noul": 0.8654
+   },
+   "has_unclear": {
+    "type": "noul",
+    "noul": 0.8417
+   },
+   "has_layout": {
+    "type": "noul",
+    "noul": 0.7143
+   },
+   "has_pacing": {
+    "type": "noul",
+    "noul": 0.496
+   },
+   "has_difficulty": {
+    "type": "noul",
+    "noul": 0.2518
+   },
+   "has_repetition": {
+    "type": "noul",
+    "noul": 0.6502
+   },
+   "has_agency": {
+    "type": "noul",
+    "noul": 0.1949
+   },
+   "has_delight": {
+    "type": "noul",
+    "noul": 0.6464
+   },
+   "has_direction": {
+    "type": "noul",
+    "noul": 0.7251
+   },
+   "has_tooling": {
+    "type": "noul",
+    "noul": 0.0216
+   }
+  }
+ },
+ {
+  "unit": "note",
+  "id": "r-s3kb1atjbk",
+  "ms": 430.0760829999999,
+  "inTok": 1441,
+  "usd": 0.00034584,
+  "answers": {
+   "verdict": {
+    "type": "choice",
+    "choice": "keep",
+    "probabilities": {
+     "keep": 0.8152,
+     "quit": 0.0176,
+     "mixed": 0.0691,
+     "none": 0.0981
+    },
+    "confidence": 0.5723
+   },
+   "severity": {
+    "type": "score",
+    "score": 0.6062,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.4332,
+     "1": 0.5337,
+     "2": 0.0268,
+     "3": 0.0063
+    },
+    "confidence": 0.2976
+   },
+   "has_bug": {
+    "type": "noul",
+    "noul": 0.01
+   },
+   "has_unclear": {
+    "type": "noul",
+    "noul": 0.1663
+   },
+   "has_layout": {
+    "type": "noul",
+    "noul": 0.0141
+   },
+   "has_pacing": {
+    "type": "noul",
+    "noul": 0.021
+   },
+   "has_difficulty": {
+    "type": "noul",
+    "noul": 0.0744
+   },
+   "has_repetition": {
+    "type": "noul",
+    "noul": 0.0161
+   },
+   "has_agency": {
+    "type": "noul",
+    "noul": 0.0289
+   },
+   "has_delight": {
+    "type": "noul",
+    "noul": 0.9556
+   },
+   "has_direction": {
+    "type": "noul",
+    "noul": 0.2994
+   },
+   "has_tooling": {
+    "type": "noul",
+    "noul": 0.0138
+   }
+  }
+ },
+ {
+  "unit": "note",
+  "id": "r-yzbd6wq2da",
+  "ms": 415.6212089999972,
+  "inTok": 1362,
+  "usd": 0.00032688,
+  "answers": {
+   "verdict": {
+    "type": "choice",
+    "choice": "mixed",
+    "probabilities": {
+     "keep": 0.1415,
+     "quit": 0.0044,
+     "mixed": 0.7474,
+     "none": 0.1067
+    },
+    "confidence": 0.4534
+   },
+   "severity": {
+    "type": "score",
+    "score": 1.415,
+    "legend": {
+     "0": "None (praise or neutral)",
+     "1": "Minor",
+     "2": "Real friction",
+     "3": "Made the player quit or blocks play"
+    },
+    "probabilities": {
+     "0": 0.0764,
+     "1": 0.4554,
+     "2": 0.4451,
+     "3": 0.0231
+    },
+    "confidence": 0.2159
+   },
+   "has_bug": {
+    "type": "noul",
+    "noul": 0.2574
+   },
+   "has_unclear": {
+    "type": "noul",
+    "noul": 0.8805
+   },
+   "has_layout": {
+    "type": "noul",
+    "noul": 0.7537
+   },
+   "has_pacing": {
+    "type": "noul",
+    "noul": 0.0492
+   },
+   "has_difficulty": {
+    "type": "noul",
+    "noul": 0.0283
+   },
+   "has_repetition": {
+    "type": "noul",
+    "noul": 0.0114
+   },
+   "has_agency": {
+    "type": "noul",
+    "noul": 0.0431
+   },
+   "has_delight": {
+    "type": "noul",
+    "noul": 0.4279
+   },
+   "has_direction": {
+    "type": "noul",
+    "noul": 0.83
+   },
+   "has_tooling": {
+    "type": "noul",
+    "noul": 0.0332
+   }
+  }
+ }
+]
