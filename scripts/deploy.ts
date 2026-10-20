@@ -26,6 +26,9 @@ if (!dryRun) {
   if (git('rev-parse', 'origin/main') !== commit) throw new Error('HEAD is not pushed to origin/main');
 }
 
+// Worktree preparation can leave workspace links pointing at another checkout. Reinstall from the lockfile
+// before checking or bundling so a locally green build uses this checkout's released client.
+run('npm', ['ci', '--no-audit', '--no-fund']);
 run('npm', ['run', 'check']);
 run('npm', ['run', 'build']);
 
