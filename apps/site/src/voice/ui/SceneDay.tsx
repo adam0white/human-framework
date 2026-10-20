@@ -6,7 +6,7 @@ import { DayLog } from './DayLog.tsx';
 import { storyDates } from './dates.ts';
 import { obstacleWords } from './obstacle.ts';
 import { consequentialOffer, speakingOpportunity } from './pause-policy.ts';
-import { StandingCard } from './StandingCard.tsx';
+import { currentReply, sceneResponse } from './scene-response.ts';
 import { deriveScene, nextEncounter, sceneChoices } from './scenes.ts';
 import { explainTerms } from './terms.tsx';
 export interface SceneDayProps {
@@ -46,30 +46,32 @@ export function SceneDay(props: SceneDayProps) {
     setEditor(false);
   };
   const available = frame.composer.open && !frame.muted;
-  const answer = frame.log.findLast((e) => e.kind === 'answer');
-  const you = answer ? frame.log.findLast((e) => e.kind === 'you' && e.minute <= answer.minute) : undefined;
+  const answer = currentReply(frame, scene ?? null);
+  const responseKey = `${scene?.id ?? ''}:${answer?.id ?? ''}`;
+  const responseCache = useRef<{ key: string; value: ReturnType<typeof sceneResponse> } | null>(null);
+  if (responseCache.current?.key !== responseKey)
+    responseCache.current = { key: responseKey, value: sceneResponse(frame, scene ?? null) };
+  const response = responseCache.current.value;
+  const [listened, setListened] = useState<{ id: string; page: number } | null>(null);
+  const page = listened?.id === responseKey ? listened.page : response?.accepted ? 1 : 0;
+  const refused = !!response?.answer && !response.accepted;
+  const progressed = !!response && (page > 0 || refused);
+  const visibleLines = progressed
+    ? [...response.lines, ...(page >= 2 ? response.more : [])]
+    : (scene?.lines ?? []);
+  const canListen = !!response && !refused && page < 2;
   const latestAction = frame.log.findLast((e) => e.kind === 'act');
   const offer = consequentialOffer(frame);
-  const ordinaryChoices = sceneChoices(scene ?? null, frame.options);
-  const priority =
-    offer &&
-    sceneChoices(
-      null,
-      frame.options.filter((o) => o.id === offer.optionId),
-    )[0];
-  const choices = priority
-    ? [priority, ...ordinaryChoices.filter((c) => c.draft.optionId !== priority.draft.optionId)].slice(0, 2)
-    : ordinaryChoices;
+  const choices = sceneChoices(scene ?? null, frame.options, offer);
   const encounter = nextEncounter(frame);
   const opportunity = speakingOpportunity(frame);
-  const earlier = !!answer && !!latestAction && latestAction.minute > answer.minute;
   const replyText =
     answer &&
     spokenLogText(answer.text).replace(
       /^(Talk with Hacer at the door|Have tea with Rıza|Call Selin)\?\s*/,
       '',
     );
-  const reply = answer && (
+  const reply = answer && !response?.answer && (
     <div className="v-scene-answer" aria-live="polite">
       <small>His answer · {answer.clock}</small>
       <p>Halil: {explainTerms(replyText ?? '')}</p>
@@ -94,14 +96,15 @@ export function SceneDay(props: SceneDayProps) {
             selected={props.selected}
           />
         </details>
-        {(frame.standing || you) && !frame.muted && (
+        {frame.standing && !frame.muted && (
           <details className="v-held-words">
             <summary>Your words</summary>
-            {frame.standing ? (
-              <StandingCard standing={frame.standing} onWithdraw={props.onWithdraw} />
-            ) : (
-              <p>{you && explainTerms(spokenLogText(you.text))}</p>
-            )}
+            <p className="v-held-line">
+              {explainTerms(frame.standing.label)} · until {frame.standing.expires}
+              <button type="button" className="v-btn v-btn-quiet" onClick={props.onWithdraw}>
+                Withdraw
+              </button>
+            </p>
           </details>
         )}
         {latestAction?.decisionId && (
@@ -122,13 +125,32 @@ export function SceneDay(props: SceneDayProps) {
             </p>
             <h1>{scene.names.join(' and ')}</h1>
             {scene.kind === 'memory' && <p className="v-scene-memory">He remembers Nuran.</p>}
-            <div className="v-exchange">
-              {scene.lines.map((line) => (
+            {progressed && (
+              <details className="v-conversation-earlier">
+                <summary>Earlier in this conversation</summary>
+                {scene.lines.map((line) => (
+                  <p key={`${line.speaker}:${line.words}`}>
+                    <strong>{line.speaker}:</strong> “{line.words}”
+                  </p>
+                ))}
+              </details>
+            )}
+            <div className="v-exchange" aria-live="polite">
+              {visibleLines.map((line) => (
                 <p className="v-exchange-line" key={`${line.speaker}:${line.words}`}>
                   <strong>{line.speaker}:</strong> “{line.words}”
                 </p>
               ))}
             </div>
+            {canListen && (
+              <button
+                type="button"
+                className="v-conversation-listen v-btn v-btn-quiet"
+                onClick={() => setListened({ id: responseKey, page: page + 1 })}
+              >
+                Keep listening
+              </button>
+            )}
           </article>
         ) : (
           <div className="v-between-scenes">
@@ -137,15 +159,7 @@ export function SceneDay(props: SceneDayProps) {
           </div>
         )}
         {frame.pauseBeat && !scene && <p className="v-scene-notice">{explainTerms(frame.pauseBeat.text)}</p>}
-        {earlier ? (
-          <details className="v-earlier-reply">
-            <summary>Earlier answer · {answer?.clock}</summary>
-            {you && <p>{explainTerms(spokenLogText(you.text))}</p>}
-            {reply}
-          </details>
-        ) : (
-          reply
-        )}
+        {reply}
       </div>
       {editor ? (
         <dialog
@@ -218,7 +232,7 @@ export function SceneDay(props: SceneDayProps) {
               </p>
               {frame.paused && !frame.muted && (
                 <button type="button" className="v-scene-listen v-btn" onClick={onSayNothing}>
-                  Keep listening
+                  Let time pass
                 </button>
               )}
             </div>
@@ -290,7 +304,7 @@ function SceneSuggestions({
         </button>
         {paused ? (
           <button type="button" className="v-scene-listen v-btn v-btn-quiet" onClick={silence}>
-            Keep listening
+            Let time pass
           </button>
         ) : (
           <span className="v-scene-wait">Listening. Silence needs no tap.</span>

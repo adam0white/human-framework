@@ -2,7 +2,8 @@
 import type { Frame } from '../protocol.ts';
 import { deriveScene } from './scenes.ts';
 
-const IMPORTANT = new Set(['see-doctor', 'pay-rent', 'work-extra']);
+// Walk is prefilled when the doctor's advice competes with a cigarette, not for a routine walk.
+const IMPORTANT = new Set(['see-doctor', 'pay-rent', 'work-extra', 'walk']);
 function opportunities(frame: Frame): string[] {
   const keys: string[] = [];
   const scene = deriveScene(frame);

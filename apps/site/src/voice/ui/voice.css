@@ -3067,3 +3067,30 @@ button.v-log-btn {
     grid-column: 1 / -1;
   }
 }
+
+/* Follow-up d: the current reply is conversation; old words stay locally discoverable. */
+.v-conversation-earlier {
+  grid-column: 1 / -1;
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+}
+.v-conversation-earlier summary {
+  min-height: 44px;
+  align-content: center;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.v-conversation-listen {
+  grid-column: 1 / -1;
+  justify-self: start;
+  margin-top: 8px;
+  min-height: 44px;
+}
+.v-held-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 0.8rem;
+}

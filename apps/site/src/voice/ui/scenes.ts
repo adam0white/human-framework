@@ -4,7 +4,7 @@
  * These incidental speakers are narrative presentation, not simulated people or recorded events.
  * It does not infer completed acts, future encounters, consequential requests, or named people’s availability.
  */
-import type { Draft, Frame, LogEntry, OptionView } from '../protocol.ts';
+import type { Draft, Frame, LogEntry, OptionView, Prefill } from '../protocol.ts';
 import { TOWN_DEFAULTS, TOWN_EID_DAY } from '../sim/town.ts';
 import { conversationFor } from './conversations.ts';
 
@@ -238,6 +238,7 @@ const CHOICES: Record<SceneKind, readonly string[]> = {
 export function sceneChoices(
   scene: DayScene | null,
   options: readonly OptionView[],
+  competing?: Prefill,
 ): { label: string; draft: Draft }[] {
   const social = ['call:selin', 'talk:hacer', 'tea:riza'];
   const clinicConcern =
@@ -252,8 +253,9 @@ export function sceneChoices(
   const offered = new Map(options.map((option) => [option.id, option]));
   const candidates = [
     ...new Set([
-      ...(clinicConcern ? ['see-doctor'] : []),
+      ...(competing ? [competing.optionId] : []),
       ...(continuation ? [continuation[0]] : []),
+      ...(clinicConcern ? ['see-doctor'] : []),
       ...preferences,
       ...social,
       ...options.map((option) => option.id),

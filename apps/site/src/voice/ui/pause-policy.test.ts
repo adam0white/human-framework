@@ -3,7 +3,7 @@ import type { Frame } from '../protocol.ts';
 import { sampleFrame } from '../sim/fixtures.ts';
 import { VoiceGame } from '../sim/game.ts';
 import { RecordedGame, replayVoice, voiceHash } from '../sim/record.ts';
-import { PausePolicy, speakingOpportunity } from './pause-policy.ts';
+import { consequentialOffer, PausePolicy, speakingOpportunity } from './pause-policy.ts';
 import { deriveScene } from './scenes.ts';
 
 const frame = (patch: Partial<Frame> = {}): Frame => ({
@@ -144,4 +144,25 @@ it('stops once per day for new important offered prefills, excluding routine act
       }),
     ).toBe(null);
   }
+});
+
+it('keeps the offered walk consequential when the doctor’s advice competes with a cigarette', () => {
+  const policy = new PausePolicy();
+  const cigarette = frame({
+    prefill: {
+      optionId: 'walk',
+      strength: 'mention',
+      source: 'end',
+      appeal: 'safety',
+      why: 'He is reaching for a cigarette. The doctor told him to walk, and to stop smoking.',
+    },
+    options: [{ id: 'walk', label: 'walk by the river', rank: 2, leaning: false }],
+  });
+  expect(consequentialOffer(cigarette)).toEqual(cigarette.prefill);
+  expect(speakingOpportunity(cigarette)).toBe(`offer:${cigarette.day}:walk:end:`);
+  expect(policy.update(cigarette, frame())).toBe('pause');
+  expect(policy.update(cigarette, cigarette)).toBe(null);
+  expect(consequentialOffer({ ...cigarette, options: [] })).toBeUndefined();
+  expect(consequentialOffer({ ...cigarette, composer: { open: false, reason: 'busy' } })).toBeUndefined();
+  expect(consequentialOffer({ ...cigarette, muted: true })).toBeUndefined();
 });

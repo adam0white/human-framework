@@ -375,6 +375,14 @@ Costs and risks: quiet needs and ordinary meal windows no longer demand acknowle
 
 Revert this follow-up commit to restore Follow-up b's layout and automatic stops. No edition setting or save migration is needed. The earlier Ramadan 2 encounter and historical-wording deferrals remain.
 
+### Follow-up d (2026-10-20)
+
+Yusuf's F-251 request was to “hear Halil answer her, not immediately return to a stack of compliance and deferment messages.” The fun review's stay tests still returned “Fine” beneath Selin's unanswered invitation. A recorded agreement in a current named encounter now becomes Halil's answer and his companion's response inside that exchange. Selin and Hacer use the surfaced Nuran/table memory; Rıza uses the same mechanism. Without a memory, present fatigue or rent concerns can supply the reply. Refusals, protests and delays keep his recorded words and alternative. The original answer stays in Timeline.
+
+“Keep listening” reveals at most four additional authored lines for that scene (two after an agreed stay), without sending words or advancing time. The opening folds under “Earlier in this conversation” once the answer arrives. Words freeze for the scene-and-answer occasion. Leaving, the clock and ordinary suggestions remain available. One quick-choice slot carries an offered competing end, including the shortfall shift and the cigarette-intervention walk; the other keeps an offered scene continuation. Old answers end with their occasion, including same-minute changes, and remain in Timeline. A standing word is a short line with Withdraw under “Your words”. Clock resumption says “Let time pass”, distinct from local listening.
+
+Costs and risks: these are bounded UI-authored exchanges, not new memories, relationship outcomes or a dialogue simulation. They can repeat across encounters. A cold retest must judge whether the completed exchange earns another visit and whether the remaining stay suggestion encourages repetition after the local continuation ends. No new deferral, simulation, edition, protocol or HF pin change. Revert this follow-up commit to restore Follow-up c; no save migration is needed. The existing Ramadan 2 encounter and historical-wording deferrals remain.
+
 ## Deferred
 
 Open, unbuilt or unconfirmed items from the design, the build plan and its fourteen passes. Target is "unscheduled" unless stated.
