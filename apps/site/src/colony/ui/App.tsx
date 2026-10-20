@@ -87,6 +87,9 @@ export function App() {
   const [drawer, setDrawer] = useState(false);
   const [ordering, setOrdering] = useState(true);
   const [watching, setWatching] = useState<VillagerId | null>(null);
+  const [watchingPlace, setWatchingPlace] = useState<PlaceId | null>(null);
+  const [followKey, setFollowKey] = useState(0);
+  const [holdKey, setHoldKey] = useState(0);
   /** Phones show one village at a time. Switching keeps the prepared order. */
   const [mapSide, setMapSide] = useState<'classic' | 'human'>('human');
   const flashTimer = useRef(0);
@@ -206,6 +209,8 @@ export function App() {
     actions.order(input, c.nudgeId);
     showFlash(`Order given: ${shortName(input.personId)} → ${PLACE_LABEL[input.placeId]}`);
     setWatching(input.personId);
+    setWatchingPlace(input.placeId);
+    setFollowKey((key) => key + 1);
     setOrdering(false);
     setComposer(EMPTY_COMPOSER);
     setHoverPlace(null);
@@ -335,7 +340,10 @@ export function App() {
     store: colony.store,
     selectedId: composer.personId ?? watching,
     hoverPlace: highlightPlace,
-    destination: composer.placeId,
+    destination: ordering ? composer.placeId : watchingPlace,
+    following: !ordering && watching !== null,
+    followKey,
+    holdKey,
     onSelect: pickWho,
     onPlace: pickWhere,
     onHoverPlace: setHoverPlace,
@@ -437,6 +445,10 @@ export function App() {
               onHover={setHoverPlace}
               onConfirm={confirm}
               onInspect={inspectPersonCb}
+              onCompose={() => {
+                setOrdering(true);
+                setHoldKey((key) => key + 1);
+              }}
             />
           </div>
           <section className={`queue ${drawer ? 'is-open' : ''}`} aria-label="Order log">

@@ -585,9 +585,13 @@ export function SuggestionCard(props: {
   return (
     <div className={`nudge ${props.active ? 'is-active' : ''}`}>
       <div className="nudge-head">
-        <Portrait id={n.order.personId} size={24} />
-        <span className="kicker">Suggestion</span>
-        {props.queued > 0 && <span className="nudge-more">+{props.queued}</span>}
+        <div className="nudge-proposal">
+          <p className="nudge-order">
+            {shortName(n.order.personId)} → {PLACE_LABEL[n.order.placeId]}
+          </p>
+          <p className="nudge-text">{n.text}</p>
+          {n.reason && <p className="nudge-reason">{n.reason}</p>}
+        </div>
         <button type="button" className="btn btn-small" onClick={() => props.onUse(n)}>
           {props.active ? 'In composer' : 'Use'}
         </button>
@@ -602,9 +606,8 @@ export function SuggestionCard(props: {
         </button>
       </div>
       <p className="nudge-availability">Availability may have changed. Use to check the current forecast.</p>
-      <p className="nudge-text">{n.text}</p>
-      {n.reason && <p className="nudge-reason">{n.reason}</p>}
       <div className="nudge-foot">
+        {props.queued > 0 && <span className="nudge-more">+{props.queued} waiting</span>}
         <span className="nudge-timer">
           <RingTimer left={left} span={span} />
           <span>
@@ -664,6 +667,8 @@ export function Composer(props: {
   onHover(p: PlaceId | null): void;
   onConfirm(): void;
   onInspect(id: VillagerId): void;
+  /** Opening a picker holds the current map even when returning from watching. */
+  onCompose?(): void;
 }) {
   const s = props.state;
   const who = s.personId;
@@ -677,7 +682,13 @@ export function Composer(props: {
       aria-label="Order"
     >
       <div className="phone-order-fields">
-        <details className="worker-picker" onToggle={(e) => keepOneDisclosure(e.currentTarget)}>
+        <details
+          className="worker-picker"
+          onToggle={(e) => {
+            keepOneDisclosure(e.currentTarget);
+            if (e.currentTarget.open) props.onCompose?.();
+          }}
+        >
           <summary>Worker · {who ? shortName(who) : 'Choose'}</summary>
           <fieldset className="picker-chips" aria-label="Worker">
             {VILLAGERS.map((p) => (
@@ -696,7 +707,13 @@ export function Composer(props: {
             ))}
           </fieldset>
         </details>
-        <details className="destination-picker" onToggle={(e) => keepOneDisclosure(e.currentTarget)}>
+        <details
+          className="destination-picker"
+          onToggle={(e) => {
+            keepOneDisclosure(e.currentTarget);
+            if (e.currentTarget.open) props.onCompose?.();
+          }}
+        >
           <summary>Place · {s.placeId ? PLACE_LABEL[s.placeId] : 'Choose'}</summary>
           <fieldset className="picker-chips" aria-label="Destination">
             {places.map((p) => (
@@ -763,7 +780,14 @@ export function Composer(props: {
               {props.job && <> · {jobPhrase(props.job)}</>}
             </span>
             {!pred && <span className="predict muted">Checking current answer…</span>}
-            {pred && <span className={`predict predict-${pred.kind}`}>{pred.text}</span>}
+            {pred && (
+              <span className={`predict predict-${pred.kind}`}>
+                {pred.text}
+                {who === 'maryam' && pred.text === 'Will refuse: the others would go unfed' && (
+                  <>. Ask again after she cooks the meal.</>
+                )}
+              </span>
+            )}
           </>
         )}
         {(s.rush || s.insist || s.appeal) && (

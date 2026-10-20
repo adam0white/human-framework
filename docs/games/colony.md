@@ -367,3 +367,9 @@ Aiko (F-249): “I would not return voluntarily on this phone layout today.” P
 Cost and risk: the phone shows one village at a time. Its portrait camera crops the village and needs dragging to look elsewhere; framing a distant worker and destination zooms out. Extra order options and the suggestion explanation scroll inside the bounded sheet. Only actual simulation travel is drawn: completion does not invent a return trip when the person chooses something else. Real phone feel and voluntary return still need a fresh playtest. This is UI only: no edition, rules, HF pin or export format change. Existing @3 and @4 exports must retain their exact replay hashes.
 
 Revert: revert the commit headed `Put the village first on phones` (listed in the design-round well report). No saved-run migration is needed.
+
+### Follow-up c: stable order selection
+
+Hana's live retest: “That selected House. The map shifted since I looked.” She stopped at 4:05: “I would return if selecting orders on the phone felt easier.” This follows F-249/F-258 above; the new retest has no ledger id yet. The map now holds its camera while composing and opening pickers. Only Confirm or Follow frames the worker and destination. People keep moving; taps use the last painted bodies and names. Nearby targets open a named choice list. All eight place chips fit together in a three-column phone grid. Suggestions put the actual worker/place and trade-off beside Use. Maryam's known food-duty refusal adds “Ask again after she cooks the meal.”
+
+Cost and risk: the picker and suggestion temporarily cover part of the map. A distant worker may remain offscreen until Follow or Confirm. The release condition invites a fresh forecast; it does not promise agreement. Simulation, HF 2.8.0, @3/@4 replay and exports stay unchanged. Revert only the commit headed `Hold the map still while composing orders` to restore the preceding UI. Owner phone acceptance remains pending.

@@ -3974,11 +3974,12 @@ kbd {
   .composer {
     position: relative;
     display: grid;
-    height: 154px;
+    min-height: 154px;
+    height: auto;
     flex: none;
     padding: 4px 6px;
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: 44px 48px 44px;
+    grid-template-rows: 44px minmax(48px, auto) 44px;
     gap: 4px;
     overflow: visible;
   }
@@ -3997,8 +3998,8 @@ kbd {
   .picker-chips {
     position: absolute;
     z-index: 3;
-    top: 50px;
-    bottom: 52px;
+    top: auto;
+    bottom: calc(100% + 6px);
     left: 6px;
     right: 6px;
     display: grid;
@@ -4009,10 +4010,13 @@ kbd {
     margin: 0;
     padding: 2px;
     gap: 4px;
-    overflow-y: auto;
+    overflow: visible;
     background: var(--surface);
+    box-shadow: 0 -2px 8px #0002;
   }
   .picker-chips button {
+    min-height: 44px;
+    min-width: 44px;
     font: inherit;
     font-size: 15px;
     padding: 4px;
@@ -4031,7 +4035,7 @@ kbd {
     margin: 0;
     font-size: 14px;
     line-height: 21px;
-    overflow: auto;
+    overflow: visible;
   }
   .composer-job {
     display: none;
@@ -4270,8 +4274,8 @@ kbd {
     grid-template-rows: 60px 44px minmax(0, 1fr);
   }
   .composer.has-costs {
-    height: 171px;
-    grid-template-rows: 44px 65px 44px;
+    min-height: 171px;
+    grid-template-rows: 44px minmax(65px, auto) 44px;
   }
   .active-costs {
     font:
@@ -4293,16 +4297,8 @@ kbd {
   }
   .nudge-slot[open] .nudge,
   .is-ordering .nudge-slot[open] .nudge {
-    max-height: 126px;
-  }
-  .is-watching .center:has(.nudge-slot[open]) {
-    height: 178px;
-  }
-  .is-watching .center:has(.nudge-slot[open]) .watching-worker {
-    visibility: hidden;
-  }
-  .is-watching .center:has(.nudge-slot[open]) .sheet-tools {
-    margin-top: auto;
+    max-height: none;
+    overflow: visible;
   }
 }
 
@@ -4311,4 +4307,108 @@ kbd {
   .center {
     max-height: none;
   }
+}
+
+/* The proposal, its known trade-off and Use form one visible decision. */
+.nudge-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: start;
+  gap: 6px;
+}
+.nudge-proposal {
+  min-width: 0;
+}
+.nudge-proposal .nudge-text,
+.nudge-proposal .nudge-reason {
+  margin: 0 0 6px;
+}
+.nudge-head .btn,
+.nudge-head .nudge-skip {
+  min-width: 44px;
+  min-height: 44px;
+}
+.map-choices {
+  position: absolute;
+  z-index: 6;
+  left: 6px;
+  bottom: 22px;
+  max-width: calc(100% - 12px);
+  min-inline-size: 0;
+  margin: 0;
+  max-height: calc(100% - 64px);
+  overflow-y: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 6px;
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+.map-choices > legend {
+  flex: 0 0 100%;
+  font-size: 15px;
+}
+.map-choices button,
+.map-follow {
+  min-width: 44px;
+  min-height: 44px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+}
+@media (max-width: 860px) and (min-height: 501px) {
+  .nudge-slot .nudge-head {
+    position: static;
+  }
+  .nudge-proposal .nudge-text,
+  .nudge-proposal .nudge-reason {
+    font-size: 15px;
+    line-height: 20px;
+  }
+  .nudge .nudge-availability,
+  .nudge .nudge-help {
+    margin: 4px 0;
+    font-size: 14px;
+    line-height: 18px;
+  }
+}
+
+.nudge-order {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* Keep the complete forecast and Confirm ahead of the scrollable desktop order history. */
+@media (min-width: 861px) and (min-height: 501px) {
+  .center {
+    position: relative;
+  }
+  .order-alerts .pause-ribbon {
+    display: none;
+  }
+  .nudge-slot[open] .nudge {
+    position: absolute;
+    z-index: 6;
+    left: 0;
+    right: 0;
+    bottom: 56px;
+  }
+  .composer-tray {
+    flex-shrink: 0;
+  }
+  .queue {
+    min-height: 60px;
+  }
+}
+
+.map-choices > legend {
+  padding: 0 4px;
+  background: var(--surface);
 }
