@@ -12,7 +12,7 @@ import { pathToFileURL } from 'node:url';
 import type { Frame } from '../src/watch/sim/view.ts';
 import { Harness } from './play-watch.ts';
 
-const { promise } = await import('@adam0white/human-framework');
+const { glimpse, outwardSigns, promise } = await import('@adam0white/human-framework');
 const { arrive, personOf } = await import('../src/watch/sim/people.ts');
 const { checkMoments, catchLeaving } = await import('../src/watch/sim/moments.ts');
 const { buildFrame } = await import('../src/watch/sim/view.ts');
@@ -24,10 +24,17 @@ const modulePath =
 const { chromium } = await import(pathToFileURL(join(modulePath, 'index.mjs')).href);
 const base = process.argv[2] ?? 'http://localhost:5173';
 const label = (process.argv[3] ?? 'current').replace(/[^a-z0-9_-]/gi, '-');
-const out = join(homedir(), 'code/.lab-scratch/watchwell3/watch', `phone-${label}`);
+const out = join(homedir(), 'code/.lab-scratch/watchwell3/watch-b', `phone-${label}`);
 mkdirSync(out, { recursive: true });
 
-type Case = { name: string; frame: Frame; mode: 'moment' | 'account' | 'posting'; who?: string };
+type Case = {
+  name: string;
+  frame: Frame;
+  after?: Frame;
+  helpers?: boolean;
+  mode: 'moment' | 'account' | 'posting';
+  who?: string;
+};
 const cases: Case[] = [];
 function state(seed: number) {
   const h = Harness.fresh(seed);
@@ -153,6 +160,64 @@ for (const condition of ['healthy', 'tired', 'hurt', 'remote', 'downed'] as cons
 }
 for (const who of WATCHER_IDS.filter((id) => id !== 'tamar'))
   cases.push({ name: `account-${who}`, frame: buildFrame(state(4242), 0, false), mode: 'account', who });
+// Running-account regressions: the same open component receives an updated real frame.
+for (const change of [
+  'healthy-look',
+  'helper-asleep',
+  'helper-gone',
+  'after-relief',
+  'awake-after-doze',
+] as const) {
+  const s = state(4242);
+  const p = personOf(s, 'tamar');
+  const helper = personOf(s, 'kian');
+  if (!p || !helper || !p.activity || !helper.activity) throw new Error('Missing founders');
+  s.place.kian = 'gate-2';
+  s.posts.kian = 'gate-2';
+  p.social.reserve = { fatigue: 0, pain: 0 };
+  p.body.sleepPressure = 1;
+  p.body.exertion = 1;
+  const frame = buildFrame(s, 0, false);
+  if (!frame.watchers.find((w) => w.id === 'tamar')?.acts.some((a) => a.input.k === 'relieve'))
+    throw new Error('Expected relief before live update');
+  if (change === 'healthy-look') {
+    p.body.sleepPressure = 0.05;
+    p.body.exertion = 0;
+    glimpse(s.keeper, 'tamar', { ...outwardSigns(p), fatigue: 0 }, s.minute, 1);
+  }
+  if (change === 'helper-asleep') helper.activity.action = 'doze';
+  if (change === 'helper-gone') s.place.kian = 'home';
+  if (change === 'after-relief') {
+    const { applyNightAct, resolveNightRequest } = await import('../src/watch/sim/night-actions.ts');
+    if (!applyNightAct(s, { k: 'relieve', who: 'tamar', by: 'kian' })) throw new Error('Relief unavailable');
+    resolveNightRequest(s, { kind: 'begin', personId: 'kian', affordanceId: 'post:gate-1', at: s.minute });
+    s.place.kian = 'gate-1';
+    s.minute++;
+    resolveNightRequest(s, { kind: 'begin', personId: 'tamar', affordanceId: 'sleep', at: s.minute });
+    s.place.tamar = 'home';
+  }
+  if (change === 'awake-after-doze') {
+    s.alerts.push({
+      minute: s.minute,
+      who: 'tamar',
+      section: 'gate',
+      kind: 'person',
+      text: 'Tamar nods off at the Gate.',
+      slowed: false,
+    });
+    p.body.sleepPressure = 0.05;
+    p.body.exertion = 0;
+    glimpse(s.keeper, 'tamar', { ...outwardSigns(p), fatigue: 0 }, s.minute, 1);
+  }
+  cases.push({
+    name: `live-${change}`,
+    frame,
+    after: buildFrame(s, 0, false),
+    helpers: change.startsWith('helper') || change === 'healthy-look',
+    mode: 'account',
+    who: 'tamar',
+  });
+}
 const dusk = state(7);
 dusk.phase = 'dusk';
 cases.push({ name: 'posting-full', frame: buildFrame(dusk, 0, false), mode: 'posting', who: 'tamar' });
@@ -173,8 +238,10 @@ try {
     await page.addInitScript(
       ({ frame }: { frame: Frame }) => {
         class LayoutWorker extends EventTarget {
+          gen = 0;
           postMessage(msg: { type: string; gen?: number }) {
-            if (msg.type === 'init')
+            if (msg.type === 'init') {
+              this.gen = msg.gen ?? 0;
               queueMicrotask(() =>
                 this.dispatchEvent(
                   new MessageEvent('message', {
@@ -182,6 +249,22 @@ try {
                   }),
                 ),
               );
+            }
+          }
+          constructor() {
+            super();
+            window.addEventListener('watch-layout-frame', (event) =>
+              this.dispatchEvent(
+                new MessageEvent('message', {
+                  data: {
+                    type: 'frame',
+                    gen: this.gen,
+                    speed: 'watch',
+                    frame: (event as CustomEvent).detail,
+                  },
+                }),
+              ),
+            );
           }
           terminate() {}
         }
@@ -208,6 +291,24 @@ try {
         throw new Error('Watcher map target missing');
       await page.touchscreen.tap(canvas.x + target.x, canvas.y + target.y);
       await page.locator('.w-account-commit').waitFor();
+      if (test.helpers) await page.getByRole('button', { name: 'Send relief', exact: true }).tap();
+      if (test.after) {
+        await page.evaluate(
+          (frame: Frame) => window.dispatchEvent(new CustomEvent('watch-layout-frame', { detail: frame })),
+          test.after,
+        );
+        await page.waitForTimeout(180);
+        if (
+          test.name === 'live-after-relief' &&
+          (await page.getByRole('button', { name: /^(Rest|Send relief)$/ }).count())
+        )
+          throw new Error('Stale relief controls remain');
+        if (
+          test.name === 'live-awake-after-doze' &&
+          !(await page.locator('.w-account-doze').innerText()).includes('nods off')
+        )
+          throw new Error('Heard doze missing from account');
+      }
     }
     if (test.mode === 'posting') {
       await page.locator(`.w-roster .w-person-${test.who}`).tap();
@@ -217,9 +318,9 @@ try {
     const measured = await page.evaluate((mode: string) => {
       const selectors =
         mode === 'moment'
-          ? '.w-moment button'
+          ? '.w-moment button, .w-watch-entry, .w-watch-entry button'
           : mode === 'account'
-            ? '.w-account-commit, .w-account-commit button, .w-account-unavailable'
+            ? '.w-account-commit, .w-account-commit button, .w-account-unavailable, .w-account > p, .w-helper-choice > .w-note'
             : '.w-places .w-place:disabled, .w-post-unavailable';
       const rows = [...document.querySelectorAll<HTMLElement>(selectors)].map((el) => {
         const r = el.getBoundingClientRect();
@@ -317,6 +418,9 @@ try {
         pageExcess: document.documentElement.scrollHeight - innerHeight,
         accountReason: document.querySelector('.w-account-unavailable')?.textContent ?? '',
         accountButtons: document.querySelectorAll('.w-account-commit button').length,
+        helperReasons: [...document.querySelectorAll('.w-helper-choice > .w-note')].map(
+          (el) => el.textContent,
+        ),
         headerHeight: document.querySelector('.w-top')?.getBoundingClientRect().height,
         availableHeight: document.querySelector('.w-stage')?.getAttribute('style'),
       };
@@ -327,11 +431,25 @@ try {
     );
     const missing =
       test.mode === 'moment'
-        ? measured.rows.length !== (test.frame.moment?.options.length ?? 0) + 1
+        ? measured.rows.length !== (test.frame.moment?.options.length ?? 0) + 3
         : test.mode === 'account'
-          ? !measured.accountButtons && !measured.accountReason
+          ? test.helpers
+            ? !measured.helperReasons.length
+            : !measured.accountButtons && !measured.accountReason
           : !measured.reasons.length || measured.reasons.some((r: { reason: string }) => !r.reason);
+    const expectedReason =
+      test.name === 'live-helper-asleep'
+        ? /asleep/
+        : test.name === 'live-helper-gone'
+          ? /Away from the wall/
+          : test.name === 'live-healthy-look'
+            ? /latest account and look/
+            : null;
+    const reasonsCorrect =
+      !expectedReason ||
+      measured.helperReasons.some((reason: string | null) => expectedReason.test(reason ?? ''));
     const pass =
+      reasonsCorrect &&
       !failures.length &&
       !missing &&
       !errors.length &&

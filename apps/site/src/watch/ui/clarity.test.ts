@@ -488,6 +488,9 @@ it('posts directly on the scene with Ask and opens a night account without a gam
   expect(container.querySelector('.w-account')).toBeNull();
   expect(container.querySelector('.w-moment')).not.toBeNull();
   await act(async () => container.querySelector<HTMLButtonElement>('.w-moment-let')?.click());
+  await act(async () => container.querySelector<HTMLButtonElement>('.w-watch-entry button')?.click());
+  await act(async () => container.querySelector<HTMLButtonElement>('.w-watch-entry button')?.click());
+  expect(container.querySelector('.w-moment')).toBeNull();
   await mapHit({ kind: 'watcher', watcher: 'tamar' });
   expect(container.querySelector('.w-account')).not.toBeNull();
   await act(async () => container.querySelector<HTMLButtonElement>('.w-account-close')?.click());
@@ -507,6 +510,11 @@ it('replaces an account with helper choice and restores it without a game input'
   if (!who) throw new Error('Expected Tamar');
   who.account = { text: 'I’m tired. I’m keeping watch.', spoken: true };
   who.restRead = 'seemed tiring at dusk';
+  for (const helper of frame.watchers) {
+    if (helper.id === who.id) continue;
+    helper.post = 'gate-2';
+    helper.account = { text: 'I’m here.', spoken: true };
+  }
   who.acts = [
     {
       input: { k: 'down', who: 'tamar' },
@@ -544,7 +552,7 @@ it('replaces an account with helper choice and restores it without a game input'
   expect(container.querySelector('.w-account')).toBeNull();
   expect(container.querySelector('.w-helper-choice')?.textContent).toContain('leaves the mill wall empty');
   expect(container.querySelector('.w-helper-choice')?.textContent).toContain(
-    'Out of call: Mara — carry the light',
+    'Mara: Out of your voice; carry the light.',
   );
   expect(button('Send Mara to relieve Tamar')).toBeUndefined();
   await act(async () => button('Back to Tamar')?.click());
@@ -564,13 +572,21 @@ it('replaces an account with helper choice and restores it without a game input'
   who.acts = who.acts.filter((a) => a.input.k !== 'help');
   await act(async () => root.render(createElement(NightPanel, props)));
   await act(async () => button('Send help')?.click());
-  expect(container.querySelector('.w-helper-choice')?.textContent).toContain('condition has changed');
+  expect(container.querySelector('.w-helper-choice')?.textContent).toContain(
+    'No current sign of hurt or a wolf at this post.',
+  );
   await act(async () => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' })));
   expect(container.querySelector('.w-account')).not.toBeNull();
   await act(async () => button('Send relief')?.click());
   who.acts = who.acts.filter((a) => a.input.k === 'down');
+  const helper = frame.watchers.find((w) => w.id === 'kian');
+  if (!helper) throw new Error('Expected Kian');
+  helper.post = 'mill-1';
+  helper.account = { text: 'They appear asleep. No reply comes.', spoken: false };
   await act(async () => root.render(createElement(NightPanel, props)));
-  expect(container.querySelector('.w-helper-choice')?.textContent).toContain('condition has changed');
+  expect(container.querySelector('.w-helper-choice')?.textContent).toContain(
+    'They appear asleep. No reply comes.',
+  );
   await act(async () => button('Back to Tamar')?.click());
   await act(async () => button('Rest')?.click());
   expect(input).toHaveBeenCalledExactlyOnceWith({ k: 'down', who: 'tamar' });
@@ -633,4 +649,82 @@ it('records a winter choice from the flyleaf and states when it takes effect', a
   expect(input).toHaveBeenCalledExactlyOnceWith({ k: 'winter', winter: 'hard' });
   await act(async () => root.unmount());
   container.remove();
+});
+
+it('keeps the watcher route beside a decision and opens it without sending an input', async () => {
+  const { WatchRun } = await import('../sim/run.ts');
+  const run = new WatchRun(5);
+  run.input({ k: 'start' });
+  run.input({ k: 'begin' });
+  while (run.state.phase === 'night' && !run.state.moment) run.step();
+  const frame = buildFrame(run.state, 0, true, 1 / 60);
+  const input = vi.fn();
+  const select = vi.fn();
+  const container = document.createElement('div');
+  const root = createRoot(container);
+  await act(async () =>
+    root.render(createElement(NightPanel, { frame, actions: { ...actions, input }, onSelect: select })),
+  );
+  expect(container.querySelector('.w-watch-entry')?.textContent).toContain(
+    'Tap a watcher to ask for rest, help or to go down.',
+  );
+  expect(container.querySelector('.w-moment')).not.toBeNull();
+  await act(async () => container.querySelector<HTMLButtonElement>('.w-watch-entry button')?.click());
+  expect(container.querySelector('.w-night-details')?.hasAttribute('open')).toBe(true);
+  expect(container.querySelector('.w-moment')).toBeNull();
+  await act(async () => container.querySelector<HTMLButtonElement>('.w-night-roster button')?.click());
+  expect(select).toHaveBeenCalled();
+  expect(input).not.toHaveBeenCalled();
+  await act(async () => root.unmount());
+});
+
+it('keeps a heard doze in the account and removes stale acts after relief while it stays open', async () => {
+  const { WatchRun } = await import('../sim/run.ts');
+  const run = new WatchRun(4242);
+  run.input({ k: 'start' });
+  run.input({ k: 'begin' });
+  const frame = buildFrame(run.state, 0, false);
+  const who = frame.watchers.find((w) => w.id === 'tamar');
+  if (!who) throw new Error('Expected Tamar');
+  who.post = 'gate-1';
+  who.acts = [
+    {
+      input: { k: 'down', who: 'tamar' },
+      label: 'Let Tamar go down to rest',
+      read: 'likely',
+      available: true,
+    },
+    {
+      input: { k: 'relieve', who: 'tamar', by: 'kian' },
+      label: 'Send Kian to relieve Tamar',
+      read: 'likely',
+      available: true,
+    },
+  ];
+  frame.alerts.push({
+    minute: frame.minute,
+    kind: 'person',
+    who: 'tamar',
+    section: 'gate',
+    text: 'Tamar nods off at the Gate.',
+    slowed: false,
+  });
+  const container = document.createElement('div');
+  const root = createRoot(container);
+  const props = { frame, actions, selected: 'tamar' };
+  await act(async () => root.render(createElement(NightPanel, props)));
+  expect(container.querySelector('.w-account-doze')?.textContent).toContain('Tamar nods off at the Gate.');
+  expect(container.querySelector('.w-account-doze')?.textContent).toContain('They can answer now.');
+  const relief = [...container.querySelectorAll('button')].find((b) => b.textContent === 'Send relief');
+  await act(async () => relief?.click());
+  who.post = null;
+  who.acts = [];
+  who.account = { text: 'Too far away for your voice to reach.', spoken: false };
+  who.actsUnavailable = 'They are off the wall. Night requests need someone at a post.';
+  await act(async () => root.render(createElement(NightPanel, props)));
+  expect(container.querySelector('.w-helper-choice')).toBeNull();
+  expect(container.querySelector('.w-account')?.textContent).toContain('Too far away');
+  expect(container.querySelector('.w-account-commit')?.textContent).not.toMatch(/Rest|Send relief/);
+  expect(container.querySelector('.w-account-unavailable')?.textContent).toContain('off the wall');
+  await act(async () => root.unmount());
 });
