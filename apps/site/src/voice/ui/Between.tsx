@@ -9,6 +9,7 @@ import {
   type Appeal,
   type BetweenView,
   defaultWhisper,
+  type SceneWords,
   type StandingWhisper,
   type Strength,
 } from '../protocol.ts';
@@ -17,6 +18,7 @@ import { EndsList, UnaskedStrip } from './EndsPane.tsx';
 import { Icon, STRENGTH_ICON } from './Icon.tsx';
 import { APPEALS, STRENGTHS } from './parts.tsx';
 import { Strip, StripLegend } from './Strip.tsx';
+import { daySpeech } from './speech-summary.ts';
 import { trustChangeWords, trustEventWords } from './VoicesPane.tsx';
 
 const MAX_WHISPERS = 2;
@@ -26,8 +28,12 @@ const MAX_WHISPERS = 2;
 export function Between({
   view,
   onAdvance,
+  sceneWords = [],
+  day = 0,
 }: {
   view: BetweenView;
+  sceneWords?: readonly SceneWords[] | undefined;
+  day?: number | undefined;
   onAdvance: (standing: StandingWhisper[]) => void;
 }) {
   const [picked, setPicked] = useState<StandingWhisper[]>([]);
@@ -88,9 +94,9 @@ export function Between({
         </ul>
         {view.yours && view.yours.length > 0 && (
           <>
-            <h3 className="v-sub">What your words did</h3>
+            <h3 className="v-sub">What you said, and what he did</h3>
             <ul className="v-lines">
-              {view.yours.map((l) => (
+              {daySpeech(view.yours, sceneWords, day).map((l) => (
                 <li key={l}>{storyDates(recapWords(l))}</li>
               ))}
             </ul>

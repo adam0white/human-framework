@@ -113,19 +113,75 @@ function exchange(frame: Frame, kind: Kind): { words: string; answer: string } {
       }
     : { words: 'Would you rather have a quiet moment?', answer: 'Yes. Just a little quiet for now.' };
 }
-export function sceneWordChoices(frame: Frame): { kind: Kind; words: string }[] {
+type Topic = 'clinic' | 'health' | 'nuran' | 'tired' | 'work' | 'rent' | 'company';
+/** Topics describe authored words, never a person's emotional or therapeutic progress. */
+function topicOf(words: string): Topic | null {
+  if (/doctor.s words|what the doctor said|That was a lot to hear|What stayed with you/.test(words))
+    return 'clinic';
+  if (/hearing someone worry|seeing the doctor/.test(words)) return 'health';
+  if (/miss her|that memory|empty place|Nuran/.test(words)) return 'nuran';
+  if (/sound tired|day feel just now/.test(words)) return 'tired';
+  if (/while you work/.test(words)) return 'work';
+  if (/rent|What is on your mind/.test(words)) return 'rent';
+  if (/good to hear|want to say just now/.test(words)) return 'company';
+  return null;
+}
+function particular(frame: Frame, kind: Kind): { words: string; answer: string } {
+  const original = exchange(frame, kind);
+  const topic = topicOf(original.words);
+  if (topic === 'clinic')
+    return kind === 'care'
+      ? {
+          words: 'You do not have to talk more about what the doctor said.',
+          answer: 'Yes. I do not want to go over them again just now.',
+        }
+      : original;
   if (
-    !allowed(frame) ||
-    frame.sceneWords?.some(
+    topic === 'nuran' &&
+    /table|meal/.test(
+      deriveScene(frame)
+        ?.lines.map((line) => line.words)
+        .join(' ') ?? '',
+    )
+  )
+    return kind === 'care'
+      ? {
+          words: 'You do not have to say more about missing Nuran at the table.',
+          answer: 'No. I can remember sitting with Nuran without saying anything more.',
+        }
+      : original;
+  return original;
+}
+/** Legacy acceptance stays independent of current offers so existing exports replay unchanged. */
+function legacyAvailable(frame: Frame): boolean {
+  return (
+    allowed(frame) &&
+    !frame.sceneWords?.some(
       (line) => line.beat === sceneBeat(frame) && line.kind !== 'suggestion' && line.said !== false,
+    )
+  );
+}
+export function sceneWordChoices(frame: Frame): { kind: Kind; words: string }[] {
+  if (!legacyAvailable(frame)) return [];
+  const topic = topicOf(exchange(frame, 'care').words);
+  // One response to a surfaced particular. A later activity or day does not reopen it.
+  // Generic reassurance supplies no new particular; leave room for quiet instead.
+  if (
+    !topic ||
+    frame.sceneWords?.some(
+      (line) => line.kind !== 'suggestion' && line.said !== false && topicOf(line.words) === topic,
     )
   )
     return [];
-  return (['care', 'question'] as const).map((kind) => ({ kind, words: exchange(frame, kind).words }));
+  return (['care', 'question'] as const).map((kind) => ({ kind, words: particular(frame, kind).words }));
 }
 export function sceneWord(frame: Frame, kind: Kind, beat: string, words?: string): SceneWords | null {
-  if (beat !== sceneBeat(frame) || !sceneWordChoices(frame).some((choice) => choice.kind === kind))
-    return null;
-  if (words !== undefined && words !== exchange(frame, kind).words) return null;
-  return { beat, kind, day: frame.day, minute: frame.minute, clock: frame.clock, ...exchange(frame, kind) };
+  if (beat !== sceneBeat(frame) || !legacyAvailable(frame)) return null;
+  const legacy = exchange(frame, kind);
+  // Original inputs, including omitted wording, retain the original deterministic reply.
+  if (words === undefined || words === legacy.words)
+    return { beat, kind, day: frame.day, minute: frame.minute, clock: frame.clock, ...legacy };
+  const offered = sceneWordChoices(frame).find((choice) => choice.kind === kind && choice.words === words);
+  if (!offered) return null;
+  return { beat, kind, day: frame.day, minute: frame.minute, clock: frame.clock, ...particular(frame, kind) };
 }

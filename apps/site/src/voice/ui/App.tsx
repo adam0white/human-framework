@@ -30,6 +30,7 @@ export function App() {
   const voice = useVoice();
   const { frame, actions } = voice;
   const [tab, setTab] = useState<Tab>('day');
+  const [holdingReply, setHoldingReply] = useState(false);
   const [whyId, setWhyId] = useState<string | null>(null);
 
   const phase = frame?.phase ?? 'premise';
@@ -39,9 +40,13 @@ export function App() {
     !frame || phase === 'premise'
       ? 'premise'
       : phase === 'between'
-        ? 'between'
+        ? holdingReply
+          ? null
+          : 'between'
         : phase === 'report'
-          ? 'report'
+          ? holdingReply
+            ? null
+            : 'report'
           : frame.intro
             ? 'intro'
             : null;
@@ -107,7 +112,10 @@ export function App() {
 
   // The game resumes itself on Confirm (and stays paused if the option went away), so no setPaused here.
   const suggest = useCallback((d: Draft, line?: string) => actions.suggest(d, line), [actions]);
-  const sayNothing = useCallback(() => actions.setPaused(false), [actions]);
+  const sayNothing = useCallback(() => {
+    actions.dismissSceneOffer();
+    actions.setPaused(false);
+  }, [actions]);
 
   // A new run closes any open why sheet.
   useEffect(() => {
@@ -142,6 +150,7 @@ export function App() {
             <SceneDay
               key={`${voice.runId}:${frame.day}`}
               frame={frame}
+              active={tab === 'day' && overlay === null}
               telegraph={voice.telegraph}
               whyOpen={voice.whyOpen}
               selected={whyId}
@@ -151,6 +160,8 @@ export function App() {
               onSuggest={suggest}
               onSceneWord={actions.sceneWord}
               onReading={actions.setReading}
+              sceneReading={voice.sceneReading}
+              onPersonalReply={setHoldingReply}
               onSayNothing={sayNothing}
               onWithdraw={actions.withdraw}
               onPause={() => actions.setPaused(true)}
@@ -176,7 +187,12 @@ export function App() {
       )}
       {overlay === 'between' &&
         (voice.between ? (
-          <Between view={voice.between} onAdvance={actions.advance} />
+          <Between
+            sceneWords={frame?.sceneWords}
+            day={frame?.day}
+            view={voice.between}
+            onAdvance={actions.advance}
+          />
         ) : (
           <div className="v-overlay v-overlay-night">
             <div className="v-card">
@@ -188,6 +204,7 @@ export function App() {
         (voice.report ? (
           <Report
             view={voice.report}
+            sceneWords={frame?.sceneWords}
             onKeepListening={actions.keepListening}
             onReplay={() => actions.replay()}
             onNewTown={() => actions.replay(1 + Math.floor(Math.random() * 1_000_000))}
