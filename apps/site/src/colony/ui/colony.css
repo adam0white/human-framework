@@ -5349,3 +5349,65 @@ kbd {
     display: none;
   }
 }
+
+/* Round 3b: retain the painted village while a phone order is being read. */
+.hurt-summary {
+  display: none;
+}
+@media (max-width: 899px) {
+  .well-phone-tools .well-quick-rush {
+    flex: 0 0 auto;
+  }
+  .colony:not([data-reflow="true"]) .stage.lk-stage:not([data-sheet="closed"]) {
+    --well-place-row: 0px;
+    grid-template-rows: auto minmax(0, 1fr) auto auto;
+  }
+  .colony:not([data-reflow="true"]) .stage.lk-stage:not([data-sheet="closed"]):has(.scene-more-places) {
+    --well-place-row: 44px;
+  }
+  .colony:not([data-reflow="true"]) .stage.lk-stage:not([data-sheet="closed"]) .well-scenes {
+    min-height: calc(40dvh + 48px + 48px + var(--well-place-row));
+  }
+  .colony:not([data-reflow="true"]) .stage.lk-stage:not([data-sheet="closed"]) .well-phone-sheet {
+    max-height: calc(
+      var(--lk-available-height, 100dvh) -
+      var(--lk-strip-height, 90px) -
+      40dvh -
+      48px -
+      48px -
+      var(--well-place-row)
+    );
+  }
+  .colony:not([data-reflow="true"]) .stage.lk-stage:not([data-sheet="closed"]) .lk-sheet-body {
+    min-height: 0;
+  }
+  .stage.lk-stage:not([data-sheet="closed"]) .well-phone-strip .village-setting {
+    display: none;
+  }
+  .stage.lk-stage:not([data-sheet="closed"]) .well-phone-status > :not(.hurt-line),
+  .stage.lk-stage:not([data-sheet="closed"]) .well-phone-status .hurt-line > :not(.hurt-summary) {
+    display: none;
+  }
+  .stage.lk-stage:not([data-sheet="closed"]) .well-phone-status .hurt-line {
+    padding: 0;
+  }
+  .stage.lk-stage:not([data-sheet="closed"]) .hurt-summary {
+    display: block;
+    width: 100%;
+    min-height: 44px;
+    padding: 0 4px;
+    white-space: nowrap;
+    font-size: 14px;
+    text-align: left;
+  }
+}
+@media (max-width: 899px) {
+  .well-order-picks {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+  }
+  .well-phone-sheet .btn-confirm small {
+    display: block;
+    font-size: 12px;
+    line-height: 1.1;
+  }
+}

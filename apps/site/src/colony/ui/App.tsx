@@ -701,6 +701,7 @@ export function App() {
             {personOrderOpen && selectedOrder && (
               <PersonOrder
                 card={selectedOrder}
+                person={frame?.human.find((person) => person.id === selectedOrder.order.personId)}
                 onAgain={askAgain}
                 onCancel={actions.cancel}
                 onInsist={insistOrder}

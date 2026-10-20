@@ -1,6 +1,6 @@
 import { memo, type ReactNode, type RefObject, useState } from 'react';
 import type { HurtNews, MomentRecord } from '../sim/game.ts';
-import type { Prediction } from '../sim/human-side.ts';
+import type { Prediction, VillagerView } from '../sim/human-side.ts';
 import type { PlaceId } from '../sim/map.ts';
 import { APPEALS, type AppealChip, type ChipState, inferAction, type OrderCard } from '../sim/orders.ts';
 import {
@@ -580,16 +580,23 @@ export const OrderLog = memo(function OrderLog({
 /** A person's latest answer and direct controls stay outside History. */
 export function PersonOrder({
   card,
+  person,
   onAgain,
   onCancel,
   onInsist,
 }: {
   card: OrderCard;
+  person?: VillagerView | undefined;
   onAgain(card: OrderCard): void;
   onCancel(id: string): void;
   onInsist(card: OrderCard): void;
 }) {
   const refused = card.human.state === 'willNot';
+  const pushed = card.human.state === 'complied' || card.human.first?.state === 'complied';
+  const trustCosts =
+    person?.id === card.order.personId
+      ? person.trust.history.filter((event) => event.minute > card.order.issuedAt && event.delta < 0)
+      : [];
   return (
     <section className="person-order" aria-label="Latest order">
       <p className="person-order-state">
@@ -602,6 +609,16 @@ export function PersonOrder({
         </p>
       )}
       {homeOrderMeaning(card) && <p>{homeOrderMeaning(card)}</p>}
+      {pushed && <p>{shortName(card.order.personId)} went along, but minded being pushed.</p>}
+      {trustCosts.map((event) => (
+        <p className="person-order-cost" key={`${event.minute}-${event.label}-${event.delta}`}>
+          Recent trust change · {dayClock(event.minute)} · {shortName(card.order.personId)} trusts you less.{' '}
+          {event.label}.
+        </p>
+      ))}
+      {card.order.insist && person && trustCosts.length === 0 && (
+        <p>The recent record shows no trust loss after this request.</p>
+      )}
       {card.order.insist && <p>Insist was used. Asking again may cost trust.</p>}
       <div className="person-order-actions">
         <button type="button" onClick={() => onAgain(card)}>
@@ -1096,7 +1113,8 @@ export function HurtLine({
 }) {
   const [heldNews, setHeldNews] = useState<readonly HurtNews[] | null>(null);
   const shownNews = heldNews ?? news;
-  if (shownNews.length === 0) return null;
+  const latestNews = shownNews.at(-1);
+  if (!latestNews) return null;
   return (
     <div
       className="hurt-line"
@@ -1105,6 +1123,19 @@ export function HurtLine({
       onPointerCancel={() => setHeldNews(null)}
       onPointerUp={() => window.setTimeout(() => setHeldNews(null), 0)}
     >
+      {onShow && (
+        <button
+          type="button"
+          className="hurt-summary"
+          aria-label={`Show ${hurtText(latestNews)}`}
+          onClick={() => {
+            onShow(latestNews);
+            setHeldNews(null);
+          }}
+        >
+          Hurt · {shortName(latestNews.personId)} ({latestNews.side === 'human' ? 'Human' : 'Classic'}) · Show
+        </button>
+      )}
       <strong>Hurt</strong>
       {[...shownNews].reverse().map((n) => (
         <div className="hurt-item" key={`${n.side}-${n.personId}-${n.minute}`}>
@@ -1114,7 +1145,7 @@ export function HurtLine({
               ? ` · ${n.side === 'classic' ? 'Classic' : 'Human'} village · not shown`
               : ''}
           </span>
-          {onRest && (
+          {onRest && n.side === 'human' && (
             <button
               type="button"
               className="btn btn-small"

@@ -132,12 +132,21 @@ export const Pane = memo(function Pane(props: PaneProps) {
     y: number;
     send(place: PlaceId): void;
   } | null>(null);
-  const drag = useRef<{ x: number; y: number; start: MapView; moved: boolean } | null>(null);
+  type Choice = { person: VillagerId; label: string } | { place: PlaceId; label: string };
+  const drag = useRef<{
+    x: number;
+    y: number;
+    pointerId: number;
+    start: MapView;
+    moved: boolean;
+    hits: Choice[];
+    choose(choice: Choice): void;
+  } | null>(null);
   const [panned, setPanned] = useState(false);
   const localFollow = useRef(false);
   const displayedSize = useRef<{ width: number; height: number } | null>(null);
-  type Choice = { person: VillagerId; label: string } | { place: PlaceId; label: string };
   const [choices, setChoices] = useState<Choice[]>([]);
+  const choiceAction = useRef<((choice: Choice) => void) | null>(null);
   // biome-ignore lint/correctness/useExhaustiveDependencies: A confirmed order explicitly resets the camera.
   useEffect(() => {
     pan.current = null;
@@ -457,14 +466,12 @@ export const Pane = memo(function Pane(props: PaneProps) {
 
   const choose = (choice: Choice) => {
     setChoices([]);
-    if ('person' in choice) props.onSelect(choice.person);
-    else props.onPlace(choice.place);
+    choiceAction.current?.(choice);
+    choiceAction.current = null;
   };
 
-  const onPointerUp = (e: React.PointerEvent<HTMLCanvasElement>) => {
-    const wasDrag = drag.current?.moved;
-    drag.current = null;
-    if (wasDrag) return;
+  // Resolve only against the last painted people, labels and camera at pointerdown.
+  const targetsAt = (e: React.PointerEvent<HTMLCanvasElement>): Choice[] => {
     const { lx, ly } = toLogical(e);
     const radius = (hitRadius(e) * view.current.width) / LOGICAL_W;
     const personIds = new Set(hitPeople(people.current, lx, ly, radius));
@@ -492,16 +499,26 @@ export const Pane = memo(function Pane(props: PaneProps) {
           hits.push({ place: place.id, label: place.label });
       }
     }
-    if (hits.length > 1) setChoices(hits);
+    return hits;
+  };
+
+  const onPointerUp = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    const held = drag.current;
+    if (!held || held.pointerId !== e.pointerId) return;
+    drag.current = null;
+    if (held.moved || Math.hypot(e.clientX - held.x, e.clientY - held.y) > 8) return;
+    choiceAction.current = held.choose;
+    if (held.hits.length > 1) setChoices(held.hits);
     else {
       setChoices([]);
-      const hit = hits[0];
+      const hit = held.hits[0];
       if (hit) choose(hit);
     }
   };
 
   const onPointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
     const held = drag.current;
+    if (held && held.pointerId !== e.pointerId) return;
     if (held && e.buttons) {
       const dx = e.clientX - held.x;
       const dy = e.clientY - held.y;
@@ -550,11 +567,23 @@ export const Pane = memo(function Pane(props: PaneProps) {
           ref={canvas}
           aria-label={side === 'classic' ? 'Classic village map' : 'Human village map'}
           onPointerDown={(e) => {
-            drag.current = { x: e.clientX, y: e.clientY, start: view.current, moved: false };
+            if (drag.current) return;
+            drag.current = {
+              x: e.clientX,
+              y: e.clientY,
+              pointerId: e.pointerId,
+              start: view.current,
+              moved: false,
+              hits: targetsAt(e),
+              choose: (choice) => {
+                if ('person' in choice) props.onSelect(choice.person);
+                else props.onPlace(choice.place);
+              },
+            };
             e.currentTarget.setPointerCapture(e.pointerId);
           }}
-          onPointerCancel={() => {
-            drag.current = null;
+          onPointerCancel={(e) => {
+            if (drag.current?.pointerId === e.pointerId) drag.current = null;
           }}
           onPointerUp={onPointerUp}
           onContextMenu={(e) => e.preventDefault()}

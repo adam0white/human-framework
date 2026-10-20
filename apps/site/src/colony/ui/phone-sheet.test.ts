@@ -1,12 +1,13 @@
 // @vitest-environment happy-dom
 import { act, createElement, createRef } from 'react';
 import { createRoot } from 'react-dom/client';
+import { renderToStaticMarkup } from 'react-dom/server';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ColonyGame, NUDGES, type Nudge } from '../sim/game.ts';
 import { createFrameworkHumanSide } from '../sim/human.ts';
 import type { OrderCard } from '../sim/orders.ts';
 import { PhoneSheet } from './PhoneStage.tsx';
-import { EMPTY_COMPOSER } from './parts.tsx';
+import { type ComposerState, EMPTY_COMPOSER, PersonOrder } from './parts.tsx';
 
 (globalThis as typeof globalThis & { IS_REACT_ACT_ENVIRONMENT: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
 let stage: HTMLElement;
@@ -47,7 +48,12 @@ async function click(text: string) {
   if (!button) throw new Error(`Missing ${text}`);
   await act(() => button.click());
 }
-async function mount(active = true, nudge?: Nudge, orderCard?: OrderCard) {
+async function mount(
+  active = true,
+  nudge?: Nudge,
+  orderCard?: OrderCard,
+  state: Partial<ComposerState> = {},
+) {
   const stageRoot = createRef<HTMLElement>();
   stageRoot.current = stage;
   const onOrdering = vi.fn();
@@ -74,6 +80,7 @@ async function mount(active = true, nudge?: Nudge, orderCard?: OrderCard) {
           rush: true,
           insist: true,
           appeal: 'safety',
+          ...state,
         },
         job: 'build',
         prediction: null,
@@ -214,5 +221,59 @@ it('opens actual options, including Rush, from the labelled Order options button
   await click('Watch village');
   await click('Order options · Maryam');
   expect(stage.dataset.sheetId).toBe('order');
-  expect(host.querySelector('.lk-sheet-body')?.textContent).toContain('Rush · faster, hungrier');
+  expect(host.querySelector('.lk-sheet-body [aria-label="Rush · faster, hungrier"]')).not.toBeNull();
+});
+
+it('explains disabled Confirm after Rush when a place has not been chosen', async () => {
+  await mount(true, undefined, undefined, { placeId: null, rush: true });
+  expect(host.querySelector('.btn-confirm')?.hasAttribute('disabled')).toBe(true);
+  expect(host.querySelector('#well-confirm-reason')?.textContent).toContain('Choose a place first');
+});
+
+it('exposes Rush immediately beside the selected person while watching', async () => {
+  await mount();
+  await click('Watch village');
+  expect(host.querySelector('.well-phone-tools')?.textContent).toContain('Rush');
+});
+
+it('retains a plain account of pressure after an insisted order has completed', async () => {
+  await mount(true, undefined, {
+    ...refusedOrder,
+    order: { ...refusedOrder.order, insist: true },
+    status: 'done',
+    human: { state: 'complied', settled: true, outcome: 'Built a roof stage.' },
+  });
+  expect(host.querySelector('.person-order')?.textContent).toContain(
+    'Maryam went along, but minded being pushed.',
+  );
+});
+
+it('shows recorded trust costs since the latest order, without treating a warning as a paid cost', () => {
+  const person = frame.human.find((person) => person.id === 'maryam');
+  if (!person) throw new Error('Missing Maryam');
+  const card = {
+    ...refusedOrder,
+    order: { ...refusedOrder.order, insist: true },
+    human: { state: 'assent' as const },
+  };
+  const render = (history: typeof person.trust.history) =>
+    renderToStaticMarkup(
+      createElement(PersonOrder, {
+        card,
+        person: { ...person, trust: { value: 0.4, history } },
+        onAgain: vi.fn(),
+        onCancel: vi.fn(),
+        onInsist: vi.fn(),
+      }),
+    );
+  expect(render([{ minute: 310, delta: -0.1, label: 'Pushed into the squall' }])).toContain(
+    'Maryam trusts you less. Pushed into the squall.',
+  );
+  expect(render([{ minute: 290, delta: -0.1, label: 'Earlier harm' }])).not.toContain('trusts you less');
+  expect(render([{ minute: 300, delta: -0.1, label: 'Earlier order in the same minute' }])).not.toContain(
+    'trusts you less',
+  );
+  expect(render([{ minute: 310, delta: 0.1, label: 'Good call' }])).not.toContain('trusts you less');
+  expect(render([])).not.toContain('minded being pushed');
+  expect(render([])).toContain('The recent record shows no trust loss after this request.');
 });

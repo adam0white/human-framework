@@ -13,8 +13,6 @@ export function goalValue(g: Pick<GoalView, 'id' | 'target'>, s: GoalSide): stri
   // The Day-3 project is the store-room on both sides (a side still finishing the house shows 0).
   return `${s.value}/${STOREROOM_STAGES}`;
 }
-/** Prayers kept as a share of those due, as the report table shows it. */
-export const share = (kept: number, due: number) => (due > 0 ? `${Math.round((100 * kept) / due)}%` : '–');
 export const pct = (v: number) => `${Math.round(v * 100)}%`;
 
 /**
@@ -43,7 +41,6 @@ export function ordersChanged(summary: EndSummary): string {
   row('meals stored', String(sb.human.meals), String(solo.meals));
   row('house', `${sb.human.housePct}%`, `${solo.housePct}%`);
   row('injuries', String(sb.human.injuries), String(solo.injuries));
-  row('prayers kept', share(ch.prayersKept, ch.prayersDue), share(solo.prayersKept, solo.prayersDue));
   row('morale', moodDescription(ch.morale), moodDescription(solo.morale));
   row('trust in you', trustDescription(ch.trust), trustDescription(solo.trust));
   // Solo is the whole run without orders, so the count is every order of the run, not only this report's span.

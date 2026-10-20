@@ -234,6 +234,26 @@ describe('Well review follow-up', () => {
     expect(changed).not.toContain('-0.40');
     expect(changed).not.toMatch(/trust in you \d/);
   });
+  it('never scores prayer in the ending table or the order comparison', () => {
+    const report = {
+      ...summary,
+      orders: 1,
+      character: { ...summary.character, prayersKept: 0, prayersDue: 5 },
+      solo: { ...summary.solo, prayersKept: 5, prayersDue: 5 },
+    };
+    const el = markup(
+      createElement(EndScreen, {
+        summaries: { 2: report },
+        humanKind: 'framework',
+        canContinue: true,
+        onContinue: vi.fn(),
+        onAgain: vi.fn(),
+        onClose: vi.fn(),
+      }),
+    );
+    expect(el.textContent).not.toMatch(/prayers kept/i);
+    expect(ordersChanged(report)).not.toMatch(/prayer/i);
+  });
   it('bounds ending comparisons to visible descriptions when values share a description', () => {
     const report = {
       ...summary,

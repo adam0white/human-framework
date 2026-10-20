@@ -246,6 +246,18 @@ export function PhoneSheet(props: {
         >
           {s.personId ? `Order options · ${shortName(s.personId)}` : 'Choose person'}
         </button>
+        {s.personId && (
+          <button
+            type="button"
+            className="well-quick-rush"
+            aria-label="Rush · faster, hungrier"
+            aria-pressed={s.rush}
+            title="Rush · faster, hungrier"
+            onClick={() => props.onChange({ ...s, rush: !s.rush })}
+          >
+            Rush
+          </button>
+        )}
         {nudge && (
           <button type="button" onClick={(e) => show('suggestion', e.currentTarget)}>
             Suggestion
@@ -277,6 +289,7 @@ export function PhoneSheet(props: {
           {view === 'person' && personOrder && (
             <PersonOrder
               card={personOrder}
+              person={props.frame?.human.find((person) => person.id === personOrder.order.personId)}
               onAgain={(card) => {
                 props.onAgain(card);
                 close();
@@ -332,6 +345,17 @@ export function PhoneSheet(props: {
                 >
                   Place · {s.placeId ? PLACE_LABEL[s.placeId] : 'Choose'}
                 </button>
+                {s.personId && (
+                  <button
+                    type="button"
+                    aria-label="Rush · faster, hungrier"
+                    title="Rush · faster, hungrier"
+                    aria-pressed={s.rush}
+                    onClick={() => props.onChange({ ...s, rush: !s.rush })}
+                  >
+                    Rush
+                  </button>
+                )}
               </div>
               <p className="well-order-preview" hidden={!s.personId}>
                 {!s.personId
@@ -340,15 +364,6 @@ export function PhoneSheet(props: {
                     ? `${shortName(s.personId)}: now pick a place.`
                     : `${shortName(s.personId)} → ${PLACE_LABEL[s.placeId]}`}
               </p>
-              {s.personId && (
-                <button
-                  type="button"
-                  aria-pressed={s.rush}
-                  onClick={() => props.onChange({ ...s, rush: !s.rush })}
-                >
-                  Rush · faster, hungrier
-                </button>
-              )}
               {ready && (
                 <p>
                   {props.job && <>{jobPhrase(props.job)} · </>}
@@ -526,12 +541,18 @@ export function PhoneSheet(props: {
               type="button"
               className="btn-confirm"
               disabled={!ready}
+              aria-describedby={!ready ? 'well-confirm-reason' : undefined}
               onClick={() => {
                 props.onConfirm();
                 close();
               }}
             >
               Confirm
+              {!ready && (
+                <small id="well-confirm-reason">
+                  {s.personId ? 'Choose a place first' : 'Choose a worker and place first'}
+                </small>
+              )}
             </button>
           )}
         </footer>
