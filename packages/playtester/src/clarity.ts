@@ -1,6 +1,6 @@
 /**
  * SCOPE: deterministic warnings and measurements from recorded adapter-visible screens, menus and events only.
- * These are review signals, not proof that a game passes DL-1..30. Promises are the adapter's reading; boredom
+ * These are review signals, not proof that a game passes DL-1..29. Promises are the adapter's reading; boredom
  * and quits are persona responses, not diagnoses. No visual layout, reading comprehension, sub-second feedback,
  * game source or hidden state is inspected. Missing optional evidence is unmeasured, never an automatic pass.
  * All thresholds below are engineering defaults for this rubric, not estimates of human behaviour.
