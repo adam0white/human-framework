@@ -30,8 +30,18 @@ import {
 } from './config.ts';
 import { ageOf, dayOfYear, householdCount, living, seasonOfDay } from './life.ts';
 import { type Moment, readPosting, readWords } from './moments.ts';
-import { bellCarry, bellSwinging, litSection, nightEnd, presentIds, theSection } from './night.ts';
-import { familyWords, isHere, isPost, isWatcher, nameOf, type Place, personOf, villager } from './people.ts';
+import { bellCarry, bellSwinging, inVoice, litSection, nightEnd, presentIds, theSection } from './night.ts';
+import {
+  familyWords,
+  isHere,
+  isPost,
+  isWatcher,
+  nameOf,
+  type Place,
+  personOf,
+  sectionDanger,
+  villager,
+} from './people.ts';
 import { type Impression, keeperImpressions } from './reads.ts';
 import { EAT_PER_HEAD, SPRING_DAY } from './season.ts';
 import type {
@@ -263,6 +273,8 @@ export interface FrameWatcher {
   /** Only in the lit section: whether they threw this minute and whether it struck. */
   throwing: 'hit' | 'miss' | null;
   target: number | null;
+  /** A read-only night account. Only `spoken` accounts are the watcher's own words within voice reach. */
+  account: { text: string; spoken: boolean } | null;
 }
 
 const POSTURE: Record<string, Posture> = {
@@ -274,6 +286,52 @@ const POSTURE: Record<string, Posture> = {
   freeze: 'frozen',
   carry: 'carry',
 };
+
+const ACCOUNT_ACTION: Record<string, string> = {
+  'hold-post': 'I’m keeping watch.',
+  sit: 'I’m sitting a while, still watching.',
+  eat: 'I’m eating a little.',
+  pray: 'I’m praying quietly.',
+  freeze: 'I can’t make myself move.',
+  carry: 'I’m carrying someone to the hall.',
+  'run-off': 'I’ve come off the wall.',
+  flee: 'I’ve come off the wall.',
+  rest: 'I’m resting a while.',
+};
+
+/**
+ * Current activity and the existing local danger read, without a new input or observation. The scout's warning
+ * alone is not a sighting. Out of voice reach, neither activity nor hidden bodily state becomes a reply.
+ */
+function nightAccount(
+  s: WatchState,
+  p: Person,
+  section: SectionId | null,
+  onLit: boolean,
+): FrameWatcher['account'] {
+  if (s.phase !== 'night') return null;
+  if (!inVoice(s, p.id)) return { text: 'Too far away for your voice to reach.', spoken: false };
+  if (p.body.downed)
+    return {
+      text: onLit ? 'They are down and cannot answer.' : 'No reply comes from the dark.',
+      spoken: false,
+    };
+  if (p.body.asleep || p.activity?.action === 'doze' || p.activity?.action === 'sleep')
+    return {
+      text: onLit ? 'They appear asleep. No reply comes.' : 'No reply comes from the dark.',
+      spoken: false,
+    };
+  const doing = ACCOUNT_ACTION[p.activity?.action ?? ''] ?? 'I’m here.';
+  if (section === null) return { text: doing, spoken: true };
+  const danger = sectionDanger(s, section);
+  const seeing =
+    danger.chance > 0.08
+      ? 'Something is close on this stretch.'
+      : danger.chance > 0
+        ? 'The scout warned us about this stretch. I can’t make anything out yet.'
+        : 'Nothing close that I can make out.';
+  return { text: `${doing} ${seeing}`, spoken: true };
+}
 
 let readCache: { key: string; reads: Frame['postingReads'] } | null = null;
 /** Dusk posting reads, recomputed every ten sim minutes or when a posting changes (they run predictAs). */
@@ -444,6 +502,7 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean, rate = 0
       limp: !!w.limp,
       throwing: th ? (th.hit ? ('hit' as const) : ('miss' as const)) : null,
       target: th ? th.token : null,
+      account: nightAccount(s, p, section, onLit),
     });
   }
   const nightLen = nightEnd(s) - s.nightStart;

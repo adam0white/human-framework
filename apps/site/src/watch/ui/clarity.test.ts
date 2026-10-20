@@ -23,7 +23,7 @@ vi.mock('../../shared/lab.tsx', () => ({
   },
 }));
 vi.mock('./useWatch.ts', () => ({ useWatch: vi.fn() }));
-vi.mock('./MapCanvas.tsx', () => ({ MapCanvas: () => null }));
+vi.mock('./MapCanvas.tsx', () => ({ MapCanvas: vi.fn(() => null) }));
 const { GoalPage, DuskPanel, NightPanel, WatchStrip } = await import('./App.tsx');
 const { Chronicle } = await import('./chronicle.tsx');
 const actions = { input: vi.fn(), refreshShelf: vi.fn() } as unknown as WatchActions;
@@ -274,7 +274,7 @@ it('shows one clock rate with the reason for a watcher decision', async () => {
   expect(app.querySelectorAll('.w-clock-rate')).toHaveLength(1);
   expect(app.querySelector('.w-clock-rate')?.textContent).toBe('Slow · watcher decision · 1 min / 60 s');
   expect(app.querySelector('.w-decision-time')?.textContent).toBe(
-    'About 120 seconds to answer; then they decide alone.',
+    'About 120 seconds; then they decide alone.',
   );
   expect(app.querySelector('.w-moment')?.closest('.w-mapwrap')).toBeNull();
   expect(app.querySelector('.w-panel .w-moment')).not.toBeNull();
@@ -299,7 +299,7 @@ it('keeps the full bell explanation available and keeps the ringing label in its
 it('keeps posting in one sheet with a way back and separate place actions', () => {
   const posting = render(createElement(DuskPanel, { ...duskProps, selected: 'tamar' }));
   expect(posting.querySelector('.w-roster')).toBeNull();
-  expect(posting.querySelector('.lk-sheet-head')?.textContent).toContain('Where should Tamar stand?');
+  expect(posting.querySelector('.lk-sheet-head')?.textContent).toContain('Tap a scene post to ask.');
   expect(posting.querySelector('.lk-sheet-head button')?.textContent).toBe('Back to watchers');
   expect(posting.querySelector('.lk-commit .w-places')).not.toBeNull();
   expect(posting.querySelector('.w-presses')?.textContent).toContain('How hard do you press Tamar?');
@@ -345,7 +345,7 @@ it('focuses posting and menu controls, then restores each origin without a game 
   container.remove();
 });
 
-it('keeps the dawn continuation outside the report and sends the same input', async () => {
+it('reads dawn talks and their sleep cost before the account, then continues in the same scroll', async () => {
   const { App } = await import('./App.tsx');
   const { useWatch } = await import('./useWatch.ts');
   const { WatchRun } = await import('../sim/run.ts');
@@ -368,9 +368,21 @@ it('keeps the dawn continuation outside the report and sends the same input', as
   document.body.append(container);
   const root = createRoot(container);
   await act(async () => root.render(createElement(App)));
-  expect(container.querySelector('.lk-sheet-body .w-primary')).toBeNull();
-  const next = container.querySelector<HTMLButtonElement>('.w-page-commit .w-primary');
+  const page = container.querySelector('.w-dawn');
+  const talks = page?.querySelector('.w-talks');
+  const account = page?.querySelector('h2');
+  expect(talks?.textContent).toContain('Each talk costs them a little sleep.');
+  expect(
+    talks && account && talks.compareDocumentPosition(account) & Node.DOCUMENT_POSITION_FOLLOWING,
+  ).toBeTruthy();
+  expect(container.querySelector('.w-page-commit .w-primary')).toBeNull();
+  const next = container.querySelector<HTMLButtonElement>('.lk-sheet-body .w-dawn-continue .w-primary');
   expect(next?.textContent).toBe('On to dusk');
+  const contentBeforeNext = [...(page?.querySelectorAll('.w-asks button, .w-voice-who') ?? [])];
+  expect(contentBeforeNext.length).toBeGreaterThan(0);
+  for (const item of contentBeforeNext) {
+    expect(next && item.compareDocumentPosition(next) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  }
   await act(async () => next?.click());
   expect(testActions.input).toHaveBeenCalledExactlyOnceWith({ k: 'toDusk' });
   await act(async () => root.unmount());
@@ -397,6 +409,88 @@ it('reveals a new timed moment after the player scrolls watch details', async ()
   );
   expect(container.querySelector('.w-moment')).not.toBeNull();
   expect(body?.scrollTop).toBe(0);
+  await act(async () => root.unmount());
+  container.remove();
+});
+
+it('keeps grain, thaw progress and known souls visible in every winter strip', () => {
+  for (const phase of ['dusk', 'night', 'dawn'] as const) {
+    const strip = render(createElement(WatchStrip, { frame: { ...dusk, phase }, selected: 'tamar' }));
+    expect(strip.querySelector('.w-goal-state')?.textContent).toContain('thaw');
+    expect(strip.querySelector('.w-goal-state')?.textContent).toContain('spring food needs');
+    expect(strip.querySelector('.w-goal-state')?.textContent).toContain('souls still here');
+    expect(strip.querySelector('.w-selected-state')?.textContent).toContain('Tamar');
+  }
+});
+
+it('posts directly on the scene with Ask and opens a night account without a game input', async () => {
+  const { App } = await import('./App.tsx');
+  const { MapCanvas } = await import('./MapCanvas.tsx');
+  const { useWatch } = await import('./useWatch.ts');
+  const { WatchRun } = await import('../sim/run.ts');
+  const run = new WatchRun(5);
+  run.input({ k: 'start' });
+  const testActions = { ...actions, input: vi.fn(), hold: vi.fn() };
+  const value = {
+    frame: buildFrame(run.state, 0, false),
+    speed: 'watch' as const,
+    error: null,
+    seed: 5,
+    shelf: [],
+    saving: true,
+    current: 'new',
+    actions: testActions,
+  };
+  vi.mocked(useWatch).mockReturnValue(value);
+  const container = document.createElement('div');
+  document.body.append(container);
+  const root = createRoot(container);
+  await act(async () => root.render(createElement(App)));
+  await act(async () => container.querySelector<HTMLButtonElement>('.w-person-tamar')?.click());
+  const mapHit = async (hit: import('./map.ts').Hit) => {
+    const props = vi.mocked(MapCanvas).mock.calls.at(-1)?.[0];
+    await act(async () => props?.onHit(hit));
+  };
+  await mapHit({ kind: 'post', post: 'west-1' });
+  expect(testActions.input).toHaveBeenLastCalledWith({
+    k: 'post',
+    watcher: 'tamar',
+    post: 'west-1',
+    press: 'ask',
+  });
+  expect(container.querySelector('.w-postcard')).toBeNull();
+  run.input({ k: 'begin' });
+  value.frame = buildFrame(run.state, 0, false);
+  await act(async () => root.render(createElement(App)));
+  testActions.input.mockClear();
+  await mapHit({ kind: 'watcher', watcher: 'tamar' });
+  expect(container.querySelector('.w-account')?.textContent).toContain(
+    value.frame.watchers.find((w) => w.id === 'tamar')?.account?.text,
+  );
+  expect(document.activeElement?.textContent).toBe('Back to the wall');
+  expect(testActions.input).not.toHaveBeenCalled();
+  await act(async () => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' })));
+  expect(container.querySelector('.w-account')).toBeNull();
+  await new Promise((resolve) => requestAnimationFrame(resolve));
+  expect(document.activeElement).toBe(container.querySelector('.w-night-details summary'));
+  await act(async () => container.querySelector<HTMLElement>('.w-night-details summary')?.click());
+  const nightWatcher = container.querySelector<HTMLButtonElement>('.w-night-roster .w-person-tamar');
+  await act(async () => nightWatcher?.click());
+  await act(async () => container.querySelector<HTMLButtonElement>('.w-account-close')?.click());
+  await new Promise((resolve) => requestAnimationFrame(resolve));
+  expect(document.activeElement).toBe(nightWatcher);
+  await mapHit({ kind: 'watcher', watcher: 'tamar' });
+  while (run.state.phase === 'night' && !run.state.moment) run.step();
+  value.frame = buildFrame(run.state, 0, true, 1 / 60);
+  await act(async () => root.render(createElement(App)));
+  expect(container.querySelector('.w-account')).toBeNull();
+  expect(container.querySelector('.w-moment')).not.toBeNull();
+  await act(async () => container.querySelector<HTMLButtonElement>('.w-moment-let')?.click());
+  await mapHit({ kind: 'watcher', watcher: 'tamar' });
+  expect(container.querySelector('.w-account')).not.toBeNull();
+  await act(async () => container.querySelector<HTMLButtonElement>('.w-account-close')?.click());
+  expect(container.querySelector('.w-moment')).toBeNull();
+  expect(testActions.input).not.toHaveBeenCalled();
   await act(async () => root.unmount());
   container.remove();
 });

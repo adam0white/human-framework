@@ -1833,3 +1833,61 @@ body:has(> .hflab-veil) .watch .w-menu {
     display: none;
   }
 }
+
+/* Round 2: goal reads wrap above every winter decision. Dawn advances only after the talks. */
+.w-goal-state .w-grain-condition {
+  color: var(--w-text);
+}
+.watch .w-page-commit:empty {
+  display: none;
+}
+.w-dawn-continue {
+  margin-top: 16px;
+}
+.w-night-roster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.w-account blockquote {
+  margin: 6px 0;
+}
+.watch .w-night > .lk-sheet-body:has(.w-account) > :is(.w-lantern-context, .w-night-details) {
+  display: none;
+}
+
+.w-night-roster {
+  border: 0;
+  padding: 0;
+  margin: 6px 0;
+}
+@media (max-width: 899px) {
+  .watch .w-night:has(.w-moment) .w-rope {
+    display: none;
+  }
+  .watch .w-night:has(.w-moment) .w-tap-hint {
+    display: none;
+  }
+  .watch .w-night:has(.w-moment) .w-moment {
+    padding: 6px;
+  }
+  .watch .w-night:has(.w-moment) .w-moment-text,
+  .watch .w-night:has(.w-moment) .w-decision-time {
+    margin-bottom: 4px;
+  }
+  .watch .w-night:has(.w-moment) .w-moment-let {
+    margin-top: 0;
+  }
+}
+@media (max-width: 899px) {
+  .watch .w-night:has(.w-moment) .w-lantern-pick {
+    grid-template-columns: 0.8fr repeat(4, minmax(0, 1fr));
+    align-items: center;
+  }
+  .watch .w-night:has(.w-moment) .w-lantern-pick > span {
+    grid-column: auto;
+  }
+  .watch .w-night:has(.w-moment) .w-lantern-pick > span svg {
+    display: none;
+  }
+}
