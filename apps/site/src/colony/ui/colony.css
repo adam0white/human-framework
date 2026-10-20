@@ -4266,7 +4266,7 @@ kbd {
     left: -85px;
     right: -86px;
   }
-  .center:has(.order-options[open]) .sheet-tools {
+  .is-ordering .center:has(.order-options[open]) .sheet-tools {
     visibility: hidden;
   }
 
@@ -4312,12 +4312,22 @@ kbd {
 /* The proposal, its known trade-off and Use form one visible decision. */
 .nudge-head {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto auto;
+  grid-template-columns: minmax(0, 1fr) 44px;
   align-items: start;
   gap: 6px;
 }
 .nudge-proposal {
   min-width: 0;
+  grid-column: 1;
+  grid-row: 1;
+}
+.nudge-head .nudge-skip {
+  grid-column: 2;
+  grid-row: 1;
+}
+.nudge-head .nudge-use {
+  grid-column: 1 / -1;
+  grid-row: 2;
 }
 .nudge-proposal .nudge-text,
 .nudge-proposal .nudge-reason {
@@ -4411,4 +4421,107 @@ kbd {
 .map-choices > legend {
   padding: 0 4px;
   background: var(--surface);
+}
+
+/* Follow-up d: a fixed commit/exit row, with disclosures above its controls. */
+.hurt-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.hurt-item > span {
+  flex: 1;
+}
+.hurt-item .btn,
+.news-return {
+  min-height: 44px;
+  flex-shrink: 0;
+}
+.news-follow {
+  margin: 0;
+  padding: 4px 6px;
+  background: var(--surface);
+}
+@media (max-width: 860px) and (min-height: 501px) {
+  .center {
+    z-index: 7;
+  }
+  .composer-actions .watch-village {
+    display: block;
+    flex: 1;
+    white-space: nowrap;
+  }
+  .order-options[open] {
+    bottom: 54px;
+    max-height: 210px;
+  }
+  .is-ordering .sheet-tools {
+    bottom: calc(100% + 4px);
+    left: auto;
+    right: 4px;
+    width: 200px;
+    border: 1px solid var(--line-strong);
+    border-radius: 6px;
+    background: var(--surface);
+  }
+  .is-ordering .center:has(.order-options[open]) .sheet-tools {
+    visibility: hidden;
+  }
+  .is-ordering .order-alerts {
+    bottom: calc(100% + 52px);
+  }
+  .order-alerts {
+    pointer-events: auto;
+    max-height: 100px;
+  }
+  .order-alerts .hurt-line {
+    background: var(--surface);
+  }
+  .is-ordering .nudge-slot[open] .nudge {
+    left: auto;
+    right: -4px;
+    width: calc(100vw - 2px);
+  }
+  .nudge-keep-watching {
+    min-height: 44px;
+  }
+  .news-follow {
+    position: absolute;
+    bottom: calc(100% + 52px);
+    left: 4px;
+    right: 4px;
+    z-index: 7;
+  }
+  .center:has(.news-follow) .order-alerts {
+    bottom: calc(100% + 106px);
+  }
+}
+@media (min-width: 861px) and (min-height: 501px) {
+  .order-alerts {
+    max-height: 100px;
+    overflow-y: auto;
+    flex-shrink: 0;
+  }
+  .composer-tray {
+    overflow: visible;
+  }
+  .composer {
+    position: relative;
+  }
+  .composer-actions .btn-ghost {
+    display: none;
+  }
+  .order-options[open] {
+    position: absolute;
+    bottom: 58px;
+    left: 10px;
+    right: 10px;
+    z-index: 7;
+    max-height: 260px;
+    overflow-y: auto;
+    padding: 6px;
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    border-radius: 6px;
+  }
 }
