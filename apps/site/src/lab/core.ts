@@ -45,6 +45,13 @@ export type RunEnvelope = {
   run: unknown;
 };
 
+// Node 26, fresh-process Worker pipeline (readCapped + parse + stringify + gzip):
+// at 3 MiB/360k tokens/45k containers, unique-key objects peak at 51.6 MiB
+// heap+external (44.2 MiB above baseline), including UTF-16 string storage.
+// Arrays/integers/fractions use less. 4 MiB reaches 60.3 MiB; 8 MiB 110.5 MiB,
+// so retain a smaller byte cap for headroom below the ~60 MiB allocation budget.
+// Raw Node RSS peaks at 134.3 MiB; these are not workerd memory guarantees.
+// Realistic HF density (~0.11 tokens/~0.014 containers per byte) fits at 3 MiB.
 export const LIMITS = {
   /** bytes of one event batch body */
   batchBytes: 8 * 1024,
@@ -55,10 +62,10 @@ export const LIMITS = {
   /** compressed run body */
   runBytes: 2 * 1024 * 1024,
   /** decompressed run body */
-  runInflatedBytes: 4 * 1024 * 1024,
+  runInflatedBytes: 3 * 1024 * 1024,
   /** Pre-parse JSON complexity budget, including primitive values and object members. */
-  runJsonTokens: 120000,
-  runJsonContainers: 30000,
+  runJsonTokens: 360000,
+  runJsonContainers: 45000,
   runJsonDepth: 64,
   /** a session longer than this is clamped when aggregating */
   sessionMs: 12 * 3600 * 1000,
@@ -157,7 +164,11 @@ export function parseBatch(text: string): { ok: true; batch: EventBatch } | { ok
 
 /** Bounds allocation before JSON.parse. Ignore syntax inside quoted strings, including escaped quotes. */
 export function boundedRunJson(text: string): boolean {
-  if (text.length > LIMITS.runInflatedBytes) return false;
+  if (
+    text.length > LIMITS.runInflatedBytes ||
+    new TextEncoder().encode(text).byteLength > LIMITS.runInflatedBytes
+  )
+    return false;
   let depth = 0;
   let tokens = 0;
   let containers = 0;
@@ -185,7 +196,11 @@ export function boundedRunJson(text: string): boolean {
 
 /** Validates a decompressed run envelope. */
 export function parseRun(text: string): { ok: true; run: RunEnvelope } | { ok: false; error: string } {
-  if (!boundedRunJson(text)) return { ok: false, error: 'run too complex or too large' };
+  if (!boundedRunJson(text))
+    return {
+      ok: false,
+      error: 'This run is too long to send in one piece. Your saved export file still has all of it.',
+    };
   let raw: unknown;
   try {
     raw = JSON.parse(text);

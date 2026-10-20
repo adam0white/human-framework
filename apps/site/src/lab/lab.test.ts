@@ -6,9 +6,11 @@ import worker, { cleanup, type Env } from '../../worker/lab.ts';
 import {
   aggregateDay,
   allowedOrigin,
+  boundedRunJson,
   cleanText,
   errorLabel,
   hourOf,
+  LIMITS,
   label,
   lastDays,
   mergeAggregates,
@@ -84,13 +86,65 @@ describe('lab core', () => {
   });
 
   it('rejects structurally expensive JSON before parsing and accepts braces inside strings', () => {
-    const dense = JSON.stringify({ v: 1, game: 'pass', run: Array.from({ length: 40000 }, () => ({})) });
+    const dense = JSON.stringify({
+      v: 1,
+      game: 'pass',
+      run: Array.from({ length: LIMITS.runJsonContainers }, () => ({})),
+    });
     expect(parseRun(dense).ok).toBe(false);
     const deep = `{"v":1,"game":"pass","run":${'['.repeat(100)}0${']'.repeat(100)}}`;
     expect(parseRun(deep).ok).toBe(false);
     expect(parseRun(JSON.stringify({ v: 1, game: 'pass', run: { text: '[{"'.repeat(40000) } })).ok).toBe(
       true,
     );
+  });
+
+  it('accepts a synthetic HF-shaped three-megabyte run at depth nine', () => {
+    // Synthetic records only: 53 people, 36,146 records and 4,823 empty containers.
+    const person = () => ({
+      memory: {
+        chronicle: {
+          entries: [
+            ...Array.from({ length: 682 }, () => ({ a: 0, b: 0, c: 0, d: 'x'.repeat(40) })),
+            ...Array.from({ length: 91 }, () => []),
+          ],
+        },
+      },
+    });
+    const raw = JSON.stringify({
+      v: 1,
+      game: 'valley',
+      run: { state: { people: Array.from({ length: 53 }, person) } },
+      pad: '',
+    });
+    const text = raw.slice(0, -2) + 'x'.repeat(3_000_000 - raw.length) + raw.slice(-2);
+    expect(text).toHaveLength(3_000_000);
+    expect(parseRun(text).ok).toBe(true);
+  });
+
+  it('accepts exact byte, token, container and depth bounds and refuses one more', () => {
+    const envelope = (run: string) => `{"v":1,"game":"pass","run":${run}}`;
+    // Envelope: six structural tokens and one container; run array: one token/container.
+    const tokens = envelope(`[${'0,'.repeat(LIMITS.runJsonTokens - 7)}0]`);
+    expect(parseRun(tokens).ok).toBe(true);
+    expect(parseRun(tokens.replace('0]', '0,0]'))).toEqual({
+      ok: false,
+      error: 'This run is too long to send in one piece. Your saved export file still has all of it.',
+    });
+    const containers = envelope(`[${'[],'.repeat(LIMITS.runJsonContainers - 3)}[]]`);
+    expect(parseRun(containers).ok).toBe(true);
+    expect(parseRun(containers.replace('[]]', '[],[]]')).ok).toBe(false);
+    const deep = envelope(`${'['.repeat(LIMITS.runJsonDepth - 1)}0${']'.repeat(LIMITS.runJsonDepth - 1)}`);
+    expect(parseRun(deep).ok).toBe(true);
+    expect(
+      parseRun(envelope(`${'['.repeat(LIMITS.runJsonDepth)}0${']'.repeat(LIMITS.runJsonDepth)}`)).ok,
+    ).toBe(false);
+    const head = envelope('{"pad":""}');
+    const bytes = head.replace('""', `"${'x'.repeat(LIMITS.runInflatedBytes - head.length)}"`);
+    expect(parseRun(bytes).ok).toBe(true);
+    expect(parseRun(`${bytes} `).ok).toBe(false);
+    // UTF-8 bytes, rather than UTF-16 code units, govern the same limit as readCapped.
+    expect(boundedRunJson(envelope(`{"pad":"${'é'.repeat(LIMITS.runInflatedBytes / 2)}"}`))).toBe(false);
   });
 
   it('accepts a well-formed batch and drops unknown fields', () => {
