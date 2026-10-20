@@ -1,6 +1,8 @@
 /**
- * Release workflow: require a clean, pushed `main`, check locally (or --trust-ci), build, stamp release.json,
- * deploy with Wrangler, then verify the live manifest matches this commit.
+ * Release workflow: require a clean, pushed `main` and successful CI for this exact commit,
+ * waiting up to 15 minutes. --full-check permits local checks if CI cannot be trusted;
+ * --trust-ci remains a compatibility alias. Build, stamp release.json, deploy with Wrangler,
+ * then verify the live manifest matches this commit. --dry-run uses the same CI gate.
  */
 import { execFileSync } from 'node:child_process';
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -17,7 +19,7 @@ const run = (cmd: string, args: string[], quiet = false, timeout?: number): stri
 const git = (...args: string[]) => run('git', args, true).trim();
 
 const dryRun = process.argv.includes('--dry-run');
-const trustCi = process.argv.includes('--trust-ci');
+const fullCheck = process.argv.includes('--full-check');
 const branch = git('rev-parse', '--abbrev-ref', 'HEAD');
 const dirty = git('status', '--porcelain');
 const commit = git('rev-parse', 'HEAD');
@@ -32,8 +34,10 @@ if (!dryRun) {
 // before checking or bundling so a locally green build uses this checkout's released client.
 run('npm', ['ci', '--no-audit', '--no-fund']);
 let trustedCiUrl: string | undefined;
-if (trustCi && !dirty) {
-  try {
+try {
+  if (dirty) throw new Error('Working tree is dirty; CI cannot verify local changes');
+  const deadline = Date.now() + 15 * 60_000;
+  while (!trustedCiUrl) {
     const pages: unknown = JSON.parse(
       run(
         'gh',
@@ -53,17 +57,37 @@ if (trustCi && !dirty) {
       return page.check_runs as {
         id: number;
         name: string;
+        head_sha: string;
+        status: string;
         conclusion: string | null;
         html_url: string;
       }[];
     });
-    const latestCi = checks.filter((check) => check.name === 'ci').sort((a, b) => b.id - a.id)[0];
-    if (latestCi?.conclusion === 'success' && typeof latestCi.html_url === 'string') {
+    const latestCi = checks
+      .filter((check) => check.name === 'ci' && check.head_sha === commit)
+      .sort((a, b) => b.id - a.id)[0];
+    if (latestCi?.status === 'completed') {
+      if (latestCi.conclusion !== 'success') {
+        throw new Error(`CI for ${commit} finished with ${latestCi.conclusion ?? 'no conclusion'}`);
+      }
+      if (typeof latestCi.html_url !== 'string') throw new Error('CI check is missing its URL');
       trustedCiUrl = latestCi.html_url;
+      break;
     }
-  } catch (error) {
-    console.warn('Could not verify CI; running local checks.', error);
+    const status = latestCi?.status ?? 'missing';
+    console.log(`Waiting for CI for ${commit}: ${status}`);
+    const remaining = deadline - Date.now();
+    if (remaining <= 0) throw new Error(`Timed out after 15 minutes waiting for CI for ${commit}`);
+    await new Promise((resolve) => setTimeout(resolve, Math.min(15_000, remaining)));
   }
+} catch (error) {
+  if (!fullCheck) {
+    const reason = error instanceof Error ? error.message : String(error);
+    throw new Error(`Cannot deploy without successful CI: ${reason}. Use --full-check to run local checks.`, {
+      cause: error,
+    });
+  }
+  console.warn('Could not trust CI; --full-check enabled local checks.', error);
 }
 if (trustedCiUrl) console.log(`Trusting successful CI: ${trustedCiUrl}`);
 else run('npm', ['run', 'check']);
