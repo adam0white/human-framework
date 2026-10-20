@@ -4458,7 +4458,7 @@
    "words": "Game should keep track of things to simply disallow me from repeating useless acts like telling about and event to someone again, or spreading old news and whatnot.",
    "verdict": "-",
    "routes": [
-    "fix:hearsay DL-4 a story or claim already told to that listener is disabled with the reason, reproduced in the export (13 repeats) (done, hearsay e5e5bd5)",
+    "fix:hearsay DL-4 a story or claim already told to that listener is disabled with the reason, reproduced in the export (13 repeats) (done, hearsay e5e5bd5, legacy-run gaps fixed in 7000ecd)",
     "lesson:L4",
     "lesson:L17"
    ],
@@ -4501,7 +4501,7 @@
    "words": "Trial morning is stuck.",
    "verdict": "quit",
    "routes": [
-    "fix:goodhands reproduce and fix the stuck trial morning from the export (open, Codex 2026-10-20)",
+    "fix:goodhands reproduce and fix the stuck trial morning from the export (done, goodhands a6b7de8: three trial sends were refused on wage and the sheet hid the refusal)",
     "lesson:L17"
    ],
    "source": "goodhands/docs/playtests/owner-2026-10-20.md"
@@ -4515,7 +4515,7 @@
    "words": "No negotiation possible.",
    "verdict": "-",
    "routes": [
-    "fix:goodhands negotiate terms with family and worker in a scene, HF answers (open, Codex 2026-10-20)"
+    "fix:goodhands negotiate terms with family and worker in a scene, HF answers (done, goodhands 7c97bc6)"
    ],
    "source": "goodhands/docs/playtests/owner-2026-10-20.md"
   },
@@ -4528,7 +4528,7 @@
    "words": "I'm able to interview anyone immediately.",
    "verdict": "-",
    "routes": [
-    "fix:goodhands interviews need the candidate in the office and take office time, waiting and arriving shown in words (open, Codex 2026-10-20)"
+    "fix:goodhands interviews need the candidate in the office and take office time, waiting and arriving shown in words (done, goodhands 7c97bc6)"
    ],
    "source": "goodhands/docs/playtests/owner-2026-10-20.md"
   },
@@ -4541,7 +4541,7 @@
    "words": "Calling references again is useless and adds duplicate entries to the book.",
    "verdict": "-",
    "routes": [
-    "fix:goodhands DL-4 a called reference is disabled with the reason, no duplicate notes (open, Codex 2026-10-20)",
+    "fix:goodhands DL-4 a called reference is disabled with the reason, no duplicate notes (done, goodhands a6b7de8)",
     "lesson:L4"
    ],
    "source": "goodhands/docs/playtests/owner-2026-10-20.md"
@@ -4555,8 +4555,8 @@
    "words": "The UI could be improved. The lost jobs still show.",
    "verdict": "-",
    "routes": [
-    "fix:goodhands lost requests leave the active list (open, Codex 2026-10-20)",
-    "fix:goodhands DL-30/31 lab-kit 0.2.0 phone stage, brought forward from F-301 (open, Codex 2026-10-20)"
+    "fix:goodhands lost requests leave the active list (done, goodhands a6b7de8)",
+    "fix:goodhands DL-30/31 lab-kit 0.2.0 phone stage, brought forward from F-301 (done, goodhands 7c97bc6)"
    ],
    "source": "goodhands/docs/playtests/owner-2026-10-20.md"
   },
@@ -4569,7 +4569,7 @@
    "words": "No ability to talk to the families besides sending someone.",
    "verdict": "-",
    "routes": [
-    "fix:goodhands Nermin phones or visits a household herself (open, Codex 2026-10-20)",
+    "fix:goodhands Nermin phones or visits a household herself (done, goodhands 7c97bc6, by phone)",
     "lesson:L19"
    ],
    "source": "goodhands/docs/playtests/owner-2026-10-20.md"
