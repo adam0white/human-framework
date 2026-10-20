@@ -4477,6 +4477,102 @@
     "fix:lab lab-client onClose hook so every game can stop the clock while the send dialog is open (open, target 2026-11-03)"
    ],
    "source": "hearsay/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-340",
+   "date": "2026-10-20",
+   "game": "goodhands",
+   "kind": "owner",
+   "who": "owner",
+   "words": "I think this game has very good potential if we can keep working on the back stories as well as play testers to polish it a lot more. Thanks",
+   "verdict": "keep",
+   "routes": [
+    "fix:goodhands deeper backstories (open, target 2026-11-03)",
+    "lesson:L14"
+   ],
+   "source": "goodhands/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-341",
+   "date": "2026-10-20",
+   "game": "goodhands",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Trial morning is stuck.",
+   "verdict": "quit",
+   "routes": [
+    "fix:goodhands reproduce and fix the stuck trial morning from the export (open, Codex 2026-10-20)",
+    "lesson:L17"
+   ],
+   "source": "goodhands/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-342",
+   "date": "2026-10-20",
+   "game": "goodhands",
+   "kind": "owner",
+   "who": "owner",
+   "words": "No negotiation possible.",
+   "verdict": "-",
+   "routes": [
+    "fix:goodhands negotiate terms with family and worker in a scene, HF answers (open, Codex 2026-10-20)"
+   ],
+   "source": "goodhands/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-343",
+   "date": "2026-10-20",
+   "game": "goodhands",
+   "kind": "owner",
+   "who": "owner",
+   "words": "I'm able to interview anyone immediately.",
+   "verdict": "-",
+   "routes": [
+    "fix:goodhands interviews need the candidate in the office and take office time, waiting and arriving shown in words (open, Codex 2026-10-20)"
+   ],
+   "source": "goodhands/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-344",
+   "date": "2026-10-20",
+   "game": "goodhands",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Calling references again is useless and adds duplicate entries to the book.",
+   "verdict": "-",
+   "routes": [
+    "fix:goodhands DL-4 a called reference is disabled with the reason, no duplicate notes (open, Codex 2026-10-20)",
+    "lesson:L4"
+   ],
+   "source": "goodhands/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-345",
+   "date": "2026-10-20",
+   "game": "goodhands",
+   "kind": "owner",
+   "who": "owner",
+   "words": "The UI could be improved. The lost jobs still show.",
+   "verdict": "-",
+   "routes": [
+    "fix:goodhands lost requests leave the active list (open, Codex 2026-10-20)",
+    "fix:goodhands DL-30/31 lab-kit 0.2.0 phone stage, brought forward from F-301 (open, Codex 2026-10-20)"
+   ],
+   "source": "goodhands/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-346",
+   "date": "2026-10-20",
+   "game": "goodhands",
+   "kind": "owner",
+   "who": "owner",
+   "words": "No ability to talk to the families besides sending someone.",
+   "verdict": "-",
+   "routes": [
+    "fix:goodhands Nermin phones or visits a household herself (open, Codex 2026-10-20)",
+    "lesson:L19"
+   ],
+   "source": "goodhands/docs/playtests/owner-2026-10-20.md"
   }
  ],
  "lessons": [
@@ -5083,8 +5179,8 @@
   }
  ],
  "routes": {
-  "fix": 350,
-  "lesson": 256,
+  "fix": 358,
+  "lesson": 260,
   "hf": 12,
   "calibration": 42,
   "none": 1
