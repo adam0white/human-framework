@@ -1,28 +1,25 @@
 import { describe, expect, test } from 'vitest';
 import {
   begin,
-  createPerson,
-  createVillage,
   decide,
   learnFromVoice,
   predictResponse,
   readPerson,
   resolveChoice,
   vetoFor,
-  villagerSpec,
+  type villagerSpec,
   voiceOf,
   WILL_DEFAULTS,
 } from '../src/index.ts';
 import type { Affordance, Person } from '../src/types.ts';
-import { ask, NOON } from './support.ts';
+import { ask, NOON, offersInVillage, villagerAtNoon } from './support.ts';
 
 function villager(id: string, seed: number, opts: Parameters<typeof villagerSpec>[3] = {}): Person {
-  return createPerson(villagerSpec(id, id, seed, { now: NOON, others: ['a', 'b', 'c'], ...opts }));
+  return villagerAtNoon(id, seed, ['a', 'b', 'c'], opts);
 }
 
 function offers(p: Person, foodStock = 30): Affordance[] {
-  const others = ['a', 'b', 'c'].filter((id) => id !== p.id).map((id) => villager(id, 99));
-  return createVillage([p, ...others], { seed: 1, foodStock }).affordancesFor(p);
+  return offersInVillage(p, ['a', 'b', 'c'], villager, { peerSeed: 99, seed: 1, foodStock });
 }
 
 describe('suggestion verdicts', () => {
