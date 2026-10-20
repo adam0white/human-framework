@@ -283,3 +283,24 @@ From the polish requests filed against 2.8.0 ([triage](game-requests-2026-10-18.
 - **Doc notes.** Commitment labels should be noun phrases for `reviewLine`; a recurring commitment lapses on a day the host does not live; goal terms are never negative.
 
 The playtester (`packages/playtester`, private) is not HF: it is a tool in which an HF person plays a game through a small adapter. See its module doc and the 2.8.0 entry in [CHANGELOG.md](../CHANGELOG.md).
+
+## Word and witness (2.10.0)
+
+### Believed regard
+
+`social/impressions.ts` owns the opt-in `regard` cue: how I believe another person regards me, from −1 to 1, with prior 0 and evidence half-life 60 days. `regardOf(p, otherId, now)` returns the estimate and confidence without mutation. `noteKnownBy(p, { otherId, act, via, sourceId?, at? })` records my evidence that the other knows of my act. `via: 'seen'` has weight 1; `via: 'told'` uses information-source trust in `sourceId`, and writes nothing without a source or when its testimony weight is zero. An attended own-act percept (`actorId === p.id`) names the people I saw see it in `witnesses`. A secret witness or an unknown relay supplies no evidence.
+
+The sample projects my own understanding: the act's explicit valence, or defaults (`promise-broken` −0.6, `promise-kept` +0.3, `harm` −0.6, `help` +0.4, `apology` +0.2, otherwise 0), counts in full for its target and at half strength for a third party. My self-judgement under my held norms adds 0.3 × praiseworthiness. The sample is clamped to −1..1; negative samples carry twice the evidence weight. These coefficients are engineering defaults. HF does not read the other's actual view or infer undisclosed knowledge.
+
+`socialTerms` adds `regard:<id>` only for a target with a negative regard cue on an offer tagged `repair` or with action `apology`/`amends`: `min(0.3, 0.5 × (−mean) × confidence × (0.5 + agreeableness))`, rounded like other terms. The term never applies to someone held as deceased. Without a regard cue no term is added, even if other impression cues exist. This can change a close choice; it guarantees neither repair nor forgiveness.
+
+For a broken promise, the host delivers each person's evidence separately:
+
+| Person / store | Delivery |
+|---|---|
+| Breaker's own commitment record | The composite's internal `recordMissed` records the lapse when `tick` or `finish` finds the broken commitment; it sends no percept to anyone else. |
+| Promisee's relationship with the breaker | Deliver a `promise-broken` percept with `actorId` = breaker and `targetId` = promisee. Its relationship changes only after that percept is attended. |
+| Witnesses' judgement of the breaker | Include `norms` on the percept each witness receives; each judges under their own held norms. |
+| Breaker's believed regard | Deliver the breaker's own-act percept with `witnesses` naming only people the breaker saw see it; use `noteKnownBy` for a subsequently learned relay. |
+
+Relationships (`social.relationships`) and impressions (`social.impressions`) are separate stores. The promisee's actual trust in the breaker is a relationship value; the breaker's belief about the promisee's view is an impression cue. Recording one does not copy it into the other.

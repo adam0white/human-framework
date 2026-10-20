@@ -25,6 +25,7 @@
  * of one's own state, deliberate deception beyond reserve, the target noticing being watched, or gossip about
  * impressions (conversation carries reputation beliefs separately, `social.ts`).
  */
+import { testimonyWeight, trustOf } from '../beliefs/beliefs.ts';
 import { clamp, clamp01, cmpStr, decay, latestPerId, newestN, round } from '../core/index.ts';
 import type {
   EntityId,
@@ -40,8 +41,9 @@ import type {
   Unit,
 } from '../types.ts';
 import { MINUTES_PER_DAY, MINUTES_PER_YEAR, TRAIT_KEYS } from '../types.ts';
+import { judge, SOCIAL_DEFAULTS } from './social.ts';
 
-export type CueKind = 'state' | 'place' | 'trait' | 'tie' | 'trust' | 'skill';
+export type CueKind = 'state' | 'place' | 'trait' | 'tie' | 'trust' | 'skill' | 'regard';
 
 export const STATE_CUES: readonly StateCue[] = ['fatigue', 'pain', 'fear', 'mood'];
 /** @deprecated since 2.1: use `TRAIT_KEYS` (types.ts), the same list. Removed in 3.0. */
@@ -57,6 +59,7 @@ export const IMPRESSION_DEFAULTS = {
     trust: 30 * MINUTES_PER_DAY,
     /** `skill:<id>`: how good someone is at a craft changes over seasons, and what was seen of it lasts. */
     skill: MINUTES_PER_YEAR,
+    regard: 60 * MINUTES_PER_DAY,
   } as Record<CueKind, number>,
   /** confidence = weight / (weight + priorWeight). */
   priorWeight: 1.5,
@@ -73,6 +76,7 @@ export const IMPRESSION_DEFAULTS = {
     tie: 0,
     trust: 0.5,
     skill: 0.3,
+    regard: 0,
   },
   /** Default reserve: base + emotionalityCoef × (1 − emotionality) for pain and fear; fatigue and mood a little. */
   reserve: { base: 0.1, emotionalityCoef: 0.4, fatigue: 0.1, mood: 0.2 },
@@ -140,6 +144,7 @@ export interface ObservedAct {
 }
 
 function cueKind(key: string): CueKind {
+  if (key === 'regard') return 'regard';
   if (key.startsWith('trait:')) return 'trait';
   if (key.startsWith('tie:')) return 'tie';
   if (key.startsWith('trust:')) return 'trust';
@@ -156,7 +161,7 @@ function priorOf(key: string): number {
 }
 
 function rangeOf(key: string): [number, number] {
-  return key === 'mood' || cueKind(key) === 'tie' ? [-1, 1] : [0, 1];
+  return key === 'mood' || key === 'regard' || cueKind(key) === 'tie' ? [-1, 1] : [0, 1];
 }
 
 /** FNV-1a over a string, as a 0..1 fraction: deterministic observation error with no RNG drawn. */
@@ -501,8 +506,17 @@ export function sanitizeImpressions(social: Person['social']): void {
 }
 
 // ---------------------------------------------------------------------------------------------
-// Believed regard (2.10.0): the other's view of me. STUBS pre-staged by the lead; the worker implements them.
+// Believed regard (2.10.0): the other's view of me.
 // ---------------------------------------------------------------------------------------------
+
+/**
+ * SCOPE (believed regard): the person's estimate of how another regards them, updated only by their own evidence
+ * that the other knows of an act. Seen witnesses carry full weight; a learned relay carries information-source
+ * trust. The person projects the act's valence and their own held-norm judgement, without reading the other's
+ * mind. Negative samples carry the social negativity bias. Evidence halves over 60 days. This does not model
+ * hidden witnesses, unknown relays, recursive beliefs or the other's actual feelings. Relationships and
+ * impressions remain separate stores. The projection weights and half-life are engineering defaults.
+ */
 
 /** An act of mine that someone else knows of (2.10.0). */
 export interface KnownAct {
@@ -517,9 +531,36 @@ export interface KnownAct {
  * told they heard (`via: 'told'`, weighted by trust in `sourceId`). Moves the believed regard cue. See the SCOPE.
  */
 export function noteKnownBy(
-  _p: Person,
-  _ev: { otherId: PersonId; act: KnownAct; at?: Minute; via: 'seen' | 'told'; sourceId?: EntityId },
+  p: Person,
+  ev: { otherId: PersonId; act: KnownAct; at?: Minute; via: 'seen' | 'told'; sourceId?: EntityId },
 ): Estimate | undefined {
-  // TODO(2.10 regard worker)
-  return undefined;
+  if (ev.otherId === p.id) return undefined;
+  const weight =
+    ev.via === 'seen' ? 1 : ev.sourceId === undefined ? 0 : testimonyWeight(trustOf(p, ev.sourceId));
+  if (!(weight > 0)) return undefined;
+  const at = ev.at ?? p.now;
+  const defaults: Record<string, number> = {
+    'promise-broken': -0.6,
+    'promise-kept': 0.3,
+    harm: -0.6,
+    help: 0.4,
+    apology: 0.2,
+  };
+  const valence = ev.act.valence ?? (Object.hasOwn(defaults, ev.act.kind) ? (defaults[ev.act.kind] ?? 0) : 0);
+  const judgement = judge(
+    p,
+    { actorId: p.id, norms: ev.act.norms ?? [] },
+    p.conscience.norms,
+    at,
+  ).praiseworthiness;
+  const value = clamp(valence * (ev.act.targetId === ev.otherId ? 1 : 0.5) + 0.3 * judgement, -1, 1);
+  if (!Number.isFinite(value) || !Number.isFinite(at)) return undefined;
+  const imp = impressionFor(p, ev.otherId, true, at) as Impression;
+  sample(imp, 'regard', value, weight * (value < 0 ? SOCIAL_DEFAULTS.negativityBias : 1), at);
+  return regardOf(p, ev.otherId, at);
+}
+
+/** How `p` believes `otherId` regards them; the neutral prior has zero confidence. Pure and RNG-free. */
+export function regardOf(p: Person, otherId: PersonId, now: Minute): Estimate {
+  return estimate(p, otherId, 'regard', now);
 }

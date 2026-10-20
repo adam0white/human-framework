@@ -6,8 +6,9 @@
  * helps), reciprocity as a favour ledger (Gouldner 1960), the mere-exposure / familiarity growth with
  * diminishing returns, HEXACO agreeableness as tolerance of provocation and honesty-humility as sensitivity
  * to deceit (Ashton & Lee), Schwartz benevolence as care for close others. Observers judge only the outward
- * act and never see intentions. It does NOT model the other person's view of me (each person holds their
- * own one-sided record) or attachment styles (gossip, reputation and bereavement are in the SCOPE paragraphs
+ * act and never see intentions. An opt-in `regard` impression estimates the other's view of me and adds a bounded
+ * repair term; it never reads the other's actual view. It does NOT model attachment styles
+ * (gossip, reputation and bereavement are in the SCOPE paragraphs
  * further down; insiders, outsiders and threats in `groups.ts`); the
  * coefficients are engineering defaults, not calibrated estimates.
  */
@@ -30,6 +31,7 @@ import type {
 } from '../types.ts';
 import { MINUTES_PER_DAY, MINUTES_PER_YEAR } from '../types.ts';
 import { careFor } from './groups.ts';
+import { regardOf } from './impressions.ts';
 
 const WEEK = 7 * MINUTES_PER_DAY;
 
@@ -76,6 +78,8 @@ export const SOCIAL_DEFAULTS = {
     group: 0.3,
     /** Group size (others) from which the extraversion term applies. */
     groupFrom: 3,
+    regardRepair: 0.5,
+    regardRepairMax: 0.3,
   },
   judge: {
     respect: 0.12,
@@ -385,6 +389,25 @@ export function socialTerms(
   if (others >= W.groupFrom) {
     const size = clamp01((others - W.groupFrom + 1) / 6);
     terms.push({ source: 'social:group', value: round(W.group * (p.traits.extraversion - 0.5) * 2 * size) });
+  }
+  if (
+    aff.targetId !== undefined &&
+    aff.targetId !== p.id &&
+    (tags.includes('repair') || aff.action === 'apology' || aff.action === 'amends') &&
+    !isDeceased(p, aff.targetId)
+  ) {
+    const regard = regardOf(p, aff.targetId, p.now);
+    if (regard.value < 0 && regard.confidence > 0) {
+      terms.push({
+        source: `regard:${aff.targetId}`,
+        value: round(
+          Math.min(
+            W.regardRepairMax,
+            W.regardRepair * -regard.value * regard.confidence * (0.5 + p.traits.agreeableness),
+          ),
+        ),
+      });
+    }
   }
   return terms;
 }
