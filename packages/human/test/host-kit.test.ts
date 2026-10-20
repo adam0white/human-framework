@@ -105,6 +105,10 @@ describe('host-kit recipes (docs/host-kit.md)', () => {
     expect(term(p, paid, 'material')).toBe(0.6321);
     expect(score(p, paid).utility).toBeGreaterThan(score(p, work).utility);
     expect(score(p, meal).utility).toBeGreaterThan(score(p, paid).utility);
+    // The utility column of docs/host-kit.md.
+    expect(score(p, meal).utility).toBeCloseTo(1.3962, 4);
+    expect(score(p, work).utility).toBeCloseTo(-0.0781, 4);
+    expect(score(p, paid).utility).toBeCloseTo(0.554, 4);
     const purpose = adoptGoal(
       p,
       {
@@ -116,6 +120,8 @@ describe('host-kit recipes (docs/host-kit.md)', () => {
       p.now,
     );
     expect(term(p, work, `goal:${purpose.id}`)).toBe(1);
+    expect(score(p, work).utility).toBeCloseTo(0.9219, 4);
+    expect(score(p, paid).utility).toBeCloseTo(1.554, 4);
     expect(score(p, meal).utility).toBeGreaterThan(score(p, work).utility);
     expect(score(p, paid).utility).toBeGreaterThan(score(p, meal).utility);
   });

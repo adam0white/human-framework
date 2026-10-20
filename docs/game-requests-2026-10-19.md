@@ -10,6 +10,8 @@ Source: [lab/feedback-ledger.md](lab/feedback-ledger.md), seeded 2026-10-19. The
 - **Proposal.** An optional travel or setup cost on an `Affordance` that choice weighs against what the offer advertises, or a documented recipe for expressing it through `effort` or `duration`. Generic: any game with places.
 - **Not yet checked.** Whether `effort` and `duration` already express this. The game author asks for a documented recipe as an acceptable answer.
 
+**Outcome (2026-10-20):** done in HF 2.9.1 as the host-kit travel-cost recipe ([host-kit](host-kit.md#declare-travel-and-setup-cost)).
+
 ## N2 — The evening lapse line is one template, and it blames the person for what another voice ordered
 
 - **Source.** Two ledger rows: F-034 (Pass, rule-breaker) and F-045 (Glance, Priya). Glance's Tomás reported the same lines on every debrief (not a separate row).

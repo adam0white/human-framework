@@ -121,6 +121,14 @@ Framework part of HF 2.9.0 / engine 2.9.0 ([CHANGELOG](../CHANGELOG.md), [framew
 | Pass 8, a resolve term that names its resolve | Done: `Term.ref` on `review:resolve` | A `review:resolve:<key>` source would break hosts that match the source exactly; `ref` is set only when one resolve weighed in |
 | Pass note, unlived days count as lapses | Documented (review SCOPE) | Host behaviour, as The Pass found |
 
+## Outcome, HF 2.9.1 (2026-10-20, Host kit)
+
+Behaviour-neutral, engine 2.9.0 ([host-kit](host-kit.md), CHANGELOG 2.9.1).
+- **Stairwell 1, done:** `seedSourceTrust`, and the three trust stores (relationship, voice, source) documented in [framework.md](framework.md#beliefs-and-trust). **Stairwell 7, done:** `seedBelief` (refuses the person as its own source). **Stairwell 8, done:** host-kit recipe "Feed residents during a week".
+- **Valley 5, done:** `fingerprint(person)`. **Valley 4:** did not reproduce; `tellDeath` was already tolerant, and 2.9.1 adds `{ late: 'now' | 'throw' }` (findings).
+- **Warren 1, 2 and 4, done** as recipes with doc tests: the scale of need terms against effort, effort that does not scale with duration, and the community cache write-back. **N1 (Neighbours 3), done** as the travel-cost recipe.
+- Stairwell 2 and 4 and Hearsay 1 are engine 2.10.0 (*Word and witness*).
+
 ## The Pass, polish round (2026-10-19, against HF 2.8.0)
 
 Filed by The Pass after four source-unread playtests and the HF-character playtester. None blocks the game; the workaround is in the game.

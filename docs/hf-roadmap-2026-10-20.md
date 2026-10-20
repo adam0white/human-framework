@@ -85,7 +85,7 @@ Each item ships opt-in or additive, with tests, one headless control in `package
 
 **Why.** The game-AI consultant's top adoption risk is authoring effort. Five games hit these independently.
 
-**Proof.** A doc test per recipe that runs it in a minimal host and asserts its effect (a far water source loses to a near one once travel cost is declared; a 150-minute stint costs more than a 30-minute one under the recipe); `fingerprint(restore(snapshot(p))) === fingerprint(p)` for every fixture; tolerant `tellDeath` delivers at the listener's `now` and the strict default still throws; the existing game regressions replay unchanged.
+**Proof.** A doc test per recipe that runs it in a minimal host and asserts its effect (a far water source loses to a near one once travel cost is declared; a 150-minute stint costs more than a 30-minute one under the recipe); `fingerprint(restore(snapshot(p))) === fingerprint(p)` for every fixture; tolerant `tellDeath` delivers at the listener's `now` (2.9.1 found the default already tolerant, so strict is the explicit `late: 'throw'`); the existing game regressions replay unchanged.
 
 ### 1.3 Engine 2.11, *Why, in words* (target 2026-11-30)
 

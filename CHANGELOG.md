@@ -26,7 +26,7 @@ Engine: 2.9.0. The *Host kit* ([roadmap](https://github.com/adam0white/human-fra
 ### Maintenance
 
 - Update Vitest 5.0.3 → 5.0.5 and Wrangler 4.149.0 → 4.151.3; retain latest TypeScript 7.0.2, Vite 8.3.4, Biome 2.5.15, @vitejs/plugin-react 6.1.2 and @types packages.
-- Update React and React DOM 19.3.0 → 19.3.1, fake-indexeddb 6.2.5 → 6.2.6 and happy-dom 20.14.6 → 21.0.4. Align the site HF pin 2.8.0 → 2.9.0 with the local source its build and tests already use; lab-client, lab-kit and playtester workspace versions stay unchanged.
+- Update React and React DOM 19.3.0 → 19.3.1, fake-indexeddb 6.2.5 → 6.2.6 and happy-dom 20.14.6 → 21.0.4. Align the site HF pin 2.8.0 → 2.9.1 with the local source its build and tests already use; lab-client, lab-kit and playtester workspace versions stay unchanged.
 - Refresh the lockfile and allowScripts for esbuild 0.28.2 and workerd 1.20261019.1. Remove the sharp override because the new miniflare dependency pins the patched 0.35.5 version itself.
 - Advance the Worker compatibility date 2026-10-01 → 2026-10-20 after reviewing Cloudflare's compatibility flag history; no additional flags needed. Update the documented tool versions.
 - Pin Vite 8.3.4 across the workspace (`overrides`): Vitest had hoisted Vite 8.3.2, which has open advisories fixed in 8.3.3.
@@ -35,7 +35,7 @@ Engine: 2.9.0. The *Host kit* ([roadmap](https://github.com/adam0white/human-fra
 
 ### Deprecated
 
-- `expit` (use `sigmoid`, the same function), removed in 3.0. The `now` argument of `repent` and `recordRepair` is optional and is removed in 3.0. The 2.0 options-object forms and `TRAIT_NAMES` keep their 3.0 removal: the audit found no game using them, but the README promises them until 3.0 and removing an export is breaking.
+- `expit` (use `sigmoid`, the same function), removed in 3.0. The `now` argument of `repent` and `recordRepair` is optional and is removed in 3.0. The 2.0 options-object forms and `TRAIT_NAMES` keep their 3.0 removal: the audit found no game using them, but the README promises them until 3.0 and removing an export is breaking. The owner's direction allowed removals where no game needs them; none were made, and the owner can call a 3.0 for them.
 
 ### Not migrated
 

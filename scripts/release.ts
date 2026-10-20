@@ -32,7 +32,8 @@ run('gh', ['auth', 'status'], true);
 
 if (!dryRun) {
   const branch = git('rev-parse', '--abbrev-ref', 'HEAD');
-  if (branch !== 'main') fail(`release from main, not ${branch}`);
+  // A detached checkout of origin/main also works (a clean worktree beside a shared, busy checkout of main).
+  if (branch !== 'main' && branch !== 'HEAD') fail(`release from main or a detached origin/main, not ${branch}`);
   if (git('status', '--porcelain')) fail('working tree is dirty; commit first');
   git('fetch', 'origin', 'main');
   if (git('rev-parse', 'origin/main') !== git('rev-parse', 'HEAD')) fail('HEAD is not pushed to origin/main');

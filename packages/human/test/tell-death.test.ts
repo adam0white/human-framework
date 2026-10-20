@@ -43,7 +43,7 @@ describe('tellDeath late listeners', () => {
   test('explicit strict mode throws before any listener is changed', () => {
     const { c, dead } = community();
     const before = c.people.map(snapshot);
-    expect(() => tellDeath(c, dead, 50, { late: 'throw' })).toThrow(/listener late/);
+    expect(() => tellDeath(c, dead, 50, { late: 'throw' })).toThrow(/is past the death minute/);
     expect(c.people.map(snapshot)).toEqual(before);
   });
 
