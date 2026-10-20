@@ -2722,6 +2722,58 @@
     "fix:rope night end after auto-end (open)"
    ],
    "source": "rope/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-197",
+   "date": "2026-10-20",
+   "game": "warren",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Good start. We need improvements in UI, usability, game play, understanding.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L14"
+   ],
+   "source": "warren/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-198",
+   "date": "2026-10-20",
+   "game": "warren",
+   "kind": "owner",
+   "who": "owner",
+   "words": "The UI has an extra scroll due to the privacy link.",
+   "verdict": "-",
+   "routes": [
+    "fix:warren no extra scroll from privacy link (open)"
+   ],
+   "source": "warren/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-199",
+   "date": "2026-10-20",
+   "game": "warren",
+   "kind": "owner",
+   "who": "owner",
+   "words": "It can start as more zoomed in and go out as we build larger base.",
+   "verdict": "-",
+   "routes": [
+    "fix:warren start zoomed in, widen with the base (open)"
+   ],
+   "source": "warren/docs/playtests/owner-2026-10-20.md"
+  },
+  {
+   "id": "F-200",
+   "date": "2026-10-20",
+   "game": "warren",
+   "kind": "owner",
+   "who": "owner",
+   "words": "I need to understand the goals, and current state better, and just what are we doing here.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:warren goal and state legibility (open)"
+   ],
+   "source": "warren/docs/playtests/owner-2026-10-20.md"
   }
  ],
  "lessons": [
@@ -3272,8 +3324,8 @@
   }
  ],
  "routes": {
-  "fix": 108,
-  "lesson": 209,
+  "fix": 111,
+  "lesson": 210,
   "hf": 11,
   "calibration": 42,
   "none": 0
