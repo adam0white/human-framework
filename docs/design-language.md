@@ -2,6 +2,8 @@
 
 Adopted 2026-10-18 for all HF games and sites (human, neighbours, rope, repair). One language, applied everywhere.
 
+This file is the look. Clarity (goal, controls, limits, what next, English dates, export UI) is the checklist in [lab/design-language.md](lab/design-language.md).
+
 **Idea.** Everything the player sees is a page from someone's field notebook: ink on warm paper, drawn by hand, annotated in the margin. This fits "show, don't count". A notebook records what was seen and felt, not true numbers.
 
 ## Tokens
