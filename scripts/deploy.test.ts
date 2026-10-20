@@ -184,14 +184,19 @@ describe('deploy CI gate', () => {
     expect(calls()).toContainEqual(['npm', ['run', 'check']]);
   });
 
-  it.each(['branch', 'unpushed'])(
-    'preserves the existing non-dry-run %s guard before installation',
-    async (guard) => {
-      if (guard === 'branch') branch = 'feature';
-      if (guard === 'unpushed') pushed = 'other';
-      await expect(run('--full-check')).rejects.toThrow();
-      expect(calls().some(([cmd]) => cmd === 'npm')).toBe(false);
-      expect(mkdtempSync).not.toHaveBeenCalled();
-    },
-  );
+  it.each(['feature', 'HEAD'])('accepts pushed HEAD from %s before installation', async (name) => {
+    branch = name;
+    await run();
+    expect(calls()).toContainEqual(['git', ['fetch', 'origin', 'main']]);
+    expect(calls()).toContainEqual(['npm', ['ci', '--no-audit', '--no-fund']]);
+    expect(calls()).toContainEqual(['npx', ['wrangler', 'deploy']]);
+  });
+
+  it('refuses unpushed HEAD before installation even with --full-check', async () => {
+    pushed = 'other';
+    await expect(run('--full-check')).rejects.toThrow('HEAD abc123 is not origin/main other: push it first');
+    expect(calls()).toContainEqual(['git', ['fetch', 'origin', 'main']]);
+    expect(calls().some(([cmd]) => cmd === 'npm')).toBe(false);
+    expect(mkdtempSync).not.toHaveBeenCalled();
+  });
 });

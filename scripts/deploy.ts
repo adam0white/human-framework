@@ -1,5 +1,6 @@
 /**
- * Release workflow: require HEAD on pushed main and a successful `ci` check belonging to
+ * Release workflow: require HEAD to equal fetched origin/main, regardless of local branch,
+ * and a successful `ci` check belonging to
  * the CI workflow's push run on main for that SHA. Wait up to 15 minutes for pending CI;
  * fail closed on missing/failed/unavailable CI unless --full-check enables local checks.
  * Build and deploy only from a fresh detached temporary worktree of that exact SHA,
@@ -24,11 +25,10 @@ const git = (...args: string[]) => run('git', args, true).trim();
 
 const dryRun = process.argv.includes('--dry-run');
 const fullCheck = process.argv.includes('--full-check');
-const branch = git('rev-parse', '--abbrev-ref', 'HEAD');
 const commit = git('rev-parse', 'HEAD');
-if (branch !== 'main') throw new Error(`Deploy from main, not ${branch}`);
 git('fetch', 'origin', 'main');
-if (git('rev-parse', 'origin/main') !== commit) throw new Error('HEAD is not pushed to origin/main');
+const pushed = git('rev-parse', 'origin/main');
+if (commit !== pushed) throw new Error(`HEAD ${commit} is not origin/main ${pushed}: push it first`);
 
 type WorkflowRun = {
   id: number;

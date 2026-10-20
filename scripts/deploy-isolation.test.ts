@@ -124,12 +124,21 @@ describe('deploy workflow identity and isolation', () => {
     expect(fetch).not.toHaveBeenCalled();
   });
 
-  it.each(['feature', 'unpushed'])('refuses %s even with dry run and --full-check', async (guard) => {
-    if (guard === 'feature') branch = guard;
-    else pushed = 'other';
+  it.each(['feature', 'HEAD'])('isolates pushed HEAD from %s for dry run', async (name) => {
+    branch = name;
+    await run('--dry-run');
+    expect(calls()).toContainEqual(['git', ['fetch', 'origin', 'main']]);
+    expect(calls()).toContainEqual(['git', ['worktree', 'add', '--detach', checkout, commit]]);
+    expect(calls()).toContainEqual(['npx', ['wrangler', 'deploy', '--dry-run']]);
+    expect(fetch).not.toHaveBeenCalled();
+  });
+
+  it('refuses unpushed HEAD even with dry run and --full-check', async () => {
+    pushed = 'other';
     await expect(run('--dry-run', '--full-check')).rejects.toThrow(
-      guard === 'feature' ? 'Deploy from main, not feature' : 'HEAD is not pushed to origin/main',
+      'HEAD abc123 is not origin/main other: push it first',
     );
+    expect(calls()).toContainEqual(['git', ['fetch', 'origin', 'main']]);
     expect(mkdtempSync).not.toHaveBeenCalled();
     expect(calls().some(([cmd]) => cmd === 'npm')).toBe(false);
   });
