@@ -4,7 +4,7 @@ Adopted 2026-10-20 for every lab game (owner: "Opus taste, a consistent design l
 
 **Who owns what.** The [visual language](../design-language.md) owns tokens, type and drawing. This file owns observable clarity tests. [Lessons](lessons.md) keep the feedback and the reasons. Where a lesson reads stronger than an item here, the item's test governs.
 
-**Why it exists.** The coordinator's paraphrase of the owner's 2026-10-20 Valley report: no idea what to do, what is clickable, which text matters, why actions are limited or what comes next; dates and key terms must stay English; the run upload was refused after a little play. Each is checked here across the whole lab. It is not a claim that every game has every Valley defect.
+**Why it exists.** The coordinator's paraphrase of the owner's 2026-10-20 Valley report: no idea what to do, what is clickable, which text matters, why actions are limited or what comes next; dates and key terms must stay English; the run upload was refused after a little play (verbatim in [ledger](feedback-ledger.md) F-201..F-203). Each is checked here across the whole lab. It is not a claim that every game has every Valley defect.
 
 **What it is not.** Not a demand for tutorials, a task manager or a single best move. Discovery, mystery, natural difficulty and uncertain outcomes stay. Clarity means the player can read the situation and their responses, not that the game plays itself.
 
