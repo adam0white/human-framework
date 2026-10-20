@@ -69,3 +69,9 @@ How this is read:
 "I also would like a cool roadmap for HF, and possibly an ideation consultation that only has the starting ambition and research and my directions without knowing the current state, so that we can push HF forward, instead of forgetting about it and delving into games."
 
 How this is read: HF gets its own forward plan so that game work does not crowd it out. Three consultants read only the starting ambition, `research/` and these directions, then the proposals were reconciled with what exists. The roadmap is [hf-roadmap-2026-10-20.md](hf-roadmap-2026-10-20.md); it ends with a recommended next increment, which waits for the owner's approval.
+
+## 2026-10-20, night (Adam, verbatim)
+
+"Check this out: https://thenextweb.com/news/mit-claude-agents-virtual-island-play. Also check cloudflare blog post about Clairic. Programming is already going through a seismic shift and now we have more systems and types of models to think about. I think we can consider experimenting with more tools and approaches and demonstrations for our lab. ... latest AI driven development practices to keep up with the pace. I've heard some people are forgoing testing or CI entirely or partially to speed up iteration. I don't want to become a slow enterprise, but always an R&D lab with cool futuristic ideas."
+
+The elision ("...") is the coordinator's, as received. How this is read: a scan and a set of proposals, not a launch. Agents create no accounts and publish nowhere new. Changes to the testing rule in AGENTS.md are a proposal for the owner. The scan, experiments and practice recommendation are [docs/lab/frontier-2026-10-20.md](lab/frontier-2026-10-20.md).
