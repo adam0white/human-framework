@@ -1,7 +1,7 @@
 # Grand ideas (2026-10-20)
 
 The owner, 2026-10-20: "these games are becoming real fun. I need more of everything, more games and more grandiose ideas."
-These are proposals from the lab's lead designer. "Pick" marks the one being built now. Companion to [the game-lab ideas](../game-lab-2026-10-19.md).
+These are proposals from the lab's lead designer. "Pick" marks the ones built. Companion to [the game-lab ideas](../game-lab-2026-10-19.md).
 
 ## What the pick has to pass
 
@@ -23,7 +23,7 @@ Hard limits: games are static assets (no server, database or Durable Objects; on
 | 8 | **The Ferry** | A forty-minute Bosphorus crossing, every morning for a month. You sit where you choose and overhear. Strangers become regulars. | impressions by glimpse, acquaint, partnering (slowly), memory | Slow-burn stories you piece together from overheard fragments. | Low. Risk: passive, as The Rope was; it needs a verb (you can speak). | Maybe |
 | 9 | **The Night Market** | Twenty stalls; prices form from haggling between HF people. You run the tea stall and know everyone's mood. | material needs, social exchange, trust, temporal goals | A small economy built up from people, not curves. | Medium-high. Price formation is host work. | Later |
 | 10 | **Sleepers** | At night you are a whisper in the whole street's sleep: promptings to forty people at once, and you see who turns away. | promptings and turning away, muhasaba (each wakes and reviews the day), voices | Two Voices at the scale of a street; the morning shows what the night did. | Medium. Risk: faith drifts toward theme; keep the promptings ordinary (call your mother, pay the debt). | Maybe |
-| 11 | **The Agency** | You place domestic workers and drivers with households. Candidates are not as they market themselves (the owner's own words). | impressions vs real traits (`estimate` vs truth), skills, trust, commitments | Football-management scouting with people, the owner's named love. | Medium. | Strong second |
+| 11 | **The Agency** | You place domestic workers and drivers with households. Candidates are not as they market themselves (the owner's own words). | impressions vs real traits (`estimate` vs truth), skills, trust, commitments | Football-management scouting with people, the owner's named love. | Medium. | **Pick 2** (Good Hands) |
 | 12 | **The Long Table** (grandiose, from the review) | One household grows into a town over generations, offline. A council, apprenticeships and inheritance keep consequences after the founders die; you hold one seat, then your heir does. | family, upbringing, partnering, groups, voices, commitments, longrun stepping | Population-up with authority: conflicting obligations at two scales. Local saves, runs only while open. | High; the host schedules births, councils and conversations (`liveCommunity` does not). | Next grandiose candidate, ahead of #4 |
 
 ## Why Hearsay first
@@ -34,6 +34,15 @@ Hard limits: games are static assets (no server, database or Durable Objects; on
 - It keeps faith quiet: some neighbours hold that talebearing is wrong and will not repeat it, in their own words. That is one norm among others, never the theme.
 - L7 and L15: the first rumour is planted in the first minute and reaches its first ear within a few game hours. L19: every problem the town shows (a cooled friendship, a cancelled order) has a verb: speak to someone, deny, apologise, or plant a counter-story.
 - It is static, cheap enough to build in this session, and leaves The Agency (#11) and A Thousand Years (#4) as the next candidates.
+
+## Why The Agency second (Good Hands)
+
+Built 2026-10-20 as **Good Hands** (`~/code/goodhands`, https://goodhands.adamwhite.work). You run a one-room placement agency in Izmir for one November. Candidates are HF people whose true traits differ from how they present; Nermin learns them from what they say (`selfReport`), what others say (`hear`, weighted by her trust in the speaker) and what she sees (`observeAct`), and vouches for them to families. Placements keep living: seeded household moments test true traits, and word of mouth on Fridays and Saturdays (`converse`) brings or loses families and candidates.
+
+- It is the owner's named love (scouting, as in football management) with people, and it is psychology-first: the gap between presentation and character is the whole game.
+- It has many verbs (interview, reference, trial, place, check in), which answers the recurring "less watching" quits (F-227, F-229).
+- The naughty edge is implied: placed workers confide what goes on inside the houses, and families ask what Nermin hears. The game never names it.
+- The grandiose candidates (#12, #4) are rated High and would not fit one session that also deploys and runs up to four test rounds. They stay next. Good Hands gets its scale from a city of households and a stream of candidates instead.
 
 ## Adversarial review (Codex, 2026-10-20) and what changed
 
