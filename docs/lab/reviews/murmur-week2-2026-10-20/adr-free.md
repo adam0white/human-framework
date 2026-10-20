@@ -1,0 +1,128 @@
+# A Dark Room — Sam, free stop
+
+Persona: Sam, 40, warehouse supervisor; plays Cookie Clicker, Kittens Game and Melvor Idle; likes watching something he built grow and unlocking the next thing; evening at home on his laptop. First-time play of https://adarkroom.doublespeakgames.com/. No build identifier visibly encountered.
+
+Device: 1280×800 CSS px desktop, mouse/keyboard, light mode, default text. Access: supplied `npm run lab:play` driver, port 8743, PID 77255. Started with the assigned command without reading its implementation. Stopped the driver with `kill 77255` after the stop log. No game source, tests, other game documents, prior reports, hidden state or network payloads inspected. No telemetry/run submission or telemetry consent changes. Chose “disable audio” in the game's sound prompt; this was an audio preference.
+
+Timing: floor 0, ceiling 25 real minutes. First usable reply at driver elapsed 0.678 s. Stop at elapsed 407.235 s, about 6:47. No visible game clock/day. All times below are driver wall-clock elapsed seconds, not simulated time. Time continued during waits and between requests. No speed setting changed. No export downloaded.
+
+Protocol limitations: the first-minute note was logged at 67.133 s, about six seconds late relative to the first usable screen. Its table below uses only evidence returned by 59.791 s, plus the note's original wording. The forest tab was first used after the cutoff and cannot establish its selection at 60 s. At 103.806–104.110 s, three normal inputs were issued in one orchestration call rather than spaced as separate decisions. No time was accelerated. One early wait's reply was not retained in the tool transcript; the following screenshot refreshed the visible state. Some immediate replies retained pre-animation text, including the audio dialog and Penrose dialog just after dismissal. A reply alone was therefore not treated as proof a dialog stayed open.
+
+## First minute
+
+Original checkpoint, logged at 67.133 s:
+
+> I am keeping the room warm. Light fire and stoke fire looked like buttons; I did not try any inert text. The cold room drew me first, and now the wood warning draws me. The room heading was selected in the screenshot. Stoke was briefly disabled; I guessed cooldown and it worked later, but no reason was written. I can keep stoking and now gather wood, with a stranger just arrived. Light fire was available immediately and I used it about 13 seconds in; there was only one gameplay action then. Lighting changed the room title and stoking made the fire roar, so those two actions taught themselves. I used no help. I want to see what the stranger does.
+
+| Item | Status | Checkpoint evidence and limits |
+|---|---|---|
+| DL-1 A reason to act | PASS | “I am keeping the room warm.” Opening says “the fire is dead” and “the room is freezing.” |
+| DL-2 What can I touch | PASS | “Light fire and stoke fire looked like buttons.” Outlined rectangular control in opening.png and first-stoke.png. No inert thing tried or accidentally discovered control during the minute. The audio prompt had two outlined choices. |
+| DL-3 Urgency and selection | PASS | “The cold room drew me first, and now the wood warning draws me.” Underlined room heading in first-stoke.png; fire action is the main outlined control. By 59.791 s the reply included “the wood is running out.” No numerical deadline encountered. Selection after the second tab appeared was not visually established within the minute. |
+| DL-4 Why the limit | FAIL | “Stoke was briefly disabled; I guessed cooldown and it worked later, but no reason was written.” At 15.161 s, driver said “stoke fire is shown but disabled right now.” At 36.528 s it worked. The known fiction/reason for waiting was not explained. Later understanding of fill animations does not change this checkpoint. |
+| DL-5 Readable situation | PASS | “I can keep stoking and now gather wood, with a stranger just arrived.” By 59.791 s: wood 4, gather wood, stranger collapsed, fire roaring. Those are available responses/status, not a known best move. |
+| DL-6 A choice soon | PASS, limited | First purposeful gameplay action “light fire” was available in the first usable reply at 0.678 s; first gameplay input at 12.709 s. First input of any kind was “disable audio” at 10.188 s. Opening required only the two short situation sentences. There was one gameplay verb, not competing development paths. If “choice” requires two gameplay alternatives, that stronger test was NOT TESTED by 30 s; the first observed two building alternatives arrived at 224.975 s. |
+| DL-7 Learn by doing | PASS for reached interactions | “Lighting changed the room title and stoking made the fire roar.” Light fire → A Firelit Room / fire burning; stoke → fire roaring. No help used. Two successful gameplay verbs reached within the minute. Gather, building and event-answer interactions were NOT TESTED at this checkpoint: three later interaction types, not opening failures. |
+
+## Verbatim diary
+
+Reactions below preserve the wording entered during play. Times are reply/log timestamps; a wait's timestamp is its completion. Visible-answer excerpts are separate from my reaction. Inputs without reactions are retained. Full driver record: `adr-free-shots/wall-clock.jsonl`.
+
+| Elapsed s | Input / kind | Original reaction | Important visible answer |
+|---:|---|---|---|
+| 0.678 | open | — | A Dark Room; light fire; fire dead; room freezing. |
+| 4.932 | shot opening.png | The room is freezing, so I want to get a fire going. Light fire looks like my first action. I am curious what grows from just this. | Sound Available! dialog; enable audio / disable audio. |
+| 10.188 | tap disable audio | I will play quietly this evening. The two audio choices are clear. | Immediate reply still contained dialog text; next gameplay action succeeded. |
+| 12.709 | tap light fire | I want to warm the room. The outlined light fire button is the obvious thing to press. | A Firelit Room; stoke fire; “the fire is burning.” |
+| 15.161 | tap stoke fire | Now I can stoke it. I expect more heat, though I cannot see a wood count yet. | Shown but disabled; game state, not driver failure. |
+| after 15.161, before 33.659 | wait 15 s | It is still grey after lighting. I assume it is a cooldown; I will wait for it to refill. | Wait reply not retained in tool transcript. |
+| 33.659 | shot first-stoke.png | — | “the room is cold”; outlined stoke fire available. |
+| 36.528 | tap stoke fire | The room has gone from freezing to cold. That tells me the fire is doing something, so I will keep it up. | “the fire is roaring.” |
+| 59.791 | wait 20 s | The fire is roaring now. I want to see whether warming this room brings anyone or opens another task. | A Silent Forest; wood 4; gather wood; wood running out; stranger collapses. |
+| 67.133 | first_minute | [Original note reproduced in full above.] | First-minute checkpoint logged late. |
+| 67.306 | tap A Silent Forest | Wood is running out. The forest heading looks like another tab; I will try that for gathering. | Sky grey, wind blows; room mild. |
+| 70.957 | tap gather wood | This is the resource loop I expected. I want a stockpile before the fire eats what is left. | Wood 14; dry brush and dead branches. |
+| 71.098 | shot forest.png | — | Forest selected; gather grey. |
+| 99.328 | wait 25 s | Fourteen wood feels like a start. I will let gathering recharge and check on the stranger. | Wood still 14. |
+| 103.806 | tap gather wood | I can gather again. Watching the count rise is satisfying, though I am still waiting for the stranger to wake. | Reply still showed 14; my expectation was not confirmed. |
+| 103.957 | tap A Firelit Room | — | Room warm; stranger shivers and mumbles. |
+| 104.110 | tap stoke fire | Back inside to keep the fire strong. I assume warmth will help the collapsed stranger. | Fire roaring; no stock change in immediate reply. |
+| 137.590 | wait 30 s | She is shivering but the room is warm. I have no talk or help action here. I will give her time while the fire burns. | Room hot; stranger stops shivering, breathing calms. |
+| 141.954 | tap A Silent Forest | Her breathing has calmed. That feels like progress; I will build up wood while she recovers. | Wood 14. |
+| 145.372 | tap gather wood | I want a larger stockpile; the last gather reply still said fourteen, so I am watching the count this time. | Wood 24. |
+| 178.768 | wait 30 s | Twenty-four now. I understand gather gives ten. I do wish I could see how long until the next gather, but I am happy to wait a little for the next unlock. | Wood 24. |
+| 181.828 | pulse 3/5 | I like the stockpile growing and want to meet the stranger, but so far I am mostly alternating two buttons. | — |
+| 184.434 | tap gather wood | Another load before I check inside. I am hoping the next thing is something to build. | Wood unchanged at 24. |
+| 189.382 | shot three-minutes.png | That tap did not change the count. Maybe the gather button was not ready yet; I cannot tell from the text reply alone. | Grey gather button with partial fill. |
+| 194.486 | tap A Firelit Room | I can see a fill moving across gather now. I had tapped during its cooldown. I will check the warm room again. | Stranger standing by fire; says she builds things. |
+| 217.032 | wait 20 s | She builds things! That is exactly what I was waiting for. I want to see what we can make with this wood. | Wood rose to 30. |
+| 222.085 | shot builder-awake.png | The wood has risen without me gathering. I am guessing she is helping with that. I do not see any build controls yet. | Room tab; stoke available; wood 30. |
+| 224.975 | tap stoke fire | I will stoke again. The room is already hot, so this is maintenance rather than a new step. | Wood 31; trap and cart appear; builder explains their purposes. |
+| 228.924 | tap cart | A cart should improve gathering. I would rather grow the wood supply first than catch animals. | Wood 1; cart 1; “the rickety cart will carry more wood from the forest.” |
+| 234.251 | tap A Silent Forest | The cart used almost all my wood. Now I want to see a bigger load come back. | Cart 1, pop 0/0. |
+| 237.201 | tap gather wood | Time to try the cart. | Wood 53; hut appears. |
+| 239.870 | note | Fifty-three! That is a proper upgrade, not just another ten. Now there is a hut too. I want a settlement. | — |
+| 242.918 | tap A Firelit Room | — | Builder says more wanderers will work. |
+| 246.284 | tap hut | I want to bring those wanderers in and get them working. | “not enough wood”; wood 55; hut cost wood 100. |
+| 279.763 | wait 30 s | A hut costs one hundred wood. That refusal is clear. One more cartload should do it; I am waiting for gather to recharge. | Wood 61; hut cost 100. |
+| 285.100 | tap A Silent Forest | I am close to the hut. I will watch the gather fill rather than keep clicking early. | Wood 63. |
+| 303.240 | wait 15 s | I want the next load now, but gather is still recharging. The wood creeping up on its own makes this wait feel less empty. | Wood 65; Penrose dialog, give in / ignore it. |
+| 306.581 | shot penrose.png | This Penrose vision is unexpected. Give in sounds like abandoning what I am building. I want the hut, so I plan to ignore it. | Whole event and both responses visible; stockpile/population remain visible. |
+| 310.729 | tap ignore it | I am staying with my little camp. | Immediate reply retained dialog; subsequent gather succeeded with dialog absent. |
+| 313.631 | tap gather wood | Back to getting enough wood for the hut. | Wood 117. |
+| 315.664 | tap A Firelit Room | — | Wood 119. |
+| 318.114 | tap hut | Enough now. Let us get the first people housed. | Wood 19; builder puts up hut; next hut costs 150. |
+| 321.117 | tap trap | While word gets around, I will try one trap. Animals ought to give us something besides wood. | Wood 9; A Lonely Hut; hut 1; pop 0/4. |
+| 323.615 | tap A Lonely Hut | The tab changed to A Lonely Hut. I like having made an actual place. | Trap 1; check traps appears. |
+| 327.149 | tap check traps | Let us see what the first trap caught. | Fur 1; bait 0; wood 11; “the traps contain scraps of fur.” |
+| 362.917 | wait 30 s | One fur, no people yet. I would like workers to take over the collecting. For now both outside buttons are recharging. | Family arrives; pop 2/4; gatherer 2; wood 21. |
+| 366.323 | pulse 4/5 | Two gatherers have moved in. This is what I like: the hut turned into people helping the stockpile grow. | — |
+| 370.029 | tap gather wood | I will help with another load. A second hut would mean more gatherers. | Wood 25; no new gathering message. |
+| 386.273 | wait 10 s | Still a little early on gather. I am learning this needs longer intervals than my instinct to click. | Wood 31. |
+| 389.312 | tap gather wood | This load should move us toward the next hut. | Wood 83; gathering message. |
+| 393.361 | want_quit BORED | I would leave this running now and check back later. I like the little settlement, but I do not want to sit watching another gather refill just to afford another hut. | First wish to leave. |
+| 396.144 | tap check traps | I will check the trap once before leaving it alone. | Fur still 1; wood 85; no new catch message. |
+| 402.826 | shot stopping.png | The trap is still recharging too. I have a hut, a cart, a trap and two gatherers; I would rather come back to a larger stockpile. | Both outside action buttons grey; wood 87; pop 2/4. |
+| 407.235 | stop BORED | I am leaving it here to come back later, not giving up on the game. The wish to stop watching has not passed; I want the gatherers to build the stockpile while I do something else. | Session ended; driver then killed by exact PID. |
+
+## Best, worst, wanting to leave
+
+Best moment: 237–240 s, seeing the cart produce a much larger load and unlock the hut. “Fifty-three! That is a proper upgrade, not just another ten.” Highest recorded pulse was 4/5 at 366.323 s, after two gatherers arrived. Both moments matched why I play idle games: buying something changes what the system can produce.
+
+Worst moment: 393–407 s, after the new workers arrived, when the next thing I wanted was another hut and the immediate collecting actions were recharging. I understood the loop and preferred to leave it running. This was not a permanent rejection.
+
+Every want_quit: one, at 393.361 s, BORED, quoted above. I played on to check the trap. The wish did not pass. Final stop BORED at 407.235 s. I would return voluntarily to see the stockpile and build more. That is an intention, not evidence about offline growth, saving or resume; none of those was tested.
+
+Pulse series: 181.828 s → 3/5; 366.323 s → 4/5. No further three-minute pulse fell due before stopping.
+
+Hard, but kept going: NOT TESTED. I did not seek an easier setting, workaround or accessibility option. Waiting for the builder was curiosity, not such a search.
+
+## Clarity findings and required checks
+
+- **DL-4 FAIL in the first minute:** I could see stoke was unavailable but could only guess why. No fiction/recovery explanation was written. Later the fill on gather helped me understand waiting. References: disabled reply at 15.161 s; three-minutes.png at 189.382 s. The later hut refusal was clear: “not enough wood,” “wood 100,” with only 55 available at 246.284 s. That later pass does not erase the early gap.
+- **DL-13 limited evidence, no confirmed failure:** successful actions generally changed title, log or inventory promptly. Some early taps during gather cooldown returned unchanged state without the explicit disabled error seen for stoke. The screenshot showed the cooldown. I did not establish a driver block, duplicate action or silently accepted request. Immediate dialog text sometimes survived in replies during dismissal; I did not label that a game failure.
+- **DL-14 NOT TESTED for reliable pre-commit cost visibility:** cart consumed 30 wood, but I did not inspect its cost before clicking. The hut cost appeared in the reply after refusal, and later next-item costs appeared around a tapped control. The driver offers no documented hover operation. I cannot claim mouse hover lacks a cost tooltip or that the game hides all costs.
+- **DL-19:** “give in” sounded like leaving my settlement; that was my guess before answering. I chose “ignore it.” The alternative consequence is unknown, so this is not a demonstrated misleading cue.
+
+| Required check | Status and evidence |
+|---|---|
+| DL-20 English | PASS for encountered play. Fire, gather, cart, hut, traps, builder statements, quantities and event responses were understandable in English. “Penrose” named an unexplained vision, but I could choose ignore it without translating a required term. |
+| DL-21 Dates | NOT TESTED. No date, day, deadline or calendar comparison encountered. |
+| DL-22 Phone response | NOT TESTED. Assigned desktop fixture only; did not resize to phone. |
+| DL-30 Text clipping | PASS for action-critical content in the desktop screenshots inspected. Audio and Penrose dialog sentences/responses fit. No scrolling needed to find an immediate response. Old log text fades toward the bottom, including older sentences; that was not evidence of a clipped current instruction. Phone and other unseen screens NOT TESTED. |
+| DL-31 State while answering | PASS for the encountered desktop Penrose answer: penrose.png shows wood 67, cart 1 and pop 0/0 alongside the complete dialog and both responses. No deadline/person-dependent order sheet encountered; those parts and phone layout NOT TESTED. |
+| DL-32 Hands-on availability | NOT TESTED as a global maximum/strict 20-second rule. Longest explicit attended wait request was 30 s, repeated. I wanted the next wood load; gathering intervals were roughly a minute, and I watched through several recharges. But maintenance stoking, other builds or tabs could exist during parts of those intervals. I did not establish that every meaningful hands-on option was unavailable for the whole stretch. The final screenshot does establish both outside collection buttons grey while I wanted to collect. |
+| DL-33 Direct acts/forms | PASS for reached core verbs in this text game: one tap lit/stoked fire, gathered wood or checked traps. No planning form or confirm sheet interrupted those acts. This is a text/button scene, not a drawn fire or forest object. Building was also a single tap. |
+
+Other checklist items, unseen content, save/reload/replay, sending, phone target sizes, zoom and builder-only implementation checks: NOT TESTED. No claim about the whole game follows from this opening session.
+
+## Where I stopped and changes I would want
+
+Stopped on A Lonely Hut with one cart, one hut, one trap, two gatherers, pop 2/4, fur 1, bait 0 and wood 87 in the final screenshot. One hut built does not mean the game was finished. I wanted to leave it running and check back, not restart or abandon it. The driver was closed to end the test, so no unattended continuation was verified.
+
+Ranked player wishes:
+
+1. Tell me why a grey action is waiting and how close it is to ready. The fill helped once I noticed it; I initially guessed and clicked too soon.
+2. Make each building's wood cost easy to inspect before buying. I learned the hut's cost by being refused and the cart's by seeing my stockpile drop. Ordinary mouse-hover behavior remains untested here.
+
+I do not want to remove the gradual reveal. The cart upgrade and the family's arrival were the reasons I stayed interested.

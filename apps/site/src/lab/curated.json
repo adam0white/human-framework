@@ -4836,6 +4836,154 @@
     "lesson:L22"
    ],
    "source": "docs/lab/reviews/watchwell-2026-10-20b/README.md"
+  },
+  {
+   "id": "F-367",
+   "date": "2026-10-20",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "Mina (Codex source-unread, free stop, murmur a04b847, second week)",
+   "words": "I would leave after this day. I like her, but another bedtime with the same three answers feels like checking on her chores. I wanted more from the beach photograph.",
+   "verdict": "quit",
+   "routes": [
+    "fix:murmur week-two routine cards (alarm, bus, bed) offer a different answer or turn on most nights (open, target 2026-11-03)",
+    "lesson:L21"
+   ],
+   "source": "docs/lab/reviews/murmur-week2-2026-10-20/mina-free.md"
+  },
+  {
+   "id": "F-368",
+   "date": "2026-10-20",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "Mina (Codex source-unread, free stop, murmur a04b847)",
+   "words": "Oh. I expected Monday, but this is Saturday and it says I told her to send something. I have not told her anything.",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur Begin at the second week opens Monday of week two, not week one's last page (done, murmur 5c1c471)",
+    "lesson:L3"
+   ],
+   "source": "docs/lab/reviews/murmur-week2-2026-10-20/mina-free.md"
+  },
+  {
+   "id": "F-369",
+   "date": "2026-10-20",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "Mina (Codex source-unread, free stop, murmur a04b847)",
+   "words": "After I let her advice stand sounds wrong. Dilan gave that advice, did she not?",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur week-two option labels in Dilan's first person, six labels (done, murmur 5c1c471)"
+   ],
+   "source": "docs/lab/reviews/murmur-week2-2026-10-20/mina-free.md"
+  },
+  {
+   "id": "F-370",
+   "date": "2026-10-20",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "Mina (Codex source-unread, free stop, murmur a04b847)",
+   "words": "My harmless alarm advice has turned into bad advice to Ece. I want to see what that does to them.",
+   "verdict": "keep",
+   "routes": [
+    "lesson:L13"
+   ],
+   "source": "docs/lab/reviews/murmur-week2-2026-10-20/mina-free.md"
+  },
+  {
+   "id": "F-371",
+   "date": "2026-10-20",
+   "game": "lab",
+   "kind": "playtester",
+   "who": "Mina (Codex source-unread, floor 15, murmur a04b847)",
+   "words": "I cannot choose Sign it. The driver still lists it, but the full-name tap and the visible-text retry both failed.",
+   "verdict": "-",
+   "routes": [
+    "fix:lab lab:play reply after a long wait still listed a choice that had expired, so the tester read it as a block, after the 4 s choice timed out during a 30 s wait (open, target 2026-11-03)",
+    "lesson:L22"
+   ],
+   "source": "docs/lab/reviews/murmur-week2-2026-10-20/mina-floor.md"
+  },
+  {
+   "id": "F-372",
+   "date": "2026-10-20",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "Mina (Codex source-unread, floor 15, murmur 5c1c471)",
+   "words": "Another call Mum or scroll choice. I understand it, but I would put the phone down for tonight here. I would come back for Friday; I am continuing for the time I set aside.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:murmur same as F-367 (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/murmur-week2-2026-10-20/mina-floor2.md"
+  },
+  {
+   "id": "F-373",
+   "date": "2026-10-20",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "Mina (Codex source-unread, floor 15, murmur 5c1c471)",
+   "words": "The Ece promise paid off, but the repeated bedtime and bus decisions have worn me out. … I would come back another evening, not leave the game running.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:murmur same as F-367 (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/murmur-week2-2026-10-20/mina-floor2.md"
+  },
+  {
+   "id": "F-374",
+   "date": "2026-10-20",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "Mina (Codex source-unread, floor 15, murmur 5c1c471)",
+   "words": "I want to see whether I can slow this down so I can read without losing the lower choices.",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur DL-22 say nothing and the third answer stay above 690 px on three-answer cards (open, target 2026-11-03)",
+    "lesson:L9"
+   ],
+   "source": "docs/lab/reviews/murmur-week2-2026-10-20/mina-floor2.md"
+  },
+  {
+   "id": "F-375",
+   "date": "2026-10-20",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "Deniz (Codex source-unread, free stop, murmur 5c1c471, second week)",
+   "words": "I have had a complete little Monday. I want to let that last remark sit instead of starting another day on the train. I would return later.",
+   "verdict": "keep",
+   "routes": [
+    "none"
+   ],
+   "source": "docs/lab/reviews/murmur-week2-2026-10-20/deniz-free.md"
+  },
+  {
+   "id": "F-376",
+   "date": "2026-10-20",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "Deniz (Codex source-unread, free stop, murmur 5c1c471)",
+   "words": "Good, she said no. But She put yours off, so the pencil’s way loses me. I think pencil means the other voice, but I cannot put that sentence into ordinary words.",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur DL-20 say what happened after a refusal in plain words, not 'the pencil's way' (open, target 2026-11-03)",
+    "lesson:L1"
+   ],
+   "source": "docs/lab/reviews/murmur-week2-2026-10-20/deniz-free.md"
+  },
+  {
+   "id": "F-377",
+   "date": "2026-10-20",
+   "game": "lab",
+   "kind": "playtester",
+   "who": "Sam (control, A Dark Room, protocol 2, murmur week-two round)",
+   "words": "I would leave this running now and check back later. I like the little settlement, but I do not want to sit watching another gather refill just to afford another hut.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L22"
+   ],
+   "source": "docs/lab/reviews/murmur-week2-2026-10-20/adr-free.md"
   }
  ],
  "lessons": [
@@ -5442,10 +5590,10 @@
   }
  ],
  "routes": {
-  "fix": 375,
-  "lesson": 266,
+  "fix": 383,
+  "lesson": 273,
   "hf": 12,
   "calibration": 42,
-  "none": 1
+  "none": 2
  }
 }
