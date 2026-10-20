@@ -636,6 +636,8 @@ Review this list by 2026-11-05; the owner decides which T1 items to schedule and
 **Round 2 retest (2026-10-20).**
 - Target **2026-11-03**, **a brief spoken warning at night.** Callum: “tapping him does not produce a direct warning.” No general spoken-warning input exists. The named bell rings, wears the rope and presses a hold command; relabelling it would conceal those costs. Accounts are read-only in this round. A warning needs a separately justified edition and exact legacy replay controls.
 
+**Owner taste direction (2026-10-20).** "Don't become bland and objective neutral just to satisfy everyone. It's okay to have slight controversies, for example on difficulty." The 2026-10-20c night acts keep the pressure: each is an ask the watcher may refuse, the reliever's stretch thins or empties, nothing happens beyond the Keeper's voice, and no difficulty value changed. Target **2026-11-03**, **an opt-in easier watch** (for example gentler packs or longer warnings), chosen on the flyleaf and recorded in the export, instead of lowering the default.
+
 **From the owner's playtest (2026-10-05).**
 - T1, **more to do in winter and the other seasons.** "we just need to nourish it with more things to do, and variety". Night tools beyond the lantern, the bell and cards, and season actions beyond answering cards.
 - T1, **investigating events.** For example, why someone left despite an urge. A follow-up the Keeper can open from the ticker or the dawn: asking, looking, asking others.

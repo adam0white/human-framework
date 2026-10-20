@@ -359,6 +359,7 @@ What changed, and why:
 | Round-2 playtest: suggestions. Do not suggest what someone already does. Say what skipping costs. A suggestion that arrives during a wait must not pass unanswered. Add auto-pause modes (suggestions and storm only). | 2026-11-05 |
 | Round-2 playtest bugs. Moment 2 says "at dusk" for a morning. The under-protest line leaks `~Build~` markup. `cancel` on a closed order should say why (accepted, done or refused). `until` gives "That time has passed" or a bare "Paused". The "that is my work" line repeats. Harness: an unquoted `new 5`, `wait 20` or `inspect idris` must work, and `new <seed>` must honour the seed. | 2026-11-05 |
 | Round-2 playtest: show the economy (timber stock, what each house stage needs). | 2026-11-05 |
+| Owner taste direction (2026-10-20): "Don't become bland and objective neutral just to satisfy everyone. It's okay to have slight controversies, for example on difficulty." The @5 promises keep people's own priorities: a promise still yields to "that is my work", and no difficulty value changed. An opt-in easier village (for example a later storm), chosen at the start and recorded in the export, instead of lowering the default. | 2026-11-03 |
 
 ## Design change 2026-10-20 (owner may veto)
 
