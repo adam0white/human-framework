@@ -26,6 +26,7 @@
     "format": "biome format --write .",
     "dev": "npm run dev -w apps/site",
     "build": "npm run build -w packages/human && npm run build -w packages/lab-client && npm run build -w packages/lab-kit && npm run build -w apps/site",
+    "check:fast": "npm run lint && npm run typecheck && vitest run --changed origin/main",
     "check": "npm run lint && npm run typecheck && npm test",
     "deploy": "node scripts/deploy.ts",
     "deploy:check": "node scripts/deploy.ts --dry-run",
