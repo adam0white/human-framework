@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["ES2024", "DOM", "DOM.Iterable"],
+    "outDir": "dist",
+    "rootDir": "src",
+    "types": [],
+    "resolveJsonModule": true,
+    "sourceMap": false,
+    "declarationMap": false
+  },
+  "include": ["src"]
+}

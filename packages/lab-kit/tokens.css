@@ -1,0 +1,165 @@
+/* Field Notebook: shared paper, ink and controls. Games own their scenes and layout. */
+:root {
+  color-scheme: light;
+  --paper: #f3ecdd;
+  --paper-2: #e9dfcb;
+  --ink: #23201b;
+  --ink-soft: #6e665a;
+  --rope: #c2412d;
+  --moss: #4f6b3a;
+  --sky: #3d5a73;
+  font-family: Literata, Georgia, serif;
+  font-size: 17px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.5;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #1e1b16;
+    --paper-2: #29251e;
+    --ink: #e8dfcc;
+    --ink-soft: #9a9080;
+    --rope: #e2614a;
+    --moss: #8daa6e;
+    --sky: #7fa2c0;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #1e1b16;
+  --paper-2: #29251e;
+  --ink: #e8dfcc;
+  --ink-soft: #9a9080;
+  --rope: #e2614a;
+  --moss: #8daa6e;
+  --sky: #7fa2c0;
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom)
+    env(safe-area-inset-left);
+  background: var(--paper);
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+p,
+li,
+dd {
+  max-inline-size: 60ch;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+button,
+select,
+input:not([type="hidden"]) {
+  min-block-size: 44px;
+  min-inline-size: 44px;
+}
+button {
+  padding: 0.5rem 0.8rem;
+  border: 1.5px solid var(--ink);
+  border-radius: 0.2rem;
+  background: var(--paper-2);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+button:disabled {
+  color: var(--ink-soft);
+  cursor: default;
+}
+a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 44px;
+  min-inline-size: 44px;
+  color: var(--rope);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+:focus-visible {
+  outline: 2px solid var(--rope);
+  outline-offset: 3px;
+}
+.now {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+.happened {
+  font-size: 1rem;
+}
+.flavour {
+  color: var(--ink-soft);
+  font-size: max(15px, 0.9rem);
+}
+.lk-intro,
+.lk-notebook {
+  inline-size: min(36rem, calc(100% - 2rem));
+  max-block-size: calc(100dvh - 2rem);
+  overflow: auto;
+  padding: 1rem;
+  border: 1.5px solid var(--ink);
+  border-radius: 0.2rem;
+  background: var(--paper);
+  color: var(--ink);
+}
+.lk-intro::backdrop,
+.lk-notebook::backdrop {
+  background: rgb(0 0 0 / 45%);
+}
+@media (max-width: 599px) {
+  .lk-intro,
+  .lk-notebook {
+    margin: auto 0 0;
+    inline-size: 100%;
+    max-block-size: 85dvh;
+    padding-block-end: max(1rem, env(safe-area-inset-bottom));
+  }
+}
+/* Hosts reserve room below their scene for this fixed instruction line. */
+.lk-next {
+  position: fixed;
+  inset-block-end: 0;
+  inset-inline: 0;
+  z-index: 1;
+  padding: 0.75rem max(0.75rem, env(safe-area-inset-right)) max(0.75rem, env(safe-area-inset-bottom))
+    max(0.75rem, env(safe-area-inset-left));
+  border-block-start: 1.5px solid var(--ink);
+  background: var(--paper);
+}
+.lk-next p {
+  margin: 0;
+}
+.lk-term {
+  color: var(--rope);
+  text-decoration: underline dotted;
+  text-underline-offset: 0.2em;
+}
+.lk-glossary dt {
+  font-weight: 700;
+}
+.lk-glossary dd {
+  margin-inline-start: 1rem;
+  margin-block-end: 0.75rem;
+}
+
+.lk-notebook[open] {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.lk-intro h2,
+.lk-notebook h2 {
+  font-size: 1rem;
+}

@@ -1,0 +1,50 @@
+#!/usr/bin/env node
+/**
+ * Writes the game's version, installed framework version and Git provenance before a build.
+ * Paths are relative to the caller's working directory. Missing Git evidence means dirty;
+ * missing package versions fail the build. This stamps metadata, not a release or deployment.
+ */
+import { execFileSync } from 'node:child_process';
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { dirname } from 'node:path';
+
+const paths = {
+  '--package': 'package.json',
+  '--framework': 'node_modules/@adam0white/human-framework/package.json',
+  '--output': 'public/release.json',
+};
+const args = process.argv.slice(2);
+if (args.length === 1 && args[0] === '--help') {
+  console.log('Usage: stamp-release [--package package.json] [--framework package.json] [--output public/release.json]');
+  process.exit(0);
+}
+for (let i = 0; i < args.length; i += 2) {
+  const key = args[i];
+  const value = args[i + 1];
+  if (!Object.hasOwn(paths, key) || !value || value.startsWith('--')) {
+    throw new Error(`Invalid option: ${key}. Use --help for usage.`);
+  }
+  paths[key] = value;
+}
+const version = (path) => {
+  const value = JSON.parse(readFileSync(path, 'utf8')).version;
+  if (typeof value !== 'string' || value.trim().length === 0) {
+    throw new Error(`Missing version in ${path}`);
+  }
+  return value;
+};
+const git = (...args) => execFileSync('git', args, { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim();
+const app = version(paths['--package']);
+const framework = version(paths['--framework']);
+let commit = 'none';
+let dirty = true;
+try {
+  commit = git('rev-parse', 'HEAD');
+  dirty = git('status', '--porcelain').length > 0;
+} catch {
+  // A source archive or unavailable Git cannot establish a clean checkout.
+}
+const release = { app, framework, commit, dirty };
+mkdirSync(dirname(paths['--output']), { recursive: true });
+writeFileSync(paths['--output'], `${JSON.stringify(release, null, 2)}\n`);
+console.log('release', release);
