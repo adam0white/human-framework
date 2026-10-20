@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import '../home/home.css';
 import './lab.css';
 import curatedFallback from './curated.json' with { type: 'json' };
+import { EXPERIMENTS } from './experiments.ts';
 import { LAB_GAMES } from './games.ts';
 import type { Curated, CuratedGame, LedgerRow } from './ledger.ts';
 
@@ -265,6 +266,24 @@ function Lab() {
           <h2 id="games-title">Games</h2>
           {games.map((g) => (
             <GameCard key={g.id} g={g} ledger={ledger} />
+          ))}
+        </section>
+
+        <section id="experiments" aria-labelledby="experiments-title">
+          <h2 id="experiments-title">Experiments</h2>
+          <p>Research runs, not games. Each has a write-up with what was measured and what it cost.</p>
+          {EXPERIMENTS.map((x) => (
+            <div key={x.id} className="try">
+              <h3>
+                <a href={x.href}>{x.name}</a>{' '}
+                <span className="soft">
+                  ({x.date}, {x.status})
+                </span>
+              </h3>
+              <p>
+                {x.line} <a href={x.writeup}>Write-up</a>
+              </p>
+            </div>
           ))}
         </section>
 
