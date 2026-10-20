@@ -39,3 +39,9 @@ How this is read:
 - Regular telemetry is anonymous and minimal. It sends no personal data and sets no cookies, and it honours Do Not Track and Global Privacy Control. Each data point is documented on a privacy note.
 - Opt-in runs are compressed replays, optionally with a note. They are stored privately. They are not public.
 - Each piece of feedback is triaged once and routed to every place it helps: a game fix, a lab-wide lesson, an HF request, or a calibration of the simulated playtesters.
+
+## 2026-10-20 (Adam, verbatim)
+
+"more games and more grandiose ideas, including starting to think about how we'll publish these more broadly, and ... how we may start earning some money from these without pushing too much."
+
+How this is read: a plan, not a launch. Agents create no accounts and publish nowhere new without the owner; earning stays gentle (no ads during play, no dark patterns, nothing gambling-like) and faith stays gentle. The plan is [docs/lab/publishing-and-earning-2026-10-20.md](lab/publishing-and-earning-2026-10-20.md).

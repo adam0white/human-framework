@@ -1,0 +1,93 @@
+# Publishing and earning (2026-10-20)
+
+Owner direction (2026-10-20): "more games and more grandiose ideas, including starting to think about how we'll publish these more broadly, and ... how we may start earning some money from these without pushing too much."
+
+This is a proposal. Nothing here has been started: no accounts exist, nothing is published outside human.adamwhite.work and the subdomains. Every fact about a platform is marked **confirmed** (seen in a source on 2026-10-20, usually secondary) or **assumed** (from memory or inference; check before acting). Platform terms change; re-check each one on the day an account is opened.
+
+## What we are publishing
+
+About eleven small browser games on HF: The Night Watch and the other in-site games, plus The Pass, Repair, The Rope, Neighbours, Warren, Valley, Stairwell, The Two Voices, The Glance and Small Works. They are slow, systemic, text-and-canvas games about people. None is an action game; none has ads, accounts or purchases today. Strengths: unusual (simulated people with needs, temperament, memory), deterministic replays, phone-friendly. Weaknesses: no art budget, short sessions in some, and owner-accepted feel for only a few (Night Watch, The Pass).
+
+The honest starting point: these games have almost no outside audience yet. Distribution comes before revenue. Revenue at this stage is a signal (does anyone care enough to pay a little?), not income.
+
+## (a) Distribution channels
+
+| Channel | Effort | Fit | Facts | Risks |
+|---|---|---|---|---|
+| **itch.io** (HTML5 upload) | Low: zip the Vite build per game, write a page | **Best.** The audience likes odd systemic and narrative games; free, PWYW and paid all allowed | Open revenue share, default 10%, creator-set 0–100% (**confirmed**, secondary). Pricing: free, PWYW, fixed (**confirmed**). Payouts via PayPal/Stripe, tax forms required (**assumed**) | Low discoverability without a devlog or jam; iframe embedding may break fullscreen, wake lock and our lab telemetry origin (**assumed**; test) |
+| **Own site + newsletter/devlog** | Low–medium: one post per week from the lab notebook (game-lab idea #13) | High: the lab's real differentiator is the story of the framework and its playtesters | Buttondown/Substack-style tools are free at small scale (**assumed**) | Writing time; must keep the plain, honest tone; telemetry/privacy note must cover subscribers |
+| **Reddit / Hacker News / Lobsters** | Low per post, high variance | HN "Show HN" fits HF itself (MIT framework, simulated people, LLM-free deterministic loop) better than any single game. Subreddits: r/incremental_games, r/WebGames, r/indiegames, r/simulationgames, r/roguelikes for specific games | Self-promotion rules vary per subreddit (**assumed**; read each sidebar) | One shot per launch; a bad first impression sticks. Post only a polished game |
+| **Newgrounds** | Low | Medium: friendly to weird browser games, gives honest reviews | Has ad-revenue sharing and a supporter scheme (**assumed**) | Audience skews action/animation |
+| **CrazyGames** | Medium: integrate their SDK, meet their quality bar | Low–medium: portals favour fast, replayable, casual games; Glance or Stairwell may fit, Night Watch and Neighbours less | No fee, no exclusivity required; reported 60% ad / 70% IAP share to developers; €100 payout minimum (**confirmed**, secondary guides only) | Revenue is ad-based: ads must not interrupt play. Faith content (quiet prayer) may be fine but is **assumed**; our telemetry would sit beside theirs |
+| **Poki** | Medium–high: curated, they pick | Low: Poki wants very broad casual hits | Reported 50/50 on Poki-sourced traffic, 100% on your own traffic; exclusivity optional and negotiated (**confirmed**, secondary) | Ads; curation rejection is likely; exclusivity would conflict with itch |
+| **Steam** (Electron or Tauri wrapper) | High: wrapper, store page, capsule art, trailer, Steamworks build, achievements optional, controller/keyboard review | Medium, for **one** grown-up game only (Night Watch or The Pass at full length) | $100 per app, recouped after $1,000 adjusted gross; 70/30 to $10M, then 75/25, then 80/20 (**confirmed**, secondary). Tauri/Electron web wrappers are common on Steam (**assumed**) | Wishlists and art decide Steam; a thin web game earns little and gets "this is a free browser game" reviews. Needs a premium version worth paying for |
+| **PWA (installable from the site)** | Low: manifest + service worker | High for phones, already close | No store, no fee (**confirmed** by design) | Offline caching must not break telemetry or replays |
+| **Google Play** (TWA wrapper of the PWA) | Medium | Low–medium | One-time $25 developer fee; new personal accounts need closed testing with testers before production (**assumed**) | Store policy on data safety forms; account tied to legal identity |
+| **Apple App Store** | High | Low | $99/year; guideline 4.2 rejects apps that are only a repackaged website (**assumed**, from memory) | Review rejection; real native features needed; ongoing yearly fee |
+
+Per game, the first channel to try (opinion):
+
+| Game | First channel | Later |
+|---|---|---|
+| The Night Watch | itch.io (free or PWYW) + devlog | Steam premium "full" version if itch shows pull |
+| The Pass | itch.io | Steam, together with Night Watch or as a bundle |
+| Neighbours, Small Works, Valley, Warren | itch.io, as "lab notebook" entries | A future ant-colony-style game is the strongest Steam candidate if built |
+| The Glance, Stairwell | itch.io, then CrazyGames trial (short sessions) | — |
+| The Rope, Two Voices, Repair | itch.io | — |
+| **HF itself** | Show HN + npm + a devlog post | Licensing (below) |
+
+## (b) Gentle revenue
+
+Rules for every option: no ads during play, no loot boxes, gacha, random paid rewards or anything gambling-like, no energy timers or paid waiting, no countdown pressure, no manipulative prompts, no pay-to-win, no selling data. Telemetry stays anonymous and opt-in as already decided. Faith stays gentle: never a selling point, never gated behind payment, never the theme of a paid tier.
+
+| Option | How it works | Earns (estimate, **assumed**) | Fit |
+|---|---|---|---|
+| **Pay what you want** on itch | Free to play; a "support" price suggested | Tens of dollars a month at first; itch PWYW conversion is typically a few percent of downloads | **Best first step**: gentle, honest, tests demand |
+| **Supporter tier** on the lab | Ko-fi or itch "membership"/donation link on each game's end screen and the site | Tens to low hundreds a month only once a devlog audience exists | Good with the newsletter. Ko-fi: free plan 0% on tips, Standard 5%, Gold $12/month 0% (**confirmed**, secondary). Patreon: 10% + processing for new creators since Aug 2025 (**confirmed**, secondary) — prefer Ko-fi |
+| **itch bundles** | Put the games in an itch bundle, or join charity bundles | Exposure more than money | Good once 3+ games are on itch |
+| **Premium full version** | Browser game stays free (demo-length); a longer paid version with more seasons, saves, export and sandbox, on itch then Steam | The only option that could reach real money (hundreds to low thousands per year for a modest niche hit; most indie games earn far less) | Good for Night Watch / The Pass. Must be a real extension, not the free game with a lock removed |
+| **Licensing HF** | HF is MIT, so it cannot be sold as a licence. Options: paid support/consulting, a commercial "pro" add-on package under a different licence, or sponsorship of the framework (GitHub Sponsors) | Unclear; MIT undercuts direct licensing | Low priority. GitHub Sponsors is the cheap, honest version |
+| **Sponsorship** | A studio or research group pays for a game or a faculty | Unpredictable | Only on request; must not bend games toward the sponsor |
+| **Portal ad revenue** (CrazyGames/Poki) | Ads between sessions only, never during play | Pennies per thousand plays; meaningful only at large scale (**assumed**) | Low; only for short-session games, only with interstitials at natural stops |
+
+## (c) First three steps, ranked
+
+Revised after the Codex review below: employment terms come first, and real players before any premium work.
+
+1. **By 2026-10-24 (owner): settle employment terms and set a ceiling.** Read the signed Othram agreement for invention assignment, moonlighting and disclosure terms; get a written carve-out from David if it is ambiguous. Set a monthly time and cash ceiling for this work. No money flows before this step.
+2. **By 2026-11-03: one game on itch.io, free with pay-what-you-want, plus 20 real players.** The Night Watch first (owner-accepted). Agents prepare the zip, page text, screenshots and a GIF locally; the owner creates the account and presses publish. Check fullscreen, wake lock, saves, playtest export and telemetry inside itch's iframe. Make one targeted community post (a subreddit for slow simulation games) and gather 20 independent players; observe understanding, voluntary replay and quit points, and compare them with the simulated cohort (game-lab idea #4). Add a quiet Ko-fi link to the end screen. A "Show HN" for HF itself can go in the same week; it tells the framework story, not a sales pitch.
+3. **By 2026-12-03: 30-day review, then decide on a premium version.** Fund a premium "full" Night Watch or Pass (itch first, Steam later) only if behaviour and purchases justify it (rough bar, **assumed**: voluntary replays from several outsiders and some paid PWYW). Otherwise keep the games free and record the result in docs/findings.md.
+
+Portals, Steam and app stores wait until step 3 says yes. A devlog posts on releases, not weekly: a weekly obligation is another job.
+
+## Owner decisions needed
+
+Agents create no accounts and publish nothing. The owner decides:
+
+1. **Employment check first.** Othram employment terms may cover side projects, IP and outside income (**assumed**; unknown). Confirm with the employer agreement, or with David, before any money flows.
+2. **Seller identity.** Sell as Adam White personally, or form an LLC. Legal name and address appear on store pages, payouts and tax forms (Steam and app stores show them publicly; itch less so, **assumed**).
+3. **Taxes.** US W-9 for each platform; income is self-employment income (**assumed**; ask a tax adviser). Sales tax/VAT is handled by itch, Steam and the app stores as marketplace facilitators (**assumed**), but not by a direct Ko-fi or own-site sale.
+4. **Accounts and payments.** Which accounts to open (itch, Ko-fi, later Steamworks, Google/Apple), which payout method (PayPal, Stripe, bank), and who owns the credentials (owner only).
+5. **Pricing stance.** Free with PWYW, or a minimum price; whether any game is ever paid-only.
+6. **Branding.** Publish under "Human Framework" / "HF game lab" or a new studio name; the subdomains stay as they are either way.
+7. **Telemetry on third-party hosts.** Whether lab telemetry stays on in itch/portal builds (privacy note must then name the host), or builds for those hosts send nothing.
+
+## Codex second opinion (2026-10-20, adversarial)
+
+Codex (`codex exec`, read-only) reviewed the brief. Its main points, and what changed:
+
+- "The plan risks confusing distribution with demand." Eleven games show production capacity, not an audience; simulated playtesters cannot establish demand. **Adopted:** step 2 now requires 20 independent real players.
+- Budget **$0 at first**. Its illustrative, assumed numbers: PWYW about $50/month (1,000 players × 1% × $5); supporters about $100/month (20 × $5); a finished premium game about $1,000 gross (100 × $10); portal ads about $300 per 100,000 monetized impressions. **Adopted** as the planning baseline; sponsorship is budgeted at zero.
+- Employment ownership comes first: Othram's terms are unknown, and personal time and hardware do not settle ownership. **Adopted** as step 1.
+- Steam is premature; the larger cost is packaging, testing, store assets and support, multiplied per game. App-store web wrappers face Apple's [minimum-functionality review](https://developer.apple.com/app-store/review/guidelines/#minimum-functionality). **Agreed.**
+- CrazyGames' Basic Launch earns nothing; money requires Full Launch with their SDK ([requirements](https://docs.crazygames.com/requirements/intro/)). Poki weighs advertiser comfort ([content guide](https://developers.poki.com/guide/content-player-safety)), so quiet faith scenes may need edits; whether that fits the owner's values is an owner call. **Recorded**; portals are one-game experiments at most.
+- MIT gives HF licensing no scarcity; sell support, integration or additional products. **Agreed.**
+- Portal SDKs change the data flow; replay uploads with notes can identify people. **Recorded** under owner decision 7.
+- Disagreement kept: Codex rates HN as weak buyer intent. That is true, but HN is for the framework's audience, not buyers, so it stays as a low-cost, optional part of step 2.
+
+## Sources (2026-10-20)
+
+- itch.io open revenue share, default 10%: [Game Developer](https://www.gamedeveloper.com/business/itch-io-launches-open-revenue-sharing), [Wikipedia](https://en.wikipedia.org/wiki/Itch.io)
+- Steam app fee: [Steamworks](https://partner.steamgames.com/doc/gettingstarted/appfee); revenue tiers: [fungies.io guide](https://fungies.io/?p=37356) (secondary)
+- CrazyGames and Poki terms: [cinevva CrazyGames guide](https://app.cinevva.com/guides/publish-game-crazygames), [cinevva Poki guide](https://app.cinevva.com/guides/publish-game-poki) (secondary)
+- Ko-fi and Patreon fees: [schoolmaker Patreon pricing](https://schoolmaker.com/blog/patreon-pricing), [builtbyfoundry comparison](https://www.builtbyfoundry.io/blog/patreon-vs-ko-fi-2026-same-1000-month-189-or-101) (secondary)
