@@ -4241,7 +4241,8 @@
    "verdict": "mixed",
    "routes": [
     "fix:lab DL-30/31 kit 0.2.0 phone stage adopted in Well, Warren, Valley and Night Watch (done)",
-    "fix:lab DL-30/31 adopt the phone stage in Neighbours, Good Hands, Hearsay, Glance, Stairwell and Rope (open, target 2026-11-03)",
+    "fix:lab DL-30/31 phone stage adopted in Hearsay 6b4c7a9 and Stairwell e972919 (done)",
+    "fix:lab DL-30/31 adopt the phone stage in Neighbours, Good Hands, Glance and Rope (open, target 2026-11-03)",
     "lesson:L21"
    ],
    "source": "docs/lab/reviews/patterns-2026-10-20/phone-audit.md"
@@ -4404,7 +4405,7 @@
    "words": "This has good potential. Current issues on mobile. Too little time to understand and react to events and things.",
    "verdict": "mixed",
    "routes": [
-    "fix:hearsay DL-15 an event that demands a response slows the clock until answered (done, hearsay 6b4c7a9, first incident readable 43 s → 120 s)",
+    "fix:hearsay DL-15 an event that demands a response slows the clock until answered (done, hearsay 6b4c7a9, the first incident stays open to answer 43 s → 120 s at Walk)",
     "lesson:L6"
    ],
    "source": "hearsay/docs/playtests/owner-2026-10-20.md"
@@ -5082,7 +5083,7 @@
   }
  ],
  "routes": {
-  "fix": 349,
+  "fix": 350,
   "lesson": 256,
   "hf": 12,
   "calibration": 42,
