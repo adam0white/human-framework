@@ -1,0 +1,144 @@
+# The Rope — source-unread playtest
+
+Hanna, 45, hill walker and teacher. Occasional board games, rare video games. Careful about who she is responsible for. Patient for ten minutes. Live URL: https://rope.adamwhite.work. Headless Chromium through a persistent Playwright server, one page. Phone: 360×690 CSS px, touch emulation, light mode. Eight real minutes maximum, not a completion target. No optional question. No game source or internal state consulted. Only the two authorized instruction documents were read. No telemetry submission or consent change.
+
+First actionable screen: 2026-10-20 08:18:03.920 UTC (03:18:03.920 CDT). Screenshot and timestamp log are in `rope-shots/`. Timing below is real elapsed time unless identified as game time.
+
+## First minute
+
+Recorded at 60.327 seconds, 08:19:04.247 UTC, before further gameplay inputs. Evidence: `01-first-screen.png` through `08-first-minute.png`. These answers are frozen at this checkpoint.
+
+| Item | Status | Original checkpoint answer |
+|---|---|---|
+| DL-1 A reason to act | PASS | I am leading five people up a mountain and need to bring them home. “Lead them up and bring them home. They can say no.” told me that. I have promised noon as our turnback time. |
+| DL-2 What can I touch | PASS | Begin the season and More about the season looked tappable. In play, outlined people, everyone, climb on, turn back, rest, eat, wait, my movement controls, journal, and the top arrows look tappable. Everyone has a heavier outline. I tried no inert decoration. Wren is beyond the visible people row; “swipe for people” tells me where to find her. |
+| DL-3 Urgency and selection | PASS | The opening question about when to turn back drew me first. Then the short Lead on and Climb on instructions drew me. Everyone is selected. The time reads 05:28 and my noon promise is shown below, although its explanation runs off the phone bottom. Nothing says there is an emergency now. |
+| DL-4 Why the limit | PASS | Go down initially said “At the hut; climb first.” Stop said “Standing still; start walking.” Both became available after movement. Insist showed “after a refusal”; I understand that I must have a refusal first. I did not try insist. The promised control is unavailable, but I read it as my recorded promise, not a new action. |
+| DL-5 Readable situation | PASS | We are moving up the path. I can stop or ask everyone to rest, eat, wait, climb on, or turn back. “You lead. Tap Lead on to start the party up the path” and then “Now ask them along: everyone is picked. Tap Climb on, then ask” explained the two steps. |
+| DL-6 A choice soon | PASS | The opening Begin control was available at 0 seconds; I clicked it at 9.435 seconds. The first meaningful choice, choosing a turnaround commitment, was visible by 9.435 seconds. I chose noon at 16.717 seconds. Roughly 36 mandatory story words preceded that choice, counting title/tagline and the hill/question text; well within 30 seconds and about 40 words. |
+| DL-7 Learn by doing | PASS for reached interactions | Three sequences reached: promise a time; start leading; select climb on and ask gently. Noon means a commitment even if we have not reached the top. Leading moves me; asking invites the others, who can refuse. The contextual instruction corrected my assumption that Lead on alone invited everyone. Ask/urge/insist describe increasing pressure; only ask was used. NOT TESTED: 10 visible interactions not used by the checkpoint—individual selection, turn back, rest, eat, wait, go down, stop, stay with them, urge, insist. No claim about those interactions yet. |
+
+## Verbatim diary
+
+The following entries preserve the wording recorded during play. A timestamp records the browser command or observation, not a reconstructed game event.
+
+- 0.061s — opening screen. “I want to know who is on the rope with me before I move.”
+- 9.435s — tapped Begin the season. “Begin the season looks like the way in. Five people need bringing home; that is clear enough to start.” Answer: Hollin Crag, climb 1 of 3, 05:00 at the hut; “When do you turn back?” Four commitments offered.
+- 16.717s — chose We turn at 12:00. “I will say noon. I do not know how long this hill takes, so I would rather leave room to get everyone down.” Answer: mountain scene, Lead on instruction, several overlapping speech bubbles.
+- 24.020s — dismissed got it. “I can see Lead on and separate instructions to everyone. The speech is on top of other speech, so I cannot comfortably read who has said what.”
+- 27.661s — tapped lead on. “I have promised a return time; now I will lead on. I expect the whole party to follow, with me waiting for the slowest.” Answer: “Now ask them along: everyone is picked. Tap Climb on, then ask.”
+- 33.469s — tapped climb on. “Oh, leading is not the same as asking them to come. The little instruction makes that clear. I will ask everyone to climb.” Answer: everyone: climb on; ask/gently, urge/press them, insist/after a refusal.
+- 38.868s — tapped ask. “Ask gently is how I would speak to a walking group. Insist is unavailable until a refusal, which I understand.” Answer: request panel closed; walkers move along the slope.
+- 60.327s — checkpoint screenshot, no gameplay input. Game clock 05:28; group on the slope, everyone selected.
+- 105.427s — attempted journal tap at (314,278). “The walkers seem together, but I cannot read their overlapping names easily. I will look in the journal for what they actually said.” Answer: journal did not open; this tap was below the button.
+- 116.046s — tapped journal at (315,247). “My first journal tap did not open anything. I will try the button itself.” Answer: Journal opens. The immediate screenshot caught its transition; `11-journal-settled.png` shows the stable readable sheet.
+- 123.212s — read journal. “Wren left without breakfast; Nell needs to call home before dark. Those are the sort of things I need to know as the leader.” Visible journal also says Tamar checked everyone’s boots before her own. Game clock remained 06:07 between the two journal observations.
+- 134.162s — back from journal. “I will ask everyone to eat rather than single Wren out. She may be happier doing it with the group.”
+- 136.791s — tapped eat. Answer: everyone: eat; ask/urge/insist.
+- 140.325s — tapped ask. “Eating should mean a short stop for food. I am asking, not forcing it.” Answer: “eat · Tamar (06:11): ‘Let me climb the hut path properly first.’” A refusal help strip appears.
+- 149.930s — dismissed refusal help. “Tamar wants to finish the hut path before eating. Fair enough. The explanation at the top runs out of space after never a, so I cannot finish reading it there.” Evidence: `14-ask-eat.png` clips the help after “never a”.
+- 154.248s — tapped ▷▷. “We are just walking now. I will try the double arrow to let this quiet stretch pass faster.” Game time 06:17. This is the first deliberate speed change.
+- 173.673s — observed after a real 15-second wait and tool overhead. “I am waiting to reach the meadow before asking again. The refusal is at least still written down.” Game time 06:59. Four visible people tiles say cold; the double arrow has the selected outline.
+- 180.389s — selected Oskar. “Several of them are cold now. Oskar is still refusing food. I will look at him before deciding whether to stop the party.” Answer: to Oskar; take pack/share food say “Walk to them first.” Nell and Bilal now say tired. The walk to Oskar control extends below the viewport.
+- 191.021s — tapped my stop. “I do not want to walk away while the others rest. I will stop myself first.” Answer: stop becomes unavailable with “Standing still; start walking.”
+- 193.287s — selected everyone.
+- 196.153s — tapped rest. “Everyone says tired. That seems a good reason to rest together now.” Answer: everyone: rest.
+- 198.553s — tapped ask. Answer: “rest · Oskar (07:48): ‘After I climb the moraine! Come on.’”
+- 203.488s — observed settled response. “Oskar will not rest until the moraine. I do not know whether Wren is stopping; she is off the people row, and the names on the hill are hard to separate.” Evidence: `23-rest-response-settled.png`; Bilal’s readable bubble says “I trust you — fine, I’ll go.” Other bubbles overlap below it.
+- 218.236s — tapped the right edge of the person row, attempting Wren. “The rest reply says I trust you, fine, I will go. I hope that means agreeing to rest, not carrying on. I will try the last person tile at the edge for Wren.” Answer: still to everyone. This was an unsuccessful edge tap, not a completed swipe.
+- 223.735s — tapped stay with them. “That edge tap did not select Wren. Oskar now says far. I will use stay with them; keeping the group together matters more to me than reaching the top.” Answer: control label becomes “with them”; Oskar and Wren say far.
+- 248.152s — observed after a real 15-second wait and overhead. “I have stopped leading uphill, but two people are far away and the others are tired. I am no longer comfortable taking this group higher.” Answer: game 09:13; people appear close again, and a help strip says “The ground is steeper now. Pick someone and Rope up to tie them to a partner; a partner can hold a slip.”
+- 257.034s — dismissed rope help. “A partner can hold a slip. That is a useful explanation. Nell was unsure about her crampons, so I want someone steady with her.”
+- 259.984s — selected Nell.
+- 265.182s — tapped rope up. Answer: “rope Nell to whom?” Four partners are visible, with “Choose a different partner for Nell.”
+- 276.382s — selected Tamar. “Tamar checked everyone else’s boots first. I am guessing she is a good partner for Nell, though they are both tired.” Answer: Nell: rope up with Tamar; ask/urge/insist.
+- 279.136s — tapped ask. Answer: “rope up · Nell (10:03): ‘I don’t think I can, from here? Tamar’s too far off to tie to.’” A new scouting help strip appears.
+- 287.867s — tapped ▷ to return to normal speed. “They are too far apart to tie together. I wish I had known that before choosing the pair. I am slowing this down so I can get everyone heading home.” Game clock 10:12. This is the second and last deliberate speed change.
+- 299.268s — dismissed scouting help. “There is another instruction about scouting now, but I am trying to get down, not find another way up.” The help text itself extended below its strip; see `32-normal-speed.png`.
+- 302.483s — selected everyone. A strip now reads “A quiet stretch. Tap ▷▷ to walk it faster.” I did not change speed again.
+- 305.766s — tapped turn back. “Everyone is tired. I want to turn back early and get them home; noon was a latest time, as I understood it.” Answer: everyone: turn back.
+- 308.668s — tapped ask. Answer: “turn back · Tamar (10:27): ‘Climb the snow slope below the col first. Then I’ll think about it.’”
+- 316.751s — attempted turn back at its previous lower position. “Tamar wants the snow slope first. Everyone keeps wanting the next stretch before they will stop. I will be firm about turning back, even if they trust me less.” Answer: request panel did not open.
+- 323.115s — tapped turn back at its new position. “I missed the turn back button because it moved when the answer changed height. I am trying it again.” Answer: ask/urge/insist, with “costs trust” under insist; “All 5 recorded answers” is also offered.
+- 325.832s — tapped insist. Answer: “Tamar wants to go down. Who goes with her? (4 more waiting)” with send Oskar/Nell/Bilal/Wren, ask to wait, and we all turn. All these immediate response buttons fit on screen.
+- 332.466s — tapped we all turn. “Now they all want to go down and it asks who goes with Tamar. We all turn is exactly what I meant. I will choose that.” Answer: “turn back · Oskar (10:39): ‘Climb the snow slope below the col first, we’re so close.’” The companion prompt disappears.
+- 343.733s — final phone observation and voluntary quit, game clock 10:43. “I said everyone turns, then chose we all turn, and Oskar is asking for the snow slope again. I cannot tell whether I have actually turned the party around. This is where I would put it down.” Evidence: `41-last-phone-screen.png`.
+- 351.993s — after phone play ended, navigated to the first screen at 1280×800 for the requested desktop look. “Phone play has ended at 343.733 seconds. This navigation is only the requested desktop first-screen look; I am not resuming play.”
+- 355.482s — settled desktop screenshot, `43-desktop-first-screen.png`. The title screen offers Continue the season and Begin a new season; save summary says “Climb 1 of 3 · Hollin Crag · 10:50.” I did not press either.
+
+## Best and worst moments
+
+Best: the journal made the walkers feel like people I could care for. Wren skipping breakfast, Nell’s call home, and Tamar checking boots gave me reasons for my choices. The rope explanation then gave me a concrete way to try to protect Nell. I liked choosing a careful return time before setting off.
+
+Worst: I insisted on turning back, got a prompt asking who would accompany Tamar, chose “we all turn,” then saw Oskar’s refusal again. I could not tell whether I had successfully turned the group, or what I was supposed to do to make that happen. This is uncertainty about the visible result, not proof that the game has no way to turn back.
+
+I first felt impatient at 154 seconds during ordinary walking; the speed button helped. I felt concerned rather than bored when the group separated. Frustration became the dominant feeling after the failed rope request at 279 seconds, when more help appeared while I was trying to get home. I wanted to leave at 343.733 seconds.
+
+## Clarity failures and evidence
+
+| ID | What I saw, in my words | Evidence |
+|---|---|---|
+| DL-5 | I could name the controls at first, but later I could not tell whether the party had turned around. “We all turn” removed the companion prompt and was followed by Oskar asking to climb higher again. I knew turn back and my own go down existed; I did not understand the group’s resulting state. | `39-insist-return.png`, `40-we-all-turn.png`, `41-last-phone-screen.png`; 325.832–343.733s |
+| DL-13 | “We all turn” acknowledged my tap by closing the prompt, but the result did not explain the renewed refusal. I could not tell whether it repeated a gentle request, set a direction, or did something else. This is a feedback clarity failure, not a claim of an unregistered input. | Same sequence; “turn back · Oskar (10:39): ‘Climb the snow slope below the col first, we’re so close.’” |
+| DL-13 | After asking for rest, Bilal said “I trust you — fine, I’ll go.” I could not tell from that wording whether he was agreeing to rest or to continue walking. | `23-rest-response-settled.png`, 203.488s |
+| DL-8 | Simultaneous speech bubbles and crowded names made people’s replies hard to separate. One readable bubble did not make the other replies readable. The persistent refusal line helped, but showed one person at a time in the main view. | `03-turnaround-promise.png`, `23-rest-response-settled.png` |
+| DL-22 | The refusal instruction is cut off after “never a”. The scouting instruction also runs beyond the help strip. These are essential explanations at the moment the new response is introduced. | `14-ask-eat.png`, `32-normal-speed.png` |
+| DL-22 | Extra refusal text, unavailable-action reasons and new controls push movement controls and the noon promise below the phone viewport. Selecting Oskar leaves “walk to Oskar” cut at the bottom. I missed a later turn back tap after the control moved when the answer height changed. | `18-oskar-selected.png`, `32-normal-speed.png`, `37-firmer-return.png`; 316.751–323.115s |
+| DL-14 | Rope up let me choose Nell, Tamar and ask before telling me they were too far apart. The refusal explained the limit clearly afterwards; I wanted that known distance problem before choosing a pair. I do not know whether a person could have judged the distance accurately from this drawing. | `29-rope-nell.png`, `30-rope-tamar.png`, `31-ask-rope.png` |
+
+The journal’s initial transparent appearance was a transition, not a stable layout failure. Its settled screen was readable (`11-journal-settled.png`). I have not counted the missed first journal tap or the unsuccessful Wren edge tap as proof of broken controls.
+
+## English, dates and phone layout
+
+- **DL-20 PASS for encountered play.** I could act in English. Climb on, turn back, eat, rest, rope up, ask, urge and insist were understandable. “Col” and “moraine” are hill terms I recognize as this persona; this does not establish clarity for a novice walker. No necessary untranslated local term was encountered.
+- **DL-21 NOT TESTED for calendar dates or crossing months/years.** No calendar date appeared in the screens I reached. Clock comparison was clear: a 12:00 turnback promise, 05:00 departure, 10:43 on quitting. I could compare those without translation. “Before dark” had no exact sunset time in what I saw; I did not reach that deadline or test returning after a break.
+- **DL-22 FAIL.** The initial turnaround decision, ordinary climb request, rope partner selection and companion prompt all fit. Later help text clips, and important movement controls and promise context extend below the phone screen. I did not scroll during play; the offscreen controls therefore remained an actual limitation of this session rather than a tested scrolling failure.
+
+## Other checklist coverage
+
+These are player observations only. Builder checks remain NOT TESTED.
+
+| Item | Session evidence/status |
+|---|---|
+| DL-1–DL-4 | PASS for encountered opening purpose, control cues, selection and stated unavailable-action reasons. The first-minute answers above remain unchanged. Later take pack/share food reasons also clearly said “Pick one person” or “Walk to them first.” |
+| DL-5 | FAIL later in play; first-minute PASS preserved. See turnaround sequence. |
+| DL-6 | PASS; availability and input timed above. |
+| DL-7 | PASS for basic request flow and rope partner flow reached. A consequence taught me the distance prerequisite. Scouting, tell, pack transfer, food sharing, go ahead, urge, wait, direct go down and later mountains were not tried (9 named interaction/course categories NOT TESTED). Successful rope attachment and its slip protection were also NOT TESTED. |
+| DL-8 | FAIL for crowded replies and clipped immediate help. |
+| DL-9 | NOT TESTED. I read Nell’s call-home promise in the journal, but did not establish whether it was a required player task or reach its deadline. |
+| DL-10 | No distinct alias mismatch observed. Full label consistency NOT TESTED; the ambiguous rest reply is recorded under DL-13. |
+| DL-11 | NOT TESTED for complete word-count/layout criteria. Ordinary decisions were short; the encountered clipping is established under DL-22. |
+| DL-12 | NOT TESTED. No day, climb or season ending reached. |
+| DL-13 | FAIL for ambiguous rest and turnaround results; ordinary selection/request panels responded promptly. |
+| DL-14 | FAIL for the known distance prerequisite appearing only after the rope request. “Insist — costs trust” did disclose a cost before I chose it. |
+| DL-15 | Partial observation, full test NOT TESTED. Clock and selected speed were visible. ▷▷ advanced a quiet stretch faster; ▷ returned to normal. A rest request at fast speed appeared to slow the clock while its replies arrived. I did not deliberately hold and answer a time-critical live choice from fast speed, so this does not establish the required protection against missing one. Journal observations both read 06:07 across about seven real seconds. |
+| DL-16 | PASS for problems I acted on having responses: food, rest, turning back, rope partners. Responses could be refused. Successful resolution of those needs was not established. |
+| DL-17 | PASS for encountered tired/cold/far text and speech; no feelings bar or percentage observed. |
+| DL-18 | No problematic numerical cue observed. Clock, climb count and waiting-person count were the numbers I met. Wider check NOT TESTED. |
+| DL-19 | FAIL for my expectation that “we all turn” would settle the collective turnaround. Renewed refusal left its meaning unclear. The refusal itself may be intentional; I cannot infer the rule. |
+| DL-23 | NOT TESTED by measurement. The main buttons were easy enough to hit; a thin edge of the offscreen person row did not select Wren. No claim about exact hit-area sizes. |
+| DL-24 | PASS for journal/back and the reached request/cancel surfaces; only one visible task surface at a time. Keyboard-open behavior and focus restoration NOT TESTED. |
+| DL-25 | NOT TESTED at 320 px, 200% text or dark mode. No whole-page horizontal scrolling observed at the assigned fixture. The person row was explicitly labelled for swiping; I did not complete a swipe. |
+| DL-26 | FAIL for discoverability/naming in reached screens: I found run controls through “journal,” including “Export this climb (playtest),” rather than a visible “Game menu.” The collection link says “all notebooks.” I did not search further after quitting. |
+| DL-27 | NOT TESTED for honest resume. The desktop first screen offered Continue with a location/time summary after navigation, but I did not resume or compare restored actions. |
+| DL-28 | NOT TESTED and not authorized. I did not send a run or change consent. |
+| DL-29 | NOT TESTED. No export downloaded and no replay attempted. |
+
+## Stopping point and return
+
+I voluntarily stopped at **343.733 seconds (5 minutes 43.733 seconds)**, **08:23:47.653 UTC / 03:23:47.653 CDT**, during climb 1 on Hollin Crag. The final phone clock was **10:43**. The eight-minute ceiling did not cause the stop. I did not complete the climb or the season. I would not voluntarily return immediately: I wanted to care for this group, but did not trust my understanding of whether my instructions had changed their direction.
+
+The one desktop first-screen look at 1280×800 was spacious and readable. It showed the three mountains, purpose, More about the season, Continue the season, Begin a new season and a save summary. It displayed “People by the Human Framework 2.8.0”; that is the visible framework version, not an independently verified game build. No game build identifier was visible. The saved summary read 10:50 because the phone page remained open briefly between my quit observation and desktop navigation; this is not evidence of time advancing while the page was closed.
+
+## Changes I would want, ranked
+
+1. After “we all turn,” tell me plainly who is descending and who is still refusing. Let me check that state without interpreting overlapping walkers.
+2. Keep the current answer, complete instruction and my movement controls readable together on this phone. Keep the buttons in predictable positions when an answer changes.
+3. Before I choose a rope partner, show which partners are close enough, or tell me how to bring the pair together.
+
+## Artifacts and limits
+
+Report: `scratch/clarity/retest/rope.md`.
+Screenshots and live wall-clock log: `scratch/clarity/retest/rope-shots/` (`01`–`43`, plus `wall-clock.jsonl`). No export was downloaded.
+
+The browser ran continuously in one persistent server/page. No tooling step failed, and no game repair was attempted. Normal clicks and real waits were used; no scripted game clock acceleration or decision batches. Speed changed only through visible controls. The tool also emitted body text; while panels were open, that text included the obscured underlying interface. Those underlay strings were excluded from the findings; screenshots govern the visible evidence. Immediate captures sometimes caught transitions, so settled screenshots were used where available. This limitation is disclosed rather than treated as a game defect.

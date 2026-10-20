@@ -1,0 +1,117 @@
+# Small Works — source-unread playtest
+
+## Session
+
+- Persona: Ama, 27, graphic designer. Plays cosy puzzle games, likes tinkering, dislikes manuals. Playing on a phone on the sofa. Patient while things respond.
+- Game: Small Works, https://repair.adamwhite.work. The visible header said “Workshop.” No build identifier was visible on the screens visited.
+- Access: live page in headless Chromium through Playwright. Screenshots and coordinate taps; normal vertical scrolling. No game source, bundles, requests, hidden DOM state, storage or debug APIs inspected. Only the two assigned instruction documents were read. Playwright was installed in the empty working directory.
+- Phone: 360 × 690 CSS px, touch emulation, light-mode preference, device scale factor 1. The page itself rendered a dark green background despite the light-mode preference.
+- Budget: 8 real minutes maximum. First usable screen starts t=0. Stopped voluntarily at 264.7 s (4 min 24.7 s), before the budget ended. This includes a tool-input interruption during the first-minute reporting pause, roughly 60–126 s; no gameplay inputs occurred during that pause.
+- Game time: action labels showed 10, 15, 20 or 30 min. A meter reading later showed Day 1 · 10:10, then 10:20; the returned object showed Day 1 · 12:00. These are game times, separate from elapsed real time. No speed control used. No scripted time acceleration or batched gameplay decisions.
+- After stopping: one fresh, separate 1280 × 800 desktop context, light-mode preference, opened the first screen. No desktop gameplay inputs. Screenshot: repair-shots/33-desktop-first-screen.png.
+- No telemetry submission, consent changes, run upload or export download. No processes were killed; the browser was closed normally after capture.
+
+## First minute
+
+Checkpoint at 60.0 real seconds after the first actionable screen. No inputs during the checkpoint. Screenshot: repair-shots/08-first-minute.png. These answers were recorded before continuing. A tool-input interruption extended the pause after the checkpoint; it did not change these observations.
+
+| Item | Status | Original checkpoint answer |
+|---|---|---|
+| DL-1 A reason to act | PASS | I want to fix Mum’s lantern so she can carry it to the evening gathering. Her opening speech tells me it goes dark outside. |
+| DL-2 What can I touch | PASS | Carry looked like the main button. Recent conversation and the menu also looked tappable. Look inside appeared after carrying. The circuit parts, tabs and Look closely looked like controls; Contact selected visibly. I did not try an inert thing. I missed the parts below the fold until I scrolled. |
+| DL-3 Urgency and selection | PASS | The big lantern and yellow Carry drew me first. The green instruction competed with them but told me what to try. Contact turned blue when selected. Mum mentions this evening, but I have seen no countdown or urgent warning. |
+| DL-4 Why the limit | PASS | Replace is grey and says “No contact stocked.” A stocked contact would free that action, I assume. I do not know where to get one. Look closely was grey while no component was selected, with “Choose a component”; selecting Contact enabled it. No changing-stock condition tested. |
+| DL-5 Readable situation | PASS | I am looking at Contact repair options. I can Clean or Adjust it, each 20 min. “Contact: The exposed metal is aged and dull” gives me a reason to try Clean. |
+| DL-6 A choice soon | PASS | Carry was available on the first screen, approximately 0 s; my first tap was approximately 14.5 s. The opening request was short, with no manual required. Selecting a component was available by approximately 29.6 s, before any long text. |
+| DL-7 Learn by doing | PASS for reached interactions; NOT TESTED for others | Carry revealed Look inside. Opening it told me to choose a part. Contact selection enabled Look closely, whose answer made Clean sound useful. I reached Carry, Look inside, component selection, Look closely and Repair. No help opened. Four visible interaction groups remain untried at this checkpoint: Meter, Notes, component-by-name list and repair execution. Other components and later interactions are NOT TESTED. |
+
+## Verbatim diary
+
+- **4.7 s** — I have Mum’s lantern. It goes dark when carried. Carry looks like the main button; Recent conversation and the little menu also look tappable. I want to see it fail.
+- **14.6 s** — I tap Carry. I think the 15 min is time in the workshop, not a real wait.
+- **22.3 s** — The lantern still looks bright to me, but now it says Open the cover to look inside. Explore freely is reassuring. I tap Look inside.
+- **29.5 s** — Choose a part inside, then examine it. I see the same lantern and something cut off at the bottom. I scroll down to find the parts.
+- **36.2 s** — There is a circuit diagram under Object. The battery, Contact, Switch and Bulb look like targets. I try Contact because carrying could jiggle a connection.
+- **42.6 s** — Contact turns blue and Look closely becomes available. I can now see The light goes out while carried, which answers my earlier doubt. I tap Look closely.
+- **50.6 s** — The exposed metal is aged and dull. That sounds like something to clean. I tap Repair to see my options.
+- **60.0 s** — Clean and Adjust both cost 20 min. Replace says No contact stocked, so that is unavailable. I want to clean the dull metal.
+- **126.9 s** — I tap Clean.
+- **132.7 s** — Cleaned the mating contact faces; run under load and movement to check the result. I take that to mean try carrying it again. The repair reply appeared right under the buttons, which is nice.
+- **138.3 s** — There is also a Try the lantern button in the instruction card above. I tap that.
+- **144.6 s** — That brought the big lantern back and switched to Object, but I cannot tell whether it tested anything. Carry is still here, so I tap Carry.
+- **150.5 s** — Now it says Start at the battery. Put a probe on each marked connection. There is A and 0 while carried. So cleaning was not enough, I guess. I tap Pick up the meter.
+- **158.2 s** — I have never used one of these, but Red probe · place looks selected. I will put red on A, then black on 0, as the prompt shows.
+- **163.5 s** — It moved the outline to Black probe for me. Good. I tap 0.
+- **168.7 s** — Read meter is bright now. I tap it.
+- **174.8 s** — 6.00 V. That matches the 6 V cell pack. Now it says compare both sides of the switch while it moves, B to C. I follow that: red B.
+- **179.1 s** — Black C.
+- **184.2 s** — I tap Read meter again.
+- **190.8 s** — The reading points to the switch. Examine it before changing anything. I would not have known that 6 V across a switch was bad, but the sentence gives me something to do. I tap Work on the part.
+- **196.8 s** — I am back up by the lantern, on Repair. I still need to scroll down to the work.
+- **202.0 s** — Switch is selected for me. Large voltage drop across this measured span is a bit technical, but I can Look closely. I tap that.
+- **208.5 s** — The outside looks intact. Replace has a pale outline now, but I would try adjusting before using up the one spare switch. I tap Adjust.
+- **216.1 s** — Retightened the switch mounting and seated its lever; run under load and movement to check the result. Fair enough. I scroll back to Carry.
+- **221.2 s** — I skip Try the lantern this time and tap the actual Carry button.
+- **229.6 s** — Your earlier readings were taken before that change, so they no longer hold. Measure again from the battery. I do not want to repeat the meter sequence just yet. I already suspect the switch. I will try the spare instead.
+- **234.8 s** — The lower reply confirms The light goes out while carried. Replace costs 30 min and one switch, with one stocked. I tap Replace.
+- **240.3 s** — Replaced Switch. Test the object again. No switch stocked now. I scroll back up.
+- **245.8 s** — I tap Carry again. Please stay on this time.
+- **252.0 s** — It stays lit when carried. Give it back to Mum. Yes! Return to Mum is right here under the lantern. I tap it.
+- **258.2 s** — The bench now says returned, Day 1 · 12:00 · £24. There is a card starting below the screen. I scroll to read Mum’s answer.
+- **264.6 s** — A light Mum can carry. “I can carry the light out to the garden table.” That is a lovely little payoff. It says movement passed and Family favour £0. I am happy to stop after this one repair.
+- **264.7 s** — Choose another object is available. I stop here, satisfied with one finished job; I would come back for another small repair.
+
+## Best, worst and stopping
+
+**Best moment:** the successful Carry changed the instruction to “It stays lit when carried. Give it back to Mum.” Return to Mum was immediately available. The return card then said “A light Mum can carry” and “I can carry the light out to the garden table.” It made the electrical work feel useful to a person. Screenshots 29–32.
+
+**Worst moment:** after trying Adjust on the switch, I was told “Your earlier readings were taken before that change, so they no longer hold. Measure again from the battery.” At about 221–230 s I wanted to avoid repeating the measurement sequence. I chose to use the spare switch instead. That was my first clear impatience; I was not bored earlier. Screenshot 25, diary entries around that time.
+
+I stopped at 264.7 s on the completed return card, with “Choose another object →” available. One repair felt like a complete sofa session. I did not quit from failure or reach the time ceiling. I would voluntarily return for another short repair. I did not test another object.
+
+## Clarity failures
+
+| Item | What I saw and felt | Evidence |
+|---|---|---|
+| **DL-22 — FAIL** | “Choose a part inside, then examine it” appeared above a large lantern, while the part controls were below the phone viewport. I had to scroll to discover them. The first Carry result, “The light goes out while carried,” only became visible to me after scrolling down. Later, “Work on the part →” took me to Repair with the actual work controls still below the viewport. Returning the object also put Mum’s answer below the initial visible area. Immediate response and its essential context were not consistently together on screen. | 03-inside, 04-parts-below, 05-contact-selected; 20-switch-work and 21-switch-repair-controls; 30-returned-to-mum and 31-mum-response. |
+| **DL-19 — FAIL** | The lantern drawing stayed bright after the first Carry. I said, “The lantern still looks bright to me,” before finding the text that it went out. The illustration suggested success while the text elsewhere reported failure. I cannot tell whether there was a brief animation between captures; the settled screen is what confused me. | 02-after-carry, 03-inside, 05-contact-selected; diary at approximately 22–43 s. |
+| **DL-19 — FAIL** | “Try the lantern →” sounded like the test action to me. Tapping it brought the large lantern back and switched to Object, but I could not tell whether it tested anything. I then tapped the separate Carry control. That label did not match my expected consequence. I am reporting my expectation, not claiming to know its implementation. | 10-back-to-carry, 11-retest, 12-second-carry; diary at approximately 133–145 s. |
+
+The first-minute DL-2 pass does not establish that all controls fit on screen. The component targets I reached looked interactive and responded, but reaching them required scrolling. These are separate observations.
+
+## English, dates and phone layout
+
+- **DL-20 — PASS for encountered play.** Instructions, component names, actions, costs and results were in English. I could follow the repair without opening a manual. “Large voltage drop across this measured span” was technical to me, but the adjacent instruction explicitly pointed to the switch. I encountered no necessary untranslated local term. I do not claim to have understood the electrical diagnosis independently.
+- **DL-21 — NOT TESTED for deadline comparison.** I saw “evening gathering,” later Day 1 with clock times, and “Checked return · on time.” These were readable English. I did not encounter an explicit deadline with enough displayed context to compare it with today before acting, or test a month/year boundary or return from a break. “On time” was the game’s reported outcome; I did not calculate it.
+- **DL-22 — FAIL.** See the repeated phone scrolling above. The repair replies themselves were visible beneath their buttons once I had reached the lower repair section; that part worked well. The successful Carry also showed Return to Mum immediately. Those successes did not remove the other layout failures.
+- Desktop first look: the title, Mum’s request, instruction and Carry all fit in 1280 × 800. This was only an opening-screen look, not a desktop repair test. Screenshot 33-desktop-first-screen.png.
+
+## Other encountered evidence and limits
+
+| Item | Status | Evidence or boundary |
+|---|---|---|
+| DL-4 limits after the checkpoint | PASS for observed stock change | Switch replacement displayed “30 min · 1 switch (1 stocked)” before use and “No switch stocked” afterward. I did not test replenishment. Screenshots 26–27. Builder rule about recoverable limits NOT TESTED. |
+| DL-12 session boundary | PASS for this object | “returned,” “Checked return · on time,” movement passed, the recorded return time and “Choose another object” made the completed job clear. Whole-game ending NOT TESTED. Screenshots 30–32. |
+| DL-13 feedback | PASS for accepted inputs reached | Part selection and probe selection visibly changed. Placing red automatically outlined black; completing the pair enabled Read meter. Measurements and repair replies arrived promptly. I did not repeat uncertain inputs to test duplication. The ambiguous Try label is recorded under DL-19. Screenshots 05–06, 14–19, 23, 27. |
+| DL-14 known costs | PASS for reached actions | Look closely, Carry, Clean, Adjust and Replace showed time costs. Replace showed the stock cost before I used it. No conclusion about unseen risks. |
+| DL-15 continuous time and slowdown | NOT TESTED | I did not use fast speed, meet a timed live decision or inspect a speed control. Game timestamps advanced across actions; that alone does not establish continuous timing or slowdown. |
+| DL-16 task response | PASS for this request | I could inspect, measure, repair, test movement and return the object. Cleaning and adjusting did not fix it; replacing the switch followed by Carry produced the success text. This sequence does not prove which hidden rule caused it. |
+| DL-23 targets | NOT TESTED for dimensions | Coordinate taps on the parts and buttons worked. The diagram’s lettering was very small to me, but I did not measure hit areas and did not miss a tap. |
+| DL-24 sheets | NOT TESTED | No sheet stack or nested task flow reached. |
+| DL-25 reflow | NOT TESTED as a full criterion | No obvious horizontal overflow in the two assigned viewport looks. No 320 px or 200% text test. |
+| DL-26 game menu | NOT TESTED | A menu icon was visible at the top. I did not open it. |
+| DL-27 resume | NOT TESTED | No reload or resume in the phone session. The separate fresh desktop context does not test resume. |
+| DL-28 send | NOT TESTED | Not authorized to send; no send attempted. |
+| DL-29 export replay | NOT TESTED | No export or player-facing replay used. No export path. |
+
+Other checklist items not discussed above were not separately established. No builder checks were performed. I did not open Recent conversation, Notes, the component-by-name list, Workboard, People & supplies or another job. I did not inspect the battery or bulb, try contact adjustment, clean the switch, use continuity, turn power off or test an under-load setting. These are coverage gaps, not observed failures.
+
+## Changes I would want as Ama
+
+1. Keep the current result and the controls it asks me to use together on the phone. I spent too much of this little repair moving between the lantern and the work below it.
+2. Let the lantern visibly go dark when Carry says it goes out. I want the thing I am tinkering with to show the problem.
+3. Make “Try the lantern” perform the expected test, or label it as taking me back to the lantern. I should be able to tell whether I just tested it.
+
+## Screenshot record
+
+All screenshots are viewport captures saved as PNG under `repair-shots/`. There are 33 captures: 01–32 from the phone session and 33 from the single desktop first look. The numbered filenames cited above identify the evidence. Captures show the settled visible page; no hidden-state exports were used. The verbatim diary retains the reactions written during play, including mistaken expectations that later text clarified.
