@@ -570,55 +570,60 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
         }
         continue;
       }
-      const watcher = f.watchers.find((x) => x.id === p.watcher);
-      if (!watcher) continue;
-      const seen = f.phase !== 'night' || watcher.lit;
-      // Walking up to the post: drawn on the way until they stand there.
-      const key = `w${watcher.id}`;
-      touched.add(key);
-      const way = tweenTo(ease, key, at.x / w, at.y / h, o.now, walkMs(f));
-      if (moving(ease, key, o.now)) {
-        drawWalker(ctx, way.x * w, way.y * h, lookOf(watcher.look), watcher.age, watcher.limp, o.now);
-        continue;
-      }
-      drawWatcher(
-        ctx,
-        at.x,
-        at.y,
-        lookOf(watcher.look),
-        {
-          seen,
-          // Off the night the light is not the limit: a figure is simply standing.
-          posture: watcher.posture === 'figure' && seen ? 'stand' : watcher.posture,
-          signs: watcher.signs,
-          throwing: watcher.throwing,
-          commanded: watcher.commanded,
-          age: watcher.age,
-          limp: watcher.limp,
-        },
-        size,
-      );
-      if (watcher.throwing && watcher.target !== null) {
-        const tPos = ease.pos.get(watcher.target);
-        if (tPos !== undefined) {
-          const i = SECTION_IDS.indexOf(sec.id);
-          const tx = (i + 0.5) * laneW + (hash01(watcher.target) - 0.5) * laneW * 0.55;
-          const ty = laneY(l, Math.min(1, tPos));
-          ctx.strokeStyle =
-            watcher.throwing === 'hit' ? 'rgba(255, 236, 190, 0.9)' : 'rgba(255, 236, 190, 0.35)';
-          ctx.lineWidth = 1.2;
-          ctx.setLineDash([2, 4]);
-          ctx.beginPath();
-          ctx.moveTo(at.x, at.y - 12);
-          ctx.quadraticCurveTo((at.x + tx) / 2, Math.min(at.y, ty) - 30, tx, ty);
-          ctx.stroke();
-          ctx.setLineDash([]);
+      for (const [occupant, id] of p.watchers.entries()) {
+        const watcher = f.watchers.find((x) => x.id === id);
+        if (!watcher) continue;
+        // Stack co-located people and their names vertically within the post's column.
+        const sharedAt = { x: at.x, y: at.y - occupant * 34 };
+        const sharedLabelY = labelY - occupant * 34;
+        const seen = f.phase !== 'night' || watcher.lit;
+        // Walking up to the post: drawn on the way until they stand there.
+        const key = `w${watcher.id}`;
+        touched.add(key);
+        const way = tweenTo(ease, key, sharedAt.x / w, sharedAt.y / h, o.now, walkMs(f));
+        if (moving(ease, key, o.now)) {
+          drawWalker(ctx, way.x * w, way.y * h, lookOf(watcher.look), watcher.age, watcher.limp, o.now);
+          continue;
         }
+        drawWatcher(
+          ctx,
+          sharedAt.x,
+          sharedAt.y,
+          lookOf(watcher.look),
+          {
+            seen,
+            // Off the night the light is not the limit: a figure is simply standing.
+            posture: watcher.posture === 'figure' && seen ? 'stand' : watcher.posture,
+            signs: watcher.signs,
+            throwing: watcher.throwing,
+            commanded: watcher.commanded,
+            age: watcher.age,
+            limp: watcher.limp,
+          },
+          size,
+        );
+        if (watcher.throwing && watcher.target !== null) {
+          const tPos = ease.pos.get(watcher.target);
+          if (tPos !== undefined) {
+            const i = SECTION_IDS.indexOf(sec.id);
+            const tx = (i + 0.5) * laneW + (hash01(watcher.target) - 0.5) * laneW * 0.55;
+            const ty = laneY(l, Math.min(1, tPos));
+            ctx.strokeStyle =
+              watcher.throwing === 'hit' ? 'rgba(255, 236, 190, 0.9)' : 'rgba(255, 236, 190, 0.35)';
+            ctx.lineWidth = 1.2;
+            ctx.setLineDash([2, 4]);
+            ctx.beginPath();
+            ctx.moveTo(sharedAt.x, sharedAt.y - 12);
+            ctx.quadraticCurveTo((sharedAt.x + tx) / 2, Math.min(sharedAt.y, ty) - 30, tx, ty);
+            ctx.stroke();
+            ctx.setLineDash([]);
+          }
+        }
+        ctx.font = '600 11px "Instrument Sans", system-ui, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillStyle = isLit || f.phase !== 'night' ? '#fff3dc' : 'rgba(255, 243, 220, 0.5)';
+        nameLabel(ctx, watcher.name, sharedAt.x, sharedLabelY);
       }
-      ctx.font = '600 11px "Instrument Sans", system-ui, sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillStyle = isLit || f.phase !== 'night' ? '#fff3dc' : 'rgba(255, 243, 220, 0.5)';
-      nameLabel(ctx, watcher.name, at.x, labelY);
     }
   }
 

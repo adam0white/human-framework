@@ -17,7 +17,7 @@ From here on, Codex does the work by default. Claude handles only design judgeme
 - [x] Fix Rope's empty `/release.json`: build stamping and service-worker bypass are deployed and checked against the exact commit.
 - [x] Speed up `gate.test.ts` without dropping any of its 144 paired simulations or four assertions. Committed in `e4800fb`; the reviewed isolated gate ran in 8.87 s.
 - [x] Fix harness seed arguments, multi-word commands, `show` and `chronicle` (`3e069af`).
-- [x] Fix confirmed text/state inconsistencies (`3e069af`): Night Watch's false thaw success, zero-loss and mixed-breach raid narration, proposal/practice loops; Voice's end ticks, summary counts and stable pick numbering; Colony's injury display. The reported Watch map-name mismatch was not reproduced in three retained legacy exports; the replay-frame follow-up remains targeted for 2026-10-20 in [findings](../findings.md).
+- [x] Fix confirmed text/state inconsistencies (`3e069af`): Night Watch's false thaw success, zero-loss and mixed-breach raid narration, proposal/practice loops; Voice's end ticks, summary counts and stable pick numbering; Colony's injury display. The 2026-10-20 earlier-frame replay confirmed the Watch map report: co-located watchers were hidden after the first. The map and harness now show each occupant, with a regression; all three retained rule hashes still match ([findings](../findings.md)).
 - [x] Commit Small Works and Neighbours playtester adapters (`f1e9c4a`, included in main).
 - [x] Fix the lab worker review findings in [reviews](reviews/) (`3e069af`): resumable aggregation replaces the first-600 cutoff; bounded preview and JSON complexity replace unbounded work; IPv6 /64 keys share rate limits; unknown games and unreviewed labels are rejected; opt-out crosses tabs; late writes after midnight are retained; conditional reservations cap daily uploads. Raw data already deleted by the old worker cannot be recovered. Over-bound legacy days stay retained for offline recovery.
 - [x] Fix two additional review findings: mixed-breach Watch narration preserves legacy scenario-9 continuation; Voice exports survive restart and ignore stale worker/build replies. The Voice bug was reproduced and retested through the mounted React hook in a browser.
@@ -37,10 +37,10 @@ All entries below use client 0.1.1. Their signed commits are pushed, their check
 | Stairwell | `5f3b463d` |
 | Warren | `ed0f65d0` |
 
-Client asset: [lab-client-v0.1.1](https://github.com/adam0white/human-framework/releases/tag/lab-client-v0.1.1). Its public download was fetched and its SHA-512 matched the fresh packed consumer. The npm publish workflow correctly skipped the absent package; first publication remains an owner step. Final HF deployment and live browser receipts are recorded in `scratch/codex-finish-report.md`; `/release.json` identifies the live source.
+Client asset: [lab-client-v0.1.1](https://github.com/adam0white/human-framework/releases/tag/lab-client-v0.1.1). Its public download was fetched and its SHA-512 matched the fresh packed consumer. The npm publish workflow correctly skipped the absent package; first publication is `deferred-by-owner` (2026-10-20), with no date. Final HF deployment and live browser receipts are recorded in `scratch/codex-finish-report.md`; `/release.json` identifies the live source.
 
 ## Next work: owner
-- `npm login`, then `npm publish -w packages/lab-client`, then add the trusted publisher.
+- **`deferred-by-owner` (2026-10-20), no date:** first lab-client npm publication and trusted-publisher setup. When resumed: `npm login`, then `npm publish -w packages/lab-client`, then add the trusted publisher.
 - Play, and send feedback or runs with "Send this run to the notebook".
 - Decide whether to start the Small Works scenario redesign for natural difficulty.
 

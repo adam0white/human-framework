@@ -599,21 +599,25 @@ function mapLines(f: Frame): string[] {
         const nm = f.watchers.find((x) => x.id === p.posted)?.name ?? '';
         return `(${nm}, faint${p.empty ? `: ${p.empty.why}` : ''})`;
       }
-      const w = f.watchers.find((x) => x.id === p.watcher);
-      if (!w) return '?';
-      const seen = f.phase !== 'night' || w.lit;
-      if (!seen) return `${w.name}: a figure${w.commanded ? ', ringed by the bell' : ''}`;
-      const bits: string[] = [];
-      if (f.phase === 'night' && w.posture !== 'stand' && w.posture !== 'figure')
-        bits.push(POSTURE_WORDS[w.posture] ?? w.posture);
-      if (w.signs?.tired) bits.push('slumped');
-      if (w.signs?.afraid) bits.push('hunched, looking to the steps');
-      if (w.signs?.hurt) bits.push('bandaged');
-      if (w.limp) bits.push('a stick');
-      if (w.age === 'old') bits.push('stooped');
-      if (w.throwing) bits.push(w.throwing === 'hit' ? 'throws, hits' : 'throws, misses');
-      if (w.commanded) bits.push('ringed by the bell');
-      return `${w.name}${bits.length ? ` (${bits.join(', ')})` : ''}`;
+      return p.watchers
+        .map((id) => {
+          const w = f.watchers.find((x) => x.id === id);
+          if (!w) return '?';
+          const seen = f.phase !== 'night' || w.lit;
+          if (!seen) return `${w.name}: a figure${w.commanded ? ', ringed by the bell' : ''}`;
+          const bits: string[] = [];
+          if (f.phase === 'night' && w.posture !== 'stand' && w.posture !== 'figure')
+            bits.push(POSTURE_WORDS[w.posture] ?? w.posture);
+          if (w.signs?.tired) bits.push('slumped');
+          if (w.signs?.afraid) bits.push('hunched, looking to the steps');
+          if (w.signs?.hurt) bits.push('bandaged');
+          if (w.limp) bits.push('a stick');
+          if (w.age === 'old') bits.push('stooped');
+          if (w.throwing) bits.push(w.throwing === 'hit' ? 'throws, hits' : 'throws, misses');
+          if (w.commanded) bits.push('ringed by the bell');
+          return `${w.name}${bits.length ? ` (${bits.join(', ')})` : ''}`;
+        })
+        .join(' + ');
     });
     const things: string[] = [];
     for (const t of f.seen.filter((x) => x.section === sec.id)) {

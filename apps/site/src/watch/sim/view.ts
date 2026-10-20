@@ -103,6 +103,8 @@ export interface Frame {
     posts: {
       id: PostId;
       watcher: WatcherId | null;
+      /** Everyone actually at this post; movement may bring several people together. */
+      watchers: WatcherId[];
       posted: WatcherId | null;
       /** At night, a posted watcher not at the post: one word for why, as the Keeper knows it, and since when. */
       empty: { why: string; since: number } | null;
@@ -394,6 +396,7 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean, rate = 0
     posts: POSTS.filter((p) => p.section === sec.id && s.openPosts.includes(p.id)).map((p) => ({
       id: p.id,
       watcher: ids.find((w) => s.place[w] === p.id) ?? null,
+      watchers: ids.filter((w) => s.place[w] === p.id),
       posted: ids.find((w) => s.posts[w] === p.id) ?? null,
       empty: null as { why: string; since: number } | null,
     })),
