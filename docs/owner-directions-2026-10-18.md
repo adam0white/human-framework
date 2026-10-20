@@ -83,3 +83,13 @@ The elision ("...") is the coordinator's, as received. How this is read: a scan 
 The same evening, as an addition (Adam, verbatim): "2.x should be a good excuse to do a sweep on maintenance and code quality and better practices and refactors and removing depreciations."
 
 How this is read: the recommended increment in [hf-roadmap-2026-10-20.md](hf-roadmap-2026-10-20.md) is approved. The Host kit ships first as a 2.x release and carries a maintenance sweep: an audit of `packages/human` (dead code, deprecated APIs, legacy shims, tangled modules, naming and docs, type strictness, test speed and duplication), then behaviour-preserving refactors with exact legacy continuation. A deprecated API is removed only where no released game pinning HF needs it; otherwise it keeps a deprecation note with a target version, or that game is upgraded. Then HF 2.10.0 / engine 2.10.0, *Word and witness*. The long-term direction, a game-engine-like standalone tool, is recorded as a long bet in the roadmap. Done is recorded in AGENTS.md.
+
+## 2026-10-20, experiments budget (Adam, verbatim)
+
+"Cool progress and good recommendations, keep going."
+
+"Clef is cool, too. I approve $5 spend for experiments."
+
+"And other small LLMs hosted on Workers AI"
+
+How this is read: a further $5 of Workers AI spend for this round of lab experiments, on top of the $5 approved on 2026-10-18, with a hard cap per experiment and spend recorded in each write-up. The Clairic ledger triage widens into a bake-off: Clairic, Clef (Cloudflare's option-picking decision model) and a few small Workers AI LLMs, scored against the same hand labels. Small Workers AI models are a candidate LLM arm for the island pilot. Write-ups: [docs/lab/experiments/](lab/experiments/).
