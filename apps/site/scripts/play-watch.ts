@@ -229,6 +229,8 @@ export class Harness {
 
   private command(line: string): void {
     const [cmd = '', ...a] = line.trim().split(/\s+/);
+    // As the chronicle page says: any command but `chronicle` closes it.
+    if (cmd.toLowerCase() !== 'chronicle') this.ui.menu = false;
     const f = this.frame();
     switch (cmd.toLowerCase()) {
       case '':
@@ -860,6 +862,12 @@ function menu(f: Frame): string[] {
 
 // ---- command line ----
 
+const COMMAND_WORDS = new Set(
+  'new show help quiet start speed wait wait! select press post lantern begin bell answer letbe talk dusk card people take leave continue chronicle export'.split(
+    ' ',
+  ),
+);
+
 if (import.meta.url === new URL(process.argv[1] ?? '', 'file://').href) {
   const args = process.argv.slice(2);
   let file: string | null = null;
@@ -867,7 +875,13 @@ if (import.meta.url === new URL(process.argv[1] ?? '', 'file://').href) {
   for (let i = 0; i < args.length; i++) {
     const a = args[i] ?? '';
     if (a === '--state') file = args[++i] ?? null;
-    else cmds.push(...a.split(';'));
+    else
+      for (const part of a.split(';')) {
+        // An unquoted argument (`new 11`, `post kian east`) is not a command word: it joins the command before it.
+        const word = part.trim().split(/\s+/)[0]?.toLowerCase() ?? '';
+        if (cmds.length && word && !COMMAND_WORDS.has(word)) cmds[cmds.length - 1] += ` ${part.trim()}`;
+        else cmds.push(part);
+      }
   }
   let h: Harness | null = null;
   const firstNew = cmds.findIndex((c) => c.trim().startsWith('new'));

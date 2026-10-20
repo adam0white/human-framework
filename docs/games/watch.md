@@ -663,6 +663,47 @@ Review this list by 2026-11-05; the owner decides which T1 items to schedule and
 - T3, **a press tap re-sends `post`** for a watcher already posted (App.tsx, the press handler), so the log has same-minute duplicates. Harmless; dedupe if the log is tidied.
 - T3, **`talks.asked` is never pruned** (26 entries by year 4). It only feeds a score bonus.
 
+**From the polish playtests (2026-10-19)** ([record](watch-playtest-2026-10-19.md)). Three testers who had not read the source, plus HF personas. Only the harness fixes were made before the owner's soft stop; everything below targets **2026-11-05** (review with this list). Ranked by fun per effort, text that contradicts state first (believing the people is the game's strongest feature).
+- **Text that contradicts state:**
+  - The thaw says the goal "It was done" while households leave that same thaw. Name the leavings beside it.
+  - A dawn says wolves "tore into the store" or "carried sacks off", then "(No sacks lost)" when the store was bare.
+  - "Everyone is on the wall" shows while watchers are missing from the map.
+  - Joss is drawn under Mara's name on the map (winter 3, seed 11).
+  - Two people give the same dawn line word for word ("I left the east wall. I was frozen through.", neither posted there).
+  - One dawn quote contradicts itself ("I ran." then "I stayed because Yunus stayed.").
+  - The thaw says "For 83 nights nothing came" beside the level-up line "still climbed 14 times". The level-up's count includes routine nights; count played nights only, or say so.
+  - "Nine souls in five homes" counts an empty hut.
+  - Joss says he had a stone in the sling; Tamar has the sling.
+  - A card says "Yunus looks back at the steps" while he dozes.
+  - The marriage card says "walking out a long while" for someone who arrived that spring.
+  - "Nobody stood the east wall" when the posted watcher went home mid-night; say "nobody held".
+  - Refusal reasons read like a template ("Not now. After I sit down at the post." while already sitting).
+- **Closing loops:**
+  - Inge's marriage card came back five times after both answers. An answered card must close (a rules change: scenario bump).
+  - The Kian/Tamar sling matter repeats every year word for word when ignored. Close it, or word the return as "asks again".
+  - A night card left alone resolves silently. Say what the person decided.
+  - After "call back", show the outcome (a refusal appeared only later, on the map).
+- **Visible state:**
+  - Show fatigue at dusk in show-don't-count words (tired, rested) on the roster, so rotation is predictable.
+  - Vary the dawn excuses, and make dawn talks change something visible.
+  - Give a per-stretch outcome at dawn (which stretch lost sacks, who held it) instead of "The wall was crossed" every time.
+  - Show the granary mark on the fair page.
+- **First night:** a short in-fiction explanation of a figure, the granary mark, a post's two slots and the rope fraying, with progressive disclosure.
+- **Honest hints and controls (check in the UI, not only the harness):**
+  - "Call him back" put Ruslan on the mill wall, not the east wall he left.
+  - "Urge … likely" read as a probability and did not hold. Calibrate the word, or soften it.
+  - `post X off` leaves the watcher free to go up on their own. Say so ("no post: may go up on their own"), or make it a told-to-rest suggestion (a rules change).
+  - "Call back" is offered when its own read says it will fail.
+  - Insist's read looks the same as Ask's. Show what insisting changes.
+  - The harness refuses a `begin` (the watch had already begun) or a talk (cap or repeat) without a reason; give one.
+  - `show` sometimes prints nothing; dusk at Seasons pace needs `wait!`.
+- **Already deferred, raised again:**
+  - A night decision or threat per wall (the fan's "real tower-defence decisions"; T1 "more to do").
+  - Stakes once the granary is empty (nights with nothing to lose).
+  - A paid "for good" raised wall falling at the next thaw without warning.
+  - The skip to "the other N nights" triggers inconsistently.
+  - The bigger bell still snaps after about 7 pulls.
+
 **Carried from G3-2 to G3-4 and H2.**
 - T1, **posting pressure once families are admitted** (#19).
 - T1, **talk topics that change behaviour directly**: rest tonight, practise with, mend.
