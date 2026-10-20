@@ -16,7 +16,7 @@
 
 ## Engineering rules
 
-- Stack: TypeScript 7 (strict, `noUncheckedIndexedAccess`), Vite 8, Vitest 5, Biome, React 19 for UI shells, and Canvas 2D for maps. npm workspaces: `packages/human` (framework) and `apps/site` (games and site). Use Node ≥24 with `/opt/homebrew/bin` first on PATH.
+- Stack: TypeScript 7.0.2 (strict, `noUncheckedIndexedAccess`), Vite 8.3.4, Vitest 5.0.5, Biome 2.5.15, React 19.3.1 for UI shells, and Canvas 2D for maps. npm workspaces: `packages/human` (framework) and `apps/site` (games and site). Use Node ≥24 with `/opt/homebrew/bin` first on PATH.
 - `npm run check` (lint, typecheck, tests) must pass before every commit.
 - Keep the actor loop deterministic and independent of LLMs and UI. Person state is plain JSON, and all randomness comes from seeded RNG held in state.
 - One owning module per state slice (see docs/framework.md).

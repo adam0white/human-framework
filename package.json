@@ -41,15 +41,12 @@
     "@biomejs/biome": "2.5.15",
     "@types/node": "26.6.5",
     "typescript": "7.0.2",
-    "vitest": "5.0.3",
-    "wrangler": "4.149.0"
+    "vitest": "5.0.5",
+    "wrangler": "4.151.3"
   },
   "allowScripts": {
-    "esbuild@0.28.1": true,
-    "workerd@1.20261001.1": true,
+    "esbuild@0.28.2": true,
+    "workerd@1.20261019.1": true,
     "fsevents": false
-  },
-  "overrides": {
-    "sharp": "0.35.5"
   }
 }

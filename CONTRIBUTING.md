@@ -8,7 +8,7 @@ Report security problems privately, as described in [SECURITY.md](SECURITY.md).
 
 - Node ≥ 24 (the exact version is in `.nvmrc`); npm workspaces: `packages/human` (the framework) and
   `apps/site` (the games and the home page).
-- TypeScript 7 (strict, `noUncheckedIndexedAccess`), Vite, Vitest, Biome, React 19 for UI shells and Canvas 2D
+- TypeScript 7.0.2 (strict, `noUncheckedIndexedAccess`), Vite 8.3.4, Vitest 5.0.5, Biome 2.5.15, React 19.3.1 for UI shells and Canvas 2D
   for maps.
 - `npm ci`, then `npm run dev` for the site.
 

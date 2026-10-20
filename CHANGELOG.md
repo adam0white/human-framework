@@ -12,6 +12,13 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+### Maintenance
+
+- Update Vitest 5.0.3 → 5.0.5 and Wrangler 4.149.0 → 4.151.3; retain latest TypeScript 7.0.2, Vite 8.3.4, Biome 2.5.15, @vitejs/plugin-react 6.1.2 and @types packages.
+- Update React and React DOM 19.3.0 → 19.3.1, fake-indexeddb 6.2.5 → 6.2.6 and happy-dom 20.14.6 → 21.0.4. Align the site HF pin 2.8.0 → 2.9.0 with the local source its build and tests already use; lab-client, lab-kit and playtester workspace versions stay unchanged.
+- Refresh the lockfile and allowScripts for esbuild 0.28.2 and workerd 1.20261019.1. Remove the sharp override because the new miniflare dependency pins the patched 0.35.5 version itself.
+- Advance the Worker compatibility date 2026-10-01 → 2026-10-20 after reviewing Cloudflare's compatibility flag history; no additional flags needed. Update the documented tool versions.
+
 ## [2.9.0] - 2026-10-19
 
 Engine: 2.9.0. Takes the games' polish requests filed against 2.8.0 (The Two Voices 1, 2 and 5; The Pass 8), each opt-in or additive, plus doc notes (Voices 3 and 4). New state is optional and starts absent; engine 2.8.0 saves migrate by a version stamp. Persons that use no opt-in slice continue exactly (full-state digests match npm 2.3.0 with the engine stamp normalized); persons on the promptings and review slices without 2.9.0 options continue exactly as 2.8.0 (digests measured against the 2.8.0 release source, with the engine stamp and the new review-term `ref` normalized).
