@@ -31,6 +31,7 @@ import type {
   Impression,
   ImpressionCue,
   Minute,
+  NormTag,
   Person,
   PersonId,
   Signed,
@@ -497,4 +498,28 @@ export function sanitizeImpressions(social: Person['social']): void {
   const kept = newestN(one, A.maxImpressions, (i) => i.seenAt);
   if (kept.length === 0) delete social.impressions;
   else social.impressions = kept;
+}
+
+// ---------------------------------------------------------------------------------------------
+// Believed regard (2.10.0): the other's view of me. STUBS pre-staged by the lead; the worker implements them.
+// ---------------------------------------------------------------------------------------------
+
+/** An act of mine that someone else knows of (2.10.0). */
+export interface KnownAct {
+  kind: string;
+  targetId?: PersonId;
+  valence?: Signed;
+  norms?: NormTag[];
+}
+
+/**
+ * The person has their own evidence that `otherId` knows of their act: they saw them see it (`via: 'seen'`) or were
+ * told they heard (`via: 'told'`, weighted by trust in `sourceId`). Moves the believed regard cue. See the SCOPE.
+ */
+export function noteKnownBy(
+  _p: Person,
+  _ev: { otherId: PersonId; act: KnownAct; at?: Minute; via: 'seen' | 'told'; sourceId?: EntityId },
+): Estimate | undefined {
+  // TODO(2.10 regard worker)
+  return undefined;
 }

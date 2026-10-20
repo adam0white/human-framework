@@ -16,7 +16,16 @@
  * `believe`, including testimony delivered by `perceive`, weights claims by source trust, read by `trustOf`.
  */
 import { clamp, clamp01, decay, dpow, expit, logit } from '../core/index.ts';
-import type { Belief, EntityId, Minute, Percept, Person, Unit } from '../types.ts';
+import type {
+  Belief,
+  BeliefProvenance,
+  EntityId,
+  Minute,
+  Percept,
+  PerceptClaim,
+  Person,
+  Unit,
+} from '../types.ts';
 import { MINUTES_PER_DAY } from '../types.ts';
 
 export const BELIEF_DEFAULTS = {
@@ -293,3 +302,45 @@ export function contested(
 
 // Remembered advice (N9) is owned by `will/` (`standingAdvice`, fed from `Percept.advice`); review 2026-10-03
 // removed a second, unused belief-based implementation here so the two could not drift apart.
+
+// ---------------------------------------------------------------------------------------------
+// Word and witness (2.10.0): provenance and contradiction. STUBS pre-staged by the lead; the worker implements them.
+// ---------------------------------------------------------------------------------------------
+
+/** Record where a belief came from, if it has no provenance yet (first acquisition wins). @internal */
+export function noteProvenance(_p: Person, _claim: PerceptClaim, _teller: EntityId, _at: Minute): void {
+  // TODO(2.10 provenance worker)
+}
+
+/** Where this person first got the belief on `prop`, or undefined. */
+export function provenanceOf(p: Person, prop: string): BeliefProvenance | undefined {
+  return findBelief(p, prop)?.provenance;
+}
+
+export interface ContradictionResult {
+  applied: boolean;
+  reason?: 'no-account' | 'same-account' | 'already-noted' | 'self';
+  before: Unit;
+  after: Unit;
+}
+
+/**
+ * The person learns that `sourceId` also gave the account `prop = value` elsewhere, against what that source told
+ * them. See the contradiction SCOPE.
+ */
+export function contradicted(
+  p: Person,
+  ev: { sourceId: EntityId; prop: string; value: boolean; reporterId?: EntityId; at?: Minute },
+): ContradictionResult {
+  // TODO(2.10 contradiction worker)
+  const t = trustOf(p, ev.sourceId);
+  return { applied: false, reason: 'no-account', before: t, after: t };
+}
+
+/**
+ * Restore (2.10.0): drop malformed provenance (lineage over 64 characters is dropped, not truncated) and bound and
+ * validate `contradictions`. A save the engine wrote is unchanged. @internal
+ */
+export function sanitizeBeliefMeta(_memory: Person['memory']): void {
+  // TODO(2.10 beliefs worker)
+}
