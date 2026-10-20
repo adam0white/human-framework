@@ -26,6 +26,7 @@ interface Locator {
   ariaSnapshot(options: { timeout: number }): Promise<string>;
   scrollIntoViewIfNeeded(options: { timeout: number }): Promise<void>;
   boundingBox(): Promise<{ x: number; y: number; width: number; height: number } | null>;
+  evaluate<T, A>(fn: (el: Element, arg: A) => T, arg: A): Promise<T>;
 }
 interface Page {
   goto(url: string, options: { waitUntil: string; timeout: number }): Promise<unknown>;
@@ -82,6 +83,21 @@ async function loadPlaywright(): Promise<Playwright> {
 }
 const visible = (locator: Locator) => locator.filter({ visible: true }).first();
 const sleep = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));
+
+// An on-screen point where the element itself receives the tap, or null when it is covered.
+function uncoveredPoint(el: Element, centre: boolean): { x: number; y: number } | null {
+  if (centre) el.scrollIntoView({ block: 'center', inline: 'nearest' });
+  const box = el.getBoundingClientRect();
+  for (const fy of [0.5, 0.3, 0.7, 0.15, 0.85])
+    for (const fx of [0.5, 0.3, 0.7, 0.15, 0.85]) {
+      const x = box.left + box.width * fx;
+      const y = box.top + box.height * fy;
+      if (x < 0 || y < 0 || x >= innerWidth || y >= innerHeight) continue;
+      const hit = document.elementFromPoint(x, y);
+      if (hit && (hit === el || el.contains(hit))) return { x, y };
+    }
+  return null;
+}
 
 // DOM-only fallback for text-styled controls, including A Dark Room's div.button.
 function textControlPoint(text: string): { x: number; y: number } | null {
@@ -209,6 +225,15 @@ async function main() {
         await target.click({ timeout: 1500 });
         return true;
       } catch {
+        // A moving or partly covered control (re-laid-out scene cards, a sticky footer) fails
+        // Playwright's stability check. Tap an uncovered point of it instead, centring it first.
+        for (const centre of [false, true]) {
+          const point = await target.evaluate(uncoveredPoint, centre).catch(() => null);
+          if (point) {
+            await tapPoint(point.x, point.y);
+            return true;
+          }
+        }
         return false;
       }
     };
