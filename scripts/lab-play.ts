@@ -25,6 +25,8 @@ import {
   validatePlayOp,
 } from './lab-play-helpers.ts';
 
+import { textControlPoint } from './lab-play-text.ts';
+
 interface Locator {
   first(): Locator;
   filter(options: { visible: boolean }): Locator;
@@ -111,34 +113,6 @@ function uncoveredPoint(el: Element, centre: boolean): { x: number; y: number } 
   return null;
 }
 
-// DOM-only fallback for text-styled controls, including A Dark Room's div.button.
-function textControlPoint(text: string): { x: number; y: number } | null {
-  const normalize = (value: string) => value.replace(/\s+/g, ' ').trim();
-  for (const element of document.querySelectorAll<HTMLElement>('body *')) {
-    if (normalize(element.innerText ?? '') !== normalize(text)) continue;
-    if (!element.getClientRects().length || getComputedStyle(element).visibility === 'hidden') continue;
-    for (
-      let target: HTMLElement | null = element;
-      target && target !== document.body;
-      target = target.parentElement
-    ) {
-      if (
-        target.onclick ||
-        target.hasAttribute('onclick') ||
-        getComputedStyle(target).cursor === 'pointer' ||
-        target.hasAttribute('role') ||
-        target.hasAttribute('tabindex')
-      ) {
-        const box = target.getBoundingClientRect();
-        const x = (Math.max(0, box.left) + Math.min(innerWidth, box.right)) / 2;
-        const y = (Math.max(0, box.top) + Math.min(innerHeight, box.bottom)) / 2;
-        if (box.right > 0 && box.bottom > 0 && box.left < innerWidth && box.top < innerHeight)
-          return { x, y };
-      }
-    }
-  }
-  return null;
-}
 function scrollPanel(arg: { x: number; y: number; dy: number; previous?: number[] }): number[] {
   const panels: Element[] = [];
   for (let element = document.elementFromPoint(arg.x, arg.y); element; element = element.parentElement) {
@@ -298,9 +272,6 @@ async function main() {
               );
             }
           } else if ('text' in op && typeof op.text === 'string') {
-            if (await click(page.getByRole('button', { name: op.text, exact: true }))) break;
-            if (await click(page.getByRole('link', { name: op.text, exact: true }))) break;
-            if (await click(page.getByText(op.text, { exact: true }))) break;
             const point = await page.evaluate(textControlPoint, op.text);
             if (!point) {
               if (await disabledNamed(op.text))
