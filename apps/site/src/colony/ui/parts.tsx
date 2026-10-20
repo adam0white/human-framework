@@ -239,7 +239,10 @@ export function TopBar(props: {
       </a>
       <h1 className="title">Twice at the Well</h1>
       <div className={`clock ${night ? 'is-night' : ''} weather-${f?.weather.kind ?? 'clear'}`}>
-        <span className="clock-time">{f ? hhmm(f.minute) : '05:00'}</span>
+        <span className="clock-time">
+          <span className="phone-day">D{f ? clockOf(f.minute).day : 1} </span>
+          {f ? hhmm(f.minute) : '05:00'}
+        </span>
         <span className="clock-status">{statusLine(f)}</span>
       </div>
       <Timeline frame={f} />
@@ -598,6 +601,7 @@ export function SuggestionCard(props: {
           ×
         </button>
       </div>
+      <p className="nudge-availability">Availability may have changed. Use to check the current forecast.</p>
       <p className="nudge-text">{n.text}</p>
       {n.reason && <p className="nudge-reason">{n.reason}</p>}
       <div className="nudge-foot">
@@ -638,6 +642,17 @@ export const EMPTY_COMPOSER: ComposerState = {
 
 const PLACES_FOR_CHIPS: PlaceId[] = ['site', 'forest', 'cedar', 'field', 'well', 'kitchen', 'masjid'];
 
+/** A picker, options or suggestion replaces the previous sheet. */
+export function keepOneDisclosure(current: HTMLDetailsElement): void {
+  if (!current.open) return;
+  current
+    .closest('.center')
+    ?.querySelectorAll('details[open]')
+    .forEach((el) => {
+      if (el !== current) el.removeAttribute('open');
+    });
+}
+
 export function Composer(props: {
   state: ComposerState;
   frame: Frame | null;
@@ -657,9 +672,12 @@ export function Composer(props: {
   const ready = who !== null && s.placeId !== null;
   const pred = props.prediction && ready && props.prediction.personId === who ? props.prediction : null;
   return (
-    <section className={`composer ${ready ? 'is-ready' : ''}`} aria-label="Order">
+    <section
+      className={`composer ${ready ? 'is-ready' : ''} ${s.rush || s.insist || s.appeal ? 'has-costs' : ''}`}
+      aria-label="Order"
+    >
       <div className="phone-order-fields">
-        <details className="worker-picker">
+        <details className="worker-picker" onToggle={(e) => keepOneDisclosure(e.currentTarget)}>
           <summary>Worker · {who ? shortName(who) : 'Choose'}</summary>
           <fieldset className="picker-chips" aria-label="Worker">
             {VILLAGERS.map((p) => (
@@ -678,7 +696,7 @@ export function Composer(props: {
             ))}
           </fieldset>
         </details>
-        <details className="destination-picker">
+        <details className="destination-picker" onToggle={(e) => keepOneDisclosure(e.currentTarget)}>
           <summary>Place · {s.placeId ? PLACE_LABEL[s.placeId] : 'Choose'}</summary>
           <fieldset className="picker-chips" aria-label="Destination">
             {places.map((p) => (
@@ -733,7 +751,7 @@ export function Composer(props: {
           </button>
         ))}
       </div>
-      <p className="composer-line" aria-live="polite">
+      <p className="composer-line" aria-live="polite" title={pred?.text}>
         {!who ? (
           <span className="muted">Pick a villager here or on either map.</span>
         ) : !s.placeId ? (
@@ -744,22 +762,45 @@ export function Composer(props: {
               {shortName(who)} → {PLACE_LABEL[s.placeId]}
               {props.job && <> · {jobPhrase(props.job)}</>}
             </span>
-            {pred && (
-              <span className={`predict predict-${pred.kind}`}>
-                {shortName(who)}: {pred.text.charAt(0).toLowerCase() + pred.text.slice(1)}
-              </span>
-            )}
+            {!pred && <span className="predict muted">Checking current answer…</span>}
+            {pred && <span className={`predict predict-${pred.kind}`}>{pred.text}</span>}
           </>
+        )}
+        {(s.rush || s.insist || s.appeal) && (
+          <span className="active-costs">
+            {[
+              s.rush && 'Rush: hungrier',
+              s.insist && 'Insist: trust at risk',
+              s.appeal === 'safety' && 'Safety: promise',
+              s.appeal === 'children' && 'For the children',
+              s.appeal === 'duty' && 'Duty',
+            ]
+              .filter(Boolean)
+              .join(' · ')}
+          </span>
         )}
       </p>
       {s.reason && <p className="composer-reason">{s.reason}</p>}
-      <details className="order-options">
+      <details className="order-options" onToggle={(e) => keepOneDisclosure(e.currentTarget)}>
         <summary>
           Order options
           {s.rush && <small> · Rush: faster, hungrier</small>}
           {s.insist && <small> · Insist: may cost trust</small>}
           {s.appeal && <small> · Appeal: “{APPEALS.find((a) => a.id === s.appeal)?.label}”</small>}
         </summary>
+        <div className="option-person-actions">
+          <p>
+            {who ? shortName(who) : 'Choose worker'} → {s.placeId ? PLACE_LABEL[s.placeId] : 'Choose place'}
+          </p>
+          {who && (
+            <button type="button" className="btn" onClick={() => props.onInspect(who)}>
+              About {shortName(who)}
+            </button>
+          )}
+          <button type="button" className="btn" onClick={() => props.onChange(EMPTY_COMPOSER)}>
+            Clear
+          </button>
+        </div>
         <div className="composer-row toggles">
           <button
             type="button"

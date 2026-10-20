@@ -3772,197 +3772,537 @@ kbd {
   animation: none;
 }
 
+/* Map-first phone: one village above a bounded order sheet. */
+.order-toggle,
+.option-person-actions {
+  display: none;
+}
+.watching-worker {
+  margin: 0;
+  padding: 4px 8px;
+  font-size: 15px;
+}
+.sheet-tools {
+  display: contents;
+}
+.nudge-availability {
+  font-size: 15px;
+  margin: 6px 0;
+}
+.map-follow {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  z-index: 4;
+}
+
+.phone-day,
+.map-hint {
+  display: none;
+}
+
+.active-costs {
+  display: block;
+  font-size: 12px;
+}
+
 @media (max-width: 860px) and (min-height: 501px) {
   .colony {
-    height: auto;
-    min-height: 100dvh;
-    overflow: visible;
-    grid-template-rows: 68px auto auto;
+    height: 100dvh;
+    min-height: 0;
+    overflow: hidden;
+    grid-template-rows: 62px 44px minmax(0, 1fr);
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom)
+      env(safe-area-inset-left);
   }
-
   .topbar {
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    background: var(--bg);
+    position: relative;
+    padding-bottom: 12px;
   }
-
   .topbar > .clock-rate {
-    bottom: 2px;
+    bottom: 0;
+    font-size: 12px;
   }
-
-  .stage {
-    display: flex;
-    flex-direction: column;
+  .clock {
+    padding: 0;
   }
-
-  .center {
-    order: -1;
+  .clock-status {
+    font-size: 12px;
+  }
+  .goal-strip {
+    height: 44px;
+    flex-wrap: nowrap;
+    padding: 3px 6px;
+  }
+  .goal-strip .goal-deadlines {
+    display: none;
+  }
+  .goal-strip.is-open {
+    position: absolute;
+    top: 62px;
+    left: 0;
+    right: 0;
     height: auto;
-    max-height: none;
+    padding: 8px;
+  }
+  .goal-strip.is-open .goal-deadlines {
+    display: flex;
+  }
+  .goal-strip.is-open .goal-strip-toggle {
+    position: static;
+    opacity: 1;
+    height: 44px;
+  }
+  .stage {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 44px minmax(0, 1fr) auto;
+    gap: 0;
+  }
+  .map-toggle {
+    display: flex;
+    grid-row: 1;
+    grid-column: 1;
+    min-width: 0;
+    border: 0;
+    padding: 0 6px;
+    margin: 0;
+    gap: 6px;
+    background: var(--surface);
+  }
+  .map-toggle button {
+    flex: 1;
+    background: transparent;
+    color: var(--text);
+    border: 0;
+    border-radius: 6px;
+    font: inherit;
+    font-size: 15px;
+  }
+  .map-toggle button[aria-pressed="true"] {
+    outline: 2px solid currentColor;
+    outline-offset: -4px;
+  }
+  .stage.show-human .pane-classic,
+  .stage.show-classic .pane-human {
+    display: none;
+  }
+  .pane {
+    grid-row: 2;
+    grid-column: 1;
+    order: 0;
     flex: none;
+    min-height: 0;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 0;
+  }
+  .pane-head {
+    display: none;
+  }
+  .pane-body {
+    flex: 1;
+    min-height: 0;
+  }
+  .pane-map {
+    flex: 1;
+    height: auto;
+    min-height: 0;
+  }
+  .pane-canvas {
+    position: absolute;
+    inset: 0;
+    min-height: 0;
+    min-width: 0;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    touch-action: none;
+  }
+  .prows {
+    display: none;
+  }
+  .center {
+    position: relative;
+    grid-row: 3;
+    grid-column: 1;
+    order: 0;
+    flex: none;
+    max-height: none;
+    overflow: visible;
+    gap: 0;
+    border: 1px solid var(--line-strong);
+    border-radius: 12px 12px 0 0;
+    background: var(--surface);
+    box-shadow: 0 -3px 10px #0001;
+  }
+  .order-alerts {
+    position: absolute;
+    bottom: 100%;
+    left: 4px;
+    right: 4px;
+    height: auto;
+    max-height: 54px;
+    overflow-y: auto;
+    pointer-events: none;
+  }
+  .order-alerts .order-reply,
+  .order-alerts .pause-ribbon {
+    display: none;
+  }
+  .order-alerts .moment-banner,
+  .order-alerts .hurt-line {
+    margin: 0;
+    padding: 4px;
+    font-size: 14px;
+  }
+  .composer-tray {
+    position: static;
+    flex: none;
+    height: auto;
+    padding: 0;
     gap: 0;
     overflow: visible;
   }
-
-  .order-alerts {
-    height: 116px;
-    flex: 0 0 116px;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-  }
-
-  .order-alerts .pause-ribbon,
-  .order-alerts .hurt-line,
-  .order-alerts .order-reply {
-    margin: 0;
-  }
-
-  .pause-ribbon {
-    align-items: flex-start;
-  }
-
-  .pause-ribbon > div {
-    overflow: visible;
-  }
-
-  .composer-tray {
-    position: static;
-    height: auto;
-    flex: none;
-    padding: 0;
-    overflow: visible;
-  }
-
   .order-scope {
     margin: 0;
     padding: 2px 8px;
-    line-height: 20px;
+    font-size: 13px;
+    line-height: 18px;
   }
-
   .composer {
-    display: flex;
-    flex-direction: column;
-    height: auto;
+    position: relative;
+    display: grid;
+    height: 154px;
     flex: none;
+    padding: 4px 6px;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 44px 48px 44px;
+    gap: 4px;
     overflow: visible;
-    gap: 6px;
   }
-
   .phone-order-fields {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    align-items: start;
     gap: 4px;
   }
-
   .phone-order-fields summary {
-    padding: 10px 8px;
+    white-space: nowrap;
+    padding: 10px 6px;
     border: 1px solid var(--line-strong);
     border-radius: 6px;
     font-size: 15px;
-    cursor: pointer;
   }
-
   .picker-chips {
+    position: absolute;
+    z-index: 3;
+    top: 50px;
+    bottom: 52px;
+    left: 6px;
+    right: 6px;
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     min-width: 0;
+    border: 1px solid var(--line-strong);
+    border-radius: 6px;
     margin: 0;
-    border: 0;
+    padding: 2px;
     gap: 4px;
-    padding: 4px 0;
+    overflow-y: auto;
+    background: var(--surface);
   }
-
   .picker-chips button {
     font: inherit;
     font-size: 15px;
+    padding: 4px;
     border: 1px solid var(--line-strong);
     border-radius: 6px;
     background: var(--surface);
     color: var(--text);
-    min-height: 44px;
-    padding: 6px;
   }
-
   .picker-chips button[aria-pressed="true"] {
     outline: 2px solid currentColor;
     outline-offset: -3px;
   }
-
   .composer-line {
-    min-height: 80px;
-    align-content: start;
+    grid-row: 2;
+    min-height: 0;
+    margin: 0;
+    font-size: 14px;
+    line-height: 21px;
+    overflow: auto;
   }
-
-  .composer .toggle small {
+  .composer-job {
+    display: none;
+  }
+  .composer-line .predict {
     display: block;
-    font-size: 13px;
+    margin: 0;
   }
-
-  .composer .toggles {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .composer-reason {
+    display: none;
   }
-
-  .pane-canvas {
-    touch-action: pan-y;
+  .composer-actions {
+    grid-row: 3;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 4px;
+    padding: 0;
+    padding-left: 80px;
   }
-
-  .order-options[open],
-  .nudge-slot[open] {
-    max-height: none;
-    overflow: visible;
+  .composer-actions .btn {
+    min-width: 44px;
+    padding: 4px 6px;
+    font-size: 14px;
   }
-
+  .composer-actions .btn-confirm {
+    margin-left: auto;
+    min-width: 80px;
+  }
+  .order-options {
+    position: absolute;
+    bottom: 8px;
+    left: 6px;
+    width: 76px;
+    z-index: 4;
+  }
+  .order-options > summary {
+    font-size: 0;
+    padding: 10px 4px;
+    white-space: nowrap;
+  }
+  .order-options > summary::after {
+    content: "Options";
+    font-size: 14px;
+  }
+  .order-options > summary small {
+    display: none;
+  }
+  .order-options[open] {
+    width: calc(100% - 12px);
+    max-height: 146px;
+    overflow-y: auto;
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+  }
+  .order-options[open] > summary::after {
+    content: "Close options";
+  }
+  .order-options .toggles {
+    display: flex;
+  }
+  .order-options .appeals {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .order-options .appeal {
+    flex: 1;
+    min-width: 90px;
+  }
+  .order-options .toggle small {
+    font-size: 12px;
+  }
+  .order-options .appeal-full {
+    display: inline;
+  }
+  .order-options .appeal-short {
+    display: none;
+  }
+  .sheet-tools {
+    display: flex;
+    height: 44px;
+    gap: 4px;
+    padding: 0 6px;
+  }
+  .order-toggle,
+  .orders-button {
+    display: block;
+    height: 44px;
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    padding: 0 4px;
+    margin: 0;
+    background: transparent;
+    color: var(--text);
+    font: inherit;
+    font-size: 14px;
+  }
   .nudge-slot {
     position: static;
-    height: auto;
+    flex: 1;
+    min-width: 0;
     margin: 0;
-    overflow: visible;
-    z-index: auto;
+    border: 0;
+  }
+  .nudge-slot > summary {
+    padding: 10px 2px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+  .nudge-slot > summary small {
+    display: none;
+  }
+  .nudge-slot[open] .nudge {
+    position: absolute;
+    z-index: 5;
+    bottom: 44px;
+    left: 0;
+    right: 0;
+    max-height: 174px;
+    overflow-y: auto;
+    border: 1px solid var(--line-strong);
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 -2px 8px #0002;
+  }
+  .nudge-slot .nudge-head {
+    position: sticky;
+    top: -10px;
+    background: var(--surface);
+    z-index: 1;
+  }
+  .is-watching .composer-tray {
+    display: none;
+  }
+  .watching-worker {
+    height: 28px;
+    overflow: auto;
+    padding: 2px 8px;
+    line-height: 24px;
+    white-space: nowrap;
+  }
+  .flash-region {
+    pointer-events: none;
+  }
+  .flash {
+    bottom: auto;
+    top: 110px;
+    font-size: 14px;
+    padding: 5px 8px;
+  }
+  .bubble {
+    max-width: 220px;
+    font-size: 14px;
   }
 
-  .composer-actions {
-    flex-wrap: wrap;
-  }
-
-  .composer-actions .btn-confirm {
-    min-width: 100px;
-  }
-
-  .orders-button {
-    height: 44px;
-    flex: none;
-    margin: 0;
-  }
-
-  .pane {
-    flex: none;
-    min-height: 360px;
-    flex-direction: column;
-  }
-
-  .pane-head {
+  .is-ordering .sheet-tools {
+    position: absolute;
+    bottom: 7px;
+    left: 85px;
+    right: 86px;
     width: auto;
-    flex-direction: row;
+    padding: 0;
+    z-index: 4;
+  }
+  .is-ordering .sheet-tools .order-toggle {
+    display: none;
+  }
+  .is-ordering .sheet-tools .nudge-slot {
+    flex: 1;
+  }
+  .is-ordering .composer-actions .btn-ghost {
+    display: none;
+  }
+  .option-person-actions {
+    display: flex;
+    gap: 6px;
+  }
+  .order-options[open] {
+    bottom: 6px;
+    max-height: 146px;
+  }
+  .nudge-slot[open] .nudge {
+    max-height: 154px;
+  }
+
+  .phone-day {
+    display: inline;
+  }
+  .clock-status {
+    display: none;
+  }
+  .clock-time {
+    white-space: nowrap;
+    font-size: 14px;
+  }
+  .composer-job {
+    display: block;
+    font:
+      14px / 21px system-ui,
+      sans-serif;
+  }
+  .composer-line .predict {
+    font:
+      15px / 21px system-ui,
+      sans-serif;
+  }
+  .map-hint {
+    display: block;
+    position: absolute;
+    bottom: 2px;
+    right: 4px;
+    z-index: 1;
+    pointer-events: none;
+    font:
+      12px system-ui,
+      sans-serif;
+    background: var(--surface);
+    color: var(--text);
+    padding: 1px 3px;
+    opacity: 0.85;
+  }
+
+  .topbar {
+    padding-left: 6px;
+    padding-right: 6px;
+    gap: 4px;
+  }
+  .is-ordering .nudge-slot[open] .nudge {
+    left: -85px;
+    right: -86px;
+  }
+  .center:has(.order-options[open]) .sheet-tools {
+    visibility: hidden;
+  }
+
+  .colony {
+    grid-template-rows: 60px 44px minmax(0, 1fr);
+  }
+  .composer.has-costs {
+    height: 171px;
+    grid-template-rows: 44px 65px 44px;
+  }
+  .active-costs {
+    font:
+      12px / 17px system-ui,
+      sans-serif;
+    white-space: nowrap;
+  }
+  .option-person-actions {
     flex-wrap: wrap;
-    overflow: visible;
+  }
+  .option-person-actions p {
+    flex: 0 0 100%;
+    margin: 0;
+    font-size: 14px;
   }
 
-  .stats {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 2px 10px;
+  .nudge-who {
+    display: none;
   }
-
-  .pane-body {
-    flex: none;
+  .nudge-slot[open] .nudge,
+  .is-ordering .nudge-slot[open] .nudge {
+    max-height: 126px;
   }
-
-  .pane-map {
-    flex: none;
-    height: 252px;
+  .is-watching .center:has(.nudge-slot[open]) {
+    height: 178px;
+  }
+  .is-watching .center:has(.nudge-slot[open]) .watching-worker {
+    visibility: hidden;
+  }
+  .is-watching .center:has(.nudge-slot[open]) .sheet-tools {
+    margin-top: auto;
   }
 }
 

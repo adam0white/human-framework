@@ -23,7 +23,19 @@ vi.mock('../../shared/lab.tsx', () => ({
 
 vi.mock('./useColony.ts', () => ({ useColony: vi.fn() }));
 // Canvas animation is outside this keyboard test; keep the real composer and App handlers.
-vi.mock('./Pane.tsx', () => ({ Pane: () => null }));
+vi.mock('./Pane.tsx', () => ({
+  Pane: (props: { side: string; selectedId: string | null; onPlace(place: 'site'): void }) =>
+    createElement(
+      'button',
+      {
+        type: 'button',
+        'data-map': props.side,
+        'data-selected': props.selectedId,
+        onClick: () => props.onPlace('site'),
+      },
+      'House',
+    ),
+}));
 
 const game = new ColonyGame(20261003, createFrameworkHumanSide);
 const frame = game.frame();
@@ -103,6 +115,13 @@ describe('Well review follow-up', () => {
     await act(() => required<HTMLButtonElement>(placePicker, '[data-place="forest"]').click());
     expect(placePicker.open).toBe(false);
     expect(container.querySelector('select')).toBeNull();
+    // A different worker keeps the requested place, including when replacing a refusal.
+    await act(() => required<HTMLButtonElement>(workerPicker, '[data-person="maryam"]').click());
+    expect(container.querySelector('.composer-line')?.textContent).toContain('Maryam → Forest');
+    await act(() => required<HTMLButtonElement>(workerPicker, '[data-person="yusuf"]').click());
+    // Switching village views also preserves the prepared order.
+    await act(() => required<HTMLButtonElement>(container, '.map-toggle button').click());
+    expect(container.querySelector('.composer-line')?.textContent).toContain('Yusuf → Forest');
     const about = [...container.querySelectorAll('button')].find((b) => b.textContent === 'About Yusuf');
     expect(about).toBeDefined();
     await act(() => about?.click());
@@ -126,6 +145,13 @@ describe('Well review follow-up', () => {
       { personId: 'yusuf', placeId: 'forest' },
       undefined,
     );
+    expect(container.querySelector('.colony')?.classList.contains('is-ordering')).toBe(false);
+    expect(container.querySelector('[data-map="human"]')?.getAttribute('data-selected')).toBe('yusuf');
+    expect(container.querySelector('.watching-worker')?.textContent).toContain('Yusuf');
+    await act(() => required<HTMLButtonElement>(container, '[data-map="human"]').click());
+    expect(container.querySelector('.composer-line')?.textContent).toContain('Yusuf → House');
+    expect(container.querySelector('.colony')?.classList.contains('is-ordering')).toBe(true);
+    expect(actions.order).toHaveBeenCalledTimes(1);
     const suggestion = required<HTMLDetailsElement>(container, '.nudge-slot');
     await act(() => required<HTMLElement>(suggestion, 'summary').click());
     expect(suggestion.open).toBe(true);

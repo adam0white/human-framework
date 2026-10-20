@@ -20,6 +20,7 @@ import {
   EMPTY_COMPOSER,
   GoalStrip,
   HurtLine,
+  keepOneDisclosure,
   MomentBanner,
   OrderLog,
   OrderReply,
@@ -84,7 +85,9 @@ export function App() {
   const [toast, setToast] = useState(false);
   const [moment, setMoment] = useState<MomentRecord | null>(null);
   const [drawer, setDrawer] = useState(false);
-  /** Landscape phones show one map at a time (colony.css); this picks which. Other layouts show both. */
+  const [ordering, setOrdering] = useState(true);
+  const [watching, setWatching] = useState<VillagerId | null>(null);
+  /** Phones show one village at a time. Switching keeps the prepared order. */
   const [mapSide, setMapSide] = useState<'classic' | 'human'>('human');
   const flashTimer = useRef(0);
   const momentTimer = useRef(0);
@@ -127,6 +130,8 @@ export function App() {
     setInspect(null);
     setHoverPlace(null);
     setComposer(EMPTY_COMPOSER);
+    setWatching(null);
+    setOrdering(true);
     setDrawer(false);
     setEndOpen(true);
   }, [loaded, bubbles]);
@@ -137,9 +142,11 @@ export function App() {
     () => orderFrom({ ...composer, placeId: previewPlace }),
     [composer, previewPlace],
   );
+  // Refresh the forecast as the village changes, even when the selected input stays the same.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: A forecast is time-dependent.
   useEffect(() => {
     actions.predict(previewInput);
-  }, [previewInput, actions]);
+  }, [previewInput, actions, frame?.minute]);
 
   // The job the order would infer, read from the Human side's world (as the sim does).
   const job = useMemo(() => {
@@ -174,13 +181,21 @@ export function App() {
   }, []);
 
   const pickWho = useCallback((id: VillagerId) => {
-    // Tapping a villager (again) restarts the composer with that villager.
-    setComposer({ ...EMPTY_COMPOSER, personId: id });
+    setOrdering(true);
+    setWatching(null);
+    // Keep the chosen place while trying another worker; suggestion reasons belong to the old worker.
+    setComposer((c) => (({ nudgeId: _n, reason: _r, ...rest }) => ({ ...rest, personId: id }))(c));
   }, []);
 
-  const pickWhere = useCallback((placeId: PlaceId) => {
-    setComposer((c) => (c.personId ? { ...c, placeId } : c));
-  }, []);
+  const pickWhere = useCallback(
+    (placeId: PlaceId) => {
+      if (watching) setOrdering(true);
+      setComposer((c) =>
+        c.personId ? { ...c, placeId } : watching ? { ...EMPTY_COMPOSER, personId: watching, placeId } : c,
+      );
+    },
+    [watching],
+  );
 
   const live = useRef({ composer });
   live.current = { composer };
@@ -190,11 +205,16 @@ export function App() {
     if (!input) return;
     actions.order(input, c.nudgeId);
     showFlash(`Order given: ${shortName(input.personId)} → ${PLACE_LABEL[input.placeId]}`);
+    setWatching(input.personId);
+    setOrdering(false);
     setComposer(EMPTY_COMPOSER);
     setHoverPlace(null);
+    document.querySelector<HTMLDetailsElement>('.order-options')?.removeAttribute('open');
   }, [actions, showFlash]);
 
   const applyNudge = (n: Nudge) => {
+    setOrdering(true);
+    setWatching(null);
     setComposer({
       ...EMPTY_COMPOSER,
       personId: n.order.personId,
@@ -226,7 +246,12 @@ export function App() {
     );
   }, [visibleNudgeIds]);
 
-  const inspectPersonCb = useCallback((id: VillagerId) => setInspect({ personId: id }), []);
+  const inspectPersonCb = useCallback((id: VillagerId) => {
+    document.querySelectorAll('.composer details[open], .nudge-slot[open]').forEach((el) => {
+      el.removeAttribute('open');
+    });
+    setInspect({ personId: id });
+  }, []);
   const closeInspect = useCallback(() => setInspect(null), []);
 
   const closeEnd = useCallback(() => {
@@ -284,6 +309,8 @@ export function App() {
     setInspect(null);
     setHoverPlace(null);
     setComposer(EMPTY_COMPOSER);
+    setWatching(null);
+    setOrdering(true);
     setDrawer(false);
     setEndOpen(true);
     actions.restart();
@@ -306,15 +333,18 @@ export function App() {
 
   const paneProps = {
     store: colony.store,
-    selectedId: composer.personId,
+    selectedId: composer.personId ?? watching,
     hoverPlace: highlightPlace,
+    destination: composer.placeId,
     onSelect: pickWho,
     onPlace: pickWhere,
     onHoverPlace: setHoverPlace,
   };
 
   return (
-    <div className={`colony ${composer.personId ? 'is-choosing' : ''}`}>
+    <div
+      className={`colony ${composer.personId ? 'is-choosing' : ''} ${ordering ? 'is-ordering' : 'is-watching'}`}
+    >
       <TopBar
         frame={frame}
         playback={playback}
@@ -346,10 +376,10 @@ export function App() {
         <fieldset className="map-toggle">
           <legend className="visually-hidden">Map shown</legend>
           <button type="button" aria-pressed={mapSide === 'classic'} onClick={() => setMapSide('classic')}>
-            Classic
+            Classic · obey
           </button>
           <button type="button" aria-pressed={mapSide === 'human'} onClick={() => setMapSide('human')}>
-            Human
+            Human · decide
           </button>
         </fieldset>
         <section className="pane pane-classic" aria-label="Classic village">
@@ -369,6 +399,13 @@ export function App() {
         </section>
 
         <aside className="center">
+          {watching && !ordering && (
+            <p className="watching-worker" role="status">
+              Watching {shortName(watching)} ·{' '}
+              {(mapSide === 'human' ? frame?.human : frame?.classic)?.find((p) => p.id === watching)?.label ??
+                'waiting'}
+            </p>
+          )}
           <div className="order-alerts">
             {playback.pause && (
               <PauseRibbon
@@ -387,7 +424,13 @@ export function App() {
               state={composer}
               frame={frame}
               job={job}
-              prediction={colony.prediction?.prediction ?? null}
+              prediction={
+                colony.prediction &&
+                previewInput &&
+                JSON.stringify(colony.prediction.input) === JSON.stringify(previewInput)
+                  ? colony.prediction.prediction
+                  : null
+              }
               onChange={setComposer}
               onWho={pickWho}
               onWhere={pickWhere}
@@ -395,26 +438,6 @@ export function App() {
               onConfirm={confirm}
               onInspect={inspectPersonCb}
             />
-            {nudge && frame && (
-              <details
-                className={`nudge-slot ${composer.nudgeId === nudge.id ? 'is-active' : ''}`}
-                role="status"
-                aria-live="polite"
-              >
-                <summary>
-                  Suggestion · {shortName(nudge.order.personId)}
-                  <small>Use prepares; Confirm sends.</small>
-                </summary>
-                <SuggestionCard
-                  nudge={nudge}
-                  minute={frame.minute}
-                  queued={nudges.length - 1}
-                  active={composer.nudgeId === nudge.id}
-                  onUse={applyNudge}
-                  onSkip={skipNudge}
-                />
-              </details>
-            )}
           </div>
           <section className={`queue ${drawer ? 'is-open' : ''}`} aria-label="Order log">
             <div className="queue-head">
@@ -432,9 +455,40 @@ export function App() {
               <OrderLog cards={cards} onCancel={actions.cancel} />
             </div>
           </section>
-          <button type="button" className="orders-button" onClick={() => setDrawer(true)}>
-            Orders ({orderCount})
-          </button>
+          <div className="sheet-tools">
+            <button
+              type="button"
+              className="order-toggle"
+              aria-expanded={ordering}
+              onClick={() => setOrdering((open) => !open)}
+            >
+              {ordering ? 'Watch village' : 'Give an order'}
+            </button>
+            {nudge && frame && (
+              <details
+                onToggle={(e) => keepOneDisclosure(e.currentTarget)}
+                className={`nudge-slot ${composer.nudgeId === nudge.id ? 'is-active' : ''}`}
+                role="status"
+                aria-live="polite"
+              >
+                <summary>
+                  Suggestion<span className="nudge-who"> · {shortName(nudge.order.personId)}</span>
+                  <small>Use prepares; Confirm sends.</small>
+                </summary>
+                <SuggestionCard
+                  nudge={nudge}
+                  minute={frame.minute}
+                  queued={nudges.length - 1}
+                  active={composer.nudgeId === nudge.id}
+                  onUse={applyNudge}
+                  onSkip={skipNudge}
+                />
+              </details>
+            )}
+            <button type="button" className="orders-button" onClick={() => setDrawer(true)}>
+              Orders ({orderCount})
+            </button>
+          </div>
         </aside>
 
         <section className="pane pane-human" aria-label="Human village">

@@ -94,11 +94,34 @@ describe('Well stable order controls', () => {
     expect(node.querySelector('.nudge-timer')?.textContent).toContain('in 60 min');
   });
 
-  it('reserves alerts above the order and keeps expanded suggestions in normal flow', () => {
-    const phone = css.slice(css.indexOf('/* Phone orders use normal flow.'));
-    expect(phone).toMatch(/\.order-alerts\s*\{[^}]*height: 116px/s);
-    expect(phone).toMatch(/\.composer-tray\s*\{[^}]*overflow: visible/s);
-    expect(phone).toMatch(/\.nudge-slot\s*\{[^}]*position: static/s);
-    expect(phone).toMatch(/\.composer-line\s*\{[^}]*min-height: 80px/s);
+  it('warns that a suggested availability may have changed before preparation', () => {
+    const node = document.createElement('div');
+    node.innerHTML = renderToStaticMarkup(
+      createElement(SuggestionCard, {
+        nudge: {
+          id: 'cook-forest',
+          minute: 345,
+          until: 420,
+          order: { personId: 'maryam', placeId: 'forest' },
+          text: 'Timber is short. Maryam is free until noon.',
+        } as Nudge,
+        minute: 391,
+        queued: 0,
+        active: false,
+        onUse: vi.fn(),
+        onSkip: vi.fn(),
+      }),
+    );
+    expect(node.querySelector('.nudge-availability')?.textContent).toBe(
+      'Availability may have changed. Use to check the current forecast.',
+    );
+  });
+
+  it('bounds the phone sheet and reserves the village above it', () => {
+    const phone = css.slice(css.indexOf('/* Map-first phone'));
+    expect(phone).toMatch(/\.stage\s*\{[^}]*grid-template-rows: 44px minmax\(0, 1fr\) auto/s);
+    expect(phone).toMatch(/\.composer\s*\{[^}]*height: 154px/s);
+    expect(phone).toMatch(/\.pane-canvas\s*\{[^}]*position: absolute/s);
+    expect(phone).toMatch(/\.picker-chips\s*\{[^}]*overflow-y: auto/s);
   });
 });
