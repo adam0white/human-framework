@@ -85,7 +85,7 @@ describe('migrate: saves from earlier engines restore under the current one', ()
     expect(v140.engine).toBe('1.4.0');
     expect(v150.engine).toBe('1.5.0');
     for (const j of v140.village.saved.people) expect((j as { engine: string }).engine).toBe('1.4.0');
-    expect(ENGINE_VERSION).toBe('2.13.0');
+    expect(ENGINE_VERSION).toBe('2.14.0');
     expect(migratableVersions()).toEqual([
       '1.4.0',
       '1.5.0',
@@ -107,6 +107,7 @@ describe('migrate: saves from earlier engines restore under the current one', ()
       '2.11.0',
       '2.12.0',
       '2.13.0',
+      '2.14.0',
     ]);
   });
 
@@ -166,9 +167,9 @@ describe('migrate: saves from earlier engines restore under the current one', ()
 
   test('migrate renames the 1.9.0 surroundings field and leaves the input alone', () => {
     const j = { engine: '1.9.0', ambient: { now: { cold: 0.3 }, since: 5 } };
-    expect(migrate(j)).toEqual({ engine: '2.13.0', ambient: { percept: { cold: 0.3 }, since: 5 } });
+    expect(migrate(j)).toEqual({ engine: '2.14.0', ambient: { percept: { cold: 0.3 }, since: 5 } });
     expect(j.ambient.now).toEqual({ cold: 0.3 });
-    expect(migrate({ engine: '1.9.0' })).toEqual({ engine: '2.13.0' });
+    expect(migrate({ engine: '1.9.0' })).toEqual({ engine: '2.14.0' });
   });
 
   test('older and unknown engines are refused with the supported list', () => {

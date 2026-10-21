@@ -27,7 +27,7 @@ describe('demonstrated conditional methods', () => {
     const old = { ...hf.snapshot(p), engine: '2.1.0' };
     const before = JSON.stringify(old);
     const migrated = hf.migrate(old);
-    expect(migrated.engine).toBe('2.13.0');
+    expect(migrated.engine).toBe('2.14.0');
     expect(migrated.methods).toEqual(old.methods);
     expect(JSON.stringify(old)).toBe(before);
     expect(hf.snapshot(hf.restore(old)).methods).toEqual(old.methods);
