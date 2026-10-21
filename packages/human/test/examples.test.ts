@@ -3,7 +3,7 @@ import { main as community, DAYS } from '../examples/community.ts';
 import { main as curiosity } from '../examples/curiosity-control.ts';
 import { main as minimal } from '../examples/minimal.ts';
 import { main as planning } from '../examples/planning-control.ts';
-import { main as projects } from '../examples/projects-control.ts';
+import { longerProject, main as projects } from '../examples/projects-control.ts';
 import { main as suggestions } from '../examples/suggestions.ts';
 import { main as whyNot } from '../examples/why-not-control.ts';
 
@@ -24,6 +24,25 @@ describe('examples', () => {
     expect(off.placements).toBe(0);
     expect(hungry.adopted).toBe(0);
     expect(hungry.choices.food).toBeGreaterThan(0);
+  });
+  test('projects and persistence: more three-step chains, with hunger interrupting then resumption', () => {
+    const [both, projectsOnly, persistenceOnly, neither, hungry] = longerProject();
+    if (!both || !projectsOnly || !persistenceOnly || !neither || !hungry)
+      throw new Error('Missing longer-project control arm');
+    for (const row of [both, projectsOnly, persistenceOnly, neither, hungry]) {
+      expect(row.minutes).toBe(180);
+      expect(row.placements).toBe(row.completedChains);
+    }
+    expect(both.adopted).toBeGreaterThan(0);
+    expect(projectsOnly.adopted).toBeGreaterThan(0);
+    expect(both.completedChains).toBeGreaterThan(projectsOnly.completedChains);
+    for (const row of [persistenceOnly, neither]) {
+      expect(row.adopted).toBe(0);
+      expect(row.placements).toBe(0);
+    }
+    expect(hungry.minutesToFirstMeal).not.toBeNull();
+    expect(hungry.minutesToFirstMeal).toBeLessThanOrEqual(5);
+    expect(hungry.placementsAfterMeal).toBeGreaterThan(0);
   });
   test('why not: inertia, norm, habit and firm rule separate the same request', () => {
     const rows = whyNot();

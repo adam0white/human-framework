@@ -130,8 +130,8 @@ import {
   urgencyOf,
 } from './needs/index.ts';
 import { widow } from './partnering/index.ts';
-import { considerProjects, enableProjects, noteProjectStatus, perceiveProspect } from './projects/index.ts';
 import { beginPursuit, enablePersistence, releasePursuit } from './persistence/index.ts';
+import { considerProjects, enableProjects, noteProjectStatus, perceiveProspect } from './projects/index.ts';
 import { enablePromptings, type NafsPattern, nafsPatterns, notePromptings } from './promptings/index.ts';
 import {
   bodyForecastFor,
