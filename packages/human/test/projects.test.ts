@@ -99,6 +99,18 @@ test('retention is bounded, newest wins, stable ties evict first, identifiers an
   expect(p.projects?.prospects[0]).toMatchObject({ label: 'New', lastSeenAt: p.now });
   see(p, { ...prospect, id: 'x'.repeat(513) });
   expect(p.projects?.prospects).toHaveLength(8);
+  const ten = Array.from({ length: 10 }, (_, i) => `m${i % 9}`);
+  see(p, { ...prospect, id: 'p2', materialIds: ten });
+  expect(p.projects?.prospects.find((x) => x.id === 'p2')?.materialIds).toEqual([
+    'm0',
+    'm1',
+    'm2',
+    'm3',
+    'm4',
+    'm5',
+    'm6',
+    'm7',
+  ]);
   hf.enableProjects(p, { forgetMinutes: 1 });
   hf.tick(p, p.now + 2);
   expect(p.projects?.prospects).toEqual([]);

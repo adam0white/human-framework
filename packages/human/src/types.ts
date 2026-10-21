@@ -2031,6 +2031,7 @@ export interface Prospect {
   label: string;
   kind: 'make' | 'arrange' | 'gather' | 'finish';
   placeId?: EntityId;
+  /** Up to 256 accepted; the first eight distinct ids are retained. */
   materialIds?: EntityId[];
   progress?: Unit;
 }

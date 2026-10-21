@@ -65,13 +65,14 @@ function cleanProspect(x: unknown): Prospect | undefined {
     (x.placeId !== undefined && !str(x.placeId)) ||
     (x.progress !== undefined && !unit(x.progress)) ||
     (x.materialIds !== undefined &&
-      (!Array.isArray(x.materialIds) || x.materialIds.length > 8 || !x.materialIds.every(str)))
+      (!Array.isArray(x.materialIds) || x.materialIds.length > 256 || !x.materialIds.every(str)))
   )
     return undefined;
   const p: Prospect = { id: x.id, label: x.label, kind: x.kind as Prospect['kind'] };
   if (x.placeId !== undefined) p.placeId = x.placeId as string;
   if (x.progress !== undefined) p.progress = x.progress as number;
-  if (x.materialIds !== undefined) p.materialIds = [...(x.materialIds as string[])];
+  // A long list is kept, not rejected: the first eight distinct ids in the host's order (island rerun, 2026-10-20).
+  if (x.materialIds !== undefined) p.materialIds = [...new Set(x.materialIds as string[])].slice(0, 8);
   return p;
 }
 
