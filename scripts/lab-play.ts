@@ -6,16 +6,16 @@
  * at run time; CI never installs browsers. floor records the intended minimum play
  * duration; ceiling enforces the maximum. Only the first open starts the clock.
  */
+import { spawnSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { appendFile, mkdir, readdir } from 'node:fs/promises';
 import { createServer, type IncomingMessage } from 'node:http';
 import { createRequire } from 'node:module';
 import { homedir } from 'node:os';
 import { resolve } from 'node:path';
-import { pathToFileURL } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import {
-  clickNamedPlayControl,
-  MissingPlayControl,
+  driverCheck,
   makeLogLine,
   makePlayReply,
   type PlayOp,
@@ -29,6 +29,9 @@ import { textControlPoint } from './lab-play-text.ts';
 
 interface Locator {
   first(): Locator;
+  nth(index: number): Locator;
+  or(other: Locator): Locator;
+  isEnabled(): Promise<boolean>;
   filter(options: { visible: boolean }): Locator;
   count(): Promise<number>;
   click(options: { timeout: number }): Promise<void>;
@@ -99,6 +102,7 @@ const sleep = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve,
 // An on-screen point where the element (or the container it sits in) receives the tap, or null
 // when something else covers it.
 function uncoveredPoint(el: Element, centre: boolean): { x: number; y: number } | null {
+  if (el.matches(':disabled, [aria-disabled="true"]') || el.closest('[aria-disabled="true"]')) return null;
   if (centre) el.scrollIntoView({ block: 'center', inline: 'nearest' });
   const box = el.getBoundingClientRect();
   for (const fy of [0.5, 0.3, 0.7, 0.15, 0.85])
@@ -145,6 +149,30 @@ async function readJson(request: IncomingMessage): Promise<unknown> {
 }
 async function main() {
   const options = parsePlayArgs(process.argv.slice(2));
+  const checkout = fileURLToPath(new URL('..', import.meta.url));
+  const commit = spawnSync('git', ['rev-parse', '--short', 'HEAD'], { cwd: checkout, encoding: 'utf8' });
+  const diff = spawnSync(
+    'git',
+    [
+      'diff',
+      '--quiet',
+      'origin/main',
+      '--',
+      'scripts/lab-play.ts',
+      'scripts/lab-play-helpers.ts',
+      'scripts/lab-play-text.ts',
+    ],
+    { cwd: checkout },
+  );
+  const identity = driverCheck(
+    commit.status === 0 ? commit.stdout : null,
+    diff.status,
+    process.env.LAB_PLAY_ALLOW_STALE === '1',
+  );
+  if (identity.refuse)
+    throw new Error(
+      `Refusing stale lab driver in ${checkout} at ${identity.driver}; use current main or set LAB_PLAY_ALLOW_STALE=1 deliberately.`,
+    );
   await mkdir(options.out, { recursive: true });
   const browser = await (await loadPlaywright()).chromium.launch({ headless: true });
   let server: ReturnType<typeof createServer> | undefined;
@@ -215,8 +243,8 @@ async function main() {
       }, options.ceiling * 60_000);
     };
     const click = async (locator: Locator) => {
-      const target = visible(locator);
-      if (!(await target.count())) return false;
+      const target = locator;
+      if (!(await target.count()) || !(await target.isEnabled())) return false;
       try {
         await target.click({ timeout: 1500 });
         return true;
@@ -233,20 +261,6 @@ async function main() {
         return false;
       }
     };
-    // Whether a visible control by this name (or text) exists but is disabled: the game's answer.
-    const disabledNamed = async (name: string) =>
-      page.evaluate((wanted: string) => {
-        const norm = (t: string) => t.replace(/\s+/g, ' ').trim().toLowerCase();
-        return [...document.querySelectorAll('button, [role=button], .button, .disabled')].some((el) => {
-          const box = el.getBoundingClientRect();
-          const off =
-            (el as HTMLButtonElement).disabled ||
-            el.getAttribute('aria-disabled') === 'true' ||
-            el.classList.contains('disabled');
-          const label = norm(el.getAttribute('aria-label') ?? el.textContent ?? '');
-          return off && box.width > 0 && box.height > 0 && label.startsWith(norm(wanted).slice(0, 40));
-        });
-      }, name);
     const tapPoint = async (x: number, y: number) => {
       if (phone) await page.touchscreen.tap(x, y);
       else await page.mouse.click(x, y);
@@ -261,24 +275,42 @@ async function main() {
         case 'tap':
           if ('x' in op && typeof op.x === 'number' && typeof op.y === 'number') await tapPoint(op.x, op.y);
           else if ('name' in op && typeof op.name === 'string') {
-            if (!(await clickNamedPlayControl(page, click, op.name, op.role))) {
-              if (await disabledNamed(op.name))
-                throw new Error(
-                  `${op.name} is shown but disabled right now (game state, not a driver failure)`,
-                );
-              throw new MissingPlayControl(
-                op.name,
-                `No actionable ${op.role ?? 'button/link'} named ${op.name}`,
+            let matches = page.getByRole(op.role ?? 'button', { name: op.name, exact: true });
+            if (!op.role) matches = matches.or(page.getByRole('link', { name: op.name, exact: true }));
+            matches = matches.filter({ visible: true });
+            const enabled: Locator[] = [];
+            const count = await matches.count();
+            for (let i = 0; i < count; i++) {
+              const target = matches.nth(i);
+              if (await target.isEnabled()) enabled.push(target);
+            }
+            if (!enabled.length && count)
+              throw new Error(
+                `${op.name} is shown but disabled right now (game state, not a driver failure)`,
+              );
+            if (enabled.length > 1) {
+              const points = await Promise.all(
+                enabled.map(async (target) => {
+                  const box = await target.boundingBox();
+                  return box
+                    ? `(${Math.round(box.x + box.width / 2)},${Math.round(box.y + box.height / 2)})`
+                    : '(unavailable)';
+                }),
+              );
+              throw new Error(
+                `${enabled.length} enabled controls are named ${op.name}; tap by text near it or by point: ${points.join(', ')} (game state, not a driver failure)`,
               );
             }
+            if (!enabled[0] || !(await click(enabled[0])))
+              throw new Error(`Cannot tap ${op.name}: no uncovered enabled control (driver failure)`);
           } else if ('text' in op && typeof op.text === 'string') {
             const point = await page.evaluate(textControlPoint, op.text);
-            if (!point) {
-              if (await disabledNamed(op.text))
+            if ('reason' in point) {
+              if (point.reason === 'disabled')
                 throw new Error(
                   `${op.text} is shown but disabled right now (game state, not a driver failure)`,
                 );
-              throw new MissingPlayControl(op.text, `No visible clickable text: ${op.text}`);
+              throw new Error(`${op.text}: ${point.reason} (driver failure)`);
             }
             await tapPoint(point.x, point.y);
           }
@@ -389,9 +421,15 @@ async function main() {
       server?.once('error', reject);
       server?.listen(options.port, '127.0.0.1', done);
     });
+    await log({ op: 'start', driver: identity.driver, driver_check: identity.driver_check }, Date.now());
     const address = server.address();
     console.log(
-      JSON.stringify({ pid: process.pid, port: typeof address === 'object' ? address?.port : options.port }),
+      JSON.stringify({
+        driver: identity.driver,
+        driver_check: identity.driver_check,
+        pid: process.pid,
+        port: typeof address === 'object' ? address?.port : options.port,
+      }),
     );
     await new Promise<void>((done) => {
       const close = () => {

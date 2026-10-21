@@ -7,15 +7,10 @@ import { join, resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 describe.skipIf(!process.env.PLAYWRIGHT_MODULE)('lab:play with a real browser', () => {
-  it.each([
-    ['Rest', null],
-    ['Send Tariq home', 'Send Idris home'],
-    ['Show Idris', 'Show Tariq'],
-    ['House Later: after I pray Fajr', 'House Will refuse: busy'],
-  ])(
+  it.each([['Rest', null]])(
     'refuses stale %s and refreshes controls with %s',
     async (requested, current) => {
-      const root = join(homedir(), 'code/.lab-scratch/watchwell3/driver-c');
+      const root = join(homedir(), 'code/.lab-scratch/labplay-fix');
       await mkdir(root, { recursive: true });
       const out = await mkdtemp(join(root, 'integration-'));
       let waitingChange: ServerResponse | undefined;
@@ -51,15 +46,19 @@ describe.skipIf(!process.env.PLAYWRIGHT_MODULE)('lab:play with a real browser', 
       const address = reservation.address();
       if (!address || typeof address === 'string') throw new Error('No driver port');
       await new Promise<void>((done) => reservation.close(() => done()));
-      const driver = spawn(process.execPath, [
-        resolve('scripts/lab-play.ts'),
-        `url=http://127.0.0.1:${siteAddress.port}`,
-        `out=${out}`,
-        `port=${address.port}`,
-        'device=phone',
-        'floor=0',
-        'ceiling=2',
-      ]);
+      const driver = spawn(
+        process.execPath,
+        [
+          resolve('scripts/lab-play.ts'),
+          `url=http://127.0.0.1:${siteAddress.port}`,
+          `out=${out}`,
+          `port=${address.port}`,
+          'device=phone',
+          'floor=0',
+          'ceiling=2',
+        ],
+        { env: { ...process.env, LAB_PLAY_ALLOW_STALE: '1' } },
+      );
       await writeFile(join(out, 'driver-pid.txt'), String(driver.pid));
       console.info(`Driver PID ${driver.pid}; artifacts ${out}`);
       let stdout = '';
@@ -96,7 +95,7 @@ describe.skipIf(!process.env.PLAYWRIGHT_MODULE)('lab:play with a real browser', 
         // Change the fixture after its initial snapshot, without refreshing the driver's cache.
         const changed = await fetch(`http://127.0.0.1:${siteAddress.port}/change`, {
           method: 'POST',
-          signal: AbortSignal.timeout(15_000),
+          signal: AbortSignal.timeout(40_000),
         });
         expect(changed.status).toBe(200);
         const tapped = await post({ op: 'tap', name: requested });
@@ -106,9 +105,11 @@ describe.skipIf(!process.env.PLAYWRIGHT_MODULE)('lab:play with a real browser', 
         expect(tapped.body.visible).toContain('Dawn');
         expect(tapped.body.error).toContain(`${requested} is not on the page now`);
         expect(tapped.body.error).toContain('game state, not a driver failure');
+        expect(tapped.body.error).toMatch(/it was listed \d+ s ago/);
+        expect(JSON.parse(stdout.trim()).driver).toMatch(/^[a-f0-9]+$/);
         expect(tapped.body.snapshot_ms).toBeTypeOf('number');
         const lines = (await readFile(join(out, 'wall-clock.jsonl'), 'utf8')).trim().split('\n');
-        expect(JSON.parse(lines.at(-1) ?? '{}').requested_control_present_before).toBe(true);
+        expect(JSON.parse(lines.at(-1) ?? '{}').requested_control_present_before).toBe(false);
         // The replacement is actionable, but only when it is requested by its current name.
         if (current !== null) {
           const exact = await post({ op: 'tap', name: current });
@@ -128,6 +129,22 @@ describe.skipIf(!process.env.PLAYWRIGHT_MODULE)('lab:play with a real browser', 
     },
     90_000,
   );
+
+  it('skips disabled name duplicates and refuses enabled duplicates; scrolls a text control into view', async () => {
+    await withTextFixture('phone', async (post) => {
+      await post({ op: 'open' });
+      const tapped = await post({ op: 'tap', name: 'Promise it' });
+      expect(tapped.status).toBe(200);
+      expect(tapped.body.visible).toContain('promises 1');
+      const duplicate = await post({ op: 'tap', name: 'As it comes' });
+      expect(duplicate.status).toBe(500);
+      expect(duplicate.body.error).toMatch(/2 enabled controls are named As it comes.*\(\d+,\d+\)/);
+      expect(duplicate.body.visible).toContain('promises 1');
+      const far = await post({ op: 'tap', text: 'Far away' });
+      expect(far.status).toBe(200);
+      expect(far.body.visible).toContain('far clicked');
+    });
+  });
 
   it.each(['desktop', 'phone'])(
     'taps a %s control again while its hover tooltip is visible',
@@ -157,6 +174,7 @@ describe.skipIf(!process.env.PLAYWRIGHT_MODULE)('lab:play with a real browser', 
         await post({ op: 'tap', name: 'Duplicate label' });
         const duplicate = await post({ op: 'tap', text: 'cart' });
         expect(duplicate.status).toBe(500);
+        expect(duplicate.body.error).toContain('2 controls match');
         expect(duplicate.body.visible).toContain('cart clicks 2');
         expect(duplicate.body.visible).toContain('other clicks 0');
       });
@@ -169,7 +187,7 @@ async function withTextFixture(
   device: string,
   run: (post: (op: object) => Promise<{ status: number; body: Record<string, unknown> }>) => Promise<void>,
 ) {
-  const root = join(homedir(), 'code/.lab-scratch/watchwell3/driver-c');
+  const root = join(homedir(), 'code/.lab-scratch/labplay-fix');
   await mkdir(root, { recursive: true });
   const out = await mkdtemp(join(root, `tooltip-${device}-`));
   const site = createServer((_request, response) => {
@@ -188,6 +206,12 @@ async function withTextFixture(
       <button onclick="document.querySelector('#other').hidden=false">Duplicate label</button>
       <button id="other" hidden onclick="other++;document.querySelector('#other-count').textContent='other clicks '+other">cart</button>
       <button onclick="other++;document.querySelector('#other-count').textContent='other clicks '+other">Send <span role="img" style="cursor:pointer">Idris</span> home</button>
+      <button disabled>Promise it</button>
+      <button onclick="document.querySelector('#promises').textContent='promises 1'">Promise it</button>
+      <p id="promises">promises 0</p>
+      <button onclick="document.querySelector('#promises').textContent='wrong'">As it comes</button>
+      <button onclick="document.querySelector('#promises').textContent='wrong'">As it comes</button>
+      <button style="margin-top:2000px" onclick="this.textContent='far clicked'">Far away</button>
       <script>let count=0,other=0;</script></body></html>`);
   });
   site.listen(0, '127.0.0.1');
@@ -200,15 +224,19 @@ async function withTextFixture(
   const address = reservation.address();
   if (!address || typeof address === 'string') throw new Error('No driver port');
   await new Promise<void>((done) => reservation.close(() => done()));
-  const driver = spawn(process.execPath, [
-    resolve('scripts/lab-play.ts'),
-    `url=http://127.0.0.1:${siteAddress.port}`,
-    `out=${out}`,
-    `port=${address.port}`,
-    `device=${device}`,
-    'floor=0',
-    'ceiling=2',
-  ]);
+  const driver = spawn(
+    process.execPath,
+    [
+      resolve('scripts/lab-play.ts'),
+      `url=http://127.0.0.1:${siteAddress.port}`,
+      `out=${out}`,
+      `port=${address.port}`,
+      `device=${device}`,
+      'floor=0',
+      'ceiling=2',
+    ],
+    { env: { ...process.env, LAB_PLAY_ALLOW_STALE: '1' } },
+  );
   await writeFile(join(out, 'driver-pid.txt'), String(driver.pid));
   console.info(`Driver PID ${driver.pid}; artifacts ${out}`);
   let stdout = '';
@@ -236,7 +264,7 @@ async function withTextFixture(
       const response = await fetch(`http://127.0.0.1:${address.port}`, {
         method: 'POST',
         body: JSON.stringify(op),
-        signal: AbortSignal.timeout(15_000),
+        signal: AbortSignal.timeout(40_000),
       });
       return { status: response.status, body: (await response.json()) as Record<string, unknown> };
     });

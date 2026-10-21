@@ -230,22 +230,16 @@ export interface PlaySnapshot {
   controls: string;
   takenAt: number;
 }
-export class MissingPlayControl extends Error {
-  readonly control: string;
-  constructor(control: string, message: string) {
-    super(message);
-    this.control = control;
-  }
-}
-/** Keep the complete requested name, including live status. A stale name must be refused. */
-export async function clickNamedPlayControl<T>(
-  page: { getByRole(role: string, options: { name: string; exact: true }): T },
-  click: (target: T) => Promise<boolean>,
-  name: string,
-  role?: string,
-): Promise<boolean> {
-  if (await click(page.getByRole(role ?? 'button', { name, exact: true }))) return true;
-  return !role && click(page.getByRole('link', { name, exact: true }));
+/** Decide from local git results only; an unavailable comparison never blocks access. */
+export function driverCheck(commit: string | null, diffStatus: number | null, allowStale: boolean) {
+  const driver = commit?.trim() || 'unknown';
+  const driver_check =
+    driver === 'unknown' || (diffStatus !== 0 && diffStatus !== 1)
+      ? 'unavailable'
+      : diffStatus === 0
+        ? 'current'
+        : 'stale';
+  return { driver, driver_check, refuse: driver_check === 'stale' && !allowStale };
 }
 function requestedControlPresent(snapshot: PlaySnapshot | null, op: Record<string, unknown>): boolean | null {
   if (op.op !== 'tap' || (typeof op.name !== 'string' && typeof op.text !== 'string')) return null;
@@ -269,9 +263,20 @@ function requestedControlPresent(snapshot: PlaySnapshot | null, op: Record<strin
     }
     if (normalize(name) === wanted && (typeof op.text === 'string' || roles.includes(match[1]))) return true;
   }
-  return (
-    typeof op.text === 'string' && snapshot.visible.split('\n').some((line) => normalize(line) === wanted)
-  );
+  if (typeof op.text === 'string') {
+    // A custom control may render its complete label across adjacent text lines.
+    // Match whole lines only; the text resolver still verifies the exact control label.
+    const lines = snapshot.visible.split('\n');
+    for (let start = 0; start < lines.length; start++) {
+      let label = '';
+      for (let end = start; end < lines.length; end++) {
+        label = normalize(`${label} ${lines[end] ?? ''}`);
+        if (label === wanted) return true;
+        if (label.length >= wanted.length) break;
+      }
+    }
+  }
+  return false;
 }
 interface PlayOutcome {
   status: number;
@@ -296,18 +301,37 @@ export async function runPlayOperation(
     status: 200,
     snapshot: options.previous,
     snapshotAvailable: options.previous !== null,
-    requested_control_present_before: requestedControlPresent(options.previous, op),
+    requested_control_present_before: null,
   };
-  let operationError: unknown;
+  let refusedBeforeAction = false;
   try {
+    if (['tap', 'select', 'type', 'scroll', 'key'].includes(String(op.op))) {
+      result.snapshot = null;
+      result.snapshotAvailable = false;
+      const before = { ...(await options.snapshot(5000)), takenAt: now() };
+      result.snapshot = before;
+      result.snapshotAvailable = true;
+      result.requested_control_present_before = requestedControlPresent(before, op);
+      if (result.requested_control_present_before === false) {
+        refusedBeforeAction = true;
+        const name = typeof op.name === 'string' ? op.name : String(op.text);
+        const age = Math.max(0, (now() - (options.previous?.takenAt ?? now())) / 1000);
+        throw new Error(
+          `${name} is not on the page now; it was listed ${Math.round(age)} s ago and the page has changed (game state, not a driver failure)`,
+        );
+      }
+    }
     const shot = await options.act();
     if (shot) result.screenshot = shot;
   } catch (error) {
-    operationError = error;
     result.status = 500;
-    result.error = error instanceof Error ? error.message : String(error);
+    const message = error instanceof Error ? error.message : String(error);
+    result.error =
+      message.includes('game state') || message.includes('driver failure')
+        ? message
+        : `${message} (driver failure)`;
   } finally {
-    if (op.op !== 'log') {
+    if (!refusedBeforeAction && (op.op !== 'log' || result.status === 500)) {
       // Snapshot failure must never retry the action or change its result.
       result.snapshot = null;
       result.snapshotAvailable = false;
@@ -323,16 +347,6 @@ export async function runPlayOperation(
         }
       }
     }
-  }
-  if (
-    operationError instanceof MissingPlayControl &&
-    result.requested_control_present_before &&
-    result.snapshotAvailable &&
-    requestedControlPresent(result.snapshot, op) === false &&
-    options.previous
-  ) {
-    const age = Math.max(0, (now() - options.previous.takenAt) / 1000);
-    result.error = `${operationError.control} is not on the page now; it was listed ${Math.round(age)} s ago and the page has changed (game state, not a driver failure)`;
   }
   if (!result.snapshotAvailable && !result.snapshot_warning)
     result.snapshot_warning = 'Snapshot unavailable. No controls list has been captured.';

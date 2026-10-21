@@ -3,7 +3,7 @@
  * Self-contained because Playwright serializes this function into the page. Never
  * match a label fragment, pick the first duplicate, or tap through another control.
  */
-export function textControlPoint(text: string): { x: number; y: number } | null {
+export function textControlPoint(text: string): { x: number; y: number } | { reason: string } {
   const normalize = (value: string) => value.replace(/\s+/g, ' ').trim();
   const wanted = normalize(text);
   const auxiliary = '.tooltip, [role="tooltip"], [hidden], [aria-hidden="true"]';
@@ -61,20 +61,26 @@ export function textControlPoint(text: string): { x: number; y: number } | null 
     if (label === wanted || (accessible !== null && normalize(accessible) === wanted))
       candidates.push(element);
   }
-  if (candidates.length !== 1) return null;
+  if (candidates.length === 0) return { reason: 'not found' };
+  if (candidates.length !== 1) return { reason: `${candidates.length} controls match` };
   const target = candidates[0];
-  if (!target || target.matches(':disabled, [aria-disabled="true"], .disabled')) return null;
+  if (!target) return { reason: 'not found' };
+  if (target.matches(':disabled, .disabled') || target.closest('[aria-disabled="true"]'))
+    return { reason: 'disabled' };
+  target.scrollIntoView({ block: 'center' });
   const box = target.getBoundingClientRect();
+  let onScreen = false;
   for (const fy of [0.5, 0.3, 0.7, 0.15, 0.85])
     for (const fx of [0.5, 0.3, 0.7, 0.15, 0.85]) {
       const x = box.left + box.width * fx;
       const y = box.top + box.height * fy;
       if (x < 0 || y < 0 || x >= innerWidth || y >= innerHeight) continue;
+      onScreen = true;
       const hit = document.elementFromPoint(x, y) as HTMLElement | null;
       if (!hit || hidden(hit) || (hit !== target && !target.contains(hit))) continue;
       let owner: HTMLElement | null = hit;
       while (owner && owner !== target && !control(owner)) owner = owner.parentElement;
       if (owner === target) return { x, y };
     }
-  return null;
+  return { reason: onScreen ? 'covered by another element' : 'off screen' };
 }

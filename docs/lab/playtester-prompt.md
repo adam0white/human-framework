@@ -10,6 +10,7 @@ Give the persona a set-aside time, not a break with a timer. Do not write minute
 Mix temperaments across a round: patient, curious and impatient.
 At most one persona per round carries a dislike aimed at the weakness under test; label it a probe in the round's README.
 Give access through `npm run lab:play` (one persistent page, tap by name, text or point, native selects, inner-panel scroll, one log schema).
+Launch the driver from the shared checkout’s current main (or a worktree at main), check the driver commit in its startup line, and use `curl -m 40` because a 30 s wait plus its snapshot outlives a 10 s client timeout.
 Run two arms per round with identical persona text: free stop (floor 0) and continued exposure (floor 15, ceiling 25). Read voluntary stopping from the free-stop arm only.
 Have a reader who does not know the arm code the earliest wish to leave from the whole diary, apart from the formal tags.
 Run one control session per round: A Dark Room (https://adarkroom.doublespeakgames.com/) on desktop under the same pinned protocol; a repeated shift in it warrants checking the instrument.
