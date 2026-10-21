@@ -1145,7 +1145,7 @@ export interface Person {
   skills: Record<string, Skill>;
   /** Acquired conditional method evidence and current received cues; absent until used. */
   methods?: MethodsState;
-  /** Received future consequences, absent until attended testimony supplies them. */
+  /** Received future consequences, absent until attended testimony or `seedConsequences` supplies them. */
   prospection?: ProspectionState;
   /** Opt-in bounded planning over retained consequences. Owned by `prospection/`. */
   planning?: PlanningState;

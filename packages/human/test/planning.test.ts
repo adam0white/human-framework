@@ -92,6 +92,25 @@ describe('bounded planning', () => {
     ]);
   });
 
+  test('a route never uses a link its own earlier step already consumed', () => {
+    const p = person();
+    p.agenda.goals.push({
+      ...structuredClone(p.agenda.goals[0]!),
+      id: 'fetch',
+      advancedBy: [{ action: 'take', amount: 1 }],
+    });
+    hf.enablePlanning(p);
+    // go→take, take→go, go→put: completing the first go consumes both go-triggered links.
+    hf.seedConsequences(p, 'host', [
+      claim('a', 'go', 'take'),
+      claim('b', 'take', 'go'),
+      claim('c', 'go', 'put'),
+    ]);
+    const route = hf.planRoute(p, offer('go'));
+    expect(route?.steps.map((s) => s.successor.action)).toEqual(['take']);
+    expect(route?.goals.deliver ?? 0).toBe(0);
+  });
+
   test('depth two keeps the legacy single-successor terms exactly', () => {
     const off = person();
     told(off, [claim('one', 'go', 'put')]);

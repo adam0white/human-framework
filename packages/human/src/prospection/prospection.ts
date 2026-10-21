@@ -366,13 +366,17 @@ export function receivedGoalRoute(
     steps: PlanStep[],
     values: number[],
     accumulatedCost: number,
+    done: readonly Affordance[],
   ): void {
     if (path.length >= (p.planning?.depth ?? 2) - 1 || remaining <= 0) return;
     for (const entry of entries) {
       if (remaining <= 0) return;
+      // Completing an action consumes every open opportunity it triggers, so a
+      // link whose trigger an earlier simulated step already performed is gone.
       if (
         path.includes(entry) ||
         !matches(entry.trigger, previous) ||
+        done.some((a) => matches(entry.trigger, a)) ||
         entry.triggeredAt !== undefined ||
         now > entry.expiresAt
       )
@@ -416,10 +420,10 @@ export function receivedGoalRoute(
           },
         };
       }
-      visit(successor, end, nextAccess, nextPath, nextSteps, nextValues, nextCost);
+      visit(successor, end, nextAccess, nextPath, nextSteps, nextValues, nextCost, [...done, previous]);
     }
   }
-  visit(aff, now + Math.max(0, aff.duration), 1, [], [], direct, 0);
+  visit(aff, now + Math.max(0, aff.duration), 1, [], [], direct, 0, []);
   return best;
 }
 /** Conservative optional-slice restore; ambiguous identities drop the slice. @internal */
