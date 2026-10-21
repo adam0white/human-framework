@@ -5337,7 +5337,7 @@
    "words": "I think it would be clearer if the handwritten font in the two voices is only for the other voice, or descriptions about it. We can be consistent about this and that would reduce the cognitive load",
    "verdict": "-",
    "routes": [
-    "fix:murmur handwritten face only for the other voice and text about it, everything else in the plain face (Codex worker queued after F-402, 2026-10-21)"
+    "fix:murmur one marker (handwritten face or its slanted style) only for the other voice and text about it, everything else plain and upright, per the owner's follow-up about the slanted style (Codex worker queued after F-402, 2026-10-21)"
    ],
    "source": "chat 2026-10-21"
   }
