@@ -171,6 +171,18 @@ function copyArrays<T extends Pick<Commitment, 'actions' | 'violatedBy' | 'exemp
  */
 /** Copy valid temporal settings and drop invalid ones at every agenda entry point. */
 function sanitizeGoalTemporal(g: Goal): void {
+  const project = g.project as unknown;
+  if (project !== undefined) {
+    if (
+      isObj(project) &&
+      typeof project.prospectId === 'string' &&
+      project.prospectId.length > 0 &&
+      project.prospectId.length <= 512 &&
+      typeof project.perceivedProgress === 'boolean'
+    )
+      g.project = { prospectId: project.prospectId, perceivedProgress: project.perceivedProgress };
+    else delete g.project;
+  }
   const t = g.temporal as unknown;
   if (
     t !== undefined &&
@@ -532,10 +544,18 @@ function heldConviction(p: Person, c: Commitment): number {
 export const spanMeetsWindow = (c: Commitment, start: Minute, end: Minute): boolean =>
   start <= c.until && end >= c.from;
 
+/** Explicit host progress can name either the adopted goal or its perceived prospect. */
+function namesGoal(g: Goal, advances: string[] | undefined): boolean {
+  return (
+    (advances?.includes(g.id) ?? false) ||
+    (g.project !== undefined && (advances?.includes(g.project.prospectId) ?? false))
+  );
+}
+
 function goalAmount(g: Goal, aff: Affordance): number {
   const own = g.advancedBy.find((a) => a.action === aff.action);
   if (own) return own.amount;
-  return aff.advances?.includes(g.id) ? AGENDA_DEFAULTS.defaultAdvanceAmount : 0;
+  return namesGoal(g, aff.advances) ? AGENDA_DEFAULTS.defaultAdvanceAmount : 0;
 }
 
 function deadlinePressure(g: Goal, now: Minute): number {
@@ -733,9 +753,13 @@ export function onFinished(
   for (const g of p.agenda.goals) {
     if (g.status !== 'active') continue;
     const own = g.advancedBy.find((a) => a.action === outcome.action)?.amount ?? 0;
-    const amount =
-      own > 0 ? own : outcome.advances?.includes(g.id) ? AGENDA_DEFAULTS.defaultAdvanceAmount : 0;
+    const amount = own > 0 ? own : namesGoal(g, outcome.advances) ? AGENDA_DEFAULTS.defaultAdvanceAmount : 0;
     if (amount <= 0) continue;
+    // Credit the contribution for narration/reward, but only perception sets this project's progress.
+    if (g.project?.perceivedProgress) {
+      advanced.push(g);
+      continue;
+    }
     g.progress = clamp01(g.progress + amount);
     g.lastAdvancedAt = outcome.at;
     if (g.baseImportance !== undefined) g.importance = g.baseImportance;
@@ -769,6 +793,20 @@ export function adoptGoal(
   sanitizeGoalTemporal(goal);
   p.agenda.goals.push(goal);
   return goal;
+}
+
+/** Attended host progress is authoritative for an active perceived-progress project. @internal */
+export function perceiveProjectProgress(p: Person, prospectId: string, progress: number, now: Minute): void {
+  for (const g of p.agenda.goals) {
+    if (g.status !== 'active' || !g.project?.perceivedProgress || g.project.prospectId !== prospectId)
+      continue;
+    if (progress > g.progress) {
+      g.lastAdvancedAt = now;
+      if (g.baseImportance !== undefined) g.importance = g.baseImportance;
+    }
+    g.progress = clamp01(progress);
+    if (g.progress >= 1) g.status = 'achieved';
+  }
 }
 
 export function abandonGoal(p: Person, id: string): boolean {

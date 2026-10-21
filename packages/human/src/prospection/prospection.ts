@@ -114,6 +114,10 @@ function consequence(x: unknown, receivedAt: number): ReceivedConsequence | unde
     s.duration < 0 ||
     s.duration > PROSPECTION_DEFAULTS.horizon ||
     !unit(s.effort) ||
+    (s.advances !== undefined &&
+      (!Array.isArray(s.advances) ||
+        s.advances.length > 8 ||
+        !s.advances.every((x) => typeof x === 'string' && x.length > 0 && x.length <= 512))) ||
     (s.focus !== undefined && !unit(s.focus)) ||
     (s.materialCost !== undefined &&
       (!isNum(s.materialCost) || s.materialCost < 0 || s.materialCost > PROSPECTION_DEFAULTS.maxMaterialCost))
@@ -139,6 +143,7 @@ function consequence(x: unknown, receivedAt: number): ReceivedConsequence | unde
       ...successorAction,
       duration: s.duration,
       effort: s.effort,
+      ...(s.advances !== undefined ? { advances: [...(s.advances as string[])] } : {}),
       ...(s.focus !== undefined ? { focus: s.focus } : {}),
       ...(s.materialCost !== undefined ? { materialCost: s.materialCost } : {}),
     },

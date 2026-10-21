@@ -12,6 +12,12 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+### Added
+
+- Opt-in projects from attended host prospects: bounded retention, deterministic relaxed-time adoption, perception-owned progress, stale abandonment and terminal history. Enable with `enableProjects` or `PersonSpec.enable.projects`.
+- Goal progress aliases through `Goal.project.prospectId`; retained consequence successors accept bounded `advances` ids so planning can value a route to a self-set project. Perceived-progress projects receive contribution credit without event-driven progress.
+- A one-day projects headless control, focused tests, and exact disabled-slice continuation against main `a3d3439`, with and without prospect data.
+
 ## [2.13.0] - 2026-10-20
 
 Engine: 2.13.0. *Why not* ([slice plan](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md#slice-3-if-time-allows); The Pass's requests 1 and 4 in [game-requests-2026-10-18.md](https://github.com/adam0white/human-framework/blob/main/docs/game-requests-2026-10-18.md)). A declined suggestion can say what decided it, and a person can hold a rule of their own as a will-not. Both are opt-in: without them, state, decisions, resolution JSON and digests are the same as 2.12.0 with only the engine stamp normalized. Saves migrate from 2.12.0 by stamping the version.
