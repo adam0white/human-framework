@@ -18,7 +18,7 @@ Engine: 2.12.0. *Steps ahead* ([slice plan](https://github.com/adam0white/human-
 
 ### Added
 
-- Opt-in bounded planning (`enablePlanning(p, { depth?, presentBias? })` or `PersonSpec.enable.planning`, state `Person.planning`, owned by `prospection/`). Chains link retained consequences where one claim's successor is exactly the next claim's trigger (action, target, place). Depth is 2 to 5 steps including the current action (default 4). The search is depth first in stable source and id order, with a budget of 64 node expansions and no claim used twice. Access probabilities multiply along the chain, waits and the goal's temporal half-life discount later steps, and one whole route contributes per offer. An optional present bias (0 < β ≤ 1) discounts value and cost that arrive only through later steps. Depth 2 gives exactly the 2.3.0 single-successor result.
+- Opt-in bounded planning (`enablePlanning(p, { depth?, presentBias? })` or `PersonSpec.enable.planning`, state `Person.planning`, owned by `prospection/`). Chains link retained consequences where one claim's successor is exactly the next claim's trigger (action, target, place). Depth is 2 to 5 steps including the current action (default 4). The search is depth first in stable source and id order, with a budget of 64 node expansions and no claim used twice. A route never uses a claim whose trigger an earlier step of the same route already performed, because completing an action consumes every open claim it triggers. Access probabilities multiply along the chain, waits and the goal's temporal half-life discount later steps, and one whole route contributes per offer. An optional present bias (0 < β ≤ 1) discounts value and cost that arrive only through later steps. Depth 2 gives exactly the 2.3.0 single-successor result.
 - Known consequences: `seedConsequences(p, sourceId, claims)` is host setup for what a person already knows about how their world works (channel `known`, weighted by stated chance and confidence, not source trust). Nothing is inferred from the person's history.
 - With planning, a person retains up to 64 claims and accepts batches of 16. Without it, the bounds stay at 16 and 4. Revision memory stays at 64.
 - Explanation: `planRoute(p, aff, now?)` reads the best route's steps, timing, access and per-goal values without changing anything. A route of two or more successors sets `Term.ref` on its cost term to the chain's claim ids, joined by `>`.
@@ -27,6 +27,12 @@ Engine: 2.12.0. *Steps ahead* ([slice plan](https://github.com/adam0white/human-
 ### Notes
 
 - This is not a general planner. It searches only claims the person holds, never the host's world, and it executes nothing.
+
+### Release
+
+- Tag `v2.12.0` on source commit `8d46688` (CI run 39536610111 passed); the release's `npm run check`: 1976 passed, 8 skipped. Trusted npm workflow 39536936399 succeeded. Registry integrity `sha512-eG39H2oK27P1EellS2qYADicbe1RyKXGwXIcmX4RSe58hMk28LXrNSCLWE8K3OUOn17TxwsD0HN9VV3UgeIlsw==`; `npm audit signatures` in a fresh install reports a verified attestation, and the installed package exports `enablePlanning`, `planRoute` and `seedConsequences` (2.12.0, engine 2.12.0).
+- Review: one independent Codex review ([review](https://github.com/adam0white/human-framework/blob/main/docs/reviews/hf-2.12.0-codex-review.md)), two findings (a route could use a claim its own first step consumed; a stale state comment), both fixed before release with a regression test.
+- Site pins 2.12.0 at commit `56944f5`, deployed (Cloudflare version `8e673552-aac0-448b-84b9-b70b911b081b`); live `/release.json` shows framework 2.12.0, that commit, `dirty: false`.
 
 ## [2.11.0] - 2026-10-20
 
