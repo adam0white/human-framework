@@ -14,18 +14,17 @@
  */
 import { phoneStage } from '@adam0white/lab-kit';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { TallySetting } from '../../shared/EndTally.tsx';
 import { FullscreenButton, useWakeLock } from '../../shared/fullscreen.tsx';
+import { Help } from '../../shared/Help.tsx';
 import { gameLabs } from '../../shared/lab.tsx';
 import type { PageInfo } from '../protocol.ts';
 import { type PostId, postSection, SECTIONS, type SectionId, type WatcherId } from '../sim/config.ts';
 import type { Moment } from '../sim/moments.ts';
-import type { Speed } from '../sim/pace.ts';
 import type { Press } from '../sim/state.ts';
 import { TALKS_PER_DAY, type Topic } from '../sim/talk.ts';
 import type { Frame, FrameWatcher } from '../sim/view.ts';
 import { Chronicle } from './chronicle.tsx';
-import { Icon, type IconName } from './icons.tsx';
+import { Icon } from './icons.tsx';
 import { MapCanvas } from './MapCanvas.tsx';
 import type { Hit } from './map.ts';
 import { groupedUnavailable, nightActKey, retainedNightActs } from './night-requests.ts';
@@ -54,14 +53,6 @@ import {
   ropeWords,
   thawProgress,
 } from './words.ts';
-
-const SPEEDS: { id: Speed; label: string; icon: IconName }[] = [
-  { id: 'tactical', label: 'Slow', icon: 'snail' },
-  { id: 'watch', label: 'Watch', icon: 'play' },
-  { id: 'fast', label: 'Fast', icon: 'fast-forward' },
-  { id: 'days', label: 'Days', icon: 'sun' },
-  { id: 'seasons', label: 'Seasons', icon: 'calendar-days' },
-];
 
 const SEASON_PHASES = new Set<Frame['phase']>(['spring', 'summer', 'autumn']);
 /** Phases where the clock runs and the speed control shows. */
@@ -96,7 +87,6 @@ export function App() {
   const [pressPick, setPressPick] = useState<Press | null>(null);
   const [pageCommit, setPageCommit] = useState<HTMLElement | null>(null);
   const [menu, setMenu] = useState(false);
-  const [tally, setTally] = useState(false);
   const stage = useRef<HTMLElement>(null);
   const postingOrigin = useRef<WatcherId | null>(null);
   const menuOrigin = useRef<HTMLElement | null>(null);
@@ -148,7 +138,7 @@ export function App() {
   }, [ready]);
   useEffect(() => {
     const back = (event: KeyboardEvent) => {
-      if (event.key !== 'Escape') return;
+      if (event.key !== 'Escape' || document.querySelector(':popover-open')) return;
       if (menu) setMenu(false);
       else if (selected) setSelected(null);
     };
@@ -248,27 +238,7 @@ export function App() {
           <h1>The Night Watch</h1>
           <p>{headerLine(frame)}</p>
         </div>
-        {frame.phase !== 'goal' ? (
-          <fieldset
-            className={`w-speeds${frame.slowed ? ' is-slowed' : ''}${RUNNING.has(frame.phase) ? '' : ' is-idle'}`}
-            title={RUNNING.has(frame.phase) ? undefined : 'The clock stands while you read this page.'}
-          >
-            <legend className="sr-only">Speed</legend>
-            {SPEEDS.map((s) => (
-              <button
-                key={s.id}
-                type="button"
-                className="w-speed"
-                aria-label={s.label}
-                aria-pressed={speed === s.id}
-                onClick={() => actions.setSpeed(s.id)}
-              >
-                <Icon name={s.icon} size={16} />
-                <span>{s.label}</span>
-              </button>
-            ))}
-          </fieldset>
-        ) : null}
+
         <button
           type="button"
           className="w-chronicle"
@@ -318,9 +288,6 @@ export function App() {
               saving={saving}
               current={current}
               onClose={() => setMenu(false)}
-              tallySetting={
-                <TallySetting on={tally} onChange={setTally} label="Keep a tally at the chronicle’s end" />
-              }
             />
           ) : null}
 
@@ -356,7 +323,7 @@ export function App() {
               ) : null}
               {frame.phase === 'dawn' ? <DawnPanel frame={frame} actions={actions} /> : null}
               {frame.phase === 'fallen' ? (
-                <FallenPage frame={frame} actions={actions} seed={seed} tally={tally} />
+                <FallenPage frame={frame} actions={actions} seed={seed} tally={true} />
               ) : null}
               {SEASON_PHASES.has(frame.phase) ? <SeasonPanel frame={frame} actions={actions} /> : null}
               {frame.phase === 'fair' ? <FairPage frame={frame} actions={actions} /> : null}
@@ -488,12 +455,10 @@ export function GoalPage({
       >
         {saved ? 'Begin anew: go up to the wall' : 'Go up to the wall'}
       </button>
-      <details className="w-about w-flyleaf">
-        <summary>Words for the winter ahead</summary>
+      <Help title="Words for the winter ahead">
         <WinterSetting frame={frame} actions={actions} />
-      </details>
-      <details className="w-about">
-        <summary>About keeping watch</summary>
+      </Help>
+      <Help title="About keeping watch">
         <p>
           You are the Keeper. At dusk the scout tells you what is coming; you post the watchers. At night you
           carry the lantern to one stretch of wall, and only there can you see what comes. The bell hangs over
@@ -506,7 +471,7 @@ export function GoalPage({
           them. Ask leaves it to them; urge leans on them; insist can get them there under protest, and wins
           you no goodwill when it goes well.
         </p>
-      </details>
+      </Help>
       <Sacks have={frame.grain} lost={0} label="The granary is full" />
     </div>
   );
@@ -545,10 +510,9 @@ export function DuskPanel({
         {!sel && (
           <>
             {frame.winter ? (
-              <details className="w-about">
-                <summary>This winter</summary>
+              <Help title="This winter">
                 <WinterNote frame={frame} />
-              </details>
+              </Help>
             ) : null}
             {frame.day && frame.day.lines.length > 0 ? (
               // Opened when someone arrived, so a new name on the roster is explained as it appears (owner's playtest).
@@ -591,13 +555,12 @@ export function DuskPanel({
                 {reads[press]}
               </p>
             ) : null}
-            <details className="w-about w-press-help">
-              <summary>About asking and pressing</summary>
+            <Help title="About asking and pressing">
               <p className="w-note">
                 Ask leaves it to them; urge leans on them; insist can get them there under protest. Tired or
                 frightened watchers may leave their post.
               </p>
-            </details>
+            </Help>
           </div>
         ) : null}
         {!sel && (
@@ -771,7 +734,10 @@ export function NightPanel({
     <div className="w-night">
       {!who ? (
         <header className="lk-sheet-head w-watch-entry">
-          <p className="w-note">Tap a watcher to ask for rest, help or to go down.</p>
+          <Help title="About watchers and the lantern">
+            <p>Tap a watcher to ask for rest, help or to go down.</p>
+            <p>Only the lantern’s stretch shows what approaches. Your voice reaches the next stretch.</p>
+          </Help>
           <button
             type="button"
             className="w-chip"
@@ -783,9 +749,6 @@ export function NightPanel({
         </header>
       ) : null}
       <div className="lk-sheet-body" ref={body} hidden={Boolean(who?.account)}>
-        <p className="w-note w-lantern-context">
-          Only the lantern’s stretch shows what approaches. Your voice reaches the next stretch.
-        </p>
         <div hidden={Boolean(who)}>
           {!rosterOpen ? (
             <NightMoment
@@ -925,7 +888,7 @@ function NightAccount({
   useEffect(() => {
     if (!choice) return;
     const back = (event: KeyboardEvent) => {
-      if (event.key !== 'Escape') return;
+      if (event.key !== 'Escape' || document.querySelector(':popover-open')) return;
       event.stopImmediatePropagation();
       setChoice(null);
     };
@@ -1103,7 +1066,9 @@ function askWords(topic: Topic, w: FrameWatcher | undefined): string {
 /** Talks at dawn: a little daylight, spent one talk at a time, against the watchers' sleep. */
 function Talks({ frame, actions }: { frame: Frame; actions: WatchActions }) {
   const t = frame.talks;
+  const [picked, setPicked] = useState<WatcherId | null>(null);
   if (!t) return null;
+  const chosen = t.can.includes(picked as WatcherId) ? picked : t.can[0];
   return (
     <section className="w-talks" aria-label="Talks before they sleep">
       <div className="w-talks-head">
@@ -1113,7 +1078,7 @@ function Talks({ frame, actions }: { frame: Frame; actions: WatchActions }) {
       <p className="w-note">{daylightWords(t.left)} Each talk costs them a little sleep.</p>
       {t.said.length > 0 ? (
         <ul className="w-voices">
-          {t.said.map((x) => (
+          {t.said.slice(-1).map((x) => (
             <li key={`${x.who}-${x.topic}`}>
               <blockquote>{x.text}</blockquote>
               <span className="w-voice-who">{x.name}</span>
@@ -1121,28 +1086,56 @@ function Talks({ frame, actions }: { frame: Frame; actions: WatchActions }) {
           ))}
         </ul>
       ) : null}
+      {t.said.length > 1 ? (
+        <Help title="Earlier morning talks">
+          <ul className="w-voices">
+            {t.said.slice(0, -1).map((x) => (
+              <li key={`${x.who}-${x.topic}`}>
+                <blockquote>{x.text}</blockquote>
+                <span>{x.name}</span>
+              </li>
+            ))}
+          </ul>
+        </Help>
+      ) : null}
       {t.left > 0 && t.can.length > 0 ? (
         <ul className="w-asks">
-          {t.can.map((id) => {
-            const w = frame.watchers.find((x) => x.id === id);
-            return (
-              <li key={id}>
-                <span className="w-person-name">{w?.name ?? id}</span>
-                <span className="w-ask-btns">
-                  {(t.topics[id] ?? ['night', 'body']).slice(0, 2).map((topic) => (
-                    <button
-                      key={topic}
-                      type="button"
-                      className="w-chip"
-                      onClick={() => actions.input({ k: 'talk', who: id, topic })}
-                    >
-                      {askWords(topic, w)}
-                    </button>
-                  ))}
-                </span>
-              </li>
-            );
-          })}
+          <li className="w-talk-person">
+            <label>
+              Speak with{' '}
+              <select
+                value={chosen ?? ''}
+                onChange={(event) => setPicked(event.currentTarget.value as WatcherId)}
+              >
+                {t.can.map((id) => (
+                  <option key={id} value={id}>
+                    {nameIn(frame, id)}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </li>
+          {t.can
+            .filter((id) => id === chosen)
+            .map((id) => {
+              const w = frame.watchers.find((x) => x.id === id);
+              return (
+                <li key={id}>
+                  <span className="w-ask-btns">
+                    {(t.topics[id] ?? ['night', 'body']).slice(0, 2).map((topic) => (
+                      <button
+                        key={topic}
+                        type="button"
+                        className="w-chip"
+                        onClick={() => actions.input({ k: 'talk', who: id, topic })}
+                      >
+                        {askWords(topic, w)}
+                      </button>
+                    ))}
+                  </span>
+                </li>
+              );
+            })}
         </ul>
       ) : null}
     </section>
@@ -1158,36 +1151,43 @@ function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActions }) 
       <p className="w-kicker">Dawn · {frame.date}</p>
       <h2 className="w-dawn-outcome">{dawnOutcome(d)}</h2>
       <WinterProgress frame={frame} />
+      {(frame.talks?.said.length ? [] : d.voices.slice(-1)).map((v) => (
+        <blockquote className="w-dawn-heard" key={`${v.who}-${v.text}`}>
+          {v.text} <cite>{nameIn(frame, v.who)}</cite>
+        </blockquote>
+      ))}
       <Talks frame={frame} actions={actions} />
       {d.scout ? <p className="w-scoutline">{d.scout}</p> : null}
       {frame.grainWarning ? <p className="w-grain-warning">{frame.grainWarning}</p> : null}
-      <ul className="w-dawnlines">
-        {d.lines.map((l) => (
-          <li key={l.section}>{l.text}</li>
-        ))}
-      </ul>
-      {d.voices.length > 0 ? (
-        <ul className="w-voices">
-          {d.voices.map((v) => (
-            <li key={`${v.who}-${v.text}`}>
-              <blockquote>{v.text}</blockquote>
-              <span className="w-voice-who">{nameIn(frame, v.who)}</span>
-            </li>
+      <Help title="The night’s account">
+        <ul className="w-dawnlines">
+          {d.lines.map((l) => (
+            <li key={l.section}>{l.text}</li>
           ))}
         </ul>
-      ) : null}
-      <Sacks
-        have={d.grainAfter}
-        lost={d.grainBefore - d.grainAfter}
-        need={frame.need}
-        label={`${d.grainAfter === d.grainBefore ? 'No sacks lost' : 'Sacks lost in the night, drawn faded'}; the mark is what the village eats until the harvest`}
-      />
-      {d.ropeSnapped ? (
-        <p className="w-note">Someone will have to splice the bell rope today; it will not be new.</p>
-      ) : null}
-      {last ? (
-        <p className="w-note">That was the last night watched this winter; the rest goes by routine.</p>
-      ) : null}
+        {d.voices.length > 0 ? (
+          <ul className="w-voices">
+            {d.voices.map((v) => (
+              <li key={`${v.who}-${v.text}`}>
+                <blockquote>{v.text}</blockquote>
+                <span className="w-voice-who">{nameIn(frame, v.who)}</span>
+              </li>
+            ))}
+          </ul>
+        ) : null}
+        <Sacks
+          have={d.grainAfter}
+          lost={d.grainBefore - d.grainAfter}
+          need={frame.need}
+          label={`${d.grainAfter === d.grainBefore ? 'No sacks lost' : 'Sacks lost in the night, drawn faded'}; the mark is what the village eats until the harvest`}
+        />
+        {d.ropeSnapped ? (
+          <p className="w-note">Someone will have to splice the bell rope today; it will not be new.</p>
+        ) : null}
+        {last ? (
+          <p className="w-note">That was the last night watched this winter; the rest goes by routine.</p>
+        ) : null}
+      </Help>
       <div className="w-dawn-continue">
         <button type="button" className="w-primary" onClick={() => actions.input({ k: 'toDusk' })}>
           {last ? 'Into the thaw' : 'On to dusk'}

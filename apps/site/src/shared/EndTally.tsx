@@ -18,7 +18,8 @@ export function TallySetting({
 
 export function EndTally({ title, lines }: { title: string; lines: readonly string[] }) {
   return (
-    <section className="end-tally" aria-label={title}>
+    <details className="end-tally">
+      <summary>See the tally</summary>
       <h3>{title}</h3>
       <p>This game’s own reckoning, not a measure of its people.</p>
       <ul>
@@ -26,6 +27,6 @@ export function EndTally({ title, lines }: { title: string; lines: readonly stri
           <li key={line}>{line}</li>
         ))}
       </ul>
-    </section>
+    </details>
   );
 }

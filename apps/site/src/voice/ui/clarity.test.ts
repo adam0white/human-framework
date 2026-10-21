@@ -41,17 +41,16 @@ it('offers Begin after at most 40 mandatory words and keeps the full story on re
   const el = render(createElement(Premise, { ready: true, onBegin: () => {} }));
   const card = query(el, '.v-card');
   const copy = card.cloneNode(true) as HTMLElement;
-  for (const details of copy.querySelectorAll('details')) {
-    const summary = details.querySelector('summary');
-    if (summary) details.replaceWith(summary.cloneNode(true));
+  for (const details of copy.querySelectorAll('[popover]')) {
+    details.remove();
   }
   const walker = document.createTreeWalker(copy, NodeFilter.SHOW_TEXT);
   const text: string[] = [];
   while (walker.nextNode()) text.push(walker.currentNode.textContent ?? '');
-  expect(text.join(' ').trim().split(/\s+/).length).toBe(34);
+  expect(text.join(' ').trim().split(/\s+/).length).toBeLessThanOrEqual(40);
   expect(copy.textContent).toContain('Suggest an action; Halil decides.');
-  const context = query<HTMLDetailsElement>(el, 'details');
-  expect(context.open).toBe(false);
+  const context = query<HTMLElement>(el, '[popover]');
+  expect(context.getAttribute('popover')).toBe('auto');
   expect(context.textContent).toContain('Nuran died fourteen weeks');
   expect(context.textContent).toContain('Who else he hears');
   expect(
@@ -175,7 +174,7 @@ it('keeps lab screen tracking in the game without a separate notebook row', () =
   expect(app).not.toContain('<LabControls');
 });
 
-it('names what Auto does without substituting an unexplained phone abbreviation', () => {
+it('keeps automatic pacing out of the player controls', () => {
   const el = render(
     createElement(TopBar, {
       ...sampleFrame,
@@ -184,7 +183,7 @@ it('names what Auto does without substituting an unexplained phone abbreviation'
       onPlaytestError: () => {},
     }),
   );
-  const auto = query(el, '.v-autopause');
-  expect(auto.textContent).toContain('Slow at scenes');
-  expect(auto.querySelector('.v-short')).toBeNull();
+  expect(el.querySelector('.v-autopause')).toBeNull();
+  expect(el.querySelector('.v-pace')).toBeNull();
+  expect(el.querySelector('.v-pace-cycle')).toBeNull();
 });

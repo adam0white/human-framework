@@ -5716,6 +5716,31 @@
     "lesson:L7"
    ],
    "source": "stairwell/docs/playtests/owner-2026-10-21.md"
+  },
+  {
+   "id": "F-433",
+   "date": "2026-10-21",
+   "game": "lab",
+   "kind": "owner",
+   "who": "owner",
+   "words": "I'm also starting to think that for some games it's better to take the control of speed away from the player altogether. It'll be better to not control it, we're working on automatically controlling it anyway, and it may give us some space back. I also think some helpful explanations are better off left as a single information \"i\" that doesn't take space, and pops up instead of expanding the view. Players will only check it out a couple times anyways. If better for the flow, we can still offer a button to fast forward until the next event whenever needed. I think having no speed controls is better across many games of ours so far, let's do a sweep. The night watch can make use of these and other better approaches to eliminate scrolling and still fit things into a mobile screen. Don't clutter with options such as keep a tally. Keep it, and offer at the end optionally.",
+   "verdict": "-",
+   "routes": [
+    "fix:watch automatic pacing and compact mobile night and morning, explanations in i popovers and end-only tally",
+    "fix:well automatic pacing and helper popovers with end-only tally",
+    "fix:voice automatic pacing and helper popovers with end-only tally",
+    "fix:glance automatic pacing and helper popovers with end-only tally (owner retest)",
+    "fix:valley automatic pacing and helper popovers with end-only tally (owner retest)",
+    "fix:warren automatic pacing and helper popovers with end-only tally (owner retest)",
+    "fix:goodhands automatic pacing and helper popovers with end-only tally (owner retest)",
+    "fix:pass automatic pacing and helper popovers with end-only tally (owner retest)",
+    "fix:stairwell automatic pacing and helper popovers with end-only tally (owner retest)",
+    "fix:hearsay automatic pacing and helper popovers with end-only tally (owner retest)",
+    "fix:murmur automatic pacing and helper popovers with end-only tally (owner retest)",
+    "fix:rope automatic pacing and helper popovers with end-only tally (owner retest)",
+    "fix:neighbours automatic pacing and helper popovers with end-only tally (owner retest)"
+   ],
+   "source": "Owner speed sweep 2026-10-21"
   }
  ],
  "lessons": [
@@ -6322,7 +6347,7 @@
   }
  ],
  "routes": {
-  "fix": 432,
+  "fix": 445,
   "lesson": 291,
   "hf": 12,
   "calibration": 42,

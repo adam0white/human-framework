@@ -1,5 +1,6 @@
 /** voice.md §7.1: the start state. The game is paused behind this card until Begin. */
 import { useEffect, useRef } from 'react';
+import { Help } from '../../shared/Help.tsx';
 import { storyDates } from './dates.ts';
 import { ModelNotes } from './parts.tsx';
 import { MealTerms } from './terms.tsx';
@@ -32,8 +33,7 @@ export function Premise({ ready, onBegin }: { ready: boolean; onBegin: () => voi
         >
           {ready ? 'Begin' : 'Waking the town…'}
         </button>
-        <details className="v-premise-context">
-          <summary>More about Halil and this month</summary>
+        <Help title="More about Halil and this month">
           <p className="v-lede">
             Halil is 61. He repairs kettles and bicycles in a rented shop. His wife Nuran died fourteen weeks
             ago; their daughter Selin lives in the city. Tonight is the first night of Ramadan.
@@ -71,7 +71,7 @@ export function Premise({ ready, onBegin }: { ready: boolean; onBegin: () => voi
             are not a religious calendar.
           </p>
           <MealTerms />
-        </details>
+        </Help>
         <ModelNotes />
       </div>
     </div>

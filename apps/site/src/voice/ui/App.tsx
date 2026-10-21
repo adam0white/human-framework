@@ -3,7 +3,6 @@
  * and plain suggestions. Halil and Ends remain available through tabs. Space toggles the clock.
  */
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { TallySetting } from '../../shared/EndTally.tsx';
 import { useWakeLock } from '../../shared/fullscreen.tsx';
 import { gameLabs, useLabScreen } from '../../shared/lab.tsx';
 import { PlaytestNotice } from '../../shared/PlaytestMenu.tsx';
@@ -34,7 +33,6 @@ export function App() {
   const voice = { ...liveVoice, frame: stable.frame };
   const { frame, actions } = voice;
   const [tab, setTab] = useState<Tab>('day');
-  const [tally, setTally] = useState(false);
   const [holdingReply, setHoldingReply] = useState(false);
   const [whyId, setWhyId] = useState<string | null>(null);
 
@@ -77,6 +75,7 @@ export function App() {
       !e.ctrlKey &&
       !e.altKey &&
       !typing(e.target) &&
+      !(e.target instanceof Element && e.target.closest('.game-help')) &&
       keyState.current.overlay !== 'report';
     const onDown = (e: KeyboardEvent) => {
       if (!ours(e)) return;
@@ -136,7 +135,6 @@ export function App() {
     >
       {frame && (
         <TopBar
-          tallySetting={<TallySetting on={tally} onChange={setTally} label="Keep a tally in the notebook" />}
           phase={frame.phase}
           day={frame.day}
           dayLabel={frame.dayLabel}
@@ -216,7 +214,7 @@ export function App() {
         (voice.report ? (
           <Report
             view={voice.report}
-            tally={tally}
+            tally={true}
             sceneWords={frame?.sceneWords}
             onKeepListening={actions.keepListening}
             onReplay={() => actions.replay()}

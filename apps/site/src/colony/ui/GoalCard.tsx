@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
+import { Help } from '../../shared/Help.tsx';
 import { VILLAGES, type Village } from '../sim/village.ts';
 import { dayClock, type Frame } from './contract.ts';
-import { AutoPauseToggle } from './parts.tsx';
 import { VILLAGE_WORDS } from './village-words.ts';
 
 /**
@@ -62,8 +62,7 @@ export function GoalCard(props: {
         <button type="button" className="btn btn-play" ref={play} onClick={props.onPlay}>
           Play
         </button>
-        <details className="goal-card-context">
-          <summary>More about the village</summary>
+        <Help title="More about the village">
           <p className="goal-card-sides">
             Two copies of one village hear every order you give. <b>Classic</b> units obey. <b>Human</b>{' '}
             people weigh your order against their own needs, duties and trust in you, and may say no.
@@ -91,10 +90,7 @@ export function GoalCard(props: {
             {props.autoPause ? ' The clock slows while a suggestion awaits your decision.' : ''}
             <span className="keys-hint"> Space pauses.</span>
           </p>
-        </details>
-        <div className="goal-card-actions">
-          <AutoPauseToggle on={props.autoPause} onChange={props.onAutoPause} />
-        </div>
+        </Help>
       </section>
     </div>
   );

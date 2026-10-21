@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { TallySetting } from '../../shared/EndTally.tsx';
 import { FullscreenButton, useWakeLock } from '../../shared/fullscreen.tsx';
 import { gameLabs, LabMenuContent, useLabScreen } from '../../shared/lab.tsx';
 import { PlaytestMenu, PlaytestNotice } from '../../shared/PlaytestMenu.tsx';
@@ -17,7 +16,6 @@ import { Pane } from './Pane.tsx';
 import { PaneBody, PeopleRows } from './PeopleRows.tsx';
 import { PhoneSheet, VillageStrip } from './PhoneStage.tsx';
 import {
-  AutoPauseToggle,
   Composer,
   type ComposerState,
   EMPTY_COMPOSER,
@@ -91,7 +89,6 @@ export function App() {
   const [hoverPlace, setHoverPlace] = useState<PlaceId | null>(null);
   const [inspect, setInspect] = useState<{ personId: VillagerId; decisionId?: string } | null>(null);
   const [endOpen, setEndOpen] = useState(true);
-  const [tally, setTally] = useState(false);
   const [flash, setFlash] = useState<string | null>(null);
   const [toast, setToast] = useState(false);
   const [moment, setMoment] = useState<MomentRecord | null>(null);
@@ -405,7 +402,7 @@ export function App() {
   keys.current = { paused: playback.paused, inspect: inspectOpen, end: hasSummary && endOpen };
   useEffect(() => {
     const onDown = (e: KeyboardEvent) => {
-      if (isEditable(e.target)) return;
+      if (isEditable(e.target) || (e.target instanceof Element && e.target.closest('.game-help'))) return;
       if (e.key === ' ' || e.code === 'Space') {
         e.preventDefault();
         e.stopPropagation();
@@ -436,7 +433,7 @@ export function App() {
       }
     };
     const onUp = (e: KeyboardEvent) => {
-      if (isEditable(e.target)) return;
+      if (isEditable(e.target) || (e.target instanceof Element && e.target.closest('.game-help'))) return;
       if (e.key === ' ' || e.code === 'Space') {
         e.preventDefault();
         e.stopPropagation();
@@ -575,8 +572,6 @@ export function App() {
             extra={
               <>
                 <LabMenuContent lab={gameLabs.well} onSend={actions.sendPlaytest} />
-                <TallySetting on={tally} onChange={setTally} label="Keep a tally at dawn" />
-                <AutoPauseToggle on={playback.autoPause} onChange={actions.setAutoPause} />
                 <FullscreenButton variant="item" />
               </>
             }
@@ -908,7 +903,7 @@ export function App() {
       {showEnd && (
         <EndScreen
           summaries={colony.summaries}
-          tally={tally}
+          tally={true}
           humanKind={frame?.humanKind ?? 'placeholder'}
           canContinue={frame?.canContinue ?? false}
           onContinue={continueDay}

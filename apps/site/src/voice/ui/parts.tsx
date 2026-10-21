@@ -1,3 +1,4 @@
+import { Help } from '../../shared/Help.tsx';
 /** Small shared pieces: verdict styling, appeal and strength labels, the model notes. */
 import { type Appeal, MODEL_NOTES, type Strength, type Tone, type VoiceId } from '../protocol.ts';
 
@@ -41,14 +42,13 @@ export const VOICE_NAMES: Record<VoiceId, string> = {
 
 export function ModelNotes({ notes = MODEL_NOTES }: { notes?: readonly string[] }) {
   return (
-    <details className="v-notes">
-      <summary>Model notes</summary>
+    <Help title="Model notes">
       <ul>
         {notes.map((n) => (
           <li key={n}>{n}</li>
         ))}
       </ul>
-    </details>
+    </Help>
   );
 }
 

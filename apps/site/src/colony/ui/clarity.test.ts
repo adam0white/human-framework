@@ -31,14 +31,13 @@ describe('Well first-minute clarity', () => {
     const el = render(
       createElement(GoalCard, { frame, text: '', autoPause: true, onAutoPause: vi.fn(), onPlay: vi.fn() }),
     );
-    const context = el.querySelector('details');
-    expect(context?.open).toBe(false);
+    const context = el.querySelector('[popover]');
+    expect(context?.getAttribute('popover')).toBe('auto');
     expect(context?.textContent).toContain('may say no');
     expect(context?.textContent).toContain('Your own orders can');
-    expect(el.querySelector('.btn-play')?.nextElementSibling).toBe(context);
+    expect(el.querySelector('.btn-play')?.nextElementSibling).toBe(context?.parentElement);
     expect(el.querySelector('.goal-card-goal')?.textContent).toContain('Roof the house, store 12 meals');
-    const summary = context?.querySelector('summary');
-    if (summary) context?.replaceWith(summary);
+    context?.remove();
     const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
     const text: string[] = [];
     while (walker.nextNode()) text.push(walker.currentNode.textContent ?? '');

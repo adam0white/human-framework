@@ -33,7 +33,7 @@ function render(component: Parameters<typeof renderToStaticMarkup>[0]) {
   return el;
 }
 function mandatory(el: HTMLElement) {
-  for (const details of el.querySelectorAll('details:not([open])')) details.remove();
+  for (const details of el.querySelectorAll('details:not([open]), [popover]')) details.remove();
   const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
   const words: string[] = [];
   while (walker.nextNode()) words.push(walker.currentNode.textContent ?? '');
@@ -57,9 +57,7 @@ describe('Night Watch first-minute clarity', () => {
   it('reaches the first watcher choice within forty mandatory words across both screens', () => {
     const opening = render(createElement(GoalPage, { frame: goal, actions, shelf: [], current: 'new' }));
     expect(opening.querySelector('h2')?.nextElementSibling?.textContent).toBe('Go up to the wall');
-    expect(opening.querySelector('details:not(.w-flyleaf)')?.textContent).toContain(
-      'Every pull wears the rope',
-    );
+    expect(opening.querySelectorAll('[popover]')[1]?.textContent).toContain('Every pull wears the rope');
     const posting = render(createElement(DuskPanel, duskProps));
     const first = posting.querySelector('.w-roster');
     expect(first).not.toBeNull();
@@ -281,7 +279,7 @@ it('shows one clock rate with the reason for a watcher decision', async () => {
   expect(app.querySelector('.w-moment')?.closest('.w-mapwrap')).toBeNull();
   expect(app.querySelector('.w-panel .w-moment')).not.toBeNull();
   expect(app.textContent).not.toContain('the night waits on you');
-  expect(app.querySelector('[aria-label="Fast"]')?.getAttribute('aria-pressed')).toBe('true');
+  expect(app.querySelector('[aria-label="Fast"]')).toBeNull();
 });
 
 it('keeps the full bell explanation available and keeps the ringing label in its labelled target', () => {
@@ -494,8 +492,8 @@ it('posts directly on the scene with Ask and opens a night account without a gam
   expect(container.querySelector('.w-account')).toBeNull();
   expect(container.querySelector('.w-moment')).not.toBeNull();
   await act(async () => container.querySelector<HTMLButtonElement>('.w-moment-let')?.click());
-  await act(async () => container.querySelector<HTMLButtonElement>('.w-watch-entry button')?.click());
-  await act(async () => container.querySelector<HTMLButtonElement>('.w-watch-entry button')?.click());
+  await act(async () => container.querySelector<HTMLButtonElement>('.w-watch-entry > button')?.click());
+  await act(async () => container.querySelector<HTMLButtonElement>('.w-watch-entry > button')?.click());
   expect(container.querySelector('.w-moment')).toBeNull();
   await mapHit({ kind: 'watcher', watcher: 'tamar' });
   expect(container.querySelector('.w-account')).not.toBeNull();
@@ -682,7 +680,7 @@ it('keeps the watcher route beside a decision and opens it without sending an in
     'Tap a watcher to ask for rest, help or to go down.',
   );
   expect(container.querySelector('.w-moment')).not.toBeNull();
-  await act(async () => container.querySelector<HTMLButtonElement>('.w-watch-entry button')?.click());
+  await act(async () => container.querySelector<HTMLButtonElement>('.w-watch-entry > button')?.click());
   expect(container.querySelector('.w-night-details')?.hasAttribute('open')).toBe(true);
   expect(container.querySelector('.w-moment')).toBeNull();
   await act(async () => container.querySelector<HTMLButtonElement>('.w-night-roster button')?.click());

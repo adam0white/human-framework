@@ -133,7 +133,7 @@ export function SeasonPanel({ frame, actions }: { frame: Frame; actions: WatchAc
       {frame.year <= 2 ? (
         <p className="w-note w-speed-hint">
           The days run on their own at <strong>Seasons</strong> pace, slowing for news and for a matter for
-          you. Choose a slower speed in the top bar to watch the village go about its days.
+          you. The village slows for news and decisions, and moves briskly through quiet days.
         </p>
       ) : null}
       <p className="w-note w-souls">{frame.souls}.</p>
@@ -271,6 +271,7 @@ export function ThawPage({ frame, actions }: { frame: Frame; actions: WatchActio
       ) : (
         <p className="w-note">The wall and the houses stand as they did.</p>
       )}
+      <EndTally title="The winter’s tally" lines={watchTally(frame)} />
       <Leaves frame={frame} />
       <PageActions>
         <button type="button" className="w-primary" onClick={() => actions.input({ k: 'continue' })}>

@@ -71,11 +71,11 @@ it('keeps the meal meanings available on request before and during play', () => 
   const premise = render(createElement(Premise, { ready: true, onBegin: () => {} }));
   const halil = render(createElement(HalilPane, { halil: sampleFrame.halil }));
   for (const el of [premise, halil]) {
-    const glossary = [...el.querySelectorAll('details')].find(
-      (details) => details.querySelector('summary')?.textContent === 'Meal terms',
+    const glossary = [...el.querySelectorAll('[popover]')].find(
+      (details) => details.querySelector('strong')?.textContent === 'Meal terms',
     );
     expect(glossary).toBeDefined();
-    expect(glossary?.open).toBe(false);
+    expect(glossary?.getAttribute('popover')).toBe('auto');
     expect(glossary?.textContent).toContain('Suhoor');
     expect(glossary?.textContent).toContain('meal before the fast');
     expect(glossary?.textContent).toContain('Iftar');

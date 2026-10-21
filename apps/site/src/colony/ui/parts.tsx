@@ -199,8 +199,7 @@ export function SpeedControls(props: {
   onPause(p: boolean): void;
   onSpeed(s: Speed): void;
 }) {
-  const speeds: Speed[] = [0.5, 1, 2];
-  const { paused, speed } = props.playback;
+  const { paused } = props.playback;
   return (
     <fieldset className="speed">
       <legend className="visually-hidden">Speed</legend>
@@ -213,17 +212,6 @@ export function SpeedControls(props: {
       >
         {paused ? '▶' : '❚❚'}
       </button>
-      {speeds.map((s) => (
-        <button
-          key={s}
-          type="button"
-          className={`speed-btn ${speed === s ? 'is-on' : ''}`}
-          aria-pressed={speed === s}
-          onClick={() => props.onSpeed(s)}
-        >
-          {s === 0.5 ? '½×' : `${s}×`}
-        </button>
-      ))}
     </fieldset>
   );
 }
@@ -283,9 +271,7 @@ export function TopBar(props: {
           </button>
         )}
         <SpeedControls playback={props.playback} onPause={props.onPause} onSpeed={props.onSpeed} />
-        <span className="topbar-autopause">
-          <AutoPauseToggle on={props.playback.autoPause} onChange={props.onAutoPause} />
-        </span>
+
         {props.playtest}
       </div>
     </header>

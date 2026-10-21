@@ -2070,3 +2070,73 @@ body:has(> .hflab-veil) .watch .w-menu {
   margin: 3px 0 0;
   font-size: 0.85rem;
 }
+
+/* Morning leaves room for one conversation and its next action on a phone. */
+@media (max-width: 899px) {
+  .watch.phase-dawn .w-stage {
+    grid-template-rows: auto minmax(64px, 1fr) auto;
+  }
+  .watch.phase-dawn .w-panel {
+    max-height: calc(var(--lk-available-height, 100dvh) - var(--lk-strip-height, 0px) - 64px);
+  }
+  .watch.phase-dawn .w-goal-state > p:first-child {
+    display: none;
+  }
+  .watch .w-dawn .w-kicker {
+    margin: 0 0 4px;
+  }
+  .watch .w-dawn h2 {
+    font-size: 1.15rem;
+    margin: 4px 0;
+  }
+  .watch .w-dawn .w-winter-progress {
+    margin: 6px 0;
+  }
+  .watch .w-dawn .w-talks {
+    margin-top: 8px;
+    padding-top: 8px;
+  }
+  .watch .w-dawn .w-talks h3 {
+    margin: 0;
+  }
+  .watch .w-dawn .w-asks {
+    margin: 4px 0;
+  }
+  .watch .w-dawn .w-asks > li {
+    margin: 4px 0;
+  }
+  .watch .w-dawn .w-ask-btns {
+    display: flex;
+    gap: 4px;
+  }
+  .watch .w-dawn .w-ask-btns button {
+    flex: 1;
+  }
+  .watch .w-dawn select {
+    min-height: 36px;
+    color: inherit;
+    background: var(--w-panel);
+    border: 1px solid var(--w-line);
+    border-radius: 4px;
+    padding: 4px;
+  }
+  .watch .w-dawn-continue {
+    margin-top: 6px;
+  }
+}
+
+.watch .w-dawn-heard {
+  margin: 6px 0;
+  font-size: 0.85rem;
+  line-height: 1.25;
+}
+.watch .w-dawn-heard cite {
+  font-style: normal;
+  opacity: 0.75;
+}
+
+@media (max-width: 899px) {
+  .watch .w-dawn > .w-kicker {
+    display: none;
+  }
+}
