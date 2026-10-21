@@ -80,10 +80,9 @@ function cleanProspect(x: unknown): Prospect | undefined {
 /** Enable or reconfigure without discarding retained prospects and history. */
 export function enableProjects(p: Person, spec: ProjectsSpec = {}): ProjectsState {
   const state = p.projects ?? { prospects: [], history: [] };
-  if (state.behaviour !== 2) {
-    for (const g of p.agenda.goals)
-      if (g.status === 'active' && g.project?.perceivedProgress) g.project.peak = g.progress;
-  }
+  for (const g of p.agenda.goals)
+    if (g.status === 'active' && g.project?.perceivedProgress && g.project.peak === undefined)
+      g.project.peak = g.progress;
   state.behaviour = 2;
   const clean = cleanSpec(spec);
   delete state.spec;

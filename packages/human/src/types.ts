@@ -2095,6 +2095,8 @@ export interface PursuitState {
   behaviour?: 2;
   spec?: PersistenceSpec;
   current?: Pursuit;
-  /** One goal withheld from pursuit formation until this minute; agenda terms remain unchanged. */
+  /** Most recent maximum-duration release, withheld until this minute; agenda terms stay unchanged.
+   * Defaults (maxMinutes 240, restMinutes 20) prevent two releases within one interval.
+   * A shorter maximum can let a later release replace an earlier unexpired interval. */
   rested?: { goalId: string; until: Minute };
 }

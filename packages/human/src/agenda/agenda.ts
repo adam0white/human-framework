@@ -756,7 +756,9 @@ export function onFinished(
     const own = g.advancedBy.find((a) => a.action === outcome.action)?.amount ?? 0;
     const amount = own > 0 ? own : namesGoal(g, outcome.advances) ? AGENDA_DEFAULTS.defaultAdvanceAmount : 0;
     if (amount <= 0) continue;
-    // Credit the contribution for narration/reward, but only perception sets this project's progress.
+    // onFinished runs before the host shows the result: advanced counts a contribution made from
+    // at or above the high-water mark, not a confirmed new high. Only the next perception moves
+    // the progress clock, importance and pull; the composite does not consume advanced.
     if (g.project?.perceivedProgress) {
       if (g.project.peak === undefined || g.progress >= g.project.peak) advanced.push(g);
       continue;
@@ -801,6 +803,7 @@ export function perceiveProjectProgress(p: Person, prospectId: string, progress:
   for (const g of p.agenda.goals) {
     if (g.status !== 'active' || !g.project?.perceivedProgress || g.project.prospectId !== prospectId)
       continue;
+    if (p.projects?.behaviour === 2 && g.project.peak === undefined) g.project.peak = g.progress;
     if (progress > (g.project.peak ?? g.progress)) {
       if (g.project.peak !== undefined) g.project.peak = clamp01(progress);
       g.lastAdvancedAt = now;

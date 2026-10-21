@@ -359,6 +359,33 @@ test('restoring an earlier reading does not earn net credit or refresh staleness
   expect(contribute()).toContain(g);
 });
 
+test('public project adoption retains its first high and re-enable repairs a missing peak', () => {
+  const p = person();
+  const g = hf.adoptGoal(
+    p,
+    {
+      label: 'Host project',
+      serves: ['competence'],
+      advancedBy: [],
+      importance: 0.5,
+      project: { prospectId: prospect.id, perceivedProgress: true },
+    },
+    p.now,
+  );
+  see(p, { ...prospect, progress: 0.3 });
+  const advancedAt = g.lastAdvancedAt;
+  hf.tick(p, p.now + 1);
+  see(p, { ...prospect, progress: 0.2 });
+  hf.tick(p, p.now + 1);
+  see(p, { ...prospect, progress: 0.3 });
+  expect(g.lastAdvancedAt).toBe(advancedAt);
+  expect(g.project?.peak).toBe(0.3);
+  if (!g.project) throw new Error('No project');
+  delete g.project.peak;
+  hf.enableProjects(p);
+  expect(g.project.peak).toBe(0.3);
+});
+
 test('project behaviour and peaks survive restore; re-enabling a legacy save opts in once', () => {
   const p = person();
   see(p, { ...prospect, progress: 0.3 });

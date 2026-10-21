@@ -19,11 +19,12 @@ Engine: 2.14.1. Corrects a modelling assumption inside the released projects and
 ### Fixed
 
 - Newly enabled perceived-progress projects retain their highest reading in `Goal.project.peak`. Only a new high refreshes staleness and importance; contributions below that high restore rather than earn advancement credit. Event-credited projects cannot observe reversals and retain their existing credit.
+- `onFinished.advanced` counts a contribution made from at or above the high-water mark before the host shows the result; only the next perception confirms a new high and moves the clock, importance and pull, and the composite does not consume `advanced`.
 - Newly enabled persistence halves both continuation and switching terms every 30 minutes without goal progress (`stallHalfLifeMinutes`, bounded 1..1440). The goal's progress clock survives pursuit release and re-formation. Existing release rules remain unchanged.
 
 ### Compatibility
 
-- Enabling either faculty stamps its slice with `behaviour: 2`. Re-enabling projects seeds active perceived-progress goals' peaks from their current progress. Re-enabling on every load opts in by that act.
+- Enabling either faculty stamps its slice with `behaviour: 2`. Re-enabling projects seeds missing peaks on active perceived-progress goals from their current progress without lowering existing peaks. Re-enabling on every load opts in by that act.
 - Migration from 2.14.0 only stamps the engine version. Slices restored without the marker retain exact 2.14.0 crediting and an undecaying pull until the host re-enables them.
 
 ## [2.14.0] - 2026-10-20

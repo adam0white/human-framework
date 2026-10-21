@@ -66,8 +66,10 @@ importance × (0.4 + 0.6 × conscientiousness). `consider` adds `pursuit:<id>` t
 `pursuit:switch` against alternatives, including rest. Both use scale 0.8, cap 0.8 and the relaxed
 physiological/safety/fear gate; options carrying `commitment:` terms never pay switching cost.
 `tick` and `finish` release achieved, abandoned, missing, unserved for 20 minutes or 240-minute-old
-pursuits. Maximum-duration release retains one goal id with a 20-minute refractory interval
-(`restMinutes`); that goal cannot form a pursuit during the interval, while other goals can.
+pursuits. Maximum-duration release retains one refractory entry for the most recent release,
+with a 20-minute interval (`restMinutes`); that goal cannot form a pursuit while the entry remains.
+With defaults (`maxMinutes` 240, `restMinutes` 20), two releases cannot fall within one interval;
+with a shorter maximum, a later release can replace an earlier unexpired interval.
 Its agenda terms stay unchanged. Refreshing service keeps the original start time. A short interruption permits resumption.
 `pursuitOf` returns a read-only copy. These are engineering defaults: a bounded bias plus a switching
 cost, not a planner or a change to goal valuation. See [research/projects-and-persistence.md](../research/projects-and-persistence.md).

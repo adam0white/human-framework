@@ -4,7 +4,9 @@
  * unrelated options pay a switching cost (goal shielding: Shah, Friedman & Kruglanski 2002;
  * task switching: Monsell 2003). Unused activation expires (Altmann & Trafton 2002); short
  * interruptions allow resumption (Ovsiankina 1928). See research/projects-and-persistence.md.
- * Maximum-duration release rests that goal for one bounded interval before pursuit can form again.
+ * Maximum-duration release keeps one refractory entry, for the most recent release. With defaults
+ * (maxMinutes 240, restMinutes 20), two releases cannot fall within one interval; with a shorter
+ * maximum, a later release can replace an earlier unexpired interval.
  * These are shapes, not fitted values; all coefficients and time bounds are engineering defaults.
  * This is a bounded bias plus a switching cost, not a planner. It chooses no goals, executes no
  * plans, reorders no steps and changes no agenda valuation. It imports no projects, uses no RNG,
