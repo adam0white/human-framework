@@ -1,0 +1,22 @@
+.end-tally-setting {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  padding: 0.65rem 0;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.end-tally-setting input {
+  flex: none;
+  margin-top: 0.2rem;
+}
+
+.end-tally {
+  margin-block: 1rem;
+}
+
+.village-choice small {
+  display: block;
+  margin-top: 0.3rem;
+}

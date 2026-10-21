@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { EndTally } from '../../shared/EndTally.tsx';
 import type { HindsightReply, HindsightRequest } from '../hindsight-worker.ts';
 import type { Hindsight } from '../sim/hindsight.ts';
 import { formatClock } from '../sim/world-types.ts';
@@ -13,6 +14,7 @@ import {
   nearMisses,
   ordersChanged,
 } from './end-report.ts';
+import { wellTally } from './end-tally.ts';
 import { Icon, NoConcept } from './Icon.tsx';
 import { GoalChip, jobPhrase, PLACE_LABEL, shortName } from './parts.tsx';
 
@@ -232,6 +234,7 @@ function Report({ summary, humanKind }: { summary: EndSummary; humanKind: string
 
 export function EndScreen(props: {
   summaries: Partial<Record<2 | 3, EndSummary>>;
+  tally?: boolean;
   humanKind: string;
   canContinue: boolean;
   onContinue(): void;
@@ -276,6 +279,7 @@ export function EndScreen(props: {
           </div>
         )}
         <Report summary={summary} humanKind={props.humanKind} />
+        {props.tally ? <EndTally title="The well’s tally" lines={wellTally(summary)} /> : null}
         <div className="end-actions">
           {offerDay && (
             <button type="button" className="btn" onClick={props.onContinue}>

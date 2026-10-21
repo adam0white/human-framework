@@ -64,6 +64,7 @@ export function Chronicle({
   saving,
   current,
   onClose,
+  tallySetting,
 }: {
   frame: Frame;
   actions: WatchActions;
@@ -72,6 +73,7 @@ export function Chronicle({
   saving: boolean;
   current: string;
   onClose: () => void;
+  tallySetting?: React.ReactNode;
 }) {
   const [loadNote, setLoadNote] = useState('');
   const [confirmNew, setConfirmNew] = useState(false);
@@ -133,6 +135,7 @@ export function Chronicle({
       <section className="w-menu-sec" aria-label="The flyleaf">
         <h3>The flyleaf</h3>
         <WinterSetting frame={frame} actions={actions} />
+        {tallySetting}
       </section>
       <section className="w-menu-sec" aria-label="The volumes">
         <h3>The shelf</h3>

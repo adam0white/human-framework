@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { TallySetting } from '../../shared/EndTally.tsx';
 import { FullscreenButton, useWakeLock } from '../../shared/fullscreen.tsx';
 import { gameLabs, LabMenuContent, useLabScreen } from '../../shared/lab.tsx';
 import { PlaytestMenu, PlaytestNotice } from '../../shared/PlaytestMenu.tsx';
 import type { HurtNews, MomentRecord } from '../sim/game.ts';
 import type { PlaceId } from '../sim/map.ts';
 import { inferAction, type OrderCard, type OrderInput } from '../sim/orders.ts';
-import { VILLAGES } from '../sim/village.ts';
 import { type VillagerId, villagerById } from '../sim/world-types.ts';
 import { BubbleManager } from './bubbles.ts';
 import type { Nudge } from './contract.ts';
@@ -39,6 +39,7 @@ import {
 } from './parts.tsx';
 import { suggestionChoice, suggestionInput } from './suggestion-choice.ts';
 import { useColony } from './useColony.ts';
+import { VILLAGE_WORDS } from './village-words.ts';
 
 const ONBOARDED_KEY = 'colony.onboarded';
 /** Real ms a moment's caption stays up. */
@@ -90,6 +91,7 @@ export function App() {
   const [hoverPlace, setHoverPlace] = useState<PlaceId | null>(null);
   const [inspect, setInspect] = useState<{ personId: VillagerId; decisionId?: string } | null>(null);
   const [endOpen, setEndOpen] = useState(true);
+  const [tally, setTally] = useState(false);
   const [flash, setFlash] = useState<string | null>(null);
   const [toast, setToast] = useState(false);
   const [moment, setMoment] = useState<MomentRecord | null>(null);
@@ -573,6 +575,7 @@ export function App() {
             extra={
               <>
                 <LabMenuContent lab={gameLabs.well} onSend={actions.sendPlaytest} />
+                <TallySetting on={tally} onChange={setTally} label="Keep a tally at dawn" />
                 <AutoPauseToggle on={playback.autoPause} onChange={actions.setAutoPause} />
                 <FullscreenButton variant="item" />
               </>
@@ -580,7 +583,9 @@ export function App() {
           />
         }
       />
-      <p className="well-desktop-village village-setting">{VILLAGES[frame?.village ?? 'default'].label}</p>
+      <p className="well-desktop-village village-setting">
+        {VILLAGE_WORDS[frame?.village ?? 'default'].season}
+      </p>
       <GoalStrip goals={frame?.goals ?? []} />
 
       <main
@@ -903,6 +908,7 @@ export function App() {
       {showEnd && (
         <EndScreen
           summaries={colony.summaries}
+          tally={tally}
           humanKind={frame?.humanKind ?? 'placeholder'}
           canContinue={frame?.canContinue ?? false}
           onContinue={continueDay}

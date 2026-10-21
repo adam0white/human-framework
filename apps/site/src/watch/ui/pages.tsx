@@ -1,3 +1,5 @@
+import { EndTally } from '../../shared/EndTally.tsx';
+import { watchTally } from './end-tally.ts';
 /**
  * The year's pages around the winter (G3-3): the open seasons (date, volume, granary, the people and a season card
  * when one is open), the fair, the thaw, a closed volume and a fallen village, plus the live chronicle strip over the
@@ -318,7 +320,17 @@ export function ClosedPage({ frame, actions }: { frame: Frame; actions: WatchAct
 }
 
 /** The village ended: its volume closes with the epilogue, and a new village can begin. */
-export function FallenPage({ frame, actions, seed }: { frame: Frame; actions: WatchActions; seed: number }) {
+export function FallenPage({
+  frame,
+  actions,
+  seed,
+  tally = false,
+}: {
+  frame: Frame;
+  actions: WatchActions;
+  seed: number;
+  tally?: boolean;
+}) {
   const v = frame.volume;
   return (
     <div className="w-page w-closed w-fallen">
@@ -330,6 +342,7 @@ export function FallenPage({ frame, actions, seed }: { frame: Frame; actions: Wa
       </p>
       <Epilogue v={v} />
       <p>The village cannot stay. The chronicle closes this volume.</p>
+      {tally ? <EndTally title="The chronicle’s tally" lines={watchTally(frame)} /> : null}
       <p className="w-note">Open Game menu to download or send this run.</p>
       <PageActions>
         <button type="button" className="w-primary" onClick={() => actions.restart(seed + 1)}>

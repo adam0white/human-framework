@@ -1,10 +1,12 @@
 /**
- * The end report (voice.md §7.5), one panel that scrolls inside the viewport. No score, stars, or words about worth,
+ * The end report (voice.md §7.5), one panel that scrolls inside the viewport. An optional notebook tally counts player entries; no stars or words about worth,
  * faith or acceptance. Keep listening resumes from Eid night; Replay restarts the seed; New town picks a new one.
  */
 import { useEffect, useRef } from 'react';
+import { EndTally } from '../../shared/EndTally.tsx';
 import type { ReportView, SceneWords } from '../protocol.ts';
 import { EndsList, UnaskedStrip } from './EndsPane.tsx';
+import { voiceTally } from './end-tally.ts';
 import { ModelNotes } from './parts.tsx';
 import { Strip, StripLegend } from './Strip.tsx';
 import { companyWords } from './speech-summary.ts';
@@ -27,8 +29,10 @@ export function Report({
   onNewTown,
   onDownload,
   sceneWords = [],
+  tally = false,
 }: {
   view: ReportView;
+  tally?: boolean;
   sceneWords?: readonly SceneWords[] | undefined;
   onKeepListening: () => void;
   onReplay: () => void;
@@ -193,6 +197,7 @@ export function Report({
           <StripLegend rows={view.rows} />
         </section>
 
+        {tally ? <EndTally title="The notebook’s tally" lines={voiceTally(view, sceneWords)} /> : null}
         <div className="v-report-actions">
           <button type="button" className="v-btn v-btn-primary v-btn-big" onClick={onKeepListening}>
             Keep listening

@@ -280,3 +280,20 @@ describe('Well review follow-up', () => {
     }
   });
 });
+
+it('adds the optional dawn tally only when requested', () => {
+  const props = {
+    summaries: { 2: summary },
+    humanKind: 'framework',
+    canContinue: true,
+    onContinue: () => {},
+    onAgain: () => {},
+    onClose: () => {},
+  };
+  expect(renderToStaticMarkup(createElement(EndScreen, props))).not.toContain('The well’s tally');
+  const on = renderToStaticMarkup(createElement(EndScreen, { ...props, tally: true }));
+  expect(on).toContain('The well’s tally');
+  expect(on).toContain('Classic:');
+  expect(on).toContain('Human:');
+  expect(on).toContain('marks');
+});

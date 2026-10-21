@@ -73,10 +73,12 @@ export type TopBarFields = Pick<
 export const TopBar = memo(function TopBar({
   actions,
   onPlaytestError,
+  tallySetting,
   ...frame
 }: TopBarFields & {
   actions: VoiceActions;
   onPlaytestError: (message: string) => void;
+  tallySetting?: React.ReactNode;
 }) {
   const live = frame.phase === 'day' || frame.phase === 'eid' || frame.phase === 'free';
   return (
@@ -179,6 +181,7 @@ export const TopBar = memo(function TopBar({
           extra={
             <>
               <LabMenuContent lab={gameLabs.voice} onSend={actions.sendPlaytest} />
+              {tallySetting}
               <FullscreenButton variant="item" className="v-fs-item" />
             </>
           }

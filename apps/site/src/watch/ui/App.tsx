@@ -14,6 +14,7 @@
  */
 import { phoneStage } from '@adam0white/lab-kit';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { TallySetting } from '../../shared/EndTally.tsx';
 import { FullscreenButton, useWakeLock } from '../../shared/fullscreen.tsx';
 import { gameLabs } from '../../shared/lab.tsx';
 import type { PageInfo } from '../protocol.ts';
@@ -94,6 +95,7 @@ export function App() {
   const [pressPick, setPressPick] = useState<Press | null>(null);
   const [pageCommit, setPageCommit] = useState<HTMLElement | null>(null);
   const [menu, setMenu] = useState(false);
+  const [tally, setTally] = useState(false);
   const stage = useRef<HTMLElement>(null);
   const postingOrigin = useRef<WatcherId | null>(null);
   const menuOrigin = useRef<HTMLElement | null>(null);
@@ -315,6 +317,9 @@ export function App() {
               saving={saving}
               current={current}
               onClose={() => setMenu(false)}
+              tallySetting={
+                <TallySetting on={tally} onChange={setTally} label="Keep a tally at the chronicle’s end" />
+              }
             />
           ) : null}
 
@@ -349,7 +354,9 @@ export function App() {
                 />
               ) : null}
               {frame.phase === 'dawn' ? <DawnPanel frame={frame} actions={actions} /> : null}
-              {frame.phase === 'fallen' ? <FallenPage frame={frame} actions={actions} seed={seed} /> : null}
+              {frame.phase === 'fallen' ? (
+                <FallenPage frame={frame} actions={actions} seed={seed} tally={tally} />
+              ) : null}
               {SEASON_PHASES.has(frame.phase) ? <SeasonPanel frame={frame} actions={actions} /> : null}
               {frame.phase === 'fair' ? <FairPage frame={frame} actions={actions} /> : null}
               {frame.phase === 'thaw' ? <ThawPage frame={frame} actions={actions} /> : null}
@@ -481,7 +488,7 @@ export function GoalPage({
         {saved ? 'Begin anew: go up to the wall' : 'Go up to the wall'}
       </button>
       <details className="w-about w-flyleaf">
-        <summary>The flyleaf · choose the winter</summary>
+        <summary>Words for the winter ahead</summary>
         <WinterSetting frame={frame} actions={actions} />
       </details>
       <details className="w-about">

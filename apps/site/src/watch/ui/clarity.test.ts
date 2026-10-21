@@ -642,7 +642,14 @@ it('records a winter choice from the flyleaf and states when it takes effect', a
       }),
     ),
   );
-  expect(container.textContent).toContain('In force: hard winter. Changes take effect from the next dusk.');
+  expect(container.textContent).toContain(
+    'The winter that came: as the village knows it. New hopes are for the next dusk.',
+  );
+  expect(container.textContent).toContain('Tamar:');
+  expect(container.textContent).toContain('Joss:');
+  expect(container.textContent).toContain('Yunus:');
+  expect(container.textContent).toContain('Mara:');
+  expect(container.textContent).not.toContain('Milder winter');
   const radios = container.querySelectorAll<HTMLInputElement>('input');
   expect(radios[1]?.checked).toBe(true);
   await act(async () => radios[0]?.click());

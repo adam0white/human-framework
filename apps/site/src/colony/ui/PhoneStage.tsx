@@ -4,7 +4,6 @@ import type { HurtNews } from '../sim/game.ts';
 import type { Prediction } from '../sim/human-side.ts';
 import type { PlaceId } from '../sim/map.ts';
 import { APPEALS, type OrderCard } from '../sim/orders.ts';
-import { VILLAGES } from '../sim/village.ts';
 import { type ActionId, VILLAGERS, type VillagerId, villagerById } from '../sim/world-types.ts';
 import { dayClock, type Frame, type Nudge } from './contract.ts';
 import { latestPersonOrder } from './order-status.ts';
@@ -22,6 +21,7 @@ import {
   suggestionNeedsReview,
 } from './parts.tsx';
 import { suggestionChoice } from './suggestion-choice.ts';
+import { VILLAGE_WORDS } from './village-words.ts';
 
 /** Phone presentation only. Orders still pass through the same callbacks and simulation. */
 export function VillageStrip({ frame, side }: { frame: Frame | null; side: 'human' | 'classic' }) {
@@ -60,7 +60,7 @@ export function VillageStrip({ frame, side }: { frame: Frame | null; side: 'huma
           {deadline === undefined ? 'not scheduled' : dayClock(deadline).replace('D', 'Day ')}
         </span>
       </button>
-      <p className="village-setting">{VILLAGES[frame?.village ?? 'default'].label}</p>
+      <p className="village-setting">{VILLAGE_WORDS[frame?.village ?? 'default'].season}</p>
       <p className="lk-strip-detail" data-expanded={expanded}>
         The {side === 'human' ? 'Human' : 'Classic'} village has completed {stage} of {target}{' '}
         {label.toLowerCase()} stages and stores {meals} meals.{' '}

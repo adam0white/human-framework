@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { VILLAGES, type Village } from '../sim/village.ts';
 import { dayClock, type Frame } from './contract.ts';
 import { AutoPauseToggle } from './parts.tsx';
+import { VILLAGE_WORDS } from './village-words.ts';
 
 /**
  * The start card (item 1): the run begins paused behind it. It shows the three goals, when the storm comes
@@ -38,7 +39,7 @@ export function GoalCard(props: {
         <p>Select a villager, then tap a place.</p>
         {props.onVillage && props.frame?.minute === 0 && (
           <fieldset className="village-choice">
-            <legend>Choose this village</legend>
+            <legend>Words by the well</legend>
             {(Object.keys(VILLAGES) as Village[]).map((village) => (
               <label key={village}>
                 <input
@@ -50,7 +51,10 @@ export function GoalCard(props: {
                     props.onVillage?.(village);
                   }}
                 />
-                {VILLAGES[village].label}
+                <span>
+                  {VILLAGE_WORDS[village].choice}
+                  <small>{VILLAGE_WORDS[village].reply}</small>
+                </span>
               </label>
             ))}
           </fieldset>
