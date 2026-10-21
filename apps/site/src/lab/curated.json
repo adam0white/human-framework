@@ -5350,7 +5350,7 @@
    "words": "Shall we polish, and add a third week that builds up on our choices so far? or am I doing too much stretching?",
    "verdict": "-",
    "routes": [
-    "fix:murmur polish and write a third-week proposal for owner approval (open, target 2026-10-28)",
+    "fix:murmur polish and write a third-week proposal for owner approval (proposal written, murmur 9d8220c docs/week-three-proposal.md, awaiting owner approval)",
     "lesson:L13"
    ],
    "source": "murmur/docs/playtests/owner-2026-10-21.md"
@@ -5364,7 +5364,7 @@
    "words": "This repeats: Mum talked about the neighbour’s roof. Dilan laughed twice.",
    "verdict": "-",
    "routes": [
-    "fix:murmur avoid repeating the roof conversation in one run (open, target 2026-10-28)",
+    "fix:murmur avoid repeating the roof conversation in one run (done, murmur 9d8220c)",
     "lesson:L2"
    ],
    "source": "murmur/docs/playtests/owner-2026-10-21.md"
@@ -5378,7 +5378,7 @@
    "words": "This feels wrong: After I leave it for now, then I will (cancel).",
    "verdict": "-",
    "routes": [
-    "fix:murmur correct the leave-it-for-now cancellation reply (open, target 2026-10-28)",
+    "fix:murmur correct the leave-it-for-now cancellation reply (done, murmur 9d8220c)",
     "lesson:L3"
    ],
    "source": "murmur/docs/playtests/owner-2026-10-21.md"
@@ -5392,7 +5392,7 @@
    "words": "These two doesn't sound like the right link. She chose: 'Call Mum from the car park.' 'Feet on the floor.' Her own words now.",
    "verdict": "-",
    "routes": [
-    "fix:murmur attach an adopted phrase to the action that learned it (open, target 2026-10-28)",
+    "fix:murmur attach an adopted phrase to the action that learned it (done, murmur 9d8220c)",
     "lesson:L3"
    ],
    "source": "murmur/docs/playtests/owner-2026-10-21.md"
@@ -5406,7 +5406,7 @@
    "words": "Same here: You suggested: Go over. Tell her quietly. She chose: 'Call out the parcel number.' 'Not now. After I stop the duplicate collection.'",
    "verdict": "-",
    "routes": [
-    "fix:murmur make the parcel deferral link and chronology clear (open, target 2026-10-28)",
+    "fix:murmur make the parcel deferral link and chronology clear (done, murmur 9d8220c)",
     "lesson:L1",
     "lesson:L3"
    ],
@@ -5421,7 +5421,7 @@
    "words": "I'm confused when we stayed late for extra work (she rejected my push to just go to birthday) yet was able to keep 'word to Aylin'.",
    "verdict": "-",
    "routes": [
-    "fix:murmur clarify late birthday arrival with the kept-word review (open, replay confirms route ends 19:22 and dinner 19:45, target 2026-10-28)",
+    "fix:murmur clarify late birthday arrival with the kept-word review (done, murmur 9d8220c)",
     "lesson:L3"
    ],
    "source": "murmur/docs/playtests/owner-2026-10-21.md"
@@ -5435,7 +5435,7 @@
    "words": "'Second week' overflows. And 'human framework'.",
    "verdict": "-",
    "routes": [
-    "fix:murmur keep Second week and human framework inside the phone viewport (open, target 2026-10-28)",
+    "fix:murmur keep Second week and human framework inside the phone viewport (done, murmur 9d8220c)",
     "lesson:L9"
    ],
    "source": "murmur/docs/playtests/owner-2026-10-21.md"
@@ -5462,7 +5462,7 @@
    "words": "Lol, I'm not sure if there's a way to beat the pencil at all:  A fortnight ago, the pencil wrote bigger than you. On Monday, the pencil wrote bigger than you. By Saturday, the pencil still wrote bigger than you.",
    "verdict": "mixed",
    "routes": [
-    "fix:murmur clarify pencil progress while keeping natural difficulty (open, attainable path confirmed on 0.4.1, target 2026-10-28)",
+    "fix:murmur verify pencil progress while keeping natural difficulty (done, existing winning path confirmed on 0.4.1 with selective suggestions and silence, no tuning, murmur 9d8220c)",
     "lesson:L12",
     "lesson:L15"
    ],
