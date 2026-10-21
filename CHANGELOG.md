@@ -17,6 +17,7 @@ absolute links in sections, since they are copied into the release page.
 - Opt-in projects from attended host prospects: bounded retention, deterministic relaxed-time adoption, perception-owned progress, stale abandonment and terminal history. Enable with `enableProjects` or `PersonSpec.enable.projects`.
 - Goal progress aliases through `Goal.project.prospectId`; retained consequence successors accept bounded `advances` ids so planning can value a route to a self-set project. Perceived-progress projects receive contribution credit without event-driven progress.
 - A one-day projects headless control, focused tests, and exact disabled-slice continuation against main `a3d3439`, with and without prospect data.
+- Opt-in persistence (`enablePersistence`, `PersonSpec.enable.persistence`, `pursuitOf`, `PERSISTENCE_DEFAULTS`): starting an option with positive direct or planned goal credit retains one active pursuit. Continuing means get a bounded bias; alternatives pay a switching cost, except commitment options. Physiological urgency, safety and fear suppress both terms. Short interruptions allow resumption. Finished or absent goals, 20 minutes without service and 240 minutes total release the pursuit. Defaults are engineering choices; existing hosts without the slice retain identical continuation.
 
 ## [2.13.0] - 2026-10-20
 

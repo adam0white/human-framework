@@ -117,6 +117,7 @@ export { MIGRATIONS, migratableVersions, migrate } from './migrate.ts';
 export * from './narrate/index.ts';
 export * from './needs/index.ts';
 export * from './partnering/index.ts';
+export { enablePersistence, PERSISTENCE_DEFAULTS, pursuitOf } from './persistence/index.ts';
 export * from './person.ts';
 export { considerProjects, enableProjects, PROJECTS_DEFAULTS, projectAppeal } from './projects/index.ts';
 export * from './promptings/index.ts';

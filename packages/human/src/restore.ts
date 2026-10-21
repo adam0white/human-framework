@@ -22,6 +22,7 @@ import { GIST_DEFAULTS, MEMORY_DEFAULTS, sanitizeGists } from './memory/index.ts
 import { sanitizeMethods } from './methods/index.ts';
 import { migrate } from './migrate.ts';
 import { sanitizeBonds } from './partnering/index.ts';
+import { sanitizePursuit } from './persistence/index.ts';
 import { cleanRetention, createPerson, traceLimit } from './person.ts';
 import { sanitizeProjects } from './projects/index.ts';
 import { sanitizePromptings } from './promptings/index.ts';
@@ -96,6 +97,7 @@ const OPTIONAL_KEYS: ReadonlySet<string> = new Set([
   'promptings',
   'curiosity',
   'projects',
+  'pursuit',
   'review',
 ]);
 
@@ -206,6 +208,7 @@ export function restore(input: unknown): Person {
   keepValid(out, 'prospection', (x) => sanitizeProspection(x, out.now, out.id, out.planning !== undefined));
   keepValid(out, 'curiosity', (x) => sanitizeCuriosity(x, out.now));
   keepValid(out, 'projects', (x) => sanitizeProjects(x, out.now));
+  keepValid(out, 'pursuit', (x) => sanitizePursuit(x, out.now));
   keepValid(out, 'promptings', (x) => sanitizePromptings(x, out.now));
   keepValid(out, 'review', (x) => sanitizeReview(x, out.now));
   boundLists(out);

@@ -1163,6 +1163,8 @@ export interface Person {
   curiosity?: CuriosityState;
   /** Self-set projects from attended prospects; owned by projects/. */
   projects?: ProjectsState;
+  /** Keeping a started goal active. Owned by persistence/; absent unless enabled. */
+  pursuit?: PursuitState;
   /** Evening self-review and its resolves (2.7.0, opt-in via `enableReview`). Owned by `review/`. */
   review?: ReviewState;
   /** Practice consolidation (1.8.0, opt-in via `enableSkillRetention`). Owned by `skills/`. */
@@ -1595,6 +1597,8 @@ export interface PersonSpec {
     review?: ReviewSpec;
     /** Self-set projects from what the person attends to. */
     projects?: boolean | ProjectsSpec;
+    /** Keep started goal pursuits across decisions. */
+    persistence?: boolean | PersistenceSpec;
   };
 }
 
@@ -2056,4 +2060,25 @@ export interface ProjectsState {
   lastAbandonedAt?: Minute;
   /** The adopted goal awaiting its one terminal history entry. */
   currentGoalId?: string;
+}
+/** Bounded engineering overrides for persistence/. Invalid overrides use defaults. */
+export interface PersistenceSpec {
+  continueScale?: number;
+  switchScale?: number;
+  cap?: number;
+  switchMargin?: number;
+  slackMinutes?: number;
+  maxMinutes?: number;
+}
+/** A started goal retained across decisions. */
+export interface Pursuit {
+  goalId: string;
+  since: Minute;
+  lastServedAt: Minute;
+  strength: Unit;
+}
+/** Optional JSON state owned by persistence/. */
+export interface PursuitState {
+  spec?: PersistenceSpec;
+  current?: Pursuit;
 }

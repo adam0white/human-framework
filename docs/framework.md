@@ -56,6 +56,21 @@ choices, not fitted values; [research/curiosity-and-play.md](../research/curiosi
 the scientific shapes. This slice reads no `novel` tag and changes no boredom, projects, planning or
 faith mechanic. Absent the slice, state and legacy continuation stay identical.
 
+## Persistence (opt-in)
+
+`enablePersistence(p, spec?)` or `PersonSpec.enable.persistence` retains one started active goal in
+`p.pursuit`. `begin` uses the begun option's positive `goal:<id>` terms, including planned routes,
+to form or refresh it. Largest term wins, tied by goal id. Switching goals requires the new term to
+exceed the current goal's term on that option (zero if absent) by more than 0.15. Strength is goal
+importance × (0.4 + 0.6 × conscientiousness). `consider` adds `pursuit:<id>` to means serving it and
+`pursuit:switch` against alternatives, including rest. Both use scale 0.8, cap 0.8 and the relaxed
+physiological/safety/fear gate; options carrying `commitment:` terms never pay switching cost.
+`tick` and `finish` release achieved, abandoned, missing, unserved for 20 minutes or 240-minute-old
+pursuits. Refreshing service keeps the original start time. A short interruption permits resumption.
+`pursuitOf` returns a read-only copy. These are engineering defaults: a bounded bias plus a switching
+cost, not a planner or a change to goal valuation. See [research/projects-and-persistence.md](../research/projects-and-persistence.md).
+Without this slice the existing state, terms and continuation digests stay identical.
+
 ## Loop
 
 ```
@@ -91,6 +106,7 @@ Which human faculties these modules cover, and which they do not yet, is listed 
 | `methods/` | optional `methods` | `receiveMethodCues`, `clearMethodContext`, `demonstrateMethod`, `methodEvidence`; bounded acquired cue conjunctions and source/outcome evidence; normal cognition reads only offers with a matching `methodContext`. `sanitizeMethods` owns restore. |
 | `prospection/` | optional `prospection`, `planning` | `Percept.consequences` / `withdrawConsequences` enter through attended `perceive`; `consequenceEvidence(p, aff, now?)` is a pure retained-knowledge query. The module owns bounded receipt, revisions, expiry, trigger consumption and restore. Temporal goal valuation and direct cost readers remain owned by `agenda/` and `cognition/`.; 2.5.0: `bodyForecastFor`, `bodyForecastTerm`, `forecastLine` and the composite's `bodyForecast(p, aff)` read declared `followedBy` spans through `body/ forecastBody`. |
 | `projects/` | optional `projects` | `enableProjects`, `projectAppeal`, `considerProjects`; attended bounded prospects, adoption and terminal history. Agenda owns project goals and progress. |
+| `persistence/` | optional `pursuit` | `enablePersistence(p, spec?)`, `pursuitOf(p)`; one started goal, bounded continuation bias and switching cost, release after inactivity or maximum duration. |
 | `curiosity/` | optional `curiosity` | `enableCuriosity(p, spec?)`, `curiosityOf(p, affordance, now?)`; bounded prediction-error history and recent acts. Cognition adds intrinsic pulls; `finish` records outcomes and asks `needs/` for the reward. |
 | `promptings/` | optional `promptings` | `enablePromptings(p, spec)` (or `PersonSpec.enable.promptings`), `promptingsReading(p)`, `promptingLine`, `practiceAt`; the composite's `nafsReading(p)` lens. Owns noticed prompts, practised turnings-away, the person's held reading of their own inner pulls and the off-by-default `fault` echo. Cognition adds its `promptings:turn` / `promptings:echo` terms; the composite records prompts after each decision point. `sanitizePromptings` owns restore. |
 | `review/` | optional `review` | `enableReview(p, spec)` (or `PersonSpec.enable.review`), `reviewLine(p)`, `reviewTerms`, `reviewIfDue`. Owns the evening self-review (muhasaba): resolves formed after broken commitments, the person's held review style, and the latest review record. Cognition adds its `review:resolve` term; the composite runs the review hourly from its time or at the day's close and feels the ruminating reader's distress. `sanitizeReview` owns restore. |
