@@ -84,7 +84,7 @@ Owner direction (2026-10-18, [owner-directions](owner-directions-2026-10-18.md))
 
 | Item | What | Target |
 |---|---|---|
-| Curiosity and play | People with met needs still act: exploring, playing and making things in free time. The island pilot (2026-10-20) found HF people idle once needs are met (owner, 2026-10-20: "Add those faculties") | Current increment ([hf-roadmap](hf-roadmap-2026-10-20.md)) |
+| Curiosity and play | People with met needs still act: exploring, playing and making things in free time. The island pilot (2026-10-20) found HF people idle once needs are met (owner, 2026-10-20: "Add those faculties") | Current increment, engine 2.11 ([hf-roadmap](hf-roadmap-2026-10-20.md#current-increment-curiosity-and-play-then-bounded-planning-owner-2026-10-20)) |
 | Future bodily state in prospection | Left (2.5.0 covers offers that declare `followedBy`, [framework.md](framework.md#bodily-forecast-250)): forecast a received successor's span; apply host surroundings (fasting perception done in 2.6.0) | Engine 2.8 |
 | Muhasaba (reconciliation §7) | Left (2.7.0 covers commitments, `review/`): revise a method or a prompting response in review | Engine 2.14 (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
 | Multi-step planning (bounded) | Chains of two or three received or known routes with waiting cost; the most requested missing faculty. The island pilot (2026-10-20) adds a case: received consequences give one step of pull, but a goal reached by walk, pick, carry and place needs a longer chain | Current increment, engine 2.12 ([hf-roadmap](hf-roadmap-2026-10-20.md)) |
