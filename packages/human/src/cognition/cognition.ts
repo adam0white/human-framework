@@ -47,6 +47,7 @@ import { expectedEffect } from '../memory/index.ts';
 import { methodEvidence } from '../methods/index.ts';
 import { levelOf, needThreshold, urgencyOf } from '../needs/index.ts';
 import { partneringTerms } from '../partnering/index.ts';
+import { persistenceTerms } from '../persistence/index.ts';
 import { type PromptingSeen, promptIn, promptingTerms } from '../promptings/index.ts';
 import { bodyForecastTerm, receivedGoalRoute } from '../prospection/index.ts';
 import { reviewTerms } from '../review/index.ts';
@@ -540,6 +541,7 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
   if (!inBreak(p)) for (const t of rememberedTerms(p, aff, ctx.now, voices)) push(t.source, t.value);
 
   if (p.curiosity) for (const t of curiosityTerms(p, aff, ctx)) push(t.source, t.value);
+  if (p.pursuit) for (const t of persistenceTerms(p, terms, ctx)) push(t.source, t.value);
 
   // Promptings (2.4.0, opt-in): a recurrence pull under `fault` and a practised turning-away from a noticed prompt.
   if (p.promptings)

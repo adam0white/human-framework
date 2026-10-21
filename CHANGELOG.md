@@ -12,6 +12,10 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+### Added
+
+- Opt-in persistence (`enablePersistence`, `PersonSpec.enable.persistence`, `pursuitOf`, `PERSISTENCE_DEFAULTS`): starting an option with positive direct or planned goal credit retains one active pursuit. Continuing means get a bounded bias; alternatives pay a switching cost, except commitment options. Physiological urgency, safety and fear suppress both terms. Short interruptions allow resumption. Finished or absent goals, 20 minutes without service and 240 minutes total release the pursuit. Defaults are engineering choices; existing hosts without the slice retain identical continuation.
+
 ## [2.13.0] - 2026-10-20
 
 Engine: 2.13.0. *Why not* ([slice plan](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md#slice-3-if-time-allows); The Pass's requests 1 and 4 in [game-requests-2026-10-18.md](https://github.com/adam0white/human-framework/blob/main/docs/game-requests-2026-10-18.md)). A declined suggestion can say what decided it, and a person can hold a rule of their own as a will-not. Both are opt-in: without them, state, decisions, resolution JSON and digests are the same as 2.12.0 with only the engine stamp normalized. Saves migrate from 2.12.0 by stamping the version.

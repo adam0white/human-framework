@@ -39,6 +39,7 @@ import {
 } from './affect/index.ts';
 import {
   advanceAgenda,
+  agendaTermsWithGoalEstimates,
   createAgenda,
   onFinished,
   promise,
@@ -102,7 +103,7 @@ import {
   recordRepair,
   repent,
 } from './conscience/index.ts';
-import { clamp01, clampSigned, createRng, dayOf, isObj, minuteOfDay } from './core/index.ts';
+import { clamp01, clampSigned, createRng, dayOf, isObj, minuteOfDay, round } from './core/index.ts';
 import { enableCuriosity, noteCuriosity } from './curiosity/index.ts';
 import { ambientBodyParams, ambientModifiers, ambientMood, ambientNeeds } from './environment/index.ts';
 import { aptitudeOf, createFamily, pregnancyModifiers } from './family/index.ts';
@@ -129,6 +130,7 @@ import {
   urgencyOf,
 } from './needs/index.ts';
 import { widow } from './partnering/index.ts';
+import { beginPursuit, enablePersistence, releasePursuit } from './persistence/index.ts';
 import { enablePromptings, type NafsPattern, nafsPatterns, notePromptings } from './promptings/index.ts';
 import {
   bodyForecastFor,
@@ -333,6 +335,7 @@ export function createPerson(spec: PersonSpec): Person {
   if (on?.fatigueStore) enableFatigueStore(p);
   if (on?.fullness) enableFullness(p);
   if (on?.curiosity) enableCuriosity(p, on.curiosity === true ? {} : on.curiosity);
+  if (on?.persistence) enablePersistence(p, on.persistence === true ? {} : on.persistence);
   if (on?.planning) enablePlanning(p, on.planning);
   if (on?.promptings) enablePromptings(p, on.promptings);
   if (on?.review) enableReview(p, on.review);
@@ -539,10 +542,12 @@ function recordKeptAbstentions(p: Person, kept: Commitment[], now: Minute): void
  * rounding (~1e-9) unless calls also fall on the grid, in which case replay is byte-identical.
  */
 export function tick(p: Person, now: Minute): void {
+  if (p.pursuit) releasePursuit(p);
   if (now <= p.now) return;
   if (!p.body.alive) {
     p.now = now;
     pruneConsequences(p);
+    if (p.pursuit) releasePursuit(p);
     return;
   }
   const seg = PERSON_DEFAULTS.maxSegment;
@@ -558,15 +563,18 @@ export function tick(p: Person, now: Minute): void {
     if (!(end > p.now)) {
       p.now = now;
       pruneConsequences(p);
+      if (p.pursuit) releasePursuit(p);
       return;
     }
     advanceSegment(p, end - p.now, load, active && act ? act.affordance : undefined);
     p.now = end;
     pruneConsequences(p);
+    if (p.pursuit) releasePursuit(p);
     if (!p.body.alive) {
       p.activity = null;
       p.now = now;
       pruneConsequences(p);
+      if (p.pursuit) releasePursuit(p);
       return;
     }
     // Discrete bookkeeping runs only on grid boundaries, so it happens at the same minutes whatever the
@@ -622,6 +630,7 @@ export function tick(p: Person, now: Minute): void {
         }
       }
     }
+    if (p.pursuit) releasePursuit(p);
   }
 }
 
@@ -713,6 +722,7 @@ export function skip(p: Person, to: Minute): void {
   skipBody(p, to);
   p.now = to;
   pruneConsequences(p);
+  if (p.pursuit) releasePursuit(p);
   skipAffect(p, to);
   advanceAgenda(p, to);
   // Lasting gists (1.8.0, opt-in): episodes now past the horizon fold into gists.
@@ -1221,6 +1231,20 @@ export function begin(
 ): Activity | null {
   if (!p.body.alive) return null;
   const now = p.now;
+  if (p.pursuit) {
+    const considered = record.considered.find((c) => c.affordanceId === aff.id);
+    let terms = considered?.terms;
+    if (!terms) {
+      const { ctx } = decisionInputs(p, [aff], record.id, {});
+      const route = prospectiveRoute(p, aff, ctx);
+      const scale = 0.5 + 0.5 * clamp01(ctx.mods.maturity);
+      terms = agendaTermsWithGoalEstimates(p, aff, now, route?.goals).map((t) => ({
+        source: t.source,
+        value: round(t.value * scale),
+      }));
+    }
+    beginPursuit(p, terms);
+  }
   const duration = Number.isFinite(aff.duration) ? Math.max(1, Math.round(aff.duration)) : 1;
   const mode = aff.mode ?? 'awake';
   const load: BodyLoad = { effort: clamp01(aff.effort), focus: clamp01(aff.focus ?? 0), mode };
@@ -1528,6 +1552,7 @@ function learnActivityVoices(
  * relationships, trust in the advising voice, injuries and illness. Clears the activity.
  */
 export function finish(p: Person, outcome: Outcome, opts: FinishOptions = {}): FinishReport | null {
+  if (p.pursuit) releasePursuit(p);
   const act = p.activity;
   if (!act) return null;
   if (outcome.at > p.now) tick(p, outcome.at);
@@ -1638,6 +1663,7 @@ export function finish(p: Person, outcome: Outcome, opts: FinishOptions = {}): F
     ...(act.necessity ? { necessity: true } : {}),
     ...(opts.catalog ? { catalog: opts.catalog } : {}),
   });
+  if (p.pursuit) releasePursuit(p);
   // A completed violating action inside an open abstention's window broke it (the fast, e.g. "no work after the evening prayer").
   if (broken.length > 0) {
     recordMissed(p, broken, now, outcome.action);
