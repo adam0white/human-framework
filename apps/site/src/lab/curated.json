@@ -5327,6 +5327,19 @@
     "fix:lab opening a game's menu pauses game time in every live game (Codex worker, 2026-10-21)"
    ],
    "source": "chat 2026-10-21"
+  },
+  {
+   "id": "F-404",
+   "date": "2026-10-21",
+   "game": "murmur",
+   "kind": "owner",
+   "who": "owner",
+   "words": "I think it would be clearer if the handwritten font in the two voices is only for the other voice, or descriptions about it. We can be consistent about this and that would reduce the cognitive load",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur handwritten face only for the other voice and text about it, everything else in the plain face (Codex worker queued after F-402, 2026-10-21)"
+   ],
+   "source": "chat 2026-10-21"
   }
  ],
  "lessons": [
@@ -5933,7 +5946,7 @@
   }
  ],
  "routes": {
-  "fix": 407,
+  "fix": 408,
   "lesson": 278,
   "hf": 12,
   "calibration": 42,
