@@ -12,15 +12,19 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+## [2.13.0] - 2026-10-20
+
+Engine: 2.13.0. *Why not* ([slice plan](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md#slice-3-if-time-allows); The Pass's requests 1 and 4 in [game-requests-2026-10-18.md](https://github.com/adam0white/human-framework/blob/main/docs/game-requests-2026-10-18.md)). A declined suggestion can say what decided it, and a person can hold a rule of their own as a will-not. Both are opt-in: without them, state, decisions, resolution JSON and digests are the same as 2.12.0 with only the engine stamp normalized. Saves migrate from 2.12.0 by stamping the version.
+
 ### Added
 
-- Opt-in suggestion score explanations: `enableSuggestionReasons` / `PersonSpec.enable.suggestionReasons`
-  adds `SuggestionResolution.decidedBy` with activity inertia or the largest separating term and rounded
-  score margin. Existing verdicts, wording, RNG and resolution JSON without the opt-in stay unchanged.
-- `Commitment.firm?: true` makes a self abstention a will-not (`rule:<label>`) for suggestions and self
-  choice. Insistence cannot override it; the existing bodily survival exception still applies. Restore
-  preserves valid flags and drops malformed values. Control: `examples/why-not-control.ts`.
+- Suggestion reasons (`enableSuggestionReasons(p)` or `PersonSpec.enable.suggestionReasons`, flag `Person.will.suggestionReasons`). A score-decided `deferred` or `modified` resolution gains `decidedBy: { kind, source?, margin }`. `kind: 'inertia'` means that without the running activity's inertia the suggested option would have won ("not straight off my break"). Otherwise `kind: 'term'` names the source whose summed terms most favour the winner over the suggested option, with ties broken by source string. `margin` is the rounded gap the suggestion failed to close. It changes no verdict, sentence, counter or RNG draw. Vetoes, outcomes imposed by insistence and lower-scoring stochastic winners carry no `decidedBy`.
+- Firm self-rules (`Commitment.firm: true` on a self abstention, one with no linked obligatory norm). While its window is open, the abstained action is a will-not, `refused/willNot` with reason `rule:<label>` (the id if there is no label), for suggestions and for the person's own choice. Insisting does not override it. The norm abstention's survival exception applies unchanged: with `necessity` on, a person past the desperation threshold may break it to meet a bodily need. Without `firm`, a self abstention stays a negative term as before. Restore keeps a valid flag and drops a malformed one.
+- Headless control [`why-not-control.ts`](https://github.com/adam0white/human-framework/blob/main/packages/human/examples/why-not-control.ts): one suggestion in five arms. Break inertia: deferred, `decidedBy` inertia, margin 0.14. A norm: refused, `norm:boundary`. A habit: deferred, `decidedBy` term `habit`, margin 0.59. A firm rule: refused, `rule:leave it alone`. The same rule without `firm`: deferred, `decidedBy` term `abstain:c1`.
 
+### Notes
+
+- A firm rule models a rule the person holds, not a religious ruling. The narration batch of §1.3 (per-person deferral and assent lines) is a separate release, engine 2.14, so default voice wording is unchanged here.
 
 ## [2.12.0] - 2026-10-20
 
