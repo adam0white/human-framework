@@ -317,7 +317,9 @@ export async function runPlayOperation(
         const name = typeof op.name === 'string' ? op.name : String(op.text);
         const age = Math.max(0, (now() - (options.previous?.takenAt ?? now())) / 1000);
         throw new Error(
-          `${name} is not on the page now; it was listed ${Math.round(age)} s ago and the page has changed (game state, not a driver failure)`,
+          requestedControlPresent(options.previous, op)
+            ? `${name} is not on the page now; it was listed ${Math.round(age)} s ago and the page has changed (game state, not a driver failure)`
+            : `${name} is not on the page now, and it was not in the last reply either; use a name from the latest controls (not a driver failure)`,
         );
       }
     }

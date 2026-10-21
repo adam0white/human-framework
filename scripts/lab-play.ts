@@ -284,7 +284,11 @@ async function main() {
               const target = matches.nth(i);
               if (await target.isEnabled()) enabled.push(target);
             }
-            if (!enabled.length && count)
+            if (!count)
+              throw new Error(
+                `${op.name} left the page just before the tap (game state, not a driver failure)`,
+              );
+            if (!enabled.length)
               throw new Error(
                 `${op.name} is shown but disabled right now (game state, not a driver failure)`,
               );
@@ -298,7 +302,7 @@ async function main() {
                 }),
               );
               throw new Error(
-                `${enabled.length} enabled controls are named ${op.name}; tap by text near it or by point: ${points.join(', ')} (game state, not a driver failure)`,
+                `${enabled.length} enabled controls are named ${op.name}; tap one by point: ${points.join(', ')} (game state, not a driver failure)`,
               );
             }
             if (!enabled[0] || !(await click(enabled[0])))
@@ -310,7 +314,19 @@ async function main() {
                 throw new Error(
                   `${op.text} is shown but disabled right now (game state, not a driver failure)`,
                 );
-              throw new Error(`${op.text}: ${point.reason} (driver failure)`);
+              const why: Record<string, string> = {
+                'not found': 'is not on the page now (game state, not a driver failure)',
+                'covered by another element':
+                  'is covered by another element on the page; deal with what covers it or tap by point (game state, not a driver failure)',
+              };
+              throw new Error(
+                `${op.text} ${
+                  why[point.reason] ??
+                  (point.reason.endsWith('controls match')
+                    ? `matches ${point.reason.split(' ')[0]} controls; tap by point from a screenshot (ambiguous target, not a driver failure)`
+                    : `could not be tapped: ${point.reason} (driver failure)`)
+                }`,
+              );
             }
             await tapPoint(point.x, point.y);
           }
@@ -389,14 +405,25 @@ async function main() {
           const result = await runPlayOperation(raw, {
             previous: cached,
             act: async () => {
+              // A malformed request or a spent session is not a driver block: say so, so testers do not stop as TOOL.
+              const requestError = (message: string) =>
+                new Error(`${message} (invalid request, not a driver failure)`);
               if (request.method !== 'POST' || request.url !== '/')
-                throw new Error('Use POST / with a JSON operation');
-              if ('error' in parsed) throw parsed.error;
-              const op = validatePlayOp(value);
+                throw requestError('Use POST / with a JSON operation');
+              if ('error' in parsed) throw requestError(String(parsed.error));
+              let op: PlayOp;
+              try {
+                op = validatePlayOp(value);
+              } catch (error) {
+                throw requestError(error instanceof Error ? error.message : String(error));
+              }
               if (op.op !== 'log') {
                 if (openedAt !== null && Date.now() - openedAt >= options.ceiling * 60_000) await stop();
-                if (stopped) throw new Error('Session ceiling reached; browser operations are refused');
-                if (op.op !== 'open' && openedAt === null) throw new Error('Call open first');
+                if (stopped)
+                  throw new Error(
+                    'Session ceiling reached; browser operations are refused (stop reason BUDGET, not a driver failure)',
+                  );
+                if (op.op !== 'open' && openedAt === null) throw requestError('Call open first');
               }
               const shot = await act(op);
               if (op.op !== 'log') await sleep(100);

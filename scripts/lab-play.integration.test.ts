@@ -174,7 +174,7 @@ describe.skipIf(!process.env.PLAYWRIGHT_MODULE)('lab:play with a real browser', 
         await post({ op: 'tap', name: 'Duplicate label' });
         const duplicate = await post({ op: 'tap', text: 'cart' });
         expect(duplicate.status).toBe(500);
-        expect(duplicate.body.error).toContain('2 controls match');
+        expect(duplicate.body.error).toContain('matches 2 controls; tap by point');
         expect(duplicate.body.visible).toContain('cart clicks 2');
         expect(duplicate.body.visible).toContain('other clicks 0');
       });
