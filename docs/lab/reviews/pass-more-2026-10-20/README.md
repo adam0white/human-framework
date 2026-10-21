@@ -8,7 +8,7 @@ Protocol 2 retest of pass@9, "They came back" (pass `docs/design.md`). Sessions 
 | `tobias-free.md` | The Pass, `d8c86e4` | desktop, free | 3:10.2 CONFUSED | 2:57.1 CONFUSED / CONFUSED, "cannot read my remaining move" |
 | `leyla-floor.md` | The Pass, `d8c86e4` | phone, floor | 1:37.2 TOOL (a not-yet-due cooking step looked like a live button) | none; invalid run |
 | `mert-floor.md` | The Pass, `c021f83` | phone, floor | 15:18.1 BORED, might return for the promised supper | 9:48.7 FRUSTRATED / OTHER, a table left during his lamb |
-| `priya-free.md` | The Pass, `c021f83` | desktop, free | 2:12.7 TOOL (the driver twice could not tap an enabled "Work cold side", a button `c021f83` made conditionally disabled; cause unknown, not reproduced on ten seeds by a headless script that bypasses the driver's click path) | none; invalid run |
+| `priya-free.md` | The Pass, `c021f83` | desktop, free | 2:12.7 TOOL (the driver twice could not tap an enabled "Work cold side", a button `c021f83` made conditionally disabled; cause found 2026-10-20: the retest ran a stale driver copy that repeated cached controls after a failed tap; the held portion had already moved on (human-framework 922daed) | none; invalid run |
 | `dara-free.md` | The Pass, `c021f83` | desktop, free | 5:30.9 BORED, might return once | 5:16.0 BORED / BORED, "do not want to repeat it for every portion" |
 | `adr-free.md` | A Dark Room (control) | desktop, free | 5:11.8 BORED, would return | 4:41.0 BORED / OTHER |
 

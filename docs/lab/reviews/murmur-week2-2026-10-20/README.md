@@ -5,7 +5,7 @@ Protocol 2 retest of murmur 0.4.0, the second week ("getting better causes troub
 | File | Game, build | Arm | Stop | First wish to leave (blind-coded) |
 |---|---|---|---|---|
 | `mina-free.md` | Two Voices, `a04b847` | free | 4:32.7 BORED | 4:09.4 BORED, "another bedtime with the same three answers" |
-| `mina-floor.md` | Two Voices, `a04b847` | floor | 1:09.8 TOOL (a 4 s choice expired during a 30 s wait) | none; invalid run |
+| `mina-floor.md` | Two Voices, `a04b847` | floor | 1:09.8 TOOL (a 4 s choice expired during a 30 s wait; the stale driver copy repeated cached controls, so it stayed listed; fixed in human-framework 922daed) | none; invalid run |
 | `mina-floor2.md` | Two Voices, `5c1c471` | floor | 15:23.0 BORED, would return for the weekend | 10:54.9 BORED, the fourth bus call-or-scroll choice |
 | `deniz-free.md` | Two Voices, `5c1c471` | free | 3:03.0 TASTE, would return | 3:02.8 satisfied, "a good place to put the phone away" |
 | `adr-free.md` | A Dark Room (control) | free | 6:47.2 BORED, would return | 6:33.4 BORED |

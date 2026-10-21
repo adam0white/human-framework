@@ -4900,7 +4900,7 @@
    "words": "I cannot choose Sign it. The driver still lists it, but the full-name tap and the visible-text retry both failed.",
    "verdict": "-",
    "routes": [
-    "fix:lab lab:play reply after a long wait still listed a choice that had expired, so the tester read it as a block, after the 4 s choice timed out during a 30 s wait (open, target 2026-11-03)",
+    "fix:lab the retest ran a stale driver copy (watchwell/deploy at aa68c62, before 4127a10) whose failed-op reply repeated the cached controls, so an expired choice stayed listed, and the driver now names its commit, refuses to start when its source differs from origin/main, and re-reads the page before every action (done, human-framework 922daed and da7377b)",
     "lesson:L22"
    ],
    "source": "docs/lab/reviews/murmur-week2-2026-10-20/mina-floor.md"
@@ -5047,7 +5047,7 @@
    "words": "I was doing the lamb steps and table one left anyway. I would put the phone away here: I cannot see how close a table is to leaving, and my arms are tired now.",
    "verdict": "quit",
    "routes": [
-    "fix:pass DL-8 a cue for which table is closest to leaving (open, target 2026-11-03)"
+    "fix:pass DL-8 the nearest table within eight minutes of walking says \"about to leave\" (done, pass 30863fc)"
    ],
    "source": "docs/lab/reviews/pass-more-2026-10-20/mert-floor.md"
   },
@@ -5060,7 +5060,7 @@
    "words": "I might return for the promised Saturday supper, not for another identical stretch right now.",
    "verdict": "quit",
    "routes": [
-    "fix:pass owner call: the second-week start reaches the first promise only after a whole repeated service, so consider starting nearer a party night or a shorter first night (open, target 2026-11-03)"
+    "fix:pass \"Begin at the first party\": a steady hand runs to 20 game minutes before the first party sits (done, pass 382bba8)"
    ],
    "source": "docs/lab/reviews/pass-more-2026-10-20/mert-floor.md"
   },
@@ -5099,7 +5099,7 @@
    "words": "I understand the cooking loop now, and I do not want to repeat it for every portion tonight. I wanted more planning decisions like the board and the table priority.",
    "verdict": "quit",
    "routes": [
-    "fix:pass owner call: the second-week start reaches the first promise only after a whole repeated service, so consider starting nearer a party night or a shorter first night (open, target 2026-11-03)"
+    "fix:pass \"Begin at the first party\": a steady hand runs to 20 game minutes before the first party sits (done, pass 382bba8)"
    ],
    "source": "docs/lab/reviews/pass-more-2026-10-20/dara-free.md"
   },
@@ -5112,6 +5112,7 @@
    "words": "I was interested in trying the cooking and had not wanted to leave.",
    "verdict": "-",
    "routes": [
+    "fix:lab same stale driver copy as F-371: the held portion had moved on and the reply repeated cached controls, and a name tap on duplicate names (\"Promise it\") also tapped the disabled first match and reported success, both fixed (done, human-framework 922daed and da7377b)",
     "lesson:L22"
    ],
    "source": "docs/lab/reviews/pass-more-2026-10-20/priya-free.md"
@@ -5138,10 +5139,76 @@
    "words": "The lamb and service calls got me involved; Selim ending up on oven after saying no makes me unsure whom to trust.",
    "verdict": "mixed",
    "routes": [
-    "fix:pass DL-13 a cook who refused a station on the board and later takes it unasked says why (open, target 2026-11-03)",
+    "fix:pass DL-13 a cook who refused a station on the board and later takes it unasked says why in the journal (done, pass 30863fc)",
     "lesson:L1"
    ],
    "source": "docs/lab/reviews/pass-more-2026-10-20/mert-floor.md"
+  },
+  {
+   "id": "F-390",
+   "date": "2026-10-20",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Selin (Codex source-unread persona, floor arm, pass 382bba8, Begin at the first party)",
+   "words": "The writer smiled at the editor. I kept the rested-lamb promise, and the game says table four waited longest. That lands harder because four already left.",
+   "verdict": "keep",
+   "routes": [
+    "fix:pass \"Begin at the first party\" reaches a promise in four real minutes (done, pass 382bba8)",
+    "lesson:L13"
+   ],
+   "source": "docs/lab/reviews/pass-quickpromise-2026-10-20/selin-floor.md"
+  },
+  {
+   "id": "F-391",
+   "date": "2026-10-20",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Selin (Codex source-unread persona, floor arm, pass 382bba8, Begin at the first party)",
+   "words": "I still want to meet the Demirs, but another salad choice is enough for tonight. I would come back after a break.",
+   "verdict": "quit",
+   "routes": [
+    "fix:pass owner call: the repeated cooking loop between parties, which rests on chef cooking, whose feel is unaccepted (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/pass-quickpromise-2026-10-20/selin-floor.md"
+  },
+  {
+   "id": "F-392",
+   "date": "2026-10-20",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Selin (Codex source-unread persona, floor arm, pass 382bba8, Begin at the first party)",
+   "words": "Keep the named party, promise and departure time beside my active dish on the phone. I want to see who I am cooking for while I decide to take more time.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:pass DL-31 the party, promise and out-by time stay beside the active portion on phone (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/pass-quickpromise-2026-10-20/selin-floor.md"
+  },
+  {
+   "id": "F-393",
+   "date": "2026-10-20",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Selin (Codex source-unread persona, floor arm, pass 382bba8, Begin at the first party)",
+   "words": "'Open on Wednesday' leading to Thursday, tired arms before my first act, and table 1's new sear cue made me wonder whose actions I was inheriting.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:pass DL-13 under the first-party start, the Sunday button names the night you take over, and the hand-over caption says what the chef is holding (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/pass-quickpromise-2026-10-20/selin-floor.md"
+  },
+  {
+   "id": "F-394",
+   "date": "2026-10-20",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Selin (Codex source-unread persona, floor arm, pass 382bba8, Begin at the first party)",
+   "words": "Let the selected fast pace get through optional 'Yours, Chef?' offers more readily when I am leaving those portions to the crew. I want to get back to the people I came for.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:pass DL-15 at Fast, offered portions pass to the crew sooner (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/pass-quickpromise-2026-10-20/selin-floor.md"
   }
  ],
  "lessons": [
@@ -5748,8 +5815,8 @@
   }
  ],
  "routes": {
-  "fix": 392,
-  "lesson": 277,
+  "fix": 398,
+  "lesson": 278,
   "hf": 12,
   "calibration": 42,
   "none": 3
