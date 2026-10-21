@@ -185,8 +185,9 @@ function sanitizeGoalTemporal(g: Goal): void {
   else if (g.temporal) g.temporal = { halfLifeMinutes: g.temporal.halfLifeMinutes };
 }
 
-/** Restore-time check of `agenda.lapse` (1.7.0), in place: a malformed one is dropped (absent means none). @internal */
+/** Restore-time check of optional lapse and firm flags; malformed values are dropped. @internal */
 export function sanitizeAgenda(a: AgendaState): void {
+  for (const c of a.commitments) if (isObj(c) && (c.firm !== true || c.kind !== 'abstain')) delete c.firm;
   for (const g of a.goals) if (isObj(g)) sanitizeGoalTemporal(g);
   const lapse = a.lapse as unknown;
   if (lapse !== undefined && !(isObj(lapse) && hasNumbers(lapse, 'since', 'missed'))) delete a.lapse;

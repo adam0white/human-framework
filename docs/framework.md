@@ -23,6 +23,23 @@ In the software, a player's input is therefore one urge among many: a push, not 
 
 Boundaries the software never crosses: it does not compute divine acceptance, assign quantities to the ruh, or call the RNG "qadar". Norms come from a host catalog with provenance. The person holds an *understanding* of each norm, and that understanding is not a ruling.
 
+## Why a suggestion lost (opt-in)
+
+`enableSuggestionReasons(p)` or `PersonSpec.enable.suggestionReasons` enables
+`SuggestionResolution.decidedBy` on score-based deferrals and modifications. Its rounded `margin`
+is the winner's score minus the best suggested option's score, including activity inertia. `inertia`
+means removing that bonus would make a suggested option win; otherwise `term` names the largest
+positive difference between their terms, summed by source and tied by source string. Vetoes and
+lower-scoring stochastic wins have no score explanation. Verdicts, `reason`, wording and RNG stay
+unchanged; without the opt-in, resolution JSON stays byte-identical.
+
+A self abstention commitment can set `firm: true`. While pending, non-exempt and overlapping the
+action, it vetoes the abstained action as `refused/willNot`, reason `rule:<label>` (id fallback),
+including self choice and insistence. Self means `toId` absent, `self` or the person's id. A linked
+obligatory norm keeps its existing duty veto instead. The existing necessity threshold lifts the
+veto only for food or water actions, when necessity is enabled. This is a held personal rule, not a
+religious ruling. Without `firm`, the existing commitment terms and verdicts stay unchanged.
+
 ## Curiosity and play (opt-in)
 
 `enableCuriosity(p, spec?)` or `PersonSpec.enable.curiosity` adds intrinsic exploration through

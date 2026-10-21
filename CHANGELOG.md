@@ -12,6 +12,16 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+### Added
+
+- Opt-in suggestion score explanations: `enableSuggestionReasons` / `PersonSpec.enable.suggestionReasons`
+  adds `SuggestionResolution.decidedBy` with activity inertia or the largest separating term and rounded
+  score margin. Existing verdicts, wording, RNG and resolution JSON without the opt-in stay unchanged.
+- `Commitment.firm?: true` makes a self abstention a will-not (`rule:<label>`) for suggestions and self
+  choice. Insistence cannot override it; the existing bodily survival exception still applies. Restore
+  preserves valid flags and drops malformed values. Control: `examples/why-not-control.ts`.
+
+
 ## [2.12.0] - 2026-10-20
 
 Engine: 2.12.0. *Steps ahead* ([slice plan](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md#current-increment-curiosity-and-play-then-bounded-planning-owner-2026-10-20); sources in [research/curiosity-and-play.md](https://github.com/adam0white/human-framework/blob/main/research/curiosity-and-play.md#bounded-planning-and-present-bias)). A person can value the first step of a short chain toward a goal: go, take, carry, put. Opt-in: a person without the planning slice gives the same state, decisions and digests as 2.11.0 with only the engine stamp normalized, and received consequences keep their single successor. Saves migrate from 2.11.0 by stamping the version.

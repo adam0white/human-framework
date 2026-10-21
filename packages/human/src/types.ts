@@ -638,6 +638,8 @@ export interface Commitment {
   label?: string;
   /** For kind 'abstain': action ids whose completion inside the window breaks it. */
   violatedBy?: string[];
+  /** Firm self abstention: a will-not, lifted for bodily survival like a norm abstention. */
+  firm?: true;
   /** For kind 'abstain': catalogued conditions under which the person may not hold it that day. */
   exemptWhen?: ('illness' | 'travel')[];
   /**
@@ -769,6 +771,8 @@ export interface VoiceTrustEvent {
  * impulse emerges from competing terms, real fatigue costs, habits and precommitments.
  */
 export interface WillState {
+  /** Opt-in score explanations on suggestion resolutions; absent preserves legacy JSON. */
+  suggestionReasons?: true;
   voices: VoiceRelation[];
   /**
    * Precommitments the person made for themselves (e.g. "no work after Isha", "walk instead of eat when bored"):
@@ -1440,6 +1444,8 @@ export type SuggestionVerdict = 'assented' | 'complied' | 'deferred' | 'modified
 export type RefusalKind = 'cannot' | 'notNow' | 'willNot';
 
 export interface SuggestionResolution {
+  /** Read-only score explanation, only with `enableSuggestionReasons`; margin includes activity inertia. */
+  decidedBy?: { kind: 'inertia' | 'term'; source?: string; margin: number };
   voiceId: EntityId;
   verdict: SuggestionVerdict;
   kind?: RefusalKind;
@@ -1561,6 +1567,8 @@ export interface PersonSpec {
    * `enableCharacterChange` and `enableSkillRetention` right after `createPerson`. Each is off when absent.
    */
   enable?: {
+    /** Read-only suggestion score explanations, as with `enableSuggestionReasons(p)`. */
+    suggestionReasons?: boolean;
     gists?: boolean;
     yearbook?: boolean;
     character?: boolean;

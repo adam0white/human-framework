@@ -208,6 +208,7 @@ import {
   creditedVoices,
   dischargeAdvice,
   dutyReviewAt,
+  enableSuggestionReasons,
   endCommand,
   learnFromVoice,
   noteCommandOutcome,
@@ -324,6 +325,7 @@ export function createPerson(spec: PersonSpec): Person {
   const family = createFamily(spec.family);
   if (family) p.family = family;
   const on = spec.enable;
+  if (on?.suggestionReasons) enableSuggestionReasons(p);
   if (on?.gists) enableGists(p);
   if (on?.yearbook) enableYearbook(p);
   if (on?.character) enableCharacterChange(p);

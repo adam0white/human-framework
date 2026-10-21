@@ -37,7 +37,7 @@ import { breakAllows, inBreak } from '../affect/index.ts';
 import { commitmentPressure, isUnderWay, pressureReachedAt } from '../agenda/index.ts';
 import { downedAllows, readCapacities } from '../body/index.ts';
 import { CONSCIENCE_DEFAULTS, normVeto } from '../conscience/index.ts';
-import { clamp01, cmpStr, decay, dexp, dpow, hasNumbers, isObj, random } from '../core/index.ts';
+import { clamp01, cmpStr, decay, dexp, dpow, hasNumbers, isObj, random, round } from '../core/index.ts';
 import { skillLevel } from '../skills/index.ts';
 import type {
   Affordance,
@@ -233,6 +233,7 @@ export interface ChoiceResolution {
  * or `lastCommand` (1.6.0, 1.7.0) are dropped (absent means none). A save the engine wrote is unchanged. @internal
  */
 export function sanitizeWill(w: WillState): void {
+  if (w.suggestionReasons !== true) delete w.suggestionReasons;
   if (w.advice !== undefined && !Array.isArray(w.advice)) delete w.advice;
   const cmd = w.command as unknown;
   if (
@@ -884,6 +885,38 @@ interface Judged {
   targetIds: Set<string>;
 }
 
+/**
+ * SCOPE (suggestion reasons): opt-in read-only explanations of score-based deferrals and modifications.
+ * The gap includes running-activity inertia; source differences aggregate like-labelled terms and tie by
+ * source string. This does not change selection, voice wording, counters or RNG, explain vetoes, or claim
+ * a score caused a lower-scoring stochastic choice. Legacy resolutions have no additional keys.
+ */
+export function enableSuggestionReasons(p: Person): void {
+  p.will.suggestionReasons = true;
+}
+
+function scoreReason(
+  selection: Selection,
+  suggested: Considered,
+  targetIds: ReadonlySet<string>,
+): SuggestionResolution['decidedBy'] {
+  const { winner, ranked, score } = selection;
+  if (!winner) return undefined;
+  const gap = score(winner) - score(suggested);
+  if (!Number.isFinite(gap) || gap < 0) return undefined;
+  const margin = round(gap);
+  const withoutInertia = [...ranked].sort(byUtilityThenId)[0];
+  if (score(winner) > winner.utility && withoutInertia && targetIds.has(withoutInertia.affordanceId))
+    return { kind: 'inertia', margin };
+  const differences = new Map<string, number>();
+  for (const t of winner.terms) differences.set(t.source, (differences.get(t.source) ?? 0) + t.value);
+  for (const t of suggested.terms) differences.set(t.source, (differences.get(t.source) ?? 0) - t.value);
+  const term = [...differences]
+    .filter(([, value]) => value > 0)
+    .sort((a, b) => b[1] - a[1] || cmpStr(a[0], b[0]))[0];
+  return { kind: 'term', ...(term ? { source: term[0] } : {}), margin };
+}
+
 /** Judge each voice against the same selected option before resolving competing insistence. */
 function judgeVoices(
   p: Person,
@@ -1010,6 +1043,8 @@ function judgeVoices(
     }
     side.pressure = W.pressurePush * clamp01(s.strength);
     side.refused = 1;
+    const decidedBy = p.will.suggestionReasons ? scoreReason(selection, bestSuggested, targetIds) : undefined;
+    const explanation = decidedBy ? { decidedBy } : {};
     const near =
       winnerAff !== undefined &&
       suggestedAff !== undefined &&
@@ -1018,6 +1053,7 @@ function judgeVoices(
     if (near && winnerAff)
       return out(
         resolution('modified', reason, {
+          ...explanation,
           kind: 'notNow',
           insteadAffordanceId: winnerAff.id,
           counterOffer: { affordanceId: winnerAff.id, label: winnerAff.label },
@@ -1025,6 +1061,7 @@ function judgeVoices(
       );
     return out(
       resolution('deferred', reason, {
+        ...explanation,
         kind: 'notNow',
         insteadAffordanceId: winnerAff?.id,
         counterOffer: winnerAff
@@ -1057,6 +1094,8 @@ function arbitrateInsistence(
     if (tj > tf || (tj === tf && clamp01(j.s.strength) > clamp01(forcer.s.strength))) forcer = j;
   }
   if (forcer?.comply) {
+    // The final option is imposed by insistence, not selected by scores.
+    for (const j of judged) delete j.res.decidedBy;
     const forced = forcer.comply.target.affordanceId;
     const forcedAff = affById.get(forced);
     ev.chosenId = forced;

@@ -22,7 +22,10 @@
  * desperation threshold, and only for acts meeting a bodily need; this is not the fast's own exemption for
  * illness and travel (2:184-185, applied in the agenda) and not the 2:173 necessity exception for forbidden
  * food. Below the threshold the abstention acts only as a negative term (agenda), so a weakly convinced person
- * can be tempted. It does not model the person's later judgment of a broken fast beyond the recorded breach.
+ * can be tempted. An opt-in `firm: true` self abstention without a linked obligatory norm instead vetoes
+ * as `rule:<label>` (id fallback). It uses the same open-window, exemption and bodily survival checks,
+ * including for self choice and insistence. It models a held rule, not a new religious ruling.
+ * It does not model the person's later judgment of a broken fast beyond the recorded breach.
  */
 import { clamp01 } from '../core/index.ts';
 import type {
@@ -290,10 +293,15 @@ export function abstentionVeto(
   if (capacityLifted) return undefined;
   const end = now + Math.max(0, aff.duration);
   for (const c of p.agenda?.commitments ?? []) {
-    if (c.kind !== 'abstain' || c.status !== 'pending' || c.exempt !== undefined || c.normId === undefined)
-      continue;
+    if (c.kind !== 'abstain' || c.status !== 'pending' || c.exempt !== undefined) continue;
     if (!(c.violatedBy?.includes(aff.action) ?? false) || now >= c.until || end <= c.from) continue;
-    const held = heldNorm(p, c.normId);
+    const held = c.normId === undefined ? undefined : heldNorm(p, c.normId);
+    if (
+      c.firm === true &&
+      (c.toId === undefined || c.toId === 'self' || c.toId === p.id) &&
+      held?.standing !== 'obligatory'
+    )
+      return { kind: 'willNot', reason: `rule:${c.label ?? c.id}` };
     if (held?.standing !== 'obligatory' || held.conviction < CONSCIENCE_DEFAULTS.abstainVetoConviction)
       continue;
     return { kind: 'willNot', reason: `duty:${c.normId}` };

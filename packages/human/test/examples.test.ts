@@ -4,12 +4,24 @@ import { main as curiosity } from '../examples/curiosity-control.ts';
 import { main as minimal } from '../examples/minimal.ts';
 import { main as planning } from '../examples/planning-control.ts';
 import { main as suggestions } from '../examples/suggestions.ts';
+import { main as whyNot } from '../examples/why-not-control.ts';
 
 // Structural checks only: the examples must keep running and keep showing what they claim, but exact
 // wording and tuning belong to the faculties, not to these tests.
 const VERDICTS = ['assented', 'complied', 'deferred', 'modified', 'refused'];
 
 describe('examples', () => {
+  test('why not: inertia, norm, habit and firm rule separate the same request', () => {
+    const rows = whyNot();
+    expect(rows).toHaveLength(5);
+    expect(rows[0]).toMatchObject({ verdict: 'deferred', decidedBy: { kind: 'inertia' } });
+    expect(rows[1]).toMatchObject({ verdict: 'refused', kind: 'willNot', reason: 'norm:boundary' });
+    expect(rows[2]).toMatchObject({ verdict: 'deferred', decidedBy: { kind: 'term', source: 'habit' } });
+    expect(rows[3]).toMatchObject({ verdict: 'refused', kind: 'willNot', reason: 'rule:leave it alone' });
+    expect(rows[4]).toMatchObject({ verdict: 'deferred', kind: 'notNow' });
+    expect(rows[1]).not.toHaveProperty('decidedBy');
+    expect(rows[3]).not.toHaveProperty('decidedBy');
+  });
   test('minimal: a person runs a day in a hand-written World', () => {
     const lines = minimal();
     expect(lines.length).toBeGreaterThan(4);
