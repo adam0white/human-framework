@@ -5128,6 +5128,20 @@
     "lesson:L22"
    ],
    "source": "docs/lab/reviews/pass-more-2026-10-20/adr-free.md"
+  },
+  {
+   "id": "F-389",
+   "date": "2026-10-20",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Mert (Codex source-unread persona, floor arm, pass c021f83)",
+   "words": "The lamb and service calls got me involved; Selim ending up on oven after saying no makes me unsure whom to trust.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:pass DL-13 a cook who refused a station on the board and later takes it unasked says why (open, target 2026-11-03)",
+    "lesson:L1"
+   ],
+   "source": "docs/lab/reviews/pass-more-2026-10-20/mert-floor.md"
   }
  ],
  "lessons": [
@@ -5734,8 +5748,8 @@
   }
  ],
  "routes": {
-  "fix": 391,
-  "lesson": 276,
+  "fix": 392,
+  "lesson": 277,
   "hf": 12,
   "calibration": 42,
   "none": 3
