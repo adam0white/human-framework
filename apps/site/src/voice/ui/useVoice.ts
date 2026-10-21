@@ -35,6 +35,8 @@ import { openTransport, type Transport } from './transport.ts';
 export interface VoiceActions {
   begin(): void;
   setPaused(paused: boolean): void;
+  /** UI clock hold; never changes playback state or the input log. */
+  setMenuOpen(open: boolean): void;
   setPace(pace: Pace): void;
   setAutoPause(on: boolean): void;
   predict(draft: Draft | null): void;
@@ -110,6 +112,7 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
   const retainedWhy = useRef<{ id: string; view: WhyView | null } | null>(null);
   const pausePolicy = useRef(new PausePolicy());
   const manualHold = useRef(false);
+  const menuOpen = useRef(false);
   const reading = useRef(false);
   const [resolvedSceneOffer, setResolvedSceneOffer] = useState<string | null>(null);
   const resolvedScene = useRef<string | null>(null);
@@ -269,13 +272,14 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
           gen: gen.current,
           scenarioVersion: VOICE_SCENARIO_VERSION,
         });
-        stopTicks = startTickLoop((dtMs) =>
+        stopTicks = startTickLoop((dtMs) => {
+          if (menuOpen.current) return;
           t.post({
             type: 'tick',
             wallDtMs: dtMs,
             dtMs: readingTick(dtMs, frameRef.current, reading.current, sceneReading(frameRef.current)),
-          }),
-        );
+          });
+        });
         const url = replayParam();
         if (url) {
           setPlaytest({ busy: 'load' });
@@ -331,6 +335,9 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
       begin: () => {
         manualHold.current = false;
         send({ type: 'begin' });
+      },
+      setMenuOpen: (open) => {
+        menuOpen.current = open;
       },
       setPaused: (p) => {
         manualHold.current = p;

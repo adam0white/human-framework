@@ -59,6 +59,13 @@ it('slows reading ticks, keeps frame scheduling on wall time, and respects manua
     flushSync(() => actions.setReading(false));
     channel.tick(240);
     expect(channel.post).toHaveBeenLastCalledWith({ type: 'tick', dtMs: 240, wallDtMs: 240 });
+    channel.post.mockClear();
+    actions.setMenuOpen(true);
+    channel.tick(60_000);
+    expect(channel.post).not.toHaveBeenCalled();
+    actions.setMenuOpen(false);
+    channel.tick(240);
+    expect(channel.post).toHaveBeenLastCalledWith({ type: 'tick', dtMs: 240, wallDtMs: 240 });
     actions.setPaused(true);
     channel.post.mockClear();
     flushSync(() => actions.setReading(true));

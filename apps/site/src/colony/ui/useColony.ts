@@ -56,6 +56,8 @@ export interface ColonyActions {
   setSpeed(speed: Speed): void;
   /** Manual pause or resume (Space, the pause button, Play on the goal card). */
   setPaused(paused: boolean): void;
+  /** UI clock hold; never changes playback state or the input log. */
+  setMenuOpen(open: boolean): void;
   /** Pause for the inspector (the worker keeps any pause already in place). */
   pauseForInspector(): void;
   /** Resume after the inspector, only if its pause is still the current one. */
@@ -106,6 +108,7 @@ const START_PLAYBACK = (autoPause: boolean): PlaybackState => ({
 });
 
 export function useColony(seed = DEFAULT_SEED): Colony {
+  const menuOpen = useRef(false);
   const worker = useRef<Worker | null>(null);
   const store = useRef<FrameStore>(emptyStore());
   const [frame, setFrame] = useState<Frame | null>(null);
@@ -279,7 +282,9 @@ export function useColony(seed = DEFAULT_SEED): Colony {
         .catch((err: unknown) => setPlaytest({ error: err instanceof Error ? err.message : String(err) }));
     }
 
-    const stopTicks = startTickLoop((dtMs) => w.postMessage({ type: 'tick', dtMs } satisfies OutMsg));
+    const stopTicks = startTickLoop((dtMs) => {
+      if (!menuOpen.current) w.postMessage({ type: 'tick', dtMs } satisfies OutMsg);
+    });
     return () => {
       stopTicks();
       w.terminate();
@@ -294,6 +299,9 @@ export function useColony(seed = DEFAULT_SEED): Colony {
       cancel: (orderId) => send({ type: 'cancel', orderId }),
       dismissNudge: (id) => send({ type: 'dismissNudge', id }),
       setSpeed: (s) => send({ type: 'setSpeed', speed: s }),
+      setMenuOpen: (open) => {
+        menuOpen.current = open;
+      },
       setPaused: (p) => {
         send(p ? { type: 'pause', cause: 'manual' } : { type: 'resume' });
       },

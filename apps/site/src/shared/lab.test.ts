@@ -139,3 +139,29 @@ it('keeps the send dialog opener mounted while pointer and Escape events belong 
   expect(container.querySelector('.pt-menu-list')).toBeNull();
   expect(document.activeElement).toBe(container.querySelector('.pt-menu-button'));
 });
+
+it('holds the clock until toggle, Escape, outside dismissal or unmount closes the menu', async () => {
+  const hold = vi.fn();
+  const { container, root } = await mount(
+    createElement(PlaytestMenu, {
+      onExport: vi.fn(),
+      onLoad: vi.fn(),
+      onError: vi.fn(),
+      onOpenChange: hold,
+    }),
+  );
+  const toggle = container.querySelector('button');
+  await act(() => toggle?.click());
+  expect(hold).toHaveBeenLastCalledWith(true);
+  await act(() => toggle?.click());
+  expect(hold).toHaveBeenLastCalledWith(false);
+  await act(() => toggle?.click());
+  await act(() => document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })));
+  expect(hold).toHaveBeenLastCalledWith(false);
+  await act(() => toggle?.click());
+  await act(() => document.body.dispatchEvent(new PointerEvent('pointerdown', { bubbles: true })));
+  expect(hold).toHaveBeenLastCalledWith(false);
+  await act(() => toggle?.click());
+  await act(() => root.render(null));
+  expect(hold).toHaveBeenLastCalledWith(false);
+});

@@ -565,6 +565,7 @@ export function App() {
           : {})}
         playtest={
           <PlaytestMenu
+            onOpenChange={actions.setMenuOpen}
             className="topbar-playtest pt-compact"
             onExport={actions.exportPlaytest}
             onLoad={actions.loadPlaytest}

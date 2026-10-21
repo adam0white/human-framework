@@ -3,7 +3,7 @@
  * offers run files, inline lab actions and a way back to all games. Everything
  * a file says is rendered as React text.
  */
-import { useEffect, useId, useRef, useState } from 'react';
+import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 import { pickJsonFile, type ReplayResult } from './playtest.ts';
 import './playtest.css';
 
@@ -15,11 +15,13 @@ export type PlaytestStatus =
 
 export function PlaytestMenu({
   onExport,
+  onOpenChange,
   onLoad,
   onError,
   className = '',
   extra,
 }: {
+  onOpenChange?: (open: boolean) => void;
   onExport: () => void;
   onLoad: (text: string) => void;
   onError: (message: string) => void;
@@ -32,6 +34,11 @@ export function PlaytestMenu({
   const root = useRef<HTMLDivElement>(null);
   const button = useRef<HTMLButtonElement>(null);
   const first = useRef<HTMLButtonElement>(null);
+
+  useLayoutEffect(() => {
+    onOpenChange?.(open);
+    return () => onOpenChange?.(false);
+  }, [open, onOpenChange]);
 
   useEffect(() => {
     if (!open) return;

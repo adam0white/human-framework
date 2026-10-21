@@ -74,6 +74,7 @@ describe('Well review follow-up', () => {
       dismissNudge: vi.fn(),
       setSpeed: vi.fn(),
       setPaused: vi.fn(),
+      setMenuOpen: vi.fn(),
       pauseForInspector: vi.fn(),
       resumeFromInspector: vi.fn(),
       setAutoPause: vi.fn(),

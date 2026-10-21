@@ -171,6 +171,7 @@ export const TopBar = memo(function TopBar({
           </button>
         )}
         <PlaytestMenu
+          onOpenChange={actions.setMenuOpen}
           className="v-playtest pt-compact"
           onExport={actions.exportPlaytest}
           onLoad={actions.loadPlaytest}
