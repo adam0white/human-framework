@@ -5258,7 +5258,8 @@
    "words": "He says not now and no promised cover. That explains the answer as a commitment issue, but now he is in the storeroom instead of holding the oven. I do not understand why asking to change jobs lost the old job.",
    "verdict": "mixed",
    "routes": [
-    "fix:pass DL-4 a turned-down station ask keeps the cook’s current job or says why it ended, and the neutral “Not now, Chef.” is replaced by a reason where HF gives one (open, target 2026-11-03)"
+    "fix:pass DL-4 the neutral “Not now, Chef.” hid Selim’s sunset prayer (norm:salah), and now says “Let me pray first, Chef.” (done, pass 8088222)",
+    "fix:pass DL-4 the cook board shows where a cook went and why when a station ask ends their job (open, target 2026-11-03)"
    ],
    "source": "docs/lab/reviews/pass-213-2026-10-20/deniz-floor.md"
   },
@@ -5880,7 +5881,7 @@
   }
  ],
  "routes": {
-  "fix": 402,
+  "fix": 403,
   "lesson": 278,
   "hf": 12,
   "calibration": 42,
