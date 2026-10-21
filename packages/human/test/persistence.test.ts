@@ -1,6 +1,7 @@
 import { expect, test } from 'vitest';
 import type { Affordance, Person, ReceivedConsequence } from '../src/index.ts';
 import * as hf from '../src/index.ts';
+import { beginPursuit, persistenceTerms, releasePursuit } from '../src/persistence/persistence.ts';
 import { optInContinuation } from './opt-in-continuation-fixture.ts';
 import { persistenceContinuation } from './persistence-continuation-fixture.ts';
 
@@ -357,4 +358,58 @@ test('without persistence the main opt-in continuation digests are unchanged', (
     '7fc0b68a3d24307fe45c1853b31ad4f6835452c016b25378593fdf84d6244b0e',
   );
   expect(person(false).pursuit).toBeUndefined();
+});
+
+test('stalled pursuit terms halve on goal time through release and re-formation; progress restores them', () => {
+  const p = person();
+  hf.enablePersistence(p, { cap: 0.2 });
+  const g = goal(p);
+  const credit = [{ source: 'goal:task', value: 1 }];
+  const pull = (continuing: boolean) =>
+    required(persistenceTerms(p, continuing ? credit : [], { needs: [] })[0]).value;
+  beginPursuit(p, credit);
+  const initial = pull(true);
+  expect(initial).toBe(0.2);
+  expect(pull(false)).toBe(-initial);
+  p.now += 30;
+  expect(pull(true)).toBeCloseTo(initial / 2, 4);
+  expect(pull(false)).toBeCloseTo(-initial / 2, 4);
+  releasePursuit(p);
+  expect(hf.pursuitOf(p)).toBeUndefined();
+  beginPursuit(p, credit);
+  expect(hf.pursuitOf(p)?.since).toBe(p.now);
+  expect(pull(true)).toBeCloseTo(initial / 2, 4);
+  p.now += 30;
+  expect(pull(true)).toBeCloseTo(initial / 4, 4);
+  g.lastAdvancedAt = p.now;
+  expect(pull(true)).toBe(initial);
+  expect(pull(false)).toBe(-initial);
+});
+
+test('legacy pursuit has no stall decay and re-enabling opts into the goal clock', () => {
+  const p = person();
+  delete required(p.pursuit).behaviour;
+  delete goal(p).lastAdvancedAt;
+  const credit = [{ source: 'goal:task', value: 1 }];
+  beginPursuit(p, credit);
+  const before = persistenceTerms(p, credit, { needs: [] });
+  p.now += 60;
+  expect(persistenceTerms(p, credit, { needs: [] })).toEqual(before);
+  hf.enablePersistence(p);
+  expect(persistenceTerms(p, credit, { needs: [] })[0]?.value).toBeCloseTo(required(before[0]).value / 4, 4);
+});
+
+test('persistence marker and bounded half-life survive restore; malformed values reject the slice', () => {
+  const p = person();
+  hf.enablePersistence(p, { stallHalfLifeMinutes: 10 });
+  start(p);
+  expect(p.pursuit?.behaviour).toBe(2);
+  expect(hf.restore(hf.snapshot(p)).pursuit).toEqual(p.pursuit);
+  const saved = hf.snapshot(p);
+  Object.assign(required(saved.pursuit), { behaviour: 1 });
+  expect(hf.restore(saved).pursuit).toBeUndefined();
+  hf.enablePersistence(p, { stallHalfLifeMinutes: 0 });
+  expect(p.pursuit?.spec).toBeUndefined();
+  Object.assign(required(saved.pursuit), { behaviour: 2, spec: { stallHalfLifeMinutes: 1441 } });
+  expect(hf.restore(saved).pursuit).toBeUndefined();
 });

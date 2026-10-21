@@ -47,7 +47,7 @@
  */
 // The bundled catalog is only the default; a host with its own catalog passes it (`World.catalog`).
 import { DEFAULT_NORMS } from '../conscience/catalog.ts';
-import { clamp01, dayOf, dpow, hasNumbers, isObj } from '../core/index.ts';
+import { clamp01, dayOf, dpow, hasNumbers, isNum, isObj } from '../core/index.ts';
 import { expectedEffect } from '../memory/index.ts';
 import type {
   Affordance,
@@ -179,9 +179,10 @@ function sanitizeGoalTemporal(g: Goal): void {
       project.prospectId.length > 0 &&
       project.prospectId.length <= 512 &&
       typeof project.perceivedProgress === 'boolean'
-    )
+    ) {
       g.project = { prospectId: project.prospectId, perceivedProgress: project.perceivedProgress };
-    else delete g.project;
+      if (isNum(project.peak) && project.peak >= 0 && project.peak <= 1) g.project.peak = project.peak;
+    } else delete g.project;
   }
   const t = g.temporal as unknown;
   if (
@@ -757,7 +758,7 @@ export function onFinished(
     if (amount <= 0) continue;
     // Credit the contribution for narration/reward, but only perception sets this project's progress.
     if (g.project?.perceivedProgress) {
-      advanced.push(g);
+      if (g.project.peak === undefined || g.progress >= g.project.peak) advanced.push(g);
       continue;
     }
     g.progress = clamp01(g.progress + amount);
@@ -800,7 +801,8 @@ export function perceiveProjectProgress(p: Person, prospectId: string, progress:
   for (const g of p.agenda.goals) {
     if (g.status !== 'active' || !g.project?.perceivedProgress || g.project.prospectId !== prospectId)
       continue;
-    if (progress > g.progress) {
+    if (progress > (g.project.peak ?? g.progress)) {
+      if (g.project.peak !== undefined) g.project.peak = clamp01(progress);
       g.lastAdvancedAt = now;
       if (g.baseImportance !== undefined) g.importance = g.baseImportance;
     }

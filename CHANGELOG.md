@@ -12,6 +12,20 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+## [2.14.1] - 2026-10-20
+
+Engine: 2.14.1. Corrects a modelling assumption inside the released projects and persistence faculties: restoring an earlier perceived reading is not net progress, and a started pursuit's pull should fade without progress.
+
+### Fixed
+
+- Newly enabled perceived-progress projects retain their highest reading in `Goal.project.peak`. Only a new high refreshes staleness and importance; contributions below that high restore rather than earn advancement credit. Event-credited projects cannot observe reversals and retain their existing credit.
+- Newly enabled persistence halves both continuation and switching terms every 30 minutes without goal progress (`stallHalfLifeMinutes`, bounded 1..1440). The goal's progress clock survives pursuit release and re-formation. Existing release rules remain unchanged.
+
+### Compatibility
+
+- Enabling either faculty stamps its slice with `behaviour: 2`. Re-enabling projects seeds active perceived-progress goals' peaks from their current progress. Re-enabling on every load opts in by that act.
+- Migration from 2.14.0 only stamps the engine version. Slices restored without the marker retain exact 2.14.0 crediting and an undecaying pull until the host re-enables them.
+
 ## [2.14.0] - 2026-10-20
 
 Engine: 2.14.0. *Projects and persistence* (owner, 2026-10-20: "Add those faculties and other feat to HF"; sources in [research/projects-and-persistence.md](https://github.com/adam0white/human-framework/blob/main/research/projects-and-persistence.md)). The island rerun on 2.12.0 found that a person with met needs set no free-time goal and built nothing, and that a started chain was not kept. A person can now turn what they perceive into a self-set project, and keep a started pursuit going. Both are opt-in: without them, state, decisions and digests are the same as 2.13.0 with only the engine stamp normalized, including when percepts carry prospect data. Saves migrate from 2.13.0 by stamping the version.

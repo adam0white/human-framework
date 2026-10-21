@@ -3,7 +3,7 @@ import { main as community, DAYS } from '../examples/community.ts';
 import { main as curiosity } from '../examples/curiosity-control.ts';
 import { main as minimal } from '../examples/minimal.ts';
 import { main as planning } from '../examples/planning-control.ts';
-import { longerProject, main as projects } from '../examples/projects-control.ts';
+import { longerProject, main as projects, runStalledArm } from '../examples/projects-control.ts';
 import { main as suggestions } from '../examples/suggestions.ts';
 import { main as whyNot } from '../examples/why-not-control.ts';
 
@@ -43,6 +43,22 @@ describe('examples', () => {
     expect(hungry.minutesToFirstMeal).not.toBeNull();
     expect(hungry.minutesToFirstMeal).toBeLessThanOrEqual(5);
     expect(hungry.placementsAfterMeal).toBeGreaterThan(0);
+  });
+  test('a stalled take-and-replace project loses its pull and gives way to another activity', () => {
+    const legacy = runStalledArm('legacy');
+    const net = runStalledArm('net');
+    expect(legacy.pieces).toBe(3);
+    expect(net.pieces).toBe(3);
+    expect(legacy.rounds).toBe(60);
+    expect(legacy.releasedAt).toBeNull();
+    expect(net.rounds).toBeGreaterThan(0);
+    expect(net.rounds).toBeLessThan(legacy.rounds);
+    expect(net.samples[1]?.continuation).toBeGreaterThan(0);
+    expect(net.samples[1]?.continuation).toBeLessThan(legacy.samples[1]?.continuation ?? 0);
+    expect(net.releasedAt).not.toBeNull();
+    expect(net.releasedAt).toBeLessThan(net.minutes);
+    expect(net.afterRelease.quiet).toBeGreaterThan(0);
+    expect(net.afterRelease.take ?? 0).toBe(0);
   });
   test('why not: inertia, norm, habit and firm rule separate the same request', () => {
     const rows = whyNot();

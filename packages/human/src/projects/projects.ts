@@ -7,6 +7,7 @@
  * models a pull to continue, not a Zeigarnik memory advantage. See research/projects-and-persistence.md.
  * All thresholds and coefficients are engineering defaults. This owns only p.projects; agenda owns
  * goals. All kinds serve competence and leisure: making is chosen as a free-time pursuit, not duty.
+ * Behaviour 2 credits only new perceived highs; event-credited projects cannot observe reversals and stay unchanged.
  * Restore recovers one active project, keeping the newest (id breaks ties) and abandoning extras.
  * No invented prospects, host task interpretation, world search, persistence, shielding, faith lens,
  * LLM or RNG. Without the slice, perception and minute bookkeeping write nothing.
@@ -71,7 +72,7 @@ function cleanProspect(x: unknown): Prospect | undefined {
   const p: Prospect = { id: x.id, label: x.label, kind: x.kind as Prospect['kind'] };
   if (x.placeId !== undefined) p.placeId = x.placeId as string;
   if (x.progress !== undefined) p.progress = x.progress as number;
-  // A long list is kept, not rejected: the first eight distinct ids in the host's order (island rerun, 2026-10-20).
+  // A long list is kept, not rejected: the first eight distinct ids in the host's order (host rerun, 2026-10-20).
   if (x.materialIds !== undefined) p.materialIds = [...new Set(x.materialIds as string[])].slice(0, 8);
   return p;
 }
@@ -79,6 +80,11 @@ function cleanProspect(x: unknown): Prospect | undefined {
 /** Enable or reconfigure without discarding retained prospects and history. */
 export function enableProjects(p: Person, spec: ProjectsSpec = {}): ProjectsState {
   const state = p.projects ?? { prospects: [], history: [] };
+  if (state.behaviour !== 2) {
+    for (const g of p.agenda.goals)
+      if (g.status === 'active' && g.project?.perceivedProgress) g.project.peak = g.progress;
+  }
+  state.behaviour = 2;
   const clean = cleanSpec(spec);
   delete state.spec;
   if (Object.keys(clean).length) state.spec = clean;
@@ -237,6 +243,7 @@ export function considerProjects(p: Person, now: Minute): void {
     now,
   );
   if (prospect.progress !== undefined) perceiveProjectProgress(p, prospect.id, prospect.progress, now);
+  if (s.behaviour === 2 && g.project) g.project.peak = g.progress;
   s.lastAdoptedAt = now;
   s.currentGoalId = g.id;
 }
@@ -244,7 +251,9 @@ export function considerProjects(p: Person, now: Minute): void {
 /** Conservative restore: bounded fields, finite past timestamps, and no ambiguous duplicate ids. */
 export function sanitizeProjects(input: unknown, now: Minute): ProjectsState | undefined {
   if (!isObj(input) || !Array.isArray(input.prospects) || !Array.isArray(input.history)) return undefined;
+  if (input.behaviour !== undefined && input.behaviour !== 2) return undefined;
   const out: ProjectsState = { prospects: [], history: [] };
+  if (input.behaviour === 2) out.behaviour = 2;
   if (input.spec !== undefined) {
     if (!isObj(input.spec)) return undefined;
     const spec = cleanSpec(input.spec);

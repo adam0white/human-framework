@@ -327,3 +327,63 @@ test('disabled projects match exact main a3d3439 with or without prospect data, 
   expect(projectsOffContinuation(hf, false)).toBe(mainDigest);
   expect(projectsOffContinuation(hf, true)).toBe(mainDigest);
 });
+
+test('restoring an earlier reading does not earn net credit or refresh staleness', () => {
+  const p = person();
+  see(p, { ...prospect, progress: 0.3 });
+  hf.considerProjects(p, p.now);
+  const g = active(p);
+  if (!g) throw new Error('No project');
+  const advancedAt = g.lastAdvancedAt;
+  g.importance = 0.1;
+  const contribute = () =>
+    hf.onFinished(p, {
+      affordanceId: 'place',
+      action: 'place',
+      status: 'completed',
+      at: p.now,
+      advances: [prospect.id],
+    }).advanced;
+  hf.tick(p, p.now + 1);
+  see(p, { ...prospect, progress: 0.2 });
+  expect(contribute()).not.toContain(g);
+  hf.tick(p, p.now + 1);
+  expect(contribute()).not.toContain(g);
+  see(p, { ...prospect, progress: 0.3 });
+  expect(g.lastAdvancedAt).toBe(advancedAt);
+  expect(g.importance).toBeLessThan(0.2);
+  hf.tick(p, p.now + 1);
+  see(p, { ...prospect, progress: 0.4 });
+  expect(g.lastAdvancedAt).toBe(p.now);
+  expect(g.importance).toBe(g.baseImportance);
+  expect(contribute()).toContain(g);
+});
+
+test('project behaviour and peaks survive restore; re-enabling a legacy save opts in once', () => {
+  const p = person();
+  see(p, { ...prospect, progress: 0.3 });
+  hf.considerProjects(p, p.now);
+  const saved = hf.snapshot(p);
+  expect(saved.projects?.behaviour).toBe(2);
+  expect(hf.restore(saved).agenda.goals[0]?.project?.peak).toBe(0.3);
+  const legacy = structuredClone(saved);
+  if (!legacy.projects || !legacy.agenda.goals[0]?.project) throw new Error('No project');
+  delete legacy.projects.behaviour;
+  delete legacy.agenda.goals[0].project.peak;
+  legacy.engine = '2.14.0';
+  const q = hf.restore(legacy);
+  expect(q.projects?.behaviour).toBeUndefined();
+  expect(q.agenda.goals[0]?.project?.peak).toBeUndefined();
+  hf.enableProjects(q);
+  expect(q.projects?.behaviour).toBe(2);
+  expect(q.agenda.goals[0]?.project?.peak).toBe(0.3);
+  see(q, { ...prospect, progress: 0.2 });
+  hf.enableProjects(q);
+  expect(q.agenda.goals[0]?.project?.peak).toBe(0.3);
+  const bad = structuredClone(saved);
+  if (!bad.agenda.goals[0]?.project || !bad.projects) throw new Error('No project');
+  bad.agenda.goals[0].project.peak = 2;
+  expect(hf.restore(bad).agenda.goals[0]?.project).toEqual({ prospectId: 'work', perceivedProgress: true });
+  (bad.projects as { behaviour?: number }).behaviour = 3;
+  expect(hf.restore(bad).projects).toBeUndefined();
+});

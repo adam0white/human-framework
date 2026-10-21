@@ -662,7 +662,12 @@ export interface Commitment {
 
 export interface Goal {
   /** Prospect identity; perceived projects receive progress only through perception. */
-  project?: { prospectId: string; perceivedProgress: boolean };
+  project?: {
+    prospectId: string;
+    perceivedProgress: boolean;
+    /** Highest perceived progress since adoption; presence opts this goal into net credit. */
+    peak?: Unit;
+  };
   id: string;
   label: string;
   /** Which need/value the goal serves. */
@@ -963,7 +968,7 @@ export const PERSON_SCHEMA = 'human/person@1';
  * and an activity that would cover a closing stretch is reviewed when the stretch begins (`isUnderWay`,
  * `dutyReviewAt`). Person shape unchanged.
  */
-export const ENGINE_VERSION = '2.14.0';
+export const ENGINE_VERSION = '2.14.1';
 
 // ---------------------------------------------------------------------------------------------
 // Family, bonds and ambient (1.8.0, optional slices)
@@ -2054,6 +2059,8 @@ export interface ProjectHistory {
 }
 /** Optional bounded JSON state owned by projects/. */
 export interface ProjectsState {
+  /** Absent retains 2.14.0 credit. Re-enabling, including on every load, opts into net credit. */
+  behaviour?: 2;
   spec?: ProjectsSpec;
   prospects: (Prospect & { lastSeenAt: Minute })[];
   history: ProjectHistory[];
@@ -2064,6 +2071,8 @@ export interface ProjectsState {
 }
 /** Bounded engineering overrides for persistence/. Invalid overrides use defaults. */
 export interface PersistenceSpec {
+  /** Half-life without goal progress, in minutes (default 30; valid 1..1440). */
+  stallHalfLifeMinutes?: number;
   continueScale?: number;
   switchScale?: number;
   cap?: number;
@@ -2082,6 +2091,8 @@ export interface Pursuit {
 }
 /** Optional JSON state owned by persistence/: one current pursuit and one refractory goal. */
 export interface PursuitState {
+  /** Absent retains the 2.14.0 pull. Re-enabling, including on every load, opts into decay. */
+  behaviour?: 2;
   spec?: PersistenceSpec;
   current?: Pursuit;
   /** One goal withheld from pursuit formation until this minute; agenda terms remain unchanged. */

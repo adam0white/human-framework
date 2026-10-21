@@ -9,11 +9,13 @@
  * This is a bounded bias plus a switching cost, not a planner. It chooses no goals, executes no
  * plans, reorders no steps and changes no agenda valuation. It imports no projects, uses no RNG,
  * LLM or faith lens. Needs and fear gate both terms; commitment options never pay the switch cost.
+ * Behaviour 2 halves both terms with time since the pursued goal last advanced (or adoption),
+ * including after release and re-formation. Absent behaviour retains the 2.14.0 undecaying pull.
  * Without the slice, it adds no state or terms.
  */
 import { emotionLevel } from '../affect/index.ts';
 import type { ConsiderContext } from '../cognition/index.ts';
-import { clamp01, cmpStr, isNum, isObj, round } from '../core/index.ts';
+import { clamp01, cmpStr, dpow, isNum, isObj, round } from '../core/index.ts';
 import type { Minute, PersistenceSpec, Person, Pursuit, PursuitState, Term } from '../types.ts';
 import { MAX_MINUTE, PHYSIOLOGICAL_NEEDS } from '../types.ts';
 
@@ -29,6 +31,7 @@ export const PERSISTENCE_DEFAULTS = {
   slackMinutes: 20,
   maxMinutes: 240,
   restMinutes: 20,
+  stallHalfLifeMinutes: 30,
 } as const;
 const KEYS = [
   'continueScale',
@@ -38,14 +41,20 @@ const KEYS = [
   'slackMinutes',
   'maxMinutes',
   'restMinutes',
+  'stallHalfLifeMinutes',
 ] as const;
 function cleanSpec(input: unknown): PersistenceSpec {
   const out: PersistenceSpec = {};
   if (!isObj(input)) return out;
   for (const key of KEYS) {
     const x = input[key];
-    const max = key === 'slackMinutes' || key === 'maxMinutes' || key === 'restMinutes' ? 1440 : 1;
-    if (isNum(x) && x >= 0 && x <= max) out[key] = x;
+    const duration =
+      key === 'slackMinutes' ||
+      key === 'maxMinutes' ||
+      key === 'restMinutes' ||
+      key === 'stallHalfLifeMinutes';
+    const min = key === 'stallHalfLifeMinutes' ? 1 : 0;
+    if (isNum(x) && x >= min && x <= (duration ? 1440 : 1)) out[key] = x;
   }
   return out;
 }
@@ -56,7 +65,7 @@ const active = (p: Person, id: string) => p.agenda.goals.find((g) => g.id === id
 
 /** Enable or reconfigure, retaining a current pursuit. Invalid overrides use defaults. */
 export function enablePersistence(p: Person, spec: PersistenceSpec = {}): PursuitState {
-  const out: PursuitState = {};
+  const out: PursuitState = { behaviour: 2 };
   const clean = cleanSpec(spec);
   if (Object.keys(clean).length) out.spec = clean;
   if (p.pursuit?.current) out.current = { ...p.pursuit.current };
@@ -130,7 +139,11 @@ export function persistenceTerms(
 ): Term[] {
   const s = p.pursuit;
   const c = s?.current;
-  if (!s || !c || !active(p, c.goalId)) return [];
+  if (!s || !c) return [];
+  const goal = active(p, c.goalId);
+  if (!goal) return [];
+  const stall = Math.max(0, p.now - (goal.lastAdvancedAt ?? goal.adoptedAt));
+  const decay = s.behaviour === 2 ? dpow(0.5, stall / setting(s, 'stallHalfLifeMinutes')) : 1;
   let urgency = 0;
   for (const n of ctx.needs)
     if (n.id === 'safety' || (PHYSIOLOGICAL_NEEDS as readonly string[]).includes(n.id))
@@ -140,14 +153,14 @@ export function persistenceTerms(
     return [
       {
         source: `pursuit:${c.goalId}`,
-        value: round(Math.min(setting(s, 'cap'), setting(s, 'continueScale') * c.strength * gate)),
+        value: round(Math.min(setting(s, 'cap'), setting(s, 'continueScale') * c.strength * gate) * decay),
       },
     ];
   if (terms.some((t) => t.source.startsWith('commitment:'))) return [];
   return [
     {
       source: 'pursuit:switch',
-      value: -round(Math.min(setting(s, 'cap'), setting(s, 'switchScale') * c.strength * gate)),
+      value: -round(Math.min(setting(s, 'cap'), setting(s, 'switchScale') * c.strength * gate) * decay),
     },
   ];
 }
@@ -156,7 +169,9 @@ const minute = (x: unknown, now: Minute): x is number => isNum(x) && Math.abs(x)
 /** Conservative restore: malformed settings or pursuit drop the optional slice. @internal */
 export function sanitizePursuit(input: unknown, now: Minute): PursuitState | undefined {
   if (!isObj(input) || (input.spec !== undefined && !isObj(input.spec))) return undefined;
+  if (input.behaviour !== undefined && input.behaviour !== 2) return undefined;
   const out: PursuitState = {};
+  if (input.behaviour === 2) out.behaviour = 2;
   if (input.spec !== undefined) {
     const spec = cleanSpec(input.spec);
     if (Object.keys(spec).length !== Object.keys(input.spec).length) return undefined;
