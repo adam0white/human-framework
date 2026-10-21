@@ -118,6 +118,7 @@ export * from './narrate/index.ts';
 export * from './needs/index.ts';
 export * from './partnering/index.ts';
 export * from './person.ts';
+export { considerProjects, enableProjects, PROJECTS_DEFAULTS, projectAppeal } from './projects/index.ts';
 export * from './promptings/index.ts';
 export type { ConsequenceEvidence, PlanRoute, PlanStep } from './prospection/index.ts';
 export {

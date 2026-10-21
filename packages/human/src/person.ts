@@ -129,6 +129,7 @@ import {
   urgencyOf,
 } from './needs/index.ts';
 import { widow } from './partnering/index.ts';
+import { considerProjects, enableProjects, noteProjectStatus, perceiveProspect } from './projects/index.ts';
 import { enablePromptings, type NafsPattern, nafsPatterns, notePromptings } from './promptings/index.ts';
 import {
   bodyForecastFor,
@@ -332,6 +333,7 @@ export function createPerson(spec: PersonSpec): Person {
   if (on?.skillRetention) enableSkillRetention(p);
   if (on?.fatigueStore) enableFatigueStore(p);
   if (on?.fullness) enableFullness(p);
+  if (on?.projects) enableProjects(p, on.projects === true ? {} : on.projects);
   if (on?.curiosity) enableCuriosity(p, on.curiosity === true ? {} : on.curiosity);
   if (on?.planning) enablePlanning(p, on.planning);
   if (on?.promptings) enablePromptings(p, on.promptings);
@@ -622,6 +624,7 @@ export function tick(p: Person, now: Minute): void {
         }
       }
     }
+    if (p.projects) considerProjects(p, end);
   }
 }
 
@@ -732,6 +735,7 @@ function socialKindOf(kind: string): SocialEventKind | undefined {
 
 function perceiveOne(p: Person, pc: Percept): void {
   receiveConsequences(p, pc);
+  if (p.projects && pc.prospect) perceiveProspect(p, pc.prospect, pc.at);
   const at = Math.min(Math.max(pc.at, p.affect.lastUpdated), p.now);
   const actor = pc.actorId;
   const target = pc.targetId;
@@ -1638,6 +1642,7 @@ export function finish(p: Person, outcome: Outcome, opts: FinishOptions = {}): F
     ...(act.necessity ? { necessity: true } : {}),
     ...(opts.catalog ? { catalog: opts.catalog } : {}),
   });
+  if (p.projects) noteProjectStatus(p, now);
   // A completed violating action inside an open abstention's window broke it (the fast, e.g. "no work after the evening prayer").
   if (broken.length > 0) {
     recordMissed(p, broken, now, outcome.action);

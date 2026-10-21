@@ -661,6 +661,8 @@ export interface Commitment {
 }
 
 export interface Goal {
+  /** Prospect identity; perceived projects receive progress only through perception. */
+  project?: { prospectId: string; perceivedProgress: boolean };
   id: string;
   label: string;
   /** Which need/value the goal serves. */
@@ -1086,6 +1088,8 @@ export interface ReceivedConsequence {
     effort: Unit;
     focus?: Unit;
     materialCost?: number;
+    /** Goal or prospect ids this successor contributes to (bounded to 8). */
+    advances?: string[];
   };
   availableFrom: Minute;
   /** Latest permitted successor completion, inclusive. */
@@ -1157,6 +1161,8 @@ export interface Person {
   promptings?: PromptingsState;
   /** Intrinsic exploration and varied repetition. Owned by `curiosity/`; absent unless enabled. */
   curiosity?: CuriosityState;
+  /** Self-set projects from attended prospects; owned by projects/. */
+  projects?: ProjectsState;
   /** Evening self-review and its resolves (2.7.0, opt-in via `enableReview`). Owned by `review/`. */
   review?: ReviewState;
   /** Practice consolidation (1.8.0, opt-in via `enableSkillRetention`). Owned by `skills/`. */
@@ -1286,6 +1292,8 @@ export interface Affordance {
 
 /** Something a person perceives. Hosts emit percepts; attention decides which are encoded. */
 export interface Percept {
+  /** Host-shown opportunity, retained only with projects enabled and when attended. */
+  prospect?: Prospect;
   at: Minute;
   /**
    * How it reached the person: seen, heard, told (testimony), felt (bodily), the result of an action
@@ -1585,6 +1593,8 @@ export interface PersonSpec {
     planning?: PlanningSpec;
     /** Evening self-review (2.7.0): the same as `enableReview(p, spec)` after creation. */
     review?: ReviewSpec;
+    /** Self-set projects from what the person attends to. */
+    projects?: boolean | ProjectsSpec;
   };
 }
 
@@ -2009,4 +2019,41 @@ export interface CuriosityReading {
   progress: Unit;
   vary: Unit;
   drive: number;
+}
+
+/** A bounded pursuit opportunity explicitly shown by the host. */
+export interface Prospect {
+  id: string;
+  label: string;
+  kind: 'make' | 'arrange' | 'gather' | 'finish';
+  placeId?: EntityId;
+  materialIds?: EntityId[];
+  progress?: Unit;
+}
+export interface ProjectsSpec {
+  forgetMinutes?: number;
+  calmUrgency?: Unit;
+  fearBelow?: Unit;
+  adoptEveryMinutes?: number;
+  cooldownMinutes?: number;
+  adoptAppeal?: Unit;
+  halfLifeMinutes?: number;
+  staleMinutes?: number;
+}
+export interface ProjectHistory {
+  prospectId: string;
+  goalId: string;
+  adoptedAt: Minute;
+  outcome: 'achieved' | 'abandoned';
+  at: Minute;
+}
+/** Optional bounded JSON state owned by projects/. */
+export interface ProjectsState {
+  spec?: ProjectsSpec;
+  prospects: (Prospect & { lastSeenAt: Minute })[];
+  history: ProjectHistory[];
+  lastAdoptedAt?: Minute;
+  lastAbandonedAt?: Minute;
+  /** The adopted goal awaiting its one terminal history entry. */
+  currentGoalId?: string;
 }

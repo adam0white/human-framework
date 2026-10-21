@@ -23,6 +23,7 @@ import { sanitizeMethods } from './methods/index.ts';
 import { migrate } from './migrate.ts';
 import { sanitizeBonds } from './partnering/index.ts';
 import { cleanRetention, createPerson, traceLimit } from './person.ts';
+import { sanitizeProjects } from './projects/index.ts';
 import { sanitizePromptings } from './promptings/index.ts';
 import { sanitizePlanning, sanitizeProspection } from './prospection/index.ts';
 import { sanitizeReview } from './review/index.ts';
@@ -94,6 +95,7 @@ const OPTIONAL_KEYS: ReadonlySet<string> = new Set([
   'planning',
   'promptings',
   'curiosity',
+  'projects',
   'review',
 ]);
 
@@ -203,6 +205,7 @@ export function restore(input: unknown): Person {
   keepValid(out, 'planning', sanitizePlanning);
   keepValid(out, 'prospection', (x) => sanitizeProspection(x, out.now, out.id, out.planning !== undefined));
   keepValid(out, 'curiosity', (x) => sanitizeCuriosity(x, out.now));
+  keepValid(out, 'projects', (x) => sanitizeProjects(x, out.now));
   keepValid(out, 'promptings', (x) => sanitizePromptings(x, out.now));
   keepValid(out, 'review', (x) => sanitizeReview(x, out.now));
   boundLists(out);

@@ -3,6 +3,7 @@ import { main as community, DAYS } from '../examples/community.ts';
 import { main as curiosity } from '../examples/curiosity-control.ts';
 import { main as minimal } from '../examples/minimal.ts';
 import { main as planning } from '../examples/planning-control.ts';
+import { main as projects } from '../examples/projects-control.ts';
 import { main as suggestions } from '../examples/suggestions.ts';
 import { main as whyNot } from '../examples/why-not-control.ts';
 
@@ -11,6 +12,19 @@ import { main as whyNot } from '../examples/why-not-control.ts';
 const VERDICTS = ['assented', 'complied', 'deferred', 'modified', 'refused'];
 
 describe('examples', () => {
+  test('projects: seen prospects become projects and placements only in relaxed free time', () => {
+    const [on, off, hungry] = projects();
+    if (!on || !off || !hungry) throw new Error('Missing project control arm');
+    for (const row of [on, off, hungry]) expect(row.minutes).toBe(1440);
+    expect(on.adopted).toBeGreaterThan(0);
+    expect(on.placements).toBe(5);
+    expect(on.finalProgress).toBe(1);
+    expect(on.history.some((h) => h.outcome === 'achieved')).toBe(true);
+    expect(off.adopted).toBe(0);
+    expect(off.placements).toBe(0);
+    expect(hungry.adopted).toBe(0);
+    expect(hungry.choices.food).toBeGreaterThan(0);
+  });
   test('why not: inertia, norm, habit and firm rule separate the same request', () => {
     const rows = whyNot();
     expect(rows).toHaveLength(5);
