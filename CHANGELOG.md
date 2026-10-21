@@ -26,6 +26,12 @@ Engine: 2.13.0. *Why not* ([slice plan](https://github.com/adam0white/human-fram
 
 - A firm rule models a rule the person holds, not a religious ruling. The narration batch of §1.3 (per-person deferral and assent lines) is a separate release, engine 2.14, so default voice wording is unchanged here.
 
+### Release
+
+- Tag `v2.13.0` on source commit `7586ada` (CI run 39539504674 passed); the release's `npm run check`: 1984 passed, 8 skipped. Trusted npm workflow 39539828142 succeeded. Registry integrity `sha512-OLYZxBohnCuwvAiQNmMJaHe6Zme/3ke0P6e7sXiRbPhRZ5HGrMP4Hzy9Z/VhyJP6NU1AMcoAOMF790qSXAKL8w==`; `npm audit signatures` in a fresh install reports a verified attestation, and the installed package exports `enableSuggestionReasons` (2.13.0, engine 2.13.0).
+- Review: one independent Codex review ([review](https://github.com/adam0white/human-framework/blob/main/docs/reviews/hf-2.13.0-codex-review.md)), two findings (`decidedBy` compared against the wrong suggested offer when several matched; a stochastic lower winner still got an explanation), both fixed before release with a regression test.
+- Site pins 2.13.0 at commit `7cd5d55`, deployed (Cloudflare version `afa6f7d5-3341-476f-b0f2-23713f2dda57`); live `/release.json` shows framework 2.13.0, that commit, `dirty: false`.
+
 ## [2.12.0] - 2026-10-20
 
 Engine: 2.12.0. *Steps ahead* ([slice plan](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md#current-increment-curiosity-and-play-then-bounded-planning-owner-2026-10-20); sources in [research/curiosity-and-play.md](https://github.com/adam0white/human-framework/blob/main/research/curiosity-and-play.md#bounded-planning-and-present-bias)). A person can value the first step of a short chain toward a goal: go, take, carry, put. Opt-in: a person without the planning slice gives the same state, decisions and digests as 2.11.0 with only the engine stamp normalized, and received consequences keep their single successor. Saves migrate from 2.11.0 by stamping the version.
