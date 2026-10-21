@@ -12,6 +12,11 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+### Fixed
+
+- Maximum-duration persistence release now rests the same goal for a bounded interval (20 minutes by default), preserved on restore. Ordinary goal terms and pursuit of other goals remain available.
+- Restore reconciles project ownership to the newest active project (goal id breaks ties), recording abandonment and cooldown for extras. Stale abandonment also records history and cooldown when its ownership pointer is absent.
+
 ### Added
 
 - Opt-in projects from attended host prospects: bounded retention, deterministic relaxed-time adoption, perception-owned progress, stale abandonment and terminal history. Enable with `enableProjects` or `PersonSpec.enable.projects`.

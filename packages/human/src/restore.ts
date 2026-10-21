@@ -24,7 +24,7 @@ import { migrate } from './migrate.ts';
 import { sanitizeBonds } from './partnering/index.ts';
 import { sanitizePursuit } from './persistence/index.ts';
 import { cleanRetention, createPerson, traceLimit } from './person.ts';
-import { sanitizeProjects } from './projects/index.ts';
+import { restoreProjects } from './projects/index.ts';
 import { sanitizePromptings } from './promptings/index.ts';
 import { sanitizePlanning, sanitizeProspection } from './prospection/index.ts';
 import { sanitizeReview } from './review/index.ts';
@@ -207,7 +207,7 @@ export function restore(input: unknown): Person {
   keepValid(out, 'planning', sanitizePlanning);
   keepValid(out, 'prospection', (x) => sanitizeProspection(x, out.now, out.id, out.planning !== undefined));
   keepValid(out, 'curiosity', (x) => sanitizeCuriosity(x, out.now));
-  keepValid(out, 'projects', (x) => sanitizeProjects(x, out.now));
+  restoreProjects(out);
   keepValid(out, 'pursuit', (x) => sanitizePursuit(x, out.now));
   keepValid(out, 'promptings', (x) => sanitizePromptings(x, out.now));
   keepValid(out, 'review', (x) => sanitizeReview(x, out.now));

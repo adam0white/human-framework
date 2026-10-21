@@ -187,6 +187,44 @@ test('finish releases achieved goals; tick releases abandoned or removed goals',
   expect(hf.pursuitOf(r)).toBeUndefined();
 });
 
+test('maximum duration rests only that goal across restore until the refractory interval ends', () => {
+  const p = person();
+  hf.enablePersistence(p, { maxMinutes: 2 });
+  start(p);
+  finish(p);
+  start(p);
+  finish(p);
+  expect(hf.pursuitOf(p)).toBeUndefined();
+  const saved = hf.snapshot(p);
+  const q = hf.restore(JSON.parse(JSON.stringify(saved)));
+  expect(q).toEqual(p);
+  const ordinaryTerms = terms(q, work).filter((t) => t.source.startsWith('goal:'));
+  start(q);
+  expect(hf.pursuitOf(q)).toBeUndefined();
+  expect(terms(q, work).filter((t) => t.source.startsWith('goal:'))).toEqual(ordinaryTerms);
+  expect(q.pursuit).toMatchObject({ rested: { goalId: 'task', until: 622 } });
+  hf.enablePersistence(q, { maxMinutes: 2, restMinutes: 1 });
+  expect(hf.restore(hf.snapshot(q)).pursuit).toEqual(q.pursuit);
+  q.agenda.goals.push({
+    ...structuredClone(goal(q)),
+    id: 'other',
+    advancedBy: [{ action: 'other', amount: 0.1 }],
+  });
+  start(q, offer('other'));
+  expect(hf.pursuitOf(q)?.goalId).toBe('other');
+  const resumed = hf.restore(saved);
+  hf.tick(resumed, 621);
+  start(resumed);
+  expect(hf.pursuitOf(resumed)).toBeUndefined();
+  hf.tick(resumed, 622);
+  start(resumed);
+  expect(hf.pursuitOf(resumed)).toMatchObject({ goalId: 'task', since: 622 });
+  expect(resumed.pursuit).not.toHaveProperty('rested');
+  const invalid = JSON.parse(JSON.stringify(saved));
+  invalid.pursuit.rested = { goalId: 'task', until: 1e12 };
+  expect(hf.restore(invalid).pursuit).toBeUndefined();
+});
+
 test('goal switching compares goal terms on the begun option with a strict margin; ties use id', () => {
   const p = person();
   start(p);

@@ -4,6 +4,7 @@
  * unrelated options pay a switching cost (goal shielding: Shah, Friedman & Kruglanski 2002;
  * task switching: Monsell 2003). Unused activation expires (Altmann & Trafton 2002); short
  * interruptions allow resumption (Ovsiankina 1928). See research/projects-and-persistence.md.
+ * Maximum-duration release rests that goal for one bounded interval before pursuit can form again.
  * These are shapes, not fitted values; all coefficients and time bounds are engineering defaults.
  * This is a bounded bias plus a switching cost, not a planner. It chooses no goals, executes no
  * plans, reorders no steps and changes no agenda valuation. It imports no projects, uses no RNG,
@@ -27,14 +28,23 @@ export const PERSISTENCE_DEFAULTS = {
   switchMargin: 0.15,
   slackMinutes: 20,
   maxMinutes: 240,
+  restMinutes: 20,
 } as const;
-const KEYS = ['continueScale', 'switchScale', 'cap', 'switchMargin', 'slackMinutes', 'maxMinutes'] as const;
+const KEYS = [
+  'continueScale',
+  'switchScale',
+  'cap',
+  'switchMargin',
+  'slackMinutes',
+  'maxMinutes',
+  'restMinutes',
+] as const;
 function cleanSpec(input: unknown): PersistenceSpec {
   const out: PersistenceSpec = {};
   if (!isObj(input)) return out;
   for (const key of KEYS) {
     const x = input[key];
-    const max = key === 'slackMinutes' || key === 'maxMinutes' ? 1440 : 1;
+    const max = key === 'slackMinutes' || key === 'maxMinutes' || key === 'restMinutes' ? 1440 : 1;
     if (isNum(x) && x >= 0 && x <= max) out[key] = x;
   }
   return out;
@@ -50,6 +60,7 @@ export function enablePersistence(p: Person, spec: PersistenceSpec = {}): Pursui
   const clean = cleanSpec(spec);
   if (Object.keys(clean).length) out.spec = clean;
   if (p.pursuit?.current) out.current = { ...p.pursuit.current };
+  if (p.pursuit?.rested) out.rested = { ...p.pursuit.rested };
   p.pursuit = out;
   return out;
 }
@@ -62,14 +73,18 @@ export function pursuitOf(p: Person): Pursuit | undefined {
 /** Drop finished, absent, neglected or overlong pursuits. Interruptions alone do not release. @internal */
 export function releasePursuit(p: Person): void {
   const s = p.pursuit;
-  const c = s?.current;
-  if (!s || !c) return;
-  if (
-    !active(p, c.goalId) ||
-    p.now - c.lastServedAt >= setting(s, 'slackMinutes') ||
-    p.now - c.since >= setting(s, 'maxMinutes')
-  )
+  if (!s) return;
+  if (s.rested && p.now >= s.rested.until) delete s.rested;
+  const c = s.current;
+  if (!c) return;
+  if (!active(p, c.goalId) || p.now - c.lastServedAt >= setting(s, 'slackMinutes')) {
     delete s.current;
+    return;
+  }
+  if (p.now - c.since >= setting(s, 'maxMinutes')) {
+    delete s.current;
+    s.rested = { goalId: c.goalId, until: Math.min(MAX_MINUTE, p.now + setting(s, 'restMinutes')) };
+  }
 }
 
 /** Form from the begun option's already-rounded goal terms, including route credit. @internal */
@@ -78,7 +93,7 @@ export function beginPursuit(p: Person, terms: readonly Term[]): void {
   if (!s) return;
   releasePursuit(p);
   const candidates = p.agenda.goals
-    .filter((g) => g.status === 'active' && identifier(g.id))
+    .filter((g) => g.status === 'active' && identifier(g.id) && g.id !== s.rested?.goalId)
     .map((goal) => ({
       goal,
       value: terms
@@ -161,6 +176,19 @@ export function sanitizePursuit(input: unknown, now: Minute): PursuitState | und
     )
       return undefined;
     out.current = { goalId: c.goalId, since: c.since, lastServedAt: c.lastServedAt, strength: c.strength };
+  }
+  const r = input.rested;
+  if (r !== undefined) {
+    if (
+      !isObj(r) ||
+      !identifier(r.goalId) ||
+      !isNum(r.until) ||
+      Math.abs(r.until) > MAX_MINUTE ||
+      // A later reconfiguration may shorten restMinutes without shortening an existing interval.
+      r.until > now + 1440
+    )
+      return undefined;
+    out.rested = { goalId: r.goalId, until: r.until };
   }
   return out;
 }

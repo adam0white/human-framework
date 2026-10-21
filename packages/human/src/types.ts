@@ -2069,6 +2069,8 @@ export interface PersistenceSpec {
   switchMargin?: number;
   slackMinutes?: number;
   maxMinutes?: number;
+  /** Refractory interval for the same goal after maximum-duration release (default 20 minutes). */
+  restMinutes?: number;
 }
 /** A started goal retained across decisions. */
 export interface Pursuit {
@@ -2077,8 +2079,10 @@ export interface Pursuit {
   lastServedAt: Minute;
   strength: Unit;
 }
-/** Optional JSON state owned by persistence/. */
+/** Optional JSON state owned by persistence/: one current pursuit and one refractory goal. */
 export interface PursuitState {
   spec?: PersistenceSpec;
   current?: Pursuit;
+  /** One goal withheld from pursuit formation until this minute; agenda terms remain unchanged. */
+  rested?: { goalId: string; until: Minute };
 }

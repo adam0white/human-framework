@@ -7,6 +7,7 @@
  * models a pull to continue, not a Zeigarnik memory advantage. See research/projects-and-persistence.md.
  * All thresholds and coefficients are engineering defaults. This owns only p.projects; agenda owns
  * goals. All kinds serve competence and leisure: making is chosen as a free-time pursuit, not duty.
+ * Restore recovers one active project, keeping the newest (id breaks ties) and abandoning extras.
  * No invented prospects, host task interpretation, world search, persistence, shielding, faith lens,
  * LLM or RNG. Without the slice, perception and minute bookkeeping write nothing.
  */
@@ -15,7 +16,7 @@ import { AGENDA_DEFAULTS, abandonGoal, adoptGoal, perceiveProjectProgress } from
 import { clamp01, cmpStr, isNum, isObj, round } from '../core/index.ts';
 import { curiosityOf } from '../curiosity/index.ts';
 import { readPerson } from '../person.ts';
-import type { Minute, Person, ProjectsSpec, ProjectsState, Prospect } from '../types.ts';
+import type { Goal, Minute, Person, ProjectsSpec, ProjectsState, Prospect } from '../types.ts';
 import { MAX_MINUTE, PHYSIOLOGICAL_NEEDS } from '../types.ts';
 
 export const PROJECTS_DEFAULTS = {
@@ -138,23 +139,17 @@ export function projectAppeal(p: Person, prospect: Prospect, now: Minute = p.now
   return round(clamp01(gate * (fit * (0.5 + 0.5 * interest) + resume + bonus)));
 }
 
-/** Record the adopted project's terminal state once, even after history eviction. @internal */
-export function noteProjectStatus(p: Person, now: Minute): void {
+function recordProjectStatus(p: Person, g: Goal, now: Minute): void {
   const s = p.projects;
-  if (!s?.currentGoalId) return;
-  const g = p.agenda.goals.find((g) => g.id === s.currentGoalId);
-  if (!g?.project) {
-    delete s.currentGoalId;
-    return;
-  }
-  if (g.status === 'active') return;
-  s.history.push({
-    prospectId: g.project.prospectId,
-    goalId: g.id,
-    adoptedAt: g.adoptedAt,
-    outcome: g.status,
-    at: now,
-  });
+  if (!s || !g.project || g.status === 'active') return;
+  if (!s.history.some((h) => h.goalId === g.id))
+    s.history.push({
+      prospectId: g.project.prospectId,
+      goalId: g.id,
+      adoptedAt: g.adoptedAt,
+      outcome: g.status,
+      at: now,
+    });
   if (g.status === 'abandoned') s.lastAbandonedAt = now;
   else {
     // Completed event-progress projects have no host progress reading: retain the known completion.
@@ -162,7 +157,16 @@ export function noteProjectStatus(p: Person, now: Minute): void {
     if (prospect) prospect.progress = 1;
   }
   if (s.history.length > PROJECTS_DEFAULTS.maxHistory) s.history.shift();
-  delete s.currentGoalId;
+  if (s.currentGoalId === g.id) delete s.currentGoalId;
+}
+
+/** Record the adopted project's terminal state once, even after history eviction. @internal */
+export function noteProjectStatus(p: Person, now: Minute): void {
+  const s = p.projects;
+  if (!s?.currentGoalId) return;
+  const g = p.agenda.goals.find((g) => g.id === s.currentGoalId);
+  if (!g?.project) delete s.currentGoalId;
+  else recordProjectStatus(p, g, now);
 }
 
 /** Only the composite calls this, after attention. Newest event minute wins; equal-minute input order wins. */
@@ -199,8 +203,10 @@ export function considerProjects(p: Person, now: Minute): void {
       g.project &&
       g.status === 'active' &&
       now - (g.lastAdvancedAt ?? g.adoptedAt) >= setting(s, 'staleMinutes')
-    )
+    ) {
       abandonGoal(p, g.id);
+      recordProjectStatus(p, g, now);
+    }
   noteProjectStatus(p, now);
   const active = p.agenda.goals.filter((g) => g.status === 'active');
   if (
@@ -284,4 +290,25 @@ export function sanitizeProjects(input: unknown, now: Minute): ProjectsState | u
     });
   }
   return out;
+}
+
+/** Sanitize and reconcile agenda ownership deterministically, without RNG. @internal */
+export function restoreProjects(p: Person): void {
+  const s = sanitizeProjects(p.projects, p.now);
+  if (!s) {
+    delete p.projects;
+    return;
+  }
+  p.projects = s;
+  noteProjectStatus(p, p.now);
+  const active = p.agenda.goals
+    .filter((g) => g.project && g.status === 'active')
+    .sort((a, b) => b.adoptedAt - a.adoptedAt || cmpStr(a.id, b.id));
+  for (const g of active.slice(1)) {
+    abandonGoal(p, g.id);
+    recordProjectStatus(p, g, p.now);
+  }
+  const kept = active[0];
+  if (kept) s.currentGoalId = kept.id;
+  else delete s.currentGoalId;
 }

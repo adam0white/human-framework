@@ -222,6 +222,46 @@ test('save round trip continues exactly; malformed optional data and ambiguous r
   expect(hf.restore(bad).agenda.goals[0]?.project).toBeUndefined();
 });
 
+test('restore reconciles project ownership so missing pointers cannot bypass abandonment cooldown', () => {
+  const p = person();
+  hf.enableProjects(p, { staleMinutes: 2, adoptEveryMinutes: 1, cooldownMinutes: 60 });
+  see(p);
+  hf.considerProjects(p, p.now);
+  const saved = hf.snapshot(p);
+  if (!saved.projects) throw new Error('No projects');
+  delete saved.projects.currentGoalId;
+  const q = hf.restore(saved);
+  expect(q.projects?.currentGoalId).toBe('g1');
+  // Staleness must also record abandonment if the pointer is lost after restore.
+  if (q.projects) delete q.projects.currentGoalId;
+  hf.tick(q, 602);
+  expect(q.agenda.goals.map((g) => [g.id, g.status])).toEqual([['g1', 'abandoned']]);
+  expect(q.projects?.history).toMatchObject([{ goalId: 'g1', outcome: 'abandoned', at: 602 }]);
+  expect(q.projects?.lastAbandonedAt).toBe(602);
+  const first = saved.agenda.goals[0];
+  if (!first) throw new Error('No project goal');
+  saved.agenda.goals.push(
+    { ...structuredClone(first), id: 'newer-b', adoptedAt: 600 },
+    { ...structuredClone(first), id: 'newer-a', adoptedAt: 600 },
+  );
+  first.adoptedAt = 599;
+  saved.projects.currentGoalId = 'missing';
+  const restored = hf.restore(saved);
+  expect(restored.agenda.goals.filter((g) => g.project && g.status === 'active').map((g) => g.id)).toEqual([
+    'newer-a',
+  ]);
+  expect(restored.projects?.currentGoalId).toBe('newer-a');
+  expect(restored.projects?.history).toMatchObject([
+    { goalId: 'newer-b', outcome: 'abandoned', at: 600 },
+    { goalId: 'g1', outcome: 'abandoned', at: 600 },
+  ]);
+  expect(restored.projects?.lastAbandonedAt).toBe(600);
+  expect(restored.rng).toEqual(saved.rng);
+  expect(hf.restore(hf.snapshot(restored))).toEqual(restored);
+  saved.agenda.goals = [];
+  expect(hf.restore(saved).projects).not.toHaveProperty('currentGoalId');
+});
+
 test('without projects the main legacy continuation is byte-identical', () => {
   expect([1, 2, 3].map((seed) => optInContinuation(hf, seed))).toEqual([
     { digest: '7af56da16d1b3414', refs: 1 },

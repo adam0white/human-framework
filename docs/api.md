@@ -1675,7 +1675,7 @@ interface World {
 - `Prospect` — A bounded pursuit opportunity explicitly shown by the host.
 - `ProspectionState` — Optional person-owned received knowledge.
 - `Pursuit` — A started goal retained across decisions.
-- `PursuitState` — Optional JSON state owned by persistence/.
+- `PursuitState` — Optional JSON state owned by persistence/: one current pursuit and one refractory goal.
 - `ReceivedConsequence` — A received conditional opportunity, never another person's consent or an actual outcome.
 - `Relationship` — fields: otherId, affection, trust, respect, familiarity, roles, ledger, lastInteraction, deceasedAt, groups
 - `ReportedAccount` — A report that `sourceId` told the reporter (the percept's `actorId`) that `prop` is `value` (2.10.0).
