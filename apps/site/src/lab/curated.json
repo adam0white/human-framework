@@ -5688,6 +5688,34 @@
     "fix:pass F-284 superseded by the owner's 2026-10-21 Pass notebook, do not build"
    ],
    "source": "Decision desk: pass-f284"
+  },
+  {
+   "id": "F-431",
+   "date": "2026-10-21",
+   "game": "pass",
+   "kind": "owner",
+   "who": "owner (run r-eezsdpskcr, app 0.1.0, HF 2.13.0, build ab956f1ca40f)",
+   "words": "Now I see what you mean when you recommended not pursuing the hands on chef route. It's too much busy work and unnecessary distraction and clicker game, not what we wanted to present here. Even calling out tables is too involved. I'd appreciate it if we can reap the learnings but remove most of the new stuff. You warned me and I should've listened. Insist next time (to my inner pencil)",
+   "verdict": "mixed",
+   "routes": [
+    "fix:pass remove hands-on cooking and manual table calls, restore running the pass through people, retain the useful relationship changes and migrate removed-mode saves (implemented for owner retest)"
+   ],
+   "source": "pass/docs/playtests/owner-2026-10-21.md"
+  },
+  {
+   "id": "F-432",
+   "date": "2026-10-21",
+   "game": "stairwell",
+   "kind": "owner",
+   "who": "owner (run r-sr3vrngc6m, app 0.1.0, HF 2.10.0, build 52db3fad09ce)",
+   "words": "Good progress, I think there's still some more polishing to be done here. Time controls are basically useless as we keep taking them away from the player. The game keeps going back and forth between being stuck or to slow to being too fast and missing out on convos or getting late in orders",
+   "verdict": "mixed",
+   "routes": [
+    "fix:stairwell remove speed controls, pace conversations and orders readably, cross empty stretches briskly and offer one until-something-happens action (implemented for owner retest)",
+    "lesson:L6",
+    "lesson:L7"
+   ],
+   "source": "stairwell/docs/playtests/owner-2026-10-21.md"
   }
  ],
  "lessons": [
@@ -6294,8 +6322,8 @@
   }
  ],
  "routes": {
-  "fix": 430,
-  "lesson": 289,
+  "fix": 432,
+  "lesson": 291,
   "hf": 12,
   "calibration": 42,
   "none": 7
