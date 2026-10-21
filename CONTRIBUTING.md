@@ -25,7 +25,7 @@ Report security problems privately, as described in [SECURITY.md](SECURITY.md).
   games under `apps/site`. A game needs something new from the framework → it becomes a general framework
   feature with its own tests.
 - One module owns each slice of person state; see [docs/framework.md](docs/framework.md).
-- A new faculty lands with tests, a headless scenario, and a scope paragraph in its module doc comment saying
+- A new faculty lands with focused tests that pin its own behaviour (no exhaustive matrices), a headless scenario, and a scope paragraph in its module doc comment saying
   what it covers and what it doesn't.
 - Norms with religious content are sourced from `research/`, never invented; see
   [research/decisions.md](research/decisions.md).

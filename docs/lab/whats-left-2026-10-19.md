@@ -1,6 +1,8 @@
 # What's left (2026-10-19, soft stop)
 
 Owner, 2026-10-19: "slow down on the Claude usage … we can move most of the stuff to codex. Keep note of what's left."
+**Status (2026-10-20):** the queue is complete; this file is a record. Its open HF asks are in [roadmap §3b](../roadmap.md) ("Still untriaged"); the game design items stay with each game's repository.
+
 From here on, Codex does the work by default. Claude handles only design judgement and reviews that need taste.
 
 ## Outcome of the soft-stop queue (2026-10-19)

@@ -6,8 +6,8 @@ HF is a deterministic, explainable model of a simulated person, written in TypeS
 
 ## Status
 
-- **HF 2.2.1** is released ([GitHub release](https://github.com/adam0white/human-framework/releases/tag/v2.2.1), engine 2.2.0; [CHANGELOG](CHANGELOG.md)). HF 2.x is released and graduated: Goal 1 (HF 1.0) and Goal 2 (HF 2.0 and Game 3) are done and accepted by the owner. What is next is in the [roadmap](docs/roadmap.md).
-- **Three example games**, live at [human.adamwhite.work](https://human.adamwhite.work):
+- **HF 2.10.0** is the latest release ([GitHub release](https://github.com/adam0white/human-framework/releases/tag/v2.10.0), engine 2.10.0; [CHANGELOG](CHANGELOG.md)). What is next is in the [roadmap](docs/roadmap.md).
+- **Three in-site example games**, live at [human.adamwhite.work](https://human.adamwhite.work); more games built on HF are listed on [/games/](https://human.adamwhite.work/games/):
   - [Twice at the Well](https://human.adamwhite.work/colony/): a colony sim played side by side without and with HF.
   - [The Day You Say Nothing](https://human.adamwhite.work/voice/): you are a voice in one man's head; he may refuse you.
   - [The Night Watch](https://human.adamwhite.work/watch/): a village's night watch over generations, endless.
@@ -28,8 +28,6 @@ Or build one from a checkout:
 npm pack -w packages/human   # writes adam0white-human-framework-<version>.tgz
 npm install ./adam0white-human-framework-<version>.tgz
 ```
-
-The v2.1.0 release tarball (`human-framework-2.1.0.tgz`) predates the rename and installs as `@human/framework`; releases after it carry the `@adam0white/human-framework` name used below.
 
 ```ts
 import { createCommunity, createPerson, createVillage, predict, stepCommunity, villagerSpec } from '@adam0white/human-framework';
@@ -61,7 +59,7 @@ A person's conscience weighs norms from a catalog the host supplies. The bundled
 - [docs/findings.md](docs/findings.md): results that cut against expectations.
 - [docs/games/](docs/games): one design doc per game ([colony](docs/games/colony.md), [voice](docs/games/voice.md), [watch](docs/games/watch.md)) and the owner's playtest notes, verbatim.
 - [research/](research): source records behind the norms and formulas, and [decisions on contested religious points](research/decisions.md).
-- [CHANGELOG.md](CHANGELOG.md), [HANDOFF.md](HANDOFF.md) (current state), [AGENTS.md](AGENTS.md) (contributor rules).
+- [CHANGELOG.md](CHANGELOG.md), [HANDOFF.md](HANDOFF.md) (current state), [docs/releases.md](docs/releases.md) (release receipts), [docs/history.md](docs/history.md), [AGENTS.md](AGENTS.md) (contributor rules).
 
 ## Repository
 
@@ -77,7 +75,7 @@ A person's conscience weighs norms from a catalog the host supplies. The bundled
 
 Node ≥ 24 with `/opt/homebrew/bin` first on `PATH`.
 
-- `npm run check`: lint (Biome), typecheck and tests. It has no wall-clock assertions and must pass before every commit.
+- `npm run check`: lint (Biome), typecheck and tests, with no wall-clock assertions. `npm run check:lane` runs the checks for the files you changed; run it before every commit.
 - `npm run bench`: the timing budgets (`*.timing.ts`), one file at a time, printing each measurement; run it alone on a quiet machine (`BENCH_SCALE=3` multiplies every budget). `npm run bench:hyperfine` times the headless 20-person, 30-day village run with [hyperfine](https://github.com/sharkdp/hyperfine).
 - `npm run build`: the package and the site. `npm run dev`: the site locally.
 - `npm run deploy`: deploys the site build to https://human.adamwhite.work (see AGENTS.md, Delivery); verify the live `/release.json` against the commit.

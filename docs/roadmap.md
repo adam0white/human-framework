@@ -1,6 +1,6 @@
 # Roadmap
 
-The single list of deferred work and targets for HF and its example games, updated 2026-10-20. Goals 1 and 2 are done and accepted ([HANDOFF](../HANDOFF.md)). The current owner-approved increment is the behaviour-neutral Host kit and maintenance sweep, then HF 2.10.0 / engine 2.10.0, Word and witness; [AGENTS.md](../AGENTS.md) defines its scope and completion. Other items on this page remain proposals unless included in that increment.
+The single list of open deferred work and targets for HF and its example games, updated 2026-10-20. Finished items are removed; the ones removed on 2026-10-20 are listed in [history.md](history.md#roadmap-items-done-moved-2026-10-20). The current owner-approved increment is an HF curiosity and play faculty plus bounded multi-step planning; [AGENTS.md](../AGENTS.md) defines its scope and completion, and [hf-roadmap-2026-10-20.md](hf-roadmap-2026-10-20.md) holds the slice plan. Other items on this page remain proposals.
 
 **Targets.** Each item has one:
 - **2.x**: behaviour-neutral (no replay, fixture or hash changes); fits any minor release after 2.1.0.
@@ -8,9 +8,7 @@ The single list of deferred work and targets for HF and its example games, updat
 - **3.0**: breaking API change (removal or rename).
 - **unscheduled**: worth doing, no release chosen.
 
-The H2 summary marked many of these "deferred, 2.1". 2.1.0 (released 2026-10-05) is a behaviour-neutral polish release, so items that move replays are relabelled 2.2 here; behaviour-neutral leftovers are 2.x. This page is the current target.
-
-Item ids (P, Q, S) are the rows of the [H2 review summary](reviews/2026-10-04-h2-summary.md); R2 ids (V, S, 1b, 3a, B1.3, …) are rows of the [R2 review summary](reviews/2026-10-04-summary.md). Review this page when the next goal is set.
+Items that move replays carry 2.2 or a later engine number; behaviour-neutral items are 2.x. Item ids (P, Q, S) are rows of the [H2 review summary](reviews/2026-10-04-h2-summary.md); R2 ids (V, S, 1b, 3a, B1.3, …) are rows of the [R2 review summary](reviews/2026-10-04-summary.md).
 
 **HF roadmap (2026-10-20).** The vision, three horizons and the recommended next increment are in [hf-roadmap-2026-10-20.md](hf-roadmap-2026-10-20.md), built from a blind consultation and the games' requests. This page stays the authoritative list of deferred items and targets; the roadmap orders them.
 
@@ -43,7 +41,6 @@ These change what a run does, so each needs the engine bump and a recorded reaso
 | Q36 (rest), M11 | `sanitizeFamily` accepts non-finite pregnancy fields (`conceivedAt`, `dueAt`, `seed`). A save the engine wrote is unaffected. | 2.x, by 2026-11-01 |
 | Q52 (rest) | `PersonSpec.habits` and `PersonSpec.expectations` (hosts write these slices by hand today). Additive. | 2.x |
 | Q50 | Two HF gaps Game 3 works around by writing framework slices directly: an additive trust gesture and host-caused tiredness. Add them, then move the game ([watch.md §12](games/watch.md#12-after-graduation-deferred-features) T2). | 2.x (additive) |
-| Split long functions | `finish`, `evaluate` and `stepCommunity` are each long enough to hide bugs; split them without changing results (hash tests pin this). | 2.x |
 | Test dedup | Tests repeat setup that `test/support.ts` now provides; fold the copies into it. | 2.x |
 | Unused `_now` parameters | `repent(p, id, _now)` and `recordRepair(p, victimId, _now)` in `conscience/` take a time they never read. Retain optional time arguments in 2.x. | optional 2.9.1, removed 3.0 |
 | Deprecated forms | Remove the 2.0 options-object forms of `glimpse`, `glimpseOf`, `hear`, `conceive` and `retell`, and `TRAIT_NAMES` (CHANGELOG [Unreleased], Deprecated). | 3.0 |
@@ -56,7 +53,6 @@ These change what a run does, so each needs the engine bump and a recorded reaso
 | R2 3a, H2 Q3 | Export hygiene: knip found exports used only in their own file; most were un-exported in 2.0. Re-run knip with `ignoreExportsUsedInFile`. | unscheduled |
 | R2 6f, M9 | `Object.keys(x) as NeedId[]` casts (8 in src); a `keysOf` helper in `core/`. Preserve saved key order. | 2.x, by 2026-11-01 |
 | R2 V11 | `stepCommunity` allocates per event. Invisible at 200 people; revisit if a host runs more than ~500. | unscheduled |
-| R2 1c, 7c | CI installs the packed tarball outside the workspace and runs the minimal host example; it checks docs/api.md freshness with read-only `api-doc --check`. | done 2.9.1 |
 | TS 5.x | Consumers on TypeScript 5.x are untested (the repo builds with TypeScript 7). | unscheduled |
 | Community and world migration | `migrate` upgrades person snapshots only; community state (`communityState`) and world state have no migration steps. None has been needed (their shape has not changed; world state is the host's), but the first shape change needs one. | community: engine 2.15 (§3b, "Memory bound and declared fidelity"); world: a host recipe, not HF |
 | Bench evidence | Bench timings on a quiet machine; 50-year save sizes on seeds other than 1; per-person growth is still about 0.5 KB a year at year 50, almost all the yearbook (P10). | unscheduled |
@@ -67,10 +63,10 @@ The full list, with module names and research references, is [faculty-inventory.
 
 **Missing (23).**
 - Body and perception: temperature, bladder and specific nutrients; attention that costs time.
-- Memory and reasoning: interference, false memory and reconsolidation; inference between beliefs; multi-step planning; present bias and temporal discounting; motivated reasoning; metacognition; imagination and counterfactuals.
+- Memory and reasoning: interference, false memory and reconsolidation; inference between beliefs; multi-step planning (current increment); present bias and temporal discounting; motivated reasoning; metacognition; imagination and counterfactuals.
 - Affect and commitments: fear habituation; implementation intentions; life purpose, vocation and life narrative.
 - Learning: negative transfer between skills; qualifications, roles and credentials.
-- Social: the other's view of me (impressions run one way); a missed promise costing standing with the promisee; power, coercion and conflict resolution.
+- Social: a missed promise costing standing with the promisee (believed regard landed in 2.10.0); power, coercion and conflict resolution.
 - Culture: culture as learned practices; norm diffusion and consensus; institutions and access.
 - Composites: creativity, humour, dreams.
 
@@ -79,43 +75,36 @@ The full list, with module names and research references, is [faculty-inventory.
 - Life course and family: life stages, developmental curves, childhood, physical and aptitude inheritance (no passion), kinship and household, attachment, moral development, sexuality and pregnancy (pregnancy only; no complications).
 - Mind: working memory, semantic knowledge, autobiography, learning from told experience (host-driven `retell` only), reflection that revises methods, skills aging (disuse only, no old-age decline).
 - Decision: calibrated daytime utilities (§1, flat daytime utilities, 2.2), scarcity (uncited).
-- Affect and self: body cost of stress, expression and concealment (no emotional contagion), curiosity, status and power, within-person variability, identity through group membership, self-esteem and self-model.
+- Affect and self: body cost of stress, expression and concealment (no emotional contagion), curiosity (current increment), status and power, within-person variability, identity through group membership, self-esteem and self-model.
 - Social: judging others' acts (no habituation), language (templates only; LLMs stay out of the loop by rule), joint activities (§1, one-sided), courage under threat, tools and equipment, sensory impairment.
 
-## 3b. Next slices after 2.4.0 (2026-10-18, updated 2026-10-19)
+## 3b. Next slices (2026-10-18, updated 2026-10-20)
 
 Owner direction (2026-10-18, [owner-directions](owner-directions-2026-10-18.md)): HF should become a one-stop shop for future games; the no-quantification rule stands (nothing about the ruh is computed), and science directions and capabilities HF lacks are in scope. Ordered by value to games. "Engine 2.5" means the next engine bump; each item ships opt-in with tests, a headless control and exact legacy continuation. Review this list by 2026-11-01.
 
 | Item | What | Target |
 |---|---|---|
-| Future bodily state in prospection | Done in 2.5.0 for offers that declare `followedBy` ([framework.md](framework.md#bodily-forecast-250)). Left: forecast a received successor's span; apply host surroundings (fasting perception done in 2.6.0) | Engine 2.8 |
-| Cumulative exertion in the body | Exertion relaxes toward current effort, so hours of climbing leave no extra fatigue for the descent. A slow glycogen/muscle-fatigue store would make the 2.5.0 forecast bite on long efforts; opt-in, so the three games replay unchanged | Done, engine 2.6.0 (`body.depletion`) |
-| Muhasaba (reconciliation §7) | Done in 2.7.0 for commitments (`review/`). Left: revise a method or a prompting response in review | Engine 2.14 (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
-| Multi-step planning (bounded) | Chains of two or three received or known routes with waiting cost; the most requested missing faculty. The island pilot (2026-10-20) adds a case: received consequences give one step of pull, but a goal reached by walk, pick, carry and place needs a longer chain | Engine 2.12 (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
+| Curiosity and play | People with met needs still act: exploring, playing and making things in free time. The island pilot (2026-10-20) found HF people idle once needs are met (owner, 2026-10-20: "Add those faculties") | Current increment ([hf-roadmap](hf-roadmap-2026-10-20.md)) |
+| Future bodily state in prospection | Left (2.5.0 covers offers that declare `followedBy`, [framework.md](framework.md#bodily-forecast-250)): forecast a received successor's span; apply host surroundings (fasting perception done in 2.6.0) | Engine 2.8 |
+| Muhasaba (reconciliation §7) | Left (2.7.0 covers commitments, `review/`): revise a method or a prompting response in review | Engine 2.14 (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
+| Multi-step planning (bounded) | Chains of two or three received or known routes with waiting cost; the most requested missing faculty. The island pilot (2026-10-20) adds a case: received consequences give one step of pull, but a goal reached by walk, pick, carry and place needs a longer chain | Current increment, engine 2.12 ([hf-roadmap](hf-roadmap-2026-10-20.md)) |
 | Sabr and shukr as appraisal styles | Reappraisal and gratitude in `affect/`, attentional and regulatory effects only | Engine 2.14 (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
 | Present bias and temporal discounting | Person-level discount style over the 2.3.0 temporal goals | Engine 2.12 (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
-| The other's view of me | Impressions both ways; a missed promise costs standing with the promisee | Engine 2.10, with belief provenance (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
+| The other's view of me | Believed regard done in 2.10.0. Left: a missed promise costs standing with the promisee | review 2026-11-15 |
 | Qalb lens | Read-only narration lens over attention, conviction, mood and trust (no scalar) | 2.x (behaviour-neutral) |
 | Promptings follow-ups | Chronicle lines in the reading's vocabulary; prompts against open abstention windows (they veto today and carry no term); upbringing setting the reading | 2.x / engine 2.5 |
 | Held fitra and purpose | Life purpose and vocation as a held self-understanding (reconciliation §7) | unscheduled, review 2026-11-15 |
 | Culture as learned practices | Norm diffusion and consensus between people | unscheduled, review 2026-11-15 |
 | Received support (non-directive words) | A person hears care or a question from another source (a friend, an inner voice) that directs no action; today `converse` needs two Persons and carries testimony or advice, so Voice's care lines are scene continuations with no effect on him (lab ledger F-285, docs/games/voice.md 2026-10-20b) | review 2026-11-15 |
 
-**Game requests and playtesters (2026-10-19, owner-directed increment; triage in [game-requests-2026-10-18.md](game-requests-2026-10-18.md)).**
+**Game requests and playtesters (triage in [game-requests-2026-10-18.md](game-requests-2026-10-18.md)).**
 
 | Item | What | Target |
 |---|---|---|
-| Going along and reconsidering | `Affordance.alongside` + `together:<id>`; `decide(..., { reconsider: true })` | Done, engine 2.8.0 |
-| Fullness (alliesthesia) | Opt-in `body.fullness`: drinking or eating past comfort costs a little, so idle loops stop | Done, engine 2.8.0 |
-| A voice's own promise; seeding a voice | `noteVoicePromise`, `seedVoice` | Done, engine 2.8.0 |
-| Forecast thresholds per offer | `Affordance.forecastAt` (The Glance) | Done, engine 2.8.0 |
-| HF-character playtesters | `packages/playtester` (private): a persona plays any game through a four-call adapter | Done 2026-10-19 |
-| Playtester edges and cohorts | Edge-pushers, a returner, an edge report (fun to keep or close), cohorts and build comparison; canonical adapters for The Pass, The Glance and The Two Voices | Done 2026-10-19 |
 | Publish the playtester | Three games now have adapters, which meets the earlier "second game" trigger. Decide whether to publish `packages/playtester` as its own npm package | Decide by 2026-11-15 |
 | Session-scale affect for the playtester | Game events enter HF's life-scale joy and distress (hours), so a long session of mixed nights saturates both; the 2026-10-19 calibration weighs a 5-minute window in the session instead (docs/findings.md). Try a session-side affect store or propose an HF appraisal channel for fiction; check on The Night Watch and the toys | 2026-11-15 |
 | Comparisons that can tell builds apart | At 3 seeds a persona, build-to-build changes stay within one session; add more seeds or a noise estimate per line | 2026-11-15 |
 | The Glance adapter's gate policy | Base personas lose every full run; check whether the inherited gate rule or the game causes it | 2026-11-01 |
-| An HF designer | Experiment done: no value over a plain LLM reviewer (findings, 2026-10-19). Not pursued | Closed 2026-10-19 |
 | Narration variety | Per-person variants for deferral and assent sentences (Rope rank 4, Glance 4); a plain third-person `promptingLine` (Pass 2); chronicle verbs that avoid inflecting nouns (Pass 3). One batch, since each moves narration fixtures | Engine 2.11 (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
 | Why a suggestion failed | `SuggestionResolution.decidedBy` (inertia or the separating term, with margin) so lines can say "not straight off my break" (Pass 1) | Engine 2.11 (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
 | A firm self-rule | Opt-in `Commitment.firm` on a self abstention: `refused/willNot`, reason `rule:<label>` (Pass 4) | Engine 2.11 (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
@@ -125,21 +114,16 @@ Owner direction (2026-10-18, [owner-directions](owner-directions-2026-10-18.md))
 | Bladder | A real voiding need, so hosts stop advertising pain `relief` for the toilet (Rope Kestrel) | Engine 2.13 (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
 | A duty held by a group | Shared commitment met by any member (Pass 6) | unscheduled, review 2026-11-15 |
 | Projects from what is seen (island pilot) | Adapter reruns done 2026-10-20 (findings): no free-time goal is proposed in 4 hours; with received consequences a stated goal pulls on one step before it (one cube on 3 of 10 seeds) but not on walk, pick, carry and place. Waits on "Multi-step planning (bounded)" above; then rerun the island before designing project adoption | Rerun with engine 2.12 |
+| Method learning follow-ups | Inferred cue extraction, multi-step procedure synthesis and calibrated real-world learning rates for `methods/` ([learning-probe.md](learning-probe.md)) | unscheduled |
 | Engagement and boredom on a seconds scale | The playtester's fast `engagement` store, if a second user needs it inside HF | unscheduled, review 2026-11-15 |
 | Neighbours: residents repair once | Not reproduced; may be the town running out of repairs | Review 2026-11-01 |
-| Several named commitments kept by one act | `Outcome.fulfills` naming two or more keeps each (Voices 1) | Done, engine 2.9.0 |
-| Cued turning-away responses; host practice half-life | `PromptingResponse.cue`; `enablePromptings({ practiceHalfLifeDays })` (Voices 2, 5) | Done, engine 2.9.0 |
-| A resolve term that names its resolve | `Term.ref` on `review:resolve` (Pass 8) | Done, engine 2.9.0 |
 | A separate review label | `reviewLabel` on commitments, if noun-phrase labels prove too limiting (Voices 3; documented instead) | unscheduled, review 2026-11-15 |
 | Valley requests (trust from a voice's acts, goods between households, second-person recall, `tellDeath` past the listener, `fingerprint`, a memory bound) | Filed 2026-10-19 against 2.8.0. Valley 4 and 5 done in 2.9.1; second-person recall joins the 2.11 narration batch; the memory bound is engine 2.15; Valley 1 and 2 still to triage | Triage 1 and 2 by 2026-11-01 |
-| Belief provenance and contradiction | Optional `origin` and an opaque lineage token on testimony, carried by `converse`; `contradicted` lowers source trust by a documented asymmetric rule; believed regard (Stairwell 2, 4; Hearsay 1) | Done, 2.10.0 (*Word and witness*) |
-| Setup API and trust stores | `seedSourceTrust`, `seedBelief`, and one paragraph naming relationship, voice and source trust and what moves each (Stairwell 1, 7) | Done, 2.9.1 |
-| Host kit | Recipes or helpers for travel/setup cost through `effort` and `duration`, which does not scale with duration (N1, Neighbours 3, Warren 2); the scale of need terms against effort and making work matter (Warren 1); `fingerprint(person)` (Valley 5), an opt-in tolerant `tellDeath` (Valley 4), notes on the community cache (Warren 4) and feeding residents (Stairwell 8) | Done, 2.9.1 ([host-kit](host-kit.md)); Valley 4 did not reproduce (the default was already tolerant; findings) |
 | A thousand lives (bench) | 100, 1,000 and coarse 10,000 people: ms per person-day, bytes per person, starved decisions; measurement only | 2026-11-15 |
 | Memory bound and declared fidelity | A memory bound in `Retention` (Valley 6); what coarse stepping preserves exactly; community-state migration steps (this supersedes the community half of "Community and world migration" in §2; world state stays the host's, with a documented recipe) | Engine 2.15 (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
 | Social and narration asks after 2.10 | Host reputation trait table (Stairwell 3); an opt-in `converse` mode for word getting back to the subject (Stairwell 5, partly served by `noteKnownBy`); a per-call relay threshold (Stairwell 6); a `converse` phrasing callback (Hearsay 3), varied cause-naming lapse lines (N2) and work narration that reads `material` as money (Warren 6), all in the 2.11 narration batch | Engine 2.11, by 2026-11-15 |
 | Behaviour-neutral social helpers | A composite observed reputation correction (Hearsay 2) | 2.x helper, by 2026-11-15 |
-| Still untriaged | Perceived unfinished shared work (Neighbours 4a); repeated-offer-set cost (Warren 3); a spatial reach helper (Warren 5) | Triage by 2026-11-15 |
+| Still untriaged | Perceived unfinished shared work (Neighbours 4a); repeated-offer-set cost (Warren 3); a spatial reach helper (Warren 5); from [whats-left](lab/whats-left-2026-10-19.md): mental effort filling the slow fatigue store (SW-1), `alongside` accepting a voice weighted by trust (SW-2), a cost for an urge he agrees to, and a phrase fade-rate API | Triage by 2026-11-15 |
 
 ## 4. Example games
 
@@ -163,7 +147,3 @@ Site-wide, from the R2 reviews (all unscheduled):
 **Lab deferred (2026-10-20).** F-192: test regular-event delivery in a working isolated Firefox, with GPC off and on, including navigation and a cross-origin request to the lab endpoint. Playwright launches failed here; client/Worker privacy controls pass ([findings](findings.md)). Confirm the owner's setting only with read access or a voluntary report. Target 2026-10-27. Preserve GPC/DNT suppression.
 
 **Lab clarity deferred (2026-10-20).** (a) Each game works its ranked clarity fixes (ledger F-206..F-217) in its own polish round; target 2026-11-03, owned by each game's agent. (b) Adopt `@adam0white/lab-kit` 0.1.0 first in The Valley (glossary, English dates, intro card), then in games that copy the tokens and stamp script; target 2026-11-03. (c) Kit additions the survey found duplicated but not built: service-worker template, speed bar and wake lock, title/continue scaffold; target 2026-11-03, only if two games adopt the kit first. (d) Rewrite lessons L5, L7, L14 and L15 to match the revised checklist, as the Codex review proposed ([review](lab/reviews/design-language-codex-2026-10-20.md)); target 2026-10-27. (e) Give the existing adapters `goal`, `next` and `disabled` from what each screen shows, so the clarity rubric measures more than timing; target 2026-10-27.
-
-## Demonstrated conditional methods (authorized 2026-10-10)
-
-Bounded conditional action acquisition supports the standalone repair-game apprenticeship probe. Implemented faculty and domain-neutral control: `methods/`, `examples/method-control.ts`. Release/consumer integration remains part of technical done in [learning-probe.md](learning-probe.md). General planning, inferred cue extraction, multi-step procedure synthesis and calibrated real-world learning rates remain **unscheduled**; this increment does not activate them.

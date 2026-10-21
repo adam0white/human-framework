@@ -71,3 +71,30 @@ The Watch earlier-frame report reproduced: Mara and Joss shared `east-1`, but th
 Neighbours is independently delivered at clean `deb30cefc9abae3a2a5de55a624dfcedc7724f31`, Cloudflare `7629641c-ae76-4deb-aec0-f5d543be0795`, HF 2.8.0/client 0.1.1. Hosted [CI 39373059475](https://github.com/adam0white/concordia/actions/runs/39373059475) passed every gate on `ff72917`; the later commit records receipts only. Its served page and fourteen bundle/runtime/report files match the clean build. Five current-source studies and all three native tapes were genuinely regenerated; ten CLI calls total, exact zero-call replays, no usage-limit error. The deterministic study restored seed 101 and retains its negative cart-return contrast; the native two-case catalog stays explicitly distinct. Private-checkpoint assistance remains historical HF 2.6.0 evidence. Adam accepts feel separately.
 
 First lab-client npm publication stays `deferred-by-owner`, with no target date. No new framework slice was started. Full results and hash receipts: `scratch/codex-finish3-report.md`.
+
+## Roadmap items done (moved 2026-10-20)
+
+Rows removed from [roadmap.md](roadmap.md) because they shipped, verbatim.
+
+| Item | What | Target |
+|---|---|---|
+| Split long functions | `finish`, `evaluate` and `stepCommunity` are each long enough to hide bugs; split them without changing results (hash tests pin this). | 2.x |
+| R2 1c, 7c | CI installs the packed tarball outside the workspace and runs the minimal host example; it checks docs/api.md freshness with read-only `api-doc --check`. | done 2.9.1 |
+| Cumulative exertion in the body | Exertion relaxes toward current effort, so hours of climbing leave no extra fatigue for the descent. A slow glycogen/muscle-fatigue store would make the 2.5.0 forecast bite on long efforts; opt-in, so the three games replay unchanged | Done, engine 2.6.0 (`body.depletion`) |
+| Going along and reconsidering | `Affordance.alongside` + `together:<id>`; `decide(..., { reconsider: true })` | Done, engine 2.8.0 |
+| Fullness (alliesthesia) | Opt-in `body.fullness`: drinking or eating past comfort costs a little, so idle loops stop | Done, engine 2.8.0 |
+| A voice's own promise; seeding a voice | `noteVoicePromise`, `seedVoice` | Done, engine 2.8.0 |
+| Forecast thresholds per offer | `Affordance.forecastAt` (The Glance) | Done, engine 2.8.0 |
+| HF-character playtesters | `packages/playtester` (private): a persona plays any game through a four-call adapter | Done 2026-10-19 |
+| Playtester edges and cohorts | Edge-pushers, a returner, an edge report (fun to keep or close), cohorts and build comparison; canonical adapters for The Pass, The Glance and The Two Voices | Done 2026-10-19 |
+| An HF designer | Experiment done: no value over a plain LLM reviewer (findings, 2026-10-19). Not pursued | Closed 2026-10-19 |
+| Several named commitments kept by one act | `Outcome.fulfills` naming two or more keeps each (Voices 1) | Done, engine 2.9.0 |
+| Cued turning-away responses; host practice half-life | `PromptingResponse.cue`; `enablePromptings({ practiceHalfLifeDays })` (Voices 2, 5) | Done, engine 2.9.0 |
+| A resolve term that names its resolve | `Term.ref` on `review:resolve` (Pass 8) | Done, engine 2.9.0 |
+| Belief provenance and contradiction | Optional `origin` and an opaque lineage token on testimony, carried by `converse`; `contradicted` lowers source trust by a documented asymmetric rule; believed regard (Stairwell 2, 4; Hearsay 1) | Done, 2.10.0 (*Word and witness*) |
+| Setup API and trust stores | `seedSourceTrust`, `seedBelief`, and one paragraph naming relationship, voice and source trust and what moves each (Stairwell 1, 7) | Done, 2.9.1 |
+| Host kit | Recipes or helpers for travel/setup cost through `effort` and `duration`, which does not scale with duration (N1, Neighbours 3, Warren 2); the scale of need terms against effort and making work matter (Warren 1); `fingerprint(person)` (Valley 5), an opt-in tolerant `tellDeath` (Valley 4), notes on the community cache (Warren 4) and feeding residents (Stairwell 8) | Done, 2.9.1 ([host-kit](host-kit.md)); Valley 4 did not reproduce (the default was already tolerant; findings) |
+
+### Demonstrated conditional methods (authorized 2026-10-10)
+
+Bounded conditional action acquisition supports the standalone repair-game apprenticeship probe. Implemented faculty and domain-neutral control: `methods/`, `examples/method-control.ts`. Release/consumer integration remains part of technical done in [learning-probe.md](learning-probe.md). General planning, inferred cue extraction, multi-step procedure synthesis and calibrated real-world learning rates remain **unscheduled**; this increment does not activate them.
