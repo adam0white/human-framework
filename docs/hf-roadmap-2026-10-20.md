@@ -142,7 +142,7 @@ From the three consultants' "avoid" lists, where they agree with the project rul
 - **No single currency.** No willpower fuel, global XP or one happiness score. Aggregation for a game is labelled a convention.
 - **No silent semantic loss for speed.** Approximation is declared, versioned and measured.
 - **No false precision.** Coefficients are engineering defaults; where results are sensitive to one, the doc says so.
-- **No player modelling from telemetry.** A character's read of the player comes only from in-game acts.
+- **No player modelling from telemetry.** A character's read of the player comes only from in-game acts. Exception (owner, 2026-10-21): an opt-in player character test may read that player's own saves and replays, including earlier ones, once the player opts in; inferred traits stay visible and editable.
 - **HF playtesters are smoke tests, not judges**, until the prediction bet shows they predict people (the owner's "ouroboros" question).
 
 ## Recommended next bounded increment (for the owner to approve)

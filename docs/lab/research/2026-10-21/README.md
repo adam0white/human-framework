@@ -15,6 +15,6 @@ Four Codex research workers wrote these with live web search. Claims are marked 
 
 Verbatim: "Yeah player character should be opt in, but don't retrospectively like from saves. Clairic is still useful for free text input. So, horizon 3 or 4 will unlock multiplayer or MMORPG path?"
 
-- Player character test: opt-in only, and never inferred after the fact from saves, replays or telemetry. Only answers given to the test itself count.
+- Player character test: opt-in only. Corrected by the owner the same day, verbatim: "I think inferring later from saves and replays, or retroactively after player opt in is a fair game." So once the player opts in, the test may also read that player's own saves and replays, including ones made before the opt-in. Nothing is inferred without the opt-in, and the player still sees and can edit every inferred trait.
 - Free-text input: Clairic stays in scope for extracting targets and times from player text (llm.md, "Free-text input needs a separate boundary"), still behind a player confirmation.
 - Multiplayer: not on the roadmap yet. Lockstep-safe (H3) and the passport (H3) are prerequisites; a shared persistent town (The Commons) needs the owner to lift the no-server rule for games.
