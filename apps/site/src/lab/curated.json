@@ -5180,7 +5180,7 @@
    "words": "Keep the named party, promise and departure time beside my active dish on the phone. I want to see who I am cooking for while I decide to take more time.",
    "verdict": "mixed",
    "routes": [
-    "fix:pass DL-31 the party, promise and out-by time stay beside the active portion on phone (open, target 2026-11-03)"
+    "fix:pass DL-31 the party, promise and out-by time stay beside the active portion on phone (done, pass cfa6730, Deniz DL-31 PASS)"
    ],
    "source": "docs/lab/reviews/pass-quickpromise-2026-10-20/selin-floor.md"
   },
@@ -5193,7 +5193,7 @@
    "words": "'Open on Wednesday' leading to Thursday, tired arms before my first act, and table 1's new sear cue made me wonder whose actions I was inheriting.",
    "verdict": "mixed",
    "routes": [
-    "fix:pass DL-13 under the first-party start, the Sunday button names the night you take over, and the hand-over caption says what the chef is holding (open, target 2026-11-03)"
+    "fix:pass DL-13 under the first-party start, the Sunday button names the night you take over, and the hand-over caption says what the chef is holding (done, pass cfa6730)"
    ],
    "source": "docs/lab/reviews/pass-quickpromise-2026-10-20/selin-floor.md"
   },
@@ -5206,9 +5206,74 @@
    "words": "Let the selected fast pace get through optional 'Yours, Chef?' offers more readily when I am leaving those portions to the crew. I want to get back to the people I came for.",
    "verdict": "mixed",
    "routes": [
-    "fix:pass DL-15 at Fast, offered portions pass to the crew sooner (open, target 2026-11-03)"
+    "fix:pass DL-15 at Fast, offered portions pass to the crew sooner (done, pass cfa6730, playback only)"
    ],
    "source": "docs/lab/reviews/pass-quickpromise-2026-10-20/selin-floor.md"
+  },
+  {
+   "id": "F-395",
+   "date": "2026-10-20",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Deniz (Codex source-unread persona, floor arm, pass cfa6730, Begin at the first party)",
+   "words": "The grandson ate the crust first. That is a lovely payoff for the exact choice I made. Now table 8 paid for my attention.",
+   "verdict": "keep",
+   "routes": [
+    "none"
+   ],
+   "source": "docs/lab/reviews/pass-213-2026-10-20/deniz-floor.md"
+  },
+  {
+   "id": "F-396",
+   "date": "2026-10-20",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Deniz (Codex source-unread persona, floor arm, pass cfa6730, Begin at the first party)",
+   "words": "I made the birthday promise and reached the butcher target. I would put the phone down here; another anonymous lamb table is not pulling me forward. I would return for the next party…",
+   "verdict": "quit",
+   "routes": [
+    "fix:pass owner call: the repeated cooking loop between parties, which rests on chef cooking, whose feel is unaccepted (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/pass-213-2026-10-20/deniz-floor.md"
+  },
+  {
+   "id": "F-397",
+   "date": "2026-10-20",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Deniz (Codex source-unread persona, floor arm, pass cfa6730, Begin at the first party)",
+   "words": "Make “Take it: Dish pit” say who is being asked to do the work. I wanted to volunteer and did not understand the answer.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:pass DL-10 a counter-offer button names the cook who would take the job (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/pass-213-2026-10-20/deniz-floor.md"
+  },
+  {
+   "id": "F-398",
+   "date": "2026-10-20",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Deniz (Codex source-unread persona, floor arm, pass cfa6730, Begin at the first party)",
+   "words": "He says not now and no promised cover. That explains the answer as a commitment issue, but now he is in the storeroom instead of holding the oven. I do not understand why asking to change jobs lost the old job.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:pass DL-4 a turned-down station ask keeps the cook’s current job or says why it ended, and the neutral “Not now, Chef.” is replaced by a reason where HF gives one (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/pass-213-2026-10-20/deniz-floor.md"
+  },
+  {
+   "id": "F-399",
+   "date": "2026-10-20",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Deniz (Codex source-unread persona, floor arm, pass cfa6730, Begin at the first party)",
+   "words": "Keep the immediate cover responses and the party payoff visible on this phone while I am cooking. The grandson's crust line is the reason I wanted to continue.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:pass DL-22 the cover decision’s choices and the party’s payoff line fit the phone viewport while cooking (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/pass-213-2026-10-20/deniz-floor.md"
   }
  ],
  "lessons": [
@@ -5815,10 +5880,10 @@
   }
  ],
  "routes": {
-  "fix": 398,
+  "fix": 402,
   "lesson": 278,
   "hf": 12,
   "calibration": 42,
-  "none": 3
+  "none": 4
  }
 }
