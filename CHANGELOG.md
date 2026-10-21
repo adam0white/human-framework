@@ -12,10 +12,18 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+## [2.11.0] - 2026-10-20
+
+Engine: 2.11.0. *Curiosity and play* ([slice plan](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md#current-increment-curiosity-and-play-then-bounded-planning-owner-2026-10-20); sources in [research/curiosity-and-play.md](https://github.com/adam0white/human-framework/blob/main/research/curiosity-and-play.md)). When a person's needs are met, they are drawn to try what they cannot yet predict, to keep at what they are getting better at, and to vary what they just did. Opt-in: a person without the slice gives byte-identical state, decisions and digests to 2.10.0. Saves migrate from 2.10.0 by stamping the version.
+
 ### Added
 
-- Opt-in curiosity and play (`enableCuriosity` or `PersonSpec.enable.curiosity`): uncertainty, falling prediction error and recent repetition with variation add bounded decision terms, scaled by physiological and safety urgency, fear, openness and maturity. Completed and failed acts retain bounded histories and reward leisure and competence through the needs owner. `curiosityOf` is a read-only view. Without the slice, legacy continuation remains exact.
-- A one-day headless curiosity control with familiar, learnable and noisy options, comparing enabled, disabled and hungry arms.
+- Opt-in curiosity (`enableCuriosity(p, spec?)` or `PersonSpec.enable.curiosity`, state `Person.curiosity`, module `curiosity/`). `consider` adds three bounded terms. `curiosity:unknown` comes from the person's own uncertainty about the option's outcome. `curiosity:progress` is learning progress: prediction error falling, so unlearnable noise earns none. `curiosity:vary` pulls toward an action kind done within the last hour with a different target or place. All three scale with a relaxed-field gate (physiological and safety urgency, fear), openness and age. Completed and failed acts update bounded histories (32 keys, 8 recent acts) and give a small intrinsic reward to leisure and competence, capped at 0.03. `curiosityOf(p, aff, now?)` reads the signals without changing anything. Boredom is unchanged and still acts through host `novel` tags.
+- Headless control [`curiosity-control.ts`](https://github.com/adam0white/human-framework/blob/main/packages/human/examples/curiosity-control.ts): one adult with familiar, learnable and noisy options for one day of 96 decisions. With curiosity on and needs met, the adult chose familiar 20, learnable 62 and noisy 14 (in the last third: learnable 19, noisy 4). With curiosity off, it chose familiar 96. With curiosity on and the adult hungry, it chose familiar 96, because the gate closes.
+
+### Notes
+
+- The coefficients are engineering defaults, not fitted values. Curiosity adopts no goals or projects. That waits on the island rerun after planning (roadmap §3b).
 
 ## [2.10.0] - 2026-10-20
 
