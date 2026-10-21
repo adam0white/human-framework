@@ -12,6 +12,11 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+### Added
+
+- Opt-in curiosity and play (`enableCuriosity` or `PersonSpec.enable.curiosity`): uncertainty, falling prediction error and recent repetition with variation add bounded decision terms, scaled by physiological and safety urgency, fear, openness and maturity. Completed and failed acts retain bounded histories and reward leisure and competence through the needs owner. `curiosityOf` is a read-only view. Without the slice, legacy continuation remains exact.
+- A one-day headless curiosity control with familiar, learnable and noisy options, comparing enabled, disabled and hungry arms.
+
 ## [2.10.0] - 2026-10-20
 
 Engine: 2.10.0. *Word and witness* ([roadmap](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md) §1.1): who first said a thing, what it costs a source to be caught telling two stories, and how a person believes others now see them. Everything is opt-in by data: a person, percept or call that uses none of the new fields gives byte-identical state and decisions to 2.9.x, and legacy digests are unchanged. The engine stamp moves because the new term can change decisions when a host supplies the evidence. Saves migrate from 2.9.0 by stamping the version.

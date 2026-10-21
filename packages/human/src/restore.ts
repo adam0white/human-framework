@@ -6,6 +6,7 @@
  * A save the engine wrote restores to exactly what was saved. It does not repair a save's meaning (a plausible but
  * wrong value stays), merge two saves, or read any format but the person JSON.
  */
+
 import { sanitizeCrisis } from './affect/index.ts';
 import { sanitizeAgenda } from './agenda/index.ts';
 import { sanitizeBeliefMeta } from './beliefs/index.ts';
@@ -13,6 +14,7 @@ import { sanitizeBody, sanitizeInjuries } from './body/index.ts';
 import { sanitizeCharacter } from './character/index.ts';
 import { CHRONICLE_DEFAULTS, sanitizeYears } from './chronicle/index.ts';
 import { isNum } from './core/index.ts';
+import { sanitizeCuriosity } from './curiosity/index.ts';
 import { sanitizeAmbient } from './environment/index.ts';
 import { sanitizeFamily } from './family/index.ts';
 import { HABIT_DEFAULTS } from './habits/index.ts';
@@ -90,6 +92,7 @@ const OPTIONAL_KEYS: ReadonlySet<string> = new Set([
   'methods',
   'prospection',
   'promptings',
+  'curiosity',
   'review',
 ]);
 
@@ -197,6 +200,7 @@ export function restore(input: unknown): Person {
   keepValid(out, 'retention', cleanRetention);
   keepValid(out, 'methods', sanitizeMethods);
   keepValid(out, 'prospection', (x) => sanitizeProspection(x, out.now, out.id));
+  keepValid(out, 'curiosity', (x) => sanitizeCuriosity(x, out.now));
   keepValid(out, 'promptings', (x) => sanitizePromptings(x, out.now));
   keepValid(out, 'review', (x) => sanitizeReview(x, out.now));
   boundLists(out);

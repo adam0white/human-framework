@@ -1,5 +1,6 @@
 import { describe, expect, test } from 'vitest';
 import { main as community, DAYS } from '../examples/community.ts';
+import { main as curiosity } from '../examples/curiosity-control.ts';
 import { main as minimal } from '../examples/minimal.ts';
 import { main as suggestions } from '../examples/suggestions.ts';
 
@@ -35,5 +36,31 @@ describe('examples', () => {
     expect(silent).toHaveLength(DAYS);
     expect(silent.every((r) => r.day > (played.at(-1)?.day ?? 0))).toBe(true);
     for (const line of lines) expect(line).toMatch(/\w/);
+  });
+
+  test('curiosity: free exploration favours the learnable option only with needs met', () => {
+    const [on, off, hungry] = curiosity();
+    if (!on || !off || !hungry) throw new Error('Missing curiosity control arm');
+    for (const arm of [on, off, hungry]) {
+      expect(arm.minutes).toBe(1440);
+      expect(arm.alive).toBe(true);
+    }
+    const early = on.decisions.slice(0, on.decisions.length / 2);
+    expect(early.some((d) => d.choice === 'learnable')).toBe(true);
+    expect(early.some((d) => d.choice === 'noisy')).toBe(true);
+    const late = on.decisions.length / 3;
+    expect(on.lateCounts.learnable).toBeGreaterThan(late / 2);
+    expect(on.lateCounts.learnable).toBeGreaterThan(on.lateCounts.noisy);
+    expect(
+      on.decisions
+        .filter((d) => d.choice === 'learnable')
+        .slice(2)
+        .every((d) => d.success),
+    ).toBe(true);
+    expect(off.counts.familiar).toBe(off.decisions.length);
+    expect(hungry.decisions.map((d) => d.choice)).toEqual(off.decisions.map((d) => d.choice));
+    expect(hungry.decisions.every((d) => Object.values(d.curiosity).every((value) => value === 0))).toBe(
+      true,
+    );
   });
 });

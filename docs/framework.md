@@ -23,6 +23,22 @@ In the software, a player's input is therefore one urge among many: a push, not 
 
 Boundaries the software never crosses: it does not compute divine acceptance, assign quantities to the ruh, or call the RNG "qadar". Norms come from a host catalog with provenance. The person holds an *understanding* of each norm, and that understanding is not a ruling.
 
+## Curiosity and play (opt-in)
+
+`enableCuriosity(p, spec?)` or `PersonSpec.enable.curiosity` adds intrinsic exploration through
+`curiosity:unknown`, `curiosity:progress` and `curiosity:vary`, in that order. Unknown uses memory's
+expectation confidence; progress is the positive difference between slow and fast prediction-error
+averages; variation invites a recent action at a different target or place, unless that exact repeat
+was also recent. Physiological urgency, safety and fear suppress the common drive; openness and
+maturity scale it. `curiosityOf` reads the raw signals and drive without mutation or RNG.
+
+`curiosity/` owns at most 32 expectation-key histories and eight recent completed or failed acts.
+`finish` samples error before memory updates, then rewards leisure and competence through `needs/`,
+with a combined cap of 0.03 by default. Interrupted acts do neither. The defaults are engineering
+choices, not fitted values; [research/curiosity-and-play.md](../research/curiosity-and-play.md) records
+the scientific shapes. This slice reads no `novel` tag and changes no boredom, projects, planning or
+faith mechanic. Absent the slice, state and legacy continuation stay identical.
+
 ## Loop
 
 ```
@@ -57,6 +73,7 @@ Which human faculties these modules cover, and which they do not yet, is listed 
 | `affect/` | `affect` | `appraise(p, event)`, `advanceAffect(p, dt, satisfaction, moodOffset?, maxSteps?)`, `readAffect(p)`, `emotionLevel(p, id, targetId?)` (current level of one emotion, optionally aimed at a target), `actionTendencies(p)` |
 | `methods/` | optional `methods` | `receiveMethodCues`, `clearMethodContext`, `demonstrateMethod`, `methodEvidence`; bounded acquired cue conjunctions and source/outcome evidence; normal cognition reads only offers with a matching `methodContext`. `sanitizeMethods` owns restore. |
 | `prospection/` | optional `prospection` | `Percept.consequences` / `withdrawConsequences` enter through attended `perceive`; `consequenceEvidence(p, aff, now?)` is a pure retained-knowledge query. The module owns bounded receipt, revisions, expiry, trigger consumption and restore. Temporal goal valuation and direct cost readers remain owned by `agenda/` and `cognition/`.; 2.5.0: `bodyForecastFor`, `bodyForecastTerm`, `forecastLine` and the composite's `bodyForecast(p, aff)` read declared `followedBy` spans through `body/ forecastBody`. |
+| `curiosity/` | optional `curiosity` | `enableCuriosity(p, spec?)`, `curiosityOf(p, affordance, now?)`; bounded prediction-error history and recent acts. Cognition adds intrinsic pulls; `finish` records outcomes and asks `needs/` for the reward. |
 | `promptings/` | optional `promptings` | `enablePromptings(p, spec)` (or `PersonSpec.enable.promptings`), `promptingsReading(p)`, `promptingLine`, `practiceAt`; the composite's `nafsReading(p)` lens. Owns noticed prompts, practised turnings-away, the person's held reading of their own inner pulls and the off-by-default `fault` echo. Cognition adds its `promptings:turn` / `promptings:echo` terms; the composite records prompts after each decision point. `sanitizePromptings` owns restore. |
 | `review/` | optional `review` | `enableReview(p, spec)` (or `PersonSpec.enable.review`), `reviewLine(p)`, `reviewTerms`, `reviewIfDue`. Owns the evening self-review (muhasaba): resolves formed after broken commitments, the person's held review style, and the latest review record. Cognition adds its `review:resolve` term; the composite runs the review hourly from its time or at the day's close and feels the ruminating reader's distress. `sanitizeReview` owns restore. |
 | `memory/` | `memory.episodes`, `memory.expectations` | `remember(p, episode)`, `recall(p, query)`, `advanceMemory(p, dt)`, `expectedEffect(p, affordance)`, `learnOutcome(p, affordance, outcome, realized, felt)`; 1.8.0 (opt-in, `memory.gists`): `enableGists`, `foldGists(p)` folds forgotten or old episodes into bounded gists (≤ 64), `gistsFor(p, { action, targetId, placeId })`; 2.0.0: `retell(teller, listener, at, opts?)` (`opts`: `trust?`, `limit?`, `placeIds?`) passes a teller's strongest gists to a listener as weaker told gists |

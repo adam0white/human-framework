@@ -41,6 +41,7 @@ import { trustOf } from '../beliefs/index.ts';
 import type { BodyPerceptionContext } from '../body/index.ts';
 import { normTerms } from '../conscience/index.ts';
 import { clamp01, cmpStr, dexp, minuteOfDay, round } from '../core/index.ts';
+import { curiosityTerms } from '../curiosity/index.ts';
 import { type HabitContext, habitEase, habitPull } from '../habits/index.ts';
 import { expectedEffect } from '../memory/index.ts';
 import { methodEvidence } from '../methods/index.ts';
@@ -531,6 +532,8 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
   // Standing advice (N9): remembered suggestions from told advice, by trust in the source. A source speaking
   // now about this option is counted once, through its live term above.
   if (!inBreak(p)) for (const t of rememberedTerms(p, aff, ctx.now, voices)) push(t.source, t.value);
+
+  if (p.curiosity) for (const t of curiosityTerms(p, aff, ctx)) push(t.source, t.value);
 
   // Promptings (2.4.0, opt-in): a recurrence pull under `fault` and a practised turning-away from a noticed prompt.
   if (p.promptings)

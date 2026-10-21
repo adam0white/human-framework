@@ -103,6 +103,7 @@ import {
   repent,
 } from './conscience/index.ts';
 import { clamp01, clampSigned, createRng, dayOf, isObj, minuteOfDay } from './core/index.ts';
+import { enableCuriosity, noteCuriosity } from './curiosity/index.ts';
 import { ambientBodyParams, ambientModifiers, ambientMood, ambientNeeds } from './environment/index.ts';
 import { aptitudeOf, createFamily, pregnancyModifiers } from './family/index.ts';
 import { advanceHabits, reinforce, withholdCued } from './habits/index.ts';
@@ -328,6 +329,7 @@ export function createPerson(spec: PersonSpec): Person {
   if (on?.skillRetention) enableSkillRetention(p);
   if (on?.fatigueStore) enableFatigueStore(p);
   if (on?.fullness) enableFullness(p);
+  if (on?.curiosity) enableCuriosity(p, on.curiosity === true ? {} : on.curiosity);
   if (on?.promptings) enablePromptings(p, on.promptings);
   if (on?.review) enableReview(p, on.review);
   return p;
@@ -1593,6 +1595,7 @@ export function finish(p: Person, outcome: Outcome, opts: FinishOptions = {}): F
   }
 
   // Memory.
+  if (p.curiosity) noteCuriosity(p, aff, outcome, felt);
   learnOutcome(p, aff, outcome, realized, felt);
   const episode: Parameters<typeof remember>[1] = {
     at: now,

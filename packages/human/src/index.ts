@@ -96,6 +96,7 @@ export {
 export * from './conscience/index.ts';
 export * from './conversation/index.ts';
 export * from './core/index.ts';
+export { CURIOSITY_DEFAULTS, curiosityOf, enableCuriosity } from './curiosity/index.ts';
 export * from './environment/index.ts';
 export * from './family/index.ts';
 export * from './habits/index.ts';

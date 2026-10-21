@@ -1136,6 +1136,8 @@ export interface Person {
   prospection?: ProspectionState;
   /** Noticed promptings and practised turnings-away (2.4.0, opt-in via `enablePromptings`). Owned by `promptings/`. */
   promptings?: PromptingsState;
+  /** Intrinsic exploration and varied repetition. Owned by `curiosity/`; absent unless enabled. */
+  curiosity?: CuriosityState;
   /** Evening self-review and its resolves (2.7.0, opt-in via `enableReview`). Owned by `review/`. */
   review?: ReviewState;
   /** Practice consolidation (1.8.0, opt-in via `enableSkillRetention`). Owned by `skills/`. */
@@ -1554,6 +1556,8 @@ export interface PersonSpec {
     fullness?: boolean;
     /** Promptings and turning away (2.4.0): the same as `enablePromptings(p, spec)` after creation. */
     promptings?: PromptingsSpec;
+    /** Enable intrinsic exploration and play, using engineering defaults or bounded overrides. */
+    curiosity?: boolean | CuriositySpec;
     /** Evening self-review (2.7.0): the same as `enableReview(p, spec)` after creation. */
     review?: ReviewSpec;
   };
@@ -1943,4 +1947,41 @@ export interface DayRecord {
    * older ones, review 2026-10-03: a full snapshot per day grew a community's saves to megabytes).
    */
   state?: ChronicleState;
+}
+
+/** Engineering overrides for intrinsic motivation; scales are capped at their defaults. */
+export interface CuriositySpec {
+  unknownScale?: number;
+  progressScale?: number;
+  varyScale?: number;
+  recentMinutes?: number;
+  rewardMax?: number;
+}
+/** Prediction-error history for the same key used by memory expectations. */
+export interface CuriosityError {
+  key: string;
+  fast: Unit;
+  slow: Unit;
+  n: number;
+  lastAt: Minute;
+}
+/** A completed or failed act, retained only for bounded repetition with variation. */
+export interface CuriosityAct {
+  action: string;
+  targetId?: EntityId;
+  placeId?: EntityId;
+  at: Minute;
+}
+/** Optional JSON state owned by curiosity/. */
+export interface CuriosityState {
+  spec?: CuriositySpec;
+  errors: CuriosityError[];
+  recent: CuriosityAct[];
+}
+/** Raw bounded signals and their common drive; no RNG or mutation. */
+export interface CuriosityReading {
+  unknown: Unit;
+  progress: Unit;
+  vary: Unit;
+  drive: number;
 }
