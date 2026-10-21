@@ -39,7 +39,10 @@ const CSS = `
 .hflab textarea:focus,.hflab input:focus,.hflab button:focus-visible,.hflab summary:focus-visible,.hflab a:focus-visible{outline:2px solid var(--rope);outline-offset:2px}
 .hflab details{margin:14px 0;border-top:1.5px solid var(--ink-soft);padding-top:10px}
 .hflab summary{cursor:pointer;font-weight:600}
-.hflab .exact{width:100%;height:12rem;font:13px/1.4 ui-monospace,Menlo,monospace;white-space:pre;overflow:auto;margin-top:8px;background:var(--paper-2);color:var(--ink);border:1px solid var(--ink-soft);border-radius:6px;padding:8px}
+.hflab .exact{width:100%;height:16rem;max-height:35dvh;resize:vertical;font:13px/1.4 ui-monospace,Menlo,monospace;white-space:pre-wrap;overflow-wrap:anywhere;overflow:auto;margin-top:8px;background:var(--paper-2);color:var(--ink);border:1px solid var(--ink-soft);border-radius:6px;padding:8px}
+.hflab dl{margin:10px 0;font-size:.92rem;overflow-wrap:anywhere}
+.hflab dt{font-weight:600;margin-top:6px}
+.hflab dd{margin:0;white-space:pre-wrap}
 .hflab .row{display:flex;gap:10px;margin-top:16px}
 .hflab button{font:inherit;min-height:48px;border-radius:10px;padding:10px 16px;cursor:pointer;border:1.5px solid var(--ink);background:transparent;color:var(--ink)}
 .hflab button.send{flex:1;background:var(--rope);border-color:var(--rope);color:#fff;font-weight:600}
@@ -97,12 +100,52 @@ export function openSendDialog(options: SendDialogOptions): void {
   const exact = el('textarea', {
     className: 'exact',
     readOnly: true,
-    'aria-label': 'The exact text that is sent',
+    'aria-label': 'Full payload JSON, formatted for reading',
+    wrap: 'soft',
+    spellcheck: false,
   });
   const compactNotice = el('p', { className: 'soft' });
   const sizes = el('span', {});
   const summary = el('summary', {}, 'Exactly what is sent ', sizes);
-  const details = el('details', {}, summary, exact);
+  const overview = el('dl');
+  const fields = new Map<string, HTMLElement>();
+  for (const [key, label] of [
+    ['game', 'Game'],
+    ['build', 'Build'],
+    ['when', 'When'],
+    ['duration', 'Run duration'],
+    ['inputs', 'Inputs'],
+    ['note', 'Note'],
+    ['sizes', 'Sizes'],
+  ] as const) {
+    const value = el('dd', { id: `hflab-preview-${key}` });
+    fields.set(key, value);
+    overview.append(el('dt', {}, label), value);
+  }
+  const copy = el('button', { id: 'hflab-copy', type: 'button' }, 'Copy JSON');
+  const copyStatus = el('p', { className: 'soft', role: 'status' });
+  copy.addEventListener('click', async () => {
+    const value = exact.value;
+    try {
+      await navigator.clipboard.writeText(value);
+      copyStatus.textContent = 'JSON copied.';
+    } catch {
+      exact.focus();
+      exact.select();
+      copyStatus.textContent = 'Copy unavailable. JSON selected; use your device’s Copy command.';
+    }
+  });
+  const details = el(
+    'details',
+    {},
+    summary,
+    overview,
+    el('p', { className: 'soft' }, 'JSON formatted for reading; the same data is sent compressed.'),
+    exact,
+    copy,
+    copyStatus,
+  );
+  const openedAt = new Date().toLocaleString();
   const status = el('p', { className: 'status', role: 'status' });
   const send = el('button', { className: 'send', type: 'button' }, 'Send');
   const cancel = el('button', { type: 'button' }, 'Not now');
@@ -180,13 +223,58 @@ export function openSendDialog(options: SendDialogOptions): void {
         compactNotice.textContent = options.compactNote ?? 'This run was shortened to fit the notebook.';
         t = text();
       }
-      // Display the actual serialized bytes, including the compaction marker, before consent.
-      exact.value = t;
+      // Parse the very serialization held for sending; formatting cannot diverge from the wire data.
+      const payload = JSON.parse(t) as ReturnType<typeof runEnvelope>;
+      exact.value = JSON.stringify(payload, null, 2);
+      copyStatus.textContent = '';
+      const set = (key: string, value: string) => {
+        const field = fields.get(key);
+        if (field) field.textContent = value;
+      };
+      const record = (value: unknown): Record<string, unknown> =>
+        value !== null && typeof value === 'object' ? (value as Record<string, unknown>) : {};
+      const exported = record(payload.run);
+      set('game', payload.game);
+      set(
+        'build',
+        Object.entries(payload.build)
+          .map(
+            ([key, value]) =>
+              `${({ c: 'Commit', hf: 'HF', a: 'App' } as Record<string, string>)[key] ?? key}: ${value}`,
+          )
+          .join(' · ') || 'Not recorded',
+      );
+      const timestamp = exported.exportedAt ?? exported.savedAt;
+      set(
+        'when',
+        typeof timestamp === 'string'
+          ? timestamp
+          : `Preview opened ${openedAt} (local time; not recorded in payload)`,
+      );
+      const state = record(exported.state);
+      const minute = exported.minute ?? exported.endMinute ?? state.minute;
+      set(
+        'duration',
+        typeof minute === 'number' && Number.isFinite(minute)
+          ? `Elapsed time not recorded; game clock: ${minute} minutes`
+          : 'Elapsed time not recorded',
+      );
+      set(
+        'inputs',
+        Array.isArray(exported.inputs)
+          ? String(exported.inputs.length)
+          : Array.isArray(exported.log)
+            ? `${exported.log.length} replay log entries`
+            : 'Not recorded',
+      );
+      set('note', payload.note ?? '(No note)');
+      set('sizes', `${kb(new TextEncoder().encode(t).length)} JSON; checking compressed size…`);
       sizes.textContent = `(${kb(new TextEncoder().encode(t).length)})`;
       if (!checkRun(t)) throw new Error(runRefusal(t));
       const gz = await gzip(t);
       if (closed || ticket !== pending || sending) return;
       sizes.textContent = `(${kb(new TextEncoder().encode(t).length)}, ${kb(gz.size)} compressed)`;
+      set('sizes', `${kb(new TextEncoder().encode(t).length)} JSON; ${kb(gz.size)} compressed`);
       if (gz.size > RUN_LIMITS.compressedBytes) throw new Error(compressedRefusal(gz.size));
       approvedText = t;
       status.textContent = '';

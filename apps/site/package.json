@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@adam0white/human-framework": "2.14.1",
-    "@adam0white/lab-client": "0.1.3",
+    "@adam0white/lab-client": "0.1.4",
     "react": "19.3.1",
     "react-dom": "19.3.1",
     "@adam0white/lab-kit": "0.2.0"

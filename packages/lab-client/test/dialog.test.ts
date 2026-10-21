@@ -65,8 +65,37 @@ describe('bounded send dialog', () => {
     expect(sent).toEqual([]);
     expect(find('send').disabled).toBe(false);
     await find('send').fire('click');
-    expect(sent).toEqual([preview]);
+    expect(JSON.parse(sent[0] ?? '{}')).toEqual(JSON.parse(preview));
+    expect(preview).toContain('\n  "v": 1,');
     expect(compact).toHaveBeenCalledTimes(1);
+  });
+
+  it('formats the current frozen payload and selects it if copying fails', async () => {
+    const { lab, sent, find } = setup();
+    const run = { seed: 3, inputs: ['wait'], state: { minute: 15 } };
+    lab.openSendDialog({ getRun: () => run });
+    run.inputs.push('later');
+    find('hflab-note').value = '  A note\nwith two lines  ';
+    await find('hflab-note').fire('input');
+    await settled();
+    const preview = find('exact');
+    expect(preview.value).toBe(JSON.stringify(JSON.parse(preview.value), null, 2));
+    expect(find('hflab-preview-note').textContent).toBe('A note\nwith two lines');
+    expect(find('hflab-preview-inputs').textContent).toBe('1');
+    const select = vi.fn();
+    Object.assign(preview, { select });
+    vi.stubGlobal('navigator', {
+      clipboard: {
+        writeText: async () => {
+          throw new Error('denied');
+        },
+      },
+    });
+    await find('hflab-copy').fire('click');
+    expect(select).toHaveBeenCalledOnce();
+    await find('send').fire('click');
+    expect(JSON.parse(preview.value)).toEqual(JSON.parse(sent[0] ?? '{}'));
+    expect(JSON.parse(preview.value).run.inputs).toEqual(['wait']);
   });
 
   it('discloses compaction by default and never reruns the callback on note edits', async () => {
@@ -212,6 +241,6 @@ describe('bounded send dialog', () => {
     await settled();
     expect(JSON.parse(find('exact').value).note).toBe('new note');
     await find('send').fire('click');
-    expect(sent).toEqual([find('exact').value]);
+    expect(JSON.parse(sent[0] ?? '{}')).toEqual(JSON.parse(find('exact').value));
   });
 });
