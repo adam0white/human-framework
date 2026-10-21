@@ -105,3 +105,15 @@ After reading the testing/CI recommendation (keep CI; lanes by touched paths, st
 > Cool progress and good recommendations, keep going.
 
 Adopted as the lane model and the one-worktree-per-agent rule in AGENTS.md (Engineering rules) and [docs/lab/velocity-sweep-2026-10-20.md](lab/velocity-sweep-2026-10-20.md); measured for a week, to 2026-10-27.
+
+## 2026-10-20, decisions approved (Adam, verbatim)
+
+"Oh I thought we settled those decisions. Approve them. Do what you need on GitHub and PRs. Add those faculties and other feat to HF. Trim handoff and other documents. Use fewer reviews and focused/less tests."
+
+How this is read, decision by decision:
+
+1. `~/code/island` gets a private GitHub repository. Done: `adam0white/island`, private.
+2. HF gets a curiosity and play faculty, plus bounded multi-step planning (roadmap §3b "Multi-step planning (bounded)", engine 2.12). The island pilot found that HF people do nothing once their needs are met, and that HF cannot value multi-step chains. This is the new bounded increment in AGENTS.md; the slice plan is in [hf-roadmap-2026-10-20.md](hf-roadmap-2026-10-20.md).
+3. HANDOFF.md (40 KB) and other documents are trimmed to current state; release receipts and history move to [history.md](history.md) and linked files.
+4. Fewer reviews and focused tests: the review and test rules in AGENTS.md (Engineering rules).
+5. The archive Dependabot PR (PR 10) is closed and alerts 16 to 24 are dismissed as not used; `.github/dependabot.yml` excludes `archive/**`.
