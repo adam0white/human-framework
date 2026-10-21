@@ -5,6 +5,7 @@
  * the trust meter and the telegraph all read framework records; nothing here decides for a person.
  * Rules 5 retains a stated conditional deferral until the job begins or the person sleeps for the night.
  * HF owns completion wakes for bodily/prayer conditions; the host wakes HF when an unavailable offer returns.
+ * Rules 7 adds a small, fading strength boost during the first hour after receipt.
  * This is one standing suggestion, not a planner or a guarantee of obedience.
  */
 import {
@@ -225,9 +226,18 @@ export class FrameworkHumanSide implements HumanSide {
     ev.moments.push({ id, minute: this.s.minute, personId, line });
   }
 
-  private suggestions(): Record<string, Suggestion> {
+  /** Host persuasion only: HF still decides, including vetoes, needs and duties. */
+  private freshSuggestion(suggestion: Suggestion, now: number): Suggestion {
+    if (this.rules < 7) return suggestion;
+    const age = Math.max(0, now - (suggestion.since ?? now));
+    const boost = 0.15 * Math.max(0, 1 - age / 60);
+    return { ...suggestion, strength: Math.min(1, suggestion.strength + boost) };
+  }
+
+  private suggestions(now: number): Record<string, Suggestion> {
     const out: Record<string, Suggestion> = {};
-    for (const [id, o] of Object.entries(this.s.orders)) if (o) out[id] = o.order.suggestion;
+    for (const [id, o] of Object.entries(this.s.orders))
+      if (o) out[id] = this.freshSuggestion(o.order.suggestion, now);
     return out;
   }
 
@@ -285,7 +295,7 @@ export class FrameworkHumanSide implements HumanSide {
         interruptPerson(this.community, p, t, `promise:${open.order.orderId}`);
       }
     }
-    const live = this.suggestions();
+    const live = this.suggestions(t);
     // An order is done by a job begun after it was given, not by finishing what he was already doing.
     world.onOrderDone = (id, action, startedAt) => {
       const open = this.s.orders[id];
@@ -710,7 +720,12 @@ export class FrameworkHumanSide implements HumanSide {
       ? p.trace.find((r) => r.id === decisionId)
       : ([...p.trace].reverse().find((r) => !r.review || r.suggestion) ?? p.trace[p.trace.length - 1]);
     if (!record) return null;
-    return whyOf(p, record, trustOf(p), this.rules);
+    const why = whyOf(p, record, trustOf(p), this.rules);
+    if (this.rules >= 7 && record.suggestion?.voiceId === PLAYER_VOICE) {
+      why.narration +=
+        ' Fresh orders carry a little extra weight for their first hour; needs and duties can still come first.';
+    }
+    return why;
   }
 
   predict(order: Omit<HumanOrder, 'orderId'>): Prediction {
@@ -718,7 +733,7 @@ export class FrameworkHumanSide implements HumanSide {
     const base = { personId: order.personId, action: order.action };
     if (!p.body.alive) return { ...base, kind: 'cannot', text: 'Can’t: dead' };
     const affs = this.world.affordancesFor(p);
-    const r = preview(p, affs, order.suggestion);
+    const r = preview(p, affs, this.freshSuggestion(order.suggestion, p.now));
     const no = r.reason === 'unavailable' ? this.world.notOffered(p, order.action) : null;
     const kind = no?.kind ?? verdictKind(r, this.rules);
     const reason = no?.short ?? readableReason(r.reason);
