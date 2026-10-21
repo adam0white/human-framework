@@ -149,6 +149,51 @@ From the three consultants' "avoid" lists, where they agree with the project rul
 - **Why this one.** It is where the blind consultants converged (all three put partial sight and beliefs about others at or near the top) and where the games' untriaged demand is largest (Stairwell, Hearsay; Good Hands and Valley benefit). It also closes a §3b item already targeted at engine 2.10, *the other's view of me*.
 - **Done means.** HF 2.10.0 / engine 2.10.0 released on the HANDOFF release path after an independent review; tests and the `word-and-witness-control.ts` headless control as in §1.1; exact legacy continuation; existing-game regressions; the 2.x *Host kit* proofs of §1.2 passing; Stairwell 1, 2, 4 and 7 and Hearsay 1 recorded as done, and the rest of the Stairwell and Hearsay asks triaged into §3b with targets. The owner reviews afterwards. Horizon 1.3 and later are not started unasked.
 
+## Current increment: curiosity and play, then bounded planning (owner, 2026-10-20)
+
+Owner, 2026-10-20: "Add those faculties and other feat to HF." The island pilot ([experiment](lab/experiments/island-2026-10-20.md), "Rerun with the second adapter") found that an HF person with its needs met only rests more than random does, and that received consequences pull on one step before a goal but not on a walk, pick, carry and place chain. This increment answers both. It changes the order above: *Why, in words* moves from 2.11 to the next free minor after 2.12, and its target date stays 2026-11-30.
+
+### Slice 1. HF 2.11.0 / engine 2.11.0, *Curiosity and play*
+
+**What.** A new opt-in module `curiosity/`, owning `p.curiosity` (`enableCuriosity(p, spec?)` or `PersonSpec.enable.curiosity`). Absent, nothing runs and every save, replay and pinned game continues byte for byte. Present, `consider` adds up to three capped terms to an offer:
+
+- `curiosity:unknown`: the pull of an option whose outcome the person cannot yet predict, read from the existing learned expectation (`1 − confidence` of `expectedEffect`). It fades as the person tries the option. No host novelty flag is needed.
+- `curiosity:progress`: the pull of an option where the person's own prediction error is falling (learning progress). Each key keeps a fast and a slow average of prediction error from `finish`; progress is the slow average minus the fast one, floored at zero. An option that stays unpredictable (noise) earns no progress.
+- `curiosity:vary`: play as repetition with variation. An action kind done recently, offered again with a different target or place, gets a small pull; the identical repeat gets none.
+
+All three are scaled by a relaxed-field gate (`1 −` the highest urgency among physiological needs and safety, times `1 −` fear), by temperament (openness) and by age (younger people explore more). A small intrinsic reward on `finish` feeds leisure and competence in proportion to the learning progress that outcome produced. Boredom stays as it is: it still pulls toward host-tagged `novel` offers through affect; curiosity is a positive pull when needs are met, not a second boredom.
+
+**Not in this slice.** Adopting a project from what is seen (roadmap.md §3b "Projects from what is seen" waits on the island rerun after 2.12). No LLM, no RNG in `consider`, no game-specific keys. Faith: no lens or mechanic; curiosity is not ʿaql, and nothing about the ruh is computed.
+
+**Science.** [research/curiosity-and-play.md](../research/curiosity-and-play.md): intrinsic motivation and effectance, information gaps, learning progress, play criteria and play in development, openness, the explore–exploit shift with age.
+
+**Proof.** Tests pin the gate, the three terms and the reward, exact legacy continuation (no slice, same digests and replay hashes) and the save round trip. Headless control `examples/curiosity-control.ts`: one person among familiar, unfamiliar-learnable and unfamiliar-noisy options for a day, in three arms. On with needs met, the person tries the unfamiliar options and then stays with the learnable one. Off with needs met, the person keeps to the familiar options. On with needs unmet, the person behaves like the off arm, because the gate closes.
+
+### Slice 2. HF 2.12.0 / engine 2.12.0, *Steps ahead*
+
+**What.** Opt-in bounded chains over retained consequences (`enablePlanning(p, { depth, presentBias? })`, owned by `prospection/`). Without it, received consequences keep their single successor exactly as in 2.3.0 to 2.11.0.
+
+- **Chains.** A route links entries whose successor matches the next entry's trigger exactly (action, target, place). At most `depth` steps (2 to 5, default 3) and a fixed node budget (64 expansions), in stable source and id order, with no entry used twice. Each link multiplies its access probability, waits for its window and discounts by the goal's temporal half-life, so waiting costs value. One coherent route contributes per offer, as now.
+- **Known consequences.** `seedConsequences(p, claims)` is host setup, like `seedBelief`: what a person already knows about how their world works (channel `known`, weighted by stated confidence, not source trust). Nothing is inferred from the person's history.
+- **Bounds.** With planning on, a person retains up to 64 entries and accepts batches of 16. Without it, the 2.3.0 bounds of 16 and 4 stay.
+- **Present bias.** Optional quasi-hyperbolic β (0 < β ≤ 1) on goal value that arrives only through later steps; absent, no bias.
+
+**Not in this slice.** A general planner, search over the host's world, inferred procedures, plans that execute themselves, another person's agency.
+
+**Proof.** Tests: a four-step chain gives the first step goal value with planning on and none with it off; a chain one step past `depth`, or past the node budget, gives none; present bias lowers chain value and leaves direct value alone; legacy continuation. Headless control `examples/planning-control.ts`: one goal reached through four steps (go, take, carry, put) in two renamed domains, with planner, reactive (planning off) and present-biased arms. The planner completes it; the reactive arm does not start it; the present-biased arm starts later or takes a nearer, smaller goal.
+
+### Slice 3, if time allows
+
+Picked after slices 1 and 2 by game demand, with the reason recorded here. The leading candidate is *project adoption from what is seen*, if the island rerun shows a person with curiosity and planning still builds nothing in free time.
+
+### Per release
+
+Focused tests, the headless control with its arms, exact legacy continuation and replay hashes, one independent Codex review with its findings fixed, `npm run release`, a check of npm provenance, the site pinned to the release and deployed, and the live `/release.json` checked. Receipts go in CHANGELOG.md and the release notes.
+
+### Done means
+
+2.11.0 and 2.12.0 published with CI green and the site live on 2.12.0, then the island rerun in `~/code/island` with the new faculties, reported plainly: does HF now play or build in free time, and does it complete the carry task?
+
 ## Review
 
 A Codex adversarial review with repository access ([review](reviews/hf-roadmap-2026-10-20-codex-review.md)) found no faith-rule, determinism or LLM-in-loop violation and fourteen issues, all applied: contradiction now needs one source's incompatible accounts, not two sources disagreeing; believed standing needs the person's own evidence that the other knows; the claim that a promisee's impression already moves was wrong and is corrected; every proof now states positive outcomes and expected ablation results; tempted deliberate lying is recorded as existing (`converse`); the quantity API is renamed `estimateQuantity` to avoid the existing `estimate`; world migration stays with the host; bench figures are dated and the 1,000-person cost marked as an extrapolation; Warren 1 and 6 are mapped; culture is a candidate, not a commitment; and the done-means names Stairwell 1, 2, 4, 7 and Hearsay 1.
