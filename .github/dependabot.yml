@@ -3,6 +3,7 @@ version: 2
 # Weekly, grouped, with a cooldown so a freshly published (possibly compromised) release is not proposed on day one.
 # Note: package.json `allowScripts` pins esbuild and workerd by exact version; a bump of either needs its entry
 # updated (`npm install-scripts approve <pkg>`), or npm skips its install script and warns.
+# archive/ is provenance, not maintained (AGENTS.md): every entry excludes it (owner, 2026-10-20).
 updates:
   - package-ecosystem: npm
     directory: /
@@ -10,6 +11,7 @@ updates:
       interval: weekly
       day: monday
     open-pull-requests-limit: 5
+    exclude-paths: ['archive/**']
     cooldown:
       default-days: 7
     groups:
@@ -22,6 +24,7 @@ updates:
 
   - package-ecosystem: github-actions
     directory: /
+    exclude-paths: ['archive/**']
     schedule:
       interval: weekly
       day: monday
@@ -30,3 +33,11 @@ updates:
     groups:
       actions:
         patterns: ['*']
+
+  # The only pip manifests are under archive/; this entry exists to exclude them. Limit 0: no version-update PRs.
+  - package-ecosystem: pip
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 0
+    exclude-paths: ['archive/**']
