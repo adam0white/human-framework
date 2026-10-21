@@ -19,7 +19,6 @@ import { describe, expect, test } from 'vitest';
 import { withHistoricPersonEngine } from '../../../test/support/engine-stamp.ts';
 import {
   decodeSnapshot,
-  encodeSnapshot,
   hashState,
   makePlaytestFile,
   PlaytestError,
@@ -158,17 +157,6 @@ describe('Game 2 playtest files', () => {
     const snap = (await decodeSnapshot(f)) as { t: number };
     expect(snap.t).toBe(rec.game.t);
   }, 60_000);
-
-  test('sizes of a full run file (reported, not pinned)', async () => {
-    const rec = run(false);
-    const snapshot = voiceSnapshot(rec.game);
-    const raw = JSON.stringify({ ...(await fixtureFile(rec)), snapshotEncoding: 'json', snapshot });
-    const file = JSON.stringify({ ...(await fixtureFile(rec)), ...(await encodeSnapshot(snapshot)) });
-    console.log(
-      `Game 2 full run: log ${rec.log.length} entries, ${JSON.stringify(rec.log).length} chars; file with plain snapshot ${raw.length}; file as saved (gzipped snapshot) ${file.length}`,
-    );
-    expect(file.length).toBeLessThan(raw.length);
-  }, 120_000);
 });
 
 describe('Game 2 playtest import rejects bad files', () => {

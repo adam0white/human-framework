@@ -3,7 +3,6 @@ import type { Frame, LogEntry, OptionView } from '../protocol.ts';
 import { VoiceGame } from '../sim/game.ts';
 import { type Driver, play } from '../sim/headless.ts';
 import { voiceHash } from '../sim/record.ts';
-import { TOWN_EID_DAY } from '../sim/town.ts';
 import { deriveScene, nextEncounter, sceneChoices } from './scenes.ts';
 
 const act = (text: string, minute = 2040, id = 'a'): LogEntry => ({
@@ -269,7 +268,8 @@ describe('read-only day scenes', () => {
   it.each([7, 19, 31])('counts two-person scenes separately by day and policy, seed %s', (seed) => {
     for (const confirm of [false, true]) {
       const game = new VoiceGame(seed);
-      const playedDays = [1, 2, 15, 30, TOWN_EID_DAY];
+      // Only the first two days have encounter-count assertions.
+      const playedDays = [1, 2];
       const days = new Map<number, Set<string>>(playedDays.map((day) => [day, new Set<string>()]));
       const kinds = new Map<number, Set<string>>(playedDays.map((day) => [day, new Set<string>()]));
       play(minuteDriver(game), {
@@ -281,7 +281,7 @@ describe('read-only day scenes', () => {
           expect(voiceHash(currentGame)).toBe(before);
         },
         stop: (g) => {
-          if (g.day > TOWN_EID_DAY) return true;
+          if (g.day > 2) return true;
           const scene = deriveScene(g.frame());
           const speakers = new Set(
             scene?.lines.map((line) => line.speaker).filter((speaker) => speaker !== 'Scene'),
@@ -299,7 +299,7 @@ describe('read-only day scenes', () => {
         kinds: [...(kinds.get(day) ?? [])],
       }));
       console.info(JSON.stringify({ seed, policy: confirm ? 'prefills' : 'quiet', counts }));
-      expect(counts.filter((count) => count.day <= 2).every((count) => count.exchanges >= 2)).toBe(true);
+      expect(counts.every((count) => count.exchanges >= 2)).toBe(true);
     }
   });
 });

@@ -8,16 +8,11 @@ const mk = (levels: Record<string, number> = {}): P => ({ skills: seedSkills(lev
 describe('skill transfer', () => {
   const transfer = { 'repair-bicycle': { 'repair-sewing-machine': 0.4 } };
 
-  test('no map means no transfer (default behaviour unchanged)', () => {
-    const a = mk({ 'repair-bicycle': 0.5 });
-    practise(a, 'repair-bicycle', 600, 0.6, true, 1, 0);
-    expect(a.skills['repair-sewing-machine']).toBeUndefined();
-  });
-
   test('practising a source moves a related skill by a fraction, without spending its practice minutes', () => {
     const a = mk({ 'repair-bicycle': 0.5 });
     const b = mk({ 'repair-bicycle': 0.5 });
     const own = practise(a, 'repair-bicycle', 600, 0.6, true, 1, 0);
+    expect(a.skills['repair-sewing-machine']).toBeUndefined();
     practise(b, 'repair-bicycle', 600, 0.6, true, 1, 0, transfer);
     expect(b.skills['repair-bicycle']?.level).toBeCloseTo(own.after, 12);
     const related = b.skills['repair-sewing-machine'];

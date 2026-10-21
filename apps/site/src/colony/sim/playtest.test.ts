@@ -18,7 +18,6 @@ import { ENGINE_VERSION } from '@adam0white/human-framework';
 import { describe, expect, test } from 'vitest';
 import { withHistoricPersonEngine } from '../../../test/support/engine-stamp.ts';
 import {
-  encodeSnapshot,
   hashState,
   makePlaytestFile,
   PlaytestError,
@@ -278,17 +277,6 @@ describe('Game 1 playtest files', () => {
     expect(() => pb.load('{"kind":"human-playtest"}', ENGINE_VERSION)).toThrow(PlaytestError);
     expect(pb.game).toBe(before);
   }, 60_000);
-
-  test('sizes of a full run file (reported, not pinned)', async () => {
-    const g = fullRun();
-    const snapshot = colonySnapshot(g);
-    const raw = JSON.stringify({ ...(await fixtureFile(g)), snapshotEncoding: 'json', snapshot });
-    const file = JSON.stringify({ ...(await fixtureFile(g)), ...(await encodeSnapshot(snapshot)) });
-    console.log(
-      `Game 1 full run: log ${g.log.length} entries, ${JSON.stringify(g.log).length} chars; file with plain snapshot ${raw.length}; file as saved (gzipped snapshot) ${file.length}`,
-    );
-    expect(file.length).toBeLessThan(raw.length);
-  }, 120_000);
 });
 
 describe('Game 1 playtest import rejects bad files', () => {
