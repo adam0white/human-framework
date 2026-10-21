@@ -12,11 +12,21 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+## [2.12.0] - 2026-10-20
+
+Engine: 2.12.0. *Steps ahead* ([slice plan](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md#current-increment-curiosity-and-play-then-bounded-planning-owner-2026-10-20); sources in [research/curiosity-and-play.md](https://github.com/adam0white/human-framework/blob/main/research/curiosity-and-play.md#bounded-planning-and-present-bias)). A person can value the first step of a short chain toward a goal: go, take, carry, put. Opt-in: a person without the planning slice gives the same state, decisions and digests as 2.11.0 with only the engine stamp normalized, and received consequences keep their single successor. Saves migrate from 2.11.0 by stamping the version.
+
 ### Added
 
-- Opt-in bounded planning over retained consequence chains: `enablePlanning(p, { depth?, presentBias? })` and `PersonSpec.enable.planning`, with total depth 2..5 (default 4), stable depth-first search and a 64-node budget. Access probabilities multiply across links; one coherent route supplies per-goal value and summed successor costs. Optional present bias discounts successor value and cost, leaving direct value unchanged.
-- `seedConsequences(p, sourceId, claims)` for prior world knowledge (`known` channel), weighted by chance and confidence without source trust. Planning increases retained claims to 64 and batches to 16; legacy bounds and single-successor behavior remain unchanged when planning is absent.
-- Read-only `planRoute(p, aff, now?)` exposes the selected successors, timing, cumulative access and per-goal values. Multi-successor cost terms carry the chain's entry ids in `ref`. A headless planning control compares depth, present bias and reactive behavior in two renamed domains.
+- Opt-in bounded planning (`enablePlanning(p, { depth?, presentBias? })` or `PersonSpec.enable.planning`, state `Person.planning`, owned by `prospection/`). Chains link retained consequences where one claim's successor is exactly the next claim's trigger (action, target, place). Depth is 2 to 5 steps including the current action (default 4). The search is depth first in stable source and id order, with a budget of 64 node expansions and no claim used twice. Access probabilities multiply along the chain, waits and the goal's temporal half-life discount later steps, and one whole route contributes per offer. An optional present bias (0 < β ≤ 1) discounts value and cost that arrive only through later steps. Depth 2 gives exactly the 2.3.0 single-successor result.
+- Known consequences: `seedConsequences(p, sourceId, claims)` is host setup for what a person already knows about how their world works (channel `known`, weighted by stated chance and confidence, not source trust). Nothing is inferred from the person's history.
+- With planning, a person retains up to 64 claims and accepts batches of 16. Without it, the bounds stay at 16 and 4. Revision memory stays at 64.
+- Explanation: `planRoute(p, aff, now?)` reads the best route's steps, timing, access and per-goal values without changing anything. A route of two or more successors sets `Term.ref` on its cost term to the chain's claim ids, joined by `>`.
+- Headless control [`planning-control.ts`](https://github.com/adam0white/human-framework/blob/main/packages/human/examples/planning-control.ts): one goal reached in four steps in two renamed domains (parcel, garden). The planner (depth 4) completes it in four minutes. With planning off, or at depth 3, the person never starts it and does a nearer two-step task instead. With present bias β = 0.5, the person does the nearer task first and only then starts the far one.
+
+### Notes
+
+- This is not a general planner. It searches only claims the person holds, never the host's world, and it executes nothing.
 
 ## [2.11.0] - 2026-10-20
 

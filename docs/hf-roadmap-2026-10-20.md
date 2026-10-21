@@ -173,10 +173,10 @@ All three are scaled by a relaxed-field gate (`1 −` the highest urgency among 
 
 **What.** Opt-in bounded chains over retained consequences (`enablePlanning(p, { depth, presentBias? })`, owned by `prospection/`). Without it, received consequences keep their single successor exactly as in 2.3.0 to 2.11.0.
 
-- **Chains.** A route links entries whose successor matches the next entry's trigger exactly (action, target, place). At most `depth` steps (2 to 5, default 3) and a fixed node budget (64 expansions), in stable source and id order, with no entry used twice. Each link multiplies its access probability, waits for its window and discounts by the goal's temporal half-life, so waiting costs value. One coherent route contributes per offer, as now.
-- **Known consequences.** `seedConsequences(p, claims)` is host setup, like `seedBelief`: what a person already knows about how their world works (channel `known`, weighted by stated confidence, not source trust). Nothing is inferred from the person's history.
+- **Chains.** A route links entries whose successor matches the next entry's trigger exactly (action, target, place). At most `depth` steps including the current action (2 to 5, default 4) and a fixed node budget (64 expansions), in stable source and id order, with no entry used twice. Each link multiplies its access probability, waits for its window and discounts by the goal's temporal half-life, so waiting costs value. One coherent route contributes per offer, as now.
+- **Known consequences.** `seedConsequences(p, sourceId, claims)` is host setup, like `seedBelief`: what a person already knows about how their world works (channel `known`, weighted by stated confidence, not source trust). Nothing is inferred from the person's history.
 - **Bounds.** With planning on, a person retains up to 64 entries and accepts batches of 16. Without it, the 2.3.0 bounds of 16 and 4 stay.
-- **Present bias.** Optional quasi-hyperbolic β (0 < β ≤ 1) on goal value that arrives only through later steps; absent, no bias.
+- **Present bias.** Optional quasi-hyperbolic β (0 < β ≤ 1) on goal value and cost that arrive only through later steps; absent, no bias.
 
 **Not in this slice.** A general planner, search over the host's world, inferred procedures, plans that execute themselves, another person's agency.
 
