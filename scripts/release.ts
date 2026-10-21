@@ -68,6 +68,7 @@ if (!section.startsWith(`Engine: ${engine}.`)) {
 }
 const notes = `${section}\n`;
 
+run('node', ['scripts/lockfile-sync.ts']);
 run('npm', ['run', 'check']);
 
 const out = mkdtempSync(join(tmpdir(), 'hf-release-'));

@@ -1,7 +1,7 @@
 import { spawnSync } from 'node:child_process';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { classify, type Lane } from './lane.ts';
+import { classify, type Lane, laneCommands } from './lane.ts';
 
 const cases: [string, Lane][] = [
   ['packages/human/src/person.ts', 'gated'],
@@ -33,6 +33,7 @@ const cases: [string, Lane][] = [
   ['scripts/release.ts', 'gated'],
   ['scripts/suite-lock.ts', 'gated'],
   ['scripts/lane.ts', 'gated'],
+  ['scripts/lockfile-sync.ts', 'gated'],
   ['wrangler.jsonc', 'gated'],
   ['apps/site/public/_headers', 'gated'],
   ['tsconfig.json', 'gated'],
@@ -113,5 +114,14 @@ describe('lane CLI arguments', () => {
     });
     expect(result.status).not.toBe(0);
     expect(result.stderr).toContain('--base requires a ref');
+  });
+});
+
+describe('lockfile preflight', () => {
+  it('checks manifest and lockfile changes before the suite', () => {
+    for (const path of ['package.json', 'packages/human/package.json', 'package-lock.json']) {
+      expect(laneCommands([path], 'gated')[0]).toEqual(['node', 'scripts/lockfile-sync.ts']);
+    }
+    expect(laneCommands(['scripts/lane.ts'], 'gated')[0]).toEqual(['npm', 'run', 'check']);
   });
 });

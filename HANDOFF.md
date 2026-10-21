@@ -33,7 +33,7 @@ Dependabot alerts are on; `.github/dependabot.yml` excludes `archive/**` (owner,
 
 ## npm
 
-`@adam0white/human-framework` publishes from `packages/human`. Release with `npm run release` (tag, GitHub release, tarball); the GitHub release starts [.github/workflows/publish.yml](.github/workflows/publish.yml), which checks the tag against the version, runs typecheck and framework tests, and publishes with trusted publishing (OIDC, provenance, no token). A version npm already has is skipped. Rehearse with Actions, "Publish to npm", dry run on. An npm token, if the owner provides one, lives only in `~/.npmrc` or an Actions secret. Setup history: [releases.md](docs/releases.md#npm-setup-2026-10-07).
+`@adam0white/human-framework` publishes from `packages/human`. After stamping a package version, run `npm install --package-lock-only` and stage `package-lock.json` with the changed `package.json` before committing. Release with `npm run release` (tag, GitHub release, tarball); the GitHub release starts [.github/workflows/publish.yml](.github/workflows/publish.yml), which checks the tag against the version, runs typecheck and framework tests, and publishes with trusted publishing (OIDC, provenance, no token). A version npm already has is skipped. Rehearse with Actions, "Publish to npm", dry run on. An npm token, if the owner provides one, lives only in `~/.npmrc` or an Actions secret. Setup history: [releases.md](docs/releases.md#npm-setup-2026-10-07).
 
 ## Cloudflare
 

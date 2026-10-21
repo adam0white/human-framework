@@ -19,7 +19,7 @@ function fileLane(path: string): Lane {
     // Worker source dependencies: lab/{core,games,curated} and lab/games -> src/games.ts.
     // The import audit in lane-contract.test.ts guards additions outside this directory.
     /^(packages\/(human|lab-client|lab-kit)\/|apps\/site\/(worker|src\/lab)\/|\.github\/)/.test(path) ||
-    /^(package-lock\.json|\.nvmrc|scripts\/(deploy|release|suite-lock|lane)\.ts|wrangler\.jsonc|apps\/site\/(public\/_headers|src\/games\.ts)|biome\.json)$/.test(
+    /^(package-lock\.json|\.nvmrc|scripts\/(deploy|release|suite-lock|lane|lockfile-sync)\.ts|wrangler\.jsonc|apps\/site\/(public\/_headers|src\/games\.ts)|biome\.json)$/.test(
       path,
     ) ||
     /(?:^|\/)(package\.json|tsconfig[^/]*\.json|vitest[^/]*\.config\.ts|AGENTS\.md|CLAUDE\.md)$/.test(path) ||
@@ -82,6 +82,8 @@ export function laneCommands(changed: readonly string[], lane: Lane): string[][]
   if (lane !== 'gated' && changed.some((path) => curatedDocs.has(path)))
     commands.push(['npm', 'exec', '--', 'vitest', 'run', 'apps/site/src/lab/lab.test.ts']);
   if (lane === 'delivery') commands.push(['npm', 'run', 'build'], ['node', 'scripts/site-smoke.ts']);
+  if (changed.some((path) => /(?:^|\/)(?:package\.json|package-lock\.json)$/.test(path)))
+    commands.unshift(['node', 'scripts/lockfile-sync.ts']);
   return commands;
 }
 
