@@ -5467,6 +5467,32 @@
     "lesson:L15"
    ],
    "source": "murmur/docs/playtests/owner-2026-10-21.md"
+  },
+  {
+   "id": "F-414",
+   "date": "2026-10-21",
+   "game": "lab",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Choosing the winter (or difficulty in general) seems breaking our realism theme if left as is. Frame it. Like pray next winter goes easier, vs be grateful of the current state. Need further variety? Ask everyone to pray for much easier winters in general, vs wish for more experience, seeing difficulty as an opportunity for a better reward.",
+   "verdict": "-",
+   "routes": [
+    "fix:lab difficulty choices framed in the fiction as what the people hope for, several voices, faith one quiet voice among them (Codex worker, 2026-10-21)"
+   ],
+   "source": "chat 2026-10-21"
+  },
+  {
+   "id": "F-415",
+   "date": "2026-10-21",
+   "game": "lab",
+   "kind": "owner",
+   "who": "owner",
+   "words": "we don't have simple scores at the end of games. … our games are really about the process and the experience within, rather than a hard race towards maximizing specific numbers. I'm open to keeping as is, or presenting a compound score at the end for those who can't do without, they know themselves.",
+   "verdict": "-",
+   "routes": [
+    "fix:lab optional end tally, off by default, labelled as the game's own convention (Codex worker, 2026-10-21)"
+   ],
+   "source": "chat 2026-10-21"
   }
  ],
  "lessons": [
@@ -6073,7 +6099,7 @@
   }
  ],
  "routes": {
-  "fix": 416,
+  "fix": 418,
   "lesson": 289,
   "hf": 12,
   "calibration": 42,
