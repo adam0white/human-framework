@@ -198,7 +198,7 @@ Focused tests, the headless control with its arms, exact legacy continuation and
 
 ### Done means
 
-2.11.0 and 2.12.0 published with CI green and the site live on 2.12.0, then the island rerun in `~/code/island` with the new faculties, reported plainly: does HF now play or build in free time, and does it complete the carry task?
+2.11.0 and 2.12.0 published with CI green and the site live on the increment's last release (2.13.0, after slice 3), then the island rerun in `~/code/island` with the new faculties, reported plainly: does HF now play or build in free time, and does it complete the carry task?
 
 ## Review
 

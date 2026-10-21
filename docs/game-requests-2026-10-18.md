@@ -111,6 +111,8 @@ Released as HF 2.8.0 / engine 2.8.0 ([CHANGELOG](../CHANGELOG.md), [framework.md
 
 Framework part of HF 2.9.0 / engine 2.9.0 ([CHANGELOG](../CHANGELOG.md), [framework.md](framework.md#game-requests-several-commitments-cued-responses-a-resolves-name-290)). The Valley's requests are not triaged here; they are targeted in [roadmap.md](roadmap.md) §3b. The items the 2.8.0 table deferred to engine 2.9 (narration batch, Pass 1, 4, 5) are not in 2.9.0 and move to engine 2.10.
 
+Update 2026-10-20: Pass 1 (`decidedBy`, opt-in via `enableSuggestionReasons`) and Pass 4 (`Commitment.firm`) shipped in HF 2.13.0 ([CHANGELOG](../CHANGELOG.md)). Pass 2 and 3 stay in the narration batch, engine 2.14 (target 2026-11-30); Pass 5 waits on a sourced effect size (roadmap.md §3b).
+
 | Item | Outcome | Reason |
 |---|---|---|
 | Voices 1, several commitments by one act | Done: with two or more listed in `fulfills`, every eligible listed one is kept | With one listed, the earliest-ending rule stays (exact for every current host); an act listing several keeps exactly those, no implicit match besides |
