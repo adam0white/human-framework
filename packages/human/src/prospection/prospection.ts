@@ -1,12 +1,17 @@
 /**
- * SCOPE: one received current-action → successor consequence, acquired only through
- * attended external testimony for this person or an untargeted broadcast. Knowledge is person-owned, source-labelled, bounded and saved.
- * Temporal goals value expected completion using time, success and source reliability.
- * One coherent route may contribute; it never executes actions, grants consent or
- * advances a goal. Own completed triggers consume their received opportunity.
- * This is not graph search, inferred procedure learning or a model of future bodies,
- * waiting opportunity cost or another person's agency. Parameters are engineering
- * bounds, not fitted psychological estimates. Revision memory is bounded, not an audit.
+ * SCOPE: retained current-action → successor claims, acquired through attended external
+ * testimony or host-seeded prior knowledge. Knowledge is person-owned, source-labelled,
+ * bounded and saved. Opt-in planning searches chains of retained claims, depth first in
+ * stable source/id order, with total depth 2..5 and 64 feasible node expansions.
+ * Shapes: depth limits and pruning (Huys et al. 2012; Keramati et al. 2016), resource-rational
+ * planning (Callaway et al. 2022), quasi-hyperbolic present bias (Laibson 1997;
+ * O'Donoghue and Rabin 1999); see research/curiosity-and-play.md §Planning.
+ * Parameters are engineering bounds, not fitted psychological estimates.
+ * Without planning, only one successor is considered. One coherent route contributes;
+ * it never executes actions, grants consent or advances goals. Actual completed triggers
+ * consume opportunities. This is not a general planner: it does not search the host's
+ * world, infer procedures, execute plans or model another person's agency, future bodies
+ * or waiting opportunity cost. Revision memory is bounded, not an audit.
  */
 import { temporalGoalValue } from '../agenda/agenda.ts';
 import { trustOf } from '../beliefs/index.ts';
@@ -19,6 +24,8 @@ import type {
   Minute,
   Percept,
   Person,
+  PlanningSpec,
+  PlanningState,
   ProspectionState,
   ReceivedConsequence,
   RetainedConsequence,
@@ -34,6 +41,38 @@ export const PROSPECTION_DEFAULTS = {
   horizon: 7 * MINUTES_PER_DAY,
   maxMaterialCost: 1_000_000,
 };
+/** Validate the optional planning configuration. Malformed saved state is dropped. @internal */
+export function sanitizePlanning(input: unknown): PlanningState | undefined {
+  if (
+    !isObj(input) ||
+    !Number.isInteger(input.depth) ||
+    !isNum(input.depth) ||
+    input.depth < 2 ||
+    input.depth > 5
+  )
+    return undefined;
+  if (
+    input.presentBias !== undefined &&
+    (!isNum(input.presentBias) || input.presentBias <= 0 || input.presentBias > 1)
+  )
+    return undefined;
+  return {
+    depth: input.depth,
+    ...(input.presentBias !== undefined ? { presentBias: input.presentBias } : {}),
+  };
+}
+
+/** Enable bounded planning. Invalid configuration throws without changing the person. */
+export function enablePlanning(p: Person, spec: PlanningSpec = {}): void {
+  const state = sanitizePlanning({ ...spec, depth: spec.depth ?? 4 });
+  if (!state) throw new RangeError('Planning requires depth 2..5 and presentBias in (0, 1]');
+  p.planning = state;
+}
+const maxEntries = (planning: boolean) => (planning ? 64 : PROSPECTION_DEFAULTS.maxEntries);
+const maxBatch = (p: Person) => (p.planning ? 16 : PROSPECTION_DEFAULTS.maxBatch);
+const reliability = (p: Person, e: RetainedConsequence) =>
+  e.channel === 'known' ? 1 : trustOf(p, e.sourceId);
+
 const id = (x: unknown): x is string =>
   typeof x === 'string' &&
   x.length > 0 &&
@@ -111,7 +150,13 @@ function consequence(x: unknown, receivedAt: number): ReceivedConsequence | unde
   };
 }
 function retained(x: unknown, now: number): RetainedConsequence | undefined {
-  if (!isObj(x) || !id(x.sourceId) || x.channel !== 'told' || !minute(x.receivedAt) || x.receivedAt > now)
+  if (
+    !isObj(x) ||
+    !id(x.sourceId) ||
+    (x.channel !== 'told' && x.channel !== 'known') ||
+    !minute(x.receivedAt) ||
+    x.receivedAt > now
+  )
     return undefined;
   const c = consequence(x, x.receivedAt);
   if (
@@ -123,7 +168,7 @@ function retained(x: unknown, now: number): RetainedConsequence | undefined {
   return {
     ...c,
     sourceId: x.sourceId,
-    channel: 'told',
+    channel: x.channel,
     receivedAt: x.receivedAt,
     ...(x.triggeredAt !== undefined ? { triggeredAt: x.triggeredAt } : {}),
   };
@@ -155,12 +200,30 @@ export function receiveConsequences(p: Person, pc: Percept): boolean {
     (pc.targetId !== undefined && pc.targetId !== p.id)
   )
     return false;
-  const adds: unknown = pc.consequences ?? [];
-  const removes: unknown = pc.withdrawConsequences ?? [];
+  return acceptConsequences(p, pc.actorId, pc.consequences ?? [], pc.withdrawConsequences ?? [], 'told');
+}
+
+/** Seed what the person already knows. Uses claim confidence/chance, without source trust or attention. */
+export function seedConsequences(
+  p: Person,
+  sourceId: string,
+  claims: readonly ReceivedConsequence[],
+): boolean {
+  if (!id(sourceId) || sourceId === p.id) return false;
+  return acceptConsequences(p, sourceId, claims, [], 'known');
+}
+
+function acceptConsequences(
+  p: Person,
+  sourceId: string,
+  adds: unknown,
+  removes: unknown,
+  channel: RetainedConsequence['channel'],
+): boolean {
   if (
     !Array.isArray(adds) ||
     !Array.isArray(removes) ||
-    adds.length + removes.length > PROSPECTION_DEFAULTS.maxBatch ||
+    adds.length + removes.length > maxBatch(p) ||
     adds.length + removes.length === 0
   )
     return false;
@@ -174,7 +237,6 @@ export function receiveConsequences(p: Person, pc: Percept): boolean {
   const batch = [...additions.map((x) => ({ id: x?.id, revision: x?.revision })), ...withdrawals];
   if (new Set(batch.map((x) => x.id)).size !== batch.length) return false;
   const state = cleaned(structuredClone(p.prospection ?? { entries: [], revisions: [] }), p.now);
-  const sourceId = pc.actorId;
   const updates = batch.filter(
     (b) =>
       !state.revisions.some(
@@ -190,15 +252,15 @@ export function receiveConsequences(p: Person, pc: Percept): boolean {
     state.entries = state.entries.filter((e) => !(e.sourceId === sourceId && e.id === b.id));
     state.revisions = state.revisions.filter((r) => !(r.sourceId === sourceId && r.id === b.id));
     const addition = additions.find((a) => a?.id === b.id);
-    if (addition) state.entries.push({ ...addition, sourceId, channel: 'told', receivedAt: p.now });
+    if (addition) state.entries.push({ ...addition, sourceId, channel, receivedAt: p.now });
     state.revisions.push({ sourceId, id: b.id as string, revision: b.revision as number, receivedAt: p.now });
   }
-  if (state.entries.length > PROSPECTION_DEFAULTS.maxEntries) {
+  if (state.entries.length > maxEntries(p.planning !== undefined)) {
     const oldest = [...state.entries]
       .sort(
         (a, b) => Number(b.triggeredAt !== undefined) - Number(a.triggeredAt !== undefined) || order(a, b),
       )
-      .slice(0, state.entries.length - PROSPECTION_DEFAULTS.maxEntries);
+      .slice(0, state.entries.length - maxEntries(p.planning !== undefined));
     state.entries = state.entries.filter((e) => !oldest.includes(e));
   }
   store(p, state);
@@ -238,7 +300,7 @@ export function consequenceEvidence(
         end <= entry.availableUntil &&
         Number.isFinite(end);
       const accessProbability =
-        expectedEffect(p, aff).successRate * entry.chance * entry.confidence * trustOf(p, entry.sourceId);
+        expectedEffect(p, aff).successRate * entry.chance * entry.confidence * reliability(p, entry);
       return {
         entry: structuredClone(entry),
         matches: match,
@@ -264,6 +326,19 @@ function successorOffer(e: RetainedConsequence): Affordance {
     ...(materialCost !== undefined ? { material: -materialCost } : {}),
   };
 }
+/** One successor in a selected route. Times and access are unrounded estimates. */
+export interface PlanStep {
+  successor: ReceivedConsequence['successor'];
+  start: Minute;
+  end: Minute;
+  access: number;
+}
+/** Plain JSON readout of the best whole route; goals are unscaled per-goal values. */
+export interface PlanRoute {
+  steps: PlanStep[];
+  goals: Record<string, number>;
+}
+
 /** Select a whole route in the exact rounded units cognition emits. @internal */
 export function receivedGoalRoute(
   p: Person,
@@ -271,34 +346,80 @@ export function receivedGoalRoute(
   now: Minute,
   maturityScale: number,
   costs: (successor: Affordance) => number,
-): { goals: Map<string, number>; cost: Term } | undefined {
+): { goals: Map<string, number>; cost: Term; route: PlanRoute } | undefined {
   const goals = p.agenda.goals.filter((g) => g.status === 'active' && g.temporal !== undefined);
   if (!goals.length || !p.prospection?.entries.length) return undefined;
   const direct = goals.map((g) => temporalGoalValue(p, g, aff, now, now + Math.max(0, aff.duration)));
   const baseline = direct.reduce((sum, value) => sum + round(value * maturityScale), 0);
   let bestScore = baseline;
-  let best: { goals: Map<string, number>; cost: Term } | undefined;
-  const entries = consequenceEvidence(p, aff, now).entries.sort(
-    (a, b) => cmpStr(a.entry.sourceId, b.entry.sourceId) || cmpStr(a.entry.id, b.entry.id),
+  let best: ReturnType<typeof receivedGoalRoute>;
+  const entries = [...p.prospection.entries].sort(
+    (a, b) => cmpStr(a.sourceId, b.sourceId) || cmpStr(a.id, b.id),
   );
-  for (const e of entries) {
-    if (!e.feasible) continue;
-    const successor = successorOffer(e.entry);
-    const values = goals.map((g, i) =>
-      Math.max(
-        direct[i] ?? 0,
-        e.accessProbability * temporalGoalValue(p, g, successor, now, e.successorEndsAt),
-      ),
-    );
-    const cost = round(e.accessProbability * Math.min(0, costs(successor)));
-    const total = values.reduce((sum, value) => sum + round(value * maturityScale), 0) + cost;
-    if (!(round(total - bestScore) > 0)) continue;
-    bestScore = total;
-    best = {
-      goals: new Map(goals.map((g, i) => [g.id, values[i] ?? 0])),
-      cost: { source: `prospection:cost:${e.entry.sourceId}:${e.entry.id}`, value: cost },
-    };
+  const beta = p.planning?.presentBias ?? 1;
+  let remaining = p.planning ? 64 : Infinity;
+  function visit(
+    previous: Affordance,
+    previousEnd: number,
+    access: number,
+    path: RetainedConsequence[],
+    steps: PlanStep[],
+    values: number[],
+    accumulatedCost: number,
+  ): void {
+    if (path.length >= (p.planning?.depth ?? 2) - 1 || remaining <= 0) return;
+    for (const entry of entries) {
+      if (remaining <= 0) return;
+      if (
+        path.includes(entry) ||
+        !matches(entry.trigger, previous) ||
+        entry.triggeredAt !== undefined ||
+        now > entry.expiresAt
+      )
+        continue;
+      const start = Math.max(previousEnd, entry.availableFrom);
+      const end = start + entry.successor.duration;
+      if (!Number.isFinite(end) || end > entry.availableUntil) continue;
+      remaining -= 1;
+      const nextAccess =
+        access *
+        expectedEffect(p, previous).successRate *
+        entry.chance *
+        entry.confidence *
+        reliability(p, entry);
+      const successor = successorOffer(entry);
+      const nextValues = goals.map((g, i) =>
+        Math.max(values[i] ?? 0, nextAccess * beta * temporalGoalValue(p, g, successor, now, end)),
+      );
+      const nextCost = accumulatedCost + beta * nextAccess * Math.min(0, costs(successor));
+      const cost = round(nextCost);
+      const total = nextValues.reduce((sum, value) => sum + round(value * maturityScale), 0) + cost;
+      const nextPath = [...path, entry];
+      const nextSteps = [
+        ...steps,
+        { successor: structuredClone(entry.successor), start, end, access: nextAccess },
+      ];
+      if (round(total - bestScore) > 0) {
+        bestScore = total;
+        // Keep the original root's source string; the ref explains longer routes.
+        const root = nextPath[0] as RetainedConsequence;
+        best = {
+          goals: new Map(goals.map((g, i) => [g.id, nextValues[i] ?? 0])),
+          cost: {
+            source: `prospection:cost:${root.sourceId}:${root.id}`,
+            value: cost,
+            ...(nextPath.length > 1 ? { ref: nextPath.map((e) => e.id).join('>') } : {}),
+          },
+          route: {
+            steps: nextSteps,
+            goals: Object.fromEntries(goals.map((g, i) => [g.id, nextValues[i] ?? 0])),
+          },
+        };
+      }
+      visit(successor, end, nextAccess, nextPath, nextSteps, nextValues, nextCost);
+    }
   }
+  visit(aff, now + Math.max(0, aff.duration), 1, [], [], direct, 0);
   return best;
 }
 /** Conservative optional-slice restore; ambiguous identities drop the slice. @internal */
@@ -306,12 +427,13 @@ export function sanitizeProspection(
   input: unknown,
   now: Minute,
   personId: string,
+  planning = false,
 ): ProspectionState | undefined {
   if (
     !isObj(input) ||
     !Array.isArray(input.entries) ||
     !Array.isArray(input.revisions) ||
-    input.entries.length > PROSPECTION_DEFAULTS.maxEntries ||
+    input.entries.length > maxEntries(planning) ||
     input.revisions.length > PROSPECTION_DEFAULTS.maxRevisions
   )
     return undefined;

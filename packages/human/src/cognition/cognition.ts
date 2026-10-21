@@ -320,6 +320,20 @@ function materialValue(p: Person, material: number, scarcity: number): number {
   return K.materialWeight * sat * 2 * weight * (1 + K.scarcityMaterialGain * scarcity);
 }
 
+/** Shared whole-route valuation for scoring and the read-only plan readout. @internal */
+export function prospectiveRoute(p: Person, aff: Affordance, ctx: ConsiderContext) {
+  const scarcity = clamp01(Number.isFinite(ctx.scarcity) ? (ctx.scarcity as number) : 0);
+  return receivedGoalRoute(
+    p,
+    aff,
+    ctx.now,
+    0.5 + 0.5 * clamp01(ctx.mods.maturity),
+    (successor) =>
+      effortValue(p, successor, ctx) +
+      (successor.material ? materialValue(p, successor.material, scarcity) : 0),
+  );
+}
+
 /** Needs whose consumption can overfill (2.8.0 fullness): what `body.consume` feeds. */
 const FULL_NEEDS = ['food', 'water', 'relief'] as const;
 
@@ -400,18 +414,10 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
   }
   const maturity = clamp01(ctx.mods.maturity);
   const maturityScale = 0.5 + 0.5 * maturity;
-  const received = receivedGoalRoute(
-    p,
-    aff,
-    ctx.now,
-    maturityScale,
-    (successor) =>
-      effortValue(p, successor, ctx) +
-      (successor.material ? materialValue(p, successor.material, scarcity) : 0),
-  );
+  const received = prospectiveRoute(p, aff, ctx);
   for (const t of agendaTermsWithGoalEstimates(p, aff, ctx.now, received?.goals))
     push(t.source, t.value * maturityScale);
-  if (received) push(received.cost.source, received.cost.value);
+  if (received) push(received.cost.source, received.cost.value, received.cost.ref);
 
   // Habit: cue-matched automaticity (cued by the option's own place), stronger before planning matures.
   const habit =

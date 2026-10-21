@@ -92,7 +92,7 @@ import {
   noteOutcome,
   trimChronicle,
 } from './chronicle/index.ts';
-import { decide as cognitionDecide, desperationOf, scoreAll } from './cognition/index.ts';
+import { decide as cognitionDecide, desperationOf, prospectiveRoute, scoreAll } from './cognition/index.ts';
 import {
   createConscience,
   guiltLoad,
@@ -133,6 +133,7 @@ import { enablePromptings, type NafsPattern, nafsPatterns, notePromptings } from
 import {
   bodyForecastFor,
   consumeConsequences,
+  enablePlanning,
   forecastLine,
   forecastThresholds,
   pruneConsequences,
@@ -330,6 +331,7 @@ export function createPerson(spec: PersonSpec): Person {
   if (on?.fatigueStore) enableFatigueStore(p);
   if (on?.fullness) enableFullness(p);
   if (on?.curiosity) enableCuriosity(p, on.curiosity === true ? {} : on.curiosity);
+  if (on?.planning) enablePlanning(p, on.planning);
   if (on?.promptings) enablePromptings(p, on.promptings);
   if (on?.review) enableReview(p, on.review);
   return p;
@@ -1028,6 +1030,17 @@ export function answerNow(
     noteAnswer(p, out.resolution, action);
   }
   return out;
+}
+
+/**
+ * Read the best retained-claim route using ordinary scoring costs (scarcity absent).
+ * Does not mutate, advance time or consume RNG. `now` values timing against the held state.
+ * Returns undefined when no route improves on direct goal value.
+ */
+export function planRoute(p: Person, aff: Affordance, now: Minute = p.now) {
+  const held = now === p.now ? p : { ...p, now };
+  const { ctx } = decisionInputs(held, [aff], 'plan-readout', {});
+  return prospectiveRoute(held, aff, ctx)?.route;
 }
 
 /** Every resolution of a decision record (all voices), oldest API first. */

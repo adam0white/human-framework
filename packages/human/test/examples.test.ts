@@ -2,6 +2,7 @@ import { describe, expect, test } from 'vitest';
 import { main as community, DAYS } from '../examples/community.ts';
 import { main as curiosity } from '../examples/curiosity-control.ts';
 import { main as minimal } from '../examples/minimal.ts';
+import { main as planning } from '../examples/planning-control.ts';
 import { main as suggestions } from '../examples/suggestions.ts';
 
 // Structural checks only: the examples must keep running and keep showing what they claim, but exact
@@ -62,5 +63,29 @@ describe('examples', () => {
     expect(hungry.decisions.every((d) => Object.values(d.curiosity).every((value) => value === 0))).toBe(
       true,
     );
+  });
+
+  test('planning: four-step completion needs sufficient depth, while present bias favors the smaller project', () => {
+    const rows = planning();
+    expect(rows).toHaveLength(8);
+    for (const domain of ['parcel', 'garden']) {
+      const arms = rows.filter((r) => r.domain === domain);
+      const planner = arms.find((r) => r.arm === 'planner');
+      const reactive = arms.find((r) => r.arm === 'reactive');
+      const bounded = arms.find((r) => r.arm === 'depth-three');
+      const biased = arms.find((r) => r.arm === 'present-biased');
+      expect(planner?.progress.far).toBe(4);
+      expect(planner?.goals.find((g) => g.id === 'far')?.status).toBe('achieved');
+      expect(reactive?.progress.far).toBe(0);
+      expect(bounded?.progress.far).toBe(0);
+      expect(biased?.progress.near).toBe(2);
+      expect(biased?.progress.far).toBeLessThan(4);
+      expect(biased?.decisions[0]?.action).not.toBe(planner?.decisions[0]?.action);
+      for (const row of arms) {
+        expect(row.now).toBe(604);
+        expect(row.decisions.map((d) => d.minute)).toEqual([600, 601, 602, 603]);
+        expect(row.decisions.every((d) => d.offers.includes(d.action))).toBe(true);
+      }
+    }
   });
 });

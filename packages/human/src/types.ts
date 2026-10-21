@@ -1101,7 +1101,7 @@ export interface ConsequenceRevision {
 
 export interface RetainedConsequence extends ReceivedConsequence {
   sourceId: EntityId;
-  channel: 'told';
+  channel: 'told' | 'known';
   receivedAt: Minute;
   /** Own completed trigger; does not establish access or goal progress. */
   triggeredAt?: Minute;
@@ -1111,6 +1111,19 @@ export interface RetainedConsequence extends ReceivedConsequence {
 export interface ProspectionState {
   entries: RetainedConsequence[];
   revisions: ConsequenceRevision[];
+}
+
+/** Bounded retained-claim search, owned by `prospection/`. */
+export interface PlanningSpec {
+  /** Total steps including the current offer: integer 2..5, default 4. */
+  depth?: number;
+  /** Quasi-hyperbolic beta in (0, 1]; absent means no present bias. */
+  presentBias?: Unit;
+}
+
+export interface PlanningState {
+  depth: number;
+  presentBias?: Unit;
 }
 
 export interface Person {
@@ -1134,6 +1147,8 @@ export interface Person {
   methods?: MethodsState;
   /** Received future consequences, absent until attended testimony supplies them. */
   prospection?: ProspectionState;
+  /** Opt-in bounded planning over retained consequences. Owned by `prospection/`. */
+  planning?: PlanningState;
   /** Noticed promptings and practised turnings-away (2.4.0, opt-in via `enablePromptings`). Owned by `promptings/`. */
   promptings?: PromptingsState;
   /** Intrinsic exploration and varied repetition. Owned by `curiosity/`; absent unless enabled. */
@@ -1558,6 +1573,8 @@ export interface PersonSpec {
     promptings?: PromptingsSpec;
     /** Enable intrinsic exploration and play, using engineering defaults or bounded overrides. */
     curiosity?: boolean | CuriositySpec;
+    /** Bounded planning: the same as `enablePlanning(p, spec)` after creation. */
+    planning?: PlanningSpec;
     /** Evening self-review (2.7.0): the same as `enableReview(p, spec)` after creation. */
     review?: ReviewSpec;
   };

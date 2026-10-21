@@ -119,15 +119,17 @@ export * from './needs/index.ts';
 export * from './partnering/index.ts';
 export * from './person.ts';
 export * from './promptings/index.ts';
-export type { ConsequenceEvidence } from './prospection/index.ts';
+export type { ConsequenceEvidence, PlanRoute, PlanStep } from './prospection/index.ts';
 export {
   bodyForecastFor,
   bodyForecastTerm,
   consequenceEvidence,
+  enablePlanning,
   FORECAST_DEFAULTS,
   forecastLine,
   forecastThresholds,
   PROSPECTION_DEFAULTS,
+  seedConsequences,
 } from './prospection/index.ts';
 export { fingerprint, restore, snapshot } from './restore.ts';
 export * from './review/index.ts';

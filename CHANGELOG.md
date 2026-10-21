@@ -12,6 +12,12 @@ absolute links in sections, since they are copied into the release page.
 
 ## [Unreleased]
 
+### Added
+
+- Opt-in bounded planning over retained consequence chains: `enablePlanning(p, { depth?, presentBias? })` and `PersonSpec.enable.planning`, with total depth 2..5 (default 4), stable depth-first search and a 64-node budget. Access probabilities multiply across links; one coherent route supplies per-goal value and summed successor costs. Optional present bias discounts successor value and cost, leaving direct value unchanged.
+- `seedConsequences(p, sourceId, claims)` for prior world knowledge (`known` channel), weighted by chance and confidence without source trust. Planning increases retained claims to 64 and batches to 16; legacy bounds and single-successor behavior remain unchanged when planning is absent.
+- Read-only `planRoute(p, aff, now?)` exposes the selected successors, timing, cumulative access and per-goal values. Multi-successor cost terms carry the chain's entry ids in `ref`. A headless planning control compares depth, present bias and reactive behavior in two renamed domains.
+
 ## [2.11.0] - 2026-10-20
 
 Engine: 2.11.0. *Curiosity and play* ([slice plan](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md#current-increment-curiosity-and-play-then-bounded-planning-owner-2026-10-20); sources in [research/curiosity-and-play.md](https://github.com/adam0white/human-framework/blob/main/research/curiosity-and-play.md)). When a person's needs are met, they are drawn to try what they cannot yet predict, to keep at what they are getting better at, and to vary what they just did. Opt-in: a person without the slice gives the same state, decisions and digests as 2.10.0 with only the engine stamp normalized (the public `fingerprint` includes the stamp, so it changes). Saves migrate from 2.10.0 by stamping the version.

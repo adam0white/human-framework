@@ -24,7 +24,7 @@ import { migrate } from './migrate.ts';
 import { sanitizeBonds } from './partnering/index.ts';
 import { cleanRetention, createPerson, traceLimit } from './person.ts';
 import { sanitizePromptings } from './promptings/index.ts';
-import { sanitizeProspection } from './prospection/index.ts';
+import { sanitizePlanning, sanitizeProspection } from './prospection/index.ts';
 import { sanitizeReview } from './review/index.ts';
 import { sanitizeSkillRetention } from './skills/index.ts';
 import { sanitizeGroups, sanitizeImpressions } from './social/index.ts';
@@ -91,6 +91,7 @@ const OPTIONAL_KEYS: ReadonlySet<string> = new Set([
   'retention',
   'methods',
   'prospection',
+  'planning',
   'promptings',
   'curiosity',
   'review',
@@ -199,7 +200,8 @@ export function restore(input: unknown): Person {
   keepValid(out, 'ambient', sanitizeAmbient);
   keepValid(out, 'retention', cleanRetention);
   keepValid(out, 'methods', sanitizeMethods);
-  keepValid(out, 'prospection', (x) => sanitizeProspection(x, out.now, out.id));
+  keepValid(out, 'planning', sanitizePlanning);
+  keepValid(out, 'prospection', (x) => sanitizeProspection(x, out.now, out.id, out.planning !== undefined));
   keepValid(out, 'curiosity', (x) => sanitizeCuriosity(x, out.now));
   keepValid(out, 'promptings', (x) => sanitizePromptings(x, out.now));
   keepValid(out, 'review', (x) => sanitizeReview(x, out.now));
