@@ -347,7 +347,7 @@ it('focuses posting and menu controls, then restores each origin without a game 
   container.remove();
 });
 
-it('reads dawn talks and their sleep cost before the account, then continues in the same scroll', async () => {
+it('reads the night outcome and winter progress before morning talks, then continues in the same scroll', async () => {
   const { App } = await import('./App.tsx');
   const { useWatch } = await import('./useWatch.ts');
   const { WatchRun } = await import('../sim/run.ts');
@@ -372,10 +372,16 @@ it('reads dawn talks and their sleep cost before the account, then continues in 
   await act(async () => root.render(createElement(App)));
   const page = container.querySelector('.w-dawn');
   const talks = page?.querySelector('.w-talks');
-  const account = page?.querySelector('h2');
+  const account = page?.querySelector('.w-dawn-outcome');
+  const progress = page?.querySelector('.w-winter-progress');
   expect(talks?.textContent).toContain('Each talk costs them a little sleep.');
   expect(
-    talks && account && talks.compareDocumentPosition(account) & Node.DOCUMENT_POSITION_FOLLOWING,
+    account && talks && account.compareDocumentPosition(talks) & Node.DOCUMENT_POSITION_FOLLOWING,
+  ).toBeTruthy();
+  expect(progress?.textContent).toContain('Watched nights');
+  expect(progress?.querySelector('svg')?.getAttribute('aria-label')).toContain('watches');
+  expect(
+    progress && talks && progress.compareDocumentPosition(talks) & Node.DOCUMENT_POSITION_FOLLOWING,
   ).toBeTruthy();
   expect(container.querySelector('.w-page-commit .w-primary')).toBeNull();
   const next = container.querySelector<HTMLButtonElement>('.lk-sheet-body .w-dawn-continue .w-primary');

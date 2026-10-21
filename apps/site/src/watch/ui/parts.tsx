@@ -1,7 +1,8 @@
 /** Small drawn pieces shared by the pages: the granary's sacks, the bell rope's strands, the Keeper's impressions. */
 import type { CSSProperties } from 'react';
 import type { Impression } from '../sim/reads.ts';
-import { ropeWords } from './words.ts';
+import type { Frame } from '../sim/view.ts';
+import { ropeWords, thawProgress, winterWatchMarks } from './words.ts';
 
 /** 0..n-1 as plain values, so list keys are the item's own number rather than a map index. */
 export function range(n: number): number[] {
@@ -110,5 +111,28 @@ export function Pips({ left, of, label }: { left: number; of: number; label: str
         <span key={i} className={i < left ? 'w-pip' : 'w-pip is-spent'} />
       ))}
     </span>
+  );
+}
+
+/** A chalk-like count of the watched part of winter, with no exact tally. */
+export function WinterProgress({ frame }: { frame: Pick<Frame, 'winter' | 'phase'> }) {
+  if (!frame.winter) return null;
+  const marks = winterWatchMarks(frame);
+  const words = thawProgress(frame);
+  return (
+    <div className="w-winter-progress">
+      <span className="w-kicker">Watched nights</span>
+      <svg viewBox="0 0 180 20" role="img" aria-label={words}>
+        <path className="w-winter-track" d="M4 11 L45 9 L89 11 L133 9 L176 10" />
+        {[0, 1, 2, 3].map((mark) => (
+          <path
+            key={mark}
+            className={mark < marks ? 'w-winter-mark is-done' : 'w-winter-mark'}
+            d={`M${5 + mark * 44} 10 l35 ${mark % 2 ? 1 : -1}`}
+          />
+        ))}
+      </svg>
+      <p className="w-winter-words">{words}</p>
+    </div>
   );
 }

@@ -130,3 +130,23 @@ export function thawProgress(f: Pick<Frame, 'winter' | 'phase'>): string {
   if (left <= 2) return 'A few watches left; then winter routine to the thaw.';
   return 'Early watches; the thaw is still far off.';
 }
+
+/** Morning's plain account, using the same small-loss band as the winter account. */
+export function dawnOutcome(
+  d: Pick<NonNullable<Frame['dawn']>, 'grainBefore' | 'grainAfter' | 'crossed'>,
+): string {
+  const lost = Math.max(0, d.grainBefore - d.grainAfter);
+  if (lost === 0)
+    return d.crossed ? 'The wall was crossed. No grain was lost.' : 'The night held. No grain was lost.';
+  if (lost <= 3) return 'A small loss. A little grain was taken.';
+  return 'A serious breach. The granary was hit hard.';
+}
+
+/** Four rough marks count only the watched nights; routine winter still follows. */
+export function winterWatchMarks(f: Pick<Frame, 'winter' | 'phase'>): number {
+  const w = f.winter;
+  if (!w || w.nights <= 0) return 0;
+  const finished = Math.max(0, w.night - (f.phase === 'dawn' ? 0 : 1));
+  if (finished >= w.nights) return 4;
+  return Math.min(3, Math.max(1, Math.floor((finished / w.nights) * 4)));
+}

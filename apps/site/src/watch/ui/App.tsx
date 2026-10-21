@@ -38,13 +38,14 @@ import {
   ThawPage,
   yearWords,
 } from './pages.tsx';
-import { Impressions, Pips, Rope, Sacks } from './parts.tsx';
+import { Impressions, Pips, Rope, Sacks, WinterProgress } from './parts.tsx';
 import { PageCommitContext } from './SheetActions.tsx';
 import { useWatch, type WatchActions } from './useWatch.ts';
 import { WinterSetting } from './WinterSetting.tsx';
 import {
   awayWords,
   clockRateWords,
+  dawnOutcome,
   daylightWords,
   grainCondition,
   hourWords,
@@ -1155,8 +1156,9 @@ function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActions }) 
   return (
     <div className="w-page w-dawn">
       <p className="w-kicker">Dawn · {frame.date}</p>
+      <h2 className="w-dawn-outcome">{dawnOutcome(d)}</h2>
+      <WinterProgress frame={frame} />
       <Talks frame={frame} actions={actions} />
-      <h2>{d.grainAfter === d.grainBefore && !d.crossed ? 'The wall held.' : 'The wall was crossed.'}</h2>
       {d.scout ? <p className="w-scoutline">{d.scout}</p> : null}
       {frame.grainWarning ? <p className="w-grain-warning">{frame.grainWarning}</p> : null}
       <ul className="w-dawnlines">
