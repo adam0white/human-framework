@@ -25,6 +25,12 @@ Engine: 2.11.0. *Curiosity and play* ([slice plan](https://github.com/adam0white
 
 - The coefficients are engineering defaults, not fitted values. Curiosity adopts no goals or projects. That waits on the island rerun after planning (roadmap §3b).
 
+### Release
+
+- Tag `v2.11.0` on source commit `da7377b` (CI run 39534894283 passed); the release's `npm run check`: 1962 passed, 8 skipped. Trusted npm workflow 39535394836 succeeded. Registry integrity `sha512-sa520xSTG6cEzbpPXH7YExMJtqNyul23MIljI7JW1X8C7KWpx4FBQxko8GyGkX2MGdyc+YR/y/scSZUEi9GYUw==`; `npm audit signatures` in a fresh install reports a verified attestation, and the installed package exports `enableCuriosity` and `curiosityOf` (2.11.0, engine 2.11.0).
+- Review: one independent Codex review ([review](https://github.com/adam0white/human-framework/blob/main/docs/reviews/hf-2.11.0-codex-review.md)), five findings, all applied before release.
+- Site pins 2.11.0 at commit `010c551`, deployed (Cloudflare version `fddb79b5-6d71-4496-8031-1e18065e759d`); live `/release.json` shows framework 2.11.0, that commit, `dirty: false`.
+
 ## [2.10.0] - 2026-10-20
 
 Engine: 2.10.0. *Word and witness* ([roadmap](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md) §1.1): who first said a thing, what it costs a source to be caught telling two stories, and how a person believes others now see them. Everything is opt-in by data: a person, percept or call that uses none of the new fields gives byte-identical state and decisions to 2.9.x, and legacy digests are unchanged. The engine stamp moves because the new term can change decisions when a host supplies the evidence. Saves migrate from 2.9.0 by stamping the version.
