@@ -4984,6 +4984,150 @@
     "lesson:L22"
    ],
    "source": "docs/lab/reviews/murmur-week2-2026-10-20/adr-free.md"
+  },
+  {
+   "id": "F-378",
+   "date": "2026-10-20",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Leyla (Codex source-unread persona, free stop, pass d8c86e4)",
+   "words": "I would put this down now. I enjoyed Hasan noticing my lamb, but I still do not know how I could have saved table five, and I do not want another evening of guessing at Oven warming.",
+   "verdict": "quit",
+   "routes": [
+    "fix:pass the board names an uncovered oven, and the oven button says nobody is on it (done, pass c021f83)"
+   ],
+   "source": "docs/lab/reviews/pass-more-2026-10-20/leyla-free.md"
+  },
+  {
+   "id": "F-379",
+   "date": "2026-10-20",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Tobias (Codex source-unread persona, free stop, pass d8c86e4)",
+   "words": "I would leave here. I cooked the lamb carefully but cannot tell how to get its pide cooked. Work oven says warming, the table still offers work, and both give me a vanished-portion answer.",
+   "verdict": "quit",
+   "routes": [
+    "fix:pass the board names an uncovered oven, and the oven button says nobody is on it (done, pass c021f83)"
+   ],
+   "source": "docs/lab/reviews/pass-more-2026-10-20/tobias-free.md"
+  },
+  {
+   "id": "F-380",
+   "date": "2026-10-20",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Tobias (Codex source-unread persona, free stop, pass d8c86e4)",
+   "words": "Three minutes is affordable now. This is the trade-off I wanted.",
+   "verdict": "keep",
+   "routes": [
+    "none"
+   ],
+   "source": "docs/lab/reviews/pass-more-2026-10-20/tobias-free.md"
+  },
+  {
+   "id": "F-381",
+   "date": "2026-10-20",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Leyla (Codex source-unread persona, floor arm, pass d8c86e4, invalid TOOL stop)",
+   "words": "I was still engaged and wanted to finish the salad.",
+   "verdict": "-",
+   "routes": [
+    "fix:pass a cooking step that is not yet due is shown disabled, not as a live button (done, pass c021f83)",
+    "lesson:L22"
+   ],
+   "source": "docs/lab/reviews/pass-more-2026-10-20/leyla-floor.md"
+  },
+  {
+   "id": "F-382",
+   "date": "2026-10-20",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Mert (Codex source-unread persona, floor arm, pass c021f83)",
+   "words": "I was doing the lamb steps and table one left anyway. I would put the phone away here: I cannot see how close a table is to leaving, and my arms are tired now.",
+   "verdict": "quit",
+   "routes": [
+    "fix:pass DL-8 a cue for which table is closest to leaving (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/pass-more-2026-10-20/mert-floor.md"
+  },
+  {
+   "id": "F-383",
+   "date": "2026-10-20",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Mert (Codex source-unread persona, floor arm, pass c021f83)",
+   "words": "I might return for the promised Saturday supper, not for another identical stretch right now.",
+   "verdict": "quit",
+   "routes": [
+    "fix:pass owner call: the second-week start reaches the first promise only after a whole repeated service, so consider starting nearer a party night or a shorter first night (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/pass-more-2026-10-20/mert-floor.md"
+  },
+  {
+   "id": "F-384",
+   "date": "2026-10-20",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Mert (Codex source-unread persona, floor arm, pass c021f83)",
+   "words": "I wanted the name and number together.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:pass a named ticket also gives its table number (done, pass b4ad455)"
+   ],
+   "source": "docs/lab/reviews/pass-more-2026-10-20/mert-floor.md"
+  },
+  {
+   "id": "F-385",
+   "date": "2026-10-20",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Dara (Codex source-unread persona, free stop, pass c021f83)",
+   "words": "The warning actually tells me why pide would fail.",
+   "verdict": "keep",
+   "routes": [
+    "fix:pass the board names an uncovered oven, and the oven button says nobody is on it (done, pass c021f83)"
+   ],
+   "source": "docs/lab/reviews/pass-more-2026-10-20/dara-free.md"
+  },
+  {
+   "id": "F-386",
+   "date": "2026-10-20",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Dara (Codex source-unread persona, free stop, pass c021f83)",
+   "words": "I understand the cooking loop now, and I do not want to repeat it for every portion tonight. I wanted more planning decisions like the board and the table priority.",
+   "verdict": "quit",
+   "routes": [
+    "fix:pass owner call: the second-week start reaches the first promise only after a whole repeated service, so consider starting nearer a party night or a shorter first night (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/pass-more-2026-10-20/dara-free.md"
+  },
+  {
+   "id": "F-387",
+   "date": "2026-10-20",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Priya (Codex source-unread persona, free stop, pass c021f83, invalid TOOL stop)",
+   "words": "I was interested in trying the cooking and had not wanted to leave.",
+   "verdict": "-",
+   "routes": [
+    "lesson:L22"
+   ],
+   "source": "docs/lab/reviews/pass-more-2026-10-20/priya-free.md"
+  },
+  {
+   "id": "F-388",
+   "date": "2026-10-20",
+   "game": "lab",
+   "kind": "playtester",
+   "who": "Sam (control, A Dark Room, protocol 2, Pass pass@9 round)",
+   "words": "I would switch tabs now and come back later.",
+   "verdict": "mixed",
+   "routes": [
+    "lesson:L22"
+   ],
+   "source": "docs/lab/reviews/pass-more-2026-10-20/adr-free.md"
   }
  ],
  "lessons": [
@@ -5590,10 +5734,10 @@
   }
  ],
  "routes": {
-  "fix": 383,
-  "lesson": 273,
+  "fix": 391,
+  "lesson": 276,
   "hf": 12,
   "calibration": 42,
-  "none": 2
+  "none": 3
  }
 }

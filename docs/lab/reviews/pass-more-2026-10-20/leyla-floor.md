@@ -1,0 +1,106 @@
+# Leyla — The Pass
+
+Stopped for TOOL at 97.236 seconds. The 15-minute exposure was not completed. This is an interrupted session, not a voluntary stopping result or a difficulty verdict.
+
+## Assignment and access
+
+Leyla, 38, emergency-room nurse. Patient; plays Overcooked, Two Point Hospital and Frostpunk. Likes a busy shift and dislikes punishment without warning. Won the first week last month. Playing on the sofa after a late shift.
+
+URL: https://pass.adamwhite.work/. No game build identifier was established. The cover displayed “People by the Human Framework 2.8.0”; that is the displayed framework attribution, not a verified game build.
+
+Phone: 360×690 CSS px, touch emulation, light mode, default text size. Supplied lab driver, port 8852, PID 18897. Started with the exact assigned npm command and without inspecting its implementation. Used only player-facing operations. No telemetry, send, consent change, hidden API, export, source inspection or repair. Driver killed by exact PID after the required single 1280×800 look.
+
+Committed floor 15 real minutes; ceiling 25. Driver elapsed starts around the opening request; the first actionable cover reply was at 0.790 s. Stop was 97.236 s driver elapsed, about 96.4 s after that cover. Last gameplay attempt was 91.606 s. Post-stop phone screenshot: 97.414 s. Desktop look: 105.854–106.020 s.
+
+## First minute
+
+Protocol deviation: the first-minute note was logged at 65.490 s driver elapsed, about 4.7 s late relative to the first actionable cover. It was composed while a 20-second wait reply was pending. The wait completed at 59.335 s but I read its answer after logging the note. The note's “no answer yet” records my knowledge then; it is not evidence that the game had not answered by 60 s. Later learning is excluded from the checkpoint verdicts.
+
+Original checkpoint note:
+
+> I need to earn the butcher money by Saturday and keep my Thursday lamb promise. I chose promise for the writer and as-it-comes for Ilyas, then opened Wednesday. Buttons and cook cards are clear; the kitchen drawing is tiny. Red booking borders drew me first; the speed is selected by an outline. No unavailable action until Selim heard my request: now every job is disabled while I wait for his answer. I understand that wait, but not why a portion is being held when I cannot see it in this sheet. I can ask a job or close the cook sheet. Meaningful choice at about 5 seconds, first promise at 14 seconds. Asking Oven taught me requests wait for an answer; no answer yet. I have not used help.
+
+| Item | Status | Evidence available within first minute |
+|---|---|---|
+| DL-1 A reason to act | PASS | Earn the butcher's ₺3,000 by Saturday and keep the Thursday lamb promise. Sunday notebook and Wednesday money strip state these. |
+| DL-2 What can I touch | PASS for controls reached | Booking buttons, opening buttons, speed buttons and cook cards read as controls. Promise and Oven taps were acknowledged. No inert drawing tap tried; scene interaction remains untested. |
+| DL-3 Urgency and selection | PASS for opening cues | Red booking borders drew me first. Thursday 19:50–20:15 made the appointment legible. Pressed promise and outlined steady speed distinguished selection. Oven and held-portion cues competed during service; I did not yet understand the latter. |
+| DL-4 Why the limit | PASS for the pending request only | At 35.798 s jobs became disabled alongside “Waiting for Selim’s answer” and “They heard you.” I knew I was waiting for an answer. Recovery after the answer was not yet understood by me at the checkpoint. No claim about all game limits. |
+| DL-5 Readable situation | PASS, with uncertainty | I could close the cook sheet and had asked for Oven. “Waiting for Selim’s answer” explained the pending action. I could not identify the held portion from the open sheet. |
+| DL-6 A choice soon | PASS for availability | Cover choice available at 0.790 s; first navigation input returned at 4.724 s. Consequential booking choice available at 4.724 s; first promise returned at 14.173 s. The first booking card is roughly 39 words after roughly 33 words of Sunday introduction: more than the approximately 40-word target if all that context is counted as essential. Availability was immediate; reading burden is a separate qualification. |
+| DL-7 Learn by doing | PASS for acknowledgement; incomplete sequence | Reached two booking selections and one cook request. Promise acquired a pressed/disabled state; Oven produced “They heard you” and a pending answer. No in-game help used. Cooking, serving, refusal recovery and insistence were NOT TESTED at the checkpoint (four interaction types); later actions do not upgrade it. |
+
+## Verbatim diary
+
+Times are driver elapsed seconds, not kitchen minutes. Reaction wording below is preserved from submitted inputs. Browser replies are quoted or summarized separately. Shot and resize operations without reactions are listed for provenance. The complete driver log was generated at `leyla-floor-shots/wall-clock.jsonl`; it was not reread to explain play.
+
+| Elapsed | Game clock / input | Original reaction | Important visible answer |
+|---|---|---|---|
+| 0.790 | Cover; open | — | “The bank wants ₺5,200 (Turkish lira) by Saturday close.” Second-week entry available. |
+| 4.724 | Cover; Begin at the second week | I beat the first week last month; I want to see whether I can hold the next one together. The second-week button is where I expect to go. | Sunday week 1 notebook; two booking choices; next week butcher payment. |
+| 8.201 | Sunday; shot 01 | — | First booking and both of its actions fit on phone. Second booking begins below. |
+| 14.173 | Sunday week 1; point tap Promise it for writer | I will promise the lamb. Thursday has a clear window and I know I must rest it myself; that is fair warning. | Writer's Promise it became disabled and pressed. |
+| 14.461 | Sunday week 1; scroll 450 | The second booking and opening button are below the phone screen. | Same notebook content. |
+| 18.607 | Sunday; shot 02 | — | Ilyas booking and its two actions visible after scrolling. |
+| 22.972 | Sunday week 1; point tap As it comes for Ilyas | I will take the retirement group as it comes. I want one special promise to learn before I stack two. | Ilyas As it comes became disabled and pressed. |
+| 23.161 | Sunday week 1; Open on Wednesday | Time to see the second-week kitchen. | Tonight's board. Selim grill break 18:35, Dilek cold break 18:10, Rafi dish break 19:00; each agreed. |
+| 26.951 | Wednesday week 2 before 17:30; Open the doors | The breaks are agreed and staggered. I will keep them for tonight and cover the grill when Selim eats. | 17:25, ₺680/₺3,000 by Sat, Steady 1.5 min/s; work controls; oven warming reminder. |
+| 29.832 | Wednesday 17:29; shot 03 | — | Main work controls and essential money/time strip visible. Kitchen drawing small. |
+| 32.982 | Wednesday week 2 ~17:30; Selim on grill | The oven needs warming. I will ask Selim before the rush; the cook buttons look tappable, the tiny drawn oven is less clear. | 17:32; Slow 0.1 min/s, “A cook is holding a portion for you: Yours, Chef?”; Selim sheet says holding grill until 18:35. |
+| 35.798 | Wednesday week 2 17:32; Oven rather work the grill | He would rather stay on grill, but I can ask. I am not insisting. | “Waiting for Selim’s answer.” Jobs disabled; “They heard you.” |
+| 59.335 | Wednesday week 2 17:32; wait 20 real seconds | They heard me; I will give Selim time to answer. The portion hold has slowed the whole kitchen. | 17:34; Selim refused: “That is not promised cover. Please arrange someone else, or ask again later.” Table-priority sheet replaced the job choices. |
+| 65.490 | Wednesday week 2 ~17:34; first_minute | See original checkpoint note above. | Priority prompt and refusal present in returned text. |
+| 71.379 | Wednesday week 2 17:34; Table 1 · waiting longest · waiting 3 min | Longest waiting gets priority. I have a choice rather than an unexplained queue. | 17:35; “Oven is uncovered under tonight’s board.” Selim sheet again; “No cover is promised.” |
+| 74.528 | Wednesday week 2 17:35; close | I will do the spare cooking myself; his refusal makes sense after the agreed board. | 17:36; table 1 ready, Service button; Dilek offered table 2 cold portion. |
+| 78.162 | Wednesday week 2 17:36; Service, table 1! Out hot. | Calling the hot plate feels like the pass. I can actually do that job. | Till ₺720; “Plain and filling. We were hungry.” Other tables move again. |
+| 81.362 | Wednesday week 2 17:36; Work cold side | Dilek offered me the cold plate; I will take it and get her moving again. | Active table 2 cold portion, cut vegetables at 17:39; Steady restored; work tires arms. |
+| 84.610 | Wednesday week 2 ~17:39; Table 2: cut the vegetables at 17:39. | A real prep step. The clock is moving, so I will cut now. | 17:39; “I cut the vegetables for table 2. At its moment; taking care.” Next listed button: dress salad at 17:42. |
+| 87.192 | Wednesday week 2 ~17:42 (my estimate); Table 2: dress the salad at 17:42. | I can follow the next step without opening another sheet. | Error: “No actionable button named Table 2: dress the salad at 17:42.” Reply still listed that exact button, clock 17:39. |
+| 91.606 | Wednesday week 2 17:39; retry same current name | The dress-salad button is still listed but the first tap did not operate it. I will try that same current name once. | Same error, same listed control and clock. No explicit disabled-control error. |
+| 97.236 | Wednesday week 2 17:39; stop TOOL | I was still engaged and wanted to finish the salad. The current dress-salad button failed twice with No actionable button named, including one retry from the fresh controls. I am stopping for the driver block, not because I would leave the game. | Stop logged. |
+| 97.414 | Wednesday 17:43; post-stop shot 04 | — | New controls visible: Plate it now / Dress it carefully / Finish on instinct. Slow 0.1 min/s. |
+| 105.854–106.020 | Wednesday 17:43; resize 1280×800 and shot 05 | — | Same salad decision, state and money strip visible. No further gameplay. |
+
+## Best, worst, willingness to continue
+
+Best moment: 78.162 s, calling table 1 hot and seeing the till rise and diners answer. Cutting vegetables at 84.610 s was close behind. These are things I wanted my hands to do.
+
+Worst moment: the two failed dress-salad taps at 87.192 and 91.606 s. That prevented the next action I wanted, but is classified TOOL under the supplied retry rule. The post-stop screenshot shows different current controls; stale driver replies or a timing transition are possible explanations, not established causes. I cannot claim that the game itself blocked dressing the salad.
+
+No want_quit was recorded. No three-minute pulse was due before the early stop; pulse series is empty. No easier-setting or workaround search occurred. “Hard, but kept going”: NOT TESTED. I left the default chosen Steady speed; slowdown and restoration occurred automatically. I did not manually change speed.
+
+I would return voluntarily to finish the salad and see whether the Thursday lamb promise works. There was no first wish to leave whose persistence could be tested. I did not reach the break cover, promised booking, debt deadline or end of service.
+
+## Clarity and layout findings
+
+- DL-22: FAIL on the Sunday booking screen for reaching the second decision and proceeding. At 360×690, the first card filled most of the display and the second booking and Open on Wednesday required scrolling. See 01-sunday-phone.png and 02-bookings.png. Main service controls and state were visible in 03-opening-kitchen.png; active salad choices and money/time were visible in 04-stop-phone.png. This is a screen-specific result, not a claim that all phone responses are hidden.
+- DL-5: I could not identify the held portion from the Selim sheet at the checkpoint. The reply said “A cook is holding a portion for you: Yours, Chef?” but the sheet showed job choices, not that portion. I understood it after closing at 74.528 s. This is a recorded confusion, not proof the game has no explanation elsewhere.
+- DL-6: Meaningful choices were available well within 30 seconds. The Sunday introduction plus first booking prose exceeds the approximate 40-word target if read as mandatory context; I made the first consequential selection at 14.173 s. No delay defect is inferred from that word count alone.
+- DL-13: PASS for accepted actions reached: selected promise, “They heard you,” refusal attributed to Selim, serving feedback, and cutting feedback. Failed named taps are driver evidence and do not establish missing in-game acknowledgement.
+- DL-14: Promise risk was stated before selection (“a promise broken is a strike on Saturday”), and Selim warned I would rest it myself. The unchosen final salad option showed “3 more kitchen minutes. Other tables wait.” Its consequence was NOT TESTED.
+- DL-15: Automatic Slow 0.1 min/s accompanied a held portion and priority decision. Steady 1.5 min/s returned when I took the cold portion. Clock advanced during the 20-second wait. Fast-speed choice handling and continuity between all commands are NOT TESTED. The unchanged 17:39 in failed replies followed by 17:43 in the screenshot prevents a precise live-timing conclusion from those replies.
+
+## Required English, dates, phone and hands-on checks
+
+| ID | Result | Evidence and limit |
+|---|---|---|
+| DL-20 | PASS for actions reached | Controls, work steps and reasons were English. Turkish food words were flavour; I could choose and cook without translating a necessary local term. Lira was explicitly named on the cover. |
+| DL-21 | PASS for comparisons reached | Wednesday week 2 versus money due Sat; Thursday booking 19:50, out by 20:15; Saturday booking 20:15, out by 20:40. No month/year boundary or return after a break tested. |
+| DL-22 | FAIL on Sunday; PASS for sampled main service and active salad screens | Sunday needs scrolling for second decision and opening action. Main money/deadline and sampled service responses fit. See screenshots 01–04. |
+| DL-30 | No cut-off essential sentence observed in sampled screenshots | No mid-sentence clipping, fixed-panel Scroll ↓, or overlapping sheets established. Ordinary page content extends below the viewport, including opening service dialogue. No visual claim about Selim's open sheet: no screenshot was taken of it. Other sheets NOT TESTED. |
+| DL-31 | NOT TESTED visually for an order/answer sheet | Text replies retained day, time, till/debt and Selim's identity while his sheet was open, but no image establishes their simultaneous visibility. Active salad card screenshot 04 does retain table 2 and till/deadline. |
+| DL-32 | Full criterion NOT TESTED | One deliberate 20-second wait for Selim's reply; I chose to wait and did not record wanting a different hands-on act during it. Serving, taking a portion and cutting gave direct work. No established forced inactivity interval over 20 seconds; no claim that the unplayed 15 minutes would pass. |
+| DL-33 | PASS for serving and cutting reached | Service called a plate in one act; Work cold side took a portion; a cut-vegetables control performed the prep with immediate feedback. Asking Selim opened a job list. The final salad decision was visible but unplayed. |
+
+Other DL items not specifically evaluated above are NOT TESTED. No builder checks were performed. The single desktop look shows the same main content in a centered column and more of the dialogue below; it is not a desktop playtest.
+
+## Stop and player requests
+
+Stopped during table 2's cold portion on Wednesday, week 2. Stop reason TOOL. The two exact-name failures meet the assigned stop rule; they are not evidence of voluntary departure, a broken game, a disabled game action, or a completed exposure floor. No further attempts or harness repair were made.
+
+Ranked wishes as this player:
+
+1. Keep the current portion identifiable while I ask a cook for a job, so I can connect “Yours, Chef?” to the table and work waiting for me.
+2. Make both booking decisions and the way to open easier to reach on my phone.
+
+I do not have a third request supported by this short session. No export downloaded.
