@@ -107,11 +107,38 @@ export function openSendDialog(options: SendDialogOptions): void {
   const send = el('button', { className: 'send', type: 'button' }, 'Send');
   const cancel = el('button', { type: 'button' }, 'Not now');
   const eventsBox = el('input', { type: 'checkbox', id: 'hflab-events', checked: lab.eventsOn });
-  const eventsNote = lab.eventsOn
-    ? 'Also send anonymous play events from this game (start, end, milestones, last screen).'
-    : 'Anonymous play events are off in this browser.';
-  const eventsRow = el('label', { className: 'check', for: 'hflab-events' }, eventsBox, eventsNote);
-  if (!lab.eventsOn) eventsBox.disabled = true;
+  const eventsLabel = el('span');
+  const eventsRow = el('label', { className: 'check', for: 'hflab-events' }, eventsBox, eventsLabel);
+  const privacyNote = el('p', { className: 'soft', id: 'hflab-privacy-note', role: 'status' });
+  const overrideBox = el('input', {
+    type: 'checkbox',
+    id: 'hflab-privacy-override',
+    checked: lab.privacyOverride,
+  });
+  const overrideRow = el(
+    'label',
+    { className: 'check', for: 'hflab-privacy-override' },
+    overrideBox,
+    'Send anonymous events anyway',
+  );
+  const syncEvents = () => {
+    eventsBox.checked = lab.eventsOn;
+    eventsLabel.textContent = lab.eventsOn
+      ? 'Also send anonymous play events from this game (start, end, milestones, last screen).'
+      : 'Anonymous play events are off in this browser.';
+    eventsBox.disabled = lab.privacySignalOn && !lab.privacyOverride;
+    privacyNote.textContent = !lab.privacySignalOn
+      ? 'Your saved choice allows anonymous events even when your browser asks sites not to track.'
+      : lab.eventsOn
+        ? 'Your browser asks sites not to track. You chose to send anonymous events.'
+        : 'Your browser asks sites not to track. Anonymous events are off.';
+  };
+  syncEvents();
+  overrideBox.addEventListener('change', () => {
+    lab.setPrivacyOverride(overrideBox.checked);
+    if (overrideBox.checked) lab.setEventsOff(false);
+    syncEvents();
+  });
 
   const text = () =>
     JSON.stringify(
@@ -121,7 +148,10 @@ export function openSendDialog(options: SendDialogOptions): void {
         compacted,
       }),
     );
-  eventsBox.addEventListener('change', () => lab.setEventsOff(!eventsBox.checked));
+  eventsBox.addEventListener('change', () => {
+    lab.setEventsOff(!eventsBox.checked);
+    syncEvents();
+  });
   let compacted = false;
   let compactAttempted = false;
   let pending = 0;
@@ -195,6 +225,7 @@ export function openSendDialog(options: SendDialogOptions): void {
     compactNotice,
     details,
     eventsRow,
+    ...(lab.privacySignalOn || lab.privacyOverride ? [privacyNote, overrideRow] : []),
     el(
       'p',
       { className: 'soft' },

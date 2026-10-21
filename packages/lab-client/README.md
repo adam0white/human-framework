@@ -2,7 +2,7 @@
 
 The browser client for the Human Framework game lab. A game uses it for two things:
 
-1. **Anonymous play events.** Session start and end, duration, milestones the game declares, the last screen before the player left, the build (commit, HF version, game version) and a viewport class (phone, tablet, desktop). Batched and sent with a keepalive `fetch` (like `sendBeacon`, but with credentials omitted). No cookies, no fingerprinting, no personal data. The session id is random and lives in the tab's sessionStorage only. Nothing is sent under Do Not Track or Global Privacy Control, when the player turned events off, or from localhost.
+1. **Anonymous play events.** Session start and end, duration, milestones the game declares, the last screen before the player left, the build (commit, HF version, game version) and a viewport class (phone, tablet, desktop). Batched and sent with a keepalive `fetch` (like `sendBeacon`, but with credentials omitted). No cookies, no fingerprinting, no personal data. The session id is random and lives in the tab's sessionStorage only. By default nothing is sent under Do Not Track or Global Privacy Control, when the player turned events off, or from localhost. The notebook dialog offers “Send anonymous events anyway” to override the browser signal for this game only. It is never selected automatically. Clear it to apply the browser signal again. Storage failures leave the choice in memory for this page only.
 2. **"Send this run to the notebook".** A dialog in the Field Notebook style, phone-first, that shows exactly what will be sent and then sends the game's own playtest export, gzip-compressed, with an optional note and an optional "who you are" label. Stored privately; never published.
 
 Privacy note for players: https://human.adamwhite.work/lab/privacy/. Endpoint and storage: `apps/site/worker/lab.ts` in this repository. Public dashboard: https://human.adamwhite.work/lab/ and `/lab/data.json`.
@@ -46,6 +46,7 @@ To test against a local lab Worker (`npx wrangler dev --port 8799` in this repos
 - `createLab({ game, build?, endpoint?, captureErrors?, sendFromLocalhost? })` returns a `Lab`.
 - `lab.screen(name)`, `lab.milestone(name)`, `lab.flush()`.
 - `lab.eventsOn`, `lab.setEventsOff(off)`: the player's per-game opt-out, kept in localStorage and synchronized across open tabs on the same origin. Turning events off clears queued events in those tabs.
+- `lab.privacySignalOn`, `lab.privacyOverride`, `lab.setPrivacyOverride(allow)`: explicit, reversible per-game consent despite DNT/GPC, remembered in localStorage when available. This does not lift localhost suppression or the separate events-off preference.
 - `lab.sendRun(run, { note?, who?, compact?, compactNote? })`: resolves to the run's reference id (`r-…`).
 - `lab.openSendDialog({ getRun, title?, who?, compact?, compactNote?, onSent? })`.
 - Helpers: `privacySignal`, `viewportClass`, `runEnvelope`, `gzip`, `RUN_LIMITS`, `checkRun`.

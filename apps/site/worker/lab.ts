@@ -160,13 +160,13 @@ const limitKey = (req: Request, route: string) =>
   `${route}:${addressKey(req.headers.get('CF-Connecting-IP') ?? 'unknown')}`;
 
 async function postEvents(req: Request, env: Env, origin: string | null): Promise<Response> {
-  if (privacySignal(req.headers)) return reply(204, null, origin);
   if (!(await env.EVENTS_LIMIT.limit({ key: limitKey(req, 'ev') })).success) return reply(429, null, origin);
   if (!(await env.EVENTS_ALL.limit({ key: 'all' })).success) return reply(429, null, origin);
   const bytes = await readCapped(req.body, LIMITS.batchBytes);
   if (!bytes) return reply(413, { error: 'too large' }, origin);
   const parsed = parseBatch(new TextDecoder().decode(bytes));
   if (!parsed.ok) return reply(400, { error: parsed.error }, origin);
+  if (privacySignal(req.headers) && !parsed.batch.privacyOverride) return reply(204, null, origin);
   const hour = hourOf(Date.now());
   if (
     !(await reserveCapacity(

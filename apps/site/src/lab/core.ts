@@ -29,6 +29,8 @@ export type EventBatch = {
   b: { c?: string; hf?: string; a?: string };
   vp: Viewport;
   e: LabEvent[];
+  /** Player explicitly allowed anonymous events despite a browser privacy signal. */
+  privacyOverride?: true;
 };
 export type StoredBatch = EventBatch & { h: string };
 
@@ -86,7 +88,7 @@ export function allowedOrigin(origin: string | null): boolean {
   );
 }
 
-/** True when the request carries Global Privacy Control or Do Not Track: regular events are then dropped. */
+/** True when the request carries Global Privacy Control or Do Not Track: regular events are dropped unless the player explicitly overrides it. */
 export function privacySignal(headers: { get(name: string): string | null }): boolean {
   return headers.get('Sec-GPC') === '1' || headers.get('DNT') === '1';
 }
@@ -160,7 +162,18 @@ export function parseBatch(text: string): { ok: true; batch: EventBatch } | { ok
     const t = Math.min(Math.round(at), LIMITS.sessionMs);
     events.push(n ? [kind as EventKind, t, n] : [kind as EventKind, t]);
   }
-  return { ok: true, batch: { v: 1, g: r.g, s: r.s, b: cleanBuild(r.b), vp, e: events } };
+  return {
+    ok: true,
+    batch: {
+      v: 1,
+      g: r.g,
+      s: r.s,
+      b: cleanBuild(r.b),
+      vp,
+      e: events,
+      ...(r.privacyOverride === true ? { privacyOverride: true as const } : {}),
+    },
+  };
 }
 
 /** Bounds allocation before JSON.parse. Ignore syntax inside quoted strings, including escaped quotes. */

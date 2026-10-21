@@ -621,6 +621,25 @@ describe('lab worker', () => {
     expect((await call(post('/lab/api/events', batch()), limited.env)).status).toBe(429);
   });
 
+  it('accepts events under a browser signal only with an explicit boolean override', async () => {
+    const { env, store } = fakeEnv();
+    for (const signal of ['Sec-GPC', 'DNT']) {
+      const body = { ...JSON.parse(batch()), privacyOverride: true };
+      expect((await call(post('/lab/api/events', JSON.stringify(body), { [signal]: '1' }), env)).status).toBe(
+        204,
+      );
+    }
+    expect([...store.keys()].filter((key) => key.startsWith('ev/'))).toHaveLength(2);
+    const refused = fakeEnv();
+    await call(
+      post('/lab/api/events', JSON.stringify({ ...JSON.parse(batch()), privacyOverride: 'true' }), {
+        DNT: '1',
+      }),
+      refused.env,
+    );
+    expect(refused.store.size).toBe(0);
+  });
+
   it('answers a preflight from an allowed origin', async () => {
     const { env } = fakeEnv();
     const res = await call(

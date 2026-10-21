@@ -28,6 +28,24 @@ const settled = () =>
 afterEach(() => vi.unstubAllGlobals());
 
 describe('bounded send dialog', () => {
+  it('offers explicit browser-signal consent and lets the player revoke it', async () => {
+    vi.stubGlobal('location', { hostname: 'pass.adamwhite.work' });
+    vi.stubGlobal('navigator', { globalPrivacyControl: true });
+    vi.stubGlobal('localStorage', undefined);
+    const { lab, find } = setup();
+    lab.openSendDialog({ getRun: () => ({ seed: 1 }) });
+    expect(find('hflab-privacy-note').textContent).toContain('Anonymous events are off.');
+    const box = find('hflab-privacy-override');
+    expect(lab.eventsOn).toBe(false);
+    Object.assign(box, { checked: true });
+    await box.fire('change');
+    expect(lab.eventsOn).toBe(true);
+    Object.assign(box, { checked: false });
+    await box.fire('change');
+    expect(lab.eventsOn).toBe(false);
+    await settled();
+  });
+
   it('shows the compact payload and disclosure before consent, and sends that same text', async () => {
     const { lab, sent, find, document } = setup();
     const compact = vi.fn(() => ({ seed: 7, inputs: ['wait'] }));

@@ -28,7 +28,7 @@
           <h1>How the lab handles what you send</h1>
           <p class="lede">
             The games on adamwhite.work send two kinds of things to the lab. Both go to one endpoint on
-            human.adamwhite.work and are stored in a private storage bucket. Updated 2026-10-19.
+            human.adamwhite.work and are stored in a private storage bucket. Updated 2026-10-21.
           </p>
         </section>
 
@@ -53,6 +53,7 @@
               <tr><td>time</td><td>milliseconds since the session started</td><td>how long a visit lasts</td></tr>
               <tr><td>error</td><td>the type and place of an uncaught error, such as “TypeError at index-3f2a.js:12:345”, never its message; at most 5 per visit</td><td>to find broken builds</td></tr>
               <tr><td>build</td><td>commit 01601bc, HF 2.8.0, game 0.1.0</td><td>which build you played</td></tr>
+              <tr><td>privacy override</td><td>true, only if you chose it</td><td>to honor your explicit choice despite your browser signal</td></tr>
               <tr><td>viewport class</td><td>phone, tablet or desktop (from the window width only)</td><td>to know if phones work</td></tr>
             </tbody>
           </table>
@@ -63,7 +64,7 @@
           </p>
           <p>
             <strong>Turned off</strong> when your browser sends Do Not Track or Global Privacy Control (checked in
-            the browser and again on the server), when you untick “anonymous play events” in a game’s send dialog
+            the browser and again on the server), unless you tick “Send anonymous events anyway” in the notebook dialog. This explicit choice is remembered locally for that game; untick it to apply your browser signal again. Events are also off when you untick “anonymous play events” in a game’s send dialog
             (remembered in that game’s localStorage and shared across its open tabs), and on localhost.
           </p>
           <p>

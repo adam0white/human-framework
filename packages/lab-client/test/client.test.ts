@@ -152,6 +152,68 @@ describe('lab client', () => {
     expect(calls).toEqual(['https://human.adamwhite.work/lab/api/run']);
   });
 
+  it('allows a locally remembered explicit override under GPC', () => {
+    const listeners: ((event: { key: string }) => void)[] = [];
+    vi.stubGlobal('addEventListener', (type: string, listener: (event: { key: string }) => void) => {
+      if (type === 'storage') listeners.push(listener);
+    });
+    vi.stubGlobal('setInterval', () => 0);
+    const values = new Map<string, string>();
+    vi.stubGlobal('location', { hostname: 'pass.adamwhite.work' });
+    vi.stubGlobal('navigator', { globalPrivacyControl: true });
+    vi.stubGlobal('sessionStorage', undefined);
+    vi.stubGlobal('localStorage', {
+      getItem: (key: string) => values.get(key) ?? null,
+      setItem: (key: string, value: string) => values.set(key, value),
+      removeItem: (key: string) => values.delete(key),
+    });
+    const send = vi.fn(async (_url: string, _init?: RequestInit) => Response.json({}));
+    vi.stubGlobal('fetch', send);
+    const lab = createLab({ game: 'pass', build: {} });
+    lab.setPrivacyOverride(true);
+    lab.screen('play');
+    lab.flush();
+    expect(lab.eventsOn).toBe(true);
+    expect(JSON.parse(String(send.mock.calls[0]?.[1]?.body)).privacyOverride).toBe(true);
+    const otherTab = createLab({ game: 'pass', build: {} });
+    expect(otherTab.eventsOn).toBe(true);
+    otherTab.screen('play');
+    lab.setPrivacyOverride(false);
+    for (const listener of listeners) listener({ key: 'hf-lab-privacy-override:pass' });
+    expect(otherTab.eventsOn).toBe(false);
+    otherTab.flush();
+    expect(send).toHaveBeenCalledTimes(1);
+    expect(createLab({ game: 'pass', build: {} }).eventsOn).toBe(false);
+  });
+
+  it('revokes the override and discards queued events even when storage throws', () => {
+    vi.stubGlobal('location', { hostname: 'pass.adamwhite.work' });
+    vi.stubGlobal('navigator', { doNotTrack: '1' });
+    vi.stubGlobal('sessionStorage', undefined);
+    vi.stubGlobal('localStorage', {
+      getItem: () => {
+        throw new Error('blocked');
+      },
+      setItem: () => {
+        throw new Error('blocked');
+      },
+      removeItem: () => {
+        throw new Error('blocked');
+      },
+    });
+    const send = vi.fn(async (_url: string, _init?: RequestInit) => Response.json({}));
+    vi.stubGlobal('fetch', send);
+    const lab = createLab({ game: 'pass', build: {} });
+    lab.setPrivacyOverride(true);
+    lab.screen('play');
+    lab.setPrivacyOverride(false);
+    expect(lab.eventsOn).toBe(false);
+    lab.flush();
+    lab.setPrivacyOverride(true);
+    lab.flush();
+    expect(send).not.toHaveBeenCalled();
+  });
+
   it('classes viewports by width only', () => {
     expect([360, 412, 768, 1440].map(viewportClass)).toEqual(['phone', 'phone', 'tablet', 'desktop']);
   });

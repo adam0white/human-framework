@@ -6,7 +6,7 @@
  *   last screen before leaving, the build (commit, HF version, game version) and a viewport class. Batched and
  *   sent with a keepalive fetch that carries no cookies. No cookies, no fingerprinting, no personal data; a random session id
  *   lives in this tab's sessionStorage only. Nothing is sent when the browser signals Do Not Track or Global
- *   Privacy Control, when the player turned events off, or (by default) from localhost.
+ *   Privacy Control unless the player explicitly overrides that signal, when the player turned events off, or (by default) from localhost.
  * - An opt-in run: the game's own playtest export, gzip-compressed in the browser, plus an optional note and
  *   an optional "who you are" label, sent only when the player presses Send in the dialog, which first shows
  *   exactly what will be sent.
@@ -25,6 +25,7 @@ export { openSendDialog, type SendDialogOptions };
 
 const SID_KEY = 'hf-lab-session';
 const OFF_KEY = 'hf-lab-events-off';
+const OVERRIDE_KEY = 'hf-lab-privacy-override';
 
 export type Viewport = 'phone' | 'tablet' | 'desktop';
 type Event = ['start' | 'ms' | 'scr' | 'err' | 'end', number, string?];
@@ -49,10 +50,15 @@ export type Lab = {
   screen(name: string): void;
   /** Sends what is queued now. Called by itself every 20 s and when the page is hidden. */
   flush(): void;
-  /** Whether regular events are being sent (false under DNT/GPC, when turned off, or on localhost). */
+  /** Whether regular events are being sent (false under DNT/GPC without explicit consent, when turned off, or on localhost). */
   readonly eventsOn: boolean;
   /** Turn regular events off or on for this game in this browser (remembered in localStorage). */
   setEventsOff(off: boolean): void;
+  /** Whether the browser asks not to track. */
+  readonly privacySignalOn: boolean;
+  /** Explicit per-game consent to send anonymous events despite that signal. */
+  readonly privacyOverride: boolean;
+  setPrivacyOverride(allow: boolean): void;
   /** Sends a run directly. Resolves to the run's reference id. */
   sendRun(run: unknown, extra?: { note?: string; who?: string } & CompactOptions): Promise<string>;
   /** Sends an envelope already serialized (the dialog sends exactly the text it showed). */
@@ -133,10 +139,13 @@ export function createLab(options: LabOptions): Lab {
   const offKey = `${OFF_KEY}:${game}`;
   const local_ = g.location ? isLocalhost(g.location.hostname) : true;
   let off = getItem(local, offKey) === '1';
+  const overrideKey = `${OVERRIDE_KEY}:${game}`;
+  let override = getItem(local, overrideKey) === '1';
   const blocked = () => {
     if (getItem(local, offKey) === '1') off = true;
-    if (off) queue.length = 0;
-    return privacySignal(g) || off || (local_ && !options.sendFromLocalhost);
+    const stopped = (privacySignal(g) && !override) || off || (local_ && !options.sendFromLocalhost);
+    if (stopped) queue.length = 0;
+    return stopped;
   };
 
   // Session id and start time: per tab, survive reloads in that tab, gone when the tab closes.
@@ -177,6 +186,7 @@ export function createLab(options: LabOptions): Lab {
           b: build,
           vp: viewportClass(g.innerWidth ?? 1280),
           e: queue.slice(0, count),
+          ...(override ? { privacyOverride: true } : {}),
         });
       let body = encode();
       while (count > 1 && new TextEncoder().encode(body).byteLength > 8192) {
@@ -221,9 +231,10 @@ export function createLab(options: LabOptions): Lab {
 
   if (typeof g.addEventListener === 'function') {
     g.addEventListener('storage', (event: StorageEvent) => {
-      if (event.key !== offKey && event.key !== null) return;
+      if (event.key !== offKey && event.key !== overrideKey && event.key !== null) return;
       off = getItem(local, offKey) === '1';
-      if (off) queue.length = 0;
+      override = getItem(local, overrideKey) === '1';
+      blocked();
     });
     if (options.captureErrors !== false) {
       const onError = (label: string) => {
@@ -251,6 +262,17 @@ export function createLab(options: LabOptions): Lab {
     endpoint,
     get eventsOn() {
       return !blocked();
+    },
+    get privacySignalOn() {
+      return privacySignal(g);
+    },
+    get privacyOverride() {
+      return override;
+    },
+    setPrivacyOverride(value) {
+      override = value;
+      setItem(local, overrideKey, value ? '1' : null);
+      blocked();
     },
     build: () => build,
     milestone(name) {
