@@ -180,3 +180,48 @@ test('insistence leaves no score explanation pointing at a displaced winner', ()
   expect(result.suggestions?.find((r) => r.voiceId === 'voice')).toMatchObject({ verdict: 'deferred' });
   expect(result.suggestions?.find((r) => r.voiceId === 'voice')).not.toHaveProperty('decidedBy');
 });
+
+test('decidedBy compares with the closest suggested offer by adjusted score, and skips stochastic lower winners', () => {
+  const p = person(true);
+  const current = aff('current', { action: 'task', duration: 30, effort: 0 });
+  const other = aff('other-task', { action: 'task', duration: 30, effort: 0 });
+  const winner = aff('winner', { duration: 30, effort: 0 });
+  const all = [current, other, winner];
+  begin(p, current, decide(p, [current]));
+  const considered: Considered[] = [
+    { affordanceId: 'current', action: 'task', utility: 0.2, terms: [{ source: 'a', value: 0.2 }] },
+    { affordanceId: 'other-task', action: 'task', utility: 0.3, terms: [{ source: 'b', value: 0.3 }] },
+    {
+      affordanceId: 'winner',
+      action: 'winner',
+      utility: 0.4,
+      terms: [
+        { source: 'b', value: 0.25 },
+        { source: 'a', value: 0.15 },
+      ],
+    },
+  ];
+  const ctx = { now: p.now, affordances: all, body: readPerson(p).body, desperation: 0 };
+  // The running offer scores 0.2 plus inertia, closer than other-task's 0.3.
+  const res = predictResponse(p, considered, ctx, { voiceId: 'voice', action: 'task', strength: 0 });
+  expect(res.decidedBy?.source).toBe('b');
+  expect(res.decidedBy?.margin).toBeLessThan(0.1);
+
+  const q = person(true);
+  q.will.temperature = 1;
+  const three = ['top', 'middle', 'low'].map((id) => aff(id, { duration: 30, effort: 0 }));
+  const cc: Considered[] = three.map((a, i) => ({
+    affordanceId: a.id,
+    action: a.action,
+    utility: [0.6, 0.4, 0.2][i] as number,
+    terms: [{ source: a.id, value: [0.6, 0.4, 0.2][i] as number }],
+  }));
+  const r = resolveChoice(
+    q,
+    cc,
+    { now: q.now, affordances: three, body: readPerson(q).body, desperation: 0 },
+    { voiceId: 'voice', action: 'low', strength: 0 },
+  );
+  expect(r.chosenAffordanceId).toBe('middle');
+  expect(r.suggestion?.decidedBy).toBeUndefined();
+});

@@ -897,11 +897,18 @@ export function enableSuggestionReasons(p: Person): void {
 
 function scoreReason(
   selection: Selection,
-  suggested: Considered,
+  live: readonly Considered[],
   targetIds: ReadonlySet<string>,
 ): SuggestionResolution['decidedBy'] {
   const { winner, ranked, score } = selection;
   if (!winner) return undefined;
+  // A stochastic draw below the best live score was not decided by the scores.
+  if (ranked.some((c) => !c.vetoed && score(c) > score(winner))) return undefined;
+  // Compare against the closest suggested option by the same adjusted score the winner was chosen on.
+  const suggested = [...live].sort(
+    (a, b) => score(b) - score(a) || cmpStr(a.affordanceId, b.affordanceId),
+  )[0];
+  if (!suggested) return undefined;
   const gap = score(winner) - score(suggested);
   if (!Number.isFinite(gap) || gap < 0) return undefined;
   const margin = round(gap);
@@ -1043,7 +1050,7 @@ function judgeVoices(
     }
     side.pressure = W.pressurePush * clamp01(s.strength);
     side.refused = 1;
-    const decidedBy = p.will.suggestionReasons ? scoreReason(selection, bestSuggested, targetIds) : undefined;
+    const decidedBy = p.will.suggestionReasons ? scoreReason(selection, liveSuggested, targetIds) : undefined;
     const explanation = decidedBy ? { decidedBy } : {};
     const near =
       winnerAff !== undefined &&

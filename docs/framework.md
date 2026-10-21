@@ -27,10 +27,10 @@ Boundaries the software never crosses: it does not compute divine acceptance, as
 
 `enableSuggestionReasons(p)` or `PersonSpec.enable.suggestionReasons` enables
 `SuggestionResolution.decidedBy` on score-based deferrals and modifications. Its rounded `margin`
-is the winner's score minus the best suggested option's score, including activity inertia. `inertia`
+is the winner's score minus the closest suggested option's score, both including activity inertia. `inertia`
 means removing that bonus would make a suggested option win; otherwise `term` names the largest
-positive difference between their terms, summed by source and tied by source string. Vetoes and
-lower-scoring stochastic wins have no score explanation. Verdicts, `reason`, wording and RNG stay
+positive difference between their terms, summed by source and tied by source string. Vetoes, outcomes imposed by
+insistence and stochastic wins below the best live score have no score explanation. Verdicts, `reason`, wording and RNG stay
 unchanged; without the opt-in, resolution JSON stays byte-identical.
 
 A self abstention commitment can set `firm: true`. While pending, non-exempt and overlapping the
