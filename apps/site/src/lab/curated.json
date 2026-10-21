@@ -5493,6 +5493,201 @@
     "fix:lab optional end tally, off by default, labelled as the game's own convention (Codex worker, 2026-10-21)"
    ],
    "source": "chat 2026-10-21"
+  },
+  {
+   "id": "F-416",
+   "date": "2026-10-21",
+   "game": "lab",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Well you can see how enticing this is. Online shared platform directly plays toward my eventual idea of a marketplace of HF personas for games. Remember that? Let's start this one early, too , maybe even merge with The Traveller so we build towards much more attachment to HF personas across games.",
+   "verdict": "-",
+   "routes": [
+    "fix:lab The Commons as a small private probe, merged with The Traveller into one HF universe plan (open, target 2026-11-03)"
+   ],
+   "source": "Decision desk: commons, chose lift the rule for a small private probe"
+  },
+  {
+   "id": "F-417",
+   "date": "2026-10-21",
+   "game": "lab",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Woah, great idea. This opened my eyes. First, we gotta have a lot of repeat personas between games. Second, we gotta start now towards building our own universe, with the ability to sync people between games for those who plays multiple experiments. I like that this will become an extra layer of surprise on a player after they grow used to HF approach in a game or two.",
+   "verdict": "-",
+   "routes": [
+    "fix:lab The Traveller now, repeat personas across games and sync between games (open, target 2026-11-03)"
+   ],
+   "source": "Decision desk: traveller, chose start now"
+  },
+  {
+   "id": "F-418",
+   "date": "2026-10-21",
+   "game": "lab",
+   "kind": "owner",
+   "who": "owner",
+   "words": "I'm open to experimenting around with this direction. I imagine a 1:1 replica player experience, at least for like the first minute of the gameplay. So direct control, HUD numbers, etc then we start unraveling the twist. I'm sure someone attempted an AoE clone on a 0AD fork. We can even workaround some HF features that would make things too difficult; for example we can allow people to just eat, drink, pray in place instead of introducing too much friction compared to the original.",
+   "verdict": "-",
+   "routes": [
+    "fix:lab RTS concept, classic first minute then the HF twist, own names and art (open, target 2026-11-15)"
+   ],
+   "source": "Decision desk: rts"
+  },
+  {
+   "id": "F-419",
+   "date": "2026-10-21",
+   "game": "lab",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Yeah we gotta pick just a few initially to prove the approach best.",
+   "verdict": "-",
+   "routes": [
+    "fix:lab itch.io first with The Night Watch and The Pass after the IP check (open, target 2026-11-03)"
+   ],
+   "source": "Decision desk: itch-first, chose The Night Watch and The Pass first"
+  },
+  {
+   "id": "F-420",
+   "date": "2026-10-21",
+   "game": "lab",
+   "kind": "owner",
+   "who": "owner",
+   "words": "I'll check employment agreement.",
+   "verdict": "-",
+   "routes": [
+    "none"
+   ],
+   "source": "Decision desk: othram-ip, not done yet"
+  },
+  {
+   "id": "F-421",
+   "date": "2026-10-21",
+   "game": "lab",
+   "kind": "owner",
+   "who": "owner",
+   "words": "With Workers AI this shouldn't be that hard. I plan on eventually enabling this for games including some caching so we still limit the amount of variation to finite cost scaling to the number of players across a time window.",
+   "verdict": "-",
+   "routes": [
+    "fix:lab voice add-on blind test at a 0.25 USD cap, with caching designed in (open, target 2026-11-15)"
+   ],
+   "source": "Decision desk: llm-voice, chose run the blind test"
+  },
+  {
+   "id": "F-422",
+   "date": "2026-10-21",
+   "game": "watch",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Clearer output with graphics or a bar, but still felt",
+   "verdict": "-",
+   "routes": [
+    "fix:watch F-290 plain night outcome and a winter-progress bar, still felt (queued)"
+   ],
+   "source": "Decision desk: watch-f290, chose plain outcome and a winter bar"
+  },
+  {
+   "id": "F-423",
+   "date": "2026-10-21",
+   "game": "watch",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Yeah I'm feeling this, too. Too much helplessness when things are going bad. I'm open to making them more costly, see how it feels.",
+   "verdict": "-",
+   "routes": [
+    "fix:watch night acts kept, try a higher cost for leaving a post (queued)"
+   ],
+   "source": "Decision desk: watch-night-acts, chose keep"
+  },
+  {
+   "id": "F-424",
+   "date": "2026-10-21",
+   "game": "well",
+   "kind": "owner",
+   "who": "owner",
+   "words": "We may try to make orders stick longer, no hard opinions",
+   "verdict": "-",
+   "routes": [
+    "fix:well orders stick a little longer while fresh (queued)"
+   ],
+   "source": "Decision desk: well-order-sticks, chose keep"
+  },
+  {
+   "id": "F-425",
+   "date": "2026-10-21",
+   "game": "lab",
+   "kind": "owner",
+   "who": "owner",
+   "words": "I think it's only fair that we let them opt in to some mining interest of boring form of questions. We can keep the guardrail as default.",
+   "verdict": "-",
+   "routes": [
+    "none"
+   ],
+   "source": "Decision desk: player-test"
+  },
+  {
+   "id": "F-426",
+   "date": "2026-10-21",
+   "game": "lab",
+   "kind": "owner",
+   "who": "owner",
+   "words": "You decide. We'll eventually do all so order matters less.",
+   "verdict": "-",
+   "routes": [
+    "fix:lab research experiments in order one event three readings, refusal demo, voice test, motive vocabulary (open, target 2026-11-30)"
+   ],
+   "source": "Decision desk: research-first"
+  },
+  {
+   "id": "F-427",
+   "date": "2026-10-21",
+   "game": "lab",
+   "kind": "owner",
+   "who": "owner",
+   "words": "[chose: adopt as the direction for Inner life II]",
+   "verdict": "-",
+   "routes": [
+    "fix:lab ten motive families vocabulary and held purpose records toward Inner life II (open, target 2026-11-30)"
+   ],
+   "source": "Decision desk: needs-direction"
+  },
+  {
+   "id": "F-428",
+   "date": "2026-10-21",
+   "game": "lab",
+   "kind": "owner",
+   "who": "owner",
+   "words": "[chose: start light prep now]",
+   "verdict": "-",
+   "routes": [
+    "fix:lab Show HN prep, package README and claims pass (open, target 2026-11-03)"
+   ],
+   "source": "Decision desk: show-hn"
+  },
+  {
+   "id": "F-429",
+   "date": "2026-10-21",
+   "game": "hearsay",
+   "kind": "owner",
+   "who": "owner",
+   "words": "[chose: keep as written]",
+   "verdict": "-",
+   "routes": [
+    "none"
+   ],
+   "source": "Decision desk: hearsay-faith"
+  },
+  {
+   "id": "F-430",
+   "date": "2026-10-21",
+   "game": "pass",
+   "kind": "owner",
+   "who": "owner",
+   "words": "[chose: try the small version of acting on the food]",
+   "verdict": "-",
+   "routes": [
+    "fix:pass F-284 superseded by the owner's 2026-10-21 Pass notebook, do not build"
+   ],
+   "source": "Decision desk: pass-f284"
   }
  ],
  "lessons": [
@@ -6099,10 +6294,10 @@
   }
  ],
  "routes": {
-  "fix": 418,
+  "fix": 430,
   "lesson": 289,
   "hf": 12,
   "calibration": 42,
-  "none": 4
+  "none": 7
  }
 }
