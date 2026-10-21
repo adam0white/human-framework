@@ -23,7 +23,7 @@ flowchart LR
     A["2.10 Word and witness<br/>provenance · contradiction · the other's view of me"]
     B["2.x Host kit<br/>trust-store docs · seed setters · travel cost recipe · fingerprint"]
     C["2.13 Why not (released)<br/>decidedBy · firm self-rule"]
-    C3["2.14 Projects and persistence<br/>self-set projects · keeping a pursuit"]
+    C3["2.14 Projects and persistence (released)<br/>self-set projects · keeping a pursuit"]
     C2["2.15 Why, in words<br/>narration batch"]
     D["Bench: a thousand lives<br/>measure first"]
   end
@@ -191,7 +191,7 @@ Picked after slices 1 and 2 by game demand, with the reason recorded here.
 
 **Picked and released 2026-10-20: HF 2.13.0 / engine 2.13.0, *Why not*: `SuggestionResolution.decidedBy` (Pass 1) and the opt-in firm self-rule `Commitment.firm` (Pass 4), as in §1.3.** Reason: the brief says to pick by game demand, and the island is a lab pilot, not a game. These two are The Pass's asks, filed 2026-10-19 from the owner's own playtest ("they wouldn't accept a task, but they accept other tasks … like a workaround"), and deferred at every release since 2.8.0. Each is small, opt-in and additive. The rest of §1.3, the narration batch, moves fixtures in several games, so it gets its own release: 2.14, target 2026-11-30 unchanged. The H2 releases each move two minors later: *The felt body* 2.15, *Inner life II* 2.16, *Many lives* 2.17.
 
-**Picked 2026-10-20 (owner, "Add those faculties and other feat to HF"): HF 2.14.0 / engine 2.14.0, *Projects and persistence*.** The island rerun on 2.12.0 showed the gap below; the owner pulled the design forward from 2026-11-15. The narration batch moves to 2.15 and the H2 releases each move one minor later: *The felt body* 2.16, *Inner life II* 2.17, *Many lives* 2.18. Earlier record:
+**Picked and released 2026-10-20 (owner, "Add those faculties and other feat to HF"): HF 2.14.0 / engine 2.14.0, *Projects and persistence*.** The island rerun on 2.12.0 showed the gap below; the owner pulled the design forward from 2026-11-15. The narration batch moves to 2.15 and the H2 releases each move one minor later: *The felt body* 2.16, *Inner life II* 2.17, *Many lives* 2.18. Earlier record:
 
 **Not picked yet (superseded above): project adoption from what is seen.** The island run on the 2.12 candidate answers the gate above: with curiosity and planning a person still builds nothing in free time, and no free-time goal is ever proposed, because planning only values active temporal goals ([experiment](lab/experiments/island-2026-10-20.md)). That makes it the next framework item for the island, but no game has asked for it. Target: design after the 2.12.0 island record, review 2026-11-15 (roadmap.md §3b).
 

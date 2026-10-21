@@ -27,6 +27,13 @@ Engine: 2.14.0. *Projects and persistence* (owner, 2026-10-20: "Add those facult
 - All thresholds and coefficients are engineering defaults, not fitted values; the research note keeps findings and defaults apart. A prospect's `materialIds` keeps the first eight distinct ids rather than rejecting a longer list (found by the island candidate run).
 - The narration batch moves to engine 2.15.
 
+### Release
+
+- Tag `v2.14.0` on source commit `febc37c` (CI run 39544694811 passed); the release's `npm run check`: 2014 passed, 8 skipped. Trusted npm workflow 39545020547 succeeded. Registry integrity `sha512-GzDr88kyt0JhV0RFrSvkvZV7ko41Q6ZwzQvE6oiDRJAJTLBVVbNwvgeQFQAmhJ1rrXzMp20n4TXU5ctdllmckw==`; `npm audit signatures` in a fresh install reports a verified attestation, and the installed package exports `enableProjects` and `enablePersistence` (2.14.0, engine 2.14.0).
+- Review: one independent Codex review ([review](https://github.com/adam0white/human-framework/blob/main/docs/reviews/hf-2.14.0-codex-review.md)), verdict "fix first", two findings (a pursuit could re-form at once after its maximum duration; restore accepted several active projects and bypassed the cooldown), both fixed before release with tests. The later fix that truncates `materialIds` to eight was not re-reviewed. Legacy continuation was checked against 2.13.0 fixture digests.
+- Site pins 2.14.0 at commit `604f22b`, deployed (Cloudflare version `dee2b6ba-dd86-4883-ae1a-290a83a981c9`); live `/release.json` shows framework 2.14.0, that commit, `dirty: false`.
+- Island rerun on the published package: [experiment](https://github.com/adam0white/human-framework/blob/main/docs/lab/experiments/island-2026-10-20.md#rerun-with-engine-214-hf5).
+
 ## [2.13.0] - 2026-10-20
 
 Engine: 2.13.0. *Why not* ([slice plan](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md#slice-3-if-time-allows); The Pass's requests 1 and 4 in [game-requests-2026-10-18.md](https://github.com/adam0white/human-framework/blob/main/docs/game-requests-2026-10-18.md)). A declined suggestion can say what decided it, and a person can hold a rule of their own as a will-not. Both are opt-in: without them, state, decisions, resolution JSON and digests are the same as 2.12.0 with only the engine stamp normalized. Saves migrate from 2.12.0 by stamping the version.

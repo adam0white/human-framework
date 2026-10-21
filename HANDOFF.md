@@ -4,7 +4,7 @@ Updated 2026-10-20. Read [AGENTS.md](AGENTS.md) for rules and the current increm
 
 ## What remains
 
-- **Current increment (AGENTS.md):** *Projects and persistence*, HF 2.14.0 / engine 2.14.0, then the island rerun on the published release. Not released yet.
+- **Current increment (AGENTS.md):** *Projects and persistence*, released as HF 2.14.0 / engine 2.14.0 with the island rerun recorded. The owner reviews. Left from it, targeted in [roadmap §3b](docs/roadmap.md): net project progress, and carrying a project over into a host task.
 - **Owner acceptance outstanding:** Good Hands (play it); Neighbours feel; external-game feel generally.
 - **Lab:** the owner's resend of the day-12 Valley run is the first live check of the raised upload bounds. Valley's lab-client 0.1.2 bump and Hearsay's integration wait on their own agents. F-192 (Firefox regular lab events) follow-up by 2026-10-27.
 - **Deferred by owner, no date:** first lab-client npm publication and its trusted publisher.
@@ -12,7 +12,8 @@ Updated 2026-10-20. Read [AGENTS.md](AGENTS.md) for rules and the current increm
 
 ## Current state
 
-- **HF 2.13.0 / engine 2.13.0, *Why not* (2026-10-20), latest release.** Opt-in `SuggestionResolution.decidedBy` and firm self-rules (`Commitment.firm`). Before it, 2.12.0 (bounded planning, depth 2 to 5, present bias) and 2.11.0 (curiosity and play), both opt-in. The site pins 2.13.0. The island rerun on 2.12.0: more object handling than random, no free-time goal, nothing built, task median one cube of ten ([experiment](docs/lab/experiments/island-2026-10-20.md)). Receipts: [releases.md](docs/releases.md).
+- **HF 2.14.0 / engine 2.14.0, *Projects and persistence* (2026-10-20), latest release.** Opt-in `enableProjects` (a person with met needs adopts a self-set project from a host-shown `Percept.prospect`) and `enablePersistence` (a started pursuit gets a bounded bonus and switching cost, gated by needs and fear, never on duties). Control: `packages/human/examples/projects-control.ts`. The site pins 2.14.0. Island rerun on 2.14.0: small piles on the Spire in free time (median 2 objects, random 0), carry task median 1.5 of 10, not better than 2.12.0 ([experiment](docs/lab/experiments/island-2026-10-20.md#rerun-with-engine-214-hf5)). Receipts: [CHANGELOG](CHANGELOG.md).
+- **HF 2.11.0 to 2.13.0 (2026-10-20).** Curiosity and play, bounded planning (depth 2 to 5), and *Why not* (`SuggestionResolution.decidedBy`, `Commitment.firm`), all opt-in.
 - **HF 2.10.0, *Word and witness* (2026-10-20).** Belief provenance, `contradicted`, believed regard. The requesting games pinned 2.10.0 but adopted only `seedSourceTrust` ([findings](docs/findings.md)).
 - **HF 2.9.1 (2026-10-20), Host kit and maintenance sweep.** Behaviour-neutral: `seedSourceTrust`, `seedBelief`, `fingerprint`, `tellDeath(..., { late })`, [host recipes](docs/host-kit.md) with doc tests. Deprecations stay until 3.0. Dependencies at latest; Vite pinned 8.3.4 by `overrides`; Worker `compatibility_date` 2026-10-20. `npm run release` runs from a detached checkout of `origin/main`, so a clean worktree can release.
 - **Games.** In-site: *Twice at the Well*, *The Day You Say Nothing*, *The Night Watch* (graduated; each game doc ends with its deferred list). External, each repository owns its own evidence: The Pass, The Glance, The Two Voices, The Rope, Small Works (repair.adamwhite.work), Valley, Stairwell, Warren, Hearsay, Neighbours (Concordia fork), Good Hands (goodhands.adamwhite.work, HF 2.9.0, owner play outstanding). Island (`~/code/island`, private `adam0white/island`) is the pilot that found HF people idle once needs are met.
