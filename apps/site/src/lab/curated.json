@@ -5301,6 +5301,32 @@
     "fix:pass F-396 decided: the repeated cooking loop between parties stays, reopened by the owner's play report"
    ],
    "source": "chat 2026-10-21"
+  },
+  {
+   "id": "F-402",
+   "date": "2026-10-21",
+   "game": "murmur",
+   "kind": "owner",
+   "who": "owner",
+   "words": "On Two Voices, I think we can forgo the bottom updates post decision entirely, and instead of briefly highlight the new entries to the log up top as they come. That would truly eliminate redundancy.",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur drop the post-decision updates below the choice, briefly highlight new log entries at the top as they arrive (Codex worker, 2026-10-21)"
+   ],
+   "source": "chat 2026-10-21"
+  },
+  {
+   "id": "F-403",
+   "date": "2026-10-21",
+   "game": "lab",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Let opening the menu pause the game, in other games as well.",
+   "verdict": "-",
+   "routes": [
+    "fix:lab opening a game's menu pauses game time in every live game (Codex worker, 2026-10-21)"
+   ],
+   "source": "chat 2026-10-21"
   }
  ],
  "lessons": [
@@ -5907,7 +5933,7 @@
   }
  ],
  "routes": {
-  "fix": 405,
+  "fix": 407,
   "lesson": 278,
   "hf": 12,
   "calibration": 42,
