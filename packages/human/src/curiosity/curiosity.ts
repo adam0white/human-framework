@@ -1,6 +1,6 @@
 /**
  * SCOPE: opt-in intrinsic exploration and play. Uncertainty draws a relaxed person toward unfamiliar
- * offers; falling prediction error rewards learning; recent action kinds invite variation in target or
+ * offers; falling prediction error (learning progress) pulls and rewards; recent action kinds invite variation in target or
  * place. Shapes, not fitted values: learning progress (Oudeyer, Kaplan & Hafner 2007), information gaps
  * (Loewenstein 1994; Kidd & Hayden 2015; Gottlieb et al. 2013), effectance and competence (White 1959;
  * Deci & Ryan), relaxed repetition with variation (Burghardt 2005), openness (DeYoung), childhood
@@ -65,6 +65,9 @@ export function enableCuriosity(p: Person, spec: CuriositySpec = {}): CuriosityS
   return out;
 }
 
+/** Identifiers the slice records and restores; longer ones are not tracked, so a save round-trips. */
+const str = (x: unknown): x is string => typeof x === 'string' && x.length > 0 && x.length <= 512;
+
 type Context = Pick<ConsiderContext, 'needs' | 'mods' | 'now'>;
 function reading(p: Person, aff: Affordance, ctx: Context): CuriosityReading {
   const s = p.curiosity;
@@ -120,6 +123,13 @@ export function noteCuriosity(p: Person, aff: Affordance, outcome: Outcome, felt
       2,
   );
   const key = expectationKey(aff);
+  if (
+    !str(key) ||
+    !str(aff.action) ||
+    (aff.targetId !== undefined && !str(aff.targetId)) ||
+    (aff.placeId !== undefined && !str(aff.placeId))
+  )
+    return;
   let entry = s.errors.find((e) => e.key === key);
   if (!entry) {
     if (s.errors.length >= CURIOSITY_DEFAULTS.maxKeys) {
@@ -147,14 +157,10 @@ export function noteCuriosity(p: Person, aff: Affordance, outcome: Outcome, felt
   s.recent.push(act);
   if (s.recent.length > CURIOSITY_DEFAULTS.maxRecent) s.recent.shift();
   const progress = Math.max(0, entry.slow - entry.fast);
-  const reward = Math.min(
-    setting(s, 'rewardMax'),
-    setting(s, 'rewardMax') * (before.unknown + progress) * before.drive,
-  );
+  const reward = Math.min(setting(s, 'rewardMax'), setting(s, 'rewardMax') * progress * before.drive);
   satisfy(p, { leisure: reward / 2, competence: reward / 2 });
 }
 
-const str = (x: unknown): x is string => typeof x === 'string' && x.length > 0 && x.length <= 512;
 const unit = (x: unknown): x is number => isNum(x) && x >= 0 && x <= 1;
 const minute = (x: unknown, now: number): x is number => isNum(x) && Math.abs(x) <= MAX_MINUTE && x <= now;
 /** Conservative restore: drop malformed or ambiguous slices; skip malformed entries and bound lists. */

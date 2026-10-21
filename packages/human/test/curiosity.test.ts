@@ -96,7 +96,7 @@ test('vary requires a recent same action with a different target or place and no
   expect(hf.curiosityOf(p, b).vary).toBe(0);
 });
 
-test('completed and failed outcomes reward leisure and competence; interrupted acts do not learn', () => {
+test('a first outcome learns but earns no reward; interrupted acts do not learn', () => {
   for (const status of ['completed', 'failed', 'interrupted'] as const) {
     const p = person();
     p.needs.leisure = p.needs.competence = 0.4;
@@ -112,13 +112,37 @@ test('completed and failed outcomes reward leisure and competence; interrupted a
       expect(p.curiosity?.errors).toEqual([]);
       expect(p.curiosity?.recent).toEqual([]);
     } else {
-      expect(reward).toBeGreaterThan(0);
+      // Reward follows learning progress only; a first sample has none.
+      expect(reward).toBe(0);
       expect(p.curiosity?.errors[0]?.n).toBe(1);
       expect(p.curiosity?.errors[0]?.fast).toBe(p.curiosity?.errors[0]?.slow);
       if (status === 'completed')
         expect(p.curiosity?.errors[0]?.fast).toBeCloseTo((1 - prediction.successRate) / 2);
     }
   }
+});
+
+test('falling error rewards leisure and competence, within the cap', () => {
+  const p = person();
+  for (let i = 0; i < 3; i++) complete(p, offer, 'failed');
+  for (let i = 0; i < 3; i++) complete(p, offer, 'completed');
+  p.needs.leisure = p.needs.competence = 0.4;
+  const off = hf.restore(hf.snapshot(p));
+  delete off.curiosity;
+  expect(hf.curiosityOf(p, offer).progress).toBeGreaterThan(0);
+  complete(p, offer, 'completed');
+  complete(off, offer, 'completed');
+  const reward = p.needs.leisure - off.needs.leisure + p.needs.competence - off.needs.competence;
+  expect(reward).toBeGreaterThan(0);
+  expect(reward).toBeLessThanOrEqual(hf.CURIOSITY_DEFAULTS.rewardMax + 1e-10);
+});
+
+test('identifiers longer than the restore bound are not tracked, so saves round-trip', () => {
+  const p = person();
+  complete(p, offer);
+  complete(p, { ...offer, id: 'long', action: 'x'.repeat(513) });
+  expect(p.curiosity?.recent).toHaveLength(1);
+  expect(hf.restore(hf.snapshot(p)).curiosity).toEqual(p.curiosity);
 });
 
 test('save round trip preserves continuation; restore drops ambiguous state and bounds history', () => {
