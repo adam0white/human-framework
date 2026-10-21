@@ -5340,6 +5340,133 @@
     "fix:murmur one marker (handwritten face or its slanted style) only for the other voice and text about it, softened by the owner: keep the handwritten face, colour and slant, audit and fix only inconsistencies (Codex worker queued after F-402, 2026-10-21)"
    ],
    "source": "chat 2026-10-21"
+  },
+  {
+   "id": "F-405",
+   "date": "2026-10-21",
+   "game": "murmur",
+   "kind": "owner",
+   "who": "owner (run r-fgmaqhe1vr, app 0.4.1, HF 2.8.0, build b00460b00e13)",
+   "words": "Shall we polish, and add a third week that builds up on our choices so far? or am I doing too much stretching?",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur polish and write a third-week proposal for owner approval (open, target 2026-10-28)",
+    "lesson:L13"
+   ],
+   "source": "murmur/docs/playtests/owner-2026-10-21.md"
+  },
+  {
+   "id": "F-406",
+   "date": "2026-10-21",
+   "game": "murmur",
+   "kind": "owner",
+   "who": "owner (run r-fgmaqhe1vr, app 0.4.1, HF 2.8.0, build b00460b00e13)",
+   "words": "This repeats: Mum talked about the neighbour’s roof. Dilan laughed twice.",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur avoid repeating the roof conversation in one run (open, target 2026-10-28)",
+    "lesson:L2"
+   ],
+   "source": "murmur/docs/playtests/owner-2026-10-21.md"
+  },
+  {
+   "id": "F-407",
+   "date": "2026-10-21",
+   "game": "murmur",
+   "kind": "owner",
+   "who": "owner (run r-fgmaqhe1vr, app 0.4.1, HF 2.8.0, build b00460b00e13)",
+   "words": "This feels wrong: After I leave it for now, then I will (cancel).",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur correct the leave-it-for-now cancellation reply (open, target 2026-10-28)",
+    "lesson:L3"
+   ],
+   "source": "murmur/docs/playtests/owner-2026-10-21.md"
+  },
+  {
+   "id": "F-408",
+   "date": "2026-10-21",
+   "game": "murmur",
+   "kind": "owner",
+   "who": "owner (run r-fgmaqhe1vr, app 0.4.1, HF 2.8.0, build b00460b00e13)",
+   "words": "These two doesn't sound like the right link. She chose: 'Call Mum from the car park.' 'Feet on the floor.' Her own words now.",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur attach an adopted phrase to the action that learned it (open, target 2026-10-28)",
+    "lesson:L3"
+   ],
+   "source": "murmur/docs/playtests/owner-2026-10-21.md"
+  },
+  {
+   "id": "F-409",
+   "date": "2026-10-21",
+   "game": "murmur",
+   "kind": "owner",
+   "who": "owner (run r-fgmaqhe1vr, app 0.4.1, HF 2.8.0, build b00460b00e13)",
+   "words": "Same here: You suggested: Go over. Tell her quietly. She chose: 'Call out the parcel number.' 'Not now. After I stop the duplicate collection.'",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur make the parcel deferral link and chronology clear (open, target 2026-10-28)",
+    "lesson:L1",
+    "lesson:L3"
+   ],
+   "source": "murmur/docs/playtests/owner-2026-10-21.md"
+  },
+  {
+   "id": "F-410",
+   "date": "2026-10-21",
+   "game": "murmur",
+   "kind": "owner",
+   "who": "owner (run r-fgmaqhe1vr, app 0.4.1, HF 2.8.0, build b00460b00e13)",
+   "words": "I'm confused when we stayed late for extra work (she rejected my push to just go to birthday) yet was able to keep 'word to Aylin'.",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur clarify late birthday arrival with the kept-word review (open, replay confirms route ends 19:22 and dinner 19:45, target 2026-10-28)",
+    "lesson:L3"
+   ],
+   "source": "murmur/docs/playtests/owner-2026-10-21.md"
+  },
+  {
+   "id": "F-411",
+   "date": "2026-10-21",
+   "game": "murmur",
+   "kind": "owner",
+   "who": "owner (run r-fgmaqhe1vr, app 0.4.1, HF 2.8.0, build b00460b00e13)",
+   "words": "'Second week' overflows. And 'human framework'.",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur keep Second week and human framework inside the phone viewport (open, target 2026-10-28)",
+    "lesson:L9"
+   ],
+   "source": "murmur/docs/playtests/owner-2026-10-21.md"
+  },
+  {
+   "id": "F-412",
+   "date": "2026-10-21",
+   "game": "murmur",
+   "kind": "owner",
+   "who": "owner (run r-fgmaqhe1vr, app 0.4.1, HF 2.8.0, build b00460b00e13)",
+   "words": "I just want to say that the clever lines, jokes and the story of this game is so good. I smiled to multiple moments.",
+   "verdict": "keep",
+   "routes": [
+    "lesson:L13"
+   ],
+   "source": "murmur/docs/playtests/owner-2026-10-21.md"
+  },
+  {
+   "id": "F-413",
+   "date": "2026-10-21",
+   "game": "murmur",
+   "kind": "owner",
+   "who": "owner (run r-fgmaqhe1vr, app 0.4.1, HF 2.8.0, build b00460b00e13)",
+   "words": "Lol, I'm not sure if there's a way to beat the pencil at all:  A fortnight ago, the pencil wrote bigger than you. On Monday, the pencil wrote bigger than you. By Saturday, the pencil still wrote bigger than you.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:murmur clarify pencil progress while keeping natural difficulty (open, attainable path confirmed on 0.4.1, target 2026-10-28)",
+    "lesson:L12",
+    "lesson:L15"
+   ],
+   "source": "murmur/docs/playtests/owner-2026-10-21.md"
   }
  ],
  "lessons": [
@@ -5946,8 +6073,8 @@
   }
  ],
  "routes": {
-  "fix": 408,
-  "lesson": 278,
+  "fix": 416,
+  "lesson": 289,
   "hf": 12,
   "calibration": 42,
   "none": 4
