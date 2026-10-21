@@ -137,8 +137,8 @@ export function dawnOutcome(
 ): string {
   const lost = Math.max(0, d.grainBefore - d.grainAfter);
   if (lost === 0)
-    return d.crossed ? 'The wall was crossed. No grain was lost.' : 'The night held. No grain was lost.';
-  if (lost <= 3) return 'A small loss. A little grain was taken.';
+    return d.crossed ? 'The wall was crossed. No grain was lost.' : 'The wall held. No grain was lost.';
+  if (lost <= 3) return 'A small loss of grain. A little was taken.';
   return 'A serious breach. The granary was hit hard.';
 }
 

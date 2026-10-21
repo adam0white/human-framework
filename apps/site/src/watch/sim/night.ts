@@ -929,7 +929,7 @@ function readEvents(s: WatchState, events: SimEvent[], before: WatchState['place
     if (!p) continue;
     const name = nameOf(s, id);
     const answeringNightAsk = !!s.nightRequests?.[id];
-    resolveNightRequest(s, e);
+    resolveNightRequest(s, e, before);
     if (e.kind === 'decide' && e.verdict && !e.review) {
       const posted = s.posts[id];
       const sec = posted ? postSection(posted) : undefined;

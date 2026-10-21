@@ -75,6 +75,7 @@ export function ruleState(s: WatchState, people = summarise(s)): unknown {
         ? { kind: w.question.kind, who: w.question.who, who2: w.question.who2, met: w.question.met }
         : null,
     },
+    ...(s.nightDepartureEffort ? { nightDepartureEffort: true } : {}),
     ...(s.winterSetting ? { winterSetting: s.winterSetting, winterRules: WINTER_RULES } : {}),
     leads: s.leads,
     lead: s.lead,
@@ -194,11 +195,12 @@ export function endState(s: WatchState): EndState {
  * Bump when rules change so an old export is not replayed against new rules. 8: the bell rings from the Gate for
  * everyone in range, and world draws have their own streams (2026-10-05). 9: old age kills (natural death at
  * `MORTALITY_MULTIPLIER` times HF's hazard) and households of the old no longer leave (2026-10-07).
+ * 13: accepted night helpers leaving another post pay a small exertion cost.
  * 12: an opt-in milder winter, applied from the next dusk.
  * 11: in-person relief, help and rest asks at night.
  * 10: each pair waits one year after a proposal; legacy pages without proposalHolds retain the old rules.
  */
-export const WATCH_SCENARIO_VERSION = 12;
+export const WATCH_SCENARIO_VERSION = 13;
 
 /** The oldest scenario whose saved pages still load (`migrateSnapshot`). */
 export const OLDEST_LOADABLE_SCENARIO = 7;
@@ -347,6 +349,7 @@ export function replay(
 ): WatchState {
   if (
     exp.scenario !== WATCH_SCENARIO_VERSION &&
+    exp.scenario !== 12 &&
     exp.scenario !== 11 &&
     exp.scenario !== 10 &&
     exp.scenario !== 9
@@ -358,6 +361,7 @@ export function replay(
     );
   const run = new WatchRun(exp.seed);
   const s = run.state;
+  if (exp.scenario < 13) delete s.nightDepartureEffort;
   if (exp.scenario === 9) delete s.proposalHolds;
   let idx = 0;
   for (let guard = 0; guard < 10_000_000; guard++) {

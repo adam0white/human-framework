@@ -314,6 +314,8 @@ export interface BellState {
 
 export interface WatchState {
   version: 4;
+  /** Scenario 13: accepted cross-post night help costs a small burst of exertion. Absent keeps legacy rules. */
+  nightDepartureEffort?: true;
   /** Absent means hard winter, preserving the exact legacy state. Next applies at the next dusk. */
   winterSetting?: { active: import('./config.ts').WinterChoice; next: import('./config.ts').WinterChoice };
   seed: number;
@@ -529,6 +531,7 @@ export function emptyTally(grain: number): NightTally {
 export function createState(seed: number): WatchState {
   return {
     version: 4,
+    nightDepartureEffort: true,
     seed,
     rng: seed | 0,
     world: { rng: mixSeed(seed) },

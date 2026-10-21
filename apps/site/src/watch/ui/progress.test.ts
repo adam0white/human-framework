@@ -21,9 +21,9 @@ describe('the winter goal in approximate words', () => {
 describe('the morning outcome', () => {
   it('distinguishes a held night, a harmless crossing, a small loss and a serious breach', () => {
     const dawn = { grainBefore: 20, grainAfter: 20, crossed: false };
-    expect(dawnOutcome(dawn)).toBe('The night held. No grain was lost.');
+    expect(dawnOutcome(dawn)).toBe('The wall held. No grain was lost.');
     expect(dawnOutcome({ ...dawn, crossed: true })).toBe('The wall was crossed. No grain was lost.');
-    expect(dawnOutcome({ ...dawn, crossed: true, grainAfter: 18 })).toContain('A small loss.');
+    expect(dawnOutcome({ ...dawn, crossed: true, grainAfter: 18 })).toContain('A small loss of grain.');
     expect(dawnOutcome({ ...dawn, crossed: true, grainAfter: 12 })).toContain('A serious breach.');
   });
   it('draws coarse watched-night progress without claiming the thaw has arrived', () => {

@@ -29,6 +29,7 @@ describe('scenario 12 winter choice', () => {
   it('keeps the default state and event sequence identical to scenario 11', () => {
     const exp = fixture(11);
     const current = new WatchRun(exp.seed);
+    delete current.state.nightDepartureEffort;
     const sequence = createHash('sha256');
     let idx = 0;
     while (current.state.minute < exp.endMinute || idx < exp.inputs.length) {
@@ -44,7 +45,7 @@ describe('scenario 12 winter choice', () => {
     }
     // Captured from the complete scenario-11 sim at 0f08985, extracted outside the repository.
     expect(sequence.digest('hex')).toBe('f51bd92a1f1f6b79a71b50acd01d105f73e31de15f0803aefdda314a1169e424');
-    expect(current.export().scenario).toBe(12);
+    expect(current.export().scenario).toBe(13);
     expect(current.export().end.ruleHash).toBe('3c84c1c3');
     expect(ruleHash(replay({ ...exp, scenario: 12 }))).toBe(exp.end.ruleHash);
     expect(endState(atCaptured(replay(exp))).fullHash).toBe(exp.end.fullHash);
@@ -154,6 +155,7 @@ describe('scenario 12 winter choice', () => {
       resumed.step();
     }
     expect(resumed.state).toEqual(direct.state);
-    expect(replay(resumed.export())).toEqual(resumed.state);
+    expect(resumed.state.nightDepartureEffort).toBeUndefined();
+    expect(() => replay(resumed.export())).toThrow(/resumed from a scenario 12 page/);
   });
 });

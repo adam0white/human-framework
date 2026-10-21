@@ -1,7 +1,9 @@
 /**
  * In-person night asks. The Keeper can offer relief, help or rest within voice reach; HF chooses the act.
  * A reliever may approach the occupied post, then the outgoing watcher is asked to sleep. Help shares a stretch
- * or uses the existing carry affordance. This does not add healing, remote orders, moments or guaranteed obedience.
+ * or uses the existing carry affordance. Scenario 13 adds a small exertion burst for an accepted
+ * helper leaving a different post; it adds no travel delay and never charges a refused ask.
+ * This does not add healing, remote orders, moments or guaranteed obedience.
  */
 import { outwardSigns, predictAs, type SimEvent, selfReport } from '@adam0white/human-framework';
 import { type PostId, postSection, type SectionId, type WatcherId } from './config.ts';
@@ -10,6 +12,9 @@ import { alert, inVoice, ownReason, presentIds, theSection } from './night.ts';
 import { isPost, KEEPER_ID, nameOf, personOf, villager, WatchWorld } from './people.ts';
 import { keeperFatigue } from './reads.ts';
 import type { WatchState } from './state.ts';
+
+/** Host tuning: a brief hard crossing, on the existing zero-to-one exertion scale. */
+const DEPARTURE_EXERTION = 0.08;
 
 export type NightInput =
   | { k: 'relieve'; who: WatcherId; by: WatcherId }
@@ -179,8 +184,17 @@ export function nightActs(s: WatchState, who: WatcherId): NightAct[] {
     const old = s.place[id];
     const leaves =
       isPost(old) && (input.k === 'down' || old !== s.place[who]) ? `; ${leavingRead(s, id)}` : '';
+    const crossing =
+      s.nightDepartureEffort && input.k !== 'down' && isPost(old) && old !== s.place[who]
+        ? '; I reckon the hard crossing takes a little breath as well'
+        : '';
     const cover = input.k === 'relieve' ? `; relief takes over before you ask ${name} to sleep` : '';
-    return { input, label, read: `${reading(s, id, input, affordance)}${leaves}${cover}`, available: true };
+    return {
+      input,
+      label,
+      read: `${reading(s, id, input, affordance)}${leaves}${crossing}${cover}`,
+      available: true,
+    };
   });
 }
 
@@ -255,7 +269,7 @@ function release(s: WatchState, who: WatcherId): void {
 }
 
 /** Resolve only requests introduced by scenario 11. HF decision and begin events remain the authority. */
-export function resolveNightRequest(s: WatchState, e: SimEvent): void {
+export function resolveNightRequest(s: WatchState, e: SimEvent, before = s.place): void {
   const r = s.nightRequests?.[e.personId];
   if (!r || (r.afterMinute !== undefined && e.at <= r.afterMinute)) return;
   if (s.minute >= r.until) {
@@ -274,6 +288,11 @@ export function resolveNightRequest(s: WatchState, e: SimEvent): void {
     delete s.asks[e.personId];
   }
   if ((e.kind !== 'begin' && e.kind !== 'continue') || e.affordanceId !== r.affordance) return;
+  const old = before[e.personId];
+  if (s.nightDepartureEffort && r.kind !== 'down' && isPost(old) && r.affordance !== `post:${old}`) {
+    const p = personOf(s, e.personId);
+    if (p) p.body.exertion = Math.min(1, p.body.exertion + DEPARTURE_EXERTION);
+  }
   delete s.nightRequests?.[e.personId];
   if (r.kind === 'down') release(s, e.personId);
   else if (r.affordance.startsWith('post:')) {

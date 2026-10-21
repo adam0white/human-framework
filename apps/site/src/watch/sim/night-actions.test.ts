@@ -64,6 +64,58 @@ function act(s: ReturnType<typeof night>['s'], k: NightInput['k'], by = 'kian') 
 }
 
 describe('night asks on a watcher', () => {
+  it.each(['relieve', 'help'] as const)(
+    'charges a modest crossing effort only when a %s departure is accepted',
+    (k) => {
+      const { run, s, target, helper } = night();
+      if (k === 'help') hurt(target);
+      expect(act(s, k)?.read).toContain('takes a little breath');
+      expect(run.input({ k, who: 'tamar', by: 'kian' })).toBe(true);
+      expect(helper.body.exertion).toBe(0);
+      const event = {
+        at: s.minute,
+        kind: 'begin' as const,
+        personId: 'kian',
+        affordanceId: 'post:gate-1',
+        detail: '',
+      };
+      resolveNightRequest(s, event);
+      expect(helper.body.exertion).toBeCloseTo(0.08);
+      resolveNightRequest(s, event);
+      expect(helper.body.exertion).toBeCloseTo(0.08);
+    },
+  );
+
+  it('the headless accepted crossing costs effort against the legacy arm without forcing assent', () => {
+    const current = night();
+    const legacy = night();
+    delete legacy.s.nightDepartureEffort;
+    for (const arm of [current, legacy]) {
+      arm.run.input({ k: 'relieve', who: 'tamar', by: 'kian' });
+      for (let i = 0; i < 15 && arm.s.place.kian !== 'gate-1'; i++) arm.run.step();
+      expect(arm.s.place.kian).toBe('gate-1');
+    }
+    expect(current.s.minute).toBe(legacy.s.minute);
+    expect(current.helper.body.exertion - legacy.helper.body.exertion).toBeCloseTo(0.08);
+  });
+
+  it('keeps legacy departures and same-post relief free of the new effort', () => {
+    for (const legacy of [true, false]) {
+      const { run, s, helper } = night();
+      if (legacy) delete s.nightDepartureEffort;
+      else s.place.kian = 'gate-1';
+      expect(run.input({ k: 'relieve', who: 'tamar', by: 'kian' })).toBe(true);
+      resolveNightRequest(s, {
+        at: s.minute,
+        kind: 'continue',
+        personId: 'kian',
+        affordanceId: 'post:gate-1',
+        detail: '',
+      });
+      expect(helper.body.exertion).toBe(0);
+    }
+  });
+
   it('keeps a dusk fatigue read eligible throughout the night without changing current condition', () => {
     const { run, s, target } = night();
     const oldRead = s.keeper.social.impressions?.find((read) => read.targetId === 'tamar');
@@ -290,7 +342,7 @@ describe('night asks on a watcher', () => {
   });
 
   it('an accepted relief puts the replacement on the post before the tired watcher leaves', () => {
-    const { run, s } = night();
+    const { run, s, helper } = night();
     expect(run.input({ k: 'relieve', who: 'tamar', by: 'kian' })).toBe(true);
     expect(s.place.tamar).toBe('gate-1');
     for (let i = 0; i < 15 && s.place.tamar === 'gate-1'; i++) {
@@ -298,6 +350,7 @@ describe('night asks on a watcher', () => {
       expect([s.place.tamar, s.place.kian]).toContain('gate-1');
     }
     expect(s.place.kian).toBe('gate-1');
+    expect(helper.body.exertion).toBeGreaterThan(0.08);
     expect(s.posts.kian).toBe('gate-1');
     expect(s.posts.tamar).toBeNull();
     expect(s.letGo.tamar).toBe('gate-1');
