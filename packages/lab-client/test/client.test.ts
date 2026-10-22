@@ -152,6 +152,15 @@ describe('linked lab client', () => {
     const note = envelopes.find((e) => e.kind === 'note');
     expect(note?.runId).toBe(log?.runId);
   });
+  it('keeps optional feedback names at the envelope top level and bounds them', async () => {
+    const lab = createLab({ game: 'well', build: {} });
+    await lab.sendFeedback('A note', { name: `  ${'N'.repeat(70)}  ` });
+    await waitFor(1);
+    expect(envelopes[0]).toMatchObject({ kind: 'note', name: 'N'.repeat(60), data: { note: 'A note' } });
+    await lab.sendFeedback('Another note', { name: '   ' });
+    await waitFor(2);
+    expect(envelopes[1]).not.toHaveProperty('name');
+  });
   it('uses only random ids and coarse viewport classes', () => {
     expect(newSessionId()).toMatch(/^[a-z0-9]{16}$/);
     expect([360, 412, 768, 1440].map(viewportClass)).toEqual(['phone', 'phone', 'tablet', 'desktop']);

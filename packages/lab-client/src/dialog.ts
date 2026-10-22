@@ -3,6 +3,8 @@
  * ink on warm paper, one accent, phone-first as a bottom sheet at 360×780. Plain DOM, no framework, so any game
  * can use it. It shows exactly what will be sent before anything is sent.
  */
+
+import { readLocal, writeLocal } from './identity.ts';
 import type { Lab } from './index.ts';
 import { checkRun, compressedRefusal, RUN_LIMITS, runRefusal } from './limits.ts';
 import { type CompactOptions, gzip, PRIVACY_URL, runEnvelope } from './util.ts';
@@ -13,6 +15,8 @@ export type SendDialogOptions = CompactOptions & {
   getRun: () => unknown;
   /** Title. Default "Send this run to the notebook". */
   title?: string;
+  /** Optional name prefill; otherwise remembers the last name on this origin/device. */
+  name?: string;
   /** Prefill for the "who you are" field. The dialog itself remembers nothing. */
   who?: string;
   /** Called with the reference id after a successful send. */
@@ -97,6 +101,12 @@ export function openSendDialog(options: SendDialogOptions): void {
   note.placeholder = 'What you felt, where you got stuck, what you wanted to do.';
   const who = el('input', { id: 'hflab-who', type: 'text', maxLength: 40, value: options.who ?? '' });
   who.placeholder = 'e.g. owner, a friend of Adam';
+  const name = el('input', {
+    id: 'hflab-name',
+    type: 'text',
+    maxLength: 60,
+    value: options.name ?? readLocal('hf-lab-feedback-name') ?? '',
+  });
   const exact = el('textarea', {
     className: 'exact',
     readOnly: true,
@@ -192,6 +202,7 @@ export function openSendDialog(options: SendDialogOptions): void {
       runEnvelope(lab.game, build, run, {
         note: note.value,
         who: who.value,
+        name: name.value,
         compacted,
       }),
     );
@@ -292,6 +303,9 @@ export function openSendDialog(options: SendDialogOptions): void {
   note.addEventListener('input', () => {
     if (!sending) void refresh();
   });
+  name.addEventListener('input', () => {
+    if (!sending) void refresh();
+  });
   who.addEventListener('input', () => {
     if (!sending) void refresh();
   });
@@ -314,6 +328,8 @@ export function openSendDialog(options: SendDialogOptions): void {
       el('span', { className: 'soft' }, '(optional, no need for a name)'),
     ),
     who,
+    el('label', { for: 'hflab-name' }, 'Name (optional)'),
+    name,
     compactNotice,
     details,
     eventsRow,
@@ -321,7 +337,7 @@ export function openSendDialog(options: SendDialogOptions): void {
     el(
       'p',
       { className: 'soft' },
-      'Nothing identifies you unless you write it. ',
+      'A name labels your player id and its linked play history. It is optional and remembered on this device. ',
       el('a', { href: PRIVACY_URL, target: '_blank', rel: 'noopener' }, 'How the notebook handles this'),
       '.',
     ),
@@ -372,9 +388,11 @@ export function openSendDialog(options: SendDialogOptions): void {
     // What is shown stays what is sent: the fields are locked while the request is in flight.
     note.readOnly = true;
     who.readOnly = true;
+    name.readOnly = true;
     const sent = approvedText;
     try {
       const id = await lab.sendEnvelopeText(sent);
+      writeLocal('hf-lab-feedback-name', name.value.trim().slice(0, 60) || null);
       status.className = 'status ok';
       status.textContent = lab.telemetryOn
         ? `Queued for background upload. Reference ${id}.`
@@ -390,6 +408,7 @@ export function openSendDialog(options: SendDialogOptions): void {
       send.disabled = false;
       note.readOnly = false;
       who.readOnly = false;
+      name.readOnly = false;
     }
   });
 

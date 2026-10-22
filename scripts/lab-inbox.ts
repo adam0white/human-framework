@@ -24,9 +24,11 @@ import { gunzipSync } from 'node:zlib';
 import {
   type LinkedEntry,
   type LinkedRecord,
+  legacyPlayer,
   linkedKey,
   linkedRecord,
   linkedUploads,
+  playerNames,
 } from './lab-inbox-linked.ts';
 
 import {
@@ -120,7 +122,14 @@ type Entry = {
   note?: string;
   bytes?: string;
 };
-type Envelope = { game: string; note?: string; who?: string; build?: Record<string, string>; run: unknown };
+type Envelope = {
+  game: string;
+  note?: string;
+  who?: string;
+  name?: string;
+  build?: Record<string, string>;
+  run: unknown;
+};
 
 mkdirSync(join(dir, 'runs'), { recursive: true });
 mkdirSync(join(dir, 'replay'), { recursive: true });
@@ -135,6 +144,7 @@ const entries = index.runs
 const esc = (s: string) => s.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
 const rows: string[] = [];
 let fetched = 0;
+const legacyRuns: { entry: Entry; env: Envelope; suggestion: string }[] = [];
 for (const e of entries) {
   const envFile = join(dir, 'runs', `${e.id}.json`);
   if (!existsSync(envFile)) {
@@ -147,13 +157,7 @@ for (const e of entries) {
   }
   const env = JSON.parse(readFileSync(envFile, 'utf8')) as Envelope;
   const suggestion = suggest ? await suggestionLine(e.id, env) : '';
-  rows.push(`<article>
-  <h2>${esc(e.game)} <small>${esc(e.hour.replace('T', ' '))}:00 UTC · ${esc(e.id)}${env.who ? ` · ${esc(env.who)}` : ''}</small></h2>
-  ${env.note ? `<blockquote>${esc(env.note).replace(/\n/g, '<br>')}</blockquote>` : '<p class="soft">No note.</p>'}${suggestion ? `\n  ${suggestion}` : ''}
-  <p class="soft">build ${esc(env.build?.c ?? '?')} · HF ${esc(env.build?.hf ?? '?')} · game ${esc(env.build?.a ?? '?')} ·
-  <a href="replay/${esc(e.id)}.json" download>replay file</a> (load it in <a href="https://${esc(e.game)}.adamwhite.work">the game</a> with “Replay a run file”) ·
-  <a href="runs/${esc(e.id)}.json">everything sent</a></p>
-</article>`);
+  legacyRuns.push({ entry: e, env, suggestion });
 }
 
 // Missing linked indexes are normal before the first linked upload. Other failures stay visible.
@@ -220,6 +224,19 @@ try {
   linkedWarning =
     'Linked inbox download incomplete or unavailable. Retry lab:inbox; cached files are retained.';
 }
+const names = playerNames(linkedRecords);
+const playerLabel = (player: string) =>
+  names.get(player) ? `${names.get(player)} · player ${player}` : `Player ${player}`;
+for (const { entry: e, env, suggestion } of legacyRuns) {
+  const player = legacyPlayer(env, names);
+  rows.push(`<article>
+  <h2>${esc(e.game)} <small>${esc(e.hour.replace('T', ' '))}:00 UTC · ${esc(e.id)}${env.name || env.who ? ` · ${esc(env.name || env.who || '')}` : ''}${player ? ` · possible label match: ${esc(playerLabel(player))}` : ''}</small></h2>
+  ${env.note ? `<blockquote>${esc(env.note).replace(/\n/g, '<br>')}</blockquote>` : '<p class="soft">No note.</p>'}${suggestion ? `\n  ${suggestion}` : ''}
+  <p class="soft">build ${esc(env.build?.c ?? '?')} · HF ${esc(env.build?.hf ?? '?')} · game ${esc(env.build?.a ?? '?')} ·
+  <a href="replay/${esc(e.id)}.json" download>replay file</a> (load it in <a href="https://${esc(e.game)}.adamwhite.work">the game</a> with “Replay a run file”) ·
+  <a href="runs/${esc(e.id)}.json">everything sent</a></p>
+</article>`);
+}
 const players = new Map<string, LinkedRecord[]>();
 for (const record of linkedRecords) {
   const records = players.get(record.player) ?? [];
@@ -229,7 +246,13 @@ for (const record of linkedRecords) {
 const timelines = [...players]
   .map(([player, records]) => {
     records.sort((a, b) => a.at - b.at || a.id.localeCompare(b.id));
-    return `<section><h2>Player ${esc(player)}</h2><p>${new Set(records.map((r) => r.game)).size} games · ${new Set(records.map((r) => r.session)).size} sessions</p><ol>${records.map((r) => `<li>${esc(new Date(r.at).toISOString())} · ${esc(r.game)} · ${r.kind} · run ${esc(r.runId)} · session ${esc(r.session)}<details><summary>Record ${esc(r.id)}</summary><pre style="white-space:pre-wrap;overflow-wrap:anywhere">${esc(r.kind === 'run' || r.kind === 'save' ? 'Snapshot data is in the linked exports below.' : JSON.stringify(r.data, null, 2))}</pre></details></li>`).join('')}</ol></section>`;
+    return `<section><h2>${esc(playerLabel(player))}</h2><p>${new Set(records.map((r) => r.game)).size} games · ${new Set(records.map((r) => r.session)).size} sessions</p><ol>${records.map((r) => `<li>${esc(new Date(r.at).toISOString())} · ${esc(r.game)} · ${r.kind} · run ${esc(r.runId)} · session ${esc(r.session)}<details><summary>Record ${esc(r.id)}</summary><pre style="white-space:pre-wrap;overflow-wrap:anywhere">${esc(r.kind === 'run' || r.kind === 'save' ? 'Snapshot data is in the linked exports below.' : JSON.stringify(r.data, null, 2))}</pre></details></li>`).join('')}</ol>${legacyRuns
+      .filter(({ env }) => legacyPlayer(env, names) === player)
+      .map(
+        ({ entry: e, env }) =>
+          `<p>Legacy run · possible label match · ${esc(e.game)} · ${esc(e.hour)} · ${esc(env.note ?? '')} · <a href="replay/${esc(e.id)}.json" download>replay file</a></p>`,
+      )
+      .join('')}</section>`;
   })
   .join('');
 const groups = new Map<string, LinkedRecord[]>();
@@ -255,7 +278,7 @@ for (const [key, records] of groups) {
     } else exports.push(`${upload.kind}: ${esc(upload.status)}`);
   }
   linkedRows.push(`<article><h2>${esc(first.game)} · linked run <small>${esc(first.runId)}</small></h2>
-<p class="soft">player ${esc(first.player)} · session ${esc(first.session)} · ${records.length} records · ${esc(new Date(first.at).toISOString())}</p>
+<p class="soft">${esc(playerLabel(first.player))} · session ${esc(first.session)} · ${records.length} records · ${esc(new Date(first.at).toISOString())}</p>
 <p>${exports.join(' · ') || 'No complete replay or save yet.'} · <a href="linked/${key}.json">all linked records</a></p>
 ${records
   .filter((r) => r.kind === 'note' || r.kind === 'logs')
@@ -276,7 +299,7 @@ h2{font-size:1.1rem;margin:1.4rem 0 .2rem}small,.soft{color:#6E665A;font-weight:
 @media (prefers-color-scheme:dark){body{background:#1E1B16;color:#E8DFCC}small,.soft{color:#9A9080}}</style>
 <h1>Lab inbox</h1><p class="soft">Private, on this machine only. ${entries.length} runs in the last ${days} days. Made ${new Date().toISOString().slice(0, 16)} by npm run lab:inbox.</p>
 ${spendStopped ? `<p><strong>${esc(spendStop())}</strong></p>\n` : ''}${rows.join('\n') || '<p>No legacy runs yet.</p>'}
-<h2>Linked play records</h2><p class="soft">Random player ids link visits; they do not identify a person. These exports do not grant consent to character analysis.</p>
+<h2>Linked play records</h2><p class="soft">Random player ids link visits. An optional feedback name labels the entire player timeline. Legacy matches use an exact current name or player id; names are unverified and ambiguous matches are omitted. These exports do not grant consent to character analysis.</p>
 ${linkedWarning ? `<p>${esc(linkedWarning)}</p>` : ''}${timelines}${linkedRows.join('\n') || '<p>No linked records fetched.</p>'}
 </html>
 `,

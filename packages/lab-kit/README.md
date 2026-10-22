@@ -137,6 +137,7 @@ footer.append(notebookMenu({
   lab,
   getRun: () => exportRun(),
   filename: 'pass-playtest.json',
+  // name: 'Sam', // optional feedback name prefill; the client remembers submitted names locally
   compact: (run) => compactRun(run),
   compactNote: 'Seed and inputs reproduce the full state.',
   onSave: () => saveGame(),

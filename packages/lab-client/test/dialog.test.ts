@@ -28,6 +28,29 @@ const settled = () =>
 afterEach(() => vi.unstubAllGlobals());
 
 describe('bounded send dialog', () => {
+  it('remembers an optional name locally and sends the name shown in the preview', async () => {
+    const values = new Map<string, string>();
+    vi.stubGlobal('localStorage', {
+      getItem: (key: string) => values.get(key) ?? null,
+      setItem: (key: string, value: string) => values.set(key, value),
+      removeItem: (key: string) => values.delete(key),
+    });
+    const { lab, find, sent, document } = setup();
+    lab.openSendDialog({ getRun: () => ({ seed: 1 }) });
+    find('hflab-name').value = '  Sam  ';
+    await find('hflab-name').fire('input');
+    await settled();
+    expect(JSON.parse(find('exact').value).name).toBe('Sam');
+    await find('send').fire('click');
+    expect(JSON.parse(sent[0] ?? '{}').name).toBe('Sam');
+    await document.body
+      .all()
+      .find((node) => node.textContent === 'Close')
+      ?.fire('click');
+    lab.openSendDialog({ getRun: () => ({ seed: 2 }) });
+    expect(find('hflab-name').value).toBe('Sam');
+    await settled();
+  });
   it('offers explicit browser-signal consent and lets the player revoke it', async () => {
     vi.stubGlobal('location', { hostname: 'pass.adamwhite.work' });
     vi.stubGlobal('navigator', { globalPrivacyControl: true });

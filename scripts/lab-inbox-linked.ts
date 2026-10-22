@@ -10,6 +10,7 @@ export type LinkedRecord = {
   at: number;
   build: Record<string, string>;
   data: unknown;
+  name?: string;
 };
 export type LinkedEntry = Omit<LinkedRecord, 'v' | 'data'> & { key: string; size: number };
 const hex = /^[a-f0-9]{32}$/;
@@ -92,4 +93,28 @@ export function linkedUploads(records: LinkedRecord[]): LinkedUpload[] {
     }
   }
   return result;
+}
+
+/** Latest explicit feedback name labels the whole player timeline, across games. */
+export function playerNames(records: LinkedRecord[]): Map<string, string> {
+  const names = new Map<string, string>();
+  for (const r of [...records].sort((a, b) => a.at - b.at || a.id.localeCompare(b.id))) {
+    if (!names.has(r.player)) names.set(r.player, '');
+    if (r.kind !== 'note') continue;
+    const name = typeof r.name === 'string' ? r.name.trim().slice(0, 60) : '';
+    if (name) names.set(r.player, name);
+  }
+  return names;
+}
+
+/** Legacy labels are hints: exact player id, or one unique current name. Never merge player ids. */
+export function legacyPlayer(
+  env: { who?: string; name?: string },
+  names: Map<string, string>,
+): string | undefined {
+  const label = (env.name || env.who)?.trim();
+  if (!label) return undefined;
+  if (names.has(label)) return label;
+  const matches = [...names].filter(([, name]) => name === label);
+  return matches.length === 1 ? matches[0]?.[0] : undefined;
 }

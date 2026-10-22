@@ -59,7 +59,10 @@ export type Lab = {
   readonly privacyOverride: boolean;
   setPrivacyOverride(allow: boolean): void;
   /** Queues a linked run and resolves to its upload reference; this is not a delivery receipt. */
-  sendRun(run: unknown, extra?: { note?: string; who?: string } & CompactOptions): Promise<string>;
+  sendRun(
+    run: unknown,
+    extra?: { note?: string; who?: string; name?: string } & CompactOptions,
+  ): Promise<string>;
   /** Queues the run and note from a serialized envelope, adding linkage metadata. */
   sendEnvelopeText(text: string): Promise<string>;
   /** Opens the "Send this run to the notebook" dialog. */
@@ -75,7 +78,7 @@ export type Lab = {
   captureSave(value: unknown): void;
   log(level: 'error' | 'warn' | 'game', message: string): void;
   /** Queues feedback attached to the current linked run. It does not opt into character analysis. */
-  sendFeedback(note: string): Promise<string>;
+  sendFeedback(note: string, options?: { name?: string }): Promise<string>;
   readonly game: string;
   readonly endpoint: string;
   /** The build info once known. */
@@ -456,18 +459,24 @@ export function createLab(options: LabOptions): Lab {
           .then(() => transport.send('save', value, captured))
           .catch(() => {});
     },
-    async sendFeedback(note) {
+    async sendFeedback(note, options = {}) {
       syncRun();
       if (stopped()) throw new Error('Lab recording is off.');
       await snapshot?.();
-      return transport.send('note', { note: note.trim().slice(0, 4000) });
+      return transport.send('note', { note: note.trim().slice(0, 4000) }, undefined, options.name);
     },
     async sendRun(run, extra = {}) {
       syncRun();
       if (!stopped()) {
         await (identity?.ready ?? Promise.resolve());
         const id = await transport.send('run', run);
-        if (extra.note) await transport.send('note', { note: extra.note.slice(0, 4000) });
+        if (extra.note || extra.name?.trim())
+          await transport.send(
+            'note',
+            { note: extra.note?.trim().slice(0, 4000) ?? '' },
+            undefined,
+            extra.name,
+          );
         return id;
       }
       if (off || readLocal(RECORDING_OFF) === '1') throw new Error('Lab recording is off.');
@@ -477,8 +486,8 @@ export function createLab(options: LabOptions): Lab {
     async sendEnvelopeText(text) {
       if (off || readLocal(RECORDING_OFF) === '1') throw new Error('Lab recording is off.');
       if (!stopped()) {
-        const envelope = JSON.parse(text) as { run: unknown; note?: string };
-        return lab.sendRun(envelope.run, { note: envelope.note });
+        const envelope = JSON.parse(text) as { run: unknown; note?: string; name?: string };
+        return lab.sendRun(envelope.run, { note: envelope.note, name: envelope.name });
       }
       if (!checkRun(text)) throw new Error(runRefusal(text));
       const body = await gzip(text);

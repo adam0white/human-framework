@@ -8,6 +8,7 @@ import { type TelemetryLab, telemetryToggle } from './telemetry.ts';
 export type NotebookLab = TelemetryLab & {
   openSendDialog(options: {
     getRun: () => unknown;
+    name?: string;
     compact?: (run: unknown) => unknown;
     compactNote?: string;
   }): void;
@@ -18,6 +19,8 @@ export type NotebookMenuOptions = {
   lab?: NotebookLab | null;
   getRun: () => unknown;
   filename: string;
+  /** Optional feedback name prefill; the client remembers submitted names on this device. */
+  name?: string;
   compact?: (run: unknown) => unknown;
   compactNote?: string;
   onSave?: () => void | Promise<void>;
@@ -110,7 +113,11 @@ export function notebookMenu(options: NotebookMenuOptions): HTMLButtonElement {
           sheet.close();
         });
         try {
-          lab.openSendDialog({ getRun: options.getRun, ...compact });
+          lab.openSendDialog({
+            getRun: options.getRun,
+            ...(options.name !== undefined ? { name: options.name } : {}),
+            ...compact,
+          });
         } catch {
           showSheet(sheet);
           status.textContent = 'Sending could not open. Download this run; it still has everything.';

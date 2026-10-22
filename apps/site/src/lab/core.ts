@@ -42,6 +42,8 @@ export type RunEnvelope = {
   note?: string;
   /** optional "who you are" label, e.g. 'owner' */
   who?: string;
+  /** Optional feedback name, labelling linked play when linkage is present. */
+  name?: string;
   build?: { c?: string; hf?: string; a?: string };
   /** The game shortened its replay export before sending. */
   compacted?: boolean;
@@ -232,6 +234,10 @@ export function parseRun(text: string): { ok: true; run: RunEnvelope } | { ok: f
   const note = typeof r.note === 'string' ? r.note.trim().slice(0, LIMITS.noteChars) : '';
   if (typeof r.compacted === 'boolean') out.compacted = r.compacted;
   if (note) out.note = note;
+  if (r.name !== undefined && (typeof r.name !== 'string' || r.name.trim().length > 60))
+    return { ok: false, error: 'bad name' };
+  const name = typeof r.name === 'string' ? r.name.trim() : '';
+  if (name) out.name = name;
   const who = cleanText(r.who, LIMITS.whoChars);
   if (who) out.who = who;
   return { ok: true, run: out };

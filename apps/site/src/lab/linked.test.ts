@@ -223,3 +223,18 @@ describe('linked lab records', () => {
     expect(store.size).toBe(0);
   });
 });
+
+it('preserves a bounded optional name only on feedback records', () => {
+  const parsed = parseLinked(
+    JSON.stringify(envelope({ kind: 'note', name: '  Sam  ', data: { note: 'hello' } })),
+    Date.now(),
+  );
+  expect(parsed).toMatchObject({ ok: true, record: { name: 'Sam' } });
+  expect(parseLinked(JSON.stringify(envelope({ kind: 'note', name: 'x'.repeat(61) })), Date.now()).ok).toBe(
+    false,
+  );
+  expect(parseLinked(JSON.stringify(envelope({ name: 'Sam' })), Date.now())).toMatchObject({
+    ok: true,
+    record: expect.not.objectContaining({ name: 'Sam' }),
+  });
+});

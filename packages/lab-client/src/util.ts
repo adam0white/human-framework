@@ -9,15 +9,17 @@ export function runEnvelope(
   game: string,
   build: Build,
   run: unknown,
-  extra: { note?: string; who?: string; compacted?: boolean } = {},
+  extra: { note?: string; who?: string; name?: string; compacted?: boolean } = {},
 ) {
   const note = extra.note?.trim();
   const who = extra.who?.trim();
+  const name = extra.name?.trim().slice(0, 60);
   return {
     v: 1 as const,
     game,
     ...(note ? { note } : {}),
     ...(who ? { who } : {}),
+    ...(name ? { name } : {}),
     build,
     run,
     ...(extra.compacted ? { compacted: true } : {}),

@@ -172,15 +172,23 @@ export function linkedTransport(options: {
       } catch {}
     });
   };
-  async function send(kind: LinkedKind, data: unknown, captured?: Link): Promise<string> {
+  async function send(
+    kind: LinkedKind,
+    data: unknown,
+    captured?: Link,
+    feedbackName?: string,
+  ): Promise<string> {
     await ready;
     const epoch = generation;
     const link = captured ?? options.link();
     if (!options.enabled() || !link) throw new Error('Lab recording is off.');
+    const name = kind === 'note' ? feedbackName?.trim().slice(0, 60) : undefined;
     const text = JSON.stringify(data);
     if (text === undefined || new TextEncoder().encode(text).byteLength > LINKED_LIMITS.total)
       throw new Error('This snapshot exceeds the 16 MiB recording limit.');
-    const upload = await hash(JSON.stringify({ ...link, game: options.game, kind, text }));
+    const upload = await hash(
+      JSON.stringify({ ...link, game: options.game, kind, text, ...(name ? { name } : {}) }),
+    );
     const pieces: unknown[] =
       kind === 'run' || kind === 'save'
         ? Array.from({ length: Math.ceil(text.length / LINKED_LIMITS.chunkChars) }, (_, index) => ({
@@ -207,6 +215,7 @@ export function linkedTransport(options: {
         at,
         build: options.build(),
         data: piece,
+        ...(name ? { name } : {}),
         ...(options.override() ? { privacyOverride: true } : {}),
       });
       if (new TextEncoder().encode(envelope).byteLength > LINKED_LIMITS.inflated)

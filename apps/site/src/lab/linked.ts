@@ -23,6 +23,7 @@ export type LinkedEnvelope = {
   at: number;
   build: { c?: string; hf?: string; a?: string };
   data: unknown;
+  name?: string;
   privacyOverride?: true;
 };
 export type LinkedMeta = Omit<LinkedEnvelope, 'v' | 'data' | 'privacyOverride'> & {
@@ -71,6 +72,9 @@ export function parseLinked(
     const value = cleanText(b[field], 20);
     if (value && /^[0-9A-Za-z.+-]+$/.test(value)) build[field] = value;
   }
+  if (r.name !== undefined && (typeof r.name !== 'string' || r.name.trim().length > 60))
+    return fail('bad name');
+  const name = r.kind === 'note' && typeof r.name === 'string' ? r.name.trim() : '';
   let data = r.data;
   if (data && typeof data === 'object' && !Array.isArray(data) && 'encoding' in data) {
     const chunk = data as Record<string, unknown>;
@@ -128,6 +132,7 @@ export function parseLinked(
       at: r.at,
       build,
       data,
+      ...(name ? { name } : {}),
       ...(r.privacyOverride === true ? { privacyOverride: true } : {}),
     },
   };

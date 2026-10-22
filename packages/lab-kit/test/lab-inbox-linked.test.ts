@@ -2,7 +2,9 @@ import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { expect, it } from 'vitest';
 
-const { linkedUploads } = await import(pathToFileURL(resolve('scripts/lab-inbox-linked.ts')).href);
+const { linkedUploads, playerNames, legacyPlayer } = await import(
+  pathToFileURL(resolve('scripts/lab-inbox-linked.ts')).href
+);
 const id = (digit: string) => digit.repeat(32);
 const record = (index: number, text: string, extra = {}) => ({
   v: 2,
@@ -55,4 +57,19 @@ it('accepts complete Unicode chunks within the Worker UTF-8 bound', () => {
       record(0, text, { data: { encoding: 'json', upload: id('d'), index: 0, total: 1, text } }),
     ])[0],
   ).toMatchObject({ status: 'complete', value: '界'.repeat(64 * 1024 - 2) });
+});
+
+it('labels an entire player timeline by its latest name and matches only unique legacy labels', () => {
+  const records = [
+    record(0, '{}', { kind: 'note', at: 3, name: '  Sam  ' }),
+    record(1, '{}', { kind: 'note', at: 1, name: 'Old name' }),
+    record(2, '{}', { kind: 'note', at: 2, player: id('f'), name: 'Sam' }),
+  ];
+  const names = playerNames(records);
+  expect(names.get(id('a'))).toBe('Sam');
+  expect(legacyPlayer({ who: 'Sam' }, names)).toBeUndefined();
+  expect(legacyPlayer({ who: id('a') }, names)).toBe(id('a'));
+  expect(legacyPlayer({ who: 'Old name' }, names)).toBeUndefined();
+  names.delete(id('f'));
+  expect(legacyPlayer({ who: ' Sam ' }, names)).toBe(id('a'));
 });
