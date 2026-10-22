@@ -5807,6 +5807,20 @@
     "fix:lab optional remembered feedback name labels linked player history and bounded legacy label matches (implemented)"
    ],
    "source": "Owner feedback relayed by Opus 2026-10-22"
+  },
+  {
+   "id": "F-438",
+   "date": "2026-10-22",
+   "game": "pass",
+   "kind": "owner",
+   "who": "owner",
+   "words": "All good decisions, proceed.",
+   "verdict": "-",
+   "routes": [
+    "fix:pass approved UI sweep with automatic pacing and no speed or until-next-event buttons (implemented for owner retest)",
+    "fix:pass optional remembered Send word name (implemented)"
+   ],
+   "source": "Owner approval relayed by Opus, UI sweep specs/pass.md and GRAMMAR.md addendum 2026-10-22"
   }
  ],
  "lessons": [
@@ -6413,7 +6427,7 @@
   }
  ],
  "routes": {
-  "fix": 463,
+  "fix": 465,
   "lesson": 291,
   "hf": 12,
   "calibration": 42,
