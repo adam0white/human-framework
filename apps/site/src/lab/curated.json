@@ -6015,6 +6015,34 @@
     "fix:glance guarded advance labelled Skip ⏩ (implemented)"
    ],
    "source": "Owner addenda relayed by Opus, glance/docs/design.md approved UI sweep 2026-10-22"
+  },
+  {
+   "id": "F-453",
+   "date": "2026-10-22",
+   "game": "hearsay",
+   "kind": "owner",
+   "who": "owner",
+   "words": "All good decisions, proceed.",
+   "verdict": "-",
+   "routes": [
+    "fix:hearsay approved UI sweep with visible talk subjects and words plus drawn wedding doubts (implemented for owner retest)",
+    "fix:hearsay named Send word with recording and privacy consent paths (implemented)"
+   ],
+   "source": "Owner approval relayed by Opus, UI sweep specs/hearsay.md and GRAMMAR.md addenda 2026-10-22"
+  },
+  {
+   "id": "F-454",
+   "date": "2026-10-22",
+   "game": "hearsay",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Good direction, proceed please, menu is fine. Just \"until something happens\" is too long, maybe Skip or Fast Forward or something else could be better.",
+   "verdict": "-",
+   "routes": [
+    "fix:hearsay automatic pacing by default with Slow Steady Fast in the menu (implemented for owner retest)",
+    "fix:hearsay guarded advance labelled Skip ⏩ (implemented)"
+   ],
+   "source": "Owner addenda relayed by Opus, UI sweep grammar 2026-10-22"
   }
  ],
  "lessons": [
@@ -6621,7 +6649,7 @@
   }
  ],
  "routes": {
-  "fix": 491,
+  "fix": 495,
   "lesson": 291,
   "hf": 12,
   "calibration": 42,
