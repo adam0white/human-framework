@@ -5821,6 +5821,33 @@
     "fix:pass optional remembered Send word name (implemented)"
    ],
    "source": "Owner approval relayed by Opus, UI sweep specs/pass.md and GRAMMAR.md addendum 2026-10-22"
+  },
+  {
+   "id": "F-439",
+   "date": "2026-10-22",
+   "game": "neighbours",
+   "kind": "owner",
+   "who": "owner",
+   "words": "All good decisions, proceed.",
+   "verdict": "-",
+   "routes": [
+    "fix:neighbours approved map-first UI sweep with title save paths and menu studies (implementation in progress, owner retest pending)",
+    "fix:neighbours named Send word with recording and privacy consent paths (implementation in progress, owner retest pending)"
+   ],
+   "source": "Owner approval relayed by Opus, UI sweep specs/neighbours.md and GRAMMAR.md addenda 2026-10-22"
+  },
+  {
+   "id": "F-440",
+   "date": "2026-10-22",
+   "game": "neighbours",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Good direction, proceed please, menu is fine. Just \"until something happens\" is too long, maybe Skip or Fast Forward or something else could be better.",
+   "verdict": "-",
+   "routes": [
+    "fix:neighbours automatic pacing with optional menu speeds and Skip ⏩ action (implementation in progress, owner retest pending)"
+   ],
+   "source": "Owner approval relayed by Opus, GRAMMAR.md pacing and skip-button addendum 2026-10-22"
   }
  ],
  "lessons": [
@@ -6427,7 +6454,7 @@
   }
  ],
  "routes": {
-  "fix": 465,
+  "fix": 468,
   "lesson": 291,
   "hf": 12,
   "calibration": 42,
