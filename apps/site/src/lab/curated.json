@@ -6043,6 +6043,34 @@
     "fix:hearsay guarded advance labelled Skip ⏩ (implemented)"
    ],
    "source": "Owner addenda relayed by Opus, UI sweep grammar 2026-10-22"
+  },
+  {
+   "id": "F-455",
+   "date": "2026-10-22",
+   "game": "repair",
+   "kind": "owner",
+   "who": "owner",
+   "words": "All good decisions, proceed.",
+   "verdict": "-",
+   "routes": [
+    "fix:repair approved Small Works UI sweep with title save paths and pinned bench actions (implemented for owner retest)",
+    "fix:repair named Send word with recording and privacy consent paths (implemented)"
+   ],
+   "source": "Owner approval relayed by Opus, UI sweep specs/small-works.md and GRAMMAR.md addenda 2026-10-22"
+  },
+  {
+   "id": "F-456",
+   "date": "2026-10-22",
+   "game": "repair",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Good direction, proceed please, menu is fine. Just \"until something happens\" is too long, maybe Skip or Fast Forward or something else could be better.",
+   "verdict": "-",
+   "routes": [
+    "fix:repair keep the approved action-costed workshop clock with a workday bar and due-time ticks (implemented for owner retest)",
+    "fix:repair optional remembered name belongs in Send word (implemented)"
+   ],
+   "source": "Owner addenda relayed by Opus, Small Works time-control exception and UI sweep grammar 2026-10-22"
   }
  ],
  "lessons": [
@@ -6649,7 +6677,7 @@
   }
  ],
  "routes": {
-  "fix": 495,
+  "fix": 499,
   "lesson": 291,
   "hf": 12,
   "calibration": 42,
