@@ -5875,6 +5875,34 @@
     "fix:murmur automatic default with optional menu speeds and guarded Skip ⏩ action (implemented for owner retest)"
    ],
    "source": "Owner approval relayed by Opus, GRAMMAR.md pacing and skip-button addendum 2026-10-22"
+  },
+  {
+   "id": "F-443",
+   "date": "2026-10-22",
+   "game": "goodhands",
+   "kind": "owner",
+   "who": "owner",
+   "words": "All good decisions, proceed.",
+   "verdict": "-",
+   "routes": [
+    "fix:goodhands implement approved UI sweep with sheet takeovers, visible notes and conversation history, reachable phone and bottom actions (implemented for owner retest)"
+   ],
+   "source": "Owner approval relayed by Opus, good-hands UI sweep spec 2026-10-22"
+  },
+  {
+   "id": "F-444",
+   "date": "2026-10-22",
+   "game": "goodhands",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Good direction, proceed please, menu is fine. Just \"until something happens\" is too long, maybe Skip or Fast Forward or something else could be better.",
+   "verdict": "-",
+   "routes": [
+    "fix:goodhands automatic pacing by default with Slow Steady Fast in the menu",
+    "fix:goodhands label skip ahead Skip ⏩ and show its next event",
+    "fix:goodhands Send word with optional remembered name (implemented for owner retest)"
+   ],
+   "source": "Owner addenda relayed by Opus, UI sweep grammar 2026-10-22"
   }
  ],
  "lessons": [
@@ -6481,7 +6509,7 @@
   }
  ],
  "routes": {
-  "fix": 471,
+  "fix": 475,
   "lesson": 291,
   "hf": 12,
   "calibration": 42,
