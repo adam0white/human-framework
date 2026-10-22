@@ -5848,6 +5848,33 @@
     "fix:neighbours automatic pacing with optional menu speeds and Skip ⏩ action (implementation in progress, owner retest pending)"
    ],
    "source": "Owner approval relayed by Opus, GRAMMAR.md pacing and skip-button addendum 2026-10-22"
+  },
+  {
+   "id": "F-441",
+   "date": "2026-10-22",
+   "game": "murmur",
+   "kind": "owner",
+   "who": "owner",
+   "words": "All good decisions, proceed.",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur approved UI sweep with pinned answers and compact journal records (implemented for owner retest)",
+    "fix:murmur named Send word with recording and privacy consent paths (implemented)"
+   ],
+   "source": "Owner approval relayed by Opus, UI sweep specs/two-voices.md and GRAMMAR.md addenda 2026-10-22"
+  },
+  {
+   "id": "F-442",
+   "date": "2026-10-22",
+   "game": "murmur",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Good direction, proceed please, menu is fine. Just \"until something happens\" is too long, maybe Skip or Fast Forward or something else could be better.",
+   "verdict": "-",
+   "routes": [
+    "fix:murmur automatic default with optional menu speeds and guarded Skip ⏩ action (implemented for owner retest)"
+   ],
+   "source": "Owner approval relayed by Opus, GRAMMAR.md pacing and skip-button addendum 2026-10-22"
   }
  ],
  "lessons": [
@@ -6454,7 +6481,7 @@
   }
  ],
  "routes": {
-  "fix": 468,
+  "fix": 471,
   "lesson": 291,
   "hf": 12,
   "calibration": 42,
