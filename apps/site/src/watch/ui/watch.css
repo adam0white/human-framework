@@ -2659,3 +2659,36 @@
     height: min(520px, calc(100dvh - 44px));
   }
 }
+/* Explicit rows also replace the lab kit's three-row defaults on title and end pages. */
+.phase-goal .w-mapwrap {
+  grid-row: 1;
+}
+.phase-goal .w-panel {
+  grid-row: 2;
+}
+.phase-fair .w-panel,
+.phase-thaw .w-panel,
+.phase-closed .w-panel {
+  grid-row: 2;
+}
+.phase-fallen .w-panel {
+  grid-row: 1;
+}
+@media (max-width: 899px) {
+  .watch .w-menu {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}
+@media (min-width: 900px) {
+  .watch .w-mapwrap,
+  .watch .w-panel {
+    grid-row: 1;
+  }
+}
+.watch:has(.w-menu) .w-mapwrap,
+.watch:has(.w-menu) .w-state-wrap {
+  opacity: 0.35;
+}
