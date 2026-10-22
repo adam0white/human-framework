@@ -5903,6 +5903,34 @@
     "fix:goodhands Send word with optional remembered name (implemented for owner retest)"
    ],
    "source": "Owner addenda relayed by Opus, UI sweep grammar 2026-10-22"
+  },
+  {
+   "id": "F-445",
+   "date": "2026-10-22",
+   "game": "valley",
+   "kind": "owner",
+   "who": "owner",
+   "words": "All good decisions, proceed.",
+   "verdict": "-",
+   "routes": [
+    "fix:valley approved UI sweep with visible phone map, house row, direct verbs and unfolded replies (implemented for owner retest)",
+    "fix:valley named Send word and fingerprint-checked playtest shelf (implemented)"
+   ],
+   "source": "Owner approval relayed by Opus, valley/docs/design.md approved UI sweep 2026-10-22"
+  },
+  {
+   "id": "F-446",
+   "date": "2026-10-22",
+   "game": "valley",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Good direction, proceed please, menu is fine. Just \"until something happens\" is too long, maybe Skip or Fast Forward or something else could be better.",
+   "verdict": "-",
+   "routes": [
+    "fix:valley automatic pacing by default with optional Slow Steady Fast in the menu (implemented for owner retest)",
+    "fix:valley guarded skip labelled Skip ⏩ (implemented)"
+   ],
+   "source": "Owner addenda relayed by Opus, valley/docs/design.md approved UI sweep 2026-10-22"
   }
  ],
  "lessons": [
@@ -6509,7 +6537,7 @@
   }
  ],
  "routes": {
-  "fix": 475,
+  "fix": 479,
   "lesson": 291,
   "hf": 12,
   "calibration": 42,
