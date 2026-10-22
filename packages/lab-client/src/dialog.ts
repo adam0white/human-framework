@@ -10,6 +10,8 @@ import { checkRun, compressedRefusal, RUN_LIMITS, runRefusal } from './limits.ts
 import { type CompactOptions, gzip, PRIVACY_URL, runEnvelope } from './util.ts';
 
 export type SendDialogOptions = CompactOptions & {
+  /** Initial feedback text, retained when a consented send falls back to this dialog. */
+  note?: string;
   lab: Lab;
   /** Returns the game's playtest export (seed, input log, state) at the moment the dialog opens. */
   getRun: () => unknown;
@@ -98,6 +100,7 @@ export function openSendDialog(options: SendDialogOptions): void {
 
   const titleId = 'hflab-title';
   const note = el('textarea', { id: 'hflab-note', rows: 4, maxLength: 4000 });
+  note.value = options.note?.slice(0, 4000) ?? '';
   note.placeholder = 'What you felt, where you got stuck, what you wanted to do.';
   const who = el('input', { id: 'hflab-who', type: 'text', maxLength: 40, value: options.who ?? '' });
   who.placeholder = 'e.g. owner, a friend of Adam';

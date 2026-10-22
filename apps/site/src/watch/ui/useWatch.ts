@@ -9,7 +9,7 @@ import { startTickLoop } from '../../shared/tick-loop.ts';
 import { trackWorkerRun } from '../../shared/worker-telemetry.ts';
 import { type MainToWorker, type PageInfo, WATCH_SCENARIO_VERSION, type WorkerToMain } from '../protocol.ts';
 import type { Input } from '../sim/night.ts';
-import type { Speed } from '../sim/pace.ts';
+import { DECISION_RATE, RAMP_MS, type Speed } from '../sim/pace.ts';
 import type { PlaytestExport } from '../sim/run.ts';
 import type { Frame } from '../sim/view.ts';
 import WatchWorker from '../worker.ts?worker';
@@ -18,6 +18,8 @@ export interface WatchActions {
   input(i: Input): void;
   setSpeed(s: Speed): void;
   hold(on: boolean): void;
+  /** A helper sheet uses the same reading pace as a pending night decision. */
+  readingSlow?(on: boolean): void;
   exportRun(): Promise<PlaytestExport>;
   restart(seed: number): void;
   /** Ask the worker for the saved pages again (the shelf refreshes itself on start). */
@@ -52,6 +54,9 @@ export function initialSeed(): number {
 
 export function useWatch(): Watch {
   const worker = useRef<Worker | null>(null);
+  const reading = useRef(false);
+  const loadedPace = useRef(false);
+  const latest = useRef<{ speed: Speed; frame: Frame | null }>({ speed: 'watch', frame: null });
   const gen = useRef(0);
   const [seed, setSeed] = useState(initialSeed);
   const seedRef = useRef(seed);
@@ -77,6 +82,7 @@ export function useWatch(): Watch {
         loads.current.delete(msg.id);
         if (!msg.ok && wait && gen.current === msg.gen) gen.current = wait.prev;
         if (msg.ok && msg.seed !== undefined) {
+          loadedPace.current = true;
           seedRef.current = msg.seed;
           setSeed(msg.seed);
           setError(null);
@@ -92,6 +98,15 @@ export function useWatch(): Watch {
           setCurrent(msg.current);
           return;
         case 'frame':
+          if (loadedPace.current) {
+            loadedPace.current = false;
+            const phase = msg.frame.phase;
+            w.postMessage({
+              type: 'speed',
+              speed: phase === 'spring' || phase === 'summer' || phase === 'autumn' ? 'seasons' : 'watch',
+            } satisfies MainToWorker);
+          }
+          latest.current = { speed: msg.speed, frame: msg.frame };
           setFrame(msg.frame);
           setSpeedState(msg.speed);
           return;
@@ -117,7 +132,16 @@ export function useWatch(): Watch {
       scenarioVersion: WATCH_SCENARIO_VERSION,
     } satisfies MainToWorker);
     const stopTelemetry = trackWorkerRun(w, gameLabs.watch, () => gen.current);
-    const stop = startTickLoop((dtMs) => w.postMessage({ type: 'tick', dtMs } satisfies MainToWorker));
+    let readingFactor = 1;
+    const stop = startTickLoop((dtMs) => {
+      const { frame } = latest.current;
+      const target =
+        reading.current && frame?.phase === 'night' && !frame.moment
+          ? Math.min(1, DECISION_RATE / Math.max(DECISION_RATE, frame.rate))
+          : 1;
+      readingFactor = target < readingFactor ? target : Math.min(target, readingFactor + dtMs / RAMP_MS);
+      w.postMessage({ type: 'tick', dtMs: dtMs * readingFactor } satisfies MainToWorker);
+    });
     // Write the running page when the tab is hidden or closed, so a reload loses next to nothing.
     const keep = () => {
       if (document.visibilityState === 'hidden') w.postMessage({ type: 'save' } satisfies MainToWorker);
@@ -143,6 +167,9 @@ export function useWatch(): Watch {
         send({ type: 'speed', speed: s });
       },
       hold: (on) => send({ type: 'hold', on }),
+      readingSlow: (on) => {
+        reading.current = on;
+      },
       // The page stamps the deployed commit (`/release.json`, as Games 1 and 2 do); the worker cannot know it.
       exportRun: async () => {
         const [data, build] = await Promise.all([

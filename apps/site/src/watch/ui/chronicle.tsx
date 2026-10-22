@@ -1,17 +1,9 @@
-/**
- * The chronicle is the menu (spec §6): opening it holds the clock. Volumes are the save slots and there is no
- * rewind within a volume, so the menu shows:
- * - this chronicle's shelf of volumes; a closed volume can be taken up again, which begins a *new* chronicle from
- *   its last page and leaves this one as it is;
- * - other kept chronicles, each opened at its running page ("Continue"), with their closed volumes;
- * - what was lately written (folded), the playtest export and a new village.
- * Season pages are kept only as backups (`store.ts`) and are not offered here.
- */
+/** The menu reads the chronicle. Continuing saved pages belongs to the title's shelf. */
 import { useEffect, useState } from 'react';
 import { FullscreenButton } from '../../shared/fullscreen.tsx';
 import type { PageInfo } from '../protocol.ts';
 import type { Frame, FrameVolume } from '../sim/view.ts';
-import { ExportButtons } from './exporting.tsx';
+import { FeedbackScreen, RecordingPreference } from './exporting.tsx';
 import { Icon } from './icons.tsx';
 import { SEASON_WORDS, yearWords } from './pages.tsx';
 import type { WatchActions } from './useWatch.ts';
@@ -25,7 +17,6 @@ interface Group {
   newest: number;
 }
 
-/** Saved pages by chronicle, the most recently kept chronicle first; closed volumes oldest first. */
 export function groups(shelf: PageInfo[]): Group[] {
   const by = new Map<string, Group>();
   for (const p of shelf) {
@@ -44,27 +35,192 @@ export function groups(shelf: PageInfo[]): Group[] {
   return out.sort((a, b) => b.newest - a.newest);
 }
 
-/** The volumes on the shelf and the one being written, once each. */
 function volumes(frame: Frame): FrameVolume[] {
   const seen = new Set<number>();
-  const out: FrameVolume[] = [];
-  for (const v of [...frame.shelf, frame.volume]) {
-    if (seen.has(v.n)) continue;
+  return [...frame.shelf, frame.volume].filter((v) => {
+    if (seen.has(v.n)) return false;
     seen.add(v.n);
-    out.push(v);
-  }
-  return out;
+    return true;
+  });
+}
+
+export function HopesSheet({
+  frame,
+  actions,
+  onClose,
+}: {
+  frame: Frame;
+  actions: WatchActions;
+  onClose: () => void;
+}) {
+  return (
+    <div className="w-overlay w-sub-sheet" role="dialog" aria-label="The village’s hopes">
+      <div className="w-menu-head">
+        <h2>The village’s hopes</h2>
+      </div>
+      <div className="w-sheet-body">
+        <WinterSetting frame={frame} actions={actions} />
+      </div>
+      <div className="w-sheet-actions">
+        <button type="button" className="w-primary" onClick={onClose}>
+          Done
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/** Only this title-page sheet loads a save or branches a closed volume. */
+export function Shelf({
+  shelf,
+  current,
+  actions,
+  onClose,
+  onLoaded,
+}: {
+  shelf: PageInfo[];
+  current: string;
+  actions: WatchActions;
+  onClose: () => void;
+  onLoaded?: () => void;
+}) {
+  const [busy, setBusy] = useState<string | null>(null);
+  const [note, setNote] = useState('');
+  useEffect(() => {
+    actions.refreshShelf();
+  }, [actions]);
+  const load = async (id: string) => {
+    setBusy(id);
+    setNote('');
+    try {
+      if (await actions.load(id)) {
+        onClose();
+        onLoaded?.();
+      } else setNote('That page could not be read. The chronicle you have open goes on.');
+    } catch {
+      setNote('That page could not be read. Please try again.');
+    } finally {
+      setBusy(null);
+    }
+  };
+  const all = groups(shelf);
+  return (
+    <div className="w-overlay w-sub-sheet" role="dialog" aria-label="The shelf">
+      <div className="w-menu-head">
+        <h2>The shelf</h2>
+      </div>
+      <div className="w-sheet-body">
+        <p className="w-note">Taking up a closed volume begins a new chronicle from its last page.</p>
+        <h3>Other chronicles</h3>
+        {all.length === 0 ? <p>No chronicles are kept yet.</p> : null}
+        {all.map((g) => (
+          <section key={g.chronicle} className="w-pages">
+            <ul>
+              {g.auto && g.chronicle !== current ? (
+                <li className="w-pagerow">
+                  <span>
+                    The village of seed {g.auto.seed}
+                    <span className="w-note">
+                      {' '}
+                      · {yearWords(g.auto.year)}, {pageWhen(g.auto.when)}
+                    </span>
+                  </span>
+                  <button
+                    type="button"
+                    className="w-secondary"
+                    disabled={busy !== null}
+                    onClick={() => g.auto && load(g.auto.id)}
+                  >
+                    {busy === g.auto.id ? 'Opening…' : 'Continue'}
+                  </button>
+                </li>
+              ) : null}
+              {g.volumes.map((p) => (
+                <li key={p.id} className="w-pagerow">
+                  <span>
+                    Volume {p.volume?.numeral}, <em>{p.volume?.title}</em>
+                    <span className="w-note"> · {p.volume?.end}</span>
+                  </span>
+                  <button
+                    type="button"
+                    className="w-secondary"
+                    disabled={busy !== null}
+                    onClick={() => load(p.id)}
+                  >
+                    {busy === p.id ? 'Opening…' : 'Take up again'}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+        {note ? (
+          <p role="status" className="w-soft-fail">
+            {note}
+          </p>
+        ) : null}
+      </div>
+      <div className="w-sheet-actions">
+        <button type="button" className="w-primary" onClick={onClose}>
+          Done
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function ReadChronicle({ frame, onClose }: { frame: Frame; onClose: () => void }) {
+  return (
+    <div className="w-overlay w-sub-sheet" role="dialog" aria-label="Read the chronicle">
+      <div className="w-menu-head">
+        <h2>Read the chronicle</h2>
+      </div>
+      <div className="w-sheet-body">
+        <h3>Lately written</h3>
+        {frame.chronicle.length === 0 ? <p>Nothing is written yet.</p> : null}
+        <ol className="w-lines">
+          {frame.chronicle
+            .slice()
+            .reverse()
+            .map((l) => (
+              <li key={`${l.year}-${l.minute}-${l.text}`}>
+                <span className="w-line-when">
+                  {SEASON_WORDS[l.season]}, {yearWords(l.year)}
+                </span>
+                {l.text}
+              </li>
+            ))}
+        </ol>
+        <h3>The volumes</h3>
+        <ul className="w-vols">
+          {volumes(frame).map((v) => (
+            <li key={v.n} className="w-vol">
+              <span className="w-vol-spine">{v.numeral}</span>
+              <span className="w-vol-body">
+                <strong>{v.title}</strong>
+                <span>{v.question}</span>
+                <span>{v.end ?? 'Still being written.'}</span>
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="w-sheet-actions">
+        <button type="button" className="w-primary" onClick={onClose}>
+          Back to the menu
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export function Chronicle({
   frame,
   actions,
-  seed,
-  shelf,
   saving,
-  current,
   onClose,
-  tallySetting,
+  onFeedback,
+  onTitle,
 }: {
   frame: Frame;
   actions: WatchActions;
@@ -74,44 +230,13 @@ export function Chronicle({
   current: string;
   onClose: () => void;
   tallySetting?: React.ReactNode;
+  onFeedback?: () => void;
+  onTitle?: () => void;
 }) {
-  const [loadNote, setLoadNote] = useState('');
-  const [confirmNew, setConfirmNew] = useState(false);
-  const [busy, setBusy] = useState<string | null>(null);
-
-  useEffect(() => {
-    actions.refreshShelf();
-  }, [actions]);
-
-  const load = async (id: string) => {
-    setBusy(id);
-    setLoadNote('');
-    const ok = await actions.load(id);
-    setBusy(null);
-    if (ok) onClose();
-    else
-      setLoadNote(
-        'That page could not be read; it may have been written by an older version of the game. The chronicle you have open goes on.',
-      );
-  };
-
-  const all = groups(shelf);
-  const mine = all.find((g) => g.chronicle === current);
-  const others = all.filter((g) => g.chronicle !== current);
-  const lines = frame.chronicle.slice().reverse();
-  const takeUp = (p: PageInfo | undefined) =>
-    p ? (
-      <button
-        type="button"
-        className="w-load"
-        disabled={busy !== null}
-        onClick={() => load(p.id)}
-        aria-label={`Take up volume ${p.volume?.numeral ?? ''} again as a new chronicle`}
-      >
-        {busy === p.id ? 'Opening…' : 'Take up again'}
-      </button>
-    ) : null;
-
+  const [page, setPage] = useState<'read' | 'hopes' | 'feedback' | null>(null);
+  if (page === 'read') return <ReadChronicle frame={frame} onClose={() => setPage(null)} />;
+  if (page === 'hopes') return <HopesSheet frame={frame} actions={actions} onClose={() => setPage(null)} />;
+  if (page === 'feedback') return <FeedbackScreen actions={actions} onBack={() => setPage(null)} />;
   return (
     <div className="w-menu" role="dialog" aria-label="Game menu">
       <div className="w-menu-head">
@@ -120,140 +245,41 @@ export function Chronicle({
           <Icon name="x" size={18} label="Close" />
         </button>
       </div>
-      <p className="w-note">
-        The clock stands still while the chronicle is open.{' '}
-        {saving
-          ? 'Every page you live is kept as you go; what is written is not unwritten.'
-          : 'This browser is not keeping saves; the playtest export still works.'}
-      </p>
-
-      <button type="button" className="w-secondary" onClick={onClose}>
-        Resume the watch
-      </button>
-      <ExportButtons actions={actions} />
-
-      <section className="w-menu-sec" aria-label="The flyleaf">
-        <h3>The flyleaf</h3>
-        <WinterSetting frame={frame} actions={actions} />
-        {tallySetting}
-      </section>
-      <section className="w-menu-sec" aria-label="The volumes">
-        <h3>The shelf</h3>
-        <ul className="w-vols">
-          {volumes(frame).map((v) => {
-            const page = v.end ? mine?.volumes.find((p) => p.id === `${current}:vol:${v.n}`) : undefined;
-            return (
-              <li key={v.n} className={v.end ? 'w-vol' : 'w-vol is-open'}>
-                <span className="w-vol-spine">{v.numeral}</span>
-                <span className="w-vol-body">
-                  <span className="w-vol-title">{v.title}</span>
-                  <span className="w-note">{v.question}</span>
-                  <span className="w-vol-end">{v.end ?? 'Still being written.'}</span>
-                  {page ? <span className="w-vol-act">{takeUp(page)}</span> : null}
-                </span>
-              </li>
-            );
-          })}
-        </ul>
-        {mine?.volumes.length ? (
-          <p className="w-note">
-            Taking up a closed volume begins a new chronicle from its last page. This one stays on the shelf
-            as it is.
+      <p className="w-note">The night waits while it is open.</p>
+      <div className="w-sheet-body w-menu-rows">
+        {!saving ? (
+          <p role="status" className="w-soft-fail">
+            This chronicle is not being saved. Send word offers a copy of this run to download before you
+            leave.
           </p>
         ) : null}
-      </section>
-
-      {others.length > 0 ? (
-        <section className="w-menu-sec" aria-label="Other chronicles">
-          <h3>Other chronicles</h3>
-          {others.map((g) => (
-            <div key={g.chronicle} className="w-pages">
-              <ul>
-                {g.auto ? (
-                  <li className="w-pagerow is-continue">
-                    <span>
-                      <strong>The village of seed {g.auto.seed}</strong>
-                      <span className="w-note">
-                        {' '}
-                        · {yearWords(g.auto.year)}, {pageWhen(g.auto.when)}
-                      </span>
-                    </span>
-                    <button
-                      type="button"
-                      className="w-load"
-                      disabled={busy !== null}
-                      onClick={() => g.auto && load(g.auto.id)}
-                    >
-                      {busy === g.auto.id ? 'Opening…' : 'Continue'}
-                    </button>
-                  </li>
-                ) : null}
-                {g.volumes.map((p) => (
-                  <li key={p.id} className="w-pagerow">
-                    <span>
-                      Volume {p.volume?.numeral}, <em>{p.volume?.title}</em>
-                      {p.volume?.end ? <span className="w-note"> · {p.volume.end}</span> : null}
-                    </span>
-                    {takeUp(p)}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </section>
-      ) : null}
-      {loadNote ? <p className="w-note w-soft-fail">{loadNote}</p> : null}
-
-      <section className="w-menu-sec" aria-label="Recent chronicle">
-        <details className="w-lately" open>
-          <summary>
-            <h3>Lately written</h3>
-          </summary>
-          {lines.length === 0 ? <p className="w-note">Nothing is written yet.</p> : null}
-          <ol className="w-lines">
-            {lines.map((l) => (
-              <li key={`${l.year}-${l.minute}-${l.text}`}>
-                <span className="w-line-when">
-                  {SEASON_WORDS[l.season]}, {yearWords(l.year)}
-                </span>
-                {l.text}
-              </li>
-            ))}
-          </ol>
-        </details>
-      </section>
-
-      <section className="w-menu-sec" aria-label="Playtest and new village">
-        <h3>Playtest</h3>
-        {/* Two steps, so a slip under the export never ends a chronicle (G3-4 designer review). */}
-        {confirmNew ? (
-          <fieldset className="w-confirm" aria-label="Begin a new village?">
-            <p className="w-note">
-              Begin a new village? This chronicle stays on the shelf under “Other chronicles”, and you can
-              continue it later.
-            </p>
-            <button
-              type="button"
-              className="w-secondary"
-              onClick={() => {
-                setConfirmNew(false);
-                actions.restart((seed * 48271 + 11) % 2147483647);
-                onClose();
-              }}
-            >
-              Yes, begin a new village
-            </button>
-            <button type="button" className="w-secondary" onClick={() => setConfirmNew(false)}>
-              No, stay with this one
-            </button>
-          </fieldset>
-        ) : (
-          <button type="button" className="w-secondary w-new-village" onClick={() => setConfirmNew(true)}>
-            Begin a new village…
-          </button>
-        )}
-        <FullscreenButton variant="item" className="w-secondary w-fs-item" />
-      </section>
+        <button type="button" className="w-menu-row" onClick={() => setPage('read')}>
+          Read the chronicle <span aria-hidden="true">▸</span>
+        </button>
+        <button type="button" className="w-menu-row" onClick={() => setPage('hopes')}>
+          Hopes for the winter ahead <span aria-hidden="true">▸</span>
+        </button>
+        <button
+          type="button"
+          className="w-menu-row"
+          onClick={() => (onFeedback ? onFeedback() : setPage('feedback'))}
+        >
+          Send word <span aria-hidden="true">▸</span>
+        </button>
+        <FullscreenButton variant="item" className="w-menu-row w-fs-item" />
+        <button type="button" className="w-menu-row" onClick={onTitle ?? onClose}>
+          To the title page
+        </button>
+        <a className="w-menu-row" href="/games/">
+          All games
+        </a>
+        <RecordingPreference />
+      </div>
+      <div className="w-sheet-actions">
+        <button type="button" className="w-primary" onClick={onClose}>
+          Resume the watch
+        </button>
+      </div>
     </div>
   );
 }

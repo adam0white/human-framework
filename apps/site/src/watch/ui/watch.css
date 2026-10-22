@@ -1606,537 +1606,1056 @@
   padding: 6px;
 }
 
-/* Lab kit 0.2 phone stage. The sheet takes space; no fixed bar sits over the roster. */
+/* 2026-10-22 lab grammar: fixed zones; only reading bodies scroll. */
 .watch {
-  --paper: var(--w-bg);
-  --ink: var(--w-text);
-  --ink-soft: var(--w-line);
+  grid-template-rows: 44px minmax(0, 1fr);
+  font-size: 14px;
 }
-.watch .w-title h1,
-.watch .w-title p {
-  white-space: normal;
-  overflow: visible;
-  text-overflow: clip;
+.watch button,
+.watch a,
+.watch summary {
+  min-width: 44px;
+  min-height: 44px;
 }
-.watch .w-title {
-  min-width: 130px;
+.watch a {
+  display: inline-flex;
+  align-items: center;
 }
-.watch .w-stage.lk-stage {
-  height: 100%;
+.watch [hidden][hidden] {
+  display: none;
+}
+.w-top {
+  min-height: 44px;
+  height: 44px;
+  padding: 0 8px;
+  gap: 0;
+  flex-wrap: nowrap;
+}
+.w-where {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin: 0;
+  font-size: 13px;
+}
+.w-home {
+  flex: 1;
+  justify-content: start;
+}
+.w-desktop-name,
+.w-chronicle span {
+  display: none;
+}
+.w-chronicle {
+  border: 0;
+  font-size: 25px;
+  background: transparent;
   padding: 0;
-  grid-template-rows: auto minmax(120px, 1fr) auto;
+}
+.w-info {
+  flex: 0 0 44px;
+}
+.watch .game-help-button {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  font-size: 18px;
+}
+.w-info-content {
+  position: fixed;
+  inset: 48px 8px auto;
+  margin: 0;
+  width: calc(100% - 16px);
+  max-height: 60dvh;
+  overflow: auto;
+  background: var(--w-surface);
+  color: var(--w-text);
+  border: 1px solid var(--w-line);
+  border-radius: 12px;
+  padding: 12px;
+  z-index: 50;
+}
+.w-info-content header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.w-info-content header button {
+  background: transparent;
+  border: 0;
+}
+.w-info-content p {
+  line-height: 1.45;
+}
+.w-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: 44px 220px minmax(0, 1fr);
+  min-height: 0;
+  height: 100%;
+}
+.phase-night .w-stage,
+.phase-spring .w-stage,
+.phase-summer .w-stage,
+.phase-autumn .w-stage {
+  grid-template-rows: 76px 208px minmax(0, 1fr);
+}
+.phase-dawn .w-stage {
+  grid-template-rows: 44px 120px minmax(0, 1fr);
+}
+.phase-goal .w-stage {
+  grid-template-rows: 280px minmax(0, 1fr);
+}
+.phase-fair .w-stage,
+.phase-thaw .w-stage,
+.phase-closed .w-stage {
+  grid-template-rows: 44px minmax(0, 1fr);
+}
+.phase-fair .w-mapwrap,
+.phase-thaw .w-mapwrap,
+.phase-closed .w-mapwrap,
+.phase-fallen .w-mapwrap {
+  display: none;
+}
+.phase-fallen .w-stage {
+  grid-template-rows: minmax(0, 1fr);
+}
+.phase-fallen .w-state-wrap {
+  display: none;
+}
+.w-state-wrap {
+  min-height: 0;
+}
+.w-state {
+  display: flex;
+  position: relative;
+  height: 32px;
+  min-height: 32px;
+  gap: 12px;
+  padding: 2px 12px;
+  align-items: center;
+  border-bottom: 1px solid var(--w-line);
   overflow: hidden;
 }
-.watch .w-state {
-  padding: 5px 12px;
-  background: var(--w-bg);
-  color: var(--w-muted);
-  font-size: 0.85rem;
-  line-height: 1.3;
+.w-state-wrap:not(.has-speeds) .w-state {
+  height: 44px;
 }
-.watch .w-state p {
+.w-state .w-sacks {
+  width: 46%;
+  height: 28px;
   margin: 0;
+  max-width: 180px;
 }
-.w-state-warning {
-  color: var(--w-text);
+.w-thaw-state {
+  width: 48%;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
-.w-selected-state {
-  margin-top: 4px;
+.w-thaw-state > span {
+  font-size: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.w-selected-state .w-imps {
-  margin-top: 3px;
-}
-.watch .w-panel.lk-sheet {
-  height: auto;
-  max-height: calc(var(--lk-available-height, 100dvh) - var(--lk-strip-height, 0px) - 120px);
+.w-thaw-state .w-winter-progress {
+  width: 70%;
+  margin: 0;
   padding: 0;
-  overflow: visible;
-  background: var(--w-surface);
+}
+.w-thaw-state .w-winter-progress svg {
+  display: block;
+  width: 100%;
+  height: 20px;
+}
+.w-thaw-state .w-kicker,
+.w-thaw-state .w-winter-words {
+  display: none;
+}
+.w-nightfall {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  accent-color: var(--w-accent);
+}
+.w-speeds {
+  height: 44px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 0 12px;
+  gap: 0;
+}
+.w-speed {
+  min-height: 44px;
+  border-radius: 0;
+  font-size: 13px;
+}
+.w-mapwrap {
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.w-scene-title {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  font: 32px var(--font-display);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 8px #000;
+  pointer-events: none;
+}
+.w-scout-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 8px 12px;
+  background: #12152acc;
+  color: var(--w-warn);
+}
+.w-ticker {
+  position: absolute;
+  top: 0;
+  bottom: auto;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 6px 12px;
+  max-height: 48px;
+  overflow: hidden;
+  background: #12152aaa;
+}
+.w-ticker li {
+  margin: 0;
+  line-height: 18px;
+  font-size: 12px;
+}
+.w-panel {
+  min-height: 0;
+  height: 100%;
+  max-height: none;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+  border-top: 1px solid var(--w-line);
 }
 .w-panel-parts,
 .w-dusk,
 .w-night {
-  display: contents;
+  min-height: 0;
+  height: 100%;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  overflow: hidden;
 }
 .watch .lk-sheet-body {
-  padding: 8px 12px;
+  min-height: 0;
+  flex: 1;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 10px 12px;
+}
+.w-panel > .lk-sheet-body {
+  padding: 10px 12px;
 }
 .watch .lk-sheet-head {
-  padding: 4px 12px;
-}
-.watch .lk-sheet-head .w-hint {
-  flex: 1 1 130px;
-  margin: 0;
+  flex: 0 0 auto;
+  padding: 0 12px;
+  border-bottom: 1px solid var(--w-line);
 }
 .watch .lk-commit {
-  padding: 6px 12px;
-  background: var(--w-surface);
-}
-.watch .lk-commit .w-primary {
+  flex: 0 0 auto;
+  position: static;
   margin: 0;
-}
-.watch .lk-commit .w-note {
-  margin: 0;
-}
-.watch .w-postcard {
-  padding: 0;
-  margin: 0;
-  border: 0;
-  background: transparent;
-}
-.watch .w-places {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: 8px 12px 12px;
+  border-top: 1px solid var(--w-line);
+  background: var(--w-bg);
+  display: flex;
+  flex-direction: column;
   gap: 6px;
 }
-.watch .w-place {
-  min-height: 44px;
-  padding: 4px;
-}
-.watch .w-press-help,
-.watch .w-night-details {
-  margin: 0;
-}
-.watch .w-moment {
-  position: static;
-  max-height: none;
-  overflow: visible;
-}
-.watch .w-night-commit {
-  display: block;
-}
-.watch .w-night-commit .w-lantern-pick {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 4px;
-  margin: 0 0 6px;
-}
-.watch .w-speed span {
-  overflow-wrap: anywhere;
-  max-width: 100%;
-  white-space: normal;
-  line-height: 1.1;
-}
-.watch .w-night-commit .w-lantern-pick > span {
-  grid-column: 1 / -1;
-  font-size: 0.85rem;
-}
-.watch .w-bell {
-  margin: 0;
-}
-.watch .w-lantern-context {
-  margin: 0 0 6px;
-}
-.watch .lk-stage .w-rope {
-  height: 26px;
-}
-/* Winter date belongs to the persistent state strip, beside the person concerned. */
-.watch:has(.w-watch-progress) .w-title p {
+.watch .lk-commit:empty {
   display: none;
 }
-.watch .w-state:empty {
-  display: none;
+.w-dusk > .lk-commit,
+.w-night > .lk-commit {
+  min-height: 136px;
 }
-.watch .w-moment + .w-night-details {
-  margin-top: 6px;
+.watch .w-page-commit {
+  min-height: 76px;
 }
-@media (min-width: 900px) {
-  .watch .w-stage.lk-stage {
-    grid-template-columns: minmax(0, 1fr) 380px;
-    grid-template-rows: auto minmax(0, 1fr);
-  }
-  .watch .w-panel.lk-sheet {
-    max-height: 100%;
-  }
+.phase-goal .w-page-commit {
+  min-height: 136px;
 }
-/* At large text sizes, the document can scroll rather than clipping the sheet's header or actions. */
-@media (max-width: 899px) {
-  .watch:has(.w-stage[data-reflow="true"]) {
-    height: auto;
-    min-height: 100dvh;
-    overflow: visible;
-  }
-  .watch .w-stage.lk-stage[data-reflow="true"] {
-    height: auto;
-    overflow: visible;
-  }
-  .watch .w-stage[data-reflow="true"] .w-panel {
-    max-height: none;
-  }
-}
-
-.watch .w-panel-parts[hidden] {
-  display: none;
-}
-.watch .w-panel .w-menu {
-  position: static;
+.w-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
   width: 100%;
-  max-height: none;
-  min-height: 0;
-  flex: 1 1 auto;
-  overflow-y: auto;
-  border: 0;
-  border-radius: 0;
-  box-shadow: none;
+  padding: 8px 12px;
+  border: 1px solid var(--w-accent);
+  border-radius: 8px;
+  background: var(--w-accent);
+  color: var(--w-bg);
+  font-weight: 600;
 }
-.watch .w-panel .w-lines {
-  max-height: none;
+.w-secondary,
+.w-menu-row,
+.w-night-act,
+.w-option {
+  min-height: 44px;
+  border: 1px solid var(--w-line);
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: transparent;
 }
-.watch .w-posting-read {
+.w-menu-row {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  min-height: 52px;
+}
+.w-page {
+  padding: 0;
+  max-width: none;
+}
+.w-goal {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+.w-goal h2 {
+  font-size: 18px;
+  margin: 0;
+  line-height: 1.35;
+}
+.w-goal > .w-sacks {
+  height: 24px;
+  width: 100px;
+  margin: 4px 0;
+}
+.w-dusk-head {
+  position: relative;
+}
+.w-dusk-head > .w-note {
   margin: 0 0 4px;
 }
-.watch .w-stage[data-reflow="true"] .lk-sheet-body {
-  overflow: visible;
+.w-presses {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
-
-/* A timed choice uses the reading space; optional watch context returns after the answer. */
-.watch .w-night > .lk-sheet-body:has(.w-moment) > :is(.w-lantern-context, .w-night-details) {
-  display: none;
+.w-press {
+  min-height: 44px;
+  border: 1px solid var(--w-line);
+  background: transparent;
 }
-@media (max-width: 360px) {
-  .watch .w-title {
-    min-width: 120px;
-  }
-  .watch .w-chronicle {
-    padding: 0 4px;
-  }
+.w-posting-read {
+  margin: 4px 0 6px;
+  font-size: 12px;
 }
-
-/* The client restores focus to Send when its sheet closes. Keep that origin and the menu hold alive. */
-body:has(> .hflab-veil) .watch .w-menu {
-  visibility: hidden;
-  pointer-events: none;
+.w-roster {
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
-
-.watch .w-page-commit:empty,
-.watch .w-page-commit[hidden] {
-  display: none;
+.w-roster li {
+  margin: 0;
 }
-@media (max-width: 340px) {
-  .watch .w-night > .lk-sheet-body:has(.w-moment) .w-moment {
-    padding: 6px;
-  }
-  .watch .w-night > .lk-sheet-body:has(.w-moment) .w-decision-time {
-    margin-bottom: 4px;
-  }
-  .watch .w-night > .lk-sheet-body:has(.w-moment) .w-moment-text {
-    margin-bottom: 4px;
-  }
-  .watch .w-night > .lk-sheet-body:has(.w-moment) .w-moment-let {
-    margin-top: 0;
-  }
+.w-person {
+  display: block;
+  width: 100%;
+  height: 64px;
+  padding: 5px 8px;
+  border-radius: 0;
+  border: 0;
+  border-bottom: 1px solid var(--w-line);
+  background: transparent;
+  text-align: left;
+  overflow: hidden;
 }
-
-@media (max-width: 340px) {
-  .watch .w-night:has(.w-moment) .w-tap-hint {
-    display: none;
-  }
+.w-person-head {
+  display: flex;
+  gap: 6px;
+  font-size: 12px;
 }
-
-/* Round 2: goal reads wrap above every winter decision. Dawn advances only after the talks. */
-.w-goal-state .w-grain-condition {
-  color: var(--w-text);
+.w-person-head strong {
+  font-size: 15px;
 }
-.watch .w-page-commit:empty {
-  display: none;
+.w-person-post {
+  display: block;
+  font-size: 11px;
+  line-height: 1.25;
 }
-.w-dawn-continue {
-  margin-top: 16px;
+.w-person .w-imps {
+  font-size: 10px;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+.w-dusk .w-day,
+.w-winter-q {
+  margin: 0 0 4px;
+  font-size: 12px;
+}
+.w-day summary {
+  display: flex;
+  align-items: center;
+}
+.w-lantern-picker {
+  position: absolute;
+  z-index: 3;
+  top: 44px;
+  left: 12px;
+  right: 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--w-surface);
+  border: 1px solid var(--w-line);
+  padding: 6px;
+}
+.w-places {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 3px;
+}
+.w-place {
+  min-height: 52px;
+  padding: 3px;
+  font-size: 11px;
+  border: 1px solid var(--w-line);
+  background: transparent;
+  border-radius: 6px;
+}
+.w-place small {
+  display: block;
+  font-size: 10px;
+}
+.w-post-caption {
+  margin: 0;
+  font-size: 12px;
+}
+.w-post-bottom {
+  display: flex;
+  gap: 6px;
+}
+.w-post-bottom .w-secondary {
+  flex: 1;
+  font-size: 11px;
+  padding: 3px;
+}
+.w-post-bottom .w-primary {
+  width: 64px;
+  min-height: 44px;
+}
+.w-note {
+  font-size: 12px;
+  line-height: 1.35;
+  margin: 2px 0;
 }
 .w-night-roster {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-}
-.w-account blockquote {
-  margin: 6px 0;
-}
-.watch .w-night > .lk-sheet-body:has(.w-account) > :is(.w-lantern-context, .w-night-details) {
-  display: none;
-}
-
-.w-night-roster {
   border: 0;
   padding: 0;
-  margin: 6px 0;
+  margin: 0;
 }
-@media (max-width: 899px) {
-  .watch .w-night:has(.w-moment) .w-rope {
-    display: none;
-  }
-  .watch .w-night:has(.w-moment) .w-tap-hint {
-    display: none;
-  }
-  .watch .w-night:has(.w-moment) .w-moment {
-    padding: 6px;
-  }
-  .watch .w-night:has(.w-moment) .w-moment-text,
-  .watch .w-night:has(.w-moment) .w-decision-time {
-    margin-bottom: 4px;
-  }
-  .watch .w-night:has(.w-moment) .w-moment-let {
-    margin-top: 0;
-  }
+.w-night-roster .w-chip {
+  padding: 6px 10px;
 }
-@media (max-width: 899px) {
-  .watch .w-night:has(.w-moment) .w-lantern-pick {
-    grid-template-columns: 0.8fr repeat(4, minmax(0, 1fr));
-    align-items: center;
-  }
-  .watch .w-night:has(.w-moment) .w-lantern-pick > span {
-    grid-column: auto;
-  }
-  .watch .w-night:has(.w-moment) .w-lantern-pick > span svg {
-    display: none;
-  }
+.w-offwall {
+  margin: 0 0 6px;
+  font-size: 12px;
 }
-
-/* Night requests remain in the running account; labels and reads wrap on phones. */
-.w-night-acts {
-  list-style: none;
-  margin: 12px 0;
-  padding: 0;
+.w-lantern-track {
   display: grid;
-  gap: 10px;
-}
-.w-night-act {
-  display: block;
-  width: 100%;
-  min-height: 44px;
-  text-align: left;
-  white-space: normal;
-  padding: 10px;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 0;
+  margin: 0;
+  gap: 0;
   border: 1px solid var(--w-line);
-  border-radius: 4px;
+  border-radius: 8px;
+  min-height: 52px;
+}
+.w-lantern-track button {
+  position: relative;
+  padding: 16px 2px 2px;
+  min-height: 50px;
+  border: 0;
+  border-right: 1px solid var(--w-line);
   background: transparent;
+  font-size: 12px;
 }
-.watch .w-night .w-night-act > span {
-  display: block;
+.w-lantern-track button[aria-pressed="true"] {
+  background: var(--w-surface-2);
 }
-.w-night-act-read {
-  margin-top: 4px;
-  font-size: 0.88em;
+.w-lantern-icon {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 10px);
+  font-size: 18px;
 }
-.w-own-post-note {
-  grid-column: 1 / -1;
-  margin: 4px 0;
+.w-lantern-track.is-walking .w-lantern-icon {
+  left: -10px;
 }
-
-/* The account replaces lantern controls. Rest stays in the sheet's reserved action row. */
-.watch .lk-sheet-body[hidden] {
-  display: none;
+.w-bellbtn {
+  min-height: 60px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  border: 1px solid var(--w-line);
+  background: var(--w-surface);
+  padding: 4px 6px 8px;
+  position: relative;
+}
+.w-bellbtn > span {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.w-bellbtn small {
+  font-size: 11px;
+  line-height: 1.2;
+}
+.w-bellbtn .w-rope {
+  position: absolute;
+  bottom: -4px;
+  width: 100%;
+  height: 16px;
+}
+.w-moment {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.w-moment-text {
+  margin: 0 0 6px;
+  font-size: 13px;
+  line-height: 1.35;
+}
+.w-decision-bar {
+  width: 100%;
+  height: 4px;
+  accent-color: var(--w-accent);
+  margin-bottom: 6px;
+}
+.w-moment-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+}
+.w-option {
+  min-height: 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 12px;
+  padding: 5px;
+}
+.w-option small {
+  font-size: 10px;
+  line-height: 1.2;
+}
+.w-moment-let {
+  position: sticky;
+  bottom: -10px;
+  margin-top: auto;
+  min-height: 44px;
+  width: 100%;
+  background: var(--w-surface);
+  border: 1px solid var(--w-line);
+  font-size: 12px;
+}
+.w-account-close {
+  width: 100%;
+  text-align: left;
+}
+.w-account blockquote,
+.w-account p {
+  margin: 8px 0;
+}
+.w-account-commit {
+  max-height: 45dvh;
+  overflow: auto;
 }
 .w-account-commit .w-helper-controls {
   display: flex;
-  flex-wrap: wrap;
   gap: 6px;
-  margin-top: 6px;
 }
-.w-account-commit .w-night-act {
-  margin-top: 4px;
+.w-account-commit .w-note:last-child {
+  display: none;
 }
-.w-helper-choice .w-night-acts {
-  margin: 6px 0;
-}
-.w-helper-choice .w-night-act-read {
-  margin: 0 0 4px;
-}
-.w-handover {
-  margin: 4px 0;
-}
-
-.watch .w-account blockquote {
-  margin: 4px 0 0;
-  line-height: 1.4;
-}
-
-.watch .w-account .w-note {
-  margin: 4px 0 0;
-}
-
-/* The reason belongs to its post, including when a disabled button cannot receive focus. */
-.w-place-choice {
-  min-width: 0;
-}
-.watch .w-place-choice .w-place {
-  width: 100%;
-}
-.watch .w-post-unavailable {
-  margin-top: 3px;
-  line-height: 1.2;
-}
-.w-winter-setting {
-  margin: 12px 0;
-  padding: 8px;
+.w-decision-banner {
+  min-height: 44px;
+  background: var(--w-surface-2);
   border: 1px solid var(--w-line);
 }
-.w-winter-setting label {
+.w-dawn-outcome {
+  margin: 0 0 8px;
+  font-size: 22px;
+}
+.w-dawn-heard {
+  margin: 8px 0;
+  font-size: 13px;
+}
+.w-talks {
+  margin: 8px 0;
+  padding: 0;
+}
+.w-talks-head h3 {
+  font-size: 16px;
+  margin: 0;
+}
+.w-talk-chips {
   display: flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 44px;
+  gap: 4px;
+  overflow: auto;
+  border: 0;
+  padding: 0;
   margin: 4px 0;
 }
-.w-winter-setting input {
-  flex: 0 0 44px;
-  width: 44px;
-  height: 44px;
+.w-talk-chips button {
+  flex: 0 0 auto;
+}
+.w-asks {
   margin: 0;
-  accent-color: var(--w-accent);
+  padding: 0;
 }
-.w-winter-setting small {
-  display: block;
-  color: var(--w-muted);
+.w-ask-btns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
 }
-
-/* Live answers use the phone's sheet. Lantern and bell return when the card is dismissed. */
-@media (max-width: 899px) {
-  .watch .w-stage:has(.w-moment):not(:has(.w-account, .w-helper-choice)) {
-    grid-template-rows: auto minmax(64px, 1fr) auto;
-  }
-  .watch .w-stage:has(.w-moment):not(:has(.w-account, .w-helper-choice)) .w-panel {
-    max-height: calc(var(--lk-available-height, 100dvh) - var(--lk-strip-height, 0px) - 64px);
-  }
-  .watch .w-night:has(.w-moment):not(:has(.w-account, .w-helper-choice)) .w-night-commit {
-    display: none;
-  }
-  .watch .w-night:has(.w-moment) .w-option {
-    min-height: 44px;
-  }
-}
-
-/* Discovery stays outside the timed card's scrolling body. */
-.watch .w-watch-entry {
+.w-earlier summary {
   display: flex;
   align-items: center;
-  gap: 8px;
 }
-.watch .w-watch-entry .w-note {
-  flex: 1;
-  margin: 0;
-  line-height: 1.2;
+.w-overlay {
+  position: fixed;
+  inset: 44px 0 0;
+  z-index: 20;
+  background: #080b16aa;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 }
-.watch .w-watch-entry button {
+.w-sub-sheet {
+  background: var(--w-surface);
+  width: 100%;
+  max-height: 100%;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--w-line);
+  border-radius: 14px 14px 0 0;
+  overflow: hidden;
+}
+.w-sub-sheet > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
   flex: 0 0 auto;
   min-height: 44px;
 }
-.watch .w-night .w-account > p {
+.w-sub-sheet > header h2 {
+  font-size: 18px;
+  margin: 0;
+}
+.w-sub-sheet > header button {
+  background: transparent;
+  border: 0;
+}
+.w-sheet-body {
+  overflow: auto;
+  overscroll-behavior: contain;
+  min-height: 0;
+  flex: 1;
+  padding: 8px 12px;
+}
+.w-sheet-actions {
+  flex: 0 0 auto;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.w-menu {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: auto;
+  z-index: 15;
+  max-height: calc(100dvh - 44px);
+  background: var(--w-surface);
+  border-radius: 14px 14px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.w-menu > header,
+.w-menu-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 12px;
+  min-height: 44px;
+}
+.w-menu-rows {
+  display: flex;
+  flex-direction: column;
+}
+.w-menu-row {
+  border-radius: 0;
+  border: 0;
+  border-bottom: 1px solid var(--w-line);
+}
+.w-recording {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  font-size: 12px;
+}
+.w-export-option {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.w-run-secondaries {
+  display: flex;
+  gap: 6px;
   margin: 8px 0;
-  line-height: 1.4;
+}
+.w-run-secondaries > * {
+  flex: 1;
+}
+.w-download > button {
+  width: 100%;
+}
+.w-feedback {
+  position: fixed;
+  inset: var(--w-feedback-top, 44px) 0 auto;
+  height: min(var(--w-feedback-height, calc(100dvh - 44px)), calc(100dvh - 44px));
+  z-index: 25;
+  background: var(--w-surface);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.w-feedback .w-sheet-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.w-feedback .w-sheet-body > p {
+  margin: 0;
+}
+.w-feedback-note {
+  display: flex;
+  flex-direction: column;
+  min-height: 100px;
+  flex: 1;
+}
+.w-feedback textarea {
+  width: 100%;
+  min-height: 80px;
+  max-height: 160px;
+  flex: 1;
+  background: var(--w-bg);
+  color: var(--w-text);
+  border: 1px solid var(--w-line);
+  border-radius: 8px;
+  padding: 8px;
+  font: inherit;
+}
+.w-feedback-name input {
+  width: 100%;
+  min-height: 44px;
+  background: var(--w-bg);
+  color: var(--w-text);
+  border: 1px solid var(--w-line);
+  padding: 8px;
+}
+.w-feedback summary {
+  display: flex;
+  align-items: center;
+}
+.w-verdicts {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.w-verdicts button {
+  flex: 1;
+  font-size: 12px;
+}
+.w-feedback-preview pre {
+  white-space: pre-wrap;
   overflow-wrap: anywhere;
+  max-height: 160px;
+  overflow: auto;
 }
-.watch .w-account-commit {
-  display: block;
+.w-feedback-notice {
+  color: var(--w-warn);
 }
-@media (max-width: 899px) {
-  .watch .w-stage:has(.w-account-doze) {
-    grid-template-rows: auto minmax(64px, 1fr) auto;
+@media (min-width: 900px) {
+  .watch {
+    grid-template-rows: 56px minmax(0, 1fr);
   }
-  .watch .w-stage:has(.w-account-doze) .w-panel {
-    max-height: calc(var(--lk-available-height, 100dvh) - var(--lk-strip-height, 0px) - 64px);
+  .w-top {
+    height: 56px;
+    padding: 0 16px;
   }
-}
-
-.w-winter-progress {
-  margin: 10px 0 18px;
-}
-
-.w-winter-progress svg {
-  display: block;
-  width: 180px;
-  max-width: 100%;
-  height: 20px;
-  fill: none;
-  stroke: var(--w-accent);
-  stroke-width: 3;
-  stroke-linecap: round;
-}
-
-.w-winter-mark {
-  opacity: 0.16;
-}
-
-.w-winter-track {
-  opacity: 0.16;
-  stroke-width: 1;
-}
-
-.w-winter-progress .is-done {
-  opacity: 0.9;
-}
-
-.w-winter-words {
-  margin: 3px 0 0;
-  font-size: 0.85rem;
-}
-
-/* Morning leaves room for one conversation and its next action on a phone. */
-@media (max-width: 899px) {
-  .watch.phase-dawn .w-stage {
-    grid-template-rows: auto minmax(64px, 1fr) auto;
+  .w-desktop-name,
+  .w-chronicle span {
+    display: inline;
   }
-  .watch.phase-dawn .w-panel {
-    max-height: calc(var(--lk-available-height, 100dvh) - var(--lk-strip-height, 0px) - 64px);
+  .w-chronicle {
+    width: auto;
+    gap: 6px;
+    padding: 0 8px;
+    font-size: 18px;
   }
-  .watch.phase-dawn .w-goal-state > p:first-child {
-    display: none;
+  .w-where {
+    max-width: calc(100% - 680px);
   }
-  .watch .w-dawn .w-kicker {
-    margin: 0 0 4px;
+  .w-stage,
+  .phase-night .w-stage,
+  .phase-dawn .w-stage,
+  .phase-goal .w-stage,
+  .phase-spring .w-stage,
+  .phase-summer .w-stage,
+  .phase-autumn .w-stage,
+  .phase-fair .w-stage,
+  .phase-thaw .w-stage,
+  .phase-closed .w-stage,
+  .phase-fallen .w-stage {
+    grid-template-columns: minmax(0, 1fr) 440px;
+    grid-template-rows: minmax(0, 1fr);
   }
-  .watch .w-dawn h2 {
-    font-size: 1.15rem;
-    margin: 4px 0;
-  }
-  .watch .w-dawn .w-winter-progress {
-    margin: 6px 0;
-  }
-  .watch .w-dawn .w-talks {
-    margin-top: 8px;
-    padding-top: 8px;
-  }
-  .watch .w-dawn .w-talks h3 {
-    margin: 0;
-  }
-  .watch .w-dawn .w-asks {
-    margin: 4px 0;
-  }
-  .watch .w-dawn .w-asks > li {
-    margin: 4px 0;
-  }
-  .watch .w-dawn .w-ask-btns {
+  .w-state-wrap {
+    position: absolute;
+    top: 0;
+    right: 150px;
+    width: 520px;
+    height: 56px;
     display: flex;
-    gap: 4px;
+    align-items: center;
   }
-  .watch .w-dawn .w-ask-btns button {
-    flex: 1;
+  .w-state,
+  .w-state-wrap:not(.has-speeds) .w-state {
+    width: 270px;
+    height: 44px;
+    border: 0;
   }
-  .watch .w-dawn select {
-    min-height: 36px;
-    color: inherit;
-    background: var(--w-panel);
+  .w-speeds {
+    width: 240px;
+    padding: 0;
+  }
+  .w-mapwrap {
+    grid-column: 1;
+    grid-row: 1;
+    display: block;
+  }
+  .w-panel {
+    grid-column: 2;
+    grid-row: 1;
+    border-top: 0;
+    border-left: 1px solid var(--w-line);
+  }
+  .w-overlay {
+    inset: 56px 0 0;
+    align-items: stretch;
+    justify-content: flex-end;
+  }
+  .w-sub-sheet {
+    width: 440px;
+    border-radius: 0;
+  }
+  .w-info-content {
+    inset: 60px 8px auto auto;
+    width: 420px;
+  }
+  .w-menu {
+    top: 56px;
+    left: auto;
+    width: 400px;
+    max-height: calc(100dvh - 56px);
+    border-radius: 0;
+    height: auto;
+  }
+  .w-feedback {
+    top: max(56px, var(--w-feedback-top, 56px));
+    left: calc(50% - 280px);
+    right: auto;
+    width: 560px;
+    height: min(700px, calc(100dvh - 56px));
     border: 1px solid var(--w-line);
-    border-radius: 4px;
-    padding: 4px;
+    border-radius: 12px;
   }
-  .watch .w-dawn-continue {
-    margin-top: 6px;
+  .w-scene-title {
+    top: 35%;
+    font-size: 42px;
   }
 }
-
-.watch .w-dawn-heard {
-  margin: 6px 0;
-  font-size: 0.85rem;
-  line-height: 1.25;
+.watch .w-panel.lk-sheet {
+  height: 100%;
+  max-height: none;
+  overflow: hidden;
 }
-.watch .w-dawn-heard cite {
-  font-style: normal;
-  opacity: 0.75;
+.watch .w-night-commit {
+  display: flex;
 }
-
+.watch .w-page-commit .w-primary {
+  margin: 0;
+}
+.w-overlay.w-sub-sheet {
+  align-items: stretch;
+  justify-content: start;
+  border-radius: 0;
+}
+.w-night-acts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.w-night-acts li {
+  margin: 0 0 8px;
+}
+.w-night-acts button {
+  width: 100%;
+}
+.w-account-commit .w-note:last-child {
+  display: block;
+}
+@media (min-width: 900px) {
+  .w-overlay.w-sub-sheet {
+    left: auto;
+    right: 0;
+  }
+  .w-overlay.w-sub-sheet.w-feedback {
+    left: calc(50% - 280px);
+    right: auto;
+  }
+}
+.watch {
+  --paper: var(--w-bg);
+  --ink: var(--w-text);
+  --ink-soft: var(--w-muted);
+}
+.watch .w-menu,
+.watch .w-sub-sheet {
+  color: var(--w-text);
+}
+.watch .w-menu {
+  margin: 0;
+  width: 100%;
+}
+.watch .w-menu-head {
+  gap: 8px;
+}
+.watch .w-menu-head h2 {
+  font-size: 18px;
+  margin: 0;
+  flex: 1;
+}
+.watch .w-menu-head button {
+  flex: 0 0 auto;
+  width: auto;
+}
+.watch input[type="checkbox"],
+.watch input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
+  accent-color: var(--w-accent);
+}
+.watch .w-feedback {
+  top: max(44px, var(--w-feedback-top, 44px));
+}
+@media (min-width: 900px) {
+  .watch .w-menu {
+    width: 400px;
+  }
+  .watch .w-feedback {
+    top: max(56px, var(--w-feedback-top, 56px));
+  }
+}
+.w-lantern-track {
+  width: 100%;
+  align-self: stretch;
+}
+@media (min-width: 900px) {
+  .w-state-wrap {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+  }
+  .w-info {
+    margin-left: auto;
+  }
+}
+.w-moment {
+  position: static;
+  inset: auto;
+  width: 100%;
+  max-height: none;
+  box-shadow: none;
+}
+.w-thaw-state .w-winter-progress svg {
+  fill: none;
+}
+.w-winter-track {
+  stroke: var(--w-line);
+  stroke-width: 4;
+}
+.w-winter-mark {
+  stroke: var(--w-muted);
+  stroke-width: 3;
+  opacity: 0.25;
+}
+.w-winter-mark.is-done {
+  stroke: var(--w-accent);
+  opacity: 1;
+}
+.watch .w-menu {
+  height: auto;
+  max-height: calc(100dvh - 44px);
+  overflow: hidden;
+}
 @media (max-width: 899px) {
-  .watch .w-dawn > .w-kicker {
-    display: none;
+  .watch .w-menu {
+    height: min(520px, calc(100dvh - 44px));
   }
 }

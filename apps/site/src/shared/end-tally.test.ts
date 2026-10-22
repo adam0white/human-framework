@@ -47,7 +47,7 @@ describe('end reckoning from existing reports', () => {
       'Full years: 2 · Closed volumes: 1 · Sacks left: 4',
     ]);
     const actions = {} as WatchActions;
-    expect(renderToStaticMarkup(createElement(FallenPage, { frame, actions, seed: 4242 }))).not.toContain(
+    expect(renderToStaticMarkup(createElement(FallenPage, { frame, actions, seed: 4242 }))).toContain(
       'The chronicle’s tally',
     );
     expect(

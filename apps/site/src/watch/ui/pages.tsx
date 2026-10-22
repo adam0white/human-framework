@@ -1,12 +1,13 @@
 import { EndTally } from '../../shared/EndTally.tsx';
 import { watchTally } from './end-tally.ts';
+import { RunSecondaries } from './exporting.tsx';
 /**
  * The year's pages around the winter (G3-3): the open seasons (date, volume, granary, the people and a season card
  * when one is open), the fair, the thaw, a closed volume and a fallen village, plus the live chronicle strip over the
  * map. Everything is words and drawn values; choices that cannot be undone say so on the page.
  */
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { SeasonCard } from '../sim/state.ts';
 import type { Frame, FrameVillager, FrameVolume } from '../sim/view.ts';
 import { Icon } from './icons.tsx';
@@ -99,57 +100,64 @@ function PersonCard({ v }: { v: FrameVillager }) {
   );
 }
 
-/** The village's people: watchers first, then by age. Open by default on wide screens, folded on phones. */
-export function People({ frame }: { frame: Frame }) {
-  const [wide] = useState(() => typeof window !== 'undefined' && window.innerWidth >= 900);
-  const watchers = frame.villagers.filter((v) => v.watcher).length;
+/** The village is a reading sheet, separate from the running season. */
+export function People({
+  frame,
+  onReadingChange,
+}: {
+  frame: Frame;
+  onReadingChange?: (open: boolean) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    onReadingChange?.(open);
+    return () => onReadingChange?.(false);
+  }, [open, onReadingChange]);
   return (
-    <details className="w-people" open={wide}>
-      <summary>
-        <Icon name="users" size={16} /> The village
-        <span className="w-note">
-          {' '}
-          · {frame.villagers.length === 1 ? 'one soul' : 'its people'},{' '}
-          {watchers === 0 ? 'none at the wall' : watchers === 1 ? 'one at the wall' : 'some at the wall'}
-        </span>
-      </summary>
-      <ul className="w-villagers">
-        {frame.villagers.map((v) => (
-          <PersonCard key={v.id} v={v} />
-        ))}
-      </ul>
-    </details>
+    <>
+      <button type="button" className="w-menu-row" onClick={() => setOpen(true)}>
+        The village <span aria-hidden="true">▸</span>
+      </button>
+      {open ? (
+        <div className="w-overlay w-sub-sheet" role="dialog" aria-label="The village">
+          <div className="w-menu-head">
+            <h2>The village</h2>
+          </div>
+          <div className="w-sheet-body">
+            <p>{frame.souls}.</p>
+            <ul className="w-villagers">
+              {frame.villagers.map((v) => (
+                <PersonCard key={v.id} v={v} />
+              ))}
+            </ul>
+          </div>
+          <div className="w-sheet-actions">
+            <button type="button" className="w-primary" onClick={() => setOpen(false)}>
+              Back to the village
+            </button>
+          </div>
+        </div>
+      ) : null}
+    </>
   );
 }
 
-/** Spring, summer and autumn: a continuous clock of days. */
-export function SeasonPanel({ frame, actions }: { frame: Frame; actions: WatchActions }) {
+/** A pending matter takes the sheet; the village returns after the answer. */
+export function SeasonPanel({
+  frame,
+  actions,
+  onReadingChange,
+}: {
+  frame: Frame;
+  actions: WatchActions;
+  onReadingChange?: (open: boolean) => void;
+}) {
+  if (frame.card) return <SeasonCardView key={frame.card.id} card={frame.card} actions={actions} />;
   return (
     <div className="w-season">
-      {frame.card ? <SeasonCardView key={frame.card.id} card={frame.card} actions={actions} /> : null}
       <VolumeLine v={frame.volume} />
-      <h2 className="w-season-date">{frame.date}</h2>
       <p className="w-note w-question">{frame.volume.question}</p>
-      {frame.year <= 2 ? (
-        <p className="w-note w-speed-hint">
-          The days run on their own at <strong>Seasons</strong> pace, slowing for news and for a matter for
-          you. The village slows for news and decisions, and moves briskly through quiet days.
-        </p>
-      ) : null}
-      <p className="w-note w-souls">{frame.souls}.</p>
-      <div className="w-granary">
-        <span>
-          The granary{' '}
-          <span className="w-granary-mark">· up to the mark, what the next thaw takes to feed everyone</span>
-        </span>
-        <Sacks
-          have={frame.grain}
-          lost={0}
-          need={frame.need}
-          label="The granary, drawn as sacks; the mark is what the next thaw will take to feed everyone"
-        />
-      </div>
-      <People frame={frame} />
+      <People frame={frame} onReadingChange={onReadingChange} />
     </div>
   );
 }
@@ -297,7 +305,15 @@ function Epilogue({ v }: { v: FrameVolume }) {
 }
 
 /** A volume closed: the end of a chapter, not of the game. */
-export function ClosedPage({ frame, actions }: { frame: Frame; actions: WatchActions }) {
+export function ClosedPage({
+  frame,
+  actions,
+  onFeedback,
+}: {
+  frame: Frame;
+  actions: WatchActions;
+  onFeedback?: () => void;
+}) {
   const v = frame.volume;
   return (
     <div className="w-page w-closed">
@@ -315,7 +331,7 @@ export function ClosedPage({ frame, actions }: { frame: Frame; actions: WatchAct
           <Icon name="book-open" size={18} /> Open the next volume
         </button>
       </PageActions>
-      <p className="w-note">Open Game menu to download or send this run.</p>
+      <RunSecondaries actions={actions} onFeedback={onFeedback} />
     </div>
   );
 }
@@ -325,12 +341,14 @@ export function FallenPage({
   frame,
   actions,
   seed,
-  tally = false,
+  tally: _tally,
+  onFeedback,
 }: {
   frame: Frame;
   actions: WatchActions;
   seed: number;
   tally?: boolean;
+  onFeedback?: () => void;
 }) {
   const v = frame.volume;
   return (
@@ -343,8 +361,8 @@ export function FallenPage({
       </p>
       <Epilogue v={v} />
       <p>The village cannot stay. The chronicle closes this volume.</p>
-      {tally ? <EndTally title="The chronicle’s tally" lines={watchTally(frame)} /> : null}
-      <p className="w-note">Open Game menu to download or send this run.</p>
+      <EndTally title="The chronicle’s tally" lines={watchTally(frame)} />
+      <RunSecondaries actions={actions} onFeedback={onFeedback} />
       <PageActions>
         <button type="button" className="w-primary" onClick={() => actions.restart(seed + 1)}>
           Begin a new village

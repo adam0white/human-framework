@@ -5780,6 +5780,33 @@
     "fix:lab feedback from saves screen in each game's own follow-up (target 2026-11-03)"
    ],
    "source": "docs/owner-directions-2026-10-18.md"
+  },
+  {
+   "id": "F-436",
+   "date": "2026-10-22",
+   "game": "watch",
+   "kind": "owner",
+   "who": "owner",
+   "words": "All good decisions, proceed.",
+   "verdict": "-",
+   "routes": [
+    "fix:watch implement approved UI sweep with three player speeds and information holding the clock (implemented for owner retest)",
+    "fix:lab optional remembered feedback name and inbox timeline labels (implemented)"
+   ],
+   "source": "Owner approval relayed by Opus, UI sweep specs 2026-10-22"
+  },
+  {
+   "id": "F-437",
+   "date": "2026-10-22",
+   "game": "lab",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Let your play testers leave their names/IDs in a feedback or somewhere to let us associate their pseudonym logs. I name my feedbacks already as owner, will do that once more, then I guess I won't need to anymore, and all my previous history will also be associated now?",
+   "verdict": "-",
+   "routes": [
+    "fix:lab optional remembered feedback name labels linked player history and bounded legacy label matches (implemented)"
+   ],
+   "source": "Owner feedback relayed by Opus 2026-10-22"
   }
  ],
  "lessons": [
@@ -6386,7 +6413,7 @@
   }
  ],
  "routes": {
-  "fix": 460,
+  "fix": 463,
   "lesson": 291,
   "hf": 12,
   "calibration": 42,
