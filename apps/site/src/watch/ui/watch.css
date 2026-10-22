@@ -2692,3 +2692,19 @@
 .watch:has(.w-menu) .w-state-wrap {
   opacity: 0.35;
 }
+.watch .w-primary {
+  min-height: 52px;
+  flex-shrink: 0;
+}
+.watch .w-post-bottom .w-primary {
+  min-height: 44px;
+}
+.watch .w-place {
+  min-height: 52px;
+}
+.watch .w-lantern-track button {
+  min-height: 50px;
+}
+.watch .w-bellbtn {
+  min-height: 60px;
+}
