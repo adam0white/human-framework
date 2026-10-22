@@ -5987,6 +5987,34 @@
     "fix:warren optional remembered name in Send word (implemented)"
    ],
    "source": "Owner addenda relayed by Opus, UI sweep grammar 2026-10-22"
+  },
+  {
+   "id": "F-451",
+   "date": "2026-10-22",
+   "game": "glance",
+   "kind": "owner",
+   "who": "owner",
+   "words": "All good decisions, proceed.",
+   "verdict": "-",
+   "routes": [
+    "fix:glance approved UI sweep with persistent desk picture and gauges during inspections (implemented for owner retest)",
+    "fix:glance named Send word with recording and privacy consent paths (implemented)"
+   ],
+   "source": "Owner approval relayed by Opus, glance/docs/design.md approved UI sweep 2026-10-22"
+  },
+  {
+   "id": "F-452",
+   "date": "2026-10-22",
+   "game": "glance",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Good direction, proceed please, menu is fine. Just \"until something happens\" is too long, maybe Skip or Fast Forward or something else could be better.",
+   "verdict": "-",
+   "routes": [
+    "fix:glance automatic pacing by default with optional Slow Steady Fast in the menu (implemented for owner retest)",
+    "fix:glance guarded advance labelled Skip ⏩ (implemented)"
+   ],
+   "source": "Owner addenda relayed by Opus, glance/docs/design.md approved UI sweep 2026-10-22"
   }
  ],
  "lessons": [
@@ -6593,7 +6621,7 @@
   }
  ],
  "routes": {
-  "fix": 487,
+  "fix": 491,
   "lesson": 291,
   "hf": 12,
   "calibration": 42,
