@@ -174,7 +174,7 @@ it('keeps lab screen tracking in the game without a separate notebook row', () =
   expect(app).not.toContain('<LabControls');
 });
 
-it('keeps automatic pacing out of the player controls', () => {
+it('offers player pace controls alongside automatic scene slowdown', () => {
   const el = render(
     createElement(TopBar, {
       ...sampleFrame,
@@ -184,6 +184,6 @@ it('keeps automatic pacing out of the player controls', () => {
     }),
   );
   expect(el.querySelector('.v-autopause')).toBeNull();
-  expect(el.querySelector('.v-pace')).toBeNull();
-  expect(el.querySelector('.v-pace-cycle')).toBeNull();
+  expect(el.querySelectorAll('.v-pace button')).toHaveLength(3);
+  expect(el.querySelector('.v-pace-cycle')?.textContent).toBe('Slow');
 });

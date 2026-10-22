@@ -117,3 +117,9 @@ How this is read, decision by decision:
 3. HANDOFF.md (40 KB) and other documents are trimmed to current state; release receipts and history move to [history.md](history.md) and linked files.
 4. Fewer reviews and focused tests: the review and test rules in AGENTS.md (Engineering rules).
 5. The archive Dependabot PR (PR 10) is closed and alerts 16 to 24 are dismissed as not used; `.github/dependabot.yml` excludes `archive/**`.
+
+## 2026-10-22, player speed controls (Adam, verbatim)
+
+> I saw your warning about time controls, and you're right. Not only that but I also see that some of my too specific wishes are also hurting the games. Change the time control direction to a general idea and a wish where it makes, but let's give it back to most of the games.
+
+How this is read: automatic pacing is a general wish where it helps the flow. Most games keep player speed controls. Restore the swept games’ speed controls, including Stairwell with automatic pacing as its default. Keep helper popovers, optional end tallies and guarded until-next-event buttons.

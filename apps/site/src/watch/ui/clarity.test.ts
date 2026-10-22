@@ -279,7 +279,8 @@ it('shows one clock rate with the reason for a watcher decision', async () => {
   expect(app.querySelector('.w-moment')?.closest('.w-mapwrap')).toBeNull();
   expect(app.querySelector('.w-panel .w-moment')).not.toBeNull();
   expect(app.textContent).not.toContain('the night waits on you');
-  expect(app.querySelector('[aria-label="Fast"]')).toBeNull();
+  expect(app.querySelectorAll('.w-speed')).toHaveLength(5);
+  expect(app.querySelector('[aria-label="Fast"]')?.getAttribute('aria-pressed')).toBe('true');
 });
 
 it('keeps the full bell explanation available and keeps the ringing label in its labelled target', () => {

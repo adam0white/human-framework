@@ -20,11 +20,12 @@ import { gameLabs } from '../../shared/lab.tsx';
 import type { PageInfo } from '../protocol.ts';
 import { type PostId, postSection, SECTIONS, type SectionId, type WatcherId } from '../sim/config.ts';
 import type { Moment } from '../sim/moments.ts';
+import type { Speed } from '../sim/pace.ts';
 import type { Press } from '../sim/state.ts';
 import { TALKS_PER_DAY, type Topic } from '../sim/talk.ts';
 import type { Frame, FrameWatcher } from '../sim/view.ts';
 import { Chronicle } from './chronicle.tsx';
-import { Icon } from './icons.tsx';
+import { Icon, type IconName } from './icons.tsx';
 import { MapCanvas } from './MapCanvas.tsx';
 import type { Hit } from './map.ts';
 import { groupedUnavailable, nightActKey, retainedNightActs } from './night-requests.ts';
@@ -53,6 +54,14 @@ import {
   ropeWords,
   thawProgress,
 } from './words.ts';
+
+const SPEEDS: { id: Speed; label: string; icon: IconName }[] = [
+  { id: 'tactical', label: 'Slow', icon: 'snail' },
+  { id: 'watch', label: 'Watch', icon: 'play' },
+  { id: 'fast', label: 'Fast', icon: 'fast-forward' },
+  { id: 'days', label: 'Days', icon: 'sun' },
+  { id: 'seasons', label: 'Seasons', icon: 'calendar-days' },
+];
 
 const SEASON_PHASES = new Set<Frame['phase']>(['spring', 'summer', 'autumn']);
 /** Phases where the clock runs and the speed control shows. */
@@ -239,6 +248,27 @@ export function App() {
           <p>{headerLine(frame)}</p>
         </div>
 
+        {frame.phase !== 'goal' ? (
+          <fieldset
+            className={`w-speeds${frame.slowed ? ' is-slowed' : ''}${RUNNING.has(frame.phase) ? '' : ' is-idle'}`}
+            title={RUNNING.has(frame.phase) ? undefined : 'The clock stands while you read this page.'}
+          >
+            <legend className="sr-only">Speed</legend>
+            {SPEEDS.map((s) => (
+              <button
+                key={s.id}
+                type="button"
+                className="w-speed"
+                aria-label={s.label}
+                aria-pressed={speed === s.id}
+                onClick={() => actions.setSpeed(s.id)}
+              >
+                <Icon name={s.icon} size={16} />
+                <span>{s.label}</span>
+              </button>
+            ))}
+          </fieldset>
+        ) : null}
         <button
           type="button"
           className="w-chronicle"

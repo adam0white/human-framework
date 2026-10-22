@@ -189,9 +189,6 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg) => {
   const game = rec.game;
   switch (msg.type) {
     case 'tick': {
-      // Live pacing is automatic. Replay applies historical inputs before reaching this path.
-      if (game.pace !== 'slow') rec.apply({ type: 'setPace', pace: 'slow' });
-      if (!game.autoPause) rec.apply({ type: 'setAutoPause', on: true });
       sinceFrame += Math.max(0, msg.wallDtMs ?? msg.dtMs);
       const moved = rec.tick(msg.dtMs);
       stepSilent(game);

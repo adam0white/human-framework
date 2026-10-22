@@ -39,10 +39,5 @@ hostWorker<MainToWorker, WorkerReply>((msg, host) => {
     return;
   }
   if (msg.type === 'init') host.gen = msg.gen;
-  // Historical replay is verified above. Resumed live play uses the safe automatic clock.
-  if (msg.type === 'tick') {
-    playback.speed = 1;
-    playback.autoPause = true;
-  }
   for (const reply of playback.handle(msg)) host.post(reply);
 });

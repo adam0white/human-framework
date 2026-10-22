@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-21",
+ "generated": "2026-10-22",
  "ledger": [
   {
    "id": "F-001",
@@ -5741,6 +5741,31 @@
     "fix:neighbours automatic pacing and helper popovers with end-only tally (owner retest)"
    ],
    "source": "Owner speed sweep 2026-10-21"
+  },
+  {
+   "id": "F-434",
+   "date": "2026-10-22",
+   "game": "lab",
+   "kind": "owner",
+   "who": "owner",
+   "words": "I saw your warning about time controls, and you're right. Not only that but I also see that some of my too specific wishes are also hurting the games. Change the time control direction to a general idea and a wish where it makes, but let's give it back to most of the games.",
+   "verdict": "-",
+   "routes": [
+    "fix:watch restore player speed controls while retaining helper popovers and optional end tallies (owner retest)",
+    "fix:well restore player speed controls while retaining helper popovers and optional end tallies (owner retest)",
+    "fix:voice restore player speed controls while retaining helper popovers and optional end tallies (owner retest)",
+    "fix:glance restore player speed controls while retaining helper popovers and optional end tallies (owner retest)",
+    "fix:valley restore player speed controls while retaining helper popovers and optional end tallies (owner retest)",
+    "fix:warren restore player speed controls while retaining helper popovers and optional end tallies (owner retest)",
+    "fix:goodhands restore player speed controls while retaining helper popovers and optional end tallies (owner retest)",
+    "fix:pass restore player speed controls while retaining helper popovers and optional end tallies (owner retest)",
+    "fix:stairwell restore player speed controls while retaining helper popovers and optional end tallies (owner retest)",
+    "fix:hearsay restore player speed controls while retaining helper popovers and optional end tallies (owner retest)",
+    "fix:rope restore player speed controls while retaining helper popovers and optional end tallies (owner retest)",
+    "fix:neighbours restore player speed controls while retaining helper popovers and optional end tallies (owner retest)",
+    "fix:murmur retain existing card timing and guarded until-event action (speed-selector exception)"
+   ],
+   "source": "Owner speed restoration 2026-10-22"
   }
  ],
  "lessons": [
@@ -6347,7 +6372,7 @@
   }
  ],
  "routes": {
-  "fix": 445,
+  "fix": 458,
   "lesson": 291,
   "hf": 12,
   "calibration": 42,

@@ -199,7 +199,8 @@ export function SpeedControls(props: {
   onPause(p: boolean): void;
   onSpeed(s: Speed): void;
 }) {
-  const { paused } = props.playback;
+  const speeds: Speed[] = [0.5, 1, 2];
+  const { paused, speed } = props.playback;
   return (
     <fieldset className="speed">
       <legend className="visually-hidden">Speed</legend>
@@ -212,6 +213,17 @@ export function SpeedControls(props: {
       >
         {paused ? '▶' : '❚❚'}
       </button>
+      {speeds.map((s) => (
+        <button
+          key={s}
+          type="button"
+          className={`speed-btn ${speed === s ? 'is-on' : ''}`}
+          aria-pressed={speed === s}
+          onClick={() => props.onSpeed(s)}
+        >
+          {s === 0.5 ? '½×' : `${s}×`}
+        </button>
+      ))}
     </fieldset>
   );
 }

@@ -3,7 +3,7 @@ import { memo } from 'react';
 import { FullscreenButton } from '../../shared/fullscreen.tsx';
 import { gameLabs, LabMenuContent } from '../../shared/lab.tsx';
 import { PlaytestMenu } from '../../shared/PlaytestMenu.tsx';
-import type { Frame } from '../protocol.ts';
+import type { Frame, Pace } from '../protocol.ts';
 import { storyDate } from './dates.ts';
 import { explainTerms } from './terms.tsx';
 import type { VoiceActions } from './useVoice.ts';
@@ -48,6 +48,18 @@ export const SkyBand = memo(function SkyBand({ sky }: { sky: Frame['sky'] }) {
     </div>
   );
 });
+
+const PACES: { id: Pace; label: string }[] = [
+  { id: 'slow', label: 'Slow' },
+  { id: 'normal', label: 'Normal' },
+  { id: 'fast', label: 'Fast' },
+];
+
+const paceLabel = (p: Pace) => PACES.find((x) => x.id === p)?.label ?? p;
+const nextPace = (p: Pace): Pace => {
+  const i = PACES.findIndex((x) => x.id === p);
+  return PACES[(i + 1) % PACES.length]?.id ?? 'slow';
+};
 
 /** The frame fields the top bar shows, passed one by one so `memo` can compare them. */
 export type TopBarFields = Pick<
@@ -117,6 +129,32 @@ export const TopBar = memo(function TopBar({
               <path d="M4 2.5h3v11H4zM9 2.5h3v11H9z" />
             </svg>
           )}
+        </button>
+        <fieldset className="v-seg v-pace" disabled={frame.reading} aria-label="Pace">
+          {frame.reading ? (
+            <span className="v-reading-rate">Reading slowly</span>
+          ) : (
+            PACES.map((p) => (
+              <button
+                key={p.id}
+                type="button"
+                aria-pressed={frame.pace === p.id}
+                onClick={() => actions.setPace(p.id)}
+              >
+                {p.label}
+              </button>
+            ))
+          )}
+        </fieldset>
+        <button
+          type="button"
+          className="v-btn v-btn-quiet v-pace-cycle"
+          onClick={() => actions.setPace(nextPace(frame.pace))}
+          title="Pace"
+          disabled={frame.reading}
+          aria-label={frame.reading ? 'Reading slowly' : `Pace: ${paceLabel(frame.pace)}. Change pace`}
+        >
+          {frame.reading ? 'Reading slowly' : paceLabel(frame.pace)}
         </button>
         {live && (
           <button type="button" className="v-btn v-btn-quiet v-endday" onClick={actions.endDay}>
