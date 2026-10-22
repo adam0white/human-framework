@@ -1,3 +1,4 @@
+import { setTelemetryOff, telemetryOn } from '@adam0white/lab-kit';
 /**
  * The playtest export (spec §6), offered from the chronicle and from the end pages: the seed, the Keeper's input
  * log and the end state as JSON. Copy puts it on the clipboard; Save writes it as a file, which suits a phone,
@@ -19,9 +20,9 @@ export function ExportButtons({ actions, label }: { actions: WatchActions; label
   const sendPending = useRef(false);
   const restoreSendFocus = useRef<(() => void) | null>(null);
   useEffect(() => () => restoreSendFocus.current?.(), []);
-  const [eventsOn, setEventsOn] = useState(gameLabs.watch.eventsOn);
+  const [eventsOn, setEventsOn] = useState(telemetryOn(gameLabs.watch));
   useEffect(() => {
-    const sync = () => setEventsOn(gameLabs.watch.eventsOn);
+    const sync = () => setEventsOn(telemetryOn(gameLabs.watch));
     window.addEventListener('storage', sync);
     window.addEventListener('focus', sync);
     document.addEventListener('change', sync);
@@ -127,11 +128,11 @@ export function ExportButtons({ actions, label }: { actions: WatchActions; label
             type="checkbox"
             checked={eventsOn}
             onChange={(event) => {
-              gameLabs.watch.setEventsOff(!event.target.checked);
-              setEventsOn(gameLabs.watch.eventsOn);
+              setTelemetryOff(gameLabs.watch, !event.target.checked);
+              setEventsOn(telemetryOn(gameLabs.watch));
             }}
           />{' '}
-          Anonymous play events
+          Record play for the lab
         </label>
         <a className="w-export-option" href="https://human.adamwhite.work/lab/privacy/">
           Lab privacy

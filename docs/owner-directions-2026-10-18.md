@@ -123,3 +123,9 @@ How this is read, decision by decision:
 > I saw your warning about time controls, and you're right. Not only that but I also see that some of my too specific wishes are also hurting the games. Change the time control direction to a general idea and a wish where it makes, but let's give it back to most of the games.
 
 How this is read: automatic pacing is a general wish where it helps the flow. Most games keep player speed controls. Restore the swept games’ speed controls, including Stairwell with automatic pacing as its default. Keep helper popovers, optional end tallies and guarded until-next-event buttons.
+
+## 2026-10-22, linked telemetry (Adam, verbatim)
+
+> Let's change our approach to telemetry. I think we can benefit greatly from however much we can collect. Default to on, connect every piece together, including logs from a player and their saves and runs and linking all together for complete signals. The saves screen can be about sending feedback since we'll have their runs automatically.
+
+How this is read: replace the default-off full-run path with default-on private linked collection of play events, game logs, saves and replay exports. Join records by random player, session and run ids. Keep an off control, respect DNT/GPC unless explicitly overridden per game, and show a first-visit notice. Feedback remains an explicit send. This increment supplies collection and inbox plumbing; game-specific save-screen redesign follows in each game's own work. The shared identity page links approved game origins when browser storage permits it; fallback ids remain origin-scoped. Retain private linked records and runs for 180 days. Player character analysis remains a separate opt-in, as approved on 2026-10-21. See [privacy](lab/privacy.md) and [linked telemetry](lab/linked-telemetry-2026-10-22.md).

@@ -310,6 +310,8 @@ export async function makePlaytestFile<L>(o: {
   hash: string;
   engine: string;
   snapshot: unknown;
+  /** Linked recording keeps full JSON; the transport compresses and chunks it once. */
+  plainSnapshot?: boolean;
 }): Promise<PlaytestFile<L>> {
   return {
     kind: 'human-playtest',
@@ -323,7 +325,9 @@ export async function makePlaytestFile<L>(o: {
     minute: o.minute,
     log: o.log,
     hash: o.hash,
-    ...(await encodeSnapshot(o.snapshot)),
+    ...(o.plainSnapshot
+      ? { snapshotEncoding: 'json' as const, snapshot: JSON.parse(stableStringify(o.snapshot)) }
+      : await encodeSnapshot(o.snapshot)),
   };
 }
 

@@ -24,108 +24,24 @@
         <a class="top-link" href="/lab/">the lab</a>
       </header>
       <main>
-        <section class="hero">
-          <h1>How the lab handles what you send</h1>
-          <p class="lede">
-            The games on adamwhite.work send two kinds of things to the lab. Both go to one endpoint on
-            human.adamwhite.work and are stored in a private storage bucket. Updated 2026-10-21.
-          </p>
-        </section>
-
+        <section class="hero"><h1>How the lab handles play records</h1><p class="lede">Updated 2026-10-22.</p></section>
         <section>
-          <h2>1. Anonymous play events</h2>
-          <p>Small, batched, and sent in the background while you play. Each batch holds only these fields:</p>
-          <table>
-            <thead>
-              <tr><th>Field</th><th>Example</th><th>Why</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>game</td><td>pass</td><td>which game</td></tr>
-              <tr>
-                <td>session id</td>
-                <td>16 random letters and digits</td>
-                <td>
-                  to join the events of one visit. It is made at random, kept only in this tab’s sessionStorage,
-                  and gone when you close the tab. It is not a cookie and is not derived from your device.
-                </td>
-              </tr>
-              <tr><td>events</td><td>start; “service 3 done”; screen “night 2: service”; end. The server accepts only reviewed screen and milestone names declared for that game.</td><td>where people stop, what they reach</td></tr>
-              <tr><td>time</td><td>milliseconds since the session started</td><td>how long a visit lasts</td></tr>
-              <tr><td>error</td><td>the type and place of an uncaught error, such as “TypeError at index-3f2a.js:12:345”, never its message; at most 5 per visit</td><td>to find broken builds</td></tr>
-              <tr><td>build</td><td>commit 01601bc, HF 2.8.0, game 0.1.0</td><td>which build you played</td></tr>
-              <tr><td>privacy override</td><td>true, only if you chose it</td><td>to honor your explicit choice despite your browser signal</td></tr>
-              <tr><td>viewport class</td><td>phone, tablet or desktop (from the window width only)</td><td>to know if phones work</td></tr>
-            </tbody>
-          </table>
-          <p>The event envelope records the receipt hour (for example 2026-10-19T14). Private storage also records the exact upload time on each object.</p>
-          <p>
-            <strong>Never collected:</strong> your name, email or account; cookies; IP address; user agent;
-            location or country; screen size in pixels, fonts or any other fingerprint; what you type.
-          </p>
-          <p>
-            <strong>Turned off</strong> when your browser sends Do Not Track or Global Privacy Control (checked in
-            the browser and again on the server), unless you tick “Send anonymous events anyway” in the notebook dialog. This explicit choice is remembered locally for that game; untick it to apply your browser signal again. Events are also off when you untick “anonymous play events” in a game’s send dialog
-            (remembered in that game’s localStorage and shared across its open tabs), and on localhost.
-          </p>
-          <p>
-            <strong>Kept:</strong> raw batches are eligible for cleanup when their UTC date is at least two calendar days behind today. Cleanup advances every ten minutes in bounded steps. Raw batches and private progress records containing session ids remain until the complete daily counts have been saved and deletion finishes; a backlog or outage extends retention. Recent counts may be sampled and remain provisional. The final daily counts per
-            game (sessions, durations in five bands, milestone counts, last-screen counts, error counts, viewport
-            classes, builds) contain no session ids. Session ids are removed from private progress records before raw deletion starts. Small completion markers without session ids remain to prevent stale workers from recreating those records. The daily counts are public on
-            <a href="/lab/">the lab page</a> and in <a href="/lab/data.json">/lab/data.json</a>.
-          </p>
-        </section>
-
-        <section>
-          <h2>2. A run you choose to send</h2>
-          <p>
-            Some games have “Send this run to the notebook”. Nothing is sent until you press Send. The dialog shows
-            the exact text first. It holds:
-          </p>
-          <ul>
-            <li>the game’s own playtest export: the seed, every input you made with its game time, and the game’s state, which is what the game’s “download run” button already saves;</li>
-            <li>an optional note, in your words;</li>
-            <li>an optional “who you are” label, such as “owner” or “a friend of Adam” (the dialog does not remember it);</li>
-            <li>the build, as above.</li>
-          </ul>
-          <p>
-            It is compressed in your browser (gzip) and stored privately. Runs and notes are never published, on
-            the lab page or anywhere else. The people building the games read them, replay them and quote short
-            lines from notes in the lab’s feedback ledger only when the line is about the game and has no personal
-            detail. The note is free text, so please do not put personal details in it.
-          </p>
-          <p>
-            After sending you get a reference like <code>r-abc123defg</code>. Nothing else ties a run to you, so
-            quote that reference (or the time and the label you used) to have a run removed: open an issue at
-            <a href="https://github.com/adam0white/human-framework/issues">github.com/adam0white/human-framework</a>
-            or tell Adam. Runs, notes, labels and their storage upload timestamps are kept until then or until the lab no longer needs them.
-          </p>
-          <p>A run can be at most 2 MiB compressed and 4 MiB uncompressed, with limits on JSON complexity. The lab reserves up to 1,000 anonymous event batches per UTC day; further batches are refused. Older days above that processing bound remain private and are marked for offline recovery instead of being deleted. Upload rates are limited by address (IPv6 addresses share a /64 limit) and by Cloudflare location. A conditional storage counter reserves up to 200 uploads per UTC day across the lab. A failed storage write can use a reservation; contention can temporarily refuse an upload before the daily allowance is used.</p>
-        </section>
-
-        <section>
-          <h2>What else touches your visit</h2>
-          <ul>
-            <li>
-              Cloudflare serves these sites. To answer any request it sees your IP address, as every web host
-              does. The lab code uses the address only, in memory, to limit how often one place can send; it does
-              not store or log it, and Worker request logs are off.
-            </li>
-            <li>
-              human.adamwhite.work (and possibly the game sites) load Cloudflare Web Analytics, a separate cookieless
-              page-view counter. That is not part of the lab and is not described above.
-            </li>
-            <li>Fonts come from Google Fonts.</li>
-          </ul>
-        </section>
-
-        <section>
-          <h2>The code</h2>
-          <p>
-            All of this is open source: the
-            <a href="https://github.com/adam0white/human-framework/tree/main/packages/lab-client">client</a>
-            and the
-            <a href="https://github.com/adam0white/human-framework/blob/main/apps/site/worker/lab.ts">endpoint</a>.
-          </p>
+          <h2>Automatic linked play records</h2>
+          <p>The first-visit notice says: “The lab records your play to improve the games. Turn off in the menu.”</p>
+          <p>Games using the new lab client send play events (start/end, elapsed time, named screens and milestones, viewport class), client error and warning text, game log lines, replay exports and saves automatically while telemetry is on. Collection is on by default. Feedback text is sent only when you press Send. Game exports can include seed, inputs, game time, simulated people and world state. The lab does not record unrelated typing or browser activity. Do not put personal details in feedback or game fields that enter a save.</p>
+          <p>Each record includes a random player id, session id and run id, a content-derived record id, game, record kind, timestamp, build commit, HF version, game version and payload. These ids connect events, logs, feedback, saves and replays. They do not establish who a person is. The new protocol stores no name, email, account, cookie, IP address, user agent or device fingerprint.</p>
+          <p>The player id is stored in localStorage on human.adamwhite.work. An embedded identity page shares it with approved game origins through origin-checked messages. This links visits across those games in the same browser when the embedded page can use its storage. Browser restrictions or a blocked identity page may prevent that link; a fallback id then covers only the game&#x27;s own origin. Separate browsers, cleared storage and private sessions are not automatically linked. Session and run ids identify a visit and a particular playthrough, respectively.</p>
+          <p>Turn telemetry off in the game&#x27;s notebook dialog. This stops uploads, aborts pending requests and removes the stored player id. Already received records remain subject to retention; turning telemetry back on creates a new id. The shared identity page carries this choice across connected game tabs. A blocked bridge can only apply the choice locally. Do Not Track and Global Privacy Control suppress automatic collection in both client and server unless you explicitly choose the per-game override. Localhost is off unless a developer explicitly enables it.</p>
+          <p>Linked records and legacy run uploads are private. The people building the games use them to reproduce faults, replay choices, compare builds and connect feedback to what happened. Complete save and replay chunks are reassembled within the same player, game, session, run, kind and upload id. Missing or conflicting chunks are labelled incomplete, not treated as a replay. Upload limits can leave gaps; automatic collection is not a promise to receive every run.</p>
+          <p>Linked records, runs and their private indexes expire after 180 days under storage lifecycle rules. Storage deletion usually follows within 24 hours. Pending local uploads are capped at 16 MiB and expire after seven days. Copies already downloaded by the owner are private local files and require separate deletion; the storage lifecycle does not delete them. Give Adam a player or run reference to request removal, or open a <a href="https://github.com/adam0white/human-framework/issues">repository issue</a> without posting the private export. Turning telemetry off does not delete earlier uploads.</p>
+          <h2>Existing event counts and manually sent runs</h2>
+          <p>Older clients still send anonymous event batches and offer an explicit run-send dialog. The legacy run envelope can include an optional note and optional “who you are” label. It receives an <code>r-…</code> reference. Those voluntary labels remain in the private legacy record; the new linked protocol adds no name or contact field. Keep personal details out of notes and labels. Public feedback quotes must concern the game and omit personal detail.</p>
+          <p>Legacy raw event batches become eligible for cleanup when their UTC date is at least two calendar days behind today. Counts must be saved before deletion finishes; outages or backlogs extend this period. Final daily counts contain no session ids. Public <a href="https://human.adamwhite.work/lab/data.json">/lab/data.json</a> contains aggregate counts and curated feedback, not linked records, saves or replays. Existing aggregate processing bounds and privacy controls remain in place.</p>
+          <h2>Character analysis remains a separate choice</h2>
+          <p>Automatic collection does not opt you into the player character test. That test may use your own earlier saves and replays only after you separately opt in. Inferred traits must stay visible and editable. Linked inbox exports make the files available for that approved flow; this change does not add automatic personality inference or automatic AI processing.</p>
+          <h2>Hosting and other services</h2>
+          <p>Cloudflare sees an IP address to serve a request. The lab uses it in memory for rate limits and does not store or log it. Worker request logs are off. Cloudflare Web Analytics is a separate cookieless page-view counter. Fonts may come from Google Fonts. These services are separate from linked play collection.</p>
+          <p>The <a href="https://github.com/adam0white/human-framework/tree/main/packages/lab-client">client</a> and <a href="https://github.com/adam0white/human-framework/blob/main/apps/site/worker/lab.ts">endpoint</a> are open source. Games adopt the new client separately, so a game still using the older dialog follows the legacy behavior described above.</p>
         </section>
       </main>
       <footer class="foot">

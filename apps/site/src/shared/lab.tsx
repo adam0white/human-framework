@@ -1,4 +1,5 @@
 import { createLab, type Lab } from '@adam0white/lab-client';
+import { setTelemetryOff, telemetryNotice, telemetryOn } from '@adam0white/lab-kit';
 import { useEffect, useRef, useState } from 'react';
 
 const instances: Partial<Record<'well' | 'voice' | 'watch', Lab>> = {};
@@ -19,9 +20,11 @@ export const gameLabs = {
   },
 };
 
-/** Fixed labels only. State, player text and names belong solely in the opt-in export. */
+/** Tracks visible screens and mounts the shared first-visit disclosure. */
 export function useLabScreen(lab: Lab, screen: 'title' | 'play' | 'ending') {
   useEffect(() => {
+    const notice = telemetryNotice();
+    if (notice) document.body.prepend(notice);
     lab.screen(screen);
     if (screen === 'play') lab.milestone('run started');
     if (screen === 'ending') lab.milestone('ending reached');
@@ -30,18 +33,20 @@ export function useLabScreen(lab: Lab, screen: 'title' | 'play' | 'ending') {
 
 /** Inline items for the game's own menu. Screen tracking stays mounted with the game. */
 export function LabMenuContent({ lab, onSend }: { lab: Lab; onSend: () => void | Promise<void> }) {
-  const [eventsOn, setEventsOn] = useState(lab.eventsOn);
+  const [eventsOn, setEventsOn] = useState(telemetryOn(lab));
   const [sendError, setSendError] = useState('');
   const [sending, setSending] = useState(false);
   const sendPending = useRef(false);
   useEffect(() => {
-    const sync = () => setEventsOn(lab.eventsOn);
+    const sync = () => setEventsOn(telemetryOn(lab));
     window.addEventListener('storage', sync);
     window.addEventListener('focus', sync);
+    window.addEventListener('hf-lab-preference', sync);
     document.addEventListener('change', sync);
     return () => {
       window.removeEventListener('storage', sync);
       window.removeEventListener('focus', sync);
+      window.removeEventListener('hf-lab-preference', sync);
       document.removeEventListener('change', sync);
     };
   }, [lab]);
@@ -73,11 +78,11 @@ export function LabMenuContent({ lab, onSend }: { lab: Lab; onSend: () => void |
           type="checkbox"
           checked={eventsOn}
           onChange={(e) => {
-            lab.setEventsOff(!e.target.checked);
-            setEventsOn(lab.eventsOn);
+            setTelemetryOff(lab, !e.target.checked);
+            setEventsOn(telemetryOn(lab));
           }}
         />{' '}
-        Anonymous play events
+        Record play for the lab
       </label>
       <a href="https://human.adamwhite.work/lab/privacy/">Privacy</a>
     </>

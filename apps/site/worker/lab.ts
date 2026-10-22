@@ -2,6 +2,7 @@
  * The site Worker. Static assets are served by Cloudflare directly; this script runs only for the lab paths
  * listed in wrangler.jsonc `assets.run_worker_first`:
  *
+ *   POST /lab/api/linked   linked private records, gzip, explicit stable random player/session/run IDs
  *   POST /lab/api/events   regular events: anonymous, tiny, batched (sendBeacon, text/plain JSON)
  *   POST /lab/api/run      an opt-in run: the game's playtest export plus an optional note, gzip-compressed
  *   GET  /lab/data.json    public lab data: curated feedback, live game builds, event aggregates, run counts
@@ -31,6 +32,14 @@ import {
 } from '../src/lab/core.ts';
 import curated from '../src/lab/curated.json' with { type: 'json' };
 import { declaredLabel, LAB_GAMES } from '../src/lab/games.ts';
+import {
+  LINKED_LIMITS,
+  type LinkedEnvelope,
+  type LinkedMeta,
+  linkedIndexKey,
+  linkedKey,
+  parseLinked,
+} from '../src/lab/linked.ts';
 
 // Minimal platform types (the subset this Worker uses), so the site needs no extra type package.
 type R2Object = {
@@ -261,6 +270,19 @@ async function postRun(req: Request, env: Env, origin: string | null, ctx: Ctx):
   const stored = await new Response(
     new Blob([JSON.stringify(parsed.run)]).stream().pipeThrough(new CompressionStream('gzip')),
   ).arrayBuffer();
+  // Legacy run uploads have a separate 8 MiB/day ceiling. Together with linked records,
+  // retained compressed payloads admit at most 40 MiB/day before the 180-day lifecycle.
+  if (
+    !(await reserveLinked(
+      env,
+      dayOf(now),
+      keys.run(dayOf(now), id),
+      stored.byteLength,
+      'private/run-byte-capacity',
+      8 * 1024 * 1024,
+    ))
+  )
+    return reply(503, { error: 'The notebook byte budget is full or busy today.' }, origin);
   await env.LAB.put(keys.run(dayOf(now), id), stored, {
     httpMetadata: { contentType: 'application/gzip' },
     customMetadata: meta,
@@ -271,6 +293,222 @@ async function postRun(req: Request, env: Env, origin: string | null, ctx: Ctx):
     addToRunIndex(env, { key: keys.run(dayOf(now), id), size: stored.byteLength, ...meta }).catch(() => {}),
   );
   return reply(200, { ok: true, id }, origin);
+}
+
+/** Receipt-day budget: CAS serializes admissions, retries of one key spend no additional budget.
+ * Failed writes consume reservations. Counters never contain payloads or request headers.
+ */
+async function reserveLinked(
+  env: Env,
+  day: string,
+  key: string,
+  size: number,
+  prefix = 'private/linked-capacity',
+  maxBytes: number = LINKED_LIMITS.dailyBytes,
+): Promise<boolean> {
+  const path = `${prefix}/${day}.json`;
+  for (let attempt = 0; attempt < 8; attempt++) {
+    const body = await env.LAB.get(path);
+    const state = body
+      ? await body.json<{ bytes: number; records: Record<string, number> }>()
+      : { bytes: 0, records: {} };
+    if (
+      !Number.isSafeInteger(state.bytes) ||
+      state.bytes < 0 ||
+      !state.records ||
+      typeof state.records !== 'object'
+    )
+      return false;
+    if (Object.hasOwn(state.records, key)) return state.records[key] === size;
+    if (Object.keys(state.records).length >= LINKED_LIMITS.dailyObjects || state.bytes + size > maxBytes)
+      return false;
+    const saved = await env.LAB.put(
+      path,
+      JSON.stringify({ bytes: state.bytes + size, records: { ...state.records, [key]: size } }),
+      {
+        onlyIf: body ? { etagMatches: body.etag } : { etagDoesNotMatch: '*' },
+        httpMetadata: { contentType: 'application/json' },
+      },
+    );
+    if (saved) return true;
+  }
+  return false;
+}
+
+async function indexLinked(env: Env, day: string, entry: LinkedMeta): Promise<boolean> {
+  const key = linkedIndexKey(day);
+  for (let attempt = 0; attempt < 8; attempt++) {
+    const body = await env.LAB.get(key);
+    const old = body ? (await body.json<{ records: LinkedMeta[] }>()).records : [];
+    if (old.some((r) => r.key === entry.key)) return true;
+    if (old.length >= LINKED_LIMITS.dailyObjects) return false;
+    const saved = await env.LAB.put(key, JSON.stringify({ v: 2, records: [...old, entry] }), {
+      onlyIf: body ? { etagMatches: body.etag } : { etagDoesNotMatch: '*' },
+      httpMetadata: { contentType: 'application/json' },
+    });
+    if (saved) return true;
+  }
+  return false;
+}
+
+/** CAS unions actual receipt days so the inbox never tries empty calendar manifests. */
+async function linkedDirectory(env: Env, now: number, day?: string): Promise<void> {
+  const key = 'private/linked-index.json';
+  for (let attempt = 0; attempt < 8; attempt++) {
+    const body = await env.LAB.get(key);
+    const old = body ? (await body.json<{ days: string[] }>()).days : [];
+    const oldest = dayOf(now - 180 * 86400000);
+    const days = [...new Set([...old, ...(day ? [day] : [])])]
+      .filter((d) => /^\d{4}-\d{2}-\d{2}$/.test(d) && d >= oldest)
+      .sort();
+    if (
+      await env.LAB.put(key, JSON.stringify({ v: 2, days }), {
+        onlyIf: body ? { etagMatches: body.etag } : { etagDoesNotMatch: '*' },
+        httpMetadata: { contentType: 'application/json' },
+      })
+    )
+      return;
+  }
+  throw new Error('Linked directory is busy.');
+}
+
+async function projectLinkedEvents(env: Env, record: LinkedEnvelope, receiptDay: string): Promise<boolean> {
+  if (record.kind !== 'events' || receiptDay < dayOf(Date.now() - 86400000)) return true;
+  const key = keys.batch(`${receiptDay}T00`, `linked-${record.player}-${record.id}`);
+  if (await env.LAB.get(key)) return true;
+  if (
+    !(await reserveCapacity(
+      env,
+      `private/event-capacity/${receiptDay}.json`,
+      keys.dayPrefix(receiptDay),
+      EVENT_BATCHES_PER_DAY,
+    ))
+  )
+    return false;
+  const d = record.data as { vp: 'phone' | 'tablet' | 'desktop'; e: StoredBatch['e'] };
+  const batch: StoredBatch = {
+    v: 1,
+    g: record.game,
+    s: record.session,
+    b: record.build,
+    vp: d.vp,
+    e: d.e,
+    h: `${receiptDay}T00`,
+  };
+  await env.LAB.put(key, JSON.stringify(batch), {
+    onlyIf: { etagDoesNotMatch: '*' },
+    httpMetadata: { contentType: 'application/json' },
+  });
+  return true;
+}
+
+/** One expired receipt-day per cron, at most 1000 data deletions. The reservation counter
+ * is the durable deletion manifest, including stores interrupted before their index update.
+ */
+export async function cleanupLinked(env: Env, now: number): Promise<void> {
+  const oldest = await env.LAB.list({ prefix: 'private/linked-capacity/', limit: 1 });
+  const first = oldest.objects[0];
+  if (!first) return;
+  const day = first.key.slice('private/linked-capacity/'.length, -5);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(day) || day >= dayOf(now - LINKED_LIMITS.retentionDays * 86400000)) return;
+  const body = await env.LAB.get(first.key);
+  if (!body) return;
+  const state = await body.json<{ bytes: number; records: Record<string, number> }>();
+  const entries = Object.entries(state.records);
+  const removed = entries.slice(0, 1000);
+  if (removed.length) await env.LAB.delete(removed.map(([key]) => key));
+  if (entries.length > removed.length) {
+    await env.LAB.put(
+      first.key,
+      JSON.stringify({ bytes: state.bytes, records: Object.fromEntries(entries.slice(1000)) }),
+      { onlyIf: { etagMatches: body.etag } },
+    );
+  } else {
+    await env.LAB.delete(linkedIndexKey(day));
+    await env.LAB.delete(first.key);
+  }
+}
+
+async function postLinked(req: Request, env: Env, origin: string | null): Promise<Response> {
+  if (
+    !(await env.EVENTS_LIMIT.limit({ key: limitKey(req, 'linked') })).success ||
+    !(await env.EVENTS_ALL.limit({ key: 'linked' })).success
+  )
+    return reply(429, null, origin);
+  if (Number(req.headers.get('Content-Length') ?? 0) > LINKED_LIMITS.compressed)
+    return reply(413, null, origin);
+  const bytes = await readCapped(req.body, LINKED_LIMITS.compressed);
+  if (!bytes) return reply(413, null, origin);
+  let text: string;
+  try {
+    const inflated = await readCapped(
+      new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip')),
+      LINKED_LIMITS.inflated,
+    );
+    if (!inflated) return reply(413, null, origin);
+    text = new TextDecoder('utf-8', { fatal: true }).decode(inflated);
+  } catch {
+    return reply(400, { error: 'Expected gzip-compressed JSON.' }, origin);
+  }
+  const now = Date.now();
+  const parsed = parseLinked(text, now);
+  if (!parsed.ok) return reply(400, { error: parsed.error }, origin);
+  const record = parsed.record;
+  if (privacySignal(req.headers) && !record.privacyOverride) return reply(204, null, origin);
+  const key = linkedKey(record);
+  const canonical = JSON.stringify(record);
+  // Content IDs survive a reload; timestamp changes alone must not duplicate a snapshot.
+  const { at: _at, ...identity } = record;
+  const digest = [
+    ...new Uint8Array(
+      await crypto.subtle.digest('SHA-256', new TextEncoder().encode(JSON.stringify(identity))),
+    ),
+  ]
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('');
+  let object: R2Object | null = await env.LAB.get(key);
+  if (!object) {
+    const stored = await new Response(
+      new Blob([canonical]).stream().pipeThrough(new CompressionStream('gzip')),
+    ).arrayBuffer();
+    const day = dayOf(now);
+    if (!(await reserveLinked(env, day, key, stored.byteLength)))
+      return reply(503, { error: 'Linked storage is full or busy today.' }, origin);
+    const result = await env.LAB.put(key, stored, {
+      onlyIf: { etagDoesNotMatch: '*' },
+      httpMetadata: { contentType: 'application/gzip' },
+      customMetadata: {
+        digest,
+        indexDay: day,
+        id: record.id,
+        player: record.player,
+        session: record.session,
+        runId: record.runId,
+        game: record.game,
+        kind: record.kind,
+        at: String(record.at),
+      },
+    });
+    object = result ?? (await env.LAB.get(key));
+  }
+  if (!object || object.customMetadata?.digest !== digest)
+    return reply(409, { error: 'Record ID already has different content.' }, origin);
+  const indexDay = object.customMetadata.indexDay;
+  if (!indexDay || !/^\d{4}-\d{2}-\d{2}$/.test(indexDay)) return reply(503, null, origin);
+  const { data: _data, v: _v, privacyOverride: _override, ...fields } = record;
+  if (
+    !(await indexLinked(env, indexDay, {
+      ...fields,
+      at: Number(object.customMetadata.at),
+      key,
+      size: object.size,
+    }))
+  )
+    return reply(503, { error: 'Linked index is busy. Retry this record.' }, origin);
+  await linkedDirectory(env, now, indexDay);
+  if (!(await projectLinkedEvents(env, record, indexDay)))
+    return reply(503, { error: 'Event storage is full or busy today.' }, origin);
+  return reply(200, { ok: true, id: record.id }, origin);
 }
 
 type RunMeta = { key: string; size: number } & Record<string, string | number>;
@@ -621,11 +859,16 @@ export default {
         return reply(503, { error: 'lab data unavailable' }, null);
       }
     }
-    if (url.pathname === '/lab/api/events' || url.pathname === '/lab/api/run') {
+    if (
+      url.pathname === '/lab/api/events' ||
+      url.pathname === '/lab/api/run' ||
+      url.pathname === '/lab/api/linked'
+    ) {
       if (!allowedOrigin(origin)) return reply(403, { error: 'origin not allowed' }, null);
       if (req.method === 'OPTIONS') return reply(204, null, origin);
       if (req.method !== 'POST') return reply(405, null, origin, { Allow: 'POST, OPTIONS' });
       try {
+        if (url.pathname === '/lab/api/linked') return await postLinked(req, env, origin);
         return url.pathname === '/lab/api/events'
           ? await postEvents(req, env, origin)
           : await postRun(req, env, origin, ctx);
@@ -643,6 +886,8 @@ export default {
       (async () => {
         await cleanup(env, now);
         await rebuildRunIndex(env);
+        await linkedDirectory(env, now);
+        await cleanupLinked(env, now);
       })(),
     );
   },

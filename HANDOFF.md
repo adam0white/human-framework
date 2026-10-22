@@ -10,6 +10,14 @@ Updated 2026-10-20. Read [AGENTS.md](AGENTS.md) for rules and the current increm
 - **Deferred by owner, no date:** first lab-client npm publication and its trusted publisher.
 - **Rechecks:** lanes model measured to 2026-10-27 ([velocity sweep](docs/lab/velocity-sweep-2026-10-20.md)); Cloudflare `cf` CLI on 2026-12-01 ([findings](docs/findings.md)); The Night Watch §12 deferred list by 2026-11-05.
 
+## Linked lab telemetry (2026-10-22)
+
+Owner-directed plumbing: lab-client 0.2.0 and lab-kit 0.3.0 (workspace versions; npm publication remains deferred). All three site games automatically supply full runs, successful Watch saves, game logs and events. Shared menu controls stop recording and remove identity. Shared first-visit notice is visible. The static `/lab/identity/` bridge links approved lab origins through localStorage and checked messages; CSP permits framing only this page. DNT/GPC still suppress automatic uploads absent an explicit per-game override. The separate player-character opt-in remains required. External games must adopt the new client hooks and allow the identity frame in their CSP; their screens are outside this increment.
+
+Private linked ingestion uses gzip pieces (256 KiB compressed / 512 KiB inflated), content-id deduplication, bounded IndexedDB delivery and CAS storage budgets. `lab:inbox` reconstructs linked exports and per-player timelines. Full protocol, limits, cost assumptions and negative cases: [linked telemetry](docs/lab/linked-telemetry-2026-10-22.md). One independent Codex Worker/privacy review found an inbox-key mismatch, a lost re-enable message, and a false sent receipt; all corrected. Legacy run byte admission is now capped at 8 MiB/day alongside 32 MiB/day linked records.
+
+R2 `hf-lab`: applied and read back lifecycle rules `linked-180-days` (`linked/`), `runs-180-days` (`runs/`), `private-180-days` (`private/`) and `raw-safety-180-days` (`ev/`), each expires after 180 days. Default multipart abort rule is retained. Existing raw-event aggregation/cleanup remains eligible after two calendar days; the lifecycle bounds outages. Public aggregates remain. No request logging added. Final commit/CI/live upload receipts are recorded in `~/code/.lab-scratch/codex/telemetry-on.md` after deployment.
+
 ## Current state
 
 - **HF 2.14.1 / engine 2.14.1 (2026-10-21), latest release.** Corrects 2.14.0: a perceived-progress project is credited only for a new high (`Goal.project.peak`), and the persistence pull halves every 30 minutes without goal progress. Behaviour version per slice (`behaviour: 2`), stamped by the enable functions; 2.14.0 saves keep 2.14.0 behaviour until re-enabled. The site pins 2.14.1. Island on 2.14.1: undo-redo halved, still 82% of placements; task not better ([experiment](docs/lab/experiments/island-2026-10-20.md#rerun-with-engine-2141-hf5)). `check:lane` and `npm run release` now fail on lockfile drift.

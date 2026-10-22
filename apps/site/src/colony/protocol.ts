@@ -5,6 +5,7 @@
  * pauses at the same minutes. The sim never reads a clock, so a run is reproducible from the seed and the order log.
  */
 import type { PlaytestFile, ReplayResult } from '../shared/playtest.ts';
+import type { TelemetryReply, TelemetryRequest } from '../shared/worker-telemetry.ts';
 import type { EndSummary, Frame } from './sim/game.ts';
 import type { Prediction, WhyBreakdown } from './sim/human-side.ts';
 import type { OrderInput } from './sim/orders.ts';
@@ -14,6 +15,7 @@ import type { Minute, VillagerId } from './sim/world-types.ts';
 export type Speed = 0.5 | 1 | 2;
 
 export type MainToWorker =
+  | TelemetryRequest
   /** `gen` numbers the run; every reply echoes it so the page can drop replies from a run it replaced. Starts paused. */
   | {
       type: 'init';
@@ -64,6 +66,7 @@ export interface PlaybackState {
 
 /** A worker reply before the run number is attached. */
 export type WorkerReply =
+  | TelemetryReply
   /** `Frame.clock` stays the "Day 1 · 06:30" string. */
   | { type: 'frame'; frame: Frame; playback: PlaybackState }
   | { type: 'why'; personId: VillagerId; decisionId?: string; why: WhyBreakdown | null }

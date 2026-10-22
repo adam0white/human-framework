@@ -1,3 +1,4 @@
+import { ENGINE_VERSION } from '@adam0white/human-framework';
 import { describe, expect, it } from 'vitest';
 import type { WorkerReply } from '../protocol.ts';
 import { NUDGES, SCENARIO_VERSION } from './game.ts';
@@ -168,4 +169,15 @@ describe('playback: explicit pause and continuous decision slowdown', () => {
     expect(pb.handle({ type: 'continue' })[0]?.type).toBe('frame');
     expect(g.endMinute).toBe(4320);
   });
+});
+
+it('exports full linked snapshots in the existing replay format', async () => {
+  const pb = start();
+  pb.handle({ type: 'resume' });
+  pb.handle({ type: 'tick', dtMs: 250 });
+  const file = await pb.playtestFile(ENGINE_VERSION, true);
+  expect(file.snapshotEncoding).toBe('json');
+  expect(file.snapshot).toHaveProperty('human');
+  const replay = new Playback(createFrameworkHumanSide).load(JSON.stringify(file), ENGINE_VERSION);
+  expect(replay.result.matches).toBe(true);
 });

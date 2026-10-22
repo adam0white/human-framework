@@ -5766,6 +5766,20 @@
     "fix:murmur retain existing card timing and guarded until-event action (speed-selector exception)"
    ],
    "source": "Owner speed restoration 2026-10-22"
+  },
+  {
+   "id": "F-435",
+   "date": "2026-10-22",
+   "game": "lab",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Default to on, connect every piece together, including logs from a player and their saves and runs and linking all together for complete signals.",
+   "verdict": "-",
+   "routes": [
+    "fix:lab default-on linked private telemetry and inbox (implementation)",
+    "fix:lab feedback from saves screen in each game's own follow-up (target 2026-11-03)"
+   ],
+   "source": "docs/owner-directions-2026-10-18.md"
   }
  ],
  "lessons": [
@@ -6372,7 +6386,7 @@
   }
  ],
  "routes": {
-  "fix": 458,
+  "fix": 460,
   "lesson": 291,
   "hf": 12,
   "calibration": 42,

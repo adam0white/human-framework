@@ -1,21 +1,20 @@
-/**
- * @adam0white/lab-client: the Human Framework game lab's browser client.
- *
- * Two things, both small:
- * - Regular events: anonymous and tiny. Session start and end, how long, milestones the game declares, the
- *   last screen before leaving, the build (commit, HF version, game version) and a viewport class. Batched and
- *   sent with a keepalive fetch that carries no cookies. No cookies, no fingerprinting, no personal data; a random session id
- *   lives in this tab's sessionStorage only. Nothing is sent when the browser signals Do Not Track or Global
- *   Privacy Control unless the player explicitly overrides that signal, when the player turned events off, or (by default) from localhost.
- * - An opt-in run: the game's own playtest export, gzip-compressed in the browser, plus an optional note and
- *   an optional "who you are" label, sent only when the player presses Send in the dialog, which first shows
- *   exactly what will be sent.
- *
- * Privacy note: https://human.adamwhite.work/lab/privacy/. Endpoint: the lab Worker on human.adamwhite.work.
- * Not covered: replay links, offline queueing of runs, and any analytics beyond the fields above.
+/** Default-on linked lab telemetry. Games own their replay exports; this client owns consent and delivery.
+ * Pseudonymous identity is shared by the lab identity frame, with an origin-scoped fallback if blocked.
+ * Off deletes the local id, clears pending pieces and aborts active uploads. Browser privacy signals
+ * suppress automatic linked data unless the player explicitly overrides them for this game.
  */
+
 import { openSendDialog, type SendDialogOptions } from './dialog.ts';
+import {
+  identityBridge,
+  localPlayer,
+  PLAYER_KEY,
+  OFF_KEY as RECORDING_OFF,
+  readLocal,
+  writeLocal,
+} from './identity.ts';
 import { checkRun, compressedRefusal, RUN_LIMITS, runRefusal } from './limits.ts';
+import { linkedTransport, randomId } from './linked.ts';
 import { type Build, type CompactOptions, DEFAULT_ENDPOINT, gzip, prepareRun } from './util.ts';
 
 export { checkRun, RUN_LIMITS } from './limits.ts';
@@ -56,15 +55,27 @@ export type Lab = {
   setEventsOff(off: boolean): void;
   /** Whether the browser asks not to track. */
   readonly privacySignalOn: boolean;
-  /** Explicit per-game consent to send anonymous events despite that signal. */
+  /** Explicit per-game consent to linked recording despite that signal. */
   readonly privacyOverride: boolean;
   setPrivacyOverride(allow: boolean): void;
-  /** Sends a run directly. Resolves to the run's reference id. */
+  /** Queues a linked run and resolves to its upload reference; this is not a delivery receipt. */
   sendRun(run: unknown, extra?: { note?: string; who?: string } & CompactOptions): Promise<string>;
-  /** Sends an envelope already serialized (the dialog sends exactly the text it showed). */
+  /** Queues the run and note from a serialized envelope, adding linkage metadata. */
   sendEnvelopeText(text: string): Promise<string>;
   /** Opens the "Send this run to the notebook" dialog. */
   openSendDialog(options: Omit<SendDialogOptions, 'lab'>): void;
+  readonly telemetryOn: boolean;
+  readonly playerId: string | null;
+  setTelemetryOff(off: boolean): void;
+  /** Poll a game's full seed/input/state export in the background; returns its teardown. */
+  trackRun(
+    getRun: () => unknown | Promise<unknown>,
+    options?: { getLogs?: () => unknown[]; runKey?: () => string | number },
+  ): () => void;
+  captureSave(value: unknown): void;
+  log(level: 'error' | 'warn' | 'game', message: string): void;
+  /** Queues feedback attached to the current linked run. It does not opt into character analysis. */
+  sendFeedback(note: string): Promise<string>;
   readonly game: string;
   readonly endpoint: string;
   /** The build info once known. */
@@ -137,79 +148,124 @@ export function createLab(options: LabOptions): Lab {
   const session = storage('sessionStorage');
   const local = storage('localStorage');
   const offKey = `${OFF_KEY}:${game}`;
-  const local_ = g.location ? isLocalhost(g.location.hostname) : true;
-  let off = getItem(local, offKey) === '1';
   const overrideKey = `${OVERRIDE_KEY}:${game}`;
+  const local_ = g.location ? isLocalhost(g.location.hostname) : true;
+  let off = readLocal(RECORDING_OFF) === '1' || getItem(local, offKey) === '1';
   let override = getItem(local, overrideKey) === '1';
-  const blocked = () => {
-    if (getItem(local, offKey) === '1') off = true;
-    const stopped = (privacySignal(g) && !override) || off || (local_ && !options.sendFromLocalhost);
-    if (stopped) queue.length = 0;
-    return stopped;
-  };
-
-  // Session id and start time: per tab, survive reloads in that tab, gone when the tab closes.
-  const sidKey = `${SID_KEY}:${game}`;
-  const stored = getItem(session, sidKey)?.split(':');
+  let player: string | null = null;
+  let identity: ReturnType<typeof identityBridge> | undefined;
+  const queue: { event: Event; runId: string }[] = [];
+  const logs: { level: 'error' | 'warn' | 'game'; message: string; at: number; runId: string }[] = [];
+  const stopped = () =>
+    off ||
+    readLocal(RECORDING_OFF) === '1' ||
+    (privacySignal(g) && !override) ||
+    (local_ && !options.sendFromLocalhost);
+  const sessionKey = `${SID_KEY}:${game}`;
+  const stored = getItem(session, sessionKey)?.split(':');
   let sid = stored?.[0] ?? '';
   let started = Number(stored?.[1]);
-  const fresh = !/^[a-z0-9]{16}$/.test(sid) || !Number.isFinite(started);
+  const fresh = !/^[a-f0-9]{32}$/.test(sid) || !Number.isFinite(started);
   if (fresh) {
-    sid = newSessionId();
+    sid = randomId();
     started = Date.now();
-    setItem(session, sidKey, `${sid}:${started}`);
+    setItem(session, sessionKey, `${sid}:${started}`);
   }
-  const at = () => Math.max(0, Date.now() - started);
-
+  const runStorageKey = `hf-lab-run:${game}`;
+  let runId = getItem(session, runStorageKey) ?? randomId();
+  if (!/^[a-f0-9]{32}$/.test(runId)) runId = randomId();
+  setItem(session, runStorageKey, runId);
   let build: Build = options.build ?? {};
   let buildKnown = Boolean(options.build);
-  const queue: Event[] = [];
+  let transport: ReturnType<typeof linkedTransport>;
+  const reset = () => {
+    queue.length = 0;
+    logs.length = 0;
+    transport?.clear();
+  };
+  const onIdentity = (id: string | null, value: boolean) => {
+    if (player !== id) reset();
+    player = id;
+    off = value;
+    writeLocal(RECORDING_OFF, value ? '1' : null);
+    writeLocal(PLAYER_KEY, id);
+    if (value) {
+      sid = randomId();
+      started = Date.now();
+      runId = randomId();
+      setItem(session, sessionKey, `${sid}:${started}`);
+      setItem(session, runStorageKey, runId);
+      reset();
+    }
+    g.dispatchEvent?.(new Event('hf-lab-preference'));
+  };
+  const activate = () => {
+    if (stopped()) return;
+    player = localPlayer();
+    identity ??= identityBridge(onIdentity);
+  };
+  activate();
+  transport = linkedTransport({
+    game,
+    endpoint,
+    build: () => build,
+    override: () => override,
+    enabled: () => !stopped(),
+    link: () => (player ? { player, session: sid, runId } : null),
+    ready: identity?.ready,
+  });
+  const at = () => Math.max(0, Date.now() - started);
+  let runKey: (() => string | number) | undefined;
+  let observedKey: string | number | undefined;
+  const syncRun = () => {
+    const next = runKey?.();
+    if (observedKey !== undefined && next !== observedKey) {
+      runId = randomId();
+      setItem(session, runStorageKey, runId);
+    }
+    observedKey = next;
+  };
   const milestones = new Set<string>();
   let lastScreen = '';
-  let errors = 0;
-
-  const push = (e: Event) => {
-    if (blocked()) return;
-    queue.push(e);
+  let snapshot: (() => Promise<void>) | undefined;
+  function flush(allowUnknownBuild = false) {
+    if (stopped()) {
+      reset();
+      return;
+    }
+    if (!buildKnown && !allowUnknownBuild) return;
+    const events = queue.splice(0);
+    const lines = logs.splice(0);
+    void (identity?.ready ?? Promise.resolve())
+      .then(async () => {
+        if (stopped()) return;
+        const base = player ? { player, session: sid } : null;
+        if (!base) return;
+        for (const id of new Set(events.map((e) => e.runId))) {
+          const group = events.filter((e) => e.runId === id).map((e) => e.event);
+          for (let i = 0; i < group.length; i += 30)
+            await transport.send(
+              'events',
+              { vp: viewportClass(g.innerWidth ?? 1280), started, e: group.slice(i, i + 30) },
+              { ...base, runId: id },
+            );
+        }
+        for (const id of new Set(lines.map((e) => e.runId)))
+          await transport.send(
+            'logs',
+            lines.filter((e) => e.runId === id),
+            { ...base, runId: id },
+          );
+        await transport.drain();
+      })
+      .catch(() => {});
+  }
+  const push = (event: Event) => {
+    if (stopped()) return;
+    syncRun();
+    queue.push({ event, runId });
     if (queue.length >= 40) flush(true);
   };
-
-  function flush(allowUnknownBuild = false) {
-    if (blocked() || !queue.length || (!buildKnown && !allowUnknownBuild)) return;
-    while (queue.length) {
-      let count = Math.min(queue.length, 50);
-      const encode = () =>
-        JSON.stringify({
-          v: 1,
-          g: game,
-          s: sid,
-          b: build,
-          vp: viewportClass(g.innerWidth ?? 1280),
-          e: queue.slice(0, count),
-          ...(override ? { privacyOverride: true } : {}),
-        });
-      let body = encode();
-      while (count > 1 && new TextEncoder().encode(body).byteLength > 8192) {
-        count--;
-        body = encode();
-      }
-      queue.splice(0, count);
-      // A single oversized event is invalid; it must not block every later event.
-      if (new TextEncoder().encode(body).byteLength > 8192) continue;
-      // Plain text avoids preflight; keepalive permits completion after close, without cookies.
-      try {
-        void fetch(`${endpoint}/events`, {
-          method: 'POST',
-          body,
-          keepalive: true,
-          mode: 'cors',
-          credentials: 'omit',
-          referrerPolicy: 'no-referrer',
-        }).catch(() => {});
-      } catch {}
-    }
-  }
-
   if (!buildKnown && typeof fetch === 'function') {
     fetch('/release.json', { cache: 'no-store', credentials: 'omit' })
       .then((r) => (r.ok ? r.json() : {}))
@@ -226,42 +282,113 @@ export function createLab(options: LabOptions): Lab {
         flush();
       });
   }
-
   if (fresh) push(['start', 0]);
-
+  const log = (level: 'error' | 'warn' | 'game', message: string) => {
+    if (stopped() || logs.length >= 60) return;
+    // Never read arbitrary console objects, browser headers, URLs with queries, or stacks.
+    const cleaned = message
+      .replace(/https?:\/\/[^\s]+/g, (url) => url.split(/[?#]/)[0] ?? '')
+      .replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi, '[email removed]')
+      .slice(0, 1000);
+    syncRun();
+    logs.push({ level, message: cleaned, at: Date.now(), runId });
+  };
   if (typeof g.addEventListener === 'function') {
+    g.addEventListener('hf-lab-preference', () => {
+      if (stopped()) {
+        player = null;
+        reset();
+      } else activate();
+    });
     g.addEventListener('storage', (event: StorageEvent) => {
-      if (event.key !== offKey && event.key !== overrideKey && event.key !== null) return;
-      off = getItem(local, offKey) === '1';
+      if (![offKey, overrideKey, RECORDING_OFF, PLAYER_KEY, null].includes(event.key)) return;
+      off = readLocal(RECORDING_OFF) === '1' || getItem(local, offKey) === '1';
       override = getItem(local, overrideKey) === '1';
-      blocked();
+      if (stopped()) {
+        player = null;
+        reset();
+      } else activate();
     });
     if (options.captureErrors !== false) {
-      const onError = (label: string) => {
-        if (errors >= 5) return;
-        errors++;
-        push(['err', at(), label]);
-      };
-      g.addEventListener('error', (e: ErrorEvent) =>
-        onError(errorLabel(e.error, e.filename, e.lineno, e.colno)),
-      );
-      g.addEventListener('unhandledrejection', (e: PromiseRejectionEvent) => onError(errorLabel(e.reason)));
+      g.addEventListener('error', (e: ErrorEvent) => {
+        push(['err', at(), errorLabel(e.error, e.filename, e.lineno, e.colno)]);
+        log('error', e.message || errorLabel(e.error));
+      });
+      g.addEventListener('unhandledrejection', (e: PromiseRejectionEvent) => {
+        push(['err', at(), errorLabel(e.reason)]);
+        log(
+          'error',
+          e.reason instanceof Error
+            ? e.reason.message
+            : typeof e.reason === 'string'
+              ? e.reason
+              : errorLabel(e.reason),
+        );
+      });
+      // One dispatcher per page prevents multiple game clients wrapping each other.
+      const key = Symbol.for('hf-lab-console');
+      const global = g as unknown as Record<symbol, Set<typeof log> | undefined>;
+      let sinks = global[key];
+      if (!sinks) {
+        sinks = new Set();
+        global[key] = sinks;
+        for (const level of ['warn', 'error'] as const) {
+          const original = console[level].bind(console);
+          console[level] = (...args: unknown[]) => {
+            original(...args);
+            const message = args.filter((x): x is string => typeof x === 'string').join(' ');
+            if (message) for (const sink of global[key] ?? []) sink(level, message);
+          };
+        }
+      }
+      sinks.add(log);
     }
     g.addEventListener('pagehide', () => {
       push(['end', at()]);
+      void snapshot?.();
       flush(true);
     });
     g.document?.addEventListener('visibilitychange', () => {
-      if (g.document.visibilityState === 'hidden') flush(true);
+      if (g.document.visibilityState === 'hidden') {
+        void snapshot?.();
+        flush(true);
+      }
     });
-    setInterval(flush, 20_000);
+    setInterval(() => flush(), 20000);
   }
-
+  const setOff = (value: boolean) => {
+    off = value;
+    setItem(local, offKey, value ? '1' : null);
+    writeLocal(RECORDING_OFF, value ? '1' : null);
+    if (value) {
+      sid = randomId();
+      started = Date.now();
+      runId = randomId();
+      setItem(session, sessionKey, `${sid}:${started}`);
+      setItem(session, runStorageKey, runId);
+      player = null;
+      writeLocal(PLAYER_KEY, null);
+      reset();
+      identity ??= identityBridge(onIdentity);
+      identity.setOff(true);
+    } else {
+      activate();
+      identity?.setOff(false);
+    }
+    g.dispatchEvent?.(new Event('hf-lab-preference'));
+  };
   const lab: Lab = {
     game,
     endpoint,
+    build: () => build,
     get eventsOn() {
-      return !blocked();
+      return !stopped();
+    },
+    get telemetryOn() {
+      return !stopped();
+    },
+    get playerId() {
+      return stopped() ? null : player;
     },
     get privacySignalOn() {
       return privacySignal(g);
@@ -272,29 +399,87 @@ export function createLab(options: LabOptions): Lab {
     setPrivacyOverride(value) {
       override = value;
       setItem(local, overrideKey, value ? '1' : null);
-      blocked();
+      if (stopped()) {
+        player = null;
+        reset();
+      } else activate();
     },
-    build: () => build,
+    setEventsOff: setOff,
+    setTelemetryOff: setOff,
     milestone(name) {
       if (milestones.has(name)) return;
       milestones.add(name);
-      push(['ms', at(), name]);
+      push(['ms', at(), name.slice(0, 80)]);
     },
     screen(name) {
       if (name === lastScreen) return;
       lastScreen = name;
-      push(['scr', at(), name]);
+      push(['scr', at(), name.slice(0, 80)]);
     },
     flush,
-    setEventsOff(value) {
-      off = value;
-      setItem(local, offKey, value ? '1' : null);
-      if (value) queue.length = 0;
+    log,
+    trackRun(getRun, opts = {}) {
+      let busy = false;
+      let disposed = false;
+      runKey = opts.runKey;
+      syncRun();
+      const take = async () => {
+        if (busy || disposed || stopped()) return;
+        busy = true;
+        try {
+          syncRun();
+          const captured = player ? { player, session: sid, runId } : undefined;
+          const generation = opts.runKey?.();
+          const run = await getRun();
+          if (run !== undefined && run !== null && !disposed && !stopped() && generation === opts.runKey?.())
+            await transport.send('run', run, captured);
+          for (const line of opts.getLogs?.() ?? []) if (typeof line === 'string') log('game', line);
+        } catch {
+        } finally {
+          busy = false;
+        }
+      };
+      snapshot = take;
+      const timer = setInterval(() => void take(), 60000);
+      void (identity?.ready ?? Promise.resolve()).then(take);
+      return () => {
+        disposed = true;
+        clearInterval(timer);
+        if (snapshot === take) snapshot = undefined;
+      };
+    },
+    captureSave(value) {
+      syncRun();
+      const captured = player ? { player, session: sid, runId } : undefined;
+      if (!stopped())
+        void (identity?.ready ?? Promise.resolve())
+          .then(() => transport.send('save', value, captured))
+          .catch(() => {});
+    },
+    async sendFeedback(note) {
+      syncRun();
+      if (stopped()) throw new Error('Lab recording is off.');
+      await snapshot?.();
+      return transport.send('note', { note: note.trim().slice(0, 4000) });
     },
     async sendRun(run, extra = {}) {
+      syncRun();
+      if (!stopped()) {
+        await (identity?.ready ?? Promise.resolve());
+        const id = await transport.send('run', run);
+        if (extra.note) await transport.send('note', { note: extra.note.slice(0, 4000) });
+        return id;
+      }
+      if (off || readLocal(RECORDING_OFF) === '1') throw new Error('Lab recording is off.');
+      // Explicit legacy Send under a privacy signal remains a separate consented unlinked export.
       return lab.sendEnvelopeText(prepareRun(game, build, run, extra));
     },
     async sendEnvelopeText(text) {
+      if (off || readLocal(RECORDING_OFF) === '1') throw new Error('Lab recording is off.');
+      if (!stopped()) {
+        const envelope = JSON.parse(text) as { run: unknown; note?: string };
+        return lab.sendRun(envelope.run, { note: envelope.note });
+      }
       if (!checkRun(text)) throw new Error(runRefusal(text));
       const body = await gzip(text);
       if (body.size > RUN_LIMITS.compressedBytes) throw new Error(compressedRefusal(body.size));

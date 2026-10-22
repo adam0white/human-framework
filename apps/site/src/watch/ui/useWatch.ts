@@ -3,8 +3,10 @@
  * playtest export. Replies from an earlier run (`gen`) are dropped.
  */
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { gameLabs } from '../../shared/lab.tsx';
 import { fetchBuild } from '../../shared/playtest.ts';
 import { startTickLoop } from '../../shared/tick-loop.ts';
+import { trackWorkerRun } from '../../shared/worker-telemetry.ts';
 import { type MainToWorker, type PageInfo, WATCH_SCENARIO_VERSION, type WorkerToMain } from '../protocol.ts';
 import type { Input } from '../sim/night.ts';
 import type { Speed } from '../sim/pace.ts';
@@ -114,6 +116,7 @@ export function useWatch(): Watch {
       gen: gen.current,
       scenarioVersion: WATCH_SCENARIO_VERSION,
     } satisfies MainToWorker);
+    const stopTelemetry = trackWorkerRun(w, gameLabs.watch, () => gen.current);
     const stop = startTickLoop((dtMs) => w.postMessage({ type: 'tick', dtMs } satisfies MainToWorker));
     // Write the running page when the tab is hidden or closed, so a reload loses next to nothing.
     const keep = () => {
@@ -126,6 +129,7 @@ export function useWatch(): Watch {
       document.removeEventListener('visibilitychange', keep);
       window.removeEventListener('pagehide', leave);
       stop();
+      stopTelemetry();
       w.terminate();
       worker.current = null;
     };

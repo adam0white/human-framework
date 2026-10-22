@@ -12,7 +12,7 @@ import {
 import type { MainToWorker, PauseInfo, PauseReason, PlaybackState, Speed, WorkerReply } from '../protocol.ts';
 import { ColonyGame, type LogEntry, SCENARIO_VERSION } from './game.ts';
 import type { HumanSideFactory } from './human-side.ts';
-import { colonyHash, colonySnapshot, parseColonyPlaytest, replayColony } from './playtest.ts';
+import { colonyHash, colonySnapshot, colonyState, parseColonyPlaytest, replayColony } from './playtest.ts';
 import { type Minute, SIM_MINUTES_PER_SECOND, type VillagerId } from './world-types.ts';
 /** Never advance more than this many sim minutes per tick (a backgrounded tab must not fast-forward). */
 export const MAX_MINUTES_PER_TICK = 8;
@@ -90,7 +90,7 @@ export class Playback {
   }
 
   /** This run as a playtest file (its `build` is filled in by the page). `engine`: the framework's ENGINE_VERSION. */
-  async playtestFile(engine: string): Promise<PlaytestFile<LogEntry>> {
+  async playtestFile(engine: string, full = false): Promise<PlaytestFile<LogEntry>> {
     const g = this.game;
     if (!g) throw new Error('No run to save yet.');
     return makePlaytestFile({
@@ -101,7 +101,8 @@ export class Playback {
       log: structuredClone(g.log),
       hash: colonyHash(g),
       engine,
-      snapshot: colonySnapshot(g),
+      snapshot: full ? colonyState(g) : colonySnapshot(g),
+      ...(full ? { plainSnapshot: true } : {}),
     });
   }
 
@@ -130,6 +131,7 @@ export class Playback {
   /** Handle one message from the page; returns the replies (without the run number). */
   handle(msg: MainToWorker): WorkerReply[] {
     switch (msg.type) {
+      case 'telemetry':
       case 'exportPlaytest':
       case 'loadPlaytest':
         // Handled by the worker (async export; the load changes the run number).

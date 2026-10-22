@@ -14,6 +14,7 @@ import {
   replayParam,
 } from '../../shared/playtest.ts';
 import { startTickLoop } from '../../shared/tick-loop.ts';
+import { trackTransportRun } from '../../shared/worker-telemetry.ts';
 import type {
   BetweenView,
   Draft,
@@ -129,6 +130,7 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
   useEffect(() => {
     let cancelled = false;
     let stopTicks = () => {};
+    let stopTelemetry = () => {};
     let opened: Transport | null = null;
     openTransport()
       .then((t) => {
@@ -272,6 +274,21 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
           gen: gen.current,
           scenarioVersion: VOICE_SCENARIO_VERSION,
         });
+        if (t.kind === 'worker')
+          stopTelemetry = trackTransportRun(
+            {
+              post: (message) => t.post(message),
+              listen: (receive) => {
+                t.onMessage((message) => {
+                  if (message.type === 'telemetry' || message.type === 'saved' || message.type === 'error')
+                    receive(message);
+                });
+                return () => {};
+              },
+            },
+            gameLabs.voice,
+            () => gen.current,
+          );
         stopTicks = startTickLoop((dtMs) => {
           if (menuOpen.current) return;
           t.post({
@@ -296,6 +313,7 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
     return () => {
       cancelled = true;
       exportRequest.current.reset();
+      stopTelemetry();
       stopTicks();
       opened?.close();
       transport.current = null;

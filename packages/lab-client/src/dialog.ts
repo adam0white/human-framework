@@ -106,7 +106,7 @@ export function openSendDialog(options: SendDialogOptions): void {
   });
   const compactNotice = el('p', { className: 'soft' });
   const sizes = el('span', {});
-  const summary = el('summary', {}, 'Exactly what is sent ', sizes);
+  const summary = el('summary', {}, 'Run and note payload ', sizes);
   const overview = el('dl');
   const fields = new Map<string, HTMLElement>();
   for (const [key, label] of [
@@ -140,7 +140,11 @@ export function openSendDialog(options: SendDialogOptions): void {
     {},
     summary,
     overview,
-    el('p', { className: 'soft' }, 'JSON formatted for reading; the same data is sent compressed.'),
+    el(
+      'p',
+      { className: 'soft' },
+      'JSON formatted for reading. Recording adds player, session and run ids, and sends compressed pieces in the background.',
+    ),
     exact,
     copy,
     copyStatus,
@@ -162,19 +166,19 @@ export function openSendDialog(options: SendDialogOptions): void {
     'label',
     { className: 'check', for: 'hflab-privacy-override' },
     overrideBox,
-    'Send anonymous events anyway',
+    'Allow linked lab recording despite the browser signal',
   );
   const syncEvents = () => {
     eventsBox.checked = lab.eventsOn;
     eventsLabel.textContent = lab.eventsOn
-      ? 'Also send anonymous play events from this game (start, end, milestones, last screen).'
-      : 'Anonymous play events are off in this browser.';
+      ? 'Record play, runs, saves and logs for the lab.'
+      : 'Lab recording is off in this browser.';
     eventsBox.disabled = lab.privacySignalOn && !lab.privacyOverride;
     privacyNote.textContent = !lab.privacySignalOn
-      ? 'Your saved choice allows anonymous events even when your browser asks sites not to track.'
+      ? 'Your saved choice allows linked recording even when your browser asks sites not to track.'
       : lab.eventsOn
-        ? 'Your browser asks sites not to track. You chose to send anonymous events.'
-        : 'Your browser asks sites not to track. Anonymous events are off.';
+        ? 'Your browser asks sites not to track. You chose to send linked recording.'
+        : 'Your browser asks sites not to track. Automatic lab recording is off.';
   };
   syncEvents();
   overrideBox.addEventListener('change', () => {
@@ -372,7 +376,9 @@ export function openSendDialog(options: SendDialogOptions): void {
     try {
       const id = await lab.sendEnvelopeText(sent);
       status.className = 'status ok';
-      status.textContent = `Sent. Reference ${id}. Quote it if you ever want this run removed.`;
+      status.textContent = lab.telemetryOn
+        ? `Queued for background upload. Reference ${id}.`
+        : `Sent. Reference ${id}. Quote it if you ever want this run removed.`;
       send.remove();
       cancel.textContent = 'Close';
       cancel.focus();

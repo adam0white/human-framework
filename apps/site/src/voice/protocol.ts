@@ -7,6 +7,7 @@
  * Additive to the original contract (no shape changes): `VOICE_SCENARIO_VERSION`, `STRENGTH_VALUE`, `PACE_MINUTES_PER_SECOND`.
  */
 import type { PlaytestFile, ReplayResult } from '../shared/playtest.ts';
+import type { TelemetryReply, TelemetryRequest } from '../shared/worker-telemetry.ts';
 
 /**
  * The scenario the worker runs for a new game; `init.scenarioVersion` must equal it. Level-up 2026-10-19 (voice.md):
@@ -134,6 +135,7 @@ export const defaultWhisper = (choiceId: StandingWhisper['choiceId']): StandingW
 });
 
 export type MainToWorker =
+  | TelemetryRequest
   | { type: 'init'; seed: number; gen: number; scenarioVersion: string }
   | { type: 'tick'; dtMs: number; wallDtMs?: number }
   | { type: 'pause' }
@@ -375,6 +377,7 @@ export interface SilentMonthView {
 export const SILENT_CAPTION = 'Small differences compound; not every difference is your doing.';
 
 export type WorkerReply =
+  | TelemetryReply
   /**
    * A frame: the fields that changed since the last one posted on this run, with the unchanged ones named in
    * `same` (the page reuses its previous values). Without `same` the frame is whole.

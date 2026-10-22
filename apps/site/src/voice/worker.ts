@@ -35,7 +35,14 @@ import {
   startSilentMonth,
 } from './sim/counterfactual.ts';
 import { VoiceGame } from './sim/game.ts';
-import { parseVoicePlaytest, RecordedGame, replayVoice, voiceHash, voiceSnapshot } from './sim/record.ts';
+import {
+  parseVoicePlaytest,
+  RecordedGame,
+  replayVoice,
+  voiceHash,
+  voiceSnapshot,
+  voiceState,
+} from './sim/record.ts';
 
 let rec: RecordedGame | null = null;
 /** The silent game being stepped for the current run's seed (dropped once its facts are read, or on a new seed). */
@@ -202,6 +209,26 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg) => {
     case 'why':
       host.post({ type: 'why', decisionId: msg.decisionId, why: game.why(msg.decisionId) });
       return;
+    case 'telemetry': {
+      const gen = host.gen;
+      const logs = structuredClone(game.log);
+      makePlaytestFile({
+        game: 'voice',
+        seed: game.seed,
+        scenario: scenarioOf(game.rules),
+        minute: game.t,
+        log: structuredClone(rec.log),
+        hash: voiceHash(game),
+        engine: ENGINE_VERSION,
+        snapshot: voiceState(game),
+        plainSnapshot: true,
+      })
+        .then((run) => host.post({ type: 'telemetry', requestId: msg.requestId, run, logs }, gen))
+        .catch(() =>
+          host.post({ type: 'telemetry', requestId: msg.requestId, error: 'Run snapshot failed' }, gen),
+        );
+      return;
+    }
     case 'exportPlaytest':
       exportPlaytest(rec).catch((err: unknown) =>
         host.post({ type: 'playtestError', message: `The playtest file could not be made: ${String(err)}` }),

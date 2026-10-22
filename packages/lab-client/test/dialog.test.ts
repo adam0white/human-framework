@@ -34,7 +34,7 @@ describe('bounded send dialog', () => {
     vi.stubGlobal('localStorage', undefined);
     const { lab, find } = setup();
     lab.openSendDialog({ getRun: () => ({ seed: 1 }) });
-    expect(find('hflab-privacy-note').textContent).toContain('Anonymous events are off.');
+    expect(find('hflab-privacy-note').textContent).toContain('Automatic lab recording is off.');
     const box = find('hflab-privacy-override');
     expect(lab.eventsOn).toBe(false);
     Object.assign(box, { checked: true });

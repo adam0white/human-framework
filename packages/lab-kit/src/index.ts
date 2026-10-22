@@ -18,3 +18,11 @@ export {
   type SheetHeight,
   type StageSheet,
 } from './stage.ts';
+export {
+  setTelemetryOff,
+  TELEMETRY_NOTICE,
+  type TelemetryLab,
+  telemetryNotice,
+  telemetryOn,
+  telemetryToggle,
+} from './telemetry.ts';

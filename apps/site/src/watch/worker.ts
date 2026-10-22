@@ -99,8 +99,10 @@ function save(kind: PageInfo['kind']): void {
     sinceSave = 0;
   }
   const text = run.snapshotText();
+  const gen = host.gen;
   void savePage(info, text).then((ok) => {
     if (!ok) saving = false;
+    else host.post({ type: 'saved', value: JSON.parse(text) }, gen);
   });
 }
 
@@ -209,6 +211,15 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
       return;
     case 'save':
       if (behind()) save('auto');
+      return;
+    case 'telemetry':
+      if (run)
+        host.post({
+          type: 'telemetry',
+          requestId: msg.requestId,
+          run: { ...run.export(), snapshot: run.snapshot() },
+          logs: run.state.chronicle,
+        });
       return;
     case 'export':
       if (run) host.post({ type: 'exported', requestId: msg.requestId, data: run.export() });

@@ -12,7 +12,7 @@
  * the thaw, a closed volume and a fallen village are pages (`pages.tsx`). Dawn adds talks. The chronicle dialog is
  * the menu and the saves shelf (`chronicle.tsx`).
  */
-import { phoneStage } from '@adam0white/lab-kit';
+import { phoneStage, telemetryNotice } from '@adam0white/lab-kit';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { FullscreenButton, useWakeLock } from '../../shared/fullscreen.tsx';
 import { Help } from '../../shared/Help.tsx';
@@ -161,6 +161,8 @@ export function App() {
   const labScreen = !phase ? null : phase === 'goal' ? 'title' : phase === 'fallen' ? 'ending' : 'play';
   useEffect(() => {
     if (!labScreen) return;
+    const notice = telemetryNotice();
+    if (notice) document.body.prepend(notice);
     gameLabs.watch.screen(labScreen);
     if (labScreen === 'play') gameLabs.watch.milestone('run started');
     if (labScreen === 'ending') gameLabs.watch.milestone('ending reached');

@@ -144,7 +144,7 @@ function inboxFixture(inputTokens: number, failure?: Failure) {
   const root = mkdtempSync(join(tmpdir(), 'lab-inbox-script-'));
   mkdirSync(join(root, 'scripts'));
   mkdirSync(join(root, '.lab-inbox/runs'), { recursive: true });
-  for (const file of ['lab-inbox.ts', 'lab-inbox-suggest.ts'])
+  for (const file of ['lab-inbox.ts', 'lab-inbox-suggest.ts', 'lab-inbox-linked.ts'])
     writeFileSync(join(root, 'scripts', file), readFileSync(resolve('scripts', file)));
   writeFileSync(join(root, 'package.json'), '{"type":"module"}');
   const date = new Date().toISOString().slice(0, 10);

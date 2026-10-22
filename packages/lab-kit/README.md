@@ -218,3 +218,7 @@ Steps are a JSON array, for example `[ {"click":"Play","name":"map"}, {"selector
 
 - **0.2.0:** additive CSS phone stage with wrapping state strip, four sheet heights, docked desktop layout, persistent commit row, optional snap/origin/focus/scene controller, and browser phone audit. Existing 0.1.0 imports and components remain available.
 - **0.1.0:** Field Notebook tokens, hints, intro card, glossary, English dates, instruction line, notebook menu, JSON download and release stamp.
+
+## Linked recording
+
+Use `telemetryNotice()` once on the game screen and mount its returned node when present. Add `telemetryToggle(lab)` to each game menu. Both use the same policy as the site games. `notebookMenu` includes the toggle. Register full runs, successful saves and game logs on the lab client; see its README. Automatic recording does not consent to the player-character test.

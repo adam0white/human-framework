@@ -3,8 +3,9 @@
  * The game owns export/replay correctness and saves. This never sends a run itself or creates a lab client.
  */
 import { showSheet } from './dialog.ts';
+import { type TelemetryLab, telemetryToggle } from './telemetry.ts';
 
-export type NotebookLab = {
+export type NotebookLab = TelemetryLab & {
   openSendDialog(options: {
     getRun: () => unknown;
     compact?: (run: unknown) => unknown;
@@ -115,17 +116,7 @@ export function notebookMenu(options: NotebookMenuOptions): HTMLButtonElement {
           status.textContent = 'Sending could not open. Download this run; it still has everything.';
         }
       });
-      if (lab.setEventsOff && typeof lab.eventsOn === 'boolean') {
-        const toggle = button('Turn regular lab events off', () => {
-          lab.setEventsOff?.(lab.eventsOn === true);
-          updateToggle();
-        });
-        const updateToggle = () => {
-          toggle.textContent = lab.eventsOn ? 'Turn regular lab events off' : 'Turn regular lab events on';
-          toggle.setAttribute('aria-pressed', String(lab.eventsOn));
-        };
-        updateToggle();
-      }
+      if (lab.setTelemetryOff || lab.setEventsOff) sheet.append(telemetryToggle(lab));
     } else {
       const unavailable = document.createElement('p');
       unavailable.className = 'flavour';

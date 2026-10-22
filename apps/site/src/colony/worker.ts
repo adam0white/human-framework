@@ -14,6 +14,15 @@ import { Playback } from './sim/playback.ts';
 const playback = new Playback(createFrameworkHumanSide);
 
 hostWorker<MainToWorker, WorkerReply>((msg, host) => {
+  if (msg.type === 'telemetry') {
+    const gen = host.gen;
+    const logs = structuredClone(playback.game?.frame().news ?? []);
+    playback
+      .playtestFile(ENGINE_VERSION, true)
+      .then((run) => host.post({ type: 'telemetry', requestId: msg.requestId, run, logs }, gen))
+      .catch(() => host.post({ type: 'telemetry', requestId: msg.requestId, error: 'No run yet' }, gen));
+    return;
+  }
   if (msg.type === 'exportPlaytest') {
     playback
       .playtestFile(ENGINE_VERSION)

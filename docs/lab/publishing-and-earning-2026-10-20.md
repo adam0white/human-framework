@@ -38,7 +38,7 @@ Per game, the first channel to try (opinion):
 
 ## (b) Gentle revenue
 
-Rules for every option: no ads during play, no loot boxes, gacha, random paid rewards or anything gambling-like, no energy timers or paid waiting, no countdown pressure, no manipulative prompts, no pay-to-win, no selling data. Telemetry stays anonymous and opt-in as already decided. Faith stays gentle: never a selling point, never gated behind payment, never the theme of a paid tier.
+Rules for every option: no ads during play, no loot boxes, gacha, random paid rewards or anything gambling-like, no energy timers or paid waiting, no countdown pressure, no manipulative prompts, no pay-to-win, no selling data. Telemetry follows the [2026-10-22 linked collection direction](privacy.md): default on, private, with an off control; character analysis remains opt-in. Faith stays gentle: never a selling point, never gated behind payment, never the theme of a paid tier.
 
 | Option | How it works | Earns (estimate, **assumed**) | Fit |
 |---|---|---|---|

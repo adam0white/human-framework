@@ -1,3 +1,4 @@
+import type { TelemetryReply, TelemetryRequest } from '../shared/worker-telemetry.ts';
 /** Messages between the Night Watch page and its worker. Every reply echoes the run's `gen`. */
 import type { Input } from './sim/night.ts';
 import type { Speed } from './sim/pace.ts';
@@ -9,6 +10,7 @@ export { WATCH_SCENARIO_VERSION } from './sim/run.ts';
 export type { PageInfo } from './store.ts';
 
 export type MainToWorker =
+  | TelemetryRequest
   | { type: 'init'; seed: number; gen: number; scenarioVersion: number }
   | { type: 'tick'; dtMs: number }
   | { type: 'input'; input: Input }
@@ -23,6 +25,7 @@ export type MainToWorker =
   | { type: 'load'; id: string; gen: number };
 
 export type WorkerReply =
+  | TelemetryReply
   | { type: 'frame'; frame: Frame; speed: Speed }
   | { type: 'exported'; requestId: number; data: PlaytestExport }
   /** The saved pages, newest first ([] without storage), and whether this run's saves are being kept. */

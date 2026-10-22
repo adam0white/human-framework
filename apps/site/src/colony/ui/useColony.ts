@@ -14,6 +14,7 @@ import {
   replayParam,
 } from '../../shared/playtest.ts';
 import { startTickLoop } from '../../shared/tick-loop.ts';
+import { trackWorkerRun } from '../../shared/worker-telemetry.ts';
 import type { WorkerToMain } from '../protocol.ts';
 import { DEFAULT_SEED, SCENARIO_VERSION } from '../sim/game.ts';
 import type { Prediction, WhyBreakdown } from '../sim/human-side.ts';
@@ -282,11 +283,13 @@ export function useColony(seed = DEFAULT_SEED): Colony {
         .catch((err: unknown) => setPlaytest({ error: err instanceof Error ? err.message : String(err) }));
     }
 
+    const stopTelemetry = trackWorkerRun(w, gameLabs.well, () => gen.current);
     const stopTicks = startTickLoop((dtMs) => {
       if (!menuOpen.current) w.postMessage({ type: 'tick', dtMs } satisfies OutMsg);
     });
     return () => {
       stopTicks();
+      stopTelemetry();
       w.terminate();
       worker.current = null;
       store.current = emptyStore();

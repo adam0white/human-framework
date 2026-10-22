@@ -7,19 +7,24 @@ import type { Draft, Frame, MainToWorker, Telegraph, WorkerToMain } from '../pro
 import { sampleFrame } from '../sim/fixtures.ts';
 import { useVoice, type Voice } from './useVoice.ts';
 
+vi.mock('../../shared/lab.tsx', () => ({ gameLabs: { voice: {} } }));
+
 const channel = vi.hoisted(() => ({
   post: vi.fn<(msg: MainToWorker) => void>(),
-  receive: (_msg: WorkerToMain) => {},
+  listeners: new Set<(msg: WorkerToMain) => void>(),
+  receive(msg: WorkerToMain) {
+    for (const listener of this.listeners) listener(msg);
+  },
 }));
 vi.mock('./transport.ts', () => ({
   openTransport: async () => ({
     kind: 'worker',
     post: channel.post,
     onMessage: (fn: typeof channel.receive) => {
-      channel.receive = fn;
+      channel.listeners.add(fn);
     },
     onError: () => {},
-    close: () => {},
+    close: () => channel.listeners.clear(),
   }),
 }));
 vi.mock('../../shared/tick-loop.ts', () => ({ startTickLoop: () => () => {} }));

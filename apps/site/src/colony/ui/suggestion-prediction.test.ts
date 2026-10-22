@@ -6,10 +6,12 @@ import type { WorkerToMain } from '../protocol.ts';
 import type { OrderInput } from '../sim/orders.ts';
 import { type Colony, useColony } from './useColony.ts';
 
+vi.mock('../../shared/lab.tsx', () => ({ gameLabs: { well: {} } }));
+
 (globalThis as typeof globalThis & { IS_REACT_ACT_ENVIRONMENT: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
 afterEach(() => vi.unstubAllGlobals());
 it('keeps suggestion forecasts independent of composer and scene forecasts, and drops superseded replies', async () => {
-  let listener: (e: { data: WorkerToMain }) => void = () => {};
+  const listeners = new Set<(e: { data: WorkerToMain }) => void>();
   const messages: Record<string, unknown>[] = [];
   vi.stubGlobal(
     'Worker',
@@ -17,8 +19,11 @@ it('keeps suggestion forecasts independent of composer and scene forecasts, and 
       postMessage(msg: Record<string, unknown>) {
         messages.push(msg);
       }
-      addEventListener(event: string, fn: typeof listener) {
-        if (event === 'message') listener = fn;
+      addEventListener(event: string, fn: (e: { data: WorkerToMain }) => void) {
+        if (event === 'message') listeners.add(fn);
+      }
+      removeEventListener(event: string, fn: (e: { data: WorkerToMain }) => void) {
+        if (event === 'message') listeners.delete(fn);
       }
       terminate() {}
     },
@@ -48,14 +53,15 @@ it('keeps suggestion forecasts independent of composer and scene forecasts, and 
   const scene = request();
   const reply = (req: typeof first, kind: 'assent' | 'willNot') => {
     if (!req) throw new Error('Missing request');
-    listener({
-      data: {
-        type: 'predicted',
-        gen: 1,
-        requestId: req.requestId as number,
-        prediction: { personId: (req.input as OrderInput).personId, action: 'build', kind, text: kind },
-      },
-    });
+    for (const listener of listeners)
+      listener({
+        data: {
+          type: 'predicted',
+          gen: 1,
+          requestId: req.requestId as number,
+          prediction: { personId: (req.input as OrderInput).personId, action: 'build', kind, text: kind },
+        },
+      });
   };
   await act(() => {
     reply(first, 'willNot');

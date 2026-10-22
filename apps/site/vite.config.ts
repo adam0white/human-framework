@@ -36,6 +36,7 @@ export default defineConfig({
         games: resolve(root, 'games/index.html'),
         lab: resolve(root, 'lab/index.html'),
         labPrivacy: resolve(root, 'lab/privacy/index.html'),
+        labIdentity: resolve(root, 'lab/identity/index.html'),
       },
     },
   },
