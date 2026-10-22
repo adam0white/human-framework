@@ -5959,6 +5959,34 @@
     "fix:stairwell guarded advance labelled Skip ⏩ (implemented)"
    ],
    "source": "Owner addenda relayed by Opus, UI sweep grammar 2026-10-22"
+  },
+  {
+   "id": "F-449",
+   "date": "2026-10-22",
+   "game": "warren",
+   "kind": "owner",
+   "who": "owner",
+   "words": "All good decisions, proceed.",
+   "verdict": "-",
+   "routes": [
+    "fix:warren approved UI sweep with drawn shelter state and map-first phone layout (implemented for owner retest)",
+    "fix:warren named Send word with recording and privacy consent paths (implemented)"
+   ],
+   "source": "Owner approval relayed by Opus, UI sweep specs/warren.md and GRAMMAR.md addenda 2026-10-22"
+  },
+  {
+   "id": "F-450",
+   "date": "2026-10-22",
+   "game": "warren",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Good direction, proceed please, menu is fine. Just \"until something happens\" is too long, maybe Skip or Fast Forward or something else could be better.",
+   "verdict": "-",
+   "routes": [
+    "fix:warren retain spec-default Slow Steady Fast player speeds and held raid decisions (implemented for owner retest)",
+    "fix:warren optional remembered name in Send word (implemented)"
+   ],
+   "source": "Owner addenda relayed by Opus, UI sweep grammar 2026-10-22"
   }
  ],
  "lessons": [
@@ -6565,7 +6593,7 @@
   }
  ],
  "routes": {
-  "fix": 483,
+  "fix": 487,
   "lesson": 291,
   "hf": 12,
   "calibration": 42,
