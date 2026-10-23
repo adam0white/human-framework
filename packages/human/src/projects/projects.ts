@@ -9,7 +9,12 @@
  * goals. All kinds serve competence and leisure: making is chosen as a free-time pursuit, not duty.
  * Behaviour 2 credits only new perceived highs; event-credited projects cannot observe reversals and stay unchanged.
  * Restore recovers one active project, keeping the newest (id breaks ties) and abandoning extras.
- * No invented prospects, host task interpretation, world search, persistence, shielding, faith lens,
+ * Explicit protectProgress blocks goal credit for host-declared reductions and exact contextual acts
+ * followed within five minutes by an attended drop after one's own completion. This is a bounded
+ * causal assumption, not proof of causation. Only direct saw/outcome readings without another actor
+ * can teach that link. It learns no effects from unattended world state or testimony.
+ * adoptProjectTask reuses an active project goal, preserving net credit and pursuit identity.
+ * No invented prospects, implicit host task interpretation, world search, persistence, shielding, faith lens,
  * LLM or RNG. Without the slice, perception and minute bookkeeping write nothing.
  */
 import { emotionLevel } from '../affect/index.ts';
@@ -17,7 +22,7 @@ import { AGENDA_DEFAULTS, abandonGoal, adoptGoal, perceiveProjectProgress } from
 import { clamp01, cmpStr, isNum, isObj, round } from '../core/index.ts';
 import { curiosityOf } from '../curiosity/index.ts';
 import { readPerson } from '../person.ts';
-import type { Goal, Minute, Person, ProjectsSpec, ProjectsState, Prospect } from '../types.ts';
+import type { Affordance, Goal, Minute, Person, ProjectsSpec, ProjectsState, Prospect } from '../types.ts';
 import { MAX_MINUTE, PHYSIOLOGICAL_NEEDS } from '../types.ts';
 
 export const PROJECTS_DEFAULTS = {
@@ -45,6 +50,7 @@ const KEYS = [
 function cleanSpec(input: unknown): ProjectsSpec {
   const out: ProjectsSpec = {};
   if (!isObj(input)) return out;
+  if (typeof input.protectProgress === 'boolean') out.protectProgress = input.protectProgress;
   for (const key of KEYS) {
     const x = input[key];
     const unit = key === 'calmUrgency' || key === 'fearBelow' || key === 'adoptAppeal';
@@ -89,6 +95,82 @@ export function enableProjects(p: Person, spec: ProjectsSpec = {}): ProjectsStat
   if (Object.keys(clean).length) state.spec = clean;
   p.projects = state;
   return state;
+}
+
+/** Whether this offer is understood to undo this prospect. Read-only; exact context, no action-only generalisation. @internal */
+export function diminishesProject(p: Person, aff: Affordance, prospectId: string): boolean {
+  const s = p.projects;
+  return (
+    s?.spec?.protectProgress === true &&
+    ((aff.diminishes?.includes(prospectId) ?? false) ||
+      (s.setbacks?.some(
+        (x) =>
+          x.prospectId === prospectId &&
+          x.action === aff.action &&
+          x.targetId === aff.targetId &&
+          x.placeId === aff.placeId,
+      ) ??
+        false))
+  );
+}
+
+/** Own completed acts alone can explain the next attended drop. Failed/interrupted acts clear attribution. @internal */
+export function noteProjectAct(p: Person, aff: Affordance, completed: boolean, at: Minute): void {
+  const s = p.projects;
+  if (!s?.spec?.protectProgress) return;
+  delete s.pendingAct;
+  if (
+    !completed ||
+    !str(aff.action) ||
+    (aff.targetId !== undefined && !str(aff.targetId)) ||
+    (aff.placeId !== undefined && !str(aff.placeId))
+  )
+    return;
+  const readings = s.prospects
+    .filter(
+      (x) =>
+        x.progress !== undefined &&
+        p.agenda.goals.some((g) => g.status === 'active' && g.project?.prospectId === x.id),
+    )
+    .map((x) => ({ prospectId: x.id, progress: x.progress as number }));
+  if (!readings.length) return;
+  s.pendingAct = {
+    action: aff.action,
+    at,
+    readings,
+    ...(aff.targetId !== undefined ? { targetId: aff.targetId } : {}),
+    ...(aff.placeId !== undefined ? { placeId: aff.placeId } : {}),
+  };
+}
+
+/** Turn an active held project into a host task. Undefined means there is no active held project.
+ * Reuses identity, adoption time, progress, peak and progress clock; never revives an abandoned project.
+ * Retains its temporal horizon unless the task supplies a valid replacement.
+ * The caller supplies task meaning and deadlines. No second goal or fresh progress is created.
+ */
+export function adoptProjectTask(
+  p: Person,
+  prospectId: string,
+  task: Omit<Goal, 'id' | 'status' | 'progress' | 'adoptedAt' | 'project' | 'lastAdvancedAt'>,
+  now: Minute = p.now,
+): Goal | undefined {
+  if (!p.projects || !minute(now, p.now)) return undefined;
+  const held = p.agenda.goals.find((g) => g.status === 'active' && g.project?.prospectId === prospectId);
+  if (!held) return undefined;
+  // Use agenda's copying and sanitization, then retain the existing goal rather than allocating a new id.
+  const nextId = p.agenda.nextId;
+  const staged = adoptGoal(p, task, now);
+  p.agenda.goals.pop();
+  p.agenda.nextId = nextId;
+  held.label = staged.label;
+  held.serves = staged.serves;
+  held.advancedBy = staged.advancedBy;
+  held.importance = staged.importance;
+  held.baseImportance = staged.baseImportance;
+  delete held.deadline;
+  if (staged.deadline !== undefined) held.deadline = staged.deadline;
+  if (staged.temporal !== undefined) held.temporal = staged.temporal;
+  return held;
 }
 
 function relaxed(p: Person): { urgency: number; fear: number; interest: number } {
@@ -176,7 +258,7 @@ export function noteProjectStatus(p: Person, now: Minute): void {
 }
 
 /** Only the composite calls this, after attention. Newest event minute wins; equal-minute input order wins. */
-export function perceiveProspect(p: Person, input: Prospect, at: Minute): void {
+export function perceiveProspect(p: Person, input: Prospect, at: Minute, attributeOwnAct = false): void {
   const s = p.projects;
   if (!s || !minute(at, p.now)) return;
   const prospect = cleanProspect(input);
@@ -184,6 +266,35 @@ export function perceiveProspect(p: Person, input: Prospect, at: Minute): void {
   const old = s.prospects.find((x) => x.id === prospect.id);
   if (old && old.lastSeenAt > at) return;
   if (p.now - at > setting(s, 'forgetMinutes')) return;
+  const act = s.pendingAct;
+  if (s.spec?.protectProgress && act && at >= act.at) {
+    const before = act.readings.find((x) => x.prospectId === prospect.id);
+    if (before && prospect.progress !== undefined) {
+      if (attributeOwnAct && at - act.at <= 5 && prospect.progress < before.progress) {
+        const learned = {
+          prospectId: prospect.id,
+          action: act.action,
+          ...(act.targetId !== undefined ? { targetId: act.targetId } : {}),
+          ...(act.placeId !== undefined ? { placeId: act.placeId } : {}),
+        };
+        const list = s.setbacks ?? [];
+        if (
+          !list.some(
+            (x) =>
+              x.prospectId === learned.prospectId &&
+              x.action === learned.action &&
+              x.targetId === learned.targetId &&
+              x.placeId === learned.placeId,
+          )
+        )
+          list.push(learned);
+        s.setbacks = list.slice(-16);
+      }
+      act.readings = act.readings.filter((x) => x.prospectId !== prospect.id);
+      if (!act.readings.length) delete s.pendingAct;
+    }
+    if (at - act.at > 5) delete s.pendingAct;
+  }
   const held = { ...prospect, lastSeenAt: at };
   if (old) s.prospects[s.prospects.indexOf(old)] = held;
   else {
@@ -267,6 +378,51 @@ export function sanitizeProjects(input: unknown, now: Minute): ProjectsState | u
   if (input.currentGoalId !== undefined) {
     if (!str(input.currentGoalId)) return undefined;
     out.currentGoalId = input.currentGoalId;
+  }
+  if (input.setbacks !== undefined) {
+    if (!Array.isArray(input.setbacks) || input.setbacks.length > 16) return undefined;
+    out.setbacks = [];
+    for (const x of input.setbacks) {
+      if (
+        !isObj(x) ||
+        !str(x.prospectId) ||
+        !str(x.action) ||
+        (x.targetId !== undefined && !str(x.targetId)) ||
+        (x.placeId !== undefined && !str(x.placeId))
+      )
+        return undefined;
+      out.setbacks.push({
+        prospectId: x.prospectId,
+        action: x.action,
+        ...(x.targetId !== undefined ? { targetId: x.targetId as string } : {}),
+        ...(x.placeId !== undefined ? { placeId: x.placeId as string } : {}),
+      });
+    }
+  }
+  const act = input.pendingAct;
+  if (act !== undefined) {
+    if (
+      !isObj(act) ||
+      !str(act.action) ||
+      !minute(act.at, now) ||
+      (act.targetId !== undefined && !str(act.targetId)) ||
+      (act.placeId !== undefined && !str(act.placeId)) ||
+      !Array.isArray(act.readings) ||
+      act.readings.length > PROJECTS_DEFAULTS.maxProspects
+    )
+      return undefined;
+    const readings: { prospectId: string; progress: number }[] = [];
+    for (const x of act.readings) {
+      if (!isObj(x) || !str(x.prospectId) || !unit(x.progress)) return undefined;
+      readings.push({ prospectId: x.prospectId, progress: x.progress });
+    }
+    out.pendingAct = {
+      action: act.action,
+      at: act.at,
+      readings,
+      ...(act.targetId !== undefined ? { targetId: act.targetId as string } : {}),
+      ...(act.placeId !== undefined ? { placeId: act.placeId as string } : {}),
+    };
   }
   const seen = new Set<string>();
   for (const entry of input.prospects.slice(0, PROJECTS_DEFAULTS.maxProspects)) {

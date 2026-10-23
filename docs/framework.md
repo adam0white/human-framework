@@ -56,6 +56,29 @@ choices, not fitted values; [research/curiosity-and-play.md](../research/curiosi
 the scientific shapes. This slice reads no `novel` tag and changes no boredom, projects, planning or
 faith mechanic. Absent the slice, state and legacy continuation stay identical.
 
+## Protecting project progress and adopting a task (opt-in)
+
+`enableProjects(p, { protectProgress: true })` adds one further opt-in. An offer's
+`diminishes: [prospectId]` says it takes from that prospect. Received successors can
+carry the same declaration. The project contributes no goal credit to that offer
+or to a planned route containing such a step. Other needs and duties still count;
+this removes the project's attraction to its own undo rather than vetoing an act.
+Without `protectProgress`, existing enabled projects and declarations continue exactly.
+
+After a completed own act, `projects/` retains the latest observed readings for at
+most eight active prospects. A drop in the next attended `saw` or `outcome` reading within five minutes
+teaches an exact action/target/place link, provided its actor is absent or the person themself. At most sixteen links are retained. Testimony or another witnessed actor consumes that pending reading without teaching a link. Another
+act replaces the pending attribution; a failed or interrupted act clears it. This is
+a bounded causal assumption from what the person saw, not proof of causation or access
+to the host's true world state. State and pending attribution survive snapshot/restore.
+
+`adoptProjectTask(p, prospectId, task, now?)` converts an active held project to the
+host's task. It returns the same goal with the task's label, means, importance and
+deadline, preserving identity, adopted time, progress, highest credited progress,
+progress clock and any pursuit. It returns `undefined` if no active matching project
+exists; the host may then adopt a fresh goal. It never revives an abandoned project.
+The host owns the prospect's progress scale and task meaning.
+
 ## Persistence (opt-in)
 
 `enablePersistence(p, spec?)` or `PersonSpec.enable.persistence` retains one started active goal in
@@ -191,6 +214,31 @@ Emotion terms are named `emotion:<emotion>:<tag>` (e.g. `emotion:fear:risky`): t
    Every verdict carries a dominant reason and a first-person line. `predictResponse` gives the same verdict without consuming RNG, so the UI can telegraph it on hover.
 4. **Autonomy and trust.** Pushing against preference raises voice pressure and drains the autonomy need. Outcomes the person liked raise trust in the voice that suggested them; harm lowers it faster, and faster still when the person had been overruled (`trustLossComplied`: one bad night under protest takes trust 0.75 → ~0.41). `VoiceRelation.history` keeps the last five events that moved trust (`{at, delta, reason, action}`) for UI trust meters. Outcome episodes of suggested activities record `voiceId`.
 
+## Narration and social host options (opt-in)
+
+`Lexicon.variety` varies assent and deferral replies by person and minute without consuming RNG;
+it is read by ordinary `decide` and `predict`. It also varies `reviewLine` by
+person and day. `Lexicon.nounActions` uses “did” and “doing” around an action label
+instead of inflecting an unknown noun; explicit authored forms take precedence.
+`Lexicon.materialMeaning` supplies the host's resource noun for intention and decision
+lines. Omitted options retain the original wording.
+
+`promptingLine(reading, outcome, kind?, { voice: 'third' })` describes an urge and the
+response in plain third person. `reviewLine(p, { variety?, cause? })` accepts an
+`ordered` or `interrupted` cause for its wording and next-step sentence. It does not
+change the review record, excuse a duty or regrade a lapse. An attended percept may
+carry `addressedSummary` beside `actorId`; its episode retains that authored form.
+`recallLine(episode, toActor)` selects it only for that actor and otherwise returns
+the original summary. HF does not rewrite arbitrary prose into second person.
+
+`perceive(p, percepts, { reputationTraits })` accepts the complete host reputation
+trait table instead of HF's default table. Hosts that want both explicitly combine
+the tables. `converse` accepts `loyalWarning` to let a fond speaker warn a listener
+of an unfavourable character claim about them, `confidentMin` for that call's minimum
+distance from neutral credence (0..0.5), and `phrase(claim, defaultSummary)` for
+presentation after selection. The callback receives detached claim data. The host
+still delivers the returned percepts; nobody learns about an undisclosed relay.
+
 ## Argument order
 
 Since 2.1 the functions that take a time follow one rule.
@@ -245,6 +293,7 @@ For concrete offer/outcome boundaries, see [expected benefits and observed outco
 - A host with its own norm catalog sets `World.catalog`; `stepCommunity` passes it to `finish`, which reads make-ups owed for a break under necessity from it (default `DEFAULT_NORMS`). A norm missing from the catalog is not excused.
 - Bounded collections: episodes ≤ 200, beliefs ≤ 300, impressions ≤ 32 with ≤ 48 cues each, trace ≤ 32 (fewer with `setRetention`), gists ≤ 64, year records ≤ 150, day records ≤ 120 (and by age with `setRetention`), emotions ≤ 12, breaches ≤ 50, intentions ≤ 50, voice history ≤ 5 per voice. Breach, injury and illness ids come from counters (`nextBreach`, `body.nextId`), so they stay unique after eviction. `restore` holds a saved person to the same bounds and refuses a non-finite `now` or one beyond `MAX_MINUTE` (2.0.0, security review H2).
 - Versions: the HF release version is the package version and `FRAMEWORK_VERSION` (semver, tagged `vX.Y.Z`, notes in the root CHANGELOG.md). `ENGINE_VERSION` versions behaviour and the save format separately and is named in each release's notes. Policy: packages/human/README.md, "Versions". Engine history:
+- `ENGINE_VERSION` 2.17.0 (2026-10-23) adds explicit project protection and narration/social options. The migration from 2.14.1 only stamps the version; no option is enabled by restoring an old save. HF 2.15.0 and 2.16.0 used engine 2.14.1.
 - `ENGINE_VERSION` 1.1.0 (2026-10-03) added the rules above and new state fields; `restore` refuses 1.0.0 saves.
 - `ENGINE_VERSION` 1.2.0 (2026-10-03) added several voices per decision, standing advice, abstentions and fasting perception, illness coupled to rest and food, habit ease and extinction, cue recall, the chronicle and the lexicon; `restore` refuses 1.1.0 saves.
 - `ENGINE_VERSION` 1.3.0 (2026-10-03) changes behaviour in every scenario: a commitment whose activity began inside its window stays open (and keeps its pull) until that activity ends; a habit's refractory counts the latest time the action was done by any habit; a voice that keeps pressing a declined suggestion loses a little trust (at most once per 12 h), and repeated good outcomes of the same suggested action earn less trust each time. Voice history entries gain `from`/`count`; finish events carry `decisionId`. `restore` refuses 1.2.0 saves.

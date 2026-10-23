@@ -47,6 +47,23 @@ export const EN_LINES: Readonly<Record<string, readonly string[]>> = {
   // Decision lines by other dominant sources.
   'source:habit': ['Same as always.', 'Out of habit, really.', "It's what I do at this hour."],
   'source:effort': ['The easy thing, for now.', 'Nothing strenuous.'],
+  'review.cause': [
+    'After {cause}, {missed} remained undone. {next}',
+    'I left {missed} unfinished after {cause}. {next}',
+    'I was {cause}; {missed} went unfinished. {next}',
+  ],
+  'review.accounting': [
+    "I didn't keep {missed}. Next time I'll be ready when it comes.",
+    'I left {missed} undone. I will prepare for the next occasion.',
+    'Today {missed} went unfinished. Next time I will make room for it.',
+  ],
+  'review.ruminating': [
+    'I keep going back over {missed}.',
+    'My thoughts keep returning to {missed}.',
+    'I cannot stop turning {missed} over in my mind.',
+  ],
+  'source:material.named': ['It brings {material}.', 'We can use the {material}.'],
+  'intention.material.named': ['for {material}'],
   'source:material': ['There is money in it.', 'It pays.'],
   'source:expectation': ['It went well last time.', 'I know how this goes.'],
   'source:conscience:repair': ['I owe them that much.', 'I have to make this right.'],
@@ -407,6 +424,12 @@ export function actionForms(
 ): { base: string; past: string; gerund: string } {
   const given = lexicon?.actions?.[action];
   const base = given?.base ?? action.replace(/[-_]/g, ' ');
+  if (lexicon?.nounActions)
+    return {
+      base: given?.base ?? `do ${base}`,
+      past: given?.past ?? `did ${base}`,
+      gerund: given?.gerund ?? `doing ${base}`,
+    };
   const [verb = base, ...rest] = base.split(' ');
   const tail = rest.length > 0 ? ` ${rest.join(' ')}` : '';
   return {

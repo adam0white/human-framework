@@ -31,6 +31,7 @@
  * fast-forward) should still live, or release, that day's occasions, or the review counts each one as missed.
  */
 import { clamp01, dexp, isObj, minuteOfDay, round } from '../core/index.ts';
+import { pickLine } from '../narrate/lexicon.ts';
 import type {
   ChronicleCommitmentNote,
   DayRecord,
@@ -203,13 +204,27 @@ export function reviewIfDue(
 }
 
 /** The person's own words for their latest review, or undefined when they hold no review. */
-export function reviewLine(p: Person): string | undefined {
+export function reviewLine(
+  p: Person,
+  options: { variety?: boolean; cause?: 'ordered' | 'interrupted' } = {},
+): string | undefined {
   const st = p.review;
   const r = st?.last;
   if (!st || st.style === 'none' || !r) return undefined;
   const list = (xs: string[]) =>
     xs.length <= 1 ? (xs[0] ?? '') : `${xs.slice(0, -1).join(', ')} and ${xs.at(-1)}`;
   if (r.missed.length === 0) return r.kept.length > 0 ? `Today I kept ${list(r.kept)}.` : undefined;
+  if (options.cause) {
+    const cause = options.cause === 'ordered' ? 'following an order' : 'being interrupted';
+    const next =
+      options.cause === 'ordered'
+        ? 'Next time I will say what the order would put aside.'
+        : 'Next time I will make room to return to it.';
+    return pickLine('review.cause', `${p.id}:${r.day}`, { cause, missed: list(r.missed), next }, p.lexicon);
+  }
+  if (options.variety ?? p.lexicon?.variety) {
+    return pickLine(`review.${st.style}`, `${p.id}:${r.day}`, { missed: list(r.missed) }, p.lexicon);
+  }
   if (st.style === 'ruminating') return `I keep going back over ${list(r.missed)}.`;
   return `I didn't keep ${list(r.missed)}. Next time I'll be ready when it comes.`;
 }

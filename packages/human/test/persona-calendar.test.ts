@@ -6,6 +6,7 @@ import {
   advanceAgenda,
   type CalendarPersonaProjection,
   createPerson,
+  ENGINE_VERSION,
   fingerprint,
   type NormDefinition,
   PERSON_SCHEMA,
@@ -328,8 +329,10 @@ describe('opt-in calendar persona', () => {
       'limitations',
     ]);
     expect(portable.format).toBe('hf-persona-state/1');
-    // Captured from the exact pre-calendar v1 implementation, rather than a second call to itself.
-    expect(createHash('sha256').update(JSON.stringify(portable)).digest('hex')).toBe(
+    // Captured from pre-calendar v1. Only the engine stamp changes on later releases.
+    expect(portable.source.engine).toBe(ENGINE_VERSION);
+    const priorStamp = { ...portable, source: { ...portable.source, engine: '2.14.1' } };
+    expect(createHash('sha256').update(JSON.stringify(priorStamp)).digest('hex')).toBe(
       'a1cbdfc1e56ad0a84bf9e5cc56288bda5ad11d9f9adfa514013ecd28a165cec6',
     );
     expect('calendar' in portable).toBe(false);

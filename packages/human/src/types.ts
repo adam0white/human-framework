@@ -432,6 +432,8 @@ export interface Episode {
   /** 0..1 how memorable; decays and is boosted by recall. */
   salience: Unit;
   summary: string;
+  /** Host-authored summary spoken back to actorId (second person); never inferred from free text. */
+  addressedSummary?: string;
   tags: string[];
   /**
    * The outside voice whose suggestion led to this episode (set on outcomes of assented/complied activities and
@@ -968,7 +970,7 @@ export const PERSON_SCHEMA = 'human/person@1';
  * and an activity that would cover a closing stretch is reviewed when the stretch begins (`isUnderWay`,
  * `dutyReviewAt`). Person shape unchanged.
  */
-export const ENGINE_VERSION = '2.14.1';
+export const ENGINE_VERSION = '2.17.0';
 
 // ---------------------------------------------------------------------------------------------
 // Family, bonds and ambient (1.8.0, optional slices)
@@ -1093,6 +1095,8 @@ export interface ReceivedConsequence {
     effort: Unit;
     focus?: Unit;
     materialCost?: number;
+    /** Prospect ids this successor reduces; read only with projects protectProgress. */
+    diminishes?: string[];
     /** Goal or prospect ids this successor contributes to (bounded to 8). */
     advances?: string[];
   };
@@ -1272,6 +1276,8 @@ export interface Affordance {
    * earliest-ending match, explicit or by action, as before.
    */
   fulfills?: string[];
+  /** Prospect ids this offer reduces; read only with projects protectProgress. */
+  diminishes?: string[];
   /** Goal ids this advances. */
   advances?: string[];
   /** Probability of harm and its severity, as advertised. */
@@ -1326,6 +1332,8 @@ export interface Percept {
    */
   threat?: { severity: Unit; chance?: Unit; sourceId?: EntityId; aboutId?: PersonId };
   summary: string;
+  /** Host-authored summary spoken back to actorId (second person); never inferred from free text. */
+  addressedSummary?: string;
   /**
    * Host flag for `sim/` interrupts. true: this percept is near the person (the framework has no spatial model),
    * so a salient one forces re-decision even if it does not target them. false: never interrupts.
@@ -1849,6 +1857,12 @@ export interface VoiceConflict {
  * slots documented next to each key.
  */
 export interface Lexicon {
+  /** Include person identity and stable temperament in assent/deferral selection (no RNG draws). */
+  variety?: boolean;
+  /** What material gains mean here, e.g. 'food', 'household keep' or 'resources'; absent keeps legacy money lines. */
+  materialMeaning?: string;
+  /** Treat action labels as noun phrases unless explicit verb forms are supplied. */
+  nounActions?: boolean;
   /** Informational locale tag, e.g. 'en', 'tr'. */
   locale?: string;
   /** Display names by entity id: { ana: 'Ana', ben: 'Ben' }. */
@@ -2041,6 +2055,8 @@ export interface Prospect {
   progress?: Unit;
 }
 export interface ProjectsSpec {
+  /** Learn and respect declared reductions of a held project. Absent preserves existing choice. */
+  protectProgress?: boolean;
   forgetMinutes?: number;
   calmUrgency?: Unit;
   fearBelow?: Unit;
@@ -2062,6 +2078,16 @@ export interface ProjectsState {
   /** Absent retains 2.14.0 credit. Re-enabling, including on every load, opts into net credit. */
   behaviour?: 2;
   spec?: ProjectsSpec;
+  /** Exact contextual acts learned to reduce a prospect; oldest entries are evicted. */
+  setbacks?: { prospectId: string; action: string; targetId?: EntityId; placeId?: EntityId }[];
+  /** Last completed act and attended progress before it; consumed by the next matching perception. */
+  pendingAct?: {
+    action: string;
+    targetId?: EntityId;
+    placeId?: EntityId;
+    at: Minute;
+    readings: { prospectId: string; progress: Unit }[];
+  };
   prospects: (Prospect & { lastSeenAt: Minute })[];
   history: ProjectHistory[];
   lastAdoptedAt?: Minute;

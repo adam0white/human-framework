@@ -1,5 +1,5 @@
 /** Human Framework public surface. */
-export const FRAMEWORK_VERSION = '2.16.0';
+export const FRAMEWORK_VERSION = '2.17.0';
 
 // `affect.release` is re-exported as `releaseEmotion` (beside `releaseCommitment`); `skipAffect` stays internal.
 export type { CrisisEvent, PracticeKind } from './affect/index.ts';
@@ -124,7 +124,13 @@ export { enablePersistence, PERSISTENCE_DEFAULTS, pursuitOf } from './persistenc
 export * from './person.ts';
 export * from './persona.ts';
 export * from './persona-calendar.ts';
-export { considerProjects, enableProjects, PROJECTS_DEFAULTS, projectAppeal } from './projects/index.ts';
+export {
+  adoptProjectTask,
+  considerProjects,
+  enableProjects,
+  PROJECTS_DEFAULTS,
+  projectAppeal,
+} from './projects/index.ts';
 export * from './promptings/index.ts';
 export type { ConsequenceEvidence, PlanRoute, PlanStep } from './prospection/index.ts';
 export {

@@ -414,3 +414,179 @@ test('project behaviour and peaks survive restore; re-enabling a legacy save opt
   (bad.projects as { behaviour?: number }).behaviour = 3;
   expect(hf.restore(bad).projects).toBeUndefined();
 });
+
+test('declared project reductions block direct and chained credit only with protection enabled', () => {
+  const p = person();
+  see(p, { ...prospect, progress: 0.3 });
+  hf.considerProjects(p, p.now);
+  const g = active(p);
+  if (!g) throw new Error('No project');
+  const take = {
+    ...idle,
+    action: 'take',
+    targetId: 'piece',
+    placeId: 'pile',
+    diminishes: ['work'],
+    advances: ['work'],
+  };
+  const terms = (a: Affordance) =>
+    hf.consider(p, a, {
+      ...hf.readPerson(p),
+      now: p.now,
+      mods: hf.lifeModifiers(p),
+      tendencies: {},
+      habit: { now: p.now },
+    }).terms;
+  expect(terms(take).some((t) => t.source === `goal:${g.id}`)).toBe(true);
+  const rng = hf.snapshot(p).rng;
+  hf.enableProjects(p, { protectProgress: true });
+  expect(terms(take).some((t) => t.source === `goal:${g.id}`)).toBe(false);
+  hf.enablePlanning(p, { depth: 4 });
+  hf.seedConsequences(p, 'known', [
+    {
+      id: 'undo',
+      revision: 0,
+      trigger: { action: 'go' },
+      successor: { action: 'take', duration: 1, effort: 0, diminishes: ['work'] },
+      availableFrom: p.now,
+      availableUntil: p.now + 10,
+      expiresAt: p.now + 10,
+      chance: 1,
+      confidence: 1,
+    },
+    {
+      id: 'repair',
+      revision: 0,
+      trigger: { action: 'take' },
+      successor: { action: 'replace', duration: 1, effort: 0, advances: ['work'] },
+      availableFrom: p.now,
+      availableUntil: p.now + 10,
+      expiresAt: p.now + 10,
+      chance: 1,
+      confidence: 1,
+    },
+  ]);
+  expect(terms({ ...idle, action: 'go' }).some((t) => t.source === `goal:${g.id}`)).toBe(false);
+  // A different project's declaration does not suppress the held project's chain.
+  const entry = p.prospection?.entries[0];
+  if (!entry) throw new Error('No received claim');
+  entry.successor.diminishes = ['other'];
+  expect(terms({ ...idle, action: 'go' }).some((t) => t.source === `goal:${g.id}`)).toBe(true);
+  expect(p.rng).toEqual(rng);
+});
+
+test('a completed own act learns from the next attended drop, saves exactly, and keeps context distinct', () => {
+  let p = person();
+  hf.enableProjects(p, { protectProgress: true });
+  see(p, { ...prospect, progress: 0.3 });
+  hf.considerProjects(p, p.now);
+  const take = { ...idle, action: 'take', targetId: 'piece', placeId: 'pile', advances: ['work'] };
+  step(p, take);
+  p = hf.restore(hf.snapshot(p));
+  see(p, { ...prospect, progress: 0.2 });
+  expect(p.projects?.setbacks).toEqual([
+    { prospectId: 'work', action: 'take', targetId: 'piece', placeId: 'pile' },
+  ]);
+  expect(p.projects?.pendingAct).toBeUndefined();
+  expect(hf.restore(hf.snapshot(p))).toEqual(p);
+  const terms = (a: Affordance) => hf.agendaTerms(p, a, p.now);
+  expect(terms(take)).toEqual([]);
+  expect(terms({ ...take, targetId: 'loose-piece' })).not.toEqual([]);
+  expect(terms({ ...take, placeId: 'other-pile' })).not.toEqual([]);
+  hf.enableProjects(p, { protectProgress: true });
+  step(p, { ...take, action: 'late' });
+  hf.tick(p, p.now + 6);
+  see(p, { ...prospect, progress: 0.1 });
+  expect(p.projects?.setbacks).toHaveLength(1);
+});
+
+test('another actor or testimony updates progress without blaming the prior own act', () => {
+  const p = person();
+  hf.enableProjects(p, { protectProgress: true });
+  see(p, { ...prospect, progress: 0.3 });
+  hf.considerProjects(p, p.now);
+  step(p);
+  hf.perceive(p, [
+    {
+      at: p.now,
+      channel: 'saw',
+      actorId: 'bob',
+      kind: 'fact',
+      salience: 1,
+      summary: 'Bob removed a piece',
+      prospect: { ...prospect, progress: 0.2 },
+    },
+  ]);
+  expect(active(p)?.progress).toBe(0.2);
+  expect(p.projects?.setbacks).toBeUndefined();
+  expect(p.projects?.pendingAct).toBeUndefined();
+  // A repeated actorless reading must not assign Bob's drop to the earlier rest.
+  see(p, { ...prospect, progress: 0.2 });
+  expect(p.projects?.setbacks).toBeUndefined();
+  step(p);
+  hf.perceive(p, [
+    {
+      at: p.now,
+      channel: 'told',
+      kind: 'fact',
+      salience: 1,
+      summary: 'The pile is smaller',
+      prospect: { ...prospect, progress: 0.1 },
+    },
+  ]);
+  expect(active(p)?.progress).toBe(0.1);
+  expect(p.projects?.setbacks).toBeUndefined();
+  expect(p.projects?.pendingAct).toBeUndefined();
+});
+
+test('a host task reuses the active project and pursuit without renewing credit for repair', () => {
+  const p = person();
+  hf.enablePersistence(p);
+  see(p, { ...prospect, progress: 0.3 });
+  hf.considerProjects(p, p.now);
+  const held = active(p);
+  if (!held) throw new Error('No project');
+  hf.begin(p, { ...idle, advances: ['work'] }, hf.decide(p, [{ ...idle, advances: ['work'] }]));
+  const pursuit = hf.pursuitOf(p);
+  hf.tick(p, p.now + 1);
+  hf.finish(p, { affordanceId: idle.id, action: idle.action, status: 'completed', at: p.now });
+  see(p, { ...prospect, progress: 0.2 });
+  const clock = held.lastAdvancedAt;
+  const nextId = p.agenda.nextId;
+  const temporal = held.temporal;
+  const task = {
+    label: 'Finish for the host',
+    serves: ['competence' as const],
+    advancedBy: [{ action: 'place', amount: 0.1 }],
+    importance: 0.9,
+  };
+  expect(hf.adoptProjectTask(p, 'work', task)).toBe(held);
+  expect(p.agenda.nextId).toBe(nextId);
+  expect(held.temporal).toEqual(temporal);
+  expect(p.agenda.goals).toHaveLength(1);
+  expect(held).toMatchObject({
+    label: task.label,
+    progress: 0.2,
+    project: { peak: 0.3 },
+    adoptedAt: 600,
+    lastAdvancedAt: clock,
+  });
+  expect(hf.pursuitOf(p)).toEqual(pursuit);
+  hf.tick(p, p.now + 1);
+  see(p, { ...prospect, progress: 0.3 });
+  expect(held.lastAdvancedAt).toBe(clock);
+  hf.abandonGoal(p, held.id);
+  const before = hf.snapshot(p);
+  expect(hf.adoptProjectTask(p, 'work', task)).toBeUndefined();
+  expect(p).toEqual(before);
+});
+
+test('previously enabled projects retain the exact 2.16.0 continuation with repair and restore', () => {
+  // Captured from main 8d669e5 source before introducing protectProgress. Engine is normalized.
+  expect(projectsOffContinuation(hf, true, true)).toBe(
+    '25a0452bdbfce97ac137bfad213be7fe0e62e832f78b1d257a74ba59c943e6f7',
+  );
+  expect(projectsOffContinuation(hf, true, true, true)).toBe(
+    '5a61060eb737f871d3a7e0734b65c473e5331e87b25a1610fadec749502557f4',
+  );
+});

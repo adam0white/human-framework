@@ -91,7 +91,9 @@ export function intentionFor(p: Person, record: DecisionRecord, lexicon?: Lexico
     case 'emotion':
       return phraseLine('intention.emotion', {}, lex);
     case 'material':
-      return phraseLine('intention.material', {}, lex);
+      return lex?.materialMeaning !== undefined
+        ? phraseLine('intention.material.named', { material: lex.materialMeaning }, lex)
+        : phraseLine('intention.material', {}, lex);
     case 'precommit':
       return phraseLine('intention.precommit', {}, lex);
     case 'expectation':
@@ -161,7 +163,9 @@ export function narrateDecision(p: Person, record: DecisionRecord, lexicon?: Lex
         ? pickLine(`emotion:${tag}`, id, {}, lex)
         : pickLine('emotion:default', id, {}, lex),
     );
-  } else
+  } else if (kind === 'material' && lex?.materialMeaning !== undefined)
+    parts.push(pickLine('source:material.named', id, { material: lex.materialMeaning }, lex));
+  else
     parts.push(
       linesFor(`source:${source}`, lex).length > 0
         ? pickLine(`source:${source}`, id, {}, lex)
@@ -198,6 +202,8 @@ export function narrateDecision(p: Person, record: DecisionRecord, lexicon?: Lex
 /** The person's spoken reply to a suggestion. */
 export function voiceLine(p: Person, res: SuggestionResolution, key = res.reason, lexicon?: Lexicon): string {
   const lex = lexicon ?? p.lexicon;
+  if (lex?.variety && (res.verdict === 'assented' || res.verdict === 'deferred'))
+    key = `${p.id}:${p.now}:${p.traits.extraversion}:${p.traits.honesty}:${key}`;
   const trust = p.will.voices.find((v) => v.voiceId === res.voiceId)?.trust ?? 0.5;
   switch (res.verdict) {
     case 'assented':
@@ -294,4 +300,15 @@ export function describePerson(p: Person, lexicon?: Lexicon): string {
     : phraseLine('describe.idle', {}, lex);
   const state = bits.length > 0 ? bits.join(', ') : phraseLine('describe.well', {}, lex);
   return phraseLine('describe.line', { name: p.name, act, state }, lex);
+}
+
+/**
+ * SCOPE: a host-authored addressee form of an episode, selected only for its named actor.
+ * Free text cannot safely be inflected. With no authored form, return the original summary.
+ * This read-only helper neither recalls an episode nor changes its salience or RNG.
+ */
+export function recallLine(episode: Episode, toActor: string): string {
+  return episode.actorId === toActor && episode.addressedSummary !== undefined
+    ? episode.addressedSummary
+    : episode.summary;
 }

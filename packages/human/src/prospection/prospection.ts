@@ -17,6 +17,7 @@ import { temporalGoalValue } from '../agenda/agenda.ts';
 import { trustOf } from '../beliefs/index.ts';
 import { cmpStr, isNum, isObj, round } from '../core/index.ts';
 import { expectedEffect } from '../memory/index.ts';
+import { diminishesProject } from '../projects/index.ts';
 import type {
   Affordance,
   ConsequenceAction,
@@ -118,6 +119,10 @@ function consequence(x: unknown, receivedAt: number): ReceivedConsequence | unde
       (!Array.isArray(s.advances) ||
         s.advances.length > 8 ||
         !s.advances.every((x) => typeof x === 'string' && x.length > 0 && x.length <= 512))) ||
+    (s.diminishes !== undefined &&
+      (!Array.isArray(s.diminishes) ||
+        s.diminishes.length > 8 ||
+        !s.diminishes.every((x) => typeof x === 'string' && x.length > 0 && x.length <= 512))) ||
     (s.focus !== undefined && !unit(s.focus)) ||
     (s.materialCost !== undefined &&
       (!isNum(s.materialCost) || s.materialCost < 0 || s.materialCost > PROSPECTION_DEFAULTS.maxMaterialCost))
@@ -144,6 +149,7 @@ function consequence(x: unknown, receivedAt: number): ReceivedConsequence | unde
       duration: s.duration,
       effort: s.effort,
       ...(s.advances !== undefined ? { advances: [...(s.advances as string[])] } : {}),
+      ...(s.diminishes !== undefined ? { diminishes: [...(s.diminishes as string[])] } : {}),
       ...(s.focus !== undefined ? { focus: s.focus } : {}),
       ...(s.materialCost !== undefined ? { materialCost: s.materialCost } : {}),
     },
@@ -352,7 +358,12 @@ export function receivedGoalRoute(
   maturityScale: number,
   costs: (successor: Affordance) => number,
 ): { goals: Map<string, number>; cost: Term; route: PlanRoute } | undefined {
-  const goals = p.agenda.goals.filter((g) => g.status === 'active' && g.temporal !== undefined);
+  const goals = p.agenda.goals.filter(
+    (g) =>
+      g.status === 'active' &&
+      g.temporal !== undefined &&
+      !(g.project && diminishesProject(p, aff, g.project.prospectId)),
+  );
   if (!goals.length || !p.prospection?.entries.length) return undefined;
   const direct = goals.map((g) => temporalGoalValue(p, g, aff, now, now + Math.max(0, aff.duration)));
   const baseline = direct.reduce((sum, value) => sum + round(value * maturityScale), 0);
@@ -397,9 +408,12 @@ export function receivedGoalRoute(
         entry.confidence *
         reliability(p, entry);
       const successor = successorOffer(entry);
-      const nextValues = goals.map((g, i) =>
-        Math.max(values[i] ?? 0, nextAccess * beta * temporalGoalValue(p, g, successor, now, end)),
-      );
+      const nextValues = goals.map((g, i) => {
+        const prospectId = g.project?.prospectId;
+        return prospectId && [...done, previous, successor].some((a) => diminishesProject(p, a, prospectId))
+          ? 0
+          : Math.max(values[i] ?? 0, nextAccess * beta * temporalGoalValue(p, g, successor, now, end));
+      });
       const nextCost = accumulatedCost + beta * nextAccess * Math.min(0, costs(successor));
       const cost = round(nextCost);
       const total = nextValues.reduce((sum, value) => sum + round(value * maturityScale), 0) + cost;

@@ -318,7 +318,19 @@ export function promptingLine(
   reading: PromptingReading,
   outcome: PromptingRecord['outcome'],
   kind?: PromptingResponseKind,
+  options: { voice?: 'first' | 'third' } = {},
 ): string {
+  // Plain third-person observations describe the response, without inferring the prompt's origin.
+  if (options.voice === 'third') {
+    if (outcome === 'assented') return 'an urge came and was acted on';
+    if (outcome === 'turned')
+      return kind === 'refuge'
+        ? 'an urge came; the person sought refuge and let it pass'
+        : kind === 'redirect'
+          ? 'an urge came; the person turned to something else'
+          : 'an urge came; the person held back';
+    return 'an urge came and passed';
+  }
   if (outcome === 'assented')
     return reading === 'whisper'
       ? 'a whisper came and was followed'

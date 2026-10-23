@@ -82,6 +82,11 @@ export const MIGRATIONS: Readonly<Record<string, MigrationStep>> = {
     note: 'the surroundings field `ambient.now` is renamed `ambient.percept`; per-person retention is optional and starts absent; behaviour unchanged',
     apply: renameAmbient,
   },
+  '2.14.1': {
+    to: '2.17.0',
+    note: 'version stamp only; project protection and narration/social options require explicit opt-in, and existing enabled faculties retain exact behavior',
+    apply: stamp,
+  },
   '2.14.0': {
     to: '2.14.1',
     note: 'version stamp only; restored projects and persistence retain 2.14.0 behaviour until explicitly re-enabled',

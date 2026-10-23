@@ -21,6 +21,10 @@
  * share of conversation about absent third parties that spreads reputational information (Dunbar 2004), and
  * extraversion as talkativeness (how many claims are offered).
  *
+ * SCOPE (host options): `loyalWarning` admits only unfavourable listener claims when affection is at least
+ * 0.5 (an engineering threshold). `confidentMin` sets a per-call relay threshold. `phrase` renders selected
+ * testimony only; the host owns authored facts, delivery and subsequent disclosure. No hidden relay occurs.
+ *
  * It does NOT generate language, model turn-taking, persuasion beyond source trust, what the speaker believes
  * the listener already knows, lies of omission, white lies told to spare feelings, or the speaker's fear of
  * being found out. Coefficients are engineering defaults, not calibrated estimates. Nothing here judges the
@@ -112,6 +116,12 @@ export interface ConverseContext {
   traits?: Record<string, TraitEffect>;
   /** Carry belief origin and opaque lineage into told claims (off by default). */
   provenance?: boolean;
+  /** Relay beliefs this far from 0.5 (0..0.5); default 0.2. Invalid values use the default. */
+  confidentMin?: number;
+  /** Let a fond speaker warn the listener of an unfavourable character claim about them. */
+  loyalWarning?: boolean;
+  /** Presentation only. Receives a told claim or a withheld reason and its default summary; never changes selection. */
+  phrase?: (claim: Readonly<ToldClaim | WithheldClaim>, summary: string) => string;
 }
 
 /** Host-visible record of one claim. */
@@ -140,6 +150,13 @@ export interface AdviceGiven {
   suggestion: Suggestion;
 }
 
+export interface WithheldClaim {
+  prop: string;
+  reason: string;
+  /** Present only when a host phrasing callback rendered this reason. */
+  summary?: string;
+}
+
 export interface ConversationResult {
   /** Testimony percepts for `perceive(listener, told)`. */
   told: Percept[];
@@ -147,7 +164,7 @@ export interface ConversationResult {
   advice: AdviceGiven[];
   claims: ToldClaim[];
   /** Candidate claims the speaker held back, and why (e.g. 'norm:backbiting', 'norm:lying'). */
-  withheld: { prop: string; reason: string }[];
+  withheld: WithheldClaim[];
   /** True when any told claim was a lie. */
   deceit: boolean;
   /** The speaker's own deed tags for conscience (e.g. backbiting/lying violated), deduplicated, sorted. */
@@ -243,10 +260,26 @@ export function converse(speaker: Person, listener: Person, ctx: ConverseContext
   for (const b of beliefs) {
     if (b.prop.startsWith('advice:') || b.prop.includes(':should:')) continue;
     const subject = b.prop.split(':')[0];
-    if (subject === listener.id || subject === speaker.id) continue;
+    if (subject === speaker.id) continue;
     const cred = expit(b.logOdds);
-    if (Math.abs(cred - 0.5) < C.confidentMin) continue;
+    const threshold =
+      Number.isFinite(ctx.confidentMin) &&
+      (ctx.confidentMin as number) >= 0 &&
+      (ctx.confidentMin as number) <= 0.5
+        ? (ctx.confidentMin as number)
+        : C.confidentMin;
+    if (Math.abs(cred - 0.5) < threshold) continue;
     const value = cred > 0.5;
+    if (subject === listener.id) {
+      const trait = parseTraitProp(b.prop, table)?.trait;
+      if (
+        !ctx.loyalWarning ||
+        relationshipWith(speaker, listener.id).affection < 0.5 ||
+        trait === undefined ||
+        !isUnfavourableTrait(trait, value, table)
+      )
+        continue;
+    }
     const confidence = value ? cred : 1 - cred;
     const recency = 1 / (1 + Math.max(0, ctx.at - b.updatedAt) / C.recencyScale);
     consider(
@@ -339,6 +372,7 @@ export function converse(speaker: Person, listener: Person, ctx: ConverseContext
           ? `${nameOf(speaker)} says ${c.about} is ${c.value ? '' : 'not '}${c.prop.split(':')[1] ?? ''}`
           : `${nameOf(speaker)} says ${c.prop} is ${c.value ? 'so' : 'not so'}`,
     };
+    if (ctx.phrase) pc.summary = ctx.phrase(Object.freeze(structuredClone(c)), pc.summary ?? '');
     const claim = pc.claims?.[0];
     if (claim && c.origin !== undefined) claim.origin = c.origin;
     if (claim && c.lineage !== undefined) claim.lineage = c.lineage;
@@ -392,6 +426,10 @@ export function converse(speaker: Person, listener: Person, ctx: ConverseContext
     if (benevolence >= C.benevolentAppeal) suggestion.appeal = 'benevolence';
     out.advice.push({ action: a.action, percept, suggestion });
   }
+
+  if (ctx.phrase)
+    for (const withheld of out.withheld)
+      withheld.summary = ctx.phrase(Object.freeze(structuredClone(withheld)), withheld.reason);
 
   const magnitude = clamp01((ctx.magnitude ?? C.chatMagnitude) + C.chatPerClaim * out.told.length);
   out.socialEvents.speaker.push({ at: ctx.at, kind: 'chat', otherId: listener.id, byMe: true, magnitude });

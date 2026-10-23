@@ -1,7 +1,12 @@
-/** The same disabled-slice host runs against main source to pin its exact full-state digest. */
+/** Matched disabled and previously enabled hosts pin exact full-state continuation against main source. */
 import { createHash } from 'node:crypto';
 import type * as HF from '../src/index.ts';
-export function projectsOffContinuation(hf: typeof HF, withProspect: boolean): string {
+export function projectsOffContinuation(
+  hf: typeof HF,
+  withProspect: boolean,
+  projectsEnabled = false,
+  legacyProjects = false,
+): string {
   let p = hf.createPerson({
     id: 'p',
     name: 'P',
@@ -9,11 +14,24 @@ export function projectsOffContinuation(hf: typeof HF, withProspect: boolean): s
     now: 600,
     bornAt: -30 * 365 * 1440,
     sex: 'female',
-    enable: { curiosity: true, planning: { depth: 3 } },
+    enable: { curiosity: true, planning: { depth: 3 }, ...(projectsEnabled ? { projects: true } : {}) },
   });
+  if (legacyProjects && p.projects) delete p.projects.behaviour;
   const rest = { id: 'rest', action: 'rest', label: 'Rest', duration: 1, effort: 0, advertises: {} };
-  const make = { ...rest, id: 'make', action: 'make', effort: 0.1 };
+  const make = {
+    ...rest,
+    id: 'make',
+    action: 'make',
+    effort: 0.1,
+    ...(projectsEnabled ? { advances: ['work'] } : {}),
+  };
   for (let i = 0; i < 80; i++) {
+    if (projectsEnabled) {
+      p.body.satiety = p.body.hydration = 1;
+      p.body.sleepPressure = p.body.sleepDebt = p.body.exertion = p.body.pain = 0;
+      for (const need of hf.PSYCHOLOGICAL_NEEDS) p.needs[need] = 1;
+      p.affect.emotions = [];
+    }
     hf.perceive(p, [
       {
         at: p.now,
@@ -22,7 +40,14 @@ export function projectsOffContinuation(hf: typeof HF, withProspect: boolean): s
         salience: 1,
         summary: 'Materials',
         ...(withProspect
-          ? { prospect: { id: 'work', label: 'Make something', kind: 'make' as const, progress: 0 } }
+          ? {
+              prospect: {
+                id: 'work',
+                label: 'Make something',
+                kind: 'make' as const,
+                progress: projectsEnabled ? (i % 3) / 10 : 0,
+              },
+            }
           : {}),
       },
     ]);

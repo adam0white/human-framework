@@ -3,7 +3,12 @@ import { main as community, DAYS } from '../examples/community.ts';
 import { main as curiosity } from '../examples/curiosity-control.ts';
 import { main as minimal } from '../examples/minimal.ts';
 import { main as planning } from '../examples/planning-control.ts';
-import { longerProject, main as projects, runStalledArm } from '../examples/projects-control.ts';
+import {
+  longerProject,
+  main as projects,
+  runProjectTaskArm,
+  runStalledArm,
+} from '../examples/projects-control.ts';
 import { main as suggestions } from '../examples/suggestions.ts';
 import { main as whyNot } from '../examples/why-not-control.ts';
 
@@ -59,6 +64,29 @@ describe('examples', () => {
     expect(net.releasedAt).toBeLessThan(net.minutes);
     expect(net.afterRelease.quiet).toBeGreaterThan(0);
     expect(net.afterRelease.take ?? 0).toBe(0);
+  });
+  test('project protection avoids undo and task carry preserves net credit', () => {
+    const learned = runStalledArm('protected');
+    const declared = runStalledArm('declared');
+    expect(learned.rounds).toBe(1);
+    expect(learned.choices.take).toBe(1);
+    expect(learned.pieces).toBe(3);
+    expect(declared.choices.take ?? 0).toBe(0);
+    expect(declared.pieces).toBe(3);
+    expect(runProjectTaskArm(true)).toMatchObject({
+      sameGoal: true,
+      progress: 0.2,
+      peak: 0.3,
+      progressAfterRepair: 0.3,
+      renewedByRepair: false,
+      activeGoals: 1,
+    });
+    expect(runProjectTaskArm(false)).toMatchObject({
+      sameGoal: false,
+      progress: 0,
+      peak: null,
+      activeGoals: 2,
+    });
   });
   test('why not: inertia, norm, habit and firm rule separate the same request', () => {
     const rows = whyNot();

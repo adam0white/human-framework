@@ -16,6 +16,8 @@
  */
 import {
   type Affordance,
+  adoptGoal,
+  adoptProjectTask,
   begin,
   consider,
   considerProjects,
@@ -279,7 +281,7 @@ export function runLongerArm(arm: LongerArm, seed = 19) {
  * The first take is forced to start the pursuit. Later offers include an unrelated alternative with ten host units of material gain and prior pleasure 0.3.
  * Missing behaviour markers reproduce a restored 2.14.0 save; new enables opt into net credit.
  */
-export function runStalledArm(behaviour: 'legacy' | 'net', seed = 19) {
+export function runStalledArm(behaviour: 'legacy' | 'net' | 'protected' | 'declared', seed = 19) {
   const p = createPerson({
     id: 'maker',
     name: 'Maker',
@@ -289,7 +291,14 @@ export function runStalledArm(behaviour: 'legacy' | 'net', seed = 19) {
     sex: 'female',
     traits: { openness: 1, conscientiousness: 1 },
     norms: [],
-    enable: { projects: { staleMinutes: 360 }, persistence: true, planning: { depth: 3 } },
+    enable: {
+      projects: {
+        staleMinutes: 360,
+        ...(behaviour === 'protected' || behaviour === 'declared' ? { protectProgress: true } : {}),
+      },
+      persistence: true,
+      planning: { depth: 3 },
+    },
   });
   // A restored legacy slice has no marker. Do not call enable again after removing it.
   if (behaviour === 'legacy') {
@@ -333,11 +342,17 @@ export function runStalledArm(behaviour: 'legacy' | 'net', seed = 19) {
         confidence: 1,
       },
     ]);
-    const work = carrying ? { ...offer('replace'), advances: [PROSPECT] } : offer('take');
+    const work = carrying
+      ? { ...offer('replace'), advances: [PROSPECT] }
+      : { ...offer('take'), ...(behaviour === 'declared' ? { diminishes: [PROSPECT] } : {}) };
     const quiet = { ...offer('quiet'), material: 10 };
-    const offers = minute === 0 ? [work] : [work, quiet];
+    const offers = minute === 0 && behaviour !== 'declared' ? [work] : [work, quiet];
     const record = decide(p, offers);
-    if (minute === 0) begin(p, work, record);
+    if (minute === 0) {
+      const first = offers.find((a) => a.id === record.chosenAffordanceId);
+      if (!first) throw new Error('Missing first stalled-control offer');
+      begin(p, first, record);
+    }
     if (minute % 30 === 0) {
       const context = {
         ...readPerson(p),
@@ -378,6 +393,61 @@ export function runStalledArm(behaviour: 'legacy' | 'net', seed = 19) {
   return { behaviour, minutes: p.now - 600, pieces, rounds, releasedAt, choices, afterRelease, samples };
 }
 
+/** A host task opens after free-time progress and a perceived setback. Compare carry with fresh adoption. */
+export function runProjectTaskArm(carry: boolean) {
+  const p = createPerson({
+    id: 'maker',
+    name: 'Maker',
+    seed: 19,
+    now: 600,
+    bornAt: -30 * 365 * 1440,
+    sex: 'female',
+    traits: { openness: 1, conscientiousness: 1 },
+    enable: { projects: { protectProgress: true } },
+  });
+  maintain(p, false);
+  const see = (progress: number) =>
+    perceive(p, [
+      {
+        at: p.now,
+        channel: 'saw',
+        kind: 'fact',
+        salience: 1,
+        summary: 'A pile',
+        prospect: { id: PROSPECT, label: 'Arrange a pile', kind: 'arrange', progress },
+      },
+    ]);
+  see(0.3);
+  considerProjects(p, p.now);
+  const held = p.agenda.goals.find((g) => g.project && g.status === 'active');
+  if (!held) throw new Error('No free-time project');
+  tick(p, p.now + 1);
+  see(0.2);
+  const task = {
+    label: 'Finish the pile for the host',
+    serves: ['competence' as const],
+    advancedBy: [{ action: 'replace', amount: 0.1 }],
+    importance: 0.8,
+    temporal: { halfLifeMinutes: 120 },
+  };
+  const goal = carry ? adoptProjectTask(p, PROSPECT, task) : adoptGoal(p, task, p.now);
+  if (!goal) throw new Error('Task did not adopt');
+  const atOpening = {
+    sameGoal: goal.id === held.id,
+    progress: goal.progress,
+    peak: goal.project?.peak ?? null,
+  };
+  tick(p, p.now + 1);
+  see(0.3);
+  return {
+    carry,
+    ...atOpening,
+    progressAfterRepair: goal.progress,
+    renewedByRepair: goal.lastAdvancedAt === p.now,
+    activeGoals: p.agenda.goals.filter((g) => g.status === 'active').length,
+  };
+}
+
 export function longerProject() {
   return LONGER_ARMS.map((arm) => runLongerArm(arm));
 }
@@ -399,5 +469,8 @@ if (process.argv[1]?.endsWith('/projects-control.ts')) {
   console.log('A longer project under distraction (180 minutes; hunger begins at minute 60)');
   console.table(longerProject().map(({ choices: _choices, seed: _seed, ...row }) => row));
   console.log('A stalled take-and-replace project (120 minutes; the pile never exceeds three pieces)');
-  for (const behaviour of ['legacy', 'net'] as const) console.log(runStalledArm(behaviour));
+  for (const behaviour of ['legacy', 'net', 'protected', 'declared'] as const)
+    console.log(runStalledArm(behaviour));
+  console.log('A host task opens after a setback; carry keeps net credit');
+  console.table([runProjectTaskArm(false), runProjectTaskArm(true)]);
 }

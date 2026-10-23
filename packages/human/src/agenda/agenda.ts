@@ -49,6 +49,7 @@
 import { DEFAULT_NORMS } from '../conscience/catalog.ts';
 import { clamp01, dayOf, dpow, hasNumbers, isNum, isObj } from '../core/index.ts';
 import { expectedEffect } from '../memory/index.ts';
+import { diminishesProject } from '../projects/index.ts';
 import type {
   Affordance,
   AgendaState,
@@ -591,6 +592,7 @@ export function temporalGoalValue(
   now: Minute,
   completion: Minute,
 ): number {
+  if (g.project && diminishesProject(p, aff, g.project.prospectId)) return 0;
   const base = goalValue(g, aff, now);
   return g.temporal
     ? base *
@@ -645,7 +647,7 @@ export function agendaTermsWithGoalEstimates(
     terms.push({ source: `commitment:${c.id}`, value: d.commitmentScale * c.importance * pressure });
   }
   for (const g of p.agenda.goals) {
-    if (g.status !== 'active') continue;
+    if (g.status !== 'active' || (g.project && diminishesProject(p, aff, g.project.prospectId))) continue;
     const override = goalOverrides?.get(g.id);
     if (override !== undefined || g.temporal) {
       const value = override ?? temporalGoalValue(p, g, aff, now, now + Math.max(0, aff.duration));

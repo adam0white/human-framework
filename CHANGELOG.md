@@ -10,6 +10,22 @@ The release version is the package version and `FRAMEWORK_VERSION`, tagged `vX.Y
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
+## [2.17.0] - 2026-10-23
+
+Engine: 2.17.0.
+
+### Added
+
+- Explicit `enableProjects(p, { protectProgress: true })`: an offer or received successor can declare `diminishes` prospect ids. A project no longer credits its own undo, including a planned chain containing that step. The person can also learn an exact action/target/place link from a directly perceived drop after its own completed act. Learning is bounded and excludes explicitly witnessed acts by another person.
+- `adoptProjectTask` converts a matching active project to a host task while retaining its identity, net progress, highest credited reading, progress clock and pursuit. An absent match returns `undefined`; abandoned projects stay abandoned.
+- Opt-in per-person and per-minute assent/deferral variants, noun-safe chronicle action forms, a host resource noun for material narration, plain third-person prompting lines, actor-addressed recall and varied cause-aware review lines. These are presentation options; review wording never excuses a duty.
+- Per-call host reputation traits, loyal warnings when word gets back to the subject, a relay-confidence threshold and a conversation phrasing callback after selection.
+
+### Compatibility
+
+- Existing enabled projects keep their prior behaviour unless `protectProgress` is explicitly true. Other narration and social options remain absent by default. Migration from engine 2.14.1 only stamps the version; existing state, RNG and continuation remain exact apart from the engine stamp.
+- Focused tests and the `projects-control.ts` and `narration-control.ts` headless controls accompany the changes. Island results are recorded separately from these controlled cases.
+
 ## [2.16.0] - 2026-10-23
 
 Engine: 2.14.1.

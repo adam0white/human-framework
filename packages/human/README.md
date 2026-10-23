@@ -459,3 +459,19 @@ returning a detached Person. The receiving calendar must be empty; authored role
 admission, the host uses ordinary agenda APIs and its declared calendar. No duty is waived, no new ruling
 is invented, and no obligation is converted to a score. Activities, projects and incompatible identity or
 health remain unsupported. The original passport format and no-call continuation remain unchanged.
+
+### Project protection and narration options
+
+Projects can opt into undo protection with `enableProjects(person, { protectProgress: true })`.
+Declare `diminishes: [prospectId]` on an offer or its described successor, or let the person
+learn the exact action context from a perceived drop after its own completed act.
+`adoptProjectTask(person, prospectId, task)` reuses an active project and its net credit
+for a host task; an absent match returns `undefined`.
+
+Narration remains unchanged unless requested. Set `person.lexicon.variety`,
+`nounActions` or `materialMeaning` for the corresponding host wording. Use
+`promptingLine(reading, outcome, kind, { voice: 'third' })` for plain third-person lines.
+`converse` adds per-call `loyalWarning`, `confidentMin` and `phrase` options;
+`perceive` adds a third `{ reputationTraits }` argument. See the architecture's
+[narration and social host options](../../docs/framework.md#narration-and-social-host-options-opt-in)
+for cause-aware reviews and actor-addressed recall. These options change no default continuation.

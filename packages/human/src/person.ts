@@ -131,7 +131,13 @@ import {
 } from './needs/index.ts';
 import { widow } from './partnering/index.ts';
 import { beginPursuit, enablePersistence, releasePursuit } from './persistence/index.ts';
-import { considerProjects, enableProjects, noteProjectStatus, perceiveProspect } from './projects/index.ts';
+import {
+  considerProjects,
+  enableProjects,
+  noteProjectAct,
+  noteProjectStatus,
+  perceiveProspect,
+} from './projects/index.ts';
 import { enablePromptings, type NafsPattern, nafsPatterns, notePromptings } from './promptings/index.ts';
 import {
   bodyForecastFor,
@@ -743,9 +749,20 @@ function socialKindOf(kind: string): SocialEventKind | undefined {
   return SOCIAL_ALIASES[kind];
 }
 
-function perceiveOne(p: Person, pc: Percept): void {
+export interface PerceiveOptions {
+  /** Complete host character-trait vocabulary; absent uses HF's default table. */
+  reputationTraits?: Parameters<typeof applyReputationBelief>[5];
+}
+
+function perceiveOne(p: Person, pc: Percept, options: PerceiveOptions): void {
   receiveConsequences(p, pc);
-  if (p.projects && pc.prospect) perceiveProspect(p, pc.prospect, pc.at);
+  if (p.projects && pc.prospect)
+    perceiveProspect(
+      p,
+      pc.prospect,
+      pc.at,
+      (pc.channel === 'saw' || pc.channel === 'outcome') && (pc.actorId === undefined || pc.actorId === p.id),
+    );
   const at = Math.min(Math.max(pc.at, p.affect.lastUpdated), p.now);
   const actor = pc.actorId;
   const target = pc.targetId;
@@ -762,7 +779,7 @@ function perceiveOne(p: Person, pc: Percept): void {
     if (claim.origin !== undefined || claim.lineage !== undefined)
       noteProvenance(p, claim, direct ? p.id : (actor ?? 'rumour'), at);
     // Hearsay about someone's character moves my relationship with them (reputation).
-    applyReputationBelief(p, claim.prop, before, credence(p, claim.prop), at);
+    applyReputationBelief(p, claim.prop, before, credence(p, claim.prop), at, options.reputationTraits);
   }
   // Another source's account, reported by the teller (2.10.0): one source telling two people opposite things.
   if (pc.channel === 'told' && actor !== undefined && Array.isArray(pc.reports)) {
@@ -864,7 +881,10 @@ function perceiveOne(p: Person, pc: Percept): void {
     summary: pc.summary,
     tags: [pc.kind, pc.channel, ...(isNight(at) ? ['night'] : []), ...(threat ? ['threat'] : [])],
   };
-  if (actor !== undefined) episode.actorId = actor;
+  if (actor !== undefined) {
+    episode.actorId = actor;
+    if (pc.addressedSummary !== undefined) episode.addressedSummary = pc.addressedSummary;
+  }
   if (target !== undefined) episode.targetId = target;
   if (pc.placeId !== undefined) episode.placeId = pc.placeId;
   remember(p, episode);
@@ -890,7 +910,7 @@ function judgeDeed(p: Person, actor: string, pc: Percept, at: Minute): number {
  * into relationships, others' acts judged by my norms, appraisal into emotions, and an episode each.
  * Returns the percepts that were attended to.
  */
-export function perceive(p: Person, percepts: readonly Percept[]): Percept[] {
+export function perceive(p: Person, percepts: readonly Percept[], options: PerceiveOptions = {}): Percept[] {
   if (percepts.length === 0 || !p.body.alive) return [];
   const body = readBodyOf(p);
   const attended = attend(p, [...percepts], {
@@ -899,7 +919,7 @@ export function perceive(p: Person, percepts: readonly Percept[]): Percept[] {
     fear: emotionLevel(p, 'fear'),
   });
   for (const pc of attended) {
-    perceiveOne(p, pc);
+    perceiveOne(p, pc, options);
     // What I just noticed may bring a memory back (the cemetery road, her name on the phone).
     const at = Math.min(Math.max(pc.at, p.affect.lastUpdated), p.now);
     const cue: Parameters<typeof recallByCue>[1] = { at, action: pc.kind, tags: [pc.kind] };
@@ -1667,7 +1687,10 @@ export function finish(p: Person, outcome: Outcome, opts: FinishOptions = {}): F
     ...(act.necessity ? { necessity: true } : {}),
     ...(opts.catalog ? { catalog: opts.catalog } : {}),
   });
-  if (p.projects) noteProjectStatus(p, now);
+  if (p.projects) {
+    noteProjectAct(p, aff, completed, now);
+    noteProjectStatus(p, now);
+  }
   if (p.pursuit) releasePursuit(p);
   // A completed violating action inside an open abstention's window broke it (the fast, e.g. "no work after the evening prayer").
   if (broken.length > 0) {
