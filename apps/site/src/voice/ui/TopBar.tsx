@@ -2,6 +2,7 @@
 import { memo } from 'react';
 import type { Frame } from '../protocol.ts';
 import { storyDate } from './dates.ts';
+import { deriveScene } from './scenes.ts';
 import { explainTerms } from './terms.tsx';
 
 const SKY: [number, string][] = [
@@ -64,6 +65,8 @@ export const TopBar = memo(function TopBar({
   onInfo: () => void;
   onMenu: () => void;
 }) {
+  const scene = frame ? deriveScene(frame) : null;
+  const runningPage = frame && !frame.intro && ['day', 'eid', 'free'].includes(frame.phase);
   const label =
     !frame || title ? (
       ''
@@ -88,7 +91,7 @@ export const TopBar = memo(function TopBar({
   return (
     <header className="v-shell-top">
       <div className="v-shell-when">{title ? <a href="/">All games</a> : label}</div>
-      {frame && !title && (
+      {frame && !title && frame.phase !== 'report' && (
         <div className="v-shell-state">
           <SkyBand sky={frame.sky} />
           <span className="v-sr">
@@ -97,7 +100,7 @@ export const TopBar = memo(function TopBar({
               .map((p) => `${p.name} ${p.state}`)
               .join(', ')}
           </span>
-          <div className="v-shell-state-words">
+          <div className="v-shell-state-words" style={!runningPage ? { visibility: 'hidden' } : undefined}>
             <span>
               {skipping
                 ? 'skipping to the next event…'
@@ -109,9 +112,11 @@ export const TopBar = memo(function TopBar({
             </span>
             <span>
               {menuOpen || infoOpen
-                ? 'held: reading'
+                ? menuOpen
+                  ? 'held: menu open'
+                  : 'held: information open'
                 : frame.paused
-                  ? 'stopped: a moment with Halil'
+                  ? `stopped: ${scene?.current ? scene.names.join(' and ') : (frame.pauseBeat?.text ?? 'a moment with Halil')}`
                   : reading
                     ? 'reading: the day slows while you choose'
                     : ''}

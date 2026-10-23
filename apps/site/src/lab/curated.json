@@ -6099,6 +6099,34 @@
     "fix:rope guarded advance labelled Skip ⏩ (implemented)"
    ],
    "source": "Owner addenda relayed by Opus, UI sweep grammar 2026-10-22"
+  },
+  {
+   "id": "F-459",
+   "date": "2026-10-22",
+   "game": "voice",
+   "kind": "owner",
+   "who": "owner",
+   "words": "All good decisions, proceed.",
+   "verdict": "-",
+   "routes": [
+    "fix:voice approved UI sweep with scene sheets and pinned speaking actions (implemented for owner retest)",
+    "fix:voice named Send word with recording and privacy consent paths (implemented)"
+   ],
+   "source": "Owner approval relayed by Opus, UI sweep specs/voice.md and GRAMMAR.md addenda 2026-10-22"
+  },
+  {
+   "id": "F-460",
+   "date": "2026-10-22",
+   "game": "voice",
+   "kind": "owner",
+   "who": "owner",
+   "words": "Good direction, proceed please, menu is fine. Just \"until something happens\" is too long, maybe Skip or Fast Forward or something else could be better.",
+   "verdict": "-",
+   "routes": [
+    "fix:voice automatic pacing by default with Slow Steady Fast in the menu (implemented for owner retest)",
+    "fix:voice guarded advance labelled Skip ⏩ (implemented)"
+   ],
+   "source": "Owner addenda relayed by Opus, UI sweep grammar 2026-10-22"
   }
  ],
  "lessons": [
@@ -6705,7 +6733,7 @@
   }
  ],
  "routes": {
-  "fix": 503,
+  "fix": 507,
   "lesson": 291,
   "hf": 12,
   "calibration": 42,
