@@ -3,7 +3,7 @@
 import { memo } from 'react';
 import type { HalilView } from '../protocol.ts';
 import { Icon } from './Icon.tsx';
-import { explainTerms, MealTerms } from './terms.tsx';
+import { explainTerms } from './terms.tsx';
 
 const STATE_LABEL: Record<HalilView['onMind'][number]['state'], string> = {
   open: '',
@@ -101,7 +101,6 @@ export const HalilPane = memo(function HalilPane({ halil }: { halil: HalilView }
           <strong>{halil.owed}</strong> owed to Osman
         </span>
       </p>
-      <MealTerms />
     </section>
   );
 });

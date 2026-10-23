@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import type { Draft, Frame, SceneWords, Telegraph } from '../protocol.ts';
 import { Composer } from './Composer.tsx';
 import { spokenLogText } from './conversations.ts';
-import { DayLog } from './DayLog.tsx';
 import { storyDates } from './dates.ts';
 import { planningContext } from './PlanningContext.tsx';
 import { consequentialOffer, speakingOpportunity } from './pause-policy.ts';
@@ -11,6 +10,7 @@ import { sceneBeat, sceneWordChoices } from './scene-words.ts';
 import { deriveScene, nextEncounter, sceneChoices } from './scenes.ts';
 import { useStableSpeechFrame } from './stable-speech-frame.ts';
 import { explainTerms } from './terms.tsx';
+import './voice-components.css';
 export interface SceneDayProps {
   frame: Frame;
   liveFrame?: Frame;
@@ -29,6 +29,9 @@ export interface SceneDayProps {
   active?: boolean;
   sceneReading?: boolean;
   onPersonalReply?: (held: boolean) => void;
+  speakRequest?: number;
+  onSpeakingChange?: (open: boolean) => void;
+  onSpeakAvailability?: (available: boolean, caption: string) => void;
 }
 /** Scenes are presentation only. Inputs still use the existing suggestion protocol. */
 export function SceneDay(props: SceneDayProps) {
@@ -113,11 +116,9 @@ function SceneDayContent(
     [],
   );
   const more = useRef<HTMLButtonElement>(null);
-  const dialog = useRef<HTMLDialogElement>(null);
   const restoreFocus = useRef(false);
   useEffect(() => {
-    if (editor) dialog.current?.showModal();
-    else if (restoreFocus.current) {
+    if (!editor && restoreFocus.current) {
       more.current?.focus();
       restoreFocus.current = false;
     }
@@ -148,17 +149,52 @@ function SceneDayContent(
   const receipt = `${beat}:${lastRequest?.id ?? ''}:${frame.sceneWords?.length ?? 0}`;
   const sending = useRef<string | null>(null);
   const resolvedOpportunity = useRef<string | null>(null);
+  const [closedOpportunity, setClosedOpportunity] = useState<string | null>(null);
   const canSpeak = available || wordChoices.length > 0;
   const moreWords = moreFor === beat;
   const opportunity = speakingOpportunity(frame);
   useEffect(() => {
-    if (frame.paused && opportunity !== null && opportunity !== resolvedOpportunity.current)
+    if (
+      frame.paused &&
+      opportunity !== null &&
+      opportunity !== resolvedOpportunity.current &&
+      opportunity !== closedOpportunity
+    )
       setSpeaking(beat);
-  }, [frame.paused, opportunity, beat]);
+  }, [frame.paused, opportunity, beat, closedOpportunity]);
   const expanded =
     speaking === beat ||
-    (frame.paused && opportunity !== null && opportunity !== resolvedOpportunity.current);
+    (frame.paused &&
+      opportunity !== null &&
+      opportunity !== resolvedOpportunity.current &&
+      opportunity !== closedOpportunity);
   const reading = (expanded && canSpeak && !heldPersonal) || editor || answerHold;
+  const requested = useRef(props.speakRequest);
+  useEffect(() => {
+    if (props.speakRequest === requested.current) return;
+    requested.current = props.speakRequest;
+    if (canSpeak) {
+      setLeftReply(personal.current?.key ?? null);
+      setSpeaking(beat);
+    }
+  }, [props.speakRequest, canSpeak, beat]);
+  const sheetOpen = editor || (expanded && canSpeak && !heldPersonal);
+  useEffect(() => {
+    props.onSpeakingChange?.(sheetOpen);
+    return () => props.onSpeakingChange?.(false);
+  }, [sheetOpen, props.onSpeakingChange]);
+  const caption = frame.muted
+    ? 'You are silent today. Watch.'
+    : frame.halil.asleep
+      ? 'You can speak when he wakes.'
+      : spoken.length
+        ? 'You have spoken. Give him a little room.'
+        : canSpeak
+          ? 'Listening. Silence needs no tap.'
+          : 'He is occupied. You can speak when he is choosing.';
+  useEffect(() => {
+    props.onSpeakAvailability?.(canSpeak && !heldPersonal, caption);
+  }, [canSpeak, heldPersonal, caption, props.onSpeakAvailability]);
   const onReading = props.onReading;
   useEffect(() => {
     onReading?.(reading);
@@ -168,6 +204,7 @@ function SceneDayContent(
   const speakWord = (line: (typeof wordChoices)[number]) => {
     if (sent) return;
     leaveReply();
+    resolvedOpportunity.current = opportunity;
     setSentBeat(beat);
     setAnswerHold(true);
     if (answerTimer.current) clearTimeout(answerTimer.current);
@@ -195,7 +232,6 @@ function SceneDayContent(
   const condensed = moreWords && visibleLines.length > 2;
   const presentedLines = condensed ? visibleLines.slice(-1) : visibleLines;
   const canListen = !!response && !refused && page < 2;
-  const latestAction = frame.log.findLast((e) => e.kind === 'act');
   const offer = consequentialOffer(frame);
   const choices = sceneChoices(scene ?? null, frame.options, offer);
   const encounter = nextEncounter(frame);
@@ -212,10 +248,10 @@ function SceneDayContent(
     </div>
   );
   const activity = frame.halil.asleep
-    ? 'Halil is asleep.'
+    ? 'Now: asleep.'
     : frame.halil.doing
-      ? `Halil is ${frame.halil.doing.label}.`
-      : 'Halil is deciding what to do.';
+      ? `Now: ${frame.halil.doing.label}${frame.halil.doing.until ? `, until ${frame.halil.doing.until}` : ''}.`
+      : 'Now: deciding what to do.';
   return (
     <section
       className="v-scene-day"
@@ -223,39 +259,16 @@ function SceneDayContent(
       onPointerDownCapture={props.onPointerDownCapture}
       onKeyDownCapture={props.onKeyDownCapture}
     >
-      <div className="v-scene-tools">
-        <details className="v-routine">
-          <summary>Timeline</summary>
-          <DayLog
-            log={frame.log}
-            moment={{ minute: frame.minute, halil: frame.halil }}
-            paused={frame.paused}
-            onWhy={props.onWhy}
-            onRetainWhy={props.onRetainWhy}
-            selected={props.selected}
-          />
-        </details>
-        {frame.standing && !frame.muted && (
-          <details className="v-held-words">
-            <summary>Your words</summary>
-            <p className="v-held-line">
-              {explainTerms(frame.standing.label)} · until {frame.standing.expires}
-              <button type="button" className="v-btn v-btn-quiet" onClick={props.onWithdraw}>
-                Withdraw
-              </button>
-            </p>
-          </details>
-        )}
-        {latestAction?.decisionId && (
-          <button
-            type="button"
-            className="v-current-why"
-            onClick={() => latestAction.decisionId && props.onWhy(latestAction.decisionId)}
-          >
-            Why his current action?
+      {frame.standing && !frame.muted && (
+        <div className="v-held-words" role="note" aria-label="Your standing word">
+          <span>
+            Your word: {explainTerms(frame.standing.label)} · until {frame.standing.expires}
+          </span>
+          <button type="button" className="v-btn v-btn-quiet" onClick={props.onWithdraw}>
+            Withdraw
           </button>
-        )}
-      </div>
+        </div>
+      )}
       <div className="v-scene-reading">
         {props.unsaid && (
           <div className="v-spoken-lines" role="status">
@@ -268,7 +281,7 @@ function SceneDayContent(
               className="v-personal-leave v-btn v-btn-quiet"
               onClick={props.onDismissUnsaid}
             >
-              Back to today
+              Back to now
             </button>
           </div>
         )}
@@ -288,7 +301,7 @@ function SceneDayContent(
               </p>
             </div>
             <button type="button" className="v-personal-leave v-btn v-btn-quiet" onClick={leaveReply}>
-              Back to today
+              Back to now
             </button>
           </article>
         ) : scene ? (
@@ -362,9 +375,9 @@ function SceneDayContent(
         {!heldPersonal && reply}
       </div>
       {editor ? (
-        <dialog
-          ref={dialog}
-          className="v-scene-editor"
+        <section
+          className="v-scene-editor v-plan-sheet"
+          role="dialog"
           aria-label="Plan something specific"
           onKeyDownCapture={(e) => {
             if (e.key === 'Escape') {
@@ -373,13 +386,9 @@ function SceneDayContent(
               closeEditor();
             }
           }}
-          onCancel={(e) => {
-            e.preventDefault();
-            closeEditor();
-          }}
         >
           <button type="button" className="v-scene-editor-close v-btn" onClick={closeEditor}>
-            Back to the scene
+            ← Back to the scene · Plan something specific
           </button>
           <Composer
             planningContext={shownPlanning}
@@ -393,152 +402,120 @@ function SceneDayContent(
             whyOpen={props.whyOpen}
             onPredict={onPredict}
             onSuggest={(d) => {
+              resolvedOpportunity.current = opportunity;
+              setSpeaking(null);
               onSuggest(d);
               closeEditor();
             }}
             onSayNothing={() => {
+              resolvedOpportunity.current = opportunity;
+              setSpeaking(null);
               onSayNothing();
               closeEditor();
             }}
           />
-        </dialog>
-      ) : (
-        <div className="v-scene-participate v-scene-participate-secondary">
-          {heldPersonal ? (
-            <div className="v-scene-compact">
-              <p className="v-scene-wait">
-                {frame.paused ? 'Time is stopped.' : 'Time is passing.'} Later activity is in Timeline.
-              </p>
-              {(frame.paused || props.sceneReading) && (
-                <button type="button" className="v-btn v-btn-quiet" onClick={onSayNothing}>
-                  Let time pass
-                </button>
-              )}
-            </div>
-          ) : canSpeak ? (
-            !expanded ? (
-              <div className="v-scene-compact">
-                <button
-                  type="button"
-                  className="v-scene-speak v-btn"
-                  onClick={() => {
-                    leaveReply();
-                    setSpeaking(beat);
-                  }}
-                >
-                  Speak
-                </button>
-                {frame.paused || props.sceneReading ? (
-                  <button type="button" className="v-btn v-btn-quiet" onClick={onSayNothing}>
-                    Let time pass
-                  </button>
-                ) : (
-                  <span className="v-scene-wait">Listening. Silence needs no tap.</span>
-                )}
-              </div>
-            ) : (
-              <>
-                {offer && <p className="v-scene-offer">{explainTerms(storyDates(offer.why))}</p>}
-                {available && (
-                  <div className="v-scene-choices">
-                    {choices.map((choice) => (
-                      <button
-                        type="button"
-                        className="v-scene-choice"
-                        key={`${beat}:${choice.draft.optionId}:${choice.label}`}
-                        onClick={() => {
-                          if (sending.current === receipt) return;
-                          leaveReply();
-                          sending.current = receipt;
-                          resolvedOpportunity.current = opportunity;
-                          setAnswerHold(true);
-                          if (answerTimer.current) clearTimeout(answerTimer.current);
-                          answerTimer.current = setTimeout(() => setAnswerHold(false), 6000);
-                          onSuggest(choice.draft, choice.label);
-                          setSpeaking(null);
-                          setMoreFor(null);
-                          onPredict(null);
-                        }}
-                      >
-                        {choice.label}
-                      </button>
-                    ))}
-                  </div>
-                )}
-                {(!available || moreWords) && wordChoices.length > 0 && !sent && (
-                  <fieldset className="v-scene-words" aria-label="Your words">
-                    {wordChoices.map((line) => (
-                      <button
-                        type="button"
-                        className="v-scene-word"
-                        key={`${beat}:${line.kind}:${line.words}`}
-                        onClick={() => speakWord(line)}
-                      >
-                        {line.words}
-                      </button>
-                    ))}
-                  </fieldset>
-                )}
-                {!available && (
-                  <p className="v-scene-wait">He is occupied. Suggestions wait until he is choosing.</p>
-                )}
-                <div className="v-scene-choice-tools">
+        </section>
+      ) : expanded && canSpeak && !heldPersonal ? (
+        <section className="v-scene-participate v-speaking-sheet" role="dialog" aria-label="Speak to Halil">
+          <header className="v-speaking-header">
+            <h2>Speak to Halil</h2>
+            <button
+              type="button"
+              aria-label="Close speaking sheet"
+              onClick={() => {
+                setSpeaking(null);
+                setClosedOpportunity(opportunity);
+                setMoreFor(null);
+              }}
+            >
+              ×
+            </button>
+          </header>
+          <div className="v-speaking-body">
+            {offer && <p className="v-scene-offer">{explainTerms(storyDates(offer.why))}</p>}
+            {available && (
+              <div className="v-scene-choices">
+                {choices.map((choice) => (
                   <button
                     type="button"
-                    className="v-scene-silence"
+                    className="v-scene-choice"
+                    key={`${beat}:${choice.draft.optionId}:${choice.label}`}
                     onClick={() => {
+                      if (sending.current === receipt) return;
+                      leaveReply();
+                      sending.current = receipt;
                       resolvedOpportunity.current = opportunity;
+                      setAnswerHold(true);
+                      if (answerTimer.current) clearTimeout(answerTimer.current);
+                      answerTimer.current = setTimeout(() => setAnswerHold(false), 6000);
+                      onSuggest(choice.draft, choice.label);
                       setSpeaking(null);
                       setMoreFor(null);
                       onPredict(null);
-                      setAnswerHold(false);
-                      onSayNothing();
                     }}
                   >
-                    Say nothing
+                    {choice.label}
                   </button>
-                  {available && !moreWords && (
-                    <button type="button" className="v-scene-more" onClick={() => setMoreFor(beat)}>
-                      Say something else…
-                    </button>
-                  )}
-                </div>
-                {available && moreWords && (
+                ))}
+              </div>
+            )}
+            {(!available || moreWords) && wordChoices.length > 0 && !sent && (
+              <fieldset className="v-scene-words" aria-label="Your words">
+                {wordChoices.map((line) => (
                   <button
                     type="button"
-                    ref={more}
-                    className="v-scene-plan"
-                    onClick={() => {
-                      onPredict(null);
-                      planningSnapshot.current = planningContext(frame, scene ?? null, presentedLines);
-                      setEditor(true);
-                    }}
+                    className="v-scene-word"
+                    key={`${beat}:${line.kind}:${line.words}`}
+                    onClick={() => speakWord(line)}
                   >
-                    Plan something specific…
+                    {line.words}
                   </button>
-                )}
-              </>
-            )
-          ) : (
-            <div className="v-scene-compact">
-              <p className="v-scene-wait">
-                {frame.muted
-                  ? 'You are silent today. Watch.'
-                  : frame.halil.asleep
-                    ? 'You can speak when he wakes.'
-                    : spoken.length
-                      ? 'You have spoken. Give him a little room.'
-                      : 'He is occupied. You can speak when he is choosing.'}
-              </p>
-              {(frame.paused || props.sceneReading) && !frame.muted && (
-                <button type="button" className="v-scene-listen v-btn" onClick={onSayNothing}>
-                  Let time pass
+                ))}
+              </fieldset>
+            )}
+            {!available && (
+              <p className="v-scene-wait">He is occupied. Suggestions wait until he is choosing.</p>
+            )}
+            <div className="v-scene-choice-tools">
+              {available && !moreWords && (
+                <button type="button" className="v-scene-more" onClick={() => setMoreFor(beat)}>
+                  Say something else…
                 </button>
               )}
             </div>
-          )}
-        </div>
-      )}
+            {available && moreWords && (
+              <button
+                type="button"
+                ref={more}
+                className="v-scene-plan"
+                onClick={() => {
+                  onPredict(null);
+                  planningSnapshot.current = planningContext(frame, scene ?? null, presentedLines);
+                  setEditor(true);
+                }}
+              >
+                Plan something specific…
+              </button>
+            )}
+          </div>
+          <div className="v-speaking-actions">
+            <button
+              type="button"
+              className="v-scene-silence v-btn"
+              onClick={() => {
+                resolvedOpportunity.current = opportunity;
+                setSpeaking(null);
+                setMoreFor(null);
+                onPredict(null);
+                setAnswerHold(false);
+                onSayNothing();
+              }}
+            >
+              Say nothing
+            </button>
+          </div>
+        </section>
+      ) : null}
     </section>
   );
 }

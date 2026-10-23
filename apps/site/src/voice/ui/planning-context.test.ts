@@ -77,9 +77,9 @@ it('keeps the people and the interrupted company outside the scrolling controls'
   expect(context?.textContent).toContain('Halil and Hacer');
   expect(context?.textContent).toContain('Stay a little. There is no hurry.');
   expect(context?.closest('.v-planning-scroll')).toBeNull();
-  expect(el.querySelector('.v-planning-scroll .v-options')).not.toBeNull();
-  expect(el.querySelector('.v-planning-scroll .v-telegraph')).not.toBeNull();
-  const send = el.querySelector('.v-composer-body > .v-say');
+  expect(el.querySelector('.v-composer-scroll .v-options')).not.toBeNull();
+  expect(el.querySelector('.v-commit .v-telegraph')).not.toBeNull();
+  const send = el.querySelector('.v-commit > .v-say');
   expect(send?.querySelector('.v-btn-primary')).not.toBeNull();
   expect(send?.closest('.v-planning-scroll')).toBeNull();
 });
@@ -100,7 +100,7 @@ it('retains the recorded rent amount, progress and date for work while company r
 it('sends the chosen draft through the normal protocol from the separate commit row', () => {
   const { el, onSuggest } = mount();
   click(el, '.v-option');
-  click(el, '.v-composer-body > .v-say .v-btn-primary');
+  click(el, '.v-commit > .v-say .v-btn-primary');
   expect(onSuggest).toHaveBeenCalledExactlyOnceWith({
     optionId: 'work-extra',
     strength: 'mention',

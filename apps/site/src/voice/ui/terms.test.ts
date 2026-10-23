@@ -7,8 +7,7 @@ import { Composer } from './Composer.tsx';
 import { DayLog } from './DayLog.tsx';
 import { HalilPane } from './HalilPane.tsx';
 import { Intro } from './Intro.tsx';
-import { Premise } from './Premise.tsx';
-import { explainTerms } from './terms.tsx';
+import { explainTerms, MealTerms } from './terms.tsx';
 
 function render(node: React.ReactNode) {
   const el = document.createElement('div');
@@ -67,10 +66,11 @@ it('explains action labels at the point of choice', () => {
   );
 });
 
-it('keeps the meal meanings available on request before and during play', () => {
-  const premise = render(createElement(Premise, { ready: true, onBegin: () => {} }));
+it('provides the glossary for information content without a second help trigger in Halil', () => {
+  const glossaryContent = render(createElement(MealTerms));
   const halil = render(createElement(HalilPane, { halil: sampleFrame.halil }));
-  for (const el of [premise, halil]) {
+  expect(halil.querySelector('.game-help')).toBeNull();
+  for (const el of [glossaryContent]) {
     const glossary = [...el.querySelectorAll('[popover]')].find(
       (details) => details.querySelector('strong')?.textContent === 'Meal terms',
     );

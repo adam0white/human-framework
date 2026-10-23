@@ -17,7 +17,7 @@ export const trustChangeWords = (from: number, to: number): string =>
 export const VoicesPane = memo(function VoicesPane({ voices }: { voices: VoiceView[] }) {
   return (
     <section className="v-pane v-voices" aria-label="Voices">
-      <h2 className="v-pane-title">Voices he hears</h2>
+      <h2 className="v-pane-title">Who else he hears</h2>
       <ul>
         {voices.map((v) => (
           <li

@@ -253,7 +253,6 @@ export const DayLog = memo(function DayLog({
       </div>
       <div className="v-log-controls">
         <button
-          hidden={!held && stuck}
           type="button"
           className="v-log-jump"
           onClick={() => {

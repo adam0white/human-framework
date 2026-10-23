@@ -45,6 +45,9 @@ function mount(initialPaused = true) {
   ];
   const props = {
     frame,
+    speakRequest: 0,
+    onSpeakAvailability: vi.fn(),
+    onSpeakingChange: vi.fn(),
     telegraph: null as {
       draft: Draft;
       telegraph: { tone: 'yes'; text: string; says: string; reason: string };
@@ -87,7 +90,7 @@ it('leads with a named exchange and keeps routine and full composer closed', () 
   const { el } = mount();
   expect(el.querySelector('.v-scene-stage')?.textContent).toContain('Hacer');
   expect(el.querySelectorAll('.v-scene-stage .v-exchange-line').length).toBeGreaterThanOrEqual(4);
-  expect(el.querySelector('details')?.open).toBe(false);
+  expect(el.querySelector('.v-routine')).toBeNull();
   expect(el.querySelector('.v-composer')).toBeNull();
   expect(el.querySelector('.v-scene-more')?.textContent).toBe('Say something else…');
 });
@@ -148,7 +151,7 @@ it('preserves the current reply and keeps the original player words in the timel
     },
   );
   update();
-  expect(el.querySelector('.v-routine')?.textContent).toContain('You: mention · call Selin');
+  expect(props.frame.log.at(-2)?.text).toContain('You: mention · call Selin');
   expect(el.querySelector('.v-scene-answer')?.textContent).toContain('Not now. After I rest at home.');
 });
 
@@ -157,12 +160,13 @@ it('keeps running scenes compact and opens inline words without pausing', () => 
   props.frame.paused = false;
   update();
   expect(el.querySelector('.v-scene-choice')).toBeNull();
-  click(el, '.v-scene-speak');
+  props.speakRequest += 1;
+  update();
   expect(props.onPause).not.toHaveBeenCalled();
   expect(el.querySelector('.v-scene-choice')).not.toBeNull();
   click(el, '.v-scene-silence');
   expect(el.querySelector('.v-scene-choice')).toBeNull();
-  expect(el.querySelector('.v-scene-speak')).not.toBeNull();
+  expect(props.onSpeakAvailability).toHaveBeenLastCalledWith(true, expect.any(String));
 });
 it('leaves routine decisions compact even while paused, with silence costing no input', () => {
   const { el, props, update } = mount();
@@ -171,7 +175,7 @@ it('leaves routine decisions compact even while paused, with silence costing no 
   props.frame.prefill = undefined;
   update();
   expect(el.querySelector('.v-scene-choice')).toBeNull();
-  expect(el.querySelector('.v-scene-speak')).not.toBeNull();
+  expect(props.onSpeakAvailability).toHaveBeenLastCalledWith(true, expect.any(String));
   expect(props.onSayNothing).not.toHaveBeenCalled();
 });
 it('moves unrelated earlier answers into the timeline without a second panel beside the scene', () => {
@@ -189,9 +193,9 @@ it('moves unrelated earlier answers into the timeline without a second panel bes
     { id: 'a', day: 1, minute: 590, clock: '09:50', kind: 'answer', who: 'halil', text: 'Fine.' },
   );
   update();
-  expect(el.querySelector<HTMLDetailsElement>('.v-held-words')?.open).toBe(false);
+  expect(el.querySelector('.v-held-words details')).toBeNull();
   expect(el.querySelector('.v-earlier-reply')).toBeNull();
-  expect(el.querySelector('.v-routine')?.textContent).toContain('Fine.');
+  expect(props.frame.log.some((line) => line.text === 'Fine.')).toBe(true);
   expect(el.querySelector('.v-scene-reading > .v-scene-answer')).toBeNull();
 });
 
@@ -215,7 +219,7 @@ it('keeps a known likely encounter beside sleep, including tomorrow after evenin
   props.frame.halil.asleep = true;
   props.frame.composer = { open: false };
   update();
-  expect(el.querySelector('.v-between-scenes')?.textContent).toContain('Halil is asleep.');
+  expect(el.querySelector('.v-between-scenes')?.textContent).toContain('Now: asleep.');
   expect(el.querySelector('.v-next-encounter')?.textContent).toBe('Selin usually calls this evening.');
   props.frame.minute = 22 * 60;
   update();
@@ -332,7 +336,7 @@ it('speaks an accepted stay and a refusal inside the exchange, retaining raw rec
     'I am glad I opened the door',
   );
   expect(el.querySelector('.v-scene-answer')).toBeNull();
-  expect(el.querySelector('.v-routine')?.textContent).toContain('Alright, I’ll do it.');
+  expect(props.frame.log.at(-1)?.text).toContain('Alright, I’ll do it.');
   click(el, '.v-conversation-listen');
   expect(el.querySelectorAll('.v-scene-stage .v-exchange-line')).toHaveLength(4);
   expect(el.querySelector('.v-conversation-listen')).toBeNull();
@@ -439,10 +443,12 @@ it('keeps a personal reply through later activities and statuses until the playe
     props.frame.halil.doing = { label: 'rest at home', intention: 'rest', until: '12:00' };
     update();
     expect(el.querySelector('.v-scene-reading')?.textContent).toContain('I miss sitting across from her.');
-    expect(el.querySelector('.v-scene-reading')?.textContent).not.toContain('Halil is rest at home.');
+    expect(el.querySelector('.v-scene-reading')?.textContent).not.toContain(
+      'Now: rest at home, until 12:00.',
+    );
     click(el, '.v-personal-leave');
     expect(el.querySelector('.v-spoken-lines')).toBeNull();
-    expect(el.querySelector('.v-between-scenes')?.textContent).toContain('Halil is rest at home.');
+    expect(el.querySelector('.v-between-scenes')?.textContent).toContain('Now: rest at home, until 12:00.');
   } finally {
     vi.useRealTimers();
   }
@@ -450,7 +456,8 @@ it('keeps a personal reply through later activities and statuses until the playe
 
 it('dismisses a personal reply immediately during its slowed reading period', () => {
   const { el, props, update } = mount(false);
-  click(el, '.v-scene-speak');
+  props.speakRequest += 1;
+  update();
   click(el, '.v-scene-more');
   click(el, '.v-scene-word');
   props.frame.sceneWords = [
@@ -504,12 +511,8 @@ it('lets time pass during automatic slowdown even when the call is busy and all 
     },
   ];
   update();
-  const wait = [...el.querySelectorAll<HTMLButtonElement>('button')].find(
-    (b) => b.textContent === 'Let time pass',
-  );
-  expect(wait).toBeDefined();
-  flushSync(() => wait?.click());
-  expect(props.onSayNothing).toHaveBeenCalledOnce();
+  expect(props.onSpeakAvailability).toHaveBeenLastCalledWith(false, expect.any(String));
+  expect(el.querySelector('.v-speaking-sheet')).toBeNull();
 });
 
 function pointer(el: Element, type: string, id = 1) {
@@ -546,7 +549,7 @@ it('keeps suggestion order and scene height through a pointer gesture and sends 
   pointer(target, 'pointerup');
   flushSync(() => target.dispatchEvent(new MouseEvent('click', { bubbles: true })));
   expect(props.onSuggest).not.toHaveBeenCalled();
-  expect(el.querySelector('[role=status]')?.textContent).toContain(`Unsaid: “${words}”`);
+  expect(el.querySelector('.v-spoken-lines[role=status]')?.textContent).toContain(`Unsaid: “${words}”`);
 });
 
 it('binds care words and occasion to the rendered line instead of the current kind slot', () => {
@@ -624,4 +627,18 @@ it('keeps a keyboard-activated line intact through keyup and sends its original 
     { optionId: 'talk:hacer', strength: 'mention', insist: false },
     'Hacer is here. Stay and talk.',
   );
+});
+
+it('closes the speaking sheet without resolving its stop and opens it from the shell again', () => {
+  const { el, props, update } = mount();
+  expect(props.onSpeakingChange).toHaveBeenLastCalledWith(true);
+  click(el, '[aria-label="Close speaking sheet"]');
+  update();
+  expect(el.querySelector('.v-speaking-sheet')).toBeNull();
+  expect(props.onSayNothing).not.toHaveBeenCalled();
+  expect(props.onSpeakingChange).toHaveBeenLastCalledWith(false);
+  props.speakRequest += 1;
+  update();
+  expect(el.querySelector('.v-speaking-sheet')).not.toBeNull();
+  expect(el.querySelector('.v-speaking-actions > .v-scene-silence')).not.toBeNull();
 });

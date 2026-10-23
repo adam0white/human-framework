@@ -50,7 +50,7 @@ afterEach(() => {
 
 it('keeps reply and send controls outside the choices scroller when the sheet opens', () => {
   const { el } = mount();
-  click(el, '.v-composer-peek');
+  expect(el.querySelector('.v-composer-peek')).toBeNull();
   const body = el.querySelector('.v-composer-body');
   expect(body?.querySelector(':scope > .v-composer-scroll .v-options')).not.toBeNull();
   expect(body?.querySelector(':scope > .v-commit .v-telegraph')).not.toBeNull();
@@ -58,20 +58,20 @@ it('keeps reply and send controls outside the choices scroller when the sheet op
   expect(body?.querySelector(':scope > .v-commit .v-btn-quiet')?.textContent).toBe('Say nothing Esc');
 });
 
-it('retains control labels and reserved insist space while editing reasons and strength', () => {
+it('retains control labels and shows the insist price only while insisting while editing reasons and strength', () => {
   const { el } = mount();
   const initialPrefill = el.querySelector('.v-prefill')?.textContent;
-  expect(el.querySelector('.v-insist-price')?.getAttribute('aria-hidden')).toBe('true');
+  expect(el.querySelector('.v-insist-price')?.hasAttribute('hidden')).toBe(true);
   click(el, '.v-insist');
-  expect(el.querySelector('.v-insist-price')?.getAttribute('aria-hidden')).toBe('false');
-  click(el, '.v-appeals button');
+  expect(el.querySelector('.v-insist-price')?.hasAttribute('hidden')).toBe(false);
+  click(el, '.v-appeals button:nth-of-type(2)');
   expect(el.querySelector('.v-btn-primary')?.textContent).toBe('Say it Enter');
   expect(el.querySelector('.v-prefill')?.textContent).toBe(initialPrefill);
 });
 
 it('requests the chosen action and reason, then replaces the pending reply with their prediction', () => {
   const { el, props, update, onPredict } = mount();
-  click(el, '.v-appeals button');
+  click(el, '.v-appeals button:nth-of-type(2)');
   expect(el.querySelector('.v-telegraph')?.textContent).toBe('Updating his likely reply…');
   expect(el.textContent).not.toContain('Pick something');
   vi.advanceTimersByTime(100);
@@ -96,7 +96,7 @@ it('keeps the chosen action, strength and optional reason beside the fixed reply
   expect(summary()?.querySelector('.v-draft-how')?.textContent).toBe('Mention');
   click(el, '.v-how .v-seg button:nth-child(2)');
   click(el, '.v-insist');
-  click(el, '.v-appeals button');
+  click(el, '.v-appeals button:nth-of-type(2)');
   expect(summary()?.querySelector('.v-draft-action')?.textContent).toBe('rest at home');
   expect(summary()?.querySelector('.v-draft-how')?.textContent).toBe('Urge · Insist · it’s your duty');
   expect(el.querySelector('.v-preview .v-telegraph')).not.toBeNull();
@@ -108,13 +108,13 @@ it('keeps the selected action context and optional reason control beside the rep
   click(el, '.v-option');
   const commit = el.querySelector('.v-commit');
   expect(commit?.querySelector('.v-choice-context')?.textContent).toBe('He needs rest.');
-  expect(commit?.querySelector('select[aria-label="Reason (optional)"]')).not.toBeNull();
-  const reason = commit?.querySelector<HTMLSelectElement>('select');
-  if (!reason) throw new Error('Missing reason selector');
-  flushSync(() => {
-    reason.value = 'safety';
-    reason.dispatchEvent(new Event('change', { bubbles: true }));
-  });
+  expect(commit?.querySelector('select')).toBeNull();
+  expect(commit?.querySelector('.v-appeals button')?.textContent).toBe('No reason');
+  const reason = [...el.querySelectorAll<HTMLButtonElement>('.v-appeals button')].find((button) =>
+    button.textContent?.includes('your health'),
+  );
+  if (!reason) throw new Error('Missing reason chip');
+  flushSync(() => reason.click());
   expect(commit?.querySelector('.v-draft-how')?.textContent).toContain('your health');
 });
 
@@ -127,6 +127,7 @@ it('does not attach the prefilled explanation to another selected action', () =>
   click(el, '.v-option:nth-child(2)');
   expect(el.querySelector('.v-choice-context')?.textContent).not.toContain('He needs rest.');
   expect(el.querySelector('.v-draft-action')?.textContent).toBe('walk outside');
+  expect(el.querySelector('.v-prefill')?.hasAttribute('hidden')).toBe(true);
 });
 
 it('leaves Enter on a focused log control to that control instead of sending a draft', () => {
@@ -168,10 +169,10 @@ it('shows the current obstacle and its reason together in Halil’s words as a l
   expect(el.querySelector('.v-telegraph')?.textContent).not.toContain('emotion:');
 });
 
-it('names his leaning and its reason in both the phone summary and the options', () => {
+it('names his leaning and its reason above the options', () => {
   const { el, props, update } = mount();
   update({ ...props, leaning: { optionId: 'rest', why: 'the doctor asked him to rest.' } });
-  for (const selector of ['.v-peek-lean', '.v-leaning']) {
+  for (const selector of ['.v-leaning']) {
     expect(el.querySelector(selector)?.textContent).toBe(
       'He’s leaning toward rest at home. His reason: the doctor asked him to rest.',
     );

@@ -1,0 +1,343 @@
+/* biome-ignore-all lint/style/noDescendingSpecificity: These independent component scopes do not overlap. */
+/* Scene and decision controls: only their reading zones scroll. */
+.v-scene-day .v-scene-reading {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.v-scene-day .v-scene-stage h1,
+.v-scene-day .v-personal-reply h1 {
+  font-size: 22px;
+}
+.v-scene-day .v-held-words {
+  flex: 0 0 auto;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 4px 12px;
+  border-bottom: 1px solid var(--edge);
+  background: var(--paper-2);
+  font-size: 0.85rem;
+}
+.v-scene-day .v-held-words button {
+  flex: 0 0 auto;
+  min-height: 44px;
+}
+.v-scene-day .v-speaking-sheet,
+.v-scene-day .v-plan-sheet {
+  position: fixed;
+  z-index: 24;
+  inset: max(234px, 34dvh) 0 0;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  margin: 0;
+  border: 1px solid var(--edge-strong);
+  border-radius: 14px 14px 0 0;
+  background: var(--paper-3);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow: hidden;
+  box-shadow: 0 -8px 32px #0003;
+}
+.v-scene-day .v-plan-sheet {
+  inset: 84px 0 0;
+  padding: 0 10px env(safe-area-inset-bottom);
+}
+.v-speaking-header {
+  flex: 0 0 auto;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 12px;
+}
+.v-speaking-header h2 {
+  font-size: 1rem;
+  margin: 0;
+}
+.v-speaking-header button {
+  width: 44px;
+  min-height: 44px;
+  background: none;
+  color: inherit;
+  border: 0;
+  font-size: 1.5rem;
+}
+.v-speaking-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0 12px 10px;
+}
+.v-scene-day .v-scene-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.v-scene-day .v-scene-choice {
+  min-height: 56px;
+  width: 100%;
+}
+.v-speaking-body button {
+  min-height: 44px;
+}
+.v-speaking-actions {
+  flex: 0 0 auto;
+  padding: 8px 12px max(8px, env(safe-area-inset-bottom));
+  border-top: 1px solid var(--edge);
+}
+.v-speaking-actions .v-scene-silence {
+  width: 100%;
+  min-height: 52px;
+}
+.v-scene-day .v-scene-editor-close {
+  width: 100%;
+  align-self: stretch;
+  flex: 0 0 auto;
+  min-height: 44px;
+  margin: 0;
+  text-align: left;
+}
+.v-scene-day .v-plan-sheet .v-composer {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+  gap: 0;
+  overflow: hidden;
+}
+.v-scene-day .v-plan-sheet .v-planning-context {
+  flex: 0 0 auto;
+  max-height: 80px;
+  overflow-y: auto;
+  font-size: 0.8rem;
+  padding: 4px 8px;
+}
+.v-scene-day .v-plan-sheet .v-composer-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  padding: 0;
+  gap: 4px;
+}
+.v-scene-day .v-plan-sheet .v-composer-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 4px 0;
+}
+.v-scene-day .v-plan-sheet .v-options {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.v-scene-day .v-plan-sheet .v-option {
+  min-height: 48px;
+  padding: 4px 8px;
+}
+.v-scene-day .v-plan-sheet .v-commit {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 0;
+}
+.v-scene-day .v-plan-sheet .v-preview {
+  padding: 5px 8px;
+  min-height: 0;
+  max-height: 112px;
+  overflow-y: auto;
+}
+.v-scene-day .v-plan-sheet .v-draft-summary,
+.v-scene-day .v-plan-sheet .v-telegraph {
+  margin: 0;
+}
+.v-scene-day .v-plan-sheet .v-choice-context:empty {
+  display: none;
+}
+.v-scene-day .v-plan-sheet .v-telegraph {
+  min-height: 0;
+  font-size: 0.85rem;
+}
+.v-scene-day .v-plan-sheet .v-how {
+  display: flex;
+  gap: 8px;
+}
+.v-scene-day .v-plan-sheet .v-how button {
+  min-height: 44px;
+}
+.v-scene-day .v-plan-sheet .v-insist-price {
+  margin: 0;
+  height: auto;
+}
+.v-scene-day .v-plan-sheet .v-insist-price[hidden],
+.v-composer .v-prefill[hidden] {
+  display: none;
+}
+.v-scene-day .v-plan-sheet .v-appeals,
+.v-whisper-reasons {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+.v-scene-day .v-plan-sheet .v-appeals .v-chip,
+.v-whisper-reasons .v-chip {
+  flex: 0 0 auto;
+  min-height: 44px;
+  white-space: nowrap;
+}
+.v-scene-day .v-plan-sheet .v-appeals-label {
+  display: none;
+}
+.v-scene-day .v-plan-sheet .v-say {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 8px;
+  padding: 4px 0 8px;
+}
+.v-scene-day .v-plan-sheet .v-say .v-btn {
+  flex: 1;
+  min-height: 44px;
+}
+.v-between.v-card,
+.v-report.v-card {
+  height: 100%;
+  max-height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+.v-between .v-page-body,
+.v-report .v-page-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 12px 16px;
+}
+.v-between > h2 {
+  flex: 0 0 auto;
+  margin: 12px 16px;
+}
+.v-between .v-page-actions,
+.v-report .v-page-actions {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 10px 16px max(12px, env(safe-area-inset-bottom));
+  border-top: 1px solid var(--edge);
+  background: var(--paper-3);
+}
+.v-between .v-page-actions button,
+.v-report .v-page-actions button {
+  min-height: 52px;
+}
+.v-between .v-page-actions .v-btn {
+  width: 100%;
+}
+.v-between .v-next-label {
+  margin: 0 0 8px;
+}
+.v-between .v-between-next {
+  padding: 0;
+  border: 0;
+  margin: 0;
+}
+.v-between .v-between-grid {
+  display: block;
+}
+.v-between .v-whisper-how {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+}
+.v-between .v-whisper-picked {
+  min-width: 0;
+}
+.v-report .v-report-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.v-report-action-row {
+  display: flex;
+  gap: 8px;
+}
+.v-report-action-row > button {
+  flex: 1;
+  padding-inline: 6px;
+}
+.v-report .v-report-actions > .v-btn-primary {
+  width: 100%;
+}
+.v-halil .v-feelings,
+.v-halil .v-feeling {
+  text-transform: none;
+  letter-spacing: normal;
+}
+.v-day .v-log-controls {
+  flex: 0 0 auto;
+  background: var(--paper-3);
+}
+.v-day .v-log-jump {
+  min-height: 44px;
+}
+@media (min-width: 768px) {
+  .v-scene-day .v-speaking-sheet,
+  .v-scene-day .v-plan-sheet {
+    position: absolute;
+    inset: 0 0 0 auto;
+    width: 440px;
+    border-radius: 0;
+  }
+  .v-between.v-card,
+  .v-report.v-card {
+    width: 100%;
+    max-width: none;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 440px;
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+  .v-between > h2 {
+    grid-column: 1;
+  }
+  .v-between .v-page-body {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .v-report .v-page-body {
+    grid-column: 1;
+    grid-row: 1 / 3;
+  }
+  .v-between .v-page-actions,
+  .v-report .v-page-actions {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    align-self: end;
+    border-top: 0;
+  }
+}
+
+.v-between summary,
+.v-report summary,
+.v-scene-day summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}

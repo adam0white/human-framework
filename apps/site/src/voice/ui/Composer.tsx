@@ -4,7 +4,7 @@
  * Keyboard: 1–6 pick an option, M / U strength, I insist, D H S A T reasons, Enter says it, Esc says nothing.
  */
 
-import { memo, type ReactNode, useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import type { Appeal, Draft, Frame, Prefill, Strength, Telegraph } from '../protocol.ts';
 import { storyDates } from './dates.ts';
 import { Icon, STRENGTH_ICON, TONE_ICON, TONE_WORD } from './Icon.tsx';
@@ -97,7 +97,6 @@ export const Composer = memo(function Composer({
   const open = composer.open && !muted;
   const [draft, setDraft] = useState<Draft | null>(null);
   const [touched, setTouched] = useState(false);
-  const [expanded, setExpanded] = useState(false);
   const draftRef = useRef(draft);
   draftRef.current = draft;
   const touchedRef = useRef(touched);
@@ -155,12 +154,10 @@ export const Composer = memo(function Composer({
     onSuggest(d);
     setDraft(null);
     setTouched(true);
-    setExpanded(false);
   };
   const sayNothing = () => {
     setDraft(null);
     setTouched(true);
-    setExpanded(false);
     onSayNothing();
   };
 
@@ -281,152 +278,128 @@ export const Composer = memo(function Composer({
   );
 
   return (
-    <section className={`v-composer is-open ${expanded ? 'is-expanded' : ''}`} aria-label="Say something">
-      <button
-        type="button"
-        className="v-composer-peek"
-        onClick={() => setExpanded((x) => !x)}
-        aria-expanded={expanded}
-      >
-        <span className="v-peek-lean">{leaningWords}</span>
-        <span className="v-peek-cta">{expanded ? 'Close' : 'Say something'}</span>
-      </button>
-
+    <section className="v-composer is-open is-expanded" aria-label="Say something">
       {planningContext && <PlanningContext context={planningContext} optionId={selected?.id} />}
       <div className="v-composer-body">
-        <ComposerWorkspace planning={!!planningContext}>
-          <div className="v-composer-scroll">
-            <p className="v-leaning">{leaningWords}</p>
+        <div className="v-composer-scroll">
+          <p className="v-leaning">{leaningWords}</p>
 
-            <fieldset className="v-options" aria-label="What to suggest">
-              {options.slice(0, 6).map((o, i) => (
-                <button
-                  key={o.id}
-                  type="button"
-                  aria-pressed={draft?.optionId === o.id}
-                  className={`v-option ${o.leaning ? 'is-leaning' : ''}`}
-                  onClick={() => pick(o.id)}
-                >
-                  <kbd>{i + 1}</kbd>
-                  <span className="v-option-label">{explainTerms(o.label)}</span>
-                  {o.leaning && <span className="v-option-lean">his leaning</span>}
-                </button>
-              ))}
-            </fieldset>
-
-            <p
-              hidden={selected?.id === prefill?.optionId}
-              className={`v-prefill ${prefill ? '' : 'is-none'}`}
-            >
-              {prefill ? (
-                <>
-                  <span className="v-prefill-tag">
-                    Prefilled{' '}
-                    <em>
-                      {explainTerms(options.find((o) => o.id === prefill.optionId)?.label ?? 'something')}
-                    </em>{' '}
-                    because
-                  </span>{' '}
-                  {explainTerms(storyDates(prefill.why))}
-                </>
-              ) : (
-                'Nothing here is prefilled. Pick one, or say nothing.'
-              )}
-            </p>
-          </div>
-          <div className="v-commit">
-            <div className="v-preview">
-              <p className="v-draft-summary">
-                <strong className="v-draft-action">
-                  {explainTerms(selected?.label ?? 'No action selected')}
-                </strong>
-                <span className="v-draft-how">
-                  {draft ? STRENGTHS.find((s) => s.id === draft.strength)?.label : 'Choose an action'}
-                  {draft?.insist ? ' · Insist' : ''}
-                  {draft?.appeal ? ` · ${appealLabel(draft.appeal)}` : ''}
-                </span>
-              </p>
-              <p className="v-choice-context">
-                {selected?.id === prefill?.optionId && prefill
-                  ? explainTerms(storyDates(prefill.why))
-                  : selected?.id === leaningOpt?.id
-                    ? explainTerms(leaning?.why ?? '')
-                    : ''}
-              </p>
-              <TelegraphLine
-                telegraph={selected ? shownTelegraph : null}
-                pending={!!selected && !shownTelegraph}
-              />
-            </div>
-            <div className="v-how">
-              <fieldset className="v-seg" aria-label="How strongly">
-                {STRENGTHS.map((s) => (
-                  <button
-                    key={s.id}
-                    type="button"
-                    aria-pressed={draft?.strength === s.id}
-                    onClick={() => setStrength(s.id)}
-                    title={s.hint}
-                  >
-                    <Icon name={STRENGTH_ICON[s.id]} />
-                    {s.label} <kbd>{s.key}</kbd>
-                  </button>
-                ))}
-              </fieldset>
+          <fieldset className="v-options" aria-label="What to suggest">
+            {options.slice(0, 6).map((o, i) => (
               <button
+                key={o.id}
                 type="button"
-                className={`v-insist ${draft?.insist ? 'is-on' : ''}`}
-                aria-pressed={draft?.insist ?? false}
-                onClick={toggleInsist}
+                aria-pressed={draft?.optionId === o.id}
+                className={`v-option ${o.leaning ? 'is-leaning' : ''}`}
+                onClick={() => pick(o.id)}
               >
-                <Icon name={STRENGTH_ICON.insist} />
-                Insist <kbd>I</kbd>
+                <kbd>{i + 1}</kbd>
+                <span className="v-option-label">{explainTerms(o.label)}</span>
+                {o.leaning && <span className="v-option-lean">his leaning</span>}
               </button>
-            </div>
-            <p className="v-insist-price" aria-hidden={!draft?.insist}>
-              {INSIST_PRICE}
-            </p>
+            ))}
+          </fieldset>
 
-            <fieldset className="v-appeals" aria-label="Reason (optional)">
-              <span className="v-appeals-label">Reason</span>
-              {APPEALS.map((a) => (
+          <p
+            hidden={!!prefill && selected?.id !== prefill.optionId}
+            className={`v-prefill ${prefill ? '' : 'is-none'}`}
+          >
+            {prefill ? (
+              <>
+                <span className="v-prefill-tag">
+                  Prefilled{' '}
+                  <em>
+                    {explainTerms(options.find((o) => o.id === prefill.optionId)?.label ?? 'something')}
+                  </em>{' '}
+                  because
+                </span>{' '}
+                {explainTerms(storyDates(prefill.why))}
+              </>
+            ) : (
+              'Nothing here is prefilled. Pick one, or say nothing.'
+            )}
+          </p>
+        </div>
+        <div className="v-commit">
+          <div className="v-preview">
+            <p className="v-draft-summary">
+              <strong className="v-draft-action">
+                {explainTerms(selected?.label ?? 'No action selected')}
+              </strong>
+              <span className="v-draft-how">
+                {draft ? STRENGTHS.find((s) => s.id === draft.strength)?.label : 'Choose an action'}
+                {draft?.insist ? ' · Insist' : ''}
+                {draft?.appeal ? ` · ${appealLabel(draft.appeal)}` : ''}
+              </span>
+            </p>
+            <p className="v-choice-context">
+              {selected?.id === prefill?.optionId && prefill
+                ? explainTerms(storyDates(prefill.why))
+                : selected?.id === leaningOpt?.id
+                  ? explainTerms(leaning?.why ?? '')
+                  : ''}
+            </p>
+            <TelegraphLine
+              telegraph={selected ? shownTelegraph : null}
+              pending={!!selected && !shownTelegraph}
+            />
+          </div>
+          <div className="v-how">
+            <fieldset className="v-seg" aria-label="How strongly">
+              {STRENGTHS.map((s) => (
                 <button
-                  key={a.id}
+                  key={s.id}
                   type="button"
-                  aria-pressed={draft?.appeal === a.id}
-                  className="v-chip"
-                  onClick={() => toggleAppeal(a.id)}
+                  aria-pressed={draft?.strength === s.id}
+                  onClick={() => setStrength(s.id)}
+                  title={s.hint}
                 >
-                  {a.label} <kbd>{a.key}</kbd>
+                  <Icon name={STRENGTH_ICON[s.id]} />
+                  {s.label} <kbd>{s.key}</kbd>
                 </button>
               ))}
             </fieldset>
-            <label className="v-phone-reason">
-              <span>Reason</span>
-              <select
-                aria-label="Reason (optional)"
-                value={draft?.appeal ?? ''}
-                onChange={(e) => edit({ appeal: (e.target.value || undefined) as Appeal | undefined })}
-              >
-                <option value="">No reason</option>
-                {APPEALS.map((a) => (
-                  <option key={a.id} value={a.id}>
-                    {a.label}
-                  </option>
-                ))}
-              </select>
-            </label>
-            {!planningContext && sendRow}
+            <button
+              type="button"
+              className={`v-insist ${draft?.insist ? 'is-on' : ''}`}
+              aria-pressed={draft?.insist ?? false}
+              onClick={toggleInsist}
+            >
+              <Icon name={STRENGTH_ICON.insist} />
+              Insist <kbd>I</kbd>
+            </button>
           </div>
-        </ComposerWorkspace>
-        {planningContext && sendRow}
+          <p className="v-insist-price" hidden={!draft?.insist}>
+            {INSIST_PRICE}
+          </p>
+
+          <fieldset className="v-appeals" aria-label="Reason (optional)">
+            <span className="v-appeals-label">Reason</span>
+            <button
+              type="button"
+              className="v-chip"
+              aria-pressed={!draft?.appeal}
+              onClick={() => edit({ appeal: undefined })}
+            >
+              No reason
+            </button>
+            {APPEALS.map((a) => (
+              <button
+                key={a.id}
+                type="button"
+                aria-pressed={draft?.appeal === a.id}
+                className="v-chip"
+                onClick={() => toggleAppeal(a.id)}
+              >
+                {a.label} <kbd>{a.key}</kbd>
+              </button>
+            ))}
+          </fieldset>
+          {sendRow}
+        </div>
       </div>
     </section>
   );
 });
 
 const capital = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
-
-function ComposerWorkspace({ planning, children }: { planning: boolean; children: ReactNode }) {
-  return planning ? <div className="v-planning-scroll">{children}</div> : children;
-}

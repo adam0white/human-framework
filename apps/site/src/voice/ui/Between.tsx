@@ -37,9 +37,6 @@ export function Between({
   onAdvance: (standing: StandingWhisper[]) => void;
 }) {
   const [picked, setPicked] = useState<StandingWhisper[]>([]);
-  const [narrow] = useState(
-    () => typeof window !== 'undefined' && (window.matchMedia?.('(max-width: 767px)').matches ?? false),
-  );
   const head = useRef<HTMLHeadingElement>(null);
   useEffect(() => {
     head.current?.focus();
@@ -83,7 +80,7 @@ export function Between({
     : 'Go to Eid';
 
   // At phone width a skip card opens on the decision; the day's recap folds into one line (seventh pass review).
-  const narrowSkip = skip && narrow;
+  const narrowSkip = skip;
   const recap = (
     <div className="v-between-grid">
       <div>
@@ -125,7 +122,6 @@ export function Between({
   );
   const next = (
     <div className="v-between-next">
-      <p className="v-next-label">{storyDates(nextLabel)}</p>
       {skip && (
         <div className="v-whispers">
           <p className="v-whispers-head">
@@ -176,20 +172,27 @@ export function Between({
                           </button>
                         ))}
                       </fieldset>
-                      <select
-                        aria-label={`Reason: ${c.label}`}
-                        value={w.appeal ?? ''}
-                        onChange={(e) =>
-                          patch(c.id, { appeal: e.target.value ? (e.target.value as Appeal) : null })
-                        }
-                      >
-                        <option value="">no reason</option>
+                      <fieldset className="v-whisper-reasons" aria-label={`Reason: ${c.label}`}>
+                        <button
+                          type="button"
+                          className="v-chip"
+                          aria-pressed={!w.appeal}
+                          onClick={() => patch(c.id, { appeal: null })}
+                        >
+                          No reason
+                        </button>
                         {APPEALS.map((a) => (
-                          <option key={a.id} value={a.id}>
+                          <button
+                            key={a.id}
+                            type="button"
+                            className="v-chip"
+                            aria-pressed={w.appeal === a.id}
+                            onClick={() => patch(c.id, { appeal: w.appeal === a.id ? null : a.id })}
+                          >
                             {a.label}
-                          </option>
+                          </button>
                         ))}
-                      </select>
+                      </fieldset>
                     </div>
                   </li>
                 );
@@ -199,48 +202,48 @@ export function Between({
           {picked.length > 0 && cost && <p className="v-insist-price">{cost}</p>}
         </div>
       )}
-      <button
-        type="button"
-        className="v-btn v-btn-primary v-btn-big"
-        onClick={() => onAdvance(skip ? picked : [])}
-      >
-        {button}
-      </button>
     </div>
   );
 
   return (
-    <div
-      className="v-overlay v-overlay-night"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="between-title"
-    >
+    <section className="v-overlay v-overlay-night" aria-labelledby="between-title">
       <div className="v-card v-between">
         <h2 id="between-title" ref={head} tabIndex={-1}>
           {storyDates(view.closed)}
         </h2>
-        {narrowSkip ? (
-          <>
-            {next}
-            <details className="v-between-recap">
-              <summary>
-                <span className="v-recap-title">{storyDates(view.closed.replace(/ is over\.$/, ''))}</span>
-                <span className="v-recap-trust">
-                  <Icon name="ear" label="His trust in you" />
-                  {change}
-                </span>
-              </summary>
+        <div className="v-page-body">
+          {narrowSkip ? (
+            <>
+              {next}
+              <details className="v-between-recap">
+                <summary>
+                  <span className="v-recap-title">{storyDates(view.closed.replace(/ is over\.$/, ''))}</span>
+                  <span className="v-recap-trust">
+                    <Icon name="ear" label="His trust in you" />
+                    {change}
+                  </span>
+                </summary>
+                {recap}
+              </details>
+            </>
+          ) : (
+            <>
               {recap}
-            </details>
-          </>
-        ) : (
-          <>
-            {recap}
-            {next}
-          </>
-        )}
+              {next}
+            </>
+          )}
+        </div>
+        <footer className="v-page-actions">
+          <p className="v-next-label">{storyDates(nextLabel)}</p>
+          <button
+            type="button"
+            className="v-btn v-btn-primary v-btn-big"
+            onClick={() => onAdvance(skip ? picked : [])}
+          >
+            {button}
+          </button>
+        </footer>
       </div>
-    </div>
+    </section>
   );
 }
