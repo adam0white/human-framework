@@ -105,7 +105,11 @@ export function MenuPanel({
         aria-modal="true"
         aria-label="Game menu"
         onKeyDown={(event) => {
-          if (event.key === 'Escape') onClose();
+          if (event.key === 'Escape') {
+            event.preventDefault();
+            event.stopPropagation();
+            onClose();
+          }
         }}
       >
         <header>

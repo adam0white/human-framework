@@ -181,14 +181,14 @@ it('consumes Escape when closing a shell overlay before underlying game shortcut
   try {
     await act(() => root.render(createElement(App)));
     await act(() => el.querySelector<HTMLButtonElement>('[aria-label="Game menu"]')?.click());
-    window.addEventListener('keydown', underlying);
+    document.addEventListener('keydown', underlying);
     const event = new KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true });
-    await act(() => window.dispatchEvent(event));
+    await act(() => el.querySelector('.v-menu-panel button')?.dispatchEvent(event));
     expect(el.querySelector('.v-menu-panel')).toBeNull();
     expect(underlying).not.toHaveBeenCalled();
     expect(event.defaultPrevented).toBe(true);
   } finally {
-    window.removeEventListener('keydown', underlying);
+    document.removeEventListener('keydown', underlying);
     await act(() => root.unmount());
     el.remove();
     Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: false });
