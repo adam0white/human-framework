@@ -180,6 +180,8 @@ export interface HostEvents {
 }
 
 export interface HostState {
+  /** Rules 8: framework deadline for a requested stay at home. Other offers remain available. */
+  shelterUntil?: Record<string, number>;
   loc: Record<string, Tile>;
   trip: Record<string, Trip | null>;
   down: Record<string, Casualty | null>;
@@ -392,7 +394,7 @@ export class ColonyHostWorld implements World {
     }
   }
 
-  affordancesFor(p: Person): Affordance[] {
+  affordancesFor(p: Person, requestedShelterUntil?: number): Affordance[] {
     const id = villagerId(p.id);
     const v = specOf(id);
     const t = p.now;
@@ -543,8 +545,18 @@ export class ColonyHostWorld implements World {
       });
     }
 
+    // A requested stay offers cover until dawn. HF can still choose needs, duties or other work.
+    const shelterUntil = requestedShelterUntil ?? this.s.shelterUntil?.[id];
+    if (shelterUntil !== undefined && t < shelterUntil) {
+      job('stay-home', 'shelter', 'stay under cover until dawn', homePlace, {
+        work: Math.max(1, shelterUntil - t - at(homePlace).travel),
+        effort: 0,
+        advertises: { safety: 0.4, rest: 0.1 },
+        tags: ['indoors', 'rest'],
+      });
+    }
     // Weather shelter.
-    if (risky || (m >= WARNING_AT && m < STORM_END)) {
+    if (shelterUntil === undefined && (risky || (m >= WARNING_AT && m < STORM_END))) {
       const end = m < SQUALL_END && m >= SQUALL_START ? SQUALL_END : STORM_END;
       const inHouse = homePlace === 'site';
       job(

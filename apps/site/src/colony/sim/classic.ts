@@ -6,7 +6,7 @@
  * norms. Pure TS: deterministic given the seed, the order log and the scenario rolls.
  */
 
-import type { VillagerState } from './human-side.ts';
+import { type ColonyRules, CURRENT_RULES, type VillagerState } from './human-side.ts';
 import { findPath, MAP, type PlaceId, placeAt, placeById, spotFor, type Tile } from './map.ts';
 import type { ClassicCommand } from './orders.ts';
 import {
@@ -77,6 +77,8 @@ export interface ClassicTask {
   phase: 'walk' | 'work' | 'recover';
   /** Work minutes left at base speed. */
   remaining: number;
+  /** Rules 8 Home holds through ordinary meal interruptions, ending at dawn. */
+  shelterUntil?: Minute;
   /** Inputs consumed and work begun. */
   started: boolean;
   /** Minute keying the scenario roll: the order's issue minute, else the minute work began. */
@@ -146,12 +148,19 @@ const clampN = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, 
 
 export class ClassicSim {
   readonly seed: number;
+  readonly #rules: ColonyRules;
   readonly world: SideWorld;
   units: ClassicUnit[];
   private events: ClassicEvents = emptyClassicEvents();
 
-  constructor(seed: number, villagers: readonly VillagerSpec[], world: SideWorld) {
+  constructor(
+    seed: number,
+    villagers: readonly VillagerSpec[],
+    world: SideWorld,
+    rules: ColonyRules = CURRENT_RULES,
+  ) {
     this.seed = seed;
+    this.#rules = rules;
     this.world = world;
     this.units = villagers.map((v) => {
       const t = startTile(v);
@@ -401,6 +410,15 @@ export class ClassicSim {
 
   private behave(u: ClassicUnit, m: Minute): void {
     if (u.dead || u.down || u.carriedBy) return;
+    for (const held of [u.task, u.suspended]) {
+      if (held?.shelterUntil === undefined || m < held.shelterUntil) continue;
+      if (held === u.task) this.finishTask(u, held, true);
+      else {
+        u.suspended = null;
+        if (held.orderId)
+          this.events.completed.push({ orderId: held.orderId, personId: u.id, action: held.action });
+      }
+    }
     if (u.asleep) {
       if (isSleepTime(m)) return;
       u.asleep = false;
@@ -535,7 +553,12 @@ export class ClassicSim {
     orderId?: string,
   ): ClassicTask {
     let place = placeId;
-    if (action === 'sleep' || action === 'rest') place = homeOf(u.id, this.world, this.world.minute);
+    if (
+      action === 'sleep' ||
+      action === 'rest' ||
+      (this.#rules >= 8 && action === 'shelter' && placeId.startsWith('home-'))
+    )
+      place = homeOf(u.id, this.world, this.world.minute);
     const target = spotFor(place, u.index);
     return {
       action,
@@ -546,6 +569,9 @@ export class ClassicSim {
       target,
       phase: 'walk',
       remaining: JOBS[action].work,
+      ...(this.#rules >= 8 && action === 'shelter' && placeId.startsWith('home-')
+        ? { shelterUntil: (Math.floor(this.world.minute / 1440) + 1) * 1440 }
+        : {}),
       started: false,
       rollKey,
     };
@@ -620,6 +646,10 @@ export class ClassicSim {
     }
     if (!t.started) {
       if (!this.start(u, t, m)) return;
+    }
+    if (t.shelterUntil !== undefined) {
+      if (isSleepTime(m)) u.asleep = true;
+      return;
     }
     t.remaining -= this.speed(u, t);
     if (t.remaining <= 0) this.complete(u, t, m);

@@ -45,7 +45,7 @@ it('replays a fresh-order run and resumes an open order from its saved age', () 
 });
 
 it('versions the new order rules', () => {
-  expect(SCENARIO_VERSION).toBe('colony-scenario@7');
+  expect(SCENARIO_VERSION).toBe('colony-scenario@8');
 });
 
 it('the fresh pull fades and is gone after an hour, including a resumed conditional order', () => {

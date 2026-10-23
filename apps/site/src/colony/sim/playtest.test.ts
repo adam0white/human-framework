@@ -44,8 +44,10 @@ const FIXTURE_V4 = resolve(import.meta.dirname, '../../../test/fixtures/playtest
 const FIXTURE_V5 = resolve(import.meta.dirname, '../../../test/fixtures/playtest-colony-v5.json');
 /** Historical @6 default fixture. */
 const FIXTURE_V6 = resolve(import.meta.dirname, '../../../test/fixtures/playtest-colony-v6.json');
-/** Current @7 default fixture; the only fixture REGEN writes. */
-const FIXTURE = resolve(import.meta.dirname, '../../../test/fixtures/playtest-colony-v7.json');
+/** Historical @7 fixture, read only. */
+const FIXTURE_V7 = resolve(import.meta.dirname, '../../../test/fixtures/playtest-colony-v7.json');
+/** Current @8 default fixture; the only fixture REGEN writes. */
+const FIXTURE = resolve(import.meta.dirname, '../../../test/fixtures/playtest-colony-v8.json');
 const REGEN = Boolean(process.env.PLAYTEST_REGEN);
 const TICKS = [16, 17, 250, 33, 8, 120, 16, 1000, 0, 49];
 
@@ -236,8 +238,8 @@ describe('Game 1 playtest files', () => {
     60_000,
   );
 
-  test('the historical @6 fixture retains its hash', () => {
-    const { file: f, rules } = parseColonyPlaytest(readFileSync(FIXTURE_V6, 'utf8'));
+  test.each([FIXTURE_V6, FIXTURE_V7])('the historical fixture %s retains its hash', (fixture) => {
+    const { file: f, rules } = parseColonyPlaytest(readFileSync(fixture, 'utf8'));
     const g = replayColony(f.seed, createFrameworkHumanSide, f.log, f.minute, rules);
     expect(hashState(withHistoricPersonEngine(colonyState(g), f.engine))).toBe(f.hash);
   });

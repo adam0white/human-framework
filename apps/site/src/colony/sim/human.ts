@@ -6,6 +6,7 @@
  * Rules 5 retains a stated conditional deferral until the job begins or the person sleeps for the night.
  * HF owns completion wakes for bodily/prayer conditions; the host wakes HF when an unavailable offer returns.
  * Rules 7 adds a small, fading strength boost during the first hour after receipt.
+ * Rules 8 keeps a Home shelter request until next dawn, without removing competing HF choices.
  * This is one standing suggestion, not a planner or a guarantee of obedience.
  */
 import {
@@ -243,6 +244,7 @@ export class FrameworkHumanSide implements HumanSide {
 
   private drop(personId: string): void {
     this.s.orders[personId] = null;
+    if (this.world.s.shelterUntil) delete this.world.s.shelterUntil[personId];
     this.world.s.orderKey[personId] = null;
   }
 
@@ -282,10 +284,30 @@ export class FrameworkHumanSide implements HumanSide {
         since: t,
         lastKind: null,
       };
+      if (this.rules >= 8) {
+        world.s.shelterUntil ??= {};
+        delete world.s.shelterUntil[o.personId];
+        if (o.action === 'shelter' && o.placeId.startsWith('home-'))
+          world.s.shelterUntil[o.personId] = fw((Math.floor(m / 1440) + 1) * 1440);
+      }
       world.s.orderKey[o.personId] = o.rollKey;
       interruptPerson(this.community, p, t, `order:${o.orderId}`);
     }
 
+    if (this.rules >= 8) {
+      for (const [id, until] of Object.entries(world.s.shelterUntil ?? {})) {
+        if (t < until) continue;
+        const open = this.s.orders[id];
+        if (open)
+          ev.completed.push({
+            orderId: open.order.orderId,
+            personId: id as VillagerId,
+            result: 'Home shelter request ended at dawn',
+          });
+        this.drop(id);
+        interruptPerson(this.community, this.person(id), t, 'shelter-ended');
+      }
+    }
     if (this.rules >= 5) {
       for (const [id, open] of Object.entries(this.s.orders)) {
         if (!open?.waitForOffer) continue;
@@ -315,7 +337,13 @@ export class FrameworkHumanSide implements HumanSide {
     if (this.rules >= 5 && isNight(m)) {
       for (const v of this.view()) {
         const open = this.s.orders[v.id];
-        if (!open?.conditional || open.begun || v.state !== 'asleep') continue;
+        if (
+          !open?.conditional ||
+          open.begun ||
+          v.state !== 'asleep' ||
+          world.s.shelterUntil?.[v.id] !== undefined
+        )
+          continue;
         const place = placeById(open.order.placeId).label.split(' ·')[0]?.toLowerCase() ?? 'job';
         const says = `${v.name.replace(/^Hajja /, '')} didn’t get to the ${place} today.`;
         ev.lapsed ??= [];
@@ -348,6 +376,21 @@ export class FrameworkHumanSide implements HumanSide {
       const record = p.trace.find((r) => r.id === e.decisionId);
       if (!record) continue;
       const open = this.s.orders[id];
+      // Sleep is compatible with the requested stay. It cannot reject or finish a Home hold.
+      if (open && this.world.s.shelterUntil?.[id] !== undefined && p.body.asleep) {
+        if (open.lastKind === null) {
+          ev.verdicts.push({
+            orderId: open.order.orderId,
+            personId: id,
+            kind: 'notNow',
+            says: 'Asleep; shelter request waits until waking.',
+            reason: 'asleep',
+            decisionId: record.id,
+          });
+          open.lastKind = 'notNow';
+        }
+        continue;
+      }
       // The player's resolution: the credited one, or among the voices when a villager's advice was also weighed.
       const r =
         record.suggestion?.voiceId === 'player'
@@ -559,7 +602,10 @@ export class FrameworkHumanSide implements HumanSide {
       ev.completed.push({
         orderId: open.order.orderId,
         personId: f.personId,
-        result: `${f.status === 'failed' ? 'Failed: ' : ''}${f.action === 'sleep' ? 'Finished ' : ''}${f.summary}${progress}`,
+        result:
+          this.world.s.shelterUntil?.[f.personId] !== undefined && f.status === 'completed'
+            ? 'Home shelter request ended at dawn'
+            : `${f.status === 'failed' ? 'Failed: ' : ''}${f.action === 'sleep' ? 'Finished ' : ''}${f.summary}${progress}`,
       });
       this.drop(f.personId);
     }
@@ -613,13 +659,16 @@ export class FrameworkHumanSide implements HumanSide {
     for (const [id, o] of Object.entries(this.s.orders)) {
       if (o?.order.orderId !== orderId) continue;
       // The person re-weighs without it at their next review (a lapse does not yank anyone off a job).
+      const shelter = this.world.s.shelterUntil?.[id] !== undefined;
       this.drop(id);
+      if (shelter) interruptPerson(this.community, this.person(id), fw(this.s.minute), 'shelter-cancelled');
     }
   }
 
   working(orderId: string): boolean {
     for (const [id, o] of Object.entries(this.s.orders)) {
       if (o?.order.orderId !== orderId) continue;
+      if (this.rules >= 8 && this.world.s.shelterUntil?.[id] !== undefined) return true;
       if (this.rules >= 5 && o.conditional && !o.begun) return true;
       if (!o.begun) continue;
       const act = this.person(id).activity;
@@ -732,7 +781,11 @@ export class FrameworkHumanSide implements HumanSide {
     const p = this.person(order.personId);
     const base = { personId: order.personId, action: order.action };
     if (!p.body.alive) return { ...base, kind: 'cannot', text: 'Can’t: dead' };
-    const affs = this.world.affordancesFor(p);
+    const home = this.rules >= 8 && order.action === 'shelter' && order.placeId.startsWith('home-');
+    const affs = this.world.affordancesFor(
+      p,
+      home ? fw((Math.floor(this.s.minute / 1440) + 1) * 1440) : undefined,
+    );
     const r = preview(p, affs, this.freshSuggestion(order.suggestion, p.now));
     const no = r.reason === 'unavailable' ? this.world.notOffered(p, order.action) : null;
     const kind = no?.kind ?? verdictKind(r, this.rules);

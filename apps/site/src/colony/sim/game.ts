@@ -304,6 +304,7 @@ export interface SideDeadline {
 }
 
 export interface Frame {
+  rules: ColonyRules;
   minute: Minute;
   clock: string;
   weather: Weather;
@@ -488,7 +489,7 @@ export class ColonyGame {
       this.humanWorld.preparationAt = preparationAt;
       this.log.push({ minute: 0, kind: 'village', village, preparationAt });
     }
-    this.classic = new ClassicSim(seed, VILLAGERS, this.classicWorld);
+    this.classic = new ClassicSim(seed, VILLAGERS, this.classicWorld, rules);
     this.human = factory(rules);
     this.human.init(seed, VILLAGERS, this.humanWorld, MAP);
   }
@@ -530,6 +531,7 @@ export class ColonyGame {
   private inferCtx() {
     return {
       minute: this.minute,
+      rules: this.rules,
       house: this.humanWorld.house,
       cedarFelled: this.humanWorld.cedarFelled,
       storeroom: this.humanWorld.storeroom,
@@ -1002,6 +1004,7 @@ export class ColonyGame {
 
   frame(): Frame {
     return {
+      rules: this.rules,
       minute: this.minute,
       clock: formatClock(this.minute),
       weather: weatherAt(this.minute),

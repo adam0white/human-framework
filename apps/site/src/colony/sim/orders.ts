@@ -59,6 +59,7 @@ export interface Order {
 
 export interface InferContext {
   minute: Minute;
+  rules?: import('./human-side.ts').ColonyRules;
   house: Pick<HouseState, 'stage' | 'shuttered'>;
   cedarFelled: boolean;
   /** Day-3 store-room stages built, when that project is open (colony.md §6). */
@@ -99,7 +100,7 @@ export function inferAction(placeId: PlaceId, ctx: InferContext): ActionId {
     case 'home-maryam':
     case 'home-yusuf':
     case 'home-idris':
-      return isSleepTime(ctx.minute) ? 'sleep' : 'eat';
+      return (ctx.rules ?? 7) >= 8 ? 'shelter' : isSleepTime(ctx.minute) ? 'sleep' : 'eat';
   }
 }
 
