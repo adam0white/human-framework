@@ -75,22 +75,33 @@ export function personaMeasurements(records: LinkedRecord[]) {
     }
   }
   const joined = new Set<string>();
+  const fileJoined = new Set<string>();
   for (const target of rows) {
-    if (target.scope !== 'shared' || target.arm !== 'continuing' || target.stage !== 'admitted') continue;
+    if (
+      !['shared', 'file'].includes(target.scope) ||
+      target.arm !== 'continuing' ||
+      target.stage !== 'admitted' ||
+      target.outcome !== 'accepted'
+    )
+      continue;
     const source = rows.find(
       (r) =>
         r.player === target.player &&
         r.game !== target.game &&
-        r.scope === 'shared' &&
+        ['shared', 'file'].includes(r.scope) &&
+        r.outcome === 'accepted' &&
         r.castId === target.castId &&
         r.branchId === target.branchId &&
         r.stage === 'checkpoint' &&
         r.revision === target.parentRevision,
     );
-    if (source) joined.add([target.player, target.probe, target.castId, target.branchId].join('|'));
+    if (source) {
+      const destination = source.scope === 'file' || target.scope === 'file' ? fileJoined : joined;
+      destination.add([target.player, target.probe, target.castId, target.branchId].join('|'));
+    }
   }
   const milestones = new Set(
     rows.map((r) => [r.player, r.game, r.runId, r.probe, r.castId, r.stage].join('|')),
   ).size;
-  return { rows, joins: joined.size, incomplete, milestones };
+  return { rows, joins: joined.size, fileJoins: fileJoined.size, incomplete, milestones };
 }

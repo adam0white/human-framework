@@ -308,7 +308,7 @@ h2{font-size:1.1rem;margin:1.4rem 0 .2rem}small,.soft{color:#6E665A;font-weight:
 @media (prefers-color-scheme:dark){body{background:#1E1B16;color:#E8DFCC}small,.soft{color:#9A9080}}</style>
 <h1>Lab inbox</h1><p class="soft">Private, on this machine only. ${entries.length} runs in the last ${days} days. Made ${new Date().toISOString().slice(0, 16)} by npm run lab:inbox.</p>
 ${spendStopped ? `<p><strong>${esc(spendStop())}</strong></p>\n` : ''}${rows.join('\n') || '<p>No legacy runs yet.</p>'}
-<h2>One cast</h2><p>${personas.milestones} received run milestones (${personas.rows.length} revision records) · ${personas.joins} linked cross-game branches · ${personas.incomplete} incomplete replay uploads excluded. <a href="one-cast.json">Private continuity measurements</a></p>
+<h2>One cast</h2><p>${personas.milestones} received run milestones (${personas.rows.length} revision records) · ${personas.joins} shared-only linked cross-game branches · ${personas.fileJoins} file-origin linked cross-game branches · ${personas.incomplete} incomplete replay uploads excluded. <a href="one-cast.json">Private continuity measurements</a></p>
 <p class="soft">Counts use complete received exports, deduplicated by player, game, run, probe, cast and stage. File/local imports are separate. Missing, recording-off and privacy-suppressed plays are outside these counts. Recognition and attachment require the player's words.</p>
 <table><thead><tr><th>Game</th><th>Probe</th><th>Arm</th><th>Scope</th><th>Stage</th><th>Outcome</th></tr></thead><tbody>${castRows}</tbody></table>
 <h2>Linked play records</h2><p class="soft">Random player ids link visits. An optional feedback name labels the entire player timeline. Legacy matches use an exact current name or player id; names are unverified and ambiguous matches are omitted. These exports do not grant consent to character analysis.</p>
@@ -317,7 +317,7 @@ ${linkedWarning ? `<p>${esc(linkedWarning)}</p>` : ''}${timelines}${linkedRows.j
 `,
 );
 console.log(
-  `One cast: ${personas.milestones} received milestones, ${personas.joins} linked branches, ${personas.incomplete} incomplete uploads excluded.`,
+  `One cast: ${personas.milestones} received milestones, ${personas.joins} shared-only linked branches, ${personas.fileJoins} file-origin linked branches, ${personas.incomplete} incomplete uploads excluded.`,
 );
 if (linkedWarning) console.warn(linkedWarning);
 console.log(

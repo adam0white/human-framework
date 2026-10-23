@@ -67,3 +67,24 @@ it('joins a later checkpoint from the same run without losing its revision evide
   expect(result.joins).toBe(1);
   expect(result.rows.filter((r: { stage: string }) => r.stage === 'checkpoint')).toHaveLength(2);
 });
+
+it('reports a received file-origin pair separately from shared-only branches', () => {
+  const source = run('pass', id('f'), {
+    ...admission,
+    scope: 'file',
+    revision: admission.parentRevision,
+    stage: 'checkpoint',
+  });
+  const target = run('goodhands', id('2'), admission);
+  const result = personaMeasurements([source, target, target]);
+  expect(result.joins).toBe(0);
+  expect(result.fileJoins).toBe(1);
+  const rejected = personaMeasurements([
+    source,
+    run('goodhands', id('3'), {
+      ...admission,
+      outcome: 'rejected',
+    }),
+  ]);
+  expect(rejected.fileJoins).toBe(0);
+});
