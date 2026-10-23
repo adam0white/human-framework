@@ -19,6 +19,7 @@ import { hostWorker } from '../shared/worker-host.ts';
 import {
   type Frame,
   type MainToWorker,
+  PACE_MINUTES_PER_SECOND,
   type ReportView,
   scenarioOf,
   VOICE_SCENARIO_VERSION,
@@ -196,11 +197,15 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg) => {
   const game = rec.game;
   switch (msg.type) {
     case 'tick': {
+      // Skip waits for each one-minute frame before sending its next tick.
+      const minuteTick =
+        Math.abs(msg.dtMs * (game.fastForward() ? 240 : PACE_MINUTES_PER_SECOND[game.pace]) - 1000) < 0.001;
       sinceFrame += Math.max(0, msg.wallDtMs ?? msg.dtMs);
       const moved = rec.tick(msg.dtMs);
       stepSilent(game);
       // A pause (a beat, the day's end) goes out at once; a running clock at most every FRAME_MS.
-      if (!moved || (!game.paused && game.outbox.length === 0 && sinceFrame < FRAME_MS)) return;
+      if (!moved || (!game.paused && game.outbox.length === 0 && sinceFrame < FRAME_MS && !minuteTick))
+        return;
       break;
     }
     case 'predict':

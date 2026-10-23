@@ -27,14 +27,23 @@ import type {
   WhyView,
 } from '../protocol.ts';
 import { SHIPPED_SEED, VOICE_SCENARIO_VERSION } from '../protocol.ts';
+import { automaticTick, type PaceSetting, skipStop, skipTick } from './automatic-pace.ts';
+import { savedVoice, saveVoice, type VoicePlaytest } from './autosave.ts';
+
+export type { VoicePlaytest } from './autosave.ts';
+
 import { ExportRequest } from './export-request.ts';
 import { predictionContext } from './obstacle.ts';
 import { PausePolicy } from './pause-policy.ts';
-import { pendingSceneOffer, readingTick } from './reading-pace.ts';
+import { pendingSceneOffer } from './reading-pace.ts';
 import { openTransport, type Transport } from './transport.ts';
 
 export interface VoiceActions {
   begin(): void;
+  continueRun(): void;
+  skip(): void;
+  setAutomaticPace(pace: PaceSetting): void;
+  getPlaytest(): Promise<VoicePlaytest>;
   setPaused(paused: boolean): void;
   /** UI clock hold; never changes playback state or the input log. */
   setMenuOpen(open: boolean): void;
@@ -80,10 +89,30 @@ export interface Voice {
   sceneReading: boolean;
   runId: number;
   playtest: PlaytestStatus;
+  savedRun: { label: string } | null;
+  paceSetting: PaceSetting;
+  skipping: boolean;
   actions: VoiceActions;
 }
 
 export function useVoice(seed = SHIPPED_SEED): Voice {
+  const [savedRun, setSavedRun] = useState<{ label: string } | null>(() => {
+    try {
+      return savedVoice(localStorage);
+    } catch {
+      return null;
+    }
+  });
+  const [paceSetting, setPaceSetting] = useState<PaceSetting>('automatic');
+  const paceRef = useRef<PaceSetting>('automatic');
+  const [skipping, setSkipping] = useState(false);
+  const skipRef = useRef(false);
+  const skipAwait = useRef(false);
+  const exportPending = useRef(false);
+  const exportAgain = useRef(false);
+  const exportWaiters = useRef<{ resolve: (file: VoicePlaytest) => void; reject: (error: Error) => void }[]>(
+    [],
+  );
   const transport = useRef<Transport | null>(null);
   const [frame, setFrame] = useState<Frame | null>(null);
   const [runId, setRunId] = useState(0);
@@ -125,7 +154,30 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
   const readingWhy = useRef(false);
   const awaitingSuggestion = useRef(false);
 
-  const send = useCallback((msg: MainToWorker) => transport.current?.post(msg), []);
+  const requestSave = useCallback(() => {
+    if (loadingRun.current || !frameRef.current || frameRef.current.phase === 'premise') return;
+    if (exportPending.current) {
+      exportAgain.current = true;
+      return;
+    }
+    exportPending.current = true;
+    transport.current?.post({ type: 'exportPlaytest' });
+  }, []);
+  const cancelSkip = useCallback(() => {
+    skipRef.current = false;
+    skipAwait.current = false;
+    setSkipping(false);
+  }, []);
+  const send = useCallback(
+    (msg: MainToWorker) => {
+      transport.current?.post(msg);
+      if (
+        !['predict', 'why', 'tick', 'init', 'loadPlaytest', 'exportPlaytest', 'telemetry'].includes(msg.type)
+      )
+        requestSave();
+    },
+    [requestSave],
+  );
 
   useEffect(() => {
     let cancelled = false;
@@ -141,7 +193,11 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
         opened = t;
         transport.current = t;
         setMock(t.kind === 'mock');
-        t.onError(setError);
+        t.onError((message) => {
+          setError(message);
+          exportPending.current = false;
+          for (const waiter of exportWaiters.current.splice(0)) waiter.reject(new Error(message));
+        });
         t.onMessage((msg) => {
           if (msg.gen === pendingLoad.current && msg.gen !== gen.current) {
             if (msg.type === 'replayed') {
@@ -159,6 +215,18 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
           if (msg.gen !== gen.current) return;
           switch (msg.type) {
             case 'playtest': {
+              exportPending.current = false;
+              try {
+                if (frameRef.current?.phase !== 'premise' && saveVoice(localStorage, msg.file))
+                  setSavedRun(savedVoice(localStorage));
+              } catch {
+                /* Storage may be unavailable. */
+              }
+              for (const waiter of exportWaiters.current.splice(0)) waiter.resolve(msg.file);
+              if (exportAgain.current) {
+                exportAgain.current = false;
+                requestSave();
+              }
               const ticket = exportRequest.current.ticket(msg.gen);
               if (ticket === null) return;
               const file = msg.file;
@@ -179,6 +247,8 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
               return;
             }
             case 'playtestError':
+              exportPending.current = false;
+              for (const waiter of exportWaiters.current.splice(0)) waiter.reject(new Error(msg.message));
               if (!exportRequest.current.finish(msg.gen)) return;
               setPlaytest({ error: msg.message });
               return;
@@ -197,6 +267,21 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
               frameRef.current = next as unknown as Frame;
               setFrame(frameRef.current);
               const current = frameRef.current;
+              skipAwait.current = false;
+              if (skipRef.current && prev && skipStop(prev, current)) {
+                cancelSkip();
+                if (!current.paused && ['day', 'free', 'eid'].includes(current.phase)) {
+                  manualHold.current = true;
+                  send({ type: 'pause' });
+                }
+              }
+              if (
+                !prev ||
+                current.minute !== prev.minute ||
+                current.day !== prev.day ||
+                current.phase !== prev.phase
+              )
+                requestSave();
               const pacing = pausePolicy.current.update(
                 current,
                 prev,
@@ -263,6 +348,8 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
               setReport(msg.view);
               return;
             case 'error':
+              exportPending.current = false;
+              for (const waiter of exportWaiters.current.splice(0)) waiter.reject(new Error(msg.message));
               setError(msg.message);
               return;
           }
@@ -290,11 +377,24 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
             () => gen.current,
           );
         stopTicks = startTickLoop((dtMs) => {
-          if (menuOpen.current) return;
+          if (menuOpen.current || loadingRun.current) return;
+          if (skipRef.current && (reading.current || readingWhy.current || sceneReading(frameRef.current)))
+            cancelSkip();
+          if (skipRef.current && skipAwait.current) return;
+          if (skipRef.current) skipAwait.current = true;
           t.post({
             type: 'tick',
             wallDtMs: dtMs,
-            dtMs: readingTick(dtMs, frameRef.current, reading.current, sceneReading(frameRef.current)),
+            dtMs:
+              skipRef.current && frameRef.current
+                ? skipTick(frameRef.current)
+                : automaticTick(
+                    dtMs,
+                    frameRef.current,
+                    paceRef.current,
+                    reading.current,
+                    sceneReading(frameRef.current),
+                  ),
           });
         });
         const url = replayParam();
@@ -312,18 +412,23 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
       .catch((e: unknown) => setError(`The simulation failed to load: ${String(e)}`));
     return () => {
       cancelled = true;
+      for (const waiter of exportWaiters.current.splice(0)) waiter.reject(new Error('The game was closed.'));
       exportRequest.current.reset();
       stopTelemetry();
       stopTicks();
       opened?.close();
       transport.current = null;
     };
-  }, [send, sceneReading]);
+  }, [send, sceneReading, requestSave, cancelSkip]);
 
   const actions = useMemo<VoiceActions>(() => {
     const resetRun = () => {
       setRunId((id) => id + 1);
       exportRequest.current.reset();
+      exportPending.current = false;
+      exportAgain.current = false;
+      for (const waiter of exportWaiters.current.splice(0)) waiter.reject(new Error('The run changed.'));
+      cancelSkip();
       setPlaytest(null);
       frameRef.current = null;
       setFrame(null);
@@ -350,18 +455,68 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
     };
     resetRef.current = resetRun;
     return {
+      continueRun: () => {
+        try {
+          const saved = savedVoice(localStorage);
+          if (saved) {
+            loadingRun.current = true;
+            pendingLoad.current = Math.max(gen.current, pendingLoad.current) + 1;
+            setPlaytest({ busy: 'load' });
+            send({ type: 'loadPlaytest', gen: pendingLoad.current, text: saved.text });
+          }
+        } catch {
+          /* No storage. */
+        }
+      },
+      skip: () => {
+        if (skipRef.current) {
+          cancelSkip();
+          return;
+        }
+        const current = frameRef.current;
+        if (
+          !current ||
+          current.paused ||
+          current.intro ||
+          menuOpen.current ||
+          reading.current ||
+          readingWhy.current ||
+          sceneReading(current) ||
+          !['day', 'eid', 'free'].includes(current.phase)
+        )
+          return;
+        skipRef.current = true;
+        setSkipping(true);
+      },
+      setAutomaticPace: (pace) => {
+        paceRef.current = pace;
+        setPaceSetting(pace);
+        cancelSkip();
+      },
+      getPlaytest: () =>
+        new Promise<VoicePlaytest>((resolve, reject) => {
+          exportWaiters.current.push({ resolve, reject });
+          requestSave();
+        }),
       begin: () => {
         manualHold.current = false;
         send({ type: 'begin' });
       },
       setMenuOpen: (open) => {
         menuOpen.current = open;
+        if (open) {
+          cancelSkip();
+          requestSave();
+        }
       },
       setPaused: (p) => {
         manualHold.current = p;
         send({ type: p ? 'pause' : 'resume' });
       },
-      setPace: (pace) => send({ type: 'setPace', pace }),
+      setPace: (pace) => {
+        paceRef.current = pace;
+        setPaceSetting(pace);
+      },
       setAutoPause: (on) => send({ type: 'setAutoPause', on }),
       predict: (draft) => {
         predictSeq.current += 1;
@@ -387,6 +542,7 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
         send({ type: 'suggest', draft, ...(sceneLine ? { sceneLine } : {}) });
       },
       setReading: (on) => {
+        if (on) cancelSkip();
         reading.current = on;
         setReadingView(on);
         const current = frameRef.current;
@@ -483,7 +639,7 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
         });
       },
     };
-  }, [send]);
+  }, [send, requestSave, cancelSkip, sceneReading]);
 
   return {
     frame,
@@ -500,6 +656,9 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
     sceneReading: sceneReading(frame),
     runId,
     playtest,
+    savedRun,
+    paceSetting,
+    skipping,
     actions,
   };
 }

@@ -42,6 +42,9 @@ it('waits for the player to leave a personal reply before showing the automatic 
     sceneReading: false,
     runId: 0,
     playtest: null,
+    savedRun: null,
+    paceSetting: 'automatic',
+    skipping: false,
     actions: new Proxy({}, { get: () => vi.fn() }) as VoiceActions,
   };
   const el = document.createElement('div');
@@ -108,6 +111,9 @@ it('holds speech through the automatic day card and acknowledges an expired occa
     sceneReading: false,
     runId: 0,
     playtest: null,
+    savedRun: null,
+    paceSetting: 'automatic',
+    skipping: false,
     actions: new Proxy({}, { get: (_, key) => (key === 'suggest' ? suggest : () => {}) }) as VoiceActions,
   };
   const el = document.createElement('div');

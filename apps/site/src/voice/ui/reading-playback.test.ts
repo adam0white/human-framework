@@ -47,6 +47,31 @@ it('slows reading ticks, keeps frame scheduling on wall time, and respects manua
     const init = channel.post.mock.calls.find(([msg]) => msg.type === 'init')?.[0];
     if (!voice || init?.type !== 'init') throw Error('Missing hook');
     const actions = voice.actions;
+    // A title-page feedback export resolves without replacing a stored month with the premise.
+    localStorage.setItem('hf-voice-run', 'existing-month');
+    flushSync(() =>
+      channel.receive({ type: 'frame', gen: init.gen, frame: { ...sampleFrame, phase: 'premise' } }),
+    );
+    const titleExport = actions.getPlaytest();
+    const titleFile = {
+      kind: 'human-playtest' as const,
+      format: 1 as const,
+      game: 'voice' as const,
+      build: 'dev',
+      framework: 'test',
+      engine: 'test',
+      seed: 7,
+      scenario: 'voice-2',
+      minute: 1660,
+      log: [],
+      hash: 'title',
+      snapshotEncoding: 'json' as const,
+      snapshot: {},
+    };
+    flushSync(() => channel.receive({ type: 'playtest', gen: init.gen, file: titleFile }));
+    expect(await titleExport).toEqual(titleFile);
+    expect(localStorage.getItem('hf-voice-run')).toBe('existing-month');
+    localStorage.removeItem('hf-voice-run');
     const frame = {
       ...sampleFrame,
       phase: 'day' as const,
@@ -131,7 +156,11 @@ it('slows reading ticks, keeps frame scheduling on wall time, and respects manua
     flushSync(() => actions.dismissSceneOffer());
     expect(voice.reading).toBe(false);
     channel.tick(60_000);
+    expect(channel.post).toHaveBeenLastCalledWith({ type: 'tick', dtMs: 8_000, wallDtMs: 60_000 });
+    flushSync(() => actions.setAutomaticPace('fast'));
+    channel.tick(60_000);
     expect(channel.post).toHaveBeenLastCalledWith({ type: 'tick', dtMs: 60_000, wallDtMs: 60_000 });
+    expect(channel.post.mock.calls.some(([msg]) => msg.type === 'setPace')).toBe(false);
     const previousCall = call.log[0];
     if (!previousCall) throw Error('Missing call');
     call.log[0] = { ...previousCall, id: 'call-next' };
