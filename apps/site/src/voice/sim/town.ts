@@ -288,6 +288,8 @@ export interface Town extends World {
 }
 
 export interface TownOptions {
+  /** Voice4: Selin's office has a portable, explicitly mapped calendar chain. */
+  selinCalendar?: boolean;
   /** Voice3: one actual future day per make-up fast. Legacy source calendars remain unchanged. */
   distinctMakeUpDays?: boolean;
   /** New return chapter only: an answer Selin actually heard, told on the next connected call. */
@@ -512,7 +514,10 @@ export function townSpecs(opts: TownOptions = {}): Record<TownPersonId, PersonSp
       skills: { office: 0.6 },
       relationships: ties([['halil', 'parent']]),
       voices: [{ voiceId: 'halil', trust: 0.7 }],
-      commitments: [...fast(), job('job', 'work', 9 * 60, 18 * 60)],
+      commitments: [
+        ...fast(),
+        { ...job('job', 'work', 9 * 60, 18 * 60), ...(opts.selinCalendar ? { chain: 'job' } : {}) },
+      ],
     },
     riza: {
       id: 'riza',

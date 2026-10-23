@@ -163,9 +163,7 @@ function publishBoundary(): void {
     checkpointError = state.error;
     host.post({
       type: 'personaCheckpoint',
-      error: state.error.includes('owed obligation')
-        ? 'Selin still owes a duty that this enquiry cannot carry.'
-        : state.error,
+      error: state.error,
     });
   }
   const transfer = state.transfer;
@@ -244,9 +242,15 @@ async function prepareSelinReturn(header: SelinReturn): Promise<SelinReturn> {
   const prior = replayVoice(prefix.file.seed, prefix.file.log, prefix.rules, prefix.chapter);
   if (prior.driftAt !== -1 || voiceHash(prior.rec.game) !== prefix.file.hash)
     throw new Error('Source chapter does not replay.');
-  const initial = returnedSelin(header.admission, prior.rec.game.run.ppl.selin);
+  if (!prefix.head) throw new Error('The original Selin departure is missing; start fresh.');
+  const initial = returnedSelin(
+    header.admission,
+    prior.rec.game.run.ppl.selin,
+    prefix.head,
+    prior.rec.game.run.opts,
+  );
   const pinned = { ...header, initial: JSON.stringify(snapshot(initial)) };
-  replayVoice(prefix.file.seed, [], 3, pinned);
+  replayVoice(prefix.file.seed, [], 4, pinned);
   return pinned;
 }
 
@@ -254,7 +258,7 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg) => {
   if (msg.type === 'init') {
     host.gen = msg.gen;
     lastFields = new Map();
-    dropStale(msg.seed, 3);
+    dropStale(msg.seed, 4);
     if (msg.scenarioVersion !== VOICE_SCENARIO_VERSION) {
       rec = null;
       host.post({
@@ -274,7 +278,7 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg) => {
           if (host.gen !== returnGen) return;
           if (!pinned.acceptedHead) throw new Error('No accepted return claim.');
           const prefix = parseVoicePlaytest(pinned.prefix);
-          rec = replayVoice(prefix.file.seed, [], 3, pinned).rec;
+          rec = replayVoice(prefix.file.seed, [], 4, pinned).rec;
           initializing = false;
           host.post({ type: 'personaStarted' });
           flush(true);
@@ -286,7 +290,7 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg) => {
       return;
     }
     initializing = false;
-    rec = new RecordedGame(new VoiceGame(msg.seed, 3));
+    rec = new RecordedGame(new VoiceGame(msg.seed, 4));
     flush(true);
     return;
   }
@@ -325,7 +329,7 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg) => {
       void exportPlaytest(rec).catch((error) => host.post({ type: 'playtestError', message: String(error) }));
       return;
     case 'personaCheckpoint':
-      if (game.rules !== 3) {
+      if (game.rules !== 4) {
         host.post({
           type: 'personaCheckpoint',
           error:
@@ -339,7 +343,7 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg) => {
         host.post({ type: 'personaCheckpoint', error: game.personaDeparture.error });
       break;
     case 'personaCheckpointCancel':
-      if (game.rules !== 3) return;
+      if (game.rules !== 4) return;
       checkpointSending = false;
       rec.apply(msg);
       break;

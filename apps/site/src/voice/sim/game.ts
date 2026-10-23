@@ -311,7 +311,13 @@ export class VoiceGame {
   private muted = false;
 
   personaDeparture:
-    | { pending: boolean; transfer?: SelinTransfer; sourceSnapshot?: Person; error?: string }
+    | {
+        pending: boolean;
+        stopping?: boolean;
+        transfer?: SelinTransfer;
+        sourceSnapshot?: Person;
+        error?: string;
+      }
     | undefined;
 
   constructor(seed: number = SHIPPED_SEED, rules: VoiceRules = 2) {
@@ -320,9 +326,15 @@ export class VoiceGame {
     // Rules 2: work he does under protest goes worse (HF leaves an act's quality under protest to the host).
     this.run = newRun(
       seed,
-      rules >= 2 ? { protestWork: PROTEST_WORK, ...(rules === 3 ? { distinctMakeUpDays: true } : {}) } : {},
+      rules >= 2
+        ? {
+            protestWork: PROTEST_WORK,
+            ...(rules >= 3 ? { distinctMakeUpDays: true } : {}),
+            ...(rules === 4 ? { selinCalendar: true } : {}),
+          }
+        : {},
     );
-    if (rules === 3) this.installPersonaBoundary();
+    if (rules === 4) this.installPersonaBoundary();
     stepCommunity(this.run.c, this.run.town, TOWN_GAME_START, {});
     const h = this.halil;
     this.trustStart = voiceOf(h, 'you')?.trust ?? 0.5;
@@ -350,17 +362,11 @@ export class VoiceGame {
   installPersonaBoundary(): void {
     const offers = this.run.town.affordancesFor.bind(this.run.town);
     this.run.town.affordancesFor = (p) => {
-      if (
-        p === this.run.ppl.selin &&
-        this.personaDeparture?.pending &&
-        !p.activity &&
-        p.now >= (TOWN_EID_DAY + 1) * 1440 &&
-        p.now % 1440 >= 1080
-      ) {
+      if (p === this.run.ppl.selin && this.personaDeparture?.stopping) return [];
+      if (p === this.run.ppl.selin && this.personaDeparture?.pending && !p.activity && p.now % 1440 >= 1080) {
         try {
-          this.personaDeparture.transfer = selinCheckpoint(p);
-          this.personaDeparture.sourceSnapshot = structuredClone(p);
-          this.personaDeparture.pending = false;
+          selinCheckpoint(p, this.run.opts);
+          this.personaDeparture.stopping = true;
           this.paused = true;
           return [];
         } catch (error) {
@@ -903,7 +909,7 @@ export class VoiceGame {
   keepListening(): void {
     if (this.phase !== 'report' || !this.eidNight) return;
     this.run = cloneRun(this.eidNight.run);
-    if (this.rules === 3) this.installPersonaBoundary();
+    if (this.rules === 4) this.installPersonaBoundary();
     this.t = this.eidNight.t;
     this.rentSeen = this.run.town.state.rentPaid;
     this.muted = false;
@@ -1050,6 +1056,23 @@ export class VoiceGame {
     const events = stepCommunity(this.run.c, this.run.town, until, opts);
     this.t = until;
     this.process(events);
+    if (this.personaDeparture?.stopping) {
+      // HF records the empty choice after affordancesFor returns. Capture only after that normal step settles,
+      // so the exact full checkpoint is the same Person the pinned source prefix reconstructs.
+      const p = this.run.ppl.selin;
+      try {
+        this.personaDeparture = {
+          pending: false,
+          transfer: selinCheckpoint(p, this.run.opts),
+          sourceSnapshot: structuredClone(p),
+        };
+      } catch (error) {
+        this.personaDeparture = {
+          pending: true,
+          error: error instanceof Error ? error.message : String(error),
+        };
+      }
+    }
   }
 
   // --- reading what happened --------------------------------------------------------------------
@@ -1191,7 +1214,7 @@ export class VoiceGame {
     if (!call || call.at === this.callSeen) return;
     this.callSeen = call.at;
     if (
-      this.rules === 3 &&
+      this.rules === 4 &&
       this.run.town.state.selinEnquirySaidAt === call.at &&
       this.run.opts.selinEnquiryAnswer
     )

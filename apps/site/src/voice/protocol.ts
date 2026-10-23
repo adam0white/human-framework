@@ -16,13 +16,13 @@ import type { OneCastRow, SelinReturn, SelinTransfer } from './sim/persona.ts';
  * 'voice-2' changes the rules (the waking choice, work under protest, the fast-hour craving, the end of Ramadan's
  * debt line); a playtest file of either scenario still loads and replays under its own rules.
  */
-export const VOICE_SCENARIO_VERSION = 'voice-3';
+export const VOICE_SCENARIO_VERSION = 'voice-4';
 /** The rules each scenario a playtest file may carry is replayed under. */
-export const VOICE_RULES = { 'voice-1': 1, 'voice-2': 2, 'voice-3': 3 } as const;
+export const VOICE_RULES = { 'voice-1': 1, 'voice-2': 2, 'voice-3': 3, 'voice-4': 4 } as const;
 export type VoiceRules = (typeof VOICE_RULES)[keyof typeof VOICE_RULES];
 /** The scenario a game of these rules writes in its playtest file. */
 export const scenarioOf = (rules: VoiceRules): keyof typeof VOICE_RULES =>
-  rules === 1 ? 'voice-1' : rules === 2 ? 'voice-2' : 'voice-3';
+  rules === 1 ? 'voice-1' : rules === 2 ? 'voice-2' : rules === 3 ? 'voice-3' : 'voice-4';
 /** A playtest file's scenario, read before validation so the file is checked against its own scenario. */
 export function scenarioIn(text: string): keyof typeof VOICE_RULES {
   try {

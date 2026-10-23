@@ -140,7 +140,7 @@ export class RecordedGame {
 function applyInput(g: VoiceGame, msg: VoiceInput): void {
   switch (msg.type) {
     case 'personaCheckpoint':
-      if (g.rules !== 3) throw new Error('Start a new chapter to let Selin travel.');
+      if (g.rules !== 4) throw new Error('This notebook is from an older version; start fresh.');
       g.personaDeparture = { pending: true };
       break;
     case 'personaCheckpointCancel':
@@ -209,11 +209,11 @@ export function parseVoicePlaytest(
     oneCast?: OneCastRow[];
     voicePersonaHead?: PersonaEnvelope;
   };
+  if (raw.voicePersona && scenario !== 'voice-4')
+    throw new Error('This notebook is from an older version; start fresh.');
   if (
     raw.voicePersona &&
-    (scenario !== 'voice-3' ||
-      typeof raw.voicePersona.prefix !== 'string' ||
-      typeof raw.voicePersona.initial !== 'string')
+    (typeof raw.voicePersona.prefix !== 'string' || typeof raw.voicePersona.initial !== 'string')
   )
     throw new Error('Unsupported Selin replay header.');
   return {
@@ -236,16 +236,18 @@ export function replayVoice(
   if (depth > 4) throw new Error('Too many nested Selin chapters.');
   let rec: RecordedGame;
   if (chapter) {
-    if (rules !== 3 || chapter.version !== 1) throw new Error('Unsupported return chapter.');
+    if (rules !== 4) throw new Error('This notebook is from an older version; start fresh.');
+    if (chapter.version !== 1) throw new Error('Unsupported return chapter.');
     const prefix = parseVoicePlaytest(chapter.prefix);
     const prior = replayVoice(prefix.file.seed, prefix.file.log, prefix.rules, prefix.chapter, depth + 1);
     if (prior.driftAt !== -1 || voiceHash(prior.rec.game) !== prefix.file.hash)
       throw new Error('Source chapter does not replay.');
     const game = prior.rec.game;
-    if (game.seed !== seed || game.rules !== 3 || !game.personaDeparture?.transfer)
+    if (game.seed !== seed || game.rules !== 4 || !game.personaDeparture?.transfer)
       throw new Error('Source chapter did not depart.');
     const initial = restore(JSON.parse(chapter.initial));
-    const expected = returnedSelin(chapter.admission, game.run.ppl.selin);
+    if (!prefix.head) throw new Error('The original Selin departure is missing; start fresh.');
+    const expected = returnedSelin(chapter.admission, game.run.ppl.selin, prefix.head, game.run.opts);
     if (stableStringify(snapshot(initial)) !== stableStringify(snapshot(expected)))
       throw new Error('Returned Selin initial state differs from admission.');
     game.run.ppl.selin = initial;

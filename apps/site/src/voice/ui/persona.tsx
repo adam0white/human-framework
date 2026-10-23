@@ -24,7 +24,7 @@ let send: ((message: MainToWorker) => void) | undefined;
 let startReturn: ((header: SelinReturn, seed: number) => void) | undefined;
 const session = new PersonaSession((key) => gameLabs.voice.setPersonaRecording(key));
 let checkReturn: ((header: SelinReturn) => Promise<SelinReturn>) | undefined;
-let status = 'Selin can make a household enquiry after work, after Eid.';
+let status = 'Selin can make a household enquiry after work.';
 let pending = false;
 let published = '';
 let recordingAttempt = 0;
@@ -124,7 +124,7 @@ export function checkpointVoicePersona(): void {
   if (!shelf.enabled || !send || pending) return;
   send({ type: 'personaCheckpoint' });
   message(
-    'Selin will finish her current action. Her enquiry waits until after work, after Eid; unsupported duties keep it unavailable.',
+    'Selin will finish her current action. Her enquiry waits until after work; her commitments travel with her.',
   );
 }
 
@@ -155,9 +155,9 @@ export async function receiveVoicePersona(reply: WorkerToMain): Promise<void> {
       castRevision: '1',
       branchId: session.head?.branchId ?? crypto.randomUUID(),
       parentRevision: session.head?.revision ?? null,
-      source: { game: 'voice', build: await fetchBuild(), engine: reply.file.engine, rules: 'voice-3' },
+      source: { game: 'voice', build: await fetchBuild(), engine: reply.file.engine, rules: 'voice-4' },
       transfer: reply.transfer,
-      limitations: reply.transfer.person.limitations,
+      limitations: reply.transfer.person.person.limitations,
     });
     const accepted = local
       ? envelope
@@ -195,7 +195,7 @@ export async function receiveVoicePersona(reply: WorkerToMain): Promise<void> {
     else await recording(accepted);
     send?.({ type: 'personaPublished', row, envelope: accepted });
     message(
-      'Selin’s chapter is on this browser’s people shelf. Her office duty and attended work history travel; other state stays here.',
+      'Selin’s chapter is on this browser’s people shelf. Her commitments and attended work history travel; other state stays here.',
     );
   } catch (error) {
     message(error instanceof Error ? error.message : String(error));
@@ -244,7 +244,7 @@ export async function prepareVoiceReturn(
           game: 'voice',
           build: await fetchBuild(),
           engine: envelope.source.engine,
-          rules: 'voice-3',
+          rules: 'voice-4',
         },
       });
       return imported ? claim : await shelf.request<PersonaEnvelope>({ action: 'put', envelope: claim });
