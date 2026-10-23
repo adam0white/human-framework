@@ -1,5 +1,5 @@
 import { createLab, type Lab } from '@adam0white/lab-client';
-import { setTelemetryOff, telemetryNotice, telemetryOn } from '@adam0white/lab-kit';
+import { setTelemetryOff, telemetryOn } from '@adam0white/lab-kit';
 import { useEffect, useRef, useState } from 'react';
 
 const instances: Partial<Record<'well' | 'voice' | 'watch', Lab>> = {};
@@ -20,11 +20,9 @@ export const gameLabs = {
   },
 };
 
-/** Tracks visible screens and mounts the shared first-visit disclosure. */
+/** Tracks visible screens and milestones. The game owns disclosure placement. */
 export function useLabScreen(lab: Lab, screen: 'title' | 'play' | 'ending') {
   useEffect(() => {
-    const notice = telemetryNotice();
-    if (notice) document.body.prepend(notice);
     lab.screen(screen);
     if (screen === 'play') lab.milestone('run started');
     if (screen === 'ending') lab.milestone('ending reached');

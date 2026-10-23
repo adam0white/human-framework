@@ -4,6 +4,7 @@
  */
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useWakeLock } from '../../shared/fullscreen.tsx';
+import { LabNotice } from '../../shared/LabNotice.tsx';
 import { gameLabs, useLabScreen } from '../../shared/lab.tsx';
 import { PlaytestNotice } from '../../shared/PlaytestMenu.tsx';
 import type { Draft } from '../protocol.ts';
@@ -189,6 +190,7 @@ export function App() {
           setInfoOpen(false);
         }}
       />
+      <LabNotice />
       {frame && !overlay && (
         <main className="v-play-layout">
           <nav className="v-panel-chips" aria-label="Panels">

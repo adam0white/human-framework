@@ -20,7 +20,7 @@ describe('lab:play exact text controls', () => {
       width: 100,
       height: 50,
     } as never);
-    window.document.elementFromPoint = () => window.document.querySelector('.button, button');
+    window.document.elementFromPoint = () => window.document.querySelector('.button, button, summary');
   });
   afterEach(async () => {
     vi.restoreAllMocks();
@@ -50,6 +50,14 @@ describe('lab:play exact text controls', () => {
       '<button>cart</button><div class="button" onclick="void 0">cart<div class="tooltip">wood 30</div></div>';
     expect(textControlPoint('cart')).toEqual({ reason: '2 controls match' });
   });
+
+  it.each(['Your own work ▸', 'What would have won', '+ Add a name or tester id'])(
+    'resolves the native disclosure %s without treating its details container as a control',
+    (label) => {
+      window.document.body.innerHTML = `<details><summary>${label}</summary><p>More information</p></details>`;
+      expect(textControlPoint(label)).toEqual({ x: 60, y: 35 });
+    },
+  );
 
   it('does not treat tooltip text as another control label', () => {
     window.document.body.innerHTML =

@@ -1,8 +1,9 @@
 // @vitest-environment happy-dom
 import type { Lab } from '@adam0white/lab-client';
-import { act, createElement } from 'react';
+import { act, createElement, StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { afterEach, expect, it, vi } from 'vitest';
+import { LabNotice } from './LabNotice.tsx';
 import { LabMenuContent, useLabScreen } from './lab.tsx';
 import { PlaytestMenu } from './PlaytestMenu.tsx';
 
@@ -164,4 +165,21 @@ it('holds the clock until toggle, Escape, outside dismissal or unmount closes th
   await act(() => toggle?.click());
   await act(() => root.render(null));
   expect(hold).toHaveBeenLastCalledWith(false);
+});
+
+it('keeps the disclosure in the game layout and removes its space on dismissal', async () => {
+  const dismissed = vi.fn();
+  const { container, root } = await mount(
+    createElement(StrictMode, null, createElement(LabNotice, { onDismiss: dismissed })),
+  );
+  const notice = container.querySelector<HTMLElement>('.lk-telemetry-notice');
+  expect(notice).not.toBeNull();
+  expect(notice?.style.position).toBe('static');
+  expect(document.body.querySelector(':scope > .lk-telemetry-notice')).toBeNull();
+  await act(() => notice?.querySelector('button')?.click());
+  expect(container.querySelector('.lk-telemetry-notice')).toBeNull();
+  expect(dismissed).toHaveBeenCalledOnce();
+  await act(() => root.render(null));
+  await act(() => root.render(createElement(LabNotice)));
+  expect(container.querySelector('.lk-telemetry-notice')).toBeNull();
 });

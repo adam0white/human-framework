@@ -7,6 +7,22 @@ const reply = (result: Awaited<ReturnType<typeof runPlayOperation>>, now = 6000)
   makePlayReply(result, { now, openedAt: 1000, started: 5000 });
 
 describe('lab:play operation replies', () => {
+  it('allows a named tab from the latest controls without requiring a role override', async () => {
+    let actions = 0;
+    const result = await runPlayOperation(
+      { op: 'tap', name: 'meter' },
+      {
+        previous: null,
+        snapshot: async () => ({ visible: 'meter', controls: '- tab "meter"' }),
+        act: async () => {
+          actions++;
+          return undefined;
+        },
+      },
+    );
+    expect(result.status).toBe(200);
+    expect(actions).toBe(1);
+  });
   it('refuses a vanished control before acting and reuses the fresh pre-action read', async () => {
     let actions = 0;
     let reads = 0;

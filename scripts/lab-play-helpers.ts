@@ -241,12 +241,14 @@ export function driverCheck(commit: string | null, diffStatus: number | null, al
         : 'stale';
   return { driver, driver_check, refuse: driver_check === 'stale' && !allowStale };
 }
+// Named taps cover the same actionable roles exposed by the control snapshot.
+export const namedTapRoles = ['button', 'link', 'tab', 'menuitem', 'checkbox', 'radio', 'option', 'switch'];
 function requestedControlPresent(snapshot: PlaySnapshot | null, op: Record<string, unknown>): boolean | null {
   if (op.op !== 'tap' || (typeof op.name !== 'string' && typeof op.text !== 'string')) return null;
   if (!snapshot) return false;
   const normalize = (text: string) => text.replace(/\s+/g, ' ').trim();
   const wanted = normalize(typeof op.name === 'string' ? op.name : String(op.text));
-  const roles = typeof op.role === 'string' ? [op.role] : ['button', 'link'];
+  const roles = typeof op.role === 'string' ? [op.role] : namedTapRoles;
   for (const line of snapshot.controls.split('\n')) {
     // ariaSnapshot emits a YAML single-quoted entry when the label contains ": ".
     const entry = line.replace(/^\s*-\s+/, '');

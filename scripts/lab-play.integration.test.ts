@@ -133,6 +133,21 @@ describe.skipIf(!process.env.PLAYWRIGHT_MODULE)('lab:play with a real browser', 
   it('skips disabled name duplicates and refuses enabled duplicates; scrolls a text control into view', async () => {
     await withTextFixture('phone', async (post) => {
       await post({ op: 'open' });
+      const tab = await post({ op: 'tap', name: 'meter' });
+      expect(tab.status).toBe(200);
+      expect(tab.body.visible).toContain('meter selected');
+      const summary = await post({ op: 'tap', text: 'Your own work ▸' });
+      expect(summary.status).toBe(200);
+      expect(summary.body.visible).toContain('Disclosure opened');
+      await post({ op: 'tap', name: 'Open ledger' });
+      const covered = await post({ op: 'tap', name: 'the Dere house' });
+      expect(covered.status).toBe(500);
+      expect(covered.body.error).toContain('game state, not a driver failure');
+      expect(covered.body.visible).toContain('house taps 0');
+      await post({ op: 'tap', name: 'Back to the notebook' });
+      const house = await post({ op: 'tap', name: 'the Dere house' });
+      expect(house.status).toBe(200);
+      expect(house.body.visible).toContain('house taps 1');
       const tapped = await post({ op: 'tap', name: 'Promise it' });
       expect(tapped.status).toBe(200);
       expect(tapped.body.visible).toContain('promises 1');
@@ -191,7 +206,7 @@ async function withTextFixture(
   await mkdir(root, { recursive: true });
   const out = await mkdtemp(join(root, `tooltip-${device}-`));
   const site = createServer((_request, response) => {
-    response.setHeader('Content-Type', 'text/html');
+    response.setHeader('Content-Type', 'text/html; charset=utf-8');
     response.end(`<!doctype html><html lang="en"><meta name="viewport" content="width=device-width, initial-scale=1"><style>
       button, .button { display:block; width:180px; min-height:44px; margin:12px; cursor:pointer; }
       .button { position:relative; border:1px solid; }
@@ -200,6 +215,14 @@ async function withTextFixture(
       [hidden] { display:none; }
     </style><body>
       <div id="cart" class="button" onclick="count++;document.querySelector('#count').textContent='cart clicks '+count">cart<div class="tooltip">wood 30</div></div>
+      <button role="tab" onclick="this.textContent='meter selected'">meter</button>
+      <details><summary>Your own work ▸</summary><p>Disclosure opened</p></details>
+      <button onclick="document.querySelector('#ledger').hidden=false">Open ledger</button>
+      <button onclick="document.querySelector('#house-count').textContent='house taps 1'">the Dere house</button>
+      <p id="house-count">house taps 0</p>
+      <section id="ledger" hidden style="position:fixed;inset:0;z-index:100;background:white">
+        <button onclick="document.querySelector('#ledger').hidden=true">Back to the notebook</button>
+      </section>
       <p id="count">cart clicks 0</p><p id="other-count">other clicks 0</p>
       <button onclick="document.querySelector('#cart').firstChild.data='cart tomorrow'">Change label</button>
       <button onclick="document.querySelector('#cart').firstChild.data='cart'">Restore label</button>

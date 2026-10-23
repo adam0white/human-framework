@@ -14,7 +14,11 @@ vi.mock('../../shared/lab.tsx', () => ({
   gameLabs: { well: { recordingAllowed: () => false } },
   useLabScreen: () => {},
 }));
-vi.mock('@adam0white/lab-kit', () => ({ telemetryOn: () => false, setTelemetryOff: () => {} }));
+vi.mock('@adam0white/lab-kit', () => ({
+  telemetryOn: () => false,
+  setTelemetryOff: () => {},
+  telemetryNotice: () => null,
+}));
 vi.mock('./Pane.tsx', () => ({
   Pane: (p: PaneProps) =>
     createElement(

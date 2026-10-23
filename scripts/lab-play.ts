@@ -18,6 +18,7 @@ import {
   driverCheck,
   makeLogLine,
   makePlayReply,
+  namedTapRoles,
   type PlayOp,
   type PlaySnapshot,
   parsePlayArgs,
@@ -252,7 +253,7 @@ async function main() {
         // A moving or partly covered control (re-laid-out scene cards, a sticky footer) fails
         // Playwright's stability check. Tap an uncovered point of it instead, centring it first.
         for (const centre of [false, true]) {
-          const point = await target.evaluate(uncoveredPoint, centre).catch(() => null);
+          const point = await target.evaluate(uncoveredPoint, centre);
           if (point) {
             await tapPoint(point.x, point.y);
             return true;
@@ -275,8 +276,10 @@ async function main() {
         case 'tap':
           if ('x' in op && typeof op.x === 'number' && typeof op.y === 'number') await tapPoint(op.x, op.y);
           else if ('name' in op && typeof op.name === 'string') {
-            let matches = page.getByRole(op.role ?? 'button', { name: op.name, exact: true });
-            if (!op.role) matches = matches.or(page.getByRole('link', { name: op.name, exact: true }));
+            const roles = op.role ? [op.role] : namedTapRoles;
+            let matches = page.getByRole(roles[0] ?? 'button', { name: op.name, exact: true });
+            for (const role of roles.slice(1))
+              matches = matches.or(page.getByRole(role, { name: op.name, exact: true }));
             matches = matches.filter({ visible: true });
             const enabled: Locator[] = [];
             const count = await matches.count();
@@ -306,7 +309,9 @@ async function main() {
               );
             }
             if (!enabled[0] || !(await click(enabled[0])))
-              throw new Error(`Cannot tap ${op.name}: no uncovered enabled control (driver failure)`);
+              throw new Error(
+                `Cannot tap ${op.name}: control is covered or off screen; close the covering panel or scroll, then retry (game state, not a driver failure)`,
+              );
           } else if ('text' in op && typeof op.text === 'string') {
             const point = await page.evaluate(textControlPoint, op.text);
             if ('reason' in point) {

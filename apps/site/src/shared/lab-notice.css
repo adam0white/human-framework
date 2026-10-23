@@ -1,0 +1,10 @@
+.lab-notice {
+  flex: none;
+  min-width: 0;
+}
+.lab-notice:empty {
+  display: none;
+}
+.lab-game-header {
+  min-width: 0;
+}

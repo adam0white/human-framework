@@ -1,6 +1,7 @@
 import { setTelemetryOff, telemetryOn } from '@adam0white/lab-kit';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FullscreenButton, useWakeLock } from '../../shared/fullscreen.tsx';
+import { LabNotice } from '../../shared/LabNotice.tsx';
 import { gameLabs, useLabScreen } from '../../shared/lab.tsx';
 import type { PlaytestFile } from '../../shared/playtest.ts';
 import type { HurtNews, MomentRecord } from '../sim/game.ts';
@@ -535,6 +536,7 @@ export function App() {
           ≡
         </button>
       </header>
+      <LabNotice />
       {!shelf && !showEnd && !feedback && (
         <div className="well-phone-state">
           <StateStrip frame={frame} pace={pace} onOpen={() => setSheet('stand')} />

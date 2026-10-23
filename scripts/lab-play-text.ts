@@ -16,7 +16,7 @@ export function textControlPoint(text: string): { x: number; y: number } | { rea
   };
   const explicit = (element: HTMLElement) =>
     element.matches(
-      'button, a[href], input[type=button], input[type=submit], [onclick], [role=button], [role=link], [role=tab], [role=menuitem], [role=checkbox], [role=radio], [role=option], [role=switch]',
+      'button, a[href], details > summary:first-of-type, input[type=button], input[type=submit], [onclick], [role=button], [role=link], [role=tab], [role=menuitem], [role=checkbox], [role=radio], [role=option], [role=switch]',
     ) || Boolean(element.onclick);
   const control = (element: HTMLElement) => {
     if (explicit(element)) return true;

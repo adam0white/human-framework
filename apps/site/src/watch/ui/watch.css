@@ -1608,7 +1608,7 @@
 
 /* 2026-10-22 lab grammar: fixed zones; only reading bodies scroll. */
 .watch {
-  grid-template-rows: 44px minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
   font-size: 14px;
 }
 .watch button,
@@ -2430,7 +2430,7 @@
 }
 @media (min-width: 900px) {
   .watch {
-    grid-template-rows: 56px minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
   }
   .w-top {
     height: 56px;

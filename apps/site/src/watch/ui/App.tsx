@@ -3,9 +3,10 @@
  * and frequent actions at its foot. The title owns save navigation. The menu holds reading,
  * hopes and feedback. Presentation pacing does not change simulation rules or replay inputs.
  */
-import { phoneStage, telemetryNotice } from '@adam0white/lab-kit';
+import { phoneStage } from '@adam0white/lab-kit';
 import { type ReactNode, useCallback, useEffect, useId, useRef, useState } from 'react';
 import { useWakeLock } from '../../shared/fullscreen.tsx';
+import { LabNotice } from '../../shared/LabNotice.tsx';
 import { gameLabs } from '../../shared/lab.tsx';
 import type { PageInfo } from '../protocol.ts';
 import { type PostId, postSection, SECTIONS, type SectionId, type WatcherId } from '../sim/config.ts';
@@ -87,6 +88,8 @@ export function App() {
   const [helper, setHelper] = useState(false);
   const stage = useRef<HTMLElement>(null);
   const postingOrigin = useRef<WatcherId | null>(null);
+  const stageController = useRef<ReturnType<typeof phoneStage> | null>(null);
+  const noticeDismissed = useCallback(() => stageController.current?.refresh(), []);
   const menuOrigin = useRef<HTMLElement | null>(null);
 
   const setSelected = useCallback((w: WatcherId | null) => {
@@ -132,7 +135,11 @@ export function App() {
         );
       },
     });
-    return () => controller.destroy();
+    stageController.current = controller;
+    return () => {
+      stageController.current = null;
+      controller.destroy();
+    };
   }, [ready]);
   useEffect(() => {
     const back = (event: KeyboardEvent) => {
@@ -150,8 +157,6 @@ export function App() {
   const labScreen = !phase ? null : phase === 'goal' ? 'title' : phase === 'fallen' ? 'ending' : 'play';
   useEffect(() => {
     if (!labScreen) return;
-    const notice = telemetryNotice();
-    if (notice) document.body.prepend(notice);
     gameLabs.watch.screen(labScreen);
     if (labScreen === 'play') gameLabs.watch.milestone('run started');
     if (labScreen === 'ending') gameLabs.watch.milestone('ending reached');
@@ -235,31 +240,34 @@ export function App() {
   const displayFrame = showingTitle ? { ...frame, phase: 'goal' as const } : frame;
   return (
     <div className={`watch phase-${displayFrame.phase}${frame.slowed ? ' is-slowed' : ''}`}>
-      <header className="w-top">
-        {showingTitle ? (
-          <a className="w-home" href="/games/">
-            All games
-          </a>
-        ) : (
-          <p className="w-where">
-            <span className="w-desktop-name">The Night Watch · </span>
-            {headerLine(frame)} · {(frame.souls.split(' in ')[0] ?? '').toLowerCase()}
-          </p>
-        )}
-        <PhaseInfo frame={displayFrame} onToggle={setInfo} />
-        <button
-          type="button"
-          className="w-chronicle"
-          aria-label="Game menu"
-          aria-expanded={menu}
-          onClick={(event) => {
-            menuOrigin.current = event.currentTarget;
-            setMenu((m) => !m);
-          }}
-        >
-          ≡<span>Menu</span>
-        </button>
-      </header>
+      <div className="lab-game-header">
+        <header className="w-top">
+          {showingTitle ? (
+            <a className="w-home" href="/games/">
+              All games
+            </a>
+          ) : (
+            <p className="w-where">
+              <span className="w-desktop-name">The Night Watch · </span>
+              {headerLine(frame)} · {(frame.souls.split(' in ')[0] ?? '').toLowerCase()}
+            </p>
+          )}
+          <PhaseInfo frame={displayFrame} onToggle={setInfo} />
+          <button
+            type="button"
+            className="w-chronicle"
+            aria-label="Game menu"
+            aria-expanded={menu}
+            onClick={(event) => {
+              menuOrigin.current = event.currentTarget;
+              setMenu((m) => !m);
+            }}
+          >
+            ≡<span>Menu</span>
+          </button>
+        </header>
+        <LabNotice onDismiss={noticeDismissed} />
+      </div>
 
       <main
         className="w-stage lk-stage"
