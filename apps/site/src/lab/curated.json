@@ -6187,6 +6187,23 @@
     "fix:hearsay admit and return recurring cast (open)"
    ],
    "source": "docs/owner-directions-2026-10-18.md#2026-10-23-one-cast-approved-adam-verbatim"
+  },
+  {
+   "id": "F-465",
+   "date": "2026-10-23",
+   "game": "lab",
+   "kind": "owner",
+   "who": "owner",
+   "words": "We can forgo old save compatibility altogether for now. I think having less maintained personas in total will allow us to invest more resources into their back stories. And playing a given game gets you to acquaint a persona, which will be a huge 3rd wall breaker once you see them on your next game. One device sync is perfectly fine for this for now. Even frozen games are a fair game for this. HF universe will be an interesting twist. A group of people simulated living across games within your browser is also a great idea. So how many foreground people will we have across the games? Let's keep that number intentional, including our play tester and designer and whatever else personas.",
+   "verdict": "-",
+   "routes": [
+    "fix:lab canonical 40 with biographies and exhaustive character mapping (open)",
+    "fix:lab 12 panelists plus 2 fresh cold slots and 3 reviewers with diaries (open)",
+    "fix:lab seeded bounded between-games browser life (open)",
+    "fix:lab waive old game saves and retain current-version deterministic replay (open)",
+    "fix:lab recast all 15 games including Commonstead and frozen hosts (open)"
+   ],
+   "source": "docs/owner-directions-2026-10-18.md#2026-10-23-cast-size-and-between-games-life-adam-verbatim"
   }
  ],
  "lessons": [
@@ -6793,7 +6810,7 @@
   }
  ],
  "routes": {
-  "fix": 519,
+  "fix": 524,
   "lesson": 291,
   "hf": 12,
   "calibration": 42,
