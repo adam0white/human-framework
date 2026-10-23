@@ -1,6 +1,6 @@
 # HF roadmap: people you cannot see inside (2026-10-20)
 
-**2026-10-23 update:** HF 2.15.0 and 2.16.0 were used by opt-in cast passports. The owner has authorized the projects follow-ups, then the narration and social batch, on the next free minor. Version numbers below are the original proposed order; current deferred targets are in [roadmap §3b](roadmap.md#3b-next-slices-2026-10-18-updated-2026-10-23). Later faculties remain unstarted.
+**2026-10-23 update:** HF 2.15.0 and 2.16.0 were used by opt-in cast passports. The owner-authorized projects follow-ups and narration/social batch are released in HF 2.17.0, with the published island result recorded even though the carry task remains unsolved. Version numbers below are the original proposed order; current deferred targets are in [roadmap §3b](roadmap.md#3b-next-slices-2026-10-18-updated-2026-10-23). Later faculties remain unstarted.
 
 Owner, 2026-10-20: "I also would like a cool roadmap for HF … so that we can push HF forward, instead of forgetting about it and delving into games." This page is that roadmap. It is a proposal: the owner sets goals, and nothing here starts unasked. [roadmap.md](roadmap.md) §3b stays the authoritative deferred list with targets; this page orders it, adds what the blind consultation found, and ends with a recommended next increment for the owner to approve. HF today is 2.9.0 / engine 2.9.0; the site and the external game repositories pin 2.8.0 or 2.9.0.
 

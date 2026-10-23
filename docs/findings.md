@@ -1,5 +1,7 @@
 # Findings
 
+**2026-10-23 — Projects protection on the published island control.** HF 2.17.0 retains larger free piles in ten seeds (median 2.5 objects versus HF5 0.5), but task median remains zero. Carrying an active project identity is exercised, not a carry-task success; the world reset removes its pile while its high-water history persists. That is a confound to isolate with a host prospect-identity recipe, not evidence for retuning HF after seeing the result. [Experiment](lab/experiments/island-2026-10-20.md#rerun-with-engine-2170-hf6).
+
 Short records of results that cut against expectations. Keep them; do not tune them away silently.
 
 - **2026-10-20 — Valley 4's strict `tellDeath` did not reproduce.** At the Host kit baseline (`d6552b9`), `tellDeath` already passes `Math.max(at, listener.now)` to perception and widowhood; `perceive` does not throw for past percepts. A test expecting the default to throw failed. Host kit preserves this default for exact continuation and adds explicit `late: 'throw'` / `late: 'now'` modes instead.
