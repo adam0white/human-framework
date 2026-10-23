@@ -36,7 +36,15 @@ it('serializes competing shelf writes and invalidates recording linkage after id
   writeLocal(OFF_KEY, null);
   const first = await createPersona(body);
   await shelfRequest({ action: 'put', envelope: first, authored: true });
-  expect(await shelfRequest({ action: 'recording', castId: body.castId })).toMatchObject({ sameEpoch: true });
+  expect(await shelfRequest({ action: 'recording', castId: body.castId, envelope: first })).toMatchObject({
+    sameEpoch: true,
+  });
+  expect(await shelfRequest({ action: 'recording', castId: body.castId })).toMatchObject({
+    sameEpoch: false,
+  });
+  await expect(
+    shelfRequest({ action: 'recording', castId: body.castId, allowRecording: true }),
+  ).rejects.toThrow('pinned');
   const left = await createPersona({ ...body, parentRevision: first.revision, transfer: { left: true } });
   const right = await createPersona({ ...body, parentRevision: first.revision, transfer: { right: true } });
   const results = await Promise.allSettled([
@@ -77,7 +85,7 @@ it('forgets recording associations for a deleted person even after old branches 
   for (let n = 0; n < 11; n++) {
     const fork = await createPersona({ ...body, branchId: `fork-${n}` });
     await shelfRequest({ action: 'put', envelope: fork, fork: true });
-    await shelfRequest({ action: 'recording', castId: body.castId, allowRecording: true });
+    await shelfRequest({ action: 'recording', castId: body.castId, envelope: fork, allowRecording: true });
   }
   await shelfRequest({ action: 'delete', castId: body.castId });
   await shelfRequest({ action: 'put', envelope: original });

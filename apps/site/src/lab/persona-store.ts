@@ -94,10 +94,10 @@ async function handleRequest(request: PersonaRequest): Promise<unknown> {
             break;
           }
           case 'recording': {
-            const head =
-              persona ?? state.revisions.find((p) => p.revision === state.heads[request.castId ?? '']);
+            // An old tab cannot identify its pinned history with a cast id alone.
+            const head = persona;
             if (!head) {
-              if (request.allowRecording !== undefined) throw new Error('Select a person.');
+              if (request.allowRecording !== undefined) throw new Error('Select a pinned person envelope.');
               result = { sameEpoch: false, recordingEpoch: sameIdentity ? recordingEpoch : null };
               break;
             }
