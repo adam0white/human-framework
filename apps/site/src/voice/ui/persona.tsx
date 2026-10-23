@@ -22,12 +22,17 @@ export const voicePersonaReady = shelf.ready;
 void shelf.ready.then(() => changed());
 let send: ((message: MainToWorker) => void) | undefined;
 let startReturn: ((header: SelinReturn, seed: number) => void) | undefined;
-const session = new PersonaSession((key) => gameLabs.voice.setPersonaRecording(key));
+const session = new PersonaSession((key) => {
+  // Keep an origin's old allowance closed until the pinned central choice is checked.
+  gameLabs.voice.setPersonaRecording(key === null ? null : `voice-verifying-${crypto.randomUUID()}`);
+});
 let checkReturn: ((header: SelinReturn) => Promise<SelinReturn>) | undefined;
 let status = 'Selin can make a household enquiry after work.';
 let pending = false;
 let published = '';
 let recordingAttempt = 0;
+let recordingChoice: number | undefined;
+let deniedRecordingBranch: string | null | undefined;
 const listeners = new Set<() => void>();
 const changed = () => {
   for (const listener of listeners) listener();
@@ -38,11 +43,17 @@ const message = (text: string) => {
 };
 
 async function recording(envelope: PersonaEnvelope): Promise<void> {
-  if (session.loading || session.head?.revision !== envelope.revision || session.key !== envelope.branchId)
+  if (
+    session.loading ||
+    session.head?.revision !== envelope.revision ||
+    session.key !== envelope.branchId ||
+    recordingChoice !== undefined ||
+    deniedRecordingBranch === envelope.branchId
+  )
     return;
   const lab = gameLabs.voice;
   const attempt = ++recordingAttempt;
-  lab.setPersonaRecording(envelope.branchId);
+  lab.setPersonaRecording(`voice-verifying-${crypto.randomUUID()}`);
   const player = lab.playerId;
   const result = await shelf.request<{ sameEpoch: boolean; branchId?: string; revision?: string }>({
     action: 'recording',
@@ -55,30 +66,28 @@ async function recording(envelope: PersonaEnvelope): Promise<void> {
     session.head?.revision === envelope.revision &&
     session.key === envelope.branchId &&
     lab.playerId === player &&
-    result.sameEpoch &&
     result.branchId === envelope.branchId &&
     result.revision === envelope.revision
-  )
-    lab.allowPersonaRecording(true);
+  ) {
+    lab.setPersonaRecording(envelope.branchId);
+    lab.allowPersonaRecording(result.sameEpoch);
+  }
   changed();
 }
 
 export async function gateVoiceFile(text: string): Promise<void> {
   recordingAttempt++;
+  recordingChoice = undefined;
   session.beginFile(text);
 }
 
 export function settleVoiceFileGate(accepted: boolean): void {
   const own = session.finish(accepted);
   const attempt = ++recordingAttempt;
-  if (accepted && own)
+  if (own)
     void shelf.ready.then(async () => {
       if (!shelf.enabled || attempt !== recordingAttempt) return;
-      const current = await shelf
-        .request<PersonaEnvelope | null>({ action: 'get', castId: SELIN_CAST })
-        .catch(() => null);
-      if (attempt === recordingAttempt && current?.branchId === own.branchId)
-        await recording(own).catch(() => {});
+      await recording(own).catch(() => {});
     });
   changed();
 }
@@ -96,6 +105,7 @@ export function bindVoicePersona(
   // even when an off/on identity change therefore looks like null -> null to the getter.
   const invalidateRecording = () => {
     recordingAttempt++;
+    recordingChoice = undefined;
   };
   const storage = (event: StorageEvent) => {
     if (event.key === null || event.key === 'hf-lab-player' || event.key === 'hf-lab-recording-off')
@@ -115,6 +125,8 @@ export function bindVoicePersona(
 }
 export function resetVoicePersona(): void {
   recordingAttempt++;
+  recordingChoice = undefined;
+  deniedRecordingBranch = undefined;
   session.reset();
   published = '';
   pending = false;
@@ -191,8 +203,7 @@ export async function receiveVoicePersona(reply: WorkerToMain): Promise<void> {
     }
     session.accept(accepted);
     published = reply.file.hash;
-    if (local) gameLabs.voice.setPersonaRecording(accepted.branchId);
-    else await recording(accepted);
+    if (!local) await recording(accepted);
     send?.({ type: 'personaPublished', row, envelope: accepted });
     message(
       'Selin’s chapter is on this browser’s people shelf. Her commitments and attended work history travel; other state stays here.',
@@ -312,14 +323,24 @@ export function VoicePersonaControls({ canReturn }: { canReturn: boolean }) {
             const lab = gameLabs.voice;
             const head = session.head;
             const key = session.key;
-            if (!value) lab.allowPersonaRecording(false);
+            recordingChoice = attempt;
+            deniedRecordingBranch = value ? undefined : key;
+            if (!value) {
+              lab.setPersonaRecording(key);
+              lab.allowPersonaRecording(false);
+            }
+            if (head) lab.setPersonaRecording(`voice-verifying-${crypto.randomUUID()}`);
             const current = () =>
               attempt === recordingAttempt &&
               !session.loading &&
               session.head?.revision === head?.revision &&
               session.key === key;
             if (!head) {
-              if (current()) lab.allowPersonaRecording(value);
+              if (current()) {
+                lab.setPersonaRecording(key);
+                lab.allowPersonaRecording(value);
+              }
+              recordingChoice = undefined;
               render();
               return;
             }
@@ -327,7 +348,7 @@ export function VoicePersonaControls({ canReturn }: { canReturn: boolean }) {
               .request<{ recordingEpoch: string | null }>({ action: 'recording', envelope: head })
               .then((epoch) => {
                 if (!current()) return null;
-                return shelf.request<{ branchId?: string; revision?: string }>({
+                return shelf.request<{ sameEpoch: boolean; branchId?: string; revision?: string }>({
                   action: 'recording',
                   castId: SELIN_CAST,
                   envelope: head,
@@ -336,11 +357,21 @@ export function VoicePersonaControls({ canReturn }: { canReturn: boolean }) {
                 });
               })
               .then((result) => {
-                if (current() && result?.branchId === head.branchId && result.revision === head.revision)
+                if (
+                  current() &&
+                  result?.sameEpoch === value &&
+                  result.branchId === head.branchId &&
+                  result.revision === head.revision
+                ) {
+                  lab.setPersonaRecording(key);
                   lab.allowPersonaRecording(value);
+                }
                 render();
               })
-              .catch((error) => message(String(error)));
+              .catch((error) => message(String(error)))
+              .finally(() => {
+                if (recordingChoice === attempt) recordingChoice = undefined;
+              });
           },
         }),
       );
