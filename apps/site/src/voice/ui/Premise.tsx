@@ -1,79 +1,58 @@
-/** voice.md §7.1: the start state. The game is paused behind this card until Begin. */
-import { useEffect, useRef } from 'react';
-import { Help } from '../../shared/Help.tsx';
-import { storyDates } from './dates.ts';
-import { ModelNotes } from './parts.tsx';
-import { MealTerms } from './terms.tsx';
-
-export function Premise({ ready, onBegin }: { ready: boolean; onBegin: () => void }) {
-  const button = useRef<HTMLButtonElement>(null);
-  useEffect(() => {
-    if (ready) button.current?.focus({ preventScroll: true });
-  }, [ready]);
+import { useState } from 'react';
+export function Premise({
+  ready,
+  savedRun = null,
+  onBegin,
+  onContinue = onBegin,
+  onOtherWays = () => {},
+}: {
+  ready: boolean;
+  savedRun?: { label: string } | null;
+  onBegin: () => void;
+  onContinue?: () => void;
+  onOtherWays?: () => void;
+}) {
+  const [confirm, setConfirm] = useState(false);
   return (
-    <div
-      className="v-overlay v-overlay-night"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="premise-title"
-    >
-      <div className="v-card v-premise">
+    <main className="v-page v-start-page">
+      <div className="v-page-body v-premise">
         <svg className="v-premise-moon" viewBox="0 0 48 48" aria-hidden="true">
           <path d="M30 6a18 18 0 1 0 12 30A15 15 0 0 1 30 6z" />
         </svg>
-        <h1 id="premise-title">The Day You Say Nothing</h1>
+        <h1>The Day You Say Nothing</h1>
         <p className="v-lede">Help Halil toward his own ends, so that on Eid he does them without you.</p>
         <p>Suggest an action; Halil decides.</p>
-        <button
-          ref={button}
-          type="button"
-          className="v-btn v-btn-primary v-btn-big"
-          onClick={onBegin}
-          disabled={!ready}
-        >
-          {ready ? 'Begin' : 'Waking the town…'}
+        <button type="button" className="v-shelf-row" onClick={onOtherWays}>
+          Other ways in <span>▸</span>
         </button>
-        <Help title="More about Halil and this month">
-          <p className="v-lede">
-            Halil is 61. He repairs kettles and bicycles in a rented shop. His wife Nuran died fourteen weeks
-            ago; their daughter Selin lives in the city. Tonight is the first night of Ramadan.
-          </p>
-          <p>
-            You are a voice in his head that is not his own. He hears you. <strong>He decides.</strong> He may
-            agree, put you off, do something like it, refuse, or give in under protest, and he always says
-            why.
-          </p>
-          <p>
-            You have four days of this month to speak. <strong>On Eid you go silent</strong>, and you watch
-            what he does on his own.
-          </p>
-          <div className="v-premise-ends">
-            <h2>What he’s holding on to</h2>
-            <ul>
-              <li>keep the fast</li>
-              <li>{storyDates('pay Osman, his landlord (600 owed; 300 by Ramadan 15)')}</li>
-              <li>his daughter Selin wants his blood pressure seen</li>
-              <li>Selin herself: calling her, not waiting for her to call</li>
-            </ul>
-            <h2>Who else he hears</h2>
-            <p className="v-premise-cast">
-              Selin, his daughter, on the phone. Rıza, his friend, at the tea house. Hacer, the neighbour who
-              talks about people. Osman, his landlord. The doctor at the clinic.
-            </p>
-          </div>
-          <p className="v-aim">
-            <span>Your aim</span>
-            Help him toward his own ends, so that on Eid he does them without you.
-          </p>
-          <p className="v-hint">Time runs slowly and stops when something matters. Space pauses.</p>
-          <p className="v-hint">
-            Story calendar: Ramadan 1 is Monday 11 March 2024. These dates locate this fictional month; they
-            are not a religious calendar.
-          </p>
-          <MealTerms />
-        </Help>
-        <ModelNotes />
       </div>
-    </div>
+      <div className="v-page-actions">
+        {savedRun && (
+          <button type="button" className="v-btn v-btn-primary" disabled={!ready} onClick={onContinue}>
+            Continue · {savedRun.label}
+          </button>
+        )}
+        {confirm && <p>The month so far is replaced. Download it first from the menu if you want it.</p>}
+        <button
+          type="button"
+          className={`v-btn ${savedRun ? '' : 'v-btn-primary'}`}
+          disabled={!ready}
+          onClick={() => (savedRun && !confirm ? setConfirm(true) : onBegin())}
+        >
+          {!ready
+            ? 'Waking the town…'
+            : savedRun
+              ? confirm
+                ? 'Replace the month and begin'
+                : 'Begin the month again'
+              : 'Begin'}
+        </button>
+        {confirm && (
+          <button type="button" className="v-btn" onClick={() => setConfirm(false)}>
+            Keep this month
+          </button>
+        )}
+      </div>
+    </main>
   );
 }

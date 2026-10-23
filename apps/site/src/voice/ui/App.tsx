@@ -8,23 +8,26 @@ import { gameLabs, useLabScreen } from '../../shared/lab.tsx';
 import { PlaytestNotice } from '../../shared/PlaytestMenu.tsx';
 import type { Draft } from '../protocol.ts';
 import { Between } from './Between.tsx';
+import { DayLog } from './DayLog.tsx';
 import { EndsPane } from './EndsPane.tsx';
 import { HalilPane } from './HalilPane.tsx';
 import { Intro } from './Intro.tsx';
 import { Premise } from './Premise.tsx';
 import { Report } from './Report.tsx';
 import { SceneDay } from './SceneDay.tsx';
+import { SendWord } from './SendWord.tsx';
+import { InfoPanel, MenuPanel, OtherWays } from './ShellPanels.tsx';
 import { useStableSpeechFrame } from './stable-speech-frame.ts';
 import { TopBar } from './TopBar.tsx';
 import { useVoice } from './useVoice.ts';
 import { VoicesPane } from './VoicesPane.tsx';
 import { Why } from './Why.tsx';
 
-type Tab = 'day' | 'halil' | 'ends';
+type Tab = 'halil' | 'ends' | 'today';
 const TABS: { id: Tab; label: string }[] = [
-  { id: 'day', label: 'Day' },
+  { id: 'today', label: 'Today' },
   { id: 'halil', label: 'Halil' },
-  { id: 'ends', label: 'Ends & voices' },
+  { id: 'ends', label: 'His ends' },
 ];
 
 export function App() {
@@ -32,7 +35,17 @@ export function App() {
   const stable = useStableSpeechFrame(liveVoice.frame);
   const voice = { ...liveVoice, frame: stable.frame };
   const { frame, actions } = voice;
-  const [tab, setTab] = useState<Tab>('day');
+  const [tab, setTab] = useState<Tab>('halil');
+  const [panelOpen, setPanelOpen] = useState(false);
+  const [infoOpen, setInfoOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [feedbackOpen, setFeedbackOpen] = useState(false);
+  const [otherWays, setOtherWays] = useState(false);
+  const [titleOpen, setTitleOpen] = useState(false);
+  const [speakRequest, setSpeakRequest] = useState(0);
+  const [speaking, setSpeaking] = useState(false);
+  const [canSpeak, setCanSpeak] = useState(false);
+  const [speakCaption, setSpeakCaption] = useState('Listening. Silence needs no tap.');
   const [holdingReply, setHoldingReply] = useState(false);
   const [whyId, setWhyId] = useState<string | null>(null);
 
@@ -40,7 +53,7 @@ export function App() {
   useLabScreen(gameLabs.voice, phase === 'premise' ? 'title' : phase === 'report' ? 'ending' : 'play');
   const live = phase === 'day' || phase === 'eid' || phase === 'free';
   const overlay: 'premise' | 'intro' | 'between' | 'report' | null =
-    !frame || phase === 'premise'
+    !frame || phase === 'premise' || titleOpen
       ? 'premise'
       : phase === 'between'
         ? holdingReply
@@ -57,49 +70,64 @@ export function App() {
   // Keep the screen awake only while the day's clock runs (not paused, not on a card or the report).
   useWakeLock(live && overlay === null && frame !== null && !frame.paused);
 
-  // Space: continue on the premise, intro and between-days cards; toggle pause in play, whatever has focus (a
-  // focused control is never activated by it). Typing fields keep their Space. On the report, Space keeps its
-  // native meaning (scroll, or press the focused button).
-  const keyState = useRef({ overlay, live, paused: frame?.paused ?? true, ready: frame !== null });
-  keyState.current = { overlay, live, paused: frame?.paused ?? true, ready: frame !== null };
+  const clockHeld = menuOpen || infoOpen || feedbackOpen || titleOpen || otherWays;
   useEffect(() => {
-    const isSpace = (e: KeyboardEvent) => e.code === 'Space' || e.key === ' ';
-    const typing = (t: EventTarget | null) =>
-      t instanceof HTMLInputElement ||
-      t instanceof HTMLTextAreaElement ||
-      t instanceof HTMLSelectElement ||
-      (t instanceof HTMLElement && t.isContentEditable);
-    const ours = (e: KeyboardEvent) =>
-      isSpace(e) &&
-      !e.metaKey &&
-      !e.ctrlKey &&
-      !e.altKey &&
-      !typing(e.target) &&
-      !(e.target instanceof Element && e.target.closest('.game-help')) &&
-      keyState.current.overlay !== 'report';
-    const onDown = (e: KeyboardEvent) => {
-      if (!ours(e)) return;
-      const s = keyState.current;
-      e.preventDefault();
-      e.stopPropagation();
-      if (e.repeat) return;
-      if (s.overlay === 'premise') {
-        if (s.ready) actions.begin();
-      } else if (s.overlay === 'intro') actions.dismissIntro();
-      else if (s.overlay === 'between')
-        document.querySelector<HTMLButtonElement>('.v-overlay .v-btn-primary:not(:disabled)')?.click();
-      else if (!s.overlay && s.live) actions.setPaused(!s.paused);
+    actions.setMenuOpen(clockHeld);
+    return () => actions.setMenuOpen(false);
+  }, [actions, clockHeld]);
+  useEffect(() => {
+    if (!infoOpen) return;
+    const outside = (event: PointerEvent) => {
+      if (
+        event.target instanceof Element &&
+        !event.target.closest('.v-info-popover, [aria-label="Information"]')
+      )
+        setInfoOpen(false);
     };
-    // Buttons activate on Space keyup; swallow that too.
-    const onUp = (e: KeyboardEvent) => {
-      if (ours(e)) e.preventDefault();
+    window.addEventListener('pointerdown', outside);
+    return () => window.removeEventListener('pointerdown', outside);
+  }, [infoOpen]);
+  useEffect(() => {
+    if (panelOpen && voice.skipping) actions.skip();
+  }, [panelOpen, voice.skipping, actions]);
+  const keyState = useRef({ overlay, live, held: clockHeld, paused: frame?.paused ?? true });
+  keyState.current = { overlay, live, held: clockHeld, paused: frame?.paused ?? true };
+  useEffect(() => {
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setInfoOpen(false);
+        setMenuOpen(false);
+        setPanelOpen(false);
+        setOtherWays(false);
+        return;
+      }
+      if (
+        event.code !== 'Space' ||
+        event.repeat ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.altKey ||
+        keyState.current.held ||
+        (event.target instanceof Element &&
+          event.target.closest('input,textarea,select,button,a,[contenteditable]'))
+      )
+        return;
+      const state = keyState.current;
+      if (state.overlay) {
+        document
+          .querySelector<HTMLButtonElement>(
+            '.v-page .v-btn-primary:not(:disabled), .v-overlay .v-btn-primary:not(:disabled)',
+          )
+          ?.click();
+        event.preventDefault();
+      } else if (state.live && state.paused) {
+        actions.dismissSceneOffer();
+        actions.setPaused(false);
+        event.preventDefault();
+      }
     };
-    window.addEventListener('keydown', onDown, { capture: true });
-    window.addEventListener('keyup', onUp, { capture: true });
-    return () => {
-      window.removeEventListener('keydown', onDown, { capture: true });
-      window.removeEventListener('keyup', onUp, { capture: true });
-    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
   }, [actions]);
 
   const openWhy = useCallback(
@@ -133,34 +161,47 @@ export function App() {
       onPointerDownCapture={stable.onPointerDownCapture}
       onKeyDownCapture={stable.onKeyDownCapture}
     >
-      {frame && (
-        <TopBar
-          phase={frame.phase}
-          day={frame.day}
-          dayLabel={frame.dayLabel}
-          clock={frame.clock}
-          sky={frame.sky}
-          fastForward={frame.fastForward}
-          reading={voice.reading}
-          paused={frame.paused}
-          pace={frame.pace}
-          autoPause={frame.autoPause}
-          actions={actions}
-          onPlaytestError={actions.playtestError}
-        />
-      )}
-      {frame && (
-        <div className="v-main">
-          <div className="v-col v-col-left">
-            <EndsPane ends={frame.ends} {...(frame.unasked ? { unasked: frame.unasked } : {})} />
-            <VoicesPane voices={frame.voices} />
-          </div>
-          <div className="v-col v-col-centre">
+      <TopBar
+        frame={frame}
+        title={overlay === 'premise'}
+        reading={voice.reading}
+        skipping={voice.skipping}
+        infoOpen={infoOpen}
+        menuOpen={menuOpen}
+        onInfo={() => {
+          setInfoOpen((open) => !open);
+          setMenuOpen(false);
+        }}
+        onMenu={() => {
+          setMenuOpen((open) => !open);
+          setInfoOpen(false);
+        }}
+      />
+      {frame && !overlay && (
+        <main className="v-play-layout">
+          <nav className="v-panel-chips" aria-label="Panels">
+            {[TABS[1], TABS[2], TABS[0]]
+              .filter((t) => !!t)
+              .map((t) => (
+                <button
+                  key={t.id}
+                  type="button"
+                  aria-pressed={panelOpen && tab === t.id}
+                  onClick={() => {
+                    setTab(t.id);
+                    setPanelOpen((open) => (tab === t.id ? !open : true));
+                  }}
+                >
+                  {t.label} ▸
+                </button>
+              ))}
+          </nav>
+          <div className="v-scene-column">
             <SceneDay
               key={voice.runId}
               frame={frame}
               liveFrame={liveVoice.frame ?? frame}
-              active={tab === 'day' && overlay === null}
+              active
               telegraph={voice.telegraph}
               whyOpen={voice.whyOpen}
               selected={whyId}
@@ -175,23 +216,121 @@ export function App() {
               onSayNothing={sayNothing}
               onWithdraw={actions.withdraw}
               onPause={() => actions.setPaused(true)}
+              speakRequest={speakRequest}
+              onSpeakingChange={setSpeaking}
+              onSpeakAvailability={(available, caption) => {
+                setCanSpeak(available);
+                setSpeakCaption(caption);
+              }}
             />
           </div>
-          <div className="v-col v-col-right">
-            <HalilPane halil={frame.halil} />
-          </div>
-        </div>
+          <aside className={`v-context-column ${panelOpen ? 'is-open' : ''}`}>
+            <header className="v-context-header">
+              <nav aria-label="Panels">
+                {[TABS[1], TABS[2], TABS[0]]
+                  .filter((t) => !!t)
+                  .map((t) => (
+                    <button key={t.id} type="button" aria-pressed={tab === t.id} onClick={() => setTab(t.id)}>
+                      {t.label}
+                    </button>
+                  ))}
+              </nav>
+              <button type="button" aria-label="Close panel" onClick={() => setPanelOpen(false)}>
+                ×
+              </button>
+            </header>
+            <div className="v-context-body">
+              {tab === 'halil' ? (
+                <>
+                  <button
+                    type="button"
+                    className="v-current-why v-btn"
+                    onClick={() => {
+                      const id = frame.log.findLast((entry) => entry.decisionId)?.decisionId;
+                      if (id) openWhy(id);
+                    }}
+                  >
+                    Why is he doing this? ▸
+                  </button>
+                  <HalilPane halil={frame.halil} />
+                </>
+              ) : tab === 'ends' ? (
+                <>
+                  <EndsPane ends={frame.ends} {...(frame.unasked ? { unasked: frame.unasked } : {})} />
+                  <h2 className="v-sub">Who else he hears</h2>
+                  <VoicesPane voices={frame.voices} />
+                </>
+              ) : (
+                <DayLog
+                  log={frame.log}
+                  paused={frame.paused}
+                  {...(frame.pauseBeat ? { pauseBeat: frame.pauseBeat } : {})}
+                  onWhy={openWhy}
+                  selected={whyId}
+                  onRetainWhy={actions.retainWhy}
+                />
+              )}
+            </div>
+          </aside>
+          {!speaking && (
+            <footer className="v-live-actions">
+              <p>{frame.muted ? 'You are silent today. Watch.' : speakCaption}</p>
+              <div>
+                {canSpeak && !frame.muted && (
+                  <button
+                    type="button"
+                    className="v-btn"
+                    onClick={() => {
+                      setPanelOpen(false);
+                      setSpeakRequest((value) => value + 1);
+                    }}
+                  >
+                    Speak
+                  </button>
+                )}
+                {frame.paused || voice.sceneReading ? (
+                  <button type="button" className="v-btn" onClick={sayNothing}>
+                    Let time pass
+                  </button>
+                ) : (
+                  !panelOpen && (
+                    <button
+                      type="button"
+                      className="v-btn"
+                      aria-label="Skip to the next event"
+                      aria-pressed={voice.skipping}
+                      onClick={actions.skip}
+                    >
+                      Skip ⏩
+                    </button>
+                  )
+                )}
+              </div>
+            </footer>
+          )}
+        </main>
       )}
-      <nav className="v-tabs" aria-label="Panels">
-        {TABS.map((t) => (
-          <button key={t.id} type="button" aria-pressed={tab === t.id} onClick={() => setTab(t.id)}>
-            {t.label}
-          </button>
-        ))}
-      </nav>
       {voice.whyOpen && !overlay && <Why why={voice.why} missing={voice.whyMissing} onClose={closeWhy} />}
 
-      {overlay === 'premise' && <Premise ready={frame !== null} onBegin={actions.begin} />}
+      {overlay === 'premise' && (
+        <Premise
+          ready={frame !== null}
+          savedRun={voice.savedRun}
+          onContinue={() => {
+            setTitleOpen(false);
+            actions.continueRun();
+          }}
+          onOtherWays={() => setOtherWays(true)}
+          onBegin={() => {
+            setTitleOpen(false);
+            if (phase === 'premise') actions.begin();
+            else {
+              actions.replay();
+              actions.begin();
+            }
+          }}
+        />
+      )}
       {overlay === 'intro' && frame?.intro && (
         <Intro intro={frame.intro} eid={phase === 'eid'} onContinue={actions.dismissIntro} />
       )}
@@ -220,6 +359,7 @@ export function App() {
             onReplay={() => actions.replay()}
             onNewTown={() => actions.replay(1 + Math.floor(Math.random() * 1_000_000))}
             onDownload={actions.exportPlaytest}
+            onSendWord={() => setFeedbackOpen(true)}
           />
         ) : (
           <div className="v-overlay v-overlay-eid">
@@ -229,6 +369,47 @@ export function App() {
           </div>
         ))}
 
+      {infoOpen && (
+        <InfoPanel phase={overlay === 'premise' ? 'premise' : phase} onClose={() => setInfoOpen(false)} />
+      )}
+      {menuOpen && (
+        <MenuPanel
+          label={frame ? `${frame.dayLabel} · ${frame.clock}` : 'Halil'}
+          pace={voice.paceSetting}
+          actions={actions}
+          onClose={() => setMenuOpen(false)}
+          onTitle={() => {
+            setMenuOpen(false);
+            setTitleOpen(true);
+          }}
+          onSendWord={() => {
+            setMenuOpen(false);
+            setFeedbackOpen(true);
+          }}
+        />
+      )}
+      {otherWays && (
+        <OtherWays
+          actions={actions}
+          onClose={() => setOtherWays(false)}
+          onNewTown={() => {
+            setOtherWays(false);
+            setTitleOpen(false);
+            actions.replay(1 + Math.floor(Math.random() * 1_000_000));
+          }}
+        />
+      )}
+      {feedbackOpen && (
+        <div className="v-feedback-screen">
+          <SendWord
+            actions={actions}
+            onBack={() => {
+              setFeedbackOpen(false);
+              setMenuOpen(true);
+            }}
+          />
+        </div>
+      )}
       {voice.error && (
         <div className="v-error" role="alert">
           {voice.error}{' '}

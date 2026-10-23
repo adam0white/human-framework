@@ -1,12 +1,8 @@
 /** Top bar (voice.md §7.2) with the sky band (§4): the hour's light, prayer notches, the fast, and a "now" mark. */
 import { memo } from 'react';
-import { FullscreenButton } from '../../shared/fullscreen.tsx';
-import { gameLabs, LabMenuContent } from '../../shared/lab.tsx';
-import { PlaytestMenu } from '../../shared/PlaytestMenu.tsx';
-import type { Frame, Pace } from '../protocol.ts';
+import type { Frame } from '../protocol.ts';
 import { storyDate } from './dates.ts';
 import { explainTerms } from './terms.tsx';
-import type { VoiceActions } from './useVoice.ts';
 
 const SKY: [number, string][] = [
   [0, '#121831'],
@@ -49,134 +45,76 @@ export const SkyBand = memo(function SkyBand({ sky }: { sky: Frame['sky'] }) {
   );
 });
 
-const PACES: { id: Pace; label: string }[] = [
-  { id: 'slow', label: 'Slow' },
-  { id: 'normal', label: 'Normal' },
-  { id: 'fast', label: 'Fast' },
-];
-
-const paceLabel = (p: Pace) => PACES.find((x) => x.id === p)?.label ?? p;
-const nextPace = (p: Pace): Pace => {
-  const i = PACES.findIndex((x) => x.id === p);
-  return PACES[(i + 1) % PACES.length]?.id ?? 'slow';
-};
-
-/** The frame fields the top bar shows, passed one by one so `memo` can compare them. */
-export type TopBarFields = Pick<
-  Frame,
-  'day' | 'phase' | 'dayLabel' | 'clock' | 'sky' | 'paused' | 'pace' | 'autoPause'
-> & {
-  fastForward: string | undefined;
-  reading?: boolean;
-};
-
 export const TopBar = memo(function TopBar({
-  actions,
-  onPlaytestError,
-  tallySetting,
-  ...frame
-}: TopBarFields & {
-  actions: VoiceActions;
-  onPlaytestError: (message: string) => void;
-  tallySetting?: React.ReactNode;
+  frame,
+  title,
+  reading,
+  skipping,
+  infoOpen,
+  menuOpen,
+  onInfo,
+  onMenu,
+}: {
+  frame: Frame | null;
+  title: boolean;
+  reading: boolean;
+  skipping: boolean;
+  infoOpen: boolean;
+  menuOpen: boolean;
+  onInfo: () => void;
+  onMenu: () => void;
 }) {
-  const live = frame.phase === 'day' || frame.phase === 'eid' || frame.phase === 'free';
+  const label =
+    !frame || title
+      ? ''
+      : frame.phase === 'report'
+        ? 'A week after Eid'
+        : frame.phase === 'between'
+          ? `${frame.dayLabel} is over`
+          : frame.phase === 'free'
+            ? `After Eid · day ${frame.day} · ${frame.clock}`
+            : `${frame.dayLabel} · ${storyDate(frame.day)} · ${frame.clock}`;
   return (
-    <header className="v-top">
-      <div className="v-top-id">
-        <a className="v-top-title" href="/" title="Human Framework home">
-          The Day You Say Nothing
-        </a>
-        <div className="v-top-when">
-          <span className="v-top-day">{frame.dayLabel}</span>
-          <span className="v-top-date">{storyDate(frame.day)}</span>
-          <span className="v-top-clock">{frame.clock}</span>
+    <header className="v-shell-top">
+      <div className="v-shell-when">{title ? <a href="/">All games</a> : label}</div>
+      {frame && !title && (
+        <div className="v-shell-state">
+          <SkyBand sky={frame.sky} />
+          <span className="v-sr">
+            {frame.sky.prayers
+              .filter((p) => p.state)
+              .map((p) => `${p.name} ${p.state}`)
+              .join(', ')}
+          </span>
+          <div className="v-shell-state-words">
+            <span>
+              {skipping
+                ? 'skipping to the next event…'
+                : frame.fastForward
+                  ? `skipping: ${explainTerms(frame.fastForward)}`
+                  : frame.sky.fast
+                    ? `fasting until ${String(Math.floor(frame.sky.fast.until / 60)).padStart(2, '0')}:${String(frame.sky.fast.until % 60).padStart(2, '0')}`
+                    : ''}
+            </span>
+            <span>
+              {menuOpen || infoOpen
+                ? 'held: reading'
+                : frame.paused
+                  ? 'stopped: a moment with Halil'
+                  : reading
+                    ? 'reading: the day slows while you choose'
+                    : ''}
+            </span>
+          </div>
         </div>
-      </div>
-      <div className="v-top-sky">
-        <SkyBand sky={frame.sky} />
-        <span className="v-sr">
-          {frame.sky.prayers
-            .filter((p) => p.state)
-            .map((p) => `${p.name} ${p.state}${p.mosque ? ' at the mosque' : ''}`)
-            .join(', ')}
-        </span>
-        <div className="v-top-ff" aria-live="polite">
-          {frame.reading
-            ? ''
-            : frame.fastForward
-              ? `skipping: ${explainTerms(frame.fastForward)}`
-              : frame.sky.fast
-                ? 'fasting'
-                : ''}
-        </div>
-      </div>
-      <div className="v-top-controls">
-        <button
-          type="button"
-          className="v-btn v-btn-play"
-          onClick={() => actions.setPaused(!frame.paused)}
-          disabled={!live}
-          aria-label={frame.paused ? 'Play (Space)' : 'Pause (Space)'}
-          title={frame.paused ? 'Play (Space)' : 'Pause (Space)'}
-        >
-          {frame.paused ? (
-            <svg viewBox="0 0 16 16" aria-hidden="true">
-              <path d="M4 2.5v11l9-5.5z" />
-            </svg>
-          ) : (
-            <svg viewBox="0 0 16 16" aria-hidden="true">
-              <path d="M4 2.5h3v11H4zM9 2.5h3v11H9z" />
-            </svg>
-          )}
+      )}
+      <div className="v-shell-controls">
+        <button type="button" aria-label="Information" aria-expanded={infoOpen} onClick={onInfo}>
+          i
         </button>
-        <fieldset className="v-seg v-pace" disabled={frame.reading} aria-label="Pace">
-          {frame.reading ? (
-            <span className="v-reading-rate">Reading slowly</span>
-          ) : (
-            PACES.map((p) => (
-              <button
-                key={p.id}
-                type="button"
-                aria-pressed={frame.pace === p.id}
-                onClick={() => actions.setPace(p.id)}
-              >
-                {p.label}
-              </button>
-            ))
-          )}
-        </fieldset>
-        <button
-          type="button"
-          className="v-btn v-btn-quiet v-pace-cycle"
-          onClick={() => actions.setPace(nextPace(frame.pace))}
-          title="Pace"
-          disabled={frame.reading}
-          aria-label={frame.reading ? 'Reading slowly' : `Pace: ${paceLabel(frame.pace)}. Change pace`}
-        >
-          {frame.reading ? 'Reading slowly' : paceLabel(frame.pace)}
+        <button type="button" aria-label="Game menu" aria-expanded={menuOpen} onClick={onMenu}>
+          ≡<span className="v-menu-word"> Menu</span>
         </button>
-        {live && (
-          <button type="button" className="v-btn v-btn-quiet v-endday" onClick={actions.endDay}>
-            <span className="v-long">End the day</span>
-            <span className="v-short">End day</span>
-          </button>
-        )}
-        <PlaytestMenu
-          onOpenChange={actions.setMenuOpen}
-          className="v-playtest pt-compact"
-          onExport={actions.exportPlaytest}
-          onLoad={actions.loadPlaytest}
-          onError={onPlaytestError}
-          extra={
-            <>
-              <LabMenuContent lab={gameLabs.voice} onSend={actions.sendPlaytest} />
-              {tallySetting}
-              <FullscreenButton variant="item" className="v-fs-item" />
-            </>
-          }
-        />
-        <FullscreenButton className="v-fs" />
       </div>
     </header>
   );

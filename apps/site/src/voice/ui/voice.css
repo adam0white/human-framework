@@ -3268,3 +3268,653 @@ button.v-log-btn {
 .v-scene-compact .v-btn {
   min-height: 44px;
 }
+
+/* The scene stays in view; pages and panels own their scrolling. */
+.voice {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.voice button,
+.voice summary,
+.voice a,
+.voice input[type="file"] {
+  min-height: 44px;
+}
+.voice button {
+  touch-action: manipulation;
+}
+.v-shell-top {
+  flex: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: 44px auto;
+  background: var(--indigo);
+  color: #ede6d6;
+  position: relative;
+  z-index: 30;
+}
+.v-shell-when {
+  align-self: center;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 12px;
+  font-size: 13px;
+}
+.v-shell-when a {
+  display: inline-flex;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+}
+.v-shell-controls {
+  display: flex;
+  grid-column: 2;
+  grid-row: 1;
+}
+.v-shell-controls button {
+  color: inherit;
+  background: none;
+  border: 0;
+  min-width: 44px;
+  font-size: 20px;
+}
+.v-shell-controls button[aria-expanded="true"] {
+  background: var(--indigo-2);
+}
+.v-menu-word {
+  display: none;
+}
+.v-shell-state {
+  grid-column: 1 / -1;
+  min-width: 0;
+  height: 40px;
+}
+.v-shell-state .v-sky {
+  height: 22px;
+  border-radius: 0;
+}
+.v-shell-state-words {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 0 8px;
+  font-size: 10px;
+  line-height: 18px;
+  height: 18px;
+  overflow: hidden;
+}
+.v-shell-state-words span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.v-shell-state-words span:last-child {
+  text-align: right;
+}
+.v-play-layout {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+.v-panel-chips {
+  display: flex;
+  gap: 8px;
+  padding: 4px 12px;
+  flex: none;
+  height: 52px;
+}
+.v-panel-chips button {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid var(--edge-strong);
+  border-radius: 22px;
+  background: transparent;
+  color: var(--ink);
+  font-size: 13px;
+}
+.v-panel-chips button[aria-pressed="true"] {
+  background: var(--paper-2);
+}
+.v-scene-column {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+.v-scene-column .v-scene-day {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.v-scene-column .v-scene-reading {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding-bottom: 16px;
+}
+.v-scene-stage h1 {
+  font-size: 22px;
+}
+.v-scene-column .v-scene-stage {
+  margin: 0;
+  min-height: 0;
+}
+.v-scene-column .v-scene-tools {
+  display: none;
+}
+.v-context-column {
+  display: none;
+  position: absolute;
+  inset: 0 0 100px;
+  background: var(--paper);
+  border-top: 1px solid var(--edge-strong);
+  border-radius: 18px 18px 0 0;
+  z-index: 12;
+  flex-direction: column;
+  min-height: 0;
+}
+.v-context-column.is-open {
+  display: flex;
+}
+.v-context-header {
+  display: flex;
+  flex: none;
+  border-bottom: 1px solid var(--edge);
+  padding: 4px 8px;
+}
+.v-context-header nav {
+  display: flex;
+  flex: 1;
+}
+.v-context-header button {
+  flex: 1;
+  min-width: 44px;
+  background: none;
+  border: 0;
+  color: inherit;
+}
+.v-context-header button[aria-pressed="true"] {
+  background: var(--paper-2);
+  border-radius: 18px;
+}
+.v-context-header > button {
+  flex: 0;
+  font-size: 24px;
+}
+.v-context-body {
+  flex: 1;
+  overflow: auto;
+  min-height: 0;
+  padding: 12px 16px;
+}
+.v-context-body .v-pane {
+  height: auto;
+  overflow: visible;
+  max-width: none;
+}
+.v-context-body .v-pane-title {
+  display: none;
+}
+.v-context-body .v-log {
+  height: 100%;
+}
+.v-context-body .v-log-scroll {
+  flex: 1;
+  min-height: 0;
+}
+.v-current-why {
+  margin-bottom: 12px;
+  width: 100%;
+  font-size: 13px;
+}
+.v-live-actions {
+  flex: none;
+  min-height: 100px;
+  padding: 6px 12px 10px;
+  background: var(--paper);
+  border-top: 1px solid var(--edge);
+}
+.v-live-actions p {
+  margin: 0 0 6px;
+  font-size: 12px;
+  color: var(--ink-soft);
+  min-height: 18px;
+}
+.v-live-actions > div {
+  display: flex;
+  gap: 10px;
+}
+.v-live-actions .v-btn {
+  flex: 1;
+  min-height: 52px;
+  padding: 0 10px;
+}
+.v-page,
+.voice > .v-overlay {
+  position: relative;
+  inset: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 0;
+  overflow: hidden;
+  background: var(--paper);
+  color: var(--ink);
+  z-index: auto;
+}
+.v-page-body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 24px;
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+.v-page-actions {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 20px;
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  border-top: 1px solid var(--edge);
+}
+.v-page-actions > .v-btn {
+  min-height: 52px;
+  width: 100%;
+}
+.v-page-actions p {
+  margin: 0;
+  font-size: 13px;
+}
+.v-start-page {
+  background: var(--indigo);
+  color: #ede6d6;
+}
+.v-start-page .v-page-body {
+  padding-top: 36px;
+}
+.v-start-page h1 {
+  font-size: 32px;
+  line-height: 1.1;
+  max-width: 400px;
+}
+.v-start-page .v-premise {
+  text-align: left;
+}
+.v-start-page .v-premise-moon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 16px;
+}
+.v-start-page .v-lede {
+  font-size: 18px;
+  line-height: 1.5;
+}
+.v-start-page .v-page-actions {
+  border: 0;
+}
+.v-start-page .v-btn {
+  color: #ede6d6;
+  border-color: #72748b;
+}
+.v-start-page .v-btn-primary {
+  background: var(--lantern);
+  color: var(--indigo);
+  border-color: var(--lantern);
+}
+.v-shelf-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 12px 0;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--edge-strong);
+  border-bottom: 1px solid var(--edge-strong);
+  color: inherit;
+  text-align: left;
+  font-size: 16px;
+}
+.v-start-page .v-shelf-row {
+  margin-top: 28px;
+  border-color: #525570;
+}
+.v-shell-backdrop {
+  position: absolute;
+  inset: 44px 0 0;
+  background: #10132966;
+  z-index: 50;
+  display: flex;
+  align-items: flex-end;
+}
+.v-menu-panel,
+.v-other-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 100%;
+  overflow: auto;
+  box-sizing: border-box;
+  background: var(--paper);
+  color: var(--ink);
+  width: 100%;
+  padding: 12px 16px 16px;
+  border-radius: 18px 18px 0 0;
+  box-shadow: 0 -6px 30px #0003;
+}
+.v-menu-panel header,
+.v-other-panel header,
+.v-info-popover header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.v-menu-panel h2,
+.v-other-panel h2,
+.v-info-popover h2 {
+  margin: 0;
+  font-size: 16px;
+}
+.v-menu-panel header button,
+.v-other-panel header button,
+.v-info-popover header button {
+  min-width: 44px;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  font-size: 24px;
+}
+.v-menu-panel > button:not(.v-btn-primary),
+.v-menu-panel > a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 44px;
+  padding: 0 8px;
+  box-sizing: border-box;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--edge);
+  text-align: left;
+  color: inherit;
+  text-decoration: none;
+  font: inherit;
+}
+.v-menu-panel .v-hint {
+  margin: 0;
+  font-size: 12px;
+}
+.v-menu-panel footer {
+  padding: 8px 0;
+}
+.v-menu-panel .v-btn-primary {
+  min-height: 52px;
+  flex: none;
+}
+.v-menu-pace {
+  display: flex;
+  gap: 4px;
+  border: 0;
+  padding: 4px 0;
+  margin: 0;
+}
+.v-menu-pace legend {
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+.v-menu-pace button {
+  flex: 1;
+  border: 1px solid var(--edge-strong);
+  background: transparent;
+  color: inherit;
+  border-radius: 10px;
+  font-size: 12px;
+  padding: 0 4px;
+}
+.v-menu-pace button[aria-pressed="true"] {
+  background: var(--paper-2);
+  border-color: var(--ink);
+}
+.v-info-popover {
+  position: absolute;
+  z-index: 60;
+  top: 44px;
+  left: 8px;
+  right: 8px;
+  max-height: 60dvh;
+  overflow: auto;
+  padding: 12px 16px;
+  box-sizing: border-box;
+  background: var(--paper-3);
+  color: var(--ink);
+  border: 1px solid var(--edge-strong);
+  border-radius: 0 0 14px 14px;
+  box-shadow: 0 8px 24px #0004;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.v-info-popover p {
+  margin: 10px 0;
+}
+.v-load-run {
+  display: block;
+  border: 1px solid var(--edge-strong);
+  border-radius: 12px;
+  padding: 12px;
+  margin: 12px 0;
+}
+.v-load-run input {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+}
+.v-feedback-screen {
+  position: absolute;
+  inset: 44px 0 0;
+  z-index: 40;
+  background: var(--paper);
+  overflow: hidden;
+}
+.v-error {
+  z-index: 90;
+}
+@media (min-width: 900px) {
+  .v-shell-top {
+    height: 56px;
+    grid-template-columns: minmax(220px, 1fr) minmax(280px, 560px) auto;
+    grid-template-rows: 56px;
+  }
+  .v-shell-state {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+  }
+  .v-shell-controls {
+    grid-column: 3;
+    align-items: center;
+    padding: 0 12px;
+  }
+  .v-shell-controls button {
+    font-size: 18px;
+  }
+  .v-menu-word {
+    display: inline;
+  }
+  .v-shell-when {
+    font-size: 14px;
+  }
+  .v-play-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 440px;
+    grid-template-rows: minmax(0, 1fr) 100px;
+  }
+  .v-panel-chips {
+    display: none;
+  }
+  .v-scene-column {
+    grid-column: 1;
+    grid-row: 1 / -1;
+    padding: 20px max(24px, calc((100% - 680px) / 2));
+  }
+  .v-context-column,
+  .v-context-column.is-open {
+    display: flex;
+    position: static;
+    grid-column: 2;
+    grid-row: 1;
+    max-height: none;
+    border-radius: 0;
+    border: 0;
+    border-left: 1px solid var(--edge);
+  }
+  .v-context-header > button {
+    display: none;
+  }
+  .v-live-actions {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  .v-page,
+  .voice > .v-overlay {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 440px;
+    grid-template-rows: minmax(0, 1fr);
+  }
+  .v-page-body {
+    grid-column: 1;
+    max-width: 720px;
+    padding: 36px 40px;
+  }
+  .v-page-actions {
+    grid-column: 2;
+    align-self: end;
+    border: 0;
+    border-left: 1px solid var(--edge);
+    padding: 24px;
+    max-height: 100%;
+    overflow: auto;
+  }
+  .v-start-page .v-page-body {
+    padding-top: 64px;
+  }
+  .v-start-page h1 {
+    font-size: 46px;
+  }
+  .v-start-page .v-lede {
+    font-size: 21px;
+  }
+  .v-shell-backdrop {
+    top: 56px;
+    justify-content: flex-end;
+  }
+  .v-menu-panel {
+    height: 100%;
+    width: 400px;
+    border-radius: 0;
+  }
+  .v-menu-panel > .v-btn-primary {
+    margin-top: auto;
+  }
+  .v-other-panel {
+    width: 440px;
+    height: 100%;
+    border-radius: 0;
+  }
+  .v-info-popover {
+    top: 56px;
+    left: auto;
+    right: 12px;
+    width: 560px;
+  }
+  .v-feedback-screen {
+    top: 56px;
+  }
+}
+.voice > .v-overlay > .v-card {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  max-height: none;
+  width: 100%;
+  max-width: none;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  overflow: hidden;
+  background: var(--paper);
+  box-shadow: none;
+}
+@media (min-width: 900px) {
+  .voice > .v-overlay {
+    display: flex;
+  }
+  .voice > .v-overlay > .v-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 440px;
+  }
+  .voice > .v-overlay > .v-card > h2 {
+    grid-column: 1;
+    grid-row: 1;
+    margin: 24px 40px 0;
+  }
+  .voice > .v-overlay > .v-card > .v-page-body {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .voice > .v-overlay > .v-card > .v-page-actions {
+    grid-column: 2;
+    grid-row: 1 / 3;
+  }
+}
+.v-context-body:has(.v-log) {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+@media (min-width: 900px) {
+  .voice > .v-overlay > .v-card {
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+  .v-play-layout .v-scene-day .v-speaking-sheet,
+  .v-play-layout .v-scene-day .v-plan-sheet {
+    position: absolute;
+    inset: 0 0 0 auto;
+    width: 440px;
+  }
+}
+.v-backdrop-close {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: transparent;
+  cursor: default;
+}
+.v-menu-panel,
+.v-other-panel {
+  position: relative;
+}
+.v-scene-column .v-scene-day {
+  position: static;
+}
+.v-context-body > .v-day {
+  height: 100%;
+  overflow: hidden;
+}

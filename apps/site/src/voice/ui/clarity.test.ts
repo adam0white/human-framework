@@ -11,7 +11,6 @@ import { DayLog } from './DayLog.tsx';
 import { EndsList } from './EndsPane.tsx';
 import { Premise } from './Premise.tsx';
 import { TopBar } from './TopBar.tsx';
-import type { VoiceActions } from './useVoice.ts';
 
 // These component checks do not exercise telemetry transport.
 vi.mock('../../shared/lab.tsx', () => ({ gameLabs: { voice: {} }, LabMenuContent: () => null }));
@@ -37,26 +36,36 @@ afterEach(() => {
   for (const cleanup of cleanups.splice(0)) cleanup();
 });
 
-it('offers Begin after at most 40 mandatory words and keeps the full story on request', () => {
+it('offers a full start page with one primary and no inline information controls', () => {
   const el = render(createElement(Premise, { ready: true, onBegin: () => {} }));
-  const card = query(el, '.v-card');
-  const copy = card.cloneNode(true) as HTMLElement;
-  for (const details of copy.querySelectorAll('[popover]')) {
-    details.remove();
-  }
-  const walker = document.createTreeWalker(copy, NodeFilter.SHOW_TEXT);
-  const text: string[] = [];
-  while (walker.nextNode()) text.push(walker.currentNode.textContent ?? '');
-  expect(text.join(' ').trim().split(/\s+/).length).toBeLessThanOrEqual(40);
-  expect(copy.textContent).toContain('Suggest an action; Halil decides.');
-  const context = query<HTMLElement>(el, '[popover]');
-  expect(context.getAttribute('popover')).toBe('auto');
-  expect(context.textContent).toContain('Nuran died fourteen weeks');
-  expect(context.textContent).toContain('Who else he hears');
-  expect(
-    query(card, 'button').compareDocumentPosition(context) & Node.DOCUMENT_POSITION_FOLLOWING,
-  ).toBeTruthy();
-  expect(document.activeElement).toBe(card.querySelector('button'));
+  expect(el.querySelector('.v-page')).not.toBeNull();
+  expect(el.querySelectorAll('.v-btn-primary')).toHaveLength(1);
+  expect(el.textContent).toContain('Suggest an action; Halil decides.');
+  expect(el.textContent).toContain('Other ways in');
+  expect(el.querySelector('.game-help')).toBeNull();
+});
+
+it('puts saved continuation first and confirms replacing a month inline', () => {
+  const begin = vi.fn();
+  const keep = vi.fn();
+  const el = render(
+    createElement(Premise, {
+      ready: true,
+      savedRun: { label: 'Ramadan 15, 14:20' },
+      onBegin: begin,
+      onContinue: keep,
+    }),
+  );
+  expect(el.querySelector('.v-btn-primary')?.textContent).toBe('Continue · Ramadan 15, 14:20');
+  flushSync(() =>
+    [...el.querySelectorAll('button')].find((b) => b.textContent === 'Begin the month again')?.click(),
+  );
+  expect(begin).not.toHaveBeenCalled();
+  expect(el.textContent).toContain('The month so far is replaced.');
+  flushSync(() =>
+    [...el.querySelectorAll('button')].find((b) => b.textContent === 'Replace the month and begin')?.click(),
+  );
+  expect(begin).toHaveBeenCalledOnce();
 });
 
 it('labels decision rows Why and opens the corresponding decision without making other prose look interactive', () => {
@@ -108,15 +117,17 @@ it('shows English weekdays and dates for every fasting day and the rent deadline
   for (let day = 1; day <= 30; day++) {
     const el = render(
       createElement(TopBar, {
-        ...sampleFrame,
-        day,
-        dayLabel: `Ramadan ${day}`,
-        fastForward: undefined,
-        actions: {} as VoiceActions,
-        onPlaytestError: () => {},
+        frame: { ...sampleFrame, day, dayLabel: `Ramadan ${day}` },
+        title: false,
+        reading: false,
+        skipping: false,
+        infoOpen: false,
+        menuOpen: false,
+        onInfo: () => {},
+        onMenu: () => {},
       }),
     );
-    const label = query(el, '.v-top-date').textContent ?? '';
+    const label = query(el, '.v-shell-when').textContent?.split(' · ')[1] ?? '';
     expect(label).toMatch(/^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday) \d+ (March|April)$/);
     if (day === 1) expect(label).toBe('Monday 11 March');
     if (day === 15) expect(label).toBe('Monday 25 March');
@@ -148,23 +159,6 @@ it('dates the rent deadline in the suggestion context and optional opening story
     }),
   );
   expect(query(composer, '.v-prefill').textContent).toContain('Ramadan 15 (Monday 25 March)');
-  const premise = render(createElement(Premise, { ready: true, onBegin: () => {} }));
-  expect(query(premise, '.v-premise-ends').textContent).toContain('Ramadan 15 (Monday 25 March)');
-});
-
-it('marks selected pace with a neutral outline rather than the task accent', () => {
-  const css = readFileSync(resolve(import.meta.dirname, 'voice.css'), 'utf8');
-  const selected = css.match(/\.v-top \.v-seg button\[aria-pressed="true"\]\s*\{([^}]*)\}/)?.[1];
-  expect(selected).toContain('outline:');
-  expect(selected).not.toContain('var(--lantern)');
-  const autoPause = css.match(/\.v-autopause\[aria-pressed="true"\] \.v-autopause-mark\s*\{([^}]*)\}/)?.[1];
-  expect(autoPause).not.toContain('var(--lantern)');
-});
-
-it('gives phone pause and pace controls 44 pixel hit areas without the top-bar override shrinking them', () => {
-  const css = readFileSync(resolve(import.meta.dirname, 'voice.css'), 'utf8');
-  expect(css).toMatch(/\.v-top \.v-btn\s*\{[^}]*min-height:\s*44px/);
-  expect(css).toMatch(/\.v-top \.v-btn\s*\{[^}]*min-width:\s*44px/);
 });
 
 it('keeps lab screen tracking in the game without a separate notebook row', () => {
@@ -174,16 +168,21 @@ it('keeps lab screen tracking in the game without a separate notebook row', () =
   expect(app).not.toContain('<LabControls');
 });
 
-it('offers player pace controls alongside automatic scene slowdown', () => {
+it('keeps one information and one menu control in the top bar', () => {
   const el = render(
     createElement(TopBar, {
-      ...sampleFrame,
-      fastForward: undefined,
-      actions: {} as VoiceActions,
-      onPlaytestError: () => {},
+      frame: sampleFrame,
+      title: false,
+      reading: false,
+      skipping: false,
+      infoOpen: false,
+      menuOpen: false,
+      onInfo: () => {},
+      onMenu: () => {},
     }),
   );
-  expect(el.querySelector('.v-autopause')).toBeNull();
-  expect(el.querySelectorAll('.v-pace button')).toHaveLength(3);
-  expect(el.querySelector('.v-pace-cycle')?.textContent).toBe('Slow');
+  expect(el.querySelectorAll('button')).toHaveLength(2);
+  expect(el.querySelector('[aria-label="Information"]')).not.toBeNull();
+  expect(el.querySelector('[aria-label="Game menu"]')).not.toBeNull();
+  expect(el.querySelector('[aria-label="Pace"]')).toBeNull();
 });

@@ -18,13 +18,8 @@ export function Intro({
     button.current?.focus();
   }, []);
   return (
-    <div
-      className={`v-overlay ${eid ? 'v-overlay-eid' : 'v-overlay-night'}`}
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="intro-title"
-    >
-      <div className="v-card v-intro">
+    <section className={`v-page ${eid ? 'v-overlay-eid' : 'v-overlay-night'}`} aria-labelledby="intro-title">
+      <div className="v-page-body v-intro">
         {eid && (
           <svg className="v-premise-moon" viewBox="0 0 48 48" aria-hidden="true">
             <path d="M30 6a18 18 0 1 0 12 30A15 15 0 0 1 30 6z" />
@@ -36,11 +31,13 @@ export function Intro({
             <li key={l}>{explainTerms(storyDates(l))}</li>
           ))}
         </ul>
-        {eid && <p className="v-hint">There is no composer today. You can still open Why on any line.</p>}
+        {eid && <p className="v-hint">You are silent today. You can still open Why on any line in Today.</p>}
+      </div>
+      <div className="v-page-actions">
         <button ref={button} type="button" className="v-btn v-btn-primary v-btn-big" onClick={onContinue}>
-          Continue
+          {eid ? 'Watch Eid' : 'Into the day'}
         </button>
       </div>
-    </div>
+    </section>
   );
 }
