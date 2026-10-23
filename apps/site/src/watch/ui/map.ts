@@ -1256,6 +1256,7 @@ function drawVillagers(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, days:
   if (span < 30) return;
   const size = Math.max(0.9, Math.min(1.5, span / 150));
   const crowd = f.villagers.length > 14;
+  const labels: { text: string; x: number; y: number; width: number }[] = [];
   for (const v of f.villagers) {
     const i = SECTION_IDS.indexOf(v.home);
     const hx = hashId(v.id);
@@ -1284,9 +1285,10 @@ function drawVillagers(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, days:
       ctx.font = '600 10px "Instrument Sans", system-ui, sans-serif';
       ctx.textAlign = 'center';
       ctx.fillStyle = 'rgba(255, 243, 220, 0.85)';
-      ctx.fillText(v.name, x, y + 16 * size);
+      labels.push({ text: v.name, x, y: y + 16 * size, width: ctx.measureText(v.name).width });
     }
   }
+  for (const item of placeMapLabels(labels, l.w, l.h)) nameLabel(ctx, item.text, item.x, item.y);
 }
 
 /** A name on the map, outlined in the night colour so it reads over huts and wall. Uses the current fill and font. */
