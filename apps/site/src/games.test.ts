@@ -28,6 +28,7 @@ describe('ranked games', () => {
       'repair',
       'neighbours',
       'rope',
+      'commonstead',
     ]);
     expect(GAMES.filter((g) => g.status === 'frozen').map((g) => g.id)).toEqual([
       'repair',

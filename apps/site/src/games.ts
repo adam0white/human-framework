@@ -160,6 +160,15 @@ export const GAMES: Game[] = [
     line: 'A climb where the body has to last the descent.',
     faculties: ['Body', 'Forecast', 'Will'],
   },
+  {
+    id: 'commonstead',
+    rank: 15,
+    status: 'active',
+    name: 'Commonstead',
+    href: 'https://commonstead.adamwhite.work',
+    line: 'Raise a storehouse before the storm. Five people have their own limits. Experiment; owner acceptance pending.',
+    faculties: ['Body', 'Will', 'Memory and belief'],
+  },
 ];
 
 export const isExternal = (g: Game): boolean => /^https?:\/\//.test(g.href);

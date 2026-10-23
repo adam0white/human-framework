@@ -3157,7 +3157,7 @@
    "verdict": "quit",
    "routes": [
     "fix:hearsay quick-reply story stays the one chosen (resolved by rebuild 00b01e94f81bae7b649552576ef64283906fb815)",
-    "fix:hearsay a dilemma with Elif (open)"
+    "fix:hearsay a dilemma with Elif (fixed hearsay a7256adc2a5660a9178d9e2f12a1d1eaaa95341b)"
    ],
    "source": "hearsay/docs/playtests/2026-10-20-r5-tester-g.md"
   },
@@ -5659,7 +5659,7 @@
    "words": "[chose: start light prep now]",
    "verdict": "-",
    "routes": [
-    "fix:lab Show HN prep, package README and claims pass (open, target 2026-11-03)"
+    "fix:lab Show HN prep, package README and claims pass (fixed human-framework 080cd2a, owner review pending, not posted)"
    ],
    "source": "Decision desk: show-hn"
   },
@@ -6204,6 +6204,307 @@
     "fix:lab recast all 15 games including Commonstead and frozen hosts (open)"
    ],
    "source": "docs/owner-directions-2026-10-18.md#2026-10-23-cast-size-and-between-games-life-adam-verbatim"
+  },
+  {
+   "id": "F-466",
+   "date": "2026-10-23",
+   "game": "rope",
+   "kind": "playtester",
+   "who": "Mira (free)",
+   "words": "I would not leave it running, and I do not currently want to return voluntarily.",
+   "verdict": "quit",
+   "routes": [
+    "fix:rope Identify the flagging person without guessing from tiny postures (open, target 2026-11-03)",
+    "fix:rope Show the entire help hint on this phone (open, target 2026-11-03)",
+    "fix:rope Make routine gentle requests with fewer repeated tone choices (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/rebuild-2026-10-23/rope-free.md"
+  },
+  {
+   "id": "F-467",
+   "date": "2026-10-23",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Ellis (free)",
+   "words": "I would return voluntarily to continue that repair.",
+   "verdict": "keep",
+   "routes": [
+    "fix:repair Keep the meter reading and active measurement condition visible while placing probes and reading the result on this phone (open, target 2026-11-03)",
+    "fix:lab Document and use tab role in supplied access instructions (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/rebuild-2026-10-23/repair-free.md"
+  },
+  {
+   "id": "F-468",
+   "date": "2026-10-23",
+   "game": "neighbours",
+   "kind": "playtester",
+   "who": "Rafi (free)",
+   "words": "I would try again with working access because I still wanted to see my work matter",
+   "verdict": "mixed",
+   "routes": [
+    "fix:neighbours Make the full action names readable on this phone without guessing clipped text (open, target 2026-11-03)",
+    "fix:neighbours After not now tell me plainly whether I owe anything yet (open, target 2026-11-03)",
+    "fix:lab Let the player reach and perform their own useful work reliably (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/rebuild-2026-10-23/neighbours-free.md"
+  },
+  {
+   "id": "F-469",
+   "date": "2026-10-23",
+   "game": "watch",
+   "kind": "playtester",
+   "who": "Nessa (free)",
+   "words": "I would consider another evening voluntarily because I care about the people, but would not leave this running unattended.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:watch Recognize how to ask someone to cover an empty wall during the night or explain why I cannot (open, target 2026-11-03)",
+    "fix:watch Recognize how to give a tiring watcher the night off at dusk (open, target 2026-11-03)",
+    "fix:watch Read both helpers and their send controls without fixed controls hiding the lower option (open, target 2026-11-03)",
+    "fix:lab Operate the visible feedback name expander reliably (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/rebuild-2026-10-23/watch-free.md"
+  },
+  {
+   "id": "F-470",
+   "date": "2026-10-23",
+   "game": "watch",
+   "kind": "playtester",
+   "who": "Nessa (continued)",
+   "words": "I might return voluntarily on another evening for the people, but I was not eager to start another full watch.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:watch Follow each person’s answer and return more clearly especially when a rest request ends or the bell brings someone back (open, target 2026-11-03)",
+    "fix:watch Give more of the named person’s view after a consequential moment (open, target 2026-11-03)",
+    "fix:watch Tell how much of the watch sequence remains before thaw (open, target 2026-11-03)",
+    "fix:lab Operate the visible feedback name expander reliably (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/rebuild-2026-10-23/watch-continued.md"
+  },
+  {
+   "id": "F-471",
+   "date": "2026-10-23",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Tomas (free)",
+   "words": "I might return voluntarily another evening out of curiosity, but I was not eager to begin Wednesday.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:pass Talk to a cook about what they said without making it a job request (open, target 2026-11-03)",
+    "fix:pass Read the entire agreement and cover answer on the phone board (open, target 2026-11-03)",
+    "fix:pass More crew interaction during service (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/rebuild-2026-10-23/pass-free.md"
+  },
+  {
+   "id": "F-472",
+   "date": "2026-10-23",
+   "game": "pass",
+   "kind": "playtester",
+   "who": "Tomas (continued)",
+   "words": "I might voluntarily return for Saturday; uncertain.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:pass Hear the conversation when I sit with Rafi (open, target 2026-11-03)",
+    "fix:pass Ordinary contact with the crew during quiet stretches without manufacturing trouble (open, target 2026-11-03)",
+    "fix:pass Read full board agreements on my phone especially cover refusals (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/rebuild-2026-10-23/pass-continued.md"
+  },
+  {
+   "id": "F-473",
+   "date": "2026-10-23",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Leena (free)",
+   "words": "I would close this, not leave it running, and I would not voluntarily return tonight.",
+   "verdict": "quit",
+   "routes": [
+    "fix:well Tell me whether my appeal was sent and which later answer belongs to it (open, target 2026-11-03)",
+    "fix:well Explain why enough food differs from the twelve-meal storm goal when refusing my order (open, target 2026-11-03)",
+    "fix:well Put exact roof and meal numbers alongside the order without opening comparison (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/rebuild-2026-10-23/well-free.md"
+  },
+  {
+   "id": "F-474",
+   "date": "2026-10-23",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Leena (continued)",
+   "words": "I would not voluntarily return at this point, though I had wanted to read the winning explanation before the tool block.",
+   "verdict": "quit",
+   "routes": [
+    "fix:well See what is holding up the roof while builders work including progress toward the next stage (open, target 2026-11-03)",
+    "fix:well Tell what my appeal or ordinary order changed especially when it costs trust (open, target 2026-11-03)",
+    "fix:well Keep the inspected person’s information readable without map and order text showing through it (open, target 2026-11-03)",
+    "fix:lab Operate visible disclosure groups reliably through supplied access (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/rebuild-2026-10-23/well-continued.md"
+  },
+  {
+   "id": "F-475",
+   "date": "2026-10-23",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Omar (free)",
+   "words": "I might return with a slower way to spend the evening, but would not return voluntarily tonight.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice More time to read and choose before a conversational opportunity changes (open, target 2026-11-03)",
+    "fix:voice A clear way to stay with the daughter’s evening call or know when I have missed it (open, target 2026-11-03)",
+    "fix:voice Keep the ordinary conversation close without the predicted-reply planning form making Halil feel distant (open, target 2026-11-03)",
+    "fix:lab Investigate blocked Game menu access without assuming the recording notice is the cause (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/rebuild-2026-10-23/voice-free.md"
+  },
+  {
+   "id": "F-476",
+   "date": "2026-10-23",
+   "game": "murmur",
+   "kind": "playtester",
+   "who": "Pia (free)",
+   "words": "I might voluntarily return with the menu pause in mind.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:murmur More time to read and answer before Dilan decides for herself (open, target 2026-11-03)",
+    "fix:murmur A clearer indication of how much response time remains (open, target 2026-11-03)",
+    "fix:murmur A clear statement of whether Slow changes the time available to answer (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/rebuild-2026-10-23/murmur-free.md"
+  },
+  {
+   "id": "F-477",
+   "date": "2026-10-23",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Cem (free)",
+   "words": "I would return voluntarily if I could read the sharing page on my phone.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:stairwell See and use the Tell choices on this phone (open, target 2026-11-03)",
+    "fix:stairwell Read the notebook sentence from its beginning (open, target 2026-11-03)",
+    "fix:stairwell Tell when Sunday support stops being too early (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/rebuild-2026-10-23/stairwell-free.md"
+  },
+  {
+   "id": "F-478",
+   "date": "2026-10-23",
+   "game": "glance",
+   "kind": "playtester",
+   "who": "Alba (free)",
+   "words": "I would not return voluntarily tonight.",
+   "verdict": "quit",
+   "routes": [
+    "fix:glance Find a way to compare Dai’s number with another observation while I still care about the question (open, target 2026-11-03)",
+    "fix:glance Inspect the lightning observation after the flash with enough context to understand it (open, target 2026-11-03)",
+    "fix:glance Keep the town goal and Friday deadline visible while choosing a gate order (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/rebuild-2026-10-23/glance-free.md"
+  },
+  {
+   "id": "F-479",
+   "date": "2026-10-23",
+   "game": "hearsay",
+   "kind": "playtester",
+   "who": "Idris (free)",
+   "words": "I would not return voluntarily yet.",
+   "verdict": "quit",
+   "routes": [
+    "fix:hearsay First conversations with Emre and Elif tell something personal about the marriage (open, target 2026-11-03)",
+    "fix:hearsay Asking a different neighbour gives a reason to keep listening beyond the repeated uncertainty sentence (open, target 2026-11-03)",
+    "fix:hearsay Read every recipient button without another control covering it (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/rebuild-2026-10-23/hearsay-free.md"
+  },
+  {
+   "id": "F-480",
+   "date": "2026-10-23",
+   "game": "goodhands",
+   "kind": "playtester",
+   "who": "Sora (free)",
+   "words": "I might voluntarily return to learn how the placement fares.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:goodhands Keep the family’s placement deadline visible while considering the offer (open, target 2026-11-03)",
+    "fix:goodhands Say Added evidence about patience when recording a doubtful answer (open, target 2026-11-03)",
+    "fix:goodhands Show how many questions remain as a number (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/rebuild-2026-10-23/goodhands-free.md"
+  },
+  {
+   "id": "F-481",
+   "date": "2026-10-23",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Dalia (free)",
+   "words": "I would return voluntarily for the households.",
+   "verdict": "keep",
+   "routes": [
+    "fix:valley Find the promised visit from the household’s put-off answer (open, target 2026-11-03)",
+    "fix:valley Keep the goal and immediate explanation readable on this phone (open, target 2026-11-03)",
+    "fix:valley Tell clearly whether a house-page call asks that house or everyone (open, target 2026-11-03)",
+    "fix:lab Investigate blocked Dere house access from current visible controls (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/rebuild-2026-10-23/valley-free.md"
+  },
+  {
+   "id": "F-482",
+   "date": "2026-10-23",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Dalia (continued)",
+   "words": "I would voluntarily return to meet the households.",
+   "verdict": "keep",
+   "routes": [
+    "fix:valley Make an introductory visit before asking a household for work (open, target 2026-11-03)",
+    "fix:valley Make the scope of Call to barley clear at the point of action (open, target 2026-11-03)",
+    "fix:valley Keep the complete immediate reply and rain deadline readable while a household is open on this phone (open, target 2026-11-03)",
+    "fix:lab Investigate blocked Çoban house access from current visible controls while ledger open (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/rebuild-2026-10-23/valley-continued.md"
+  },
+  {
+   "id": "F-483",
+   "date": "2026-10-23",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "Finn (free)",
+   "words": "I would close the game rather than leave it running, and probably would not return voluntarily.",
+   "verdict": "quit",
+   "routes": [
+    "fix:warren One consistent answer about whether there are enough sleeping places (open, target 2026-11-03)",
+    "fix:warren Make completed work and current worker activity easier to notice without opening a separate list (open, target 2026-11-03)",
+    "fix:warren A clearer sense of how long I am waiting for danger (open, target 2026-11-03)"
+   ],
+   "source": "docs/lab/reviews/rebuild-2026-10-23/warren-free.md"
+  },
+  {
+   "id": "F-484",
+   "date": "2026-10-23",
+   "game": "adr",
+   "kind": "playtester",
+   "who": "Vera (free)",
+   "words": "I would leave the game running and return voluntarily after tea.",
+   "verdict": "keep",
+   "routes": [
+    "none"
+   ],
+   "source": "docs/lab/reviews/rebuild-2026-10-23/adr-free.md"
+  },
+  {
+   "id": "F-485",
+   "date": "2026-10-23",
+   "game": "commonstead",
+   "kind": "harness",
+   "who": "Codex builder",
+   "words": "Commonstead: original Canvas RTS opening with HF villagers, embodied work and remembered pressure",
+   "verdict": "-",
+   "routes": [
+    "fix:commonstead builder vertical slice (implemented commonstead 7103af9753c0c6bcaf45556d383d762580db00ad, owner play and acceptance pending)"
+   ],
+   "source": "https://github.com/adam0white/commonstead"
   }
  ],
  "lessons": [
@@ -6287,8 +6588,8 @@
   },
   {
    "id": "L5",
-   "title": "Show the numbers a decision needs, in plain words, before the player commits.",
-   "text": "Say what a choice costs in time, what is due, and how near the goal is, in a sentence. This keeps \"show, don't count\" for inner states and still lets the player plan. Do not use bars for a person's inner state.",
+   "title": "Show the information a decision needs, within the character's knowledge.",
+   "text": "Before commitment, state known costs, deadlines and progress in plain words. Use estimates for what the character can foresee but has not counted. Use approximate readings for uncounted resources and bodily capability. Do not turn fatigue, ammunition or injury into exact counters just because they affect a decision. Hidden consequences may stay hidden ([checklist](design-language.md) DL-14, DL-17–19).",
    "evidence": [
     "F-020",
     "F-044",
@@ -6318,8 +6619,8 @@
   },
   {
    "id": "L7",
-   "title": "Fill the first hour and the quiet stretches.",
-   "text": "Put a decision, a refusal or a small event inside the first minutes. When nothing is on screen, fast-forward or add small life. Long empty stretches (a winter, the small hours, an empty rail) are where players quit.",
+   "title": "Test what quiet time gives the player.",
+   "text": "Make a meaningful choice available in the opening ([checklist](design-language.md) DL-6). Test whether quiet time creates anticipation, room to think or boredom. If it bores, expose a meaningful response, offer a visible way to advance time, or shorten the wait. Do not add repeated flavour events merely to make the screen busy. A deliberate wait may stay when the game's design doc explains its purpose (DL-32).",
    "evidence": [
     "F-007",
     "F-008",
@@ -6440,8 +6741,8 @@
   },
   {
    "id": "L14",
-   "title": "Close the threads the game opens, and end on one open question.",
-   "text": "A hook that never pays off (a photo, a promise, a visit) reads as a dropped thread. End a session on one named question the player wants answered. This follows the owner's request to start from what brings players back.",
+   "title": "Resolve promised threads; let a final ending close.",
+   "text": "Resolve threads the game has presented as promises (a photo, a promise, a visit). At an interim stopping point, make an unfinished consequence or question available when it gives the player a reason to return. A final ending may close cleanly. Make it clear what resolved and whether play continues ([checklist](design-language.md) DL-12).",
    "evidence": [
     "F-004",
     "F-060",
@@ -6455,8 +6756,8 @@
   },
   {
    "id": "L15",
-   "title": "Start with natural difficulty, and check that week one bites.",
-   "text": "The owner prefers hard-where-natural, relaxed later. Check with attentive and inattentive play that the first stretch has stakes. Several games paid off in the first week without any input.",
+   "title": "Keep natural difficulty; test whether attention matters.",
+   "text": "The owner prefers hard-where-natural, relaxed later. Several games paid off in the first week without any input. Test attentive and inattentive play for meaningful differences where the opening has natural stakes. Keep consequences proportional to the fiction. Do not add an artificial early crisis merely to prove difficulty ([checklist](design-language.md), Taste).",
    "evidence": [
     "F-001",
     "F-017",
@@ -6810,10 +7111,10 @@
   }
  ],
  "routes": {
-  "fix": 524,
+  "fix": 584,
   "lesson": 291,
   "hf": 12,
   "calibration": 42,
-  "none": 7
+  "none": 8
  }
 }

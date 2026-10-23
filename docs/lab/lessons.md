@@ -18,16 +18,16 @@ Evidence: F-019, F-021, F-030, F-032, F-045, F-062, F-065, F-085, F-120, F-170
 A tap with no answer reads as a bug. A verb that only logs a line makes the player feel mute. Show a reply, even "nobody heard you", and show an order while it is carried out.
 Evidence: F-011, F-039, F-058, F-072, F-077, F-082, F-084, F-085, F-102, F-105, F-127, F-134, F-135, F-148, F-149, F-164, F-166, F-168, F-178, F-180
 
-### L5 — Show the numbers a decision needs, in plain words, before the player commits.
-Say what a choice costs in time, what is due, and how near the goal is, in a sentence. This keeps "show, don't count" for inner states and still lets the player plan. Do not use bars for a person's inner state.
+### L5 — Show the information a decision needs, within the character's knowledge.
+Before commitment, state known costs, deadlines and progress in plain words. Use estimates for what the character can foresee but has not counted. Use approximate readings for uncounted resources and bodily capability. Do not turn fatigue, ammunition or injury into exact counters just because they affect a decision. Hidden consequences may stay hidden ([checklist](design-language.md) DL-14, DL-17–19).
 Evidence: F-020, F-044, F-069, F-070, F-081, F-105, F-144, F-165, F-180
 
 ### L6 — Slow the clock when a choice is waiting.
 Fast speed must drop to slow for a knock at the door, a fall, a hunger call, a promised hour, or an open sheet. Players lose the moment that mattered when the clock runs on.
 Evidence: F-043, F-074, F-083, F-091, F-124, F-130, F-155, F-171
 
-### L7 — Fill the first hour and the quiet stretches.
-Put a decision, a refusal or a small event inside the first minutes. When nothing is on screen, fast-forward or add small life. Long empty stretches (a winter, the small hours, an empty rail) are where players quit.
+### L7 — Test what quiet time gives the player.
+Make a meaningful choice available in the opening ([checklist](design-language.md) DL-6). Test whether quiet time creates anticipation, room to think or boredom. If it bores, expose a meaningful response, offer a visible way to advance time, or shorten the wait. Do not add repeated flavour events merely to make the screen busy. A deliberate wait may stay when the game's design doc explains its purpose (DL-32).
 Evidence: F-007, F-008, F-025, F-051, F-069, F-073, F-139, F-144, F-163, F-175, F-176, F-178, F-183
 
 ### L8 — A save holds still, and resuming is obvious.
@@ -54,12 +54,12 @@ Evidence: F-037, F-042, F-052, F-131
 The moments players praised came from something they did earlier and came back (a kept promise, a let-go, a warning that was not believed). The moments they resented happened offscreen as one log line.
 Evidence: F-006, F-009, F-018, F-022, F-028, F-047, F-059, F-063, F-064, F-074, F-076, F-092, F-123, F-126, F-136, F-142, F-145, F-147, F-152, F-161, F-167, F-174, F-177
 
-### L14 — Close the threads the game opens, and end on one open question.
-A hook that never pays off (a photo, a promise, a visit) reads as a dropped thread. End a session on one named question the player wants answered. This follows the owner's request to start from what brings players back.
+### L14 — Resolve promised threads; let a final ending close.
+Resolve threads the game has presented as promises (a photo, a promise, a visit). At an interim stopping point, make an unfinished consequence or question available when it gives the player a reason to return. A final ending may close cleanly. Make it clear what resolved and whether play continues ([checklist](design-language.md) DL-12).
 Evidence: F-004, F-060, F-061, F-127, F-128, F-132, F-153, F-154
 
-### L15 — Start with natural difficulty, and check that week one bites.
-The owner prefers hard-where-natural, relaxed later. Check with attentive and inattentive play that the first stretch has stakes. Several games paid off in the first week without any input.
+### L15 — Keep natural difficulty; test whether attention matters.
+The owner prefers hard-where-natural, relaxed later. Several games paid off in the first week without any input. Test attentive and inattentive play for meaningful differences where the opening has natural stakes. Keep consequences proportional to the fiction. Do not add an artificial early crisis merely to prove difficulty ([checklist](design-language.md), Taste).
 Evidence: F-001, F-017, F-036, F-054, F-078, F-086, F-089, F-138
 
 ### L16 — Read simulated testers as a different signal from people.
