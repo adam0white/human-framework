@@ -38,7 +38,10 @@
     "lab:ledger": "node scripts/lab-ledger.ts",
     "lab:inbox": "node scripts/lab-inbox.ts",
     "lab:phone": "node scripts/lab-phone.ts",
-    "lab:play": "node scripts/lab-play.ts"
+    "lab:play": "node scripts/lab-play.ts",
+    "lab:wai-usage": "node scripts/lab-wai-budget.ts",
+    "lab:wai-play": "node scripts/lab-wai-play.ts --run",
+    "lab:wai-install": "node scripts/install-wai-daily.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.15",

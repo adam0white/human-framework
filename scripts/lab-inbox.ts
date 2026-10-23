@@ -14,7 +14,7 @@
  * payload goes to AI. Downloaded files are local copies: R2 retention does not delete them.
  * Nothing goes to the ledger or back to R2.
  * Cost: about 0.0003 USD a note, at 0.24 USD per million input tokens (output free). Stop new calls once
- * response usage reaches 0.05 USD per invocation or usage cannot be read. Cached answers cost nothing.
+ * response usage reaches 0.05 USD per invocation or usage cannot be read. Shared daily/lifetime reservations also apply. Cached answers cost nothing.
  * The page reports a stop.
  */
 import { execFileSync } from 'node:child_process';
@@ -31,12 +31,9 @@ import {
   playerNames,
 } from './lab-inbox-linked.ts';
 import { personaMeasurements } from './lab-inbox-persona.ts';
-
 import {
-  ACCOUNT,
   buildNoteRequest,
   canSuggest,
-  clefAuth,
   MODEL,
   parseSuggestion,
   readSuggestion,
@@ -44,6 +41,7 @@ import {
   suggestionUsage,
   writeSuggestion,
 } from './lab-inbox-suggest.ts';
+import { waiRun } from './lab-wai-budget.ts';
 
 const suggest = process.argv.includes('--suggest');
 let calls = 0;
@@ -70,25 +68,11 @@ async function suggestionLine(id: string, env: Envelope): Promise<string> {
       spendStopped = true;
       return '';
     }
-    failure = 'could not read Cloudflare authentication';
-    const auth = clefAuth();
-    // No retries within this invocation. Never include raw errors or response bodies in output.
-    failure = 'request could not complete';
+    failure = 'guarded Clef request could not complete';
     calls++;
-    const res = await fetch(`https://api.cloudflare.com/client/v4/accounts/${ACCOUNT}/ai/run/${MODEL}`, {
-      method: 'POST',
-      headers: { authorization: `Bearer ${auth}`, 'content-type': 'application/json' },
-      body: JSON.stringify(request),
-    });
-    if (!res.ok) {
-      failure = `HTTP ${res.status}`;
-      throw new Error();
-    }
     spendUnknown = true;
-    failure = 'invalid response JSON';
-    const json = (await res.json()) as { success?: boolean; result?: unknown };
-    failure = 'invalid Clef answer';
-    if (json.success === false) throw new Error();
+    const { result } = await waiRun(MODEL, request);
+    const json = { result };
     spent += suggestionUsage(json.result).usd;
     spendUnknown = false;
     if (!canSuggest(spent)) spendStopped = true;

@@ -4,6 +4,8 @@
   "account_id": "a20259cba74e506296745f9c67c1f3bc",
   "compatibility_date": "2026-10-20",
   "workers_dev": false,
+  // Owner-authorized default-off free-text prototype; lifetime $1 reservation in R2.
+  "ai": { "binding": "AI" },
   "preview_urls": false,
   "routes": [{ "pattern": "human.adamwhite.work", "custom_domain": true }],
   // The lab Worker (owner, 2026-10-19: server infrastructure for lab telemetry only). It runs only for the

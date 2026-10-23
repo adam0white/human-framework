@@ -3,6 +3,8 @@
  * and plain suggestions. Halil and Ends remain available through tabs. Space toggles the clock.
  */
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { sceneKey } from '../../free-text/core.ts';
+import { RequestTranslator } from '../../free-text/RequestTranslator.tsx';
 import { useWakeLock } from '../../shared/fullscreen.tsx';
 import { LabNotice } from '../../shared/LabNotice.tsx';
 import { gameLabs, useLabScreen } from '../../shared/lab.tsx';
@@ -40,6 +42,7 @@ export function App() {
   const [panelOpen, setPanelOpen] = useState(false);
   const [infoOpen, setInfoOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [freeText, setFreeText] = useState(false);
   const [feedbackOpen, setFeedbackOpen] = useState(false);
   const [otherWays, setOtherWays] = useState(false);
   const [titleOpen, setTitleOpen] = useState(false);
@@ -211,6 +214,19 @@ export function App() {
               ))}
           </nav>
           <div className="v-scene-column">
+            {freeText && (liveVoice.frame ?? frame).composer.open && !(liveVoice.frame ?? frame).muted && (
+              <RequestTranslator
+                acts={(liveVoice.frame ?? frame).options.map(({ id, label }) => ({ id, label }))}
+                scene={sceneKey(
+                  String(voice.runId),
+                  (liveVoice.frame ?? frame).day,
+                  (liveVoice.frame ?? frame).minute,
+                  (liveVoice.frame ?? frame).options.map(({ id, label }) => ({ id, label })),
+                )}
+                onHold={() => actions.setPaused(true)}
+                onConfirm={suggest}
+              />
+            )}
             <SceneDay
               key={voice.runId}
               frame={frame}
@@ -388,6 +404,8 @@ export function App() {
       )}
       {menuOpen && (
         <MenuPanel
+          freeText={freeText}
+          onFreeText={setFreeText}
           canReturn={phase === 'premise' || phase === 'report'}
           label={frame ? `${frame.dayLabel} · ${frame.clock}` : 'Halil'}
           pace={voice.paceSetting}

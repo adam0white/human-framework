@@ -138,16 +138,45 @@ describe('lab:inbox Clef suggestions', () => {
   });
 });
 
-// Run the actual entry point with fake Wrangler and Clef. These tests cannot reach the network.
+// Run the actual entry point and budget guard with fake Wrangler, account analytics and Clef.
+// Each child has a temporary home and durable ledger. It cannot reach the network or the owner's ledger.
 type Failure = 'auth' | 'network' | 'http' | 'json' | 'usage' | 'answer' | 'read' | 'write' | 'rename';
-function inboxFixture(inputTokens: number, failure?: Failure) {
+function inboxFixture(
+  inputTokens: number,
+  failure?: Failure,
+  options: { nearDailyCap?: boolean; note?: string; overReserveBy?: number } = {},
+) {
   const root = mkdtempSync(join(tmpdir(), 'lab-inbox-script-'));
   mkdirSync(join(root, 'scripts'));
   mkdirSync(join(root, '.lab-inbox/runs'), { recursive: true });
-  for (const file of ['lab-inbox.ts', 'lab-inbox-suggest.ts', 'lab-inbox-linked.ts', 'lab-inbox-persona.ts'])
+  for (const file of [
+    'lab-inbox.ts',
+    'lab-inbox-suggest.ts',
+    'lab-inbox-linked.ts',
+    'lab-inbox-persona.ts',
+    'lab-wai-budget.ts',
+  ])
     writeFileSync(join(root, 'scripts', file), readFileSync(resolve('scripts', file)));
   writeFileSync(join(root, 'package.json'), '{"type":"module"}');
   const date = new Date().toISOString().slice(0, 10);
+  const note = options.note ?? 'Three words here';
+  const reserve = Math.ceil(
+    ((Buffer.byteLength(JSON.stringify(buildNoteRequest('agent name', note))) + 1024) * 21818) / 1e6,
+  );
+  const home = join(root, 'home');
+  const budgetDir = join(home, 'code/.lab-scratch/wai-daily');
+  mkdirSync(budgetDir, { recursive: true });
+  const initialNeurons = options.nearDailyCap ? 2000 - reserve + (options.overReserveBy ?? 0) : 0;
+  writeFileSync(
+    join(budgetDir, 'budget.json'),
+    JSON.stringify({
+      version: 1,
+      historicalUSD: 0.207,
+      reservedUSD: 0.207 + initialNeurons * 0.000011,
+      days: { [date]: { models: {}, reservedNeurons: initialNeurons, neurons: initialNeurons } },
+    }),
+  );
+  const dispatchFile = join(root, 'dispatch.json');
   const runs = ['one', 'two'].map((id) => ({
     id,
     key: `runs/${date}/${id}`,
@@ -158,11 +187,14 @@ function inboxFixture(inputTokens: number, failure?: Failure) {
   for (const run of runs)
     writeFileSync(
       join(root, `.lab-inbox/runs/${run.id}.json`),
-      JSON.stringify({ note: 'Three words here', who: 'agent name', run: {} }),
+      JSON.stringify({ note, who: 'agent name', run: {} }),
     );
   const preload = `
     import child from 'node:child_process';
     import fs from 'node:fs';
+    import os from 'node:os';
+    os.homedir = () => ${JSON.stringify(home)};
+    fs.statfsSync = () => ({ bavail: 10_000_000, bsize: 4096 });
     import { syncBuiltinESMExports } from 'node:module';
     child.execFileSync = (_cmd, args) => {
       if (!args.includes('auth')) return '';
@@ -181,7 +213,10 @@ function inboxFixture(inputTokens: number, failure?: Failure) {
     syncBuiltinESMExports();
     let calls = 0;
     globalThis.fetch = async (url, options) => {
+      if (String(url) === 'https://api.cloudflare.com/client/v4/graphql') return Response.json({ data: { viewer: { accounts: [{ aiInferenceAdaptiveGroups: [{ sum: { totalNeurons: 0 } }] }] } } });
+      if (!String(url).includes('/ai/run/@cf/cloudflare/clef')) throw Error('Unexpected URL; no real network is available');
       calls++;
+      fs.writeFileSync(${JSON.stringify(dispatchFile)}, JSON.stringify({ calls }));
       if (calls === 1) {
         if (failure === 'network') throw new Error('synthetic-token-secret');
         if (failure === 'http') return new Response('synthetic-token-secret', { status: 503 });
@@ -190,7 +225,7 @@ function inboxFixture(inputTokens: number, failure?: Failure) {
         if (failure === 'answer') return new Response(JSON.stringify({ success: true, result: { answers: {}, usage: { input_tokens: ${inputTokens} } } }));
       }
       const body = JSON.parse(options.body);
-      if (body.state !== 'Source kind: agent\\nFeedback: Three words here') throw new Error('Wrong request');
+      if (body.state !== ${JSON.stringify(`Source kind: agent\nFeedback: ${note}`)}) throw new Error('Wrong request');
       return new Response(JSON.stringify({ success: true, result: ${JSON.stringify({ ...response, usage: { input_tokens: inputTokens } })} }));
     };
   `;
@@ -209,16 +244,55 @@ function inboxFixture(inputTokens: number, failure?: Failure) {
         { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] },
       ),
     html: () => readFileSync(join(root, '.lab-inbox/index.html'), 'utf8'),
+    dispatches: () =>
+      existsSync(dispatchFile)
+        ? (JSON.parse(readFileSync(dispatchFile, 'utf8')) as { calls: number }).calls
+        : 0,
+    budget: () => JSON.parse(readFileSync(join(budgetDir, 'budget.json'), 'utf8')),
+    initialNeurons,
+    reserve,
     cleanup: () => rmSync(root, { recursive: true, force: true }),
   };
 }
 describe('lab:inbox entry point without network', () => {
-  it('stops real request dispatch at the cap and reports it on the console and page', () => {
-    const fixture = inboxFixture(208334);
+  it('stops real request dispatch at the shared 2000-neuron cap before the old invocation dollar cap', () => {
+    const fixture = inboxFixture(1250, undefined, { nearDailyCap: true });
     try {
-      expect(fixture.run()).toContain('1 calls, 0 cached');
-      expect(fixture.html()).toContain('Clef spend stop: reached 0.05 USD');
+      expect(fixture.run()).toContain('2 calls, 0 cached');
+      expect(fixture.dispatches()).toBe(1);
+      expect(fixture.html()).toContain('Clef spend stop: response usage unavailable');
       expect(fixture.html().match(/Suggested by Clef/g)).toHaveLength(1);
+    } finally {
+      fixture.cleanup();
+    }
+  });
+  it('reserves UTF-8 bytes before dispatch and refuses a request one neuron over the daily limit', () => {
+    const note = `Şimdi ${'çay '.repeat(150)}`;
+    const fixture = inboxFixture(1250, undefined, { nearDailyCap: true, note, overReserveBy: 1 });
+    try {
+      const request = JSON.stringify(buildNoteRequest('agent name', note));
+      const wrongCharacterReserve = Math.ceil(((request.length + 1024) * 21818) / 1e6);
+      expect(fixture.reserve).toBeGreaterThan(wrongCharacterReserve);
+      expect(fixture.initialNeurons + wrongCharacterReserve).toBeLessThanOrEqual(2000);
+      expect(fixture.run()).toContain('1 calls, 0 cached; 0.00000000 USD');
+      expect(fixture.dispatches()).toBe(0);
+      const day = fixture.budget().days[new Date().toISOString().slice(0, 10)];
+      expect(day.reservedNeurons).toBe(fixture.initialNeurons);
+      expect(day.models).toEqual({});
+      expect(fixture.html()).toContain('Clef spend stop: response usage unavailable');
+    } finally {
+      fixture.cleanup();
+    }
+  });
+  it('renders valid caches without dispatch even when new requests cannot fit the daily budget', () => {
+    const fixture = inboxFixture(1250, undefined, { nearDailyCap: true, overReserveBy: 1 });
+    try {
+      mkdirSync(join(fixture.root, '.lab-inbox/suggest'), { recursive: true });
+      for (const id of ['one', 'two'])
+        writeFileSync(join(fixture.root, `.lab-inbox/suggest/${id}.json`), JSON.stringify(response));
+      expect(fixture.run()).toContain('0 calls, 2 cached; 0.00000000 USD');
+      expect(fixture.dispatches()).toBe(0);
+      expect(fixture.html().match(/Suggested by Clef/g)).toHaveLength(2);
     } finally {
       fixture.cleanup();
     }
@@ -250,7 +324,12 @@ describe('lab:inbox entry point without network', () => {
         expect(html).toContain('Clef suggestion failed:');
         expect(html + output).not.toContain('synthetic-token-secret');
         expect(html + output).not.toContain('<script>');
-        if (failure !== 'auth' && failure !== 'json') expect(html).toContain('Suggested by Clef');
+        if (['answer', 'read', 'write', 'rename'].includes(failure))
+          expect(html).toContain('Suggested by Clef');
+        else {
+          expect(html).not.toContain('Suggested by Clef');
+          expect(fixture.dispatches()).toBe(failure === 'auth' ? 0 : 1);
+        }
         if (failure === 'answer')
           expect(existsSync(join(fixture.root, '.lab-inbox/suggest/two.json'))).toBe(false);
       } finally {
@@ -281,22 +360,33 @@ describe('lab:inbox entry point without network', () => {
       try {
         expect(fixture.run()).toContain('1 calls, 0 cached');
         expect(fixture.html()).toContain('Clef spend stop: response usage unavailable');
+        expect(fixture.dispatches()).toBe(1);
+        expect(fixture.budget().days[new Date().toISOString().slice(0, 10)].reservedNeurons).toBe(
+          fixture.reserve,
+        );
         expect(fixture.html().match(/<article>/g)).toHaveLength(2);
         mkdirSync(join(fixture.root, '.lab-inbox/suggest'), { recursive: true });
         writeFileSync(join(fixture.root, '.lab-inbox/suggest/one.json'), JSON.stringify(response));
         expect(fixture.run()).toContain('1 calls, 1 cached');
+        expect(fixture.budget().days[new Date().toISOString().slice(0, 10)].reservedNeurons).toBe(
+          2 * fixture.reserve,
+        );
         expect(fixture.html()).toContain('Suggested by Clef');
       } finally {
         fixture.cleanup();
       }
     },
   );
-  it('does not retry a bad answer and counts its usage toward the spend cap', () => {
-    const fixture = inboxFixture(208334, 'answer');
+  it('does not retry a bad answer and counts known usage toward the shared daily cap', () => {
+    const fixture = inboxFixture(1250, 'answer', { nearDailyCap: true });
     try {
-      expect(fixture.run()).toContain('1 calls, 0 cached; 0.05000016 USD');
+      expect(fixture.run()).toContain('2 calls, 0 cached; 0.00030000 USD');
+      expect(fixture.dispatches()).toBe(1);
+      expect(fixture.budget().days[new Date().toISOString().slice(0, 10)].neurons).toBeCloseTo(
+        fixture.initialNeurons + (1250 * 21818) / 1e6,
+      );
       expect(fixture.html()).toContain('Clef suggestion failed:');
-      expect(fixture.html()).toContain('Clef spend stop: reached 0.05 USD');
+      expect(fixture.html()).toContain('Clef spend stop: response usage unavailable');
       expect(fixture.html()).not.toContain('Suggested by Clef');
       expect(existsSync(join(fixture.root, '.lab-inbox/suggest/two.json'))).toBe(false);
     } finally {

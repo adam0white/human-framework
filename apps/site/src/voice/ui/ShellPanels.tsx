@@ -79,6 +79,8 @@ export function InfoPanel({ phase, onClose }: { phase: string; onClose: () => vo
 }
 
 export function MenuPanel({
+  freeText,
+  onFreeText,
   label,
   pace,
   actions,
@@ -94,6 +96,8 @@ export function MenuPanel({
   onTitle: () => void;
   onSendWord: () => void;
   canReturn: boolean;
+  freeText: boolean;
+  onFreeText: (enabled: boolean) => void;
 }) {
   const first = useRef<HTMLButtonElement>(null);
   useEffect(() => {
@@ -145,6 +149,10 @@ export function MenuPanel({
         <button ref={first} type="button" onClick={onSendWord}>
           Send word <span>▸</span>
         </button>
+        <label>
+          <input type="checkbox" checked={freeText} onChange={(e) => onFreeText(e.target.checked)} />
+          Experimental free-text suggestions (Cloudflare AI)
+        </label>
         <FullscreenButton variant="item" />
         <button type="button" onClick={onTitle}>
           To the title page

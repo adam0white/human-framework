@@ -40,6 +40,7 @@ import {
   linkedKey,
   parseLinked,
 } from '../src/lab/linked.ts';
+import { translate } from './translate.ts';
 
 // Minimal platform types (the subset this Worker uses), so the site needs no extra type package.
 type R2Object = {
@@ -75,6 +76,7 @@ type RateLimit = { limit(options: { key: string }): Promise<{ success: boolean }
 type Fetcher = { fetch(input: Request | string): Promise<Response> };
 type Ctx = { waitUntil(p: Promise<unknown>): void };
 export type Env = {
+  AI?: { run(model: string, input: unknown): Promise<unknown> };
   LAB: R2Bucket;
   EVENTS_LIMIT: RateLimit;
   RUNS_LIMIT: RateLimit;
@@ -851,6 +853,19 @@ export default {
   async fetch(req: Request, env: Env, ctx: Ctx): Promise<Response> {
     const url = new URL(req.url);
     const origin = req.headers.get('Origin');
+    if (url.pathname === '/lab/api/translate') {
+      if (origin !== 'https://human.adamwhite.work') return reply(403, null, null);
+      if (req.method === 'OPTIONS') return reply(204, null, origin);
+      if (req.method !== 'POST') return reply(405, null, origin, { Allow: 'POST, OPTIONS' });
+      try {
+        const bytes = await readCapped(req.body, 12_000);
+        if (!bytes) return reply(413, null, origin);
+        const result = await translate(JSON.parse(new TextDecoder().decode(bytes)), env);
+        return reply(result.status, result.body, origin);
+      } catch {
+        return reply(503, { error: 'Translation unavailable. Choose from the menu.' }, origin);
+      }
+    }
     if (url.pathname === '/lab/data.json') {
       if (req.method !== 'GET' && req.method !== 'HEAD') return reply(405, null, null, { Allow: 'GET' });
       try {
