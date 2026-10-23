@@ -38,6 +38,8 @@ export type PersonaRequest = {
   authored?: boolean;
   /** Explicit historical linkage approval, current central recording epoch only. */
   allowRecording?: boolean;
+  /** Opaque acknowledgement from a recording query; required to associate this epoch. */
+  recordingEpoch?: string;
 };
 const token = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/;
 const hash = /^[a-f0-9]{64}$/;

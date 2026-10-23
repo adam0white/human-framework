@@ -18,9 +18,31 @@ function open(): Promise<IDBDatabase> {
     request.onerror = () => reject(new Error('Browser shelf unavailable. Use a file.'));
   });
 }
+// Keep arrival order through asynchronous validation, including overlapping consent choices.
+let requests: Promise<unknown> = Promise.resolve();
+export function shelfRequest(request: PersonaRequest): Promise<unknown> {
+  const result = requests.then(() => handleRequest(request));
+  requests = result.catch(() => {});
+  return result;
+}
 /** Validation/hash precedes transaction; compare and write share one readwrite transaction. */
-export async function shelfRequest(request: PersonaRequest): Promise<unknown> {
-  const persona = request.action === 'put' ? await validatePersona(request.envelope) : undefined;
+async function handleRequest(request: PersonaRequest): Promise<unknown> {
+  const capturedPlayer = readLocal(OFF_KEY) === '1' ? null : localPlayer();
+  const recordingEpoch = capturedPlayer
+    ? Array.from(
+        new Uint8Array(
+          await crypto.subtle.digest(
+            'SHA-256',
+            new TextEncoder().encode(`hf-recording-epoch/1:${capturedPlayer}`),
+          ),
+        ),
+        (b) => b.toString(16).padStart(2, '0'),
+      ).join('')
+    : null;
+  const persona =
+    request.action === 'put' || (request.action === 'recording' && request.envelope !== undefined)
+      ? await validatePersona(request.envelope)
+      : undefined;
   const db = await open();
   return new Promise((resolve, reject) => {
     const transaction = db.transaction('shelf', 'readwrite');
@@ -38,6 +60,8 @@ export async function shelfRequest(request: PersonaRequest): Promise<unknown> {
         let state: PersonaShelfState & { recordingEpochs?: Record<string, string> } = read.result ?? EMPTY();
         const recordingEpochs = { ...state.recordingEpochs };
         const player = readLocal(OFF_KEY) === '1' ? null : localPlayer();
+        const sameIdentity = player !== null && player === capturedPlayer;
+        const epochMatches = sameIdentity && request.recordingEpoch === recordingEpoch;
         switch (request.action) {
           case 'list':
             result = Object.values(state.heads)
@@ -60,6 +84,7 @@ export async function shelfRequest(request: PersonaRequest): Promise<unknown> {
               persona.parentRevision === null &&
               !request.fork &&
               player &&
+              epochMatches &&
               !recordingEpochs[`${persona.castId}/${persona.branchId}`]
             )
               recordingEpochs[`${persona.castId}/${persona.branchId}`] = player;
@@ -69,14 +94,26 @@ export async function shelfRequest(request: PersonaRequest): Promise<unknown> {
             break;
           }
           case 'recording': {
-            const head = state.revisions.find((p) => p.revision === state.heads[request.castId ?? '']);
-            if (!head) throw new Error('Select a person.');
-            if (request.allowRecording && player) {
-              recordingEpochs[`${head.castId}/${head.branchId}`] = player;
+            const head =
+              persona ?? state.revisions.find((p) => p.revision === state.heads[request.castId ?? '']);
+            if (!head) {
+              if (request.allowRecording !== undefined) throw new Error('Select a person.');
+              result = { sameEpoch: false, recordingEpoch: sameIdentity ? recordingEpoch : null };
+              break;
+            }
+            if (request.castId !== undefined && request.castId !== head.castId)
+              throw new Error('Selected person does not match the recording choice.');
+            if (request.allowRecording !== undefined) {
+              if (!epochMatches) throw new Error('Recording identity changed. Choose again.');
+              const key = `${head.castId}/${head.branchId}`;
+              if (request.allowRecording && player) recordingEpochs[key] = player;
+              else delete recordingEpochs[key];
               persist({ ...state, recordingEpochs });
             }
             result = {
               sameEpoch: Boolean(player && recordingEpochs[`${head.castId}/${head.branchId}`] === player),
+              recordingEpoch: sameIdentity ? recordingEpoch : null,
+              ...(persona ? { branchId: persona.branchId, revision: persona.revision } : {}),
             };
             break;
           }

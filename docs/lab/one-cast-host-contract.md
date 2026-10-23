@@ -24,7 +24,9 @@ const original = await createPersona({
   transfer: { person: projection, history: [] }, limitations: projection.limitations,
 });
 // authored:true is only for a newly authored source. Never use it for imported history.
-await shelf.request({ action: 'put', envelope: original, authored: true });
+// Capture a host generation BEFORE this query; invalidate it on identity/preference/storage changes.
+const epoch = await shelf.request<{recordingEpoch: string | null}>({action:'recording'});
+await shelf.request({ action: 'put', envelope: original, authored: generationUnchanged, recordingEpoch: epoch.recordingEpoch ?? undefined });
 ```
 
 The host owns HF projection validation, semantic admission and the complete admitted initial snapshot in its replay. `transfer.person` is the strict `PersonaProjectionSnapshot` from HF, serialized as plain JSON. Its source includes schema, engine, simulation minute and complete RNG; the envelope checksum covers all fields. `transfer.history` contains bounded host-approved facts. `transfer.admission`, if used, contains pinned host mapping stamps. This client admits bounded JSON, not fictional meaning.
@@ -48,12 +50,16 @@ Recording an arriving history can reconnect recording identities. Set the gate *
 
 ```ts
 lab.setPersonaRecording(arrival.branchId);
-const { sameEpoch } = await shelf.request<{sameEpoch: boolean}>({ action: 'recording', castId });
-if (sameEpoch) lab.allowPersonaRecording(true); // No new prompt for unchanged identity.
-// Otherwise show the kit's historical-linkage question; default is local-only play.
-// Only after an explicit yes:
-await shelf.request({ action: 'recording', castId, allowRecording: true });
-lab.allowPersonaRecording(true);
+// Keep a generation counter independent of playerId (which is null while gated).
+// Invalidate it on hf-lab-preference, identity/off storage events, load, reset and manual choice.
+const attempt = generation;
+const result = await shelf.request<{sameEpoch: boolean; branchId: string; revision: string; recordingEpoch: string | null}>({ action: 'recording', castId, envelope: arrival });
+if (attempt === generation && stillOwns(arrival) && result.sameEpoch && result.branchId === arrival.branchId && result.revision === arrival.revision) lab.allowPersonaRecording(true);
+// Otherwise show the historical-linkage question; default is local-only play.
+// After an explicit choice, query a fresh epoch and check generation before sending it.
+await shelf.request({ action: 'recording', castId, envelope: arrival, allowRecording: choice, recordingEpoch: result.recordingEpoch ?? undefined });
+// Apply a positive reply only if this choice, loaded run and identity generation still match.
+
 ```
 
 The central recording association is separate from portable envelopes and never returns the recording id. Files have no association; absent or changed identity needs the explicit choice. `setPersonaRecording(null)` is for a genuinely fresh authored run with no imported history. The gate blocks events, milestones, automatic and explicit runs, saves, logs, notes and legacy Send until allowed. Recording off aborts pending uploads; a new identity invalidates the old association. Same-epoch continuation keeps normal recording. File export and local play always remain available. Character analysis remains a separate consent.
@@ -67,3 +73,5 @@ Replay exports include top-level `oneCast`, an array of rows. Each row has `v: 1
 Use the existing lab milestone channel for source eligibility/completion, bridge failures, encounter/import choices and trial results. `npm run lab:inbox` reconstructs complete received run chunks before extracting rows, retains distinct revision evidence for joins and deduplicates milestone counts by player/game/run/probe/cast/stage, and joins a shared continuing branch only within the same recording identity. File/local scope stays separate. Missing or expired uploads and recording-off/privacy-suppressed play are outside received denominators. Counts do not establish recognition or attachment. Owner words and optional neutral recognition questions remain the evidence for that. Zeynep needs matched target-seed fresh, biography and carried-skill ablation.
 
 Client 0.3.1 supersedes 0.3.0: only the current active head may receive an idempotent acknowledgement. A retained non-head revision conflicts, including an old fork request. Retrying a historical receipt never authorizes a new admission.
+
+Recording choices select the pinned envelope, including a restored historical branch, rather than whichever branch is currently active. The bridge validates the checksum before the transaction and echoes the selected branch/revision without returning a recording identifier. Hosts also pin their player identity, loaded-run generation and choice generation across the request; a late response cannot grant a new identity or a replacement run. A denial takes effect immediately and removes only the selected central branch association. Omitted allowRecording is a query. Every mutation of an association requires the opaque recordingEpoch acknowledgement from a query; stale tokens reject, and an authored put without a matching epoch stores continuity without linking recording. The central queue preserves arrival order through asynchronous validation. The acknowledgement is a one-way digest of a random recording identity, never a raw identity.

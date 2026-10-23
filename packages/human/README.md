@@ -440,3 +440,22 @@ commitment history prunes it. It removes only records matched to an existing, cl
 recursively frozen, detached `MakeUpReceipt` objects. Persist those receipts in the source replay. Pending,
 broken, released, exempt and missing matches remain unresolved. The normal actor loop never calls retirement;
 existing games and saves keep their previous behavior until a host opts in.
+
+
+### Calendar passports (2.16.0, opt-in)
+
+Use `projectCalendarPersona(source, { version, skills, episodes, calendar })` when declared obligations must
+travel. `calendar` has version `hf-persona-calendar-map/1`, one exact clock offset, explicit injective maps
+for commitment, chain, action, entity and norm references, and the source-backed norm catalog.
+The result is `hf-persona-calendar/1`, wrapping the original approved Person projection and a separate
+calendar. It preserves continuing commitments, every owed record, actual retained receipts, held norm
+understandings and lapse state. A missing scheduled receipt remains unresolved and is disclosed; it never
+becomes a paid duty. `isContinuingCommitment(agenda, commitment)` lets a host construct the required maps
+using the owning agenda's existing recurrence semantics.
+
+`validateCalendarPersona` strictly validates portable data. `admitCalendarPersona(payload, opening,
+{ mappingVersion, sourceId, targetId, targetNorms })` checks the offset and exact catalog semantics before
+returning a detached Person. The receiving calendar must be empty; authored role goals may remain. After
+admission, the host uses ordinary agenda APIs and its declared calendar. No duty is waived, no new ruling
+is invented, and no obligation is converted to a score. Activities, projects and incompatible identity or
+health remain unsupported. The original passport format and no-call continuation remain unchanged.

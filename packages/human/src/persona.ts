@@ -43,7 +43,7 @@ export interface PersonaProjection {
 export interface PersonaProjectionSnapshot {
   format: 'hf-persona-state/1';
   mappingVersion: string;
-  source: { schema: number; engine: string; id: string; now: number };
+  source: { schema: Person['schema']; engine: string; id: string; now: number };
   name: string;
   life: Person['life'];
   rng: Person['rng'];

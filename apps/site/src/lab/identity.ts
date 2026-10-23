@@ -69,14 +69,15 @@ window.addEventListener('message', (event: MessageEvent) => {
     );
     return;
   }
-  const { id, action, castId, envelope, fork, authored, allowRecording } = event.data;
+  const { id, action, castId, envelope, fork, authored, allowRecording, recordingEpoch } = event.data;
   void shelfRequest({
     action,
     castId,
     envelope,
     fork: fork === true,
     authored: authored === true,
-    allowRecording: allowRecording === true,
+    allowRecording: typeof allowRecording === 'boolean' ? allowRecording : undefined,
+    recordingEpoch: typeof recordingEpoch === 'string' ? recordingEpoch : undefined,
   }).then(
     (value) => parent.postMessage({ type: 'hf-persona-reply', id, value }, event.origin),
     (error: unknown) =>

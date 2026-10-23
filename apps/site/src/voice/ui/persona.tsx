@@ -27,6 +27,7 @@ let checkReturn: ((header: SelinReturn) => Promise<SelinReturn>) | undefined;
 let status = 'Selin can make a household enquiry after work, after Eid.';
 let pending = false;
 let published = '';
+let recordingAttempt = 0;
 const listeners = new Set<() => void>();
 const changed = () => {
   for (const listener of listeners) listener();
@@ -37,28 +38,47 @@ const message = (text: string) => {
 };
 
 async function recording(envelope: PersonaEnvelope): Promise<void> {
-  if (session.loading) return;
+  if (session.loading || session.head?.revision !== envelope.revision || session.key !== envelope.branchId)
+    return;
   const lab = gameLabs.voice;
-  // Gate every run/log/save/Send path before a persisted person's state reaches the worker.
+  const attempt = ++recordingAttempt;
   lab.setPersonaRecording(envelope.branchId);
-  const result = await shelf.request<{ sameEpoch: boolean }>({ action: 'recording', castId: SELIN_CAST });
-  if (result.sameEpoch) lab.allowPersonaRecording(true);
+  const player = lab.playerId;
+  const result = await shelf.request<{ sameEpoch: boolean; branchId?: string; revision?: string }>({
+    action: 'recording',
+    castId: SELIN_CAST,
+    envelope,
+  });
+  if (
+    attempt === recordingAttempt &&
+    !session.loading &&
+    session.head?.revision === envelope.revision &&
+    session.key === envelope.branchId &&
+    lab.playerId === player &&
+    result.sameEpoch &&
+    result.branchId === envelope.branchId &&
+    result.revision === envelope.revision
+  )
+    lab.allowPersonaRecording(true);
   changed();
 }
 
 export async function gateVoiceFile(text: string): Promise<void> {
+  recordingAttempt++;
   session.beginFile(text);
 }
 
 export function settleVoiceFileGate(accepted: boolean): void {
   const own = session.finish(accepted);
+  const attempt = ++recordingAttempt;
   if (accepted && own)
     void shelf.ready.then(async () => {
-      if (!shelf.enabled) return;
+      if (!shelf.enabled || attempt !== recordingAttempt) return;
       const current = await shelf
         .request<PersonaEnvelope | null>({ action: 'get', castId: SELIN_CAST })
         .catch(() => null);
-      if (current?.branchId === own.branchId) await recording(own).catch(() => {});
+      if (attempt === recordingAttempt && current?.branchId === own.branchId)
+        await recording(own).catch(() => {});
     });
   changed();
 }
@@ -72,7 +92,21 @@ export function bindVoicePersona(
   startReturn = begin;
   checkReturn = verify;
   const stop = watchPersonaCheckpoint(checkpointVoicePersona);
+  // playerId is deliberately null behind a consent gate. Events invalidate in-flight checks
+  // even when an off/on identity change therefore looks like null -> null to the getter.
+  const invalidateRecording = () => {
+    recordingAttempt++;
+  };
+  const storage = (event: StorageEvent) => {
+    if (event.key === null || event.key === 'hf-lab-player' || event.key === 'hf-lab-recording-off')
+      invalidateRecording();
+  };
+  window.addEventListener('hf-lab-preference', invalidateRecording);
+  window.addEventListener('storage', storage);
   return () => {
+    invalidateRecording();
+    window.removeEventListener('hf-lab-preference', invalidateRecording);
+    window.removeEventListener('storage', storage);
     stop();
     send = undefined;
     startReturn = undefined;
@@ -80,6 +114,7 @@ export function bindVoicePersona(
   };
 }
 export function resetVoicePersona(): void {
+  recordingAttempt++;
   session.reset();
   published = '';
   pending = false;
@@ -101,6 +136,10 @@ export async function receiveVoicePersona(reply: WorkerToMain): Promise<void> {
   }
   if (!reply.transfer || !reply.file || !shelf.enabled || pending || reply.file.hash === published) return;
   pending = true;
+  const departureAttempt = recordingAttempt;
+  const epoch = await shelf
+    .request<{ recordingEpoch: string | null }>({ action: 'recording' })
+    .catch(() => null);
   try {
     let local = false;
     const existing = await shelf
@@ -122,7 +161,12 @@ export async function receiveVoicePersona(reply: WorkerToMain): Promise<void> {
     });
     const accepted = local
       ? envelope
-      : await shelf.request<PersonaEnvelope>({ action: 'put', envelope, authored: !session.head });
+      : await shelf.request<PersonaEnvelope>({
+          action: 'put',
+          envelope,
+          authored: !session.head && departureAttempt === recordingAttempt,
+          recordingEpoch: epoch?.recordingEpoch ?? undefined,
+        });
     const row: OneCastRow = {
       v: 1,
       probe: 'selin',
@@ -182,6 +226,7 @@ export async function prepareVoiceReturn(
       );
     const file = JSON.parse(prefix) as PlaytestFile & { oneCast?: OneCastRow[] };
     if (!checkReturn) throw new Error('The simulation is not ready to check Selin’s return.');
+    recordingAttempt++;
     session.begin(envelope.branchId);
     const base: SelinReturn = {
       version: 1,
@@ -263,10 +308,36 @@ export function VoicePersonaControls({ canReturn }: { canReturn: boolean }) {
               message('Wait until the chapter has finished loading.');
               return;
             }
+            const attempt = ++recordingAttempt;
+            const lab = gameLabs.voice;
+            const head = session.head;
+            const key = session.key;
+            if (!value) lab.allowPersonaRecording(false);
+            const current = () =>
+              attempt === recordingAttempt &&
+              !session.loading &&
+              session.head?.revision === head?.revision &&
+              session.key === key;
+            if (!head) {
+              if (current()) lab.allowPersonaRecording(value);
+              render();
+              return;
+            }
             void shelf
-              .request({ action: 'recording', castId: SELIN_CAST, allowRecording: value })
-              .then(() => {
-                gameLabs.voice.allowPersonaRecording(value);
+              .request<{ recordingEpoch: string | null }>({ action: 'recording', envelope: head })
+              .then((epoch) => {
+                if (!current()) return null;
+                return shelf.request<{ branchId?: string; revision?: string }>({
+                  action: 'recording',
+                  castId: SELIN_CAST,
+                  envelope: head,
+                  allowRecording: value,
+                  recordingEpoch: epoch.recordingEpoch ?? undefined,
+                });
+              })
+              .then((result) => {
+                if (current() && result?.branchId === head.branchId && result.revision === head.revision)
+                  lab.allowPersonaRecording(value);
                 render();
               })
               .catch((error) => message(String(error)));

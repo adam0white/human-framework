@@ -1,10 +1,13 @@
 /** Two unrelated hosts admit the same approved cooking evidence. Run with Node >=24. */
 import {
+  admitCalendarPersona,
   admitPersona,
   createPerson,
   fingerprint,
+  projectCalendarPersona,
   projectPersona,
   restore,
+  scheduleMakeUp,
   snapshot,
   successChance,
 } from '../src/index.ts';
@@ -40,7 +43,65 @@ export function runPersonaControl() {
   const a = host('household', 31),
     b = host('canteen', 73);
   const chance = (p: typeof a, skill: string) => successChance(p, skill, 0.6, 1);
+  // A second host keeps an ordinary unpaid duty; scheduling is neither payment nor a transfer gate.
+  const dutySource = snapshot(source);
+  dutySource.conscience.norms = [{ normId: 'fast', standing: 'obligatory', conviction: 0.7 }];
+  dutySource.agenda.owed = [
+    {
+      ofId: 'missed-day',
+      kind: 'abstain',
+      actions: [],
+      violatedBy: ['eat'],
+      normId: 'fast',
+      reason: 'broken',
+      at: 1400,
+    },
+  ];
+  const dutyBefore = fingerprint(dutySource);
+  const norm = {
+    id: 'fast',
+    label: 'The fast',
+    standing: 'obligatory' as const,
+    sources: [{ kind: 'revelation' as const, ref: 'Quran 2:184-185' }],
+  };
+  const calendar = projectCalendarPersona(dutySource, {
+    version: 'control-calendar/1',
+    skills: {},
+    calendar: {
+      version: 'hf-persona-calendar-map/1',
+      offset: 1440,
+      references: {
+        commitments: { 'missed-day': 'arrival-missed-day' },
+        chains: {},
+        actions: { eat: 'meal' },
+        entities: {},
+        norms: { fast: 'arrival-fast' },
+      },
+      sourceNorms: [norm],
+    },
+  });
+  const arrival = createPerson({
+    id: 'neighbour',
+    name: source.name,
+    seed: 53,
+    now: 2880,
+    bornAt: source.life.bornAt + 1440,
+    sex: source.life.sex,
+  });
+  const continued = admitCalendarPersona(calendar, arrival, {
+    mappingVersion: 'control-calendar/1',
+    sourceId: source.id,
+    targetId: arrival.id,
+    targetNorms: [{ ...norm, id: 'arrival-fast' }],
+  }).person;
+  const scheduled = scheduleMakeUp(continued, 'arrival-missed-day', { from: 3000, until: 3600 });
   const result = {
+    calendarDebtContinues:
+      scheduled?.makeUpOf === 'arrival-missed-day' &&
+      scheduled.status === 'pending' &&
+      continued.agenda.owed?.[0]?.scheduledAs === scheduled.id,
+    calendarSourceUntouched: dutyBefore === fingerprint(dutySource),
+    calendarRngUnchanged: JSON.stringify(continued.rng) === JSON.stringify(dutySource.rng),
     sourceUntouched: before === fingerprint(source),
     sameEvidence: JSON.stringify(a.skills) === JSON.stringify(b.skills),
     sameRng: JSON.stringify(a.rng) === JSON.stringify(b.rng),
@@ -53,6 +114,9 @@ export function runPersonaControl() {
     limitations: portable.limitations,
   };
   if (
+    !result.calendarDebtContinues ||
+    !result.calendarSourceUntouched ||
+    !result.calendarRngUnchanged ||
     !result.sourceUntouched ||
     !result.sameEvidence ||
     !result.sameRng ||

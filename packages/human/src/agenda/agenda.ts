@@ -286,6 +286,15 @@ const hasSuccessor = (state: AgendaState, c: Commitment): boolean =>
 const chainLink = (c: Commitment): boolean =>
   c.status === 'kept' || c.status === 'broken' || (c.status === 'released' && c.exempt !== undefined);
 
+/** Whether an instance still owns a pending duty or a recurrence that can produce its next window. Read-only. */
+export const isContinuingCommitment = (state: AgendaState, c: Commitment): boolean =>
+  c.status === 'pending' ||
+  (c.recurEvery !== undefined &&
+    c.recurEvery > 0 &&
+    chainLink(c) &&
+    (c.recurUntil === undefined || c.from + c.recurEvery <= c.recurUntil) &&
+    !hasSuccessor(state, c));
+
 const needsSpawn = (state: AgendaState, c: Commitment, now: Minute): boolean =>
   c.recurEvery !== undefined &&
   c.recurEvery > 0 &&

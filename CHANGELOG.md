@@ -10,6 +10,19 @@ The release version is the package version and `FRAMEWORK_VERSION`, tagged `vX.Y
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
+## [2.16.0] - 2026-10-23
+
+Engine: 2.14.1.
+
+### Added
+
+- Separate opt-in calendar passports: `projectCalendarPersona`, `validateCalendarPersona` and `admitCalendarPersona`. The versioned wrapper carries continuing obligations, owed records and actual receipts, exact held understandings and explicitly matched source-backed norm definitions. Every reference and timestamp requires a declared mapping. Hosts choose calendars; HF invents no dates, rulings, waivers or scores.
+- Read-only `isContinuingCommitment` exposes the agenda's existing continuation semantics, including an exempt released recurrence. Existing actor-loop behavior and the original persona format remain exact.
+
+### Fixed
+
+- Correct the passport source-schema TypeScript declaration to the actual `Person['schema']` string type.
+
 ## [2.15.0] - 2026-10-23
 
 Engine: 2.14.1.
