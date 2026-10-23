@@ -1,5 +1,5 @@
 /** Local Workers AI admission. Durable reservations precede requests; uncertainty retains the reservation.
- * Account analytics is advisory (sampled and delayed). The independent 2,000-neuron daily ceiling
+ * Account analytics is advisory (sampled and delayed). The shared 12,000-neuron daily ceiling
  * bounds this tool's paid usage even if account analytics lies. It cannot cap unrelated callers.
  */
 import { execFileSync } from 'node:child_process';
@@ -8,7 +8,9 @@ import { homedir } from 'node:os';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 export const ACCOUNT = 'a20259cba74e506296745f9c67c1f3bc';
-export const DAILY_HARD_NEURONS = 2000;
+export { DAILY_HARD_NEURONS } from '../apps/site/worker/wai-budget.ts';
+
+import { DAILY_HARD_NEURONS } from '../apps/site/worker/wai-budget.ts';
 export const LOCAL_BUDGET_USD = 4;
 const ROOT = join(homedir(), 'code/.lab-scratch/wai-daily');
 // Published neuron rates per million input/output tokens, checked 2026-10-23.
@@ -214,6 +216,22 @@ export async function waiRun(
     spend.reservedNeurons += reserve;
     spend.calls++;
     save(state); // Retain reservations for timeout, crash or invalid answers.
+    // Persist locally first: an ambiguous remote admission must never permit a retry to reclaim spend.
+    try {
+      const key = readFileSync(join(ROOT, 'admission-key'), 'utf8').trim();
+      if (!key) throw new Error();
+      const admission = await fetch('https://human.adamwhite.work/lab/api/wai-budget', {
+        method: 'POST',
+        headers: { authorization: `Bearer ${key}`, 'content-type': 'application/json' },
+        body: JSON.stringify({ day: date, neurons: day.reservedNeurons }),
+        signal: AbortSignal.timeout(30_000),
+      });
+      if (!admission.ok || ((await admission.json()) as { admitted?: boolean }).admitted !== true)
+        throw new Error();
+      if (utcDate() !== date) throw new Error();
+    } catch {
+      throw new Error('STOP: shared daily admission unavailable or capped; reservation retained');
+    }
     let response: Response;
     try {
       response = await fetch(`https://api.cloudflare.com/client/v4/accounts/${ACCOUNT}/ai/run/${model}`, {

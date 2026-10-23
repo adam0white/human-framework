@@ -35,3 +35,57 @@ describe('Workers AI admission and response accounting', () => {
     expect(utcDate(new Date('2026-10-23T19:40:00-05:00'))).toBe('2026-10-24');
   });
 });
+
+// Exercise the same R2 admission used by scripts and the public translator.
+const { admitDaily, dailyKey } = await import('../apps/site/worker/wai-budget.ts');
+function dailyBucket() {
+  const values = new Map<string, { raw: string; etag: string }>();
+  let revision = 0;
+  return {
+    async get(key: string) {
+      const old = values.get(key);
+      return old
+        ? {
+            key,
+            size: old.raw.length,
+            uploaded: new Date(),
+            etag: old.etag,
+            text: async () => old.raw,
+            json: async <T>() => JSON.parse(old.raw) as T,
+          }
+        : null;
+    },
+    async put(
+      key: string,
+      value: string | ArrayBuffer | Uint8Array,
+      options?: { onlyIf?: { etagMatches?: string; etagDoesNotMatch?: string } },
+    ) {
+      const old = values.get(key);
+      if (options?.onlyIf?.etagMatches ? old?.etag !== options.onlyIf.etagMatches : old) return null;
+      const etag = String(++revision);
+      values.set(key, { raw: String(value), etag });
+      return { key, etag, size: String(value).length, uploaded: new Date() };
+    },
+    async delete() {},
+    async list() {
+      return { objects: [], truncated: false };
+    },
+  };
+}
+it('combines script high-water accounting and concurrent translator reservations at 12,000', async () => {
+  const b = dailyBucket();
+  expect(await admitDaily(b, '2026-10-23', 'local', 11_000)).toBe(true);
+  const admitted = await Promise.all(
+    Array.from({ length: 8 }, () => admitDaily(b, '2026-10-23', 'translator', 500)),
+  );
+  expect(admitted.filter(Boolean)).toHaveLength(2);
+  expect(await admitDaily(b, '2026-10-23', 'local', 11_001)).toBe(false);
+  expect(await admitDaily(b, '2026-10-23', 'translator', 1)).toBe(false);
+  expect(await admitDaily(b, '2026-10-24', 'local', 8_000)).toBe(true);
+  const stored = await b.get(dailyKey('2026-10-23'));
+  if (!stored) throw new Error('Missing daily accounting');
+  expect(JSON.parse(await stored.text())).toMatchObject({
+    local: 11_000,
+    translator: 1_000,
+  });
+});

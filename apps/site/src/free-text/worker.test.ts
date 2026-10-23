@@ -1,14 +1,15 @@
-import { expect, test } from 'vitest';
+import { expect, test, vi } from 'vitest';
 import type { Env } from '../../worker/lab.ts';
 import { reserveTranslation, type TranslationEnv, translate } from '../../worker/translate.ts';
+import { admitDaily } from '../../worker/wai-budget.ts';
 
 function bucket(): Env['LAB'] {
-  let raw: string | null = null;
+  const values = new Map<string, { raw: string; revision: number }>();
   let revision = 0;
   return {
     async get(key) {
-      const captured = raw;
-      const etag = String(revision);
+      const captured = values.get(key)?.raw ?? null;
+      const etag = String(values.get(key)?.revision ?? 0);
       return captured === null
         ? null
         : {
@@ -23,12 +24,13 @@ function bucket(): Env['LAB'] {
     async put(key, value, options) {
       if (
         options?.onlyIf?.etagMatches !== undefined
-          ? options.onlyIf.etagMatches !== String(revision)
-          : raw !== null
+          ? options.onlyIf.etagMatches !== String(values.get(key)?.revision ?? 0)
+          : values.has(key)
       )
         return null;
-      raw = String(value);
+      const raw = String(value);
       revision++;
+      values.set(key, { raw, revision });
       return { key, etag: String(revision), size: raw.length, uploaded: new Date() };
     },
     async delete() {},
@@ -84,4 +86,65 @@ test('a provider error reserves the failed call and blocks subsequent inference'
   expect((await translate(input, env)).status).toBe(503);
   expect((await translate(input, env)).status).toBe(429);
   expect(await reserveTranslation(env.LAB, 'other', '2026-10-24')).toBe(false);
+});
+
+test('translator dispatch shares the scripts daily ceiling', async () => {
+  let calls = 0;
+  const env: TranslationEnv = {
+    LAB: bucket(),
+    AI: {
+      async run() {
+        calls++;
+        return {};
+      },
+    },
+  };
+  expect(await admitDaily(env.LAB, new Date().toISOString().slice(0, 10), 'local', 11999)).toBe(true);
+  expect(
+    (
+      await translate(
+        {
+          text: 'rest',
+          browser: '00000000-0000-0000-0000-000000000000',
+          acts: [{ id: 'rest', label: 'Rest' }],
+        },
+        env,
+      )
+    ).status,
+  ).toBe(429);
+  expect(calls).toBe(0);
+});
+
+test('Clairic must reserve against the new UTC day after a midnight Clef response', async () => {
+  vi.useFakeTimers();
+  try {
+    vi.setSystemTime(new Date('2026-10-23T23:59:59Z'));
+    let calls = 0;
+    const env: TranslationEnv = {
+      LAB: bucket(),
+      AI: {
+        async run() {
+          calls++;
+          vi.setSystemTime(new Date('2026-10-24T00:00:01Z'));
+          return {};
+        },
+      },
+    };
+    await admitDaily(env.LAB, '2026-10-24', 'local', 12000);
+    expect(
+      (
+        await translate(
+          {
+            text: 'rest',
+            browser: '00000000-0000-0000-0000-000000000000',
+            acts: [{ id: 'rest', label: 'Rest' }],
+          },
+          env,
+        )
+      ).status,
+    ).toBe(429);
+    expect(calls).toBe(1);
+  } finally {
+    vi.useRealTimers();
+  }
 });

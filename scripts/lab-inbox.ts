@@ -12,7 +12,7 @@
  * Linked v2 manifests also export private per-player/game/session/run groups and complete replay/save
  * chunks. Missing/conflicting chunks are visible and never exported as a complete file. No linked
  * payload goes to AI. Downloaded files are local copies: R2 retention does not delete them.
- * Nothing goes to the ledger or back to R2.
+ * No feedback goes to the ledger or back to R2. Shared AI budget reservations are written to R2.
  * Cost: about 0.0003 USD a note, at 0.24 USD per million input tokens (output free). Stop new calls once
  * response usage reaches 0.05 USD per invocation or usage cannot be read. Shared daily/lifetime reservations also apply. Cached answers cost nothing.
  * The page reports a stop.

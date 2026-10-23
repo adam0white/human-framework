@@ -41,6 +41,7 @@ import {
   parseLinked,
 } from '../src/lab/linked.ts';
 import { translate } from './translate.ts';
+import { dailyAdmission } from './wai-budget.ts';
 
 // Minimal platform types (the subset this Worker uses), so the site needs no extra type package.
 type R2Object = {
@@ -76,6 +77,7 @@ type RateLimit = { limit(options: { key: string }): Promise<{ success: boolean }
 type Fetcher = { fetch(input: Request | string): Promise<Response> };
 type Ctx = { waitUntil(p: Promise<unknown>): void };
 export type Env = {
+  WAI_BUDGET_KEY?: string;
   AI?: { run(model: string, input: unknown): Promise<unknown> };
   LAB: R2Bucket;
   EVENTS_LIMIT: RateLimit;
@@ -853,6 +855,7 @@ export default {
   async fetch(req: Request, env: Env, ctx: Ctx): Promise<Response> {
     const url = new URL(req.url);
     const origin = req.headers.get('Origin');
+    if (url.pathname === '/lab/api/wai-budget') return dailyAdmission(req, env);
     if (url.pathname === '/lab/api/translate') {
       if (origin !== 'https://human.adamwhite.work') return reply(403, null, null);
       if (req.method === 'OPTIONS') return reply(204, null, origin);

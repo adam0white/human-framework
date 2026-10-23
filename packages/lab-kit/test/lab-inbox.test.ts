@@ -144,7 +144,13 @@ type Failure = 'auth' | 'network' | 'http' | 'json' | 'usage' | 'answer' | 'read
 function inboxFixture(
   inputTokens: number,
   failure?: Failure,
-  options: { nearDailyCap?: boolean; note?: string; overReserveBy?: number } = {},
+  options: {
+    nearDailyCap?: boolean;
+    used?: number;
+    accountNeurons?: number | null;
+    note?: string;
+    overReserveBy?: number;
+  } = {},
 ) {
   const root = mkdtempSync(join(tmpdir(), 'lab-inbox-script-'));
   mkdirSync(join(root, 'scripts'));
@@ -157,6 +163,11 @@ function inboxFixture(
     'lab-wai-budget.ts',
   ])
     writeFileSync(join(root, 'scripts', file), readFileSync(resolve('scripts', file)));
+  mkdirSync(join(root, 'apps/site/worker'), { recursive: true });
+  writeFileSync(
+    join(root, 'apps/site/worker/wai-budget.ts'),
+    readFileSync(resolve('apps/site/worker/wai-budget.ts')),
+  );
   writeFileSync(join(root, 'package.json'), '{"type":"module"}');
   const date = new Date().toISOString().slice(0, 10);
   const note = options.note ?? 'Three words here';
@@ -166,7 +177,10 @@ function inboxFixture(
   const home = join(root, 'home');
   const budgetDir = join(home, 'code/.lab-scratch/wai-daily');
   mkdirSync(budgetDir, { recursive: true });
-  const initialNeurons = options.nearDailyCap ? 2000 - reserve + (options.overReserveBy ?? 0) : 0;
+  writeFileSync(join(budgetDir, 'admission-key'), 'test-admission-key');
+  const initialNeurons = options.nearDailyCap
+    ? 12_000 - reserve + (options.overReserveBy ?? 0)
+    : (options.used ?? 0);
   writeFileSync(
     join(budgetDir, 'budget.json'),
     JSON.stringify({
@@ -213,7 +227,12 @@ function inboxFixture(
     syncBuiltinESMExports();
     let calls = 0;
     globalThis.fetch = async (url, options) => {
-      if (String(url) === 'https://api.cloudflare.com/client/v4/graphql') return Response.json({ data: { viewer: { accounts: [{ aiInferenceAdaptiveGroups: [{ sum: { totalNeurons: 0 } }] }] } } });
+      if (String(url) === 'https://human.adamwhite.work/lab/api/wai-budget') {
+        const request = JSON.parse(options.body);
+        return Response.json({ admitted: request.neurons <= 12000 });
+      }
+      if (String(url) === 'https://api.cloudflare.com/client/v4/graphql' && ${options.accountNeurons === null}) return Response.json({ errors: [{ message: 'unavailable' }] });
+      if (String(url) === 'https://api.cloudflare.com/client/v4/graphql') return Response.json({ data: { viewer: { accounts: [{ aiInferenceAdaptiveGroups: [{ sum: { totalNeurons: ${options.accountNeurons ?? 0} } }] }] } } });
       if (!String(url).includes('/ai/run/@cf/cloudflare/clef')) throw Error('Unexpected URL; no real network is available');
       calls++;
       fs.writeFileSync(${JSON.stringify(dispatchFile)}, JSON.stringify({ calls }));
@@ -255,7 +274,27 @@ function inboxFixture(
   };
 }
 describe('lab:inbox entry point without network', () => {
-  it('stops real request dispatch at the shared 2000-neuron cap before the old invocation dollar cap', () => {
+  it('keeps the 9,500 account stop and 8,000 unknown-account stop', () => {
+    for (const options of [{ accountNeurons: 9500 }, { accountNeurons: null, used: 8000 }]) {
+      const fixture = inboxFixture(1250, undefined, options);
+      try {
+        fixture.run();
+        expect(fixture.dispatches()).toBe(0);
+      } finally {
+        fixture.cleanup();
+      }
+    }
+  });
+  it('continues Clef after 2,000 neurons when account usage permits it', () => {
+    const fixture = inboxFixture(1250, undefined, { used: 2100 });
+    try {
+      expect(fixture.run()).toContain('2 calls, 0 cached; 0.00060000 USD');
+      expect(fixture.dispatches()).toBe(2);
+    } finally {
+      fixture.cleanup();
+    }
+  });
+  it('stops real request dispatch at the shared 12,000-neuron cap before the old invocation dollar cap', () => {
     const fixture = inboxFixture(1250, undefined, { nearDailyCap: true });
     try {
       expect(fixture.run()).toContain('2 calls, 0 cached');
@@ -273,7 +312,7 @@ describe('lab:inbox entry point without network', () => {
       const request = JSON.stringify(buildNoteRequest('agent name', note));
       const wrongCharacterReserve = Math.ceil(((request.length + 1024) * 21818) / 1e6);
       expect(fixture.reserve).toBeGreaterThan(wrongCharacterReserve);
-      expect(fixture.initialNeurons + wrongCharacterReserve).toBeLessThanOrEqual(2000);
+      expect(fixture.initialNeurons + wrongCharacterReserve).toBeLessThanOrEqual(12_000);
       expect(fixture.run()).toContain('1 calls, 0 cached; 0.00000000 USD');
       expect(fixture.dispatches()).toBe(0);
       const day = fixture.budget().days[new Date().toISOString().slice(0, 10)];

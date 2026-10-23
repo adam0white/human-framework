@@ -1,6 +1,7 @@
 /** Opt-in host prototype. One atomic R2 object reserves spend BEFORE inference; failures are never refunded. */
 import { CLAIRIC, CLEF, candidate, clairicInput, clefInput, type ListedAct } from '../src/free-text/core.ts';
 import type { Env } from './lab.ts';
+import { admitDaily } from './wai-budget.ts';
 
 export type TranslationEnv = Pick<Env, 'LAB' | 'AI'>;
 
@@ -101,9 +102,23 @@ export async function translate(value: unknown, env: TranslationEnv) {
   if (!(await reserveTranslation(env.LAB, input.browser, new Date().toISOString().slice(0, 10))))
     return { status: 429, body: { error: 'Translation limit reached. Choose from the menu.' } };
   try {
-    // No retries: both calls share one reservation. A timeout in the browser does not refund it.
-    const clef = await env.AI.run(CLEF, clefInput(input.text, input.acts));
-    const clairic = await env.AI.run(CLAIRIC, clairicInput(input.text));
+    const bytes = (value: unknown) => new TextEncoder().encode(JSON.stringify(value)).length + 1024;
+    const admit = async (neurons: number) => {
+      const day = new Date().toISOString().slice(0, 10);
+      return (
+        (await admitDaily(env.LAB, day, 'translator', neurons)) &&
+        day === new Date().toISOString().slice(0, 10)
+      );
+    };
+    const clefBody = clefInput(input.text, input.acts);
+    const clairicBody = clairicInput(input.text);
+    // Each call reserves on its own UTC day; failed and ambiguous calls retain reservations.
+    if (!(await admit(Math.ceil((bytes(clefBody) * 21818) / 1e6))))
+      return { status: 429, body: { error: 'Translation limit reached. Choose from the menu.' } };
+    const clef = await env.AI.run(CLEF, clefBody);
+    if (!(await admit(Math.ceil((bytes(clairicBody) * 9091 * 2) / 1e6))))
+      return { status: 429, body: { error: 'Translation limit reached. Choose from the menu.' } };
+    const clairic = await env.AI.run(CLAIRIC, clairicBody);
     return { status: 200, body: { candidate: candidate(input.text, input.acts, clef, clairic) } };
   } catch {
     // Circuit-break on every provider error, including actual usage limits. Manual review is required.
