@@ -264,8 +264,51 @@ export interface DrawOpts {
   now: number;
 }
 
+interface MapLabel {
+  text: string;
+  x: number;
+  y: number;
+  width: number;
+  font: string;
+  fill: string | CanvasGradient | CanvasPattern;
+}
+/** Keep outlined labels inside the scene and separate their measured rectangles. */
+export function placeMapLabels<T extends { x: number; y: number; width: number }>(
+  labels: T[],
+  w: number,
+  h: number,
+): T[] {
+  const placed: T[] = [];
+  for (const label of labels) {
+    const half = label.width / 2 + 3;
+    const x = Math.max(half, Math.min(w - half, label.x));
+    const y = Math.max(14, Math.min(h - 4, label.y));
+    let best = y;
+    for (let step = 0; step < Math.ceil(h / 16); step++) {
+      const candidates = step === 0 ? [y] : [y - step * 16, y + step * 16];
+      const clear = candidates.find(
+        (c) =>
+          c >= 14 &&
+          c <= h - 4 &&
+          placed.every(
+            (p) => Math.abs(p.y - c) >= 16 || Math.abs(p.x - x) >= (p.width + label.width) / 2 + 6,
+          ),
+      );
+      if (clear !== undefined) {
+        best = clear;
+        break;
+      }
+    }
+    placed.push({ ...label, x, y: best });
+  }
+  return placed;
+}
+
 export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease: Ease, o: DrawOpts): void {
   const { w, h, laneW } = l;
+  const labels: MapLabel[] = [];
+  const label = (text: string, x: number, y: number) =>
+    labels.push({ text, x, y, width: ctx.measureText(text).width, font: ctx.font, fill: ctx.fillStyle });
   noteFrame(ease, f, o.now);
   const span = ease.span;
   const touched = new Set<string>();
@@ -580,14 +623,14 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
           ctx.stroke();
           ctx.setLineDash([]);
           ctx.fillStyle = gone ? 'rgba(232, 160, 130, 0.55)' : 'rgba(255, 243, 220, 0.38)';
-          nameLabel(ctx, f.watchers.find((x) => x.id === p.posted)?.name ?? '', at.x, labelY);
+          label(f.watchers.find((x) => x.id === p.posted)?.name ?? '', at.x, labelY);
           if (p.empty) {
             // Why the post stands empty, in one word, under the name (owner's playtest, 2026-10-05); for the
             // first sim half hour after they left, a ring widens from the post so the moment is caught.
             ctx.font = 'italic 600 10px "Instrument Sans", system-ui, sans-serif';
             ctx.fillStyle = 'rgba(240, 170, 140, 0.9)';
             const half = ctx.measureText(p.empty.why).width / 2 + 3;
-            nameLabel(ctx, p.empty.why, Math.min(w - half, Math.max(half, at.x)), labelY + 12);
+            label(p.empty.why, Math.min(w - half, Math.max(half, at.x)), labelY + 16);
             ctx.font = '600 11px "Instrument Sans", system-ui, sans-serif';
             const age = f.minute - p.empty.since;
             if (age >= 0 && age < 30) {
@@ -669,7 +712,7 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
         ctx.font = '600 11px "Instrument Sans", system-ui, sans-serif';
         ctx.textAlign = 'center';
         ctx.fillStyle = isLit || f.phase !== 'night' ? '#fff3dc' : 'rgba(255, 243, 220, 0.5)';
-        nameLabel(ctx, watcher.name, sharedAt.x, sharedLabelY);
+        label(watcher.name, sharedAt.x, sharedLabelY);
       }
     }
   }
@@ -705,6 +748,12 @@ export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease
     }
   }
 
+  for (const item of placeMapLabels(labels, w, h)) {
+    ctx.font = item.font;
+    ctx.textAlign = 'center';
+    ctx.fillStyle = item.fill;
+    nameLabel(ctx, item.text, item.x, item.y);
+  }
   if (day) drawVillagers(ctx, l, f, drawnMinute(ease, f, o.now) / 1440);
   sweep(ease, touched);
 

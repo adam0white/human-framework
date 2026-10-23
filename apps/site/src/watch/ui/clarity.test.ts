@@ -12,7 +12,7 @@ vi.mock('../../shared/lab.tsx', () => ({
 }));
 vi.mock('./useWatch.ts', () => ({ useWatch: vi.fn() }));
 vi.mock('./MapCanvas.tsx', () => ({ MapCanvas: () => null }));
-const { App, DuskPanel, NightPanel, DawnPanel } = await import('./App.tsx');
+const { App, DuskPanel, NightPanel, DawnPanel, headerLine } = await import('./App.tsx');
 const { Chronicle } = await import('./chronicle.tsx');
 const actions = {
   input: vi.fn(),
@@ -174,7 +174,7 @@ it('replaces an account with helper choice and restores it without a game input'
   await act(async () => root.render(createElement(NightPanel, props)));
   const button = (text: string) =>
     [...container.querySelectorAll('button')].find((b) => b.textContent === text);
-  expect(container.querySelector('.w-night-commit')).toBeNull();
+  expect(container.querySelector('.w-night-commit .w-bellbtn')).not.toBeNull();
   expect(container.querySelector('.w-account blockquote')?.textContent).toContain('tired');
   expect(container.querySelector('.w-account')?.textContent).toContain('seemed tiring at dusk');
   expect(button('Rest')?.closest('.lk-commit')).not.toBeNull();
@@ -319,4 +319,42 @@ it('keeps a heard doze in the account and removes stale acts after relief while 
   expect(container.querySelector('.w-account-commit')?.textContent).not.toMatch(/Rest|Send relief/);
   expect(container.querySelector('.w-account-unavailable')?.textContent).toContain('off the wall');
   await act(async () => root.unmount());
+});
+
+it('names dusk and dawn once in the top bar', () => {
+  expect(headerLine(dusk)).toBe('Dusk · night 1');
+  expect(headerLine({ ...dusk, phase: 'dawn' })).toBe('Dawn · night 1');
+});
+
+it('keeps bell and lantern beside accounts and exposes handovers and recent messages', () => {
+  const f = { ...dusk, phase: 'night' as const };
+  const who = f.watchers[0];
+  if (!who) throw new Error('missing watcher');
+  const frame = {
+    ...f,
+    watchers: f.watchers.map((w) =>
+      w === who
+        ? {
+            ...w,
+            account: { text: 'Still watching.', spoken: true },
+            handover: 'Kian has been called; waiting for an answer.',
+          }
+        : w,
+    ),
+    alerts: [
+      {
+        minute: f.minute,
+        text: 'Kian declined: too tired.',
+        kind: 'person' as const,
+        who: 'kian',
+        section: 'gate' as const,
+        slowed: false,
+      },
+    ],
+  };
+  const page = render(createElement(NightPanel, { frame, actions, selected: who.id }));
+  expect(page.querySelector('.w-lantern-track')).not.toBeNull();
+  expect(page.querySelector('.w-bellbtn')).not.toBeNull();
+  expect(page.querySelector('[role=status]')?.textContent).toContain('waiting for an answer');
+  expect(page.querySelector('.w-night-messages li')?.textContent).toBe('Kian declined: too tired.');
 });

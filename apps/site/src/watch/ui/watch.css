@@ -2714,3 +2714,27 @@
     display: block;
   }
 }
+
+/* Keep bell and lantern available while an account or helper list is read. */
+.w-account-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.watch .w-account-scroll > .lk-sheet-body {
+  overflow: visible;
+}
+.watch .w-account-scroll .w-account-commit {
+  max-height: none;
+  overflow: visible;
+}
+.w-night-messages summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.w-night-messages li {
+  margin-bottom: 8px;
+}

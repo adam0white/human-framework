@@ -50,13 +50,13 @@ function speedIds(season: boolean): Speed[] {
 const SEASON_PHASES = new Set<Frame['phase']>(['spring', 'summer', 'autumn']);
 /** Phases where the clock runs and the speed control shows. */
 const RUNNING = new Set<Frame['phase']>(['dusk', 'night', 'spring', 'summer', 'autumn']);
-const WINTER_PHASES = new Set<Frame['phase']>(['dusk', 'night', 'dawn']);
 
 /** The top bar's line: the date, and the hour on winter nights. */
-function headerLine(f: Frame): string {
+export function headerLine(f: Frame): string {
   if (f.phase === 'goal') return 'Before the first night';
-  if (WINTER_PHASES.has(f.phase))
-    return `${f.phase === 'dusk' ? 'Dusk · night' : f.phase === 'dawn' ? 'Dawn · night' : 'Night'} ${f.winter?.night ?? ''} · ${hourWords(f.clock, f.phase)}`;
+  if (f.phase === 'dusk' || f.phase === 'dawn')
+    return `${f.phase === 'dusk' ? 'Dusk' : 'Dawn'} · night ${f.winter?.night ?? ''}`;
+  if (f.phase === 'night') return `Night ${f.winter?.night ?? ''} · ${hourWords(f.clock, f.phase)}`;
   return f.date;
 }
 
@@ -879,6 +879,19 @@ export function NightPanel({
   onHelper?: (open: boolean) => void;
 }) {
   const who = frame.watchers.find((w) => w.id === selected);
+  const [release, setRelease] = useState<{ id: number; who: WatcherId } | null>(null);
+  const released =
+    release && frame.moment?.id !== release.id
+      ? frame.watchers.find((w) => w.id === release.who && w.posted === null)
+      : null;
+  const momentActions = {
+    ...actions,
+    input: (input: Parameters<WatchActions['input']>[0]) => {
+      if (input.k === 'answer' && input.choice === 'let' && frame.moment?.id === input.id)
+        setRelease({ id: input.id, who: frame.moment.who });
+      actions.input(input);
+    },
+  };
   const body = useRef<HTMLDivElement>(null);
   const momentId = frame.moment?.id;
   useEffect(() => {
@@ -901,12 +914,18 @@ export function NightPanel({
         {frame.moment && frame.moment.id !== dismissedMoment ? (
           <NightMoment
             frame={frame}
-            actions={actions}
+            actions={momentActions}
             dismissed={dismissedMoment}
             onDismiss={setDismissedMoment}
           />
         ) : (
           <>
+            {released ? (
+              <p role="status">
+                {released.name} is released from the assigned post. They choose whether to stay or go.
+              </p>
+            ) : null}
+            <NightMessages frame={frame} />
             {off.length ? (
               <p className="w-offwall">
                 Off the wall: {off.map((w) => `${w.name} (${awayWords(w.place, frame.phase)})`).join(', ')}
@@ -943,54 +962,72 @@ export function NightPanel({
         )}
       </div>
       {who?.account ? (
-        <NightAccount
-          key={who.id}
-          who={who}
-          frame={frame}
-          actions={actions}
-          onClose={onClose}
-          onHelper={onHelper}
-        />
-      ) : (
-        <footer className="lk-commit w-night-commit">
-          <fieldset
-            className={`w-lantern-track${walking ? ' is-walking' : ''}`}
-            aria-label="Move the lantern"
-          >
-            {SECTIONS.map((section, i) => (
-              <button
-                key={section.id}
-                type="button"
-                aria-pressed={frame.lantern.target === i}
-                disabled={frame.sections[i]?.fallen}
-                onClick={() => actions.input({ k: 'lantern', section: section.id })}
-              >
-                {frame.lantern.target === i ? (
-                  <span role="img" className="w-lantern-icon" aria-label={walking ? 'walking' : 'lantern'}>
-                    🏮
-                  </span>
-                ) : null}
-                {section.name.replace(' wall', '')}
-              </button>
-            ))}
-          </fieldset>
-          <button
-            type="button"
-            className={`w-bellbtn${ringing === 0 ? '' : ringing % 2 ? ' is-ring-a' : ' is-ring-b'}`}
-            aria-label={`${frame.bellSwinging ? 'Bell swinging' : 'Ring the bell'}. ${frame.bellRead ?? ''}. ${ropeWords(frame.rope.wear, frame.rope.snapped)}`}
-            disabled={frame.rope.snapped || frame.bellSwinging}
-            onClick={() => actions.input({ k: 'bell' })}
-          >
-            <span>
-              <Icon name="bell" size={20} />
-              {frame.bellSwinging ? 'Bell swinging' : 'Ring the bell'}
-            </span>
-            <small>{frame.bellRead ?? 'Calls watchers who hear it'}</small>
-            <Rope wear={frame.rope.wear} snapped={frame.rope.snapped} />
-          </button>
-        </footer>
-      )}
+        <div className="w-account-scroll">
+          <NightAccount
+            key={who.id}
+            who={who}
+            frame={frame}
+            actions={actions}
+            onClose={onClose}
+            onHelper={onHelper}
+          />
+        </div>
+      ) : null}
+      <footer className="lk-commit w-night-commit">
+        <fieldset className={`w-lantern-track${walking ? ' is-walking' : ''}`} aria-label="Move the lantern">
+          {SECTIONS.map((section, i) => (
+            <button
+              key={section.id}
+              type="button"
+              aria-pressed={frame.lantern.target === i}
+              disabled={frame.sections[i]?.fallen}
+              onClick={() => actions.input({ k: 'lantern', section: section.id })}
+            >
+              {frame.lantern.target === i ? (
+                <span role="img" className="w-lantern-icon" aria-label={walking ? 'walking' : 'lantern'}>
+                  🏮
+                </span>
+              ) : null}
+              {section.name.replace(' wall', '')}
+            </button>
+          ))}
+        </fieldset>
+        <button
+          type="button"
+          className={`w-bellbtn${ringing === 0 ? '' : ringing % 2 ? ' is-ring-a' : ' is-ring-b'}`}
+          aria-label={`${frame.bellSwinging ? 'Bell swinging' : 'Ring the bell'}. ${frame.bellRead ?? ''}. ${ropeWords(frame.rope.wear, frame.rope.snapped)}`}
+          disabled={frame.rope.snapped || frame.bellSwinging}
+          onClick={() => actions.input({ k: 'bell' })}
+        >
+          <span>
+            <Icon name="bell" size={20} />
+            {frame.bellSwinging ? 'Bell swinging' : 'Ring the bell'}
+          </span>
+          <small>{frame.bellRead ?? 'Calls watchers who hear it'}</small>
+          <Rope wear={frame.rope.wear} snapped={frame.rope.snapped} />
+        </button>
+      </footer>
     </div>
+  );
+}
+
+function NightMessages({ frame }: { frame: Frame }) {
+  return (
+    <details className="w-night-messages">
+      <summary>Recent night messages</summary>
+      {frame.alerts.length ? (
+        <ol>
+          {frame.alerts
+            .slice()
+            .reverse()
+            .map((a) => (
+              <li key={`${a.minute}-${a.text}`}>{a.text}</li>
+            ))}
+        </ol>
+      ) : (
+        <p>Nothing heard recently.</p>
+      )}
+    </details>
   );
 }
 
@@ -1103,6 +1140,8 @@ function NightAccount({
           </section>
         ) : (
           <section className="w-account" aria-label={`${who.name} on watch`}>
+            {who.handover ? <p role="status">{who.handover}</p> : null}
+            <NightMessages frame={frame} />
             {who.account?.spoken ? <blockquote>{who.account.text}</blockquote> : <p>{who.account?.text}</p>}
             {recentDoze ? (
               <p className="w-note w-account-doze">
