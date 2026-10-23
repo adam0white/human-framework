@@ -242,3 +242,79 @@ it('expires a moment even while new worker frames arrive', async () => {
     vi.useRealTimers();
   }
 });
+it('shows a fresh suggestion forecast in the caption instead of repeating old availability', async () => {
+  await begin();
+  const n = NUDGES.find((n) => n.id === 'cook-forest');
+  if (!n || !colony.frame) throw Error('Missing fixture');
+  colony.frame = { ...colony.frame, nudges: [n] };
+  colony.suggestionPrediction = {
+    input: suggestionInputForTest(n),
+    prediction: {
+      personId: 'maryam',
+      action: 'gather-timber',
+      kind: 'notNow',
+      text: 'After cooking the meal.',
+    },
+  };
+  await act(() => root.render(createElement(App)));
+  expect(container.querySelector('.well-caption')?.textContent).toContain('After cooking the meal.');
+});
+it('marks scheduled work already underway and lets the player dismiss it without ordering again', async () => {
+  await begin();
+  const n = NUDGES[0];
+  if (!n || !colony.frame) throw Error('Missing fixture');
+  colony.frame = {
+    ...colony.frame,
+    nudges: [n],
+    cards: [
+      {
+        order: { id: 'o1', ...n.order, action: 'build', issuedAt: 0, rollKey: 0, rush: false, insist: false },
+        status: 'active',
+        human: { state: 'assent' },
+        classic: { state: 'ok' },
+      },
+    ],
+  };
+  await act(() => root.render(createElement(App)));
+  expect(container.querySelector('.well-caption')?.textContent).toContain('Already underway');
+  await click('Keep watching');
+  expect(colony.actions.order).not.toHaveBeenCalled();
+  expect(colony.actions.dismissNudge).toHaveBeenCalledWith(n.id);
+});
+it('keeps the refused destination outlined when choosing another worker', async () => {
+  await begin();
+  if (!colony.frame) throw Error('Missing frame');
+  colony.frame = {
+    ...colony.frame,
+    cards: [
+      {
+        order: {
+          id: 'o1',
+          personId: 'idris',
+          placeId: 'site',
+          action: 'build',
+          issuedAt: 0,
+          rollKey: 0,
+          rush: false,
+          insist: false,
+        },
+        status: 'done',
+        human: { state: 'willNot', settled: true },
+        classic: { state: 'ok', settled: true },
+      },
+    ],
+  };
+  await act(() => root.render(createElement(App)));
+  await click('Scene person human');
+  // A map person selection is the same handler as the people list.
+  colony.frame = { ...colony.frame, news: [{ personId: 'yusuf', side: 'human', minute: 2, how: 'at work' }] };
+  await act(() => root.render(createElement(App)));
+  await click('Hurt · Yusuf (Human) · Show');
+  // Injury selection intentionally prioritizes Home; ordinary worker switches are tested below through Back.
+  await click('←');
+  await act(() => container.querySelector<HTMLButtonElement>('[data-person="idris"]')?.click());
+  await click('←');
+  await act(() => container.querySelector<HTMLButtonElement>('[data-person="yusuf"]')?.click());
+  expect(container.querySelector('.well-places .is-outlined')?.textContent).toContain('House');
+  expect(colony.actions.order).not.toHaveBeenCalled();
+});

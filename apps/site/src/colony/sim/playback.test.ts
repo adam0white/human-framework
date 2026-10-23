@@ -31,7 +31,7 @@ describe('playback: explicit pause and continuous decision slowdown', () => {
     expect(pb.game?.minute).toBe(2); // 8 sim-min/s at 1×
   });
 
-  it('gives a new suggestion ten seconds of reading before looking pace', () => {
+  it('gives a new suggestion ten seconds of reading without holding the unopened card slow', () => {
     const pb = start();
     pb.handle({ type: 'resume' });
     runUntilDecision(pb);
@@ -39,10 +39,10 @@ describe('playback: explicit pause and continuous decision slowdown', () => {
     for (let i = 0; i < 39; i++) pb.handle({ type: 'tick', dtMs: 250 });
     expect(pb.state().pace).toBe('reading');
     for (let i = 0; i < 3; i++) pb.handle({ type: 'tick', dtMs: 250 });
-    expect(pb.state().pace).toBe('looking');
+    expect(pb.state().pace).toBe('watching');
     const minute = pb.game?.minute ?? 0;
     for (let i = 0; i < 16; i++) pb.handle({ type: 'tick', dtMs: 250 });
-    expect((pb.game?.minute ?? 0) - minute).toBe(16);
+    expect((pb.game?.minute ?? 0) - minute).toBe(32);
   });
 
   it('holds overlays without changing a manual pause and ramps context changes', () => {

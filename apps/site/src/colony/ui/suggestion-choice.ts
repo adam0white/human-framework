@@ -25,7 +25,9 @@ export function suggestionChoice(
   const latest = latestPersonOrder(cards, nudge.order.personId);
   const prior =
     !prediction &&
-    latest?.status === 'active' &&
+    latest &&
+    latest.status !== 'cancelled' &&
+    latest?.status !== 'replaced' &&
     latest.order.action === job &&
     latest.human.state === 'willNot'
       ? latest
@@ -36,7 +38,26 @@ export function suggestionChoice(
       : prior
         ? `Last answer from ${shortName(nudge.order.personId)}: “${prior.human.says ?? prior.human.label ?? 'I will not.'}” Checking the current answer…`
         : null;
+  const doing = (people: Frame['human'] | Frame['classic']) =>
+    people.some(
+      (person) =>
+        person.id === nudge.order.personId &&
+        person.action === job &&
+        person.placeId === nudge.order.placeId &&
+        !['dead', 'down', 'idle'].includes(person.state),
+    );
+  const underway = Boolean(
+    (frame && doing(frame.human) && doing(frame.classic)) ||
+      (latest?.status === 'active' &&
+        latest.order.action === job &&
+        latest.order.placeId === nudge.order.placeId &&
+        !latest.human.settled &&
+        !latest.classic.settled &&
+        ['assent', 'complied', 'ok'].includes(latest.human.state) &&
+        latest.classic.state === 'ok'),
+  );
   return {
+    underway,
     refusal,
     nudge: refusal ? { ...nudge, prefill: { ...nudge.prefill, insist: true } } : nudge,
   };

@@ -90,3 +90,20 @@ it('ignores forecasts for a different person or task and cancelled prior refusal
     render({ ...refusal, action: 'gather-grain' }, [card]).querySelector('.nudge-use')?.textContent,
   ).toBe('Review order');
 });
+it('recognizes current work without a prior order, requiring the same work in both villages', async () => {
+  const { suggestionChoice } = await import('./suggestion-choice.ts');
+  const f = structuredClone(frame);
+  for (const side of [f.human, f.classic]) {
+    const person = side.find((p) => p.id === suggestion.order.personId);
+    if (!person) throw Error('Missing worker');
+    person.action = 'build';
+    person.placeId = 'site';
+    person.state = 'working';
+  }
+  expect(suggestionChoice(suggestion, f).underway).toBe(true);
+  const classic = f.classic.find((p) => p.id === suggestion.order.personId);
+  if (!classic) throw Error('Missing worker');
+  classic.action = 'gather-grain';
+  classic.placeId = 'field';
+  expect(suggestionChoice(suggestion, f).underway).toBe(false);
+});

@@ -303,7 +303,7 @@ export class Playback {
     const n = this.autoPause ? g?.visibleNudges().find((card) => !this.acknowledged.has(card.id)) : undefined;
     if (n) {
       const reading = this.elapsed - (this.suggestionAt.get(n.id) ?? this.elapsed) < 10000;
-      return { pace: reading ? 'reading' : 'looking', rate: reading ? 1 : 4, text: 'slowed: a suggestion' };
+      if (reading) return { pace: 'reading', rate: 1, text: 'slowed: a suggestion' };
     }
     if (this.context.person)
       return {

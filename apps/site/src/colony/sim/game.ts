@@ -17,7 +17,7 @@ import {
   type VillagerView,
   type WhyBreakdown,
 } from './human-side.ts';
-import { MAP } from './map.ts';
+import { MAP, type PlaceId } from './map.ts';
 import {
   type ChipState,
   fanOut,
@@ -29,6 +29,7 @@ import {
 } from './orders.ts';
 import { VILLAGES, type Village } from './village.ts';
 import {
+  type ActionId,
   applyWorldMinute,
   at,
   clockOf,
@@ -62,6 +63,9 @@ export const SCENARIO_VERSION = scenarioOf(CURRENT_RULES);
 export const DEFAULT_SEED = 20261003;
 
 export interface UnitView {
+  /** Presentation-only current work, also shown in label. Older display fixtures may omit it. */
+  action?: ActionId | null;
+  placeId?: PlaceId | null;
   id: VillagerId;
   name: string;
   role: Role;
@@ -1020,6 +1024,8 @@ export class ColonyGame {
         hunger: Math.round(u.hunger),
         hp: Math.round(u.hp),
         rush: u.task?.rush ?? false,
+        action: u.task?.action ?? null,
+        placeId: u.task?.placeId ?? null,
         carrying: u.carrying,
         carriedBy: u.carriedBy,
       })),

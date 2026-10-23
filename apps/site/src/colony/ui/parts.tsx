@@ -88,6 +88,7 @@ export function inferredJob(frame: Frame, place: PlaceId, side: 'human' | 'class
   const world = side === 'human' ? frame.humanWorld : frame.classicWorld;
   return inferAction(place, {
     minute: frame.minute,
+    rules: frame.rules,
     house: { stage: world.houseStage, shuttered: world.shuttered },
     cedarFelled: world.cedarFelled,
     storeroom: world.project.kind === 'storeroom' ? world.project.stage : null,

@@ -35,7 +35,8 @@ export const JOB_SHORT: Record<string, string> = {
   pray: 'pray',
   shelter: 'shelter',
 };
-export function placesFor(id: VillagerId): PlaceId[] {
+export function placesFor(id: VillagerId, rules = 7): PlaceId[] {
+  const home = villagerById(id)?.home ?? 'home-yusuf';
   return [
     'site',
     'forest',
@@ -44,7 +45,7 @@ export function placesFor(id: VillagerId): PlaceId[] {
     'well',
     'kitchen',
     'masjid',
-    villagerById(id)?.home ?? 'home-yusuf',
+    rules >= 8 && home === 'wellhouse' ? 'home-idris' : home,
   ];
 }
 export function riskyPlace(frame: Frame, place: PlaceId): string | null {
@@ -320,7 +321,7 @@ export function PersonSheet({
     c = frame.classic.find((p) => p.id === id),
     card = latestPersonOrder(frame.cards, id);
   const refused = card && ['willNot', 'notNow'].includes(card.human.state);
-  const places = placesFor(id);
+  const places = placesFor(id, frame.rules);
   if (outline?.startsWith('home-')) places.unshift(...places.splice(7, 1));
   return (
     <>
@@ -333,7 +334,9 @@ export function PersonSheet({
           {card ? (
             <>
               <div>
-                <strong>Latest · {PLACE_LABEL[card.order.placeId]}</strong>
+                <strong>
+                  Latest · {PLACE_LABEL[card.order.placeId]} · {jobPhrase(card.order.action)}
+                </strong>
                 <Status card={card} />
               </div>
               <div className="well-reply-row">

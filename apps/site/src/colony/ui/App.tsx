@@ -190,18 +190,26 @@ export function App() {
     setNudgeId(undefined);
     setOutline(null);
   };
+  const refusedDestination = () => {
+    const card = latestPersonOrder(frame?.cards ?? [], person);
+    return card?.human.state === 'willNot' ? card.order.placeId : outline;
+  };
   const pick = (id: VillagerId) => {
+    const destination = refusedDestination();
     setPerson(id);
     setFollowing(id);
     setSheet('person');
     resetHow();
+    setOutline(destination);
     setAsked(null);
     setFollowKey((k) => k + 1);
   };
   const backPeople = () => {
+    const destination = refusedDestination();
     setSheet('people');
     setPerson(null);
     resetHow();
+    setOutline(destination);
   };
   const send = useCallback(
     (input: OrderInput, id?: string) => {
@@ -262,7 +270,7 @@ export function App() {
   const sceneInputs = useMemo(
     () =>
       person
-        ? placesFor(person).map((placeId) => ({
+        ? placesFor(person, frame?.rules).map((placeId) => ({
             personId: person,
             placeId,
             ...(rush ? { rush: true } : {}),
@@ -270,7 +278,7 @@ export function App() {
             ...(appeal ? { appeal } : {}),
           }))
         : [],
-    [person, rush, insist, appeal],
+    [person, rush, insist, appeal, frame?.rules],
   );
   // biome-ignore lint/correctness/useExhaustiveDependencies: Forecasts depend on the changing world.
   useEffect(() => {
@@ -660,10 +668,26 @@ export function App() {
                       <strong>
                         Suggestion · {shortName(nudge.order.personId)} → {PLACE_LABEL[nudge.order.placeId]}
                       </strong>
-                      <small>{nudge.reason ?? nudge.text}</small>
+                      <small>
+                        {choice?.underway
+                          ? 'Already underway in both villages.'
+                          : (choice?.refusal ??
+                            suggestionForecast?.text ??
+                            'Suggested earlier; availability may have changed.')}
+                      </small>
                     </button>
-                    <button type="button" className="well-nudge-send" onClick={applyNudge}>
-                      {choice?.refusal ? 'Insist' : review ? 'Review' : 'Send'}
+                    <button
+                      type="button"
+                      className="well-nudge-send"
+                      onClick={choice?.underway ? skipNudge : applyNudge}
+                    >
+                      {choice?.underway
+                        ? 'Keep watching'
+                        : choice?.refusal
+                          ? 'Insist'
+                          : review
+                            ? 'Review'
+                            : 'Send'}
                     </button>
                     <button type="button" aria-label="Dismiss suggestion" onClick={skipNudge}>
                       ×
@@ -710,14 +734,26 @@ export function App() {
                         <h2>Suggestion</h2>
                       </header>
                       <div className="well-reading">
-                        <p>{nudge?.text ?? 'This suggestion has passed.'}</p>
-                        <p>{nudge?.reason}</p>
+                        <p>
+                          {choice?.underway
+                            ? 'Already underway in both villages.'
+                            : (suggestionForecast?.text ??
+                              'Suggested earlier; availability may have changed.')}
+                        </p>
+                        <p>{nudge ? `Earlier suggestion: ${nudge.text}` : 'This suggestion has passed.'}</p>
+                        {nudge?.reason && <p>Earlier reason: {nudge.reason}</p>}
                         {choice?.refusal && <p>{choice.refusal}</p>}
                         <p>The person can still refuse or wait.</p>
                         {nudge && (
                           <>
-                            <button type="button" onClick={applyNudge}>
-                              {choice?.refusal ? 'Insist' : review ? 'Review' : 'Send'}
+                            <button type="button" onClick={choice?.underway ? skipNudge : applyNudge}>
+                              {choice?.underway
+                                ? 'Keep watching'
+                                : choice?.refusal
+                                  ? 'Insist'
+                                  : review
+                                    ? 'Review'
+                                    : 'Send'}
                             </button>
                             <button type="button" onClick={skipNudge}>
                               ×
@@ -921,8 +957,10 @@ export function App() {
                   </p>
                   <p>Rush is faster and hungrier. Insist may cost trust. An appeal gives them a reason.</p>
                   <p>
-                    People stop to eat, sleep and pray, then come back. Home asks for one meal or one sleep;
-                    it does not keep them in.
+                    People stop to eat, sleep and pray, then come back.{' '}
+                    {frame?.rules && frame.rules >= 8
+                      ? 'Home asks them to stay sheltered until the next dawn (05:00). They may still refuse or leave for needs and duties.'
+                      : 'Home asks for one meal or one sleep; it does not keep them in.'}
                   </p>
                   <p>
                     Drag the map to look around. Space holds or releases the clock on desktop. It slows for
