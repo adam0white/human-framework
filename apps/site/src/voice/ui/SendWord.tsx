@@ -30,11 +30,13 @@ function useRecording(lab: Lab) {
     window.addEventListener('storage', sync);
     window.addEventListener('focus', sync);
     window.addEventListener('hf-lab-preference', sync);
+    window.addEventListener('voice-persona', sync);
     document.addEventListener('change', sync);
     return () => {
       window.removeEventListener('storage', sync);
       window.removeEventListener('focus', sync);
       window.removeEventListener('hf-lab-preference', sync);
+      window.removeEventListener('voice-persona', sync);
       document.removeEventListener('change', sync);
     };
   });

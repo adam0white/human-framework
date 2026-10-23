@@ -25,6 +25,7 @@ let startReturn: ((header: SelinReturn, seed: number) => void) | undefined;
 const session = new PersonaSession((key) => {
   // Keep an origin's old allowance closed until the pinned central choice is checked.
   gameLabs.voice.setPersonaRecording(key === null ? null : `voice-verifying-${crypto.randomUUID()}`);
+  changed();
 });
 let checkReturn: ((header: SelinReturn) => Promise<SelinReturn>) | undefined;
 let status = 'Selin can make a household enquiry after work.';
@@ -36,6 +37,8 @@ let deniedRecordingBranch: string | null | undefined;
 const listeners = new Set<() => void>();
 const changed = () => {
   for (const listener of listeners) listener();
+  // This is a gate/UI update, not a recording-identity preference change.
+  if (typeof window !== 'undefined') window.dispatchEvent(new Event('voice-persona'));
 };
 const message = (text: string) => {
   status = text;
@@ -329,7 +332,10 @@ export function VoicePersonaControls({ canReturn }: { canReturn: boolean }) {
               lab.setPersonaRecording(key);
               lab.allowPersonaRecording(false);
             }
-            if (head) lab.setPersonaRecording(`voice-verifying-${crypto.randomUUID()}`);
+            if (head) {
+              lab.setPersonaRecording(`voice-verifying-${crypto.randomUUID()}`);
+              changed();
+            }
             const current = () =>
               attempt === recordingAttempt &&
               !session.loading &&
@@ -341,7 +347,7 @@ export function VoicePersonaControls({ canReturn }: { canReturn: boolean }) {
                 lab.allowPersonaRecording(value);
               }
               recordingChoice = undefined;
-              render();
+              changed();
               return;
             }
             void shelf
@@ -366,7 +372,7 @@ export function VoicePersonaControls({ canReturn }: { canReturn: boolean }) {
                   lab.setPersonaRecording(key);
                   lab.allowPersonaRecording(value);
                 }
-                render();
+                changed();
               })
               .catch((error) => message(String(error)))
               .finally(() => {
