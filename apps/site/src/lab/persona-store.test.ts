@@ -36,6 +36,7 @@ it('serializes competing shelf writes and invalidates recording linkage after id
   ]);
   expect(results.filter((r) => r.status === 'fulfilled')).toHaveLength(1);
   expect(results.filter((r) => r.status === 'rejected')).toHaveLength(1);
+  await expect(shelfRequest({ action: 'put', envelope: first })).rejects.toThrow('conflict');
   writeLocal(OFF_KEY, '1');
   expect(await shelfRequest({ action: 'recording', castId: body.castId })).toEqual({ sameEpoch: false });
   await shelfRequest({ action: 'delete', castId: body.castId });

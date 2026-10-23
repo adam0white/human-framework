@@ -131,8 +131,11 @@ export async function createPersona(body: Omit<PersonaEnvelope, 'revision'>): Pr
 }
 /** Pure CAS reducer; called inside the central IndexedDB transaction. A fork explicitly replaces the active branch. */
 export function acceptPersona(state: PersonaShelfState, p: PersonaEnvelope, fork = false): PersonaShelfState {
-  if (state.revisions.some((r) => r.revision === p.revision)) return state;
   const head = Object.hasOwn(state.heads, p.castId) ? (state.heads[p.castId] ?? null) : null;
+  if (state.revisions.some((r) => r.revision === p.revision)) {
+    if (head === p.revision) return state;
+    throw new Error('Continuity conflict. Export this history or explicitly fork it.');
+  }
   const current = state.revisions.find((r) => r.revision === head);
   if (fork) {
     if (current?.branchId === p.branchId || p.parentRevision !== null)

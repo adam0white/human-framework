@@ -1,6 +1,6 @@
 # One cast host contract
 
-Approved first wave, 2026-10-23. HF 2.15.0 is additive, engine 2.14.1 unchanged. Client 0.3.0 and kit 0.4.0 ship as exact tarballs. Canonical facts and per-host maps are in [cast-registry.md](cast-registry.md). No cross-device sync or new server infrastructure is authorized. Owner review: 2026-11-03.
+Approved first wave, 2026-10-23. HF 2.15.0 is additive, engine 2.14.1 unchanged. Client 0.3.1 and kit 0.4.0 ship as exact tarballs. Canonical facts and per-host maps are in [cast-registry.md](cast-registry.md). No cross-device sync or new server infrastructure is authorized. Owner review: 2026-11-03.
 
 ## Passport
 
@@ -65,3 +65,5 @@ The host also records `transfer.checkpoint`: source schema, simulation minute, f
 Replay exports include top-level `oneCast`, an array of rows. Each row has `v: 1`, `probe` (`zeynep`, `dilan`, `derya`, `selin`), `arm` (`fresh`, `biography`, `continuing`), `scope` (`shared`, `local`, `file`), `castId`, `branchId`, SHA-256 `revision`, SHA-256 or null `parentRevision`, `stage` and `outcome`. All string fields are bounded tokens, not free text. Use `stage: checkpoint` for an accepted shelf revision and `stage: admitted` for target acceptance. Keep historical rows in the source export. The admitted row names the arriving payload revision and its actual source parent so the inbox can join target.parentRevision to source.revision. Intermediate claim revisions remain replay provenance, not a fabricated source checkpoint.
 
 Use the existing lab milestone channel for source eligibility/completion, bridge failures, encounter/import choices and trial results. `npm run lab:inbox` reconstructs complete received run chunks before extracting rows, retains distinct revision evidence for joins and deduplicates milestone counts by player/game/run/probe/cast/stage, and joins a shared continuing branch only within the same recording identity. File/local scope stays separate. Missing or expired uploads and recording-off/privacy-suppressed play are outside received denominators. Counts do not establish recognition or attachment. Owner words and optional neutral recognition questions remain the evidence for that. Zeynep needs matched target-seed fresh, biography and carried-skill ablation.
+
+Client 0.3.1 supersedes 0.3.0: only the current active head may receive an idempotent acknowledgement. A retained non-head revision conflicts, including an old fork request. Retrying a historical receipt never authorizes a new admission.

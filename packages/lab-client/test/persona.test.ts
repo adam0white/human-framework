@@ -65,6 +65,15 @@ describe('persona shelf contract', () => {
     });
     state = acceptPersona(state, target);
     expect(acceptPersona(state, target)).toBe(state);
+    const continued = await createPersona({
+      ...body,
+      parentRevision: target.revision,
+      transfer: { continued: true },
+    });
+    state = acceptPersona(state, continued);
+    expect(() => acceptPersona(state, target)).toThrow('conflict');
+    expect(() => acceptPersona(state, target, true)).toThrow('conflict');
+    expect(() => acceptPersona(state, first, true)).toThrow('conflict');
     const stale = await createPersona({
       ...body,
       parentRevision: first.revision,
