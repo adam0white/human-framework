@@ -1,0 +1,184 @@
+# The Night Watch — Nessa
+
+I cared about the watchers, especially when Tamar said Kian helped her. I stopped playing because I could not work out how to cover an empty wall during the night. A later driver block prevented feedback submission.
+
+## Session
+
+- Persona: Nessa; patient management-game player, interested in responsibility for named people, with an evening available.
+- URL: https://human.adamwhite.work/watch/
+- Build: not visibly shown. No release file inspected.
+- Device: assigned 360×690 CSS px, touch, light-mode fixture. The game itself appeared dark in screenshots.
+- Access: only the supplied player-facing HTTP driver at http://127.0.0.1:44603/ using the prescribed curl command. No source, internal state, prior reports, or other network requests inspected.
+- Limits: 0-minute floor, 25-minute ceiling. Gameplay stopped at 489.259 s (8:09), Dawn · night 2. Session ended during feedback at 511.271 s (8:31), reason TOOL.
+- Speed stayed at default Steady. Real waits used the documented wait operation. The game advanced during waits and between inputs; no frozen-time limitation was observed. The menu explicitly says it waits while open.
+- Timing is wall-clock elapsed from driver open, separate from the game's night/phase. Driver input rows leave game_clock null; phase observations below and original notes supply it. I did not fabricate missing per-input clock fields.
+
+## First minute
+
+The original first-minute note was logged at 71.171 s, late by about 11 seconds. It describes observations already reached before 60 s. No knowledge from Kian's later decision is used for these ratings. The driver also recorded an automatic first-minute screenshot at 60.081 s; I did not inspect that screenshot. Visual evidence here is first-night.png at 20.361 s.
+
+Original checkpoint answer, verbatim:
+
+> I am protecting six people and grain until thaw. Tracks drew me to Tamar at the Gate. Watcher cards, posts, Ask/Urge/Insist, Begin, speeds, lantern sections and bell are tappable. Ask and Gate were selected. I left them alone; Done put them there. Rest and help wait for tiredness, hurt or wolves, which is explained. Now Tamar says she cannot make anything out, so I am waiting. A meaningful posting choice was available at about 3 seconds; I opened it at 6 seconds. I have not learned what pressure or the bell actually does. The screenshot fits her account and bell, but the recording banner covers the top status.
+
+| Item | Result | Checkpoint evidence |
+|---|---|---|
+| DL-1 A reason to act | PASS | “Bring every soul and the granary to the thaw” gave me a purpose. Pack tracks on the gate road gave me a place to attend now. |
+| DL-2 What can I touch | PASS | Watcher cards, post buttons, pressure choices, Begin, speeds, lantern sections, bell. I opened Tamar at 6.156 s and her account at 17.188 s. No inert object tried within the first minute. Scene-only touch affordances were not tested. |
+| DL-3 Urgency and selection | PASS | Tracks drew me to Gate. Ask and Gate were marked selected in Tamar's panel; Steady and lantern Gate were selected at night. No active emergency yet. The recording banner obscured top status in the screenshot, so urgency there was not visually established. |
+| DL-4 Why the limit | PASS | The account explicitly said “No rest or help request is offered without a sign of tiredness, hurt or a wolf at the wall.” I understood what would make those requests available. |
+| DL-5 Readable situation | PASS | “I’m keeping watch… I can’t make anything out yet” and “The watch continues” told me watching was underway. Account and lantern/bell controls were readable in first-night.png. |
+| DL-6 A choice soon | PASS | Posting choices were reachable at 2.846 s, explicitly exposed at 6.156 s when I opened Tamar. My first substantive choice was to retain Ask/Gate and close at 11.353 s, then Begin at 14.385 s. This preceded long text and was within 30 s. First input overall was Go up to the wall at 2.846 s. |
+| DL-7 Learn by doing | PASS for reached interactions | Opening a person exposed pressure and posts; Done returned to the list showing “there now”; Begin switched to night; tapping Tamar gave her account and explained conditional requests. I used no help before 60 s. Pressure changes, reassignment consequences and bell consequences were NOT TESTED at checkpoint (3 interaction categories). |
+
+These are limited passes for what I actually reached. The harness text alone does not establish touch-target size, visual selection styling, or all-scene readability. Screenshots establish only the specific layouts named here.
+
+## Important inputs and visible answers
+
+The full original driver diary follows below. This table adds visible answers from the play transcript; it does not rewrite the original reactions.
+
+| Elapsed s | Game clock | Input / visible answer |
+|---|---|---|
+| 0.343 | Title | Open: “Bring every soul and the granary to the thaw.” |
+| 2.846–11.353 | Dusk · night 1 | Go up; open Tamar; retain Ask/Gate; Done. Tracks at Gate. Her status changed from “in the village” to “there now.” |
+| 14.385–17.188 | Night 1 · Nightfall | Begin, then Tamar: keeping watch, cannot make anything out. Rest/help condition explained. |
+| 53.507–61.317 | Night 1 · Night | Real 30 s and 5 s waits. Same account; phase advanced. |
+| 71.370–76.902 | Night 1 · Night | Dismiss banner; open/close lantern help; Urge Kian to hold likely. Prompt: wolves at Gate, Kian looks back at steps. Ringing by name promised holding with resentment. |
+| 79.371 | Night 1 · Night | Kian account; “Tamar drove a wolf off…” and “Kian drove a wolf off…” |
+| 122.197–122.531 | Night 1 · Midnight | Move West; back from Kian; hear Mara: “Nothing close that I can make out.” Lantern moving. |
+| 155.855–163.481 | Night 1 · The small hours | Mara asleep. Send relief; Send Kian to relieve Mara. “waiting for an answer.” Rest disabled while someone answers. |
+| 182.246 | Night 1 · Before dawn | “Kian has the west wall; Mara has gone down.” |
+| 221.108–225.344 | Dawn · night 1 | “The wall held. No grain was lost.” Tamar: “Kian was beside me… That helped.” Ask Kian how he is: “Nothing wrong with me.” |
+| 233.142–243.106 | Dusk · night 2 | On to dusk; eight souls; new Joss and Yunus; tracks at mill race. Mara tiring. Open Mara; Mill full/disabled. Choose Gate. Choosing it already returned to list; my extra Done tap failed because Done was absent. This was a stale action, not a driver block. |
+| 246.545–250.395 | Dusk/nightfall · night 2 | Set starting lantern to Mill; Begin. |
+| 284.133–291.859 | Night 2 · Night | Joss and Yunus drove wolves off mill. Open Mara; Rest. “Mara’s gone home to bed.” |
+| 329.176–338.590 | Night 2 · Night | Joss hears wolves near his children. Let Joss go. “released… They choose whether to stay or go.” Move East; answer already says “Grain is gone: something got over the east wall.” Joss nods off at mill. |
+| 358.825–397.927 | Night 2 · Midnight/small hours | Yunus reports Joss ran home. Open Yunus; mostly keeping-watch answer. No control I recognized for assigning an empty wall. |
+| 404.527–408.753 | Night 2 · The small hours | Reread help; close; ring once. “No answer from the east wall.” Yunus resumes answering. Rope changes from sound to fraying; bell swinging disabled briefly. |
+| 443.959–471.825 | Night 2 · Before dawn/dawn | Real waits. Dawn: “A serious breach. The granary was hit hard.” Eight souls still shown. |
+| 475.918–479.687 | Dawn · night 2 | Select Joss; ask about last night: “Cold. Long. Nothing I couldn’t stand.” Open night's account. It reports breaches at mill and empty east wall, and Joss saying “I went to my two children. I’d go again.” Mara is quoted about dropping off at west wall. |
+| 489.259 | Dawn · night 2 | Stop gameplay, CONFUSED. |
+| 493.718–501.468 | Dawn · night 2 | Done; menu; Send word; choose “I’d stop here.” |
+| 501.504, 504.337 | Dawn · night 2 | Exact-text tap “+ Add a name or tester id” twice. Both replies retained that visible group, requested_control_present_before:true, but said it was not on the page now. Ended as TOOL. |
+
+## Experience
+
+Best moment: first dawn at 221.108–232.962 s. Tamar credited Kian's company. I felt my decision had helped two people, rather than merely moved units.
+
+Worst game moment: second dawn's account at 479.687–489.213 s. Mara's west-wall story did not fit my observed Gate posting and her early trip home. I could not tell whether I misunderstood the account. Worst access moment: the feedback name disclosure failed twice despite remaining visible.
+
+Every want_quit: one, 404.329 s, CONFUSED. I wanted to cover east and could not find how. I stayed to hear about Joss's family. That wish did not pass; I stopped at the next dawn. The original wording is preserved below.
+
+Pulse series: 190.894 s, 4/5, relief felt like caring for people; 363.516 s, 3/5, still cared about Joss but did not understand covering an empty stretch. Session stopped before a third three-minute pulse was due.
+
+Hard, but kept going: at 242.893 s I could not find a way to give tiring Mara the night off. I posted her with Tamar, then used Rest at 291.859 s. I stayed to secure her rest. I did not search for an easier speed or accessibility setting. Later I reread help and tried the bell to recover from tired or silent watchers.
+
+## Clarity and hands-on findings
+
+- DL-20 — PASS for encountered English. I could act in English. Watcher, post, relief, lantern and bell were understandable; help explained the lantern and bell when requested at 71.535 s. No necessary untranslated local term encountered. “likely, maybe” did not tell me a precise chance, but I took it as uncertainty about compliance.
+- DL-21 — NOT TESTED for deadline comparison. Night numbers and phases were readable English. Thaw was the goal, but no dated deadline, month/year transition, or defined number of nights until thaw was encountered. I could not estimate the remaining commitment from “thaw” and its small visual marker.
+- DL-22 — FAIL in the relief sheet at 163.322 s. Essential lower option context was not all on screen without scrolling. first-night.png did show the immediate account and bottom actions; the opening recording banner covered the top status. Screenshot evidence, not text-only inference.
+- DL-30 — FAIL in relief-sheet.png. The lower explanation visibly ends “Kian: likely; leaves Tamar at the Gate; I reckon the” before the fixed lantern controls. The Kian send button is outside the visible sheet area. I did not test scrolling that sheet, so this does not establish it is unreachable. The harness could activate that button even though the screenshot did not show it; that action is not proof of normal touch reachability. No “Scroll ↓” encountered. In first-night.png the recording banner also overlaps top status; dismissing it removed that banner.
+- DL-31 — PARTIAL FAIL. The relief sheet retained the person (“Send relief for Mara”), current night/phase, and a small progress display above it. It did not give me a readable deadline to thaw. In second-dawn-account.png the night, eight souls, progress marker and grain picture remained visible above/inside the sheet; the account text fit. No precise deadline was present to compare. Deadline component NOT TESTED as a numeric/date comparison.
+- DL-32 — About 75 seconds, 338.590–413.796 s, was the longest stretch when I wanted a specific action (cover empty east) and could not find it. I could inspect people, move the lantern, open help and ring, so this was not a literal input lock. I mostly watched after arriving too late. From the want_quit at 404.329 s to dawn at 471.825 s was another 67.5 s of waiting for the family outcome, with one bell intervention. No claim that the game has no relocation rule.
+- DL-33 — Talking, relief and rest used person/account panels and buttons. Sending relief opened a helper selection form. Moving the lantern used section buttons; ringing used the bell button. I did not test tapping the drawn people or structures directly. Cooking and digging were not encountered (NOT TESTED).
+- Clarity without an assigned id: at dusk I could not find “stay home” for Mara; the only unassigned option explicitly said “still on watch.” I found a workaround during night. At second dawn Mara said “My head kept dropping at the west wall. I pinched myself awake.” The transcript had her Gate posting and home departure. I could not reconcile these visible accounts; I did not inspect why.
+
+## Feedback — DL-13
+
+The normal menu names the route “Send word,” with a “Send” button, rather than “Send feedback.” I opened it once after stopping. I selected “I’d stop here.” The requested name was `playtester Nessa rebuild-2026-10-23`. I could not open its name field: two exact-text taps on the latest visible “+ Add a name or tester id” group failed. The replies said “+ Add a name or tester id is not on the page now (game state, not a driver failure)” even though requested_control_present_before was true and the group remained listed.
+
+Under the assignment's operational definition this is a driver block after one retry. I ended at once and logged TOOL. I did not type the name or verdict, did not press Send, and did not claim delivery. Visible player id: not shown in the reached form. Submission answer: NONE — NOT SUBMITTED, blocked before submission. No export downloaded.
+
+My one-line verdict would have been: “I cared about the watchers, but stopped at the second dawn because I could not work out how to cover an empty wall and the account confused me.”
+
+## Stop and return
+
+Gameplay: second dawn, eight souls, serious granary breach, 489.259 s, CONFUSED. Final session: feedback name control, 511.271 s, TOOL. I would consider another evening voluntarily because I care about the people, but would not leave this running unattended. The first wish to leave persisted.
+
+## Changes I would want as Nessa
+
+1. A way I can recognize to ask someone to cover an empty wall during the night, or a clear explanation of why I cannot.
+2. A way I can recognize to give a tiring watcher the night off at dusk.
+3. A relief sheet where I can read both helpers and their send controls on this phone without the fixed controls hiding the lower option.
+
+## Verbatim diary
+
+The following is my original driver log, unchanged. It includes exact control names, wall-clock elapsed times, errors, every reaction, pulse, want_quit and both stop records. Important visible answers are transcribed above because the driver log does not itself store those replies. The first-minute screenshot row was generated by the driver. Null clock fields are preserved.
+
+```jsonl
+{"t":"2026-10-23T16:43:13.668Z","elapsed_s":null,"kind":"input","op":"start","input":{"driver":"351679a","driver_check":"current"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":0,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:43:20.499Z","elapsed_s":0.343,"kind":"input","op":"open","input":{},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":343,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:43:23.002Z","elapsed_s":2.846,"kind":"input","op":"tap","input":{"name":"Go up to the wall"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":209,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:43:26.312Z","elapsed_s":6.156,"kind":"input","op":"tap","input":{"name":"Tamar Sling, steady · keeps the Gate Gate, asked · in the village dutiful steady by nature"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":152,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:43:31.297Z","elapsed_s":11.141,"kind":"note","op":"log","input":null,"reaction":"Tamar already keeps the Gate, and the tracks are there. I will ask her to stay there. I like having names and temperaments, though likely, maybe is vague.","game_clock":"Dusk · night 1","engagement":null,"reason":null,"op_ms":0,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:43:31.509Z","elapsed_s":11.353,"kind":"input","op":"tap","input":{"name":"Done"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":145,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:43:34.541Z","elapsed_s":14.385,"kind":"input","op":"tap","input":{"name":"Begin the watch"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":137,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:43:37.344Z","elapsed_s":17.188,"kind":"input","op":"tap","input":{"name":"Tamar on post"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":148,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:43:40.517Z","elapsed_s":20.361,"kind":"input","op":"shot","input":{"file":"first-night.png"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":171,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:44:13.663Z","elapsed_s":53.507,"kind":"input","op":"wait","input":{"s":30},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":30119,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:44:20.237Z","elapsed_s":60.081,"kind":"first_minute","op":"shot","input":{"file":"first-minute.png"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":79,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:44:21.473Z","elapsed_s":61.317,"kind":"input","op":"wait","input":{"s":5},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":5112,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:44:31.327Z","elapsed_s":71.171,"kind":"first_minute","op":"log","input":null,"reaction":"I am protecting six people and grain until thaw. Tracks drew me to Tamar at the Gate. Watcher cards, posts, Ask/Urge/Insist, Begin, speeds, lantern sections and bell are tappable. Ask and Gate were selected. I left them alone; Done put them there. Rest and help wait for tiredness, hurt or wolves, which is explained. Now Tamar says she cannot make anything out, so I am waiting. A meaningful posting choice was available at about 3 seconds; I opened it at 6 seconds. I have not learned what pressure or the bell actually does. The screenshot fits her account and bell, but the recording banner covers the top status.","game_clock":"Night 1 · Night","engagement":null,"reason":null,"op_ms":0,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:44:31.526Z","elapsed_s":71.37,"kind":"input","op":"tap","input":{"name":"Dismiss"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":146,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:44:31.691Z","elapsed_s":71.535,"kind":"input","op":"tap","input":{"name":"The lantern, your voice and the bell"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":136,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:44:36.889Z","elapsed_s":76.733,"kind":"input","op":"tap","input":{"name":"Close information"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":136,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:44:37.058Z","elapsed_s":76.902,"kind":"input","op":"tap","input":{"name":"Urge Kian to hold likely"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":143,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:44:39.527Z","elapsed_s":79.371,"kind":"input","op":"tap","input":{"name":"Kian on post"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":145,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:44:44.727Z","elapsed_s":84.571,"kind":"note","op":"log","input":null,"reaction":"I urged Kian to hold rather than ring and make him resent me. Both he and Tamar drove wolves away. That feels like I helped him through a frightening moment.","game_clock":"Night 1 · Night","engagement":null,"reason":null,"op_ms":0,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:45:14.898Z","elapsed_s":114.742,"kind":"input","op":"wait","input":{"s":30},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":30117,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:45:22.353Z","elapsed_s":122.197,"kind":"input","op":"tap","input":{"name":"West"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":134,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:45:22.521Z","elapsed_s":122.365,"kind":"input","op":"tap","input":{"name":"← Kian · Gate, asked · there now"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":145,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:45:22.687Z","elapsed_s":122.531,"kind":"input","op":"tap","input":{"name":"Mara on post"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":141,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:45:56.011Z","elapsed_s":155.855,"kind":"input","op":"wait","input":{"s":30},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":30122,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:45:59.390Z","elapsed_s":159.234,"kind":"input","op":"tap","input":{"name":"Send relief"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":143,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:46:03.478Z","elapsed_s":163.322,"kind":"input","op":"shot","input":{"file":"relief-sheet.png"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":165,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:46:03.637Z","elapsed_s":163.481,"kind":"input","op":"tap","input":{"name":"Send Kian to relieve Mara"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":136,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:46:22.402Z","elapsed_s":182.246,"kind":"input","op":"wait","input":{"s":15},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":15116,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:46:31.050Z","elapsed_s":190.894,"kind":"pulse","op":"log","input":null,"reaction":"Getting Mara relieved feels like looking after actual people. I want to see them reach morning.","game_clock":"Night 1 · Before dawn","engagement":4,"reason":null,"op_ms":0,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:46:31.096Z","elapsed_s":190.94,"kind":"note","op":"log","input":null,"reaction":"The relief sheet hides the lower Kian explanation and button behind the fixed lantern controls on my phone. I could select through the harness, but the screenshot does not show that button. Kian has now taken over and Mara has gone down, which is a satisfying clear answer.","game_clock":"Night 1 · Before dawn","engagement":null,"reason":null,"op_ms":0,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:47:01.264Z","elapsed_s":221.108,"kind":"input","op":"wait","input":{"s":30},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":30113,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:47:05.316Z","elapsed_s":225.16,"kind":"input","op":"tap","input":{"name":"Kian"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":161,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:47:05.500Z","elapsed_s":225.344,"kind":"input","op":"tap","input":{"name":"How are you holding up?"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":147,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:47:13.118Z","elapsed_s":232.962,"kind":"note","op":"log","input":null,"reaction":"Tamar saying Kian beside her helped is my best moment so far. I checked on Kian after asking a lot of him; Nothing wrong with me made me smile. I will leave the remaining talk unused so they can sleep.","game_clock":"Dawn · night 1","engagement":null,"reason":null,"op_ms":0,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:47:13.298Z","elapsed_s":233.142,"kind":"input","op":"tap","input":{"name":"On to dusk"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":134,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:47:16.403Z","elapsed_s":236.247,"kind":"input","op":"tap","input":{"name":"Mara Best sight no assigned post · may choose an open post heeds you tiring jumpy by nature close to Joss"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":149,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:47:23.049Z","elapsed_s":242.893,"kind":"note","op":"log","input":null,"reaction":"Mara is still tiring after sleep. I wanted to give her tonight off, but I only see posts or Mara chooses (still on watch). I cannot tell how to let her stay home at dusk. Mill is full, which I take to mean the two new people fill it.","game_clock":"Dusk · night 2","engagement":null,"reason":null,"op_ms":0,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:47:23.235Z","elapsed_s":243.079,"kind":"input","op":"tap","input":{"name":"Gate"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":140,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:47:23.262Z","elapsed_s":243.106,"kind":"tool","op":"tap","input":{"name":"Done"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":4,"error":"Done is not on the page now, and it was not in the last reply either; use a name from the latest controls (not a driver failure)","requested_control_present_before":false}
+{"t":"2026-10-23T16:47:26.701Z","elapsed_s":246.545,"kind":"input","op":"tap","input":{"name":"🏮 Starts at West wall ▾"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":137,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:47:30.384Z","elapsed_s":250.228,"kind":"input","op":"tap","input":{"name":"Mill wall"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":148,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:47:30.551Z","elapsed_s":250.395,"kind":"input","op":"tap","input":{"name":"Begin the watch"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":143,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:48:04.289Z","elapsed_s":284.133,"kind":"input","op":"wait","input":{"s":30},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":30113,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:48:08.884Z","elapsed_s":288.728,"kind":"input","op":"tap","input":{"name":"Mara on post"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":143,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:48:12.015Z","elapsed_s":291.859,"kind":"input","op":"tap","input":{"name":"Rest"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":150,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:48:19.153Z","elapsed_s":298.997,"kind":"note","op":"log","input":null,"reaction":"I found my workaround for Mara: put her with Tamar, then ask her to rest once night starts. She went home. I stayed because I wanted to get her proper rest, although doing it through a night post felt roundabout.","game_clock":"Night 2 · Night","engagement":null,"reason":null,"op_ms":0,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:48:49.332Z","elapsed_s":329.176,"kind":"input","op":"wait","input":{"s":30},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":30110,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:48:52.206Z","elapsed_s":332.05,"kind":"input","op":"tap","input":{"name":"Let Joss go to his two children"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":157,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:48:58.746Z","elapsed_s":338.59,"kind":"input","op":"tap","input":{"name":"East"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":138,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:48:58.771Z","elapsed_s":338.615,"kind":"note","op":"log","input":null,"reaction":"I let Joss go to his children. Yunus is still at the mill, and I cannot ask a parent to ignore that. I am taking the lantern east to see what is there.","game_clock":"Night 2 · Night","engagement":null,"reason":null,"op_ms":0,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:49:18.981Z","elapsed_s":358.825,"kind":"input","op":"wait","input":{"s":20},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":20123,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:49:23.672Z","elapsed_s":363.516,"kind":"pulse","op":"log","input":null,"reaction":"I care about Joss and his children, but I arrived east too late for the grain. I am less sure how to protect an empty stretch during the night.","game_clock":"Night 2 · Midnight","engagement":3,"reason":null,"op_ms":0,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:49:23.865Z","elapsed_s":363.709,"kind":"input","op":"tap","input":{"name":"Yunus on post"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":143,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:49:58.083Z","elapsed_s":397.927,"kind":"input","op":"wait","input":{"s":30},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":30125,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:50:04.485Z","elapsed_s":404.329,"kind":"want_quit","op":"log","input":null,"reaction":"I would put this down now. I want to cover the east wall, but I do not see a way, and checking people mostly gives the same answer. I will stay until dawn to hear whether the children are all right.","game_clock":"Night 2 · The small hours","engagement":null,"reason":"CONFUSED","op_ms":0,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:50:04.683Z","elapsed_s":404.527,"kind":"input","op":"tap","input":{"name":"The lantern, your voice and the bell"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":143,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:50:08.742Z","elapsed_s":408.586,"kind":"input","op":"tap","input":{"name":"Close information"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":140,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:50:08.909Z","elapsed_s":408.753,"kind":"input","op":"tap","input":{"name":"Ring the bell. loud at the Gate, faint at the east wall. The rope is sound"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":144,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:50:13.952Z","elapsed_s":413.796,"kind":"note","op":"log","input":null,"reaction":"I reread help and rang once because Yunus was not answering and Kian could not stay awake. Yunus answered afterward. The bell says no answer from east; that does not solve the empty post. One pull already shows the rope fraying, which surprises me.","game_clock":"Night 2 · The small hours","engagement":null,"reason":null,"op_ms":0,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:50:44.115Z","elapsed_s":443.959,"kind":"input","op":"wait","input":{"s":30},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":30117,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:51:11.981Z","elapsed_s":471.825,"kind":"input","op":"wait","input":{"s":25},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":25116,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:51:16.074Z","elapsed_s":475.918,"kind":"input","op":"tap","input":{"name":"Joss"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":141,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:51:16.241Z","elapsed_s":476.085,"kind":"input","op":"tap","input":{"name":"Tell me about last night"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":138,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:51:19.843Z","elapsed_s":479.687,"kind":"input","op":"tap","input":{"name":"The night's account"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":141,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:51:29.347Z","elapsed_s":489.191,"kind":"input","op":"shot","input":{"file":"second-dawn-account.png"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":139,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:51:29.369Z","elapsed_s":489.213,"kind":"note","op":"log","input":null,"reaction":"I asked Joss about last night and got Cold. Long. Nothing I couldn’t stand. The account gives the answer I wanted: I went to my two children. I’d go again. I respect that. It also says Mara pinched herself awake at the west wall, though I had posted her at Gate and sent her home. I cannot reconcile that account with what I saw.","game_clock":"Dawn · night 2","engagement":null,"reason":null,"op_ms":0,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:51:29.415Z","elapsed_s":489.259,"kind":"stop","op":"log","input":null,"reaction":"I am stopping at the second dawn. I care about these people, but I still do not understand how to cover an empty wall during the night, and the account makes me doubt my reading. I would consider returning another evening, rather than leave it running.","game_clock":"Dawn · night 2","engagement":null,"reason":"CONFUSED","op_ms":0,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:51:33.874Z","elapsed_s":493.718,"kind":"input","op":"tap","input":{"name":"Done"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":149,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:51:34.045Z","elapsed_s":493.889,"kind":"input","op":"tap","input":{"name":"Game menu"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":149,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:51:37.880Z","elapsed_s":497.724,"kind":"input","op":"tap","input":{"name":"Send word"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":147,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:51:41.624Z","elapsed_s":501.468,"kind":"input","op":"tap","input":{"name":"I’d stop here"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":148,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:51:41.660Z","elapsed_s":501.504,"kind":"tool","op":"tap","input":{"text":"+ Add a name or tester id"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":11,"error":"+ Add a name or tester id is not on the page now (game state, not a driver failure)","requested_control_present_before":true}
+{"t":"2026-10-23T16:51:44.493Z","elapsed_s":504.337,"kind":"tool","op":"tap","input":{"text":"+ Add a name or tester id"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":7,"error":"+ Add a name or tester id is not on the page now (game state, not a driver failure)","requested_control_present_before":true}
+{"t":"2026-10-23T16:51:51.427Z","elapsed_s":511.271,"kind":"stop","op":"log","input":null,"reaction":"Feedback is blocked by the driver: + Add a name or tester id remains visible in the latest controls, but two exact-text taps both say it is not on the page now. I must end the session without submitting rather than omit the required name.","game_clock":"Dawn · night 2","engagement":null,"reason":"TOOL","op_ms":0,"error":null,"requested_control_present_before":null}
+```

@@ -1,0 +1,140 @@
+# Neighbours — Rafi
+
+I wanted to help someone, and Ada's refusal briefly made her feel like a person. I did not reach a changed day for anyone. The driver blocked an apparent expandable control, so this is an incomplete playtest, not a verdict on a full run.
+
+## Session
+
+- Persona: Rafi; occasional strategy player; impatient; wants a choice to change somebody's day; evening set aside.
+- URL: https://neighbours.adamwhite.work
+- Build: not visibly shown. No release metadata inspected.
+- Device: assigned 360×690 CSS px, touch, light mode. Screenshots were 360×690.
+- Access: supplied player-facing HTTP driver at http://127.0.0.1:44602/, using curl. No source, internal state, prior reports or other sessions read.
+- Limit: 0-minute floor, 25-minute ceiling. Gameplay ended on the second failed control attempt at 88.949 s; stop logged at 95.073 s. Feedback acknowledgment at 117.057 s.
+- Game clock: Day 1 08:00 to 11:30. Wall time and game time are different. A real 30-second wait advanced the game from 08:15 to 11:15. Conversation explicitly held time. No speed changed, no skip used.
+
+## First minute
+
+Original checkpoint note, logged at 66.404 s (6.4 seconds after the driver's 60-second screenshot; no new choice was made in that interval):
+
+> I came to help reopen the hall. I chose the hall and walked there; the wait moved from 08:15 to 11:15 and other people chose jobs without me. Talking to Ada opens a big form. I can offer work, ask or urge, but I have not made a proposal yet. Put it to Ada is disabled; I guess I need to pick what I want her to do and my work. The hall selection was clear and the walk limit explained itself. I want a direct useful action, and this is already more paperwork than I expected.
+
+The table uses only evidence reached by 60 s. Screenshot: (driver scratch)/first-minute.png. The first screen with an actable control appeared at 0.499 s; town controls appeared at 9.921 s.
+
+| Item | Result | My answer and visible evidence |
+|---|---|---|
+| DL-1 A reason to act | PASS | I want to reopen the flooded hall. The opening says “Help your neighbours reopen the flooded hall”; the hall says “Needs help.” |
+| DL-2 What can I touch | PASS | Places, named neighbours, Hall, Walk somewhere, Help the town, Journal, menu and information were listed as controls. I tapped Hall, Walk to Flooded hall, then Talk to Ada. The screenshot shows outlined choice buttons. No inert thing tried before 60 s. Some choices extend beyond the right edge; I had not explored them. |
+| DL-3 Urgency and selection | PASS | “Needs help” drew me to the hall. No specific deadline was urgent yet. The selected hall was pressed in the control list; after walking the sheet said “You are here.” In conversation, Offer an hour and Day 1 · 18:00 were selected. |
+| DL-4 Why the limit | FAIL | Walking elsewhere was blocked until arrival, with the clear explanation “Your walk must end before you can walk somewhere else.” But Put it to Ada was disabled without a nearby explicit missing-selection explanation. I guessed that I needed to select her action and my work. The hall also said “closed pending safe inspection,” but I had not learned how to secure that inspection. |
+| DL-5 Readable situation | PASS | “Walking to Flooded hall, arriving about 09:00” told me what was underway. Later “Time holds while you talk” and Ada's available proposal options gave me a response to make. |
+| DL-6 A choice soon | PASS | Destination choices available by 9.921 s, first destination inspection input at 12.320 s, commitment to walk at 15.999 s. This was within 30 s without long preliminary text. A social proposal was available at 55.847 s, but none submitted by 60 s. |
+| DL-7 Learn by doing | PASS, limited | One destination choice taught me that travel takes time and prevents another walk. Talking to one person taught me that conversation pauses the clock and opens a form. Social proposal/consequence: NOT TESTED at checkpoint (0 submitted); repair/work: NOT TESTED (0 performed). No help opened. |
+
+## Diary and important visible answers
+
+All first-person diary wording below is preserved in the raw log appended at the end. This transcript supplies visible answers, which the log itself does not retain.
+
+| Elapsed s | Input / event | Visible answer; game clock |
+|---|---|---|
+| 0.499 | open | “A town rebuilding after a flood.” “They decide for themselves.” |
+| 2.615 | Enter Alder Quay | Loading saved town. |
+| 9.921 | wait 5 | Town available; Day 1 08:00; “Choose a place to walk there. Travel takes time, and only people at the same place can hear you.” |
+| 12.320 | Inspect Flooded hall · Needs help | At Riverside homes; no familiar neighbours at hall; “0/12 repairs; closed pending safe inspection.” |
+| 15.999 | Walk to Flooded hall · ~45 min | Day 1 08:15; “You set off automatically”; arrival about 09:00; walk button disabled. |
+| 18.237 | screenshot | (driver scratch)/rafi-first-walk.png: walking status, location, repair count and disabled button readable on screen. |
+| 53.621 | wait 30 real seconds | Day 1 11:15; “You are here.” Ada and Noor present. Story cue: “A question became a shared method,” posted 09:30. I did not open it. |
+| 55.847 | Talk to Ada · Leave a question for an inspector and wait up to two hours | Day 1 11:30; “Time holds while you talk.” Proposal form with Offer an hour selected. “Set on leaving a question for the inspector. Does not know you well.” |
+| 60.010 | automatic checkpoint screenshot | (driver scratch)/first-minute.png. |
+| 66.371 | wait 5 | Still Day 1 11:30; conversation holds time. |
+| 71.541 | Rest at home | Selected; Put it to Ada still disabled. |
+| 71.726 | Prop and air the hall timber | Selected; summary: “Ask Ada to rest at home. You offer one hour to prop and air the hall timber, by Day 1 · 18:00. It binds you only if they take it up.” Submit now available. |
+| 76.810 | Put it to Ada | “Considering their choices…” |
+| 76.963 | screenshot | Text reply already reports “Not now — I’ve a question to leave for the inspector first.” Screenshot (driver scratch)/rafi-ada-answer.png still captured “Considering their choices…”; it does not visually prove the final reply layout. |
+| 82.546 | diary note | Reply retained; “Your promises” lists offered work, “Offered; it binds you only if Ada takes up your request.” |
+| 85.509, 88.949 | tap exact visible text Your own work ▸; retry | Both replies retained that text in visible/controls, requested_control_present_before true, but error: “Your own work ▸ is not on the page now (game state, not a driver failure)”. I applied the assignment's visible-control retry rule and stopped. I cannot establish whether a finger tap would work. |
+| 95.073 | stop log | TOOL; Day 1 11:30. |
+| 95.263–117.057 | feedback only | Details below. No resumed gameplay. |
+
+## Moments and stopping
+
+Best moment: 76.963–82.546 s, Ada refusing because she had something important to do first. My note says “That feels like a person with her own priority.” This was the highest engagement moment; I did not assign it a numerical rating.
+
+Worst moment: 85.509–88.949 s, trying to reach my own work and getting the same contradictory driver answer twice.
+
+Want_quit: none logged. This was a required tool stop before a natural quitting decision. No first want_quit exists to pass or persist. Pulse series: none; the session ended before the first three-minute pulse. Hard, but kept going: none established; I did not seek an easier setting or accessibility option. The feedback name expander later required a screenshot-based point tap, but that happened after gameplay stopped.
+
+I stopped in Ada's conversation at Day 1 11:30, with the hall still 0/12 and no accepted proposal or completed work witnessed. Reason: TOOL. I would try again with working access because I still wanted to see my work matter; this is not evidence that I would return after a longer successful session. I would not count leaving a paused conversation open as continuing to play.
+
+The optional ten-minute opening question is NOT TESTED. In this short opening, residents chose jobs and a story appeared during my walk without my direction. My walk was deliberate, and Ada answered my proposal. That is evidence of autonomous events, not a ten-minute verdict that the game plays itself.
+
+## Clarity, English, dates and phone layout
+
+| Check | Result and evidence |
+|---|---|
+| DL-20 English | PASS for reached interactions. I could choose travel, ask Ada, offer work and read her answer in English. No necessary unexplained local term encountered. On-request local-term explanation NOT TESTED. |
+| DL-21 Dates | PASS for reached deadlines. Today was Day 1 11:30; the selected deadline was Day 1 18:00, with Day 2 alternatives. I could compare those directly. Across months/years NOT TESTED. |
+| DL-22 Immediate response and context | PASS for walking: (driver scratch)/rafi-first-walk.png shows arrival, reason for restriction, repair progress and location together. NOT TESTED for final social reply layout: the answer screenshot captured the preceding considering state despite later text. I cannot infer final answer visibility from the text response. |
+| DL-30 Cut-off/overlap | FAIL for horizontally clipped choice labels. (driver scratch)/first-minute.png shows “Visit nei…” at the right edge and “Help repair the h…” clipped in Your hour. (driver scratch)/rafi-ada-answer.png shows a left-edge fragment “our of their shift”. These are button labels, not observed mid-sentence prose cuts. No overlapping sheets or “Scroll ↓” obstruction observed. Whether horizontal scrolling reveals them was NOT TESTED. |
+| DL-31 Goal context with sheet open | FAIL in the reached proposal view. Ada and Day 1 11:30 remain visible, with the selected Day 1 18:00 deadline; the numeric 0/12 hall progress and hall goal text are absent from the visible phone screen. A small tally-like graphic remains at the top, but I could not read a numerical goal from it. See (driver scratch)/first-minute.png. |
+| DL-32 Only watch | Longest observed deliberate wait was 30 real seconds (approximately 23.5–53.6 s), while I wanted to arrive and help. I arrived sometime during that wait; I cannot claim the whole interval was forced inactivity. I did not use Skip. Brief “Considering their choices…” also prevented another proposal; duration not established. |
+| DL-33 Hands on | Speaking to Ada opened a form rather than free conversation. Inspecting the hall opened place details and travel. Performing repair work, cooking and digging NOT TESTED (0 performed). |
+
+Additional clarity finding: after refusal, “You made a promise” and “Your promises” made me wonder whether I owed work, despite the qualifier “Offered; it binds you only if Ada takes up your request.” This is my uncertainty, not a claim that the game has no rule. Transcript 76.963–82.546 s.
+
+## Feedback — DL-13
+
+Normal feedback route was Game menu → Send word (the game's wording, rather than “Send feedback”). Opened once. The name expander failed by exact-text tap at 100.586 s, then worked with a point tap at (89,499) based on (driver scratch)/rafi-feedback.png. Consent and recording stayed at defaults.
+
+Name: `playtester Rafi rebuild-2026-10-23`
+
+Choice: `Not sure`
+
+One-line verdict entered verbatim:
+
+> Ada's refusal felt human, but I wanted useful hands-on work and the driver blocked Your own work, so this run is inconclusive.
+
+Send clicked exactly once at 112.092 s. Initial answer “Sending…”; at 117.057 s visible answer **“Queued. Thank you.”** This establishes a queue acknowledgment, not verified receipt by a developer. No visible player id was shown. No export downloaded.
+
+## Changes I would want as Rafi
+
+1. Let me reach and perform my own useful work reliably. This run only establishes a driver-access failure, not a broken touch control.
+2. Make the full action names readable on this phone without guessing clipped text.
+3. After “not now,” tell me plainly whether I owe anything yet; “Your promises” made the offered status feel less clear.
+
+## Verbatim driver diary
+
+This is my own complete driver log, unchanged. It contains original reactions and every input. Game clocks omitted by automatic input records are supplied only from visible replies in the transcript above, not inserted into the original log.
+
+```jsonl
+{"t":"2026-10-23T16:40:19.075Z","elapsed_s":null,"kind":"input","op":"start","input":{"driver":"351679a","driver_check":"current"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":0,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:40:25.169Z","elapsed_s":0.499,"kind":"input","op":"open","input":{},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":500,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:40:27.285Z","elapsed_s":2.615,"kind":"input","op":"tap","input":{"name":"Enter Alder Quay"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":125,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:40:34.591Z","elapsed_s":9.921,"kind":"input","op":"wait","input":{"s":5},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":5115,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:40:36.990Z","elapsed_s":12.32,"kind":"input","op":"tap","input":{"name":"Inspect Flooded hall · Needs help"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":148,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:40:40.490Z","elapsed_s":15.82,"kind":"note","op":"log","input":null,"reaction":"The hall needs help, so I am going there. I want to do something useful for someone, but nobody is there yet.","game_clock":"Day 1 08:00","engagement":null,"reason":null,"op_ms":0,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:40:40.669Z","elapsed_s":15.999,"kind":"input","op":"tap","input":{"name":"Walk to Flooded hall · ~45 min"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":131,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:40:42.907Z","elapsed_s":18.237,"kind":"input","op":"shot","input":{"file":"rafi-first-walk.png"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":116,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:41:18.291Z","elapsed_s":53.621,"kind":"input","op":"wait","input":{"s":30},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":30115,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:41:20.517Z","elapsed_s":55.847,"kind":"input","op":"tap","input":{"name":"Talk to Ada · Leave a question for an inspector and wait up to two hours"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":133,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:41:24.680Z","elapsed_s":60.01,"kind":"first_minute","op":"shot","input":{"file":"first-minute.png"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":9,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:41:31.041Z","elapsed_s":66.371,"kind":"input","op":"wait","input":{"s":5},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":5107,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:41:31.074Z","elapsed_s":66.404,"kind":"first_minute","op":"log","input":null,"reaction":"I came to help reopen the hall. I chose the hall and walked there; the wait moved from 08:15 to 11:15 and other people chose jobs without me. Talking to Ada opens a big form. I can offer work, ask or urge, but I have not made a proposal yet. Put it to Ada is disabled; I guess I need to pick what I want her to do and my work. The hall selection was clear and the walk limit explained itself. I want a direct useful action, and this is already more paperwork than I expected.","game_clock":"Day 1 11:30","engagement":null,"reason":null,"op_ms":0,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:41:36.211Z","elapsed_s":71.541,"kind":"input","op":"tap","input":{"name":"Rest at home"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":132,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:41:36.396Z","elapsed_s":71.726,"kind":"input","op":"tap","input":{"name":"Prop and air the hall timber"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":150,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:41:41.480Z","elapsed_s":76.81,"kind":"input","op":"tap","input":{"name":"Put it to Ada"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":129,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:41:41.633Z","elapsed_s":76.963,"kind":"input","op":"shot","input":{"file":"rafi-ada-answer.png"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":121,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:41:47.216Z","elapsed_s":82.546,"kind":"note","op":"log","input":null,"reaction":"Ada said no because she has a question for the inspector first. That feels like a person with her own priority. But Your promises still lists my offered work, so I am not completely sure if I owe it now.","game_clock":"Day 1 11:30","engagement":null,"reason":null,"op_ms":0,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:41:50.179Z","elapsed_s":85.509,"kind":"tool","op":"tap","input":{"text":"Your own work ▸"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":19,"error":"Your own work ▸ is not on the page now (game state, not a driver failure)","requested_control_present_before":true}
+{"t":"2026-10-23T16:41:53.619Z","elapsed_s":88.949,"kind":"tool","op":"tap","input":{"text":"Your own work ▸"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":12,"error":"Your own work ▸ is not on the page now (game state, not a driver failure)","requested_control_present_before":true}
+{"t":"2026-10-23T16:41:59.743Z","elapsed_s":95.073,"kind":"stop","op":"log","input":null,"reaction":"I wanted to try doing the work myself. Your own work ▸ is in the visible text and controls, but the driver says it is not on the page now on both attempts. This ends my play under the tool-block rule, not because I chose to leave.","game_clock":"Day 1 11:30","engagement":null,"reason":"TOOL","op_ms":0,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:41:59.933Z","elapsed_s":95.263,"kind":"input","op":"tap","input":{"name":"Game menu"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":145,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:42:02.073Z","elapsed_s":97.403,"kind":"input","op":"tap","input":{"name":"Send word"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":148,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:42:05.256Z","elapsed_s":100.586,"kind":"tool","op":"tap","input":{"text":"+ Add a name"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":29,"error":"+ Add a name is not on the page now (game state, not a driver failure)","requested_control_present_before":true}
+{"t":"2026-10-23T16:42:08.834Z","elapsed_s":104.164,"kind":"input","op":"shot","input":{"file":"rafi-feedback.png"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":128,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:42:11.494Z","elapsed_s":106.824,"kind":"input","op":"tap","input":{"x":89,"y":499},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":125,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:42:16.245Z","elapsed_s":111.575,"kind":"input","op":"type","input":{"name":"Your name or tester id","text":"playtester Rafi rebuild-2026-10-23"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":124,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:42:16.394Z","elapsed_s":111.724,"kind":"input","op":"type","input":{"name":"What happened in the town, what you wanted, what got in the way.","text":"Ada's refusal felt human, but I wanted useful hands-on work and the driver blocked Your own work, so this run is inconclusive."},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":120,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-23T16:42:16.579Z","elapsed_s":111.909,"kind":"input","op":"tap","input":{"name":"Not sure"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":138,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:42:16.762Z","elapsed_s":112.092,"kind":"input","op":"tap","input":{"name":"Send"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":156,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-23T16:42:21.727Z","elapsed_s":117.057,"kind":"input","op":"wait","input":{"s":2},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":2113,"error":null,"requested_control_present_before":null}
+```

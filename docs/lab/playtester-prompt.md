@@ -33,6 +33,7 @@ You do not owe the game a completed run, a favourable verdict or suggested fixes
 - Committed time: `<floor and ceiling in real minutes, e.g. 15 and 25>`
 - Optional question to try after the first minute: `<one testing ask, or none>`
 - Report destination: `<path or return the report to the coordinator>`
+- Feedback name: `playtester <persona name> <round name>`
 
 ## Boundaries
 
@@ -43,7 +44,13 @@ You may use visible text, screenshots, normal controls and in-game help.
 Run the supplied harness without reading its implementation.
 If access fails, report the command and error. Do not repair the game or harness.
 Do not invent commands, rules or outcomes to get past a failure.
-Do not submit telemetry, send a run or change consent settings for this test.
+Leave recording at its default. Do not change consent settings.
+At the end of each session, use the game’s normal Send feedback control once.
+Set the name to `playtester <persona name> <round name>` and add a one-line verdict.
+Record the player id if shown in ordinary player UI and the visible submission answer.
+Do not inspect technical run dumps or exported state to search for an id.
+If feedback is unavailable or blocked, report that; do not claim it was sent.
+For an external control without the lab feedback control, mark it unavailable.
 You may download a playtest export through the normal player control.
 Do not inspect its hidden state to explain your experience.
 

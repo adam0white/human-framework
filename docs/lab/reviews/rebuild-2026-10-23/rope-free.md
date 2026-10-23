@@ -1,0 +1,164 @@
+# Mira — The Rope
+
+I liked caring for the group more than operating the requests. Helping Bilal held me briefly. I stopped voluntarily after 5:54.717, with reason **TASTE**. I did not complete a climb.
+
+## Session
+
+- Persona: Mira; patient; enjoys hiking and exploration; wants everyone home safely.
+- URL: https://rope.adamwhite.work. Only the supplied localhost HTTP driver was used to access the game.
+- Device: 360 × 690 CSS px, touch, light mode. Screenshots were inspected for layout.
+- Visible credit: “People by the Human Framework 2.8.0”. No game build identifier was visible. I did not inspect release information.
+- Timing: floor 0 minutes; ceiling 25 real minutes. Gameplay stopped at 354.717 s. Feedback confirmation appeared at 374.553 s. Game clock: 05:00 at the hut to approximately 07:00 when the menu opened. The stop note used stale “last seen 06:53”; the preceding wait response actually showed 06:57.
+- Speed remained Automatic. No skip, acceleration, consent change, export download, or implementation inspection.
+
+## First minute
+
+The original checkpoint reaction was recorded at **81.068 s**, late because it waited behind a pending driver wait. It describes only what I had seen before receiving that wait response. The driver also saved `(driver scratch)/first-minute.png` at 60.043 s. I viewed that image only after play. The late note is a checkpoint limitation; later learning is excluded from the ratings below.
+
+Original checkpoint answer:
+
+> I promised noon and started walking because I want all five home. The hut answers were clear; the walking screen has both climb on and lead on and I am not sure whether my group is following. Everyone is selected. Go down said climb first and stop said start walking, so those limits made sense. Their replies taught me that the promise matters. I have not used help. I am waiting to see our progress, but the wait request has not answered yet.
+
+| Item | Result | Checkpoint evidence |
+|---|---|---|
+| DL-1 A reason to act | PASS | I wanted all five home. “Lead them up and bring them home. They can say no.” gave me that purpose. |
+| DL-2 What can I touch | PASS | Begin the season; four hut answers; named people; climb on, turn back, rest, eat, wait, more; lead on, go down, stop, stay with them; information and menu. I used Begin, noon, and lead on. I had not tried inert scenery. The hut screenshot clearly presents four buttons. |
+| DL-3 Urgency and selection | FAIL | The turnaround question drew me first. Everyone was selected. I could not tell whether leading myself also brought the group; climb on and lead on competed in my understanding. No immediate danger was established. |
+| DL-4 Why the limit | PASS | Go down: “At the hut; climb first.” Stop: “Standing still; start walking.” Both said what would free them. These were the two limits encountered by then. |
+| DL-5 Readable situation | PASS | “Turnback promised at 12:00.” and “Tap Lead on to start walking” explained the promise and an available response. Group-following remained uncertain. |
+| DL-6 A choice soon | PASS | Meaningful hut choice available at 5.299 s, before long text; first meaningful input at 16.878 s. Begin input was 5.299 s. |
+| DL-7 Learn by doing | PASS, limited | Two meaningful interactions reached: promise and lead on. Five replies acknowledged the promise; leading enabled go down and stop. I had not learned group asking. Help used: none. Asking, refusal, and pack assistance were NOT TESTED at this checkpoint (3 later interaction types). |
+
+## Important inputs and visible answers
+
+Times are driver elapsed seconds, not game minutes. These are the responses I read during play, except the explicitly retrospective first-minute screenshot above.
+
+| Elapsed | Input / moment | Visible answer and game clock |
+|---|---|---|
+| 0.787 | open | “Five people, three mountains.” “Lead them up and bring them home. They can say no.” |
+| 5.299 | Begin the season | 05:00; “When do you turn back?” “They remember whether you keep your word.” Four answers: 12:00, 13:00, 14:00, We’ll see. |
+| 16.878 | We turn at 12:00 | 05:01; all five acknowledge; “Turnback promised at 12:00.” |
+| 20.816 | lead on | 05:02; movement controls enabled. I did not yet know whether others followed. |
+| 81.068 | delayed wait response | 05:26; “Now ask them along: everyone is picked. Tap Climb on, then ask.” One curl request had timed out with zero bytes. |
+| 85.531 / 92.252 | climb on / ask gently | 05:29 / 05:30; tone sheet, then “Climb on accepted: Tamar, Oskar, Nell, Bilal and Wren.” |
+| 115.645 | wait | 05:36; short steps and bent back mean tired; bowed head means low spirits. |
+| 122.181 | About this part of the climb | 05:40; “Your voice reaches only those in earshot.” “The bottom row is you: where you walk, they may follow.” Insist costs trust. |
+| 160.066–162.609 | wait / screenshot | 05:53–05:56; “Someone is flagging.” Screenshot cuts hint at “share fo...”. |
+| 171.416 | Bilal | 06:00; selected Bilal. “Wren came because Oskar said she wouldn’t.” |
+| 171.477 / 174.009 | more by name / upper more by point | Duplicate-name answer supplied points; upper more opened take pack and share food, both disabled: “Walk to them first.” |
+| 181.029 | walk to Bilal | 06:01; about a hundred metres; under ten minutes if he stays; still moving. |
+| 201.214 / 207.226 | wait / more | 06:11 / 06:15; a few dozen metres; pack still unavailable. |
+| 213.109 / 213.277 | rest / ask gently | 06:15 / 06:16; “After I climb the hut path, my friend.” “Bilal put off resting.” |
+| 248.279 / 252.022 | wait / more | 06:31 / 06:34; still a few dozen metres; pack unavailable. |
+| 290.893 | wait after first want_quit | 06:51; “Yes, why not.” “Rest accepted: Bilal.” “Close enough to help Bilal.” |
+| 297.338 / 304.089 | take pack / ask gently | 06:51 / 06:52; “Take pack accepted: Bilal.” His reply: “I trust you — fine, I’ll go.” |
+| 311.042 | stay with them | 06:53; control becomes “with them”; Nell now labeled tired. This label appeared after my earlier uncertainty. |
+| 341.198 | final gameplay wait | 06:57; Nell tired; take pack acceptance remains visible. |
+| 354.942 | menu after stopping | 07:00; mountain waits; walking pace Automatic selected. |
+| 358.917–374.553 | Send word, verdict, name, text, Send | Selected “I'd stop here”; name “playtester Mira rebuild-2026-10-23”; one-line verdict submitted once; **“Sent. Thank you.”** |
+
+## Experience
+
+Best moment: **290.893–304.089 s**, when Bilal accepted rest and then my pack offer. That resolved my first wish to quit. His earlier “After I climb the hut path, my friend” was the most human line I encountered. Highest recorded engagement was **4/5 at 160.096 s**; the later best moment was not separately scored.
+
+Worst moment: **252–260.558 s**, still seeing “Walk to them first” after following Bilal for over a game half-hour, while unsure who the flagging person was.
+
+Want_quit: **260.558 s — CONFUSED**, then **354.655 s — TASTE**. The first passed. The second became my stop at **354.717 s — TASTE**. I would not leave the game running and do not currently want to return voluntarily. I stopped because of my preference, not a claim that the game was broken.
+
+Pulse series: **160.096 s: 4/5**; **354.605 s: 2/5**. The first pulse was a little before three minutes; the next was near six minutes.
+
+Hard, but kept going: reading posture and approaching Bilal were hard. I opened the information panel, then tried walking to him and asking him to rest. I stayed because I wanted to help. I did not seek an easier setting or accessibility setting. The menu’s pace choices were first seen after stopping and were not used.
+
+## Clarity and layout
+
+- **DL-20 — PASS for reached content.** I could act in English. “Hut path,” “crag,” and “crampons” appeared; crampons were background story, not a necessary action term. I did not need a translation or test a term glossary.
+- **DL-21 — PASS for reached deadline; calendar dates NOT TESTED.** 05:00 and the noon promise were directly comparable. No month/year boundary appeared.
+- **DL-22 — mixed.** Hut choice and walking response were visible without scrolling in `hut.png` and `walking.png`. Essential flagging guidance was truncated in `flagging.png`, so that moment FAILS. The text response disclosed more than the phone image.
+- **DL-30: what I saw.** `flagging.png` cuts the hint mid-sentence at “Someone is flagging. Pick them, then open more actions to take their pack or share fo...”. I did not establish a way to expand it. I saw no overlapping sheets or “Scroll ↓” panel. `asking-help.png` fits its text but overlays the scene and people, as a modal.
+- **DL-31 — partial / NOT TESTED visually for an order sheet.** Tone-sheet transcripts retained the 06:15 clock, “turn at 12,” and “Bilal: rest.” I did not capture that sheet as an image, so simultaneous phone visibility of progress, deadline and person is NOT TESTED. The help modal in `asking-help.png` left the top clock/deadline visible but covered the people. No quantified goal-progress display was established.
+- **DL-32 — about 110 real seconds from walk-to input (181.029) to “Close enough” (290.893).** I wanted to take Bilal’s pack. I could ask him to rest and inspect actions, so this was a blocked help goal, not 110 seconds with literally no available input. Longest uninterrupted watch request was 30 seconds. Other people remained actionable.
+- **DL-33 — form.** Rest and take pack opened a tone sheet; I chose ask gently. I used the name selector rather than acting directly on a drawn person. Speak/cook/dig were not encountered and are NOT TESTED.
+- **DL-13 — PASS for visible acknowledgment.** Menu called feedback “Send word,” final action “Send.” I pressed Send exactly once, with the assigned name and one-line verdict. The visible response was “Sent. Thank you.” No visible player id was shown in the screens I read. This establishes the UI acknowledgment; I did not independently verify server storage.
+
+My uncertainty about who was flagging is an observed readability problem for me, not proof that the game has no tiredness rule. A later “Nell tired” label helped, but cannot erase the earlier uncertainty.
+
+## Access and timing limitations
+
+Command form: `curl -m 40 -sS -H 'Content-Type: application/json' --data '<one JSON operation>' http://127.0.0.1:44600/`.
+
+A 30-second wait request returned `curl: (28) Operation timed out after 40005 milliseconds with 0 bytes received`. My own driver log records both 30-second waits as successful driver operations, and subsequent controls worked. I therefore treated this as a response-delivery problem, not a broken game or a visible-control driver block. My checkpoint log queued until 81.068 s. The driver also rejected a curly apostrophe in “I’d stop here”; retrying the exact ASCII name from current controls worked. Duplicate “more ▾” names were resolved with the driver’s supplied point. No process was repaired or killed.
+
+Time advanced while I was between commands. Help, menus, and choosing showed that time waits. Reading replies also slowed advancement. The harness did not appear to freeze the entire game between operations. Sparse screenshots and request latency mean I cannot claim continuous visual observation or precise live event timing.
+
+## Changes I would want as Mira
+
+1. Let me identify the flagging person without guessing from tiny postures.
+2. Show the entire help hint on this phone.
+3. Let me make routine gentle requests with fewer repeated tone choices.
+
+## Verbatim diary and input log
+
+The following is my own driver log, copied without rewriting reaction text. Input rows do not store visible answers; the table above supplies important answers I actually received. Null game clocks are retained rather than invented. The `start` row is driver metadata, not an inspected game build.
+
+```jsonl
+{"t": "2026-10-23T16:35:10.798Z", "elapsed_s": null, "kind": "input", "op": "start", "input": {"driver": "351679a", "driver_check": "current"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 0, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:35:17.777Z", "elapsed_s": 0.787, "kind": "input", "op": "open", "input": {}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 787, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:35:21.782Z", "elapsed_s": 4.792, "kind": "note", "op": "log", "input": null, "reaction": "Bring them home is exactly what I want. They can say no makes me curious about the people.", "game_clock": null, "engagement": null, "reason": null, "op_ms": 0, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:35:22.289Z", "elapsed_s": 5.299, "kind": "input", "op": "tap", "input": {"name": "Begin the season"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 455, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:35:24.752Z", "elapsed_s": 7.762, "kind": "input", "op": "shot", "input": {"file": "hut.png"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 154, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:35:33.629Z", "elapsed_s": 16.639, "kind": "note", "op": "log", "input": null, "reaction": "I will choose noon. I do not know the route yet, so an early promise feels safer. The hut question is clear and all four answers fit on my phone.", "game_clock": "05:00", "engagement": null, "reason": null, "op_ms": 0, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:35:33.868Z", "elapsed_s": 16.878, "kind": "input", "op": "tap", "input": {"name": "We turn at 12:00"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 186, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:35:37.806Z", "elapsed_s": 20.816, "kind": "input", "op": "tap", "input": {"name": "lead on"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 140, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:36:07.949Z", "elapsed_s": 50.959, "kind": "input", "op": "wait", "input": {"s": 30}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 30111, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:36:17.033Z", "elapsed_s": 60.043, "kind": "first_minute", "op": "shot", "input": {"file": "first-minute.png"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 40, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:36:38.057Z", "elapsed_s": 81.067, "kind": "input", "op": "wait", "input": {"s": 30}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 30107, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:36:38.058Z", "elapsed_s": 81.068, "kind": "first_minute", "op": "log", "input": null, "reaction": "I promised noon and started walking because I want all five home. The hut answers were clear; the walking screen has both climb on and lead on and I am not sure whether my group is following. Everyone is selected. Go down said climb first and stop said start walking, so those limits made sense. Their replies taught me that the promise matters. I have not used help. I am waiting to see our progress, but the wait request has not answered yet.", "game_clock": "last seen 05:02", "engagement": null, "reason": null, "op_ms": 0, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:36:42.521Z", "elapsed_s": 85.531, "kind": "input", "op": "tap", "input": {"name": "climb on"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 138, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:36:49.242Z", "elapsed_s": 92.252, "kind": "input", "op": "tap", "input": {"name": "ask gently"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 199, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:36:49.275Z", "elapsed_s": 92.285, "kind": "note", "op": "log", "input": null, "reaction": "Now the hint tells me to ask them along. I had started myself without asking the group. Asking gently feels right; I do not want to press anyone. The wait timed out, but the game clock did advance, so it is not frozen between inputs.", "game_clock": "05:29", "engagement": null, "reason": null, "op_ms": 0, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:36:49.469Z", "elapsed_s": 92.479, "kind": "input", "op": "shot", "input": {"file": "walking.png"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 132, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:37:12.634Z", "elapsed_s": 115.644, "kind": "input", "op": "wait", "input": {"s": 20}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 20109, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:37:18.973Z", "elapsed_s": 121.983, "kind": "note", "op": "log", "input": null, "reaction": "Seeing all five accept is reassuring. I like being told to watch their posture, though on this small drawing I cannot yet distinguish tired from ordinary walking. The replies fit around the people without covering the bottom controls.", "game_clock": "05:36", "engagement": null, "reason": null, "op_ms": 0, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:37:19.170Z", "elapsed_s": 122.18, "kind": "input", "op": "tap", "input": {"name": "About this part of the climb"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 147, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:37:22.251Z", "elapsed_s": 125.261, "kind": "input", "op": "shot", "input": {"file": "asking-help.png"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 133, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:37:26.920Z", "elapsed_s": 129.93, "kind": "input", "op": "tap", "input": {"name": "Close information"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 167, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:37:57.055Z", "elapsed_s": 160.065, "kind": "input", "op": "wait", "input": {"s": 30}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 30105, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:37:57.086Z", "elapsed_s": 160.096, "kind": "pulse", "op": "log", "input": null, "reaction": "I like that they each agreed, and I am watching for signs that someone needs a rest. I am more interested in the people than the summit so far.", "game_clock": "last seen 05:40", "engagement": 4, "reason": null, "op_ms": 0, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:37:59.598Z", "elapsed_s": 162.608, "kind": "input", "op": "shot", "input": {"file": "flagging.png"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 135, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:38:08.167Z", "elapsed_s": 171.177, "kind": "note", "op": "log", "input": null, "reaction": "Someone is flagging, but I cannot tell who. They all look similarly bent to me. The hint itself ends at share fo... on the phone, though the text harness gives me the rest. I will check Bilal because he carried the stove; that is a guess.", "game_clock": "05:56", "engagement": null, "reason": null, "op_ms": 0, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:38:08.406Z", "elapsed_s": 171.416, "kind": "input", "op": "tap", "input": {"name": "Bilal"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 185, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:38:08.466Z", "elapsed_s": 171.476, "kind": "tool", "op": "tap", "input": {"name": "more ▾"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 29, "error": "2 enabled controls are named more ▾; tap one by point: (325,501), (319,657) (game state, not a driver failure)", "requested_control_present_before": true}
+{"t": "2026-10-23T16:38:10.999Z", "elapsed_s": 174.009, "kind": "input", "op": "tap", "input": {"x": 325, "y": 501}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 134, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:38:18.018Z", "elapsed_s": 181.028, "kind": "input", "op": "tap", "input": {"name": "walk to Bilal"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 152, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:38:18.044Z", "elapsed_s": 181.054, "kind": "note", "op": "log", "input": null, "reaction": "The first hour has passed. Bilal carrying tea and Wren coming on a dare give me a little reason to care. I want to help Bilal, and Walk to them first is a useful explanation. I am still guessing who actually needs help.", "game_clock": "06:00", "engagement": null, "reason": null, "op_ms": 0, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:38:38.204Z", "elapsed_s": 201.214, "kind": "input", "op": "wait", "input": {"s": 20}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 20108, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:38:44.215Z", "elapsed_s": 207.225, "kind": "input", "op": "tap", "input": {"x": 325, "y": 501}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 136, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:38:49.834Z", "elapsed_s": 212.844, "kind": "input", "op": "tap", "input": {"name": "Back to requests"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 143, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:38:50.099Z", "elapsed_s": 213.109, "kind": "input", "op": "tap", "input": {"name": "rest"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 172, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:38:50.267Z", "elapsed_s": 213.277, "kind": "input", "op": "tap", "input": {"name": "ask gently"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 145, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:38:55.116Z", "elapsed_s": 218.126, "kind": "note", "op": "log", "input": null, "reaction": "After I climb the hut path, my friend sounds like a person rather than a status bar. I can respect that. I will wait beside him instead of insisting.", "game_clock": "06:16", "engagement": null, "reason": null, "op_ms": 0, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:39:25.268Z", "elapsed_s": 248.278, "kind": "input", "op": "wait", "input": {"s": 30}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 30105, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:39:29.012Z", "elapsed_s": 252.022, "kind": "input", "op": "tap", "input": {"x": 325, "y": 501}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 138, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:39:37.548Z", "elapsed_s": 260.558, "kind": "want_quit", "op": "log", "input": null, "reaction": "I want to help, but I cannot identify the tired person or tell whether I am getting close enough to Bilal. I would put this down now rather than keep guessing. I will give walking to him one more quiet stretch.", "game_clock": "06:34", "engagement": null, "reason": "CONFUSED", "op_ms": 0, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:39:37.748Z", "elapsed_s": 260.758, "kind": "input", "op": "tap", "input": {"name": "Back to requests"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 154, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:40:07.883Z", "elapsed_s": 290.893, "kind": "input", "op": "wait", "input": {"s": 30}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 30111, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:40:11.760Z", "elapsed_s": 294.77, "kind": "input", "op": "tap", "input": {"x": 325, "y": 501}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 139, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:40:14.328Z", "elapsed_s": 297.338, "kind": "input", "op": "tap", "input": {"name": "take pack"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 189, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:40:21.078Z", "elapsed_s": 304.088, "kind": "input", "op": "tap", "input": {"name": "ask gently"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 145, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:40:21.104Z", "elapsed_s": 304.114, "kind": "note", "op": "log", "input": null, "reaction": "That wish to quit eased when Bilal eventually accepted rest and Close enough to help appeared. I can finally offer to carry something. Waiting did have a result; I had not understood that his earlier answer could change without another request.", "game_clock": "06:51", "engagement": null, "reason": null, "op_ms": 0, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:40:27.814Z", "elapsed_s": 310.824, "kind": "input", "op": "tap", "input": {"name": "everyone"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 147, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:40:28.032Z", "elapsed_s": 311.042, "kind": "input", "op": "tap", "input": {"name": "stay with them"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 174, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:40:58.187Z", "elapsed_s": 341.197, "kind": "input", "op": "wait", "input": {"s": 30}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 30114, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:41:11.595Z", "elapsed_s": 354.605, "kind": "pulse", "op": "log", "input": null, "reaction": "Helping Bilal was satisfying, but I am losing the desire to manage another round of requests. I would rather walk with these people than keep opening the same ask sheet.", "game_clock": "last seen 06:53", "engagement": 2, "reason": null, "op_ms": 0, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:41:11.645Z", "elapsed_s": 354.655, "kind": "want_quit", "op": "log", "input": null, "reaction": "I have seen a small human moment and helped with a pack. I do not want another cycle of selecting someone and choosing how hard to ask. I would stop for this evening.", "game_clock": "last seen 06:53", "engagement": null, "reason": "TASTE", "op_ms": 0, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:41:11.707Z", "elapsed_s": 354.717, "kind": "stop", "op": "log", "input": null, "reaction": "Stopping gameplay here. The first confused wish to quit passed when Bilal rested; the repeated request interface is why I am leaving now. I would not leave it running, and I do not currently want to return voluntarily.", "game_clock": "last seen 06:53", "engagement": null, "reason": "TASTE", "op_ms": 0, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:41:11.932Z", "elapsed_s": 354.942, "kind": "input", "op": "tap", "input": {"name": "Game menu"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 156, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:41:15.907Z", "elapsed_s": 358.917, "kind": "input", "op": "tap", "input": {"name": "Send word ▸"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 138, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:41:20.587Z", "elapsed_s": 363.597, "kind": "tool", "op": "tap", "input": {"name": "I’d stop here"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 6, "error": "I’d stop here is not on the page now, and it was not in the last reply either; use a name from the latest controls (not a driver failure)", "requested_control_present_before": false}
+{"t": "2026-10-23T16:41:24.623Z", "elapsed_s": 367.633, "kind": "input", "op": "tap", "input": {"name": "I'd stop here"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 141, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:41:24.789Z", "elapsed_s": 367.799, "kind": "input", "op": "tap", "input": {"text": "+ Add a name"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 142, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:41:31.191Z", "elapsed_s": 374.201, "kind": "input", "op": "type", "input": {"name": "Your name or tester id", "text": "playtester Mira rebuild-2026-10-23"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 117, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:41:31.352Z", "elapsed_s": 374.362, "kind": "input", "op": "type", "input": {"name": "What happened on the mountain, what you wanted, what got in the way.", "text": "I cared about bringing everyone home and enjoyed helping Bilal, but I would stop here because identifying who needs help and repeating request sheets did not make me want to keep walking."}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 112, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:41:31.543Z", "elapsed_s": 374.553, "kind": "input", "op": "tap", "input": {"name": "Send"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 148, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:41:36.186Z", "elapsed_s": 379.196, "kind": "note", "op": "log", "input": null, "reaction": "Feedback submitted once through Send word / Send. The visible answer is Sent. Thank you. No player id was shown in the screens I read.", "game_clock": "07:00", "engagement": null, "reason": null, "op_ms": 0, "error": null, "requested_control_present_before": null}
+```

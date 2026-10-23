@@ -1,0 +1,169 @@
+# Small Works — Ellis
+
+I wanted to keep playing. Returning Mum’s repaired lantern was satisfying. The session ended because the driver twice refused the listed meter tab, not because I wanted to leave.
+
+## Session
+
+- Persona: Ellis; occasional puzzle player, curious about ordinary objects, quiet evening available.
+- URL: https://repair.adamwhite.work. No game build was visibly shown. The driver log records driver 351679a; that is not a game build.
+- Device: assigned 360 × 690 CSS px, touch, light mode. Screenshots showed a dark green game surface.
+- Access: supplied player-facing HTTP driver at http://127.0.0.1:44601/ through curl. No source or internal state inspected.
+- Limits: floor 0 minutes, ceiling 25 real minutes. Gameplay stopped at 174.669s (2:54.669); feedback acknowledged at 206.671s. Game clock stopped at Day 1 · 11:15.
+- Game time advanced with actions. It stayed at 09:35 during the ten-second real wait and intervening reading. I did not change speed. This run does not establish live timing or missed events.
+
+## First minute
+
+The first actionable title screen was available at 0.427s; the workshop at 3.323s. The checkpoint was logged late, at 75.173s, after a wait returned at 63.210s. No gameplay inputs occurred between 46.754s and the checkpoint, so the note describes the state already reached before 60s. This timing miss is a test limitation.
+
+| Item | Result | Checkpoint evidence, in my words |
+|---|---|---|
+| DL-1 A reason to act | PASS | I wanted Mum to have a light she could carry to the evening gathering. The request said it goes dark on the way to the garden. |
+| DL-2 What can I touch | PASS | Carry, the switch, Inside, the object dropdown, tool tabs, component buttons, probe buttons and Read Meter were recognisable controls. I used Carry, Inside, Contact and the meter guide. No inert thing was tried by 60s. The recording notice initially covered the top of the object; I dismissed it. |
+| DL-3 Urgency and selection | PASS | Carry drew me first. The evening gathering mattered, but I did not see an immediate countdown. At the checkpoint Contact was selected and Meter was open. The guide named B and C as my next probe pair. |
+| DL-4 Why the limit | PASS | Look closely needed a component selection. Read meter needed both probes. I supplied these and the buttons became available. These were the two unavailable actions met by 60s. |
+| DL-5 Readable situation | PASS | “Now compare both sides of the switch while it moves.” I could name the next action. “Last test: The light goes out while carried” preserved the symptom. The numeric meter reading was absent from the screenshot; see DL-22 below. |
+| DL-6 A choice soon | PASS | Open workshop was available at 0.427s and selected at 3.323s. The first repair action, Carry, was available at 3.323s and selected at 19.388s. Both were within 30s. Choosing Contact over other components occurred at 25.228s. No long introductory text prevented these choices. |
+| DL-7 Learn by doing | PASS for reached interactions | Carry demonstrated failure; opening exposed four parts; choosing Contact enabled examination; placing two probes enabled a 6.00V battery reading. I did not yet understand what that reading proved. Automatic guide used; no separate help opened. Repair and return interactions were not reached by 60s: 2 interaction types NOT TESTED at this checkpoint. |
+
+Original checkpoint note is preserved in the diary below. No later result has been used to improve these checkpoint ratings.
+
+## Verbatim diary
+
+**15.733s · Day 1 09:00 · note** — The lantern works on the table but fails when carried. I want to find the loose bit. Carry is a very clear place to start; the recording notice covers part of the top.
+
+**34.395s · Day 1 09:25 · note** — I picked Contact because movement makes me suspect a connection. Aged and dull metal sounds plausible, but the guide wants me to measure the battery first. I am happy to learn the meter.
+
+**75.172s · Day 1 09:35 · first_minute** — I want to restore Mum’s lantern for her evening gathering. Carry, Inside, the switch and tool tabs look usable. Carry led to opening it, selecting Contact and looking closely; Look closely was unavailable until I chose a part, and Read meter needed two probes. I followed the battery diagram and got 6.00V, though I do not yet know what that proves. Now the guide asks B to C while carried. Contact is selected but Meter is the open tab. The evening gathering is a reason to act, not an obvious countdown. The meter reading and condition controls are not visible in my phone screenshot, although the harness lists them. First choice was Carry at 19 seconds, available from 3 seconds. No help opened beyond the automatic guide.
+
+**96.567s · Day 1 09:55 · note** — That is interesting: the switch looks intact but drops the whole voltage when carried. My first contact guess was wrong. I will use the new switch for Mum rather than pull apart a spare whose part might be bad.
+
+**125.914s · Day 1 10:50 · note** — Bright and steady while carried feels good. The return names what Mum can do with it now. That is a satisfying small job, and I want to see what comes in next.
+
+**136.637s · Day 1 10:50 · note** — The music box is the one I am curious about. I have until tomorrow at five, and it seems sensible to take one promise rather than all three.
+
+**174.669s · Day 1 11:15 · stop** — I was about to investigate the music box with the meter, but the driver twice refused meter even though its latest controls list includes that tab. I am stopping gameplay for the required driver block. I still wanted to play.
+
+**212.284s · Day 1 11:15 · note** — Feedback sent once under playtester Ellis rebuild-2026-10-23. The visible answer is Sent. Thank you. No player id is shown on this screen.
+
+## Inputs and important visible answers
+
+Times are elapsed real seconds. The raw log below preserves every driver input. This table adds the visible answers that the input log itself does not contain.
+
+| Time | Input / game clock after input | Visible answer |
+|---|---|---|
+| 3.323 | Open the workshop / Day 1 09:00 | “Try carrying it.” Mum wanted the lantern for the evening gathering. |
+| 19.388 | Carry 15 min / 09:15 | “The light goes out while carried.” |
+| 22.352–28.043 | Look inside; Contact; Look closely / 09:25 | “Contact: The exposed metal is aged and dull.” Guide directed battery probes A and 0 while carried. |
+| 34.610–41.583 | Pick up meter; red A; black 0; Read meter / 09:35 | 6.00V, A → 0. “Voltage recorded for this probe pair and condition.” |
+| 63.210 | Wait 10 real seconds / 09:35 | No game clock change. |
+| 80.794–86.182 | Red B; black C; Read meter / 09:45 | 6.00V, B → C. “Large voltage drop across this measured span.” Guide said it pointed to switch. |
+| 89.096–91.812 | Work on the part; Look closely / 09:55 | “Switch: The outside looks intact.” One new switch or uncertain salvage offered in the guide. |
+| 99.498 | Replace 30 min · 1 switch (1 stocked) / 10:25 | “Replaced Switch. Test the object again.” Replace now disabled: “No switch stocked.” |
+| 117.712 | Carry 15 min / 10:40 | “Bright and steady while carried.” |
+| 120.415 | Return to Mum10 min / 10:50 | “Checked return · on time”; “A light Mum can carry”; “I can carry the light out to the garden table.” Family favour £0. |
+| 126.093 | To the board / 10:50 | Three requested jobs with Day 2 · 17:00 deadlines; two personal projects. |
+| 136.816 | Music box Accept promise at x278 y479 / 10:50 | “Promise accepted. You can put the object aside without losing evidence.” |
+| 147.529 | Music box Open on bench at x278 y397 / 10:50 | “Check the drive at the owner’s requested 15 ± 3 rpm under load.” |
+| 150.813 | Play 15 min / 11:05 | “The drum barely turns under load; the tune is hard to recognise.” |
+| 154.107–160.777 | Look inside; Spring; Look closely / 11:15 | “Spring: The outside looks intact.” |
+| 164.883, 167.913 | tap name meter / 11:15 | Both replies listed tab “meter” but rejected it: “meter is not on the page now, and it was not in the last reply either; use a name from the latest controls (not a driver failure)”. |
+| 174.669 | Stop / 11:15 | TOOL. No further gameplay. |
+| 174.880–206.671 | Menu → Send word; fill feedback; Send once | “Sent. Thank you.” |
+
+## Best, worst, and leaving
+
+Best moment: 117.712–125.914s, when the lantern stayed bright while carried and the return explained what Mum could do with it. This was my highest engagement; no numeric rating was logged, so I will not invent one.
+
+Worst moment: 164.883–167.913s, when I wanted the meter for the music box and the listed tab was rejected twice. That is a tool finding, not evidence that the game has no working meter tab.
+
+Want_quit series: none. I did not want to leave before the driver block. The question of whether a first want_quit passed is not applicable.
+
+Pulse series: none. Gameplay ended just before three minutes. Feedback operations crossed three minutes after gameplay had stopped; no gameplay engagement pulse was recorded then.
+
+Hard, but kept going: NOT TESTED. I did not look for an easier setting or accessibility option. The meter required learning, but the automatic guide kept me interested. My Contact guess was corrected by the switch reading.
+
+I stopped with the music box accepted and investigated only as far as the Spring exterior. The game had not ended. Reason: TOOL. I would return voluntarily to continue that repair. I would save and leave it rather than leave it running; the menu said “Saved on this device. Time waits while you are away.”
+
+## Clarity and phone checks
+
+- **DL-20 — PARTIAL PASS / necessary term explanation NOT TESTED:** I could act in English through one full repair. “Start at the battery” and the probe diagram supplied concrete directions. On the music box I met “Governor,” “under load” and “15 ± 3 rpm”; I did not reach an on-request explanation of Governor or a measurement there. I cannot claim those terms were explained nearby or on request.
+- **DL-21 — PASS for encountered dates:** Today was Day 1; returns were due Day 2 · 17:00. I understood that as tomorrow at five. No month/year boundary encountered: NOT TESTED.
+- **DL-22 — FAIL in the meter state:** In `(driver scratch)/ellis-meter.png` at 46.754s I could see the instruction, probe pair and “Voltage recorded for this probe pair and condition,” but not 6.00V, voltage/continuity selection, or the condition controls. The text reply listed all of those. The immediate numeric result and essential measurement context were not on screen. I did not scroll that panel to determine where they were. This is a screenshot observation, not a text-only layout inference.
+- **DL-30 — NOT TESTED for a cut-off sentence or overlapping sheets:** No captured screenshot showed a sentence cut mid-way or a “Scroll ↓” fragment. `ellis-start.png` shows the recording notice covering the upper object area; the text reply included Sam’s morning availability but that text was not visible in the screenshot. `ellis-meter.png` shows only part of the component layout below the probe controls. I cannot identify from that alone what was clipped versus scrollable. No order/answer sheets overlapped during gameplay.
+- **DL-31 — NOT TESTED:** I opened no order or answer sheet during gameplay. The feedback form is not evidence for this gameplay check.
+- **DL-32 — PASS for reached actions:** No forced watching stretch encountered. Actions advanced game time immediately. The longest deliberate real wait was ten seconds; I was waiting for the checkpoint, not a repair. I cannot infer live waiting behaviour from this run.
+- **DL-33 — PASS:** I carried the lantern, played the music box, and returned the lantern through buttons on or adjacent to the object. Looking inside exposed a diagram and tabs; repair used component selection and a Replace button. No separate answer form intervened in those actions.
+- **DL-13 — PASS for visible feedback acknowledgment:** Normal route was Menu → “Send word ▸”, not a control literally labelled Send feedback. Selected “I'd keep playing.” Name: `playtester Ellis rebuild-2026-10-23`. One-line verdict: “I would keep playing: restoring Mum’s lantern felt satisfying and I wanted to investigate the music box, but the driver refused the listed meter tab twice.” Pressed Send exactly once at 206.671s. Visible submission answer: “Sent. Thank you.” No player id visibly shown on the screens visited. This establishes the visible acknowledgment, not independent backend delivery.
+
+The failed curly-apostrophe feedback choice was my input mismatch; the exact straight-apostrophe name worked. A shell quoting attempt failed locally with `zsh:1: unmatched "` and sent no request. The text tap on “+ Add a name or tester id” was rejected, then tapping its visible position opened it. These occurred after gameplay stopped and do not change the gameplay stop reason.
+
+## Changes I would want as Ellis
+
+1. Keep the meter reading and active measurement condition visible while I place probes and read the result on this phone.
+
+No further changes requested from this short run. I wanted to learn the next object before judging more.
+
+## Artifacts and limits
+
+No playtest export downloaded. Screenshots are in `(driver scratch)/`: `ellis-start.png`, `ellis-meter.png`, `ellis-board.png`, `ellis-board-lower.png`, `ellis-feedback.png`. I viewed those five. I did not use the automatically saved `first-minute.png` as evidence.
+
+Original log: `(driver scratch)/wall-clock.jsonl`. It omits game_clock on browser input records; the table above records the clocks returned visibly at important steps. No replay claim made. The session ended early under the explicit driver-block rule. This is not a completed-run verdict.
+
+## Original driver log
+
+```jsonl
+{"t": "2026-10-23T16:35:10.798Z", "elapsed_s": null, "kind": "input", "op": "start", "input": {"driver": "351679a", "driver_check": "current"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 0, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:35:17.893Z", "elapsed_s": 0.427, "kind": "input", "op": "open", "input": {}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 428, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:35:20.789Z", "elapsed_s": 3.323, "kind": "input", "op": "tap", "input": {"name": "Open the workshop"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 133, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:35:24.356Z", "elapsed_s": 6.89, "kind": "input", "op": "shot", "input": {"file": "ellis-start.png"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 131, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:35:33.199Z", "elapsed_s": 15.733, "kind": "note", "op": "log", "input": null, "reaction": "The lantern works on the table but fails when carried. I want to find the loose bit. Carry is a very clear place to start; the recording notice covers part of the top.", "game_clock": "Day 1 09:00", "engagement": null, "reason": null, "op_ms": 0, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:35:33.399Z", "elapsed_s": 15.933, "kind": "input", "op": "tap", "input": {"name": "Dismiss"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 149, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:35:36.854Z", "elapsed_s": 19.388, "kind": "input", "op": "tap", "input": {"name": "Carry 15 min"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 149, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:35:39.818Z", "elapsed_s": 22.352, "kind": "input", "op": "tap", "input": {"name": "Look inside Mum’s walking lantern"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 153, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:35:42.694Z", "elapsed_s": 25.228, "kind": "input", "op": "tap", "input": {"name": "Contact"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 141, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:35:45.509Z", "elapsed_s": 28.043, "kind": "input", "op": "tap", "input": {"name": "Look closely 10 min"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 167, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:35:51.861Z", "elapsed_s": 34.395, "kind": "note", "op": "log", "input": null, "reaction": "I picked Contact because movement makes me suspect a connection. Aged and dull metal sounds plausible, but the guide wants me to measure the battery first. I am happy to learn the meter.", "game_clock": "Day 1 09:25", "engagement": null, "reason": null, "op_ms": 0, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:35:52.076Z", "elapsed_s": 34.61, "kind": "input", "op": "tap", "input": {"name": "Pick up the meter"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 167, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:35:54.910Z", "elapsed_s": 37.444, "kind": "input", "op": "tap", "input": {"name": "Place red probe on terminal A"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 137, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:35:58.863Z", "elapsed_s": 41.397, "kind": "input", "op": "tap", "input": {"name": "Place black probe on terminal 0"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 154, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:35:59.049Z", "elapsed_s": 41.583, "kind": "input", "op": "tap", "input": {"name": "Read meter 10 min"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 156, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:36:04.220Z", "elapsed_s": 46.754, "kind": "input", "op": "shot", "input": {"file": "ellis-meter.png"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 129, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:36:17.496Z", "elapsed_s": 60.03, "kind": "first_minute", "op": "shot", "input": {"file": "first-minute.png"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 28, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:36:20.676Z", "elapsed_s": 63.21, "kind": "input", "op": "wait", "input": {"s": 10}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 10112, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:36:32.638Z", "elapsed_s": 75.172, "kind": "first_minute", "op": "log", "input": null, "reaction": "I want to restore Mum’s lantern for her evening gathering. Carry, Inside, the switch and tool tabs look usable. Carry led to opening it, selecting Contact and looking closely; Look closely was unavailable until I chose a part, and Read meter needed two probes. I followed the battery diagram and got 6.00V, though I do not yet know what that proves. Now the guide asks B to C while carried. Contact is selected but Meter is the open tab. The evening gathering is a reason to act, not an obvious countdown. The meter reading and condition controls are not visible in my phone screenshot, although the harness lists them. First choice was Carry at 19 seconds, available from 3 seconds. No help opened beyond the automatic guide.", "game_clock": "Day 1 09:35", "engagement": null, "reason": null, "op_ms": 0, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:36:38.259Z", "elapsed_s": 80.793, "kind": "input", "op": "tap", "input": {"name": "Place red probe on terminal B"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 151, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:36:40.991Z", "elapsed_s": 83.525, "kind": "input", "op": "tap", "input": {"name": "Place black probe on terminal C"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 145, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:36:43.648Z", "elapsed_s": 86.182, "kind": "input", "op": "tap", "input": {"name": "Read meter 10 min"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 156, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:36:46.562Z", "elapsed_s": 89.096, "kind": "input", "op": "tap", "input": {"name": "Work on the part"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 148, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:36:49.277Z", "elapsed_s": 91.811, "kind": "input", "op": "tap", "input": {"name": "Look closely 10 min"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 147, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:36:54.033Z", "elapsed_s": 96.567, "kind": "note", "op": "log", "input": null, "reaction": "That is interesting: the switch looks intact but drops the whole voltage when carried. My first contact guess was wrong. I will use the new switch for Mum rather than pull apart a spare whose part might be bad.", "game_clock": "Day 1 09:55", "engagement": null, "reason": null, "op_ms": 0, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:36:56.964Z", "elapsed_s": 99.498, "kind": "input", "op": "tap", "input": {"name": "replace 30 min · 1 switch (1 stocked)"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 151, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:37:15.177Z", "elapsed_s": 117.711, "kind": "input", "op": "tap", "input": {"name": "Carry 15 min"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 132, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:37:17.881Z", "elapsed_s": 120.415, "kind": "input", "op": "tap", "input": {"name": "Return to Mum10 min"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 138, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:37:23.380Z", "elapsed_s": 125.914, "kind": "note", "op": "log", "input": null, "reaction": "Bright and steady while carried feels good. The return names what Mum can do with it now. That is a satisfying small job, and I want to see what comes in next.", "game_clock": "Day 1 10:50", "engagement": null, "reason": null, "op_ms": 0, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:37:23.559Z", "elapsed_s": 126.093, "kind": "input", "op": "tap", "input": {"name": "To the board"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 127, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:37:26.658Z", "elapsed_s": 129.192, "kind": "input", "op": "shot", "input": {"file": "ellis-board.png"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 114, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:37:34.103Z", "elapsed_s": 136.637, "kind": "note", "op": "log", "input": null, "reaction": "The music box is the one I am curious about. I have until tomorrow at five, and it seems sensible to take one promise rather than all three.", "game_clock": "Day 1 10:50", "engagement": null, "reason": null, "op_ms": 0, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:37:34.282Z", "elapsed_s": 136.816, "kind": "input", "op": "tap", "input": {"x": 278, "y": 479}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 127, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:37:38.707Z", "elapsed_s": 141.241, "kind": "input", "op": "scroll", "input": {"dy": 448}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 274, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:37:38.858Z", "elapsed_s": 141.392, "kind": "input", "op": "shot", "input": {"file": "ellis-board-lower.png"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 122, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:37:44.995Z", "elapsed_s": 147.529, "kind": "input", "op": "tap", "input": {"x": 278, "y": 397}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 122, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:37:48.278Z", "elapsed_s": 150.812, "kind": "input", "op": "tap", "input": {"name": "Play 15 min"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 141, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:37:51.573Z", "elapsed_s": 154.107, "kind": "input", "op": "tap", "input": {"name": "Look inside Nora’s keepsake music box"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 148, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:37:54.607Z", "elapsed_s": 157.141, "kind": "input", "op": "tap", "input": {"name": "Spring"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 141, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:37:58.243Z", "elapsed_s": 160.777, "kind": "input", "op": "tap", "input": {"name": "Look closely 10 min"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 151, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:38:02.349Z", "elapsed_s": 164.883, "kind": "tool", "op": "tap", "input": {"name": "meter"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 4, "error": "meter is not on the page now, and it was not in the last reply either; use a name from the latest controls (not a driver failure)", "requested_control_present_before": false}
+{"t": "2026-10-23T16:38:05.379Z", "elapsed_s": 167.913, "kind": "tool", "op": "tap", "input": {"name": "meter"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 3, "error": "meter is not on the page now, and it was not in the last reply either; use a name from the latest controls (not a driver failure)", "requested_control_present_before": false}
+{"t": "2026-10-23T16:38:12.135Z", "elapsed_s": 174.669, "kind": "stop", "op": "log", "input": null, "reaction": "I was about to investigate the music box with the meter, but the driver twice refused meter even though its latest controls list includes that tab. I am stopping gameplay for the required driver block. I still wanted to play.", "game_clock": "Day 1 11:15", "engagement": null, "reason": "TOOL", "op_ms": 0, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:38:12.346Z", "elapsed_s": 174.88, "kind": "input", "op": "tap", "input": {"name": "Menu"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 154, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:38:16.556Z", "elapsed_s": 179.09, "kind": "input", "op": "tap", "input": {"name": "Send word ▸"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 142, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:38:19.457Z", "elapsed_s": 181.991, "kind": "tool", "op": "tap", "input": {"name": "I’d keep playing"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 3, "error": "I’d keep playing is not on the page now, and it was not in the last reply either; use a name from the latest controls (not a driver failure)", "requested_control_present_before": false}
+{"t": "2026-10-23T16:38:28.968Z", "elapsed_s": 191.502, "kind": "input", "op": "tap", "input": {"name": "I'd keep playing"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 116, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:38:29.021Z", "elapsed_s": 191.555, "kind": "tool", "op": "tap", "input": {"text": "+ Add a name or tester id"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 6, "error": "+ Add a name or tester id is not on the page now (game state, not a driver failure)", "requested_control_present_before": true}
+{"t": "2026-10-23T16:38:32.055Z", "elapsed_s": 194.589, "kind": "input", "op": "shot", "input": {"file": "ellis-feedback.png"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 127, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:38:37.090Z", "elapsed_s": 199.624, "kind": "input", "op": "tap", "input": {"x": 152, "y": 473}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 109, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:38:43.822Z", "elapsed_s": 206.356, "kind": "input", "op": "type", "input": {"name": "Your name or tester id", "text": "playtester Ellis rebuild-2026-10-23"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 111, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:38:43.976Z", "elapsed_s": 206.51, "kind": "input", "op": "type", "input": {"name": "Your word", "text": "I would keep playing: restoring Mum’s lantern felt satisfying and I wanted to investigate the music box, but the driver refused the listed meter tab twice."}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 109, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T16:38:44.137Z", "elapsed_s": 206.671, "kind": "input", "op": "tap", "input": {"name": "Send"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 118, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T16:38:49.750Z", "elapsed_s": 212.284, "kind": "note", "op": "log", "input": null, "reaction": "Feedback sent once under playtester Ellis rebuild-2026-10-23. The visible answer is Sent. Thank you. No player id is shown on this screen.", "game_clock": "Day 1 11:15", "engagement": null, "reason": null, "op_ms": 0, "error": null, "requested_control_present_before": null}
+```

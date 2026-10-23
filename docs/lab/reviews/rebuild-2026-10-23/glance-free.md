@@ -1,0 +1,146 @@
+# The Glance — Alba
+
+## Session
+
+Alba plays puzzle games sometimes, wants to make a useful call from uncertain information, and is impatient. I started cold at https://glance.adamwhite.work through the supplied player-facing HTTP driver at http://127.0.0.1:44612/. Device assignment: 360 × 690 CSS pixels, touch, light mode. I viewed three screenshots. The title displayed “People by the Human Framework 2.8.0”; I did not see a separate game build identifier.
+
+The assigned floor was 0 real minutes and ceiling was 25. Gameplay stopped at 245.163 s (4:05). Feedback confirmed at 257.615 s (4:18). This was a voluntary stop, not a ceiling or access failure. No source, internal state, other sessions or prior reports were consulted. Recording stayed at its default. No export was downloaded.
+
+The clock advanced during documented real waits: the first 30-second wait moved Monday 22:03 to 22:36. Sheets explicitly paused time. Automatic pace slowed while reading the radio. I selected the visible Fast control at 199.014 s because I was impatient for another event. I never used Skip. I could only sample the live page every few seconds; I did not continuously observe the lightning flash.
+
+## First minute
+
+The first actionable screen was the title at 0.489 s. The driver captured first-minute.png at 60.035 s. My checkpoint note was logged late at 68.670 s, approximately eight seconds after the requested checkpoint. The table below uses only events reached by 60 s, rather than later help.
+
+Original checkpoint answer, verbatim:
+
+> I want to keep the town dry, and rain plus a rising level gives me a reason to act. I found Dai, the two gauges, information, menu and Skip. I asked for a reading at about ten seconds and inspected the gate at thirteen. Opening the gate lowers the dam but raises the river later; I have not ordered it yet. Dai preferred reading the level and I do not know what insisting would cost. The crest is marked 6.0 in the picture. The gate sheet fits, but hides the town situation. Lightning just showed the wall and I do not know what I was meant to notice.
+
+| Item | Result | Checkpoint evidence |
+|---|---|---|
+| DL-1 A reason to act | PASS | Keep the town dry. The title stated the objective; rain and a reading rising from 3.80 to 4.10 made it relevant now. |
+| DL-2 What can I touch | PASS | I identified Dai, level, gate, information, menu and Skip. I used the reading request and gate gauge. No inert target was tried before 60 s. The gate buttons had clear outlines in gate-first.png. |
+| DL-3 Urgency and selection | PASS | The water reading drew me first. Rain competed with Dai’s reassuring language. The gate had a red selected outline in gate-first.png; “Time waits while you look” reduced urgency while inspecting. I did not understand the lightning evidence. |
+| DL-4 Why the limit | FAIL | Skip was initially disabled with “Nothing on its way,” a useful explanation. Gate options said “rather read the level” and “Hold a button to insist.” I could identify Dai’s preference but not the consequence of overriding it. I did not attempt a hold. |
+| DL-5 Readable situation | PASS | I could request the level and knew the request was underway from “Dai · level ~22:10.” “Every figure on this board is what Dai saw” helped. |
+| DL-6 A choice soon | PASS | Title action available at 0.489 s; entered desk at 3.797 s. A meaningful reading request was available on that desk response, within four seconds. First meaningful input was 9.761 s. Gate alternatives were reached at 12.789 s, before long help text. |
+| DL-7 Learn by doing | PASS for reached interactions | Two choice types reached: request a reading and inspect gate settings. The request led to a new 4.10 reading by 56.311 s. The gate sheet taught the dam/river tradeoff before I issued an order. Help was not used in the first minute. Gate execution, overriding refusal, warning town, Callum and Nerys interactions: NOT TESTED at checkpoint (five unreached interaction types). |
+
+The screenshots establish layout for the captured moments only. The checkpoint does not establish that I saw or understood the brief lightning visual while it happened.
+
+## What happened at important inputs
+
+Times are real elapsed seconds. The clock column is the visible response clock; driver input entries themselves did not populate game_clock automatically.
+
+| Elapsed | Input | Visible answer / clock |
+|---|---|---|
+| 0.489 | Open | “Keep the dam below its crest and the town dry, or warned in time.” Five nights, Monday–Friday. |
+| 3.797 | Take the night desk | Monday 22:00; Dai said “Level’s three-eight” while the level board still showed “— / not read.” |
+| 9.761 | Ask Dai to read the level yes · ~10 min | Monday 22:02; board showed 3.80, read 22:00; task queued. |
+| 12.789 | Gate gauge | Monday 22:03; sheet: “rather read the level,” six opening choices, “Hold a button to insist.” |
+| 26.171–56.311 | Close sheet, wait 30 s | Monday 22:36; 4.10 m, read 22:11. Lightning message at 22:34. |
+| 72.867 | Dai · stove ~22:55 | Monday 22:55; resting by stove; reading available; sleep answer “in a bit, once I’m warm.” |
+| 76.736–96.874 | Read the level; wait 20 s | Monday 23:10; 3.90 m, read 23:04; “Steady as you like.” |
+| 99.718 | Information | Monday 23:14; help defined level, lip/crest, forty-minute river delay, read/reported and resting. |
+| 106.548 | Tap wall at 174,191 | No inspection opened; visible desk unchanged at 23:14. |
+| 112.353 | Gate gauge | Monday 23:22; options now said “yes.” |
+| 116.219–146.358 | 1 yes · ~10m; wait 30 s | Monday 23:45; gate 1/6, read 23:32; “Gate’s on one turn.” |
+| 182.328 | End second 30 s wait | Monday 00:23; 4.00 m read 00:04; “Coming down heavier up here now.” |
+| 199.014 | Fast | Fast visibly pressed in menu; closed menu afterward. |
+| 229.321 | End 30 s wait | Monday 01:23; 4.00 m read 01:19. New personal remark about Morgan, but no new witness or town control. |
+| 235.170 | Screenshot | Monday 01:29; gate 1/6, level 4.00. |
+| 245.163 | Stop log | BORED. Menu opened afterward at Monday 01:49 solely for feedback. |
+
+## Experience
+
+Best moment: 12.789–25.981 s, inspecting the gate. I had a concrete, consequential tradeoff: lower the reservoir now and raise the town river later. This was the highest engagement moment, although I did not assign it a numeric pulse at the time.
+
+Worst moment: 191.597 s. I wanted an independent check of the danger and felt I was repeating a request rather than solving a puzzle. The only want_quit was BORED at that time. I continued for about 54 seconds, found Fast and waited for another event. The feeling did not pass.
+
+Pulse series: 191.550 s, engagement 2/5 — “I made a cautious release, but I am mostly waiting for Dai to give me something worth deciding on.” No second three-minute pulse came due before stopping.
+
+Hard, but kept going: I could not work out how to check the wall after lightning. I opened Information and tried the wall itself. Later I looked for a pace workaround and chose Fast. I stayed because I hoped another person would call. I did not look for an easier difficulty or accessibility setting.
+
+I did not reach Callum or Nerys’s river steps. I did not catch a wrong reading. I cannot conclude that the game lacked those checks or that Dai’s readings were accurate. The optional comparison remains NOT TESTED.
+
+## Clarity and checklist findings
+
+- DL-4: I saw “rather read the level” and “Hold a button to insist.” I could not tell what insisting would do to Dai or the pending job. Transcript at 12.789 s; gate-first.png. This is uncertainty about the rule, not evidence that no rule exists.
+- Unnumbered clarity finding: “Lightning over the valley. For a moment the camera on the dam showed the wall.” I understood that something had been revealed, but not what I should compare. The driver’s intermittent observations limit this finding. first-minute.png preserves a thin “lightning 22:34” mark, but I did not interpret it during play.
+- DL-13 feedback: the normal menu route was “Send word ▸”, opening a Send word form. I selected “I'd stop here,” entered the assigned name and one-line verdict, and pressed Send exactly once. The visible answer was “Sent. Thank you.” at 257.615 s. No player id was shown. The curly-apostrophe attempt at “I’d stop here” failed; retrying the exact visible ASCII text succeeded. This was an input transcription error, not a driver block.
+
+| Check | Result | Evidence |
+|---|---|---|
+| DL-20 English | PASS for reached play | Necessary instructions were in English. Spoken “three-eight” appeared numerically as 3.80. Help explained the dam level, river delay, and read/reported. I encountered no necessary unexplained local term. |
+| DL-21 Dates | PASS for encountered week/time references; cross-month/year NOT TESTED | Monday–Friday and “Friday’s first light” needed no translation. The clock remained labelled Monday night after midnight; I read this as the continuing night, though no calendar date was given. No cross-month or year deadline was encountered. |
+| DL-22 Phone response visibility | PASS for captured desk/inspection states | gate-first.png showed the reply, clock, Dai, gauges, gate options and explanatory sentence within 690 px. last-desk.png showed current reply, scene, gauges and recent log without scrolling. This does not establish every sheet or event. |
+| DL-30 Cut-off/overlap | No observed mid-sentence truncation in inspected screenshots | The gate explanation ended fully with “Hold a button to insist.” The desk log viewport began with an older line partly at its top in last-desk.png, but current replies were visible. No “Scroll ↓” obstruction or overlapping sheets was observed. Other sheets not visually captured: NOT TESTED. |
+| DL-31 Goal with sheet open | Partial / FAIL for goal reminder | In gate-first.png I could see Dai, the level, crest 6.0, lip 5.0 and selected gate. The original town-dry goal and Friday deadline were not visible alongside the order sheet. I had to remember them. No explicit progress counter was seen. |
+| DL-32 Only watching | No forced input lock established | Longest self-chosen watch was roughly 116–182 s after ordering one turn: I wanted to see the release effect and river consequence. Other controls and Skip remained available, so I cannot call this a forced 66-second wait. The last Fast wait was 30 real seconds. |
+| DL-33 Hands on | Form for gate; person sheet for Dai | I tapped the gate gauge and chose a numbered order in a sheet. Tapping Dai opened his jobs. Tapping the wall did not open anything. Cooking/digging and speaking to other people: NOT TESTED. |
+
+## Stop and requested changes
+
+I stopped voluntarily with reason BORED at 245.163 s, on Monday night, reported level 4.00 m and gate 1/6. The last sampled clock was 01:29; it advanced to 01:49 before I opened the feedback menu. I would close the game, not leave it running. I would not return voluntarily tonight. My first wish to quit persisted after trying Fast.
+
+As this player, I would want, in order:
+
+1. A way I can find to compare Dai’s number with another observation while I still care about the question.
+2. A lightning observation I can inspect after the flash, with enough context to understand what I saw.
+3. The town goal and Friday deadline visible while I choose a gate order.
+
+These are my wants after this short run, not claims about unseen later content.
+
+Feedback name: `playtester Alba rebuild-2026-10-23`.
+
+Feedback verdict, exactly: “I would stop here: the gate tradeoff interested me, but repeated readings and waiting lost me before I found another way to judge the danger.”
+
+Export: none downloaded. Screenshots and original log are in `(driver scratch)/` beside this report. No replay was tested.
+
+## Verbatim diary and input log
+
+The following is my original driver log, including all reactions unchanged. It contains the full input sequence, waits and the failed apostrophe attempt. Important visible answers are transcribed above because this log records inputs rather than page text. The first automatic start record is included for provenance, not treated as gameplay.
+
+```jsonl
+{"t": "2026-10-23T17:30:11.385Z", "elapsed_s": null, "kind": "input", "op": "start", "input": {"driver": "351679a", "driver_check": "current"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 0, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T17:30:18.014Z", "elapsed_s": 0.489, "kind": "input", "op": "open", "input": {}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 490, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T17:30:21.322Z", "elapsed_s": 3.797, "kind": "input", "op": "tap", "input": {"name": "Take the night desk"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 167, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T17:30:27.094Z", "elapsed_s": 9.569, "kind": "note", "op": "log", "input": null, "reaction": "The job is clear enough: keep the town dry. He just said three-eight, but the board says nobody read the level. I want a number I can use.", "game_clock": "Monday 22:00", "engagement": null, "reason": null, "op_ms": 0, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T17:30:27.286Z", "elapsed_s": 9.761, "kind": "input", "op": "tap", "input": {"name": "Ask Dai to read the level yes · ~10 min"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 146, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T17:30:30.314Z", "elapsed_s": 12.789, "kind": "input", "op": "tap", "input": {"name": "gate 0 / 6 Dai · read 22:00"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 142, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T17:30:33.966Z", "elapsed_s": 16.441, "kind": "input", "op": "shot", "input": {"file": "gate-first.png"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 144, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T17:30:43.506Z", "elapsed_s": 25.981, "kind": "note", "op": "log", "input": null, "reaction": "The gate sheet tells me opening it lowers the dam but raises the town river later. That is a useful tradeoff. I cannot judge three-eight yet, so I will let him read before ordering a release.", "game_clock": "Monday 22:03", "engagement": null, "reason": null, "op_ms": 0, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T17:30:43.696Z", "elapsed_s": 26.171, "kind": "input", "op": "tap", "input": {"name": "Close inspection"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 145, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T17:31:13.836Z", "elapsed_s": 56.311, "kind": "input", "op": "wait", "input": {"s": 30}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 30117, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T17:31:17.560Z", "elapsed_s": 60.035, "kind": "first_minute", "op": "shot", "input": {"file": "first-minute.png"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 33, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T17:31:20.887Z", "elapsed_s": 63.362, "kind": "input", "op": "wait", "input": {"s": 4}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 4116, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T17:31:26.195Z", "elapsed_s": 68.67, "kind": "first_minute", "op": "log", "input": null, "reaction": "I want to keep the town dry, and rain plus a rising level gives me a reason to act. I found Dai, the two gauges, information, menu and Skip. I asked for a reading at about ten seconds and inspected the gate at thirteen. Opening the gate lowers the dam but raises the river later; I have not ordered it yet. Dai preferred reading the level and I do not know what insisting would cost. The crest is marked 6.0 in the picture. The gate sheet fits, but hides the town situation. Lightning just showed the wall and I do not know what I was meant to notice.", "game_clock": "Monday about 22:36", "engagement": null, "reason": null, "op_ms": 0, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T17:31:30.392Z", "elapsed_s": 72.867, "kind": "input", "op": "tap", "input": {"name": "Dai · stove ~22:55"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 149, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T17:31:34.261Z", "elapsed_s": 76.736, "kind": "input", "op": "tap", "input": {"name": "Read the level yes · ~10 min"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 148, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T17:31:54.399Z", "elapsed_s": 96.874, "kind": "input", "op": "wait", "input": {"s": 20}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 20116, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T17:31:57.243Z", "elapsed_s": 99.718, "kind": "input", "op": "tap", "input": {"name": "Information"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 147, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T17:32:03.750Z", "elapsed_s": 106.225, "kind": "note", "op": "log", "input": null, "reaction": "Help explains read versus reported and the forty-minute river delay. Useful. I am watching readings drift around four metres and have no other witness yet. I want to check the wall myself after that lightning.", "game_clock": "Monday 23:14", "engagement": null, "reason": null, "op_ms": 0, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T17:32:03.940Z", "elapsed_s": 106.415, "kind": "input", "op": "tap", "input": {"name": "Close information"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 144, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T17:32:04.073Z", "elapsed_s": 106.548, "kind": "input", "op": "tap", "input": {"x": 174, "y": 191}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 111, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T17:32:09.689Z", "elapsed_s": 112.164, "kind": "note", "op": "log", "input": null, "reaction": "Tapping the wall did nothing. I am guessing the picture only matters during the flash. I will open the gate one turn rather than wait for the reservoir to climb.", "game_clock": "Monday 23:14", "engagement": null, "reason": null, "op_ms": 0, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T17:32:09.878Z", "elapsed_s": 112.353, "kind": "input", "op": "tap", "input": {"name": "gate 0 / 6 Dai · read 22:00"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 143, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T17:32:13.744Z", "elapsed_s": 116.219, "kind": "input", "op": "tap", "input": {"name": "1 yes · ~10m"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 140, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T17:32:43.883Z", "elapsed_s": 146.358, "kind": "input", "op": "wait", "input": {"s": 30}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 30117, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T17:33:19.853Z", "elapsed_s": 182.328, "kind": "input", "op": "wait", "input": {"s": 30}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 30123, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T17:33:29.075Z", "elapsed_s": 191.55, "kind": "pulse", "op": "log", "input": null, "reaction": "I made a cautious release, but I am mostly waiting for Dai to give me something worth deciding on.", "game_clock": "Monday 00:23", "engagement": 2, "reason": null, "op_ms": 0, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T17:33:29.122Z", "elapsed_s": 191.597, "kind": "want_quit", "op": "log", "input": null, "reaction": "I want another way to check the danger. Repeatedly asking the same man for a number is losing me.", "game_clock": "Monday 00:23", "engagement": null, "reason": "BORED", "op_ms": 0, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T17:33:29.365Z", "elapsed_s": 191.84, "kind": "input", "op": "tap", "input": {"name": "Game menu"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 194, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T17:33:36.352Z", "elapsed_s": 198.827, "kind": "note", "op": "log", "input": null, "reaction": "I found a pace control. I am choosing Fast because I want another event, not another kettle report. I am staying to see whether someone else calls.", "game_clock": "Monday 00:36", "engagement": null, "reason": null, "op_ms": 0, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T17:33:36.539Z", "elapsed_s": 199.014, "kind": "input", "op": "tap", "input": {"name": "Fast"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 141, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T17:33:36.705Z", "elapsed_s": 199.18, "kind": "input", "op": "tap", "input": {"name": "Back to the desk"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 143, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T17:34:06.846Z", "elapsed_s": 229.321, "kind": "input", "op": "wait", "input": {"s": 30}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 30118, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T17:34:12.695Z", "elapsed_s": 235.17, "kind": "input", "op": "shot", "input": {"file": "last-desk.png"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 139, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T17:34:22.688Z", "elapsed_s": 245.163, "kind": "stop", "op": "log", "input": null, "reaction": "Fast has not changed my feeling. I am leaving on Monday night with the gate on one and the reported level at four. I would close the game rather than leave it running, and I would not return voluntarily tonight.", "game_clock": "Monday 01:29", "engagement": null, "reason": "BORED", "op_ms": 0, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T17:34:22.889Z", "elapsed_s": 245.364, "kind": "input", "op": "tap", "input": {"name": "Game menu"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 152, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T17:34:23.069Z", "elapsed_s": 245.544, "kind": "input", "op": "tap", "input": {"name": "Send word ▸"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 151, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T17:34:25.904Z", "elapsed_s": 248.379, "kind": "tool", "op": "tap", "input": {"name": "I’d stop here"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 4, "error": "I’d stop here is not on the page now, and it was not in the last reply either; use a name from the latest controls (not a driver failure)", "requested_control_present_before": false}
+{"t": "2026-10-23T17:34:34.653Z", "elapsed_s": 257.128, "kind": "input", "op": "tap", "input": {"text": "I'd stop here"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 139, "error": null, "requested_control_present_before": true}
+{"t": "2026-10-23T17:34:34.794Z", "elapsed_s": 257.269, "kind": "input", "op": "type", "input": {"name": "Your name or tester id", "text": "playtester Alba rebuild-2026-10-23"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 119, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T17:34:34.951Z", "elapsed_s": 257.426, "kind": "input", "op": "type", "input": {"name": "What happened on the desk, what you wanted, what got in the way.", "text": "I would stop here: the gate tradeoff interested me, but repeated readings and waiting lost me before I found another way to judge the danger."}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 111, "error": null, "requested_control_present_before": null}
+{"t": "2026-10-23T17:34:35.140Z", "elapsed_s": 257.615, "kind": "input", "op": "tap", "input": {"name": "Send"}, "reaction": null, "game_clock": null, "engagement": null, "reason": null, "op_ms": 145, "error": null, "requested_control_present_before": true}
+```
