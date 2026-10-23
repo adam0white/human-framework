@@ -190,7 +190,7 @@ function publishBoundary(): void {
               sourceSchema: source.schema,
               sourceNow: source.now,
               sourceRng: source.rng,
-              checkpointDigestSHA256: [...new Uint8Array(digest)]
+              checkpointDigest: [...new Uint8Array(digest)]
                 .map((n) => n.toString(16).padStart(2, '0'))
                 .join(''),
             },
