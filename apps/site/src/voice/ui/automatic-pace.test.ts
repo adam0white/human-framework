@@ -88,3 +88,11 @@ test('a saved export restores by replay with the same hash, including historical
     ),
   ).toBe(false);
 });
+
+test('save labels distinguish Eid from the days after Eid', () => {
+  const file = { game: 'voice', log: [], minute: 31 * 1440 + 60 };
+  expect(savedVoice({ getItem: () => JSON.stringify(file) })?.label).toBe('Eid · 01:00');
+  expect(savedVoice({ getItem: () => JSON.stringify({ ...file, minute: 34 * 1440 + 60 }) })?.label).toBe(
+    'After Eid · day 3 · 01:00',
+  );
+});

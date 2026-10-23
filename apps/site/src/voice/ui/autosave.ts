@@ -12,7 +12,7 @@ export function savedVoice(storage: Pick<Storage, 'getItem'>): { text: string; l
     const minute = file.minute % 1440;
     return {
       text,
-      label: `${day > 30 ? 'After Eid' : `Ramadan ${day}`} · ${String(Math.floor(minute / 60)).padStart(2, '0')}:${String(minute % 60).padStart(2, '0')}`,
+      label: `${day === 31 ? 'Eid' : day > 31 ? `After Eid · day ${day - 31}` : `Ramadan ${day}`} · ${String(Math.floor(minute / 60)).padStart(2, '0')}:${String(minute % 60).padStart(2, '0')}`,
     };
   } catch {
     return null;

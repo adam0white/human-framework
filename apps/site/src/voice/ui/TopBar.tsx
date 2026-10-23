@@ -75,7 +75,7 @@ export const TopBar = memo(function TopBar({
     ) : frame.phase === 'between' ? (
       `${frame.dayLabel} is over`
     ) : frame.phase === 'free' ? (
-      `After Eid · day ${frame.day} · ${frame.clock}`
+      `After Eid · day ${frame.day - 31} · ${frame.clock}`
     ) : (
       <>
         {frame.dayLabel} · <span className="v-calendar-desktop">{storyDate(frame.day)}</span>

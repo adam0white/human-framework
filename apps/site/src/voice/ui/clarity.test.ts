@@ -187,3 +187,19 @@ it('keeps one information and one menu control in the top bar', () => {
   expect(el.querySelector('[aria-label="Game menu"]')).not.toBeNull();
   expect(el.querySelector('[aria-label="Pace"]')).toBeNull();
 });
+
+it('counts free-play days from Eid in the top bar', () => {
+  const el = render(
+    createElement(TopBar, {
+      frame: { ...sampleFrame, phase: 'free', day: 34, clock: '10:40' },
+      title: false,
+      reading: false,
+      skipping: false,
+      infoOpen: false,
+      menuOpen: false,
+      onInfo: () => {},
+      onMenu: () => {},
+    }),
+  );
+  expect(query(el, '.v-shell-when').textContent).toBe('After Eid · day 3 · 10:40');
+});
