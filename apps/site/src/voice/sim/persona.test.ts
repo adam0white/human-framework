@@ -228,6 +228,8 @@ describe('Selin calendar continuity chapter', () => {
       targetNorms: DEFAULT_NORMS,
     }).person;
     guest.now += 10;
+    // Normal activity in a receiving host can change this approved stable body field.
+    guest.body.fitness += 0.0001;
     const answer = remember(guest, {
       at: guest.now,
       kind: 'outcome',
@@ -310,6 +312,10 @@ describe('Selin calendar continuity chapter', () => {
     expect(returned.conscience.norms).toEqual(source.conscience.norms);
     expect(snapshot(source)).toEqual(before);
     expect(returned.body.health).toBe(source.body.health);
+    expect(returned.body.fitness).toBe(guest.body.fitness);
+    const wrongHealth = structuredClone(envelope);
+    (wrongHealth.transfer.person as typeof person).person.health.health -= 0.1;
+    expect(() => returnedSelin(wrongHealth, source, departure)).toThrow(/health/);
     const wrongCalendar = structuredClone(envelope);
     (wrongCalendar.transfer.calendarHost as { originSourceNow: number }).originSourceNow++;
     expect(() => returnedSelin(wrongCalendar, source, departure)).toThrow(/calendar/);

@@ -213,7 +213,14 @@ export function returnedSelin(
   ] as const)
     if (original.calendarHost?.[key] !== calendarHost[key])
       throw new Error('Selin return changed the pinned source calendar.');
+  if (
+    projected.person.health.health !== opening.body.health ||
+    projected.person.health.circadianPeak !== opening.body.circadianPeak
+  )
+    throw new Error('Selin return has an incompatible health or circadian state.');
   const target = restore(snapshot(opening));
+  // Fitness is approved portable state; clinical health and circadian compatibility remain exact.
+  target.body.fitness = projected.person.health.fitness;
   if (target.agenda.goals.some((g) => g.status === 'active'))
     throw new Error('The source chapter still has an unsupported project.');
   // This detached opening takes its complete quiet calendar from the returned projection.
