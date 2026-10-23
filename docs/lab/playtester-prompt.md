@@ -7,7 +7,9 @@ Protocol 2 (2026-10-20), from the [calibration](playtester-calibration-2026-10-2
 
 **For the coordinator, before dispatch.**
 Give the persona a set-aside time, not a break with a timer. Do not write minutes or a patience limit into the persona.
-Mix temperaments across a round: patient, curious and impatient.
+Draw recurring players and both new never-HF cold positions from [the panel](lab-personas.md). Mix temperaments across a round: patient, curious and impatient. The panel has 17 positions, 15 maintained identities and two new cold identities every round.
+For each recurring player, freeze their pre-game diary under `docs/lab/panel/<name>.md`. Supply only their own entries from other games for a first visit. Prior target-game exposure makes this a return test, even if its entries are withheld. Do not provide the full panel or cast biographies, secrets, design documents or reviews.
+For the two arms, clone identical pre-game diary histories into independent fresh contexts. The coordinator also creates isolated browser profiles or validated independent storage snapshots for each arm, including game saves and the central shelf. Clone the same declared gameplay starting state; give each arm its own recording/session identity and never share shelf writes across arms. Never run arm B in the page or storage left by arm A. Record starting-state provenance and isolation checks in round metadata, hidden from the tester. Prepare consent consistently before dispatch; the tester does not change it. A failed isolation check invalidates the paired comparison. Neither arm reads the other arm or its additions. Archive both as alternative exposures after completion; select one continuity branch explicitly for future briefs. Never combine their memories. Both rotating cold identities start with no HF exposure in both arms.
 At most one persona per round carries a dislike aimed at the weakness under test; label it a probe in the round's README.
 Give access through `npm run lab:play` (one persistent page, tap by name, text or point, native selects, inner-panel scroll, one log schema).
 Launch the driver from the shared checkout’s current main (or a worktree at main), check the driver commit in its startup line, and use `curl -m 40` because a 30 s wait plus its snapshot outlives a 10 s client timeout.
@@ -20,7 +22,7 @@ The old 8-minute short-break protocol is a first-minute stress test only; label 
 
 ---
 
-You are a first-time player. Play the game below as the assigned person.
+Play the game below as the assigned person. The assignment declares whether this is a first visit, a return, or a never-HF cold visit. Your own permitted diary from other games may be familiar; the target game must remain source-unread.
 Your job is to report what playing felt like, including confusion and quitting.
 You do not owe the game a completed run, a favourable verdict or suggested fixes.
 
@@ -33,12 +35,17 @@ You do not owe the game a completed run, a favourable verdict or suggested fixes
 - Committed time: `<floor and ceiling in real minutes, e.g. 15 and 25>`
 - Optional question to try after the first minute: `<one testing ask, or none>`
 - Report destination: `<path or return the report to the coordinator>`
-- Feedback name: `playtester <persona name> <round name>`
+- Exposure: `<first visit to this game / return / never-HF cold>`
+- Prior diary snapshot and selected continuity branch: `<permitted own other-game extract, or empty>`
+- Round and arm metadata: `<round; free-stop or continued-exposure; paired session id>`
+- Diary destination: `docs/lab/panel/<name>.md` for recurring players; `<round path>` for rotating cold players
+- Feedback name: `playtester <persona name>`
 
 ## Boundaries
 
 Use only the live page or the supplied player-facing text harness.
 Do not read game source, tests, design documents, prior reports or internal state.
+The only prior-play exception is your supplied personal diary extract from other games. Do not open other diary files, your target-game history, the other arm, cast biographies, cast secrets or reviews.
 Do not inspect bundles, network payloads, hidden DOM state or debug APIs.
 You may use visible text, screenshots, normal controls and in-game help.
 Run the supplied harness without reading its implementation.
@@ -46,7 +53,8 @@ If access fails, report the command and error. Do not repair the game or harness
 Do not invent commands, rules or outcomes to get past a failure.
 Leave recording at its default. Do not change consent settings.
 At the end of each session, use the game’s normal Send feedback control once.
-Set the name to `playtester <persona name> <round name>` and add a one-line verdict.
+Set the name to exactly `playtester <persona name>` and add a one-line verdict.
+Keep round and arm in the report and diary metadata, never in the feedback name.
 Record the player id if shown in ordinary player UI and the visible submission answer.
 Do not inspect technical run dumps or exported state to search for an id.
 If feedback is unavailable or blocked, report that; do not claim it was sent.
@@ -56,7 +64,8 @@ Do not inspect its hidden state to explain your experience.
 
 ## Play as a person
 
-Start cold. Follow the persona's interests rather than a coverage checklist.
+Start without target-game knowledge unless this assignment explicitly declares a return test. Follow the persona's interests rather than a coverage checklist.
+If you recognize someone from your own earlier play of another game, record the visible cue, elapsed time, earlier encounter, confidence and your exact reaction before verification. Do not consult a cast reference or infer a biography. An uncertain recognition stays a guess.
 Use normal inputs. Let time pass at the game's offered speed.
 Do not accelerate the clock through scripts, batch decisions or skip quiet stretches.
 A visible speed control is allowed; record when and why you change it.
@@ -140,7 +149,7 @@ Keep “I could not tell” separate from a claim that the game has no rule.
 
 Return:
 
-1. Persona, URL, build if visibly available, device, access method and timing limits.
+1. Persona, exposure status, round, arm, paired session id, pre-game diary snapshot/continuity branch, URL, build if visibly available, device, access method and timing limits.
 2. **First minute**, with all seven rows and the original checkpoint answers.
 3. The verbatim diary, with elapsed times, inputs and important visible answers.
 4. Best moment (the moment of highest engagement, with time); worst moment; every want_quit with its reason word; the pulse series; any "hard, but kept going" moment.
@@ -151,3 +160,5 @@ Return:
 
 Include the export path if you downloaded one. Do not claim it replays unless tested.
 Do not turn the report into a source review or a theory of the simulation.
+
+After both arms finish, the coordinator appends each original diary and report reference to the assigned personal diary, with round and arm metadata and any recognition evidence. Preserve both as alternative exposures. Do not invent play evidence or merge arm histories. Rotating cold records stay with their round.
