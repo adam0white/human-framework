@@ -75,6 +75,34 @@ describe('linked lab client', () => {
     lab.setTelemetryOff(false);
     expect(lab.playerId).not.toBe(before);
   });
+  it('holds every persona upload path after a recording reset, and permits a same-epoch continuation', async () => {
+    const lab = createLab({ game: 'pass', build: {} });
+    lab.setPersonaRecording('fictional-branch');
+    expect(lab.personaRecordingAllowed).toBe(false);
+    lab.allowPersonaRecording(true);
+    expect(lab.personaRecordingAllowed).toBe(true);
+    const firstPlayer = lab.playerId;
+    lab.setPersonaRecording('fictional-branch');
+    expect(lab.personaRecordingAllowed).toBe(true);
+    lab.setTelemetryOff(true);
+    lab.setTelemetryOff(false);
+    expect(lab.personaRecordingAllowed).toBe(false);
+    const stop = lab.trackRun(() => ({ secret: 'old persona snapshot' }));
+    lab.captureSave({ secret: 'old persona snapshot' });
+    lab.log('game', 'old persona fact');
+    lab.milestone('old-persona-milestone');
+    lab.flush();
+    await expect(lab.sendRun({ secret: 'old persona snapshot' })).rejects.toThrow('continuing person');
+    await expect(lab.sendEnvelopeText('{}')).rejects.toThrow('continuing person');
+    await expect(lab.sendFeedback('old persona fact')).rejects.toThrow();
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    expect(envelopes).toHaveLength(0);
+    lab.allowPersonaRecording(true);
+    expect(lab.playerId).not.toBe(firstPlayer);
+    await lab.sendRun({ allowed: true });
+    await waitFor(1);
+    stop();
+  });
   it('suppresses all automatic linked data under DNT/GPC until explicit per-game override', async () => {
     vi.stubGlobal('navigator', { globalPrivacyControl: true });
     const lab = createLab({ game: 'well', build: {} });

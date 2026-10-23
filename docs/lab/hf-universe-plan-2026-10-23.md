@@ -1,6 +1,6 @@
 # One cast across the HF lab — proposal, 2026-10-23
 
-**What remains:** the owner chooses the first pair, the continuity rule and whether a later online Commons should proceed. This document proposes those decisions. It builds nothing and authorizes no new game infrastructure.
+**Approved 2026-10-23:** the owner approved implementation and widened it to several modern connections with automatic same-browser checkpoint/admission. The later message prefers fewer canonical people across games where facts reconcile. [Owner directions](../owner-directions-2026-10-18.md#2026-10-23-one-cast-approved-adam-verbatim) and the current bounded increment in [AGENTS.md](../../AGENTS.md) supersede this proposal's one-probe limit, explicit-every-departure UI and default counterpart advice. The sections below preserve the approved design and its original proposal context. No Commons or cross-device infrastructure is authorized.
 
 F-416 asks for attachment to HF personas across games, eventually a marketplace. F-417 asks for many recurring personas and synchronization for players who visit several experiments. The first result should be recognition followed by a consequential difference: someone the player knows arrives elsewhere with an experience the player helped cause.
 

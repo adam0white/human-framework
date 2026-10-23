@@ -36,3 +36,33 @@ window.addEventListener('message', (event: MessageEvent) => {
 window.addEventListener('storage', (event) => {
   if (event.key === OFF_KEY || event.key === PLAYER_KEY || event.key === null) broadcast();
 });
+
+// Persona messages are deliberately independent of recording identity and its broader origin rule.
+import { isPersonaMessage } from '../../../../packages/lab-client/src/persona.ts';
+import { shelfRequest } from './persona-store.ts';
+
+window.addEventListener('message', (event: MessageEvent) => {
+  if (window.parent === window || !isPersonaMessage(event.origin, event.source, window.parent, event.data))
+    return;
+  const parent = window.parent;
+  const { id, action, castId, envelope, fork, authored, allowRecording } = event.data;
+  void shelfRequest({
+    action,
+    castId,
+    envelope,
+    fork: fork === true,
+    authored: authored === true,
+    allowRecording: allowRecording === true,
+  }).then(
+    (value) => parent.postMessage({ type: 'hf-persona-reply', id, value }, event.origin),
+    (error: unknown) =>
+      parent.postMessage(
+        {
+          type: 'hf-persona-reply',
+          id,
+          error: error instanceof Error ? error.message : 'Shelf unavailable.',
+        },
+        event.origin,
+      ),
+  );
+});

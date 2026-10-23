@@ -223,3 +223,5 @@ Steps are a JSON array, for example `[ {"click":"Play","name":"map"}, {"selector
 ## Linked recording
 
 Use `telemetryNotice()` once on the game screen and mount its returned node when present. Add `telemetryToggle(lab)` to each game menu. Both use the same policy as the site games. `notebookMenu` includes the toggle. Register full runs, successful saves and game logs on the lab client; see its README. Automatic recording does not consent to the player-character test.
+
+`personaControls({ enabled, setEnabled, recordingAllowed, allowRecording })` renders separate fictional continuity and historical recording choices plus a link to the central browser shelf. The host owns the callbacks, refreshes the controls when state changes, and gates uploads before attaching persona runs. `recordingAllowed:false` shows the explicit historical-linkage question; only pass false when an association is missing or the recording identity changed. Continuity does not enable recording or character analysis.

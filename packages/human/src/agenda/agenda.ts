@@ -263,7 +263,8 @@ export function release(p: Person, id: string): boolean {
   return true;
 }
 
-const sameChain = (a: Commitment, b: Commitment): boolean =>
+/** Compare recurrence identity without changing agenda state. @internal */
+export const sameChain = (a: Commitment, b: Commitment): boolean =>
   a.chain !== undefined && b.chain !== undefined ? a.kind === b.kind && a.chain === b.chain : sameShape(a, b);
 
 const sameShape = (a: Commitment, b: Commitment): boolean =>

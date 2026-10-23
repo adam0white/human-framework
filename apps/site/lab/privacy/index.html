@@ -24,7 +24,7 @@
         <a class="top-link" href="/lab/">the lab</a>
       </header>
       <main>
-        <section class="hero"><h1>How the lab handles play records</h1><p class="lede">Updated 2026-10-22.</p></section>
+        <section class="hero"><h1>How the lab handles play records</h1><p class="lede">Updated 2026-10-23.</p></section>
         <section>
           <h2>Automatic linked play records</h2>
           <p>The first-visit notice says: “The lab records your play to improve the games. Turn off in the menu.”</p>
@@ -37,6 +37,10 @@
           <h2>Existing event counts and manually sent runs</h2>
           <p>Older clients still send anonymous event batches and offer an explicit run-send dialog. The legacy run envelope can include an optional note and optional “who you are” label. It receives an <code>r-…</code> reference. Those voluntary labels remain in the private legacy record. A new optional name is remembered on your device for later feedback; clearing the field and submitting removes the remembered name. The inbox may show a legacy record alongside a linked timeline when its label exactly matches one current name or player id; this is an unverified label match, not proof of identity. Keep personal details out of notes and labels. Public feedback quotes must concern the game and omit personal detail.</p>
           <p>Legacy raw event batches become eligible for cleanup when their UTC date is at least two calendar days behind today. Counts must be saved before deletion finishes; outages or backlogs extend this period. Final daily counts contain no session ids. Public <a href="https://human.adamwhite.work/lab/data.json">/lab/data.json</a> contains aggregate counts and curated feedback, not linked records, saves or replays. Existing aggregate processing bounds and privacy controls remain in place.</p>
+          <h2>Fictional people between games</h2>
+          <p>You can separately enable fictional-person continuity in participating games. An approved part of that person's state stays in this browser on human.adamwhite.work. Games checkpoint it when you leave or reach a chapter boundary. A new admitting game can use it automatically. Loaded runs keep their original arrival. Competing histories require an explicit fork. Fresh play stays available.</p>
+          <p>The <a href="/lab/people/">shelf</a> lets you inspect, download, import and delete these histories. Browser storage can be lost. Download a backup. This is not cross-device sync. Deleting continuity does not delete exported files or lab records already received.</p>
+          <p>A continuing person's state can connect recordings made before and after a recording identity reset. With the same recording identity, continuity uses your existing recording choice. After it changes, or a file has no association, the game asks whether to record this continuing person and link that history. Until you agree, that persona-derived run, saves, logs, notes and milestones stay local. You can keep playing and export a file. Recording off stops uploads while local continuity can remain. This choice does not authorize character analysis.</p>
           <h2>Character analysis remains a separate choice</h2>
           <p>Automatic collection does not opt you into the player character test. That test may use your own earlier saves and replays only after you separately opt in. Inferred traits must stay visible and editable. Linked inbox exports make the files available for that approved flow; this change does not add automatic personality inference or automatic AI processing.</p>
           <h2>Hosting and other services</h2>

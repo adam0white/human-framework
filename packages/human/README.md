@@ -404,3 +404,30 @@ Only actual terminal outcomes advance terminal goals. Finishing one's own reques
 Knowledge lives in optional `Person.prospection` and survives snapshot/restore. A percept admits at most four additions/withdrawals combined, atomically. Invalid entries or duplicate source/id identities reject the entire batch. Equal/lower revisions do not reinforce or refresh; a higher revision replaces. There are at most 16 entries and 64 revision records. Consumed entries are evicted first, then the oldest remaining entries, while their revision records remain; a batch requiring more still-valid revision records is rejected. Entries and revision memory expire within seven days. Deduplication is bounded, not a durable audit. Capacity is shared across sources and admission does not allocate by trust. One prolific source can occupy the finite entry/revision capacity, causing other new ids to be rejected until revision space expires; this is bounded memory, not a source-fairness or trust firewall. Hosts must bound the premises they deliver. The pure query exposes retained entries, present feasibility and retained revisions.
 
 [The frozen control](https://github.com/adam0white/human-framework/blob/main/packages/human/examples/received-consequences.ts) publishes useful, late, costly, uncertain, withheld, removed-knowledge, removed-goal, temporal-off and refused arms in two renamed domains. This one-step faculty does not search action graphs, price all waiting opportunities or guarantee consent or success. Opt-in bounded planning (2.12.0) and bodily forecast (2.5.0) extend valuation separately. Its numerical bounds and control parameters are engineering assumptions.
+
+## Persona projection (opt-in)
+
+`projectPersona(source, mapping)` produces `PersonaProjectionSnapshot` (`hf-persona-state/1`).
+`admitPersona(projection, targetOpening, { mappingVersion, sourceId, targetId })` returns a detached
+`{ person, report }`. `validatePersonaProjection(unknown)` validates portable data without filling defaults.
+These functions never enter the actor loop and never mutate the source or the host opening.
+
+The host supplies a versioned map of skill ids, selected episode ids and every continuing obligation.
+Skills keep exact levels and practice evidence. Episode action/person/place/voice references need explicit
+bindings. Both evidence timestamps and birth minute shift by `targetOpening.now - source.now`; the Person
+RNG carries unchanged. Commitments have explicit target-calendar windows, identical duration, kind,
+importance and recurrence, and stay pending. This is a binding for a known calendar, not a calendar translator.
+
+Admission requires the declared identity binding, matching name, sex, age, healthy compatible body,
+and matching family/bond provenance. Version 1 rejects injuries, illness, downing and exposures. It rejects
+running source activities, active goals/projects, owed duties and unmapped ongoing obligations, including
+completed occurrences of unreleased recurring chains. The host must release finished employment in its own
+replay. The host owns the cast registry, death history, branch authority, destination references and truth of
+selected facts. A hash is not authentication. An old projection cannot override a dead target Person.
+
+Target authors transient body state, needs, affect, social/conscience state and optional behaviour settings.
+Portable skills and selected episodes replace target priors in those stores. The report discloses exclusions;
+it does not claim that the complete source life continued. The original checkpoint belongs in the source save.
+Pin the admitted Person and mapping version in the target replay. The transport owns its cryptographic hash,
+branch metadata, consent and storage bounds. See `examples/persona-control.ts` for a deterministic two-host
+control with preserved evidence, source immutability and an unmapped-skill comparison.

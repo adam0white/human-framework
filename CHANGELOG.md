@@ -10,6 +10,17 @@ The release version is the package version and `FRAMEWORK_VERSION`, tagged `vX.Y
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
+## [2.15.0] - 2026-10-23
+
+Engine: 2.14.1.
+
+### Added
+
+- Opt-in, deterministic persona projection and admission. Explicit skill, episode and commitment mappings preserve approved state across unrelated hosts. Unsupported ongoing obligations and incompatible identity or health facts are rejected. Existing actor behavior and legacy continuation remain unchanged.
+- One cast browser shelf through the existing identity frame, with versioned checksummed envelopes, atomic parent revision checks, explicit conflict forks and inspect/export/delete controls. Client 0.3.0 and kit 0.4.0 ship as local tarballs.
+- Canonical first-wave cast registry and private inbox measurement from complete received exports. Same-epoch continuity retains normal recording. Changed recording identities require explicit historical-linkage consent before any persona-derived upload.
+
+
 ## [Unreleased]
 
 ## [2.14.1] - 2026-10-20

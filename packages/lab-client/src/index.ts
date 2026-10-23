@@ -18,6 +18,7 @@ import { linkedTransport, randomId } from './linked.ts';
 import { type Build, type CompactOptions, DEFAULT_ENDPOINT, gzip, prepareRun } from './util.ts';
 
 export { checkRun, RUN_LIMITS } from './limits.ts';
+export * from './persona.ts';
 
 export { type Build, type CompactOptions, DEFAULT_ENDPOINT, gzip, PRIVACY_URL, runEnvelope } from './util.ts';
 export { openSendDialog, type SendDialogOptions };
@@ -79,6 +80,11 @@ export type Lab = {
   log(level: 'error' | 'warn' | 'game', message: string): void;
   /** Queues feedback attached to the current linked run. It does not opt into character analysis. */
   sendFeedback(note: string, options?: { name?: string }): Promise<string>;
+  /** Call before attaching a persisted/imported persona run or any upload hook. */
+  setPersonaRecording(personaKey: string | null): void;
+  readonly personaRecordingAllowed: boolean;
+  /** Explicit historical-linkage choice for the current recording identity only. */
+  allowPersonaRecording(allow: boolean): void;
   readonly game: string;
   readonly endpoint: string;
   /** The build info once known. */
@@ -157,9 +163,13 @@ export function createLab(options: LabOptions): Lab {
   let override = getItem(local, overrideKey) === '1';
   let player: string | null = null;
   let identity: ReturnType<typeof identityBridge> | undefined;
+  let personaKey: string | null = null;
+  const personaAllowed = () =>
+    !personaKey || Boolean(player && readLocal(`hf-persona-recording:${personaKey}`) === player);
   const queue: { event: Event; runId: string }[] = [];
   const logs: { level: 'error' | 'warn' | 'game'; message: string; at: number; runId: string }[] = [];
   const stopped = () =>
+    !personaAllowed() ||
     off ||
     readLocal(RECORDING_OFF) === '1' ||
     (privacySignal(g) && !override) ||
@@ -181,7 +191,10 @@ export function createLab(options: LabOptions): Lab {
   let build: Build = options.build ?? {};
   let buildKnown = Boolean(options.build);
   let transport: ReturnType<typeof linkedTransport>;
+  const explicitUploads = new Set<AbortController>();
   const reset = () => {
+    for (const upload of explicitUploads) upload.abort();
+    explicitUploads.clear();
     queue.length = 0;
     logs.length = 0;
     transport?.clear();
@@ -203,7 +216,13 @@ export function createLab(options: LabOptions): Lab {
     g.dispatchEvent?.(new Event('hf-lab-preference'));
   };
   const activate = () => {
-    if (stopped()) return;
+    if (
+      off ||
+      readLocal(RECORDING_OFF) === '1' ||
+      (privacySignal(g) && !override) ||
+      (local_ && !options.sendFromLocalhost)
+    )
+      return;
     player = localPlayer();
     identity ??= identityBridge(onIdentity);
   };
@@ -298,7 +317,7 @@ export function createLab(options: LabOptions): Lab {
   };
   if (typeof g.addEventListener === 'function') {
     g.addEventListener('hf-lab-preference', () => {
-      if (stopped()) {
+      if (off || readLocal(RECORDING_OFF) === '1') {
         player = null;
         reset();
       } else activate();
@@ -307,7 +326,7 @@ export function createLab(options: LabOptions): Lab {
       if (![offKey, overrideKey, RECORDING_OFF, PLAYER_KEY, null].includes(event.key)) return;
       off = readLocal(RECORDING_OFF) === '1' || getItem(local, offKey) === '1';
       override = getItem(local, overrideKey) === '1';
-      if (stopped()) {
+      if (off || readLocal(RECORDING_OFF) === '1') {
         player = null;
         reset();
       } else activate();
@@ -384,6 +403,20 @@ export function createLab(options: LabOptions): Lab {
     game,
     endpoint,
     build: () => build,
+    setPersonaRecording(key) {
+      if (key !== null && !/^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/.test(key))
+        throw new Error('Invalid persona recording key.');
+      personaKey = key;
+      if (!personaAllowed()) reset();
+    },
+    get personaRecordingAllowed() {
+      return personaAllowed();
+    },
+    allowPersonaRecording(allow) {
+      if (!personaKey) return;
+      writeLocal(`hf-persona-recording:${personaKey}`, allow && player ? player : null);
+      if (!personaAllowed()) reset();
+    },
     get eventsOn() {
       return !stopped();
     },
@@ -402,7 +435,7 @@ export function createLab(options: LabOptions): Lab {
     setPrivacyOverride(value) {
       override = value;
       setItem(local, overrideKey, value ? '1' : null);
-      if (stopped()) {
+      if (off || readLocal(RECORDING_OFF) === '1') {
         player = null;
         reset();
       } else activate();
@@ -467,6 +500,7 @@ export function createLab(options: LabOptions): Lab {
     },
     async sendRun(run, extra = {}) {
       syncRun();
+      if (!personaAllowed()) throw new Error('Choose whether to record this continuing person first.');
       if (!stopped()) {
         await (identity?.ready ?? Promise.resolve());
         const id = await transport.send('run', run);
@@ -484,6 +518,7 @@ export function createLab(options: LabOptions): Lab {
       return lab.sendEnvelopeText(prepareRun(game, build, run, extra));
     },
     async sendEnvelopeText(text) {
+      if (!personaAllowed()) throw new Error('Choose whether to record this continuing person first.');
       if (off || readLocal(RECORDING_OFF) === '1') throw new Error('Lab recording is off.');
       if (!stopped()) {
         const envelope = JSON.parse(text) as { run: unknown; note?: string; name?: string };
@@ -492,14 +527,23 @@ export function createLab(options: LabOptions): Lab {
       if (!checkRun(text)) throw new Error(runRefusal(text));
       const body = await gzip(text);
       if (body.size > RUN_LIMITS.compressedBytes) throw new Error(compressedRefusal(body.size));
-      const res = await fetch(`${endpoint}/run`, {
-        method: 'POST',
-        body,
-        headers: { 'Content-Type': 'application/gzip' },
-        mode: 'cors',
-        credentials: 'omit',
-        referrerPolicy: 'no-referrer',
-      });
+      if (!personaAllowed()) throw new Error('Choose whether to record this continuing person first.');
+      const upload = new AbortController();
+      explicitUploads.add(upload);
+      let res: Response;
+      try {
+        res = await fetch(`${endpoint}/run`, {
+          signal: upload.signal,
+          method: 'POST',
+          body,
+          headers: { 'Content-Type': 'application/gzip' },
+          mode: 'cors',
+          credentials: 'omit',
+          referrerPolicy: 'no-referrer',
+        });
+      } finally {
+        explicitUploads.delete(upload);
+      }
       const reply = (await res.json().catch(() => ({}))) as { id?: string; error?: string };
       if (!res.ok || !reply.id) throw new Error(reply.error ?? `The notebook answered ${res.status}.`);
       return reply.id;

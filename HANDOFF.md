@@ -1,10 +1,12 @@
 # Handoff — HF (Human Framework)
 
-Updated 2026-10-20. Read [AGENTS.md](AGENTS.md) for rules and the current increment, [docs/framework.md](docs/framework.md) for the architecture, and [docs/roadmap.md](docs/roadmap.md) for what could come next. Older state entries are in [docs/history.md](docs/history.md); every release receipt is in [docs/releases.md](docs/releases.md).
+Updated 2026-10-23. Read [AGENTS.md](AGENTS.md) for rules and the current increment, [docs/framework.md](docs/framework.md) for the architecture, and [docs/roadmap.md](docs/roadmap.md) for what could come next. Older state entries are in [docs/history.md](docs/history.md); every release receipt is in [docs/releases.md](docs/releases.md).
 
 ## What remains
 
-- **Current increment (AGENTS.md):** *Projects and persistence*, released as HF 2.14.0 and corrected in 2.14.1 (net project progress, fading pull), with both island reruns recorded. The owner reviews. Left from it, targeted in [roadmap §3b](docs/roadmap.md): choice still values undoing one's own project (82% of island placements are replacements on 2.14.1), and carrying a project over into a host task.
+- **Current increment (AGENTS.md): One cast.** Platform prepared for HF 2.15.0 (engine 2.14.1 unchanged), client 0.3.0 and kit 0.4.0. Release/npm/site receipts, modern wave-1 integrations, cross-origin browser evidence, linked measurements and owner play remain. [Cast registry](docs/lab/cast-registry.md), [host contract](docs/lab/one-cast-host-contract.md). Review 2026-11-03. The scratch report is `~/code/.lab-scratch/universe/report.md`.
+
+- **Previous increment:** *Projects and persistence*, released as HF 2.14.0 and corrected in 2.14.1 (net project progress, fading pull), with both island reruns recorded. The owner reviews. Left from it, targeted in [roadmap §3b](docs/roadmap.md): choice still values undoing one's own project (82% of island placements are replacements on 2.14.1), and carrying a project over into a host task.
 - **Owner acceptance outstanding:** Good Hands (play it); Neighbours feel; external-game feel generally.
 - **Lab:** the owner's resend of the day-12 Valley run is the first live check of the raised upload bounds. Valley's lab-client 0.1.2 bump and Hearsay's integration wait on their own agents. F-192 (Firefox regular lab events) follow-up by 2026-10-27.
 - **Deferred by owner, no date:** first lab-client npm publication and its trusted publisher.

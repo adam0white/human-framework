@@ -1,6 +1,6 @@
 # Lab privacy
 
-Updated 2026-10-22. This is the text source for [/lab/privacy/](https://human.adamwhite.work/lab/privacy/).
+Updated 2026-10-23. This is the text source for [/lab/privacy/](https://human.adamwhite.work/lab/privacy/).
 
 ## Automatic linked play records
 
@@ -23,6 +23,14 @@ Linked records, runs and their private indexes expire after 180 days under stora
 Older clients still send anonymous event batches and offer an explicit run-send dialog. The legacy run envelope can include an optional note and optional “who you are” label. It receives an `r-…` reference. Those voluntary labels remain in the private legacy record; the new linked protocol adds no name or contact field. Keep personal details out of notes and labels. Public feedback quotes must concern the game and omit personal detail.
 
 Legacy raw event batches become eligible for cleanup when their UTC date is at least two calendar days behind today. Counts must be saved before deletion finishes; outages or backlogs extend this period. Final daily counts contain no session ids. Public [/lab/data.json](https://human.adamwhite.work/lab/data.json) contains aggregate counts and curated feedback, not linked records, saves or replays. Existing aggregate processing bounds and privacy controls remain in place.
+
+## Fictional people between games
+
+You can separately enable fictional-person continuity in participating games. An approved part of that person's state is kept on a browser shelf at human.adamwhite.work. Games checkpoint it when you leave or reach a chapter boundary. A new admitting game can use it automatically. A loaded run keeps its original arrival. One active history belongs to each person. Competing histories require an explicit fork. Fresh play stays available.
+
+The [shelf](https://human.adamwhite.work/lab/people/) lets you inspect, download, import and delete these local histories. Browser storage can be lost. A downloaded file is your backup. The shelf does not provide cross-device sync. That requires a separate owner decision. No new server stores or serves fictional-person state. Deleting continuity does not delete exported files or lab records already received.
+
+A continuing person's state can connect recordings made before and after a recording identity reset. When the recording identity is unchanged, continuity uses the existing recording choice. After it changes, or a file has no association, the game asks whether to record this continuing person and link that history. Until you agree, that persona-derived run, saves, logs, notes and milestones stay local. Ordinary play and file export remain available. Turning recording off stops uploads and revokes future linkage, while local continuity can remain. This choice does not authorize character analysis.
 
 ## Character analysis remains a separate choice
 

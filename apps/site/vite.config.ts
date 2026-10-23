@@ -37,6 +37,7 @@ export default defineConfig({
         lab: resolve(root, 'lab/index.html'),
         labPrivacy: resolve(root, 'lab/privacy/index.html'),
         labIdentity: resolve(root, 'lab/identity/index.html'),
+        labPeople: resolve(root, 'lab/people/index.html'),
       },
     },
   },
