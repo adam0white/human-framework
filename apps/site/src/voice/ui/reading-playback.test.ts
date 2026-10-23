@@ -52,7 +52,9 @@ it('slows reading ticks, keeps frame scheduling on wall time, and respects manua
     flushSync(() =>
       channel.receive({ type: 'frame', gen: init.gen, frame: { ...sampleFrame, phase: 'premise' } }),
     );
+    channel.post.mockClear();
     const titleExport = actions.getPlaytest();
+    expect(channel.post).toHaveBeenCalledWith({ type: 'exportPlaytest' });
     const titleFile = {
       kind: 'human-playtest' as const,
       format: 1 as const,

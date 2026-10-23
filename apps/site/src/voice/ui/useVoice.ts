@@ -498,8 +498,16 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
       },
       getPlaytest: () =>
         new Promise<VoicePlaytest>((resolve, reject) => {
+          if (!transport.current || loadingRun.current) {
+            reject(new Error('The game is still loading.'));
+            return;
+          }
           exportWaiters.current.push({ resolve, reject });
-          requestSave();
+          // Explicit feedback exports work on the title page too. Autosave still excludes the premise.
+          if (!exportPending.current) {
+            exportPending.current = true;
+            send({ type: 'exportPlaytest' });
+          }
         }),
       begin: () => {
         manualHold.current = false;
