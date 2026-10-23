@@ -184,3 +184,22 @@ it('states when his reason is unknown instead of borrowing the prefilled reason'
   expect(el.querySelector('.v-leaning')?.textContent).toContain('His reason is not known.');
   expect(el.querySelector('.v-leaning')?.textContent).not.toContain('He needs rest.');
 });
+
+it('leaves Enter, Escape and draft keys to shell overlays while play is held', () => {
+  const { el, props } = mount();
+  const shell = document.createElement('div');
+  shell.className = 'voice';
+  shell.dataset.clockHeld = 'true';
+  document.body.append(shell);
+  try {
+    const before = el.querySelector('.v-draft-how')?.textContent;
+    for (const key of ['Enter', 'Escape', 'U', 'I', 'D', '1']) {
+      flushSync(() => window.dispatchEvent(new KeyboardEvent('keydown', { key, bubbles: true })));
+    }
+    expect(props.onSuggest).not.toHaveBeenCalled();
+    expect(props.onSayNothing).not.toHaveBeenCalled();
+    expect(el.querySelector('.v-draft-how')?.textContent).toBe(before);
+  } finally {
+    shell.remove();
+  }
+});

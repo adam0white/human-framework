@@ -78,10 +78,12 @@ export function RecordingPreference({
 export function SendWord({
   actions,
   onBack,
+  onReturn = onBack,
   lab = gameLabs.voice,
 }: {
   actions: VoiceActions;
   onBack: () => void;
+  onReturn?: () => void;
   lab?: Lab;
 }) {
   const recording = useRecording(lab);
@@ -260,7 +262,7 @@ export function SendWord({
           type="button"
           className="v-feedback-primary"
           disabled={!sent && (disabled || busy)}
-          onClick={sent ? onBack : send}
+          onClick={sent ? onReturn : send}
         >
           {sent ? 'Back to the game' : busy ? 'Sending…' : 'Send'}
         </button>

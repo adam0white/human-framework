@@ -3918,3 +3918,25 @@ button.v-log-btn {
   height: 100%;
   overflow: hidden;
 }
+
+.v-calendar-phone {
+  display: inline;
+}
+.v-calendar-desktop {
+  display: none;
+}
+.v-shell-when time {
+  color: var(--v-gold, #e8a33c);
+}
+.voice .pt-notice button {
+  min-width: 44px;
+  min-height: 44px;
+}
+@media (min-width: 900px) {
+  .v-calendar-phone {
+    display: none;
+  }
+  .v-calendar-desktop {
+    display: inline;
+  }
+}

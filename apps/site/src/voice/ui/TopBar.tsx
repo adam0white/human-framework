@@ -65,15 +65,26 @@ export const TopBar = memo(function TopBar({
   onMenu: () => void;
 }) {
   const label =
-    !frame || title
-      ? ''
-      : frame.phase === 'report'
-        ? 'A week after Eid'
-        : frame.phase === 'between'
-          ? `${frame.dayLabel} is over`
-          : frame.phase === 'free'
-            ? `After Eid · day ${frame.day} · ${frame.clock}`
-            : `${frame.dayLabel} · ${storyDate(frame.day)} · ${frame.clock}`;
+    !frame || title ? (
+      ''
+    ) : frame.phase === 'report' ? (
+      'A week after Eid'
+    ) : frame.phase === 'between' ? (
+      `${frame.dayLabel} is over`
+    ) : frame.phase === 'free' ? (
+      `After Eid · day ${frame.day} · ${frame.clock}`
+    ) : (
+      <>
+        {frame.dayLabel} · <span className="v-calendar-desktop">{storyDate(frame.day)}</span>
+        <span className="v-calendar-phone">
+          {storyDate(frame.day).replace(
+            /Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday|March|April/g,
+            (word) => word.slice(0, 3),
+          )}
+        </span>{' '}
+        · <time>{frame.clock}</time>
+      </>
+    );
   return (
     <header className="v-shell-top">
       <div className="v-shell-when">{title ? <a href="/">All games</a> : label}</div>

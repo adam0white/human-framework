@@ -177,6 +177,7 @@ export const Composer = memo(function Composer({
     if (!open) return undefined;
     const onKey = (e: KeyboardEvent) => {
       if (e.metaKey || e.ctrlKey || e.altKey) return;
+      if (handlers.current.whyOpen || document.querySelector('.voice[data-clock-held="true"]')) return;
       // Enter and Esc: a focused control in a sheet, card or the tabs keeps its own keys. Anywhere else
       // (the page, the top bar after a click), Enter says it and Esc says nothing. Letters and digits have no
       // other meaning here.

@@ -127,7 +127,8 @@ it('shows English weekdays and dates for every fasting day and the rent deadline
         onMenu: () => {},
       }),
     );
-    const label = query(el, '.v-shell-when').textContent?.split(' · ')[1] ?? '';
+    const label = query(el, '.v-calendar-desktop').textContent ?? '';
+    expect(query(el, '.v-calendar-phone').textContent).toMatch(/^[A-Z][a-z]{2} \d+ (Mar|Apr)$/);
     expect(label).toMatch(/^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday) \d+ (March|April)$/);
     if (day === 1) expect(label).toBe('Monday 11 March');
     if (day === 15) expect(label).toBe('Monday 25 March');

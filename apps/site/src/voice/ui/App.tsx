@@ -49,6 +49,13 @@ export function App() {
   const [holdingReply, setHoldingReply] = useState(false);
   const [whyId, setWhyId] = useState<string | null>(null);
 
+  useEffect(() => {
+    if (voice.runId > 0) {
+      setTitleOpen(false);
+      setPanelOpen(false);
+    }
+  }, [voice.runId]);
+
   const phase = frame?.phase ?? 'premise';
   useLabScreen(gameLabs.voice, phase === 'premise' ? 'title' : phase === 'report' ? 'ending' : 'play');
   const live = phase === 'day' || phase === 'eid' || phase === 'free';
@@ -158,6 +165,7 @@ export function App() {
     <div
       className={`voice phase-${phase}`}
       data-tab={tab}
+      data-clock-held={clockHeld}
       onPointerDownCapture={stable.onPointerDownCapture}
       onKeyDownCapture={stable.onKeyDownCapture}
     >
@@ -403,6 +411,7 @@ export function App() {
         <div className="v-feedback-screen">
           <SendWord
             actions={actions}
+            onReturn={() => setFeedbackOpen(false)}
             onBack={() => {
               setFeedbackOpen(false);
               setMenuOpen(true);
