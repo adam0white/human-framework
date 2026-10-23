@@ -17,6 +17,16 @@ const channel = vi.hoisted(() => ({
   },
   tick: (_dt: number) => {},
 }));
+vi.mock('./persona.tsx', () => ({
+  voicePersonaReady: Promise.resolve(false),
+  prepareVoiceReturn: async () => null,
+  bindVoicePersona: () => () => {},
+  checkpointVoicePersona: () => {},
+  receiveVoicePersona: async () => {},
+  gateVoiceFile: async () => {},
+  settleVoiceFileGate: () => {},
+  resetVoicePersona: () => {},
+}));
 vi.mock('./transport.ts', () => ({
   openTransport: async () => ({
     kind: 'worker',
@@ -44,6 +54,9 @@ it('slows reading ticks, keeps frame scheduling on wall time, and respects manua
   try {
     flushSync(() => root.render(createElement(Harness)));
     await Promise.resolve();
+    await vi.waitFor(() =>
+      expect(channel.post.mock.calls.some(([message]) => message.type === 'init')).toBe(true),
+    );
     const init = channel.post.mock.calls.find(([msg]) => msg.type === 'init')?.[0];
     if (!voice || init?.type !== 'init') throw Error('Missing hook');
     const actions = voice.actions;

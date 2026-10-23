@@ -61,6 +61,7 @@ import {
   type WorkerReply,
 } from '../protocol.ts';
 import { BEAT_COOLDOWN, type BeatState, createBeats, fire, flagOnce, takeCloseCall } from './beats.ts';
+import { type SelinTransfer, selinCheckpoint } from './persona.ts';
 import { closeRival, moneyShort, prefillFor } from './prefill.ts';
 import { buildReport, ledgerKey, type SaidCount } from './report.ts';
 import { answer, createStanding, type Standing, standingView, toSuggestion, WHY_AWAY } from './standing.ts';
@@ -309,11 +310,19 @@ export class VoiceGame {
   private quiet = false;
   private muted = false;
 
+  personaDeparture:
+    | { pending: boolean; transfer?: SelinTransfer; sourceSnapshot?: Person; error?: string }
+    | undefined;
+
   constructor(seed: number = SHIPPED_SEED, rules: VoiceRules = 2) {
     this.seed = seed;
     this.rules = rules;
     // Rules 2: work he does under protest goes worse (HF leaves an act's quality under protest to the host).
-    this.run = newRun(seed, rules >= 2 ? { protestWork: PROTEST_WORK } : {});
+    this.run = newRun(
+      seed,
+      rules >= 2 ? { protestWork: PROTEST_WORK, ...(rules === 3 ? { distinctMakeUpDays: true } : {}) } : {},
+    );
+    if (rules === 3) this.installPersonaBoundary();
     stepCommunity(this.run.c, this.run.town, TOWN_GAME_START, {});
     const h = this.halil;
     this.trustStart = voiceOf(h, 'you')?.trust ?? 0.5;
@@ -335,6 +344,31 @@ export class VoiceGame {
         a.at,
       );
     }
+  }
+
+  /** The hook observes a naturally finished action before the next choice. It never clears activity. */
+  installPersonaBoundary(): void {
+    const offers = this.run.town.affordancesFor.bind(this.run.town);
+    this.run.town.affordancesFor = (p) => {
+      if (
+        p === this.run.ppl.selin &&
+        this.personaDeparture?.pending &&
+        !p.activity &&
+        p.now >= (TOWN_EID_DAY + 1) * 1440 &&
+        p.now % 1440 >= 1080
+      ) {
+        try {
+          this.personaDeparture.transfer = selinCheckpoint(p);
+          this.personaDeparture.sourceSnapshot = structuredClone(p);
+          this.personaDeparture.pending = false;
+          this.paused = true;
+          return [];
+        } catch (error) {
+          this.personaDeparture.error = error instanceof Error ? error.message : String(error);
+        }
+      }
+      return offers(p);
+    };
   }
 
   get halil(): Person {
@@ -869,6 +903,7 @@ export class VoiceGame {
   keepListening(): void {
     if (this.phase !== 'report' || !this.eidNight) return;
     this.run = cloneRun(this.eidNight.run);
+    if (this.rules === 3) this.installPersonaBoundary();
     this.t = this.eidNight.t;
     this.rentSeen = this.run.town.state.rentPaid;
     this.muted = false;
@@ -968,7 +1003,7 @@ export class VoiceGame {
   advanceTo(target: number): void {
     while (this.t < target && !this.paused && this.live()) {
       let next = this.t + 1;
-      if (this.fastForward()) {
+      if (this.fastForward() && !this.personaDeparture?.pending) {
         const h = this.halil;
         const ev = nextEventAt(this.run.c, h);
         let to = Number.isFinite(ev) ? Math.ceil(ev) + 1 : target;
@@ -1155,6 +1190,12 @@ export class VoiceGame {
     const call = this.run.town.state.lastCall;
     if (!call || call.at === this.callSeen) return;
     this.callSeen = call.at;
+    if (
+      this.rules === 3 &&
+      this.run.town.state.selinEnquirySaidAt === call.at &&
+      this.run.opts.selinEnquiryAnswer
+    )
+      this.push({ kind: 'voice', who: 'selin', text: `Selin: ${this.run.opts.selinEnquiryAnswer}` }, call.at);
     this.calls.push({ at: call.at, by: call.by });
     if (call.by === 'halil') this.halilCalledAt = call.at;
     else if (dayOf(call.at) === TOWN_EID_DAY) this.selinEidCallAt ??= call.at;

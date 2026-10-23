@@ -1,3 +1,5 @@
+import { restore, snapshot } from '@adam0white/human-framework';
+import type { PersonaEnvelope } from '@adam0white/lab-client';
 /**
  * Playtest log for Game 2. `RecordedGame` wraps a `VoiceGame`: the worker sends every state-changing message
  * through it, and `replayVoice` re-applies a log through the same `apply`, so recording and replay cannot drift.
@@ -16,7 +18,14 @@
  * not logged: the replay test checks that calling them leaves the hash unchanged. Does not cover: the worker's
  * frame throttling (a view concern) or `carry` (the fraction of a minute real time left over).
  */
-import { check, hashState, type PlaytestFile, parsePlaytest, pushRun } from '../../shared/playtest.ts';
+import {
+  check,
+  hashState,
+  type PlaytestFile,
+  parsePlaytest,
+  pushRun,
+  stableStringify,
+} from '../../shared/playtest.ts';
 import {
   type Appeal,
   type Draft,
@@ -32,9 +41,19 @@ import {
 } from '../protocol.ts';
 import { sceneBeat, sceneWord } from '../ui/scene-words.ts';
 import { MAX_FF_MINUTES_PER_TICK, type Run, VoiceGame } from './game.ts';
+import {
+  type OneCastRow,
+  returnedSelin,
+  type SelinReturn,
+  selinEnquiryAnswer,
+  selinReturnTown,
+} from './persona.ts';
 
 /** A logged input: a worker message that changes simulation or recorded scene presentation. */
-export type VoiceInput = Exclude<MainToWorker, { type: 'init' | 'tick' | 'predict' | 'why' }>;
+export type VoiceInput = Exclude<
+  MainToWorker,
+  { type: 'init' | 'tick' | 'predict' | 'why' | 'personaPublished' | 'personaReturnCheck' }
+>;
 export type VoiceStep = [minutes: number, count: number];
 export type VoiceLogEntry = VoiceStep | (VoiceInput & { at: number });
 
@@ -43,6 +62,9 @@ export class RecordedGame {
   readonly game: VoiceGame;
   /** Presentation sidecar. Deliberately outside voiceState and the person loop. */
   readonly sceneWords: SceneWords[] = [];
+  chapter?: SelinReturn;
+  personaHead?: PersonaEnvelope;
+  readonly oneCast: OneCastRow[] = [];
 
   constructor(game: VoiceGame) {
     this.game = game;
@@ -117,6 +139,13 @@ export class RecordedGame {
 
 function applyInput(g: VoiceGame, msg: VoiceInput): void {
   switch (msg.type) {
+    case 'personaCheckpoint':
+      if (g.rules !== 3) throw new Error('Start a new chapter to let Selin travel.');
+      g.personaDeparture = { pending: true };
+      break;
+    case 'personaCheckpointCancel':
+      g.personaDeparture = undefined;
+      break;
     case 'pause':
       g.pause();
       break;
@@ -166,15 +195,72 @@ export interface VoiceReplay {
 export function parseVoicePlaytest(
   text: string,
   maxBytes?: number,
-): { file: PlaytestFile<VoiceLogEntry>; rules: VoiceRules } {
+): {
+  file: PlaytestFile<VoiceLogEntry>;
+  rules: VoiceRules;
+  chapter?: SelinReturn;
+  rows?: OneCastRow[];
+  head?: PersonaEnvelope;
+} {
   const scenario = scenarioIn(text);
   const file = parsePlaytest(text, 'voice', scenario, validateVoiceLog, maxBytes);
-  return { file, rules: VOICE_RULES[scenario] };
+  const raw = JSON.parse(text) as {
+    voicePersona?: SelinReturn;
+    oneCast?: OneCastRow[];
+    voicePersonaHead?: PersonaEnvelope;
+  };
+  if (
+    raw.voicePersona &&
+    (scenario !== 'voice-3' ||
+      typeof raw.voicePersona.prefix !== 'string' ||
+      typeof raw.voicePersona.initial !== 'string')
+  )
+    throw new Error('Unsupported Selin replay header.');
+  return {
+    file,
+    rules: VOICE_RULES[scenario],
+    chapter: raw.voicePersona,
+    rows: raw.oneCast,
+    head: raw.voicePersonaHead,
+  };
 }
 
 /** Replay a seed and a log from the start, under the rules the log was recorded with (default the current rules). */
-export function replayVoice(seed: number, log: readonly VoiceLogEntry[], rules: VoiceRules = 2): VoiceReplay {
-  const rec = new RecordedGame(new VoiceGame(seed, rules));
+export function replayVoice(
+  seed: number,
+  log: readonly VoiceLogEntry[],
+  rules: VoiceRules = 2,
+  chapter?: SelinReturn,
+  depth = 0,
+): VoiceReplay {
+  if (depth > 4) throw new Error('Too many nested Selin chapters.');
+  let rec: RecordedGame;
+  if (chapter) {
+    if (rules !== 3 || chapter.version !== 1) throw new Error('Unsupported return chapter.');
+    const prefix = parseVoicePlaytest(chapter.prefix);
+    const prior = replayVoice(prefix.file.seed, prefix.file.log, prefix.rules, prefix.chapter, depth + 1);
+    if (prior.driftAt !== -1 || voiceHash(prior.rec.game) !== prefix.file.hash)
+      throw new Error('Source chapter does not replay.');
+    const game = prior.rec.game;
+    if (game.seed !== seed || game.rules !== 3 || !game.personaDeparture?.transfer)
+      throw new Error('Source chapter did not depart.');
+    const initial = restore(JSON.parse(chapter.initial));
+    const expected = returnedSelin(chapter.admission, game.run.ppl.selin);
+    if (stableStringify(snapshot(initial)) !== stableStringify(snapshot(expected)))
+      throw new Error('Returned Selin initial state differs from admission.');
+    game.run.ppl.selin = initial;
+    game.run.c.people = game.run.c.people.map((p) => (p.id === 'selin' ? initial : p));
+    const answer = selinEnquiryAnswer(initial);
+    game.run.opts = { ...game.run.opts, selinEnquiryAnswer: answer };
+    game.run.town = selinReturnTown(game.run.c.people, game.run.opts, game.run.town.state, answer);
+    game.installPersonaBoundary();
+    game.personaDeparture = undefined;
+    game.paused = true;
+    rec = new RecordedGame(game);
+    rec.chapter = structuredClone(chapter);
+    rec.personaHead = chapter.acceptedHead ? structuredClone(chapter.acceptedHead) : undefined;
+    rec.oneCast.push(...structuredClone(chapter.rows));
+  } else rec = new RecordedGame(new VoiceGame(seed, rules));
   let driftAt = -1;
   log.forEach((e, i) => {
     if (Array.isArray(e)) {
@@ -298,6 +384,8 @@ export function validateVoiceLog(log: readonly unknown[]): VoiceLogEntry[] {
         'advance',
         'dismissIntro',
         'keepListening',
+        'personaCheckpoint',
+        'personaCheckpointCancel',
       ] as const,
       `${what}.type`,
     );

@@ -13,7 +13,8 @@
  * to the posted report only (the game's own report and hash do not carry it). Once finished only its facts are
  * kept, by seed; the game is dropped.
  */
-import { ENGINE_VERSION } from '@adam0white/human-framework';
+import { ENGINE_VERSION, snapshot } from '@adam0white/human-framework';
+import { canonicalPersona, validatePersona } from '@adam0white/lab-client';
 import { makePlaytestFile, PlaytestError, replayResult } from '../shared/playtest.ts';
 import { hostWorker } from '../shared/worker-host.ts';
 import {
@@ -36,6 +37,7 @@ import {
   startSilentMonth,
 } from './sim/counterfactual.ts';
 import { VoiceGame } from './sim/game.ts';
+import { returnedSelin, type SelinReturn } from './sim/persona.ts';
 import {
   parseVoicePlaytest,
   RecordedGame,
@@ -46,6 +48,8 @@ import {
 } from './sim/record.ts';
 
 let rec: RecordedGame | null = null;
+let initializing = false;
+let checkpointError = '';
 /** The silent game being stepped for the current run's seed (dropped once its facts are read, or on a new seed). */
 let shadow: SilentMonth | null = null;
 /** The finished silent month's facts, by seed (a Replay of the same seed reuses them). */
@@ -127,7 +131,7 @@ function flush(force = false): void {
   host.post({ type: 'frame', frame: changed as Partial<Frame>, ...(same.length > 0 ? { same } : {}) });
 }
 
-async function exportPlaytest(r: RecordedGame): Promise<void> {
+async function voiceFile(r: RecordedGame, full = false) {
   const g = r.game;
   const file = await makePlaytestFile({
     game: 'voice',
@@ -137,17 +141,78 @@ async function exportPlaytest(r: RecordedGame): Promise<void> {
     log: structuredClone(r.log),
     hash: voiceHash(g),
     engine: ENGINE_VERSION,
-    snapshot: voiceSnapshot(g),
+    snapshot: full ? voiceState(g) : voiceSnapshot(g),
+    ...(full ? { plainSnapshot: true } : {}),
   });
-  host.post({ type: 'playtest', file });
+  return {
+    ...file,
+    ...(r.chapter ? { voicePersona: structuredClone(r.chapter) } : {}),
+    ...(r.personaHead ? { voicePersonaHead: structuredClone(r.personaHead) } : {}),
+    ...(r.oneCast.length ? { oneCast: structuredClone(r.oneCast) } : {}),
+  };
+}
+async function exportPlaytest(r: RecordedGame): Promise<void> {
+  host.post({ type: 'playtest', file: await voiceFile(r) });
+}
+let checkpointSending = false;
+function publishBoundary(): void {
+  const r = rec;
+  const state = r?.game.personaDeparture;
+  if (!r || !state) return;
+  if (state.error && state.error !== checkpointError) {
+    checkpointError = state.error;
+    host.post({
+      type: 'personaCheckpoint',
+      error: state.error.includes('owed obligation')
+        ? 'Selin still owes a duty that this enquiry cannot carry.'
+        : state.error,
+    });
+  }
+  const transfer = state.transfer;
+  const source = state.sourceSnapshot;
+  if (!transfer || !source || checkpointSending) return;
+  checkpointSending = true;
+  const gen = host.gen;
+  Promise.all([
+    voiceFile(r),
+    crypto.subtle.digest(
+      'SHA-256',
+      new TextEncoder().encode(canonicalPersona(JSON.parse(JSON.stringify(snapshot(source))))),
+    ),
+  ])
+    .then(([file, digest]) =>
+      host.post(
+        {
+          type: 'personaCheckpoint',
+          transfer: {
+            ...transfer,
+            checkpoint: {
+              sourceSchema: source.schema,
+              sourceNow: source.now,
+              sourceRng: source.rng,
+              checkpointDigestSHA256: [...new Uint8Array(digest)]
+                .map((n) => n.toString(16).padStart(2, '0'))
+                .join(''),
+            },
+          },
+          file,
+        },
+        gen,
+      ),
+    )
+    .catch((error) => host.post({ type: 'personaCheckpoint', error: String(error) }, gen));
 }
 
 /** Validate and replay a file; only then does it replace the current run (a bad file leaves the run as it was). */
-function loadPlaytest(text: string, nextGen: number): void {
+async function loadPlaytest(text: string, nextGen: number): Promise<void> {
   // A file replays under its own scenario's rules (voice-1 files from before the 2026-10-19 level-up included).
-  const { file: f, rules } = parseVoicePlaytest(text);
+  const { file: f, rules, chapter, rows, head } = parseVoicePlaytest(text);
+  if (chapter) await validatePersona(chapter.admission);
+  if (head) await validatePersona(head);
   dropStale(f.seed, rules);
-  const { rec: replayed, driftAt } = replayVoice(f.seed, f.log, rules);
+  const { rec: replayed, driftAt } = replayVoice(f.seed, f.log, rules, chapter);
+  replayed.personaHead = head ?? chapter?.acceptedHead;
+  if (rows) replayed.oneCast.splice(0, replayed.oneCast.length, ...rows);
   const g = replayed.game;
   // Hash first: pausing for the page changes the state.
   const result = replayResult(f, voiceHash(g), ENGINE_VERSION, g.t, driftAt);
@@ -164,11 +229,32 @@ function loadPlaytest(text: string, nextGen: number): void {
   flush(true);
 }
 
+async function prepareSelinReturn(header: SelinReturn): Promise<SelinReturn> {
+  await validatePersona(header.admission);
+  if (header.acceptedHead) {
+    await validatePersona(header.acceptedHead);
+    if (
+      header.acceptedHead.branchId !== header.admission.branchId ||
+      header.acceptedHead.parentRevision !== header.admission.revision
+    )
+      throw new Error('Return claim does not continue this admission.');
+  }
+  const prefix = parseVoicePlaytest(header.prefix);
+  if (prefix.head) await validatePersona(prefix.head);
+  const prior = replayVoice(prefix.file.seed, prefix.file.log, prefix.rules, prefix.chapter);
+  if (prior.driftAt !== -1 || voiceHash(prior.rec.game) !== prefix.file.hash)
+    throw new Error('Source chapter does not replay.');
+  const initial = returnedSelin(header.admission, prior.rec.game.run.ppl.selin);
+  const pinned = { ...header, initial: JSON.stringify(snapshot(initial)) };
+  replayVoice(prefix.file.seed, [], 3, pinned);
+  return pinned;
+}
+
 const host = hostWorker<MainToWorker, WorkerReply>((msg) => {
   if (msg.type === 'init') {
     host.gen = msg.gen;
     lastFields = new Map();
-    dropStale(msg.seed, 2);
+    dropStale(msg.seed, 3);
     if (msg.scenarioVersion !== VOICE_SCENARIO_VERSION) {
       rec = null;
       host.post({
@@ -177,25 +263,86 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg) => {
       });
       return;
     }
-    rec = new RecordedGame(new VoiceGame(msg.seed));
+    checkpointSending = false;
+    checkpointError = '';
+    if (msg.selinReturn) {
+      const header = msg.selinReturn;
+      initializing = true;
+      const returnGen = msg.gen;
+      prepareSelinReturn(header)
+        .then((pinned) => {
+          if (host.gen !== returnGen) return;
+          if (!pinned.acceptedHead) throw new Error('No accepted return claim.');
+          const prefix = parseVoicePlaytest(pinned.prefix);
+          rec = replayVoice(prefix.file.seed, [], 3, pinned).rec;
+          initializing = false;
+          host.post({ type: 'personaStarted' });
+          flush(true);
+        })
+        .catch((error) => {
+          initializing = false;
+          host.post({ type: 'error', message: `Selin could not return: ${String(error)}` });
+        });
+      return;
+    }
+    initializing = false;
+    rec = new RecordedGame(new VoiceGame(msg.seed, 3));
     flush(true);
     return;
   }
-  if (msg.type === 'loadPlaytest') {
-    try {
-      loadPlaytest(msg.text, msg.gen);
-    } catch (err) {
-      const message =
-        err instanceof PlaytestError
-          ? err.message
-          : `The playtest file could not be replayed: ${err instanceof Error ? err.message : String(err)}`;
-      host.post({ type: 'playtestError', message }, msg.gen);
-    }
+  if (msg.type === 'personaReturnCheck') {
+    const gen = host.gen;
+    void prepareSelinReturn(msg.header)
+      .then((header) => host.post({ type: 'personaReturnReady', requestId: msg.requestId, header }, gen))
+      .catch((error) =>
+        host.post({ type: 'personaReturnReady', requestId: msg.requestId, error: String(error) }, gen),
+      );
     return;
   }
+  if (msg.type === 'loadPlaytest') {
+    initializing = true;
+    void loadPlaytest(msg.text, msg.gen)
+      .catch((err) => {
+        const message =
+          err instanceof PlaytestError
+            ? err.message
+            : `The playtest file could not be replayed: ${String(err)}`;
+        host.post({ type: 'playtestError', message }, msg.gen);
+      })
+      .finally(() => {
+        initializing = false;
+      });
+    return;
+  }
+  if (initializing) return;
   if (!rec) return;
   const game = rec.game;
   switch (msg.type) {
+    case 'personaPublished':
+      rec.oneCast.push(structuredClone(msg.row));
+      rec.personaHead = structuredClone(msg.envelope);
+      // Refresh the ordinary autosave after the shelf receipt, not only the separately pinned departure file.
+      void exportPlaytest(rec).catch((error) => host.post({ type: 'playtestError', message: String(error) }));
+      return;
+    case 'personaCheckpoint':
+      if (game.rules !== 3) {
+        host.post({
+          type: 'personaCheckpoint',
+          error:
+            'Start a new chapter to let Selin travel. Existing saved chapters keep their original rules.',
+        });
+        return;
+      }
+      checkpointSending = false;
+      rec.apply(msg);
+      if (game.personaDeparture?.error)
+        host.post({ type: 'personaCheckpoint', error: game.personaDeparture.error });
+      break;
+    case 'personaCheckpointCancel':
+      if (game.rules !== 3) return;
+      checkpointSending = false;
+      rec.apply(msg);
+      break;
     case 'tick': {
       // Skip waits for each one-minute frame before sending its next tick.
       const minuteTick =
@@ -217,17 +364,7 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg) => {
     case 'telemetry': {
       const gen = host.gen;
       const logs = structuredClone(game.log);
-      makePlaytestFile({
-        game: 'voice',
-        seed: game.seed,
-        scenario: scenarioOf(game.rules),
-        minute: game.t,
-        log: structuredClone(rec.log),
-        hash: voiceHash(game),
-        engine: ENGINE_VERSION,
-        snapshot: voiceState(game),
-        plainSnapshot: true,
-      })
+      voiceFile(rec, true)
         .then((run) => host.post({ type: 'telemetry', requestId: msg.requestId, run, logs }, gen))
         .catch(() =>
           host.post({ type: 'telemetry', requestId: msg.requestId, error: 'Run snapshot failed' }, gen),
@@ -242,5 +379,6 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg) => {
     default:
       rec.apply(msg);
   }
+  publishBoundary();
   flush();
 });

@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { FullscreenButton } from '../../shared/fullscreen.tsx';
 import { MODEL_NOTES, type Pace } from '../protocol.ts';
+import { VoicePersonaControls } from './persona.tsx';
 import { RecordingPreference } from './SendWord.tsx';
 import type { VoiceActions } from './useVoice.ts';
 
@@ -84,6 +85,7 @@ export function MenuPanel({
   onClose,
   onTitle,
   onSendWord,
+  canReturn,
 }: {
   label: string;
   pace: 'automatic' | Pace;
@@ -91,6 +93,7 @@ export function MenuPanel({
   onClose: () => void;
   onTitle: () => void;
   onSendWord: () => void;
+  canReturn: boolean;
 }) {
   const first = useRef<HTMLButtonElement>(null);
   useEffect(() => {
@@ -149,6 +152,7 @@ export function MenuPanel({
         <a href="/">All games</a>
         <footer>
           <RecordingPreference />
+          <VoicePersonaControls canReturn={canReturn} />
         </footer>
         <button type="button" className="v-btn v-btn-primary" onClick={onClose}>
           Back to Halil

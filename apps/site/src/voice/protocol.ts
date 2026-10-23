@@ -6,21 +6,23 @@
  *
  * Additive to the original contract (no shape changes): `VOICE_SCENARIO_VERSION`, `STRENGTH_VALUE`, `PACE_MINUTES_PER_SECOND`.
  */
+
 import type { PlaytestFile, ReplayResult } from '../shared/playtest.ts';
 import type { TelemetryReply, TelemetryRequest } from '../shared/worker-telemetry.ts';
+import type { OneCastRow, SelinReturn, SelinTransfer } from './sim/persona.ts';
 
 /**
  * The scenario the worker runs for a new game; `init.scenarioVersion` must equal it. Level-up 2026-10-19 (voice.md):
  * 'voice-2' changes the rules (the waking choice, work under protest, the fast-hour craving, the end of Ramadan's
  * debt line); a playtest file of either scenario still loads and replays under its own rules.
  */
-export const VOICE_SCENARIO_VERSION = 'voice-2';
+export const VOICE_SCENARIO_VERSION = 'voice-3';
 /** The rules each scenario a playtest file may carry is replayed under. */
-export const VOICE_RULES = { 'voice-1': 1, 'voice-2': 2 } as const;
+export const VOICE_RULES = { 'voice-1': 1, 'voice-2': 2, 'voice-3': 3 } as const;
 export type VoiceRules = (typeof VOICE_RULES)[keyof typeof VOICE_RULES];
 /** The scenario a game of these rules writes in its playtest file. */
 export const scenarioOf = (rules: VoiceRules): keyof typeof VOICE_RULES =>
-  rules === 1 ? 'voice-1' : 'voice-2';
+  rules === 1 ? 'voice-1' : rules === 2 ? 'voice-2' : 'voice-3';
 /** A playtest file's scenario, read before validation so the file is checked against its own scenario. */
 export function scenarioIn(text: string): keyof typeof VOICE_RULES {
   try {
@@ -136,7 +138,11 @@ export const defaultWhisper = (choiceId: StandingWhisper['choiceId']): StandingW
 
 export type MainToWorker =
   | TelemetryRequest
-  | { type: 'init'; seed: number; gen: number; scenarioVersion: string }
+  | { type: 'init'; seed: number; gen: number; scenarioVersion: string; selinReturn?: SelinReturn }
+  | { type: 'personaReturnCheck'; requestId: number; header: SelinReturn }
+  | { type: 'personaCheckpoint' }
+  | { type: 'personaCheckpointCancel' }
+  | { type: 'personaPublished'; row: OneCastRow; envelope: import('@adam0white/lab-client').PersonaEnvelope }
   | { type: 'tick'; dtMs: number; wallDtMs?: number }
   | { type: 'pause' }
   | { type: 'resume' }
@@ -378,6 +384,9 @@ export const SILENT_CAPTION = 'Small differences compound; not every difference 
 
 export type WorkerReply =
   | TelemetryReply
+  | { type: 'personaReturnReady'; requestId: number; header?: SelinReturn; error?: string }
+  | { type: 'personaStarted' }
+  | { type: 'personaCheckpoint'; transfer?: SelinTransfer; file?: PlaytestFile; error?: string }
   /**
    * A frame: the fields that changed since the last one posted on this run, with the unchanged ones named in
    * `same` (the page reuses its previous values). Without `same` the frame is whole.

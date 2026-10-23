@@ -16,6 +16,16 @@ const channel = vi.hoisted(() => ({
     for (const listener of this.listeners) listener(msg);
   },
 }));
+vi.mock('./persona.tsx', () => ({
+  voicePersonaReady: Promise.resolve(false),
+  prepareVoiceReturn: async () => null,
+  bindVoicePersona: () => () => {},
+  checkpointVoicePersona: () => {},
+  receiveVoicePersona: async () => {},
+  gateVoiceFile: async () => {},
+  settleVoiceFileGate: () => {},
+  resetVoicePersona: () => {},
+}));
 vi.mock('./transport.ts', () => ({
   openTransport: async () => ({
     kind: 'worker',
@@ -44,6 +54,9 @@ it('refreshes the same draft on a newer frame, drops old replies and clears a wi
       if (!voice) throw new Error('Hook did not mount');
       return voice;
     };
+    await vi.waitFor(() =>
+      expect(channel.post.mock.calls.some(([message]) => message.type === 'init')).toBe(true),
+    );
     const init = channel.post.mock.calls.find(([msg]) => msg.type === 'init')?.[0];
     if (init?.type !== 'init') throw new Error('Missing init');
     const gen = init.gen;
@@ -116,6 +129,9 @@ it('filters routine beat stops through recorded inputs and preserves manual, Why
   try {
     flushSync(() => root.render(createElement(Harness)));
     await Promise.resolve();
+    await vi.waitFor(() =>
+      expect(channel.post.mock.calls.some(([message]) => message.type === 'init')).toBe(true),
+    );
     const init = channel.post.mock.calls.find(([msg]) => msg.type === 'init')?.[0];
     if (init?.type !== 'init' || !voice) throw new Error('Missing hook');
     const actions = voice.actions;
@@ -190,6 +206,9 @@ it('does not send an old run automatic resume after a replacement file was reque
   try {
     flushSync(() => root.render(createElement(Harness)));
     await Promise.resolve();
+    await vi.waitFor(() =>
+      expect(channel.post.mock.calls.some(([message]) => message.type === 'init')).toBe(true),
+    );
     const init = channel.post.mock.calls.find(([m]) => m.type === 'init')?.[0];
     if (init?.type !== 'init' || !current) throw new Error('Missing hook');
     const running: Frame = {

@@ -48,6 +48,7 @@ import {
   readBody,
   remember,
   retimeCommitments,
+  retirePaidMakeUps,
   scheduleMakeUp,
   sicken,
   successChance,
@@ -238,6 +239,9 @@ export const TOWN_IDS = ['halil', 'selin', 'riza', 'hacer', 'osman'] as const;
 export type TownPersonId = (typeof TOWN_IDS)[number];
 
 export interface TownState {
+  selinEnquirySaidAt?: Minute;
+  /** Voice3 source receipts; never sent in the persona projection. */
+  selinPaidMakeUps?: ReturnType<typeof retirePaidMakeUps>;
   now: Minute;
   rng: RngState;
   money: Record<PersonId, number>;
@@ -284,6 +288,10 @@ export interface Town extends World {
 }
 
 export interface TownOptions {
+  /** Voice3: one actual future day per make-up fast. Legacy source calendars remain unchanged. */
+  distinctMakeUpDays?: boolean;
+  /** New return chapter only: an answer Selin actually heard, told on the next connected call. */
+  selinEnquiryAnswer?: string;
   /** Clock at creation (default `TOWN_DEFAULTS.start`). */
   now?: Minute;
   /** First day of Ramadan (default 1) and its length (default 30). */
@@ -763,6 +771,10 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
     // Prayer windows and fast meals follow the calendar; an illness or journey releases today's fast.
     retimeCommitments(p, now, retimer);
     applyExemptions(p, now);
+    if (opts.distinctMakeUpDays && p.id === 'selin') {
+      const paid = retirePaidMakeUps(p);
+      if (paid.length) state.selinPaidMakeUps = [...(state.selinPaidMakeUps ?? []), ...paid].slice(-64);
+    }
     // Make-up fasts are scheduled one per owed day after Ramadan, starting the day AFTER Eid al-Fitr (the day
     // following the last fast, `first + days`): fasting on the day of Eid is widely held to be prohibited (Bukhari
     // 1990 / Muslim 1137 as cited by review 2026-10-03; sunnah.com returned 403, so not verified here and not
@@ -773,6 +785,13 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
     // A make-up left undone carries no blame and is offered again on a later day (agenda SCOPE, missed duties).
     let k = 0;
     let qada = 0;
+    let nextFast = Math.max(day + 1, first + days + 1);
+    const reserved = new Set(
+      p.agenda.commitments
+        .filter((c) => c.makeUpOf && c.kind === 'abstain' && c.status === 'pending')
+        .map((c) => dayOf(c.from)),
+    );
+
     for (const owed of owedMakeUps(p)) {
       if (owed.kind === 'worship') {
         if (qada >= T.qadaPerDay) continue;
@@ -786,7 +805,12 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
         );
         continue;
       }
-      const d = first + days + 1 + k++;
+      let d = first + days + 1 + k++;
+      if (opts.distinctMakeUpDays) {
+        while (reserved.has(nextFast)) nextFast++;
+        d = nextFast++;
+        reserved.add(d);
+      }
       const t = townCalendar(d);
       scheduleMakeUp(p, owed.ofId, {
         from: d * MINUTES_PER_DAY + t.fajr,
@@ -1476,6 +1500,19 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
           (p.id === 'selin' && aff.with?.includes('halil'))
         ) {
           state.lastCall = { at: now, by: p.id };
+          if (opts.selinEnquiryAnswer && state.selinEnquirySaidAt === undefined) {
+            queue('halil', {
+              at: now,
+              channel: 'told',
+              kind: 'news',
+              actorId: 'selin',
+              targetId: 'halil',
+              salience: 0.6,
+              valence: 0,
+              summary: opts.selinEnquiryAnswer,
+            });
+            state.selinEnquirySaidAt = now;
+          }
           if (p.id === 'halil') {
             const kept = [...(state.halilCallTimes ?? []), minuteOfDay(act.startedAt)];
             state.halilCallTimes = kept.slice(-T.halilCallTimesKept);

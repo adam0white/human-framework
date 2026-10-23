@@ -29,6 +29,16 @@ import type {
 import { SHIPPED_SEED, VOICE_SCENARIO_VERSION } from '../protocol.ts';
 import { automaticTick, type PaceSetting, skipStop, skipTick } from './automatic-pace.ts';
 import { savedVoice, saveVoice, type VoicePlaytest } from './autosave.ts';
+import {
+  bindVoicePersona,
+  checkpointVoicePersona,
+  gateVoiceFile,
+  prepareVoiceReturn,
+  receiveVoicePersona,
+  resetVoicePersona,
+  settleVoiceFileGate,
+  voicePersonaReady,
+} from './persona.tsx';
 
 export type { VoicePlaytest } from './autosave.ts';
 
@@ -113,6 +123,13 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
   const exportWaiters = useRef<{ resolve: (file: VoicePlaytest) => void; reject: (error: Error) => void }[]>(
     [],
   );
+  const returnChecks = useRef(
+    new Map<
+      number,
+      { resolve: (header: import('../sim/persona.ts').SelinReturn) => void; reject: (error: Error) => void }
+    >(),
+  );
+  const returnSequence = useRef(0);
   const transport = useRef<Transport | null>(null);
   const [frame, setFrame] = useState<Frame | null>(null);
   const [runId, setRunId] = useState(0);
@@ -183,9 +200,10 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
     let cancelled = false;
     let stopTicks = () => {};
     let stopTelemetry = () => {};
+    let stopPersona = () => {};
     let opened: Transport | null = null;
     openTransport()
-      .then((t) => {
+      .then(async (t) => {
         if (cancelled) {
           t.close();
           return;
@@ -194,25 +212,65 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
         transport.current = t;
         setMock(t.kind === 'mock');
         t.onError((message) => {
+          for (const waiter of returnChecks.current.values()) waiter.reject(new Error(message));
+          returnChecks.current.clear();
+          settleVoiceFileGate(false);
           setError(message);
           exportPending.current = false;
           for (const waiter of exportWaiters.current.splice(0)) waiter.reject(new Error(message));
         });
+        stopPersona = bindVoicePersona(
+          (message) => t.post(message),
+          (header, sourceSeed) => {
+            gen.current = Math.max(gen.current, pendingLoad.current) + 1;
+            resetRef.current();
+            t.post({
+              type: 'init',
+              seed: sourceSeed,
+              gen: gen.current,
+              scenarioVersion: VOICE_SCENARIO_VERSION,
+              selinReturn: header,
+            });
+          },
+          (header) =>
+            new Promise((resolve, reject) => {
+              const requestId = ++returnSequence.current;
+              returnChecks.current.set(requestId, { resolve, reject });
+              t.post({ type: 'personaReturnCheck', requestId, header });
+            }),
+        );
         t.onMessage((msg) => {
+          if (msg.type === 'personaReturnReady') {
+            const waiter = returnChecks.current.get(msg.requestId);
+            returnChecks.current.delete(msg.requestId);
+            if (msg.header) waiter?.resolve(msg.header);
+            else waiter?.reject(new Error(msg.error ?? 'Return validation failed.'));
+            return;
+          }
           if (msg.gen === pendingLoad.current && msg.gen !== gen.current) {
             if (msg.type === 'replayed') {
+              settleVoiceFileGate(true);
               loadingRun.current = false;
               gen.current = msg.gen;
               resetRef.current();
               manualHold.current = true;
               setPlaytest({ result: msg.result });
             } else if (msg.type === 'playtestError') {
+              settleVoiceFileGate(false);
               loadingRun.current = false;
               setPlaytest({ error: msg.message });
             }
             return;
           }
           if (msg.gen !== gen.current) return;
+          if (msg.type === 'personaStarted') {
+            settleVoiceFileGate(true);
+            return;
+          }
+          if (msg.type === 'personaCheckpoint') {
+            void receiveVoicePersona(msg);
+            return;
+          }
           switch (msg.type) {
             case 'playtest': {
               exportPending.current = false;
@@ -345,24 +403,32 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
               setWhyMissing(msg.why === null);
               return;
             case 'between':
+              checkpointVoicePersona();
               setBetween(msg.view);
               return;
             case 'report':
+              checkpointVoicePersona();
               setReport(msg.view);
               return;
             case 'error':
+              settleVoiceFileGate(false);
               exportPending.current = false;
               for (const waiter of exportWaiters.current.splice(0)) waiter.reject(new Error(msg.message));
               setError(msg.message);
               return;
           }
         });
+        await voicePersonaReady;
+        if (cancelled) return;
+        const returning = !replayParam() ? await prepareVoiceReturn(true) : null;
+        if (cancelled) return;
         gen.current += 1;
         t.post({
           type: 'init',
-          seed: seedRef.current,
+          seed: returning?.seed ?? seedRef.current,
           gen: gen.current,
           scenarioVersion: VOICE_SCENARIO_VERSION,
+          ...(returning ? { selinReturn: returning.header } : {}),
         });
         if (t.kind === 'worker')
           stopTelemetry = trackTransportRun(
@@ -404,9 +470,10 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
         if (url) {
           setPlaytest({ busy: 'load' });
           fetchPlaytestText(url)
-            .then((text) => {
+            .then(async (text) => {
               pendingLoad.current = gen.current + 1;
               loadingRun.current = true;
+              await gateVoiceFile(text);
               t.post({ type: 'loadPlaytest', gen: pendingLoad.current, text });
             })
             .catch((e: unknown) => setPlaytest({ error: e instanceof Error ? e.message : String(e) }));
@@ -415,8 +482,11 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
       .catch((e: unknown) => setError(`The simulation failed to load: ${String(e)}`));
     return () => {
       cancelled = true;
+      for (const waiter of returnChecks.current.values()) waiter.reject(new Error('The game was closed.'));
+      returnChecks.current.clear();
       for (const waiter of exportWaiters.current.splice(0)) waiter.reject(new Error('The game was closed.'));
       exportRequest.current.reset();
+      stopPersona();
       stopTelemetry();
       stopTicks();
       opened?.close();
@@ -426,6 +496,8 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
 
   const actions = useMemo<VoiceActions>(() => {
     const resetRun = () => {
+      for (const waiter of returnChecks.current.values()) waiter.reject(new Error('The run changed.'));
+      returnChecks.current.clear();
       setRunId((id) => id + 1);
       exportRequest.current.reset();
       exportPending.current = false;
@@ -465,7 +537,13 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
             loadingRun.current = true;
             pendingLoad.current = Math.max(gen.current, pendingLoad.current) + 1;
             setPlaytest({ busy: 'load' });
-            send({ type: 'loadPlaytest', gen: pendingLoad.current, text: saved.text });
+            void gateVoiceFile(saved.text)
+              .then(() => send({ type: 'loadPlaytest', gen: pendingLoad.current, text: saved.text }))
+              .catch((error) => {
+                loadingRun.current = false;
+                settleVoiceFileGate(false);
+                setPlaytest({ error: String(error) });
+              });
           }
         } catch {
           /* No storage. */
@@ -631,11 +709,18 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
         exportRequest.current.reset();
         setPlaytest({ busy: 'load' });
         pendingLoad.current = Math.max(gen.current, pendingLoad.current) + 1;
-        send({ type: 'loadPlaytest', gen: pendingLoad.current, text });
+        void gateVoiceFile(text)
+          .then(() => send({ type: 'loadPlaytest', gen: pendingLoad.current, text }))
+          .catch((error) => {
+            loadingRun.current = false;
+            settleVoiceFileGate(false);
+            setPlaytest({ error: String(error) });
+          });
       },
       clearPlaytest: () => setPlaytest(null),
       playtestError: (message) => setPlaytest({ error: message }),
       replay: (nextSeed) => {
+        resetVoicePersona();
         gen.current = Math.max(gen.current, pendingLoad.current) + 1;
         if (nextSeed !== undefined) seedRef.current = nextSeed;
         resetRun();

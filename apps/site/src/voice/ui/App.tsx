@@ -386,6 +386,7 @@ export function App() {
       )}
       {menuOpen && (
         <MenuPanel
+          canReturn={phase === 'premise' || phase === 'report'}
           label={frame ? `${frame.dayLabel} · ${frame.clock}` : 'Halil'}
           pace={voice.paceSetting}
           actions={actions}

@@ -16,6 +16,16 @@ const channel = vi.hoisted(() => ({
     for (const listener of this.listeners) listener(msg);
   },
 }));
+vi.mock('./persona.tsx', () => ({
+  voicePersonaReady: Promise.resolve(false),
+  prepareVoiceReturn: async () => null,
+  bindVoicePersona: () => () => {},
+  checkpointVoicePersona: () => {},
+  receiveVoicePersona: async () => {},
+  gateVoiceFile: async () => {},
+  settleVoiceFileGate: () => {},
+  resetVoicePersona: () => {},
+}));
 vi.mock('./transport.ts', () => ({
   openTransport: async () => ({
     kind: 'worker',
@@ -44,6 +54,9 @@ it('retains the held answer’s Why without opening it, then reads it after the 
       if (!voice) throw new Error('Hook did not mount');
       return voice;
     };
+    await vi.waitFor(() =>
+      expect(channel.post.mock.calls.some(([message]) => message.type === 'init')).toBe(true),
+    );
     const init = channel.post.mock.calls.find(([msg]) => msg.type === 'init')?.[0];
     if (init?.type !== 'init') throw new Error('Missing init');
     const gen = init.gen;
