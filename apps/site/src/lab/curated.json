@@ -6168,6 +6168,25 @@
     "fix:lab parallel open-fix sweep after the UI rebuild (Codex workers, 2026-10-23)"
    ],
    "source": "Owner instruction, 2026-10-23"
+  },
+  {
+   "id": "F-464",
+   "date": "2026-10-23",
+   "game": "lab",
+   "kind": "owner",
+   "who": "owner",
+   "words": "The universe plan seems solid, proceed please. We don't need to limit it to just one probe. One idea is to sync a persona between games as the user moves between them.\" \"This might even simplify our simulations for players who play more than 1 game. We'll have less personas in total.",
+   "verdict": "-",
+   "routes": [
+    "fix:lab One cast passport and automatic browser shelf (open)",
+    "fix:pass recurring Zeynep with Good Hands (open)",
+    "fix:murmur recurring Dilan with Hearsay (open)",
+    "fix:stairwell canonical Derya nurse contact (open)",
+    "fix:voice recurring Selin with Good Hands (open)",
+    "fix:goodhands admit and return recurring cast (open)",
+    "fix:hearsay admit and return recurring cast (open)"
+   ],
+   "source": "docs/owner-directions-2026-10-18.md#2026-10-23-one-cast-approved-adam-verbatim"
   }
  ],
  "lessons": [
@@ -6774,7 +6793,7 @@
   }
  ],
  "routes": {
-  "fix": 512,
+  "fix": 519,
   "lesson": 291,
   "hf": 12,
   "calibration": 42,
