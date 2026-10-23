@@ -1,4 +1,4 @@
-/** Install an opt-in launchd timer. launchd fires hourly; the runner gate anchors UTC. */
+/** Install an opt-in launchd timer. launchd fires hourly; the runner gate checks America/Chicago. */
 import { execFileSync } from 'node:child_process';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { homedir } from 'node:os';
@@ -15,4 +15,4 @@ const file = join(directory, `${label}.plist`);
 const plist = `<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">\n<plist version="1.0"><dict>\n<key>Label</key><string>${label}</string>\n<key>ProgramArguments</key><array><string>/opt/homebrew/bin/node</string><string>${esc(join(root, 'scripts/lab-wai-play.ts'))}</string><string>--run</string><string>--scheduled</string><string>--suggest</string></array>\n<key>WorkingDirectory</key><string>${esc(root)}</string>\n<key>EnvironmentVariables</key><dict><key>PATH</key><string>/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin</string></dict>\n<key>StartCalendarInterval</key><dict><key>Minute</key><integer>40</integer></dict>\n<key>StandardOutPath</key><string>${esc(join(scratch, 'launchd.log'))}</string><key>StandardErrorPath</key><string>${esc(join(scratch, 'launchd.log'))}</string>\n</dict></plist>\n`;
 writeFileSync(file, plist);
 execFileSync('/bin/launchctl', ['bootstrap', `gui/${process.getuid?.()}`, file], { stdio: 'inherit' });
-console.log(`Installed ${file}; runs at 00:40 UTC (19:40 CDT / 18:40 CST).`);
+console.log(`Installed ${file}; runs at 19:40 America/Chicago (00:40 UTC in CDT / 01:40 UTC in CST).`);

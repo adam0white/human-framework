@@ -1,5 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { actionableNames, attemptDirectory, normalizeTapName, responseText } from './lab-wai-play.ts';
+import {
+  actionableNames,
+  attemptDirectory,
+  normalizeTapName,
+  responseText,
+  scheduledDue,
+} from './lab-wai-play.ts';
 
 describe('Workers AI runner response envelopes', () => {
   it('reads ordinary response and chat content, with reasoning fallback', () => {
@@ -43,4 +49,11 @@ describe('visible accessible name transport', () => {
     const wrongRole = { op: 'tap' as const, role: 'link', name: 'button "Begin"' };
     expect(normalizeTapName(wrongRole, '- button "Begin"')).toEqual(wrongRole);
   });
+});
+
+it('keeps Chicago 19:40 across daylight saving time', () => {
+  expect(scheduledDue(new Date('2026-10-24T00:40:00Z'))).toBe(true);
+  expect(scheduledDue(new Date('2026-11-02T01:40:00Z'))).toBe(true);
+  expect(scheduledDue(new Date('2026-11-02T00:40:00Z'))).toBe(false);
+  expect(scheduledDue(new Date('2026-10-24T00:41:00Z'))).toBe(false);
 });

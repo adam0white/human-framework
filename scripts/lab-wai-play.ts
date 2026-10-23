@@ -462,8 +462,20 @@ export async function runDaily(budget: PlayerBudget, now = new Date()) {
   }
   return { halted, directory, now };
 }
+export function scheduledDue(now = new Date()): boolean {
+  const parts = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'America/Chicago',
+    hour: '2-digit',
+    minute: '2-digit',
+    hourCycle: 'h23',
+  }).formatToParts(now);
+  return (
+    parts.find((p) => p.type === 'hour')?.value === '19' &&
+    parts.find((p) => p.type === 'minute')?.value === '40'
+  );
+}
 async function main() {
-  if (process.argv.includes('--scheduled') && new Date().getUTCHours() !== 0) return;
+  if (process.argv.includes('--scheduled') && !scheduledDue()) return;
   if (process.argv.includes('--plan')) {
     console.log(JSON.stringify(dailyPlan(new Date()), null, 2));
     return;
