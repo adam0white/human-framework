@@ -48,9 +48,13 @@ export async function shelfRequest(request: PersonaRequest): Promise<unknown> {
           case 'get':
             result = state.revisions.find((p) => p.revision === state.heads[request.castId ?? '']) ?? null;
             break;
-          case 'put':
+          case 'put': {
             if (!persona) throw new Error('Missing persona.');
             state = acceptPersona(state, persona, request.fork);
+            // Cache eviction also removes historical recording associations for those branches.
+            const retained = new Set(state.revisions.map((p) => `${p.castId}/${p.branchId}`));
+            for (const key of Object.keys(recordingEpochs))
+              if (!retained.has(key)) delete recordingEpochs[key];
             if (
               request.authored &&
               persona.parentRevision === null &&
@@ -63,6 +67,7 @@ export async function shelfRequest(request: PersonaRequest): Promise<unknown> {
             persist(state);
             result = persona;
             break;
+          }
           case 'recording': {
             const head = state.revisions.find((p) => p.revision === state.heads[request.castId ?? '']);
             if (!head) throw new Error('Select a person.');
@@ -77,8 +82,9 @@ export async function shelfRequest(request: PersonaRequest): Promise<unknown> {
           }
           case 'delete': {
             if (!request.castId) throw new Error('Select a person.');
-            for (const p of state.revisions)
-              if (p.castId === request.castId) delete recordingEpochs[`${p.castId}/${p.branchId}`];
+            // Older builds could retain associations after their revision cache entry was pruned.
+            for (const key of Object.keys(recordingEpochs))
+              if (key.startsWith(`${request.castId}/`)) delete recordingEpochs[key];
             state = { ...state, recordingEpochs };
             state.revisions = state.revisions.filter((p) => p.castId !== request.castId);
             delete state.heads[request.castId];
