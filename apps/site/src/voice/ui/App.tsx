@@ -102,6 +102,10 @@ export function App() {
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
+        if (keyState.current.held) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+        }
         setInfoOpen(false);
         setMenuOpen(false);
         setPanelOpen(false);

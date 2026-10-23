@@ -152,3 +152,45 @@ it('holds speech through the automatic day card and acknowledges an expired occa
     vi.useRealTimers();
   }
 });
+
+it('consumes Escape when closing a shell overlay before underlying game shortcuts run', async () => {
+  channel.voice = {
+    frame: structuredClone(sampleFrame),
+    between: null,
+    report: null,
+    telegraph: null,
+    why: null,
+    whyOpen: false,
+    whyMissing: false,
+    error: null,
+    mock: false,
+    reading: false,
+    sceneReading: false,
+    runId: 0,
+    playtest: null,
+    savedRun: null,
+    paceSetting: 'automatic',
+    skipping: false,
+    actions: new Proxy({}, { get: () => vi.fn() }) as VoiceActions,
+  };
+  const el = document.createElement('div');
+  document.body.append(el);
+  const root = createRoot(el);
+  const underlying = vi.fn();
+  Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true });
+  try {
+    await act(() => root.render(createElement(App)));
+    await act(() => el.querySelector<HTMLButtonElement>('[aria-label="Game menu"]')?.click());
+    window.addEventListener('keydown', underlying);
+    const event = new KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true });
+    await act(() => window.dispatchEvent(event));
+    expect(el.querySelector('.v-menu-panel')).toBeNull();
+    expect(underlying).not.toHaveBeenCalled();
+    expect(event.defaultPrevented).toBe(true);
+  } finally {
+    window.removeEventListener('keydown', underlying);
+    await act(() => root.unmount());
+    el.remove();
+    Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: false });
+  }
+});
