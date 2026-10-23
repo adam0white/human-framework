@@ -8,6 +8,7 @@ import {
   retirePaidMakeUps,
   skillLevel,
   snapshot,
+  validatePersonaProjection,
 } from '../src/index.ts';
 
 function fixture() {
@@ -49,6 +50,20 @@ function fixture() {
 }
 
 describe('explicit persona projection', () => {
+  test('published engine 2.14.1 passports keep validating and admitting after a stamp-only upgrade', () => {
+    const { source, target, mapping } = fixture();
+    const current = projectPersona(source, mapping);
+    const prior = { ...current, source: { ...current.source, engine: '2.14.1' } };
+    const before = JSON.stringify(prior);
+    const policy = { mappingVersion: 'test/1', sourceId: 'source', targetId: 'target' };
+    expect(validatePersonaProjection(prior)).toEqual(prior);
+    expect(admitPersona(prior, target, policy).person).toEqual(admitPersona(current, target, policy).person);
+    expect(JSON.stringify(prior)).toBe(before);
+    expect(() =>
+      validatePersonaProjection({ ...prior, source: { ...prior.source, engine: '2.13.0' } }),
+    ).toThrow(/engine/);
+  });
+
   test('admits exact approved state, maps timestamps, retains RNG and leaves both hosts untouched', () => {
     const { source, target, mapping } = fixture();
     const before = snapshot(source),

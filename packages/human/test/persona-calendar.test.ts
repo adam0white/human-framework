@@ -142,6 +142,22 @@ function fixture() {
 }
 
 describe('opt-in calendar persona', () => {
+  test('published calendar passports with engine 2.14.1 keep their obligations on admission', () => {
+    const { source, target, mapping, policy } = fixture();
+    const current = projectCalendarPersona(source, mapping);
+    const prior = structuredClone(current);
+    prior.person.source.engine = '2.14.1';
+    const before = JSON.stringify(prior);
+    expect(validateCalendarPersona(prior)).toEqual(prior);
+    expect(admitCalendarPersona(prior, target, policy).person).toEqual(
+      admitCalendarPersona(current, target, policy).person,
+    );
+    expect(JSON.stringify(prior)).toBe(before);
+    const unknown = structuredClone(prior);
+    unknown.person.source.engine = '2.13.0';
+    expect(() => validateCalendarPersona(unknown)).toThrow(/engine/);
+  });
+
   test('carries unpaid, scheduled and future duties, exact understanding and timestamps across host IDs', () => {
     const { source, target, mapping, policy } = fixture();
     const before = snapshot(source),

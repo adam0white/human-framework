@@ -24,6 +24,7 @@ Engine: 2.17.0.
 ### Compatibility
 
 - Existing enabled projects keep their prior behaviour unless `protectProgress` is explicitly true. Other narration and social options remain absent by default. Migration from engine 2.14.1 only stamps the version; existing state, RNG and continuation remain exact apart from the engine stamp.
+- Published persona and calendar-passport payloads stamped 2.14.1 continue to validate and admit with their source provenance unchanged. Unknown source engines remain rejected.
 - Focused tests and the `projects-control.ts` and `narration-control.ts` headless controls accompany the changes. Island results are recorded separately from these controlled cases.
 
 ## [2.16.0] - 2026-10-23

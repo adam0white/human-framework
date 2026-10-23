@@ -410,6 +410,7 @@ Knowledge lives in optional `Person.prospection` and survives snapshot/restore. 
 `projectPersona(source, mapping)` produces `PersonaProjectionSnapshot` (`hf-persona-state/1`).
 `admitPersona(projection, targetOpening, { mappingVersion, sourceId, targetId })` returns a detached
 `{ person, report }`. `validatePersonaProjection(unknown)` validates portable data without filling defaults.
+Portable v1 accepts the published 2.14.1 source-engine stamp and the current engine; it preserves that source provenance. Unknown source engines remain rejected.
 These functions never enter the actor loop and never mutate the source or the host opening.
 
 The host supplies a versioned map of skill ids, selected episode ids and every continuing obligation.
