@@ -13,6 +13,15 @@ import type { Village } from './sim/village.ts';
 import type { Minute, VillagerId } from './sim/world-types.ts';
 
 export type Speed = 0.5 | 1 | 2;
+export type Pace = 'held' | 'reading' | 'looking' | 'watching' | 'night';
+/** Presentation only. Never enters simulation state or the input log. */
+export interface PresentationContext {
+  person: VillagerId | null;
+  reading: boolean;
+  info: boolean;
+  menu: boolean;
+  inspector: boolean;
+}
 
 export type MainToWorker =
   | TelemetryRequest
@@ -27,6 +36,8 @@ export type MainToWorker =
     }
   | { type: 'tick'; dtMs: number }
   | { type: 'setSpeed'; speed: Speed }
+  | { type: 'setPace'; pace: 'auto' | Speed }
+  | { type: 'setContext'; context: Partial<PresentationContext> }
   | { type: 'pause'; cause?: 'manual' | 'inspector' }
   | { type: 'resume' }
   | { type: 'setAutoPause'; on: boolean }
@@ -39,7 +50,7 @@ export type MainToWorker =
   /** "Another day": only honoured when `frame.canContinue`. */
   | { type: 'continue' }
   /** Playtest file: the worker answers `playtest` (the page fills in `build`). */
-  | { type: 'exportPlaytest' }
+  | { type: 'exportPlaytest'; requestId?: number }
   /** Replay a playtest file's text as run `gen`; answers `replayed` then frames, or `playtestError`. */
   | { type: 'loadPlaytest'; gen: number; text: string };
 
@@ -62,6 +73,9 @@ export interface PlaybackState {
   speed: Speed;
   autoPause: boolean;
   slowMo: boolean;
+  pace?: Pace;
+  paceLine?: string;
+  automatic?: boolean;
 }
 
 /** A worker reply before the run number is attached. */
@@ -72,9 +86,9 @@ export type WorkerReply =
   | { type: 'why'; personId: VillagerId; decisionId?: string; why: WhyBreakdown | null }
   | { type: 'predicted'; requestId: number; prediction: Prediction }
   | { type: 'ended'; summary: EndSummary }
-  | { type: 'playtest'; file: PlaytestFile }
+  | { type: 'playtest'; file: PlaytestFile; requestId?: number }
   | { type: 'replayed'; result: ReplayResult }
-  | { type: 'playtestError'; message: string }
+  | { type: 'playtestError'; message: string; requestId?: number }
   | { type: 'error'; message: string };
 
 export type WorkerToMain = WorkerReply & { gen: number };

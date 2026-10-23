@@ -18,6 +18,7 @@ it('withholds only ticks while the menu is open, without a resume or speed input
     class {
       postMessage = channel.post;
       addEventListener() {}
+      removeEventListener() {}
       terminate() {}
     },
   );
@@ -34,15 +35,22 @@ it('withholds only ticks while the menu is open, without a resume or speed input
     channel.post.mockClear();
     colony.actions.setMenuOpen(true);
     channel.tick(60_000);
-    expect(channel.post).not.toHaveBeenCalled();
+    expect(channel.post.mock.calls).toEqual([[{ type: 'setContext', context: { menu: true } }]]);
     colony.actions.setMenuOpen(false);
     channel.tick(100);
-    expect(channel.post.mock.calls).toEqual([[{ type: 'tick', dtMs: 100 }]]);
+    expect(channel.post.mock.calls).toEqual([
+      [{ type: 'setContext', context: { menu: true } }],
+      [{ type: 'setContext', context: { menu: false } }],
+      [{ type: 'tick', dtMs: 100 }],
+    ]);
     colony.actions.setPaused(true);
     channel.post.mockClear();
     colony.actions.setMenuOpen(true);
     colony.actions.setMenuOpen(false);
-    expect(channel.post).not.toHaveBeenCalled();
+    expect(channel.post.mock.calls).toEqual([
+      [{ type: 'setContext', context: { menu: true } }],
+      [{ type: 'setContext', context: { menu: false } }],
+    ]);
   } finally {
     flushSync(() => root.unmount());
     vi.unstubAllGlobals();

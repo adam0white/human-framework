@@ -93,10 +93,6 @@ describe('Well first-minute clarity', () => {
     expect(el.querySelector('.nudge-help')?.textContent).toBe(
       'Review the order, then Confirm sends it. You can skip or choose your own.',
     );
-    const source = readFileSync(sourcePath('App.tsx'), 'utf8');
-    expect(source).toContain('<details');
-    expect(source).toContain('Review, then Confirm.');
-    expect(source).toContain('Send in one tap.');
     const css = readFileSync(sourcePath('colony.css'), 'utf8');
     for (const match of css.matchAll(/\.nudge-slot\s*\{([^}]+)\}/g)) {
       expect(match[1]).not.toContain('fixed');

@@ -24,11 +24,24 @@ hostWorker<MainToWorker, WorkerReply>((msg, host) => {
     return;
   }
   if (msg.type === 'exportPlaytest') {
+    const gen = host.gen;
     playback
       .playtestFile(ENGINE_VERSION)
-      .then((file) => host.post({ type: 'playtest', file }))
+      .then((file) =>
+        host.post(
+          { type: 'playtest', file, ...(msg.requestId !== undefined ? { requestId: msg.requestId } : {}) },
+          gen,
+        ),
+      )
       .catch((err: unknown) =>
-        host.post({ type: 'playtestError', message: `The playtest file could not be made: ${String(err)}` }),
+        host.post(
+          {
+            type: 'playtestError',
+            message: `The playtest file could not be made: ${String(err)}`,
+            ...(msg.requestId !== undefined ? { requestId: msg.requestId } : {}),
+          },
+          gen,
+        ),
       );
     return;
   }

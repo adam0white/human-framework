@@ -1,0 +1,928 @@
+/* The approved five-zone layout. The simulation canvas and inspector retain their rendering. */
+html,
+body,
+#root {
+  height: 100%;
+  overflow: hidden;
+}
+.colony.well-layout {
+  width: 100%;
+  max-width: none;
+  height: 100dvh;
+  min-height: 0;
+  margin: 0;
+  padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--bg);
+}
+.well-layout button,
+.well-layout a,
+.well-layout summary,
+.well-layout label {
+  min-height: 44px;
+  min-width: 44px;
+}
+.well-layout button {
+  cursor: pointer;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text);
+  padding: 6px 8px;
+  font: inherit;
+}
+.well-layout button[aria-pressed="true"] {
+  background: var(--surface-2);
+  border-color: var(--well);
+  box-shadow: inset 0 0 0 1px var(--well);
+}
+.well-layout a {
+  display: inline-flex;
+  align-items: center;
+}
+.well-layout .well-primary {
+  min-height: 52px;
+  width: 100%;
+  background: var(--well);
+  color: white;
+  font-weight: 700;
+  border: 0;
+}
+.well-topbar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 44px;
+  flex: 0 0 44px;
+  gap: 0;
+  z-index: 30;
+  padding: 0 4px 0 8px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+.well-time {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12px;
+}
+.well-topbar > button {
+  flex: 0 0 44px;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  font-size: 22px;
+}
+.well-topbar .timeline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 0;
+}
+.well-topbar .tl-label {
+  display: none;
+}
+.well-desktop-name,
+.well-desktop-state,
+.well-desktop-title {
+  display: none;
+}
+.well-phone-state {
+  flex: 0 0 52px;
+  height: 52px;
+}
+.well-state {
+  height: 52px;
+  display: flex;
+  flex-direction: column;
+}
+.well-layout .well-goals {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  flex: 1;
+  min-height: 36px;
+  height: 36px;
+  width: 100%;
+  border: 0;
+  border-radius: 0;
+  padding: 0 8px;
+  gap: 8px;
+}
+.well-goal {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  min-width: 0;
+}
+.well-goal-icon {
+  font-size: 15px;
+}
+.well-goal .goal-bars {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+.well-goal .gbar-name {
+  font-size: 10px;
+  line-height: 11px;
+}
+.well-goal .gbar-name small {
+  display: none;
+}
+.well-goal .gbar {
+  display: flex;
+  height: 5px;
+  align-items: center;
+  gap: 3px;
+}
+.well-goal .gbar-tag {
+  width: 7px;
+  font-size: 6px;
+  line-height: 5px;
+}
+.well-goal .gbar-track {
+  display: block;
+  position: relative;
+  flex: 1;
+  height: 4px;
+  background: var(--line);
+}
+.well-goal .gbar-fill {
+  display: block;
+  height: 100%;
+  background: var(--well);
+}
+.well-goal .gbar-tick {
+  position: absolute;
+  height: 7px;
+  width: 1px;
+  background: var(--text);
+  top: -1px;
+}
+.well-goal .gbar:first-of-type .gbar-fill {
+  background: var(--mudbrick);
+}
+.well-deadline {
+  display: none;
+}
+.well-pace {
+  height: 16px;
+  margin: 0;
+  padding: 0 8px;
+  font-size: 10px;
+  line-height: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.well-main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+.well-map-pair {
+  height: 250px;
+  flex: 0 1 250px;
+  min-height: 120px;
+  position: relative;
+  overflow: hidden;
+  background: #bbb88e;
+}
+.well-map {
+  height: 100%;
+  width: 100%;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+}
+.well-map > header {
+  display: none;
+}
+.well-map-classic {
+  display: none;
+}
+.show-classic .well-map-classic {
+  display: block;
+}
+.show-classic .well-map-human {
+  display: none;
+}
+.well-layout .pane-canvas {
+  height: 100%;
+  min-height: 0;
+  position: relative;
+  width: 100%;
+  aspect-ratio: auto;
+}
+.well-layout .map-viewport {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+}
+.well-layout .map-viewport canvas {
+  width: 100%;
+  height: 100%;
+}
+.well-layout .map-hint {
+  display: none;
+}
+.well-layout .map-controls {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  left: auto;
+  top: auto;
+  z-index: 8;
+}
+.well-layout .map-follow {
+  min-height: 44px;
+}
+.well-map-toggle {
+  position: absolute;
+  right: 8px;
+  top: 3px;
+  z-index: 10;
+  display: flex;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.well-map-toggle button {
+  border-radius: 0;
+  font-size: 12px;
+}
+.well-scene-alert {
+  position: absolute;
+  top: 48px;
+  left: 8px;
+  right: 8px;
+  z-index: 9;
+  pointer-events: none;
+}
+.well-scene-alert > * {
+  pointer-events: auto;
+  margin: 0;
+  background: var(--surface);
+  font-size: 12px;
+  max-height: 44px;
+  overflow: hidden;
+  width: auto;
+}
+.well-column {
+  flex: 1 0 344px;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--bg);
+}
+.well-caption {
+  position: relative;
+  height: 64px;
+  flex: 0 0 64px;
+  display: flex;
+  align-items: center;
+  padding: 5px 8px;
+  gap: 4px;
+  border-block: 1px solid var(--line);
+  overflow: hidden;
+}
+.well-caption > p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 18px;
+  max-height: 54px;
+  overflow: hidden;
+}
+.well-caption > svg {
+  width: 26px;
+  height: 26px;
+  flex: 0 0 26px;
+}
+.well-layout .well-caption-text {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  text-align: left;
+  background: transparent;
+  overflow: hidden;
+}
+.well-caption-text strong,
+.well-caption-text small {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 11px;
+}
+.well-caption-text small {
+  font-weight: 400;
+  font-size: 10px;
+}
+.well-caption .well-nudge-send {
+  font-size: 12px;
+  padding: 5px;
+}
+.well-waiting {
+  position: absolute;
+  top: 0;
+  left: 5px;
+  font-size: 9px;
+}
+.well-sheet {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.well-village-heading {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  border: 0 !important;
+  padding: 4px 8px !important;
+  border-radius: 0 !important;
+}
+.well-village-heading strong {
+  font-size: 12px;
+}
+.well-village-heading small {
+  font-size: 10px;
+}
+.well-people {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  padding: 4px 8px;
+}
+.well-people > button {
+  position: relative;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-align: left;
+  min-width: 0;
+  padding: 4px;
+}
+.well-people > button > span:not(.portrait) {
+  min-width: 0;
+}
+.well-people strong,
+.well-people small {
+  display: block;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.well-people small {
+  font-size: 10px;
+  padding-bottom: 9px;
+}
+.well-people .well-person-glyphs {
+  position: absolute;
+  bottom: 2px;
+  right: 4px;
+  font-size: 9px;
+}
+.well-orders-row {
+  width: calc(100% - 16px);
+  margin: 0 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.well-sheet-head {
+  min-height: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  gap: 4px;
+  border-bottom: 1px solid var(--line);
+  flex: 0 0 44px;
+}
+.well-sheet-head h2 {
+  flex: 1;
+  font-size: 12px;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+.well-person-body {
+  padding: 0 8px 8px;
+}
+.well-latest {
+  height: 52px;
+  font-size: 10px;
+  overflow: hidden;
+}
+.well-latest p {
+  margin: 0;
+}
+.well-latest > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+.well-answer-pair {
+  display: flex;
+  gap: 4px;
+}
+.well-answer-pair .chip {
+  display: inline-block;
+  font-size: 9px;
+  padding: 1px 3px;
+}
+.well-reply-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 33px;
+  gap: 4px;
+}
+.well-reply-row p {
+  font-size: 10px;
+  line-height: 14px;
+  max-height: 28px;
+  overflow: hidden;
+}
+.well-reply-row button {
+  font-size: 10px;
+  padding: 0 4px;
+  flex: none;
+}
+.well-how {
+  display: flex;
+  gap: 4px;
+  height: 44px;
+  margin-bottom: 4px;
+}
+.well-how button {
+  font-size: 11px;
+  padding: 3px 6px;
+}
+.well-how button:nth-child(3) {
+  flex: 1;
+}
+.well-places {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 4px;
+}
+.well-places button {
+  height: 56px;
+  padding: 1px 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  overflow: hidden;
+}
+.well-places strong {
+  font-size: 12px;
+}
+.well-places span,
+.well-places small {
+  font-size: 10px;
+  line-height: 13px;
+  white-space: nowrap;
+}
+.well-places .is-outlined {
+  outline: 2px solid var(--well);
+  outline-offset: -2px;
+}
+.well-forecast-long {
+  display: none;
+}
+.well-risk {
+  padding: 8px 0;
+  font-size: 12px;
+}
+.well-risk p {
+  margin: 5px 0;
+}
+.well-risk button {
+  margin-right: 4px;
+}
+.well-layout .well-send-anyway {
+  border: 2px solid var(--well);
+}
+.well-appeals {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+}
+.well-order-notes {
+  font-size: 12px;
+}
+.well-reading {
+  padding: 12px;
+  overflow: auto;
+  min-height: 0;
+}
+.well-reading p {
+  font-size: 13px;
+}
+.well-stand {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.well-stand td,
+.well-stand th {
+  padding: 8px 3px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+.well-stand td {
+  width: 36%;
+}
+.well-on-shelf .well-map-pair {
+  flex-basis: 180px;
+  height: 180px;
+  min-height: 128px;
+}
+.well-title-overlay {
+  position: absolute;
+  bottom: 10px;
+  left: 12px;
+  font-size: 28px;
+  color: #fff8df;
+  text-shadow: 0 2px 5px #282617;
+  margin: 0;
+}
+.well-on-shelf .well-map-toggle {
+  display: none;
+}
+.well-on-shelf .well-column {
+  flex: 1;
+}
+.well-shelf-body {
+  flex: 1;
+  overflow: auto;
+  min-height: 0;
+  padding: 8px 12px;
+}
+.well-shelf-body > p {
+  font-size: 13px;
+  margin: 4px 0 8px;
+}
+.well-village-choice {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.well-village-choice legend {
+  font-size: 12px;
+  padding: 0;
+}
+.well-village-choice label {
+  display: flex;
+  align-items: flex-start;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 8px;
+  margin-bottom: 6px;
+  gap: 6px;
+  font-size: 12px;
+}
+.well-village-choice label:has(input:checked) {
+  border-color: var(--well);
+  background: var(--surface-2);
+}
+.well-village-choice small {
+  display: block;
+  font-size: 10px;
+  margin-top: 4px;
+}
+.well-other {
+  width: 100%;
+  text-align: left;
+}
+.well-actions {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 12px 12px;
+  border-top: 1px solid var(--line);
+  background: var(--bg);
+}
+.well-new-confirm {
+  font-size: 12px;
+}
+.well-interstitial {
+  flex: 1;
+}
+.well-overlay {
+  position: fixed;
+  inset: 44px 0 0;
+  z-index: 40;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: #16180c88;
+}
+.well-drawer {
+  width: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 30px #0005;
+}
+.well-menu-body {
+  padding: 4px 12px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  min-height: 0;
+}
+.well-menu-body > p {
+  margin: 4px 0;
+  font-size: 12px;
+}
+.well-menu-body > button,
+.well-menu-body > a {
+  width: 100%;
+  text-align: left;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+}
+.well-menu-pace {
+  padding: 0;
+  border: 0;
+  display: flex;
+  margin: 4px 0;
+  gap: 2px;
+}
+.well-menu-pace legend {
+  font-size: 10px;
+}
+.well-menu-pace button {
+  font-size: 11px;
+  flex: 1;
+  padding: 4px;
+}
+.well-record {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+}
+.well-info-outside {
+  position: fixed;
+  inset: 44px 0 0;
+  z-index: 45;
+  background: #0003 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+.well-info {
+  position: fixed;
+  top: calc(44px + env(safe-area-inset-top));
+  left: 8px;
+  right: 8px;
+  max-height: 60dvh;
+  z-index: 46;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px #0005;
+}
+.well-load {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.well-layout .inspector {
+  max-height: calc(100dvh - 44px);
+  width: 100%;
+  max-width: 720px;
+}
+@media (min-width: 900px) {
+  .well-topbar {
+    height: 56px;
+    flex-basis: 56px;
+    padding: 0 12px;
+    gap: 8px;
+  }
+  .well-desktop-name,
+  .well-desktop-title {
+    display: inline;
+  }
+  .well-time {
+    font-size: 12px;
+  }
+  .well-topbar .timeline {
+    position: relative;
+    height: 8px;
+    width: 260px;
+    flex: 0 1 260px;
+  }
+  .well-desktop-state {
+    display: block;
+    flex: 0 0 370px;
+  }
+  .well-phone-state {
+    display: none;
+  }
+  .well-deadline {
+    display: block;
+    position: absolute;
+    left: 15px;
+    top: 26px;
+    font-size: 8px;
+  }
+  .well-goal .goal-bars {
+    padding-bottom: 6px;
+  }
+  .well-main {
+    flex-direction: row;
+    min-width: 1180px;
+  }
+  .well-main > .well-map-pair {
+    flex: 1;
+    width: calc(100% - 420px);
+    height: 100%;
+    display: flex;
+  }
+  .well-map-pair .well-map {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    border-right: 1px solid var(--line);
+  }
+  .well-map > header {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    gap: 6px;
+    font-size: 12px;
+    flex: 0 0 auto;
+  }
+  .well-map .pane-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px 8px;
+    font-size: 9px;
+    margin: 0;
+  }
+  .well-map .pane-stats > div {
+    display: flex;
+    gap: 3px;
+  }
+  .well-map .pane-stats dd {
+    margin: 0;
+  }
+  .well-map .stat-bar {
+    display: none;
+  }
+  .well-map .pane-canvas {
+    flex: 1;
+  }
+  .well-map-toggle {
+    display: none;
+  }
+  .well-column {
+    width: 420px;
+    flex: 0 0 420px;
+    height: 100%;
+  }
+  .well-places button {
+    height: 64px;
+  }
+  .well-forecast-long {
+    display: inline;
+  }
+  .well-people {
+    grid-template-columns: 1fr 1fr;
+  }
+  .well-people > button {
+    height: 76px;
+  }
+  .well-scene-alert {
+    top: 88px;
+  }
+  .well-on-shelf .well-main > .well-map-pair {
+    height: 100%;
+    flex: 1;
+  }
+  .well-on-shelf .well-column {
+    flex: 0 0 420px;
+  }
+  .well-title-overlay {
+    font-size: 40px;
+  }
+  .well-shelf-body {
+    padding: 24px;
+  }
+  .well-village-choice label {
+    margin-block: 12px;
+    padding: 12px;
+    font-size: 14px;
+  }
+  .well-village-choice small {
+    font-size: 12px;
+  }
+  .well-overlay {
+    top: 56px;
+    justify-content: flex-end;
+  }
+  .well-drawer {
+    width: 400px;
+    height: 100%;
+    max-height: 100%;
+    border-radius: 0;
+  }
+  .well-menu-body {
+    flex: 1;
+  }
+  .well-phone-fullscreen {
+    display: none !important;
+  }
+  .well-info {
+    top: 56px;
+    left: auto;
+    width: 420px;
+  }
+  .well-info-outside {
+    top: 56px;
+  }
+}
+@media (max-height: 600px) and (max-width: 899px) {
+  .well-map-pair {
+    flex-basis: 120px;
+    min-height: 90px;
+  }
+  .well-column {
+    flex: 1;
+  }
+  .well-on-shelf .well-map-pair {
+    flex-basis: 100px;
+    min-height: 80px;
+  }
+}
+/* The goal drawing stays 36 px; its touch surface includes the pace line. */
+.well-state {
+  position: relative;
+}
+.well-layout .well-goals {
+  height: 52px;
+  min-height: 52px;
+  flex: 0 0 52px;
+  padding-bottom: 16px;
+}
+.well-pace {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+}
+.well-overlay {
+  z-index: 90;
+}
+.well-info-outside {
+  z-index: 100;
+}
+.well-info {
+  z-index: 101;
+}
+.well-layout .colony-report-actions > .btn:not(.btn-ghost) {
+  background: var(--well);
+  color: white;
+}
+.well-stand progress {
+  display: block;
+  width: 100%;
+  height: 5px;
+  margin-bottom: 4px;
+  accent-color: var(--well);
+}

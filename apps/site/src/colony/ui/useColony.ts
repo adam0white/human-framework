@@ -11,6 +11,7 @@ import {
   fetchBuild,
   fetchPlaytestText,
   PLAYTEST_FILE_NAME,
+  type PlaytestFile,
   replayParam,
 } from '../../shared/playtest.ts';
 import { startTickLoop } from '../../shared/tick-loop.ts';
@@ -55,6 +56,9 @@ export interface ColonyActions {
   cancel(orderId: string): void;
   dismissNudge(id: string): void;
   setSpeed(speed: Speed): void;
+  setPace?(pace: Speed | 'auto'): void;
+  setContext?(context: { person?: VillagerId | null; reading?: boolean; info?: boolean }): void;
+  getRun(): Promise<PlaytestFile>;
   /** Manual pause or resume (Space, the pause button, Play on the goal card). */
   setPaused(paused: boolean): void;
   /** UI clock hold; never changes playback state or the input log. */
@@ -82,14 +86,6 @@ export interface ColonyActions {
 
 const AUTO_PAUSE_KEY = 'colony.autoPause';
 
-function readAutoPause(): boolean {
-  try {
-    return localStorage.getItem(AUTO_PAUSE_KEY) !== '0';
-  } catch {
-    return true;
-  }
-}
-
 function writeAutoPause(on: boolean): void {
   try {
     localStorage.setItem(AUTO_PAUSE_KEY, on ? '1' : '0');
@@ -113,7 +109,7 @@ export function useColony(seed = DEFAULT_SEED): Colony {
   const worker = useRef<Worker | null>(null);
   const store = useRef<FrameStore>(emptyStore());
   const [frame, setFrame] = useState<Frame | null>(null);
-  const [autoPauseInit] = useState(readAutoPause);
+  const [autoPauseInit] = useState(true);
   const [playback, setPlayback] = useState<PlaybackState>(() => START_PLAYBACK(autoPauseInit));
   const [why, setWhy] = useState<WhyBreakdown | null>(null);
   const [summaries, setSummaries] = useState<Colony['summaries']>({});
@@ -126,6 +122,10 @@ export function useColony(seed = DEFAULT_SEED): Colony {
   const sceneBatch = useRef(0);
   const sceneRequestId = useRef(0);
   const [playtest, setPlaytest] = useState<PlaytestStatus>(null);
+  const runWaiters = useRef(
+    new Map<number, { resolve(file: PlaytestFile): void; reject(error: Error): void }>(),
+  );
+  const exportRequest = useRef(0);
   const sendToLab = useRef(false);
   const exportPending = useRef(false);
   /** The run number a playtest load will use; its replies count once the worker says it replayed. */
@@ -141,6 +141,16 @@ export function useColony(seed = DEFAULT_SEED): Colony {
   playbackRef.current = playback;
 
   const send = useCallback((msg: OutMsg) => worker.current?.postMessage(msg), []);
+
+  const requestRun = useCallback(
+    () =>
+      new Promise<PlaytestFile>((resolve, reject) => {
+        exportRequest.current += 1;
+        runWaiters.current.set(exportRequest.current, { resolve, reject });
+        send({ type: 'exportPlaytest', requestId: exportRequest.current });
+      }),
+    [send],
+  );
 
   const init = useCallback(
     (w: Worker | null, village: Village = 'default') => {
@@ -183,25 +193,18 @@ export function useColony(seed = DEFAULT_SEED): Colony {
       if (msg.gen !== gen.current) return;
       switch (msg.type) {
         case 'playtest': {
-          const file = msg.file;
-          const toLab = sendToLab.current;
-          fetchBuild()
-            .then((build) => {
-              if (toLab) {
-                sendToLab.current = false;
-                gameLabs.well.openSendDialog({ getRun: () => ({ ...file, build }) });
-              } else downloadJson(PLAYTEST_FILE_NAME.colony, { ...file, build });
-              setPlaytest(null);
-              exportPending.current = false;
-            })
-            .catch((err: unknown) => {
-              exportPending.current = false;
-              sendToLab.current = false;
-              setPlaytest({ error: `The download failed: ${String(err)}` });
-            });
+          if (msg.requestId !== undefined) {
+            runWaiters.current.get(msg.requestId)?.resolve(msg.file);
+            runWaiters.current.delete(msg.requestId);
+          }
           return;
         }
         case 'playtestError':
+          if (msg.requestId !== undefined) {
+            runWaiters.current.get(msg.requestId)?.reject(new Error(msg.message));
+            runWaiters.current.delete(msg.requestId);
+            return;
+          }
           exportPending.current = false;
           sendToLab.current = false;
           setPlaytest({ error: msg.message });
@@ -302,8 +305,12 @@ export function useColony(seed = DEFAULT_SEED): Colony {
       cancel: (orderId) => send({ type: 'cancel', orderId }),
       dismissNudge: (id) => send({ type: 'dismissNudge', id }),
       setSpeed: (s) => send({ type: 'setSpeed', speed: s }),
+      setPace: (pace) => send({ type: 'setPace', pace }),
+      setContext: (context) => send({ type: 'setContext', context }),
+      getRun: requestRun,
       setMenuOpen: (open) => {
         menuOpen.current = open;
+        send({ type: 'setContext', context: { menu: open } });
       },
       setPaused: (p) => {
         send(p ? { type: 'pause', cause: 'manual' } : { type: 'resume' });
@@ -364,6 +371,8 @@ export function useColony(seed = DEFAULT_SEED): Colony {
         if (!inputs.length) setScenePredictions({});
       },
       restart: (village) => {
+        for (const waiter of runWaiters.current.values()) waiter.reject(new Error('The run was replaced.'));
+        runWaiters.current.clear();
         exportPending.current = false;
         sendToLab.current = false;
         setSummaries({});
@@ -378,20 +387,31 @@ export function useColony(seed = DEFAULT_SEED): Colony {
         init(worker.current, village);
       },
       sendPlaytest: () => {
-        if (exportPending.current) return;
-        exportPending.current = true;
-        sendToLab.current = true;
-        setPlaytest({ busy: 'export' });
-        send({ type: 'exportPlaytest' });
+        void requestRun()
+          .then((file) =>
+            fetchBuild().then((build) => {
+              gameLabs.well.openSendDialog({ getRun: () => ({ ...file, build }) });
+            }),
+          )
+          .catch((err) => setPlaytest({ error: String(err) }));
       },
       exportPlaytest: () => {
         if (exportPending.current) return;
         exportPending.current = true;
-        sendToLab.current = false;
-        setPlaytest({ busy: 'export' });
-        send({ type: 'exportPlaytest' });
+        void requestRun()
+          .then((file) =>
+            fetchBuild().then((build) => {
+              downloadJson(PLAYTEST_FILE_NAME.colony, { ...file, build });
+            }),
+          )
+          .catch((err) => setPlaytest({ error: `The download failed: ${String(err)}` }))
+          .finally(() => {
+            exportPending.current = false;
+          });
       },
       loadPlaytest: (text) => {
+        for (const waiter of runWaiters.current.values()) waiter.reject(new Error('The run was replaced.'));
+        runWaiters.current.clear();
         exportPending.current = false;
         sendToLab.current = false;
         setPlaytest({ busy: 'load' });
@@ -401,7 +421,7 @@ export function useColony(seed = DEFAULT_SEED): Colony {
       clearPlaytest: () => setPlaytest(null),
       playtestError: (message) => setPlaytest({ error: message }),
     }),
-    [send, init],
+    [send, init, requestRun],
   );
 
   return {

@@ -1,0 +1,192 @@
+/* Reading screens retain the game's top bar and scroll only inside their bodies. */
+.colony-report-backdrop {
+  inset: 44px 0 0;
+  padding: 0;
+}
+.end.colony-report {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  padding: 0;
+  border-radius: 0;
+}
+.colony-report-body {
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 16px;
+}
+.colony-report-body-footer,
+.colony-report-secondaries {
+  display: flex;
+  gap: 8px;
+}
+.colony-report-body-footer {
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+.colony-report-actions {
+  display: grid;
+  flex: none;
+  gap: 8px;
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+  margin-top: auto;
+  border-top: 1px solid var(--border, #b7a992);
+  background: var(--parchment, #fff8e9);
+}
+.colony-report-actions > .btn,
+.colony-report-secondaries > .btn {
+  min-height: 52px;
+  flex: 1;
+}
+.colony-report .end-tab,
+.colony-report-body-footer .btn,
+.colony-report summary {
+  min-height: 44px;
+}
+.colony-report summary {
+  display: list-item;
+  align-content: center;
+  cursor: pointer;
+  font-weight: 600;
+}
+.colony-feedback {
+  position: fixed;
+  z-index: 80;
+  top: var(--colony-feedback-top, 44px);
+  left: 0;
+  width: 100%;
+  height: var(--colony-feedback-height, calc(100dvh - 44px));
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: var(--ink, #30291f);
+  background: var(--parchment, #fff8e9);
+}
+.colony-menu-head {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--border, #b7a992);
+}
+.colony-menu-head h2 {
+  margin: 0;
+}
+.colony-sheet-body {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0 16px 16px;
+}
+.colony-sheet-actions {
+  flex: none;
+  margin-top: auto;
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid var(--border, #b7a992);
+}
+.colony-feedback button,
+.colony-feedback summary,
+.colony-feedback a,
+.colony-export-option {
+  min-height: 44px;
+}
+.colony-feedback button {
+  padding: 8px 12px;
+  font: inherit;
+  border: 1px solid var(--ink, #30291f);
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+.colony-feedback button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.colony-feedback .colony-primary {
+  width: 100%;
+  min-height: 52px;
+  background: var(--ink, #30291f);
+  color: var(--parchment, #fff8e9);
+}
+.colony-verdicts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  border: 0;
+  padding: 0;
+  margin: 16px 0;
+}
+.colony-verdicts button[aria-pressed="true"] {
+  background: var(--ink, #30291f);
+  color: var(--parchment, #fff8e9);
+}
+.colony-feedback-note,
+.colony-feedback-name input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  font: inherit;
+  color: inherit;
+  background: #fffdf5;
+  border: 1px solid var(--border, #b7a992);
+  border-radius: 4px;
+}
+.colony-feedback-note {
+  min-height: 112px;
+  resize: vertical;
+}
+.colony-feedback-name input {
+  display: block;
+  min-height: 44px;
+  margin-top: 4px;
+}
+.colony-feedback summary {
+  align-content: center;
+  cursor: pointer;
+}
+.colony-export-option,
+.colony-feedback a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.colony-feedback-notice {
+  border: 1px solid var(--border, #b7a992);
+  padding: 8px 12px;
+}
+.colony-feedback-preview {
+  max-height: 180px;
+  overflow: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: 12px;
+}
+@media (min-width: 900px) {
+  .colony-report-backdrop {
+    inset-block-start: 56px;
+    padding: 24px;
+  }
+  .end.colony-report {
+    width: min(720px, 100%);
+    height: min(720px, 100%);
+    border-radius: var(--radius-l, 12px);
+  }
+  .colony-feedback {
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 560px;
+    height: calc(100dvh - 104px);
+    max-height: 720px;
+    border: 1px solid var(--border, #b7a992);
+    border-radius: var(--radius-l, 12px);
+    box-shadow: var(--shadow-lift);
+  }
+}

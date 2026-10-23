@@ -1,7 +1,6 @@
 /**
- * Clock/UI playback only. Pending suggestions slow the clock to one sim minute per real second until answered,
- * dismissed, expired or acknowledged. Narrative moments, verdicts and weather never interrupt time.
- * Manual/start pauses remain explicit. None of this changes sim state, inputs or replay rules.
+ * Clock/UI playback only. Automatic pacing gives replies, alerts and suggestions time to be read.
+ * Presentation context holds overlays and slows person sheets. None of this changes sim state, inputs or replay rules.
  */
 import {
   makePlaytestFile,
@@ -9,15 +8,31 @@ import {
   type ReplayResult,
   replayResult,
 } from '../../shared/playtest.ts';
-import type { MainToWorker, PauseInfo, PauseReason, PlaybackState, Speed, WorkerReply } from '../protocol.ts';
+import type {
+  MainToWorker,
+  Pace,
+  PauseInfo,
+  PauseReason,
+  PlaybackState,
+  PresentationContext,
+  Speed,
+  WorkerReply,
+} from '../protocol.ts';
 import { ColonyGame, type LogEntry, SCENARIO_VERSION } from './game.ts';
 import type { HumanSideFactory } from './human-side.ts';
 import { colonyHash, colonySnapshot, colonyState, parseColonyPlaytest, replayColony } from './playtest.ts';
-import { type Minute, SIM_MINUTES_PER_SECOND, type VillagerId } from './world-types.ts';
+import {
+  clockOf,
+  type Minute,
+  SIM_MINUTES_PER_SECOND,
+  STORM_END,
+  STORM_START,
+  type VillagerId,
+  WARNING_AT,
+} from './world-types.ts';
 /** Never advance more than this many sim minutes per tick (a backgrounded tab must not fast-forward). */
 export const MAX_MINUTES_PER_TICK = 8;
-/** Pending choices stay readable while the simulation continues. */
-const DECISION_MINUTES_PER_SECOND = 1;
+const RAMP_MS = 400;
 /** Longest real-time step one tick may account for. */
 const MAX_DT_MS = 250;
 
@@ -48,6 +63,24 @@ export class Playback {
   autoPause = true;
   private carry = 0;
   private endedSent = false;
+  private automatic = true;
+  private context: PresentationContext = {
+    person: null,
+    reading: false,
+    info: false,
+    menu: false,
+    inspector: false,
+  };
+  private elapsed = 0;
+  private suggestionAt = new Map<string, number>();
+  private readingUntil = 0;
+  private readingText = '';
+  private readingSerial = 0;
+  private seenNews = new Set<string>();
+  private rate = SIM_MINUTES_PER_SECOND;
+  private rampFrom = SIM_MINUTES_PER_SECOND;
+  private targetRate = SIM_MINUTES_PER_SECOND;
+  private rampAt = RAMP_MS;
   /** Playback acknowledgements do not settle suggestions or enter the simulation log. */
   private acknowledged = new Set<string>();
 
@@ -58,12 +91,16 @@ export class Playback {
   }
 
   state(): PlaybackState {
+    const { pace, text } = this.pacing();
     return {
       paused: this.paused,
       pause: this.pause,
       speed: this.speed,
       autoPause: this.autoPause,
-      slowMo: !this.paused && this.pause?.kind === 'auto',
+      slowMo: pace === 'reading' || pace === 'looking',
+      pace,
+      paceLine: text,
+      automatic: this.automatic,
     };
   }
 
@@ -119,6 +156,7 @@ export class Playback {
     this.carry = 0;
     this.endedSent = false;
     this.acknowledged = new Set();
+    this.resetPacing();
     this.stop(
       'manual',
       g.scenarioVersion === SCENARIO_VERSION
@@ -145,6 +183,7 @@ export class Playback {
         this.carry = 0;
         this.endedSent = false;
         this.acknowledged = new Set();
+        this.resetPacing();
         this.autoPause = msg.autoPause;
         this.stop('start', START_TEXT);
         return this.frame();
@@ -152,6 +191,15 @@ export class Playback {
         return this.tick(msg.dtMs);
       case 'setSpeed':
         this.speed = msg.speed;
+        this.automatic = false;
+        return this.frame();
+      case 'setPace':
+        this.automatic = msg.pace === 'auto';
+        if (msg.pace !== 'auto') this.speed = msg.pace;
+        return this.frame();
+      case 'setContext':
+        this.context = { ...this.context, ...msg.context };
+        this.carry = 0;
         return this.frame();
       case 'pause':
         if (msg.cause !== 'inspector') this.stop('manual', 'Paused');
@@ -198,13 +246,31 @@ export class Playback {
     }
   }
 
-  /** Keep only a live unanswered suggestion in clock metadata; explicit pauses take precedence. */
+  private resetPacing(): void {
+    this.elapsed = 0;
+    this.suggestionAt.clear();
+    this.seenNews.clear();
+    for (const item of this.game?.news ?? [])
+      this.seenNews.add(`${item.side}:${item.personId}:${item.minute}`);
+    this.readingUntil = 0;
+    this.readingSerial = 0;
+    this.rate = this.rampFrom = this.targetRate = SIM_MINUTES_PER_SECOND;
+    this.rampAt = RAMP_MS;
+  }
+
+  /** Keep wall-time suggestion age separate from the simulation and its replay. */
   private syncDecision(): void {
-    if (this.paused) return;
     const n =
       this.autoPause && !this.game?.ended
         ? this.game?.visibleNudges().find((nudge) => !this.acknowledged.has(nudge.id))
         : undefined;
+    for (const card of this.game?.visibleNudges() ?? []) {
+      if (!this.suggestionAt.has(card.id)) {
+        this.suggestionAt.set(card.id, this.elapsed);
+        if (this.autoPause && !this.acknowledged.has(card.id)) this.readingSerial++;
+      }
+    }
+    if (this.paused) return;
     this.pause = n
       ? {
           kind: 'auto',
@@ -217,19 +283,86 @@ export class Playback {
       : null;
   }
 
+  private pacing(): { pace: Pace; rate: number; text: string } {
+    const g = this.game;
+    const held = this.context.menu
+      ? 'the menu is open'
+      : this.context.info
+        ? "you're reading about the well"
+        : this.context.inspector
+          ? `you're reading ${this.personName(this.context.person)}`
+          : this.paused
+            ? this.pause?.kind === 'start'
+              ? 'the village is waiting'
+              : 'the clock is held'
+            : '';
+    if (held || g?.ended)
+      return { pace: 'held', rate: 0, text: g?.ended ? 'the run is over' : `held: ${held}` };
+    if (this.context.reading) return { pace: 'reading', rate: 1, text: "slowed: you're reading an order" };
+    if (this.elapsed < this.readingUntil) return { pace: 'reading', rate: 1, text: this.readingText };
+    const n = this.autoPause ? g?.visibleNudges().find((card) => !this.acknowledged.has(card.id)) : undefined;
+    if (n) {
+      const reading = this.elapsed - (this.suggestionAt.get(n.id) ?? this.elapsed) < 10000;
+      return { pace: reading ? 'reading' : 'looking', rate: reading ? 1 : 4, text: 'slowed: a suggestion' };
+    }
+    if (this.context.person)
+      return {
+        pace: 'looking',
+        rate: 4,
+        text: `slowed: you're with ${this.personName(this.context.person)}`,
+      };
+    const storm = !!g && g.minute >= STORM_START && g.minute < STORM_END;
+    if (g && (this.automatic || this.speed === 1)) {
+      const clock = clockOf(g.minute).minuteOfDay;
+      const night = clock >= 20 * 60 + 30 || clock < 4 * 60 + 30;
+      if (
+        night &&
+        !storm &&
+        !g.visibleNudges().length &&
+        !g.book.cards.some((card) => card.status === 'active' && card.human.state === 'pending') &&
+        g.human.view().every((person) => person.state === 'asleep')
+      )
+        return { pace: 'night', rate: 16, text: 'night: the village sleeps' };
+    }
+    return {
+      pace: 'watching',
+      rate: SIM_MINUTES_PER_SECOND * (this.automatic || storm ? 1 : this.speed),
+      text: '',
+    };
+  }
+
+  private personName(id: VillagerId | null): string {
+    return id ? id.charAt(0).toUpperCase() + id.slice(1) : 'a person';
+  }
+
+  private readFor(ms: number, text: string): void {
+    this.readingUntil = Math.max(this.readingUntil, this.elapsed + ms);
+    this.readingText = text;
+    this.readingSerial++;
+  }
+
   private tick(dtMs: number): WorkerReply[] {
     const g = this.game;
-    if (!g || this.paused || g.ended) return [];
+    if (!g || this.paused || g.ended || this.pacing().pace === 'held') return [];
     const dt = Math.max(0, Math.min(dtMs, MAX_DT_MS));
     this.syncDecision();
-    const chosenRate = SIM_MINUTES_PER_SECOND * this.speed;
-    const rate = this.state().slowMo ? Math.min(chosenRate, DECISION_MINUTES_PER_SECOND) : chosenRate;
-    this.carry += (dt / 1000) * rate;
+    const priorPace = this.pacing().pace;
+    const target = this.pacing().rate;
+    if (target !== this.targetRate) {
+      this.rampFrom = this.rate;
+      this.targetRate = target;
+      this.rampAt = 0;
+    }
+    const ramp = Math.min(dt, RAMP_MS - this.rampAt);
+    const next = this.rampFrom + (target - this.rampFrom) * ((this.rampAt + ramp) / RAMP_MS);
+    this.carry += (((this.rate + next) / 2) * ramp + target * (dt - ramp)) / 1000;
+    this.rampAt += ramp;
+    this.rate = next;
+    this.elapsed += dt;
     const whole = Math.min(MAX_MINUTES_PER_TICK, Math.floor(this.carry));
-    if (whole <= 0) return [];
+    if (whole <= 0) return priorPace !== this.pacing().pace ? this.frame() : [];
     this.carry -= whole;
     this.step(whole);
-    // The Solo control keeps pace with play, so the end report has nothing left to simulate.
     g.advanceSolo();
     return this.frame();
   }
@@ -240,11 +373,21 @@ export class Playback {
     if (!g) return 0;
     let n = 0;
     for (; n < minutes && !g.ended; ) {
-      const wasSlow = this.state().slowMo;
+      const serial = this.readingSerial;
       g.advance(1);
       n += 1;
+      const news = g.news.filter(
+        (item) => !this.seenNews.has(`${item.side}:${item.personId}:${item.minute}`),
+      );
+      for (const item of news) this.seenNews.add(`${item.side}:${item.personId}:${item.minute}`);
+      const reply = g.lastStep.verdicts[0];
+      if (reply) this.readFor(4000, `slowed: ${this.personName(reply.personId)} is answering`);
+      else if (g.lastStep.moments.length || news.length)
+        this.readFor(3000, 'slowed: something happened in the village');
+      else if (g.minute === WARNING_AT) this.readFor(3000, 'slowed: the storm is coming');
+      else if (g.minute === STORM_START) this.readFor(3000, 'slowed: the storm has begun');
       this.syncDecision();
-      if (!wasSlow && this.state().slowMo) {
+      if (serial !== this.readingSerial) {
         this.carry = 0;
         break;
       }

@@ -1,904 +1,945 @@
+import { setTelemetryOff, telemetryOn } from '@adam0white/lab-kit';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FullscreenButton, useWakeLock } from '../../shared/fullscreen.tsx';
-import { gameLabs, LabMenuContent, useLabScreen } from '../../shared/lab.tsx';
-import { PlaytestMenu, PlaytestNotice } from '../../shared/PlaytestMenu.tsx';
+import { gameLabs, useLabScreen } from '../../shared/lab.tsx';
+import type { PlaytestFile } from '../../shared/playtest.ts';
 import type { HurtNews, MomentRecord } from '../sim/game.ts';
 import type { PlaceId } from '../sim/map.ts';
-import { inferAction, type OrderCard, type OrderInput } from '../sim/orders.ts';
+import type { AppealChip, OrderInput } from '../sim/orders.ts';
+import type { Village } from '../sim/village.ts';
 import { type VillagerId, villagerById } from '../sim/world-types.ts';
 import { BubbleManager } from './bubbles.ts';
-import type { Nudge } from './contract.ts';
+import { dayClock } from './contract.ts';
 import { EndScreen } from './EndScreen.tsx';
-import { GoalCard } from './GoalCard.tsx';
+import { Feedback } from './Feedback.tsx';
 import { Inspector } from './Inspector.tsx';
-import { latestPersonOrder, personOrderStatus, repeatPersonOrder } from './order-status.ts';
-import { Pane } from './Pane.tsx';
-import { PaneBody, PeopleRows } from './PeopleRows.tsx';
-import { PhoneSheet, VillageStrip } from './PhoneStage.tsx';
 import {
-  Composer,
-  type ComposerState,
-  EMPTY_COMPOSER,
-  GoalStrip,
-  HurtLine,
-  inferredJob,
-  keepOneDisclosure,
-  MomentBanner,
-  OrderLog,
+  Orders,
+  People,
+  PersonSheet,
+  placesFor,
+  RingTimer,
+  riskyPlace,
+  Stand,
+  StateStrip,
+} from './Layout.tsx';
+import { latestPersonOrder, repeatPersonOrder } from './order-status.ts';
+import { Pane } from './Pane.tsx';
+import {
+  CHIP_TEXT,
   PaneStats,
-  PauseRibbon,
-  PersonOrder,
   PLACE_LABEL,
-  SuggestionCard,
-  sameJobCopy,
   shortName,
+  statusLine,
   suggestionNeedsReview,
-  TopBar,
+  Timeline,
 } from './parts.tsx';
 import { suggestionChoice, suggestionInput } from './suggestion-choice.ts';
 import { useColony } from './useColony.ts';
 import { VILLAGE_WORDS } from './village-words.ts';
+import './layout.css';
 
-const ONBOARDED_KEY = 'colony.onboarded';
-/** Real ms a moment's caption stays up. */
-const MOMENT_MS = 4500;
-const TOAST_MS = 6000;
-
-function readOnboarded(): boolean {
+type Sheet = 'people' | 'person' | 'orders' | 'stand' | 'suggestion';
+function savedRun(): PlaytestFile | null {
   try {
-    return localStorage.getItem(ONBOARDED_KEY) === '1';
+    const s = JSON.parse(localStorage.getItem('colony.run') ?? 'null') as PlaytestFile | null;
+    return s?.kind === 'human-playtest' && s.game === 'colony' ? s : null;
   } catch {
-    return false;
+    return null;
   }
 }
-
-function writeOnboarded(): void {
-  try {
-    localStorage.setItem(ONBOARDED_KEY, '1');
-  } catch {
-    // Storage may be blocked; the toast then shows again next time.
-  }
-}
-
-function orderFrom(c: ComposerState): OrderInput | null {
-  if (!c.personId || !c.placeId) return null;
-  return {
-    personId: c.personId,
-    placeId: c.placeId,
-    ...(c.rush ? { rush: true } : {}),
-    ...(c.insist ? { insist: true } : {}),
-    ...(c.appeal ? { appeal: c.appeal } : {}),
-  };
-}
-
-/** Focus is in a form control (text, checkbox, radio, select): Space and Enter belong to it. */
-function isEditable(t: EventTarget | null): boolean {
-  return (
-    t instanceof HTMLElement &&
-    t.closest('input, textarea, select, summary, button, [contenteditable="true"]') !== null
-  );
-}
-
 export function App() {
   const colony = useColony();
   const { frame, actions, playback } = colony;
+  const [shelf, setShelf] = useState(true),
+    [save, setSave] = useState(savedRun),
+    [newConfirm, setNewConfirm] = useState(false),
+    [other, setOther] = useState(false);
+  const [menu, setMenu] = useState(false),
+    [info, setInfo] = useState(false),
+    [feedback, setFeedback] = useState<'menu' | 'end' | null>(null);
+  const [recording, setRecording] = useState(() => telemetryOn(gameLabs.well));
+  const [sheet, setSheet] = useState<Sheet>('people'),
+    [person, setPerson] = useState<VillagerId | null>(null),
+    [following, setFollowing] = useState<VillagerId | null>(null);
+  const [rush, setRush] = useState(false),
+    [insist, setInsist] = useState(false),
+    [appeal, setAppeal] = useState<AppealChip | null>(null),
+    [appealOpen, setAppealOpen] = useState(false);
+  const [pending, setPending] = useState<PlaceId | null>(null),
+    [asked, setAsked] = useState<PlaceId | null>(null),
+    [outline, setOutline] = useState<PlaceId | null>(null),
+    [nudgeId, setNudgeId] = useState<string | undefined>();
+  const [inspect, setInspect] = useState<VillagerId | null>(null),
+    [mapSide, setMapSide] = useState<'human' | 'classic'>('human'),
+    [hover, setHover] = useState<PlaceId | null>(null),
+    [followKey, setFollowKey] = useState(0);
+  const [endOpen, setEndOpen] = useState(true),
+    [flash, setFlash] = useState(''),
+    [moment, setMoment] = useState<MomentRecord | null>(null),
+    [newsReturn, setNewsReturn] = useState<{ id: VillagerId | null; side: 'human' | 'classic' } | null>(null);
   const bubbles = useMemo(() => new BubbleManager(), []);
-  const stageRoot = useRef<HTMLElement>(null);
-  const [sceneHeight, setSceneHeight] = useState(0);
-  const [composer, setComposer] = useState<ComposerState>(EMPTY_COMPOSER);
-  const [hoverPlace, setHoverPlace] = useState<PlaceId | null>(null);
-  const [inspect, setInspect] = useState<{ personId: VillagerId; decisionId?: string } | null>(null);
-  const [endOpen, setEndOpen] = useState(true);
-  const [flash, setFlash] = useState<string | null>(null);
-  const [toast, setToast] = useState(false);
-  const [moment, setMoment] = useState<MomentRecord | null>(null);
-  const [drawer, setDrawer] = useState(false);
-  const [ordering, setOrdering] = useState(false);
-  const [phoneSheetHeight, setPhoneSheetHeight] = useState<'closed' | 'peek' | 'half' | 'full' | 'fit'>(
-    'closed',
-  );
-  const [watching, setWatching] = useState<VillagerId | null>(null);
-  const [choosingPlace, setChoosingPlace] = useState(false);
-  const [scopeExplained, setScopeExplained] = useState(false);
-  const [followKey, setFollowKey] = useState(0);
-  const [holdKey, setHoldKey] = useState(0);
-  const [placeRequest, setPlaceRequest] = useState(0);
-  const [personRequest, setPersonRequest] = useState(0);
-  const [personOrderOpen, setPersonOrderOpen] = useState(false);
-  // News changes camera focus only. The prepared order and prior worker stay intact.
-  const [newsFollow, setNewsFollow] = useState<{
-    personId: VillagerId;
-    side: 'classic' | 'human';
-    returnSide: 'classic' | 'human';
-  } | null>(null);
-  const [returnedFollow, setReturnedFollow] = useState(false);
-  /** Phones show one village at a time. Switching keeps the prepared order. */
-  const [mapSide, setMapSide] = useState<'classic' | 'human'>('human');
   const flashTimer = useRef(0);
-  const momentTimer = useRef(0);
-  const momentsSeen = useRef(0);
-  const resultsButton = useRef<HTMLButtonElement>(null);
+  const saveSequence = useRef(0);
+  const momentCount = useRef(0);
+  const loadedRef = useRef<unknown>(null);
+  const continueLoad = useRef(false);
   const hasSummary = Boolean(colony.summaries[2] || colony.summaries[3]);
-  const starting = playback.pause?.kind === 'start';
-  useLabScreen(gameLabs.well, starting ? 'title' : frame?.ended ? 'ending' : 'play');
-
-  // The one-time "Tap any bubble" toast, after the first Play.
-  // Depends on whether a frame exists, not on each frame: a per-frame re-run would clear the timer before it fired.
-  const toastShown = useRef(readOnboarded());
-  const hasFrame = frame !== null;
+  const showEnd = !shelf && hasSummary && frame?.ended && endOpen;
+  const [loadPage, setLoadPage] = useState(false);
+  const interstitial = !shelf && !frame?.ended && (playback.pause?.kind === 'start' || loadPage);
+  const held =
+    shelf || menu || info || Boolean(feedback) || Boolean(inspect) || Boolean(showEnd) || other || loadPage;
+  useLabScreen(gameLabs.well, shelf ? 'title' : showEnd ? 'ending' : 'play');
+  useWakeLock(Boolean(frame) && !held && !playback.paused && !frame?.ended);
   useEffect(() => {
-    if (starting || toastShown.current || !hasFrame) return undefined;
-    toastShown.current = true;
-    writeOnboarded();
-    setToast(true);
-    const t = window.setTimeout(() => setToast(false), TOAST_MS);
+    actions.setMenuOpen(held);
+  }, [held, actions]);
+  useEffect(() => {
+    actions.setContext?.({
+      person: sheet === 'person' ? person : null,
+      reading: pending !== null || sheet === 'suggestion',
+      info,
+    });
+  }, [actions, person, sheet, pending, info]);
+  useEffect(() => {
+    if (!inspect) {
+      actions.clearWhy();
+      return;
+    }
+    actions.requestWhy(inspect);
+    const t = window.setInterval(() => actions.requestWhy(inspect), 1000);
+    return () => window.clearInterval(t);
+  }, [inspect, actions]);
+  const momentsLength = frame?.moments.length ?? 0;
+  const latestMoment = frame?.moments.at(-1);
+  useEffect(() => {
+    const count = momentsLength;
+    if (count < momentCount.current) momentCount.current = 0;
+    if (count === momentCount.current) return;
+    momentCount.current = count;
+    setMoment(latestMoment ?? null);
+  }, [momentsLength, latestMoment]);
+  useEffect(() => {
+    if (!moment) return;
+    const t = window.setTimeout(() => setMoment(null), 4500);
     return () => window.clearTimeout(t);
-  }, [starting, hasFrame]);
-
-  // Caption each new moment over the Human pane.
-  const moments = frame?.moments;
-  useEffect(() => {
-    if (!moments) return;
-    if (moments.length < momentsSeen.current) momentsSeen.current = 0;
-    if (moments.length === momentsSeen.current) return;
-    momentsSeen.current = moments.length;
-    setMoment(moments[moments.length - 1] ?? null);
-    window.clearTimeout(momentTimer.current);
-    momentTimer.current = window.setTimeout(() => setMoment(null), MOMENT_MS);
-  }, [moments]);
-
-  // A loaded playtest file is a new run: clear what the page held for the old one.
+  }, [moment]);
   const loaded = colony.playtest && 'result' in colony.playtest ? colony.playtest.result : null;
   useEffect(() => {
-    if (!loaded) return;
-    bubbles.reset();
-    setInspect(null);
-    setHoverPlace(null);
-    setComposer(EMPTY_COMPOSER);
-    setWatching(null);
-    setChoosingPlace(false);
-    setScopeExplained(false);
-    setNewsFollow(null);
-    setReturnedFollow(false);
-    setOrdering(false);
-    setPlaceRequest(0);
-    setPersonRequest(0);
-    setPersonOrderOpen(false);
-    setDrawer(false);
+    if (!loaded || loadedRef.current === loaded) return;
+    loadedRef.current = loaded;
+    setShelf(false);
+    setOther(false);
+    setLoadPage(true);
+    saveSequence.current += 1;
+    setSheet('people');
+    setPerson(null);
+    setFollowing(null);
     setEndOpen(true);
-  }, [loaded, bubbles]);
-
-  // Telegraph: the Human prediction for the committed place (or the hovered one while choosing).
-  const previewPlace = composer.placeId ?? hoverPlace;
-  const previewInput = useMemo(
-    () => orderFrom({ ...composer, placeId: previewPlace }),
-    [composer, previewPlace],
-  );
-  // Refresh the forecast as the village changes, even when the selected input stays the same.
-  // biome-ignore lint/correctness/useExhaustiveDependencies: A forecast is time-dependent.
-  useEffect(() => {
-    actions.predict(previewInput);
-  }, [previewInput, actions, frame?.minute]);
-
-  // The job the order would infer, read from the Human side's world (as the sim does).
-  const job = useMemo(() => {
-    if (!frame || !composer.placeId) return null;
-    return inferAction(composer.placeId, {
-      minute: frame.minute,
-      house: { stage: frame.humanWorld.houseStage, shuttered: frame.humanWorld.shuttered },
-      cedarFelled: frame.humanWorld.cedarFelled,
-      storeroom: frame.humanWorld.project.kind === 'storeroom' ? frame.humanWorld.project.stage : null,
-    });
-  }, [frame, composer.placeId]);
-
-  // Inspection reads the live village; only the player or a pending choice controls playback.
-  const inspectPerson = inspect?.personId ?? null;
-  const inspectDecision = inspect?.decisionId;
-  const inspectOpen = inspect !== null;
-  useEffect(() => {
-    if (!inspectPerson) {
-      actions.clearWhy();
-      return undefined;
+    bubbles.reset();
+    setMoment(null);
+    if (continueLoad.current) {
+      continueLoad.current = false;
+      actions.clearPlaytest();
     }
-    actions.requestWhy(inspectPerson, inspectDecision);
-    if (inspectDecision) return undefined;
-    const t = window.setInterval(() => actions.requestWhy(inspectPerson), 1000);
-    return () => window.clearInterval(t);
-  }, [inspectPerson, inspectDecision, actions]);
-
-  const showFlash = useCallback((text: string) => {
-    setFlash(text);
-    window.clearTimeout(flashTimer.current);
-    flashTimer.current = window.setTimeout(() => setFlash(null), 2200);
-  }, []);
-
-  const pickWho = useCallback((id: VillagerId) => {
-    setOrdering(true);
-    setWatching(null);
-    setChoosingPlace(true);
-    setNewsFollow(null);
-    setReturnedFollow(false);
-    // Keep the chosen place while trying another worker; suggestion reasons belong to the old worker.
-    setComposer((c) => (({ nudgeId: _n, reason: _r, ...rest }) => ({ ...rest, personId: id }))(c));
-  }, []);
-
-  const pickWhere = useCallback(
-    (placeId: PlaceId) => {
-      setNewsFollow(null);
-      setReturnedFollow(false);
-      if (watching) setOrdering(true);
-      setComposer((c) =>
-        c.personId ? { ...c, placeId } : watching ? { ...EMPTY_COMPOSER, personId: watching, placeId } : c,
-      );
+  }, [loaded, actions, bubbles]);
+  const saveNow = useCallback(() => {
+    if (!frame || shelf) return;
+    const sequence = ++saveSequence.current;
+    void actions
+      .getRun()
+      .then((run) => {
+        if (saveSequence.current !== sequence) return;
+        try {
+          localStorage.setItem('colony.run', JSON.stringify(run));
+          setSave(run);
+        } catch {
+          setFlash('This device could not save the run. Keep a copy in Send word.');
+        }
+      })
+      .catch(() => {
+        if (saveSequence.current === sequence) setFlash('The run could not be saved.');
+      });
+  }, [actions, frame, shelf]);
+  const saveRef = useRef(saveNow);
+  saveRef.current = saveNow;
+  useEffect(() => {
+    if (shelf) return;
+    const t = window.setInterval(() => saveRef.current(), 60000);
+    const hide = () => {
+      if (document.hidden) saveRef.current();
+    };
+    document.addEventListener('visibilitychange', hide);
+    return () => {
+      window.clearInterval(t);
+      document.removeEventListener('visibilitychange', hide);
+    };
+  }, [shelf]);
+  const notice =
+    colony.error ?? (colony.playtest && 'error' in colony.playtest ? colony.playtest.error : null);
+  const loadedNotice = loaded
+    ? `Playtest ${loaded.matches ? 'matches' : 'does not match'} · ${dayClock(loaded.minute)}`
+    : null;
+  const resetHow = () => {
+    setRush(false);
+    setInsist(false);
+    setAppeal(null);
+    setAppealOpen(false);
+    setPending(null);
+    setNudgeId(undefined);
+    setOutline(null);
+  };
+  const pick = (id: VillagerId) => {
+    setPerson(id);
+    setFollowing(id);
+    setSheet('person');
+    resetHow();
+    setAsked(null);
+    setFollowKey((k) => k + 1);
+  };
+  const backPeople = () => {
+    setSheet('people');
+    setPerson(null);
+    resetHow();
+  };
+  const send = useCallback(
+    (input: OrderInput, id?: string) => {
+      actions.order(input, id);
+      setPerson(input.personId);
+      setFollowing(input.personId);
+      setSheet('person');
+      setAsked(input.placeId);
+      setRush(false);
+      setInsist(false);
+      setAppeal(null);
+      setAppealOpen(false);
+      setPending(null);
+      setOutline(null);
+      setNudgeId(undefined);
+      setHover(null);
+      setFollowKey((k) => k + 1);
+      setFlash(`Order given to both villages: ${shortName(input.personId)} → ${PLACE_LABEL[input.placeId]}`);
+      window.clearTimeout(flashTimer.current);
+      flashTimer.current = window.setTimeout(() => setFlash(''), 2200);
+      saveRef.current();
     },
-    [watching],
+    [actions],
   );
-
-  const live = useRef({ composer, ordering });
-  live.current = { composer, ordering };
-  const sendOrder = useCallback(
-    (input: OrderInput, nudgeId?: string) => {
-      actions.order(input, nudgeId);
-      showFlash(`Order given to both villages: ${shortName(input.personId)} → ${PLACE_LABEL[input.placeId]}`);
-      setScopeExplained(true);
-      setChoosingPlace(false);
-      setNewsFollow(null);
-      setReturnedFollow(false);
-      setWatching(input.personId);
-      setFollowKey((key) => key + 1);
-      setOrdering(false);
-      setComposer({ ...EMPTY_COMPOSER, personId: input.personId });
-      setHoverPlace(null);
-      document.querySelector<HTMLDetailsElement>('.order-options')?.removeAttribute('open');
-    },
-    [actions, showFlash],
-  );
-  const confirm = useCallback(() => {
-    const c = live.current.composer;
-    const input = orderFrom(c);
-    if (input) sendOrder(input, c.nudgeId);
-  }, [sendOrder]);
-  const selectScenePerson = useCallback(
-    (id: VillagerId) => {
-      pickWho(id);
-      setOrdering(false);
-      setComposer({ ...EMPTY_COMPOSER, personId: id });
-      setFollowKey((key) => key + 1);
-      setPersonRequest((key) => key + 1);
-      setPersonOrderOpen(true);
-      if (latestPersonOrder(frame?.cards ?? [], id)) {
-        setChoosingPlace(false);
-        setWatching(id);
-      }
-    },
-    [pickWho, frame?.cards],
-  );
-  const scenePerson = newsFollow?.personId ?? composer.personId ?? watching;
-  const sendScenePlace = useCallback(
-    (placeId: PlaceId) => {
-      if (!scenePerson) return;
-      if (placeId === 'cedar' && frame && inferredJob(frame, placeId) === 'fell-cedar') {
-        setComposer({
-          ...EMPTY_COMPOSER,
-          personId: scenePerson,
+  const inputFor = (placeId: PlaceId): OrderInput | null =>
+    person
+      ? {
+          personId: person,
           placeId,
-          reason: 'The cedar can injure whoever fells it.',
-        });
-        setNewsFollow(null);
-        setOrdering(true);
-      } else sendOrder({ personId: scenePerson, placeId });
-    },
-    [scenePerson, sendOrder, frame],
-  );
-  const sceneInputs = useMemo<OrderInput[]>(
+          ...(rush ? { rush: true } : {}),
+          ...(insist ? { insist: true } : {}),
+          ...(appeal ? { appeal } : {}),
+        }
+      : null;
+  const choosePlace = (place: PlaceId) => {
+    if (!person || !frame || shelf) return;
+    const input = inputFor(place);
+    if (!input) return;
+    if (riskyPlace(frame, place)) {
+      setPending(place);
+      setAppealOpen(false);
+    } else send(input, nudgeId);
+  };
+  const confirm = () => {
+    if (pending) {
+      const input = inputFor(pending);
+      if (input) send(input, nudgeId);
+    }
+  };
+  const scenePlace = (place: PlaceId) => {
+    if (!person && following) {
+      setPerson(following);
+      setSheet('person');
+      return;
+    }
+    choosePlace(place);
+  };
+  const sceneInputs = useMemo(
     () =>
-      scenePerson
-        ? (
-            [
-              'site',
-              'forest',
-              'cedar',
-              'field',
-              'well',
-              'kitchen',
-              'masjid',
-              villagerById(scenePerson)?.home ?? 'home-yusuf',
-            ] as PlaceId[]
-          ).map((placeId) => ({ personId: scenePerson, placeId }))
+      person
+        ? placesFor(person).map((placeId) => ({
+            personId: person,
+            placeId,
+            ...(rush ? { rush: true } : {}),
+            ...(insist ? { insist: true } : {}),
+            ...(appeal ? { appeal } : {}),
+          }))
         : [],
-    [scenePerson],
+    [person, rush, insist, appeal],
   );
-  // Forecasts use the existing read-only worker prediction path; orders retain their exact inputs.
-  // biome-ignore lint/correctness/useExhaustiveDependencies: Refresh when simulation time changes.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Forecasts depend on the changing world.
   useEffect(() => {
     actions.predictPlaces?.(sceneInputs);
   }, [actions, sceneInputs, frame?.minute]);
-  const scenePlaces = sceneInputs.map((input) => {
-    const person = frame?.human.find((p) => p.id === input.personId);
-    const action = frame ? inferredJob(frame, input.placeId) : null;
-    const predicted = colony.scenePredictions?.[input.placeId];
-    const matching = predicted?.input.personId === input.personId;
-    return {
-      placeId: input.placeId,
-      label: PLACE_LABEL[input.placeId],
-      answer:
-        input.placeId === 'cedar' && action === 'fell-cedar'
-          ? 'Risk of injury · Review order'
-          : action && person?.action === action && person.state === 'working'
-            ? sameJobCopy(action, input.personId)
-            : matching
-              ? predicted.prediction.text
-              : 'Checking answer…',
-    };
-  });
-
-  const applyNudge = (n: Nudge) => {
-    const prepared = {
-      ...EMPTY_COMPOSER,
-      personId: n.order.personId,
-      placeId: n.order.placeId,
-      rush: Boolean(n.prefill?.rush ?? n.order.rush),
-      insist: Boolean(n.prefill?.insist ?? n.order.insist),
-      appeal: n.order.appeal ?? null,
-    };
-    if (!suggestionNeedsReview(n, frame)) {
-      const input = orderFrom(prepared);
-      if (input) sendOrder(input, n.id);
-      document.querySelector<HTMLDetailsElement>('.nudge-slot')?.removeAttribute('open');
-      return;
-    }
-    setOrdering(true);
-    setWatching(null);
-    setChoosingPlace(true);
-    setNewsFollow(null);
-    setReturnedFollow(false);
-    setComposer({
-      ...EMPTY_COMPOSER,
-      personId: n.order.personId,
-      placeId: n.order.placeId,
-      rush: Boolean(n.prefill?.rush ?? n.order.rush),
-      insist: Boolean(n.prefill?.insist ?? n.order.insist),
-      appeal: n.order.appeal ?? null,
-      nudgeId: n.id,
-      ...(n.reason ? { reason: n.reason } : {}),
-    });
-    // The phone suggestion sheet closes after preparation so it cannot cover Confirm.
-    document.querySelector<HTMLDetailsElement>('.nudge-slot')?.removeAttribute('open');
-    // Only Confirm is left: move focus there so Enter confirms (focus would otherwise stay on Use).
-    window.setTimeout(() => document.querySelector<HTMLButtonElement>('.composer .btn-confirm')?.focus(), 0);
-  };
-
-  const skipNudge = (id: string) => {
-    actions.dismissNudge(id);
-    setComposer((c) => (c.nudgeId === id ? EMPTY_COMPOSER : c));
-  };
-
-  // A suggestion that lapsed or was dismissed elsewhere no longer drives the composer's reason.
-  const visibleNudgeIds = (frame?.nudges ?? []).map((n) => n.id).join(',');
+  const nudge = frame?.nudges[0];
+  const nudgeInput = useMemo(() => (nudge ? suggestionInput(nudge) : null), [nudge]);
+  // biome-ignore lint/correctness/useExhaustiveDependencies: Forecasts depend on the changing world.
   useEffect(() => {
-    setComposer((c) =>
-      c.nudgeId && !visibleNudgeIds.split(',').includes(c.nudgeId)
-        ? (({ nudgeId: _n, reason: _r, ...rest }) => rest)(c)
-        : c,
-    );
-  }, [visibleNudgeIds]);
-
-  const inspectPersonCb = useCallback((id: VillagerId) => {
-    document.querySelectorAll('.composer details[open], .nudge-slot[open]').forEach((el) => {
-      el.removeAttribute('open');
-    });
-    setInspect({ personId: id });
-  }, []);
-  const closeInspect = useCallback(() => setInspect(null), []);
-
-  const closeEnd = useCallback(() => {
-    setEndOpen(false);
-    window.setTimeout(() => resultsButton.current?.focus(), 0);
-  }, []);
-
-  // Keys: Space on the page toggles pause; focused controls keep native activation. Enter confirms a ready order. Esc closes the end screen or clears the composer
-  // (the inspector's <dialog> handles its own Esc).
-  const keys = useRef({ paused: playback.paused, inspect: inspectOpen, end: false });
-  keys.current = { paused: playback.paused, inspect: inspectOpen, end: hasSummary && endOpen };
-  useEffect(() => {
-    const onDown = (e: KeyboardEvent) => {
-      if (isEditable(e.target) || (e.target instanceof Element && e.target.closest('.game-help'))) return;
-      if (e.key === ' ' || e.code === 'Space') {
-        e.preventDefault();
-        e.stopPropagation();
-        if (!e.repeat) actions.setPaused(!keys.current.paused);
-        return;
-      }
-      if (keys.current.inspect) return;
-      if (e.key === 'Escape') {
-        if (window.matchMedia('(max-width: 899px)').matches && stageRoot.current?.dataset.sheet !== 'closed')
-          return;
-        if (keys.current.end) closeEnd();
-        else setComposer(EMPTY_COMPOSER);
-        return;
-      }
-      // Enter confirms only from the page. Focused controls keep their native activation.
-      const t = e.target;
-      const fromPage = t === document.body;
-      if (
-        e.key === 'Enter' &&
-        fromPage &&
-        live.current.ordering &&
-        !keys.current.end &&
-        orderFrom(live.current.composer)
-      ) {
-        e.preventDefault();
-        e.stopPropagation();
-        confirm();
-      }
-    };
-    const onUp = (e: KeyboardEvent) => {
-      if (isEditable(e.target) || (e.target instanceof Element && e.target.closest('.game-help'))) return;
-      if (e.key === ' ' || e.code === 'Space') {
-        e.preventDefault();
-        e.stopPropagation();
-      }
-    };
-    window.addEventListener('keydown', onDown, true);
-    window.addEventListener('keyup', onUp, true);
-    return () => {
-      window.removeEventListener('keydown', onDown, true);
-      window.removeEventListener('keyup', onUp, true);
-    };
-  }, [actions, confirm, closeEnd]);
-
-  const restart = () => {
-    bubbles.reset();
-    momentsSeen.current = 0;
-    setMoment(null);
-    setInspect(null);
-    setHoverPlace(null);
-    setComposer(EMPTY_COMPOSER);
-    setWatching(null);
-    setChoosingPlace(false);
-    setScopeExplained(false);
-    setNewsFollow(null);
-    setReturnedFollow(false);
-    setOrdering(false);
-    setPlaceRequest(0);
-    setPersonRequest(0);
-    setPersonOrderOpen(false);
-    setDrawer(false);
-    setEndOpen(true);
-    actions.restart();
-  };
-
-  const continueDay = () => {
-    actions.continueDay();
-    setEndOpen(true);
-  };
-
-  const nudges = frame?.nudges ?? [];
-  const nudge = nudges[0];
-  const suggestedInput = useMemo(() => (nudge ? suggestionInput(nudge) : null), [nudge]);
-  // biome-ignore lint/correctness/useExhaustiveDependencies: A forecast is time-dependent.
-  useEffect(() => {
-    actions.predictSuggestion?.(suggestedInput);
-  }, [suggestedInput, actions, frame?.minute]);
-  const suggestionPrediction =
+    actions.predictSuggestion?.(nudgeInput);
+  }, [actions, nudgeInput, frame?.minute]);
+  const suggestionForecast =
     colony.suggestionPrediction &&
-    suggestedInput &&
-    JSON.stringify(colony.suggestionPrediction.input) === JSON.stringify(suggestedInput)
+    JSON.stringify(colony.suggestionPrediction.input) === JSON.stringify(nudgeInput)
       ? colony.suggestionPrediction.prediction
       : null;
-  const cards = frame?.cards ?? [];
-  const selectedOrder = latestPersonOrder(cards, scenePerson);
-  const askAgain = (card: OrderCard) => sendOrder(repeatPersonOrder(card));
-  const insistOrder = (card: OrderCard) => sendOrder({ ...repeatPersonOrder(card), insist: true });
-  const orderCount = cards.filter((c) => c.status !== 'cancelled').length;
-  const highlightPlace = !newsFollow && (choosingPlace || ordering) ? (hoverPlace ?? composer.placeId) : null;
-  // The end screen is open for the latest report until closed; "Another day" closes it by clearing `ended`.
-  const showEnd = hasSummary && endOpen && Boolean(frame?.ended);
-  // Keep the screen awake only while the clock runs.
-  useWakeLock(frame !== null && !playback.paused && !frame.ended);
-
-  const showNewsPerson = (news: HurtNews) => {
-    setNewsFollow((previous) => ({
-      personId: news.personId,
-      side: news.side,
-      returnSide: previous?.returnSide ?? mapSide,
-    }));
+  const choice = nudge ? suggestionChoice(nudge, frame, frame?.cards, suggestionForecast) : null;
+  const review = nudge ? suggestionNeedsReview(choice?.nudge ?? nudge, frame) : false;
+  const applyNudge = () => {
+    if (!nudge) return;
+    const actual = choice?.nudge ?? nudge;
+    const input = suggestionInput(actual);
+    if (!review) {
+      send(input, nudge.id);
+      return;
+    }
+    pick(input.personId);
+    setRush(Boolean(input.rush));
+    setInsist(Boolean(input.insist));
+    setAppeal(input.appeal ?? null);
+    setOutline(input.placeId);
+    setNudgeId(nudge.id);
+  };
+  const skipNudge = () => {
+    if (nudge) {
+      actions.dismissNudge(nudge.id);
+      if (sheet === 'suggestion') setSheet(person ? 'person' : 'people');
+      saveRef.current();
+    }
+  };
+  const showNews = (news: HurtNews) => {
+    setNewsReturn({ id: person ?? following, side: mapSide });
+    pick(news.personId);
     setMapSide(news.side);
-    setReturnedFollow(false);
-    setFollowKey((key) => key + 1);
+    setOutline(villagerById(news.personId)?.home ?? 'home-yusuf');
   };
-  const returnFromNews = () => {
-    if (!newsFollow) return;
-    setMapSide(newsFollow.returnSide);
-    setNewsFollow(null);
-    setReturnedFollow(true);
-    setFollowKey((key) => key + 1);
+  const restart = (village?: Village) => {
+    saveSequence.current += 1;
+    actions.restart(village ?? frame?.village);
+    setShelf(true);
+    setLoadPage(false);
+    setNewConfirm(false);
+    setEndOpen(true);
+    setSheet('people');
+    setPerson(null);
+    setFollowing(null);
+    resetHow();
+    bubbles.reset();
+    momentCount.current = 0;
+    setMoment(null);
+    try {
+      localStorage.removeItem('colony.run');
+    } catch {}
+    setSave(null);
   };
-  const returnWorker = composer.personId ?? watching;
-  const watchVillage = () => {
-    setChoosingPlace(false);
-    setOrdering(false);
-    setHoverPlace(null);
-    setWatching(composer.personId ?? watching);
-    setFollowKey((key) => key + 1);
+  const begin = () => {
+    setShelf(false);
+    actions.setPaused(false);
   };
-
-  const paneProps = {
-    store: colony.store,
-    selectedId: newsFollow?.personId ?? composer.personId ?? watching,
-    hoverPlace: highlightPlace,
-    destination: newsFollow || !ordering ? null : composer.placeId,
-    following: newsFollow !== null || returnedFollow || (!ordering && watching !== null),
-    frameSelection: true,
-    sceneHeight,
-    followKey,
-    holdKey,
-    onSelect: selectScenePerson,
-    onPlace: sendScenePlace,
-    scenePlaces: choosingPlace && !ordering && !newsFollow ? scenePlaces : [],
-    onMorePlaces: () => {
-      if (!scenePerson) return;
-      setComposer({ ...EMPTY_COMPOSER, personId: scenePerson });
-      setOrdering(true);
-      setPlaceRequest((key) => key + 1);
-      window.setTimeout(
-        () => document.querySelector<HTMLDetailsElement>('.destination-picker')?.setAttribute('open', ''),
-        0,
-      );
-    },
-    onHoverPlace: setHoverPlace,
+  const live = useRef({
+    menu,
+    info,
+    feedback,
+    other,
+    sheet,
+    inspect,
+    showEnd,
+    pending,
+    held,
+    confirm,
+    backPeople,
+  });
+  live.current = { menu, info, feedback, other, sheet, inspect, showEnd, pending, held, confirm, backPeople };
+  useEffect(() => {
+    const key = (e: KeyboardEvent) => {
+      const x = live.current;
+      if (e.key === 'Escape') {
+        if (x.inspect) setInspect(null);
+        else if (x.info) setInfo(false);
+        else if (x.feedback) setFeedback(null);
+        else if (x.menu) setMenu(false);
+        else if (x.other) setOther(false);
+        else if (x.pending) setPending(null);
+        else if (x.showEnd) setEndOpen(false);
+        else x.backPeople();
+        return;
+      }
+      if ((e.target as HTMLElement)?.closest('button,input,textarea,select,summary,[contenteditable]'))
+        return;
+      if (e.code === 'Space' && !x.held) {
+        e.preventDefault();
+        if (!e.repeat) actions.setPaused(!colony.playback.paused);
+      }
+      if (e.key === 'Enter' && x.pending && !x.held) {
+        e.preventDefault();
+        x.confirm();
+      }
+    };
+    window.addEventListener('keydown', key);
+    return () => window.removeEventListener('keydown', key);
+  }, [actions, colony.playback.paused]);
+  const newest =
+    latestPersonOrder(frame?.cards ?? [], person) ??
+    frame?.cards.findLast((c) => c.human.state !== 'pending');
+  const pace = frame?.ended
+    ? 'the run is over'
+    : menu
+      ? 'held: the menu is open'
+      : info
+        ? 'held: you are reading'
+        : inspect
+          ? `held: you are reading ${shortName(inspect)}`
+          : (playback.paceLine ?? '');
+  const message =
+    notice ??
+    loadedNotice ??
+    (newest && newest.human.state !== 'pending'
+      ? `${shortName(newest.order.personId)} → ${PLACE_LABEL[newest.order.placeId]} · ${CHIP_TEXT[newest.human.state]} · “${newest.human.says ?? newest.human.label ?? ''}”`
+      : flash ||
+        (frame?.cards.length
+          ? 'Nothing waits for you. The villages work on their own.'
+          : 'Each order goes to both villages. Tap a person to begin.'));
+  const title = frame
+    ? `${dayClock(frame.minute)} · ${statusLine(frame).replace(/^Day \d+ of \d+ · /, '')}`
+    : 'D1 05:00';
+  const openMenu = () => {
+    saveNow();
+    setInfo(false);
+    setFeedback(null);
+    setMenu(true);
   };
-
-  return (
-    <div
-      className={`colony ${choosingPlace ? 'is-choosing' : ''} ${ordering ? 'is-ordering' : 'is-watching'}`}
-    >
-      <TopBar
-        frame={frame}
-        playback={playback}
-        onPause={actions.setPaused}
-        onSpeed={actions.setSpeed}
-        onAutoPause={actions.setAutoPause}
-        {...(hasSummary && !showEnd && frame?.ended
-          ? { onResults: () => setEndOpen(true), resultsRef: resultsButton }
-          : {})}
-        playtest={
-          <PlaytestMenu
-            onOpenChange={actions.setMenuOpen}
-            className="topbar-playtest pt-compact"
-            onExport={actions.exportPlaytest}
-            onLoad={actions.loadPlaytest}
-            onError={actions.playtestError}
-            extra={
-              <>
-                <LabMenuContent lab={gameLabs.well} onSend={actions.sendPlaytest} />
-                <FullscreenButton variant="item" />
-              </>
-            }
+  const scene = (
+    <div className={`well-map-pair show-${mapSide}`}>
+      <fieldset className="well-map-toggle">
+        <legend className="visually-hidden">Map shown</legend>
+        {(['classic', 'human'] as const).map((side) => (
+          <button key={side} type="button" aria-pressed={mapSide === side} onClick={() => setMapSide(side)}>
+            {side === 'classic' ? 'Classic' : 'Human'}
+          </button>
+        ))}
+      </fieldset>
+      {(['classic', 'human'] as const).map((side) => (
+        <section
+          className={`well-map well-map-${side}`}
+          key={side}
+          aria-label={`${side === 'classic' ? 'Classic' : 'Human'} village`}
+        >
+          <header>
+            <strong>{side === 'classic' ? 'Classic' : 'Human'}</strong>
+            <PaneStats frame={frame} side={side} />
+          </header>
+          <Pane
+            side={side}
+            store={colony.store}
+            selectedId={person ?? following}
+            hoverPlace={hover ?? outline}
+            destination={pending}
+            following={Boolean(following)}
+            frameSelection={true}
+            followKey={followKey}
+            onSelect={pick}
+            onPlace={scenePlace}
+            onHoverPlace={setHover}
+            {...(side === 'human' ? { bubbles } : {})}
           />
-        }
-      />
-      <p className="well-desktop-village village-setting">
-        {VILLAGE_WORDS[frame?.village ?? 'default'].season}
-      </p>
-      <GoalStrip goals={frame?.goals ?? []} />
-
-      <main
-        ref={stageRoot}
-        className={`stage lk-stage show-${mapSide}`}
-        data-sheet={phoneSheetHeight}
-        data-inspecting={inspectOpen}
-      >
-        <VillageStrip frame={frame} side={mapSide} />
-        <div className="well-scenes lk-scene">
-          <div className="well-phone-status" role="status">
-            {!scopeExplained && <p className="well-first-order">Each order goes to both villages.</p>}
-            {flash && <p>{flash}</p>}
-            {scenePerson &&
-              (selectedOrder ? (
-                <button
-                  type="button"
-                  className="well-selected-person"
-                  aria-label={`Open ${shortName(scenePerson)}’s latest order: ${personOrderStatus(selectedOrder, mapSide)}`}
-                  onClick={() => selectScenePerson(scenePerson)}
-                >
-                  {shortName(scenePerson)} · {personOrderStatus(selectedOrder, mapSide, true)} · Latest order
-                </button>
-              ) : (
-                <p className="well-selected-person">
-                  {shortName(scenePerson)} ·{' '}
-                  {(mapSide === 'human' ? frame?.human : frame?.classic)?.find((p) => p.id === scenePerson)
-                    ?.label ?? 'waiting'}
-                </p>
-              ))}
-            <HurtLine
-              news={frame?.news.slice(-1) ?? []}
-              shownSide={mapSide}
-              onShow={showNewsPerson}
-              onRest={(news) =>
-                sendOrder({
-                  personId: news.personId,
-                  placeId: villagerById(news.personId)?.home ?? 'home-yusuf',
-                })
-              }
-            />
-          </div>
-          <fieldset className="map-toggle">
-            <legend className="visually-hidden">Map shown</legend>
-            <button type="button" aria-pressed={mapSide === 'classic'} onClick={() => setMapSide('classic')}>
-              Classic · obey
-            </button>
-            <button type="button" aria-pressed={mapSide === 'human'} onClick={() => setMapSide('human')}>
-              Human · decide
-            </button>
-          </fieldset>
-          <section className="pane pane-classic" aria-label="Classic village">
-            <header className="pane-head">
-              <h2>
-                Classic <span>they obey</span>
-              </h2>
-              <PaneStats frame={frame} side="classic" />
-            </header>
-            <PaneBody
-              rows={
-                <PeopleRows
-                  frame={frame}
-                  side="classic"
-                  selectedId={composer.personId}
-                  onSelect={selectScenePerson}
-                />
-              }
+        </section>
+      ))}
+      {!shelf && (
+        <div className="well-scene-alert">
+          {newsReturn ? (
+            <button
+              type="button"
+              onClick={() => {
+                const r = newsReturn;
+                setMapSide(r.side);
+                if (r.id) pick(r.id);
+                else backPeople();
+                setNewsReturn(null);
+              }}
             >
-              <Pane
-                side="classic"
-                {...paneProps}
-                scenePlaces={paneProps.scenePlaces.map((place) => ({
-                  ...place,
-                  answer: `Human: ${place.answer}`,
-                }))}
-              />
-            </PaneBody>
-          </section>
-
-          <aside className="center">
-            {newsFollow && (
-              <div className="news-follow" role="status">
-                <span>
-                  Watching {shortName(newsFollow.personId)} ·{' '}
-                  {newsFollow.side === 'human' ? 'Human' : 'Classic'}
-                </span>
-                <button type="button" className="news-return" onClick={returnFromNews}>
-                  {returnWorker ? `Back to ${shortName(returnWorker)}` : 'Back to village'}
+              Showing {shortName(person ?? following ?? 'idris')} ·{' '}
+              {mapSide === 'human' ? 'Human' : 'Classic'} ← Back
+            </button>
+          ) : moment && moment.minute >= (frame?.news.at(-1)?.minute ?? -1) ? (
+            <p>
+              Moment {moment.id} · {moment.line}
+            </p>
+          ) : frame?.news.at(-1) ? (
+            <button
+              type="button"
+              onClick={() => {
+                const n = frame.news.at(-1);
+                if (n) showNews(n);
+              }}
+            >
+              Hurt · {shortName(frame.news.at(-1)?.personId ?? 'idris')} (
+              {frame.news.at(-1)?.side === 'human' ? 'Human' : 'Classic'}) · Show
+            </button>
+          ) : null}
+        </div>
+      )}
+      {shelf && <h1 className="well-title-overlay">Twice at the Well</h1>}
+    </div>
+  );
+  return (
+    <div className={`colony well-layout ${shelf ? 'well-on-shelf' : ''} ${showEnd ? 'well-on-end' : ''}`}>
+      <header className="well-topbar">
+        <div className="well-time">
+          {shelf ? (
+            <a href="/games/">All games</a>
+          ) : (
+            <>
+              <span className="well-desktop-name">Twice at the Well · </span>
+              {title}
+            </>
+          )}
+        </div>
+        {!shelf && (
+          <>
+            <Timeline frame={frame} />
+            <div className="well-desktop-state">
+              <StateStrip frame={frame} pace={pace} onOpen={() => setSheet('stand')} />
+            </div>
+          </>
+        )}
+        <button
+          type="button"
+          className="well-info-trigger"
+          aria-label="Information"
+          aria-expanded={info}
+          onClick={() => {
+            setInfo((v) => !v);
+            setMenu(false);
+          }}
+        >
+          i
+        </button>
+        <button
+          type="button"
+          aria-label="Game menu"
+          aria-expanded={menu}
+          onClick={() => (menu ? setMenu(false) : openMenu())}
+        >
+          ≡
+        </button>
+      </header>
+      {!shelf && !showEnd && !feedback && (
+        <div className="well-phone-state">
+          <StateStrip frame={frame} pace={pace} onOpen={() => setSheet('stand')} />
+        </div>
+      )}
+      <main className={`well-main ${shelf ? 'well-shelf-main' : ''}`}>
+        {scene}
+        <aside className="well-column">
+          {shelf ? (
+            <>
+              <div className="well-shelf-body">
+                <h2 className="well-desktop-title">Twice at the Well</h2>
+                <p>Two villages hear every order you give. One obeys. One decides.</p>
+                <p>Roof the house and store 12 meals before the storm; keep all six alive.</p>
+                <fieldset className="well-village-choice" disabled={Boolean(save)}>
+                  <legend>Words by the well</legend>
+                  {(['default', 'early-warning'] as const).map((v) => (
+                    <label key={v}>
+                      <input
+                        type="radio"
+                        name="village"
+                        checked={
+                          (save
+                            ? save.log.some(
+                                (entry) =>
+                                  typeof entry === 'object' &&
+                                  entry !== null &&
+                                  'kind' in entry &&
+                                  entry.kind === 'village' &&
+                                  'village' in entry &&
+                                  entry.village === 'early-warning',
+                              )
+                              ? 'early-warning'
+                              : 'default'
+                            : (frame?.village ?? 'default')) === v
+                        }
+                        onChange={() => actions.restart(v)}
+                      />
+                      <span>
+                        {VILLAGE_WORDS[v].choice}
+                        <small>{VILLAGE_WORDS[v].reply}</small>
+                      </span>
+                    </label>
+                  ))}
+                </fieldset>
+                {save && <p>Choose again with A new run.</p>}
+                <button type="button" className="well-other" onClick={() => setOther(true)}>
+                  Other ways in ›
                 </button>
+                {newConfirm && (
+                  <div className="well-new-confirm">
+                    <p>The run in progress is replaced.</p>
+                    <button type="button" onClick={() => restart()}>
+                      Yes, start over
+                    </button>
+                    <button type="button" onClick={() => setNewConfirm(false)}>
+                      No
+                    </button>
+                  </div>
+                )}
               </div>
-            )}
-            {!newsFollow && watching && !ordering && (
-              <p className="watching-worker" role="status">
-                Watching {shortName(watching)} ·{' '}
-                {(mapSide === 'human' ? frame?.human : frame?.classic)?.find((p) => p.id === watching)
-                  ?.label ?? 'waiting'}
-              </p>
-            )}
-            <div className="order-alerts">
-              {playback.pause && (
-                <PauseRibbon
-                  pause={playback.pause}
-                  paused={playback.paused}
-                  onResume={() => actions.setPaused(false)}
-                />
-              )}
-              {moment && <MomentBanner moment={moment} />}
-              <HurtLine
-                news={frame?.news.slice(-1) ?? []}
-                onShow={showNewsPerson}
-                onRest={(news) =>
-                  sendOrder({
-                    personId: news.personId,
-                    placeId: villagerById(news.personId)?.home ?? 'home-yusuf',
-                  })
-                }
-              />
-            </div>
-            {personOrderOpen && selectedOrder && (
-              <PersonOrder
-                card={selectedOrder}
-                person={frame?.human.find((person) => person.id === selectedOrder.order.personId)}
-                onAgain={askAgain}
-                onCancel={actions.cancel}
-                onInsist={insistOrder}
-              />
-            )}
-            <div className="composer-tray">
-              <p className="order-scope">Each order goes to both villages.</p>
-              <Composer
-                state={composer}
-                frame={frame}
-                job={job}
-                prediction={
-                  colony.prediction &&
-                  previewInput &&
-                  JSON.stringify(colony.prediction.input) === JSON.stringify(previewInput)
-                    ? colony.prediction.prediction
-                    : null
-                }
-                onChange={setComposer}
-                onWho={pickWho}
-                onWhere={pickWhere}
-                onHover={setHoverPlace}
-                onConfirm={confirm}
-                onInspect={inspectPersonCb}
-                onWatch={watchVillage}
-                onCompose={() => {
-                  setNewsFollow(null);
-                  setReturnedFollow(false);
-                  setOrdering(true);
-                  setHoldKey((key) => key + 1);
-                }}
-              />
-            </div>
-            <section className={`queue ${drawer ? 'is-open' : ''}`} aria-label="Order log">
-              <div className="queue-head">
-                <h2 className="col-head">History</h2>
+              <footer className="well-actions">
+                {save && (
+                  <button type="button" onClick={() => setNewConfirm(true)}>
+                    A new run
+                  </button>
+                )}
                 <button
                   type="button"
-                  className="icon-x queue-close"
-                  aria-label="Close orders"
-                  onClick={() => setDrawer(false)}
+                  className="well-primary"
+                  onClick={() => {
+                    if (save) {
+                      continueLoad.current = true;
+                      actions.loadPlaytest(JSON.stringify(save));
+                    } else begin();
+                  }}
                 >
-                  ×
+                  {save ? `Continue · ${dayClock(save.minute)}` : 'Begin the first morning'}
                 </button>
+              </footer>
+            </>
+          ) : interstitial ? (
+            <>
+              <div className="well-reading well-interstitial">
+                <h1>{loadPage ? 'Loaded run' : frame?.day.total === 3 ? 'Day 3' : 'The first morning'}</h1>
+                <p>{playback.pause?.text}</p>
+                <p>
+                  {loadPage
+                    ? loadedNotice
+                    : frame?.day.total === 3
+                      ? 'Finish the store-room and keep everyone alive.'
+                      : 'Roof the house, store meals and keep all six alive.'}
+                </p>
+                <p>Each pair of bars compares Classic above Human. The tick is the target.</p>
               </div>
-              <div className="queue-scroll">
-                <OrderLog cards={cards} onCancel={actions.cancel} />
+              <footer className="well-actions">
+                <button
+                  type="button"
+                  className="well-primary"
+                  onClick={() => {
+                    setLoadPage(false);
+                    actions.setPaused(false);
+                  }}
+                >
+                  {loadPage
+                    ? 'Play on from here'
+                    : frame?.day.total === 3
+                      ? 'Begin Day 3'
+                      : 'Begin the first morning'}
+                </button>
+              </footer>
+            </>
+          ) : (
+            <>
+              <div className="well-caption" role="status">
+                {frame?.ended ? (
+                  <button type="button" className="well-primary" onClick={() => setEndOpen(true)}>
+                    See the report
+                  </button>
+                ) : nudge ? (
+                  <>
+                    <RingTimer
+                      left={Math.max(0, nudge.until - (frame?.minute ?? 0))}
+                      span={nudge.until - nudge.minute}
+                    />
+                    <button
+                      type="button"
+                      className="well-caption-text"
+                      onClick={() => setSheet('suggestion')}
+                    >
+                      <strong>
+                        Suggestion · {shortName(nudge.order.personId)} → {PLACE_LABEL[nudge.order.placeId]}
+                      </strong>
+                      <small>{nudge.reason ?? nudge.text}</small>
+                    </button>
+                    <button type="button" className="well-nudge-send" onClick={applyNudge}>
+                      {choice?.refusal ? 'Insist' : review ? 'Review' : 'Send'}
+                    </button>
+                    <button type="button" aria-label="Dismiss suggestion" onClick={skipNudge}>
+                      ×
+                    </button>
+                    {(frame?.nudges.length ?? 0) > 1 && (
+                      <span className="well-waiting">+{(frame?.nudges.length ?? 1) - 1}</span>
+                    )}
+                  </>
+                ) : (
+                  <p>{message}</p>
+                )}
               </div>
-            </section>
-            <div className="sheet-tools">
+              <section className="well-sheet" aria-label="Village orders">
+                {frame &&
+                  (sheet === 'people' ? (
+                    <People
+                      frame={frame}
+                      onPick={pick}
+                      onOrders={() => setSheet('orders')}
+                      onStand={() => setSheet('stand')}
+                    />
+                  ) : sheet === 'stand' ? (
+                    <Stand frame={frame} onBack={() => setSheet(person ? 'person' : 'people')} />
+                  ) : sheet === 'orders' ? (
+                    <Orders
+                      frame={frame}
+                      onBack={backPeople}
+                      onShow={showNews}
+                      onCancel={(id) => {
+                        actions.cancel(id);
+                        saveNow();
+                      }}
+                    />
+                  ) : sheet === 'suggestion' ? (
+                    <>
+                      <header className="well-sheet-head">
+                        <button
+                          type="button"
+                          aria-label="Back from suggestion"
+                          onClick={() => setSheet(person ? 'person' : 'people')}
+                        >
+                          ←
+                        </button>
+                        <h2>Suggestion</h2>
+                      </header>
+                      <div className="well-reading">
+                        <p>{nudge?.text ?? 'This suggestion has passed.'}</p>
+                        <p>{nudge?.reason}</p>
+                        {choice?.refusal && <p>{choice.refusal}</p>}
+                        <p>The person can still refuse or wait.</p>
+                        {nudge && (
+                          <>
+                            <button type="button" onClick={applyNudge}>
+                              {choice?.refusal ? 'Insist' : review ? 'Review' : 'Send'}
+                            </button>
+                            <button type="button" onClick={skipNudge}>
+                              ×
+                            </button>
+                          </>
+                        )}
+                      </div>
+                    </>
+                  ) : person ? (
+                    <PersonSheet
+                      frame={frame}
+                      id={person}
+                      rush={rush}
+                      insist={insist}
+                      appeal={appeal}
+                      appealOpen={appealOpen}
+                      pending={pending}
+                      asked={asked}
+                      forecasts={colony.scenePredictions ?? {}}
+                      onBack={backPeople}
+                      onRush={() => setRush((v) => !v)}
+                      onInsist={() => setInsist((v) => !v)}
+                      onAppeal={(a) => {
+                        setAppeal(a);
+                        setAppealOpen(false);
+                      }}
+                      onAppealOpen={() => {
+                        setAppealOpen((v) => !v);
+                        setPending(null);
+                      }}
+                      onAbout={() => setInspect(person)}
+                      onPlace={choosePlace}
+                      onHover={setHover}
+                      onConfirm={confirm}
+                      onCancelRisk={() => setPending(null)}
+                      onCancel={(id) => {
+                        actions.cancel(id);
+                        saveNow();
+                      }}
+                      onRepeat={(card) => send({ ...repeatPersonOrder(card), insist: true })}
+                      outline={outline}
+                    />
+                  ) : null)}
+              </section>
+            </>
+          )}
+        </aside>
+      </main>
+      {other && (
+        <div className="well-overlay">
+          <section className="well-drawer" role="dialog" aria-modal="true" aria-label="Other ways in">
+            <header className="well-sheet-head">
+              <h2>Other ways in</h2>
+              <button type="button" aria-label="Close other ways in" onClick={() => setOther(false)}>
+                ×
+              </button>
+            </header>
+            <div className="well-reading">
+              <label className="well-load">
+                Load a playtest run
+                <input
+                  type="file"
+                  accept=".json,application/json"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file)
+                      void file
+                        .text()
+                        .then(actions.loadPlaytest)
+                        .catch((err) => actions.playtestError(String(err)));
+                  }}
+                />
+              </label>
+              {notice && <p role="alert">{notice}</p>}
+            </div>
+          </section>
+        </div>
+      )}
+      {menu && !feedback && (
+        // biome-ignore lint/a11y/noStaticElementInteractions: backdrop clicks dismiss the modal; Escape is handled globally.
+        <div
+          className="well-overlay"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setMenu(false);
+          }}
+          role="presentation"
+          onKeyDown={() => undefined}
+        >
+          <section className="well-drawer well-menu" role="dialog" aria-modal="true" aria-label="Game menu">
+            <header className="well-sheet-head">
+              <h2>Game menu · {frame ? dayClock(frame.minute) : ''}</h2>
+              <button type="button" aria-label="Close menu" onClick={() => setMenu(false)}>
+                ×
+              </button>
+            </header>
+            <div className="well-menu-body">
+              <p>The village waits while this menu is open.</p>
+              <fieldset className="well-menu-pace">
+                <legend>The village's pace</legend>
+                {(['auto', 0.5, 1, 2] as const).map((s, i) => (
+                  <button
+                    type="button"
+                    key={s}
+                    aria-pressed={
+                      s === 'auto'
+                        ? playback.automatic !== false
+                        : playback.automatic === false && playback.speed === s
+                    }
+                    onClick={() => actions.setPace?.(s)}
+                  >
+                    {['Automatic', 'Slow', 'Steady', 'Fast'][i]}
+                  </button>
+                ))}
+              </fieldset>
+              <button type="button" onClick={() => setFeedback('menu')}>
+                Send word
+              </button>
+              <FullscreenButton variant="item" className="well-phone-fullscreen" />
               <button
                 type="button"
-                className="order-toggle"
-                aria-expanded={ordering}
                 onClick={() => {
-                  if (ordering) watchVillage();
-                  else setOrdering(true);
+                  saveNow();
+                  setShelf(true);
+                  setMenu(false);
                 }}
               >
-                {ordering ? 'Watch village' : 'Order options'}
+                To the title page
               </button>
-              {nudge && frame && (
-                <details
-                  onToggle={(e) => keepOneDisclosure(e.currentTarget)}
-                  className={`nudge-slot ${composer.nudgeId === nudge.id ? 'is-active' : ''}`}
-                  role="status"
-                  aria-live="polite"
-                >
-                  <summary>
-                    Suggestion<span className="nudge-who"> · {shortName(nudge.order.personId)}</span>
-                    <small>
-                      {suggestionChoice(nudge, frame, cards, suggestionPrediction).refusal
-                        ? 'Insist may cost trust; review first.'
-                        : suggestionNeedsReview(nudge, frame)
-                          ? 'Review, then Confirm.'
-                          : 'Send in one tap.'}
-                    </small>
-                  </summary>
-                  <SuggestionCard
-                    prediction={suggestionPrediction}
-                    nudge={nudge}
-                    frame={frame}
-                    cards={cards}
-                    minute={frame.minute}
-                    queued={nudges.length - 1}
-                    active={composer.nudgeId === nudge.id}
-                    onUse={applyNudge}
-                    onSkip={skipNudge}
-                    onKeepWatching={() => {
-                      // A manual pause resumes into decision slowdown; the second resume acknowledges it.
-                      actions.setPaused(false);
-                      if (playback.paused) actions.setPaused(false);
-                    }}
-                  />
-                </details>
-              )}
-              <button type="button" className="orders-button" onClick={() => setDrawer(true)}>
-                History ({orderCount})
-              </button>
-            </div>
-          </aside>
-
-          <section className="pane pane-human" aria-label="Human village">
-            <header className="pane-head">
-              <h2>
-                Human <span>they decide</span>
-              </h2>
-              <PaneStats frame={frame} side="human" />
-            </header>
-            <PaneBody
-              rows={
-                <PeopleRows
-                  frame={frame}
-                  side="human"
-                  selectedId={composer.personId}
-                  onSelect={selectScenePerson}
+              <a href="/games/">All games</a>
+              <label className="well-record">
+                <input
+                  type="checkbox"
+                  checked={recording}
+                  onChange={(e) => {
+                    setTelemetryOff(gameLabs.well, !e.target.checked);
+                    setRecording(telemetryOn(gameLabs.well));
+                  }}
                 />
-              }
-            >
-              <Pane side="human" {...paneProps} bubbles={bubbles} />
-            </PaneBody>
+                Record play for the lab
+              </label>
+              <a href="/lab/privacy/">Lab privacy</a>
+            </div>
+            <footer className="well-actions">
+              <button type="button" className="well-primary" onClick={() => setMenu(false)}>
+                Back to the well
+              </button>
+            </footer>
           </section>
         </div>
-        <PhoneSheet
-          suggestionPrediction={suggestionPrediction}
-          frame={frame}
-          state={composer}
-          ordering={ordering}
-          onOrdering={setOrdering}
-          onWatch={watchVillage}
-          shownSide={mapSide}
-          prediction={
-            colony.prediction &&
-            previewInput &&
-            JSON.stringify(colony.prediction.input) === JSON.stringify(previewInput)
-              ? colony.prediction.prediction
-              : null
-          }
-          onChange={setComposer}
-          onWho={pickWho}
-          onWhere={pickWhere}
-          onConfirm={confirm}
-          onUse={applyNudge}
-          onSkip={skipNudge}
-          onCancel={actions.cancel}
-          onInspect={inspectPersonCb}
-          onSheet={setPhoneSheetHeight}
-          stageRoot={stageRoot}
-          onSceneHeight={setSceneHeight}
-          onShowNews={showNewsPerson}
-          onRestNews={(news) =>
-            sendOrder({ personId: news.personId, placeId: villagerById(news.personId)?.home ?? 'home-yusuf' })
-          }
-          job={job}
-          placeRequest={placeRequest}
-          personRequest={personRequest}
-          onAgain={askAgain}
-          onInsist={insistOrder}
-          onScenePlace={sendScenePlace}
-          inspecting={inspectOpen}
-          active={!starting && !showEnd}
-          onKeepWatching={() => {
-            actions.setPaused(false);
-            if (playback.paused) actions.setPaused(false);
-          }}
-        />
-      </main>
-
-      <div className="flash-region" role="status" aria-live="polite">
-        {flash && <div className="flash">{flash}</div>}
-        {toast && !flash && <div className="flash">Select a worker, then About to see why.</div>}
-      </div>
-      {colony.error && (
-        <div className="flash flash-error" role="alert">
-          {colony.error}
-        </div>
       )}
-
-      {starting && (
-        <GoalCard
-          frame={frame}
-          text={playback.pause?.text ?? ''}
-          autoPause={playback.autoPause}
-          onAutoPause={actions.setAutoPause}
-          onVillage={(village) => actions.restart(village)}
-          onPlay={() => actions.setPaused(false)}
-        />
+      {info && (
+        <>
+          <button
+            type="button"
+            className="well-info-outside"
+            aria-label="Dismiss information"
+            onClick={() => setInfo(false)}
+          />
+          <section className="well-info" role="dialog" aria-label="Information">
+            <header className="well-sheet-head">
+              <h2>
+                {shelf
+                  ? 'Two villages'
+                  : showEnd
+                    ? 'The report'
+                    : interstitial
+                      ? 'Another day'
+                      : 'Giving orders'}
+              </h2>
+              <button type="button" aria-label="Close information" onClick={() => setInfo(false)}>
+                ×
+              </button>
+            </header>
+            <div className="well-reading">
+              {shelf ? (
+                <>
+                  <p>
+                    Every order you give goes to both villages. Classic obeys. Human weighs your words against
+                    needs, duties and trust, and may say no or not yet.
+                  </p>
+                  <p>The bars and report compare the villages against “without you”.</p>
+                  <p>Suggestions arrive on a clock. Following only them will not roof the Human house.</p>
+                </>
+              ) : showEnd ? (
+                <>
+                  <p>“Without you” is the same village with no orders.</p>
+                  <p>“What would have won” replays your run to a turning point, then plays a good plan.</p>
+                  <p>The tally is the game's own count.</p>
+                </>
+              ) : interstitial ? (
+                <>
+                  <p>The store-room is six stages beside the house.</p>
+                  <p>A house without its roof is finished first.</p>
+                  <p>People remember Day 1 and Day 2.</p>
+                </>
+              ) : (
+                <>
+                  <p>
+                    Tap a person, then a place. The tile sends the order to both villages. The pencil is the
+                    Human side's likely answer. Risky work asks once more.
+                  </p>
+                  <p>Rush is faster and hungrier. Insist may cost trust. An appeal gives them a reason.</p>
+                  <p>
+                    People stop to eat, sleep and pray, then come back. Home asks for one meal or one sleep;
+                    it does not keep them in.
+                  </p>
+                  <p>
+                    Drag the map to look around. Space holds or releases the clock on desktop. It slows for
+                    answers and runs quickly at night.
+                  </p>
+                  <p>
+                    The bars: Classic above Human. The tick is the target. Roof and meals are judged at D2
+                    19:00; everyone alive at D3 dawn. Tap the bars for numbers.
+                  </p>
+                </>
+              )}
+            </div>
+          </section>
+        </>
       )}
       {inspect && (
-        <Inspector
-          personId={inspect.personId}
-          {...(inspect.decisionId ? { decisionId: inspect.decisionId } : {})}
-          why={colony.why}
-          frame={frame}
-          onClose={closeInspect}
-        />
+        <Inspector personId={inspect} frame={frame} why={colony.why} onClose={() => setInspect(null)} />
       )}
       {showEnd && (
         <EndScreen
@@ -906,13 +947,30 @@ export function App() {
           tally={true}
           humanKind={frame?.humanKind ?? 'placeholder'}
           canContinue={frame?.canContinue ?? false}
-          onContinue={continueDay}
-          onAgain={restart}
-          onClose={closeEnd}
+          onContinue={() => {
+            actions.continueDay();
+            setEndOpen(true);
+            saveNow();
+          }}
+          onAgain={() => restart()}
+          onClose={() => {
+            setLoadPage(false);
+            setEndOpen(false);
+          }}
           onDownload={actions.exportPlaytest}
+          onFeedback={() => setFeedback('end')}
         />
       )}
-      <PlaytestNotice status={colony.playtest} onClose={actions.clearPlaytest} />
+      {feedback && (
+        <Feedback
+          getRun={actions.getRun}
+          onDownload={actions.exportPlaytest}
+          onBack={() => {
+            setFeedback(null);
+            setRecording(telemetryOn(gameLabs.well));
+          }}
+        />
+      )}
     </div>
   );
 }

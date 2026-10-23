@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import './feedback.css';
 import { EndTally } from '../../shared/EndTally.tsx';
 import type { HindsightReply, HindsightRequest } from '../hindsight-worker.ts';
 import type { Hindsight } from '../sim/hindsight.ts';
@@ -71,16 +72,19 @@ function HindsightBlock({ summary }: { summary: EndSummary }) {
         </ul>
       )}
       {h.kind !== 'idle' && (
-        <p className="end-won" aria-live="polite">
-          <b>What would have won (Human):</b>{' '}
-          {h.kind === 'working'
-            ? 'replaying this seed with a simple plan…'
-            : h.kind === 'error'
-              ? 'the replay could not run in this browser.'
-              : h.result
-                ? hindsightLine(h.result)
-                : 'the simple plan (everyone but Maryam rushed to the house) did not win from any point we tried.'}
-        </p>
+        <details className="end-fold">
+          <summary>What would have won</summary>
+          <p className="end-won" aria-live="polite">
+            <b>What would have won (Human):</b>{' '}
+            {h.kind === 'working'
+              ? 'replaying this seed with a simple plan…'
+              : h.kind === 'error'
+                ? 'the replay could not run in this browser.'
+                : h.result
+                  ? hindsightLine(h.result)
+                  : 'the simple plan (everyone but Maryam rushed to the house) did not win from any point we tried.'}
+          </p>
+        </details>
       )}
     </section>
   );
@@ -115,7 +119,6 @@ function Report({ summary, humanKind }: { summary: EndSummary; humanKind: string
   ];
   return (
     <>
-      <p className="end-changed">{ordersChanged(summary)}</p>
       <table className="end-table">
         <thead>
           <tr>
@@ -123,7 +126,7 @@ function Report({ summary, humanKind }: { summary: EndSummary; humanKind: string
             <th>Classic</th>
             <th>Human</th>
             <th className="ghost">
-              Solo <small>Human, no orders</small>
+              without you <small>Human, no orders</small>
             </th>
           </tr>
         </thead>
@@ -159,10 +162,11 @@ function Report({ summary, humanKind }: { summary: EndSummary; humanKind: string
           ))}
         </tbody>
       </table>
+      <p className="end-changed">{ordersChanged(summary)}</p>
       <HindsightBlock summary={summary} />
       {summary.cards.length > 0 && (
-        <>
-          <h3>{summary.day === 3 ? 'Orders given on this day' : 'Your orders'}</h3>
+        <details className="end-fold">
+          <summary>Your orders{summary.day === 3 ? ' on this day' : ''}</summary>
           <ul className="end-orders">
             {summary.cards.map((c) => (
               <li key={c.order.id}>
@@ -175,7 +179,7 @@ function Report({ summary, humanKind }: { summary: EndSummary; humanKind: string
               </li>
             ))}
           </ul>
-        </>
+        </details>
       )}
       <h3>Character outcomes</h3>
       <table className="end-table">
@@ -184,7 +188,7 @@ function Report({ summary, humanKind }: { summary: EndSummary; humanKind: string
             <th />
             <th>Classic</th>
             <th>Human</th>
-            <th className="ghost">Solo</th>
+            <th className="ghost">without you</th>
           </tr>
         </thead>
         <tbody>
@@ -240,6 +244,7 @@ export function EndScreen(props: {
   onContinue(): void;
   onAgain(): void;
   onClose(): void;
+  onFeedback?: () => void;
   /** Download this run as a playtest file. */
   onDownload?: () => void;
 }) {
@@ -256,53 +261,59 @@ export function EndScreen(props: {
   if (!summary) return null;
   const offerDay = props.canContinue && latest === 2;
   return (
-    <div className="end-backdrop">
-      <div className="end" role="dialog" aria-modal="true" aria-labelledby="end-title">
-        <p className="eyebrow">Day {tab + 1} · 05:00 · dawn</p>
-        <h2 id="end-title" ref={head} tabIndex={-1}>
-          Same orders. Same seed.
-        </h2>
-        {days.length > 1 && (
-          <div className="end-tabs" role="tablist">
-            {days.map((d) => (
-              <button
-                key={d}
-                type="button"
-                role="tab"
-                aria-selected={tab === d}
-                className={`end-tab ${tab === d ? 'is-on' : ''}`}
-                onClick={() => setTab(d)}
-              >
-                Day {d} report
-              </button>
-            ))}
-          </div>
-        )}
-        <Report summary={summary} humanKind={props.humanKind} />
-        {props.tally ? <EndTally title="The well’s tally" lines={wellTally(summary)} /> : null}
-        <div className="end-actions">
-          {offerDay && (
-            <button type="button" className="btn" onClick={props.onContinue}>
-              Another day
-            </button>
+    <div className="end-backdrop colony-report-backdrop">
+      <div className="end colony-report" role="dialog" aria-modal="true" aria-labelledby="end-title">
+        <div className="colony-report-body">
+          <p className="eyebrow">Day {tab + 1} · 05:00 · dawn</p>
+          <h2 id="end-title" ref={head} tabIndex={-1}>
+            Same orders. Same seed.
+          </h2>
+          {days.length > 1 && (
+            <div className="end-tabs" role="tablist">
+              {days.map((d) => (
+                <button
+                  key={d}
+                  type="button"
+                  role="tab"
+                  aria-selected={tab === d}
+                  className={`end-tab ${tab === d ? 'is-on' : ''}`}
+                  onClick={() => setTab(d)}
+                >
+                  Day {d} report
+                </button>
+              ))}
+            </div>
           )}
-          <button type="button" className={offerDay ? 'btn btn-ghost' : 'btn'} onClick={props.onAgain}>
-            Play again
-          </button>
-          <button type="button" className="btn btn-ghost" onClick={props.onClose}>
-            Look at the villages
-          </button>
-          <a className="btn btn-ghost" href="/">
-            Home
-          </a>
-        </div>
-        {props.onDownload && (
-          <p className="end-playtest">
-            <button type="button" className="btn btn-ghost btn-small" onClick={props.onDownload}>
-              Download playtest file
+          <Report summary={summary} humanKind={props.humanKind} />
+          {props.tally ? <EndTally title="The well’s tally" lines={wellTally(summary)} /> : null}
+          <div className="colony-report-body-footer">
+            <button type="button" className="btn btn-ghost" onClick={props.onClose}>
+              Look at the villages
             </button>
-          </p>
-        )}
+            {offerDay && (
+              <button type="button" className="btn btn-ghost" onClick={props.onAgain}>
+                Play again
+              </button>
+            )}
+          </div>
+        </div>
+        <div className="colony-report-actions">
+          <div className="colony-report-secondaries">
+            {props.onFeedback && (
+              <button type="button" className="btn btn-ghost" onClick={props.onFeedback}>
+                Send word
+              </button>
+            )}
+            {props.onDownload && (
+              <button type="button" className="btn btn-ghost" onClick={props.onDownload}>
+                Download this run
+              </button>
+            )}
+          </div>
+          <button type="button" className="btn" onClick={offerDay ? props.onContinue : props.onAgain}>
+            {offerDay ? 'Another day' : 'Play again'}
+          </button>
+        </div>
       </div>
     </div>
   );
