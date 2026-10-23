@@ -1,14 +1,17 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
   acceptPersona,
   boundedPersonaJson,
   createPersona,
+  isPersonaConsentMessage,
   isPersonaMessage,
   PERSONA_ORIGINS,
   type PersonaShelfState,
+  personaChannel,
   validatePersona,
 } from '../src/persona.ts';
 
+afterEach(() => vi.unstubAllGlobals());
 const body = {
   format: 'hf-persona/1' as const,
   castId: 'hf.cast.zeynep.pass',
@@ -99,4 +102,85 @@ describe('persona shelf contract', () => {
     });
     expect(() => acceptPersona(next, stale)).toThrow('conflict');
   });
+});
+
+it('shares only consent status before automatically enabling a fresh target origin', async () => {
+  let centralEnabled = false;
+  const messages: Record<string, unknown>[] = [];
+  function browser(origin: string) {
+    const local = new Map<string, string>();
+    const listeners = new Set<(event: unknown) => void>();
+    let load: (() => void) | undefined;
+    const frame = {
+      addEventListener: (_kind: string, listener: () => void) => {
+        load = listener;
+      },
+      contentWindow: {
+        postMessage: (message: Record<string, unknown>) => {
+          messages.push(message);
+          if (message.type === 'hf-persona-consent' && message.action === 'set')
+            centralEnabled = message.enabled === true;
+          queueMicrotask(() => {
+            for (const receive of listeners)
+              receive({
+                origin: 'https://human.adamwhite.work',
+                source: frame.contentWindow,
+                data: {
+                  type:
+                    message.type === 'hf-persona-consent' ? 'hf-persona-consent-reply' : 'hf-persona-reply',
+                  id: message.id,
+                  value: message.type === 'hf-persona-consent' ? centralEnabled : [],
+                },
+              });
+          });
+        },
+      },
+    };
+    vi.stubGlobal('location', { origin });
+    vi.stubGlobal('localStorage', {
+      getItem: (key: string) => local.get(key) ?? null,
+      setItem: (key: string, value: string) => local.set(key, value),
+    });
+    vi.stubGlobal('document', {
+      body: { append: () => queueMicrotask(() => load?.()) },
+      createElement: () => frame,
+    });
+    vi.stubGlobal('window', {
+      addEventListener: (_kind: string, fn: (event: unknown) => void) => listeners.add(fn),
+      removeEventListener: (_kind: string, fn: (event: unknown) => void) => listeners.delete(fn),
+    });
+    return personaChannel();
+  }
+  const source = browser('https://pass.adamwhite.work');
+  expect(await source.ready).toBe(false);
+  await expect(source.request({ action: 'list' })).rejects.toThrow('Enable');
+  source.setEnabled(true);
+  expect(await source.ready).toBe(true);
+  const target = browser('https://goodhands.adamwhite.work');
+  expect(target.enabled).toBe(false);
+  expect(await target.ready).toBe(true);
+  expect(messages.every((message) => message.type === 'hf-persona-consent')).toBe(true);
+  expect(messages.every((message) => message.envelope === undefined && message.castId === undefined)).toBe(
+    true,
+  );
+  await expect(target.request({ action: 'list' })).resolves.toEqual([]);
+  target.setEnabled(false);
+  await target.ready;
+  const nextGame = browser('https://hearsay.adamwhite.work');
+  expect(await nextGame.ready).toBe(false);
+});
+
+it('rejects consent status exchanges from unapproved origins, sibling frames and malformed choices', () => {
+  const parent = {};
+  const request = { type: 'hf-persona-consent', id: 'a'.repeat(32), action: 'get' };
+  expect(isPersonaConsentMessage('https://pass.adamwhite.work', parent, parent, request)).toBe(true);
+  expect(isPersonaConsentMessage('https://evil.adamwhite.work', parent, parent, request)).toBe(false);
+  expect(isPersonaConsentMessage('https://pass.adamwhite.work', {}, parent, request)).toBe(false);
+  expect(
+    isPersonaConsentMessage('https://pass.adamwhite.work', parent, parent, {
+      ...request,
+      action: 'set',
+      enabled: 'true',
+    }),
+  ).toBe(false);
 });

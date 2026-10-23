@@ -419,7 +419,8 @@ RNG carries unchanged. Commitments have explicit target-calendar windows, identi
 importance and recurrence, and stay pending. This is a binding for a known calendar, not a calendar translator.
 
 Admission requires the declared identity binding, matching name, sex, age, healthy compatible body,
-and matching family/bond provenance. Version 1 rejects injuries, illness, downing and exposures. It rejects
+and matching family/bond provenance. Version 1 rejects injuries, illness, downing and exposures. It also rejects pregnancy, courtships, marriages
+and mourning because their dates require a separate explicit clock mapping. It rejects
 running source activities, active goals/projects, owed duties and unmapped ongoing obligations, including
 completed occurrences of unreleased recurring chains. The host must release finished employment in its own
 replay. The host owns the cast registry, death history, branch authority, destination references and truth of
@@ -431,3 +432,11 @@ it does not claim that the complete source life continued. The original checkpoi
 Pin the admitted Person and mapping version in the target replay. The transport owns its cryptographic hash,
 branch metadata, consent and storage bounds. See `examples/persona-control.ts` for a deterministic two-host
 control with preserved evidence, source immutability and an unmapped-skill comparison.
+
+The agenda retains scheduled make-up records after the matching commitment is kept. Passport admission
+recognizes that positive kept record as completed history. Missing or pruned records do not establish completion.
+A host that needs durable completion evidence can explicitly call `retirePaidMakeUps(person)` before bounded
+commitment history prunes it. It removes only records matched to an existing, closed, kept make-up and returns
+recursively frozen, detached `MakeUpReceipt` objects. Persist those receipts in the source replay. Pending,
+broken, released, exempt and missing matches remain unresolved. The normal actor loop never calls retirement;
+existing games and saves keep their previous behavior until a host opts in.

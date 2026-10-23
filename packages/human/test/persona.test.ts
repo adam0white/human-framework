@@ -5,6 +5,7 @@ import {
   fingerprint,
   projectPersona,
   restore,
+  retirePaidMakeUps,
   skillLevel,
   snapshot,
 } from '../src/index.ts';
@@ -273,5 +274,107 @@ describe('explicit persona projection', () => {
         targetId: 'target',
       }).person.agenda.goals,
     ).toEqual(target.agenda.goals);
+  });
+  test('archives recorded kept make-up history but blocks unpaid or unproven debt', () => {
+    const { source, mapping } = fixture();
+    source.agenda.owed = [
+      {
+        ofId: 'original',
+        kind: 'abstain',
+        actions: [],
+        reason: 'broken',
+        at: 0,
+        normId: 'shared-abstention',
+        violatedBy: ['eat'],
+        scheduledAs: 'make-up',
+      },
+    ];
+    const made = {
+      id: 'make-up',
+      kind: 'abstain' as const,
+      actions: [],
+      from: 10,
+      until: 50,
+      importance: 0.8,
+      status: 'kept' as 'kept' | 'pending' | 'released' | 'broken',
+      normId: 'shared-abstention',
+      violatedBy: ['eat'],
+      makeUpOf: 'original',
+    };
+    source.agenda.commitments.push(made);
+    const before = snapshot(source);
+    expect(projectPersona(source, mapping).commitments).toEqual([]);
+    expect(source).toEqual(before);
+    made.status = 'pending';
+    expect(() => projectPersona(source, mapping)).toThrow(/owed obligation/);
+    made.status = 'released';
+    expect(() => projectPersona(source, mapping)).toThrow(/owed obligation/);
+    made.status = 'broken';
+    expect(() => projectPersona(source, mapping)).toThrow(/owed obligation/);
+    made.status = 'kept';
+    made.makeUpOf = 'other';
+    expect(() => projectPersona(source, mapping)).toThrow(/owed obligation/);
+    source.agenda.commitments = [];
+    expect(() => projectPersona(source, mapping)).toThrow(/owed obligation/);
+    delete source.agenda.owed[0]?.scheduledAs;
+    expect(() => projectPersona(source, mapping)).toThrow(/owed obligation/);
+  });
+  test('explicit retirement preserves detached kept receipts and leaves unresolved records in place', () => {
+    const { source, mapping } = fixture();
+    const original = {
+      ofId: 'paid',
+      kind: 'abstain' as const,
+      actions: [],
+      reason: 'broken' as const,
+      at: 0,
+      normId: 'shared-abstention',
+      scheduledAs: 'make-up',
+    };
+    source.agenda.owed = [original, { ...original, ofId: 'missing', scheduledAs: 'missing' }];
+    const kept = {
+      id: 'make-up',
+      kind: 'abstain' as const,
+      actions: [],
+      from: 10,
+      until: 50,
+      importance: 0.8,
+      status: 'kept' as const,
+      normId: 'shared-abstention',
+      makeUpOf: 'paid',
+    };
+    source.agenda.commitments.push(kept);
+    const receipts = retirePaidMakeUps(source);
+    expect(receipts).toEqual([{ owed: original, commitment: kept, recordedAt: source.now }]);
+    expect(Object.isFrozen(receipts)).toBe(true);
+    expect(Object.isFrozen(receipts[0]?.owed.actions)).toBe(true);
+    expect(source.agenda.owed.map((o) => o.ofId)).toEqual(['missing']);
+    expect(source.agenda.commitments).toContainEqual(kept);
+    original.normId = 'edited';
+    expect(receipts[0]?.owed.normId).toBe('shared-abstention');
+    source.agenda.commitments = [];
+    expect(receipts[0]?.commitment.status).toBe('kept');
+    expect(retirePaidMakeUps(source)).toEqual([]);
+    expect(() => projectPersona(source, mapping)).toThrow(/owed obligation/);
+  });
+  test('v1 refuses temporal family stores rather than changing their meaning across clocks', () => {
+    const { source, target, mapping } = fixture();
+    const projection = projectPersona(source, mapping);
+    target.now = 400000;
+    target.life.bornAt = source.life.bornAt + target.now - source.now;
+    const pregnancy = { fatherId: 'father', conceivedAt: -100000, dueAt: 300000, seed: 1 };
+    const bonds = { courtships: [], marriages: [], mourning: { forId: 'spouse', since: 0, until: 10000 } };
+    const policy = { mappingVersion: 'test/1', sourceId: 'source', targetId: 'target' };
+    source.family = { pregnancy };
+    expect(() => projectPersona(source, mapping)).toThrow(/temporal family/);
+    target.family = { pregnancy };
+    expect(() => admitPersona({ ...projection, family: { pregnancy } }, target, policy)).toThrow(
+      /temporal family/,
+    );
+    delete source.family;
+    delete target.family;
+    source.bonds = bonds;
+    expect(() => projectPersona(source, mapping)).toThrow(/temporal bonds/);
+    target.bonds = bonds;
+    expect(() => admitPersona({ ...projection, bonds }, target, policy)).toThrow(/temporal bonds/);
   });
 });

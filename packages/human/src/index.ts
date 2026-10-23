@@ -28,6 +28,7 @@ export {
 } from './affect/index.ts';
 export type {
   GoalTemplate,
+  MakeUpReceipt,
   PrayerCalendar,
   PrayerSchedule,
   PrayerTimes,
@@ -71,6 +72,7 @@ export {
   ramadanMeals,
   release as releaseCommitment,
   retimeCommitments,
+  retirePaidMakeUps,
   revisePurposes,
   scheduleMakeUp,
   spanMeetsWindow,

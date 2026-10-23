@@ -4,9 +4,9 @@
  * identity, age, family and health compatibility before returning a new Person. Neither input is mutated.
  * This is not a world migration, identity registry, transport, hash, authentication or general calendar mapper.
  * v1 admits zero-duration travel and healthy compatible bodies only; family/bonds remain host-authored and must
- * match source provenance. All other world-dependent stores stay with the source and are disclosed as omitted.
+ * match source provenance. Pregnancy and nonempty temporal bonds are unsupported in v1. All other world-dependent stores stay with the source and are disclosed as omitted.
  */
-import { sameChain } from './agenda/agenda.ts';
+import { hasUnresolvedMakeUps, sameChain } from './agenda/agenda.ts';
 import { createPerson } from './person.ts';
 import { restore, snapshot } from './restore.ts';
 import type { Commitment, Episode, Person, Skill } from './types.ts';
@@ -277,6 +277,20 @@ export function validatePersonaProjection(input: unknown): PersonaProjectionSnap
     keys(input.skillRetention, ['consolidationHours']);
     num(input.skillRetention.consolidationHours, Number.MIN_VALUE);
   }
+  if (input.family !== null) {
+    obj(input.family);
+    if (input.family.pregnancy !== undefined) fail('unsupported temporal family state: pregnancy');
+  }
+  if (input.bonds !== null) {
+    obj(input.bonds);
+    if (
+      input.bonds.mourning !== undefined ||
+      (Array.isArray(input.bonds.courtships) && input.bonds.courtships.length > 0) ||
+      (Array.isArray(input.bonds.marriages) && input.bonds.marriages.length > 0)
+    ) {
+      fail('unsupported temporal bonds state');
+    }
+  }
   for (const field of ['family', 'bonds'] as const) {
     if (input[field] !== null) {
       obj(input[field]);
@@ -314,7 +328,7 @@ export function projectPersona(source: Person, mapping: PersonaProjection): Pers
   if (p.activity) fail('running activity');
   if (p.agenda.goals.some((g) => g.status === 'active') || p.projects?.currentGoalId)
     fail('active goal/project');
-  if (p.agenda.owed?.length || p.agenda.lapse) fail('unmapped owed obligation');
+  if (hasUnresolvedMakeUps(p) || p.agenda.lapse) fail('unmapped owed obligation');
   text(mapping.version);
   boundRecord(mapping.skills);
   const skills: Record<string, Skill> = Object.create(null);

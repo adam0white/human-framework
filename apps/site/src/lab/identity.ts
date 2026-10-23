@@ -38,13 +38,37 @@ window.addEventListener('storage', (event) => {
 });
 
 // Persona messages are deliberately independent of recording identity and its broader origin rule.
-import { isPersonaMessage } from '../../../../packages/lab-client/src/persona.ts';
+import {
+  isPersonaConsentMessage,
+  isPersonaMessage,
+  PERSONA_CONSENT_KEY,
+} from '../../../../packages/lab-client/src/persona.ts';
 import { shelfRequest } from './persona-store.ts';
 
+window.addEventListener('message', (event: MessageEvent) => {
+  if (
+    window.parent === window ||
+    !isPersonaConsentMessage(event.origin, event.source, window.parent, event.data)
+  )
+    return;
+  const { id, action, enabled } = event.data;
+  if (action === 'set') writeLocal(PERSONA_CONSENT_KEY, enabled ? '1' : '0');
+  window.parent.postMessage(
+    { type: 'hf-persona-consent-reply', id, value: readLocal(PERSONA_CONSENT_KEY) === '1' },
+    event.origin,
+  );
+});
 window.addEventListener('message', (event: MessageEvent) => {
   if (window.parent === window || !isPersonaMessage(event.origin, event.source, window.parent, event.data))
     return;
   const parent = window.parent;
+  if (readLocal(PERSONA_CONSENT_KEY) !== '1') {
+    parent.postMessage(
+      { type: 'hf-persona-reply', id: event.data.id, error: 'Enable fictional person continuity first.' },
+      event.origin,
+    );
+    return;
+  }
   const { id, action, castId, envelope, fork, authored, allowRecording } = event.data;
   void shelfRequest({
     action,

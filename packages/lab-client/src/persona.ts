@@ -152,66 +152,122 @@ export function personaSummary(p: PersonaEnvelope): PersonaSummary {
   const { castId, castRevision, branchId, revision, source, limitations } = p;
   return { castId, castRevision, branchId, revision, source, limitations };
 }
-/** Requests only after explicit continuity opt-in. A blocked bridge leaves local file play available. */
+export const PERSONA_CONSENT_KEY = 'hf-persona-opt-in';
+/** The consent handshake exposes only a boolean, never cast metadata or recording identity. */
+export function isPersonaConsentMessage(
+  origin: string,
+  source: unknown,
+  parent: unknown,
+  data: unknown,
+): boolean {
+  if (!PERSONA_ORIGINS.has(origin) || !source || source !== parent || !data || typeof data !== 'object')
+    return false;
+  const message = data as Record<string, unknown>;
+  return (
+    message.type === 'hf-persona-consent' &&
+    typeof message.id === 'string' &&
+    /^[a-f0-9]{32}$/.test(message.id) &&
+    (message.action === 'get' || (message.action === 'set' && typeof message.enabled === 'boolean'))
+  );
+}
+/** Global browser continuity consent is read before hosts decide fresh-run admission. */
 export function personaChannel(): {
   readonly enabled: boolean;
+  readonly ready: Promise<boolean>;
   setEnabled(value: boolean): void;
   request<T>(request: PersonaRequest): Promise<T>;
 } {
-  let enabled = readLocal('hf-persona-opt-in') === '1';
+  let enabled = readLocal(PERSONA_CONSENT_KEY) === '1';
   let frame: HTMLIFrameElement | undefined;
   let loaded: Promise<void> | undefined;
+  async function exchange<T>(message: Record<string, unknown>, replyType: string): Promise<T> {
+    if (!PERSONA_ORIGINS.has(location.origin))
+      throw new Error('Continuity is local to this game. Use a file.');
+    if (!frame) {
+      if (!document.body)
+        await new Promise<void>((resolve) =>
+          window.addEventListener('DOMContentLoaded', () => resolve(), { once: true }),
+        );
+      frame = document.createElement('iframe');
+      frame.hidden = true;
+      frame.title = 'Fictional person shelf';
+      frame.src = `${IDENTITY_ORIGIN}/lab/identity/`;
+      loaded = new Promise<void>((resolve, reject) => {
+        const timer = setTimeout(() => reject(new Error('Shelf unavailable. Use a local file.')), 3000);
+        frame?.addEventListener(
+          'load',
+          () => {
+            clearTimeout(timer);
+            resolve();
+          },
+          { once: true },
+        );
+      });
+      document.body.append(frame);
+    }
+    await loaded;
+    const id = randomId();
+    return new Promise<T>((resolve, reject) => {
+      const timer = setTimeout(() => {
+        window.removeEventListener('message', receive);
+        reject(new Error('Shelf unavailable. Use a local file.'));
+      }, 3000);
+      const receive = (event: MessageEvent) => {
+        if (
+          event.origin !== IDENTITY_ORIGIN ||
+          event.source !== frame?.contentWindow ||
+          event.data?.type !== replyType ||
+          event.data.id !== id
+        )
+          return;
+        clearTimeout(timer);
+        window.removeEventListener('message', receive);
+        if (event.data.error) reject(new Error(String(event.data.error).slice(0, 200)));
+        else resolve(event.data.value as T);
+      };
+      window.addEventListener('message', receive);
+      frame?.contentWindow?.postMessage({ ...message, id }, IDENTITY_ORIGIN);
+    });
+  }
+  const remember = (value: unknown): boolean => {
+    if (typeof value !== 'boolean') throw new Error('Invalid continuity preference.');
+    enabled = value;
+    writeLocal(PERSONA_CONSENT_KEY, value ? '1' : '0');
+    return value;
+  };
+  // A failed bridge retains local/file play but cannot establish shared consent.
+  let pending = exchange<unknown>({ type: 'hf-persona-consent', action: 'get' }, 'hf-persona-consent-reply')
+    .then(remember)
+    .catch(() => enabled);
   return {
     get enabled() {
       return enabled;
     },
+    get ready() {
+      return pending;
+    },
     setEnabled(value) {
       enabled = value;
-      writeLocal('hf-persona-opt-in', value ? '1' : null);
+      writeLocal(PERSONA_CONSENT_KEY, value ? '1' : '0');
+      pending = pending
+        .then(() =>
+          exchange<unknown>(
+            { type: 'hf-persona-consent', action: 'set', enabled: value },
+            'hf-persona-consent-reply',
+          ),
+        )
+        .then(remember)
+        .catch(() => enabled);
     },
     async request<T>(request: PersonaRequest): Promise<T> {
+      await pending;
       if (!enabled) throw new Error('Enable fictional person continuity first.');
-      if (!PERSONA_ORIGINS.has(location.origin))
-        throw new Error('Continuity is local to this game. Use a file.');
-      if (!frame) {
-        frame = document.createElement('iframe');
-        frame.hidden = true;
-        frame.title = 'Fictional person shelf';
-        frame.src = `${IDENTITY_ORIGIN}/lab/identity/`;
-        loaded = new Promise<void>((resolve, reject) => {
-          frame?.addEventListener('load', () => resolve(), { once: true });
-          setTimeout(() => reject(new Error('Shelf unavailable. Use a local file.')), 3000);
-        });
-        document.body.append(frame);
-      }
-      await loaded;
+      const value = await exchange<T>(
+        { type: 'hf-persona-request', optedIn: true, ...request },
+        'hf-persona-reply',
+      );
       if (!enabled) throw new Error('Continuity is off.');
-      const id = randomId();
-      return new Promise<T>((resolve, reject) => {
-        const timer = setTimeout(() => {
-          window.removeEventListener('message', receive);
-          reject(new Error('Shelf unavailable. Use a local file.'));
-        }, 3000);
-        const receive = (event: MessageEvent) => {
-          if (
-            event.origin !== IDENTITY_ORIGIN ||
-            event.source !== frame?.contentWindow ||
-            event.data?.type !== 'hf-persona-reply' ||
-            event.data.id !== id
-          )
-            return;
-          clearTimeout(timer);
-          window.removeEventListener('message', receive);
-          if (!enabled) reject(new Error('Continuity is off.'));
-          else if (event.data.error) reject(new Error(String(event.data.error).slice(0, 200)));
-          else resolve(event.data.value as T);
-        };
-        window.addEventListener('message', receive);
-        frame?.contentWindow?.postMessage(
-          { type: 'hf-persona-request', id, optedIn: true, ...request },
-          IDENTITY_ORIGIN,
-        );
-      });
+      return value;
     },
   };
 }

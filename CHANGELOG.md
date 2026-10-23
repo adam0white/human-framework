@@ -17,6 +17,7 @@ Engine: 2.14.1.
 ### Added
 
 - Opt-in, deterministic persona projection and admission. Explicit skill, episode and commitment mappings preserve approved state across unrelated hosts. Unsupported ongoing obligations and incompatible identity or health facts are rejected. Existing actor behavior and legacy continuation remain unchanged.
+- Opt-in `retirePaidMakeUps` archives only a recorded kept make-up and returns detached frozen receipts. Unpaid or unproven obligations still block travel. Pregnancy and temporal relationship stores are outside passport v1.
 - One cast browser shelf through the existing identity frame, with versioned checksummed envelopes, atomic parent revision checks, explicit conflict forks and inspect/export/delete controls. Client 0.3.0 and kit 0.4.0 ship as local tarballs.
 - Canonical first-wave cast registry and private inbox measurement from complete received exports. Same-epoch continuity retains normal recording. Changed recording identities require explicit historical-linkage consent before any persona-derived upload.
 

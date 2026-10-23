@@ -24,11 +24,12 @@ Private ingestion: `npm run lab:inbox`. Retention, bounds and protocol: [linked 
 
 ### Fictional-person shelf (browser only)
 
-`personaChannel()` is separate from recording. Call `setEnabled(true)` only after the player enables continuity. The exact participating origins are HTTPS human, pass, murmur, stairwell, hearsay and goodhands on adamwhite.work. A blocked bridge needs a local file fallback. The central screen is `/lab/people/`; it can inspect, download, import and delete browser continuity. Browser eviction can lose it. Deleting continuity does not delete received lab records.
+`personaChannel()` is separate from recording. Its `ready: Promise<boolean>` reads the central browser continuity choice through a boolean-only handshake. A fresh target must await `shelf.ready` before checking `shelf.enabled`, deciding an automatic arrival or attaching persona upload hooks. Enabling continuity in one participating game applies to later participating games in this browser; turning it off applies globally. No cast metadata or recording identity is returned by this handshake. Existing loaded runs remain pinned. Call `setEnabled(true)` only after the player enables continuity. The exact participating origins are HTTPS human, pass, murmur, stairwell, hearsay and goodhands on adamwhite.work. A blocked bridge needs a local file fallback. The central screen is `/lab/people/`; it can inspect, download, import and delete browser continuity. Browser eviction can lose it. Deleting continuity does not delete received lab records.
 
 ```ts
 import { createPersona, personaChannel, watchPersonaCheckpoint } from '@adam0white/lab-client';
 const shelf = personaChannel();
+await shelf.ready;
 // The host gets the player's explicit continuity choice before this call.
 shelf.setEnabled(true);
 const original = await createPersona({

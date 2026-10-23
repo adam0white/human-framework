@@ -962,6 +962,64 @@ function boundOwed(state: AgendaState): void {
   }
 }
 
+/** A kept, closed instance is positive recorded evidence; scheduling or missing history is not. */
+function recordedKeptMakeUp(p: Person, owed: OwedMakeUp): Commitment | undefined {
+  return p.agenda.commitments.find(
+    (c) =>
+      owed.scheduledAs !== undefined &&
+      c.id === owed.scheduledAs &&
+      c.makeUpOf === owed.ofId &&
+      c.status === 'kept' &&
+      c.kind === owed.kind &&
+      c.normId === owed.normId &&
+      c.exempt === undefined &&
+      c.until <= p.now,
+  );
+}
+
+/**
+ * Whether any retained make-up record lacks a recorded kept matching instance. Scheduling alone is not
+ * fulfillment. Missing/pruned history remains unresolved to this reader; it does not infer payment from absence.
+ * Read-only; does not change the agenda's retained debt/history representation. @internal
+ */
+export function hasUnresolvedMakeUps(p: Person): boolean {
+  return (p.agenda.owed ?? []).some((owed) => recordedKeptMakeUp(p, owed) === undefined);
+}
+
+export interface MakeUpReceipt {
+  readonly owed: Readonly<OwedMakeUp>;
+  readonly commitment: Readonly<Commitment>;
+  /** Source clock when the host explicitly retired the recorded debt. */
+  readonly recordedAt: Minute;
+}
+
+function freezeReceipt<T>(value: T): T {
+  if (value !== null && typeof value === 'object') {
+    for (const child of Object.values(value)) freezeReceipt(child);
+    Object.freeze(value);
+  }
+  return value;
+}
+
+/**
+ * Opt-in host archive boundary. Remove only retained make-up records with a matching existing kept instance,
+ * returning detached, recursively frozen receipts for the host to persist in its replay. Keep commitments and
+ * every unpaid, pending, released, exempt or unproven record. Call before ordinary bounded history prunes the
+ * evidence. No actor-loop call is added; hosts that do not call this retain exact prior state and behavior.
+ * Records describe simulated completion, never divine acceptance or a waiver of an unfulfilled duty.
+ */
+export function retirePaidMakeUps(p: Person): readonly MakeUpReceipt[] {
+  const receipts: MakeUpReceipt[] = [];
+  const unresolved: OwedMakeUp[] = [];
+  for (const owed of p.agenda.owed ?? []) {
+    const commitment = recordedKeptMakeUp(p, owed);
+    if (commitment) receipts.push(structuredClone({ owed, commitment, recordedAt: p.now }));
+    else unresolved.push(owed);
+  }
+  if (receipts.length) p.agenda.owed = unresolved;
+  return freezeReceipt(receipts);
+}
+
 /** Make-ups still owed and not yet scheduled. */
 export const owedMakeUps = (p: Person): OwedMakeUp[] =>
   (p.agenda.owed ?? []).filter((o) => o.scheduledAs === undefined);

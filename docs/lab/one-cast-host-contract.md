@@ -9,11 +9,12 @@ Use HF `projectPersona(source, mapping)` and `admitPersona(projection, authoredO
 ## Shelf
 
 
-`personaChannel()` is separate from recording. Call `setEnabled(true)` only after the player enables continuity. The exact participating origins are HTTPS human, pass, murmur, stairwell, hearsay and goodhands on adamwhite.work. A blocked bridge needs a local file fallback. The central screen is `/lab/people/`; it can inspect, download, import and delete browser continuity. Browser eviction can lose it. Deleting continuity does not delete received lab records.
+`personaChannel()` is separate from recording. Its `ready: Promise<boolean>` reads the central browser continuity choice through a boolean-only handshake. A fresh target must await `shelf.ready` before checking `shelf.enabled`, deciding an automatic arrival or attaching persona upload hooks. Enabling continuity in one participating game applies to later participating games in this browser; turning it off applies globally. No cast metadata or recording identity is returned by this handshake. Existing loaded runs remain pinned. Call `setEnabled(true)` only after the player enables continuity. The exact participating origins are HTTPS human, pass, murmur, stairwell, hearsay and goodhands on adamwhite.work. A blocked bridge needs a local file fallback. The central screen is `/lab/people/`; it can inspect, download, import and delete browser continuity. Browser eviction can lose it. Deleting continuity does not delete received lab records.
 
 ```ts
 import { createPersona, personaChannel, watchPersonaCheckpoint } from '@adam0white/lab-client';
 const shelf = personaChannel();
+await shelf.ready;
 // The host gets the player's explicit continuity choice before this call.
 shelf.setEnabled(true);
 const original = await createPersona({
@@ -56,6 +57,8 @@ lab.allowPersonaRecording(true);
 ```
 
 The central recording association is separate from portable envelopes and never returns the recording id. Files have no association; absent or changed identity needs the explicit choice. `setPersonaRecording(null)` is for a genuinely fresh authored run with no imported history. The gate blocks events, milestones, automatic and explicit runs, saves, logs, notes and legacy Send until allowed. Recording off aborts pending uploads; a new identity invalidates the old association. Same-epoch continuation keeps normal recording. File export and local play always remain available. Character analysis remains a separate consent.
+
+The host also records `transfer.checkpoint`: source schema, simulation minute, full RNG state and a SHA-256 `checkpointDigest` of the full source Person snapshot computed outside HF. The raw checkpoint stays only in source saves/exports. Host mappings and replay headers independently stamp target build, adapter, mapping and opening clock.
 
 ## Private measurement
 
