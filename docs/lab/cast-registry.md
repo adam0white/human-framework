@@ -1,127 +1,1527 @@
-# One cast: wave 1 registry
+# One cast: forty foreground people
 
-Updated 2026-10-23. Registry revision: `one-cast/1`.
+**Status: authored canonical target, not deployed adoption.** This document changes no game source. The adoption table at the end names the unimplemented work.
 
-This is the identity contract for the approved first wave. It supersedes the default counterpart advice in the [proposal](hf-universe-plan-2026-10-23.md) for these four people. Prefer one recurring person when age, era, place and role can be reconciled. A contradiction requires a deliberate new host edition with exact old saves, or a stated reason to keep two people distinct. It never licenses merging people by name alone.
+Canonical content edition: `one-cast-1`, authored 2026-10-23. This is the deliberate replacement cast for all fifteen games, including Commonstead. It is an authored content decision, not a claim that namesakes in the old games were already one person. The coordinator may change the total on the owner's direction. The default here is **exactly 40 foreground people**. These forty are the in-game cast. Nora and Sam have fictional design and testing occupations. The separately authored lab panel is not added to this forty, and its roles do not count as in-game appearances. No fictional report is actual play evidence.
 
-The four entries below are authored decisions. The source receipts distinguish existing facts from new connecting fiction. Listing an allowed host means the design permits that encounter; it does not claim the encounter or transfer adapter is already implemented or live. The owner accepts the wave through play. Cross-device state serving and the Commons remain separate owner decisions.
+A foreground person is someone the player can get to know by name, face or voice, and choices. That is the owner’s experiential definition; a file label does not decide it. Each of the forty has an authored biography, a stable identity and a continuing branch. A background person can still be an HF actor with immediate needs and relationships, but a sustained recognizable personal arc makes them foreground even if no biography file exists. Hosts must replace such an arc with an allocated canonical person or reduce it to an unnamed or episode-generated incidental role. Merely calling a named protagonist background is not adoption. Deceased memories, unnamed relatives and player voices do not add live foreground people; they must not become independent protagonists outside the forty. A new foreground person requires an intentional roster change.
 
-## Identity and editions
+## Facts, new fiction and chronology
 
-| Person | Stable `castId` | `castRevision` | Source local id | Allowed wave-1 receiving role |
-|---|---|---|---|---|
-| Zeynep | `hf.cast.zeynep.pass` | `1` | Pass `zeynep` | Good Hands guest cook |
-| Dilan | `hf.cast.dilan.murmur` | `1` | Murmur `dilan` | Hearsay delivery visitor |
-| Derya | `hf.cast.derya.stairwell` | `1` | Stairwell `derya` | Hearsay nurse contact, reconciled with local `derya` in a new edition |
-| Selin | `hf.cast.selin.voice` | `1` | Voice `selin` | Good Hands household enquiry |
+The source inventory is [the fourteen-game census](hf-universe-plan-2026-10-23.md#7-character-census-source-inventory). Source anchors below identify the inherited facts. Everything introduced under **Authored life** is new fiction for this edition. It must appear in the relevant content edition before it becomes an observable game fact. A secret is an author fact; a player or another person learns it only through a recorded encounter. Hidden outcomes below are possibilities, never pre-awarded achievements. Exact triggers belong in host content and current-version replay logs.
 
-The suffix records the original authority. It does not make the receiving appearance a different person. A cast revision is an immutable authored biography and admission contract. A transfer revision is an immutable player history. Changing a cast revision does not change an existing run. Host content/rules editions, adapter versions, mapping versions and HF engine versions have separate stamps.
+Two settings prevent false continuity across eras. **Coast** is the contemporary network: İzmir and Istanbul, a Welsh reservoir district, Alder Quay and the climbing district. Travel takes time and needs an authored chapter boundary. People do not commute between those places every afternoon. Commonstead is a contemporary residential workshop near Alder Quay; its guests arrive for bounded stays. **Valley** is a separate fictional pre-industrial district containing the Well settlement, lower valley, Warren refuge and Watch wall. Its four games concern different places in the same season. Their new editions deliberately reconcile overlapping jobs and households. There is no Coast–Valley transfer, no reincarnation, and no claim that historical counterparts share memories. Commonstead does not erase this boundary.
 
-Each player has a separate branch for each person. A branch has a random opaque id, an explicit parent revision and one active continuation head. Neither id contains the recording player id. The same player can know all four without joining their lives or memories. Two players' Deryas are separate fictional histories. A fresh authored appearance starts without imported lived history. A copied file or competing continuation creates an explicit fork; it never silently replaces or merges a head. A loaded game keeps its pinned admitted snapshot, even if the shelf advances elsewhere.
+Ages below are at the setting's common opening date. Birth dates, not repeated fresh constructors, govern later ages. A new game with no admitted branch starts from its pinned authored opening. An admitted person arrives from a pinned checkpoint with explicit elapsed time and a host-compatible calendar. No completed sleep, healed injury, paid debt, obtained qualification or repaired relationship is inferred from a loading screen.
 
-Use the [proposal's transfer allowlist and privacy rule](hf-universe-plan-2026-10-23.md#2-format-identity-branch-and-host-admission). Store the complete admitted Person, source stamps, mapping and omissions in the receiving replay. Preserve source saves unchanged. In this registry, “archive” means keep a field in the original source checkpoint and name its omission in the transfer report; it does not put unsupported state in the shelf payload. A known biography does not prove the player experienced an event. Do not import a successful outcome from an unplayed or failed source stint.
+## Carry policy
 
-An existing save remains in its original edition. No automatic conversion of an old Hearsay Derya into the canonical Derya is allowed. Old Hearsay `1`/`2` and Good Hands `1`/`2`/`3` retain their constructors, schedules, dialogue, incident meaning, RNG path and replay results. New content requires a new explicit edition. Its exact numerical version is assigned by the host implementer. An edition stamp, not the latest registry lookup, selects behavior during replay.
+Every entry names its particular restrictions. These supplement one common rule: carry supported Person state and bounded, received history with source provenance; translate only semantics the receiving host implements. Skills keep their actual meaning. A job title is not a skill or a license. Trust is specific to its other person and context. Do not turn trust in a player's kitchen voice into trust in an agency operator. Keep private facts private until actually disclosed. Known relatives can remain references without being instantiated as foreground people.
 
-## Zeynep: Pass → Good Hands → Pass
+A host must resolve, pause with consent, or explicitly schedule active work, projects and promises before departure. It must not silently delete them. Calendar obligations, including Selin's own quiet understanding of make-up fasting, travel when the next host implements that calendar. They never determine transfer eligibility. Unsupported material stays in a named source archive; omission must be visible in the transfer record. An unsupported obligation requires a real adapter or an authored resolution, not an invisible waiver. Old game saves and old exports may be refused with a plain start-fresh explanation. Deterministic current-version exports must pin cast revision, host edition, HF version, initial admitted Person and mapping decisions. No legacy compatibility work is required by this registry.
 
-| Canonical fact | Authority |
-|---|---|
-| Female, 45 at the Pass opening; cold-station cook; twenty years in a school canteen | Pass `src/sim/cooks.ts`, `HIRES` and `makeHire` branch `zeynep` |
-| Sons at home; she says she is home by ten; youngest may have a fever in a request | Pass `cooks.ts`, hire introduction and request; fever is request context, not a permanent diagnosis |
-| Authored traits: honesty `.8`, conscientiousness `.85`, agreeableness `.7`; source initializes grill `.4`, cold `.7`, dish `.6`, oven `.65` | Pass `cooks.ts`, `makeHire`; a continuing branch carries its actual supported current values |
-| Daily family promise to `sons`, `home`, 21:30–22:10, importance `.7`, every 1,440 minutes | Pass `cooks.ts`, `promise` |
-| Theft held forbidden, conviction `.9`; review style accounting, 22:30 | Pass `cooks.ts`; source-backed norm definitions remain source-scoped unless explicitly compatible |
-| Good Hands is an İzmir placement agency; its local Zeynep is the Taş daughter, sixteen, `tass-2` | Good Hands `src/sim/world.ts`, `FAMILIES`, Taş household; these are two distinct people |
+## Canonical profiles and revision admission
 
-**New connecting fiction.** Zeynep takes one daytime cold-supper preparation placement through Nermin after her released Pass stint. The guest remains based near her sons. This chapter uses Good Hands' İzmir setting; Pass has Bornova occupational references but does not thereby establish every character's home address. The new edition explicitly locates this guest stint within her local travel reach. It must not make her relocate away from the boys or work a late evening to explain the crossover.
+Every fresh appearance uses one complete host-independent opening profile. For all six HF trait keys and all ten HF value keys, start at exactly `0.5`, then apply the explicit per-person HF profile overrides below. This is the canonical edition’s engineering baseline, matching the fill value in HF 2.15.0 `person.ts`; later engine default changes must not change it. It replaces any old host-specific or seeded donor profile deliberately. The completed profile must be pinned in the authored cast data and replay. Randomness can change the lived branch through supported faculties, not reroll a name’s personality when another game opens. A continuing branch carries its actual supported traits and values unchanged by that baseline.
 
-**Mapping.** Keep `hf.cast.zeynep.pass` under a dedicated guest local id, never `tass-2` or an existing candidate. Map only Pass `cold` to a dedicated cold-food preparation trial with that same meaning. Preserve supported skill evidence and timestamps. Do not convert it to general `cooking`, childcare or a qualification. Carry one bounded, attended work-history fact with provenance. The placement asks HF for assent and uses the admitted skill in its ordinary work resolution. The source Chef and target Nermin are different voices with different relationship priors.
+Wave-1 revision-1 shelves are not silently admitted as these expanded revision-2 contracts. A new-edition host refuses that combination before mutating a run or the shelf and shows a plain older-version/start-fresh explanation. Keep the old shelf head available for inspect/export/delete. A visible Start fresh choice may create a separate fresh branch with the new authored revision through the shelf’s explicit fork/replacement flow; it must not relabel or overwrite the old history. A loaded old-version run is never refreshed from the new registry. Its old export may be refused by the new game under the owner’s waiver. Newly created current-version exports pin the exact cast revision and admitted state. There is no cast-revision migration promised by this document.
 
-**Departure.** The Pass replay must record Chef releasing the recurring source shift chain. A completed shift alone does not release it. Establish a completed home instance and no running activity. Map the continuing sons promise exactly to the target leave-for-home action at the same local hours, importance and recurrence. Preserve the actual previous kept/broken result. Reject every other unsupported pending promise or active project. Arrival does not satisfy a promise.
+## Game allocation
 
-**Omissions and return.** Keep grill/dish/oven skill records in the original source checkpoint and report their omission; they do not enter the shelf or grant target competence. Do not carry kitchen equipment, wages, orders, source action ids, habits or Chef trust into live placement state. After the trial, the new Good Hands chapter can release its guest duty and offer a return to a new Pass chapter. Preserve the family window on return. A new kitchen shift needs an authored offer and Zeynep's assent. Never replace a loaded kitchen week. Both crossings are zero-duration modeled chapter boundaries; no physiological recovery or completed travel is simulated.
+These are the complete foreground lists. Roles may change, identity does not. All other roles are background under the exhaustive disposition below.
 
-## Dilan: Murmur → Hearsay → Murmur
+| Game | Foreground people | Count |
+|---|---|---:|
+| Pass | Zeynep, Selim, Dilek, Rafi, Hülya, Murat, Sam | 7 |
+| Glance | Dai, Callum, Nerys, Bilal, Wren | 5 |
+| Murmur / Two Voices | Dilan, Aylin, Ece, Murat | 4 |
+| The Rope | Tamar Vale, Oskar, Nell, Bilal, Wren | 5 |
+| Small Works | Sam, Nora, Halil, Rafi | 4 |
+| Good Hands | Nermin, Zeynep, Hülya, Selin, Derya, Hatice, Aylin | 7 |
+| Hearsay | Hatice, Derya, Dilan, Nermin, Aylin, Ece, Rıza, Osman | 8 |
+| Stairwell | Derya, Burak, Sevim, Tarık, Hacer | 5 |
+| The Valley | Yusuf Usta, Meryem, Yusuf, Samira, Maryam, Danyal | 6 |
+| The Warren | Yusuf Usta, Meryem, Maryam, Tariq, Kian, Tamar of the Wall | 6 |
+| Neighbours | Nora, Sam, Derya, Rafi, Bilal, Ece | 6 |
+| Twice at the Well | Maryam, Yusuf, Tariq, Idris, Samira, Danyal | 6 |
+| The Day You Say Nothing | Halil, Selin, Rıza, Hacer, Osman | 5 |
+| The Night Watch | Tamar of the Wall, Kian, Idris, Samira, Danyal, Meryem | 6 |
+| Commonstead | Nora, Sam, Dai, Nerys, Dilek, Burak, Sevim, Oskar | 8 |
 
-| Canonical fact | Authority |
-|---|---|
-| Female, 33 at opening; delivery worker; Dilan is the only simulated HF person in Murmur | Murmur `src/sim/dilan.ts`, `makeDilan`; work and delivery episodes in `moments.ts` and `week2.ts` |
-| Authored traits: honesty `.68`, conscientiousness `.48`, emotionality `.62`, extraversion `.45`, agreeableness `.6` | Murmur `dilan.ts`; source habits have seed-fixed jitter, so branch state is not reconstructed from these numbers |
-| Aylin is her sister; Mum is their mother; Ece is her delivery colleague; Murat is her depot supervisor | Murmur `moments.ts` and `week2.ts`; these supporting people have no authored HF trait profile |
-| Alarm and call-to-Mum promises recur within each five-day week; the Aylin dinner promise is dated; she starts an unfinished shelf goal | Murmur `dilan.ts`, `renewDailyPromises` and `makeDilan` |
-| “you” and “pull” are source voices, not people in Hatice's garden | Murmur `dilan.ts` and `game.ts` |
-| Hearsay already has courier Murat, cook Aylin and student Ece | Hearsay `src/sim/world.ts`, `PEOPLE`; none is identified as Dilan's source relation |
+Commonstead's eight are its complete foreground opening cohort, not eight extra personas. Nora is the resident designer. Sam is the resident playtester. Other cast members can give feedback in their ordinary roles without becoming separate designer or reviewer characters. Every game has three to eight. Thirty-five of the forty have at least two allocated games. A single-game person remains intentional where a second appearance would weaken the setting or overload another game's cast.
 
-**New connecting fiction.** A new Hearsay edition places the tea garden on Dilan's delivery district in contemporary Turkey. Murmur does not establish that district's city. Author this location in the receiving chapter, without claiming it was an existing Murmur fact. Dilan delivers a parcel, stays for one ordinary exchange, and returns to her route. She does not replace Hearsay's courier Murat. Her visit does not make every resident know her family.
+## Canonical identity table
 
-**Mapping.** Use a dedicated visitor id for `hf.cast.dilan.murmur`. Carry supported current traits/values and one attended delivery/work fact with provenance. There is no authored common delivery skill to invent: the initial encounter maps no skill. If the encounter uses a retained fact, its consequence must be explicit and replayable. Otherwise label it biography only. The player as Dilan's inner voice does not become Hatice. Keep voice trust separate.
+The values below are the stable machine-readable roster. The four existing wave-1 identities keep their exact ids and advance to revision 2; their earlier revision-1 contracts are immutable. The thirty-six newly authored identities start at revision 1. The role descriptions in the biography and allocation table are normative; display names can use the short forms without changing identity.
 
-**Constraints, omissions and return.** Departure must follow an authored route/shift boundary with no running action. Release or fulfill the source alarm, call and dinner instances; reject a remaining unsupported obligation. The shelf begins active and unfinished, so it cannot silently vanish: a source-side explicit project pause/release is required and archived, or travel stays unavailable. Do not mark it completed. Archive source snooze/phone/depot habit keys, promptings, rumination/review, source voices and world-specific beliefs. They are not transplanted into tea-garden actions. The encounter ends at a stated route boundary; a return resumes a new Murmur chapter with a deterministic calendar mapping and explicitly authored future calls/work. It does not replay the same week as if the visit never happened. Chapter boundaries have zero modeled travel duration and no invented route performance. Until both adapters support this round trip, return is descriptive history only, not a live import claim.
+| castId | name | age | cohort | revision | games |
+|---|---|---:|---|---:|---|
+| `hf.cast.zeynep.pass` | Zeynep | 45 | Coast | 2 | Pass; Good Hands |
+| `hf.cast.dilan.murmur` | Dilan | 33 | Coast | 2 | Murmur; Hearsay |
+| `hf.cast.derya.stairwell` | Derya | 44 | Coast | 2 | Stairwell; Hearsay; Good Hands; Neighbours |
+| `hf.cast.selin.voice` | Selin | 32 | Coast | 2 | Voice; Good Hands |
+| `hf.cast.halil.voice` | Halil | 61 | Coast | 1 | Voice; Small Works |
+| `hf.cast.riza.voice` | Rıza | 63 | Coast | 1 | Voice; Hearsay |
+| `hf.cast.hacer.voice` | Hacer | 58 | Coast | 1 | Voice; Stairwell |
+| `hf.cast.osman.voice` | Osman | 55 | Coast | 1 | Voice; Hearsay |
+| `hf.cast.selim.pass` | Selim | 56 | Coast | 1 | Pass |
+| `hf.cast.dilek.pass` | Dilek | 34 | Coast | 1 | Pass; Commonstead |
+| `hf.cast.rafi.pass` | Rafi | 19 | Coast | 1 | Pass; Small Works; Neighbours |
+| `hf.cast.hulya.pass` | Hülya | 38 | Coast | 1 | Pass; Good Hands |
+| `hf.cast.nermin.goodhands` | Nermin | 45 | Coast | 1 | Good Hands; Hearsay |
+| `hf.cast.hatice.hearsay` | Hatice | 48 | Coast | 1 | Hearsay; Good Hands |
+| `hf.cast.aylin.murmur` | Aylin | 36 | Coast | 1 | Murmur; Hearsay; Good Hands |
+| `hf.cast.ece.murmur` | Ece | 24 | Coast | 1 | Murmur; Hearsay; Neighbours |
+| `hf.cast.murat.murmur` | Murat | 27 | Coast | 1 | Pass; Murmur |
+| `hf.cast.burak.stairwell` | Burak | 31 | Coast | 1 | Stairwell; Commonstead |
+| `hf.cast.sevim.stairwell` | Sevim | 69 | Coast | 1 | Stairwell; Commonstead |
+| `hf.cast.tarik.stairwell` | Tarık | 81 | Coast | 1 | Stairwell |
+| `hf.cast.tamar.rope` | Tamar Vale | 52 | Coast | 1 | The Rope |
+| `hf.cast.oskar.rope` | Oskar | 34 | Coast | 1 | Rope; Commonstead |
+| `hf.cast.nell.rope` | Nell | 23 | Coast | 1 | The Rope |
+| `hf.cast.bilal.rope` | Bilal | 41 | Coast | 1 | Rope; Glance; Neighbours |
+| `hf.cast.wren.rope` | Wren | 29 | Coast | 1 | Rope; Glance |
+| `hf.cast.dai.glance` | Dai | 63 | Coast | 1 | Glance; Commonstead |
+| `hf.cast.callum.glance` | Callum | 24 | Coast | 1 | Glance |
+| `hf.cast.nerys.glance` | Nerys | 47 | Coast | 1 | Glance; Commonstead |
+| `hf.cast.nora.smallworks` | Nora | 28 | Coast | 1 | Small Works; Neighbours; Commonstead |
+| `hf.cast.sam.smallworks` | Sam | 18 | Coast | 1 | Small Works; Pass; Neighbours; Commonstead |
+| `hf.cast.maryam.well` | Hajja Maryam | 68 | Valley | 1 | Well; Valley; Warren |
+| `hf.cast.yusuf.well` | Yusuf | 34 | Valley | 1 | Well; Valley |
+| `hf.cast.tariq.well` | Tariq | 16 | Valley | 1 | Well; Warren |
+| `hf.cast.idris.well` | Idris | 41 | Valley | 1 | Well; Watch |
+| `hf.cast.samira.well` | Samira | 29 | Valley | 1 | Well; Valley; Watch |
+| `hf.cast.danyal.well` | Danyal | 52 | Valley | 1 | Well; Valley; Watch |
+| `hf.cast.yusuf.warren` | Yusuf Usta | 74 | Valley | 1 | Warren; Valley |
+| `hf.cast.meryem.warren` | Meryem | 19 | Valley | 1 | Warren; Valley; Watch |
+| `hf.cast.tamar.watch` | Tamar of the Wall | 54 | Valley | 1 | Watch; Warren |
+| `hf.cast.kian.watch` | Kian | 16 | Valley | 1 | Watch; Warren |
 
-## Derya: Stairwell ↔ Hearsay, one nurse in a new edition
+## Individual biographies
 
-| Canonical fact | Authority |
-|---|---|
-| Female, 44; Derya Hanım; single; flat 5, floor 2, Lale Apartmanı, Istanbul; night nurse, sleeps in the mornings | Stairwell `src/sim/people.ts`, `RESIDENTS.derya`; Istanbul and building name in `README.md` |
-| Authored traits: honesty `.7`, extraversion `.35`, agreeableness `.6`, emotionality `.5`, openness `.55`; backbiting held forbidden, conviction `.5` | Stairwell `people.ts`, `makeResident` branch `derya` |
-| Volkan is her brother; he lost his job and visits late; she asks that the building not make a story of it | Stairwell `src/sim/game.ts`, Derya disclosure; do not reveal it in the target before the branch knows it |
-| Existing Hearsay local `derya` is a nurse in household `7` / `home-7` with teacher Zeynep and carpenter Ali | Hearsay `world.ts`; co-residence does not specify parentage, marriage or siblinghood |
-| Hearsay `1`/`2` initializes that actor at about 30, male by index, honesty `.55`, extraversion `.75`, conscientiousness `.6`, backbiting disliked | Hearsay `src/sim/game.ts`, `newGame`; these generic defaults still determine old replay behavior |
-| Existing Hearsay day 4 places Derya at a 06:30 breakfast before her shift; one nurse greeting says her shift starts later | Hearsay `src/sim/incidents.ts`, day 4; `src/sim/voices.ts`, `derya.open` |
+These are author-facing biographies. Secrets and possibilities must never be shown as knowledge the player already has. All forty have a full life beyond their allocation. Five deliberately stay in one game: Selim, Tarık, Tamar Vale, Nell and Callum.
 
-**Identity decision.** Merge the two nurse appearances under `hf.cast.derya.stairwell` in a deliberate new Hearsay edition. Stairwell supplies her age, sex, temperament, held backbiting understanding, night work, main home and brother. Hearsay supplies her existing nurse contact role, local social context and witnessed incidents. The old constructor and day schedule are incompatible with that life, so the edition changes them explicitly. Do not average the profiles or treat the conflict as a hidden transfer omission.
+### 01. Zeynep
 
-**New connecting fiction.** The new Hearsay district is within Istanbul travel reach of Lale Apartmanı. `home-7` becomes Derya's temporary local lodging during a short relief assignment; Zeynep and Ali remain its existing residents, without invented kinship. Her permanent flat remains flat 5. Keep her single status. A nurse may finish rounds and take a short breakfast before sleeping, but morning sleep must constrain her availability.
+**Identity:** `hf.cast.zeynep.pass`, revision 2. Age 45. **Place:** Bornova, İzmir. **Work:** canteen cook; cold-station and daytime placement work. **Family:** Two sons at home; no named spouse is established.
 
-**Edition obligations.** New Hearsay uses the canonical female age-44 initial profile for fresh Derya, or the admitted current branch profile. It changes day 4 to breakfast after a night shift, keeps Elif's actual generous act, replaces the conflicting shift greeting, and gives Derya a night-work/morning-sleep schedule. It retains `derya` as the local id and records the cast mapping. Use the canonical backbiting understanding under an explicitly checked norm mapping, rather than silently replacing it with Hearsay's generic disliked stance. Target narrator labels and dialogue must describe that understanding accurately. Other residents keep their own authored identities and norm stances.
+**HF profile:** honesty .80; conscientiousness .85; agreeableness .70. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
 
-**Mapping.** A continuous import carries supported current traits/values and one attended source fact; only disclosure-supported facts may be told to Hatice. Nurse is an occupation, not an HF clinical skill or license established by these sources. Map no invented medical competence. Stairwell's kapıcı and Hearsay's Hatice are different people. Known source residents remain bounded passport references, not added target residents; no transfer of blanket trust or private visitor allegations.
+**Source anchor:** Pass src/sim/cooks.ts; wave-1 canonical identity.
 
-**Omissions and return.** Archive stair notices, water/fund state, tea-money vote, source affordances and unreceived beliefs. Admit no unresolved duty, running activity, death conflict or unknown health incompatibility. A post-shift chapter boundary can lead to the relief assignment; arrival does not heal fatigue. The receiving host supplies a disclosed opening transient state without claiming off-screen recovery. At the assignment's end, Derya returns to flat 5 in a new Stairwell chapter with night-work and sleep intact. That requires a receiving adapter and a pinned new chapter; it never overwrites a saved building week. Old Hearsay Derya remains a legacy edition occurrence outside this travel branch. A legacy save cannot export into the canonical branch merely because its local id matches.
+**Games and roles:** Pass: cold-station hire. Good Hands: visiting cold-supper cook.
 
-## Selin: Voice → Good Hands → Voice
+**Carry policy:** Keep the sons promise and its 21:30–22:10 home window. Cold-food evidence is not general childcare competence. Release the kitchen shift before a daytime placement.
 
-| Canonical fact | Authority |
-|---|---|
-| Female, 32; Halil's daughter in the city; her own family is mentioned, with no named members; office skill `.6`; 09:00–18:00 job | HF `apps/site/src/voice/sim/town.ts`, `TOWN_DEFAULTS.selinEidCallFrom` comment, `townSpecs().selin`, and city affordances |
-| Traits: conscientiousness `.7`, extraversion `.6`, agreeableness `.65`, honesty `.75`; values: benevolence `.8`, achievement `.6`, tradition `.4` | Voice `town.ts`, Selin spec |
-| Halil is 61, a widowed repairman with chronic hypertension and a cigarette habit; Selin urges a doctor visit and rest | Voice `town.ts`, Halil spec, `townPeople`, seeded Selin beliefs |
-| Nuran was Halil's wife of 35 years; she died fourteen weeks before Ramadan opening | Voice `town.ts`, Halil's relationship and `seedGrief`; do not invent a resurrection or a living care placement for her |
-| Selin's calls and what she knows of the clinic depend on the played run | Voice `town.ts`, call resolution and clinic-slip perception; the passport must distinguish learned fact from seed biography |
-| Good Hands has existing carer households and a different Halil, the Taş father/porter | Good Hands `world.ts`, `FAMILIES`; Selin does not replace any household, and her father is not `tass-1` |
+**Authored life**
 
-**New connecting fiction.** Selin makes a telephone household enquiry to Nermin about practical help for her father in his Anatolian town. This is an enquiry, not an automatic placement, a relocation or proof that Nermin serves his address. The new chapter explicitly checks whether any suitable service reaches him. Voice does not name Selin's city. A telephone call avoids asserting an unestablished move to İzmir. Voice mentions her own family on Eid; it does not specify its members. Leave them unnamed and do not assign her an existing Good Hands spouse or children.
+Zeynep spent twenty years feeding schoolchildren before anyone called her an experienced cook. She knows which child will say that he has eaten when he has not, and which supplier will put the bruised vegetables at the bottom. Her skill grew from repetition under modest budgets. She dislikes the restaurant habit of praising a clever garnish while leaving the person washing trays outside the conversation. At the Pass she wants a reliable wage and a clean handover. She is interested in the customers, but does not want to become the kitchen's substitute mother.
 
-**Mapping.** Use a dedicated enquiry contact id for `hf.cast.selin.voice`. Carry supported current traits/values and one source-attended care/work fact; office skill is archived because the enquiry is not an office-work trial. Kinship to Halil is canonical background. Import only the actual clinic result or failed-call fact Selin received, not the narrator's omniscient health ledger. The target may author a new relationship to Nermin; Halil's voice trust remains a source relationship. A worried enquiry is not medical authority or a diagnosis.
+Her sons have learned to read her arrival from the keys in the door. The younger asks for help with homework late because he wants another ten minutes with her. The older has begun cooking before she gets back and pretends it was only because he was hungry. She keeps the evening deadline partly for them and partly because she remembers a season when she let every employer's emergency outrank her own household. She does not explain that history to every new chef. A request about a fever is a particular evening's problem, never proof that a son has a permanent illness.
 
-**Constraints, omissions and return.** Place the call after work, with her active source duty ended and supported future obligations declared. Archive prayer/fast calendars, live call retry timers, source money and world-specific norms; do not transplant their clock semantics into agency duties. Reject unsupported pending promises or active projects rather than erase them. The enquiry may end without a placement. Its actual answer can return as a bounded fact in a new Voice chapter; it cannot change Halil's medical state, invent care visits, erase debt or force his consent. A return adapter must give Selin an ordinary chance to pass on only what was said. Until supported, the answer remains passport history and no live Voice change is claimed. Existing Voice saves retain their own edition and chronology.
+Her private box contains an unsigned application for a small daytime meal service. She can cost the ingredients accurately but has left the salary line blank. Years of being told that care comes naturally make it hard for her to price her own work. She has also kept a letter from a former canteen assistant whom she failed to defend during a staffing cut. The assistant did not accuse her. That makes it harder to discard. Her conscientiousness can become an excuse to attend to a measurable tray count instead of a difficult conversation.
 
-## Distinct identities and later waves
+A player may discover the application by being invited to help price a menu, not by searching her bag. If the player gives her paid preparation time, a clear leaving hour and credit for the menu, she can submit it and begin a modest independent service. If she repeatedly covers unpaid emergencies, she can instead withdraw the application while remaining a good cook. The letter has a separate outcome: she may contact the assistant, admit exactly what she did, and offer a reference without expecting forgiveness. Neither outcome requires her to abandon her sons. Her recurrence should make the player recognize a working woman with a life outside the current game's staffing problem.
 
-| Apparent collision | Decision and reason |
-|---|---|
-| Pass Zeynep / Good Hands Taş Zeynep / Hearsay teacher Zeynep | Adult cook with sons, sixteen-year-old daughter, and teacher with separate household. Only the adult cook recurs in wave 1. No evidence supports joining these lives. |
-| Canonical Derya / Good Hands İnce Derya | Nurse in Istanbul and architect mother of Arda and Eylül in Karşıyaka. Keep distinct; a new nurse contact never replaces `inces-0`. |
-| Voice Selin / Hearsay Selin | Office worker and Halil's daughter versus student living with Fatma and Hasan. Hearsay is not an allowed Selin host in wave 1; reconciling it would require a separate authored decision. |
-| Dilan's Aylin, Ece and depot Murat / Hearsay namesakes | Source sister, delivery colleague and supervisor versus cook, student and courier. No mass merger or inferred family tree. |
-| Voice Halil / Good Hands Halil / Hearsay Halil | Repairman father, Taş porter and imam have different roles and relationships. A shared name does not join them. |
+### 02. Dilan
 
-Wave 2 proposes only the separate period cluster: Warren Yusuf Usta → Valley as a visiting or remembered craft expert. Establish date order, place, survival and household continuity first; keep Valley Yusuf, Well Yusuf and Good Hands Yusuf distinct. Target: owner decision after wave-1 play, review by 2026-11-03. It is not authorized implementation.
+**Identity:** `hf.cast.dilan.murmur`, revision 2. Age 33. **Place:** Istanbul delivery district; rented flat near her depot. **Work:** parcel delivery worker. **Family:** Aylin is her sister; their mother remains an unnamed background person.
 
-The Rope, Small Works and Neighbours stay frozen. Watch Tamar / Rope Tamar requires an explicit unfreeze and a deliberate reconciliation of ages 54 / 52, setting and history before either canonical merger or counterpart design. No wave-1 adapter admits them. Cross-era travel, cloud sync, cross-device recovery, shared-world state and a marketplace are outside this registry.
+**HF profile:** honesty .68; conscientiousness .48; emotionality .62; extraversion .45; agreeableness .60. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
 
-## Source receipts and implementation boundary
+**Source anchor:** Murmur src/sim/dilan.ts, moments.ts, week2.ts; wave-1 identity.
 
-Read-only source inspection on 2026-10-23:
+**Games and roles:** Murmur: person addressed by the two voices. Hearsay: delivery visitor.
 
-| Repository | Source commit | Primary files used |
+**Carry policy:** Carry received work and family events. Pause or finish the shelf project explicitly. Route shifts and dated dinner/call promises need a calendar map. Inner voices never become tea-garden residents.
+
+**Authored life**
+
+Dilan can remember which buzzer sticks in a building she visited once three months ago. She still misplaces her own electricity bill. Her day rewards noticing small local facts and punishes long interruptions; her evenings need a different kind of attention that does not arrive merely because she takes off the delivery jacket. She is neither an incompetent worker nor a secretly perfect person waiting for an efficient player. Some days she is late because the route was unreasonable. Some days she stayed on her phone after knowing she should leave.
+
+Aylin was the sister who finished forms and remembered birthdays when they were younger. Dilan made strangers laugh and found ways through unfamiliar streets. They liked those roles until each began treating the other's role as a permanent obligation. Dilan hears concern as instruction. Aylin sometimes packages instruction as a joke. Their mother phones to ask about meals because asking whether her daughters are lonely feels too direct. A successful call can be warm without resolving this family pattern in one conversation.
+
+The unfinished shelf began as a place for books, then became evidence in Dilan's private argument about whether she ever finishes anything. She has hidden one unevenly drilled support behind a stack of boxes. She could repair it with help, but asking Aylin would seem to concede the whole argument. A second secret is less dramatic: she once covered Ece's missed delivery and allowed Murat to believe that the delay was hers. She expected gratitude without asking for it. Ece thought the matter was settled. Dilan's resentment is therefore real even though Ece has not broken a promise.
+
+The shelf's hidden outcome is not a flawless piece of furniture. If Dilan names the actual problem, asks for a short practical visit and remains present during the work, the sisters can finish it together and leave the crooked support visible inside. A different branch can have her sensibly discard the project and stop using it as a verdict on herself. The delivery story emerges only if she chooses to discuss the old route record with Ece. A player who feeds her suspicions can turn an unspoken expectation into a lasting grievance. In Hearsay, the parcel gives her a reason to enter other people's conversations, but not permission to tell the garden everything she knows. Her familiar hesitation before a simple phone call should be more recognizable than a repeated catchphrase.
+
+### 03. Derya
+
+**Identity:** `hf.cast.derya.stairwell`, revision 2. Age 44. **Place:** Flat 5, Lale Apartmanı, Istanbul; short relief lodging near the garden. **Work:** night nurse. **Family:** Single; Volkan is her brother, currently between jobs.
+
+**HF profile:** honesty .70; extraversion .35; agreeableness .60; emotionality .50; openness .55. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Stairwell src/sim/people.ts and game.ts; Hearsay nurse reconciliation from wave 1.
+
+**Games and roles:** Stairwell: resident. Hearsay: relief nurse. Good Hands: professional care-scope contact. Neighbours: clinic nurse during a bounded visit.
+
+**Carry policy:** Night work and morning sleep remain real constraints. Her occupation does not grant an invented clinical skill. Volkan and patient details remain private. Hearsay home-7 is temporary lodging, not a new family.
+
+**Authored life**
+
+Derya works nights because she likes a ward after the visitors have gone, when a patient may finally say what the daytime questions did not reach. This is a preference, not endless capacity. She comes home with sore feet and little patience for a drill in the stairwell. Neighbours often call her calm because they see her after she has already decided what needs doing. They do not see the effort it takes to stay gentle when someone mistakes her availability for a public resource.
+
+Her flat has a small table by the window and curtains that do not quite stop the morning light. Volkan has slept there on difficult weeks since losing his job. He insists he is only visiting. She lets him use that word because she thinks insisting on the truth would make him leave before he has anywhere safe to go. She will not let the building turn his late arrivals into a story about her private life. She also knows that defending his privacy can become a way of avoiding a necessary discussion about money and how long he can stay.
+
+She once made a scheduling error at work and reported it before a patient was harmed. A supervisor thanked her, then quietly stopped offering the training she wanted. She has never been sure whether those events were connected. Her secret is that she kept copies of the correspondence and has drafted a request for an explanation several times. She can sound dismissive about career advancement because she dislikes admitting that she still wants it. A relief assignment gives her distance from the ward and a chance to test whether she wants a different post.
+
+The player can learn about the old report only after receiving her confidence during a concrete conversation about boundaries or training. A hidden outcome allows Derya to submit a precise account with a colleague's support and receive a real answer, which may be disappointing without destroying her. Another allows her to choose a different ward on its actual merits. Volkan's outcome is independent: she can set a date and contribution agreement without exposing him to the building. Protecting his secret forever while funding everything is not automatically kindness. At Good Hands she helps distinguish companionship, household help and skilled care; she does not promise an agency that she will cover every gap herself. Her second appearance should preserve fatigue, reserve and selective warmth, rather than convert her into a convenient exposition nurse.
+
+### 04. Selin
+
+**Identity:** `hf.cast.selin.voice`, revision 2. Age 32. **Place:** City office and family home; father in an Anatolian town. **Work:** office worker. **Family:** Halil is her father; Nuran, her mother, died fourteen weeks before the Voice opening. Her own household remains unnamed.
+
+**HF profile:** conscientiousness .70; extraversion .60; agreeableness .65; honesty .75; values benevolence .80, achievement .60, tradition .40. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Voice apps/site/src/voice/sim/town.ts; wave-1 identity.
+
+**Games and roles:** Voice: daughter and caller. Good Hands: household-enquiry contact.
+
+**Carry policy:** Carry the actual received clinic and enquiry facts, never omniscient diagnoses. Keep her own owed/calendar understanding quiet and ungated. A service enquiry is neither a placement nor Halil’s consent.
+
+**Authored life**
+
+Selin is good at the part of office work where an unclear request must become something another person can finish. At home she applies that skill too quickly. When Halil speaks about the weather she hears the unscheduled appointment behind the sentence. When he says he has eaten she asks what. Their calls can become inspections because she is afraid that a relaxed call will miss the one warning that mattered. She also misses talking to her father about things that do not require either of them to improve.
+
+During Nuran's last illness, Selin handled documents, transport and phone calls. People praised her strength. They rarely asked whether she wanted to sit beside her mother without a task. Since the funeral she has caught herself resenting her father's visible grief, then feeling ashamed because she knows he has lost his companion of thirty-five years. She has her own household and working hours. A phone available after six does not mean a person available without limits. Her quiet religious calendar belongs to that ordinary life; it is not a challenge for the player to clear before she is allowed to travel.
+
+Her private unresolved fact is a missed call from Nuran on an otherwise unremarkable afternoon. Selin listened to the message later and deleted it to free storage before knowing it would become important. She has told no one because she fears receiving either easy reassurance or a judgment nobody can justify. There is no hidden backup recording waiting to reward the player. What can change is her willingness to stop treating a missing file as evidence that she did not love her mother.
+
+The enquiry to Nermin offers a smaller, practical decision. Selin can ask whether help actually reaches Halil's town, what it costs, and whether he wants it. A candid answer that there is no suitable service is useful history, not failure. A hidden outcome opens when she brings that answer back without selling it as a completed arrangement and asks Halil which kind of visit he would welcome. Another lets her describe the deleted message to him and hear an imperfect response from a grieving man, not a scripted absolution. Repeatedly rewarding only compliance can instead make their calls shorter and more guarded even while appointments improve. Her office competence should travel intact; the player should also recognize the woman learning when a loved person needs company rather than a plan.
+
+### 05. Halil
+
+**Identity:** `hf.cast.halil.voice`, revision 1. Age 61. **Place:** Anatolian town; visits the Alder Quay workshop only through an explicit later chapter. **Work:** repairman, now working irregularly. **Family:** Widower of Nuran; Selin is his daughter.
+
+**HF profile:** conscientiousness .60; extraversion .35; agreeableness .60; emotionality .50; honesty .70. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Voice town.ts; Small Works new customer/workshop role.
+
+**Games and roles:** Voice: central person. Small Works: repair customer and occasional skilled elder.
+
+**Carry policy:** Hypertension, smoking, rent arrears and grief do not reset on arrival. Keep medical information bounded by receipt. Repair experience does not certify every appliance.
+
+**Authored life**
+
+Halil likes a repair that makes a definite sound at the end: a latch closing, a motor turning, a radio finding a station. Since Nuran died, the work that remains around the house rarely gives him that kind of answer. He can mend a loose handle and still sit in the same room without knowing what to do next. He has begun postponing jobs whose owners will ask how he is. Customers interpret the delay as retirement. He sometimes encourages that mistake because it seems less exposing than saying he has had a bad morning.
+
+For thirty-five years Nuran knew which of his silences meant concentration and which meant retreat. Their marriage was affectionate without being free of argument. She disliked the cigarettes and could also send him out to buy bread simply to have ten quiet minutes. He remembers those details more readily than the formal condolences people repeat. His avoidance of the clinic grew after her illness; a waiting room now contains more history than a chair and a number. His rent debt is real. Grief explains part of his behaviour but does not make the landlord's bills imaginary.
+
+In a drawer he keeps a repair order he marked finished without charging. The owner was struggling and he wanted to help. He then spent weeks complaining that nobody valued his work. Nuran had challenged him about using generosity to avoid naming a price. That unfinished argument has survived her. His secret is not an unknown moral failing; it is that some of his current helplessness protects him from deciding what his labour should cost and whether he still wants customers at all.
+
+A player who accompanies him through one bounded repair can discover the order when he chooses to tell its story. The hidden workshop outcome lets him reopen a small, priced service with fewer hours, record a genuine debt agreement and refuse a job beyond his present capacity. It need not make him smoke-free or finish grieving. Another branch has him teach Sam how to diagnose a simple fault, then admit that teaching felt better than taking the whole job home. Selin can receive that account only if he tells her. At Small Works, an imported Halil arrives with the medical and financial consequences of the played Voice chapter. He cannot become the cheerful anonymous old repairman because another game's customer list needs one. A good encounter may end with him leaving an ordinary tool for the next session and believing, for a while, that he will return.
+
+### 06. Rıza
+
+**Identity:** `hf.cast.riza.voice`, revision 1. Age 63. **Place:** Halil’s town and occasional Istanbul family visits. **Work:** retired worker; tea-house regular and part-time bread-delivery helper. **Family:** A grown daughter lives away; no canonical spouse is established.
+
+**HF profile:** extraversion .70; agreeableness .70; honesty .65; conscientiousness .45. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Voice town.ts; Hearsay baker role explicitly reauthored as delivery helper, not a merged inherited trade.
+
+**Games and roles:** Voice: Halil’s friend. Hearsay: bread-delivery visitor and garden regular.
+
+**Carry policy:** Do not invent baking skill. Keep separate relationship histories with Halil and Hatice; his telling is not independent corroboration of a rumour.
+
+**Authored life**
+
+Rıza can make a table feel occupied before the tea arrives. He remembers which person takes the window seat and which person needs to be asked twice before accepting another glass. Retirement first seemed to offer unlimited time for this kind of company. He has discovered that a familiar table can also make every day resemble the last. Halil's withdrawal worries him, but his answer is not always another story about somebody who recovered. Sometimes he simply stays long enough for his friend to decide whether he wants to talk.
+
+His daughter sends photographs from another city. Rıza shows the family pictures readily and keeps the pictures of buildings for himself. Years ago she sent a close view of a tiled doorway, saying she thought he would like it. Since then he has collected doorways: photographs, rough sketches on envelopes, addresses dictated by people passing through. He has no wish to become an architect. He likes the tiny decisions by which someone made an entrance welcoming, grand, private or slightly ridiculous. A bread-delivery round in Istanbul has quietly become his own walking survey.
+
+The collection is his private delight. Under the tea-house banter he has developed a surprisingly patient eye. He can identify a repaired tile from a poor photograph and remember a cat asleep in the same doorway on two separate visits. He has not shown the collection because people who know him as a talker tend to turn anything he does into a performance. His daughter thinks the first picture was forgotten. He sometimes imagines making a little route booklet for her, then worries that giving directions will turn a pleasant visit into another obligation.
+
+A player can discover the sketches when he asks for help finding an address or chooses to explain a detour. One hidden outcome lets him invite his daughter on a short walk with no requirement to complete the whole route. Another lets him make an inexpensive booklet for the tea garden, with owners' consent before including private courtyards. He may instead keep the sketches entirely his own. Refusing publication is a valid choice, not arrested growth. Rain can spoil the planned walk and leave a good afternoon indoors comparing photographs. His recurrence should reveal that a socially confident man can want a quiet interest without an audience, and that companionship can mean looking at the same small thing together rather than filling every silence.
+
+### 07. Hacer
+
+**Identity:** `hf.cast.hacer.voice`, revision 1. Age 58. **Place:** Halil’s town; a temporary room at Lale Apartmanı during family business. **Work:** retired shop assistant; informal neighbourly help. **Family:** A niece in Istanbul is background; no invented relation to the other residents.
+
+**HF profile:** extraversion .80; agreeableness .45; honesty .50; emotionality .60. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Voice town.ts; replaces Stairwell Nermin’s window-side social role in the new edition.
+
+**Games and roles:** Voice: neighbour. Stairwell: temporary resident using flat 1’s social position.
+
+**Carry policy:** Her weak held conviction against backbiting is her understanding, not a ruling. Do not carry unreceived allegations as facts. Her age is 58, not old Stairwell Nermin’s 72.
+
+**Authored life**
+
+Hacer notices a light left on and checks whether someone is ill. She notices a late visitor and wants the explanation before the kettle boils. She thinks these activities are closer together than the people she asks would like. Her years in a shop taught her to hear a request inside a hesitation. Away from the counter, the same attention can become intrusive. She can respect a plain boundary, although she may grumble about its wording on the way home.
+
+During her Istanbul stay her room faces the building entrance. The position gives her familiar social work while she deals with family business. It also gives her a view of a plane tree whose leaves change earlier on the street side than on the courtyard side. She began pressing the fallen leaves between old catalogues. Then she started keeping the small names people gave them: boat, little hand, torn umbrella. Her niece thinks the catalogues contain useful paperwork. They actually hold several years of a very particular neighbourhood, assembled by a woman everyone assumes only collects other people's news.
+
+She has a private talent for making tiny paper rooms. A folded shop, a kitchen with a working cupboard door, a staircase too narrow for the paper resident she first made: each takes several evenings. The rooms are not exact models of neighbours' homes. She invents them because invention lets her arrange a space without needing anyone's explanation. Her favourite has a large window and no front door. She cannot decide whether it is peaceful or impractical. She would dislike a visitor interpreting it as a diagnosis of her whole character.
+
+The rooms become discoverable if she offers one as a gift, asks for a piece of packaging or invites someone to tea while a model is on the table. A hidden outcome lets her help make a children's window display using imagined homes, with the children choosing their own details. Another has her decline a public exhibition because she likes making the rooms privately. At Stairwell she may give Derya a paper blackout curtain as a practical joke only after learning that Derya enjoys that kind of joke. Her curiosity about real residents still has consequences; a hobby does not excuse gossip. But a returning player should meet more than a problem to correct. They may recognize a woman who knows every arrival and discover that, when left pleasantly alone, she builds a street where nobody owes her an account of where they have been.
+
+### 08. Osman
+
+**Identity:** `hf.cast.osman.voice`, revision 1. Age 55. **Place:** Anatolian market town; supplier trips to Istanbul. **Work:** market trader and small landlord. **Family:** Divorced; an adult son works elsewhere, both new edition facts.
+
+**HF profile:** conscientiousness .75; agreeableness .35; honesty .60; extraversion .50. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Voice town.ts; Hearsay retired-porter slot deliberately replaced by a visiting trader.
+
+**Games and roles:** Voice: rent creditor. Hearsay: produce supplier and visiting garden customer.
+
+**Carry policy:** Carry actual rent account with provenance. No automatic debt forgiveness or debt transfer to Hatice. Do not import the old Hearsay porter’s retired biography.
+
+**Authored life**
+
+Osman counts crates before he unloads them. He learned the habit from a supplier who treated a missing box as a test of whether a young trader could be pushed around. He has since made punctuality and written sums part of his self-respect. Other people often experience the result as hardness. He knows that Halil has suffered a loss and still needs the rent. He has his own payments, but sometimes invokes them to avoid admitting that anger and worry have become mixed together.
+
+He bought the small rental property with years of market profit and regards it as proof that his working life produced something durable. His divorce left him sensitive to suggestions that he cares more about property than people. His adult son remembers missed weekends more clearly than the purchase. Osman thinks the house was for the boy's security. They are both describing real parts of the same years. On supplier trips he likes Hatice's garden because she knows his order and does not ask him to defend his whole character before accepting payment.
+
+His private ledger contains a discrepancy in his own favour. A former tenant paid a repair contribution in cash and Osman failed to deduct it from the final account. He discovered the note later, after telling himself the tenant had been dishonest. He has kept the money while waiting for the man to complain. The sum is small enough to excuse and large enough to remain in his mind. He is embarrassed that he can demand exactness from Halil while leaving this account unresolved.
+
+A player may discover the discrepancy only if Osman opens the ledger during a genuine accounting conversation or the former tenant presents a receipt. The hidden outcome is a returned payment with a clear correction, followed by an actual, affordable schedule with Halil. It does not require Osman to become an endlessly patient benefactor. He may still refuse new credit. A darker branch lets him treat one generous concession as proof that no correction is needed elsewhere. At Hearsay, his supplier role can expose how a confident financial accusation travels farther than a receipt. The recurring Osman should feel like a man capable of fairness who has made fairness conditional on being the one who writes the account. Let him change through a concrete repayment, not a sudden speech about compassion.
+
+### 09. Selim
+
+**Identity:** `hf.cast.selim.pass`, revision 1. Age 56. **Place:** Bornova. **Work:** grill cook; founder at the Pass. **Family:** Divorced; his grown son is an unnamed background person.
+
+**HF profile:** honesty .85; conscientiousness .80; agreeableness .40. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Pass cooks.ts.
+
+**Games and roles:** Pass: senior grill cook.
+
+**Carry policy:** Single-game foreground. Grill competence and actual kitchen history stay specific; no automatic authority over other cooks.
+
+**Authored life**
+
+Selim began work in kitchens when a cook could be shouted at all evening and still be expected to call the chef a good teacher. He now distinguishes himself from those men by refusing to lie about mistakes. He has not fully noticed how often he uses truth as an excuse to speak cruelly. A burnt tray is burnt; the person who burnt it may already know that. The Pass gives him a place where experience matters without making him the owner. He accepts the distinction in principle and tests it during every rush.
+
+He knows how to pace a grill by the sound before the surface changes. He likes showing that knowledge to someone who watches carefully. What frustrates him is not youth but carelessness, and he is sometimes unfair about deciding which he has seen. Rafi's jokes make him think of his son at nineteen. He responds by becoming more severe, believing that the boy needs standards. The resemblance is private. His son rarely phones, and Selim would rather say they are both busy than explain that their last call ended over a small correction that became an old argument.
+
+Before Nevin died she asked him to teach one full station to somebody else. He agreed and then kept the difficult parts in his own hands. He told himself the kitchen could not afford the slower service. He still has her handwritten station list, with no trainee's initials beside it. The secret is that being indispensable reassures him more than he likes to admit. A kitchen that runs without him feels like a judgment on all the evenings he gave it.
+
+The list becomes discoverable when Selim chooses a trainee and brings out the old notes, or when the owner grants access to Nevin's work records. A hidden outcome lets him teach the whole grill procedure, remain silent through a recoverable error, and take an evening off while the station holds. He can return pleased and unsettled rather than instantly relaxed. If the player rewards only output, he may deliver excellent service while the kitchen loses every potential successor. His son need not arrive for a sentimental reconciliation. A shorter, uncorrected phone call is a credible beginning. Keeping Selim in one game is intentional: recognition can come through a carried reference to his teaching, while his own life remains centred on the place he helped build.
+
+### 10. Dilek
+
+**Identity:** `hf.cast.dilek.pass`, revision 1. Age 34. **Place:** İzmir; bounded residential stay at Commonstead. **Work:** cold-station cook; later shared-kitchen organiser. **Family:** Younger brother and mother remain unnamed background relatives.
+
+**HF profile:** honesty .70; conscientiousness .55; extraversion .60; emotionality .65. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Pass cooks.ts; Commonstead role newly authored.
+
+**Games and roles:** Pass: founding cold-station cook. Commonstead: shared-kitchen resident.
+
+**Carry policy:** Carry actual recipe/work evidence, not a universal domestic skill. Do not let a residency cancel money commitments or change her kitchen relationships.
+
+**Authored life**
+
+Dilek likes the beginning of service, before an order turns possibility into a queue. She is quick with a changed plan and good at drawing a quiet worker into the room. She is less good at the last half-hour of cleaning. She knows this, and has accumulated several systems for becoming someone who closes every container immediately. Most work for a week. The Pass gives her both a place to improvise and colleagues whose need for an orderly handover cannot be satisfied by her enthusiasm alone.
+
+Her mother asks when she will find something steadier. Her younger brother asks for small loans without calling them loans. Dilek loves them and wants occasional conversations in which she is neither defending her work nor being useful. Commonstead offers a bounded residency rather than an escape from those relationships. Its shared kitchen interests her because different people want meals at incompatible times. She likes the practical puzzle of feeding a late worker without making an early sleeper endure a lively dinner outside their door.
+
+Privately, she records sounds. A knife on three kinds of board, the first hiss from a pan, a ferry announcement heard through rain: her phone contains hundreds of short recordings. She began after noticing that a familiar kitchen sounded different when everyone was relaxed. She arranges the clips into playful little compositions for herself. One sounds unmistakably like service beginning without containing a word. She has never told the cooks because she does not want every dropped spoon accompanied by a joke about her next masterpiece. Voices are excluded unless the speaker expressly agrees.
+
+A player can discover the hobby when Dilek asks everyone to hold still for ten seconds to catch a peculiar rattle, then chooses to explain why. One hidden outcome lets her and another resident make a Commonstead sound postcard, keeping it small and obtaining agreement for any recognizable speech. Another lets her build a quiet shared-meal routine whose success is audible in the kitchen: fewer rushed collisions, someone humming, a chair drawn up late. She can refuse to publish any recordings and remain perfectly content. The hobby need not become a career or a cure for uneven tidiness. Across games, the player may recognize her appetite for new combinations and then hear what she has been attending to all along: the ordinary music of people getting through work together.
+
+### 11. Rafi
+
+**Identity:** `hf.cast.rafi.pass`, revision 1. Age 19. **Place:** Bornova; short workshop exchange at Alder Quay. **Work:** dish worker; repair learner. **Family:** Can is his cousin; a sister and mother remain background.
+
+**HF profile:** honesty .55; conscientiousness .45; agreeableness .65. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Pass cooks.ts; Small Works and Neighbours roles new.
+
+**Games and roles:** Pass: founder at dish station. Small Works: repair learner. Neighbours: workshop helper.
+
+**Carry policy:** Jar skimming is a played fact when observed, not a universal label. Keep restitution debts and actual cousin relationship. Workshop learning does not erase kitchen consequences.
+
+**Authored life**
+
+Rafi can tell when an adult has decided that he is a good boy or a bad one. He tries to be entertaining before the decision hardens. At nineteen he has already learned enough service work to know that a kitchen needs him, but not enough confidence to ask clearly for what that work is worth. He sometimes takes a little from the shared jar. The act is theft in the source situation, not a lovable shortcut. He can also stay late washing a pan nobody asked him to touch. Neither act cancels the other.
+
+Can, his younger cousin, copies his jokes and watches how he speaks to older cooks. Rafi likes being admired and worries that the admiration rests on appearing less frightened than he is. His sister has a steadier sense of what she wants. He mocks her plans, then asks about them when nobody else is listening. He has begun collecting broken small appliances from neighbours, partly for parts and partly because a fault in a machine seems less humiliating than a fault everyone attributes to his character.
+
+One appliance belongs to a customer who believes it has already been repaired. Rafi took the deposit before checking whether he could obtain the part. He has used some of the money for travel to the workshop exchange. The private problem links his legitimate wish to learn with a dishonest way of financing it. He avoids the customer's street. At Alder Quay he is tempted to introduce himself as a repairer because it feels like a version of himself worth meeting.
+
+A hidden outcome lets him state his actual level, ask Sam or Nora for help diagnosing the item and return the unused deposit with an honest account. The item may prove uneconomical to fix. The important event is accepting a disappointing answer before inventing a successful one. Jar restitution is a separate obligation and requires a specific repayment to the people affected. A player who protects him from every consequence can help him remain charming and unreliable. A player who treats him as permanently corrupt can close off ordinary learning. In Neighbours he can become the helper who labels uncertain repairs accurately and asks before borrowing a tool. That small change should be visible without renaming him a reformed person at the top of the screen.
+
+### 12. Hülya
+
+**Identity:** `hf.cast.hulya.pass`, revision 1. Age 38. **Place:** İzmir after years in Antalya hotels. **Work:** oven cook; occasional catered placement worker. **Family:** Separated; one adult stepdaughter remains a private background relation.
+
+**HF profile:** honesty .80; conscientiousness .75; agreeableness .30; extraversion .40. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Pass cooks.ts, hotel history and distrust of chefs.
+
+**Games and roles:** Pass: oven hire. Good Hands: bounded baking and meal-preparation candidate.
+
+**Carry policy:** Oven evidence maps only to compatible work. Her distrust is not an allegation against every chef. Do not silently turn a former hotel post into a qualification.
+
+**Authored life**
+
+Hülya has worked in kitchens where the staff meal was good only when a guest might see it. She remembers managers who spoke about family before asking for unpaid hours. Her reserve at the Pass is a practical test: does a promise become a rota, and does the rota survive a busy night? She does not need to become warmer to be valuable company. She does sometimes need to distinguish a new person's clumsy introduction from the familiar beginnings of exploitation.
+
+The Antalya hotels gave her command of ovens and the habit of taking responsibility for anything that might burn while others argued. They also gave her a succession of cheap staff rooms. She made them habitable by growing something on the sill. After leaving, she kept the seeds in labelled envelopes: basil that survived a broken air conditioner, a pepper from a cleaner's mother, a flower nobody in the kitchen could name. Her stepdaughter once called the envelopes a portable garden. Hülya pretended to find that sentimental and kept the phrase.
+
+Her private ambition is wonderfully specific. She wants to grow a tomato with the flavour she remembers from a particular roadside lunch before her first hotel job. She does not remember the village name. She does remember the cracked blue plate and the woman who insisted that salt was unnecessary. Several attempts have produced perfectly good tomatoes that are not that tomato. She keeps them anyway. The search is part botany, part memory, and she knows memory may be supplying a flavour no plant can repeat. This does not make the effort foolish to her.
+
+A player may learn about the envelopes when she asks for a sunny ledge during a placement, or when she offers someone seed rather than unsolicited advice. A hidden outcome lets her and her stepdaughter grow two varieties together, compare them over an unhurried lunch and choose a new favourite without claiming to have recovered the old one. Another leads to the roadside village through an ordinary conversation with a supplier; the place can have changed and still be worth visiting. She may choose not to go because the remembered lunch already serves her well. Good Hands can respect a small gardening request while negotiating a real cooking job. Her recurring standards remain exact, but the player discovers a patient experimenter who can accept uncertainty from a plant more easily than from a chef.
+
+### 13. Nermin
+
+**Identity:** `hf.cast.nermin.goodhands`, revision 1. Age 45. **Place:** İzmir agency office; occasional Istanbul appointments. **Work:** placement agency operator; formerly alterations tailor. **Family:** A grown foster daughter is newly authored background; she lives independently.
+
+**HF profile:** honesty .75; agreeableness .65; conscientiousness .75; extraversion .60; emotionality .50; openness .65. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Good Hands world.ts; Hearsay tailor role reconciled as an earlier occupation.
+
+**Games and roles:** Good Hands: agency operator. Hearsay: visiting former tailor and work contact.
+
+**Carry policy:** No relation to old Stairwell Nermin. References remain attributed statements, not skill proof. A telephone enquiry does not establish service coverage or consent.
+
+**Authored life**
+
+Nermin ran an alterations counter before she matched people to household work. Customers told her about unreliable nannies while waiting for a hem, and workers told her about households whose descriptions omitted the hardest part. The agency grew from the space between those accounts. She understands that a confident presentation and a trustworthy person are different things. She also knows how easily an agency can make uncertainty disappear from its paperwork simply because a client wants an answer before lunch.
+
+She fostered a girl who is now grown and living independently. That experience informs her attention to household power but does not qualify her to know every family's private life. The young woman occasionally tells her that helping can become a way of keeping control. Nermin listens better to this criticism than she admits. A visit to her old tailoring circle in Istanbul lets her be someone other than the person expected to solve everyone else's staffing emergency. Her sewing is still careful, though she cannot keep a busy alterations business alongside the agency.
+
+Her private file contains a placement she describes publicly as a mismatch. She had heard a worker's concern about unpaid nights, softened it in the client call and accepted a promise that was never put in writing. The placement ended badly. There was no hidden villain who deceived her completely. She wanted the fee and wanted the relationship to work. She refunded part of the charge to the client before checking what the worker had lost. She has since improved her forms without contacting that worker again.
+
+The file becomes discoverable through a consented case review, not a reward for rummaging through confidential records. A hidden outcome requires Nermin to contact the worker, correct the old agency account, offer the unpaid amount she can substantiate and change the referral practice that caused the problem. She may lose a client. Selin's enquiry tests the smaller daily version of the same habit: can she say that a service does not reach the address instead of implying that a solution is already underway? At Hearsay she can refuse to turn professional confidentiality into a tantalizing silence. Her return should show whether she has become more exact about what she knows, while preserving the quick practical warmth that made people approach her counter in the first place.
+
+### 14. Hatice
+
+**Identity:** `hf.cast.hatice.hearsay`, revision 1. Age 48. **Place:** Istanbul tea garden; limited İzmir work exchange. **Work:** tea-garden keeper; competent household cook. **Family:** Widowed; a grown child lives outside the district, newly authored.
+
+**HF profile:** honesty .85; extraversion .70; conscientiousness .70; agreeableness .60; emotionality .50; openness .50. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Hearsay world.ts keeper role; Good Hands Hatice candidate age 48/work background retained with fixed new-edition traits rather than donor randomization.
+
+**Games and roles:** Hearsay: keeper. Good Hands: seasonal cook and housekeeper candidate.
+
+**Carry policy:** Explicit new-edition merger of keeper and candidate. Garden duties require cover. Her norm understanding is authored separately from honesty; no personality lottery on each appearance.
+
+**Authored life**
+
+Hatice knows the difference between a garden that looks full and one that earns enough to open tomorrow. She counts cups while listening to the conversations that make people return. This has taught her a particular kind of hospitality: a chair can be offered without a demand that its occupant explain why they need it. She does not always meet her own standard. When business is slow she may encourage a discussion she knows will hurt someone who is absent, because leaving the table lively seems easier than letting it disperse.
+
+Her widowhood is no longer new. People sometimes use that to assume she has no wishes beyond keeping the garden and visiting her grown child. She enjoys the place and would like an occasional month in which it is not her first responsibility. Seasonal work through Nermin is a paid exchange with explicit cover at home, not a sudden abandonment of a successful business. She brings real cooking experience. She does not become a nanny because a client hears a maternal voice.
+
+She has kept one table associated with her late husband in a position that makes service awkward. Everyone knows the story and nobody asks her to move it. Her more consequential secret concerns a wedding loan: she encouraged a young couple to spend more than they intended, then presented her private contribution as generosity while expecting their reception to use the garden. She never stated the expectation. When they chose somewhere else, her hurt became gossip about their ingratitude. The couple need not be new maintained personas; the episode belongs to her history.
+
+A player can learn the loan story if Hatice herself revisits the account during the current engagement thread. A hidden outcome has her separate the gift from the unspoken business bargain and correct the complaint to the people who heard it. Moving the table can be a quieter, independent act, done because she wants a better route through her garden rather than because a player has completed grief. At Good Hands, she can insist on a defined cooking trial and learn to be judged as a worker rather than as the person who normally owns the room. Her recognition across games should come through generous attention with a trace of possessiveness. The player may know her well enough to notice when an offered cup carries a request she has not yet said aloud.
+
+### 15. Aylin
+
+**Identity:** `hf.cast.aylin.murmur`, revision 1. Age 36. **Place:** Istanbul; short agency placements in İzmir. **Work:** school kitchen cook with occasional private meal work. **Family:** Dilan is her younger sister; their mother is background.
+
+**HF profile:** honesty .80; conscientiousness .80; extraversion .55; agreeableness .65; emotionality .55; openness .55. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Murmur moments.ts/week2.ts sister; Hearsay cook role adopted; Good Hands kayas-0 teacher is not this person.
+
+**Games and roles:** Murmur: sister. Hearsay: cook. Good Hands: meal-preparation candidate.
+
+**Carry policy:** New age/work facts are authored, not source Murmur facts. Dilan relationship carries only received history. No teacher/carer qualifications inferred from namesakes.
+
+**Authored life**
+
+Aylin keeps a list on the refrigerator because she likes waking without renegotiating the whole day. She became the organised sister gradually: first remembering a school form, then a birthday, then the errand everyone assumed she would handle. Cooking gave that competence a wage and a recognizable endpoint. A hundred lunches served is evidence of work. A family that expects another quiet favour can consume the same effort without ever naming it. She loves Dilan and sometimes needs to stop organizing long enough to enjoy her.
+
+Their birthday dinner matters because Aylin wants to be chosen rather than merely thanked for arranging things. She has not always explained that clearly. At the garden she sends a plate toward someone else's table more readily than she talks about her own evening. Clients at Good Hands may hear her practical calm as unlimited availability. She is learning to say when a cooking job ends, partly so that she can keep the rest of her life interesting rather than spend every free day recovering.
+
+She has been learning a form of social dance in a hall above a tyre shop. She is not secretly brilliant. She counts too hard, laughs when the rhythm escapes her and enjoys being a beginner among people who do not know her as the dependable sister. Her partner in class is an elderly background neighbour with a dry sense of humour. Neither wants the class turned into a romance. Aylin keeps the evening private because Dilan's affectionate teasing could make her self-conscious and because some pleasures feel different before they become family news.
+
+A player can discover the class through a volunteered invitation, a pair of shoes she asks them to collect, or her honest refusal of an evening placement. A hidden outcome lets the sisters attend a casual dance night with an explicit agreement that Dilan need not dance and Aylin need not host her. Another has Aylin go alone, make a mistake in front of the room and find that nobody treats it as a verdict on her. She may stop lessons after discovering she likes the music more than the movement, retaining a friend and a favourite evening walk. There is no mandatory performance and no public reveal required. Her recurrence should show that a competent caregiver can want a room where competence is temporarily irrelevant, and that closeness sometimes grows when a sister is allowed to have a pleasant thing she did not organize for the family.
+
+### 16. Ece
+
+**Identity:** `hf.cast.ece.murmur`, revision 1. Age 24. **Place:** Istanbul depot; temporary Alder Quay logistics exchange. **Work:** courier and part-time logistics student. **Family:** Lives with a background aunt; parents live elsewhere.
+
+**HF profile:** honesty .65; conscientiousness .70; extraversion .65; agreeableness .55; emotionality .45; openness .75. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Murmur moments.ts/week2.ts colleague; Hearsay student role deliberately reconciled with part-time study.
+
+**Games and roles:** Murmur: delivery colleague. Hearsay: student and courier. Neighbours: supply runner.
+
+**Carry policy:** No background Arslan mother or household child merger. Study and route evidence stay specific. A package delivered is not proof of a clean whole shift.
+
+**Authored life**
+
+Ece likes a route diagram more than a motivational talk. She can show where six wasted turns occur and resents being told to improve her attitude instead. She studies logistics in the evenings because she wants eventually to decide how the routes are made. The qualification is unfinished. She is ambitious and sometimes too quick to assume that a clean diagram has understood the people moving through it. A steep lane is a line on paper until she carries a parcel up it herself.
+
+Living with her aunt keeps rent manageable and privacy scarce. Ece is grateful and tired of accounting for every late evening. Dilan's easy manner first seemed like freedom: here was someone who could leave an awkward encounter without turning it into a contest. Their friendship can survive different ambitions, provided neither treats the other as a warning about how to live. A temporary Alder Quay exchange gives Ece responsibility for supplies and new routes, not command of the neighbourhood or permission to redesign everyone's day.
+
+Her private project is a map of places where people can sit without buying anything. She began it after a long shift when the only available bench was wet and every open doorway belonged to a business. Now she records shade, shelter, whether a seat has a back and when an apparently public courtyard closes. It is not an official accessibility survey. It is a young worker's useful curiosity, with jokes in the margins about spectacularly uncomfortable architecture. One of her favourite discoveries is a concrete step that catches the last evening sun for exactly the length of a tea break.
+
+A player can learn about the map when she offers a resting place on a walk or asks a resident whether a courtyard is genuinely open to everyone. A hidden outcome lets her produce a modest local version with checked hours and permission for private places. Another has her keep the map as an informal exchange between workers, resisting pressure to turn it into a branded project. At Neighbours, residents may choose a new bench location using her observations, then discover that different bodies prefer different seats. She can revise the recommendation without losing the pleasure of having noticed something useful. Her work ambitions remain serious. The surprise is that the courier who always appears to be hurrying has spent a great deal of thought on where a person should be able to stop.
+
+### 17. Murat
+
+**Identity:** `hf.cast.murat.murmur`, revision 1. Age 27. **Place:** Bornova and Istanbul through successive employment chapters. **Work:** former grill cook; junior depot supervisor. **Family:** No canonical spouse; relatives remain background.
+
+**HF profile:** honesty .45; conscientiousness .35; extraversion .80; agreeableness .55; emotionality .45; openness .60. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Pass cooks.ts age and döner background; Murmur supervisor and bowling notes; deliberate new career connection.
+
+**Games and roles:** Pass: grill hire. Murmur: depot supervisor in a later chapter.
+
+**Carry policy:** The depot promotion is an authored later job, never simultaneous with a kitchen shift. Hearsay courier and Good Hands driver namesakes remain background. No logistics expertise invented from grill skill.
+
+**Authored life**
+
+Murat is good at sounding ready. In a kitchen interview he talks about the busiest night he handled in Bornova; in a depot meeting he talks about the route he could cover himself if he had to. The stories are not wholly false. He is quick, sociable and able to rescue a confused encounter. The problem is the distance between a rescue and a system somebody can rely on next week. He likes a fresh start because it lets confidence arrive before the records catch up.
+
+His move from grill work to the depot happens between chapters, after an actual departure from the Pass. A friend recommends him for junior supervision because he can talk drivers through a bad morning. He is young for the authority and overuses neat records to prove he deserves it. He writes lateness in pen while keeping bowling scores in the same style. To Dilan, the combination can seem petty; to him, it means he is finally a person whose account matters. He has not noticed that an account becomes less useful when it omits the supervisor's own decisions.
+
+A private spreadsheet shows that he once reassigned difficult stops to Dilan after she challenged a target. He told himself she knew the district best. When later delays appeared, he treated them as evidence of her poor discipline. He has not fabricated all the numbers, but he has used a partial truth to protect his authority. His old kitchen reference is also less enthusiastic than the version he gives new employers. He fears that one candid admission will expose every earlier boast at once.
+
+The route file becomes discoverable through a legitimate scheduling review or his decision to open it. A hidden outcome allows him to correct the allocation record, acknowledge his role to the workers concerned and trial a smaller, fairer route. He may lose some status while becoming a more useful supervisor. At the Pass, an earlier branch can instead let him leave with an accurate reference that names strengths and limits. Neither event grants an automatic promotion later. A player who rewards only charm can get excellent explanations and repeated broken arrangements. A player who corners him publicly for every small error may teach him to hide more. The recurring Murat should be recognizable as the young man who wants authority before he has learned how to bear the unattractive parts of responsibility.
+
+### 18. Burak
+
+**Identity:** `hf.cast.burak.stairwell`, revision 1. Age 31. **Place:** Flat 3, Lale Apartmanı; short Commonstead residency. **Work:** accountant. **Family:** Single; family elsewhere remains unnamed.
+
+**HF profile:** honesty .80; extraversion .30; agreeableness .70; conscientiousness .80; openness .50. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Stairwell people.ts; seeded affection for Elif is not an established romance.
+
+**Games and roles:** Stairwell: resident. Commonstead: resident treasurer for a bounded shared account.
+
+**Carry policy:** Building funds and private accounts stay separate. No import of rumours about Elif as relationship fact. Financial competence is limited to implemented evidence.
+
+**Authored life**
+
+Burak likes accounts because an account can be complete. A conversation rarely announces that condition. He is courteous at the building entrance, keeps his keys ready and hopes a nod will mean everything required. Residents read the reserve in incompatible ways: seriousness, arrogance, sorrow, good manners. He has grown used to letting them choose. Sometimes the ambiguity protects privacy. Sometimes it prevents a neighbour from discovering that the quiet man has a very funny account of the train journey he just endured.
+
+His work is orderly and increasingly abstract. He wants some part of an evening to involve a thing whose dimensions he can touch. A bounded Commonstead stay appeals because shared repairs have an observable shape. He can help with the small account without making the entire residency an exercise in financial control. Affection for Elif remains possible rather than established. He would like to invite her somewhere and is not entitled to an answer merely because the reader knows he has considered the invitation carefully.
+
+His private hobby is making paper mechanisms: a stair that rises when a card opens, a bird whose wings move with a tab, a miniature ferry that crosses a folded harbour. He learned from a library book during a winter when he knew few people. His most elaborate object is a pop-up apartment building whose windows open in an order unrelated to its real residents. It contains a room he would like to live in: morning light, a long table and enough shelves to leave an unfinished model standing. He does not secretly hate accounting. He simply likes work that can delight someone without being necessary.
+
+A player can discover a mechanism when Burak offers a birthday card, asks for help holding a fold or chooses to bring a model to the shared table. One hidden outcome lets him make an instruction card with Nora that is both legible and playful, without turning it into the official design for everything. Another lets him invite Elif to a paper exhibition; she can decline kindly, attend as a friend or show interest that must develop in actual encounters. He can also keep the hobby mostly private and teach one child to make a moving fish. At Commonstead, leaving an unfinished model on the table with permission may matter more than displaying a perfect one. His recurrence should preserve reserve while making room for pleasure that does not need to justify itself as useful.
+
+### 19. Sevim
+
+**Identity:** `hf.cast.sevim.stairwell`, revision 1. Age 69. **Place:** Flat 2, Lale Apartmanı; Commonstead guest term. **Work:** retired teacher; volunteer reading and practical-writing tutor. **Family:** Widowed; an adult child lives abroad, newly authored background.
+
+**HF profile:** honesty .60; extraversion .60; agreeableness .35; conscientiousness .85; openness .40. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Stairwell people.ts; correction of notices is source behaviour.
+
+**Games and roles:** Stairwell: resident who corrects notices. Commonstead: guest tutor and records reader.
+
+**Carry policy:** Teaching experience is biography, not universal pedagogy skill. Carry only actual learning evidence. Her corrections do not become narrator truth merely because she is confident.
+
+**Authored life**
+
+Sevim corrects a notice because a notice is going to speak to everyone who passes. She considers it a public responsibility to stop it speaking badly. Years in a classroom taught her to spot a missing date or a misleading instruction before its writer has finished explaining. Those same years taught her habits of authority that no longer fit every room. A neighbour may need a legible water notice, not a lesson in the decline of standards. She can hear the difference if she pauses long enough.
+
+Retirement removed the daily evidence that somebody needed her exact attention. Her child abroad sends affectionate messages in a mixture of languages and abbreviations. Sevim answers formally, then rereads the exchange and wonders why it feels distant. She is proud of the child's independence and wishes independence included asking for her advice more often. At Commonstead she accepts a short guest term to help residents write clear instructions for shared equipment. She says she is going to teach; privately she hopes to be invited to stay for the conversation afterwards.
+
+She retains a set of school exercise books from a pupil she once considered lazy. Years later she learned that the child had been caring for a sick parent. She remembers praising another pupil's tidiness in front of him. She has retold the episode as a lesson about changing times without naming her own part. Her hidden fear is that admitting one cruel judgment will invalidate a career that also contained real care. The books remain private until she chooses a teaching example and hesitates over which one to use.
+
+A hidden outcome lets her write a careful account to the former pupil through an appropriate, welcomed channel, acknowledging the public comparison without demanding a reply. Another allows her to ask a current learner what makes an instruction difficult before rewriting it. The resulting equipment card may be less elegant and more usable. If the player only rewards correction count, she can produce immaculate notices and a room nobody wishes to enter. A visit from her child need not resolve the distance; accepting an unfamiliar joke without correcting its phrasing can be enough for one evening. Sevim should recur with the same precise eye and strong opinions. The change is whether that attention leaves another person more able to act or merely more aware of being assessed.
+
+### 20. Tarık
+
+**Identity:** `hf.cast.tarik.stairwell`, revision 1. Age 81. **Place:** Flat 7, top floor, Lale Apartmanı. **Work:** retired ferry captain. **Family:** Widower; extended family remains background and visits irregularly.
+
+**HF profile:** honesty .80; extraversion .50; agreeableness .70; conscientiousness .60; emotionality .40. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Stairwell people.ts.
+
+**Games and roles:** Stairwell: top-floor resident.
+
+**Carry policy:** Single-game foreground. Do not make remembered navigation into present-day physical capacity. Keep actual stair access, fatigue and received visit history.
+
+**Authored life**
+
+Tarık describes distance by crossings. A shop is two ferry queues away in his mind even when a new road makes the comparison useless. Years as a captain made him the person who knew whether departure was sensible. Retirement gives other people charge of timetables he cannot change. He remains friendly, but a cancelled visit can leave him cross because he hears it as someone else deciding how much of his day matters. The top-floor view is good. Reaching it is no longer an incidental part of coming home.
+
+He does not want to be the building's wise old man. He enjoys an inaccurate story if it is funny and grows tired of being consulted only for evidence that people once had better manners. His wife used to interrupt polished sea stories by naming the colleague who actually solved the problem. After her death, fewer people know when he has improved a detail. He misses being known closely enough to be contradicted without ceremony. Visitors who ask an ordinary question about lunch can be better company than those who arrive determined to honour his whole career.
+
+His private collection is a set of cheap radio recordings of birds heard from different landings. He cannot identify all of them. He labels one 'the rusty hinge at the east pier' and another 'three complaints before sunrise.' Some tapes also contain engines, a colleague coughing or his wife asking whether the recorder is still on. He has no interest in having every incidental voice made public. The recordings preserve working places rather than an immaculate natural world. One contains a bird he has not heard for years, and he wonders whether it still visits the old landing.
+
+The collection becomes discoverable if he invites someone to help operate the player or asks whether they recognize a call from the courtyard. A hidden outcome lets him reach the landing on an agreed, accessible outing and wait without a guarantee that the bird will appear. Another lets a neighbour bring a new recording to him, making the exchange mutual rather than a substitute journey imposed for his own good. He may prefer to hear the old tape again and talk about who was there. An archive can receive only the material he chooses, with other people's privacy respected. Keeping him in one game is deliberate. A full life can continue around one difficult staircase, and a satisfying discovery need not end with an old man undertaking a dramatic final voyage.
+
+### 21. Tamar Vale
+
+**Identity:** `hf.cast.tamar.rope`, revision 1. Age 52. **Place:** Coast climbing district. **Work:** outdoor instructor and experienced climber. **Family:** No canonical spouse or children; Nell is her student, not daughter.
+
+**HF profile:** conscientiousness .85; emotionality .40; agreeableness .60; openness .50; honesty .80. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Rope party.ts; new surname distinguishes her from Watch Tamar.
+
+**Games and roles:** The Rope: mentor and experienced party member.
+
+**Carry policy:** Single-game foreground. No merger with Watch Tamar. Carry actual injuries, consent and mountain history; past experience does not guarantee present capacity.
+
+**Authored life**
+
+Tamar has taught enough novices to know that confidence can sound like comprehension. She asks a learner to show a knot rather than repeat its name. People sometimes call this reassuring and sometimes patronising. She wants Nell to become a climber who can disagree with her, but she is less comfortable when that disagreement arrives on a cold ledge where she has already made a plan. Her conscientiousness is real. It can also make her hold every important decision so tightly that nobody else gets a safe chance to learn.
+
+She began climbing with people who expected silence about pain. She now tells students to report discomfort early. When her own knee stiffens, she adjusts the pack before explaining why. She thinks she is sparing them worry, and knows she is also preserving a familiar authority. Ezra's absence is part of the party's history. The empty chair and remembered tea do not establish a death. She will not let a new edition invent one merely to make her more poignant. Some relationships end with distance, unanswered messages or a route not taken.
+
+Her private climbing book records one day when she turned a party around and later described the decision as weather. In fact she had lost confidence in a piece of her own route judgment. The retreat was sensible, but the explanation protected her reputation at the cost of making another member feel needlessly timid. She has carried the uncorrected account longer than the physical memory of the climb. Nell's increasing trust makes it harder, not easier, to say that her mentor once needed help and hid it.
+
+A hidden outcome becomes available if Tamar chooses to use the old day as a teaching example and gives the complete account. Nell can then learn that competent people can name uncertainty without surrendering every decision. Another outcome lets Tamar hand over a bounded part of a route and remain present without silently taking it back. A player who repeatedly demands proof of toughness may get a summit and a damaged knee. One who treats any pain as disqualification can take away a journey she still values. Keep her single-game allocation deliberate: she belongs to these mountains and this teaching relationship. The wider cast can hear of her only through actual messages or meetings, not a convenient claim that every reserved older woman named Tamar has lived the same life.
+
+### 22. Oskar
+
+**Identity:** `hf.cast.oskar.rope`, revision 1. Age 34. **Place:** Coast climbing district; Commonstead guest stay. **Work:** commercial photographer and serious amateur climber. **Family:** Younger sister remains background; no canonical partner.
+
+**HF profile:** conscientiousness .45; emotionality .20; agreeableness .40; extraversion .75; openness .60; honesty .55. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Rope party.ts summit drive and Wren rivalry; trade newly authored.
+
+**Games and roles:** Rope: summit-driven climber. Commonstead: guest photographer and difficult collaborator.
+
+**Carry policy:** Photo work is not mountaineering qualification. Rivalry carries actual encounters, not universal hostility. No summit claim without played completion.
+
+**Authored life**
+
+Oskar can make a hard day sound inviting. He knows which detail will turn a walk into an event: the ridge appearing behind cloud, the stove lighting just before dark. Photography pays some bills and rewards the same instinct. He is not careless because he fails to see beauty. He is careless when a beautiful possible result makes another person's limit look like an obstacle to be negotiated. His low fear can be useful under pressure and misleading when he assumes that fear tells everyone the same amount.
+
+Wren came partly because he said she would not. He remembers the remark as teasing. She remembers having to decide whether leaving the challenge unanswered would define her. He likes her refusal to flatter him and resents the effort it takes to work with it. At Commonstead he arrives to document a working residency. Residents are people with tasks, not a cast he can arrange to make the photographs say something better. Nora can appreciate his eye while objecting to a staged account of the work.
+
+His secret is a widely admired photograph assembled from two moments. The image itself is disclosed as edited in a technical caption most viewers never read, but the accompanying story implies that an exhausted volunteer stayed through an entire storm. That person had sensibly gone home. Oskar enjoys praise for the story and tells himself the image expresses a larger truth. His private fear is that an accurate account will seem ordinary and that ordinary work will reveal how replaceable he is.
+
+The hidden publication outcome requires him to correct the narrative where it was first shared, credit the real labour and obtain consent for the new caption. The photograph can remain good. At Commonstead he can make a useful record of an unfinished repair, including the people who refused to be photographed. On the mountain he can choose to turn back without immediately planning a more impressive consolation. These outcomes need separate decisions; one candid caption does not cure summit pressure. If the player rewards only striking results, Oskar may become increasingly persuasive about risks borne by others. His recurrence should make the player notice who is just outside the frame and whether he now asks what account they would recognize as their own.
+
+### 23. Nell
+
+**Identity:** `hf.cast.nell.rope`, revision 1. Age 23. **Place:** Coast climbing district. **Work:** library assistant; novice climber. **Family:** Mother remains background; Tamar is her mentor.
+
+**HF profile:** emotionality .80; openness .80; agreeableness .70; conscientiousness .50; honesty .65; extraversion .45. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Rope party.ts; work newly authored.
+
+**Games and roles:** The Rope: novice and learner.
+
+**Carry policy:** Single-game foreground. Do not equate fear with incapacity. Carry actual method learning and consent, not a skill award for merely being present.
+
+**Authored life**
+
+Nell works in a library where she helps people ask for the thing they meant to find. Outside work she often waits for someone else to ask the question she needs answered. Climbing appealed because the learning seemed concrete: practise a movement, understand a tool, become able to go somewhere previously closed. The mountains also reveal how quickly embarrassment can interrupt learning. She can say she is fine while spending most of her attention on not looking frightened. A useful mentor gives her room to ask before reassurance becomes another instruction.
+
+Her mother requests messages at sensible intervals and sometimes adds a warning from an unrelated news story. Nell finds this irritating, then uses the irritation to prove that she is independent. Tamar offers a less anxious authority, which can become another dependence if approval is the test of every choice. Bilal's tea is a relief because the cup need not contain a lesson. Wren's bluntness unsettles her and sometimes makes refusal easier: here is a person who can disagree without preparing an apology for existing.
+
+Nell privately loves bad mountain names. She keeps a list of local unofficial names, mistranscriptions and names invented by walkers who failed to find the place they intended. A harmless rounded boulder becomes The Last Tooth; a modest wet hollow acquires three rival heroic titles. She draws small maps that preserve all the versions, including the unflattering ones. Her favourite map is deliberately useless for navigation because it records how places sounded to the people describing them. She worries that experienced climbers will think the interest frivolous or mistake it for a claim about cartography.
+
+A player can discover the maps when she chooses one as a camp diversion or asks someone what their family calls a ridge. A hidden outcome lets the party add its own name for a place where it turned back, with nobody required to call the retreat a triumph. Another lets Nell contribute a small library display separating oral names from safe route information. People can disagree about a name without the game resolving a single correct sentimental meaning. Her climbing development remains real and needs actual practice; an entertaining map grants no navigation skill. She may keep the drawings in a private notebook and enjoy them just as much. Her single-game allocation allows this learner to become familiar in more than one way: not only the person deciding whether to ask for help, but the one who can make a miserable rainy camp laugh at a hill called The Sunny Chair.
+
+### 24. Bilal
+
+**Identity:** `hf.cast.bilal.rope`, revision 1. Age 41. **Place:** Coast climbing district; seasonal reservoir and Alder Quay contracts. **Work:** maintenance technician and climber. **Family:** Married; spouse and stepchild remain background.
+
+**HF profile:** agreeableness .85; conscientiousness .70; emotionality .50; honesty .85; extraversion .50; openness .50. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Rope party.ts stove and tea; later occupations/visits authored.
+
+**Games and roles:** Rope: climber and practical companion. Glance: visiting maintenance contractor. Neighbours: ferry-supply helper.
+
+**Carry policy:** Do not make tea/stove competence into dam engineering. Job scope must name actual qualifications. Family leave and travel require explicit chapter boundaries.
+
+**Authored life**
+
+Bilal carries the stove because someone needs to know where it is. He also likes being the person whose arrival improves an evening without a speech. That habit is useful on a mountain and tiring when he offers before checking the weight. His generosity is not an unlimited supply of willingness. A shoulder can hurt even when carrying feels like part of being himself. The people who know him best sometimes need to ask the practical question directly: would he actually like someone else to take it today?
+
+Maintenance work brings him to the reservoir under a specified engineering scope. He distinguishes tightening a fitting from deciding whether an unusual reading is harmless. At Alder Quay he helps move supplies during a bounded stay. His spouse and stepchild remain part of the life he returns to, rather than vanishing whenever another game needs a cheerful helper. He likes travelling and the way a temporary job gives each day a clear edge. He also likes the untidy home evenings that have no agreed finish time.
+
+His private skill is making shadow animals. He began with two shapes to amuse his stepchild during a power cut and became absorbed in the possibilities. His hands can now produce a remarkably convincing heron and an unconvincing but beloved goat. He has a little folding lamp arrangement packed among practical equipment. He rarely offers a show because he does not want a child's game treated as an invitation to make him everyone's entertainer. The hobby belongs to play, not a hidden professional calling. Sometimes he wants to try a ridiculous new creature with another adult and laugh when it fails.
+
+A player can discover it during a willing evening demonstration, after noticing the lamp and asking, or when Bilal offers to help a child pass a boring wait. A hidden outcome lets the mountain party make a small shadow scene together, with someone else controlling the lamp and Bilal learning a shape from them. At Neighbours the scene can become an agreed hall-opening diversion, provided he is asked rather than volunteered. He can refuse and still contribute through ordinary supply work. A separate family outcome has him send a newly invented creature home and receive his stepchild's improvement. None requires an injury or confession to become meaningful. Across games, the familiar helpful man gains a surprising pocket of silliness, and the player can learn that accepting his company does not mean using every skill he happens to possess.
+
+### 25. Wren
+
+**Identity:** `hf.cast.wren.rope`, revision 1. Age 29. **Place:** Coast climbing district; reservoir survey visits. **Work:** field ecologist; amateur climber. **Family:** No canonical partner; one older sibling remains background.
+
+**HF profile:** agreeableness .25; extraversion .30; openness .70; conscientiousness .55; emotionality .35; honesty .65. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Rope party.ts; ecological work and Glance role authored.
+
+**Games and roles:** Rope: climber resisting Oskar’s terms. Glance: downstream habitat surveyor.
+
+**Carry policy:** Ecology does not grant control-room engineering competence. Preserve actual refusals and consent. A rivalry is not a duty to keep competing.
+
+**Authored life**
+
+Wren dislikes being offered two choices when the speaker has already decided which answer will prove her character. Oskar's challenge about the climb annoyed her because it worked. She came wanting the route and wanting to show that he could not decide what she would do. Those are not the same motive. She is capable of seeing the difference and slow to admit that a person she dislikes has influenced her plans. Her reserve is not a hidden request for somebody more sociable to draw her out.
+
+Field ecology suits her because patient observation matters more than a confident first impression. She can spend a wet morning checking the same small reach of water and regard that as a useful day. A reservoir survey puts her in contact with Dai and Callum, whose operational concerns are real even when their preferred timetable is inconvenient for her data. She knows that a survey needs access arrangements. She sometimes treats asking for cooperation as if it were a surrender of professional independence.
+
+She once omitted an ambiguous observation from a preliminary report because she expected an opponent to use it against a conservation recommendation. The recommendation may have been sensible. The omission still made her evidence look cleaner than it was. Her secret is a field page she has kept after the formal report was filed. It includes her uncertainty in plain language. She is more ashamed of having behaved like the people she criticizes than of the possibility that her conclusion needs revision.
+
+A hidden outcome lets Wren append the actual observation, explain its limited meaning and keep arguing for the recommendation on honest grounds. The decision about the habitat can remain contested. On the mountain, another outcome lets her decline a summit bid because it no longer fits her own reasons, without arranging the refusal to wound Oskar. A player can also strengthen her habit of defining autonomy entirely through opposition. The page becomes discoverable through a consented discussion of the survey, never by assuming a blunt person has no right to privacy. Her recurrence should make her exact language familiar. Growth means that she can ask for a gate key, revise a conclusion and accept a cup of tea without interpreting every dependence as capture.
+
+### 26. Dai
+
+**Identity:** `hf.cast.dai.glance`, revision 1. Age 63. **Place:** Welsh reservoir district; later Commonstead guest stay. **Work:** dam keeper, thirty-one years at the site. **Family:** Separated; an adult daughter lives nearby, newly authored.
+
+**HF profile:** honesty .70; emotionality .30; extraversion .35; agreeableness .35; conscientiousness .75; openness .45. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Glance keepers.ts and dam.ts; Mr Pugh is source address, full surname not established there.
+
+**Games and roles:** Glance: veteran keeper. Commonstead: guest maintenance mentor.
+
+**Carry policy:** Do not invent the legal full name Dai Pugh. Site knowledge stays site-specific. Retirement or leave must occur before a residency; never leave the dam unstaffed.
+
+**Authored life**
+
+Dai knows which sound from the control room is ordinary in a west wind and which one makes him stand up. Thirty-one years have given him knowledge no manual fully contains and habits no manual should be asked to justify. He dislikes being told that the new system is safer merely because it is new. He also dislikes discovering that an old shortcut has survived mainly because nobody wants to argue with him. Callum's careful questions can sound like criticism when Dai is tired, even though he once wished for a trainee who would ask them.
+
+His daughter lives close enough that visiting should be easy. He has made the reservoir the explanation for so many missed afternoons that they both assume work is the answer before checking the rota. His separation was not caused by one heroic emergency. It grew through a thousand smaller decisions about whose plans could move. Commonstead becomes possible only after he arranges genuine cover or retirement. He wants practical work without a radio beside every meal and is unsettled by how quiet that makes him feel.
+
+He has a private list of checks that he performs by habit but has never added to the handover notes. Some are useful. One is a workaround for a sensor issue already resolved years ago. Keeping the list in his head makes him indispensable and leaves Callum exposed. His more personal secret is a voicemail from his daughter asking him to stop apologizing for an absence he has already chosen. He has kept it without replying because he cannot decide whether she is angry or simply finished asking.
+
+The hidden handover outcome requires Dai and Callum to walk through the list, test what still matters and record uncertainty without treating the younger keeper as either a replacement or a pupil forever. A residency can then begin on an honest rota. At Commonstead he can teach a safe inspection method and let Nora reject an unnecessary ritual. The family outcome is an ordinary attended visit, with a time he actually leaves work. A player who only rewards the right reading at the right moment may preserve the dam while making succession harder. His return should be recognizable in the pause before a technical answer: is he recalling a measurement, a reliable habit, or a rule that has become comfortable enough to escape examination?
+
+### 27. Callum
+
+**Identity:** `hf.cast.callum.glance`, revision 1. Age 24. **Place:** Welsh reservoir district. **Work:** agency dam keeper, second week at opening. **Family:** Partner and baby at home remain unnamed background people.
+
+**HF profile:** honesty .80; emotionality .80; extraversion .55; agreeableness .85; conscientiousness .80; openness .55. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Glance keepers.ts, dam.ts.
+
+**Games and roles:** Glance: new keeper and parent.
+
+**Carry policy:** Single-game foreground. Baby and home sleep constraints remain real. Do not give site competence for confidence or punish appropriate escalation as cowardice.
+
+**Authored life**
+
+Callum checks the same line twice when he is afraid of having missed it. In a control room the habit can prevent an error. It can also consume the attention needed to notice something outside the form. He wants Dai to think he is worth teaching and the agency to think he can be sent back. The baby at home has made secure work urgent without making sleep plentiful. He sometimes arrives having rehearsed an ordinary question so thoroughly that he sounds more certain than he feels.
+
+His partner wants useful accounts of the shift, not a dramatic statement that everything could have gone wrong. Callum knows this and saves the worst anxieties for the drive, where they become harder to test against another person's view. He likes the work when he can distinguish a sign from a guess. He does not like the thought that asking an engineer to check something will reveal that he should never have been given the chair. Dai's brusque patience matters because it can become either permission to learn or another standard Callum believes he must read without being told.
+
+Before the current week he recorded a routine round as complete after checking only part of it. A colleague said that was how everyone handled a quiet night. Nothing bad followed. Callum has since performed extra checks privately, hoping diligence will cancel the old false entry. He also hides how little sleep he had after a difficult night with the baby, fearing that honest fatigue will cost him shifts. Both secrets come from treating a temporary limitation as proof of permanent unfitness.
+
+A hidden outcome lets him correct the round record through the proper channel and separate the missing observation from consequences that did not occur. Another has him report his actual rest and ask for a safe arrangement before a mistake forces the issue. He may receive fewer hours and still be better supported. At home, a shared plan for rest is an event the branch must actually arrange, not a reward inferred from a good shift. The player should never be asked to prove his courage by suppressing an appropriate call. His single-game place is deliberate: the work, partner and baby already give him a full world. Recognition comes from watching a young keeper learn to say what he checked, what he suspects and what he needs somebody else to verify.
+
+### 28. Nerys
+
+**Identity:** `hf.cast.nerys.glance`, revision 1. Age 47. **Place:** Bridge Inn below the Welsh reservoir; Commonstead guest visits. **Work:** innkeeper and river-level witness. **Family:** Lives with a long-term partner who remains background.
+
+**HF profile:** honesty .75; conscientiousness .70; extraversion .75; agreeableness .60; emotionality .55; openness .65. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Glance dam.ts host observer; age/family/HF profile newly authored.
+
+**Games and roles:** Glance: innkeeper reporting downstream observations. Commonstead: guest host and shared-meal organiser.
+
+**Carry policy:** A visual river report is bounded evidence, not instrument telemetry. Keep actual report timing and trust. Inn cover precedes travel.
+
+**Authored life**
+
+Nerys can hear from a caller's first breath whether they want a room, an exception or someone to blame. Running the Bridge Inn taught her to answer the practical part first. During bad weather she moves things before the warning is official, sometimes too early and sometimes just in time. She knows the river from the back step. That knowledge is real and local. It does not reveal the dam's internal state, and she is irritated when officials either dismiss her observation or repeat it as if she supplied an instrument reading.
+
+The inn is a working partnership. Her partner keeps parts of the business Nerys scarcely notices until away. She enjoys being the visible host and can forget how much laundry follows a welcoming room. A bounded Commonstead visit offers a chance to be someone else's guest. That is less comfortable than she expects. She wants to help, sometimes before learning whether help is wanted, and can interpret a resident's quiet supper as disappointment with the gathering she imagined. A good evening need not be a busy one.
+
+Her private interest is amateur astronomy. The inn sign obscures much of the sky from the terrace, so she has worked out a route between three dark corners of the grounds. She owns an old telescope with a repaired stand and a notebook of observations that include guest remarks, weather and nights when she saw nothing. She especially likes showing somebody Saturn because disbelief often comes before the delighted silence. She keeps the telescope out of the inn's advertising. A promised attraction would turn clear skies into another service she felt obliged to deliver.
+
+A player may discover the route after accepting a late cup outside, asking about the folded stand, or hearing her decline an event on the night of a possible meteor shower. A hidden outcome lets a few willing people wait together without making a sighting the condition of a good visit. Cloud can cover everything and leave an excellent conversation. At Commonstead she can invite a resident to choose a dark place and learn that their best evening involves no explanations at all. Another outcome lets her enjoy an entirely solitary observation, with work cover arranged beforehand. She need not become an expert astronomer or build a commercial observatory. Her recurring warmth becomes more particular when the player learns that the host who usually anticipates every request also loves attending to something no guest, keeper or innkeeper can schedule.
+
+### 29. Nora
+
+**Identity:** `hf.cast.nora.smallworks`, revision 1. Age 28. **Place:** Alder Quay; Commonstead residential workshop. **Work:** repair designer and maker. **Family:** Estranged older brother remains background; no canonical partner.
+
+**HF profile:** honesty .70; conscientiousness .60; extraversion .45; agreeableness .50; emotionality .50; openness .85; values selfDirection .90, stimulation .80. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Small Works people.ts age/values/designs; Neighbours Ada/Ravi work roles deliberately consolidated.
+
+**Games and roles:** Small Works: neighbour with designs. Neighbours: carpenter/designer at shared workshop. Commonstead: resident designer.
+
+**Carry policy:** Designer is an in-world occupation, not an added lab panel persona or actual test evidence. Adopt tools/skills only with evidence; preserve workshop ownership and consent.
+
+**Authored life**
+
+Nora likes a repair that leaves the owner able to understand it. She dislikes sealed objects and instructions that assume the reader has already been trained. This is partly a design philosophy and partly the memory of growing up around a brother who answered questions by taking the tool out of her hand. She can now make the same mistake when another person works slowly. Her commitment to self-direction is strongest when defending her own and needs practice when someone else's method looks inefficient.
+
+At Small Works she brings designs that are not merely requests for free fabrication. She wants a conversation about what the object is for. In Neighbours she shares a workshop and must account for the public use of space, stock and noise. Commonstead makes her resident designer for a bounded term. That role means proposing and testing usable changes with residents. It does not make her the author of their personalities, the official lab designer or evidence that any real player has accepted a design.
+
+She keeps a prototype handle copied from a repair her brother made years earlier. She has changed it substantially and still feels that crediting him will surrender the work. During a small exhibition she let a presenter call it wholly original. The private problem is not whether every practical idea has an ancestor; it is the specific assistance she knows she omitted. Another secret is an accessibility feature she dropped because it spoiled the clean line of the object, then described as unnecessary without asking the person who needed it.
+
+A hidden outcome requires a real user trial, an accurate credit and a revision that serves the person who will use the handle. The result may look less elegant in a photograph. Contact with the brother is optional and should not be forced as the price of honest attribution. A separate outcome lets her teach Rafi a safe method without taking over when he asks a basic question. At Commonstead she can publish a design as unfinished and invite criticism before investing the whole household's stock. If the player rewards only novelty, she can leave a trail of striking objects nobody maintains. Her recurring recognition should come from sharp attention to how a thing is used, followed by the question of whether she has included the person who will have to live with it.
+
+### 30. Sam
+
+**Identity:** `hf.cast.sam.smallworks`, revision 1. Age 18. **Place:** Alder Quay; short İzmir work exchange. **Work:** repair apprentice; occasional kitchen worker; resident game playtester at Commonstead. **Family:** Mother and sister remain background; no merger with older source Neighbours Sam.
+
+**HF profile:** honesty .65; conscientiousness .50; extraversion .60; agreeableness .65; emotionality .55; openness .80; values achievement .80, stimulation .70. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Small Works people.ts; Neighbours cook is an explicit replacement-role decision.
+
+**Games and roles:** Small Works: learner. Pass: visiting dish trainee. Neighbours: shared-meal helper. Commonstead: resident playtester.
+
+**Carry policy:** Playtester means a fictional job within the game. It is not independent acceptance evidence or a new maintained reviewer persona. Preserve actual methods learned and current age; no automatic cooking expertise.
+
+**Authored life**
+
+Sam wants to become useful quickly enough that people stop saying he has potential. At eighteen he has spent years hearing that praise, which describes a future he cannot yet show anybody. Repair work gives him visible attempts: the wheel turns or it does not. Games appeal for a similar reason, though he is learning that finding a reproducible problem can be more useful than winning. At Commonstead his in-world playtesting work means recording what he tried and what happened. It does not stand in for actual owner play or an independent lab review.
+
+His mother worries about unpaid learning disguised as opportunity. He hears the concern as doubt, partly because he has accepted exciting tasks without asking when he will be paid. A kitchen exchange at the Pass supplies ordinary wages and a different lesson in working alongside people whose skill is not organized around explaining itself to him. At Alder Quay he can help prepare a shared meal without replacing the older cook from the old edition. The new role is a novice's bounded contribution, with experienced background cover where needed.
+
+He once submitted a bug report using another player's description after failing to reproduce it himself. He believed the report and wanted to look thorough. A developer spent an afternoon chasing the wrong conditions. Sam still has the exchange marked as a successful contribution. In the workshop he is tempted by the same shortcut: saying he checked a fault because the likely answer seems obvious. His secret is small enough to rationalize and central enough to shape the worker he becomes.
+
+A hidden outcome lets him correct the old report, label a new observation precisely and preserve uncertainty rather than erase it. A useful negative result can then earn trust without being presented as a dramatic discovery. Another outcome lets him negotiate paid hours for a repair, tell his mother the actual terms and keep learning without promising instant independence. The player can discover the old report when he voluntarily brings a testing notebook for feedback. No private account search is required. His recurrence should make his enthusiasm familiar, then reveal whether he now distinguishes an idea, an attempt and an observed result. He can remain impatient and playful while becoming someone another person can safely rely on to say, 'I have not checked that yet.'
+
+### 31. Hajja Maryam
+
+**Identity:** `hf.cast.maryam.well`, revision 1. Age 68. **Place:** Well settlement; seasonal kin visits in the lower valley and Warren. **Work:** cook and seed-store organiser. **Family:** Widow; Yusuf is her son, Tariq her grandson. Yusuf’s wife Zehra is background.
+
+**HF profile:** honesty .80; emotionality .60; extraversion .60; agreeableness .80; conscientiousness .80; openness .40. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Well world-types.ts and human-cast.ts; Valley/Warren roles authored.
+
+**Games and roles:** Well: cook. Valley: visiting household cook. Warren: refuge kitchen organiser.
+
+**Carry policy:** Carry family ties, real food stocks and duties only through host-compatible maps. Honorific is a name usage, not a score. Cooking does not grant authority over every household.
+
+**Authored life**
+
+Maryam knows how much a pot will stretch before someone has to call it soup. She has fed three generations through lean weeks and a few frightening ones. Experience makes her practical rather than endlessly serene. She notices waste quickly and sometimes calls a younger person's wish waste before understanding it. People call her everyone's grandmother. She enjoys the affection and dislikes the implication that she should always feed one more guest without asking whose grain will be used. A shared kitchen still needs boundaries around labour and stores.
+
+Yusuf is her son and Tariq her grandson. She remembers Yusuf at Tariq's age, which can make it difficult to see either accurately now. Visits to the lower valley follow named family and work arrangements; she does not operate three kitchens on one morning. At Warren she helps establish a refuge kitchen for a bounded stint. She can teach a process while accepting that another cook seasons differently. Her observance and inherited sayings belong to everyday life, not an authority to settle every argument in the district.
+
+Privately she loves puzzles made with string. Her husband brought home one knotted arrangement from a traveller, and they spent several evenings trying to release its wooden ring. She remembers the evenings more clearly than who solved it. Since then she has made her own versions, some ingenious and some impossible because she tied them incorrectly. She keeps the impossible ones too. They amuse her. The family knows one simple puzzle from childhood and assumes she has nothing new. Her current favourite releases only when the solver stops pulling the apparent loose end.
+
+A player can discover the collection when Maryam offers a puzzle during a wait or asks for a smooth scrap of wood. A hidden outcome lets Tariq devise a new solution she did not intend, giving them a shared joke rather than a lesson about respecting elders. At Warren she may lend a few puzzles to the refuge kitchen for people waiting out weather. Nobody must solve one to receive food, and she need not turn the hobby into organized therapy. Another outcome is a quiet evening with Danyal attempting an impossible knot and eventually deciding to leave it impossible. Their friendship needs no romantic resolution. Across games, her generosity and sharp opinions remain, while the player discovers an older woman who can spend an hour on something delightfully unproductive and regard the time as well used.
+
+### 32. Yusuf
+
+**Identity:** `hf.cast.yusuf.well`, revision 1. Age 34. **Place:** Well settlement and lower-valley Çoban household in successive chapters. **Work:** builder; part-time flock and household work. **Family:** Maryam’s son; Tariq’s father; Zehra, his wife, and younger children are background.
+
+**HF profile:** honesty .75; emotionality .40; extraversion .50; agreeableness .60; conscientiousness .85; openness .50. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Well CAST and family ties; Valley yusuf age38/shepherd reauthored to34 with building as main trade.
+
+**Games and roles:** Well: builder. Valley: Çoban household head and builder.
+
+**Carry policy:** Explicit Valley age/trade edition change. Preserve wife Zehra and pregnancy if that chapter starts it; no affair implied by Samira’s visit. Building skill must be actually represented.
+
+**Authored life**
+
+Yusuf likes a wall that stands straight because its errors can be found with a line. Household duties are harder to measure. He keeps promises conscientiously and can become angry when others remember the exception more clearly than the many ordinary days he kept them. As Maryam's son he has inherited both practical competence and the expectation that he will make the family's decisions look easy. As Tariq's father he is discovering that an eager learner can obey closely while understanding very little of why a task matters.
+
+Building is his main trade in this edition. Work with the Çoban household's flock fills gaps rather than making him two full-time workers. Zehra remains his wife; a lower-valley chapter may include the pregnancy authored for that household. The Well opening's simpler cast did not establish that these relatives did not exist. Their new background presence must be stated in the host, not smuggled into a transfer as a remembered scene. Yusuf's regular prayer is quiet personal routine, never the explanation for every good action or a test the player must pass to use his skill.
+
+He once promised a neighbouring household a repair date before checking the timber. When the material failed to arrive, he spent a private store intended for his own roof and blamed an unrelated leak for the resulting shortage. Zehra suspects that something is missing. He has told Tariq that a man's word is what matters, without explaining that one promise can be kept by quietly breaking another. His secret is the old timber token showing which household supplied the material. The problem is not generosity itself but whose consent he skipped.
+
+A hidden outcome requires him to lay out both commitments, agree a realistic repair order and stop presenting the roof problem as bad luck. Tariq can learn a more useful form of promise-keeping: checking capacity before giving his word, and reporting a delay before others discover it. Another outcome lets Yusuf learn a method from his son without treating the reversal as loss of authority. The player can discover the timber account through an authorized stock review or Yusuf's voluntary explanation, not omniscient household access. Across the Well and Valley he should remain reliable without becoming frictionless. Recognition matters most when the familiar dependable man pauses before accepting a task and says which other duty would have to move.
+
+### 33. Tariq
+
+**Identity:** `hf.cast.tariq.well`, revision 1. Age 16. **Place:** Well settlement; supervised Warren work visit. **Work:** building apprentice. **Family:** Yusuf’s son and Maryam’s grandson; Zehra is his stepmother in this edition; his birth mother remains background with no new life history assigned.
+
+**HF profile:** honesty .60; emotionality .30; extraversion .70; agreeableness .60; conscientiousness .50; openness .70. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Well CAST and ROLE_GOALS; Warren work visit newly authored.
+
+**Games and roles:** Well: apprentice. Warren: supervised timber-and-store helper.
+
+**Carry policy:** A minor’s travel needs a stated household arrangement. Learned methods require actual evidence. Do not import a successful build merely because he attended the work.
+
+**Authored life**
+
+Tariq wants the next task before the last has become routine. He learns quickly enough that adults sometimes mistake imitation for settled judgment. Yusuf's praise matters, but he also wants a skill his father did not hand him. A supervised Warren visit offers another craft tradition and other young workers. His household agrees where he will sleep and when he returns. He does not become an independent adult labourer merely because a refuge needs hands, and being useful should not consume every hour of a sixteen-year-old's stay.
+
+Maryam knows which childhood stories embarrass him and tells some anyway. He protests most loudly with an audience, then fetches her pot before she asks. His strong initial trust in the player's voice can make him attempt a method without checking that he understood. That trust needs care. He is beginning to enjoy disagreement when it is about an object on the table rather than whether he is old enough to have an opinion. Building can supply that kind of argument: a joint can be tested without deciding the worth of its maker.
+
+His private ambition is to construct a tiny boat that travels straight across the well's storage basin without a hand guiding it. The basin is not available whenever he wishes, so tests must be arranged away from drinking water and working ropes. He has tried scraps, reeds and a badly balanced sail. None behaves like the boat in his head. He keeps a page of failures drawn with enough humour that Maryam would enjoy it if he showed her. He has not, because he likes having a project whose first audience is not immediately his family.
+
+A player can discover the little hull when Tariq requests a discarded offcut, invites a test or asks why a sail pulls sideways. A hidden outcome lets him and Kian make two different boats for a friendly race in an agreed safe place. One can win and break; one can lose and survive. They may exchange designs or decide that rivalry makes the afternoon less fun. Another outcome has Tariq abandon the sail for a simpler floating animal and give it to a child who asks. No success grants boatbuilding expertise or adult status. He can also leave the experiment unfinished without treating it as a personal failure. His recurrence should show a learner finding his own questions, including small questions that nobody needs answered for the village to keep functioning.
+
+### 34. Idris
+
+**Identity:** `hf.cast.idris.well`, revision 1. Age 41. **Place:** Well forest edge; seasonal Watch duty. **Work:** forester and experienced woodland worker. **Family:** Samira is his wife; Lena10 and Pell7 are their children in the new Watch edition.
+
+**HF profile:** honesty .60; emotionality .15; extraversion .50; agreeableness .50; conscientiousness .60; openness .50. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Well CAST; Watch Joss role explicitly replaced, smith occupation not inherited.
+
+**Games and roles:** Well: forester drawn to the cedar. Watch: strong watch volunteer and woodland scout.
+
+**Carry policy:** Preserve marriage to Samira. Watch children Lena/Pell remain background children of this couple. No smithing skill from replaced Joss; strength is not permission to ignore risk.
+
+**Authored life**
+
+Idris grew up measuring a day by what could be brought home from the woods. He is comfortable carrying a heavy load and less comfortable explaining why a promising tree is not worth the risk today. Low fear has helped him stay useful during a crisis. It also makes another person's fear look like a negotiable delay. He loves Samira and sometimes treats her caution as a condition he must overcome to provide what the household needs, rather than information from a competent partner.
+
+Their children, Lena and Pell, belong to the deliberate new Watch edition. They replace the old Mara–Joss household without claiming that the old actors were secretly Idris and Samira. At the wall, Idris's woodland experience can help with routes, timber and recognition of movement. It does not make him a smith. He works alongside people who know other things and can resent the limits of his authority. At home, the children hear the thrilling part of a day's story first because he likes seeing their admiration.
+
+He once took a valuable cut from land whose boundary was disputed. He did not know with certainty that it was forbidden; he also avoided asking the person most likely to object. He sold the timber and used the money for a household need, telling Samira only that the price had been good. The secret is a boundary marker he moved aside while hauling, then did not replace. He has told himself that a storm could have shifted it anyway. That explanation becomes less convincing each time he repeats it privately.
+
+A hidden outcome requires him to restore the marker in consultation with the affected households, disclose the timber and negotiate an actual repayment or work settlement. Samira must hear the source of the money, not merely the finished bargain. The cedar at the Well offers a current echo: he can value a large gain and still decide that the exposure is not justified. At Watch he can accept a partner's withdrawal call without treating it as a challenge to courage. These choices need not make him cautious in every setting. The player should recognize a strong, ambitious worker and discover whether his strength now includes leaving a valuable thing where it is when the cost would be paid by someone else.
+
+### 35. Samira
+
+**Identity:** `hf.cast.samira.well`, revision 1. Age 29. **Place:** Well forest edge; temporary lower-valley and Watch assignments. **Work:** gatherer; watch observer during a bounded season. **Family:** Idris’s wife; Lena10 and Pell7 are their children in the new edition.
+
+**HF profile:** honesty .70; emotionality .85; extraversion .50; agreeableness .70; conscientiousness .85; openness .50. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Well CAST; Watch Mara role replaced with explicit age29 and canonical marriage.
+
+**Games and roles:** Well: careful gatherer. Valley: visiting gatherer/store adviser. Watch: observer with good sight learned through work.
+
+**Carry policy:** Do not inherit Mara’s age34 or husband Joss. Children remain Lena/Pell. High concern can aid judgment; it is not an objective doubling of every real-world risk.
+
+**Authored life**
+
+Samira remembers the return journey as carefully as the outward one. She knows which gathering paths become difficult after rain and asks to go with someone when two people make the task safer or more useful. Idris sometimes hears that request as a verdict on his judgment. She sometimes lets him, rather than saying the harder thing: she is tired of preparing for risks he has accepted on the household's behalf. Her caution is valuable information, but it does not make every feared event equally likely.
+
+At twenty-nine she is Lena and Pell's mother in this edition. Her first years of parenthood overlapped with learning much of the work she now does well. Watch duty puts observation at the centre of a task instead of treating it as an interruption. In the lower valley she takes a bounded gathering assignment, with family arrangements made before departure. She loves her household and enjoys being known somewhere first for the work in front of her. These wishes need not be incompatible or resolved into one permanent vocation.
+
+She keeps a private collection of pigments made from permitted scraps: a little earth from a path repair, soot, a berry stain that fades almost immediately. She paints the same modest scene with each mixture, usually a bowl beside a window. She is curious about how colour changes as it dries. The collection contains ugly browns, a blue that barely appears and one beautiful yellow she has been unable to repeat. She does not harvest unknown plants carelessly or claim a dye is safe for skin. The experiment is small, absorbing and hers.
+
+A player can discover the painted scraps when she requests an empty shell for mixing, shows a colour that surprised her or invites company on an ordinary gathering walk. A hidden outcome lets her paint a household screen with Idris and the children, each choosing a part that may not match the others. Another lets her find someone in the valley who prefers discussing pigments to discussing motherhood, forming a friendship with no larger obligation. At Watch she may choose not to carry the paints because the duty needs rest more than another activity. Leaving them home need not signal defeat. Her caution and preparation remain recognizable, but the player discovers a woman who enjoys making something change slowly under her attention and sometimes wants no explanation for why the result pleases her.
+
+### 36. Danyal
+
+**Identity:** `hf.cast.danyal.well`, revision 1. Age 52. **Place:** Well settlement; lower-valley water work and occasional Watch duty. **Work:** well keeper; water-system and grain-store worker. **Family:** Christian widower; Maryam is an old friend, not an assumed partner.
+
+**HF profile:** honesty .90; emotionality .40; extraversion .40; agreeableness .70; conscientiousness .80; openness .50. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Well CAST; new Valley/Watch roles; Watch Yunus replaced without inheriting his faith or biography.
+
+**Games and roles:** Well: well keeper. Valley: visiting water steward. Watch: measured night-duty volunteer.
+
+**Carry policy:** Keep his Christian identity quiet and intact. Do not inherit Yunus’s prayer routine. Personal grain remains distinct from common grain; water expertise is bounded.
+
+**Authored life**
+
+Danyal keeps the well because everyone needs water and a rope left frayed does not become safer through good intentions. He is patient with ordinary mistakes and less patient with people who praise his reliability while leaving the work to him. His own grain jar stands beside, but not inside, the common store. The distinction matters to him. Sharing can be generous only when the giver is allowed to say what is his. Other villagers sometimes interpret the visible jar as mistrust, overlooking how often he has lent from it openly.
+
+He and Maryam have known one another through marriages, bereavements and years when nothing remarkable happened. Their friendship does not require a late romance. He remembers her husband's annoying habits and will say so when people turn the dead into saints. His Christian practice is part of his life rather than a lesson for the settlement. At the wall he volunteers on terms that preserve his own observance and responsibilities. The new Watch role takes the steadiness of an experienced worker, not Yunus's miller biography or faith.
+
+His wife once asked him to repair a small domestic shelf. He repeatedly deferred it while tending urgent public tasks. After she died he repaired it in one afternoon and could not bear to use it. He now stores empty jars there. The deeper secret is that he has allowed the village to describe his public service as something she always supported without mentioning their quarrels about it. He fears that acknowledging her dissatisfaction would seem disloyal to her memory or make the work less good.
+
+The shelf can become discoverable when he invites someone to fetch a jar and chooses to tell the story. A hidden outcome lets him describe his wife as a full person, including her justified impatience, and alter a present duty arrangement so another household does not pay the same hidden cost. He may share a well inspection with a learner and keep one evening free. A separate store outcome lets him contribute grain through an explicit gift while refusing an assumed permanent levy. The player can misuse his honesty by treating him as an inexhaustible neutral witness. He should be allowed mistaken interpretations and private grief. Across the three games, recognition rests on the man who asks whether a rope has actually been checked and who is slowly learning to ask the same exact question about the promises he makes at home.
+
+### 37. Yusuf Usta
+
+**Identity:** `hf.cast.yusuf.warren`, revision 1. Age 74. **Place:** Warren dig-master’s house; earlier and later valley work visits. **Work:** dig-master; retired well-digger who still advises. **Family:** Meryem is his granddaughter and household member in this authored edition.
+
+**HF profile:** honesty .75; conscientiousness .70; openness .75; extraversion .50; agreeableness .50; emotionality .45. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Warren people.ts; source household relationship rule replaced by explicit granddaughter fact.
+
+**Games and roles:** Warren: dig-master. Valley: visiting well-digging adviser.
+
+**Carry policy:** Not Well Yusuf or Valley’s old shepherd by name. Keep age and physical limitations. Advice is not free labour or guaranteed geological truth; father’s water strike remains family history.
+
+**Authored life**
+
+Yusuf Usta has outlived enough predictions to distrust a man who says the ground will certainly behave. His father struck water under the western fields, and the story has grown each time it was told. He knows which parts he witnessed and which came from people who wanted the father to have known from the beginning. His own reputation now attracts the same polishing. A group under pressure wants the old dig-master to point once and remove uncertainty. He can enjoy the authority while insisting aloud that nobody can promise water.
+
+Meryem is his granddaughter in this new edition, an explicit relationship rather than a conclusion drawn from their ages. She lives in his household and knows when his apparent contemplation is fatigue. He wants her to learn the craft and worries that keeping her beside him may prevent her choosing another life. At the lower valley he advises a bounded investigation with local workers doing work appropriate to their capacities. Warren requires a different rhythm: he can identify a line and still need another person to carry, check and sometimes challenge it.
+
+His private map marks a passage he once abandoned after an injury to a worker. The official account names unstable ground. That was true, but he had also extended a shift beyond the agreed stop because he wanted to prove a rival wrong. He made a compensation payment through an intermediary and has never spoken directly to the injured worker. He fears the map will reveal that a celebrated master can be vain in precisely the way he criticizes in younger men. The worker's continuing life must not exist only to forgive him.
+
+A hidden outcome lets him annotate the map with the full decision history, offer direct acknowledgment and let the injured person choose whether to meet. The practical consequence is a new stop rule that another worker is authorized to invoke even against him. Meryem can then lead a bounded survey without his hand returning to every line. A player who rewards his fame may obtain decisive advice while recreating the old unsafe hierarchy. One who treats his age as total incapacity can deprive him of work he still performs well. Recognition should come through curious attention to the ground and the difference between saying that uncertainty exists and allowing it to change the day's plan.
+
+### 38. Meryem
+
+**Identity:** `hf.cast.meryem.warren`, revision 1. Age 19. **Place:** Warren dig-master’s household; field visits to Valley and Watch. **Work:** apprentice surveyor and household worker. **Family:** Yusuf Usta is her grandfather; parents are background and live elsewhere.
+
+**HF profile:** honesty .60; openness .85; conscientiousness .55; extraversion .45; agreeableness .55; emotionality .50. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Warren people.ts age/profile; Watch Ruslan replaced with a new apprentice observer role.
+
+**Games and roles:** Warren: dig-master’s household learner. Valley: survey assistant. Watch: newcomer observer and stores mapper.
+
+**Carry policy:** Not Well Maryam, Valley Meryem24 or Hearsay midwife by name. No inherited spear expertise, age45 or Joss conflict from Ruslan. Skill and confidence develop through played work.
+
+**Authored life**
+
+Meryem draws a place to understand it. Her first maps recorded where adults told her not to go, then the places where their routes contradicted those instructions. Living with Yusuf Usta has given her access to a craft in which a good question matters. It has also made every compliment ambiguous: does someone admire her drawing, or the famous name beside it? She is curious enough to try an unfamiliar method and not yet disciplined enough to record every failed attempt before moving to the next.
+
+The new edition names her his granddaughter. Her parents live elsewhere and remain background, rather than disappearing so that the old man can be her whole emotional world. She loves him and wants work that is not an extension of his reputation. At the Watch she is a newcomer observer and mapper of stores and paths, not Ruslan with a changed label. People have reasonable questions about her competence. Suspicion attached to an older armed stranger cannot simply be copied onto her and called continuity.
+
+She has traced one of her grandfather's maps and presented the result to a visitor as a fresh survey. She made genuine corrections, but the ground she did not visit is still on the page without a distinction. The visitor's praise has become an obligation she does not know how to meet. Her private notebook uses two ink marks for observed and inherited detail. The clean display map removed them because she thought uncertainty would make it look unfinished. She is frightened that a correction will prove she has no original work at all.
+
+The hidden survey outcome requires her to restore the distinctions, walk a bounded section with a second person and publish the actual result even if it is less impressive. At Watch that habit can prevent a path from being treated as confirmed merely because it appears on a neat drawing. A separate outcome lets her decline a long apprenticeship extension and propose a shorter contract with time elsewhere. Yusuf Usta may be disappointed without becoming an enemy. The player should discover the map through work she has agreed to show, not through unrestricted journal access. Across three games, her recognizable quality is intense interest in what lies just beyond the page. Growth means returning to label the part she has actually seen before asking everyone else to follow her farther.
+
+### 39. Tamar of the Wall
+
+**Identity:** `hf.cast.tamar.watch`, revision 1. Age 54. **Place:** Watch settlement; bounded Warren refuge stint. **Work:** watcher and sling user; experienced communal guard. **Family:** Kian is her mentee, not her child; no canonical spouse or children.
+
+**HF profile:** emotionality .20; conscientiousness .85; agreeableness .45; extraversion .35; honesty .60; openness .40. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Watch config.ts/people.ts; distinct from Rope Tamar52.
+
+**Games and roles:** Watch: steady veteran watcher. Warren: refuge perimeter adviser.
+
+**Carry policy:** Pain and fear remain as actually carried; reserve must not conceal a reset. No live Coast transfer or memory of Rope routes. Her advice does not grant every refugee guard competence.
+
+**Authored life**
+
+Tamar learned to watch a quiet approach without turning every movement into an enemy. She values steadiness because excitement can spread through a wall faster than useful information. The same steadiness makes it difficult for others to know when she is in pain. At the Watch opening she is already carrying more discomfort than her manner reveals. A host must keep that physical fact visible to the simulation even when the player's knowledge remains approximate. Competence is not an unlimited exemption from bodily cost.
+
+Kian's eagerness reminds her of a younger watcher she once trusted too quickly with an ambiguous signal. She wants him to learn judgment without teaching him that every decision requires her approval. His sister Ada is his ward and remains a background child with her own needs. Tamar is not silently promoted to their parent because she mentors him. At Warren she advises the refuge about perimeter routines during a bounded stay, with her Watch duty actually covered. The two communities are in the same district and season; their connection requires no time travel.
+
+Her private account of the old signal leaves out that she had changed the meaning of a hand gesture informally and failed to check whether everyone understood. The younger watcher was blamed for panic. No hidden mass death is required to make the error matter. A family lost supplies during the confusion, and the young person's reputation never quite recovered. Tamar has repeated the lesson as a warning about haste while allowing it to sound as though her own instructions were clear. Her pain has become another fact she thinks she may withhold for the group's good.
+
+A hidden outcome lets her correct the old account to the people who still repeat it, document the actual signals and let Kian demonstrate them back. Another lets her report enough of her current pain to redistribute a shift before endurance becomes collapse. She may still choose difficult duty; the change is that others can consent to a plan based on a truthful picture. At Warren she can teach a small watch group and accept a local modification. The player can strengthen her concealment by praising silent sacrifice or weaken her standing by treating injury as total helplessness. Recognition should preserve the woman whose first glance is toward the approach, then reveal whether she now lets a trusted person look after the watcher as well.
+
+### 40. Kian
+
+**Identity:** `hf.cast.kian.watch`, revision 1. Age 16. **Place:** Watch settlement; supervised Warren work-and-duty visit. **Work:** young watcher; runner and stores apprentice. **Family:** Ada8 is his sister and ward; parents are dead and remain unnamed.
+
+**HF profile:** emotionality .60; extraversion .75; conscientiousness .40; agreeableness .60; openness .80; honesty .60. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Watch config.ts/people.ts founder kin; Warren visit authored.
+
+**Games and roles:** Watch: eager young watcher. Warren: runner and supervised refuge helper.
+
+**Carry policy:** Ada’s care is a real duty, not an archived inconvenience. Travel requires a safe agreed arrangement. Speed does not imply adult judgment or specialist combat skill.
+
+**Authored life**
+
+Kian can run a message faster than most adults and wants that fact to answer every question about his age. He has been called brave often enough to fear the first evening he does not feel brave. The wall gives him a clear place to stand and a duty someone notices. At home, Ada needs less visible work: meals, reassurance and someone remembering which possession she cannot find. Their parents are dead. That does not make him an effortless substitute parent or make his little sister only the reason he cannot do things.
+
+Tamar offers a chance to learn without pretending he was born ready. He sometimes mistakes reserve for certainty and tries to imitate it, suppressing a question until it becomes a rushed decision. At Warren he meets young workers, including Tariq, whose family support can provoke envy he dislikes acknowledging. Before a visit, Ada's care must be agreed with a trusted adult and a return date. The arrangement should leave him able to enjoy part of the stay without having to prove that every hour benefited the household.
+
+His private game is naming imaginary inns on the roads beyond the district. The Slow Horse serves excellent bread but takes all day; The Third Sock always has a spare bed; The Very Small King admits nobody taller than the proprietor. Ada invented the last one. Together they have made a map with inconsistent distances and a river that changes course whenever the story needs a bridge. He brings a folded copy on duty but does not show the other watchers. He wants them to see a capable young man, not a boy still playing with his sister. Ada would not describe their game as childish.
+
+A player can discover the map when Kian chooses a place to explain a joke, asks for a scrap of paper or invites someone into a story. A hidden outcome lets him send Ada a new inn from Warren and receive her correction to its menu. Another lets Tariq contribute a boat landing, making a friendship without requiring either boy to speak about his whole family. They can disagree about how the imaginary world works and keep separate maps. At Watch, Kian may tell a brief story during a safe off-duty wait, then put it away when work resumes. Nothing requires a public performance or turns imagination into prophecy. His recurrence should preserve restless eagerness while showing that responsibility and play can share a life, even when that life acquired responsibility much earlier than it should have.
+
+## Exhaustive disposition of the existing cast
+
+This table covers **every inventory row** in the fourteen-game source census, including its seed-42 generated examples. The source context column disambiguates repeated names and household IDs. `canonical` means the named source appearance is deliberately reconciled into that identity in a new content edition. It does not admit an old save automatically. `replacement` means an old individual's role is reused by a different canonical person: the old individual is not secretly that person. `background` means the old maintained personal arc is retired; the new episode uses a seeded local actor or an unnamed role, with no cross-game branch. Such an actor may have immediate scene needs and relationships but cannot retain a multi-game personal arc, become a hidden forty-first foreground biography, or become exportable merely because it receives a name.
+
+A background relative required by a canonical biography can retain the specifically stated name and kinship (Volkan, Zehra, Lena, Pell, Ada, Can) as a referenced family fact. Repeated playable interactions that let the player get to know that relative would make them foreground and require a deliberate roster change; a name in a family reference alone does not. Their episodes can respond to the foreground person's decisions without maintaining a separate continuing protagonist. Deceased remembered people remain deceased unless their status was not established (notably Ezra); no one is generated back to life. A remembered name is not a live branch.
+
+Rows which mention old constructors describe source identities only. A replacement must rewrite its age, household, job, schedule, dialogue, incident causes and skill semantics wherever they conflict. It must not merely change the display name. All other new appearances in the allocation table are new roles, with an admission scene and no fabricated past meeting. The allocation table is the complete foreground limit even where a source game originally had far more HF actors.
+
+| Source game | Exact source name / identity | Source role / disambiguator | Disposition in new edition |
+|---|---|---|---|
+| Pass | Selim | HF; 56, founder, grill | canonical → `hf.cast.selim.pass`; reconcile against biography |
+| Pass | Dilek | HF; 34, founder, cold | canonical → `hf.cast.dilek.pass`; reconcile against biography |
+| Pass | Rafi | HF; 19, founder, dish; skims jar | canonical → `hf.cast.rafi.pass`; reconcile against biography |
+| Pass | Murat | HF hire; 27, grill; döner work Bornova | canonical → `hf.cast.murat.murmur`; reconcile against biography |
+| Pass | Zeynep | HF hire; 45, cold; school canteen; sons | canonical → `hf.cast.zeynep.pass`; reconcile against biography |
+| Pass | Can | HF hire; 17, dish; Rafi’s cousin | named family background; retain only stated kinship and immediate episode role; no maintained personal arc |
+| Pass | Hülya | HF hire; 38, oven; former Antalya hotel cook | canonical → `hf.cast.hulya.pass`; reconcile against biography |
+| Pass | Chef | HF player observer; 31 female | background; retire maintained arc; seeded episode actor or unnamed role |
+| Pass | Nevin | Narrative-only; deceased lokanta owner | remembered background; deceased, no live Person |
+| Pass | Ahmet | Narrative-only; butcher, bill collector | background; retire maintained arc; seeded episode actor or unnamed role |
+| Pass | Hasan Bey | Host-side regular; pensioner, tab | background; retire maintained arc; seeded episode actor or unnamed role |
+| Pass | Mrs Arslan | Host-side regular; ledger names her Gül Arslan; grandson | background; retire maintained arc; seeded episode actor or unnamed role |
+| Pass | the Aksoy sisters | Host-side collective regular; reading group | background; retire maintained arc; seeded episode actor or unnamed role |
+| Pass | Kemal | Host-side regular; taxi driver | background; retire maintained arc; seeded episode actor or unnamed role |
+| Pass | Ilyas | Host-side regular; night watchman at depot | background; retire maintained arc; seeded episode actor or unnamed role |
+| Pass | the Demirs | Narrative-only party family | background; retire maintained arc; seeded episode actor or unnamed role |
+| Pass | Yıldız | Narrative-only wedding-family surname | background; retire maintained arc; seeded episode actor or unnamed role |
+| Pass | the food writer | Narrative-only party host; unnamed | background; retire maintained arc; seeded episode actor or unnamed role |
+| Glance | Dai | HF; 63, dam keeper; 31 years here; called Mr Pugh by Callum | canonical → `hf.cast.dai.glance`; reconcile against biography |
+| Glance | Callum | HF; 24, agency keeper, second week; baby at home | canonical → `hf.cast.callum.glance`; reconcile against biography |
+| Glance | Nerys | Host-side observer at Bridge Inn; goodwill and report delays, no HF Person | canonical → `hf.cast.nerys.glance`; reconcile against biography |
+| Glance | Morgan | Narrative-only; previous desk engineer, twelve years | remembered background; no live continuing branch; status only as sourced |
+| Glance | engineer / you | Player voice id only; no named HF actor | background; retire maintained arc; seeded episode actor or unnamed role |
+| Murmur / Two Voices | Dilan | HF; 33 female delivery worker | canonical → `hf.cast.dilan.murmur`; reconcile against biography |
+| Murmur / Two Voices | Aylin | Narrative-only; Dilan’s sister; birthday dinner, shelf help | canonical → `hf.cast.aylin.murmur`; reconcile against biography |
+| Murmur / Two Voices | Mum | Narrative-only; Dilan and Aylin’s mother | background; retire maintained arc; seeded episode actor or unnamed role |
+| Murmur / Two Voices | Ece | Narrative-only; delivery colleague; columns/routes/scanner | canonical → `hf.cast.ece.murmur`; reconcile against biography |
+| Murmur / Two Voices | Murat | Narrative-only; depot supervisor; writes lateness/keeps bowling score in pen | canonical → `hf.cast.murat.murmur`; reconcile against biography |
+| The Rope | Tamar | HF; 52, experienced climber, Nell’s mentor | canonical → `hf.cast.tamar.rope`; reconcile against biography |
+| The Rope | Oskar | HF; 34, summit-driven; Wren’s rival | canonical → `hf.cast.oskar.rope`; reconcile against biography |
+| The Rope | Nell | HF; 23, novice, Tamar’s student | canonical → `hf.cast.nell.rope`; reconcile against biography |
+| The Rope | Bilal | HF; 41, climber, carries stove and tea | canonical → `hf.cast.bilal.rope`; reconcile against biography |
+| The Rope | Wren | HF; 29, climber; came because Oskar said she would not | canonical → `hf.cast.wren.rope`; reconcile against biography |
+| The Rope | Ezra | Narrative-only; absent former companion; map, chair, mug, turned back on Kestrel | remembered background; no live continuing branch; status only as sourced |
+| The Rope | Mum | Lexicon-only `nell-mother`; Nell’s mother | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Rope | you | Player leader voice; not HF Person | background; retire maintained arc; seeded episode actor or unnamed role |
+| Small Works (repair-game) | Sam | HF; 18 male apprentice / learner | canonical → `hf.cast.sam.smallworks`; reconcile against biography |
+| Small Works (repair-game) | Mum | HF; 43 female customer/family | background; retire maintained arc; seeded episode actor or unnamed role |
+| Small Works (repair-game) | Nora | HF; 28 female neighbor/customer, own designs | canonical → `hf.cast.nora.smallworks`; reconcile against biography |
+| Small Works (repair-game) | Evan | HF; 36 male neighbor/customer; children | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Nermin | HF; 45 female agency operator | canonical → `hf.cast.nermin.goodhands`; reconcile against biography |
+| Good Hands | Gül | HF candidate; 38; nanny, housekeeper; Buca | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Sevda | HF candidate; 32; nanny, carer; Bornova | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Pınar | HF candidate; 29; nanny, housekeeper; Karşıyaka | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Fatma | HF candidate; 51; cook, housekeeper; Alsancak | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Cem | HF candidate; 43; driver; Bornova | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Ayla | HF candidate; 46; carer; Buca | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Emine | HF candidate; 57; cook; Göztepe | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Murat | HF candidate; 35; driver, carer; Buca | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Dilek | HF candidate; 26; nanny; Bornova | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Hatice | HF candidate; 48; housekeeper, cook; Buca | canonical → `hf.cast.hatice.hearsay`; reconcile against biography |
+| Good Hands | Selim | HF candidate; 54; driver; Alsancak | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Zehra | HF candidate; 40; carer, housekeeper; Göztepe | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Leyla | HF candidate; 34; nanny, cook; Karşıyaka | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Osman | HF candidate; 60; carer; Alsancak | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Esra | HF candidate; 31; housekeeper; Bornova | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Safiye | HF candidate; 53; cook, carer; Buca | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Burak | HF candidate; 28; driver; Göztepe | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Meltem | HF candidate; 44; nanny; Karşıyaka | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Huriye | HF candidate; 58; housekeeper, cook; Bornova | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Yusuf | HF candidate; 47; carer, driver; Göztepe | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Aysun | HF candidate; 36; nanny; Buca | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Nurten | HF candidate; 50; cook; Alsancak | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Ergün | HF candidate; 41; driver, housekeeper; Bornova | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Feride | HF candidate; 45; carer, nanny; Karşıyaka | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Ece | HF; mother, returning to work; id arslans-0 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Mert | HF; father, a pharmacist; id arslans-1 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Ada | HF; daughter, three; id arslans-2 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Saadet | HF; grandmother, lives with them; id arslans-3 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Deniz | HF; son, three; id arslans-4 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Aylin | HF; daughter, a teacher; id kayas-0 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Kemal | HF; father, needs help dressing; id kayas-1 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | İpek | HF; mother, an accountant; id demirs-0 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Onur | HF; father, works nights; id demirs-1 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Deniz | HF; son, seven; id demirs-2 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Suna | HF; retired headteacher; id aks-0 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Rauf | HF; husband, recovering from surgery; id aks-1 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Berrin | HF; mother, runs a shop; id erdems-0 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Levent | HF; father, travels; id erdems-1 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Ela | HF; daughter, five; id erdems-2 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Efe | HF; son, five; id erdems-3 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Naciye | HF; grandmother; id erdems-4 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Fikret | HF; father, a mechanic; id yilmazs-0 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Sevil | HF; mother, a nurse; id yilmazs-1 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Can | HF; son, twelve; id yilmazs-2 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Tülay | HF; mother, a lawyer; id celiks-0 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Ali | HF; father, an engineer; id celiks-1 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | İdil | HF; daughter, nine; id celiks-2 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Nesrin | HF; widow, lives upstairs; id ozkans-0 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Barış | HF; son, lives downstairs; id ozkans-1 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Selda | HF; mother, a florist; id aydins-0 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Hakan | HF; father, a printer; id aydins-1 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Bora | HF; son, two; id aydins-2 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Melek | HF; mother, works at a bakery; id tass-0 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Halil | HF; father, a porter; id tass-1 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Zeynep | HF; daughter, sixteen; id tass-2 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Ömer | HF; son, ten; id tass-3 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Gaye | HF; mother, works at the port; id sahins-0 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Serdar | HF; father, a surveyor; id sahins-1 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Lale | HF; daughter, eight; id sahins-2 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Perihan | HF; retired seamstress; id ugurs-0 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Tahir | HF; husband, retired bus driver; id ugurs-1 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Aslı | HF; mother, a doctor; id karas-0 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Tolga | HF; father, a chef; id karas-1 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Nil | HF; daughter, four; id karas-2 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Mina | HF; daughter, one; id karas-3 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Sevim | HF; mother, hosts large lunches; id polats-0 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Erhan | HF; father, a wholesaler; id polats-1 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Füsun | HF; aunt, staying for winter; id polats-2 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Aysel | HF; daughter, a librarian; id tekins-0 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | İsmail | HF; father, limited mobility; id tekins-1 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Rukiye | HF; mother, exhausted from caring; id tekins-2 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Derya | HF; mother, an architect; id inces-0 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Cenk | HF; father, a dentist; id inces-1 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Arda | HF; son, six; id inces-2 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Eylül | HF; daughter, eleven; id inces-3 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Mrs Ak | HF referee for Gül | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Mrs Uslu | HF referee for Sevda | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Mrs Eren | HF referee for Pınar | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Mr Bayram | HF referee for Fatma | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Mr Tunç | HF referee for Cem | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Mrs Soyer | HF referee for Ayla | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Mrs Bulut | HF referee for Emine | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Mr Şen | HF referee for Murat | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Mrs Acar | HF referee for Dilek | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Mrs Öz | HF referee for Hatice | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Mr Kurt | HF referee for Selim | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Mrs Baş | HF referee for Zehra | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Mrs Çam | HF referee for Leyla | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Mr Işık | HF referee for Osman | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Mrs Koç | HF referee for Esra | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Mrs Duman | HF referee for Safiye | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Mr Yalçın | HF referee for Burak | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Mrs Güneş | HF referee for Meltem | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Mrs Kılıç | HF referee for Huriye | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Mr Ay | HF referee for Yusuf | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Mrs Sezer | HF referee for Aysun | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Mrs Alkan | HF referee for Nurten | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Mr Yüce | HF referee for Ergün | background; retire maintained arc; seeded episode actor or unnamed role |
+| Good Hands | Mrs Toprak | HF referee for Feride | background; retire maintained arc; seeded episode actor or unnamed role |
+| Hearsay | Hatice | HF; Tea garden keeper; id hatice | canonical → `hf.cast.hatice.hearsay`; reconcile against biography |
+| Hearsay | Emre | HF; Apprentice carpenter; id emre | background; retire maintained arc; seeded episode actor or unnamed role |
+| Hearsay | Osman | HF; Retired porter; id osman | canonical → `hf.cast.osman.voice`; reconcile against biography |
+| Hearsay | Rıza | HF; Baker; id riza | canonical → `hf.cast.riza.voice`; reconcile against biography |
+| Hearsay | Elif | HF; Student; id elif | background; retire maintained arc; seeded episode actor or unnamed role |
+| Hearsay | Zehra | HF; Grocer’s assistant; id zehra | background; retire maintained arc; seeded episode actor or unnamed role |
+| Hearsay | Kemal | HF; Grocer; id kemal | background; retire maintained arc; seeded episode actor or unnamed role |
+| Hearsay | Ayşe | HF; Bakery assistant; id ayse | background; retire maintained arc; seeded episode actor or unnamed role |
+| Hearsay | Murat | HF; Courier; id murat | background; retire maintained arc; seeded episode actor or unnamed role |
+| Hearsay | Fatma | HF; Seamstress; id fatma | background; retire maintained arc; seeded episode actor or unnamed role |
+| Hearsay | Hasan | HF; Teacher; id hasan | background; retire maintained arc; seeded episode actor or unnamed role |
+| Hearsay | Selin | HF; Student; id selin | background; retire maintained arc; seeded episode actor or unnamed role |
+| Hearsay | Nermin | HF; Tailor; id nermin | canonical → `hf.cast.nermin.goodhands`; reconcile against biography |
+| Hearsay | Yusuf | HF; Bus driver; id yusuf | background; retire maintained arc; seeded episode actor or unnamed role |
+| Hearsay | Deniz | HF; Nurse; id deniz | background; retire maintained arc; seeded episode actor or unnamed role |
+| Hearsay | Selma | HF; Barber; id selma | background; retire maintained arc; seeded episode actor or unnamed role |
+| Hearsay | Ahmet | HF; Electrician; id ahmet | background; retire maintained arc; seeded episode actor or unnamed role |
+| Hearsay | Ece | HF; Student; id ece | canonical → `hf.cast.ece.murmur`; reconcile against biography |
+| Hearsay | Aylin | HF; Cook; id aylin | canonical → `hf.cast.aylin.murmur`; reconcile against biography |
+| Hearsay | Mehmet | HF; Mechanic; id mehmet | background; retire maintained arc; seeded episode actor or unnamed role |
+| Hearsay | Can | HF; Student; id can | background; retire maintained arc; seeded episode actor or unnamed role |
+| Hearsay | Zeynep | HF; Teacher; id zeynep | background; retire maintained arc; seeded episode actor or unnamed role |
+| Hearsay | Ali | HF; Carpenter; id ali | background; retire maintained arc; seeded episode actor or unnamed role |
+| Hearsay | Derya | HF; Nurse; id derya | canonical → `hf.cast.derya.stairwell`; reconcile against biography |
+| Hearsay | Safiye | HF; Retired teacher; id safiye | background; retire maintained arc; seeded episode actor or unnamed role |
+| Hearsay | İbrahim | HF; Caretaker; id ibrahim | background; retire maintained arc; seeded episode actor or unnamed role |
+| Hearsay | Leyla | HF; Florist; id leyla | background; retire maintained arc; seeded episode actor or unnamed role |
+| Hearsay | Cem | HF; Driver; id cem | background; retire maintained arc; seeded episode actor or unnamed role |
+| Hearsay | Esra | HF; Accountant; id esra | background; retire maintained arc; seeded episode actor or unnamed role |
+| Hearsay | Orhan | HF; Coffee house keeper; id orhan | background; retire maintained arc; seeded episode actor or unnamed role |
+| Hearsay | Meryem | HF; Midwife; id meryem | background; retire maintained arc; seeded episode actor or unnamed role |
+| Hearsay | Halil | HF; Imam; id halil | background; retire maintained arc; seeded episode actor or unnamed role |
+| Stairwell | Nermin (nermin); Nermin Hanım | 72; flat 1; Widow. Her window is next to the front door. | replacement role → `hf.cast.hacer.voice`; old identity retired |
+| Stairwell | Sevim (sevim); Sevim Hanım | 69; flat 2; Retired teacher. Corrects the notices on the board. | canonical → `hf.cast.sevim.stairwell`; reconcile against biography |
+| Stairwell | Burak (burak); Burak Bey | 31; flat 3; Accountant. Polite, quiet, out all day. | canonical → `hf.cast.burak.stairwell`; reconcile against biography |
+| Stairwell | Hüseyin (huseyin); Hüseyin Bey | 63; flat 4; The building manager. Keeps the fund book. | background; retire maintained arc; seeded episode actor or unnamed role |
+| Stairwell | Derya (derya); Derya Hanım | 44; flat 5; Night nurse. Sleeps in the mornings. | canonical → `hf.cast.derya.stairwell`; reconcile against biography |
+| Stairwell | Elif (elif); Elif Hanım | 27; flat 6; Illustrator. Moved in last month. | background; retire maintained arc; seeded episode actor or unnamed role |
+| Stairwell | Tarık (tarik); Tarık Bey | 81; flat 7; Retired ferry captain. Top floor. | canonical → `hf.cast.tarik.stairwell`; reconcile against biography |
+| Stairwell | Kapıcı (kapici) | Player; new building caretaker, male 38 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Stairwell | Rıza Efendi / Rıza (riza in narrator messages) | Former kapıcı; notebook/margin voice and resident recollections; not created as a Person | remembered background; no live continuing branch; status only as sourced |
+| Stairwell | Volkan | Derya’s brother; lost his job; late-night visitor, revealed in dialogue | named family background; retain only stated kinship and immediate episode role; no maintained personal arc |
+| The Valley | Osman (osman) | 52; Kavak, house head | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Hatice (hatice) | 47; Kavak, house member | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Ali (ali) | 22; Kavak, house member | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Emine (emine) | 17; Kavak, house member | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Hasan (hasan) | 44; Ak, house head | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Fatma (fatma) | 40; Ak, house member | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | İsmail (ismail) | 15; Ak, house member | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Kadir (kadir) | 12; Ak, house member | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Sultan (sultan) | 8; Ak, house member | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Yusuf (yusuf) | 38; Çoban, house head | canonical → `hf.cast.yusuf.well`; reconcile against biography |
+| The Valley | Zehra (zehra) | 31; Çoban, house member | named family background; retain only stated kinship and immediate episode role; no maintained personal arc |
+| The Valley | Cemal (cemal) | 9; Çoban, house member | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Gül (gul) | 6; Çoban, house member | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Saliha (saliha) | 58; Dere, house head | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Musa (musa) | 26; Dere, house member | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Mustafa (mustafa) | 30; Kara, house head | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Elif (elif) | 26; Kara, house member | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Nuri (bebek) | 1; Kara, house member | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | İbrahim (ibrahim) | 63; Demirci, house head | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Havva (havva) | 60; Demirci, house member | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Halil (halil) | 31; Demirci, house member | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Meryem (meryem) | 24; Demirci, house member | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Ahmet (ahmet) | 2; Demirci, house member | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Ömer (omer) | 48; Kuyucu, house head | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Gülsüm (gulsum) | 45; Kuyucu, house member | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Esma (esma) | 19; Kuyucu, house member | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Hanife (hanife) | 15; Kuyucu, house member | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Recep (recep) | 29; Tepe, house head | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Şerife (serife) | 63; Tepe, house member | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Zeynep (zeynep) | 21; Tepe, house member | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | the kahya (kahya) | Player, male 41; seal-holder / steward | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Mehmet (yayla-mehmet) | 32; Yayla; head | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Ayşe (yayla-w) | 28; Yayla; spouse | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Hacer (yayla-c0) | 8; Yayla; child | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Fadime (yayla-c1) | 5; Yayla; child | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Hüseyin (ceviz-hüseyin) | 61; Ceviz; head | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Esra (ceviz-c0) | 37; Ceviz; child | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Nuriye (ceviz-c1) | 33; Ceviz; child | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Mahmut (pinar-mahmut) | 33; Pınar; head | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Dürdane (pinar-w) | 27; Pınar; spouse | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Bekir (uzun-bekir) | 57; Uzun; head | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Gülizar (uzun-w) | 54; Uzun; spouse | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Veli (uzun-c0) | 33; Uzun; child | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Rıza (uzun-c1) | 30; Uzun; child | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Salih (uzun-c2) | 28; Uzun; child | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Ramazan (topal-ramazan) | 41; Topal; head | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Rukiye (topal-w) | 35; Topal; spouse | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Davut (sari-davut) | 41; Sarı; head | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Cennet (sari-w) | 35; Sarı; spouse | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | Halime (sari-c0) | 15; Sarı; child | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Warren | Hasan (hasan) | 41; the Kaya house; house head | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Warren | Elif (elif) | 37; the Kaya house; house member | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Warren | Kerem (kerem) | 16; the Kaya house; house member | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Warren | Zehra (zehra) | 11; the Kaya house; house member | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Warren | Musa (musa) | 29; the Demir house; house head | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Warren | Ayşe (ayse) | 25; the Demir house; house member | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Warren | Hatice (hatice) | 58; the Demir house; house member | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Warren | Yusuf Usta (yusuf) | 74; the dig-master’s house; dig-master | canonical → `hf.cast.yusuf.warren`; reconcile against biography |
+| The Warren | Meryem (meryem) | 19; the dig-master’s house; house member | canonical → `hf.cast.meryem.warren`; reconcile against biography |
+| Neighbours (Alder Quay) | Ada (ada) | carpenter; workshop; Kept the hall tables dry; wants to repair its doors. | replacement role → `hf.cast.nora.smallworks`; old identity retired |
+| Neighbours (Alder Quay) | Musa (musa) | gardener; garden; Lost seedlings in the flood; grows food for neighbours. | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | Elin (elin) | nurse; clinic; Moved evening care into a small clinic. | replacement role → `hf.cast.derya.stairwell`; old identity retired |
+| Neighbours (Alder Quay) | Sam (sam) | cook; market; Promised a shared meal when the hall opens. | replacement role → `hf.cast.sam.smallworks`; old identity retired |
+| Neighbours (Alder Quay) | Jo (jo) | ferry keeper; quay; Carries supplies from the quay. | replacement role → `hf.cast.bilal.rope`; old identity retired |
+| Neighbours (Alder Quay) | Lea (lea) | teacher; school; Evening classes need somewhere dry. | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | Ravi (ravi) | mechanic; workshop; Shares a crowded workshop with Ada. | replacement role → `hf.cast.rafi.pass`; old identity retired |
+| Neighbours (Alder Quay) | Noor (noor) | organiser; homes; Visits neighbours who have not heard the hall news. | replacement role → `hf.cast.ece.murmur`; old identity retired |
+| Neighbours (Alder Quay) | resident-1 | Ellis Brooks | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-2 | Alex Das | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-3 | Charlie Chen | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-4 | Casey Ward | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-5 | Finley Carter | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-6 | Finley Rivera | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-7 | Alex Brooks | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-8 | Cameron Evans | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-9 | Quinn Reed | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-10 | Charlie Diaz | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-11 | Hayden Lane | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-12 | Robin Ward | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-13 | Jamie Reed | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-14 | Quinn Khan | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-15 | Rowan Das | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-16 | Rowan Martin | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-17 | Quinn Rivera | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-18 | Rowan Singh | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-19 | Finley Martin | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-20 | Finley Evans | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-21 | Blair Grant | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-22 | Hayden Reed | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-23 | Charlie Rivera | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-24 | Hayden Khan | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-25 | Jamie Evans | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-26 | Ellis Diaz | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-27 | Casey Stone | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-28 | Casey Diaz | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-29 | Frankie Evans | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-30 | Jamie Brooks | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-31 | Hayden Kim | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-32 | Rowan Carter | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-33 | Casey Lane | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-34 | Robin Rivera | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-35 | Hayden Stone | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-36 | Quinn Evans | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-37 | Avery Reed | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-38 | Avery Stone | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-39 | Ellis Kim | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-40 | Quinn Stone | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-41 | Ariel Khan | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-42 | Blair Singh | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-43 | Charlie Das | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-44 | Reese Evans | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-45 | Jamie Rivera | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-46 | Robin Reed | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-47 | Avery Martin | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-48 | Charlie Silva | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-49 | Alex Ward | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-50 | Finley Das | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-51 | Frankie Das | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-52 | Robin Chen | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-53 | Cameron Kim | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-54 | Robin Stone | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-55 | Blair Khan | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-56 | Quinn Martin | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-57 | Blair Das | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-58 | Cameron Silva | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-59 | Quinn Diaz | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-60 | Casey Grant | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-61 | Jordan Diaz | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-62 | Jamie Chen | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-63 | Alex Diaz | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-64 | Alex Grant | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-65 | Finley Chen | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-66 | Hayden Silva | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-67 | Reese Das | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-68 | Reese Carter | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-69 | Alex Carter | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-70 | Morgan Lane | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-71 | Jordan Carter | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-72 | Frankie Diaz | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-73 | Alex Silva | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-74 | Hayden Singh | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-75 | Morgan Brooks | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-76 | Ariel Chen | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-77 | Blair Silva | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-78 | Morgan Diaz | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-79 | Frankie Carter | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-80 | Reese Reed | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-81 | Charlie Lane | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-82 | Cameron Patel | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-83 | Charlie Martin | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-84 | Morgan Rivera | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-85 | Jordan Grant | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-86 | Casey Martin | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-87 | Reese Ward | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-88 | Quinn Lane | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-89 | Charlie Kim | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-90 | Alex Singh | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-91 | Morgan Ward | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-92 | Casey Evans | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-93 | Rowan Rivera | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-94 | Robin Diaz | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-95 | Reese Stone | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-96 | Jordan Stone | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-97 | Reese Silva | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-98 | Rowan Khan | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-99 | Ariel Silva | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-100 | Reese Martin | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-101 | Ariel Reed | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-102 | Frankie Martin | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-103 | Cameron Grant | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-104 | Casey Carter | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-105 | Morgan Singh | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-106 | Jamie Carter | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-107 | Morgan Stone | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-108 | Reese Brooks | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-109 | Ariel Stone | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-110 | Robin Carter | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-111 | Morgan Silva | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-112 | Rowan Stone | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-113 | Charlie Carter | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-114 | Avery Ward | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-115 | Frankie Lane | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-116 | Blair Lane | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-117 | Blair Martin | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-118 | Avery Lane | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-119 | Quinn Ward | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-120 | Avery Kim | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-121 | Hayden Chen | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-122 | Casey Patel | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-123 | Alex Kim | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-124 | Frankie Reed | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-125 | Hayden Das | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-126 | Rowan Chen | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-127 | Casey Reed | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-128 | Charlie Grant | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-129 | Finley Lane | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-130 | Finley Kim | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-131 | Ariel Singh | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-132 | Hayden Brooks | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-133 | Reese Chen | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-134 | Robin Singh | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-135 | Ellis Martin | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-136 | Ariel Ward | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-137 | Alex Lane | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-138 | Charlie Reed | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-139 | Rowan Grant | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-140 | Reese Diaz | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-141 | Robin Brooks | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-142 | Ellis Carter | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-143 | Ariel Diaz | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-144 | Jordan Kim | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-145 | Morgan Carter | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-146 | Ariel Evans | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-147 | Jordan Patel | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-148 | Ellis Rivera | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-149 | Quinn Das | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-150 | Hayden Evans | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-151 | Quinn Carter | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-152 | Robin Khan | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-153 | Blair Reed | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-154 | Jordan Reed | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-155 | Ellis Lane | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-156 | Morgan Grant | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-157 | Charlie Ward | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-158 | Cameron Chen | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-159 | Ellis Grant | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-160 | Jordan Das | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-161 | Casey Rivera | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-162 | Avery Patel | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-163 | Avery Singh | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-164 | Avery Rivera | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-165 | Cameron Ward | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-166 | Ellis Chen | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-167 | Frankie Grant | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-168 | Cameron Das | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-169 | Jordan Rivera | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-170 | Rowan Evans | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-171 | Morgan Patel | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-172 | Hayden Carter | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-173 | Blair Rivera | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-174 | Morgan Khan | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-175 | Reese Patel | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-176 | Frankie Silva | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-177 | Frankie Khan | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-178 | Alex Chen | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-179 | Cameron Singh | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-180 | Hayden Grant | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-181 | Finley Patel | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-182 | Jordan Chen | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-183 | Blair Kim | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-184 | Jamie Lane | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-185 | Blair Carter | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-186 | Avery Carter | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-187 | Frankie Chen | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-188 | Quinn Singh | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-189 | Casey Kim | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-190 | Jordan Martin | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-191 | Casey Silva | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-192 | Rowan Brooks | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-193 | Jamie Diaz | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-194 | Blair Diaz | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-195 | Jordan Lane | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-196 | Ariel Rivera | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-197 | Ariel Kim | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-198 | Rowan Patel | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-199 | Alex Patel | background; retire maintained arc; seeded episode actor or unnamed role |
+| Neighbours (Alder Quay) | resident-200 | Jamie Das | background; retire maintained arc; seeded episode actor or unnamed role |
+| Twice at the Well | Hajja Maryam | 68; cook. Widow, everyone’s grandmother. Cooks at 06:30, 12:00 and 18:00 by habit. | canonical → `hf.cast.maryam.well`; reconcile against biography |
+| Twice at the Well | Yusuf | 34; builder. Maryam’s son, Tariq’s father. Keeps promises; prays on time. | canonical → `hf.cast.yusuf.well`; reconcile against biography |
+| Twice at the Well | Tariq | 16; apprentice. Yusuf’s son. Eager, learns fast, trusts your voice most. | canonical → `hf.cast.tariq.well`; reconcile against biography |
+| Twice at the Well | Idris | 41; forester. Forester, Yusuf’s friend. Low fear, high ambition: the cedar tempts him. | canonical → `hf.cast.idris.well`; reconcile against biography |
+| Twice at the Well | Samira | 29; gatherer. Idris’s wife. Careful; weighs risk double and offers to go “with someone”. | canonical → `hf.cast.samira.well`; reconcile against biography |
+| Twice at the Well | Danyal | 52; well-keeper. Christian widower, Maryam’s old friend. Keeps the well and his own grain jar. | canonical → `hf.cast.danyal.well`; reconcile against biography |
+| The Day You Say Nothing | Halil | 61; widowed repairman. Hypertension; cigarette habit; owes two months of rent (600). Wife of 35 years died 98 days before game. Learned avoidance of clinic, mosque and calling daughter after funeral. | canonical → `hf.cast.halil.voice`; reconcile against biography |
+| The Day You Say Nothing | Selin | 32; Halil’s daughter, office worker in the city; own family; urges him to see doctor. | canonical → `hf.cast.selin.voice`; reconcile against biography |
+| The Day You Say Nothing | Rıza | 63; Halil’s friend at the tea house. | canonical → `hf.cast.riza.voice`; reconcile against biography |
+| The Day You Say Nothing | Hacer | 58; neighbour who talks about people; weak conviction against backbiting (0.15). | canonical → `hf.cast.hacer.voice`; reconcile against biography |
+| The Day You Say Nothing | Osman | 55; landlord and market trader; seeks rent repayment. | canonical → `hf.cast.osman.voice`; reconcile against biography |
+| The Day You Say Nothing | Nuran | Halil’s deceased wife; narrative and relationship entry, not a live Person. Funeral and last-Ramadan iftar are memories; grave can be visited. | remembered background; deceased, no live Person |
+| The Day You Say Nothing | You | Player’s voice in Halil’s head; not a named independent person. | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Night Watch | Tamar | 54; watcher. Sling, steady. | canonical → `hf.cast.tamar.watch`; reconcile against biography |
+| The Night Watch | Kian | 16; watcher. Fast, eager. | canonical → `hf.cast.kian.watch`; reconcile against biography |
+| The Night Watch | Mara | 34; watcher. Best sight. | replacement role → `hf.cast.samira.well`; old identity retired |
+| The Night Watch | Joss | 38; watcher. Smith, strong. | replacement role → `hf.cast.idris.well`; old identity retired |
+| The Night Watch | Yunus | 61; watcher. Miller, calm. | replacement role → `hf.cast.danyal.well`; old identity retired |
+| The Night Watch | Ruslan | 45; watcher. Spear, newcomer. | replacement role → `hf.cast.meryem.warren`; old identity retired |
+| The Night Watch | Lena | 10; daughter of Mara and Joss; initially at home. | named family background; retain only stated kinship and immediate episode role; no maintained personal arc |
+| The Night Watch | Pell | 7; son of Mara and Joss; initially at home. | named family background; retain only stated kinship and immediate episode role; no maintained personal arc |
+| The Night Watch | Ada | 8; Kian’s little sister and ward; parents are gone, unnamed. | named family background; retain only stated kinship and immediate episode role; no maintained personal arc |
+| The Night Watch | Keeper | Male, 40; player-facing keeper of the wall; full Person holding impressions, never stepped. | background; retire maintained arc; seeded episode actor or unnamed role |
+
+### Source pools and narrative identities not represented by a single fixed row
+
+- **Pass:** Hasan's brother; Gül Arslan's grandson, his two school friends and father; Aksoy reading-group members; Kemal's wife and the three other drivers; Ilyas's retiring foreman and shift colleagues; Zeynep's sons; Rafi's sister/mother; neighbours, bank and döner-chain representatives; Demir/Yıldız party members and the unnamed food writer are all background. Collective surnames do not count as one person or expand into newly maintained biographies. Gül Arslan and Mrs Arslan are the same background customer. Can retains the cousin fact only. Chef is the player's current role/body, not a new canonical person.
+- **Glance:** Mr Pugh addresses Dai, not another actor. His full legal surname is not newly inferred. Morgan is remembered predecessor background. The player engineer, Met Office and radio voices, and Callum's baby and partner are role/family background. Bilal and Wren are new visitors with their own qualifications and chapter boundaries.
+- **Murmur:** Mum is the same unnamed background mother for Dilan and Aylin. The two inner voices are simulation/player channels, not persons in the forty. All work and family references not named in the inventory are episode background. Aylin/Ece/Murat receive canonical occupations and ages only through this new edition.
+- **Rope:** Nell's mother (`nell-mother`) remains family background. Ezra's absence does not establish death; no living return or resurrection is asserted here. The player leader is a voice/role. Rope Tamar and Watch Tamar are deliberately different people.
+- **Small Works:** Sam's mother retains mother status as family background; her original age43 is compatible with Sam18, but she receives no independent cross-game arc. Sam's sister, Evan's children, bike-club and event participants are background. Evan's old arc is retired, not silently handed to Halil. Halil receives a new repair episode with his own family and health. Nora's designer role is fictional.
+- **Good Hands:** all household collective names, all unnamed relatives and all work references outside the table are background. The 24-candidate donor-offset profile lottery must not alter Nermin, Hatice or any new canonical guest's identity on another appearance. Background candidates may retain a seeded profile within their episode. No common-name merger is authorized beyond the explicit canonical rows: Taş Zeynep remains a teenager, İnce Derya an architect, Taş Halil a porter. The six canonical guest roles supplement/rewrite the foreground structure; the agency must not continue a personal arc for each of its former hundred actors under a background label. References remain attributed and scoped.
+- **Hearsay:** the 32 inventory rows are exhaustive fixed source actors. Anne/Mother is relational speech, not an extra foreground actor. Emre/Elif’s former engagement may remain only as an incidental public event with unnamed or episode-generated locals and no sustained individual conversations, portraits, distinctive continuing voices or personal choices. If the game needs the couple as recognizable protagonists, their roles must be reauthored for people in Hearsay’s allocated eight. Neither old name can retain its old foreground arc merely under a background label. Household groups do not imply kinship. Canonical Selin is not the old student Selin. New Dilan is not the old courier Murat. The new Hatice/Nermin/Rıza/Osman/Aylin/Ece profiles override incompatible generic old age/sex/trait constructors explicitly. Derya retains her wave-1 nurse reconciliation and temporary lodging.
+- **Stairwell:** the narrator and former caretaker notebook are channels or remembered background, not live persons. Allegations invented by players remain beliefs or fabrications. The old kapıcı is an episode player role. Replacing Nermin72 with Hacer58 changes the flat's age and history deliberately; no rejuvenation of an admitted Nermin occurs. Volkan remains Derya's background brother and his job loss is private until disclosed.
+- **Valley:** every upper-house generator result is background, for every seed, house and ordinal, including all male/female pools listed in the census and every seed-42 row above. A generated Yusuf, Maryam-like name or other pool collision never matches a castId. All six generated houses, unnamed former kahya, Saliha's late husband, Yusuf's background children and household animals remain outside the forty. The kahya is a current player office/body. Well Yusuf's new Valley age34/main building trade explicitly supersedes the old age38 shepherd constructor. Zehra remains his wife and any started pregnancy remains real; Samira is a visitor married to Idris, not a replacement wife.
+- **Warren:** every later arrival (`arrival n`, house `h<n>`, generated sex/name/age/profile) is background across the complete family/given-name pools, including fallback names and repeated names. No arrival name establishes an existing canonical branch. The fixed Kaya and Demir families' old personal arcs are retired; immediate refuge needs may remain. Keeper/usta is a player role, distinct from Yusuf Usta. Yusuf Usta's father is remembered, unnamed and not a new foreground person. New Maryam, Tariq, Kian and Tamar visits require explicit households and covered duties. Meryem's granddaughter relationship is a new author choice replacing the generic source tie derivation.
+- **Neighbours:** all `resident-n` actors from the full 18×18 name combination pool are background at every permitted population and seed, not only the 200 example rows. The source contains 208 total at seed42, including eight principals; the example is not 208 additional people. Former Lea and Musa have their maintained arcs retired; teaching/gardening roles can be episode actors. Replacements Ada→Nora, Elin→Derya, Sam→young Sam, Jo→Bilal, Ravi→Rafi, Noor→Ece do not inherit old ages, sex, player cousin/stall-partner/next-door relationships or occupations unexamined. The player's cousin reference to Lea becomes a background relation or is removed in the new edition. Care, ferry and food duties require compatible new scene content, not competence assigned by a name swap.
+- **Well:** all six fixed people are canonical. Their unnamed deceased spouses remain deceased background. Yusuf's wife Zehra and Samira/Idris's children are explicit new-edition family content. Canonical Danyal retains his Christian identity; no generic norm constructor may replace it.
+- **Voice:** Nuran is a deceased remembered person, not a foreground live body. Unnamed doctor, drummer, visiting children and Selin's household are background. Halil's debt, illness and grief are source facts, not optional dramatic decorations. Selin's owed/calendar mapping is quiet and never a travel gate. Player voice is a channel.
+- **Watch:** all generated newcomers and children from both complete name pools, every repeated-name fallback, and future birth results are background at every seed. A pool Nell, Dilan, Wren, Elif, Noor, Osman or Meryem-like name is never a cast identity. Founder Mara/Joss are replaced by Samira/Idris with their canonical ages29/41 and jobs; the children Lena10/Pell7 remain their background children. Yunus61 is replaced by Danyal52, who is Christian and a well keeper, not a miller. Ruslan45 is replaced by Meryem19, a mapper/observer, with a different newcomer incident rather than inherited spear expertise or Joss distrust. Kian and Ada keep their sibling/ward relationship and dead parents. Keeper40 is a player body with no foreground biography.
+
+### Commonstead: direct source census and complete disposition
+
+Read-only source receipt: `adam0white/commonstead` at `7103af9753c0c6bcaf45556d383d762580db00ad`, `src/sim.ts:62–80` and `createGame`, plus README. The source is a ten-minute settlement scenario with five opening workers and a storm/storehouse objective. The current constructor makes everyone25, alternates sex, cycles nine names and derives profile from the ordinal. It does not establish the proposed contemporary residential workshop, older guests or their qualifications. Those are deliberate **new-edition** choices. The storm/storehouse work may remain as a bounded contemporary cooperative build, with tasks and tools consistent with that setting. It must not imply that an accountant is a trained mason or that all eight residents can safely lift the same load.
+
+| Current local ID / generation rule | Source name | New-edition disposition |
 |---|---|---|
-| Pass | `87f430210e83c4ce598ea8cc074e4b6eb0f9ed9a` | `src/sim/cooks.ts` |
-| Murmur | `6500c7a5cef18f005759dab4d601c22e6a26c2c0` | `src/sim/dilan.ts`, `moments.ts`, `week2.ts` |
-| Stairwell | `a2defd8641fe3947c1e3cbcff64c45d31144c5e4` | `README.md`, `src/sim/people.ts`, `game.ts` |
-| Hearsay | `b8ec9e9550aefae36f760e2cff90f9bfdc08b9df` | `src/sim/world.ts`, `game.ts`, `incidents.ts`, `voices.ts` |
-| Good Hands | `868aa9674878948bd31cf325390afb54d0b1799b` | `src/sim/world.ts`, `index.ts` |
-| HF / Voice | `351679a70e1dcf6b64a7fc46401b94686b4bddae` | `apps/site/src/voice/sim/town.ts` |
+| `v1` | Amina | replacement role → `hf.cast.nora.smallworks`; old Amina not merged |
+| `v2` | Yusuf | replacement role → `hf.cast.sam.smallworks`; not either canonical Yusuf |
+| `v3` | Meryem | replacement role → `hf.cast.dai.glance`; not Valley Meryem |
+| `v4` | Idris | replacement role → `hf.cast.nerys.glance`; not Valley Idris |
+| `v5` | Leyla | replacement role → `hf.cast.dilek.pass`; old Leyla not merged |
+| `v6` if trained | Samir | replacement role → `hf.cast.burak.stairwell`; old Samir not merged |
+| `v7` if trained | Hana | replacement role → `hf.cast.sevim.stairwell`; old Hana not merged |
+| `v8` if trained | Omar | replacement role → `hf.cast.oskar.rope`; old Omar not merged |
+| `v9` if trained | Nura | background episode worker; no canonical branch |
+| Every `vN`, `N≥10` | `names[(N−1)%9]`: Amina, Yusuf, Meryem, Idris, Leyla, Samir, Hana, Omar, Nura, repeating | background episode worker with unique episode ID; repeated name never aliases a foreground person or another worker |
 
-This registry changes no game source, manifest, ledger or release. Each implementer must pin a content edition and an adapter map before admission. Keep fresh play available. Prove exact legacy replay, deterministic admitted replay, bounded omissions, stale-head forks, unsupported-obligation refusal and recording-reset privacy before claiming a working traveller. The [proposal](hf-universe-plan-2026-10-23.md) retains the technical controls; its old one-person probe limit and default counterpart recommendations are superseded by the approved wave-1 scope here.
+The eight target residents can be present from an authored opening or enter through ordinary chapter arrivals; trained worker creation must not manufacture a second Burak or a duplicate active branch. The target roster is eight, with other workers background. Current ordinals are migration instructions for content authors, not a transfer adapter that converts an existing `vN` save. The source game's name cycle remains an exhaustive rule even where a particular run never trains that worker.
+
+## Adoption status and acceptance boundary
+
+This registry is **written, not adopted by the games**. The current four wave-1 identities have existing limited crossings; that does not implement this full forty-person content edition. No browser observation, deployment, package release, current replay test or owner acceptance of these new biographies is claimed here.
+
+| Game | Registry target | Adoption status at author handoff |
+|---|---:|---|
+| Pass | 7 | pending new cast edition; existing Zeynep crossing is narrower |
+| Glance | 5 | pending |
+| Murmur | 4 | pending new cast edition; existing Dilan crossing is narrower |
+| Rope | 5 | pending; now owner-authorized despite former freeze |
+| Small Works | 4 | pending; now owner-authorized despite former freeze |
+| Good Hands | 7 | pending full cast edition; existing guests are narrower |
+| Hearsay | 8 | pending full cast edition; existing Dilan/Derya appearances are narrower |
+| Stairwell | 5 | pending full cast edition; existing Derya crossing is narrower |
+| Valley | 6 | pending |
+| Warren | 6 | pending |
+| Neighbours | 6 | pending; now owner-authorized despite former freeze |
+| Well | 6 | pending |
+| Voice | 5 | pending full cast edition; existing Selin crossing is narrower |
+| Watch | 6 | pending |
+| Commonstead | 8 | pending new setting/cast edition |
+
+Each host report must enumerate every player-recognizable person using the owner’s name/face-or-voice/choices definition, map each to the allocated canonical cast, and show that incidental background roles do not retain extra foreground arcs. A table of exportable IDs alone does not prove the 3–8 limit.
+
+For each host, adoption requires its exact castIds and edition pinned, source contradictions removed from constructors and scenes, background arcs actually retired or reduced to episodes, compatible carry mappings, discoverable authored secrets gated by actual encounters, and deterministic replay of current-version exports. These are implementation requirements, not evidence that implementation occurred. Do not create a secret-success flag because a biography describes a possible outcome. The coordinator owns assignment of host work and records each actual receipt. No framework/package, bridge, between-games life or release work is authorized by the writing of this file itself.
