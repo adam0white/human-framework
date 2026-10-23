@@ -2,11 +2,11 @@
 
 [![CI](https://github.com/adam0white/human-framework/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/adam0white/human-framework/actions/workflows/ci.yml)
 
-HF is a deterministic, explainable model of a simulated person, written in TypeScript (`@adam0white/human-framework`). A person has a body, needs, emotions, memory, beliefs, habits, relationships, values, a conscience and a will, and lives for decades: they learn, age, marry, raise children and die. At each decision they weigh many urges, including suggestions from outside voices such as a player, and choose an action. Every choice can be explained, and a person may refuse a suggestion.
+HF is a deterministic, explainable model of a simulated person, written in TypeScript (`@adam0white/human-framework`). A person has a body, needs, emotions, memory, beliefs, habits, relationships, values, a conscience and a will, and optional faculties for learning, aging, marriage, upbringing and death over decades. At each decision they weigh many urges, including suggestions from outside voices such as a player, and choose an action. Decision records expose scored terms and template narration, and a person may refuse a suggestion.
 
 ## Status
 
-- **HF 2.10.0** is the latest release ([GitHub release](https://github.com/adam0white/human-framework/releases/tag/v2.10.0), engine 2.10.0; [CHANGELOG](CHANGELOG.md)). What is next is in the [roadmap](docs/roadmap.md).
+- **HF 2.14.1** is the latest release ([GitHub release](https://github.com/adam0white/human-framework/releases/tag/v2.14.1), engine 2.14.1; [CHANGELOG](CHANGELOG.md)). What is next is in the [roadmap](docs/roadmap.md).
 - **Three in-site example games**, live at [human.adamwhite.work](https://human.adamwhite.work); more games built on HF are listed on [/games/](https://human.adamwhite.work/games/):
   - [Twice at the Well](https://human.adamwhite.work/colony/): a colony sim played side by side without and with HF.
   - [The Day You Say Nothing](https://human.adamwhite.work/voice/): you are a voice in one man's head; he may refuse you.
@@ -79,7 +79,7 @@ Node ≥ 24 with `/opt/homebrew/bin` first on `PATH`.
 - `npm run bench`: the timing budgets (`*.timing.ts`), one file at a time, printing each measurement; run it alone on a quiet machine (`BENCH_SCALE=3` multiplies every budget). `npm run bench:hyperfine` times the headless 20-person, 30-day village run with [hyperfine](https://github.com/sharkdp/hyperfine).
 - `npm run build`: the package and the site. `npm run dev`: the site locally.
 - `npm run deploy`: deploys the site build to https://human.adamwhite.work (see AGENTS.md, Delivery); verify the live `/release.json` against the commit.
-- `npm run release`: on a clean, pushed `main`, checks versions and the changelog, runs `npm run check`, tags `vX.Y.Z` and creates the GitHub release with the tarball (`-- --dry-run` stops after packing). Versions follow [the version policy](packages/human/README.md#versions).
+- `npm run release`: from a clean checkout of pushed `origin/main`, checks versions and the changelog, runs `npm run check`, tags `vX.Y.Z` and creates the GitHub release with the tarball (`-- --dry-run` stops after packing). Versions follow [the version policy](packages/human/README.md#versions).
 
 CI ([.github/workflows/ci.yml](.github/workflows/ci.yml)) runs the pieces of check and build in parallel (lint, typecheck and build in one job, the tests in shards) as the gate on pushes and pull requests to `main`; its `ci` job is the single check that passes when all of them pass. [bench.yml](.github/workflows/bench.yml) runs the bench at 3× budgets and hyperfine as information, skipped for prose-only changes. CI uses the Node version in `.nvmrc`.
 

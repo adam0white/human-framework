@@ -11,7 +11,7 @@ import {
 const aylin = createPerson({
   id: 'aylin',
   name: 'Aylin',
-  seed: 11, // same seed, same life
+  seed: 11, // seeded simulation randomness
   now: 12 * 60, // noon on day 0
   bornAt: -28 * MINUTES_PER_YEAR,
   sex: 'female',

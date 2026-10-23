@@ -1,13 +1,72 @@
 # @adam0white/human-framework
 
-Simulated people for games and headless simulations. A `Person` has a body, needs, emotions, memory,
-beliefs, skills, habits, relationships, values, an understanding of moral norms, and a will. The host
-world offers actions; the person chooses among them, and can refuse what an outside voice suggests. Every
-choice comes with the terms that produced it and a first-person line, so a refusal reads as a reason rather
-than a bug.
+HF is a TypeScript library for simulated people in games and headless simulations. Your world offers
+possible actions. Each person weighs needs, habits, duties, goals and suggestions, then chooses.
+A player can suggest an action; the person can defer or refuse it.
 
-The library is TypeScript and has no runtime dependencies. Its core loop is deterministic and does not use an LLM or touch the
-DOM. Person state is plain JSON.
+HF 2.14.1 uses utility scoring and seeded randomness, with no LLM in the actor loop and no runtime
+dependencies. Decision records expose scored terms and template narration. Person state is plain JSON.
+This is an authored simulation model, not a validated predictor of real people.
+
+## Try the games
+
+- [Twice at the Well](https://human.adamwhite.work/colony/): compare a colony without and with HF.
+- [The Day You Say Nothing](https://human.adamwhite.work/voice/): suggest actions to one man who can refuse.
+- [The Night Watch](https://human.adamwhite.work/watch/): guide a village watch across winters.
+- [All lab games](https://human.adamwhite.work/games/).
+
+## Quick start
+
+Use Node 24 or newer. In an empty directory, install the version this README describes:
+
+```sh
+npm install @adam0white/human-framework@2.14.1
+```
+
+Save these 20 lines as `quickstart.mjs`, then run `node quickstart.mjs`:
+
+```js
+import {
+  createCommunity, createPerson, createVillage,
+  predict, stepCommunity, villagerSpec,
+} from '@adam0white/human-framework';
+const start = 6 * 60; // simulation minutes
+const ids = ['ada', 'bora'];
+const people = ids.map((id, i) => createPerson(
+  villagerSpec(id, id, i + 1, { now: start, others: ids }),
+));
+const world = createVillage(people, { seed: 7 });
+const community = createCommunity(people);
+const ada = community.people[0];
+const ask = { voiceId: 'player', action: 'chat', strength: 0.6 };
+const hint = predict(ada, world.affordancesFor(ada), ask);
+console.log('Prediction:', hint.verdict, hint.reason);
+stepCommunity(community, world, start + 24 * 60, {
+  suggestions: { ada: ask },
+});
+console.log('Last decision:', ada.trace.at(-1)?.narration);
+console.log('JSON snapshot characters:', JSON.stringify(ada).length);
+```
+
+`predict` leaves the person and RNG unchanged. `stepCommunity` advances a bundled example village
+for one day; the suggestion stands at Ada's decisions. For your own game, replace that village
+with a `World` that supplies offers, percepts and actual outcomes (see [the host contract](#the-host-contract)).
+
+## What it models
+
+- Bodily and psychological needs, affect, attention, memory, beliefs, skills, habits and relationships.
+- Values, held moral norms, commitments, goals and trust in outside voices.
+- Optional faculties for long runs: aging, family, gists and character change.
+- Opt-in curiosity, bounded planning, self-set projects from host-shown prospects and pursuit persistence.
+
+The host supplies the available actions and their meaning. Projects and planning do not invent actions
+or solve arbitrary tasks. In the island control on 2.14.1, people made small free-time piles, but most
+placements replaced earlier work and the carry task did not improve. See the
+[experiment](https://github.com/adam0white/human-framework/blob/main/docs/lab/experiments/island-2026-10-20.md).
+
+HF does not provide a map, pathfinding, free-form language, a general planner or calibrated human
+behaviour. Its default norms are Islam-guided; it models a person's held understanding, never a ruling
+or divine acceptance. See [the boundaries](#what-it-does-not-model).
 
 ## The spine: Urge → Assent → Act
 
@@ -38,69 +97,13 @@ never overrides `cannot` or `willNot`.
 Every resolution also carries a machine-readable `reason` (`need:food`, `norm:theft`, `asleep`, `distrust`,
 ...) and a line in the person's voice (`says`).
 
-## Install
+## Package and source
 
-The source is public on [GitHub](https://github.com/adam0white/human-framework) under the MIT license. Install
-it from npm (published from 2.1.3; later versions are built by the release workflow and carry an npm provenance
-attestation):
-
-```sh
-npm install @adam0white/human-framework
-```
-
-Each [GitHub release](https://github.com/adam0white/human-framework/releases) also has the tarball attached, which
-installs by URL:
-
-```sh
-npm install https://github.com/adam0white/human-framework/releases/download/v2.2.0/adam0white-human-framework-2.2.0.tgz
-```
-
-or build one from a checkout:
-
-```sh
-npm pack -w packages/human     # runs the build; writes adam0white-human-framework-<version>.tgz
-npm install /path/to/adam0white-human-framework-<version>.tgz
-```
-
-The v2.1.0 release tarball (`human-framework-2.1.0.tgz`) predates the rename and installs as
-`@human/framework`.
-
-It ships ES modules and `.d.ts` files (`exports["."]` with `types`). It requires Node ≥ 24 or a modern
-browser. The library needs `structuredClone` and nothing else from the host.
-
-## Quick start
-
-```ts
-import {
-  createCommunity, createPerson, createVillage, MINUTES_PER_DAY, predict, stepCommunity,
-  type Suggestion, villagerSpec,
-} from '@adam0white/human-framework';
-
-const ids = ['ada', 'bora'];
-const people = ids.map((id, i) => createPerson(villagerSpec(id, id, 1 + i, { now: 6 * 60, others: ids })));
-const world = createVillage(people, { seed: 7 });      // a bundled World: home, field, well, kitchen, mosque, forest
-const community = createCommunity(people);
-const ada = community.people[0]!;
-
-const ask: Suggestion = { voiceId: 'player', action: 'chat', strength: 0.6 };
-const hint = predict(ada, world.affordancesFor(ada), ask); // pure: no state change, no RNG
-console.log(hint.verdict, hint.reason, hint.says);
-
-// One day; the suggestion stands at each of Ada's decisions.
-const events = stepCommunity(community, world, 6 * 60 + MINUTES_PER_DAY, { suggestions: { ada: ask } });
-const last = ada.trace.at(-1)!;
-console.log(last.chosenAction, last.suggestion?.verdict, last.narration);
-```
-
-The runnable examples in [`examples/`](examples) go further. Run them all with
-`npm run examples -w packages/human`, or one at a time with `node examples/<name>.ts` after a build. A
-vitest (`test/examples.test.ts`) runs them, so they keep working as the code changes.
-
-- [`minimal.ts`](examples/minimal.ts): a hand-written `World` (offers, percepts, outcomes) and one person's day.
-- [`suggestions.ts`](examples/suggestions.ts): one voice, five verdicts (assented, deferred, refused/willNot,
-  complied, refused/cannot), then one recorded decision and its utility terms.
-- [`community.ts`](examples/community.ts): three villagers, a standing nudge, then `runSilent` with that
-  voice muted and `diffChronicle` over the two periods.
+The package ships ES modules and TypeScript declarations. It requires Node ≥24 or a modern browser
+with `structuredClone`. Source, tests and runnable examples are on
+[GitHub](https://github.com/adam0white/human-framework/tree/main/packages/human).
+In a source checkout, `npm run examples -w packages/human` builds and runs `minimal.ts`,
+`suggestions.ts` and `community.ts`. The `examples/` and `test/` directories are not in the npm package.
 
 ## The host contract
 
@@ -141,10 +144,10 @@ place. A `social` tag is also a claim about the offered activity, not a request 
 contact becomes impossible, interrupt or replan the activity instead of completing the declared
 encounter. Report only the need effects that the actual interaction supports.
 
-The current behavior is defined in [`Affordance` and `Outcome`](src/types.ts) and
-[`finish`](src/person.ts). Existing controls cover [body advancement and waking after sleep](test/person.test.ts),
-[body recovery](test/body.test.ts), [material valuation under scarcity](test/cognition-scarcity.test.ts),
-[actual material in day records](test/chronicle.test.ts), and [relationship-aware social terms](test/social.test.ts).
+The current behavior is defined in [`Affordance` and `Outcome`](https://github.com/adam0white/human-framework/blob/main/packages/human/src/types.ts) and
+[`finish`](https://github.com/adam0white/human-framework/blob/main/packages/human/src/person.ts). Existing controls cover [body advancement and waking after sleep](https://github.com/adam0white/human-framework/blob/main/packages/human/test/person.test.ts),
+[body recovery](https://github.com/adam0white/human-framework/blob/main/packages/human/test/body.test.ts), [material valuation under scarcity](https://github.com/adam0white/human-framework/blob/main/packages/human/test/cognition-scarcity.test.ts),
+[actual material in day records](https://github.com/adam0white/human-framework/blob/main/packages/human/test/chronicle.test.ts), and [relationship-aware social terms](https://github.com/adam0white/human-framework/blob/main/packages/human/test/social.test.ts).
 These boundaries require correct host reports; they do not imply a framework behavior change.
 
 ### Scheduled activity reviews
@@ -162,8 +165,8 @@ Do not restart a continued activity or refund its resources. Hard capacity vetoe
 Sleep reviews can move earlier for ordinary pending appointments. The appointment's time pressure
 can permit waking; an obligatory norm is not required. A host that ignores the scheduled review can
 make someone miss an obligation HF was ready to reconsider. This does not imply advance planning
-for unavailable future actions. See [`reviewed` and the decision lifecycle](src/person.ts) and
-[`wakeReviewAt` and commitment-based waking](src/will/will.ts).
+for unavailable future actions. See [`reviewed` and the decision lifecycle](https://github.com/adam0white/human-framework/blob/main/packages/human/src/person.ts) and
+[`wakeReviewAt` and commitment-based waking](https://github.com/adam0white/human-framework/blob/main/packages/human/src/will/will.ts).
 
 You can drive a person by hand: `decide(p, offers, { suggestion })` → `begin(p, offer, record)` →
 `tick(p, now)` → `finish(p, outcome)`, with `perceive(p, percepts)` and `interrupt(p, now, reason)` between.
@@ -212,20 +215,20 @@ reference host: `createVillage`.
 - Hosts that live people sparsely over decades can shrink what a save carries per person with
   `setRetention(p, { trace, chronicleDays })` (or `PersonSpec.retention`): fewer decision records, and day records
   bounded by age as well as count. No decision changes. `restore` also refuses a non-finite or out-of-range `now`
-  and holds every list to its live bound, so a crafted save cannot stall a host.
+  and bounds retained lists; hosts must still limit input size before parsing.
 - Version numbers are described under [Versions](#versions).
 
 ## Versions
 
 There are two version numbers, and they move independently.
 
-- **The release version** is the package version (`package.json`, now `2.2.1`) and `FRAMEWORK_VERSION`, the same
+- **The release version** is the package version (`package.json`, now `2.14.1`) and `FRAMEWORK_VERSION`, the same
   string compiled into the build; a test keeps them equal. It versions the public API under
   [semver](https://semver.org/): a breaking change to an exported name or signature bumps the major, a new
   faculty or export the minor, a fix the patch. Each release is a tag `vX.Y.Z` and a GitHub release whose notes
-  are that version's section of the root [CHANGELOG.md](../../CHANGELOG.md), with the package tarball attached
-  (`npm run release`, run on a clean, pushed `main`).
-- **`ENGINE_VERSION`** (exported; `2.2.0` at release 2.2.1) versions simulation behaviour and the save format. It
+  are that version's section of the root [CHANGELOG.md](https://github.com/adam0white/human-framework/blob/main/CHANGELOG.md), with the package tarball attached
+  (`npm run release`, from a clean checkout of pushed `origin/main`).
+- **`ENGINE_VERSION`** (exported; `2.14.1` at release 2.14.1) versions simulation behaviour and the save format. It
   changes when the same seed and inputs would give different decisions, or when person state changes shape.
   `restore` upgrades saves from engine 1.4.0 and later through `migrate` and refuses older ones. Every release's notes name the
   `ENGINE_VERSION` it ships, so a host can tell whether its saves still restore.
@@ -295,22 +298,22 @@ that place lose appeal until the fear fades. Groups and factions themselves stay
   starts with a scope paragraph that also lists what that faculty leaves out.
 - **Rulings or divine judgment.** Norms come from a host catalog with provenance (`NormDefinition.sources`;
   the bundled `DEFAULT_NORMS` is Islam-guided; each reference's verification status is listed in
-  [research/norm-sources.md](../../research/norm-sources.md)). A host with its own catalog passes it as
+  [research/norm-sources.md](https://github.com/adam0white/human-framework/blob/main/research/norm-sources.md)). A host with its own catalog passes it as
   `World.catalog`, so necessity excuses and exemptions read that catalog; a norm not in it is not excused.
   A person holds an *understanding* of a norm, with a standing and a conviction. That understanding is
   not a ruling. The library never computes divine acceptance. Where schools of thought differ, the
   position the bundled catalog takes, and why, is recorded in
-  [research/decisions.md](../../research/decisions.md).
+  [research/decisions.md](https://github.com/adam0white/human-framework/blob/main/research/decisions.md).
 
 ## Further reading
 
-- [docs/framework.md](../../docs/framework.md): the architecture, which module owns which state slice, the
+- [docs/framework.md](https://github.com/adam0white/human-framework/blob/main/docs/framework.md): the architecture, which module owns which state slice, the
   utility terms, will rules, host protocols, and locked decisions.
-- [docs/api.md](../../docs/api.md): every export, grouped by module, generated from the built declarations.
+- [docs/api.md](https://github.com/adam0white/human-framework/blob/main/docs/api.md): every export, grouped by module, generated from the built declarations.
   Helpers tagged `@internal` are stripped from the shipped declarations and are not part of the API.
   The affect module's `release` is exported as `releaseEmotion`, the agenda's as `releaseCommitment`, and the
   will's scorer as `scoreAndResolve`.
-- [docs/findings.md](../../docs/findings.md): negative findings recorded during development.
+- [docs/findings.md](https://github.com/adam0white/human-framework/blob/main/docs/findings.md): negative findings recorded during development.
 
 ## License
 
@@ -343,7 +346,7 @@ const evidence = methodEvidence(learner, 'send-north', 'new-parcel');
 clearMethodContext(learner); // when leaving or switching the task
 ```
 
-Import these functions from the package. Rules/evidence live in optional `Person.methods` and survive snapshots. Current cues expire after 120 minutes. A stable demonstration id avoids counting the same example twice within the retained 256-example history, even after its rule or evidence is evicted. Once an id has left both that history and retained rule evidence, it can be admitted again. Missing observations cannot satisfy a condition. Failed demonstrations reduce support for that action. Successful alternatives retain their own support; ordinary cognition weighs the supported offers alongside other motives. A successful lecture does not certify reliable execution. [The routing control](examples/method-control.ts) demonstrates changed teaching, withheld teaching, a scalar-skill control and acquired-state ablation with two methods and an exception. [The alternatives control](examples/method-alternatives-control.ts) demonstrates two independently successful procedures under the same observations, failed practice, hunger and exact restore.
+Import these functions from the package. Rules/evidence live in optional `Person.methods` and survive snapshots. Current cues expire after 120 minutes. A stable demonstration id avoids counting the same example twice within the retained 256-example history, even after its rule or evidence is evicted. Once an id has left both that history and retained rule evidence, it can be admitted again. Missing observations cannot satisfy a condition. Failed demonstrations reduce support for that action. Successful alternatives retain their own support; ordinary cognition weighs the supported offers alongside other motives. A successful lecture does not certify reliable execution. [The routing control](https://github.com/adam0white/human-framework/blob/main/packages/human/examples/method-control.ts) demonstrates changed teaching, withheld teaching, a scalar-skill control and acquired-state ablation with two methods and an exception. [The alternatives control](https://github.com/adam0white/human-framework/blob/main/packages/human/examples/method-alternatives-control.ts) demonstrates two independently successful procedures under the same observations, failed practice, hunger and exact restore.
 
 
 ## Receiving a possible future route
@@ -400,4 +403,4 @@ Only actual terminal outcomes advance terminal goals. Finishing one's own reques
 
 Knowledge lives in optional `Person.prospection` and survives snapshot/restore. A percept admits at most four additions/withdrawals combined, atomically. Invalid entries or duplicate source/id identities reject the entire batch. Equal/lower revisions do not reinforce or refresh; a higher revision replaces. There are at most 16 entries and 64 revision records. Consumed entries are evicted first, then the oldest remaining entries, while their revision records remain; a batch requiring more still-valid revision records is rejected. Entries and revision memory expire within seven days. Deduplication is bounded, not a durable audit. Capacity is shared across sources and admission does not allocate by trust. One prolific source can occupy the finite entry/revision capacity, causing other new ids to be rejected until revision space expires; this is bounded memory, not a source-fairness or trust firewall. Hosts must bound the premises they deliver. The pure query exposes retained entries, present feasibility and retained revisions.
 
-[The frozen control](examples/received-consequences.ts) publishes useful, late, costly, uncertain, withheld, removed-knowledge, removed-goal, temporal-off and refused arms in two renamed domains. This faculty does not search action graphs, predict future body state, price all waiting opportunities or guarantee consent or success. Its numerical bounds and control parameters are engineering assumptions.
+[The frozen control](https://github.com/adam0white/human-framework/blob/main/packages/human/examples/received-consequences.ts) publishes useful, late, costly, uncertain, withheld, removed-knowledge, removed-goal, temporal-off and refused arms in two renamed domains. This one-step faculty does not search action graphs, price all waiting opportunities or guarantee consent or success. Opt-in bounded planning (2.12.0) and bodily forecast (2.5.0) extend valuation separately. Its numerical bounds and control parameters are engineering assumptions.

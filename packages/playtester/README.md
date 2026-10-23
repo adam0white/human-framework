@@ -147,8 +147,18 @@ Adapters may add these optional fields, copied from the screen:
 
 An omitted `goal`, `next` or `text` means the adapter does not expose that evidence. Use `goal: ''` or `next: ''`
 when the screen genuinely shows no such line, and `text: []` when it shows no classified copy. `disabled: {}`
-means the screen gives no reason. Do not invent copy or explanations to make a report pass. Existing adapters
-remain unchanged because their current contract does not supply exact goal/next screen copy.
+means the screen gives no reason. Do not invent copy or explanations to make a report pass. The four canonical adapters now expose inspected screen copy. Pass and Glance use their checkout's pure UI
+status readers when present; older checkouts keep that copy unmeasured. Pass phases added after the adapter's service/evening/Sunday
+contract also keep copy unmeasured. Warren uses its current margin reader,
+or the goal text shown by older builds. Current raid-warning copy stays unmeasured because its browser-local
+acknowledgement is outside the adapter. Voices mirrors the card's hint priority and the visible between-card
+clock line. A title-page purpose is not copied onto an active screen.
+
+Pass records the disabled night-three continuation without inventing a reason; Glance records the inn sheet's
+disabled ring/warning and displayed reasons. Refusal forecasts and busy people do not become disabled controls.
+The action menus still combine controls from reachable sheets and omit navigation, so they cannot prove that
+every control was simultaneously visible or discovered. Neighbours and Small Works example adapters remain
+outside this copy coverage; both games are frozen.
 The language check includes clock, now, goal, next, control labels and disabled reasons.
 `loops` and `features.openLoop` retain their existing meaning: visibly unfinished business.
 

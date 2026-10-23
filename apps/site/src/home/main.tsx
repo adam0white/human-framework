@@ -78,8 +78,9 @@ function Home() {
             ))}
           </dl>
           <p className="note">
-            Same seed, same life: every choice is deterministic and keeps the reasons that scored it. A person
-            is plain JSON you can save and replay.
+            With the same initial state, inputs, host logic and engine version, decisions repeat. Records
+            retain scored terms for top considered options; history is bounded. Person state is plain JSON. A
+            full replay also needs host state and inputs.
           </p>
         </section>
 
@@ -107,13 +108,15 @@ function Home() {
           <h2 id="faith-title">Faith and science</h2>
           <p>
             HF is guided by Islamic teaching about the human being, read alongside current science. It models
-            what a person understands and holds, not rulings. Heart, soul and conscience are never reduced to
-            numbers.
+            a person’s held understanding of norms, not rulings. Conscience uses numeric state; HF never
+            computes divine acceptance or assigns quantities to the ruh.
           </p>
           <p>
             <a href={`${REPO}/blob/main/research/reconciliation.md`}>How the two are reconciled</a>
           </p>
-          <p className="margin">In the games, a prayer at dusk is just a line in the journal.</p>
+          <p className="margin">
+            Prayer and fasting can affect a character’s choices; they are quiet parts of life in the games.
+          </p>
         </section>
       </main>
 

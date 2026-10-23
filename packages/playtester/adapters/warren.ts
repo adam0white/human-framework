@@ -22,6 +22,7 @@
 import { homedir } from 'node:os';
 import { join } from 'node:path';
 import type { GameAdapter, Observation, PlayAction, PlayEvent } from '../src/index.ts';
+import { optionalUiCopy } from './screen-copy.ts';
 
 interface Note {
   at: number;
@@ -77,6 +78,8 @@ const { seasonOf, doyOf, yearOf, DAY } = (await import(join(WARREN_DIR, 'src/sim
   yearOf(day: number): number;
   DAY: number;
 };
+
+const guidanceCopy = await optionalUiCopy<{ colonyWords(s: State): string }>(WARREN_DIR, 'guidance');
 
 const TROT = 72;
 const WALK = 18;
@@ -175,6 +178,11 @@ export class WarrenAdapter implements GameAdapter {
       over: this.ended(),
       chapter,
       loops,
+      // Older builds printed currentGoal; newer builds render colonyWords in that same margin.
+      // A current raid warning depends on browser-local acknowledgement, which this adapter does not model.
+      ...(!guidanceCopy || !raid
+        ? { goal: guidanceCopy ? guidanceCopy.colonyWords(s) : (goal?.text ?? ''), next: '' }
+        : {}),
     };
     if (o.over) {
       const died = s.stats.died;

@@ -23,6 +23,7 @@
 import { homedir } from 'node:os';
 import { join } from 'node:path';
 import type { GameAdapter, Observation, PlayAction, PlayEvent } from '../src/index.ts';
+import { innControls, optionalUiCopy } from './screen-copy.ts';
 
 type KeeperId = 'dai' | 'callum';
 type Job = 'level' | 'gate' | 'weir';
@@ -67,6 +68,8 @@ export const GLANCE_DIR = process.env.GLANCE_DIR ?? join(homedir(), 'code', 'gla
 const D = (await import(join(GLANCE_DIR, 'src/sim/dam.ts'))) as Dam;
 const { NAMES } = (await import(join(GLANCE_DIR, 'src/sim/keepers.ts'))) as { NAMES: Record<string, string> };
 const { TURNS } = (await import(join(GLANCE_DIR, 'src/sim/water.ts'))) as { TURNS: number };
+
+const concernCopy = await optionalUiCopy<{ concernLines(s: GameState): string[] }>(GLANCE_DIR, 'concern');
 
 const STEADY = 1.4;
 const VERDICT: Record<string, number> = {
@@ -177,6 +180,13 @@ export class GlanceAdapter implements GameAdapter {
       over: s.phase === 'end',
       chapter,
       loops,
+      // The purpose sentence is on the title page, not the active watch.
+      goal: '',
+      ...(s.phase === 'watch'
+        ? concernCopy
+          ? { next: concernCopy.concernLines(s).join(' ') }
+          : {}
+        : { next: '' }),
     };
     if (s.phase === 'end')
       o.outcome = s.dawns.some((d) => d.overtopped)
@@ -219,10 +229,9 @@ export class GlanceAdapter implements GameAdapter {
         out.push({ id: `${id}:weir`, label: `send ${NAMES[id]} to the weir`, kind: 'read', promise: 0.25 });
     }
     if (plan.inn) {
-      if (s.nerys.ringing === null)
-        out.push({ id: 'ring', label: 'ring the inn', kind: 'read', promise: 0.3 });
-      if (s.warnedAt === null && (s.board.bridge?.value ?? 0) >= 4)
-        out.push({ id: 'warn', label: 'warn Mill Lane', kind: 'warn', promise: 0.8, tags: ['confront'] });
+      out.push(
+        ...innControls(s.nerys.ringing !== null, s.warnedAt, D.clock, (s.board.bridge?.value ?? 0) >= 4),
+      );
     }
     return out;
   }
@@ -240,14 +249,6 @@ export class GlanceAdapter implements GameAdapter {
           kind: 'warn',
           promise: 0.05,
           tags: ['confront'],
-          mischief: true,
-        });
-      if (s.nerys.ringing !== null)
-        out.push({
-          id: 'ring:sport',
-          label: 'ring the inn again',
-          kind: 'read',
-          promise: 0.05,
           mischief: true,
         });
     }

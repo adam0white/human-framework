@@ -18,6 +18,7 @@
 import { homedir } from 'node:os';
 import { join } from 'node:path';
 import type { GameAdapter, Observation, PlayAction, PlayEvent } from '../src/index.ts';
+import { voiceHint } from './screen-copy.ts';
 
 type Lean = string;
 interface CardView {
@@ -26,6 +27,7 @@ interface CardView {
   pullLine: string;
   borrowed: boolean;
   forecast?: string;
+  hint?: string;
   options: { id: string; ink: string; lean: Lean; pushed: Lean; isPull: boolean }[];
 }
 interface Answer {
@@ -196,6 +198,8 @@ export class VoicesAdapter implements GameAdapter {
       over: s.phase === 'end',
       chapter: s.phase === 'evening' ? `${day} eve` : day,
       loops,
+      goal: '',
+      next: s.phase === 'day' ? (v ? voiceHint(s.day, v) : 'The clock keeps running.') : '',
     };
     if (s.phase === 'end' && s.final) {
       const kept = s.final.strip.reduce((n, d) => n + d.kept.length, 0);

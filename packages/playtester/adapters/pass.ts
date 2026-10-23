@@ -27,6 +27,7 @@
 import { homedir } from 'node:os';
 import { join } from 'node:path';
 import type { GameAdapter, Observation, PlayAction, PlayEvent } from '../src/index.ts';
+import { optionalUiCopy } from './screen-copy.ts';
 
 type Verb = 'grill' | 'cold' | 'dish' | 'oven' | 'break' | 'eat' | 'home';
 interface Ticket {
@@ -110,6 +111,11 @@ interface Campaign {
 export const PASS_DIR = process.env.PASS_DIR ?? join(homedir(), 'code', 'pass');
 const K = (await import(join(PASS_DIR, 'src/sim/kitchen.ts'))) as Kitchen;
 const C = (await import(join(PASS_DIR, 'src/sim/campaign.ts'))) as Campaign;
+
+const statusCopy = await optionalUiCopy<{ serviceStatus(s: GameState): { text: string } }>(
+  PASS_DIR,
+  'status',
+);
 
 const STEADY = 1.5;
 const SLOWED = 0.5;
@@ -322,6 +328,15 @@ export class PassAdapter implements GameAdapter {
       over: s.phase === 'end',
       chapter: this.chapter(),
       loops,
+      // The service has no separate goal sentence. The live status is the UI's own copy, not a strategy.
+      ...(['service', 'evening', 'sunday', 'end'].includes(s.phase) ? { goal: '' } : {}),
+      ...(s.phase === 'service'
+        ? statusCopy
+          ? { next: statusCopy.serviceStatus(s).text }
+          : {}
+        : ['evening', 'sunday', 'end'].includes(s.phase)
+          ? { next: '' }
+          : {}),
     };
     if (s.phase === 'end') o.outcome = s.lost ? 'loss' : 'win';
     return o;
@@ -347,9 +362,11 @@ export class PassAdapter implements GameAdapter {
       const out: PlayAction[] = [
         {
           id: 'open',
-          label: C.isLastOfWeek(s.night) ? 'turn to Sunday' : 'open the next night',
+          label: C.isLastOfWeek(s.night) ? 'Turn to Sunday' : `Open on ${C.planOf(s.night + 1).title}`,
           kind: 'open',
           promise: 0.6,
+          // The UI disables this button until a jar choice, without a reason attached to it.
+          ...(s.night === 3 && !this.jarDone ? { disabled: {} } : {}),
         },
       ];
       if (s.night === 3 && !this.jarDone)
