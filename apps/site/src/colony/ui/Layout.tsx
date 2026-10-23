@@ -74,7 +74,12 @@ export function Status({ card }: { card: OrderCard }) {
       {(['classic', 'human'] as const).map((side) => (
         <span key={side} className={`chip chip-${card[side].state}`}>
           {side === 'classic' ? 'C' : 'H'}
-          {glyph(card[side].state)} {card[side].settled ? 'done' : CHIP_TEXT[card[side].state]}
+          {glyph(card[side].state)}{' '}
+          {card[side].settled && ['ok', 'assent', 'complied', 'done'].includes(card[side].state)
+            ? card[side].state === 'complied'
+              ? 'done under protest'
+              : 'done'
+            : CHIP_TEXT[card[side].state]}
         </span>
       ))}
     </span>
