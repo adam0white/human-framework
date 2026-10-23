@@ -341,3 +341,13 @@
   display: flex;
   align-items: center;
 }
+
+.v-between .v-whisper-picked > li,
+.v-between .v-whisper-how {
+  min-width: 0;
+}
+.v-between .v-whisper-reasons {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
