@@ -306,7 +306,10 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
                 ['day', 'free'].includes(current.phase)
               )
                 send({ type: 'resume' });
-              else if (pacing) send({ type: pacing });
+              else if (pacing) {
+                if (pacing === 'pause') manualHold.current = true;
+                send({ type: pacing });
+              }
               const context = predictionContext(current);
               if (context !== predictionFrame.current) {
                 predictionFrame.current = context;

@@ -168,6 +168,22 @@ it('slows reading ticks, keeps frame scheduling on wall time, and respects manua
     expect(voice.reading).toBe(true);
     flushSync(() => actions.suggest({ optionId: 'call:selin', strength: 'mention', insist: false }));
     expect(voice.reading).toBe(false);
+    // A fresh encounter is a stop until the player resolves it. Opening and closing speech leaves it pending.
+    actions.setPaused(false);
+    flushSync(() => channel.receive({ type: 'frame', gen: init.gen + 1, frame: call }));
+    const nextScene = { ...call, log: [{ ...previousCall, id: 'fresh-stop' }] };
+    channel.post.mockClear();
+    flushSync(() => channel.receive({ type: 'frame', gen: init.gen + 1, frame: nextScene }));
+    expect(channel.post).toHaveBeenCalledWith({ type: 'pause' });
+    channel.post.mockClear();
+    flushSync(() =>
+      channel.receive({ type: 'frame', gen: init.gen + 1, frame: { ...nextScene, paused: true } }),
+    );
+    flushSync(() => actions.setReading(true));
+    flushSync(() => actions.setReading(false));
+    expect(channel.post.mock.calls.some(([msg]) => msg.type === 'resume')).toBe(false);
+    actions.setPaused(false);
+    expect(channel.post).toHaveBeenLastCalledWith({ type: 'resume' });
   } finally {
     root.unmount();
   }
