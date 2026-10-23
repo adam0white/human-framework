@@ -191,6 +191,7 @@ function Lab() {
             {data.window.sampled ? ' Some days were sampled.' : ''}
           </p>
           <nav className="jump" aria-label="On this page">
+            <a href="/lab/how-to-playtest/">How to playtest</a>
             <a href="#learning">what we are learning</a>
             <a href="#try">try next</a>
             <a href="#games">games</a>
@@ -238,8 +239,8 @@ function Lab() {
         <section id="try" aria-labelledby="try-title">
           <h2 id="try-title">Try next</h2>
           <p>
-            If you are playtesting, these are what each game wants tested now. When you finish, use the game’s
-            “send this run to the notebook” and say what you felt in the note.
+            Play any game, or try one of the questions below. When you finish, open the game menu and use Send
+            feedback with your name or tester nickname. <a href="/lab/how-to-playtest/">How to playtest</a>
           </p>
           {gamesWithAsks.length ? (
             gamesWithAsks.map((g) => (

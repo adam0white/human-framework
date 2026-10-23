@@ -6505,6 +6505,21 @@
     "fix:commonstead builder vertical slice (implemented commonstead 7103af9753c0c6bcaf45556d383d762580db00ad, owner play and acceptance pending)"
    ],
    "source": "https://github.com/adam0white/commonstead"
+  },
+  {
+   "id": "F-486",
+   "date": "2026-10-23",
+   "game": "lab",
+   "kind": "owner",
+   "who": "Adam",
+   "words": "I'm excited to play all the games soon, and I think I'll hire some friends to playtest as well. The lab is becoming more fun every day; we just gotta find & squash those nasty bugs across games",
+   "verdict": "-",
+   "routes": [
+    "fix:lab Reproduce and fix game bugs from linked telemetry and the playtest round (open)",
+    "fix:lab Smoke all 15 games at phone and desktop sizes including menu and save reload (open)",
+    "fix:lab Publish How to playtest for friends with recording and privacy explained (open)"
+   ],
+   "source": "docs/owner-directions-2026-10-18.md#2026-10-23-bugs-and-friends-playtesting-adam-verbatim"
   }
  ],
  "lessons": [
@@ -7111,7 +7126,7 @@
   }
  ],
  "routes": {
-  "fix": 584,
+  "fix": 587,
   "lesson": 291,
   "hf": 12,
   "calibration": 42,

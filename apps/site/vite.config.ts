@@ -35,6 +35,7 @@ export default defineConfig({
         watch: resolve(root, 'watch/index.html'),
         games: resolve(root, 'games/index.html'),
         lab: resolve(root, 'lab/index.html'),
+        labHowToPlaytest: resolve(root, 'lab/how-to-playtest/index.html'),
         labPrivacy: resolve(root, 'lab/privacy/index.html'),
         labIdentity: resolve(root, 'lab/identity/index.html'),
         labPeople: resolve(root, 'lab/people/index.html'),

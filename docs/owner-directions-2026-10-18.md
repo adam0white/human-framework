@@ -151,3 +151,11 @@ This supersedes the old-game-save compatibility and frozen-host restrictions abo
 Coordinator defaults, subject to newer owner words: 40 canonical foreground people across all 15 games including Commonstead; 3–8 per game; most recur in at least two games. Wider crowds stay generated background. The lab uses 12 standing playtesters plus two newly cold testers per round and three standing designer/reviewer personas. That is 17 roles per round: 15 standing identities and two rotating identities, because reused testers would cease to be cold. These numbers are the coordinator’s proposal, not a verbatim numeric choice by the owner.
 
 Build substantial biographies and an exhaustive old-character mapping. Panelists keep diaries across games, remain cold to each new game, and submit as `playtester <name>`. Build seeded deterministic bounded shelf life computed on return from elapsed real time. Preserve loaded runs, explicit conflict forks, fresh play and recording-linkage privacy. Release the next HF minor and adopt across every game. Completion and owner acceptance are recorded in AGENTS.md. Do recording, cast and panel now; hold package/bridge work and game worker launches until PID 46230 exits, then read the One cast lead’s final report.
+
+## 2026-10-23, bugs and friends playtesting (Adam, verbatim)
+
+> I'm excited to play all the games soon, and I think I'll hire some friends to playtest as well. The lab is becoming more fun every day; we just gotta find & squash those nasty bugs across games
+
+Source: owner message to the bug-hunt coordinator, 2026-10-23.
+
+Use linked telemetry, the 2026-10-23 playtest round and a fresh live smoke at 360×690 and 1280×800. Keep one public bug list in [bugs-2026-10-23.md](lab/bugs-2026-10-23.md). Fix confirmed bugs without redesign or softened difficulty. Old saves need not load. Use at most two game workers, each in its own worktree, and wait for any existing writer in that repo. Each fix gets focused proof where possible, one independent Codex review, signed commits, lane checks, rebased push, exact green CI, deployment and live verification. Add a short How to playtest page linked from the lab. Consolidate ledger routes and deploy the HF site with a matching clean release manifest. Owner acceptance of the games remains separate.
