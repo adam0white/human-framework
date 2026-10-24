@@ -1,4 +1,5 @@
 import './cast-life.css';
+import { type Lab, openSendDialog } from '@adam0white/lab-client';
 import { useEffect, useState } from 'react';
 import {
   castChanges,
@@ -9,6 +10,7 @@ import {
   setCastEnabled,
   startCastFresh,
 } from './cast-runtime.ts';
+import { gameLabs } from './lab.tsx';
 export function CastMenu({ game }: { game: string }) {
   const [, refresh] = useState(0);
   useEffect(() => castChanges(() => refresh((n) => n + 1)), []);
@@ -75,6 +77,20 @@ export function CastLifeNote({ game }: { game: string }) {
   ) : null;
 }
 
+/** Explicit feedback must not request a snapshot from a worker that could not initialize. */
+function openCastFeedback(game: string): void {
+  if (game !== 'voice' && game !== 'watch' && game !== 'well') return;
+  const lab = gameLabs[game];
+  const feedbackLab = Object.create(lab) as Lab;
+  feedbackLab.sendFeedback = (note, options) =>
+    lab.sendFeedback(note, { name: options?.name, run: { feedbackOnly: true } });
+  openSendDialog({
+    lab: feedbackLab,
+    title: 'Send word (no game run or state included)',
+    getRun: () => undefined,
+  });
+}
+
 /** Present even before the worker has an initial game view. A failed batch never traps startup. */
 export function CastStartGate({ game }: { game: string }) {
   const [, refresh] = useState(0);
@@ -91,6 +107,9 @@ export function CastStartGate({ game }: { game: string }) {
       </p>
       <button type="button" onClick={() => startCastFresh(game)}>
         Start a fresh local chapter
+      </button>
+      <button type="button" onClick={() => openCastFeedback(game)}>
+        Send word
       </button>
       <a href="/lab/people/">Inspect or export the existing people</a>
     </section>
