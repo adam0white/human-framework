@@ -36,6 +36,8 @@ The browser shelf is one-device storage. No server, cross-device sync or shared 
 
 Use only the existing signed-in Chrome profile. Serialize journeys and global preference mutations with atomic `mkdir /Users/abdul/code/.lab-scratch/cast/browser-journey.lock` and `owner.json` containing exact PID, game and scenario. Wait for a live owner. Release only your own lock after exporting evidence and restoring task-owned state. Local previews without central-state changes may overlap. Never launch an isolated profile fallback.
 
+Toolchain receipt correction: the local2154-pass runs used actual installed Vitest5.0.3; exact green release CI used pinned5.0.5. A fresh exact-lock install verified actual TypeScript7.0.2, Biome2.5.15, Vitest5.0.5, Vite8.3.4 and React19.3.1 under Node26.12.0. The immutable client0.4.0/kit0.5.0 artifacts retain their verified TypeScript7.0.2 build and hashes. Ordinary control5/5 has authoritative log mtime2026-10-23 23:55:10UTC; the earlier01:55UTC receipt was incorrect. Raw logs remain retained.
+
 Prefix runtime commands with `PATH=/opt/homebrew/bin:$PATH` and verify Node≥24; zsh login can reset inherited PATH. Full suites hold `scripts/suite-lock.ts` once. HF `npm test` already holds it, so do not wrap another lock around HF full check/release. External game full checks use the machine-wide wrapper where their scripts do not.
 
 ## Copyable host calls
