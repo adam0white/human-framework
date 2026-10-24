@@ -72,7 +72,35 @@ describe('bounded send dialog', () => {
     await find('send').fire('click');
     expect(sent).toHaveLength(1);
     expect(document.body.all().filter((node) => node.className === 'hflab')).toHaveLength(1);
-    expect(lab.personaRecordingAllowed).toBe(choice !== 'persona');
+    expect(lab.personaRecordingAllowed).toBe(true);
+  });
+
+  it.each(['off', 'dnt', 'gpc'] as const)('defers checkbox opt-in until Submit (%s)', async (choice) => {
+    vi.stubGlobal(
+      'navigator',
+      choice === 'dnt' ? { doNotTrack: '1' } : choice === 'gpc' ? { globalPrivacyControl: true } : {},
+    );
+    for (const ticked of [false, true]) {
+      const { lab, find, sent, document } = setup();
+      if (choice === 'off') lab.setTelemetryOff(true);
+      const send = vi.spyOn(lab, 'sendFeedback');
+      lab.openSendDialog({ getRun: () => ({ seed: 1 }) });
+      const checkbox = find('hflab-share') as unknown as HTMLInputElement & {
+        fire(type: string): Promise<void>;
+      };
+      expect(checkbox.checked).toBe(false);
+      checkbox.checked = ticked;
+      await checkbox.fire('change');
+      await settled();
+      expect(lab.telemetryOn).toBe(false);
+      await find('send').fire('click');
+      expect(send).toHaveBeenLastCalledWith('', expect.objectContaining({ sharePlay: ticked }));
+      expect(JSON.parse(sent[0] ?? '{}').run).toEqual(ticked ? { seed: 1 } : { feedbackOnly: true });
+      document.body
+        .all()
+        .find((node) => node.textContent === 'Close')
+        ?.fire('click');
+    }
   });
 
   it('shows the compact payload and disclosure before consent, and sends that same text', async () => {

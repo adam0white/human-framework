@@ -33,7 +33,9 @@ function labStub() {
     allowPersonaRecording: vi.fn(),
     privacySignalOn: false,
     privacyOverride: false,
-    sendFeedback: vi.fn(async () => 'queued'),
+    sendFeedback: vi.fn(
+      async (_note: string, _options?: { name?: string; sharePlay?: boolean; run?: unknown }) => 'queued',
+    ),
     sendRun: vi.fn(async () => 'queued'),
     openSendDialog: vi.fn(),
     setTelemetryOff: vi.fn(),
@@ -50,8 +52,8 @@ async function mount(lab: ReturnType<typeof labStub>) {
   return {
     node,
     send: () => {
-      const button = [...node.querySelectorAll('button')].find((b) => b.textContent === 'Send');
-      if (!button) throw new Error('Expected Send');
+      const button = [...node.querySelectorAll('button')].find((b) => b.textContent === 'Submit');
+      if (!button) throw new Error('Expected Submit');
       return button;
     },
   };
@@ -69,63 +71,42 @@ it('sends optional verdict and remembered name as feedback when recording is on'
   expect(lab.sendRun).not.toHaveBeenCalled();
   expect(node.textContent).toContain('Note and verdict queued. An available run may also be included.');
 });
-it.each(['unanswered', 'declined', 'off', 'privacy'])('sends in the same sheet when %s', async (choice) => {
+it.each([
+  ['off', false],
+  ['off', true],
+  ['privacy', false],
+  ['privacy', true],
+])('offers one deferred sharing checkbox when %s and submits with sharing %s', async (mode, share) => {
   const lab = labStub();
-  Object.assign(lab, {
-    personaRecordingRequired: choice !== 'privacy',
-    personaRecordingAllowed: false,
-    allowPersonaRecording: vi.fn(),
-  });
-  if (choice === 'off') {
-    localStorage.setItem('hf-lab-recording-off', '1');
-    lab.telemetryOn = false;
-  }
-  if (choice === 'privacy') {
-    lab.telemetryOn = true;
-    lab.privacySignalOn = true;
-  }
+  lab.telemetryOn = false;
+  lab.privacySignalOn = mode === 'privacy';
   const { node, send } = await mount(lab);
-  expect(send().disabled).toBe(false);
+  const checkbox = node.querySelector<HTMLInputElement>('input[type=checkbox]');
+  expect(checkbox).not.toBeNull();
+  expect(checkbox?.checked).toBe(false);
+  expect(checkbox?.parentElement?.textContent).toContain('Share this run and my play with the lab');
+  if (share) await act(() => checkbox?.click());
+  expect(lab.sendFeedback).not.toHaveBeenCalled();
+  expect(lab.setTelemetryOff).not.toHaveBeenCalled();
   await act(async () => send().click());
   expect(lab.sendFeedback).toHaveBeenCalledOnce();
-  expect(node.textContent).toContain(
-    choice === 'off' || choice === 'privacy'
-      ? 'Note and verdict queued without a run or history linkage.'
-      : 'Note and verdict queued. An available run may also be included.',
-  );
-  expect(lab.openSendDialog).not.toHaveBeenCalled();
-  expect(lab.setTelemetryOff).not.toHaveBeenCalled();
+  const options = vi.mocked(lab.sendFeedback).mock.calls[0]?.[1];
+  expect(options).toMatchObject({ sharePlay: share });
+  expect(options?.run).toEqual(share ? { seed: 42, inputs: [], end: { year: 1 } } : undefined);
   expect(node.querySelectorAll('[role=dialog]')).toHaveLength(1);
+  expect(lab.openSendDialog).not.toHaveBeenCalled();
 });
-
-it.each(['pending', 'failed'])(
-  'routes optional linkage through the scoped host choice while %s without blocking notes',
-  async (outcome) => {
-    const lab = labStub();
-    lab.personaRecordingRequired = true;
-    vi.mocked(chooseVoiceRecording).mockImplementationOnce(() =>
-      outcome === 'pending' ? new Promise<void>(() => {}) : Promise.reject(new Error('shelf unavailable')),
-    );
-    const { node, send } = await mount(lab);
-    await act(async () => node.querySelector<HTMLInputElement>('input[type=checkbox]')?.click());
-    expect(chooseVoiceRecording).toHaveBeenCalledWith(true);
-    expect(lab.allowPersonaRecording).not.toHaveBeenCalled();
-    expect(send().disabled).toBe(false);
-    await act(async () => send().click());
-    expect(lab.sendFeedback).toHaveBeenCalledOnce();
-    expect(node.querySelectorAll('[role=dialog]')).toHaveLength(1);
-  },
-);
-
-it('omits only browser ownership from an unlinked run without changing the export', async () => {
+it('recording on sends the run with no separate linkage controls, including old denials', async () => {
   const lab = labStub();
-  const castChapter = { initial: { cast: 'admitted replay input' } };
-  const castOwnership = { person: { branchId: 'browser-claim', revision: 'r1' } };
-  const run = Object.freeze({ seed: 42, inputs: [], castChapter, castOwnership });
-  vi.mocked(actions.getPlaytest).mockResolvedValueOnce(run as never);
-  const { send } = await mount(lab);
+  lab.personaRecordingRequired = true;
+  lab.personaRecordingAllowed = false;
+  const { node, send } = await mount(lab);
+  expect(node.querySelectorAll('input[type=checkbox]')).toHaveLength(0);
   await act(async () => send().click());
-  expect(lab.sendFeedback).toHaveBeenCalledWith('', { name: '', run: { seed: 42, inputs: [], castChapter } });
-  expect(run.castOwnership).toBe(castOwnership);
-  expect(run.castChapter).toBe(castChapter);
+  expect(lab.sendFeedback).toHaveBeenCalledWith('', {
+    name: '',
+    sharePlay: false,
+    run: { seed: 42, inputs: [], end: { year: 1 } },
+  });
+  expect(lab.allowPersonaRecording).not.toHaveBeenCalled();
 });

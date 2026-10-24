@@ -1,46 +1,24 @@
 import { expect, it, vi } from 'vitest';
-import { feedbackPersonaControl, personaControls } from '../src/persona.ts';
+import { feedbackPersonaControl, feedbackSharePlay, personaControls } from '../src/persona.ts';
 
-it('offers persona recording linkage only when relevant and changes it only on explicit input', () => {
-  const lab = {
-    personaRecordingRequired: false,
-    personaRecordingAllowed: false,
-    allowPersonaRecording: vi.fn(),
-  };
-  expect(feedbackPersonaControl(lab)).toBeNull();
-  lab.personaRecordingRequired = true;
-  const panel = feedbackPersonaControl(lab);
+it('shows one unticked share choice only when recording is off and defers enabling until Submit', () => {
+  expect(feedbackPersonaControl({ telemetryOn: true })).toBeNull();
+  const panel = feedbackPersonaControl({ telemetryOn: false });
+  expect(panel?.textContent).toBe(' Share this run and my play with the lab');
+  expect(feedbackSharePlay(panel)).toBe(false);
   const input = panel?.querySelector('input');
-  expect(input?.checked).toBe(false);
-  expect(lab.allowPersonaRecording).not.toHaveBeenCalled();
-  lab.allowPersonaRecording.mockImplementation((allow: boolean) => {
-    lab.personaRecordingAllowed = allow;
-  });
-  if (input) {
-    input.checked = !input.checked;
-    input.dispatchEvent(new Event('change'));
-  }
-  expect(lab.allowPersonaRecording).toHaveBeenLastCalledWith(true);
-  if (input) {
-    input.checked = !input.checked;
-    input.dispatchEvent(new Event('change'));
-  }
-  expect(lab.allowPersonaRecording).toHaveBeenLastCalledWith(false);
+  if (input) input.checked = true;
+  expect(feedbackSharePlay(panel)).toBe(true);
 });
-
-it('does not claim linkage approval before the host confirms its recording choice', () => {
+it('keeps continuity controls without separate recording linkage consent', () => {
+  const allowRecording = vi.fn();
   const panel = personaControls({
     enabled: true,
     setEnabled: vi.fn(),
     recordingAllowed: false,
-    allowRecording: vi.fn(),
+    allowRecording,
   });
-  document.body.append(panel);
-  const yes = [...panel.querySelectorAll('button')].find(
-    (button) => button.textContent === 'Record this continuing person',
-  );
-  yes?.click();
-  expect(panel.textContent).toContain('Recording choice requested. Feedback can still send.');
-  expect(panel.textContent).not.toContain('Historical recording linkage allowed');
-  panel.remove();
+  expect(panel.querySelectorAll('input')).toHaveLength(1);
+  expect(panel.querySelectorAll('button')).toHaveLength(0);
+  expect(allowRecording).not.toHaveBeenCalled();
 });

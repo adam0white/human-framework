@@ -159,3 +159,10 @@ Build substantial biographies and an exhaustive old-character mapping. Panelists
 Source: owner message to the bug-hunt coordinator, 2026-10-23.
 
 Use linked telemetry, the 2026-10-23 playtest round and a fresh live smoke at 360×690 and 1280×800. Keep one public bug list in [bugs-2026-10-23.md](lab/bugs-2026-10-23.md). Fix confirmed bugs without redesign or softened difficulty. Old saves need not load. Use at most two game workers, each in its own worktree, and wait for any existing writer in that repo. Each fix gets focused proof where possible, one independent Codex review, signed commits, lane checks, rebased push, exact green CI, deployment and live verification. Add a short How to playtest page linked from the lab. Consolidate ledger routes and deploy the HF site with a matching clean release manifest. Owner acceptance of the games remains separate.
+
+
+## 2026-10-23 frictionless recording and feedback (Adam, verbatim)
+
+> Why can't we make linking and all that automatic? We already notify at first visit that we're gonna record stuff. I want to make it as frictionless as possible. Hit send feedback, type something, agree to share everything if not agreed before, submit. My mobile firefox, I'm unable to enable recording. And "enable recording even though your do not track is on" being a separate button is just wrong.
+
+Owner implementation direction: first-visit notice covers recording and automatic linking across games on this device. There is no separate continuing-person consent or gate, including after recording identity changes or file imports. One menu recording switch explicitly opts in even with DNT/GPC, which only sets the default off. Send word has verdict, note, optional name and Submit on one page. When recording is off, one unticked checkbox says “Share this run and my play with the lab”. Submit with the box ticked enables recording and linking and sends the run. Unticked Submit sends the note alone without linkage. Old separate consent state migrates silently. Character analysis retains its separate opt-in.

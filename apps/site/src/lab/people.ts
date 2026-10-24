@@ -134,7 +134,9 @@ document.querySelector<HTMLInputElement>('#file')?.addEventListener('change', (e
       return;
     }
     await render();
-    report('Imported. Recording this history still needs its own choice if the recording identity changed.');
+    report(
+      'Imported. When recording is on, this history is linked automatically across games on this device.',
+    );
   })().catch((e: unknown) => report(e instanceof Error ? e.message : 'Import failed.'));
 });
 void render().catch(() => report('Browser storage is unavailable. Use persona files in the game.'));

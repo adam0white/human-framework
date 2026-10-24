@@ -8,7 +8,8 @@ export type TelemetryLab = {
   setEventsOff?: (off: boolean) => void;
 };
 
-export const TELEMETRY_NOTICE = 'The lab records your play to improve the games. Turn off in the menu.';
+export const TELEMETRY_NOTICE =
+  'The lab records your play and links it across games on this device to your continuing people. Switch recording off in the menu.';
 export function telemetryOn(lab: TelemetryLab): boolean {
   return lab.telemetryOn ?? lab.eventsOn ?? false;
 }

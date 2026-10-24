@@ -50,6 +50,7 @@ it.each(['voice', 'watch', 'well'])(
     await options.lab.sendFeedback('Refusal feedback', { name: 'Tester' });
     expect(controls.send).toHaveBeenCalledWith('Refusal feedback', {
       name: 'Tester',
+      sharePlay: undefined,
       run: { feedbackOnly: true },
     });
     expect(controls.fresh).not.toHaveBeenCalled();

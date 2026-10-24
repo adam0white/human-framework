@@ -68,7 +68,7 @@ export type Lab = {
   sendEnvelopeText(text: string): Promise<string>;
   /** Opens the "Send this run to the notebook" dialog. */
   openSendDialog(options: Omit<SendDialogOptions, 'lab'>): void;
-  /** Recording preference, independent of the current persona linkage gate. */
+  /** Recording and automatic cross-game linkage preference. */
   readonly telemetryOn: boolean;
   readonly personaRecordingRequired?: boolean;
   readonly playerId: string | null;
@@ -80,12 +80,15 @@ export type Lab = {
   ): () => void;
   captureSave(value: unknown): void;
   log(level: 'error' | 'warn' | 'game', message: string): void;
-  /** Explicit feedback always sends. Without recording/linkage approval it sends an unlinked envelope. */
-  sendFeedback(note: string, options?: { name?: string; run?: unknown }): Promise<string>;
+  /** Explicit feedback always sends. When recording is off it sends an unlinked note. sharePlay explicitly enables recording. */
+  sendFeedback(
+    note: string,
+    options?: { name?: string; run?: unknown; sharePlay?: boolean },
+  ): Promise<string>;
   /** Call before attaching a persisted/imported persona run or any upload hook. */
   setPersonaRecording(personaKey: string | null): void;
   readonly personaRecordingAllowed: boolean;
-  /** Explicit historical-linkage choice for the current recording identity only. */
+  /** Deprecated compatibility hook. Linkage follows the recording switch. */
   allowPersonaRecording(allow: boolean): void;
   readonly game: string;
   readonly endpoint: string;
@@ -165,9 +168,6 @@ export function createLab(options: LabOptions): Lab {
   let override = getItem(local, overrideKey) === '1';
   let player: string | null = null;
   let identity: ReturnType<typeof identityBridge> | undefined;
-  let personaKey: string | null = null;
-  const personaAllowed = () =>
-    !personaKey || Boolean(player && readLocal(`hf-persona-recording:${personaKey}`) === player);
   const queue: { event: Event; runId: string }[] = [];
   const logs: { level: 'error' | 'warn' | 'game'; message: string; at: number; runId: string }[] = [];
   const recordingStopped = () =>
@@ -175,7 +175,7 @@ export function createLab(options: LabOptions): Lab {
     readLocal(RECORDING_OFF) === '1' ||
     (privacySignal(g) && !override) ||
     (local_ && !options.sendFromLocalhost);
-  const stopped = () => !personaAllowed() || recordingStopped();
+  const stopped = recordingStopped;
   const sessionKey = `${SID_KEY}:${game}`;
   const stored = getItem(session, sessionKey)?.split(':');
   let sid = stored?.[0] ?? '';
@@ -383,6 +383,11 @@ export function createLab(options: LabOptions): Lab {
     setInterval(() => flush(), 20000);
   }
   const setOff = (value: boolean) => {
+    // The menu switch and feedback checkbox are explicit opt-in, including DNT/GPC.
+    if (!value) {
+      override = true;
+      setItem(local, overrideKey, '1');
+    }
     off = value;
     setItem(local, offKey, value ? '1' : null);
     writeLocal(RECORDING_OFF, value ? '1' : null);
@@ -445,16 +450,15 @@ export function createLab(options: LabOptions): Lab {
     setPersonaRecording(key) {
       if (key !== null && !/^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/.test(key))
         throw new Error('Invalid persona recording key.');
-      personaKey = key;
-      if (!personaAllowed()) reset();
+      // Compatibility with older hosts: first-visit disclosure now covers linkage.
+      // Discard obsolete per-person decisions silently; recording is the only gate.
+      if (key) writeLocal(`hf-persona-recording:${key}`, null);
     },
     get personaRecordingAllowed() {
-      return personaAllowed();
+      return true;
     },
-    allowPersonaRecording(allow) {
-      if (!personaKey) return;
-      writeLocal(`hf-persona-recording:${personaKey}`, allow && player ? player : null);
-      if (!personaAllowed()) reset();
+    allowPersonaRecording(_allow) {
+      // Deprecated compatibility hook. Linkage follows the recording switch.
     },
     get eventsOn() {
       return !stopped();
@@ -463,7 +467,7 @@ export function createLab(options: LabOptions): Lab {
       return !recordingStopped();
     },
     get personaRecordingRequired() {
-      return personaKey !== null;
+      return false;
     },
     get playerId() {
       return stopped() ? null : player;
@@ -535,6 +539,8 @@ export function createLab(options: LabOptions): Lab {
           .catch(() => {});
     },
     async sendFeedback(note, options = {}) {
+      if (options.sharePlay === true) setOff(false);
+      await (identity?.ready ?? Promise.resolve());
       syncRun();
       const text = note.trim().slice(0, 4000);
       const feedbackGeneration = generation;
@@ -555,7 +561,19 @@ export function createLab(options: LabOptions): Lab {
       }
       try {
         if (options.run) await transport.send('run', options.run);
-        else await snapshot?.();
+        else if (snapshot) {
+          let timeout: ReturnType<typeof setTimeout> | undefined;
+          try {
+            await Promise.race([
+              snapshot(),
+              new Promise<void>((resolve) => {
+                timeout = setTimeout(resolve, 4000);
+              }),
+            ]);
+          } finally {
+            clearTimeout(timeout);
+          }
+        }
       } catch {
         /* A run export must never block the note. */
       }
@@ -570,7 +588,6 @@ export function createLab(options: LabOptions): Lab {
     },
     async sendRun(run, extra = {}) {
       syncRun();
-      if (!personaAllowed()) throw new Error('Choose whether to record this continuing person first.');
       if (!stopped()) {
         await (identity?.ready ?? Promise.resolve());
         const id = await transport.send('run', run);
@@ -588,7 +605,6 @@ export function createLab(options: LabOptions): Lab {
       return lab.sendEnvelopeText(prepareRun(game, build, run, extra));
     },
     async sendEnvelopeText(text) {
-      if (!personaAllowed()) throw new Error('Choose whether to record this continuing person first.');
       if (off || readLocal(RECORDING_OFF) === '1') throw new Error('Lab recording is off.');
       if (!stopped()) {
         const envelope = JSON.parse(text) as { run: unknown; note?: string; name?: string };

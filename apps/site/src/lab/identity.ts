@@ -9,11 +9,21 @@ import {
 
 const parents = new Map<Window, string>();
 const allowed = (origin: string) => /^https:\/\/([a-z0-9-]+\.)*adamwhite\.work$/.test(origin);
-function broadcast() {
+const REVISION_KEY = 'hf-lab-preference-revision';
+function broadcast(requestId?: string) {
   const off = readLocal(OFF_KEY) === '1';
   const player = off ? null : localPlayer();
   for (const [parent, origin] of parents)
-    parent.postMessage({ type: 'hf-lab-identity', player, off }, origin);
+    parent.postMessage(
+      {
+        type: 'hf-lab-identity',
+        player,
+        off,
+        revision: Number(readLocal(REVISION_KEY)) || 0,
+        ...(requestId ? { requestId } : {}),
+      },
+      origin,
+    );
 }
 window.addEventListener('message', (event: MessageEvent) => {
   if (
@@ -31,10 +41,13 @@ window.addEventListener('message', (event: MessageEvent) => {
     writeLocal(PLAYER_KEY, null);
   }
   if (action === 'on') writeLocal(OFF_KEY, null);
-  broadcast();
+  if (action !== 'get') writeLocal(REVISION_KEY, String((Number(readLocal(REVISION_KEY)) || 0) + 1));
+  const requestId = event.data.requestId;
+  broadcast(typeof requestId === 'string' && /^[a-f0-9]{32}$/.test(requestId) ? requestId : undefined);
 });
 window.addEventListener('storage', (event) => {
-  if (event.key === OFF_KEY || event.key === PLAYER_KEY || event.key === null) broadcast();
+  if (event.key === OFF_KEY || event.key === PLAYER_KEY || event.key === REVISION_KEY || event.key === null)
+    broadcast();
 });
 
 // Persona messages are deliberately independent of recording identity and its broader origin rule.

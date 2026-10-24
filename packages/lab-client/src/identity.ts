@@ -30,25 +30,46 @@ export function identityBridge(change: (player: string | null, off: boolean) => 
   let frame: HTMLIFrameElement | undefined;
   let desired: 'get' | 'on' | 'off' = readLocal(OFF_KEY) === '1' ? 'off' : 'get';
   let resolveReady: () => void = () => {};
-  let finished = false;
+  let ready: Promise<void>;
   let timer: ReturnType<typeof setTimeout> | undefined;
-  const ready = new Promise<void>((resolve) => {
-    resolveReady = resolve;
-  });
+  let requestId = randomId();
+  let revision = -1;
+  let versioned = false;
+  let awaiting = true;
   const finish = () => {
-    if (finished) return;
-    finished = true;
     clearTimeout(timer);
+    awaiting = false;
     resolveReady();
   };
+  const begin = () => {
+    resolveReady();
+    clearTimeout(timer);
+    requestId = randomId();
+    awaiting = true;
+    ready = new Promise<void>((resolve) => {
+      resolveReady = resolve;
+    });
+    timer = setTimeout(finish, 2000);
+  };
+  begin();
+  const post = () =>
+    frame?.contentWindow?.postMessage(
+      { type: 'hf-lab-identity', action: desired, requestId },
+      IDENTITY_ORIGIN,
+    );
   const setOff = (off: boolean) => {
     desired = off ? 'off' : 'on';
     writeLocal(OFF_KEY, off ? '1' : null);
     if (off) writeLocal(PLAYER_KEY, null);
-    frame?.contentWindow?.postMessage(
-      { type: 'hf-lab-identity', action: off ? 'off' : 'on' },
-      IDENTITY_ORIGIN,
-    );
+    begin();
+    if (!frame) finish();
+    post();
+  };
+  const result = {
+    setOff,
+    get ready() {
+      return ready;
+    },
   };
   if (
     typeof window === 'undefined' ||
@@ -57,7 +78,7 @@ export function identityBridge(change: (player: string | null, off: boolean) => 
     !location.hostname.endsWith('.adamwhite.work')
   ) {
     finish();
-    return { setOff, ready };
+    return result;
   }
   const start = () => {
     try {
@@ -78,21 +99,33 @@ export function identityBridge(change: (player: string | null, off: boolean) => 
           (player !== null && (typeof player !== 'string' || !/^[a-f0-9]{32}$/.test(player)))
         )
           return;
+        const reply = event.data as { requestId?: unknown; revision?: unknown };
+        if (reply.requestId !== undefined && reply.requestId !== requestId) return;
+        const nextRevision = reply.revision;
+        if (typeof nextRevision === 'number' && Number.isSafeInteger(nextRevision) && nextRevision >= 0) {
+          versioned = true;
+          if (nextRevision < revision) return;
+          // While waiting, only our current request may acknowledge a local choice.
+          if (awaiting && reply.requestId !== requestId) return;
+          revision = nextRevision;
+        } else {
+          if (versioned) return;
+          // Older deployed bridges do not echo request IDs. Opposite-state echoes
+          // must never undo the latest explicit local choice.
+          if ((desired === 'off' && !off) || (desired === 'on' && off)) return;
+        }
         change(player as string | null, off);
         finish();
       };
       window.addEventListener('message', receive);
-      frame.addEventListener('load', () =>
-        frame?.contentWindow?.postMessage({ type: 'hf-lab-identity', action: desired }, IDENTITY_ORIGIN),
-      );
+      frame.addEventListener('load', post);
       document.body.append(frame);
       // A blocked frame leaves an explicitly origin-scoped id; do not delay play.
-      timer = setTimeout(finish, 2000);
     } catch {
       finish();
     }
   };
   if (document.body) start();
   else window.addEventListener('DOMContentLoaded', start, { once: true });
-  return { setOff, ready };
+  return result;
 }

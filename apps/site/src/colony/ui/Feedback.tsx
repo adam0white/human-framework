@@ -2,12 +2,10 @@
 import type { Lab } from '@adam0white/lab-client';
 import { setTelemetryOff, telemetryOn } from '@adam0white/lab-kit';
 import { useEffect, useRef, useState } from 'react';
-import { chooseCastRecording } from '../../shared/cast-runtime.ts';
-import { unlinkedFeedbackRun } from '../../shared/feedback-run.ts';
+import { optionalFeedbackRun } from '../../shared/feedback-run.ts';
 import { gameLabs } from '../../shared/lab.tsx';
 import './feedback.css';
 
-const PRIVACY = 'https://human.adamwhite.work/lab/privacy/';
 const NAME_KEY = 'hf-lab-feedback-name';
 function stored(key: string) {
   try {
@@ -50,7 +48,6 @@ function useRecording(lab: Lab) {
 
 export function Feedback({
   getRun,
-  onDownload,
   onBack,
   lab = gameLabs.well,
 }: {
@@ -60,7 +57,7 @@ export function Feedback({
   lab?: Lab;
 }) {
   const recording = useRecording(lab);
-  const [personaLinked, setPersonaLinked] = useState(() => lab.personaRecordingAllowed);
+  const [sharePlay, setSharePlay] = useState(false);
   const [verdict, setVerdict] = useState('');
   const [note, setNote] = useState('');
   const [name, setName] = useState(() => stored(NAME_KEY));
@@ -69,7 +66,6 @@ export function Feedback({
   const [busy, setBusy] = useState(false);
   const pending = useRef(false);
   const screen = useRef<HTMLDivElement>(null);
-  const [preview, setPreview] = useState('');
   useEffect(() => {
     screen.current?.querySelector<HTMLButtonElement>('button')?.focus();
     const key = (event: KeyboardEvent) => {
@@ -104,16 +100,10 @@ export function Feedback({
     setStatus('');
     const message = [verdict ? `Verdict: ${verdict}` : '', note.trim()].filter(Boolean).join('\n\n');
     try {
-      let run: unknown;
-      if (recording.on && !lab.personaRecordingAllowed) {
-        try {
-          run = unlinkedFeedbackRun(await getRun());
-        } catch {
-          /* The note can still be sent. */
-        }
-      }
-      const noteOnly = !lab.telemetryOn || (lab.privacySignalOn && !lab.privacyOverride);
-      await lab.sendFeedback(message, { name: name.trim(), ...(run ? { run } : {}) });
+      const includeRun = recording.on || sharePlay;
+      const run = includeRun ? await optionalFeedbackRun(() => getRun()) : undefined;
+      const noteOnly = !includeRun;
+      await lab.sendFeedback(message, { name: name.trim(), sharePlay, ...(run ? { run } : {}) });
       try {
         if (name.trim()) localStorage.setItem(NAME_KEY, name.trim());
         else localStorage.removeItem(NAME_KEY);
@@ -147,21 +137,15 @@ export function Feedback({
             ? 'Your run, saves and log reach us on their own. Tell us what they can’t show.'
             : 'Tell us what happened and what your run can’t show.'}
         </p>
-        {!recording.on ? <p>Only your note is sent. Recording stays off.</p> : null}
-        {lab.personaRecordingRequired ? (
+        {!recording.on ? (
           <label className="colony-export-option">
             <input
               type="checkbox"
-              checked={personaLinked}
-              onChange={(e) => {
-                const allow = e.target.checked;
-                void Promise.resolve()
-                  .then(() => chooseCastRecording('well', allow))
-                  .then(() => setPersonaLinked(lab.personaRecordingAllowed))
-                  .catch(() => setPersonaLinked(lab.personaRecordingAllowed));
-              }}
+              checked={sharePlay}
+              disabled={busy}
+              onChange={(e) => setSharePlay(e.target.checked)}
             />
-            Link all continuing histories in this run to lab recording (optional)
+            Share this run and my play with the lab
           </label>
         ) : null}
         <fieldset className="colony-verdicts" aria-label="Would you keep playing?">
@@ -206,33 +190,6 @@ export function Feedback({
             allowed.
           </p>
         </details>
-        <details
-          onToggle={async (e) => {
-            if (e.currentTarget.open && !preview) {
-              try {
-                setPreview(JSON.stringify(await getRun(), null, 2));
-              } catch {
-                setPreview('This run could not be prepared.');
-              }
-            }
-          }}
-        >
-          <summary>What is sent</summary>
-          <p>
-            Your note{recording.on ? ' and this run' : ''}
-            {name.trim() ? ', with your name' : ''}.
-          </p>
-          {recording.on && !personaLinked ? (
-            <p>
-              This run includes continuing character state. It is not linked to your recorded play history.
-            </p>
-          ) : null}
-          <pre className="colony-feedback-preview">{preview}</pre>
-          <a href={PRIVACY}>Lab privacy</a>
-        </details>
-        <button type="button" className="colony-secondary" onClick={onDownload}>
-          Keep a copy of this run
-        </button>
         {status ? (
           <p role="status" className="colony-note">
             {status}
@@ -246,7 +203,7 @@ export function Feedback({
           disabled={!sent && busy}
           onClick={sent ? onBack : send}
         >
-          {sent ? 'Back to the game' : busy ? 'Sending…' : 'Send'}
+          {sent ? 'Back to the game' : busy ? 'Sending…' : 'Submit'}
         </button>
       </div>
     </div>

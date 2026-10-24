@@ -13,6 +13,7 @@ export { type FlagStorage, type OnceStorage, once } from './once.ts';
 export {
   type FeedbackPersonaLab,
   feedbackPersonaControl,
+  feedbackSharePlay,
   type PersonaControls,
   personaControls,
 } from './persona.ts';

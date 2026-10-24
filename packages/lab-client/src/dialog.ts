@@ -145,22 +145,20 @@ export function openSendDialog(options: SendDialogOptions): void {
   const previewInputs = el('dd', { id: 'hflab-preview-inputs' });
   overview.append(el('dt', {}, 'Note'), previewNote, el('dt', {}, 'Inputs'), previewInputs);
   const status = el('p', { className: 'status', role: 'status' });
-  const send = el('button', { className: 'send', type: 'button' }, 'Send');
+  const send = el('button', { className: 'send', type: 'button' }, 'Submit');
   const cancel = el('button', { type: 'button' }, 'Not now');
   const persona = el('input', {
     type: 'checkbox',
-    id: 'hflab-persona',
-    checked: lab.personaRecordingAllowed,
+    id: 'hflab-share',
+    checked: false,
   });
   const personaRow = el(
     'label',
-    { className: 'check', for: 'hflab-persona' },
+    { className: 'check', for: 'hflab-share' },
     persona,
-    'Link this continuing person to lab recording (optional)',
+    'Share this run and my play with the lab',
   );
   persona.addEventListener('change', () => {
-    lab.allowPersonaRecording(persona.checked);
-    persona.checked = lab.personaRecordingAllowed;
     void refresh();
   });
   let pending = 0;
@@ -179,7 +177,7 @@ export function openSendDialog(options: SendDialogOptions): void {
       .filter(Boolean)
       .join('\n\n')
       .slice(0, 4000);
-    let candidate = lab.telemetryOn ? run : undefined;
+    let candidate = lab.telemetryOn || persona.checked ? run : undefined;
     if (candidate !== undefined) {
       try {
         let text = JSON.stringify(
@@ -214,7 +212,7 @@ export function openSendDialog(options: SendDialogOptions): void {
     disclosure.textContent =
       candidate === undefined
         ? 'Only your note and optional name are sent. Recording stays as you chose. Keep a downloaded run if you need a full copy.'
-        : lab.eventsOn
+        : lab.eventsOn || persona.checked
           ? 'Your run and note are queued with your recorded play history.'
           : 'Your run includes continuing character state. It is sent without a link to your recorded play history.';
     status.textContent = '';
@@ -235,7 +233,7 @@ export function openSendDialog(options: SendDialogOptions): void {
     note,
     el('label', { for: 'hflab-name' }, 'Name (optional)'),
     name,
-    ...(lab.personaRecordingRequired ? [personaRow] : []),
+    ...(!lab.telemetryOn ? [personaRow] : []),
     disclosure,
     compactNotice,
     el('details', {}, el('summary', {}, 'What is sent'), overview, exact, copy, copyStatus),
@@ -291,9 +289,10 @@ export function openSendDialog(options: SendDialogOptions): void {
     for (const button of verdict.querySelectorAll('button')) button.disabled = true;
     status.textContent = 'Sending…';
     try {
-      const linked = lab.eventsOn;
+      const linked = lab.eventsOn || persona.checked;
       const id = await lab.sendFeedback(approvedNote, {
         name: approvedName,
+        sharePlay: persona.checked,
         ...(approvedRun !== undefined ? { run: approvedRun } : {}),
       });
       writeLocal('hf-lab-feedback-name', approvedName || null);

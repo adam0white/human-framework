@@ -250,8 +250,7 @@ export function Chronicle({
       <div className="w-sheet-body w-menu-rows">
         {!saving ? (
           <p role="status" className="w-soft-fail">
-            This chronicle is not being saved. Send word offers a copy of this run to download before you
-            leave.
+            This chronicle is not being saved. You can still send word about what happened.
           </p>
         ) : null}
         <button type="button" className="w-menu-row" onClick={() => setPage('read')}>

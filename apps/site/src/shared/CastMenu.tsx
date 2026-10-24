@@ -5,7 +5,6 @@ import {
   castChanges,
   castState,
   checkpointCast,
-  chooseCastRecording,
   selectCast,
   setCastEnabled,
   startCastFresh,
@@ -48,20 +47,6 @@ export function CastMenu({ game }: { game: string }) {
       <a href="/lab/people/" target="_blank" rel="noopener">
         Inspect, export, delete or explicitly branch people
       </a>
-      {s.gated && !s.recordingAllowed && (
-        <>
-          <p>
-            Recording these continuing histories can link all carried earlier games to this recording
-            identity. Local play and export work either way.
-          </p>
-          <button type="button" disabled={s.busy} onClick={() => void chooseCastRecording(game, true)}>
-            Record all these continuing histories
-          </button>
-          <button type="button" disabled={s.busy} onClick={() => void chooseCastRecording(game, false)}>
-            Keep these histories local
-          </button>
-        </>
-      )}
     </section>
   );
 }
@@ -82,10 +67,14 @@ function openCastFeedback(game: string): void {
   if (game !== 'voice' && game !== 'watch' && game !== 'well') return;
   const lab = gameLabs[game];
   const feedbackLab = Object.create(lab) as Lab;
-  // No admitted run is attached here, so this sheet cannot choose historical linkage.
+  // No admitted run is available on this refusal path.
   Object.defineProperty(feedbackLab, 'personaRecordingRequired', { value: false });
   feedbackLab.sendFeedback = (note, options) =>
-    lab.sendFeedback(note, { name: options?.name, run: { feedbackOnly: true } });
+    lab.sendFeedback(note, {
+      name: options?.name,
+      sharePlay: options?.sharePlay,
+      run: { feedbackOnly: true },
+    });
   openSendDialog({
     lab: feedbackLab,
     title: 'Send word (no game run or state included)',

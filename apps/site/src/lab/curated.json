@@ -6592,6 +6592,33 @@
     "fix:commonstead Send feedback in one sheet without requiring persona consent or recording (done 90846d1, client0.4.2 and kit0.5.2, exact green CI and clean live release, note-only feedback verified at360x690 and1280x800)"
    ],
    "source": "Owner report relayed verbatim, urgent feedback fix 2026-10-23. Completion follows the newer direct owner rule recorded in HANDOFF: recording-on feedback includes an available unlinked run without persona consent, off/privacy sends note-only, and persona linkage requires an explicit scoped yes."
+  },
+  {
+   "id": "F-491",
+   "date": "2026-10-23",
+   "game": "lab",
+   "kind": "owner",
+   "who": "Adam",
+   "words": "Why can't we make linking and all that automatic? We already notify at first visit that we're gonna record stuff. I want to make it as frictionless as possible. Hit send feedback, type something, agree to share everything if not agreed before, submit. My mobile firefox, I'm unable to enable recording. And \"enable recording even though your do not track is on\" being a separate button is just wrong.",
+   "verdict": "-",
+   "routes": [
+    "fix:watch Apply automatic recording linkage and one-page optional sharing feedback (in progress, owner retest target 2026-11-03)",
+    "fix:well Apply automatic recording linkage and one-page optional sharing feedback (in progress, owner retest target 2026-11-03)",
+    "fix:voice Apply automatic recording linkage and one-page optional sharing feedback (in progress, owner retest target 2026-11-03)",
+    "fix:pass Apply automatic recording linkage and one-page optional sharing feedback (in progress, owner retest target 2026-11-03)",
+    "fix:glance Apply automatic recording linkage and one-page optional sharing feedback (in progress, owner retest target 2026-11-03)",
+    "fix:murmur Apply automatic recording linkage and one-page optional sharing feedback (in progress, owner retest target 2026-11-03)",
+    "fix:repair Apply automatic recording linkage and one-page optional sharing feedback (in progress, owner retest target 2026-11-03)",
+    "fix:valley Apply automatic recording linkage and one-page optional sharing feedback (in progress, owner retest target 2026-11-03)",
+    "fix:stairwell Apply automatic recording linkage and one-page optional sharing feedback (in progress, owner retest target 2026-11-03)",
+    "fix:warren Apply automatic recording linkage and one-page optional sharing feedback (in progress, owner retest target 2026-11-03)",
+    "fix:hearsay Apply automatic recording linkage and one-page optional sharing feedback (in progress, owner retest target 2026-11-03)",
+    "fix:goodhands Apply automatic recording linkage and one-page optional sharing feedback (in progress, owner retest target 2026-11-03)",
+    "fix:rope Apply automatic recording linkage and one-page optional sharing feedback (in progress, owner retest target 2026-11-03)",
+    "fix:neighbours Apply automatic recording linkage and one-page optional sharing feedback (in progress, owner retest target 2026-11-03)",
+    "fix:commonstead Apply automatic recording linkage and one-page optional sharing feedback (in progress, owner retest target 2026-11-03)"
+   ],
+   "source": "docs/owner-directions-2026-10-18.md#2026-10-23-frictionless-recording-and-feedback-adam-verbatim"
   }
  ],
  "lessons": [
@@ -7198,7 +7225,7 @@
   }
  ],
  "routes": {
-  "fix": 611,
+  "fix": 626,
   "lesson": 291,
   "hf": 12,
   "calibration": 42,

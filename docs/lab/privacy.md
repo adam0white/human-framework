@@ -4,19 +4,21 @@ Updated 2026-10-23. This is the text source for [/lab/privacy/](https://human.ad
 
 ## Automatic linked play records
 
-The first-visit notice says: “The lab records your play to improve the games. Turn off in the menu.”
+The first-visit notice says: “The lab records your play and links it across games on this device to your continuing people. Switch recording off in the menu.”
 
-Games using the new lab client send play events (start/end, elapsed time, named screens and milestones, viewport class), client error and warning text, game log lines, replay exports and saves automatically while telemetry is on. Collection is on by default. Feedback text is sent only when you press Send. Game exports can include seed, inputs, game time, simulated people and world state. The lab does not record unrelated typing or browser activity. Do not put personal details in feedback or game fields that enter a save.
+Games using the new lab client send play events (start/end, elapsed time, named screens and milestones, viewport class), client error and warning text, game log lines, replay exports and saves automatically while telemetry is on. Collection is on by default. Feedback text is sent only when you press Submit. Game exports can include seed, inputs, game time, simulated people and world state. The lab does not record unrelated typing or browser activity. Do not put personal details in feedback or game fields that enter a save.
 
 Each record includes a random player id, session id and run id, a content-derived record id, game, record kind, timestamp, build commit, HF version, game version and payload. These ids connect events, logs, feedback, saves and replays. They do not establish who a person is. The new protocol stores no name, email, account, cookie, IP address, user agent or device fingerprint.
 
 The player id is stored in localStorage on human.adamwhite.work. An embedded identity page shares it with approved game origins through origin-checked messages. This links visits across those games in the same browser when the embedded page can use its storage. Browser restrictions or a blocked identity page may prevent that link; a fallback id then covers only the game's own origin. Separate browsers, cleared storage and private sessions are not automatically linked. Session and run ids identify a visit and a particular playthrough, respectively.
 
-Turn telemetry off in each game's menu. This stops uploads, aborts pending requests and removes the stored player id. Already received records remain subject to retention; turning telemetry back on creates a new id. The shared identity page carries this choice across connected game tabs. A blocked bridge can only apply the choice locally. Do Not Track and Global Privacy Control suppress automatic collection in both client and server unless you explicitly choose the per-game override. Localhost is off unless a developer explicitly enables it.
+Turn telemetry off in each game's menu. This stops uploads, aborts pending requests and removes the stored player id. Already received records remain subject to retention; turning telemetry back on creates a new id. The shared identity page carries this choice across connected game tabs. A blocked bridge can only apply the choice locally. Do Not Track and Global Privacy Control set recording off by default. Turning the single recording switch on explicitly opts in, including when either browser signal is on. Localhost is off unless a developer explicitly enables it.
 
 Linked records and legacy run uploads are private. The people building the games use them to reproduce faults, replay choices, compare builds and connect feedback to what happened. Complete save and replay chunks are reassembled within the same player, game, session, run, kind and upload id. Missing or conflicting chunks are labelled incomplete, not treated as a replay. Upload limits can leave gaps; automatic collection is not a promise to receive every run.
 
 Linked records, runs and their private indexes expire after 180 days under storage lifecycle rules. Storage deletion usually follows within 24 hours. Pending local uploads are capped at 16 MiB and expire after seven days. Copies already downloaded by the owner are private local files and require separate deletion; the storage lifecycle does not delete them. Give Adam a player or run reference to request removal, or open a [repository issue](https://github.com/adam0white/human-framework/issues) without posting the private export. Turning telemetry off does not delete earlier uploads.
+
+Send word has verdict, note, optional name and Submit on one page. When recording is on, Submit includes the note and available run and links them. When recording is off, one unticked checkbox says “Share this run and my play with the lab”. Ticking it and pressing Submit explicitly enables recording and linking, even with DNT/GPC. Leaving it unticked sends only the note, without run or play-history linkage.
 
 ## Existing event counts and manually sent runs
 
@@ -30,7 +32,7 @@ You can separately enable fictional-person continuity in participating games. An
 
 The [shelf](https://human.adamwhite.work/lab/people/) lets you inspect, download, import and delete these local histories. Browser storage can be lost. A downloaded file is your backup. The shelf does not provide cross-device sync. That requires a separate owner decision. No new server stores or serves fictional-person state. Deleting continuity does not delete exported files or lab records already received.
 
-A continuing person's state can connect recordings made before and after a recording identity reset. When the recording identity is unchanged, continuity uses the existing recording choice. After it changes, or a file has no association, the game asks whether to record this continuing person and link that history. Until you agree, that persona-derived run, saves, logs, notes and milestones stay local. Ordinary play and file export remain available. Turning recording off stops uploads and revokes future linkage, while local continuity can remain. This choice does not authorize character analysis.
+Recorded play is linked automatically across games on this device, including continuing people and imported histories. Continuing-person state can also connect earlier recordings after a recording identity reset. There is no separate linkage prompt. Switch recording off in the menu to stop future recording and linking. Local continuity can remain on. This does not authorize character analysis.
 
 ## Character analysis remains a separate choice
 
