@@ -190,7 +190,7 @@ function SceneDayContent(
       : spoken.length
         ? 'You have spoken. Give him a little room.'
         : canSpeak
-          ? 'Listening. Silence needs no tap.'
+          ? 'You can wait without choosing a suggestion.'
           : 'He is occupied. You can speak when he is choosing.';
   useEffect(() => {
     props.onSpeakAvailability?.(canSpeak && !heldPersonal, caption);

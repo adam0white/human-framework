@@ -2783,8 +2783,9 @@
   }
   .watch .w-person-head,
   .watch .w-person-post,
-  .watch .w-person .w-imps {
-    font-size: 0.9rem;
+  .watch .w-person .w-imps,
+  .watch .w-person .w-imp {
+    font-size: max(0.9rem, 16px);
     line-height: 1.35;
   }
   .watch .w-person-head strong {
