@@ -8,7 +8,7 @@
   border: 1px solid var(--line, #777);
   border-radius: 0.4rem;
   background: var(--surface, #f5f0e8);
-  color: var(--ink, #222);
+  color: var(--text, var(--ink, #222));
   font:
     0.8rem / 1.4 system-ui,
     sans-serif;

@@ -475,6 +475,7 @@ export function postCastMessage(worker: Worker, game: string, message: Record<st
   }
   if (message.type === 'loadPlaytest' || message.type === 'load') {
     s.localLoad = message.type === 'load' || message.local === true;
+    if (!s.localLoad) s.status = 'Imported play stays pinned. It does not own browser branches.';
     if (s.localLoad && typeof message.text === 'string') {
       try {
         const saved = JSON.parse(message.text);

@@ -353,6 +353,7 @@ describe('whole-cast browser continuity', () => {
       text: JSON.stringify({ castOwnership: { [old.castId]: old } }),
     });
     worker.reply({ type: 'replayed', gen: 3, result: { matches: true } });
+    expect(castState('voice').status).toContain('does not own');
     expect(control.batches).toBe(0);
     expect(control.state.heads[old.castId]).toBe(old.revision);
   });
