@@ -926,3 +926,25 @@ body,
   margin-bottom: 4px;
   accent-color: var(--well);
 }
+
+/* Tablet roster text is real reading text, not a miniature phone caption. */
+@media (min-width: 768px) {
+  .well-layout .well-people strong,
+  .well-layout .well-people small,
+  .well-layout .well-village-heading strong,
+  .well-layout .well-village-heading small {
+    font-size: 1rem;
+    line-height: 1.35;
+    white-space: normal;
+  }
+  .well-layout .well-people small {
+    padding-bottom: 0;
+  }
+  .well-layout .well-people > button {
+    height: auto;
+    min-height: 88px;
+  }
+  .well-layout .well-village-heading {
+    min-height: 64px;
+  }
+}

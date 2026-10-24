@@ -5,6 +5,7 @@ import { FullscreenButton, useWakeLock } from '../../shared/fullscreen.tsx';
 import { LabNotice } from '../../shared/LabNotice.tsx';
 import { gameLabs, useLabScreen } from '../../shared/lab.tsx';
 import { labMode } from '../../shared/lab-mode.ts';
+import { playerError } from '../../shared/player-error.ts';
 import type { PlaytestFile } from '../../shared/playtest.ts';
 import type { HurtNews, MomentRecord } from '../sim/game.ts';
 import type { PlaceId } from '../sim/map.ts';
@@ -179,10 +180,15 @@ export function App() {
       document.removeEventListener('visibilitychange', hide);
     };
   }, [shelf]);
-  const notice =
+  const errorDetail =
     colony.error ?? (colony.playtest && 'error' in colony.playtest ? colony.playtest.error : null);
+  const notice = errorDetail ? playerError(errorDetail, colony.error ? 'play' : 'load') : null;
   const loadedNotice = loaded
-    ? `Playtest ${loaded.matches ? 'matches' : 'does not match'} · ${dayClock(loaded.minute)}`
+    ? labMode()
+      ? `Playtest ${loaded.matches ? 'matches' : 'does not match'} · ${dayClock(loaded.minute)}`
+      : loaded.matches
+        ? 'Your saved game is open.'
+        : playerError('The restored game does not match.', 'load')
     : null;
   const resetHow = () => {
     setRush(false);
@@ -955,8 +961,11 @@ export function App() {
                     Every order you give goes to both villages. Classic obeys. Human weighs your words against
                     needs, duties and trust, and may say no or not yet.
                   </p>
-                  <p>The bars and report compare the villages against “without you”.</p>
-                  <p>Suggestions arrive on a clock. Following only them will not roof the Human house.</p>
+                  <p>The bars and report compare your villages with the same villages receiving no orders.</p>
+                  <p>
+                    Suggestions appear at set times. Following only those suggestions will not finish the
+                    Human house’s roof.
+                  </p>
                 </>
               ) : showEnd ? (
                 <>
@@ -988,8 +997,9 @@ export function App() {
                     answers and runs quickly at night.
                   </p>
                   <p>
-                    The bars: Classic above Human. The tick is the target. Roof and meals are judged at D2
-                    19:00; everyone alive at D3 dawn. Tap the bars for numbers.
+                    The Classic bars appear above the Human bars. The tick marks the target. The roof and
+                    meals are judged at 19:00 on day 2. Everyone must be alive at dawn on day 3. Tap the bars
+                    for numbers.
                   </p>
                 </>
               )}

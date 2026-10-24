@@ -28,7 +28,7 @@ export function WinterSetting({ frame, actions }: { frame: Frame; actions: Watch
         />
         <span>
           Danyal: “Let us pray that the coming winter goes easier.”
-          <small>Samira: “And a little rest for those on the wall.”</small>
+          <small>Samira: “And let those on the wall have a little rest.”</small>
           <small>Packs come later; movement is seen sooner. The same threats remain.</small>
         </span>
       </label>

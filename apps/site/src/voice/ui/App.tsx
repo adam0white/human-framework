@@ -10,6 +10,7 @@ import { useWakeLock } from '../../shared/fullscreen.tsx';
 import { LabNotice } from '../../shared/LabNotice.tsx';
 import { gameLabs, useLabScreen } from '../../shared/lab.tsx';
 import { PlaytestNotice } from '../../shared/PlaytestMenu.tsx';
+import { playerError } from '../../shared/player-error.ts';
 import type { Draft } from '../protocol.ts';
 import { Between } from './Between.tsx';
 import { DayLog } from './DayLog.tsx';
@@ -50,7 +51,7 @@ export function App() {
   const [speakRequest, setSpeakRequest] = useState(0);
   const [speaking, setSpeaking] = useState(false);
   const [canSpeak, setCanSpeak] = useState(false);
-  const [speakCaption, setSpeakCaption] = useState('Listening. Silence needs no tap.');
+  const [speakCaption, setSpeakCaption] = useState('You can wait without choosing a suggestion.');
   const [holdingReply, setHoldingReply] = useState(false);
   const [whyId, setWhyId] = useState<string | null>(null);
 
@@ -449,11 +450,14 @@ export function App() {
           />
         </div>
       )}
-      {voice.error && (
+      {voice.error && !feedbackOpen && (
         <div className="v-error" role="alert">
-          {voice.error}{' '}
+          {playerError(voice.error, 'play')}{' '}
           <button type="button" className="v-btn v-btn-small" onClick={() => actions.replay()}>
             Start again
+          </button>
+          <button type="button" className="v-btn v-btn-small" onClick={() => setFeedbackOpen(true)}>
+            Feedback
           </button>
         </div>
       )}

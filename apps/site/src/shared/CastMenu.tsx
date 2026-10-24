@@ -1,3 +1,4 @@
+import { playerError } from './player-error.ts';
 import './cast-life.css';
 import { type Lab, openSendDialog } from '@adam0white/lab-client';
 import { useEffect, useState } from 'react';
@@ -93,18 +94,16 @@ export function CastStartGate({ game }: { game: string }) {
   return (
     <section className="cast-start-gate" role="dialog" aria-label="Continuing cast unavailable">
       <h2>These people cannot begin together yet</h2>
-      <p>{s.status}</p>
-      <p>
-        The shelf is unchanged. You can keep their existing chapters, or deliberately start a fresh local
-        version.
-      </p>
+      <p>{playerError(s.status)}</p>
+      <p>You can return to an earlier game, or begin a separate local game here.</p>
       <button type="button" onClick={() => startCastFresh(game)}>
-        Start a fresh local chapter
+        Start a separate local game
       </button>
       <button type="button" onClick={() => openCastFeedback(game)}>
         Feedback
       </button>
-      <a href="/lab/people/">Inspect or export the existing people</a>
+      {labMode() && <a href="/lab/people/">Inspect or export the existing people</a>}
+      <a href="/games/">All games</a>
     </section>
   );
 }

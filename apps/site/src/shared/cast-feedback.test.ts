@@ -38,6 +38,10 @@ it.each(['voice', 'watch', 'well'])(
     const root = createRoot(host);
     roots.push(root);
     await act(() => root.render(createElement(CastStartGate, { game })));
+    expect(host.textContent).not.toMatch(/Unsupported authored role|Use a local file|Inspect or export/);
+    expect(host.textContent).toContain('current chapter');
+    expect(host.querySelector('a[href="/games/"]')).not.toBeNull();
+    expect(controls.fresh).not.toHaveBeenCalled();
     const send = [...host.querySelectorAll('button')].find((button) => button.textContent === 'Feedback');
     expect(send).toBeDefined();
     expect(send?.disabled).toBe(false);
@@ -54,6 +58,6 @@ it.each(['voice', 'watch', 'well'])(
       run: { feedbackOnly: true },
     });
     expect(controls.fresh).not.toHaveBeenCalled();
-    expect(host.textContent).toContain('Unsupported authored role. Shelf unchanged.');
+    expect(host.textContent).not.toContain('Unsupported authored role. Shelf unchanged.');
   },
 );

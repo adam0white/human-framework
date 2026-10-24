@@ -10,6 +10,7 @@ import { useWakeLock } from '../../shared/fullscreen.tsx';
 import { LabNotice } from '../../shared/LabNotice.tsx';
 import { gameLabs } from '../../shared/lab.tsx';
 import { labMode } from '../../shared/lab-mode.ts';
+import { playerError } from '../../shared/player-error.ts';
 import type { PageInfo } from '../protocol.ts';
 import { type PostId, postSection, SECTIONS, type SectionId, type WatcherId } from '../sim/config.ts';
 import type { Moment } from '../sim/moments.ts';
@@ -35,6 +36,7 @@ import {
 import { Impressions, Pips, Rope, Sacks, WinterProgress } from './parts.tsx';
 import { PageActions, PageCommitContext } from './SheetActions.tsx';
 import { useWatch, type WatchActions } from './useWatch.ts';
+import { watchWords } from './wording.ts';
 import {
   awayWords,
   dawnOutcome,
@@ -178,7 +180,12 @@ export function App() {
   if (error) {
     return (
       <div className="watch watch-error">
-        <p>{error}</p>
+        <p>{playerError(error, 'play')}</p>
+        <button type="button" onClick={() => setFeedback(true)}>
+          Feedback
+        </button>
+        <a href="/games/">All games</a>
+        {feedback && <FeedbackScreen actions={actions} onBack={() => setFeedback(false)} />}
       </div>
     );
   }
@@ -461,10 +468,10 @@ function PhaseInfo({ frame, onToggle }: { frame: Frame; onToggle: (open: boolean
   let content: ReactNode = (
     <>
       <p>
-        You are the Keeper. Post the watchers at dusk. Carry the lantern at night. Bring every soul and the
-        granary to the thaw.
+        You are the Keeper. Assign watchers to posts at dusk. Carry the lantern at night. Keep everyone alive
+        and protect the grain until the spring thaw, when the snow melts.
       </p>
-      <p>The watchers are people. Tired, frightened or worried for home, they may refuse a request.</p>
+      <p>The watchers may refuse a request if they are tired, frightened or worried about home.</p>
     </>
   );
   if (phase === 'dusk') {
@@ -472,12 +479,12 @@ function PhaseInfo({ frame, onToggle }: { frame: Frame; onToggle: (open: boolean
     content = (
       <>
         <p>
-          Tap a watcher, then a post, or tap a post on the wall. Ask leaves it to them; urge leans on them;
-          insist wins no goodwill.
+          Tap a watcher, then a post. You can also tap a post on the wall. Ask lets the watcher decide. Urge
+          puts more pressure on them. Insist gives a firm order and earns no goodwill.
         </p>
         <p>
-          Chooses still keeps them on watch. Send them down at night to give a night off. The lantern chip
-          sets where you start.
+          Choosing Chooses still assigns the person to watch, but lets them choose a post. Send them down at
+          night to give them a night off. The lantern button sets where you start.
         </p>
         <p>{frame.winter?.why}</p>
         <p>
@@ -489,10 +496,14 @@ function PhaseInfo({ frame, onToggle }: { frame: Frame; onToggle: (open: boolean
     title = 'The lantern, your voice and the bell';
     content = (
       <>
-        <p>Only the lantern’s stretch shows what approaches. Your voice reaches the next stretch.</p>
         <p>
-          The bell wakes and calls back whoever hears it, loudest at the Gate. Pull from anywhere. Every pull
-          wears the rope; a snapped rope leaves the bell silent until it is spliced.
+          You can see approaching threats only in the section lit by your lantern. People in the next section
+          can hear your voice.
+        </p>
+        <p>
+          The bell wakes people and calls back anyone who hears it. It is loudest at the Gate. You can pull
+          the bell rope from anywhere. Each pull wears the rope. If it snaps, the bell stays silent until
+          someone repairs the rope.
         </p>
         <p>Tap a watcher to send them down, or to send relief or help.</p>
       </>
@@ -506,8 +517,8 @@ function PhaseInfo({ frame, onToggle }: { frame: Frame; onToggle: (open: boolean
     title = 'The open seasons';
     content = (
       <p>
-        Days run on their own and slow for news and matters for you. The sacks’ mark is what the next thaw
-        takes to feed everyone.
+        Time advances automatically and slows when there is news or a choice for you. The mark beside the
+        grain sacks shows how much grain everyone will need at the next spring thaw.
       </p>
     );
   } else if (phase === 'fair') {
@@ -554,10 +565,10 @@ function Ticker({ frame }: { frame: Frame }) {
     <ol className="w-ticker" aria-label="What the Keeper hears">
       {recent.map((a) => (
         <li
-          key={`${a.minute}-${a.text}`}
+          key={`${a.minute}-${watchWords(a.text)}`}
           className={`w-alert w-alert-${a.kind}${a.slowed ? ' is-moment' : ''}`}
         >
-          {a.text}
+          {watchWords(a.text)}
         </li>
       ))}
       {recent.length === 0 && now < 0.1 ? (
@@ -607,7 +618,7 @@ export function GoalPage({
   const begin = () => (onNew ? onNew() : actions.input({ k: 'start' }));
   return (
     <div className="w-page w-goal">
-      <h2>Bring every soul and the granary to the thaw.</h2>
+      <h2>Keep everyone alive and protect the grain until the spring thaw.</h2>
       <Sacks have={frame.grain} lost={0} label="The granary is full" />
       <button type="button" className="w-menu-row" onClick={() => setSheet('hopes')}>
         The village’s hopes: “
@@ -762,14 +773,14 @@ export function DuskPanel({
       <div className="lk-sheet-body">
         {frame.grainWarning ? <p className="w-grain-warning">{frame.grainWarning}</p> : null}
         {!sel && frame.winter && frame.winter.night <= 2 ? (
-          <p className="w-winter-q">{frame.winter.question?.text}</p>
+          <p className="w-winter-q">{watchWords(frame.winter.question?.text)}</p>
         ) : null}
         {!sel && frame.day?.lines.length ? (
           <details className="w-day" open={frame.day.lines.some((l) => l.came)}>
             <summary>Today ▸</summary>
             <ul>
               {frame.day.lines.map((l) => (
-                <li key={l.text}>{l.text}</li>
+                <li key={l.text}>{watchWords(l.text)}</li>
               ))}
             </ul>
           </details>
@@ -870,7 +881,7 @@ function MomentCard({
 }) {
   return (
     <section className="w-moment" aria-label="A moment on the wall">
-      <p className="w-moment-text">{m.text}</p>
+      <p className="w-moment-text">{watchWords(m.text)}</p>
       <progress className="w-decision-bar" max={120} value={seconds ?? 120} aria-label="Time to decide" />
       <div className="w-moment-options">
         {m.options.map((o) => (
@@ -1050,7 +1061,7 @@ function NightMessages({ frame }: { frame: Frame }) {
             .slice()
             .reverse()
             .map((a) => (
-              <li key={`${a.minute}-${a.text}`}>{a.text}</li>
+              <li key={`${a.minute}-${watchWords(a.text)}`}>{watchWords(a.text)}</li>
             ))}
         </ol>
       ) : (
@@ -1171,10 +1182,15 @@ function NightAccount({
           <section className="w-account" aria-label={`${who.name} on watch`}>
             {who.handover ? <p role="status">{who.handover}</p> : null}
             <NightMessages frame={frame} />
-            {who.account?.spoken ? <blockquote>{who.account.text}</blockquote> : <p>{who.account?.text}</p>}
+            {who.account?.spoken ? (
+              <blockquote>{watchWords(who.account.text)}</blockquote>
+            ) : (
+              <p>{watchWords(who.account?.text)}</p>
+            )}
             {recentDoze ? (
               <p className="w-note w-account-doze">
-                Last heard: “{recentDoze.text}”{who.account?.spoken ? ' They can answer now.' : ''}
+                Last heard: “{watchWords(recentDoze.text)}”
+                {who.account?.spoken ? ' They can answer now.' : ''}
               </p>
             ) : null}
             {who.restRead ? <p className="w-note">Keeper’s read: {who.restRead}.</p> : null}
@@ -1278,7 +1294,7 @@ function Talks({ frame, actions }: { frame: Frame; actions: WatchActions }) {
         <ul className="w-voices">
           {t.said.slice(-1).map((x) => (
             <li key={`${x.who}-${x.topic}`}>
-              <blockquote>{x.text}</blockquote>
+              <blockquote>{watchWords(x.text)}</blockquote>
               <span className="w-voice-who">{x.name}</span>
             </li>
           ))}
@@ -1290,7 +1306,7 @@ function Talks({ frame, actions }: { frame: Frame; actions: WatchActions }) {
           <ul className="w-voices">
             {t.said.slice(0, -1).map((x) => (
               <li key={`${x.who}-${x.topic}`}>
-                <blockquote>{x.text}</blockquote>
+                <blockquote>{watchWords(x.text)}</blockquote>
                 <span>{x.name}</span>
               </li>
             ))}
@@ -1350,8 +1366,8 @@ export function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActi
     <div className="w-page w-dawn">
       <h2 className="w-dawn-outcome">{dawnOutcome(d)}</h2>
       {(frame.talks?.said.length ? [] : d.voices.slice(-1)).map((v) => (
-        <blockquote className="w-dawn-heard" key={`${v.who}-${v.text}`}>
-          {v.text} <cite>{nameIn(frame, v.who)}</cite>
+        <blockquote className="w-dawn-heard" key={`${v.who}-${watchWords(v.text)}`}>
+          {watchWords(v.text)} <cite>{nameIn(frame, v.who)}</cite>
         </blockquote>
       ))}
       <button type="button" className="w-secondary" onClick={() => setAccount(true)}>
@@ -1399,14 +1415,14 @@ export function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActi
             <div className="w-sheet-body">
               <ul className="w-dawnlines">
                 {d.lines.map((l) => (
-                  <li key={l.section}>{l.text}</li>
+                  <li key={l.section}>{watchWords(l.text)}</li>
                 ))}
               </ul>
               {d.voices.length > 0 ? (
                 <ul className="w-voices">
                   {d.voices.map((v) => (
-                    <li key={`${v.who}-${v.text}`}>
-                      <blockquote>{v.text}</blockquote>
+                    <li key={`${v.who}-${watchWords(v.text)}`}>
+                      <blockquote>{watchWords(v.text)}</blockquote>
                       <span className="w-voice-who">{nameIn(frame, v.who)}</span>
                     </li>
                   ))}

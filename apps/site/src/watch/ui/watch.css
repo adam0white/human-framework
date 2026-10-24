@@ -2761,3 +2761,33 @@
 .watch {
   grid-template-rows: auto minmax(0, 1fr) auto;
 }
+
+/* Complete impression sentences must remain visible at every width. */
+.watch .w-person {
+  height: auto;
+  min-height: 72px;
+}
+.watch .w-person .w-imps {
+  flex-wrap: wrap;
+  overflow: visible;
+}
+.watch .w-imp {
+  white-space: normal;
+}
+
+@media (min-width: 768px) {
+  .watch .w-person {
+    height: auto;
+    min-height: 96px;
+    padding-block: 8px;
+  }
+  .watch .w-person-head,
+  .watch .w-person-post,
+  .watch .w-person .w-imps {
+    font-size: 0.9rem;
+    line-height: 1.35;
+  }
+  .watch .w-person-head strong {
+    font-size: 1.05rem;
+  }
+}

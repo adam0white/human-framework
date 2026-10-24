@@ -219,7 +219,7 @@ it('keeps a known likely encounter beside sleep, including tomorrow after evenin
   props.frame.halil.asleep = true;
   props.frame.composer = { open: false };
   update();
-  expect(el.querySelector('.v-between-scenes')?.textContent).toContain('Now: asleep.');
+  expect(el.querySelector('.v-between-scenes')?.textContent).toContain('Halil is asleep.');
   expect(el.querySelector('.v-next-encounter')?.textContent).toBe('Selin usually calls this evening.');
   props.frame.minute = 22 * 60;
   update();
@@ -444,11 +444,13 @@ it('keeps a personal reply through later activities and statuses until the playe
     update();
     expect(el.querySelector('.v-scene-reading')?.textContent).toContain('I miss sitting across from her.');
     expect(el.querySelector('.v-scene-reading')?.textContent).not.toContain(
-      'Now: rest at home, until 12:00.',
+      'Halil chose to rest at home, until 12:00.',
     );
     click(el, '.v-personal-leave');
     expect(el.querySelector('.v-spoken-lines')).toBeNull();
-    expect(el.querySelector('.v-between-scenes')?.textContent).toContain('Now: rest at home, until 12:00.');
+    expect(el.querySelector('.v-between-scenes')?.textContent).toContain(
+      'Halil chose to rest at home, until 12:00.',
+    );
   } finally {
     vi.useRealTimers();
   }

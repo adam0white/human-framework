@@ -651,7 +651,7 @@ describe('whole-cast browser continuity', () => {
     const { createElement } = await import('react');
     const { CastStartGate } = await import('./CastMenu.tsx');
     expect(renderToStaticMarkup(createElement(CastStartGate, { game: 'voice' }))).toContain(
-      'Start a fresh local chapter',
+      'Start a separate local game',
     );
     startCastFresh('voice');
     await vi.waitFor(() => expect(worker.requests('init')).toHaveLength(1));

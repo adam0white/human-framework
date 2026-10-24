@@ -5,6 +5,7 @@
  */
 import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 import { labMode } from './lab-mode.ts';
+import { playerError } from './player-error.ts';
 import { pickJsonFile, type ReplayResult } from './playtest.ts';
 import './playtest.css';
 
@@ -126,7 +127,7 @@ export function PlaytestNotice({ status, onClose }: { status: PlaytestStatus; on
     body = status.busy === 'export' ? 'Making the playtest file…' : 'Replaying the playtest file…';
   else if ('error' in status) {
     tone = 'bad';
-    body = status.error;
+    body = playerError(status.error, 'load');
   } else {
     const r = status.result;
     const builds =

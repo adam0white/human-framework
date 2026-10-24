@@ -1,6 +1,7 @@
 import { FRAMEWORK_VERSION } from '@adam0white/human-framework';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { labMode } from '../shared/lab-mode.ts';
 import '../home/home.css';
 import { GAMES } from '../games.ts';
 import { GameList } from '../shared/GameList.tsx';
@@ -18,20 +19,24 @@ function Collection() {
         <section className="hero" aria-labelledby="games-title">
           <h1 id="games-title">All games</h1>
           <p className="lede">
-            Ranked by the owner’s play first, then playtests, depth and how well each shows HF.
+            Choose a game. Each story puts you alongside people who make their own choices.
           </p>
-          <p>
-            <a
-              className="ranking-link"
-              href="https://github.com/adam0white/human-framework/blob/main/docs/lab/ranking-2026-10-20.md"
-            >
-              Why this order
-            </a>
-          </p>
+          {labMode() && (
+            <p>
+              <a
+                className="ranking-link"
+                href="https://github.com/adam0white/human-framework/blob/main/docs/lab/ranking-2026-10-20.md"
+              >
+                Why this order
+              </a>
+            </p>
+          )}
           <GameList games={GAMES} />
-          <p className="note">
-            Frozen experiments stay playable; no further work is planned unless the owner unfreezes them.
-          </p>
+          {labMode() && (
+            <p className="note">
+              Frozen experiments stay playable; no further work is planned unless the owner unfreezes them.
+            </p>
+          )}
         </section>
       </main>
       <footer className="foot">

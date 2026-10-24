@@ -31,24 +31,24 @@ const EVERYDAY: Record<Companion, readonly Pair[]> = {
       'Stay a moment, Hacer. It is good to hear someone at the door.',
       'I have a little time, Halil. How has your morning been?',
     ],
-    ['I find it hard to start talking sometimes, Hacer.', 'No hurry, Halil. I am here.'],
+    ['I find it hard to start talking sometimes, Hacer.', 'There is no hurry, Halil. I am here.'],
   ],
   Rıza: [
     ['It is good to sit with you, Rıza.', 'I like having you here, Halil. Take the chair beside me.'],
-    ['I wanted some company. Is this seat taken?', 'For you? Sit down, Halil. Tell me about your day.'],
+    ['I wanted some company. Is this seat taken?', 'You can sit here, Halil. Tell me about your day.'],
   ],
   Selin: [
     ['I wanted to hear your voice, Selin.', 'I am glad we are talking, Dad. How has today been?'],
-    ['It is good to hear you, love.', 'You too, Dad. Tell me something about your day.'],
+    ['It is good to hear you, love.', 'It is good to hear you too, Dad. Tell me something about your day.'],
   ],
 };
 const LATE: Record<Companion, readonly Pair[]> = {
   Hacer: [
     [
       'The day has gone by, Hacer. I am glad we have a moment.',
-      'Me too, Halil. We can talk for a little while.',
+      'I am glad too, Halil. We can talk for a little while.',
     ],
-    ['It is quiet tonight. Stay and talk a moment?', 'Of course. How has the day treated you?'],
+    ['It is quiet tonight. Will you stay and talk a moment?', 'Of course. How has the day treated you?'],
   ],
   Rıza: [
     ['Evenings feel long on my own, Rıza.', 'Then sit with me a while. There is no hurry.'],
@@ -56,7 +56,7 @@ const LATE: Record<Companion, readonly Pair[]> = {
   ],
   Selin: [
     ['I wanted to hear you before the day was over.', 'I am here, Dad. We have time to talk.'],
-    ['How are you this evening, Selin?', 'Better for hearing you, Dad. How are you?'],
+    ['How are you this evening, Selin?', 'I feel better for hearing you, Dad. How are you?'],
   ],
 };
 const WORRIES: Record<Companion, readonly Pair[]> = {
@@ -141,7 +141,7 @@ const CONTINUATIONS: Record<Topic, Record<Companion, Pair>> = {
   },
   late: {
     Hacer: [
-      'Lonely, if I am honest. I would rather stand here than go back inside.',
+      'I am lonely, if I am honest. I would rather stand here than go back inside.',
       'Then keep the door open a little longer. I can stay here beside you.',
     ],
     Rıza: [
@@ -149,7 +149,7 @@ const CONTINUATIONS: Record<Topic, Record<Companion, Pair>> = {
       'Then pull your chair closer. Give me some company too.',
     ],
     Selin: [
-      'Lonely, love. I wanted to hear someone call me Dad tonight.',
+      'I am lonely, love. I wanted to hear someone call me Dad tonight.',
       'You have me on the phone now, Dad. Sit down; we need not say goodnight yet.',
     ],
   },
@@ -177,7 +177,7 @@ const CONTINUATIONS: Record<Topic, Record<Companion, Pair>> = {
       'Move your chair here beside mine. You can say you are frightened to me.',
     ],
     Selin: [
-      'Frightened, love. Saying that to you is harder than talking about the doctor.',
+      'I am frightened, love. Saying that to you is harder than talking about the doctor.',
       'Stay on the phone with me, Dad. You do not have to sound brave for me.',
     ],
   },
@@ -197,11 +197,11 @@ const CONTINUATIONS: Record<Topic, Record<Companion, Pair>> = {
   },
   hunger: {
     Hacer: [
-      'Something warm, Hacer. That is what I keep thinking of: a warm supper.',
+      'I want something warm, Hacer. I keep thinking of a warm supper.',
       'Tell me what you would put in it. We can plan a supper here at the door.',
     ],
     Rıza: [
-      'A warm supper. I know I came for your company, but that is what is in my head.',
+      'I want a warm supper. I know I came for your company, but that is what I keep thinking about.',
       'Describe it to me, Halil. Let me help you choose what goes on the plate.',
     ],
     Selin: [

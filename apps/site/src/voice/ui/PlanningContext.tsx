@@ -22,8 +22,8 @@ export function planningContext(
     occasion: scene
       ? scene.place
       : frame.halil.doing
-        ? `Now: ${frame.halil.doing.label}.`
-        : 'Now: deciding what to do.',
+        ? `Halil chose to ${frame.halil.doing.label}.`
+        : 'Halil is deciding what to do.',
     ...(lines.at(-1) ? { line: lines.at(-1) } : {}),
     ...(rent ? { rent: { status: rent.status, detail: rent.detail } } : {}),
   };

@@ -46,11 +46,11 @@ describe('ranked games', () => {
     );
   });
 
-  it('renders semantic ranks, playable links and a visible label for each frozen game', () => {
+  it('renders semantic ranks and playable links without development labels', () => {
     const html = renderToStaticMarkup(createElement(GameList, { games: GAMES }));
     expect(html).toContain('<ol class="games" role="list">');
     expect(html.match(/<li value="\d+">/g)).toHaveLength(GAMES.length);
-    expect(html.match(/Frozen experiment/g)).toHaveLength(3);
+    expect(html).not.toContain('Frozen experiment');
     for (const g of GAMES) expect(html).toContain(`href="${g.href}"`);
   });
 });

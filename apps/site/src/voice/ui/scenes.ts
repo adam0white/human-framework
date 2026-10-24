@@ -32,6 +32,13 @@ export interface DayScene {
 }
 type SceneFrame = Pick<Frame, 'day' | 'minute' | 'clock' | 'halil' | 'log'>;
 type Setting = { kind: SceneKind; place: string; names: string[] };
+/** Recall wording is presentation only; the recorded recall remains unchanged. */
+function memoryWords(text: string): string {
+  const memory = text.replace(/^He remembers:\s*/, '').replace(/[.!?]$/, '');
+  if (/^the clinic, the day they found her illness$/i.test(memory))
+    return 'I remember learning about Nuran’s illness at the clinic.';
+  return `I remember ${memory.replace(/, at/g, ' at').replace(/, last Ramadan/g, ' last Ramadan')}.`;
+}
 function setting(entry: LogEntry): Setting | null {
   if (
     entry.kind === 'recall' &&
@@ -88,18 +95,18 @@ const ORDINARY: Record<'workshop' | 'street', readonly (readonly [string, string
   street: [
     [
       'Out for a walk, Halil?',
-      'Just along the river for a while.',
-      'No hurry, then?',
-      'Not for this little stretch.',
+      'I am walking along the river for a while.',
+      'You are in no hurry, then?',
+      'I am in no hurry on this short walk.',
     ],
     [
-      'Good to see you out.',
+      'It is good to see you out.',
       'It is good to be out for a while.',
-      'Going far?',
-      'I have not decided. Just walking.',
+      'Are you going far?',
+      'I have not decided. I am just walking.',
     ],
     [
-      'A quiet walk?',
+      'Are you taking a quiet walk?',
       'That was the idea.',
       'I will not keep you.',
       'A hello does not hurt. It is good to see someone.',
@@ -148,15 +155,15 @@ export function deriveScene(frame: SceneFrame): DayScene | null {
       { speaker: 'Halil', words: 'I am listening, Hacer.' },
     ];
   } else if (place.kind === 'memory') {
-    lines = [{ speaker: 'Halil', words: anchor.text.replace(/^He remembers:\s*/, '') }];
+    lines = [{ speaker: 'Halil', words: memoryWords(anchor.text) }];
   } else if (place.kind === 'meal') {
     const memory = log.findLast(
       (entry) => entry.minute <= anchor.minute && entry.kind === 'recall' && /Nuran/.test(entry.text),
     );
     if (!memory) return null;
     lines = [
-      { speaker: 'Scene', words: 'At the table, an earlier memory of Nuran is with him.' },
-      { speaker: 'Halil', words: memory.text.replace(/^He remembers:\s*/, '') },
+      { speaker: 'Scene', words: 'Halil remembers Nuran as he sits at the table.' },
+      { speaker: 'Halil', words: memoryWords(memory.text) },
       { speaker: 'Halil', words: 'I miss you, Nuran.' },
     ];
   } else if (place.kind === 'workshop' || place.kind === 'street') {

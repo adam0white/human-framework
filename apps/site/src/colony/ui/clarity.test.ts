@@ -6,7 +6,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it, vi } from 'vitest';
 import { ColonyGame, NUDGES } from '../sim/game.ts';
 import { createFrameworkHumanSide } from '../sim/human.ts';
-import { needDescription, trustDescription } from './descriptions.ts';
+import { activityDescription, needDescription, trustDescription } from './descriptions.ts';
 import { GoalCard } from './GoalCard.tsx';
 import { Inspector } from './Inspector.tsx';
 import { PeopleRows } from './PeopleRows.tsx';
@@ -103,7 +103,7 @@ describe('Well first-minute clarity', () => {
     const stats = render(createElement(PaneStats, { frame, side: 'human' }));
     expect(stats.textContent).not.toContain('%');
     expect(stats.textContent).not.toContain('Prayers');
-    expect(stats.textContent).toContain('Getting acquainted');
+    expect(stats.textContent).toContain('They are getting to know you.');
     const people = render(
       createElement(PeopleRows, { frame, side: 'human', selectedId: null, onSelect: vi.fn() }),
     );
@@ -117,12 +117,15 @@ describe('Well first-minute clarity', () => {
     expect(human?.textContent).not.toMatch(/\d|%/);
     const injury = frame.human.find((p) => p.id === 'maryam')?.needs.find((n) => n.id === 'injury');
     expect(injury?.value).toBe(1);
-    expect(human?.textContent).toContain('Unhurt');
+    expect(human?.textContent).toContain('They are unhurt.');
     expect(human?.textContent).not.toContain('Little pain');
-    expect(needDescription('injury', 0.9)).toBe('Slightly hurt');
-    expect(needDescription('sleep', 0.2)).toBe('Exhausted');
-    expect(needDescription('sleep', 0.5)).toBe('Tired');
-    expect(needDescription('sleep', 0.9)).toBe('Rested');
-    expect(trustDescription(0.2)).toBe('Wary of you');
+    expect(needDescription('injury', 0.9)).toBe('They are slightly hurt.');
+    expect(needDescription('sleep', 0.2)).toBe('They are exhausted.');
+    expect(needDescription('sleep', 0.5)).toBe('They are tired.');
+    expect(needDescription('sleep', 0.9)).toBe('They are rested.');
+    expect(trustDescription(0.2)).toBe('They are wary of you.');
+    expect(activityDescription('Walking to Kitchen')).toBe('They are walking to Kitchen.');
+    expect(activityDescription('Carried by Yusuf')).toBe('They are being carried by Yusuf.');
+    expect(activityDescription('Idle')).toBe('They are waiting.');
   });
 });

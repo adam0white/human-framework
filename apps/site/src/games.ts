@@ -17,6 +17,7 @@ export type Game = {
   href: string;
   line: string;
   faculties: string[];
+  labNote?: string;
 };
 
 /** Names of the HF faculties, with one line each. Games cite these names. */
@@ -40,7 +41,7 @@ export const GAMES: Game[] = [
     status: 'active',
     name: 'The Two Voices',
     href: 'https://murmur.adamwhite.work',
-    line: 'Spend a week as one of two voices in Dilan’s head. Each evening, she reflects on her choices.',
+    line: 'You spend a week as one of two voices in Dilan’s head. Each evening, she reflects on her choices.',
     faculties: ['Inner life', 'Will', 'Forecast'],
   },
   {
@@ -49,7 +50,7 @@ export const GAMES: Game[] = [
     status: 'active',
     name: 'The Stairwell',
     href: 'https://stairwell.adamwhite.work',
-    line: 'Work as the new kapıcı in a seven-flat Istanbul building. Deliver bread, empty bins and decide what to share about the residents.',
+    line: 'You work as the new kapıcı in a seven-flat Istanbul building. Deliver bread, empty bins and decide what to share about the residents.',
     faculties: ['Memory and belief', 'Relationships', 'Conscience'],
   },
   {
@@ -58,7 +59,7 @@ export const GAMES: Game[] = [
     status: 'active',
     name: 'The Pass',
     href: 'https://pass.adamwhite.work',
-    line: 'Six nights running a small kitchen with three cooks who can say no.',
+    line: 'Run a small kitchen for four weeks. The people working with you can disagree with your instructions.',
     faculties: ['Will', 'Memory and belief', 'Relationships'],
   },
   {
@@ -67,7 +68,7 @@ export const GAMES: Game[] = [
     status: 'active',
     name: 'The Glance',
     href: 'https://glance.adamwhite.work',
-    line: 'A storm week on the night desk of a dam, where every gauge is read by a tired keeper.',
+    line: 'You run the night desk at a dam during a stormy week. Your tired keepers read the gauges.',
     faculties: ['Body', 'Forecast', 'Relationships'],
   },
   {
@@ -76,7 +77,7 @@ export const GAMES: Game[] = [
     status: 'active',
     name: 'The Night Watch',
     href: '/watch/',
-    line: 'Keep the watch of a walled village, winter after winter, across generations.',
+    line: 'Guide the watch in a walled village through many winters. The people grow older and raise new generations.',
     faculties: ['A whole life', 'Relationships', 'Memory and belief'],
   },
   {
@@ -85,7 +86,7 @@ export const GAMES: Game[] = [
     status: 'active',
     name: 'Hearsay',
     href: 'https://hearsay.adamwhite.work',
-    line: 'A fortnight keeping the tea garden by the fountain. What you pass on travels door to door, bends at each mouth, and comes home.',
+    line: 'You run a tea garden by a fountain for two weeks. The news you share can change as people repeat it.',
     faculties: ['Memory and belief', 'Relationships', 'Conscience'],
   },
   {
@@ -94,7 +95,7 @@ export const GAMES: Game[] = [
     status: 'active',
     name: 'Good Hands',
     href: 'https://goodhands.adamwhite.work',
-    line: 'A November running a small placement agency in Izmir. Nobody is quite who they say at interview, and your word goes through the door with them.',
+    line: 'You run a small placement agency in Izmir during November. Applicants may leave important things out in their interviews.',
     faculties: ['Memory and belief', 'Relationships', 'Habits and character'],
   },
   {
@@ -103,7 +104,7 @@ export const GAMES: Game[] = [
     status: 'active',
     name: 'The Valley',
     href: 'https://valley.adamwhite.work',
-    line: 'Three years keeping an absent agha’s seal over two hamlets of named households who remember what you did.',
+    line: 'You keep an absent agha’s seal while managing two hamlets for three years. Their households remember your decisions.',
     faculties: ['Will', 'Memory and belief', 'A whole life'],
   },
   {
@@ -112,7 +113,7 @@ export const GAMES: Game[] = [
     status: 'active',
     name: 'The Day You Say Nothing',
     href: '/voice/',
-    line: 'You are a voice in Halil’s head during his first Ramadan as a widower. He hears you, then decides.',
+    line: 'You are a voice in Halil’s head during his first Ramadan as a widower. He hears your advice and decides what to do.',
     faculties: ['Habits and character', 'Inner life', 'Relationships'],
   },
   {
@@ -121,7 +122,7 @@ export const GAMES: Game[] = [
     status: 'active',
     name: 'Twice at the Well',
     href: '/colony/',
-    line: 'One village, two days, played twice: once with units that obey, once with people who decide.',
+    line: 'You guide two versions of the same village for two days. One follows your orders. The other has people who decide for themselves.',
     faculties: ['Will', 'Needs and feelings', 'Conscience'],
   },
   {
@@ -130,7 +131,7 @@ export const GAMES: Game[] = [
     status: 'active',
     name: 'The Warren',
     href: 'https://warren.adamwhite.work',
-    line: 'A village cuts a refuge into soft stone. You chalk the walls and ring the bell; they dig, carry and decide.',
+    line: 'A village builds a refuge in soft stone. You mark where to dig and ring the bell. The villagers decide when to work.',
     faculties: ['Will', 'Habits and character', 'Body'],
   },
   {
@@ -139,7 +140,7 @@ export const GAMES: Game[] = [
     status: 'frozen',
     name: 'Small Works',
     href: 'https://repair.adamwhite.work',
-    line: 'A repair workshop where neighbours watch, learn, and agree to help or not.',
+    line: 'You run a repair workshop. Your neighbours can watch, learn and choose whether to help.',
     faculties: ['Habits and character', 'Memory and belief', 'Will'],
   },
   {
@@ -148,7 +149,7 @@ export const GAMES: Game[] = [
     status: 'frozen',
     name: 'Neighbours',
     href: 'https://neighbours.adamwhite.work',
-    line: 'A town of 208 HF people. Change one thing and compare two futures.',
+    line: 'Change one part of a town of 208 people and compare two possible futures.',
     faculties: ['Relationships', 'Memory and belief', 'Needs and feelings'],
   },
   {
@@ -157,16 +158,17 @@ export const GAMES: Game[] = [
     status: 'frozen',
     name: 'The Rope',
     href: 'https://rope.adamwhite.work',
-    line: 'A climb where the body has to last the descent.',
+    line: 'You guide a climber up a rock face and back down. They must save enough strength for the descent.',
     faculties: ['Body', 'Forecast', 'Will'],
   },
   {
     id: 'commonstead',
+    labNote: 'Owner acceptance pending.',
     rank: 15,
     status: 'active',
     name: 'Commonstead',
     href: 'https://commonstead.adamwhite.work',
-    line: 'Eight people prepare a shared workshop before the storm. Meals, guest cabins and a kit store need willing hands. Owner acceptance pending.',
+    line: 'Eight people prepare a shared workshop before a storm. You help them arrange meals, guest cabins and supplies.',
     faculties: ['Body', 'Will', 'Memory and belief'],
   },
 ];

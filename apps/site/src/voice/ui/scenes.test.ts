@@ -119,6 +119,10 @@ describe('read-only day scenes', () => {
     };
     const scene = deriveScene(frame([memory, act('I eat at home.')]));
     expect(scene?.kind).toBe('meal');
+    expect(scene?.lines.find((line) => line.speaker === 'Halil')?.words).toBe(
+      'I remember iftar with Nuran at our table last Ramadan.',
+    );
+    expect(memory.text).toBe('He remembers: iftar with Nuran at our table, last Ramadan.');
     expect(scene?.lines.map((line) => line.words).join(' ')).toContain('last Ramadan');
     expect(scene?.names).toEqual(['Halil']);
     expect(scene?.lines.some((line) => line.speaker === 'Nuran')).toBe(false);

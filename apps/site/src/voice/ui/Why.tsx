@@ -3,6 +3,7 @@
  * Model values stay in a closed secondary disclosure. This reads the view only; it never reweighs a decision.
  */
 import { useEffect, useRef } from 'react';
+import { labMode } from '../../shared/lab-mode.ts';
 import type { WhyView } from '../protocol.ts';
 
 /** Authored paraphrases of recorded influences, not additional causes or simulated speech. */
@@ -159,7 +160,7 @@ export function Why({
           )}
           {why.recalled && <p className="v-why-recall">{why.recalled}</p>}
           <p className="v-why-note">
-            His pulls, put into words. The strongest comes first for each possibility.
+            These are his reasons for considering each choice. The strongest reason comes first.
           </p>
           <ol className="v-why-options">
             {why.options.map((o) => (
@@ -177,33 +178,35 @@ export function Why({
               </li>
             ))}
           </ol>
-          <details className="v-model-numbers" key={why.decisionId}>
-            <summary>Model numbers</summary>
-            <p className="v-why-note">
-              Simulation terms for lab readers. These are model values, not measurements of Halil’s feelings
-              or faith.
-            </p>
-            <ol className="v-why-options">
-              {why.options.map((o) => (
-                <li key={o.label}>
-                  <div className="v-why-opt-head">
-                    {o.label} <span className="v-why-total">{o.total.toFixed(2)}</span>
-                  </div>
-                  <ul>
-                    {o.terms.map((t) => (
-                      <li key={`${t.label}-${t.value}`}>
-                        {t.label}{' '}
-                        <span className="v-why-val">
-                          {t.value >= 0 ? '+' : '−'}
-                          {Math.abs(t.value).toFixed(2)}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-              ))}
-            </ol>
-          </details>
+          {labMode() && (
+            <details className="v-model-numbers" key={why.decisionId}>
+              <summary>Model numbers</summary>
+              <p className="v-why-note">
+                Simulation terms for lab readers. These are model values, not measurements of Halil’s feelings
+                or faith.
+              </p>
+              <ol className="v-why-options">
+                {why.options.map((o) => (
+                  <li key={o.label}>
+                    <div className="v-why-opt-head">
+                      {o.label} <span className="v-why-total">{o.total.toFixed(2)}</span>
+                    </div>
+                    <ul>
+                      {o.terms.map((t) => (
+                        <li key={`${t.label}-${t.value}`}>
+                          {t.label}{' '}
+                          <span className="v-why-val">
+                            {t.value >= 0 ? '+' : '−'}
+                            {Math.abs(t.value).toFixed(2)}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                ))}
+              </ol>
+            </details>
+          )}
         </div>
       )}
     </aside>

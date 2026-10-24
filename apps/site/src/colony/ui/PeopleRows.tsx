@@ -1,7 +1,7 @@
 import { memo, type ReactNode, useEffect, useRef, useState } from 'react';
 import type { VillagerId } from '../sim/world-types.ts';
 import type { Frame } from './contract.ts';
-import { needDescription } from './descriptions.ts';
+import { activityDescription, needDescription } from './descriptions.ts';
 import { Portrait, shortName } from './parts.tsx';
 
 /** Reserve space for a header and six readable, tappable rows. */
@@ -115,7 +115,7 @@ export const PeopleRows = memo(function PeopleRows(props: {
           >
             <Portrait id={r.id} size={18} />
             <span className="prow-name">{shortName(r.id)}</span>
-            <span className="prow-doing">{r.label}</span>
+            <span className="prow-doing">{activityDescription(r.label)}</span>
             {r.bars.map((b) =>
               'description' in b ? (
                 <span key={b.label} className={b.urgent ? 'need-description is-urgent' : 'need-description'}>

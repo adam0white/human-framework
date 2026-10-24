@@ -1,6 +1,7 @@
 import { EndTally } from '../../shared/EndTally.tsx';
 import { watchTally } from './end-tally.ts';
 import { RunSecondaries } from './exporting.tsx';
+import { watchWords } from './wording.ts';
 /**
  * The year's pages around the winter (G3-3): the open seasons (date, volume, granary, the people and a season card
  * when one is open), the fair, the thaw, a closed volume and a fallen village, plus the live chronicle strip over the
@@ -34,8 +35,8 @@ export function ChronicleStrip({ frame }: { frame: Frame }) {
   return (
     <ol className="w-strip" aria-label="The chronicle, newest first" aria-live="off">
       {lines.map((l) => (
-        <li key={`${l.year}-${l.minute}-${l.text}`} className={`w-strip-line w-strip-${l.kind}`}>
-          {l.text}
+        <li key={`${l.year}-${l.minute}-${watchWords(l.text)}`} className={`w-strip-line w-strip-${l.kind}`}>
+          {watchWords(l.text)}
         </li>
       ))}
     </ol>
@@ -54,7 +55,7 @@ function VolumeLine({ v }: { v: FrameVolume }) {
 export function SeasonCardView({ card, actions }: { card: SeasonCard; actions: WatchActions }) {
   return (
     <section className="w-moment w-card" aria-label="A matter for the Keeper">
-      <p className="w-moment-text">{card.text}</p>
+      <p className="w-moment-text">{watchWords(card.text)}</p>
       <p className="w-card-read">{card.read}</p>
       <div className="w-moment-options">
         {card.options.map((o) => (
@@ -187,7 +188,7 @@ export function FairPage({ frame, actions }: { frame: Frame; actions: WatchActio
         {fair.offers.map((o) => (
           <li key={o.id} className={o.taken ? 'w-offer is-taken' : 'w-offer'}>
             <h3>{o.label}</h3>
-            <p>{o.text}</p>
+            <p>{watchWords(o.text)}</p>
             {!o.taken && o.affordable && o.after < frame.grain ? (
               <div className="w-offer-after">
                 <span className="w-note">The granary after it</span>
@@ -263,7 +264,7 @@ export function ThawPage({ frame, actions }: { frame: Frame; actions: WatchActio
       {q ? (
         <div className={`w-question-box is-${q.met === true ? 'met' : q.met === false ? 'unmet' : 'open'}`}>
           <span className="w-kicker">This winter’s question</span>
-          <p>{q.text}</p>
+          <p>{watchWords(q.text)}</p>
           <p className="w-met">{metWords(q.met)}</p>
         </div>
       ) : null}

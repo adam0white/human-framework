@@ -2,6 +2,7 @@
 import type { CSSProperties } from 'react';
 import type { Impression } from '../sim/reads.ts';
 import type { Frame } from '../sim/view.ts';
+import { watchImpression } from './wording.ts';
 import { ropeWords, thawProgress, winterWatchMarks } from './words.ts';
 
 /** 0..n-1 as plain values, so list keys are the item's own number rather than a map index. */
@@ -96,7 +97,7 @@ export function Impressions({ impressions }: { impressions: Impression[] }) {
           className={im.sure <= 0 ? 'w-imp is-unknown' : 'w-imp'}
           style={{ '--sure': im.sure } as CSSProperties}
         >
-          {im.text}
+          {watchImpression(im.text)}
         </span>
       ))}
     </span>

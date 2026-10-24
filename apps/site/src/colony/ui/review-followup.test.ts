@@ -83,14 +83,14 @@ describe('Well review follow-up', () => {
     );
     const rows = [...el.querySelectorAll('tr')];
     expect(rows.find((r) => r.querySelector('th')?.textContent === 'Morale')?.textContent).toContain(
-      'DisheartenedHeartened',
+      'They feel disheartened.They feel encouraged.',
     );
     expect(rows.find((r) => r.querySelector('th')?.textContent === 'Trust in you')?.textContent).toContain(
-      'Wary of youTrusts you deeply',
+      'They are wary of you.They trust you deeply.',
     );
     const changed = ordersChanged(report);
-    expect(changed).toContain('morale Disheartened (without you: Heartened)');
-    expect(changed).toContain('trust in you Wary of you (without you: Trusts you deeply)');
+    expect(changed).toContain('morale They feel disheartened. (without you: They feel encouraged.)');
+    expect(changed).toContain('trust in you They are wary of you. (without you: They trust you deeply.)');
     expect(changed).not.toContain('-0.40');
     expect(changed).not.toMatch(/trust in you \d/);
   });

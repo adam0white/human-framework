@@ -110,5 +110,5 @@ it('sends the chosen draft through the normal protocol from the separate commit 
 
 it('does not invent rent or another person when neither is present', () => {
   const context = planningContext({ ends: [], halil: { ...sampleFrame.halil, doing: null } }, null);
-  expect(context).toEqual({ people: 'Halil', occasion: 'Now: deciding what to do.' });
+  expect(context).toEqual({ people: 'Halil', occasion: 'Halil is deciding what to do.' });
 });

@@ -91,14 +91,14 @@ export function nearMisses(summary: EndSummary): { side: 'Classic' | 'Human'; te
       if (d.roofAt !== null && d.roofAt > GOAL_JUDGE) {
         out.push({
           side,
-          text: `Roofed at ${hhmm(d.roofAt)}, ${d.roofAt - GOAL_JUDGE} min after the storm came.`,
+          text: `The roof was finished at ${hhmm(d.roofAt)}, ${d.roofAt - GOAL_JUDGE} min after the storm came.`,
         });
       } else if (d.houseAtStorm !== null && d.houseAtStorm >= HOUSE_STAGES - 2) {
         const short = HOUSE_STAGES - Math.floor(d.houseAtStorm);
         const done = Math.round((d.houseAtStorm % 1) * 100);
         out.push({
           side,
-          text: `${NUMBER[short]} roof stage${short === 1 ? '' : 's'} short at 19:00${done > 0 ? `; the next was ${done}% done` : ''}.`,
+          text: `The roof needed ${NUMBER[short]?.toLowerCase()} more building step${short === 1 ? '' : 's'} at 19:00${done > 0 ? `; the next was ${done}% done` : ''}.`,
         });
       }
     }
@@ -107,7 +107,7 @@ export function nearMisses(summary: EndSummary): { side: 'Classic' | 'Human'; te
       const short = STOCK_GOAL - meals;
       out.push({
         side,
-        text: `${NUMBER[short] ?? short} meal${short === 1 ? '' : 's'} short of ${STOCK_GOAL}; one more pot (${POT_MEALS} meals) would have done it.`,
+        text: `The village needed ${NUMBER[short]?.toLowerCase() ?? short} more meal${short === 1 ? '' : 's'} to reach ${STOCK_GOAL}. One more pot (${POT_MEALS} meals) would have done it.`,
       });
     }
   }

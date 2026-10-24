@@ -112,3 +112,29 @@ The registry separates actual receiving stages from later replay/layout checks. 
 Watch's earlier 1680-pixel captures are diagnostic, not viewport proof. Only the final `*-verified` artifacts establish360×690 and1280×800. Fresh-life notes intentionally disappear on local reload; their placement fix has reviewed source/regression evidence, while final live Fast taps use the saved chapter. The on-duty native checkpoint correctly refused. Original Watch owner export minute1093 is preserved; normal Shelf restoration ended at1097, four ordinary UI minutes later. No byte-identical owner restoration is claimed. Stairwell's earlier manual download-event receipt remains unverified; supported UI source exports and replay are separately verified.
 
 All private source/owner archives remain preserved. The shared owner checkout and unrelated files remain untouched. Owner acceptance and human recognition remain separate from technical delivery, with review on2026-11-03.
+
+
+## 2026-10-24 simplify stopped at disk threshold
+
+Goal: finish the owner's15-game simplify direction in /Users/abdul/code/.lab-scratch/simplify/owner-request.md. Technical done is reviewed source, signed/rebased commits, exact green CI, fresh clean deployment and both-engine four-size live checks; Adam accepts game readiness.
+
+### Done and verified
+
+- source head 9b55b614cb139271c29eccfd995e722c123552aa has signature G. Central9b55b61 and Pass a4f69da have task live receipts; this repo's exact state is recorded in /Users/abdul/code/.lab-scratch/simplify/report.md.
+
+### Done but unchecked
+
+- interrupted task working changes may be uncommitted; review the saved diff and source-specific CI/live gaps before any completion claim. Murmur's current committed CI is red.
+
+### Untouched
+
+- eight queued game repos; Glance reached worktree setup only. Full15-game delivery and owner readiness are not complete.
+
+The disk guard measured 4.63 GiB (<owner 5 GB stop rule) and stopped task workers by exact PID. No implementation restart occurred. Preserve this source worktree and owner files. On explicit resume, first verify disk headroom, read the report/STOP-DISK.md, then resume THIS source session 01a16f07-6b6b-7f03-956a-be3f3b8a745d rather than creating a duplicate writer. Required Node>=24/PATH, check:lane, signed Codex trailer, origin rebase, exact green CI and fresh latest-origin deploy rules still apply. No new playtest round or culture change is authorized.
+
+Next executable read: cat /Users/abdul/code/.lab-scratch/simplify/report.md. Reports/registry/queue/baselines and all saved session IDs are in that directory. The only post-stop repo write is this handoff bookkeeping; no new implementation or commit was made.
+
+
+### 2026-10-24 owner resume: central simplify follow-up
+
+The owner resumed with 17 GiB free. The preceding stop is historical. Voice dialogue and memory presentation, Well status sentences, Watch dialogue and impressions, ordinary failure messages, tablet roster readability and all15 catalogue premises are updated. Technical diagnostics and shelf development metadata require exact `?lab=1`. Published client0.4.6/kit0.5.6 bytes remain unchanged. The single independent Codex review is complete; no new playtest round was run. Exact source, CI, live and cleanup evidence will be recorded outside the worktree in `/Users/abdul/code/.lab-scratch/simplify/workers/hf.md`. Owner readiness remains open. The owner now requires clean merged simplify source and deployment worktrees to be removed after verified delivery; preserve all setting and unrelated worktrees.

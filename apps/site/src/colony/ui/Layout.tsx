@@ -5,7 +5,7 @@ import type { PlaceId } from '../sim/map.ts';
 import { APPEALS, type AppealChip, type OrderCard, type OrderInput } from '../sim/orders.ts';
 import { VILLAGERS, type VillagerId, villagerById } from '../sim/world-types.ts';
 import { dayClock, type Frame, NO_CONCEPT } from './contract.ts';
-import { moodDescription, trustDescription } from './descriptions.ts';
+import { activityDescription, moodDescription, trustDescription } from './descriptions.ts';
 import { RingTimer } from './Icon.tsx';
 import { homeOrderMeaning, latestPersonOrder, repeatPersonOrder } from './order-status.ts';
 import {
@@ -153,7 +153,7 @@ export function People({
               <Portrait id={v.id} />
               <span>
                 <strong>{shortName(v.id)}</strong>
-                <small>{p?.label ?? 'waiting'}</small>
+                <small>{activityDescription(p?.label ?? 'waiting')}</small>
               </span>
               {card && (
                 <span
@@ -219,7 +219,7 @@ export function Stand({ frame, onBack }: { frame: Frame; onBack(): void }) {
             ))}
           </tbody>
         </table>
-        <p>Roof and meals judged at D2 19:00; everyone alive at D3 dawn.</p>
+        <p>The roof and meals are judged at 19:00 on day 2. Everyone must be alive at dawn on day 3.</p>
         <button type="button" aria-label="Close village comparison" onClick={onBack}>
           ×
         </button>

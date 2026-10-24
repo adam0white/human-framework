@@ -20,12 +20,14 @@ export const HalilPane = memo(function HalilPane({ halil }: { halil: HalilView }
       <div className="v-doing">
         {halil.doing ? (
           <>
-            <p className="v-doing-label">{explainTerms(halil.doing.label)}</p>
+            <p className="v-doing-label">Halil chose to {explainTerms(halil.doing.label)}.</p>
             {halil.doing.intention && <p className="v-doing-why">{explainTerms(halil.doing.intention)}</p>}
             <p className="v-doing-until">until {halil.doing.until}</p>
           </>
         ) : (
-          <p className="v-doing-label">{halil.asleep ? 'asleep' : 'deciding'}</p>
+          <p className="v-doing-label">
+            {halil.asleep ? 'Halil is asleep.' : 'Halil is deciding what to do.'}
+          </p>
         )}
       </div>
 
@@ -61,7 +63,7 @@ export const HalilPane = memo(function HalilPane({ halil }: { halil: HalilView }
 
       <h3 className="v-sub">On his mind</h3>
       <ul className="v-mind">
-        {halil.onMind.length === 0 && <li className="v-muted">Nothing pressing.</li>}
+        {halil.onMind.length === 0 && <li className="v-muted">Nothing needs his attention right now.</li>}
         {halil.onMind.map((c) => (
           <li key={c.id} className={`v-mind-${c.state}`}>
             <span className="v-mind-label">{explainTerms(c.label)}</span>

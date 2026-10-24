@@ -248,10 +248,10 @@ function SceneDayContent(
     </div>
   );
   const activity = frame.halil.asleep
-    ? 'Now: asleep.'
+    ? 'Halil is asleep.'
     : frame.halil.doing
-      ? `Now: ${frame.halil.doing.label}${frame.halil.doing.until ? `, until ${frame.halil.doing.until}` : ''}.`
-      : 'Now: deciding what to do.';
+      ? `Halil chose to ${frame.halil.doing.label}${frame.halil.doing.until ? `, until ${frame.halil.doing.until}` : ''}.`
+      : 'Halil is deciding what to do.';
   return (
     <section
       className="v-scene-day"
