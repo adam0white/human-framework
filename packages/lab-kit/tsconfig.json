@@ -8,7 +8,11 @@
     "emitDeclarationOnly": true,
     "declarationDir": ".types",
     "tsBuildInfoFile": ".types/tsconfig.tsbuildinfo",
-    "rewriteRelativeImportExtensions": false
+    "rewriteRelativeImportExtensions": false,
+    "paths": {
+      "@adam0white/lab-client": ["../lab-client/src/index.ts"],
+      "@adam0white/human-framework": ["../human/src/index.ts"]
+    }
   },
   "include": ["src", "test", "../../scripts/lab-phone-helpers.ts"],
   "references": [
