@@ -671,14 +671,12 @@ async function checkpointPerson(s: State, selectedCastId: string, fork: boolean)
         'Bounded coarse local life; no full days, travel, healing or duty completion is inferred.',
       ],
     });
-    const epoch = await shelf.request<{ recordingEpoch: string | null }>({ action: 'recording' });
     if (generation !== s.generation || !shelf.enabled) return;
     await shelf.request({
       action: 'put',
       envelope,
       fork,
       authored: !existing && !s.gate,
-      recordingEpoch: epoch.recordingEpoch ?? undefined,
     });
     if (generation !== s.generation) return;
     s.heads[cast.castId] = envelope;
@@ -698,38 +696,12 @@ export async function checkpointCast(game: string, fork = false): Promise<void> 
   const s = states.get(game);
   if (s) await checkpointPerson(s, s.selected, fork);
 }
+/** Compatibility entry point: the single recording switch covers every history. */
 export async function chooseCastRecording(game: string, allow: boolean) {
   const s = states.get(game);
-  if (!s || !s.gate || s.dedicated || s.busy) return;
-  const generation = ++s.generation;
-  const gateKey = s.gate;
-  const envelopes = Object.values(s.histories);
-  const revisions = envelopes.map((p) => p.revision).join('/');
-  s.lab.allowPersonaRecording(false);
-  if (!envelopes.length) {
-    if (generation === s.generation && s.gate === gateKey) s.lab.allowPersonaRecording(allow);
-    changed();
-    return;
-  }
-  const epoch = await shelf.request<{ recordingEpoch: string | null }>({
-    action: 'recordingBatch',
-    envelopes,
-  });
-  if (generation !== s.generation || s.gate !== gateKey) return;
-  await shelf.request({
-    action: 'recordingBatch',
-    envelopes,
-    allowRecording: allow,
-    recordingEpoch: epoch.recordingEpoch ?? undefined,
-  });
-  if (
-    generation === s.generation &&
-    s.gate === gateKey &&
-    Object.values(s.histories)
-      .map((p) => p.revision)
-      .join('/') === revisions
-  )
-    s.lab.allowPersonaRecording(allow);
+  if (!s) return;
+  s.lab.setTelemetryOff(!allow);
+  s.lab.allowPersonaRecording(true);
   changed();
 }
 export function castRecordingGate(game: string): string | null {

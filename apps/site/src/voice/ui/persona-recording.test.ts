@@ -41,7 +41,7 @@ vi.mock('@adam0white/lab-client', async (original) => ({
 
 import { gateVoiceFile, resetVoicePersona, settleVoiceFileGate } from './persona.tsx';
 
-it('holds an old local allowance until the pinned central decision arrives, and respects denial', async () => {
+it('accepts an old recorded branch without a separate recording decision RPC', async () => {
   const head = {
     branchId: 'known-branch',
     revision: 'revision',
@@ -49,13 +49,8 @@ it('holds an old local allowance until the pinned central decision arrives, and 
   } as PersonaEnvelope;
   await gateVoiceFile(JSON.stringify({ voicePersonaHead: head }));
   settleVoiceFileGate(true);
-  // The branch was allowed locally, but another origin may have revoked its central association.
-  expect(fixture.lab.personaRecordingAllowed).toBe(false);
-  await vi.waitFor(() => expect(fixture.request).toHaveBeenCalled());
-  fixture.reply({ sameEpoch: false, branchId: head.branchId, revision: head.revision });
   await Promise.resolve();
-  await Promise.resolve();
-  fixture.lab.setPersonaRecording(head.branchId);
-  expect(fixture.lab.personaRecordingAllowed).toBe(false);
+  expect(fixture.lab.personaRecordingAllowed).toBe(true);
+  expect(fixture.request).not.toHaveBeenCalled();
   resetVoicePersona();
 });

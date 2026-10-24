@@ -14,13 +14,9 @@ vi.mock('../../shared/lab.tsx', () => ({
   gameLabs: { voice: { setPersonaRecording: vi.fn(), allowPersonaRecording: vi.fn() } },
 }));
 
-it.each([true, false])(
-  'uses complete group/epoch recording choice for ordinary Voice (%s)',
-  async (allow) => {
-    vi.mocked(chooseCastRecording).mockRejectedValueOnce(new Error('group epoch changed'));
-    await expect(chooseVoiceRecording(allow)).rejects.toThrow('group epoch changed');
-    expect(chooseCastRecording).toHaveBeenLastCalledWith('voice', allow);
-    expect(gameLabs.voice.setPersonaRecording).not.toHaveBeenCalled();
-    expect(gameLabs.voice.allowPersonaRecording).not.toHaveBeenCalled();
-  },
-);
+it.each([true, false])('uses the single recording switch for ordinary Voice (%s)', async (allow) => {
+  await chooseVoiceRecording(allow);
+  expect(chooseCastRecording).toHaveBeenLastCalledWith('voice', allow);
+  expect(gameLabs.voice.setPersonaRecording).not.toHaveBeenCalled();
+  expect(gameLabs.voice.allowPersonaRecording).not.toHaveBeenCalled();
+});

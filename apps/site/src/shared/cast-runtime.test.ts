@@ -11,6 +11,7 @@ const control = vi.hoisted(() => ({
   key: null as string | null,
   refuse: false,
   autoPreflight: false,
+  rejectRecording: false,
   beforeBatch: undefined as (() => Promise<void>) | undefined,
   beforeCreate: undefined as (() => Promise<void>) | undefined,
 }));
@@ -32,6 +33,8 @@ vi.mock('@adam0white/lab-client', async () => {
       },
       async request<T>(r: import('@adam0white/lab-client').PersonaRequest): Promise<T> {
         control.requests.push(r.action);
+        if (control.rejectRecording && ['recording', 'recordingBatch'].includes(r.action))
+          throw new Error('Obsolete recording RPC must not gate publication');
         if (r.action === 'get')
           return (control.state.revisions.find((p) => p.revision === control.state.heads[r.castId!]) ??
             null) as T;
@@ -96,6 +99,7 @@ const lab = {
     control.key = key;
   },
   allowPersonaRecording: vi.fn(),
+  setTelemetryOff: vi.fn(),
   personaRecordingAllowed: false,
   playerId: null,
 };
@@ -160,6 +164,7 @@ beforeEach(() => {
   control.key = null;
   control.refuse = false;
   control.autoPreflight = false;
+  control.rejectRecording = false;
   control.beforeBatch = undefined;
   control.beforeCreate = undefined;
   lab.allowPersonaRecording.mockClear();
@@ -668,6 +673,17 @@ describe('whole-cast browser continuity', () => {
     await chooseCastRecording('voice', true);
     await vi.waitFor(() => expect(worker.requests('init')).toHaveLength(1));
     expect(castState('voice').busy).toBe(false);
+  });
+  it('publishes checkpoints without obsolete recording RPCs', async () => {
+    control.rejectRecording = true;
+    const worker = new FakeWorker();
+    await begin(worker);
+    const before = control.puts.length;
+    await checkpoint(worker);
+    expect(control.puts.length).toBe(before + 1);
+    expect(control.requests).not.toContain('recording');
+    expect(control.requests).not.toContain('recordingBatch');
+    expect(castState('voice').status).toContain('saved for another chapter');
   });
   it('local reload restores the last accepted receipt while a later competing claim still conflicts', async () => {
     control.state = acceptPersona(control.state, await head());
