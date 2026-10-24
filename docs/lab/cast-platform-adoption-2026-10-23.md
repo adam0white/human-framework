@@ -79,7 +79,7 @@ await shelf.request({ action: 'put', envelope: next });
 ownHead = next;
 ```
 
-Fresh receiving play gates recording before preparing any imported history. Semantic admission validates every person before the batch CAS. Pin complete initial actors, all inputs and initial claims in the replay. Keep the last accepted ownership heads separately in local-save metadata; a new source checkpoint must never replace an initial replay actor.
+Worker hosts await atomic admission and send prepared init before queued deliberate controls. Keep the queue finite and scoped to run/identity generation; load, replacement, identity cancellation and failed CAS discard it. Discard pre-start ticks and stale preview queries. Fresh receiving play gates recording before preparing any imported history. Semantic admission validates every person before the batch CAS. Pin complete initial actors, all inputs and initial claims in the replay. Keep the last accepted ownership heads separately in local-save metadata; a new source checkpoint must never replace an initial replay actor.
 
 ```ts
 lab.setPersonaRecording(`pending-group-${crypto.randomUUID()}`);

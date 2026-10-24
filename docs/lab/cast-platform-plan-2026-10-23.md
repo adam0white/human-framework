@@ -20,8 +20,9 @@ Storage permits 40 active people plus 80 historical revisions, up to 16 MiB tota
 - [x] Adopt canonical profiles, ages, household/occupation fiction and edition pins in Voice, Well and Watch. Recast Watch's four incompatible roles and remove their inherited incidents. Keep incidental children and later generations outside the foreground roster.
 - [x] Add fresh-only shelf preparation and pinned current-version replay state for the three games, plus ordinary local/fresh controls and recording gates. Give later game workers exact snippets and self-contained records.
 - [x] Run focused controls and obtain the two independent reviews (correctness/privacy and game design/continuity), including whole-cast, ownership, terminal and source-receipt deltas. Final source check:lane remains the release gate.
-- [ ] Reconcile the reserved 2.17 release, stamp the next free minor and exact client/kit pins, signed commit, fetch/rebase/push, exact green CI, trusted npm release and provenance.
-- [ ] Pack immutable client/kit artifacts once. Publish ready note. Deploy the exact green source, verify release.json and both viewports, and perform an actual cross-origin journey when a compatible live peer exists.
+- [x] Reconcile2.17 and release2.18 with exact pins, signed commits, exact green CI, normal trusted npm publication and verified SLSA provenance.
+- [x] Pack immutable client/kit artifacts once and publish ready note. Deploy exact green source, verify release.json and all three menus at both viewports; prove actual Voice source→three-person admission/restart/localreload with exact exported replay.
+- [ ] Coordinator staging: complete named Voice→GoodHands/Hearsay and Well/Watch→Valley/Warren journeys after compatible peers adopt the ready API. No compatible live peer is assumed; target remains owner review2026-11-03.
 
 Review focus: old revision refusal before mutation; stale loaded chapters; clock rollback/cap; cross-cohort isolation; imported history recording consent; no health/duty/project resets; full pinned current replay input.
 
