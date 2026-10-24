@@ -222,7 +222,7 @@ Steps are a JSON array, for example `[ {"click":"Play","name":"map"}, {"selector
 
 ## Linked recording
 
-Use `telemetryNotice()` once on the game screen and mount its returned node when present. Add `telemetryToggle(lab)` to each game menu. Both use the same policy as the site games. `notebookMenu` includes the toggle. Register full runs, successful saves and game logs on the lab client; see its README. Automatic recording does not consent to the player-character test.
+Use `telemetryNotice()` once on the game screen and mount that same returned node in a stable footer when present. Kit 0.5.7 uses a compact grammatical disclosure without a Dismiss control. Do not clone or replace the node: its asynchronous central claim can remove it. Add `telemetryToggle(lab)` to each game menu. Both use the same policy as the site games. `notebookMenu` includes the toggle. Register full runs, successful saves and game logs on the lab client; see its README. Automatic recording does not consent to the player-character test.
 
 `personaControls({ enabled, setEnabled, recordingAllowed, allowRecording })` renders the fictional continuity switch and shelf link. The recording fields remain accepted for older hosts; no separate linkage prompt appears. Recording and linkage follow the single `telemetryToggle(lab)` switch, including explicit opt-in under DNT/GPC.
 

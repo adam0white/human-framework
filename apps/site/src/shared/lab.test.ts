@@ -165,18 +165,17 @@ it('holds the clock until toggle, Escape, outside dismissal or unmount closes th
   expect(hold).toHaveBeenLastCalledWith(false);
 });
 
-it('keeps the disclosure in the game layout and removes its space on dismissal', async () => {
-  const dismissed = vi.fn();
-  const { container, root } = await mount(
-    createElement(StrictMode, null, createElement(LabNotice, { onDismiss: dismissed })),
-  );
+it('keeps the same compact disclosure node in layout without another player control', async () => {
+  const element = createElement(StrictMode, null, createElement(LabNotice));
+  const { container, root } = await mount(element);
   const notice = container.querySelector<HTMLElement>('.lk-telemetry-notice');
   expect(notice).not.toBeNull();
   expect(notice?.style.position).toBe('static');
+  expect(notice?.textContent).toBe('We record and link play across games on this device.');
+  expect(notice?.querySelector('button')).toBeNull();
   expect(document.body.querySelector(':scope > .lk-telemetry-notice')).toBeNull();
-  await act(() => notice?.querySelector('button')?.click());
-  expect(container.querySelector('.lk-telemetry-notice')).toBeNull();
-  expect(dismissed).toHaveBeenCalledOnce();
+  await act(() => root.render(createElement(StrictMode, null, createElement(LabNotice))));
+  expect(container.querySelector('.lk-telemetry-notice')).toBe(notice);
   await act(() => root.render(null));
   await act(() => root.render(createElement(LabNotice)));
   expect(container.querySelector('.lk-telemetry-notice')).toBeNull();

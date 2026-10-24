@@ -1,19 +1,21 @@
 # Simplify shared package adoption — 24 October 2026
 
-Use client **0.4.6** with kit **0.5.6**. HF remains **2.18.0**, engine **2.17.0**, with no engine-rule change. The earlier 0.4.5/0.5.5 candidate tarballs are preserved and superseded, never overwritten. npm publication remains deferred; distribution uses immutable GitHub release assets.
+Use client **0.4.6** with kit **0.5.7**. HF remains **2.18.0**, engine **2.17.0**, with no engine-rule change. The earlier 0.4.5/0.5.5 candidate tarballs and kit0.5.6 are preserved and superseded, never overwritten. npm publication remains deferred; distribution uses immutable GitHub release assets.
 
 - [lab-client 0.4.6](https://github.com/adam0white/human-framework/releases/download/lab-client-v0.4.6/adam0white-lab-client-0.4.6.tgz)
   SHA512: `fa60304eef9365a22a9bcc08c9cfe1d137baa40a85628c6e9dd15078e606045f381cb2c1e0b8d47f68dd74863b9d51339e26bb71d69e85d74209065337b429b6`
-- [lab-kit 0.5.6](https://github.com/adam0white/human-framework/releases/download/lab-kit-v0.5.6/adam0white-lab-kit-0.5.6.tgz)
-  SHA512: `15061d0dd8f837d1040175f20c9264159eed3eadbe333f042d1a9264ea3874db92bef690d27dcf6d78665fccfc5466ea95e2b8de907ded82bc41ba8c75aa9a49`
+- [lab-kit 0.5.7](https://github.com/adam0white/human-framework/releases/download/lab-kit-v0.5.7/adam0white-lab-kit-0.5.7.tgz)
+  SHA512: `491a41dc363cf30d8acf3972c531f0e41dc0b5748b15cefc80d6b15924bab1160ca2683cebd8cdfa2da97aefacbee1150c172d7977117285f0c7b7e043e089b0`
 
 Copy the exact release assets into the host's vendor directory and verify both hashes before installing:
 
 ```sh
-npm install --save-exact ./vendor/adam0white-lab-client-0.4.6.tgz ./vendor/adam0white-lab-kit-0.5.6.tgz
+npm install --save-exact ./vendor/adam0white-lab-client-0.4.6.tgz ./vendor/adam0white-lab-kit-0.5.7.tgz
 ```
 
 Keep manifests and lockfiles together. Use the host's focused tests, signed commit, exact green CI and clean deployment. The signed source/release/live receipts are recorded in the HF worker report.
+
+The compact0.5.7 disclosure is “We record and link play across games on this device.” It has no Dismiss control. It keeps the same asynchronous claim and actual DOM node. At360px, both Chromium and WebKit measured14px text and28.890625px height after fonts loaded; enlarged text wraps naturally.
 
 ## Host changes
 

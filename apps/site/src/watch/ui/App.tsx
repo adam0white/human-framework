@@ -93,7 +93,6 @@ export function App() {
   const stage = useRef<HTMLElement>(null);
   const postingOrigin = useRef<WatcherId | null>(null);
   const stageController = useRef<ReturnType<typeof phoneStage> | null>(null);
-  const noticeDismissed = useCallback(() => stageController.current?.refresh(), []);
   const menuOrigin = useRef<HTMLElement | null>(null);
 
   const setSelected = useCallback((w: WatcherId | null) => {
@@ -416,7 +415,7 @@ export function App() {
           <footer className="lk-commit w-page-commit" hidden={menu || feedback} ref={setPageCommit} />
         </section>
       </main>
-      <LabNotice onDismiss={noticeDismissed} />
+      <LabNotice />
     </div>
   );
 }

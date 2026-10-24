@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 import './lab-notice.css';
 
 /** Mount the first-visit disclosure in layout, below the game header. */
-export function LabNotice({ onDismiss }: { onDismiss?: () => void }) {
+export function LabNotice() {
   const host = useRef<HTMLDivElement>(null);
   const notice = useRef<HTMLElement | null | undefined>(undefined);
   useEffect(() => {
@@ -16,13 +16,9 @@ export function LabNotice({ onDismiss }: { onDismiss?: () => void }) {
       width: '100%',
     });
     host.current?.append(node);
-    const dismissed = () => onDismiss?.();
-    const button = node.querySelector('button');
-    button?.addEventListener('click', dismissed);
     return () => {
-      button?.removeEventListener('click', dismissed);
       node.remove();
     };
-  }, [onDismiss]);
+  }, []);
   return <footer className="lab-notice" ref={host} />;
 }

@@ -1,6 +1,6 @@
 {
   "name": "@adam0white/lab-kit",
-  "version": "0.5.6",
+  "version": "0.5.7",
   "private": false,
   "description": "Small plain-DOM Field Notebook components for lab games",
   "license": "MIT",

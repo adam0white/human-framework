@@ -8,8 +8,7 @@ export type TelemetryLab = {
   setEventsOff?: (off: boolean) => void;
 };
 
-export const TELEMETRY_NOTICE =
-  'The lab records and links your play across games on this device. Turn Recording off in the menu.';
+export const TELEMETRY_NOTICE = 'We record and link play across games on this device.';
 export function telemetryOn(lab: TelemetryLab): boolean {
   return lab.telemetryOn ?? lab.eventsOn ?? false;
 }
@@ -30,18 +29,12 @@ export function telemetryNotice(storage?: FlagStorage | null): HTMLElement | nul
     boxSizing: 'border-box',
     width: '100%',
     margin: '0',
-    padding: '0.4rem 0.75rem',
+    padding: '0.25rem 0.5rem',
     background: '#fffaf0',
     color: '#2b2622',
     border: '1px solid #6b6158',
-    font: 'clamp(0.875rem, 0.8rem + 0.2vw, 1rem)/1.4 system-ui',
+    font: 'max(14px, 0.875rem)/1.35 system-ui',
   });
-  const dismiss = document.createElement('button');
-  dismiss.type = 'button';
-  dismiss.textContent = 'Dismiss';
-  dismiss.style.marginInlineStart = '0.75rem';
-  dismiss.addEventListener('click', () => notice.remove());
-  notice.append(' ', dismiss);
   // Await central notice state when the peer supports it; blocked frames use once/origin.
   notice.style.visibility = 'hidden';
   void import('@adam0white/lab-client')
