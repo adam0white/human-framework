@@ -23,6 +23,12 @@
   box-sizing: border-box;
 }
 
+/* The chapter disclosure belongs to the header flow, above the stage controls. */
+.watch .cast-life-note {
+  position: static;
+  margin: 0.25rem 0.5rem 0.25rem auto;
+}
+
 .watch *,
 .watch *::before,
 .watch *::after {

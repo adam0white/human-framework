@@ -243,7 +243,6 @@ export function App() {
   return (
     <div className={`watch phase-${displayFrame.phase}${frame.slowed ? ' is-slowed' : ''}`}>
       <CastStartGate game="watch" />
-      <CastLifeNote game="watch" />
       <div className="lab-game-header">
         <header className="w-top">
           {showingTitle ? (
@@ -271,6 +270,7 @@ export function App() {
           </button>
         </header>
         <LabNotice onDismiss={noticeDismissed} />
+        <CastLifeNote game="watch" />
       </div>
 
       <main
