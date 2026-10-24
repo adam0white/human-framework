@@ -59,7 +59,7 @@ it('sends optional verdict and remembered name as feedback when recording is on'
   await act(async () => send().click());
   expect(lab.sendFeedback).toHaveBeenCalledWith('Verdict: keep', expect.objectContaining({ name: 'Tester' }));
   expect(lab.sendRun).not.toHaveBeenCalled();
-  expect(node.textContent).toContain('Sent. Thank you.');
+  expect(node.textContent).toContain('Note and verdict queued. An available run may also be included.');
 });
 it.each(['unanswered', 'declined', 'off', 'privacy'])('sends in the same sheet when %s', async (choice) => {
   const lab = labStub();
@@ -73,13 +73,18 @@ it.each(['unanswered', 'declined', 'off', 'privacy'])('sends in the same sheet w
     lab.telemetryOn = false;
   }
   if (choice === 'privacy') {
-    lab.telemetryOn = false;
+    lab.telemetryOn = true;
     lab.privacySignalOn = true;
   }
   const { node, send } = await mount(lab);
   expect(send().disabled).toBe(false);
   await act(async () => send().click());
   expect(lab.sendFeedback).toHaveBeenCalledOnce();
+  expect(node.textContent).toContain(
+    choice === 'off' || choice === 'privacy'
+      ? 'Note and verdict queued without a run or history linkage.'
+      : 'Note and verdict queued. An available run may also be included.',
+  );
   expect(lab.openSendDialog).not.toHaveBeenCalled();
   expect(lab.setTelemetryOff).not.toHaveBeenCalled();
   expect(node.querySelectorAll('[role=dialog]')).toHaveLength(1);

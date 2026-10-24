@@ -110,6 +110,7 @@ export function Feedback({
           /* The note can still be sent. */
         }
       }
+      const noteOnly = !lab.telemetryOn || (lab.privacySignalOn && !lab.privacyOverride);
       await lab.sendFeedback(message, { name: name.trim(), ...(run ? { run } : {}) });
       try {
         if (name.trim()) localStorage.setItem(NAME_KEY, name.trim());
@@ -118,7 +119,11 @@ export function Feedback({
         /* Device storage is optional. */
       }
       setSent(true);
-      setStatus(lab.eventsOn ? 'Queued for upload. Thank you.' : 'Sent. Thank you.');
+      setStatus(
+        noteOnly
+          ? 'Note and verdict queued without a run or history linkage. Delivery may retry.'
+          : 'Note and verdict queued. An available run may also be included. Delivery may retry.',
+      );
     } catch {
       setStatus('Your word could not be sent. Please try again.');
     } finally {
