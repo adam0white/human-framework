@@ -17,6 +17,7 @@ import {
   type PersonSpec,
   prayerWindows,
 } from '@adam0white/human-framework';
+import { canonicalCast } from '@adam0white/lab-client';
 import { type Minute, START_CLOCK, type VillagerId, type VillagerSpec } from './world-types.ts';
 
 /** Framework minute of a game minute. */
@@ -28,47 +29,9 @@ export const gm = (t: number): Minute => t - START_CLOCK;
  * Host norms for this game (spec §5 "Norm catalog"). Standings are the host's engineering choices, recorded
  * as such; they are each person's understanding, not rulings.
  */
-export const HOST_NORMS: NormDefinition[] = [
-  {
-    id: 'aid-injured',
-    label: 'Help the injured',
-    standing: 'obligatory',
-    sources: [{ kind: 'assumption', ref: 'Twice at the Well host norm; standing chosen by the game design' }],
-  },
-  {
-    id: 'feed-village',
-    label: 'Feed the village',
-    standing: 'obligatory',
-    sources: [
-      {
-        kind: 'assumption',
-        ref: 'Twice at the Well host norm: the cook’s duty to the people who eat from her pot',
-      },
-    ],
-  },
-  {
-    id: 'abandon-dependents',
-    label: 'Leaving the people who depend on you unfed',
-    standing: 'forbidden',
-    sources: [
-      {
-        kind: 'assumption',
-        ref: 'The sole cook leaving a pending meal unprepared is treated as forbidden by this host (docs/games/colony.md §7 M3)',
-      },
-    ],
-  },
-  {
-    id: 'daily-prayer',
-    label: 'Pray at one’s own hours (Christian morning and evening prayer)',
-    standing: 'recommended',
-    sources: [
-      {
-        kind: 'assumption',
-        ref: 'Twice at the Well host norm for Danyal; standing chosen by the game design',
-      },
-    ],
-  },
-];
+export { WELL_CAST_NORMS as HOST_NORMS } from '../../shared/cast-norms.ts';
+
+import { WELL_CAST_NORMS as HOST_NORMS } from '../../shared/cast-norms.ts';
 
 export const HOST_NORM_IDS = HOST_NORMS.map((n) => n.id);
 
@@ -451,6 +414,7 @@ function personSeed(seed: number, index: number): number {
 /** The framework spec for one villager. */
 export function villagerPersonSpec(seed: number, v: VillagerSpec): PersonSpec {
   const c = CAST[v.id];
+  const canonical = canonicalCast(`hf.cast.${v.id}.well`);
   const now = fw(0);
   const commitments: Omit<Commitment, 'status'>[] = [];
   if (v.prays) commitments.push(...salahWindows());
@@ -462,10 +426,10 @@ export function villagerPersonSpec(seed: number, v: VillagerSpec): PersonSpec {
     name: v.name,
     seed: personSeed(seed, v.index),
     now,
-    bornAt: now - v.age * MINUTES_PER_YEAR,
+    bornAt: now - canonical.age * MINUTES_PER_YEAR,
     sex: c.sex,
-    traits: c.traits,
-    values: c.values,
+    traits: canonical.traits,
+    values: canonical.values,
     norms: heldNorms({ practice: c.practice, extraNorms: c.extraNorms }),
     skills: { ...v.skills },
     body: {

@@ -5,15 +5,54 @@
  * made and replayed here (a loaded file is replayed from its seed and log; its snapshot is never loaded).
  */
 import { ENGINE_VERSION } from '@adam0white/human-framework';
+import { chapterPeople } from '../shared/cast-chapter.ts';
 import { PlaytestError } from '../shared/playtest.ts';
 import { hostWorker } from '../shared/worker-host.ts';
 import type { MainToWorker, WorkerReply } from './protocol.ts';
+import { ColonyGame } from './sim/game.ts';
 import { createFrameworkHumanSide } from './sim/human.ts';
 import { Playback } from './sim/playback.ts';
 
 const playback = new Playback(createFrameworkHumanSide);
 
 hostWorker<MainToWorker, WorkerReply>((msg, host) => {
+  if (msg.type === 'castOwnership') return;
+  if (msg.type === 'castPreflight' || msg.type === 'castCheckpoint') {
+    try {
+      if (msg.type === 'castPreflight') {
+        new ColonyGame(msg.seed, createFrameworkHumanSide, undefined, 'default', msg.chapter);
+        host.post({
+          type: 'castReady',
+          requestId: msg.requestId,
+          initials: Object.fromEntries(
+            chapterPeople(msg.chapter).map((p) => [p.input.parent.castId, p.initial!]),
+          ),
+        });
+      } else {
+        if (!playback.game || playback.game.minute === 0)
+          throw new Error('Begin and play this chapter before saving a person.');
+        const gen = host.gen;
+        const transfer = playback.game?.human.castCheckpoint?.(msg.castId);
+        if (!transfer) throw new Error('No current person checkpoint.');
+        void Promise.resolve(transfer)
+          .then((t) =>
+            host.post(
+              {
+                type: 'castReady',
+                requestId: msg.requestId,
+                transfer: { ...t, engine: ENGINE_VERSION },
+                sourceSnapshot: t.sourceSnapshot,
+              },
+              gen,
+            ),
+          )
+          .catch((e) => host.post({ type: 'castReady', requestId: msg.requestId, error: String(e) }, gen));
+      }
+    } catch (e) {
+      host.post({ type: 'castReady', requestId: msg.requestId, error: String(e) });
+    }
+    return;
+  }
   if (msg.type === 'telemetry') {
     const gen = host.gen;
     const logs = structuredClone(playback.game?.frame().news ?? []);

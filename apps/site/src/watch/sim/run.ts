@@ -9,6 +9,7 @@
  * so a wording change does not break older exports (watch.md, Export provenance and hash policy).
  */
 import { impressionOf, readCapacities } from '@adam0white/human-framework';
+import type { CastChapter } from '../../shared/cast-chapter.ts';
 import { FRAMEWORK_PACKAGE_VERSION } from '../../shared/playtest.ts';
 import { WINTER_RULES } from './config.ts';
 import { applyInput, clockRuns, type Input, newGame, stepMinute } from './night.ts';
@@ -200,10 +201,10 @@ export function endState(s: WatchState): EndState {
  * 11: in-person relief, help and rest asks at night.
  * 10: each pair waits one year after a proposal; legacy pages without proposalHolds retain the old rules.
  */
-export const WATCH_SCENARIO_VERSION = 13;
+export const WATCH_SCENARIO_VERSION = 14;
 
 /** The oldest scenario whose saved pages still load (`migrateSnapshot`). */
-export const OLDEST_LOADABLE_SCENARIO = 7;
+export const OLDEST_LOADABLE_SCENARIO = 14;
 
 /**
  * Where a run's log stops replaying from its seed: it was resumed from a page saved under an older scenario at this
@@ -221,6 +222,7 @@ export interface LogEntry {
 }
 
 export interface PlaytestExport {
+  castChapter?: CastChapter;
   game: 'the-night-watch';
   phase: 'G3-4';
   scenario: number;
@@ -241,6 +243,7 @@ export interface PlaytestExport {
  * same run: the log keeps growing from the snapshot, so a later export still replays from the seed.
  */
 export interface Snapshot {
+  castOwnership?: import('../../shared/cast-runtime.ts').CastHeads;
   scenario: number;
   seed: number;
   log: LogEntry[];
@@ -277,7 +280,7 @@ export class WatchRun {
   /** Set when this run was resumed from an older scenario's page (see `Origin`). */
   readonly origin: Origin | undefined;
 
-  constructor(seed: number, saved?: Snapshot) {
+  constructor(seed: number, saved?: Snapshot, castChapter?: CastChapter) {
     this.seed = seed;
     if (saved) {
       const from = migrateSnapshot(saved);
@@ -285,7 +288,9 @@ export class WatchRun {
       this.state = structuredClone(from.state);
       this.log = from.log.map((e) => ({ m: e.m, i: { ...e.i } }));
       this.origin = from.origin;
-    } else this.state = newGame(seed);
+    } else {
+      this.state = newGame(seed, castChapter);
+    }
   }
 
   /** Resumes a saved page (see `Snapshot`). */
@@ -329,6 +334,7 @@ export class WatchRun {
 
   export(): PlaytestExport {
     return {
+      ...(this.state.castChapter ? { castChapter: structuredClone(this.state.castChapter) } : {}),
       game: 'the-night-watch',
       phase: 'G3-4',
       scenario: WATCH_SCENARIO_VERSION,
@@ -345,24 +351,17 @@ export class WatchRun {
 
 /** Rebuilds a run's end state from its seed and input log. Throws if the log does not fit the rules. */
 export function replay(
-  exp: Pick<PlaytestExport, 'scenario' | 'seed' | 'inputs' | 'endMinute' | 'origin'>,
+  exp: Pick<PlaytestExport, 'scenario' | 'seed' | 'inputs' | 'endMinute' | 'origin' | 'castChapter'>,
 ): WatchState {
-  if (
-    exp.scenario !== WATCH_SCENARIO_VERSION &&
-    exp.scenario !== 12 &&
-    exp.scenario !== 11 &&
-    exp.scenario !== 10 &&
-    exp.scenario !== 9
-  )
+  if (exp.scenario !== WATCH_SCENARIO_VERSION)
     throw new Error(`export is scenario ${exp.scenario}, this build is ${WATCH_SCENARIO_VERSION}`);
   if (exp.origin)
     throw new Error(
       `export was resumed from a scenario ${exp.origin.scenario} page; it does not replay from its seed`,
     );
-  const run = new WatchRun(exp.seed);
+  const run = new WatchRun(exp.seed, undefined, exp.castChapter);
   const s = run.state;
-  if (exp.scenario < 13) delete s.nightDepartureEffort;
-  if (exp.scenario === 9) delete s.proposalHolds;
+
   let idx = 0;
   for (let guard = 0; guard < 10_000_000; guard++) {
     for (let e = exp.inputs[idx]; e !== undefined && e.m === s.minute; e = exp.inputs[idx]) {

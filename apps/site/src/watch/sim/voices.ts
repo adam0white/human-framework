@@ -170,7 +170,7 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
                 `“They came right up under me at ${theSec(shaken.section)}. I keep hearing them.”`,
                 `“I could hear them breathing under ${theSec(shaken.section)}.”`,
                 // Only someone still on the wall at dawn can say they watched till dawn (owner's year-4 export:
-                // Mara went home to sleep and still said she "didn't blink till dawn").
+                // Samira went home to sleep and still said she "didn't blink till dawn").
                 home || refused || slept
                   ? `“Something came to the foot of ${theSec(shaken.section)}. I didn’t stay to see it.”`
                   : `“Something came to the foot of ${theSec(shaken.section)}. I didn’t blink till dawn.”`,
@@ -310,12 +310,12 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
           '“I could sleep a week.”',
           '“The last hour was the longest.”',
         ]);
-      // "They watch me more than the dark" is a first winter's line (owner's year-4 export: Ruslan, in his fourth
+      // "They watch me more than the dark" is a first winter's line (owner's year-4 export: Meryem, in his fourth
       // winter, still said it). Someone who came between winters (night 0) has their first winter the next year.
       else if (v.newcomer && s.year <= v.comes.year + (v.comes.night > 0 ? 0 : 1))
         say('new', [
-          '“Quiet. They watch me more than the dark.”',
-          '“Nobody spoke to me all night. That’s all right.”',
+          '“I marked the path I checked. The rest still needs walking.”',
+          '“I am learning the stores route before I draw it as certain.”',
           '“Quiet. I’m learning which shadows are trees.”',
         ]);
       else

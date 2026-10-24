@@ -23,6 +23,15 @@ import {
   snapshot as snapshotPerson,
   stepCommunity,
 } from '@adam0white/human-framework';
+import {
+  admitSiteCast,
+  type CastChapter,
+  captureSiteCastBoundary,
+  castRole,
+  chapterPeople,
+  prepareSiteInitial,
+  type SourceCheckpoint,
+} from '../../shared/cast-chapter.ts';
 import { fw, gm, HOST_NORMS, villagerPersonSpec } from './human-cast.ts';
 import {
   type Bubble,
@@ -51,7 +60,7 @@ import {
   whyOf,
 } from './human-view.ts';
 import { ColonyHostWorld, createHostState, type HostState } from './human-world.ts';
-import { type GameMap, placeById } from './map.ts';
+import { type GameMap, placeById, spotFor } from './map.ts';
 import { type HumanOrder, PLAYER_VOICE } from './orders.ts';
 import {
   adhanAt,
@@ -193,6 +202,39 @@ export class FrameworkHumanSide implements HumanSide {
       this.s.lastAction[v.id] = null;
       this.s.assented[v.id] = [];
     }
+  }
+
+  admitCast(chapter: CastChapter): void {
+    for (const single of chapterPeople(chapter)) {
+      const chapter = single;
+      const role = castRole('well', chapter.input.parent.castId);
+      const opening = this.world.community.people.find((p) => p.id === role);
+      if (!opening) throw new Error('Missing authored role.');
+      prepareSiteInitial('well', opening, single);
+      this.world.community.people = this.world.community.people.map((p) =>
+        p.id === role ? admitSiteCast('well', p, chapter) : p,
+      );
+      const place =
+        chapter.input.life.place === 'home'
+          ? role === 'maryam'
+            ? 'home-maryam'
+            : role === 'yusuf' || role === 'tariq'
+              ? 'home-yusuf'
+              : role === 'danyal'
+                ? 'wellhouse'
+                : 'home-idris'
+          : chapter.input.life.place === 'public-garden'
+            ? 'field'
+            : 'well';
+      this.world.s.loc[role] = spotFor(place, 0);
+    }
+    this.world.s.castChapter = structuredClone(chapter);
+  }
+  castCheckpoint(castId: string): Promise<SourceCheckpoint> {
+    const role = castRole('well', castId);
+    const p = this.world.community.people.find((p) => p.id === role);
+    if (!p) throw new Error('This person is not present.');
+    return captureSiteCastBoundary('well', p, this.world, HOST_NORMS);
   }
 
   /** The host's norm catalog (for model notes and tests). */

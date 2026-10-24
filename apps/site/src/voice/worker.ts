@@ -15,6 +15,12 @@
  */
 import { ENGINE_VERSION, snapshot } from '@adam0white/human-framework';
 import { canonicalPersona, validatePersona } from '@adam0white/lab-client';
+import {
+  applyAdmittedLife,
+  captureSiteCastBoundary,
+  castRole,
+  chapterPeople,
+} from '../shared/cast-chapter.ts';
 import { makePlaytestFile, PlaytestError, replayResult } from '../shared/playtest.ts';
 import { hostWorker } from '../shared/worker-host.ts';
 import {
@@ -146,6 +152,7 @@ async function voiceFile(r: RecordedGame, full = false) {
   });
   return {
     ...file,
+    ...(g.castChapter ? { castChapter: structuredClone(g.castChapter) } : {}),
     ...(r.chapter ? { voicePersona: structuredClone(r.chapter) } : {}),
     ...(r.personaHead ? { voicePersonaHead: structuredClone(r.personaHead) } : {}),
     ...(r.oneCast.length ? { oneCast: structuredClone(r.oneCast) } : {}),
@@ -208,7 +215,7 @@ async function loadPlaytest(text: string, nextGen: number): Promise<void> {
   if (chapter) await validatePersona(chapter.admission);
   if (head) await validatePersona(head);
   dropStale(f.seed, rules);
-  const { rec: replayed, driftAt } = replayVoice(f.seed, f.log, rules, chapter);
+  const { rec: replayed, driftAt } = replayVoice(f.seed, f.log, rules, chapter, 0, f.castChapter);
   replayed.personaHead = head ?? chapter?.acceptedHead;
   if (rows) replayed.oneCast.splice(0, replayed.oneCast.length, ...rows);
   const g = replayed.game;
@@ -243,12 +250,17 @@ async function prepareSelinReturn(header: SelinReturn): Promise<SelinReturn> {
   if (prior.driftAt !== -1 || voiceHash(prior.rec.game) !== prefix.file.hash)
     throw new Error('Source chapter does not replay.');
   if (!prefix.head) throw new Error('The original Selin departure is missing; start fresh.');
-  const initial = returnedSelin(
+  let initial = returnedSelin(
     header.admission,
     prior.rec.game.run.ppl.selin,
     prefix.head,
     prior.rec.game.run.opts,
   );
+  if (header.life) {
+    if (header.life.parent.revision !== header.admission.revision)
+      throw new Error('Life does not match the admitted Selin revision.');
+    initial = applyAdmittedLife('voice', initial, header.life);
+  }
   const pinned = { ...header, initial: JSON.stringify(snapshot(initial)) };
   replayVoice(prefix.file.seed, [], 4, pinned);
   return pinned;
@@ -290,8 +302,46 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg) => {
       return;
     }
     initializing = false;
-    rec = new RecordedGame(new VoiceGame(msg.seed, 4));
+    rec = new RecordedGame(new VoiceGame(msg.seed, 4, msg.castChapter));
     flush(true);
+    return;
+  }
+  if (msg.type === 'castOwnership') return;
+  if (msg.type === 'castPreflight' || msg.type === 'castCheckpoint') {
+    try {
+      if (msg.type === 'castPreflight') {
+        new VoiceGame(msg.seed, 4, msg.chapter);
+        host.post({
+          type: 'castReady',
+          requestId: msg.requestId,
+          initials: Object.fromEntries(
+            chapterPeople(msg.chapter).map((p) => [p.input.parent.castId, p.initial!]),
+          ),
+        });
+      } else {
+        if (!rec || rec.game.phase === 'premise')
+          throw new Error('Begin and play this chapter before saving a person.');
+        const role = castRole('voice', msg.castId);
+        const person = rec?.game.run.ppl[role as keyof typeof rec.game.run.ppl];
+        if (!person || !rec) throw new Error('No current person checkpoint.');
+        const gen = host.gen;
+        void captureSiteCastBoundary('voice', person, rec.game.run.town)
+          .then((t) =>
+            host.post(
+              {
+                type: 'castReady',
+                requestId: msg.requestId,
+                transfer: { ...t, engine: ENGINE_VERSION },
+                sourceSnapshot: t.sourceSnapshot,
+              },
+              gen,
+            ),
+          )
+          .catch((e) => host.post({ type: 'castReady', requestId: msg.requestId, error: String(e) }, gen));
+      }
+    } catch (e) {
+      host.post({ type: 'castReady', requestId: msg.requestId, error: String(e) });
+    }
     return;
   }
   if (msg.type === 'personaReturnCheck') {

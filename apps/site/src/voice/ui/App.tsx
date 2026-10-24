@@ -5,6 +5,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { sceneKey } from '../../free-text/core.ts';
 import { RequestTranslator } from '../../free-text/RequestTranslator.tsx';
+import { CastLifeNote, CastStartGate } from '../../shared/CastMenu.tsx';
 import { useWakeLock } from '../../shared/fullscreen.tsx';
 import { LabNotice } from '../../shared/LabNotice.tsx';
 import { gameLabs, useLabScreen } from '../../shared/lab.tsx';
@@ -177,6 +178,8 @@ export function App() {
       onPointerDownCapture={stable.onPointerDownCapture}
       onKeyDownCapture={stable.onKeyDownCapture}
     >
+      <CastStartGate game="voice" />
+      <CastLifeNote game="voice" />
       <TopBar
         frame={frame}
         title={overlay === 'premise'}

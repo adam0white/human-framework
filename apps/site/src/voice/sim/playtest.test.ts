@@ -108,21 +108,9 @@ describe('Game 2 playtest files', () => {
     120_000,
   );
 
-  test.skipIf(REGEN)(
-    'the committed fixture replays to its hash',
-    () => {
-      const { file: f, rules } = parseVoicePlaytest(readFileSync(FIXTURE, 'utf8'));
-      expect(f.scenario).toBe('voice-1');
-      expect(rules).toBe(1);
-      const { rec, driftAt } = replayVoice(f.seed, f.log, rules);
-      expect(driftAt).toBe(-1);
-      expect(rec.game.phase).toBe('report');
-      expect(rec.game.t).toBe(f.minute);
-      // Preserve the full old state control; normalize only person-engine metadata.
-      expect(hashState(withHistoricPersonEngine(voiceState(rec.game), f.engine))).toBe(f.hash);
-    },
-    60_000,
-  );
+  test('the old cast fixture refuses with a plain start-fresh message', () => {
+    expect(() => parseVoicePlaytest(readFileSync(FIXTURE, 'utf8'))).toThrow(/older cast edition/);
+  });
 
   test('a run recorded with irregular ticks, frames, predicts and whys replays to the same hash', () => {
     const rec = run(true);

@@ -41,6 +41,15 @@ import {
   voiceOf,
 } from '@adam0white/human-framework';
 import {
+  admitSiteCast,
+  type CastChapter,
+  castOpeningLine,
+  castRole,
+  personChapter,
+  prepareSiteInitial,
+  SITE_CAST,
+} from '../../shared/cast-chapter.ts';
+import {
   type BeatKind,
   type BetweenView,
   type Draft,
@@ -197,8 +206,16 @@ export interface Run {
   opts: TownOptions;
 }
 
-export function newRun(seed: number, opts: TownOptions = {}): Run {
+export function newRun(seed: number, opts: TownOptions = {}, castChapter?: CastChapter): Run {
+  opts = { ...opts, ...(castChapter ? { castChapter } : {}) };
   const ppl = townPeople({ ...opts, now: TOWN_GAME_CREATE });
+  if (castChapter) {
+    for (const role of TOWN_IDS) {
+      const single = personChapter(castChapter, SITE_CAST.voice?.[role]);
+      if (single) prepareSiteInitial('voice', ppl[role], single);
+      ppl[role] = admitSiteCast('voice', ppl[role], castChapter);
+    }
+  }
   const people = TOWN_IDS.map((id) => ppl[id]);
   const town = createTown(people, { ...opts, seed, now: TOWN_GAME_CREATE });
   return { c: createCommunity(people), town, ppl, opts };
@@ -320,7 +337,11 @@ export class VoiceGame {
       }
     | undefined;
 
-  constructor(seed: number = SHIPPED_SEED, rules: VoiceRules = 2) {
+  constructor(
+    seed: number = SHIPPED_SEED,
+    rules: VoiceRules = 2,
+    readonly castChapter?: CastChapter,
+  ) {
     this.seed = seed;
     this.rules = rules;
     // Rules 2: work he does under protest goes worse (HF leaves an act's quality under protest to the host).
@@ -333,6 +354,7 @@ export class VoiceGame {
             ...(rules === 4 ? { selinCalendar: true } : {}),
           }
         : {},
+      castChapter,
     );
     if (rules === 4) this.installPersonaBoundary();
     stepCommunity(this.run.c, this.run.town, TOWN_GAME_START, {});

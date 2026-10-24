@@ -1,4 +1,5 @@
 import { downloadJson } from '@adam0white/lab-kit';
+import { canonicalCast } from '../../../../packages/lab-client/src/cast.ts';
 import {
   createPersona,
   PERSONA_LIMITS,
@@ -22,6 +23,12 @@ async function render() {
     const title = document.createElement('h2');
     title.textContent = summary.castId;
     article.append(title);
+    if (summary.terminal) {
+      const closed = document.createElement('p');
+      closed.textContent =
+        'Closed by an actual death. The last living passport is archived. Only an explicit alternate fresh branch can continue.';
+      article.append(closed);
+    }
     const button = (label: string, action: () => Promise<void>) => {
       const node = document.createElement('button');
       node.textContent = label;
@@ -40,6 +47,50 @@ async function render() {
     });
     button('Download', async () => {
       downloadJson(`${summary.castId}.json`, await get());
+    });
+    let currentCast: ReturnType<typeof canonicalCast> | undefined;
+    try {
+      currentCast = canonicalCast(summary.castId);
+    } catch {}
+    if (currentCast && currentCast.revision !== summary.castRevision) {
+      const note = document.createElement('p');
+      note.textContent =
+        'Older cast edition. Inspect or download it here. To replace it, play a fresh local chapter, enable continuity, and choose Save this played person as an explicit fresh branch in that game’s menu.';
+      article.append(note);
+    }
+    button('Earlier retained revisions', async () => {
+      const revisions = (await shelfRequest({
+        action: 'history',
+        castId: summary.castId,
+      })) as PersonaSummary[];
+      for (const old of revisions.filter((p) => p.revision !== summary.revision)) {
+        const row = document.createElement('details');
+        const label = document.createElement('summary');
+        label.textContent = `Edition ${old.castRevision} · ${old.source.game} · ${old.revision.slice(0, 12)}`;
+        row.append(label);
+        const inspect = document.createElement('button');
+        inspect.type = 'button';
+        inspect.textContent = 'Inspect and download this revision';
+        inspect.onclick = () => {
+          void (async () => {
+            const envelope = await shelfRequest({
+              action: 'get',
+              castId: summary.castId,
+              revision: old.revision,
+            });
+            const pre = document.createElement('pre');
+            pre.textContent = JSON.stringify(envelope, null, 2);
+            row.append(pre);
+            downloadJson(`${summary.castId}-${old.revision.slice(0, 12)}.json`, envelope);
+          })().catch((e) => report(String(e)));
+        };
+        row.append(inspect);
+        article.append(row);
+      }
+      if (revisions.length < 2)
+        report(
+          'No earlier revisions remain in the bounded local cache. Downloaded source files remain independent backups.',
+        );
     });
     button('Delete this person', async () => {
       await shelfRequest({ action: 'delete', castId: summary.castId });

@@ -1,3 +1,11 @@
+import { createPerson, ENGINE_VERSION } from '@adam0white/human-framework';
+import {
+  admitSiteCast,
+  castRole,
+  chapterPeople,
+  SITE_CAST,
+  siteCastCheckpoint,
+} from '../shared/cast-chapter.ts';
 /**
  * Dedicated worker for The Night Watch. Real time enters only as `tick{dtMs}`; the pacer steps whole sim
  * minutes, and inputs apply between minutes and are logged by sim minute, so a seed and the log replay the run.
@@ -14,10 +22,11 @@
  */
 import { hostWorker } from '../shared/worker-host.ts';
 import { type MainToWorker, WATCH_SCENARIO_VERSION, type WorkerReply } from './protocol.ts';
-import { DAY } from './sim/config.ts';
+import { DAY, DUSK_START, WATCHERS } from './sim/config.ts';
 import { dayOfYear, seasonOfDay } from './sim/life.ts';
 import { clockRuns, nightEnd } from './sim/night.ts';
 import { Pacer } from './sim/pace.ts';
+import { prepareWatchCast, WATCH_NORMS, watcherSpec, watchTerminalReceipts } from './sim/people.ts';
 import { WatchRun } from './sim/run.ts';
 import { isSeason } from './sim/season.ts';
 import type { WatchState } from './sim/state.ts';
@@ -26,6 +35,7 @@ import { roman } from './sim/volume.ts';
 import { listPages, loadPage, type PageInfo, savePage } from './store.ts';
 
 let run: WatchRun | null = null;
+let castOwnership: import('../shared/cast-runtime.ts').CastHeads = {};
 const pacer = new Pacer();
 let lastKey = '';
 let sinceFrame = 0;
@@ -98,7 +108,7 @@ function save(kind: PageInfo['kind']): void {
     savedInputs = run.log.length;
     sinceSave = 0;
   }
-  const text = run.snapshotText();
+  const text = JSON.stringify({ ...run.snapshot(), castOwnership });
   const gen = host.gen;
   void savePage(info, text).then((ok) => {
     if (!ok) saving = false;
@@ -146,6 +156,17 @@ function begin(r: WatchRun, id: string): void {
 }
 
 const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
+  const deaths = () => {
+    if (!run) return;
+    for (const terminal of watchTerminalReceipts(run.state, castOwnership))
+      host.post({ type: 'castReady', requestId: 0, terminal });
+  };
+  if (msg.type === 'castOwnership') {
+    castOwnership = structuredClone(msg.heads);
+    deaths();
+    if (run && run.state.phase !== 'goal') save('auto');
+    return;
+  }
   const flush = (force: boolean) => {
     if (!run) return;
     const s = run.state;
@@ -161,14 +182,62 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
     lastKey = key;
     sinceFrame = 0;
     const frame = buildFrame(s, pacer.progress, pacer.slowed(run), isSeason(s) ? rate * DAY : rate);
+    deaths();
     host.post({ type: 'frame', frame, speed: pacer.speed });
   };
 
+  if (msg.type === 'castPreflight' || msg.type === 'castCheckpoint') {
+    try {
+      if (msg.type === 'castPreflight') {
+        prepareWatchCast(msg.seed, msg.chapter);
+        host.post({
+          type: 'castReady',
+          requestId: msg.requestId,
+          initials: Object.fromEntries(
+            chapterPeople(msg.chapter).map((p) => [p.input.parent.castId, p.initial!]),
+          ),
+        });
+        return;
+      }
+      if (msg.type === 'castCheckpoint' && run?.state.phase === 'goal')
+        throw new Error('Begin and play this chapter before saving a person.');
+      const role = msg.type === 'castCheckpoint' ? castRole('watch', msg.castId) : undefined;
+      const person = role ? run?.state.community.people.find((p) => p.id === role) : undefined;
+      if (msg.type === 'castCheckpoint' && !person) throw new Error('This person has not arrived.');
+      if (person && !person.body.alive && role) {
+        host.post({
+          type: 'castReady',
+          requestId: msg.requestId,
+          terminal: { castId: msg.type === 'castCheckpoint' ? msg.castId : '', at: run!.state.minute },
+        });
+        return;
+      }
+      if (person) {
+        const gen = host.gen;
+        void siteCastCheckpoint('watch', person, WATCH_NORMS)
+          .then((transfer) =>
+            host.post(
+              {
+                type: 'castReady',
+                requestId: msg.requestId,
+                transfer: { ...transfer, engine: ENGINE_VERSION },
+                sourceSnapshot: transfer.sourceSnapshot,
+              },
+              gen,
+            ),
+          )
+          .catch((e) => host.post({ type: 'castReady', requestId: msg.requestId, error: String(e) }, gen));
+      }
+    } catch (e) {
+      host.post({ type: 'castReady', requestId: msg.requestId, error: String(e) });
+    }
+    return;
+  }
   switch (msg.type) {
     case 'init':
-      host.gen = msg.gen;
       lastKey = '';
       if (msg.scenarioVersion !== WATCH_SCENARIO_VERSION) {
+        host.gen = msg.gen;
         run = null;
         host.post({
           type: 'error',
@@ -177,7 +246,9 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
         return;
       }
       if (run && behind()) save('auto');
-      begin(new WatchRun(msg.seed), newChronicleId());
+      castOwnership = {};
+      host.gen = msg.gen;
+      begin(new WatchRun(msg.seed, undefined, msg.castChapter), newChronicleId());
       flush(true);
       postShelf();
       return;
@@ -251,7 +322,9 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
         const fork = id.includes(':vol:');
         begin(next, fork ? newChronicleId() : (id.split(':')[0] ?? id));
         if (fork) save('auto');
+        castOwnership = structuredClone(snap?.castOwnership ?? {});
         host.post({ type: 'loaded', ok: true, id, seed: next.seed });
+        host.post({ type: 'castReady', requestId: 0, ownership: castOwnership });
         flush(true);
         postShelf();
       });

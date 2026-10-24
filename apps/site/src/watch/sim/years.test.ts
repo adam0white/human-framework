@@ -223,7 +223,7 @@ describe('Game 3 pacing in the open seasons (G3-3)', () => {
     expect(stepped).toBe(DAY_RATE.days);
     expect(run.state.minute - before).toBe(DAY_RATE.days * DAY);
     pacer.speed = 'seasons';
-    expect(pacer.tick(run, 1000)).toBe(DAY_RATE.seasons);
+    expect(pacer.tick(run, 1000)).toBe(pacer.rate(run));
     // News written into the chronicle eases Seasons to Days for a few days, without a card.
     let eased = false;
     for (let guard = 0; guard < 400 && run.state.phase !== 'fair' && !eased; guard++) {

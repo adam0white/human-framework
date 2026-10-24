@@ -235,6 +235,8 @@ export interface HumanSide {
    * mutable world (resources, house, cedar, injuries, deaths, well user): read it to build affordances
    * and write job results into it. `map` is the shared grid for pathing. The clock starts at minute 0.
    */
+  admitCast?(chapter: import('../../shared/cast-chapter.ts').CastChapter): void;
+  castCheckpoint?(castId: string): Record<string, unknown> | Promise<Record<string, unknown>>;
   init(seed: number, villagers: readonly VillagerSpec[], world: SideWorld, map: GameMap): void;
 
   /**

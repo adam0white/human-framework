@@ -5,7 +5,7 @@ import { playYears } from '../../../test/watch/years.ts';
 import { DAY } from './config.ts';
 import type { Moment } from './moments.ts';
 import { DAY_RATE, Pacer } from './pace.ts';
-import { type LogEntry, replay, ruleHash, WATCH_SCENARIO_VERSION, WatchRun } from './run.ts';
+import { type LogEntry, replay, WatchRun } from './run.ts';
 import { isSeason } from './season.ts';
 import type { Alert, NightNote, WatchState } from './state.ts';
 
@@ -59,11 +59,9 @@ const RUNS: [number, number][] = [
 ];
 
 describe('Night Watch level-up (2026-10-19)', () => {
-  it('a scenario 9 export pinned today still replays to its rule hash (words changed, rules did not)', () => {
+  it('refuses the pre-cast scenario 9 export before replay', () => {
     expect(pinned.scenario).toBe(9);
-    expect(WATCH_SCENARIO_VERSION).toBeGreaterThanOrEqual(pinned.scenario);
-    const s = replay(pinned);
-    expect(ruleHash(s)).toBe(pinned.end.ruleHash);
+    expect(() => replay(pinned)).toThrow(/scenario/);
   });
 
   it('a refusal is said as it happens, with the watcher’s own reason; a leaving in the dark is called by a neighbour', () => {
@@ -126,13 +124,23 @@ describe('Night Watch level-up (2026-10-19)', () => {
     ).toBe(true);
   });
 
-  it('the thaw after a fair says what came of a raised or rebuilt wall', () => {
-    const lines: string[] = [];
-    for (const [seed, years] of RUNS)
-      for (const l of hear(seed, years).s.chronicle)
-        if (/^(Raised at the fair|Rebuilt by the masons)/.test(l.text)) lines.push(l.text);
-    expect(lines.length).toBeGreaterThan(0);
-    for (const l of lines) expect(l).toMatch(/nothing came over it|still climbed (once|\d+ times)/);
+  it('the thaw after a raised wall reports what came over it', async () => {
+    const { endWinter } = await import('./season.ts');
+    const run = new WatchRun(7);
+    run.input({ k: 'start' });
+    const s = run.state;
+    s.year = 2;
+    s.chronicle.push({
+      year: 1,
+      season: 'autumn',
+      minute: s.minute,
+      kind: 'fair',
+      text: 'The west wall was raised and lengthened.',
+    });
+    endWinter(s);
+    expect(s.chronicle.find((l) => l.text.startsWith('Raised at the fair'))?.text).toMatch(
+      /nothing came over it|still climbed (once|\d+ times)/,
+    );
   });
 
   it('a death or a leaving in the open seasons slows the days to the slowest pace for two days', () => {

@@ -16,6 +16,8 @@
  * with children; talks in the open seasons.
  */
 import { hear, outwardSigns, selfReport } from '@adam0white/human-framework';
+import { lifeNotice } from '../../shared/cast-chapter.ts';
+import { WATCH_DISCOVERIES } from '../../shared/cast-discoveries.ts';
 import { SECTION_IDS, type SectionId } from './config.ts';
 import { ageOf, childrenOf } from './life.ts';
 import { theSection } from './night.ts';
@@ -156,6 +158,17 @@ export function talk(s: WatchState, who: string, topic: Topic): boolean {
         ? '“The Gate? I can barely keep my own boots dry.”'
         : '“Not me. Ask someone steadier.”';
   }
+  if (
+    topic === 'night' &&
+    !text.includes('don’t want to talk') &&
+    !s.talks.discovered?.includes(who) &&
+    WATCH_DISCOVERIES[who]
+  ) {
+    text += ` ${WATCH_DISCOVERIES[who]}`;
+    s.talks.discovered ??= [];
+    s.talks.discovered.push(who);
+  }
+  if (topic === 'night' && !text.includes('don’t want to talk') && lifeNotice(p)) text += ` ${lifeNotice(p)}`;
   p.body.sleepPressure = Math.min(1, p.body.sleepPressure + TALK_SLEEP);
   s.talks.left -= 1;
   s.talks.said.push({ who, topic, text });

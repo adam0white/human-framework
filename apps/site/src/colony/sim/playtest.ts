@@ -46,8 +46,9 @@ export function replayColony(
   log: readonly LogEntry[],
   minute: number,
   rules: ColonyRules = CURRENT_RULES,
+  castChapter?: import('../../shared/cast-chapter.ts').CastChapter,
 ): ColonyGame {
-  return ColonyGame.replay(seed, factory, log, minute, rules);
+  return ColonyGame.replay(seed, factory, log, minute, rules, castChapter);
 }
 
 /**

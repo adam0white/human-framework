@@ -55,6 +55,15 @@ import {
   type Unit,
   type World,
 } from '@adam0white/human-framework';
+import { canonicalCast, lifeAdmission } from '@adam0white/lab-client';
+import {
+  applyLifeOffers,
+  type CastChapter,
+  lifeNotice,
+  personChapter,
+  SITE_CAST,
+} from '../../shared/cast-chapter.ts';
+import { VOICE_DISCOVERIES } from '../../shared/cast-discoveries.ts';
 
 export const TOWN_DEFAULTS = {
   /** Clock at creation (minute of day 0). */
@@ -239,6 +248,7 @@ export const TOWN_IDS = ['halil', 'selin', 'riza', 'hacer', 'osman'] as const;
 export type TownPersonId = (typeof TOWN_IDS)[number];
 
 export interface TownState {
+  castDiscoveries?: string[];
   selinEnquirySaidAt?: Minute;
   /** Voice3 source receipts; never sent in the persona projection. */
   selinPaidMakeUps?: ReturnType<typeof retirePaidMakeUps>;
@@ -288,6 +298,7 @@ export interface Town extends World {
 }
 
 export interface TownOptions {
+  castChapter?: CastChapter;
   /** Voice4: Selin's office has a portable, explicitly mapped calendar chain. */
   selinCalendar?: boolean;
   /** Voice3: one actual future day per make-up fast. Legacy source calendars remain unchanged. */
@@ -437,7 +448,7 @@ export function townSpecs(opts: TownOptions = {}): Record<TownPersonId, PersonSp
     label: action,
   });
   const halilPractice = 0.8;
-  return {
+  const specs: Record<TownPersonId, PersonSpec> = {
     halil: {
       id: 'halil',
       name: 'Halil',
@@ -579,6 +590,11 @@ export function townSpecs(opts: TownOptions = {}): Record<TownPersonId, PersonSp
       commitments: [...worship(0.5), ...fast(), job('job', 'work-market', 9 * 60, 17 * 60)],
     },
   };
+  for (const id of TOWN_IDS) {
+    const cast = canonicalCast(`hf.cast.${id}.voice`);
+    specs[id] = { ...specs[id], traits: cast.traits, values: cast.values, bornAt: born(cast.age) };
+  }
+  return specs;
 }
 
 /** The five townspeople as `Person`s, with the beliefs, illness and habit the town's stories need. */
@@ -995,6 +1011,20 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
         tags: ['social', 'leisure', 'conversation'],
       });
     };
+    const ownChapter = personChapter(opts.castChapter, SITE_CAST.voice?.[p.id]);
+    if (ownChapter) {
+      for (const peer of lifeAdmission(ownChapter.input, 'voice').life.notices) {
+        const role = Object.entries(SITE_CAST.voice ?? {}).find(([, cast]) => cast === peer)?.[0];
+        const q = people.find((q) => q.id === role);
+        if (role && role !== p.id && q?.body.alive && !q.body.asleep)
+          talk(
+            role,
+            ownChapter.input.life.place === 'home' ? homeOf(p.id as TownPersonId) : 'public-garden',
+            'talk',
+            `ask ${q.name} about their public work note`,
+          );
+      }
+    }
     switch (p.id) {
       case 'halil': {
         // The workshop is shut on Eid: a town custom (engineering assumption, no norm attached).
@@ -1280,6 +1310,18 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
       default:
         break;
     }
+    if (ownChapter && p.id === 'riza' && mod >= 9 * 60 && mod < 17 * 60 && state.lastWorked[p.id] !== day)
+      out.push({
+        id: 'life-local-help',
+        action: 'local-help',
+        label: 'help with the local bread round',
+        placeId: 'market',
+        duration: 45,
+        effort: 0.25,
+        advertises: { competence: 0.08, belonging: 0.05 },
+        tags: ['work'],
+      });
+    applyLifeOffers('voice', p, out, opts.castChapter);
     return out;
   };
 
@@ -1315,7 +1357,35 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
       return out;
     }
     const done = (o: Outcome) => {
-      if (o.status === 'completed') count(p.id, act.action);
+      if (o.status === 'completed') {
+        count(p.id, act.action);
+        if (['tea', 'talk', 'call'].includes(act.action) && lifeNotice(p))
+          o.summary = `${o.summary ?? aff.label}. ${lifeNotice(p)}`;
+        const witnesses = [p.id, ...(aff.with ?? [])];
+        const roles =
+          act.action === 'work-repair' && p.id === 'halil'
+            ? ['halil']
+            : ['tea', 'talk', 'call'].includes(act.action) && witnesses.includes('halil')
+              ? witnesses.filter((id) => id !== 'halil')
+              : [];
+        for (const role of roles) {
+          const clue = VOICE_DISCOVERIES[role];
+          if (!clue || (state.castDiscoveries ?? []).includes(role)) continue;
+          state.castDiscoveries ??= [];
+          state.castDiscoveries.push(role);
+          o.summary = `${o.summary ?? aff.label}. ${clue}`;
+          queue('halil', {
+            at: now,
+            channel: role === 'halil' ? 'saw' : 'told',
+            kind: 'news',
+            actorId: role,
+            targetId: 'halil',
+            salience: 0.55,
+            valence: 0,
+            summary: clue,
+          });
+        }
+      }
       return o;
     };
     const capacity = readBody(p).capacity;
@@ -1352,6 +1422,9 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
         state.lastWalk ??= {};
         state.lastWalk[p.id] = dayOf(now);
         return done({ ...base, needs: { leisure: 0.2 }, summary: 'walked by the river' });
+      case 'local-help':
+        state.lastWorked[p.id] = dayOf(now);
+        return done({ ...base, needs: { competence: 0.08, belonging: 0.05 }, summary: aff.label });
       case 'housework':
         return done({ ...base, needs: { competence: 0.08 }, summary: 'did the housework' });
       case 'smoke':

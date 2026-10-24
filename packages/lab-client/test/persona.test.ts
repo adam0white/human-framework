@@ -5,6 +5,7 @@ import {
   createPersona,
   isPersonaConsentMessage,
   isPersonaMessage,
+  PERSONA_LIMITS,
   PERSONA_ORIGINS,
   type PersonaShelfState,
   personaChannel,
@@ -92,7 +93,7 @@ describe('persona shelf contract', () => {
   it('prunes old non-head cache entries while preserving active heads and stale-write refusal', async () => {
     let state = empty();
     let parent: string | null = null;
-    for (let n = 0; n < 10; n++) {
+    for (let n = 0; n < PERSONA_LIMITS.revisions; n++) {
       const p = await createPersona({ ...body, parentRevision: parent, transfer: { n } });
       state = acceptPersona(state, p);
       parent = p.revision;
@@ -100,10 +101,10 @@ describe('persona shelf contract', () => {
     const p = await createPersona({ ...body, parentRevision: parent, transfer: { n: 11 } });
     const oldHead = state.heads[body.castId];
     const next = acceptPersona(state, p);
-    expect(next.revisions).toHaveLength(10);
+    expect(next.revisions).toHaveLength(PERSONA_LIMITS.revisions);
     expect(next.heads[body.castId]).toBe(p.revision);
     expect(state.heads[body.castId]).toBe(oldHead);
-    expect(state.revisions).toHaveLength(10);
+    expect(state.revisions).toHaveLength(PERSONA_LIMITS.revisions);
     const stale = await createPersona({
       ...body,
       parentRevision: oldHead ?? null,

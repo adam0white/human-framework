@@ -1,3 +1,5 @@
+import type { CastChapter } from '../shared/cast-chapter.ts';
+import type { CastReply, CastRequest } from '../shared/cast-runtime.ts';
 import type { TelemetryReply, TelemetryRequest } from '../shared/worker-telemetry.ts';
 /** Messages between the Night Watch page and its worker. Every reply echoes the run's `gen`. */
 import type { Input } from './sim/night.ts';
@@ -10,8 +12,9 @@ export { WATCH_SCENARIO_VERSION } from './sim/run.ts';
 export type { PageInfo } from './store.ts';
 
 export type MainToWorker =
+  | CastRequest
   | TelemetryRequest
-  | { type: 'init'; seed: number; gen: number; scenarioVersion: number }
+  | { type: 'init'; castChapter?: CastChapter; seed: number; gen: number; scenarioVersion: number }
   | { type: 'tick'; dtMs: number }
   | { type: 'input'; input: Input }
   | { type: 'speed'; speed: Speed }
@@ -25,6 +28,7 @@ export type MainToWorker =
   | { type: 'load'; id: string; gen: number };
 
 export type WorkerReply =
+  | CastReply
   | TelemetryReply
   | { type: 'frame'; frame: Frame; speed: Speed }
   | { type: 'exported'; requestId: number; data: PlaytestExport }

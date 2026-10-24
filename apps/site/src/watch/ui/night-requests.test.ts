@@ -14,7 +14,7 @@ function context() {
   who.post = 'gate-1';
   who.acts = [];
   who.actsUnavailable = null;
-  const seen: NightAct[] = ['kian', 'mara'].map((by) => ({
+  const seen: NightAct[] = ['kian', 'samira'].map((by) => ({
     input: { k: 'relieve', who: who.id, by },
     label: `Send ${by}`,
     read: 'likely',
@@ -33,7 +33,7 @@ describe('retained night requests use current public evidence', () => {
     const before = JSON.stringify(frame);
     const acts = retainedNightActs(frame, who, seen);
     expect(groupedUnavailable(acts, frame)).toEqual([
-      'Kian, Mara: The latest look no longer shows tiredness.',
+      'Kian, Samira: The latest look no longer shows tiredness.',
     ]);
     expect(acts.every((act) => !act.available)).toBe(true);
     expect(JSON.stringify(frame)).toBe(before);
@@ -62,10 +62,10 @@ describe('retained night requests use current public evidence', () => {
     const { frame, who, seen } = context();
     frame.watchers = frame.watchers.filter((w) => w.id !== 'kian');
     expect(retainedNightActs(frame, who, seen)[0]?.read).toBe('No longer on this watch.');
-    const mara = frame.watchers.find((w) => w.id === 'mara');
-    if (!mara) throw new Error('Expected Mara');
-    mara.post = null;
-    mara.place = 'home';
+    const samira = frame.watchers.find((w) => w.id === 'samira');
+    if (!samira) throw new Error('Expected Samira');
+    samira.post = null;
+    samira.place = 'home';
     expect(retainedNightActs(frame, who, seen)[1]?.read).toBe('Away from the wall and hall.');
   });
   it('groups helpers beyond voice reach once per destination', () => {
@@ -76,14 +76,14 @@ describe('retained night requests use current public evidence', () => {
       read: `Too far to call ${act.label} from here; carry the light to the east wall.`,
     }));
     expect(groupedUnavailable(acts, frame)).toEqual([
-      'Kian, Mara: Out of your voice; carry the light to the east wall.',
+      'Kian, Samira: Out of your voice; carry the light to the east wall.',
     ]);
   });
   it('uses the recipient reason once and drops all retained acts off the wall', () => {
     const { frame, who, seen } = context();
     who.actsUnavailable = 'Out of your voice: the lantern is at the Gate.';
     expect(groupedUnavailable(retainedNightActs(frame, who, seen), frame)).toEqual([
-      'Kian, Mara: Out of your voice: the lantern is at the Gate.',
+      'Kian, Samira: Out of your voice: the lantern is at the Gate.',
     ]);
     who.post = null;
     expect(retainedNightActs(frame, who, seen)).toEqual([]);

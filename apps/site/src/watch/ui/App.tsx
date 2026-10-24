@@ -5,6 +5,7 @@
  */
 import { phoneStage } from '@adam0white/lab-kit';
 import { type ReactNode, useCallback, useEffect, useId, useRef, useState } from 'react';
+import { CastLifeNote, CastStartGate } from '../../shared/CastMenu.tsx';
 import { useWakeLock } from '../../shared/fullscreen.tsx';
 import { LabNotice } from '../../shared/LabNotice.tsx';
 import { gameLabs } from '../../shared/lab.tsx';
@@ -183,6 +184,7 @@ export function App() {
   if (!frame) {
     return (
       <div className="watch watch-loading">
+        <CastStartGate game="watch" />
         <p>Lighting the lantern…</p>
       </div>
     );
@@ -240,6 +242,8 @@ export function App() {
   const displayFrame = showingTitle ? { ...frame, phase: 'goal' as const } : frame;
   return (
     <div className={`watch phase-${displayFrame.phase}${frame.slowed ? ' is-slowed' : ''}`}>
+      <CastStartGate game="watch" />
+      <CastLifeNote game="watch" />
       <div className="lab-game-header">
         <header className="w-top">
           {showingTitle ? (

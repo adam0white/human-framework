@@ -3,6 +3,7 @@
  * playtest export. Replies from an earlier run (`gen`) are dropped.
  */
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { bindCastWorker, postCastMessage } from '../../shared/cast-runtime.ts';
 import { gameLabs } from '../../shared/lab.tsx';
 import { fetchBuild } from '../../shared/playtest.ts';
 import { startTickLoop } from '../../shared/tick-loop.ts';
@@ -70,10 +71,14 @@ export function useWatch(): Watch {
   const exports = useRef(new Map<number, (d: PlaytestExport) => void>());
   const exportSeq = useRef(0);
 
-  const send = useCallback((msg: MainToWorker) => worker.current?.postMessage(msg), []);
+  const send = useCallback(
+    (msg: MainToWorker) => worker.current && postCastMessage(worker.current, 'watch', msg),
+    [],
+  );
 
   useEffect(() => {
     const w = new WatchWorker();
+    const stopCast = bindCastWorker(w, 'watch', gameLabs.watch);
     worker.current = w;
     w.addEventListener('message', (e: MessageEvent<WorkerToMain>) => {
       const msg = e.data;
@@ -125,7 +130,7 @@ export function useWatch(): Watch {
       setError(`The simulation failed to load: ${e.message || 'worker error'}`),
     );
     gen.current += 1;
-    w.postMessage({
+    postCastMessage(w, 'watch', {
       type: 'init',
       seed: seedRef.current,
       gen: gen.current,
@@ -154,6 +159,7 @@ export function useWatch(): Watch {
       window.removeEventListener('pagehide', leave);
       stop();
       stopTelemetry();
+      stopCast();
       w.terminate();
       worker.current = null;
     };

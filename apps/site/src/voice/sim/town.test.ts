@@ -710,15 +710,11 @@ describe('Game 2 world content (voice.md §12)', () => {
       (e) => e.personId === 'halil' && e.kind === 'finish' && e.affordanceId === 'work-extra',
     );
     expect(extra.length).toBeLessThanOrEqual(3);
-    // Osman comes to the door on his own date when nothing has been paid.
+    // The canonical Osman decides whether to visit; the authored collection offer still opens on the promised day.
+    const promised = setup();
+    promised.ppl.osman.now = at(T.rentPromiseDay, 18);
     expect(
-      events.some(
-        (e) =>
-          e.personId === 'osman' &&
-          e.kind === 'finish' &&
-          e.action === 'collect-rent' &&
-          dayOf(e.at) === T.rentPromiseDay,
-      ),
+      promised.town.affordancesFor(promised.ppl.osman).some((offer) => offer.action === 'collect-rent'),
     ).toBe(true);
     // Eid: the workshop is shut (town custom), so he does not work.
     expect(

@@ -1,5 +1,6 @@
 import { restore, snapshot } from '@adam0white/human-framework';
 import type { PersonaEnvelope } from '@adam0white/lab-client';
+import { applyAdmittedLife } from '../../shared/cast-chapter.ts';
 /**
  * Playtest log for Game 2. `RecordedGame` wraps a `VoiceGame`: the worker sends every state-changing message
  * through it, and `replayVoice` re-applies a log through the same `apply`, so recording and replay cannot drift.
@@ -232,6 +233,7 @@ export function replayVoice(
   rules: VoiceRules = 2,
   chapter?: SelinReturn,
   depth = 0,
+  castChapter?: import('../../shared/cast-chapter.ts').CastChapter,
 ): VoiceReplay {
   if (depth > 4) throw new Error('Too many nested Selin chapters.');
   let rec: RecordedGame;
@@ -239,7 +241,14 @@ export function replayVoice(
     if (rules !== 4) throw new Error('This notebook is from an older version; start fresh.');
     if (chapter.version !== 1) throw new Error('Unsupported return chapter.');
     const prefix = parseVoicePlaytest(chapter.prefix);
-    const prior = replayVoice(prefix.file.seed, prefix.file.log, prefix.rules, prefix.chapter, depth + 1);
+    const prior = replayVoice(
+      prefix.file.seed,
+      prefix.file.log,
+      prefix.rules,
+      prefix.chapter,
+      depth + 1,
+      prefix.file.castChapter,
+    );
     if (prior.driftAt !== -1 || voiceHash(prior.rec.game) !== prefix.file.hash)
       throw new Error('Source chapter does not replay.');
     const game = prior.rec.game;
@@ -247,13 +256,22 @@ export function replayVoice(
       throw new Error('Source chapter did not depart.');
     const initial = restore(JSON.parse(chapter.initial));
     if (!prefix.head) throw new Error('The original Selin departure is missing; start fresh.');
-    const expected = returnedSelin(chapter.admission, game.run.ppl.selin, prefix.head, game.run.opts);
+    let expected = returnedSelin(chapter.admission, game.run.ppl.selin, prefix.head, game.run.opts);
+    if (chapter.life) {
+      if (chapter.life.parent.revision !== chapter.admission.revision)
+        throw new Error('Life does not match admission.');
+      expected = applyAdmittedLife('voice', expected, chapter.life);
+    }
     if (stableStringify(snapshot(initial)) !== stableStringify(snapshot(expected)))
       throw new Error('Returned Selin initial state differs from admission.');
     game.run.ppl.selin = initial;
     game.run.c.people = game.run.c.people.map((p) => (p.id === 'selin' ? initial : p));
     const answer = selinEnquiryAnswer(initial);
-    game.run.opts = { ...game.run.opts, selinEnquiryAnswer: answer };
+    game.run.opts = {
+      ...game.run.opts,
+      selinEnquiryAnswer: answer,
+      ...(chapter.life ? { castChapter: { version: 'site-cast/1' as const, input: chapter.life } } : {}),
+    };
     game.run.town = selinReturnTown(game.run.c.people, game.run.opts, game.run.town.state, answer);
     game.installPersonaBoundary();
     game.personaDeparture = undefined;
@@ -262,7 +280,7 @@ export function replayVoice(
     rec.chapter = structuredClone(chapter);
     rec.personaHead = chapter.acceptedHead ? structuredClone(chapter.acceptedHead) : undefined;
     rec.oneCast.push(...structuredClone(chapter.rows));
-  } else rec = new RecordedGame(new VoiceGame(seed, rules));
+  } else rec = new RecordedGame(new VoiceGame(seed, rules, castChapter));
   let driftAt = -1;
   log.forEach((e, i) => {
     if (Array.isArray(e)) {

@@ -1,6 +1,6 @@
 {
   "name": "@adam0white/lab-client",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "The Human Framework game lab client: default-on pseudonymous linked play recording",
   "keywords": [
     "playtest",
@@ -37,5 +37,8 @@
   "scripts": {
     "build": "rm -rf dist && tsc -p tsconfig.build.json",
     "prepack": "npm run build"
+  },
+  "dependencies": {
+    "@adam0white/human-framework": "2.18.0"
   }
 }

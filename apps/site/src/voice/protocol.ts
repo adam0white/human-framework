@@ -1,3 +1,5 @@
+import type { CastChapter } from '../shared/cast-chapter.ts';
+import type { CastReply, CastRequest } from '../shared/cast-runtime.ts';
 /**
  * Worker protocol for Game 2, *The Day You Say Nothing* (docs/games/voice.md §10). The
  * main thread sends `tick{dtMs}` every animation frame; the worker turns real time into sim minutes and replies
@@ -137,8 +139,16 @@ export const defaultWhisper = (choiceId: StandingWhisper['choiceId']): StandingW
 });
 
 export type MainToWorker =
+  | CastRequest
   | TelemetryRequest
-  | { type: 'init'; seed: number; gen: number; scenarioVersion: string; selinReturn?: SelinReturn }
+  | {
+      type: 'init';
+      castChapter?: CastChapter;
+      seed: number;
+      gen: number;
+      scenarioVersion: string;
+      selinReturn?: SelinReturn;
+    }
   | { type: 'personaReturnCheck'; requestId: number; header: SelinReturn }
   | { type: 'personaCheckpoint' }
   | { type: 'personaCheckpointCancel' }
@@ -161,7 +171,7 @@ export type MainToWorker =
   /** Playtest file (additive): the worker answers `playtest` with the file (its `build` is filled in by the page). */
   | { type: 'exportPlaytest' }
   /** Replay a playtest file's text as a new run numbered `gen`; answers `replayed`, or `playtestError`. */
-  | { type: 'loadPlaytest'; gen: number; text: string };
+  | { type: 'loadPlaytest'; gen: number; text: string; local?: boolean };
 
 export type { ReplayResult };
 
@@ -383,6 +393,7 @@ export interface SilentMonthView {
 export const SILENT_CAPTION = 'Small differences compound; not every difference is your doing.';
 
 export type WorkerReply =
+  | CastReply
   | TelemetryReply
   | { type: 'personaReturnReady'; requestId: number; header?: SelinReturn; error?: string }
   | { type: 'personaStarted' }

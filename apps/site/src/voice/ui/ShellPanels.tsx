@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { CastMenu } from '../../shared/CastMenu.tsx';
 import { FullscreenButton } from '../../shared/fullscreen.tsx';
 import { MODEL_NOTES, type Pace } from '../protocol.ts';
 import { VoicePersonaControls } from './persona.tsx';
@@ -160,6 +161,7 @@ export function MenuPanel({
         <a href="/">All games</a>
         <footer>
           <RecordingPreference />
+          <CastMenu game="voice" />
           <VoicePersonaControls canReturn={canReturn} />
         </footer>
         <button type="button" className="v-btn v-btn-primary" onClick={onClose}>

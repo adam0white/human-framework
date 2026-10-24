@@ -152,6 +152,7 @@ export interface Leaf {
 
 /** Talks with the Keeper by day (spec §4): a budget of daylight and what was said. */
 export interface TalkState {
+  discovered?: string[];
   left: number;
   said: { who: WatcherId; topic: 'night' | 'body' | 'home' | 'gate'; text: string }[];
   /** `${who}:${topic}` for every talk held so far (a topic not yet raised with someone ranks higher). */
@@ -313,6 +314,7 @@ export interface BellState {
 }
 
 export interface WatchState {
+  castChapter?: import('../../shared/cast-chapter.ts').CastChapter;
   version: 4;
   /** Scenario 13: accepted cross-post night help costs a small burst of exertion. Absent keeps legacy rules. */
   nightDepartureEffort?: true;

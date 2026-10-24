@@ -170,3 +170,78 @@ it('binds recording approval to the pinned branch instead of a different active 
   ).rejects.toThrow('Selected');
   await shelfRequest({ action: 'delete', castId: body.castId });
 });
+
+it('accepts a whole cast atomically and requires all pinned histories for recording linkage', async () => {
+  vi.stubGlobal('indexedDB', indexedDB);
+  const stored = new Map<string, string>();
+  vi.stubGlobal('localStorage', {
+    getItem: (k: string) => stored.get(k) ?? null,
+    setItem: (k: string, v: string) => stored.set(k, v),
+    removeItem: (k: string) => stored.delete(k),
+  });
+  const { initialPersonaLife } = await import('../../../../packages/lab-client/src/life.ts');
+  const ids = ['hf.cast.samira.well', 'hf.cast.idris.well'];
+  for (const castId of ids) await rawShelfRequest({ action: 'delete', castId });
+  const people = await Promise.all(
+    ids.map(async (castId, i) =>
+      createPersona({
+        format: 'hf-persona/1',
+        castId,
+        castRevision: '1',
+        branchId: `batch-${i}`,
+        parentRevision: null,
+        source: { game: 'well', build: 'control', engine: '2.17.0', rules: 'cast-1' },
+        transfer: { life: initialPersonaLife(castId, `batch-${i}`, 0) },
+        limitations: [],
+      }),
+    ),
+  );
+  await rawShelfRequest({ action: 'putBatch', envelopes: people });
+  const prepared = (await rawShelfRequest({ action: 'prepareBatch', castIds: ids })) as {
+    inputs: unknown[];
+    blocked: unknown[];
+  };
+  expect(prepared.inputs).toHaveLength(2);
+  expect(prepared.blocked).toEqual([]);
+  await shelfRequest({ action: 'recording', envelope: people[0], allowRecording: true });
+  expect(await rawShelfRequest({ action: 'recordingBatch', envelopes: people })).toMatchObject({
+    sameEpoch: false,
+  });
+  const epoch = (await rawShelfRequest({ action: 'recordingBatch', envelopes: people })) as {
+    recordingEpoch: string;
+  };
+  writeLocal(PLAYER_KEY, 'abcdef0123456789abcdef0123456789');
+  await expect(
+    rawShelfRequest({
+      action: 'recordingBatch',
+      envelopes: people,
+      allowRecording: true,
+      recordingEpoch: epoch.recordingEpoch,
+    }),
+  ).rejects.toThrow('identity changed');
+  expect(await rawShelfRequest({ action: 'recordingBatch', envelopes: people })).toMatchObject({
+    sameEpoch: false,
+  });
+  await shelfRequest({ action: 'recordingBatch', envelopes: people, allowRecording: true });
+  expect(await rawShelfRequest({ action: 'recordingBatch', envelopes: people })).toMatchObject({
+    sameEpoch: true,
+  });
+  const children = await Promise.all(
+    people.map(async (p) => {
+      const { revision, ...body } = p;
+      return createPersona({
+        ...body,
+        parentRevision: revision,
+        transfer: { ...body.transfer, child: true },
+      });
+    }),
+  );
+  const p = people[1]!;
+  const { revision, ...body } = p;
+  const other = await createPersona({ ...body, parentRevision: revision, transfer: { other: true } });
+  await rawShelfRequest({ action: 'put', envelope: other });
+  await expect(rawShelfRequest({ action: 'putBatch', envelopes: children })).rejects.toThrow('conflict');
+  expect(await rawShelfRequest({ action: 'get', castId: ids[0] })).toEqual(people[0]);
+  expect(await rawShelfRequest({ action: 'get', castId: ids[1] })).toEqual(other);
+  for (const castId of ids) await rawShelfRequest({ action: 'delete', castId });
+});

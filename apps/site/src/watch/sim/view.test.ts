@@ -1,8 +1,8 @@
-import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { planInputs } from '../../../test/watch/plans.ts';
 import { drawMap, layoutFor, newEase } from '../ui/map.ts';
-import { type PlaytestExport, replay, WatchRun } from './run.ts';
+import { arrive } from './people.ts';
+import { WatchRun } from './run.ts';
 import { buildFrame } from './view.ts';
 
 describe('the frame shows what the Keeper can see', () => {
@@ -53,7 +53,7 @@ describe('the frame shows what the Keeper can see', () => {
       if (run.state.phase !== 'dawn') return;
       run.input({ k: 'toDusk' });
     }
-    const r = buildFrame(run.state, 0, false).watchers.find((w) => w.id === 'ruslan');
+    const r = buildFrame(run.state, 0, false).watchers.find((w) => w.id === 'meryem');
     expect(r?.impressions[0]?.text).toBe('you don’t know them yet');
   });
 });
@@ -76,23 +76,23 @@ describe('the bell control says where it carries (owner playtest 2026-10-05: the
   });
 });
 
-// The edge playtest showed Mara twice and hid Joss at this earlier frame.
-it('keeps every person sharing a post in the replayed map frame', () => {
-  const exp = JSON.parse(
-    readFileSync(
-      new URL('../../../../../docs/games/watch-playtest-2026-10-19-edge.json', import.meta.url),
-      'utf8',
-    ),
-  ) as PlaytestExport;
-  const endMinute = 1052476;
-  const state = replay({ ...exp, endMinute, inputs: exp.inputs.filter((e) => e.m <= endMinute) });
+// The edge playtest showed Samira twice and hid Idris at this earlier frame.
+it('keeps every person sharing a post in the current map frame', () => {
+  const run = new WatchRun(7);
+  run.input({ k: 'start' });
+  const state = run.state;
+  state.winterNight = 2;
+  arrive(state);
+  state.phase = 'night';
+  state.place.samira = 'east-1';
+  state.place.idris = 'east-1';
   const frame = buildFrame(state, 0, false);
-  expect(state.place.mara).toBe('east-1');
-  expect(state.place.joss).toBe('east-1');
+  expect(state.place.samira).toBe('east-1');
+  expect(state.place.idris).toBe('east-1');
   const post = frame.sections.find((s) => s.id === 'east')?.posts.find((p) => p.id === 'east-1');
   expect(post?.watchers).toEqual(frame.watchers.filter((w) => w.place === 'east-1').map((w) => w.id));
-  expect(post?.watchers).toContain('mara');
-  expect(post?.watchers).toContain('joss');
+  expect(post?.watchers).toContain('samira');
+  expect(post?.watchers).toContain('idris');
   const labels: string[] = [];
   const ctx = new Proxy(
     {},
@@ -110,6 +110,6 @@ it('keeps every person sharing a post in the replayed map frame', () => {
     },
   ) as CanvasRenderingContext2D;
   drawMap(ctx, layoutFor(360, 400), frame, newEase(), { selected: null, now: 0 });
-  expect(labels).toContain('Mara');
-  expect(labels).toContain('Joss');
+  expect(labels).toContain('Samira');
+  expect(labels).toContain('Idris');
 });

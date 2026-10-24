@@ -14,7 +14,7 @@ import {
   snapshot,
   validateCalendarPersona,
 } from '@adam0white/human-framework';
-import type { PersonaEnvelope } from '@adam0white/lab-client';
+import type { LifePreparation, PersonaEnvelope } from '@adam0white/lab-client';
 import { createTown, TOWN_DEFAULTS, type TownOptions, type TownState, townCalendar } from './town.ts';
 
 export const SELIN_CAST = 'hf.cast.selin.voice';
@@ -44,6 +44,7 @@ export interface SelinCalendarHost {
   ramadanDays: number;
 }
 export interface SelinReturn {
+  life?: LifePreparation;
   version: 1;
   /** Original host-local departure file; never stored on the shared shelf. */
   prefix: string;
@@ -151,7 +152,7 @@ export function returnedSelin(
   departure: PersonaEnvelope,
   options: TownOptions = {},
 ): Person {
-  if (envelope.castId !== SELIN_CAST || envelope.castRevision !== '1' || envelope.source.game !== 'goodhands')
+  if (envelope.castId !== SELIN_CAST || envelope.castRevision !== '2' || envelope.source.game !== 'goodhands')
     throw new Error('This is not Selin returning from Good Hands.');
   const transfer = envelope.transfer as Partial<SelinTransfer>;
   if (!transfer.person || !Array.isArray(transfer.history) || transfer.history.length > 8)
@@ -167,7 +168,7 @@ export function returnedSelin(
   const digest = original.checkpoint?.checkpointDigest;
   if (
     departure.castId !== SELIN_CAST ||
-    departure.castRevision !== '1' ||
+    departure.castRevision !== '2' ||
     departure.source.game !== 'voice' ||
     departure.source.rules !== 'voice-4' ||
     departure.branchId !== envelope.branchId ||

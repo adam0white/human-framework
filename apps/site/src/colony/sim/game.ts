@@ -1,3 +1,4 @@
+import { type CastChapter, castOpeningLine } from '../../shared/cast-chapter.ts';
 /**
  * The lockstep engine: one clock, one order book, two worlds. Each sim minute it applies due orders to
  * both sides at the same boundary, applies world weather to both worlds, steps Classic, steps the
@@ -481,6 +482,7 @@ export class ColonyGame {
     factory: HumanSideFactory,
     rules: ColonyRules = CURRENT_RULES,
     village: Village = 'default',
+    readonly castChapter?: CastChapter,
   ) {
     this.seed = seed;
     this.factory = factory;
@@ -496,6 +498,10 @@ export class ColonyGame {
     this.classic = new ClassicSim(seed, VILLAGERS, this.classicWorld, rules);
     this.human = factory(rules);
     this.human.init(seed, VILLAGERS, this.humanWorld, MAP);
+    if (castChapter) {
+      if (!this.human.admitCast) throw new Error('This side does not admit cast chapters.');
+      this.human.admitCast(castChapter);
+    }
   }
 
   get ended(): boolean {
@@ -594,6 +600,7 @@ export class ColonyGame {
     log: readonly LogEntry[],
     until?: Minute,
     rules: ColonyRules = CURRENT_RULES,
+    castChapter?: CastChapter,
   ): ColonyGame {
     const config = log[0]?.kind === 'village' ? log[0] : null;
     if (
@@ -607,7 +614,7 @@ export class ColonyGame {
       )
     )
       throw new Error('Invalid village configuration');
-    const g = new ColonyGame(seed, factory, rules, config?.village ?? 'default');
+    const g = new ColonyGame(seed, factory, rules, config?.village ?? 'default', castChapter);
     let i = 0;
     for (;;) {
       // Entries first: a `continue` is stamped at the Day-2 end, when the game has already ended.

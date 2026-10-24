@@ -1,0 +1,626 @@
+/** Browser orchestration only. Whole-cast preflight precedes one atomic shelf claim. */
+import {
+  anchorPersonaLife,
+  canonicalCast,
+  canonicalPersona,
+  castForGame,
+  claimCastChapterBatch,
+  closePersonaBranch,
+  createPersona,
+  initialPersonaLife,
+  type Lab,
+  lifeAdmission,
+  type PersonaEnvelope,
+  personaChannel,
+  validatePersona,
+} from '@adam0white/lab-client';
+import { type CastChapter, makeCastChapter } from './cast-chapter.ts';
+import { fetchBuild } from './playtest.ts';
+export type CastHeads = Record<string, PersonaEnvelope>;
+export type CastRequest =
+  | { type: 'castPreflight'; requestId: number; seed: number; chapter: CastChapter }
+  | { type: 'castCheckpoint'; requestId: number; castId: string }
+  | { type: 'castOwnership'; heads: CastHeads };
+export type CastReply = {
+  type: 'castReady';
+  requestId: number;
+  error?: string;
+  transfer?: Record<string, unknown>;
+  terminal?: { castId: string; at: number };
+  ownership?: CastHeads;
+  initials?: Record<string, string>;
+  sourceSnapshot?: unknown;
+};
+export const sitePersonaShelf = personaChannel();
+const shelf = sitePersonaShelf;
+type State = {
+  game: string;
+  lab: Lab;
+  worker: Worker;
+  generation: number;
+  heads: CastHeads;
+  sources: Record<string, unknown>;
+  localSources?: unknown;
+  histories: CastHeads;
+  busy: boolean;
+  status: string;
+  selected: string;
+  line?: string;
+  pending: Map<number, { resolve(r: CastReply): void; reject(e: Error): void }>;
+  seq: number;
+  gate: string | null;
+  dedicated: boolean;
+  runGen?: number;
+  boundary?: string;
+  phase?: string;
+  day?: number;
+  ended?: boolean;
+  played: boolean;
+  localRestore?: CastHeads;
+  localLoad: boolean;
+  auto: boolean;
+  blocked?: boolean;
+  pendingInit?: Record<string, unknown>;
+};
+const states = new Map<string, State>();
+const listeners = new Set<() => void>();
+export const castChanges = (fn: () => void) => {
+  listeners.add(fn);
+  return () => {
+    listeners.delete(fn);
+  };
+};
+const changed = () => {
+  for (const fn of listeners) fn();
+};
+export function castState(game: string) {
+  const s = states.get(game);
+  return {
+    blocked: s?.blocked ?? false,
+    enabled: shelf.enabled,
+    ready: shelf.ready,
+    line: s?.line,
+    status: s?.status ?? 'Local play. Between-game life is optional.',
+    busy: s?.busy ?? false,
+    people: castForGame(game),
+    selected: s?.selected ?? castForGame(game)[0]?.castId ?? '',
+    gated: Boolean(s?.gate) && !s?.dedicated,
+    recordingAllowed: s?.lab.personaRecordingAllowed ?? true,
+  };
+}
+export function selectCast(game: string, id: string) {
+  const s = states.get(game);
+  if (s && castForGame(game).some((p) => p.castId === id)) s.selected = id;
+  changed();
+}
+export function setCastEnabled(enabled: boolean) {
+  shelf.setEnabled(enabled);
+  window.dispatchEvent(new Event('hf-cast-preference'));
+  changed();
+}
+function gate(s: State, key: string | null) {
+  s.gate = key;
+  s.lab.setPersonaRecording(key);
+  changed();
+}
+function ask(
+  s: State,
+  message:
+    | { type: 'castPreflight'; seed: number; chapter: CastChapter }
+    | { type: 'castCheckpoint'; castId: string },
+): Promise<CastReply> {
+  const requestId = ++s.seq;
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => {
+      s.pending.delete(requestId);
+      reject(new Error('No eligible checkpoint boundary was reached. Continue play and try again.'));
+    }, 60000);
+    s.pending.set(requestId, {
+      resolve: (r) => {
+        clearTimeout(timer);
+        resolve(r);
+      },
+      reject: (e) => {
+        clearTimeout(timer);
+        reject(e);
+      },
+    });
+    s.worker.postMessage({ ...message, requestId });
+  });
+}
+function reset(s: State, gen?: number) {
+  s.generation++;
+  s.busy = false;
+  s.heads = {};
+  s.sources = {};
+  s.localSources = undefined;
+  s.histories = {};
+  s.dedicated = false;
+  s.runGen = gen;
+  s.boundary = undefined;
+  s.phase = undefined;
+  s.day = undefined;
+  s.ended = undefined;
+  s.played = false;
+  s.localRestore = undefined;
+  s.localLoad = false;
+  s.blocked = false;
+  for (const p of s.pending.values()) p.reject(new Error('This chapter was replaced.'));
+  s.pending.clear();
+}
+function pinOwnership(s: State) {
+  s.worker.postMessage({ type: 'castOwnership', heads: structuredClone(s.heads) } satisfies CastRequest);
+}
+async function validHeads(game: string, value: unknown): Promise<CastHeads> {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return {};
+  const entries = Object.entries(value);
+  if (entries.length > 8) throw new Error('Too many ownership receipts.');
+  const heads: CastHeads = {};
+  for (const [id, value] of entries) {
+    const p = await validatePersona(value);
+    if (p.castId !== id || !castForGame(game).some((c) => c.castId === id))
+      throw new Error('Ownership receipt identity differs.');
+    heads[id] = p;
+  }
+  return heads;
+}
+async function recording(s: State, generation: number) {
+  const envelopes = Object.values(s.histories);
+  if (!envelopes.length || s.dedicated) return;
+  const expected = envelopes.map((p) => p.revision).join('/');
+  const result = await shelf.request<{ sameEpoch: boolean; revisions: string[] }>({
+    action: 'recordingBatch',
+    envelopes,
+  });
+  if (
+    generation === s.generation &&
+    Object.values(s.histories)
+      .map((p) => p.revision)
+      .join('/') === expected &&
+    result.revisions.join('/') === expected
+  )
+    s.lab.allowPersonaRecording(result.sameEpoch);
+  changed();
+}
+async function restoreOwnership(s: State, value: unknown, generation: number) {
+  const heads = await validHeads(s.game, value);
+  if (generation !== s.generation || !s.localLoad) return;
+  let archived: Record<string, unknown> = {};
+  if (typeof localStorage !== 'undefined') {
+    try {
+      archived = JSON.parse(localStorage.getItem(`hf-cast-source:${s.game}`) ?? '{}') as Record<
+        string,
+        unknown
+      >;
+    } catch {
+      /* Missing source evidence does not change the simulation. */
+    }
+  }
+  if (s.localSources && typeof s.localSources === 'object')
+    archived = { ...archived, ...(s.localSources as Record<string, unknown>) };
+  const sources: Record<string, unknown> = {};
+  if (new TextEncoder().encode(JSON.stringify(archived)).length <= 1024 * 1024) {
+    for (const [id, head] of Object.entries(heads)) {
+      const raw = archived[id];
+      const receipt = head.transfer.checkpoint as { sha256?: unknown } | undefined;
+      if (!raw || !receipt) continue;
+      const digest = Array.from(
+        new Uint8Array(
+          await crypto.subtle.digest('SHA-256', new TextEncoder().encode(canonicalPersona(raw))),
+        ),
+        (b) => b.toString(16).padStart(2, '0'),
+      ).join('');
+      if (receipt.sha256 === digest) sources[id] = raw;
+    }
+  }
+  if (generation !== s.generation || !s.localLoad) return;
+  s.sources = sources;
+  s.heads = heads;
+  s.histories = heads;
+  pinOwnership(s);
+  if (Object.keys(heads).length) {
+    gate(s, `cast-local-${crypto.randomUUID()}`);
+    await recording(s, generation);
+    s.status = 'Local save restored its exact accepted heads. A changed shelf still conflicts.';
+  }
+  changed();
+}
+async function closeOwned(s: State, terminal: { castId: string; at: number }, generation: number) {
+  const parent = s.heads[terminal.castId];
+  if (!parent || parent.terminal || generation !== s.generation || !shelf.enabled) return;
+  const receipt = await closePersonaBranch(
+    parent,
+    { ...parent.source, game: s.game, build: await fetchBuild() },
+    terminal.at,
+  );
+  if (generation !== s.generation) return;
+  await shelf.request({ action: 'put', envelope: receipt });
+  if (generation !== s.generation || s.heads[terminal.castId]?.revision !== parent.revision) return;
+  s.heads[terminal.castId] = receipt;
+  s.histories[terminal.castId] = receipt;
+  pinOwnership(s);
+  s.status = `${canonicalCast(terminal.castId).name}'s branch is closed by their death. History remains inspectable.`;
+  changed();
+}
+export function bindCastWorker(worker: Worker, game: string, lab: Lab): () => void {
+  const s: State = {
+    worker,
+    game,
+    lab,
+    generation: 0,
+    heads: {},
+    sources: {},
+    histories: {},
+    busy: false,
+    status: 'Local play. Between-game life is optional.',
+    selected: castForGame(game)[0]?.castId ?? '',
+    pending: new Map(),
+    seq: 0,
+    gate: null,
+    dedicated: false,
+    played: false,
+    localLoad: false,
+    auto: false,
+  };
+  states.set(game, s);
+  const automatic = () => {
+    if (
+      !shelf.enabled ||
+      !s.played ||
+      s.busy ||
+      s.auto ||
+      s.dedicated ||
+      (s.gate && !Object.keys(s.heads).length)
+    )
+      return;
+    s.auto = true;
+    const generation = s.generation;
+    void (async () => {
+      const ids = Object.keys(s.heads).length ? Object.keys(s.heads) : castForGame(game).map((p) => p.castId);
+      for (const id of ids) {
+        if (generation !== s.generation) break;
+        await checkpointPerson(s, id, false);
+      }
+    })().finally(() => {
+      s.auto = false;
+    });
+  };
+  const hidden = () => {
+    if (document.visibilityState === 'hidden') automatic();
+  };
+  const receive = (event: MessageEvent) => {
+    const r = event.data as CastReply;
+    const m = event.data as {
+      type: string;
+      gen?: number;
+      frame?: { phase?: string; day?: number | { current: number }; ended?: boolean; minute?: number };
+      result?: { matches?: boolean };
+      file?: Record<string, unknown>;
+      data?: Record<string, unknown>;
+    };
+    if (r.type === 'castReady') {
+      if (r.terminal && (s.runGen === undefined || m.gen === s.runGen))
+        void closeOwned(s, r.terminal, s.generation).catch((e) => {
+          s.status = String(e);
+          changed();
+        });
+      if (r.ownership && s.localLoad && m.gen === s.runGen)
+        void restoreOwnership(s, r.ownership, s.generation).catch((e) => {
+          s.status = String(e);
+          changed();
+        });
+      const pending = s.pending.get(r.requestId);
+      s.pending.delete(r.requestId);
+      pending?.resolve(r);
+    }
+    if (m.gen !== undefined && s.runGen !== undefined && m.gen !== s.runGen) return;
+    for (const file of [m.file, m.data])
+      if (file && typeof file === 'object' && (file.kind === 'human-playtest' || file.game === 'watch')) {
+        file.castOwnership = structuredClone(s.heads);
+        file.castSources = structuredClone(s.sources);
+      }
+    if (m.type === 'replayed' && m.result?.matches && s.localRestore)
+      void restoreOwnership(s, s.localRestore, s.generation).catch((e) => {
+        s.status = String(e);
+        changed();
+      });
+    if (m.type === 'frame' && m.frame) {
+      const f = m.frame;
+      if (f.phase !== undefined) s.phase = f.phase;
+      if (f.day !== undefined) s.day = typeof f.day === 'object' ? f.day.current : f.day;
+      if (f.ended !== undefined) s.ended = f.ended;
+      if (game === 'well' ? (f.minute ?? 0) > 0 : !['premise', 'goal'].includes(s.phase ?? 'goal'))
+        s.played = true;
+      const boundary = `${s.day ?? ''}/${s.phase ?? ''}/${s.ended ?? false}`;
+      if (s.boundary !== undefined && boundary !== s.boundary) automatic();
+      s.boundary = boundary;
+    }
+  };
+  worker.addEventListener('message', receive);
+  const invalidate = () => {
+    s.generation++;
+    s.busy = false;
+    if (s.gate || Object.keys(s.histories).length) {
+      s.gate = s.gate ?? `cast-history-${crypto.randomUUID()}`;
+      s.lab.setPersonaRecording(`cast-verifying-${crypto.randomUUID()}`);
+    }
+    changed();
+  };
+  const storage = (e: StorageEvent) => {
+    if (e.key === null || ['hf-lab-player', 'hf-lab-recording-off'].includes(e.key)) invalidate();
+  };
+  window.addEventListener('hf-lab-preference', invalidate);
+  window.addEventListener('storage', storage);
+  document.addEventListener('visibilitychange', hidden);
+  window.addEventListener('pagehide', automatic);
+  void shelf.ready.then(changed);
+  return () => {
+    reset(s);
+    worker.removeEventListener('message', receive);
+    window.removeEventListener('hf-lab-preference', invalidate);
+    window.removeEventListener('storage', storage);
+    document.removeEventListener('visibilitychange', hidden);
+    window.removeEventListener('pagehide', automatic);
+    if (states.get(game) === s) states.delete(game);
+  };
+}
+/** Loaded simulation never reads current shelf state. Only explicit local reload restores its pinned receipts. */
+export function postCastMessage(worker: Worker, game: string, message: Record<string, unknown>): void {
+  const s = states.get(game);
+  if (!s || s.worker !== worker) {
+    worker.postMessage(message);
+    return;
+  }
+  if (['init', 'loadPlaytest', 'load'].includes(String(message.type)))
+    reset(s, typeof message.gen === 'number' ? message.gen : undefined);
+  if (message.type === 'loadPlaytest' || message.type === 'load') {
+    s.localLoad = message.type === 'load' || message.local === true;
+    if (s.localLoad && typeof message.text === 'string') {
+      try {
+        const saved = JSON.parse(message.text);
+        s.localRestore = saved.castOwnership;
+        s.localSources = saved.castSources;
+      } catch {
+        /* Worker rejects malformed file. */
+      }
+    }
+    gate(s, `cast-file-${crypto.randomUUID()}`);
+    worker.postMessage(message);
+    return;
+  }
+  if (message.type === 'init' && message.selinReturn) {
+    s.gate = `cast-dedicated-${crypto.randomUUID()}`;
+    s.dedicated = true;
+    changed();
+    worker.postMessage(message);
+    return;
+  }
+  if (message.type !== 'init') {
+    worker.postMessage(message);
+    return;
+  }
+  s.pendingInit = message;
+  const generation = s.generation;
+  s.busy = true;
+  changed();
+  void (async () => {
+    await shelf.ready;
+    if (generation !== s.generation) return;
+    if (!shelf.enabled) {
+      gate(s, null);
+      worker.postMessage(message);
+      return;
+    }
+    gate(s, `cast-pending-${crypto.randomUUID()}`);
+    const source = { game, build: await fetchBuild(), engine: '2.17.0', rules: 'cast-1' };
+    const admitted = await claimCastChapterBatch(
+      shelf,
+      castForGame(game).map((p) => p.castId),
+      source,
+      async (inputs) => {
+        const chapter = makeCastChapter(inputs);
+        const checked = await ask(s, { type: 'castPreflight', seed: Number(message.seed), chapter });
+        if (checked.error) throw new Error(checked.error);
+        for (const input of inputs) {
+          const initial = checked.initials?.[input.parent.castId];
+          if (!initial) throw new Error('Preflight omitted a complete initial actor.');
+          chapter.people![input.parent.castId]!.initial = initial;
+        }
+        return chapter;
+      },
+      { isCurrent: () => generation === s.generation && shelf.enabled },
+    );
+    if (generation !== s.generation) return;
+    if (!admitted) {
+      gate(s, null);
+      s.line = undefined;
+      s.status = 'Fresh local chapter. No allocated person has an active shelf history.';
+      worker.postMessage(message);
+      return;
+    }
+    s.heads = Object.fromEntries(admitted.claims.map((p) => [p.castId, p]));
+    s.histories = { ...s.heads };
+    const chapter = makeCastChapter(admitted.inputs, admitted.claims);
+    for (const [id, person] of Object.entries(chapter.people!))
+      person.initial = admitted.initial.people![id]!.initial;
+    s.line = admitted.inputs.map((p) => lifeAdmission(p, game).line).join(' ');
+    gate(s, `cast-group-${crypto.randomUUID()}`);
+    s.status = `${admitted.claims.length} continuing people begin together. Their initial state and life are pinned.`;
+    worker.postMessage({ ...message, castChapter: chapter });
+    pinOwnership(s);
+    await recording(s, generation);
+  })()
+    .catch((e) => {
+      if (generation === s.generation) {
+        s.blocked = true;
+        s.status = `${String(e)} No partial chapter started. Use fresh local play, or finish an eligible source chapter first.`;
+      }
+    })
+    .finally(() => {
+      if (generation === s.generation) s.busy = false;
+      changed();
+    });
+}
+export function startCastFresh(game: string) {
+  const s = states.get(game);
+  if (!s) return;
+  shelf.setEnabled(false);
+  if (s.blocked && s.pendingInit) {
+    const message = s.pendingInit;
+    postCastMessage(s.worker, game, message);
+    return;
+  }
+  s.status = 'Continuity is off. Use the game’s new-run control for deliberate fresh local play.';
+  changed();
+}
+async function checkpointPerson(s: State, selectedCastId: string, fork: boolean): Promise<void> {
+  if (s.busy) return;
+  s.busy = true;
+  const generation = s.generation;
+  s.status = `Waiting for ${canonicalCast(selectedCastId).name}'s actual action to finish. Close the menu and continue play.`;
+  changed();
+  try {
+    await shelf.ready;
+    if (!shelf.enabled) throw new Error('Enable fictional-person continuity first.');
+    const result = await ask(s, { type: 'castCheckpoint', castId: selectedCastId });
+    if (generation !== s.generation) return;
+    if (result.terminal) {
+      await closeOwned(s, result.terminal, generation);
+      return;
+    }
+    if (result.error || !result.transfer) throw new Error(result.error ?? 'No supported checkpoint.');
+    if (result.transfer.sourceRole !== selectedCastId.split('.')[2])
+      throw new Error('Checkpoint identity differs.');
+    if (result.transfer.castPassport === 'site-cast/1' && !result.transfer.checkpoint)
+      throw new Error('Missing full-source checkpoint receipt.');
+    if (result.transfer.checkpoint) {
+      const raw = result.sourceSnapshot as { schema?: unknown; now?: unknown; rng?: unknown } | undefined;
+      const receipt = result.transfer.checkpoint as {
+        schema?: unknown;
+        sourceMinute?: unknown;
+        rng?: unknown;
+        sha256?: unknown;
+      };
+      if (
+        !raw ||
+        receipt.schema !== raw.schema ||
+        receipt.sourceMinute !== raw.now ||
+        canonicalPersona(receipt.rng) !== canonicalPersona(raw.rng)
+      )
+        throw new Error('Full-source checkpoint receipt differs from its captured snapshot.');
+      const digest = Array.from(
+        new Uint8Array(
+          await crypto.subtle.digest('SHA-256', new TextEncoder().encode(canonicalPersona(raw))),
+        ),
+        (b) => b.toString(16).padStart(2, '0'),
+      ).join('');
+      if (digest !== receipt.sha256) throw new Error('Full-source checkpoint checksum differs.');
+      if (generation !== s.generation) return;
+      s.sources[selectedCastId] = raw;
+      const key = `hf-cast-source:${s.game}`;
+      let prior: Record<string, unknown> = {};
+      if (typeof localStorage !== 'undefined') {
+        try {
+          prior = JSON.parse(localStorage.getItem(key) ?? '{}') as Record<string, unknown>;
+        } catch {
+          /* Keep the current verified capture. */
+        }
+      }
+      const allocated = new Set(castForGame(s.game).map((p) => p.castId));
+      const journal = JSON.stringify(
+        Object.fromEntries(Object.entries({ ...prior, ...s.sources }).filter(([id]) => allocated.has(id))),
+      );
+      if (new TextEncoder().encode(journal).length > 1024 * 1024)
+        throw new Error('The bounded source receipt archive is full. Export this run first.');
+      if (typeof localStorage !== 'undefined') localStorage.setItem(key, journal);
+    }
+    const cast = canonicalCast(selectedCastId);
+    const existing = await shelf.request<PersonaEnvelope | null>({ action: 'get', castId: cast.castId });
+    if (existing && !fork && s.heads[cast.castId]?.revision !== existing.revision)
+      throw new Error('Another chapter owns this person. Export or explicitly fork.');
+    const branchId = !fork && existing ? existing.branchId : crypto.randomUUID();
+    const life =
+      !fork && existing?.transfer.life
+        ? anchorPersonaLife(existing.transfer.life as never, cast.castId, Date.now())
+        : initialPersonaLife(cast.castId, branchId, Date.now());
+    const envelope = await createPersona({
+      format: 'hf-persona/1',
+      castId: cast.castId,
+      castRevision: cast.revision,
+      branchId,
+      parentRevision: fork ? null : (existing?.revision ?? null),
+      source: {
+        game: s.game,
+        build: await fetchBuild(),
+        engine: String(result.transfer.engine),
+        rules: 'cast-1',
+      },
+      transfer: { ...result.transfer, life },
+      limitations: [
+        'Bounded coarse local life; no full days, travel, healing or duty completion is inferred.',
+      ],
+    });
+    const epoch = await shelf.request<{ recordingEpoch: string | null }>({ action: 'recording' });
+    if (generation !== s.generation || !shelf.enabled) return;
+    await shelf.request({
+      action: 'put',
+      envelope,
+      fork,
+      authored: !existing && !s.gate,
+      recordingEpoch: epoch.recordingEpoch ?? undefined,
+    });
+    if (generation !== s.generation) return;
+    s.heads[cast.castId] = envelope;
+    s.histories[cast.castId] = envelope;
+    gate(s, `cast-group-${crypto.randomUUID()}`);
+    pinOwnership(s);
+    await recording(s, generation);
+    s.status = `${cast.name} is saved for another chapter. Loaded play stays pinned.`;
+  } catch (e) {
+    if (generation === s.generation) s.status = String(e);
+  } finally {
+    if (generation === s.generation) s.busy = false;
+    changed();
+  }
+}
+export async function checkpointCast(game: string, fork = false): Promise<void> {
+  const s = states.get(game);
+  if (s) await checkpointPerson(s, s.selected, fork);
+}
+export async function chooseCastRecording(game: string, allow: boolean) {
+  const s = states.get(game);
+  if (!s || !s.gate || s.dedicated || s.busy) return;
+  const generation = ++s.generation;
+  const gateKey = s.gate;
+  const envelopes = Object.values(s.histories);
+  const revisions = envelopes.map((p) => p.revision).join('/');
+  s.lab.allowPersonaRecording(false);
+  if (!envelopes.length) {
+    if (generation === s.generation && s.gate === gateKey) s.lab.allowPersonaRecording(allow);
+    changed();
+    return;
+  }
+  const epoch = await shelf.request<{ recordingEpoch: string | null }>({
+    action: 'recordingBatch',
+    envelopes,
+  });
+  if (generation !== s.generation || s.gate !== gateKey) return;
+  await shelf.request({
+    action: 'recordingBatch',
+    envelopes,
+    allowRecording: allow,
+    recordingEpoch: epoch.recordingEpoch ?? undefined,
+  });
+  if (
+    generation === s.generation &&
+    s.gate === gateKey &&
+    Object.values(s.histories)
+      .map((p) => p.revision)
+      .join('/') === revisions
+  )
+    s.lab.allowPersonaRecording(allow);
+  changed();
+}
+export function castRecordingGate(game: string): string | null {
+  return states.get(game)?.gate ?? null;
+}

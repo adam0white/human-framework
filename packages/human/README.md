@@ -476,3 +476,16 @@ Narration remains unchanged unless requested. Set `person.lexicon.variety`,
 `perceive` adds a third `{ reputationTraits }` argument. See the architecture's
 [narration and social host options](../../docs/framework.md#narration-and-social-host-options-opt-in)
 for cause-aware reviews and actor-addressed recall. These options change no default continuation.
+
+### Bounded chapter clock (2.18.0, opt-in)
+
+`createChapterClock(seed, nowMs)` and `advanceChapterClock(clock, nowMs)` are pure helpers for hosts that author coarse between-chapter life. They do not step a `Person`. The clock quantizes a supplied integer millisecond value into real-hour slots. A return processes at most the newest24 slots and reports the omitted count. Its watermark never moves backward. Repeating the same return produces no new slots. Each retained slot's draw depends only on its absolute slot and pinned seed.
+
+```ts
+const clock = createChapterClock(23, 0);
+const returnInput = advanceChapterClock(clock, 48 * 3_600_000);
+// returnInput.slots.length === 24; returnInput.skipped === 24
+// Pin clock, returned draws and the admitted initial host state in the replay.
+```
+
+The host owns elapsed-time pacing, narrative interpretation, storage, consent and persona admission. A slot is an opportunity for coarse fiction. It is not proof of a lived day, settled duty, completed project or recovered body. Existing actor state and engine2.17.0 continuation remain unchanged unless the host explicitly uses the helper.

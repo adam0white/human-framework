@@ -69,11 +69,28 @@ window.addEventListener('message', (event: MessageEvent) => {
     );
     return;
   }
-  const { id, action, castId, envelope, fork, authored, allowRecording, recordingEpoch } = event.data;
+  const {
+    id,
+    action,
+    castId,
+    castIds,
+    envelope,
+    envelopes,
+    expectedHeads,
+    revision,
+    fork,
+    authored,
+    allowRecording,
+    recordingEpoch,
+  } = event.data;
   void shelfRequest({
     action,
     castId,
+    castIds,
     envelope,
+    envelopes,
+    expectedHeads,
+    revision,
     fork: fork === true,
     authored: authored === true,
     allowRecording: typeof allowRecording === 'boolean' ? allowRecording : undefined,

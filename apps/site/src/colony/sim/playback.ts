@@ -130,7 +130,7 @@ export class Playback {
   async playtestFile(engine: string, full = false): Promise<PlaytestFile<LogEntry>> {
     const g = this.game;
     if (!g) throw new Error('No run to save yet.');
-    return makePlaytestFile({
+    const file = await makePlaytestFile({
       game: 'colony',
       seed: g.seed,
       scenario: g.scenarioVersion,
@@ -141,6 +141,7 @@ export class Playback {
       snapshot: full ? colonyState(g) : colonySnapshot(g),
       ...(full ? { plainSnapshot: true } : {}),
     });
+    return { ...file, ...(g.castChapter ? { castChapter: structuredClone(g.castChapter) } : {}) };
   }
 
   /**
@@ -150,7 +151,7 @@ export class Playback {
   load(text: string, engine: string): { result: ReplayResult; replies: WorkerReply[] } {
     // An older save replays under the rules it was played with (colony.md, "2026-10-19 level-up").
     const { file: f, rules } = parseColonyPlaytest(text);
-    const g = replayColony(f.seed, this.factory, f.log, f.minute, rules);
+    const g = replayColony(f.seed, this.factory, f.log, f.minute, rules, f.castChapter);
     const result = replayResult(f, colonyHash(g), engine, g.minute);
     this.game = g;
     this.carry = 0;
@@ -169,6 +170,9 @@ export class Playback {
   /** Handle one message from the page; returns the replies (without the run number). */
   handle(msg: MainToWorker): WorkerReply[] {
     switch (msg.type) {
+      case 'castOwnership':
+      case 'castPreflight':
+      case 'castCheckpoint':
       case 'telemetry':
       case 'exportPlaytest':
       case 'loadPlaytest':
@@ -179,7 +183,7 @@ export class Playback {
           this.game = null;
           return [{ type: 'error', message: `scenario ${msg.scenarioVersion} is not ${SCENARIO_VERSION}` }];
         }
-        this.game = new ColonyGame(msg.seed, this.factory, undefined, msg.village);
+        this.game = new ColonyGame(msg.seed, this.factory, undefined, msg.village, msg.castChapter);
         this.carry = 0;
         this.endedSent = false;
         this.acknowledged = new Set();

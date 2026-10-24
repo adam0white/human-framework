@@ -1,13 +1,17 @@
 /** Browser shelf coordination only. Worker owns projection, admission and every simulation change. */
 import {
+  anchorPersonaLife,
   createPersona,
+  initialPersonaLife,
   type PersonaEnvelope,
-  personaChannel,
+  type PersonaLife,
+  preparePersonaLife,
   validatePersona,
   watchPersonaCheckpoint,
 } from '@adam0white/lab-client';
 import { personaControls } from '@adam0white/lab-kit';
 import { useEffect, useRef } from 'react';
+import { castRecordingGate, setCastEnabled, sitePersonaShelf } from '../../shared/cast-runtime.ts';
 import { gameLabs } from '../../shared/lab.tsx';
 import { downloadJson, fetchBuild, type PlaytestFile } from '../../shared/playtest.ts';
 import type { MainToWorker, WorkerToMain } from '../protocol.ts';
@@ -17,14 +21,16 @@ import { claimAfterValidation, PersonaSession, requireOwnHead } from './persona-
 const SELIN_CAST = 'hf.cast.selin.voice';
 
 const departureKey = (branch: string) => `hf-voice-departure:${branch}`;
-const shelf = personaChannel();
+const shelf = sitePersonaShelf;
 export const voicePersonaReady = shelf.ready;
 void shelf.ready.then(() => changed());
 let send: ((message: MainToWorker) => void) | undefined;
 let startReturn: ((header: SelinReturn, seed: number) => void) | undefined;
 const session = new PersonaSession((key) => {
   // Keep an origin's old allowance closed until the pinned central choice is checked.
-  gameLabs.voice.setPersonaRecording(key === null ? null : `voice-verifying-${crypto.randomUUID()}`);
+  gameLabs.voice.setPersonaRecording(
+    key === null ? castRecordingGate('voice') : `voice-verifying-${crypto.randomUUID()}`,
+  );
   changed();
 });
 let checkReturn: ((header: SelinReturn) => Promise<SelinReturn>) | undefined;
@@ -164,14 +170,18 @@ export async function receiveVoicePersona(reply: WorkerToMain): Promise<void> {
         return session.head ?? null;
       });
     requireOwnHead(existing, session.head);
+    const branchId = session.head?.branchId ?? crypto.randomUUID();
+    const life = session.head?.transfer.life
+      ? anchorPersonaLife(session.head.transfer.life as PersonaLife, SELIN_CAST, Date.now())
+      : initialPersonaLife(SELIN_CAST, branchId, Date.now());
     const envelope = await createPersona({
       format: 'hf-persona/1',
       castId: SELIN_CAST,
-      castRevision: '1',
-      branchId: session.head?.branchId ?? crypto.randomUUID(),
+      castRevision: '2',
+      branchId,
       parentRevision: session.head?.revision ?? null,
       source: { game: 'voice', build: await fetchBuild(), engine: reply.file.engine, rules: 'voice-4' },
-      transfer: reply.transfer,
+      transfer: { ...reply.transfer, life },
       limitations: reply.transfer.person.person.limitations,
     });
     const accepted = local
@@ -242,7 +252,16 @@ export async function prepareVoiceReturn(
     if (!checkReturn) throw new Error('The simulation is not ready to check Selin’s return.');
     recordingAttempt++;
     session.begin(envelope.branchId);
+    const life = imported
+      ? preparePersonaLife(envelope, Date.now())
+      : await shelf.request<import('@adam0white/lab-client').LifePreparation>({
+          action: 'prepare',
+          castId: SELIN_CAST,
+        });
+    if (life.parent.revision !== envelope.revision)
+      throw new Error('Selin’s active head changed. Export or choose again.');
     const base: SelinReturn = {
+      life,
       version: 1,
       prefix,
       initial: '',
@@ -254,6 +273,7 @@ export async function prepareVoiceReturn(
       const claim = await createPersona({
         ...body,
         parentRevision: envelope.revision,
+        transfer: { ...body.transfer, life: life.life },
         source: {
           game: 'voice',
           build: await fetchBuild(),
@@ -312,7 +332,7 @@ export function VoicePersonaControls({ canReturn }: { canReturn: boolean }) {
           enabled: shelf.enabled,
           recordingAllowed: gameLabs.voice.personaRecordingAllowed,
           setEnabled(value) {
-            shelf.setEnabled(value);
+            setCastEnabled(value);
             if (value) checkpointVoicePersona();
             else send?.({ type: 'personaCheckpointCancel' });
             render();
@@ -428,9 +448,11 @@ export function VoicePersonaControls({ canReturn }: { canReturn: boolean }) {
     listeners.add(render);
     render();
     window.addEventListener('hf-lab-preference', render);
+    window.addEventListener('hf-cast-preference', render);
     return () => {
       listeners.delete(render);
       window.removeEventListener('hf-lab-preference', render);
+      window.removeEventListener('hf-cast-preference', render);
     };
   }, [canReturn]);
   return <div ref={root} className="v-persona-controls" />;

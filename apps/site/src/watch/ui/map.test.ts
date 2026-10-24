@@ -17,7 +17,7 @@ it('selects either watcher sharing a post at night without turning their tap int
   run.input({ k: 'start' });
   run.input({ k: 'begin' });
   run.state.place.tamar = 'gate-1';
-  run.state.place.mara = 'gate-1';
+  run.state.place.samira = 'gate-1';
   const f = buildFrame(run.state, 0, false);
   const layout = layoutFor(360, 160);
   const gate = f.sections.find((s) => s.id === 'gate');
@@ -33,7 +33,7 @@ it('selects the drawn hall and home figures rather than moving the lantern', () 
   run.input({ k: 'start' });
   run.input({ k: 'begin' });
   run.state.place.tamar = 'hall';
-  run.state.place.mara = 'home';
+  run.state.place.samira = 'home';
   const f = buildFrame(run.state, 0, false);
   const l = layoutFor(360, 240);
   for (const at of offWallWatchers(l, f)) {

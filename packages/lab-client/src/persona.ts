@@ -4,13 +4,26 @@ import { randomId } from './linked.ts';
 
 export const PERSONA_LIMITS = {
   transferBytes: 256 * 1024,
-  revisions: 10,
-  shelfBytes: 2 * 1024 * 1024,
+  revisions: 120,
+  people: 40,
+  shelfBytes: 16 * 1024 * 1024,
 } as const;
 export const PERSONA_ORIGINS = new Set(
-  ['human', 'pass', 'murmur', 'stairwell', 'hearsay', 'goodhands'].map(
-    (host) => `https://${host}.adamwhite.work`,
-  ),
+  [
+    'human',
+    'pass',
+    'murmur',
+    'stairwell',
+    'hearsay',
+    'goodhands',
+    'glance',
+    'rope',
+    'repair',
+    'valley',
+    'warren',
+    'neighbours',
+    'commonstead',
+  ].map((host) => `https://${host}.adamwhite.work`),
 );
 export type PersonaEnvelope = {
   format: 'hf-persona/1';
@@ -22,16 +35,31 @@ export type PersonaEnvelope = {
   source: { game: string; build: string; engine: string; rules: string };
   transfer: Record<string, unknown>;
   limitations: string[];
+  terminal?: { kind: 'dead'; at: number };
 };
 export type PersonaSummary = Pick<
   PersonaEnvelope,
-  'castId' | 'castRevision' | 'branchId' | 'revision' | 'source' | 'limitations'
+  'castId' | 'castRevision' | 'branchId' | 'revision' | 'source' | 'limitations' | 'terminal'
 >;
 export type PersonaShelfState = { revisions: PersonaEnvelope[]; heads: Record<string, string> };
-export type PersonaAction = 'list' | 'get' | 'put' | 'delete' | 'recording';
+export type PersonaAction =
+  | 'list'
+  | 'get'
+  | 'put'
+  | 'delete'
+  | 'recording'
+  | 'prepare'
+  | 'history'
+  | 'prepareBatch'
+  | 'putBatch'
+  | 'recordingBatch';
 export type PersonaRequest = {
   action: PersonaAction;
   castId?: string;
+  castIds?: string[];
+  envelopes?: PersonaEnvelope[];
+  expectedHeads?: Record<string, string | null>;
+  revision?: string;
   envelope?: PersonaEnvelope;
   fork?: boolean;
   /** Original authored source only; never set for imports. */
@@ -105,8 +133,14 @@ export async function validatePersona(value: unknown): Promise<PersonaEnvelope> 
     'limitations',
   ];
   if (
-    Object.keys(p).some((key) => !keys.includes(key)) ||
-    Object.keys(p).length !== keys.length ||
+    Object.keys(p).some((key) => !keys.includes(key) && key !== 'terminal') ||
+    keys.some((key) => !Object.hasOwn(p, key)) ||
+    (p.terminal !== undefined &&
+      (!p.terminal ||
+        Object.keys(p.terminal).sort().join(',') !== 'at,kind' ||
+        p.terminal.kind !== 'dead' ||
+        !Number.isSafeInteger(p.terminal.at) ||
+        p.terminal.at < 0)) ||
     p.format !== 'hf-persona/1' ||
     ![p.castId, p.castRevision, p.branchId].every((v) => typeof v === 'string' && token.test(v)) ||
     ['constructor', 'prototype', '__proto__'].includes(p.castId) ||
@@ -142,9 +176,15 @@ export function acceptPersona(state: PersonaShelfState, p: PersonaEnvelope, fork
   if (fork) {
     if (current?.branchId === p.branchId || p.parentRevision !== null)
       throw new Error('A fork needs a new branch and no parent.');
+  } else if (current?.terminal) {
+    throw new Error(
+      'This branch is closed by an actual death. Inspect/export it or explicitly start an alternate fresh branch.',
+    );
   } else if (head !== p.parentRevision || (current && current.branchId !== p.branchId))
     throw new Error('Continuity conflict. Export this history or explicitly fork it.');
   const next = { revisions: [...state.revisions, p], heads: { ...state.heads, [p.castId]: p.revision } };
+  if (Object.keys(next.heads).length > PERSONA_LIMITS.people)
+    throw new Error('The shelf holds at most forty active people. Export and delete a person first.');
   const heads = new Set(Object.values(next.heads));
   while (next.revisions.length > PERSONA_LIMITS.revisions || bytes(next) > PERSONA_LIMITS.shelfBytes) {
     const oldest = next.revisions.findIndex((revision) => !heads.has(revision.revision));
@@ -153,9 +193,41 @@ export function acceptPersona(state: PersonaShelfState, p: PersonaEnvelope, fork
   }
   return next;
 }
+/** All-or-none pure batch CAS; the caller commits the returned state in one transaction. */
+export function acceptPersonaBatch(
+  state: PersonaShelfState,
+  people: PersonaEnvelope[],
+  expectedHeads?: Record<string, string | null>,
+): PersonaShelfState {
+  if (
+    (!people.length && !Object.keys(expectedHeads ?? {}).length) ||
+    people.length > 8 ||
+    new Set(people.map((p) => p.castId)).size !== people.length
+  )
+    throw new Error('A chapter batch needs one to eight distinct people.');
+  if (expectedHeads) {
+    if (Object.keys(expectedHeads).length > 8 || people.some((p) => !Object.hasOwn(expectedHeads, p.castId)))
+      throw new Error('Invalid batch parent set.');
+    for (const [id, expected] of Object.entries(expectedHeads))
+      if ((state.heads[id] ?? null) !== expected)
+        throw new Error('Continuity conflict. The applicable cast changed during preflight.');
+  }
+  let next = state;
+  for (const person of people) next = acceptPersona(next, person);
+  return next;
+}
+/** Preserve a dead branch as a terminal receipt, never a projected living actor. */
+export async function closePersonaBranch(
+  parent: PersonaEnvelope,
+  source: PersonaEnvelope['source'],
+  at: number,
+): Promise<PersonaEnvelope> {
+  const { revision, ...body } = parent;
+  return createPersona({ ...body, source, parentRevision: revision, terminal: { kind: 'dead', at } });
+}
 export function personaSummary(p: PersonaEnvelope): PersonaSummary {
-  const { castId, castRevision, branchId, revision, source, limitations } = p;
-  return { castId, castRevision, branchId, revision, source, limitations };
+  const { castId, castRevision, branchId, revision, source, limitations, terminal } = p;
+  return { castId, castRevision, branchId, revision, source, limitations, ...(terminal ? { terminal } : {}) };
 }
 export const PERSONA_CONSENT_KEY = 'hf-persona-opt-in';
 /** The consent handshake exposes only a boolean, never cast metadata or recording identity. */
@@ -305,7 +377,42 @@ export function isPersonaMessage(origin: string, source: unknown, parent: unknow
     message.optedIn === true &&
     typeof message.id === 'string' &&
     /^[a-f0-9]{32}$/.test(message.id) &&
-    ['list', 'get', 'put', 'delete', 'recording'].includes(String(message.action)) &&
+    [
+      'list',
+      'get',
+      'put',
+      'delete',
+      'recording',
+      'prepare',
+      'history',
+      'prepareBatch',
+      'putBatch',
+      'recordingBatch',
+    ].includes(String(message.action)) &&
+    (message.expectedHeads === undefined ||
+      (typeof message.expectedHeads === 'object' &&
+        message.expectedHeads !== null &&
+        !Array.isArray(message.expectedHeads) &&
+        Object.entries(message.expectedHeads).length <= 8 &&
+        Object.entries(message.expectedHeads).every(
+          ([id, rev]) =>
+            token.test(id) &&
+            !['constructor', 'prototype', '__proto__'].includes(id) &&
+            (rev === null || (typeof rev === 'string' && hash.test(rev))),
+        ))) &&
+    (message.castIds === undefined ||
+      (Array.isArray(message.castIds) &&
+        message.castIds.length <= 8 &&
+        message.castIds.every(
+          (id) =>
+            typeof id === 'string' &&
+            token.test(id) &&
+            !['constructor', 'prototype', '__proto__'].includes(id),
+        ))) &&
+    (message.envelopes === undefined ||
+      (Array.isArray(message.envelopes) && message.envelopes.length <= 8)) &&
+    (message.revision === undefined ||
+      (typeof message.revision === 'string' && hash.test(message.revision))) &&
     (message.castId === undefined ||
       (typeof message.castId === 'string' &&
         token.test(message.castId) &&

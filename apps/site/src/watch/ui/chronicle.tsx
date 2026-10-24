@@ -1,5 +1,6 @@
 /** The menu reads the chronicle. Continuing saved pages belongs to the title's shelf. */
 import { useEffect, useState } from 'react';
+import { CastMenu } from '../../shared/CastMenu.tsx';
 import { FullscreenButton } from '../../shared/fullscreen.tsx';
 import type { PageInfo } from '../protocol.ts';
 import type { Frame, FrameVolume } from '../sim/view.ts';
@@ -274,6 +275,7 @@ export function Chronicle({
           All games
         </a>
         <RecordingPreference />
+        <CastMenu game="watch" />
       </div>
       <div className="w-sheet-actions">
         <button type="button" className="w-primary" onClick={onClose}>

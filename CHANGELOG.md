@@ -10,6 +10,13 @@ The release version is the package version and `FRAMEWORK_VERSION`, tagged `vX.Y
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
+## [2.18.0] - 2026-10-23
+
+Engine: 2.17.0. Actor-loop behaviour is unchanged.
+
+- Add an optional pure chapter clock: seeded hourly opportunities, monotone return watermark, bounded24-slot catch-up and explicit skipped intervals. It does not simulate full days, resolve obligations or alter a Person.
+- Browser hosts can pin these clock outcomes alongside existing strict persona passports. Canonical profiles, qualified assignments, local life fiction, storage and consent remain host-side.
+
 ## [2.17.0] - 2026-10-23
 
 Engine: 2.17.0.

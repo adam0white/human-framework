@@ -1,3 +1,4 @@
+import { canonicalCast } from '@adam0white/lab-client';
 /**
  * The Night Watch data (G3-1, G3-2): the wall, its posts, the cast and the threats. All of it is
  * game-side host data (spec §7, "Game-side only"). Numbers are engineering defaults tuned by the headless gate
@@ -68,7 +69,7 @@ export function postSection(id: PostId): SectionId {
 }
 
 /** The year-1 watchers, in cast order. Later villagers (children, newcomers) get ids at runtime. */
-export const WATCHER_IDS = ['tamar', 'kian', 'mara', 'joss', 'yunus', 'ruslan'] as const;
+export const WATCHER_IDS = ['tamar', 'kian', 'samira', 'idris', 'danyal', 'meryem'] as const;
 /** A villager's id: a founder's name, or one given at birth or arrival (G3-3). */
 export type WatcherId = string;
 
@@ -117,7 +118,15 @@ export interface WatcherDef {
   ties: { otherId: WatcherId; roles: string[]; affection: number; trust?: number }[];
 }
 
-export const WATCHERS: readonly WatcherDef[] = [
+export const WATCH_CAST: Record<string, string> = {
+  tamar: 'hf.cast.tamar.watch',
+  kian: 'hf.cast.kian.watch',
+  samira: 'hf.cast.samira.well',
+  idris: 'hf.cast.idris.well',
+  danyal: 'hf.cast.danyal.well',
+  meryem: 'hf.cast.meryem.warren',
+};
+const WATCHER_OPENINGS: readonly WatcherDef[] = [
   {
     id: 'tamar',
     name: 'Tamar',
@@ -146,8 +155,8 @@ export const WATCHERS: readonly WatcherDef[] = [
     reserve: { pain: 0.85, fear: 0.6 },
     ties: [
       { otherId: 'kian', roles: ['student'], affection: 0.55, trust: 0.6 },
-      { otherId: 'yunus', roles: ['friend'], affection: 0.5, trust: 0.7 },
-      { otherId: 'ruslan', roles: ['neighbor'], affection: -0.2, trust: 0.35 },
+      { otherId: 'danyal', roles: ['friend'], affection: 0.5, trust: 0.7 },
+      { otherId: 'meryem', roles: ['neighbor'], affection: 0.1, trust: 0.45 },
     ],
   },
   {
@@ -177,12 +186,12 @@ export const WATCHERS: readonly WatcherDef[] = [
     duty: 0.6,
     ties: [
       { otherId: 'tamar', roles: ['mentor'], affection: 0.75, trust: 0.8 },
-      { otherId: 'mara', roles: ['neighbor'], affection: 0.3 },
+      { otherId: 'samira', roles: ['neighbor'], affection: 0.3 },
     ],
   },
   {
-    id: 'mara',
-    name: 'Mara',
+    id: 'samira',
+    name: 'Samira',
     sex: 'female',
     age: 34,
     arrives: 1,
@@ -206,18 +215,18 @@ export const WATCHERS: readonly WatcherDef[] = [
     known: 0.5,
     duty: 0.6,
     ties: [
-      { otherId: 'joss', roles: ['spouse'], affection: 0.85, trust: 0.85 },
+      { otherId: 'idris', roles: ['spouse'], affection: 0.85, trust: 0.85 },
       { otherId: 'kian', roles: ['neighbor'], affection: 0.35 },
     ],
   },
   {
-    id: 'joss',
-    name: 'Joss',
+    id: 'idris',
+    name: 'Idris',
     sex: 'male',
     age: 38,
     arrives: 2,
     usual: 'mill-1',
-    note: 'Smith, strong',
+    note: 'Forester, strong',
     home: 'east',
     family: null,
     traits: {
@@ -236,18 +245,18 @@ export const WATCHERS: readonly WatcherDef[] = [
     known: 0.5,
     duty: 0.75,
     ties: [
-      { otherId: 'mara', roles: ['spouse'], affection: 0.8, trust: 0.85 },
-      { otherId: 'ruslan', roles: ['neighbor'], affection: -0.55, trust: 0.2 },
+      { otherId: 'samira', roles: ['spouse'], affection: 0.8, trust: 0.85 },
+      { otherId: 'meryem', roles: ['neighbor'], affection: 0.1, trust: 0.45 },
     ],
   },
   {
-    id: 'yunus',
-    name: 'Yunus',
+    id: 'danyal',
+    name: 'Danyal',
     sex: 'male',
     age: 61,
     arrives: 2,
     usual: 'mill-2',
-    note: 'Miller, calm',
+    note: 'Well keeper, calm',
     home: 'mill',
     family: null,
     traits: {
@@ -265,17 +274,17 @@ export const WATCHERS: readonly WatcherDef[] = [
     keeperTrust: 0.65,
     known: 0.6,
     duty: 0.7,
-    prays: true,
+    prays: false,
     ties: [{ otherId: 'tamar', roles: ['friend'], affection: 0.5, trust: 0.7 }],
   },
   {
-    id: 'ruslan',
-    name: 'Ruslan',
-    sex: 'male',
+    id: 'meryem',
+    name: 'Meryem',
+    sex: 'female',
     age: 45,
     arrives: 3,
     usual: 'east-2',
-    note: 'Spear, newcomer',
+    note: 'Apprentice observer and mapper',
     home: 'gate',
     family: null,
     traits: {
@@ -295,11 +304,25 @@ export const WATCHERS: readonly WatcherDef[] = [
     duty: 0.45,
     newcomer: true,
     ties: [
-      { otherId: 'joss', roles: ['neighbor'], affection: -0.3, trust: 0.3 },
+      { otherId: 'idris', roles: ['neighbor'], affection: 0.1, trust: 0.45 },
       { otherId: 'tamar', roles: ['neighbor'], affection: 0 },
     ],
   },
 ];
+
+/** Canonical profiles replace retired source identities. Skills remain bounded host training. */
+export const WATCHERS: readonly WatcherDef[] = WATCHER_OPENINGS.map((def) => {
+  const cast = canonicalCast(WATCH_CAST[def.id] ?? '');
+  return {
+    ...def,
+    name: cast.name,
+    age: cast.age,
+    traits: cast.traits,
+    ...(['samira', 'idris', 'danyal', 'meryem'].includes(def.id) ? { fitness: 0.5 } : {}),
+    ...(def.id === 'meryem' ? { sling: 0.15, sight: 0.55, craft: 0.25, fitness: 0.5 } : {}),
+    ...(def.id === 'idris' ? { craft: 0.45 } : {}),
+  };
+});
 
 /** Age at which a villager comes of age and stands the wall (spec §2: "who comes of age (15)"). */
 export const WATCH_AGE = 15;
@@ -334,13 +357,29 @@ export interface KinDef {
 }
 
 export const FOUNDER_KIN: readonly KinDef[] = [
-  { id: 'lena', name: 'Lena', sex: 'female', age: 10, home: 'east', parents: ['mara', 'joss'], with: 'mara' },
-  { id: 'pell', name: 'Pell', sex: 'male', age: 7, home: 'east', parents: ['mara', 'joss'], with: 'mara' },
+  {
+    id: 'lena',
+    name: 'Lena',
+    sex: 'female',
+    age: 10,
+    home: 'east',
+    parents: ['samira', 'idris'],
+    with: 'samira',
+  },
+  {
+    id: 'pell',
+    name: 'Pell',
+    sex: 'male',
+    age: 7,
+    home: 'east',
+    parents: ['samira', 'idris'],
+    with: 'samira',
+  },
   { id: 'ada', name: 'Ada', sex: 'female', age: 8, home: 'west', guardian: 'kian', with: 'kian' },
 ];
 
 /** Founders who are married when the chronicle opens (married by HF `marry` the night both have come). */
-export const FOUNDER_MARRIAGES: readonly [WatcherId, WatcherId][] = [['mara', 'joss']];
+export const FOUNDER_MARRIAGES: readonly [WatcherId, WatcherId][] = [['samira', 'idris']];
 
 /**
  * From the second winter, the most sacks one night can carry off from a granary at START_GRAIN; a fuller granary

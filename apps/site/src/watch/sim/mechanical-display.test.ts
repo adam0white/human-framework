@@ -70,28 +70,19 @@ it('a settled proposal cannot recur immediately, while legacy pages retain their
   expect(proposalAvailable(s, 'a', 'b', 101)).toBe(true);
 });
 
-it('new proposal holds survive save/restore and replay; scenario 9 keeps its rule hash', async () => {
+it('new proposal holds survive current save/restore and replay; older cast pages refuse', async () => {
   const { WatchRun, replay, ruleHash } = await import('./run.ts');
   const run = new WatchRun(7);
   run.input({ k: 'start' });
   const restored = WatchRun.resume(JSON.parse(run.snapshotText()));
   expect(restored.state.proposalHolds).toEqual({});
   const exp = run.export();
-  expect(exp.scenario).toBe(13);
+  expect(exp.scenario).toBe(14);
   expect(ruleHash(replay(exp))).toBe(exp.end.ruleHash);
   const legacy = run.snapshot();
   legacy.scenario = 9;
   delete legacy.state.proposalHolds;
-  const prior = WatchRun.resume(legacy);
-  expect(prior.state.proposalHolds).toBeUndefined();
-  prior.input({ k: 'begin' });
-  for (let i = 0; i < 20; i++) prior.step();
-  const reopened = WatchRun.resume(prior.snapshot());
-  for (let i = 0; i < 20; i++) {
-    prior.step();
-    reopened.step();
-  }
-  expect(reopened.state).toEqual(prior.state);
+  expect(() => WatchRun.resume(legacy)).toThrow(/scenario/);
 });
 
 it('later summer losses do not rewrite the preceding winter question', async () => {

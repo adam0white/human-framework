@@ -4,6 +4,7 @@
  * Everything the worker sends passes through `contract.ts` first, so the rest of the UI reads one shape.
  */
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { bindCastWorker, postCastMessage } from '../../shared/cast-runtime.ts';
 import { gameLabs } from '../../shared/lab.tsx';
 import type { PlaytestStatus } from '../../shared/PlaytestMenu.tsx';
 import {
@@ -79,7 +80,7 @@ export interface ColonyActions {
   exportPlaytest(): void;
   sendPlaytest(): void;
   /** Replay a playtest file's text in the worker; it replaces this run only if it is valid. */
-  loadPlaytest(text: string): void;
+  loadPlaytest(text: string, local?: boolean): void;
   clearPlaytest(): void;
   playtestError(message: string): void;
 }
@@ -140,7 +141,10 @@ export function useColony(seed = DEFAULT_SEED): Colony {
   const playbackRef = useRef(playback);
   playbackRef.current = playback;
 
-  const send = useCallback((msg: OutMsg) => worker.current?.postMessage(msg), []);
+  const send = useCallback(
+    (msg: OutMsg) => worker.current && postCastMessage(worker.current, 'well', msg),
+    [],
+  );
 
   const requestRun = useCallback(
     () =>
@@ -164,7 +168,7 @@ export function useColony(seed = DEFAULT_SEED): Colony {
         gen: gen.current,
         autoPause: autoPause.current,
       };
-      w?.postMessage(msg);
+      if (w) postCastMessage(w, 'well', msg);
     },
     [seed],
   );
@@ -172,6 +176,7 @@ export function useColony(seed = DEFAULT_SEED): Colony {
   useEffect(() => {
     const w = new Worker(new URL('../worker.ts', import.meta.url), { type: 'module' });
     worker.current = w;
+    const stopCast = bindCastWorker(w, 'well', gameLabs.well);
     w.addEventListener('message', (e: MessageEvent<WorkerToMain>) => {
       const msg = e.data;
       if (msg.gen === pendingLoad.current && msg.gen !== gen.current) {
@@ -281,7 +286,11 @@ export function useColony(seed = DEFAULT_SEED): Colony {
       fetchPlaytestText(replayUrl)
         .then((text) => {
           pendingLoad.current = gen.current + 1;
-          w.postMessage({ type: 'loadPlaytest', gen: pendingLoad.current, text } satisfies OutMsg);
+          postCastMessage(w, 'well', {
+            type: 'loadPlaytest',
+            gen: pendingLoad.current,
+            text,
+          } satisfies OutMsg);
         })
         .catch((err: unknown) => setPlaytest({ error: err instanceof Error ? err.message : String(err) }));
     }
@@ -293,6 +302,7 @@ export function useColony(seed = DEFAULT_SEED): Colony {
     return () => {
       stopTicks();
       stopTelemetry();
+      stopCast();
       w.terminate();
       worker.current = null;
       store.current = emptyStore();
@@ -409,14 +419,14 @@ export function useColony(seed = DEFAULT_SEED): Colony {
             exportPending.current = false;
           });
       },
-      loadPlaytest: (text) => {
+      loadPlaytest: (text, local = false) => {
         for (const waiter of runWaiters.current.values()) waiter.reject(new Error('The run was replaced.'));
         runWaiters.current.clear();
         exportPending.current = false;
         sendToLab.current = false;
         setPlaytest({ busy: 'load' });
         pendingLoad.current = Math.max(gen.current, pendingLoad.current) + 1;
-        send({ type: 'loadPlaytest', gen: pendingLoad.current, text });
+        send({ type: 'loadPlaytest', gen: pendingLoad.current, text, local });
       },
       clearPlaytest: () => setPlaytest(null),
       playtestError: (message) => setPlaytest({ error: message }),

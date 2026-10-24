@@ -55,6 +55,14 @@ import {
   spousesOf,
   type World,
 } from '@adam0white/human-framework';
+import { canonicalCast } from '@adam0white/lab-client';
+import {
+  admitSiteCast,
+  applyLifeOffers,
+  chapterPeople,
+  personChapter,
+  prepareSiteInitial,
+} from '../../shared/cast-chapter.ts';
 import {
   ALL_POST_IDS,
   BELL_ROUSE_BASE,
@@ -72,6 +80,7 @@ import {
   ROPE_MEND_PER_HOUR,
   type SectionId,
   WATCH_AGE,
+  WATCH_CAST,
   WATCHERS,
   type WatcherDef,
   type WatcherId,
@@ -82,14 +91,9 @@ import type { Villager, WatchState } from './state.ts';
 export const KEEPER_ID = 'keeper';
 
 /** Host norms of the watch. Standings are the game's choices, recorded as such; each person's understanding. */
-export const WATCH_NORMS: NormDefinition[] = [
-  {
-    id: 'keep-watch',
-    label: 'Keep the watch you stand',
-    standing: 'obligatory',
-    sources: [{ kind: 'assumption', ref: 'The Night Watch host norm; standing chosen by the game design' }],
-  },
-];
+export { WATCH_CAST_NORMS as WATCH_NORMS } from '../../shared/cast-norms.ts';
+
+import { WATCH_CAST_NORMS as WATCH_NORMS } from '../../shared/cast-norms.ts';
 
 /** Where a villager is: a post, the hall behind the gate, home, the village (by day) or not yet come. */
 export type Place = PostId | 'hall' | 'home' | 'village' | 'away';
@@ -110,6 +114,27 @@ export function personSeed(seed: number, index: number): number {
   return (h ^ (h >>> 13)) >>> 0;
 }
 
+/** Actual actor death or retained death status closes only an owned canonical branch. */
+export function watchTerminalReceipts(s: WatchState, heads: Record<string, unknown>) {
+  return Object.keys(heads).flatMap((castId) => {
+    const role = Object.entries(WATCH_CAST).find(([, cast]) => cast === castId)?.[0];
+    return role &&
+      (s.cast[role]?.status === 'dead' || s.community.people.some((p) => p.id === role && !p.body.alive))
+      ? [{ castId, at: s.minute }]
+      : [];
+  });
+}
+/** Every allocated carried actor is preflighted before the batch claim, including later arrivals. */
+export function prepareWatchCast(
+  seed: number,
+  chapter: import('../../shared/cast-chapter.ts').CastChapter,
+): void {
+  for (const single of chapterPeople(chapter)) {
+    const def = WATCHERS.find((w) => WATCH_CAST[w.id] === single.input.parent.castId);
+    if (!def) throw new Error('No authored Watch role.');
+    prepareSiteInitial('watch', createPerson(watcherSpec(seed, def, DUSK_START)), single);
+  }
+}
 /** The framework spec for one watcher at `now`. */
 export function watcherSpec(seed: number, def: WatcherDef, now: number): PersonSpec {
   const index = WATCHERS.indexOf(def);
@@ -128,6 +153,7 @@ export function watcherSpec(seed: number, def: WatcherDef, now: number): PersonS
     bornAt: now - def.age * MINUTES_PER_YEAR,
     sex: def.sex,
     traits: def.traits,
+    values: canonicalCast(WATCH_CAST[def.id] ?? '').values,
     norms: heldNorms(
       {
         practice: def.prays ? 0.9 : 0.3,
@@ -434,9 +460,16 @@ export function arrive(s: WatchState): WatcherId[] {
     if (def) p = castPerson(s.seed, def, now);
     else if (kin) p = kinPerson(s.seed, kin, ki, now);
     else continue;
+    if (personChapter(s.castChapter, WATCH_CAST[id])) p = admitSiteCast('watch', p, s.castChapter!);
     addPerson(s.community, p);
     v.status = 'here';
-    s.place[id] = 'village';
+    s.place[id] = personChapter(s.castChapter, WATCH_CAST[id])
+      ? personChapter(s.castChapter, WATCH_CAST[id])!.input.life.place === 'home'
+        ? 'home'
+        : personChapter(s.castChapter, WATCH_CAST[id])!.input.life.place === 'public-garden'
+          ? 'hall'
+          : 'village'
+      : 'village';
     s.posts[id] = null;
     s.press[id] = 'ask';
     s.postedAt[id] = now;
@@ -721,7 +754,7 @@ export class WatchWorld implements World {
         tags: exposed ? ['watch', 'risky'] : ['watch'],
       });
       if (
-        v.prays &&
+        (v.prays || Boolean(personChapter(s.castChapter, WATCH_CAST[p.id]))) &&
         p.agenda.commitments.some(
           (c) => c.status === 'pending' && c.kind === 'worship' && c.from <= p.now && p.now < c.until,
         )
@@ -843,7 +876,11 @@ export class WatchWorld implements World {
       {
         id: 'day:work',
         action: 'work',
-        label: 'work at their trade',
+        label: personChapter(s.castChapter, WATCH_CAST[p.id])
+          ? (canonicalCast(WATCH_CAST[p.id]!).assignments[
+              personChapter(s.castChapter, WATCH_CAST[p.id])!.input.life.assignment
+            ] ?? 'work at their trade')
+          : 'work at their trade',
         duration: 120,
         effort: 0.35,
         advertises: { competence: 0.1, meaning: 0.04 },
@@ -880,7 +917,7 @@ export class WatchWorld implements World {
         tags: ['work'],
       });
     if (
-      s.cast[p.id]?.prays &&
+      (s.cast[p.id]?.prays || Boolean(personChapter(s.castChapter, WATCH_CAST[p.id]))) &&
       p.agenda.commitments.some(
         (c) => c.status === 'pending' && c.kind === 'worship' && c.from <= p.now && p.now < c.until,
       )
@@ -894,6 +931,7 @@ export class WatchWorld implements World {
         advertises: { meaning: 0.1 },
         tags: ['worship'],
       });
+    applyLifeOffers('watch', p, out, s.castChapter);
     return out;
   }
 

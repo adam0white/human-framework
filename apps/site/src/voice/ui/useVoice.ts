@@ -538,7 +538,9 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
             pendingLoad.current = Math.max(gen.current, pendingLoad.current) + 1;
             setPlaytest({ busy: 'load' });
             void gateVoiceFile(saved.text)
-              .then(() => send({ type: 'loadPlaytest', gen: pendingLoad.current, text: saved.text }))
+              .then(() =>
+                send({ type: 'loadPlaytest', gen: pendingLoad.current, text: saved.text, local: true }),
+              )
               .catch((error) => {
                 loadingRun.current = false;
                 settleVoiceFileGate(false);

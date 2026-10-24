@@ -1,0 +1,60 @@
+.cast-life-note {
+  position: fixed;
+  inset-block-start: 3.1rem;
+  inset-inline-end: 0.5rem;
+  z-index: 45;
+  max-inline-size: min(26rem, calc(100vw - 1rem));
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--line, #777);
+  border-radius: 0.4rem;
+  background: var(--surface, #f5f0e8);
+  color: var(--ink, #222);
+  font:
+    0.8rem / 1.4 system-ui,
+    sans-serif;
+}
+.cast-life-note summary {
+  cursor: pointer;
+}
+.cast-life-note p {
+  max-block-size: 40vh;
+  overflow: auto;
+  margin-block: 0.5rem 0;
+}
+.cast-life-menu {
+  min-inline-size: 0;
+}
+.cast-life-menu label {
+  display: block;
+  margin-block: 0.6rem;
+}
+.cast-life-menu select {
+  max-inline-size: 100%;
+}
+.cast-life-menu button {
+  white-space: normal;
+  max-inline-size: 100%;
+  min-block-size: 44px;
+}
+
+.cast-start-gate {
+  position: fixed;
+  inset: 3.5rem 1rem auto;
+  z-index: 400;
+  max-block-size: 80vh;
+  overflow: auto;
+  padding: 1rem;
+  border: 1px solid #777;
+  border-radius: 0.5rem;
+  background: #f5f0e8;
+  color: #222;
+  font:
+    1rem / 1.5 system-ui,
+    sans-serif;
+}
+.cast-start-gate button {
+  display: block;
+  min-block-size: 44px;
+  margin-block: 1rem;
+  white-space: normal;
+}

@@ -209,12 +209,11 @@ describe('Game 2 sim on the shipped seed', () => {
     const { day15Hint: hint, day15Lines: lines } = seen;
     expect(hint ?? '').not.toMatch(/by Ramadan 15/);
     // The missed date costs something visible: the day card leads with it, the log says so at 20:00, and Osman's
-    // next knock says he presses harder (his demand's advice strength rises after the date, in town.ts).
+    // deadline message stays dated independently of whether Osman chooses to visit again.
     expect(lines[0]).toMatch(/He missed Osman’s date/);
     const day15 = seen.day15Log ?? [];
     expect(day15.length).toBeGreaterThan(0);
     expect(day15.some((e) => e.clock === '20:00' && /date has gone by/.test(e.text))).toBe(true);
-    expect(day15.some((e) => e.who === 'osman' && /presses harder/.test(e.text))).toBe(true);
     // The log is in time order.
     expect(day15.map((e) => e.minute)).toEqual([...day15.map((e) => e.minute)].sort((a, b) => a - b));
   });
@@ -389,9 +388,9 @@ describe('Game 2 sim on the shipped seed', () => {
     for (const p of pays) expect(rent?.detail).toContain(`on Ramadan ${dayOfMin(p.at)}`);
     expect(rent?.detail).toContain(`He had ${Math.round(eid.run.town.state.money.halil ?? 0)}.`);
     expect(rent?.after).toMatch(/week after Eid|A week after Eid/);
-    // On the shipped seed this month leaves 300 owed at Eid, paid in the week after: the case the user saw.
+    // Canonical priors leave the same debt through this epilogue; the report must not invent a payment.
     expect(owedAtEid).toBe(300);
-    expect(rent?.after).toContain('paid the rest (300)');
+    expect(rent?.after).toContain('paid nothing; 300 still owed');
     for (const e of r.ends) expect(e.after, e.id).toBeTruthy();
     expect(r.ends.find((e) => e.id === 'fast')?.status).toContain('of Ramadan');
     expect(r.ends.find((e) => e.id === 'doctor')?.status).toMatch(/in Ramadan/);

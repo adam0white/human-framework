@@ -24,7 +24,7 @@ Private ingestion: `npm run lab:inbox`. Retention, bounds and protocol: [linked 
 
 ### Fictional-person shelf (browser only)
 
-`personaChannel()` is separate from recording. Its `ready: Promise<boolean>` reads the central browser continuity choice through a boolean-only handshake. A fresh target must await `shelf.ready` before checking `shelf.enabled`, deciding an automatic arrival or attaching persona upload hooks. Enabling continuity in one participating game applies to later participating games in this browser; turning it off applies globally. No cast metadata or recording identity is returned by this handshake. Existing loaded runs remain pinned. Call `setEnabled(true)` only after the player enables continuity. The exact participating origins are HTTPS human, pass, murmur, stairwell, hearsay and goodhands on adamwhite.work. A blocked bridge needs a local file fallback. The central screen is `/lab/people/`; it can inspect, download, import and delete browser continuity. Browser eviction can lose it. Deleting continuity does not delete received lab records.
+`personaChannel()` is separate from recording. Its `ready: Promise<boolean>` reads the central browser continuity choice through a boolean-only handshake. A fresh target must await `shelf.ready` before checking `shelf.enabled`, deciding an automatic arrival or attaching persona upload hooks. Enabling continuity in one participating game applies to later participating games in this browser; turning it off applies globally. No cast metadata or recording identity is returned by this handshake. Existing loaded runs remain pinned. Call `setEnabled(true)` only after the player enables continuity. The exact participating origins are HTTPS human, pass, murmur, stairwell, hearsay, goodhands, glance, rope, repair, valley, warren, neighbours and commonstead on adamwhite.work. Voice, Well and Watch share the human origin. A blocked bridge needs a local file fallback. The central screen is `/lab/people/`; it can inspect, download, import and delete browser continuity. Browser eviction can lose it. Deleting continuity does not delete received lab records.
 
 ```ts
 import { createPersona, personaChannel, watchPersonaCheckpoint } from '@adam0white/lab-client';
@@ -57,18 +57,42 @@ if (arrival) {
 }
 ```
 
-Each later checkpoint uses the last accepted revision as `parentRevision`. `watchPersonaCheckpoint(callback)` calls the host callback on pagehide and visibility-hidden; the host calls the same callback at chapter boundaries. The callback must check opt-in and serialize concurrent checkpoints. Revision validation precedes storage; CAS happens in one central IndexedDB readwrite transaction. Duplicate revisions are idempotent. A stale parent cannot replace a head. Do not retry with the latest head. Offer file export or an explicit fork: create a new branch id, set parent null, then put with `fork:true`. The fork becomes that person's active branch. Other people keep their active branches. There is no timestamp merge. Limits are 256 KiB per envelope, ten retained revisions and 2 MiB overall. Automatic checkpoints prune oldest accepted non-head cache entries deterministically. Every active head is retained. If those heads cannot fit, admission refuses before mutation. Source saves and receiving replays keep their own pinned history; download a backup.
+Each later checkpoint uses the last accepted revision as `parentRevision`. `watchPersonaCheckpoint(callback)` calls the host callback on pagehide and visibility-hidden; the host calls the same callback at chapter boundaries. The callback must check opt-in and serialize concurrent checkpoints. Revision validation precedes storage; CAS happens in one central IndexedDB readwrite transaction. Duplicate revisions are idempotent. A stale parent cannot replace a head. Do not retry with the latest head. Offer file export or an explicit fork: create a new branch id, set parent null, then put with `fork:true`. The fork becomes that person's active branch. Other people keep their active branches. There is no timestamp merge. Limits are 256 KiB per envelope, forty active people, 120 retained revisions and 16 MiB overall. Automatic checkpoints prune oldest accepted non-head cache entries deterministically. Every active head is retained. If those heads cannot fit, admission refuses before mutation. Source saves and receiving replays keep their own pinned history; download a backup.
 
 Recording an arriving history can reconnect recording identities. Set the gate **before attaching any upload hooks**:
 
 ```ts
 lab.setPersonaRecording(arrival.branchId);
-const { sameEpoch } = await shelf.request<{sameEpoch: boolean}>({ action: 'recording', castId });
+const { sameEpoch } = await shelf.request<{sameEpoch: boolean}>({ action: 'recording', envelope: pinnedEnvelope });
 if (sameEpoch) lab.allowPersonaRecording(true); // No new prompt for unchanged identity.
 // Otherwise show the kit's historical-linkage question; default is local-only play.
 // Only after an explicit yes:
-await shelf.request({ action: 'recording', castId, allowRecording: true });
+const epoch = await shelf.request<{recordingEpoch: string}>({ action: 'recording', envelope: pinnedEnvelope });
+// Recheck the pinned run and identity generation before and after the await.
+await shelf.request({ action: 'recording', envelope: pinnedEnvelope, allowRecording: true, recordingEpoch: epoch.recordingEpoch });
 lab.allowPersonaRecording(true);
 ```
 
 The central recording association is separate from portable envelopes and never returns the recording id. Files have no association; absent or changed identity needs the explicit choice. `setPersonaRecording(null)` is for a genuinely fresh authored run with no imported history. The gate blocks events, milestones, automatic and explicit runs, saves, logs, notes and legacy Send until allowed. Recording off aborts pending uploads; a new identity invalidates the old association. Same-epoch continuation keeps normal recording. File export and local play always remain available. Character analysis remains a separate consent.
+
+## Canonical cast and bounded life (0.4.0)
+
+`CANONICAL_CAST`, `canonicalCast(castId)` and `castForGame(game)` provide40 curated public profiles. Exact host ids are `voice`, `well`, `watch`, `pass`, `murmur`, `stairwell`, `goodhands`, `hearsay`, `rope`, `glance`, `repair`, `neighbours`, `commonstead`, `valley`, `warren`. Every allocation has3–8 people. Secret biography paragraphs are not in this artifact.
+
+A canonical source adds `transfer.life = initialPersonaLife(castId, branchId, nowMs)` to its already validated host passport. Source checkpoints use `anchorPersonaLife(previousLife, castId, nowMs)`. That advances only the monotone absence anchor, so active play is not also counted as offscreen life. Revision1 history for a person whose current canonical revision is2 remains inspectable; it cannot be reinterpreted. An explicit fresh branch must come from current authored play, use a new branch id and null parent, and put with `fork:true`.
+
+```ts
+const admitted = await claimCastChapterBatch(shelf, castForGame('goodhands').map(p => p.castId),
+  targetStamps, async inputs => Object.fromEntries(inputs.map(input => {
+    const facts = lifeAdmission(input, 'goodhands');
+    const person = admitSupportedPassport(input.parent, authoredOpeningFor(input.parent.castId));
+    return [input.parent.castId, { person: snapshotCompleteInitialPerson(person), input, facts }];
+  })), { isCurrent: () => runGeneration === capturedGeneration });
+// Pin admitted.initial, inputs and claims. Later owned heads are separate local-save metadata.
+```
+
+`prepareBatch` reads every allocated expected head, including null absence, at one quantized time. `putBatch` validates all expected parents and applies all-or-none in one IndexedDB transaction, even for an empty known cast. An old, unsupported or terminal person blocks automatic startup until an explicit fresh-local/alternate decision. `recordingBatch` requires all pinned branch associations for the current epoch; explicit group linkage requires its queried epoch and an unchanged host generation. A terminal envelope from `closePersonaBranch` retains history and blocks any normal continuation. Only an explicit new-branch/null-parent fork can replace it. `claimCastChapter` remains a one-person compatibility helper.
+
+`LifePreparation` pins the full parent, quantized `clockMs` and derived `life`. `preparePersonaLife` is deterministic and touches no Person. It changes an existing qualified assignment, local whereabouts and bounded one-sided public work-note encounters. It grants no mutual acquaintance/trust, consent, payment, completed work, health recovery or settled obligation. No maintained background people are generated. Temperament and values weight coarse opportunities. Modern and historical cohorts never mix. Hosts retain the source passport and private omitted state at the source; this is no full world migration.
+
+The central shelf retains40 active heads and up to80 additional historical revisions (120 total),16MiB overall,256KiB per envelope. Only non-heads are pruned. `history` with a selected cast id returns retained revision metadata; `get` with that cast id and optional `revision` retrieves its exact retained envelope. Recording linkage remains separate and follows the pinned-envelope, manual epoch and generation rules above. Loaded runs stay pinned; fresh runs alone prepare and claim current heads.

@@ -17,7 +17,7 @@ function playScripted(seed: number, tickSeed: number, nights: number): WatchRun 
   for (let n = 0; n < nights; n++) {
     const plan: Input[] = [
       { k: 'post', watcher: 'tamar', post: `${run.state.warned}-1` },
-      { k: 'post', watcher: 'mara', post: `${run.state.warned}-2` },
+      { k: 'post', watcher: 'samira', post: `${run.state.warned}-2` },
       { k: 'lantern', section: run.state.warned },
     ];
     for (const i of plan) run.input(i);
@@ -119,41 +119,9 @@ describe('Night Watch input log and playtest export', () => {
     expect(() => replay({ ...exp, scenario: exp.scenario + 1 })).toThrow(/scenario/);
   });
 
-  it('loads a page saved by scenario 8 as it is, stamped with its origin, and its export does not replay', () => {
-    const run = new WatchRun(5);
-    run.input({ k: 'start' });
-    run.input({ k: 'begin' });
-    for (let i = 0; i < 30; i++) run.step();
-    const page = run.snapshot();
-    const old = { ...page, scenario: 8 };
-    const resumed = WatchRun.resume(JSON.parse(JSON.stringify(old)));
-    expect(resumed.origin).toEqual({ scenario: 8, minute: page.state.minute });
-    expect(resumed.state).toEqual(page.state);
-    for (let i = 0; i < 10; i++) resumed.step();
-    expect(WatchRun.resume(resumed.snapshot()).origin).toEqual(resumed.origin);
-    expect(() => replay(resumed.export())).toThrow(/scenario 8 page/);
-  });
-
-  it('loads a page saved by scenario 7: the new fields start fresh, and its export is marked as no longer replaying', () => {
-    const run = new WatchRun(5);
-    run.input({ k: 'start' });
-    run.input({ k: 'begin' });
-    for (let i = 0; i < 30; i++) run.step();
-    const page = run.snapshot();
-    const { bell: _b, ...older } = page.state;
-    const old = { ...page, scenario: 7, state: older as unknown as typeof page.state };
-    const resumed = WatchRun.resume(JSON.parse(JSON.stringify(old)));
-    expect(resumed.state.bell.rungAt).toBeLessThan(0);
-    expect(resumed.origin).toEqual({ scenario: 7, minute: page.state.minute });
-    expect(resumed.input({ k: 'bell' })).toBe(true);
-    for (let i = 0; i < 10; i++) resumed.step();
-    // Saved again and reopened, it keeps where it came from.
-    expect(WatchRun.resume(resumed.snapshot()).origin).toEqual(resumed.origin);
-    const exp = resumed.export();
-    expect(exp.origin?.scenario).toBe(7);
-    expect(() => replay(exp)).toThrow(/scenario 7 page/);
-    // Older pages than 7 are still refused.
-    expect(() => WatchRun.resume({ ...old, scenario: 6 })).toThrow(/scenario 6/);
+  it('refuses old cast saves with a plain scenario message', () => {
+    const page = new WatchRun(1).snapshot();
+    expect(() => WatchRun.resume({ ...page, scenario: 13 })).toThrow(/scenario 13/);
   });
 
   it('a moment eases play to the tactical speed and then hands the chosen speed back', () => {

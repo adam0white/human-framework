@@ -41,8 +41,8 @@ it('separates starting lantern from the selected person’s post actions', () =>
   const idle = render(createElement(DuskPanel, props));
   expect(idle.querySelector('[aria-haspopup]')?.textContent).toContain('Starts at');
   expect(idle.querySelector('footer')?.textContent).not.toContain('West wall');
-  const selected = render(createElement(DuskPanel, { ...props, selected: 'mara' }));
-  expect(selected.querySelector('footer')?.textContent).toContain('Post Mara at');
+  const selected = render(createElement(DuskPanel, { ...props, selected: 'samira' }));
+  expect(selected.querySelector('footer')?.textContent).toContain('Post Samira at');
   expect(selected.querySelectorAll('.w-place')).toHaveLength(4);
   expect(selected.querySelector('.w-press[aria-pressed=true]')?.textContent).toBe('Urge');
   expect(selected.querySelectorAll('.game-help-button')).toHaveLength(0);
@@ -71,6 +71,10 @@ it('keeps restart and export out of the menu and puts Resume last', () => {
   const buttons = menu.querySelectorAll('button');
   expect(buttons[buttons.length - 1]?.textContent?.trim()).toBe('Resume the watch');
   expect(menu.textContent).toContain('Send word');
+  expect(menu.querySelector('select')?.textContent).toContain('Samira');
+  expect(menu.textContent).toContain('Save this person for another chapter');
+  expect(menu.textContent).toContain('Save this played person as an explicit fresh branch');
+  expect(menu.textContent).toContain('Use fresh local play');
 });
 it('holds the clock for the single top-bar info and menu without simulation inputs', async () => {
   const { useWatch } = await import('./useWatch.ts');
@@ -160,9 +164,9 @@ it('replaces an account with helper choice and restores it without a game input'
       available: true,
     },
     {
-      input: { k: 'relieve', who: 'tamar', by: 'mara' },
-      label: 'Send Mara to relieve Tamar',
-      read: 'Too far to call Mara; carry the light.',
+      input: { k: 'relieve', who: 'tamar', by: 'samira' },
+      label: 'Send Samira to relieve Tamar',
+      read: 'Too far to call Samira; carry the light.',
       available: false,
     },
   ];
@@ -183,10 +187,10 @@ it('replaces an account with helper choice and restores it without a game input'
   expect(container.querySelector('.w-account')).toBeNull();
   expect(container.querySelector('.w-helper-choice')?.textContent).toContain('leaves the mill wall empty');
   expect(container.querySelector('.w-helper-choice')?.textContent).toContain(
-    'Mara: Out of your voice; carry the light.',
+    'Samira: Out of your voice; carry the light.',
   );
-  expect(button('Send Mara to relieve Tamar')).toBeUndefined();
-  await act(async () => button('← Tamar')?.click());
+  expect(button('Send Samira to relieve Tamar')).toBeUndefined();
+  await act(async () => button(`← ${who.name}`)?.click());
   expect(container.querySelector('.w-account')).not.toBeNull();
   expect(input).not.toHaveBeenCalled();
   who.acts = [
@@ -218,7 +222,7 @@ it('replaces an account with helper choice and restores it without a game input'
   expect(container.querySelector('.w-helper-choice')?.textContent).toContain(
     'They appear asleep. No reply comes.',
   );
-  await act(async () => button('← Tamar')?.click());
+  await act(async () => button(`← ${who.name}`)?.click());
   await act(async () => button('Rest')?.click());
   expect(input).toHaveBeenCalledExactlyOnceWith({ k: 'down', who: 'tamar' });
   await act(async () => root.unmount());
@@ -258,9 +262,9 @@ it('records a winter choice from the flyleaf and states when it takes effect', a
     'The winter that came: as the village knows it. New hopes are for the next dusk.',
   );
   expect(container.textContent).toContain('Tamar:');
-  expect(container.textContent).toContain('Joss:');
-  expect(container.textContent).toContain('Yunus:');
-  expect(container.textContent).toContain('Mara:');
+  expect(container.textContent).toContain('Idris:');
+  expect(container.textContent).toContain('Danyal:');
+  expect(container.textContent).toContain('Samira:');
   expect(container.textContent).not.toContain('Milder winter');
   const radios = container.querySelectorAll<HTMLInputElement>('input');
   expect(radios[1]?.checked).toBe(true);

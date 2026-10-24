@@ -446,3 +446,7 @@ For a broken promise, the host delivers each person's evidence separately:
 | Breaker's believed regard | Deliver the breaker's own-act percept with `witnesses` naming only people the breaker saw see it; use `noteKnownBy` for a subsequently learned relay. |
 
 Relationships (`social.relationships`) and impressions (`social.impressions`) are separate stores. The promisee's actual trust in the breaker is a relationship value; the breaker's belief about the promisee's view is an impression cue. Recording one does not copy it into the other.
+
+### Optional chapter clock (HF2.18.0)
+
+`chapter-clock.ts` owns only a seeded monotone real-hour watermark and bounded24-slot return calculation. It does not own Person state or step the actor loop. The browser host pins its input and outcomes, authors qualified assignment/local encounter fiction and applies existing passport gates before an atomic shelf claim. Secret biographies, host roles and storage remain outside `packages/human`. The engine remains2.17.0.

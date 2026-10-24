@@ -9,15 +9,19 @@ import { type Colony, useColony } from './useColony.ts';
 vi.mock('../../shared/tick-loop.ts', () => ({ startTickLoop: () => () => {} }));
 vi.mock('../../shared/worker-telemetry.ts', () => ({ trackWorkerRun: () => () => {} }));
 it('matches concurrent export replies by request id rather than response order', async () => {
-  let receive: (e: { data: WorkerToMain }) => void = () => {};
+  const listeners: ((e: { data: WorkerToMain }) => void)[] = [];
+  const receive = (e: { data: WorkerToMain }) => {
+    for (const fn of listeners) fn(e);
+  };
   const post = vi.fn();
   vi.stubGlobal(
     'Worker',
     class {
       postMessage = post;
       addEventListener(type: string, fn: typeof receive) {
-        if (type === 'message') receive = fn;
+        if (type === 'message') listeners.push(fn);
       }
+      removeEventListener() {}
       terminate() {}
     },
   );
@@ -30,10 +34,11 @@ it('matches concurrent export replies by request id rather than response order',
   try {
     flushSync(() => root.render(createElement(Harness)));
     if (!colony) throw Error('Missing hook');
+    await vi.waitFor(() => expect(post.mock.calls.some(([m]) => m.type === 'init')).toBe(true));
     const first = colony.actions.getRun(),
       second = colony.actions.getRun();
     const requests = post.mock.calls.map(([m]) => m).filter((m) => m.type === 'exportPlaytest');
-    const gen = post.mock.calls[0]?.[0].gen;
+    const gen = post.mock.calls.find(([m]) => m.type === 'init')?.[0].gen;
     const file = (minute: number) => ({
       kind: 'human-playtest' as const,
       format: 1 as const,

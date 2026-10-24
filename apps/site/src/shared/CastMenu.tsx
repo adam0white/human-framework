@@ -1,0 +1,98 @@
+import './cast-life.css';
+import { useEffect, useState } from 'react';
+import {
+  castChanges,
+  castState,
+  checkpointCast,
+  chooseCastRecording,
+  selectCast,
+  setCastEnabled,
+  startCastFresh,
+} from './cast-runtime.ts';
+export function CastMenu({ game }: { game: string }) {
+  const [, refresh] = useState(0);
+  useEffect(() => castChanges(() => refresh((n) => n + 1)), []);
+  const s = castState(game);
+  return (
+    <section className="cast-life-menu">
+      <label>
+        <input type="checkbox" checked={s.enabled} onChange={(e) => setCastEnabled(e.target.checked)} /> Keep
+        fictional people and between-game life in this browser
+      </label>
+      <p>
+        Life advances only when starting a new chapter. Every compatible saved person enters a fresh chapter
+        together. Loaded play stays pinned. No full days, healing or completed duties are inferred.
+      </p>
+      <label>
+        Person to save{' '}
+        <select value={s.selected} onChange={(e) => selectCast(game, e.target.value)}>
+          {s.people.map((p) => (
+            <option key={p.castId} value={p.castId}>
+              {p.name}
+            </option>
+          ))}
+        </select>
+      </label>
+      <button type="button" disabled={s.busy || !s.enabled} onClick={() => void checkpointCast(game)}>
+        Save this person for another chapter
+      </button>
+      <button type="button" disabled={s.busy || !s.enabled} onClick={() => void checkpointCast(game, true)}>
+        Save this played person as an explicit fresh branch
+      </button>
+      <button type="button" onClick={() => startCastFresh(game)}>
+        Use fresh local play
+      </button>
+      <p role="status">{s.status}</p>
+      <a href="/lab/people/" target="_blank" rel="noopener">
+        Inspect, export, delete or explicitly branch people
+      </a>
+      {s.gated && !s.recordingAllowed && (
+        <>
+          <p>
+            Recording these continuing histories can link all carried earlier games to this recording
+            identity. Local play and export work either way.
+          </p>
+          <button type="button" disabled={s.busy} onClick={() => void chooseCastRecording(game, true)}>
+            Record all these continuing histories
+          </button>
+          <button type="button" disabled={s.busy} onClick={() => void chooseCastRecording(game, false)}>
+            Keep these histories local
+          </button>
+        </>
+      )}
+    </section>
+  );
+}
+export function CastLifeNote({ game }: { game: string }) {
+  const [, refresh] = useState(0);
+  useEffect(() => castChanges(() => refresh((n) => n + 1)), []);
+  const s = castState(game);
+  return s.line ? (
+    <details className="cast-life-note">
+      <summary>Before this chapter</summary>
+      <p>{s.line}</p>
+    </details>
+  ) : null;
+}
+
+/** Present even before the worker has an initial game view. A failed batch never traps startup. */
+export function CastStartGate({ game }: { game: string }) {
+  const [, refresh] = useState(0);
+  useEffect(() => castChanges(() => refresh((n) => n + 1)), []);
+  const s = castState(game);
+  if (!s.blocked) return null;
+  return (
+    <section className="cast-start-gate" role="dialog" aria-label="Continuing cast unavailable">
+      <h2>These people cannot begin together yet</h2>
+      <p>{s.status}</p>
+      <p>
+        The shelf is unchanged. You can keep their existing chapters, or deliberately start a fresh local
+        version.
+      </p>
+      <button type="button" onClick={() => startCastFresh(game)}>
+        Start a fresh local chapter
+      </button>
+      <a href="/lab/people/">Inspect or export the existing people</a>
+    </section>
+  );
+}

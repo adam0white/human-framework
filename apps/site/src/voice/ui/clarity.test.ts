@@ -4,12 +4,14 @@ import { resolve } from 'node:path';
 import { createElement } from 'react';
 import { flushSync } from 'react-dom';
 import { createRoot } from 'react-dom/client';
+import { renderToStaticMarkup } from 'react-dom/server';
 import { afterEach, expect, it, vi } from 'vitest';
 import { sampleFrame } from '../sim/fixtures.ts';
 import { Composer } from './Composer.tsx';
 import { DayLog } from './DayLog.tsx';
 import { EndsList } from './EndsPane.tsx';
 import { Premise } from './Premise.tsx';
+import { MenuPanel } from './ShellPanels.tsx';
 import { TopBar } from './TopBar.tsx';
 
 // These component checks do not exercise telemetry transport.
@@ -202,4 +204,25 @@ it('counts free-play days from Eid in the top bar', () => {
     }),
   );
   expect(query(el, '.v-shell-when').textContent).toBe('After Eid · day 3 · 10:40');
+});
+
+it('the actual game menu exposes canonical continuity and explicit fresh play', () => {
+  const markup = renderToStaticMarkup(
+    createElement(MenuPanel, {
+      freeText: false,
+      onFreeText: vi.fn(),
+      label: 'Day 1',
+      pace: 'automatic',
+      actions: {} as never,
+      onClose: vi.fn(),
+      onTitle: vi.fn(),
+      onSendWord: vi.fn(),
+      canReturn: false,
+    }),
+  );
+  expect(markup).toContain('Keep fictional people and between-game life');
+  expect(markup).toContain('Rıza');
+  expect(markup).toContain('Save this person for another chapter');
+  expect(markup).toContain('Save this played person as an explicit fresh branch');
+  expect(markup).toContain('Use fresh local play');
 });

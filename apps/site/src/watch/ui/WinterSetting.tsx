@@ -16,7 +16,7 @@ export function WinterSetting({ frame, actions }: { frame: Frame; actions: Watch
         />
         <span>
           Tamar: “Be grateful for what we have. Take the winter as it comes.”
-          <small>Joss: “Let the young learn the watch we learned.”</small>
+          <small>Idris: “Let the young learn the watch we learned.”</small>
         </span>
       </label>
       <label>
@@ -27,8 +27,8 @@ export function WinterSetting({ frame, actions }: { frame: Frame; actions: Watch
           onChange={() => actions.input({ k: 'winter', winter: 'milder' })}
         />
         <span>
-          Yunus: “Let us pray that the coming winter goes easier.”
-          <small>Mara: “And a little rest for those on the wall.”</small>
+          Danyal: “Let us pray that the coming winter goes easier.”
+          <small>Samira: “And a little rest for those on the wall.”</small>
           <small>Packs come later; movement is seen sooner. The same threats remain.</small>
         </span>
       </label>

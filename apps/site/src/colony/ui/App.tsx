@@ -1,5 +1,6 @@
 import { setTelemetryOff, telemetryOn } from '@adam0white/lab-kit';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { CastLifeNote, CastMenu, CastStartGate } from '../../shared/CastMenu.tsx';
 import { FullscreenButton, useWakeLock } from '../../shared/fullscreen.tsx';
 import { LabNotice } from '../../shared/LabNotice.tsx';
 import { gameLabs, useLabScreen } from '../../shared/lab.tsx';
@@ -496,6 +497,8 @@ export function App() {
   );
   return (
     <div className={`colony well-layout ${shelf ? 'well-on-shelf' : ''} ${showEnd ? 'well-on-end' : ''}`}>
+      <CastStartGate game="well" />
+      <CastLifeNote game="well" />
       <header className="well-topbar">
         <div className="well-time">
           {shelf ? (
@@ -610,7 +613,7 @@ export function App() {
                   onClick={() => {
                     if (save) {
                       continueLoad.current = true;
-                      actions.loadPlaytest(JSON.stringify(save));
+                      actions.loadPlaytest(JSON.stringify(save), true);
                     } else begin();
                   }}
                 >
@@ -897,6 +900,7 @@ export function App() {
                 Record play for the lab
               </label>
               <a href="/lab/privacy/">Lab privacy</a>
+              <CastMenu game="well" />
             </div>
             <footer className="well-actions">
               <button type="button" className="well-primary" onClick={() => setMenu(false)}>

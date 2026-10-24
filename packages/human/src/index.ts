@@ -1,5 +1,5 @@
 /** Human Framework public surface. */
-export const FRAMEWORK_VERSION = '2.17.0';
+export const FRAMEWORK_VERSION = '2.18.0';
 
 // `affect.release` is re-exported as `releaseEmotion` (beside `releaseCommitment`); `skipAffect` stays internal.
 export type { CrisisEvent, PracticeKind } from './affect/index.ts';
@@ -83,6 +83,7 @@ export {
 } from './agenda/index.ts';
 export * from './beliefs/index.ts';
 export * from './body/index.ts';
+export * from './chapter-clock.ts';
 export * from './character/index.ts';
 export * from './chronicle/index.ts';
 export type { ConsiderContext, DecideContext, Decision, SocialContext } from './cognition/index.ts';

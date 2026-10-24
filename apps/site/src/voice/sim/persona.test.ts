@@ -197,7 +197,7 @@ describe('Selin calendar continuity chapter', () => {
     const departure = await createPersona({
       format: 'hf-persona/1',
       castId: SELIN_CAST,
-      castRevision: '1',
+      castRevision: '2',
       branchId: 'synthetic-proof',
       parentRevision: null,
       source: { game: 'voice', build: 'test', engine: '2.14.1', rules: 'voice-4' },
@@ -273,7 +273,7 @@ describe('Selin calendar continuity chapter', () => {
     const envelope = await createPersona({
       format: 'hf-persona/1',
       castId: SELIN_CAST,
-      castRevision: '1',
+      castRevision: '2',
       branchId: 'synthetic-proof',
       parentRevision: null,
       source: { game: 'goodhands', build: 'test', engine: '2.14.1', rules: 'goodhands-6' },

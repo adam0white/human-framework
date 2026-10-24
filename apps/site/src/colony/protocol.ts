@@ -1,3 +1,5 @@
+import type { CastChapter } from '../shared/cast-chapter.ts';
+import type { CastReply, CastRequest } from '../shared/cast-runtime.ts';
 /**
  * Worker protocol (colony.md §10): the main thread sends `tick{dtMs}` once per animation frame; the worker
  * converts real time to sim minutes (`SIM_MINUTES_PER_SECOND` × speed) and replies with at most one `frame` per
@@ -24,10 +26,12 @@ export interface PresentationContext {
 }
 
 export type MainToWorker =
+  | CastRequest
   | TelemetryRequest
   /** `gen` numbers the run; every reply echoes it so the page can drop replies from a run it replaced. Starts paused. */
   | {
       type: 'init';
+      castChapter?: CastChapter;
       seed: number;
       scenarioVersion: string;
       gen: number;
@@ -52,7 +56,7 @@ export type MainToWorker =
   /** Playtest file: the worker answers `playtest` (the page fills in `build`). */
   | { type: 'exportPlaytest'; requestId?: number }
   /** Replay a playtest file's text as run `gen`; answers `replayed` then frames, or `playtestError`. */
-  | { type: 'loadPlaytest'; gen: number; text: string };
+  | { type: 'loadPlaytest'; gen: number; text: string; local?: boolean };
 
 export type PauseReason = 'suggestion' | 'refusal' | 'moment' | 'storm';
 
@@ -80,6 +84,7 @@ export interface PlaybackState {
 
 /** A worker reply before the run number is attached. */
 export type WorkerReply =
+  | CastReply
   | TelemetryReply
   /** `Frame.clock` stays the "Day 1 · 06:30" string. */
   | { type: 'frame'; frame: Frame; playback: PlaybackState }

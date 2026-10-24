@@ -102,6 +102,7 @@ import {
   nameOf,
   personOf,
   placeOfActivity,
+  prepareWatchCast,
   villager,
   WatchWorld,
 } from './people.ts';
@@ -161,8 +162,15 @@ export const PRESS_STRENGTH: Record<Press, number> = { ask: 0.35, urge: 0.6, ins
 /** Notes of the same kind for the same person closer together than this are merged. */
 const NOTE_GAP = 90;
 
-export function newGame(seed: number): WatchState {
+export function newGame(
+  seed: number,
+  castChapter?: import('../../shared/cast-chapter.ts').CastChapter,
+): WatchState {
   const s = createState(seed);
+  if (castChapter) {
+    s.castChapter = structuredClone(castChapter);
+    prepareWatchCast(seed, s.castChapter);
+  }
   for (const v of foundingCast()) addVillager(s, v);
   s.leaves = freshLeaves();
   arrive(s);

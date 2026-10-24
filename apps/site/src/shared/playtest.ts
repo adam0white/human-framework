@@ -17,6 +17,9 @@ export type GameId = 'colony' | 'voice';
 
 /** One playtest file. `snapshot` is plain JSON, or a gzip+base64 string of it when `snapshotEncoding` says so. */
 export interface PlaytestFile<L = unknown> {
+  castEdition?: 'one-cast-1';
+  castOwnership?: import('./cast-runtime.ts').CastHeads;
+  castChapter?: import('./cast-chapter.ts').CastChapter;
   kind: 'human-playtest';
   format: 1;
   game: GameId;
@@ -253,7 +256,12 @@ export function parsePlaytest<L>(
       `That playtest file’s input log is not valid: ${e instanceof Error ? e.message : e}`,
     );
   }
+  if (p.castEdition !== 'one-cast-1')
+    throw new PlaytestError(
+      'This file uses an older cast edition. Start a fresh game; keep the old file as an archive.',
+    );
   return {
+    castEdition: 'one-cast-1',
     kind: 'human-playtest',
     format: 1,
     game,
@@ -267,6 +275,8 @@ export function parsePlaytest<L>(
     hash: p.hash,
     snapshotEncoding: p.snapshotEncoding,
     snapshot: p.snapshot,
+    ...(p.castOwnership ? { castOwnership: p.castOwnership as import('./cast-runtime.ts').CastHeads } : {}),
+    ...(p.castChapter ? { castChapter: p.castChapter as import('./cast-chapter.ts').CastChapter } : {}),
   };
 }
 
@@ -314,6 +324,7 @@ export async function makePlaytestFile<L>(o: {
   plainSnapshot?: boolean;
 }): Promise<PlaytestFile<L>> {
   return {
+    castEdition: 'one-cast-1',
     kind: 'human-playtest',
     format: 1,
     game: o.game,

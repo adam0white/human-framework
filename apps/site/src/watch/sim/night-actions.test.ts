@@ -140,15 +140,15 @@ describe('night asks on a watcher', () => {
     const { s } = night();
     s.winterNight = 2;
     arrive(s);
-    s.place.mara = 'mill-1';
-    s.place.joss = 'mill-2';
-    expect(act(s, 'relieve')?.read).toContain('leaves Mara and Joss at the mill wall');
+    s.place.samira = 'mill-1';
+    s.place.idris = 'mill-2';
+    expect(act(s, 'relieve')?.read).toContain('leaves Samira and Idris at the mill wall');
     expect(act(s, 'relieve')?.read).not.toContain('mill wall empty');
-    s.place.mara = 'gate-1';
-    s.place.joss = 'gate-2';
-    expect(act(s, 'down')?.read).toContain('leaves Mara and Joss at the Gate');
-    s.place.mara = 'home';
-    s.place.joss = 'home';
+    s.place.samira = 'gate-1';
+    s.place.idris = 'gate-2';
+    expect(act(s, 'down')?.read).toContain('leaves Samira and Idris at the Gate');
+    s.place.samira = 'home';
+    s.place.idris = 'home';
     expect(act(s, 'down')?.read).toContain('leaves the Gate empty');
   });
 
@@ -163,7 +163,7 @@ describe('night asks on a watcher', () => {
     s.place.tamar = 'home';
     delete s.nightRequests?.tamar;
     s.alerts = s.alerts.filter((alert) => alert.who !== 'tamar');
-    expect(progress()).toBe('Kian has the Gate; Tamar has gone down.');
+    expect(progress()).toBe('Kian has the Gate; Tamar of the Wall has gone down.');
     s.place.kian = 'home';
     expect(progress()).toBe('Kian has left the Gate.');
   });
@@ -246,7 +246,7 @@ describe('night asks on a watcher', () => {
 
   it('rejects forged helper identities and invalid targets', () => {
     const { run, s } = night();
-    for (const by of ['tamar', 'missing', 'mara'])
+    for (const by of ['tamar', 'missing', 'samira'])
       expect(run.input({ k: 'relieve', who: 'tamar', by })).toBe(false);
     expect(run.input({ k: 'down', who: 'missing' })).toBe(false);
     s.place.tamar = 'hall';
@@ -305,17 +305,17 @@ describe('night asks on a watcher', () => {
     s.moment = {
       id: 70,
       kind: 'waver',
-      who: 'mara',
+      who: 'samira',
       section: 'gate',
       opened: s.minute,
       until: s.minute + 3,
-      text: 'Mara looks back.',
+      text: 'Samira looks back.',
       options: [{ id: 'let', label: 'Let her go' }],
     };
     s.nextMomentId = 71;
     s.momentLog = Array.from({ length: 3 }, () => ({
       kind: 'waver' as const,
-      who: 'mara',
+      who: 'samira',
       minute: s.minute,
       choice: null,
     }));

@@ -22,7 +22,7 @@ interface Seen {
   stuckCards: number;
   prayed: number;
   prayerAlerts: number;
-  ruslanAtArrival: number | null;
+  meryemAtArrival: number | null;
   /** Watchers who had family at home on some night. */
   withFamily: Set<string>;
 }
@@ -44,12 +44,12 @@ function watch(seed: number, plan: PlanName, nights = 3): Seen {
     stuckCards: 0,
     prayed: 0,
     prayerAlerts: 0,
-    ruslanAtArrival: null,
+    meryemAtArrival: null,
     withFamily: new Set(),
   };
   for (let n = 1; n <= nights; n++) {
-    if (run.state.night === 3 && personOf(run.state, 'ruslan'))
-      seen.ruslanAtArrival = meanConfidence(run, 'ruslan');
+    if (run.state.night === 3 && personOf(run.state, 'meryem'))
+      seen.meryemAtArrival = meanConfidence(run, 'meryem');
     for (const i of planInputs(run.state, plan, true)) run.input(i);
     for (const id of presentIds(run.state)) if (familyWords(run.state, id)) seen.withFamily.add(id);
     run.input({ k: 'begin' });
@@ -69,7 +69,7 @@ function watch(seed: number, plan: PlanName, nights = 3): Seen {
         if (m.section !== ls) seen.cardOffLit += 1;
       }
       if (m && s.minute > m.until + 1) seen.stuckCards += 1;
-      const y = personOf(s, 'yunus');
+      const y = personOf(s, 'danyal');
       if (y?.activity?.action === 'pray' && y.activity.startedAt === s.minute - 1) seen.prayed += 1;
     }
     const s = run.state;
@@ -124,12 +124,12 @@ describe('watchers are people', () => {
   });
 
   it('the newcomer arrives unknown to the Keeper', () => {
-    for (const r of runs) if (r.ruslanAtArrival !== null) expect(r.ruslanAtArrival).toBeLessThan(0.05);
-    expect(runs.some((r) => r.ruslanAtArrival !== null)).toBe(true);
+    for (const r of runs) if (r.meryemAtArrival !== null) expect(r.meryemAtArrival).toBeLessThan(0.05);
+    expect(runs.some((r) => r.meryemAtArrival !== null)).toBe(true);
   });
 
-  it('Yunus prays on the wall with no alert', () => {
-    expect(runs.reduce((a, r) => a + r.prayed, 0)).toBeGreaterThan(0);
+  it('Danyal does not inherit the retired Yunus Muslim prayer routine', () => {
+    expect(runs.reduce((a, r) => a + r.prayed, 0)).toBe(0);
     expect(runs.reduce((a, r) => a + r.prayerAlerts, 0)).toBe(0);
   });
 

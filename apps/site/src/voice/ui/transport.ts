@@ -1,3 +1,5 @@
+import { bindCastWorker, postCastMessage } from '../../shared/cast-runtime.ts';
+import { gameLabs } from '../../shared/lab.tsx';
 /**
  * The seam between the UI and the simulation: the real Web Worker (`../worker.ts`). In development only, `?mock=1`
  * in the URL swaps in an in-page mock built on `sim/fixtures.ts` so every screen stays reachable; the mock is
@@ -36,15 +38,19 @@ async function mockTransport(): Promise<Transport> {
 
 function workerTransport(): Transport {
   const w = new VoiceWorker();
+  const stopCast = bindCastWorker(w, 'voice', gameLabs.voice);
   return {
     kind: 'worker',
-    post: (msg) => w.postMessage(msg),
+    post: (msg) => postCastMessage(w, 'voice', msg),
     onMessage: (fn) => w.addEventListener('message', (e: MessageEvent<WorkerToMain>) => fn(e.data)),
     onError: (fn) => {
       w.addEventListener('error', (e) => fn(`The simulation failed to load: ${e.message || 'worker error'}`));
       w.addEventListener('messageerror', () => fn('The simulation sent a message the page could not read.'));
     },
-    close: () => w.terminate(),
+    close: () => {
+      stopCast();
+      w.terminate();
+    },
   };
 }
 

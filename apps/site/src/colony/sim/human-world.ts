@@ -24,6 +24,8 @@ import {
   skillLevel,
   type World,
 } from '@adam0white/human-framework';
+import { applyLifeOffers, type CastChapter, lifeNotice } from '../../shared/cast-chapter.ts';
+import { wellDiscovery } from '../../shared/cast-discoveries.ts';
 import { fw, gm, STRENGTH } from './human-cast.ts';
 import type { NotOnOffer } from './human-view.ts';
 import { findPath, type GameMap, type PlaceId, spotFor, type Tile } from './map.ts';
@@ -180,6 +182,8 @@ export interface HostEvents {
 }
 
 export interface HostState {
+  castChapter?: CastChapter;
+  castDiscoveries?: string[];
   /** Rules 8: framework deadline for a requested stay at home. Other offers remain available. */
   shelterUntil?: Record<string, number>;
   loc: Record<string, Tile>;
@@ -740,6 +744,7 @@ export class ColonyHostWorld implements World {
         advertises: { food: HOST.mealFood },
       });
     }
+    applyLifeOffers('well', p, out, this.s.castChapter);
     return out;
   }
 
@@ -910,6 +915,20 @@ export class ColonyHostWorld implements World {
 
     const done = (o: Partial<Outcome>): Outcome => {
       const out: Outcome = { ...base, ...o };
+      if (out.status === 'completed' && act.suggestion?.voiceId === 'player' && lifeNotice(p))
+        out.summary = `${out.summary ?? aff.label}. ${lifeNotice(p)}`;
+      if (
+        out.status === 'completed' &&
+        act.suggestion?.voiceId === 'player' &&
+        !(this.s.castDiscoveries ?? []).includes(id)
+      ) {
+        const clue = wellDiscovery(id, act.action);
+        if (clue) {
+          this.s.castDiscoveries ??= [];
+          this.s.castDiscoveries.push(id);
+          out.summary = `${out.summary ?? aff.label}. ${clue}`;
+        }
+      }
       if (act.suggestion?.voiceId === 'player') {
         this.events.finished.push({
           personId: id,
