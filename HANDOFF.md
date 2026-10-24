@@ -20,6 +20,10 @@ Updated 2026-10-23. Read [AGENTS.md](AGENTS.md) for rules and the current increm
 - **Deferred by owner, no date:** first lab-client npm publication and its trusted publisher.
 - **Rechecks:** lanes model measured to 2026-10-27 ([velocity sweep](docs/lab/velocity-sweep-2026-10-20.md)); Cloudflare `cf` CLI on 2026-12-01 ([findings](docs/findings.md)); The Night Watch §12 deferred list by 2026-11-05.
 
+## Explicit feedback authority (2026-10-23 coordinator call, relayed task)
+
+The newer direct owner task states: “Feedback ALWAYS sends. A player's note and verdict are never blocked by any linkage consent or a missing answer. If continuing-person consent is unanswered or declined, send the feedback (and its run, if recording is on) WITHOUT persona linkage. Only link a persona after an explicit yes.” This authorizes an available explicit unlinked feedback run without granting automatic recording or historical persona linkage. Recording off and privacy suppression without override remain note-only. Optional inline linkage uses each host’s existing scoped group/epoch coordinator. Browser-only ownership metadata is omitted from the unlinked feedback copy; deterministic cast admission and replay input remain intact.
+
 ## Linked lab telemetry (2026-10-22)
 
 Owner-directed plumbing: lab-client 0.2.0 and lab-kit 0.3.0 (workspace versions; npm publication remains deferred). All three site games automatically supply full runs, successful Watch saves, game logs and events. Shared menu controls stop recording and remove identity. Shared first-visit notice is visible. The static `/lab/identity/` bridge links approved lab origins through localStorage and checked messages; CSP permits framing only this page. DNT/GPC still suppress automatic uploads absent an explicit per-game override. The separate player-character opt-in remains required. External games must adopt the new client hooks and allow the identity frame in their CSP; their screens are outside this increment.

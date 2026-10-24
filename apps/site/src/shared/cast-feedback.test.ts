@@ -11,7 +11,7 @@ const controls = vi.hoisted(() => ({
 }));
 vi.mock('@adam0white/lab-client', () => ({ openSendDialog: controls.open }));
 vi.mock('./lab.tsx', () => {
-  const lab = { sendFeedback: controls.send };
+  const lab = { sendFeedback: controls.send, personaRecordingRequired: true };
   return { gameLabs: { voice: lab, well: lab, watch: lab } };
 });
 vi.mock('./cast-runtime.ts', () => ({
@@ -45,6 +45,7 @@ it.each(['voice', 'watch', 'well'])(
     expect(controls.open).toHaveBeenCalledOnce();
     const options = controls.open.mock.calls[0]?.[0] as SendDialogOptions;
     expect(options.getRun()).toBeUndefined();
+    expect(options.lab.personaRecordingRequired).toBe(false);
     expect(options.title).toContain('no game run or state included');
     await options.lab.sendFeedback('Refusal feedback', { name: 'Tester' });
     expect(controls.send).toHaveBeenCalledWith('Refusal feedback', {

@@ -2,6 +2,8 @@
 import type { Lab } from '@adam0white/lab-client';
 import { setTelemetryOff, telemetryOn } from '@adam0white/lab-kit';
 import { useEffect, useRef, useState } from 'react';
+import { chooseCastRecording } from '../../shared/cast-runtime.ts';
+import { unlinkedFeedbackRun } from '../../shared/feedback-run.ts';
 import { gameLabs } from '../../shared/lab.tsx';
 import type { WatchActions } from './useWatch.ts';
 
@@ -191,7 +193,7 @@ export function FeedbackScreen({
       let run: unknown;
       if (recording.on && !lab.personaRecordingAllowed) {
         try {
-          run = await actions.exportRun();
+          run = unlinkedFeedbackRun(await actions.exportRun());
         } catch {
           /* The note can still be sent. */
         }
@@ -234,11 +236,14 @@ export function FeedbackScreen({
               type="checkbox"
               checked={personaLinked}
               onChange={(e) => {
-                lab.allowPersonaRecording(e.target.checked);
-                setPersonaLinked(lab.personaRecordingAllowed);
+                const allow = e.target.checked;
+                void Promise.resolve()
+                  .then(() => chooseCastRecording('watch', allow))
+                  .then(() => setPersonaLinked(lab.personaRecordingAllowed))
+                  .catch(() => setPersonaLinked(lab.personaRecordingAllowed));
               }}
             />
-            Link this continuing person to lab recording (optional)
+            Link all continuing histories in this run to lab recording (optional)
           </label>
         ) : null}
         <fieldset className="w-verdicts" aria-label="Would you keep playing?">

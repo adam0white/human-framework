@@ -82,6 +82,8 @@ function openCastFeedback(game: string): void {
   if (game !== 'voice' && game !== 'watch' && game !== 'well') return;
   const lab = gameLabs[game];
   const feedbackLab = Object.create(lab) as Lab;
+  // No admitted run is attached here, so this sheet cannot choose historical linkage.
+  Object.defineProperty(feedbackLab, 'personaRecordingRequired', { value: false });
   feedbackLab.sendFeedback = (note, options) =>
     lab.sendFeedback(note, { name: options?.name, run: { feedbackOnly: true } });
   openSendDialog({

@@ -3,6 +3,10 @@ import type { Lab } from '@adam0white/lab-client';
 import { act, createElement } from 'react';
 import { createRoot } from 'react-dom/client';
 import { afterEach, expect, it, vi } from 'vitest';
+import { chooseCastRecording } from '../../shared/cast-runtime.ts';
+
+vi.mock('../../shared/cast-runtime.ts', () => ({ chooseCastRecording: vi.fn() }));
+
 import { Feedback } from './Feedback.tsx';
 
 (globalThis as typeof globalThis & { IS_REACT_ACT_ENVIRONMENT: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
@@ -13,12 +17,16 @@ const roots: ReturnType<typeof createRoot>[] = [];
 afterEach(async () => {
   for (const root of roots) await act(() => root.unmount());
   roots.length = 0;
+  vi.mocked(chooseCastRecording).mockReset();
   localStorage.clear();
   document.body.innerHTML = '';
 });
 function labStub() {
   return {
     telemetryOn: true,
+    personaRecordingRequired: false,
+    personaRecordingAllowed: false,
+    allowPersonaRecording: vi.fn(),
     privacySignalOn: false,
     privacyOverride: false,
     sendFeedback: vi.fn(async () => 'queued'),
@@ -91,4 +99,36 @@ it.each(['unanswered', 'declined', 'off', 'privacy'])('sends in the same sheet w
   expect(lab.openSendDialog).not.toHaveBeenCalled();
   expect(lab.setTelemetryOff).not.toHaveBeenCalled();
   expect(node.querySelectorAll('[role=dialog]')).toHaveLength(1);
+});
+
+it.each(['pending', 'failed'])(
+  'routes optional linkage through the scoped host choice while %s without blocking notes',
+  async (outcome) => {
+    const lab = labStub();
+    lab.personaRecordingRequired = true;
+    vi.mocked(chooseCastRecording).mockImplementationOnce(() =>
+      outcome === 'pending' ? new Promise<void>(() => {}) : Promise.reject(new Error('shelf unavailable')),
+    );
+    const { node, send } = await mount(lab);
+    await act(async () => node.querySelector<HTMLInputElement>('input[type=checkbox]')?.click());
+    expect(chooseCastRecording).toHaveBeenCalledWith('well', true);
+    expect(lab.allowPersonaRecording).not.toHaveBeenCalled();
+    expect(send().disabled).toBe(false);
+    await act(async () => send().click());
+    expect(lab.sendFeedback).toHaveBeenCalledOnce();
+    expect(node.querySelectorAll('[role=dialog]')).toHaveLength(1);
+  },
+);
+
+it('omits only browser ownership from an unlinked run without changing the export', async () => {
+  const lab = labStub();
+  const castChapter = { initial: { cast: 'admitted replay input' } };
+  const castOwnership = { person: { branchId: 'browser-claim', revision: 'r1' } };
+  const run = Object.freeze({ seed: 42, inputs: [], castChapter, castOwnership });
+  vi.mocked(actions.getRun).mockResolvedValueOnce(run as never);
+  const { send } = await mount(lab);
+  await act(async () => send().click());
+  expect(lab.sendFeedback).toHaveBeenCalledWith('', { name: '', run: { seed: 42, inputs: [], castChapter } });
+  expect(run.castOwnership).toBe(castOwnership);
+  expect(run.castChapter).toBe(castChapter);
 });

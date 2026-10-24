@@ -11,7 +11,13 @@ import {
 } from '@adam0white/lab-client';
 import { personaControls } from '@adam0white/lab-kit';
 import { useEffect, useRef } from 'react';
-import { castRecordingGate, setCastEnabled, sitePersonaShelf } from '../../shared/cast-runtime.ts';
+import {
+  castRecordingGate,
+  castState,
+  chooseCastRecording,
+  setCastEnabled,
+  sitePersonaShelf,
+} from '../../shared/cast-runtime.ts';
 import { gameLabs } from '../../shared/lab.tsx';
 import { downloadJson, fetchBuild, type PlaytestFile } from '../../shared/playtest.ts';
 import type { MainToWorker, WorkerToMain } from '../protocol.ts';
@@ -321,6 +327,71 @@ async function continueReturn(): Promise<void> {
   if (prepared) startReturn?.(prepared.header, prepared.seed);
 }
 
+/** Reuse the menu’s pinned-person and recording-epoch choice from inline feedback. */
+export function chooseVoiceRecording(value: boolean) {
+  if (castState('voice').gated) return chooseCastRecording('voice', value);
+  if (session.loading) {
+    message('Wait until the chapter has finished loading.');
+    return;
+  }
+  const attempt = ++recordingAttempt;
+  const lab = gameLabs.voice;
+  const head = session.head;
+  const key = session.key;
+  recordingChoice = attempt;
+  deniedRecordingBranch = value ? undefined : key;
+  if (!value) {
+    lab.setPersonaRecording(key);
+    lab.allowPersonaRecording(false);
+  }
+  if (head) {
+    lab.setPersonaRecording(`voice-verifying-${crypto.randomUUID()}`);
+    changed();
+  }
+  const current = () =>
+    attempt === recordingAttempt &&
+    !session.loading &&
+    session.head?.revision === head?.revision &&
+    session.key === key;
+  if (!head) {
+    if (current()) {
+      lab.setPersonaRecording(key);
+      lab.allowPersonaRecording(value);
+    }
+    recordingChoice = undefined;
+    changed();
+    return;
+  }
+  return shelf
+    .request<{ recordingEpoch: string | null }>({ action: 'recording', envelope: head })
+    .then((epoch) => {
+      if (!current()) return null;
+      return shelf.request<{ sameEpoch: boolean; branchId?: string; revision?: string }>({
+        action: 'recording',
+        castId: SELIN_CAST,
+        envelope: head,
+        allowRecording: value,
+        recordingEpoch: epoch.recordingEpoch ?? undefined,
+      });
+    })
+    .then((result) => {
+      if (
+        current() &&
+        result?.sameEpoch === value &&
+        result.branchId === head.branchId &&
+        result.revision === head.revision
+      ) {
+        lab.setPersonaRecording(key);
+        lab.allowPersonaRecording(value);
+      }
+      changed();
+    })
+    .catch((error) => message(String(error)))
+    .finally(() => {
+      if (recordingChoice === attempt) recordingChoice = undefined;
+    });
+}
+
 export function VoicePersonaControls({ canReturn }: { canReturn: boolean }) {
   const root = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -337,68 +408,7 @@ export function VoicePersonaControls({ canReturn }: { canReturn: boolean }) {
             else send?.({ type: 'personaCheckpointCancel' });
             render();
           },
-          allowRecording(value) {
-            if (session.loading) {
-              message('Wait until the chapter has finished loading.');
-              return;
-            }
-            const attempt = ++recordingAttempt;
-            const lab = gameLabs.voice;
-            const head = session.head;
-            const key = session.key;
-            recordingChoice = attempt;
-            deniedRecordingBranch = value ? undefined : key;
-            if (!value) {
-              lab.setPersonaRecording(key);
-              lab.allowPersonaRecording(false);
-            }
-            if (head) {
-              lab.setPersonaRecording(`voice-verifying-${crypto.randomUUID()}`);
-              changed();
-            }
-            const current = () =>
-              attempt === recordingAttempt &&
-              !session.loading &&
-              session.head?.revision === head?.revision &&
-              session.key === key;
-            if (!head) {
-              if (current()) {
-                lab.setPersonaRecording(key);
-                lab.allowPersonaRecording(value);
-              }
-              recordingChoice = undefined;
-              changed();
-              return;
-            }
-            void shelf
-              .request<{ recordingEpoch: string | null }>({ action: 'recording', envelope: head })
-              .then((epoch) => {
-                if (!current()) return null;
-                return shelf.request<{ sameEpoch: boolean; branchId?: string; revision?: string }>({
-                  action: 'recording',
-                  castId: SELIN_CAST,
-                  envelope: head,
-                  allowRecording: value,
-                  recordingEpoch: epoch.recordingEpoch ?? undefined,
-                });
-              })
-              .then((result) => {
-                if (
-                  current() &&
-                  result?.sameEpoch === value &&
-                  result.branchId === head.branchId &&
-                  result.revision === head.revision
-                ) {
-                  lab.setPersonaRecording(key);
-                  lab.allowPersonaRecording(value);
-                }
-                changed();
-              })
-              .catch((error) => message(String(error)))
-              .finally(() => {
-                if (recordingChoice === attempt) recordingChoice = undefined;
-              });
-          },
+          allowRecording: chooseVoiceRecording,
         }),
       );
       const explanation = document.createElement('p');

@@ -2,7 +2,9 @@
 import type { Lab } from '@adam0white/lab-client';
 import { setTelemetryOff, telemetryOn } from '@adam0white/lab-kit';
 import { useEffect, useRef, useState } from 'react';
+import { unlinkedFeedbackRun } from '../../shared/feedback-run.ts';
 import { gameLabs } from '../../shared/lab.tsx';
+import { chooseVoiceRecording } from './persona.tsx';
 import type { VoiceActions } from './useVoice.ts';
 import './feedback.css';
 
@@ -131,7 +133,7 @@ export function SendWord({
       let run: unknown;
       if (recording.on && !lab.personaRecordingAllowed) {
         try {
-          run = await actions.getPlaytest();
+          run = unlinkedFeedbackRun(await actions.getPlaytest());
         } catch {
           /* The note can still be sent. */
         }
@@ -174,11 +176,14 @@ export function SendWord({
               type="checkbox"
               checked={personaLinked}
               onChange={(e) => {
-                lab.allowPersonaRecording(e.target.checked);
-                setPersonaLinked(lab.personaRecordingAllowed);
+                const allow = e.target.checked;
+                void Promise.resolve()
+                  .then(() => chooseVoiceRecording(allow))
+                  .then(() => setPersonaLinked(lab.personaRecordingAllowed))
+                  .catch(() => setPersonaLinked(lab.personaRecordingAllowed));
               }}
             />
-            Link this continuing person to lab recording (optional)
+            Link all continuing histories in this run to lab recording (optional)
           </label>
         ) : null}
         <fieldset className="v-feedback-verdicts" aria-label="Would you keep playing?">
