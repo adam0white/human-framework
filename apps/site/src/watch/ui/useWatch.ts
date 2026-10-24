@@ -72,7 +72,12 @@ export function useWatch(): Watch {
   const exportSeq = useRef(0);
 
   const send = useCallback(
-    (msg: MainToWorker) => worker.current && postCastMessage(worker.current, 'watch', msg),
+    (msg: MainToWorker) =>
+      worker.current &&
+      postCastMessage(worker.current, 'watch', {
+        ...msg,
+        castRunGeneration: 'gen' in msg ? msg.gen : gen.current,
+      }),
     [],
   );
 
@@ -132,6 +137,7 @@ export function useWatch(): Watch {
     gen.current += 1;
     postCastMessage(w, 'watch', {
       type: 'init',
+      castPreview: true,
       seed: seedRef.current,
       gen: gen.current,
       scenarioVersion: WATCH_SCENARIO_VERSION,

@@ -30,7 +30,11 @@ vi.mock('./persona.tsx', () => ({
 vi.mock('./transport.ts', () => ({
   openTransport: async () => ({
     kind: 'worker',
-    post: channel.post,
+    // The production cast transport removes this orchestration-only field before the worker.
+    post: (msg: MainToWorker & { castRunGeneration?: number }) => {
+      const { castRunGeneration: _generation, ...input } = msg;
+      channel.post(input);
+    },
     onMessage: (fn: typeof channel.receive) => {
       channel.listeners.add(fn);
     },

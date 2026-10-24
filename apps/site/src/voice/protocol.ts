@@ -143,6 +143,7 @@ export type MainToWorker =
   | TelemetryRequest
   | {
       type: 'init';
+      castPreview?: boolean;
       castChapter?: CastChapter;
       seed: number;
       gen: number;

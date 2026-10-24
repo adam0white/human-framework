@@ -1,4 +1,8 @@
-/** Browser orchestration only. Whole-cast preflight precedes one atomic shelf claim. */
+/** Browser orchestration only. Titles preview authored state without shelf ownership.
+ * Explicit starts preflight the whole cast before one atomic claim. Replacements wait for
+ * an already-dispatched transaction; pre-dispatch cancellation never writes. No rollback,
+ * cross-device service, passport relaxation or simulation state repair is provided here.
+ */
 import {
   anchorPersonaLife,
   canonicalCast,
@@ -62,7 +66,36 @@ type State = {
   blocked?: boolean;
   pendingInit?: Record<string, unknown>;
   startupQueue?: Record<string, unknown>[];
+  previewInit?: Record<string, unknown>;
+  claiming?: number;
+  afterClaim?: Record<string, unknown>[];
+  startPrior?: RunState;
+  loadPrior?: RunState;
 };
+const RUN_FIELDS = [
+  'heads',
+  'sources',
+  'histories',
+  'gate',
+  'dedicated',
+  'runGen',
+  'boundary',
+  'phase',
+  'day',
+  'ended',
+  'played',
+  'localRestore',
+  'localSources',
+  'localLoad',
+  'previewInit',
+  'pendingInit',
+  'line',
+  'status',
+] as const;
+type RunState = Pick<State, (typeof RUN_FIELDS)[number]>;
+function savedRun(s: State): RunState {
+  return Object.fromEntries(RUN_FIELDS.map((key) => [key, s[key]])) as RunState;
+}
 const states = new Map<string, State>();
 const listeners = new Set<() => void>();
 export const castChanges = (fn: () => void) => {
@@ -149,6 +182,7 @@ function reset(s: State, gen?: number) {
   s.blocked = false;
   for (const p of s.pending.values()) p.reject(new Error('This chapter was replaced.'));
   s.pending.clear();
+  s.previewInit = undefined;
 }
 /** Init and its already-issued UI controls enter the worker in FIFO order after preflight/CAS. */
 function startWorker(s: State, message: Record<string, unknown>) {
@@ -156,7 +190,10 @@ function startWorker(s: State, message: Record<string, unknown>) {
   s.startupQueue = undefined;
   s.worker.postMessage(message);
   pinOwnership(s);
-  for (const control of queued) s.worker.postMessage(control);
+  for (const control of queued) {
+    const { castRunGeneration: _generation, ...input } = control;
+    s.worker.postMessage(input);
+  }
 }
 function pinOwnership(s: State) {
   s.worker.postMessage({ type: 'castOwnership', heads: structuredClone(s.heads) } satisfies CastRequest);
@@ -305,6 +342,7 @@ export function bindCastWorker(worker: Worker, game: string, lab: Lab): () => vo
       gen?: number;
       frame?: { phase?: string; day?: number | { current: number } | null; ended?: boolean; minute?: number };
       result?: { matches?: boolean };
+      ok?: boolean;
       file?: Record<string, unknown>;
       data?: Record<string, unknown>;
     };
@@ -323,6 +361,23 @@ export function bindCastWorker(worker: Worker, game: string, lab: Lab): () => vo
       s.pending.delete(r.requestId);
       pending?.resolve(r);
     }
+    if (
+      s.loadPrior &&
+      m.gen === s.runGen &&
+      (m.type === 'playtestError' || (m.type === 'loaded' && m.ok === false))
+    ) {
+      const prior = s.loadPrior;
+      s.loadPrior = undefined;
+      s.startPrior = undefined;
+      Object.assign(s, prior);
+      gate(s, prior.gate);
+      s.lab.allowPersonaRecording(false);
+      if (Object.keys(s.histories).length) void recording(s, s.generation).catch(() => {});
+      changed();
+      return;
+    }
+    if (m.gen === s.runGen && (m.type === 'replayed' || (m.type === 'loaded' && m.ok === true)))
+      s.loadPrior = undefined;
     if (m.gen !== undefined && s.runGen !== undefined && m.gen !== s.runGen) return;
     for (const file of [m.file, m.data])
       if (file && typeof file === 'object' && (file.kind === 'human-playtest' || file.game === 'watch')) {
@@ -386,8 +441,56 @@ export function postCastMessage(worker: Worker, game: string, message: Record<st
     worker.postMessage(message);
     return;
   }
-  if (['init', 'loadPlaytest', 'load'].includes(String(message.type)))
+  const replacement = ['init', 'loadPlaytest', 'load'].includes(String(message.type));
+  const controlGeneration = message.castRunGeneration ?? message.gen;
+  const postControl = () => {
+    const { castRunGeneration: _generation, ...input } = message;
+    worker.postMessage(input);
+  };
+  if (s.claiming !== undefined && (replacement || s.afterClaim)) {
+    // A dispatched atomic transaction cannot be rolled back. Finish that explicit start,
+    // then replace it; never send its queued play controls into the replacement run.
+    if (replacement) s.afterClaim = [structuredClone(message)];
+    else if (controlGeneration !== undefined && controlGeneration !== s.afterClaim![0]!.gen) return;
+    else if (!['tick', 'predict', 'why'].includes(String(message.type)) && s.afterClaim!.length < 32)
+      s.afterClaim!.push(structuredClone(message));
+    else if (s.afterClaim!.length >= 32) {
+      s.status =
+        'Too many controls arrived while accepting the explicit chapter. The extra control was refused.';
+      changed();
+    }
+    return;
+  }
+  if (!replacement && controlGeneration !== undefined && controlGeneration !== s.runGen) return;
+  const startsPreview =
+    s.previewInit &&
+    ((game === 'voice' && message.type === 'begin') ||
+      (game === 'well' && message.type === 'resume') ||
+      (game === 'watch' && message.type === 'input' && (message.input as { k?: string })?.k === 'start'));
+  if (startsPreview && typeof message.gen === 'number' && message.gen !== s.runGen) return;
+  if (startsPreview) {
+    const init = s.previewInit!;
+    postCastMessage(worker, game, init);
+    postCastMessage(worker, game, message);
+    return;
+  }
+  if (replacement) {
+    const prior = s.loadPrior ?? (s.startupQueue ? s.startPrior : savedRun(s));
     reset(s, typeof message.gen === 'number' ? message.gen : undefined);
+    s.startPrior = message.type === 'init' ? prior : undefined;
+    s.loadPrior = message.type === 'init' ? undefined : prior;
+  }
+  if (message.type === 'init' && message.castPreview === true) {
+    const { castPreview: _preview, ...init } = message;
+    s.previewInit = init;
+    s.pendingInit = undefined;
+    s.line = undefined;
+    s.status = 'Title preview. No continuing person has been claimed.';
+    gate(s, `cast-preview-${crypto.randomUUID()}`);
+    worker.postMessage(init);
+    changed();
+    return;
+  }
   if (message.type === 'loadPlaytest' || message.type === 'load') {
     s.localLoad = message.type === 'load' || message.local === true;
     if (s.localLoad && typeof message.text === 'string') {
@@ -414,13 +517,14 @@ export function postCastMessage(worker: Worker, game: string, message: Record<st
     if (s.startupQueue) {
       // No simulation exists yet. Elapsed frames and reads of the previous view are not inputs to the new run.
       if (['tick', 'predict', 'why'].includes(String(message.type))) return;
-      if (typeof message.gen === 'number' && s.runGen !== undefined && message.gen !== s.runGen) return;
+      if (typeof controlGeneration === 'number' && s.runGen !== undefined && controlGeneration !== s.runGen)
+        return;
       if (s.startupQueue.length >= 32) {
         reset(s, s.runGen);
         s.blocked = true;
         s.status = 'Too many controls arrived during startup. Start a fresh chapter again.';
       } else s.startupQueue.push(structuredClone(message));
-    } else worker.postMessage(message);
+    } else postControl();
     return;
   }
   s.pendingInit = message;
@@ -453,9 +557,14 @@ export function postCastMessage(worker: Worker, game: string, message: Record<st
         }
         return chapter;
       },
-      { isCurrent: () => generation === s.generation && shelf.enabled },
+      {
+        isCurrent: () => generation === s.generation && shelf.enabled,
+        onDispatch: () => {
+          s.claiming = generation;
+        },
+      },
     );
-    if (generation !== s.generation) return;
+    if (generation !== s.generation || s.afterClaim) return;
     if (!admitted) {
       gate(s, null);
       s.line = undefined;
@@ -483,6 +592,14 @@ export function postCastMessage(worker: Worker, game: string, message: Record<st
     })
     .finally(() => {
       if (generation === s.generation) s.busy = false;
+      // An obsolete hashing/preflight continuation must not release a newer transaction.
+      if (s.claiming === generation) {
+        s.claiming = undefined;
+        const next = s.afterClaim;
+        s.afterClaim = undefined;
+        if (next && states.get(game) === s)
+          for (const control of next) postCastMessage(worker, game, control);
+      }
       changed();
     });
 }

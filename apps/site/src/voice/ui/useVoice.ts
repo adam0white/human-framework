@@ -33,7 +33,6 @@ import {
   bindVoicePersona,
   checkpointVoicePersona,
   gateVoiceFile,
-  prepareVoiceReturn,
   receiveVoicePersona,
   resetVoicePersona,
   settleVoiceFileGate,
@@ -187,7 +186,8 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
   }, []);
   const send = useCallback(
     (msg: MainToWorker) => {
-      transport.current?.post(msg);
+      const stamped = { ...msg, castRunGeneration: gen.current };
+      transport.current?.post(stamped);
       if (
         !['predict', 'why', 'tick', 'init', 'loadPlaytest', 'exportPlaytest', 'telemetry'].includes(msg.type)
       )
@@ -420,15 +420,13 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
         });
         await voicePersonaReady;
         if (cancelled) return;
-        const returning = !replayParam() ? await prepareVoiceReturn(true) : null;
-        if (cancelled) return;
         gen.current += 1;
         t.post({
           type: 'init',
-          seed: returning?.seed ?? seedRef.current,
+          seed: seedRef.current,
+          castPreview: true,
           gen: gen.current,
           scenarioVersion: VOICE_SCENARIO_VERSION,
-          ...(returning ? { selinReturn: returning.header } : {}),
         });
         if (t.kind === 'worker')
           stopTelemetry = trackTransportRun(

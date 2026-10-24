@@ -4,17 +4,24 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 const control = vi.hoisted(() => ({
   state: { heads: {}, revisions: [] } as PersonaShelfState,
   puts: [] as PersonaEnvelope[],
+  batches: 0,
+  requests: [] as string[],
   allowed: new Set<string>(),
   enabled: true,
   key: null as string | null,
   refuse: false,
   autoPreflight: false,
   beforeBatch: undefined as (() => Promise<void>) | undefined,
+  beforeCreate: undefined as (() => Promise<void>) | undefined,
 }));
 vi.mock('@adam0white/lab-client', async () => {
   const actual = await vi.importActual<typeof import('@adam0white/lab-client')>('@adam0white/lab-client');
   return {
     ...actual,
+    createPersona: async (...args: Parameters<typeof actual.createPersona>) => {
+      await control.beforeCreate?.();
+      return actual.createPersona(...args);
+    },
     personaChannel: () => ({
       get enabled() {
         return control.enabled;
@@ -24,6 +31,7 @@ vi.mock('@adam0white/lab-client', async () => {
         control.enabled = value;
       },
       async request<T>(r: import('@adam0white/lab-client').PersonaRequest): Promise<T> {
+        control.requests.push(r.action);
         if (r.action === 'get')
           return (control.state.revisions.find((p) => p.revision === control.state.heads[r.castId!]) ??
             null) as T;
@@ -48,6 +56,7 @@ vi.mock('@adam0white/lab-client', async () => {
           } as T;
         }
         if (r.action === 'putBatch') {
+          control.batches++;
           await control.beforeBatch?.();
           control.state = actual.acceptPersonaBatch(control.state, r.envelopes!, r.expectedHeads);
           control.puts.push(...r.envelopes!);
@@ -144,12 +153,15 @@ beforeEach(() => {
   vi.stubGlobal('document', Object.assign(new EventTarget(), { visibilityState: 'visible' }));
   control.state = { heads: {}, revisions: [] };
   control.puts = [];
+  control.batches = 0;
+  control.requests = [];
   control.allowed.clear();
   control.enabled = true;
   control.key = null;
   control.refuse = false;
   control.autoPreflight = false;
   control.beforeBatch = undefined;
+  control.beforeCreate = undefined;
   lab.allowPersonaRecording.mockClear();
 });
 afterEach(() => {
@@ -268,6 +280,123 @@ describe('whole-cast browser continuity', () => {
     expect(JSON.stringify(control.puts)).not.toContain('privateSourceDetail');
     expect(JSON.parse(localStorage.getItem('hf-cast-source:voice')!)).toEqual({ 'hf.cast.riza.voice': raw });
   });
+  it('opens an owned title and restores Continue without writing or replacing its accepted receipts', async () => {
+    const old = await head();
+    control.state = acceptPersona(control.state, old);
+    const worker = new FakeWorker();
+    close = bindCastWorker(worker as unknown as Worker, 'voice', lab as never);
+    postCastMessage(worker as unknown as Worker, 'voice', {
+      type: 'init',
+      seed: 1,
+      gen: 1,
+      castPreview: true,
+    });
+    await Promise.resolve();
+    expect(control.batches).toBe(0);
+    expect(control.requests).toEqual([]);
+    expect(control.state.heads[old.castId]).toBe(old.revision);
+    postCastMessage(worker as unknown as Worker, 'voice', {
+      type: 'loadPlaytest',
+      gen: 2,
+      local: true,
+      text: JSON.stringify({ castOwnership: { [old.castId]: old } }),
+    });
+    worker.reply({ type: 'replayed', gen: 2, result: { matches: true } });
+    await vi.waitFor(() =>
+      expect(worker.requests('castOwnership').at(-1)?.heads).toEqual({ [old.castId]: old }),
+    );
+    expect(control.batches).toBe(0);
+    postCastMessage(worker as unknown as Worker, 'voice', {
+      type: 'loadPlaytest',
+      gen: 3,
+      text: JSON.stringify({ castOwnership: { [old.castId]: old } }),
+    });
+    worker.reply({ type: 'replayed', gen: 3, result: { matches: true } });
+    expect(control.batches).toBe(0);
+    expect(control.state.heads[old.castId]).toBe(old.revision);
+  });
+  it.each([
+    ['voice', 'hf.cast.riza.voice', { type: 'begin' }],
+    ['well', 'hf.cast.danyal.well', { type: 'resume' }],
+    ['watch', 'hf.cast.tamar.watch', { type: 'input', input: { k: 'start' } }],
+  ] as const)(
+    'promotes %s title only on its intentional start, with one whole-batch claim',
+    async (game, id, start) => {
+      control.state = acceptPersona(control.state, await head(id));
+      control.autoPreflight = true;
+      const worker = new FakeWorker();
+      close = bindCastWorker(worker as unknown as Worker, game, lab as never);
+      postCastMessage(worker as unknown as Worker, game, {
+        type: 'init',
+        seed: 1,
+        gen: 1,
+        castPreview: true,
+      });
+      await Promise.resolve();
+      expect(control.batches).toBe(0);
+      expect(worker.requests('castPreflight')).toHaveLength(0);
+      expect(control.requests).toEqual([]);
+      postCastMessage(worker as unknown as Worker, game, { ...start, gen: 1 });
+      await vi.waitFor(() => expect(castState(game).busy).toBe(false));
+      expect(control.batches).toBe(1);
+      expect(worker.requests('init')).toHaveLength(2);
+      expect(worker.requests(start.type)).toHaveLength(1);
+    },
+  );
+  it.each(['voice', 'well', 'watch'])(
+    'retains the prior owned %s run and working generation after a refused load',
+    async (game) => {
+      const id =
+        game === 'watch'
+          ? 'hf.cast.tamar.watch'
+          : game === 'well'
+            ? 'hf.cast.danyal.well'
+            : 'hf.cast.riza.voice';
+      const old = await head(id);
+      const worker = new FakeWorker();
+      close = bindCastWorker(worker as unknown as Worker, game, lab as never);
+      postCastMessage(worker as unknown as Worker, game, {
+        type: 'init',
+        seed: 1,
+        gen: 1,
+        castPreview: true,
+      });
+      postCastMessage(worker as unknown as Worker, game, {
+        type: 'loadPlaytest',
+        gen: 2,
+        local: true,
+        text: JSON.stringify({ castOwnership: { [id]: old } }),
+      });
+      worker.reply({ type: 'replayed', gen: 2, result: { matches: true } });
+      await vi.waitFor(() => expect(worker.requests('castOwnership').at(-1)?.heads).toEqual({ [id]: old }));
+      if (game === 'voice') {
+        await chooseCastRecording(game, true);
+        expect(lab.allowPersonaRecording).toHaveBeenLastCalledWith(true);
+      }
+      postCastMessage(worker as unknown as Worker, game, {
+        type: game === 'watch' ? 'load' : 'loadPlaytest',
+        gen: 3,
+        text: 'bad',
+        id: 'missing',
+      });
+      if (game === 'voice') {
+        control.allowed.clear(); // New identity/epoch has no inherited positive consent.
+        window.dispatchEvent(new Event('hf-lab-preference'));
+      }
+      worker.reply(
+        game === 'watch'
+          ? { type: 'loaded', gen: 3, ok: false, id: 'missing' }
+          : { type: 'playtestError', gen: 3, message: 'bad file' },
+      );
+      postCastMessage(worker as unknown as Worker, game, { type: 'exportPlaytest', castRunGeneration: 2 });
+      expect(worker.requests('exportPlaytest')).toHaveLength(1);
+      const file: Record<string, unknown> = { kind: 'human-playtest' };
+      worker.reply({ type: 'exported', gen: 2, file });
+      expect(file.castOwnership).toEqual({ [id]: old });
+      expect(control.batches).toBe(0);
+      expect(lab.allowPersonaRecording).not.toHaveBeenLastCalledWith(true);
+    },
+  );
   it('queues begin behind actual prepared init and exports a replayable current chapter', async () => {
     const { VoiceGame } = await import('../voice/sim/game.ts');
     const { RecordedGame, replayVoice, voiceHash, voiceSnapshot, validateVoiceLog } = await import(
@@ -310,11 +439,17 @@ describe('whole-cast browser continuity', () => {
     }
     const worker = new PlayingWorker();
     close = bindCastWorker(worker as unknown as Worker, 'voice', lab as never);
-    postCastMessage(worker as unknown as Worker, 'voice', { type: 'init', gen: 1, seed: 1 });
+    postCastMessage(worker as unknown as Worker, 'voice', {
+      type: 'init',
+      gen: 1,
+      seed: 1,
+      castPreview: true,
+    });
+    expect(control.batches).toBe(0);
+    postCastMessage(worker as unknown as Worker, 'voice', { type: 'begin', castRunGeneration: 1 });
     for (let n = 0; n < 100; n++)
       postCastMessage(worker as unknown as Worker, 'voice', { type: 'tick', gen: 1, dtMs: 16 });
     postCastMessage(worker as unknown as Worker, 'voice', { type: 'predict', gen: 1, requestId: 50 });
-    postCastMessage(worker as unknown as Worker, 'voice', { type: 'begin', gen: 1 });
     expect(worker.requests('begin')).toHaveLength(0);
     expect(worker.requests('tick')).toHaveLength(0);
     expect(worker.requests('predict')).toHaveLength(0);
@@ -325,6 +460,7 @@ describe('whole-cast browser continuity', () => {
     );
     played!.step(20);
     const current = played!;
+    expect(JSON.stringify(current.log)).not.toContain('castRunGeneration');
     const file = await makePlaytestFile({
       game: 'voice',
       seed: current.game.seed,
@@ -340,6 +476,63 @@ describe('whole-cast browser continuity', () => {
     const again = replayVoice(parsed.seed, parsed.log, 4, undefined, 0, saved.castChapter);
     expect(voiceHash(again.rec.game)).toBe(parsed.hash);
   });
+  it('finishes a dispatched explicit claim before loading, without running its queued begin in the replacement', async () => {
+    control.state = acceptPersona(control.state, await head());
+    control.autoPreflight = true;
+    let release!: () => void;
+    control.beforeBatch = () =>
+      new Promise<void>((resolve) => {
+        release = resolve;
+      });
+    const worker = new FakeWorker();
+    close = bindCastWorker(worker as unknown as Worker, 'voice', lab as never);
+    postCastMessage(worker as unknown as Worker, 'voice', {
+      type: 'init',
+      seed: 1,
+      gen: 1,
+      castPreview: true,
+    });
+    postCastMessage(worker as unknown as Worker, 'voice', { type: 'begin', gen: 1 });
+    await vi.waitFor(() => expect(control.batches).toBe(1));
+    postCastMessage(worker as unknown as Worker, 'voice', { type: 'loadPlaytest', gen: 2, text: '{}' });
+    expect(worker.requests('loadPlaytest')).toHaveLength(0);
+    postCastMessage(worker as unknown as Worker, 'voice', { type: 'begin', castRunGeneration: 1 });
+    release();
+    await vi.waitFor(() => expect(worker.requests('loadPlaytest')).toHaveLength(1));
+    expect(control.puts).toHaveLength(1); // Explicit start was already dispatched, not rolled back.
+    expect(worker.requests('begin')).toHaveLength(0);
+    expect(worker.requests('init')).toHaveLength(1); // Only the read-only preview reached the worker.
+  });
+  it('does not let obsolete hashing release a newer dispatched claim or its replacement queue', async () => {
+    control.state = acceptPersona(control.state, await head());
+    control.autoPreflight = true;
+    let releaseOld!: () => void, releaseCommit!: () => void;
+    let entered = false;
+    control.beforeCreate = () => {
+      entered = true;
+      control.beforeCreate = undefined;
+      return new Promise<void>((resolve) => {
+        releaseOld = resolve;
+      });
+    };
+    control.beforeBatch = () =>
+      new Promise<void>((resolve) => {
+        releaseCommit = resolve;
+      });
+    const worker = new FakeWorker();
+    close = bindCastWorker(worker as unknown as Worker, 'voice', lab as never);
+    postCastMessage(worker as unknown as Worker, 'voice', { type: 'init', seed: 1, gen: 1 });
+    await vi.waitFor(() => expect(entered).toBe(true));
+    postCastMessage(worker as unknown as Worker, 'voice', { type: 'init', seed: 1, gen: 2 });
+    await vi.waitFor(() => expect(control.batches).toBe(1));
+    releaseOld();
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    postCastMessage(worker as unknown as Worker, 'voice', { type: 'loadPlaytest', text: '{}', gen: 3 });
+    expect(worker.requests('loadPlaytest')).toHaveLength(0);
+    releaseCommit();
+    await vi.waitFor(() => expect(worker.requests('loadPlaytest')).toHaveLength(1));
+    expect(control.puts).toHaveLength(1);
+  });
   it('discards queued old-run controls on replacement, failed CAS and identity cancellation', async () => {
     control.state = acceptPersona(control.state, await head());
     const worker = new FakeWorker();
@@ -351,6 +544,7 @@ describe('whole-cast browser continuity', () => {
       postCastMessage(worker as unknown as Worker, 'voice', { type: 'begin', gen: 1 });
       await vi.waitFor(() => expect(worker.requests('castPreflight')).toHaveLength(preflightCount + 1));
       const request = worker.requests('castPreflight').at(-1)!;
+      const beforeWrites = control.puts.length;
       if (cancellation === 'load')
         postCastMessage(worker as unknown as Worker, 'voice', { type: 'loadPlaytest', gen: 2, text: '{}' });
       if (cancellation === 'identity') window.dispatchEvent(new Event('hf-lab-preference'));
@@ -370,6 +564,7 @@ describe('whole-cast browser continuity', () => {
       });
       await vi.waitFor(() => expect(castState('voice').busy).toBe(false));
       expect(worker.requests('begin')).toHaveLength(0);
+      if (cancellation !== 'conflict') expect(control.puts).toHaveLength(beforeWrites);
     }
   });
   it('starts two histories together but mixed recording epochs keep the derived run gated', async () => {

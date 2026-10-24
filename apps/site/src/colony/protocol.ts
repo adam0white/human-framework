@@ -31,6 +31,7 @@ export type MainToWorker =
   /** `gen` numbers the run; every reply echoes it so the page can drop replies from a run it replaced. Starts paused. */
   | {
       type: 'init';
+      castPreview?: boolean;
       castChapter?: CastChapter;
       seed: number;
       scenarioVersion: string;

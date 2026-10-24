@@ -16,7 +16,7 @@ export async function claimSiteCastBatch<T>(
   castIds: string[],
   source: PersonaEnvelope['source'],
   admit: (inputs: LifePreparation[]) => Promise<T>,
-  options: { isCurrent?: () => boolean } = {},
+  options: { isCurrent?: () => boolean; onDispatch?: () => void } = {},
 ) {
   const current = () => {
     if (options.isCurrent && !options.isCurrent())
@@ -29,6 +29,7 @@ export async function claimSiteCastBatch<T>(
     throw new Error('The batch omitted expected cast parents.');
   if (batch.blocked.length) throw new Error(batch.blocked.map((p) => `${p.castId}: ${p.reason}`).join(' '));
   if (!batch.inputs.length) {
+    options.onDispatch?.();
     await shelf.request({ action: 'putBatch', envelopes: [], expectedHeads: batch.expectedHeads });
     current();
     return null;
@@ -57,6 +58,7 @@ export async function claimSiteCastBatch<T>(
     }),
   );
   current();
+  options.onDispatch?.();
   await shelf.request({ action: 'putBatch', envelopes: claims, expectedHeads: batch.expectedHeads });
   current();
   return { initial, claims, inputs: batch.inputs };

@@ -6,7 +6,11 @@ import type { WorkerToMain } from '../protocol.ts';
 import type { OrderInput } from '../sim/orders.ts';
 import { type Colony, useColony } from './useColony.ts';
 
-vi.mock('../../shared/lab.tsx', () => ({ gameLabs: { well: {} } }));
+vi.mock('../../shared/lab.tsx', () => ({
+  gameLabs: {
+    well: { setPersonaRecording: vi.fn(), allowPersonaRecording: vi.fn(), personaRecordingAllowed: false },
+  },
+}));
 
 (globalThis as typeof globalThis & { IS_REACT_ACT_ENVIRONMENT: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
 afterEach(() => vi.unstubAllGlobals());

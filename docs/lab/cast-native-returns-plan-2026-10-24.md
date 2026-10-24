@@ -12,3 +12,6 @@ Dynamic receipts and unresolved route details: ~/code/.lab-scratch/cast/platform
 
 
 Amendment: whole-applicable Voice preflight exposed a real GoodHands Selin ownership claim retaining the earlier site passport. Required closure includes a finite native goodhands-agency/1 Selin→Voice reverse mapping, actual completed source encounter/checksum, preserved office work and fasting debts, archived agency-only episodes. The actual native source checkpoint is now UI-acknowledged at3965; previous claim retained. No arbitrary pass-through claim becomes a native checkpoint. Three target UI journeys remain.
+
+
+Owner correction: title entry in12e7 claimed continuing heads before a player chose Begin, which could stale the saved owned chapter. Done now additionally requires authored preview with zero ownership writes in Voice/Well/Watch, exactly one explicit-start whole-batch claim, local Continue/file provenance and generation controls, same-reviewer delta, normal delivery and fresh actual title→Continue/Voice4 proof. A dispatched atomic claim is serialized before replacement, not described as rolled back. Preserve this worktree when parked for the existing Valley source dependency.

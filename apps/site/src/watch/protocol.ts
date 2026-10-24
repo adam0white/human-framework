@@ -14,7 +14,14 @@ export type { PageInfo } from './store.ts';
 export type MainToWorker =
   | CastRequest
   | TelemetryRequest
-  | { type: 'init'; castChapter?: CastChapter; seed: number; gen: number; scenarioVersion: number }
+  | {
+      type: 'init';
+      castPreview?: boolean;
+      castChapter?: CastChapter;
+      seed: number;
+      gen: number;
+      scenarioVersion: number;
+    }
   | { type: 'tick'; dtMs: number }
   | { type: 'input'; input: Input }
   | { type: 'speed'; speed: Speed }

@@ -142,7 +142,12 @@ export function useColony(seed = DEFAULT_SEED): Colony {
   playbackRef.current = playback;
 
   const send = useCallback(
-    (msg: OutMsg) => worker.current && postCastMessage(worker.current, 'well', msg),
+    (msg: OutMsg) =>
+      worker.current &&
+      postCastMessage(worker.current, 'well', {
+        ...msg,
+        castRunGeneration: 'gen' in msg ? msg.gen : gen.current,
+      }),
     [],
   );
 
@@ -157,11 +162,12 @@ export function useColony(seed = DEFAULT_SEED): Colony {
   );
 
   const init = useCallback(
-    (w: Worker | null, village: Village = 'default') => {
+    (w: Worker | null, village: Village = 'default', castPreview = false) => {
       gen.current = Math.max(gen.current, pendingLoad.current) + 1;
       setPlayback(START_PLAYBACK(autoPause.current));
       const msg: OutMsg = {
         type: 'init',
+        castPreview,
         village,
         seed,
         scenarioVersion: SCENARIO_VERSION,
@@ -279,7 +285,7 @@ export function useColony(seed = DEFAULT_SEED): Colony {
     w.addEventListener('messageerror', () =>
       setError('The simulation sent a message the page could not read.'),
     );
-    init(w);
+    init(w, 'default', true);
     const replayUrl = replayParam();
     if (replayUrl) {
       setPlaytest({ busy: 'load' });
