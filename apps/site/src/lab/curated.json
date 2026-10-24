@@ -6221,7 +6221,7 @@
    "verdict": "quit",
    "routes": [
     "fix:rope Identify the flagging person without guessing from tiny postures (open, target 2026-11-03)",
-    "fix:rope Show the entire help hint on this phone (open, target 2026-11-03)",
+    "fix:rope Show the entire help hint on this phone (fixed 2415c9b, exact CI green, clean live deployment and both-size verification, owner retest target 2026-11-03)",
     "fix:rope Make routine gentle requests with fewer repeated tone choices (open, target 2026-11-03)"
    ],
    "source": "docs/lab/reviews/rebuild-2026-10-23/rope-free.md"
@@ -6235,7 +6235,7 @@
    "words": "I would return voluntarily to continue that repair.",
    "verdict": "keep",
    "routes": [
-    "fix:repair Keep the meter reading and active measurement condition visible while placing probes and reading the result on this phone (open, target 2026-11-03)",
+    "fix:repair Keep the meter reading and active measurement condition visible while placing probes and reading the result on this phone (fixed263351a reveals new reading, existing settings reachable by scrolling, exact CI green and clean live both-size verification, owner retest target 2026-11-03)",
     "fix:lab Document and use tab role in supplied access instructions (open, target 2026-11-03)"
    ],
    "source": "docs/lab/reviews/rebuild-2026-10-23/repair-free.md"
@@ -6249,7 +6249,7 @@
    "words": "I would try again with working access because I still wanted to see my work matter",
    "verdict": "mixed",
    "routes": [
-    "fix:neighbours Make the full action names readable on this phone without guessing clipped text (open, target 2026-11-03)",
+    "fix:neighbours Make the full action names readable on this phone without guessing clipped text (fixed98e52e3, exact CI green before corrective redeploy, clean live both-size verification, owner retest target 2026-11-03)",
     "fix:neighbours After not now tell me plainly whether I owe anything yet (open, target 2026-11-03)",
     "fix:lab Let the player reach and perform their own useful work reliably (open, target 2026-11-03)"
    ],
@@ -6297,7 +6297,7 @@
    "verdict": "mixed",
    "routes": [
     "fix:pass Talk to a cook about what they said without making it a job request (open, target 2026-11-03)",
-    "fix:pass Read the entire agreement and cover answer on the phone board (open, target 2026-11-03)",
+    "fix:pass Read the entire agreement and cover answer on the phone board (fixed 0040acf, exact CI green, clean live deployment and both-size verification, owner retest target 2026-11-03)",
     "fix:pass More crew interaction during service (open, target 2026-11-03)"
    ],
    "source": "docs/lab/reviews/rebuild-2026-10-23/pass-free.md"
@@ -6311,9 +6311,9 @@
    "words": "I might voluntarily return for Saturday; uncertain.",
    "verdict": "mixed",
    "routes": [
-    "fix:pass Hear the conversation when I sit with Rafi (open, target 2026-11-03)",
+    "fix:pass Hear the conversation when I sit with Rafi (fixed 0040acf, exact CI green, clean live deployment and both-size verification, owner retest target 2026-11-03)",
     "fix:pass Ordinary contact with the crew during quiet stretches without manufacturing trouble (open, target 2026-11-03)",
-    "fix:pass Read full board agreements on my phone especially cover refusals (open, target 2026-11-03)"
+    "fix:pass Read full board agreements on my phone especially cover refusals (fixed 0040acf, exact CI green, clean live deployment and both-size verification, owner retest target 2026-11-03)"
    ],
    "source": "docs/lab/reviews/rebuild-2026-10-23/pass-continued.md"
   },
@@ -6388,8 +6388,8 @@
    "words": "I would return voluntarily if I could read the sharing page on my phone.",
    "verdict": "mixed",
    "routes": [
-    "fix:stairwell See and use the Tell choices on this phone (open, target 2026-11-03)",
-    "fix:stairwell Read the notebook sentence from its beginning (open, target 2026-11-03)",
+    "fix:stairwell See and use the Tell choices on this phone (fixed b8fcedc, exact CI green, clean live deployment and both-size verification, owner retest target 2026-11-03)",
+    "fix:stairwell Read the notebook sentence from its beginning (fixed b8fcedc, exact CI green, clean live deployment and both-size verification, owner retest target 2026-11-03)",
     "fix:stairwell Tell when Sunday support stops being too early (open, target 2026-11-03)"
    ],
    "source": "docs/lab/reviews/rebuild-2026-10-23/stairwell-free.md"
@@ -6420,7 +6420,7 @@
    "routes": [
     "fix:hearsay First conversations with Emre and Elif tell something personal about the marriage (open, target 2026-11-03)",
     "fix:hearsay Asking a different neighbour gives a reason to keep listening beyond the repeated uncertainty sentence (open, target 2026-11-03)",
-    "fix:hearsay Read every recipient button without another control covering it (open, target 2026-11-03)"
+    "fix:hearsay Read every recipient button without another control covering it (superseded by canonical recast f273ceb, old recipient panel and banner no longer mounted, independent review and current both-size 121-second play/save-reload checks pass, owner retest target 2026-11-03)"
    ],
    "source": "docs/lab/reviews/rebuild-2026-10-23/hearsay-free.md"
   },
@@ -6449,7 +6449,7 @@
    "verdict": "keep",
    "routes": [
     "fix:valley Find the promised visit from the household’s put-off answer (open, target 2026-11-03)",
-    "fix:valley Keep the goal and immediate explanation readable on this phone (open, target 2026-11-03)",
+    "fix:valley Keep the goal and immediate explanation readable on this phone (fixed e151618, exact CI green, clean live deployment and both-size verification, owner retest target 2026-11-03)",
     "fix:valley Tell clearly whether a house-page call asks that house or everyone (open, target 2026-11-03)",
     "fix:lab Investigate blocked Dere house access from current visible controls (open, target 2026-11-03)"
    ],
@@ -6480,7 +6480,7 @@
    "words": "I would close the game rather than leave it running, and probably would not return voluntarily.",
    "verdict": "quit",
    "routes": [
-    "fix:warren One consistent answer about whether there are enough sleeping places (open, target 2026-11-03)",
+    "fix:warren One consistent answer about whether there are enough sleeping places (fixed 1bcef5b, exact CI green, clean live deployment and both-size verification, owner retest target 2026-11-03)",
     "fix:warren Make completed work and current worker activity easier to notice without opening a separate list (open, target 2026-11-03)",
     "fix:warren A clearer sense of how long I am waiting for danger (open, target 2026-11-03)"
    ],
@@ -6521,11 +6521,50 @@
    "words": "I'm excited to play all the games soon, and I think I'll hire some friends to playtest as well. The lab is becoming more fun every day; we just gotta find & squash those nasty bugs across games",
    "verdict": "-",
    "routes": [
-    "fix:lab Reproduce and fix game bugs from linked telemetry and the playtest round (open)",
-    "fix:lab Smoke all 15 games at phone and desktop sizes including menu and save reload (open)",
-    "fix:lab Publish How to playtest for friends with recording and privacy explained (open)"
+    "fix:lab Reproduce and fix game bugs from linked telemetry and the playtest round (done, confirmed fixes delivered and unproven candidates dispositioned in docs/lab/bugs-2026-10-23.md, owner retests remain)",
+    "fix:lab Smoke all 15 games at phone and desktop sizes including menu and save reload (done, 360x690 and 1280x800 real two-minute ordinary play with no sends, tested-build receipts retained)",
+    "fix:lab Publish How to playtest for friends with recording and privacy explained (done 5833943, guide live and linked, both layouts and privacy link verified)"
    ],
    "source": "docs/owner-directions-2026-10-18.md#2026-10-23-bugs-and-friends-playtesting-adam-verbatim"
+  },
+  {
+   "id": "F-487",
+   "date": "2026-10-23",
+   "game": "warren",
+   "kind": "harness",
+   "who": "Codex bug-fix worker, own browser observation",
+   "words": "Own observation: the last line of desktop raid guidance was covered where the journal began.",
+   "verdict": "-",
+   "routes": [
+    "fix:warren Keep complete desktop raid guidance clear of the journal (fixed 1bcef5b, 211 tests, independent review, exact green CI, normal clean deployment and both-size live verification, owner retest target 2026-11-03)"
+   ],
+   "source": "docs/lab/bugs-2026-10-23.md"
+  },
+  {
+   "id": "F-488",
+   "date": "2026-10-23",
+   "game": "well",
+   "kind": "harness",
+   "who": "Codex bug-fix worker, own browser observation",
+   "words": "Own observation: selecting “I’d stop here” painted text and background the same colour, leaving no visible words.",
+   "verdict": "-",
+   "routes": [
+    "fix:well Preserve selected feedback verdict contrast (fixed 32d68b7, focused red-green regression, independent review, exact green CI before normal clean deployment, final shared-code verification on 8e7fe78, owner retest target 2026-11-03)"
+   ],
+   "source": "docs/lab/bugs-2026-10-23.md"
+  },
+  {
+   "id": "F-489",
+   "date": "2026-10-23",
+   "game": "watch",
+   "kind": "harness",
+   "who": "Codex bug-fix worker, own production smoke",
+   "words": "Own observation: ordinary Watch play repeatedly emitted a TypeError while reading current from a null daytime summary.",
+   "verdict": "-",
+   "routes": [
+    "fix:watch Handle null daytime summary in shared app code (fixed 8e7fe78, actual Watch frame regression and Voice day-boundary control, independent review, exact green CI before normal clean deployment, both-size 120-second smokes with zero page errors, owner retest target 2026-11-03)"
+   ],
+   "source": "docs/lab/bugs-2026-10-23.md"
   }
  ],
  "lessons": [
@@ -7132,7 +7171,7 @@
   }
  ],
  "routes": {
-  "fix": 593,
+  "fix": 596,
   "lesson": 291,
   "hf": 12,
   "calibration": 42,
