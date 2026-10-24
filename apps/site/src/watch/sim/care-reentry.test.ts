@@ -1,9 +1,17 @@
-import { canonicalPersona, type PersonaEnvelope, preparePersonaLife } from '@adam0white/lab-client';
+import {
+  canonicalPersona,
+  createPersona,
+  initialPersonaLife,
+  type PersonaEnvelope,
+  preparePersonaLife,
+} from '@adam0white/lab-client';
 import { describe, expect, it } from 'vitest';
 import { makeCastChapter } from '../../shared/cast-chapter.ts';
 import actualDanyal from '../../shared/fixtures/valley-danyal-native.json';
 import actualMeryem from '../../shared/fixtures/valley-meryem-native.json';
+import warrenControl from '../../shared/fixtures/warren-native-return-control.json';
 import actualHead from '../../shared/fixtures/watch-kian-care-native.json';
+import currentWellDanyal from '../../shared/fixtures/well-danyal-native.json';
 import { clockRuns, stepMinute } from './night.ts';
 import { endState, replay, WatchRun } from './run.ts';
 
@@ -89,5 +97,121 @@ describe('finite own-Watch care re-entry', () => {
       targetId: 'ada',
     });
     expect(() => new WatchRun(1, undefined, chapter(home))).toThrow(/care|duty|action/i);
+  });
+});
+
+// Candidate passports derived by the source adapter from the genuine ended Warren export.
+// These are mechanism controls, not published/native UI head evidence.
+async function warrenChapter(change?: (transfer: typeof warrenControl.sources.kian) => void) {
+  const inputs = [];
+  for (const role of ['kian', 'meryem'] as const) {
+    const transfer = structuredClone(warrenControl.sources[role]);
+    if (role === 'kian' && change) change(transfer as typeof warrenControl.sources.kian);
+    const castId = role === 'kian' ? 'hf.cast.kian.watch' : 'hf.cast.meryem.warren';
+    const parent = await createPersona({
+      format: 'hf-persona/1',
+      castId,
+      castRevision: '1',
+      branchId: `control-${role}`,
+      parentRevision: null,
+      source: { game: 'warren', build: 'actual-export-control', engine: '2.17.0', rules: 'warren-0.6.0' },
+      transfer: {
+        ...transfer,
+        life: initialPersonaLife(castId, `control-${role}`, 0),
+      } as unknown as PersonaEnvelope['transfer'],
+      limitations: [],
+    });
+    inputs.push(preparePersonaLife(parent, 0));
+  }
+  const well = currentWellDanyal as unknown as PersonaEnvelope;
+  inputs.push(
+    preparePersonaLife(
+      well,
+      (well.transfer.life as { clock: { watermark: number } }).clock.watermark * 3600000,
+    ),
+  );
+  return makeCastChapter(inputs);
+}
+describe('finite native Warren return', () => {
+  it('retains the actual additional care, old dependent stamp, exact pending promise and complete provenance through replay', async () => {
+    const c = await warrenChapter();
+    const run = new WatchRun(1, undefined, c),
+      s = run.state;
+    const ownClaims: ReturnType<typeof preparePersonaLife>[] = [];
+    for (const entry of Object.values(c.people!)) {
+      if (entry.input.parent.source.game !== 'warren') {
+        ownClaims.push(entry.input);
+        continue;
+      }
+      const native = entry.input.parent,
+        { revision, ...body } = native;
+      ownClaims.push(
+        preparePersonaLife(
+          await createPersona({
+            ...body,
+            parentRevision: revision,
+            source: { game: 'watch', engine: '2.17.0', rules: 'cast-1', build: 'control' },
+            transfer: {
+              ...body.transfer,
+              siteNativeClaim: { version: 'site-native-claim/1', source: native.source, revision },
+            },
+          }),
+          0,
+        ),
+      );
+    }
+    expect(() => new WatchRun(1, undefined, makeCastChapter(ownClaims))).not.toThrow();
+
+    const k = s.community.people.find((p) => p.id === 'kian')!,
+      ada = s.community.people.find((p) => p.id === 'ada')!;
+    const source = warrenControl.sources.kian,
+      v = source.warrenCare.visit;
+    const offset = k.now - source.person.person.source.now;
+    expect(canonicalPersona(k.rng)).toBe(canonicalPersona(source.person.person.rng));
+    expect(k.body.fitness).toBe(source.person.person.health.fitness);
+    expect(s.warrenCareReturn).toEqual({ source: source.warrenCare, onwardOffset: offset });
+    expect(ada.now).toBe(v.dependent.sourceMinute + offset);
+    expect(ada.now - ada.life.bornAt).toBe(v.dependent.ageMinutes);
+    expect(ada.body.sleepPressure).toBe(v.dependent.sleepPressure);
+    expect([ada.body.satiety, ada.body.hydration, ada.body.alive]).toEqual([1, 1, true]);
+    const meal = k.agenda.commitments.find((x) => x.id === v.agreement.commitmentId)!;
+    const pending = k.agenda.commitments.find((x) => x.id === v.agreement.returnCommitmentId)!;
+    expect(meal.status).toBe('kept');
+    expect(pending.status).toBe('pending');
+    expect(pending.toId).toBe('ada');
+    expect(pending.until - k.now).toBe(v.returnBy - source.person.person.source.now);
+    expect(k.agenda.commitments.filter((x) => x.id === meal.id)).toHaveLength(1);
+    run.input({ k: 'start' });
+    expect(run.input({ k: 'begin' })).toBe(false);
+    expect(run.input({ k: 'refugeVisit', choice: 'stay' })).toBe(true);
+    expect(meal.status).toBe('kept');
+    expect(pending.status).toBe('released');
+    expect(ada.body.sleepPressure).toBe(v.dependent.sleepPressure);
+    run.input({ k: 'begin' });
+    run.step();
+    expect(endState(replay(run.export()))).toEqual(run.export().end);
+    expect(replay(run.export()).warrenCareReturn).toEqual(s.warrenCareReturn);
+  });
+  it('refuses changed care arithmetic, guardian, pending deadline and receipt, without accepting forwarded claims', async () => {
+    for (const change of [
+      (t: typeof warrenControl.sources.kian) => {
+        t.warrenCare.visit.dependent.sleepPressure = 0;
+      },
+      (t: typeof warrenControl.sources.kian) => {
+        t.warrenCare.visit.dependent.guardian = 'tamar';
+      },
+      (t: typeof warrenControl.sources.kian) => {
+        t.person.calendar.commitments[0]!.until++;
+      },
+      (t: typeof warrenControl.sources.kian) => {
+        t.checkpoint.sourceMinute++;
+      },
+      (t: typeof warrenControl.sources.kian) => {
+        t.castPassport = 'site-cast/1';
+      },
+    ]) {
+      const c = await warrenChapter(change);
+      expect(() => new WatchRun(1, undefined, c)).toThrow();
+    }
   });
 });

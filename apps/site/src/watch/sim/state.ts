@@ -314,6 +314,8 @@ export interface BellState {
 }
 
 export interface WatchState {
+  /** Exact native Warren bounded record, plus one onward clock offset; not travel. */
+  warrenCareReturn?: { source: import('./care-reentry.ts').WarrenCareReturn; onwardOffset: number };
   refugeVisit?: import('./refuge-visit.ts').RefugeVisit;
   refugeDeparture?: {
     person: Person;

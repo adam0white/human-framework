@@ -135,7 +135,10 @@ export function prepareWatchCast(
     const def = WATCHERS.find((w) => WATCH_CAST[w.id] === single.input.parent.castId);
     if (!def) throw new Error('No authored Watch role.');
     prepareSiteInitial('watch', createPerson(watcherSpec(seed, def, DUSK_START)), single);
-    if (def.id === 'kian' && single.input.parent.transfer.watchCare) {
+    if (
+      def.id === 'kian' &&
+      (single.input.parent.transfer.watchCare || single.input.parent.transfer.warrenCare)
+    ) {
       const index = FOUNDER_KIN.findIndex((kin) => kin.id === 'ada');
       const kin = FOUNDER_KIN[index];
       assertWatchCareTarget(kin ? kinPerson(seed, kin, index, DUSK_START) : undefined);

@@ -3,7 +3,8 @@
  * The source watch-warren-ada/1 contract only publishes clinically healthy Ada.
  */
 import { type Commitment, type Person, validateCalendarPersona } from '@adam0white/human-framework';
-import type { PersonaEnvelope } from '@adam0white/lab-client';
+import { canonicalPersona, type PersonaEnvelope } from '@adam0white/lab-client';
+import { nativeCastSource } from '../../shared/cast-native-sources.ts';
 import type { refugeVisitPassport } from './refuge-visit.ts';
 import type { WatchState } from './state.ts';
 
@@ -22,14 +23,16 @@ export function watchCareReentry(parent: PersonaEnvelope, portable: Portable): C
     portable.person.source.id !== 'kian'
   )
     throw new Error('Unsupported own-Watch Ada care source.');
-  const x = parent.transfer.watchCare as Care;
+  return validateCare(parent.transfer.watchCare as Care, portable, portable.person.source.now, 1);
+}
+
+function validateCare(x: Care, portable: Portable, captured: number, maximumLag: number): Care {
   const a = x?.agreement,
     d = x?.dependent,
     c = x?.care;
   const keys = (v: object, expected: string[]) =>
     Object.keys(v).sort().join(',') === expected.sort().join(',');
   const integer = Number.isSafeInteger;
-  const captured = portable.person.source.now;
   if (
     !x ||
     !a ||
@@ -136,7 +139,7 @@ export function watchCareReentry(parent: PersonaEnvelope, portable: Portable): C
     !integer(d.sourceMinute) ||
     d.sourceMinute < a.sourceMinute ||
     d.sourceMinute > captured ||
-    captured - d.sourceMinute > 1 ||
+    captured - d.sourceMinute > maximumLag ||
     d.sourceMinute >= a.returnBy ||
     !integer(d.ageMinutes) ||
     d.ageMinutes < 8 * 525600 ||
@@ -145,6 +148,109 @@ export function watchCareReentry(parent: PersonaEnvelope, portable: Portable): C
   )
     throw new Error('Unsupported actual Ada guardian or reservoirs.');
   return structuredClone(x);
+}
+
+/** Exact native Warren return. The original meal is provenance, not a second outcome. */
+export interface WarrenCareReturn {
+  version: 'warren-watch-ada/1';
+  capturedMinute: number;
+  visit: {
+    source: Care;
+    offset: number;
+    agreement: Care['agreement'];
+    care: Care['care'];
+    returnBy: number;
+    dependent: Care['dependent'];
+    careCount: number;
+    endRequested?: boolean;
+    endedAt?: number;
+    protection?: 'protected' | 'exposed';
+  };
+}
+export function warrenCareReentry(parent: PersonaEnvelope, portable: Portable): Care | undefined {
+  if (parent.transfer.warrenCare === undefined) return undefined;
+  if (
+    parent.castId !== 'hf.cast.kian.watch' ||
+    nativeCastSource('watch', parent)?.mapping !== 'warren-calendar/1' ||
+    parent.transfer.castPassport !== 'warren-calendar/1' ||
+    parent.transfer.sourceRole !== 'kian' ||
+    portable.person.source.id !== 'kian' ||
+    parent.transfer.watchCare !== undefined
+  )
+    throw new Error('Unsupported native Warren Ada care source.');
+  const x = parent.transfer.warrenCare as unknown as WarrenCareReturn;
+  const v = x?.visit,
+    captured = portable.person.source.now;
+  const only = (value: object, names: string[]) => Object.keys(value).every((k) => names.includes(k));
+  if (
+    !x ||
+    !v ||
+    JSON.stringify(x).length > 32768 ||
+    !only(x, ['version', 'capturedMinute', 'visit']) ||
+    !only(v, [
+      'source',
+      'offset',
+      'agreement',
+      'care',
+      'returnBy',
+      'dependent',
+      'careCount',
+      'endRequested',
+      'endedAt',
+      'protection',
+    ]) ||
+    x.version !== 'warren-watch-ada/1' ||
+    x.capturedMinute !== captured ||
+    !Number.isSafeInteger(v.offset) ||
+    !Number.isSafeInteger(v.endedAt) ||
+    v.endedAt! > captured ||
+    v.endRequested !== true ||
+    (v.protection !== undefined && !['protected', 'exposed'].includes(v.protection)) ||
+    !Number.isSafeInteger(v.careCount) ||
+    v.careCount < 0 ||
+    v.careCount > 48
+  )
+    throw new Error('Unsupported actual Warren care/end record.');
+  const current = validateCare(
+    { agreement: v.agreement, care: v.care, dependent: v.dependent },
+    portable,
+    captured,
+    1440,
+  );
+  const originalPortable = structuredClone(portable);
+  for (const c of originalPortable.calendar.commitments) {
+    c.from -= v.offset;
+    c.until -= v.offset;
+  }
+  const source = validateCare(v.source, originalPortable, v.source.care.completedAt, 1);
+  const shiftedAgreement = {
+    ...source.agreement,
+    sourceMinute: source.agreement.sourceMinute + v.offset,
+    returnBy: source.agreement.returnBy + v.offset,
+    careCompletedAt: source.care.completedAt + v.offset,
+  };
+  const shiftedCare = {
+    commitment: shiftedKeptMeal(source, v.offset),
+    completedAt: source.care.completedAt + v.offset,
+  };
+  if (
+    canonicalPersona(v.agreement) !== canonicalPersona(shiftedAgreement) ||
+    canonicalPersona(v.care) !== canonicalPersona(shiftedCare) ||
+    v.returnBy !== shiftedAgreement.returnBy ||
+    v.endedAt! < v.care.completedAt ||
+    v.dependent.sourceMinute < source.dependent.sourceMinute + v.offset ||
+    v.dependent.sourceMinute > v.endedAt! ||
+    v.dependent.ageMinutes !== source.dependent.ageMinutes ||
+    Math.abs(v.dependent.satiety - Math.min(1, source.dependent.satiety + 0.35 * v.careCount)) > 1e-12 ||
+    Math.abs(v.dependent.hydration - Math.min(1, source.dependent.hydration + 0.35 * v.careCount)) > 1e-12 ||
+    Math.abs(v.dependent.sleepPressure - Math.max(0, source.dependent.sleepPressure - 0.05 * v.careCount)) >
+      1e-12
+  )
+    throw new Error('Warren care provenance or actual bounded outcome differs.');
+  return current;
+}
+export function carriedCare(parent: PersonaEnvelope, portable: Portable): Care | undefined {
+  return warrenCareReentry(parent, portable) ?? watchCareReentry(parent, portable);
 }
 
 export function assertWatchCareTarget(ada: Person | undefined): asserts ada is Person {
@@ -170,7 +276,7 @@ export function shiftedKeptMeal(care: Care, offset: number): Commitment {
 /** Called once after all founding people arrive, using the already pinned Kian. */
 export function restoreWatchCare(s: WatchState, parent: PersonaEnvelope): void {
   const portable = validateCalendarPersona(parent.transfer.person);
-  const care = watchCareReentry(parent, portable);
+  const care = carriedCare(parent, portable);
   if (!care) return;
   const kian = s.community.people.find((p) => p.id === 'kian');
   const ada = s.community.people.find((p) => p.id === 'ada');
@@ -179,6 +285,11 @@ export function restoreWatchCare(s: WatchState, parent: PersonaEnvelope): void {
   const offset = kian.now - portable.person.source.now;
   const a = care.agreement,
     d = care.dependent;
+  if (parent.transfer.warrenCare)
+    s.warrenCareReturn = {
+      source: structuredClone(parent.transfer.warrenCare) as unknown as WarrenCareReturn,
+      onwardOffset: offset,
+    };
   s.refugeVisit = {
     ...structuredClone(a),
     sourceMinute: a.sourceMinute + offset,

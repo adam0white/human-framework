@@ -22,7 +22,7 @@ import {
   type PersonaLife,
   preparePersonaLife,
 } from '@adam0white/lab-client';
-import { shiftedKeptMeal, watchCareReentry } from '../watch/sim/care-reentry.ts';
+import { carriedCare, shiftedKeptMeal } from '../watch/sim/care-reentry.ts';
 import { goodhandsSelinPassport } from './cast-goodhands-selin.ts';
 import { nativeCastSource } from './cast-native-sources.ts';
 import { SITE_CAST_NORMS, VALLEY_CAST_DUES } from './cast-norms.ts';
@@ -324,14 +324,15 @@ function admitRawSiteCast(game: string, opening: Person, chapter: CastPersonChap
   if (portable.person.source.id !== input.parent.transfer.sourceRole)
     throw new Error('Source identity differs from passport.');
   const knownNorms = portable.calendar.norms.map((norm) => {
-    const trusted =
-      native?.mapping === 'valley-calendar/1' ? [...SITE_CAST_NORMS, VALLEY_CAST_DUES] : SITE_CAST_NORMS;
+    const trusted = ['valley-calendar/1', 'warren-calendar/1'].includes(native?.mapping ?? '')
+      ? [...SITE_CAST_NORMS, VALLEY_CAST_DUES]
+      : SITE_CAST_NORMS;
     const known = trusted.find((n) => n.id === norm.id);
     if (!known || JSON.stringify(known) !== JSON.stringify(norm))
       throw new Error('Unsupported source norm meaning.');
     return known;
   });
-  const care = game === 'watch' ? watchCareReentry(input.parent, portable) : undefined;
+  const care = game === 'watch' ? carriedCare(input.parent, portable) : undefined;
   const allowed = care ? new Set([...ACTIONS.watch!, 'return-with-ada']) : ACTIONS[game];
   if (
     !allowed ||
@@ -345,8 +346,9 @@ function admitRawSiteCast(game: string, opening: Person, chapter: CastPersonChap
     native &&
     [...portable.calendar.commitments, ...portable.calendar.owed].some(
       (c) =>
-        ('toId' in c && c.toId && !['self', 'god', 'Allah'].includes(c.toId)) ||
-        ('targetId' in c && c.targetId && !['self', 'god', 'Allah'].includes(c.targetId)),
+        !(care && 'id' in c && c.id === care.agreement.returnCommitmentId) &&
+        (('toId' in c && c.toId && !['self', 'god', 'Allah'].includes(c.toId)) ||
+          ('targetId' in c && c.targetId && !['self', 'god', 'Allah'].includes(c.targetId))),
     )
   )
     throw new Error('A native source duty still needs its original person or place.');

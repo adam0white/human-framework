@@ -181,7 +181,8 @@ export function newGame(
   s.leaves = freshLeaves();
   arrive(s);
   const carriedKian = personChapter(s.castChapter, 'hf.cast.kian.watch');
-  if (carriedKian?.input.parent.transfer.watchCare) restoreWatchCare(s, carriedKian.input.parent);
+  if (carriedKian?.input.parent.transfer.watchCare || carriedKian?.input.parent.transfer.warrenCare)
+    restoreWatchCare(s, carriedKian.input.parent);
   for (const id of presentIds(s)) s.posts[id] = villager(s, id).usual;
   planNight(s);
   return s;

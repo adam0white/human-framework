@@ -60,6 +60,18 @@ export function nativeCastSource(
     return { mapping: 'stairwell-calendar/1', role };
   }
   if (
+    target === 'watch' &&
+    source.game === 'warren' &&
+    source.rules === 'warren-0.6.0' &&
+    transfer.castPassport === 'warren-calendar/1' &&
+    ({ kian: 'hf.cast.kian.watch', meryem: 'hf.cast.meryem.warren' } as Record<string, string>)[role] ===
+      castId
+  ) {
+    if ((role === 'kian') !== (transfer.warrenCare !== undefined) || transfer.watchCare !== undefined)
+      throw new Error('Native Warren care must match the finite source role.');
+    return { mapping: 'warren-calendar/1', role };
+  }
+  if (
     source.game === 'valley' &&
     source.rules === 'valley-cast-3' &&
     transfer.castPassport === 'valley-cast/1'
