@@ -200,6 +200,32 @@ async function checkpoint(worker: FakeWorker, id = 'hf.cast.riza.voice', game = 
   await promise;
 }
 describe('whole-cast browser continuity', () => {
+  it('accepts the actual Watch night frame with no daytime summary', async () => {
+    const { WatchRun } = await import('../watch/sim/run.ts');
+    const { buildFrame } = await import('../watch/sim/view.ts');
+    const run = new WatchRun(4242);
+    run.input({ k: 'start' });
+    run.input({ k: 'begin' });
+    const frame = buildFrame(run.state, 0, false);
+    expect(frame.day).toBeNull();
+    const worker = new FakeWorker();
+    const listeners = vi.spyOn(worker, 'addEventListener');
+    close = bindCastWorker(worker as unknown as Worker, 'watch', lab as never);
+    const receive = listeners.mock.calls.find(([type]) => type === 'message')?.[1] as EventListener;
+    // Invoke the registered handler directly so EventTarget cannot defer a thrown error.
+    expect(() => receive(new MessageEvent('message', { data: { type: 'frame', frame } }))).not.toThrow();
+  });
+
+  it('retains object and numeric day extraction for Voice checkpoint boundaries', async () => {
+    const worker = new FakeWorker();
+    close = bindCastWorker(worker as unknown as Worker, 'voice', lab as never);
+    worker.reply({ type: 'frame', frame: { phase: 'day', day: { current: 2 } } });
+    worker.reply({ type: 'frame', frame: { phase: 'day', day: 2 } });
+    expect(worker.requests('castCheckpoint')).toHaveLength(0);
+    control.refuse = true;
+    worker.reply({ type: 'frame', frame: { phase: 'day', day: { current: 3 } } });
+    await vi.waitFor(() => expect(worker.requests('castCheckpoint').length).toBeGreaterThan(0));
+  });
   it('verifies full source checksums and keeps raw captures out of shelf envelopes', async () => {
     const storage = new Map<string, string>();
     vi.stubGlobal('localStorage', {

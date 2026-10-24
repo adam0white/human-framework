@@ -303,7 +303,7 @@ export function bindCastWorker(worker: Worker, game: string, lab: Lab): () => vo
     const m = event.data as {
       type: string;
       gen?: number;
-      frame?: { phase?: string; day?: number | { current: number }; ended?: boolean; minute?: number };
+      frame?: { phase?: string; day?: number | { current: number } | null; ended?: boolean; minute?: number };
       result?: { matches?: boolean };
       file?: Record<string, unknown>;
       data?: Record<string, unknown>;
@@ -337,7 +337,7 @@ export function bindCastWorker(worker: Worker, game: string, lab: Lab): () => vo
     if (m.type === 'frame' && m.frame) {
       const f = m.frame;
       if (f.phase !== undefined) s.phase = f.phase;
-      if (f.day !== undefined) s.day = typeof f.day === 'object' ? f.day.current : f.day;
+      if (f.day != null) s.day = typeof f.day === 'object' ? f.day.current : f.day;
       if (f.ended !== undefined) s.ended = f.ended;
       if (game === 'well' ? (f.minute ?? 0) > 0 : !['premise', 'goal'].includes(s.phase ?? 'goal'))
         s.played = true;
