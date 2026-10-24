@@ -5519,8 +5519,8 @@
    "verdict": "-",
    "routes": [
     "fix:lab same-browser automatic continuity with transactional parent checks, explicit forks and pinned loaded runs (done)",
-    "fix:lab recording-epoch consent and separate shared-only versus file-origin inbox measurement (done)",
-    "fix:lab wider canonical cast and between-games life follow-up per current AGENTS.md (open, target 2026-11-03)",
+    "fix:lab historical recording-epoch consent and separate shared-only versus file-origin inbox measurement (done, recording consent superseded by automatic linkage in F-491)",
+    "fix:lab wider canonical cast and bounded between-games life across all 15 games (done HF2.18.0, exact per-host receiving and current replay receipts in F-465, owner review target 2026-11-03)",
     "fix:lab owner continuity playtest (open, target 2026-11-03)"
    ],
    "source": "Decision desk: traveller, chose start now"
@@ -6205,9 +6205,23 @@
    "routes": [
     "fix:lab canonical 40 with biographies and exhaustive character mapping (done)",
     "fix:lab 12 panelists plus 2 fresh cold slots and 3 reviewers with diaries (done)",
-    "fix:lab seeded bounded between-games browser life (open)",
-    "fix:lab waive old game saves and retain current-version deterministic replay (open)",
-    "fix:lab recast all 15 games including Commonstead and frozen hosts (open)"
+    "fix:lab seeded bounded between-games browser life (done HF2.18.0, engine2.17.0, source d3c7739, two independent reviews, exact green CI and npm provenance)",
+    "fix:lab waive old game saves and retain current-version deterministic replay (done, current adopted hosts pin admitted chapters and replay current exports)",
+    "fix:pass seven-person cast and native Neighbours Sam-Rafi plus Good Hands Hülya receiving batch (done f657eaf, required viewport and current replay receipts in cast report, owner review target 2026-11-03)",
+    "fix:glance five-person cast and native Commonstead Nerys receiving journey (done 3cf8d27, required viewport and current replay receipts in cast report, owner review target 2026-11-03)",
+    "fix:rope five-person cast and native Commonstead Oskar receiving journey (done 05fa367, required viewport and current replay receipts in cast report, owner review target 2026-11-03)",
+    "fix:repair four-person Small Works cast and native Commonstead Nora receiving journey (done 489c2a3, required viewport and current replay receipts in cast report, owner review target 2026-11-03)",
+    "fix:goodhands seven-person cast and native Voice Selin receiving journey (done eabb65a, required viewport and current replay receipts in cast report, owner review target 2026-11-03)",
+    "fix:hearsay eight-person cast and native Voice Rıza-Osman receiving journey (done f273ceb, required viewport and current replay receipts in cast report, owner review target 2026-11-03)",
+    "fix:stairwell five-person cast and explicit native Voice Hacer receiving alternatives (done a90f5e2, required viewport and current replay receipts in cast report, owner review target 2026-11-03)",
+    "fix:valley six-person cast and native Well Danyal receiving journey (done c3aa533, required viewport and current replay receipts in cast report, owner review target 2026-11-03)",
+    "fix:warren six-person cast and native Watch Kian-Ada plus Valley Meryem receiving with actual further care and pending return (done 03e6a5d, required viewport and current replay receipts in cast report, owner review target 2026-11-03)",
+    "fix:neighbours six-person cast and native Small Works Nora plus Hearsay Ece receiving stage with later nonowned file continuation (done 4c67751, required viewport and current replay receipts in cast report, owner review target 2026-11-03)",
+    "fix:well six-person cast and native Valley Danyal receiving work and native source checkpoint (done b147d6b, required viewport and current replay receipts in cast report, owner review target 2026-11-03)",
+    "fix:voice five-person cast and four-history receiving batch with pinned replay (done cf1d3e0, required viewport and current replay receipts in cast report, owner review target 2026-11-03)",
+    "fix:commonstead eight-person cast and native Small Works Nora plus Glance Nerys receiving batch (done 90846d1, required viewport and current replay receipts in cast report, owner review target 2026-11-03)",
+    "fix:murmur four-person cast and native Hearsay Dilan plus Good Hands Aylin and Neighbours Ece receiving batch (done 5541339 journey, final7f4755d readable menus and same owned current replay at both sizes, owner review target 2026-11-03)",
+    "fix:watch six-person cast and native Warren Kian-Meryem plus Well Danyal receiving batch (done 6aff494 admission and ea21627 actual arrivals and owned recovery, exact 360x690 and 1280x800 current replay and unchanged claims, return released by actual Stay choice rather than completed, owner review target 2026-11-03)"
    ],
    "source": "docs/owner-directions-2026-10-18.md#2026-10-23-cast-size-and-between-games-life-adam-verbatim"
   },
@@ -7225,7 +7239,7 @@
   }
  ],
  "routes": {
-  "fix": 626,
+  "fix": 640,
   "lesson": 291,
   "hf": 12,
   "calibration": 42,

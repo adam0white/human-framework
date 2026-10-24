@@ -1,6 +1,6 @@
 # One cast: forty foreground people
 
-**Status: authored canonical target, not deployed adoption.** This document changes no game source. The adoption table at the end names the unimplemented work.
+**Status: canonical forty authored; all fifteen hosts technically verified.** The table below identifies the receiving stages and their limits. Owner review remains separate.
 
 Canonical content edition: `one-cast-1`, authored 2026-10-23. This is the deliberate replacement cast for all fifteen games, including Commonstead. It is an authored content decision, not a claim that namesakes in the old games were already one person. The coordinator may change the total on the owner's direction. The default here is **exactly 40 foreground people**. These forty are the in-game cast. Nora and Sam have fictional design and testing occupations. The separately authored lab panel is not added to this forty, and its roles do not count as in-game appearances. No fictional report is actual play evidence.
 
@@ -1502,25 +1502,25 @@ The eight target residents can be present from an authored opening or enter thro
 
 ## Adoption status and acceptance boundary
 
-This registry is **written, not adopted by the games**. The current four wave-1 identities have existing limited crossings; that does not implement this full forty-person content edition. No browser observation, deployment, package release, current replay test or owner acceptance of these new biographies is claimed here.
+The canonical forty are authored. All fifteen hosts have verified runtime adoption: a real cross-origin receiving stage, plus current-version replay and layout checks at both required viewports. Each report identifies the stage and its ownership limits. Neighbours has an original owned receiving stage on phone and a later nonowned file continuation of the same pinned town at both sizes. Watch includes actual native Warren Kian/Meryem and Well Danyal admission, normal Meryem arrival at dusk three, owned backup recovery and corrected viewport checks. The coordinator records exact source, CI, deployment and source checkpoints in `~/code/.lab-scratch/cast/report.md` and each host report. These are agent-controlled mechanism checks, not evidence of human recognition or owner acceptance. Owner review is due 2026-11-03.
 
-| Game | Registry target | Adoption status at author handoff |
+| Game | Registry target | Current technical adoption |
 |---|---:|---|
-| Pass | 7 | pending new cast edition; existing Zeynep crossing is narrower |
-| Glance | 5 | pending |
-| Murmur | 4 | pending new cast edition; existing Dilan crossing is narrower |
-| Rope | 5 | pending; now owner-authorized despite former freeze |
-| Small Works | 4 | pending; now owner-authorized despite former freeze |
-| Good Hands | 7 | pending full cast edition; existing guests are narrower |
-| Hearsay | 8 | pending full cast edition; existing Dilan/Derya appearances are narrower |
-| Stairwell | 5 | pending full cast edition; existing Derya crossing is narrower |
-| Valley | 6 | pending |
-| Warren | 6 | pending |
-| Neighbours | 6 | pending; now owner-authorized despite former freeze |
-| Well | 6 | pending |
-| Voice | 5 | pending full cast edition; existing Selin crossing is narrower |
-| Watch | 6 | pending |
-| Commonstead | 8 | pending new setting/cast edition |
+| Pass | 7 | verified; native Neighbours Sam/Rafi and Good Hands Hülya batch, both sizes and current replay |
+| Glance | 5 | verified; five-person edition and native Commonstead Nerys journey |
+| Murmur | 4 | verified; native Hearsay Dilan, Good Hands Aylin and Neighbours Ece batch at `5541339`, final `7f4755d` readable menus and same owned run at both sizes |
+| Rope | 5 | verified; native Commonstead Oskar journey and final-build Continue/current replay at both sizes |
+| Small Works | 4 | verified; four-person workshop and native Commonstead Nora journey |
+| Good Hands | 7 | verified; seven-person agency and native Voice Selin journey; native Hülya source save/reload/replay follow-up complete |
+| Hearsay | 8 | verified; eight-person garden and native Voice Rıza + Osman journey; public handoff corrected at `3f89be3` |
+| Stairwell | 5 | verified; five-person building and actual Voice Hacer journey; public handoff corrected at `5f37ef9` |
+| Valley | 6 | verified; six-person valley and actual Well Danyal journey; native Valley Danyal source delivered |
+| Warren | 6 | verified; native Watch Kian/Ada and Valley Meryem batch, actual further care and current replay; Warren source retains its pending return, native source proof completed at `d2c6e46` |
+| Neighbours | 6 | verified; native Small Works Nora + Hearsay Ece receiving stage, same pinned file continuation at both sizes, native Ece alternative exported |
+| Well | 6 | verified; native Valley Danyal arrival, actual work, native Well checkpoint, both sizes and current replay |
+| Voice | 5 | verified; five-person edition and four-history batch including Good Hands Selin, Hearsay Rıza/Osman and Stairwell Hacer |
+| Watch | 6 | verified; native Warren Kian/Meryem plus Well Danyal batch on `6aff494`, actual arrivals and owned recovery on `ea21627`, both viewports and current replay |
+| Commonstead | 8 | verified; eight-person modern workshop and Small Works Nora + Glance Nerys batch |
 
 Each host report must enumerate every player-recognizable person using the owner’s name/face-or-voice/choices definition, map each to the allocated canonical cast, and show that incidental background roles do not retain extra foreground arcs. A table of exportable IDs alone does not prove the 3–8 limit.
 
