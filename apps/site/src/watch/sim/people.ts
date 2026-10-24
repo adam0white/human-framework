@@ -63,6 +63,7 @@ import {
   personChapter,
   prepareSiteInitial,
 } from '../../shared/cast-chapter.ts';
+import { assertWatchCareTarget } from './care-reentry.ts';
 import {
   ALL_POST_IDS,
   BELL_ROUSE_BASE,
@@ -134,6 +135,11 @@ export function prepareWatchCast(
     const def = WATCHERS.find((w) => WATCH_CAST[w.id] === single.input.parent.castId);
     if (!def) throw new Error('No authored Watch role.');
     prepareSiteInitial('watch', createPerson(watcherSpec(seed, def, DUSK_START)), single);
+    if (def.id === 'kian' && single.input.parent.transfer.watchCare) {
+      const index = FOUNDER_KIN.findIndex((kin) => kin.id === 'ada');
+      const kin = FOUNDER_KIN[index];
+      assertWatchCareTarget(kin ? kinPerson(seed, kin, index, DUSK_START) : undefined);
+    }
   }
 }
 /** The framework spec for one watcher at `now`. */

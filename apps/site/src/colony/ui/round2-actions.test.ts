@@ -116,6 +116,14 @@ it('starts on the shelf with one primary, default village and folded import', as
   await click('Other ways in ›');
   expect(container.querySelector('input[type=file]')).not.toBeNull();
 });
+it('copies the current run directly from the game menu without opening feedback', async () => {
+  await begin();
+  const menu = container.querySelector<HTMLButtonElement>('button[aria-label="Game menu"]');
+  await act(() => menu?.click());
+  await click('Keep a copy of this run');
+  expect(colony.actions.exportPlaytest).toHaveBeenCalledOnce();
+  expect(container.querySelector('[aria-label="Send word"]')).toBeNull();
+});
 it('sends a safe tile once with the how settings and keeps that person selected', async () => {
   await begin();
   await act(() => container.querySelector<HTMLButtonElement>('[data-person="idris"]')?.click());

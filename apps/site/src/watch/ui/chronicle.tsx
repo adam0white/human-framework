@@ -4,7 +4,7 @@ import { CastMenu } from '../../shared/CastMenu.tsx';
 import { FullscreenButton } from '../../shared/fullscreen.tsx';
 import type { PageInfo } from '../protocol.ts';
 import type { Frame, FrameVolume } from '../sim/view.ts';
-import { FeedbackScreen, RecordingPreference } from './exporting.tsx';
+import { DownloadRun, FeedbackScreen, RecordingPreference } from './exporting.tsx';
 import { Icon } from './icons.tsx';
 import { SEASON_WORDS, yearWords } from './pages.tsx';
 import type { WatchActions } from './useWatch.ts';
@@ -266,6 +266,7 @@ export function Chronicle({
         >
           Send word <span aria-hidden="true">▸</span>
         </button>
+        <DownloadRun actions={actions} label="Keep a copy of this run" />
         <FullscreenButton variant="item" className="w-menu-row w-fs-item" />
         <button type="button" className="w-menu-row" onClick={onTitle ?? onClose}>
           To the title page

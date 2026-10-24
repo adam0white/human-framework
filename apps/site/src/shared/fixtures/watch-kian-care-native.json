@@ -1,0 +1,617 @@
+{
+  "format": "hf-persona/1",
+  "castId": "hf.cast.kian.watch",
+  "castRevision": "1",
+  "branchId": "fbff82cb-6f40-4333-8ead-5a7e8cd2cda4",
+  "parentRevision": null,
+  "source": {
+    "game": "watch",
+    "build": "12e7d4499898c6b2e347f9740d38c7b183937d7e",
+    "engine": "2.17.0",
+    "rules": "cast-1"
+  },
+  "transfer": {
+    "person": {
+      "format": "hf-persona-calendar/1",
+      "person": {
+        "format": "hf-persona-state/1",
+        "mappingVersion": "site-cast-calendar/1",
+        "source": {
+          "schema": "human/person@1",
+          "engine": "2.17.0",
+          "id": "kian",
+          "now": 2340
+        },
+        "name": "Kian",
+        "life": {
+          "bornAt": -8408580,
+          "sex": "male"
+        },
+        "rng": {
+          "a": 518839829,
+          "b": 4271975630,
+          "c": 2929245121,
+          "d": 469017187
+        },
+        "traits": {
+          "honesty": 0.6,
+          "emotionality": 0.6,
+          "extraversion": 0.75,
+          "agreeableness": 0.6,
+          "conscientiousness": 0.4,
+          "openness": 0.8
+        },
+        "values": {
+          "benevolence": 0.5,
+          "universalism": 0.5,
+          "tradition": 0.5,
+          "conformity": 0.5,
+          "security": 0.5,
+          "achievement": 0.5,
+          "power": 0.5,
+          "hedonism": 0.5,
+          "stimulation": 0.5,
+          "selfDirection": 0.5
+        },
+        "health": {
+          "health": 1,
+          "fitness": 0.845779017808224,
+          "circadianPeak": 960
+        },
+        "family": null,
+        "bonds": null,
+        "skills": {
+          "craft": {
+            "level": 0.2,
+            "practice": 644,
+            "lastPracticed": 1020
+          },
+          "sight": {
+            "level": 0.45,
+            "practice": 3505,
+            "lastPracticed": 1020
+          },
+          "sling": {
+            "level": 0.65,
+            "practice": 13365,
+            "lastPracticed": 1020
+          }
+        },
+        "skillRetention": {
+          "consolidationHours": 300
+        },
+        "episodes": [],
+        "commitments": [],
+        "limitations": [
+          "source transient body/needs/affect/ambient omitted; target arrival policy",
+          "source habits/methods/beliefs/social and conscience breaches omitted; target authored state; held norms transported",
+          "source optional behaviour stores and decision history omitted; target authored state",
+          "family/bonds provenance checked; target authored state",
+          "episode:e0",
+          "episode:e1",
+          "episode:e2",
+          "episode:e3",
+          "episode:e4",
+          "episode:e5",
+          "episode:e6",
+          "episode:e7",
+          "episode:e8",
+          "episode:e9",
+          "episode:e10",
+          "episode:e11",
+          "episode:e12",
+          "episode:e13",
+          "episode:e14",
+          "episode:e15",
+          "episode:e16",
+          "episode:e17",
+          "episode:e18",
+          "episode:e19",
+          "episode:e20",
+          "episode:e21",
+          "episode:e22",
+          "episode:e23",
+          "episode:e24",
+          "episode:e25",
+          "episode:e26",
+          "episode:e27",
+          "episode:e28",
+          "episode:e29",
+          "episode:e30",
+          "Zero-duration host chapter projection; coarse local life does not simulate travel, resolve duties or recover health."
+        ]
+      },
+      "calendar": {
+        "offset": 0,
+        "commitments": [
+          {
+            "kind": "duty",
+            "toId": "ada",
+            "targetId": "ada",
+            "actions": ["return-with-ada"],
+            "from": 1800,
+            "until": 3240,
+            "importance": 0.9,
+            "label": "Return together with Ada by the next dawn; remain her guardian throughout the visit",
+            "id": "c3",
+            "status": "pending"
+          }
+        ],
+        "owed": [],
+        "lapse": null,
+        "heldNorms": [
+          {
+            "normId": "salah",
+            "standing": "obligatory",
+            "conviction": 0.285
+          },
+          {
+            "normId": "sawm-ramadan",
+            "standing": "obligatory",
+            "conviction": 0.285
+          },
+          {
+            "normId": "zakat",
+            "standing": "obligatory",
+            "conviction": 0.285
+          },
+          {
+            "normId": "charity",
+            "standing": "recommended",
+            "conviction": 0.285
+          },
+          {
+            "normId": "lying",
+            "standing": "forbidden",
+            "conviction": 0.69
+          },
+          {
+            "normId": "theft",
+            "standing": "forbidden",
+            "conviction": 0.69
+          },
+          {
+            "normId": "keep-promise",
+            "standing": "obligatory",
+            "conviction": 0.69
+          },
+          {
+            "normId": "kindness-to-parents",
+            "standing": "obligatory",
+            "conviction": 0.52
+          },
+          {
+            "normId": "backbiting",
+            "standing": "forbidden",
+            "conviction": 0.52
+          },
+          {
+            "normId": "help-neighbor",
+            "standing": "recommended",
+            "conviction": 0.52
+          },
+          {
+            "normId": "gratitude",
+            "standing": "recommended",
+            "conviction": 0.52
+          },
+          {
+            "normId": "harm-others",
+            "standing": "forbidden",
+            "conviction": 0.69
+          },
+          {
+            "normId": "intoxicants",
+            "standing": "forbidden",
+            "conviction": 0.285
+          },
+          {
+            "normId": "forbidden-food",
+            "standing": "forbidden",
+            "conviction": 0.285
+          },
+          {
+            "normId": "fairness",
+            "standing": "obligatory",
+            "conviction": 0.52
+          },
+          {
+            "normId": "care-dependents",
+            "standing": "obligatory",
+            "conviction": 0.52
+          },
+          {
+            "normId": "punctuality",
+            "standing": "recommended",
+            "conviction": 0.52
+          },
+          {
+            "normId": "eid-prayer",
+            "standing": "recommended",
+            "conviction": 0.285
+          },
+          {
+            "normId": "keep-watch",
+            "standing": "obligatory",
+            "conviction": 0.6
+          }
+        ],
+        "norms": [
+          {
+            "id": "salah",
+            "label": "Perform the daily prayers",
+            "standing": "obligatory",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 2:43"
+              },
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 4:103 (prayer at prescribed times)"
+              },
+              {
+                "kind": "interpretation",
+                "ref": "A missed prayer is still owed (qada); sleep, forgetting and unconsciousness lift the blame, not the debt; the debt for a stretch of unconsciousness beyond five prayer times drops (Hanafi count, kept as the default): research/capacity-and-excuse-sources.md §0, §2, §4; research/decisions.md"
+              },
+              {
+                "kind": "assumption",
+                "ref": "Window boundaries (Fajr until sunrise, one-shadow Asr, red-twilight Maghrib) are the most common positions, chosen in research/decisions.md; agenda/prayer.ts"
+              }
+            ]
+          },
+          {
+            "id": "sawm-ramadan",
+            "label": "Fast in Ramadan",
+            "standing": "obligatory",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 2:183"
+              },
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 2:185 (the month of Ramadan)"
+              },
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 2:187 (eat and drink until dawn, then complete the fast until nightfall)"
+              }
+            ],
+            "exemptions": [
+              {
+                "when": "illness",
+                "makeUp": true,
+                "sources": [
+                  {
+                    "kind": "revelation",
+                    "ref": "Qur'an 2:184 (whoever is ill or on a journey: an equal number of days after)"
+                  },
+                  {
+                    "kind": "revelation",
+                    "ref": "Qur'an 2:185 (repeated; Allah intends ease, not hardship)"
+                  },
+                  {
+                    "kind": "assumption",
+                    "ref": "Which illness qualifies is the person’s judgment; the severity threshold is an engineering stand-in"
+                  },
+                  {
+                    "kind": "interpretation",
+                    "ref": "Qur'an 2:184 continues: 'For those who can only fast with extreme difficulty, compensation can be made by feeding a needy person' (quran.com, checked 2026-10-03). Commonly read as covering chronic illness with no expected recovery (fidya instead of make-up); NOT modelled: every qualifying illness, chronic or acute, owes a make-up, because whether a condition is beyond recovery cannot be derived from body state"
+                  }
+                ]
+              },
+              {
+                "when": "travel",
+                "makeUp": true,
+                "sources": [
+                  {
+                    "kind": "revelation",
+                    "ref": "Qur'an 2:184 (whoever is ill or on a journey: an equal number of days after)"
+                  },
+                  {
+                    "kind": "revelation",
+                    "ref": "Qur'an 2:185"
+                  },
+                  {
+                    "kind": "assumption",
+                    "ref": "What counts as a journey is supplied by the host as a traveling flag"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "zakat",
+            "label": "Pay zakat",
+            "standing": "obligatory",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 2:43"
+              }
+            ]
+          },
+          {
+            "id": "charity",
+            "label": "Give voluntary charity (sadaqah)",
+            "standing": "recommended",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 2:261"
+              }
+            ]
+          },
+          {
+            "id": "lying",
+            "label": "Lying (truthfulness is required)",
+            "standing": "forbidden",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 22:30 (shun words of falsehood; quran.com, checked 2026-10-03)"
+              },
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 9:119 (be with the truthful)"
+              }
+            ]
+          },
+          {
+            "id": "theft",
+            "label": "Theft",
+            "standing": "forbidden",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 5:38"
+              },
+              {
+                "kind": "assumption",
+                "ref": "Listed in CONSCIENCE_DEFAULTS.necessityEligible: taking food in extremity is a juristic extension of the 2:173 necessity exception by analogy (2:173 itself names forbidden food); not yet sourced in research/, recorded as an engineering assumption pending a Hanafi source"
+              }
+            ]
+          },
+          {
+            "id": "keep-promise",
+            "label": "Keep promises and commitments",
+            "standing": "obligatory",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 17:34"
+              }
+            ]
+          },
+          {
+            "id": "kindness-to-parents",
+            "label": "Kindness to parents",
+            "standing": "obligatory",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 17:23"
+              }
+            ]
+          },
+          {
+            "id": "backbiting",
+            "label": "Backbiting",
+            "standing": "forbidden",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 49:12"
+              }
+            ]
+          },
+          {
+            "id": "help-neighbor",
+            "label": "Help and be good to neighbours",
+            "standing": "recommended",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 4:36 (be kind to neighbours; a command)"
+              },
+              {
+                "kind": "interpretation",
+                "ref": "Standing recorded as recommended for everyday help beyond basic kindness is an engineering simplification; the verse itself is a command"
+              }
+            ]
+          },
+          {
+            "id": "gratitude",
+            "label": "Gratitude",
+            "standing": "recommended",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 2:152 (thank Me, and never be ungrateful)"
+              },
+              {
+                "kind": "interpretation",
+                "ref": "Standing as recommended for expressed gratitude toward people is an engineering simplification"
+              }
+            ]
+          },
+          {
+            "id": "harm-others",
+            "label": "Harming others without right",
+            "standing": "forbidden",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 33:58 (abusing believers unjustifiably)"
+              },
+              {
+                "kind": "interpretation",
+                "ref": "General prohibition of unjust harm to any person, extended from specific texts; scope of \"without right\" left to the host"
+              }
+            ]
+          },
+          {
+            "id": "intoxicants",
+            "label": "Intoxicants",
+            "standing": "forbidden",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 5:90"
+              }
+            ]
+          },
+          {
+            "id": "forbidden-food",
+            "label": "Eating forbidden food (carrion, blood, swine)",
+            "standing": "forbidden",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 2:173 ('if someone is compelled by necessity—neither driven by desire nor exceeding immediate need—they will not be sinful'; quran.com, checked 2026-10-03)"
+              }
+            ]
+          },
+          {
+            "id": "fairness",
+            "label": "Deal fairly (no cheating in trade)",
+            "standing": "obligatory",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 83:1-3 (woe to the defrauders)"
+              },
+              {
+                "kind": "assumption",
+                "ref": "Generalised to fair dealing for secular hosts"
+              }
+            ]
+          },
+          {
+            "id": "care-dependents",
+            "label": "Care for those who depend on you",
+            "standing": "obligatory",
+            "sources": [
+              {
+                "kind": "interpretation",
+                "ref": "Obligations toward family alongside those toward Allah and oneself (Bukhari 1968, as cited in research/islamic-foundations.md §2); extending it to every dependent’s urgent needs is the host’s reading"
+              },
+              {
+                "kind": "assumption",
+                "ref": "Standing obligatory for secular hosts as a shared caregiving norm; engineering default"
+              }
+            ]
+          },
+          {
+            "id": "punctuality",
+            "label": "Be on time",
+            "standing": "recommended",
+            "sources": [
+              {
+                "kind": "assumption",
+                "ref": "Secular social norm; engineering default"
+              }
+            ]
+          },
+          {
+            "id": "eid-prayer",
+            "label": "Pray the Eid prayer in congregation",
+            "standing": "recommended",
+            "sources": [
+              {
+                "kind": "interpretation",
+                "ref": "Strongly emphasised in every school: wajib for Hanafis, sunnah mu'akkada (Maliki), sunnah (Shafi'i), fard kifaya (Hanbali), per TDV \"Bayram\" in research/eid-and-mourning-sources.md §1"
+              },
+              {
+                "kind": "assumption",
+                "ref": "Recorded as recommended (the most common standing overall, research/decisions.md), so missing it is no breach; congregational, with no individual make-up (eid-and-mourning-sources.md §1)"
+              }
+            ]
+          },
+          {
+            "id": "keep-watch",
+            "label": "Keep the watch you stand",
+            "standing": "obligatory",
+            "sources": [
+              {
+                "kind": "assumption",
+                "ref": "The Night Watch host norm; standing chosen by the game design"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "castPassport": "site-cast/1",
+    "sourceRole": "kian",
+    "watchCare": {
+      "agreement": {
+        "version": "watch-warren-ada/1",
+        "guardian": "kian",
+        "dependent": "ada",
+        "sourceMinute": 1800,
+        "returnBy": 3240,
+        "kianAssented": true,
+        "adaAssented": true,
+        "commitmentId": "c2",
+        "returnCommitmentId": "c3",
+        "status": "agreed",
+        "careCompletedAt": 2340
+      },
+      "care": {
+        "commitment": {
+          "kind": "duty",
+          "toId": "ada",
+          "targetId": "ada",
+          "actions": ["care-ada"],
+          "from": 1800,
+          "until": 3240,
+          "importance": 0.8,
+          "label": "Share a small meal and water with Ada, then rest together during the one-day refuge visit",
+          "id": "c2",
+          "status": "kept"
+        },
+        "completedAt": 2340
+      },
+      "dependent": {
+        "id": "ada",
+        "guardian": "kian",
+        "sourceMinute": 2339,
+        "ageMinutes": 4226065,
+        "alive": true,
+        "satiety": 1,
+        "hydration": 1,
+        "sleepPressure": 0.2337493264834316
+      }
+    },
+    "checkpoint": {
+      "schema": "human/person@1",
+      "sourceMinute": 2340,
+      "rng": {
+        "a": 518839829,
+        "b": 4271975630,
+        "c": 2929245121,
+        "d": 469017187
+      },
+      "sha256": "4892a2386dbbf2e45aaa5ddc63bbefe1a042ba4f9153a4e02576b556794f48d3"
+    },
+    "engine": "2.17.0",
+    "life": {
+      "version": "hf-coarse-life/1",
+      "clock": {
+        "version": "hf-chapter-clock/1",
+        "watermark": 498004,
+        "seed": 2809292764
+      },
+      "assignment": 0,
+      "work": "own-routine",
+      "place": "home",
+      "notices": [],
+      "events": [],
+      "skipped": 0
+    }
+  },
+  "limitations": ["Bounded coarse local life; no full days, travel, healing or duty completion is inferred."],
+  "revision": "957e25ca15d7c75a33d204647b0c5d4c72e7167dfdc09a0b74cdc013772c581e"
+}

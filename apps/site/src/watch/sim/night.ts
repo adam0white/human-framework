@@ -45,6 +45,8 @@ import {
   strain,
   tend,
 } from '@adam0white/human-framework';
+import { personChapter } from '../../shared/cast-chapter.ts';
+import { restoreWatchCare } from './care-reentry.ts';
 import {
   AIM_SCALE,
   BELL_CALL_BASE,
@@ -178,6 +180,8 @@ export function newGame(
   for (const v of foundingCast()) addVillager(s, v);
   s.leaves = freshLeaves();
   arrive(s);
+  const carriedKian = personChapter(s.castChapter, 'hf.cast.kian.watch');
+  if (carriedKian?.input.parent.transfer.watchCare) restoreWatchCare(s, carriedKian.input.parent);
   for (const id of presentIds(s)) s.posts[id] = villager(s, id).usual;
   planNight(s);
   return s;
@@ -195,6 +199,7 @@ export function presentIds(s: WatchState): WatcherId[] {
 
 /** True while the clock runs (dusk and night by the minute, the open seasons by the day). */
 export function clockRuns(s: WatchState): boolean {
+  if (s.phase === 'dusk' && s.refugeVisit?.status === 'agreed') return false;
   return s.phase === 'dusk' || s.phase === 'night' || isSeason(s);
 }
 
@@ -630,7 +635,7 @@ export function applyInput(s: WatchState, input: Input): boolean {
       return true;
     }
     case 'begin':
-      if (s.phase !== 'dusk') return false;
+      if (s.phase !== 'dusk' || s.refugeVisit?.status === 'agreed') return false;
       // Starting the night early: the watchers live the rest of dusk at once.
       stepPeople(s, s.nightStart - 1);
       enterNight(s);
@@ -655,7 +660,7 @@ export function applyInput(s: WatchState, input: Input): boolean {
     case 'answer':
       return answerMoment(s, input.id, input.choice);
     case 'refugeVisit': {
-      if (s.phase !== 'dawn') return false;
+      if (s.phase !== 'dawn' && !(s.phase === 'dusk' && input.choice === 'stay')) return false;
       if (input.choice === 'prepare') return prepareRefugeDeparture(s);
       const text =
         input.choice === 'stay'
@@ -1235,6 +1240,7 @@ export function stepMinute(s: WatchState): void {
     return;
   }
   if (s.phase === 'dusk') {
+    if (s.refugeVisit?.status === 'agreed') return;
     stepPeople(s, s.minute);
     s.minute += 1;
     if (s.minute >= s.nightStart) enterNight(s);

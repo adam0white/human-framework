@@ -93,7 +93,7 @@ export function agreeRefugeVisit(s: WatchState): string {
 }
 export function stayRefugeVisit(s: WatchState): boolean {
   const visit = s.refugeVisit;
-  if (!visit || visit.status !== 'agreed' || s.phase !== 'dawn') return false;
+  if (!visit || visit.status !== 'agreed' || !['dawn', 'dusk'].includes(s.phase)) return false;
   const { kian } = participants(s);
   if (!kian) return false;
   releaseCommitment(kian, visit.commitmentId);

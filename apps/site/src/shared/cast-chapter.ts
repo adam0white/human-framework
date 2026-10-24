@@ -22,6 +22,7 @@ import {
   type PersonaLife,
   preparePersonaLife,
 } from '@adam0white/lab-client';
+import { shiftedKeptMeal, watchCareReentry } from '../watch/sim/care-reentry.ts';
 import { goodhandsSelinPassport } from './cast-goodhands-selin.ts';
 import { nativeCastSource } from './cast-native-sources.ts';
 import { SITE_CAST_NORMS, VALLEY_CAST_DUES } from './cast-norms.ts';
@@ -330,7 +331,8 @@ function admitRawSiteCast(game: string, opening: Person, chapter: CastPersonChap
       throw new Error('Unsupported source norm meaning.');
     return known;
   });
-  const allowed = ACTIONS[game];
+  const care = game === 'watch' ? watchCareReentry(input.parent, portable) : undefined;
+  const allowed = care ? new Set([...ACTIONS.watch!, 'return-with-ada']) : ACTIONS[game];
   if (
     !allowed ||
     portable.calendar.commitments.some((c) =>
@@ -397,6 +399,7 @@ function admitRawSiteCast(game: string, opening: Person, chapter: CastPersonChap
     targetId: role,
     targetNorms: knownNorms,
   });
+  if (care) person.agenda.commitments.push(shiftedKeptMeal(care, offset));
   return person;
 }
 function assignSiteTask(game: string, person: Person, chapter: CastChapter): Person {

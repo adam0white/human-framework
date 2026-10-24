@@ -687,6 +687,17 @@ export function DuskPanel({
   const [picker, setPicker] = useState(false);
   return (
     <div className="w-dusk">
+      {frame.refugeVisit?.status === 'agreed' ? (
+        <section aria-label="Kian and Ada’s pending visit">
+          <p>
+            Kian and Ada still have their prepared visit and return promise. Their earlier meal stays kept.
+            Opening this chapter did not take them to the refuge. Choose to stay before beginning the watch.
+          </p>
+          <button type="button" onClick={() => actions.input({ k: 'refugeVisit', choice: 'stay' })}>
+            Stay here together
+          </button>
+        </section>
+      ) : null}
       <header className="lk-sheet-head w-dusk-head">
         {sel ? (
           <>
@@ -829,7 +840,12 @@ export function DuskPanel({
           </>
         ) : (
           <>
-            <button type="button" className="w-primary" onClick={() => actions.input({ k: 'begin' })}>
+            <button
+              type="button"
+              className="w-primary"
+              disabled={frame.refugeVisit?.status === 'agreed'}
+              onClick={() => actions.input({ k: 'begin' })}
+            >
               Begin the watch
             </button>
             <p className="w-note">Tap a watcher to post them.</p>

@@ -876,6 +876,9 @@ export function App() {
               <button type="button" onClick={() => setFeedback('menu')}>
                 Send word
               </button>
+              <button type="button" onClick={actions.exportPlaytest}>
+                Keep a copy of this run
+              </button>
               <FullscreenButton variant="item" className="well-phone-fullscreen" />
               <button
                 type="button"
