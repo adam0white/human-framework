@@ -26,6 +26,8 @@ import { carriedCare, shiftedKeptMeal } from '../watch/sim/care-reentry.ts';
 import { goodhandsSelinPassport } from './cast-goodhands-selin.ts';
 import { nativeCastSource } from './cast-native-sources.ts';
 import { SITE_CAST_NORMS, VALLEY_CAST_DUES } from './cast-norms.ts';
+
+const SITE_CAST_TRUSTED_NORMS = [...SITE_CAST_NORMS, VALLEY_CAST_DUES];
 export interface CastPersonChapter {
   version: 'site-cast/1';
   input: LifePreparation;
@@ -195,7 +197,13 @@ export function siteCastTransfer(
   };
 }
 function calendarProjection(person: Person, extraNorms: NormDefinition[], offset: number) {
-  const normCatalog = [...DEFAULT_NORMS, ...extraNorms];
+  const carriedNorms = SITE_CAST_TRUSTED_NORMS.filter(
+    (n) =>
+      person.conscience.norms.some((held) => held.normId === n.id) &&
+      !DEFAULT_NORMS.some((d) => d.id === n.id) &&
+      !extraNorms.some((extra) => extra.id === n.id),
+  );
+  const normCatalog = [...DEFAULT_NORMS, ...extraNorms, ...carriedNorms];
   const identity = (values: string[]) => Object.fromEntries(values.map((id) => [id, id]));
   const retained = person.agenda.commitments.filter((c) => isContinuingCommitment(person.agenda, c));
   const owed = person.agenda.owed ?? [];
@@ -262,7 +270,7 @@ export function admitSiteCast(game: string, opening: Person, chapter: CastChapte
     throw new Error('Unsupported pinned arrival clock.');
   let actor = pinned;
   if (offset !== 0) {
-    const norms = SITE_CAST_NORMS.filter((n) => !DEFAULT_NORMS.some((d) => d.id === n.id));
+    const norms = SITE_CAST_TRUSTED_NORMS.filter((n) => !DEFAULT_NORMS.some((d) => d.id === n.id));
     const projection = calendarProjection(pinned, norms, offset);
     const target = restore(snapshot(pinned));
     target.now += offset;
@@ -324,14 +332,14 @@ function admitRawSiteCast(game: string, opening: Person, chapter: CastPersonChap
   if (portable.person.source.id !== input.parent.transfer.sourceRole)
     throw new Error('Source identity differs from passport.');
   const knownNorms = portable.calendar.norms.map((norm) => {
-    const trusted = ['valley-calendar/1', 'warren-calendar/1'].includes(native?.mapping ?? '')
-      ? [...SITE_CAST_NORMS, VALLEY_CAST_DUES]
-      : SITE_CAST_NORMS;
-    const known = trusted.find((n) => n.id === norm.id);
+    const known = SITE_CAST_TRUSTED_NORMS.find((n) => n.id === norm.id);
     if (!known || JSON.stringify(known) !== JSON.stringify(norm))
       throw new Error('Unsupported source norm meaning.');
     return known;
   });
+  // Recognising the held household-share norm does not implement its fulfilment in these hosts.
+  if ([...portable.calendar.commitments, ...portable.calendar.owed].some((c) => c.normId === 'dues'))
+    throw new Error('The source household dues still need their original host. Keep that chapter.');
   const care = game === 'watch' ? carriedCare(input.parent, portable) : undefined;
   const allowed = care ? new Set([...ACTIONS.watch!, 'return-with-ada']) : ACTIONS[game];
   if (

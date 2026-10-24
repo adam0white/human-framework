@@ -13,7 +13,7 @@ vi.mock('../../shared/lab.tsx', () => ({
 vi.mock('./useWatch.ts', () => ({ useWatch: vi.fn() }));
 vi.mock('./MapCanvas.tsx', () => ({ MapCanvas: () => null }));
 const { App, DuskPanel, NightPanel, DawnPanel, headerLine } = await import('./App.tsx');
-const { Chronicle } = await import('./chronicle.tsx');
+const { Chronicle, Shelf } = await import('./chronicle.tsx');
 const actions = {
   input: vi.fn(),
   hold: vi.fn(),
@@ -361,4 +361,41 @@ it('keeps bell and lantern beside accounts and exposes handovers and recent mess
   expect(page.querySelector('.w-bellbtn')).not.toBeNull();
   expect(page.querySelector('[role=status]')?.textContent).toContain('waiting for an answer');
   expect(page.querySelector('.w-night-messages li')?.textContent).toBe('Kian declined: too tired.');
+});
+
+it('requires an explicit season recovery choice and loads that existing local page', async () => {
+  const load = vi.fn(async () => true);
+  const container = document.createElement('div');
+  document.body.append(container);
+  const root = createRoot(container);
+  await act(() =>
+    root.render(
+      createElement(Shelf, {
+        current: 'other',
+        onClose: vi.fn(),
+        actions: { ...actions, load },
+        shelf: [
+          {
+            id: 'owned:1:winter',
+            chronicle: 'owned',
+            kind: 'season',
+            castRecovery: true,
+            seed: 703,
+            year: 1,
+            when: 'winter',
+            savedAt: 1,
+          },
+        ],
+      }),
+    ),
+  );
+  const button = (text: string) =>
+    [...container.querySelectorAll('button')].find((b) => b.textContent === text)!;
+  await act(() => button('Restore season-start backup').click());
+  expect(load).not.toHaveBeenCalled();
+  expect(container.textContent).toContain('No new cast claim is made');
+  await act(async () => button('Restore this saved page').click());
+  expect(load).toHaveBeenCalledExactlyOnceWith('owned:1:winter');
+  await act(() => root.unmount());
+  container.remove();
 });

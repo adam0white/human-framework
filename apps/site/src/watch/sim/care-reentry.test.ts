@@ -100,7 +100,7 @@ describe('finite own-Watch care re-entry', () => {
   });
 });
 
-// Candidate passports derived by the source adapter from the genuine ended Warren export.
+// Bounded passports from actual native UI Warren692/794; source raw snapshots stay archived.
 // These are mechanism controls, not published/native UI head evidence.
 async function warrenChapter(change?: (transfer: typeof warrenControl.sources.kian) => void) {
   const inputs = [];
@@ -187,8 +187,29 @@ describe('finite native Warren return', () => {
     expect(meal.status).toBe('kept');
     expect(pending.status).toBe('released');
     expect(ada.body.sleepPressure).toBe(v.dependent.sleepPressure);
+    const finishNight = () => {
+      while (run.state.phase === 'night') run.step();
+    };
     run.input({ k: 'begin' });
-    run.step();
+    finishNight();
+    run.input({ k: 'toDusk' });
+    run.input({ k: 'begin' });
+    finishNight();
+    // Fault injection only: a late failure must leave the prior state/log intact.
+    const id = 'hf.cast.meryem.warren';
+    const valid = s.castChapter!.people![id]!.initial!;
+    const broken = JSON.parse(valid);
+    broken.conscience.norms.push({ normId: 'unsupported-fault', standing: 'recommended', conviction: 0.4 });
+    s.castChapter!.people![id]!.initial = JSON.stringify(broken);
+    const before = run.snapshot();
+    expect(() => run.input({ k: 'toDusk' })).toThrow(/unmapped.*norm/);
+    expect(run.snapshot()).toEqual(before);
+    s.castChapter!.people![id]!.initial = valid;
+    expect(run.input({ k: 'toDusk' })).toBe(true);
+    expect(s.community.people.some((p) => p.id === 'meryem')).toBe(true);
+    expect(
+      s.community.people.find((p) => p.id === 'meryem')!.conscience.norms.some((n) => n.normId === 'dues'),
+    ).toBe(true);
     expect(endState(replay(run.export()))).toEqual(run.export().end);
     expect(replay(run.export()).warrenCareReturn).toEqual(s.warrenCareReturn);
   });

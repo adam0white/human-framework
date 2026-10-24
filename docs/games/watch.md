@@ -364,11 +364,11 @@ The only framework change is one opt-in cue kind. HF impressions now read `skill
 
 The aim of this phase: Game 3 ready for the user's own playtest, on a Galaxy S26 and on desktop, over many years.
 
-**Saves follow §6 (no rewind).** Decided:
+**Saves follow §6, with explicit local recovery added 2026-10-24.** Decided:
 - A chronicle has one running page (`<chronicle>:auto`). It is kept as you go: 1.5 s after an input, every 8 s while the clock runs, when the clock is held, when the tab is hidden or closed, and before a load or a new village. Reloading loses at most a few seconds.
-- "Continue" is the only way back into a chronicle. There is no list of older pages to rewind to.
+- "Continue" opens the running page. An explicit season-backup recovery can replace later local progress with an earlier saved page; it keeps that page’s exact accepted cast receipts and makes no new claim.
 - Each closed or fallen volume is kept as a page on the shelf. "Take up again" on a closed volume starts a **new** chronicle from that page, so the original chronicle is never rewritten.
-- Season pages (the last two) are backups only. The UI does not show them. If the running page cannot be read, the newest backup is used.
+- Season pages (the last two) remain backups. The Shelf offers explicit recovery only when the actual local snapshot contains the exact owned initial claims for that chapter. Files cannot grant ownership or qualify for this recovery. If the running page cannot be read, the newest backup is used.
 - The shelf keeps four chronicles. Volume pages of a kept chronicle are never pruned.
 - Loading keeps the Pacer (one per worker, `adopt(run)`) and the clock hold. The current chronicle id reaches the UI with the shelf.
 - Pages from an older build (the scenario version is now 6) are refused with a note that says so.

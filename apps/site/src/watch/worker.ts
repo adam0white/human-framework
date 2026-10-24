@@ -22,6 +22,7 @@ import {
  */
 import { hostWorker } from '../shared/worker-host.ts';
 import { type MainToWorker, WATCH_SCENARIO_VERSION, type WorkerReply } from './protocol.ts';
+import { canRestoreSeason } from './season-recovery.ts';
 import { DAY, DUSK_START, WATCHERS } from './sim/config.ts';
 import { dayOfYear, seasonOfDay } from './sim/life.ts';
 import { clockRuns, nightEnd } from './sim/night.ts';
@@ -35,6 +36,8 @@ import { roman } from './sim/volume.ts';
 import { listPages, loadPage, type PageInfo, savePage } from './store.ts';
 
 let run: WatchRun | null = null;
+/** Only the latest explicit init/load may install a run after storage awaits. */
+let loadOperation = 0;
 let castOwnership: import('../shared/cast-runtime.ts').CastHeads = {};
 const pacer = new Pacer();
 let lastKey = '';
@@ -245,6 +248,7 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
   }
   switch (msg.type) {
     case 'init':
+      loadOperation++;
       lastKey = '';
       if (msg.scenarioVersion !== WATCH_SCENARIO_VERSION) {
         host.gen = msg.gen;
@@ -309,11 +313,21 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
       postShelf();
       return;
     case 'load': {
+      const operation = ++loadOperation;
       const gen = msg.gen;
       const id = msg.id;
       // Keep where this chronicle stands before opening another.
       if (run && behind()) save('auto');
-      void loadPage(id).then((snap) => {
+      void loadPage(id).then(async (snap) => {
+        if (operation !== loadOperation) return;
+        if (!id.endsWith(':auto') && !id.includes(':vol:')) {
+          const page = (await listPages()).find((p) => p.id === id);
+          if (operation !== loadOperation) return;
+          if (!page || !canRestoreSeason(page, snap)) {
+            host.post({ type: 'loaded', ok: false, id }, gen);
+            return;
+          }
+        }
         let next: WatchRun | null = null;
         try {
           next = snap ? WatchRun.resume(snap) : null;
@@ -327,12 +341,13 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
           host.post({ type: 'loaded', ok: false, id }, gen);
           return;
         }
+        if (operation !== loadOperation) return;
         host.gen = gen;
         // A closed volume taken up again is a new chronicle; a running page continues its own.
         const fork = id.includes(':vol:');
         begin(next, fork ? newChronicleId() : (id.split(':')[0] ?? id));
         if (fork) save('auto');
-        castOwnership = structuredClone(snap?.castOwnership ?? {});
+        castOwnership = snap?.fileOrigin ? {} : structuredClone(snap?.castOwnership ?? {});
         host.post({ type: 'loaded', ok: true, id, seed: next.seed });
         host.post({ type: 'castReady', requestId: 0, ownership: castOwnership });
         flush(true);
@@ -345,5 +360,15 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
 
 function postShelf(): void {
   const gen = host.gen;
-  void listPages().then((pages) => host.post({ type: 'shelf', pages, saving, current: chronicleId }, gen));
+  void listPages().then(async (pages) => {
+    const checked = await Promise.all(
+      pages.map(async (page) => {
+        const { castRecovery: _discard, ...info } = page;
+        return page.kind === 'season' && canRestoreSeason(page, await loadPage(page.id))
+          ? { ...info, castRecovery: true as const }
+          : info;
+      }),
+    );
+    host.post({ type: 'shelf', pages: checked, saving, current: chronicleId }, gen);
+  });
 }

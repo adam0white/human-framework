@@ -245,6 +245,8 @@ export interface PlaytestExport {
  * same run: the log keeps growing from the snapshot, so a later export still replays from the seed.
  */
 export interface Snapshot {
+  /** File bytes never confer local ownership, including through a season backup. */
+  fileOrigin?: true;
   castOwnership?: import('../../shared/cast-runtime.ts').CastHeads;
   scenario: number;
   seed: number;
@@ -270,6 +272,8 @@ export function migrateSnapshot(snap: Snapshot): Snapshot {
     seed: snap.seed,
     log: snap.log,
     state,
+    ...(snap.fileOrigin ? { fileOrigin: true } : {}),
+    ...(snap.castOwnership ? { castOwnership: structuredClone(snap.castOwnership) } : {}),
     origin: snap.origin ?? { scenario: snap.scenario, minute: snap.state.minute },
   };
 }
@@ -279,6 +283,7 @@ export class WatchRun {
   readonly log: LogEntry[] = [];
 
   readonly seed: number;
+  readonly fileOrigin?: true;
   /** Set when this run was resumed from an older scenario's page (see `Origin`). */
   readonly origin: Origin | undefined;
 
@@ -290,6 +295,7 @@ export class WatchRun {
       this.state = structuredClone(from.state);
       this.log = from.log.map((e) => ({ m: e.m, i: { ...e.i } }));
       this.origin = from.origin;
+      this.fileOrigin = from.fileOrigin;
     } else {
       this.state = newGame(seed, castChapter);
     }
@@ -308,6 +314,7 @@ export class WatchRun {
       log: this.log,
       state: this.state,
       ...(this.origin ? { origin: this.origin } : {}),
+      ...(this.fileOrigin ? { fileOrigin: true } : {}),
     });
   }
 
@@ -319,15 +326,27 @@ export class WatchRun {
       log: this.log.map((e) => ({ m: e.m, i: { ...e.i } })),
       state: structuredClone(this.state),
       ...(this.origin ? { origin: { ...this.origin } } : {}),
+      ...(this.fileOrigin ? { fileOrigin: true } : {}),
     };
   }
 
   /** Applies and logs an input; inputs that do not apply in this phase are dropped unlogged. */
   input(i: Input): boolean {
     const m = this.state.minute;
-    if (!applyInput(this.state, i)) return false;
-    this.log.push({ m, i });
-    return true;
+    // Daylight advances many actors and admits scheduled people. A failed transition
+    // must not leave unlogged partial state for the next tick or autosave.
+    const before = i.k === 'toDusk' ? structuredClone(this.state) : undefined;
+    try {
+      if (!applyInput(this.state, i)) return false;
+      this.log.push({ m, i });
+      return true;
+    } catch (error) {
+      if (before) {
+        for (const key of Object.keys(this.state)) Reflect.deleteProperty(this.state, key);
+        Object.assign(this.state, before);
+      }
+      throw error;
+    }
   }
 
   step(): void {
@@ -347,6 +366,7 @@ export class WatchRun {
       endMinute: this.state.minute,
       end: endState(this.state),
       ...(this.origin ? { origin: { ...this.origin } } : {}),
+      ...(this.fileOrigin ? { fileOrigin: true } : {}),
     };
   }
 }

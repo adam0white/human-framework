@@ -8,7 +8,7 @@
  *   clock runs, when the chronicle opens and when the tab is hidden), so little is lost on a reload. "Continue"
  *   always opens this page: there is no going back to an earlier page of the same chronicle.
  * - `season`, a backup taken as each season opens. Only the last two are kept, and only to open the chronicle if
- *   its running page cannot be read. They are not offered as load points (that would be a rewind).
+ *   its running page cannot be read. Explicit recovery can open a locally owned backup; it replaces later local progress without claiming new heads.
  * - `volume`, kept when a volume closes: the book on the shelf. It is never pruned while its chronicle is kept.
  *   Taking up a closed volume starts a *new* chronicle from that page; the old chronicle stays as it was.
  *
@@ -24,6 +24,8 @@ export interface PageInfo {
   /** Which chronicle (one per new game, and one per volume taken up again). */
   chronicle: string;
   kind: 'auto' | 'season' | 'volume';
+  /** Computed from the actual local snapshot when listing, never an ownership grant. */
+  castRecovery?: true;
   seed: number;
   year: number;
   /** The season or page the save was taken in, in words for the shelf. */

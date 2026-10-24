@@ -134,7 +134,11 @@ export function prepareWatchCast(
   for (const single of chapterPeople(chapter)) {
     const def = WATCHERS.find((w) => WATCH_CAST[w.id] === single.input.parent.castId);
     if (!def) throw new Error('No authored Watch role.');
-    prepareSiteInitial('watch', createPerson(watcherSpec(seed, def, DUSK_START)), single);
+    const opening = createPerson(watcherSpec(seed, def, DUSK_START));
+    prepareSiteInitial('watch', opening, single);
+    // Validate the same pinned restoration path at its authored scheduled arrival, before CAS.
+    if (def.arrives > 1)
+      admitSiteCast('watch', { ...opening, now: DUSK_START + (def.arrives - 1) * DAY }, single);
     if (
       def.id === 'kian' &&
       (single.input.parent.transfer.watchCare || single.input.parent.transfer.warrenCare)

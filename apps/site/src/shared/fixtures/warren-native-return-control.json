@@ -1,5 +1,5 @@
 {
-  "label": "HEADLESS PROJECTION CONTROL from real retained run; not a published UI checkpoint",
+  "label": "Bounded transfers from genuine native UI Warren692/794, signed loaded source d2c6e46; unit envelopes below are controls, not published heads",
   "sources": {
     "kian": {
       "castPassport": "warren-calendar/1",
@@ -13,7 +13,7 @@
             "schema": "human/person@1",
             "engine": "2.17.0",
             "id": "kian",
-            "now": 600
+            "now": 692
           },
           "name": "Kian",
           "life": {
@@ -48,7 +48,7 @@
           },
           "health": {
             "health": 1,
-            "fitness": 0.8448238524776038,
+            "fitness": 0.8445312420359726,
             "circadianPeak": 960
           },
           "family": null,
@@ -70,7 +70,8 @@
             "episode:e4",
             "episode:e5",
             "episode:e6",
-            "episode:e7"
+            "episode:e7",
+            "episode:e8"
           ]
         },
         "calendar": {
@@ -552,18 +553,18 @@
       },
       "checkpoint": {
         "schema": "human/person@1",
-        "sourceMinute": 600,
+        "sourceMinute": 692,
         "rng": {
           "a": 518839829,
           "b": 4271975630,
           "c": 2929245121,
           "d": 469017187
         },
-        "sha256": "352243d6aa3b248784cff3088b146cd55a66e9dd956c633b4e8f097a3714b726"
+        "sha256": "0c653f39e2a9669a319af9086fa9cf24651674e535f672c2e751d26164763843"
       },
       "warrenCare": {
         "version": "warren-watch-ada/1",
-        "capturedMinute": 600,
+        "capturedMinute": 692,
         "visit": {
           "source": {
             "agreement": {
@@ -650,6 +651,41 @@
           "endRequested": true,
           "endedAt": 570
         }
+      },
+      "life": {
+        "version": "hf-coarse-life/1",
+        "clock": {
+          "version": "hf-chapter-clock/1",
+          "watermark": 498010,
+          "seed": 2809292764
+        },
+        "assignment": 1,
+        "work": "own-routine",
+        "place": "local-workplace",
+        "notices": ["hf.cast.tariq.well", "hf.cast.meryem.warren"],
+        "events": [
+          {
+            "slot": 498005,
+            "kind": "contact",
+            "detail": "hf.cast.tariq.well"
+          },
+          {
+            "slot": 498006,
+            "kind": "work",
+            "detail": "supervised stores assistance"
+          },
+          {
+            "slot": 498007,
+            "kind": "place",
+            "detail": "local-workplace"
+          },
+          {
+            "slot": 498008,
+            "kind": "contact",
+            "detail": "hf.cast.meryem.warren"
+          }
+        ],
+        "skipped": 0
       }
     },
     "meryem": {
@@ -664,7 +700,7 @@
             "schema": "human/person@1",
             "engine": "2.17.0",
             "id": "meryem",
-            "now": 690
+            "now": 794
           },
           "name": "Meryem",
           "life": {
@@ -699,7 +735,7 @@
           },
           "health": {
             "health": 1,
-            "fitness": 0.5381410024690119,
+            "fitness": 0.5379807745901009,
             "circadianPeak": 960
           },
           "family": null,
@@ -725,7 +761,9 @@
             "episode:e4",
             "episode:e5",
             "episode:e6",
-            "episode:e7"
+            "episode:e7",
+            "episode:e8",
+            "episode:e9"
           ]
         },
         "calendar": {
@@ -1114,14 +1152,44 @@
       },
       "checkpoint": {
         "schema": "human/person@1",
-        "sourceMinute": 690,
+        "sourceMinute": 794,
         "rng": {
           "a": -1303905245,
           "b": 2318860662,
           "c": 1895039538,
           "d": 721165714
         },
-        "sha256": "04e1171b13abb6ec8b0231baa0bbfa76bbbcd045c9593f22beb306b3bacbc45d"
+        "sha256": "07aad2e13fb9993937de24dfbfb400ea784440867ce21baab2b4355c674ec169"
+      },
+      "life": {
+        "version": "hf-coarse-life/1",
+        "clock": {
+          "version": "hf-chapter-clock/1",
+          "watermark": 498010,
+          "seed": 986752626
+        },
+        "assignment": 1,
+        "work": "own-routine",
+        "place": "public-garden",
+        "notices": [],
+        "events": [
+          {
+            "slot": 498004,
+            "kind": "place",
+            "detail": "local-workplace"
+          },
+          {
+            "slot": 498006,
+            "kind": "work",
+            "detail": "household work"
+          },
+          {
+            "slot": 498007,
+            "kind": "place",
+            "detail": "public-garden"
+          }
+        ],
+        "skipped": 0
       }
     }
   }

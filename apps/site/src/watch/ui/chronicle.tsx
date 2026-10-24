@@ -15,6 +15,7 @@ interface Group {
   chronicle: string;
   auto: PageInfo | null;
   volumes: PageInfo[];
+  backups: PageInfo[];
   newest: number;
 }
 
@@ -23,15 +24,16 @@ export function groups(shelf: PageInfo[]): Group[] {
   for (const p of shelf) {
     let g = by.get(p.chronicle);
     if (!g) {
-      g = { chronicle: p.chronicle, auto: null, volumes: [], newest: 0 };
+      g = { chronicle: p.chronicle, auto: null, volumes: [], backups: [], newest: 0 };
       by.set(p.chronicle, g);
     }
     g.newest = Math.max(g.newest, p.savedAt);
     if (p.kind === 'auto') {
       if (!g.auto || p.savedAt > g.auto.savedAt) g.auto = p;
     } else if (p.kind === 'volume') g.volumes.push(p);
+    else if (p.kind === 'season' && p.castRecovery) g.backups.push(p);
   }
-  const out = [...by.values()].filter((g) => g.auto || g.volumes.length > 0);
+  const out = [...by.values()].filter((g) => g.auto || g.volumes.length > 0 || g.backups.length > 0);
   for (const g of out) g.volumes.sort((a, b) => a.savedAt - b.savedAt);
   return out.sort((a, b) => b.newest - a.newest);
 }
@@ -87,6 +89,7 @@ export function Shelf({
 }) {
   const [busy, setBusy] = useState<string | null>(null);
   const [note, setNote] = useState('');
+  const [recover, setRecover] = useState<string | null>(null);
   useEffect(() => {
     actions.refreshShelf();
   }, [actions]);
@@ -136,6 +139,38 @@ export function Shelf({
                   </button>
                 </li>
               ) : null}
+              {g.backups.map((p) => (
+                <li key={p.id} className="w-pagerow">
+                  <span>
+                    Seed {p.seed} · {yearWords(p.year)}, {pageWhen(p.when)}
+                    <span className="w-note">
+                      Earlier local progress. Restores this page’s exact accepted cast heads.
+                    </span>
+                  </span>
+                  <button
+                    type="button"
+                    className="w-secondary"
+                    disabled={busy !== null}
+                    onClick={() => setRecover(p.id)}
+                  >
+                    Restore season-start backup
+                  </button>
+                  {recover === p.id ? (
+                    <div role="alert">
+                      <p>
+                        Replace this chronicle’s later local progress with this saved page? Later exports
+                        remain separate. No new cast claim is made.
+                      </p>
+                      <button type="button" disabled={busy !== null} onClick={() => load(p.id)}>
+                        Restore this saved page
+                      </button>
+                      <button type="button" onClick={() => setRecover(null)}>
+                        Keep current page
+                      </button>
+                    </div>
+                  ) : null}
+                </li>
+              ))}
               {g.volumes.map((p) => (
                 <li key={p.id} className="w-pagerow">
                   <span>

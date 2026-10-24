@@ -1,12 +1,23 @@
-import { createPersona, initialPersonaLife } from '@adam0white/lab-client';
+import {
+  createPersona,
+  initialPersonaLife,
+  type PersonaEnvelope,
+  preparePersonaLife,
+} from '@adam0white/lab-client';
 import { expect, it, vi } from 'vitest';
+import { makeCastChapter } from '../shared/cast-chapter.ts';
+import actualCare from '../shared/fixtures/watch-kian-care-native.json';
 import type { MainToWorker } from './protocol.ts';
+import { WatchRun } from './sim/run.ts';
+import type { PageInfo } from './store.ts';
 
 const control = vi.hoisted(() => ({
   handle: undefined as ((m: MainToWorker, h: unknown) => void) | undefined,
   saved: [] as string[],
   replies: [] as Record<string, unknown>[],
   gen: 0,
+  listing: 0,
+  pendingPages: undefined as Promise<PageInfo[]> | undefined,
 }));
 vi.mock('../shared/worker-host.ts', () => ({
   hostWorker: (handle: typeof control.handle) => {
@@ -27,7 +38,10 @@ vi.mock('./store.ts', () => ({
     control.saved.push(text);
     return true;
   },
-  listPages: async () => [],
+  listPages: async () => {
+    control.listing++;
+    return control.pendingPages ?? [];
+  },
   loadPage: async () => JSON.parse(control.saved.at(-1)!),
 }));
 it('saves the old run with its exact accepted ownership before a fresh init and restores those local receipts', async () => {
@@ -73,5 +87,51 @@ it('saves the old run with its exact accepted ownership before a fresh init and 
   );
   expect(control.replies.find((r) => r.type === 'castReady' && r.gen === 3)?.ownership).toEqual({
     [castId]: head,
+  });
+  control.saved.push(JSON.stringify({ ...old, fileOrigin: true }));
+  send({ type: 'load', gen: 4, id: 'file:auto' });
+  await vi.waitFor(() =>
+    expect(control.replies.some((r) => r.type === 'castReady' && r.gen === 4)).toBe(true),
+  );
+  expect(control.replies.find((r) => r.type === 'castReady' && r.gen === 4)?.ownership).toEqual({});
+
+  // A real local backup shape waits for eligibility; a newer init owns the worker meanwhile.
+  const parent = actualCare as unknown as PersonaEnvelope;
+  const { revision, ...body } = parent;
+  const accepted = await createPersona({ ...body, parentRevision: revision });
+  const clock = (parent.transfer.life as { clock: { watermark: number } }).clock.watermark * 3600000;
+  const backup = new WatchRun(
+    703,
+    undefined,
+    makeCastChapter([preparePersonaLife(parent, clock)], [accepted]),
+  );
+  backup.input({ k: 'start' });
+  control.saved.push(JSON.stringify({ ...backup.snapshot(), castOwnership: { [parent.castId]: accepted } }));
+  let release!: (pages: PageInfo[]) => void;
+  control.pendingPages = new Promise((resolve) => {
+    release = resolve;
+  });
+  const listing = control.listing;
+  send({ type: 'load', gen: 5, id: 'owned:1:winter' });
+  await vi.waitFor(() => expect(control.listing).toBeGreaterThan(listing));
+  control.pendingPages = undefined;
+  send({ type: 'init', seed: 3, gen: 6, scenarioVersion: 14 });
+  release([
+    {
+      id: 'owned:1:winter',
+      chronicle: 'owned',
+      kind: 'season',
+      seed: 703,
+      year: 1,
+      when: 'winter',
+      savedAt: 1,
+    },
+  ]);
+  await new Promise((resolve) => setTimeout(resolve, 0));
+  expect(control.gen).toBe(6);
+  expect(control.replies.some((r) => r.type === 'loaded' && r.gen === 5)).toBe(false);
+  send({ type: 'export', requestId: 99 });
+  expect(control.replies.find((r) => r.type === 'exported' && r.requestId === 99)?.data).toMatchObject({
+    seed: 3,
   });
 });
