@@ -6591,7 +6591,7 @@
     "fix:neighbours Send feedback in one sheet without requiring persona consent or recording (done bbbdf4a, client0.4.2 and kit0.5.2, exact green CI and clean live release, note-only feedback verified at360x690 and1280x800)",
     "fix:commonstead Send feedback in one sheet without requiring persona consent or recording (done 90846d1, client0.4.2 and kit0.5.2, exact green CI and clean live release, note-only feedback verified at360x690 and1280x800)"
    ],
-   "source": "Owner report relayed verbatim, urgent feedback fix 2026-10-23. Completion follows the newer direct owner rule recorded in HANDOFF: recording-on feedback includes an available unlinked run without persona consent, off/privacy sends note-only, and persona linkage requires an explicit scoped yes."
+   "source": "Owner report relayed verbatim. The client0.4.2 / kit0.5.2 completion above is historical. Its scoped linkage rule is superseded by the later owner direction in F-491 and docs/owner-directions-2026-10-18.md#2026-10-23-frictionless-recording-and-feedback-adam-verbatim."
   },
   {
    "id": "F-491",
@@ -6602,21 +6602,21 @@
    "words": "Why can't we make linking and all that automatic? We already notify at first visit that we're gonna record stuff. I want to make it as frictionless as possible. Hit send feedback, type something, agree to share everything if not agreed before, submit. My mobile firefox, I'm unable to enable recording. And \"enable recording even though your do not track is on\" being a separate button is just wrong.",
    "verdict": "-",
    "routes": [
-    "fix:watch Apply automatic recording linkage and one-page optional sharing feedback (in progress, owner retest target 2026-11-03)",
-    "fix:well Apply automatic recording linkage and one-page optional sharing feedback (in progress, owner retest target 2026-11-03)",
-    "fix:voice Apply automatic recording linkage and one-page optional sharing feedback (in progress, owner retest target 2026-11-03)",
-    "fix:pass Apply automatic recording linkage and one-page optional sharing feedback (in progress, owner retest target 2026-11-03)",
-    "fix:glance Apply automatic recording linkage and one-page optional sharing feedback (in progress, owner retest target 2026-11-03)",
-    "fix:murmur Apply automatic recording linkage and one-page optional sharing feedback (in progress, owner retest target 2026-11-03)",
-    "fix:repair Apply automatic recording linkage and one-page optional sharing feedback (in progress, owner retest target 2026-11-03)",
-    "fix:valley Apply automatic recording linkage and one-page optional sharing feedback (in progress, owner retest target 2026-11-03)",
-    "fix:stairwell Apply automatic recording linkage and one-page optional sharing feedback (in progress, owner retest target 2026-11-03)",
-    "fix:warren Apply automatic recording linkage and one-page optional sharing feedback (in progress, owner retest target 2026-11-03)",
-    "fix:hearsay Apply automatic recording linkage and one-page optional sharing feedback (in progress, owner retest target 2026-11-03)",
-    "fix:goodhands Apply automatic recording linkage and one-page optional sharing feedback (in progress, owner retest target 2026-11-03)",
-    "fix:rope Apply automatic recording linkage and one-page optional sharing feedback (in progress, owner retest target 2026-11-03)",
-    "fix:neighbours Apply automatic recording linkage and one-page optional sharing feedback (in progress, owner retest target 2026-11-03)",
-    "fix:commonstead Apply automatic recording linkage and one-page optional sharing feedback (in progress, owner retest target 2026-11-03)"
+    "fix:watch Apply automatic recording linkage and one-page optional sharing feedback (done 715cbfe, client0.4.4 and kit0.5.4, exact green CI, clean live deployment and both-size live QA, owner retest target 2026-11-03)",
+    "fix:well Apply automatic recording linkage and one-page optional sharing feedback (done 715cbfe, client0.4.4 and kit0.5.4, exact green CI, clean live deployment and both-size live QA, owner retest target 2026-11-03)",
+    "fix:voice Apply automatic recording linkage and one-page optional sharing feedback (done 715cbfe, client0.4.4 and kit0.5.4, exact green CI, clean live deployment and both-size live QA, owner retest target 2026-11-03)",
+    "fix:pass Apply automatic recording linkage and one-page optional sharing feedback (done f657eaf, client0.4.4 and kit0.5.4, exact green CI, clean live deployment and both-size live QA, owner retest target 2026-11-03)",
+    "fix:glance Apply automatic recording linkage and one-page optional sharing feedback (done 5676017, client0.4.4 and kit0.5.4, exact green CI, clean live deployment and both-size live QA, owner retest target 2026-11-03)",
+    "fix:murmur Apply automatic recording linkage and one-page optional sharing feedback (done b17724c, client0.4.4 and kit0.5.4, exact green CI, clean live deployment and both-size live QA, owner retest target 2026-11-03)",
+    "fix:repair Apply automatic recording linkage and one-page optional sharing feedback (done ba04ad7, client0.4.4 and kit0.5.4, exact green CI, clean live deployment and both-size live QA, owner retest target 2026-11-03)",
+    "fix:valley Apply automatic recording linkage and one-page optional sharing feedback (done 6a759b1, client0.4.4 and kit0.5.4, exact green CI, clean live deployment and both-size live QA, owner retest target 2026-11-03)",
+    "fix:stairwell Apply automatic recording linkage and one-page optional sharing feedback (done d5f5037, client0.4.4 and kit0.5.4, exact green CI, clean live deployment and both-size live QA, owner retest target 2026-11-03)",
+    "fix:warren Apply automatic recording linkage and one-page optional sharing feedback (done 03e6a5d, client0.4.4 and kit0.5.4, exact green CI, clean live deployment and both-size live QA, owner retest target 2026-11-03)",
+    "fix:hearsay Apply automatic recording linkage and one-page optional sharing feedback (done 14a39ec, client0.4.4 and kit0.5.4, exact green CI, clean live deployment and both-size live QA, owner retest target 2026-11-03)",
+    "fix:goodhands Apply automatic recording linkage and one-page optional sharing feedback (done 27e1bce, client0.4.4 and kit0.5.4, exact green CI, clean live deployment and both-size live QA, owner retest target 2026-11-03)",
+    "fix:rope Apply automatic recording linkage and one-page optional sharing feedback (done 05fa367, client0.4.4 and kit0.5.4, exact green CI, clean live deployment and both-size live QA, owner retest target 2026-11-03)",
+    "fix:neighbours Apply automatic recording linkage and one-page optional sharing feedback (done 4c67751, client0.4.4 and kit0.5.4, exact green CI, clean live deployment and both-size live QA, owner retest target 2026-11-03)",
+    "fix:commonstead Apply automatic recording linkage and one-page optional sharing feedback (done 40f5626, client0.4.4 and kit0.5.4, exact green CI, clean live deployment and both-size live QA, owner retest target 2026-11-03)"
    ],
    "source": "docs/owner-directions-2026-10-18.md#2026-10-23-frictionless-recording-and-feedback-adam-verbatim"
   }

@@ -1,6 +1,6 @@
 import type { PersonaEnvelope } from '@adam0white/lab-client';
 
-/** Recording and branch ownership change only after the worker accepts a replacement. */
+/** Branch ownership changes only after the worker accepts a replacement. */
 export class PersonaSession {
   head: PersonaEnvelope | undefined;
   key: string | null = null;
@@ -24,7 +24,7 @@ export class PersonaSession {
       (file.voicePersona && key === null) ||
       (key !== null && (typeof key !== 'string' || !/^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/.test(key)))
     )
-      throw new Error('The continuing person has no valid recording gate.');
+      throw new Error('The continuing person has no valid history identifier.');
     this.begin(key, own);
   }
   begin(key: string | null, head?: PersonaEnvelope): void {

@@ -1,8 +1,8 @@
 # Cast and life adoption
 
-HF2.18.0 is published with engine2.17.0 and verified npm provenance. Client0.4.0 and kit0.5.0 are distributed as immutable local artifacts, not npm publications. Exact source, CI and publication receipts are in [releases](../releases.md).
+HF2.18.0 is published with engine2.17.0 and verified npm provenance. Client0.4.4 and kit0.5.4 are distributed as immutable local artifacts, not npm publications. Exact source, CI and publication receipts are in [releases](../releases.md).
 
-Use `castForGame()` with the exact source host id. The generated artifact is `packages/lab-client/src/cast.ts`, emitted by `scripts/cast-artifact.py` from the curated registry. Hosts import it through client0.4.0; no manual biography copying. It includes every canonical public profile, cast revision and3–8-person allocation. The registry remains authority for private facts and role-specific outcomes.
+Use `castForGame()` with the exact source host id. The generated artifact is `packages/lab-client/src/cast.ts`, emitted by `scripts/cast-artifact.py` from the curated registry. Hosts import it through client0.4.4; no manual biography copying. It includes every canonical public profile, cast revision and3–8-person allocation. The registry remains authority for private facts and role-specific outcomes.
 
 ## Fresh admission
 
@@ -32,7 +32,9 @@ Choice-dependent clues are author-side, outside the public artifact. Voice: comp
 
 ## Browser and recording
 
-The browser shelf is one-device storage. No server, cross-device sync or shared multiplayer world is added. Every imported run is recording-gated before upload hooks; positive linkage requires the current pinned envelope, explicit epoch acknowledgement and unchanged generation. File-local choice stays scoped to that loaded run. Analysis consent is independent.
+The browser shelf is one-device storage. No server, cross-device sync or shared multiplayer world is added. Under the [owner’s later 2026-10-23 direction](../owner-directions-2026-10-18.md#2026-10-23-frictionless-recording-and-feedback-adam-verbatim), recorded play links automatically across games on this device, including imported histories and recording identity changes. The first-visit notice covers recording and linkage. One menu switch controls recording. Turning it on explicitly opts in despite DNT/GPC; those signals set only the default off. Old per-person consent choices migrate silently. Analysis consent remains independent.
+
+Do not query `recording` or `recordingBatch` for admission, publication, feedback or upload permission. Do not await a recording epoch after an accepted source write. The deprecated `setPersonaRecording` and `allowPersonaRecording` hooks do not grant or deny recording. New hosts need no such binding. Ownership, file provenance, current-run checks and exact-parent CAS remain required.
 
 Use only the existing signed-in Chrome profile. Serialize journeys and global preference mutations with atomic `mkdir /Users/abdul/code/.lab-scratch/cast/browser-journey.lock` and `owner.json` containing exact PID, game and scenario. Wait for a live owner. Release only your own lock after exporting evidence and restoring task-owned state. Local previews without central-state changes may overlap. Never launch an isolated profile fallback.
 
@@ -75,16 +77,15 @@ const next = await createPersona({
   source: { game: 'voice', build, engine: '2.17.0', rules: 'voice-4' },
   transfer: { ...transfer, life }, limitations: transfer.person.person.limitations,
 });
-// Initial authored recording association additionally needs the current queried epoch,
-// unchanged source generation, authored:true, no imported history and no fork.
+// Keep the source generation and exact-parent CAS checks.
+// Recording and linking do not gate publication or require an epoch query.
 await shelf.request({ action: 'put', envelope: next });
 ownHead = next;
 ```
 
-Worker hosts await atomic admission and send prepared init before queued deliberate controls. Keep the queue finite and scoped to run/identity generation; load, replacement, identity cancellation and failed CAS discard it. Discard pre-start ticks and stale preview queries. Fresh receiving play gates recording before preparing any imported history. Semantic admission validates every person before the batch CAS. Pin complete initial actors, all inputs and initial claims in the replay. Keep the last accepted ownership heads separately in local-save metadata; a new source checkpoint must never replace an initial replay actor.
+Worker hosts await atomic admission and send prepared init before queued deliberate controls. Keep the queue finite and scoped to the current run and fictional continuity. Load, replacement, continuity preference changes and failed CAS discard it. Recording preference changes and recording identity acknowledgments must not cancel admission. Discard pre-start ticks and stale preview queries. Semantic admission validates every person before the batch CAS. Pin complete initial actors, all inputs and initial claims in the replay. Keep the last accepted ownership heads separately in local-save metadata; a new source checkpoint must never replace an initial replay actor.
 
 ```ts
-lab.setPersonaRecording(`pending-group-${crypto.randomUUID()}`);
 const generationAtStart = generation;
 const chapter = await claimCastChapterBatch(shelf, allocation.map(p => p.castId),
   { game, build, engine: '2.17.0', rules: hostRules },
@@ -104,34 +105,23 @@ if (chapter && generationAtStart === generation) {
 }
 ```
 
-A host invalidates its generation on run or identity changes. No latest-head retry is allowed. A transaction already accepted cannot be silently rolled back; a replaced run never starts from its late receipt. Every independently eligible checkpoint uses the exact previously accepted head. Local autosaves carry these latest receipts outside simulation state. Restore them only after a successful explicitly local save load, with envelope validation and the same run generation. Imported files remain separately gated and do not acquire ownership from an embedded receipt. A changed active head still conflicts.
+A host invalidates its gameplay generation on actual run replacement or fictional continuity changes. Recording preferences have no role in that generation. No latest-head retry is allowed. A transaction already accepted cannot be silently rolled back; a replaced run never starts from its late receipt. Every independently eligible checkpoint uses the exact previously accepted head. Local autosaves carry these latest receipts outside simulation state. Restore them only after a successful explicitly local save load, with envelope validation and the same run generation. Imported files retain their provenance and do not acquire ownership from an embedded receipt. A changed active head still conflicts.
 
-Mixed histories record only if **all** pinned branches permit the current epoch, or the player explicitly permits the complete pinned group. One denial keeps the derived run local. Do not use one person's permission for another person's history.
+All carried histories follow the single recording preference. Send word has verdict, note, optional name and Submit on one page. While recording is on, show no sharing consent control. While recording is off, show exactly one unchecked checkbox: “Share this run and my play with the lab”. Ticking it alone changes nothing; Submit supplies `sharePlay:true`. Unchecked Submit sends the unlinked note alone.
 
 ```ts
-const pinned = Object.values(ownedHeads); // exact envelopes, not freshly fetched heads
-const attempt = ++recordingChoiceGeneration;
-const run = loadedRunGeneration;
-const identityOrRunGeneration = generation; // increment on every run OR recording identity change
-const revisions = pinned.map(p => p.revision).join('/');
-const stillOwns = () => attempt === recordingChoiceGeneration
-  && identityOrRunGeneration === generation
-  && run === loadedRunGeneration
-  && Object.values(ownedHeads).map(p => p.revision).join('/') === revisions;
-lab.setPersonaRecording(`group-${crypto.randomUUID()}`); // closed until permission passes
-const query = await shelf.request<{
-  sameEpoch: boolean; revisions: string[]; recordingEpoch: string | null;
-}>({ action: 'recordingBatch', envelopes: pinned });
-if (stillOwns() && query.revisions.join('/') === revisions)
-  lab.allowPersonaRecording(query.sameEpoch);
-if (playerExplicitlyPermittedAllHistories && stillOwns()) {
-  const epoch = await shelf.request<{recordingEpoch: string | null}>({action:'recordingBatch',envelopes:pinned});
-  if (!stillOwns()) throw new Error('Identity or run changed. Choose again.');
-  await shelf.request({action:'recordingBatch',envelopes:pinned,
-    allowRecording:true,recordingEpoch:epoch.recordingEpoch ?? undefined});
-  if (stillOwns()) lab.allowPersonaRecording(true);
-}
+// The menu switch is the explicit opt-in, including under DNT/GPC.
+menuRecordingSwitch.addEventListener('change', () => {
+  lab.setTelemetryOff(!menuRecordingSwitch.checked);
+});
+
+// availableCurrentRun must belong to the current accepted world.
+// Bound optional capture and discard stale results; capture cannot block the note.
+const sharePlay = !lab.telemetryOn && shareCheckbox?.checked === true;
+await lab.sendFeedback(note, { name, run: availableCurrentRun ?? { feedbackOnly: true }, sharePlay });
 ```
+
+The example passes an already available current run. If capture is asynchronous, apply the checked opt-in once before capture, then omit `sharePlay` from the later send. Do not re-enable recording after a newer off choice while capture is pending. Check the accepted world before and after bounded capture. When intentionally omitting a stale or unavailable game run, pass an explicit `{ feedbackOnly: true }` run marker to prevent another snapshot attempt. Preserve current-world checks without restoring per-person consent or recording RPCs. A missing run still permits the note. Report queued feedback separately from server acknowledgment.
 
 A real owned actor death closes the branch rather than attempting a living passport. Preserve the source death event and full local save. The reducer refuses both preparation and any normal child of a closed head. Inspect/export history and an explicit alternate fresh branch remain available.
 
