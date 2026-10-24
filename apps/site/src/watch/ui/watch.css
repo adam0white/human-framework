@@ -2756,3 +2756,8 @@
     font-size: max(1rem, 16px);
   }
 }
+
+/* The shared disclosure is a footer row, outside the header and game stage. */
+.watch {
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}

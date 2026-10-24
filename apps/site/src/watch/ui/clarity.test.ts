@@ -93,6 +93,9 @@ it('holds the clock for the single top-bar info and menu without simulation inpu
   const root = createRoot(container);
   await act(() => root.render(createElement(App)));
   expect(container.querySelectorAll('.game-help-button')).toHaveLength(1);
+  const notice = container.querySelector('footer.lab-notice');
+  expect(notice?.parentElement?.classList.contains('watch')).toBe(true);
+  expect(notice?.previousElementSibling?.tagName).toBe('MAIN');
   expect(container.querySelectorAll('.w-speed')).toHaveLength(3);
   const popover = container.querySelector('.w-info-content');
   await act(() => {

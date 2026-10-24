@@ -270,7 +270,6 @@ export function App() {
             ≡<span>Menu</span>
           </button>
         </header>
-        <LabNotice onDismiss={noticeDismissed} />
         <CastLifeNote game="watch" />
       </div>
 
@@ -410,6 +409,7 @@ export function App() {
           <footer className="lk-commit w-page-commit" hidden={menu || feedback} ref={setPageCommit} />
         </section>
       </main>
+      <LabNotice onDismiss={noticeDismissed} />
     </div>
   );
 }
