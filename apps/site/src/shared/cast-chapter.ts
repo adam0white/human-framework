@@ -22,6 +22,7 @@ import {
   type PersonaLife,
   preparePersonaLife,
 } from '@adam0white/lab-client';
+import { goodhandsSelinPassport } from './cast-goodhands-selin.ts';
 import { nativeCastSource } from './cast-native-sources.ts';
 import { SITE_CAST_NORMS, VALLEY_CAST_DUES } from './cast-norms.ts';
 export interface CastPersonChapter {
@@ -297,14 +298,16 @@ function admitRawSiteCast(game: string, opening: Person, chapter: CastPersonChap
   if (input.parent.transfer.castPassport === 'authored-cast/1') return restore(snapshot(opening));
   if (!native && input.parent.transfer.sourceRole !== castRole(input.parent.source.game, input.parent.castId))
     throw new Error('Unsupported source role.');
-  const portable = validateCalendarPersona(input.parent.transfer.person);
+  const agency =
+    native?.mapping === 'goodhands-agency-calendar/1' ? goodhandsSelinPassport(input.parent) : undefined;
+  const portable = agency?.portable ?? validateCalendarPersona(input.parent.transfer.person);
   const mapping = native?.mapping ?? 'site-cast-calendar/1';
   if (
     portable.person.mappingVersion !== mapping ||
     portable.person.source.engine !== input.parent.source.engine
   )
     throw new Error('Unsupported source passport mapping or engine.');
-  const checkpoint = input.parent.transfer.checkpoint as
+  const checkpoint = (agency?.checkpoint ?? input.parent.transfer.checkpoint) as
     | { schema?: unknown; sourceMinute?: unknown; rng?: unknown; sha256?: unknown }
     | undefined;
   if (
@@ -370,7 +373,13 @@ function admitRawSiteCast(game: string, opening: Person, chapter: CastPersonChap
     throw new Error('Unsupported canonical age provenance.');
   target.life.bornAt = portable.person.life.bornAt + offset;
   const allowedSkills = new Set(
-    native ? (game === 'voice' && role === 'osman' ? ['trade'] : []) : Object.keys(target.skills),
+    native
+      ? game === 'voice' && role === 'osman'
+        ? ['trade']
+        : agency
+          ? ['office']
+          : []
+      : Object.keys(target.skills),
   );
   const archivedSkills = Object.keys(shifted.person.skills).filter((id) => !allowedSkills.has(id));
   for (const id of archivedSkills) delete shifted.person.skills[id];

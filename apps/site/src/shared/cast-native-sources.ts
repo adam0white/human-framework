@@ -32,6 +32,15 @@ export function nativeCastSource(
   if (source.engine !== '2.17.0') return undefined;
   if (
     target === 'voice' &&
+    source.game === 'goodhands' &&
+    source.rules === 'goodhands-6' &&
+    transfer.castPassport === 'goodhands-agency/1' &&
+    role === 'selin-voice' &&
+    castId === 'hf.cast.selin.voice'
+  )
+    return { mapping: 'goodhands-agency-calendar/1', role };
+  if (
+    target === 'voice' &&
     source.game === 'hearsay' &&
     source.rules === 'hearsay-cast-6' &&
     transfer.castPassport === 'hearsay-cast/1' &&

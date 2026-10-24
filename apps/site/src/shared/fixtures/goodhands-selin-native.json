@@ -1,0 +1,755 @@
+{
+  "format": "hf-persona/1",
+  "castId": "hf.cast.selin.voice",
+  "castRevision": "2",
+  "branchId": "93d83300-f7f4-4041-ad14-95e96726a21d",
+  "parentRevision": null,
+  "source": {
+    "game": "goodhands",
+    "build": "eabb65a7b688",
+    "engine": "2.17.0",
+    "rules": "goodhands-6"
+  },
+  "transfer": {
+    "castPassport": "goodhands-agency/1",
+    "sourceRole": "selin-voice",
+    "agencyPerson": {
+      "format": "hf-persona-calendar/1",
+      "person": {
+        "format": "hf-persona-state/1",
+        "mappingVersion": "goodhands-agency-calendar/1",
+        "source": {
+          "schema": "human/person@1",
+          "engine": "2.17.0",
+          "id": "selin-voice",
+          "now": 3965
+        },
+        "name": "Selin",
+        "life": {
+          "bornAt": -16817880,
+          "sex": "female"
+        },
+        "rng": {
+          "a": 379742654,
+          "b": 2894257439,
+          "c": 360359878,
+          "d": 3977490306
+        },
+        "traits": {
+          "honesty": 0.75,
+          "emotionality": 0.5,
+          "extraversion": 0.6,
+          "agreeableness": 0.65,
+          "conscientiousness": 0.7,
+          "openness": 0.5
+        },
+        "values": {
+          "benevolence": 0.8,
+          "universalism": 0.5,
+          "tradition": 0.4,
+          "conformity": 0.5,
+          "security": 0.5,
+          "achievement": 0.6,
+          "power": 0.5,
+          "hedonism": 0.5,
+          "stimulation": 0.5,
+          "selfDirection": 0.5
+        },
+        "health": {
+          "health": 1,
+          "fitness": 0.496488295915802,
+          "circadianPeak": 960
+        },
+        "family": null,
+        "bonds": null,
+        "skills": {
+          "office": {
+            "level": 0.6012492093629136,
+            "practice": 9771,
+            "lastPracticed": 2520
+          }
+        },
+        "skillRetention": null,
+        "episodes": [
+          {
+            "id": "e10",
+            "at": 3420,
+            "kind": "outcome",
+            "valence": 0.10502120278076171,
+            "salience": 0.34705493668091897,
+            "summary": "Rest at home",
+            "tags": ["completed"],
+            "action": "rest",
+            "actorId": "selin-voice"
+          },
+          {
+            "id": "e11",
+            "at": 3960,
+            "kind": "outcome",
+            "valence": 0,
+            "salience": 0.2997594204114724,
+            "summary": "work",
+            "tags": ["completed"],
+            "action": "voice-office-work",
+            "actorId": "selin-voice"
+          },
+          {
+            "id": "e12",
+            "at": 3965,
+            "kind": "outcome",
+            "valence": 0.548365156387797,
+            "salience": 0.6290190938326782,
+            "summary": "Drink water",
+            "tags": ["completed"],
+            "action": "drink",
+            "actorId": "selin-voice"
+          },
+          {
+            "id": "e13",
+            "at": 3965,
+            "kind": "missed",
+            "valence": -0.45,
+            "salience": 0.5700000000000001,
+            "summary": "missed abstain: drink",
+            "tags": ["missed", "abstain"],
+            "action": "drink",
+            "actorId": "selin-voice"
+          },
+          {
+            "id": "e14",
+            "at": 3965,
+            "kind": "told",
+            "valence": 0,
+            "salience": 0.25,
+            "summary": "Nermin: I cannot confirm a suitable service reaches your father’s address. We have made no placement. Please check local availability and ask him what help he wants.",
+            "tags": ["speech", "told"],
+            "action": "speech",
+            "actorId": "nermin",
+            "targetId": "selin-voice"
+          },
+          {
+            "id": "e7",
+            "at": 3148,
+            "kind": "outcome",
+            "valence": 0.08211326062130592,
+            "salience": 0.32390778181877355,
+            "summary": "suhoor",
+            "tags": ["completed", "night"],
+            "action": "eat",
+            "actorId": "selin-voice"
+          },
+          {
+            "id": "e8",
+            "at": 3360,
+            "kind": "outcome",
+            "valence": 0.04443747228751163,
+            "salience": 0.30477894075060513,
+            "summary": "Sleep at home",
+            "tags": ["completed", "night"],
+            "action": "sleep",
+            "actorId": "selin-voice"
+          },
+          {
+            "id": "e9",
+            "at": 3390,
+            "kind": "outcome",
+            "valence": 0.1051596557836912,
+            "salience": 0.34628692272778977,
+            "summary": "Rest at home",
+            "tags": ["completed"],
+            "action": "rest",
+            "actorId": "selin-voice"
+          }
+        ],
+        "commitments": [],
+        "limitations": [
+          "source transient body/needs/affect/ambient omitted; target arrival policy",
+          "source habits/methods/beliefs/social and conscience breaches omitted; target authored state; held norms transported",
+          "source optional behaviour stores and decision history omitted; target authored state",
+          "family/bonds provenance checked; target authored state",
+          "episode:e1",
+          "episode:e2",
+          "episode:e3",
+          "episode:e4",
+          "episode:e5",
+          "episode:e6"
+        ]
+      },
+      "calendar": {
+        "offset": 0,
+        "commitments": [
+          {
+            "kind": "abstain",
+            "actions": [],
+            "violatedBy": ["eat", "drink", "tea"],
+            "from": 1739,
+            "until": 2566,
+            "normId": "sawm-ramadan",
+            "importance": 0.9,
+            "recurEvery": 1440,
+            "recurUntil": 44639,
+            "exemptWhen": ["illness", "travel"],
+            "label": "fast",
+            "chain": "sawm:fast",
+            "toId": "self",
+            "id": "fast",
+            "status": "broken"
+          },
+          {
+            "kind": "abstain",
+            "actions": [],
+            "violatedBy": ["eat", "drink", "tea"],
+            "from": 3178,
+            "until": 4007,
+            "normId": "sawm-ramadan",
+            "importance": 0.9,
+            "recurEvery": 1440,
+            "recurUntil": 44639,
+            "exemptWhen": ["illness", "travel"],
+            "label": "fast",
+            "chain": "sawm:fast",
+            "toId": "self",
+            "id": "c4",
+            "status": "broken"
+          },
+          {
+            "kind": "abstain",
+            "actions": [],
+            "from": 46348,
+            "until": 47237,
+            "importance": 0.8,
+            "makeUpOf": "fast",
+            "label": "make-up fast",
+            "normId": "sawm-ramadan",
+            "violatedBy": ["eat", "drink", "tea"],
+            "id": "c6",
+            "status": "pending"
+          },
+          {
+            "kind": "appointment",
+            "actions": ["eat"],
+            "importance": 0.5,
+            "recurEvery": 1440,
+            "recurUntil": 44639,
+            "toId": "self",
+            "from": 4007,
+            "until": 4052,
+            "label": "iftar",
+            "chain": "sawm:iftar",
+            "id": "c7",
+            "status": "pending"
+          },
+          {
+            "kind": "appointment",
+            "actions": ["eat"],
+            "importance": 0.5,
+            "recurEvery": 1440,
+            "recurUntil": 44639,
+            "toId": "self",
+            "from": 4557,
+            "until": 4617,
+            "label": "suhoor",
+            "chain": "sawm:suhoor",
+            "id": "c8",
+            "status": "pending"
+          },
+          {
+            "kind": "job",
+            "actions": ["voice-office-work"],
+            "from": 4860,
+            "until": 5400,
+            "importance": 0.8,
+            "recurEvery": 1440,
+            "label": "work",
+            "chain": "voice-office",
+            "id": "c9",
+            "status": "pending"
+          }
+        ],
+        "owed": [
+          {
+            "ofId": "fast",
+            "kind": "abstain",
+            "actions": [],
+            "reason": "broken",
+            "at": 2525,
+            "normId": "sawm-ramadan",
+            "violatedBy": ["eat", "drink", "tea"],
+            "label": "fast",
+            "scheduledAs": "c6"
+          },
+          {
+            "ofId": "c4",
+            "kind": "abstain",
+            "actions": [],
+            "reason": "broken",
+            "at": 3965,
+            "normId": "sawm-ramadan",
+            "violatedBy": ["eat", "drink", "tea"],
+            "label": "fast"
+          }
+        ],
+        "lapse": null,
+        "heldNorms": [
+          {
+            "normId": "salah",
+            "standing": "obligatory",
+            "conviction": 0.38
+          },
+          {
+            "normId": "sawm-ramadan",
+            "standing": "obligatory",
+            "conviction": 0.38
+          },
+          {
+            "normId": "zakat",
+            "standing": "obligatory",
+            "conviction": 0.38
+          },
+          {
+            "normId": "charity",
+            "standing": "recommended",
+            "conviction": 0.38
+          },
+          {
+            "normId": "lying",
+            "standing": "forbidden",
+            "conviction": 0.72
+          },
+          {
+            "normId": "theft",
+            "standing": "forbidden",
+            "conviction": 0.72
+          },
+          {
+            "normId": "keep-promise",
+            "standing": "obligatory",
+            "conviction": 0.72
+          },
+          {
+            "normId": "kindness-to-parents",
+            "standing": "obligatory",
+            "conviction": 0.56
+          },
+          {
+            "normId": "backbiting",
+            "standing": "forbidden",
+            "conviction": 0.56
+          },
+          {
+            "normId": "help-neighbor",
+            "standing": "recommended",
+            "conviction": 0.56
+          },
+          {
+            "normId": "gratitude",
+            "standing": "recommended",
+            "conviction": 0.56
+          },
+          {
+            "normId": "harm-others",
+            "standing": "forbidden",
+            "conviction": 0.72
+          },
+          {
+            "normId": "intoxicants",
+            "standing": "forbidden",
+            "conviction": 0.38
+          },
+          {
+            "normId": "forbidden-food",
+            "standing": "forbidden",
+            "conviction": 0.38
+          },
+          {
+            "normId": "fairness",
+            "standing": "obligatory",
+            "conviction": 0.56
+          },
+          {
+            "normId": "care-dependents",
+            "standing": "obligatory",
+            "conviction": 0.56
+          },
+          {
+            "normId": "punctuality",
+            "standing": "recommended",
+            "conviction": 0.56
+          },
+          {
+            "normId": "eid-prayer",
+            "standing": "recommended",
+            "conviction": 0.38
+          }
+        ],
+        "norms": [
+          {
+            "id": "salah",
+            "label": "Perform the daily prayers",
+            "standing": "obligatory",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 2:43"
+              },
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 4:103 (prayer at prescribed times)"
+              },
+              {
+                "kind": "interpretation",
+                "ref": "A missed prayer is still owed (qada); sleep, forgetting and unconsciousness lift the blame, not the debt; the debt for a stretch of unconsciousness beyond five prayer times drops (Hanafi count, kept as the default): research/capacity-and-excuse-sources.md §0, §2, §4; research/decisions.md"
+              },
+              {
+                "kind": "assumption",
+                "ref": "Window boundaries (Fajr until sunrise, one-shadow Asr, red-twilight Maghrib) are the most common positions, chosen in research/decisions.md; agenda/prayer.ts"
+              }
+            ]
+          },
+          {
+            "id": "sawm-ramadan",
+            "label": "Fast in Ramadan",
+            "standing": "obligatory",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 2:183"
+              },
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 2:185 (the month of Ramadan)"
+              },
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 2:187 (eat and drink until dawn, then complete the fast until nightfall)"
+              }
+            ],
+            "exemptions": [
+              {
+                "when": "illness",
+                "makeUp": true,
+                "sources": [
+                  {
+                    "kind": "revelation",
+                    "ref": "Qur'an 2:184 (whoever is ill or on a journey: an equal number of days after)"
+                  },
+                  {
+                    "kind": "revelation",
+                    "ref": "Qur'an 2:185 (repeated; Allah intends ease, not hardship)"
+                  },
+                  {
+                    "kind": "assumption",
+                    "ref": "Which illness qualifies is the person’s judgment; the severity threshold is an engineering stand-in"
+                  },
+                  {
+                    "kind": "interpretation",
+                    "ref": "Qur'an 2:184 continues: 'For those who can only fast with extreme difficulty, compensation can be made by feeding a needy person' (quran.com, checked 2026-10-03). Commonly read as covering chronic illness with no expected recovery (fidya instead of make-up); NOT modelled: every qualifying illness, chronic or acute, owes a make-up, because whether a condition is beyond recovery cannot be derived from body state"
+                  }
+                ]
+              },
+              {
+                "when": "travel",
+                "makeUp": true,
+                "sources": [
+                  {
+                    "kind": "revelation",
+                    "ref": "Qur'an 2:184 (whoever is ill or on a journey: an equal number of days after)"
+                  },
+                  {
+                    "kind": "revelation",
+                    "ref": "Qur'an 2:185"
+                  },
+                  {
+                    "kind": "assumption",
+                    "ref": "What counts as a journey is supplied by the host as a traveling flag"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "zakat",
+            "label": "Pay zakat",
+            "standing": "obligatory",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 2:43"
+              }
+            ]
+          },
+          {
+            "id": "charity",
+            "label": "Give voluntary charity (sadaqah)",
+            "standing": "recommended",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 2:261"
+              }
+            ]
+          },
+          {
+            "id": "lying",
+            "label": "Lying (truthfulness is required)",
+            "standing": "forbidden",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 22:30 (shun words of falsehood; quran.com, checked 2026-10-03)"
+              },
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 9:119 (be with the truthful)"
+              }
+            ]
+          },
+          {
+            "id": "theft",
+            "label": "Theft",
+            "standing": "forbidden",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 5:38"
+              },
+              {
+                "kind": "assumption",
+                "ref": "Listed in CONSCIENCE_DEFAULTS.necessityEligible: taking food in extremity is a juristic extension of the 2:173 necessity exception by analogy (2:173 itself names forbidden food); not yet sourced in research/, recorded as an engineering assumption pending a Hanafi source"
+              }
+            ]
+          },
+          {
+            "id": "keep-promise",
+            "label": "Keep promises and commitments",
+            "standing": "obligatory",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 17:34"
+              }
+            ]
+          },
+          {
+            "id": "kindness-to-parents",
+            "label": "Kindness to parents",
+            "standing": "obligatory",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 17:23"
+              }
+            ]
+          },
+          {
+            "id": "backbiting",
+            "label": "Backbiting",
+            "standing": "forbidden",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 49:12"
+              }
+            ]
+          },
+          {
+            "id": "help-neighbor",
+            "label": "Help and be good to neighbours",
+            "standing": "recommended",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 4:36 (be kind to neighbours; a command)"
+              },
+              {
+                "kind": "interpretation",
+                "ref": "Standing recorded as recommended for everyday help beyond basic kindness is an engineering simplification; the verse itself is a command"
+              }
+            ]
+          },
+          {
+            "id": "gratitude",
+            "label": "Gratitude",
+            "standing": "recommended",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 2:152 (thank Me, and never be ungrateful)"
+              },
+              {
+                "kind": "interpretation",
+                "ref": "Standing as recommended for expressed gratitude toward people is an engineering simplification"
+              }
+            ]
+          },
+          {
+            "id": "harm-others",
+            "label": "Harming others without right",
+            "standing": "forbidden",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 33:58 (abusing believers unjustifiably)"
+              },
+              {
+                "kind": "interpretation",
+                "ref": "General prohibition of unjust harm to any person, extended from specific texts; scope of \"without right\" left to the host"
+              }
+            ]
+          },
+          {
+            "id": "intoxicants",
+            "label": "Intoxicants",
+            "standing": "forbidden",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 5:90"
+              }
+            ]
+          },
+          {
+            "id": "forbidden-food",
+            "label": "Eating forbidden food (carrion, blood, swine)",
+            "standing": "forbidden",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 2:173 ('if someone is compelled by necessity—neither driven by desire nor exceeding immediate need—they will not be sinful'; quran.com, checked 2026-10-03)"
+              }
+            ]
+          },
+          {
+            "id": "fairness",
+            "label": "Deal fairly (no cheating in trade)",
+            "standing": "obligatory",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 83:1-3 (woe to the defrauders)"
+              },
+              {
+                "kind": "assumption",
+                "ref": "Generalised to fair dealing for secular hosts"
+              }
+            ]
+          },
+          {
+            "id": "care-dependents",
+            "label": "Care for those who depend on you",
+            "standing": "obligatory",
+            "sources": [
+              {
+                "kind": "interpretation",
+                "ref": "Obligations toward family alongside those toward Allah and oneself (Bukhari 1968, as cited in research/islamic-foundations.md §2); extending it to every dependent’s urgent needs is the host’s reading"
+              },
+              {
+                "kind": "assumption",
+                "ref": "Standing obligatory for secular hosts as a shared caregiving norm; engineering default"
+              }
+            ]
+          },
+          {
+            "id": "punctuality",
+            "label": "Be on time",
+            "standing": "recommended",
+            "sources": [
+              {
+                "kind": "assumption",
+                "ref": "Secular social norm; engineering default"
+              }
+            ]
+          },
+          {
+            "id": "eid-prayer",
+            "label": "Pray the Eid prayer in congregation",
+            "standing": "recommended",
+            "sources": [
+              {
+                "kind": "interpretation",
+                "ref": "Strongly emphasised in every school: wajib for Hanafis, sunnah mu'akkada (Maliki), sunnah (Shafi'i), fard kifaya (Hanbali), per TDV \"Bayram\" in research/eid-and-mourning-sources.md §1"
+              },
+              {
+                "kind": "assumption",
+                "ref": "Recorded as recommended (the most common standing overall, research/decisions.md), so missing it is no breach; congregational, with no individual make-up (eid-and-mourning-sources.md §1)"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "checkpoint": {
+      "sourceSchema": "human/person@1",
+      "sourceNow": 3965,
+      "sourceRng": {
+        "a": 379742654,
+        "b": 2894257439,
+        "c": 360359878,
+        "d": 3977490306
+      },
+      "checkpointDigest": "413be8f42b956632c37a7739bed798bb5edc9073815a763a77538164a86a942a"
+    },
+    "limitations": [
+      "source transient body/needs/affect/ambient omitted; target arrival policy",
+      "source habits/methods/beliefs/social and conscience breaches omitted; target authored state; held norms transported",
+      "source optional behaviour stores and decision history omitted; target authored state",
+      "family/bonds provenance checked; target authored state",
+      "episode:e1",
+      "episode:e2",
+      "episode:e3",
+      "episode:e4",
+      "episode:e5",
+      "episode:e6",
+      "Raw source snapshot stays in the agency export. Only explicit agency calendar meanings return to this host."
+    ],
+    "guestMetadata": {
+      "id": "selin-voice",
+      "arm": "continuing",
+      "history": [],
+      "calendar": {
+        "calendarHost": {
+          "version": "voice-spring/1",
+          "originSourceNow": 2592,
+          "sourceDayOffset": 0,
+          "ramadanFirstDay": 1,
+          "ramadanDays": 30
+        },
+        "sourceRevision": "f26884e54a03c66e0db94f994cf6e0c87ccdac35339be4881fd0c8b9640dfd81",
+        "sourceCheckpointDigest": "2a6e6c9603a3a25eebaaab7021d5c826c0dea778fb8ace9f059f91d57903944d"
+      },
+      "status": "complete",
+      "arrival": 2622,
+      "text": "Nermin: I cannot confirm a suitable service reaches your father’s address. We have made no placement. Please check local availability and ask him what help he wants.",
+      "calendarDay": 2,
+      "encounterEpisode": "e14"
+    },
+    "life": {
+      "version": "hf-coarse-life/1",
+      "clock": {
+        "version": "hf-chapter-clock/1",
+        "watermark": 498004,
+        "seed": 3659345272
+      },
+      "assignment": 0,
+      "work": "own-routine",
+      "place": "home",
+      "notices": [],
+      "events": [],
+      "skipped": 0
+    }
+  },
+  "limitations": [
+    "source transient body/needs/affect/ambient omitted; target arrival policy",
+    "source habits/methods/beliefs/social and conscience breaches omitted; target authored state; held norms transported",
+    "source optional behaviour stores and decision history omitted; target authored state",
+    "family/bonds provenance checked; target authored state",
+    "episode:e1",
+    "episode:e2",
+    "episode:e3",
+    "episode:e4",
+    "episode:e5",
+    "episode:e6",
+    "Raw source snapshot stays in the agency export. Only explicit agency calendar meanings return to this host."
+  ],
+  "revision": "123a191864a6dfda034b7e9ca2fbe8fe0c940ff5649a64366015bcc9d1cd9134"
+}

@@ -9,3 +9,6 @@ Owner-authorized follow-up to the delivered cast platform. HF2.18.0, client0.4.0
 5. Focused native map/refusal/replay and care controls; reuse the existing correctness reviewer. Follow exact-lock installation, check:lane before each signed/trailered commit, rebase/push, exact green CI and guarded deploy. Serialize existing-profile Chrome journeys and restore source/target data and preferences. Preserve receipts outside the worktree, then remove only the merged owned worktree.
 
 Dynamic receipts and unresolved route details: ~/code/.lab-scratch/cast/platform-returns.md. This plan does not claim that all supported identities are eligible in every source state.
+
+
+Amendment: whole-applicable Voice preflight exposed a real GoodHands Selin ownership claim retaining the earlier site passport. Required closure includes a finite native goodhands-agency/1 Selin→Voice reverse mapping, actual completed source encounter/checksum, preserved office work and fasting debts, archived agency-only episodes. The actual native source checkpoint is now UI-acknowledged at3965; previous claim retained. No arbitrary pass-through claim becomes a native checkpoint. Three target UI journeys remain.
