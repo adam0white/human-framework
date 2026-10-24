@@ -44,6 +44,10 @@ export function needDescription(id: string, value: number): string {
 
 /** Display only: action labels remain unchanged in saved frames and the canvas. */
 export function activityDescription(label: string): string {
+  label = label.replace(
+    /\bto (House|Forest|Field|Kitchen|Well|Site|Cedar|Home|Wellhouse|Masjid)\b/g,
+    (_, place: string) => `to the ${place === 'Masjid' ? place : place.toLowerCase()}`,
+  );
   if (label === 'Idle' || label === 'waiting') return 'They are waiting.';
   if (label === 'Beam fell: recovering') return 'They are recovering after the beam fell.';
   if (label.startsWith('Collapsed')) return `They have ${label[0]?.toLowerCase()}${label.slice(1)}.`;

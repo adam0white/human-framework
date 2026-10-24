@@ -124,7 +124,7 @@ describe('Well first-minute clarity', () => {
     expect(needDescription('sleep', 0.5)).toBe('They are tired.');
     expect(needDescription('sleep', 0.9)).toBe('They are rested.');
     expect(trustDescription(0.2)).toBe('They are wary of you.');
-    expect(activityDescription('Walking to Kitchen')).toBe('They are walking to Kitchen.');
+    expect(activityDescription('Walking to Kitchen')).toBe('They are walking to the kitchen.');
     expect(activityDescription('Carried by Yusuf')).toBe('They are being carried by Yusuf.');
     expect(activityDescription('Idle')).toBe('They are waiting.');
   });
