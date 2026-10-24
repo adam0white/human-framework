@@ -1,4 +1,4 @@
-/** Native workers run the current source, with the same framework alias as vite.config.ts. */
+/** Native workers run the current source, with the same workspace aliases as vite.config.ts. */
 import { registerHooks } from 'node:module';
 import { parentPort, workerData } from 'node:worker_threads';
 import type { PlanName } from './plans.ts';
@@ -15,7 +15,9 @@ registerHooks({
     return nextResolve(
       specifier === '@adam0white/human-framework'
         ? new URL('../../../../packages/human/src/index.ts', import.meta.url).href
-        : specifier,
+        : specifier === '@adam0white/lab-client'
+          ? new URL('../../../../packages/lab-client/src/index.ts', import.meta.url).href
+          : specifier,
       context,
     );
   },
