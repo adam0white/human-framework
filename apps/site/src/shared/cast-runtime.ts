@@ -61,6 +61,7 @@ type State = {
   auto: boolean;
   blocked?: boolean;
   pendingInit?: Record<string, unknown>;
+  startupQueue?: Record<string, unknown>[];
 };
 const states = new Map<string, State>();
 const listeners = new Set<() => void>();
@@ -143,10 +144,19 @@ function reset(s: State, gen?: number) {
   s.ended = undefined;
   s.played = false;
   s.localRestore = undefined;
+  s.startupQueue = undefined;
   s.localLoad = false;
   s.blocked = false;
   for (const p of s.pending.values()) p.reject(new Error('This chapter was replaced.'));
   s.pending.clear();
+}
+/** Init and its already-issued UI controls enter the worker in FIFO order after preflight/CAS. */
+function startWorker(s: State, message: Record<string, unknown>) {
+  const queued = s.startupQueue ?? [];
+  s.startupQueue = undefined;
+  s.worker.postMessage(message);
+  pinOwnership(s);
+  for (const control of queued) s.worker.postMessage(control);
 }
 function pinOwnership(s: State) {
   s.worker.postMessage({ type: 'castOwnership', heads: structuredClone(s.heads) } satisfies CastRequest);
@@ -340,6 +350,11 @@ export function bindCastWorker(worker: Worker, game: string, lab: Lab): () => vo
   const invalidate = () => {
     s.generation++;
     s.busy = false;
+    if (s.startupQueue) {
+      s.startupQueue = undefined;
+      s.blocked = true;
+      s.status = 'Recording identity changed during startup. Choose fresh local play or start again.';
+    }
     if (s.gate || Object.keys(s.histories).length) {
       s.gate = s.gate ?? `cast-history-${crypto.randomUUID()}`;
       s.lab.setPersonaRecording(`cast-verifying-${crypto.randomUUID()}`);
@@ -396,10 +411,20 @@ export function postCastMessage(worker: Worker, game: string, message: Record<st
     return;
   }
   if (message.type !== 'init') {
-    worker.postMessage(message);
+    if (s.startupQueue) {
+      // No simulation exists yet. Elapsed frames and reads of the previous view are not inputs to the new run.
+      if (['tick', 'predict', 'why'].includes(String(message.type))) return;
+      if (typeof message.gen === 'number' && s.runGen !== undefined && message.gen !== s.runGen) return;
+      if (s.startupQueue.length >= 32) {
+        reset(s, s.runGen);
+        s.blocked = true;
+        s.status = 'Too many controls arrived during startup. Start a fresh chapter again.';
+      } else s.startupQueue.push(structuredClone(message));
+    } else worker.postMessage(message);
     return;
   }
   s.pendingInit = message;
+  s.startupQueue = [];
   const generation = s.generation;
   s.busy = true;
   changed();
@@ -408,7 +433,7 @@ export function postCastMessage(worker: Worker, game: string, message: Record<st
     if (generation !== s.generation) return;
     if (!shelf.enabled) {
       gate(s, null);
-      worker.postMessage(message);
+      startWorker(s, message);
       return;
     }
     gate(s, `cast-pending-${crypto.randomUUID()}`);
@@ -435,7 +460,7 @@ export function postCastMessage(worker: Worker, game: string, message: Record<st
       gate(s, null);
       s.line = undefined;
       s.status = 'Fresh local chapter. No allocated person has an active shelf history.';
-      worker.postMessage(message);
+      startWorker(s, message);
       return;
     }
     s.heads = Object.fromEntries(admitted.claims.map((p) => [p.castId, p]));
@@ -446,12 +471,12 @@ export function postCastMessage(worker: Worker, game: string, message: Record<st
     s.line = admitted.inputs.map((p) => lifeAdmission(p, game).line).join(' ');
     gate(s, `cast-group-${crypto.randomUUID()}`);
     s.status = `${admitted.claims.length} continuing people begin together. Their initial state and life are pinned.`;
-    worker.postMessage({ ...message, castChapter: chapter });
-    pinOwnership(s);
+    startWorker(s, { ...message, castChapter: chapter });
     await recording(s, generation);
   })()
     .catch((e) => {
       if (generation === s.generation) {
+        s.startupQueue = undefined;
         s.blocked = true;
         s.status = `${String(e)} No partial chapter started. Use fresh local play, or finish an eligible source chapter first.`;
       }

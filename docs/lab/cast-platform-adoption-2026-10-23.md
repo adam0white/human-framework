@@ -1,6 +1,6 @@
 # Cast and life adoption
 
-Current platform candidate: HF2.18.0, engine2.17.0; client0.4.0 and kit0.5.0. Release/artifact receipts are supplied separately after verification. These version numbers do not claim publication.
+HF2.18.0 is published with engine2.17.0 and verified npm provenance. Client0.4.0 and kit0.5.0 are distributed as immutable local artifacts, not npm publications. Exact source, CI and publication receipts are in [releases](../releases.md).
 
 Use `castForGame()` with the exact source host id. The generated artifact is `packages/lab-client/src/cast.ts`, emitted by `scripts/cast-artifact.py` from the curated registry. Hosts import it through client0.4.0; no manual biography copying. It includes every canonical public profile, cast revision and3–8-person allocation. The registry remains authority for private facts and role-specific outcomes.
 
@@ -110,8 +110,10 @@ Mixed histories record only if **all** pinned branches permit the current epoch,
 const pinned = Object.values(ownedHeads); // exact envelopes, not freshly fetched heads
 const attempt = ++recordingChoiceGeneration;
 const run = loadedRunGeneration;
+const identityOrRunGeneration = generation; // increment on every run OR recording identity change
 const revisions = pinned.map(p => p.revision).join('/');
 const stillOwns = () => attempt === recordingChoiceGeneration
+  && identityOrRunGeneration === generation
   && run === loadedRunGeneration
   && Object.values(ownedHeads).map(p => p.revision).join('/') === revisions;
 lab.setPersonaRecording(`group-${crypto.randomUUID()}`); // closed until permission passes

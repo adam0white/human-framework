@@ -12,7 +12,7 @@ vi.mock('../../shared/tick-loop.ts', () => ({
     return () => {};
   },
 }));
-it('withholds only ticks while the menu is open, without a resume or speed input', () => {
+it('withholds only ticks while the menu is open, without a resume or speed input', async () => {
   vi.stubGlobal(
     'Worker',
     class {
@@ -31,6 +31,7 @@ it('withholds only ticks while the menu is open, without a resume or speed input
   try {
     flushSync(() => root.render(createElement(Harness)));
     if (!colony) throw Error('Missing hook');
+    await vi.waitFor(() => expect(channel.post.mock.calls.some(([m]) => m.type === 'init')).toBe(true));
     colony.actions.setSpeed(2);
     channel.post.mockClear();
     colony.actions.setMenuOpen(true);
