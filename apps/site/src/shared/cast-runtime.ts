@@ -4,7 +4,6 @@ import {
   canonicalCast,
   canonicalPersona,
   castForGame,
-  claimCastChapterBatch,
   closePersonaBranch,
   createPersona,
   initialPersonaLife,
@@ -15,6 +14,7 @@ import {
   validatePersona,
 } from '@adam0white/lab-client';
 import { type CastChapter, makeCastChapter } from './cast-chapter.ts';
+import { claimSiteCastBatch } from './cast-site-claim.ts';
 import { fetchBuild } from './playtest.ts';
 export type CastHeads = Record<string, PersonaEnvelope>;
 export type CastRequest =
@@ -438,7 +438,7 @@ export function postCastMessage(worker: Worker, game: string, message: Record<st
     }
     gate(s, `cast-pending-${crypto.randomUUID()}`);
     const source = { game, build: await fetchBuild(), engine: '2.17.0', rules: 'cast-1' };
-    const admitted = await claimCastChapterBatch(
+    const admitted = await claimSiteCastBatch(
       shelf,
       castForGame(game).map((p) => p.castId),
       source,

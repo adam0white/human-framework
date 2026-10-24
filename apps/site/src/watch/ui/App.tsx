@@ -1341,6 +1341,32 @@ export function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActi
         The night's account
       </button>
       <Talks frame={frame} actions={actions} />
+      {frame.watchers.some((w) => w.id === 'kian') ? (
+        <section aria-label="A visit together">
+          <p>
+            A one-day refuge visit needs both Kian and Ada to agree. Ada remains Kian’s ward; a home threat or
+            unfinished duty keeps them here.
+          </p>
+          {frame.refugeVisit?.status === 'agreed' ? (
+            <>
+              <p>
+                They agreed to stay together and return by the next dawn. Save Kian at a quiet action
+                boundary, or choose to stay before the next watch.
+              </p>
+              <button type="button" onClick={() => actions.input({ k: 'refugeVisit', choice: 'prepare' })}>
+                Spend daylight caring for Ada and prepare a quiet departure
+              </button>
+              <button type="button" onClick={() => actions.input({ k: 'refugeVisit', choice: 'stay' })}>
+                Stay here together
+              </button>
+            </>
+          ) : (
+            <button type="button" onClick={() => actions.input({ k: 'refugeVisit', choice: 'ask' })}>
+              Ask Kian and Ada about visiting the refuge together
+            </button>
+          )}
+        </section>
+      ) : null}
       {d.scout ? <p className="w-scoutline">{d.scout}</p> : null}
       {frame.grainWarning ? <p className="w-grain-warning">{frame.grainWarning}</p> : null}
 

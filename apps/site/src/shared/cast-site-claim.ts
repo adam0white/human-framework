@@ -1,0 +1,63 @@
+/** Site-only claim receipt: an abandoned native arrival may start another chapter in the SAME
+ * site host before its next source checkpoint. It cannot become a pass-through native source
+ * for another host. Shelf CAS, absence checks and all semantic admissions remain atomic.
+ */
+import {
+  type CastShelf,
+  createPersona,
+  type LifeBatchPreparation,
+  type LifePreparation,
+  lifeAdmission,
+  type PersonaEnvelope,
+} from '@adam0white/lab-client';
+import { nativeCastSource } from './cast-native-sources.ts';
+export async function claimSiteCastBatch<T>(
+  shelf: CastShelf,
+  castIds: string[],
+  source: PersonaEnvelope['source'],
+  admit: (inputs: LifePreparation[]) => Promise<T>,
+  options: { isCurrent?: () => boolean } = {},
+) {
+  const current = () => {
+    if (options.isCurrent && !options.isCurrent())
+      throw new Error('The run or identity changed. Choose again.');
+  };
+  current();
+  const batch = await shelf.request<LifeBatchPreparation>({ action: 'prepareBatch', castIds });
+  current();
+  if (!batch.expectedHeads || castIds.some((id) => !Object.hasOwn(batch.expectedHeads, id)))
+    throw new Error('The batch omitted expected cast parents.');
+  if (batch.blocked.length) throw new Error(batch.blocked.map((p) => `${p.castId}: ${p.reason}`).join(' '));
+  if (!batch.inputs.length) {
+    await shelf.request({ action: 'putBatch', envelopes: [], expectedHeads: batch.expectedHeads });
+    current();
+    return null;
+  }
+  for (const input of batch.inputs) lifeAdmission(input, source.game);
+  const initial = await admit(structuredClone(batch.inputs));
+  const claims = await Promise.all(
+    batch.inputs.map(async (input) => {
+      const { revision, ...body } = input.parent;
+      const native = nativeCastSource(source.game, input.parent);
+      const prior = body.transfer.siteNativeClaim as
+        | { source: PersonaEnvelope['source']; revision: string }
+        | undefined;
+      return createPersona({
+        ...body,
+        parentRevision: revision,
+        source,
+        transfer: {
+          ...body.transfer,
+          life: input.life,
+          ...(native
+            ? { siteNativeClaim: prior ?? { version: 'site-native-claim/1', source: body.source, revision } }
+            : {}),
+        },
+      });
+    }),
+  );
+  current();
+  await shelf.request({ action: 'putBatch', envelopes: claims, expectedHeads: batch.expectedHeads });
+  current();
+  return { initial, claims, inputs: batch.inputs };
+}

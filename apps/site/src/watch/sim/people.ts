@@ -86,6 +86,7 @@ import {
   type WatcherId,
   WINTER_RULES,
 } from './config.ts';
+import { completedAdaCare } from './refuge-visit.ts';
 import type { Villager, WatchState } from './state.ts';
 
 export const KEEPER_ID = 'keeper';
@@ -931,6 +932,23 @@ export class WatchWorld implements World {
         advertises: { meaning: 0.1 },
         tags: ['worship'],
       });
+    if (
+      p.id === 'kian' &&
+      s.refugeVisit?.status === 'agreed' &&
+      s.grain >= 0.1 &&
+      (s.homeThreat.west ?? -1e9) <= p.now - 90
+    )
+      out.push({
+        id: 'day:care-ada',
+        action: 'care-ada',
+        targetId: 'ada',
+        placeId: 'home',
+        label: 'Share a small meal and water with Ada, then rest together',
+        duration: 30,
+        effort: 0.05,
+        advertises: { belonging: 0.2, rest: 0.1 },
+        tags: ['care'],
+      });
     applyLifeOffers('watch', p, out, s.castChapter);
     return out;
   }
@@ -942,6 +960,8 @@ export class WatchWorld implements World {
 
   resolve(p: Person, act: Activity, reason: 'ended' | 'interrupted'): Outcome {
     const at = Math.max(p.now, reason === 'ended' ? act.endsAt : p.now);
+    if (act.action === 'care-ada' && reason === 'ended' && !completedAdaCare(this.s, at))
+      return { affordanceId: act.affordanceId, action: act.action, targetId: 'ada', status: 'failed', at };
     const span = Math.max(1, act.endsAt - act.startedAt);
     const share = reason === 'ended' ? 1 : Math.max(0, Math.min(1, (at - act.startedAt) / span));
     const needs: Outcome['needs'] = {};

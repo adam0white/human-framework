@@ -202,7 +202,12 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
       if (msg.type === 'castCheckpoint' && run?.state.phase === 'goal')
         throw new Error('Begin and play this chapter before saving a person.');
       const role = msg.type === 'castCheckpoint' ? castRole('watch', msg.castId) : undefined;
-      const person = role ? run?.state.community.people.find((p) => p.id === role) : undefined;
+      const person =
+        role === 'kian' && run?.state.refugeDeparture
+          ? run.state.refugeDeparture.person
+          : role
+            ? run?.state.community.people.find((p) => p.id === role)
+            : undefined;
       if (msg.type === 'castCheckpoint' && !person) throw new Error('This person has not arrived.');
       if (person && !person.body.alive && role) {
         host.post({
@@ -214,7 +219,12 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
       }
       if (person) {
         const gen = host.gen;
-        void siteCastCheckpoint('watch', person, WATCH_NORMS)
+        void siteCastCheckpoint(
+          'watch',
+          person,
+          WATCH_NORMS,
+          role === 'kian' ? run!.state.refugeDeparture?.watchCare : undefined,
+        )
           .then((transfer) =>
             host.post(
               {

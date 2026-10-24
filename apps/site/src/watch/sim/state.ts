@@ -314,6 +314,11 @@ export interface BellState {
 }
 
 export interface WatchState {
+  refugeVisit?: import('./refuge-visit.ts').RefugeVisit;
+  refugeDeparture?: {
+    person: Person;
+    watchCare: NonNullable<ReturnType<typeof import('./refuge-visit.ts').refugeVisitPassport>>;
+  };
   castChapter?: import('../../shared/cast-chapter.ts').CastChapter;
   version: 4;
   /** Scenario 13: accepted cross-post night help costs a small burst of exertion. Absent keeps legacy rules. */

@@ -166,7 +166,7 @@ export const GAMES: Game[] = [
     status: 'active',
     name: 'Commonstead',
     href: 'https://commonstead.adamwhite.work',
-    line: 'Raise a storehouse before the storm. Five people have their own limits. Experiment; owner acceptance pending.',
+    line: 'Eight people prepare a shared workshop before the storm. Meals, guest cabins and a kit store need willing hands. Owner acceptance pending.',
     faculties: ['Body', 'Will', 'Memory and belief'],
   },
 ];

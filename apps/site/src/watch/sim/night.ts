@@ -63,6 +63,8 @@ import {
   DARK_AIM,
   DARK_REACH,
   DARK_SIGHT_BONUS,
+  DAY,
+  DUSK_START,
   FOOT_AIM,
   LANTERN_STEP_MIN,
   LIT_REACH,
@@ -106,6 +108,7 @@ import {
   villager,
   WatchWorld,
 } from './people.ts';
+import { agreeRefugeVisit, refugeVisitPassport, stayRefugeVisit } from './refuge-visit.ts';
 import { closeCard, endWinter, isSeason, leaveClosed, leaveThaw, stepSeason } from './season.ts';
 import {
   type Alert,
@@ -141,6 +144,7 @@ export type Input =
   | { k: 'lantern'; section: SectionId }
   | { k: 'bell'; who?: WatcherId }
   | { k: 'answer'; id: number; choice: string }
+  | { k: 'refugeVisit'; choice: 'ask' | 'stay' | 'prepare' }
   | { k: 'toDusk' };
 
 const ALERT_KEEP = 14;
@@ -650,7 +654,21 @@ export function applyInput(s: WatchState, input: Input): boolean {
       return applyNightAct(s, input);
     case 'answer':
       return answerMoment(s, input.id, input.choice);
+    case 'refugeVisit': {
+      if (s.phase !== 'dawn') return false;
+      if (input.choice === 'prepare') return prepareRefugeDeparture(s);
+      const text =
+        input.choice === 'stay'
+          ? stayRefugeVisit(s)
+            ? 'Kian and Ada choose to stay. Their new visit agreement is released; all older duties remain.'
+            : undefined
+          : agreeRefugeVisit(s);
+      if (!text) return false;
+      s.talks.said.push({ who: 'kian', topic: 'home', text });
+      return true;
+    }
     case 'toDusk': {
+      if (s.refugeVisit?.status === 'agreed') return false;
       if (s.phase !== 'dawn') return false;
       if (s.winterNight >= s.winter.nights) {
         endWinter(s);
@@ -890,8 +908,7 @@ export function tell(s: WatchState, id: WatcherId, pc: Percept, interrupt = fals
 }
 
 /** Steps the watchers' community up to `until` (inclusive) and applies what they did to the wall. */
-export function stepPeople(s: WatchState, until: number): SimEvent[] {
-  const world = new WatchWorld(s);
+export function stepPeople(s: WatchState, until: number, world = new WatchWorld(s)): SimEvent[] {
   const events = stepCommunity(s.community, world, until, {
     suggestions: suggestions(s),
     controlled: controlled(s),
@@ -1640,4 +1657,40 @@ function downed(s: WatchState, id: WatcherId, section: SectionId): void {
       sectionOf(s, other) === section,
     );
   }
+}
+
+/** Deliberate logged daylight play. Normal HF choices/actions finish; a read-only actual-identity
+ * observer captures Kian before his next choice. No actor clock jump or activity removal. */
+function prepareRefugeDeparture(s: WatchState): boolean {
+  if (s.refugeDeparture || s.refugeVisit?.status !== 'agreed') return false;
+  const p = personOf(s, 'kian');
+  if (!p) return false;
+  const world = new WatchWorld(s),
+    original = world.affordancesFor;
+  world.affordancesFor = function (actual) {
+    const care = refugeVisitPassport(s);
+    if (
+      actual === p &&
+      !actual.activity &&
+      actual.now % DAY >= 360 &&
+      care &&
+      p.agenda.commitments.find((c) => c.id === care.agreement.commitmentId)?.status === 'kept' &&
+      !s.refugeDeparture
+    )
+      s.refugeDeparture = { person: structuredClone(p), watchCare: care };
+    return original.call(this, actual);
+  };
+  const end = Math.min(Math.floor(s.minute / DAY) * DAY + DUSK_START - 1, s.minute + 600);
+  for (let t = s.minute; t <= end && !s.refugeDeparture; t++) {
+    s.minute = t;
+    stepPeople(s, t, world);
+  }
+  s.talks.said.push({
+    who: 'kian',
+    topic: 'home',
+    text: s.refugeDeparture
+      ? 'Kian and Ada shared food, water and quiet rest. A quiet departure snapshot is ready; their return duty remains open. Save Kian, or choose to stay together.'
+      : 'They spent real daylight here. No eligible quiet departure was captured yet; save is unavailable. Choose to stay if they cannot leave before dusk.',
+  });
+  return true;
 }

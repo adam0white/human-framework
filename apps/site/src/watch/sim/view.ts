@@ -154,6 +154,7 @@ export interface Frame {
   roused: boolean;
   slowed: boolean;
   alerts: Alert[];
+  refugeVisit?: import('./refuge-visit.ts').RefugeVisit;
   dawn: DawnPage | null;
   // G3-3: the year.
   year: number;
@@ -595,6 +596,7 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean, rate = 0
     slowed,
     // Only what is still news: alerts from the last hour of the night.
     alerts: s.alerts.filter((a) => s.minute - a.minute < 60).slice(-6),
+    ...(s.refugeVisit ? { refugeVisit: structuredClone(s.refugeVisit) } : {}),
     dawn: s.dawn,
     moment: s.phase === 'night' ? s.moment : null,
     decisionSeconds:

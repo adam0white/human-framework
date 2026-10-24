@@ -52,3 +52,13 @@ export const WATCH_CAST_NORMS: NormDefinition[] = [
 ];
 
 export const SITE_CAST_NORMS = [...DEFAULT_NORMS, ...WELL_CAST_NORMS, ...WATCH_CAST_NORMS];
+
+/** Exact authored Valley catalog entry. Recognition does not implement its household share duty here. */
+export const VALLEY_CAST_DUES: NormDefinition = {
+  id: 'dues',
+  label: 'The valley household’s agreed share',
+  standing: 'obligatory',
+  sources: [
+    { kind: 'assumption', ref: 'Valley household share; each person understands the agreement locally' },
+  ],
+};

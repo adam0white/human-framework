@@ -22,7 +22,8 @@ import {
   type PersonaLife,
   preparePersonaLife,
 } from '@adam0white/lab-client';
-import { SITE_CAST_NORMS } from './cast-norms.ts';
+import { nativeCastSource } from './cast-native-sources.ts';
+import { SITE_CAST_NORMS, VALLEY_CAST_DUES } from './cast-norms.ts';
 export interface CastPersonChapter {
   version: 'site-cast/1';
   input: LifePreparation;
@@ -166,10 +167,15 @@ export function castRole(game: string, castId: string): string {
   return id;
 }
 /** Author a strict calendar passport at a quiet actual source boundary. Projects and bodies are checked by HF. */
-export function siteCastTransfer(game: string, person: Person, extraNorms: NormDefinition[] = []) {
+export function siteCastTransfer(
+  game: string,
+  person: Person,
+  extraNorms: NormDefinition[] = [],
+  watchCare?: ReturnType<typeof import('../watch/sim/refuge-visit.ts').refugeVisitPassport>,
+) {
   if (game === 'watch' && (person.now % 1440 < 360 || person.now % 1440 >= 1020))
     throw new Error('The watch is still on duty. Continue to a daylight chapter boundary.');
-  if (game === 'watch' && person.id === 'kian')
+  if (game === 'watch' && person.id === 'kian' && !watchCare)
     throw new Error(
       'Ada’s agreed care arrangement is not supported by this passport. Keep Kian in this chapter.',
     );
@@ -179,7 +185,12 @@ export function siteCastTransfer(game: string, person: Person, extraNorms: NormD
   personState.person.limitations.push(
     'Zero-duration host chapter projection; coarse local life does not simulate travel, resolve duties or recover health.',
   );
-  return { person: personState, castPassport: 'site-cast/1', sourceRole: person.id };
+  return {
+    person: personState,
+    castPassport: 'site-cast/1',
+    sourceRole: person.id,
+    ...(watchCare ? { watchCare } : {}),
+  };
 }
 function calendarProjection(person: Person, extraNorms: NormDefinition[], offset: number) {
   const normCatalog = [...DEFAULT_NORMS, ...extraNorms];
@@ -213,9 +224,10 @@ export async function siteCastCheckpoint(
   game: string,
   person: Person,
   norms: NormDefinition[] = [],
+  watchCare?: ReturnType<typeof import('../watch/sim/refuge-visit.ts').refugeVisitPassport>,
 ): Promise<SourceCheckpoint> {
   const raw = snapshot(person);
-  const transfer = siteCastTransfer(game, person, norms);
+  const transfer = siteCastTransfer(game, person, norms, watchCare);
   const sha256 = Array.from(
     new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(canonicalPersona(raw)))),
     (b) => b.toString(16).padStart(2, '0'),
@@ -276,15 +288,22 @@ function admitRawSiteCast(game: string, opening: Person, chapter: CastPersonChap
   if (canonicalPersona(preparePersonaLife(input.parent, input.clockMs).life) !== canonicalPersona(input.life))
     throw new Error('Life outcomes differ from their pinned clock and parent.');
   const role = castRole(game, input.parent.castId);
+  const native = nativeCastSource(game, input.parent);
   if (
     role !== opening.id ||
-    !['site-cast/1', 'authored-cast/1'].includes(String(input.parent.transfer.castPassport))
+    (!native && !['site-cast/1', 'authored-cast/1'].includes(String(input.parent.transfer.castPassport)))
   )
     throw new Error('This passport needs a host-specific admission. Export it or start a fresh branch.');
   if (input.parent.transfer.castPassport === 'authored-cast/1') return restore(snapshot(opening));
-  if (input.parent.transfer.sourceRole !== castRole(input.parent.source.game, input.parent.castId))
+  if (!native && input.parent.transfer.sourceRole !== castRole(input.parent.source.game, input.parent.castId))
     throw new Error('Unsupported source role.');
   const portable = validateCalendarPersona(input.parent.transfer.person);
+  const mapping = native?.mapping ?? 'site-cast-calendar/1';
+  if (
+    portable.person.mappingVersion !== mapping ||
+    portable.person.source.engine !== input.parent.source.engine
+  )
+    throw new Error('Unsupported source passport mapping or engine.');
   const checkpoint = input.parent.transfer.checkpoint as
     | { schema?: unknown; sourceMinute?: unknown; rng?: unknown; sha256?: unknown }
     | undefined;
@@ -301,7 +320,9 @@ function admitRawSiteCast(game: string, opening: Person, chapter: CastPersonChap
   if (portable.person.source.id !== input.parent.transfer.sourceRole)
     throw new Error('Source identity differs from passport.');
   const knownNorms = portable.calendar.norms.map((norm) => {
-    const known = SITE_CAST_NORMS.find((n) => n.id === norm.id);
+    const trusted =
+      native?.mapping === 'valley-calendar/1' ? [...SITE_CAST_NORMS, VALLEY_CAST_DUES] : SITE_CAST_NORMS;
+    const known = trusted.find((n) => n.id === norm.id);
     if (!known || JSON.stringify(known) !== JSON.stringify(norm))
       throw new Error('Unsupported source norm meaning.');
     return known;
@@ -315,6 +336,15 @@ function admitRawSiteCast(game: string, opening: Person, chapter: CastPersonChap
     portable.calendar.owed.some((d) => [...d.actions, ...(d.violatedBy ?? [])].some((a) => !allowed.has(a)))
   )
     throw new Error('A source duty has no supported action here. Keep that chapter or export it.');
+  if (
+    native &&
+    [...portable.calendar.commitments, ...portable.calendar.owed].some(
+      (c) =>
+        ('toId' in c && c.toId && !['self', 'god', 'Allah'].includes(c.toId)) ||
+        ('targetId' in c && c.targetId && !['self', 'god', 'Allah'].includes(c.targetId)),
+    )
+  )
+    throw new Error('A native source duty still needs its original person or place.');
   // Rebase every retained calendar timestamp by the declared zero-duration chapter boundary.
   const shifted = structuredClone(portable);
   const offset = opening.now - portable.person.source.now;
@@ -339,7 +369,9 @@ function admitRawSiteCast(game: string, opening: Person, chapter: CastPersonChap
   if (sourceAge < minimumAge || sourceAge > minimumAge + 200 * 525600)
     throw new Error('Unsupported canonical age provenance.');
   target.life.bornAt = portable.person.life.bornAt + offset;
-  const allowedSkills = new Set(Object.keys(target.skills));
+  const allowedSkills = new Set(
+    native ? (game === 'voice' && role === 'osman' ? ['trade'] : []) : Object.keys(target.skills),
+  );
   const archivedSkills = Object.keys(shifted.person.skills).filter((id) => !allowedSkills.has(id));
   for (const id of archivedSkills) delete shifted.person.skills[id];
   if (archivedSkills.length)
@@ -351,7 +383,7 @@ function admitRawSiteCast(game: string, opening: Person, chapter: CastPersonChap
   delete target.agenda.owed;
   delete target.agenda.lapse;
   const { person } = admitCalendarPersona(shifted, target, {
-    mappingVersion: 'site-cast-calendar/1',
+    mappingVersion: mapping,
     sourceId: portable.person.source.id,
     targetId: role,
     targetNorms: knownNorms,
@@ -451,6 +483,7 @@ export function captureSiteCastBoundary(
   person: Person,
   world: CaptureWorld,
   norms: NormDefinition[] = [],
+  watchCare?: ReturnType<typeof import('../watch/sim/refuge-visit.ts').refugeVisitPassport>,
 ): Promise<SourceCheckpoint> {
   if (person.agenda.goals.some((g) => g.status === 'active') || person.projects?.currentGoalId)
     return Promise.reject(

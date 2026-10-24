@@ -76,6 +76,7 @@ export function ruleState(s: WatchState, people = summarise(s)): unknown {
         ? { kind: w.question.kind, who: w.question.who, who2: w.question.who2, met: w.question.met }
         : null,
     },
+    ...(s.refugeVisit ? { refugeVisit: s.refugeVisit } : {}),
     ...(s.nightDepartureEffort ? { nightDepartureEffort: true } : {}),
     ...(s.winterSetting ? { winterSetting: s.winterSetting, winterRules: WINTER_RULES } : {}),
     leads: s.leads,
