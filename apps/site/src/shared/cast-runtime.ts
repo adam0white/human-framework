@@ -20,6 +20,12 @@ import {
 import { type CastChapter, makeCastChapter } from './cast-chapter.ts';
 import { claimSiteCastBatch } from './cast-site-claim.ts';
 import { fetchBuild } from './playtest.ts';
+
+const HOST_EXPORT_GAMES: Readonly<Record<string, string>> = {
+  voice: 'voice',
+  well: 'colony',
+  watch: 'the-night-watch',
+};
 export type CastHeads = Record<string, PersonaEnvelope>;
 export type CastRequest =
   | { type: 'castPreflight'; requestId: number; seed: number; chapter: CastChapter }
@@ -367,8 +373,15 @@ export function bindCastWorker(worker: Worker, game: string, lab: Lab): () => vo
     if (m.gen === s.runGen && (m.type === 'replayed' || (m.type === 'loaded' && m.ok === true)))
       s.loadPrior = undefined;
     if (m.gen !== undefined && s.runGen !== undefined && m.gen !== s.runGen) return;
+    const exportGame = HOST_EXPORT_GAMES[game];
     for (const file of [m.file, m.data])
-      if (file && typeof file === 'object' && (file.kind === 'human-playtest' || file.game === 'watch')) {
+      if (
+        file &&
+        typeof file === 'object' &&
+        exportGame &&
+        file.game === exportGame &&
+        (game === 'watch' || file.kind === 'human-playtest')
+      ) {
         file.castOwnership = structuredClone(s.heads);
         file.castSources = structuredClone(s.sources);
       }

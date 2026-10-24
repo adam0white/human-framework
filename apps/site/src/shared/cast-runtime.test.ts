@@ -267,48 +267,60 @@ describe('whole-cast browser continuity', () => {
     worker.reply({ type: 'frame', frame: { phase: 'day', day: { current: 3 } } });
     await vi.waitFor(() => expect(worker.requests('castCheckpoint').length).toBeGreaterThan(0));
   });
-  it('verifies full source checksums and keeps raw captures out of shelf envelopes', async () => {
-    const storage = new Map<string, string>();
-    vi.stubGlobal('localStorage', {
-      getItem: (key: string) => storage.get(key) ?? null,
-      setItem: (key: string, value: string) => storage.set(key, value),
-    });
-    const { canonicalPersona } = await import('@adam0white/lab-client');
-    const worker = new FakeWorker();
-    close = bindCastWorker(worker as unknown as Worker, 'voice', lab as never);
-    selectCast('voice', 'hf.cast.riza.voice');
-    const raw = {
-      schema: 1,
-      now: 400,
-      rng: { a: 1, b: 2, c: 3, d: 4 },
-      privateSourceDetail: 'retained only at source',
-    };
-    const sha256 = Array.from(
-      new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(canonicalPersona(raw)))),
-      (b) => b.toString(16).padStart(2, '0'),
-    ).join('');
-    for (const digest of ['0'.repeat(64), sha256]) {
-      const saving = checkpointCast('voice');
-      await vi.waitFor(() =>
-        expect(worker.requests('castCheckpoint').length).toBeGreaterThan(digest === sha256 ? 1 : 0),
-      );
-      worker.reply({
-        type: 'castReady',
-        requestId: worker.requests('castCheckpoint').at(-1)!.requestId,
-        sourceSnapshot: raw,
-        transfer: {
-          castPassport: 'site-cast/1',
-          sourceRole: 'riza',
-          engine: '2.17.0',
-          checkpoint: { schema: raw.schema, sourceMinute: raw.now, rng: raw.rng, sha256: digest },
-        },
+  it.each(['voice', 'watch'] as const)(
+    'verifies %s source checksums and exports raw captures outside shelf envelopes',
+    async (game) => {
+      const id = game === 'watch' ? 'hf.cast.tamar.watch' : 'hf.cast.riza.voice';
+      const role = game === 'watch' ? 'tamar' : 'riza';
+      const storage = new Map<string, string>();
+      vi.stubGlobal('localStorage', {
+        getItem: (key: string) => storage.get(key) ?? null,
+        setItem: (key: string, value: string) => storage.set(key, value),
       });
-      await saving;
-      expect(control.puts.length).toBe(digest === sha256 ? 1 : 0);
-    }
-    expect(JSON.stringify(control.puts)).not.toContain('privateSourceDetail');
-    expect(JSON.parse(localStorage.getItem('hf-cast-source:voice')!)).toEqual({ 'hf.cast.riza.voice': raw });
-  });
+      const { canonicalPersona } = await import('@adam0white/lab-client');
+      const worker = new FakeWorker();
+      close = bindCastWorker(worker as unknown as Worker, game, lab as never);
+      selectCast(game, id);
+      const raw = {
+        schema: 1,
+        now: 400,
+        rng: { a: 1, b: 2, c: 3, d: 4 },
+        privateSourceDetail: 'retained only at source',
+      };
+      const sha256 = Array.from(
+        new Uint8Array(
+          await crypto.subtle.digest('SHA-256', new TextEncoder().encode(canonicalPersona(raw))),
+        ),
+        (b) => b.toString(16).padStart(2, '0'),
+      ).join('');
+      for (const digest of ['0'.repeat(64), sha256]) {
+        const saving = checkpointCast(game);
+        await vi.waitFor(() =>
+          expect(worker.requests('castCheckpoint').length).toBeGreaterThan(digest === sha256 ? 1 : 0),
+        );
+        worker.reply({
+          type: 'castReady',
+          requestId: worker.requests('castCheckpoint').at(-1)!.requestId,
+          sourceSnapshot: raw,
+          transfer: {
+            castPassport: 'site-cast/1',
+            sourceRole: role,
+            engine: '2.17.0',
+            checkpoint: { schema: raw.schema, sourceMinute: raw.now, rng: raw.rng, sha256: digest },
+          },
+        });
+        await saving;
+        expect(control.puts.length).toBe(digest === sha256 ? 1 : 0);
+      }
+      expect(JSON.stringify(control.puts)).not.toContain('privateSourceDetail');
+      expect(JSON.parse(localStorage.getItem(`hf-cast-source:${game}`)!)).toEqual({ [id]: raw });
+      const file: Record<string, unknown> =
+        game === 'watch' ? { game: 'the-night-watch' } : { kind: 'human-playtest', game: 'voice' };
+      worker.reply({ type: 'exported', data: file });
+      expect(file.castSources).toEqual({ [id]: raw });
+      expect(file.castOwnership).toEqual({ [id]: control.puts.at(-1) });
+    },
+  );
   it('opens an owned title and restores Continue without writing or replacing its accepted receipts', async () => {
     const old = await head();
     control.state = acceptPersona(control.state, old);
@@ -419,7 +431,10 @@ describe('whole-cast browser continuity', () => {
       );
       postCastMessage(worker as unknown as Worker, game, { type: 'exportPlaytest', castRunGeneration: 2 });
       expect(worker.requests('exportPlaytest')).toHaveLength(1);
-      const file: Record<string, unknown> = { kind: 'human-playtest' };
+      const file: Record<string, unknown> =
+        game === 'watch'
+          ? { game: 'the-night-watch' }
+          : { kind: 'human-playtest', game: game === 'well' ? 'colony' : 'voice' };
       worker.reply({ type: 'exported', gen: 2, file });
       expect(file.castOwnership).toEqual({ [id]: old });
       expect(control.batches).toBe(0);
@@ -690,8 +705,14 @@ describe('whole-cast browser continuity', () => {
     const worker = new FakeWorker();
     await begin(worker);
     await checkpoint(worker);
-    const file: { kind: string; hash: string; castOwnership?: Record<string, PersonaEnvelope> } = {
+    const file: {
+      kind: string;
+      game: string;
+      hash: string;
+      castOwnership?: Record<string, PersonaEnvelope>;
+    } = {
       kind: 'human-playtest',
+      game: 'voice',
       hash: 'unchanged-simulation-hash',
     };
     worker.reply({ type: 'playtest', gen: 1, file });
