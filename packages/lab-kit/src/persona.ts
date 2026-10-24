@@ -27,7 +27,7 @@ export function personaControls(options: PersonaControls): HTMLElement {
     panel.append(explanation);
     for (const [text, allow] of [
       ['Record this continuing person', true],
-      ['Keep this history local', false],
+      ['Do not link this history', false],
     ] as const) {
       const button = document.createElement('button');
       button.type = 'button';
@@ -36,10 +36,31 @@ export function personaControls(options: PersonaControls): HTMLElement {
         options.allowRecording(allow);
         explanation.textContent = allow
           ? 'Historical recording linkage allowed for this recording identity.'
-          : 'This continuing person stays local.';
+          : 'Not linked to recorded history; feedback can still send.';
       };
       panel.append(button);
     }
   }
   return panel;
+}
+
+export type FeedbackPersonaLab = {
+  readonly personaRecordingRequired?: boolean;
+  readonly personaRecordingAllowed?: boolean;
+  allowPersonaRecording?(allow: boolean): void;
+};
+
+/** Optional feedback-sheet control. Sending feedback never depends on this choice. */
+export function feedbackPersonaControl(lab: FeedbackPersonaLab): HTMLElement | null {
+  if (!lab.personaRecordingRequired || !lab.allowPersonaRecording) return null;
+  const label = document.createElement('label');
+  const checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  checkbox.checked = lab.personaRecordingAllowed === true;
+  checkbox.addEventListener('change', () => {
+    lab.allowPersonaRecording?.(checkbox.checked);
+    checkbox.checked = lab.personaRecordingAllowed === true;
+  });
+  label.append(checkbox, ' Link this continuing person to lab recording (optional)');
+  return label;
 }

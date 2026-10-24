@@ -68,7 +68,9 @@ export type Lab = {
   sendEnvelopeText(text: string): Promise<string>;
   /** Opens the "Send this run to the notebook" dialog. */
   openSendDialog(options: Omit<SendDialogOptions, 'lab'>): void;
+  /** Recording preference, independent of the current persona linkage gate. */
   readonly telemetryOn: boolean;
+  readonly personaRecordingRequired?: boolean;
   readonly playerId: string | null;
   setTelemetryOff(off: boolean): void;
   /** Poll a game's full seed/input/state export in the background; returns its teardown. */
@@ -78,8 +80,8 @@ export type Lab = {
   ): () => void;
   captureSave(value: unknown): void;
   log(level: 'error' | 'warn' | 'game', message: string): void;
-  /** Queues feedback attached to the current linked run. It does not opt into character analysis. */
-  sendFeedback(note: string, options?: { name?: string }): Promise<string>;
+  /** Explicit feedback always sends. Without recording/linkage approval it sends an unlinked envelope. */
+  sendFeedback(note: string, options?: { name?: string; run?: unknown }): Promise<string>;
   /** Call before attaching a persisted/imported persona run or any upload hook. */
   setPersonaRecording(personaKey: string | null): void;
   readonly personaRecordingAllowed: boolean;
@@ -168,12 +170,12 @@ export function createLab(options: LabOptions): Lab {
     !personaKey || Boolean(player && readLocal(`hf-persona-recording:${personaKey}`) === player);
   const queue: { event: Event; runId: string }[] = [];
   const logs: { level: 'error' | 'warn' | 'game'; message: string; at: number; runId: string }[] = [];
-  const stopped = () =>
-    !personaAllowed() ||
+  const recordingStopped = () =>
     off ||
     readLocal(RECORDING_OFF) === '1' ||
     (privacySignal(g) && !override) ||
     (local_ && !options.sendFromLocalhost);
+  const stopped = () => !personaAllowed() || recordingStopped();
   const sessionKey = `${SID_KEY}:${game}`;
   const stored = getItem(session, sessionKey)?.split(':');
   let sid = stored?.[0] ?? '';
@@ -192,7 +194,9 @@ export function createLab(options: LabOptions): Lab {
   let buildKnown = Boolean(options.build);
   let transport: ReturnType<typeof linkedTransport>;
   const explicitUploads = new Set<AbortController>();
+  let generation = 0;
   const reset = () => {
+    generation++;
     for (const upload of explicitUploads) upload.abort();
     explicitUploads.clear();
     queue.length = 0;
@@ -399,6 +403,35 @@ export function createLab(options: LabOptions): Lab {
     }
     g.dispatchEvent?.(new Event('hf-lab-preference'));
   };
+  const sendUnlinked = async (
+    text: string,
+    fallback?: string,
+    capturedGeneration = generation,
+  ): Promise<string> => {
+    if (!checkRun(text)) throw new Error(runRefusal(text));
+    const body = await gzip(text);
+    if (body.size > RUN_LIMITS.compressedBytes) throw new Error(compressedRefusal(body.size));
+    if (fallback && (recordingStopped() || generation !== capturedGeneration)) return sendUnlinked(fallback);
+    const upload = new AbortController();
+    explicitUploads.add(upload);
+    let res: Response;
+    try {
+      res = await fetch(`${endpoint}/run`, {
+        signal: upload.signal,
+        method: 'POST',
+        body,
+        headers: { 'Content-Type': 'application/gzip' },
+        mode: 'cors',
+        credentials: 'omit',
+        referrerPolicy: 'no-referrer',
+      });
+    } finally {
+      explicitUploads.delete(upload);
+    }
+    const reply = (await res.json().catch(() => ({}))) as { id?: string; error?: string };
+    if (!res.ok || !reply.id) throw new Error(reply.error ?? `The notebook answered ${res.status}.`);
+    return reply.id;
+  };
   const lab: Lab = {
     game,
     endpoint,
@@ -421,7 +454,10 @@ export function createLab(options: LabOptions): Lab {
       return !stopped();
     },
     get telemetryOn() {
-      return !stopped();
+      return !recordingStopped();
+    },
+    get personaRecordingRequired() {
+      return personaKey !== null;
     },
     get playerId() {
       return stopped() ? null : player;
@@ -494,9 +530,34 @@ export function createLab(options: LabOptions): Lab {
     },
     async sendFeedback(note, options = {}) {
       syncRun();
-      if (stopped()) throw new Error('Lab recording is off.');
-      await snapshot?.();
-      return transport.send('note', { note: note.trim().slice(0, 4000) }, undefined, options.name);
+      const text = note.trim().slice(0, 4000);
+      const feedbackGeneration = generation;
+      if (stopped()) {
+        const extra = { note: text, name: options.name };
+        const capturedGeneration = generation;
+        const fallback = prepareRun(game, build, { feedbackOnly: true }, extra);
+        let envelope = fallback;
+        if (!recordingStopped() && options.run) {
+          try {
+            const candidate = prepareRun(game, build, options.run, extra);
+            if ((await gzip(candidate)).size <= RUN_LIMITS.compressedBytes) envelope = candidate;
+          } catch {
+            /* A run export must never block the note. */
+          }
+        }
+        return sendUnlinked(envelope, fallback, capturedGeneration);
+      }
+      try {
+        if (options.run) await transport.send('run', options.run);
+        else await snapshot?.();
+      } catch {
+        /* A run export must never block the note. */
+      }
+      if (stopped() || generation !== feedbackGeneration)
+        return sendUnlinked(
+          prepareRun(game, build, { feedbackOnly: true }, { note: text, name: options.name }),
+        );
+      return transport.send('note', { note: text }, undefined, options.name);
     },
     async sendRun(run, extra = {}) {
       syncRun();
@@ -524,29 +585,7 @@ export function createLab(options: LabOptions): Lab {
         const envelope = JSON.parse(text) as { run: unknown; note?: string; name?: string };
         return lab.sendRun(envelope.run, { note: envelope.note, name: envelope.name });
       }
-      if (!checkRun(text)) throw new Error(runRefusal(text));
-      const body = await gzip(text);
-      if (body.size > RUN_LIMITS.compressedBytes) throw new Error(compressedRefusal(body.size));
-      if (!personaAllowed()) throw new Error('Choose whether to record this continuing person first.');
-      const upload = new AbortController();
-      explicitUploads.add(upload);
-      let res: Response;
-      try {
-        res = await fetch(`${endpoint}/run`, {
-          signal: upload.signal,
-          method: 'POST',
-          body,
-          headers: { 'Content-Type': 'application/gzip' },
-          mode: 'cors',
-          credentials: 'omit',
-          referrerPolicy: 'no-referrer',
-        });
-      } finally {
-        explicitUploads.delete(upload);
-      }
-      const reply = (await res.json().catch(() => ({}))) as { id?: string; error?: string };
-      if (!res.ok || !reply.id) throw new Error(reply.error ?? `The notebook answered ${res.status}.`);
-      return reply.id;
+      return sendUnlinked(text);
     },
     openSendDialog(opts) {
       openSendDialog({ ...opts, lab });

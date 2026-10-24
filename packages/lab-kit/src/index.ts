@@ -10,7 +10,12 @@ export { type IntroCardOptions, introCard } from './intro-card.ts';
 export { nextLine, setNext } from './next-line.ts';
 export { downloadJson, type NotebookLab, type NotebookMenuOptions, notebookMenu } from './notebook-menu.ts';
 export { type FlagStorage, type OnceStorage, once } from './once.ts';
-export { type PersonaControls, personaControls } from './persona.ts';
+export {
+  type FeedbackPersonaLab,
+  feedbackPersonaControl,
+  type PersonaControls,
+  personaControls,
+} from './persona.ts';
 export {
   type PhoneStage,
   type PhoneStageOptions,

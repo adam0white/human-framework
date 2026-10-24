@@ -45,7 +45,7 @@ export function prepareRun(
   game: string,
   build: Build,
   run: unknown,
-  extra: { note?: string; who?: string } & CompactOptions = {},
+  extra: { note?: string; who?: string; name?: string } & CompactOptions = {},
 ): string {
   let text = JSON.stringify(runEnvelope(game, build, run, extra));
   if (checkRun(text)) return text;

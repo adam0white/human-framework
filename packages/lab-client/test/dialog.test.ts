@@ -3,12 +3,22 @@ import { createLab, RUN_LIMITS } from '../src/index.ts';
 import { documentFixture } from './dom.ts';
 
 function setup() {
+  vi.stubGlobal('location', { hostname: 'human.adamwhite.work', origin: 'https://human.adamwhite.work' });
   const document = documentFixture();
   vi.stubGlobal('document', document);
   const lab = createLab({ game: 'pass', build: {} });
   const sent: string[] = [];
-  lab.sendEnvelopeText = async (text) => {
-    sent.push(text);
+  lab.sendFeedback = async (note, options = {}) => {
+    sent.push(
+      JSON.stringify({
+        v: 1,
+        game: lab.game,
+        build: lab.build(),
+        run: options.run ?? { feedbackOnly: true },
+        ...(note.trim() ? { note: note.trim() } : {}),
+        ...(options.name?.trim() ? { name: options.name.trim() } : {}),
+      }),
+    );
     return 'r-example';
   };
   const find = (name: string) => {
@@ -51,22 +61,18 @@ describe('bounded send dialog', () => {
     expect(find('hflab-name').value).toBe('Sam');
     await settled();
   });
-  it('offers explicit browser-signal consent and lets the player revoke it', async () => {
-    vi.stubGlobal('location', { hostname: 'pass.adamwhite.work' });
-    vi.stubGlobal('navigator', { globalPrivacyControl: true });
-    vi.stubGlobal('localStorage', undefined);
-    const { lab, find } = setup();
+  it.each(['off', 'privacy', 'persona'])('sends from the same sheet when %s', async (choice) => {
+    vi.stubGlobal('location', { hostname: 'human.adamwhite.work', origin: 'https://human.adamwhite.work' });
+    vi.stubGlobal('navigator', choice === 'privacy' ? { globalPrivacyControl: true } : {});
+    const { lab, find, sent, document } = setup();
+    if (choice === 'off') lab.setTelemetryOff(true);
+    if (choice === 'persona') lab.setPersonaRecording('continuing-person');
     lab.openSendDialog({ getRun: () => ({ seed: 1 }) });
-    expect(find('hflab-privacy-note').textContent).toContain('Automatic lab recording is off.');
-    const box = find('hflab-privacy-override');
-    expect(lab.eventsOn).toBe(false);
-    Object.assign(box, { checked: true });
-    await box.fire('change');
-    expect(lab.eventsOn).toBe(true);
-    Object.assign(box, { checked: false });
-    await box.fire('change');
-    expect(lab.eventsOn).toBe(false);
     await settled();
+    await find('send').fire('click');
+    expect(sent).toHaveLength(1);
+    expect(document.body.all().filter((node) => node.className === 'hflab')).toHaveLength(1);
+    expect(lab.personaRecordingAllowed).toBe(choice !== 'persona');
   });
 
   it('shows the compact payload and disclosure before consent, and sends that same text', async () => {
@@ -80,7 +86,6 @@ describe('bounded send dialog', () => {
       game: 'pass',
       build: {},
       run: { seed: 7, inputs: ['wait'] },
-      compacted: true,
     });
     expect(
       document.body.all().some((node) => node.textContent === 'Only the seed and inputs are included.'),
@@ -134,70 +139,25 @@ describe('bounded send dialog', () => {
     await settled();
     expect(compact).toHaveBeenCalledTimes(1);
     expect(JSON.parse(find('exact').value).note).toBe('hello');
-    expect(JSON.parse(find('exact').value).compacted).toBe(true);
   });
 
-  it('disables sending and explains an uncompactable oversized run', async () => {
-    const { lab, find, sent, document } = setup();
-    lab.openSendDialog({ getRun: oversized });
-    await settled();
-    expect(find('send').disabled).toBe(true);
-    expect(document.body.all().some((node) => /saved export file/i.test(node.textContent))).toBe(true);
-    await find('send').fire('click');
-    expect(sent).toEqual([]);
-  });
-
-  it('refuses an oversized compact result after calling the callback only once', async () => {
+  it('sends a note when the run cannot fit or be exported', async () => {
     const { lab, find, sent } = setup();
-    const compact = vi.fn(oversized);
-    lab.openSendDialog({ getRun: oversized, compact });
+    lab.openSendDialog({ getRun: oversized });
+    find('hflab-note').value = 'Please fix the crossing';
+    await find('hflab-note').fire('input');
     await settled();
-    expect(find('send').disabled).toBe(true);
-    expect(compact).toHaveBeenCalledTimes(1);
+    expect(find('send').disabled).toBe(false);
     await find('send').fire('click');
-    expect(sent).toEqual([]);
-  });
-
-  it.each(['undefined', 'null', 'throws'] as const)(
-    'keeps a failed mutating compactor refused after note edits (%s)',
-    async (failure) => {
-      const { lab, find, sent } = setup();
-      const compact = vi.fn((run: unknown) => {
-        (run as { state: string }).state = 'shrunk';
-        if (failure === 'throws') throw new Error('compaction failed');
-        return failure === 'null' ? null : undefined;
-      });
-      lab.openSendDialog({ getRun: oversized, compact });
-      await settled();
-      expect(find('send').disabled).toBe(true);
-      find('hflab-note').value = 'edited after the failure';
-      await find('hflab-note').fire('input');
-      await settled();
-      expect(find('send').disabled).toBe(true);
-      expect(compact).toHaveBeenCalledTimes(1);
-      await find('send').fire('click');
-      expect(sent).toEqual([]);
-    },
-  );
-
-  it.each([null, undefined])('shows a refusal when the compactor throws %s', async (failure) => {
-    const { lab, find, document } = setup();
-    lab.openSendDialog({
-      getRun: oversized,
-      compact: () => {
-        throw failure;
-      },
+    expect(JSON.parse(sent[0] ?? '{}')).toMatchObject({
+      note: 'Please fix the crossing',
+      run: { feedbackOnly: true },
     });
-    await settled();
-    expect(find('send').disabled).toBe(true);
-    expect(
-      document.body.all().some((node) => node.textContent === 'Not sent: the run could not be prepared.'),
-    ).toBe(true);
   });
 
   it.each([null, undefined])('shows a transport refusal when sending throws %s', async (failure) => {
     const { lab, find, document } = setup();
-    lab.sendEnvelopeText = async () => {
+    lab.sendFeedback = async () => {
       throw failure;
     };
     lab.openSendDialog({ getRun: () => ({ seed: 1 }) });
@@ -207,25 +167,6 @@ describe('bounded send dialog', () => {
       document.body.all().some((node) => node.textContent === 'Not sent: the notebook could not be reached.'),
     ).toBe(true);
     expect(find('send').disabled).toBe(false);
-  });
-
-  it('refuses a gzip body over the compressed limit in the dialog', async () => {
-    const { lab, find, sent, document } = setup();
-    const blob = vi
-      .spyOn(Response.prototype, 'blob')
-      .mockResolvedValue(new Blob([new Uint8Array(RUN_LIMITS.compressedBytes + 1)]));
-    try {
-      lab.openSendDialog({ getRun: () => ({ seed: 1 }) });
-      await settled();
-      expect(find('send').disabled).toBe(true);
-      expect(document.body.all().some((node) => /compressed run is .* MB/i.test(node.textContent))).toBe(
-        true,
-      );
-      await find('send').fire('click');
-      expect(sent).toEqual([]);
-    } finally {
-      blob.mockRestore();
-    }
   });
 
   it('ignores a stale compressed-size result after a later edit', async () => {

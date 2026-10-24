@@ -94,7 +94,6 @@ describe('linked lab client', () => {
     lab.flush();
     await expect(lab.sendRun({ secret: 'old persona snapshot' })).rejects.toThrow('continuing person');
     await expect(lab.sendEnvelopeText('{}')).rejects.toThrow('continuing person');
-    await expect(lab.sendFeedback('old persona fact')).rejects.toThrow();
     await new Promise((resolve) => setTimeout(resolve, 10));
     expect(envelopes).toHaveLength(0);
     lab.allowPersonaRecording(true);
@@ -102,6 +101,110 @@ describe('linked lab client', () => {
     await lab.sendRun({ allowed: true });
     await waitFor(1);
     stop();
+  });
+  it.each(['unanswered', 'declined', 'off'] as const)(
+    'sends feedback without persona state or linkage when %s',
+    async (choice) => {
+      vi.stubGlobal('fetch', async (_url: string, init?: RequestInit) => {
+        envelopes.push(
+          JSON.parse(
+            gunzipSync(new Uint8Array(await ((init?.body ?? new Blob()) as Blob).arrayBuffer())).toString(),
+          ),
+        );
+        return Response.json({ id: 'r-feedback' });
+      });
+      const lab = createLab({ game: 'voice', build: {} });
+      lab.setPersonaRecording('private-persona-key');
+      if (choice === 'declined') lab.allowPersonaRecording(false);
+      if (choice === 'off') lab.setTelemetryOff(true);
+      const before = lab.telemetryOn;
+      expect(await lab.sendFeedback('Verdict: mixed', { name: 'Tester' })).toBe('r-feedback');
+      expect(envelopes).toEqual([
+        {
+          v: 1,
+          game: 'voice',
+          build: {},
+          run: { feedbackOnly: true },
+          note: 'Verdict: mixed',
+          name: 'Tester',
+        },
+      ]);
+      expect(lab.personaRecordingAllowed).toBe(false);
+      expect(lab.telemetryOn).toBe(before);
+    },
+  );
+  it('sends a supplied continuing run without recording identifiers until explicit persona approval', async () => {
+    vi.stubGlobal('fetch', async (_url: string, init?: RequestInit) => {
+      envelopes.push(
+        JSON.parse(
+          gunzipSync(new Uint8Array(await ((init?.body ?? new Blob()) as Blob).arrayBuffer())).toString(),
+        ),
+      );
+      return Response.json({ id: 'r-run' });
+    });
+    const lab = createLab({ game: 'voice', build: {} });
+    lab.setPersonaRecording('private-persona-key');
+    const run = { seed: 3, castChapter: { initial: 'continuing character state' } };
+    await lab.sendFeedback('A note', { run });
+    expect(envelopes[0]).toEqual({ v: 1, game: 'voice', build: {}, run, note: 'A note' });
+    expect(lab.personaRecordingAllowed).toBe(false);
+    lab.allowPersonaRecording(true);
+    await lab.sendFeedback('Linked note');
+    await waitFor(2);
+    expect(envelopes[1]).toMatchObject({ kind: 'note', player: lab.playerId });
+  });
+  it.each([false, true])(
+    'keeps feedback note-only if recording turns off during compression (linked: %s)',
+    async (linked) => {
+      vi.stubGlobal('fetch', async (_url: string, init?: RequestInit) => {
+        envelopes.push(
+          JSON.parse(
+            gunzipSync(new Uint8Array(await ((init?.body ?? new Blob()) as Blob).arrayBuffer())).toString(),
+          ),
+        );
+        return Response.json({ id: 'r-feedback' });
+      });
+      const lab = createLab({ game: 'voice', build: {} });
+      lab.setPersonaRecording('private-persona-key');
+      if (linked) lab.allowPersonaRecording(true);
+      let finish: ((body: Blob) => void) | undefined;
+      vi.spyOn(Response.prototype, 'blob').mockImplementationOnce(
+        () =>
+          new Promise((resolve) => {
+            finish = resolve;
+          }),
+      );
+      const sending = lab.sendFeedback('Keep this note', { run: { secret: 'continuing state' } });
+      await vi.waitFor(() => expect(finish).toBeDefined());
+      lab.setTelemetryOff(true);
+      finish?.(new Blob(['compressed candidate']));
+      await sending;
+      expect(envelopes).toEqual([
+        { v: 1, game: 'voice', build: {}, run: { feedbackOnly: true }, note: 'Keep this note' },
+      ]);
+    },
+  );
+  it('keeps oversized continuing runs from blocking feedback', async () => {
+    vi.stubGlobal('fetch', async (_url: string, init?: RequestInit) => {
+      envelopes.push(
+        JSON.parse(
+          gunzipSync(new Uint8Array(await ((init?.body ?? new Blob()) as Blob).arrayBuffer())).toString(),
+        ),
+      );
+      return Response.json({ id: 'r-feedback' });
+    });
+    const lab = createLab({ game: 'voice', build: {} });
+    lab.setPersonaRecording('private-persona-key');
+    await lab.sendFeedback('Keep this note', { run: { state: 'x'.repeat(8 * 1024 * 1024) } });
+    expect(envelopes[0]).toMatchObject({ run: { feedbackOnly: true }, note: 'Keep this note' });
+  });
+  it('keeps the recording switch on while persona linkage is unanswered', () => {
+    const lab = createLab({ game: 'voice', build: {} });
+    lab.setPersonaRecording('private-persona-key');
+    expect(lab.eventsOn).toBe(false);
+    expect(lab.telemetryOn).toBe(true);
+    lab.setTelemetryOff(true);
+    expect(lab.telemetryOn).toBe(false);
   });
   it('suppresses all automatic linked data under DNT/GPC until explicit per-game override', async () => {
     vi.stubGlobal('navigator', { globalPrivacyControl: true });

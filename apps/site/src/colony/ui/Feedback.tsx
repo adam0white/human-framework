@@ -58,8 +58,7 @@ export function Feedback({
   lab?: Lab;
 }) {
   const recording = useRecording(lab);
-  const privacyOnly = !recording.off && lab.privacySignalOn && !lab.privacyOverride;
-  const [consent, setConsent] = useState(false);
+  const [personaLinked, setPersonaLinked] = useState(() => lab.personaRecordingAllowed);
   const [verdict, setVerdict] = useState('');
   const [note, setNote] = useState('');
   const [name, setName] = useState(() => stored(NAME_KEY));
@@ -96,34 +95,22 @@ export function Feedback({
       viewport.removeEventListener('scroll', resize);
     };
   }, []);
-  const disabled = recording.off || (privacyOnly ? !consent : !recording.on);
   const send = async () => {
-    if (disabled || pending.current) return;
+    if (pending.current) return;
     pending.current = true;
     setBusy(true);
     setStatus('');
     const message = [verdict ? `Verdict: ${verdict}` : '', note.trim()].filter(Boolean).join('\n\n');
     try {
-      if (privacyOnly) {
-        const run = await getRun();
+      let run: unknown;
+      if (recording.on && !lab.personaRecordingAllowed) {
         try {
-          await lab.sendRun(run, { note: message, name: name.trim() });
+          run = await getRun();
         } catch {
-          lab.openSendDialog({
-            getRun: () => run,
-            note: message,
-            name: name.trim(),
-            onSent: () => {
-              setSent(true);
-              setStatus('Sent. Thank you.');
-            },
-          });
-          setStatus('Use the send dialog to finish sending.');
-          return;
+          /* The note can still be sent. */
         }
-      } else {
-        await lab.sendFeedback(message, { name: name.trim() });
       }
+      await lab.sendFeedback(message, { name: name.trim(), ...(run ? { run } : {}) });
       try {
         if (name.trim()) localStorage.setItem(NAME_KEY, name.trim());
         else localStorage.removeItem(NAME_KEY);
@@ -131,7 +118,7 @@ export function Feedback({
         /* Device storage is optional. */
       }
       setSent(true);
-      setStatus('Sent. Thank you.');
+      setStatus(lab.eventsOn ? 'Queued for upload. Thank you.' : 'Sent. Thank you.');
     } catch {
       setStatus('Your word could not be sent. Please try again.');
     } finally {
@@ -153,23 +140,18 @@ export function Feedback({
             ? 'Your run, saves and log reach us on their own. Tell us what they can’t show.'
             : 'Tell us what happened and what your run can’t show.'}
         </p>
-        {recording.off ? (
-          <div className="colony-feedback-notice">
-            <p>Recording is off, so nothing is sent.</p>
-            <label className="colony-export-option">
-              <input
-                type="checkbox"
-                checked={recording.on}
-                onChange={(e) => recording.change(e.target.checked)}
-              />
-              Record play for the lab
-            </label>
-          </div>
-        ) : null}
-        {privacyOnly ? (
+        {!recording.on ? <p>Only your note is sent. Recording stays off.</p> : null}
+        {lab.personaRecordingRequired ? (
           <label className="colony-export-option">
-            <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} /> Send
-            this run with my note
+            <input
+              type="checkbox"
+              checked={personaLinked}
+              onChange={(e) => {
+                lab.allowPersonaRecording(e.target.checked);
+                setPersonaLinked(lab.personaRecordingAllowed);
+              }}
+            />
+            Link this continuing person to lab recording (optional)
           </label>
         ) : null}
         <fieldset className="colony-verdicts" aria-label="Would you keep playing?">
@@ -210,7 +192,8 @@ export function Feedback({
             />
           </label>
           <p className="colony-note">
-            A sent name labels your past and future play on this device. Leave it empty to stay pseudonymous.
+            A name is optional and remembered on this device. It labels linked play only when recording is
+            allowed.
           </p>
         </details>
         <details
@@ -226,9 +209,14 @@ export function Feedback({
         >
           <summary>What is sent</summary>
           <p>
-            Your note{privacyOnly ? ' and this run' : ', linked to this device’s play history'}
+            Your note{recording.on ? ' and this run' : ''}
             {name.trim() ? ', with your name' : ''}.
           </p>
+          {recording.on && !personaLinked ? (
+            <p>
+              This run includes continuing character state. It is not linked to your recorded play history.
+            </p>
+          ) : null}
           <pre className="colony-feedback-preview">{preview}</pre>
           <a href={PRIVACY}>Lab privacy</a>
         </details>
@@ -245,7 +233,7 @@ export function Feedback({
         <button
           type="button"
           className="colony-primary"
-          disabled={!sent && (disabled || busy)}
+          disabled={!sent && busy}
           onClick={sent ? onBack : send}
         >
           {sent ? 'Back to the game' : busy ? 'Sending…' : 'Send'}

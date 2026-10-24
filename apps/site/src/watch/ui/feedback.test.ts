@@ -54,52 +54,30 @@ it('sends optional verdict and remembered name as feedback when recording is on'
     [...node.querySelectorAll('button')].find((b) => b.textContent === 'I’d keep playing')?.click(),
   );
   await act(async () => send().click());
-  expect(lab.sendFeedback).toHaveBeenCalledWith('Verdict: keep', { name: 'Tester' });
+  expect(lab.sendFeedback).toHaveBeenCalledWith('Verdict: keep', expect.objectContaining({ name: 'Tester' }));
   expect(lab.sendRun).not.toHaveBeenCalled();
   expect(node.textContent).toContain('Sent. Thank you.');
 });
-it('blocks explicit recording off and turns recording on only through its inline switch', async () => {
-  localStorage.setItem('hf-lab-recording-off', '1');
+it.each(['unanswered', 'declined', 'off', 'privacy'])('sends in the same sheet when %s', async (choice) => {
   const lab = labStub();
-  lab.telemetryOn = false;
-  lab.setTelemetryOff.mockImplementation(() => {
-    localStorage.removeItem('hf-lab-recording-off');
-    lab.telemetryOn = true;
+  Object.assign(lab, {
+    personaRecordingRequired: choice !== 'privacy',
+    personaRecordingAllowed: false,
+    allowPersonaRecording: vi.fn(),
   });
+  if (choice === 'off') {
+    localStorage.setItem('hf-lab-recording-off', '1');
+    lab.telemetryOn = false;
+  }
+  if (choice === 'privacy') {
+    lab.telemetryOn = false;
+    lab.privacySignalOn = true;
+  }
   const { node, send } = await mount(lab);
-  expect(node.textContent).toContain('Recording is off, so nothing is sent.');
-  expect(send().disabled).toBe(true);
-  await act(() => node.querySelector<HTMLInputElement>('input[type=checkbox]')?.click());
   expect(send().disabled).toBe(false);
-  expect(lab.setTelemetryOff).toHaveBeenCalledWith(false);
-});
-it('requires per-send consent under browser privacy and sends the unlinked run', async () => {
-  const lab = labStub();
-  lab.telemetryOn = false;
-  lab.privacySignalOn = true;
-  const { node, send } = await mount(lab);
-  expect(send().disabled).toBe(true);
-  await act(() => node.querySelector<HTMLInputElement>('input[type=checkbox]')?.click());
   await act(async () => send().click());
-  expect(lab.sendFeedback).not.toHaveBeenCalled();
-  expect(lab.sendRun).toHaveBeenCalledWith(
-    { seed: 42, inputs: [], end: { year: 1 } },
-    { note: '', name: '' },
-  );
-  expect(node.textContent).toContain('Sent. Thank you.');
-});
-
-it('preserves note and name when the privacy send falls back to the dialog', async () => {
-  const lab = labStub();
-  lab.telemetryOn = false;
-  lab.privacySignalOn = true;
-  lab.sendRun.mockRejectedValueOnce(new Error('network'));
-  localStorage.setItem('hf-lab-feedback-name', 'Tester');
-  const { node, send } = await mount(lab);
-  await act(() => [...node.querySelectorAll('button')].find((b) => b.textContent === 'Not sure')?.click());
-  await act(() => node.querySelector<HTMLInputElement>('input[type=checkbox]')?.click());
-  await act(async () => send().click());
-  expect(lab.openSendDialog).toHaveBeenCalledWith(
-    expect.objectContaining({ note: 'Verdict: mixed', name: 'Tester' }),
-  );
+  expect(lab.sendFeedback).toHaveBeenCalledOnce();
+  expect(lab.openSendDialog).not.toHaveBeenCalled();
+  expect(lab.setTelemetryOff).not.toHaveBeenCalled();
+  expect(node.querySelectorAll('[role=dialog]')).toHaveLength(1);
 });

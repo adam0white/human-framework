@@ -3,7 +3,6 @@ import type { Lab } from '@adam0white/lab-client';
 import { setTelemetryOff, telemetryOn } from '@adam0white/lab-kit';
 import { useEffect, useRef, useState } from 'react';
 import { gameLabs } from '../../shared/lab.tsx';
-import { fetchBuild } from '../../shared/playtest.ts';
 import type { VoiceActions } from './useVoice.ts';
 import './feedback.css';
 
@@ -89,8 +88,7 @@ export function SendWord({
   lab?: Lab;
 }) {
   const recording = useRecording(lab);
-  const privacyOnly = !recording.off && lab.privacySignalOn && !lab.privacyOverride;
-  const [consent, setConsent] = useState(false);
+  const [personaLinked, setPersonaLinked] = useState(() => lab.personaRecordingAllowed);
   const [verdict, setVerdict] = useState('');
   const [note, setNote] = useState('');
   const [name, setName] = useState(() => stored(NAME_KEY));
@@ -123,39 +121,25 @@ export function SendWord({
       /* Device storage is optional. */
     }
   };
-  const disabled = recording.off || (privacyOnly ? !consent : !recording.on);
   const send = async () => {
-    if (disabled || pending.current) return;
+    if (pending.current) return;
     pending.current = true;
     setBusy(true);
     setStatus('');
     const message = [verdict ? `Verdict: ${verdict}` : '', note.trim()].filter(Boolean).join('\n\n');
     try {
-      if (privacyOnly) {
-        const [file, build] = await Promise.all([actions.getPlaytest(), fetchBuild()]);
-        const run = { ...file, build };
+      let run: unknown;
+      if (recording.on && !lab.personaRecordingAllowed) {
         try {
-          await lab.sendRun(run, { note: message, name: name.trim() });
+          run = await actions.getPlaytest();
         } catch {
-          lab.openSendDialog({
-            getRun: () => run,
-            note: message,
-            name: name.trim(),
-            onSent: () => {
-              rememberName();
-              setSent(true);
-              setStatus('Sent. Thank you.');
-            },
-          });
-          setStatus('Use the send dialog to finish sending.');
-          return;
+          /* The note can still be sent. */
         }
-      } else {
-        await lab.sendFeedback(message, { name: name.trim() });
       }
+      await lab.sendFeedback(message, { name: name.trim(), ...(run ? { run } : {}) });
       rememberName();
       setSent(true);
-      setStatus('Sent. Thank you.');
+      setStatus(lab.eventsOn ? 'Queued for upload. Thank you.' : 'Sent. Thank you.');
     } catch {
       setStatus('Your word could not be sent. Please try again.');
     } finally {
@@ -177,17 +161,19 @@ export function SendWord({
         <h2>Send word</h2>
       </div>
       <div className="v-feedback-sheet-body">
-        <p>Your run, saves and log reach us on their own. Tell us what they can’t show.</p>
-        {recording.off ? (
-          <div className="v-feedback-feedback-notice">
-            <p>Recording is off, so nothing is sent.</p>
-            <RecordingPreference lab={lab} privacy={false} />
-          </div>
-        ) : null}
-        {privacyOnly ? (
+        <p>Tell us what happened and what you wanted to do.</p>
+        {!recording.on ? <p>Only your note is sent. Recording stays off.</p> : null}
+        {lab.personaRecordingRequired ? (
           <label className="v-feedback-export-option">
-            <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} /> Send
-            this run with my note
+            <input
+              type="checkbox"
+              checked={personaLinked}
+              onChange={(e) => {
+                lab.allowPersonaRecording(e.target.checked);
+                setPersonaLinked(lab.personaRecordingAllowed);
+              }}
+            />
+            Link this continuing person to lab recording (optional)
           </label>
         ) : null}
         <fieldset className="v-feedback-verdicts" aria-label="Would you keep playing?">
@@ -228,7 +214,8 @@ export function SendWord({
             />
           </label>
           <p className="v-feedback-note">
-            A sent name labels your past and future play on this device. Leave it empty to stay pseudonymous.
+            A name is optional and remembered on this device. It labels linked play only when recording is
+            allowed.
           </p>
         </details>
         <details
@@ -244,9 +231,14 @@ export function SendWord({
         >
           <summary>What is sent</summary>
           <p>
-            Your note{privacyOnly ? ' and this run' : ', linked to this device’s play history'}
+            Your note{recording.on ? ' and this run' : ''}
             {name.trim() ? ', with your name' : ''}.
           </p>
+          {recording.on && !personaLinked ? (
+            <p>
+              This run includes continuing character state. It is not linked to your recorded play history.
+            </p>
+          ) : null}
           <pre className="v-feedback-feedback-preview">{preview}</pre>
           <a href={PRIVACY}>Lab privacy</a>
         </details>
@@ -263,7 +255,7 @@ export function SendWord({
         <button
           type="button"
           className="v-feedback-primary"
-          disabled={!sent && (disabled || busy)}
+          disabled={!sent && busy}
           onClick={sent ? onReturn : send}
         >
           {sent ? 'Back to the game' : busy ? 'Sending…' : 'Send'}
