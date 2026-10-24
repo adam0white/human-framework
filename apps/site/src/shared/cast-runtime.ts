@@ -212,23 +212,11 @@ async function validHeads(game: string, value: unknown): Promise<CastHeads> {
   return heads;
 }
 async function recording(s: State, generation: number) {
-  const envelopes = Object.values(s.histories);
-  if (!envelopes.length || s.dedicated) return;
-  const expected = envelopes.map((p) => p.revision).join('/');
-  const result = await shelf.request<{ sameEpoch: boolean; revisions: string[] }>({
-    action: 'recordingBatch',
-    envelopes,
-  });
-  if (
-    generation === s.generation &&
-    Object.values(s.histories)
-      .map((p) => p.revision)
-      .join('/') === expected &&
-    result.revisions.join('/') === expected
-  )
-    s.lab.allowPersonaRecording(result.sameEpoch);
+  // Kept for older host call sites. The recording switch covers every carried history.
+  if (generation === s.generation) s.lab.allowPersonaRecording(true);
   changed();
 }
+
 async function restoreOwnership(s: State, value: unknown, generation: number) {
   const heads = await validHeads(s.game, value);
   if (generation !== s.generation || !s.localLoad) return;
@@ -402,33 +390,14 @@ export function bindCastWorker(worker: Worker, game: string, lab: Lab): () => vo
     }
   };
   worker.addEventListener('message', receive);
-  const invalidate = () => {
-    s.generation++;
-    s.busy = false;
-    if (s.startupQueue) {
-      s.startupQueue = undefined;
-      s.blocked = true;
-      s.status = 'Recording identity changed during startup. Choose fresh local play or start again.';
-    }
-    if (s.gate || Object.keys(s.histories).length) {
-      s.gate = s.gate ?? `cast-history-${crypto.randomUUID()}`;
-      s.lab.setPersonaRecording(`cast-verifying-${crypto.randomUUID()}`);
-    }
-    changed();
-  };
-  const storage = (e: StorageEvent) => {
-    if (e.key === null || ['hf-lab-player', 'hf-lab-recording-off'].includes(e.key)) invalidate();
-  };
-  window.addEventListener('hf-lab-preference', invalidate);
-  window.addEventListener('storage', storage);
+  // Recording identity and preferences no longer gate fictional-person admission.
+  // Transport owns its recording reset; ownership and run replacement keep their own generation checks.
   document.addEventListener('visibilitychange', hidden);
   window.addEventListener('pagehide', automatic);
   void shelf.ready.then(changed);
   return () => {
     reset(s);
     worker.removeEventListener('message', receive);
-    window.removeEventListener('hf-lab-preference', invalidate);
-    window.removeEventListener('storage', storage);
     document.removeEventListener('visibilitychange', hidden);
     window.removeEventListener('pagehide', automatic);
     if (states.get(game) === s) states.delete(game);

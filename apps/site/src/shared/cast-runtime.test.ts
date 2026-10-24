@@ -212,6 +212,30 @@ async function checkpoint(worker: FakeWorker, id = 'hf.cast.riza.voice', game = 
   await promise;
 }
 describe('whole-cast browser continuity', () => {
+  it('does not cancel pending admission when recording identity acknowledges or changes', async () => {
+    const old = await head();
+    control.state = acceptPersona(control.state, old);
+    let release: () => void = () => {};
+    let entered = false;
+    const waiting = new Promise<void>((resolve) => {
+      release = resolve;
+    });
+    control.beforeCreate = async () => {
+      entered = true;
+      await waiting;
+    };
+    const worker = new FakeWorker();
+    close = bindCastWorker(worker as unknown as Worker, 'voice', lab as never);
+    control.autoPreflight = true;
+    postCastMessage(worker as unknown as Worker, 'voice', { type: 'init', seed: 1, gen: 1 });
+    await vi.waitFor(() => expect(entered).toBe(true));
+    window.dispatchEvent(new Event('hf-lab-preference'));
+    release();
+    await vi.waitFor(() => expect(castState('voice').busy).toBe(false));
+    expect(castState('voice').blocked).toBe(false);
+    expect(worker.requests('init')).toHaveLength(1);
+  });
+
   it('accepts the actual Watch night frame with no daytime summary', async () => {
     const { WatchRun } = await import('../watch/sim/run.ts');
     const { buildFrame } = await import('../watch/sim/view.ts');
@@ -380,7 +404,7 @@ describe('whole-cast browser continuity', () => {
         id: 'missing',
       });
       if (game === 'voice') {
-        control.allowed.clear(); // New identity/epoch has no inherited positive consent.
+        control.allowed.clear(); // Old per-person permission state cannot block the recording switch.
         window.dispatchEvent(new Event('hf-lab-preference'));
       }
       worker.reply(
@@ -394,7 +418,7 @@ describe('whole-cast browser continuity', () => {
       worker.reply({ type: 'exported', gen: 2, file });
       expect(file.castOwnership).toEqual({ [id]: old });
       expect(control.batches).toBe(0);
-      expect(lab.allowPersonaRecording).not.toHaveBeenLastCalledWith(true);
+      expect(lab.allowPersonaRecording).toHaveBeenLastCalledWith(true);
     },
   );
   it('queues begin behind actual prepared init and exports a replayable current chapter', async () => {
@@ -533,11 +557,11 @@ describe('whole-cast browser continuity', () => {
     await vi.waitFor(() => expect(worker.requests('loadPlaytest')).toHaveLength(1));
     expect(control.puts).toHaveLength(1);
   });
-  it('discards queued old-run controls on replacement, failed CAS and identity cancellation', async () => {
+  it('discards queued old-run controls on replacement and failed CAS', async () => {
     control.state = acceptPersona(control.state, await head());
     const worker = new FakeWorker();
     close = bindCastWorker(worker as unknown as Worker, 'voice', lab as never);
-    for (const cancellation of ['load', 'identity', 'conflict'] as const) {
+    for (const cancellation of ['load', 'conflict'] as const) {
       control.beforeBatch = undefined;
       const preflightCount = worker.requests('castPreflight').length;
       postCastMessage(worker as unknown as Worker, 'voice', { type: 'init', seed: 1, gen: 1 });
@@ -547,7 +571,6 @@ describe('whole-cast browser continuity', () => {
       const beforeWrites = control.puts.length;
       if (cancellation === 'load')
         postCastMessage(worker as unknown as Worker, 'voice', { type: 'loadPlaytest', gen: 2, text: '{}' });
-      if (cancellation === 'identity') window.dispatchEvent(new Event('hf-lab-preference'));
       if (cancellation === 'conflict')
         control.beforeBatch = async () => {
           const old = control.state.revisions.at(-1)!;
@@ -567,7 +590,7 @@ describe('whole-cast browser continuity', () => {
       if (cancellation !== 'conflict') expect(control.puts).toHaveLength(beforeWrites);
     }
   });
-  it('starts two histories together but mixed recording epochs keep the derived run gated', async () => {
+  it('starts two histories together without a separate recording-epoch gate', async () => {
     const people = await Promise.all([head(), head('hf.cast.osman.voice')]);
     control.state = acceptPersonaBatch(control.state, people);
     control.allowed.add(`${people[0]!.castId}/${people[0]!.branchId}`);
@@ -578,7 +601,7 @@ describe('whole-cast browser continuity', () => {
       2,
     );
     expect(control.puts).toHaveLength(2);
-    expect(lab.allowPersonaRecording).toHaveBeenLastCalledWith(false);
+    expect(lab.allowPersonaRecording).toHaveBeenLastCalledWith(true);
     expect(control.key).toMatch(/^cast-group-/);
   });
   it('a stale second parent mutates neither head and exposes working fresh-local startup recovery', async () => {
@@ -767,7 +790,7 @@ describe('whole-cast browser continuity', () => {
     await vi.waitFor(() => expect(worker.requests('castCheckpoint')).toHaveLength(10));
     expect(control.puts).toHaveLength(0);
   });
-  it('file replacement and identity invalidation both clear pending startup controls', async () => {
+  it('file replacement clears pending startup controls while recording preferences do not', async () => {
     const worker = new FakeWorker();
     close = bindCastWorker(worker as unknown as Worker, 'well', lab as never);
     postCastMessage(worker as unknown as Worker, 'well', { type: 'init', seed: 1, gen: 1 });
@@ -776,6 +799,6 @@ describe('whole-cast browser continuity', () => {
     expect(castState('well').busy).toBe(false);
     postCastMessage(worker as unknown as Worker, 'well', { type: 'init', seed: 1, gen: 3 });
     window.dispatchEvent(new Event('hf-lab-preference'));
-    expect(castState('well').busy).toBe(false);
+    expect(castState('well').busy).toBe(true);
   });
 });
