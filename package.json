@@ -44,6 +44,7 @@
     "lab:wai-install": "node scripts/install-wai-daily.ts"
   },
   "devDependencies": {
+    "@babel/parser": "8.0.8",
     "@biomejs/biome": "2.5.15",
     "@types/node": "26.6.5",
     "typescript": "7.0.2",

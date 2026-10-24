@@ -49,7 +49,7 @@
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-text);
-  font-size: 15px;
+  font-size: clamp(1rem, 0.9rem + 0.3vw, 1.15rem);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -3972,4 +3972,20 @@ button.v-log-btn {
   max-width: 100%;
   min-width: 0;
   margin-top: 8px;
+}
+
+/* Tablet reading uses a real text minimum, including components with smaller rem styles. */
+@media (min-width: 768px) {
+  .v-scene-day p,
+  .v-mind-due,
+  .v-mind-state,
+  .v-state-line,
+  .v-need-row,
+  .v-pane p,
+  .v-info-popover,
+  .v-page p,
+  .v-menu-panel,
+  .v-context-body {
+    font-size: max(1rem, 16px);
+  }
 }

@@ -1,8 +1,14 @@
+export { claimLabNotice } from './notice.ts';
+
 /** Default-on linked lab telemetry. Games own their replay exports; this client owns consent and delivery.
  * Pseudonymous identity is shared by the lab identity frame, with an origin-scoped fallback if blocked.
  * Off deletes the local id, clears pending pieces and aborts active uploads. Browser privacy signals
  * suppress automatic linked data unless the player explicitly overrides them for this game.
  */
+
+import { acceptGameNavigation } from './navigation.ts';
+
+export { acceptGameNavigation, gameNavigation } from './navigation.ts';
 
 import { openSendDialog, type SendDialogOptions } from './dialog.ts';
 import {
@@ -156,6 +162,7 @@ const setItem = (s: Storage | undefined, k: string, v: string | null) => {
 };
 
 export function createLab(options: LabOptions): Lab {
+  acceptGameNavigation();
   const game = options.game;
   const endpoint = (options.endpoint ?? DEFAULT_ENDPOINT).replace(/\/$/, '');
   const g = globalThis as unknown as Env & Window;

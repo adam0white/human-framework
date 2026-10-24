@@ -117,19 +117,19 @@ export function Feedback({
           : 'Note and verdict queued. An available run may also be included. Delivery may retry.',
       );
     } catch {
-      setStatus('Your word could not be sent. Please try again.');
+      setStatus('Your feedback could not be sent. Please try again.');
     } finally {
       pending.current = false;
       setBusy(false);
     }
   };
   return (
-    <div ref={screen} className="colony-feedback" role="dialog" aria-modal="true" aria-label="Send word">
+    <div ref={screen} className="colony-feedback" role="dialog" aria-modal="true" aria-label="Feedback">
       <div className="colony-menu-head">
         <button type="button" className="colony-secondary" onClick={onBack}>
           ← Back
         </button>
-        <h2>Send word</h2>
+        <h2>Feedback</h2>
       </div>
       <div className="colony-sheet-body">
         <p>
@@ -167,7 +167,7 @@ export function Feedback({
         </fieldset>
         <textarea
           className="colony-feedback-note"
-          aria-label="Your word"
+          aria-label="Your feedback"
           rows={4}
           placeholder="What happened at the well, what you wanted, what got in the way."
           value={note}

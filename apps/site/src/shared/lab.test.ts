@@ -69,8 +69,8 @@ it('keeps lab actions inside Game menu and synchronizes the event preference', a
   expect(container.textContent).not.toContain('Send this run');
   await act(() => toggle?.click());
   const menu = container.querySelector('.pt-menu-list');
-  expect(menu?.textContent).toContain('Download this run');
-  expect(menu?.textContent).toContain('Send this run to the notebook');
+  expect(menu?.textContent).not.toContain('Download this run');
+  expect(menu?.textContent).toContain('Feedback');
   expect(menu?.querySelector('a[href="/games/"]')?.textContent).toBe('All games');
   expect(container.querySelector('details, .lab-controls')).toBeNull();
   const checkbox = menu?.querySelector<HTMLInputElement>('input[type="checkbox"]');
@@ -82,7 +82,7 @@ it('keeps lab actions inside Game menu and synchronizes the event preference', a
   await act(() => window.dispatchEvent(new Event('focus')));
   expect(checkbox?.checked).toBe(true);
   const sendButton = Array.from(menu?.querySelectorAll('button') ?? []).find(
-    (b) => b.textContent === 'Send this run to the notebook',
+    (b) => b.textContent === 'Feedback',
   );
   await act(() => sendButton?.click());
   expect(send).toHaveBeenCalledOnce();
@@ -121,9 +121,7 @@ it('keeps the send dialog opener mounted while pointer and Escape events belong 
     }),
   );
   await act(() => container.querySelector('button')?.click());
-  const opener = Array.from(container.querySelectorAll('button')).find(
-    (b) => b.textContent === 'Send this run to the notebook',
-  );
+  const opener = Array.from(container.querySelectorAll('button')).find((b) => b.textContent === 'Feedback');
   const veil = document.createElement('div');
   veil.className = 'hflab-veil';
   const note = document.createElement('textarea');

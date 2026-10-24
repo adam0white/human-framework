@@ -68,7 +68,7 @@ export function LabMenuContent({ lab, onSend }: { lab: Lab; onSend: () => void |
           }
         }}
       >
-        Send this run to the notebook
+        Feedback
       </button>
       {sendError && <p role="alert">{sendError}</p>}
       <label className="pt-menu-option">
@@ -80,7 +80,7 @@ export function LabMenuContent({ lab, onSend }: { lab: Lab; onSend: () => void |
             setEventsOn(telemetryOn(lab));
           }}
         />{' '}
-        Record play for the lab
+        Recording
       </label>
       <a href="https://human.adamwhite.work/lab/privacy/">Privacy</a>
     </>

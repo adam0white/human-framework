@@ -49,10 +49,8 @@ it('puts the silent comparison second and keeps report actions outside its scrol
   const actions = el.querySelector('.v-page-actions');
   expect(actions?.closest('.v-page-body')).toBeNull();
   expect([...(actions?.querySelectorAll('button') ?? [])].map((button) => button.textContent)).toEqual([
-    'Send word',
-    'Download this run',
-    'The same town again',
-    'A new town',
+    'Feedback',
+    'New game',
     'Keep listening',
   ]);
   flushSync(() => actions?.querySelector<HTMLButtonElement>('button')?.click());

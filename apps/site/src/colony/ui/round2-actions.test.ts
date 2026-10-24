@@ -96,6 +96,7 @@ afterEach(async () => {
   await act(() => root.unmount());
   container.remove();
   vi.unstubAllGlobals();
+  history.replaceState(null, '', '/');
 });
 async function click(text: string) {
   const b = [...container.querySelectorAll('button')].find((b) => b.textContent === text);
@@ -111,18 +112,18 @@ async function begin() {
 it('starts on the shelf with one primary, default village and folded import', async () => {
   await act(() => root.render(createElement(App)));
   expect(container.querySelectorAll('.well-primary')).toHaveLength(1);
-  expect(container.querySelector('input:checked')?.getAttribute('type')).toBe('radio');
+  expect(container.querySelector('input[type=radio]')).toBeNull();
   expect(container.querySelector('input[type=file]')).toBeNull();
-  await click('Other ways in ›');
-  expect(container.querySelector('input[type=file]')).not.toBeNull();
+  expect(container.textContent).not.toContain('Lab tools');
 });
 it('copies the current run directly from the game menu without opening feedback', async () => {
+  history.replaceState(null, '', '/?lab=1');
   await begin();
   const menu = container.querySelector<HTMLButtonElement>('button[aria-label="Game menu"]');
   await act(() => menu?.click());
   await click('Keep a copy of this run');
   expect(colony.actions.exportPlaytest).toHaveBeenCalledOnce();
-  expect(container.querySelector('[aria-label="Send word"]')).toBeNull();
+  expect(container.querySelector('[aria-label="Feedback"]')).toBeNull();
 });
 it('sends a safe tile once with the how settings and keeps that person selected', async () => {
   await begin();

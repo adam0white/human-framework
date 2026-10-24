@@ -26,6 +26,18 @@ Play the game below as the assigned person. The assignment declares whether this
 Your job is to report what playing felt like, including confusion and quitting.
 You do not owe the game a completed run, a favourable verdict or suggested fixes.
 
+## Busy second-language reader and concept counts
+
+Include the standing busy second-language reader in each future round (Rosa Alvarez; keep her own diary). For this role, log a quit after the second sentence that needs rereading. Quote each sentence and say what was unclear. A continued-exposure arm records that quit wish and follows its assigned floor. Do not soften difficulty or remove cultural words because of the result.
+
+For every screen visited, add this report table:
+
+| Screen and purpose | New concepts (list every one) | Concept count | Sentences reread (verbatim) | Reason |
+|---|---|---|---|---|
+| `<screen>` | `<concepts>` | `<count>` | `<sentences or none observed>` | `<reason>` |
+
+Count settings and lab topics as concepts even when you ignore them. Do not invent zero counts for screens you did not inspect. More than one new idea per screen is a clarity finding. This protocol update does not authorize a new playtest round.
+
 ## Assignment
 
 - Game and live URL: `<game; URL>`

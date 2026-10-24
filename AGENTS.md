@@ -19,6 +19,12 @@
 - **Phones:** research real device viewports instead of assuming 360×740 (reference from the 2026-10-04 mobile review: Galaxy S26 360×780 CSS px at DPR 3, about 690 px visible in Chrome, an estimate; S26 Ultra 412×891); use mobile web practice where it helps (fullscreen, input capture, safe areas, wake lock), without turning the work into an action-game UI project.
 - The v0 layered-candidate codebase is archived under `archive/v0/` (tag `v0.16-final`). It is provenance, not a work queue, and it is not maintained or built.
 
+## Simplify increment (owner, 2026-10-24)
+
+Follow [plain English](docs/lab/plain-english.md) and the [verbatim owner direction](docs/owner-directions-2026-10-18.md). Simplify Voice first, then the shared platform and other games. Keep culture and Turkish words/names pending discussion. Friends’ playtests and Show HN are paused until owner readiness acceptance. Commonstead branch protection is dropped.
+
+Done means all requested source changes, the independent Codex review, exact green CI, signed commits and fresh-worktree deployment, live Chromium and WebKit checks at all four requested sizes, shared artifact adoption instructions, measured reading flags and Turkish inventory are recorded. The owner accepts games readiness. No new playtest rounds. Keep F-491, deterministic replay and HF legacy continuation intact. Do not alter engine rules for copy.
+
 ## Engineering rules
 
 - Stack: TypeScript 7.0.2 (strict, `noUncheckedIndexedAccess`), Vite 8.3.4, Vitest 5.0.5, Biome 2.5.15, React 19.3.1 for UI shells, and Canvas 2D for maps. npm workspaces: `packages/human` (framework) and `apps/site` (games and site). Use Node ≥24 with `/opt/homebrew/bin` first on PATH.

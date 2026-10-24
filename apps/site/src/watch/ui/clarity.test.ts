@@ -69,12 +69,12 @@ it('keeps restart and export out of the menu and puts Resume last', () => {
   expect(menu.textContent).not.toContain('Begin a new village');
   expect(menu.textContent).not.toContain('Copy the playtest');
   const buttons = menu.querySelectorAll('button');
-  expect(buttons[buttons.length - 1]?.textContent?.trim()).toBe('Resume the watch');
-  expect(menu.textContent).toContain('Send word');
-  expect(menu.querySelector('select')?.textContent).toContain('Samira');
-  expect(menu.textContent).toContain('Save this person for another chapter');
-  expect(menu.textContent).toContain('Save this played person as an explicit fresh branch');
-  expect(menu.textContent).toContain('Use fresh local play');
+  expect(buttons[buttons.length - 1]?.textContent?.trim()).toBe('Resume');
+  expect(menu.textContent).toContain('Feedback');
+  expect(menu.querySelector('select')).toBeNull();
+  expect(menu.textContent).not.toContain('Save this person for another chapter');
+  expect(menu.textContent).not.toContain('Save this played person as an explicit fresh branch');
+  expect(menu.textContent).not.toContain('Use fresh local play');
 });
 it('holds the clock for the single top-bar info and menu without simulation inputs', async () => {
   const { useWatch } = await import('./useWatch.ts');

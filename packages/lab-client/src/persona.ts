@@ -1,5 +1,5 @@
 /** Browser-only fictional-person continuity. No recording identifiers belong in this store. */
-import { IDENTITY_ORIGIN, readLocal, writeLocal } from './identity.ts';
+import { IDENTITY_ORIGIN, writeLocal } from './identity.ts';
 import { randomId } from './linked.ts';
 
 export const PERSONA_LIMITS = {
@@ -254,7 +254,7 @@ export function personaChannel(): {
   setEnabled(value: boolean): void;
   request<T>(request: PersonaRequest): Promise<T>;
 } {
-  let enabled = readLocal(PERSONA_CONSENT_KEY) === '1';
+  let enabled = true;
   let frame: HTMLIFrameElement | undefined;
   let loaded: Promise<void> | undefined;
   async function exchange<T>(message: Record<string, unknown>, replyType: string): Promise<T> {
@@ -285,25 +285,33 @@ export function personaChannel(): {
     await loaded;
     const id = randomId();
     return new Promise<T>((resolve, reject) => {
-      const timer = setTimeout(() => {
+      // WebKit can report a different WindowProxy for an asynchronous same-origin
+      // reply. A transferred port binds that reply to this exact checked request.
+      const channel = typeof MessageChannel === 'undefined' ? undefined : new MessageChannel();
+      const cleanup = () => {
+        clearTimeout(timer);
         window.removeEventListener('message', receive);
+        channel?.port1.close();
+      };
+      const accept = (data: Record<string, unknown>) => {
+        if (data?.type !== replyType || data.id !== id) return;
+        cleanup();
+        if (data.error) reject(new Error(String(data.error).slice(0, 200)));
+        else resolve(data.value as T);
+      };
+      const timer = setTimeout(() => {
+        cleanup();
         reject(new Error('Shelf unavailable. Use a local file.'));
       }, 3000);
       const receive = (event: MessageEvent) => {
-        if (
-          event.origin !== IDENTITY_ORIGIN ||
-          event.source !== frame?.contentWindow ||
-          event.data?.type !== replyType ||
-          event.data.id !== id
-        )
-          return;
-        clearTimeout(timer);
-        window.removeEventListener('message', receive);
-        if (event.data.error) reject(new Error(String(event.data.error).slice(0, 200)));
-        else resolve(event.data.value as T);
+        if (event.origin !== IDENTITY_ORIGIN || event.source !== frame?.contentWindow) return;
+        accept(event.data);
       };
       window.addEventListener('message', receive);
-      frame?.contentWindow?.postMessage({ ...message, id }, IDENTITY_ORIGIN);
+      if (channel) channel.port1.onmessage = (event) => accept(event.data);
+      const messageWithId = { ...message, id };
+      if (channel) frame?.contentWindow?.postMessage(messageWithId, IDENTITY_ORIGIN, [channel.port2]);
+      else frame?.contentWindow?.postMessage(messageWithId, IDENTITY_ORIGIN);
     });
   }
   const remember = (value: unknown): boolean => {
@@ -313,7 +321,10 @@ export function personaChannel(): {
     return value;
   };
   // A failed bridge retains local/file play but cannot establish shared consent.
-  let pending = exchange<unknown>({ type: 'hf-persona-consent', action: 'get' }, 'hf-persona-consent-reply')
+  let pending = exchange<unknown>(
+    { type: 'hf-persona-consent', action: 'set', enabled: true },
+    'hf-persona-consent-reply',
+  )
     .then(remember)
     .catch(() => enabled);
   return {

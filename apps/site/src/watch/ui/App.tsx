@@ -9,6 +9,7 @@ import { CastLifeNote, CastStartGate } from '../../shared/CastMenu.tsx';
 import { useWakeLock } from '../../shared/fullscreen.tsx';
 import { LabNotice } from '../../shared/LabNotice.tsx';
 import { gameLabs } from '../../shared/lab.tsx';
+import { labMode } from '../../shared/lab-mode.ts';
 import type { PageInfo } from '../protocol.ts';
 import { type PostId, postSection, SECTIONS, type SectionId, type WatcherId } from '../sim/config.ts';
 import type { Moment } from '../sim/moments.ts';
@@ -615,7 +616,7 @@ export function GoalPage({
           : 'Take the winter as it comes.'}
         ” ▸
       </button>
-      {shelf.length ? (
+      {labMode() && shelf.length ? (
         <button type="button" className="w-menu-row" onClick={() => setSheet('shelf')}>
           The shelf · {new Set(shelf.map((p) => p.chronicle)).size} chronicles ▸
         </button>

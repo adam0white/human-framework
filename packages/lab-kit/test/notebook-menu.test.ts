@@ -1,8 +1,9 @@
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { downloadJson, notebookMenu } from '../src/notebook-menu.ts';
 
 const peer = vi.hoisted(() => ({ version: '0.1.2' }));
 vi.mock('@adam0white/lab-client/package.json', () => ({ default: peer }));
+beforeEach(() => history.replaceState(null, '', '/?lab=1'));
 afterEach(() => {
   document.querySelectorAll('dialog').forEach((d) => {
     d.close();
@@ -54,7 +55,7 @@ describe('Notebook', () => {
       compactNote: 'Seed and inputs replay everything.',
       filename: 'run.json',
     });
-    button(sheet, 'Send this run to the notebook').click();
+    button(sheet, 'Feedback').click();
     await vi.waitFor(() =>
       expect(openSendDialog).toHaveBeenCalledWith({
         getRun,
@@ -74,7 +75,7 @@ describe('Notebook', () => {
       compactNote: 'Compact.',
       filename: 'run.json',
     });
-    button(sheet, 'Send this run to the notebook').click();
+    button(sheet, 'Feedback').click();
     await vi.waitFor(() => expect(openSendDialog).toHaveBeenCalledWith({ getRun }));
   });
   it('works without a lab, exposes privacy, and reports save failure', async () => {
@@ -119,7 +120,7 @@ it('keeps a send startup failure visible with download still available', async (
     getRun: () => ({}),
     filename: 'run.json',
   });
-  button(sheet, 'Send this run to the notebook').click();
+  button(sheet, 'Feedback').click();
   await vi.waitFor(() =>
     expect(sheet.querySelector('[role=status]')?.textContent).toContain('Sending could not open'),
   );
@@ -136,8 +137,15 @@ it('does not open Send late if the player closes Notebook during peer detection'
     filename: 'run.json',
     compact: (run) => run,
   });
-  button(sheet, 'Send this run to the notebook').click();
+  button(sheet, 'Feedback').click();
   sheet.close();
   await new Promise((resolve) => setTimeout(resolve, 20));
   expect(openSendDialog).not.toHaveBeenCalled();
+});
+
+it('keeps saves and exports out of the ordinary notebook menu', () => {
+  history.replaceState(null, '', '/?lab=0');
+  const sheet = open({ getRun: () => ({ seed: 1 }), filename: 'run.json', onSave: vi.fn() });
+  expect(sheet.textContent).not.toMatch(/Download this run|Save/);
+  expect(button(sheet, 'Resume')).toBeDefined();
 });

@@ -6,6 +6,7 @@ import {
   readLocal,
   writeLocal,
 } from '../../../../packages/lab-client/src/identity.ts';
+import { claimLocalNotice } from '../../../../packages/lab-client/src/notice.ts';
 
 const parents = new Map<Window, string>();
 const allowed = (origin: string) => /^https:\/\/([a-z0-9-]+\.)*adamwhite\.work$/.test(origin);
@@ -58,6 +59,14 @@ import {
 } from '../../../../packages/lab-client/src/persona.ts';
 import { shelfRequest } from './persona-store.ts';
 
+function replyPersona(event: MessageEvent, data: unknown): void {
+  const port = event.ports?.[0];
+  if (port) {
+    port.postMessage(data);
+    port.close();
+  } else window.parent.postMessage(data, event.origin);
+}
+
 window.addEventListener('message', (event: MessageEvent) => {
   if (
     window.parent === window ||
@@ -66,20 +75,21 @@ window.addEventListener('message', (event: MessageEvent) => {
     return;
   const { id, action, enabled } = event.data;
   if (action === 'set') writeLocal(PERSONA_CONSENT_KEY, enabled ? '1' : '0');
-  window.parent.postMessage(
-    { type: 'hf-persona-consent-reply', id, value: readLocal(PERSONA_CONSENT_KEY) === '1' },
-    event.origin,
-  );
+  replyPersona(event, {
+    type: 'hf-persona-consent-reply',
+    id,
+    value: readLocal(PERSONA_CONSENT_KEY) === '1',
+  });
 });
 window.addEventListener('message', (event: MessageEvent) => {
   if (window.parent === window || !isPersonaMessage(event.origin, event.source, window.parent, event.data))
     return;
-  const parent = window.parent;
   if (readLocal(PERSONA_CONSENT_KEY) !== '1') {
-    parent.postMessage(
-      { type: 'hf-persona-reply', id: event.data.id, error: 'Enable fictional person continuity first.' },
-      event.origin,
-    );
+    replyPersona(event, {
+      type: 'hf-persona-reply',
+      id: event.data.id,
+      error: 'Enable fictional person continuity first.',
+    });
     return;
   }
   const {
@@ -109,15 +119,29 @@ window.addEventListener('message', (event: MessageEvent) => {
     allowRecording: typeof allowRecording === 'boolean' ? allowRecording : undefined,
     recordingEpoch: typeof recordingEpoch === 'string' ? recordingEpoch : undefined,
   }).then(
-    (value) => parent.postMessage({ type: 'hf-persona-reply', id, value }, event.origin),
+    (value) => replyPersona(event, { type: 'hf-persona-reply', id, value }),
     (error: unknown) =>
-      parent.postMessage(
-        {
-          type: 'hf-persona-reply',
-          id,
-          error: error instanceof Error ? error.message : 'Shelf unavailable.',
-        },
-        event.origin,
-      ),
+      replyPersona(event, {
+        type: 'hf-persona-reply',
+        id,
+        error: error instanceof Error ? error.message : 'Shelf unavailable.',
+      }),
+  );
+});
+
+// Claim synchronously in this single central browsing context before answering.
+window.addEventListener('message', (event: MessageEvent) => {
+  if (
+    !allowed(event.origin) ||
+    event.source !== window.parent ||
+    window.parent === window ||
+    event.data?.type !== 'hf-lab-notice-claim' ||
+    typeof event.data.id !== 'string' ||
+    !/^[a-f0-9]{32}$/.test(event.data.id)
+  )
+    return;
+  window.parent.postMessage(
+    { type: 'hf-lab-notice-reply', id: event.data.id, show: claimLocalNotice() },
+    event.origin,
   );
 });

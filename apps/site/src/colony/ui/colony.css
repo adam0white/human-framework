@@ -5411,3 +5411,15 @@ kbd {
     line-height: 1.1;
   }
 }
+
+/* Tablet reading uses a real text minimum, including components with smaller rem styles. */
+@media (min-width: 768px) {
+  .well-reading p,
+  .well-shelf-body p,
+  .well-menu-body,
+  .well-note,
+  .well-state,
+  .well-inspector p {
+    font-size: max(1rem, 16px);
+  }
+}

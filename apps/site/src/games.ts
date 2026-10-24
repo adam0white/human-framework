@@ -40,7 +40,7 @@ export const GAMES: Game[] = [
     status: 'active',
     name: 'The Two Voices',
     href: 'https://murmur.adamwhite.work',
-    line: 'One ordinary week as the voice in Dilan’s head, against the other one. Every evening she looks back.',
+    line: 'Spend a week as one of two voices in Dilan’s head. Each evening, she reflects on her choices.',
     faculties: ['Inner life', 'Will', 'Forecast'],
   },
   {
@@ -49,7 +49,7 @@ export const GAMES: Game[] = [
     status: 'active',
     name: 'The Stairwell',
     href: 'https://stairwell.adamwhite.work',
-    line: 'A week as the new kapıcı of a seven-flat block in Istanbul: bread, bins, stairs, and everything the residents tell you, which you may pass on.',
+    line: 'Work as the new kapıcı in a seven-flat Istanbul building. Deliver bread, empty bins and decide what to share about the residents.',
     faculties: ['Memory and belief', 'Relationships', 'Conscience'],
   },
   {

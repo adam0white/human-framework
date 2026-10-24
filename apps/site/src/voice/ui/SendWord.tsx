@@ -66,7 +66,7 @@ export function RecordingPreference({
           checked={!recording.off && recording.on}
           onChange={(e) => recording.change(e.target.checked)}
         />{' '}
-        Record play for the lab
+        Recording
       </label>
       {privacy ? (
         <a className="v-feedback-export-option" href={PRIVACY}>
@@ -140,7 +140,7 @@ export function SendWord({
           : 'Note and verdict queued. An available run may also be included. Delivery may retry.',
       );
     } catch {
-      setStatus('Your word could not be sent. Please try again.');
+      setStatus('Your feedback could not be sent. Please try again.');
     } finally {
       pending.current = false;
       setBusy(false);
@@ -151,13 +151,13 @@ export function SendWord({
       ref={screen}
       className="v-feedback-overlay v-feedback-sub-sheet v-feedback-feedback"
       role="dialog"
-      aria-label="Send word"
+      aria-label="Feedback"
     >
       <div className="v-feedback-menu-head">
         <button type="button" className="v-feedback-secondary" onClick={onBack}>
           ← Back
         </button>
-        <h2>Send word</h2>
+        <h2>Feedback</h2>
       </div>
       <div className="v-feedback-sheet-body">
         <p>Tell us what happened and what you wanted to do.</p>
@@ -191,9 +191,9 @@ export function SendWord({
         </fieldset>
         <textarea
           className="v-feedback-feedback-note"
-          aria-label="Your word"
+          aria-label="Your feedback"
           rows={4}
-          placeholder="What happened with Halil, what you wanted, what got in the way."
+          placeholder="Tell us what happened with Halil and what you wanted to do."
           value={note}
           onChange={(e) => setNote(e.target.value)}
         />

@@ -60,7 +60,7 @@ it('keeps trust and ends in words across player panels', () => {
 it.each([
   [0.52, 'more closely'],
   [0.48, 'less closely'],
-  [0.5, 'much as this morning'],
+  [0.5, 'about as closely as he did this morning'],
 ])('states the trust change to %s in words', (to, word) => {
   const html = renderToStaticMarkup(
     createElement(Between, {

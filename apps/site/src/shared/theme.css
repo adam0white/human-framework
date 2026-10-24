@@ -154,3 +154,8 @@ button {
   clip-path: inset(50%);
   white-space: nowrap;
 }
+
+/* Width-based type scales through tablets without device detection. */
+html {
+  font-size: clamp(16px, 12px + 0.75vw, 19px);
+}

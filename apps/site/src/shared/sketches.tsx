@@ -40,11 +40,62 @@ const SKETCHES: Record<string, ReactNode> = {
     </Sketch>
   ),
   rope: (
-    <Sketch label="A climber on a rope down a rock face">
-      <path d="M6 70c8-14 10-30 22-40s18-22 30-28M58 2c10 10 18 24 22 40s14 22 30 28" />
-      <path className="accent" d="M60 4c0 14 2 28 0 40" />
-      <circle cx="60" cy="48" r="3" />
-      <path d="M60 51.5v9M56 55h8M60 60.5l-3 6M60 60.5l3 6" />
+    <Sketch label="A coiled climbing rope beside a rock face and belay anchor">
+      <path d="M82 4l-9 15 6 12-13 16 6 21M83 6l27 62M79 31l13 4M72 47l24 6" />
+      <ellipse cx="37" cy="52" rx="24" ry="12" />
+      <ellipse cx="37" cy="52" rx="18" ry="8" />
+      <ellipse cx="37" cy="52" rx="11" ry="4" />
+      <path className="accent" d="M13 52c0 19 48 19 48 0M60 52l6-29 10-4M70 17l8 4-3 7-8-4z" />
+    </Sketch>
+  ),
+  pass: (
+    <Sketch label="Three cooking pans on a kitchen counter">
+      <path d="M8 55h104M15 34h22v15H15zM48 29h22v20H48zM81 34h22v15H81zM20 25v-8M57 20v-8M90 25v-8" />
+      <path className="accent" d="M10 56h100M22 40h10M55 36h10M88 40h10" />
+    </Sketch>
+  ),
+  glance: (
+    <Sketch label="A water gauge beside a dam">
+      <path d="M8 54h104M66 12l22 42H44zM12 20h24v34H12zM18 27h8M18 35h8M18 43h8" />
+      <path className="accent" d="M3 61q12-8 24 0t24 0t24 0t24 0" />
+    </Sketch>
+  ),
+  stairwell: (
+    <Sketch label="Stairs and doors inside an apartment building">
+      <path d="M12 63h20V50h20V37h20V24h20V11h16M15 36V15h15v21M49 23V4h15v19M84 64V43h15v21" />
+      <path className="accent" d="M11 68l96-61" />
+    </Sketch>
+  ),
+  hearsay: (
+    <Sketch label="Two people exchanging a message">
+      <circle cx="25" cy="35" r="6" />
+      <circle cx="94" cy="35" r="6" />
+      <path d="M14 62V49q11-13 22 0v13M83 62V49q11-13 22 0v13" />
+      <path className="accent" d="M42 10h35v19H59l-10 9v-9h-7zM49 17h21" />
+    </Sketch>
+  ),
+  goodhands: (
+    <Sketch label="Hands holding a bowl">
+      <path d="M36 30h48q-3 22-24 22T36 30zM8 48l25 13h54l25-13M15 42l20 12h50l20-12" />
+      <path className="accent" d="M48 24c-7-7 7-9 0-16M66 24c-7-7 7-9 0-16" />
+    </Sketch>
+  ),
+  valley: (
+    <Sketch label="A river between hills">
+      <path d="M3 41L27 9l26 32M61 40L85 8l31 33M4 65h30M85 65h31" />
+      <path className="accent" d="M63 32c-29 12 23 21-7 35" />
+    </Sketch>
+  ),
+  warren: (
+    <Sketch label="Connected underground rooms">
+      <path d="M5 15h110M15 15v22h22v26h27V36h31v27h15M20 63h17M64 63h31" />
+      <path className="accent" d="M14 37h23M64 37h31" />
+    </Sketch>
+  ),
+  commonstead: (
+    <Sketch label="A farmhouse beside shared fields">
+      <path d="M10 34l19-18 19 18v25H10zM23 59V44h12v15M59 20h48M59 31h48M59 42h48M59 53h48M59 64h48" />
+      <path className="accent" d="M82 15v52" />
     </Sketch>
   ),
   neighbours: (

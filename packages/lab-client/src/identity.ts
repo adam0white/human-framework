@@ -1,4 +1,4 @@
-/** Cross-game identity uses only first-party localStorage and checked postMessage, never cookies or URL IDs. */
+/** Cross-game iframe storage may be partitioned. Top-level navigation supplies a future-recording identity when available. */
 import { randomId } from './linked.ts';
 export const PLAYER_KEY = 'hf-lab-player';
 export const OFF_KEY = 'hf-lab-recording-off';
@@ -59,6 +59,7 @@ export function identityBridge(change: (player: string | null, off: boolean) => 
     );
   const setOff = (off: boolean) => {
     desired = off ? 'off' : 'on';
+    writeLocal('hf-lab-top-level-player', null);
     writeLocal(OFF_KEY, off ? '1' : null);
     if (off) writeLocal(PLAYER_KEY, null);
     begin();
@@ -114,7 +115,13 @@ export function identityBridge(change: (player: string | null, off: boolean) => 
           // must never undo the latest explicit local choice.
           if ((desired === 'off' && !off) || (desired === 'on' && off)) return;
         }
-        change(player as string | null, off);
+        const topLevel = readLocal('hf-lab-top-level-player');
+        // A partitioned iframe must not replace an accepted top-level navigation identity.
+        if (desired === 'get' && topLevel && !off) change(topLevel, false);
+        else {
+          if (off) writeLocal('hf-lab-top-level-player', null);
+          change(player as string | null, off);
+        }
         finish();
       };
       window.addEventListener('message', receive);

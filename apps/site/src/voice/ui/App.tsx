@@ -31,7 +31,7 @@ type Tab = 'halil' | 'ends' | 'today';
 const TABS: { id: Tab; label: string }[] = [
   { id: 'today', label: 'Today' },
   { id: 'halil', label: 'Halil' },
-  { id: 'ends', label: 'His ends' },
+  { id: 'ends', label: 'His goals' },
 ];
 
 export function App() {
@@ -416,7 +416,9 @@ export function App() {
           onClose={() => setMenuOpen(false)}
           onTitle={() => {
             setMenuOpen(false);
-            setTitleOpen(true);
+            setTitleOpen(false);
+            actions.replay();
+            actions.begin();
           }}
           onSendWord={() => {
             setMenuOpen(false);

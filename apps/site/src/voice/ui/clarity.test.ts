@@ -36,14 +36,15 @@ function query<T extends Element = HTMLElement>(el: Element, selector: string): 
 }
 afterEach(() => {
   for (const cleanup of cleanups.splice(0)) cleanup();
+  history.replaceState(null, '', '/');
 });
 
 it('offers a full start page with one primary and no inline information controls', () => {
   const el = render(createElement(Premise, { ready: true, onBegin: () => {} }));
   expect(el.querySelector('.v-page')).not.toBeNull();
   expect(el.querySelectorAll('.v-btn-primary')).toHaveLength(1);
-  expect(el.textContent).toContain('Suggest an action; Halil decides.');
-  expect(el.textContent).toContain('Other ways in');
+  expect(el.textContent).toContain('You suggest what Halil could do. He decides whether to do it.');
+  expect(el.textContent).not.toContain('Lab tools');
   expect(el.querySelector('.game-help')).toBeNull();
 });
 
@@ -63,7 +64,7 @@ it('puts saved continuation first and confirms replacing a month inline', () => 
     [...el.querySelectorAll('button')].find((b) => b.textContent === 'Begin the month again')?.click(),
   );
   expect(begin).not.toHaveBeenCalled();
-  expect(el.textContent).toContain('The month so far is replaced.');
+  expect(el.textContent).toContain('Start a new game? This replaces the saved month.');
   flushSync(() =>
     [...el.querySelectorAll('button')].find((b) => b.textContent === 'Replace the month and begin')?.click(),
   );
@@ -206,7 +207,8 @@ it('counts free-play days from Eid in the top bar', () => {
   expect(query(el, '.v-shell-when').textContent).toBe('After Eid · day 3 · 10:40');
 });
 
-it('the actual game menu exposes canonical continuity and explicit fresh play', () => {
+it('the lab menu retains canonical continuity and explicit fresh play', () => {
+  history.replaceState(null, '', '/?lab=1');
   const markup = renderToStaticMarkup(
     createElement(MenuPanel, {
       freeText: false,

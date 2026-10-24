@@ -73,7 +73,7 @@ export const HalilPane = memo(function HalilPane({ halil }: { halil: HalilView }
 
       {halil.weighs && halil.weighs.length > 0 && (
         <>
-          <h3 className="v-sub">How things weigh on him</h3>
+          <h3 className="v-sub">How Halil feels</h3>
           <ul className="v-mind v-weighs">
             {halil.weighs.map((w) => (
               <li key={w.label}>

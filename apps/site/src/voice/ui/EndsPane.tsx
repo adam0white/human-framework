@@ -1,4 +1,4 @@
-/** His ends (voice.md §3): things he holds, in his words, as his record. Not points; no pass or fail. */
+/** His goals (voice.md §3): things he holds, in his words, as his record. Not points; no pass or fail. */
 
 import { memo } from 'react';
 import type { EndView, UnaskedItem } from '../protocol.ts';
@@ -16,7 +16,7 @@ const UNASKED_WORD: Record<UnaskedItem['state'], string> = {
  */
 export function UnaskedStrip({
   items,
-  lead = 'Choices without your voice (not completed acts):',
+  lead = 'These are estimates of what he would choose without your advice. They do not show completed actions:',
 }: {
   items?: UnaskedItem[];
   lead?: string;
@@ -64,8 +64,8 @@ export const EndsPane = memo(function EndsPane({
   unasked?: UnaskedItem[];
 }) {
   return (
-    <section className="v-pane v-ends-pane" aria-label="His ends">
-      <h2 className="v-pane-title">His ends</h2>
+    <section className="v-pane v-ends-pane" aria-label="His goals">
+      <h2 className="v-pane-title">His goals</h2>
       <p className="v-pane-aim">Help him toward these, so that on Eid he does them without you.</p>
       <UnaskedStrip items={unasked} />
       <EndsList ends={ends} />

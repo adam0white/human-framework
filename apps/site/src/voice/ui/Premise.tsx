@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { labMode } from '../../shared/lab-mode.ts';
 export function Premise({
   ready,
   savedRun = null,
@@ -20,11 +21,13 @@ export function Premise({
           <path d="M30 6a18 18 0 1 0 12 30A15 15 0 0 1 30 6z" />
         </svg>
         <h1>The Day You Say Nothing</h1>
-        <p className="v-lede">Help Halil toward his own ends, so that on Eid he does them without you.</p>
-        <p>Suggest an action; Halil decides.</p>
-        <button type="button" className="v-shelf-row" onClick={onOtherWays}>
-          Other ways in <span>▸</span>
-        </button>
+        <p className="v-lede">Help Halil reach his goals. On Eid, he will act without your advice.</p>
+        <p>You suggest what Halil could do. He decides whether to do it.</p>
+        {labMode() && (
+          <button type="button" className="v-shelf-row" onClick={onOtherWays}>
+            Lab tools <span>▸</span>
+          </button>
+        )}
       </div>
       <div className="v-page-actions">
         {savedRun && (
@@ -32,7 +35,7 @@ export function Premise({
             Continue · {savedRun.label}
           </button>
         )}
-        {confirm && <p>The month so far is replaced. Download it first from the menu if you want it.</p>}
+        {confirm && <p>Start a new game? This replaces the saved month.</p>}
         <button
           type="button"
           className={`v-btn ${savedRun ? '' : 'v-btn-primary'}`}
@@ -40,7 +43,7 @@ export function Premise({
           onClick={() => (savedRun && !confirm ? setConfirm(true) : onBegin())}
         >
           {!ready
-            ? 'Waking the town…'
+            ? 'Starting…'
             : savedRun
               ? confirm
                 ? 'Replace the month and begin'

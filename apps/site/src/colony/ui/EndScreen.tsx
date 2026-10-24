@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { labMode } from '../../shared/lab-mode.ts';
 import './feedback.css';
 import { EndTally } from '../../shared/EndTally.tsx';
 import type { HindsightReply, HindsightRequest } from '../hindsight-worker.ts';
@@ -301,10 +302,10 @@ export function EndScreen(props: {
           <div className="colony-report-secondaries">
             {props.onFeedback && (
               <button type="button" className="btn btn-ghost" onClick={props.onFeedback}>
-                Send word
+                Feedback
               </button>
             )}
-            {props.onDownload && (
+            {labMode() && props.onDownload && (
               <button type="button" className="btn btn-ghost" onClick={props.onDownload}>
                 Download this run
               </button>

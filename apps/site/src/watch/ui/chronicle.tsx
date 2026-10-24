@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { CastMenu } from '../../shared/CastMenu.tsx';
 import { FullscreenButton } from '../../shared/fullscreen.tsx';
+import { labMode } from '../../shared/lab-mode.ts';
 import type { PageInfo } from '../protocol.ts';
 import type { Frame, FrameVolume } from '../sim/view.ts';
 import { DownloadRun, FeedbackScreen, RecordingPreference } from './exporting.tsx';
@@ -253,10 +254,10 @@ function ReadChronicle({ frame, onClose }: { frame: Frame; onClose: () => void }
 export function Chronicle({
   frame,
   actions,
+  seed,
   saving,
   onClose,
   onFeedback,
-  onTitle,
 }: {
   frame: Frame;
   actions: WatchActions;
@@ -269,6 +270,7 @@ export function Chronicle({
   onFeedback?: () => void;
   onTitle?: () => void;
 }) {
+  const [confirmNew, setConfirmNew] = useState(false);
   const [page, setPage] = useState<'read' | 'hopes' | 'feedback' | null>(null);
   if (page === 'read') return <ReadChronicle frame={frame} onClose={() => setPage(null)} />;
   if (page === 'hopes') return <HopesSheet frame={frame} actions={actions} onClose={() => setPage(null)} />;
@@ -281,11 +283,11 @@ export function Chronicle({
           <Icon name="x" size={18} label="Close" />
         </button>
       </div>
-      <p className="w-note">The night waits while it is open.</p>
+      <p className="w-note">The game is paused while this menu is open.</p>
       <div className="w-sheet-body w-menu-rows">
         {!saving ? (
           <p role="status" className="w-soft-fail">
-            This chronicle is not being saved. You can still send word about what happened.
+            This chronicle is not being saved. You can still send feedback about what happened.
           </p>
         ) : null}
         <button type="button" className="w-menu-row" onClick={() => setPage('read')}>
@@ -299,22 +301,33 @@ export function Chronicle({
           className="w-menu-row"
           onClick={() => (onFeedback ? onFeedback() : setPage('feedback'))}
         >
-          Send word <span aria-hidden="true">▸</span>
+          Feedback <span aria-hidden="true">▸</span>
         </button>
-        <DownloadRun actions={actions} label="Keep a copy of this run" />
+        {labMode() && <DownloadRun actions={actions} label="Keep a copy of this run" />}
         <FullscreenButton variant="item" className="w-menu-row w-fs-item" />
-        <button type="button" className="w-menu-row" onClick={onTitle ?? onClose}>
-          To the title page
+        <button
+          type="button"
+          className="w-menu-row"
+          onClick={() => {
+            if (!confirmNew) {
+              setConfirmNew(true);
+              return;
+            }
+            actions.restart(seed + 1);
+            onClose();
+          }}
+        >
+          {confirmNew ? 'Replace this game and start again' : 'New game'}
         </button>
         <a className="w-menu-row" href="/games/">
           All games
         </a>
-        <RecordingPreference />
+        <RecordingPreference privacy={false} />
         <CastMenu game="watch" />
       </div>
       <div className="w-sheet-actions">
         <button type="button" className="w-primary" onClick={onClose}>
-          Resume the watch
+          Resume
         </button>
       </div>
     </div>

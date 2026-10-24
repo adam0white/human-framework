@@ -9,7 +9,7 @@ import { Icon, VOICE_ICON } from './Icon.tsx';
 export const trustEventWords = (text: string): string => text.replace(/^[+−-]\d+(?:\.\d+)?\s+/, '');
 export const trustChangeWords = (from: number, to: number): string =>
   Math.abs(to - from) < 0.005
-    ? 'He listens much as this morning.'
+    ? 'He listens about as closely as he did this morning.'
     : to > from
       ? 'He listens more closely than this morning.'
       : 'He listens less closely than this morning.';

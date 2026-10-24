@@ -10,10 +10,12 @@ import {
   startCastFresh,
 } from './cast-runtime.ts';
 import { gameLabs } from './lab.tsx';
+import { labMode } from './lab-mode.ts';
 export function CastMenu({ game }: { game: string }) {
   const [, refresh] = useState(0);
   useEffect(() => castChanges(() => refresh((n) => n + 1)), []);
   const s = castState(game);
+  if (!labMode()) return null;
   return (
     <section className="cast-life-menu">
       <label>
@@ -77,7 +79,7 @@ function openCastFeedback(game: string): void {
     });
   openSendDialog({
     lab: feedbackLab,
-    title: 'Send word (no game run or state included)',
+    title: 'Feedback (no game run or state included)',
     getRun: () => undefined,
   });
 }
@@ -100,7 +102,7 @@ export function CastStartGate({ game }: { game: string }) {
         Start a fresh local chapter
       </button>
       <button type="button" onClick={() => openCastFeedback(game)}>
-        Send word
+        Feedback
       </button>
       <a href="/lab/people/">Inspect or export the existing people</a>
     </section>

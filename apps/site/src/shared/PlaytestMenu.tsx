@@ -4,6 +4,7 @@
  * a file says is rendered as React text.
  */
 import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
+import { labMode } from './lab-mode.ts';
 import { pickJsonFile, type ReplayResult } from './playtest.ts';
 import './playtest.css';
 
@@ -91,19 +92,23 @@ export function PlaytestMenu({
       </button>
       {open && (
         <div className="pt-menu-list" id={id}>
-          <button
-            type="button"
-            ref={first}
-            onClick={() => {
-              setOpen(false);
-              onExport();
-            }}
-          >
-            Download this run
-          </button>
-          <button type="button" onClick={load}>
-            Load playtest file
-          </button>
+          {labMode() && (
+            <button
+              type="button"
+              ref={first}
+              onClick={() => {
+                setOpen(false);
+                onExport();
+              }}
+            >
+              Download this run
+            </button>
+          )}
+          {labMode() && (
+            <button type="button" onClick={load}>
+              Load playtest file
+            </button>
+          )}
           {extra}
           <a href="/games/">All games</a>
         </div>

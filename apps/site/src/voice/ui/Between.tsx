@@ -114,7 +114,7 @@ export function Between({
         </div>
       </div>
       <div>
-        <h3 className="v-sub">His ends</h3>
+        <h3 className="v-sub">His goals</h3>
         <UnaskedStrip items={view.unasked} />
         <EndsList ends={view.ends} compact />
       </div>
@@ -125,7 +125,7 @@ export function Between({
       {skip && (
         <div className="v-whispers">
           <p className="v-whispers-head">
-            Leave up to two words for him to carry through those days, or none.
+            Choose up to two suggestions for the days you skip. You can also leave this empty.
             <span>
               {picked.length}/{MAX_WHISPERS}
             </span>

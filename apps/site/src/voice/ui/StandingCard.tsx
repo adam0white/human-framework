@@ -9,7 +9,8 @@ export function StandingCard({ standing, onWithdraw }: { standing: StandingView;
     <div className={`v-standing ${toneClass(a?.tone)}`} role="status">
       <div className="v-standing-text">
         <span className="v-standing-words">
-          Your words: <em>{standing.label}</em> <span className="v-standing-since">· {standing.since}</span>
+          Your suggestions: <em>{standing.label}</em>{' '}
+          <span className="v-standing-since">· {standing.since}</span>
         </span>
         {a && (
           <span className="v-standing-answer">

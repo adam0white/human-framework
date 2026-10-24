@@ -262,7 +262,7 @@ function SceneDayContent(
       {frame.standing && !frame.muted && (
         <div className="v-held-words" role="note" aria-label="Your standing word">
           <span>
-            Your word: {explainTerms(frame.standing.label)} · until {frame.standing.expires}
+            Your suggestion: {explainTerms(frame.standing.label)} · until {frame.standing.expires}
           </span>
           <button type="button" className="v-btn v-btn-quiet" onClick={props.onWithdraw}>
             Withdraw

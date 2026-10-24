@@ -236,3 +236,11 @@ describe('bounded send dialog', () => {
     expect(JSON.parse(sent[0] ?? '{}')).toEqual(JSON.parse(find('exact').value));
   });
 });
+
+it('uses Feedback as the default one-page dialog title', async () => {
+  const { lab, find } = setup();
+  lab.openSendDialog({ getRun: () => ({ seed: 1 }) });
+  await settled();
+  expect(find('hflab-title').children).toContain('Feedback');
+  expect(find('hflab-note')).toBeDefined();
+});

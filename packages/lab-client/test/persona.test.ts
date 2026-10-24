@@ -162,12 +162,11 @@ it('shares only consent status before automatically enabling a fresh target orig
     return personaChannel();
   }
   const source = browser('https://pass.adamwhite.work');
-  expect(await source.ready).toBe(false);
-  await expect(source.request({ action: 'list' })).rejects.toThrow('Enable');
+  expect(await source.ready).toBe(true);
   source.setEnabled(true);
   expect(await source.ready).toBe(true);
   const target = browser('https://goodhands.adamwhite.work');
-  expect(target.enabled).toBe(false);
+  expect(target.enabled).toBe(true);
   expect(await target.ready).toBe(true);
   expect(messages.every((message) => message.type === 'hf-persona-consent')).toBe(true);
   expect(messages.every((message) => message.envelope === undefined && message.castId === undefined)).toBe(
@@ -177,7 +176,7 @@ it('shares only consent status before automatically enabling a fresh target orig
   target.setEnabled(false);
   await target.ready;
   const nextGame = browser('https://hearsay.adamwhite.work');
-  expect(await nextGame.ready).toBe(false);
+  expect(await nextGame.ready).toBe(true);
 });
 
 it('rejects consent status exchanges from unapproved origins, sibling frames and malformed choices', () => {
@@ -193,4 +192,42 @@ it('rejects consent status exchanges from unapproved origins, sibling frames and
       enabled: 'true',
     }),
   ).toBe(false);
+});
+
+it('accepts asynchronous shelf replies on the transferred request port without weakening window checks', async () => {
+  const values = new Map<string, string>();
+  let loaded: (() => void) | undefined;
+  const post = vi.fn((message: Record<string, unknown>, origin: string, ports?: MessagePort[]) => {
+    expect(origin).toBe('https://human.adamwhite.work');
+    const port = ports?.[0];
+    expect(port).toBeDefined();
+    queueMicrotask(() => {
+      port?.postMessage({
+        type: message.type === 'hf-persona-consent' ? 'hf-persona-consent-reply' : 'hf-persona-reply',
+        id: message.id,
+        value: message.type === 'hf-persona-consent' ? true : [],
+      });
+      port?.close();
+    });
+  });
+  const frame = {
+    contentWindow: { postMessage: post },
+    addEventListener: (_type: string, fn: () => void) => {
+      loaded = fn;
+    },
+  };
+  vi.stubGlobal('location', { origin: 'https://pass.adamwhite.work' });
+  vi.stubGlobal('localStorage', {
+    getItem: (key: string) => values.get(key) ?? null,
+    setItem: (key: string, value: string) => values.set(key, value),
+  });
+  vi.stubGlobal('document', {
+    body: { append: () => queueMicrotask(() => loaded?.()) },
+    createElement: () => frame,
+  });
+  vi.stubGlobal('window', { addEventListener: vi.fn(), removeEventListener: vi.fn() });
+  const shelf = personaChannel();
+  expect(await shelf.ready).toBe(true);
+  await expect(shelf.request({ action: 'list' })).resolves.toEqual([]);
+  expect(post).toHaveBeenCalledTimes(2);
 });

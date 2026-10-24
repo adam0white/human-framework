@@ -24,5 +24,5 @@ export function LabNotice({ onDismiss }: { onDismiss?: () => void }) {
       node.remove();
     };
   }, [onDismiss]);
-  return <div className="lab-notice" ref={host} />;
+  return <footer className="lab-notice" ref={host} />;
 }

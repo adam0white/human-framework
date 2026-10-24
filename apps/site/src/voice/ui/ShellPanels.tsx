@@ -1,6 +1,7 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CastMenu } from '../../shared/CastMenu.tsx';
 import { FullscreenButton } from '../../shared/fullscreen.tsx';
+import { labMode } from '../../shared/lab-mode.ts';
 import { MODEL_NOTES, type Pace } from '../protocol.ts';
 import { VoicePersonaControls } from './persona.tsx';
 import { RecordingPreference } from './SendWord.tsx';
@@ -18,7 +19,7 @@ export function InfoPanel({ phase, onClose }: { phase: string; onClose: () => vo
             : report
               ? 'The month without you'
               : phase === 'between'
-                ? 'Words for the days you skip'
+                ? 'Suggestions for the days you skip'
                 : phase === 'eid'
                   ? 'Eid'
                   : 'Speaking to him'}
@@ -33,7 +34,10 @@ export function InfoPanel({ phase, onClose }: { phase: string; onClose: () => vo
             Halil is 61 and repairs kettles and bicycles. Nuran died fourteen weeks ago. Selin, his daughter,
             lives in the city.
           </p>
-          <p>You are a voice he hears. He decides. You have four days to speak, then Eid in silence.</p>
+          <p>
+            You are a voice Halil hears. You can suggest actions on four days. On Eid, he decides without your
+            advice.
+          </p>
           <p>He hopes to keep the fast, pay Osman, see the doctor and stay close to Selin.</p>
           <p>He also hears Selin, Rıza, Hacer, Osman and the doctor.</p>
           <p>The story begins on Monday 11 March 2024. These dates locate a fictional month.</p>
@@ -48,20 +52,28 @@ export function InfoPanel({ phase, onClose }: { phase: string; onClose: () => vo
         </>
       ) : phase === 'between' ? (
         <>
-          <p>Leave up to two words, or none. He hears them whenever he could act on them.</p>
-          <p>Mention is a passing thought. Urge is a real pull. Leaving none is a choice.</p>
+          <p>
+            Choose up to two suggestions, or leave this empty. Halil hears each suggestion when he could act
+            on it.
+          </p>
+          <p>Choose Mention for a gentle suggestion, or Urge for stronger advice.</p>
         </>
       ) : phase === 'eid' ? (
         <p>You are silent today. Today shows what he chooses on his own.</p>
       ) : (
         <>
-          <p>Speak shows what you could say. One tap says it. Say something else gives care or a question.</p>
           <p>
-            Plan something specific lets you urge, insist or give a reason. Pressing him when he is already
-            pressed costs his trust.
+            Choose Speak to see suggestions. Tap a suggestion to say it. Choose Say something else to offer
+            care or ask a question.
           </p>
-          <p>The band is the day’s light. Dots are prayer times; the gold line is the fast.</p>
-          <p>The day stops when someone new arrives. Skip moves to the next event.</p>
+          <p>
+            Choose Plan something specific to give stronger advice or explain your reason. Pressing Halil when
+            he is already pressed costs his trust.
+          </p>
+          <p>
+            The band shows daylight. The dots mark prayer times. The gold line shows when Halil is fasting.
+          </p>
+          <p>The game stops when someone arrives. Choose Skip to move to the next event.</p>
           <p>Suhoor is the meal before dawn. Iftar is the meal at sunset.</p>
         </>
       )}
@@ -100,6 +112,7 @@ export function MenuPanel({
   freeText: boolean;
   onFreeText: (enabled: boolean) => void;
 }) {
+  const [confirmNew, setConfirmNew] = useState(false);
   const first = useRef<HTMLButtonElement>(null);
   useEffect(() => {
     first.current?.focus();
@@ -127,45 +140,54 @@ export function MenuPanel({
           </button>
         </header>
         <p className="v-hint">The day waits while this is open.</p>
-        <fieldset className="v-menu-pace">
-          <legend>How the day passes</legend>
-          {(
-            [
-              { id: 'automatic', label: 'Automatic' },
-              { id: 'slow', label: 'Slow' },
-              { id: 'normal', label: 'Steady' },
-              { id: 'fast', label: 'Fast' },
-            ] as const
-          ).map((item) => (
-            <button
-              type="button"
-              key={item.id}
-              aria-pressed={pace === item.id}
-              onClick={() => actions.setAutomaticPace(item.id)}
-            >
-              {item.label}
-            </button>
-          ))}
-        </fieldset>
+        {labMode() && (
+          <fieldset className="v-menu-pace">
+            <legend>How the day passes</legend>
+            {(
+              [
+                { id: 'automatic', label: 'Automatic' },
+                { id: 'slow', label: 'Slow' },
+                { id: 'normal', label: 'Steady' },
+                { id: 'fast', label: 'Fast' },
+              ] as const
+            ).map((item) => (
+              <button
+                type="button"
+                key={item.id}
+                aria-pressed={pace === item.id}
+                onClick={() => actions.setAutomaticPace(item.id)}
+              >
+                {item.label}
+              </button>
+            ))}
+          </fieldset>
+        )}
         <button ref={first} type="button" onClick={onSendWord}>
-          Send word <span>▸</span>
+          Feedback <span>▸</span>
         </button>
-        <label>
-          <input type="checkbox" checked={freeText} onChange={(e) => onFreeText(e.target.checked)} />
-          Experimental free-text suggestions (Cloudflare AI)
-        </label>
+        {labMode() && (
+          <label>
+            <input type="checkbox" checked={freeText} onChange={(e) => onFreeText(e.target.checked)} />
+            Experimental free-text suggestions (Cloudflare AI)
+          </label>
+        )}
         <FullscreenButton variant="item" />
-        <button type="button" onClick={onTitle}>
-          To the title page
+        <button type="button" onClick={() => (confirmNew ? onTitle() : setConfirmNew(true))}>
+          {confirmNew ? 'Replace this game and start again' : 'New game'}
         </button>
-        <a href="/">All games</a>
+        {confirmNew && (
+          <button type="button" onClick={() => setConfirmNew(false)}>
+            Keep this game
+          </button>
+        )}
+        <a href="/games/">All games</a>
         <footer>
-          <RecordingPreference />
-          <CastMenu game="voice" />
-          <VoicePersonaControls canReturn={canReturn} />
+          <RecordingPreference privacy={false} />
+          {labMode() && <CastMenu game="voice" />}
+          {labMode() && <VoicePersonaControls canReturn={canReturn} />}
         </footer>
         <button type="button" className="v-btn v-btn-primary" onClick={onClose}>
-          Back to Halil
+          Resume
         </button>
       </section>
     </div>
@@ -194,7 +216,7 @@ export function OtherWays({
         <button type="button" className="v-shelf-row" onClick={onNewTown}>
           A different town
         </button>
-        <p>Same Halil, a different month around him.</p>
+        <p>You meet Halil again in a different month.</p>
         <label className="v-load-run">
           Load a playtest run
           <input

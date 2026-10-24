@@ -2744,3 +2744,15 @@
 .w-night-messages li {
   margin-bottom: 8px;
 }
+
+/* Tablet reading uses a real text minimum, including components with smaller rem styles. */
+@media (min-width: 768px) {
+  .w-note,
+  .w-page p,
+  .w-sheet-body p,
+  .w-menu-rows,
+  .w-reading,
+  .w-impression {
+    font-size: max(1rem, 16px);
+  }
+}

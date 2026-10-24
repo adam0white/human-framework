@@ -17,7 +17,7 @@ it('falls back to legacy dialog options when peer metadata is unavailable', asyn
   document.body.append(entry);
   entry.click();
   const send = [...document.querySelectorAll('dialog button')].find(
-    (b) => b.textContent === 'Send this run to the notebook',
+    (b) => b.textContent === 'Feedback',
   ) as HTMLButtonElement;
   send.click();
   await vi.waitFor(() => expect(openSendDialog).toHaveBeenCalledWith({ getRun }));

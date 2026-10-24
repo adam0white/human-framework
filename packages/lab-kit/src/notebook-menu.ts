@@ -89,15 +89,17 @@ export function notebookMenu(options: NotebookMenuOptions): HTMLButtonElement {
       return node;
     };
     sheet.append(title);
-    if (options.onSave)
+    const labTools =
+      new URLSearchParams(typeof location === 'undefined' ? '' : location.search).get('lab') === '1';
+    if (labTools && options.onSave)
       button('Save', async () => {
         await options.onSave?.();
         status.textContent = 'Saved.';
       });
-    button('Download this run', () => downloadJson(options.filename, options.getRun()));
+    if (labTools) button('Download this run', () => downloadJson(options.filename, options.getRun()));
     if (options.lab) {
       const lab = options.lab;
-      button('Send this run to the notebook', async () => {
+      button('Feedback', async () => {
         const compact =
           (options.compact || options.compactNote) && (await supportsCompact())
             ? {
@@ -133,8 +135,9 @@ export function notebookMenu(options: NotebookMenuOptions): HTMLButtonElement {
     const privacy = document.createElement('a');
     privacy.href = 'https://human.adamwhite.work/lab/privacy/';
     privacy.textContent = 'Lab privacy';
-    sheet.append(privacy, status);
-    button('Close', () => sheet.close());
+    if (labTools) sheet.append(privacy);
+    sheet.append(status);
+    button('Resume', () => sheet.close());
     showSheet(sheet);
   });
   return entry;

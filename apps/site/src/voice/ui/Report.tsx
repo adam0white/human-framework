@@ -4,6 +4,7 @@
  */
 import { useEffect, useRef } from 'react';
 import { EndTally } from '../../shared/EndTally.tsx';
+import { labMode } from '../../shared/lab-mode.ts';
 import type { ReportView, SceneWords } from '../protocol.ts';
 import { EndsList, UnaskedStrip } from './EndsPane.tsx';
 import { voiceTally } from './end-tally.ts';
@@ -168,7 +169,7 @@ export function Report({
           </section>
 
           <section>
-            <h2>His ends when Ramadan ended</h2>
+            <h2>His goals when Ramadan ended</h2>
             <p className="v-report-caption">
               As of Eid morning: his record of the month. Under each, what came of it on Eid and in the six
               days after.
@@ -205,21 +206,23 @@ export function Report({
           <div className="v-report-action-row">
             {onSendWord && (
               <button type="button" className="v-btn" onClick={onSendWord}>
-                Send word
+                Feedback
               </button>
             )}
-            {onDownload && (
+            {labMode() && onDownload && (
               <button type="button" className="v-btn" onClick={onDownload}>
                 Download this run
               </button>
             )}
           </div>
           <div className="v-report-action-row">
-            <button type="button" className="v-btn" onClick={onReplay}>
-              The same town again
-            </button>
+            {labMode() && (
+              <button type="button" className="v-btn" onClick={onReplay}>
+                The same town again
+              </button>
+            )}
             <button type="button" className="v-btn" onClick={onNewTown}>
-              A new town
+              New game
             </button>
           </div>
           <button type="button" className="v-btn v-btn-primary v-btn-big" onClick={onKeepListening}>

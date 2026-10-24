@@ -4,6 +4,7 @@ import { setTelemetryOff, telemetryOn } from '@adam0white/lab-kit';
 import { useEffect, useRef, useState } from 'react';
 import { optionalFeedbackRun } from '../../shared/feedback-run.ts';
 import { gameLabs } from '../../shared/lab.tsx';
+import { labMode } from '../../shared/lab-mode.ts';
 import type { WatchActions } from './useWatch.ts';
 
 const PRIVACY = 'https://human.adamwhite.work/lab/privacy/';
@@ -63,7 +64,7 @@ export function RecordingPreference({
           checked={!recording.off && recording.on}
           onChange={(e) => recording.change(e.target.checked)}
         />{' '}
-        Record play for the lab
+        Recording
       </label>
       {privacy ? (
         <a className="w-export-option" href={PRIVACY}>
@@ -138,9 +139,9 @@ export function RunSecondaries({ actions, onFeedback }: { actions: WatchActions;
           className="w-secondary"
           onClick={() => (onFeedback ? onFeedback() : setFeedback(true))}
         >
-          Send word
+          Feedback
         </button>
-        <DownloadRun actions={actions} />
+        {labMode() && <DownloadRun actions={actions} />}
       </div>
       {feedback ? <FeedbackScreen actions={actions} onBack={() => setFeedback(false)} /> : null}
     </>
@@ -205,19 +206,19 @@ export function FeedbackScreen({
           : 'Note and verdict queued. An available run may also be included. Delivery may retry.',
       );
     } catch {
-      setStatus('Your word could not be sent. Please try again.');
+      setStatus('Your feedback could not be sent. Please try again.');
     } finally {
       pending.current = false;
       setBusy(false);
     }
   };
   return (
-    <div ref={screen} className="w-overlay w-sub-sheet w-feedback" role="dialog" aria-label="Send word">
+    <div ref={screen} className="w-overlay w-sub-sheet w-feedback" role="dialog" aria-label="Feedback">
       <div className="w-menu-head">
         <button type="button" className="w-secondary" onClick={onBack}>
           ← Back
         </button>
-        <h2>Send word</h2>
+        <h2>Feedback</h2>
       </div>
       <div className="w-sheet-body">
         <p>Tell us what happened and what you wanted to do.</p>
@@ -251,9 +252,9 @@ export function FeedbackScreen({
         </fieldset>
         <textarea
           className="w-feedback-note"
-          aria-label="Your word"
+          aria-label="Your feedback"
           rows={4}
-          placeholder="What happened, what you wanted, what got in the way."
+          placeholder="Tell us what happened and what you wanted to do."
           value={note}
           onChange={(e) => setNote(e.target.value)}
         />

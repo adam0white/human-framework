@@ -29,9 +29,7 @@ it('hands focus to the real client after queued native close, then returns to No
     sheet.open = false;
     setTimeout(() => sheet.dispatchEvent(new Event('close')), 0);
   });
-  const send = [...sheet.querySelectorAll('button')].find(
-    (b) => b.textContent === 'Send this run to the notebook',
-  );
+  const send = [...sheet.querySelectorAll('button')].find((b) => b.textContent === 'Feedback');
   send?.focus();
   send?.click();
   await vi.waitFor(() => expect(document.querySelector('.hflab')).not.toBeNull());

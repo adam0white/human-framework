@@ -38,7 +38,7 @@ it.each(['voice', 'watch', 'well'])(
     const root = createRoot(host);
     roots.push(root);
     await act(() => root.render(createElement(CastStartGate, { game })));
-    const send = [...host.querySelectorAll('button')].find((button) => button.textContent === 'Send word');
+    const send = [...host.querySelectorAll('button')].find((button) => button.textContent === 'Feedback');
     expect(send).toBeDefined();
     expect(send?.disabled).toBe(false);
     await act(() => send?.click());

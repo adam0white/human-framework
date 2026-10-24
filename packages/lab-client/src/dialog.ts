@@ -15,7 +15,7 @@ export type SendDialogOptions = CompactOptions & {
   lab: Lab;
   /** Returns the game's playtest export (seed, input log, state) at the moment the dialog opens. */
   getRun: () => unknown;
-  /** Title. Default "Send this run to the notebook". */
+  /** Title. Default "Feedback". */
   title?: string;
   /** Optional name prefill; otherwise remembers the last name on this origin/device. */
   name?: string;
@@ -227,7 +227,7 @@ export function openSendDialog(options: SendDialogOptions): void {
   const sheet = el(
     'div',
     { className: 'hflab', role: 'dialog', 'aria-modal': 'true', 'aria-labelledby': 'hflab-title' },
-    el('h2', { id: 'hflab-title' }, options.title ?? 'Send word'),
+    el('h2', { id: 'hflab-title' }, options.title ?? 'Feedback'),
     verdict,
     el('label', { for: 'hflab-note' }, 'A note (optional)'),
     note,

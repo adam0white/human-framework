@@ -8,3 +8,9 @@
 .lab-game-header {
   min-width: 0;
 }
+
+/* First-visit disclosure is a compact footer; it never captures focus. */
+.lab-notice {
+  order: 99;
+  font-size: clamp(0.875rem, 0.82rem + 0.15vw, 1rem);
+}
