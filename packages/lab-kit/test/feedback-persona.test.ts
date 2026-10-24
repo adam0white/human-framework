@@ -1,5 +1,5 @@
 import { expect, it, vi } from 'vitest';
-import { feedbackPersonaControl } from '../src/persona.ts';
+import { feedbackPersonaControl, personaControls } from '../src/persona.ts';
 
 it('offers persona recording linkage only when relevant and changes it only on explicit input', () => {
   const lab = {
@@ -26,4 +26,21 @@ it('offers persona recording linkage only when relevant and changes it only on e
     input.dispatchEvent(new Event('change'));
   }
   expect(lab.allowPersonaRecording).toHaveBeenLastCalledWith(false);
+});
+
+it('does not claim linkage approval before the host confirms its recording choice', () => {
+  const panel = personaControls({
+    enabled: true,
+    setEnabled: vi.fn(),
+    recordingAllowed: false,
+    allowRecording: vi.fn(),
+  });
+  document.body.append(panel);
+  const yes = [...panel.querySelectorAll('button')].find(
+    (button) => button.textContent === 'Record this continuing person',
+  );
+  yes?.click();
+  expect(panel.textContent).toContain('Recording choice requested. Feedback can still send.');
+  expect(panel.textContent).not.toContain('Historical recording linkage allowed');
+  panel.remove();
 });

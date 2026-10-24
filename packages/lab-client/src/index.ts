@@ -411,13 +411,15 @@ export function createLab(options: LabOptions): Lab {
     if (!checkRun(text)) throw new Error(runRefusal(text));
     const body = await gzip(text);
     if (body.size > RUN_LIMITS.compressedBytes) throw new Error(compressedRefusal(body.size));
-    if (fallback && (recordingStopped() || generation !== capturedGeneration)) return sendUnlinked(fallback);
-    const upload = new AbortController();
-    explicitUploads.add(upload);
-    let res: Response;
+    if (fallback && fallback !== text && (recordingStopped() || generation !== capturedGeneration))
+      return sendUnlinked(fallback, fallback);
+    // Explicit note-only feedback is independent of recording identity and its resets.
+    // Legacy exports and optional full runs remain cancellable when recording closes.
+    const upload = fallback === text ? undefined : new AbortController();
+    if (upload) explicitUploads.add(upload);
     try {
-      res = await fetch(`${endpoint}/run`, {
-        signal: upload.signal,
+      const res = await fetch(`${endpoint}/run`, {
+        ...(upload ? { signal: upload.signal } : {}),
         method: 'POST',
         body,
         headers: { 'Content-Type': 'application/gzip' },
@@ -425,13 +427,17 @@ export function createLab(options: LabOptions): Lab {
         credentials: 'omit',
         referrerPolicy: 'no-referrer',
       });
+      const reply = (await res.json().catch(() => ({}))) as { id?: string; error?: string };
+      if (!res.ok || !reply.id) throw new Error(reply.error ?? `The notebook answered ${res.status}.`);
+      return reply.id;
+    } catch (error) {
+      if (fallback && upload?.signal.aborted) return sendUnlinked(fallback, fallback);
+      throw error;
     } finally {
-      explicitUploads.delete(upload);
+      if (upload) explicitUploads.delete(upload);
     }
-    const reply = (await res.json().catch(() => ({}))) as { id?: string; error?: string };
-    if (!res.ok || !reply.id) throw new Error(reply.error ?? `The notebook answered ${res.status}.`);
-    return reply.id;
   };
+
   const lab: Lab = {
     game,
     endpoint,
@@ -553,11 +559,14 @@ export function createLab(options: LabOptions): Lab {
       } catch {
         /* A run export must never block the note. */
       }
-      if (stopped() || generation !== feedbackGeneration)
-        return sendUnlinked(
-          prepareRun(game, build, { feedbackOnly: true }, { note: text, name: options.name }),
-        );
-      return transport.send('note', { note: text }, undefined, options.name);
+      const fallback = prepareRun(game, build, { feedbackOnly: true }, { note: text, name: options.name });
+      if (stopped() || generation !== feedbackGeneration) return sendUnlinked(fallback, fallback);
+      try {
+        return await transport.send('note', { note: text }, undefined, options.name);
+      } catch (error) {
+        if (stopped() || generation !== feedbackGeneration) return sendUnlinked(fallback, fallback);
+        throw error;
+      }
     },
     async sendRun(run, extra = {}) {
       syncRun();

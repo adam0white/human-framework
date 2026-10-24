@@ -1,5 +1,6 @@
 import { gunzipSync } from 'node:zlib';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import * as identity from '../src/identity.ts';
 import {
   createLab,
   isLocalhost,
@@ -184,6 +185,114 @@ describe('linked lab client', () => {
       ]);
     },
   );
+  it('does not abort an explicit note when the identity bridge echoes recording off during fetch', async () => {
+    let echo: ((player: string | null, off: boolean) => void) | undefined;
+    vi.spyOn(identity, 'identityBridge').mockImplementation((change) => {
+      echo = change;
+      return { ready: Promise.resolve(), setOff: () => {} };
+    });
+    let finish: ((response: Response) => void) | undefined;
+    let signal: AbortSignal | null | undefined;
+    vi.stubGlobal('fetch', async (_url: string, init?: RequestInit) => {
+      signal = init?.signal;
+      envelopes.push(
+        JSON.parse(
+          gunzipSync(new Uint8Array(await ((init?.body ?? new Blob()) as Blob).arrayBuffer())).toString(),
+        ),
+      );
+      return new Promise<Response>((resolve, reject) => {
+        finish = resolve;
+        signal?.addEventListener('abort', () => reject(signal?.reason));
+      });
+    });
+    const lab = createLab({ game: 'voice', build: {} });
+    lab.setTelemetryOff(true);
+    const result = lab.sendFeedback('QA feedback-fix').then(
+      (id) => ({ id }),
+      (error: unknown) => ({ error }),
+    );
+    await vi.waitFor(() => expect(finish).toBeDefined());
+    echo?.(null, true);
+    finish?.(Response.json({ id: 'r-feedback' }));
+    expect(await result).toEqual({ id: 'r-feedback' });
+    expect(signal?.aborted ?? false).toBe(false);
+    expect(envelopes).toEqual([
+      { v: 1, game: 'voice', build: {}, run: { feedbackOnly: true }, note: 'QA feedback-fix' },
+    ]);
+  });
+  it('retries an interrupted optional run as an independent note after an off echo', async () => {
+    let echo: ((player: string | null, off: boolean) => void) | undefined;
+    vi.spyOn(identity, 'identityBridge').mockImplementation((change) => {
+      echo = change;
+      return { ready: Promise.resolve(), setOff: () => {} };
+    });
+    let first: AbortSignal | null | undefined;
+    vi.stubGlobal('fetch', async (_url: string, init?: RequestInit) => {
+      envelopes.push(
+        JSON.parse(
+          gunzipSync(new Uint8Array(await ((init?.body ?? new Blob()) as Blob).arrayBuffer())).toString(),
+        ),
+      );
+      if (envelopes.length === 1) {
+        first = init?.signal;
+        return new Promise<Response>((_resolve, reject) =>
+          first?.addEventListener('abort', () => reject(first?.reason)),
+        );
+      }
+      return Response.json({ id: 'r-note' });
+    });
+    const lab = createLab({ game: 'voice', build: {} });
+    lab.setPersonaRecording('private-persona-key');
+    const result = lab.sendFeedback('QA feedback-fix', { run: { seed: 1 } }).then(
+      (id) => ({ id }),
+      (error: unknown) => ({ error }),
+    );
+    await vi.waitFor(() => expect(first).toBeDefined());
+    echo?.(null, true);
+    expect(await result).toEqual({ id: 'r-note' });
+    expect(first?.aborted).toBe(true);
+    expect(envelopes[1]).toEqual({
+      v: 1,
+      game: 'voice',
+      build: {},
+      run: { feedbackOnly: true },
+      note: 'QA feedback-fix',
+    });
+  });
+  it('falls back to an independent note if the off echo interrupts linked-note preparation', async () => {
+    let echo: ((player: string | null, off: boolean) => void) | undefined;
+    vi.spyOn(identity, 'identityBridge').mockImplementation((change) => {
+      echo = change;
+      return { ready: Promise.resolve(), setOff: () => {} };
+    });
+    vi.stubGlobal('fetch', async (_url: string, init?: RequestInit) => {
+      envelopes.push(
+        JSON.parse(
+          gunzipSync(new Uint8Array(await ((init?.body ?? new Blob()) as Blob).arrayBuffer())).toString(),
+        ),
+      );
+      return Response.json({ id: 'r-note' });
+    });
+    const lab = createLab({ game: 'voice', build: {} });
+    let finish: ((body: Blob) => void) | undefined;
+    vi.spyOn(Response.prototype, 'blob').mockImplementationOnce(
+      () =>
+        new Promise((resolve) => {
+          finish = resolve;
+        }),
+    );
+    const result = lab.sendFeedback('QA feedback-fix').then(
+      (id) => ({ id }),
+      (error: unknown) => ({ error }),
+    );
+    await vi.waitFor(() => expect(finish).toBeDefined());
+    echo?.(null, true);
+    finish?.(new Blob(['compressed linked note']));
+    expect(await result).toEqual({ id: 'r-note' });
+    expect(envelopes).toEqual([
+      { v: 1, game: 'voice', build: {}, run: { feedbackOnly: true }, note: 'QA feedback-fix' },
+    ]);
+  });
   it('keeps oversized continuing runs from blocking feedback', async () => {
     vi.stubGlobal('fetch', async (_url: string, init?: RequestInit) => {
       envelopes.push(

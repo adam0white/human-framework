@@ -35,7 +35,7 @@ export function personaControls(options: PersonaControls): HTMLElement {
       button.onclick = () => {
         options.allowRecording(allow);
         explanation.textContent = allow
-          ? 'Historical recording linkage allowed for this recording identity.'
+          ? 'Recording choice requested. Feedback can still send.'
           : 'Not linked to recorded history; feedback can still send.';
       };
       panel.append(button);
