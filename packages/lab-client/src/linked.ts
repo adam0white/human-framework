@@ -115,6 +115,7 @@ export function linkedTransport(options: {
     busy = true;
     try {
       for (const record of pending.values()) {
+        const recordGeneration = generation;
         if (!options.enabled()) break;
         if (record.player !== options.link()?.player) {
           remove(record);
@@ -140,6 +141,9 @@ export function linkedTransport(options: {
           clearTimeout(timeout);
           active = undefined;
         }
+        // Off/identity reset cleared this record while fetch was pending. Never
+        // restore it, and continue to any newly queued feedback in the current epoch.
+        if (recordGeneration !== generation) continue;
         if (status >= 200 && status < 300) {
           acknowledged.add(record.id);
           if (acknowledged.size > 2048) acknowledged.delete(acknowledged.values().next().value ?? '');
