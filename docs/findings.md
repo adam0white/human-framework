@@ -232,3 +232,13 @@ All people survived. Snapshots include inline state but no enabled yearbooks, wo
 
 
 Glance follow-up gate-only mechanism control (seeds501–503, inspected game d9ebb9d/HF2.8.0): identical level-reading, gate-request and other command schedules, within fixed clear/no-clear strata. The inherited reported-level rule lost all three seeds; an oracle target rule completed five nights in all three. This demonstrates a gate-policy/information effect in that controller, not a screen-only winning rule or the cause of the historical HF-persona losses. The oracle reads hidden current level/inflow. Clear availability matched at shared scheduled-clear slots; the final source places its tree on night4, correcting the first scratch report's night5 statement. Screen-only replacement remains untested. No adapter, game balance, person round or engine change. Full control, fixed schedules and source-clean assertions: ~/code/.lab-scratch/hfroad/gate-control-report.md.
+
+
+## Reset-world identity control (2026-10-25)
+
+Keeping a prospect ID preserves its peak and last advance, not cumulative current goal progress or indefinite pursuit. A zero observation sets current progress to zero. Returning to the old high does not refresh the advance clock; the default180-minute stale policy can abandon the pursuit during a long rebuild. The generic control uses explicit short fixture memory/cooldowns for a separate new commission and retains the old terminal history; it does not tune the engine or establish improved island task carry. Snapshot continuation under the same supplied observations is narrower than a saved host-input replay.
+
+
+## Upbringing boundary investigation (2026-10-25)
+
+Q31/Q32 remain model decisions. Direct `raise` tapers value plasticity to25; the community driver calls it only below18. At exactly zero caregiver warmth, `raise` returns before attachment/norm transmission; any positive warmth can produce a finite normalized effect. Existing tests pin the exact-zero legacy behavior. No age, warmth rule, guardian eligibility or faith ruling was changed. The proposed owner decision separates these model semantics; review2026-11-03. An eventual behavior change must be explicit opt-in and preserve old-call/save continuation.

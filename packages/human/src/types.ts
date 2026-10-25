@@ -1367,7 +1367,14 @@ export interface Percept {
    * Observational learning (1.8.0): the person watched someone practise `skill` at `level` for `minutes`. On an
    * attended percept the watcher learns a little toward the model (`skills.learnByWatching`). Absent: nothing is learned.
    */
-  demonstrates?: { skill: string; level: Unit; minutes: number; domain?: LearningDomain };
+  demonstrates?: {
+    skill: string;
+    level: Unit;
+    minutes: number;
+    domain?: LearningDomain;
+    /** Apply the watcher's inherited skill aptitude. Absent keeps earlier observation learning exactly. */
+    inheritedAptitude?: boolean;
+  };
   /** At most four additions/withdrawals combined; attended external testimony to this person or a broadcast. */
   consequences?: readonly ReceivedConsequence[];
   withdrawConsequences?: readonly { id: string; revision: number }[];

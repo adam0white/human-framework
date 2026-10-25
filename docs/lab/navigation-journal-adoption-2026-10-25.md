@@ -1,0 +1,9 @@
+# Navigation journal adoption — 2026-10-25
+
+Release targets are lab-client0.4.8 and lab-kit0.5.9. Use the versioned GitHub tarballs and recorded SHA512 digests in the release receipts after publication. Kit0.5.9 changes only its version and exact optional client peer to0.4.8. This client patch does not require an HF upgrade; keep each game's adopted HF pin.
+
+Upgrade the vendored tarballs, exact manifest dependencies and lockfile together. Use a clean worktree, verify the downloaded bytes, run check:lane, sign, rebase/push, wait for exact green CI and deploy. Check the live release manifest and existing game flow at phone/desktop sizes. No new player round is needed.
+
+The client journals immutable regular event/log chunks before asynchronous flush, preserving captured build, viewport, session/run and time. A chunk retires after an actual IndexedDB commit or stored HTTP200. Independent keys avoid rewriting another tab's chunk. Recording off/identity reset erase the game journal. Regular chunks expire after seven days. Journal admission is bounded to256 chunks,256events,60logs and128KiB; memory holds40events. Exhausted capacity, denied storage, a crash before flush/hide or no later visit can leave gaps. Rejected markers can retry when capacity returns. Feedback-note receipts and indefinite-until-receipt retention remain unchanged.
+
+Focused tests cover in-flight navigation, captured metadata, duplicates, independent retirement, full-queue retry, expiry, reset and rejected-marker retry. Native isolated Firefox used synthetic data and a local receiver: GPC/DNT defaults suppress, explicit recording on overrides GPC, and an immediately navigated in-flight milestone is stored on recovery. That control proves local storage, not production R2 or the historical owner feedback cause. Preserve those distinctions in delivery reports. Final exact source/provider/artifact receipts belong in docs/releases.md and the hfroad report.

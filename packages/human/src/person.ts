@@ -920,7 +920,15 @@ function perceiveOne(p: Person, pc: Percept, options: PerceiveOptions): void {
   // Watching someone skilled at work teaches a little (1.8.0, observational learning).
   const demo = pc.demonstrates;
   if (demo && !byMe && demo.minutes > 0) {
-    learnByWatching(p, demo.skill, demo.minutes, demo.level, learningFor(p, demo.domain), p.now);
+    const learning = learningFor(p, demo.domain);
+    learnByWatching(
+      p,
+      demo.skill,
+      demo.minutes,
+      demo.level,
+      demo.inheritedAptitude === true ? learning * aptitudeOf(p, demo.skill) : learning,
+      p.now,
+    );
   }
 
   // Relationships: interactions I took part in.
@@ -1560,7 +1568,9 @@ export function learningFor(p: Person, domain?: LearningDomain): number {
 /**
  * Watch someone practise skill `skill` at `modelLevel` for `minutes` (observational learning, 1.8.0): the
  * composite's side of `skills.learnByWatching` at the person's age-and-domain learning rate. A `Percept.demonstrates` on an
- * attended percept does the same. Returns the level before and after.
+ * attended percept does the same. `inheritedAptitude: true` applies the family's existing aptitude factor to
+ * watching. Absent or false keeps earlier observation learning, including for a person with an authored family.
+ * This changes no practice rule, draws no RNG, and stores no new state. Returns the level before and after.
  */
 export function observeSkill(
   p: Person,
@@ -1568,8 +1578,17 @@ export function observeSkill(
   minutes: number,
   modelLevel: Unit,
   domain?: LearningDomain,
+  options?: { inheritedAptitude?: boolean },
 ): { before: Unit; after: Unit } {
-  return learnByWatching(p, skill, minutes, modelLevel, learningFor(p, domain), p.now);
+  const learning = learningFor(p, domain);
+  return learnByWatching(
+    p,
+    skill,
+    minutes,
+    modelLevel,
+    options?.inheritedAptitude === true ? learning * aptitudeOf(p, skill) : learning,
+    p.now,
+  );
 }
 
 export interface FinishOptions {

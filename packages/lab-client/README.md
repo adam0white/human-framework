@@ -63,6 +63,9 @@ Each later checkpoint uses the last accepted revision as `parentRevision`. `watc
 
 Recording and continuing-person linkage follow the single recording switch. First-visit disclosure covers linkage across games on this device. Old shelf epoch receipts may still be used by older hosts, but they are not permission gates. Loaded runs, admission snapshots and transactional parent checks remain unchanged. File export and local play remain available. Character analysis still requires separate opt-in.
 
+
+Regular event and log flushes first save immutable chunks synchronously in localStorage, then use the linked outbox. Each chunk keeps its captured build, viewport, player/session/run and time. Independent chunk keys prevent tabs from replacing each other's copies. A copy is removed only after IndexedDB commits it or the receiver acknowledges HTTP 200. It retries on a later visit while recording is on and expires after seven days. Recording off and identity reset erase it. Admission is bounded to256 chunks,256 events,60 log lines and128 KiB per game; at capacity, old copies stay and the40-event memory queue can reject later events. Rejected milestone/screen/end markers may be retried after space opens. A crash before a flush or lifecycle callback, denied browser storage, or never revisiting can still leave gaps. Explicit note receipts and retention are separate and unchanged.
+
 ## Canonical cast and bounded life (0.4.0)
 
 `CANONICAL_CAST`, `canonicalCast(castId)` and `castForGame(game)` provide40 curated public profiles. Exact host ids are `voice`, `well`, `watch`, `pass`, `murmur`, `stairwell`, `goodhands`, `hearsay`, `rope`, `glance`, `repair`, `neighbours`, `commonstead`, `valley`, `warren`. Every allocation has3–8 people. Secret biography paragraphs are not in this artifact.

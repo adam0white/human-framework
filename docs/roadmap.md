@@ -27,7 +27,6 @@ These change what a run does, so each needs the engine bump and a recorded reaso
 | Q30 | `liveCommunity` raises only children with a parent tie; count `guardian` as a caregiver. | 2.2 |
 | Q31, Q32 | `raise` has a discontinuity at zero warmth, and scope texts disagree on the values handover age (18 or 25). Decide both in one upbringing pass. | 2.2 |
 | Q33 | `marry-without-guardian` fires only on refusal. This needs a decision recorded in [research/decisions.md](../research/decisions.md) first; agents must not invent it. | 2.2 (after the decision) |
-| Q35 | Learning by watching skips inherited aptitude. | 2.2 |
 | P11 | Relationships and impressions fill to their caps with the dead (bounded, ~35 KB a person). Prune ties to the dead after a horizon. | 2.2 |
 | R2 1b | "Thirsty — the well, then." is game wording in the framework lexicon; changing it moves both games' fixture hashes. | 2.2 |
 | Flat daytime utilities | Game 2's Halil naps about three times a day because daytime utilities are flat; a nap gate broke other behaviour and was reverted. Needs a utility recalibration pass ([findings](findings.md)). | 2.2 |
@@ -109,7 +108,7 @@ Owner direction (2026-10-18, [owner-directions](owner-directions-2026-10-18.md))
 | A thousand lives (bench), remaining evidence | Bounded one-day 100/1,000/coarse10,000 measurements and harness delivered; coarse fidelity differs and decision starvation is unavailable without an explicit opportunity predicate. Remaining: quiet-machine repetitions, longer spans and a justified starvation measure; no tuning from noisy timings. | 2026-11-15 |
 | Memory bound and declared fidelity | A memory bound in `Retention` (Valley 6); what coarse stepping preserves exactly; community-state migration steps (this supersedes the community half of "Community and world migration" in §2; world state stays the host's, with a documented recipe) | After inner life; review 2027-01-15 (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
 
-**2.21 release, delivered.** Optional doze, quantity observation and bladder close the three Glance/Rope bodily framework requests; game adoption remains separate. Watch's Q50 helper adoption uses the separately pinned 2.20 library. Host gift and shared-work recipes are documented in [host-kit.md](host-kit.md). A reset-world prospect identity recipe remains open for review 2026-11-15. Published-package and site receipts are in [releases.md](releases.md).
+**2.21 release, delivered.** Optional doze, quantity observation and bladder close the three Glance/Rope bodily framework requests; game adoption remains separate. Watch's Q50 helper adoption uses the separately pinned 2.20 library. Host gift and shared-work recipes are documented in [host-kit.md](host-kit.md). A reset-world prospect identity recipe now records retained peak versus current progress and stale-abandonment limits in the host guide; island task carry remains unresolved. Published-package and site receipts are in [releases.md](releases.md).
 
 | Item | Remaining decision | Target |
 |---|---|---|

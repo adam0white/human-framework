@@ -229,6 +229,8 @@ export function linkedTransport(options: {
     captured?: Link,
     feedbackName?: string,
     confirm = false,
+    requireDurable = false,
+    capturedMeta?: { build: Build; privacyOverride: boolean; at: number },
   ): Promise<string> {
     await ready;
     const epoch = generation;
@@ -259,7 +261,7 @@ export function linkedTransport(options: {
       const id = await hash(JSON.stringify({ upload, piece }));
       ids.push(id);
       if (acknowledged.has(id) || pending.has(id)) continue;
-      const at = Date.now();
+      const at = capturedMeta?.at ?? Date.now();
       const envelope = JSON.stringify({
         v: 2,
         id,
@@ -267,10 +269,12 @@ export function linkedTransport(options: {
         game: options.game,
         kind,
         at,
-        build: options.build(),
+        build: capturedMeta?.build ?? options.build(),
         data: piece,
         ...(name ? { name } : {}),
-        ...(kind === 'note' || options.override() ? { privacyOverride: true } : {}),
+        ...(kind === 'note' || (capturedMeta?.privacyOverride ?? options.override())
+          ? { privacyOverride: true }
+          : {}),
       });
       if (new TextEncoder().encode(envelope).byteLength > LINKED_LIMITS.inflated)
         throw new Error('Recording piece exceeds the server limit.');
@@ -305,6 +309,14 @@ export function linkedTransport(options: {
     }
     if (epoch !== generation || !options.enabled() || options.link()?.player !== link.player)
       throw new Error('Lab recording is off.');
+    if (requireDurable && !ids.every((id) => durable.has(id) || acknowledged.has(id))) {
+      const records = [...pending.values()].filter(
+        (record) => ids.includes(record.id) && record.next <= Date.now(),
+      );
+      await Promise.all(records.map(deliver));
+      if (!ids.every((id) => durable.has(id) || acknowledged.has(id)))
+        throw new Error('The navigation batch could not be saved on this device.');
+    }
     if (confirm) {
       // A note bypasses a busy or backed-off snapshot queue. Its content id still
       // deduplicates concurrent delivery and retries on the server.

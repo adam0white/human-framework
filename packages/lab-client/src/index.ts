@@ -35,6 +35,16 @@ const OVERRIDE_KEY = 'hf-lab-privacy-override';
 
 export type Viewport = 'phone' | 'tablet' | 'desktop';
 type Event = ['start' | 'ms' | 'scr' | 'err' | 'end', number, string?];
+type JournalEntry = {
+  id: string;
+  kind: 'events' | 'logs';
+  data: unknown;
+  count: number;
+  link: { player: string; session: string; runId: string };
+  build: Build;
+  override: boolean;
+  at: number;
+};
 
 export type LabOptions = {
   /** game id, the subdomain: 'pass', 'glance', 'murmur' */
@@ -177,8 +187,10 @@ export function createLab(options: LabOptions): Lab {
   let identity: ReturnType<typeof identityBridge> | undefined;
   const queue: { event: Event; runId: string }[] = [];
   const logs: { level: 'error' | 'warn' | 'game'; message: string; at: number; runId: string }[] = [];
+  const navigationKey = `hf-lab-navigation:${game}`;
   const recordingStopped = () =>
     off ||
+    getItem(local, offKey) === '1' ||
     readLocal(RECORDING_OFF) === '1' ||
     (privacySignal(g) && !override) ||
     (local_ && !options.sendFromLocalhost);
@@ -208,6 +220,7 @@ export function createLab(options: LabOptions): Lab {
     explicitUploads.clear();
     queue.length = 0;
     logs.length = 0;
+    clearJournal();
     transport?.clear();
   };
   const onIdentity = (id: string | null, value: boolean) => {
@@ -247,6 +260,130 @@ export function createLab(options: LabOptions): Lab {
     link: () => (player ? { player, session: sid, runId } : null),
     ready: identity?.ready,
   });
+  // Each immutable chunk has its own key, so another tab cannot overwrite it
+  // while appending or retiring a different chunk. Limits are checked after
+  // writing; on contention only this append's new keys are rolled back.
+  const journalPrefix = `${navigationKey}:`;
+  const journalKeys = () => {
+    const keys: string[] = [];
+    try {
+      if (local)
+        for (let i = 0; i < local.length; i++) {
+          const key = local.key(i);
+          if (key?.startsWith(journalPrefix)) keys.push(key);
+        }
+    } catch {}
+    return keys;
+  };
+  const clearJournal = () => {
+    for (const key of journalKeys()) setItem(local, key, null);
+    // Remove the old array format too; it must never be replayed.
+    setItem(local, navigationKey, null);
+  };
+  const validEntry = (entry: JournalEntry): boolean =>
+    !!entry &&
+    /^[a-f0-9]{32}$/.test(entry.id) &&
+    (entry.kind === 'events' || entry.kind === 'logs') &&
+    !!entry.link &&
+    entry.link.player === player &&
+    /^[a-f0-9]{32}$/.test(entry.link.session) &&
+    /^[a-f0-9]{32}$/.test(entry.link.runId) &&
+    typeof entry.at === 'number' &&
+    Number.isFinite(entry.at) &&
+    entry.at <= Date.now() + 10000 &&
+    typeof entry.override === 'boolean' &&
+    !!entry.build &&
+    typeof entry.build === 'object' &&
+    !Array.isArray(entry.build) &&
+    Number.isInteger(entry.count) &&
+    entry.count >= 1 &&
+    entry.count <= 60 &&
+    (entry.kind === 'events'
+      ? !!entry.data &&
+        typeof entry.data === 'object' &&
+        !Array.isArray(entry.data) &&
+        ['phone', 'tablet', 'desktop'].includes((entry.data as { vp?: string }).vp ?? '') &&
+        Number.isFinite((entry.data as { started?: number }).started) &&
+        Array.isArray((entry.data as { e?: unknown[] }).e) &&
+        (entry.data as { e: unknown[] }).e.length === entry.count
+      : Array.isArray(entry.data) && entry.data.length === entry.count);
+  const readJournal = (): JournalEntry[] => {
+    const entries: JournalEntry[] = [];
+    for (const key of journalKeys()) {
+      const raw = getItem(local, key);
+      try {
+        if (!raw || new TextEncoder().encode(raw).byteLength > 128 * 1024) throw new Error('invalid chunk');
+        const entry = JSON.parse(raw) as JournalEntry;
+        if (
+          `${journalPrefix}${entry.id}` !== key ||
+          !validEntry(entry) ||
+          Date.now() - entry.at > 7 * 86400000
+        )
+          throw new Error('invalid chunk');
+        entries.push(entry);
+      } catch {
+        setItem(local, key, null);
+      }
+    }
+    return entries;
+  };
+  const overJournalLimit = (entries: JournalEntry[]) =>
+    entries.length > 256 ||
+    entries.reduce((sum, entry) => sum + (entry.kind === 'events' ? entry.count : 0), 0) > 256 ||
+    entries.reduce((sum, entry) => sum + (entry.kind === 'logs' ? entry.count : 0), 0) > 60 ||
+    new TextEncoder().encode(JSON.stringify(entries)).byteLength > 128 * 1024;
+  const appendJournal = (entries: JournalEntry[]): 'saved' | 'full' | 'unavailable' => {
+    if (!local) return 'unavailable';
+    if (overJournalLimit([...readJournal(), ...entries])) return 'full';
+    const written: string[] = [];
+    try {
+      for (const entry of entries) {
+        const key = `${journalPrefix}${entry.id}`;
+        local.setItem(key, JSON.stringify(entry));
+        written.push(key);
+      }
+      if (overJournalLimit(readJournal())) {
+        for (const key of written) setItem(local, key, null);
+        return 'full';
+      }
+      return 'saved';
+    } catch {
+      for (const key of written) setItem(local, key, null);
+      return 'unavailable';
+    }
+  };
+  const removeJournal = (id: string) => {
+    setItem(local, `${journalPrefix}${id}`, null);
+    if (queue.length || logs.length) flush(true);
+  };
+  const sending = new Set<string>();
+  const sendEntry = async (entry: JournalEntry, epoch: number) => {
+    if (sending.has(entry.id)) return;
+    sending.add(entry.id);
+    try {
+      await (identity?.ready ?? Promise.resolve());
+      if (epoch !== generation || stopped() || player !== entry.link.player) return;
+      await transport.send(entry.kind, entry.data, entry.link, undefined, false, true, {
+        build: entry.build,
+        privacyOverride: entry.override,
+        at: entry.at,
+      });
+      if (epoch === generation && !stopped() && player === entry.link.player) removeJournal(entry.id);
+    } catch {
+      // The immutable copy remains for the next retry or visit.
+    } finally {
+      sending.delete(entry.id);
+    }
+  };
+  const replayJournal = () => {
+    if (stopped()) {
+      clearJournal();
+      return;
+    }
+    const epoch = generation;
+    for (const entry of readJournal()) void sendEntry(entry, epoch);
+  };
+  replayJournal();
   const at = () => Math.max(0, Date.now() - started);
   let runKey: (() => string | number) | undefined;
   let observedKey: string | number | undefined;
@@ -267,40 +404,80 @@ export function createLab(options: LabOptions): Lab {
       return;
     }
     if (!buildKnown && !allowUnknownBuild) return;
-    const events = queue.splice(0);
-    const lines = logs.splice(0);
-    void (identity?.ready ?? Promise.resolve())
-      .then(async () => {
-        if (stopped()) return;
-        const base = player ? { player, session: sid } : null;
-        if (!base) return;
-        for (const id of new Set(events.map((e) => e.runId))) {
-          const group = events.filter((e) => e.runId === id).map((e) => e.event);
-          for (let i = 0; i < group.length; i += 30)
-            await transport.send(
-              'events',
-              { vp: viewportClass(g.innerWidth ?? 1280), started, e: group.slice(i, i + 30) },
-              { ...base, runId: id },
-            );
-        }
-        for (const id of new Set(lines.map((e) => e.runId)))
-          await transport.send(
-            'logs',
-            lines.filter((e) => e.runId === id),
-            { ...base, runId: id },
-          );
-        await transport.drain();
-      })
-      .catch(() => {});
+    if (!queue.length && !logs.length) {
+      replayJournal();
+      return;
+    }
+    if (!player) return;
+    const base = { player, session: sid };
+    const capturedBuild = { ...build };
+    const capturedOverride = override;
+    const capturedAt = Date.now();
+    const vp = viewportClass(g.innerWidth ?? 1280);
+    const entries: JournalEntry[] = [];
+    for (const id of new Set(queue.map((e) => e.runId))) {
+      const group = queue.filter((e) => e.runId === id).map((e) => e.event);
+      for (let i = 0; i < group.length; i += 30)
+        entries.push({
+          id: randomId(),
+          kind: 'events',
+          data: { vp, started, e: group.slice(i, i + 30) },
+          count: group.slice(i, i + 30).length,
+          link: { ...base, runId: id },
+          build: capturedBuild,
+          override: capturedOverride,
+          at: capturedAt,
+        });
+    }
+    for (const id of new Set(logs.map((e) => e.runId))) {
+      const group = logs.filter((e) => e.runId === id);
+      entries.push({
+        id: randomId(),
+        kind: 'logs',
+        data: group,
+        count: group.length,
+        link: { ...base, runId: id },
+        build: capturedBuild,
+        override: capturedOverride,
+        at: capturedAt,
+      });
+    }
+    const result = appendJournal(entries);
+    if (result === 'full') {
+      replayJournal();
+      return;
+    }
+    queue.length = 0;
+    logs.length = 0;
+    if (result === 'saved') for (const entry of entries) void sendEntry(entry, generation);
+    else {
+      // Storage denied: retain the former best-effort async path without a local copy.
+      const epoch = generation;
+      void (identity?.ready ?? Promise.resolve())
+        .then(async () => {
+          if (epoch !== generation || stopped() || player !== base.player) return;
+          for (const entry of entries) {
+            if (epoch !== generation || stopped() || player !== base.player) return;
+            await transport.send(entry.kind, entry.data, entry.link, undefined, false, false, {
+              build: entry.build,
+              privacyOverride: entry.override,
+              at: entry.at,
+            });
+          }
+        })
+        .catch(() => {});
+    }
   }
-  const push = (event: Event) => {
-    if (stopped()) return;
+  const push = (event: Event): boolean => {
+    if (stopped()) return false;
     syncRun();
+    if (queue.length >= 40) return false;
     queue.push({ event, runId });
     if (queue.length >= 40) flush(true);
+    return true;
   };
   if (!buildKnown && typeof fetch === 'function') {
-    fetch('/release.json?lab-client=0.4.7', { cache: 'no-store', credentials: 'omit' })
+    fetch('/release.json?lab-client=0.4.8', { cache: 'no-store', credentials: 'omit' })
       .then((r) => (r.ok ? r.json() : {}))
       .then((r: Record<string, unknown>) => {
         build = {
@@ -376,8 +553,9 @@ export function createLab(options: LabOptions): Lab {
       }
       sinks.add(log);
     }
+    let ended = false;
     g.addEventListener('pagehide', () => {
-      push(['end', at()]);
+      if (!ended) ended = push(['end', at()]);
       void snapshot?.();
       flush(true);
     });
@@ -385,7 +563,7 @@ export function createLab(options: LabOptions): Lab {
       if (g.document.visibilityState === 'hidden') {
         void snapshot?.();
         flush(true);
-      }
+      } else ended = false;
     });
     setInterval(() => flush(), 20000);
   }
@@ -498,13 +676,11 @@ export function createLab(options: LabOptions): Lab {
     setTelemetryOff: setOff,
     milestone(name) {
       if (milestones.has(name)) return;
-      milestones.add(name);
-      push(['ms', at(), name.slice(0, 80)]);
+      if (push(['ms', at(), name.slice(0, 80)])) milestones.add(name);
     },
     screen(name) {
       if (name === lastScreen) return;
-      lastScreen = name;
-      push(['scr', at(), name.slice(0, 80)]);
+      if (push(['scr', at(), name.slice(0, 80)])) lastScreen = name;
     },
     flush,
     log,

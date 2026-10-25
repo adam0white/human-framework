@@ -10,6 +10,13 @@ The release version is the package version and `FRAMEWORK_VERSION`, tagged `vX.Y
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
+## [2.22.0] - 2026-10-25
+
+Engine: 2.21.0. The new observation input is explicit. Existing input behavior and saved Person shape are unchanged; legacy continuation remains byte-identical.
+
+- Add explicit inherited aptitude for `observeSkill` and attended demonstrations. Earlier observation calls retain their exact rate, state and RNG, including authored families.
+- Add a reset-world prospect identity control and host guidance. Current progress can fall while the peak and advancement clock persist; stale abandonment still applies. This does not resolve the island task carry result.
+
 ## [2.21.0] - 2026-10-25
 
 Engine: 2.21.0. Existing callers retain continuation when the new faculties remain disabled.

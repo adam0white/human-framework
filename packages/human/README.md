@@ -222,7 +222,7 @@ reference host: `createVillage`.
 
 There are two version numbers, and they move independently.
 
-- **The release version** is the package version (`package.json`, currently `2.21.0`) and `FRAMEWORK_VERSION`, the same
+- **The release version** is the package version (`package.json`, currently `2.22.0`) and `FRAMEWORK_VERSION`, the same
   string compiled into the build; a test keeps them equal. It versions the public API under
   [semver](https://semver.org/): a breaking change to an exported name or signature bumps the major, a new
   faculty or export the minor, a fix the patch. Each release is a tag `vX.Y.Z` and a GitHub release whose notes
@@ -236,6 +236,10 @@ There are two version numbers, and they move independently.
 The root `package.json` version is the site's version (stamped into the site's `release.json`) and is not part of
 this policy.
 
+## Observation and inherited aptitude
+
+`observeSkill(p, skill, minutes, modelLevel, domain, { inheritedAptitude: true })` applies the person's existing inherited skill factor to observation. An attended `Percept.demonstrates` can declare the same flag. Only literal `true` enables it. Without it, watching keeps its previous rate, including for people whose saved family already has aptitudes. This adds no Person state or RNG draw and does not change direct practice. Save the host's observation inputs and pin the package when opting in.
+
 ## Optional felt body (2.21 release)
 
 `PersonSpec.enable.doze` accepts `{ posture: 'upright' | 'seated' | 'reclined', stimulation: number }`; `enableDoze` and `setDozeContext` are the explicit host calls. Doze onset is checked at integer-minute boundaries while awake. `readDoze` reports the current hazard; `nextDozeCheck` tells a manual host when to tick next. The opt-in costs one check per elapsed minute, including when onset gates are closed. It changes integration granularity, so enabled runs require a new replay pin. A dozed activity records `dozedAt`; the host resolves interrupted work. Doze does not wake spontaneously. `perceive` wakes only for a percept delivered at `p.now`, with `salience >= 0.8`, a heard/felt/social channel, detectable proximity (`near !== false`) and either `targetId === p.id` or `near === true`. The host must supply those alarms. These hazard and salience values are engineering constants.
@@ -244,7 +248,7 @@ this policy.
 
 `PersonSpec.enable.bladder` or `enableBladder(p)` starts a normalized fill store. `readBladder` returns true and perceived urgency, equal in this first slice. Water intake adds delayed fill and a small base rate fills it over time. A host marks a toilet `Affordance` with `voidsBladder: true` to add urgency-based choice value. Actual successful urination is separate: a completed `Outcome` with `voidedBladder: true` empties it; `voidBladder(p)` is the direct host operation. An interrupted or failed outcome does not empty it. For an offer that declares voiding, expectation learning treats completion without actual voiding as failure of that purpose. Do not use `needs.relief` as a substitute: that field reduces pain. Filling rates, threshold and choice weight are engineering constants. The model has no continence, automatic toilet search or automatic waking.
 
-With none of these options enabled or calls made, person state and seeded RNG continuation match HF 2.20.0 after normalizing the engine stamp only. HF 2.21.0 is the released library; the three site games still declare HF 2.20.0. Watch's adoption of `gestureVoiceTrust` and `addTiredness` uses the 2.20.0 helpers.
+With none of these options enabled or calls made, person state and seeded RNG continuation match HF 2.20.0 after normalizing the engine stamp only. The bodily options were introduced in HF 2.21.0. Site games pin their adopted package separately from the current library; upgrading the library does not enable these faculties or silently change game runtime.
 
 ## Long runs (2.0)
 
