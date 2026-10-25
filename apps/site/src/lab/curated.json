@@ -6728,11 +6728,11 @@
    "words": "Sent feedback from within the pass.",
    "verdict": "-",
    "routes": [
-    "fix:lab Require stored note receipt and retain failed feedback (open)",
-    "fix:pass Bypass cached build manifest (open)",
-    "fix:murmur Bypass cached build manifest (open)",
-    "fix:stairwell Bypass cached build manifest (open)",
-    "fix:glance Bypass cached build manifest (open)"
+    "fix:lab Require stored note receipt and retain failed feedback (done in client0.4.7 and kit0.5.8, owner retest 2026-11-03)",
+    "fix:pass Bypass cached build manifest (source fixed, live rollout receipts in report, owner retest 2026-11-03)",
+    "fix:murmur Bypass cached build manifest (source fixed, live rollout receipts in report, owner retest 2026-11-03)",
+    "fix:stairwell Bypass cached build manifest (source fixed, live rollout receipts in report, owner retest 2026-11-03)",
+    "fix:glance Bypass cached build manifest (source fixed, live rollout receipts in report, owner retest 2026-11-03)"
    ],
    "source": "docs/lab/note-delivery-2026-10-25.md"
   }
