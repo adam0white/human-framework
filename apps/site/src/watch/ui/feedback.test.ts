@@ -66,7 +66,7 @@ it('sends optional verdict and remembered name as feedback when recording is on'
   await act(async () => send().click());
   expect(lab.sendFeedback).toHaveBeenCalledWith('Verdict: keep', expect.objectContaining({ name: 'Tester' }));
   expect(lab.sendRun).not.toHaveBeenCalled();
-  expect(node.textContent).toContain('Note and verdict queued. An available run may also be included.');
+  expect(node.textContent).toContain('Sent. Your note is stored.');
 });
 it.each([
   ['off', false],

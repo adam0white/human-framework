@@ -131,15 +131,10 @@ export function SendWord({
     try {
       const includeRun = recording.on || sharePlay;
       const run = includeRun ? await optionalFeedbackRun(() => actions.getPlaytest()) : undefined;
-      const noteOnly = !includeRun;
       await lab.sendFeedback(message, { name: name.trim(), sharePlay, ...(run ? { run } : {}) });
       rememberName();
       setSent(true);
-      setStatus(
-        noteOnly
-          ? 'Note and verdict queued without a run or history linkage. Delivery may retry.'
-          : 'Note and verdict queued. An available run may also be included. Delivery may retry.',
-      );
+      setStatus('Sent. Your note is stored.');
     } catch {
       setStatus('Your feedback could not be sent. Please try again.');
     } finally {

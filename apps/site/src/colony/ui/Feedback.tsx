@@ -103,7 +103,6 @@ export function Feedback({
     try {
       const includeRun = recording.on || sharePlay;
       const run = includeRun ? await optionalFeedbackRun(() => getRun()) : undefined;
-      const noteOnly = !includeRun;
       await lab.sendFeedback(message, { name: name.trim(), sharePlay, ...(run ? { run } : {}) });
       try {
         if (name.trim()) localStorage.setItem(NAME_KEY, name.trim());
@@ -112,11 +111,7 @@ export function Feedback({
         /* Device storage is optional. */
       }
       setSent(true);
-      setStatus(
-        noteOnly
-          ? 'Note and verdict queued without a run or history linkage. Delivery may retry.'
-          : 'Note and verdict queued. An available run may also be included. Delivery may retry.',
-      );
+      setStatus('Sent. Your note is stored.');
     } catch {
       setStatus('Your feedback could not be sent. Please try again.');
     } finally {
