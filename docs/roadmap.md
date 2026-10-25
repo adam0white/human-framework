@@ -58,7 +58,7 @@ These change what a run does, so each needs the engine bump and a recorded reaso
 The full list, with module names and research references, is [faculty-inventory.md](faculty-inventory.md). Counts (2026-10-05, against engine 2.0.0): 142 faculties, 79 Done, 34 Partial, 23 Missing, 6 Excluded. All Missing and Partial rows are **unscheduled** unless named in §1–2 above; none blocks a current game. A row the next goal needs moves into §1 or §2 with a target.
 
 **Missing (23).**
-- Body and perception: temperature and specific nutrients; attention that costs time. Bladder, involuntary doze and explicit quantity observation are implemented as opt-ins in the 2.21 source candidate; release verification remains separate.
+- Body and perception: temperature and specific nutrients; attention that costs time. Bladder, involuntary doze and explicit quantity observation are implemented as opt-ins in the 2.21 release; release receipts are recorded in [releases.md](releases.md).
 - Memory and reasoning (bounded multi-step planning and present bias done in 2.12.0): interference, false memory and reconsolidation; inference between beliefs; motivated reasoning; metacognition; imagination and counterfactuals.
 - Affect and commitments: fear habituation; implementation intentions; life purpose, vocation and life narrative.
 - Learning: negative transfer between skills; qualifications, roles and credentials.
@@ -109,7 +109,7 @@ Owner direction (2026-10-18, [owner-directions](owner-directions-2026-10-18.md))
 | A thousand lives (bench), remaining evidence | Bounded one-day 100/1,000/coarse10,000 measurements and harness delivered; coarse fidelity differs and decision starvation is unavailable without an explicit opportunity predicate. Remaining: quiet-machine repetitions, longer spans and a justified starvation measure; no tuning from noisy timings. | 2026-11-15 |
 | Memory bound and declared fidelity | A memory bound in `Retention` (Valley 6); what coarse stepping preserves exactly; community-state migration steps (this supersedes the community half of "Community and world migration" in §2; world state stays the host's, with a documented recipe) | After inner life; review 2027-01-15 (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
 
-**2.21 source candidate, pending delivery.** Optional doze, quantity observation and bladder close the three Glance/Rope bodily requests once the release is verified. Watch's Q50 helper adoption uses the separately pinned 2.20 library. Host gift and shared-work recipes are documented in [host-kit.md](host-kit.md). A reset-world prospect identity recipe remains open for review 2026-11-15. No published-package or site receipt is claimed here.
+**2.21 release, delivered.** Optional doze, quantity observation and bladder close the three Glance/Rope bodily framework requests; game adoption remains separate. Watch's Q50 helper adoption uses the separately pinned 2.20 library. Host gift and shared-work recipes are documented in [host-kit.md](host-kit.md). A reset-world prospect identity recipe remains open for review 2026-11-15. Published-package and site receipts are in [releases.md](releases.md).
 
 | Item | Remaining decision | Target |
 |---|---|---|

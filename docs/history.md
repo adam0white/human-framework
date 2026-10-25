@@ -2,6 +2,10 @@
 
 Detail moved out of AGENTS.md on 2026-10-20 (owner: "Trim handoff and other documents"). AGENTS.md keeps one line per increment; the full text of each bounded increment as it stood in AGENTS.md is kept here verbatim.
 
+## Optional felt body and explicit game pins (2026-10-25)
+
+HF2.21.0 / engine2.21.0 adds opt-in minute-grid involuntary doze, explicit seeded quantity observation and native bladder urgency/choice with actual voiding outcomes. Engineering defaults are uncalibrated; doze requires current host alarms to wake. Two independent reviews and red/green controls fixed joint catch-up and expectancy learning. Absent options preserve published2.20 continuation after engine metadata normalization only. Host recipes cover chosen gifts and perceived shared work. Watch adopts2.20 host helpers; an explicit resolver keeps all central game runtimes on published2.20 while the site names library2.21. Exact CI, npm integrity/provenance, published controls and live deployment are in [releases](releases.md). F192 navigation and Q35 observation aptitude continue next; owner review remains separate.
+
 ## Roadmap host APIs and read-only helpers (2026-10-25)
 
 HF2.20.0 / engine2.17.0 adds authored habits/expectations, explicit voice-trust and tiredness calls, observed reputation composition and a sourced read-only Qalb lens. It rejects non-finite pregnancy fields and unsafe reputation effects while preserving valid legacy continuation and key order. Two independent batch reviews found and fixed setup-copy and prototype-trait defects. Focused controls, full checks, exact CI, npm provenance and clean live deployment are recorded in [releases](releases.md). Glance/Neighbours/Firefox investigations and bounded scale measurements retain their causal and fidelity limits. Body features, Watch adoption and owner acceptance remain separate.
