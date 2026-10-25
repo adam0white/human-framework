@@ -8,12 +8,13 @@ import { makeCastChapter, personChapter } from './cast-chapter.ts';
 import { goodhandsSelinPassport } from './cast-goodhands-selin.ts';
 import selin from './fixtures/goodhands-selin-native.json';
 import currentHacer from './fixtures/stairwell-hacer-hf221-native.json';
+import hf3Hacer from './fixtures/stairwell-hacer-hf223-native.json';
 import hacer from './fixtures/stairwell-hacer-native.json';
 import meryem from './fixtures/valley-meryem-native.json';
 import { requireValue } from './require-value.ts';
 
-/** Retained public generated source checkpoints from actual prior UI play. No raw source
- * snapshots/secrets here. Fresh live journeys remain separate from these adapter controls. */
+/** Generated checkpoints from real host exporters, captured through browser play or controlled
+ * host inputs. No raw source snapshots/secrets here. Live journeys are separate controls. */
 describe('actual native checkpoint adapters', () => {
   it('returns actual agency Selin with acquired RNG, office work and make-up debts, without agency encounters', async () => {
     const parent = await validatePersona(selin);
@@ -56,28 +57,34 @@ describe('actual native checkpoint adapters', () => {
     expect(initial.rng).toEqual((parent.transfer.person as { person: { rng: unknown } }).person.rng);
     expect(Object.keys(initial.skills)).not.toContain('trade');
   });
-  it('admits the current edition-8 Stairwell checkpoint and exactly replays its Voice continuation', async () => {
-    const parent = await validatePersona(currentHacer.envelope);
-    expect(parent.source).toMatchObject({ rules: '8', engine: '2.21.0' });
-    const game = new VoiceGame(1, 4, makeCastChapter([preparePersonaLife(parent, 0)]));
-    const initial = JSON.parse(
-      requireValue(requireValue(personChapter(game.castChapter, parent.castId)).initial),
-    );
-    const portable = currentHacer.envelope.transfer.person.person;
-    expect(initial.rng).toEqual(portable.rng);
-    expect(initial.traits).toEqual(portable.traits);
-    expect(initial.values).toEqual(portable.values);
-    expect(initial.now - initial.life.bornAt).toBe(portable.source.now - portable.life.bornAt);
-    expect(initial.lexicon.plainEnglish).toBe(true);
-    expect(Object.keys(initial.skills)).not.toContain('trade');
-    const start = game.t;
-    const rec = new RecordedGame(game);
-    play(rec, { stop: (g) => g.t >= start + 60 });
-    expect(game.t).toBeGreaterThan(start);
-    const result = replayVoice(1, rec.log, 4, undefined, 0, game.castChapter);
-    expect(result.driftAt).toBe(-1);
-    expect(voiceState(result.rec.game)).toEqual(voiceState(game));
-  });
+  it.each([
+    { rules: '8', engine: '2.21.0', envelope: currentHacer.envelope },
+    { rules: '9', engine: '2.23.0', envelope: hf3Hacer },
+  ])(
+    'admits actual Stairwell edition$rules and exactly replays its Voice continuation',
+    async ({ rules, engine, envelope }) => {
+      const parent = await validatePersona(envelope);
+      expect(parent.source).toMatchObject({ rules, engine });
+      const game = new VoiceGame(1, 4, makeCastChapter([preparePersonaLife(parent, 0)]));
+      const initial = JSON.parse(
+        requireValue(requireValue(personChapter(game.castChapter, parent.castId)).initial),
+      );
+      const portable = envelope.transfer.person.person;
+      expect(initial.rng).toEqual(portable.rng);
+      expect(initial.traits).toEqual(portable.traits);
+      expect(initial.values).toEqual(portable.values);
+      expect(initial.now - initial.life.bornAt).toBe(portable.source.now - portable.life.bornAt);
+      expect(initial.lexicon.plainEnglish).toBe(true);
+      expect(Object.keys(initial.skills)).not.toContain('trade');
+      const start = game.t;
+      const rec = new RecordedGame(game);
+      play(rec, { stop: (g) => g.t >= start + 60 });
+      expect(game.t).toBeGreaterThan(start);
+      const result = replayVoice(1, rec.log, 4, undefined, 0, game.castChapter);
+      expect(result.driftAt).toBe(-1);
+      expect(voiceState(result.rec.game)).toEqual(voiceState(game));
+    },
+  );
   it('preflights native Valley Meryem before deferred Watch arrival, preserving acquired fitness and current replay', async () => {
     const parent = await validatePersona(meryem);
     const input = preparePersonaLife(parent, 0);

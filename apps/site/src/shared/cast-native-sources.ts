@@ -7,7 +7,7 @@ import type { PersonaEnvelope } from '@adam0white/lab-client';
 
 // Portable fields keep their semantics across the 2.23 doze/narration corrections.
 const compatibleEngine = (engine: string) =>
-  engine === '2.17.0' || engine === '2.21.0' || engine === ENGINE_VERSION;
+  engine === '2.17.0' || engine === '2.21.0' || engine === '2.23.0' || engine === ENGINE_VERSION;
 
 export function nativeCastSource(
   target: string,
@@ -55,7 +55,9 @@ export function nativeCastSource(
   if (
     target === 'voice' &&
     source.game === 'stairwell' &&
-    (source.rules === '7' || (source.rules === '8' && source.engine === '2.21.0')) &&
+    (source.rules === '7' ||
+      (source.rules === '8' && source.engine === '2.21.0') ||
+      (source.rules === '9' && source.engine === '2.23.0')) &&
     transfer.castPassport === 'stairwell-cast/1' &&
     role === 'hacer' &&
     castId === 'hf.cast.hacer.voice'

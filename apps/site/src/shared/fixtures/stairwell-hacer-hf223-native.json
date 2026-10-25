@@ -1,0 +1,422 @@
+{
+  "format": "hf-persona/1",
+  "castId": "hf.cast.hacer.voice",
+  "castRevision": "1",
+  "branchId": "f86179b9-dde5-4464-af14-fa45dc4eff12",
+  "parentRevision": null,
+  "source": {
+    "game": "stairwell",
+    "build": "native-source-fixture",
+    "engine": "2.23.0",
+    "rules": "9"
+  },
+  "transfer": {
+    "castPassport": "stairwell-cast/1",
+    "hostObligations": [],
+    "sourceRole": "hacer",
+    "person": {
+      "format": "hf-persona-calendar/1",
+      "person": {
+        "format": "hf-persona-state/1",
+        "mappingVersion": "stairwell-calendar/1",
+        "source": {
+          "schema": "human/person@1",
+          "engine": "2.23.0",
+          "id": "hacer",
+          "now": 440
+        },
+        "name": "Hacer",
+        "life": {
+          "bornAt": -30484420,
+          "sex": "female"
+        },
+        "rng": {
+          "a": -2102762478,
+          "b": 2411003943,
+          "c": 3808690922,
+          "d": 1734556413
+        },
+        "traits": {
+          "honesty": 0.5,
+          "emotionality": 0.6,
+          "extraversion": 0.8,
+          "agreeableness": 0.45,
+          "conscientiousness": 0.5,
+          "openness": 0.5
+        },
+        "values": {
+          "benevolence": 0.5,
+          "universalism": 0.5,
+          "tradition": 0.5,
+          "conformity": 0.5,
+          "security": 0.5,
+          "achievement": 0.5,
+          "power": 0.5,
+          "hedonism": 0.5,
+          "stimulation": 0.5,
+          "selfDirection": 0.5
+        },
+        "health": {
+          "health": 1,
+          "fitness": 0.49991978750272215,
+          "circadianPeak": 960
+        },
+        "family": null,
+        "bonds": null,
+        "skills": {},
+        "skillRetention": null,
+        "episodes": [],
+        "commitments": [],
+        "limitations": [
+          "source transient body/needs/affect/ambient omitted; target arrival policy",
+          "source habits/methods/beliefs/social and conscience breaches omitted; target authored state; held norms transported",
+          "source optional behaviour stores and decision history omitted; target authored state",
+          "family/bonds provenance checked; target authored state",
+          "episode:e0",
+          "Beliefs, trust, relationships, building accounts, visitor secrets and memories remain in the full archive of this game. Moving to another game does not finish work, pay debts or resolve private matters."
+        ]
+      },
+      "calendar": {
+        "offset": 0,
+        "commitments": [],
+        "owed": [],
+        "lapse": null,
+        "heldNorms": [
+          {
+            "normId": "backbiting",
+            "standing": "disliked",
+            "conviction": 0.15
+          }
+        ],
+        "norms": [
+          {
+            "id": "salah",
+            "label": "Perform the daily prayers",
+            "standing": "obligatory",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 2:43"
+              },
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 4:103 (prayer at prescribed times)"
+              },
+              {
+                "kind": "interpretation",
+                "ref": "A missed prayer is still owed (qada); sleep, forgetting and unconsciousness lift the blame, not the debt; the debt for a stretch of unconsciousness beyond five prayer times drops (Hanafi count, kept as the default): research/capacity-and-excuse-sources.md §0, §2, §4; research/decisions.md"
+              },
+              {
+                "kind": "assumption",
+                "ref": "Window boundaries (Fajr until sunrise, one-shadow Asr, red-twilight Maghrib) are the most common positions, chosen in research/decisions.md; agenda/prayer.ts"
+              }
+            ]
+          },
+          {
+            "id": "sawm-ramadan",
+            "label": "Fast in Ramadan",
+            "standing": "obligatory",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 2:183"
+              },
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 2:185 (the month of Ramadan)"
+              },
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 2:187 (eat and drink until dawn, then complete the fast until nightfall)"
+              }
+            ],
+            "exemptions": [
+              {
+                "when": "illness",
+                "makeUp": true,
+                "sources": [
+                  {
+                    "kind": "revelation",
+                    "ref": "Qur'an 2:184 (whoever is ill or on a journey: an equal number of days after)"
+                  },
+                  {
+                    "kind": "revelation",
+                    "ref": "Qur'an 2:185 (repeated; Allah intends ease, not hardship)"
+                  },
+                  {
+                    "kind": "assumption",
+                    "ref": "Which illness qualifies is the person’s judgment; the severity threshold is an engineering stand-in"
+                  },
+                  {
+                    "kind": "interpretation",
+                    "ref": "Qur'an 2:184 continues: 'For those who can only fast with extreme difficulty, compensation can be made by feeding a needy person' (quran.com, checked 2026-10-03). Commonly read as covering chronic illness with no expected recovery (fidya instead of make-up); NOT modelled: every qualifying illness, chronic or acute, owes a make-up, because whether a condition is beyond recovery cannot be derived from body state"
+                  }
+                ]
+              },
+              {
+                "when": "travel",
+                "makeUp": true,
+                "sources": [
+                  {
+                    "kind": "revelation",
+                    "ref": "Qur'an 2:184 (whoever is ill or on a journey: an equal number of days after)"
+                  },
+                  {
+                    "kind": "revelation",
+                    "ref": "Qur'an 2:185"
+                  },
+                  {
+                    "kind": "assumption",
+                    "ref": "What counts as a journey is supplied by the host as a traveling flag"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "zakat",
+            "label": "Pay zakat",
+            "standing": "obligatory",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 2:43"
+              }
+            ]
+          },
+          {
+            "id": "charity",
+            "label": "Give voluntary charity (sadaqah)",
+            "standing": "recommended",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 2:261"
+              }
+            ]
+          },
+          {
+            "id": "lying",
+            "label": "Lying (truthfulness is required)",
+            "standing": "forbidden",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 22:30 (shun words of falsehood; quran.com, checked 2026-10-03)"
+              },
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 9:119 (be with the truthful)"
+              }
+            ]
+          },
+          {
+            "id": "theft",
+            "label": "Theft",
+            "standing": "forbidden",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 5:38"
+              },
+              {
+                "kind": "assumption",
+                "ref": "Listed in CONSCIENCE_DEFAULTS.necessityEligible: taking food in extremity is a juristic extension of the 2:173 necessity exception by analogy (2:173 itself names forbidden food); not yet sourced in research/, recorded as an engineering assumption pending a Hanafi source"
+              }
+            ]
+          },
+          {
+            "id": "keep-promise",
+            "label": "Keep promises and commitments",
+            "standing": "obligatory",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 17:34"
+              }
+            ]
+          },
+          {
+            "id": "kindness-to-parents",
+            "label": "Kindness to parents",
+            "standing": "obligatory",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 17:23"
+              }
+            ]
+          },
+          {
+            "id": "backbiting",
+            "label": "Backbiting",
+            "standing": "forbidden",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 49:12"
+              }
+            ]
+          },
+          {
+            "id": "help-neighbor",
+            "label": "Help and be good to neighbours",
+            "standing": "recommended",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 4:36 (be kind to neighbours; a command)"
+              },
+              {
+                "kind": "interpretation",
+                "ref": "Standing recorded as recommended for everyday help beyond basic kindness is an engineering simplification; the verse itself is a command"
+              }
+            ]
+          },
+          {
+            "id": "gratitude",
+            "label": "Gratitude",
+            "standing": "recommended",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 2:152 (thank Me, and never be ungrateful)"
+              },
+              {
+                "kind": "interpretation",
+                "ref": "Standing as recommended for expressed gratitude toward people is an engineering simplification"
+              }
+            ]
+          },
+          {
+            "id": "harm-others",
+            "label": "Harming others without right",
+            "standing": "forbidden",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 33:58 (abusing believers unjustifiably)"
+              },
+              {
+                "kind": "interpretation",
+                "ref": "General prohibition of unjust harm to any person, extended from specific texts; scope of \"without right\" left to the host"
+              }
+            ]
+          },
+          {
+            "id": "intoxicants",
+            "label": "Intoxicants",
+            "standing": "forbidden",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 5:90"
+              }
+            ]
+          },
+          {
+            "id": "forbidden-food",
+            "label": "Eating forbidden food (carrion, blood, swine)",
+            "standing": "forbidden",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 2:173 ('if someone is compelled by necessity—neither driven by desire nor exceeding immediate need—they will not be sinful'; quran.com, checked 2026-10-03)"
+              }
+            ]
+          },
+          {
+            "id": "fairness",
+            "label": "Deal fairly (no cheating in trade)",
+            "standing": "obligatory",
+            "sources": [
+              {
+                "kind": "revelation",
+                "ref": "Qur'an 83:1-3 (woe to the defrauders)"
+              },
+              {
+                "kind": "assumption",
+                "ref": "Generalised to fair dealing for secular hosts"
+              }
+            ]
+          },
+          {
+            "id": "care-dependents",
+            "label": "Care for those who depend on you",
+            "standing": "obligatory",
+            "sources": [
+              {
+                "kind": "interpretation",
+                "ref": "Obligations toward family alongside those toward Allah and oneself (Bukhari 1968, as cited in research/islamic-foundations.md §2); extending it to every dependent’s urgent needs is the host’s reading"
+              },
+              {
+                "kind": "assumption",
+                "ref": "Standing obligatory for secular hosts as a shared caregiving norm; engineering default"
+              }
+            ]
+          },
+          {
+            "id": "punctuality",
+            "label": "Be on time",
+            "standing": "recommended",
+            "sources": [
+              {
+                "kind": "assumption",
+                "ref": "Secular social norm; engineering default"
+              }
+            ]
+          },
+          {
+            "id": "eid-prayer",
+            "label": "Pray the Eid prayer in congregation",
+            "standing": "recommended",
+            "sources": [
+              {
+                "kind": "interpretation",
+                "ref": "Strongly emphasised in every school: wajib for Hanafis, sunnah mu'akkada (Maliki), sunnah (Shafi'i), fard kifaya (Hanbali), per TDV \"Bayram\" in research/eid-and-mourning-sources.md §1"
+              },
+              {
+                "kind": "assumption",
+                "ref": "Recorded as recommended (the most common standing overall, research/decisions.md), so missing it is no breach; congregational, with no individual make-up (eid-and-mourning-sources.md §1)"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "checkpoint": {
+      "schema": "human/person@1",
+      "sourceMinute": 440,
+      "rng": {
+        "a": -2102762478,
+        "b": 2411003943,
+        "c": 3808690922,
+        "d": 1734556413
+      },
+      "sha256": "39a27521d325c65086636242193eb5cddab7c6f7c476bdea784a8f34601acd5f"
+    },
+    "life": {
+      "version": "hf-coarse-life/1",
+      "clock": {
+        "version": "hf-chapter-clock/1",
+        "watermark": 498044,
+        "seed": 1385990301
+      },
+      "assignment": 0,
+      "work": "own-routine",
+      "place": "home",
+      "notices": [],
+      "events": [],
+      "skipped": 0
+    }
+  },
+  "limitations": [
+    "source transient body/needs/affect/ambient omitted; target arrival policy",
+    "source habits/methods/beliefs/social and conscience breaches omitted; target authored state; held norms transported",
+    "source optional behaviour stores and decision history omitted; target authored state",
+    "family/bonds provenance checked; target authored state",
+    "episode:e0",
+    "Beliefs, trust, relationships, building accounts, visitor secrets and memories remain in the full archive of this game. Moving to another game does not finish work, pay debts or resolve private matters."
+  ],
+  "revision": "e3ff45b0ed1c015c74e49a6ba672a9d119707dbcf3df7d424d1c5edb05aa40bf"
+}
