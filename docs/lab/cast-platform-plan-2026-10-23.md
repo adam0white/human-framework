@@ -1,5 +1,7 @@
 # Cast platform implementation plan
 
+> Historical implementation plan, 2026-10-23. The manual linkage and separate continuing-person consent instructions below were superseded by the owner’s frictionless recording direction. Current participating clients continue people automatically and use one Recording switch for recording and linkage. Keep transactional parent checks, pinned loaded runs and explicit forks. Use the current SDK adoption guide and HANDOFF.md for package versions and remaining work.
+
 Authorized scope: task 4 and Voice, Well and Watch adoption from task 5. Owner review remains 2026-11-03. The implementation uses TypeScript and the existing one-device browser shelf. No actor-loop semantics change.
 
 ## Design

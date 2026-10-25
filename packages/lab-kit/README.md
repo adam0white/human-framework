@@ -1,6 +1,8 @@
 # @adam0white/lab-kit
 
-Small plain-DOM components for lab games. No framework, simulation logic, automatic telemetry or font downloads. Version 0.2.0 adds a CSS-first phone stage and browser layout audit; publication is separate.
+Small plain-DOM components for lab games. No framework, simulation logic, automatic telemetry or font downloads. This README describes kit 0.5.11. The CSS-first phone stage and browser layout audit were added in 0.2.0. Kit 0.5.11 is an immutable GitHub release artifact, not an npm publication; use the [SDK adoption guide](../../docs/lab/navigation-journal-adoption-2026-10-25.md) and [release digests](../../docs/releases.md#lab-package-artifacts--2026-10-25).
+
+Workspace version: **0.5.11**. The later **0.5.12** [GitHub artifact](https://github.com/adam0white/human-framework/releases/tag/lab-kit-v0.5.12) is published from separate source `569bfeed`, with exact CI 40241110596. It is not integrated into this workspace or adopted by hosts by default. See [SDK adoption](../../docs/lab/navigation-journal-adoption-2026-10-25.md) before using its opt-in Feedback choices.
 
 Import the CSS once. JavaScript exports are tree-shakeable; CSS is explicitly marked as a side effect.
 
@@ -148,9 +150,9 @@ footer.append(
 );
 ```
 
-One Game menu button opens a sheet containing Save (when `onSave` exists), Download this run, Send this run to the notebook, regular-event controls (when the lab exposes them), and Lab privacy. The menu closes before the client dialog opens. Save success and failures are announced. `getRun` is read at action time; download always includes the complete export, never the compact form. The game must provide seed, input log and state, prove replay, and offer Continue with a location summary on its returning-player screen.
+One Game menu button opens Feedback (when `lab` exists), the single Recording switch (when supported), and Resume. With `?lab=1`, it also exposes Save (when `onSave` exists), Download this run and Lab privacy. The menu closes before the client dialog opens. Save success and failures are announced. `getRun` is read at action time; download always includes the complete export, never the compact form. The game must provide seed, input log and state, prove replay, and offer Continue with a location summary on its returning-player screen.
 
-The client is an **optional peer**, `@adam0white/lab-client >=0.1.1`. Pass an existing lab; the kit does not create one. Omitting `lab` keeps download and Save available and explains why sending is unavailable. This also lets browser automation use the menu without initializing telemetry. Honor the client's privacy signals; never force telemetry on for a test.
+The client is an **optional peer**, pinned to `@adam0white/lab-client 0.4.10` in kit 0.5.11. Pass an existing lab; the kit does not create one. Omitting `lab` keeps diagnostic download and Save available with `?lab=1` and explains why sending is unavailable. This also lets browser automation use the menu without initializing telemetry. Honor the client's privacy signals; never force telemetry on for a test.
 
 Compaction options are forwarded only after a lazy import of the installed client's exported `package.json` confirms a stable version 0.1.2 or later. Missing or unrecognized metadata falls back to the legacy dialog options. No peer is loaded on kit import or download. A bundler using the send integration must be able to resolve that optional peer's JSON export. The client owns consent, compression, limits, transport and send error messages. Add the lab endpoint to the game's CSP as described in [lab-client](../lab-client/README.md).
 
@@ -191,7 +193,7 @@ Missing package versions fail the build. Missing Git evidence produces `commit: 
 | What-next line             | DL-5, DL-8, DL-9, DL-22                  | Updating instructions and reserving visible space                                |
 | Notebook and JSON          | DL-24, DL-26, DL-28                      | Resume (DL-27), replayable exports (DL-29), send client                          |
 
-The table follows the revised 2026-10-20 checklist ids. Labels follow DL-26..28: Game menu, Download this run, Send this run to the notebook (the lab client's label).
+The table follows the revised 2026-10-20 checklist ids. Current labels are Game menu, Feedback and Resume; Download this run is diagnostic-only (`?lab=1`).
 
 The kit does not certify any game against the full checklist.
 
@@ -207,7 +209,7 @@ npm run check
 npm pack -w packages/lab-kit --pack-destination /tmp
 ```
 
-Tests use Vitest and happy-dom, with Node-only subprocess tests for the stamp. No publication is part of this task.
+Tests use Vitest and happy-dom, with Node-only subprocess tests for the stamp. Building or packing does not publish an artifact.
 
 ## Phone check (DL-30)
 
@@ -228,6 +230,6 @@ Steps are a JSON array, for example `[ {"click":"Play","name":"map"}, {"selector
 
 Use `telemetryNotice()` once on the game screen and mount that same returned node in a stable footer when present. Kit 0.5.7 uses a compact grammatical disclosure without a Dismiss control. Do not clone or replace the node: its asynchronous central claim can remove it. Add `telemetryToggle(lab)` to each game menu. Both use the same policy as the site games. `notebookMenu` includes the toggle. Register full runs, successful saves and game logs on the lab client; see its README. Automatic recording does not consent to the player-character test.
 
-`personaControls({ enabled, setEnabled, recordingAllowed, allowRecording })` renders the fictional continuity switch and shelf link. The recording fields remain accepted for older hosts; no separate linkage prompt appears. Recording and linkage follow the single `telemetryToggle(lab)` switch, including explicit opt-in under DNT/GPC.
+`personaControls({ enabled, setEnabled, recordingAllowed, allowRecording })` is a compatibility helper that still renders a fictional continuity switch and shelf link. Do not mount that switch in current ordinary play: continuity runs automatically. The recording fields remain accepted for older hosts; no separate linkage prompt appears. Recording and linkage follow the single `telemetryToggle(lab)` switch, including explicit opt-in under DNT/GPC.
 
 `feedbackPersonaControl(lab)` returns null when recording is on. Otherwise it returns one unticked checkbox labelled “Share this run and my play with the lab”. On Submit pass `sharePlay: feedbackSharePlay(control)` to `lab.sendFeedback(note, { run, name, sharePlay })`. The helper does not change recording when the checkbox is ticked. Submit applies the choice. Unticked feedback sends the note alone, without linkage.

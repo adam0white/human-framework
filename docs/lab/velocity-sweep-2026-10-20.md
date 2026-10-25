@@ -1,5 +1,7 @@
 # Lab velocity sweep (2026-10-20)
 
+> Historical measurements and decisions, 2026-10-20. Preserve the timings, owner quotations and applied-change receipts. Later owner directions authorize cast adoption and v3 roadmap work in Small Works, Neighbours and The Rope; the frozen-game exclusions below describe this earlier sweep. Current engineering rules are in AGENTS.md.
+
 The owner asked for a sweep of the repo's fences and rules: what slows the lab down, and what to keep. Owner, 2026-10-20: "I don't want to become a slow enterprise, but always an R&D lab with cool futuristic ideas."
 
 Short answer: hosted CI is not the slowdown. It takes about 3 minutes on clean runners and is already cached, sharded and cancel-on-supersede. Most of the measured time goes to **the full local `npm run check` on one machine that ten-plus agents share**, and to **agents colliding in one shared checkout**. The fix is lanes by touched paths (strictest wins), one full local suite at a time, deploy trusting CI for the exact commit, and one worktree per agent. Model-run work (reviews, playtests, ledger triage) costs as much per item as a loaded check, but it carries the lab's taste signal; this sweep does not cut it, it only stops it waiting on checks.

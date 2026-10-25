@@ -48,7 +48,7 @@ Two worlds with different settings cannot safely share one module instance. Test
 
 `canonicalTickInputs(tick, inputs, expected)` waits for the complete declared sender/sequence set and returns a new envelope array sorted by sender, then sequence. It returns `undefined` while an input is missing and throws for duplicate, unexpected or wrong-tick inputs. Payloads remain host-owned. Use the returned array only after the barrier completes; save pending input with host state.
 
-This is a bounded host convention, not transport, consensus or fairness. It reads no Person or RNG. Existing actor calls never use it implicitly. The H3 controls compare reordered deliveries, withheld input, restore and a behaviorally different unsorted control. The copyable two-person starter in `examples/h3-starter` owns its own clock and replay envelope; it is not a complete game engine or part of the npm artifact.
+This is a same-runtime host convention with lexical sender priority, not transport, consensus or fairness. It reads no Person or RNG. Existing actor calls never use it implicitly. The H3 controls compare reordered deliveries, withheld input, restore and a behaviorally different unsorted control. The copyable two-person [starter](https://github.com/adam0white/human-framework/tree/v3.0.0/packages/human/examples/h3-starter) owns its own clock and replay envelope; it is not a complete game engine or part of the npm artifact.
 
 ## Try the games
 
@@ -273,7 +273,7 @@ There are two version numbers, and they move independently.
   faculty or export the minor, a fix the patch. Each release is a tag `vX.Y.Z` and a GitHub release whose notes
   are that version's section of the root [CHANGELOG.md](https://github.com/adam0white/human-framework/blob/main/CHANGELOG.md), with the package tarball attached
   (`npm run release`, from a clean checkout of pushed `origin/main`).
-- **`ENGINE_VERSION`** (exported; `2.14.1` at release 2.14.1) versions simulation behaviour and the save format. It
+- **`ENGINE_VERSION`** (exported; `3.1.0` at release 3.1.0) versions simulation behaviour and the save format. It
   changes when the same seed and inputs would give different decisions, or when person state changes shape.
   `restore` upgrades saves from engine 1.4.0 and later through `migrate` and refuses older ones. Every release's notes name the
   `ENGINE_VERSION` it ships, so a host can tell whether its saves still restore.
@@ -509,7 +509,7 @@ Knowledge lives in optional `Person.prospection` and survives snapshot/restore. 
 `projectPersona(source, mapping)` produces `PersonaProjectionSnapshot` (`hf-persona-state/1`).
 `admitPersona(projection, targetOpening, { mappingVersion, sourceId, targetId })` returns a detached
 `{ person, report }`. `validatePersonaProjection(unknown)` validates portable data without filling defaults.
-Portable v1 accepts the published 2.14.1 source-engine stamp and the current engine; it preserves that source provenance. Unknown source engines remain rejected.
+In HF 3.1.0, portable v1 accepts source engines `2.14.1`, `2.17.0`, `2.21.0`, `2.23.0` and `3.1.0`; it preserves that source provenance. Unknown source engines remain rejected.
 These functions never enter the actor loop and never mutate the source or the host opening.
 
 The host supplies a versioned map of skill ids, selected episode ids and every continuing obligation.
@@ -573,7 +573,7 @@ Narration remains unchanged unless requested. Set `person.lexicon.variety`,
 `promptingLine(reading, outcome, kind, { voice: 'third' })` for plain third-person lines.
 `converse` adds per-call `loyalWarning`, `confidentMin` and `phrase` options;
 `perceive` adds a third `{ reputationTraits }` argument. See the architecture's
-[narration and social host options](../../docs/framework.md#narration-and-social-host-options-opt-in)
+[narration and social host options](https://github.com/adam0white/human-framework/blob/v3.0.0/docs/framework.md#narration-and-social-host-options-opt-in)
 for cause-aware reviews and actor-addressed recall. These options change no default continuation.
 
 ### Bounded chapter clock (2.18.0, opt-in)
@@ -597,8 +597,8 @@ existing person's choice only through an explicit recorded host action. Do not
 overwrite a loaded run's saved choice. Built-in decision narration,
 spoken replies, intentions and person summaries then use complete, literal English.
 Keep this choice in the saved person and replay setup. It changes recorded prose.
-Without the option, legacy wording and continuation stay exact. Engine2.17.0 remains
-unchanged: this option changes presentation, not decisions or save structure.
+Without the option, legacy wording and continuation stay exact. HF 2.19.0 introduced
+this option without changing engine 2.17.0. HF 3.0.0 used engine 2.23.0; HF 3.1.0 uses engine 3.1.0.
 
 Host `lines`, `extend`, names and action forms still apply. A host phrase pack owns
 its own grammar. HF does not translate arbitrary host labels or memory summaries.

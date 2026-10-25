@@ -1,5 +1,7 @@
 # Source-unread LLM playtester prompt
 
+> Dispatch status: The owner authorized HF 3 lab-panel rounds under the playtest director: twelve standing testers and two cold slots. Each game gets a round, fixes and a retest by the same testers. The cycle ends when a retest raises no new blocking ask, or after two iterations; remaining asks retain dated Deferred entries. Completion requires actual round and retest receipts. Friends’ playtests and Show HN stay paused until owner readiness acceptance. This document does not dispatch a round.
+
 Use this prompt for every source-unread LLM playtest. Fill the slots before dispatch.
 Keep the persona distinct from a builder or reviewer. The [testing asks](testing-asks.md)
 choose a question; the [clarity checklist](design-language.md) supplies the DL ids.

@@ -1,5 +1,7 @@
 # Testing asks
 
+> Historical testing asks, seeded 2026-10-19. HF 3 lab-panel rounds are authorized under the playtest director. These dated rows are questions, not current dispatch instructions. The game exclusions below describe the seed date. Keep unsolicited Feedback available.
+
 What each live game wants playtesters to try next. Seeded 2026-10-19 from each game's design doc (deferred and next lists), the open questions in its playtests, and owner asks. Each ask is a thing to try, not a task for the builder. Add an ask when a game ships a change that needs fresh eyes; remove it when a playtest has answered it, and cite the ledger row that answered it.
 
 Games not listed: Small Works (`repair`) has no playtest dated 2026-10-18 or 2026-10-19; Warren has no design or playtest docs yet; Twice at the Well, The Day You Say Nothing and The Night Watch graduated.

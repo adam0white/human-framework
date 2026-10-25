@@ -1,5 +1,7 @@
 # Lab persona panel
 
+> Panel status: The owner authorized HF 3 lab-panel rounds under the playtest director: twelve standing testers and two cold slots. Each game gets a round, fixes and a retest by the same testers. The cycle ends when a retest raises no new blocking ask, or after two iterations; remaining asks retain dated Deferred entries. Completion requires actual round and retest receipts. Friends’ playtests and Show HN stay paused until owner readiness acceptance. This document does not dispatch a round.
+
 These are fictional working personas, not recruited people or evidence about a population. Their countries and ages supply individual context, not national or age stereotypes. Temperaments use HF trait names as qualitative premises, not measured scores. This document defines briefs; it does not add runtime presets to `packages/playtester`.
 
 ## Count and use

@@ -1,5 +1,7 @@
 # Cast and life adoption
 
+> Historical cast adoption wave. Preserve its host mappings and delivery receipts. The opening HF 2.18.0 / client 0.4.4 / kit 0.5.4 pins and separate continuity or linkage consent instructions are superseded. Use [the HF 3 SDK adoption guide](navigation-journal-adoption-2026-10-25.md). Participating current clients continue people automatically; one Recording switch controls recording and linkage. Check each current host contract before reusing a native-source tuple.
+
 HF2.18.0 is published with engine2.17.0 and verified npm provenance. Client0.4.4 and kit0.5.4 are distributed as immutable local artifacts, not npm publications. Exact source, CI and publication receipts are in [releases](../releases.md).
 
 Use `castForGame()` with the exact source host id. The generated artifact is `packages/lab-client/src/cast.ts`, emitted by `scripts/cast-artifact.py` from the curated registry. Hosts import it through client0.4.4; no manual biography copying. It includes every canonical public profile, cast revision and3–8-person allocation. The registry remains authority for private facts and role-specific outcomes.

@@ -1,5 +1,7 @@
 # Lab privacy
 
+> Current-client clarification, 2026-10-25. Automatic records do not add a name; Feedback can include an optional name, and duplicate names do not merge identities. Feedback has verdict, note, optional name and Submit on one page. Participating games continue fictional people automatically on this device, with no separate continuing-person switch or consent gate. One Recording switch controls recording and linkage; character analysis still requires separate opt-in. Continuing-person state can connect earlier recordings after an identity reset. Central outgoing links may carry a short-lived recording-identity fragment that the destination validates and removes. Game adoption remains separate. The older “no name”, “Send word” and “separately enable” statements below require these corrections.
+
 Updated 2026-10-23. This is the text source for [/lab/privacy/](https://human.adamwhite.work/lab/privacy/).
 
 ## Automatic linked play records

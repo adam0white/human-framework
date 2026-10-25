@@ -28,12 +28,12 @@ Engine: 2.23.0. Breaking API cleanup and current toolchain. Seeded numerical beh
 
 ### Migration from 2.x
 
-- Remove the deprecated options-object forms of `glimpse`, `glimpseOf`, `hear`, `conceive` and `retell`. Time is positional; conception seed precedes time; retelling knobs follow time. Untyped callers passing removed options objects receive `TypeError` before Person state changes; positional time must be finite.
-- Rename `glimpseOf` to `glimpsePerson` and `acquaintWith` to `acquaintPerson`. Keep primitive `glimpse` and `acquaint`.
+- Rename the Person composites: use `glimpsePerson` instead of `glimpseOf`, and `acquaintPerson` instead of `acquaintWith`. Keep primitive `glimpse` and `acquaint`.
+- Use positional time in `glimpse`, `glimpsePerson`, `hear`, `conceive` and `retell`; the deprecated options-object forms are removed. In `conceive`, seed comes before time. In `retell`, optional settings come after time. Untyped callers passing removed options objects receive `TypeError` before Person state changes; positional time must be finite.
 - Remove `TRAIT_NAMES` (use `TRAIT_KEYS`), `expit` (use `sigmoid`), and the accidentally public internal `keysOf` helper (hosts use `Object.keys`; enumeration order stays unchanged). Remove the unused third argument from `repent` and `recordRepair`.
 - Use the callable `RoutineSource = (person, day) => Routine` in both routine drivers. Wrap fixed routines in `() => routine`; capture community context in a closure instead of a third argument. Selection order stays unchanged.
-- Drop Q15's proposed `skipTo` rename: no player value. Keep `skip`.
-- Q5: retain assignment-based tuning of existing mutable defaults. Settings apply to the whole module instance. Hosts save effective settings or baseline-relative overrides and restore the pristine baseline before applying them; Person snapshots do not capture tuning. Keep settings fixed during a run. Existing frozen defaults remain frozen.
+- Keep `skip`. Drop the proposed `skipTo` rename because it adds no player value (roadmap item Q15).
+- Retain assignment-based tuning of existing mutable defaults (roadmap item Q5). Settings apply to the whole module instance. Hosts save effective settings or baseline-relative overrides and restore the pristine baseline before applying them; Person snapshots do not capture tuning. Keep settings fixed during a run. Existing frozen defaults remain frozen.
 
 Exact before/after calls and routine restore guidance: [v3 migration](https://github.com/adam0white/human-framework/blob/v3.0.0/packages/human/README.md#migrating-to-v3).
 

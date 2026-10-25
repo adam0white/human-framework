@@ -1,5 +1,9 @@
 # Findings
 
+Short records of results that cut against expectations. Keep them; do not tune them away silently.
+
+Each entry describes its dated source or artifact. Historical defects do not describe the current SDK. Horizon 3 results and limits remain in the linked experiments.
+
 ## Community death clock limit (2026-10-25)
 
 **Negative result:** with HF3.1 community death handling, a future host `Outcome.at` can advance tied listeners and proposal survivors past `until` and intervening events. Hosts requiring bounded event order resolve at the event minute. This release adds no event queue, Person state or time oracle. The future catch-up audit remains P3, target2026-11-01 in [the roadmap](roadmap.md#1-framework-engine-changes-22).
@@ -8,12 +12,11 @@ Conditioned observer forecasts copy target pregnancy and surroundings rather tha
 
 ## Regular log byte budget (2026-10-25)
 
-Published client0.4.8 truncates logs by UTF-16 length. An isolated packed-artifact control with60 CJK logs exceeds the128KiB journal admission budget even when the journal is empty; later regular events remain blocked. ASCII sends. Client0.4.9 bounds redacted strings by JSON-escaped UTF-8 bytes, including escaped controls, and retains whole codepoints. Focused regressions fail before the fix and pass after it. This does not change feedback-note receipts or game state. External fix-forward delivery remains separate from source verification.
+The published client 0.4.8 artifact truncated logs by UTF-16 length. An isolated packed-artifact control with60 CJK logs exceeds the128KiB journal admission budget even when the journal is empty; later regular events remain blocked. ASCII sends. Client 0.4.9 corrected the defect by bounding redacted strings by JSON-escaped UTF-8 bytes, including escaped controls, preserving whole codepoints. Focused regressions fail before the fix and pass after it. This does not change feedback-note receipts or game state. External fix-forward delivery remains separate from source verification.
 
 
 **2026-10-23 — Projects protection on the published island control.** HF 2.17.0 retains larger free piles in ten seeds (median 2.5 objects versus HF5 0.5), but task median remains zero. Carrying an active project identity is exercised, not a carry-task success; the world reset removes its pile while its high-water history persists. That is a confound to isolate with a host prospect-identity recipe, not evidence for retuning HF after seeing the result. [Experiment](lab/experiments/island-2026-10-20.md#rerun-with-engine-2170-hf6).
 
-Short records of results that cut against expectations. Keep them; do not tune them away silently.
 
 - **2026-10-20 — Valley 4's strict `tellDeath` did not reproduce.** At the Host kit baseline (`d6552b9`), `tellDeath` already passes `Math.max(at, listener.now)` to perception and widowhood; `perceive` does not throw for past percepts. A test expecting the default to throw failed. Host kit preserves this default for exact continuation and adds explicit `late: 'throw'` / `late: 'now'` modes instead.
 

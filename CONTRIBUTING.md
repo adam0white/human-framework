@@ -6,8 +6,8 @@ Report security problems privately, as described in [SECURITY.md](SECURITY.md).
 
 ## Setup
 
-- Node ≥ 24 (the exact version is in `.nvmrc`); npm workspaces: `packages/human` (the framework) and
-  `apps/site` (the games and the home page).
+- Node ≥ 24 (`.nvmrc` selects Node 26); npm discovers workspaces through `packages/*` and `apps/*`.
+  These include the framework, lab client, lab kit, private playtester and site.
 - TypeScript 7.0.2 (strict, `noUncheckedIndexedAccess`), Vite 8.3.5, Vitest 5.0.5, Biome 2.6.3, React 19.3.1 for UI shells and Canvas 2D
   for maps.
 - `npm ci`, then `npm run dev` for the site.

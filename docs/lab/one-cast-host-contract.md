@@ -1,5 +1,7 @@
 # One cast host contract
 
+> Historical first-wave host contract. The separate continuity opt-in and historical-linkage questions in the Shelf examples are superseded by the owner’s frictionless recording direction. Participating current clients continue people automatically. One Recording switch controls recording and linkage, including after identity changes or imports; character analysis still requires separate opt-in. Keep projection validation, transactional parent checks, pinned loaded runs and explicit forks. Use current package documentation and [SDK adoption](navigation-journal-adoption-2026-10-25.md) before copying these examples.
+
 Approved first wave, 2026-10-23. HF 2.15.0 is additive, engine 2.14.1 unchanged. Client 0.3.1 and kit 0.4.0 ship as exact tarballs. Canonical facts and per-host maps are in [cast-registry.md](cast-registry.md). No cross-device sync or new server infrastructure is authorized. Owner review: 2026-11-03.
 
 ## Passport

@@ -1,5 +1,7 @@
 # What's left (2026-10-19, soft stop)
 
+> Historical checkpoint, 2026-10-19 to 2026-10-20. The queue is complete. Package pins, live receipts and owner-next publication instructions below describe that checkpoint. For current releases use [release receipts](../releases.md); check each game’s current manifest separately. Follow HANDOFF.md for current ownership. This file does not authorize new playtest rounds.
+
 Owner, 2026-10-19: "slow down on the Claude usage … we can move most of the stuff to codex. Keep note of what's left."
 **Status (2026-10-20):** the queue is complete; this file is a record. Its open HF asks are in [roadmap §3b](../roadmap.md) ("Still untriaged"); the game design items stay with each game's repository.
 

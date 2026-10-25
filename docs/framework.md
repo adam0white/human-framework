@@ -2,6 +2,12 @@
 
 This is the design reference for `packages/human` (`@adam0white/human-framework`). For installation, a quick start and the host contract in brief, see the [package README](../packages/human/README.md). The [API reference](api.md) lists every export. The shared data contract lives in [`packages/human/src/types.ts`](../packages/human/src/types.ts). Modules expose deterministic readers and mutators over a `Person`. Faculty modules mutate only their owned slices; composites coordinate calls across faculties.
 
+## Published baseline and later work
+
+This reference describes HF **3.1.0**, with engine **3.1.0**, published on 2026-10-25. HF 3.0 removed deprecated API forms while keeping engine 2.23.0. HF 3.1 adds explicit host options for community death handling, upbringing and conditioned body forecasts. Omitted options preserve HF 3.0 continuation apart from the engine stamp. The package and engine versions have different meanings. See [the migration guide](../packages/human/README.md#migrating-to-v3) for changed calls and [release receipts](releases.md) for publication evidence.
+
+Version-labelled sections below retain the history and limits of each feature. They do not state current game pins. Game adoption and deployment have separate receipts in [HANDOFF.md](../HANDOFF.md). Later 3.x work remains in [the roadmap](roadmap.md); a target or a successful first probe does not mean an API has shipped. In particular, the H3 speech and starter results are bounded host recipes and experiments. They do not establish a general speech grammar, a complete game engine or a predictor of real players.
+
 ## The spine: Urge → Assent → Act
 
 A person does not execute commands. At each decision point, many pulls act on them at once:
@@ -105,7 +111,7 @@ Without this slice the existing state, terms and continuation digests stay ident
 host world ──affordances──▶ decide(person, affordances, {suggestion})
      ▲                         │  score every option: Σ terms (needs, norms, commitments, goals,
      │                         │  habits, emotions, expectations, social, effort, risk, suggestion)
-     │                         │  will.resolve: vetoes, self-control, softmax(rng), suggestion verdict
+     │                         │  will.resolveChoice: vetoes, self-control, softmax(rng), suggestion verdict
      │                         ▼
      │                    DecisionRecord (+ narration, intention)
      │                         │
@@ -117,7 +123,7 @@ host world ──affordances──▶ decide(person, affordances, {suggestion})
                percepts ────── perceive(person, percepts) → attention → beliefs, social, affect
 ```
 
-Decisions are event-driven: a person decides when idle, when an activity ends, or when the host interrupts them. Between decisions, `tick` advances continuous state in closed form within each segment. It splits elapsed time at activity ends and on the absolute `PERSON_DEFAULTS.maxSegment` grid (60 minutes by default). Its cost is O(elapsed segments), with per-segment work depending on the stored records and enabled faculties.
+Decisions are event-driven: a person decides when idle, when an activity ends, or when the host interrupts them. Between decisions, `tick` advances continuous state in closed form within each segment. It splits elapsed time at activity ends and on the absolute `PERSON_DEFAULTS.maxSegment` grid (60 minutes by default). Its cost is O(elapsed segments), with per-segment work depending on the stored records and enabled faculties. With involuntary doze enabled, integration also splits at each integer minute, including during sleep and when onset gates are closed; that path costs O(elapsed minutes). Manual hosts schedule `nextDozeCheck` and resolve work pinned by `Activity.dozedAt` through `finish` before calling `begin` again.
 
 ## Modules and owned state
 
@@ -162,6 +168,14 @@ Which human faculties these modules cover, and which they do not yet, is listed 
 | `restore.ts`                           | — (validates every slice)                                                                                                                                                                                                                                                                                                                                                            | `snapshot(p)` (deep copy as plain JSON), `restore(json)`: checks `schema`, migrates older engines, fills defaults, then hands each optional slice to its owner's internal sanitizer: `memory` (gists), `chronicle` (years), `skills` (skill retention), `will`, `affect` (crisis), `agenda`, `body` (and injuries), `social` (groups, impressions), `character`, `family`, `partnering` (bonds), `environment` (ambient) and `person.ts` (retention). The chronicle, its day accumulator and the lexicon need only a type check, done in `restore`. Each owner keeps the bounds of its own slice |
 | `sim/`                                 | `Community` (host-side)                                                                                                                                                                                                                                                                                                                                                              | `Community` driver over a host `World` adapter: `createCommunity(people, prior?)`, `communityState`, `stepCommunity`, `runSilent`, `preview(p, affordances, suggestion, opts?)`, `interruptPerson`, `tellDeath` (1.8.0; `stepCommunity` tells deaths by default), joint protocol (`proposeJoint`, `acceptJoint`, `declineJoint`, `mirrorAffordance`), `jointSuccessChance`                                                                                                                                                                                                                       |
 | `scenarios/`                           | world state (`VillageState`)                                                                                                                                                                                                                                                                                                                                                         | reference host: `createVillage` (places: home, field, well, kitchen, mosque, forest), `villagerSpec`. Game worlds live in the games, not in the package                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+
+### Host helpers outside Person state
+
+`tick-input.ts` owns no Person, clock, queue or RNG state. Its public `canonicalTickInputs(tick, inputs, expected)` helper is an explicit host scheduling convention. It waits for the complete declared sender/sequence set, then returns new envelopes in lexical sender order and numeric sequence order. A missing input returns `undefined`; duplicate, unexpected or wrong-tick input throws. Each set is limited to 256 entries. An empty expected set is complete. Payload references remain caller-owned and the helper never reads their fields.
+
+Hosts must agree on payload meaning, apply inputs only after the barrier completes, and save pending inputs with host state. Lexical sender priority is a host policy, including priority between conflicting requests. The helper supplies no transport, consensus, fairness, payload validation, retries or snapshot storage. Actor calls do not use it implicitly. Its controls support same-runtime ordering only; they do not prove a network or cross-platform lockstep protocol.
+
+`chapter-clock.ts` defines a versioned clock containing a seed and a real-hour watermark. It returns at most 24 slot draws per return. The host supplies elapsed-time inputs, stores the clock and applies the returned slots. The helper does not advance a Person or own browser storage. See [the chapter-clock contract below](#optional-chapter-clock-hf2180).
 
 ## Beliefs and trust
 
@@ -255,6 +269,12 @@ Since 2.1 the functions that take a time follow one rule.
 - A **query evaluated at a time** takes `now` instead: `predictAs` (`opts.now`), `previewCommandAs`, `imagine`, `decide` (`opts.now`).
 - `canMarry` keeps `opts.at`, because a positional time after the optional `custom` would be ambiguous.
 
+## Routine sources and tuning in v3
+
+Both routine drivers take `RoutineSource = (person, day) => Routine`. Wrap a fixed routine in `() => routine`. A community source captures the community in a closure; bind a new closure after restoring a different community. `onDay` runs before anyone's routine day. Each source runs immediately before that person's day, so later sources can observe earlier people's changes. Precomputing all routines at dawn can change those reads. Coarse routine days do not run the ordinary decision loop.
+
+Existing mutable defaults remain assignment-based settings for the entire module instance. Keep them fixed during a run. Person snapshots do not store them. Hosts must save effective settings or overrides against a known pristine baseline, restore that baseline, then apply the saved settings before continuing. Applying overrides over another run's settings can leak tuning. Existing frozen defaults remain frozen. See [tuning defaults](../packages/human/README.md#tuning-defaults-q5).
+
 ## Host protocols
 
 - **Space and travel** are host responsibilities. The framework has no spatial model; hosts fold travel into `Affordance.duration` and mark nearby percepts with `Percept.near`.
@@ -294,6 +314,8 @@ For concrete offer/outcome boundaries, see [expected benefits and observed outco
 
 ## Determinism and saves
 
+Replay requires the same engine version, effective tuning values, initial Person and host state, seeded streams, inputs and call order. The opt-in input-ordering helper covers only one host ordering convention; it does not establish the rest of this contract.
+
 - All randomness comes from `person.rng`, or from host-owned RNG for world events. Given the same seed and inputs, the result is byte-identical when the host's calls fall on the same minutes, on any OS and CPU architecture. Discrete events (decisions, missed commitments, goals) do not depend on how a host chunks `tick` calls; continuous state agrees to floating-point rounding (~1e-9) across different chunkings, and is byte-identical when calls fall on the 60-minute `tick` grid.
 - `Person` is plain JSON. `snapshot(p)` returns a deep clone, and `restore(json)` validates `schema` and fills defaults. Both live in `restore.ts`, which checks each optional slice with its owning module's internal `sanitize*` function (listed in the module table above).
 - A save is the people's snapshots, the community's host-side state (`communityState(c)`) and the world's state. Resume with `createCommunity(people, saved)` and the world's `state` option (`createVillage` takes one). Restoring only the people and calling `createCommunity(people)` diverges: day hooks run twice and queued advice and standing-advice completions are lost.
@@ -301,7 +323,7 @@ For concrete offer/outcome boundaries, see [expected benefits and observed outco
 - Bounded collections: episodes ≤ 200, beliefs ≤ 300, impressions ≤ 32 with ≤ 48 cues each, trace ≤ 32 (fewer with `setRetention`), gists ≤ 64, year records ≤ 150, day records ≤ 120 (and by age with `setRetention`), emotions ≤ 12, breaches ≤ 50, intentions ≤ 50, voice history ≤ 5 per voice. Breach, injury and illness ids come from counters (`nextBreach`, `body.nextId`), so they stay unique after eviction. `restore` holds a saved person to the same bounds and refuses a non-finite `now` or one beyond `MAX_MINUTE` (2.0.0, security review H2).
 - Versions: the HF release version is the package version and `FRAMEWORK_VERSION` (semver, tagged `vX.Y.Z`, notes in the root CHANGELOG.md). `ENGINE_VERSION` versions behaviour and the save format separately and is named in each release's notes. Policy: packages/human/README.md, "Versions". Engine history:
 - `ENGINE_VERSION` 2.23.0 (2026-10-25) corrects interval-delivered doze alarms and retains non-waking delivered percepts through ordinary attention. `begin` refuses unfinished dozed work until the host calls `finish`, even after waking. Plain-English narration fixes can change stored prose for opted-in and mixed-lexicon runs. Migration from 2.21.0 only stamps metadata. With doze and plain English absent, full state, events and RNG match published HF 2.22.0 after engine metadata normalization.
-- `ENGINE_VERSION` 2.21.0 (2026-10-25) adds optional minute-grid doze, an explicit seeded quantity observation, and optional bladder storage and choice value. Migration from 2.17.0 only stamps metadata; it enables none of them. Without opt-in, full-state continuation matches HF 2.20.0 after engine metadata normalization only. Enabled doze checks each crossed integer minute, can alter continuous body integration, and does not wake without a current high-salience host percept. `voidsBladder` is an offer; only completed `voidedBladder` or a direct host call empties storage. Rates, hazards, confidence and choice coefficients are engineering constants. Site games remain pinned to 2.20.0; Watch adopts its 2.20.0 host helpers separately.
+- `ENGINE_VERSION` 2.21.0 (2026-10-25) adds optional minute-grid doze, an explicit seeded quantity observation, and optional bladder storage and choice value. Migration from 2.17.0 only stamps metadata; it enables none of them. Without opt-in, full-state continuation matches HF 2.20.0 after engine metadata normalization only. Enabled doze checks each crossed integer minute, can alter continuous body integration, and does not wake without a current high-salience host percept. `voidsBladder` is an offer; only completed `voidedBladder` or a direct host call empties storage. Rates, hazards, confidence and choice coefficients are engineering constants. At this release, site games were pinned to 2.20.0 and Watch adoption of its 2.20.0 host helpers was separate; later adoption is tracked in HANDOFF.md.
 - `ENGINE_VERSION` 2.17.0 (2026-10-23) adds explicit project protection and narration/social options. The migration from 2.14.1 only stamps the version; no option is enabled by restoring an old save. HF 2.15.0 and 2.16.0 used engine 2.14.1.
 - `ENGINE_VERSION` 1.1.0 (2026-10-03) added the rules above and new state fields; `restore` refuses 1.0.0 saves.
 - `ENGINE_VERSION` 1.2.0 (2026-10-03) added several voices per decision, standing advice, abstentions and fasting perception, illness coupled to rest and food, habit ease and extinction, cue recall, the chronicle and the lexicon; `restore` refuses 1.1.0 saves.
@@ -408,7 +430,7 @@ Limits: the review reads commitments only, not methods or promptings; it models 
 
 From the games' requests ([triage](game-requests-2026-10-18.md)). Each piece is opt-in or new API, so a host that uses none of it continues exactly (full-state digests match npm 2.3.0 with only the engine stamp normalized).
 - **Going along.** `Affordance.alongside: PersonId[]` names people going this way (unlike `with`, who take part). For each known, living tie in it, `consider()` adds `together:<id>` = 0.12 × closeness. `decide(p, offers, { reconsider: true })` drops the running activity's inertia bonus for that one decision, for a host-forced review after something changed (a tug, a call); promise inertia stays. In the [control](../packages/human/examples/game-requests-control.ts) a person resting beside a close partner goes on with them in 12 of 12 seeds only with both; either alone leaves 0 of 12.
-- **Fullness.** `enableFullness(p)` or `enable: { fullness: true }`: an offer advertising food, water or relief to a need already past its comfort level gets `full:<need>` = −0.03 × gain × over² (negative alliesthesia). Idle choice then falls through to waiting or sitting: 120 sips in eight full hours fall to 2. HF's `relief` is pain relief; HF has no bladder.
+- **Fullness.** `enableFullness(p)` or `enable: { fullness: true }`: an offer advertising food, water or relief to a need already past its comfort level gets `full:<need>` = −0.03 × gain × over² (negative alliesthesia). Idle choice then falls through to waiting or sitting: 120 sips in eight full hours fall to 2. HF's `relief` is pain relief. This 2.8.0 slice had no bladder model; HF 2.21.0 later added opt-in `enableBladder`, with `voidsBladder` offers and completion-only `voidedBladder` effects.
 - **A voice's word.** `seedVoice(p, voiceId, trust, { replace? })` sets an authored starting trust on an existing person. `noteVoicePromise(p, voiceId, { kept, at, action })` moves trust by whether the voice did what it said: kept gains 0.1 of the headroom, divided by 1 + the decayed count of kept promises for that action; broken loses 0.25 of the trust.
 - **Forecast thresholds per offer.** `Affordance.forecastAt: { comfortAt, spentAt }` replaces the 2.5.0 forecast's 0.8 and 0.97 for that offer, for people who live high on a readout (night keepers).
 
@@ -458,7 +480,7 @@ Relationships (`social.relationships`) and impressions (`social.impressions`) ar
 
 ### Optional chapter clock (HF2.18.0)
 
-`chapter-clock.ts` owns only a seeded monotone real-hour watermark and bounded24-slot return calculation. It does not own Person state or step the actor loop. The browser host pins its input and outcomes, authors qualified assignment/local encounter fiction and applies existing passport gates before an atomic shelf claim. Secret biographies, host roles and storage remain outside `packages/human`. The engine remains2.17.0.
+`chapter-clock.ts` owns only a seeded monotone real-hour watermark and bounded24-slot return calculation. It does not own Person state or step the actor loop. The browser host pins its input and outcomes, authors qualified assignment/local encounter fiction and applies existing passport gates before an atomic shelf claim. Secret biographies, host roles and storage remain outside `packages/human`. HF 2.18.0 kept engine 2.17.0 at introduction; this helper does not set the current engine version.
 
 
 ## Explicit host setup and effects

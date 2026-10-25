@@ -1,5 +1,9 @@
 # Lab client
 
+This README describes client 0.4.10, distributed as an immutable GitHub release artifact, not an npm publication. It depends on exact HF 3.0.0. Use the [SDK adoption guide](../../docs/lab/navigation-journal-adoption-2026-10-25.md) and verify the [release digests](../../docs/releases.md#lab-package-artifacts--2026-10-25).
+
+Workspace version: **0.4.10**. The later **0.4.11** [GitHub artifact](https://github.com/adam0white/human-framework/releases/tag/lab-client-v0.4.11) is published from separate source `569bfeed`, with exact CI 40241110596. It is not integrated into this workspace or adopted by hosts by default. See [SDK adoption](../../docs/lab/navigation-journal-adoption-2026-10-25.md) before using its opt-in Feedback choices.
+
 Default-on, pseudonymous play recording for the HF game lab. The visible notice and menu toggle come from `@adam0white/lab-kit`. Games supply full replay exports and actual saves. Screens remain game-owned.
 
 ```ts
@@ -20,20 +24,19 @@ Runs/saves are JSON, capped at 16 MiB and 128 chunks of at most 64 Ki UTF-16 cha
 
 `openSendDialog` shows verdict, note, optional name and Submit in one sheet. When recording is off, it adds one unticked checkbox: “Share this run and my play with the lab”. Checkbox changes do not enable recording until Submit. The optional name is trimmed to 60 characters, stored locally after submission and sent at the top level of the note envelope. Clearing and submitting removes the saved name. Names are unverified labels. Storage failures do not block sending. Programmatic feedback sends only the name explicitly supplied.
 
-The site games provide full seed/input/state exports through their worker adapters. External games must adopt `trackRun`, successful-save capture, game logs and the kit notice/toggle; installing the package alone cannot supply their exports. Their CSP must permit `frame-src https://human.adamwhite.work` for cross-game identity. Collection stays off on localhost unless `sendFromLocalhost: true` is explicit.
+The site games provide full seed/input/state exports through their worker adapters. External games must adopt `trackRun`, successful-save capture, game logs and the kit notice/toggle; installing the package alone cannot supply their exports. Their CSP must permit `frame-src https://human.adamwhite.work` for cross-game identity and `connect-src https://human.adamwhite.work` for the default recording endpoint. Collection stays off on localhost unless `sendFromLocalhost: true` is explicit.
 
 Private ingestion: `npm run lab:inbox`. Retention, bounds and protocol: [linked telemetry](../../docs/lab/linked-telemetry-2026-10-22.md). Public privacy note: https://human.adamwhite.work/lab/privacy/.
 
 ### Fictional-person shelf (browser only)
 
-`personaChannel()` is separate from recording. Its `ready: Promise<boolean>` reads the central browser continuity choice through a boolean-only handshake. A fresh target must await `shelf.ready` before checking `shelf.enabled`, deciding an automatic arrival or attaching persona upload hooks. Enabling continuity in one participating game applies to later participating games in this browser; turning it off applies globally. No cast metadata or recording identity is returned by this handshake. Existing loaded runs remain pinned. Call `setEnabled(true)` only after the player enables continuity. The exact participating origins are HTTPS human, pass, murmur, stairwell, hearsay, goodhands, glance, rope, repair, valley, warren, neighbours and commonstead on adamwhite.work. Voice, Well and Watch share the human origin. A blocked bridge needs a local file fallback. The central screen is `/lab/people/`; it can inspect, download, import and delete browser continuity. Browser eviction can lose it. Deleting continuity does not delete received lab records.
+`personaChannel()` supplies fictional continuity automatically in participating games on this device. It starts enabled and sends an enabled handshake to the central shelf. A fresh target must await `shelf.ready` before deciding an automatic arrival or attaching persona upload hooks. The boolean handshake returns no cast metadata or recording identity. Existing loaded runs remain pinned. `setEnabled` remains a compatibility method; do not add a separate continuing-person switch or consent gate. Recording and linkage follow the single Recording switch. The exact participating origins are HTTPS human, pass, murmur, stairwell, hearsay, goodhands, glance, rope, repair, valley, warren, neighbours and commonstead on adamwhite.work. Voice, Well and Watch share the human origin. A blocked bridge needs a local file fallback. The central screen is `/lab/people/`; it can inspect, download, import and delete browser continuity. Browser eviction can lose it. Deleting continuity does not delete received lab records.
 
 ```ts
 import { createPersona, personaChannel, watchPersonaCheckpoint } from '@adam0white/lab-client';
 const shelf = personaChannel();
 await shelf.ready;
-// The host gets the player's explicit continuity choice before this call.
-shelf.setEnabled(true);
+// Continuity starts automatically; no separate player permission is required.
 const original = await createPersona({
   format: 'hf-persona/1',
   castId: 'hf.cast.example.host',
@@ -50,7 +53,7 @@ await shelf.request({ action: 'put', envelope: original, authored: true });
 
 The host owns HF projection validation, semantic admission and the complete admitted initial snapshot in its replay. `transfer.person` is the strict `PersonaProjectionSnapshot` from HF, serialized as plain JSON. Its source includes schema, engine, simulation minute and complete RNG; the envelope checksum covers all fields. `transfer.history` contains bounded host-approved facts. `transfer.admission`, if used, contains pinned host mapping stamps. This client admits bounded JSON, not fictional meaning.
 
-`list` returns metadata only. `get` requires a selected `castId`. Automatic arrivals after opt-in apply only when creating a fresh run. A loaded run keeps its pinned state. Before returning from admission, advance the shelf with a target claim:
+`list` returns metadata only. `get` requires a selected `castId`. Automatic arrivals apply only when creating a fresh run. A loaded run keeps its pinned state. Before returning from admission, advance the shelf with a target claim:
 
 ```ts
 const arrival = await shelf.request<PersonaEnvelope | null>({ action: 'get', castId });
@@ -63,7 +66,7 @@ if (arrival) {
 }
 ```
 
-Each later checkpoint uses the last accepted revision as `parentRevision`. `watchPersonaCheckpoint(callback)` calls the host callback on pagehide and visibility-hidden; the host calls the same callback at chapter boundaries. The callback must check opt-in and serialize concurrent checkpoints. Revision validation precedes storage; CAS happens in one central IndexedDB readwrite transaction. Duplicate revisions are idempotent. A stale parent cannot replace a head. Do not retry with the latest head. Offer file export or an explicit fork: create a new branch id, set parent null, then put with `fork:true`. The fork becomes that person's active branch. Other people keep their active branches. There is no timestamp merge. Limits are 256 KiB per envelope, forty active people, 120 retained revisions and 16 MiB overall. Automatic checkpoints prune oldest accepted non-head cache entries deterministically. Every active head is retained. If those heads cannot fit, admission refuses before mutation. Source saves and receiving replays keep their own pinned history; download a backup.
+Each later checkpoint uses the last accepted revision as `parentRevision`. `watchPersonaCheckpoint(callback)` calls the host callback on pagehide and visibility-hidden; the host calls the same callback at chapter boundaries. The callback must check that continuity is enabled and serialize concurrent checkpoints. Revision validation precedes storage; CAS happens in one central IndexedDB readwrite transaction. Duplicate revisions are idempotent. A stale parent cannot replace a head. Do not retry with the latest head. Offer file export or an explicit fork: create a new branch id, set parent null, then put with `fork:true`. The fork becomes that person's active branch. Other people keep their active branches. There is no timestamp merge. Limits are 256 KiB per envelope, forty active people, 120 retained revisions and 16 MiB overall. Automatic checkpoints prune oldest accepted non-head cache entries deterministically. Every active head is retained. If those heads cannot fit, admission refuses before mutation. Source saves and receiving replays keep their own pinned history; download a backup.
 
 Recording and continuing-person linkage follow the single recording switch. First-visit disclosure covers linkage across games on this device. Old shelf epoch receipts may still be used by older hosts, but they are not permission gates. Loaded runs, admission snapshots and transactional parent checks remain unchanged. File export and local play remain available. Character analysis still requires separate opt-in.
 

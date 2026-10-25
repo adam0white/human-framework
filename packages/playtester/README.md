@@ -17,10 +17,12 @@ generic enough for HF.
 | `cohort.ts`          | N personas × M seeds against one build, giving one plain-JSON `CohortSummary`.                                                                                                                |
 | `compare.ts`         | Two summaries of the same game, an earlier build against a later one.                                                                                                                         |
 | `designer.ts`        | An experiment, not a tool (see `docs/findings.md`, 2026-10-19). An HF designer ranks templated proposals.                                                                                     |
-| `adapters/`          | The canonical adapters: The Pass (`pass.ts`), The Glance (`glance.ts`), The Two Voices (`voices.ts`).                                                                                         |
+| `adapters/`          | The canonical adapters: The Pass (`pass.ts`), The Glance (`glance.ts`), The Two Voices (`voices.ts`), The Warren (`warren.ts`).                                                               |
 | `examples/cohort.ts` | The command line.                                                                                                                                                                             |
 
 ## Commands
+
+The owner authorized HF 3 lab-panel rounds under the playtest director: twelve standing testers and two cold slots. Each game gets a round, fixes and a retest by the same testers. The cycle ends when a retest raises no new blocking ask, or after two iterations; remaining asks retain dated Deferred entries. Completion requires actual round and retest receipts. Friends’ playtests and Show HN stay paused until owner readiness acceptance. This document does not dispatch a round. Synthetic HF sessions are not evidence of human enjoyment or predictive validity.
 
 Build HF first. Under node, the package resolves HF through the workspace build.
 
@@ -33,8 +35,8 @@ node packages/playtester/examples/cohort.ts session game=glance persona=mischief
 ```
 
 `personas=` takes `all` (the default), `base`, `edge`, or a list of ids. Each adapter reads its game checkout from an
-environment variable: `PASS_DIR`, `GLANCE_DIR` or `MURMUR_DIR`. By default these point to `~/code/pass`,
-`~/code/glance` and `~/code/murmur`.
+environment variable: `PASS_DIR`, `GLANCE_DIR`, `MURMUR_DIR` or `WARREN_DIR`. By default these point to `~/code/pass`,
+`~/code/glance`, `~/code/murmur` and `~/code/warren`.
 
 To compare two builds without touching the game repository, extract the old build and point the variable at it:
 
@@ -158,7 +160,7 @@ Pass records the disabled night-three continuation without inventing a reason; G
 disabled ring/warning and displayed reasons. Refusal forecasts and busy people do not become disabled controls.
 The action menus still combine controls from reachable sheets and omit navigation, so they cannot prove that
 every control was simultaneously visible or discovered. Neighbours and Small Works example adapters remain
-outside this copy coverage; both games are frozen.
+outside this copy coverage. Their historical freeze does not block the later authorized cast and v3 work.
 The language check includes clock, now, goal, next, control labels and disabled reasons.
 `loops` and `features.openLoop` retain their existing meaning: visibly unfinished business.
 

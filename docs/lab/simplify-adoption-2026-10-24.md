@@ -1,5 +1,7 @@
 # Simplify shared package adoption — 24 October 2026
 
+> Historical simplify adoption wave, 2026-10-24. Preserve these artifact hashes and host-change receipts. Do not use its opening package pins for a new adoption. HF 3 hosts use [client 0.4.10 and kit 0.5.11](navigation-journal-adoption-2026-10-25.md), with exact release receipts. Per-game source, deployment and owner readiness remain separate.
+
 Use client **0.4.6** with kit **0.5.7**. HF remains **2.18.0**, engine **2.17.0**, with no engine-rule change. The earlier 0.4.5/0.5.5 candidate tarballs and kit0.5.6 are preserved and superseded, never overwritten. npm publication remains deferred; distribution uses immutable GitHub release assets.
 
 - [lab-client 0.4.6](https://github.com/adam0white/human-framework/releases/download/lab-client-v0.4.6/adam0white-lab-client-0.4.6.tgz)

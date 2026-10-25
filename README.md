@@ -6,7 +6,7 @@ HF is a deterministic, explainable model of a simulated person, written in TypeS
 
 ## Status
 
-- **HF 2.14.1** is the latest release ([GitHub release](https://github.com/adam0white/human-framework/releases/tag/v2.14.1), engine 2.14.1; [CHANGELOG](CHANGELOG.md)). What is next is in the [roadmap](docs/roadmap.md).
+- **HF 3.1.0** is published ([GitHub release](https://github.com/adam0white/human-framework/releases/tag/v3.1.0), engine 3.1.0; [release receipts](docs/releases.md)). Read the [v3 migration guide](packages/human/README.md#migrating-to-v3) before upgrading from 2.x. The widened v3 increment continues through later 3.x work in the [roadmap](docs/roadmap.md); a planned or reviewed change is not a published release.
 - **Three in-site example games**, live at [human.adamwhite.work](https://human.adamwhite.work); more games built on HF are listed on [/games/](https://human.adamwhite.work/games/):
   - [Twice at the Well](https://human.adamwhite.work/colony/): a colony sim played side by side without and with HF.
   - [The Day You Say Nothing](https://human.adamwhite.work/voice/): you are a voice in one man's head; he may refuse you.
@@ -14,7 +14,7 @@ HF is a deterministic, explainable model of a simulated person, written in TypeS
 
 ## Quick start
 
-The source is public on GitHub (code MIT, docs CC BY 4.0). Install from [npm](https://www.npmjs.com/package/@adam0white/human-framework):
+The package requires TypeScript 7 or later and Node 24 or later. The source is public on GitHub (code MIT, docs CC BY 4.0). Install from [npm](https://www.npmjs.com/package/@adam0white/human-framework):
 
 ```sh
 npm install @adam0white/human-framework
@@ -64,6 +64,7 @@ A person's conscience weighs norms from a catalog the host supplies. The bundled
 - [docs/faculty-inventory.md](docs/faculty-inventory.md): every human faculty HF aims to model, marked Done, Partial, Missing or Excluded against the code.
 - [docs/roadmap.md](docs/roadmap.md): deferred framework work, missing faculties and the games' deferred lists, each with a target.
 - [docs/findings.md](docs/findings.md): results that cut against expectations.
+- [docs/lab/README.md](docs/lab/README.md): current lab references and preserved experiments, reviews and records.
 - [docs/games/](docs/games): one design doc per game ([colony](docs/games/colony.md), [voice](docs/games/voice.md), [watch](docs/games/watch.md)) and the owner's playtest notes, verbatim.
 - [research/](research): source records behind the norms and formulas, and [decisions on contested religious points](research/decisions.md).
 - [CHANGELOG.md](CHANGELOG.md), [HANDOFF.md](HANDOFF.md) (current state), [docs/releases.md](docs/releases.md) (release receipts), [docs/history.md](docs/history.md), [AGENTS.md](AGENTS.md) (contributor rules).

@@ -1,5 +1,15 @@
 # Navigation journal adoption — 2026-10-25
 
+## Released artifacts and host adoption
+
+This workspace and the central hosts use client **0.4.10** / kit **0.5.11**. The later [client 0.4.11](https://github.com/adam0white/human-framework/releases/tag/lab-client-v0.4.11) / [kit 0.5.12](https://github.com/adam0white/human-framework/releases/tag/lab-kit-v0.5.12) artifacts are published from signed `569bfeed8042607e3b0357277e280e8bc1af01f5`, [exact green CI 40241110596](https://github.com/adam0white/human-framework/actions/runs/40241110596), on the separate `all-feedback` branch. Publication does not establish integration into main or any host. Keep immutable artifacts; the owner chose no npm migration.
+
+After adopting both artifacts, hosts can opt in with `feedbackChoices: true` in `openSendDialog` or `notebookMenu`. “I'm stopping” and “I'm confused” are literal ordinary note text. Selection changes the preview and sends nothing; Submit sends through the existing stored-note receipt contract. Custom menus can explicitly submit with `sendFeedbackLabel`. Recording and sharing rules still apply. Labels do not stop the game or change recording. A note receipt does not prove optional run chunks arrived. Linked agent attribution is unsupported; do not submit synthetic feedback or runs to production through this API.
+
+The artifact controls used downloaded bytes and mocked transport. They establish no production receipts or host adoption. The installation and transport record below describes the earlier 0.4.10 / 0.5.11 baseline and its predecessors.
+
+## HF 3.0 baseline
+
 For HF3 hosts, use [client 0.4.10](https://github.com/adam0white/human-framework/releases/tag/lab-client-v0.4.10) and [kit 0.5.11](https://github.com/adam0white/human-framework/releases/tag/lab-kit-v0.5.11). Their signed tags name source `9887c54a597e0c9713151adcc492b5fcba9b3a3e` with [exact green CI 40226805070](https://github.com/adam0white/human-framework/actions/runs/40226805070). Download exact tarballs and verify the SHA512 digests in [release receipts](../releases.md#lab-package-artifacts--2026-10-25). The client depends on exact HF3.0.0; kit's optional peer is exact client0.4.10. Replace older HF2.x-forcing overrides and prove one HF3 copy with `npm ls @adam0white/human-framework --all`. Earlier client0.4.9/kit0.5.10 remain immutable historical artifacts; do not overwrite them.
 
 This records the client-only fix pair. The later [HF 3.0 release](https://github.com/adam0white/human-framework/releases/tag/v3.0.0) uses [client 0.4.10](https://github.com/adam0white/human-framework/releases/tag/lab-client-v0.4.10) and [kit 0.5.11](https://github.com/adam0white/human-framework/releases/tag/lab-kit-v0.5.11), which retain this bound. Remaining consumers are migrating through that coordinated HF 3.0 pair.

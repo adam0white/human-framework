@@ -6,6 +6,7 @@ import './home.css';
 import { SAMPLE_OUTPUT } from './sampleOutput.ts';
 
 declare const __HF_LIBRARY_VERSION__: string;
+declare const __HF_PACKAGE_VERSION__: string;
 
 const ACTIVE_GAMES = GAMES.filter((g) => g.status === 'active');
 const TOP_GAME = ACTIVE_GAMES[0] ?? { name: 'Twice at the Well', href: '/colony/' };
@@ -87,6 +88,7 @@ function Home() {
 
         <section aria-labelledby="use-title">
           <h2 id="use-title">Use it</h2>
+          <p>Requires TypeScript 7 or later and Node 24 or later.</p>
           <pre className="install">
             <code>{INSTALL}</code>
           </pre>
@@ -123,7 +125,8 @@ function Home() {
 
       <footer className="foot">
         <span>
-          <span aria-hidden="true">◇</span> human framework v{__HF_LIBRARY_VERSION__}
+          <span aria-hidden="true">◇</span> human framework v{__HF_LIBRARY_VERSION__} · games v
+          {__HF_PACKAGE_VERSION__}
         </span>
         <span>
           code MIT · docs CC BY 4.0 · <a href={REPO}>source</a>

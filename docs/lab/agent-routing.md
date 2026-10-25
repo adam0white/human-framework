@@ -1,5 +1,7 @@
 # Agent routing: Codex or Claude
 
+> Historical bake-off, 2026-10-19. Preserve the results below. For current work, follow AGENTS.md: run `npm run check:lane` before each commit and use its review rules. The queue under “State” is historical; check HANDOFF.md for current ownership.
+
 Which kinds of subagent work go to Codex (`codex exec`, model `gpt-6.1-sol`, default medium effort) and which stay with Claude subagents. Written 2026-10-19 from a bake-off on real backlog tasks. The owner asked for it ("Codex also has token usage left") and later said "we can move most of the stuff to codex". Redo the comparison when either side's model changes.
 
 ## Rules

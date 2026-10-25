@@ -1,6 +1,6 @@
 # Host kit
 
-These recipes use the existing person loop. They add no behaviour. Their executable counterparts are in [host-kit.test.ts](../packages/human/test/host-kit.test.ts). Import the functions below from `@adam0white/human-framework`.
+These recipes use the existing person loop. They add no behaviour. Their executable counterparts are in [host-kit.test.ts](../packages/human/test/host-kit.test.ts). Import HF API functions from `@adam0white/human-framework`. The later `giftHost` and `sharedWorkRecipe` helpers are source-example recipes, not package exports or general host APIs.
 
 For starting knowledge, use `seedBelief` and `seedSourceTrust`; see [Beliefs and trust](framework.md#beliefs-and-trust) for the separate trust stores. Use `fingerprint(person)` to compare canonical saves across restore. For mixed full and routine clocks, `tellDeath(community, dead, at, { late: 'now' })` delivers late news at each listener's current minute. That is also the existing default; explicit `late: 'throw'` rejects late listeners before delivering any news.
 

@@ -1,5 +1,7 @@
 # Publishing and earning (2026-10-20)
 
+> Distribution proposal only, 2026-10-20. Friends’ playtests and Show HN remain paused until owner readiness acceptance. Re-date outreach and player targets after acceptance. Unsolicited Feedback remains available. Platform terms and audience counts below are historical; recheck them before acting.
+
 Owner direction (2026-10-20): "more games and more grandiose ideas, including starting to think about how we'll publish these more broadly, and ... how we may start earning some money from these without pushing too much."
 
 This is a proposal. Nothing here has been started: no accounts exist, nothing is published outside human.adamwhite.work and the subdomains. Every fact about a platform is marked **confirmed** (seen in a source on 2026-10-20, usually secondary) or **assumed** (from memory or inference; check before acting). Platform terms change; re-check each one on the day an account is opened.

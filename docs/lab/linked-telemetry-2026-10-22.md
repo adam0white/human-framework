@@ -1,5 +1,7 @@
 # Linked telemetry, 2026-10-22
 
+> Current-client clarification, 2026-10-25. The first-visit notice covers recording and linking play across games on this device. One Recording switch explicitly opts in despite DNT/GPC. Central outgoing links may carry a short-lived identity fragment; the destination validates the direct central referrer, destination and age, then removes it immediately. This changes future recording identity, not earlier records. These statements qualify the older notice and URL-free linkage description below. Adoption differs by game.
+
 Owner direction: [verbatim](../owner-directions-2026-10-18.md#2026-10-22-linked-telemetry-adam-verbatim). The output is collection and private inbox plumbing. Game-specific save-screen redesign is outside this change.
 
 The first-visit notice is: “The lab records your play to improve the games. Turn off in the menu.” The [privacy text](privacy.md) is also served as HTML at `/lab/privacy/`.

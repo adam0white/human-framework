@@ -1,5 +1,7 @@
 # Bounded site native returns
 
+> Historical native-return plan, 2026-10-24. Its package pins, source-edition examples and parked-worktree instructions describe that delivery wave. For current ownership use HANDOFF.md; for current SDK pins use [the adoption guide](navigation-journal-adoption-2026-10-25.md). Preserve the owner corrections, admission refusals and source-to-target proof requirements below. Recheck exact native receiving tuples against current host source.
+
 Owner-authorized follow-up to the delivered cast platform. HF2.18.0, client0.4.0 and kit0.5.0 remain unchanged. Done means finite native receiving contracts, focused controls, one independent Codex review of correctness and design, signed lane-checked source, exact green CI, normal deployment, and genuine source UI→target UI journeys for Voice, Well and Watch with the same admitted run at both required viewports. Owner acceptance remains separate.
 
 1. Recognize only Hearsay edition6 Rıza/Osman and Stairwell rules7 Hacer into Voice; Valley rulesvalley-cast-3 Danyal/Maryam/Yusuf into Well and Danyal/Samira/Meryem into Watch. Validate exact dialect/mapping/role/engine/source receipt and trusted norm meanings. Preserve unsupported obligations, body, family and projects as refusals. Build stamps remain actual provenance, not an arbitrary obsolete single-build allowlist.
