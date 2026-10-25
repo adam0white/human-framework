@@ -224,7 +224,7 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
         (best?.tie?.affection ?? 0) > 0
           ? pick(s, id, 'with', [
               `“${other} was beside me when they came. That helped.”`,
-              `“With ${other} next to me I could stand it.”`,
+              `“Having ${other} next to me made the watch easier.”`,
               `“I stayed because ${other} stayed.”`,
             ])
           : pick(s, id, 'against', [
@@ -270,7 +270,7 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
       reserveOf(p, 'fatigue') * IMPRESSION_DEFAULTS.wordsReserve < 0.5
     ) {
       say('doze', [
-        `“I kept nodding off at ${theSec(sec)}.”`,
+        `“I kept falling asleep briefly at ${theSec(sec)}.”`,
         `“My head kept dropping at ${theSec(sec)}. I pinched myself awake.”`,
         `“I admit I fell asleep briefly at ${theSec(sec)}, more than once.”`,
       ]);
@@ -328,7 +328,7 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
         say('quiet', [
           '“It was quiet enough.”',
           '“It was cold. Nothing else happened.”',
-          '“Nothing came my way.”',
+          '“Nothing approached my post.”',
           '“I only heard the wind.”',
           '“I counted the stars. I have nothing to report.”',
           '“I saw an owl and a fox, and I felt cold. That is all.”',
@@ -364,7 +364,7 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
       else
         say('insisted-held', [
           `“You insisted. I guarded ${at}.”`,
-          `“I watched ${at}, as you insisted. Nobody crossed it.”`,
+          `“I watched ${at}, as you insisted. I stayed at my post there.”`,
         ]);
     }
     let text = said.join(' ');

@@ -6,6 +6,9 @@ describe('told lines in the day log', () => {
   const names = { hacer: 'Hacer', riza: 'Rıza', halil: 'Halil', selin: 'Selin' };
   test('ids become names and the speaker is not repeated', () => {
     expect(toldLine('Hacer says riza is lazy', names)).toBe('Hacer says Rıza is lazy.');
+    expect(toldLine('Hacer says “I still have to decide about the door.”', names)).toBe(
+      'Hacer says “I still have to decide about the door.”',
+    );
   });
   test('advice reads as words, not an action id', () => {
     expect(toldLine('Selin says I should see-doctor', names)).toBe('Selin says he should see the doctor.');

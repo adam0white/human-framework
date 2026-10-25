@@ -278,7 +278,7 @@ export function thoughtText(p: Person, record: DecisionRecord): string {
     }
     if (src.startsWith('commitment:')) {
       const c = p.agenda.commitments.find((x) => x.id === src.slice(11));
-      if (c?.kind === 'worship' && c.label) return `Time for ${c.label}.`;
+      if (c?.kind === 'worship' && c.label) return `It is time for ${c.label}.`;
     }
     if (src.startsWith('need:')) {
       const line = NEED_THOUGHTS[src.slice(5)];

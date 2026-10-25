@@ -324,7 +324,7 @@ export function buildReport(i: ReportInput): ReportView {
   const ill = [...(i.illDays ?? [])].sort((a, b) => a - b);
   if (ill.length > 0)
     body.push(
-      `His blood pressure made him unwell on ${ill.length === 1 ? '1 day' : `${ill.length} days`} of Ramadan (${ill.map((d) => dayLabel(d)).join(', ')}); he considered himself too ill to fast. He will make ${ill.length === 1 ? 'it' : 'them'} up after Eid.`,
+      `His blood pressure made him unwell on ${ill.length === 1 ? '1 day' : `${ill.length} days`} of Ramadan (${ill.map((d) => dayLabel(d)).join(', ')}); he considered himself too ill to fast. He needs to make ${ill.length === 1 ? 'it' : 'them'} up after Eid.`,
     );
   if (i.doctor) body.push(i.doctor);
   const owed = Math.round(town.state.rentOwed);

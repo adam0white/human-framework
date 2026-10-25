@@ -119,10 +119,10 @@ it('explains grief and reluctance in his words and reserves model values for exa
   expect(ordinary.textContent).not.toMatch(/[+−]|\d\.\d|no-smoking-fast|top option|top total/);
   expect(ordinary.querySelector('.v-why-bar, .v-meter, [style*="width"]')).toBeNull();
   const lines = [...ordinary.querySelectorAll('.v-why-pulls li')].map((e) => e.textContent);
-  expect(lines[0]).toBe('My grief draws me toward this.');
+  expect(lines[0]).toBe('My grief makes me want to do this.');
   expect(lines[1]).toBe('This goes against how I understand my duties.');
-  expect(lines[2]).toBe('The effort puts me off.');
-  expect(lines[3]).toBe('My grief makes this hard to face.');
+  expect(lines[2]).toBe('The effort makes me less willing to do this.');
+  expect(lines[3]).toBe('My grief makes this difficult for me.');
 });
 
 it('keeps unrecognized model terms out of ordinary character speech', () => {
@@ -139,7 +139,7 @@ it('keeps unrecognized model terms out of ordinary character speech', () => {
   const ordinary = el.cloneNode(true) as HTMLElement;
   ordinary.querySelector('details')?.remove();
   expect(ordinary.textContent).not.toContain('future:raw-id');
-  expect(ordinary.textContent).toContain('I have other reservations about this.');
+  expect(ordinary.textContent).toContain('I have other reasons not to do this.');
 });
 
 it('retains concrete refusal limits and known social, meal and need influences', () => {
@@ -157,6 +157,7 @@ it('retains concrete refusal limits and known social, meal and need influences',
               { label: 'for Selin', value: 0.08 },
               { label: 'Pay Osman 300 by day 15 of Ramadan', value: 0.07 },
               { label: 'the pre-dawn meal', value: 0.06 },
+              { label: 'your suggestions', value: 0.05 },
             ],
           },
         ],
@@ -170,6 +171,7 @@ it('retains concrete refusal limits and known social, meal and need influences',
   expect(el.textContent).toContain('I want to do this for Selin.');
   expect(el.textContent).toContain('I want to keep my word to Osman.');
   expect(el.textContent).toContain('I want to make time for my meal.');
+  expect(el.textContent).toContain('I am considering your suggestions.');
 });
 
 it('lets a player read a scene without opening Why and keeps Latest in its own flow row', () => {

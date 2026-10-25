@@ -1112,7 +1112,7 @@ function NightAccount({
   const unavailable = candidates.filter((act) => !available.includes(act));
   const unavailableReasons = groupedUnavailable(unavailable, frame);
   const recentDoze = frame.alerts.findLast(
-    (alert) => alert.who === who.id && alert.text.includes('nods off'),
+    (alert) => alert.who === who.id && alert.text.includes('falls asleep'),
   );
   // Off-wall people have no helper sheet, including after a live handover.
   const showingChoice = who.post !== null ? choice : null;

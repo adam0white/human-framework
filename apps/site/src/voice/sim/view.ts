@@ -73,7 +73,8 @@ export function toldLine(summary: string, names: Readonly<Record<string, string>
     / says I should (\S+)$/,
     (_m, a: string) => ` says he should ${ACTION_LABEL[a] ?? a.replace(/-/g, ' ')}`,
   );
-  return `${advice.charAt(0).toUpperCase()}${advice.slice(1)}.`;
+  const sentence = `${advice.charAt(0).toUpperCase()}${advice.slice(1)}`;
+  return /[.!?][”"']?$/.test(sentence) ? sentence : `${sentence}.`;
 }
 
 export const isVoiceId = (id: string): id is VoiceId => Object.hasOwn(VOICE_META, id);
@@ -90,7 +91,7 @@ export function trustWord(t: number, you = false): string {
           : t >= 0.45
             ? 'a little'
             : t >= 0.3
-              ? 'carefully'
+              ? 'with caution'
               : t >= 0.15
                 ? 'very little'
                 : 'hardly at all';
@@ -310,7 +311,7 @@ export function healthLines(h: Person, town: Town, t: number): string[] {
   );
   if (excused)
     out.push(
-      `Unwell: his blood pressure is ${pressureWord(sev)}. He considers himself too ill to fast today. He will make up this day after Eid.`,
+      `Unwell: his blood pressure is ${pressureWord(sev)}. He considers himself too ill to fast today. He needs to make up this day after Eid.`,
     );
   else if (sev >= EXEMPTION_DEFAULTS.illnessSeverity)
     out.push(`Unwell: his blood pressure is ${pressureWord(sev)}.`);
@@ -403,8 +404,10 @@ export function endsView({
   const tally =
     chron.length === 0
       ? 'The first day of fasting has not ended yet.'
-      : `He kept ${kept} of ${chron.length} ${chron.length === 1 ? 'day' : 'days'}${day >= TOWN_EID_DAY ? '' : ' so far'}` +
-        (excused > 0 ? `. He was excused on ${excused} days and will make them up later.` : '.');
+      : `He fasted on ${kept} of ${chron.length} ${chron.length === 1 ? 'day' : 'days'}${day >= TOWN_EID_DAY ? '' : ' so far'}` +
+        (excused > 0
+          ? `. He was excused on ${excused} ${excused === 1 ? 'day' : 'days'} and needs to make ${excused === 1 ? 'it' : 'them'} up later.`
+          : '.');
   const fastDetail = `${fastNow ? `The fast ends at ${clock(fastNow.until)}. ` : ''}${tally}`;
   const owed = Math.round(town.state.rentOwed);
   const paid = Math.round(town.state.rentPaid);
@@ -491,7 +494,7 @@ export function endsView({
           ? 'he did not see the doctor in Ramadan'
           : 'he has not seen the doctor yet',
       detail: seen
-        ? `${lastVisit !== undefined ? `He last saw the doctor on ${dayLabel(dayOf(lastVisit))}. ` : ''}The doctor: ${doctorSaid ? stripSaid(doctorSaid.summary) : 'rest, walk, stop smoking'}.`
+        ? `${lastVisit !== undefined ? `He last saw the doctor on ${dayLabel(dayOf(lastVisit))}. ` : ''}${doctorSaid ? `${doctorSaid.summary.charAt(0).toUpperCase()}${doctorSaid.summary.slice(1)}` : 'The doctor told him to rest, walk and stop smoking'}.`
         : asOfEid
           ? 'He did not go to the clinic in Ramadan.'
           : 'He has not been to the clinic.',
@@ -526,8 +529,6 @@ export function endsView({
     },
   ];
 }
-
-const stripSaid = (s: string) => s.replace(/^the doctor said /, '');
 
 // --- Voices --------------------------------------------------------------------------------------
 

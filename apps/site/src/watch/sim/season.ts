@@ -178,7 +178,7 @@ function thaw(s: WatchState): void {
     chronicle(
       s,
       'loss',
-      `The thaw brought down ${worst === 'gate' ? 'the wall by the Gate' : `the ${worst} wall`} where it was climbed all winter. It cannot be stood next winter.`,
+      `The thaw brought down ${worst === 'gate' ? 'the wall by the Gate' : `the ${worst} wall`} where it was climbed all winter. Nobody can guard it next winter.`,
     );
   }
   const eat = Math.ceil(living(s).length * EAT_PER_HEAD);
@@ -268,7 +268,7 @@ function lessonLines(s: WatchState): void {
         ? `The summer of sling lessons with ${teacher} showed this winter: ${who} threw stones more accurately than before.`
         : grew >= LESSON_LITTLE
           ? `${who}'s sling lessons with ${teacher} helped a little this winter. The throws were steadier, but the aim was still uncertain.`
-          : `${who}'s sling lessons with ${teacher} have not shown on the wall yet.`,
+          : `${who}'s sling lessons with ${teacher} have not yet led to noticeably more accurate throws on the wall.`,
       x.who,
     );
   }
@@ -289,13 +289,13 @@ function fairLines(s: WatchState): void {
     const rebuilt = bought.some((l) => l.text.includes(`raised ${wall} again`));
     if (!raised && !rebuilt) continue;
     const n = s.yearGrain.breaches[sec] ?? 0;
-    const what = raised ? 'Raised at the fair' : 'Rebuilt by the masons';
+    const what = raised ? 'The workers hired at the fair raised and lengthened' : 'The builders rebuilt';
     chronicle(
       s,
       'winter',
       n === 0
-        ? `${what}, nothing crossed ${wall} this winter.`
-        : `${what}, ${wall} was still climbed ${n === 1 ? 'once' : `${n} times`} this winter.`,
+        ? `${what} ${wall}. Nothing crossed it this winter.`
+        : `${what} ${wall}. Attackers still climbed over it ${n === 1 ? 'once' : `${n} times`} this winter.`,
     );
   }
   for (const l of bought) {
@@ -308,10 +308,10 @@ function fairLines(s: WatchState): void {
       s,
       'winter',
       nights >= 3
-        ? `${who}, named heir at the fair, stood the Gate ${nights} quiet nights this winter and is learning it.`
+        ? `${who}, named heir at the fair, guarded the Gate for ${nights} quiet nights this winter and is learning it.`
         : nights > 0
-          ? `${who}, named heir at the fair, stood the Gate only ${nights === 1 ? 'one quiet night' : `${nights} quiet nights`} this winter.`
-          : `${who}, named heir at the fair, never stood the Gate this winter. Learning to guard the Gate takes practice there.`,
+          ? `${who}, named heir at the fair, guarded the Gate for only ${nights === 1 ? 'one quiet night' : `${nights} quiet nights`} this winter.`
+          : `${who}, named heir at the fair, never guarded the Gate this winter. Learning to guard the Gate takes practice there.`,
       l.who,
     );
   }

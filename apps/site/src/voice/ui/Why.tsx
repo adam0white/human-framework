@@ -10,17 +10,17 @@ import type { WhyView } from '../protocol.ts';
 /** Authored paraphrases of recorded influences, not additional causes or simulated speech. */
 function pullLine(label: string, toward: boolean): string {
   const lines: Record<string, [string, string]> = {
-    grieving: ['My grief draws me toward this.', 'My grief makes this hard to face.'],
+    grieving: ['My grief makes me want to do this.', 'My grief makes this difficult for me.'],
     hunger: ['This would help with my hunger.', 'This would leave me hungrier.'],
     thirst: ['This would help with my thirst.', 'This would leave me thirstier.'],
     sleep: ['This would help me catch up on sleep.', 'This would cost me sleep.'],
     rest: ['This would let me recover.', 'This would tire me further.'],
     company: ['This would help me feel less alone.', 'This would leave me feeling more alone.'],
-    effort: ['I feel up to the effort.', 'The effort puts me off.'],
+    effort: ['I feel up to the effort.', 'The effort makes me less willing to do this.'],
     risk: ['The risk seems worth taking.', 'I am wary of what could happen.'],
     habit: ['This is what I am used to doing.', 'This goes against what I am used to doing.'],
-    money: ['The money draws me to this.', 'The cost puts me off.'],
-    'your words': ['I am taking your words to heart.', 'Your words make me reluctant.'],
+    money: ['I want to earn the money.', 'The cost makes me less willing to do this.'],
+    'your suggestions': ['I am considering your suggestions.', 'Your suggestions make me reluctant.'],
     'not being pushed': ['I want to choose for myself.', 'I do not want to be pushed into this.'],
     'what he expects from it': ['I expect this to help.', 'I do not expect this to go well.'],
     'a goal': ['This serves something I want to do.', 'This gets in the way of something I want to do.'],
@@ -60,25 +60,27 @@ function pullLine(label: string, toward: boolean): string {
   };
   if (emotions[label])
     return toward
-      ? `My ${emotions[label]} draws me toward this.`
-      : `My ${emotions[label]} makes this hard to face.`;
+      ? `My ${emotions[label]} makes me want to do this.`
+      : `My ${emotions[label]} makes this difficult for me.`;
   if (label.startsWith('for '))
     return toward
       ? `I want to do this for ${label.slice(4)}.`
-      : `My concern for ${label.slice(4)} holds me back.`;
+      : `My concern for ${label.slice(4)} makes me less willing to do this.`;
   if (label === 'the pre-dawn meal' || label === 'the sunset meal')
     return toward ? 'I want to make time for my meal.' : 'This would get in the way of my meal.';
   if (label.startsWith('Pay Osman '))
-    return toward ? 'I want to keep my word to Osman.' : 'This gets in the way of my word to Osman.';
+    return toward
+      ? 'I want to keep my word to Osman.'
+      : 'This would make it harder to keep my promise to Osman.';
   if (label.startsWith('his understanding of '))
     return toward ? 'This fits how I understand my duties.' : 'This goes against how I understand my duties.';
   if (/^(Fajr|Dhuhr|Asr|Maghrib|Isha|the fast|Eid prayer)/i.test(label))
     return toward ? 'I want to make time for my religious duties.' : 'My religious duties make me reluctant.';
   if (/^[A-ZİŞÇÖÜĞ][\p{L}ı]+(?:’s words| said so earlier)$/u.test(label))
     return toward
-      ? `I am taking ${label.replace(/ said so earlier$/, '’s words')} to heart.`
+      ? `I am considering ${label.replace(/ said so earlier$/, '’s words')}.`
       : `${label.replace(/ said so earlier$/, '’s words')} make me reluctant.`;
-  return toward ? 'Another concern draws me toward this.' : 'I have other reservations about this.';
+  return toward ? 'I have another reason to want to do this.' : 'I have other reasons not to do this.';
 }
 
 /** A verdict can name a limit that is absent from the considered options. */
@@ -174,7 +176,9 @@ export function Why({
                     .map((t) => (
                       <li key={`${t.label}-${t.value}`}>{settingWords(pullLine(t.label, t.value > 0))}</li>
                     ))}
-                  {!o.terms.some((t) => t.value !== 0) && <li>Nothing in particular draws me to this.</li>}
+                  {!o.terms.some((t) => t.value !== 0) && (
+                    <li>I have no particular reason to choose this.</li>
+                  )}
                 </ul>
               </li>
             ))}

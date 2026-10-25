@@ -305,14 +305,16 @@ it('keeps a heard doze in the account and removes stale acts after relief while 
     kind: 'person',
     who: 'tamar',
     section: 'gate',
-    text: 'Tamar nods off at the Gate.',
+    text: 'Tamar falls asleep at the Gate.',
     slowed: false,
   });
   const container = document.createElement('div');
   const root = createRoot(container);
   const props = { frame, actions, selected: 'tamar' };
   await act(async () => root.render(createElement(NightPanel, props)));
-  expect(container.querySelector('.w-account-doze')?.textContent).toContain('Tamar nods off at the Gate.');
+  expect(container.querySelector('.w-account-doze')?.textContent).toContain(
+    'Tamar falls asleep at the Gate.',
+  );
   expect(container.querySelector('.w-account-doze')?.textContent).toContain('They can answer now.');
   const relief = [...container.querySelectorAll('button')].find((b) => b.textContent === 'Send relief');
   await act(async () => relief?.click());

@@ -379,7 +379,7 @@ export const sampleReport: ReportView = {
       {
         topic: 'Osman',
         spoke: 'He paid by the deadline: 300 paid on Ramadan 15. He had paid it all by Eid.',
-        silent: 'He missed the deadline. He first paid 300 came on Ramadan 17.',
+        silent: 'He missed the deadline. He first paid 300 on Ramadan 17.',
       },
       {
         topic: 'Selin in Ramadan',

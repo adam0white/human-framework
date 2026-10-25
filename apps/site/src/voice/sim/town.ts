@@ -1485,7 +1485,7 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
               { action: 'walk', strength: 0.4 },
             ],
             summary: ill
-              ? 'the doctor said the pressure is high and to rest, walk and stop smoking'
+              ? 'the doctor said his blood pressure is high. The doctor told him to rest, walk and stop smoking'
               : 'the doctor found nothing new',
           },
         ];

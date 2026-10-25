@@ -963,8 +963,8 @@ export class ColonyHostWorld implements World {
         injury: { part: 'hands and face', severity: 0.3 + (base.injury?.severity ?? 0), healRatePerDay: 0.3 },
         summary:
           action === 'gather-timber'
-            ? 'Out for timber in the squall, came back cut and empty-handed'
-            : `Out to ${aff.label} in the squall, came back cut and empty-handed`,
+            ? 'I went to gather timber in a sudden storm. I came back hurt and without timber.'
+            : `I went to ${action === 'gather-grain' ? 'gather grain' : 'cut down the big cedar'} in a sudden storm. I came back hurt and without ${action === 'gather-grain' ? 'grain' : 'timber'}.`,
         percepts: [
           {
             at: t,
@@ -1059,7 +1059,11 @@ export class ColonyHostWorld implements World {
         return done({
           needs,
           summary:
-            aff.label === 'cook a pot' ? 'I cooked a pot of food.' : `I finished cooking: ${aff.label}.`,
+            aff.label === 'cook a pot'
+              ? 'I cooked a pot of food.'
+              : /^cook (breakfast|lunch|supper)$/.test(aff.label)
+                ? `I cooked ${aff.label.slice(5)}.`
+                : `I finished cooking: ${aff.label}.`,
         });
       }
       case 'build': {

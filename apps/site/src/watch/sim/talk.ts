@@ -153,10 +153,10 @@ export function talk(s: WatchState, who: string, topic: Topic): boolean {
     s.gateWilling[who] = willing;
     text = willing
       ? c > 0.7
-        ? '“If you asked me, I’d not let you down.”'
+        ? '“If you asked me, I would do the job well.”'
         : '“I would try if you chose me. Someone has to.”'
       : c < 0.3
-        ? '“Manage the Gate? I can barely keep my own boots dry.”'
+        ? '“I am not sure I can manage the Gate.”'
         : '“Do not choose me. Ask someone steadier.”';
   }
   if (

@@ -138,8 +138,8 @@ describe('Night Watch level-up (2026-10-19)', () => {
       text: 'The west wall was raised and lengthened.',
     });
     endWinter(s);
-    expect(s.chronicle.find((l) => l.text.startsWith('Raised at the fair'))?.text).toMatch(
-      /nothing crossed .* this winter|still climbed (once|\d+ times)/,
+    expect(s.chronicle.find((l) => l.text.startsWith('The workers hired at the fair'))?.text).toMatch(
+      /Nothing crossed it this winter|still climbed over it (once|\d+ times)/,
     );
   });
 

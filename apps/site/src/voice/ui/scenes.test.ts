@@ -156,7 +156,11 @@ describe('read-only day scenes', () => {
   });
   it('gives a recorded clinic conversation priority over a same-minute recall without inventing advice', () => {
     const doctor = {
-      ...act('The doctor said the pressure is high and to rest, walk and stop smoking.', 2040, 'doc'),
+      ...act(
+        'The doctor said his blood pressure is high. The doctor told him to rest, walk and stop smoking.',
+        2040,
+        'doc',
+      ),
       kind: 'voice' as const,
       who: 'doctor' as const,
     };
@@ -164,9 +168,7 @@ describe('read-only day scenes', () => {
     const scene = deriveScene(frame([act('I see the doctor at the clinic.', 2000), doctor, recall]));
     expect(scene?.kind).toBe('clinic');
     expect(scene?.names).toEqual(['Halil', 'The doctor']);
-    expect(scene?.lines.find((line) => line.speaker === 'The doctor')?.words).toBe(
-      'the pressure is high and to rest, walk and stop smoking.',
-    );
+    expect(scene?.lines.find((line) => line.speaker === 'Scene')?.words).toBe(doctor.text);
     expect(deriveScene(frame([act('I see the doctor at the clinic.')]))).toBeNull();
   });
   it('keeps a surfaced recall current after its same-minute activity and retires it after a later act', () => {

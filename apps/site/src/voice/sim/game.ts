@@ -811,9 +811,7 @@ export class VoiceGame {
         `For the first time, ${what}, on ${dayLabel(dayOf(first.from))}${first.promptedBy === 'you' ? ', because you suggested it' : ', on his own'}.`,
       );
     }
-    return out.length > 0
-      ? out
-      : [`Nothing new since ${dayLabel(fromDay)}: he did nothing of his ends he had not done before.`];
+    return out.length > 0 ? out : [`He did not do anything new toward his goals since ${dayLabel(fromDay)}.`];
   }
 
   /** The open questions of a played day, from his ends: Osman's money, the clinic, Selin, and Eid ahead. */
@@ -1390,7 +1388,7 @@ export class VoiceGame {
       !takeCloseCall(this.beats, this.t)
     )
       return;
-    const text = `He finds it hard to choose between ${top.label ?? top.action} and ${rival.label ?? rival.action}.`;
+    const text = `He finds it hard to choose between these actions: “${top.label ?? top.action}” or “${rival.label ?? rival.action}”.`;
     this.push({ kind: 'note', who: 'halil', text, decisionId: record.id, beat: 'close-call' });
     // Seventh pass: torn pauses only when the composer has a word to offer; otherwise it is a log row (the reviewer
     // saw "He's torn" over a composer with nothing prefilled).
@@ -1418,7 +1416,7 @@ export class VoiceGame {
     if (before && before.to >= r.at - 1 && before.action === top.action && before.action === rival.action)
       return;
     if (!takeCloseCall(this.beats, r.at)) return;
-    const text = `He finds it hard to choose between ${top.label ?? top.action} and ${rival.label ?? rival.action}.`;
+    const text = `He finds it hard to choose between these actions: “${top.label ?? top.action}” or “${rival.label ?? rival.action}”.`;
     this.push({ kind: 'note', who: 'halil', text, decisionId: r.id, beat: 'close-call' }, r.at);
     const note = this.log.pop();
     const i = this.log.findIndex((e) => e.kind === 'act' && e.decisionId === r.id);
@@ -1650,7 +1648,7 @@ export class VoiceGame {
         {
           kind: 'note',
           who: 'halil',
-          text: `He feels unwell: his blood pressure is ${pressureWord(sev)}. He considers himself too ill to fast today. He will make up this day after Eid.${doc ? ` ${doc}` : ' He has not seen the doctor about it.'}`,
+          text: `He feels unwell: his blood pressure is ${pressureWord(sev)}. He considers himself too ill to fast today. He needs to make up this day after Eid.${doc ? ` ${doc}` : ' He has not seen the doctor about it.'}`,
         },
         this.t,
       );
@@ -2239,7 +2237,7 @@ const FIRSTS: readonly [string, string][] = [
   ['call:selin', 'he called Selin himself since the funeral'],
   ['pay-rent', 'he paid Osman'],
   ['work-extra', 'he took the afternoon shift'],
-  ['walk', 'he walked instead of the cigarette'],
+  ['walk', 'he took a walk instead of smoking a cigarette'],
 ];
 
 export function smokesOn(cells: readonly Cell[], day: number): string {

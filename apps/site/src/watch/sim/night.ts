@@ -1124,7 +1124,7 @@ function personLineBare(s: WatchState, n: NightNote): string {
     case 'modified':
       return `${name} stands somewhere else.`;
     case 'dozed':
-      return `${name} nods off at ${at}.`;
+      return `${name} falls asleep at ${at}.`;
     case 'woken':
       return `${name} jerks awake at ${at}.`;
     case 'commanded':
@@ -1373,7 +1373,7 @@ export function stepMinute(s: WatchState): void {
         const seen = t.section === lit;
         const told =
           !seen && s.alerts.some((a) => a.kind === 'in' && a.section === t.section && m - a.minute < 15);
-        const why = s.grain === 0 ? 'found the store bare' : 'the alarm was up';
+        const why = s.grain === 0 ? ' It found the grain store empty.' : '';
         if (!told)
           alert(s, {
             section: t.section,
@@ -1383,7 +1383,7 @@ export function stepMinute(s: WatchState): void {
                 ? t.kind === 'thief'
                   ? `A thief got over the ${name} and escaped with grain.`
                   : `A wolf got over the ${name} and broke into the grain store.`
-                : `${capital(plural(t.kind, 1))} got over the ${name}, but ${why}. It got away with nothing.`
+                : `${capital(plural(t.kind, 1))} got over the ${name}.${why} It escaped without taking any grain.`
               : took > 0
                 ? `Grain is gone: something got over the ${name}.`
                 : `Something got over the ${name} in the dark and got away with nothing.`,

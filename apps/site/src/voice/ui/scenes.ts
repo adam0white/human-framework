@@ -177,7 +177,7 @@ export function deriveScene(frame: SceneFrame): DayScene | null {
   } else if (place.kind === 'clinic') {
     lines = [
       { speaker: 'Halil', words: 'Tell me plainly.' },
-      { speaker: 'The doctor', words: anchor.text.replace(/^The doctor said /i, '') },
+      { speaker: 'Scene', words: anchor.text },
       { speaker: 'Halil', words: 'There is a lot to take in.' },
     ];
   } else if (place.kind === 'grave') {
