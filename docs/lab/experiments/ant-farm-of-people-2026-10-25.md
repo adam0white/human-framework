@@ -57,3 +57,7 @@ Days335/365 raw mutually strong triangle counts were1/2. Independent checkpoint 
 Final people JSON46,364,546 bytes (about232KB/person), excluding host/community/checkpoint overhead. Final people SHA256 `885a0c8009dbda861c0d46da4bffbf4f26d9b3731a8aaad48f6a881b452a0074`; world SHA256 `063e62aa4a6003f07f8f68f15ad1309d88159aeb8ad2ac5178ba97ae5d5a0ef6`. Extension registration, exact harness, all365 daily progress records, final result, checkpoints and classifier output are in `~/code/.lab-scratch/h3/ant-year-extension/`. The original harness listed triangles but did not enforce maximality/disjointness/persistence; that did not change its runtime failure. The extension's separate analysis corrects this before any signature claim.
 
 No new faculty or release is justified. Next step2026-11-15: a fresh feasible paired design, balanced over seeds, and a stated retention/fidelity budget before any emergence claim.
+
+## V3 report scope — 2026-10-25
+
+The original60-second budget failure is a feasibility proxy, not a negative result for emergence. The later full year is one seed and has no paired baseline. Next: register feasible paired contexts and emergence classifiers, target2026-11-15; review the bounded result2026-11-03.

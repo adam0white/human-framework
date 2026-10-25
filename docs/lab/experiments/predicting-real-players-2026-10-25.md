@@ -25,3 +25,9 @@ Availability command receipt: the legacy index contained158 records, none with r
 ## Separate HF-derived forecast
 
 The [Good Hands HF-derived registration](predicting-real-players-hf-forecast-2026-10-25.md) freezes a later, separate prospective forecast from an existing HF cohort, rather than analyst priors. It preserves this registration unchanged and does not score earlier human runs. Its explicit opt-in and label rules apply to its own future cohort.
+
+## V3 dated stopping rule — 2026-10-25
+
+**Decision deadline2026-11-03: NO-GO if fewer than20 eligible labelled runs exist.** This deadline overrides any earlier instruction to retain PENDING indefinitely. Until then the forecast is frozen and evidence is PENDING. No prospective cohort or accuracy score is claimed here.
+
+Use only existing, explicitly authorized voluntary participant declarations already supplied through the private inbox as the candidate label source. No inferred quit from silence, no rubric-generated human confusion label, no recruitment, new questions, new consent UI or player/playtester rounds. The release owner checks eligibility/build/receipt/consent metadata and labels at Nov3 review, with counts and exclusions. Twenty runs without adequate known labels do not pass: retain the frozen >=16-known-per-outcome and other score/point gates; at the deadline insufficient labels or missing required point evidence is also NO-GO for validation. Owner may explicitly override the stopping decision. A NO-GO for missing evidence is not a measured forecasting failure or permission to train a player model.

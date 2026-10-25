@@ -15,6 +15,8 @@ assert(entry && output, 'Supply published entry and scratch output path');
 const hf = await import(pathToFileURL(resolve(entry)).href);
 const hash = (value) => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const cues = [{ cue: 'joint', value: 'split' }];
+const seeds = process.argv[4] ? process.argv[4].split(',').map(Number) : [7, 19, 43];
+assert(seeds.length > 0 && seeds.every(Number.isSafeInteger), 'Supply comma-separated integer seeds');
 const arms = ['imitation', 'discovery', 'frozen', 'peer-frozen'];
 const withoutMethods = (p) => {
   const copy = hf.snapshot(p);
@@ -193,7 +195,7 @@ function runCell(seed, patchId, reversed, resume = false) {
 const start = performance.now();
 const assay = (resume) => {
   const cells = [];
-  for (const seed of [7, 19, 43])
+  for (const seed of seeds)
     for (const patchId of ['a', 'z'])
       for (const reversed of [false, true]) {
         const disk = statfsSync(resolve(output, '..'));
@@ -206,7 +208,7 @@ const assay = (resume) => {
 const cells = assay(false);
 const replay = assay(false);
 const resumed = assay(true);
-const criteria = [7, 19, 43].map((seed) => {
+const criteria = seeds.map((seed) => {
   const group = cells.filter((c) => c.seed === seed);
   const mean = (arm, field) => group.reduce((sum, c) => sum + c.metrics[arm][field], 0) / 4;
   const pairs = group.flatMap((c) => c.pairs);

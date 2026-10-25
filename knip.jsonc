@@ -16,6 +16,7 @@
         "docs/lab/experiments/clef-inbox-2026-10-20/run.ts",
         // Frozen executable first-probe harness, retained for reproducibility.
         "docs/lab/experiments/fork-lockstep-2026-10-25/probe.ts",
+        "docs/lab/experiments/standalone-starter-closure-2026-10-25.ts",
         "docs/lab/experiments/**/*.test.mjs",
         "docs/lab/experiments/speech-acts-you-can-play-2026-10-25/{probe,contingent-probe}.mjs",
         "docs/lab/experiments/traditions-that-travel-2026-10-25/balanced-probe.mjs"

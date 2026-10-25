@@ -1,8 +1,13 @@
 import { createHash } from 'node:crypto';
-import { appendFileSync, writeFileSync } from 'node:fs';
+import { appendFileSync, mkdirSync, writeFileSync } from 'node:fs';
+import { resolve, sep } from 'node:path';
 import * as hf from '../../../../packages/human/src/index.ts';
 
-const root = '/Users/abdul/code/.lab-scratch/h3/fork-lockstep/';
+// Usage: node probe.ts <fork|lockstep> <output-directory>
+if (!['fork', 'lockstep'].includes(process.argv[2] ?? '') || !process.argv[3])
+  throw new Error('Supply fork or lockstep and an output directory.');
+const root = resolve(process.argv[3]) + sep;
+mkdirSync(root, { recursive: true });
 const hash = (x: unknown) => createHash('sha256').update(JSON.stringify(x)).digest('hex');
 function make(n: number, seed: number, fork = false) {
   const ids = Array.from({ length: n }, (_, i) => `p${String(i).padStart(2, '0')}`);

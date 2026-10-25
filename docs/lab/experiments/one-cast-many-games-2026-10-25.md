@@ -17,3 +17,7 @@ The registry explicitly separates contemporary Coast from pre-industrial Valley.
 The native projection discloses omitted transient body/needs/affect, habits/methods/beliefs/social state and conscience breaches, optional stores and decision history. Held norms transport; family/bonds require provenance matching. Thus even a future authorized role would need explicit memory and belief semantics to satisfy the full bet. Existing published persona/calendar APIs and cast deployment already cover narrower approved transfers. No new HF slice is justified by this refusal.
 
 Method/source: read-only archived native adapter trees `~/code/.lab-scratch/hfadopt/valley-baseline` and `goodhands-baseline`, installed HF2.18.0. These archives have no `.git`, so no commit identity is claimed; exact adapter SHA256 values are preserved in `~/code/.lab-scratch/h3/cast-starter/native-sources.sha256`. Current owner checkouts lack these adapter files and were not changed. Command: `node ~/code/.lab-scratch/h3/cast-starter/cast-probe.ts`. Raw probe, result, preregistration timestamp/hash and package retrieval evidence stay in that scratch directory. Prior cast browser receipts were not counted as this probe. No player, browser or server ran.
+
+## V3 report scope — 2026-10-25
+
+The destination registry refused this route before exercising a destination schema or week. This policy proxy does not test general cross-game portability. Next: map a supported destination without an era/identity override, target2026-11-03.

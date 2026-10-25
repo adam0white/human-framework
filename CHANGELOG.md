@@ -27,7 +27,7 @@ Exact before/after calls and routine restore guidance: [v3 migration](https://gi
 
 ### Horizon 3
 
-- Export opt-in `canonicalTickInputs`, `TickInput` and `TickInputKey`: a bounded complete-input barrier with deterministic sender/sequence ordering. It adds no transport, consensus, payload validation or actor-loop behavior. The lexical priority is a host policy.
+- Export opt-in `canonicalTickInputs`, `TickInput` and `TickInputKey`: a bounded same-runtime complete-input barrier with deterministic sender/sequence ordering. It adds no transport, consensus, payload validation or actor-loop behavior. The lexical priority is a host policy.
 - Include the recorded first probes, bounded host starter and contingent-speech recipe. Traditions uses existing method-learning APIs; no duplicate faculty. Negative probes and future prospective prediction evidence remain explicit. See [the Horizon 3 results](https://github.com/adam0white/human-framework/blob/v3.0.0/docs/hf-roadmap-2026-10-20.md#horizon-3-long-bets).
 
 ### Maintenance

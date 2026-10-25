@@ -1,8 +1,12 @@
+import assert from 'node:assert/strict';
 import { writeFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 import { createShiftProtocol } from './contingent-protocol.mjs';
 
 const hf = await import(pathToFileURL(process.argv[2]).href);
+// Optional varied-seed closure: changes actor order, expectations and goal strength.
+const varied = process.argv[4] === 'varied';
+const seeds = varied ? [7, 19, 42, 71, 101] : Array.from({ length: 20 }, (_, i) => i + 1);
 const secret = 'shift:actor-2-unavailable-early';
 const slots = ['early', 'late'];
 const shiftStart = { early: 660, late: 720 };
@@ -22,7 +26,7 @@ function person(seed, role) {
         id: `work-${slot}`,
         label: `Work the ${slot} shift`,
         serves: ['achievement'],
-        importance: slot === preferred ? 0.8 : 0.6,
+        importance: slot === preferred ? (varied ? 0.7 + (seed % 5) * 0.04 : 0.8) : 0.6,
         advancedBy: [{ action: `work-${slot}`, amount: 1 }],
         temporal: { halfLifeMinutes: 10000 },
       })),
@@ -30,7 +34,7 @@ function person(seed, role) {
   if (role === 2) hf.seedBelief(p, secret, { value: true, credence: 0.99 });
   return { p, preferred };
 }
-function run(seed, arm) {
+function run(seed, arm, resume = false) {
   const cast = [0, 1, 2].map((role) => person(seed, role));
   const people = cast.map((x) => x.p);
   const protocol = createShiftProtocol({ enabled: true, actors: people.map((p) => p.id) });
@@ -41,8 +45,10 @@ function run(seed, arm) {
   const trace = [];
   const delivery = [];
   for (let turn = 0; turn < 18; turn++) {
+    if (resume && turn === 2)
+      for (let i = 0; i < people.length; i++) people[i] = hf.restore(snapshot(people[i]));
     if (protocol.snapshot().agreements.length) break;
-    const role = turn % 3,
+    const role = (turn + (varied ? seed % 3 : 0)) % 3,
       p = people[role],
       known = views[role];
     for (const q of people) hf.tick(q, 600 + turn);
@@ -88,7 +94,14 @@ function run(seed, arm) {
         availableFrom: shiftStart[m.slot],
         availableUntil: shiftStart[m.slot] + 60,
         expiresAt: 900,
-        chance: m.kind === 'accept' ? 0.9 : 0.5,
+        chance:
+          m.kind === 'accept'
+            ? varied
+              ? 0.8 + (seed % 5) * 0.04
+              : 0.9
+            : varied
+              ? 0.4 + (seed % 3) * 0.1
+              : 0.5,
         confidence: 1,
       }));
     if (claims.length && !hf.seedConsequences(p, 'shift-protocol', claims))
@@ -179,12 +192,27 @@ function run(seed, arm) {
     state,
     trace,
     delivery,
+    finalPeople: people.map(hf.snapshot),
     goalProgress: people.map((p) => p.agenda.goals.map((g) => ({ id: g.id, progress: g.progress }))),
   };
 }
-const runs = Array.from({ length: 20 }, (_, i) => ['grammar', 'fixed'].map((arm) => run(i + 1, arm))).flat();
+const runs = seeds.flatMap((seed) => ['grammar', 'fixed'].map((arm) => run(seed, arm)));
+const controls = varied
+  ? {
+      replayExact:
+        JSON.stringify(runs) ===
+        JSON.stringify(seeds.flatMap((seed) => ['grammar', 'fixed'].map((arm) => run(seed, arm)))),
+      personRestoreExact:
+        JSON.stringify(runs) ===
+        JSON.stringify(seeds.flatMap((seed) => ['grammar', 'fixed'].map((arm) => run(seed, arm, true)))),
+    }
+  : undefined;
+if (controls) assert(Object.values(controls).every(Boolean), 'Speech replay/Person restore differs');
 const summary = {
+  controls,
   package: hf.FRAMEWORK_VERSION,
+  varied,
+  seeds,
   arms: Object.fromEntries(
     ['grammar', 'fixed'].map((arm) => {
       const rows = runs.filter((r) => r.arm === arm);

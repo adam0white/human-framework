@@ -128,3 +128,11 @@ Verification for this follow-up is the instrument's focused controls and prose-l
 ## Coordinator integration verification
 
 The corrected candidate passed the full `npm run check:lane` (lint, workspace typecheck,2349 tests passed;7 skipped) in the H3 director tree. Human focused tests4/4, speech protocol Node tests5/5, complete-state/RNG controls and independent Codex/Opus reviews are recorded in `~/code/.lab-scratch/h3/report.md`. Earlier pending worker checks above remain historical; no failed or unexecuted worker check is counted as passed. The final independent Codex review found no blockers in the corrected slices. Exact source/CI/release-queue receipt follows in the director report. No H3 release or new player round.
+
+## V3 closure sensitivity check — 2026-10-25
+
+`balanced-probe.mjs <absolute HF entry> <scratch output.json> 7,19,43,71,101` reran current HF3 source at eb0bd20: five seeds, four patch-id/offer-order cells each, four active/frozen arms, ten learners per cell. The optional seed argument preserves the original default seeds and original assay. Five seed values do not create five independent population designs: authored examples, relay routing and attention remain fixed.
+
+All five seeds retain first bad-method share1.00 imitation versus0.50 discovery, matched switches0.50 with relay terms and exact paired RNG/state outside methods. Late imitation/discovery fall to0; peer-frozen stays1.00 and unexposed frozen0.50. These active controls distinguish own-outcome adaptation from persistent peer evidence. Whole result replay and mid-assay restore match exactly; readers are pure and no-peer continuation matches. Total assay/replay/restore4046.8ms under the initially selected Node23, then9405.4ms under required Node26.12.0; a prior concurrent-load Node26 attempt aborted at the unchanged10-second budget. Timing is load-sensitive, not a quiet-machine benchmark. The successful Node26 run has the same exact result digest; digest `e5dadbb4f4eafe5f041641cb7946a98fd0942ee21a6b42fad840751c1ad7d933`.
+
+**Retain GO for controlled transmission using already shipped method APIs.** This does not answer spontaneous teaching or village culture. Next experiment remains a separately registered spontaneous-observation/teaching design, target2026-11-15. No new faculty or runtime API is justified.
