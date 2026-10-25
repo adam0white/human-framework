@@ -205,3 +205,9 @@ Coordinator reading: the heartbeat keeps work in flight instead of only checking
 > "I think HF horizon 2 is almost done, and even some things from horizon 3 are partially addressed. Well this is exciting. Today, let's keep implementing and verifying everything that is on the HF roadmap, with some Claude and many Codex. Keep on checking and pushing things on your hourly heartbeats. Get things reviewed. As part of v3, we should upgrade all dependencies and compat_date and clean up deprecated methods. Do a codebase wide cleaning, maintenance, and best practices and whatever else sweep. We don't need to limit to the roadmap, we can address stuff play testers asked for and improvements. Let's go."
 
 > "Yeah, but we can include the horizon 3 goals into this, too."
+
+## 2026-10-25 — Everything remaining (Adam, verbatim)
+
+> "Let's address everything remaining from all horizons and roadmap, and update docs, websites, games and whatnot."
+
+Coordinator reading: the v3 increment widens from Horizon 2 closure and Horizon 3 first experiments to every open item. That covers Horizons 1–3 of the HF roadmap, docs/roadmap.md, and each game's Deferred list. Each item is implemented, or recorded with a reason and a dated target. Items stay recorded only where they need owner or player input (player rounds and Show HN stay paused) or where a guardrail excludes them. Docs, the HF site, game sites and READMEs are brought up to date with what shipped. The guardrails, faith rules, review, test and release rules still apply.
