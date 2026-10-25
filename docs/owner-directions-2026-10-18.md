@@ -211,3 +211,15 @@ Coordinator reading: the heartbeat keeps work in flight instead of only checking
 > "Let's address everything remaining from all horizons and roadmap, and update docs, websites, games and whatnot."
 
 Coordinator reading: the v3 increment widens from Horizon 2 closure and Horizon 3 first experiments to every open item. That covers Horizons 1–3 of the HF roadmap, docs/roadmap.md, and each game's Deferred list. Each item is implemented, or recorded with a reason and a dated target. Items stay recorded only where they need owner or player input (player rounds and Show HN stay paused) or where a guardrail excludes them. Docs, the HF site, game sites and READMEs are brought up to date with what shipped. The guardrails, faith rules, review, test and release rules still apply.
+
+## 2026-10-25 — Finish everything, and four decisions (Adam, verbatim)
+
+> "TypeScript 5? What about 7? Keep going until you finish all the tasks and playtests and iterations. It's okay to take some time. If there are things that need my decision, ask now."
+
+Answers to the coordinator's questions (the option labels the owner chose):
+- Playtests: **"Lab panel only"**. Rounds resume with the 12 standing playtesters and 2 cold slots (Codex, Claude and Workers AI personas) on every game, and the games iterate on what they say. Friends' playtests and Show HN stay paused.
+- Player labels: **"Add it in Feedback"**. Two quiet choices, "I'm stopping" and "I'm confused", sit inside the existing Feedback menu. They are recorded with the run while recording is on. Nothing pops up during play.
+- Lab client on npm: **"Keep artifacts"**. The lab client and kit stay GitHub release artifacts. The Deferred items that ask for the npm install close as not needed.
+- TypeScript 5 consumers: **"TypeScript 7+ only"**. The README states that the package needs TypeScript 7 or later, and the TS 5.x roadmap row closes. The repo is already on TypeScript 7.0.2, the current release.
+
+Coordinator reading of "finish … playtests and iterations": each game gets a lab-panel round on its HF 3.0 build. Fixes from that round follow, then a retest by the same testers. A game is finished when a retest raises no new blocking ask, or after two iterations, with what remains recorded in the game's Deferred list with a date.
