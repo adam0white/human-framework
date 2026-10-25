@@ -47,7 +47,11 @@ export function activityDescription(label: string): string {
   label = label
     .replace(/^Shuttering the house$/, 'Closing the house’s shutters')
     .replace(/^Shuttering$/, 'Closing the shutters')
-    .replace(/to Big cedar/, 'to the big cedar');
+    .replace(/to Big cedar/, 'to the big cedar')
+    .replace(
+      /to (Maryam|Yusuf|Tariq|Idris|Samira|Danyal) & (Maryam|Yusuf|Tariq|Idris|Samira|Danyal)/,
+      'to $1 and $2’s house',
+    );
   label = label.replace(
     /\bto (House|Forest|Field|Kitchen|Well|Site|Cedar|Home|Wellhouse|Mosque|Masjid)\b/g,
     (_, place: string) => `to the ${place === 'Masjid' ? place : place.toLowerCase()}`,

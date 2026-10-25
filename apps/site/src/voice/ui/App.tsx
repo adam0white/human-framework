@@ -11,7 +11,6 @@ import { LabNotice } from '../../shared/LabNotice.tsx';
 import { gameLabs, useLabScreen } from '../../shared/lab.tsx';
 import { PlaytestNotice } from '../../shared/PlaytestMenu.tsx';
 import { playerError } from '../../shared/player-error.ts';
-import { settingWords } from '../../shared/setting-words.ts';
 import type { Draft } from '../protocol.ts';
 import { Between } from './Between.tsx';
 import { DayLog } from './DayLog.tsx';
@@ -28,6 +27,7 @@ import { TopBar } from './TopBar.tsx';
 import { useVoice } from './useVoice.ts';
 import { VoicesPane } from './VoicesPane.tsx';
 import { Why } from './Why.tsx';
+import { voiceWords as settingWords } from './words.ts';
 
 type Tab = 'halil' | 'ends' | 'today';
 const TABS: { id: Tab; label: string }[] = [

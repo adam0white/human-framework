@@ -1,5 +1,4 @@
 import { memo, type ReactNode, type RefObject, useState } from 'react';
-import { settingWords } from '../../shared/setting-words.ts';
 import type { HurtNews } from '../sim/game.ts';
 import type { Prediction } from '../sim/human-side.ts';
 import type { PlaceId } from '../sim/map.ts';
@@ -33,6 +32,7 @@ import { Icon, type IconName, RingTimer } from './Icon.tsx';
 import { homeOrderMeaning, PLACE_LABEL } from './order-status.ts';
 import { LOOKS } from './renderer.ts';
 import { suggestionChoice } from './suggestion-choice.ts';
+import { forecastWords, wellWords as settingWords } from './words.ts';
 
 export const ROLE_LABEL: Record<string, string> = {
   cook: 'Cook',
@@ -873,7 +873,7 @@ export function Composer(props: {
             {!pred && <span className="predict muted">Checking current answer…</span>}
             {pred && (
               <span className={`predict predict-${pred.kind}`}>
-                {settingWords(pred.text)}
+                {forecastWords(pred.text)}
                 {who === 'maryam' && pred.text === 'Will refuse: the others would go unfed' && (
                   <>. Ask again after she cooks the meal.</>
                 )}

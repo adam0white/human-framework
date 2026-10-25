@@ -1,4 +1,4 @@
-import { settingWords } from '../../shared/setting-words.ts';
+import { voiceWords as settingWords } from './words.ts';
 /** The intro card that opens a played day or Eid (voice.md §7.3–7.4); play starts paused after Continue. */
 
 import { useEffect, useRef } from 'react';

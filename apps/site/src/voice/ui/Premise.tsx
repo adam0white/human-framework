@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { labMode } from '../../shared/lab-mode.ts';
-import { settingWords } from '../../shared/setting-words.ts';
+import { voiceWords as settingWords } from './words.ts';
 export function Premise({
   ready,
   savedRun = null,

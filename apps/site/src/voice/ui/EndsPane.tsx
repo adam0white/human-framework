@@ -1,4 +1,4 @@
-import { settingWords } from '../../shared/setting-words.ts';
+import { voiceWords as settingWords } from './words.ts';
 /** His goals (voice.md §3): things he holds, in his words, as his record. Not points; no pass or fail. */
 
 import { memo } from 'react';

@@ -4,8 +4,8 @@ import { setTelemetryOff, telemetryOn } from '@adam0white/lab-kit';
 import { useEffect, useRef, useState } from 'react';
 import { optionalFeedbackRun } from '../../shared/feedback-run.ts';
 import { gameLabs } from '../../shared/lab.tsx';
-import { settingWords } from '../../shared/setting-words.ts';
 import type { VoiceActions } from './useVoice.ts';
+import { voiceWords as settingWords } from './words.ts';
 import './feedback.css';
 
 const PRIVACY = 'https://human.adamwhite.work/lab/privacy/';

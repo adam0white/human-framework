@@ -520,7 +520,6 @@
 .v-unasked-lead {
   display: block;
   font-size: 0.7rem;
-  text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--ink-soft);
   margin-bottom: 2px;

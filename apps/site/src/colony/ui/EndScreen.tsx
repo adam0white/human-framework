@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { labMode } from '../../shared/lab-mode.ts';
-import { settingWords } from '../../shared/setting-words.ts';
+import { wellWords as settingWords } from './words.ts';
 import './feedback.css';
 import { EndTally } from '../../shared/EndTally.tsx';
 import type { HindsightReply, HindsightRequest } from '../hindsight-worker.ts';

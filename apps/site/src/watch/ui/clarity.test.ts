@@ -255,8 +255,11 @@ it('shows the explanation for no night acts in the account action row', () => {
   who.actsUnavailable = 'No spoken request can wake them. The bell rouses sleepers who hear it.';
   const account = render(createElement(NightPanel, { frame, actions, selected: who.id }));
   expect(account.querySelector('.w-account-commit .w-account-unavailable')?.textContent).toBe(
-    who.actsUnavailable,
+    `No spoken request can wake ${who.name}. The bell rouses sleepers who hear it.`,
   );
+  expect(account.textContent).toContain(`${who.name} chooses whether to agree to each request.`);
+  expect(account.textContent).not.toMatch(/wake them|theirs to answer/);
+  expect(who.actsUnavailable).toBe('No spoken request can wake them. The bell rouses sleepers who hear it.');
 });
 
 it('records a winter choice from the flyleaf and states when it takes effect', async () => {

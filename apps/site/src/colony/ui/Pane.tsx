@@ -1,5 +1,4 @@
 import { memo, type RefObject, useEffect, useRef, useState } from 'react';
-import { settingWords } from '../../shared/setting-words.ts';
 import { MAP, PLACES, type PlaceId, placeAt } from '../sim/map.ts';
 import type { VillagerId } from '../sim/world-types.ts';
 import type { BubbleManager, ShownBubble } from './bubbles.ts';
@@ -17,6 +16,7 @@ import {
   type Side,
 } from './renderer.ts';
 import type { FrameStore } from './useColony.ts';
+import { wellWords as settingWords } from './words.ts';
 
 export interface PaneProps {
   side: Side;
@@ -731,7 +731,14 @@ export const Pane = memo(function Pane(props: PaneProps) {
 
 /** The line already contains the counter-offer ("After I pray Fajr, then I will." / "after I pray Fajr"). */
 export function saysIt(text: string, counter: string): boolean {
-  return text.toLowerCase().includes(counter.toLowerCase());
+  const words = text.toLowerCase();
+  const tail = counter.toLowerCase();
+  if (words.includes(tail)) return true;
+  return (
+    (tail === 'when the store runs low' && words.includes('when it runs low')) ||
+    (tail === 'when there’s timber' && words.includes('no timber to build with')) ||
+    (tail === 'at the next prayer' && words.includes('isn’t prayer time'))
+  );
 }
 
 function BubbleBody({ shown }: { shown: ShownBubble }) {

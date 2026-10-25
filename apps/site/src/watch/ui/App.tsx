@@ -1127,6 +1127,8 @@ function NightAccount({
   const available = candidates.filter((act) => act.available && !/isn.t on offer/i.test(act.read));
   const unavailable = candidates.filter((act) => !available.includes(act));
   const unavailableReasons = groupedUnavailable(unavailable, frame);
+  const requestWords = (text: string | null | undefined) =>
+    text?.replace('No spoken request can wake them', `No spoken request can wake ${who.name}`);
   const recentDoze = frame.alerts.findLast(
     (alert) => alert.who === who.id && alert.text.includes('falls asleep'),
   );
@@ -1215,7 +1217,9 @@ function NightAccount({
       </div>
       {!showingChoice ? (
         <footer className="lk-commit w-account-commit">
-          {!acts.length ? <p className="w-note w-account-unavailable">{who.actsUnavailable}</p> : null}
+          {!acts.length ? (
+            <p className="w-note w-account-unavailable">{requestWords(who.actsUnavailable)}</p>
+          ) : null}
           {down ? (
             <>
               <p className="w-note">{down.read}</p>
@@ -1239,9 +1243,11 @@ function NightAccount({
               ))}
           </div>
           {!down && acts.length > 0 && acts.every((act) => !act.available) ? (
-            <p className="w-note w-account-unavailable">{acts[0]?.read}</p>
+            <p className="w-note w-account-unavailable">{requestWords(acts[0]?.read)}</p>
           ) : null}
-          <p className="w-note">The watch continues. Each request is theirs to answer.</p>
+          <p className="w-note">
+            The watch continues. {settingWords(who.name)} chooses whether to agree to each request.
+          </p>
           {frame.moment ? (
             <button type="button" className="w-decision-banner" onClick={onClose}>
               {nameIn(frame, frame.moment.who)} is deciding ▸

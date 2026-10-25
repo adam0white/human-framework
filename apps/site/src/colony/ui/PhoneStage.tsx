@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { settingWords } from '../../shared/setting-words.ts';
 import { dayClock, type Frame } from './contract.ts';
 import { VILLAGE_WORDS } from './village-words.ts';
+import { wellWords as settingWords } from './words.ts';
 
 /** Phone presentation only. Orders still pass through the same callbacks and simulation. */
 export function VillageStrip({ frame, side }: { frame: Frame | null; side: 'human' | 'classic' }) {

@@ -1,4 +1,4 @@
-import { settingWords } from '../../shared/setting-words.ts';
+import { voiceWords as settingWords } from './words.ts';
 /** What the player sees of him (voice.md §8): doing now, the felt body, named feelings, what's on his mind, money. */
 
 import { memo } from 'react';
@@ -21,7 +21,7 @@ export const HalilPane = memo(function HalilPane({ halil }: { halil: HalilView }
       <div className="v-doing">
         {halil.doing ? (
           <>
-            <p className="v-doing-label">Halil chose to {explainTerms(halil.doing.label)}.</p>
+            <p className="v-doing-label">{settingWords(`Halil chose to ${halil.doing.label}.`)}</p>
             {halil.doing.intention && <p className="v-doing-why">{explainTerms(halil.doing.intention)}</p>}
             <p className="v-doing-until">until {settingWords(halil.doing.until)}</p>
           </>
@@ -99,11 +99,11 @@ export const HalilPane = memo(function HalilPane({ halil }: { halil: HalilView }
       <p className="v-money">
         <span>
           <Icon name="coins" />
-          <strong>{halil.money}</strong> available
+          <strong>{halil.money}</strong> lira available
         </span>
         <span>
           <Icon name="circle-minus" />
-          <strong>{halil.owed}</strong> owed to Osman
+          <strong>{halil.owed}</strong> lira owed to Osman
         </span>
       </p>
     </section>

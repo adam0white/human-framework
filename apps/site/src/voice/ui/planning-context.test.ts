@@ -88,9 +88,9 @@ it('retains the recorded rent amount, progress and date for work while company r
   const { el } = mount();
   click(el, '.v-option');
   const context = el.querySelector('.v-planning-context');
-  expect(context?.textContent).toContain('240 owed');
-  expect(context?.textContent).toContain('Paid 60');
-  expect(context?.textContent).toContain('300 by Ramadan 15 (Monday 25 March)');
+  expect(context?.textContent).toContain('240 lira owed');
+  expect(context?.textContent).toContain('Paid 60 lira');
+  expect(context?.textContent).toContain('300 lira by Ramadan 15 (Monday 25 March)');
   expect(context?.textContent).toContain('Halil and Hacer');
   click(el, '.v-option:nth-child(2)');
   expect(context?.querySelector('.v-planning-rent')).toBeNull();

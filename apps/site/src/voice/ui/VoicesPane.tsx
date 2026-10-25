@@ -3,9 +3,9 @@
  * show a trust word, what they last urged, whether it is still on his mind, and any conflict between voices.
  */
 import { memo } from 'react';
-import { settingWords } from '../../shared/setting-words.ts';
 import type { VoiceView } from '../protocol.ts';
 import { Icon, VOICE_ICON } from './Icon.tsx';
+import { voiceWords as settingWords } from './words.ts';
 /** Numeric prefixes belong to the model record, not the player's account of the event. */
 export const trustEventWords = (text: string): string => text.replace(/^[+−-]\d+(?:\.\d+)?\s+/, '');
 export const trustChangeWords = (from: number, to: number): string =>

@@ -200,3 +200,25 @@ it('uses a complete name tag when a short sheet scene cannot fit the receipt', (
   expect(labels[0]?.h).toBeLessThanOrEqual(bounds.h);
   expect(calls.filter((c) => c.method === 'fillText').map((c) => c.args[0])).toContain('Yusuf');
 });
+
+it('projects raw prayer and destination labels on the actual map without mutating the frame', () => {
+  for (const label of [
+    'Praying Dhuhr',
+    'pray Asr',
+    'pray Isha',
+    'Walking to Big cedar',
+    'Walking to Maryam & Tariq',
+  ]) {
+    const scene = { ...input, people: input.people.map((p) => ({ ...p, label })) };
+    const source = JSON.stringify(scene);
+    const { ctx, calls } = canvasRecorder();
+    drawScene(ctx, scene);
+    const text = calls
+      .filter((c) => c.method === 'fillText')
+      .map((c) => c.args[0])
+      .join(' ');
+    expect(text).not.toMatch(/Dhuhr|Asr|Isha|Maryam & Tariq|Walking to Big cedar/);
+    expect(text).toMatch(/prayer|the big cedar|Maryam and Tariq’s house/);
+    expect(JSON.stringify(scene)).toBe(source);
+  }
+});

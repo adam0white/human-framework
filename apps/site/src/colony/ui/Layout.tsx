@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react';
-import { settingWords } from '../../shared/setting-words.ts';
 import type { HurtNews } from '../sim/game.ts';
 import type { Prediction } from '../sim/human-side.ts';
 import type { PlaceId } from '../sim/map.ts';
@@ -21,6 +20,7 @@ import {
   shortName,
 } from './parts.tsx';
 import { VILLAGE_WORDS } from './village-words.ts';
+import { forecastWords, wellWords as settingWords } from './words.ts';
 
 export const JOB_SHORT: Record<string, string> = {
   'gather-timber': 'timber',
@@ -58,7 +58,7 @@ export function riskyPlace(frame: Frame, place: PlaceId): string | null {
     ['squall', 'storm'].includes(frame.weather.kind) &&
     ['forest', 'cedar', 'field', 'site', 'well'].includes(place)
   )
-    return 'Outdoor work in this weather can injure them.';
+    return 'Outdoor work in this weather can cause injury.';
   return null;
 }
 function glyph(state: string) {
@@ -414,8 +414,13 @@ export function PersonSheet({
               {shortName(id)} → {PLACE_LABEL[pending]} · {jobPhrase(inferredJob(frame, pending))}
             </strong>
             <p>
-              {settingWords(riskyPlace(frame, pending))} Human:{' '}
-              {forecasts[pending]?.prediction.text ?? 'checking the answer…'}
+              {settingWords(riskyPlace(frame, pending))?.replace(
+                'can cause injury',
+                `can injure ${shortName(id)}`,
+              )}{' '}
+              {forecasts[pending]
+                ? forecastWords(forecasts[pending].prediction.text)
+                : 'Checking the answer…'}
             </p>
             <button type="button" className="well-send-anyway" onClick={onConfirm}>
               Send anyway
@@ -467,10 +472,16 @@ export function PersonSheet({
                 >
                   <strong>{PLACE_LABEL[p]}</strong>
                   <span>{settingWords(JOB_SHORT[inferredJob(frame, p)] ?? inferredJob(frame, p))}</span>
-                  <small title={settingWords(match ? prediction.prediction.text : undefined)}>
+                  <small title={match ? forecastWords(prediction.prediction.text) : undefined}>
                     {settingWords(answer)}
                     <span className="well-forecast-long">
-                      {settingWords(match && kind === 'notNow' ? `: ${prediction.prediction.text}` : '')}
+                      {settingWords(
+                        match && kind === 'notNow'
+                          ? risk
+                            ? `. ${forecastWords(prediction.prediction.text)}`
+                            : `: ${forecastWords(prediction.prediction.text).replace(/^Later, /, '')}`
+                          : '',
+                      )}
                     </span>
                   </small>
                 </button>

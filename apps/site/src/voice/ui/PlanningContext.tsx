@@ -1,9 +1,9 @@
-import { settingWords } from '../../shared/setting-words.ts';
 /** Read-only context copied from the visible scene and his recorded rent end. */
 import type { Frame } from '../protocol.ts';
 import { storyDates } from './dates.ts';
 import type { DayScene } from './scenes.ts';
 import { explainTerms } from './terms.tsx';
+import { voiceWords as settingWords } from './words.ts';
 
 export interface PlanningContextData {
   people: string;
@@ -35,7 +35,13 @@ export function PlanningContext({ context, optionId }: { context: PlanningContex
   return (
     <aside className="v-planning-context" aria-label="The scene while you plan">
       <p className="v-planning-person">
-        <strong>{settingWords(context.people)}</strong> <span>· {settingWords(context.occasion)}</span>
+        {context.occasion.startsWith(`${context.people} `) ? (
+          <span>{settingWords(context.occasion)}</span>
+        ) : (
+          <>
+            <strong>{settingWords(context.people)}</strong> <span>· {settingWords(context.occasion)}</span>
+          </>
+        )}
       </p>
       {context.line && (
         <p className="v-planning-line">

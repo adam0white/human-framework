@@ -1,4 +1,4 @@
-import { settingWords } from '../../shared/setting-words.ts';
+import { voiceWords as settingWords } from './words.ts';
 /**
  * The composer (voice.md §6): leaning, options ranked by his own utility, the prefill line, Mention / Urge, Insist
  * with its price, one optional reason, a live telegraph of his answer, then Say it or Say nothing.

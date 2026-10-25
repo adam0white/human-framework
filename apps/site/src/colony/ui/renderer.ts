@@ -1,4 +1,3 @@
-import { settingWords } from '../../shared/setting-words.ts';
 /**
  * Canvas renderer for one pane. Human: warm flat colour, no outlines, long shadows that swing with the
  * sun, lanterns at night. Classic: a blueprint, desaturated slate, white pawns, crisp hp/hunger bars.
@@ -8,6 +7,7 @@ import type { WorldView } from '../sim/game.ts';
 import type { VillagerState } from '../sim/human-side.ts';
 import { MAP, MAP_H, MAP_W, PLACES, type Place, type PlaceId, TILE_PX } from '../sim/map.ts';
 import { type ActionId, BEAM_STAGE, clockOf, type VillagerId, type Weather } from '../sim/world-types.ts';
+import { wellWords as settingWords } from './words.ts';
 
 export const LOGICAL_W = MAP_W * TILE_PX;
 export const LOGICAL_H = MAP_H * TILE_PX;

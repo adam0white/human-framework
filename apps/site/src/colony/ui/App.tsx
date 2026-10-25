@@ -7,7 +7,6 @@ import { gameLabs, useLabScreen } from '../../shared/lab.tsx';
 import { labMode } from '../../shared/lab-mode.ts';
 import { playerError } from '../../shared/player-error.ts';
 import type { PlaytestFile } from '../../shared/playtest.ts';
-import { settingWords } from '../../shared/setting-words.ts';
 import type { HurtNews, MomentRecord } from '../sim/game.ts';
 import type { PlaceId } from '../sim/map.ts';
 import type { AppealChip, OrderInput } from '../sim/orders.ts';
@@ -42,6 +41,7 @@ import {
 import { suggestionChoice, suggestionInput } from './suggestion-choice.ts';
 import { useColony } from './useColony.ts';
 import { VILLAGE_WORDS } from './village-words.ts';
+import { wellWords as settingWords } from './words.ts';
 import './layout.css';
 
 type Sheet = 'people' | 'person' | 'orders' | 'stand' | 'suggestion';

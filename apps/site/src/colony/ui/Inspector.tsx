@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import { labMode } from '../../shared/lab-mode.ts';
-import { settingWords } from '../../shared/setting-words.ts';
 import type { TermFamily, TrustView, WhyBreakdown, WhyOption } from '../sim/human-side.ts';
 import { type VillagerId, villagerById } from '../sim/world-types.ts';
 import { type Frame, NO_CONCEPT } from './contract.ts';
@@ -8,6 +7,7 @@ import { namedDescription, needDescription, trustDescription } from './descripti
 import { Icon, NoConcept } from './Icon.tsx';
 import { saysIt } from './Pane.tsx';
 import { Portrait, ROLE_LABEL, shortName } from './parts.tsx';
+import { wellWords as settingWords } from './words.ts';
 
 const FAMILY_VAR: Record<TermFamily, string> = {
   need: 'var(--fam-need)',
@@ -243,7 +243,9 @@ export function Inspector(props: {
                       )}
                     </p>
                   )}
-                  <p className="narration">{settingWords(why.narration)}</p>
+                  <p className="narration">
+                    {settingWords(why.narration).replace('the villager', shortName(props.personId))}
+                  </p>
                   <ol className="why-options">
                     {why.options.slice(0, 3).map((o) => (
                       <OptionBar key={o.affordanceId} option={o} />
@@ -289,7 +291,9 @@ export function Inspector(props: {
                   )}
                   <h3>Memories</h3>
                   {why.recalled.length === 0 ? (
-                    <p className="muted small">They recalled no memories for this decision.</p>
+                    <p className="muted small">
+                      {shortName(props.personId)} recalled no memories for this decision.
+                    </p>
                   ) : (
                     why.recalled.map((r) => <blockquote key={r}>Remembers {settingWords(r)}</blockquote>)
                   )}

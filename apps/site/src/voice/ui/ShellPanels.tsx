@@ -2,11 +2,11 @@ import { useEffect, useRef, useState } from 'react';
 import { CastMenu } from '../../shared/CastMenu.tsx';
 import { FullscreenButton } from '../../shared/fullscreen.tsx';
 import { labMode } from '../../shared/lab-mode.ts';
-import { settingWords } from '../../shared/setting-words.ts';
 import { MODEL_NOTES, type Pace } from '../protocol.ts';
 import { VoicePersonaControls } from './persona.tsx';
 import { RecordingPreference } from './SendWord.tsx';
 import type { VoiceActions } from './useVoice.ts';
+import { voiceWords as settingWords } from './words.ts';
 
 export function InfoPanel({ phase, onClose }: { phase: string; onClose: () => void }) {
   const premise = phase === 'premise';

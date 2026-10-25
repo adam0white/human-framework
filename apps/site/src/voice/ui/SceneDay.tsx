@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import { settingWords } from '../../shared/setting-words.ts';
 import type { Draft, Frame, SceneWords, Telegraph } from '../protocol.ts';
 import { Composer } from './Composer.tsx';
 import { storyDates } from './dates.ts';
@@ -10,6 +9,7 @@ import { sceneBeat, sceneWordChoices } from './scene-words.ts';
 import { deriveScene, nextEncounter, sceneChoices } from './scenes.ts';
 import { useStableSpeechFrame } from './stable-speech-frame.ts';
 import { explainTerms } from './terms.tsx';
+import { voiceWords as settingWords } from './words.ts';
 import './voice-components.css';
 export interface SceneDayProps {
   frame: Frame;

@@ -1,9 +1,9 @@
 import { memo } from 'react';
-import { settingWords } from '../../shared/setting-words.ts';
 import type { VillagerId } from '../sim/world-types.ts';
 import type { Frame } from './contract.ts';
 import { activityLabel, namedDescription, needDescription } from './descriptions.ts';
 import { Portrait, shortName } from './parts.tsx';
+import { wellWords as settingWords } from './words.ts';
 
 function Bar({ label, value, urgent }: { label: string; value: number; urgent?: boolean | undefined }) {
   const v = Math.max(0, Math.min(1, value));

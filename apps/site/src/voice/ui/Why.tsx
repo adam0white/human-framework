@@ -4,8 +4,8 @@
  */
 import { useEffect, useRef } from 'react';
 import { labMode } from '../../shared/lab-mode.ts';
-import { settingWords } from '../../shared/setting-words.ts';
 import type { WhyView } from '../protocol.ts';
+import { voiceWords as settingWords } from './words.ts';
 
 /** Authored paraphrases of recorded influences, not additional causes or simulated speech. */
 function pullLine(label: string, toward: boolean): string {

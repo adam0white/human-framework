@@ -5,12 +5,12 @@
 import { useEffect, useRef } from 'react';
 import { EndTally } from '../../shared/EndTally.tsx';
 import { labMode } from '../../shared/lab-mode.ts';
-import { settingWords } from '../../shared/setting-words.ts';
 import type { ReportView, SceneWords } from '../protocol.ts';
 import { EndsList, UnaskedStrip } from './EndsPane.tsx';
 import { voiceTally } from './end-tally.ts';
 import { Strip, StripLegend } from './Strip.tsx';
 import { companyWords } from './speech-summary.ts';
+import { voiceWords as settingWords } from './words.ts';
 
 function Lines({ lines, empty }: { lines: string[]; empty: string }) {
   if (lines.length === 0) return <p className="v-muted">{settingWords(empty)}</p>;

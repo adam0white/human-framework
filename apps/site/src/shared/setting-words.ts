@@ -32,7 +32,7 @@ export function settingWords(value: string | null | undefined): string | null | 
     )
     .replace(/\b(pray|prays|prayed|praying) (Fajr|Dhuhr|Asr|Maghrib|Isha)\b/gi, '$1 the $2')
     .replace(
-      /\b(after|before|for|until|missed|kept|have|has|had|eat|eats|ate|cook|cooks|cooked|through|miss|misses|remember|remembers|remembered) (suhoor|iftar|Fajr|Dhuhr|Asr|Maghrib|Isha)\b/gi,
+      /\b(after|before|for|until|missed|kept|have|has|had|eat|eats|ate|cook|cooks|cooked|through|miss|misses|remember|remembers|remembered|remembering) (suhoor|iftar|Fajr|Dhuhr|Asr|Maghrib|Isha)\b/gi,
       '$1 the $2',
     )
     .replace(

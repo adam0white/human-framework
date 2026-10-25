@@ -1,4 +1,4 @@
-import { settingWords } from '../../shared/setting-words.ts';
+import { voiceWords as settingWords } from './words.ts';
 /**
  * The day, in his narration (voice.md §7.2). Scrolls inside its own panel. A spoken answer holds the transcript until Latest, another answer or a new request;
  * the simulation clock runs on. The held snapshot survives the worker trimming its recent log. Consecutive entries of the same action collapse into one line with a time span.

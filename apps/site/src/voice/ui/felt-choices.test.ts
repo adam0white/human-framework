@@ -94,5 +94,5 @@ it('keeps a trust end in words while retaining counted monetary details', () => 
   );
   expect(html).not.toContain('0.50');
   expect(html).not.toContain('v-meter');
-  expect(html).toContain('600 owed');
+  expect(html).toContain('600 lira owed');
 });

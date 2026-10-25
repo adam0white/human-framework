@@ -1,5 +1,5 @@
 import { Help } from '../../shared/Help.tsx';
-import { settingWords } from '../../shared/setting-words.ts';
+import { voiceWords as settingWords } from './words.ts';
 /** Translate at display time; simulation text and replay remain unchanged. */
 export const explainTerms = settingWords;
 

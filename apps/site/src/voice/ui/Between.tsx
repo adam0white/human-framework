@@ -1,4 +1,4 @@
-import { settingWords } from '../../shared/setting-words.ts';
+import { voiceWords as settingWords } from './words.ts';
 /**
  * Between days (voice.md §7.3): the day's chronicle, its strip, his ends, your trust, then the next step. Before a
  * skip the player may leave up to two standing whispers, each with a strength and an optional reason, and sees

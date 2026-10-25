@@ -1,8 +1,8 @@
-import { settingWords } from '../../shared/setting-words.ts';
 /** One day as a strip (voice.md §4, replacing the kilim): what he did across 24 hours, coloured by family. */
 import type { Family, StripRow } from '../protocol.ts';
 import { FAMILY_ICON, Icon } from './Icon.tsx';
 import { VOICE_COLOURS, VOICE_NAMES } from './parts.tsx';
+import { voiceWords as settingWords } from './words.ts';
 
 export const FAMILY_LABEL: Record<Family, string> = {
   worship: 'prayer',

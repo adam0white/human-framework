@@ -1,10 +1,10 @@
 /** Top bar (voice.md §7.2) with the sky band (§4): the hour's light, prayer notches, the fast, and a "now" mark. */
 import { memo } from 'react';
-import { settingWords } from '../../shared/setting-words.ts';
 import type { Frame } from '../protocol.ts';
 import { storyDate } from './dates.ts';
 import { deriveScene } from './scenes.ts';
 import { explainTerms } from './terms.tsx';
+import { voiceWords as settingWords } from './words.ts';
 
 const SKY: [number, string][] = [
   [0, '#121831'],

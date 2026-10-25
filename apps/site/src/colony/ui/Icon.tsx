@@ -18,7 +18,7 @@
  */
 import type { ReactElement, ReactNode } from 'react';
 import { makeIcon } from '../../shared/Icon.tsx';
-import { settingWords } from '../../shared/setting-words.ts';
+import { wellWords as settingWords } from './words.ts';
 
 const PATHS = {
   // lucide: zap

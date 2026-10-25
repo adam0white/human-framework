@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { Help } from '../../shared/Help.tsx';
-import { settingWords } from '../../shared/setting-words.ts';
 import { VILLAGES, type Village } from '../sim/village.ts';
 import { dayClock, type Frame } from './contract.ts';
 import { VILLAGE_WORDS } from './village-words.ts';
+import { wellWords as settingWords } from './words.ts';
 
 /**
  * The start card (item 1): the run begins paused behind it. It shows the three goals, when the storm comes
