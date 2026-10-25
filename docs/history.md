@@ -2,6 +2,10 @@
 
 Detail moved out of AGENTS.md on 2026-10-20 (owner: "Trim handoff and other documents"). AGENTS.md keeps one line per increment; the full text of each bounded increment as it stood in AGENTS.md is kept here verbatim.
 
+## HF 3.0 API migration and maintenance (2026-10-25)
+
+HF3.0.0 ships engine2.23.0 with deprecated forms removed, explicit Person composite names, one callable routine source and the retained assignment-based tuning contract. Same-runtime canonical input ordering is public; speech/starter APIs have concrete November3 deliverable plans and bounded five-seed controls. Dependency/tooling and compatibility-date maintenance, dead-code cleanup and migration checks passed independent Codex and Claude Opus reviews, full checks, exact CI and npm provenance verification. Client0.4.10/kit0.5.11 use one HF3 runtime. [Release receipts](releases.md) distinguish published artifacts from the ongoing fifteen-game adoption, maintenance and ask dispositions; owner readiness is still separate.
+
 ## Regular log byte budget (2026-10-25)
 
 Client 0.4.9/kit 0.5.10 fix a published 0.4.8 failure: a full burst of multibyte or escaped logs could exceed the journal byte budget and prevent later regular flushes. Redacted messages now have a serialized UTF-8 byte cap, preserving whole codepoints. Signed artifacts, downloaded digests, exact green CI, focused red/green regressions, packed controls and one independent review are recorded in [releases](releases.md). Game HF pins, notes and privacy controls remain separate. External adoption is continuing.
