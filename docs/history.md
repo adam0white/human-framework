@@ -2,6 +2,10 @@
 
 Detail moved out of AGENTS.md on 2026-10-20 (owner: "Trim handoff and other documents"). AGENTS.md keeps one line per increment; the full text of each bounded increment as it stood in AGENTS.md is kept here verbatim.
 
+## Explicit observation and navigation journal (2026-10-25)
+
+HF2.22.0 keeps engine2.21.0 and adds explicit inherited aptitude for watching, with unchanged earlier observation calls and saved state. Host reset guidance separates current progress from the retained advancement threshold and records stale abandonment. Client0.4.8/kit0.5.9 use immutable local event/log chunks before asynchronous flush, with captured provenance, independent keys, bounded retry and expiry. Two reviews and focused red/green controls fixed duplication, in-flight loss and marker bookkeeping; a built-peer test alias is exact to the package root. npm provenance, signed SDK artifacts, exact CI and the central live deploy are in [releases](releases.md). External client rollout and owner readiness remain separate.
+
 ## Optional felt body and explicit game pins (2026-10-25)
 
 HF2.21.0 / engine2.21.0 adds opt-in minute-grid involuntary doze, explicit seeded quantity observation and native bladder urgency/choice with actual voiding outcomes. Engineering defaults are uncalibrated; doze requires current host alarms to wake. Two independent reviews and red/green controls fixed joint catch-up and expectancy learning. Absent options preserve published2.20 continuation after engine metadata normalization only. Host recipes cover chosen gifts and perceived shared work. Watch adopts2.20 host helpers; an explicit resolver keeps all central game runtimes on published2.20 while the site names library2.21. Exact CI, npm integrity/provenance, published controls and live deployment are in [releases](releases.md). F192 navigation and Q35 observation aptitude continue next; owner review remains separate.

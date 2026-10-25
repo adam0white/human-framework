@@ -1,6 +1,6 @@
 # Navigation journal adoption — 2026-10-25
 
-Release targets are lab-client0.4.8 and lab-kit0.5.9. Use the versioned GitHub tarballs and recorded SHA512 digests in the release receipts after publication. Kit0.5.9 changes only its version and exact optional client peer to0.4.8. This client patch does not require an HF upgrade; keep each game's adopted HF pin.
+Lab-client0.4.8 and lab-kit0.5.9 are released as signed GitHub tarballs. Use the exact files and SHA512 digests in [release receipts](../releases.md#lab-package-artifacts--2026-10-25). Kit0.5.9 changes only its version and exact optional client peer to0.4.8. This client patch does not require an HF upgrade; keep each game's adopted HF pin.
 
 Upgrade the vendored tarballs, exact manifest dependencies and lockfile together. Use a clean worktree, verify the downloaded bytes, run check:lane, sign, rebase/push, wait for exact green CI and deploy. Check the live release manifest and existing game flow at phone/desktop sizes. No new player round is needed.
 

@@ -242,3 +242,12 @@ Keeping a prospect ID preserves its peak and last advance, not cumulative curren
 ## Upbringing boundary investigation (2026-10-25)
 
 Q31/Q32 remain model decisions. Direct `raise` tapers value plasticity to25; the community driver calls it only below18. At exactly zero caregiver warmth, `raise` returns before attachment/norm transmission; any positive warmth can produce a finite normalized effect. Existing tests pin the exact-zero legacy behavior. No age, warmth rule, guardian eligibility or faith ruling was changed. The proposed owner decision separates these model semantics; review2026-11-03. An eventual behavior change must be explicit opt-in and preserve old-call/save continuation.
+
+
+## Glance displayed-board control (2026-10-25)
+
+Committed Glance960af698/HF2.21 was extracted and checked against its Git tree and source hashes. A prespecified displayed-board rule with forced gate moves held five nights in1/6 seed/clearing cases; the inherited thresholds held0/6. Both read displayed information. The inherited arm can request the current setting as a check, which the UI does not offer; the new rule instead forces an adjacent change. Thus this is a negative result for one rule and schedule, not a fair comparison of all legal strategies or proof that screen information is insufficient. Scheduled clear requests match, but actual availability/success diverges downstream. Twelve runs reproduce their result/state hashes. Claude design review narrowed the inference; no adapter/game/engine change is justified. Scratch control/report: `~/code/.lab-scratch/hfroad/visible-gates/` and visible-gates-report.md.
+
+## Regular-event navigation delivery (2026-10-25)
+
+F-192: the old client spliced regular data before identity, gzip and IndexedDB could finish. Native local Firefox navigation reproduced loss. Client0.4.8 now writes immutable bounded chunks synchronously, retires each only after durable storage or a stored receipt, preserves captured metadata and enforces seven-day expiry. Tests cover in-flight loss, duplicate regrouping, cross-tab retirement, full retries, reset/privacy, and rejected-marker retry. Local GPC/DNT defaults suppress; explicit recording on permits delivery. Central deployment is verified; external rollout and a production navigation receipt remain before closing F-192. No production test upload or owner-profile inspection belongs to these new controls. Capacity exhaustion and denied storage remain explicit limits. The owner's historical feedback note is a separate unresolved event.
