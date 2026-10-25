@@ -245,7 +245,7 @@ Keeping a prospect ID preserves its peak and last advance, not cumulative curren
 
 ## Upbringing boundary investigation (2026-10-25)
 
-Q31/Q32 remain model decisions. Direct `raise` tapers value plasticity to25; the community driver calls it only below18. At exactly zero caregiver warmth, `raise` returns before attachment/norm transmission; any positive warmth can produce a finite normalized effect. Existing tests pin the exact-zero legacy behavior. No age, warmth rule, guardian eligibility or faith ruling was changed. The proposed owner decision separates these model semantics; review2026-11-03. An eventual behavior change must be explicit opt-in and preserve old-call/save continuation.
+Q31/Q32 remain model decisions. Direct `raise` tapers value plasticity to25; the community driver calls it only below18. At exactly zero caregiver warmth, `raise` returns before attachment/norm transmission; any positive warmth can produce a finite normalized effect. Existing tests pin the exact-zero legacy behavior. No age, warmth rule, guardian eligibility or faith ruling was changed. These are engineering model choices within the authorized roadmap pass, not an added owner-permission gate. The active opt-in batch uses warmth-scaled influence and the direct taper to25; target2026-10-29. An eventual behavior change must be explicit opt-in and preserve old-call/save continuation.
 
 
 ## Glance displayed-board control (2026-10-25)
@@ -308,3 +308,7 @@ The unchanged released HF 2.23 source harness ran seed 19. Fine 100 completed da
 These are UTF-8 actor snapshots, excluding world state and external archives. Both longer fine runs completed within the 180-second admission budget. That budget is checked between synchronous day calls; it is not a hard timeout. The harness and actor source match released v2.23.0; these runs did not execute an independently packed npm runtime.
 
 These concurrent-machine observations do not establish quiet timing or scaling. Fine uses actual village decisions and a food-stock disruption; coarse holds body/needs, runs a host routine and makes no decisions or world simulation. Their sizes and timings do not establish matched fidelity or outcomes. The meaningful-opportunity predicate needed for decision starvation remains unavailable; idle counts are not a substitute. Quiet repetitions remain targeted for 2026-11-15.
+
+### Community death delivery audit,2026-10-25
+
+At source509f7d7, a bleeding person with health0.000001 and the next event at100 dies during `stepCommunity(...,1)` final catch-up without a death event or deceased friend tie. Future scheduling excludes them, so another step does not repair the missing notice. Q29 remains open across synchronization sites. Q28 is unreachable with the fixed default attention threshold but remains reachable with the supported mutable tuning API: attentionBase0, attentionRange0 and alwaysSalience1 drop the death percept; a valid spouse is widowed while the tie stays unmarked. The probe restores all defaults afterwards. The opt-in repair must handle scheduler cleanup and attended knowledge separately; default continuation stays exact. Target2026-10-27.
