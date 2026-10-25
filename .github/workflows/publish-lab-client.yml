@@ -46,8 +46,8 @@ jobs:
           node-version-file: .nvmrc
           registry-url: https://registry.npmjs.org
           package-manager-cache: false
-      - name: npm 11.20.0
-        run: npm install -g npm@11.20.0
+      - name: npm 12.2.1
+        run: npm install -g npm@12.2.1
       - name: Tag matches the package version
         run: |
           version=$(node -p "require('./packages/lab-client/package.json').version")

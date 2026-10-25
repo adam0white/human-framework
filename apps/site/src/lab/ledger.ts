@@ -164,6 +164,7 @@ export function buildCurated(input: { ledger: string; lessons: string; asks: str
       }
     }
   }
+  // biome-ignore lint/complexity/useMathMinMax: ISO dates are strings; Math.max would coerce them to NaN.
   const generated = rows.reduce((d, r) => (r.date > d ? r.date : d), '');
   return {
     curated: {

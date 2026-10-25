@@ -33,6 +33,20 @@ const SID_KEY = 'hf-lab-session';
 const OFF_KEY = 'hf-lab-events-off';
 const OVERRIDE_KEY = 'hf-lab-privacy-override';
 
+function boundedLogMessage(message: string): string {
+  let bytes = 0;
+  let result = '';
+  const encoder = new TextEncoder();
+  for (const character of message) {
+    const escaped = JSON.stringify(character).slice(1, -1);
+    const size = encoder.encode(escaped).byteLength;
+    if (bytes + size > 1000) break;
+    result += character;
+    bytes += size;
+  }
+  return result;
+}
+
 export type Viewport = 'phone' | 'tablet' | 'desktop';
 type Event = ['start' | 'ms' | 'scr' | 'err' | 'end', number, string?];
 type JournalEntry = {
@@ -498,10 +512,9 @@ export function createLab(options: LabOptions): Lab {
     // Never read arbitrary console objects, browser headers, URLs with queries, or stacks.
     const cleaned = message
       .replace(/https?:\/\/[^\s]+/g, (url) => url.split(/[?#]/)[0] ?? '')
-      .replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi, '[email removed]')
-      .slice(0, 1000);
+      .replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi, '[email removed]');
     syncRun();
-    logs.push({ level, message: cleaned, at: Date.now(), runId });
+    logs.push({ level, message: boundedLogMessage(cleaned), at: Date.now(), runId });
   };
   if (typeof g.addEventListener === 'function') {
     g.addEventListener('hf-lab-preference', () => {

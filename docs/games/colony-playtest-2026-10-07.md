@@ -2,10 +2,10 @@
 
 The owner sent a playtest export; no player words were recorded with it. Build 29c7b09 (framework 2.1.0, engine 2.0.0), seed 20261003, colony-scenario@2, saved at D4 05:00 after "Another day". On d1ca5f1 it replays to the file's hash 0f1907d2e0ffdc with an identical snapshot (no colony code changed since 29c7b09). The build stamp comes from `/release.json` fetched without cache, so the run was most likely on the 29c7b09 deploy, before the 2026-10-06 deploys (inferred).
 
-| Day | Goals C / H / Solo | Meals at judge C/H/Solo | Roof or store-room |
-|---|---|---|---|
-| 2 | ✓✓✓ / ✓✓✓ / ✗✓✓ | 14 / 18 / 16 | C roofed D1 19:24, H D2 18:39 (21 minutes before the storm), Solo 9.72 at the storm |
-| 3 | ✓✓✓ / ✓✓✓ / ✗✓✓ | 16 / 17 / 17 | store-room C 15:09, H 15:57, Solo 5/6 |
+| Day | Goals C / H / Solo | Meals at judge C/H/Solo | Roof or store-room                                                                  |
+| --- | ------------------ | ----------------------- | ----------------------------------------------------------------------------------- |
+| 2   | ✓✓✓ / ✓✓✓ / ✗✓✓    | 14 / 18 / 16            | C roofed D1 19:24, H D2 18:39 (21 minutes before the storm), Solo 9.72 at the storm |
+| 3   | ✓✓✓ / ✓✓✓ / ✗✓✓    | 16 / 17 / 17            | store-room C 15:09, H 15:57, Solo 5/6                                               |
 
 End: meals 10/11/12, injuries 10/5/5, prayers 75/75 (H, Solo), morale 0.45/0.42, trust 0.51/0.54; nobody died. Moments 4 (D1 14:01) and 2 (D1 18:11). 42 orders, all Rush, none Insist; appeals "for the children" 32, duty 6, safety 3, none 1. 3 of 10 suggestion cards used (dusk-site, roof-hands-1, storm-pot), 7 skipped, so moments 1, 3 and 5 never fired. Branch replays (inferred; the run is sensitive) say the appeals and Rush mattered: without either, the Human roof misses the storm.
 

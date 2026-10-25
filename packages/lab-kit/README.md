@@ -55,7 +55,9 @@ const stage = phoneStage(document.querySelector('.lk-stage')!, {
     // Do not replace the stage root. Render one sheet, not stacked panels.
     renderSheet(sheet?.id, canBack);
   },
-  onSceneRect(rect) { camera.keepSelectedInside(rect); },
+  onSceneRect(rect) {
+    camera.keepSelectedInside(rect);
+  },
 });
 orderButton.onclick = () => stage.open({ id: 'order', height: 'half', opener: orderButton });
 placeButton.onclick = () => stage.open({ id: 'places', height: 'fit', opener: placeButton });
@@ -108,9 +110,9 @@ The first rendered occurrence shows `kahya (steward)`. Later occurrences start f
 ```ts
 import { englishDate, weekday, month, dayOf } from '@adam0white/lab-kit';
 englishDate(new Date('2026-05-14T12:00:00Z')); // 'Thursday 14 May'
-englishDate(Date.UTC(2026, 4, 14), true);     // 'Thursday 14 May 2026'
-weekday(2);  // 'Tuesday'; Sunday = 0
-month(5);    // 'May'; January = 1
+englishDate(Date.UTC(2026, 4, 14), true); // 'Thursday 14 May 2026'
+weekday(2); // 'Tuesday'; Sunday = 0
+month(5); // 'May'; January = 1
 dayOf(3, 12); // 'Day 3 of 12'
 ```
 
@@ -133,15 +135,17 @@ setNext('Choose who carries the rope.');
 import { createLab } from '@adam0white/lab-client';
 import { notebookMenu } from '@adam0white/lab-kit';
 const lab = createLab({ game: 'pass' });
-footer.append(notebookMenu({
-  lab,
-  getRun: () => exportRun(),
-  filename: 'pass-playtest.json',
-  // name: 'Sam', // optional feedback name prefill; the client remembers submitted names locally
-  compact: (run) => compactRun(run),
-  compactNote: 'Seed and inputs reproduce the full state.',
-  onSave: () => saveGame(),
-}));
+footer.append(
+  notebookMenu({
+    lab,
+    getRun: () => exportRun(),
+    filename: 'pass-playtest.json',
+    // name: 'Sam', // optional feedback name prefill; the client remembers submitted names locally
+    compact: (run) => compactRun(run),
+    compactNote: 'Seed and inputs reproduce the full state.',
+    onSave: () => saveGame(),
+  }),
+);
 ```
 
 One Game menu button opens a sheet containing Save (when `onSave` exists), Download this run, Send this run to the notebook, regular-event controls (when the lab exposes them), and Lab privacy. The menu closes before the client dialog opens. Save success and failures are announced. `getRun` is read at action time; download always includes the complete export, never the compact form. The game must provide seed, input log and state, prove replay, and offer Continue with a location summary on its returning-player screen.
@@ -177,15 +181,15 @@ Missing package versions fail the build. Missing Git evidence produces `commit: 
 
 ## Clarity coverage
 
-| Piece | Checklist support | Game still owns |
-| --- | --- | --- |
-| Tokens and base | DL-2, DL-3, DL-8, DL-23, DL-25, DL-30 | One accent focus, readable layout and content |
+| Piece                      | Checklist support                        | Game still owns                                                                  |
+| -------------------------- | ---------------------------------------- | -------------------------------------------------------------------------------- |
+| Tokens and base            | DL-2, DL-3, DL-8, DL-23, DL-25, DL-30    | One accent focus, readable layout and content                                    |
 | Phone stage and controller | DL-22, DL-23, DL-24, DL-25, DL-30, DL-31 | Essential copy, scene camera, React transitions, router Back and rendered checks |
-| `once`, `introCard` | DL-1, DL-6, DL-7, DL-11, DL-24 | Clear short goal, first meaningful choice, clock |
-| Terms and glossary | DL-20 | Accurate definitions and consistent names (DL-10) |
-| English dates | DL-20, DL-21 | Mapping game time to Gregorian dates |
-| What-next line | DL-5, DL-8, DL-9, DL-22 | Updating instructions and reserving visible space |
-| Notebook and JSON | DL-24, DL-26, DL-28 | Resume (DL-27), replayable exports (DL-29), send client |
+| `once`, `introCard`        | DL-1, DL-6, DL-7, DL-11, DL-24           | Clear short goal, first meaningful choice, clock                                 |
+| Terms and glossary         | DL-20                                    | Accurate definitions and consistent names (DL-10)                                |
+| English dates              | DL-20, DL-21                             | Mapping game time to Gregorian dates                                             |
+| What-next line             | DL-5, DL-8, DL-9, DL-22                  | Updating instructions and reserving visible space                                |
+| Notebook and JSON          | DL-24, DL-26, DL-28                      | Resume (DL-27), replayable exports (DL-29), send client                          |
 
 The table follows the revised 2026-10-20 checklist ids. Labels follow DL-26..28: Game menu, Download this run, Send this run to the notebook (the lab client's label).
 

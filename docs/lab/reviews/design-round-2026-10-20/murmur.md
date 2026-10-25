@@ -18,15 +18,15 @@ The checkpoint was recorded late: first part at **97.804 seconds overall**, seco
 
 The following are my original saved checkpoint answers, split into rows without incorporating anything learned later.
 
-| Item | Status | Original checkpoint answer |
-|---|---|---|
-| DL-1 | PASS | I accompany Dilan through her week, offering words she may keep. Title promise and alarm explain why. |
-| DL-2 | PASS | Wake her up, More about Dilan, replay, All games, outlined sentences, say nothing, menu and on with the day look tappable. The two controls tried worked; no inert target tried. |
-| DL-3 | PASS | the choice card and countdown draw me; her lean is described in words, and You suggested / She chose mark my selection. |
-| DL-4 | NOT TESTED | no unavailable action encountered. |
-| DL-5 | PASS | You suggested / She chose / Fine explain the exchange. On with the day is available. |
-| DL-6 | NOT TESTED cleanly | first choice visible 34.2 seconds after original title, 7.7 after replacement; first input Wake her up at 33.9 original / 7.4 replacement, first meaningful input at 46.2 original / 19.7 replacement. The setup restart prevents a clean timing verdict. The opening had short text, about 46 mandatory context/instruction words before the choice. |
-| DL-7 | PASS for the one interaction reached | I suggested getting up, she chose it and kept Feet on the floor. Help unused. Insisting, silence and automatic decisions: NOT TESTED, three unmet interactions. |
+| Item | Status                               | Original checkpoint answer                                                                                                                                                                                                                                                                                                                            |
+| ---- | ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DL-1 | PASS                                 | I accompany Dilan through her week, offering words she may keep. Title promise and alarm explain why.                                                                                                                                                                                                                                                 |
+| DL-2 | PASS                                 | Wake her up, More about Dilan, replay, All games, outlined sentences, say nothing, menu and on with the day look tappable. The two controls tried worked; no inert target tried.                                                                                                                                                                      |
+| DL-3 | PASS                                 | the choice card and countdown draw me; her lean is described in words, and You suggested / She chose mark my selection.                                                                                                                                                                                                                               |
+| DL-4 | NOT TESTED                           | no unavailable action encountered.                                                                                                                                                                                                                                                                                                                    |
+| DL-5 | PASS                                 | You suggested / She chose / Fine explain the exchange. On with the day is available.                                                                                                                                                                                                                                                                  |
+| DL-6 | NOT TESTED cleanly                   | first choice visible 34.2 seconds after original title, 7.7 after replacement; first input Wake her up at 33.9 original / 7.4 replacement, first meaningful input at 46.2 original / 19.7 replacement. The setup restart prevents a clean timing verdict. The opening had short text, about 46 mandatory context/instruction words before the choice. |
+| DL-7 | PASS for the one interaction reached | I suggested getting up, she chose it and kept Feet on the floor. Help unused. Insisting, silence and automatic decisions: NOT TESTED, three unmet interactions.                                                                                                                                                                                       |
 
 The approximate word count was a checkpoint estimate, not a formal count. Insisting remained untested. Silence was reached later; it cannot change the checkpoint.
 
@@ -191,7 +191,6 @@ This is the original local observation log, in order. Reaction wording is unchan
 - **2026-10-20T11:57:06.701Z | 190.079 s | end**
 
   > Closed browser after the single desktop look.
-
 ## What it felt like
 
 **Best moment:** Tuesday morning. I chose “say nothing.” She chose to get up anyway: “Feet on the floor. Her own words now.” That was concrete evidence of the title's promise. 15-tap.png (driver scratch). The earlier call also mattered: “Twenty minutes. Mum talked about the neighbour’s roof. Dilan laughed twice.” 11-tap.png (driver scratch).
@@ -213,11 +212,11 @@ No unavailable action was encountered: DL-4 remains NOT TESTED. I did not open t
 
 ## English, dates and phone layout
 
-| Item | Result | Evidence and limit |
-|---|---|---|
-| DL-20 | PASS for reached play | All choices, resistance notes, clock labels and day summaries were understandable in English. Dilan, Ece, Murat and Aylin were names; no unexplained local term blocked an action. |
-| DL-21 | NOT TESTED for deadline comparison | Mon/Tue, Monday/Tuesday, 24-hour times and “She decides in …s” were understandable. No calendar deadline requiring comparison with today, or across months/years, was encountered. No return-from-break comparison was tested. |
-| DL-22 | PASS for reached phone decisions | Alarm, Ece, lunch, coffee, bus and bedtime cards showed their immediate context and all responses at 360×690 without scrolling. The day summary and Tomorrow also fit. The history could extend beyond the viewport, but current response cards remained available. No keyboard or long sheet was reached. |
+| Item  | Result                             | Evidence and limit                                                                                                                                                                                                                                                                                         |
+| ----- | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DL-20 | PASS for reached play              | All choices, resistance notes, clock labels and day summaries were understandable in English. Dilan, Ece, Murat and Aylin were names; no unexplained local term blocked an action.                                                                                                                         |
+| DL-21 | NOT TESTED for deadline comparison | Mon/Tue, Monday/Tuesday, 24-hour times and “She decides in …s” were understandable. No calendar deadline requiring comparison with today, or across months/years, was encountered. No return-from-break comparison was tested.                                                                             |
+| DL-22 | PASS for reached phone decisions   | Alarm, Ece, lunch, coffee, bus and bedtime cards showed their immediate context and all responses at 360×690 without scrolling. The day summary and Tomorrow also fit. The history could extend beyond the viewport, but current response cards remained available. No keyboard or long sheet was reached. |
 
 The entry fade briefly made choice text very pale: compare 01-tap.png (driver scratch) with 02-first-choice.png (driver scratch). It became readable without intervention; I do not report persistent contrast failure.
 

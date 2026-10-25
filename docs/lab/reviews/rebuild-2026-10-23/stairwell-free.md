@@ -12,15 +12,15 @@ Timing limits: floor 0, ceiling 25 real minutes. Open returned at 0.460 s. Gamep
 
 The title was actionable at 0.460 s and the building at 3.682 s. My checkpoint note was logged at 75.918 s, about 15 seconds late against the title or 12 against the building. All its observations concern events already reached by 60 s. Later discoveries do not upgrade the rows below.
 
-| Item | Result | Original checkpoint answer and visible evidence through 60 s |
-|---|---|---|
-| DL-1 A reason to act | PASS | Bread deliveries before 08:07. “Bread first, before anything” and Elif’s loaf prompt told me why to act now. |
-| DL-2 What can I touch | PASS | Doors, Here/Orders/Residents tabs, gate action and red bakery action looked tappable. I used the bakery action. No inert thing tried. Empty squares were unexplained to me. |
-| DL-3 Urgency and selection | PASS | Red bakery action drew me first; gate action competed. Bread was urgent. Here was selected, then Elif during conversation. |
-| DL-4 Why the limit | FAIL | “Already asked · ask tomorrow” explained news clearly. Sunday support said “too early”; I could not tell when I could ask. I did not attempt that action. |
-| DL-5 Readable situation | PASS | Go to the bakery, then Go to flat 6 made the available response clear. Travel gave arrival time. Conversation said “time waits.” The Tell sheet had a separate visibility failure. |
-| DL-6 A choice soon | PASS | Begin available at 0.460 s; first errand and gate choice at 3.682 s. Begin input at 3.682 s; first errand input at 14.244 s. Choice available and acted on within 30 s, before long reading. |
-| DL-7 Learn by doing | PASS for reached interactions | Reaching flat 6 delivered automatically, reduced Orders 7 to 6 and produced thanks and ₺5. Asking news produced an answer then an ask-tomorrow limit. Tell opened a sheet but I did not share. No help used. Sharing, sitting and Sunday support were NOT TESTED at the checkpoint (3 unreached interactions). |
+| Item                       | Result                        | Original checkpoint answer and visible evidence through 60 s                                                                                                                                                                                                                                                   |
+| -------------------------- | ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DL-1 A reason to act       | PASS                          | Bread deliveries before 08:07. “Bread first, before anything” and Elif’s loaf prompt told me why to act now.                                                                                                                                                                                                   |
+| DL-2 What can I touch      | PASS                          | Doors, Here/Orders/Residents tabs, gate action and red bakery action looked tappable. I used the bakery action. No inert thing tried. Empty squares were unexplained to me.                                                                                                                                    |
+| DL-3 Urgency and selection | PASS                          | Red bakery action drew me first; gate action competed. Bread was urgent. Here was selected, then Elif during conversation.                                                                                                                                                                                     |
+| DL-4 Why the limit         | FAIL                          | “Already asked · ask tomorrow” explained news clearly. Sunday support said “too early”; I could not tell when I could ask. I did not attempt that action.                                                                                                                                                      |
+| DL-5 Readable situation    | PASS                          | Go to the bakery, then Go to flat 6 made the available response clear. Travel gave arrival time. Conversation said “time waits.” The Tell sheet had a separate visibility failure.                                                                                                                             |
+| DL-6 A choice soon         | PASS                          | Begin available at 0.460 s; first errand and gate choice at 3.682 s. Begin input at 3.682 s; first errand input at 14.244 s. Choice available and acted on within 30 s, before long reading.                                                                                                                   |
+| DL-7 Learn by doing        | PASS for reached interactions | Reaching flat 6 delivered automatically, reduced Orders 7 to 6 and produced thanks and ₺5. Asking news produced an answer then an ask-tomorrow limit. Tell opened a sheet but I did not share. No help used. Sharing, sitting and Sunday support were NOT TESTED at the checkpoint (3 unreached interactions). |
 
 Original checkpoint note is reproduced unchanged in the diary below. This harness supplied screenshots, so the visual failures below are based on images, not text layout guesses.
 
@@ -40,16 +40,16 @@ Final stop: 210.953 s, **FRUSTRATED**, Mon 08:04 at Hüseyin’s door with four 
 
 ## Clarity and checks
 
-| ID | Finding |
-|---|---|
-| DL-20 English | PASS for reached play. Necessary actions and answers were in English. Names, Hanım/Bey, Lale Apartmanı and ₺ did not prevent Cem, who speaks Turkish, from acting. First-use and requested definitions of local terms NOT TESTED; no definition requested. |
-| DL-21 Dates | PASS for reached deadlines. Mon 07:00 and due 08:07 were directly comparable. Wednesday ten to twelve was understandable against Monday. Across months/years NOT TESTED. Tarık’s ’74 anecdote was not a deadline. |
-| DL-22 Phone response visibility | FAIL on Tell. Harness lists statements and “as I heard it / for certain”; tell-elif.png and tell-huseyin.png show mostly blank space below the person heading. tell-after-scroll.png still does. Initial errand context and button are visible together in monday-start.png. Automatic thank-you response layout NOT TESTED by screenshot. |
-| DL-30 Cut-off text | FAIL. monday-start.png visibly begins the notebook with “eight, and they all say theirs is first. — R.” The harness includes the preceding “Bread first, before anything. They all want it by”. In both Tell screenshots tiny tops of letters appear around y=327, then blank space; I cannot read that fragment. No Scroll ↓ shown. I did not see two sheets overlap. Cause not established. |
-| DL-31 Context with sheet | Partial: with Tell open the clock, next deadline, squares, Orders 6/4 and person remained visible. Sharing choices did not. Actual order sheet or completed answer sheet NOT TESTED. |
-| DL-32 Only watch | Longest observed sitting interval was about 22 s: Hüseyin Sit at 180.138 to completion observed at 202.075. I wanted the conversation to settle so I could continue. This is an observation interval, not proof all 22 seconds were required or all other controls blocked. Blank-page difficulty was not a watch-only wait. |
-| DL-33 Hands on | Reaching the flat delivered supplies automatically and opened conversation. Speak/listen actions were neighbour buttons. Tell opened a statement sheet. No free conversation typing. Cooking and digging NOT TESTED (2 unmet examples). |
-| DL-13 Feedback | PASS for visible acknowledgment: Game menu → Send word → name and verdict → Send exactly once. “Sent. Thank you.” at 224.238 s. No independent server verification claimed. |
+| ID                              | Finding                                                                                                                                                                                                                                                                                                                                                                                       |
+| ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DL-20 English                   | PASS for reached play. Necessary actions and answers were in English. Names, Hanım/Bey, Lale Apartmanı and ₺ did not prevent Cem, who speaks Turkish, from acting. First-use and requested definitions of local terms NOT TESTED; no definition requested.                                                                                                                                    |
+| DL-21 Dates                     | PASS for reached deadlines. Mon 07:00 and due 08:07 were directly comparable. Wednesday ten to twelve was understandable against Monday. Across months/years NOT TESTED. Tarık’s ’74 anecdote was not a deadline.                                                                                                                                                                             |
+| DL-22 Phone response visibility | FAIL on Tell. Harness lists statements and “as I heard it / for certain”; tell-elif.png and tell-huseyin.png show mostly blank space below the person heading. tell-after-scroll.png still does. Initial errand context and button are visible together in monday-start.png. Automatic thank-you response layout NOT TESTED by screenshot.                                                    |
+| DL-30 Cut-off text              | FAIL. monday-start.png visibly begins the notebook with “eight, and they all say theirs is first. — R.” The harness includes the preceding “Bread first, before anything. They all want it by”. In both Tell screenshots tiny tops of letters appear around y=327, then blank space; I cannot read that fragment. No Scroll ↓ shown. I did not see two sheets overlap. Cause not established. |
+| DL-31 Context with sheet        | Partial: with Tell open the clock, next deadline, squares, Orders 6/4 and person remained visible. Sharing choices did not. Actual order sheet or completed answer sheet NOT TESTED.                                                                                                                                                                                                          |
+| DL-32 Only watch                | Longest observed sitting interval was about 22 s: Hüseyin Sit at 180.138 to completion observed at 202.075. I wanted the conversation to settle so I could continue. This is an observation interval, not proof all 22 seconds were required or all other controls blocked. Blank-page difficulty was not a watch-only wait.                                                                  |
+| DL-33 Hands on                  | Reaching the flat delivered supplies automatically and opened conversation. Speak/listen actions were neighbour buttons. Tell opened a statement sheet. No free conversation typing. Cooking and digging NOT TESTED (2 unmet examples).                                                                                                                                                       |
+| DL-13 Feedback                  | PASS for visible acknowledgment: Game menu → Send word → name and verdict → Send exactly once. “Sent. Thank you.” at 224.238 s. No independent server verification claimed.                                                                                                                                                                                                                   |
 
 I could not tell what the empty squares meant initially. Some later filled when deliveries completed; that is an observed association, not a verified rule. “Too early” left the release time uncertain. I did not establish that the game has no rule.
 
@@ -107,29 +107,29 @@ I am stopping at Hüseyin’s door on Monday morning, with four orders left. The
 
 ### Important inputs and visible answers
 
-| Elapsed s | Input and visible answer | Game clock |
-|---|---|---|
-| 0.460 | Open: keep seven flats supplied through Saturday; Sunday vote on tea money; nothing happens while away. | None |
-| 3.682 | Begin: bread first, water notice; Elif loaf due 08:07; bakery action. | Mon 07:00 |
-| 14.244 / 19.889 | Go to bakery / wait 3: travel then Go to flat 6. | Mon 07:06 / 07:15 |
-| 22.343 / 29.305 | Go to flat 6 / wait 4: “Oh! Thank you so much. (₺5)”; Orders 6. | Mon 07:17 / 07:29 |
-| 32.260 | Anything new?: “The light up here in the afternoon, honestly.” Ask tomorrow. | Mon 07:29 |
-| 34.925–63.621 | Tell, screenshot, scroll, screenshot, wait 10: choices in text; blank in images; Reading · time waits. | Mon 07:29 |
-| 76.107 / 79.495 | Back / Sit: Elif’s five-o’clock light story, done about 07:39. | Mon 07:29 |
-| 85.756 / 98.402 | Wait 3 / wait 10: sitting underway then complete; return tomorrow. | Mon 07:31 / 07:39 |
-| 104.191 / 106.640 | Close / Go to flat 7: Tarık loaf and paper, then travel. | Mon 07:39 / 07:40 |
-| 113.558 | Wait 4: “Thank you, son. These stairs.” Orders 5. | Mon 07:42 |
-| 116.090 | Anything new?: “The gulls woke me at five. Same as always.” | Mon 07:42 |
+| Elapsed s         | Input and visible answer                                                                                                     | Game clock        |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------- | ----------------- |
+| 0.460             | Open: keep seven flats supplied through Saturday; Sunday vote on tea money; nothing happens while away.                      | None              |
+| 3.682             | Begin: bread first, water notice; Elif loaf due 08:07; bakery action.                                                        | Mon 07:00         |
+| 14.244 / 19.889   | Go to bakery / wait 3: travel then Go to flat 6.                                                                             | Mon 07:06 / 07:15 |
+| 22.343 / 29.305   | Go to flat 6 / wait 4: “Oh! Thank you so much. (₺5)”; Orders 6.                                                              | Mon 07:17 / 07:29 |
+| 32.260            | Anything new?: “The light up here in the afternoon, honestly.” Ask tomorrow.                                                 | Mon 07:29         |
+| 34.925–63.621     | Tell, screenshot, scroll, screenshot, wait 10: choices in text; blank in images; Reading · time waits.                       | Mon 07:29         |
+| 76.107 / 79.495   | Back / Sit: Elif’s five-o’clock light story, done about 07:39.                                                               | Mon 07:29         |
+| 85.756 / 98.402   | Wait 3 / wait 10: sitting underway then complete; return tomorrow.                                                           | Mon 07:31 / 07:39 |
+| 104.191 / 106.640 | Close / Go to flat 7: Tarık loaf and paper, then travel.                                                                     | Mon 07:39 / 07:40 |
+| 113.558           | Wait 4: “Thank you, son. These stairs.” Orders 5.                                                                            | Mon 07:42         |
+| 116.090           | Anything new?: “The gulls woke me at five. Same as always.”                                                                  | Mon 07:42         |
 | 119.454 / 140.272 | Sit / wait 18: “In ’74 the ferry froze in the harbour. Did I tell you? We walked to Karaköy on the ice. Nobody believes me.” | Mon 07:42 / 07:52 |
-| 144.406 | Residents list: travel minutes, in/out; Derya out. | Mon 07:52 |
-| 148.753 / 153.883 | Go to flat 4 / wait 5: “Thank you, son.” Polite, not sure of you; Orders 4. | Mon 07:52 / 07:54 |
-| 157.205 | Anything new?: “The water is off on Wednesday, ten to twelve.” | Mon 07:54 |
-| 159.905 / 164.991 | Tell / screenshot: Nermin gossip and Tarık kind-heart statement in text; blank image. | Mon 07:54 |
-| 173.860 | Scroll toward Tell Hüseyin…: same choices in text; none submitted. | Mon 07:54 |
-| 179.970 / 180.138 | Back / Sit: “People think a manager likes money. I like the book balancing. It never balances.” | Mon 07:54 |
-| 202.075 | Wait 18: complete; return tomorrow; Derya asleep. | Mon 08:04 |
-| 210.953 | Stop. | Mon 08:04 |
-| 211.155–227.613 | Menu, Send word, Add a name, type name/verdict, Send once, What is sent. “Sent. Thank you.” | Mon 08:04 |
+| 144.406           | Residents list: travel minutes, in/out; Derya out.                                                                           | Mon 07:52         |
+| 148.753 / 153.883 | Go to flat 4 / wait 5: “Thank you, son.” Polite, not sure of you; Orders 4.                                                  | Mon 07:52 / 07:54 |
+| 157.205           | Anything new?: “The water is off on Wednesday, ten to twelve.”                                                               | Mon 07:54         |
+| 159.905 / 164.991 | Tell / screenshot: Nermin gossip and Tarık kind-heart statement in text; blank image.                                        | Mon 07:54         |
+| 173.860           | Scroll toward Tell Hüseyin…: same choices in text; none submitted.                                                           | Mon 07:54         |
+| 179.970 / 180.138 | Back / Sit: “People think a manager likes money. I like the book balancing. It never balances.”                              | Mon 07:54         |
+| 202.075           | Wait 18: complete; return tomorrow; Derya asleep.                                                                            | Mon 08:04         |
+| 210.953           | Stop.                                                                                                                        | Mon 08:04         |
+| 211.155–227.613   | Menu, Send word, Add a name, type name/verdict, Send once, What is sent. “Sent. Thank you.”                                  | Mon 08:04         |
 
 ### Original driver log
 

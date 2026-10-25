@@ -154,4 +154,3 @@ const GLYPHS = {
 };
 
 export const Icon = makeIcon(GLYPHS);
-export type IconName = keyof typeof GLYPHS;

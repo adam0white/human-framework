@@ -18,15 +18,15 @@ Evidence files are in [neighbours-shots](neighbours-shots/). Durable wall-clock 
 
 These are the original checkpoint answers, recorded at +64.0 seconds. Later discoveries do not change them. Screen: [checkpoint-60s.png](neighbours-shots/checkpoint-60s.png).
 
-| Item | Original answer |
-|---|---|
-| DL-1 | PASS — I want to help neighbours rebuild after a flood; the title told me this. I have not yet found a specific request. |
+| Item | Original answer                                                                                                                                                                                                                 |
+| ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DL-1 | PASS — I want to help neighbours rebuild after a flood; the title told me this. I have not yet found a specific request.                                                                                                        |
 | DL-2 | PASS — Enter town, triangles, named people, map places, Play, Step, Next, speed, tabs and Game menu look tappable. Ada opened a sheet and selected her map circle. No inert target tried; further sheet content remains unseen. |
-| DL-3 | FAIL — Choose a place to walk drew me first. Ada has a double circle after selection. I see high water and Hall awaiting repair, but cannot tell who needs help urgently; Free to choose does not tell me that. |
-| DL-4 | NOT TESTED — No unavailable action encountered. |
-| DL-5 | PASS — Time is paused at Day 1 08:00 in rain. Walk somewhere is an available response; Play is also visible. |
-| DL-6 | PASS — Choosing a place or person was visible by 14.7s, with 26 mandatory story words before entry. First meaningful selection was Ada at 23.3s; Enter town was at 12.3s. Walking or helping has not yet been committed. |
-| DL-7 | PASS for one reached inspection — tapping Ada taught me her job and location and visibly selected her. Walking, talking/helping and advancing time remain NOT TESTED (three interaction types). No help opened. |
+| DL-3 | FAIL — Choose a place to walk drew me first. Ada has a double circle after selection. I see high water and Hall awaiting repair, but cannot tell who needs help urgently; Free to choose does not tell me that.                 |
+| DL-4 | NOT TESTED — No unavailable action encountered.                                                                                                                                                                                 |
+| DL-5 | PASS — Time is paused at Day 1 08:00 in rain. Walk somewhere is an available response; Play is also visible.                                                                                                                    |
+| DL-6 | PASS — Choosing a place or person was visible by 14.7s, with 26 mandatory story words before entry. First meaningful selection was Ada at 23.3s; Enter town was at 12.3s. Walking or helping has not yet been committed.        |
+| DL-7 | PASS for one reached inspection — tapping Ada taught me her job and location and visibly selected her. Walking, talking/helping and advancing time remain NOT TESTED (three interaction types). No help opened.                 |
 
 Checkpoint qualifications: the DL-3 failure describes my inability to identify urgency; it does not establish that an urgent deadline existed. The DL-6 word count of 26 was an in-session counting error, retained above verbatim. The opening headline and invitation contain 16 words; the eyebrow adds six. The 26 figure should not be used as measurement. The early choice was **which person to inspect**, not a request or a completed help action. First committed travel was +82.9 seconds; no ask was reached. I did not establish that a consequential response was available within the first 30 seconds.
 
@@ -72,24 +72,24 @@ Original wording, without later rewriting. UTC wall time and elapsed real time a
 
 ## Inputs and visible answers
 
-| Real elapsed | Input or observation | Visible answer and evidence |
-|---|---|---|
-| 0.1–7.3s | Look at opening title | “A town rebuilding after a flood.” “Watch a day unfold, or help your neighbours rebuild.” Red Enter town button. [02-title-ready](neighbours-shots/02-title-ready.png). |
-| 12.3s | Tap Enter town | By 14.7s, town map, Day 1 08:00 Rain, “Choose a place to walk →”, people, transport/time controls and tabs. [03-entered](neighbours-shots/03-entered.png). |
-| 23.3s | Tap Ada in bottom people strip | Ada's map marker gains an outer ring. Sheet settles with “You are at Riverside homes. 201 awake here.” Ada, carpenter, Workshop, “Free to choose.” Only a fragment of the next line is visible above fixed time controls. [05-ada-ready](neighbours-shots/05-ada-ready.png). |
-| 36.1s | One wheel-scroll attempt | No visible movement by 39.9s. **Inconclusive tooling**, not evidence of broken game scrolling. [06-ada-scroll](neighbours-shots/06-ada-scroll.png). |
-| ~60s / 64.0s | Stop inputs; automatic screenshot; write checkpoint | Ada sheet and paused 08:00 persist. No inputs between the scroll and checkpoint. [checkpoint-60s](neighbours-shots/checkpoint-60s.png). |
-| 70.9s | Tap Walk somewhere | Destination buttons appear inside the sheet: Market kitchen about 30 min, Clinic about 45 min, Workshop about 60 min, Quay about 30 min. [07-walk](neighbours-shots/07-walk.png). |
-| 82.9s | Tap Workshop | “Walking to Workshop, arriving about 09:00.” Destination buttons grey out. Clock remains 08:00. [08-workshop-travel](neighbours-shots/08-workshop-travel.png). |
-| 92.8s | Close sheet; tap Play at 1× | By 97.7s, clock 09:00, button Pause, “Get an answer →”, moving people/you marker. [09-running](neighbours-shots/09-running.png). |
-| 105.9s | Tap Get an answer | Journal: “You are at Workshop. 1 awake here.” “Pick someone here and ask for one of the things they could actually do now. You can read how they seem, but you learn their answer only by asking.” By screenshot at 109.9s, Day 1 09:30 and “Paused for a new story / Read story.” [10-get-answer](neighbours-shots/10-get-answer.png). |
-| 120.0s | Tap Read story | “The town's record”, Day 1 · 09:30 · hall explanation, “A question became a shared method”. Lea showed Ada how dry, sound timber differs from wet timber and when another opinion is needed. Follow Lea and Follow Ada links. [11-read-story](neighbours-shots/11-read-story.png). |
-| 146.3s | Tap Follow Ada | Ada sheet; player still Workshop. Ada now “RIGHT NOW · FLOODED HALL”, “Leave a question for an inspector and wait up to two hours.” No question control visible within the viewport. [12-follow-ada](neighbours-shots/12-follow-ada.png). |
-| 157.8s | Close Ada sheet | Town at 09:30, paused for new story, Get an answer still present. [13-town-0930](neighbours-shots/13-town-0930.png). |
-| 168.4s | Tap R marker near Workshop | Ravi, mechanic, “RIGHT NOW · WORKSHOP”, “Work a paid workshop shift”, “Until 10:15.” Lower content is outside the visible sheet area. [14-rui](neighbours-shots/14-rui.png); filename is just an output label, the visible name is Ravi. |
-| 181.3s | Tap Work a paid workshop shift text | No visible change by 198.7s. I had guessed it might open something; it was not styled like the red Walk somewhere link. [15-shift-text-result](neighbours-shots/15-shift-text-result.png). |
-| 198.7s | Stop | Final phone state as above. No final run screen or game ending reached. |
-| 206.1s | After session: look once at settled desktop title | Fresh context, 1280×800. Title, invitation, Enter town, explanatory text, folded sections and All games fit. No game entry or further interaction. [desktop-first-screen](neighbours-shots/desktop-first-screen.png). |
+| Real elapsed | Input or observation                                | Visible answer and evidence                                                                                                                                                                                                                                                                                                             |
+| ------------ | --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0.1–7.3s     | Look at opening title                               | “A town rebuilding after a flood.” “Watch a day unfold, or help your neighbours rebuild.” Red Enter town button. [02-title-ready](neighbours-shots/02-title-ready.png).                                                                                                                                                                 |
+| 12.3s        | Tap Enter town                                      | By 14.7s, town map, Day 1 08:00 Rain, “Choose a place to walk →”, people, transport/time controls and tabs. [03-entered](neighbours-shots/03-entered.png).                                                                                                                                                                              |
+| 23.3s        | Tap Ada in bottom people strip                      | Ada's map marker gains an outer ring. Sheet settles with “You are at Riverside homes. 201 awake here.” Ada, carpenter, Workshop, “Free to choose.” Only a fragment of the next line is visible above fixed time controls. [05-ada-ready](neighbours-shots/05-ada-ready.png).                                                            |
+| 36.1s        | One wheel-scroll attempt                            | No visible movement by 39.9s. **Inconclusive tooling**, not evidence of broken game scrolling. [06-ada-scroll](neighbours-shots/06-ada-scroll.png).                                                                                                                                                                                     |
+| ~60s / 64.0s | Stop inputs; automatic screenshot; write checkpoint | Ada sheet and paused 08:00 persist. No inputs between the scroll and checkpoint. [checkpoint-60s](neighbours-shots/checkpoint-60s.png).                                                                                                                                                                                                 |
+| 70.9s        | Tap Walk somewhere                                  | Destination buttons appear inside the sheet: Market kitchen about 30 min, Clinic about 45 min, Workshop about 60 min, Quay about 30 min. [07-walk](neighbours-shots/07-walk.png).                                                                                                                                                       |
+| 82.9s        | Tap Workshop                                        | “Walking to Workshop, arriving about 09:00.” Destination buttons grey out. Clock remains 08:00. [08-workshop-travel](neighbours-shots/08-workshop-travel.png).                                                                                                                                                                          |
+| 92.8s        | Close sheet; tap Play at 1×                         | By 97.7s, clock 09:00, button Pause, “Get an answer →”, moving people/you marker. [09-running](neighbours-shots/09-running.png).                                                                                                                                                                                                        |
+| 105.9s       | Tap Get an answer                                   | Journal: “You are at Workshop. 1 awake here.” “Pick someone here and ask for one of the things they could actually do now. You can read how they seem, but you learn their answer only by asking.” By screenshot at 109.9s, Day 1 09:30 and “Paused for a new story / Read story.” [10-get-answer](neighbours-shots/10-get-answer.png). |
+| 120.0s       | Tap Read story                                      | “The town's record”, Day 1 · 09:30 · hall explanation, “A question became a shared method”. Lea showed Ada how dry, sound timber differs from wet timber and when another opinion is needed. Follow Lea and Follow Ada links. [11-read-story](neighbours-shots/11-read-story.png).                                                      |
+| 146.3s       | Tap Follow Ada                                      | Ada sheet; player still Workshop. Ada now “RIGHT NOW · FLOODED HALL”, “Leave a question for an inspector and wait up to two hours.” No question control visible within the viewport. [12-follow-ada](neighbours-shots/12-follow-ada.png).                                                                                               |
+| 157.8s       | Close Ada sheet                                     | Town at 09:30, paused for new story, Get an answer still present. [13-town-0930](neighbours-shots/13-town-0930.png).                                                                                                                                                                                                                    |
+| 168.4s       | Tap R marker near Workshop                          | Ravi, mechanic, “RIGHT NOW · WORKSHOP”, “Work a paid workshop shift”, “Until 10:15.” Lower content is outside the visible sheet area. [14-rui](neighbours-shots/14-rui.png); filename is just an output label, the visible name is Ravi.                                                                                                |
+| 181.3s       | Tap Work a paid workshop shift text                 | No visible change by 198.7s. I had guessed it might open something; it was not styled like the red Walk somewhere link. [15-shift-text-result](neighbours-shots/15-shift-text-result.png).                                                                                                                                              |
+| 198.7s       | Stop                                                | Final phone state as above. No final run screen or game ending reached.                                                                                                                                                                                                                                                                 |
+| 206.1s       | After session: look once at settled desktop title   | Fresh context, 1280×800. Title, invitation, Enter town, explanatory text, folded sections and All games fit. No game entry or further interaction. [desktop-first-screen](neighbours-shots/desktop-first-screen.png).                                                                                                                   |
 
 ## Best, worst, and leaving
 
@@ -115,34 +115,34 @@ I would **not return voluntarily on my next short lunch break** on the evidence 
 
 ## English, dates and phone layout
 
-| Item | Status and evidence |
-|---|---|
-| DL-20 | **PASS for all action text met.** Enter town, Walk somewhere, Workshop, Get an answer, Play, Read story, Follow Ada, carpenter and mechanic were understandable in English. No necessary untranslated local term was encountered. |
+| Item  | Status and evidence                                                                                                                                                                                                                                                                                                            |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| DL-20 | **PASS for all action text met.** Enter town, Walk somewhere, Workshop, Get an answer, Play, Read story, Follow Ada, carpenter and mechanic were understandable in English. No necessary untranslated local term was encountered.                                                                                              |
 | DL-21 | **PASS for the same-day comparisons reached.** At Day 1 08:00, “about 60 min” and arrival “about 09:00” were readily comparable. At Day 1 09:30, Ravi's “Until 10:15” meant about 45 game minutes later. “wait up to two hours” was also intelligible. Cross-month/year deadlines and returning after a break: **NOT TESTED**. |
-| DL-22 | **FAIL for the initial person-sheet response visibility**, as detailed above. Phone screenshots establish that finding an ask required more than the initial viewport. Successful sheet scrolling, keyboard-open reachability and safe areas: **NOT TESTED**. |
+| DL-22 | **FAIL for the initial person-sheet response visibility**, as detailed above. Phone screenshots establish that finding an ask required more than the initial viewport. Successful sheet scrolling, keyboard-open reachability and safe areas: **NOT TESTED**.                                                                  |
 
 ## Other checklist coverage
 
 These statuses cover only the interactions reached. Builder checks were not performed.
 
-| IDs | Coverage |
-|---|---|
-| DL-1, DL-2, DL-5 | First-minute PASS, unchanged within that scope. DL-2 later includes one unsuccessful experimental tap on descriptive shift text; no wider target audit. |
-| DL-6 | Original checkpoint PASS concerns person selection. Consequential response availability within 30 seconds was not established; first travel commitment was +82.9s. |
-| DL-7 | Inspection and travel taught their limited interactions. Asking/helping: NOT TESTED, zero asks reached. No in-game help opened; the Journal instruction was read. |
-| DL-8 | NOT TESTED for a known urgent decision. General navigation prompts and story text were read; no deadline requiring a response was established. |
-| DL-9 | NOT TESTED for time-critical obligations. The current “Get an answer” task was visible outside the log, but no deadline was met. |
-| DL-10 | NOT TESTED for action-critical alias consistency. “Workshop” stayed recognisable. “Hall” and “Flooded hall” appeared, without a tested action depending on their distinction. |
-| DL-11 | NOT TESTED as a word-count/layout audit. One short story and one Journal instruction were read. The erroneous first-minute count is corrected above. |
-| DL-12 | NOT TESTED: no day, chapter or game ending reached. The game pause was visibly labelled. |
-| DL-17 | NOT TESTED for interpreting feelings. No mood/trust bar was encountered, but I did not reach enough of the person descriptions to establish this criterion. |
-| DL-18 | NOT TESTED: no basis to verify which displayed counts the character had observed. |
-| DL-19 | PASS for the limited travel cue: “about 60 min” suggested travel time; the next answer gave a roughly one-hour arrival. No claim about other cues or consequences. |
-| DL-23 | NOT TESTED: no hit-area measurement or dense-target disambiguation test. The ordinary taps I intended generally selected their named target. |
-| DL-25 | NOT TESTED as the full reflow criterion: no 320px, dark-theme or 200% text test. The tested phone screenshots showed no obvious horizontal page overflow; that alone does not pass the criterion. |
-| DL-27 | NOT TESTED: no save, reload or resume test. Desktop title used a fresh context and was not a resume test. |
-| DL-28 | NOT TESTED: sending was forbidden and was not attempted. |
-| DL-29 | NOT TESTED: no export, import or player-facing replay used. |
+| IDs              | Coverage                                                                                                                                                                                          |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DL-1, DL-2, DL-5 | First-minute PASS, unchanged within that scope. DL-2 later includes one unsuccessful experimental tap on descriptive shift text; no wider target audit.                                           |
+| DL-6             | Original checkpoint PASS concerns person selection. Consequential response availability within 30 seconds was not established; first travel commitment was +82.9s.                                |
+| DL-7             | Inspection and travel taught their limited interactions. Asking/helping: NOT TESTED, zero asks reached. No in-game help opened; the Journal instruction was read.                                 |
+| DL-8             | NOT TESTED for a known urgent decision. General navigation prompts and story text were read; no deadline requiring a response was established.                                                    |
+| DL-9             | NOT TESTED for time-critical obligations. The current “Get an answer” task was visible outside the log, but no deadline was met.                                                                  |
+| DL-10            | NOT TESTED for action-critical alias consistency. “Workshop” stayed recognisable. “Hall” and “Flooded hall” appeared, without a tested action depending on their distinction.                     |
+| DL-11            | NOT TESTED as a word-count/layout audit. One short story and one Journal instruction were read. The erroneous first-minute count is corrected above.                                              |
+| DL-12            | NOT TESTED: no day, chapter or game ending reached. The game pause was visibly labelled.                                                                                                          |
+| DL-17            | NOT TESTED for interpreting feelings. No mood/trust bar was encountered, but I did not reach enough of the person descriptions to establish this criterion.                                       |
+| DL-18            | NOT TESTED: no basis to verify which displayed counts the character had observed.                                                                                                                 |
+| DL-19            | PASS for the limited travel cue: “about 60 min” suggested travel time; the next answer gave a roughly one-hour arrival. No claim about other cues or consequences.                                |
+| DL-23            | NOT TESTED: no hit-area measurement or dense-target disambiguation test. The ordinary taps I intended generally selected their named target.                                                      |
+| DL-25            | NOT TESTED as the full reflow criterion: no 320px, dark-theme or 200% text test. The tested phone screenshots showed no obvious horizontal page overflow; that alone does not pass the criterion. |
+| DL-27            | NOT TESTED: no save, reload or resume test. Desktop title used a fresh context and was not a resume test.                                                                                         |
+| DL-28            | NOT TESTED: sending was forbidden and was not attempted.                                                                                                                                          |
+| DL-29            | NOT TESTED: no export, import or player-facing replay used.                                                                                                                                       |
 
 ## Changes I would want as Rafael
 

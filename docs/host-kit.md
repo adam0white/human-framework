@@ -10,13 +10,21 @@ HF has no distance, route or setup model. `placeId` identifies a place; its spel
 
 ```ts
 const near: Affordance = {
-  id: 'near', action: 'drink', label: 'drink at the near well',
-  placeId: 'near-well', duration: 30, effort: 0.1,
+  id: 'near',
+  action: 'drink',
+  label: 'drink at the near well',
+  placeId: 'near-well',
+  duration: 30,
+  effort: 0.1,
   advertises: { water: 0.6 },
 };
 const far: Affordance = {
-  ...near, id: 'far', label: 'drink at the far well',
-  placeId: 'far-well', duration: 150, effort: 0.5,
+  ...near,
+  id: 'far',
+  label: 'drink at the far well',
+  placeId: 'far-well',
+  duration: 150,
+  effort: 0.5,
 };
 const decision = decide(person, [far, near]);
 ```
@@ -33,7 +41,7 @@ One bounded host convention is to encode total work relative to a reference stin
 const referenceMinutes = 30;
 const referenceEffort = 0.1;
 const duration = 150;
-const effort = Math.min(1, referenceEffort * duration / referenceMinutes);
+const effort = Math.min(1, (referenceEffort * duration) / referenceMinutes);
 ```
 
 In the test's rested adult, 30 minutes at `0.1` yields `effort = -0.0156` in the trace. Changing duration alone keeps that value. Encoding 150 minutes as `0.5` yields `-0.0781`, five times the unrounded cost. Trace terms round to four decimal places.
@@ -46,19 +54,25 @@ Inspect `DecisionRecord.considered[].terms` or call `consider` with the same bod
 
 The test uses an adult with neutral values, no held norms, food at 0.1 and no learned expectations. A meal advertises 0.6 food at effort 0.1. Work has effort 0.5. A wage uses `material: 10`. A real, active goal uses importance 1 and advances by 0.5 on `work`.
 
-| Offer | `need:food` | `effort` | `material` | `goal:*` | Utility |
-|---|---:|---:|---:|---:|---:|
-| Meal | 1.4118 | -0.0156 | 0 | 0 | 1.3962 |
-| Work alone | 0 | -0.0781 | 0 | 0 | -0.0781 |
-| Paid work | 0 | -0.0781 | 0.6321 | 0 | 0.5540 |
-| Work for the adopted goal | 0 | -0.0781 | 0 | 1.0000 | 0.9219 |
-| Paid work for that goal | 0 | -0.0781 | 0.6321 | 1.0000 | 1.5540 |
+| Offer                     | `need:food` | `effort` | `material` | `goal:*` | Utility |
+| ------------------------- | ----------: | -------: | ---------: | -------: | ------: |
+| Meal                      |      1.4118 |  -0.0156 |          0 |        0 |  1.3962 |
+| Work alone                |           0 |  -0.0781 |          0 |        0 | -0.0781 |
+| Paid work                 |           0 |  -0.0781 |     0.6321 |        0 |  0.5540 |
+| Work for the adopted goal |           0 |  -0.0781 |          0 |   1.0000 |  0.9219 |
+| Paid work for that goal   |           0 |  -0.0781 |     0.6321 |   1.0000 |  1.5540 |
 
 ```ts
-adoptGoal(person, {
-  label: 'finish the work', serves: ['competence'], importance: 1,
-  advancedBy: [{ action: 'work', amount: 0.5 }],
-}, person.now);
+adoptGoal(
+  person,
+  {
+    label: 'finish the work',
+    serves: ['competence'],
+    importance: 1,
+    advancedBy: [{ action: 'work', amount: 0.5 }],
+  },
+  person.now,
+);
 const paidWork = { ...work, material: 10 };
 ```
 

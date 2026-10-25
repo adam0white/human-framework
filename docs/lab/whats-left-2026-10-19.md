@@ -28,25 +28,27 @@ From here on, Codex does the work by default. Claude handles only design judgeme
 
 All entries below use client 0.1.1. Their signed commits are pushed, their checks passed, and live manifests and JS/CSS bytes matched clean builds. Rope has no current CI workflow; the other seven exact-commit CI runs passed.
 
-| Game | Commit |
-|---|---|
-| Pass | `156c064` |
-| Glance | `5e6e2f2` |
-| Two Voices | `1ffe13e` |
-| Rope | `9203659` |
+| Game        | Commit     |
+| ----------- | ---------- |
+| Pass        | `156c064`  |
+| Glance      | `5e6e2f2`  |
+| Two Voices  | `1ffe13e`  |
+| Rope        | `9203659`  |
 | Small Works | `ccf367f7` |
-| Valley | `8177e467` |
-| Stairwell | `5f3b463d` |
-| Warren | `ed0f65d0` |
+| Valley      | `8177e467` |
+| Stairwell   | `5f3b463d` |
+| Warren      | `ed0f65d0` |
 
 Client asset: [lab-client-v0.1.1](https://github.com/adam0white/human-framework/releases/tag/lab-client-v0.1.1). Its public download was fetched and its SHA-512 matched the fresh packed consumer. The npm publish workflow correctly skipped the absent package; first publication is `deferred-by-owner` (2026-10-20), with no date. Final HF deployment and live browser receipts are recorded in `scratch/codex-finish-report.md`; `/release.json` identifies the live source.
 
 ## Next work: owner
+
 - **`deferred-by-owner` (2026-10-20), no date:** first lab-client npm publication and trusted-publisher setup. When resumed: `npm login`, then `npm publish -w packages/lab-client`, then add the trusted publisher.
 - Play, and send feedback or runs with "Send this run to the notebook".
 - Decide whether to start the Small Works scenario redesign for natural difficulty.
 
 ## Design, needs judgement (dated)
+
 - Colony: player orders must matter. Orders should persist, the "what would have won" hint must be reproducible, and the economy must be visible. 2026-11-02.
 - Night Watch: fatigue visible before dusk, dawn talks that matter, more to do in the seasons. 2026-11-02.
 - Voice: Selin and Hacer scenes; reason chips that show in his answers. 2026-10-28.
@@ -60,7 +62,7 @@ Client asset: [lab-client-v0.1.1](https://github.com/adam0white/human-framework/
 
 ## Small Works and Neighbours on HF 2.8.0 (hard stop, 2026-10-19)
 
-Committed and pushed: the four adapter files under `packages/playtester/examples/` (smallworks-*, neighbours-*) landed in `f1e9c4a`. Signing is available; no signing setting was disabled.
+Committed and pushed: the four adapter files under `packages/playtester/examples/` (smallworks-_, neighbours-_) landed in `f1e9c4a`. Signing is available; no signing setting was disabled.
 
 HF requests (to be moved to docs/game-requests-2026-10-18.md, target 2026-10-26):
 - **SW-1, mental effort should fill the slow fatigue store.** Confirmed (2.8.0 dist): the store fills only from physical effort above `depletionFloor` 0.3; bench work (effort 0.03 to 0.08, high focus) never tires anyone across a week. Proposal: an optional, off-by-default focus term in the fill. Workaround: none honest; Small Works leaves fatigue to sleep pressure.

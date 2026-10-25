@@ -40,12 +40,12 @@ The weak sequence was opening the next house, finding harvest selected again, se
 
 I found **no new simulation-level dominant strategy**. Iron is best for the landowner's praise in this seed, but not for keeping households alive. Those are conflicting outcomes, not one move dominating every objective. Nor did I establish a compulsory opening wait: gifts are available immediately. A separate source-based approximation found visit/press opening about 42.6 default-speed seconds after a midday call, with gifts available throughout. The optional policy of spending all initial grain is not proof of a forced wait in ordinary play. [Availability check]((driver scratch)/fun-valley/early-gap.txt).
 
-| Rule | Finding in the sampled phone path |
-| --- | --- |
-| DL-30 | **Fail:** normal latest replies fit, but the refusal warning/button require the undersized internal scroller. |
+| Rule  | Finding in the sampled phone path                                                                                                                                                                                                                                                                   |
+| ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DL-30 | **Fail:** normal latest replies fit, but the refusal warning/button require the undersized internal scroller.                                                                                                                                                                                       |
 | DL-31 | **Fail on the sampled default decision view, with a real improvement:** date/schedule/selected house remain visible; harvest progress does not. About restores some household context, but hides food estimates, hunches and share status by default while corresponding commands remain available. |
-| DL-32 | **Not tested to a full pass:** visits/gifts offered acts during attended play; no unavoidable 20-second gap established. Availability alone does not establish interesting agency. The supplemental early check is not a complete first-five-minute availability trace. |
-| DL-33 | **Fail for sampled non-default visit/gift paths:** house → action selector → command. The selected command executes directly, without a confirmation wizard, but the selector is still the only exposed route to those verbs. Existing press buttons are a more direct exception. |
+| DL-32 | **Not tested to a full pass:** visits/gifts offered acts during attended play; no unavoidable 20-second gap established. Availability alone does not establish interesting agency. The supplemental early check is not a complete first-five-minute availability trace.                             |
+| DL-33 | **Fail for sampled non-default visit/gift paths:** house → action selector → command. The selected command executes directly, without a confirmation wizard, but the selector is still the only exposed route to those verbs. Existing press buttons are a more direct exception.                   |
 
 ## 4. What did it cost that players loved?
 
@@ -53,11 +53,11 @@ Autonomy, the words themselves, simulation difficulty and the ending rules survi
 
 The full seed-1 measures reproduced the moral conflict:
 
-| Policy | Result | Hungry deaths | Left | Grain given | Harvest replies other than plain yes |
-| --- | --- | ---: | ---: | ---: | ---: |
-| Plain | Term reached, day 881 | 0 | 1 | 18 | 40% |
-| Iron | Term reached; stipend raised | 10 | 3 | 0 | 39% |
-| Open | Dismissed, day 791 | 0 | 0 | 135 | 37% |
+| Policy | Result                       | Hungry deaths | Left | Grain given | Harvest replies other than plain yes |
+| ------ | ---------------------------- | ------------: | ---: | ----------: | -----------------------------------: |
+| Plain  | Term reached, day 881        |             0 |    1 |          18 |                                  40% |
+| Iron   | Term reached; stipend raised |            10 |    3 |           0 |                                  39% |
+| Open   | Dismissed, day 791           |             0 |    0 |         135 |                                  37% |
 
 The strict steward's letter praises clean collections and omits the dead; the elders name them. The generous steward's letter complains about charity; the elders remember fed children. These are worth preserving. Plain replay fingerprint **316dd7c1 MATCH**. Commands: `node scripts/measure.ts 1`; `BOT=iron REPLAY=0 node scripts/measure.ts 1`; `BOT=open REPLAY=0 node scripts/measure.ts 1`. [Plain]((driver scratch)/fun-valley/measure-plain.txt), [iron]((driver scratch)/fun-valley/measure-iron.txt), [open]((driver scratch)/fun-valley/measure-open.txt). The bot uses internal household knowledge; its success does not establish player-readable difficulty.
 

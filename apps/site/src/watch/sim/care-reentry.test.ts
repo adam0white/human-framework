@@ -12,6 +12,7 @@ import actualMeryem from '../../shared/fixtures/valley-meryem-native.json';
 import warrenControl from '../../shared/fixtures/warren-native-return-control.json';
 import actualHead from '../../shared/fixtures/watch-kian-care-native.json';
 import currentWellDanyal from '../../shared/fixtures/well-danyal-native.json';
+import { requireValue } from '../../shared/require-value.ts';
 import { clockRuns, stepMinute } from './night.ts';
 import { endState, replay, WatchRun } from './run.ts';
 
@@ -33,8 +34,8 @@ describe('finite own-Watch care re-entry', () => {
     );
     const run = new WatchRun(1, undefined, c);
     const s = run.state;
-    const k = s.community.people.find((p) => p.id === 'kian')!;
-    const ada = s.community.people.find((p) => p.id === 'ada')!;
+    const k = requireValue(s.community.people.find((p) => p.id === 'kian'));
+    const ada = requireValue(s.community.people.find((p) => p.id === 'ada'));
     const source = actualHead.transfer.watchCare;
     const offset = k.now - actualHead.transfer.person.person.source.now;
     expect(canonicalPersona(k.rng)).toBe(canonicalPersona(actualHead.transfer.person.person.rng));
@@ -51,8 +52,10 @@ describe('finite own-Watch care re-entry', () => {
     expect(ada.social.relationships.some((r) => r.otherId === 'kian' && r.roles.includes('guardian'))).toBe(
       true,
     );
-    const meal = k.agenda.commitments.find((v) => v.id === source.agreement.commitmentId)!;
-    const returning = k.agenda.commitments.find((v) => v.id === source.agreement.returnCommitmentId)!;
+    const meal = requireValue(k.agenda.commitments.find((v) => v.id === source.agreement.commitmentId));
+    const returning = requireValue(
+      k.agenda.commitments.find((v) => v.id === source.agreement.returnCommitmentId),
+    );
     expect(meal.status).toBe('kept');
     expect(returning.status).toBe('pending');
     expect(returning.toId).toBe('ada');
@@ -89,7 +92,7 @@ describe('finite own-Watch care re-entry', () => {
     expect(() => new WatchRun(1, undefined, chapter(future))).toThrow(/Ada|reservoir/i);
     const home = structuredClone(actualHead);
     home.transfer.person.calendar.commitments.push({
-      ...home.transfer.person.calendar.commitments[0]!,
+      ...requireValue(home.transfer.person.calendar.commitments[0]),
       id: 'unrelated-home-duty',
       kind: 'duty',
       actions: ['go-home'],
@@ -138,7 +141,7 @@ describe('finite native Warren return', () => {
     const run = new WatchRun(1, undefined, c),
       s = run.state;
     const ownClaims: ReturnType<typeof preparePersonaLife>[] = [];
-    for (const entry of Object.values(c.people!)) {
+    for (const entry of Object.values(requireValue(c.people))) {
       if (entry.input.parent.source.game !== 'warren') {
         ownClaims.push(entry.input);
         continue;
@@ -162,8 +165,8 @@ describe('finite native Warren return', () => {
     }
     expect(() => new WatchRun(1, undefined, makeCastChapter(ownClaims))).not.toThrow();
 
-    const k = s.community.people.find((p) => p.id === 'kian')!,
-      ada = s.community.people.find((p) => p.id === 'ada')!;
+    const k = requireValue(s.community.people.find((p) => p.id === 'kian')),
+      ada = requireValue(s.community.people.find((p) => p.id === 'ada'));
     const source = warrenControl.sources.kian,
       v = source.warrenCare.visit;
     const offset = k.now - source.person.person.source.now;
@@ -174,8 +177,8 @@ describe('finite native Warren return', () => {
     expect(ada.now - ada.life.bornAt).toBe(v.dependent.ageMinutes);
     expect(ada.body.sleepPressure).toBe(v.dependent.sleepPressure);
     expect([ada.body.satiety, ada.body.hydration, ada.body.alive]).toEqual([1, 1, true]);
-    const meal = k.agenda.commitments.find((x) => x.id === v.agreement.commitmentId)!;
-    const pending = k.agenda.commitments.find((x) => x.id === v.agreement.returnCommitmentId)!;
+    const meal = requireValue(k.agenda.commitments.find((x) => x.id === v.agreement.commitmentId));
+    const pending = requireValue(k.agenda.commitments.find((x) => x.id === v.agreement.returnCommitmentId));
     expect(meal.status).toBe('kept');
     expect(pending.status).toBe('pending');
     expect(pending.toId).toBe('ada');
@@ -197,18 +200,20 @@ describe('finite native Warren return', () => {
     finishNight();
     // Fault injection only: a late failure must leave the prior state/log intact.
     const id = 'hf.cast.meryem.warren';
-    const valid = s.castChapter!.people![id]!.initial!;
+    const valid = requireValue(requireValue(requireValue(requireValue(s.castChapter).people)[id]).initial);
     const broken = JSON.parse(valid);
     broken.conscience.norms.push({ normId: 'unsupported-fault', standing: 'recommended', conviction: 0.4 });
-    s.castChapter!.people![id]!.initial = JSON.stringify(broken);
+    requireValue(requireValue(requireValue(s.castChapter).people)[id]).initial = JSON.stringify(broken);
     const before = run.snapshot();
     expect(() => run.input({ k: 'toDusk' })).toThrow(/unmapped.*norm/);
     expect(run.snapshot()).toEqual(before);
-    s.castChapter!.people![id]!.initial = valid;
+    requireValue(requireValue(requireValue(s.castChapter).people)[id]).initial = valid;
     expect(run.input({ k: 'toDusk' })).toBe(true);
     expect(s.community.people.some((p) => p.id === 'meryem')).toBe(true);
     expect(
-      s.community.people.find((p) => p.id === 'meryem')!.conscience.norms.some((n) => n.normId === 'dues'),
+      requireValue(s.community.people.find((p) => p.id === 'meryem')).conscience.norms.some(
+        (n) => n.normId === 'dues',
+      ),
     ).toBe(true);
     expect(endState(replay(run.export()))).toEqual(run.export().end);
     expect(replay(run.export()).warrenCareReturn).toEqual(s.warrenCareReturn);
@@ -222,7 +227,7 @@ describe('finite native Warren return', () => {
         t.warrenCare.visit.dependent.guardian = 'tamar';
       },
       (t: typeof warrenControl.sources.kian) => {
-        t.person.calendar.commitments[0]!.until++;
+        requireValue(t.person.calendar.commitments[0]).until++;
       },
       (t: typeof warrenControl.sources.kian) => {
         t.checkpoint.sourceMinute++;

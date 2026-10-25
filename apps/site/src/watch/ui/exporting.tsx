@@ -284,8 +284,3 @@ export function FeedbackScreen({
     </div>
   );
 }
-
-/** Compatibility export for older callers. */
-export function ExportButtons({ actions }: { actions: WatchActions; label?: string }) {
-  return <RunSecondaries actions={actions} />;
-}

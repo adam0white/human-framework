@@ -9,29 +9,29 @@ on:
   push:
     branches: [main]
     paths:
-      - 'packages/human/src/**'
-      - 'packages/human/test/**/*.timing.ts'
-      - 'apps/site/src/**/sim/**'
-      - 'scripts/bench-village.ts'
-      - 'vitest.bench.config.ts'
-      - 'packages/*/vitest.bench.config.ts'
-      - 'apps/*/vitest.bench.config.ts'
-      - '.github/workflows/bench.yml'
-      - 'package-lock.json'
+      - "packages/human/src/**"
+      - "packages/human/test/**/*.timing.ts"
+      - "apps/site/src/**/sim/**"
+      - "scripts/bench-village.ts"
+      - "vitest.bench.config.ts"
+      - "packages/*/vitest.bench.config.ts"
+      - "apps/*/vitest.bench.config.ts"
+      - ".github/workflows/bench.yml"
+      - "package-lock.json"
   pull_request:
     branches: [main]
     paths:
-      - 'packages/human/src/**'
-      - 'packages/human/test/**/*.timing.ts'
-      - 'apps/site/src/**/sim/**'
-      - 'scripts/bench-village.ts'
-      - 'vitest.bench.config.ts'
-      - 'packages/*/vitest.bench.config.ts'
-      - 'apps/*/vitest.bench.config.ts'
-      - '.github/workflows/bench.yml'
-      - 'package-lock.json'
+      - "packages/human/src/**"
+      - "packages/human/test/**/*.timing.ts"
+      - "apps/site/src/**/sim/**"
+      - "scripts/bench-village.ts"
+      - "vitest.bench.config.ts"
+      - "packages/*/vitest.bench.config.ts"
+      - "apps/*/vitest.bench.config.ts"
+      - ".github/workflows/bench.yml"
+      - "package-lock.json"
   schedule:
-    - cron: '41 7 * * 1' # Mondays 07:41 UTC
+    - cron: "41 7 * * 1" # Mondays 07:41 UTC
   workflow_dispatch:
 
 permissions:
@@ -64,7 +64,7 @@ jobs:
       - name: Timing budgets (npm run bench, BENCH_SCALE=3)
         continue-on-error: true
         env:
-          BENCH_SCALE: '3'
+          BENCH_SCALE: "3"
         run: |
           set -o pipefail
           npm run bench 2>&1 | tee "$RUNNER_TEMP/bench.log"

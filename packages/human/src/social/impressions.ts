@@ -264,6 +264,7 @@ export function glimpse(
   at: Minute,
   clarity?: Unit,
 ): void {
+  if (!Number.isFinite(at)) throw new TypeError('glimpse requires a finite positional time');
   if (targetId === observer.id) return;
   const clear = clamp01(clarity ?? 1);
   if (clear <= 0) return;
@@ -316,6 +317,7 @@ export function hear(
   at: Minute,
   weight?: Unit,
 ): void {
+  if (!Number.isFinite(at)) throw new TypeError('hear requires a finite positional time');
   if (targetId === observer.id) return;
   const w = clamp01(weight ?? 0.5);
   if (w <= 0) return;

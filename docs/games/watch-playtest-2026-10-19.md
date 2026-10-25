@@ -2,11 +2,11 @@
 
 Three playtesters who had not read the source played the text harness (`apps/site/scripts/play-watch.ts`) on branch `worktree-agent-aaf699728dd2f9712` at commit `af0bfde` (the level-up, before this pass). Each played under a role brief. The reports below are copied verbatim. The coordinator assigned the testers; their model is not recorded in the reports.
 
-| tester | role | seed played | export |
-|---|---|---|---|
-| edge | edge-pusher | 11 | [watch-playtest-2026-10-19-edge.json](watch-playtest-2026-10-19-edge.json) |
-| first | first-timer | 7 | [watch-playtest-2026-10-19-first.json](watch-playtest-2026-10-19-first.json) |
-| fan | genre fan (tower defence, colony sims) | 1 (asked for 23; the harness ignored the seed) | [watch-playtest-2026-10-19-fan.json](watch-playtest-2026-10-19-fan.json) |
+| tester | role                                   | seed played                                    | export                                                                       |
+| ------ | -------------------------------------- | ---------------------------------------------- | ---------------------------------------------------------------------------- |
+| edge   | edge-pusher                            | 11                                             | [watch-playtest-2026-10-19-edge.json](watch-playtest-2026-10-19-edge.json)   |
+| first  | first-timer                            | 7                                              | [watch-playtest-2026-10-19-first.json](watch-playtest-2026-10-19-first.json) |
+| fan    | genre fan (tower defence, colony sims) | 1 (asked for 23; the harness ignored the seed) | [watch-playtest-2026-10-19-fan.json](watch-playtest-2026-10-19-fan.json)     |
 
 All three exports are scenario 9, `build: "harness"`.
 
@@ -84,9 +84,11 @@ Some reasons read like a filled-in template: "Not now. After I sit down at the p
 **Calls:** about 90 harness calls, through the first winter, the thaw, the first autumn fair and most of the second winter. I stopped mid-second-winter dawn.
 
 ### 1. Verdict
+
 I would keep playing, but only for the tension. The night watch works as a game: the lantern, the bell and the people on the wall make a real choice each night. The village talk is the best part. Kian, Ruslan and Mara each refused or fled with a reason on the screen, and I believed them. The weak part is the first hour. I did not understand the granary, the posts, or what the "figures" were, and the screen did not explain them. The game also made me feel like a spectator most of the time. I mostly waited, read, and reacted after a wolf had already gone over a wall.
 
 ### 2. First minutes
+
 - **Time to first meaningful choice:** about 6 calls. The first dusk asked me to post watchers, and I understood that much.
 - **Clear:** the map (West wall, Gate, Mill wall, East wall), the "Ask / Urge / Insist" press choice, and the roster's "Gate, asked · there now" lines.
 - **Unclear:**
@@ -97,6 +99,7 @@ I would keep playing, but only for the tension. The night watch works as a game:
   - "Today (folded; shown here)" and "the clock stands while you read this page". I did not know whether the clock stopped for me or kept running.
 
 ### 3. The people
+
 This is the strongest part of the game.
 - Kian, after I insisted he take the mill wall: "You rang us up for shadows." and then "You insisted on the mill wall. I stood it, and I won't forget it." I believed this. It was my fault, and the reason was clear.
 - Ruslan, leaving during the night: "The cold's in my bones. Find someone else." When I called him back, he did not return to the wall I had posted him to. Later he moved on his own: "I can see more from the west wall." Believable, but the game did not let me see why he left the post before the moment.
@@ -107,6 +110,7 @@ This is the strongest part of the game.
 **Problem:** the people often said the same things in different voices. "Something tried the Gate. It didn't try twice." and "Something tried the mill wall. It didn't try twice." are almost identical.
 
 ### 4. My agenda (first-timer: keep the village alive, learn the rules)
+
 - I tried to keep every stretch manned and to avoid insisting, because insisting seemed to cost goodwill.
 - I rang the bell about four times. Each pull visibly frayed the rope (`≡≡≡≡≡≡` to `≡≡≡≡≡~`). I did not learn why the rope mattered until it was already fraying.
 - Lines that struck me:
@@ -116,11 +120,13 @@ This is the strongest part of the game.
 - The granary went from full to `●●●●|●○○○` by the sixth night and was "nearly bare" at dawn. I had no clear feedback on whether I was doing the right thing. The first winter ended with "A hungry spring," and Yunus "grew thin." The game counted that as the thaw, but I did not feel I had won or lost.
 
 ### 5. Difficulty and pacing
+
 - **Too hard for a first-timer:** the moments asked for decisions with options I could not evaluate. "Urge Mara to hold — likely" failed; she went home. "Ring and call by name — holds, but they will resent it" was an unexplained trade-off.
 - **Dead time:** at Slow speed, `wait 30` to `wait 40` passed most of a night with almost no change on screen. Most of my calls were waiting. I wanted a way to skip to the next event without losing the moment cards.
 - **Too easy:** the fair. Naming an heir took no grain, and the choice seemed to be "pick one person" with no visible cost on the granary. The bell purchase looked more like a spend than an upgrade, and I did not understand the trade-off until I took it.
 
 ### 6. Bugs and confusions
+
 Commands that led there are in quotes.
 1. **Chronicle won't close.** `chronicle` then `show` stayed on the chronicle. It closed only after `wait 5` or `select Mara`. Command: `"chronicle" show`.
 2. **`show` does not always print.** `"lantern mill" show` printed nothing; the next `wait` printed the screen.
@@ -133,6 +139,7 @@ Commands that led there are in quotes.
 9. **Granary reading.** The granary bar is three groups of ten. It was hard to tell whether the bar showed the stock, the mark, or the next thaw's need. The lines "The granary must feed ... from the thaw to the harvest" and "up to the mark" did not say which dot row matters.
 
 ### 7. Top three changes (ranked)
+
 1. **Explain the first night in one screen.** Name what "a figure" is, what the granary bar and the `|` mean, and why posts have two slots. Show the cost of a bell pull in plain words ("the rope frays with each pull") before the first winter, not after.
 2. **Make the watch's outcome visible before dawn.** At dawn, say which stretch lost sacks and who could have held it, in one line per stretch. Right now "the wall was crossed" reads as a single failure, and I could not tell whether I should have posted differently.
 3. **Let the clock skip to the next moment.** A "until something happens" wait would fix most of the dead time at Slow speed. Also fix the command issues in section 6 (chronicle closing, `show` output, and the unexplained talk and begin refusals).
@@ -227,16 +234,16 @@ What I tried:
 
 `node apps/site/scripts/hf-watch-session.ts seeds=2` at `af0bfde`. The owner's soft stop on 2026-10-19 skipped the round-2 rerun.
 
-| persona | seed | ended | min | reached | engagement | longest lull | looked away |
-|---|---|---|---|---|---|---|---|
-| commuter | 1 | quit | 4 | 1 night | 0.8 | 0s  | 0 |
-| commuter | 2 | quit | 3 | 1 night | 0.81 | 0s  | 0 |
-| unwinder | 1 | quit | 20 | 2 night | 0.85 | 0s  | 0 |
-| unwinder | 2 | quit | 14 | 2 night | 0.85 | 0s  | 0 |
-| completionist | 1 | quit | 16 | 2 night | 0.86 | 0s  | 0 |
-| completionist | 2 | quit | 14 | 2 night | 0.87 | 0s  | 0 |
-| restless | 1 | quit | 12 | 2 night | 0.74 | 3s dusk | 0 |
-| restless | 2 | quit | 12 | 2 night | 0.76 | 0s  | 0 |
+| persona       | seed | ended | min | reached | engagement | longest lull | looked away |
+| ------------- | ---- | ----- | --- | ------- | ---------- | ------------ | ----------- |
+| commuter      | 1    | quit  | 4   | 1 night | 0.8        | 0s           | 0           |
+| commuter      | 2    | quit  | 3   | 1 night | 0.81       | 0s           | 0           |
+| unwinder      | 1    | quit  | 20  | 2 night | 0.85       | 0s           | 0           |
+| unwinder      | 2    | quit  | 14  | 2 night | 0.85       | 0s           | 0           |
+| completionist | 1    | quit  | 16  | 2 night | 0.86       | 0s           | 0           |
+| completionist | 2    | quit  | 14  | 2 night | 0.87       | 0s           | 0           |
+| restless      | 1    | quit  | 12  | 2 night | 0.74       | 3s dusk      | 0           |
+| restless      | 2    | quit  | 12  | 2 night | 0.76       | 0s           | 0           |
 
 Every persona quit on distress (`emotion:distress:rest`) during a winter night.
 

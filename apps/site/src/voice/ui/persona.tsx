@@ -173,7 +173,7 @@ export async function prepareVoiceReturn(
   try {
     const envelope =
       imported ?? (await shelf.request<PersonaEnvelope | null>({ action: 'get', castId: SELIN_CAST }));
-    if (!envelope || envelope.source.game !== 'goodhands') {
+    if (envelope?.source.game !== 'goodhands') {
       if (automatic) return null;
       throw new Error('No returned enquiry from Good Hands is on this browser’s shelf.');
     }

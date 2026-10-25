@@ -20,13 +20,13 @@ Implementation matches this observation: planned breaks and automatic returns us
 
 The repo’s six-night comparison also supports a real reduction, rather than just better wording:
 
-| Same plain policy; seeds 7, 21, 42; 18 services per edition | pass@4 | pass@5 |
-|---|---:|---:|
-| Manual station asks | 29 | 0 |
-| Board proposals | 0 | 18 |
-| Staffing decisions | 0 | 8 |
-| Uncovered station-minutes with demand | 2,116 | 936 |
-| Tables fed | 378/447 | 439/447 |
+| Same plain policy; seeds 7, 21, 42; 18 services per edition |  pass@4 |  pass@5 |
+| ----------------------------------------------------------- | ------: | ------: |
+| Manual station asks                                         |      29 |       0 |
+| Board proposals                                             |       0 |      18 |
+| Staffing decisions                                          |       0 |       8 |
+| Uncovered station-minutes with demand                       |   2,116 |     936 |
+| Tables fed                                                  | 378/447 | 439/447 |
 
 Command: `node scripts/measure-rota.ts`. Raw output (driver scratch). This policy asks only when an idle cook is available, answers requests yes, and uses defaults. It is not an optimal player or an enjoyment measure. Friday remains worse on uncovered demand: 501 versus 489 station-minutes across the three seeds, matching the documented averages of 167 versus 163.
 
@@ -50,22 +50,22 @@ The broader quit point is **successful service with little player contribution**
 
 The autonomy judgment below is mine. These reports explicitly value responsive people, brief remarks and useful interventions; they do not explicitly ask for unrestricted cook autonomy.
 
-| Aspect | Finding |
-|---|---|
-| People acting for themselves | **A material cost.** Accepted work already constrained autonomy in pass@4; pass@5 extends that arrangement through close, with scheduled breaks and automatic returns. Ordinary decision review is bypassed during cover, apart from explicit requests and the new interruption machinery (kitchen.ts:1304 (driver scratch)). Selim said on **all five evenings**: “I missed maghrib (sunset prayer) tonight. Tomorrow I step away before the rush.” Yet his agreement carried on unchanged. His default break ends at 18:30; prayer becomes available at 18:35. Default cover therefore excludes his quiet act from ordinary choice. This is a concrete loss of autonomous follow-through, even though a player can intervene. |
-| Their words and consequences | **Mostly preserved.** Rafi refused relief. After our Wednesday talk, Thursday said “Rafi looked at the jar, then went and scrubbed the trays.” Friday Dilek said “You let me go to her. I won’t forget it.” Those responses made people matter. Selim’s repeated unfulfilled resolve weakens that credibility. |
-| Food moving without plate tapping | **Preserved.** Rosa explicitly liked this (report:45 (driver scratch)). Replacing the old staffing repetition with compulsory portion taps would cost that pleasure. |
-| The ending | **Daily closes preserved.** Tables fed, debt remaining, crew remarks and a reason for tomorrow still work. Joon valued “Tonight felt like a kitchen again”; Rosa valued the end-of-night accounting. I did not experience the campaign ending and cannot certify its emotional effect. |
-| Difficulty | **Reduced early; still consequential later.** The matched six-night policy fed 61 additional tables. Full-campaign bots still lost through poor coverage or insisting. There is no matched pass@4 campaign control here, so the size of the campaign difficulty change is unknown. |
+| Aspect                            | Finding                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| People acting for themselves      | **A material cost.** Accepted work already constrained autonomy in pass@4; pass@5 extends that arrangement through close, with scheduled breaks and automatic returns. Ordinary decision review is bypassed during cover, apart from explicit requests and the new interruption machinery (kitchen.ts:1304 (driver scratch)). Selim said on **all five evenings**: “I missed maghrib (sunset prayer) tonight. Tomorrow I step away before the rush.” Yet his agreement carried on unchanged. His default break ends at 18:30; prayer becomes available at 18:35. Default cover therefore excludes his quiet act from ordinary choice. This is a concrete loss of autonomous follow-through, even though a player can intervene. |
+| Their words and consequences      | **Mostly preserved.** Rafi refused relief. After our Wednesday talk, Thursday said “Rafi looked at the jar, then went and scrubbed the trays.” Friday Dilek said “You let me go to her. I won’t forget it.” Those responses made people matter. Selim’s repeated unfulfilled resolve weakens that credibility.                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Food moving without plate tapping | **Preserved.** Rosa explicitly liked this (report:45 (driver scratch)). Replacing the old staffing repetition with compulsory portion taps would cost that pleasure.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| The ending                        | **Daily closes preserved.** Tables fed, debt remaining, crew remarks and a reason for tomorrow still work. Joon valued “Tonight felt like a kitchen again”; Rosa valued the end-of-night accounting. I did not experience the campaign ending and cannot certify its emotional effect.                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Difficulty                        | **Reduced early; still consequential later.** The matched six-night policy fed 61 additional tables. Full-campaign bots still lost through poor coverage or insisting. There is no matched pass@4 campaign control here, so the size of the campaign difficulty change is unknown.                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 
 I ran `npm run measure -- seeds=3 p=none,care,flex,push`, covering seeds 1000–1002. Both requested repo measurement runs completed successfully. Full output (driver scratch):
 
-| Policy | Campaigns survived | Crew departures |
-|---|---:|---|
-| `none` | 1/3 | None |
-| `care` | 3/3 | None |
-| `flex` | 3/3 | None |
-| `push` | 0/3 | Departures in every run |
+| Policy | Campaigns survived | Crew departures         |
+| ------ | -----------------: | ----------------------- |
+| `none` |                1/3 | None                    |
+| `care` |                3/3 | None                    |
+| `flex` |                3/3 | None                    |
+| `push` |                0/3 | Departures in every run |
 
 Crucial limit: `none` still accepts default boards, answers personal requests yes, declines emergency cover, and makes scripted Sunday choices including hiring. It means no routine service bot actions, not literally zero inputs. None of these bots uses chef Help. Survival is evidence of balance behavior, not fun. Aggressive insisting remains costly; the change has not made people consequence-free equipment.
 

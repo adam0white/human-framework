@@ -235,8 +235,10 @@ function SceneDayContent(
   const offer = consequentialOffer(frame);
   const choices = sceneChoices(scene ?? null, frame.options, offer);
   const encounter = nextEncounter(frame);
-  const replyText =
-    answer && answer.text.replace(/^(Talk with Hacer at the door|Have tea with Rıza|Call Selin)\?\s*/, '');
+  const replyText = answer?.text.replace(
+    /^(Talk with Hacer at the door|Have tea with Rıza|Call Selin)\?\s*/,
+    '',
+  );
   const reply = answer && !response?.answer && (
     <div className="v-scene-answer" aria-live="polite">
       <small>His answer · {answer.clock}</small>

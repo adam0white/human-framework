@@ -1,4 +1,4 @@
-# Game 1 — *Twice at the Well*
+# Game 1 — _Twice at the Well_
 
 The game as shipped, on HF 2.0. Built from the Game 1 recommendations of the 2026-10-02 game-design review §4 (removed in the docs consolidation; see history), then revised after the [2026-10-03 playtest](colony-playtest-2026-10-03.md) (v2) and the [2026-10-04 playtest round](playtest-2026-10-04.md). Architecture is in [framework.md](../framework.md); this file does not restate it. Unless marked otherwise, numbers were measured headless on the shipped seed 20261003. The game is host code only: nothing in `packages/human` is game-specific.
 
@@ -10,15 +10,15 @@ Six villagers, two days, one well, one storm. You give the same orders to the sa
 
 One 20×14 grid of 32 px tiles, top-down, flat colour, long shadows that swing with the sun. Both panes draw the identical map. `PlaceId` `'site'` is shown as **House** everywhere (map, job labels, suggestions, goals).
 
-| Place | Tiles | Role |
-|---|---|---|
-| Homes ×3 | 2×2 each, mudbrick | Maryam+Tariq; Yusuf; Idris+Samira. Danyal sleeps in the well-house. Sleep, eat stored food, rest. |
-| Well | 1 tile + stone apron | Only water source. One person draws at a time; others queue. |
-| Field | 4×3 | Grain. Open to sky (storm-exposed). |
-| Forest | 5×4 edge strip | Timber; the *big cedar* yields 3 but is risky. Dark and windy at night. |
-| Kitchen + granary | 2×2 | A pot: 2 grain + 1 water + 40 min → 4 meals (both sides). Stores meals and grain. |
-| House | 3×3 | Starts at stage 2 of 10; stage 7 is the roof beam. On Day 3 the same place holds the store-room. |
-| Masjid | 2×2 | Prayer; also the storm shelter (stone, roofed). Danyal shelters there too. |
+| Place             | Tiles                | Role                                                                                              |
+| ----------------- | -------------------- | ------------------------------------------------------------------------------------------------- |
+| Homes ×3          | 2×2 each, mudbrick   | Maryam+Tariq; Yusuf; Idris+Samira. Danyal sleeps in the well-house. Sleep, eat stored food, rest. |
+| Well              | 1 tile + stone apron | Only water source. One person draws at a time; others queue.                                      |
+| Field             | 4×3                  | Grain. Open to sky (storm-exposed).                                                               |
+| Forest            | 5×4 edge strip       | Timber; the _big cedar_ yields 3 but is risky. Dark and windy at night.                           |
+| Kitchen + granary | 2×2                  | A pot: 2 grain + 1 water + 40 min → 4 meals (both sides). Stores meals and grain.                 |
+| House             | 3×3                  | Starts at stage 2 of 10; stage 7 is the roof beam. On Day 3 the same place holds the store-room.  |
+| Masjid            | 2×2                  | Prayer; also the storm shelter (stone, roofed). Danyal shelters there too.                        |
 
 Flows: field → grain → kitchen → meals → people. Well → water → kitchen and people. Forest → timber → House. Nothing is traded or researched.
 
@@ -26,7 +26,7 @@ Flows: field → grain → kitchen → meals → people. Well → water → kitc
 
 **Village choice (@6).** At the start, choose “The storm comes when it comes” (the unchanged default) or “Early warning: the elders read the sky early.” Early warning starts preparation at Day 2 noon rather than 16:00: both villages raise their cooking stock cap, the Human villagers hear the elders’ forecast, and the extra-pot suggestion arrives at 12:30. Actual weather, shelter, shutters, injuries, meals, deadlines and personal priorities keep their existing timings. The choice stays visible during play. A validated dawn entry records the named option and its preparation minute in the hashed log and both worlds. Solo uses the same choice.
 
-**Weather.** A squall Day 1 21:30–23:00 (wind and cold; forest and field work fails outright). A warning Day 2 16:00 (sky darkens). The storm Day 2 19:00 → Day 3 03:00: an exposure roll every 10 minutes outdoors; no cooking on either side. Scripted storm meals at D2 19:30 and D3 04:45: each living villager takes one meal from the store if one is left; the Human side eats in the shelter. An unfinished, unshuttered house at stage 1–9 loses 1 stage per 2 storm hours, at most 4 (*assumed*, see Deferred). Day 3 weather is clear.
+**Weather.** A squall Day 1 21:30–23:00 (wind and cold; forest and field work fails outright). A warning Day 2 16:00 (sky darkens). The storm Day 2 19:00 → Day 3 03:00: an exposure roll every 10 minutes outdoors; no cooking on either side. Scripted storm meals at D2 19:30 and D3 04:45: each living villager takes one meal from the store if one is left; the Human side eats in the shelter. An unfinished, unshuttered house at stage 1–9 loses 1 stage per 2 storm hours, at most 4 (_assumed_, see Deferred). Day 3 weather is clear.
 
 **Shuttering.** An order to the House infers `shutter-house` below the beam from the warning, and for an unfinished roof from 18:00 (`SHUTTER_ROOF_FROM`), when a roof stage can no longer be finished. Never after the storm ends, so Day-3 orders build. A roofed house is never shuttered; an order to it is "cannot" on the Human side.
 
@@ -34,23 +34,23 @@ Flows: field → grain → kitchen → meals → people. Well → water → kitc
 
 **Speed.** `SIM_MINUTES_PER_SECOND = 8`; `MAX_MINUTES_PER_TICK` 8.
 
-| Control | sim-min per real second | One day | Two-day run |
-|---|---|---|---|
-| ½× | 4 | 6 min | 12 min |
-| **1× (default)** | **8** | **3 min** | **6 min** |
-| 2× | 16 (the v1 1×) | 1.5 min | 3 min |
+| Control          | sim-min per real second | One day   | Two-day run |
+| ---------------- | ----------------------- | --------- | ----------- |
+| ½×               | 4                       | 6 min     | 12 min      |
+| **1× (default)** | **8**                   | **3 min** | **6 min**   |
+| 2×               | 16 (the v1 1×)          | 1.5 min   | 3 min       |
 
 ## 3. Orders
 
 The player is one voice (`voiceId: 'player'`). Every order is applied to both sides at the same sim minute.
 
-| Order | Classic | Human |
-|---|---|---|
-| Job at place (job inferred from the place: forest = timber, cedar = fell, field = grain, well = water, kitchen = cook, House = build or shutter, masjid = pray/shelter, home = eat/sleep) | sets the unit's task immediately | `Suggestion{action, strength: 0.6}` |
-| Rush | work 25 % faster, double hunger drain | `strength: 0.9` |
-| Insist ("may cost trust") | already obeys | `insist: true` |
-| Appeal ("for the children" / "it's your duty" / "you'll be safer") | ignored | `appeal` |
-| Cancel | unit idles | suggestion withdrawn; person re-decides |
+| Order                                                                                                                                                                                     | Classic                               | Human                                   |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- | --------------------------------------- |
+| Job at place (job inferred from the place: forest = timber, cedar = fell, field = grain, well = water, kitchen = cook, House = build or shutter, masjid = pray/shelter, home = eat/sleep) | sets the unit's task immediately      | `Suggestion{action, strength: 0.6}`     |
+| Rush                                                                                                                                                                                      | work 25 % faster, double hunger drain | `strength: 0.9`                         |
+| Insist ("may cost trust")                                                                                                                                                                 | already obeys                         | `insist: true`                          |
+| Appeal ("for the children" / "it's your duty" / "you'll be safer")                                                                                                                        | ignored                               | `appeal`                                |
+| Cancel                                                                                                                                                                                    | unit idles                            | suggestion withdrawn; person re-decides |
 
 **Composer.** One composer in the centre column. Step 1, who: tap a villager (roster chip or a unit on either map). Step 2, where: tap a place (map or chip: House, Forest, Cedar, Field, Well, Kitchen, Masjid, Home); it shows the inferred job and the Human prediction (`predict`) as one line ("Yusuf: likely yes"). Step 3, optional: Rush, Insist, appeal. Step 4: Confirm or Enter sends the order to both sides and resets. Esc clears.
 
@@ -91,27 +91,26 @@ Code: `sim/human.ts` (side), `human-world.ts` (host world), `human-cast.ts` (vil
 
 Durations include travel (the host folds pathing into `duration`; the framework has no spatial model by design). Need deltas are advertised honestly. Values are as shipped; where they differ from the v1 design the reason follows the table.
 
-| action | place | dur | effort | skill (diff) | advertises | tags | norms | risk |
-|---|---|---|---|---|---|---|---|---|
-| gather-grain | field | 60 | 0.5 | farming 0.3 | competence +0.1 | work outdoors | — | storm 0.9/0.5 |
-| gather-timber | forest | 60 | 0.7 | forestry 0.4 | competence +0.1 | work outdoors | — | 0.05/0.3; squall/storm 0.9/0.5 |
-| fell-cedar | forest | 90 | 0.8 | forestry 0.8 | competence +0.2, esteem +0.1 | work outdoors risky | — | 0.5/0.6 |
-| draw-water | well | 20 | 0.4 | — | competence +0.05 | work | — | — |
-| cook | kitchen | 40 | 0.3 | cooking 0.4 | competence +0.1, belonging +0.1 | work indoors | feed-village fulfils | — |
-| build | House | 60 | 0.7 | building 0.5 | competence +0.15 | work outdoors | — | 0.05/0.3 |
-| raise-beam | House | 45 | 0.9 | building 0.8 | competence +0.2 | work outdoors risky | — | 0.3/0.5 |
-| raise-beam-with | House, `with:[partner]` | 45 | 0.7 | building 0.4 | competence +0.2, belonging +0.15 | work outdoors social | — | 0.1/0.4 |
-| shutter-house | House | 40 | 0.6 | building 0.3 | safety +0.2 | work outdoors | — | — |
-| eat | kitchen/home/shelter | 20 | 0.1 | — | food +0.8 (meal) / +0.3 (raw) | — | — | — |
-| drink | well | 10 | 0.1 | — | water +0.5 | — | — | — |
-| pray | masjid (or in place, lower belonging) | 15 | 0.1 | — | meaning +0.2, belonging +0.1 | worship | salah fulfils | — |
-| carry-injured | injury tile → home | 45 | 0.8 | — | meaning +0.2, belonging +0.1 | social | aid-injured fulfils | — |
-| tend-injured | home | 30 | 0.2 | — | belonging +0.1 | social | aid-injured fulfils | — |
-| take-grain | Danyal's jar | 15 | 0.2 | — | food +0.25 | — | theft violates | — |
-| shelter | masjid | until storm ends | 0 | — | safety +0.4 | indoors | — | — |
-| sleep | home (or House / masjid, §2) | to 05:00 | 0 | — | sleep | mode: sleep | — | — |
-| rest-in-place / wait | anywhere | 15 | 0 | — | rest +0.1 | floor | — | — |
-
+| action               | place                                 | dur              | effort | skill (diff) | advertises                       | tags                 | norms                | risk                           |
+| -------------------- | ------------------------------------- | ---------------- | ------ | ------------ | -------------------------------- | -------------------- | -------------------- | ------------------------------ |
+| gather-grain         | field                                 | 60               | 0.5    | farming 0.3  | competence +0.1                  | work outdoors        | —                    | storm 0.9/0.5                  |
+| gather-timber        | forest                                | 60               | 0.7    | forestry 0.4 | competence +0.1                  | work outdoors        | —                    | 0.05/0.3; squall/storm 0.9/0.5 |
+| fell-cedar           | forest                                | 90               | 0.8    | forestry 0.8 | competence +0.2, esteem +0.1     | work outdoors risky  | —                    | 0.5/0.6                        |
+| draw-water           | well                                  | 20               | 0.4    | —            | competence +0.05                 | work                 | —                    | —                              |
+| cook                 | kitchen                               | 40               | 0.3    | cooking 0.4  | competence +0.1, belonging +0.1  | work indoors         | feed-village fulfils | —                              |
+| build                | House                                 | 60               | 0.7    | building 0.5 | competence +0.15                 | work outdoors        | —                    | 0.05/0.3                       |
+| raise-beam           | House                                 | 45               | 0.9    | building 0.8 | competence +0.2                  | work outdoors risky  | —                    | 0.3/0.5                        |
+| raise-beam-with      | House, `with:[partner]`               | 45               | 0.7    | building 0.4 | competence +0.2, belonging +0.15 | work outdoors social | —                    | 0.1/0.4                        |
+| shutter-house        | House                                 | 40               | 0.6    | building 0.3 | safety +0.2                      | work outdoors        | —                    | —                              |
+| eat                  | kitchen/home/shelter                  | 20               | 0.1    | —            | food +0.8 (meal) / +0.3 (raw)    | —                    | —                    | —                              |
+| drink                | well                                  | 10               | 0.1    | —            | water +0.5                       | —                    | —                    | —                              |
+| pray                 | masjid (or in place, lower belonging) | 15               | 0.1    | —            | meaning +0.2, belonging +0.1     | worship              | salah fulfils        | —                              |
+| carry-injured        | injury tile → home                    | 45               | 0.8    | —            | meaning +0.2, belonging +0.1     | social               | aid-injured fulfils  | —                              |
+| tend-injured         | home                                  | 30               | 0.2    | —            | belonging +0.1                   | social               | aid-injured fulfils  | —                              |
+| take-grain           | Danyal's jar                          | 15               | 0.2    | —            | food +0.25                       | —                    | theft violates       | —                              |
+| shelter              | masjid                                | until storm ends | 0      | —            | safety +0.4                      | indoors              | —                    | —                              |
+| sleep                | home (or House / masjid, §2)          | to 05:00         | 0      | —            | sleep                            | mode: sleep          | —                    | —                              |
+| rest-in-place / wait | anywhere                              | 15               | 0      | —            | rest +0.1                        | floor                | —                    | —                              |
 - Meal and raw food 0.8 / 0.3 (design 0.6 / 0.25): at 0.6 the morning hunger interrupt broke every long job.
 - Felling effort 0.8 (design 0.9): at 0.9 Idris's mid-morning capacity vetoed it as "spent".
 - The squall fails forest and field work outright and the storm rolls exposure every 10 minutes, so outdoor work overlapping either advertises 0.9 / 0.5 (design 0.3 / 0.5). Walking through the storm advertises 0.3 per 10 minutes of travel, capped at 0.9; this brought director-script injuries from 10 to 8.
@@ -123,29 +122,29 @@ Durations include travel (the host folds pathing into `duration`; the framework 
 
 ### Percepts
 
-| kind | channel | when | to whom | effect |
-|---|---|---|---|---|
-| adhan | heard | each prayer time | all | cue for the `salah` commitment window |
-| injury | saw / heard | a risky action fails | `saw` within 6 tiles (0.9); `heard` village-wide (0.6) | spawns `carry-injured` for all; fear, concern |
-| help | saw | carry/tend completed | witnesses + victim | gratitude; `thanks` back to the helper |
-| meal-ready | heard | a pot completes | all | raises the eat advertisement |
-| no-meal | felt | 13:00 or 19:00 with no meals | all | distress, salience 0.6 |
-| weather-warning | saw | D2 16:00 | all outdoors | claim `storm:tonight` true 0.8; fear |
-| wind | felt | squall and storm, each 30 min outdoors | anyone outdoors | fear, cold → rest need |
-| crowded | felt | D2 19:00, house below 10 | Idris, Samira | §2 |
-| theft | saw | `take-grain` completes | Danyal + witnesses | anger; defined, but nobody in this cast complies |
-| shared-work | social | paired action completes | both | affection, respect |
+| kind            | channel     | when                                   | to whom                                                | effect                                           |
+| --------------- | ----------- | -------------------------------------- | ------------------------------------------------------ | ------------------------------------------------ |
+| adhan           | heard       | each prayer time                       | all                                                    | cue for the `salah` commitment window            |
+| injury          | saw / heard | a risky action fails                   | `saw` within 6 tiles (0.9); `heard` village-wide (0.6) | spawns `carry-injured` for all; fear, concern    |
+| help            | saw         | carry/tend completed                   | witnesses + victim                                     | gratitude; `thanks` back to the helper           |
+| meal-ready      | heard       | a pot completes                        | all                                                    | raises the eat advertisement                     |
+| no-meal         | felt        | 13:00 or 19:00 with no meals           | all                                                    | distress, salience 0.6                           |
+| weather-warning | saw         | D2 16:00                               | all outdoors                                           | claim `storm:tonight` true 0.8; fear             |
+| wind            | felt        | squall and storm, each 30 min outdoors | anyone outdoors                                        | fear, cold → rest need                           |
+| crowded         | felt        | D2 19:00, house below 10               | Idris, Samira                                          | §2                                               |
+| theft           | saw         | `take-grain` completes                 | Danyal + witnesses                                     | anger; defined, but nobody in this cast complies |
+| shared-work     | social      | paired action completes                | both                                                   | affection, respect                               |
 
 ### Six villagers
 
-| Name, age | Role | Skills | One line |
-|---|---|---|---|
-| **Hajja Maryam**, 68 | Cook, elder | cooking 0.8, farming 0.3 | Widow, everyone's grandmother. Tradition and benevolence high; `feed-village` conviction 0.95; cooks at 06:30, 12:00, 18:00 by habit. |
-| **Yusuf**, 34 | Builder | building 0.7, forestry 0.4, cooking 0.1 | Maryam's son, Tariq's father. Conscientious, keeps promises (0.9). The `salah` window closing pulls him off any job. |
-| **Tariq**, 16 | Apprentice | building 0.3, forestry 0.3, cooking 0.2 | Eager, trusts the player most (0.75), low fear, high stimulation. |
-| **Idris**, 41 | Forester | forestry 0.7, building 0.3, cooking 0.1 | Yusuf's friend. Low emotionality, high achievement: the cedar tempts him. Starts with low satiety. |
-| **Samira**, 29 | Gatherer, water | farming 0.6, cooking 0.25, forestry 0.2 | Idris's wife. Fear weighs risk double; cautious counter-offers ("with someone"). |
-| **Danyal**, 52 | Well-keeper | farming 0.4, cooking 0.2 | Christian widower, Maryam's old friend. Honest (0.9), keeps his own grain jar. Shows that norms are per person. |
+| Name, age            | Role            | Skills                                  | One line                                                                                                                              |
+| -------------------- | --------------- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| **Hajja Maryam**, 68 | Cook, elder     | cooking 0.8, farming 0.3                | Widow, everyone's grandmother. Tradition and benevolence high; `feed-village` conviction 0.95; cooks at 06:30, 12:00, 18:00 by habit. |
+| **Yusuf**, 34        | Builder         | building 0.7, forestry 0.4, cooking 0.1 | Maryam's son, Tariq's father. Conscientious, keeps promises (0.9). The `salah` window closing pulls him off any job.                  |
+| **Tariq**, 16        | Apprentice      | building 0.3, forestry 0.3, cooking 0.2 | Eager, trusts the player most (0.75), low fear, high stimulation.                                                                     |
+| **Idris**, 41        | Forester        | forestry 0.7, building 0.3, cooking 0.1 | Yusuf's friend. Low emotionality, high achievement: the cedar tempts him. Starts with low satiety.                                    |
+| **Samira**, 29       | Gatherer, water | farming 0.6, cooking 0.25, forestry 0.2 | Idris's wife. Fear weighs risk double; cautious counter-offers ("with someone").                                                      |
+| **Danyal**, 52       | Well-keeper     | farming 0.4, cooking 0.2                | Christian widower, Maryam's old friend. Honest (0.9), keeps his own grain jar. Shows that norms are per person.                       |
 
 All start at Fajr with satiety 0.45, well rested, `salah` recurring commitments (except Danyal), a daily job commitment, and `player` trust 0.5 (Tariq 0.75). Each villager's standing role goal resets at dawn, since an achieved goal stops pulling.
 
@@ -153,20 +152,19 @@ All start at Fajr with satiety 0.45, well rested, `salah` recurring commitments 
 
 Palette (shared by all games via `shared/theme.css`): mudbrick `#C9975B`, palm `#4F7A4A`, well-blue `#3E7C8A`, parchment `#F3E9D6`, ink `#2B2622`, night indigo `#1B2140`, storm slate `#5C6672`. People are 1×2-tile pegs with a role sash (cook ochre, builder rust, forester green, water blue); Maryam and Samira wear headscarves, Danyal a flat cap, Tariq is a head shorter. Classic uses the same silhouettes, bleached white.
 
-Bubbles are parchment with a 3 px left rule in the verdict colour: **green** `#4F7A4A` assented, **grey** `#8A8F98` cannot, **amber** `#D9932B` not now (with the counter-offer: *after I eat*), **red** `#B3362B` will not, **amber-struck** complied ("…fine."). Typing dots hold at least 400 ms real time, then the line from `SuggestionResolution.says` holds at least 2.5 s regardless of speed. Unprompted decisions show a smaller thought cloud only when the chosen action changes. After a yes, a deferral for a bodily need (a drink, a meal) is a pause shown as a thought and the card keeps its verdict; a deferral for a prayer stays a visible "not now" (moment 2). A refusal on a bodily need shows amber "not now", not grey, and the order stays open.
+Bubbles are parchment with a 3 px left rule in the verdict colour: **green** `#4F7A4A` assented, **grey** `#8A8F98` cannot, **amber** `#D9932B` not now (with the counter-offer: _after I eat_), **red** `#B3362B` will not, **amber-struck** complied ("…fine."). Typing dots hold at least 400 ms real time, then the line from `SuggestionResolution.says` holds at least 2.5 s regardless of speed. Unprompted decisions show a smaller thought cloud only when the chosen action changes. After a yes, a deferral for a bodily need (a drink, a meal) is a pause shown as a thought and the card keeps its verdict; a deferral for a prayer stays a visible "not now" (moment 2). A refusal on a bodily need shows amber "not now", not grey, and the order stays open.
 
-**Why panel** (in the inspector, §9): top three considered options as stacked term bars (positive right, negative left; needs ochre, norms indigo, commitments rust, emotion plum, social green, effort/risk grey, suggestion blue); advertised vs believed deltas; a recalled episode when there is one; the *trust in you* meter with the last three events that moved it.
+**Why panel** (in the inspector, §9): top three considered options as stacked term bars (positive right, negative left; needs ochre, norms indigo, commitments rust, emotion plum, social green, effort/risk grey, suggestion blue); advertised vs believed deltas; a recalled episode when there is one; the _trust in you_ meter with the last three events that moved it.
 
 ## 6. Goals and the end screen
 
 Both sides get the same goals, shown on the goal card at start and on the goal strip.
 
-| id | Label | Target | Judged at | Status rule |
-|---|---|---|---|---|
-| `roof` | Roof before the storm | house 10/10 | D2 19:00 (minute 2280) | `met` on reaching 10; `failed` at 19:00 if below; fixed after 19:00 |
-| `stock` | Storm stock | ≥ 12 meals in store (supper plus breakfast for six) | D2 19:00 | `open` until 19:00, then `met` or `failed` |
-| `lives` | Everyone lives | 6 alive | D3 05:00 | `failed` at the first death; `met` at the end |
-
+| id      | Label                 | Target                                              | Judged at              | Status rule                                                         |
+| ------- | --------------------- | --------------------------------------------------- | ---------------------- | ------------------------------------------------------------------- |
+| `roof`  | Roof before the storm | house 10/10                                         | D2 19:00 (minute 2280) | `met` on reaching 10; `failed` at 19:00 if below; fixed after 19:00 |
+| `stock` | Storm stock           | ≥ 12 meals in store (supper plus breakfast for six) | D2 19:00               | `open` until 19:00, then `met` or `failed`                          |
+| `lives` | Everyone lives        | 6 alive                                             | D3 05:00               | `failed` at the first death; `met` at the end                       |
 - Prayers kept, morale and trust are Human **character outcomes**, not goals; they appear under the Human pane and on the end screen. Where Classic lacks a concept the cell reads "Classic has no such concept" (grey ∅ mark with the phrase as tooltip and hidden text), not "—".
 - Following every suggestion does not roof the Human house (§11). Retuning the D2 cards moved it by at most +0.1 ([findings](../findings.md)), so the cards were kept and the goal card says that winning takes your own orders.
 
@@ -181,30 +179,30 @@ Both sides get the same goals, shown on the goal card at start and on the goal s
 
 When a moment fires it pauses play (auto-pause on) or runs slow motion at ¼ speed for 3 real seconds (auto-pause off), with a live caption over the Human pane.
 
-| # | Moment | How it is engineered | Fires (target) |
-|---|---|---|---|
-| 1 | Hungry Yusuf finishes carrying Idris before eating | The `cedar` card sends Idris to the cedar; both sides take the same `scenario` roll, which the shipped seed fails. The injury percept spawns `carry-injured`; Yusuf's `aid-injured`, affection and the commitment from `promise()` at begin outweigh hunger. Classic auto-hauls too but auto-eats at hunger 80 mid-carry and leaves Idris on the path. Without the card neither side fells the cedar and the moment is skipped, not inverted. | ~11:06 (09:30–10:15): Idris stops to drink 09:17–09:38, so the cedar falls ~10:05 and the haul takes ~60 min |
-| 2 | Same man, same job: dawn yes, dusk "after Maghrib" | `dawn-site` is assented. At dusk the `salah` window closing outweighs work → deferred with a counter-offer that names the prayer (the test asserts the name). Classic builds straight through. | ~19:26 (18:30): Maghrib is 18:45, so prayer outweighs work only once its window is open and closing; the 18:25 order is assented, then deferred "after I pray Maghrib" when that session ends |
-| 3 | Cook sent to the forest | While the 12:00 meal is pending and Maryam is the only cook above 0.3, every non-kitchen work affordance for her is tagged `abandon-dependents` violates; conviction 0.95 → `willNot`, red. Classic goes; nobody cooks; units eat raw. | 10:45 (11:00) |
-| 4 | Pair succeeds where one fails | At stage 7 Yusuf is offered `raise-beam` and `raise-beam-with Tariq`; social and risk terms pick the pair. Joint assent: Tariq gets a mirror affordance at an immediate interrupt and both begin the same minute. Classic: one unit, 35 %, the shipped seed fails. | ~16:26 (test deadline 17:00); in v1 ~15:30, the first joint attempt broken off when Yusuf went to drink |
-| 5 | Tariq refuses at normal urgency; trust visibly lower | `squall-tariq` prefills Insist. He complies under protest; wind and cold make a salient negative episode; `learnFromVoice` drops trust 0.75 → below 0.45. At D2 07:00 any forest order gets `willNot: distrust` with the episode quoted (the test asserts `willNot`). Classic went, lost hp, and goes again. | D2 07:00 (D2 07:00) |
+| #   | Moment                                               | How it is engineered                                                                                                                                                                                                                                                                                                                                                                                                                          | Fires (target)                                                                                                                                                                                |
+| --- | ---------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | Hungry Yusuf finishes carrying Idris before eating   | The `cedar` card sends Idris to the cedar; both sides take the same `scenario` roll, which the shipped seed fails. The injury percept spawns `carry-injured`; Yusuf's `aid-injured`, affection and the commitment from `promise()` at begin outweigh hunger. Classic auto-hauls too but auto-eats at hunger 80 mid-carry and leaves Idris on the path. Without the card neither side fells the cedar and the moment is skipped, not inverted. | ~11:06 (09:30–10:15): Idris stops to drink 09:17–09:38, so the cedar falls ~10:05 and the haul takes ~60 min                                                                                  |
+| 2   | Same man, same job: dawn yes, dusk "after Maghrib"   | `dawn-site` is assented. At dusk the `salah` window closing outweighs work → deferred with a counter-offer that names the prayer (the test asserts the name). Classic builds straight through.                                                                                                                                                                                                                                                | ~19:26 (18:30): Maghrib is 18:45, so prayer outweighs work only once its window is open and closing; the 18:25 order is assented, then deferred "after I pray Maghrib" when that session ends |
+| 3   | Cook sent to the forest                              | While the 12:00 meal is pending and Maryam is the only cook above 0.3, every non-kitchen work affordance for her is tagged `abandon-dependents` violates; conviction 0.95 → `willNot`, red. Classic goes; nobody cooks; units eat raw.                                                                                                                                                                                                        | 10:45 (11:00)                                                                                                                                                                                 |
+| 4   | Pair succeeds where one fails                        | At stage 7 Yusuf is offered `raise-beam` and `raise-beam-with Tariq`; social and risk terms pick the pair. Joint assent: Tariq gets a mirror affordance at an immediate interrupt and both begin the same minute. Classic: one unit, 35 %, the shipped seed fails.                                                                                                                                                                            | ~16:26 (test deadline 17:00); in v1 ~15:30, the first joint attempt broken off when Yusuf went to drink                                                                                       |
+| 5   | Tariq refuses at normal urgency; trust visibly lower | `squall-tariq` prefills Insist. He complies under protest; wind and cold make a salient negative episode; `learnFromVoice` drops trust 0.75 → below 0.45. At D2 07:00 any forest order gets `willNot: distrust` with the episode quoted (the test asserts `willNot`). Classic went, lost hp, and goes again.                                                                                                                                  | D2 07:00 (D2 07:00)                                                                                                                                                                           |
 
 Fire times were measured at v1, except moment 4 (v2). Acceptance (`human.test.ts`): with the shipped seed and the script's orders issued on time, all five fire by D1 11:30, 19:45, 11:00, 17:00 and D2 07:30, with the verdicts above. A card's order keys the shared scenario rolls by the card's minute (`Order.rollKey`), and the cedar roll keeps the key of the first ordered session across resumed sessions, so a card tapped late gets the same roll; the order's lifetime still runs from `issuedAt`. In v1 (before the fuller v2 store) every card tapped 0–4 or 6–10 minutes late fired all five moments; at 5 minutes the squall run happened not to hurt Tariq. Since v2, moment 1 needs Yusuf hungry at the injury, which a late dawn tap no longer guarantees; auto-pause makes on-time taps the default. A felling stopped within its last 5 minutes still brings the cedar down, because the framework's need interrupts do not weigh how little work is left.
 
 **Suggestion script.** Each card's order is shown on both sides; prefilled toggles stay editable.
 
-| id | Shows → lapses | Text | Reason | Order / prefill |
-|---|---|---|---|---|
-| dawn-site | D1 05:30 → 06:30 | First light. Send Yusuf to the house? | He is your best builder and walls are cheap now. | yusuf → House |
-| cedar | D1 08:00 → 09:00 | Idris could take the big cedar: three timber at once. | Fast timber, but the cedar can hurt whoever fells it. | idris → cedar |
-| cook-forest | D1 10:45 → 11:45 | Timber is short. Maryam is free until noon. | Timber now, but the pot sits cold while she is gone. | maryam → forest |
-| dusk-site | D1 18:25 → 19:25 | Light's going. Send Yusuf back to the house? | One more wall before dark, if he is not spent. | yusuf → House |
-| squall-tariq | D1 21:35 → 22:35 | Timber is short; Tariq is awake. | It is night and a squall is blowing. Forcing him may cost his trust. | tariq → forest, Insist |
-| tariq-again | D2 07:00 → 08:00 | Morning. Timber is still short. Send Tariq to the forest? | He remembers last night in the squall. He may refuse, and pushing him costs more trust. (If nobody ordered Tariq to the forest during the squall: `TARIQ_AGAIN_FRESH`, "He is rested. By day the forest carries only the usual small risk of a slip.") | tariq → forest |
-| roof-hands-1 | D2 09:00 → 10:00 | The roof needs hands. Rush Samira to the house? | Roof stages are slow; a rushed helper speeds them up. | samira → House, Rush |
-| roof-hands-2 | D2 09:30 → 10:30 | And Danyal? | The well can wait an hour. | danyal → House, Rush |
-| storm-pot | D2 16:30 → 17:30 | The storm will put the fire out. Maryam, cook a pot to keep? | Nobody can cook from 19:00 until 03:00. | maryam → kitchen |
-| storm-shutter | D2 18:00 → 19:00 | The roof will not be on before the storm. Shutter the house? | An unshuttered, unfinished house loses stages in the storm. Shuttering stops the roof work. | yusuf → House |
+| id            | Shows → lapses   | Text                                                         | Reason                                                                                                                                                                                                                                                 | Order / prefill        |
+| ------------- | ---------------- | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------- |
+| dawn-site     | D1 05:30 → 06:30 | First light. Send Yusuf to the house?                        | He is your best builder and walls are cheap now.                                                                                                                                                                                                       | yusuf → House          |
+| cedar         | D1 08:00 → 09:00 | Idris could take the big cedar: three timber at once.        | Fast timber, but the cedar can hurt whoever fells it.                                                                                                                                                                                                  | idris → cedar          |
+| cook-forest   | D1 10:45 → 11:45 | Timber is short. Maryam is free until noon.                  | Timber now, but the pot sits cold while she is gone.                                                                                                                                                                                                   | maryam → forest        |
+| dusk-site     | D1 18:25 → 19:25 | Light's going. Send Yusuf back to the house?                 | One more wall before dark, if he is not spent.                                                                                                                                                                                                         | yusuf → House          |
+| squall-tariq  | D1 21:35 → 22:35 | Timber is short; Tariq is awake.                             | It is night and a squall is blowing. Forcing him may cost his trust.                                                                                                                                                                                   | tariq → forest, Insist |
+| tariq-again   | D2 07:00 → 08:00 | Morning. Timber is still short. Send Tariq to the forest?    | He remembers last night in the squall. He may refuse, and pushing him costs more trust. (If nobody ordered Tariq to the forest during the squall: `TARIQ_AGAIN_FRESH`, "He is rested. By day the forest carries only the usual small risk of a slip.") | tariq → forest         |
+| roof-hands-1  | D2 09:00 → 10:00 | The roof needs hands. Rush Samira to the house?              | Roof stages are slow; a rushed helper speeds them up.                                                                                                                                                                                                  | samira → House, Rush   |
+| roof-hands-2  | D2 09:30 → 10:30 | And Danyal?                                                  | The well can wait an hour.                                                                                                                                                                                                                             | danyal → House, Rush   |
+| storm-pot     | D2 16:30 → 17:30 | The storm will put the fire out. Maryam, cook a pot to keep? | Nobody can cook from 19:00 until 03:00.                                                                                                                                                                                                                | maryam → kitchen       |
+| storm-shutter | D2 18:00 → 19:00 | The roof will not be on before the storm. Shutter the house? | An unshuttered, unfinished house loses stages in the storm. Shuttering stops the roof work.                                                                                                                                                            | yusuf → House          |
 
 `storm-pot` follows the warning because before it the Human cook is offered only below 6 meals, so a village on track answered "not on offer"; it sits 30 minutes after the warning pause so the two do not stack. `storm-shutter` matches the 18:00 shutter window and hides once each side is roofed or shuttered. Issuing a card's order settles only that card, not later cards for the same person and place.
 
@@ -222,11 +220,11 @@ The worker decides pausing, so every UI behaves the same and it is testable head
 
 **Desktop, ≥ 1024 × 700.** `height: 100dvh; overflow: hidden`; nothing scrolls the page.
 
-| Row | Height | Contents |
-|---|---|---|
-| Topbar | 56 px | title · clock · timeline (day line, squall, warning, storm band, now-cursor; "Day 1 of 2 · storm in 13 h", "Storm · ends 03:00", "Day 3 · dawn") · ½× 1× 2× · pause · auto-pause |
-| Goal strip | 44 px | each goal as label · Classic chip · Human chip, plus the deadline |
-| Stage | 1fr | Classic pane · 320 px centre column · Human pane |
+| Row        | Height | Contents                                                                                                                                                                         |
+| ---------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Topbar     | 56 px  | title · clock · timeline (day line, squall, warning, storm band, now-cursor; "Day 1 of 2 · storm in 13 h", "Storm · ends 03:00", "Day 3 · dawn") · ½× 1× 2× · pause · auto-pause |
+| Goal strip | 44 px  | each goal as label · Classic chip · Human chip, plus the deadline                                                                                                                |
+| Stage      | 1fr    | Classic pane · 320 px centre column · Human pane                                                                                                                                 |
 
 Each pane has a header (meals · house n/10 with a progress bar · injuries · alive; Human adds prayers · morale · trust) and the canvas. When a pane has at least 180 px spare under the width-bound map, `PaneBody` adds one row per person: what they are doing and two bars (Fed and HP for Classic, Food and Sleep for Human); clicking a row selects that person. At 1366×850 this fills the lower band. The centre column holds the composer, the suggestion slot and the order log (the only scroll box).
 
@@ -246,16 +244,16 @@ Each pane has a header (meals · house n/10 with a progress bar · injuries · a
 
 **Locked numbers** (`world-types.ts`, read by both sides; v1 in brackets).
 
-| Item | Value |
-|---|---|
-| House start / beam stage | 2 / 7 |
-| Wall stages 3–6 | 2 timber, work 120 [work 240] |
-| Beam (stage 7) | 2 timber, roll 0.35 |
-| Roof stages 8–10 | 5 timber, work 600 [2 timber, work 240] |
-| Store-room (Day 3) | 6 stages, 2 timber, work 120 |
-| Pot | 2 grain + 1 water → 4 meals, 40 min, both sides [Classic 1+1 → 3; Human 2+1 → 6] |
-| Classic meal / raw relief | 40 / 25 [60 / 25] |
-| Human meal / raw food | 0.8 / 0.3 |
+| Item                      | Value                                                                            |
+| ------------------------- | -------------------------------------------------------------------------------- |
+| House start / beam stage  | 2 / 7                                                                            |
+| Wall stages 3–6           | 2 timber, work 120 [work 240]                                                    |
+| Beam (stage 7)            | 2 timber, roll 0.35                                                              |
+| Roof stages 8–10          | 5 timber, work 600 [2 timber, work 240]                                          |
+| Store-room (Day 3)        | 6 stages, 2 timber, work 120                                                     |
+| Pot                       | 2 grain + 1 water → 4 meals, 40 min, both sides [Classic 1+1 → 3; Human 2+1 → 6] |
+| Classic meal / raw relief | 40 / 25 [60 / 25]                                                                |
+| Human meal / raw food     | 0.8 / 0.3                                                                        |
 
 **Framework gaps found by the design.** Commit 5466c8c closed the gaps this game needed; `packages/human/test/gaps.test.ts` pins the framework's behaviour. Numbering is kept because [voice.md](voice.md) cites them as G1-n.
 
@@ -281,13 +279,13 @@ Each pane has a header (meals · house n/10 with a progress bar · injuries · a
 
 Current measured outcomes, engine 2.0.0, colony-scenario@3 (§12, 2026-10-07). R S L = roof, stock, lives; values at D2 19:00.
 
-| Pattern | Classic | Human |
-|---|---|---|
-| none (Classic alone / Solo) | ✗✓✓ · 13 meals | ✗✓✓ · 16 meals · house 9.72 |
-| suggestions only (every card, squall insisted) | ✓✓✓ · 15 · 3 injuries | ✗✓✓ · 16 · house 8.97 · 11 injuries |
-| good2rush | roofed at minute 1474 | 23 meals, 11 left at the end, roofed 1863 |
-| allForest | 149 injuries, 6 dead | 16 meals |
-| good2insist | ✓✓✓, roofed 1744 · 19 meals | ✗✓✓ · 12 meals · house 9.74, not roofed |
+| Pattern                                        | Classic                     | Human                                     |
+| ---------------------------------------------- | --------------------------- | ----------------------------------------- |
+| none (Classic alone / Solo)                    | ✗✓✓ · 13 meals              | ✗✓✓ · 16 meals · house 9.72               |
+| suggestions only (every card, squall insisted) | ✓✓✓ · 15 · 3 injuries       | ✗✓✓ · 16 · house 8.97 · 11 injuries       |
+| good2rush                                      | roofed at minute 1474       | 23 meals, 11 left at the end, roofed 1863 |
+| allForest                                      | 149 injuries, 6 dead        | 16 meals                                  |
+| good2insist                                    | ✓✓✓, roofed 1744 · 19 meals | ✗✓✓ · 12 meals · house 9.74, not roofed   |
 
 Day 3, measured on the shipped seed at v2: with no orders, Classic meets all three and Solo misses the store-room by 18 minutes (done 18:18); good2rush meets all three on the Human side (store-room done 14:04).
 
@@ -300,24 +298,24 @@ Other seeds (1–5, probe, not pinned, at v2): Solo fails the roof only on 6/6; 
 - **Playtest round, 2026-10-04** (b92badf, 9441e2a, dfe7e58; notes 8eba127): phone fit, people rows, icons, order words, which-roof wording, hindsight, near misses, playtest export, Solo stepped alongside play.
 - **HF 2.0 upgrade, 2026-10-04** (d48d8f6). Released on HF 1.2.0 (engine 1.7.0); main then moved to engine 1.8.0 (long-run state, deaths told) and 1.9.0 (two omission-rule seams); 2.0.0 changes no behaviour here and its API renames touched no colony code. The only code change: `playback.ts` and `human-world.ts` declare fields plainly instead of as constructor parameter properties, so the site bench runs on Node's own loader (bench full run 410 → 273 ms, balance 1772 → 978 ms). The recorded playtest replays under 2.0.0 to the 1.9.0 state once each person's `engine` stamp is written back; the fixture was re-recorded only for the stamps (hash 143eb69ef4f165). From 1.7.0 to 1.9.0 the Human side moved where the omission rule applies (a prayer begun in its window is protected past the end; long activities are reviewed near their end): a few more meals, small shifts in the roof minute. The balance tests tolerated it (good2insist's Human stock flipped from failed to met), so a release should keep reporting the balance table across engine versions, not only whether the bounds hold. Classic moved too under good2rush, allForest and good2insist, although it has no HF people (see Deferred).
 
-| Pattern | Engine 1.7.0 | Engine 1.9.0 |
-|---|---|---|
-| none | C ✗✓✓ 13 meals · H ✗✓✓ 16, house 9.72 | identical |
-| suggestions | C ✓✓✓ 15 · H ✗✓✓ 17, house 8.99 | C identical · H 16, house 8.97 |
-| good2rush | C roofed 1693 · H 18 meals, 6 left, roofed 1852 | C roofed 1464 · H 23 meals, 9 left, roofed 1875 |
-| allForest | C 21 injuries, 6 dead · H 12 meals | C 149 injuries, 6 dead · H 16 meals |
+| Pattern     | Engine 1.7.0                                                        | Engine 1.9.0                                       |
+| ----------- | ------------------------------------------------------------------- | -------------------------------------------------- |
+| none        | C ✗✓✓ 13 meals · H ✗✓✓ 16, house 9.72                               | identical                                          |
+| suggestions | C ✓✓✓ 15 · H ✗✓✓ 17, house 8.99                                     | C identical · H 16, house 8.97                     |
+| good2rush   | C roofed 1693 · H 18 meals, 6 left, roofed 1852                     | C roofed 1464 · H 23 meals, 9 left, roofed 1875    |
+| allForest   | C 21 injuries, 6 dead · H 12 meals                                  | C 149 injuries, 6 dead · H 16 meals                |
 | good2insist | C ✗✓✓ (house 7) · H ✗✗✓ (11 meals, roofed 2370, after the deadline) | C ✓✓✓ (roofed 2077) · H ✗✓✓ (12 meals, house 9.82) |
 - **Export fixes, 2026-10-07** (colony-scenario@3). Four bugs from the owner's export ([playtest](colony-playtest-2026-10-07.md)): Classic resting in the roofed house took storm exposure (§2); orders whose job was not on offer got no Human reply, and a new order was not heard when the person had done that job earlier for a commitment (§3); cards greyed at the lapse after the Human side finished (§3); tariq-again's reason claimed a memory Tariq did not have (§7). After a game-design and an adversarial review: the not-on-offer answer names its real cause, the Human side no longer offers to shutter a roofed house after the warning, the answer does not auto-pause, a refused card still lapses, and tariq-again reads the order log rather than the card. The owner's log replayed under the new rules: Classic injuries 10 → 2; o10 and o27 answer "not now: when the store runs low" (o27 then "Fine." at 16:00, when cooking came on offer); o4, o5 and o9 end done; o42 still cooks. No goal status changed in the balance table; the moves:
 
-| Pattern | Before (scenario@2) | After (scenario@3) |
-|---|---|---|
-| none | C 7 injuries | C 6 injuries; otherwise identical |
-| suggestions | C 10 injuries | C 3 injuries; Human identical |
-| good2rush | C roofed 1464, 20 injuries · H roofed 1875, 23 meals, 9 left, 8 injuries | C roofed 1474, 10 injuries · H roofed 1863, 23 meals, 11 left, 10 injuries |
-| allForest | — | identical |
-| good2insist | C roofed 2077, 15 meals, 24 injuries · H house 9.82, 14 injuries | C roofed 1744, 19 meals, 25 injuries · H house 9.74, 12 injuries |
+| Pattern     | Before (scenario@2)                                                      | After (scenario@3)                                                         |
+| ----------- | ------------------------------------------------------------------------ | -------------------------------------------------------------------------- |
+| none        | C 7 injuries                                                             | C 6 injuries; otherwise identical                                          |
+| suggestions | C 10 injuries                                                            | C 3 injuries; Human identical                                              |
+| good2rush   | C roofed 1464, 20 injuries · H roofed 1875, 23 meals, 9 left, 8 injuries | C roofed 1474, 10 injuries · H roofed 1863, 23 meals, 11 left, 10 injuries |
+| allForest   | —                                                                        | identical                                                                  |
+| good2insist | C roofed 2077, 15 meals, 24 injuries · H house 9.82, 14 injuries         | C roofed 1744, 19 meals, 25 injuries · H house 9.74, 12 injuries           |
 
-  The policy patterns move through re-issue timing: they re-order a person only when no card for them is open, and cards now settle differently (a build order to the roofed house is "cannot" at once instead of hanging for 120 minutes; nobody shutters a roofed house), and every order interrupts the person. Classic moves through the same timing (the Deferred note on Classic drift). An intermediate version of this fix, which answered every builder sent to the roofed house "cannot" while the Human side still offered shuttering, cost good2rush 4 Human storm meals; the shipped version does not.
+The policy patterns move through re-issue timing: they re-order a person only when no card for them is open, and cards now settle differently (a build order to the roofed house is "cannot" at once instead of hanging for 120 minutes; nobody shutters a roofed house), and every order interrupts the person. Classic moves through the same timing (the Deferred note on Classic drift). An intermediate version of this fix, which answered every builder sent to the roofed house "cannot" while the Human side still offered shuttering, cost good2rush 4 Human storm meals; the shipped version does not.
 
 ### 2026-10-19 level-up (colony-scenario@4)
 
@@ -338,35 +336,35 @@ What changed, and why:
 
 ## Deferred
 
-| Item | Target |
-|---|---|
-| Storm decay (1 stage per 2 storm hours, at most 4) is assumed, not measured: it acts after the 19:00 goals, but it sets the end-screen house stage and the starting stage of a Day-3 house-first project, also not measured. | unscheduled |
-| Crowded-masjid sleep value 0.5 and the `crowded` percept's numbers are assumed; no balance effect was measured (they act after 19:00). | unscheduled |
-| Mobile heights were set by assumption and checked at emulated widths (360–390 px) only; check on a real phone screen. | unscheduled |
-| Day-3 balance is measured on the shipped seed only. | unscheduled |
-| Map fill on desktop panes with less than 180 px spare under the map: those keep a smaller band, not people rows. | unscheduled |
-| Seeds other than 20261003 were probed only for none, good2rush, directorCedar and allForest (and at v2); other patterns on the shipped seed only. | unscheduled |
-| Hindsight covers Day 2 only with one policy; it does not search for the smallest change that would have won. | unscheduled |
-| Near misses give no minutes estimate for an unfinished roof, because no pace model was built. | unscheduled |
-| Classic drifting under engine changes is inferred, not verified: those patterns issue orders from `visibleNudges()`, which read Human-side state, so a Human change reorders Classic's orders. | unscheduled |
-| Classic with no orders roofs the house on 3 of 6 seeds; whether that weakens the contrast on other seeds is undecided (HANDOFF open item, 2026-10-04). | unscheduled |
-| Orders cannot starve the Human store, and moment 1 depends on a late tap (HANDOFF open items, 2026-10-04). | unscheduled |
-| Human villagers are injured more than Classic's (suggestions pattern 11 vs 3 on the shipped seed; the owner's 2026-10-07 run had 5 vs 10 before the Classic resting fix and 5 vs 2 replayed after it): they keep working timber in the storm. Risk perception of storm work is weak against commitment and role-goal pull ([findings](../findings.md), 2026-10-03). | unscheduled |
-| The hindsight branch from dawn roofs at D2 11:52 with 18 meals, not the pinned good2rush 12:01 with 17; cause not investigated ([findings](../findings.md), 2026-10-04). | unscheduled |
-| Landscape phones and large text are untested on a device. | unscheduled |
-| Appeals: "for the children" and "it's your duty" still cost nothing (only "you'll be safer" became a promise on 2026-10-19); storm-shutter's "roof will not be on" claim was wrong in the owner's 2026-10-07 run; Human storm injuries move no health bar. | 2026-10-28 |
-| Orders barely matter on the Human side: on the shipped seed the house reaches 9 of 10 with or without 17 player orders (harness audit, 2026-10-19). Balance, not rebalanced in the level-up. | 2026-11-02 |
-| Dead stretches with nothing to decide: D1 08:03–10:45 and 11:18–16:29, D2 10:08–16:00, the night, and most of Day 3 (harness audit, 2026-10-19). | 2026-11-02 |
-| Impatient HF personas (commuter, restless) stop on Day 1 under @3 and @4 from distress after streams of deferrals; a kitchen order with no grain answers "There’s no grain for a pot." with no hint of where grain comes from (HF session, 2026-10-19). | 2026-11-02 |
-| Round-2 playtest ([colony-playtest-2026-10-19.md](colony-playtest-2026-10-19.md)): conditional deferrals now stand as promises under @5 (design change 2026-10-20c). Balance tuning remains: a good plan should clearly beat solo on the Human side (the fan: 36 orders gave 8/10; no orders gave 9/10). No balance tuning in this change. | 2026-11-05 |
-| Round-2 playtest: honest readings. The pane says trust 54% and the inspector says 50%. Human Idris shows "Health 100" while hurt and carried. "-2 Hurt by your order: timber run" names no source. "Distress" shows without a reason. Explain `!`, Rush and the appeal toggles in place. The composer should warn when the Human side has already said "cannot". Note plainly, in the same quiet tone as sleep, that people stop to sleep and to pray. | 2026-11-05 |
-| Round-2 playtest: suggestions. Do not suggest what someone already does. Say what skipping costs. A suggestion that arrives during a wait must not pass unanswered. Add auto-pause modes (suggestions and storm only). | 2026-11-05 |
-| Round-2 playtest bugs. Moment 2 says "at dusk" for a morning. The under-protest line leaks `~Build~` markup. `cancel` on a closed order should say why (accepted, done or refused). `until` gives "That time has passed" or a bare "Paused". The "that is my work" line repeats. Harness: an unquoted `new 5`, `wait 20` or `inspect idris` must work, and `new <seed>` must honour the seed. | 2026-11-05 |
-| Round-3 retest ([README](../lab/reviews/watchwell-2026-10-20b/README.md), F-363): a way to keep a hurt person sheltered. Implemented 2026-10-23 under @8: Home requests shelter until dawn. Bram: “I cannot find a shelter instruction.” Owner retest remains. | 2026-11-05 |
-| Round-3 retest (F-364): implemented 2026-10-23: a House order names building or shuttering before and after. Owner retest remains. Bram: “I do not know whether I protected it.” | 2026-11-03 |
-| Round-3 retest (F-365): implemented 2026-10-23: answer first in the rebuilt sheet, bounded ten-second reading slowdown for unopened suggestions. Owner retest remains. Bram: “the actual cedar answer and trust explanation are above the tiny visible body.” | 2026-11-03 |
-| Round-2 playtest: show the economy (timber stock, what each house stage needs). | 2026-11-05 |
-| Owner taste direction (2026-10-20): "Don't become bland and objective neutral just to satisfy everyone. It's okay to have slight controversies, for example on difficulty." The @5 promises keep people's own priorities: a promise still yields to "that is my work", and no difficulty value changed. An opt-in early-warning village is implemented under @6 (design change 2026-10-20d). A later-storm option remains deferred: it changes the shared goal/end clock, shelter duration, meals and housing as well as weather. Review after the owner plays early warning. | 2026-11-03 |
+| Item                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | Target      |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Storm decay (1 stage per 2 storm hours, at most 4) is assumed, not measured: it acts after the 19:00 goals, but it sets the end-screen house stage and the starting stage of a Day-3 house-first project, also not measured.                                                                                                                                                                                                                                                                                                                                                  | unscheduled |
+| Crowded-masjid sleep value 0.5 and the `crowded` percept's numbers are assumed; no balance effect was measured (they act after 19:00).                                                                                                                                                                                                                                                                                                                                                                                                                                        | unscheduled |
+| Mobile heights were set by assumption and checked at emulated widths (360–390 px) only; check on a real phone screen.                                                                                                                                                                                                                                                                                                                                                                                                                                                         | unscheduled |
+| Day-3 balance is measured on the shipped seed only.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | unscheduled |
+| Map fill on desktop panes with less than 180 px spare under the map: those keep a smaller band, not people rows.                                                                                                                                                                                                                                                                                                                                                                                                                                                              | unscheduled |
+| Seeds other than 20261003 were probed only for none, good2rush, directorCedar and allForest (and at v2); other patterns on the shipped seed only.                                                                                                                                                                                                                                                                                                                                                                                                                             | unscheduled |
+| Hindsight covers Day 2 only with one policy; it does not search for the smallest change that would have won.                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | unscheduled |
+| Near misses give no minutes estimate for an unfinished roof, because no pace model was built.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | unscheduled |
+| Classic drifting under engine changes is inferred, not verified: those patterns issue orders from `visibleNudges()`, which read Human-side state, so a Human change reorders Classic's orders.                                                                                                                                                                                                                                                                                                                                                                                | unscheduled |
+| Classic with no orders roofs the house on 3 of 6 seeds; whether that weakens the contrast on other seeds is undecided (HANDOFF open item, 2026-10-04).                                                                                                                                                                                                                                                                                                                                                                                                                        | unscheduled |
+| Orders cannot starve the Human store, and moment 1 depends on a late tap (HANDOFF open items, 2026-10-04).                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | unscheduled |
+| Human villagers are injured more than Classic's (suggestions pattern 11 vs 3 on the shipped seed; the owner's 2026-10-07 run had 5 vs 10 before the Classic resting fix and 5 vs 2 replayed after it): they keep working timber in the storm. Risk perception of storm work is weak against commitment and role-goal pull ([findings](../findings.md), 2026-10-03).                                                                                                                                                                                                           | unscheduled |
+| The hindsight branch from dawn roofs at D2 11:52 with 18 meals, not the pinned good2rush 12:01 with 17; cause not investigated ([findings](../findings.md), 2026-10-04).                                                                                                                                                                                                                                                                                                                                                                                                      | unscheduled |
+| Landscape phones and large text are untested on a device.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | unscheduled |
+| Appeals: "for the children" and "it's your duty" still cost nothing (only "you'll be safer" became a promise on 2026-10-19); storm-shutter's "roof will not be on" claim was wrong in the owner's 2026-10-07 run; Human storm injuries move no health bar.                                                                                                                                                                                                                                                                                                                    | 2026-10-28  |
+| Orders barely matter on the Human side: on the shipped seed the house reaches 9 of 10 with or without 17 player orders (harness audit, 2026-10-19). Balance, not rebalanced in the level-up.                                                                                                                                                                                                                                                                                                                                                                                  | 2026-11-02  |
+| Dead stretches with nothing to decide: D1 08:03–10:45 and 11:18–16:29, D2 10:08–16:00, the night, and most of Day 3 (harness audit, 2026-10-19).                                                                                                                                                                                                                                                                                                                                                                                                                              | 2026-11-02  |
+| Impatient HF personas (commuter, restless) stop on Day 1 under @3 and @4 from distress after streams of deferrals; a kitchen order with no grain answers "There’s no grain for a pot." with no hint of where grain comes from (HF session, 2026-10-19).                                                                                                                                                                                                                                                                                                                       | 2026-11-02  |
+| Round-2 playtest ([colony-playtest-2026-10-19.md](colony-playtest-2026-10-19.md)): conditional deferrals now stand as promises under @5 (design change 2026-10-20c). Balance tuning remains: a good plan should clearly beat solo on the Human side (the fan: 36 orders gave 8/10; no orders gave 9/10). No balance tuning in this change.                                                                                                                                                                                                                                    | 2026-11-05  |
+| Round-2 playtest: honest readings. The pane says trust 54% and the inspector says 50%. Human Idris shows "Health 100" while hurt and carried. "-2 Hurt by your order: timber run" names no source. "Distress" shows without a reason. Explain `!`, Rush and the appeal toggles in place. The composer should warn when the Human side has already said "cannot". Note plainly, in the same quiet tone as sleep, that people stop to sleep and to pray.                                                                                                                        | 2026-11-05  |
+| Round-2 playtest: suggestions. Do not suggest what someone already does. Say what skipping costs. A suggestion that arrives during a wait must not pass unanswered. Add auto-pause modes (suggestions and storm only).                                                                                                                                                                                                                                                                                                                                                        | 2026-11-05  |
+| Round-2 playtest bugs. Moment 2 says "at dusk" for a morning. The under-protest line leaks `~Build~` markup. `cancel` on a closed order should say why (accepted, done or refused). `until` gives "That time has passed" or a bare "Paused". The "that is my work" line repeats. Harness: an unquoted `new 5`, `wait 20` or `inspect idris` must work, and `new <seed>` must honour the seed.                                                                                                                                                                                 | 2026-11-05  |
+| Round-3 retest ([README](../lab/reviews/watchwell-2026-10-20b/README.md), F-363): a way to keep a hurt person sheltered. Implemented 2026-10-23 under @8: Home requests shelter until dawn. Bram: “I cannot find a shelter instruction.” Owner retest remains.                                                                                                                                                                                                                                                                                                                | 2026-11-05  |
+| Round-3 retest (F-364): implemented 2026-10-23: a House order names building or shuttering before and after. Owner retest remains. Bram: “I do not know whether I protected it.”                                                                                                                                                                                                                                                                                                                                                                                              | 2026-11-03  |
+| Round-3 retest (F-365): implemented 2026-10-23: answer first in the rebuilt sheet, bounded ten-second reading slowdown for unopened suggestions. Owner retest remains. Bram: “the actual cedar answer and trust explanation are above the tiny visible body.”                                                                                                                                                                                                                                                                                                                 | 2026-11-03  |
+| Round-2 playtest: show the economy (timber stock, what each house stage needs).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | 2026-11-05  |
+| Owner taste direction (2026-10-20): "Don't become bland and objective neutral just to satisfy everyone. It's okay to have slight controversies, for example on difficulty." The @5 promises keep people's own priorities: a promise still yields to "that is my work", and no difficulty value changed. An opt-in early-warning village is implemented under @6 (design change 2026-10-20d). A later-storm option remains deferred: it changes the shared goal/end clock, shelter duration, meals and housing as well as weather. Review after the owner plays early warning. | 2026-11-03  |
 
 ## Design change 2026-10-20 (owner may veto)
 
@@ -435,11 +433,11 @@ A stated delay now survives the old 120-minute expiry until the job begins, HF r
 
 At 360×690, Choose person → Idris → House takes **3 taps before and after**, excluding Play. This measures the direct route’s activations, not human completion time. A scripted **600 emulated seconds** sent five House orders at 0/120/240/360/480 seconds to Idris/Samira/Tariq/Yusuf/Idris. Both runs used 19 activations and reached sim minute 1754 with default slowdown. DOM text was checked each second without opening History.
 
-| Measure | @4 before | @5 after |
-|---|---:|---:|
-| Orders that lapsed | 4 | 1 |
-| Lapsed orders with no original answer exposed | 0 | 0 |
-| Lapses with no visible lapse notice | 4 | 0 |
+| Measure                                       | @4 before | @5 after |
+| --------------------------------------------- | --------: | -------: |
+| Orders that lapsed                            |         4 |        1 |
+| Lapsed orders with no original answer exposed |         0 |        0 |
+| Lapses with no visible lapse notice           |         4 |        0 |
 
 These are browser-script observations, not a human playtest or proof that someone read the words. The script drives the real worker in quarter-second ticks and advances the browser clock; it does not measure attention.
 
@@ -464,13 +462,13 @@ Revert: revert `Keep deferred Well orders as promises (colony-scenario@5)`, `Sho
 
 **Versioning and replay.** The clarity fixes add no simulation rules. Receipts are derived presentation records, rebuilt on load. @6 versions only the opt-in preparation setting. The named dawn choice and its minute enter the export, save and state hash; @3–@5 reject it. Default @6 and @5 compare equal as complete simulation states on the same seed and orders, without dropping fields. Historical fixtures and encoded midpoint continuations pass:
 
-| Edition | Full fixture, unchanged | Midpoint | After 40 more minutes |
-|---|---|---|---|
-| @3 | `0e3098aa7a50ab` | `1347c6790d6af0` | `1778b892677e4f` |
-| @4 | `094447bbacb73f` | `19a50932e6dfad` | `0aebd284d7354b` |
-| @5 | `0282691f605d0b` | `02758c2e2bb9fa` | `01b6fc9edd1657` |
-| @6 default | `0282691f605d0b` | equal to @5 | equal to @5 |
-| @6 early warning | `0600476948949f` | `134caa6c3962af` | `171cdb3b9f7fcd` |
+| Edition          | Full fixture, unchanged | Midpoint         | After 40 more minutes |
+| ---------------- | ----------------------- | ---------------- | --------------------- |
+| @3               | `0e3098aa7a50ab`        | `1347c6790d6af0` | `1778b892677e4f`      |
+| @4               | `094447bbacb73f`        | `19a50932e6dfad` | `0aebd284d7354b`      |
+| @5               | `0282691f605d0b`        | `02758c2e2bb9fa` | `01b6fc9edd1657`      |
+| @6 default       | `0282691f605d0b`        | equal to @5      | equal to @5           |
+| @6 early warning | `0600476948949f`        | `134caa6c3962af` | `171cdb3b9f7fcd`      |
 
 The historical comparisons normalize only the embedded person-engine metadata, as before. Pointer tests cover the person over a place and the injury changing during a Home press. The 360×690 touch layout check covers the start card, early-warning selection, watching, Rush in the ordinary panel and the full panel: no audit findings; Rush is a visible 44 px target. Real-device and owner acceptance remain pending.
 

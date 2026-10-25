@@ -1,11 +1,6 @@
-import { createPerson, ENGINE_VERSION } from '@adam0white/human-framework';
-import {
-  admitSiteCast,
-  castRole,
-  chapterPeople,
-  SITE_CAST,
-  siteCastCheckpoint,
-} from '../shared/cast-chapter.ts';
+import { ENGINE_VERSION } from '@adam0white/human-framework';
+import { castRole, chapterPeople, siteCastCheckpoint } from '../shared/cast-chapter.ts';
+import { requireValue } from '../shared/require-value.ts';
 /**
  * Dedicated worker for The Night Watch. Real time enters only as `tick{dtMs}`; the pacer steps whole sim
  * minutes, and inputs apply between minutes and are logged by sim minute, so a seed and the log replay the run.
@@ -23,11 +18,11 @@ import {
 import { hostWorker } from '../shared/worker-host.ts';
 import { type MainToWorker, WATCH_SCENARIO_VERSION, type WorkerReply } from './protocol.ts';
 import { canRestoreSeason } from './season-recovery.ts';
-import { DAY, DUSK_START, WATCHERS } from './sim/config.ts';
+import { DAY } from './sim/config.ts';
 import { dayOfYear, seasonOfDay } from './sim/life.ts';
 import { clockRuns, nightEnd } from './sim/night.ts';
 import { Pacer } from './sim/pace.ts';
-import { prepareWatchCast, WATCH_NORMS, watcherSpec, watchTerminalReceipts } from './sim/people.ts';
+import { prepareWatchCast, WATCH_NORMS, watchTerminalReceipts } from './sim/people.ts';
 import { WatchRun } from './sim/run.ts';
 import { isSeason } from './sim/season.ts';
 import type { WatchState } from './sim/state.ts';
@@ -197,7 +192,7 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
           type: 'castReady',
           requestId: msg.requestId,
           initials: Object.fromEntries(
-            chapterPeople(msg.chapter).map((p) => [p.input.parent.castId, p.initial!]),
+            chapterPeople(msg.chapter).map((p) => [p.input.parent.castId, requireValue(p.initial)]),
           ),
         });
         return;
@@ -216,7 +211,10 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
         host.post({
           type: 'castReady',
           requestId: msg.requestId,
-          terminal: { castId: msg.type === 'castCheckpoint' ? msg.castId : '', at: run!.state.minute },
+          terminal: {
+            castId: msg.type === 'castCheckpoint' ? msg.castId : '',
+            at: requireValue(run).state.minute,
+          },
         });
         return;
       }
@@ -226,7 +224,7 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
           'watch',
           person,
           WATCH_NORMS,
-          role === 'kian' ? run!.state.refugeDeparture?.watchCare : undefined,
+          role === 'kian' ? requireValue(run).state.refugeDeparture?.watchCare : undefined,
         )
           .then((transfer) =>
             host.post(

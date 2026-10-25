@@ -19,11 +19,12 @@ import { TallySetting } from './EndTally.tsx';
 
 (globalThis as typeof globalThis & { IS_REACT_ACT_ENVIRONMENT: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
 
+function Preference() {
+  const [on, setOn] = useState(false);
+  return createElement(TallySetting, { on, onChange: setOn, label: 'Keep a tally' });
+}
+
 it('starts the UI preference off and changes only the presentation when checked', async () => {
-  function Preference() {
-    const [on, setOn] = useState(false);
-    return createElement(TallySetting, { on, onChange: setOn, label: 'Keep a tally' });
-  }
   const container = document.createElement('div');
   const root = createRoot(container);
   await act(() => root.render(createElement(Preference)));

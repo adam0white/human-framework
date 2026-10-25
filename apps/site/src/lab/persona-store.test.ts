@@ -3,6 +3,7 @@ import { afterEach, expect, it, vi } from 'vitest';
 import { OFF_KEY, PLAYER_KEY, writeLocal } from '../../../../packages/lab-client/src/identity.ts';
 import type { PersonaRequest } from '../../../../packages/lab-client/src/persona.ts';
 import { createPersona } from '../../../../packages/lab-client/src/persona.ts';
+import { requireValue } from '../shared/require-value.ts';
 import { shelfRequest as rawShelfRequest } from './persona-store.ts';
 
 async function shelfRequest(request: PersonaRequest): Promise<unknown> {
@@ -236,7 +237,7 @@ it('accepts a whole cast atomically and requires all pinned histories for record
       });
     }),
   );
-  const p = people[1]!;
+  const p = requireValue(people[1]);
   const { revision, ...body } = p;
   const other = await createPersona({ ...body, parentRevision: revision, transfer: { other: true } });
   await rawShelfRequest({ action: 'put', envelope: other });

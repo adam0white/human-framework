@@ -94,8 +94,10 @@ describe('bounded planning', () => {
 
   test('a route never uses a link its own earlier step already consumed', () => {
     const p = person();
+    const goal = p.agenda.goals[0];
+    if (!goal) throw new Error('Missing planning goal');
     p.agenda.goals.push({
-      ...structuredClone(p.agenda.goals[0]!),
+      ...structuredClone(goal),
       id: 'fetch',
       advancedBy: [{ action: 'take', amount: 1 }],
     });

@@ -47,12 +47,6 @@ const KEEP_CHRONICLES = 4;
 let opening: Promise<IDBDatabase | null> | null = null;
 let queue: Promise<unknown> = Promise.resolve();
 
-/** Forget the open database (tests swap in a fresh IndexedDB). */
-export function resetStore(): void {
-  opening = null;
-  queue = Promise.resolve();
-}
-
 function open(): Promise<IDBDatabase | null> {
   if (opening) return opening;
   opening = new Promise((resolve) => {

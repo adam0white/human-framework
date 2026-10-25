@@ -4,13 +4,13 @@ Reviewer: Dwarf Fortress / roguelike veteran, phone commuter. Informed reviewer 
 
 ## 1. Did round 2 remove the round-1 blockers?
 
-| Round-1 blocker | Now | Evidence |
-|---|---|---|
-| 1. Watch hid the response below the fold | Mostly fixed | At 241 s Yunus's account shows the answer, the cost line and the Send down / Send help buttons without scrolling (11-yunus-account.png). At 355-357 s Rest / Send relief are on screen, and the relief sheet lists each helper with "likely, maybe; leaves Tamar at the Gate" (18-relief-sheet.png). |
-| 2. "Tiring" impression gave no relief | Fixed in the case I hit | Yunus 355 s: "Keeper's read: seemed tiring at the last look." with Rest and Send relief offered. Tamar 429 s the same. |
-| 3. False "post empty" warning | Fixed | "leaves Tamar at the Gate", "leaves the east wall empty" (the east wall really was empty). |
-| 4. Well steered me into a known refusal | Fixed | Suggestion at 277 s says "Samira · Will refuse: busy with own work" and leads with "Insist · may cost trust". The Maryam card at 85 s did the same. |
-| 5. Well clipped tags / crowded scene | Half fixed | Tags are readable. The scene is not: with a hurt notice plus a suggestion or order sheet open, the map shrinks to an 80 px strip (06-review.png, 11-insist2.png, 19.png). I could not see who stood where while deciding. |
+| Round-1 blocker                          | Now                     | Evidence                                                                                                                                                                                                                                                                                             |
+| ---------------------------------------- | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1. Watch hid the response below the fold | Mostly fixed            | At 241 s Yunus's account shows the answer, the cost line and the Send down / Send help buttons without scrolling (11-yunus-account.png). At 355-357 s Rest / Send relief are on screen, and the relief sheet lists each helper with "likely, maybe; leaves Tamar at the Gate" (18-relief-sheet.png). |
+| 2. "Tiring" impression gave no relief    | Fixed in the case I hit | Yunus 355 s: "Keeper's read: seemed tiring at the last look." with Rest and Send relief offered. Tamar 429 s the same.                                                                                                                                                                               |
+| 3. False "post empty" warning            | Fixed                   | "leaves Tamar at the Gate", "leaves the east wall empty" (the east wall really was empty).                                                                                                                                                                                                           |
+| 4. Well steered me into a known refusal  | Fixed                   | Suggestion at 277 s says "Samira · Will refuse: busy with own work" and leads with "Insist · may cost trust". The Maryam card at 85 s did the same.                                                                                                                                                  |
+| 5. Well clipped tags / crowded scene     | Half fixed              | Tags are readable. The scene is not: with a hurt notice plus a suggestion or order sheet open, the map shrinks to an 80 px strip (06-review.png, 11-insist2.png, 19.png). I could not see who stood where while deciding.                                                                            |
 
 Are the Watch night acts findable cold, in one tap, and readable? Partly.
 - The route works: tap the person on the wall, then the act. It is one tap per act after the account opens. Send relief opens one sheet, Send Kian is one more tap, and the strip then says "Kian has the mill wall; Yunus has been asked to go down." (19-after-relief.png, 360 s). That is good.
@@ -58,6 +58,7 @@ Where it was unreadable, not hard:
 F-356 (Rush findable): Rush is now reachable at Village actions, Order options, and I found it at 294 s with the appeals ("for the children", "your duty", "you'll be safer"). I count F-356 as covered, but the label should appear once a person is selected, not only after More.
 
 ## Nice to have (not blockers)
+
 - Stack Watch toasts at most two high, and move them off the wall; three at once hide the whole wall (04-decision.png, 07-joss-home.png).
 - Watch "Everyone is on the wall" at 193 s while Joss was on his way home.
 - Say where to carry the light when a watcher is "Too far away" (15-yunus-asleep.png).
@@ -65,7 +66,9 @@ F-356 (Rush findable): Rush is now reachable at Village actions, Order options, 
 - Offer a "Hold" button that actually pauses, as the owner's opt-in easier setting, not as default.
 
 ## Difficulty
+
 Do not flatten it. Both games take away more than they give. Watch's relief act is good because Kian can say no and Yunus can be right. Well's final comparison ("you made it worse than doing nothing") is the controversy the owner asked for. Fix the three readability problems (blockers 1, 3, 4) and leave the cost alone.
 
 ## Cleanup
+
 Watch driver PID 44284 and Well driver PID 56204 killed by exact PID. Nothing in the repository was edited.

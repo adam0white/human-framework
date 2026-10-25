@@ -12,15 +12,15 @@ Original checkpoint note, verbatim, logged at 68.539 s after the 30-second wait 
 
 The note was late by 8.5 seconds. The driver's own screenshot at 60.040 s shows Hasan and İsmail's reply already present. The judgments below use only the first-minute interactions and that screenshot, not later help.
 
-| Item | Result and checkpoint evidence |
-|---|---|
-| DL-1 A reason to act | PASS — I needed households to cut barley before rain on 20 July. The opening goal explicitly told me this. |
-| DL-2 What can I touch | PASS — House buttons, About, Call to barley and Send grain were recognizable. I used Kavak, Ak, About and Call. The selected Ak button was blue. No inert thing tried in the first minute. Some houses extended beyond the horizontal screen. |
-| DL-3 Urgency and selection | PASS — Rain on 20 July supplied urgency against today, 18 July. I selected Ak to learn about people first. The grain bar competed for attention, but I had not learned its meaning. |
-| DL-4 Why the limit | PASS — Call became disabled after my call. The text said another call opens when the current one expires on 24 July, year one. Visiting also appeared gated by putting off a call; I had not reached that condition yet. |
-| DL-5 Readable situation | PASS — “The call is underway; replies are available at the houses.” By 60.040 s I could read “Came to the landowner’s barley today: Hasan and İsmail” and “I’ll come.” The goal itself was visually truncated. |
-| DL-6 A choice soon | PASS — Title action available at 0.594 s, input at 3.373 s. Household and call choices available at 3.373 s; first household input at 6.911 s; consequential call input at 25.927 s. Choices were available within 30 seconds, alongside short introductory text. |
-| DL-7 Learn by doing | FAIL for call scope — About taught me who lived there; Call disabled itself and produced named workers, but I could not tell whether I asked Ak or the whole valley. No help used in this minute. Reached household inspection and calling (2 interaction types). Giving, visiting, pressing and sending men were NOT TESTED at this checkpoint (4 types). |
+| Item                       | Result and checkpoint evidence                                                                                                                                                                                                                                                                                                                             |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DL-1 A reason to act       | PASS — I needed households to cut barley before rain on 20 July. The opening goal explicitly told me this.                                                                                                                                                                                                                                                 |
+| DL-2 What can I touch      | PASS — House buttons, About, Call to barley and Send grain were recognizable. I used Kavak, Ak, About and Call. The selected Ak button was blue. No inert thing tried in the first minute. Some houses extended beyond the horizontal screen.                                                                                                              |
+| DL-3 Urgency and selection | PASS — Rain on 20 July supplied urgency against today, 18 July. I selected Ak to learn about people first. The grain bar competed for attention, but I had not learned its meaning.                                                                                                                                                                        |
+| DL-4 Why the limit         | PASS — Call became disabled after my call. The text said another call opens when the current one expires on 24 July, year one. Visiting also appeared gated by putting off a call; I had not reached that condition yet.                                                                                                                                   |
+| DL-5 Readable situation    | PASS — “The call is underway; replies are available at the houses.” By 60.040 s I could read “Came to the landowner’s barley today: Hasan and İsmail” and “I’ll come.” The goal itself was visually truncated.                                                                                                                                             |
+| DL-6 A choice soon         | PASS — Title action available at 0.594 s, input at 3.373 s. Household and call choices available at 3.373 s; first household input at 6.911 s; consequential call input at 25.927 s. Choices were available within 30 seconds, alongside short introductory text.                                                                                          |
+| DL-7 Learn by doing        | FAIL for call scope — About taught me who lived there; Call disabled itself and produced named workers, but I could not tell whether I asked Ak or the whole valley. No help used in this minute. Reached household inspection and calling (2 interaction types). Giving, visiting, pressing and sending men were NOT TESTED at this checkpoint (4 types). |
 
 ## What playing felt like
 
@@ -96,61 +96,61 @@ Original reactions below retain their wording. All recorded game clocks were 18 
 
 Elapsed times are driver wall-clock times at operation completion. The date shown throughout gameplay was 18 July, year one.
 
-| Elapsed s | Operation and exact input | Driver error, if any |
-|---|---|---|
-| 0.593 | open {} |  |
-| 3.373 | tap {"name": "Take up the seal"} |  |
-| 6.910 | tap {"name": "the Kavak house"} |  |
-| 11.049 | tap {"name": "About ▾"} |  |
-| 16.575 | tap {"name": "the Ak house"} |  |
-| 20.191 | tap {"name": "About ▾"} |  |
-| 20.379 | shot {"file": "first-house.png"} |  |
-| 25.926 | tap {"name": "Call to barley"} |  |
-| 60.040 | shot {"file": "first-minute.png"} |  |
-| 61.382 | wait {"s": 30} |  |
-| 68.771 | tap {"name": "the Çoban house"} |  |
-| 75.986 | tap {"name": "About ▾"} |  |
-| 76.154 | tap {"name": "Call to barley"} |  |
-| 79.936 | tap {"name": "Send grain"} |  |
-| 117.716 | wait {"s": 30} |  |
-| 125.173 | tap {"name": "About ▾"} |  |
-| 130.737 | tap {"name": "Back to the notebook"} |  |
-| 133.398 | tap {"name": "Other orders ▸"} |  |
-| 137.470 | tap {"name": "the Çoban house"} |  |
-| 137.637 | shot {"file": "put-off-house.png"} |  |
-| 145.507 | tap {"x": 179, "y": 154} |  |
-| 148.355 | tap {"name": "Information"} |  |
-| 155.664 | tap {"name": "Close information"} |  |
-| 155.836 | tap {"name": "The ledger ▸"} |  |
-| 163.031 | tap {"name": "the Dere house"} | Cannot tap the Dere house: no uncovered enabled control (driver failure) |
-| 163.059 | tap {"name": "About ▾"} | About ▾ is not on the page now, and it was not in the last reply either; use a name from the latest controls (not a driver failure) |
-| 167.350 | tap {"name": "the Dere house"} | Cannot tap the Dere house: no uncovered enabled control (driver failure) |
-| 175.458 | tap {"name": "Menu"} |  |
-| 178.300 | tap {"name": "Send word"} |  |
-| 186.197 | tap {"name": "I'd keep playing"} |  |
-| 186.336 | type {"name": "Your name or tester id (optional)", "text": "playtester Dalia rebuild-2026-10-23"} |  |
-| 186.494 | type {"name": "What happened in the valley, what you wanted, what got in the way.", "text": "I would keep playing for the named household replies, but I could not find how to visit and the driver stopped me after two failed Dere taps."} |  |
-| 186.699 | tap {"name": "Send"} |  |
+| Elapsed s | Operation and exact input                                                                                                                                                                                                                    | Driver error, if any                                                                                                                |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| 0.593     | open {}                                                                                                                                                                                                                                      |                                                                                                                                     |
+| 3.373     | tap {"name": "Take up the seal"}                                                                                                                                                                                                             |                                                                                                                                     |
+| 6.910     | tap {"name": "the Kavak house"}                                                                                                                                                                                                              |                                                                                                                                     |
+| 11.049    | tap {"name": "About ▾"}                                                                                                                                                                                                                      |                                                                                                                                     |
+| 16.575    | tap {"name": "the Ak house"}                                                                                                                                                                                                                 |                                                                                                                                     |
+| 20.191    | tap {"name": "About ▾"}                                                                                                                                                                                                                      |                                                                                                                                     |
+| 20.379    | shot {"file": "first-house.png"}                                                                                                                                                                                                             |                                                                                                                                     |
+| 25.926    | tap {"name": "Call to barley"}                                                                                                                                                                                                               |                                                                                                                                     |
+| 60.040    | shot {"file": "first-minute.png"}                                                                                                                                                                                                            |                                                                                                                                     |
+| 61.382    | wait {"s": 30}                                                                                                                                                                                                                               |                                                                                                                                     |
+| 68.771    | tap {"name": "the Çoban house"}                                                                                                                                                                                                              |                                                                                                                                     |
+| 75.986    | tap {"name": "About ▾"}                                                                                                                                                                                                                      |                                                                                                                                     |
+| 76.154    | tap {"name": "Call to barley"}                                                                                                                                                                                                               |                                                                                                                                     |
+| 79.936    | tap {"name": "Send grain"}                                                                                                                                                                                                                   |                                                                                                                                     |
+| 117.716   | wait {"s": 30}                                                                                                                                                                                                                               |                                                                                                                                     |
+| 125.173   | tap {"name": "About ▾"}                                                                                                                                                                                                                      |                                                                                                                                     |
+| 130.737   | tap {"name": "Back to the notebook"}                                                                                                                                                                                                         |                                                                                                                                     |
+| 133.398   | tap {"name": "Other orders ▸"}                                                                                                                                                                                                               |                                                                                                                                     |
+| 137.470   | tap {"name": "the Çoban house"}                                                                                                                                                                                                              |                                                                                                                                     |
+| 137.637   | shot {"file": "put-off-house.png"}                                                                                                                                                                                                           |                                                                                                                                     |
+| 145.507   | tap {"x": 179, "y": 154}                                                                                                                                                                                                                     |                                                                                                                                     |
+| 148.355   | tap {"name": "Information"}                                                                                                                                                                                                                  |                                                                                                                                     |
+| 155.664   | tap {"name": "Close information"}                                                                                                                                                                                                            |                                                                                                                                     |
+| 155.836   | tap {"name": "The ledger ▸"}                                                                                                                                                                                                                 |                                                                                                                                     |
+| 163.031   | tap {"name": "the Dere house"}                                                                                                                                                                                                               | Cannot tap the Dere house: no uncovered enabled control (driver failure)                                                            |
+| 163.059   | tap {"name": "About ▾"}                                                                                                                                                                                                                      | About ▾ is not on the page now, and it was not in the last reply either; use a name from the latest controls (not a driver failure) |
+| 167.350   | tap {"name": "the Dere house"}                                                                                                                                                                                                               | Cannot tap the Dere house: no uncovered enabled control (driver failure)                                                            |
+| 175.458   | tap {"name": "Menu"}                                                                                                                                                                                                                         |                                                                                                                                     |
+| 178.300   | tap {"name": "Send word"}                                                                                                                                                                                                                    |                                                                                                                                     |
+| 186.197   | tap {"name": "I'd keep playing"}                                                                                                                                                                                                             |                                                                                                                                     |
+| 186.336   | type {"name": "Your name or tester id (optional)", "text": "playtester Dalia rebuild-2026-10-23"}                                                                                                                                            |                                                                                                                                     |
+| 186.494   | type {"name": "What happened in the valley, what you wanted, what got in the way.", "text": "I would keep playing for the named household replies, but I could not find how to visit and the driver stopped me after two failed Dere taps."} |                                                                                                                                     |
+| 186.699   | tap {"name": "Send"}                                                                                                                                                                                                                         |                                                                                                                                     |
 
 ## Important visible answers
 
-| Elapsed s | Input / visible answer |
-|---|---|
-| 3.373 | Take up the seal → “Call households to cut the landowner’s barley before the rain.” Letter specifies 384 grain measures by 15 September. |
-| 11.050 | Kavak About → “The reeve (local overseer)’s house: whitewashed, the only one with glass in a window.” |
-| 20.192 | Ak About → “Osman’s brother’s house. Three boys’ shirts on the line.” Names Hasan, Fatma, İsmail, Kadir, Sultan. |
-| 25.927 | Call to barley → “0 came, 0 put off, 0 refused”; call disabled until 24 July. |
-| 60.040 screenshot / 61.383 reply | “Came to the landowner’s barley today: Hasan and İsmail.” “I’ll come.” “2 came, 0 put off, 0 refused.” |
-| 75.986 | Çoban About → shepherd's house, flock on the yayla; Yusuf, Zehra, Cemal, Gül. |
-| 79.937 | Send grain → “Food: you haven’t seen their jars yet. a small sack from the granary; leaves less grain for the due”. |
-| 117.718 | Wait → “Put the landowner’s barley off today: Zehra.” “Our own barley first. Then the landowner’s.” |
-| 125.173 | About → “Your book: you gave (today).” “0 came, 1 put off, 0 refused.” |
-| 130.737 | Notebook → Yusuf: “Tell the landowner we are grateful. Or don’t. Tell God.” Aggregate “3 came, 1 put off, 0 refused.” |
-| 133.398 | Other orders → call disabled until 24 July; grain letter opens on forecast shortfall or hungry houses finding low granary. |
-| 137.470 | Çoban → “Put the landowner’s barley off today: Zehra and Yusuf.” |
-| 145.508 | Map point tap → notebook, aggregate “3 came, 2 put off, 0 refused.” No visit started visibly. |
-| 148.356 | Information → “About 20 cut; 340 standing”; dates and grain bar explanation; “Hold a refusal to press it: they come, and they remember.” |
-| 155.837 | Ledger → granary 24 measures; about 20 cut, about 340 standing; due 384; rider 15 September; years short 0. |
-| 186.700 | Send → “Sent. Thank you.” |
+| Elapsed s                        | Input / visible answer                                                                                                                   |
+| -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| 3.373                            | Take up the seal → “Call households to cut the landowner’s barley before the rain.” Letter specifies 384 grain measures by 15 September. |
+| 11.050                           | Kavak About → “The reeve (local overseer)’s house: whitewashed, the only one with glass in a window.”                                    |
+| 20.192                           | Ak About → “Osman’s brother’s house. Three boys’ shirts on the line.” Names Hasan, Fatma, İsmail, Kadir, Sultan.                         |
+| 25.927                           | Call to barley → “0 came, 0 put off, 0 refused”; call disabled until 24 July.                                                            |
+| 60.040 screenshot / 61.383 reply | “Came to the landowner’s barley today: Hasan and İsmail.” “I’ll come.” “2 came, 0 put off, 0 refused.”                                   |
+| 75.986                           | Çoban About → shepherd's house, flock on the yayla; Yusuf, Zehra, Cemal, Gül.                                                            |
+| 79.937                           | Send grain → “Food: you haven’t seen their jars yet. a small sack from the granary; leaves less grain for the due”.                      |
+| 117.718                          | Wait → “Put the landowner’s barley off today: Zehra.” “Our own barley first. Then the landowner’s.”                                      |
+| 125.173                          | About → “Your book: you gave (today).” “0 came, 1 put off, 0 refused.”                                                                   |
+| 130.737                          | Notebook → Yusuf: “Tell the landowner we are grateful. Or don’t. Tell God.” Aggregate “3 came, 1 put off, 0 refused.”                    |
+| 133.398                          | Other orders → call disabled until 24 July; grain letter opens on forecast shortfall or hungry houses finding low granary.               |
+| 137.470                          | Çoban → “Put the landowner’s barley off today: Zehra and Yusuf.”                                                                         |
+| 145.508                          | Map point tap → notebook, aggregate “3 came, 2 put off, 0 refused.” No visit started visibly.                                            |
+| 148.356                          | Information → “About 20 cut; 340 standing”; dates and grain bar explanation; “Hold a refusal to press it: they come, and they remember.” |
+| 155.837                          | Ledger → granary 24 measures; about 20 cut, about 340 standing; due 384; rider 15 September; years short 0.                              |
+| 186.700                          | Send → “Sent. Thank you.”                                                                                                                |
 
 Evidence files: (driver scratch)/wall-clock.jsonl; (driver scratch)/first-house.png; (driver scratch)/first-minute.png; (driver scratch)/put-off-house.png. Screenshots were inspected as images. The original log contains inputs and diary reactions, not the full visible reply text; the visible-answer table transcribes replies observed during play.

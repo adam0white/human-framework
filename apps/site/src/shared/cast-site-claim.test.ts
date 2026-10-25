@@ -9,6 +9,7 @@ import {
 import { describe, expect, it } from 'vitest';
 import { nativeCastSource } from './cast-native-sources.ts';
 import { claimSiteCastBatch } from './cast-site-claim.ts';
+import { requireValue } from './require-value.ts';
 
 /** Transaction orchestration control; not a fabricated native played-source receipt. */
 describe('same-site native claim provenance', () => {
@@ -39,13 +40,13 @@ describe('same-site native claim provenance', () => {
           } satisfies LifeBatchPreparation;
         const envelopes = message.envelopes as PersonaEnvelope[];
         expect((message.expectedHeads as Record<string, string>)[head.castId]).toBe(head.revision);
-        head = envelopes[0]!;
+        head = requireValue(envelopes[0]);
         return {};
       },
     } as unknown as CastShelf;
     const source = { game: 'voice', rules: 'cast-1', engine: '2.17.0', build: 'site-control' };
     const a = await claimSiteCastBatch(shelf, [head.castId], source, async (inputs) => {
-      expect(nativeCastSource('voice', inputs[0]!.parent)?.role).toBe('hacer');
+      expect(nativeCastSource('voice', requireValue(inputs[0]).parent)?.role).toBe('hacer');
       return 'pinned';
     });
     expect(a?.initial).toBe('pinned');
@@ -56,7 +57,7 @@ describe('same-site native claim provenance', () => {
       revision: original.revision,
     });
     await claimSiteCastBatch(shelf, [head.castId], source, async (inputs) => {
-      expect(nativeCastSource('voice', inputs[0]!.parent)?.mapping).toBe('stairwell-calendar/1');
+      expect(nativeCastSource('voice', requireValue(inputs[0]).parent)?.mapping).toBe('stairwell-calendar/1');
       return 'still-pinned';
     });
     expect(head.transfer.siteNativeClaim).toEqual(a?.claims[0]?.transfer.siteNativeClaim);

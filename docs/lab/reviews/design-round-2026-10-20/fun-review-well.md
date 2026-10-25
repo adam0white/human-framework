@@ -52,13 +52,13 @@ Classic roofed; Human and Solo both missed at 9/10. Human was one stage short, t
 
 Headless balance results, Human side at the storm:
 
-| Policy | House | Meals | Injuries over run | Deaths |
-|---|---:|---:|---:|---:|
-| No orders | 9.72 | 16 | 5 | 0 |
-| Repeated good orders + Rush | 10 | 23 | 10 | 0 |
-| Repeated good orders + Insist | 9.74 | 12 | 12 | 0 |
-| Follow every suggestion | 8.97 | 16 | 11 | 0 |
-| Everyone to Forest | 8.21 | 16 | 5 | 0 |
+| Policy                        | House | Meals | Injuries over run | Deaths |
+| ----------------------------- | ----: | ----: | ----------------: | -----: |
+| No orders                     |  9.72 |    16 |                 5 |      0 |
+| Repeated good orders + Rush   |    10 |    23 |                10 |      0 |
+| Repeated good orders + Insist |  9.74 |    12 |                12 |      0 |
+| Follow every suggestion       |  8.97 |    16 |                11 |      0 |
+| Everyone to Forest            |  8.21 |    16 |                 5 |      0 |
 
 Rush roofed at D2 12:03. Its injury cost is real. Insist performing worse preserves a useful distinction between urgency and coercion. Following suggestions being worse than doing nothing can support the game's argument; treating those cards as the default activity undermines it.
 

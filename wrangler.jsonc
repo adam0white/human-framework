@@ -2,7 +2,7 @@
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "human-framework",
   "account_id": "a20259cba74e506296745f9c67c1f3bc",
-  "compatibility_date": "2026-10-20",
+  "compatibility_date": "2026-10-25",
   "workers_dev": false,
   // Owner-authorized default-off free-text prototype; lifetime $1 reservation in R2.
   "ai": { "binding": "AI" },

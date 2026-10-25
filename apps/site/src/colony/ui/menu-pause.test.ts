@@ -6,12 +6,23 @@ import { expect, it, vi } from 'vitest';
 import { type Colony, useColony } from './useColony.ts';
 
 const channel = vi.hoisted(() => ({ tick: (_dt: number) => {}, post: vi.fn() }));
+// Worker orchestration tests must not start the real lab client's metadata fetch.
+vi.mock('../../shared/lab.tsx', () => ({
+  gameLabs: {
+    well: { setPersonaRecording: vi.fn(), allowPersonaRecording: vi.fn(), personaRecordingAllowed: false },
+  },
+}));
 vi.mock('../../shared/tick-loop.ts', () => ({
   startTickLoop: (tick: typeof channel.tick) => {
     channel.tick = tick;
     return () => {};
   },
 }));
+function Harness({ capture }: { capture: (value: Colony) => void }) {
+  capture(useColony());
+  return null;
+}
+
 it('withholds only ticks while the menu is open, without a resume or speed input', async () => {
   vi.stubGlobal(
     'Worker',
@@ -23,13 +34,17 @@ it('withholds only ticks while the menu is open, without a resume or speed input
     },
   );
   let colony: Colony | undefined;
-  function Harness() {
-    colony = useColony();
-    return null;
-  }
   const root = createRoot(document.createElement('div'));
   try {
-    flushSync(() => root.render(createElement(Harness)));
+    flushSync(() =>
+      root.render(
+        createElement(Harness, {
+          capture: (value) => {
+            colony = value;
+          },
+        }),
+      ),
+    );
     if (!colony) throw Error('Missing hook');
     await vi.waitFor(() => expect(channel.post.mock.calls.some(([m]) => m.type === 'init')).toBe(true));
     colony.actions.setSpeed(2);

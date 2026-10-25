@@ -19,43 +19,43 @@ Original checkpoint answer:
 
 > I promised noon and started walking because I want all five home. The hut answers were clear; the walking screen has both climb on and lead on and I am not sure whether my group is following. Everyone is selected. Go down said climb first and stop said start walking, so those limits made sense. Their replies taught me that the promise matters. I have not used help. I am waiting to see our progress, but the wait request has not answered yet.
 
-| Item | Result | Checkpoint evidence |
-|---|---|---|
-| DL-1 A reason to act | PASS | I wanted all five home. “Lead them up and bring them home. They can say no.” gave me that purpose. |
-| DL-2 What can I touch | PASS | Begin the season; four hut answers; named people; climb on, turn back, rest, eat, wait, more; lead on, go down, stop, stay with them; information and menu. I used Begin, noon, and lead on. I had not tried inert scenery. The hut screenshot clearly presents four buttons. |
-| DL-3 Urgency and selection | FAIL | The turnaround question drew me first. Everyone was selected. I could not tell whether leading myself also brought the group; climb on and lead on competed in my understanding. No immediate danger was established. |
-| DL-4 Why the limit | PASS | Go down: “At the hut; climb first.” Stop: “Standing still; start walking.” Both said what would free them. These were the two limits encountered by then. |
-| DL-5 Readable situation | PASS | “Turnback promised at 12:00.” and “Tap Lead on to start walking” explained the promise and an available response. Group-following remained uncertain. |
-| DL-6 A choice soon | PASS | Meaningful hut choice available at 5.299 s, before long text; first meaningful input at 16.878 s. Begin input was 5.299 s. |
-| DL-7 Learn by doing | PASS, limited | Two meaningful interactions reached: promise and lead on. Five replies acknowledged the promise; leading enabled go down and stop. I had not learned group asking. Help used: none. Asking, refusal, and pack assistance were NOT TESTED at this checkpoint (3 later interaction types). |
+| Item                       | Result        | Checkpoint evidence                                                                                                                                                                                                                                                                      |
+| -------------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DL-1 A reason to act       | PASS          | I wanted all five home. “Lead them up and bring them home. They can say no.” gave me that purpose.                                                                                                                                                                                       |
+| DL-2 What can I touch      | PASS          | Begin the season; four hut answers; named people; climb on, turn back, rest, eat, wait, more; lead on, go down, stop, stay with them; information and menu. I used Begin, noon, and lead on. I had not tried inert scenery. The hut screenshot clearly presents four buttons.            |
+| DL-3 Urgency and selection | FAIL          | The turnaround question drew me first. Everyone was selected. I could not tell whether leading myself also brought the group; climb on and lead on competed in my understanding. No immediate danger was established.                                                                    |
+| DL-4 Why the limit         | PASS          | Go down: “At the hut; climb first.” Stop: “Standing still; start walking.” Both said what would free them. These were the two limits encountered by then.                                                                                                                                |
+| DL-5 Readable situation    | PASS          | “Turnback promised at 12:00.” and “Tap Lead on to start walking” explained the promise and an available response. Group-following remained uncertain.                                                                                                                                    |
+| DL-6 A choice soon         | PASS          | Meaningful hut choice available at 5.299 s, before long text; first meaningful input at 16.878 s. Begin input was 5.299 s.                                                                                                                                                               |
+| DL-7 Learn by doing        | PASS, limited | Two meaningful interactions reached: promise and lead on. Five replies acknowledged the promise; leading enabled go down and stop. I had not learned group asking. Help used: none. Asking, refusal, and pack assistance were NOT TESTED at this checkpoint (3 later interaction types). |
 
 ## Important inputs and visible answers
 
 Times are driver elapsed seconds, not game minutes. These are the responses I read during play, except the explicitly retrospective first-minute screenshot above.
 
-| Elapsed | Input / moment | Visible answer and game clock |
-|---|---|---|
-| 0.787 | open | “Five people, three mountains.” “Lead them up and bring them home. They can say no.” |
-| 5.299 | Begin the season | 05:00; “When do you turn back?” “They remember whether you keep your word.” Four answers: 12:00, 13:00, 14:00, We’ll see. |
-| 16.878 | We turn at 12:00 | 05:01; all five acknowledge; “Turnback promised at 12:00.” |
-| 20.816 | lead on | 05:02; movement controls enabled. I did not yet know whether others followed. |
-| 81.068 | delayed wait response | 05:26; “Now ask them along: everyone is picked. Tap Climb on, then ask.” One curl request had timed out with zero bytes. |
-| 85.531 / 92.252 | climb on / ask gently | 05:29 / 05:30; tone sheet, then “Climb on accepted: Tamar, Oskar, Nell, Bilal and Wren.” |
-| 115.645 | wait | 05:36; short steps and bent back mean tired; bowed head means low spirits. |
-| 122.181 | About this part of the climb | 05:40; “Your voice reaches only those in earshot.” “The bottom row is you: where you walk, they may follow.” Insist costs trust. |
-| 160.066–162.609 | wait / screenshot | 05:53–05:56; “Someone is flagging.” Screenshot cuts hint at “share fo...”. |
-| 171.416 | Bilal | 06:00; selected Bilal. “Wren came because Oskar said she wouldn’t.” |
-| 171.477 / 174.009 | more by name / upper more by point | Duplicate-name answer supplied points; upper more opened take pack and share food, both disabled: “Walk to them first.” |
-| 181.029 | walk to Bilal | 06:01; about a hundred metres; under ten minutes if he stays; still moving. |
-| 201.214 / 207.226 | wait / more | 06:11 / 06:15; a few dozen metres; pack still unavailable. |
-| 213.109 / 213.277 | rest / ask gently | 06:15 / 06:16; “After I climb the hut path, my friend.” “Bilal put off resting.” |
-| 248.279 / 252.022 | wait / more | 06:31 / 06:34; still a few dozen metres; pack unavailable. |
-| 290.893 | wait after first want_quit | 06:51; “Yes, why not.” “Rest accepted: Bilal.” “Close enough to help Bilal.” |
-| 297.338 / 304.089 | take pack / ask gently | 06:51 / 06:52; “Take pack accepted: Bilal.” His reply: “I trust you — fine, I’ll go.” |
-| 311.042 | stay with them | 06:53; control becomes “with them”; Nell now labeled tired. This label appeared after my earlier uncertainty. |
-| 341.198 | final gameplay wait | 06:57; Nell tired; take pack acceptance remains visible. |
-| 354.942 | menu after stopping | 07:00; mountain waits; walking pace Automatic selected. |
-| 358.917–374.553 | Send word, verdict, name, text, Send | Selected “I'd stop here”; name “playtester Mira rebuild-2026-10-23”; one-line verdict submitted once; **“Sent. Thank you.”** |
+| Elapsed           | Input / moment                       | Visible answer and game clock                                                                                                    |
+| ----------------- | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------- |
+| 0.787             | open                                 | “Five people, three mountains.” “Lead them up and bring them home. They can say no.”                                             |
+| 5.299             | Begin the season                     | 05:00; “When do you turn back?” “They remember whether you keep your word.” Four answers: 12:00, 13:00, 14:00, We’ll see.        |
+| 16.878            | We turn at 12:00                     | 05:01; all five acknowledge; “Turnback promised at 12:00.”                                                                       |
+| 20.816            | lead on                              | 05:02; movement controls enabled. I did not yet know whether others followed.                                                    |
+| 81.068            | delayed wait response                | 05:26; “Now ask them along: everyone is picked. Tap Climb on, then ask.” One curl request had timed out with zero bytes.         |
+| 85.531 / 92.252   | climb on / ask gently                | 05:29 / 05:30; tone sheet, then “Climb on accepted: Tamar, Oskar, Nell, Bilal and Wren.”                                         |
+| 115.645           | wait                                 | 05:36; short steps and bent back mean tired; bowed head means low spirits.                                                       |
+| 122.181           | About this part of the climb         | 05:40; “Your voice reaches only those in earshot.” “The bottom row is you: where you walk, they may follow.” Insist costs trust. |
+| 160.066–162.609   | wait / screenshot                    | 05:53–05:56; “Someone is flagging.” Screenshot cuts hint at “share fo...”.                                                       |
+| 171.416           | Bilal                                | 06:00; selected Bilal. “Wren came because Oskar said she wouldn’t.”                                                              |
+| 171.477 / 174.009 | more by name / upper more by point   | Duplicate-name answer supplied points; upper more opened take pack and share food, both disabled: “Walk to them first.”          |
+| 181.029           | walk to Bilal                        | 06:01; about a hundred metres; under ten minutes if he stays; still moving.                                                      |
+| 201.214 / 207.226 | wait / more                          | 06:11 / 06:15; a few dozen metres; pack still unavailable.                                                                       |
+| 213.109 / 213.277 | rest / ask gently                    | 06:15 / 06:16; “After I climb the hut path, my friend.” “Bilal put off resting.”                                                 |
+| 248.279 / 252.022 | wait / more                          | 06:31 / 06:34; still a few dozen metres; pack unavailable.                                                                       |
+| 290.893           | wait after first want_quit           | 06:51; “Yes, why not.” “Rest accepted: Bilal.” “Close enough to help Bilal.”                                                     |
+| 297.338 / 304.089 | take pack / ask gently               | 06:51 / 06:52; “Take pack accepted: Bilal.” His reply: “I trust you — fine, I’ll go.”                                            |
+| 311.042           | stay with them                       | 06:53; control becomes “with them”; Nell now labeled tired. This label appeared after my earlier uncertainty.                    |
+| 341.198           | final gameplay wait                  | 06:57; Nell tired; take pack acceptance remains visible.                                                                         |
+| 354.942           | menu after stopping                  | 07:00; mountain waits; walking pace Automatic selected.                                                                          |
+| 358.917–374.553   | Send word, verdict, name, text, Send | Selected “I'd stop here”; name “playtester Mira rebuild-2026-10-23”; one-line verdict submitted once; **“Sent. Thank you.”**     |
 
 ## Experience
 

@@ -10,18 +10,32 @@ The release version is the package version and `FRAMEWORK_VERSION`, tagged `vX.Y
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
-## [Unreleased] — v3 API migration
+## [3.0.0] - 2026-10-25
 
-Engine: 2.21.0. API-only changes; package and framework versions are not stamped yet. Seeded numerical behavior and saved Person state stay unchanged.
+Engine: 2.23.0. Breaking API cleanup and current toolchain. Seeded numerical behavior and saved Person state stay unchanged relative to HF 2.23.0.
 
-- Remove the deprecated options-object forms of `glimpse`, `glimpseOf`, `hear`, `conceive` and `retell`. Time is positional; conception seed precedes time; retelling knobs follow time.
+### Migration from 2.x
+
+- Remove the deprecated options-object forms of `glimpse`, `glimpseOf`, `hear`, `conceive` and `retell`. Time is positional; conception seed precedes time; retelling knobs follow time. Untyped callers passing removed options objects receive `TypeError` before Person state changes; positional time must be finite.
 - Rename `glimpseOf` to `glimpsePerson` and `acquaintWith` to `acquaintPerson`. Keep primitive `glimpse` and `acquaint`.
-- Remove `TRAIT_NAMES` (use `TRAIT_KEYS`) and `expit` (use `sigmoid`). Remove the unused third argument from `repent` and `recordRepair`.
+- Remove `TRAIT_NAMES` (use `TRAIT_KEYS`), `expit` (use `sigmoid`), and the accidentally public internal `keysOf` helper (hosts use `Object.keys`; enumeration order stays unchanged). Remove the unused third argument from `repent` and `recordRepair`.
 - Use the callable `RoutineSource = (person, day) => Routine` in both routine drivers. Wrap fixed routines in `() => routine`; capture community context in a closure instead of a third argument. Selection order stays unchanged.
 - Drop Q15's proposed `skipTo` rename: no player value. Keep `skip`.
-- Q5 remains a release decision for the director. Mutable defaults and tuning behavior are unchanged.
+- Q5: retain assignment-based tuning of existing mutable defaults. Settings apply to the whole module instance. Hosts save effective settings or baseline-relative overrides and restore the pristine baseline before applying them; Person snapshots do not capture tuning. Keep settings fixed during a run. Existing frozen defaults remain frozen.
 
-Exact before/after calls and routine restore guidance: [v3 migration](packages/human/README.md#migrating-to-v3).
+Exact before/after calls and routine restore guidance: [v3 migration](https://github.com/adam0white/human-framework/blob/v3.0.0/packages/human/README.md#migrating-to-v3).
+
+### Horizon 3
+
+- Export opt-in `canonicalTickInputs`, `TickInput` and `TickInputKey`: a bounded complete-input barrier with deterministic sender/sequence ordering. It adds no transport, consensus, payload validation or actor-loop behavior. The lexical priority is a host policy.
+- Include the recorded first probes, bounded host starter and contingent-speech recipe. Traditions uses existing method-learning APIs; no duplicate faculty. Negative probes and future prospective prediction evidence remain explicit. See [the Horizon 3 results](https://github.com/adam0white/human-framework/blob/v3.0.0/docs/hf-roadmap-2026-10-20.md#horizon-3-long-bets).
+
+### Maintenance
+
+- Accept npm 11 array and npm 12 package-keyed pack metadata in release and packed-consumer smoke checks; both require exactly one local tarball.
+- Upgrade Biome to 2.6.3, Vite to 8.3.5, Wrangler to 4.152.0, and release-workflow npm to 12.2.1. Add pinned Knip 6.43.0 and Playwright 1.64.1; other direct external dependencies were already current at the registry check. Advance Worker compatibility to 2026-10-25.
+- Remove private dead site exports and files, share duplicate hook setup, and resolve formatter and TypeScript lint findings. Keep legacy continuation, replay hashes and headless controls. CSS cascade warnings have explicit dispositions; Watch visual decisions follow the active plain-English pass.
+- Keep Undici 7.30.1 for Miniflare's legacy dispatcher contract; 8.12.3 replaces the callbacks its HTTP 421 guard wraps. Review this upstream compatibility exception by 2026-11-03. No telemetry logging or privacy settings change.
 
 ## [2.23.0] - 2026-10-25
 
@@ -146,7 +160,7 @@ Engine: 2.14.1. Corrects a modelling assumption inside the released projects and
 
 ## [2.14.0] - 2026-10-20
 
-Engine: 2.14.0. *Projects and persistence* (owner, 2026-10-20: "Add those faculties and other feat to HF"; sources in [research/projects-and-persistence.md](https://github.com/adam0white/human-framework/blob/main/research/projects-and-persistence.md)). The island rerun on 2.12.0 found that a person with met needs set no free-time goal and built nothing, and that a started chain was not kept. A person can now turn what they perceive into a self-set project, and keep a started pursuit going. Both are opt-in: without them, state, decisions and digests are the same as 2.13.0 with only the engine stamp normalized, including when percepts carry prospect data. Saves migrate from 2.13.0 by stamping the version.
+Engine: 2.14.0. _Projects and persistence_ (owner, 2026-10-20: "Add those faculties and other feat to HF"; sources in [research/projects-and-persistence.md](https://github.com/adam0white/human-framework/blob/main/research/projects-and-persistence.md)). The island rerun on 2.12.0 found that a person with met needs set no free-time goal and built nothing, and that a started chain was not kept. A person can now turn what they perceive into a self-set project, and keep a started pursuit going. Both are opt-in: without them, state, decisions and digests are the same as 2.13.0 with only the engine stamp normalized, including when percepts carry prospect data. Saves migrate from 2.13.0 by stamping the version.
 
 ### Added
 
@@ -168,7 +182,7 @@ Engine: 2.14.0. *Projects and persistence* (owner, 2026-10-20: "Add those facult
 
 ## [2.13.0] - 2026-10-20
 
-Engine: 2.13.0. *Why not* ([slice plan](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md#slice-3-if-time-allows); The Pass's requests 1 and 4 in [game-requests-2026-10-18.md](https://github.com/adam0white/human-framework/blob/main/docs/game-requests-2026-10-18.md)). A declined suggestion can say what decided it, and a person can hold a rule of their own as a will-not. Both are opt-in: without them, state, decisions, resolution JSON and digests are the same as 2.12.0 with only the engine stamp normalized. Saves migrate from 2.12.0 by stamping the version.
+Engine: 2.13.0. _Why not_ ([slice plan](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md#slice-3-if-time-allows); The Pass's requests 1 and 4 in [game-requests-2026-10-18.md](https://github.com/adam0white/human-framework/blob/main/docs/game-requests-2026-10-18.md)). A declined suggestion can say what decided it, and a person can hold a rule of their own as a will-not. Both are opt-in: without them, state, decisions, resolution JSON and digests are the same as 2.12.0 with only the engine stamp normalized. Saves migrate from 2.12.0 by stamping the version.
 
 ### Added
 
@@ -188,7 +202,7 @@ Engine: 2.13.0. *Why not* ([slice plan](https://github.com/adam0white/human-fram
 
 ## [2.12.0] - 2026-10-20
 
-Engine: 2.12.0. *Steps ahead* ([slice plan](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md#current-increment-curiosity-and-play-then-bounded-planning-owner-2026-10-20); sources in [research/curiosity-and-play.md](https://github.com/adam0white/human-framework/blob/main/research/curiosity-and-play.md#bounded-planning-and-present-bias)). A person can value the first step of a short chain toward a goal: go, take, carry, put. Opt-in: a person without the planning slice gives the same state, decisions and digests as 2.11.0 with only the engine stamp normalized, and received consequences keep their single successor. Saves migrate from 2.11.0 by stamping the version.
+Engine: 2.12.0. _Steps ahead_ ([slice plan](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md#current-increment-curiosity-and-play-then-bounded-planning-owner-2026-10-20); sources in [research/curiosity-and-play.md](https://github.com/adam0white/human-framework/blob/main/research/curiosity-and-play.md#bounded-planning-and-present-bias)). A person can value the first step of a short chain toward a goal: go, take, carry, put. Opt-in: a person without the planning slice gives the same state, decisions and digests as 2.11.0 with only the engine stamp normalized, and received consequences keep their single successor. Saves migrate from 2.11.0 by stamping the version.
 
 ### Added
 
@@ -210,7 +224,7 @@ Engine: 2.12.0. *Steps ahead* ([slice plan](https://github.com/adam0white/human-
 
 ## [2.11.0] - 2026-10-20
 
-Engine: 2.11.0. *Curiosity and play* ([slice plan](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md#current-increment-curiosity-and-play-then-bounded-planning-owner-2026-10-20); sources in [research/curiosity-and-play.md](https://github.com/adam0white/human-framework/blob/main/research/curiosity-and-play.md)). When a person's needs are met, they are drawn to try what they cannot yet predict, to keep at what they are getting better at, and to vary what they just did. Opt-in: a person without the slice gives the same state, decisions and digests as 2.10.0 with only the engine stamp normalized (the public `fingerprint` includes the stamp, so it changes). Saves migrate from 2.10.0 by stamping the version.
+Engine: 2.11.0. _Curiosity and play_ ([slice plan](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md#current-increment-curiosity-and-play-then-bounded-planning-owner-2026-10-20); sources in [research/curiosity-and-play.md](https://github.com/adam0white/human-framework/blob/main/research/curiosity-and-play.md)). When a person's needs are met, they are drawn to try what they cannot yet predict, to keep at what they are getting better at, and to vary what they just did. Opt-in: a person without the slice gives the same state, decisions and digests as 2.10.0 with only the engine stamp normalized (the public `fingerprint` includes the stamp, so it changes). Saves migrate from 2.10.0 by stamping the version.
 
 ### Added
 
@@ -229,7 +243,7 @@ Engine: 2.11.0. *Curiosity and play* ([slice plan](https://github.com/adam0white
 
 ## [2.10.0] - 2026-10-20
 
-Engine: 2.10.0. *Word and witness* ([roadmap](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md) §1.1): who first said a thing, what it costs a source to be caught telling two stories, and how a person believes others now see them. Everything is opt-in by data: a person, percept or call that uses none of the new fields gives byte-identical state and decisions to 2.9.x, and legacy digests are unchanged. The engine stamp moves because the new term can change decisions when a host supplies the evidence. Saves migrate from 2.9.0 by stamping the version.
+Engine: 2.10.0. _Word and witness_ ([roadmap](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md) §1.1): who first said a thing, what it costs a source to be caught telling two stories, and how a person believes others now see them. Everything is opt-in by data: a person, percept or call that uses none of the new fields gives byte-identical state and decisions to 2.9.x, and legacy digests are unchanged. The engine stamp moves because the new term can change decisions when a host supplies the evidence. Saves migrate from 2.9.0 by stamping the version.
 
 ### Added
 
@@ -250,7 +264,7 @@ Engine: 2.10.0. *Word and witness* ([roadmap](https://github.com/adam0white/huma
 
 ## [2.9.1] - 2026-10-20
 
-Engine: 2.9.0. The *Host kit* ([roadmap](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md) §1.2) and the owner's maintenance sweep. Behaviour-neutral: the engine stamp is unchanged, and every replay, fixture, hash and full-state legacy digest is unchanged. Patch number, not minor, because 2.10.0 is the approved name of *Word and witness*; nothing is removed.
+Engine: 2.9.0. The _Host kit_ ([roadmap](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md) §1.2) and the owner's maintenance sweep. Behaviour-neutral: the engine stamp is unchanged, and every replay, fixture, hash and full-state legacy digest is unchanged. Patch number, not minor, because 2.10.0 is the approved name of _Word and witness_; nothing is removed.
 
 ### Added
 

@@ -18,15 +18,15 @@ Checkpoint recorded at **77.261 s**, 17.261 s late while handling the browser ac
 
 Original checkpoint answers follow unchanged.
 
-| Item | Status and original answer |
-|---|---|
-| DL-1 | PASS — the fire is dead and the room is freezing; I want warmth. |
+| Item | Status and original answer                                                                                                                                                      |
+| ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DL-1 | PASS — the fire is dead and the room is freezing; I want warmth.                                                                                                                |
 | DL-2 | PASS for identifying controls only — outlined light fire button and footer links; gameplay activation NOT TESTED because the driver locator failed. No decorative object tried. |
-| DL-3 | PASS — fire button draws me first; freezing is the urgent condition; no selected choice is visible. |
-| DL-4 | NOT TESTED — no gameplay limit encountered. |
-| DL-5 | PASS — light fire is the visible response to the dead fire and freezing room. |
-| DL-6 | NOT TESTED — one gameplay action visible at 0 s; attempted about 5 s; no successful gameplay input or meaningful choice reached. |
-| DL-7 | NOT TESTED — zero completed gameplay interactions; one audio preference interaction. No in-game help used. |
+| DL-3 | PASS — fire button draws me first; freezing is the urgent condition; no selected choice is visible.                                                                             |
+| DL-4 | NOT TESTED — no gameplay limit encountered.                                                                                                                                     |
+| DL-5 | PASS — light fire is the visible response to the dead fire and freezing room.                                                                                                   |
+| DL-6 | NOT TESTED — one gameplay action visible at 0 s; attempted about 5 s; no successful gameplay input or meaningful choice reached.                                                |
+| DL-7 | NOT TESTED — zero completed gameplay interactions; one audio preference interaction. No in-game help used.                                                                      |
 
 Original checkpoint reaction:
 

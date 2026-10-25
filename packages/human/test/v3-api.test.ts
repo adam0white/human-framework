@@ -9,6 +9,8 @@ function rejectedForms(p: H.Person, q: H.Person, routine: H.Routine) {
   H.acquaintWith(p, q, 1, 0);
   // @ts-expect-error Use TRAIT_KEYS.
   H.TRAIT_NAMES;
+  // @ts-expect-error Internal enumeration helper is not public.
+  H.keysOf({});
   // @ts-expect-error Use sigmoid.
   H.expit(0);
   // @ts-expect-error Time is positional.
@@ -36,7 +38,7 @@ void rejectedForms;
 test('v3 exposes Person composites and removes the old exports', () => {
   expect(H.glimpsePerson).toBeTypeOf('function');
   expect(H.acquaintPerson).toBeTypeOf('function');
-  for (const key of ['glimpseOf', 'acquaintWith', 'TRAIT_NAMES', 'expit'])
+  for (const key of ['glimpseOf', 'acquaintWith', 'TRAIT_NAMES', 'expit', 'keysOf'])
     expect(Object.hasOwn(H, key)).toBe(false);
 });
 
@@ -74,3 +76,34 @@ test('one callable routine source runs at the start of each day in both drivers'
     'b:1:1440',
   ]);
 });
+
+test.each(['glimpse', 'glimpsePerson', 'hear', 'conceive', 'retell'] as const)(
+  'rejects the removed %s options form for untyped callers before mutation',
+  (name) => {
+    const mother = H.createPerson({
+      id: 'm',
+      name: 'Mother',
+      seed: 7,
+      bornAt: -30 * H.MINUTES_PER_YEAR,
+      sex: 'female',
+    });
+    const father = H.createPerson({
+      id: 'f',
+      name: 'Father',
+      seed: 8,
+      bornAt: -30 * H.MINUTES_PER_YEAR,
+      sex: 'male',
+    });
+    const before = [H.snapshot(mother), H.snapshot(father)];
+    const calls = {
+      glimpse: () =>
+        Reflect.apply(H.glimpse, undefined, [mother, father.id, H.outwardSigns(father), { at: 0 }]),
+      glimpsePerson: () => Reflect.apply(H.glimpsePerson, undefined, [mother, father, { at: 0 }]),
+      hear: () => Reflect.apply(H.hear, undefined, [mother, father.id, 'fear', 0.5, { at: 0 }]),
+      conceive: () => Reflect.apply(H.conceive, undefined, [mother, father, { seed: 1, at: 0 }]),
+      retell: () => Reflect.apply(H.retell, undefined, [mother, father, { at: 0 }]),
+    };
+    expect(calls[name]).toThrow(TypeError);
+    expect([H.snapshot(mother), H.snapshot(father)]).toEqual(before);
+  },
+);

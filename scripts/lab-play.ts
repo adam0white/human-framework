@@ -435,6 +435,7 @@ async function main() {
               return shot;
             },
             snapshot: async (timeout) => ({
+              // biome-ignore lint/performance/useDomNodeTextContent: The agent snapshot must contain only rendered text.
               visible: await page.locator('body').innerText({ timeout }),
               controls: await page.locator('body').ariaSnapshot({ timeout }),
             }),

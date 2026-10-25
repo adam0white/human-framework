@@ -16,15 +16,15 @@ Original checkpoint answer, verbatim:
 
 > I want to keep the town dry, and rain plus a rising level gives me a reason to act. I found Dai, the two gauges, information, menu and Skip. I asked for a reading at about ten seconds and inspected the gate at thirteen. Opening the gate lowers the dam but raises the river later; I have not ordered it yet. Dai preferred reading the level and I do not know what insisting would cost. The crest is marked 6.0 in the picture. The gate sheet fits, but hides the town situation. Lightning just showed the wall and I do not know what I was meant to notice.
 
-| Item | Result | Checkpoint evidence |
-|---|---|---|
-| DL-1 A reason to act | PASS | Keep the town dry. The title stated the objective; rain and a reading rising from 3.80 to 4.10 made it relevant now. |
-| DL-2 What can I touch | PASS | I identified Dai, level, gate, information, menu and Skip. I used the reading request and gate gauge. No inert target was tried before 60 s. The gate buttons had clear outlines in gate-first.png. |
-| DL-3 Urgency and selection | PASS | The water reading drew me first. Rain competed with Dai’s reassuring language. The gate had a red selected outline in gate-first.png; “Time waits while you look” reduced urgency while inspecting. I did not understand the lightning evidence. |
-| DL-4 Why the limit | FAIL | Skip was initially disabled with “Nothing on its way,” a useful explanation. Gate options said “rather read the level” and “Hold a button to insist.” I could identify Dai’s preference but not the consequence of overriding it. I did not attempt a hold. |
-| DL-5 Readable situation | PASS | I could request the level and knew the request was underway from “Dai · level ~22:10.” “Every figure on this board is what Dai saw” helped. |
-| DL-6 A choice soon | PASS | Title action available at 0.489 s; entered desk at 3.797 s. A meaningful reading request was available on that desk response, within four seconds. First meaningful input was 9.761 s. Gate alternatives were reached at 12.789 s, before long help text. |
-| DL-7 Learn by doing | PASS for reached interactions | Two choice types reached: request a reading and inspect gate settings. The request led to a new 4.10 reading by 56.311 s. The gate sheet taught the dam/river tradeoff before I issued an order. Help was not used in the first minute. Gate execution, overriding refusal, warning town, Callum and Nerys interactions: NOT TESTED at checkpoint (five unreached interaction types). |
+| Item                       | Result                        | Checkpoint evidence                                                                                                                                                                                                                                                                                                                                                                   |
+| -------------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DL-1 A reason to act       | PASS                          | Keep the town dry. The title stated the objective; rain and a reading rising from 3.80 to 4.10 made it relevant now.                                                                                                                                                                                                                                                                  |
+| DL-2 What can I touch      | PASS                          | I identified Dai, level, gate, information, menu and Skip. I used the reading request and gate gauge. No inert target was tried before 60 s. The gate buttons had clear outlines in gate-first.png.                                                                                                                                                                                   |
+| DL-3 Urgency and selection | PASS                          | The water reading drew me first. Rain competed with Dai’s reassuring language. The gate had a red selected outline in gate-first.png; “Time waits while you look” reduced urgency while inspecting. I did not understand the lightning evidence.                                                                                                                                      |
+| DL-4 Why the limit         | FAIL                          | Skip was initially disabled with “Nothing on its way,” a useful explanation. Gate options said “rather read the level” and “Hold a button to insist.” I could identify Dai’s preference but not the consequence of overriding it. I did not attempt a hold.                                                                                                                           |
+| DL-5 Readable situation    | PASS                          | I could request the level and knew the request was underway from “Dai · level ~22:10.” “Every figure on this board is what Dai saw” helped.                                                                                                                                                                                                                                           |
+| DL-6 A choice soon         | PASS                          | Title action available at 0.489 s; entered desk at 3.797 s. A meaningful reading request was available on that desk response, within four seconds. First meaningful input was 9.761 s. Gate alternatives were reached at 12.789 s, before long help text.                                                                                                                             |
+| DL-7 Learn by doing        | PASS for reached interactions | Two choice types reached: request a reading and inspect gate settings. The request led to a new 4.10 reading by 56.311 s. The gate sheet taught the dam/river tradeoff before I issued an order. Help was not used in the first minute. Gate execution, overriding refusal, warning town, Callum and Nerys interactions: NOT TESTED at checkpoint (five unreached interaction types). |
 
 The screenshots establish layout for the captured moments only. The checkpoint does not establish that I saw or understood the brief lightning visual while it happened.
 
@@ -32,24 +32,24 @@ The screenshots establish layout for the captured moments only. The checkpoint d
 
 Times are real elapsed seconds. The clock column is the visible response clock; driver input entries themselves did not populate game_clock automatically.
 
-| Elapsed | Input | Visible answer / clock |
-|---|---|---|
-| 0.489 | Open | “Keep the dam below its crest and the town dry, or warned in time.” Five nights, Monday–Friday. |
-| 3.797 | Take the night desk | Monday 22:00; Dai said “Level’s three-eight” while the level board still showed “— / not read.” |
-| 9.761 | Ask Dai to read the level yes · ~10 min | Monday 22:02; board showed 3.80, read 22:00; task queued. |
-| 12.789 | Gate gauge | Monday 22:03; sheet: “rather read the level,” six opening choices, “Hold a button to insist.” |
-| 26.171–56.311 | Close sheet, wait 30 s | Monday 22:36; 4.10 m, read 22:11. Lightning message at 22:34. |
-| 72.867 | Dai · stove ~22:55 | Monday 22:55; resting by stove; reading available; sleep answer “in a bit, once I’m warm.” |
-| 76.736–96.874 | Read the level; wait 20 s | Monday 23:10; 3.90 m, read 23:04; “Steady as you like.” |
-| 99.718 | Information | Monday 23:14; help defined level, lip/crest, forty-minute river delay, read/reported and resting. |
-| 106.548 | Tap wall at 174,191 | No inspection opened; visible desk unchanged at 23:14. |
-| 112.353 | Gate gauge | Monday 23:22; options now said “yes.” |
-| 116.219–146.358 | 1 yes · ~10m; wait 30 s | Monday 23:45; gate 1/6, read 23:32; “Gate’s on one turn.” |
-| 182.328 | End second 30 s wait | Monday 00:23; 4.00 m read 00:04; “Coming down heavier up here now.” |
-| 199.014 | Fast | Fast visibly pressed in menu; closed menu afterward. |
-| 229.321 | End 30 s wait | Monday 01:23; 4.00 m read 01:19. New personal remark about Morgan, but no new witness or town control. |
-| 235.170 | Screenshot | Monday 01:29; gate 1/6, level 4.00. |
-| 245.163 | Stop log | BORED. Menu opened afterward at Monday 01:49 solely for feedback. |
+| Elapsed         | Input                                   | Visible answer / clock                                                                                 |
+| --------------- | --------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| 0.489           | Open                                    | “Keep the dam below its crest and the town dry, or warned in time.” Five nights, Monday–Friday.        |
+| 3.797           | Take the night desk                     | Monday 22:00; Dai said “Level’s three-eight” while the level board still showed “— / not read.”        |
+| 9.761           | Ask Dai to read the level yes · ~10 min | Monday 22:02; board showed 3.80, read 22:00; task queued.                                              |
+| 12.789          | Gate gauge                              | Monday 22:03; sheet: “rather read the level,” six opening choices, “Hold a button to insist.”          |
+| 26.171–56.311   | Close sheet, wait 30 s                  | Monday 22:36; 4.10 m, read 22:11. Lightning message at 22:34.                                          |
+| 72.867          | Dai · stove ~22:55                      | Monday 22:55; resting by stove; reading available; sleep answer “in a bit, once I’m warm.”             |
+| 76.736–96.874   | Read the level; wait 20 s               | Monday 23:10; 3.90 m, read 23:04; “Steady as you like.”                                                |
+| 99.718          | Information                             | Monday 23:14; help defined level, lip/crest, forty-minute river delay, read/reported and resting.      |
+| 106.548         | Tap wall at 174,191                     | No inspection opened; visible desk unchanged at 23:14.                                                 |
+| 112.353         | Gate gauge                              | Monday 23:22; options now said “yes.”                                                                  |
+| 116.219–146.358 | 1 yes · ~10m; wait 30 s                 | Monday 23:45; gate 1/6, read 23:32; “Gate’s on one turn.”                                              |
+| 182.328         | End second 30 s wait                    | Monday 00:23; 4.00 m read 00:04; “Coming down heavier up here now.”                                    |
+| 199.014         | Fast                                    | Fast visibly pressed in menu; closed menu afterward.                                                   |
+| 229.321         | End 30 s wait                           | Monday 01:23; 4.00 m read 01:19. New personal remark about Morgan, but no new witness or town control. |
+| 235.170         | Screenshot                              | Monday 01:29; gate 1/6, level 4.00.                                                                    |
+| 245.163         | Stop log                                | BORED. Menu opened afterward at Monday 01:49 solely for feedback.                                      |
 
 ## Experience
 
@@ -69,15 +69,15 @@ I did not reach Callum or Nerys’s river steps. I did not catch a wrong reading
 - Unnumbered clarity finding: “Lightning over the valley. For a moment the camera on the dam showed the wall.” I understood that something had been revealed, but not what I should compare. The driver’s intermittent observations limit this finding. first-minute.png preserves a thin “lightning 22:34” mark, but I did not interpret it during play.
 - DL-13 feedback: the normal menu route was “Send word ▸”, opening a Send word form. I selected “I'd stop here,” entered the assigned name and one-line verdict, and pressed Send exactly once. The visible answer was “Sent. Thank you.” at 257.615 s. No player id was shown. The curly-apostrophe attempt at “I’d stop here” failed; retrying the exact visible ASCII text succeeded. This was an input transcription error, not a driver block.
 
-| Check | Result | Evidence |
-|---|---|---|
-| DL-20 English | PASS for reached play | Necessary instructions were in English. Spoken “three-eight” appeared numerically as 3.80. Help explained the dam level, river delay, and read/reported. I encountered no necessary unexplained local term. |
-| DL-21 Dates | PASS for encountered week/time references; cross-month/year NOT TESTED | Monday–Friday and “Friday’s first light” needed no translation. The clock remained labelled Monday night after midnight; I read this as the continuing night, though no calendar date was given. No cross-month or year deadline was encountered. |
-| DL-22 Phone response visibility | PASS for captured desk/inspection states | gate-first.png showed the reply, clock, Dai, gauges, gate options and explanatory sentence within 690 px. last-desk.png showed current reply, scene, gauges and recent log without scrolling. This does not establish every sheet or event. |
-| DL-30 Cut-off/overlap | No observed mid-sentence truncation in inspected screenshots | The gate explanation ended fully with “Hold a button to insist.” The desk log viewport began with an older line partly at its top in last-desk.png, but current replies were visible. No “Scroll ↓” obstruction or overlapping sheets was observed. Other sheets not visually captured: NOT TESTED. |
-| DL-31 Goal with sheet open | Partial / FAIL for goal reminder | In gate-first.png I could see Dai, the level, crest 6.0, lip 5.0 and selected gate. The original town-dry goal and Friday deadline were not visible alongside the order sheet. I had to remember them. No explicit progress counter was seen. |
-| DL-32 Only watching | No forced input lock established | Longest self-chosen watch was roughly 116–182 s after ordering one turn: I wanted to see the release effect and river consequence. Other controls and Skip remained available, so I cannot call this a forced 66-second wait. The last Fast wait was 30 real seconds. |
-| DL-33 Hands on | Form for gate; person sheet for Dai | I tapped the gate gauge and chose a numbered order in a sheet. Tapping Dai opened his jobs. Tapping the wall did not open anything. Cooking/digging and speaking to other people: NOT TESTED. |
+| Check                           | Result                                                                 | Evidence                                                                                                                                                                                                                                                                                            |
+| ------------------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DL-20 English                   | PASS for reached play                                                  | Necessary instructions were in English. Spoken “three-eight” appeared numerically as 3.80. Help explained the dam level, river delay, and read/reported. I encountered no necessary unexplained local term.                                                                                         |
+| DL-21 Dates                     | PASS for encountered week/time references; cross-month/year NOT TESTED | Monday–Friday and “Friday’s first light” needed no translation. The clock remained labelled Monday night after midnight; I read this as the continuing night, though no calendar date was given. No cross-month or year deadline was encountered.                                                   |
+| DL-22 Phone response visibility | PASS for captured desk/inspection states                               | gate-first.png showed the reply, clock, Dai, gauges, gate options and explanatory sentence within 690 px. last-desk.png showed current reply, scene, gauges and recent log without scrolling. This does not establish every sheet or event.                                                         |
+| DL-30 Cut-off/overlap           | No observed mid-sentence truncation in inspected screenshots           | The gate explanation ended fully with “Hold a button to insist.” The desk log viewport began with an older line partly at its top in last-desk.png, but current replies were visible. No “Scroll ↓” obstruction or overlapping sheets was observed. Other sheets not visually captured: NOT TESTED. |
+| DL-31 Goal with sheet open      | Partial / FAIL for goal reminder                                       | In gate-first.png I could see Dai, the level, crest 6.0, lip 5.0 and selected gate. The original town-dry goal and Friday deadline were not visible alongside the order sheet. I had to remember them. No explicit progress counter was seen.                                                       |
+| DL-32 Only watching             | No forced input lock established                                       | Longest self-chosen watch was roughly 116–182 s after ordering one turn: I wanted to see the release effect and river consequence. Other controls and Skip remained available, so I cannot call this a forced 66-second wait. The last Fast wait was 30 real seconds.                               |
+| DL-33 Hands on                  | Form for gate; person sheet for Dai                                    | I tapped the gate gauge and chose a numbered order in a sheet. Tapping Dai opened his jobs. Tapping the wall did not open anything. Cooking/digging and speaking to other people: NOT TESTED.                                                                                                       |
 
 ## Stop and requested changes
 

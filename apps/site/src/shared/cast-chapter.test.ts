@@ -4,17 +4,12 @@ import { describe, expect, it } from 'vitest';
 import { ColonyGame } from '../colony/sim/game.ts';
 import { createFrameworkHumanSide } from '../colony/sim/human.ts';
 import { WATCHERS } from '../watch/sim/config.ts';
-import { WatchWorld, watcherSpec } from '../watch/sim/people.ts';
+import { watcherSpec } from '../watch/sim/people.ts';
 import { endState, replay, WatchRun } from '../watch/sim/run.ts';
 import { talk } from '../watch/sim/talk.ts';
-import {
-  admitSiteCast,
-  type CastChapter,
-  makeCastChapter,
-  personChapter,
-  prepareSiteInitial,
-} from './cast-chapter.ts';
+import { type CastChapter, makeCastChapter, personChapter, prepareSiteInitial } from './cast-chapter.ts';
 import { WATCH_DISCOVERIES } from './cast-discoveries.ts';
+import { requireValue } from './require-value.ts';
 
 describe('site cast chapters', () => {
   it('carries an ordinary played Well Danyal through the real delayed Watch arrival and replay', async () => {
@@ -46,7 +41,7 @@ describe('site cast chapters', () => {
     while (run.state.phase === 'night') run.step();
     expect(run.state.phase).toBe('dawn');
     run.input({ k: 'toDusk' });
-    const person = run.state.community.people.find((p) => p.id === 'danyal')!;
+    const person = requireValue(run.state.community.people.find((p) => p.id === 'danyal'));
     const portable = transfer.person as { person: { health: { fitness: number } } };
     expect(person.lexicon?.plainEnglish).toBe(true);
     expect(person.body.fitness).toBe(portable.person.health.fitness);
@@ -54,7 +49,7 @@ describe('site cast chapters', () => {
     expect(person.conscience.norms.some((n) => n.normId === 'daily-prayer')).toBe(true);
     expect(person.agenda.goals.some((g) => g.id === 'between-games-assignment')).toBe(true);
     expect(endState(replay(run.export()))).toEqual(run.export().end);
-    const def = WATCHERS.find((p) => p.id === 'danyal')!;
+    const def = requireValue(WATCHERS.find((p) => p.id === 'danyal'));
     const unhealthy = createPerson(watcherSpec(1, def, run.state.minute));
     unhealthy.body.health = 0.8;
     expect(() =>
@@ -131,20 +126,28 @@ it('pins two independent initial actors and restores deferred arrival by the exp
   );
   const chapter = makeCastChapter(inputs);
   const run = new WatchRun(1, undefined, chapter);
-  expect(personChapter(run.state.castChapter, inputs[0]!.parent.castId)?.initial).toBeTypeOf('string');
-  expect(personChapter(run.state.castChapter, inputs[1]!.parent.castId)?.initial).toBeTypeOf('string');
+  expect(personChapter(run.state.castChapter, requireValue(inputs[0]).parent.castId)?.initial).toBeTypeOf(
+    'string',
+  );
+  expect(personChapter(run.state.castChapter, requireValue(inputs[1]).parent.castId)?.initial).toBeTypeOf(
+    'string',
+  );
   run.input({ k: 'start' });
   run.input({ k: 'begin' });
   while (run.state.phase === 'night') run.step();
   run.input({ k: 'toDusk' });
   const idris = run.state.community.people.find((p) => p.id === 'idris');
   expect(idris).toBeDefined();
-  const pinned = JSON.parse(personChapter(run.state.castChapter, inputs[1]!.parent.castId)!.initial!);
+  const pinned = JSON.parse(
+    requireValue(
+      requireValue(personChapter(run.state.castChapter, requireValue(inputs[1]).parent.castId)).initial,
+    ),
+  );
   expect(idris?.body).toEqual(pinned.body);
-  const offset = idris!.now - pinned.now;
-  for (const [id, skill] of Object.entries(idris!.skills))
+  const offset = requireValue(idris).now - pinned.now;
+  for (const [id, skill] of Object.entries(requireValue(idris).skills))
     expect(skill).toEqual({ ...pinned.skills[id], lastPracticed: pinned.skills[id].lastPracticed + offset });
-  expect(idris!.life.bornAt - pinned.life.bornAt).toBe(idris!.now - pinned.now);
+  expect(requireValue(idris).life.bornAt - pinned.life.bornAt).toBe(requireValue(idris).now - pinned.now);
   expect(endState(replay(run.export()))).toEqual(run.export().end);
 });
 
@@ -188,25 +191,25 @@ it('two ordinary played Voice people retain distinct acquired state together in 
   const receiving = new RecordedGame(new VoiceGame(1, 4, makeCastChapter(inputs)));
   for (const [i, id] of ids.entries()) {
     const carried = (
-      transfers[i]!.person as {
+      requireValue(transfers[i]).person as {
         person: { rng: Person['rng']; health: { fitness: number }; skills: Person['skills'] };
       }
     ).person;
     expect(receiving.game.run.ppl[id].rng).toEqual(carried.rng);
-    const raw = transfers[i]!.sourceSnapshot as Person;
-    expect(raw.memory.episodes.length).toBeGreaterThan(opening[id]!.memory.episodes.length);
+    const raw = requireValue(transfers[i]).sourceSnapshot as Person;
+    expect(raw.memory.episodes.length).toBeGreaterThan(requireValue(opening[id]).memory.episodes.length);
     const pinned = JSON.parse(
-      personChapter(receiving.game.castChapter, `hf.cast.${id}.voice`)!.initial!,
+      requireValue(requireValue(personChapter(receiving.game.castChapter, `hf.cast.${id}.voice`)).initial),
     ) as Person;
     expect(pinned.body.fitness).toBe(carried.health.fitness);
-    expect(pinned.body.fitness).not.toBe(opening[id]!.body.fitness);
+    expect(pinned.body.fitness).not.toBe(requireValue(opening[id]).body.fitness);
 
     if (id === 'osman') {
       expect(receiving.game.run.ppl[id].skills.trade).toEqual({
         ...carried.skills.trade,
-        lastPracticed: carried.skills.trade!.lastPracticed + pinned.now - raw.now,
+        lastPracticed: requireValue(carried.skills.trade).lastPracticed + pinned.now - raw.now,
       });
-      expect(carried.skills.trade).not.toEqual(opening.osman!.skills.trade);
+      expect(carried.skills.trade).not.toEqual(requireValue(opening.osman).skills.trade);
     }
   }
   expect(receiving.game.run.ppl.riza.rng).not.toEqual(receiving.game.run.ppl.osman.rng);

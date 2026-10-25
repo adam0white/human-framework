@@ -6,11 +6,11 @@ Three testers played the text harness (`apps/site/scripts/play-colony.ts`) on th
 - **Models:** the reports do not record which model each tester ran on.
 - **Seed:** 20261003 for all three. The first-timer asked for seed 5, but the harness ignored it, which is a harness bug.
 
-| Role | Export |
-|---|---|
-| Edge-pusher | [colony-playtest-2026-10-19-edge.json](colony-playtest-2026-10-19-edge.json) (45 inputs, hash 075a54ddab185e) |
-| First-timer | [colony-playtest-2026-10-19-first.json](colony-playtest-2026-10-19-first.json) (23 inputs) |
-| Genre fan | [colony-playtest-2026-10-19-fan.json](colony-playtest-2026-10-19-fan.json) (run 1: 41 inputs, hash 19ad4f6a3ce7a4; run 2 was not exported) |
+| Role        | Export                                                                                                                                     |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| Edge-pusher | [colony-playtest-2026-10-19-edge.json](colony-playtest-2026-10-19-edge.json) (45 inputs, hash 075a54ddab185e)                              |
+| First-timer | [colony-playtest-2026-10-19-first.json](colony-playtest-2026-10-19-first.json) (23 inputs)                                                 |
+| Genre fan   | [colony-playtest-2026-10-19-fan.json](colony-playtest-2026-10-19-fan.json) (run 1: 41 inputs, hash 19ad4f6a3ce7a4; run 2 was not exported) |
 
 ## Edge-pusher (verbatim)
 
@@ -63,9 +63,11 @@ Yes, they felt like people. When refused, they gave reasons at once, and the rea
 **Play length:** about 20 harness calls, not the 60 to 150 asked for. A full two-day run fits in that many calls once you batch commands. I played one complete run to the end screen.
 
 ## 1. Verdict
+
 I would play a second run, but only because the Human side talks back. I'd keep going for two reasons. People say why they won't do things ("And leave the pot cold at noon? No. They eat from my hands."), and the end screen compares my result against "without you". As a first-timer I would not keep playing for the colony-management part. The Classic side finished its roof by Day 2 morning without needing me. After that, every house order I sent was a no-op on that side. The Human side missed the roof by one stage (9/10) even though I rushed and insisted on everything at the end. I could not tell until the end screen what I should have done differently. The goals say to build the house and stock meals, but not that the Human people stop building when they pray, eat or sleep. Learning that cost me the run.
 
 ## 2. First minutes
+
 - **Clock time:** My first meaningful choice was at 05:30 game time, about one real minute in. It was the suggestion "Send Yusuf to the house?".
 - **What was clear:** The goal card and the help text.
 - **What was unclear:**
@@ -75,6 +77,7 @@ I would play a second run, but only because the Human side talks back. I'd keep 
   - **Duty, children and safety.** I tried "duty". Samira's prediction and reply did not change. I could not tell whether the toggle did anything.
 
 ## 3. The people
+
 - **Did they feel like people?** Mostly yes, and the refusals were the best part. Quotes:
   - Samira: "Not that — I'll gather grain; that is my work." The line is accurate, but she said the same thing to me twice.
   - Idris, at Day 1 18:00: "Not that — I'll gather timber; that is my work."
@@ -89,6 +92,7 @@ I would play a second run, but only because the Human side talks back. I'd keep 
   - **Trust figures disagree.** The pane said "Trust 54%". The inspector said "Trust in you 50%" for everyone at the same time. By 18:00 the pane said 52%. I couldn't tell which one was right or what moved it.
 
 ## 4. Your agenda
+
 I played as a first-timer who tried everything on the screen.
 - **Predictions:** `predict` was useful. It said "likely yes", "later: after I eat a meal" or "will refuse: the others would go unfed". Maryam's refusal matched the prediction (I sent the order anyway, since I wanted to see the refusal). I only used it before sending orders, never after.
 - **Suggestion cards:** They lapse in an hour. Every one auto-pauses the game, so I was hitting resume constantly. About half the suggestions I skipped. The "Shutter the house?" card at 18:00 said "Shuttering stops the roof work". I could not tell whether skipping or taking it would score better, and I skipped it. The end screen showed Human 9/10 either way.
@@ -97,12 +101,14 @@ I played as a first-timer who tried everything on the screen.
 - **The end screen:** "What would have won" told me exactly what to do: rush five people to the house from D1 12:00 and have Maryam cook from D2 13:00. I never would have guessed that. It also said my 18 orders changed storm stock from 16 to 18 meals and left the roof at 9/10 either way. So most of my orders did nothing. That felt honest, but it was a letdown.
 
 ## 5. Difficulty and pacing
+
 - **Too easy on the Classic side.** It finished the roof by Day 2 06:00. Roofing was done and stock was fine without me.
 - **Hard to read on the Human side.** I did not know the roof was behind until Day 2 morning (7/10 at 06:00 after a night with no progress). Overnight it advanced nothing. Dead time was the Day 1 evening to Day 2 05:00 stretch, about 8 hours of game time that went by in a few real seconds once I ran `until`. I couldn't have done anything during it because everyone was asleep.
 - **Suggestion fatigue.** Suggestions arrived about once an hour of game time and each one paused the game. Over the run I skipped around ten.
 - **The storm.** I never saw it. By the end the harness just printed "Day 3 · 05:00 · dawn".
 
 ## 6. Bugs and confusions
+
 1. **`new 5`.** `! Unknown command "5"`. The help says `new [seed]`, so a seed argument should work. It seems the harness splits arguments differently than help implies.
 2. **Multi-word commands.** `inspect idris` as two separate arguments fails with `Unknown command "idris"`. Help says "one per argument, or joined with ;". You must quote `"inspect idris"`. I found this by failing.
 3. **"~Build~ …fine."** The `~` marks look like leaked markup. This is the under-protest line. It showed twice (Idris, Samira, and Tariq later).
@@ -113,6 +119,7 @@ I played as a first-timer who tried everything on the screen.
 8. **Output dumps.** The `look` output repeats the entire screen each time (the harness prints it after every command), so a batch of six commands is hard to read.
 
 ## 7. Top three changes
+
 1. **Tell me the Human side's constraints before the roof is at risk.** The two panes show the same goals, but nothing says why Human is behind (people sleep, pray, drink and eat). A line like "Human roof stalls at night and at prayer times; plan builders around Asr" would have changed my play. Also warn when an order will collide with a prayer time, since Asr cost me the roof.
 2. **Make suggestions less intrusive and more honest.** Don't offer "Send Yusuf to the house?" when he is already there. State what happens if I skip. Pause less often. Consider letting them stack in a corner without stopping the clock.
 3. **Fix source and consistency for readings.** Show where trust 54% vs 50% comes from, give "distress" a reason, explain `!`, Rush and the duty toggle, and vary the "that is my work" refusal. Fix the Moment 2 text.
@@ -183,16 +190,16 @@ Seed 20261003, two runs. The export of run 1 is at `/private/tmp/claude-504/-Use
 
 This table comes from `node apps/site/scripts/hf-colony-session.ts seeds=2`, run on colony-scenario@4 after the dawn-pause change (`b45aef3`). The "from" cells are empty because the script prints no start time for a 0 s lull. The round-2 rerun was skipped because the owner asked for a soft stop on 2026-10-19.
 
-| persona | seed | ended | play min | at | engagement | orders | Human goals | longest lull | looked away |
-|---|---|---|---|---|---|---|---|---|---|
-| commuter | 1 | quit | 3 | D1 11:37 | 0.81 | 33 | roof open, stock open, lives open | 0s from  | 0 |
-| commuter | 2 | agenda | 3 | D1 13:58 | 0.82 | 31 | roof open, stock open, lives open | 0s from  | 0 |
-| unwinder | 1 | game-over | 8.8 | D4 05:00 | 0.8 | 39 | project failed, stock met, lives met | 0s from  | 0 |
-| unwinder | 2 | game-over | 9.8 | D4 05:00 | 0.8 | 40 | project failed, stock met, lives met | 0s from  | 0 |
-| completionist | 1 | game-over | 7.4 | D4 05:00 | 0.85 | 17 | project failed, stock met, lives met | 0s from  | 0 |
-| completionist | 2 | game-over | 7.1 | D4 05:00 | 0.83 | 16 | project failed, stock met, lives met | 0s from  | 0 |
-| restless | 1 | quit | 4 | D1 07:17 | 0.69 | 56 | roof open, stock open, lives open | 0s from  | 0 |
-| restless | 2 | quit | 3 | D1 08:51 | 0.68 | 35 | roof open, stock open, lives open | 0s from  | 0 |
+| persona       | seed | ended     | play min | at       | engagement | orders | Human goals                          | longest lull | looked away |
+| ------------- | ---- | --------- | -------- | -------- | ---------- | ------ | ------------------------------------ | ------------ | ----------- |
+| commuter      | 1    | quit      | 3        | D1 11:37 | 0.81       | 33     | roof open, stock open, lives open    | 0s from      | 0           |
+| commuter      | 2    | agenda    | 3        | D1 13:58 | 0.82       | 31     | roof open, stock open, lives open    | 0s from      | 0           |
+| unwinder      | 1    | game-over | 8.8      | D4 05:00 | 0.8        | 39     | project failed, stock met, lives met | 0s from      | 0           |
+| unwinder      | 2    | game-over | 9.8      | D4 05:00 | 0.8        | 40     | project failed, stock met, lives met | 0s from      | 0           |
+| completionist | 1    | game-over | 7.4      | D4 05:00 | 0.85       | 17     | project failed, stock met, lives met | 0s from      | 0           |
+| completionist | 2    | game-over | 7.1      | D4 05:00 | 0.83       | 16     | project failed, stock met, lives met | 0s from      | 0           |
+| restless      | 1    | quit      | 4        | D1 07:17 | 0.69       | 56     | roof open, stock open, lives open    | 0s from      | 0           |
+| restless      | 2    | quit      | 3        | D1 08:51 | 0.68       | 35     | roof open, stock open, lives open    | 0s from      | 0           |
 
 ## What we changed
 

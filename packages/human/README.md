@@ -4,34 +4,49 @@ HF is a TypeScript library for simulated people in games and headless simulation
 possible actions. Each person weighs needs, habits, duties, goals and suggestions, then chooses.
 A player can suggest an action; the person can defer or refuse it.
 
-HF 2.14.1 uses utility scoring and seeded randomness, with no LLM in the actor loop and no runtime
+HF 3.0.0 uses utility scoring and seeded randomness, with no LLM in the actor loop and no runtime
 dependencies. Decision records expose scored terms and template narration. Person state is plain JSON.
 This is an authored simulation model, not a validated predictor of real people.
 
 ## Migrating to v3
 
-The API migration keeps engine `2.21.0`. It does not change seeded draws, numeric rules or saved Person state. Package version stamping and release remain separate.
+The API migration keeps engine `2.23.0`. Relative to HF 2.23.0, it does not change seeded draws, numeric rules or saved Person state. The package version is `3.0.0`; publication is recorded separately in the release history.
 
-| Before | v3 |
-|---|---|
-| `glimpse(p, id, signs, { at, clarity })` | `glimpse(p, id, signs, at, clarity)` |
-| `glimpseOf(p, target, at, clarity)` or `glimpseOf(p, target, { at, clarity })` | `glimpsePerson(p, target, at, clarity)` |
-| `acquaintWith(p, target, familiarity, at)` | `acquaintPerson(p, target, familiarity, at)` |
-| `hear(p, id, key, value, { at, weight })` | `hear(p, id, key, value, at, weight)` |
-| `conceive(mother, father, { seed, at })` | `conceive(mother, father, seed, at)` |
-| `retell(teller, listener, { at, trust, limit, placeIds })` | `retell(teller, listener, at, { trust, limit, placeIds })` |
-| `TRAIT_NAMES` | `TRAIT_KEYS` (same order) |
-| `expit(x)` | `sigmoid(x)` (same function body) |
-| `repent(p, breachId, unusedTime)` | `repent(p, breachId)` |
-| `recordRepair(p, victimId, unusedTime)` | `recordRepair(p, victimId)` |
-| `liveRoutine(p, to, fixedRoutine)` | `liveRoutine(p, to, () => fixedRoutine)` |
-| `routineFor: (p, day, community) => choose(p, day, community)` | `routineFor: (p, day) => choose(p, day, community)` with `community` captured from the host scope |
+| Before                                                                         | v3                                                                                                |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------- |
+| `glimpse(p, id, signs, { at, clarity })`                                       | `glimpse(p, id, signs, at, clarity)`                                                              |
+| `glimpseOf(p, target, at, clarity)` or `glimpseOf(p, target, { at, clarity })` | `glimpsePerson(p, target, at, clarity)`                                                           |
+| `acquaintWith(p, target, familiarity, at)`                                     | `acquaintPerson(p, target, familiarity, at)`                                                      |
+| `hear(p, id, key, value, { at, weight })`                                      | `hear(p, id, key, value, at, weight)`                                                             |
+| `conceive(mother, father, { seed, at })`                                       | `conceive(mother, father, seed, at)`                                                              |
+| `retell(teller, listener, { at, trust, limit, placeIds })`                     | `retell(teller, listener, at, { trust, limit, placeIds })`                                        |
+| `TRAIT_NAMES`                                                                  | `TRAIT_KEYS` (same order)                                                                         |
+| `expit(x)`                                                                     | `sigmoid(x)` (same function body)                                                                 |
+| `keysOf(record)`                                                               | `Object.keys(record)` (same enumeration order; narrow host key types explicitly when needed)      |
+| `repent(p, breachId, unusedTime)`                                              | `repent(p, breachId)`                                                                             |
+| `recordRepair(p, victimId, unusedTime)`                                        | `recordRepair(p, victimId)`                                                                       |
+| `liveRoutine(p, to, fixedRoutine)`                                             | `liveRoutine(p, to, () => fixedRoutine)`                                                          |
+| `routineFor: (p, day, community) => choose(p, day, community)`                 | `routineFor: (p, day) => choose(p, day, community)` with `community` captured from the host scope |
+
+Removed options-object calls from untyped JavaScript throw `TypeError` before changing Person state. Their time argument must be a finite number in the positional slot.
 
 Both routine drivers use `RoutineSource = (p: Person, day: number) => Routine`. `day` is the absolute day being started. Existing two-argument sources continue unchanged. A community source closes over the community for that run; bind a new closure after restoring a different community. Sources still run immediately before each person's routine day. Community dawn hooks still run first, and earlier people's days are already applied when later sources read community state. Do not precompute all routines at dawn if that would change those reads.
 
 The primitive names `glimpse` and `acquaint` stay. Their Person composites use the explicit `Person` suffix. The proposed `skip` → `skipTo` rename is dropped (Q15): it provides no player value and `skip` is clear in context.
 
-Mutable defaults remain unchanged pending the director's Q5 decision. No defaults are frozen by this migration and no tuning API is introduced.
+### Tuning defaults (Q5)
+
+Assignment to existing mutable defaults remains the tuning API in v3. These settings apply to every run in the same module instance. Set them before creating or restoring a run, then keep them fixed while it runs. Already-frozen defaults remain frozen.
+
+Deterministic replay requires the same engine version, effective tuning values, initial state, seeded streams, inputs and call order. Person snapshots do not store these global settings. A host that tunes must store its complete effective configuration or its overrides relative to a known pristine baseline in its save or replay envelope. Before restoring or continuing, restore that baseline first, then apply the saved overrides. A fresh module instance is another way to start from the baseline. Applying overrides over a previous run's settings can leak tuning between runs.
+
+Two worlds with different settings cannot safely share one module instance. Tests that tune must restore values in a `finally` block and must not mutate them concurrently. This decision preserves existing hosts and seeded behavior. It adds no global configuration function or per-person settings. A future isolated settings API must first demonstrate exact snapshot, restore and continuation under overrides.
+
+## Ordering inputs for one logical tick (opt-in)
+
+`canonicalTickInputs(tick, inputs, expected)` waits for the complete declared sender/sequence set and returns a new envelope array sorted by sender, then sequence. It returns `undefined` while an input is missing and throws for duplicate, unexpected or wrong-tick inputs. Payloads remain host-owned. Use the returned array only after the barrier completes; save pending input with host state.
+
+This is a bounded host convention, not transport, consensus or fairness. It reads no Person or RNG. Existing actor calls never use it implicitly. The H3 controls compare reordered deliveries, withheld input, restore and a behaviorally different unsorted control. The copyable two-person starter in `examples/h3-starter` owns its own clock and replay envelope; it is not a complete game engine or part of the npm artifact.
 
 ## Try the games
 
@@ -45,21 +60,23 @@ Mutable defaults remain unchanged pending the director's Q5 decision. No default
 Use Node 24 or newer. In an empty directory, install the version this README describes:
 
 ```sh
-npm install @adam0white/human-framework@2.14.1
+npm install @adam0white/human-framework@3.0.0
 ```
 
 Save these 20 lines as `quickstart.mjs`, then run `node quickstart.mjs`:
 
 ```js
 import {
-  createCommunity, createPerson, createVillage,
-  predict, stepCommunity, villagerSpec,
+  createCommunity,
+  createPerson,
+  createVillage,
+  predict,
+  stepCommunity,
+  villagerSpec,
 } from '@adam0white/human-framework';
 const start = 6 * 60; // simulation minutes
 const ids = ['ada', 'bora'];
-const people = ids.map((id, i) => createPerson(
-  villagerSpec(id, id, i + 1, { now: start, others: ids }),
-));
+const people = ids.map((id, i) => createPerson(villagerSpec(id, id, i + 1, { now: start, others: ids })));
 const world = createVillage(people, { seed: 7 });
 const community = createCommunity(people);
 const ada = community.people[0];
@@ -108,14 +125,14 @@ A suggestion is one urge among many. Its weight is strength × trust in the voic
 fits the person's motives, and a suggestion alone never overrides a veto. Each one resolves to a typed
 verdict (`SuggestionResolution`):
 
-| verdict | meaning | `kind` |
-|---|---|---|
-| `assented` | the suggested option won | none |
-| `deferred` | the person's own preference won; carries a `counterOffer` ("after I eat lunch") | `notNow` |
-| `modified` | a near alternative with the same action or aim won; the `counterOffer` names it | `notNow` |
-| `refused` | cannot (asleep, exhausted, skill far too low, a pressing bodily need) or will not (a firmly held norm, broken trust) | `cannot` / `willNot` |
-| `complied` | the voice insisted on a "not now"; done under protest (`activity.protest`), at a cost to autonomy and trust | `notNow` |
-| `commanded` | the host took direct control (see [Direct control](#direct-control)); the person does the order whatever they would have chosen | none |
+| verdict     | meaning                                                                                                                         | `kind`               |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
+| `assented`  | the suggested option won                                                                                                        | none                 |
+| `deferred`  | the person's own preference won; carries a `counterOffer` ("after I eat lunch")                                                 | `notNow`             |
+| `modified`  | a near alternative with the same action or aim won; the `counterOffer` names it                                                 | `notNow`             |
+| `refused`   | cannot (asleep, exhausted, skill far too low, a pressing bodily need) or will not (a firmly held norm, broken trust)            | `cannot` / `willNot` |
+| `complied`  | the voice insisted on a "not now"; done under protest (`activity.protest`), at a cost to autonomy and trust                     | `notNow`             |
+| `commanded` | the host took direct control (see [Direct control](#direct-control)); the person does the order whatever they would have chosen | none                 |
 
 Insisting (`insist: true`) turns only a `notNow` into compliance, and not when a bodily need is pressing. It
 never overrides `cannot` or `willNot`.
@@ -157,11 +174,12 @@ An offer describes expected effects. An outcome reports what happened. The host 
 contact, inventory and payment; HF uses the reported outcome to update the person. Do not copy
 `Affordance.advertises` into `Outcome.needs` as a general completion rule.
 
-| Host situation | Offer | Completion report |
-|---|---|---|
-| A person sleeps for part of the planned night. | Advertise typical sleep/rest benefits and set `mode: 'sleep'`. | Leave `sleep` and `rest` absent from `Outcome.needs`. `finish` advances the body to the actual end time and measures their change since the activity began. Explicit values replace that measurement; copying the advertisement can overstate the realized recovery reported to learning. |
-| A task promises four coins but actually pays two. | Set expected `Affordance.material` to four host units. | Update the host ledger by two and report `Outcome.material: 2`. A completed task does not imply the promised payment arrived. Report zero for no payment and a negative value for an actual cost. HF does not maintain the host's money ledger. |
-| A person can talk with someone who is present. | Tag the offer `social` when it really involves social contact; put participants in `with`. | Resolve actual participation. An empty room, a sleeping neighbour or someone who arrives after the conversation ends is not a completed encounter. Do not award contact or belonging merely because the activity uses a shared place. |
+<!-- biome-ignore format: Biome 2.6.3 adds column padding on each pass for this inline-code table; preserve stable source. -->
+| Host situation                                    | Offer                                                                                      | Completion report                                                                                                                                                                                                                                                                        |
+| ------------------------------------------------- | ------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| A person sleeps for part of the planned night.    | Advertise typical sleep/rest benefits and set `mode: 'sleep'`.                             | Leave `sleep` and `rest` absent from `Outcome.needs`.`finish` advances the body to the actual end time and measures their change since the activity began. Explicit values replace that measurement; copying the advertisement can overstate the realized recovery reported to learning. |
+| A task promises four coins but actually pays two. | Set expected `Affordance.material` to four host units.                                     | Update the host ledger by two and report `Outcome.material: 2`. A completed task does not imply the promised payment arrived. Report zero for no payment and a negative value for an actual cost. HF does not maintain the host's money ledger.                                          |
+| A person can talk with someone who is present.    | Tag the offer `social` when it really involves social contact; put participants in `with`. | Resolve actual participation. An empty room, a sleeping neighbour or someone who arrives after the conversation ends is not a completed encounter. Do not award contact or belonging merely because the activity uses a shared place.                                                    |
 
 For in-person activities, the host must establish co-presence and overlapping participation. HF has
 no map and does not discover companions. `with` names people taking part, not everyone assigned to a
@@ -247,7 +265,7 @@ reference host: `createVillage`.
 
 There are two version numbers, and they move independently.
 
-- **The release version** is the package version (`package.json`, currently `2.23.0`) and `FRAMEWORK_VERSION`, the same
+- **The release version** is the package version (`package.json`, currently `3.0.0`) and `FRAMEWORK_VERSION`, the same
   string compiled into the build; a test keeps them equal. It versions the public API under
   [semver](https://semver.org/): a breaking change to an exported name or signature bumps the major, a new
   faculty or export the minor, a fix the patch. Each release is a tag `vX.Y.Z` and a GitHub release whose notes
@@ -339,7 +357,7 @@ that place lose appeal until the fear fades. Groups and factions themselves stay
   the bundled `DEFAULT_NORMS` is Islam-guided; each reference's verification status is listed in
   [research/norm-sources.md](https://github.com/adam0white/human-framework/blob/main/research/norm-sources.md)). A host with its own catalog passes it as
   `World.catalog`, so necessity excuses and exemptions read that catalog; a norm not in it is not excused.
-  A person holds an *understanding* of a norm, with a standing and a conviction. That understanding is
+  A person holds an _understanding_ of a norm, with a standing and a conviction. That understanding is
   not a ruling. The library never computes divine acceptance. Where schools of thought differ, the
   position the bundled catalog takes, and why, is recorded in
   [research/decisions.md](https://github.com/adam0white/human-framework/blob/main/research/decisions.md).
@@ -366,18 +384,30 @@ Use observations the person actually received; the host owns what those observat
 ```ts
 receiveMethodCues(learner, {
   contextId: 'observed-example',
-  cues: [{ cue: 'route', value: 'north' }, { cue: 'signal', value: 'clear' }],
+  cues: [
+    { cue: 'route', value: 'north' },
+    { cue: 'signal', value: 'clear' },
+  ],
 });
 demonstrateMethod(learner, {
-  id: 'routing-north', demonstrationId: 'example-1',
-  contextId: 'observed-example', sourceId: 'instructor',
-  conditions: [{ cue: 'route', value: 'north' }, { cue: 'signal', value: 'clear' }],
-  action: 'send-north', outcome: 'success',
+  id: 'routing-north',
+  demonstrationId: 'example-1',
+  contextId: 'observed-example',
+  sourceId: 'instructor',
+  conditions: [
+    { cue: 'route', value: 'north' },
+    { cue: 'signal', value: 'clear' },
+  ],
+  action: 'send-north',
+  outcome: 'success',
 });
 // A new parcel can share the learned observation structure.
 receiveMethodCues(learner, {
   contextId: 'new-parcel',
-  cues: [{ cue: 'route', value: 'north' }, { cue: 'signal', value: 'clear' }],
+  cues: [
+    { cue: 'route', value: 'north' },
+    { cue: 'signal', value: 'clear' },
+  ],
 });
 const evidence = methodEvidence(learner, 'send-north', 'new-parcel');
 // Offers for that parcel carry methodContext: 'new-parcel'.
@@ -394,39 +424,67 @@ HF 2.3.0 lets an attended explanation connect one current action to one possible
 
 ```ts
 import {
-  type Affordance, type ReceivedConsequence,
-  consequenceEvidence, createPerson, decide, perceive,
+  type Affordance,
+  type ReceivedConsequence,
+  consequenceEvidence,
+  createPerson,
+  decide,
+  perceive,
 } from '@adam0white/human-framework';
 
 const person = createPerson({
-  id: 'courier', name: 'Courier', seed: 19, now: 600,
-  bornAt: -30 * 365 * 1440, sex: 'female',
-  goals: [{
-    id: 'delivery', label: 'Deliver the parcel', serves: ['achievement'],
-    advancedBy: [{ action: 'deliver', amount: 1 }], importance: 0.8,
-    temporal: { halfLifeMinutes: 30 },
-  }],
+  id: 'courier',
+  name: 'Courier',
+  seed: 19,
+  now: 600,
+  bornAt: -30 * 365 * 1440,
+  sex: 'female',
+  goals: [
+    {
+      id: 'delivery',
+      label: 'Deliver the parcel',
+      serves: ['achievement'],
+      advancedBy: [{ action: 'deliver', amount: 1 }],
+      importance: 0.8,
+      temporal: { halfLifeMinutes: 30 },
+    },
+  ],
 });
 const route: ReceivedConsequence = {
-  id: 'access-window', revision: 0,
+  id: 'access-window',
+  revision: 0,
   trigger: { action: 'ask-access', targetId: 'keeper' },
   successor: { action: 'deliver', duration: 20, effort: 0.1 },
-  availableFrom: 620, availableUntil: 680, expiresAt: 800,
-  chance: 0.8, confidence: 0.9,
+  availableFrom: 620,
+  availableUntil: 680,
+  expiresAt: 800,
+  chance: 0.8,
+  confidence: 0.9,
 };
-perceive(person, [{
-  at: 600, channel: 'told', kind: 'explanation', actorId: 'keeper',
-  targetId: person.id, salience: 1,
-  summary: 'If your request succeeds, this route may become available.',
-  consequences: [route],
-}]);
+perceive(person, [
+  {
+    at: 600,
+    channel: 'told',
+    kind: 'explanation',
+    actorId: 'keeper',
+    targetId: person.id,
+    salience: 1,
+    summary: 'If your request succeeds, this route may become available.',
+    consequences: [route],
+  },
+]);
 const request: Affordance = {
-  id: 'ask', action: 'ask-access', label: 'Request access', targetId: 'keeper',
-  duration: 10, effort: 0.1, advertises: {},
+  id: 'ask',
+  action: 'ask-access',
+  label: 'Request access',
+  targetId: 'keeper',
+  duration: 10,
+  effort: 0.1,
+  advertises: {},
 };
-const offers: Affordance[] = [request,
-  { id: 'direct', action: 'deliver', label: 'Deliver directly',
-    duration: 180, effort: 0.1, advertises: {} },
+const offers: Affordance[] = [
+  request,
+  { id: 'direct', action: 'deliver', label: 'Deliver directly', duration: 180, effort: 0.1, advertises: {} },
 ];
 const decision = decide(person, offers);
 const evidence = consequenceEvidence(person, request); // pure; no RNG consumed

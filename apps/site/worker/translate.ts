@@ -5,7 +5,6 @@ import { admitDaily } from './wai-budget.ts';
 
 export type TranslationEnv = Pick<Env, 'LAB' | 'AI'>;
 
-export const RESERVATION_USD = 0.04;
 const CAP = 25; // $1 lifetime allocation from the owner's $5 experiments budget.
 const KEY = 'ai-budget/free-text-v1.json'; // Keep forever: deleting this counter resets the spend ceiling.
 type Counter = {

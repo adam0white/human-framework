@@ -16,15 +16,15 @@ No game source, tests, other repository documents, prior reports, bundles, netwo
 
 Protocol deviation: the first-person checkpoint was logged at 68.704 s, about nine seconds late, after a wait returned at 62.204 s. The driver also automatically captured `first-minute.png` at 60.043 s. The ratings below use observations reached by 60 s only. The six-meal reading at 62.204 s is excluded. Later knowledge does not upgrade these ratings.
 
-| Item | Status | Evidence through 60 s |
-|---|---|---|
-| DL-1 A reason to act | PASS | I needed a roof and twelve meals before tomorrow evening’s storm. The opening goal and roof/meal/deadline strip told me. |
-| DL-2 What can I touch | PASS for controls tried | Before acting I named Play and village choices. Worker and place buttons worked. No inert target was tried. Selected Idris had a ring and dark nameplate in screenshot 03. Direct selection of other map people was not yet tested. |
-| DL-3 Urgency and selection | PASS | Roof and meals drew me first; Storm Day 2 19:00 supplied urgency. Idris’s ring/nameplate and Forest answer identified selection. |
-| DL-4 Why the limit | FAIL, partial understanding | Confirm said to choose worker/place. Yusuf would wait until after prayer and then agreed. Maryam’s “the others would go unfed” explained refusal, but I could not tell what would free her. No claim that the game has no such rule. Builder capability checks NOT TESTED. |
-| DL-5 Readable situation | PASS | Yusuf’s House order became “on it”; roof rose from two to three. Idris was gathering timber and said “Fine.” I could choose another worker or inspect an order. “Suggestion pending” was still unexplained. |
-| DL-6 A choice soon | PASS | Village setup choice available on first usable screen at 0.433 s; Play input 6.080 s. Worker choice available 8.730 s; Maryam input 11.942 s. First work order 23.607 s. Opening goal and instruction had 20 essential words before setup choices. |
-| DL-7 Learn by doing | PASS for reached interactions | Two accepted place orders: Yusuf → House and Idris → Forest. The first taught me orders can wait for prayer; the second showed people can already be doing their assigned work. One stale Forest label failed, and the current label worked. No help used. Four interaction types NOT TESTED in this minute: risky-order review, insistence, Rush, Home. |
+| Item                       | Status                        | Evidence through 60 s                                                                                                                                                                                                                                                                                                                                    |
+| -------------------------- | ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DL-1 A reason to act       | PASS                          | I needed a roof and twelve meals before tomorrow evening’s storm. The opening goal and roof/meal/deadline strip told me.                                                                                                                                                                                                                                 |
+| DL-2 What can I touch      | PASS for controls tried       | Before acting I named Play and village choices. Worker and place buttons worked. No inert target was tried. Selected Idris had a ring and dark nameplate in screenshot 03. Direct selection of other map people was not yet tested.                                                                                                                      |
+| DL-3 Urgency and selection | PASS                          | Roof and meals drew me first; Storm Day 2 19:00 supplied urgency. Idris’s ring/nameplate and Forest answer identified selection.                                                                                                                                                                                                                         |
+| DL-4 Why the limit         | FAIL, partial understanding   | Confirm said to choose worker/place. Yusuf would wait until after prayer and then agreed. Maryam’s “the others would go unfed” explained refusal, but I could not tell what would free her. No claim that the game has no such rule. Builder capability checks NOT TESTED.                                                                               |
+| DL-5 Readable situation    | PASS                          | Yusuf’s House order became “on it”; roof rose from two to three. Idris was gathering timber and said “Fine.” I could choose another worker or inspect an order. “Suggestion pending” was still unexplained.                                                                                                                                              |
+| DL-6 A choice soon         | PASS                          | Village setup choice available on first usable screen at 0.433 s; Play input 6.080 s. Worker choice available 8.730 s; Maryam input 11.942 s. First work order 23.607 s. Opening goal and instruction had 20 essential words before setup choices.                                                                                                       |
+| DL-7 Learn by doing        | PASS for reached interactions | Two accepted place orders: Yusuf → House and Idris → Forest. The first taught me orders can wait for prayer; the second showed people can already be doing their assigned work. One stale Forest label failed, and the current label worked. No help used. Four interaction types NOT TESTED in this minute: risky-order review, insistence, Rush, Home. |
 
 Original checkpoint answers:
 
@@ -34,41 +34,41 @@ Original checkpoint answers:
 
 These are observations, separate from my diary. Times are real elapsed seconds. Screenshot numbers refer to the artifact list.
 
-| Elapsed s | Input or moment | Visible answer |
-|---|---|---|
-| 0.433 | Open | D1 05:00 paused. “Roof the house, store 12 meals and keep everyone alive before the storm.” |
-| 11.942 | Maryam | Cooking; House/Forest “Will refuse: the others would go unfed.” |
-| 19.455–23.607 | Yusuf, House | “Later: after I pray Fajr”; order given to both villages. |
-| 27.641 | Shot 02 | D1 06:16; Yusuf “on it”; “Alright, I’ll do it.” Meals 4. |
-| 35.539 | Idris | Roof 3, Meals 4; drinking; Forest later after a drink. |
-| 38.436 | Old Forest label | Not on page now. Fresh label: “Already gathering timber: keeps him at it.” Game state, not driver failure. |
-| 44.937–49.572 | Current Forest label, Shot 03 | Order waiting, then on it; “Fine.” |
-| 73.738–77.742 | Suggestion, Shot 04 | Idris → Cedar; three timber at once; can hurt whoever fells it; lapses 09:00. Full risk sentence in transcript, partial sentence in screenshot. |
-| 81.135 | Skip suggestion | Running 8 min/s restored. |
-| 86.635 | Coordinate tap meant for Samira | Sent Idris → Field, later after drink. |
-| 93.485 | Order options | Idris: “Not that — I’ll gather timber; that is my work.” |
-| 101.593 | Suggestion | Maryam → Forest; refusal because people would go unfed; insisting may cost trust. Skipped. |
-| 108.832 | Classic map | Roof 7, Meals 6; Samira gathering timber. Place predictions explicitly prefixed Human. |
-| 111.369 | History | Idris Field: Classic finished grain; Human “will not.” Yusuf House: Human laid another course; House 3 of 10, work remains. |
-| 146.915–155.115 | Evening suggestion, Send | “One more wall before dark, if he is not spent.” Yusuf → House on it. |
+| Elapsed s       | Input or moment                  | Visible answer                                                                                                                                      |
+| --------------- | -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0.433           | Open                             | D1 05:00 paused. “Roof the house, store 12 meals and keep everyone alive before the storm.”                                                         |
+| 11.942          | Maryam                           | Cooking; House/Forest “Will refuse: the others would go unfed.”                                                                                     |
+| 19.455–23.607   | Yusuf, House                     | “Later: after I pray Fajr”; order given to both villages.                                                                                           |
+| 27.641          | Shot 02                          | D1 06:16; Yusuf “on it”; “Alright, I’ll do it.” Meals 4.                                                                                            |
+| 35.539          | Idris                            | Roof 3, Meals 4; drinking; Forest later after a drink.                                                                                              |
+| 38.436          | Old Forest label                 | Not on page now. Fresh label: “Already gathering timber: keeps him at it.” Game state, not driver failure.                                          |
+| 44.937–49.572   | Current Forest label, Shot 03    | Order waiting, then on it; “Fine.”                                                                                                                  |
+| 73.738–77.742   | Suggestion, Shot 04              | Idris → Cedar; three timber at once; can hurt whoever fells it; lapses 09:00. Full risk sentence in transcript, partial sentence in screenshot.     |
+| 81.135          | Skip suggestion                  | Running 8 min/s restored.                                                                                                                           |
+| 86.635          | Coordinate tap meant for Samira  | Sent Idris → Field, later after drink.                                                                                                              |
+| 93.485          | Order options                    | Idris: “Not that — I’ll gather timber; that is my work.”                                                                                            |
+| 101.593         | Suggestion                       | Maryam → Forest; refusal because people would go unfed; insisting may cost trust. Skipped.                                                          |
+| 108.832         | Classic map                      | Roof 7, Meals 6; Samira gathering timber. Place predictions explicitly prefixed Human.                                                              |
+| 111.369         | History                          | Idris Field: Classic finished grain; Human “will not.” Yusuf House: Human laid another course; House 3 of 10, work remains.                         |
+| 146.915–155.115 | Evening suggestion, Send         | “One more wall before dark, if he is not spent.” Yusuf → House on it.                                                                               |
 | 168.740–175.417 | State strip, retry current label | Meals changed, making old label stale. Current label worked. Human roof 8, meals 6. Idris hurt in squall at D1 21:40; Send Idris home / Show Idris. |
-| 181.718–187.021 | Send Idris home, Shot 05 | Home waiting then on it; “Fine.” Hurt alert remained. |
-| 190.887 | Suggestion | Tariq awake, timber short; night squall and trust warning. Skipped. |
-| 225.340 | After night wait | D2 06:10; Home “can’t — I’m asleep”; roof 8, meals 3. |
-| 231.197–233.815 | Latest Home order, Shot 06 | “Home asks them to eat once. After eating, they choose their own work again; it does not keep them indoors.” |
-| 241.395–244.281 | Morning timber suggestion, Send | Tariq rested; usual small slip risk by day; Forest later after drink. |
-| 253.765–256.559 | Yusuf, House | Likely yes; sent waiting then on it. |
-| 259.659 | Suggestion | Samira House: will refuse, busy with own work; trust warning. Skipped. |
-| 291.835–295.015 | Danyal suggestion, Review | “The well can wait an hour.” Rush selected, faster/hungrier; Likely yes. |
-| 298.942–306.095 | Rush off, Shot 07, Confirm | Prediction changed to after food, then after rest. Danyal House sent, later after rest. |
-| 329.797 | Work wait ends | D2 16:30; Roof 9, Meals 7. Danyal laid another course; work remains. |
-| 332.395–335.312 | Cook suggestion, Send | “Nobody can cook from 19:00 until 03:00.” Maryam Kitchen on it. |
-| 339.821–342.774 | Slower speed, options | Meals rose to 13 then 17; Roof 9. |
-| 350.344 | Yusuf | House “Already building: keeps him at it.” Latest completed order still described House 8. |
-| 353.126 | Suggestion | “The roof will not be on before the storm. Shutter the house?” Unshuttered unfinished house loses stages; shuttering stops roof work. |
-| 357.226–360.712 | Review, Shot 08 | Yusuf House; “build the house · Likely yes.” Shuttering warning in transcript, outside visible phone body. |
-| 363.658 | Confirm | Yusuf House on it. No explicit shutter confirmation. |
-| 368.589 | Latest-order check | “Human · House: on it”; “Latest Human reply: Fine.” |
+| 181.718–187.021 | Send Idris home, Shot 05         | Home waiting then on it; “Fine.” Hurt alert remained.                                                                                               |
+| 190.887         | Suggestion                       | Tariq awake, timber short; night squall and trust warning. Skipped.                                                                                 |
+| 225.340         | After night wait                 | D2 06:10; Home “can’t — I’m asleep”; roof 8, meals 3.                                                                                               |
+| 231.197–233.815 | Latest Home order, Shot 06       | “Home asks them to eat once. After eating, they choose their own work again; it does not keep them indoors.”                                        |
+| 241.395–244.281 | Morning timber suggestion, Send  | Tariq rested; usual small slip risk by day; Forest later after drink.                                                                               |
+| 253.765–256.559 | Yusuf, House                     | Likely yes; sent waiting then on it.                                                                                                                |
+| 259.659         | Suggestion                       | Samira House: will refuse, busy with own work; trust warning. Skipped.                                                                              |
+| 291.835–295.015 | Danyal suggestion, Review        | “The well can wait an hour.” Rush selected, faster/hungrier; Likely yes.                                                                            |
+| 298.942–306.095 | Rush off, Shot 07, Confirm       | Prediction changed to after food, then after rest. Danyal House sent, later after rest.                                                             |
+| 329.797         | Work wait ends                   | D2 16:30; Roof 9, Meals 7. Danyal laid another course; work remains.                                                                                |
+| 332.395–335.312 | Cook suggestion, Send            | “Nobody can cook from 19:00 until 03:00.” Maryam Kitchen on it.                                                                                     |
+| 339.821–342.774 | Slower speed, options            | Meals rose to 13 then 17; Roof 9.                                                                                                                   |
+| 350.344         | Yusuf                            | House “Already building: keeps him at it.” Latest completed order still described House 8.                                                          |
+| 353.126         | Suggestion                       | “The roof will not be on before the storm. Shutter the house?” Unshuttered unfinished house loses stages; shuttering stops roof work.               |
+| 357.226–360.712 | Review, Shot 08                  | Yusuf House; “build the house · Likely yes.” Shuttering warning in transcript, outside visible phone body.                                          |
+| 363.658         | Confirm                          | Yusuf House on it. No explicit shutter confirmation.                                                                                                |
+| 368.589         | Latest-order check               | “Human · House: on it”; “Latest Human reply: Fine.”                                                                                                 |
 
 ## Verbatim diary
 
@@ -580,29 +580,29 @@ Hard, but kept going: yes. At 339.821 s I used ½× because the deadline was app
 
 ## Clarity findings
 
-| ID | Status | Observation and uncertainty |
-|---|---|---|
-| DL-2 | FAIL later for my selection understanding; first-minute PASS unchanged | At 86.635 s I tried a coordinate tap where Samira had been shown by the field. It sent selected Idris to Field. I cannot prove she remained under that point: the screenshot was about nine seconds old and the scene was live. This records confusion, not proof of overlapping hit targets. |
-| DL-4 | FAIL for explanation reached | Maryam’s refusal told me why she stayed cooking, but not what would free her. Busy-with-own-work did not tell me when it would clear. Prayer/drink/rest/sleep explained waiting conditions. No implementation claim. |
-| DL-10 / DL-19 | FAIL | “Shutter the house?” at 353.126 s became “build the house · Likely yes” at review, then “House: on it.” I could not tell whether I had shuttered anything. Shot 08 and transcript. Actual shuttering outcome NOT TESTED. |
-| DL-19 | FAIL | “Send Idris home” beneath Hurt made me expect shelter/recovery. Only after sending and inspecting did I learn Home means eat once and choose work again. Shots 05/06; 181.718 and 231.197 s. Recovery and remaining indoors NOT TESTED. |
-| DL-30 | FAIL | Shot 04: visible risk fragment “Fast timber, but the cedar can hurt” ended at the action row; transcript continued “whoever fells it.” Lapse time was also outside the visible sheet body. Shot 06: first bold Home answer line cut across its top; Home explanation continued below action row. Shots 07/08: action/reason below Danyal/Yusuf → House cut behind Watch village/Confirm. I did not scroll to uncover it. |
-| DL-13 | PASS for acknowledgment reached | Orders promptly said given to both villages, waiting/later/on it, then speech or traceable history. This does not fix ambiguous shutter meaning. |
-| DL-15 | PASS for timing reached | From 2×, live suggestions slowed to 1 min/s. Evening house suggestion read at 146.915 s and sent at 155.115 s before lapse; sending restored 16 min/s. Time advanced between commands. |
+| ID            | Status                                                                 | Observation and uncertainty                                                                                                                                                                                                                                                                                                                                                                                              |
+| ------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| DL-2          | FAIL later for my selection understanding; first-minute PASS unchanged | At 86.635 s I tried a coordinate tap where Samira had been shown by the field. It sent selected Idris to Field. I cannot prove she remained under that point: the screenshot was about nine seconds old and the scene was live. This records confusion, not proof of overlapping hit targets.                                                                                                                            |
+| DL-4          | FAIL for explanation reached                                           | Maryam’s refusal told me why she stayed cooking, but not what would free her. Busy-with-own-work did not tell me when it would clear. Prayer/drink/rest/sleep explained waiting conditions. No implementation claim.                                                                                                                                                                                                     |
+| DL-10 / DL-19 | FAIL                                                                   | “Shutter the house?” at 353.126 s became “build the house · Likely yes” at review, then “House: on it.” I could not tell whether I had shuttered anything. Shot 08 and transcript. Actual shuttering outcome NOT TESTED.                                                                                                                                                                                                 |
+| DL-19         | FAIL                                                                   | “Send Idris home” beneath Hurt made me expect shelter/recovery. Only after sending and inspecting did I learn Home means eat once and choose work again. Shots 05/06; 181.718 and 231.197 s. Recovery and remaining indoors NOT TESTED.                                                                                                                                                                                  |
+| DL-30         | FAIL                                                                   | Shot 04: visible risk fragment “Fast timber, but the cedar can hurt” ended at the action row; transcript continued “whoever fells it.” Lapse time was also outside the visible sheet body. Shot 06: first bold Home answer line cut across its top; Home explanation continued below action row. Shots 07/08: action/reason below Danyal/Yusuf → House cut behind Watch village/Confirm. I did not scroll to uncover it. |
+| DL-13         | PASS for acknowledgment reached                                        | Orders promptly said given to both villages, waiting/later/on it, then speech or traceable history. This does not fix ambiguous shutter meaning.                                                                                                                                                                                                                                                                         |
+| DL-15         | PASS for timing reached                                                | From 2×, live suggestions slowed to 1 min/s. Evening house suggestion read at 146.915 s and sent at 155.115 s before lapse; sending restored 16 min/s. Time advanced between commands.                                                                                                                                                                                                                                   |
 
 Two named taps used stale labels and succeeded after one retry with the fresh name. Neither was a driver block. The uncertain coordinate interpretation is weaker evidence than the directly visible clipping and shutter/build wording.
 
 ## English, dates, phone layout, hands on
 
-| Item | Status | Evidence and scope |
-|---|---|---|
-| DL-20 | PASS for actions reached | Action labels, goals and warnings were English. “after I pray Fajr” supplied the relevant waiting meaning. I did not need to select Masjid or translate it to act. Its exact function/explanation on request NOT TESTED. |
-| DL-21 | PASS for date comparisons reached | D1/D2 and Storm Day 2 19:00 let me compare today/tomorrow. On Day 2, 16:32 preceded 19:00; until 03:00 meant overnight. Month/year boundaries and returning after closing NOT TESTED. |
-| DL-22 | FAIL | Goal strip and commit buttons stayed visible, but essential order reasons and risk text were not fully visible without scrolling. Shots 04/06/07/08. This was visually checked. |
-| DL-30 | FAIL | Fragments above. Text transcript contained more than the screenshot showed; screenshots establish visibility. |
-| DL-31 | PASS for sheets reached | Shot 07 shows Roof 8, Meals 6, Storm Day 2 19:00, selected Danyal and House on scene with order sheet open. Reason clipping is covered by DL-30. |
-| DL-32 | NOT TESTED for an exclusive no-act gap | Longest chosen wait: 25 real seconds through the night, ending at 225.340 s. I wanted morning for safer roof/timber work. Other orders and speed controls remained available, so the wait does not prove I could only watch. I also made 20-second work waits. No builder cadence measurement. |
-| DL-33 | PASS for direct place orders; mixed experience | After selecting Yusuf, one House tap sent an order with a quick answer. Same for Idris Forest. Worker switching used menus after the failed intended Samira selection. Danyal and shutter suggestions used Review/Confirm forms. A direct shutter act was NOT TESTED. |
+| Item  | Status                                         | Evidence and scope                                                                                                                                                                                                                                                                             |
+| ----- | ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DL-20 | PASS for actions reached                       | Action labels, goals and warnings were English. “after I pray Fajr” supplied the relevant waiting meaning. I did not need to select Masjid or translate it to act. Its exact function/explanation on request NOT TESTED.                                                                       |
+| DL-21 | PASS for date comparisons reached              | D1/D2 and Storm Day 2 19:00 let me compare today/tomorrow. On Day 2, 16:32 preceded 19:00; until 03:00 meant overnight. Month/year boundaries and returning after closing NOT TESTED.                                                                                                          |
+| DL-22 | FAIL                                           | Goal strip and commit buttons stayed visible, but essential order reasons and risk text were not fully visible without scrolling. Shots 04/06/07/08. This was visually checked.                                                                                                                |
+| DL-30 | FAIL                                           | Fragments above. Text transcript contained more than the screenshot showed; screenshots establish visibility.                                                                                                                                                                                  |
+| DL-31 | PASS for sheets reached                        | Shot 07 shows Roof 8, Meals 6, Storm Day 2 19:00, selected Danyal and House on scene with order sheet open. Reason clipping is covered by DL-30.                                                                                                                                               |
+| DL-32 | NOT TESTED for an exclusive no-act gap         | Longest chosen wait: 25 real seconds through the night, ending at 225.340 s. I wanted morning for safer roof/timber work. Other orders and speed controls remained available, so the wait does not prove I could only watch. I also made 20-second work waits. No builder cadence measurement. |
+| DL-33 | PASS for direct place orders; mixed experience | After selecting Yusuf, one House tap sent an order with a quick answer. Same for Idris Forest. Worker switching used menus after the failed intended Samira selection. Danyal and shutter suggestions used Review/Confirm forms. A direct shutter act was NOT TESTED.                          |
 
 No simultaneous sheet stack was observed. Reload, saves, exports, replay, sending, target dimensions, alternate themes, text scaling and source-dependent builder checks are NOT TESTED.
 

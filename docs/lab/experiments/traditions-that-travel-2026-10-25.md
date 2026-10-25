@@ -15,13 +15,13 @@ A failure is NO-GO for this configuration, not proof methods cannot learn. If GO
 
 NO-GO for this assay. All three seeds failed criterion 1. No new HF slice.
 
-| Measure, identical on seeds 7 / 19 / 43 | Imitation | Discovery | Frozen |
-|---|---:|---:|---:|
-| Patch share, first five dry trials | 1.00 | 1.00 | 1.00 |
-| Patch share, first five damp trials | 1.00 | 1.00 | 1.00 |
-| Patch share, last five damp trials | 0.00 | 0.00 | 1.00 |
-| Non-demonstrators choosing bad patch after change | 11 | 11 | 11 |
-| Learners retaining other-learner evidence | 10 | 0 | 0 |
+| Measure, identical on seeds 7 / 19 / 43           | Imitation | Discovery | Frozen |
+| ------------------------------------------------- | --------: | --------: | -----: |
+| Patch share, first five dry trials                |      1.00 |      1.00 |   1.00 |
+| Patch share, first five damp trials               |      1.00 |      1.00 |   1.00 |
+| Patch share, last five damp trials                |      0.00 |      0.00 |   1.00 |
+| Non-demonstrators choosing bad patch after change |        11 |        11 |     11 |
+| Learners retaining other-learner evidence         |        10 |         0 |      0 |
 
 Criteria 2–4 passed on each seed. Learner-source evidence contributed positively to actual chosen action scores in imitation. Initial teaching was supplied by the host; subsequent examples were actual peer choices and observed outcomes. No adoption count was imposed. Bad transfer means continuing a previously successful method after an unobserved environmental change. This is not misinformation: the earlier successful demonstrations were true.
 
@@ -99,12 +99,12 @@ PENDING at preregistration. Timestamp, document SHA256 and exact registered text
 
 **GO for the preregistered controlled transmission slice.** This does not reverse the original assay's NO-GO. It does not establish village culture or spontaneous teaching.
 
-| Per-seed measure (same on 7, 19, 43; four identity/order cells each) | Result |
-|---|---:|
-| First damp patch share, imitation / discovery | 1.00 / 0.50 |
-| Matched replacement→patch switches caused by the peer-evidence contrast | 0.50 |
-| Last-three damp patch share, imitation / discovery | 0.00 / 0.00 |
-| Last-three damp patch share, frozen / peer-frozen | 0.50 / 1.00 |
+| Per-seed measure (same on 7, 19, 43; four identity/order cells each)    |      Result |
+| ----------------------------------------------------------------------- | ----------: |
+| First damp patch share, imitation / discovery                           | 1.00 / 0.50 |
+| Matched replacement→patch switches caused by the peer-evidence contrast |        0.50 |
+| Last-three damp patch share, imitation / discovery                      | 0.00 / 0.00 |
+| Last-three damp patch share, frozen / peer-frozen                       | 0.50 / 1.00 |
 
 Every counted switch had a positive relay-source term on the chosen action, no own learner evidence, identical paired pre-choice RNG and identical state outside methods. All source-path gates passed: demonstrator actually chose patch twice in dry conditions, relay received those true observations and actually chose patch twice, and learners received only relay evidence in their assigned arms. No learner received demonstrator-source evidence. The no-peer arms remained unexposed at first choice. All first choices preceded own outcomes. The host counted actual `decide` results; it never assigned adoption.
 

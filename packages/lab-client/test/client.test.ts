@@ -46,6 +46,40 @@ async function waitFor(count: number) {
   await vi.waitFor(() => expect(envelopes).toHaveLength(count));
 }
 describe('linked lab client', () => {
+  it('bounds serialized log messages so a full Unicode burst and later screen deliver', async () => {
+    const lab = createLab({ game: 'pass', build: { a: 'log-bytes' } });
+    for (let i = 0; i < 59; i++) lab.log('game', '界'.repeat(1000));
+    lab.log('game', '\u0000'.repeat(1000));
+    lab.flush();
+    await vi.waitFor(() => expect(envelopes.some((e) => e.kind === 'logs')).toBe(true));
+    const logs = envelopes.find((e) => e.kind === 'logs')?.data as { message: string }[];
+    expect(logs).toHaveLength(60);
+    expect(logs[0]?.message).toBe('界'.repeat(333));
+    expect(logs[59]?.message).toBe('\u0000'.repeat(166));
+    for (const { message } of logs) {
+      expect(new TextEncoder().encode(JSON.stringify(message).slice(1, -1)).byteLength).toBeLessThanOrEqual(
+        1000,
+      );
+    }
+    lab.screen('after Unicode logs');
+    lab.flush();
+    await vi.waitFor(() =>
+      expect(
+        envelopes.some((e) => e.kind === 'events' && JSON.stringify(e.data).includes('after Unicode logs')),
+      ).toBe(true),
+    );
+  });
+
+  it('retains 1000 ASCII characters and whole astral characters at the log limit', async () => {
+    const lab = createLab({ game: 'pass', build: { a: 'log-bytes' } });
+    lab.log('game', 'x'.repeat(1000));
+    lab.log('game', `${'x'.repeat(999)}😀`);
+    lab.flush();
+    await vi.waitFor(() => expect(envelopes.some((e) => e.kind === 'logs')).toBe(true));
+    const logs = envelopes.find((e) => e.kind === 'logs')?.data as { message: string }[];
+    expect(logs.map((entry) => entry.message)).toEqual(['x'.repeat(1000), 'x'.repeat(999)]);
+  });
+
   it('shares player identity across games, keeps their sessions separate, and links events and saves', async () => {
     const well = createLab({ game: 'well', build: { c: 'abc1234' } });
     const voice = createLab({ game: 'voice', build: {} });

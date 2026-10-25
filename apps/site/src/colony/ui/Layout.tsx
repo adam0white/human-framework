@@ -8,7 +8,7 @@ import { VILLAGERS, type VillagerId, villagerById } from '../sim/world-types.ts'
 import { dayClock, type Frame, NO_CONCEPT } from './contract.ts';
 import { activityDescription, moodDescription, trustDescription } from './descriptions.ts';
 import { RingTimer } from './Icon.tsx';
-import { homeOrderMeaning, latestPersonOrder, repeatPersonOrder } from './order-status.ts';
+import { homeOrderMeaning, latestPersonOrder } from './order-status.ts';
 import {
   CHIP_TEXT,
   GoalBars,
@@ -465,4 +465,4 @@ export function PersonSheet({
     </>
   );
 }
-export { RingTimer, repeatPersonOrder };
+export { RingTimer };

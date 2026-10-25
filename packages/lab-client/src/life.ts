@@ -47,8 +47,7 @@ export function validatePersonaLife(value: unknown, castId: string): PersonaLife
   const p = canonicalCast(castId);
   const life = value as PersonaLife;
   if (
-    !life ||
-    life.version !== 'hf-coarse-life/1' ||
+    life?.version !== 'hf-coarse-life/1' ||
     Object.keys(life).sort().join(',') !== 'assignment,clock,events,notices,place,skipped,version,work' ||
     !Number.isSafeInteger(life.assignment) ||
     life.assignment < 0 ||

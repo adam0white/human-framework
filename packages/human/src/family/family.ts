@@ -171,6 +171,7 @@ export function conceive(
   seed: number,
   at: Minute,
 ): Pregnancy | undefined {
+  if (!Number.isFinite(at)) throw new TypeError('conceive requires a finite positional time');
   const fam = familyOf(mother);
   if (fam.pregnancy) return undefined;
   const rng = createRng((seed ^ 0x9e3779b9) >>> 0);

@@ -319,7 +319,7 @@ function breachId(p: Person, at: Minute, normId: string): string {
 function boundBreaches(c: ConscienceState): void {
   while (c.breaches.length > CONSCIENCE_DEFAULTS.maxBreaches) {
     const i = c.breaches.findIndex((b) => b.repaired);
-    c.breaches.splice(i >= 0 ? i : 0, 1);
+    c.breaches.splice(Math.max(i, 0), 1);
   }
 }
 

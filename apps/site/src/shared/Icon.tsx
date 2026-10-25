@@ -30,33 +30,41 @@ const defaultClass = (name: string, extra: string | undefined) =>
   `icon icon-${name}${extra ? ` ${extra}` : ''}`;
 
 export function makeIcon<G extends Record<string, ReactNode>>(glyphs: G, options: IconOptions = {}) {
-  const { size: defaultSize = 18, classFor = defaultClass, strokeFor } = options;
-  return function Icon({ name, size = defaultSize, label, className }: IconProps<keyof G & string>) {
-    const common = {
-      className: classFor(name, className),
-      width: size,
-      height: size,
-      viewBox: '0 0 24 24',
-      fill: 'none',
-      stroke: 'currentColor',
-      strokeWidth: strokeFor ? strokeFor(size) : 2,
-      strokeLinecap: 'round' as const,
-      strokeLinejoin: 'round' as const,
-      focusable: 'false' as const,
-    };
-    const body = glyphs[name];
-    if (label) {
-      return (
-        <svg {...common} role="img" aria-label={settingWords(label)}>
-          <title>{label}</title>
-          {body}
-        </svg>
-      );
-    }
+  const { size = 18, classFor = defaultClass, strokeFor } = options;
+  return GlyphIcon.bind(null, glyphs, { size, classFor, strokeFor }) as (
+    props: IconProps<keyof G & string>,
+  ) => ReactNode;
+}
+
+function GlyphIcon(
+  glyphs: Record<string, ReactNode>,
+  { size: defaultSize = 18, classFor = defaultClass, strokeFor }: IconOptions,
+  { name, size = defaultSize, label, className }: IconProps<string>,
+) {
+  const common = {
+    className: classFor(name, className),
+    width: size,
+    height: size,
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: strokeFor ? strokeFor(size) : 2,
+    strokeLinecap: 'round' as const,
+    strokeLinejoin: 'round' as const,
+    focusable: 'false' as const,
+  };
+  const body = glyphs[name];
+  if (label) {
     return (
-      <svg {...common} aria-hidden="true">
+      <svg {...common} role="img" aria-label={settingWords(label)}>
+        <title>{label}</title>
         {body}
       </svg>
     );
-  };
+  }
+  return (
+    <svg {...common} aria-hidden="true">
+      {body}
+    </svg>
+  );
 }

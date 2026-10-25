@@ -14,12 +14,12 @@ GO requires at least12/20 feasible agreements in grammar, at least4 more agreeme
 
 **NO-GO for a new grammar slice.** Both arms reached0/20 feasible agreements. Both disclosed40 testimony percepts, with zero initial private leaks and zero infeasible unanimous shifts. All chosen-action sequences matched. The direct promise-spam control grew pending commitments from1 to101 after100 repeated calls. Released `promise` is a low-level mutator, not an idempotent offer protocol; hosts must validate identity and deduplicate. This is an authoring hazard, not evidence of a shipped game exploit.
 
-| Measure | Grammar | Fixed choices |
-|---|---:|---:|
-| Feasible agreements /20 |0|0|
-| Infeasible unanimous shifts |0|0|
-| Initial private leaks |0|0|
-| Testimony percepts delivered |40|40|
+| Measure                      | Grammar | Fixed choices |
+| ---------------------------- | ------: | ------------: |
+| Feasible agreements /20      |       0 |             0 |
+| Infeasible unanimous shifts  |       0 |             0 |
+| Initial private leaks        |       0 |             0 |
+| Testimony percepts delivered |      40 |            40 |
 
 Exact package: npm `@adam0white/human-framework@2.21.0`; downloaded tarball SHA256 `f3a160fa371b954f1902fbb1bd0ad0f2af84299757625f7593d42a361a16c8a9`. Runtime Node26.12.0. Preregistration UTC2026-10-25T17:13:23.035319+00:00, SHA256 `3b11ca78c2988e1ebeab8ca9ccb01e68ae08ea2d50ed8e041af4b916b0ae373b`, signed preregistration commit `5ccd894`. Original document and timestamp/hash receipt remain in worker scratch.
 
@@ -49,16 +49,16 @@ Positive instrument control uses a separate fresh protocol: scripted actor0 prop
 
 **GO for the bounded opt-in host example, after the preregistered instrument correction below.** The invalid first execution is preserved separately. No new HF faculty or release is justified.
 
-| Corrected run, seeds1–20 | Grammar | Fixed dialogue |
-|---|---:|---:|
-| Feasible settlements /20 |20|10|
-| Turns used |10×3,10×5|10×3,10×18|
-| Applied counterproposals |10|0|
-| Delivered constraint testimony percepts |20|20|
-| Attended constraint testimony percepts |20|20|
-| Infeasible settlements |0|0|
-| Premature constraint access |0|0|
-| Unattended accepted offers |0|0|
+| Corrected run, seeds1–20                |   Grammar | Fixed dialogue |
+| --------------------------------------- | --------: | -------------: |
+| Feasible settlements /20                |        20 |             10 |
+| Turns used                              | 10×3,10×5 |     10×3,10×18 |
+| Applied counterproposals                |        10 |              0 |
+| Delivered constraint testimony percepts |        20 |             20 |
+| Attended constraint testimony percepts  |        20 |             20 |
+| Infeasible settlements                  |         0 |              0 |
+| Premature constraint access             |         0 |              0 |
+| Unattended accepted offers              |         0 |              0 |
 
 Every settlement contains three distinct consents on the same live proposal. All work-goal progress remains0 across40 runs: utterances create neither work credit nor reward. The independently scripted instrument settles once; duplicate proposals/acceptances, new-id repeats, stale accepts, forged actor ids and unattended accepts create no extra consent or agreements. Counters clear prior signatures; refusals close their proposal. These controls operate through the protocol, unlike the first probe's raw `promise` accumulation.
 

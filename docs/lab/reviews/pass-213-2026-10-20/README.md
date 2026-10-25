@@ -2,8 +2,8 @@
 
 One Protocol 2 session on live pass `cfa6730` (`/release.json` framework 2.13.0, dirty false): pass@10, whose cooks phrase a refusal from HF's `decidedBy` and in which Selim holds his plates rule firmly, plus the fixes for F-392 to F-394. Source-unread Codex tester, driven by `npm run lab:play` at human-framework `c3713e4` (`driver_check: current`). The report is the tester's own words; local paths were replaced by "(driver scratch)".
 
-| File | Build | Device, arm | Stop | First wish to leave (tester's code) |
-|---|---|---|---|---|
+| File             | Build              | Device, arm                         | Stop                                           | First wish to leave (tester's code)             |
+| ---------------- | ------------------ | ----------------------------------- | ---------------------------------------------- | ----------------------------------------------- |
 | `deniz-floor.md` | The Pass `cfa6730` | phone 360x690, floor 15, ceiling 25 | 15:14 CONFUSED, would return for Kemal's party | 8:37 BORED, after the birthday promise was kept |
 
 ## What this shows, and what it does not

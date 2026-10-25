@@ -1,39 +1,9 @@
-import { memo, type ReactNode, useEffect, useRef, useState } from 'react';
+import { memo } from 'react';
 import { settingWords } from '../../shared/setting-words.ts';
 import type { VillagerId } from '../sim/world-types.ts';
 import type { Frame } from './contract.ts';
 import { activityDescription, needDescription } from './descriptions.ts';
 import { Portrait, shortName } from './parts.tsx';
-
-/** Reserve space for a header and six readable, tappable rows. */
-const ROWS_H = 310;
-/** The map's aspect (20×14 tiles). */
-const MAP_ASPECT = 448 / 640;
-
-/**
- * A pane's body: the map, plus one status row per person when the pane is tall enough to hold both without
- * shrinking the map (desktop panes are width-bound and had empty bands above and below the map). Phones and short
- * desktop windows show only the map.
- */
-export function PaneBody({ rows, children }: { rows: ReactNode; children: ReactNode }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [fits, setFits] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return undefined;
-    const measure = () => setFits(el.clientHeight - el.clientWidth * MAP_ASPECT >= ROWS_H);
-    measure();
-    const ro = new ResizeObserver(measure);
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
-  return (
-    <div className={`pane-body ${fits ? 'has-rows' : ''}`} ref={ref}>
-      <div className="pane-map">{children}</div>
-      {fits && rows}
-    </div>
-  );
-}
 
 function Bar({ label, value, urgent }: { label: string; value: number; urgent?: boolean | undefined }) {
   const v = Math.max(0, Math.min(1, value));

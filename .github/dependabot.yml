@@ -11,7 +11,7 @@ updates:
       interval: weekly
       day: monday
     open-pull-requests-limit: 5
-    exclude-paths: ['archive/**']
+    exclude-paths: ["archive/**"]
     cooldown:
       default-days: 7
     groups:
@@ -24,7 +24,7 @@ updates:
 
   - package-ecosystem: github-actions
     directory: /
-    exclude-paths: ['archive/**']
+    exclude-paths: ["archive/**"]
     schedule:
       interval: weekly
       day: monday
@@ -32,7 +32,7 @@ updates:
       default-days: 7
     groups:
       actions:
-        patterns: ['*']
+        patterns: ["*"]
 
   # The only pip manifests are under archive/; this entry exists to exclude them. Limit 0: no version-update PRs.
   - package-ecosystem: pip
@@ -40,4 +40,4 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 0
-    exclude-paths: ['archive/**']
+    exclude-paths: ["archive/**"]

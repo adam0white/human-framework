@@ -51,9 +51,9 @@ jobs:
           registry-url: https://registry.npmjs.org
           package-manager-cache: false # no caches in release builds
       # Pinned rather than whatever the Node release bundles: OIDC needs npm >= 11.5.1.
-      - name: npm 11.20.0
+      - name: npm 12.2.1
         run: |
-          npm install -g npm@11.20.0
+          npm install -g npm@12.2.1
           echo "Node $(node --version), npm $(npm --version)"
       - name: Tag matches the package version
         run: |

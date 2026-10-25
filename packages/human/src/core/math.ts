@@ -3,6 +3,7 @@ import { dexp, dlog, dpow } from './libm.ts';
 
 /** Clamp into [min, max]. NaN maps to `min`, so one bad host number cannot propagate through state. */
 export const clamp = (value: number, min: number, max: number): number =>
+  // biome-ignore lint/complexity/useMathMinMax: Comparisons preserve signed zero and NaN bounds; Math.min/max change them.
   Number.isNaN(value) ? min : value < min ? min : value > max ? max : value;
 export const clamp01 = (value: number): number => clamp(value, 0, 1);
 export const clampSigned = (value: number): number => clamp(value, -1, 1);

@@ -10,6 +10,7 @@ import {
 } from '@adam0white/human-framework';
 import { canonicalPersona, type PersonaEnvelope } from '@adam0white/lab-client';
 import { nativeCastSource } from '../../shared/cast-native-sources.ts';
+import { requireValue } from '../../shared/require-value.ts';
 import type { refugeVisitPassport } from './refuge-visit.ts';
 import type { WatchState } from './state.ts';
 
@@ -208,7 +209,7 @@ export function warrenCareReentry(parent: PersonaEnvelope, portable: Portable): 
     x.capturedMinute !== captured ||
     !Number.isSafeInteger(v.offset) ||
     !Number.isSafeInteger(v.endedAt) ||
-    v.endedAt! > captured ||
+    requireValue(v.endedAt) > captured ||
     v.endRequested !== true ||
     (v.protection !== undefined && !['protected', 'exposed'].includes(v.protection)) ||
     !Number.isSafeInteger(v.careCount) ||
@@ -242,9 +243,9 @@ export function warrenCareReentry(parent: PersonaEnvelope, portable: Portable): 
     canonicalPersona(v.agreement) !== canonicalPersona(shiftedAgreement) ||
     canonicalPersona(v.care) !== canonicalPersona(shiftedCare) ||
     v.returnBy !== shiftedAgreement.returnBy ||
-    v.endedAt! < v.care.completedAt ||
+    requireValue(v.endedAt) < v.care.completedAt ||
     v.dependent.sourceMinute < source.dependent.sourceMinute + v.offset ||
-    v.dependent.sourceMinute > v.endedAt! ||
+    v.dependent.sourceMinute > requireValue(v.endedAt) ||
     v.dependent.ageMinutes !== source.dependent.ageMinutes ||
     Math.abs(v.dependent.satiety - Math.min(1, source.dependent.satiety + 0.35 * v.careCount)) > 1e-12 ||
     Math.abs(v.dependent.hydration - Math.min(1, source.dependent.hydration + 0.35 * v.careCount)) > 1e-12 ||

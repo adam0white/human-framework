@@ -14,6 +14,11 @@ vi.mock('../../shared/lab.tsx', () => ({
 
 (globalThis as typeof globalThis & { IS_REACT_ACT_ENVIRONMENT: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
 afterEach(() => vi.unstubAllGlobals());
+function Harness({ capture }: { capture: (value: Colony) => void }) {
+  capture(useColony());
+  return null;
+}
+
 it('keeps suggestion forecasts independent of composer and scene forecasts, and drops superseded replies', async () => {
   const listeners = new Set<(e: { data: WorkerToMain }) => void>();
   const messages: Record<string, unknown>[] = [];
@@ -35,12 +40,16 @@ it('keeps suggestion forecasts independent of composer and scene forecasts, and 
   vi.stubGlobal('requestAnimationFrame', () => 0);
   vi.stubGlobal('cancelAnimationFrame', () => {});
   let colony: Colony | undefined;
-  function Harness() {
-    colony = useColony();
-    return null;
-  }
   const root = createRoot(document.createElement('div'));
-  await act(() => root.render(createElement(Harness)));
+  await act(() =>
+    root.render(
+      createElement(Harness, {
+        capture: (value) => {
+          colony = value;
+        },
+      }),
+    ),
+  );
   if (!colony) throw new Error('Hook did not mount');
   const state = () => {
     if (!colony) throw new Error('Missing state');

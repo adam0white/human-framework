@@ -1,5 +1,5 @@
 /** Human Framework public surface. */
-export const FRAMEWORK_VERSION = '2.23.0';
+export const FRAMEWORK_VERSION = '3.0.0';
 
 // `affect.release` is re-exported as `releaseEmotion` (beside `releaseCommitment`); `skipAffect` stays internal.
 export type { CrisisEvent, PracticeKind } from './affect/index.ts';
@@ -154,5 +154,6 @@ export * from './scenarios/index.ts';
 export * from './sim/index.ts';
 export * from './skills/index.ts';
 export * from './social/index.ts';
+export { canonicalTickInputs, type TickInput, type TickInputKey } from './tick-input.ts';
 export * from './types.ts';
 export * from './will/index.ts';

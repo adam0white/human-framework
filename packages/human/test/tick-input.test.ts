@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { canonicalTickInputs } from '../src/tick-input.ts';
+import { canonicalTickInputs } from '../src/index.ts';
 
 test('waits for the declared barrier, then orders without changing caller input', () => {
   const expected = [

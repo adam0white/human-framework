@@ -1,0 +1,69 @@
+{
+  "$schema": "./node_modules/knip/schema.json",
+  "ignoreExportsUsedInFile": true,
+  // Archived v0 is provenance, not a maintained workspace (AGENTS.md).
+  "ignore": ["archive/**"],
+  "ignoreDependencies": ["playwright"], // Loaded from PLAYWRIGHT_MODULE or the installed package by browser CLIs.
+  // hyperfine is an optional Homebrew benchmark tool, also installed explicitly in bench.yml.
+  "ignoreBinaries": ["hyperfine"],
+  "workspaces": {
+    ".": {
+      "entry": [
+        "scripts/{api-doc,bench-thousand-lives,bench-village,continue-old-engine,deploy,install-wai-daily,lab-inbox,lab-ledger,lab-phone,lab-plain-english,lab-play,lab-wai-budget,lab-wai-play,lane,lockfile-sync,make-engine-fixture,pack-smoke,release,site-smoke,suite-lock}.ts",
+        "scripts/**/*.test.ts",
+        "docs/lab/experiments/clairic-triage-2026-10-20/{bakeoff,score}.ts",
+        "docs/lab/experiments/free-text-2026-10-23/{benchmark,score}.ts",
+        "docs/lab/experiments/clef-inbox-2026-10-20/run.ts",
+        // Frozen executable first-probe harness, retained for reproducibility.
+        "docs/lab/experiments/fork-lockstep-2026-10-25/probe.ts",
+        "docs/lab/experiments/**/*.test.mjs",
+        "docs/lab/experiments/speech-acts-you-can-play-2026-10-25/{probe,contingent-probe}.mjs",
+        "docs/lab/experiments/traditions-that-travel-2026-10-25/balanced-probe.mjs"
+      ],
+      "project": ["scripts/**/*.ts", "docs/lab/experiments/**/*.{ts,mjs}", "*.ts"]
+    },
+    "apps/site": {
+      "entry": [
+        "**/index.html",
+        "src/**/*.test.ts",
+        "src/{colony,voice,watch}/worker.ts",
+        "worker/lab.ts",
+        "scripts/{colony-view,hf-colony-session,hf-voice-session,hf-watch-session,play-colony,play-voice,play-watch,watch-night-control,watch-phone-layout,watch-winter-control}.ts",
+        "src/colony/ui/phone-readability.browser.mjs",
+        "public/lab/island/{boot,viewer}.js"
+      ],
+      "project": [
+        "src/**/*.{ts,tsx,mjs}",
+        "worker/**/*.ts",
+        "scripts/**/*.ts",
+        "test/**/*.ts",
+        "public/lab/island/*.js",
+        "*.ts"
+      ]
+    },
+    "packages/human": {
+      // This is a published library. Root exports are supported even without in-repo consumers.
+      "entry": ["src/index.ts", "examples/**/*.ts", "test/**/*.test.ts", "vitest.source.ts"],
+      "project": ["src/**/*.ts", "test/**/*.ts", "examples/**/*.ts", "*.ts"]
+    },
+    "packages/lab-client": {
+      "entry": ["src/index.ts", "test/**/*.test.ts"],
+      "project": ["src/**/*.ts", "test/**/*.ts", "*.ts"]
+    },
+    "packages/lab-kit": {
+      // Optional peer is loaded dynamically only when telemetry is enabled.
+      "ignoreDependencies": ["@adam0white/lab-client"],
+      "entry": ["src/index.ts", "test/**/*.test.ts", "bin/stamp-release"],
+      "project": ["src/**/*.ts", "test/**/*.ts", "*.ts"]
+    },
+    "packages/playtester": {
+      "entry": [
+        "src/index.ts",
+        "examples/{cohort,neighbours-session,smallworks-session}.ts",
+        "adapters/*.ts",
+        "test/**/*.test.ts"
+      ],
+      "project": ["src/**/*.ts", "test/**/*.ts", "examples/**/*.ts", "adapters/**/*.ts", "*.ts"]
+    }
+  }
+}

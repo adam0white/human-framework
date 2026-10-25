@@ -358,6 +358,7 @@ export interface RetellOptions {
  * from the listener to others (a host may call it again with the listener as teller).
  */
 export function retell(teller: Person, listener: Person, at: Minute, opts: RetellOptions = {}): Gist[] {
+  if (!Number.isFinite(at)) throw new TypeError('retell requires a finite positional time');
   const told = teller.memory.gists;
   const list = listener.memory.gists;
   if (!told || !list || teller.id === listener.id) return [];

@@ -12,6 +12,7 @@ import { execFileSync } from 'node:child_process';
 import { mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { packedFilename } from './npm-pack.ts';
 
 const root = join(import.meta.dirname, '..');
 const run = (cmd: string, args: string[], quiet = false): string =>
@@ -72,12 +73,9 @@ run('node', ['scripts/lockfile-sync.ts']);
 run('npm', ['run', 'check']);
 
 const out = mkdtempSync(join(tmpdir(), 'hf-release-'));
-// Lifecycle output (prepack builds the package) can precede the JSON on stdout, so parse from the first `[`.
+// Prepack may emit lifecycle messages; npm 11 and 12 use different JSON metadata shapes.
 const packed = run('npm', ['pack', '-w', 'packages/human', '--pack-destination', out, '--json'], true);
-const json = JSON.parse(packed.slice(packed.indexOf('\n[') + 1 || packed.indexOf('['))) as {
-  filename: string;
-}[];
-const tarball = join(out, json[0]?.filename ?? fail('npm pack reported no file'));
+const tarball = join(out, packedFilename(packed));
 const notesFile = join(out, 'notes.md');
 writeFileSync(notesFile, notes);
 

@@ -3,7 +3,7 @@ import { expect, test } from 'vitest';
 import { FRAMEWORK_VERSION } from '../src/index.ts';
 
 test('exports a version', () => {
-  expect(FRAMEWORK_VERSION).toMatch(/^2\./);
+  expect(FRAMEWORK_VERSION).toMatch(/^3\./);
 });
 
 test('FRAMEWORK_VERSION is the package version (the release version policy)', () => {

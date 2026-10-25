@@ -10,7 +10,7 @@ lab.log('game', 'The crossing opened.');
 await lab.sendFeedback('The crossing was unclear.'); // resolves only after the note is stored
 ```
 
-Every automatic record has a random player id, session id and run id, plus game/build and timestamp. The central identity frame shares localStorage identity across lab subdomains using checked messages; blocked frames fall back to an origin-scoped id. No cookies or device fingerprinting. Warn/error console strings and uncaught errors are bounded; game logs come from the adapter. Common email strings and URL queries/fragments are removed from client logs. Arbitrary console objects and browser headers are never read.
+Every automatic record has a random player id, session id and run id, plus game/build and timestamp. The central identity frame shares localStorage identity across lab subdomains using checked messages; blocked frames fall back to an origin-scoped id. No cookies or device fingerprinting. Each redacted log message is limited to 1,000 bytes of JSON-escaped UTF-8 content, stopping between whole codepoints. Warn/error console strings and uncaught errors are bounded; game logs come from the adapter. Common email strings and URL queries/fragments are removed from client logs. Arbitrary console objects and browser headers are never read.
 
 `lab.telemetryOn` and `lab.eventsOn` report recording eligibility. `lab.setTelemetryOff(true)` stops recording, clears the local queue, aborts active recording requests and deletes the player id. Explicit feedback remains available as an unlinked note. `setEventsOff` controls the same recording preference. DNT/GPC sets the default to off. Turning the single recording switch on with `setTelemetryOff(false)` is explicit opt-in, including under DNT/GPC. Recorded play is linked across games on this device to continuing people. The first-visit notice covers recording and linkage; no separate continuing-person permission is required.
 
@@ -35,10 +35,14 @@ await shelf.ready;
 // The host gets the player's explicit continuity choice before this call.
 shelf.setEnabled(true);
 const original = await createPersona({
-  format: 'hf-persona/1', castId: 'hf.cast.example.host', castRevision: '1',
-  branchId: crypto.randomUUID(), parentRevision: null,
+  format: 'hf-persona/1',
+  castId: 'hf.cast.example.host',
+  castRevision: '1',
+  branchId: crypto.randomUUID(),
+  parentRevision: null,
   source: { game: 'pass', build: 'abc123', engine: '2.14.1', rules: '1' },
-  transfer: { person: projection, history: [] }, limitations: projection.limitations,
+  transfer: { person: projection, history: [] },
+  limitations: projection.limitations,
 });
 // authored:true is only for a newly authored source. Never use it for imported history.
 await shelf.request({ action: 'put', envelope: original, authored: true });
@@ -73,12 +77,20 @@ Regular event and log flushes first save immutable chunks synchronously in local
 A canonical source adds `transfer.life = initialPersonaLife(castId, branchId, nowMs)` to its already validated host passport. Source checkpoints use `anchorPersonaLife(previousLife, castId, nowMs)`. That advances only the monotone absence anchor, so active play is not also counted as offscreen life. Revision1 history for a person whose current canonical revision is2 remains inspectable; it cannot be reinterpreted. An explicit fresh branch must come from current authored play, use a new branch id and null parent, and put with `fork:true`.
 
 ```ts
-const admitted = await claimCastChapterBatch(shelf, castForGame('goodhands').map(p => p.castId),
-  targetStamps, async inputs => Object.fromEntries(inputs.map(input => {
-    const facts = lifeAdmission(input, 'goodhands');
-    const person = admitSupportedPassport(input.parent, authoredOpeningFor(input.parent.castId));
-    return [input.parent.castId, { person: snapshotCompleteInitialPerson(person), input, facts }];
-  })), { isCurrent: () => runGeneration === capturedGeneration });
+const admitted = await claimCastChapterBatch(
+  shelf,
+  castForGame('goodhands').map((p) => p.castId),
+  targetStamps,
+  async (inputs) =>
+    Object.fromEntries(
+      inputs.map((input) => {
+        const facts = lifeAdmission(input, 'goodhands');
+        const person = admitSupportedPassport(input.parent, authoredOpeningFor(input.parent.castId));
+        return [input.parent.castId, { person: snapshotCompleteInitialPerson(person), input, facts }];
+      }),
+    ),
+  { isCurrent: () => runGeneration === capturedGeneration },
+);
 // Pin admitted.initial, inputs and claims. Later owned heads are separate local-save metadata.
 ```
 

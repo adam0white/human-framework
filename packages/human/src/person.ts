@@ -105,7 +105,8 @@ import {
   recordRepair,
   repent,
 } from './conscience/index.ts';
-import { clamp01, clampSigned, createRng, dayOf, isObj, keysOf, minuteOfDay, round } from './core/index.ts';
+import { clamp01, clampSigned, createRng, dayOf, isObj, minuteOfDay, round } from './core/index.ts';
+import { keysOf } from './core/keys.ts';
 import { enableCuriosity, noteCuriosity } from './curiosity/index.ts';
 import { ambientBodyParams, ambientModifiers, ambientMood, ambientNeeds } from './environment/index.ts';
 import { aptitudeOf, createFamily, pregnancyModifiers } from './family/index.ts';

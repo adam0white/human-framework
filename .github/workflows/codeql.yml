@@ -11,12 +11,12 @@ name: CodeQL
 on:
   push:
     branches: [main]
-    paths-ignore: ['**/*.md', 'docs/**', 'research/**', 'archive/**', 'LICENSE']
+    paths-ignore: ["**/*.md", "docs/**", "research/**", "archive/**", "LICENSE"]
   pull_request:
     branches: [main]
-    paths-ignore: ['**/*.md', 'docs/**', 'research/**', 'archive/**', 'LICENSE']
+    paths-ignore: ["**/*.md", "docs/**", "research/**", "archive/**", "LICENSE"]
   schedule:
-    - cron: '23 7 * * 1' # Mondays 07:23 UTC
+    - cron: "23 7 * * 1" # Mondays 07:23 UTC
   workflow_dispatch:
 
 permissions:

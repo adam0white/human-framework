@@ -1,5 +1,6 @@
 import type { PersonaEnvelope, PersonaShelfState } from '@adam0white/lab-client';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { requireValue } from './require-value.ts';
 
 const control = vi.hoisted(() => ({
   state: { heads: {}, revisions: [] } as PersonaShelfState,
@@ -36,8 +37,9 @@ vi.mock('@adam0white/lab-client', async () => {
         if (control.rejectRecording && ['recording', 'recordingBatch'].includes(r.action))
           throw new Error('Obsolete recording RPC must not gate publication');
         if (r.action === 'get')
-          return (control.state.revisions.find((p) => p.revision === control.state.heads[r.castId!]) ??
-            null) as T;
+          return (control.state.revisions.find(
+            (p) => p.revision === control.state.heads[requireValue(r.castId)],
+          ) ?? null) as T;
         if (r.action === 'prepareBatch') {
           const inputs = [],
             blocked = [];
@@ -61,27 +63,34 @@ vi.mock('@adam0white/lab-client', async () => {
         if (r.action === 'putBatch') {
           control.batches++;
           await control.beforeBatch?.();
-          control.state = actual.acceptPersonaBatch(control.state, r.envelopes!, r.expectedHeads);
-          control.puts.push(...r.envelopes!);
+          control.state = actual.acceptPersonaBatch(
+            control.state,
+            requireValue(r.envelopes),
+            r.expectedHeads,
+          );
+          control.puts.push(...requireValue(r.envelopes));
           return r.envelopes as T;
         }
         if (r.action === 'put') {
-          control.state = actual.acceptPersona(control.state, r.envelope!, r.fork);
-          control.puts.push(r.envelope!);
-          if (r.authored) control.allowed.add(`${r.envelope!.castId}/${r.envelope!.branchId}`);
+          control.state = actual.acceptPersona(control.state, requireValue(r.envelope), r.fork);
+          control.puts.push(requireValue(r.envelope));
+          if (r.authored)
+            control.allowed.add(`${requireValue(r.envelope).castId}/${requireValue(r.envelope).branchId}`);
           return r.envelope as T;
         }
         if (r.action === 'recordingBatch') {
           if (r.allowRecording !== undefined)
-            for (const p of r.envelopes!) {
+            for (const p of requireValue(r.envelopes)) {
               const key = `${p.castId}/${p.branchId}`;
               if (r.allowRecording) control.allowed.add(key);
               else control.allowed.delete(key);
             }
           return {
-            sameEpoch: r.envelopes!.every((p) => control.allowed.has(`${p.castId}/${p.branchId}`)),
+            sameEpoch: requireValue(r.envelopes).every((p) =>
+              control.allowed.has(`${p.castId}/${p.branchId}`),
+            ),
             recordingEpoch: 'epoch',
-            revisions: r.envelopes!.map((p) => p.revision),
+            revisions: requireValue(r.envelopes).map((p) => p.revision),
           } as T;
         }
         if (r.action === 'recording') return { recordingEpoch: 'epoch', sameEpoch: false } as T;
@@ -132,10 +141,9 @@ class FakeWorker extends EventTarget {
           type: 'castReady',
           requestId: m.requestId,
           initials: Object.fromEntries(
-            Object.keys((m.chapter as import('./cast-chapter.ts').CastChapter).people!).map((id) => [
-              id,
-              '{}',
-            ]),
+            Object.keys(requireValue((m.chapter as import('./cast-chapter.ts').CastChapter).people)).map(
+              (id) => [id, '{}'],
+            ),
           ),
         }),
       );
@@ -208,7 +216,7 @@ async function checkpoint(worker: FakeWorker, id = 'hf.cast.riza.voice', game = 
   const before = worker.requests('castCheckpoint').length;
   const promise = checkpointCast(game);
   await vi.waitFor(() => expect(worker.requests('castCheckpoint')).toHaveLength(before + 1));
-  const request = worker.requests('castCheckpoint').at(-1)!;
+  const request = requireValue(worker.requests('castCheckpoint').at(-1));
   worker.reply({
     type: 'castReady',
     requestId: request.requestId,
@@ -300,7 +308,7 @@ describe('whole-cast browser continuity', () => {
         );
         worker.reply({
           type: 'castReady',
-          requestId: worker.requests('castCheckpoint').at(-1)!.requestId,
+          requestId: requireValue(worker.requests('castCheckpoint').at(-1)).requestId,
           sourceSnapshot: raw,
           transfer: {
             castPassport: 'site-cast/1',
@@ -313,7 +321,7 @@ describe('whole-cast browser continuity', () => {
         expect(control.puts.length).toBe(digest === sha256 ? 1 : 0);
       }
       expect(JSON.stringify(control.puts)).not.toContain('privateSourceDetail');
-      expect(JSON.parse(localStorage.getItem(`hf-cast-source:${game}`)!)).toEqual({ [id]: raw });
+      expect(JSON.parse(requireValue(localStorage.getItem(`hf-cast-source:${game}`)))).toEqual({ [id]: raw });
       const file: Record<string, unknown> =
         game === 'watch' ? { game: 'the-night-watch' } : { kind: 'human-playtest', game: 'voice' };
       worker.reply({ type: 'exported', data: file });
@@ -471,7 +479,9 @@ describe('whole-cast browser continuity', () => {
             this.reply({
               type: 'castReady',
               requestId: m.requestId,
-              initials: Object.fromEntries(Object.entries(chapter.people!).map(([id, p]) => [id, p.initial])),
+              initials: Object.fromEntries(
+                Object.entries(requireValue(chapter.people)).map(([id, p]) => [id, p.initial]),
+              ),
             }),
           );
         }
@@ -479,7 +489,7 @@ describe('whole-cast browser continuity', () => {
           played = new RecordedGame(
             new VoiceGame(1, 4, m.castChapter as import('./cast-chapter.ts').CastChapter),
           );
-        if (m.type === 'begin') played!.apply({ type: 'begin' });
+        if (m.type === 'begin') requireValue(played).apply({ type: 'begin' });
       }
     }
     const worker = new PlayingWorker();
@@ -499,12 +509,12 @@ describe('whole-cast browser continuity', () => {
     expect(worker.requests('tick')).toHaveLength(0);
     expect(worker.requests('predict')).toHaveLength(0);
     await vi.waitFor(() => expect(castState('voice').busy).toBe(false));
-    expect(played!.game.phase).toBe('day');
+    expect(requireValue(played).game.phase).toBe('day');
     expect(worker.sent.findIndex((m) => m.type === 'init')).toBeLessThan(
       worker.sent.findIndex((m) => m.type === 'begin'),
     );
-    played!.step(20);
-    const current = played!;
+    requireValue(played).step(20);
+    const current = requireValue(played);
     expect(JSON.stringify(current.log)).not.toContain('castRunGeneration');
     const file = await makePlaytestFile({
       game: 'voice',
@@ -588,13 +598,13 @@ describe('whole-cast browser continuity', () => {
       postCastMessage(worker as unknown as Worker, 'voice', { type: 'init', seed: 1, gen: 1 });
       postCastMessage(worker as unknown as Worker, 'voice', { type: 'begin', gen: 1 });
       await vi.waitFor(() => expect(worker.requests('castPreflight')).toHaveLength(preflightCount + 1));
-      const request = worker.requests('castPreflight').at(-1)!;
+      const request = requireValue(worker.requests('castPreflight').at(-1));
       const beforeWrites = control.puts.length;
       if (cancellation === 'load')
         postCastMessage(worker as unknown as Worker, 'voice', { type: 'loadPlaytest', gen: 2, text: '{}' });
       if (cancellation === 'conflict')
         control.beforeBatch = async () => {
-          const old = control.state.revisions.at(-1)!;
+          const old = requireValue(control.state.revisions.at(-1));
           const { revision, ...body } = old;
           control.state = acceptPersona(
             control.state,
@@ -614,13 +624,13 @@ describe('whole-cast browser continuity', () => {
   it('starts two histories together without a separate recording-epoch gate', async () => {
     const people = await Promise.all([head(), head('hf.cast.osman.voice')]);
     control.state = acceptPersonaBatch(control.state, people);
-    control.allowed.add(`${people[0]!.castId}/${people[0]!.branchId}`);
+    control.allowed.add(`${requireValue(people[0]).castId}/${requireValue(people[0]).branchId}`);
     const worker = new FakeWorker();
     await begin(worker);
-    const init = worker.requests('init')[0]!;
-    expect(Object.keys((init.castChapter as import('./cast-chapter.ts').CastChapter).people!)).toHaveLength(
-      2,
-    );
+    const init = requireValue(worker.requests('init')[0]);
+    expect(
+      Object.keys(requireValue((init.castChapter as import('./cast-chapter.ts').CastChapter).people)),
+    ).toHaveLength(2);
     expect(control.puts).toHaveLength(2);
     expect(lab.allowPersonaRecording).toHaveBeenLastCalledWith(true);
     expect(control.key).toMatch(/^cast-group-/);
@@ -630,7 +640,7 @@ describe('whole-cast browser continuity', () => {
     control.state = acceptPersonaBatch(control.state, people);
     let before: PersonaShelfState | undefined;
     control.beforeBatch = async () => {
-      const p = people[1]!;
+      const p = requireValue(people[1]);
       const { revision, ...body } = p;
       control.state = acceptPersona(
         control.state,
@@ -718,7 +728,7 @@ describe('whole-cast browser continuity', () => {
     };
     worker.reply({ type: 'playtest', gen: 1, file });
     const saved = JSON.stringify(file);
-    const accepted = file.castOwnership!['hf.cast.riza.voice']!;
+    const accepted = requireValue(requireValue(file.castOwnership)['hf.cast.riza.voice']);
     postCastMessage(worker as unknown as Worker, 'voice', {
       type: 'loadPlaytest',
       gen: 2,
@@ -732,7 +742,7 @@ describe('whole-cast browser continuity', () => {
     await checkpoint(worker);
     expect(control.puts.at(-1)?.parentRevision).toBe(accepted.revision);
     expect(file.hash).toBe('unchanged-simulation-hash');
-    const current = control.puts.at(-1)!;
+    const current = requireValue(control.puts.at(-1));
     const { revision, ...body } = current;
     control.state = acceptPersona(
       control.state,
@@ -756,12 +766,12 @@ describe('whole-cast browser continuity', () => {
     const { die } = await import('@adam0white/human-framework');
     const { watchTerminalReceipts } = await import('../watch/sim/people.ts');
     const run = new WatchRun(1);
-    const tamar = run.state.community.people.find((p) => p.id === 'tamar')!;
+    const tamar = requireValue(run.state.community.people.find((p) => p.id === 'tamar'));
     die(tamar);
-    const terminal = watchTerminalReceipts(run.state, { [p.castId]: p })[0]!;
+    const terminal = requireValue(watchTerminalReceipts(run.state, { [p.castId]: p })[0]);
     worker.reply({ type: 'castReady', requestId: 0, gen: 1, terminal });
     await vi.waitFor(() => expect(control.puts.at(-1)?.terminal?.kind).toBe('dead'));
-    const closed = control.puts.at(-1)!;
+    const closed = requireValue(control.puts.at(-1));
     expect(() => preparePersonaLife(closed, 3600000)).toThrow(/closed/);
     const { revision: _revision, ...body } = p;
     const stale = await createPersona({ ...body, parentRevision: closed.revision });
@@ -787,7 +797,7 @@ describe('whole-cast browser continuity', () => {
     close = bindCastWorker(worker as unknown as Worker, 'voice', lab as never);
     const saving = checkpointCast('voice');
     await vi.waitFor(() => expect(worker.requests('castCheckpoint')).toHaveLength(1));
-    const old = worker.requests('castCheckpoint')[0]!;
+    const old = requireValue(worker.requests('castCheckpoint')[0]);
     postCastMessage(worker as unknown as Worker, 'voice', { type: 'init', gen: 2, selinReturn: {} });
     worker.reply({
       type: 'castReady',
