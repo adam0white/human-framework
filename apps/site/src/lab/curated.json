@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-24",
+ "generated": "2026-10-25",
  "ledger": [
   {
    "id": "F-001",
@@ -6690,6 +6690,34 @@
     "fix:lab Align shared cast terminology without changing the forty identities"
    ],
    "source": "docs/owner-directions-2026-10-18.md#2026-10-24--keep-the-setting-adam-verbatim"
+  },
+  {
+   "id": "F-494",
+   "date": "2026-10-25",
+   "game": "pass",
+   "kind": "owner",
+   "who": "Adam",
+   "words": "Good changes thanks. Things are much more clear now; do the other games, too. I like the situation text below the cooks, like \"waiting for cooks to finish\" but I don't like when we replace that with redundant text from the log. Instead, highlight the new log temporarily. Also, when ordering someone to work elsewhere and they accept it, they ask another decision \"my station is empty, leave it or order someone there?\" This is useless as player is aware already, drop. ",
+   "verdict": "mixed",
+   "routes": [
+    "fix:pass Keep situation text below cooks and temporarily highlight new log entries (open)",
+    "fix:pass Remove redundant empty-station decision after accepted reassignment (open)",
+    "fix:lab Apply clearer English across the remaining games (open, owner readiness remains separate)"
+   ],
+   "source": "Owner in chat, 2026-10-25, copied in-game note; verbatim, owner-2026-10-25-pass.md"
+  },
+  {
+   "id": "F-495",
+   "date": "2026-10-25",
+   "game": "pass",
+   "kind": "owner",
+   "who": "Adam",
+   "words": "promise cards jump the screen to the top upon clicking and they don't auto disappear.",
+   "verdict": "-",
+   "routes": [
+    "fix:pass Keep scroll position when clicking promise cards and dismiss fulfilled promise cards (open)"
+   ],
+   "source": "Owner in chat, 2026-10-25; source labels this second note paraphrased by the owner, wording copied exactly from owner-2026-10-25-pass.md"
   }
  ],
  "lessons": [
@@ -7296,7 +7324,7 @@
   }
  ],
  "routes": {
-  "fix": 673,
+  "fix": 677,
   "lesson": 291,
   "hf": 12,
   "calibration": 42,
