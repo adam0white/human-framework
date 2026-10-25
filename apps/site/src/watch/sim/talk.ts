@@ -15,7 +15,7 @@
  * Not covered: the spec's topics that change behaviour directly (rest tonight, practise with, mend things); talks
  * with children; talks in the open seasons.
  */
-import { hear, outwardSigns, selfReport } from '@adam0white/human-framework';
+import { addTiredness, gestureVoiceTrust, hear, outwardSigns, selfReport } from '@adam0white/human-framework';
 import { lifeNotice } from '../../shared/cast-chapter.ts';
 import { WATCH_DISCOVERIES } from '../../shared/cast-discoveries.ts';
 import { SECTION_IDS, type SectionId } from './config.ts';
@@ -143,9 +143,10 @@ export function talk(s: WatchState, who: string, topic: Topic): boolean {
     text = homeWords(s, who);
     const spouse = spouseOf(s, who);
     if (spouse) hear(s.keeper, who, `tie:${spouse.q.id}`, spouse.affection, at, TALK_WEIGHT);
-    p.will.voices = p.will.voices.map((v) =>
-      v.voiceId === KEEPER_ID ? { ...v, trust: Math.min(1, v.trust + HOME_WARMTH) } : v,
-    );
+    gestureVoiceTrust(p, KEEPER_ID, HOME_WARMTH, {
+      reason: 'The Keeper asked about home.',
+      at,
+    });
   } else {
     const c = p.traits.conscientiousness;
     hear(s.keeper, who, 'trait:conscientiousness', c, at, TALK_WEIGHT);
@@ -170,7 +171,7 @@ export function talk(s: WatchState, who: string, topic: Topic): boolean {
     s.talks.discovered.push(who);
   }
   if (topic === 'night' && !text.includes('don’t want to talk') && lifeNotice(p)) text += ` ${lifeNotice(p)}`;
-  p.body.sleepPressure = Math.min(1, p.body.sleepPressure + TALK_SLEEP);
+  addTiredness(p, { sleepPressure: TALK_SLEEP });
   s.talks.left -= 1;
   s.talks.said.push({ who, topic, text });
   if (!s.talks.asked.includes(`${who}:${topic}`)) s.talks.asked.push(`${who}:${topic}`);

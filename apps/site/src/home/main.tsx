@@ -1,10 +1,11 @@
-import { FRAMEWORK_VERSION } from '@adam0white/human-framework';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { FACULTIES, GAMES } from '../games.ts';
 import { GameList } from '../shared/GameList.tsx';
 import './home.css';
 import { SAMPLE_OUTPUT } from './sampleOutput.ts';
+
+declare const __HF_LIBRARY_VERSION__: string;
 
 const ACTIVE_GAMES = GAMES.filter((g) => g.status === 'active');
 const TOP_GAME = ACTIVE_GAMES[0] ?? { name: 'Twice at the Well', href: '/colony/' };
@@ -122,7 +123,7 @@ function Home() {
 
       <footer className="foot">
         <span>
-          <span aria-hidden="true">◇</span> human framework v{FRAMEWORK_VERSION}
+          <span aria-hidden="true">◇</span> human framework v{__HF_LIBRARY_VERSION__}
         </span>
         <span>
           code MIT · docs CC BY 4.0 · <a href={REPO}>source</a>

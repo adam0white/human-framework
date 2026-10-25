@@ -38,7 +38,6 @@ These change what a run does, so each needs the engine bump and a recorded reaso
 
 | Item | What | Target |
 |---|---|---|
-| Q50 adoption | HF now exposes explicit additive voice-trust and host tiredness helpers. Move Watch from direct slice writes after its active plain-English worker finishes and the published pin is available ([watch.md §12](games/watch.md#12-after-graduation-deferred-features) T2). | By 2026-11-01; do not race plain2 |
 | Test dedup | Tests repeat setup that `test/support.ts` now provides; fold the copies into it. | 2.x |
 | Unused `_now` parameters | `repent(p, id, _now)` and `recordRepair(p, victimId, _now)` in `conscience/` take a time they never read. Retain optional time arguments in 2.x. | optional 2.9.1, removed 3.0 |
 | Deprecated forms | Remove the 2.0 options-object forms of `glimpse`, `glimpseOf`, `hear`, `conceive` and `retell`, and `TRAIT_NAMES` (CHANGELOG [Unreleased], Deprecated). | 3.0 |
@@ -59,7 +58,7 @@ These change what a run does, so each needs the engine bump and a recorded reaso
 The full list, with module names and research references, is [faculty-inventory.md](faculty-inventory.md). Counts (2026-10-05, against engine 2.0.0): 142 faculties, 79 Done, 34 Partial, 23 Missing, 6 Excluded. All Missing and Partial rows are **unscheduled** unless named in §1–2 above; none blocks a current game. A row the next goal needs moves into §1 or §2 with a target.
 
 **Missing (23).**
-- Body and perception: temperature, bladder and specific nutrients; attention that costs time.
+- Body and perception: temperature and specific nutrients; attention that costs time. Bladder, involuntary doze and explicit quantity observation are implemented as opt-ins in the 2.21 source candidate; release verification remains separate.
 - Memory and reasoning (bounded multi-step planning and present bias done in 2.12.0): interference, false memory and reconsolidation; inference between beliefs; motivated reasoning; metacognition; imagination and counterfactuals.
 - Affect and commitments: fear habituation; implementation intentions; life purpose, vocation and life narrative.
 - Learning: negative transfer between skills; qualifications, roles and credentials.
@@ -102,18 +101,25 @@ Owner direction (2026-10-18, [owner-directions](owner-directions-2026-10-18.md))
 | Comparisons that can tell builds apart | At 3 seeds a persona, build-to-build changes stay within one session; add more seeds or a noise estimate per line | 2026-11-15 |
 | The Glance adapter's gate policy | Gate-only controls on three seeds separate inherited-rule losses from oracle survival under matched schedules/clear strata. Oracle uses hidden information, so a screen-only replacement and historical-persona causation remain untested. Adapter also omits clearing. See findings; no new player round. | 2026-11-01 |
 | A voice answering the person's request | `noteRequestAnswered(p, voiceId, { granted, importance, at })`, the mirror of `noteVoicePromise` (Pass 5); needs a sourced effect size first | after a sourced effect size; review 2026-11-15 (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
-| Involuntary sleep onset | Opt-in doze hazard from true sleepiness, posture and stimulation, ended by a salient percept (Glance 2) | Next bodily slice; review 2026-11-30 (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
-| Reading a quantity | `estimateQuantity(p, { truth, difficulty })` (Glance asked for `estimate`, already exported for impressions of others) returning value and confidence from body state (Glance 3) | Next bodily slice; review 2026-11-30 (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
-| Bladder | A real voiding need, so hosts stop advertising pain `relief` for the toilet (Rope Kestrel) | Next bodily slice; review 2026-11-30 (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
 | A duty held by a group | Shared commitment met by any member (Pass 6) | unscheduled, review 2026-11-15 |
-| Prospect identity across reset worlds (host recipe) | The 2.17 island task rebuilds the world while project high-water history persists. Document when a host keeps a prospect identity versus starts a new one; isolate that choice before interpreting task carry performance. No reset-aware retuning is authorized. | Review 2026-11-15 |
 | Method learning follow-ups | Inferred cue extraction, multi-step procedure synthesis and calibrated real-world learning rates for `methods/` ([learning-probe.md](learning-probe.md)) | unscheduled |
 | Engagement and boredom on a seconds scale | The playtester's fast `engagement` store, if a second user needs it inside HF | unscheduled, review 2026-11-15 |
 | A separate review label | `reviewLabel` on commitments, if noun-phrase labels prove too limiting (Voices 3; documented instead) | unscheduled, review 2026-11-15 |
-| Valley requests (trust from a voice's acts, goods between households, a memory bound) | Valley 1 and 2 remain to triage. The memory bound follows inner life (review 2027-01-15). Completed helpers and actor-addressed recall are recorded in release history. | Triage 1 and 2 by 2026-11-01 |
+| Valley requests (trust from a voice's acts, goods between households, a memory bound) | Triaged 2026-10-25. `adoptVoiceTrust` supports Valley's present host convention; a generic attended-act evidence API needs sourced effect size and evidence/repetition semantics first. A chosen give act and recipient percept recipe is in [host-kit.md](host-kit.md); inventories stay host-owned. Memory bounds remain after inner life. | Voice-act evidence review 2026-11-15; memory review 2027-01-15 |
 | A thousand lives (bench), remaining evidence | Bounded one-day 100/1,000/coarse10,000 measurements and harness delivered; coarse fidelity differs and decision starvation is unavailable without an explicit opportunity predicate. Remaining: quiet-machine repetitions, longer spans and a justified starvation measure; no tuning from noisy timings. | 2026-11-15 |
 | Memory bound and declared fidelity | A memory bound in `Retention` (Valley 6); what coarse stepping preserves exactly; community-state migration steps (this supersedes the community half of "Community and world migration" in §2; world state stays the host's, with a documented recipe) | After inner life; review 2027-01-15 (proposed order, [hf-roadmap](hf-roadmap-2026-10-20.md)) |
-| Still untriaged | Perceived unfinished shared work (Neighbours 4a); repeated-offer-set cost (Warren 3); a spatial reach helper (Warren 5); from [whats-left](lab/whats-left-2026-10-19.md): mental effort filling the slow fatigue store (SW-1), `alongside` accepting a voice weighted by trust (SW-2), a cost for an urge he agrees to, and a phrase fade-rate API | Triage by 2026-11-15 |
+
+**2.21 source candidate, pending delivery.** Optional doze, quantity observation and bladder close the three Glance/Rope bodily requests once the release is verified. Watch's Q50 helper adoption uses the separately pinned 2.20 library. Host gift and shared-work recipes are documented in [host-kit.md](host-kit.md). A reset-world prospect identity recipe remains open for review 2026-11-15. No published-package or site receipt is claimed here.
+
+| Item | Remaining decision | Target |
+|---|---|---|
+| Prospect identity across reset worlds | Specify when a rebuilt world keeps a project prospect identity and when it starts a new one; isolate that choice before interpreting island task carry. No reset-aware retuning is authorized. | Host recipe review 2026-11-15 |
+| Repeated-offer-set cost (Warren 3) | Profile current decision work; cache only immutable host inputs with explicit invalidation. Do not cache a whole decision without an output-identical continuation and measured benefit. | Review 2026-11-15 |
+| Spatial reach (Warren 5) | Host filters visibility/reach through `World.perceptsFor` and offers. Shared API waits for two compatible host representations. | Review 2026-11-15 |
+| Mental effort and slow fatigue (SW-1) | Physical depletion does not yet include low-effort focused work. Scope an optional focus contribution in a later body slice. | Review 2026-11-15 |
+| Going alongside a voice (SW-2) | Decide a separate opt-in voice field and trust weighting; preserve Person `alongside` semantics. | Review 2026-11-15 |
+| Cost for an assented urge | Clarify whether the request means an internal prompting or a voice's insistence, and name the missing observable consequence. | Owner meaning review 2026-11-15 |
+| Phrase fade rate (Voices 5) | `practiceHalfLifeDays` already exists in HF. Murmur must choose explicitly between continuous decay and its nightly reinforcement-gated rule; they are not exactly equivalent. | Host adoption review 2026-11-15 |
 
 ## 4. Example games
 

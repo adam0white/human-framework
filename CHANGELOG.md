@@ -10,6 +10,15 @@ The release version is the package version and `FRAMEWORK_VERSION`, tagged `vX.Y
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
+## [2.21.0] - 2026-10-25
+
+Engine: 2.21.0. Existing callers retain continuation when the new faculties remain disabled.
+
+- Add optional minute-grid doze onset from true sleepiness, posture and stimulation. A dozed person wakes only when the host delivers a current, detectable heard, felt or social percept with high salience. There is no spontaneous wake. The host resolves stopped work; enabled minute checkpoints can change continuous body state and cost time proportional to elapsed minutes.
+- Add explicit `estimateQuantity(p, { truth, difficulty })`. A valid nonzero request consumes one seeded draw and returns a value and confidence; zero truth or difficulty is exact without a draw. Error shape and confidence coefficients are engineering constants.
+- Add optional bladder storage and urgency. A toilet offer declares `voidsBladder`; a successfully completed outcome declares `voidedBladder`. An advertised toilet does not itself empty the bladder, and pain `relief` is separate. Filling and choice coefficients are engineering constants, not clinical calibration.
+- The migration from engine 2.17.0 stamps 2.21.0 without enabling the new faculties. With no opt-in, full-state continuation matches HF 2.20.0 after engine metadata normalization only. The site games remain pinned to HF 2.20.0; Watch's helper adoption uses that pin. Library 2.21.0 metadata is separate from game delivery.
+
 ## [2.20.0] - 2026-10-25
 
 Engine: 2.17.0. Existing callers retain their state and RNG continuation.

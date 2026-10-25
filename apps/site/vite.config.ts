@@ -1,28 +1,38 @@
-import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vitest/config';
+import { resolveSiteFramework } from './hf-resolution.ts';
 
 const root = import.meta.dirname;
-const frameworkPackage = JSON.parse(
-  readFileSync(resolve(root, '../../packages/human/package.json'), 'utf8'),
-) as {
-  version: string;
-};
+const framework = resolveSiteFramework(root);
 
 export default defineConfig({
   plugins: [react()],
   // The framework package version, for playtest files (src/shared/playtest.ts).
-  define: { __HF_PACKAGE_VERSION__: JSON.stringify(frameworkPackage.version) },
+  define: {
+    __HF_PACKAGE_VERSION__: JSON.stringify(framework.framework),
+    __HF_LIBRARY_VERSION__: JSON.stringify(framework.frameworkLibrary),
+  },
   resolve: {
-    // Workspace packages resolve to source, so tests run from a fresh `npm ci` without building their dist.
-    alias: {
-      '@adam0white/human-framework': resolve(root, '../../packages/human/src/index.ts'),
-      '@adam0white/lab-client/package.json': resolve(root, '../../packages/lab-client/package.json'),
-      '@adam0white/lab-client': resolve(root, '../../packages/lab-client/src/index.ts'),
-      '@adam0white/lab-kit/stage.css': resolve(root, '../../packages/lab-kit/stage.css'),
-      '@adam0white/lab-kit': resolve(root, '../../packages/lab-kit/src/index.ts'),
-    },
+    // Match HF exactly: prefix aliases would rewrite package exports as file subpaths.
+    alias: [
+      { find: /^@adam0white\/human-framework$/, replacement: framework.entry },
+      { find: /^@adam0white\/human-framework\/package\.json$/, replacement: framework.manifest },
+      // Keep the lab packages on source for fresh installs.
+      {
+        find: '@adam0white/lab-client/package.json',
+        replacement: resolve(root, '../../packages/lab-client/package.json'),
+      },
+      {
+        find: '@adam0white/lab-client',
+        replacement: resolve(root, '../../packages/lab-client/src/index.ts'),
+      },
+      {
+        find: '@adam0white/lab-kit/stage.css',
+        replacement: resolve(root, '../../packages/lab-kit/stage.css'),
+      },
+      { find: '@adam0white/lab-kit', replacement: resolve(root, '../../packages/lab-kit/src/index.ts') },
+    ],
   },
   build: {
     outDir: 'dist',

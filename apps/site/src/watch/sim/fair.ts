@@ -6,7 +6,7 @@
  *
  * Not covered: trade prices, bargaining, selling grain, a choice between buyers.
  */
-import { marry } from '@adam0white/human-framework';
+import { gestureVoiceTrust, marry } from '@adam0white/human-framework';
 import { DAY, type PostId, SECTION_IDS, type SectionId } from './config.ts';
 import { ageOf, chronicle, living, newcomer, RETIRE_AGE, WATCH_CUSTOM } from './life.ts';
 import { presentIds } from './night.ts';
@@ -176,16 +176,22 @@ export function takeOffer(s: WatchState, id: FairOffer['id']): boolean {
       const keeper = s.gateKeeper ? personOf(s, s.gateKeeper) : undefined;
       if (!heir) break;
       s.heir = heir.id;
-      const lift = (p: typeof heir, d: number) => {
-        p.will.voices = p.will.voices.map((v) =>
-          v.voiceId === KEEPER_ID ? { ...v, trust: Math.max(0, Math.min(1, v.trust + d)) } : v,
-        );
-      };
-      lift(heir, 0.1);
-      if (keeper) lift(keeper, -0.06);
+      gestureVoiceTrust(heir, KEEPER_ID, 0.1, {
+        reason: 'The Keeper named me heir to the Gate.',
+        at: s.minute,
+      });
+      if (keeper)
+        gestureVoiceTrust(keeper, KEEPER_ID, -0.06, {
+          reason: 'The Keeper named a Gate heir before I spoke.',
+          at: s.minute,
+        });
       const passed = f.offers.find((x) => (x.id === 'heir' || x.id === 'heir2') && x.target !== heir.id);
       const other = passed?.target ? personOf(s, passed.target) : undefined;
-      if (other) lift(other, -0.05);
+      if (other)
+        gestureVoiceTrust(other, KEEPER_ID, -0.05, {
+          reason: 'The Keeper chose another Gate heir.',
+          at: s.minute,
+        });
       chronicle(
         s,
         'fair',

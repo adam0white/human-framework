@@ -80,7 +80,22 @@ export interface Illness {
   aggravatedBy?: string[];
 }
 
+export interface DozeContext {
+  posture: 'upright' | 'seated' | 'reclined';
+  /** Host-declared alerting demand, not volume. */
+  stimulation: Unit;
+}
+export interface DozeState {
+  context: DozeContext;
+  since?: Minute;
+}
+export interface BladderState {
+  fill: Unit;
+  pending: number;
+}
 export interface BodyState {
+  doze?: DozeState;
+  bladder?: BladderState;
   /** 1 = fully fed, 0 = starving. */
   satiety: Unit;
   /** 1 = fully hydrated. */
@@ -915,6 +930,8 @@ export interface Activity {
   jointId?: string;
   /** Set by `interrupt()`: why the next review was brought forward. Cleared when the review is handled. */
   interrupt?: { at: Minute; reason: string };
+  /** Involuntary doze stopped this activity here. Work and practice stay stopped until host resolution. */
+  dozedAt?: Minute;
   /**
    * Set by `begin` when the chosen act was possible only because necessity / the capacity bound lifted a
    * conscience veto (eating forbidden food, or drinking during the fast, in extremity). `finish` then records no
@@ -970,7 +987,7 @@ export const PERSON_SCHEMA = 'human/person@1';
  * and an activity that would cover a closing stretch is reviewed when the stretch begins (`isUnderWay`,
  * `dutyReviewAt`). Person shape unchanged.
  */
-export const ENGINE_VERSION = '2.17.0';
+export const ENGINE_VERSION = '2.21.0';
 
 // ---------------------------------------------------------------------------------------------
 // Family, bonds and ambient (1.8.0, optional slices)
@@ -1267,6 +1284,8 @@ export interface Affordance {
   skill?: { id: string; difficulty: Unit; domain?: LearningDomain };
   /** Advertised need deltas over the whole activity (positive = satisfies). */
   advertises: Partial<Record<NeedId, number>>;
+  /** Intended urination: actual voiding, not completion alone, defines expectation success. */
+  voidsBladder?: boolean;
   /** Free tags: 'work', 'leisure', 'social', 'worship', 'risky', 'outdoors', ... */
   tags?: string[];
   norms?: NormTag[];
@@ -1397,6 +1416,8 @@ export interface Outcome {
   at: Minute;
   /** Realized need deltas from world effects (e.g. food eaten). Body exertion is computed by the framework. */
   needs?: Partial<Record<NeedId, number>>;
+  /** Host-confirmed urination; only a completed activity clears stored bladder fill. */
+  voidedBladder?: boolean;
   material?: number;
   /** Harm suffered. */
   injury?: Omit<Injury, 'id' | 'since'>;
@@ -1594,6 +1615,8 @@ export interface PersonSpec {
    * `enableCharacterChange` and `enableSkillRetention` right after `createPerson`. Each is off when absent.
    */
   enable?: {
+    doze?: DozeContext;
+    bladder?: boolean;
     /** Read-only suggestion score explanations, as with `enableSuggestionReasons(p)`. */
     suggestionReasons?: boolean;
     gists?: boolean;

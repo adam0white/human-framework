@@ -6,6 +6,8 @@
 
 **Count: 79 Done, 34 Partial, 23 Missing, 6 Excluded (142 rows).**
 
+**2026-10-25 source update (HF2.21 candidate):** the historical counts above are not recalculated. Optional involuntary onset is in `body/doze.ts`; `body/quantity.ts` supplies explicit seeded quantity observation; `body/bladder.ts` supplies storage, perceived urgency, native choice value and actual voiding. Temperature and specific nutrients remain missing. These engineering defaults are uncalibrated; doze has no spontaneous waking.
+
 ## 1. Bodily life and regulation
 
 | Faculty | Status | Where | What's missing | Research |

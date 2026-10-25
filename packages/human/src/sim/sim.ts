@@ -51,7 +51,7 @@
 
 import { appraise } from '../affect/index.ts';
 import { matchesCommitment, spanMeetsWindow } from '../agenda/index.ts';
-import { BODY_DEFAULTS, contagionRoll, die, readBody, sicken } from '../body/index.ts';
+import { BODY_DEFAULTS, contagionRoll, die, nextDozeCheck, readBody, sicken } from '../body/index.ts';
 import { chronicleBetween } from '../chronicle/index.ts';
 import { recordDeed } from '../conscience/index.ts';
 import { type ConverseContext, converse } from '../conversation/index.ts';
@@ -503,12 +503,18 @@ function awaitingJoint(c: Community, id: PersonId): boolean {
 }
 
 /** Next minute at which this person needs attention. */
-export function nextEventAt(c: Community, p: Person): Minute {
+function ordinaryEventAt(c: Community, p: Person): Minute {
   if (!p.body.alive) return Number.POSITIVE_INFINITY;
   if (awaitingJoint(c, p.id)) return Number.POSITIVE_INFINITY;
   const act = p.activity;
   if (act) return Math.max(p.now, Math.min(act.endsAt, act.reviewAt));
   return Math.max(p.now, c.idleUntil[p.id] ?? p.now);
+}
+
+/** Pure scheduling query, including passive bodily checkpoints during joint waiting. */
+export function nextEventAt(c: Community, p: Person): Minute {
+  if (p.body.doze?.since !== undefined && awaitingJoint(c, p.id)) return p.now;
+  return Math.min(ordinaryEventAt(c, p), nextDozeCheck(p));
 }
 
 /**
@@ -662,7 +668,6 @@ export function acceptJoint(
   if (!proposal.accepted.includes(partner.id)) proposal.accepted.push(partner.id);
   proposal.partnerRecords[partner.id] = partnerRecord;
   if (proposal.accepted.length < proposal.partnerIds.length) return [];
-  settle(c, proposal, 'accepted');
   const proposer = personById(c, proposal.proposerId);
   const participants: { person: Person; offer: Affordance; record: DecisionRecord }[] = [];
   if (proposer) participants.push({ person: proposer, offer: proposal.offer, record: proposal.record });
@@ -672,6 +677,17 @@ export function acceptJoint(
     if (q && rec) participants.push({ person: q, offer: mirrorFor(world, q, proposal), record: rec });
   }
   const at = Math.max(...participants.map((x) => x.person.now));
+  // Opted-in catch-up can physically stop a participant. Validate everyone before any begin.
+  if (participants.some(({ person }) => person.body.doze !== undefined)) {
+    for (const { person } of participants) if (person.now < at) tick(person, at);
+    if (participants.some(({ person }) => person.body.doze?.since !== undefined)) {
+      declineJoint(c, proposal);
+      for (const { person } of participants)
+        interruptPerson(c, person, at, person.activity?.interrupt?.reason ?? `declined:${proposal.id}`);
+      return [];
+    }
+  }
+  settle(c, proposal, 'accepted');
   const begun: Activity[] = [];
   for (const { person, offer, record } of participants) {
     if (person.now < at) tick(person, at);
@@ -1038,6 +1054,23 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
   c.dayDone ??= {};
   synchronizeCommands(c, opts, log);
 
+  // Cancellation releases clocks AND review deadlines. Keep pending causes, including simultaneous doze.
+  const cancelDozeWaiting = (p: Person, t: Minute) => {
+    for (const x of pendingProposals(c)) {
+      if (x.proposerId !== p.id && !x.partnerIds.includes(p.id)) continue;
+      const waiters = [x.proposerId, ...x.accepted]
+        .map((id) => personById(c, id))
+        .filter((q): q is Person => q !== undefined);
+      for (const q of waiters) if (q.now < t) tick(q, t);
+      const reasons = new Map(
+        waiters.map((q) => [q.id, q.activity?.interrupt?.reason ?? c.interrupts[q.id]?.reason]),
+      );
+      if (x.proposerId === p.id) settle(c, x, 'declined');
+      else declineJoint(c, x);
+      for (const q of waiters) interruptPerson(c, q, t, reasons.get(q.id) ?? `declined:${x.id}`);
+    }
+  };
+
   // Pairs whose shared activity already ran its conversation and contagion at `pairMinute` (both partners
   // finishing the same joint activity at the same minute would otherwise run them twice).
   let pairMinute = Number.NEGATIVE_INFINITY;
@@ -1055,7 +1088,29 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
     }
     if (!next || t > until) break;
     const p = next;
+    const ordinaryDue = ordinaryEventAt(c, p) <= t;
     tick(p, t);
+    const dozed = p.activity?.dozedAt !== undefined || p.body.doze?.since !== undefined;
+    if (dozed) {
+      cancelDozeWaiting(p, t);
+      const act = p.activity;
+      if (act?.dozedAt !== undefined) {
+        if (act.interrupt) c.interrupts[p.id] ??= { ...act.interrupt };
+        const outcome = world.resolve(p, act, 'interrupted');
+        finish(p, outcome, finishOpts(world));
+        log({
+          at: t,
+          personId: p.id,
+          kind: 'finish',
+          detail: `${act.action} interrupted by doze`,
+          action: act.action,
+          status: outcome.status,
+        });
+      }
+      c.idleUntil[p.id] = t + quantum;
+      if (!ordinaryDue) continue;
+    }
+    if (!ordinaryDue && p.body.alive) continue;
     bookkeepDay(p, world, t, c.dayDone, opts);
     if (!p.body.alive) {
       log({ at: t, personId: p.id, kind: 'died', detail: `${p.name} died` });
@@ -1086,6 +1141,12 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
           log({ at: t, personId: p.id, kind: 'interrupt', detail: `percept:${hit.kind}` });
         }
       }
+    }
+
+    if (p.body.doze?.since !== undefined) {
+      cancelDozeWaiting(p, t);
+      c.idleUntil[p.id] = t + quantum;
+      continue;
     }
 
     let act = p.activity;

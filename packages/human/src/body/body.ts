@@ -8,7 +8,7 @@
  * and is under-perceived (cumulative-cost-of-wakefulness pattern, Van Dongen et al. 2003). Satiety and
  * hydration fall linearly with metabolic rate and effort. Fitness relaxes exponentially toward a training
  * target or a detraining floor. All rates are engineering defaults; none is a calibrated physiological
- * prediction. Not modelled: bladder, temperature, specific nutrients, endocrine and immune detail,
+ * prediction. Not modelled: temperature, specific nutrients, endocrine and immune detail,
  * stress physiology, and masking of hunger or pain by emotion or focus (that belongs to other faculties).
  * `advanceBody` integrates in deterministic sub-steps of at most 15 minutes, using the exact solution
  * within each sub-step where the dynamics are linear, so one long step matches many short ones closely.
@@ -71,6 +71,8 @@ import type {
   Unit,
 } from '../types.ts';
 import { MINUTES_PER_DAY, MINUTES_PER_YEAR } from '../types.ts';
+import { advanceBladder, intakeBladder, sanitizeBladder } from './bladder.ts';
+import { sanitizeDoze } from './doze.ts';
 import { bleedStep, INJURY_DEFAULTS } from './injury.ts';
 
 export const BODY_DEFAULTS = {
@@ -254,6 +256,16 @@ export function sanitizeExposures(input: unknown, now: Minute): Record<string, E
  * downing are checked by `sanitizeInjuries`. A save the engine wrote is unchanged. @internal
  */
 export function sanitizeBody(b: BodyState, now: Minute): void {
+  if (b.doze !== undefined) {
+    const d = sanitizeDoze(b.doze, b, now);
+    if (d) b.doze = d;
+    else delete b.doze;
+  }
+  if (b.bladder !== undefined) {
+    const bladder = sanitizeBladder(b.bladder);
+    if (bladder) b.bladder = bladder;
+    else delete b.bladder;
+  }
   if (b.rates !== undefined) {
     const rates = sanitizeRates(b.rates);
     if (rates) b.rates = rates;
@@ -337,6 +349,8 @@ export function createBody(init: PersonSpec['body'] | undefined, now: Minute): B
     illnesses: [],
     nextId: 0,
   };
+  delete b.doze;
+  delete b.bladder;
   b.satiety = clamp01(b.satiety);
   b.hydration = clamp01(b.hydration);
   b.sleepPressure = clamp01(b.sleepPressure);
@@ -532,7 +546,7 @@ export function advanceBody(
 ): void {
   const b = p.body;
   if (!b.alive) return;
-  const wantAsleep = load.mode === 'sleep';
+  const wantAsleep = load.mode === 'sleep' || b.doze?.since !== undefined;
   if (wantAsleep !== b.asleep) {
     if (b.asleep) b.lastSleep = { from: b.since, to: p.now };
     b.asleep = wantAsleep;
@@ -541,7 +555,14 @@ export function advanceBody(
   if (!(dt > 0)) return;
   const n = Math.ceil(dt / params.maxSubStep);
   const h = dt / n;
-  for (let i = 0; i < n && b.alive; i++) subStep(b, h, load, mods, params);
+  for (let i = 0; i < n && b.alive; i++) {
+    if (b.bladder) advanceBladder(b.bladder, h);
+    subStep(b, h, load, mods, params);
+  }
+  if (!b.alive && b.doze?.since !== undefined) {
+    delete b.doze.since;
+    b.asleep = false;
+  }
 }
 
 /** Circadian alertness 0..1 (Process C): cosine peaking at `circadianPeak`, trough 12 h earlier, post-lunch dip. */
@@ -654,6 +675,7 @@ export function addTiredness(p: Person, costs: { sleepPressure?: number; exertio
 export function consume(p: Person, deltas: { food?: number; water?: number; relief?: number }): void {
   const b = p.body;
   if (!b.alive) return;
+  intakeBladder(p, deltas.water);
   if (deltas.food) b.satiety = clamp01(b.satiety + deltas.food);
   if (deltas.water) b.hydration = clamp01(b.hydration + deltas.water);
   if (deltas.relief) b.pain = clamp01(b.pain - deltas.relief);
@@ -672,6 +694,7 @@ function freshId(b: BodyState, prefix: string, now: Minute): string {
  */
 export function skipBody(p: Person, to: Minute): void {
   p.body.since = to;
+  if (p.body.doze?.since !== undefined) p.body.doze.since = to;
 }
 
 /**
@@ -684,6 +707,7 @@ export function die(p: Person): void {
   b.alive = false;
   b.health = 0;
   b.asleep = false;
+  if (b.doze) delete b.doze.since;
   b.since = p.now;
 }
 
@@ -836,6 +860,8 @@ const cloneBody = (b: BodyState): BodyState => {
     for (const [k, e] of Object.entries(b.exposures)) ex[k] = { ...e };
     out.exposures = ex;
   }
+  if (b.doze) out.doze = { ...b.doze, context: { ...b.doze.context } };
+  if (b.bladder) out.bladder = { ...b.bladder };
   if (b.rates) out.rates = { ...b.rates };
   if (b.downed) out.downed = { ...b.downed };
   if (b.lastSleep) out.lastSleep = { ...b.lastSleep };
@@ -870,6 +896,7 @@ export function nextBodyThreshold(
     return watch.some((k) => r[k] >= thresholds[k]);
   };
   const sim: Person = { ...p, body: cloneBody(p.body) };
+  if (sim.body.doze) delete sim.body.doze.since;
   advanceBody(sim, 0, load, mods, params); // apply mode change
   const coarse = 30;
   let t = 0;
@@ -916,6 +943,7 @@ export function forecastBody(
 ): BodyForecastSpan[] {
   const out: BodyForecastSpan[] = [];
   const sim: Person = { ...p, body: cloneBody(p.body) };
+  if (sim.body.doze) delete sim.body.doze.since;
   for (const s of spans) {
     const span: BodyForecastSpan = { label: s.label, endsAt: sim.now, worst: 0, worstOf: 'fatigue' };
     // Hard internal cap (a week) so a hostile span cannot stall a decision.

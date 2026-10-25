@@ -4,8 +4,8 @@
  * identity, age, family and health compatibility before returning a new Person. Neither input is mutated.
  * This is not a world migration, identity registry, transport, hash, authentication or general calendar mapper.
  * v1 admits zero-duration travel and healthy compatible bodies only; family/bonds remain host-authored and must
- * match source provenance. Portable v1 accepts its published 2.14.1 stamp and the current engine;
- * the 2.14.1 to 2.17.0 migration changes no portable field semantics. Pregnancy and nonempty temporal bonds are unsupported in v1. All other world-dependent stores stay with the source and are disclosed as omitted.
+ * match source provenance. Portable v1 accepts its published 2.14.1 and 2.17.0 stamps and the current engine;
+ * the bodily opt-ins change no portable field semantics. Pregnancy and nonempty temporal bonds are unsupported in v1. All other world-dependent stores stay with the source and are disclosed as omitted.
  */
 import { hasUnresolvedMakeUps, sameChain } from './agenda/agenda.ts';
 import { createPerson } from './person.ts';
@@ -245,8 +245,11 @@ export function validatePersonaProjection(input: unknown): PersonaProjectionSnap
   text(input.mappingVersion);
   text(input.name);
   keys(input.source, ['schema', 'engine', 'id', 'now']);
-  // Both published passport releases used 2.14.1; the next engine upgrade is stamp-only here.
-  const compatibleEngine = input.source.engine === ENGINE_VERSION || input.source.engine === '2.14.1';
+  // The 2.14.1 and 2.17.0 portable fields retain their semantics across the bodily opt-ins.
+  const compatibleEngine =
+    input.source.engine === ENGINE_VERSION ||
+    input.source.engine === '2.17.0' ||
+    input.source.engine === '2.14.1';
   if (input.source.schema !== PERSON_SCHEMA || !compatibleEngine)
     fail('unsupported source schema/engine; migrate the source before projection');
   text(input.source.id);

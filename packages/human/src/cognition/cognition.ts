@@ -39,6 +39,7 @@
 import { emotionLevel, inBreak } from '../affect/index.ts';
 import { agendaTermsWithGoalEstimates } from '../agenda/index.ts';
 import { trustOf } from '../beliefs/index.ts';
+import { bladderMotivation } from '../body/bladder.ts';
 import type { BodyPerceptionContext } from '../body/index.ts';
 import { normTerms } from '../conscience/index.ts';
 import { clamp01, cmpStr, dexp, minuteOfDay, round } from '../core/index.ts';
@@ -353,6 +354,7 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
 
   // Needs: urgency × believed gain × believed success.
   const expected = expectedEffect(p, aff);
+  if (p.body.bladder) push('need:bladder', bladderMotivation(p, aff, expected.successRate));
   for (const id of keysOf(expected.needs)) {
     const gain = expected.needs[id] ?? 0;
     if (gain === 0) continue;

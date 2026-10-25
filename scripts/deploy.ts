@@ -127,9 +127,24 @@ try {
   if (!trustedCiUrl) isolated('npm', ['run', 'check']);
   isolated('npm', ['run', 'build']);
   const pkg = (path: string) => JSON.parse(readFileSync(join(checkout, path), 'utf8')) as { version: string };
+  // Execute the resolver from the detached checkout too: local helper edits must not stamp a release.
+  const framework = JSON.parse(
+    run(
+      process.execPath,
+      [
+        '--input-type=module',
+        '--eval',
+        "import { resolveSiteFramework } from './apps/site/hf-resolution.ts'; process.stdout.write(JSON.stringify(resolveSiteFramework('./apps/site')))",
+      ],
+      true,
+      30_000,
+      checkout,
+    ),
+  ) as { framework: string; frameworkLibrary: string };
   const release = {
     app: pkg('package.json').version,
-    framework: pkg('packages/human/package.json').version,
+    framework: framework.framework,
+    frameworkLibrary: framework.frameworkLibrary,
     commit,
     dirty: false,
   };

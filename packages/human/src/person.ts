@@ -56,6 +56,8 @@ import {
   noteProvenance,
   trustOf,
 } from './beliefs/index.ts';
+import { enableBladder, voidBladder } from './body/bladder.ts';
+import { checkDoze, DOZE_DEFAULTS, enableDoze, enterVoluntarySleep, wakeDoze } from './body/doze.ts';
 import {
   advanceBody,
   BODY_DEFAULTS,
@@ -432,6 +434,8 @@ export function createPerson(spec: PersonSpec): Person {
   if (on?.planning) enablePlanning(p, on.planning);
   if (on?.promptings) enablePromptings(p, on.promptings);
   if (on?.review) enableReview(p, on.review);
+  if (on?.doze) enableDoze(p, on.doze);
+  if (on?.bladder) enableBladder(p);
   return p;
 }
 
@@ -650,10 +654,15 @@ export function tick(p: Person, now: Minute): void {
   const seg = PERSON_DEFAULTS.maxSegment;
   while (p.now < now) {
     const act = p.activity;
-    const active = act !== null && p.now < act.endsAt;
+    const active =
+      act !== null && act.dozedAt === undefined && p.body.doze?.since === undefined && p.now < act.endsAt;
     // Segment boundaries sit on an absolute grid, so how a host chunks its calls does not change the result.
     const grid = (Math.floor(p.now / seg) + 1) * seg;
-    const end = Math.min(active ? Math.min(now, act.endsAt) : now, grid);
+    const end = Math.min(
+      active ? Math.min(now, act.endsAt) : now,
+      grid,
+      p.body.doze ? Math.floor(p.now) + 1 : Number.POSITIVE_INFINITY,
+    );
     const load: BodyLoad =
       active && act ? { effort: act.effort, focus: act.focus, mode: act.mode } : PERSON_DEFAULTS.idleLoad;
     // A minute so large that the grid step rounds away cannot advance (security review H2): stop, never spin.
@@ -665,6 +674,11 @@ export function tick(p: Person, now: Minute): void {
     }
     advanceSegment(p, end - p.now, load, active && act ? act.affordance : undefined);
     p.now = end;
+    if (Number.isInteger(end) && p.body.doze && !(act && act.endsAt === end) && checkDoze(p, end)) {
+      if (act) act.dozedAt ??= end;
+      // Physical onset must not erase a host/percept reason awaiting resolution.
+      interrupt(p, end, act?.interrupt?.reason ?? 'doze');
+    }
     pruneConsequences(p);
     if (p.pursuit) releasePursuit(p);
     if (!p.body.alive) {
@@ -1013,6 +1027,20 @@ function judgeDeed(p: Person, actor: string, pc: Percept, at: Minute): number {
  */
 export function perceive(p: Person, percepts: readonly Percept[], options: PerceiveOptions = {}): Percept[] {
   if (percepts.length === 0 || !p.body.alive) return [];
+  if (p.body.doze?.since !== undefined) {
+    const wakes = percepts.some(
+      (pc) =>
+        Number.isFinite(pc.at) &&
+        pc.at === p.now &&
+        Number.isFinite(pc.salience) &&
+        pc.salience >= DOZE_DEFAULTS.wakeSalience &&
+        pc.near !== false &&
+        (pc.targetId === p.id || pc.near === true) &&
+        (pc.channel === 'heard' || pc.channel === 'felt' || pc.channel === 'social'),
+    );
+    if (!wakes) return [];
+    wakeDoze(p, p.now);
+  }
   const body = readBodyOf(p);
   const attended = attend(p, [...percepts], {
     focus: p.activity?.focus ?? 0,
@@ -1359,6 +1387,7 @@ export function begin(
   opts: BeginOptions = {},
 ): Activity | null {
   if (!p.body.alive) return null;
+  if (p.body.doze?.since !== undefined && aff.mode !== 'sleep') return null;
   const now = p.now;
   if (p.pursuit) {
     const considered = record.considered.find((c) => c.affordanceId === aff.id);
@@ -1430,6 +1459,7 @@ export function begin(
     activity.commitmentId = c.id;
   }
   p.activity = activity;
+  if (load.mode === 'sleep') enterVoluntarySleep(p);
   advanceBody(p, 0, load, mods); // apply the sleep/wake switch now
   const review = load.mode === 'sleep' ? PERSON_DEFAULTS.sleepReviewInterval : PERSON_DEFAULTS.reviewInterval;
   const thresholdAt = thresholdFor(p, load, review);
@@ -1688,7 +1718,7 @@ export function finish(p: Person, outcome: Outcome, opts: FinishOptions = {}): F
   const now = p.now;
   const aff = act.affordance;
   const completed = outcome.status === 'completed';
-  const minutes = Math.max(0, now - act.startedAt);
+  const minutes = Math.max(0, Math.min(now, act.dozedAt ?? now) - act.startedAt);
   const mods = lifeModifiers(p);
   const D = PERSON_DEFAULTS;
 
@@ -1699,6 +1729,7 @@ export function finish(p: Person, outcome: Outcome, opts: FinishOptions = {}): F
   if (given.water) bodyDeltas.water = given.water;
   if (given.relief) bodyDeltas.relief = given.relief;
   consume(p, bodyDeltas);
+  if (completed && outcome.voidedBladder === true) voidBladder(p);
   const psych: Partial<Record<PsychologicalNeed, number>> = {};
   for (const id of PSYCHOLOGICAL_NEEDS) if (given[id] !== undefined) psych[id] = given[id];
   satisfy(p, psych);

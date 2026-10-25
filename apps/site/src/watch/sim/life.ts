@@ -29,6 +29,7 @@ import {
   decide,
   familyVoices,
   GENERIC_CUSTOM,
+  gestureVoiceTrust,
   heldNorms,
   instructionFrom,
   learnOutcome,
@@ -875,22 +876,20 @@ export function settleLifeCard(
   card: { kind: string; who: string; other: string },
   choice: string | null,
 ): void {
-  const lift = (id: string, d: number) => {
+  const lift = (id: string, d: number, reason: string) => {
     const p = personOf(s, id);
     if (!p) return;
-    p.will.voices = p.will.voices.map((v) =>
-      v.voiceId === KEEPER_ID ? { ...v, trust: Math.max(0, Math.min(1, v.trust + d)) } : v,
-    );
+    gestureVoiceTrust(p, KEEPER_ID, d, { reason, at: s.minute });
   };
   const mother = personOf(s, card.who);
   const family = mother
     ? [mother.id, ...spousesOf(mother).filter((id) => s.cast[id]?.status === 'here')]
     : [];
   if (card.kind === 'birth') {
-    if (choice === 'visit') for (const id of family) lift(id, 0.03);
+    if (choice === 'visit') for (const id of family) lift(id, 0.03, 'The Keeper visited after the birth.');
     else if (choice === 'grain' && s.grain >= 1) {
       s.grain -= 1;
-      for (const id of family) lift(id, 0.06);
+      for (const id of family) lift(id, 0.06, 'The Keeper sent grain after the birth.');
       chronicle(s, 'birth', `You sent a sack from the granary for ${nameOf(s, card.other)}.`, card.other);
     }
   } else if (card.kind === 'practise') {
@@ -903,7 +902,7 @@ export function settleLifeCard(
         until,
         ...(pupil ? { from: skillLevel(pupil, 'sling') } : {}),
       });
-      lift(card.who, 0.03);
+      lift(card.who, 0.03, 'The Keeper allowed sling lessons.');
       chronicle(
         s,
         'courting',
@@ -911,7 +910,7 @@ export function settleLifeCard(
         card.who,
       );
     } else {
-      if (choice === 'refuse') lift(card.who, -0.03);
+      if (choice === 'refuse') lift(card.who, -0.03, 'The Keeper refused sling lessons.');
       chronicle(
         s,
         'courting',

@@ -50,10 +50,10 @@ function fixture() {
 }
 
 describe('explicit persona projection', () => {
-  test('published engine 2.14.1 passports keep validating and admitting after a stamp-only upgrade', () => {
+  test.each(['2.14.1', '2.17.0'])('published engine %s passports retain portable semantics', (engine) => {
     const { source, target, mapping } = fixture();
     const current = projectPersona(source, mapping);
-    const prior = { ...current, source: { ...current.source, engine: '2.14.1' } };
+    const prior = { ...current, source: { ...current.source, engine } };
     const before = JSON.stringify(prior);
     const policy = { mappingVersion: 'test/1', sourceId: 'source', targetId: 'target' };
     expect(validatePersonaProjection(prior)).toEqual(prior);

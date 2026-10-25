@@ -59,6 +59,7 @@ beforeEach(() => {
   vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ json: async () => ({ commit }) }));
   vi.mocked(execFileSync).mockImplementation((cmd, args) => {
     const words = args as string[];
+    if (cmd === process.execPath) return JSON.stringify({ framework: '2.18.0', frameworkLibrary: '2.20.0' });
     if (cmd === 'git') {
       if (words[0] === 'status') return dirty;
       if (words.includes('--abbrev-ref')) return branch;

@@ -5,7 +5,13 @@
  * helper leaving a different post; it adds no travel delay and never charges a refused ask.
  * This does not add healing, remote orders, moments or guaranteed obedience.
  */
-import { outwardSigns, predictAs, type SimEvent, selfReport } from '@adam0white/human-framework';
+import {
+  addTiredness,
+  outwardSigns,
+  predictAs,
+  type SimEvent,
+  selfReport,
+} from '@adam0white/human-framework';
 import { type PostId, postSection, type SectionId, type WatcherId } from './config.ts';
 import { ask, readWords } from './moments.ts';
 import { alert, inVoice, ownReason, presentIds, theSection } from './night.ts';
@@ -294,7 +300,7 @@ export function resolveNightRequest(s: WatchState, e: SimEvent, before = s.place
   const old = before[e.personId];
   if (s.nightDepartureEffort && r.kind !== 'down' && isPost(old) && r.affordance !== `post:${old}`) {
     const p = personOf(s, e.personId);
-    if (p) p.body.exertion = Math.min(1, p.body.exertion + DEPARTURE_EXERTION);
+    if (p) addTiredness(p, { exertion: DEPARTURE_EXERTION });
   }
   delete s.nightRequests?.[e.personId];
   if (r.kind === 'down') release(s, e.personId);

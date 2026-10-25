@@ -677,7 +677,9 @@ export function learnOutcome(
   felt: Signed,
 ): void {
   if (outcome.status === 'interrupted') return;
-  const success = outcome.status === 'completed';
+  // A declared voiding purpose succeeds only when the actual outcome confirms it.
+  const success =
+    outcome.status === 'completed' && (aff.voidsBladder !== true || outcome.voidedBladder === true);
   const touched = new Set<string>([expectationKey({ action: aff.action })]);
   if (aff.targetId !== undefined) touched.add(expectationKey(aff));
   for (const key of touched) updateExpectation(p, key, aff, success, realized, felt);

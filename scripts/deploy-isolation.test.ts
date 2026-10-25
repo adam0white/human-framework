@@ -67,6 +67,7 @@ beforeEach(() => {
   vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ json: async () => ({ commit }) }));
   vi.mocked(execFileSync).mockImplementation((cmd, args) => {
     const words = args as string[];
+    if (cmd === process.execPath) return JSON.stringify({ framework: '2.18.0', frameworkLibrary: '2.20.0' });
     if (`${cmd} ${words.join(' ')}` === failure) throw new Error('injected failure');
     if (cmd === 'git') {
       if (words.includes('--abbrev-ref')) return branch;
@@ -111,6 +112,17 @@ describe('deploy workflow identity and isolation', () => {
       join(checkout, 'apps/site/dist/release.json'),
       expect.stringContaining('"dirty": false'),
     );
+    const stamp = vi
+      .mocked(writeFileSync)
+      .mock.calls.find(([path]) => String(path).endsWith('/release.json'));
+    expect(JSON.parse(String(stamp?.[1]))).toMatchObject({
+      framework: '2.18.0',
+      frameworkLibrary: '2.20.0',
+      commit,
+      dirty: false,
+    });
+    const resolver = commands.find(([cmd]) => cmd === process.execPath);
+    expect(resolver?.[2]).toMatchObject({ cwd: checkout });
     expect(fetch).toHaveBeenCalledWith('https://human.adamwhite.work/release.json', { cache: 'no-store' });
     expect(calls().at(-1)).toEqual(['git', ['worktree', 'remove', '--force', checkout]]);
     expect(rmSync).toHaveBeenCalledWith(temporary, { recursive: true, force: true });

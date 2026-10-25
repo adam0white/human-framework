@@ -22,6 +22,7 @@ export const PLAIN_EN_LINES: Readonly<Record<string, readonly string[]>> = {
     'I need to sleep before I do anything else.',
   ],
   'need:rest': ['I need to sit down for a while.', 'I will rest before I do anything else.'],
+  'need:bladder': ['I need to use the toilet.'],
   'need:relief': [
     'I need to do something about this pain.',
     'The pain makes it hard to think about anything else.',
@@ -116,6 +117,7 @@ export const PLAIN_EN_LINES: Readonly<Record<string, readonly string[]>> = {
   'intention:water': ['to drink'],
   'intention:sleep': ['to sleep'],
   'intention:rest': ['to rest'],
+  'intention:bladder': ['to use the toilet'],
   'intention:relief': ['to ease the pain'],
   'intention:belonging': ['to be with people'],
   'intention:leisure': ['to enjoy myself'],
