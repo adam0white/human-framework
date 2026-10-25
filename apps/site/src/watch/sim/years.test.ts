@@ -73,7 +73,11 @@ describe('Game 3 long-run depth (G3-4)', () => {
     for (const year of [1, 2, 3])
       expect(
         s.chronicle.some(
-          (l) => l.year === year && /(routine|uneventful|worth the lantern|without the lantern)/.test(l.text),
+          (l) =>
+            l.year === year &&
+            /(usual turns|next \d+ nights|routine|uneventful|worth the lantern|without the lantern)/.test(
+              l.text,
+            ),
         ),
       ).toBe(true);
     // The headless Keeper sends a sack for every birth and allows every lesson.
@@ -270,8 +274,8 @@ describe('Game 3 reads over the year (G3-3 review)', () => {
     const reads = s.community.people
       .filter((p) => isWatcher(s, p))
       .map((p) => keeperImpressions(s, p.id).map((r) => r.text));
-    const known = reads.filter((r) => !r.includes('you don’t know them yet'));
+    const known = reads.filter((r) => !r.includes('You do not know them well enough yet.'));
     expect(known.length).toBeGreaterThanOrEqual(3);
-    for (const r of known) expect(r).toContain('from last winter');
+    for (const r of known) expect(r).toContain('This impression comes from last winter.');
   }, 300_000);
 });

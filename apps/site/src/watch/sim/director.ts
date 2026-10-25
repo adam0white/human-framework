@@ -34,26 +34,26 @@ export function planWinter(s: WatchState): void {
   let why: string;
   if (s.grain >= 24) {
     lead = 'thief';
-    why = 'Word of a full granary has gone down the valley.';
+    why = 'People down the valley have heard that our grain store is full.';
   } else if (s.yearGrain.harvest > 0 && s.yearGrain.harvest < 12) {
     lead = 'thief';
-    why = 'The harvest failed down the valley too; hungry men walk at night.';
+    why = 'The harvest failed down the valley too. Hungry men walk at night.';
   } else if (thin) {
     lead = 'wolf';
-    why = 'Too few on the wall: the packs have found the dark stretches.';
+    why = 'Too few people watch the wall. The wolf packs have found the dark stretches.';
   } else {
     lead = nextRandom(r) < 0.5 ? 'wolf' : 'thief';
     why =
       lead === 'wolf'
-        ? 'A hard frost has driven the packs down early.'
+        ? 'A hard frost has driven the wolf packs down early.'
         : 'Strangers were seen at the autumn fair.';
   }
   if (lead === last) {
     lead = other(lead);
     why =
       lead === 'wolf'
-        ? 'The thieves have gone elsewhere; the packs are back.'
-        : 'The packs have gone north; men have taken their place.';
+        ? 'The thieves have gone elsewhere. The wolf packs are back.'
+        : 'The wolf packs have gone north. Men have taken their place.';
   }
   const twist: WinterPlan['twist'] = s.leads.includes(lead) ? (lead === 'wolf' ? 'dark' : 'inside') : null;
   const peak = 3 + Math.floor(nextRandom(r) * (nights - 2));
@@ -73,7 +73,7 @@ function winterQuestion(s: WatchState, r: { rng: number }): WinterPlan['question
     out.push({
       kind: 'gate',
       who: keeper.id,
-      text: `${nameOf(s, keeper.id)} is slow on the Gate stair now. Keep the Gate whole on the worst night.`,
+      text: `${nameOf(s, keeper.id)} is slow on the Gate stair now. Keep anyone from crossing the Gate on the worst night.`,
       met: null,
     });
   const watchers = living(s).filter((p) => isWatcher(s, p));
@@ -85,7 +85,7 @@ function winterQuestion(s: WatchState, r: { rng: number }): WinterPlan['question
     out.push({
       kind: 'first',
       who: first.id,
-      text: `${nameOf(s, first.id)} stands the wall for the first time. Bring ${nameOf(s, first.id)} to the thaw unhurt.`,
+      text: `${nameOf(s, first.id)} guards the wall for the first time. Keep ${nameOf(s, first.id)} unhurt until the spring thaw.`,
       met: null,
     });
   const last = watchers.find((p) => {
@@ -96,7 +96,7 @@ function winterQuestion(s: WatchState, r: { rng: number }): WinterPlan['question
     out.push({
       kind: 'last',
       who: last.id,
-      text: `This is ${nameOf(s, last.id)}’s last winter on the wall. See ${nameOf(s, last.id)} off it unhurt.`,
+      text: `This is ${nameOf(s, last.id)}’s last winter on the wall. Keep ${nameOf(s, last.id)} unhurt through that last winter.`,
       met: null,
     });
   const lastYear = s.chronicle.filter((l) => l.year === s.year - 1);
@@ -121,13 +121,17 @@ function winterQuestion(s: WatchState, r: { rng: number }): WinterPlan['question
       kind: 'newlywed',
       who: a.id,
       who2: spouse,
-      text: `${nameOf(s, a.id)} and ${nameOf(s, spouse)} were married last year and both stand the wall. Bring them both through unhurt.`,
+      text: `${nameOf(s, a.id)} and ${nameOf(s, spouse)} were married last year and both guard the wall. Keep them both alive and unhurt through the winter.`,
       met: null,
     });
     break;
   }
   if (out.length === 0)
-    return { kind: 'souls', text: 'Bring every soul and the granary to the thaw.', met: null };
+    return {
+      kind: 'souls',
+      text: 'Keep everyone alive and protect the grain until the spring thaw, when the snow melts.',
+      met: null,
+    };
   return out[Math.floor(nextRandom(r) * out.length)] ?? out[0] ?? null;
 }
 
@@ -146,12 +150,13 @@ export function planDirectedNight(s: WatchState): void {
   const named = s.warnedAlso ? [s.warned, s.warnedAlso] : [s.warned];
   const elsewhere = walls.filter((id) => !named.includes(id));
   const def = sectionDef(s.warned);
-  const tracks = s.lead === 'wolf' ? 'pack tracks' : 'strangers';
+  const tracks = s.lead === 'wolf' ? 'wolf tracks' : 'strangers';
   const verb = s.lead === 'wolf' ? 'found' : 'saw';
   s.warning = s.warnedAlso
     ? `The scout ${verb} ${tracks} ${def.approach}, or ${sectionDef(s.warnedAlso).approach}; he could not tell which.`
     : `The scout ${verb} ${tracks} ${def.approach}.`;
-  if (peak) s.warning += s.lead === 'wolf' ? ' A big pack, by the tracks.' : ' Many of them.';
+  if (peak)
+    s.warning += s.lead === 'wolf' ? ' The tracks suggest a big wolf pack.' : ' There were many strangers.';
   const watchers = presentIds(s).length;
   const crowd = Math.max(0, Math.floor((watchers - 7) / 3));
   const rich = s.grain >= 24 ? 1 : 0;

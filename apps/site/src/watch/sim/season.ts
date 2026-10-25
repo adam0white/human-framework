@@ -161,7 +161,11 @@ function thaw(s: WatchState): void {
   // Grown old on the wall.
   for (const p of living(s)) {
     if (isWatcher(s, p) && ageOf(p, s.minute) >= 60 && (s.cast[p.id]?.comes.year ?? s.year) <= s.year - 20)
-      fillLeaf(s, 'grew-old', `${nameOf(s, p.id)} has stood the wall twenty winters and grown old on it.`);
+      fillLeaf(
+        s,
+        'grew-old',
+        `${nameOf(s, p.id)} has guarded the wall for twenty winters and grown old while doing it.`,
+      );
   }
   leaving(s);
   // A stretch climbed all winter comes down in the thaw and cannot be stood next winter.
@@ -189,9 +193,9 @@ function thaw(s: WatchState): void {
       chronicle(
         s,
         'loss',
-        'The granary could not reach the harvest. The last of the village went down the valley.',
+        'The grain ran out before the harvest. The last of the village went down the valley.',
       );
-      closeVolume(s, 'The granary ran out before the harvest; the village scattered.');
+      closeVolume(s, 'The grain ran out before the harvest. The villagers left in different directions.');
       s.phase = 'fallen';
       return;
     }
@@ -199,8 +203,8 @@ function thaw(s: WatchState): void {
       s,
       'loss',
       (went === 0
-        ? 'A hungry spring: the granary could not reach the harvest, and everyone went short until it came.'
-        : `A hungry spring: the granary could not reach the harvest, and ${went === 1 ? 'one household' : `${went} households`} went down the valley.`) +
+        ? 'The grain ran out before the harvest. Everyone went hungry until the new grain came.'
+        : `The grain ran out before the harvest. ${went === 1 ? 'One household' : `${went} households`} went down the valley.`) +
         hungerFaces(s),
     );
     s.yearGrain.eaten = Math.min(s.grain, Math.ceil(living(s).length * EAT_PER_HEAD));
@@ -261,9 +265,9 @@ function lessonLines(s: WatchState): void {
       s,
       'winter',
       grew >= LESSON_SHOWED
-        ? `The summer of sling lessons with ${teacher} showed this winter: ${who} threw a surer stone than before.`
+        ? `The summer of sling lessons with ${teacher} showed this winter: ${who} threw stones more accurately than before.`
         : grew >= LESSON_LITTLE
-          ? `${who}'s sling lessons with ${teacher} showed a little this winter: a steadier throw, not yet a sure one.`
+          ? `${who}'s sling lessons with ${teacher} helped a little this winter. The throws were steadier, but the aim was still uncertain.`
           : `${who}'s sling lessons with ${teacher} have not shown on the wall yet.`,
       x.who,
     );
@@ -290,7 +294,7 @@ function fairLines(s: WatchState): void {
       s,
       'winter',
       n === 0
-        ? `${what}, ${wall} stood the winter: nothing came over it.`
+        ? `${what}, nothing crossed ${wall} this winter.`
         : `${what}, ${wall} was still climbed ${n === 1 ? 'once' : `${n} times`} this winter.`,
     );
   }
@@ -307,7 +311,7 @@ function fairLines(s: WatchState): void {
         ? `${who}, named heir at the fair, stood the Gate ${nights} quiet nights this winter and is learning it.`
         : nights > 0
           ? `${who}, named heir at the fair, stood the Gate only ${nights === 1 ? 'one quiet night' : `${nights} quiet nights`} this winter.`
-          : `${who}, named heir at the fair, never stood the Gate this winter. The Gate is learned on the Gate.`,
+          : `${who}, named heir at the fair, never stood the Gate this winter. Learning to guard the Gate takes practice there.`,
       l.who,
     );
   }
@@ -330,14 +334,14 @@ function routineLine(s: WatchState): void {
     .map(([id]) => nameOf(s, id));
   // Said differently each year (G3-4 review: the same sentence every thaw read as a form).
   const openers = [
-    `The other ${nights} nights of winter went by routine, the wall stood in turns.`,
-    `The rest of the winter, ${nights} nights, passed by routine in turns on the wall through the cold and dark.`,
-    `For ${nights} routine nights the watch changed at midnight and the snow kept falling.`,
+    `During the other ${nights} nights of winter, the watchers took their usual turns guarding the wall.`,
+    `For the remaining ${nights} nights of winter, the watchers took their usual turns on the wall in the cold and dark.`,
+    `For the next ${nights} nights, the watch changed at midnight and the snow kept falling.`,
     `${nights} more nights went by without the lantern: frost, the stars and the long hours before dawn.`,
   ];
   const stoodWords = [
-    ' stood the most of them.',
-    ' took the most turns.',
+    ' guarded the wall on the most nights.',
+    ' took the most turns guarding the wall.',
     ' were on the wall more nights than anyone.',
   ];
   let text = openers[(s.year - 1) % openers.length] ?? openers[0] ?? '';
@@ -380,14 +384,14 @@ function harvest(s: WatchState): void {
   s.grain = Math.min(GRANARY_MAX, s.grain + got);
   const good = weather > 1.05;
   const thin = weather < 0.82;
-  const words = good ? 'A good harvest' : thin ? 'A thin harvest' : 'An ordinary harvest';
+  const words = good ? 'A good harvest' : thin ? 'A poor harvest' : 'An ordinary harvest';
   const level = s.grain >= GRANARY_MAX ? 2 : s.grain >= 30 ? 1 : 0;
   const store = [
     'the granary is half empty going into winter',
     'the granary is well filled',
-    'the granary is full to the door',
+    'the grain store is completely full',
   ][level];
-  // A thin harvest can still leave a full store (last year's grain), and a good one a half-empty store.
+  // A poor harvest can still leave a full store (last year's grain), and a good one a half-empty store.
   const but = (thin && level > 0) || (good && level === 0);
   chronicle(s, 'harvest', `${words}${but ? ', but' : ':'} ${store}.`);
 }

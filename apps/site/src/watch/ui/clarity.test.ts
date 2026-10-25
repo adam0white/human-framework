@@ -147,7 +147,7 @@ it('replaces an account with helper choice and restores it without a game input'
   const who = frame.watchers.find((w) => w.id === 'tamar');
   if (!who) throw new Error('Expected Tamar');
   who.account = { text: 'I’m tired. I’m keeping watch.', spoken: true };
-  who.restRead = 'seemed tiring at dusk';
+  who.restRead = 'They looked tired at dusk';
   for (const helper of frame.watchers) {
     if (helper.id === who.id) continue;
     helper.post = 'gate-2';
@@ -169,7 +169,7 @@ it('replaces an account with helper choice and restores it without a game input'
     {
       input: { k: 'relieve', who: 'tamar', by: 'samira' },
       label: 'Send Samira to relieve Tamar',
-      read: 'Too far to call Samira; carry the light.',
+      read: 'You are too far away to call Samira; carry the light.',
       available: false,
     },
   ];
@@ -183,14 +183,14 @@ it('replaces an account with helper choice and restores it without a game input'
     [...container.querySelectorAll('button')].find((b) => b.textContent === text);
   expect(container.querySelector('.w-night-commit .w-bellbtn')).not.toBeNull();
   expect(container.querySelector('.w-account blockquote')?.textContent).toContain('tired');
-  expect(container.querySelector('.w-account')?.textContent).toContain('seemed tiring at dusk');
+  expect(container.querySelector('.w-account')?.textContent).toContain('They looked tired at dusk');
   expect(button('Rest')?.closest('.lk-commit')).not.toBeNull();
   expect(button('Send Kian to relieve Tamar')).toBeUndefined();
   await act(async () => button('Send relief')?.click());
   expect(container.querySelector('.w-account')).toBeNull();
   expect(container.querySelector('.w-helper-choice')?.textContent).toContain('leaves the mill wall empty');
   expect(container.querySelector('.w-helper-choice')?.textContent).toContain(
-    'Samira: Out of your voice; carry the light.',
+    'Samira: They cannot hear you from here; carry the light.',
   );
   expect(button('Send Samira to relieve Tamar')).toBeUndefined();
   await act(async () => button(`← ${who.name}`)?.click());
@@ -211,7 +211,7 @@ it('replaces an account with helper choice and restores it without a game input'
   await act(async () => root.render(createElement(NightPanel, props)));
   await act(async () => button('Send help')?.click());
   expect(container.querySelector('.w-helper-choice')?.textContent).toContain(
-    'No current sign of hurt or a wolf at this post.',
+    'There is no current sign of hurt or a wolf at this post.',
   );
   await act(async () => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' })));
   expect(container.querySelector('.w-account')).not.toBeNull();

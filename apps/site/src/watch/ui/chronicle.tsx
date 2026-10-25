@@ -10,7 +10,6 @@ import { Icon } from './icons.tsx';
 import { SEASON_WORDS, yearWords } from './pages.tsx';
 import type { WatchActions } from './useWatch.ts';
 import { WinterSetting } from './WinterSetting.tsx';
-import { watchWords } from './wording.ts';
 import { pageWhen } from './words.ts';
 
 interface Group {
@@ -221,11 +220,11 @@ function ReadChronicle({ frame, onClose }: { frame: Frame; onClose: () => void }
             .slice()
             .reverse()
             .map((l) => (
-              <li key={`${l.year}-${l.minute}-${watchWords(l.text)}`}>
+              <li key={`${l.year}-${l.minute}-${l.text}`}>
                 <span className="w-line-when">
                   {SEASON_WORDS[l.season]}, {yearWords(l.year)}
                 </span>
-                {watchWords(l.text)}
+                {l.text}
               </li>
             ))}
         </ol>

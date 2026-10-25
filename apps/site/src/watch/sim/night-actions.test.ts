@@ -69,7 +69,7 @@ describe('night asks on a watcher', () => {
     (k) => {
       const { run, s, target, helper } = night();
       if (k === 'help') hurt(target);
-      expect(act(s, k)?.read).toContain('takes a little breath');
+      expect(act(s, k)?.read).toContain('tire them a little');
       expect(run.input({ k, who: 'tamar', by: 'kian' })).toBe(true);
       expect(helper.body.exertion).toBe(0);
       const event = {
@@ -126,7 +126,7 @@ describe('night asks on a watcher', () => {
     target.social.reserve = { fatigue: 1 };
     expect(act(s, 'relieve')?.available).toBe(true);
     expect(buildFrame(s, 0, false).watchers.find((w) => w.id === 'tamar')?.impressions).toContainEqual(
-      expect.objectContaining({ text: 'seemed tiring at dusk' }),
+      expect.objectContaining({ text: 'They looked tired at dusk.' }),
     );
     s.minute += 200;
     expect(act(s, 'relieve')?.available).toBe(true);
@@ -158,12 +158,12 @@ describe('night asks on a watcher', () => {
     const progress = () => buildFrame(s, 0, false).watchers.find((w) => w.id === 'tamar')?.handover;
     expect(progress()).toMatch(/Kian.*Gate.*answer/);
     for (let i = 0; i < 15 && s.place.tamar === 'gate-1'; i++) run.step();
-    expect(progress()).toContain('Kian has the Gate; Tamar');
+    expect(progress()).toContain('Kian is guarding the Gate; Tamar');
     expect(progress()).toMatch(/asked to go down|gone down/);
     s.place.tamar = 'home';
     delete s.nightRequests?.tamar;
     s.alerts = s.alerts.filter((alert) => alert.who !== 'tamar');
-    expect(progress()).toBe('Kian has the Gate; Tamar of the Wall has gone down.');
+    expect(progress()).toBe('Kian is guarding the Gate; Tamar of the Wall has gone down.');
     s.place.kian = 'home';
     expect(progress()).toBe('Kian has left the Gate.');
   });
@@ -198,7 +198,7 @@ describe('night asks on a watcher', () => {
     const { s, target } = night();
     expect(act(s, 'relieve')?.available).toBe(true);
     expect(act(s, 'relieve')?.read).toMatch(/leaves .*mill.* empty/);
-    expect(act(s, 'relieve')?.read).toMatch(/relief takes over before.*sleep/);
+    expect(act(s, 'relieve')?.read).toMatch(/helper takes over before.*sleep/);
     expect(act(s, 'help')).toBeUndefined();
     hurt(target);
     expect(act(s, 'help')?.available).toBe(true);
@@ -235,7 +235,7 @@ describe('night asks on a watcher', () => {
       if (k === 'help') hurt(target);
       s.place.kian = 'east-1';
       expect(act(s, k)?.available).toBe(false);
-      expect(act(s, k)?.read).toMatch(/Too far to call Kian.*light.*east/);
+      expect(act(s, k)?.read).toMatch(/You are too far away to call Kian.*lantern.*east/);
       const before = JSON.stringify(s);
       expect(run.input({ k, who: 'tamar', by: 'kian' })).toBe(false);
       expect(JSON.stringify(s)).toBe(before);
@@ -259,7 +259,7 @@ describe('night asks on a watcher', () => {
     s.place.tamar = 'east-1';
     const option = act(s, k);
     expect(option?.available).toBe(false);
-    expect(option?.read).toMatch(/Too far to call Tamar.*light.*east/);
+    expect(option?.read).toMatch(/You are too far away to call Tamar.*lantern.*east/);
     const input: NightInput = k === 'down' ? { k, who: 'tamar' } : { k, who: 'tamar', by: 'kian' };
     expect(run.input(input)).toBe(false);
     s.lantern = { x: 2, target: 2 };

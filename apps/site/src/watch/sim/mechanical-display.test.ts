@@ -38,7 +38,11 @@ it('the thaw question and chronicle account for households who left', async () =
   const { buildFrame } = await import('./view.ts');
   const s = newGame(7);
   s.phase = 'thaw';
-  s.winter.question = { kind: 'souls', text: 'Bring every soul and the granary to the thaw.', met: true };
+  s.winter.question = {
+    kind: 'souls',
+    text: 'Keep everyone alive and protect the grain until the spring thaw, when the snow melts.',
+    met: true,
+  };
   s.chronicle.push({
     year: s.year,
     minute: s.minute,
@@ -90,7 +94,11 @@ it('later summer losses do not rewrite the preceding winter question', async () 
   const s = newGame(7);
   s.phase = 'summer';
   s.minute = 200 * 1440;
-  s.winter.question = { kind: 'souls', text: 'Bring every soul and the granary to the thaw.', met: true };
+  s.winter.question = {
+    kind: 'souls',
+    text: 'Keep everyone alive and protect the grain until the spring thaw, when the snow melts.',
+    met: true,
+  };
   s.chronicle.push({
     year: s.year,
     minute: 90 * 1440,

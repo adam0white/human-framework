@@ -76,7 +76,7 @@ export function nightCondition(s: WatchState, who: WatcherId): { tired: boolean;
 function far(s: WatchState, who: WatcherId): string {
   const pl = s.place[who];
   const where = isPost(pl) ? theSection(postSection(pl)) : 'the Gate';
-  return `Too far to call ${nameOf(s, who)} from here; carry the light to ${where}.`;
+  return `You are too far away to call ${nameOf(s, who)} from here; carry the lantern to ${where}.`;
 }
 
 function destination(s: WatchState, input: NightInput): string | null {
@@ -112,7 +112,7 @@ function viewFor(s: WatchState, input: NightInput, affordance: string): WatchSta
 
 function reading(s: WatchState, id: WatcherId, input: NightInput, affordance: string): string {
   const p = personOf(s, id);
-  if (!p) return "you can't tell";
+  if (!p) return 'You cannot tell.';
   const view = viewFor(s, input, affordance);
   const offers = new WatchWorld(view).affordancesFor(p);
   const { resolution, confidence } = predictAs(
@@ -180,15 +180,16 @@ export function nightActs(s: WatchState, who: WatcherId): NightAct[] {
               : (s.nightRequests?.[id]?.until ?? -Infinity) > s.minute
                 ? `${nameOf(s, id)} is answering your earlier call.`
                 : null;
-    if (blocked || !affordance) return { input, label, read: blocked ?? "you can't tell", available: false };
+    if (blocked || !affordance)
+      return { input, label, read: blocked ?? 'You cannot tell.', available: false };
     const old = s.place[id];
     const leaves =
-      isPost(old) && (input.k === 'down' || old !== s.place[who]) ? `; ${leavingRead(s, id)}` : '';
+      isPost(old) && (input.k === 'down' || old !== s.place[who]) ? ` ${leavingRead(s, id)}.` : '';
     const crossing =
       s.nightDepartureEffort && input.k !== 'down' && isPost(old) && old !== s.place[who]
-        ? '; I reckon the hard crossing takes a little breath as well'
+        ? ' I think leaving another post will also tire them a little.'
         : '';
-    const cover = input.k === 'relieve' ? `; relief takes over before you ask ${name} to sleep` : '';
+    const cover = input.k === 'relieve' ? ` The helper takes over before you ask ${name} to sleep.` : '';
     return {
       input,
       label,
@@ -210,7 +211,9 @@ function leavingRead(s: WatchState, id: WatcherId): string {
     .map((other) => nameOf(s, other));
   const names =
     remaining.length < 2 ? remaining[0] : `${remaining.slice(0, -1).join(', ')} and ${remaining.at(-1)}`;
-  return names ? `leaves ${names} at ${theSection(section)}` : `leaves ${theSection(section)} empty`;
+  return names
+    ? `This leaves ${names} at ${theSection(section)}`
+    : `This leaves ${theSection(section)} empty`;
 }
 
 /** Requests wait for HF's answer. Post changes have no travel phase in the existing rules. */
@@ -235,10 +238,10 @@ export function nightHandover(s: WatchState, who: WatcherId): string | null {
   if (s.place[accepted.who] !== old) return `${nameOf(s, accepted.who)} has left ${theSection(section)}.`;
   const going = s.nightRequests?.[who];
   if (!isPost(s.place[who]))
-    return `${nameOf(s, accepted.who)} has ${theSection(section)}; ${nameOf(s, who)} has gone down.`;
+    return `${nameOf(s, accepted.who)} is guarding ${theSection(section)}; ${nameOf(s, who)} has gone down.`;
   if (going?.kind === 'down' && going.afterMinute === accepted.minute)
-    return `${nameOf(s, accepted.who)} has ${theSection(section)}; ${nameOf(s, who)} has been asked to go down.`;
-  return `${nameOf(s, accepted.who)} has ${theSection(section)}; ${nameOf(s, who)} is still on the wall.`;
+    return `${nameOf(s, accepted.who)} is guarding ${theSection(section)}; ${nameOf(s, who)} has been asked to go down.`;
+  return `${nameOf(s, accepted.who)} is guarding ${theSection(section)}; ${nameOf(s, who)} is still on the wall.`;
 }
 
 export function applyNightAct(s: WatchState, input: NightInput): boolean {

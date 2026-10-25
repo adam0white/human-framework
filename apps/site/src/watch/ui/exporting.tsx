@@ -105,10 +105,10 @@ export function DownloadRun({
               a.click();
               a.remove();
               setTimeout(() => URL.revokeObjectURL(url), 10_000);
-              setStatus('Copy downloaded.');
+              setStatus('The copy was downloaded.');
             } catch {
               setText(json);
-              setStatus('Saving was blocked; select the text below.');
+              setStatus('Saving was blocked. Select the text below to copy it.');
             }
           } catch {
             setStatus('This run could not be prepared. Please try again.');

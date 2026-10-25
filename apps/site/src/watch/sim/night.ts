@@ -397,7 +397,7 @@ function enterNight(s: WatchState): void {
     const v = villager(s, id);
     if (!s.posts[id] || v.stood) continue;
     v.stood = true;
-    if (v.bornHere) fillLeaf(s, 'born-stands', `${v.name}, born here, stood the wall for the first time.`);
+    if (v.bornHere) fillLeaf(s, 'born-stands', `${v.name}, born here, guarded the wall for the first time.`);
     firstStand(s, id);
   }
   s.tally = emptyTally(s.grain);
@@ -522,7 +522,7 @@ function enterDawn(s: WatchState): void {
     const parts: string[] = [];
     // `posted` is who stands there at dawn; someone who drove a threat off earlier stood it for a while.
     if (gotKinds.length > 0 && posted.length === 0)
-      parts.push(heroes.length > 0 ? `Nobody held ${the} to the end.` : `Nobody stood ${the}.`);
+      parts.push(heroes.length > 0 ? `Nobody stayed to guard ${the} until dawn.` : `Nobody watched ${the}.`);
     for (const kind of gotKinds) {
       const g = got[kind] ?? 0;
       parts.push(
@@ -531,7 +531,7 @@ function enterDawn(s: WatchState): void {
           : s.proposalHolds
             ? `${capital(plural(kind, g))} got over ${the} during the raid.`
             : kind === 'wolf'
-              ? `${capital(plural(kind, g))} got over ${the} and tore into the store.`
+              ? `${capital(plural(kind, g))} got over ${the} and broke into the grain store.`
               : `${capital(plural(kind, g))} got over ${the} and carried sacks off.`,
       );
     }
@@ -544,7 +544,7 @@ function enterDawn(s: WatchState): void {
       );
     }
     if (parts.length === 0) {
-      parts.push(posted.length === 0 ? `Nobody stood ${the}. Nothing came.` : `Quiet at ${the}.`);
+      parts.push(posted.length === 0 ? `Nobody watched ${the}. Nothing came.` : `It was quiet at ${the}.`);
     }
     lines.push({ section: id, text: parts.join(' ') });
   }
@@ -734,7 +734,7 @@ export function ringBell(s: WatchState, who: WatcherId | undefined): boolean {
       alert(s, {
         section: at,
         kind: 'bell',
-        text: `Over the bell you call ${nameOf(s, who)} by name: hold your post! ${bellAnswer(s, [who], true)}`.trim(),
+        text: `Over the bell you call ${nameOf(s, who)} by name: stay at your post! ${bellAnswer(s, [who], true)}`.trim(),
         slowed: false,
       });
       return true;
@@ -787,7 +787,7 @@ export function ringBell(s: WatchState, who: WatcherId | undefined): boolean {
     alert(s, {
       section: at,
       kind: 'rope',
-      text: `The bell rings out once more, and its rope snaps.${who ? ` You call ${nameOf(s, who)} by name: hold your post!` : ''} No more bell tonight.`,
+      text: `The bell rings out once more, and its rope snaps.${who ? ` You call ${nameOf(s, who)} by name: stay at your post!` : ''} The bell cannot ring again tonight.`,
       slowed: true,
     });
     return true;
@@ -801,8 +801,8 @@ export function ringBell(s: WatchState, who: WatcherId | undefined): boolean {
   const wokeWords =
     seenWoken.length === 0 || lit === null
       ? ''
-      : ` It wakes ${seenWoken.map((id) => nameOf(s, id)).join(' and ')}, nodding at ${theSection(lit)}.`;
-  const called = who ? ` You call ${nameOf(s, who)} by name: hold your post!` : '';
+      : ` It wakes ${seenWoken.map((id) => nameOf(s, id)).join(' and ')}, falling asleep at ${theSection(lit)}.`;
+  const called = who ? ` You call ${nameOf(s, who)} by name: stay at your post!` : '';
   const hearers = who
     ? [who]
     : lit === null
@@ -844,14 +844,14 @@ function bellAnswer(s: WatchState, targets: WatcherId[], named: boolean): string
     }
   }
   const lit = litSection(s);
-  if (who === null) return !named && lit ? `No answer from ${theSection(lit)}.` : '';
+  if (who === null) return !named && lit ? `Nobody answers from ${theSection(lit)}.` : '';
   const name = nameOf(s, who);
   const p = personOf(s, who);
   const fear = p?.affect.emotions.find((e) => e.id === 'fear')?.intensity ?? 0;
   if (!named && s.bell.cry >= 1 && low < 0.7) return `“Again?” ${name} calls.`;
-  if (targets.length > 1 && low >= 0.55) return '“Holding!” they call back.';
-  if (low >= 0.55) return `“Holding!” ${name} calls back.`;
-  if (fear > 0.5) return `${name} answers, voice thin: “I hear it.”`;
+  if (targets.length > 1 && low >= 0.55) return '“We are staying at our posts!” they call back.';
+  if (low >= 0.55) return `“I am staying at my post!” ${name} calls back.`;
+  if (fear > 0.5) return `${name} answers, in a weak voice: “I hear it.”`;
   if (low >= 0.35) return `“We heard you,” ${name} calls, not warmly.`;
   return `${name} does not answer.`;
 }
@@ -1108,11 +1108,11 @@ function personLineBare(s: WatchState, n: NightNote): string {
     case 'fled':
       return `${name} leaves ${at} for the hall${leavingWhy(s, n.who)}.`;
     case 'ran':
-      return `${name} breaks and runs from ${at}${leavingWhy(s, n.who)}.`;
+      return `${name} panics and runs from ${at}${leavingWhy(s, n.who)}.`;
     case 'slept':
-      return `${name} goes home to sleep, eyes closing on their feet.`;
+      return `${name} goes home to sleep, barely able to stay awake.`;
     case 'home':
-      return `${name} runs home to ${familyWords(s, n.who) ?? 'the house'}: they heard something near it.`;
+      return `${name} runs home to ${familyWords(s, n.who) ?? 'the house'} after hearing something nearby.`;
     case 'froze':
       return `${name} stands frozen at ${at}.`;
     case 'carrier':
@@ -1120,7 +1120,7 @@ function personLineBare(s: WatchState, n: NightNote): string {
     case 'refused':
       return `${name} won't take the post you gave.`;
     case 'deferred':
-      return `${name} says: not yet.`;
+      return `${name} says they are not ready yet.`;
     case 'modified':
       return `${name} stands somewhere else.`;
     case 'dozed':
@@ -1130,7 +1130,7 @@ function personLineBare(s: WatchState, n: NightNote): string {
     case 'commanded':
       return `${name} answers the bell at ${at}.`;
     case 'shaken':
-      return `${name} starts at every sound on ${at}.`;
+      return `${name} is startled by every sound at ${at}.`;
     case 'together':
       return `${name} keeps close to ${n.other ? nameOf(s, n.other) : 'a friend'} on ${at}.`;
     case 'prayed':
@@ -1142,7 +1142,7 @@ function personLineBare(s: WatchState, n: NightNote): string {
     case 'carried':
       return `${name} is carried off ${at}.`;
     default:
-      return `${name} keeps ${at}.`;
+      return `${name} guards ${at}.`;
   }
 }
 
@@ -1157,16 +1157,18 @@ export function ownReason(s: WatchState, id: WatcherId, chosen: string, posted: 
   if (chosen.startsWith('post:')) {
     const there = postSection(chosen.slice('post:'.length) as PostId);
     return told.fear > 0.3
-      ? `Not ${theSection(posted)}. I’ll take ${theSection(there)}.`
+      ? `I will not watch ${theSection(posted)}. I’ll take ${theSection(there)}.`
       : `I can see more from ${theSection(there)}.`;
   }
   if (chosen === 'go-home' || chosen.startsWith('home:'))
-    return familyWords(s, id) ? 'I’m needed at home tonight.' : 'I’m going home. I’ve nothing left tonight.';
+    return familyWords(s, id)
+      ? 'I’m needed at home tonight.'
+      : 'I’m going home. I have no energy left tonight.';
   if (told.fear > 0.3 && told.fear >= told.fatigue)
-    return `Not ${theSection(posted)}. Not with what’s out there.`;
+    return `I will not watch ${theSection(posted)} with those threats out there.`;
   if (told.fatigue > 0.4 || chosen === 'sleep') return 'I can’t keep my eyes open.';
-  if (told.pain > 0.3) return 'My leg won’t take the steps tonight.';
-  return 'The cold’s in my bones. Find someone else.';
+  if (told.pain > 0.3) return 'My leg hurts too much to climb the steps tonight.';
+  return 'I’m very cold. Find someone else.';
 }
 
 /** A refusal (or a "not yet", or another post) as it is said to the Keeper, with the watcher's reason. */
@@ -1203,7 +1205,7 @@ function neighbourCall(s: WatchState, id: WatcherId, kind: NightNote['kind'], wh
   const o = outwardSigns(p);
   const looked =
     o.fear > 0.4 && o.fear >= o.fatigue
-      ? ', white as milk'
+      ? ', very pale'
       : o.fatigue > 0.5
         ? ', half asleep'
         : o.pain > 0.3
@@ -1216,7 +1218,7 @@ function neighbourCall(s: WatchState, id: WatcherId, kind: NightNote['kind'], wh
         ? `${name}’s gone down to the hall${looked}.`
         : kind === 'slept'
           ? `${name}’s gone home to bed${looked}.`
-          : `${name}’s run home: something near the house.`;
+          : `${name} has run home because something is near the house.`;
   alert(s, {
     section: where,
     kind: 'person',
@@ -1295,10 +1297,15 @@ export function stepMinute(s: WatchState): void {
               ? {
                   section: t.section,
                   kind: 'sighted',
-                  text: `${capital(plural(t.kind, 2))} ${where}.`,
+                  text: `${capital(plural(t.kind, 2))} are approaching ${where}.`,
                   slowed: true,
                 }
-              : { section: t.section, kind: 'motion', text: `Movement in the dark ${where}.`, slowed: true },
+              : {
+                  section: t.section,
+                  kind: 'motion',
+                  text: `Something is moving in the dark ${where}.`,
+                  slowed: true,
+                },
           );
         }
       }
@@ -1316,8 +1323,8 @@ export function stepMinute(s: WatchState): void {
             kind: 'foot',
             text:
               t.section === lit
-                ? `${capital(plural(t.kind, 1))} at the foot of the ${name}.`
-                : `Something at the foot of the ${name}.`,
+                ? `${capital(plural(t.kind, 1))} is at the foot of the ${name}.`
+                : `Something is at the foot of the ${name}.`,
             slowed: true,
           });
         }
@@ -1374,12 +1381,12 @@ export function stepMinute(s: WatchState): void {
             text: seen
               ? took > 0
                 ? t.kind === 'thief'
-                  ? `A thief got over the ${name} and away with grain.`
-                  : `A wolf got over the ${name} and tore into the store.`
-                : `${capital(plural(t.kind, 1))} got over the ${name}, but ${why}: away with nothing.`
+                  ? `A thief got over the ${name} and escaped with grain.`
+                  : `A wolf got over the ${name} and broke into the grain store.`
+                : `${capital(plural(t.kind, 1))} got over the ${name}, but ${why}. It got away with nothing.`
               : took > 0
                 ? `Grain is gone: something got over the ${name}.`
-                : `Something got over the ${name} in the dark and away with nothing.`,
+                : `Something got over the ${name} in the dark and got away with nothing.`,
             slowed: true,
           });
       }

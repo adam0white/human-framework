@@ -549,7 +549,7 @@ function deathLine(s: WatchState, p: Person): string {
     return `${v.name} died ${when}, a child of ${age}. The village buried ${them(s, p.id)} by the mill.`;
   if (age >= 60)
     return `${v.name} died ${when}, at ${age}. ${v.home === 'gate' ? 'The Gate' : 'The house'} is quiet.`;
-  return `${v.name} died ${when}, at ${age}, of a sickness that would not lift.`;
+  return `${v.name} died ${when}, at ${age}, of a sickness that would not go away.`;
 }
 
 /** Reads a liveCommunity result's deaths into the chronicle. */
@@ -573,7 +573,7 @@ function comingOfAge(s: WatchState, at: number): void {
       const v = villager(s, p.id);
       v.usual = freePostNear(s, v.home);
       if (!s.keeper.social.impressions?.some((x) => x.targetId === p.id)) acquaintWith(s.keeper, p, 0.35, at);
-      chronicle(s, 'age', `${v.name} turned fifteen: old enough for the wall this winter.`, p.id);
+      chronicle(s, 'age', `${v.name} turned fifteen and is old enough to watch the wall this winter.`, p.id);
     }
     if (before < RETIRE_AGE && now >= RETIRE_AGE) {
       chronicle(s, 'age', `${nameOf(s, p.id)} is too old for the stair now and keeps to the village.`, p.id);
@@ -646,7 +646,7 @@ function courting(s: WatchState, at: number): void {
       chronicle(
         s,
         'courting',
-        `${nameOf(s, p.id)} and ${nameOf(s, q.id)} are seen walking out together.`,
+        `${nameOf(s, p.id)} and ${nameOf(s, q.id)} are seen taking walks together.`,
         p.id,
       );
     if (courtshipStage(p, q.id, at) !== 'ready' || courtshipStage(q, p.id, at) !== 'ready') continue;
@@ -670,7 +670,7 @@ function courting(s: WatchState, at: number): void {
         kind: 'proposal',
         who: asker.id,
         other: answerer.id,
-        text: `${nameOf(s, asker.id)} has asked for ${nameOf(s, answerer.id)}’s hand.`,
+        text: `${nameOf(s, asker.id)} has asked to marry ${nameOf(s, answerer.id)}.`,
         read: proposalRead(s, answerer, asker),
         options: [
           { id: 'bless', label: 'Give your blessing' },
@@ -691,7 +691,7 @@ function proposalRead(s: WatchState, answerer: Person, asker: Person): string {
   const warm = courtshipStage(answerer, asker.id) === 'ready';
   const pron = answerer.life.sex === 'female' ? 'she' : 'he';
   return warm
-    ? `They have been walking out a long while; ${pron} looks glad of it.`
+    ? `They have been spending time together for a long while. ${pron === 'she' ? 'She' : 'He'} looks happy about it.`
     : `You are not sure ${pron} is ready.`;
 }
 
@@ -733,12 +733,16 @@ export function settleProposal(
       asker.id,
     );
     if (av.newcomer !== bv.newcomer)
-      fillLeaf(s, 'married-in', `${a} and ${b} married: an outsider married in.`);
+      fillLeaf(
+        s,
+        'married-in',
+        `${a} and ${b} married. Someone from outside the village has joined a family here.`,
+      );
   } else {
     chronicle(
       s,
       'courting',
-      `${b} would not have ${a}${word === -1 ? ', and you had spoken against it' : ''}.`,
+      `${b} refused to marry ${a}${word === -1 ? ', and you had spoken against it' : ''}.`,
       answerer.id,
     );
   }
@@ -819,10 +823,10 @@ function birthCard(s: WatchState, mother: Person, child: Person, at: number, win
       : `${parents} have a ${child.life.sex === 'female' ? 'daughter' : 'son'}: ${child.name}.`,
     read:
       s.grain < living(s).length
-        ? 'The granary is thin this year; a sack would be felt.'
-        : 'A sack would not be missed this year.',
+        ? 'The grain store is low this year. Giving away a sack would matter.'
+        : 'The village can spare a sack this year.',
     options: [
-      { id: 'visit', label: 'Call on them' },
+      { id: 'visit', label: 'Visit the family' },
       { id: 'grain', label: 'Send a sack from the granary' },
     ],
     until: at + CARD_DAYS * DAY,
@@ -854,11 +858,11 @@ function lessonCard(s: WatchState, at: number): void {
     kind: 'practise',
     who: young.id,
     other: teacher.id,
-    text: `${nameOf(s, young.id)} asks if ${nameOf(s, teacher.id)} could teach ${them(s, young.id)} the sling this summer, in the evenings after the fields.`,
-    read: `${nameOf(s, teacher.id)} has the surest arm on the wall. The fields would miss them both an hour a day.`,
+    text: `${nameOf(s, young.id)} asks if ${nameOf(s, teacher.id)} could teach ${them(s, young.id)} to use a sling this summer, in the evenings after work in the fields.`,
+    read: `${nameOf(s, teacher.id)} has the best sling aim on the wall. They would both spend an hour less in the fields each day.`,
     options: [
       { id: 'bless', label: 'Let them practise together' },
-      { id: 'refuse', label: 'The fields come first' },
+      { id: 'refuse', label: 'Keep them working in the fields' },
     ],
     until: at + CARD_DAYS * DAY,
     choice: null,
@@ -1100,7 +1104,11 @@ export function hungrySpring(s: WatchState, perHead: number): number {
   let left = 0;
   for (const h of ranked) {
     if (s.grain >= Math.ceil(living(s).length * perHead)) break;
-    left += leaveHouse(s, h, 'went down the valley in the hungry spring, to kin who could feed them').length;
+    left += leaveHouse(
+      s,
+      h,
+      'went down the valley in the hungry spring to relatives who could feed them',
+    ).length;
   }
   return left;
 }
@@ -1154,7 +1162,7 @@ export function maybeLimp(s: WatchState, p: Person): void {
   chronicle(
     s,
     'loss',
-    `${v.name}’s leg did not heal straight. ${v.sex === 'female' ? 'She' : 'He'} will limp for life, and the wall stair is beyond ${them(s, p.id)}.`,
+    `${v.name}’s leg did not heal straight. ${v.sex === 'female' ? 'She' : 'He'} will limp for life and can no longer climb the wall stairs.`,
     p.id,
   );
 }

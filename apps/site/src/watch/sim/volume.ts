@@ -18,9 +18,13 @@ export const roman = (n: number): string => ROMAN[n - 1] ?? String(n);
 
 export function freshLeaves(): Leaf[] {
   return [
-    { id: 'born-stands', condition: 'when a child born here first stands the wall', filled: null },
+    { id: 'born-stands', condition: 'when a child born here first guards the wall', filled: null },
     { id: 'married-in', condition: 'when an outsider is married in', filled: null },
-    { id: 'grew-old', condition: 'when a watcher grows old on the wall, twenty winters on it', filled: null },
+    {
+      id: 'grew-old',
+      condition: 'when a watcher grows old on the wall, after guarding it for twenty winters',
+      filled: null,
+    },
     { id: 'left', condition: 'when a household gives up and leaves', filled: null },
     { id: 'grandchild', condition: 'when someone born here has a child', filled: null },
   ];
@@ -67,19 +71,19 @@ export function volumeResolved(s: WatchState): boolean {
   return false;
 }
 
-/** Marks the 'child' question met when a villager who was a child at the volume's opening first stands the wall. */
+/** Marks the 'child' question met when a villager who was a child at the volume's opening first guards the wall. */
 export function firstStand(s: WatchState, id: string): void {
   const v = s.volume;
   const p = personOf(s, id);
   if (v.kind !== 'child' || v.end || !p) return;
   if (ageOf(p, v.openedMinute) >= 15) return;
-  v.end = `${nameOf(s, id)}, a child when this volume opened, stood the wall.`;
+  v.end = `${nameOf(s, id)}, a child when this volume opened, guarded the wall.`;
 }
 
 const FATES: Record<string, readonly [readonly string[], readonly string[]]> = {
   child: [
     [
-      '“When I’m big I’ll stand the Gate.”',
+      '“When I grow up, I will guard the Gate.”',
       '“I counted the stars from the wall stair.”',
       '“I want a sling of my own.”',
     ],
@@ -90,19 +94,22 @@ const FATES: Record<string, readonly [readonly string[], readonly string[]]> = {
     ],
   ],
   keeper: [
-    ['“The Gate is mine now. I hear the old ones on the stair.”', '“The Gate holds. I see to it.”'],
-    ['“I keep the Gate. Someone has to.”', '“The Gate is heavy some nights.”'],
+    [
+      '“I guard the Gate now. On the stairs, I think of the people who guarded it before me.”',
+      '“Nobody crosses the Gate. I make sure of it.”',
+    ],
+    ['“I guard the Gate. Someone has to.”', '“Guarding the Gate is hard some nights.”'],
   ],
   old: [
     [
       '“I’ve seen enough winters. They were good ones, mostly.”',
       '“I taught the young ones to throw. Now they teach me patience.”',
-      '“The wall knows my hands.”',
+      '“I have spent so many nights on the wall that I know every stone.”',
     ],
     [
-      '“My knees remember every night on that wall.”',
-      '“Too many faces gone. I keep their names.”',
-      '“I am tired, and the winters are not.”',
+      '“My knees ache from all those nights on the wall.”',
+      '“Too many people are gone. I remember their names.”',
+      '“I am tired, but the winters keep coming.”',
     ],
   ],
   parent: [
@@ -112,8 +119,8 @@ const FATES: Record<string, readonly [readonly string[], readonly string[]]> = {
       '“My little ones will be braver than me.”',
     ],
     [
-      '“I worry for the children, every night.”',
-      '“I don’t want them on that wall. Not yet.”',
+      '“I worry about the children every night.”',
+      '“I don’t want them on that wall yet.”',
       '“I count the children twice before I go up.”',
     ],
   ],
@@ -124,15 +131,15 @@ const FATES: Record<string, readonly [readonly string[], readonly string[]]> = {
       '“Home is warm. The wall is not.”',
     ],
     [
-      '“We get by.”',
+      '“We manage to live with what we have.”',
       '“We argue about the wall, then we go up together.”',
-      '“A hard year. We are still here.”',
+      '“It was a hard year. We are still here.”',
     ],
   ],
   single: [
     [
-      '“I’ll stay. Where else would I go?”',
-      '“The wall is where I’m some use.”',
+      '“I will stay. Where else would I go?”',
+      '“I can help by guarding the wall.”',
       '“Someone has to know every stone.”',
     ],
     ['“One more bad winter and I’ll go.”', '“I don’t know why I stay.”', '“The nights are long, alone.”'],

@@ -34,14 +34,14 @@ export function openFair(s: WatchState): void {
     fixed.push({
       id: 'rebuild',
       label: `Rebuild ${s.marks.lost.section === 'gate' ? 'the wall by the Gate' : `the ${s.marks.lost.section} wall`}`,
-      text: 'Masons from the fair could raise the fallen stretch again before the snow, so it can be stood this winter. It costs a great deal of grain.',
+      text: 'Builders from the fair could rebuild the fallen wall before the snow, so watchers can use it this winter. It costs a great deal of grain.',
       cost: REBUILD_COST,
       target: s.marks.lost.section,
     });
   pool.push({
     id: 'outsiders',
-    label: 'Admit the outsider family',
-    text: 'A couple and their child, burned out down the valley. Two more on the wall, three more mouths. It costs a good share of grain to see them through.',
+    label: 'Let the new family stay',
+    text: 'A couple and their child lost their home to fire down the valley. Two can watch the wall. All three need food. Supporting them costs a good share of grain.',
     cost: 3,
   });
   const breaches = s.yearGrain.breaches;
@@ -53,7 +53,7 @@ export function openFair(s: WatchState): void {
     pool.push({
       id: 'wall',
       label: `Raise ${wallName(wallAt)}`,
-      text: `Raise and lengthen ${wallName(wallAt)}: a third post there. Repeated breaches can still bring the wall down at a thaw. More wall than people to stand it. It costs a good share of grain in labour.`,
+      text: `Raise and lengthen ${wallName(wallAt)} to add a third post. Repeated attacks can still bring it down when the snow melts. There will be more wall than people to watch it. Paying the workers costs a good share of grain.`,
       cost: 4,
       target: wallAt,
     });
@@ -61,13 +61,13 @@ export function openFair(s: WatchState): void {
     pool.push({
       id: 'bell',
       label: 'Buy the bigger bell',
-      text: 'A heavier bell from the founder at the fair, hung on a wheel: it carries further along the wall, takes half the pull, and its rope frays half as fast. It costs a good share of grain.',
+      text: 'A bell maker at the fair offers a heavier bell hung on a wheel. People can hear it further along the wall. It takes half the effort to pull, and its rope frays half as fast. It costs a good share of grain.',
       cost: 4,
     });
   pool.push({
     id: 'seed',
     label: 'Buy seed grain',
-    text: 'Better seed for next year: a fuller harvest next autumn. It costs a little grain now.',
+    text: 'Better seed gives a fuller harvest next autumn. It costs a little grain now.',
     cost: 2,
   });
   const keeper = s.gateKeeper ? personOf(s, s.gateKeeper) : undefined;
@@ -95,7 +95,7 @@ export function openFair(s: WatchState): void {
       heirOffers.push({
         id: 'heir',
         label: `Name ${first.name} heir to the Gate`,
-        text: `${first.name} will take the Gate when ${keeper.name} leaves the stair.${said(first.id)} ${first.name} will stand taller for it; ${keeper.name} may not like being told.${second ? ` You can name only one.` : ''}`,
+        text: `${first.name} will take the Gate when ${keeper.name} leaves the stair.${said(first.id)} ${first.name} will feel proud to be chosen. ${keeper.name} may not like your decision.${second ? ` You can name only one.` : ''}`,
         cost: 0,
         target: first.id,
       });
@@ -103,7 +103,7 @@ export function openFair(s: WatchState): void {
       heirOffers.push({
         id: 'heir2',
         label: `Name ${second.name} heir to the Gate`,
-        text: `Or ${second.name}.${said(second.id)} The one you pass over will remember it.`,
+        text: `You could choose ${second.name} instead.${said(second.id)} The person you do not choose will remember it.`,
         cost: 0,
         target: second.id,
       });
@@ -148,7 +148,7 @@ export function takeOffer(s: WatchState, id: FairOffer['id']): boolean {
       chronicle(
         s,
         'fair',
-        `${sec === 'gate' ? 'The wall by the Gate' : `The ${sec} wall`} was raised and lengthened: a third post there now.`,
+        `${sec === 'gate' ? 'The wall by the Gate' : `The ${sec} wall`} was raised and lengthened. It now has a third post.`,
       );
       break;
     }
@@ -237,7 +237,10 @@ export const FAIR_WINDOW = DAY;
 export function familyComes(s: WatchState, at: number, how: 'fair' | 'refugees'): void {
   const homes = homesBy(s);
   const home = SECTION_IDS.reduce((a, b) => (homes[b] < homes[a] ? b : a), 'west' as SectionId);
-  const note = how === 'fair' ? 'Came with the fair, burned out' : 'Came up the valley, fleeing a raid';
+  const note =
+    how === 'fair'
+      ? 'Came with the fair after losing their home to fire'
+      : 'Came up the valley to escape a raid';
   const man = newcomer(s, 'male', 28 + Math.floor(nextRandom(s) * 8), at, { home, note });
   const wife = newcomer(s, 'female', 25 + Math.floor(nextRandom(s) * 8), at, { home, note });
   marry(man, wife, at, WATCH_CUSTOM);

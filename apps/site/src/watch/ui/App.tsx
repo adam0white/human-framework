@@ -37,7 +37,6 @@ import {
 import { Impressions, Pips, Rope, Sacks, WinterProgress } from './parts.tsx';
 import { PageActions, PageCommitContext } from './SheetActions.tsx';
 import { useWatch, type WatchActions } from './useWatch.ts';
-import { watchWords } from './wording.ts';
 import {
   awayWords,
   dawnOutcome,
@@ -483,8 +482,8 @@ function PhaseInfo({ frame, onToggle }: { frame: Frame; onToggle: (open: boolean
           puts more pressure on them. Insist gives a firm order and earns no goodwill.
         </p>
         <p>
-          Choosing Chooses still assigns the person to watch, but lets them choose a post. Send them down at
-          night to give them a night off. The lantern button sets where you start.
+          Choosing “Choose a post” still assigns the person to watch, but lets them choose where. Send them
+          down at night to give them a night off. The lantern button sets where you start.
         </p>
         <p>{frame.winter?.why}</p>
         <p>
@@ -565,10 +564,10 @@ function Ticker({ frame }: { frame: Frame }) {
     <ol className="w-ticker" aria-label="What the Keeper hears">
       {recent.map((a) => (
         <li
-          key={`${a.minute}-${watchWords(a.text)}`}
+          key={`${a.minute}-${a.text}`}
           className={`w-alert w-alert-${a.kind}${a.slowed ? ' is-moment' : ''}`}
         >
-          {watchWords(a.text)}
+          {a.text}
         </li>
       ))}
       {recent.length === 0 && now < 0.1 ? (
@@ -583,11 +582,11 @@ function whereWords(w: FrameWatcher, phase: Frame['phase']): string {
   const posted = w.posted
     ? `${sectionName(postSection(w.posted))}, ${PRESS_WORDS[w.press].done}`
     : phase === 'dusk'
-      ? 'no assigned post · may choose an open post'
-      : 'not posted';
+      ? 'No post assigned. They may choose an open post.'
+      : 'No post assigned';
   if (!w.posted && phase === 'dusk' && !w.post) return posted;
   const stands = w.post ? `on the ${sectionName(postSection(w.post))}` : awayWords(w.place, phase);
-  if (w.post && w.post === w.posted) return `${posted} · there now`;
+  if (w.post && w.post === w.posted) return `${posted} · They are there now.`;
   return `${posted} · ${stands}`;
 }
 
@@ -618,8 +617,8 @@ export function GoalPage({
   const begin = () => (onNew ? onNew() : actions.input({ k: 'start' }));
   return (
     <div className="w-page w-goal">
-      <h2>Keep everyone alive and protect the grain until the spring thaw.</h2>
-      <Sacks have={frame.grain} lost={0} label="The granary is full" />
+      <h2>Keep everyone alive and protect the grain until the snow melts in spring.</h2>
+      <Sacks have={frame.grain} lost={0} label="The granary, where the village stores grain, is full" />
       <button type="button" className="w-menu-row" onClick={() => setSheet('hopes')}>
         The village’s hopes: “
         {frame.winterSetting?.next === 'milder'
@@ -773,14 +772,14 @@ export function DuskPanel({
       <div className="lk-sheet-body">
         {frame.grainWarning ? <p className="w-grain-warning">{frame.grainWarning}</p> : null}
         {!sel && frame.winter && frame.winter.night <= 2 ? (
-          <p className="w-winter-q">{watchWords(frame.winter.question?.text)}</p>
+          <p className="w-winter-q">{frame.winter.question?.text}</p>
         ) : null}
         {!sel && frame.day?.lines.length ? (
           <details className="w-day" open={frame.day.lines.some((l) => l.came)}>
             <summary>Today ▸</summary>
             <ul>
               {frame.day.lines.map((l) => (
-                <li key={l.text}>{watchWords(l.text)}</li>
+                <li key={l.text}>{l.text}</li>
               ))}
             </ul>
           </details>
@@ -843,7 +842,7 @@ export function DuskPanel({
             </div>
             <div className="w-post-bottom">
               <button type="button" className="w-secondary" onClick={() => post(sel.id, null)}>
-                {settingWords(sel.name)} chooses (still on watch)
+                {settingWords(sel.name)} Choose a post (still on watch)
               </button>
               <button type="button" className="w-primary" onClick={() => setSelected(null)}>
                 Done
@@ -881,7 +880,7 @@ function MomentCard({
 }) {
   return (
     <section className="w-moment" aria-label="A moment on the wall">
-      <p className="w-moment-text">{watchWords(m.text)}</p>
+      <p className="w-moment-text">{m.text}</p>
       <progress className="w-decision-bar" max={120} value={seconds ?? 120} aria-label="Time to decide" />
       <div className="w-moment-options">
         {m.options.map((o) => (
@@ -897,7 +896,7 @@ function MomentCard({
         ))}
       </div>
       <button type="button" className="w-moment-let" onClick={onLet}>
-        …or say nothing: they decide alone
+        …or say nothing. They decide for themselves.
       </button>
     </section>
   );
@@ -1047,7 +1046,7 @@ export function NightPanel({
             <Icon name="bell" size={20} />
             {frame.bellSwinging ? 'Bell swinging' : 'Ring the bell'}
           </span>
-          <small>{frame.bellRead ?? 'Calls watchers who hear it'}</small>
+          <small>{frame.bellRead ?? 'It calls watchers who hear it.'}</small>
           <Rope wear={frame.rope.wear} snapped={frame.rope.snapped} />
         </button>
       </footer>
@@ -1065,11 +1064,11 @@ function NightMessages({ frame }: { frame: Frame }) {
             .slice()
             .reverse()
             .map((a) => (
-              <li key={`${a.minute}-${watchWords(a.text)}`}>{watchWords(a.text)}</li>
+              <li key={`${a.minute}-${a.text}`}>{a.text}</li>
             ))}
         </ol>
       ) : (
-        <p>Nothing heard recently.</p>
+        <p>You have heard nothing recently.</p>
       )}
     </details>
   );
@@ -1188,15 +1187,10 @@ function NightAccount({
           <section className="w-account" aria-label={settingWords(`${settingWords(who.name)} on watch`)}>
             {who.handover ? <p role="status">{who.handover}</p> : null}
             <NightMessages frame={frame} />
-            {who.account?.spoken ? (
-              <blockquote>{watchWords(who.account.text)}</blockquote>
-            ) : (
-              <p>{watchWords(who.account?.text)}</p>
-            )}
+            {who.account?.spoken ? <blockquote>{who.account.text}</blockquote> : <p>{who.account?.text}</p>}
             {recentDoze ? (
               <p className="w-note w-account-doze">
-                Last heard: “{watchWords(recentDoze.text)}”
-                {who.account?.spoken ? ' They can answer now.' : ''}
+                Last heard: “{recentDoze.text}”{who.account?.spoken ? ' They can answer now.' : ''}
               </p>
             ) : null}
             {who.restRead ? <p className="w-note">Keeper’s read: {who.restRead}.</p> : null}
@@ -1300,7 +1294,7 @@ function Talks({ frame, actions }: { frame: Frame; actions: WatchActions }) {
         <ul className="w-voices">
           {t.said.slice(-1).map((x) => (
             <li key={`${x.who}-${x.topic}`}>
-              <blockquote>{watchWords(x.text)}</blockquote>
+              <blockquote>{x.text}</blockquote>
               <span className="w-voice-who">{settingWords(x.name)}</span>
             </li>
           ))}
@@ -1312,7 +1306,7 @@ function Talks({ frame, actions }: { frame: Frame; actions: WatchActions }) {
           <ul className="w-voices">
             {t.said.slice(0, -1).map((x) => (
               <li key={`${x.who}-${x.topic}`}>
-                <blockquote>{watchWords(x.text)}</blockquote>
+                <blockquote>{x.text}</blockquote>
                 <span>{settingWords(x.name)}</span>
               </li>
             ))}
@@ -1372,8 +1366,8 @@ export function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActi
     <div className="w-page w-dawn">
       <h2 className="w-dawn-outcome">{dawnOutcome(d)}</h2>
       {(frame.talks?.said.length ? [] : d.voices.slice(-1)).map((v) => (
-        <blockquote className="w-dawn-heard" key={`${v.who}-${watchWords(v.text)}`}>
-          {watchWords(v.text)} <cite>{nameIn(frame, v.who)}</cite>
+        <blockquote className="w-dawn-heard" key={`${v.who}-${v.text}`}>
+          {v.text} <cite>{nameIn(frame, v.who)}</cite>
         </blockquote>
       ))}
       <button type="button" className="w-secondary" onClick={() => setAccount(true)}>
@@ -1421,14 +1415,14 @@ export function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActi
             <div className="w-sheet-body">
               <ul className="w-dawnlines">
                 {d.lines.map((l) => (
-                  <li key={l.section}>{watchWords(l.text)}</li>
+                  <li key={l.section}>{l.text}</li>
                 ))}
               </ul>
               {d.voices.length > 0 ? (
                 <ul className="w-voices">
                   {d.voices.map((v) => (
-                    <li key={`${v.who}-${watchWords(v.text)}`}>
-                      <blockquote>{watchWords(v.text)}</blockquote>
+                    <li key={`${v.who}-${v.text}`}>
+                      <blockquote>{v.text}</blockquote>
                       <span className="w-voice-who">{nameIn(frame, v.who)}</span>
                     </li>
                   ))}
@@ -1441,11 +1435,15 @@ export function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActi
                 label={`${d.grainAfter === d.grainBefore ? 'No sacks lost' : 'Sacks lost in the night, drawn faded'}; the mark is what the village eats until the harvest`}
               />
               {d.ropeSnapped ? (
-                <p className="w-note">Someone will have to splice the bell rope today; it will not be new.</p>
+                <p className="w-note">
+                  Someone will have to join the broken ends of the bell rope today. The rope will still be
+                  worn.
+                </p>
               ) : null}
               {last ? (
                 <p className="w-note">
-                  That was the last night watched this winter; the rest goes by routine.
+                  That was the last night you control this winter. The usual watches continue for the
+                  remaining nights.
                 </p>
               ) : null}
             </div>

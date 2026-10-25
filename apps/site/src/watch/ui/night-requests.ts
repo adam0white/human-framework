@@ -18,16 +18,16 @@ export function retainedNightActs(frame: Frame, who: FrameWatcher, seen: NightAc
     if (!reason && act.input.k !== 'down') {
       const helper = frame.watchers.find((w) => w.id === (act.input.k === 'down' ? '' : act.input.by));
       reason = !helper
-        ? 'No longer on this watch.'
+        ? 'They are no longer on this watch.'
         : helper.post === null && helper.place !== 'hall'
-          ? 'Away from the wall and hall.'
+          ? 'They are away from the wall and the hall.'
           : helper.account && !helper.account.spoken
             ? helper.account.text
             : null;
     }
     reason ??=
       act.input.k === 'help'
-        ? 'No current sign of hurt or a wolf at this post.'
+        ? 'There is no current sign of hurt or a wolf at this post.'
         : 'The latest look no longer shows tiredness.';
     return { ...act, available: false, read: reason };
   });
@@ -37,7 +37,10 @@ export function retainedNightActs(frame: Frame, who: FrameWatcher, seen: NightAc
 export function groupedUnavailable(acts: NightAct[], frame: Frame): string[] {
   const groups = new Map<string, string[]>();
   for (const act of acts) {
-    const reason = act.read.replace(/^Too far to call .*?; /, 'Out of your voice; ');
+    const reason = act.read.replace(
+      /^You are too far away to call .*?; /,
+      'They cannot hear you from here; ',
+    );
     const names = groups.get(reason) ?? [];
     const id = act.input.k === 'down' ? act.input.who : act.input.by;
     names.push(frame.watchers.find((w) => w.id === id)?.name ?? id);

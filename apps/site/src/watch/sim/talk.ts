@@ -67,7 +67,7 @@ function gateAsk(s: WatchState, who: string): boolean {
 export function topicsFor(s: WatchState, who: string): Topic[] {
   const p = personOf(s, who);
   if (!p) return ['night', 'body'];
-  const reads = keeperImpressions(s, who).map((r) => r.text);
+  const reads = keeperImpressions(s, who).map((r) => r.cue ?? r.text);
   const has = (t: string) => reads.some((r) => r.includes(t));
   const v = s.cast[who];
   const score: Record<Topic, number> = { night: 1, body: 0.8, home: 0, gate: -1 };
@@ -110,9 +110,9 @@ export function talk(s: WatchState, who: string, topic: Topic): boolean {
           ? `“I went home to sleep. I’m sorry. I couldn’t stand up straight at ${theSection(left.section)}.”`
           : said.fear > 0.3
             ? `“I left ${theSection(left.section)}. I couldn’t stand it up there.”`
-            : `“I left ${theSection(left.section)}. I was frozen through. It won’t happen again.”`;
+            : `“I left ${theSection(left.section)}. I was very cold. It won’t happen again.”`;
     else if (top && top[1] > 0.45)
-      text = `“${capital(theSection(top[0] as SectionId))}. I keep seeing it when I shut my eyes.”`;
+      text = `“I keep seeing ${theSection(top[0] as SectionId)} when I shut my eyes.”`;
     else if (top) text = `“It was all right. I don’t love ${theSection(top[0] as SectionId)}.”`;
     else if (worst?.kind === 'carrier') text = '“I got someone down off the wall. That’s what I remember.”';
     else if (said.fear > 0.35) text = '“I don’t want to talk about it.”';
@@ -121,23 +121,24 @@ export function talk(s: WatchState, who: string, topic: Topic): boolean {
         p.traits.emotionality > 0.6
           ? '“I jumped at every owl. Nothing came, though.”'
           : p.traits.extraversion > 0.6
-            ? '“Long and cold. I talked to the stones.”'
-            : '“Cold. Long. Nothing I couldn’t stand.”';
+            ? '“The night was long and cold. I talked to the stones.”'
+            : '“The night was long and cold, but I could stand it.”';
   } else if (topic === 'body') {
     hear(s.keeper, who, 'pain', said.pain, at, TALK_WEIGHT);
     hear(s.keeper, who, 'fatigue', said.fatigue, at, TALK_WEIGHT);
     if (said.pain > 0.45) text = '“It’s bad. I won’t lie to you.”';
-    else if (said.pain > 0.15) text = '“It aches. It’ll hold.”';
-    else if (said.fatigue > 0.5) text = '“Tired to the bone, that’s all.”';
+    else if (said.pain > 0.15) text = '“It aches, but I can still use it.”';
+    else if (said.fatigue > 0.5) text = '“I am very tired, that is all.”';
     // Pain they won't own to still shows in how they stand: the one "fine" worth noticing.
-    else if (outwardSigns(p).pain > 0.15) text = '“Fine. I’m fine.” (They shift their weight off one leg.)';
+    else if (outwardSigns(p).pain > 0.15)
+      text = '“I am fine. I really am.” (They shift their weight off one leg.)';
     else
       text =
         p.traits.conscientiousness > 0.65
-          ? '“Fit to stand tonight.”'
+          ? '“I am fit enough to stand watch tonight.”'
           : p.traits.emotionality > 0.6
-            ? '“Well enough. Sleep would help.”'
-            : '“Nothing wrong with me.”';
+            ? '“I feel well enough, but I could use more sleep.”'
+            : '“There is nothing wrong with me.”';
   } else if (topic === 'home') {
     text = homeWords(s, who);
     const spouse = spouseOf(s, who);
@@ -153,10 +154,10 @@ export function talk(s: WatchState, who: string, topic: Topic): boolean {
     text = willing
       ? c > 0.7
         ? '“If you asked me, I’d not let you down.”'
-        : '“Me? I’d try. Someone has to.”'
+        : '“I would try if you chose me. Someone has to.”'
       : c < 0.3
-        ? '“The Gate? I can barely keep my own boots dry.”'
-        : '“Not me. Ask someone steadier.”';
+        ? '“Manage the Gate? I can barely keep my own boots dry.”'
+        : '“Do not choose me. Ask someone steadier.”';
   }
   if (
     topic === 'night' &&
@@ -179,7 +180,7 @@ export function talk(s: WatchState, who: string, topic: Topic): boolean {
 /** Their household, in their words. */
 function homeWords(s: WatchState, who: string): string {
   const p = personOf(s, who);
-  if (!p) return '“All well.”';
+  if (!p) return '“Everything is well at home.”';
   const spouse = spouseOf(s, who);
   const kids = childrenOf(s, p).filter((c) => isHere(s, c) && c.body.alive);
   const baby = kids.find((c) => ageOf(c, s.minute) < 1);
@@ -187,16 +188,13 @@ function homeWords(s: WatchState, who: string): string {
   const name = (id: string) => s.cast[id]?.name ?? id;
   if (baby) return `“${name(baby.id)} won’t sleep. Neither will I, these nights.”`;
   if (spouse && spouse.affection < 0)
-    return `“${name(spouse.q.id)} and I… it’s not good just now. Ask me another day.”`;
-  if (small >= 2) return '“Loud. Hungry. The little ones ask where I go at night.”';
+    return `“${name(spouse.q.id)} and I are not getting along just now. Ask me another day.”`;
+  if (small >= 2) return '“The children are loud and hungry. They ask where I go at night.”';
   if (small === 1)
     return `“${name(kids.find((c) => ageOf(c, s.minute) < 6)?.id ?? '')} asks every evening if I’m going up the wall.”`;
-  if (spouse && spouse.affection > 0.5) return `“${name(spouse.q.id)} keeps the fire in till I’m home.”`;
-  if (spouse) return `“Quiet. ${name(spouse.q.id)} worries, I think.”`;
+  if (spouse && spouse.affection > 0.5)
+    return `“${name(spouse.q.id)} keeps the fire burning until I’m home.”`;
+  if (spouse) return `“It is quiet at home. ${name(spouse.q.id)} worries, I think.”`;
   if (kids.length > 0) return '“The children are grown. The house is too big now.”';
   return '“Nobody waits up for me. It’s easier that way.”';
-}
-
-function capital(t: string): string {
-  return t.charAt(0).toUpperCase() + t.slice(1);
 }

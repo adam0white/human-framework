@@ -367,8 +367,8 @@ function nightAccount(
           ? 'The scout warned of this stretch.'
           : 'The scout warned us about this stretch. I can’t make anything out yet.'
         : concise
-          ? 'Nothing close.'
-          : 'Nothing close that I can make out.';
+          ? 'Nothing is close.'
+          : 'Nothing is close that I can make out.';
   return { text: `${doing} ${seeing}`, spoken: true };
 }
 
@@ -443,8 +443,8 @@ function bellRead(s: WatchState): string | null {
   const lost = s.marks.lost && s.marks.lost.year === s.year ? s.marks.lost.section : null;
   const faint = SECTION_IDS.filter((id) => id !== lost && bellCarry(s, id) < 0.7);
   return faint.length === 0
-    ? 'heard the length of the wall'
-    : `loud at the Gate, faint at ${faint.map((id) => theSection(id)).join(' and ')}`;
+    ? 'It can be heard along the whole wall'
+    : `It is loud at the Gate and faint at ${faint.map((id) => theSection(id)).join(' and ')}`;
 }
 
 function hash(a: number, b: number): number {
@@ -547,7 +547,7 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean, rate = 0
       actsUnavailable:
         s.phase === 'night' && acts.length === 0
           ? !inVoice(s, w.id)
-            ? `Out of your voice: ${lit === null ? 'the lantern is moving' : `the lantern is at ${theSection(lit)}`}.`
+            ? `They cannot hear you from here: ${lit === null ? 'the lantern is moving' : `the lantern is at ${theSection(lit)}`}.`
             : !post
               ? s.rope.snapped
                 ? 'They are off the wall. Night requests need someone at a post, and the bell rope is snapped.'
@@ -562,8 +562,8 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean, rate = 0
         const fatigue = keeperFatigue(s, w.id);
         return s.phase === 'night' && fatigue.confidence >= 0.12 && fatigue.value > 0.35
           ? fatigue.dusk
-            ? 'seemed tiring at dusk'
-            : 'seemed tiring at the last look'
+            ? 'They looked tired at dusk'
+            : 'They looked tired at the last look'
           : null;
       })(),
       handover: s.phase === 'night' ? nightHandover(s, w.id) : null,

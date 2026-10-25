@@ -3,18 +3,22 @@ import { dawnOutcome, grainCondition, thawProgress, winterWatchMarks } from './w
 
 describe('the winter goal in approximate words', () => {
   it('relates grain to spring food without promising safety', () => {
-    expect(grainCondition({ grain: 0, need: 5 })).toContain('empty');
-    expect(grainCondition({ grain: 4, need: 5 })).toContain('homes may leave');
-    expect(grainCondition({ grain: 5, need: 5 })).toContain('nothing spare');
+    expect(grainCondition({ grain: 0, need: 5 })).toContain('no grain left');
+    expect(grainCondition({ grain: 4, need: 5 })).toContain('households may leave');
+    expect(grainCondition({ grain: 5, need: 5 })).toContain('none to spare');
     expect(grainCondition({ grain: 12, need: 5 })).toContain('plenty');
   });
   it('separates the last played watch from the rest of winter', () => {
     const winter = { night: 1, nights: 7, why: '', question: null };
     expect(thawProgress({ winter, phase: 'dusk' })).toContain('still far off');
-    expect(thawProgress({ winter: { ...winter, night: 5 }, phase: 'night' })).toContain('A few watches');
-    expect(thawProgress({ winter: { ...winter, night: 7 }, phase: 'night' })).toContain('Last watch');
-    expect(thawProgress({ winter: { ...winter, night: 7 }, phase: 'dawn' })).toContain('Watch finished');
-    expect(thawProgress({ winter: { ...winter, night: 7 }, phase: 'dawn' })).toContain('routine');
+    expect(thawProgress({ winter: { ...winter, night: 5 }, phase: 'night' })).toContain('a few watches');
+    expect(thawProgress({ winter: { ...winter, night: 7 }, phase: 'night' })).toContain(
+      'last watch you control',
+    );
+    expect(thawProgress({ winter: { ...winter, night: 7 }, phase: 'dawn' })).toContain(
+      'watches you control are finished',
+    );
+    expect(thawProgress({ winter: { ...winter, night: 7 }, phase: 'dawn' })).toContain('usual watches');
   });
 });
 
@@ -23,8 +27,8 @@ describe('the morning outcome', () => {
     const dawn = { grainBefore: 20, grainAfter: 20, crossed: false };
     expect(dawnOutcome(dawn)).toBe('The wall held. No grain was lost.');
     expect(dawnOutcome({ ...dawn, crossed: true })).toBe('The wall was crossed. No grain was lost.');
-    expect(dawnOutcome({ ...dawn, crossed: true, grainAfter: 18 })).toContain('A small loss of grain.');
-    expect(dawnOutcome({ ...dawn, crossed: true, grainAfter: 12 })).toContain('A serious breach.');
+    expect(dawnOutcome({ ...dawn, crossed: true, grainAfter: 18 })).toContain('A little grain was taken.');
+    expect(dawnOutcome({ ...dawn, crossed: true, grainAfter: 12 })).toContain('took a lot of grain.');
   });
   it('draws coarse watched-night progress without claiming the thaw has arrived', () => {
     const winter = { night: 1, nights: 8, why: '', question: null };
@@ -32,6 +36,6 @@ describe('the morning outcome', () => {
     expect(winterWatchMarks({ winter: { ...winter, night: 4 }, phase: 'dawn' })).toBe(2);
     expect(winterWatchMarks({ winter: { ...winter, night: 7 }, phase: 'dawn' })).toBe(3);
     expect(winterWatchMarks({ winter: { ...winter, night: 8 }, phase: 'dawn' })).toBe(4);
-    expect(thawProgress({ winter: { ...winter, night: 8 }, phase: 'dawn' })).toContain('routine');
+    expect(thawProgress({ winter: { ...winter, night: 8 }, phase: 'dawn' })).toContain('usual watches');
   });
 });

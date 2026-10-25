@@ -120,15 +120,15 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
     if (bitten?.section) {
       said.push(
         told.pain < 0.2
-          ? `“It’s a scratch.” (the wolf at ${theSec(bitten.section)})`
+          ? `“The wolf at ${theSec(bitten.section)} only scratched me.”`
           : `“That wolf at ${theSec(bitten.section)} had my leg. I can still feel its teeth.”`,
       );
       if (told.pain >= 0.2) tell(`fear@${bitten.section}`, 0.6);
     } else if (down?.section) {
       say('down', [
         `“They knocked me flat at ${theSec(down.section)}. I don’t remember falling.”`,
-        `“I went down at ${theSec(down.section)}. Next I knew, it was grey light.”`,
-        `“Something hit me at ${theSec(down.section)}. My head still rings.”`,
+        `“I went down at ${theSec(down.section)}. When I became aware again, dawn had come.”`,
+        `“Something hit me at ${theSec(down.section)}. I can still hear ringing in my head.”`,
       ]);
       tell(`fear@${down.section}`, 0.5);
     } else if (left?.section) {
@@ -136,21 +136,21 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
       // The cause in their words: what they will own to (selfReport), so pride may still call it the cold.
       const why =
         told.fear >= told.fatigue && told.fear > 0.3
-          ? ' Not with them that close.'
+          ? ' I could not stay with them that close.'
           : told.fatigue > 0.4
-            ? ' I was asleep on my feet.'
+            ? ' I could barely stay awake.'
             : told.pain > 0.3
-              ? ' My leg wouldn’t hold me.'
-              : ' The cold got into me.';
+              ? ' My leg could not support my weight.'
+              : ' I was very cold.';
       if (left.kind === 'froze')
         say('froze', [
-          `“I couldn’t move at ${at}. Not with them that close.”`,
-          `“I stood like a post at ${at}. My legs wouldn’t answer.”`,
+          `“I couldn’t move at ${at}. They were too close.”`,
+          `“I stood still at ${at}. I could not move my legs.”`,
           `“At ${at} I just… stopped. I’m sorry.”`,
         ]);
       else
         say('left', [
-          `“I couldn’t stay at ${at}. Not with them that close.”`,
+          `“I couldn’t stay at ${at}. They were too close.”`,
           `“I got down off ${at}.${why}”`,
           `“They were right under ${at}. I ran. Say what you like.”`,
           `“I left ${at}.${why}”`,
@@ -161,7 +161,7 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
       if (!bravado) tell(`fear@${shaken.section}`, 0.55);
       said.push(
         bravado
-          ? `“Nothing I couldn’t handle at ${theSec(shaken.section)}.”`
+          ? `“Nothing happened at ${theSec(shaken.section)} that I could not handle.”`
           : pickFresh(
               s,
               id,
@@ -173,7 +173,7 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
                 // Samira went home to sleep and still said she "didn't blink till dawn").
                 home || refused || slept
                   ? `“Something came to the foot of ${theSec(shaken.section)}. I didn’t stay to see it.”`
-                  : `“Something came to the foot of ${theSec(shaken.section)}. I didn’t blink till dawn.”`,
+                  : `“Something came to the foot of ${theSec(shaken.section)}. I watched closely until dawn.”`,
               ],
               used,
               last,
@@ -183,8 +183,8 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
     } else if (drove) {
       say('drove', [
         `“They came at ${theSec(drove)}. We sent them off.”`,
-        `“Something tried ${theSec(drove)}. It didn’t try twice.”`,
-        `“I had a stone in the sling all night at ${theSec(drove)}. Glad I did.”`,
+        `“Something tried to cross ${theSec(drove)}. It did not try again.”`,
+        `“I had a stone in the sling all night at ${theSec(drove)}. I was glad I did.”`,
       ]);
     } else if (fear && fear.level > 0.15) {
       // Said from where they stood: a fear of another stretch is told as looking over at it.
@@ -192,12 +192,12 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
         say('fear-far', [
           `“From ${theSec(stood)} I kept looking over at ${theSec(fear.section)}.”`,
           `“I was glad not to be on ${theSec(fear.section)}.”`,
-          `“Every sound from ${theSec(fear.section)}, I jumped.”`,
+          `“Every sound from ${theSec(fear.section)} startled me.”`,
         ]);
       else
         say('fear', [
           `“I don’t like ${theSec(fear.section)}. Something’s out there.”`,
-          `“${capital(theSec(fear.section))} again. I hate that stretch.”`,
+          `“I was at ${theSec(fear.section)} again. I hate that stretch.”`,
           `“There’s something about ${theSec(fear.section)}. I can’t say what.”`,
           `“Don’t put me on ${theSec(fear.section)} too often.”`,
         ]);
@@ -228,12 +228,12 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
               `“I stayed because ${other} stayed.”`,
             ])
           : pick(s, id, 'against', [
-              `“${other} stood my stretch. I kept one eye on ${other} all night.”`,
-              `“I don’t turn my back with ${other} on the wall.”`,
+              `“${other} stood my stretch. I kept watching ${other} all night.”`,
+              `“I do not trust ${other} enough to look away when we are on the wall together.”`,
             ]),
       );
     } else if (refused?.section) {
-      said.push(`“I wasn’t going to stand ${theSec(refused.section)}.”`);
+      said.push(`“I was not going to guard ${theSec(refused.section)}.”`);
     }
 
     if (commanded) {
@@ -247,15 +247,15 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
         ]);
       else if (autonomy < 0.6)
         say('bell-grudge', [
-          '“I heard my name over the bell. I held. I didn’t like it.”',
-          '“I held when you called me. Don’t make a habit of it.”',
-          '“Your call kept me there. My own sense wouldn’t have.”',
+          '“I heard my name over the bell. I stayed at my post. I didn’t like it.”',
+          '“I stayed at my post when you called me. Do not keep doing it.”',
+          '“Your call kept me there. My own judgment would not have kept me there.”',
         ]);
       else
         say('bell', [
-          '“I heard you call. I held.”',
+          '“I heard you call. I stayed at my post.”',
           '“You called my name; I stayed.”',
-          '“I held when you called.”',
+          '“I stayed at my post when you called.”',
         ]);
     }
 
@@ -272,14 +272,17 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
       say('doze', [
         `“I kept nodding off at ${theSec(sec)}.”`,
         `“My head kept dropping at ${theSec(sec)}. I pinched myself awake.”`,
-        `“I’ll own it: I dozed at ${theSec(sec)}, more than once.”`,
+        `“I admit I fell asleep briefly at ${theSec(sec)}, more than once.”`,
       ]);
       dozeTold = true;
     }
 
     // Pulls with nothing out there: one voice a dawn says so.
     if (said.length === 0 && !cryTold && s.bell.cry >= 1 && s.tally.bellRung > 0) {
-      say('cry', ['“You rang us up for shadows.”', '“If you ring at nothing, we stop listening.”']);
+      say('cry', [
+        '“You rang the bell when there was nothing there.”',
+        '“If you ring at nothing, we stop listening.”',
+      ]);
       cryTold = true;
     }
     // Broken sleep: the bell pulled them out of a doze or out of bed (more than once, it was a long night).
@@ -287,11 +290,14 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
       say(
         'woken',
         s.place[id] === 'home' || slept
-          ? ['“The bell had me out of my bed.”', '“I was asleep when the bell went. My heart’s still going.”']
+          ? [
+              '“The bell woke me and made me get out of bed.”',
+              '“I was asleep when the bell went. My heart is still beating fast.”',
+            ]
           : woken.section
             ? [
                 `“The bell jolted me awake at ${theSec(woken.section)}.”`,
-                '“I’d nodded off. The bell saw to that.”',
+                '“I had fallen asleep briefly. The bell woke me.”',
               ]
             : ['“The bell woke me.”'],
       );
@@ -304,7 +310,7 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
     if (said.length === 0) {
       if (told.fatigue > 0.5)
         say('long', [
-          '“Long night.”',
+          '“It was a long night.”',
           '“My eyes ache.”',
           '“I’d sleep standing if you let me.”',
           '“I could sleep a week.”',
@@ -315,18 +321,18 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
       else if (v.newcomer && s.year <= v.comes.year + (v.comes.night > 0 ? 0 : 1))
         say('new', [
           '“I marked the path I checked. The rest still needs walking.”',
-          '“I am learning the stores route before I draw it as certain.”',
-          '“Quiet. I’m learning which shadows are trees.”',
+          '“I am learning the route to the grain store before I mark it as certain on my map.”',
+          '“It was quiet. I’m learning which shadows are trees.”',
         ]);
       else
         say('quiet', [
-          '“Quiet enough.”',
-          '“Cold, and nothing else.”',
+          '“It was quiet enough.”',
+          '“It was cold. Nothing else happened.”',
           '“Nothing came my way.”',
-          '“Just the wind.”',
-          '“I counted the stars. Nothing to tell.”',
-          '“An owl, a fox, and the cold. That’s all.”',
-          '“Frost on my sleeve by midnight. Nothing else.”',
+          '“I only heard the wind.”',
+          '“I counted the stars. I have nothing to report.”',
+          '“I saw an owl and a fox, and I felt cold. That is all.”',
+          '“There was frost on my sleeve by midnight. Nothing else happened.”',
           '“I watched the mist come and go.”',
         ]);
     }
@@ -344,27 +350,27 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
     ) {
       const at = theSec(postSection(post));
       if (left || home || refused || slept)
-        say('pressed-left', ['“I know you pressed me.”', '“You asked hard. I still went.”']);
+        say('pressed-left', ['“I know you pressed me.”', '“You asked firmly. I still left.”']);
       else if (press === 'urge')
         say('pressed-held', [
-          `“You pressed me for ${at}. I held it.”`,
-          `“I stood ${at} because you asked it twice.”`,
+          `“You urged me to watch ${at}. I stayed there.”`,
+          `“I guarded ${at} because you asked me twice.”`,
         ]);
       else if ((p.needs.autonomy ?? 0.5) < 0.45)
         say('insisted-bitter', [
-          `“You insisted on ${at}. I stood it, and I won’t forget it.”`,
-          `“I stood ${at} because you gave me no say.”`,
+          `“You insisted on ${at}. I guarded it, and I will not forget your order.”`,
+          `“I guarded ${at} because you gave me no choice.”`,
         ]);
       else
         say('insisted-held', [
-          `“You insisted. I stood ${at}.”`,
-          `“${capital(at)}, as you insisted. It held.”`,
+          `“You insisted. I guarded ${at}.”`,
+          `“I watched ${at}, as you insisted. Nobody crossed it.”`,
         ]);
     }
     let text = said.join(' ');
     // Two people never say the very same words on one dawn: a second speaker adds a word of their own.
     if (out.some((o) => o.text === text))
-      text += ` ${pickFresh(s, id, 'tail', ['“That’s all.”', '“Cold, though.”', '“Long night.”', '“I’m tired.”', '“Ask the others.”'], used, last)}`;
+      text += ` ${pickFresh(s, id, 'tail', ['“That’s all.”', '“It was cold, though.”', '“It was a long night.”', '“I’m tired.”', '“Ask the others.”'], used, last)}`;
     out.push({ who: id, text });
   }
   for (const o of out) s.lastVoices[o.who] = o.text;

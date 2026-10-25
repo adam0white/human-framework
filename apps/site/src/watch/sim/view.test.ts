@@ -54,7 +54,7 @@ describe('the frame shows what the Keeper can see', () => {
       run.input({ k: 'toDusk' });
     }
     const r = buildFrame(run.state, 0, false).watchers.find((w) => w.id === 'meryem');
-    expect(r?.impressions[0]?.text).toBe('you don’t know them yet');
+    expect(r?.impressions[0]?.text).toBe('You do not know them well enough yet.');
   });
 });
 
@@ -64,7 +64,7 @@ describe('the bell control says where it carries (owner playtest 2026-10-05: the
     run.input({ k: 'start' });
     run.input({ k: 'begin' });
     let f = buildFrame(run.state, 0, false);
-    expect(f.bellRead).toBe('loud at the Gate, faint at the east wall');
+    expect(f.bellRead).toBe('It is loud at the Gate and faint at the east wall');
     expect(f.bellSwinging).toBe(false);
     expect(f.bellCarry.gate).toBe(1);
     expect(run.input({ k: 'bell' })).toBe(true);
@@ -72,7 +72,7 @@ describe('the bell control says where it carries (owner playtest 2026-10-05: the
     expect(f.bellSwinging).toBe(true);
     expect(f.roused).toBe(true);
     run.state.marks.bigBell = true;
-    expect(buildFrame(run.state, 0, false).bellRead).toBe('heard the length of the wall');
+    expect(buildFrame(run.state, 0, false).bellRead).toBe('It can be heard along the whole wall');
   });
 });
 

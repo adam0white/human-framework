@@ -5,7 +5,7 @@ import { type Frame, ordinal } from '../sim/view.ts';
 
 /** One clock-rate indicator, separate from the date so its reason stays visible on a phone. */
 export function clockRateWords(f: Frame, chosen: Speed): string {
-  if (f.rate <= 0) return 'Clock stopped';
+  if (f.rate <= 0) return 'The clock is stopped.';
   const season = f.phase === 'spring' || f.phase === 'summer' || f.phase === 'autumn';
   const rate = season ? f.rate / 1440 : f.rate;
   const unit = season ? 'day' : 'min';
@@ -28,7 +28,7 @@ export function slowedWords(f: Frame): string {
     }
     return 'the days slow for the news';
   }
-  return f.moment ? 'watcher decision' : 'the night slows';
+  return f.moment ? 'a watcher is deciding' : 'the night slows';
 }
 
 export function hourWords(clock: number, phase: string): string {
@@ -39,7 +39,7 @@ export function hourWords(clock: number, phase: string): string {
   if (h >= 18 && h < 20) return 'Nightfall';
   if (h >= 20 && h < 23) return 'Night';
   if (h >= 23 || h < 1) return 'Midnight';
-  if (h >= 1 && h < 4) return 'The small hours';
+  if (h >= 1 && h < 4) return 'After midnight';
   return 'Before dawn';
 }
 
@@ -74,9 +74,9 @@ export function picksWords(n: number): string {
 
 /** The daylight left for talks, in words (the pips draw it). */
 export function daylightWords(left: number): string {
-  if (left <= 0) return 'The day’s work calls. No more talks this morning.';
-  if (left === 1) return 'Daylight enough for one more talk.';
-  return 'The morning is young.';
+  if (left <= 0) return 'There is work to do. You cannot have more talks this morning.';
+  if (left === 1) return 'There is time for one more talk.';
+  return 'There is still time to talk this morning.';
 }
 
 /** Born here and the generation, or an outsider. */
@@ -89,7 +89,7 @@ export function rootsWords(bornHere: boolean, gen: number): string {
 export function metWords(met: boolean | null): string {
   if (met === true) return 'It was done.';
   if (met === false) return 'It was not done.';
-  return 'Not yet settled.';
+  return 'The outcome is not yet settled.';
 }
 
 /** The epilogue's line without the leading "Name, age:" (the name is printed beside it; ages stay words). */
@@ -112,11 +112,11 @@ export function ropeWords(wear: number, snapped: boolean): string {
 
 /** Coarse reads of the counted grain and the declared winter, never a success forecast. */
 export function grainCondition(f: Pick<Frame, 'grain' | 'need'>): string {
-  if (f.grain <= 0) return 'Grain: empty; a hungry spring ahead.';
-  if (f.grain < f.need) return 'Grain: below spring food needs; homes may leave.';
-  if (f.grain === f.need) return 'Grain: enough spring food, nothing spare.';
-  if (f.grain <= f.need * 1.5) return 'Grain: little spare above spring food needs.';
-  return 'Grain: plenty above spring food needs.';
+  if (f.grain <= 0) return 'There is no grain left. The village faces a hungry spring.';
+  if (f.grain < f.need) return 'There is not enough grain for spring. Some households may leave.';
+  if (f.grain === f.need) return 'There is enough grain for spring, with none to spare.';
+  if (f.grain <= f.need * 1.5) return 'There is enough grain for spring, with a little to spare.';
+  return 'There is enough grain for spring, with plenty to spare.';
 }
 
 export function thawProgress(f: Pick<Frame, 'winter' | 'phase'>): string {
@@ -125,10 +125,11 @@ export function thawProgress(f: Pick<Frame, 'winter' | 'phase'>): string {
   const left = w.nights - w.night;
   if (left <= 0)
     return f.phase === 'dawn'
-      ? 'Watch finished; winter passes by routine to the thaw.'
-      : 'Last watch; then winter passes by routine to the thaw.';
-  if (left <= 2) return 'A few watches left; then winter routine to the thaw.';
-  return 'Early watches; the thaw is still far off.';
+      ? 'The watches you control are finished. The usual watches continue until the spring thaw.'
+      : 'This is the last watch you control. Then the usual watches continue until the spring thaw.';
+  if (left <= 2)
+    return 'You have a few watches left to control. Then the usual watches continue until the spring thaw.';
+  return 'These are the early watches. The spring thaw is still far off.';
 }
 
 /** Morning's plain account, using the same small-loss band as the winter account. */
@@ -138,8 +139,8 @@ export function dawnOutcome(
   const lost = Math.max(0, d.grainBefore - d.grainAfter);
   if (lost === 0)
     return d.crossed ? 'The wall was crossed. No grain was lost.' : 'The wall held. No grain was lost.';
-  if (lost <= 3) return 'A small loss of grain. A little was taken.';
-  return 'A serious breach. The granary was hit hard.';
+  if (lost <= 3) return 'A little grain was taken.';
+  return 'The attackers crossed the wall and took a lot of grain.';
 }
 
 /** Four rough marks count only the watched nights; routine winter still follows. */

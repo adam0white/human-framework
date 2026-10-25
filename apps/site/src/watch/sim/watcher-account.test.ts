@@ -48,7 +48,7 @@ describe('a watcher’s read-only night account', () => {
     p.activity.action = 'eat';
     const before = JSON.stringify(s);
     expect(account(s)).toEqual({
-      text: 'I’m eating a little. Nothing close that I can make out.',
+      text: 'I’m eating a little. Nothing is close that I can make out.',
       spoken: true,
     });
     expect(JSON.stringify(s)).toBe(before);
@@ -65,7 +65,7 @@ describe('a watcher’s read-only night account', () => {
       token({ id: 997, pos: 1, state: 'fled' }),
       token({ id: 996, pos: 1, state: 'in' }),
     ];
-    expect(account(s)?.text).toContain('Nothing close that I can make out.');
+    expect(account(s)?.text).toContain('Nothing is close that I can make out.');
     s.warnedAlso = 'gate';
     expect(account(s)?.text).toContain(
       'The scout warned us about this stretch. I can’t make anything out yet.',
@@ -126,6 +126,7 @@ it('gives a read-only reason when a night account has no applicable request', ()
   p.body.asleep = true;
   const far = buildFrame(s, 0, false).watchers.find((w) => w.id === 'tamar');
   // Unseen sleep is never disclosed by an availability explanation.
-  if (!far?.acts.length) expect(far?.actsUnavailable).toBe('Out of your voice: the lantern is at the Gate.');
+  if (!far?.acts.length)
+    expect(far?.actsUnavailable).toBe('They cannot hear you from here: the lantern is at the Gate.');
   expect(far?.actsUnavailable).not.toMatch(/asleep|sleeping/);
 });

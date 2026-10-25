@@ -1,7 +1,6 @@
 import { EndTally } from '../../shared/EndTally.tsx';
 import { watchTally } from './end-tally.ts';
 import { RunSecondaries } from './exporting.tsx';
-import { watchWords } from './wording.ts';
 /**
  * The year's pages around the winter (G3-3): the open seasons (date, volume, granary, the people and a season card
  * when one is open), the fair, the thaw, a closed volume and a fallen village, plus the live chronicle strip over the
@@ -35,8 +34,8 @@ export function ChronicleStrip({ frame }: { frame: Frame }) {
   return (
     <ol className="w-strip" aria-label="The chronicle, newest first" aria-live="off">
       {lines.map((l) => (
-        <li key={`${l.year}-${l.minute}-${watchWords(l.text)}`} className={`w-strip-line w-strip-${l.kind}`}>
-          {watchWords(l.text)}
+        <li key={`${l.year}-${l.minute}-${l.text}`} className={`w-strip-line w-strip-${l.kind}`}>
+          {l.text}
         </li>
       ))}
     </ol>
@@ -55,7 +54,7 @@ function VolumeLine({ v }: { v: FrameVolume }) {
 export function SeasonCardView({ card, actions }: { card: SeasonCard; actions: WatchActions }) {
   return (
     <section className="w-moment w-card" aria-label="A matter for the Keeper">
-      <p className="w-moment-text">{watchWords(card.text)}</p>
+      <p className="w-moment-text">{card.text}</p>
       <p className="w-card-read">{card.read}</p>
       <div className="w-moment-options">
         {card.options.map((o) => (
@@ -93,7 +92,7 @@ function PersonCard({ v }: { v: FrameVillager }) {
     <li className={v.watcher ? 'w-villager is-watcher' : 'w-villager'}>
       <span className="w-person-head">
         <span className="w-person-name">{v.name}</span>
-        {v.watcher ? <span className="w-badge">stands the wall</span> : null}
+        {v.watcher ? <span className="w-badge">Guards the wall</span> : null}
       </span>
       <span className="w-person-note">{facts.join(' · ')}</span>
       {v.impressions.length > 0 ? <Impressions impressions={v.impressions} /> : null}
@@ -178,7 +177,7 @@ export function FairPage({ frame, actions }: { frame: Frame; actions: WatchActio
       <p className="w-picks">
         {fair.picksLeft <= 0
           ? picksWords(0)
-          : 'Take as many as the granary can spare: the winter still has to be eaten through.'}
+          : 'Take as many as the grain store can spare. Everyone still needs food through the winter.'}
       </p>
       <div className="w-granary">
         <span>The granary</span>
@@ -188,15 +187,15 @@ export function FairPage({ frame, actions }: { frame: Frame; actions: WatchActio
         {fair.offers.map((o) => (
           <li key={o.id} className={o.taken ? 'w-offer is-taken' : 'w-offer'}>
             <h3>{o.label}</h3>
-            <p>{watchWords(o.text)}</p>
+            <p>{o.text}</p>
             {!o.taken && o.affordable && o.after < frame.grain ? (
               <div className="w-offer-after">
-                <span className="w-note">The granary after it</span>
+                <span className="w-note">Grain remaining after this offer</span>
                 <Sacks have={o.after} lost={frame.grain - o.after} label="The granary if you take it" />
               </div>
             ) : null}
             {o.taken ? (
-              <p className="w-taken">Taken. It stands.</p>
+              <p className="w-taken">You have taken this offer. It cannot be undone.</p>
             ) : (
               <>
                 <button
@@ -205,7 +204,7 @@ export function FairPage({ frame, actions }: { frame: Frame; actions: WatchActio
                   disabled={!o.affordable}
                   onClick={() => actions.input({ k: 'fair', pick: o.id })}
                 >
-                  Take it, for good
+                  Take this offer
                 </button>
                 {!o.affordable ? (
                   <p className="w-note">
@@ -264,7 +263,7 @@ export function ThawPage({ frame, actions }: { frame: Frame; actions: WatchActio
       {q ? (
         <div className={`w-question-box is-${q.met === true ? 'met' : q.met === false ? 'unmet' : 'open'}`}>
           <span className="w-kicker">This winter’s question</span>
-          <p>{watchWords(q.text)}</p>
+          <p>{q.text}</p>
           <p className="w-met">{metWords(q.met)}</p>
         </div>
       ) : null}

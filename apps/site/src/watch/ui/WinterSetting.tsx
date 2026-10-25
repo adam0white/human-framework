@@ -29,13 +29,13 @@ export function WinterSetting({ frame, actions }: { frame: Frame; actions: Watch
         <span>
           Danyal: “Let us pray that the coming winter goes easier.”
           <small>Samira: “And let those on the wall have a little rest.”</small>
-          <small>Packs come later; movement is seen sooner. The same threats remain.</small>
+          <small>Wolf packs come later, and movement becomes visible sooner. The same threats remain.</small>
         </span>
       </label>
       <p className="w-note">
         {frame.phase === 'goal'
           ? 'These are the village’s hopes for the first dusk.'
-          : `The winter that came: ${setting.active === 'milder' ? 'packs came later; movement shows sooner' : 'as the village knows it'}. New hopes are for the next dusk.`}
+          : `The winter that came: ${setting.active === 'milder' ? 'wolf packs came later, and movement becomes visible sooner' : 'as the village knows it'}. New hopes are for the next dusk.`}
       </p>
     </fieldset>
   );

@@ -61,29 +61,29 @@ describe('retained night requests use current public evidence', () => {
   it('names a departed helper without substituting a condition guess', () => {
     const { frame, who, seen } = context();
     frame.watchers = frame.watchers.filter((w) => w.id !== 'kian');
-    expect(retainedNightActs(frame, who, seen)[0]?.read).toBe('No longer on this watch.');
+    expect(retainedNightActs(frame, who, seen)[0]?.read).toBe('They are no longer on this watch.');
     const samira = frame.watchers.find((w) => w.id === 'samira');
     if (!samira) throw new Error('Expected Samira');
     samira.post = null;
     samira.place = 'home';
-    expect(retainedNightActs(frame, who, seen)[1]?.read).toBe('Away from the wall and hall.');
+    expect(retainedNightActs(frame, who, seen)[1]?.read).toBe('They are away from the wall and the hall.');
   });
   it('groups helpers beyond voice reach once per destination', () => {
     const { frame, seen } = context();
     const acts = seen.map((act) => ({
       ...act,
       available: false,
-      read: `Too far to call ${act.label} from here; carry the light to the east wall.`,
+      read: `You are too far away to call ${act.label} from here; carry the light to the east wall.`,
     }));
     expect(groupedUnavailable(acts, frame)).toEqual([
-      'Kian, Samira: Out of your voice; carry the light to the east wall.',
+      'Kian, Samira: They cannot hear you from here; carry the light to the east wall.',
     ]);
   });
   it('uses the recipient reason once and drops all retained acts off the wall', () => {
     const { frame, who, seen } = context();
-    who.actsUnavailable = 'Out of your voice: the lantern is at the Gate.';
+    who.actsUnavailable = 'They cannot hear you from here: the lantern is at the Gate.';
     expect(groupedUnavailable(retainedNightActs(frame, who, seen), frame)).toEqual([
-      'Kian, Samira: Out of your voice: the lantern is at the Gate.',
+      'Kian, Samira: They cannot hear you from here: the lantern is at the Gate.',
     ]);
     who.post = null;
     expect(retainedNightActs(frame, who, seen)).toEqual([]);

@@ -367,7 +367,7 @@ describe('Night Watch rules (G3-1, G3-2)', () => {
         }
         if (walk) walked += START_GRAIN - s.grain;
         else still += START_GRAIN - s.grain;
-        if (s.dawn?.lines.some((l) => /^Nobody stood .* got over/.test(l.text))) named += 1;
+        if (s.dawn?.lines.some((l) => /^Nobody watched .* got over/.test(l.text))) named += 1;
       }
     }
     expect(walked).toBeLessThan(still);

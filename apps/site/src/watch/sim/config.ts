@@ -19,7 +19,7 @@ export interface SectionDef {
 export const SECTIONS: readonly SectionDef[] = [
   { id: 'west', name: 'West wall', approach: 'by the west wall' },
   { id: 'gate', name: 'Gate', approach: 'on the gate road' },
-  { id: 'mill', name: 'Mill wall', approach: 'along the mill race' },
+  { id: 'mill', name: 'Mill wall', approach: 'along the channel beside the mill' },
   { id: 'east', name: 'East wall', approach: 'by the east wall' },
 ];
 
@@ -134,7 +134,7 @@ const WATCHER_OPENINGS: readonly WatcherDef[] = [
     age: 54,
     arrives: 1,
     usual: 'gate-1',
-    note: 'Sling, steady',
+    note: 'Uses a sling steadily.',
     home: 'gate',
     family: null,
     traits: {
@@ -166,7 +166,7 @@ const WATCHER_OPENINGS: readonly WatcherDef[] = [
     age: 16,
     arrives: 1,
     usual: 'gate-2',
-    note: 'Fast, eager',
+    note: 'Moves quickly and is eager.',
     home: 'west',
     family: 'his little sister',
     traits: {
@@ -196,7 +196,7 @@ const WATCHER_OPENINGS: readonly WatcherDef[] = [
     age: 34,
     arrives: 1,
     usual: 'west-1',
-    note: 'Best sight',
+    note: 'Sees furthest into the dark.',
     home: 'east',
     family: 'her two children',
     traits: {
@@ -226,7 +226,7 @@ const WATCHER_OPENINGS: readonly WatcherDef[] = [
     age: 38,
     arrives: 2,
     usual: 'mill-1',
-    note: 'Forester, strong',
+    note: 'Works in the forest and is strong.',
     home: 'east',
     family: null,
     traits: {
@@ -256,7 +256,7 @@ const WATCHER_OPENINGS: readonly WatcherDef[] = [
     age: 61,
     arrives: 2,
     usual: 'mill-2',
-    note: 'Well keeper, calm',
+    note: 'Keeps the well and stays calm.',
     home: 'mill',
     family: null,
     traits: {
@@ -284,7 +284,7 @@ const WATCHER_OPENINGS: readonly WatcherDef[] = [
     age: 45,
     arrives: 3,
     usual: 'east-2',
-    note: 'Apprentice observer and mapper',
+    note: 'Learns to observe and draw maps.',
     home: 'gate',
     family: null,
     traits: {

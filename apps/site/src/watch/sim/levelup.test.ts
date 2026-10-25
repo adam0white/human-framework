@@ -96,7 +96,7 @@ describe('Night Watch level-up (2026-10-19)', () => {
         for (const o of m.options)
           if (m.kind === 'waver' && o.id === 'urge') {
             urges += 1;
-            expect(o.read).toMatch(/likely|grudgingly|might|won't|can't tell/);
+            expect(o.read).toMatch(/probably agree|agree unwillingly|might agree|will not agree|cannot tell/);
           }
     expect(urges).toBeGreaterThan(0);
   });
@@ -139,7 +139,7 @@ describe('Night Watch level-up (2026-10-19)', () => {
     });
     endWinter(s);
     expect(s.chronicle.find((l) => l.text.startsWith('Raised at the fair'))?.text).toMatch(
-      /nothing came over it|still climbed (once|\d+ times)/,
+      /nothing crossed .* this winter|still climbed (once|\d+ times)/,
     );
   });
 

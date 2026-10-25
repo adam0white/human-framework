@@ -18,6 +18,8 @@ import type { WatchState } from './state.ts';
 export interface Impression {
   /** A short phrase in the Keeper's voice ("afraid of the west wall"). */
   text: string;
+  /** Stable identity for topic priority and ordering; never displayed. */
+  cue?: string;
   /** How sure the Keeper is, 0..1 (drawn, not printed). */
   sure: number;
 }
@@ -56,41 +58,95 @@ export function keeperImpressions(s: WatchState, id: WatcherId, max = 4): Impres
     if (c.confidence < SAY_MIN) continue;
     const v = c.value;
     const sure = Math.round(c.confidence * 20) / 20;
-    let text: string | null = null;
+    let phrase: { cue: string; text: string } | null = null;
     if (c.key === 'fatigue') {
-      text = v > 0.55 ? 'worn out' : v > 0.35 ? 'tiring' : null;
-      if (text && keeperFatigue(s, id).dusk) text = `seemed ${text} at dusk`;
-    } else if (c.key === 'pain') text = v > 0.45 ? 'hurting badly' : v > 0.2 ? 'hurt' : null;
-    else if (c.key === 'fear') text = v > 0.45 ? 'frightened' : v > 0.22 ? 'uneasy' : null;
+      phrase =
+        v > 0.55
+          ? { cue: 'worn out', text: 'They look very tired.' }
+          : v > 0.35
+            ? { cue: 'tiring', text: 'They look tired.' }
+            : null;
+      if (phrase && keeperFatigue(s, id).dusk)
+        phrase = {
+          cue: `seemed ${phrase.cue} at dusk`,
+          text: v > 0.55 ? 'They looked very tired at dusk.' : 'They looked tired at dusk.',
+        };
+    } else if (c.key === 'pain')
+      phrase =
+        v > 0.45
+          ? { cue: 'hurting badly', text: 'They seem to be in a lot of pain.' }
+          : v > 0.2
+            ? { cue: 'hurt', text: 'They look hurt.' }
+            : null;
+    else if (c.key === 'fear')
+      phrase =
+        v > 0.45
+          ? { cue: 'frightened', text: 'They seem frightened.' }
+          : v > 0.22
+            ? { cue: 'uneasy', text: 'They seem uneasy.' }
+            : null;
     else if (c.key.startsWith('fear@')) {
       const place = c.key.slice(5);
       if (SECTIONS.some((x) => x.id === place) && v > 0.3)
-        text = `afraid of ${theSection(place as SectionId)}`;
+        phrase = {
+          cue: `afraid of ${theSection(place as SectionId)}`,
+          text: `They seem afraid of ${theSection(place as SectionId)}.`,
+        };
     } else if (c.key === `trust:${KEEPER_ID}`)
-      text = v > 0.65 ? 'heeds you' : v < 0.35 ? 'doesn’t heed you' : null;
+      phrase =
+        v > 0.65
+          ? { cue: 'heeds you', text: 'They seem to follow your advice.' }
+          : v < 0.35
+            ? { cue: 'doesn’t heed you', text: 'They do not seem to follow your advice.' }
+            : null;
     else if (c.key.startsWith('tie:')) {
       const other = c.key.slice(4);
       const name = s.cast[other]?.name;
-      // A tie to someone not yet come, or gone, would name a stranger; it waits until they are here.
       if (name && s.community.people.some((q) => q.id === other && isHere(s, q)))
-        text = v > 0.4 ? `close to ${name}` : v < -0.3 ? `at odds with ${name}` : null;
+        phrase =
+          v > 0.4
+            ? { cue: `close to ${name}`, text: `They seem close to ${name}.` }
+            : v < -0.3
+              ? { cue: `at odds with ${name}`, text: `They do not seem to get along with ${name}.` }
+              : null;
     } else if (c.key === 'trait:emotionality')
-      text = v > 0.65 ? 'jumpy by nature' : v < 0.3 ? 'steady by nature' : null;
-    // Aim as seen: the share of lit throws that landed (a fine arm lands about a third of them).
+      phrase =
+        v > 0.65
+          ? { cue: 'jumpy by nature', text: 'They seem easily startled.' }
+          : v < 0.3
+            ? { cue: 'steady by nature', text: 'They seem calm by nature.' }
+            : null;
     else if (c.key === 'skill:sling')
-      text = v > 0.26 ? 'a sure arm' : v < 0.13 ? 'wild with the sling' : null;
-    else if (c.key === 'trait:conscientiousness') text = v > 0.7 ? 'dutiful' : v < 0.3 ? 'careless' : null;
-    if (text) {
-      out.push({ text, sure });
+      phrase =
+        v > 0.26
+          ? { cue: 'a sure arm', text: 'They seem accurate with a sling.' }
+          : v < 0.13
+            ? { cue: 'wild with the sling', text: 'They seem to miss often with a sling.' }
+            : null;
+    else if (c.key === 'trait:conscientiousness')
+      phrase =
+        v > 0.7
+          ? { cue: 'dutiful', text: 'They seem careful about their duties.' }
+          : v < 0.3
+            ? { cue: 'careless', text: 'They seem careless about their duties.' }
+            : null;
+    if (phrase) {
+      out.push({ ...phrase, sure });
       if (!passing(c.key) && at !== undefined) newest = Math.max(newest, at);
     }
   }
-  out.sort((a, b) => b.sure - a.sure || (a.text < b.text ? -1 : 1));
-  if (out.length === 0) return [{ text: 'you don’t know them yet', sure: 0 }];
+  out.sort((a, b) => b.sure - a.sure || ((a.cue ?? a.text) < (b.cue ?? b.text) ? -1 : 1));
+  if (out.length === 0) return [{ text: 'You do not know them well enough yet.', sure: 0 }];
   const shown = out.slice(0, max);
   // How old the read is, when nothing in it is recent.
   const age = newest < 0 ? 0 : s.minute - newest;
   if (age > HOLD)
-    shown.push({ text: age < 400 * MINUTES_PER_DAY ? 'from last winter' : 'from winters ago', sure: 0 });
+    shown.push({
+      text:
+        age < 400 * MINUTES_PER_DAY
+          ? 'This impression comes from last winter.'
+          : 'This impression comes from several winters ago.',
+      sure: 0,
+    });
   return shown;
 }
