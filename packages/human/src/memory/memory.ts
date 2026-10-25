@@ -357,16 +357,7 @@ export interface RetellOptions {
  * It does not model distortion in the retelling, the listener doubting the teller beyond `trust`, or retelling on
  * from the listener to others (a host may call it again with the listener as teller).
  */
-export function retell(teller: Person, listener: Person, at: Minute, opts?: RetellOptions): Gist[];
-/** @deprecated since 2.1: pass `at` (and the optional knobs) positionally. Removed in 3.0. */
-export function retell(teller: Person, listener: Person, opts: RetellOptions & { at: Minute }): Gist[];
-export function retell(
-  teller: Person,
-  listener: Person,
-  when: Minute | (RetellOptions & { at: Minute }),
-  knobs: RetellOptions = {},
-): Gist[] {
-  const opts = typeof when === 'number' ? { ...knobs, at: when } : when;
+export function retell(teller: Person, listener: Person, at: Minute, opts: RetellOptions = {}): Gist[] {
   const told = teller.memory.gists;
   const list = listener.memory.gists;
   if (!told || !list || teller.id === listener.id) return [];
@@ -390,7 +381,7 @@ export function retell(
       if (salience > mine.salience) {
         mine.salience = salience;
         mine.weight = salience;
-        mine.lastAt = opts.at;
+        mine.lastAt = at;
         out.push(mine);
       }
       continue;
@@ -399,15 +390,15 @@ export function retell(
     listener.memory.nextGist = (listener.memory.nextGist ?? 0) + 1;
     const g: Gist = {
       id,
-      at: opts.at,
+      at,
       kind: src.kind,
       valence: src.valence,
       salience,
       summary: src.summary,
       tags: ['told', ...src.tags.filter((t) => t !== 'told')].slice(0, GIST_DEFAULTS.maxTags),
       count: 0,
-      firstAt: opts.at,
-      lastAt: opts.at,
+      firstAt: at,
+      lastAt: at,
       weight: salience,
       peak: salience,
     };

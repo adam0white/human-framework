@@ -67,8 +67,6 @@ describe('family: conception, pregnancy and birth', () => {
     expect(days).toBeGreaterThan(230);
     expect(days).toBeLessThan(300);
     expect(conceive(mum, dad, 43, NOW)).toBeUndefined();
-    const twin = adult('m', 'female', 28);
-    expect(conceive(twin, dad, { at: NOW, seed: 42 })).toEqual(pg); // deprecated 2.0 form, removed in 3.0
     expect(mum.rng).toEqual(adult('m', 'female', 28).rng); // no person's stream consumed
     expect(pregnancyModifiers(mum, lifeModifiers(mum)).metabolism).toBe(lifeModifiers(mum).metabolism);
     tick(mum, NOW + 20 * 7 * MINUTES_PER_DAY);
@@ -297,9 +295,6 @@ describe('family: stories of a place (L2, control scenario)', () => {
     const low = retell(mum, b, b.now, { trust: 0.3 })[0]?.salience ?? 0;
     expect(low).toBeLessThan(high);
     expect(retell(mum, a, a.now, { trust: 0.9 })).toHaveLength(0);
-    const c = adult('kid', 'male', 10);
-    enableGists(c);
-    expect(retell(mum, c, { at: c.now, trust: 0.9 })[0]?.salience).toBe(high); // deprecated 2.0 form
     expect(a.memory.gists).toHaveLength(1);
     // Someone who stood there and came to like it keeps their own gist.
     const veteran = adult('vet', 'male', 30);

@@ -12,7 +12,7 @@
  * further down; insiders, outsiders and threats in `groups.ts`); the
  * coefficients are engineering defaults, not calibrated estimates.
  */
-import { clamp, clamp01, clampSigned, cmpStr, decay, dlog, expit, round } from '../core/index.ts';
+import { clamp, clamp01, clampSigned, cmpStr, decay, dlog, round, sigmoid } from '../core/index.ts';
 import type {
   Affordance,
   HeldNorm,
@@ -669,7 +669,7 @@ export function reputation(
       if (!parsed || parsed.personId !== targetId) continue;
       knows = true;
       const slot = traitSum[parsed.trait] ?? { sum: 0, n: 0 };
-      slot.sum += expit(b.logOdds);
+      slot.sum += sigmoid(b.logOdds);
       slot.n += 1;
       traitSum[parsed.trait] = slot;
     }

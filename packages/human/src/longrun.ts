@@ -263,11 +263,8 @@ export function routineDay(p: Person, routine: Routine, opts: RoutineOptions = {
   return report;
 }
 
-/** A routine, or one chosen per day (by season, age, role). */
-export type RoutineSource = Routine | ((p: Person, day: number) => Routine);
-
-const routineOf = (src: RoutineSource, p: Person): Routine =>
-  typeof src === 'function' ? src(p, dayOf(p.now)) : src;
+/** Choose a routine for a person at the start of an absolute day. Capture host context in a closure. */
+export type RoutineSource = (p: Person, day: number) => Routine;
 
 /**
  * Live from `p.now` to `to` by routine (see SCOPE): the running activity is dropped and the open chronicle day closed
@@ -290,7 +287,7 @@ export function liveRoutine(
   endDay(p);
   p.activity = null;
   while (p.now + MINUTES_PER_DAY <= to && p.body.alive) {
-    const r = routineDay(p, routineOf(routine, p), opts);
+    const r = routineDay(p, routine(p, dayOf(p.now)), opts);
     if (r.episodes.length > 0 || r.onsets.length > 0 || r.stage || r.died) out.push(r);
   }
   if (p.now < to) skip(p, to);

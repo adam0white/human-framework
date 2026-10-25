@@ -20,7 +20,7 @@ import { endDay } from '../chronicle/index.ts';
 import { dayOf } from '../core/index.ts';
 import { raise } from '../family/index.ts';
 import { ageYears } from '../lifecourse/index.ts';
-import { type Routine, type RoutineDay, routineDay } from '../longrun.ts';
+import { type RoutineDay, type RoutineSource, routineDay } from '../longrun.ts';
 import { tick } from '../person.ts';
 import type { SkillTransfer } from '../skills/index.ts';
 import type { Minute, Person, PersonId } from '../types.ts';
@@ -37,7 +37,7 @@ const UPBRINGING_UNTIL = 18;
 
 export interface LiveCommunityOptions {
   /** Each living person's routine for a day (`day` is the day number being lived). */
-  routineFor(p: Person, day: number, c: Community): Routine;
+  routineFor: RoutineSource;
   /** At each dawn, before anyone's day: births, arrivals, routine changes. */
   onDay?(c: Community, day: number, at: Minute): void;
   /** Tell each death to everyone with a tie (default true; see `tellDeath`). */
@@ -89,7 +89,7 @@ export function liveCommunity(c: Community, until: Minute, opts: LiveCommunityOp
       if (!p.body.alive) continue;
       if (p.now < now) tick(p, now);
       if (p.now !== now) continue; // added mid-stretch with a later clock: joins when the day catches up
-      const r = routineDay(p, opts.routineFor(p, day, c), routineOpts);
+      const r = routineDay(p, opts.routineFor(p, day), routineOpts);
       if (r.episodes.length > 0 || r.onsets.length > 0 || r.stage || r.died) {
         const list = days[p.id] ?? [];
         list.push(r);

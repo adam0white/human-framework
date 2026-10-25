@@ -18,8 +18,8 @@ import {
   lifeStage,
   marry,
   type Person,
-  type Routine,
   type RoutineActivity,
+  type RoutineSource,
   random,
   spousesOf,
 } from '../src/index.ts';
@@ -45,86 +45,88 @@ function circle(c: Community, p: Person): string[] {
 }
 
 /** A routine for one day, by season (day of year) and life stage. */
-export function routineFor(p: Person, day: number, c: Community): Routine {
-  const winter = day % 365 >= 300 || day % 365 < 30;
-  const stage = lifeStage(p);
-  const friends = circle(c, p);
-  const others = living(c, p);
-  const one = others[day % Math.max(1, others.length)]?.id;
-  const acts: RoutineActivity[] = [];
-  if (stage === 'infant') {
-    acts.push({ action: 'play', minutes: 60, with: friends.slice(0, 1), valence: 0.2 });
-  } else if (stage === 'child' || stage === 'adolescent') {
-    acts.push({ action: 'play', minutes: 180, with: friends.slice(0, 2), valence: 0.2, tags: ['play'] });
-    acts.push({
-      action: 'lessons',
-      minutes: 120,
-      skill: {
-        id: 'letters',
-        difficulty: Math.min(0.95, (p.skills.letters?.level ?? 0.05) + 0.1),
-        domain: 'knowledge',
-      },
-      practice: { quality: 0.8 },
-      keeps: true,
-    });
-  } else {
-    const elder = stage === 'elder';
-    acts.push({
-      action: 'farm',
-      minutes: winter ? 120 : elder ? 180 : 420,
-      skill: { id: 'farming', difficulty: Math.min(0.95, (p.skills.farming?.level ?? 0.05) + 0.1) },
-      with: friends.slice(0, 1),
-      tags: ['work'],
-      valence: winter ? -0.05 : 0.05,
-      keeps: true,
-    });
-    if (winter)
+export function routineFor(c: Community): RoutineSource {
+  return (p, day) => {
+    const winter = day % 365 >= 300 || day % 365 < 30;
+    const stage = lifeStage(p);
+    const friends = circle(c, p);
+    const others = living(c, p);
+    const one = others[day % Math.max(1, others.length)]?.id;
+    const acts: RoutineActivity[] = [];
+    if (stage === 'infant') {
+      acts.push({ action: 'play', minutes: 60, with: friends.slice(0, 1), valence: 0.2 });
+    } else if (stage === 'child' || stage === 'adolescent') {
+      acts.push({ action: 'play', minutes: 180, with: friends.slice(0, 2), valence: 0.2, tags: ['play'] });
       acts.push({
-        action: 'carve',
-        minutes: 180,
+        action: 'lessons',
+        minutes: 120,
         skill: {
-          id: 'carving',
-          difficulty: Math.min(0.95, (p.skills.carving?.level ?? 0.05) + 0.1),
-          domain: 'motor',
+          id: 'letters',
+          difficulty: Math.min(0.95, (p.skills.letters?.level ?? 0.05) + 0.1),
+          domain: 'knowledge',
         },
+        practice: { quality: 0.8 },
+        keeps: true,
       });
+    } else {
+      const elder = stage === 'elder';
+      acts.push({
+        action: 'farm',
+        minutes: winter ? 120 : elder ? 180 : 420,
+        skill: { id: 'farming', difficulty: Math.min(0.95, (p.skills.farming?.level ?? 0.05) + 0.1) },
+        with: friends.slice(0, 1),
+        tags: ['work'],
+        valence: winter ? -0.05 : 0.05,
+        keeps: true,
+      });
+      if (winter)
+        acts.push({
+          action: 'carve',
+          minutes: 180,
+          skill: {
+            id: 'carving',
+            difficulty: Math.min(0.95, (p.skills.carving?.level ?? 0.05) + 0.1),
+            domain: 'motor',
+          },
+        });
+      acts.push({
+        action: 'supper',
+        minutes: 90,
+        with: [...spousesOf(p), ...friends.slice(1, 2)],
+        valence: 0.1,
+      });
+    }
+    acts.push({ action: 'pray', minutes: 30, valence: 0.05 });
+    if (one) {
+      acts.push({
+        action: 'help',
+        minutes: 60,
+        chance: 0.04,
+        with: [one],
+        social: 'help',
+        valence: 0.4,
+        summary: 'helped a neighbour',
+      });
+      acts.push({
+        action: 'quarrel',
+        minutes: 20,
+        chance: 0.02,
+        with: [one],
+        social: 'conflict',
+        valence: -0.5,
+        summary: 'a quarrel',
+      });
+    }
+    acts.push({ action: 'skip work', minutes: 0, chance: 0.03, keeps: false });
     acts.push({
-      action: 'supper',
-      minutes: 90,
-      with: [...spousesOf(p), ...friends.slice(1, 2)],
-      valence: 0.1,
+      action: 'bad harvest news',
+      minutes: 0,
+      chance: winter ? 0.01 : 0,
+      valence: -0.6,
+      summary: 'the stores ran low',
     });
-  }
-  acts.push({ action: 'pray', minutes: 30, valence: 0.05 });
-  if (one) {
-    acts.push({
-      action: 'help',
-      minutes: 60,
-      chance: 0.04,
-      with: [one],
-      social: 'help',
-      valence: 0.4,
-      summary: 'helped a neighbour',
-    });
-    acts.push({
-      action: 'quarrel',
-      minutes: 20,
-      chance: 0.02,
-      with: [one],
-      social: 'conflict',
-      valence: -0.5,
-      summary: 'a quarrel',
-    });
-  }
-  acts.push({ action: 'skip work', minutes: 0, chance: 0.03, keeps: false });
-  acts.push({
-    action: 'bad harvest news',
-    minutes: 0,
-    chance: winter ? 0.01 : 0,
-    valence: -0.6,
-    summary: 'the stores ran low',
-  });
-  return { activities: acts };
+    return { activities: acts };
+  };
 }
 
 const enableLongLife = (p: Person): void => {

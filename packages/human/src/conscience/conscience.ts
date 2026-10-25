@@ -406,9 +406,8 @@ export function recordDeed(
  * The person repents a breach: regret, stopping and resolve. When another person was wronged,
  * restitution is also required, so the breach closes only after `recordRepair` for that victim.
  * Returns whether the breach is now closed. This records the person's acts, not acceptance.
- * The unused `_now` parameter is optional since 2.9.1 and is removed in 3.0.
  */
-export function repent(p: Person, id: string, _now?: Minute): boolean {
+export function repent(p: Person, id: string): boolean {
   const breach = p.conscience.breaches.find((b) => b.id === id);
   if (!breach) return false;
   if (breach.victimId !== undefined) return breach.repaired;
@@ -418,9 +417,8 @@ export function repent(p: Person, id: string, _now?: Minute): boolean {
 
 /**
  * Restitution/apology delivered to a wronged person (host-attested): closes their open breaches.
- * The unused `_now` parameter is optional since 2.9.1 and is removed in 3.0.
  */
-export function recordRepair(p: Person, victimId: string, _now?: Minute): number {
+export function recordRepair(p: Person, victimId: string): number {
   let count = 0;
   for (const b of p.conscience.breaches) {
     if (!b.repaired && b.victimId === victimId) {

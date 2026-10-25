@@ -10,6 +10,19 @@ The release version is the package version and `FRAMEWORK_VERSION`, tagged `vX.Y
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
+## [Unreleased] — v3 API migration
+
+Engine: 2.21.0. API-only changes; package and framework versions are not stamped yet. Seeded numerical behavior and saved Person state stay unchanged.
+
+- Remove the deprecated options-object forms of `glimpse`, `glimpseOf`, `hear`, `conceive` and `retell`. Time is positional; conception seed precedes time; retelling knobs follow time.
+- Rename `glimpseOf` to `glimpsePerson` and `acquaintWith` to `acquaintPerson`. Keep primitive `glimpse` and `acquaint`.
+- Remove `TRAIT_NAMES` (use `TRAIT_KEYS`) and `expit` (use `sigmoid`). Remove the unused third argument from `repent` and `recordRepair`.
+- Use the callable `RoutineSource = (person, day) => Routine` in both routine drivers. Wrap fixed routines in `() => routine`; capture community context in a closure instead of a third argument. Selection order stays unchanged.
+- Drop Q15's proposed `skipTo` rename: no player value. Keep `skip`.
+- Q5 remains a release decision for the director. Mutable defaults and tuning behavior are unchanged.
+
+Exact before/after calls and routine restore guidance: [v3 migration](packages/human/README.md#migrating-to-v3).
+
 ## [2.23.0] - 2026-10-25
 
 Engine: 2.23.0. Doze and plain-English fixes change opted-in runs. Runs using neither option retain exact state and seeded RNG continuation after normalizing engine metadata. Existing saves restore under the corrected rules; replay old opted-in runs with their original package.

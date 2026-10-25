@@ -235,14 +235,14 @@ describe('deeds, breaches, repentance and repair', () => {
     recordDeed(p, stealCoins, 'x', 2, true);
     const [own, wronged] = p.conscience.breaches;
     const before = guiltLoad(p);
-    expect(repent(p, own?.id ?? '', 3)).toBe(true);
+    expect(repent(p, own?.id ?? '')).toBe(true);
     expect(guiltLoad(p)).toBeLessThan(before);
-    expect(repent(p, wronged?.id ?? '', 3)).toBe(false);
+    expect(repent(p, wronged?.id ?? '')).toBe(false);
     expect(wronged?.repaired).toBe(false);
-    expect(recordRepair(p, 'baker', 4)).toBe(1);
-    expect(repent(p, wronged?.id ?? '', 5)).toBe(true);
+    expect(recordRepair(p, 'baker')).toBe(1);
+    expect(repent(p, wronged?.id ?? '')).toBe(true);
     expect(guiltLoad(p)).toBe(0);
-    expect(repent(p, 'missing', 5)).toBe(false);
+    expect(repent(p, 'missing')).toBe(false);
   });
   test('guilt saturates and collections stay bounded', () => {
     const p = person(heldNorms({ practice: 1 }));

@@ -46,8 +46,6 @@ import { judge, SOCIAL_DEFAULTS } from './social.ts';
 export type CueKind = 'state' | 'place' | 'trait' | 'tie' | 'trust' | 'skill' | 'regard';
 
 export const STATE_CUES: readonly StateCue[] = ['fatigue', 'pain', 'fear', 'mood'];
-/** @deprecated since 2.1: use `TRAIT_KEYS` (types.ts), the same list. Removed in 3.0. */
-export const TRAIT_NAMES: readonly (keyof Traits)[] = TRAIT_KEYS;
 
 export const IMPRESSION_DEFAULTS = {
   /** Weight half-life by kind, minutes (0 = no decay). */
@@ -265,24 +263,9 @@ export function glimpse(
   signs: OutwardSigns,
   at: Minute,
   clarity?: Unit,
-): void;
-/** @deprecated since 2.1: pass `at` (and the optional knobs) positionally. Removed in 3.0. */
-export function glimpse(
-  observer: Person,
-  targetId: PersonId,
-  signs: OutwardSigns,
-  opts: { at: Minute; clarity?: Unit },
-): void;
-export function glimpse(
-  observer: Person,
-  targetId: PersonId,
-  signs: OutwardSigns,
-  when: Minute | { at: Minute; clarity?: Unit },
-  clarity?: Unit,
 ): void {
   if (targetId === observer.id) return;
-  const at = typeof when === 'number' ? when : when.at;
-  const clear = clamp01((typeof when === 'number' ? clarity : when.clarity) ?? 1);
+  const clear = clamp01(clarity ?? 1);
   if (clear <= 0) return;
   const imp = impressionFor(observer, targetId, true, at) as Impression;
   const put = (key: string, v: number) =>
@@ -332,26 +315,9 @@ export function hear(
   value: number,
   at: Minute,
   weight?: Unit,
-): void;
-/** @deprecated since 2.1: pass `at` (and the optional knobs) positionally. Removed in 3.0. */
-export function hear(
-  observer: Person,
-  targetId: PersonId,
-  key: string,
-  value: number,
-  opts: { at: Minute; weight?: Unit },
-): void;
-export function hear(
-  observer: Person,
-  targetId: PersonId,
-  key: string,
-  value: number,
-  when: Minute | { at: Minute; weight?: Unit },
-  weight?: Unit,
 ): void {
   if (targetId === observer.id) return;
-  const at = typeof when === 'number' ? when : when.at;
-  const w = clamp01((typeof when === 'number' ? weight : when.weight) ?? 0.5);
+  const w = clamp01(weight ?? 0.5);
   if (w <= 0) return;
   const imp = impressionFor(observer, targetId, true, at) as Impression;
   sample(imp, key, value, w, at);

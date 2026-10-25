@@ -16,7 +16,11 @@ describe('long run throughput', () => {
   test('25 people for 50 years by routine in under ten seconds', () => {
     // Warm the hot paths first so the measurement is steady-state throughput, not JIT compilation.
     const warm = settlement(5, 9);
-    liveCommunity(warm, YEAR, { routineFor, onDay: families(5), lifecourse: { mortality: true } });
+    liveCommunity(warm, YEAR, {
+      routineFor: routineFor(warm),
+      onDay: families(5),
+      lifecourse: { mortality: true },
+    });
 
     const c = settlement(25, 1);
     const founders = c.people.map((p) => ({ ...p.traits }));
@@ -25,7 +29,7 @@ describe('long run throughput', () => {
     let onsets = 0;
     for (let y = 1; y <= 50; y++) {
       const r = liveCommunity(c, y * YEAR, {
-        routineFor,
+        routineFor: routineFor(c),
         onDay: families(25),
         lifecourse: { mortality: true, chronicOnsets: true },
       });

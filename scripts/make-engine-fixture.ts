@@ -38,8 +38,8 @@ for (const p of people) {
   H.setAmbient(p, { cold: 0.3, dark: 0.2, dayLength: 10 }, 0);
 }
 const [ada, bram, cora] = people as [H.Person, H.Person, H.Person];
-H.acquaintWith(ada, bram, 0.6, 0);
-H.acquaintWith(bram, cora, 0.4, 0);
+H.acquaintPerson(ada, bram, 0.6, 0);
+H.acquaintPerson(bram, cora, 0.4, 0);
 H.setReserve(cora, { pain: 0.8 });
 cora.family = { aptitudes: { farming: 1.3 }, attachment: 0.7 };
 
@@ -51,7 +51,7 @@ const endAt = 201.25;
 for (let d = 0; d < 200; d++) {
   H.stepCommunity(c, world, start + (d + 0.5) * DAY, {});
   if (d % 5 === 0) H.court(ada, bram, start + (d + 0.5) * DAY);
-  H.glimpseOf(ada, cora, start + (d + 0.5) * DAY);
+  H.glimpsePerson(ada, cora, start + (d + 0.5) * DAY);
   H.stepCommunity(c, world, start + (d + 1) * DAY, {});
 }
 H.stepCommunity(c, world, start + saveAt * DAY, {});

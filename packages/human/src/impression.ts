@@ -4,7 +4,7 @@
  * - `outwardSigns(target)`: perceived fatigue, pain and fear and the felt mood, each reduced by the target's reserve;
  *   a limp (lost moving capacity) shows through any reserve. `selfReport(target)` is the same in words, which hide
  *   more (`IMPRESSION_DEFAULTS.wordsReserve`): "I'm fine".
- * - `glimpseOf(observer, target, at, clarity?)` = `glimpse` of the target's outward signs; `acquaintWith` hands the target's
+ * - `glimpsePerson(observer, target, at, clarity?)` = `glimpse` of the target's outward signs; `acquaintPerson` hands the target's
  *   traits and family ties (public roles) to `acquaint`.
  * - `imagine(observer, target, now)`: the target as the observer pictures them — a copy whose traits, fear, pain,
  *   fatigue, mood, ties and trust in voices are the observer's beliefs (each pulled to the prior by its uncertainty)
@@ -86,21 +86,12 @@ export function selfReport(target: Person): OutwardSigns {
 }
 
 /** `observer` looks at `target` at `at` (clarity 0..1: a clear look near by, or a distant figure; default 1). */
-export function glimpseOf(observer: Person, target: Person, at: Minute, clarity?: Unit): void;
-/** @deprecated since 2.1: pass `at` (and the optional knobs) positionally. Removed in 3.0. */
-export function glimpseOf(observer: Person, target: Person, opts: { at: Minute; clarity?: Unit }): void;
-export function glimpseOf(
-  observer: Person,
-  target: Person,
-  when: Minute | { at: Minute; clarity?: Unit },
-  clarity?: Unit,
-): void {
-  if (typeof when === 'number') glimpse(observer, target.id, outwardSigns(target), when, clarity);
-  else glimpse(observer, target.id, outwardSigns(target), when.at, when.clarity);
+export function glimpsePerson(observer: Person, target: Person, at: Minute, clarity?: Unit): void {
+  glimpse(observer, target.id, outwardSigns(target), at, clarity);
 }
 
 /** `observer` has known `target` for a long time (familiarity 0..1): traits and family ties, condensed. */
-export function acquaintWith(observer: Person, target: Person, familiarity: Unit, at: Minute): void {
+export function acquaintPerson(observer: Person, target: Person, familiarity: Unit, at: Minute): void {
   const ties: Record<PersonId, number> = {};
   for (const r of target.social.relationships)
     if (r.roles.some((x) => PUBLIC_ROLES.includes(x))) ties[r.otherId] = r.affection;

@@ -68,8 +68,8 @@ describe('restore: crafted saves (security review H2)', () => {
     H.enableCharacterChange(a);
     for (let i = 0; i < 9; i++) {
       const b = mk(`b${i}`, 10 + i, 'male');
-      H.glimpseOf(a, b, 600 + i);
-      H.acquaintWith(a, b, 0.5, 600 + i);
+      H.glimpsePerson(a, b, 600 + i);
+      H.acquaintPerson(a, b, 0.5, 600 + i);
       H.court(a, b, 600 + i * H.MINUTES_PER_DAY);
     }
     H.tick(a, 600 + 3 * H.MINUTES_PER_YEAR);
