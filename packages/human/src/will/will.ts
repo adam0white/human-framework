@@ -38,6 +38,7 @@ import { commitmentPressure, isUnderWay, pressureReachedAt } from '../agenda/ind
 import { downedAllows, readCapacities } from '../body/index.ts';
 import { CONSCIENCE_DEFAULTS, normVeto } from '../conscience/index.ts';
 import { clamp01, cmpStr, decay, dexp, dpow, hasNumbers, isObj, random, round } from '../core/index.ts';
+import { commitmentLabel } from '../presentation.ts';
 import { skillLevel } from '../skills/index.ts';
 import type {
   Affordance,
@@ -1007,7 +1008,10 @@ function judgeVoices(
               kind: 'notNow',
               commitmentId: v.omission,
               ...(winnerAff ? { insteadAffordanceId: winnerAff.id } : {}),
-              counterOffer: { affordanceId: suggested[0]?.affordanceId, label: dutyLabel(duty, winnerAff) },
+              counterOffer: {
+                affordanceId: suggested[0]?.affordanceId,
+                label: dutyLabel(duty, winnerAff, p),
+              },
             }),
           );
         }
@@ -1072,7 +1076,12 @@ function judgeVoices(
         kind: 'notNow',
         insteadAffordanceId: winnerAff?.id,
         counterOffer: winnerAff
-          ? { affordanceId: bestSuggested.affordanceId, label: `after I ${winnerAff.label}` }
+          ? {
+              affordanceId: bestSuggested.affordanceId,
+              label: p.lexicon?.plainEnglish
+                ? `after I finish this task (${winnerAff.label})`
+                : `after I ${winnerAff.label}`,
+            }
           : { affordanceId: bestSuggested.affordanceId, label: 'later' },
       }),
     );
@@ -1129,7 +1138,11 @@ function arbitrateInsistence(
           insteadAffordanceId: forced,
           counterOffer: {
             ...(firstTarget !== undefined ? { affordanceId: firstTarget } : {}),
-            label: forcedAff ? `after I ${forcedAff.label}` : 'later',
+            label: forcedAff
+              ? p.lexicon?.plainEnglish
+                ? `after I finish this task (${forcedAff.label})`
+                : `after I ${forcedAff.label}`
+              : 'later',
           },
         };
         if (j.res.likelihood !== undefined) res.likelihood = j.res.likelihood;
@@ -1333,7 +1346,11 @@ export function conflictBetweenVoices(
 }
 
 /** Counter-offer for a request deferred behind a duty: "after I pray", "after I feed the children". */
-function dutyLabel(duty: Commitment | undefined, winner: Affordance | undefined): string {
+function dutyLabel(duty: Commitment | undefined, winner: Affordance | undefined, p: Person): string {
+  if (p.lexicon?.plainEnglish) {
+    if (duty) return `after I finish this duty (${commitmentLabel(duty, p.lexicon)})`;
+    return winner ? `after I finish this task (${winner.label})` : 'after my duty';
+  }
   if (duty?.kind === 'worship') return duty.label ? `after I pray ${duty.label}` : 'after I pray';
   if (duty?.label) return `after I ${duty.label}`;
   return winner ? `after I ${winner.label}` : 'after my duty';

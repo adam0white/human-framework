@@ -10,6 +10,15 @@ The release version is the package version and `FRAMEWORK_VERSION`, tagged `vX.Y
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
+## [2.19.0] - 2026-10-25
+
+Engine: 2.17.0. Actor-loop behaviour and save format are unchanged.
+
+- Add explicit `Lexicon.plainEnglish`: complete, literal English for built-in narration, suggestion replies, intentions, person summaries, generated memories, stock village outcomes, family events and community logs. Template keys, counts and selection order stay stable. Host phrase packs retain precedence.
+- Add opt-in plain prompting and bodily-forecast explanations. Preserve each held interpretation of a thought, the response, and the meaning of duty and review; no religious ruling is added.
+- Add `labelLine`, `commitmentLabel`, `normLabel` and `reasonLine` display readers. Stored labels and machine reason codes stay exact. Unknown host prose is not translated; unknown reason codes need host-authored display text.
+- Default narration and full-state continuations remain exact against npm2.18.0, including the opt-in faculty and project-loop controls. Plain-language choices are saved and must be pinned for game replay. Game adoption follows each game's separate plain-English delivery.
+
 ## [2.18.0] - 2026-10-23
 
 Engine: 2.17.0. Actor-loop behaviour is unchanged.

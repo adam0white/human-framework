@@ -1857,6 +1857,8 @@ export interface VoiceConflict {
  * slots documented next to each key.
  */
 export interface Lexicon {
+  /** Use complete, plain English in built-in narration. Omitted keeps exact legacy wording. */
+  plainEnglish?: boolean;
   /** Include person identity and stable temperament in assent/deferral selection (no RNG draws). */
   variety?: boolean;
   /** What material gains mean here, e.g. 'food', 'household keep' or 'resources'; absent keeps legacy money lines. */

@@ -245,7 +245,7 @@ export function deliver(
     targetId: child.id,
     valence: 0.9,
     salience: 0.95,
-    summary: 'gave birth',
+    summary: mother.lexicon?.plainEnglish ? 'I gave birth.' : 'gave birth',
     tags: ['birth', 'family'],
   });
   return { id: child.id, name: child.name ?? child.id, seed: pg.seed, bornAt: at, fatherId: pg.fatherId };

@@ -96,11 +96,28 @@ export function liveCommunity(c: Community, until: Minute, opts: LiveCommunityOp
         days[p.id] = list;
       }
       for (const kind of r.onsets)
-        events.push({ at: r.at, personId: p.id, kind: 'onset', detail: `${p.name}: ${kind}` });
+        events.push({
+          at: r.at,
+          personId: p.id,
+          kind: 'onset',
+          detail: p.lexicon?.plainEnglish ? `${p.name} developed ${kind}.` : `${p.name}: ${kind}`,
+        });
       if (r.stage)
-        events.push({ at: r.at, personId: p.id, kind: 'stage', detail: `${p.name} is now ${r.stage}` });
+        events.push({
+          at: r.at,
+          personId: p.id,
+          kind: 'stage',
+          detail: p.lexicon?.plainEnglish
+            ? `${p.name} entered the ${r.stage} stage of life.`
+            : `${p.name} is now ${r.stage}`,
+        });
       if (r.died) {
-        events.push({ at: r.at, personId: p.id, kind: 'died', detail: `${p.name} died` });
+        events.push({
+          at: r.at,
+          personId: p.id,
+          kind: 'died',
+          detail: p.lexicon?.plainEnglish ? `${p.name} died.` : `${p.name} died`,
+        });
         died.push(p);
       }
     }

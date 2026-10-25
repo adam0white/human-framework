@@ -9,6 +9,7 @@
  */
 
 import { actionForms, capitalize, displayName, nameOf, phraseLine } from '../narrate/lexicon.ts';
+import { labelLine } from '../presentation.ts';
 import type { DayRecord, EntityId, Lexicon, Person, Signed } from '../types.ts';
 
 export interface ChronicleNarrationOptions {
@@ -122,7 +123,7 @@ function worshipActions(records: readonly DayRecord[]): Set<string> {
 
 function formsOf(item: string, lex: Lexicon | undefined): { base: string; past: string; gerund: string } {
   if (item.startsWith('prayer:')) {
-    const label = item.slice('prayer:'.length);
+    const label = labelLine(item.slice('prayer:'.length), lex);
     return {
       base: phraseLine('prayer.base', { label }, lex),
       past: phraseLine('prayer.past', { label }, lex),
@@ -172,7 +173,7 @@ export function narrateChronicle(
             ? 'chronicle.prayer.one'
             : 'chronicle.prayer.all'
           : 'chronicle.prayer';
-    raw.push({ key, vars: { label, n, days } });
+    raw.push({ key, vars: { label: labelLine(label, lex), n, days } });
   }
 
   // Commitments kept by kind (worship is covered above).

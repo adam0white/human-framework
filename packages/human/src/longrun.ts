@@ -189,7 +189,8 @@ export function routineDay(p: Person, routine: Routine, opts: RoutineOptions = {
         action: a.action,
         actorId: p.id,
         valence: clampSigned(a.valence ?? 0),
-        summary: a.summary ?? a.action,
+        summary:
+          a.summary ?? (p.lexicon?.plainEnglish ? `I completed the activity “${a.action}”.` : a.action),
         tags: [...(a.tags ?? []), 'routine'],
       };
       if (companions[0] !== undefined) ep.targetId = companions[0];

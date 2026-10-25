@@ -312,6 +312,7 @@ export function createVillage(
   };
 
   const resolve = (p: Person, act: Activity, reason: 'ended' | 'interrupted'): Outcome => {
+    const say = (legacy: string, plain: string) => (p.lexicon?.plainEnglish ? plain : legacy);
     const now = p.now;
     state.now = Math.max(state.now, now);
     const aff = act.affordance;
@@ -326,12 +327,19 @@ export function createVillage(
       // Partial work counts: a field shift left early yields and pays pro rata for the time put in.
       const span = Math.max(1, act.endsAt - act.startedAt);
       const progress = clamp01((now - act.startedAt) / span);
-      const out: Outcome = { ...base, status: 'interrupted', summary: `${aff.label}: interrupted` };
+      const out: Outcome = {
+        ...base,
+        status: 'interrupted',
+        summary: say(`${aff.label}: interrupted`, `I was interrupted during the task “${aff.label}”.`),
+      };
       if (act.action === 'work-field' && progress > 0) {
         state.food += V.fieldYield * progress;
         out.material = V.wage * progress;
         out.needs = { competence: 0.1 * progress };
-        out.summary = `${aff.label}: stopped ${Math.round(progress * 100)}% of the way through`;
+        out.summary = say(
+          `${aff.label}: stopped ${Math.round(progress * 100)}% of the way through`,
+          `I stopped the task “${aff.label}” after completing ${Math.round(progress * 100)}% of it.`,
+        );
       }
       return out;
     }
@@ -344,17 +352,29 @@ export function createVillage(
       case 'eat':
         if (state.food >= 1) {
           state.food -= 1;
-          return done({ ...base, needs: { food: 0.6 }, summary: 'ate at the kitchen' });
+          return done({
+            ...base,
+            needs: { food: 0.6 },
+            summary: say('ate at the kitchen', 'I ate at the kitchen.'),
+          });
         }
-        return { ...base, status: 'failed', summary: 'found the kitchen empty' };
+        return {
+          ...base,
+          status: 'failed',
+          summary: say('found the kitchen empty', 'I found the kitchen empty.'),
+        };
       case 'drink':
-        return done({ ...base, needs: { water: 0.6 }, summary: 'drank at the well' });
+        return done({
+          ...base,
+          needs: { water: 0.6 },
+          summary: say('drank at the well', 'I drank at the well.'),
+        });
       case 'sleep':
-        return done({ ...base, summary: 'slept' });
+        return done({ ...base, summary: say('slept', 'I slept.') });
       case 'rest':
-        return done({ ...base, needs: { leisure: 0.1 }, summary: 'rested' });
+        return done({ ...base, needs: { leisure: 0.1 }, summary: say('rested', 'I rested.') });
       case 'wait':
-        return done({ ...base, summary: 'waited' });
+        return done({ ...base, summary: say('waited', 'I waited.') });
       case 'work-field': {
         const ok = chance(state.rng, successChance(p, 'farming', 0.3, capacity));
         if (ok) {
@@ -363,7 +383,7 @@ export function createVillage(
             ...base,
             needs: { competence: 0.1 },
             material: V.wage,
-            summary: 'worked the field; a good shift',
+            summary: say('worked the field; a good shift', 'I worked in the field. The shift went well.'),
           });
         }
         state.food += 1;
@@ -371,7 +391,7 @@ export function createVillage(
           ...base,
           status: 'failed',
           needs: { competence: 0.02 },
-          summary: 'worked the field; a poor shift',
+          summary: say('worked the field; a poor shift', 'I worked in the field. The shift went poorly.'),
         };
       }
       case 'forage': {
@@ -382,23 +402,38 @@ export function createVillage(
             status: 'failed',
             injury: { part: 'leg', severity: risk.severity, healRatePerDay: 0.1 },
             summary: isNightAt(act.startedAt)
-              ? 'went to the forest at night and got hurt by an animal'
-              : 'got hurt by an animal in the forest',
+              ? say(
+                  'went to the forest at night and got hurt by an animal',
+                  'I went to the forest at night. An animal hurt me.',
+                )
+              : say('got hurt by an animal in the forest', 'An animal hurt me in the forest.'),
           };
         }
         state.food += V.forageYield;
-        return done({ ...base, needs: { food: 0.3 }, summary: 'foraged in the forest' });
+        return done({
+          ...base,
+          needs: { food: 0.3 },
+          summary: say('foraged in the forest', 'I gathered food in the forest.'),
+        });
       }
       case 'cook': {
         const ok = chance(state.rng, successChance(p, 'cooking', 0.3, capacity));
         if (ok) {
           state.food += V.cookYield;
-          return done({ ...base, needs: { competence: 0.08 }, summary: 'cooked a good meal' });
+          return done({
+            ...base,
+            needs: { competence: 0.08 },
+            summary: say('cooked a good meal', 'I cooked a good meal.'),
+          });
         }
-        return { ...base, status: 'failed', summary: 'burnt the meal' };
+        return { ...base, status: 'failed', summary: say('burnt the meal', 'I burnt the meal.') };
       }
       case 'pray':
-        return done({ ...base, needs: { meaning: 0.1 }, summary: 'prayed at the mosque' });
+        return done({
+          ...base,
+          needs: { meaning: 0.1 },
+          summary: say('prayed at the mosque', 'I prayed at the mosque.'),
+        });
       case 'apologize': {
         const other = act.targetId;
         if (other !== undefined) {
@@ -410,10 +445,16 @@ export function createVillage(
             targetId: other,
             valence: 0.3,
             salience: 0.6,
-            summary: `${p.name} apologised`,
+            summary: say(`${p.name} apologised`, `${p.name} apologised.`),
           });
         }
-        return done({ ...base, summary: `apologised to ${other ?? 'a neighbour'}` });
+        return done({
+          ...base,
+          summary: say(
+            `apologised to ${other ?? 'a neighbour'}`,
+            `I apologised to ${other ?? 'a neighbour'}.`,
+          ),
+        });
       }
       case 'chat': {
         const other = aff.with?.[0];
@@ -426,13 +467,13 @@ export function createVillage(
             targetId: other,
             valence: 0.3,
             salience: 0.4,
-            summary: `${p.name} stopped to chat`,
+            summary: say(`${p.name} stopped to chat`, `${p.name} stopped to chat.`),
           });
         }
         return done({
           ...base,
           needs: { belonging: 0.3, leisure: 0.1 },
-          summary: `chatted with ${other ?? 'a neighbour'}`,
+          summary: say(`chatted with ${other ?? 'a neighbour'}`, `I chatted with ${other ?? 'a neighbour'}.`),
         });
       }
       case 'help': {
@@ -447,13 +488,13 @@ export function createVillage(
             valence: 0.5,
             salience: 0.6,
             norms: [{ normId: 'help-neighbor', relation: 'fulfills' }],
-            summary: `${p.name} helped with the work`,
+            summary: say(`${p.name} helped with the work`, `${p.name} helped with the work.`),
           });
         }
         return done({
           ...base,
           needs: { meaning: 0.2, esteem: 0.05 },
-          summary: `helped ${other ?? 'a neighbour'}`,
+          summary: say(`helped ${other ?? 'a neighbour'}`, `I helped ${other ?? 'a neighbour'}.`),
           percepts: other
             ? [
                 {
@@ -464,7 +505,7 @@ export function createVillage(
                   targetId: p.id,
                   valence: 0.3,
                   salience: 0.5,
-                  summary: `${other} said thank you`,
+                  summary: say(`${other} said thank you`, `${other} said thank you.`),
                 },
               ]
             : [],
@@ -482,13 +523,18 @@ export function createVillage(
             valence: -0.5,
             salience: 0.8,
             norms: [{ normId: 'theft', relation: 'violates' }],
-            summary: `${p.name} took bread from the house`,
+            summary: say(`${p.name} took bread from the house`, `${p.name} took bread from the house.`),
           });
         }
-        return done({ ...base, needs: { food: 0.5 }, material: 1, summary: 'took bread that was not mine' });
+        return done({
+          ...base,
+          needs: { food: 0.5 },
+          material: 1,
+          summary: say('took bread that was not mine', 'I took bread that was not mine.'),
+        });
       }
       default:
-        return done({ ...base, summary: `${aff.label}: done` });
+        return done({ ...base, summary: say(`${aff.label}: done`, `I completed the task “${aff.label}”.`) });
     }
   };
 

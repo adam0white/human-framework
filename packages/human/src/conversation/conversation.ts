@@ -367,8 +367,11 @@ export function converse(speaker: Person, listener: Person, ctx: ConverseContext
       actorId: speaker.id,
       salience: round(0.3 + 0.4 * c.confidence),
       claims: [{ prop: c.prop, value: c.value, confidence: c.confidence }],
-      summary:
-        c.about !== undefined
+      summary: speaker.lexicon?.plainEnglish
+        ? c.about !== undefined
+          ? `${nameOf(speaker)} says ${speaker.lexicon.names?.[c.about] ?? c.about} ${c.prop.split(':')[1] === 'owes' ? `${c.value ? 'owes' : 'does not owe'} money to ${speaker.lexicon.names?.[c.prop.split(':').slice(2).join(':')] ?? c.prop.split(':').slice(2).join(':')}` : `is ${c.value ? '' : 'not '}${c.prop.split(':')[1] ?? ''}`}.`
+          : `${nameOf(speaker)} says this is ${c.value ? 'true' : 'false'}: ${c.prop}.`
+        : c.about !== undefined
           ? `${nameOf(speaker)} says ${c.about} is ${c.value ? '' : 'not '}${c.prop.split(':')[1] ?? ''}`
           : `${nameOf(speaker)} says ${c.prop} is ${c.value ? 'so' : 'not so'}`,
     };
@@ -411,7 +414,9 @@ export function converse(speaker: Person, listener: Person, ctx: ConverseContext
       valence: 0.1,
       salience: round(0.4 + 0.3 * a.strength),
       claims: [{ prop: `advice:${a.action}`, value: true, confidence: round(a.cred) }],
-      summary: `${nameOf(speaker)} says I should ${a.action}`,
+      summary: speaker.lexicon?.plainEnglish
+        ? `${nameOf(speaker)} suggests this action: ${a.action.replace(/[-_]/g, ' ')}.`
+        : `${nameOf(speaker)} says I should ${a.action}`,
     };
     if (ctx.provenance) {
       const meta = beliefs.find((b) => b.prop === `${prefix}${a.action}`)?.provenance;

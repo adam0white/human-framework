@@ -318,8 +318,33 @@ export function promptingLine(
   reading: PromptingReading,
   outcome: PromptingRecord['outcome'],
   kind?: PromptingResponseKind,
-  options: { voice?: 'first' | 'third' } = {},
+  options: { voice?: 'first' | 'third'; plainEnglish?: boolean } = {},
 ): string {
+  if (options.plainEnglish) {
+    const third = options.voice === 'third';
+    const who = third ? 'The person' : 'I';
+    const felt = third
+      ? 'The person felt an urge.'
+      : {
+          whisper: 'I felt a whisper urging me to act.',
+          inclination: 'I felt an urge from my own desires.',
+          intrusion: 'I had a thought. It does not define who I am.',
+          fault: 'I had a thought that felt like wrongdoing.',
+          none: 'I felt an urge.',
+        }[reading];
+    if (outcome === 'assented') {
+      const urge = third
+        ? 'The person felt an urge.'
+        : reading === 'whisper' || reading === 'inclination'
+          ? felt
+          : 'I felt an urge.';
+      return `${urge} ${who} acted on it.`;
+    }
+    if (outcome === 'passed') return `${felt} It passed without action.`;
+    if (kind === 'redirect') return `${felt} ${who} chose something else and let it pass.`;
+    if (kind === 'refuge') return `${felt} ${who} sought refuge and let it pass.`;
+    return `${felt} ${who} did not act on it.`;
+  }
   // Plain third-person observations describe the response, without inferring the prompt's origin.
   if (options.voice === 'third') {
     if (outcome === 'assented') return 'an urge came and was acted on';
@@ -390,7 +415,11 @@ export function promptingsReading(p: Person, now: Minute = p.now): PromptingsRea
       practice: round(practiceAt(r, now, halfLifeOf(s))),
       ...(r.cue !== undefined ? { cue: r.cue } : {}),
     })),
-    lines: s.recent.slice(-5).map((r) => promptingLine(s.reading, r.outcome, kindOf(r.responseId))),
+    lines: s.recent
+      .slice(-5)
+      .map((r) =>
+        promptingLine(s.reading, r.outcome, kindOf(r.responseId), { plainEnglish: p.lexicon?.plainEnglish }),
+      ),
   };
   if (s.readingSource !== undefined) view.readingSource = s.readingSource;
   return view;
@@ -424,19 +453,25 @@ export function nafsPatterns(p: Person, inputs: { guiltLoad: Unit; guilt: Unit }
       name: 'urging',
       ref: 'Qur’an 12:53',
       evident: assentedAgainstNorm.length > 0,
-      evidence: `${assentedAgainstNorm.length} recent prompts followed against a held norm`,
+      evidence: p.lexicon?.plainEnglish
+        ? `The person acted on ${assentedAgainstNorm.length} recent urges despite a rule they hold.`
+        : `${assentedAgainstNorm.length} recent prompts followed against a held norm`,
     },
     {
       name: 'reproaching',
       ref: 'Qur’an 75:2',
       evident: reproach,
-      evidence: `open-breach weight ${round(inputs.guiltLoad, 2)}, felt guilt ${round(inputs.guilt, 2)}`,
+      evidence: p.lexicon?.plainEnglish
+        ? `The weight of unresolved breaches is ${round(inputs.guiltLoad, 2)}. The strength of felt guilt is ${round(inputs.guilt, 2)}.`
+        : `open-breach weight ${round(inputs.guiltLoad, 2)}, felt guilt ${round(inputs.guilt, 2)}`,
     },
     {
       name: 'at rest',
       ref: 'Qur’an 89:27',
       evident: letPass > 0 && assentedAgainstNorm.length === 0 && !reproach,
-      evidence: `${letPass} recent prompts let pass, none followed against a norm, no felt reproach`,
+      evidence: p.lexicon?.plainEnglish
+        ? `${letPass} recent urges passed without action. ${assentedAgainstNorm.length} were acted on against a held rule. Current guilt or unresolved breach: ${reproach ? 'yes' : 'no'}.`
+        : `${letPass} recent prompts let pass, none followed against a norm, no felt reproach`,
     },
   ];
 }

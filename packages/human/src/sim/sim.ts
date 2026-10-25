@@ -197,6 +197,54 @@ export interface SimEvent {
   withId?: PersonId;
 }
 
+/** Complete sentences for generated event details. Host outcome summaries bypass this reader. */
+function plainEventDetail(p: Person, event: SimEvent): string {
+  const name = p.name;
+  const detail = event.detail;
+  switch (event.kind) {
+    case 'decide':
+      return detail;
+    case 'idle':
+      return `${name} did not choose a task.`;
+    case 'died':
+      return `${name} died.`;
+    case 'begin':
+    case 'continue':
+    case 'finish':
+      return detail;
+    case 'perceive': {
+      const counts = /^(\d+)\/(\d+) percepts$/.exec(detail);
+      return counts ? `${name} noticed ${counts[1]} of ${counts[2]} events.` : `${name} noticed “${detail}”.`;
+    }
+    case 'interrupt':
+      return `${name} was interrupted by the event “${detail.replace(/^percept:/, '')}”.`;
+    case 'propose':
+      return `${name} proposed the shared task “${detail}”.`;
+    case 'accept':
+      return `${name} joined the shared task “${detail.replace(/^joins /, '')}”.`;
+    case 'decline':
+      return `${name} declined the shared task “${detail.replace(/^declined /, '')}”.`;
+    case 'converse':
+      return `${name} spoke. The exchange included: “${detail}”.`;
+    case 'contagion':
+      return `${name} ${detail}.`;
+    case 'command':
+      return `${name} received the order “${detail}”.`;
+    case 'release':
+      return `${name} was released from the order.`;
+    case 'onset':
+      return `${name} developed the condition “${detail}”.`;
+    case 'stage':
+      return `${name} entered the life stage “${detail}”.`;
+  }
+}
+
+function taskEndLine(p: Person, label: string, status: Outcome['status']): string {
+  if (status === 'completed') return `${p.name} completed the task “${label}”.`;
+  if (status === 'failed') return `${p.name} failed to complete the task “${label}”.`;
+  return `${p.name} was interrupted during the task “${label}”.`;
+}
+
 /** A pending or settled joint activity (host-side bookkeeping, plain JSON). */
 export interface JointProposal {
   id: string;
@@ -434,7 +482,7 @@ export function tellDeath(
         targetId: dead.id,
         valence: -0.8,
         salience: 0.9,
-        summary: `${dead.name} died`,
+        summary: q.lexicon?.plainEnglish ? `${dead.name} died.` : `${dead.name} died`,
       },
     ]);
     // A spouse is widowed even if the news went unattended.
@@ -604,8 +652,12 @@ export function acceptJoint(
   proposal: JointProposal,
   partner: Person,
   partnerRecord: DecisionRecord,
-  log: (e: SimEvent) => void = () => {},
+  writeLog: (e: SimEvent) => void = () => {},
 ): Activity[] {
+  const log = (e: SimEvent) => {
+    const person = personById(c, e.personId);
+    writeLog(person?.lexicon?.plainEnglish ? { ...e, detail: plainEventDetail(person, e) } : e);
+  };
   if (proposal.status !== 'pending' || !proposal.partnerIds.includes(partner.id)) return [];
   if (!proposal.accepted.includes(partner.id)) proposal.accepted.push(partner.id);
   proposal.partnerRecords[partner.id] = partnerRecord;
@@ -631,7 +683,9 @@ export function acceptJoint(
         at,
         personId: person.id,
         kind: 'finish',
-        detail: `${act.action} ${outcome.status}`,
+        detail: person.lexicon?.plainEnglish
+          ? taskEndLine(person, act.affordance.label, outcome.status)
+          : `${act.action} ${outcome.status}`,
         decisionId: act.decisionId,
         affordanceId: act.affordanceId,
         action: act.action,
@@ -648,7 +702,9 @@ export function acceptJoint(
         at,
         personId: person.id,
         kind: 'begin',
-        detail: `${offer.label} (joint ${proposal.id})`,
+        detail: person.lexicon?.plainEnglish
+          ? `${person.name} began the shared task “${offer.label}”. ${record.intention}`
+          : `${offer.label} (joint ${proposal.id})`,
         decisionId: record.id,
         affordanceId: offer.id,
         action: offer.action,
@@ -968,8 +1024,14 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
   // Communities created before joint support (plain JSON from an older host) get the new bookkeeping.
   c.interrupts ??= {};
   c.joint ??= { nextId: 0, proposals: [], excluded: {} };
-  const log = (e: SimEvent) => {
-    if (events.length < maxEvents) events.push(e);
+  // Presentation only: retain host-authored summaries and every event field other than generated detail.
+  const log = (e: SimEvent, authored = false) => {
+    const person = personById(c, e.personId);
+    if (events.length < maxEvents) {
+      events.push(
+        person?.lexicon?.plainEnglish && !authored ? { ...e, detail: plainEventDetail(person, e) } : e,
+      );
+    }
   };
   const contagion = opts.contagion ?? true;
   c.queued ??= {};
@@ -1036,13 +1098,17 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
         at: t,
         personId: p.id,
         kind: 'finish',
-        detail: outcome.summary ?? `${act.action} ${outcome.status}`,
+        detail:
+          outcome.summary ??
+          (p.lexicon?.plainEnglish
+            ? taskEndLine(p, act.affordance.label, outcome.status)
+            : `${act.action} ${outcome.status}`),
         decisionId: act.decisionId,
         affordanceId: act.affordanceId,
         action: act.action,
       };
       if (report) ev.status = report.status;
-      log(ev);
+      log(ev, outcome.summary !== undefined);
       if (outcome.status === 'completed') {
         noteStandingDone(c, p, act, t);
         if (pairMinute !== t) {
@@ -1094,7 +1160,7 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
         detail: `joins ${acceptedProposal.offer.label}`,
         jointId: acceptedProposal.id,
       });
-      acceptJoint(c, world, acceptedProposal, p, record, log);
+      acceptJoint(c, world, acceptedProposal, p, record, (event) => log(event, true));
       continue;
     }
 
@@ -1103,21 +1169,36 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
       act !== null && (record.chosenAffordanceId === null || record.chosenAffordanceId === act.affordanceId);
     if (act && continuing) {
       reviewed(p);
-      log({ at: t, personId: p.id, kind: 'continue', detail: act.action, affordanceId: act.affordanceId });
+      log({
+        at: t,
+        personId: p.id,
+        kind: 'continue',
+        detail: p.lexicon?.plainEnglish
+          ? `${p.name} continued the task “${act.affordance.label}”.`
+          : act.action,
+        affordanceId: act.affordanceId,
+      });
       continue;
     }
     if (chosen && isJointOffer(c, p, chosen)) {
       // The running activity (if any) continues until the partners answer.
       const proposal = proposeJoint(c, p, chosen, record);
-      log({
-        at: t,
-        personId: p.id,
-        kind: proposal.status === 'declined' ? 'decline' : 'propose',
-        detail: `${chosen.label} with ${proposal.partnerIds.join(', ')}`,
-        affordanceId: chosen.id,
-        action: chosen.action,
-        jointId: proposal.id,
-      });
+      log(
+        {
+          at: t,
+          personId: p.id,
+          kind: proposal.status === 'declined' ? 'decline' : 'propose',
+          detail: p.lexicon?.plainEnglish
+            ? proposal.status === 'declined'
+              ? `The shared task “${chosen.label}” could not start because a partner was unavailable.`
+              : `${chosen.label} with ${proposal.partnerIds.map((id) => personById(c, id)?.name ?? id).join(', ')}`
+            : `${chosen.label} with ${proposal.partnerIds.join(', ')}`,
+          affordanceId: chosen.id,
+          action: chosen.action,
+          jointId: proposal.id,
+        },
+        Boolean(p.lexicon?.plainEnglish && proposal.status === 'declined'),
+      );
       continue;
     }
     if (act) {
@@ -1127,7 +1208,9 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
         at: t,
         personId: p.id,
         kind: 'finish',
-        detail: `${act.action} interrupted`,
+        detail: p.lexicon?.plainEnglish
+          ? taskEndLine(p, act.affordance.label, 'interrupted')
+          : `${act.action} interrupted`,
         decisionId: act.decisionId,
         affordanceId: act.affordanceId,
         action: act.action,
@@ -1148,7 +1231,9 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
       at: t,
       personId: p.id,
       kind: 'begin',
-      detail: `${chosen.label} (${record.intention})`,
+      detail: p.lexicon?.plainEnglish
+        ? `${p.name} began the task “${chosen.label}”. ${record.intention}`
+        : `${chosen.label} (${record.intention})`,
       decisionId: record.id,
       affordanceId: chosen.id,
       action: chosen.action,

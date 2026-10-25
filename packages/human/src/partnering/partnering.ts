@@ -509,7 +509,7 @@ export function marry(
       targetId: y.id,
       valence: 0.9,
       salience: 0.95,
-      summary: 'married',
+      summary: x.lexicon?.plainEnglish ? `I married ${y.name}.` : 'married',
       tags: ['marriage', 'family'],
     });
     feel(x, 'joy', 0.7, `event:marriage:${y.id}`, at, y.id);

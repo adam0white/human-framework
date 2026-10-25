@@ -216,6 +216,13 @@ Emotion terms are named `emotion:<emotion>:<tag>` (e.g. `emotion:fear:risky`): t
 
 ## Narration and social host options (opt-in)
 
+`Lexicon.plainEnglish` (HF2.19.0) selects a complete literal English template pack.
+Built-in intentions and person summaries become sentences. Legacy templates remain
+unchanged; host replacements and extensions retain precedence. This choice is
+saved in the lexicon and changes recorded prose, not decisions or RNG. Hosts must
+pin the choice in replay setup. Unknown host prose still needs host-authored wording.
+
+
 `Lexicon.variety` varies assent and deferral replies by person and minute without consuming RNG;
 it is read by ordinary `decide` and `predict`. It also varies `reviewLine` by
 person and day. `Lexicon.nounActions` uses “did” and “doing” around an action label

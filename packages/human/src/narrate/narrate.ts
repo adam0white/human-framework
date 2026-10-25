@@ -5,9 +5,12 @@
  * consuming the person's RNG. When memory shaped an option (the record's `recalled` episodes), the narration
  * cites the episode summary. People are named through `nameOf` (lexicon name, role phrase, or id). This is
  * presentation only: nothing here reads back into the simulation, and no claim is made that the templates
- * reflect how people actually explain themselves.
+ * reflect how people actually explain themselves. `Lexicon.plainEnglish` opts into sentence intentions
+ * and summaries; arbitrary host prose is not translated or grammatically inferred.
  */
+
 import { NORM_SCOPE } from '../conscience/index.ts';
+import { labelLine } from '../presentation.ts';
 import type { Considered, DecisionRecord, Episode, Lexicon, Person, SuggestionResolution } from '../types.ts';
 import { capitalize, linesFor, lowerFirst, nameOf, phraseLine, pickLine } from './lexicon.ts';
 
@@ -16,14 +19,11 @@ import { capitalize, linesFor, lowerFirst, nameOf, phraseLine, pickLine } from '
  * follows the norm, not the person (review 2026-10-03): a host whose people differ in faith overrides
  * `devotion.allah` / `devotion.god` per person through `Person.lexicon` (from `PersonSpec.lexicon`).
  */
-function devotion(p: Person, normId: string | undefined, lex: Lexicon | undefined): string {
+function devotion(p: Person, normId: string | undefined, lex: Lexicon | undefined, say = phraseLine): string {
   if (p.values.tradition < 0.6)
-    return normId === undefined
-      ? phraseLine('devotion.keep', {}, lex)
-      : phraseLine('intention.right', {}, lex);
-  if (normId !== undefined && NORM_SCOPE[normId] === 'religious')
-    return phraseLine('devotion.allah', {}, lex);
-  return phraseLine('devotion.god', {}, lex);
+    return normId === undefined ? say('devotion.keep', {}, lex) : say('intention.right', {}, lex);
+  if (normId !== undefined && NORM_SCOPE[normId] === 'religious') return say('devotion.allah', {}, lex);
+  return say('devotion.god', {}, lex);
 }
 
 const topTerm = (c: Considered | undefined): { source: string; value: number } | undefined => {
@@ -36,71 +36,103 @@ const topTerm = (c: Considered | undefined): { source: string; value: number } |
 const PLAYER_VOICES = new Set(['player', 'you']);
 
 /** Intention string for a decision: 'for Allah', 'to feed myself', 'to keep my promise to X', ... */
-export function intentionFor(p: Person, record: DecisionRecord, lexicon?: Lexicon): string {
+function intentionPhrase(
+  p: Person,
+  record: DecisionRecord,
+  lexicon?: Lexicon,
+  selected?: { key?: string },
+): string {
   const lex = lexicon ?? p.lexicon;
+  const say = (key: string, vars: Readonly<Record<string, string | number>> = {}, lex?: Lexicon) => {
+    if (selected) selected.key = key;
+    return phraseLine(key, vars, lex);
+  };
   const chosen = record.considered.find((c) => c.affordanceId === record.chosenAffordanceId);
-  if (!chosen) return phraseLine('intention.none', {}, lex);
-  if (record.suggestion?.verdict === 'complied') return phraseLine('intention.complied', {}, lex);
-  if (record.suggestion?.verdict === 'commanded') return phraseLine('intention.commanded', {}, lex);
+  if (!chosen) return say('intention.none', {}, lex);
+  if (record.suggestion?.verdict === 'complied') return say('intention.complied', {}, lex);
+  if (record.suggestion?.verdict === 'commanded') return say('intention.commanded', {}, lex);
   const top = topTerm(chosen);
-  if (!top) return phraseLine('intention.default', {}, lex);
+  if (!top) return say('intention.default', {}, lex);
   const [kind, rest] = [top.source.split(':')[0] ?? '', top.source.slice(top.source.indexOf(':') + 1)];
   switch (kind) {
     case 'need':
       return linesFor(`intention:${rest}`, lex).length > 0
-        ? phraseLine(`intention:${rest}`, {}, lex)
-        : phraseLine('intention.need', { need: rest }, lex);
+        ? say(`intention:${rest}`, {}, lex)
+        : say('intention.need', { need: rest }, lex);
     case 'norm': {
       const tracked = p.agenda.commitments.some((c) => c.normId === rest && c.kind === 'worship');
-      if (NORM_SCOPE[rest] === 'religious' || tracked) return devotion(p, rest, lex);
-      return phraseLine('intention.right', {}, lex);
+      if (NORM_SCOPE[rest] === 'religious' || tracked) return devotion(p, rest, lex, say);
+      return say('intention.right', {}, lex);
     }
     case 'conscience':
-      return phraseLine(rest === 'repair' ? 'intention.repair' : 'intention.repent', {}, lex);
+      return say(rest === 'repair' ? 'intention.repair' : 'intention.repent', {}, lex);
     case 'commitment': {
       const c = p.agenda.commitments.find((x) => x.id === rest);
       if (c?.kind === 'worship')
         return c.normId === undefined || p.values.tradition < 0.6
-          ? devotion(p, undefined, lex)
-          : devotion(p, c.normId, lex);
+          ? devotion(p, undefined, lex, say)
+          : devotion(p, c.normId, lex, say);
       if (c?.toId && c.toId !== 'self')
-        return phraseLine('intention.promiseTo', { who: nameOf(p, c.toId, lex) }, lex);
+        return say('intention.promiseTo', { who: nameOf(p, c.toId, lex) }, lex);
       // A host may phrase a labelled commitment its own way ('intention.label:suhoor' → "for suhoor").
       if (c?.label !== undefined && linesFor(`intention.label:${c.label}`, lex).length > 0)
-        return phraseLine(`intention.label:${c.label}`, {}, lex);
-      return phraseLine('intention.word', {}, lex);
+        return say(`intention.label:${c.label}`, {}, lex);
+      return say('intention.word', {}, lex);
     }
     case 'goal': {
       const g = p.agenda.goals.find((x) => x.id === rest);
       return g
-        ? phraseLine('intention.goal', { goal: g.label.replace(/-/g, ' ') }, lex)
-        : phraseLine('intention.goalFallback', {}, lex);
+        ? say(
+            'intention.goal',
+            { goal: lex?.plainEnglish ? labelLine(g.label, lex) : g.label.replace(/-/g, ' ') },
+            lex,
+          )
+        : say('intention.goalFallback', {}, lex);
     }
     case 'social':
       return rest === 'group'
-        ? phraseLine('intention.group', {}, lex)
-        : phraseLine('intention.for', { who: nameOf(p, rest, lex) }, lex);
+        ? say('intention.group', {}, lex)
+        : say('intention.for', { who: nameOf(p, rest, lex) }, lex);
     case 'suggestion': {
       const voice = rest.startsWith('remembered:') ? rest.slice('remembered:'.length) : rest;
       if (lex?.names?.[voice] !== undefined && !PLAYER_VOICES.has(voice))
-        return phraseLine('intention.suggestionBy', { who: nameOf(p, voice, lex) }, lex);
-      return phraseLine('intention.suggestion', {}, lex);
+        return say('intention.suggestionBy', { who: nameOf(p, voice, lex) }, lex);
+      return say('intention.suggestion', {}, lex);
     }
     case 'habit':
-      return phraseLine('intention.habit', {}, lex);
+      return say('intention.habit', {}, lex);
     case 'emotion':
-      return phraseLine('intention.emotion', {}, lex);
+      return say('intention.emotion', {}, lex);
     case 'material':
       return lex?.materialMeaning !== undefined
-        ? phraseLine('intention.material.named', { material: lex.materialMeaning }, lex)
-        : phraseLine('intention.material', {}, lex);
+        ? say('intention.material.named', { material: lex.materialMeaning }, lex)
+        : say('intention.material', {}, lex);
     case 'precommit':
-      return phraseLine('intention.precommit', {}, lex);
+      return say('intention.precommit', {}, lex);
     case 'expectation':
-      return phraseLine('intention.expectation', {}, lex);
+      return say('intention.expectation', {}, lex);
     default:
-      return phraseLine('intention.default', {}, lex);
+      return say('intention.default', {}, lex);
   }
+}
+
+/**
+ * A plain intention is a sentence; legacy intentions remain phrases for existing hosts.
+ * Host-authored sentences pass through. This renderer never changes the record or RNG.
+ */
+export function intentionFor(p: Person, record: DecisionRecord, lexicon?: Lexicon): string {
+  const lex = lexicon ?? p.lexicon;
+  const selected: { key?: string } = {};
+  const phrase = intentionPhrase(p, record, lex, selected);
+  if (selected.key !== undefined && lex?.lines?.[selected.key] !== undefined) return phrase;
+  if (!lex?.plainEnglish || /[.!?]$/.test(phrase)) return phrase;
+  if (phrase === 'nothing to do') return 'There is nothing for me to do.';
+  if (phrase === 'to earn') return 'I want to earn money.';
+  if (phrase.startsWith('to ')) return `I want ${phrase}.`;
+  if (phrase.startsWith('because ')) return `I am doing this ${phrase}.`;
+  if (phrase.startsWith('for ')) return `I am doing this ${phrase}.`;
+  if (phrase === 'out of habit') return 'I am doing this out of habit.';
+  return `My reason is ${phrase}.`;
 }
 
 function citeEpisode(
@@ -114,7 +146,12 @@ function citeEpisode(
     p.memory.episodes.find((e) => e.id === ids[0]) ?? p.memory.gists?.find((g) => g.id === ids[0]);
   if (!ep) return undefined;
   const summary = ep.summary.endsWith('.') ? ep.summary : `${ep.summary}.`;
-  return pickLine(ep.valence < 0 ? 'cite.bad' : 'cite.good', key, { summary: lowerFirst(summary) }, lex);
+  return pickLine(
+    ep.valence < 0 ? 'cite.bad' : 'cite.good',
+    key,
+    { summary: lex?.plainEnglish ? summary : lowerFirst(summary) },
+    lex,
+  );
 }
 
 /** A rival within this fraction of the chosen utility makes the choice "a close call". */
@@ -223,7 +260,7 @@ export function voiceLine(p: Person, res: SuggestionResolution, key = res.reason
     }
     case 'modified': {
       const alt = res.counterOffer?.label ?? phraseLine('voice.modified.default', {}, lex);
-      return pickLine('voice.modified', key, { alt: lowerFirst(alt) }, lex);
+      return pickLine('voice.modified', key, { alt: lex?.plainEnglish ? alt : lowerFirst(alt) }, lex);
     }
     case 'refused': {
       if (res.reason === 'distrust') {
@@ -232,7 +269,11 @@ export function voiceLine(p: Person, res: SuggestionResolution, key = res.reason
           return pickLine(
             'voice.distrust.episode',
             key,
-            { what: lowerFirst(ep.summary.replace(/\.$/, '')) },
+            {
+              what: lex?.plainEnglish
+                ? ep.summary.replace(/[.!?]$/, '')
+                : lowerFirst(ep.summary.replace(/\.$/, '')),
+            },
             lex,
           );
         return pickLine('voice.distrust', key, {}, lex);
@@ -245,7 +286,7 @@ export function voiceLine(p: Person, res: SuggestionResolution, key = res.reason
             : duty?.label
               ? duty.label
               : phraseLine('voice.omission.default', {}, lex);
-        return pickLine('voice.omission', key, { what }, lex);
+        return pickLine('voice.omission', key, { what: labelLine(what, lex) }, lex);
       }
       if (res.kind === 'willNot' && res.reason.startsWith('duty:')) {
         // An abstention held as a duty (the fast): the veto names what is being kept, not a forbidden act.
@@ -298,6 +339,17 @@ export function describePerson(p: Person, lexicon?: Lexicon): string {
   const act = p.activity
     ? `${p.activity.action}${p.activity.targetId ? ` (${p.activity.targetId})` : ''}`
     : phraseLine('describe.idle', {}, lex);
+  if (lex?.plainEnglish) {
+    const state = bits.length > 0 ? bits.join(', ') : phraseLine('describe.well', {}, lex);
+    const activity = p.activity
+      ? `${p.name} is doing this: ${p.activity.affordance.label}${p.activity.targetId ? ` (${nameOf(p, p.activity.targetId, lex)})` : ''}.`
+      : `${p.name} is ${phraseLine('describe.idle', {}, lex)}.`;
+    return phraseLine(
+      'describe.line',
+      { name: p.name, act: lex.lines?.['describe.line'] ? act : activity, state },
+      lex,
+    );
+  }
   const state = bits.length > 0 ? bits.join(', ') : phraseLine('describe.well', {}, lex);
   return phraseLine('describe.line', { name: p.name, act, state }, lex);
 }

@@ -489,3 +489,43 @@ const returnInput = advanceChapterClock(clock, 48 * 3_600_000);
 ```
 
 The host owns elapsed-time pacing, narrative interpretation, storage, consent and persona admission. A slot is an opportunity for coarse fiction. It is not proof of a lived day, settled duty, completed project or recovered body. Existing actor state and engine2.17.0 continuation remain unchanged unless the host explicitly uses the helper.
+
+
+## Plain English (2.19.0)
+
+Set `lexicon: { plainEnglish: true }` in `PersonSpec` for new people. Change an
+existing person's choice only through an explicit recorded host action. Do not
+overwrite a loaded run's saved choice. Built-in decision narration,
+spoken replies, intentions and person summaries then use complete, literal English.
+Keep this choice in the saved person and replay setup. It changes recorded prose.
+Without the option, legacy wording and continuation stay exact. Engine2.17.0 remains
+unchanged: this option changes presentation, not decisions or save structure.
+
+Host `lines`, `extend`, names and action forms still apply. A host phrase pack owns
+its own grammar. HF does not translate arbitrary host labels or memory summaries.
+Short words used inside templates remain phrases, so they compose grammatically.
+Pass the same lexicon to renderers without a Person, including chronicle renderers
+and label/reason readers.
+Use authored `actions` forms for domain actions that English cannot inflect from an id.
+
+Run `node packages/human/examples/plain-narration-control.ts` to compare legacy and
+plain replies without advancing the person's state or RNG.
+
+`labelLine(label, lexicon)` and `commitmentLabel(commitment, lexicon)` explain built-in
+prayer and purpose labels without changing stored identity keys. `normLabel(norm, lexicon)`
+explains selected built-in norm labels. `reasonLine(code, lexicon)` gives a sentence
+for a known reason; an unknown plain reason returns an empty string so a host can
+supply its own explanation. Without the option, each reader returns the legacy text.
+
+`promptingLine(..., { plainEnglish: true })` supports direct calls.
+`promptingsReading`, `reviewLine` and `bodyForecast` read the saved person's choice.
+A person’s held interpretation of a thought stays distinct from an observed response.
+Neither wording nor a missed-duty explanation changes obligations or excuses.
+
+For domain-specific conversation facts, supply `converse`'s `phrase` callback.
+HF cannot infer the English meaning of an opaque proposition id. Without authored
+wording, the generic fact sentence still includes that id so the claim is not hidden.
+
+Stock village outcomes, birth/marriage memories, routine fallbacks and generated
+community log details use the same per-person option. World-supplied outcome
+summaries and routine summaries remain exact.

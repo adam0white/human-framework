@@ -46,9 +46,11 @@
  * The framework never computes whether a prayer or a make-up is accepted.
  */
 // The bundled catalog is only the default; a host with its own catalog passes it (`World.catalog`).
+
 import { DEFAULT_NORMS } from '../conscience/catalog.ts';
 import { clamp01, dayOf, dpow, hasNumbers, isNum, isObj } from '../core/index.ts';
 import { expectedEffect } from '../memory/index.ts';
+import { labelLine } from '../presentation.ts';
 import { diminishesProject } from '../projects/index.ts';
 import type {
   Affordance,
@@ -1109,7 +1111,9 @@ export function revisePurposes(
       kind: 'abandoned',
       actorId: p.id,
       valence: -0.3 * g.baseImportance,
-      summary: `gave up on ${g.label}`,
+      summary: p.lexicon?.plainEnglish
+        ? `I stopped trying to reach this goal: ${labelLine(g.label, p.lexicon)}.`
+        : `gave up on ${g.label}`,
       tags: ['abandoned', 'goal', g.label, ...g.serves],
     });
   }

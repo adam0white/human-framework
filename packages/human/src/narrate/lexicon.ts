@@ -1,6 +1,7 @@
 /**
  * SCOPE: keyed narration templates, host phrase packs and name/role lookup (N6). Every English sentence the
- * framework narrates lives in `EN_LINES` under a stable key; a host `Lexicon` replaces (`lines`) or extends
+ * framework narrates lives in `EN_LINES` under a stable key; `Lexicon.plainEnglish` selects the matching
+ * literal English pack while preserving default templates and host overrides. A host `Lexicon` replaces (`lines`) or extends
  * (`extend`) any key, names entities ("Ada") and maps relationship roles to nouns ("daughter") so narration
  * can say "my daughter" or "his daughter". Selection stays deterministic: a template is picked by an FNV hash of
  * a caller key (a decision id, a day index), never by the person's RNG. This is presentation only. It is
@@ -9,6 +10,7 @@
  * reads back into the simulation.
  */
 import type { EntityId, Lexicon, Person } from '../types.ts';
+import { PLAIN_EN_LINES } from './plain.ts';
 
 /** FNV-1a 32-bit hash for deterministic template selection. */
 export function hashString(s: string): number {
@@ -278,7 +280,8 @@ export const EN_LINES: Readonly<Record<string, readonly string[]>> = {
 
 /** Templates for a key after the lexicon's replacements and extensions; empty when unknown. */
 export function linesFor(key: string, lex?: Lexicon): readonly string[] {
-  const base = lex?.lines?.[key] ?? EN_LINES[key] ?? [];
+  const base =
+    lex?.lines?.[key] ?? (lex?.plainEnglish ? PLAIN_EN_LINES[key] : undefined) ?? EN_LINES[key] ?? [];
   const more = lex?.extend?.[key];
   return more && more.length > 0 ? [...base, ...more] : base;
 }

@@ -126,11 +126,24 @@ export function bodyForecastTerm(
 export function forecastLine(
   spans: readonly BodyForecastSpan[],
   at: { comfortAt: number; spentAt: number } = FORECAST_DEFAULTS,
+  options: { plainEnglish?: boolean } = {},
 ): string {
   const after = spans.slice(1);
   if (after.length === 0) return '';
   let w = after[0] as BodyForecastSpan;
   for (const s of after) if (s.worst > w.worst) w = s;
+  if (options.plainEnglish) {
+    const label = w.label === 'after' ? 'what comes next' : w.label;
+    const state = {
+      fatigue: 'too tired',
+      sleepiness: 'too sleepy',
+      hunger: 'too hungry',
+      thirst: 'too thirsty',
+    }[w.worstOf];
+    if (w.worst >= at.spentAt) return `I can do this. I will be ${state} for ${label}.`;
+    if (w.worst >= at.comfortAt) return `I can do this, but ${label} will be hard.`;
+    return `I can manage ${label} afterward.`;
+  }
   const what = { fatigue: 'spent', sleepiness: 'too sleepy', hunger: 'too hungry', thirst: 'too thirsty' }[
     w.worstOf
   ];

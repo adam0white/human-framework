@@ -131,6 +131,7 @@ import {
 } from './needs/index.ts';
 import { widow } from './partnering/index.ts';
 import { beginPursuit, enablePersistence, releasePursuit } from './persistence/index.ts';
+import { commitmentLabel } from './presentation.ts';
 import {
   considerProjects,
   enableProjects,
@@ -484,7 +485,11 @@ function recordMissed(p: Person, broken: Commitment[], now: Minute, brokenBy?: s
       action,
       actorId: p.id,
       valence: -0.5 * c.importance,
-      summary: `missed ${c.kind}: ${action}`,
+      summary: p.lexicon?.plainEnglish
+        ? c.kind === 'abstain'
+          ? `I broke this abstention (${commitmentLabel(c, p.lexicon)}) by doing this: ${action.replace(/[-_]/g, ' ')}.`
+          : `I did not complete this commitment (${commitmentLabel(c, p.lexicon)}). It required this action: ${action.replace(/[-_]/g, ' ')}.`
+        : `missed ${c.kind}: ${action}`,
       tags: ['missed', c.kind, ...(isNight(now) ? ['night'] : [])],
       ...(c.toId !== undefined && c.toId !== 'self' ? { targetId: c.toId } : {}),
     });
@@ -654,7 +659,13 @@ function crisisStep(p: Person, at: Minute): void {
     action: ev.behaviourId,
     actorId: p.id,
     valence: ev.kind === 'onset' ? -0.6 : 0.2,
-    summary: ev.kind === 'onset' ? `I broke down (${label})` : 'I came back to myself',
+    summary: p.lexicon?.plainEnglish
+      ? ev.kind === 'onset'
+        ? `I had a breakdown (${label}).`
+        : 'My breakdown ended.'
+      : ev.kind === 'onset'
+        ? `I broke down (${label})`
+        : 'I came back to myself',
     tags: ['break', ev.kind],
   });
   if (ev.kind === 'onset') interrupt(p, at, 'break');
@@ -675,7 +686,13 @@ function rememberDowned(p: Person, at: Minute, kind: 'down' | 'up', reason: stri
     action: reason,
     actorId: p.id,
     valence: kind === 'down' ? -0.5 : 0.3,
-    summary: kind === 'down' ? 'I went down and could not get up' : 'I got back on my feet',
+    summary: p.lexicon?.plainEnglish
+      ? kind === 'down'
+        ? 'I could not stand up.'
+        : 'I could stand up again.'
+      : kind === 'down'
+        ? 'I went down and could not get up'
+        : 'I got back on my feet',
     tags: ['downed', kind, reason],
   });
 }
@@ -1128,7 +1145,9 @@ export function decide(
         actorId: res.voiceId,
         targetId: p.id,
         valence: -0.3,
-        summary: `${res.voiceId} insisted that I ${chosen?.label ?? 'do as told'}`,
+        summary: p.lexicon?.plainEnglish
+          ? `${p.lexicon.names?.[res.voiceId] ?? res.voiceId} insisted: ${chosen?.label ?? 'follow the request'}.`
+          : `${res.voiceId} insisted that I ${chosen?.label ?? 'do as told'}`,
         tags: ['suggestion', 'insist'],
         voiceId: res.voiceId,
       });
@@ -1176,7 +1195,9 @@ function applyCommandOutcome(p: Person, co: CommandOutcome, list: readonly Affor
     actorId: c.voiceId,
     targetId: p.id,
     valence: -0.2 - 0.3 * Math.min(1, co.margin),
-    summary: `${c.voiceId} took charge and had me ${target?.label ?? 'do as ordered'}`,
+    summary: p.lexicon?.plainEnglish
+      ? `${p.lexicon.names?.[c.voiceId] ?? c.voiceId} ordered: ${target?.label ?? 'follow the order'}.`
+      : `${c.voiceId} took charge and had me ${target?.label ?? 'do as ordered'}`,
     tags: ['suggestion', 'command'],
     voiceId: c.voiceId,
   });
@@ -1667,7 +1688,11 @@ export function finish(p: Person, outcome: Outcome, opts: FinishOptions = {}): F
     action: aff.action,
     actorId: p.id,
     valence: felt,
-    summary: outcome.summary ?? `${aff.label}: ${outcome.status}`,
+    summary:
+      outcome.summary ??
+      (p.lexicon?.plainEnglish
+        ? `${outcome.status === 'completed' ? 'I completed' : outcome.status === 'interrupted' ? 'I was interrupted during' : 'I could not complete'} this action: ${aff.label}.`
+        : `${aff.label}: ${outcome.status}`),
     tags: [...(aff.tags ?? []), outcome.status, ...(isNight(act.startedAt) ? ['night'] : [])],
   };
   if (aff.targetId !== undefined) episode.targetId = aff.targetId;
@@ -1787,5 +1812,8 @@ export function nafsReading(p: Person): NafsPattern[] {
  */
 export function bodyForecast(p: Person, aff: Affordance): { spans: BodyForecastSpan[]; line: string } {
   const spans = bodyForecastFor(p, aff, lifeModifiers(p), fastingCtx(p));
-  return { spans, line: forecastLine(spans, forecastThresholds(aff)) };
+  return {
+    spans,
+    line: forecastLine(spans, forecastThresholds(aff), { plainEnglish: p.lexicon?.plainEnglish }),
+  };
 }
