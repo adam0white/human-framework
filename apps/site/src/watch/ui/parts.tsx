@@ -1,5 +1,6 @@
 /** Small drawn pieces shared by the pages: the granary's sacks, the bell rope's strands, the Keeper's impressions. */
 import type { CSSProperties } from 'react';
+import { settingWords } from '../../shared/setting-words.ts';
 import type { Impression } from '../sim/reads.ts';
 import type { Frame } from '../sim/view.ts';
 import { watchImpression } from './wording.ts';
@@ -36,7 +37,7 @@ export function Sacks({
       className="w-sacks"
       viewBox={`0 0 ${perRow * 18 + 4} ${rows * 16 + 4}`}
       role="img"
-      aria-label={label}
+      aria-label={settingWords(label)}
     >
       <title>{label}</title>
       {range(total).map((n) => {
@@ -68,7 +69,7 @@ export function Rope({ wear, snapped }: { wear: number; snapped: boolean }) {
   const left = snapped ? 0 : Math.max(1, Math.round(strands * (1 - wear)));
   const label = ropeWords(wear, snapped);
   return (
-    <svg className="w-rope" viewBox="0 0 120 24" role="img" aria-label={label}>
+    <svg className="w-rope" viewBox="0 0 120 24" role="img" aria-label={settingWords(label)}>
       <title>{label}</title>
       {range(strands).map((i) => {
         const y = 6 + i * 2.4;
@@ -107,7 +108,7 @@ export function Impressions({ impressions }: { impressions: Impression[] }) {
 /** A budget drawn as lit and spent pips (the Keeper's daylight for talks). */
 export function Pips({ left, of, label }: { left: number; of: number; label: string }) {
   return (
-    <span className="w-pips" role="img" aria-label={label}>
+    <span className="w-pips" role="img" aria-label={settingWords(label)}>
       {range(of).map((i) => (
         <span key={i} className={i < left ? 'w-pip' : 'w-pip is-spent'} />
       ))}
@@ -123,7 +124,7 @@ export function WinterProgress({ frame }: { frame: Pick<Frame, 'winter' | 'phase
   return (
     <div className="w-winter-progress">
       <span className="w-kicker">Watched nights</span>
-      <svg viewBox="0 0 180 20" role="img" aria-label={words}>
+      <svg viewBox="0 0 180 20" role="img" aria-label={settingWords(words)}>
         <path className="w-winter-track" d="M4 11 L45 9 L89 11 L133 9 L176 10" />
         {[0, 1, 2, 3].map((mark) => (
           <path

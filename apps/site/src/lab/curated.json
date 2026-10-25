@@ -6662,6 +6662,34 @@
     "fix:lab Add reading checker and busy second-language reader protocol (open)"
    ],
    "source": "docs/owner-directions-2026-10-18.md#2026-10-24--simplify-the-games-adam-verbatim"
+  },
+  {
+   "id": "F-493",
+   "date": "2026-10-24",
+   "game": "lab",
+   "kind": "owner",
+   "who": "Adam",
+   "words": "Yes keep the setting, fix and cater it better.",
+   "verdict": "-",
+   "routes": [
+    "fix:voice Keep setting and names while translating common nouns into plain English (setting pass, owner readiness remains separate)",
+    "fix:well Keep setting and names while translating common nouns into plain English (setting pass, owner readiness remains separate)",
+    "fix:watch Keep setting and names while translating common nouns into plain English (setting pass, owner readiness remains separate)",
+    "fix:pass Keep setting and names while translating common nouns into plain English (setting pass, owner readiness remains separate)",
+    "fix:glance Keep setting and names while translating common nouns into plain English (setting pass, owner readiness remains separate)",
+    "fix:murmur Keep setting and names while translating common nouns into plain English (setting pass, owner readiness remains separate)",
+    "fix:repair Keep setting and names while translating common nouns into plain English (setting pass, owner readiness remains separate)",
+    "fix:valley Keep setting and names while translating common nouns into plain English (setting pass, owner readiness remains separate)",
+    "fix:stairwell Keep setting and names while translating common nouns into plain English (setting pass, owner readiness remains separate)",
+    "fix:warren Keep setting and names while translating common nouns into plain English (setting pass, owner readiness remains separate)",
+    "fix:hearsay Keep setting and names while translating common nouns into plain English (setting pass, owner readiness remains separate)",
+    "fix:goodhands Keep setting and names while translating common nouns into plain English (setting pass, owner readiness remains separate)",
+    "fix:rope Keep setting and names while translating common nouns into plain English (setting pass, owner readiness remains separate)",
+    "fix:neighbours Keep setting and names while translating common nouns into plain English (setting pass, owner readiness remains separate)",
+    "fix:commonstead Keep setting and names while translating common nouns into plain English (setting pass, owner readiness remains separate)",
+    "fix:lab Align shared cast terminology without changing the forty identities"
+   ],
+   "source": "docs/owner-directions-2026-10-18.md#2026-10-24--keep-the-setting-adam-verbatim"
   }
  ],
  "lessons": [
@@ -7268,7 +7296,7 @@
   }
  ],
  "routes": {
-  "fix": 657,
+  "fix": 673,
   "lesson": 291,
   "hf": 12,
   "calibration": 42,

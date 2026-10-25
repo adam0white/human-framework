@@ -23,8 +23,8 @@ it('explains fasting meals in the first displayed introduction and transcript', 
       onContinue: () => {},
     }),
   );
-  expect(intro.textContent).toContain('suhoor (meal before the fast)');
-  expect(intro.textContent).toContain('iftar (meal that breaks the fast)');
+  expect(intro.textContent).toContain('pre-dawn meal');
+  expect(intro.textContent).toContain('sunset meal');
   const day = render(
     createElement(DayLog, {
       log: [
@@ -42,7 +42,7 @@ it('explains fasting meals in the first displayed introduction and transcript', 
       onWhy: () => {},
     }),
   );
-  expect(day.textContent).toContain('suhoor (meal before the fast)');
+  expect(day.textContent).toContain('pre-dawn meal');
 });
 
 it('explains action labels at the point of choice', () => {
@@ -61,9 +61,7 @@ it('explains action labels at the point of choice', () => {
       onSayNothing: () => {},
     }),
   );
-  expect(el.querySelector('.v-option-label')?.textContent).toBe(
-    'walk after iftar (meal that breaks the fast)',
-  );
+  expect(el.querySelector('.v-option-label')?.textContent).toBe('walk after the sunset meal');
 });
 
 it('provides the glossary for information content without a second help trigger in Halil', () => {
@@ -76,17 +74,15 @@ it('provides the glossary for information content without a second help trigger 
     );
     expect(glossary).toBeDefined();
     expect(glossary?.getAttribute('popover')).toBe('auto');
-    expect(glossary?.textContent).toContain('Suhoor');
-    expect(glossary?.textContent).toContain('meal before the fast');
-    expect(glossary?.textContent).toContain('Iftar');
-    expect(glossary?.textContent).toContain('meal that breaks the fast');
+    expect(glossary?.textContent).toContain('pre-dawn meal');
+    expect(glossary?.textContent).toContain('before the fast begins');
+    expect(glossary?.textContent).toContain('sunset meal');
+    expect(glossary?.textContent).toContain('breaks the fast');
   }
 });
 
 it('glosses whole meal names and leaves unrelated words unchanged', () => {
-  expect(explainTerms('Suhoor, iftar.')).toBe(
-    'Suhoor (meal before the fast), iftar (meal that breaks the fast).',
-  );
+  expect(explainTerms('Suhoor, iftar.')).toBe('Pre-dawn meal, sunset meal.');
   expect(explainTerms('Halil eats at home.')).toBe('Halil eats at home.');
   expect(explainTerms('suhoors')).toBe('suhoors');
 });

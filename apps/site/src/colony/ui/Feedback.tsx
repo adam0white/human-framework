@@ -4,6 +4,7 @@ import { setTelemetryOff, telemetryOn } from '@adam0white/lab-kit';
 import { useEffect, useRef, useState } from 'react';
 import { optionalFeedbackRun } from '../../shared/feedback-run.ts';
 import { gameLabs } from '../../shared/lab.tsx';
+import { settingWords } from '../../shared/setting-words.ts';
 import './feedback.css';
 
 const NAME_KEY = 'hf-lab-feedback-name';
@@ -161,7 +162,7 @@ export function Feedback({
               aria-pressed={verdict === value}
               onClick={() => setVerdict(verdict === value ? '' : (value ?? ''))}
             >
-              {label}
+              {settingWords(label)}
             </button>
           ))}
         </fieldset>
@@ -192,7 +193,7 @@ export function Feedback({
         </details>
         {status ? (
           <p role="status" className="colony-note">
-            {status}
+            {settingWords(status)}
           </p>
         ) : null}
       </div>

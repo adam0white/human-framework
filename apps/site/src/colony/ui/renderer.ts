@@ -1,3 +1,4 @@
+import { settingWords } from '../../shared/setting-words.ts';
 /**
  * Canvas renderer for one pane. Human: warm flat colour, no outlines, long shadows that swing with the
  * sun, lanterns at night. Classic: a blueprint, desaturated slate, white pawns, crisp hp/hunger bars.
@@ -495,7 +496,7 @@ function drawPlacesClassic(ctx: CanvasRenderingContext2D, world: WorldView) {
 const SHORT_LABEL: Partial<Record<PlaceId, string>> = {
   forest: 'FOREST',
   field: 'FIELD',
-  masjid: 'MASJID',
+  masjid: 'MOSQUE',
   well: 'WELL',
   kitchen: 'KITCHEN',
   site: 'HOUSE',
@@ -543,7 +544,7 @@ function drawLabels(ctx: CanvasRenderingContext2D, input: SceneInput) {
     const strong = size > 16 || classic || input.showPlaceLabels || input.hoverPlace === p.id;
     const r = placeNameRect(ctx, p, size, input.visibleBounds);
     if (!r) continue;
-    const label = SHORT_LABEL[p.id] ?? p.label;
+    const label = settingWords(SHORT_LABEL[p.id] ?? p.label);
     if (classic) {
       ctx.fillStyle = BLUE.label;
       ctx.fillText(label, r.x + r.w / 2, r.y + r.h / 2);
@@ -955,7 +956,7 @@ function drawNames(ctx: CanvasRenderingContext2D, input: SceneInput): PersonLabe
   for (const p of people) {
     const name = p.name?.replace('Hajja ', '').split(' ')[0] ?? p.id.charAt(0).toUpperCase() + p.id.slice(1);
     ctx.font = `600 ${size}px system-ui, sans-serif`;
-    const detail = p.orderStatus ?? (p.id === input.selectedId ? p.label : undefined);
+    const detail = settingWords(p.orderStatus ?? (p.id === input.selectedId ? p.label : undefined));
     const nameWidth = ctx.measureText(name).width;
     ctx.font = `500 ${size * 0.8}px system-ui, sans-serif`;
     const lines: string[] = [];

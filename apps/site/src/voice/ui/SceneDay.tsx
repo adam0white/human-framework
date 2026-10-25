@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { settingWords } from '../../shared/setting-words.ts';
 import type { Draft, Frame, SceneWords, Telegraph } from '../protocol.ts';
 import { Composer } from './Composer.tsx';
 import { spokenLogText } from './conversations.ts';
@@ -262,7 +263,8 @@ function SceneDayContent(
       {frame.standing && !frame.muted && (
         <div className="v-held-words" role="note" aria-label="Your standing word">
           <span>
-            Your suggestion: {explainTerms(frame.standing.label)} · until {frame.standing.expires}
+            Your suggestion: {explainTerms(frame.standing.label)} · until{' '}
+            {settingWords(frame.standing.expires)}
           </span>
           <button type="button" className="v-btn v-btn-quiet" onClick={props.onWithdraw}>
             Withdraw
@@ -273,7 +275,7 @@ function SceneDayContent(
         {props.unsaid && (
           <div className="v-spoken-lines" role="status">
             <p>
-              <strong>Unsaid:</strong> “{props.unsaid}”
+              <strong>Unsaid:</strong> “{settingWords(props.unsaid)}”
             </p>
             <p>That moment has passed. Nothing was said.</p>
             <button
@@ -293,11 +295,11 @@ function SceneDayContent(
             <h1>{heldPersonal.scene?.names.join(' and ') ?? 'Halil'}</h1>
             <div className="v-spoken-lines" aria-live="polite">
               <p>
-                <strong>You:</strong> “{heldPersonal.line.words}”
+                <strong>You:</strong> “{settingWords(heldPersonal.line.words)}”
               </p>
               <p>
                 <strong>{heldPersonal.line.answer.startsWith('He keeps') ? 'Scene' : 'Halil'}:</strong>{' '}
-                {heldPersonal.line.answer}
+                {settingWords(heldPersonal.line.answer)}
               </p>
             </div>
             <button type="button" className="v-personal-leave v-btn v-btn-quiet" onClick={leaveReply}>
@@ -307,16 +309,16 @@ function SceneDayContent(
         ) : scene ? (
           <article className="v-scene-stage" key={scene.id}>
             <p className="v-scene-place">
-              {scene.place} · {scene.clock}
+              {settingWords(scene.place)} · {scene.clock}
             </p>
-            <h1>{scene.names.join(' and ')}</h1>
+            <h1>{settingWords(scene.names.join(' and '))}</h1>
             {scene.kind === 'memory' && <p className="v-scene-memory">He remembers Nuran.</p>}
             {(progressed || condensed) && (
               <details className="v-conversation-earlier">
                 <summary>Earlier in this conversation</summary>
                 {scene.lines.map((line) => (
                   <p key={`${line.speaker}:${line.words}`}>
-                    <strong>{line.speaker}:</strong> “{line.words}”
+                    <strong>{settingWords(line.speaker)}:</strong> “{settingWords(line.words)}”
                   </p>
                 ))}
               </details>
@@ -324,7 +326,7 @@ function SceneDayContent(
             <div className="v-exchange" aria-live="polite">
               {presentedLines.map((line) => (
                 <p className="v-exchange-line" key={`${line.speaker}:${line.words}`}>
-                  <strong>{line.speaker}:</strong> “{line.words}”
+                  <strong>{settingWords(line.speaker)}:</strong> “{settingWords(line.words)}”
                 </p>
               ))}
             </div>
@@ -343,8 +345,8 @@ function SceneDayContent(
           </article>
         ) : (
           <div className="v-between-scenes">
-            <p>{activity}</p>
-            {encounter && <p className="v-next-encounter">{encounter}</p>}
+            <p>{settingWords(activity)}</p>
+            {encounter && <p className="v-next-encounter">{settingWords(encounter)}</p>}
           </div>
         )}
         {!heldPersonal && frame.pauseBeat && !scene && (
@@ -356,16 +358,18 @@ function SceneDayContent(
               <div key={`${line.beat}:${line.kind}:${line.minute}:${line.words}`}>
                 <small>Your words · {line.clock}</small>
                 <p>
-                  <strong>{line.said === false ? 'Unsaid' : 'You'}:</strong> “{line.words}”
+                  <strong>{line.said === false ? 'Unsaid' : 'You'}:</strong> “{settingWords(line.words)}”
                 </p>
                 {line.answer && (
                   <p>
                     <strong>
                       {line.said === false || line.answer.startsWith('He keeps') ? 'Scene' : 'Halil'}:
                     </strong>{' '}
-                    {line.said === false || line.answer.startsWith('He keeps')
-                      ? line.answer
-                      : `“${line.answer}”`}
+                    {settingWords(
+                      line.said === false || line.answer.startsWith('He keeps')
+                        ? line.answer
+                        : `“${line.answer}”`,
+                    )}
                   </p>
                 )}
               </div>
@@ -454,7 +458,7 @@ function SceneDayContent(
                       onPredict(null);
                     }}
                   >
-                    {choice.label}
+                    {settingWords(choice.label)}
                   </button>
                 ))}
               </div>
@@ -468,7 +472,7 @@ function SceneDayContent(
                     key={`${beat}:${line.kind}:${line.words}`}
                     onClick={() => speakWord(line)}
                   >
-                    {line.words}
+                    {settingWords(line.words)}
                   </button>
                 ))}
               </fieldset>

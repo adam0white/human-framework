@@ -11,7 +11,7 @@ export const PLACE_LABEL: Record<PlaceId, string> = {
   wellhouse: 'Well-house',
   kitchen: 'Kitchen',
   site: 'House',
-  masjid: 'Masjid',
+  masjid: 'Mosque',
   'home-maryam': 'Home',
   'home-yusuf': 'Home',
   'home-idris': 'Home',

@@ -1,3 +1,4 @@
+import { settingWords } from '../../shared/setting-words.ts';
 /**
  * The composer (voice.md §6): leaning, options ranked by his own utility, the prefill line, Mention / Urge, Insist
  * with its price, one optional reason, a live telegraph of his answer, then Say it or Say nothing.
@@ -328,9 +329,11 @@ export const Composer = memo(function Composer({
                 {explainTerms(selected?.label ?? 'No action selected')}
               </strong>
               <span className="v-draft-how">
-                {draft ? STRENGTHS.find((s) => s.id === draft.strength)?.label : 'Choose an action'}
+                {settingWords(
+                  draft ? STRENGTHS.find((s) => s.id === draft.strength)?.label : 'Choose an action',
+                )}
                 {draft?.insist ? ' · Insist' : ''}
-                {draft?.appeal ? ` · ${appealLabel(draft.appeal)}` : ''}
+                {settingWords(draft?.appeal ? ` · ${appealLabel(draft.appeal)}` : '')}
               </span>
             </p>
             <p className="v-choice-context">
@@ -353,10 +356,10 @@ export const Composer = memo(function Composer({
                   type="button"
                   aria-pressed={draft?.strength === s.id}
                   onClick={() => setStrength(s.id)}
-                  title={s.hint}
+                  title={settingWords(s.hint)}
                 >
                   <Icon name={STRENGTH_ICON[s.id]} />
-                  {s.label} <kbd>{s.key}</kbd>
+                  {settingWords(s.label)} <kbd>{settingWords(s.key)}</kbd>
                 </button>
               ))}
             </fieldset>
@@ -371,7 +374,7 @@ export const Composer = memo(function Composer({
             </button>
           </div>
           <p className="v-insist-price" hidden={!draft?.insist}>
-            {INSIST_PRICE}
+            {settingWords(INSIST_PRICE)}
           </p>
 
           <fieldset className="v-appeals" aria-label="Reason (optional)">
@@ -392,7 +395,7 @@ export const Composer = memo(function Composer({
                 className="v-chip"
                 onClick={() => toggleAppeal(a.id)}
               >
-                {a.label} <kbd>{a.key}</kbd>
+                {settingWords(a.label)} <kbd>{settingWords(a.key)}</kbd>
               </button>
             ))}
           </fieldset>

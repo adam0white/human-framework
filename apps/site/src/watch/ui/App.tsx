@@ -11,6 +11,7 @@ import { LabNotice } from '../../shared/LabNotice.tsx';
 import { gameLabs } from '../../shared/lab.tsx';
 import { labMode } from '../../shared/lab-mode.ts';
 import { playerError } from '../../shared/player-error.ts';
+import { settingWords } from '../../shared/setting-words.ts';
 import type { PageInfo } from '../protocol.ts';
 import { type PostId, postSection, SECTIONS, type SectionId, type WatcherId } from '../sim/config.ts';
 import type { Moment } from '../sim/moments.ts';
@@ -534,7 +535,7 @@ function PhaseInfo({ frame, onToggle }: { frame: Frame; onToggle: (open: boolean
   }
   return (
     <div className="w-info">
-      <button type="button" className="game-help-button" popoverTarget={id} aria-label={title}>
+      <button type="button" className="game-help-button" popoverTarget={id} aria-label={settingWords(title)}>
         i
       </button>
       <div
@@ -713,13 +714,13 @@ export function DuskPanel({
         {sel ? (
           <>
             <button type="button" className="w-chip w-order-back" onClick={() => setSelected(null)}>
-              ← {sel.name}
+              ← {settingWords(sel.name)}
             </button>
             <p className="w-note">
               {sel.note} · {whereWords(sel, frame.phase)}
             </p>
             <fieldset className="w-presses">
-              <legend className="sr-only">How hard do you press {sel.name}?</legend>
+              <legend className="sr-only">How hard do you press {settingWords(sel.name)}?</legend>
               {PRESSES.map((p) => (
                 <button
                   key={p}
@@ -796,7 +797,7 @@ export function DuskPanel({
                   onClick={() => setSelected(w.id)}
                 >
                   <span className="w-person-head">
-                    <strong>{w.name}</strong>
+                    <strong>{settingWords(w.name)}</strong>
                     <span>{w.note}</span>
                   </span>
                   <span className="w-person-post">{whereWords(w, frame.phase)}</span>
@@ -810,7 +811,7 @@ export function DuskPanel({
       <footer className="lk-commit">
         {sel ? (
           <>
-            <p className="w-post-caption">Post {sel.name} at</p>
+            <p className="w-post-caption">Post {settingWords(sel.name)} at</p>
             <div className="w-places">
               {SECTIONS.map((section) => {
                 const at = freePost(frame, section.id, sel.id);
@@ -842,7 +843,7 @@ export function DuskPanel({
             </div>
             <div className="w-post-bottom">
               <button type="button" className="w-secondary" onClick={() => post(sel.id, null)}>
-                {sel.name} chooses (still on watch)
+                {settingWords(sel.name)} chooses (still on watch)
               </button>
               <button type="button" className="w-primary" onClick={() => setSelected(null)}>
                 Done
@@ -961,13 +962,15 @@ export function NightPanel({
           <>
             {released ? (
               <p role="status">
-                {released.name} is released from the assigned post. They choose whether to stay or go.
+                {settingWords(released.name)} is released from the assigned post. They choose whether to stay
+                or go.
               </p>
             ) : null}
             <NightMessages frame={frame} />
             {off.length ? (
               <p className="w-offwall">
-                Off the wall: {off.map((w) => `${w.name} (${awayWords(w.place, frame.phase)})`).join(', ')}
+                Off the wall:{' '}
+                {off.map((w) => `${settingWords(w.name)} (${awayWords(w.place, frame.phase)})`).join(', ')}
               </p>
             ) : null}
             <fieldset className="w-night-roster" aria-label="Hear a watcher">
@@ -979,7 +982,7 @@ export function NightPanel({
                   aria-pressed={selected === w.id}
                   onClick={() => onSelect?.(w.id)}
                 >
-                  {w.name}{' '}
+                  {settingWords(w.name)}{' '}
                   <span
                     role="img"
                     aria-label={
@@ -1034,7 +1037,9 @@ export function NightPanel({
         <button
           type="button"
           className={`w-bellbtn${ringing === 0 ? '' : ringing % 2 ? ' is-ring-a' : ' is-ring-b'}`}
-          aria-label={`${frame.bellSwinging ? 'Bell swinging' : 'Ring the bell'}. ${frame.bellRead ?? ''}. ${ropeWords(frame.rope.wear, frame.rope.snapped)}`}
+          aria-label={settingWords(
+            `${frame.bellSwinging ? 'Bell swinging' : 'Ring the bell'}. ${frame.bellRead ?? ''}. ${ropeWords(frame.rope.wear, frame.rope.snapped)}`,
+          )}
           disabled={frame.rope.snapped || frame.bellSwinging}
           onClick={() => actions.input({ k: 'bell' })}
         >
@@ -1138,17 +1143,17 @@ function NightAccount({
       {showingChoice ? (
         <header className="lk-sheet-head w-helper-head">
           <button type="button" className="w-chip" ref={focus} onClick={() => setChoice(null)}>
-            ← {who.name}
+            ← {settingWords(who.name)}
           </button>
           <p className="w-voice-who">
-            {choice === 'relieve' ? 'Send relief' : 'Send help'} for {who.name}
+            {choice === 'relieve' ? 'Send relief' : 'Send help'} for {settingWords(who.name)}
           </p>
         </header>
       ) : null}
       {!showingChoice ? (
         <header className="lk-sheet-head">
           <button type="button" className="w-chip w-account-close" ref={focus} onClick={onClose}>
-            ← {who.name} · {whereWords(who, frame.phase)}
+            ← {settingWords(who.name)} · {whereWords(who, frame.phase)}
           </button>
         </header>
       ) : null}
@@ -1156,7 +1161,9 @@ function NightAccount({
         {showingChoice ? (
           <section
             className="w-helper-choice"
-            aria-label={`Send ${choice === 'relieve' ? 'relief' : 'help'} for ${who.name}`}
+            aria-label={settingWords(
+              `Send ${choice === 'relieve' ? 'relief' : 'help'} for ${settingWords(who.name)}`,
+            )}
           >
             {unavailableReasons.map((reason) => (
               <p className="w-note" key={reason}>
@@ -1178,7 +1185,7 @@ function NightAccount({
             {!candidates.length ? <p>No helper is available here.</p> : null}
           </section>
         ) : (
-          <section className="w-account" aria-label={`${who.name} on watch`}>
+          <section className="w-account" aria-label={settingWords(`${settingWords(who.name)} on watch`)}>
             {who.handover ? <p role="status">{who.handover}</p> : null}
             <NightMessages frame={frame} />
             {who.account?.spoken ? (
@@ -1294,7 +1301,7 @@ function Talks({ frame, actions }: { frame: Frame; actions: WatchActions }) {
           {t.said.slice(-1).map((x) => (
             <li key={`${x.who}-${x.topic}`}>
               <blockquote>{watchWords(x.text)}</blockquote>
-              <span className="w-voice-who">{x.name}</span>
+              <span className="w-voice-who">{settingWords(x.name)}</span>
             </li>
           ))}
         </ul>
@@ -1306,7 +1313,7 @@ function Talks({ frame, actions }: { frame: Frame; actions: WatchActions }) {
             {t.said.slice(0, -1).map((x) => (
               <li key={`${x.who}-${x.topic}`}>
                 <blockquote>{watchWords(x.text)}</blockquote>
-                <span>{x.name}</span>
+                <span>{settingWords(x.name)}</span>
               </li>
             ))}
           </ul>

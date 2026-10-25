@@ -36,3 +36,7 @@ The central games list supplies a short-lived fragment handoff on ordinary outgo
 The owner's Safari split is confirmed by the supplied inbox identities. Its historical browser cause remains unknown. Both engines retained one identity in the director's unblocked baseline. Deliberately blocking the iframe reproduces a split in WebKit; top-level navigation recovers central identity for future records. This is a failure-mode regression, not proof that ITP caused the original report.
 
 Watch retains its chronicle and winter hopes as two gameplay menu entries. The chronicle holds player-observed history. Winter hopes change the next winter's gameplay. Removing those would remove existing choices rather than hide diagnostic tools. Other diagnostic controls remain lab-only.
+
+## Setting and language (owner, 2026-10-24)
+
+Keep the setting, places and personal names. Every sentence must be understandable without Turkish. Use English for common nouns. On first use, call the kapıcı “the building’s caretaker”; later use “caretaker”. Keep at most two flavour words per game. Explain each within its sentence on first use. Faith stays quiet background. Source faith wording from `research/`; do not invent rulings. Change no meaning, rules or difficulty. Use display projections to preserve simulation and replay text.

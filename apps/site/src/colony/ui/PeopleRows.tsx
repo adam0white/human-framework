@@ -1,4 +1,5 @@
 import { memo, type ReactNode, useEffect, useRef, useState } from 'react';
+import { settingWords } from '../../shared/setting-words.ts';
 import type { VillagerId } from '../sim/world-types.ts';
 import type { Frame } from './contract.ts';
 import { activityDescription, needDescription } from './descriptions.ts';
@@ -37,7 +38,10 @@ export function PaneBody({ rows, children }: { rows: ReactNode; children: ReactN
 function Bar({ label, value, urgent }: { label: string; value: number; urgent?: boolean | undefined }) {
   const v = Math.max(0, Math.min(1, value));
   return (
-    <span className={`prow-bar ${urgent ? 'is-urgent' : ''}`} title={`${label} ${Math.round(v * 100)}%`}>
+    <span
+      className={`prow-bar ${urgent ? 'is-urgent' : ''}`}
+      title={settingWords(`${label} ${Math.round(v * 100)}%`)}
+    >
       <span className="visually-hidden">
         {label} {Math.round(v * 100)}%
       </span>
@@ -102,7 +106,7 @@ export const PeopleRows = memo(function PeopleRows(props: {
         <span />
         <span>Doing</span>
         {(rows[0]?.bars ?? []).map((b) => (
-          <span key={b.label}>{b.label}</span>
+          <span key={b.label}>{settingWords(b.label)}</span>
         ))}
       </li>
       {rows.map((r) => (
@@ -114,12 +118,12 @@ export const PeopleRows = memo(function PeopleRows(props: {
             onClick={() => props.onSelect(r.id)}
           >
             <Portrait id={r.id} size={18} />
-            <span className="prow-name">{shortName(r.id)}</span>
-            <span className="prow-doing">{activityDescription(r.label)}</span>
+            <span className="prow-name">{settingWords(shortName(r.id))}</span>
+            <span className="prow-doing">{settingWords(activityDescription(r.label))}</span>
             {r.bars.map((b) =>
               'description' in b ? (
                 <span key={b.label} className={b.urgent ? 'need-description is-urgent' : 'need-description'}>
-                  {b.description}
+                  {settingWords(b.description)}
                 </span>
               ) : (
                 <Bar key={b.label} label={b.label} value={b.value} urgent={b.urgent} />

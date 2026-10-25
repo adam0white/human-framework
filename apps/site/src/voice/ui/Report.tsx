@@ -5,6 +5,7 @@
 import { useEffect, useRef } from 'react';
 import { EndTally } from '../../shared/EndTally.tsx';
 import { labMode } from '../../shared/lab-mode.ts';
+import { settingWords } from '../../shared/setting-words.ts';
 import type { ReportView, SceneWords } from '../protocol.ts';
 import { EndsList, UnaskedStrip } from './EndsPane.tsx';
 import { voiceTally } from './end-tally.ts';
@@ -12,11 +13,11 @@ import { Strip, StripLegend } from './Strip.tsx';
 import { companyWords } from './speech-summary.ts';
 
 function Lines({ lines, empty }: { lines: string[]; empty: string }) {
-  if (lines.length === 0) return <p className="v-muted">{empty}</p>;
+  if (lines.length === 0) return <p className="v-muted">{settingWords(empty)}</p>;
   return (
     <ul className="v-lines">
       {lines.map((l) => (
-        <li key={l}>{l}</li>
+        <li key={l}>{settingWords(l)}</li>
       ))}
     </ul>
   );
@@ -89,22 +90,23 @@ export function Report({
                 <ul className="v-lines v-silent-rows">
                   {view.silent.rows.map((r) => (
                     <li key={r.topic}>
-                      <strong>{r.topic}</strong>
+                      <strong>{settingWords(r.topic)}</strong>
                       <span>
-                        <span className="v-silent-label">As played</span> {r.spoke}
+                        <span className="v-silent-label">As played</span> {settingWords(r.spoke)}
                       </span>
                       <span>
-                        <span className="v-silent-label">Without your suggestions</span> {r.silent}
+                        <span className="v-silent-label">Without your suggestions</span>{' '}
+                        {settingWords(r.silent)}
                       </span>
                     </li>
                   ))}
                 </ul>
               )}
-              {view.silent.same && <p className="v-silent-same">{view.silent.same}</p>}
-              {view.silent.smaller && <p className="v-silent-same">{view.silent.smaller}</p>}
+              {view.silent.same && <p className="v-silent-same">{settingWords(view.silent.same)}</p>}
+              {view.silent.smaller && <p className="v-silent-same">{settingWords(view.silent.smaller)}</p>}
               {/* Without suggestions there is no simulation comparison; care remains recorded above. */}
               {(view.silent.rows.length > 0 || view.silent.same) && (
-                <p className="v-silent-caption">{view.silent.caption}</p>
+                <p className="v-silent-caption">{settingWords(view.silent.caption)}</p>
               )}
             </section>
           )}
@@ -116,11 +118,13 @@ export function Report({
                 {view.ledger.map((l) => (
                   <li key={l.said}>
                     <strong>
-                      {l.said
-                        .replace(/said /g, 'suggested ')
-                        .replace(/on the days you spoke/g, 'on the days you played')}
+                      {settingWords(
+                        l.said
+                          .replace(/said /g, 'suggested ')
+                          .replace(/on the days you spoke/g, 'on the days you played'),
+                      )}
                     </strong>{' '}
-                    → {l.eid}
+                    → {settingWords(l.eid)}
                   </li>
                 ))}
               </ul>
@@ -159,9 +163,9 @@ export function Report({
               <tbody>
                 {view.trust.map((t) => (
                   <tr key={t.id}>
-                    <th scope="row">{t.name}</th>
-                    <td>{t.endRamadan}</td>
-                    <td>{t.endWeek}</td>
+                    <th scope="row">{settingWords(t.name)}</th>
+                    <td>{settingWords(t.endRamadan)}</td>
+                    <td>{settingWords(t.endWeek)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -191,7 +195,7 @@ export function Report({
           </div>
 
           <section>
-            <h2>{!spoke ? 'The days you watched, and Eid' : 'The days you spoke, and Eid'}</h2>
+            <h2>{settingWords(!spoke ? 'The days you watched, and Eid' : 'The days you spoke, and Eid')}</h2>
             <div className="v-strips">
               {view.rows.map((r) => (
                 <Strip key={r.label} row={r} />

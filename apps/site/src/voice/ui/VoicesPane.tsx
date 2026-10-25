@@ -3,6 +3,7 @@
  * show a trust word, what they last urged, whether it is still on his mind, and any conflict between voices.
  */
 import { memo } from 'react';
+import { settingWords } from '../../shared/setting-words.ts';
 import type { VoiceView } from '../protocol.ts';
 import { Icon, VOICE_ICON } from './Icon.tsx';
 /** Numeric prefixes belong to the model record, not the player's account of the event. */
@@ -29,15 +30,15 @@ export const VoicesPane = memo(function VoicesPane({ voices }: { voices: VoiceVi
               <span className="v-voice-dot" aria-hidden="true">
                 <Icon name={VOICE_ICON[v.id]} />
               </span>
-              <span className="v-voice-name">{v.name}</span>
-              <span className="v-voice-rel">{v.relation}</span>
+              <span className="v-voice-name">{settingWords(v.name)}</span>
+              <span className="v-voice-rel">{settingWords(v.relation)}</span>
             </div>
-            <p className="v-voice-trust">{v.trustWord}</p>
+            <p className="v-voice-trust">{settingWords(v.trustWord)}</p>
             {v.history.length > 0 && (
               <ul className="v-voice-history">
                 {v.history.slice(-3).map((h) => (
                   <li key={`${h.delta}-${h.text}`} className={h.delta >= 0 ? 'is-up' : 'is-down'}>
-                    {trustEventWords(h.text)}
+                    {settingWords(trustEventWords(h.text))}
                   </li>
                 ))}
               </ul>
@@ -45,12 +46,12 @@ export const VoicesPane = memo(function VoicesPane({ voices }: { voices: VoiceVi
             {v.lastUrged && (
               <div className="v-voice-urged">
                 <span>
-                  urged <em>{v.lastUrged.label}</em> · {v.lastUrged.when}
+                  urged <em>{settingWords(v.lastUrged.label)}</em> · {settingWords(v.lastUrged.when)}
                 </span>
                 {v.lastUrged.standing && <span className="v-voice-standing">still on his mind</span>}
               </div>
             )}
-            {v.conflict && <p className="v-voice-conflict">{v.conflict}</p>}
+            {v.conflict && <p className="v-voice-conflict">{settingWords(v.conflict)}</p>}
           </li>
         ))}
       </ul>

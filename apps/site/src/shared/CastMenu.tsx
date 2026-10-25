@@ -1,4 +1,5 @@
 import { playerError } from './player-error.ts';
+import { settingWords } from './setting-words.ts';
 import './cast-life.css';
 import { type Lab, openSendDialog } from '@adam0white/lab-client';
 import { useEffect, useState } from 'react';
@@ -32,7 +33,7 @@ export function CastMenu({ game }: { game: string }) {
         <select value={s.selected} onChange={(e) => selectCast(game, e.target.value)}>
           {s.people.map((p) => (
             <option key={p.castId} value={p.castId}>
-              {p.name}
+              {settingWords(p.name)}
             </option>
           ))}
         </select>
@@ -60,7 +61,7 @@ export function CastLifeNote({ game }: { game: string }) {
   return s.line ? (
     <details className="cast-life-note">
       <summary>Before this chapter</summary>
-      <p>{s.line}</p>
+      <p>{settingWords(s.line)}</p>
     </details>
   ) : null;
 }

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Help } from '../../shared/Help.tsx';
+import { settingWords } from '../../shared/setting-words.ts';
 import { VILLAGES, type Village } from '../sim/village.ts';
 import { dayClock, type Frame } from './contract.ts';
 import { VILLAGE_WORDS } from './village-words.ts';
@@ -30,7 +31,7 @@ export function GoalCard(props: {
       <section className="goal-card" role="dialog" aria-modal="true" aria-labelledby="goal-card-title">
         <p className="eyebrow">{day3 ? 'Day 3' : 'Day 1 · 05:00'}</p>
         <h2 id="goal-card-title">Twice at the Well</h2>
-        {day3 && props.text && <p className="goal-card-storm">{props.text}</p>}
+        {day3 && props.text && <p className="goal-card-storm">{settingWords(props.text)}</p>}
         <p className="goal-card-goal">
           {day3
             ? 'Finish the store-room and keep everyone alive.'
@@ -52,8 +53,8 @@ export function GoalCard(props: {
                   }}
                 />
                 <span>
-                  {VILLAGE_WORDS[village].choice}
-                  <small>{VILLAGE_WORDS[village].reply}</small>
+                  {settingWords(VILLAGE_WORDS[village].choice)}
+                  <small>{settingWords(VILLAGE_WORDS[village].reply)}</small>
                 </span>
               </label>
             ))}
@@ -75,9 +76,9 @@ export function GoalCard(props: {
           <ol className="goal-card-goals">
             {(props.frame?.goals ?? []).map((g) => (
               <li key={g.id}>
-                <b>{g.label}</b>
+                <b>{settingWords(g.label)}</b>
                 <span>
-                  {g.target} · by {dayClock(g.deadlineMinute)}
+                  {settingWords(g.target)} · by {dayClock(g.deadlineMinute)}
                 </span>
               </li>
             ))}

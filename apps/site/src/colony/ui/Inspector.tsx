@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { settingWords } from '../../shared/setting-words.ts';
 import type { TermFamily, TrustView, WhyBreakdown, WhyOption } from '../sim/human-side.ts';
 import { type VillagerId, villagerById } from '../sim/world-types.ts';
 import { type Frame, NO_CONCEPT } from './contract.ts';
@@ -51,19 +52,19 @@ function OptionBar({ option }: { option: WhyOption }) {
       <div className="why-option-head">
         <span>
           {option.chosen ? 'Chose: ' : 'Considered: '}
-          {option.label}
+          {settingWords(option.label)}
         </span>
       </div>
       {option.vetoed && (
         <p className={`veto veto-${option.vetoed.kind}`}>
-          {option.vetoed.kind === 'willNot' ? 'Will not' : 'Cannot'}: {option.vetoed.reason}
+          {option.vetoed.kind === 'willNot' ? 'Will not' : 'Cannot'}: {settingWords(option.vetoed.reason)}
         </p>
       )}
       <p className="why-terms">
         {terms.map((t) => (
           <span key={t.source}>
             <i style={{ background: FAMILY_VAR[t.family] }} />
-            {t.label}: {t.value > 0 ? 'draws them toward this' : 'holds them back'}
+            {settingWords(t.label)}: {t.value > 0 ? 'draws them toward this' : 'holds them back'}
           </span>
         ))}
       </p>
@@ -84,7 +85,7 @@ export function TrustMeter({ trust }: { trust: TrustView }) {
           {trust.history.slice(0, 3).map((e) => (
             <li key={`${e.minute}-${e.label}`}>
               <span className={e.delta >= 0 ? 'up' : 'down'}>{e.delta >= 0 ? 'Reassured' : 'Less sure'}</span>
-              {e.label}
+              {settingWords(e.label)}
             </li>
           ))}
         </ul>
@@ -96,7 +97,7 @@ export function TrustMeter({ trust }: { trust: TrustView }) {
 function Meter({ label, value, max = 100 }: { label: string; value: number; max?: number }) {
   return (
     <div className="need">
-      <span>{label}</span>
+      <span>{settingWords(label)}</span>
       <span className="need-track">
         <span style={{ width: `${Math.max(0, Math.min(100, (value / max) * 100))}%` }} />
       </span>
@@ -147,7 +148,7 @@ export function Inspector(props: {
     <dialog
       className="sheet inspector"
       ref={dialog}
-      aria-label={`Inspect ${v?.name ?? ''}`}
+      aria-label={settingWords(`Inspect ${v?.name ?? ''}`)}
       onClick={(e) => {
         // A click on the backdrop lands on the dialog element itself.
         if (e.target === e.currentTarget) onClose();
@@ -157,7 +158,7 @@ export function Inspector(props: {
       <header className="sheet-head">
         <Portrait id={props.personId} size={44} />
         <div>
-          <h2>{v?.name}</h2>
+          <h2>{settingWords(v?.name)}</h2>
           <p className="muted">
             {ROLE_LABEL[v?.role ?? 'cook']}, {v?.age}. {v?.line}
           </p>
@@ -185,12 +186,12 @@ export function Inspector(props: {
             <span className="no-concept-mark">
               <Icon name="none" />
             </span>{' '}
-            = {NO_CONCEPT.toLowerCase()}.
+            = {settingWords(NO_CONCEPT.toLowerCase())}.
           </p>
           <dl className="no-concept-list">
             {['Needs', 'Emotion', 'Trust in you', 'Why', 'Memories'].map((row) => (
               <div key={row}>
-                <dt>{row}</dt>
+                <dt>{settingWords(row)}</dt>
                 <dd>
                   <NoConcept text={NO_CONCEPT} />
                 </dd>
@@ -206,13 +207,13 @@ export function Inspector(props: {
             <div className="needs">
               {hv.needs.map((n) => (
                 <div className={`need ${n.urgent ? 'is-urgent' : ''}`} key={n.id}>
-                  <span>{n.label}</span>
-                  <span className="need-description">{needDescription(n.id, n.value)}</span>
+                  <span>{settingWords(n.label)}</span>
+                  <span className="need-description">{settingWords(needDescription(n.id, n.value))}</span>
                 </div>
               ))}
               <p className="emotion">
                 Feels <b>{hv.emotion?.label ?? 'calm'}</b>
-                {hv.emotion?.target ? ` about ${hv.emotion.target}` : ''}
+                {settingWords(hv.emotion?.target ? ` about ${hv.emotion.target}` : '')}
               </p>
             </div>
           )}
@@ -226,13 +227,13 @@ export function Inspector(props: {
               <>
                 {why.verdict && (
                   <p className={`verdict-line verdict-${why.verdict.kind}`}>
-                    <b>{VERDICT_LABEL[why.verdict.kind]}</b> “{why.verdict.says}”
+                    <b>{settingWords(VERDICT_LABEL[why.verdict.kind])}</b> “{settingWords(why.verdict.says)}”
                     {why.verdict.counterOffer && !saysIt(why.verdict.says, why.verdict.counterOffer) && (
-                      <em> {why.verdict.counterOffer}</em>
+                      <em> {settingWords(why.verdict.counterOffer)}</em>
                     )}
                   </p>
                 )}
-                <p className="narration">{why.narration}</p>
+                <p className="narration">{settingWords(why.narration)}</p>
                 <ol className="why-options">
                   {why.options.slice(0, 3).map((o) => (
                     <OptionBar key={o.affordanceId} option={o} />
@@ -243,7 +244,7 @@ export function Inspector(props: {
                     {families.map((f) => (
                       <span key={f}>
                         <i style={{ background: FAMILY_VAR[f] }} />
-                        {FAMILY_LABEL[f]}
+                        {settingWords(FAMILY_LABEL[f])}
                       </span>
                     ))}
                   </p>
@@ -260,7 +261,7 @@ export function Inspector(props: {
                     <tbody>
                       {why.deltas.map((d) => (
                         <tr key={d.need}>
-                          <td>{d.need}</td>
+                          <td>{settingWords(d.need)}</td>
                           <td>
                             {d.advertised > 0 ? 'May help' : d.advertised < 0 ? 'May strain' : 'No change'}
                           </td>
@@ -280,7 +281,7 @@ export function Inspector(props: {
                 {why.recalled.length === 0 ? (
                   <p className="muted small">Nothing recalled for this decision.</p>
                 ) : (
-                  why.recalled.map((r) => <blockquote key={r}>remembers: {r}</blockquote>)
+                  why.recalled.map((r) => <blockquote key={r}>remembers: {settingWords(r)}</blockquote>)
                 )}
               </>
             )}

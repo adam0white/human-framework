@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { CastMenu } from '../../shared/CastMenu.tsx';
 import { FullscreenButton } from '../../shared/fullscreen.tsx';
 import { labMode } from '../../shared/lab-mode.ts';
+import { settingWords } from '../../shared/setting-words.ts';
 import { MODEL_NOTES, type Pace } from '../protocol.ts';
 import { VoicePersonaControls } from './persona.tsx';
 import { RecordingPreference } from './SendWord.tsx';
@@ -14,15 +15,17 @@ export function InfoPanel({ phase, onClose }: { phase: string; onClose: () => vo
     <section className="v-info-popover" aria-label="Information">
       <header>
         <h2>
-          {premise
-            ? 'Halil and this month'
-            : report
-              ? 'The month without you'
-              : phase === 'between'
-                ? 'Suggestions for the days you skip'
-                : phase === 'eid'
-                  ? 'Eid'
-                  : 'Speaking to him'}
+          {settingWords(
+            premise
+              ? 'Halil and this month'
+              : report
+                ? 'The month without you'
+                : phase === 'between'
+                  ? 'Suggestions for the days you skip'
+                  : phase === 'eid'
+                    ? 'Eid'
+                    : 'Speaking to him',
+          )}
         </h2>
         <button type="button" onClick={onClose} aria-label="Close information">
           ×
@@ -74,7 +77,7 @@ export function InfoPanel({ phase, onClose }: { phase: string; onClose: () => vo
             The band shows daylight. The dots mark prayer times. The gold line shows when Halil is fasting.
           </p>
           <p>The game stops when someone arrives. Choose Skip to move to the next event.</p>
-          <p>Suhoor is the meal before dawn. Iftar is the meal at sunset.</p>
+          <p>The pre-dawn meal is the meal before dawn. The sunset meal is the meal at sunset.</p>
         </>
       )}
       {(premise || report) && (
@@ -82,7 +85,7 @@ export function InfoPanel({ phase, onClose }: { phase: string; onClose: () => vo
           <summary>Model notes</summary>
           <ul>
             {MODEL_NOTES.map((note) => (
-              <li key={note}>{note}</li>
+              <li key={note}>{settingWords(note)}</li>
             ))}
           </ul>
         </details>
@@ -134,7 +137,7 @@ export function MenuPanel({
         }}
       >
         <header>
-          <h2>Game menu · {label}</h2>
+          <h2>Game menu · {settingWords(label)}</h2>
           <button type="button" onClick={onClose} aria-label="Close menu">
             ×
           </button>
@@ -157,7 +160,7 @@ export function MenuPanel({
                 aria-pressed={pace === item.id}
                 onClick={() => actions.setAutomaticPace(item.id)}
               >
-                {item.label}
+                {settingWords(item.label)}
               </button>
             ))}
           </fieldset>

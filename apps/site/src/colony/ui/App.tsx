@@ -7,6 +7,7 @@ import { gameLabs, useLabScreen } from '../../shared/lab.tsx';
 import { labMode } from '../../shared/lab-mode.ts';
 import { playerError } from '../../shared/player-error.ts';
 import type { PlaytestFile } from '../../shared/playtest.ts';
+import { settingWords } from '../../shared/setting-words.ts';
 import type { HurtNews, MomentRecord } from '../sim/game.ts';
 import type { PlaceId } from '../sim/map.ts';
 import type { AppealChip, OrderInput } from '../sim/orders.ts';
@@ -443,7 +444,7 @@ export function App() {
         <section
           className={`well-map well-map-${side}`}
           key={side}
-          aria-label={`${side === 'classic' ? 'Classic' : 'Human'} village`}
+          aria-label={settingWords(`${side === 'classic' ? 'Classic' : 'Human'} village`)}
         >
           <header>
             <strong>{side === 'classic' ? 'Classic' : 'Human'}</strong>
@@ -478,7 +479,7 @@ export function App() {
                 setNewsReturn(null);
               }}
             >
-              Showing {shortName(person ?? following ?? 'idris')} ·{' '}
+              Showing {settingWords(shortName(person ?? following ?? 'idris'))} ·{' '}
               {mapSide === 'human' ? 'Human' : 'Classic'} ← Back
             </button>
           ) : moment && moment.minute >= (frame?.news.at(-1)?.minute ?? -1) ? (
@@ -493,7 +494,7 @@ export function App() {
                 if (n) showNews(n);
               }}
             >
-              Hurt · {shortName(frame.news.at(-1)?.personId ?? 'idris')} (
+              Hurt · {settingWords(shortName(frame.news.at(-1)?.personId ?? 'idris'))} (
               {frame.news.at(-1)?.side === 'human' ? 'Human' : 'Classic'}) · Show
             </button>
           ) : null}
@@ -513,7 +514,7 @@ export function App() {
           ) : (
             <>
               <span className="well-desktop-name">Twice at the Well · </span>
-              {title}
+              {settingWords(title)}
             </>
           )}
         </div>
@@ -587,8 +588,8 @@ export function App() {
                           onChange={() => actions.restart(v)}
                         />
                         <span>
-                          {VILLAGE_WORDS[v].choice}
-                          <small>{VILLAGE_WORDS[v].reply}</small>
+                          {settingWords(VILLAGE_WORDS[v].choice)}
+                          <small>{settingWords(VILLAGE_WORDS[v].reply)}</small>
                         </span>
                       </label>
                     ))}
@@ -636,13 +637,15 @@ export function App() {
             <>
               <div className="well-reading well-interstitial">
                 <h1>{loadPage ? 'Loaded run' : frame?.day.total === 3 ? 'Day 3' : 'The first morning'}</h1>
-                <p>{playback.pause?.text}</p>
+                <p>{settingWords(playback.pause?.text)}</p>
                 <p>
-                  {loadPage
-                    ? loadedNotice
-                    : frame?.day.total === 3
-                      ? 'Finish the store-room and keep everyone alive.'
-                      : 'Roof the house, store meals and keep all six alive.'}
+                  {settingWords(
+                    loadPage
+                      ? loadedNotice
+                      : frame?.day.total === 3
+                        ? 'Finish the store-room and keep everyone alive.'
+                        : 'Roof the house, store meals and keep all six alive.',
+                  )}
                 </p>
                 <p>Each pair of bars compares Classic above Human. The tick is the target.</p>
               </div>
@@ -682,7 +685,8 @@ export function App() {
                       onClick={() => setSheet('suggestion')}
                     >
                       <strong>
-                        Suggestion · {shortName(nudge.order.personId)} → {PLACE_LABEL[nudge.order.placeId]}
+                        Suggestion · {settingWords(shortName(nudge.order.personId))} →{' '}
+                        {settingWords(PLACE_LABEL[nudge.order.placeId])}
                       </strong>
                       <small>
                         {choice?.underway
@@ -713,7 +717,7 @@ export function App() {
                     )}
                   </>
                 ) : (
-                  <p>{message}</p>
+                  <p>{settingWords(message)}</p>
                 )}
               </div>
               <section className="well-sheet" aria-label="Village orders">
@@ -756,9 +760,13 @@ export function App() {
                             : (suggestionForecast?.text ??
                               'Suggested earlier; availability may have changed.')}
                         </p>
-                        <p>{nudge ? `Earlier suggestion: ${nudge.text}` : 'This suggestion has passed.'}</p>
-                        {nudge?.reason && <p>Earlier reason: {nudge.reason}</p>}
-                        {choice?.refusal && <p>{choice.refusal}</p>}
+                        <p>
+                          {settingWords(
+                            nudge ? `Earlier suggestion: ${nudge.text}` : 'This suggestion has passed.',
+                          )}
+                        </p>
+                        {nudge?.reason && <p>Earlier reason: {settingWords(nudge.reason)}</p>}
+                        {choice?.refusal && <p>{settingWords(choice.refusal)}</p>}
                         <p>The person can still refuse or wait.</p>
                         {nudge && (
                           <>
@@ -843,7 +851,7 @@ export function App() {
                   }}
                 />
               </label>
-              {notice && <p role="alert">{notice}</p>}
+              {notice && <p role="alert">{settingWords(notice)}</p>}
             </div>
           </section>
         </div>
@@ -881,7 +889,7 @@ export function App() {
                       }
                       onClick={() => actions.setPace?.(s)}
                     >
-                      {['Automatic', 'Slow', 'Steady', 'Fast'][i]}
+                      {settingWords(['Automatic', 'Slow', 'Steady', 'Fast'][i])}
                     </button>
                   ))}
                 </fieldset>

@@ -7,6 +7,7 @@
  * size, its class names (Game 2 styles `.v-icon`) and its stroke (Game 2 keeps a 1.5 px stroke at any size).
  */
 import type { ReactNode } from 'react';
+import { settingWords } from './setting-words.ts';
 
 export interface IconProps<N extends string> {
   name: N;
@@ -46,7 +47,7 @@ export function makeIcon<G extends Record<string, ReactNode>>(glyphs: G, options
     const body = glyphs[name];
     if (label) {
       return (
-        <svg {...common} role="img" aria-label={label}>
+        <svg {...common} role="img" aria-label={settingWords(label)}>
           <title>{label}</title>
           {body}
         </svg>

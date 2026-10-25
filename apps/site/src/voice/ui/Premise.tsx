@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { labMode } from '../../shared/lab-mode.ts';
+import { settingWords } from '../../shared/setting-words.ts';
 export function Premise({
   ready,
   savedRun = null,
@@ -21,7 +22,10 @@ export function Premise({
           <path d="M30 6a18 18 0 1 0 12 30A15 15 0 0 1 30 6z" />
         </svg>
         <h1>The Day You Say Nothing</h1>
-        <p className="v-lede">Help Halil reach his goals. On Eid, he will act without your advice.</p>
+        <p className="v-lede">
+          Help Halil reach his goals during Ramadan, the fasting month. On Eid, the festival at its end, he
+          will act without your advice.
+        </p>
         <p>You suggest what Halil could do. He decides whether to do it.</p>
         {labMode() && (
           <button type="button" className="v-shelf-row" onClick={onOtherWays}>
@@ -32,7 +36,7 @@ export function Premise({
       <div className="v-page-actions">
         {savedRun && (
           <button type="button" className="v-btn v-btn-primary" disabled={!ready} onClick={onContinue}>
-            Continue · {savedRun.label}
+            Continue · {settingWords(savedRun.label)}
           </button>
         )}
         {confirm && <p>Start a new game? This replaces the saved month.</p>}

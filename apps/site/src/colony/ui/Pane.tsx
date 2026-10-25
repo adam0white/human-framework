@@ -1,4 +1,5 @@
 import { memo, type RefObject, useEffect, useRef, useState } from 'react';
+import { settingWords } from '../../shared/setting-words.ts';
 import { MAP, PLACES, type PlaceId, placeAt } from '../sim/map.ts';
 import type { VillagerId } from '../sim/world-types.ts';
 import type { BubbleManager, ShownBubble } from './bubbles.ts';
@@ -558,7 +559,7 @@ export const Pane = memo(function Pane(props: PaneProps) {
               setPanned(false);
             }}
           >
-            {props.selectedId ? `Follow ${shortName(props.selectedId)}` : 'Centre village'}
+            {settingWords(props.selectedId ? `Follow ${shortName(props.selectedId)}` : 'Centre village')}
           </button>
         )}
       </div>
@@ -599,7 +600,7 @@ export const Pane = memo(function Pane(props: PaneProps) {
                 key={'person' in choice ? choice.person : choice.place}
                 onClick={() => choose(choice)}
               >
-                {choice.label}
+                {settingWords(choice.label)}
               </button>
             ))}
             <button type="button" onClick={() => setChoices([])}>
@@ -671,8 +672,8 @@ export const Pane = memo(function Pane(props: PaneProps) {
                 onPointerEnter={() => props.onHoverPlace(item.placeId)}
                 onPointerLeave={() => props.onHoverPlace(null)}
               >
-                <strong>{item.label}</strong>
-                <span>{item.answer}</span>
+                <strong>{settingWords(item.label)}</strong>
+                <span>{settingWords(item.answer)}</span>
               </button>
             ))}
           </section>
@@ -689,12 +690,12 @@ export const Pane = memo(function Pane(props: PaneProps) {
                   else bubbleEls.current.delete(sb.bubble.id);
                 }}
                 onClick={() => props.onSelect(sb.bubble.personId)}
-                title={`Select ${shortName(sb.bubble.personId)}`}
-                aria-label={
+                title={settingWords(`Select ${shortName(sb.bubble.personId)}`)}
+                aria-label={settingWords(
                   sb.phase === 'typing'
                     ? `${shortName(sb.bubble.personId)} is answering`
-                    : `${shortName(sb.bubble.personId)}: “${sb.bubble.text}” Select worker`
-                }
+                    : `${shortName(sb.bubble.personId)}: “${sb.bubble.text}” Select worker`,
+                )}
               >
                 <BubbleBody shown={sb} />
               </button>
@@ -704,7 +705,9 @@ export const Pane = memo(function Pane(props: PaneProps) {
       </div>
       {props.selectedId && (props.scenePlaces?.length ?? 0) > 0 && props.onMorePlaces && (
         <button type="button" className="scene-more-places" onClick={props.onMorePlaces}>
-          {overflowPlaces.length > 0 ? `More places (${overflowPlaces.length})` : 'Choose place'}
+          {settingWords(
+            overflowPlaces.length > 0 ? `More places (${overflowPlaces.length})` : 'Choose place',
+          )}
         </button>
       )}
       {props.selectedId && overflowPlaces.length > 0 && !props.onMorePlaces && (
@@ -715,8 +718,8 @@ export const Pane = memo(function Pane(props: PaneProps) {
               ?.filter((item) => overflowPlaces.includes(item.placeId))
               .map((item) => (
                 <button key={item.placeId} type="button" onClick={() => props.onPlace(item.placeId)}>
-                  <strong>{item.label}</strong>
-                  <span>{item.answer}</span>
+                  <strong>{settingWords(item.label)}</strong>
+                  <span>{settingWords(item.answer)}</span>
                 </button>
               ))}
           </div>
@@ -745,14 +748,14 @@ function BubbleBody({ shown }: { shown: ShownBubble }) {
   if (b.kind === 'complied') {
     return (
       <span>
-        <s>{b.orderText ?? b.text}</s> …fine.
+        <s>{settingWords(b.orderText ?? b.text)}</s> …fine.
       </span>
     );
   }
   return (
     <span>
-      {b.text}
-      {b.counterOffer && !saysIt(b.text, b.counterOffer) && <em> {b.counterOffer}</em>}
+      {settingWords(b.text)}
+      {b.counterOffer && !saysIt(b.text, b.counterOffer) && <em> {settingWords(b.counterOffer)}</em>}
     </span>
   );
 }

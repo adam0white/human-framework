@@ -1,3 +1,4 @@
+import { settingWords } from '../../shared/setting-words.ts';
 /** One day as a strip (voice.md §4, replacing the kilim): what he did across 24 hours, coloured by family. */
 import type { Family, StripRow } from '../protocol.ts';
 import { FAMILY_ICON, Icon } from './Icon.tsx';
@@ -20,11 +21,11 @@ export const FAMILY_LABEL: Record<Family, string> = {
 export function Strip({ row, showLabel = true }: { row: StripRow; showLabel?: boolean }) {
   return (
     <div className="v-strip-row">
-      {showLabel && <span className="v-strip-label">{row.label}</span>}
+      {showLabel && <span className="v-strip-label">{settingWords(row.label)}</span>}
       <div
         className="v-strip"
         role="img"
-        aria-label={`${row.label}: ${row.cells.map((c) => c.label).join(', ')}`}
+        aria-label={settingWords(`${row.label}: ${row.cells.map((c) => c.label).join(', ')}`)}
       >
         {[6, 12, 18].map((h) => (
           <span key={h} className="v-strip-hour" style={{ left: `${(h / 24) * 100}%` }} />
@@ -38,7 +39,9 @@ export function Strip({ row, showLabel = true }: { row: StripRow; showLabel?: bo
               width: `${(Math.max(6, c.to - c.from) / 1440) * 100}%`,
               ...(c.promptedBy ? ({ '--who': VOICE_COLOURS[c.promptedBy] } as React.CSSProperties) : {}),
             }}
-            title={`${c.label}${c.promptedBy ? ` (after ${VOICE_NAMES[c.promptedBy]} spoke)` : ''}`}
+            title={settingWords(
+              `${c.label}${c.promptedBy ? ` (after ${VOICE_NAMES[c.promptedBy]} spoke)` : ''}`,
+            )}
           />
         ))}
       </div>
@@ -55,7 +58,7 @@ export function StripLegend({ rows }: { rows: StripRow[] }) {
         <li key={f}>
           <span className={`v-strip-key fam-${f}`} />
           <Icon name={FAMILY_ICON[f]} />
-          {FAMILY_LABEL[f]}
+          {settingWords(FAMILY_LABEL[f])}
         </li>
       ))}
       {prompted && (

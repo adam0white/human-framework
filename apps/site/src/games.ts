@@ -50,7 +50,7 @@ export const GAMES: Game[] = [
     status: 'active',
     name: 'The Stairwell',
     href: 'https://stairwell.adamwhite.work',
-    line: 'You work as the new kapıcı in a seven-flat Istanbul building. Deliver bread, empty bins and decide what to share about the residents.',
+    line: 'You are the building’s caretaker in a seven-flat Istanbul building. Deliver bread, empty bins and decide what to share about the residents.',
     faculties: ['Memory and belief', 'Relationships', 'Conscience'],
   },
   {
@@ -104,7 +104,7 @@ export const GAMES: Game[] = [
     status: 'active',
     name: 'The Valley',
     href: 'https://valley.adamwhite.work',
-    line: 'You keep an absent agha’s seal while managing two hamlets for three years. Their households remember your decisions.',
+    line: 'You keep an absent landlord’s seal while managing two hamlets for three years. Their households remember your decisions.',
     faculties: ['Will', 'Memory and belief', 'A whole life'],
   },
   {
@@ -113,7 +113,7 @@ export const GAMES: Game[] = [
     status: 'active',
     name: 'The Day You Say Nothing',
     href: '/voice/',
-    line: 'You are a voice in Halil’s head during his first Ramadan as a widower. He hears your advice and decides what to do.',
+    line: 'You are a voice in Halil’s head during his first Ramadan, the fasting month, as a widower. He hears your advice and decides what to do.',
     faculties: ['Habits and character', 'Inner life', 'Relationships'],
   },
   {

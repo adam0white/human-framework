@@ -178,4 +178,11 @@ He tried and quit Pass and the two voices because of the same issue, it felt lik
 It appears that you can't find some of the issues by yourself without me specifically naming them. The lab notice appears in every game. Turning continuity off, begin without carrying history, seed, verify, even import, these are useless or too much to throw at the player. We need to simplify, a lot. I was hoping we could have a much better experience by just doing a lot of automated play tests. "Send word" why do we overcomplicate everything? Just say feedback. 
 On the Ramadan game, for example, menu has tons of options. All increases cognitive load, new topics and concepts for the player they don't even need to know at all. I'm asking for background, opinionated auto decision on a lot of these. The difficulty of the English appears across games. I don't know if it's because of a claimed taste or consistent design, but it makes things harder to understand. Minor thing, also work on the artwork on the list of all games. Change the one for the Rope, it seems like a hanging man.
 
-Commonstead branch protection is dropped. Friends’ playtests and Show HN are paused until Adam says the games are ready. Turkish words, names and culture remain unchanged pending discussion. F-491 remains mandatory: automatic recording linkage follows the recording switch; feedback stays on one page with optional sharing when recording is off.
+Commonstead branch protection is dropped. Friends’ playtests and Show HN are paused until Adam says the games are ready. The later setting direction below resolves the vocabulary discussion; places, names and setting remain. F-491 remains mandatory: automatic recording linkage follows the recording switch; feedback stays on one page with optional sharing when recording is off.
+
+
+## 2026-10-24 — Keep the setting (Adam, verbatim)
+
+> Yes keep the setting, fix and cater it better.
+
+Keep setting, places and personal names; make every sentence understandable without Turkish; translate common nouns; introduce the building’s caretaker in English and later use caretaker; retain at most two explained flavour words per game; keep faith quiet and sourced from research/; preserve meaning, rules and difficulty. This is a copy pass. Friends’ playtests and Show HN remain paused pending Adam’s readiness decision.

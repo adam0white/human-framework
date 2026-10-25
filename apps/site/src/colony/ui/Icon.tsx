@@ -18,6 +18,7 @@
  */
 import type { ReactElement } from 'react';
 import { makeIcon } from '../../shared/Icon.tsx';
+import { settingWords } from '../../shared/setting-words.ts';
 
 const PATHS = {
   // lucide: zap
@@ -168,9 +169,9 @@ export function RingTimer({ left, span, size = 18 }: { left: number; span: numbe
 /** Grey ∅ for a cell where Classic lacks the concept; the phrase is the tooltip and the accessible name. */
 export function NoConcept({ text }: { text: string }) {
   return (
-    <span className="no-concept-mark" title={text}>
+    <span className="no-concept-mark" title={settingWords(text)}>
       <Icon name="none" size={16} />
-      <span className="visually-hidden">{text}</span>
+      <span className="visually-hidden">{settingWords(text)}</span>
     </span>
   );
 }

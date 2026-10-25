@@ -40,8 +40,8 @@ These are the complete foreground lists. Roles may change, identity does not. Al
 | Good Hands | Nermin, Zeynep, Hülya, Selin, Derya, Hatice, Aylin | 7 |
 | Hearsay | Hatice, Derya, Dilan, Nermin, Aylin, Ece, Rıza, Osman | 8 |
 | Stairwell | Derya, Burak, Sevim, Tarık, Hacer | 5 |
-| The Valley | Yusuf Usta, Meryem, Yusuf, Samira, Maryam, Danyal | 6 |
-| The Warren | Yusuf Usta, Meryem, Maryam, Tariq, Kian, Tamar of the Wall | 6 |
+| The Valley | Master Yusuf, Meryem, Yusuf, Samira, Maryam, Danyal | 6 |
+| The Warren | Master Yusuf, Meryem, Maryam, Tariq, Kian, Tamar of the Wall | 6 |
 | Neighbours | Nora, Sam, Derya, Rafi, Bilal, Ece | 6 |
 | Twice at the Well | Maryam, Yusuf, Tariq, Idris, Samira, Danyal | 6 |
 | The Day You Say Nothing | Halil, Selin, Rıza, Hacer, Osman | 5 |
@@ -86,13 +86,13 @@ The values below are the stable machine-readable roster. The four existing wave-
 | `hf.cast.nerys.glance` | Nerys | 47 | Coast | 1 | Glance; Commonstead |
 | `hf.cast.nora.smallworks` | Nora | 28 | Coast | 1 | Small Works; Neighbours; Commonstead |
 | `hf.cast.sam.smallworks` | Sam | 18 | Coast | 1 | Small Works; Pass; Neighbours; Commonstead |
-| `hf.cast.maryam.well` | Hajja Maryam | 68 | Valley | 1 | Well; Valley; Warren |
+| `hf.cast.maryam.well` | Maryam | 68 | Valley | 1 | Well; Valley; Warren |
 | `hf.cast.yusuf.well` | Yusuf | 34 | Valley | 1 | Well; Valley |
 | `hf.cast.tariq.well` | Tariq | 16 | Valley | 1 | Well; Warren |
 | `hf.cast.idris.well` | Idris | 41 | Valley | 1 | Well; Watch |
 | `hf.cast.samira.well` | Samira | 29 | Valley | 1 | Well; Valley; Watch |
 | `hf.cast.danyal.well` | Danyal | 52 | Valley | 1 | Well; Valley; Watch |
-| `hf.cast.yusuf.warren` | Yusuf Usta | 74 | Valley | 1 | Warren; Valley |
+| `hf.cast.yusuf.warren` | Master Yusuf | 74 | Valley | 1 | Warren; Valley |
 | `hf.cast.meryem.warren` | Meryem | 19 | Valley | 1 | Warren; Valley; Watch |
 | `hf.cast.tamar.watch` | Tamar of the Wall | 54 | Valley | 1 | Watch; Warren |
 | `hf.cast.kian.watch` | Kian | 16 | Valley | 1 | Watch; Warren |
@@ -761,7 +761,7 @@ He once submitted a bug report using another player's description after failing 
 
 A hidden outcome lets him correct the old report, label a new observation precisely and preserve uncertainty rather than erase it. A useful negative result can then earn trust without being presented as a dramatic discovery. Another outcome lets him negotiate paid hours for a repair, tell his mother the actual terms and keep learning without promising instant independence. The player can discover the old report when he voluntarily brings a testing notebook for feedback. No private account search is required. His recurrence should make his enthusiasm familiar, then reveal whether he now distinguishes an idea, an attempt and an observed result. He can remain impatient and playful while becoming someone another person can safely rely on to say, 'I have not checked that yet.'
 
-### 31. Hajja Maryam
+### 31. Maryam
 
 **Identity:** `hf.cast.maryam.well`, revision 1. Age 68. **Place:** Well settlement; seasonal kin visits in the lower valley and Warren. **Work:** cook and seed-store organiser. **Family:** Widow; Yusuf is her son, Tariq her grandson. Yusuf’s wife Zehra is background.
 
@@ -893,7 +893,7 @@ His wife once asked him to repair a small domestic shelf. He repeatedly deferred
 
 The shelf can become discoverable when he invites someone to fetch a jar and chooses to tell the story. A hidden outcome lets him describe his wife as a full person, including her justified impatience, and alter a present duty arrangement so another household does not pay the same hidden cost. He may share a well inspection with a learner and keep one evening free. A separate store outcome lets him contribute grain through an explicit gift while refusing an assumed permanent levy. The player can misuse his honesty by treating him as an inexhaustible neutral witness. He should be allowed mistaken interpretations and private grief. Across the three games, recognition rests on the man who asks whether a rope has actually been checked and who is slowly learning to ask the same exact question about the promises he makes at home.
 
-### 37. Yusuf Usta
+### 37. Master Yusuf
 
 **Identity:** `hf.cast.yusuf.warren`, revision 1. Age 74. **Place:** Warren dig-master’s house; earlier and later valley work visits. **Work:** dig-master; retired well-digger who still advises. **Family:** Meryem is his granddaughter and household member in this authored edition.
 
@@ -907,7 +907,7 @@ The shelf can become discoverable when he invites someone to fetch a jar and cho
 
 **Authored life**
 
-Yusuf Usta has outlived enough predictions to distrust a man who says the ground will certainly behave. His father struck water under the western fields, and the story has grown each time it was told. He knows which parts he witnessed and which came from people who wanted the father to have known from the beginning. His own reputation now attracts the same polishing. A group under pressure wants the old dig-master to point once and remove uncertainty. He can enjoy the authority while insisting aloud that nobody can promise water.
+Master Yusuf has outlived enough predictions to distrust a man who says the ground will certainly behave. His father struck water under the western fields, and the story has grown each time it was told. He knows which parts he witnessed and which came from people who wanted the father to have known from the beginning. His own reputation now attracts the same polishing. A group under pressure wants the old dig-master to point once and remove uncertainty. He can enjoy the authority while insisting aloud that nobody can promise water.
 
 Meryem is his granddaughter in this new edition, an explicit relationship rather than a conclusion drawn from their ages. She lives in his household and knows when his apparent contemplation is fatigue. He wants her to learn the craft and worries that keeping her beside him may prevent her choosing another life. At the lower valley he advises a bounded investigation with local workers doing work appropriate to their capacities. Warren requires a different rhythm: he can identify a line and still need another person to carry, check and sometimes challenge it.
 
@@ -917,7 +917,7 @@ A hidden outcome lets him annotate the map with the full decision history, offer
 
 ### 38. Meryem
 
-**Identity:** `hf.cast.meryem.warren`, revision 1. Age 19. **Place:** Warren dig-master’s household; field visits to Valley and Watch. **Work:** apprentice surveyor and household worker. **Family:** Yusuf Usta is her grandfather; parents are background and live elsewhere.
+**Identity:** `hf.cast.meryem.warren`, revision 1. Age 19. **Place:** Warren dig-master’s household; field visits to Valley and Watch. **Work:** apprentice surveyor and household worker. **Family:** Master Yusuf is her grandfather; parents are background and live elsewhere.
 
 **HF profile:** honesty .60; openness .85; conscientiousness .55; extraversion .45; agreeableness .55; emotionality .50. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
 
@@ -929,13 +929,13 @@ A hidden outcome lets him annotate the map with the full decision history, offer
 
 **Authored life**
 
-Meryem draws a place to understand it. Her first maps recorded where adults told her not to go, then the places where their routes contradicted those instructions. Living with Yusuf Usta has given her access to a craft in which a good question matters. It has also made every compliment ambiguous: does someone admire her drawing, or the famous name beside it? She is curious enough to try an unfamiliar method and not yet disciplined enough to record every failed attempt before moving to the next.
+Meryem draws a place to understand it. Her first maps recorded where adults told her not to go, then the places where their routes contradicted those instructions. Living with Master Yusuf has given her access to a craft in which a good question matters. It has also made every compliment ambiguous: does someone admire her drawing, or the famous name beside it? She is curious enough to try an unfamiliar method and not yet disciplined enough to record every failed attempt before moving to the next.
 
 The new edition names her his granddaughter. Her parents live elsewhere and remain background, rather than disappearing so that the old man can be her whole emotional world. She loves him and wants work that is not an extension of his reputation. At the Watch she is a newcomer observer and mapper of stores and paths, not Ruslan with a changed label. People have reasonable questions about her competence. Suspicion attached to an older armed stranger cannot simply be copied onto her and called continuity.
 
 She has traced one of her grandfather's maps and presented the result to a visitor as a fresh survey. She made genuine corrections, but the ground she did not visit is still on the page without a distinction. The visitor's praise has become an obligation she does not know how to meet. Her private notebook uses two ink marks for observed and inherited detail. The clean display map removed them because she thought uncertainty would make it look unfinished. She is frightened that a correction will prove she has no original work at all.
 
-The hidden survey outcome requires her to restore the distinctions, walk a bounded section with a second person and publish the actual result even if it is less impressive. At Watch that habit can prevent a path from being treated as confirmed merely because it appears on a neat drawing. A separate outcome lets her decline a long apprenticeship extension and propose a shorter contract with time elsewhere. Yusuf Usta may be disappointed without becoming an enemy. The player should discover the map through work she has agreed to show, not through unrestricted journal access. Across three games, her recognizable quality is intense interest in what lies just beyond the page. Growth means returning to label the part she has actually seen before asking everyone else to follow her farther.
+The hidden survey outcome requires her to restore the distinctions, walk a bounded section with a second person and publish the actual result even if it is less impressive. At Watch that habit can prevent a path from being treated as confirmed merely because it appears on a neat drawing. A separate outcome lets her decline a long apprenticeship extension and propose a shorter contract with time elsewhere. Master Yusuf may be disappointed without becoming an enemy. The player should discover the map through work she has agreed to show, not through unrestricted journal access. Across three games, her recognizable quality is intense interest in what lies just beyond the page. Growth means returning to label the part she has actually seen before asking everyone else to follow her farther.
 
 ### 39. Tamar of the Wall
 
@@ -1001,7 +1001,7 @@ Rows which mention old constructors describe source identities only. A replaceme
 | Pass | Chef | HF player observer; 31 female | background; retire maintained arc; seeded episode actor or unnamed role |
 | Pass | Nevin | Narrative-only; deceased lokanta owner | remembered background; deceased, no live Person |
 | Pass | Ahmet | Narrative-only; butcher, bill collector | background; retire maintained arc; seeded episode actor or unnamed role |
-| Pass | Hasan Bey | Host-side regular; pensioner, tab | background; retire maintained arc; seeded episode actor or unnamed role |
+| Pass | Mr Hasan | Host-side regular; pensioner, tab | background; retire maintained arc; seeded episode actor or unnamed role |
 | Pass | Mrs Arslan | Host-side regular; ledger names her Gül Arslan; grandson | background; retire maintained arc; seeded episode actor or unnamed role |
 | Pass | the Aksoy sisters | Host-side collective regular; reading group | background; retire maintained arc; seeded episode actor or unnamed role |
 | Pass | Kemal | Host-side regular; taxi driver | background; retire maintained arc; seeded episode actor or unnamed role |
@@ -1163,15 +1163,15 @@ Rows which mention old constructors describe source identities only. A replaceme
 | Hearsay | Orhan | HF; Coffee house keeper; id orhan | background; retire maintained arc; seeded episode actor or unnamed role |
 | Hearsay | Meryem | HF; Midwife; id meryem | background; retire maintained arc; seeded episode actor or unnamed role |
 | Hearsay | Halil | HF; Imam; id halil | background; retire maintained arc; seeded episode actor or unnamed role |
-| Stairwell | Nermin (nermin); Nermin Hanım | 72; flat 1; Widow. Her window is next to the front door. | replacement role → `hf.cast.hacer.voice`; old identity retired |
-| Stairwell | Sevim (sevim); Sevim Hanım | 69; flat 2; Retired teacher. Corrects the notices on the board. | canonical → `hf.cast.sevim.stairwell`; reconcile against biography |
-| Stairwell | Burak (burak); Burak Bey | 31; flat 3; Accountant. Polite, quiet, out all day. | canonical → `hf.cast.burak.stairwell`; reconcile against biography |
-| Stairwell | Hüseyin (huseyin); Hüseyin Bey | 63; flat 4; The building manager. Keeps the fund book. | background; retire maintained arc; seeded episode actor or unnamed role |
-| Stairwell | Derya (derya); Derya Hanım | 44; flat 5; Night nurse. Sleeps in the mornings. | canonical → `hf.cast.derya.stairwell`; reconcile against biography |
-| Stairwell | Elif (elif); Elif Hanım | 27; flat 6; Illustrator. Moved in last month. | background; retire maintained arc; seeded episode actor or unnamed role |
-| Stairwell | Tarık (tarik); Tarık Bey | 81; flat 7; Retired ferry captain. Top floor. | canonical → `hf.cast.tarik.stairwell`; reconcile against biography |
-| Stairwell | Kapıcı (kapici) | Player; new building caretaker, male 38 | background; retire maintained arc; seeded episode actor or unnamed role |
-| Stairwell | Rıza Efendi / Rıza (riza in narrator messages) | Former kapıcı; notebook/margin voice and resident recollections; not created as a Person | remembered background; no live continuing branch; status only as sourced |
+| Stairwell | Nermin (nermin); Ms Nermin | 72; flat 1; Widow. Her window is next to the front door. | replacement role → `hf.cast.hacer.voice`; old identity retired |
+| Stairwell | Sevim (sevim); Ms Sevim | 69; flat 2; Retired teacher. Corrects the notices on the board. | canonical → `hf.cast.sevim.stairwell`; reconcile against biography |
+| Stairwell | Burak (burak); Mr Burak | 31; flat 3; Accountant. Polite, quiet, out all day. | canonical → `hf.cast.burak.stairwell`; reconcile against biography |
+| Stairwell | Hüseyin (huseyin); Mr Hüseyin | 63; flat 4; The building manager. Keeps the fund book. | background; retire maintained arc; seeded episode actor or unnamed role |
+| Stairwell | Derya (derya); Ms Derya | 44; flat 5; Night nurse. Sleeps in the mornings. | canonical → `hf.cast.derya.stairwell`; reconcile against biography |
+| Stairwell | Elif (elif); Ms Elif | 27; flat 6; Illustrator. Moved in last month. | background; retire maintained arc; seeded episode actor or unnamed role |
+| Stairwell | Tarık (tarik); Mr Tarık | 81; flat 7; Retired ferry captain. Top floor. | canonical → `hf.cast.tarik.stairwell`; reconcile against biography |
+| Stairwell | The building’s caretaker (legacy id: kapici) | Player; new building caretaker, male 38 | background; retire maintained arc; seeded episode actor or unnamed role |
+| Stairwell | Mr Rıza / Rıza (riza in narrator messages) | Former caretaker; notebook/margin voice and resident recollections; not created as a Person | remembered background; no live continuing branch; status only as sourced |
 | Stairwell | Volkan | Derya’s brother; lost his job; late-night visitor, revealed in dialogue | named family background; retain only stated kinship and immediate episode role; no maintained personal arc |
 | The Valley | Osman (osman) | 52; Kavak, house head | background; retire maintained arc; seeded episode actor or unnamed role |
 | The Valley | Hatice (hatice) | 47; Kavak, house member | background; retire maintained arc; seeded episode actor or unnamed role |
@@ -1203,7 +1203,7 @@ Rows which mention old constructors describe source identities only. A replaceme
 | The Valley | Recep (recep) | 29; Tepe, house head | background; retire maintained arc; seeded episode actor or unnamed role |
 | The Valley | Şerife (serife) | 63; Tepe, house member | background; retire maintained arc; seeded episode actor or unnamed role |
 | The Valley | Zeynep (zeynep) | 21; Tepe, house member | background; retire maintained arc; seeded episode actor or unnamed role |
-| The Valley | the kahya (kahya) | Player, male 41; seal-holder / steward | background; retire maintained arc; seeded episode actor or unnamed role |
+| The Valley | the steward (legacy id: kahya) | Player, male 41; seal-holder / steward | background; retire maintained arc; seeded episode actor or unnamed role |
 | The Valley | Mehmet (yayla-mehmet) | 32; Yayla; head | background; retire maintained arc; seeded episode actor or unnamed role |
 | The Valley | Ayşe (yayla-w) | 28; Yayla; spouse | background; retire maintained arc; seeded episode actor or unnamed role |
 | The Valley | Hacer (yayla-c0) | 8; Yayla; child | background; retire maintained arc; seeded episode actor or unnamed role |
@@ -1230,7 +1230,7 @@ Rows which mention old constructors describe source identities only. A replaceme
 | The Warren | Musa (musa) | 29; the Demir house; house head | background; retire maintained arc; seeded episode actor or unnamed role |
 | The Warren | Ayşe (ayse) | 25; the Demir house; house member | background; retire maintained arc; seeded episode actor or unnamed role |
 | The Warren | Hatice (hatice) | 58; the Demir house; house member | background; retire maintained arc; seeded episode actor or unnamed role |
-| The Warren | Yusuf Usta (yusuf) | 74; the dig-master’s house; dig-master | canonical → `hf.cast.yusuf.warren`; reconcile against biography |
+| The Warren | Master Yusuf (yusuf) | 74; the dig-master’s house; dig-master | canonical → `hf.cast.yusuf.warren`; reconcile against biography |
 | The Warren | Meryem (meryem) | 19; the dig-master’s house; house member | canonical → `hf.cast.meryem.warren`; reconcile against biography |
 | Neighbours (Alder Quay) | Ada (ada) | carpenter; workshop; Kept the hall tables dry; wants to repair its doors. | replacement role → `hf.cast.nora.smallworks`; old identity retired |
 | Neighbours (Alder Quay) | Musa (musa) | gardener; garden; Lost seedlings in the flood; grows food for neighbours. | background; retire maintained arc; seeded episode actor or unnamed role |
@@ -1440,7 +1440,7 @@ Rows which mention old constructors describe source identities only. A replaceme
 | Neighbours (Alder Quay) | resident-198 | Rowan Patel | background; retire maintained arc; seeded episode actor or unnamed role |
 | Neighbours (Alder Quay) | resident-199 | Alex Patel | background; retire maintained arc; seeded episode actor or unnamed role |
 | Neighbours (Alder Quay) | resident-200 | Jamie Das | background; retire maintained arc; seeded episode actor or unnamed role |
-| Twice at the Well | Hajja Maryam | 68; cook. Widow, everyone’s grandmother. Cooks at 06:30, 12:00 and 18:00 by habit. | canonical → `hf.cast.maryam.well`; reconcile against biography |
+| Twice at the Well | Maryam | 68; cook. Widow, everyone’s grandmother. Cooks at 06:30, 12:00 and 18:00 by habit. | canonical → `hf.cast.maryam.well`; reconcile against biography |
 | Twice at the Well | Yusuf | 34; builder. Maryam’s son, Tariq’s father. Keeps promises; prays on time. | canonical → `hf.cast.yusuf.well`; reconcile against biography |
 | Twice at the Well | Tariq | 16; apprentice. Yusuf’s son. Eager, learns fast, trusts your voice most. | canonical → `hf.cast.tariq.well`; reconcile against biography |
 | Twice at the Well | Idris | 41; forester. Forester, Yusuf’s friend. Low fear, high ambition: the cedar tempts him. | canonical → `hf.cast.idris.well`; reconcile against biography |
@@ -1451,7 +1451,7 @@ Rows which mention old constructors describe source identities only. A replaceme
 | The Day You Say Nothing | Rıza | 63; Halil’s friend at the tea house. | canonical → `hf.cast.riza.voice`; reconcile against biography |
 | The Day You Say Nothing | Hacer | 58; neighbour who talks about people; weak conviction against backbiting (0.15). | canonical → `hf.cast.hacer.voice`; reconcile against biography |
 | The Day You Say Nothing | Osman | 55; landlord and market trader; seeks rent repayment. | canonical → `hf.cast.osman.voice`; reconcile against biography |
-| The Day You Say Nothing | Nuran | Halil’s deceased wife; narrative and relationship entry, not a live Person. Funeral and last-Ramadan iftar are memories; grave can be visited. | remembered background; deceased, no live Person |
+| The Day You Say Nothing | Nuran | Halil’s deceased wife; narrative and relationship entry, not a live Person. Funeral and sunset meal last Ramadan are memories; grave can be visited. | remembered background; deceased, no live Person |
 | The Day You Say Nothing | You | Player’s voice in Halil’s head; not a named independent person. | background; retire maintained arc; seeded episode actor or unnamed role |
 | The Night Watch | Tamar | 54; watcher. Sling, steady. | canonical → `hf.cast.tamar.watch`; reconcile against biography |
 | The Night Watch | Kian | 16; watcher. Fast, eager. | canonical → `hf.cast.kian.watch`; reconcile against biography |
@@ -1473,9 +1473,9 @@ Rows which mention old constructors describe source identities only. A replaceme
 - **Small Works:** Sam's mother retains mother status as family background; her original age43 is compatible with Sam18, but she receives no independent cross-game arc. Sam's sister, Evan's children, bike-club and event participants are background. Evan's old arc is retired, not silently handed to Halil. Halil receives a new repair episode with his own family and health. Nora's designer role is fictional.
 - **Good Hands:** all household collective names, all unnamed relatives and all work references outside the table are background. The 24-candidate donor-offset profile lottery must not alter Nermin, Hatice or any new canonical guest's identity on another appearance. Background candidates may retain a seeded profile within their episode. No common-name merger is authorized beyond the explicit canonical rows: Taş Zeynep remains a teenager, İnce Derya an architect, Taş Halil a porter. The six canonical guest roles supplement/rewrite the foreground structure; the agency must not continue a personal arc for each of its former hundred actors under a background label. References remain attributed and scoped.
 - **Hearsay:** the 32 inventory rows are exhaustive fixed source actors. Anne/Mother is relational speech, not an extra foreground actor. Emre/Elif’s former engagement may remain only as an incidental public event with unnamed or episode-generated locals and no sustained individual conversations, portraits, distinctive continuing voices or personal choices. If the game needs the couple as recognizable protagonists, their roles must be reauthored for people in Hearsay’s allocated eight. Neither old name can retain its old foreground arc merely under a background label. Household groups do not imply kinship. Canonical Selin is not the old student Selin. New Dilan is not the old courier Murat. The new Hatice/Nermin/Rıza/Osman/Aylin/Ece profiles override incompatible generic old age/sex/trait constructors explicitly. Derya retains her wave-1 nurse reconciliation and temporary lodging.
-- **Stairwell:** the narrator and former caretaker notebook are channels or remembered background, not live persons. Allegations invented by players remain beliefs or fabrications. The old kapıcı is an episode player role. Replacing Nermin72 with Hacer58 changes the flat's age and history deliberately; no rejuvenation of an admitted Nermin occurs. Volkan remains Derya's background brother and his job loss is private until disclosed.
-- **Valley:** every upper-house generator result is background, for every seed, house and ordinal, including all male/female pools listed in the census and every seed-42 row above. A generated Yusuf, Maryam-like name or other pool collision never matches a castId. All six generated houses, unnamed former kahya, Saliha's late husband, Yusuf's background children and household animals remain outside the forty. The kahya is a current player office/body. Well Yusuf's new Valley age34/main building trade explicitly supersedes the old age38 shepherd constructor. Zehra remains his wife and any started pregnancy remains real; Samira is a visitor married to Idris, not a replacement wife.
-- **Warren:** every later arrival (`arrival n`, house `h<n>`, generated sex/name/age/profile) is background across the complete family/given-name pools, including fallback names and repeated names. No arrival name establishes an existing canonical branch. The fixed Kaya and Demir families' old personal arcs are retired; immediate refuge needs may remain. Keeper/usta is a player role, distinct from Yusuf Usta. Yusuf Usta's father is remembered, unnamed and not a new foreground person. New Maryam, Tariq, Kian and Tamar visits require explicit households and covered duties. Meryem's granddaughter relationship is a new author choice replacing the generic source tie derivation.
+- **Stairwell:** the narrator and former caretaker notebook are channels or remembered background, not live persons. Allegations invented by players remain beliefs or fabrications. The old caretaker is an episode player role. Replacing Nermin72 with Hacer58 changes the flat's age and history deliberately; no rejuvenation of an admitted Nermin occurs. Volkan remains Derya's background brother and his job loss is private until disclosed.
+- **Valley:** every upper-house generator result is background, for every seed, house and ordinal, including all male/female pools listed in the census and every seed-42 row above. A generated Yusuf, Maryam-like name or other pool collision never matches a castId. All six generated houses, unnamed former steward, Saliha's late husband, Yusuf's background children and household animals remain outside the forty. The steward is a current player office/body. Well Yusuf's new Valley age34/main building trade explicitly supersedes the old age38 shepherd constructor. Zehra remains his wife and any started pregnancy remains real; Samira is a visitor married to Idris, not a replacement wife.
+- **Warren:** every later arrival (`arrival n`, house `h<n>`, generated sex/name/age/profile) is background across the complete family/given-name pools, including fallback names and repeated names. No arrival name establishes an existing canonical branch. The fixed Kaya and Demir families' old personal arcs are retired; immediate refuge needs may remain. Keeper/master is a player role, distinct from Master Yusuf. Master Yusuf's father is remembered, unnamed and not a new foreground person. New Maryam, Tariq, Kian and Tamar visits require explicit households and covered duties. Meryem's granddaughter relationship is a new author choice replacing the generic source tie derivation.
 - **Neighbours:** all `resident-n` actors from the full 18×18 name combination pool are background at every permitted population and seed, not only the 200 example rows. The source contains 208 total at seed42, including eight principals; the example is not 208 additional people. Former Lea and Musa have their maintained arcs retired; teaching/gardening roles can be episode actors. Replacements Ada→Nora, Elin→Derya, Sam→young Sam, Jo→Bilal, Ravi→Rafi, Noor→Ece do not inherit old ages, sex, player cousin/stall-partner/next-door relationships or occupations unexamined. The player's cousin reference to Lea becomes a background relation or is removed in the new edition. Care, ferry and food duties require compatible new scene content, not competence assigned by a name swap.
 - **Well:** all six fixed people are canonical. Their unnamed deceased spouses remain deceased background. Yusuf's wife Zehra and Samira/Idris's children are explicit new-edition family content. Canonical Danyal retains his Christian identity; no generic norm constructor may replace it.
 - **Voice:** Nuran is a deceased remembered person, not a foreground live body. Unnamed doctor, drummer, visiting children and Selin's household are background. Halil's debt, illness and grief are source facts, not optional dramatic decorations. Selin's owed/calendar mapping is quiet and never a travel gate. Player voice is a channel.

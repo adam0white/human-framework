@@ -1,4 +1,5 @@
 import { memo, type ReactNode, type RefObject, useState } from 'react';
+import { settingWords } from '../../shared/setting-words.ts';
 import type { HurtNews, MomentRecord } from '../sim/game.ts';
 import type { Prediction, VillagerView } from '../sim/human-side.ts';
 import type { PlaceId } from '../sim/map.ts';
@@ -186,7 +187,9 @@ export function Timeline({ frame }: { frame: Frame | null }) {
             style={{ left: pct(m.minute) }}
             title={`${m.label} ${dayClock(m.minute)}`}
           >
-            {m.kind === 'day' && <span className="tl-label">{m.label.replace('Day ', 'D')}</span>}
+            {m.kind === 'day' && (
+              <span className="tl-label">{settingWords(m.label.replace('Day ', 'D'))}</span>
+            )}
           </span>
         ),
       )}
@@ -265,17 +268,19 @@ export function TopBar(props: {
           <span className="phone-day">D{f ? clockOf(f.minute).day : 1} </span>
           {f ? hhmm(f.minute) : '05:00'}
         </span>
-        <span className="clock-status">{statusLine(f)}</span>
+        <span className="clock-status">{settingWords(statusLine(f))}</span>
       </div>
       <Timeline frame={f} />
       <span className="clock-rate" role="status">
-        {f?.ended
-          ? 'Ended'
-          : props.playback.paused
-            ? 'Paused'
-            : props.playback.slowMo
-              ? 'Slow · 1 min/s · suggestion pending'
-              : `Running · ${props.playback.speed * SIM_MINUTES_PER_SECOND} min/s`}
+        {settingWords(
+          f?.ended
+            ? 'Ended'
+            : props.playback.paused
+              ? 'Paused'
+              : props.playback.slowMo
+                ? 'Slow · 1 min/s · suggestion pending'
+                : `Running · ${props.playback.speed * SIM_MINUTES_PER_SECOND} min/s`,
+        )}
       </span>
       <div className="topbar-controls">
         {props.onResults && (
@@ -318,8 +323,11 @@ export function GoalChip({
 }) {
   const tag = side === 'classic' ? 'C' : side === 'human' ? 'H' : 'S';
   return (
-    <span className={`goal-chip goal-${s.status} goal-chip-${side}`} title={`${side}: ${s.status}`}>
-      <span className="goal-chip-side">{tag}</span>
+    <span
+      className={`goal-chip goal-${s.status} goal-chip-${side}`}
+      title={settingWords(`${side}: ${s.status}`)}
+    >
+      <span className="goal-chip-side">{settingWords(tag)}</span>
       <span className="goal-chip-mark" aria-hidden="true">
         {STATUS_MARK[s.status]}
       </span>
@@ -350,7 +358,7 @@ export const GoalStrip = memo(function GoalStrip({ goals }: { goals: GoalView[] 
             <Icon name={GOAL_ICON[g.id] ?? 'house'} size={16} />
           </span>
           <span className="goal-label">
-            {g.label}
+            {settingWords(g.label)}
             <small> by {dayClock(g.deadlineMinute)}</small>
           </span>
           <span className="goal-dots" aria-hidden="true">
@@ -383,7 +391,7 @@ export function GoalBars({ goal }: { goal: GoalView }) {
   const tick = `${(target / max) * 100}%`;
   const row = (tag: 'C' | 'H', s: GoalSide) => (
     <span className={`gbar goal-${s.status}`}>
-      <span className="gbar-tag">{tag}</span>
+      <span className="gbar-tag">{settingWords(tag)}</span>
       <span className="gbar-track">
         <span className="gbar-fill" style={{ width: `${Math.min(1, s.value / max) * 100}%` }} />
         <span className="gbar-tick" style={{ left: tick }} />
@@ -394,7 +402,9 @@ export function GoalBars({ goal }: { goal: GoalView }) {
     <span
       className="goal-bars"
       role="img"
-      aria-label={`${goal.label}: Classic ${goalValue(goal, goal.classic)} (${goal.classic.status}), Human ${goalValue(goal, goal.human)} (${goal.human.status}); target ${target}`}
+      aria-label={settingWords(
+        `${goal.label}: Classic ${goalValue(goal, goal.classic)} (${goal.classic.status}), Human ${goalValue(goal, goal.human)} (${goal.human.status}); target ${target}`,
+      )}
     >
       <span className="gbar-name">
         {GOAL_SHORT[goal.id] ?? goal.label} <small>{target}</small>
@@ -444,18 +454,18 @@ export function PaneStats({ frame, side }: { frame: Frame | null; side: 'classic
       {side === 'classic' && (
         <div className="stat-no-concept">
           <dt>Prayers · morale · trust</dt>
-          <dd>{NO_CONCEPT}</dd>
+          <dd>{settingWords(NO_CONCEPT)}</dd>
         </div>
       )}
       {side === 'human' && (
         <>
           <div>
             <dt>Morale</dt>
-            <dd>{h ? moodDescription(h.morale) : 'Settled'}</dd>
+            <dd>{settingWords(h ? moodDescription(h.morale) : 'Settled')}</dd>
           </div>
           <div>
             <dt>Trust</dt>
-            <dd>{h ? trustDescription(h.trust) : 'Getting acquainted'}</dd>
+            <dd>{settingWords(h ? trustDescription(h.trust) : 'Getting acquainted')}</dd>
           </div>
         </>
       )}
@@ -496,9 +506,9 @@ function Chip({
   settled?: boolean | undefined;
 }) {
   return (
-    <span className={`chip chip-${state}`} title={label ? `${side}: ${label}` : side}>
+    <span className={`chip chip-${state}`} title={settingWords(label ? `${side}: ${label}` : side)}>
       <span className="chip-side">{side === 'classic' ? 'C' : 'H'}</span>
-      {chipText(state, settled)}
+      {settingWords(chipText(state, settled))}
     </span>
   );
 }
@@ -510,7 +520,7 @@ export function OrderCardView({ card, onCancel }: { card: OrderCard; onCancel(id
       <Portrait id={o.personId} />
       <div className="card-main">
         <div className="card-title">
-          <strong>{shortName(o.personId)}</strong> → {PLACE_LABEL[o.placeId]}
+          <strong>{settingWords(shortName(o.personId))}</strong> → {settingWords(PLACE_LABEL[o.placeId])}
           {o.rush && (
             <span className="flag" title="Rush">
               <Icon name="rush" size={12} label="Rush" />
@@ -523,21 +533,26 @@ export function OrderCardView({ card, onCancel }: { card: OrderCard; onCancel(id
           )}
         </div>
         <div className="card-sub">
-          {jobPhrase(o.action)}
+          {settingWords(jobPhrase(o.action))}
           {card.status === 'lapsed' && ' · lapsed'}
           {card.status === 'replaced' && ` · replaced by ${card.replacedBy ?? 'a newer order'}`}
           {card.human.label &&
             card.human.state !== 'pending' &&
             (card.status === 'active' || card.human.state === 'willNot' || card.human.state === 'cannot') && (
-              <span className={`card-says says-${card.human.state}`}> · {humanQuotes(card)}</span>
+              <span className={`card-says says-${card.human.state}`}>
+                {' '}
+                · {settingWords(humanQuotes(card))}
+              </span>
             )}
           {card.classic.state === 'noop' && card.classic.label && (
-            <span className="card-says says-noop"> · Classic: {card.classic.label}</span>
+            <span className="card-says says-noop"> · Classic: {settingWords(card.classic.label)}</span>
           )}
         </div>
-        {card.classic.outcome && <p className="card-outcome">Classic · {card.classic.outcome}</p>}
-        {card.human.outcome && <p className="card-outcome">Human · {card.human.outcome}</p>}
-        {homeOrderMeaning(card) && <p className="card-outcome">{homeOrderMeaning(card)}</p>}
+        {card.classic.outcome && (
+          <p className="card-outcome">Classic · {settingWords(card.classic.outcome)}</p>
+        )}
+        {card.human.outcome && <p className="card-outcome">Human · {settingWords(card.human.outcome)}</p>}
+        {homeOrderMeaning(card) && <p className="card-outcome">{settingWords(homeOrderMeaning(card))}</p>}
         <div className="card-chips">
           <Chip
             side="classic"
@@ -599,20 +614,20 @@ export function PersonOrder({
   return (
     <section className="person-order" aria-label="Latest order">
       <p className="person-order-state">
-        <strong>Human · {personOrderStatus(card)}</strong>
+        <strong>Human · {settingWords(personOrderStatus(card))}</strong>
       </p>
       {(card.human.says ?? card.human.label) && (
         <p className="person-order-reply">
           {card.human.outcome ? 'Before completion' : 'Latest Human reply'}:{' '}
-          {card.human.says ?? card.human.label}
+          {settingWords(card.human.says ?? card.human.label)}
         </p>
       )}
-      {homeOrderMeaning(card) && <p>{homeOrderMeaning(card)}</p>}
-      {pushed && <p>{shortName(card.order.personId)} went along, but minded being pushed.</p>}
+      {homeOrderMeaning(card) && <p>{settingWords(homeOrderMeaning(card))}</p>}
+      {pushed && <p>{settingWords(shortName(card.order.personId))} went along, but minded being pushed.</p>}
       {trustCosts.map((event) => (
         <p className="person-order-cost" key={`${event.minute}-${event.label}-${event.delta}`}>
-          Recent trust change · {dayClock(event.minute)} · {shortName(card.order.personId)} trusts you less.{' '}
-          {event.label}.
+          Recent trust change · {dayClock(event.minute)} · {settingWords(shortName(card.order.personId))}{' '}
+          trusts you less. {settingWords(event.label)}.
         </p>
       ))}
       {card.order.insist && person && trustCosts.length === 0 && (
@@ -644,8 +659,9 @@ export function OrderReply({ cards }: { cards: OrderCard[] }) {
   if (!card) return null;
   return (
     <p className="order-reply" role="status">
-      Human · <strong>{shortName(card.order.personId)}</strong> → {PLACE_LABEL[card.order.placeId]}:{' '}
-      {chipText(card.human.state, card.human.settled)} · {card.human.label}
+      Human · <strong>{settingWords(shortName(card.order.personId))}</strong> →{' '}
+      {settingWords(PLACE_LABEL[card.order.placeId])}:{' '}
+      {settingWords(chipText(card.human.state, card.human.settled))} · {settingWords(card.human.label)}
     </p>
   );
 }
@@ -704,12 +720,12 @@ export function SuggestionCard(props: {
     <div className={`nudge ${props.active ? 'is-active' : ''}`}>
       <div className="nudge-head">
         <div className="nudge-proposal">
-          {choice.refusal && <p className="nudge-refusal">{choice.refusal}</p>}
+          {choice.refusal && <p className="nudge-refusal">{settingWords(choice.refusal)}</p>}
           <p className="nudge-order">
-            {shortName(n.order.personId)} → {PLACE_LABEL[n.order.placeId]}
+            {settingWords(shortName(n.order.personId))} → {settingWords(PLACE_LABEL[n.order.placeId])}
           </p>
-          {!choice.refusal && <p className="nudge-text">{history ?? n.text}</p>}
-          {!choice.refusal && n.reason && <p className="nudge-reason">{n.reason}</p>}
+          {!choice.refusal && <p className="nudge-text">{settingWords(history ?? n.text)}</p>}
+          {!choice.refusal && n.reason && <p className="nudge-reason">{settingWords(n.reason)}</p>}
         </div>
         <button type="button" className="btn btn-small nudge-use" onClick={() => props.onUse(choice.nudge)}>
           {choice.refusal
@@ -737,8 +753,8 @@ export function SuggestionCard(props: {
       )}
       {choice.refusal && (
         <p className="nudge-warning">
-          Insisting may cost trust. {shortName(n.order.personId)} can still refuse. Review the warning before
-          Confirm.
+          Insisting may cost trust. {settingWords(shortName(n.order.personId))} can still refuse. Review the
+          warning before Confirm.
         </p>
       )}
       <p className="nudge-availability">
@@ -835,7 +851,7 @@ export function Composer(props: {
             if (e.currentTarget.open) props.onCompose?.();
           }}
         >
-          <summary>Worker · {who ? shortName(who) : 'Choose'}</summary>
+          <summary>Worker · {settingWords(who ? shortName(who) : 'Choose')}</summary>
           <fieldset className="picker-chips" aria-label="Worker">
             {VILLAGERS.map((p) => (
               <button
@@ -848,7 +864,7 @@ export function Composer(props: {
                   e.currentTarget.closest('details')?.removeAttribute('open');
                 }}
               >
-                {shortName(p.id)}
+                {settingWords(shortName(p.id))}
               </button>
             ))}
           </fieldset>
@@ -860,7 +876,7 @@ export function Composer(props: {
             if (e.currentTarget.open) props.onCompose?.();
           }}
         >
-          <summary>Place · {s.placeId ? PLACE_LABEL[s.placeId] : 'Choose'}</summary>
+          <summary>Place · {settingWords(s.placeId ? PLACE_LABEL[s.placeId] : 'Choose')}</summary>
           <fieldset className="picker-chips" aria-label="Destination">
             {places.map((p) => (
               <button
@@ -874,7 +890,7 @@ export function Composer(props: {
                   e.currentTarget.closest('details')?.removeAttribute('open');
                 }}
               >
-                {PLACE_LABEL[p]}
+                {settingWords(PLACE_LABEL[p])}
               </button>
             ))}
           </fieldset>
@@ -892,7 +908,7 @@ export function Composer(props: {
               onClick={() => props.onWho(p.id)}
             >
               <Portrait id={p.id} size={20} />
-              <span>{shortName(p.id)}</span>
+              <span>{settingWords(shortName(p.id))}</span>
             </button>
           );
         })}
@@ -910,25 +926,25 @@ export function Composer(props: {
             onPointerLeave={() => props.onHover(null)}
           >
             <Icon name={PLACE_ICON[p]} size={16} />
-            <span className="place-chip-label">{PLACE_LABEL[p]}</span>
+            <span className="place-chip-label">{settingWords(PLACE_LABEL[p])}</span>
           </button>
         ))}
       </div>
-      <p className="composer-line" aria-live="polite" title={pred?.text}>
+      <p className="composer-line" aria-live="polite" title={settingWords(pred?.text)}>
         {!who ? (
           <span className="muted">Pick a villager here or on either map.</span>
         ) : !s.placeId ? (
-          <span className="muted">{shortName(who)}: now pick a place.</span>
+          <span className="muted">{settingWords(shortName(who))}: now pick a place.</span>
         ) : (
           <>
             <span className="composer-job">
-              {shortName(who)} → {PLACE_LABEL[s.placeId]}
-              {props.job && <> · {jobPhrase(props.job)}</>}
+              {settingWords(shortName(who))} → {settingWords(PLACE_LABEL[s.placeId])}
+              {props.job && <> · {settingWords(jobPhrase(props.job))}</>}
             </span>
             {!pred && <span className="predict muted">Checking current answer…</span>}
             {pred && (
               <span className={`predict predict-${pred.kind}`}>
-                {pred.text}
+                {settingWords(pred.text)}
                 {who === 'maryam' && pred.text === 'Will refuse: the others would go unfed' && (
                   <>. Ask again after she cooks the meal.</>
                 )}
@@ -938,33 +954,38 @@ export function Composer(props: {
         )}
         {(s.rush || s.insist || s.appeal) && (
           <span className="active-costs">
-            {[
-              s.rush && 'Rush: hungrier',
-              s.insist && 'Insist: trust at risk',
-              s.appeal === 'safety' && 'Safety: promise',
-              s.appeal === 'children' && 'For the children',
-              s.appeal === 'duty' && 'Duty',
-            ]
-              .filter(Boolean)
-              .join(' · ')}
+            {settingWords(
+              [
+                s.rush && 'Rush: hungrier',
+                s.insist && 'Insist: trust at risk',
+                s.appeal === 'safety' && 'Safety: promise',
+                s.appeal === 'children' && 'For the children',
+                s.appeal === 'duty' && 'Duty',
+              ]
+                .filter(Boolean)
+                .join(' · '),
+            )}
           </span>
         )}
       </p>
-      {s.reason && <p className="composer-reason">{s.reason}</p>}
+      {s.reason && <p className="composer-reason">{settingWords(s.reason)}</p>}
       <details className="order-options" onToggle={(e) => keepOneDisclosure(e.currentTarget)}>
         <summary>
           Order options
           {s.rush && <small> · Rush: faster, hungrier</small>}
           {s.insist && <small> · Insist: may cost trust</small>}
-          {s.appeal && <small> · Appeal: “{APPEALS.find((a) => a.id === s.appeal)?.label}”</small>}
+          {s.appeal && (
+            <small> · Appeal: “{settingWords(APPEALS.find((a) => a.id === s.appeal)?.label)}”</small>
+          )}
         </summary>
         <div className="option-person-actions">
           <p>
-            {who ? shortName(who) : 'Choose worker'} → {s.placeId ? PLACE_LABEL[s.placeId] : 'Choose place'}
+            {settingWords(who ? shortName(who) : 'Choose worker')} →{' '}
+            {settingWords(s.placeId ? PLACE_LABEL[s.placeId] : 'Choose place')}
           </p>
           {who && (
             <button type="button" className="btn" onClick={() => props.onInspect(who)}>
-              About {shortName(who)}
+              About {settingWords(shortName(who))}
             </button>
           )}
           <button type="button" className="btn" onClick={() => props.onChange(EMPTY_COMPOSER)}>
@@ -1000,14 +1021,14 @@ export function Composer(props: {
               type="button"
               className={`appeal ${s.appeal === a.id ? 'is-on' : ''}`}
               aria-pressed={s.appeal === a.id}
-              aria-label={`Appeal: “${a.label}”`}
-              title={`“${a.label}”`}
+              aria-label={settingWords(`Appeal: “${a.label}”`)}
+              title={settingWords(`“${a.label}”`)}
               disabled={!who}
               onClick={() => props.onChange({ ...s, appeal: s.appeal === a.id ? null : a.id })}
             >
-              <span className="appeal-full">“{a.label}”</span>
+              <span className="appeal-full">“{settingWords(a.label)}”</span>
               <span className="appeal-short" aria-hidden="true">
-                “{APPEAL_SHORT[a.id] ?? a.label}”
+                “{settingWords(APPEAL_SHORT[a.id] ?? a.label)}”
               </span>
             </button>
           ))}
@@ -1024,7 +1045,7 @@ export function Composer(props: {
         )}
         {who && (
           <button type="button" className="btn btn-small btn-ghost" onClick={() => props.onInspect(who)}>
-            About {shortName(who)}
+            About {settingWords(shortName(who))}
           </button>
         )}
         {(who || s.nudgeId) && (
@@ -1082,8 +1103,8 @@ export function PauseRibbon({
   return (
     <div className={`pause-ribbon pause-${pause.kind}`} role="status">
       <div>
-        <strong>{title}</strong>
-        {pause.kind === 'auto' && pause.text && <p>{pause.text}</p>}
+        <strong>{settingWords(title)}</strong>
+        {pause.kind === 'auto' && pause.text && <p>{settingWords(pause.text)}</p>}
       </div>
       <button type="button" className="btn btn-small" onClick={onResume}>
         {paused ? (
@@ -1126,23 +1147,26 @@ export function HurtLine({
         <button
           type="button"
           className="hurt-summary"
-          aria-label={`Show ${hurtText(latestNews)}`}
+          aria-label={settingWords(`Show ${hurtText(latestNews)}`)}
           onClick={() => {
             onShow(latestNews);
             setHeldNews(null);
           }}
         >
-          Hurt · {shortName(latestNews.personId)} ({latestNews.side === 'human' ? 'Human' : 'Classic'}) · Show
+          Hurt · {settingWords(shortName(latestNews.personId))} (
+          {latestNews.side === 'human' ? 'Human' : 'Classic'}) · Show
         </button>
       )}
       <strong>Hurt</strong>
       {[...shownNews].reverse().map((n) => (
         <div className="hurt-item" key={`${n.side}-${n.personId}-${n.minute}`}>
           <span>
-            {hurtText(n)}
-            {shownSide && n.side !== shownSide
-              ? ` · ${n.side === 'classic' ? 'Classic' : 'Human'} village · not shown`
-              : ''}
+            {settingWords(hurtText(n))}
+            {settingWords(
+              shownSide && n.side !== shownSide
+                ? ` · ${n.side === 'classic' ? 'Classic' : 'Human'} village · not shown`
+                : '',
+            )}
           </span>
           {onRest && n.side === 'human' && (
             <button
@@ -1153,7 +1177,7 @@ export function HurtLine({
                 setHeldNews(null);
               }}
             >
-              Send {shortName(n.personId)} home
+              Send {settingWords(shortName(n.personId))} home
             </button>
           )}
           {onShow && (
@@ -1165,7 +1189,7 @@ export function HurtLine({
                 setHeldNews(null);
               }}
             >
-              Show {shortName(n.personId)}
+              Show {settingWords(shortName(n.personId))}
             </button>
           )}
         </div>
@@ -1193,7 +1217,7 @@ export function MomentBanner({ moment }: { moment: MomentRecord }) {
     <div className="moment-banner" role="status" aria-live="polite" key={`${moment.id}-${moment.minute}`}>
       <span className="moment-banner-n">Moment {moment.id}</span>
       <strong>{MOMENT_TITLE[moment.id] ?? ''}</strong>
-      <p>{moment.line}</p>
+      <p>{settingWords(moment.line)}</p>
     </div>
   );
 }

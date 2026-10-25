@@ -3,6 +3,7 @@
  * the latest frame. Taps become a post or a section; the parent decides what that means in this phase.
  */
 import { useEffect, useRef } from 'react';
+import { settingWords } from '../../shared/setting-words.ts';
 import type { WatcherId } from '../sim/config.ts';
 import type { Frame } from '../sim/view.ts';
 import { drawMap, type Hit, hitTest, isDay, type Layout, layoutFor, newEase } from './map.ts';
@@ -79,7 +80,7 @@ export function MapCanvas({
         ref={canvas}
         className="w-canvas"
         role="img"
-        aria-label={label}
+        aria-label={settingWords(label)}
         onPointerUp={(e) => {
           const r = e.currentTarget.getBoundingClientRect();
           onHit(hitTest(layout.current, latest.current.frame, e.clientX - r.left, e.clientY - r.top));

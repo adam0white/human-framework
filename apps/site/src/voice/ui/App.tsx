@@ -11,6 +11,7 @@ import { LabNotice } from '../../shared/LabNotice.tsx';
 import { gameLabs, useLabScreen } from '../../shared/lab.tsx';
 import { PlaytestNotice } from '../../shared/PlaytestMenu.tsx';
 import { playerError } from '../../shared/player-error.ts';
+import { settingWords } from '../../shared/setting-words.ts';
 import type { Draft } from '../protocol.ts';
 import { Between } from './Between.tsx';
 import { DayLog } from './DayLog.tsx';
@@ -213,7 +214,7 @@ export function App() {
                     setPanelOpen((open) => (tab === t.id ? !open : true));
                   }}
                 >
-                  {t.label} ▸
+                  {settingWords(t.label)} ▸
                 </button>
               ))}
           </nav>
@@ -265,7 +266,7 @@ export function App() {
                   .filter((t) => !!t)
                   .map((t) => (
                     <button key={t.id} type="button" aria-pressed={tab === t.id} onClick={() => setTab(t.id)}>
-                      {t.label}
+                      {settingWords(t.label)}
                     </button>
                   ))}
               </nav>
@@ -308,7 +309,7 @@ export function App() {
           </aside>
           {!speaking && (
             <footer className="v-live-actions">
-              <p>{frame.muted ? 'You are silent today. Watch.' : speakCaption}</p>
+              <p>{settingWords(frame.muted ? 'You are silent today. Watch.' : speakCaption)}</p>
               <div>
                 {canSpeak && !frame.muted && (
                   <button
@@ -452,7 +453,7 @@ export function App() {
       )}
       {voice.error && !feedbackOpen && (
         <div className="v-error" role="alert">
-          {playerError(voice.error, 'play')}{' '}
+          {settingWords(playerError(voice.error, 'play'))}{' '}
           <button type="button" className="v-btn v-btn-small" onClick={() => actions.replay()}>
             Start again
           </button>

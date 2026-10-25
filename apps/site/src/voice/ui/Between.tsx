@@ -1,3 +1,4 @@
+import { settingWords } from '../../shared/setting-words.ts';
 /**
  * Between days (voice.md §7.3): the day's chronicle, its strip, his ends, your trust, then the next step. Before a
  * skip the player may leave up to two standing whispers, each with a strength and an optional reason, and sees
@@ -86,7 +87,7 @@ export function Between({
       <div>
         <ul className="v-lines">
           {view.lines.slice(0, 6).map((l) => (
-            <li key={l}>{storyDates(recapWords(l))}</li>
+            <li key={l}>{settingWords(storyDates(recapWords(l)))}</li>
           ))}
         </ul>
         {view.yours && view.yours.length > 0 && (
@@ -94,7 +95,7 @@ export function Between({
             <h3 className="v-sub">What you said, and what he did</h3>
             <ul className="v-lines">
               {daySpeech(view.yours, sceneWords, day).map((l) => (
-                <li key={l}>{storyDates(recapWords(l))}</li>
+                <li key={l}>{settingWords(storyDates(recapWords(l)))}</li>
               ))}
             </ul>
           </>
@@ -103,11 +104,11 @@ export function Between({
         <StripLegend rows={[view.strip]} />
         <div className="v-between-trust">
           <h3 className="v-sub">His trust in you</h3>
-          <p>{change}</p>
+          <p>{settingWords(change)}</p>
           {view.trust.events.length > 0 && (
             <ul className="v-voice-history">
               {view.trust.events.map((e) => (
-                <li key={e}>{trustEventWords(e)}</li>
+                <li key={e}>{settingWords(trustEventWords(e))}</li>
               ))}
             </ul>
           )}
@@ -143,9 +144,9 @@ export function Between({
                     disabled={full}
                     onClick={() => toggle(c.id)}
                   >
-                    {c.label}
+                    {settingWords(c.label)}
                   </button>
-                  {c.hint && <p className="v-whisper-hint">{c.hint}</p>}
+                  {c.hint && <p className="v-whisper-hint">{settingWords(c.hint)}</p>}
                 </li>
               );
             })}
@@ -157,9 +158,12 @@ export function Between({
                 if (!c) return null;
                 return (
                   <li key={w.choiceId}>
-                    <span className="v-whisper-picked-label">{c.label}</span>
+                    <span className="v-whisper-picked-label">{settingWords(c.label)}</span>
                     <div className="v-whisper-how">
-                      <fieldset className="v-seg v-seg-small" aria-label={`How strongly: ${c.label}`}>
+                      <fieldset
+                        className="v-seg v-seg-small"
+                        aria-label={settingWords(`How strongly: ${c.label}`)}
+                      >
                         {STRENGTHS.map((s) => (
                           <button
                             key={s.id}
@@ -168,11 +172,11 @@ export function Between({
                             onClick={() => patch(c.id, { strength: s.id })}
                           >
                             <Icon name={STRENGTH_ICON[s.id]} />
-                            {s.label}
+                            {settingWords(s.label)}
                           </button>
                         ))}
                       </fieldset>
-                      <fieldset className="v-whisper-reasons" aria-label={`Reason: ${c.label}`}>
+                      <fieldset className="v-whisper-reasons" aria-label={settingWords(`Reason: ${c.label}`)}>
                         <button
                           type="button"
                           className="v-chip"
@@ -189,7 +193,7 @@ export function Between({
                             aria-pressed={w.appeal === a.id}
                             onClick={() => patch(c.id, { appeal: w.appeal === a.id ? null : a.id })}
                           >
-                            {a.label}
+                            {settingWords(a.label)}
                           </button>
                         ))}
                       </fieldset>
@@ -199,7 +203,7 @@ export function Between({
               })}
             </ul>
           )}
-          {picked.length > 0 && cost && <p className="v-insist-price">{cost}</p>}
+          {picked.length > 0 && cost && <p className="v-insist-price">{settingWords(cost)}</p>}
         </div>
       )}
     </div>
@@ -209,7 +213,7 @@ export function Between({
     <section className="v-overlay v-overlay-night" aria-labelledby="between-title">
       <div className="v-card v-between">
         <h2 id="between-title" ref={head} tabIndex={-1}>
-          {storyDates(view.closed)}
+          {settingWords(storyDates(view.closed))}
         </h2>
         <div className="v-page-body">
           {narrowSkip ? (
@@ -217,10 +221,12 @@ export function Between({
               {next}
               <details className="v-between-recap">
                 <summary>
-                  <span className="v-recap-title">{storyDates(view.closed.replace(/ is over\.$/, ''))}</span>
+                  <span className="v-recap-title">
+                    {settingWords(storyDates(view.closed.replace(/ is over\.$/, '')))}
+                  </span>
                   <span className="v-recap-trust">
                     <Icon name="ear" label="His trust in you" />
-                    {change}
+                    {settingWords(change)}
                   </span>
                 </summary>
                 {recap}
@@ -234,13 +240,13 @@ export function Between({
           )}
         </div>
         <footer className="v-page-actions">
-          <p className="v-next-label">{storyDates(nextLabel)}</p>
+          <p className="v-next-label">{settingWords(storyDates(nextLabel))}</p>
           <button
             type="button"
             className="v-btn v-btn-primary v-btn-big"
             onClick={() => onAdvance(skip ? picked : [])}
           >
-            {button}
+            {settingWords(button)}
           </button>
         </footer>
       </div>

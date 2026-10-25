@@ -4,6 +4,7 @@
  */
 import { useEffect, useRef } from 'react';
 import { labMode } from '../../shared/lab-mode.ts';
+import { settingWords } from '../../shared/setting-words.ts';
 import type { WhyView } from '../protocol.ts';
 
 /** Authored paraphrases of recorded influences, not additional causes or simulated speech. */
@@ -143,7 +144,7 @@ export function Why({
       ) : (
         <div className="v-why-body">
           <p className="v-why-chosen">
-            He chose <em>{why.chosen}</em>.
+            He chose <em>{settingWords(why.chosen)}</em>.
           </p>
           {why.note && (
             <p className="v-why-voice">
@@ -154,24 +155,24 @@ export function Why({
           )}
           {why.voice && (
             <p className="v-why-voice">
-              To your words he said <q>{why.voice.says}</q>
-              {answerReason(why.voice.reason) && <span> {answerReason(why.voice.reason)}</span>}
+              To your words he said <q>{settingWords(why.voice.says)}</q>
+              {answerReason(why.voice.reason) && <span> {settingWords(answerReason(why.voice.reason))}</span>}
             </p>
           )}
-          {why.recalled && <p className="v-why-recall">{why.recalled}</p>}
+          {why.recalled && <p className="v-why-recall">{settingWords(why.recalled)}</p>}
           <p className="v-why-note">
             These are his reasons for considering each choice. The strongest reason comes first.
           </p>
           <ol className="v-why-options">
             {why.options.map((o) => (
               <li key={o.label}>
-                <div className="v-why-opt-head">{o.label}</div>
+                <div className="v-why-opt-head">{settingWords(o.label)}</div>
                 <ul className="v-why-pulls">
                   {[...o.terms]
                     .sort((a, b) => Math.abs(b.value) - Math.abs(a.value))
                     .filter((t) => t.value !== 0)
                     .map((t) => (
-                      <li key={`${t.label}-${t.value}`}>{pullLine(t.label, t.value > 0)}</li>
+                      <li key={`${t.label}-${t.value}`}>{settingWords(pullLine(t.label, t.value > 0))}</li>
                     ))}
                   {!o.terms.some((t) => t.value !== 0) && <li>Nothing in particular draws me to this.</li>}
                 </ul>
@@ -189,12 +190,12 @@ export function Why({
                 {why.options.map((o) => (
                   <li key={o.label}>
                     <div className="v-why-opt-head">
-                      {o.label} <span className="v-why-total">{o.total.toFixed(2)}</span>
+                      {settingWords(o.label)} <span className="v-why-total">{o.total.toFixed(2)}</span>
                     </div>
                     <ul>
                       {o.terms.map((t) => (
                         <li key={`${t.label}-${t.value}`}>
-                          {t.label}{' '}
+                          {settingWords(t.label)}{' '}
                           <span className="v-why-val">
                             {t.value >= 0 ? '+' : '−'}
                             {Math.abs(t.value).toFixed(2)}

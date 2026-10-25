@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { settingWords } from '../../shared/setting-words.ts';
 import type { HurtNews } from '../sim/game.ts';
 import type { Prediction } from '../sim/human-side.ts';
 import type { PlaceId } from '../sim/map.ts';
@@ -75,12 +76,14 @@ export function Status({ card }: { card: OrderCard }) {
       {(['classic', 'human'] as const).map((side) => (
         <span key={side} className={`chip chip-${card[side].state}`}>
           {side === 'classic' ? 'C' : 'H'}
-          {glyph(card[side].state)}{' '}
-          {card[side].settled && ['ok', 'assent', 'complied', 'done'].includes(card[side].state)
-            ? card[side].state === 'complied'
-              ? 'done under protest'
-              : 'done'
-            : CHIP_TEXT[card[side].state]}
+          {settingWords(glyph(card[side].state))}{' '}
+          {settingWords(
+            card[side].settled && ['ok', 'assent', 'complied', 'done'].includes(card[side].state)
+              ? card[side].state === 'complied'
+                ? 'done under protest'
+                : 'done'
+              : CHIP_TEXT[card[side].state],
+          )}
         </span>
       ))}
     </span>
@@ -101,7 +104,7 @@ export function StateStrip({ frame, pace, onOpen }: { frame: Frame | null; pace:
         ))}
       </button>
       <p className="well-pace" role="status">
-        {pace}
+        {settingWords(pace)}
       </p>
     </section>
   );
@@ -122,7 +125,7 @@ export function SheetHeader({
           ←
         </button>
       )}
-      <h2>{title}</h2>
+      <h2>{settingWords(title)}</h2>
       {children}
     </header>
   );
@@ -142,7 +145,7 @@ export function People({
     <>
       <button type="button" className="well-village-heading" onClick={onStand}>
         <strong>Human village · {moodDescription(frame.scoreboard.human.morale)}</strong>
-        <small>{VILLAGE_WORDS[frame.village].season}</small>
+        <small>{settingWords(VILLAGE_WORDS[frame.village].season)}</small>
       </button>
       <div className="well-people">
         {VILLAGERS.map((v) => {
@@ -152,16 +155,18 @@ export function People({
             <button type="button" key={v.id} data-person={v.id} onClick={() => onPick(v.id)}>
               <Portrait id={v.id} />
               <span>
-                <strong>{shortName(v.id)}</strong>
-                <small>{activityDescription(p?.label ?? 'waiting')}</small>
+                <strong>{settingWords(shortName(v.id))}</strong>
+                <small>{settingWords(activityDescription(p?.label ?? 'waiting'))}</small>
               </span>
               {card && (
                 <span
                   className="well-person-glyphs"
                   role="img"
-                  aria-label={`Classic ${CHIP_TEXT[card.classic.state]}, Human ${CHIP_TEXT[card.human.state]}`}
+                  aria-label={settingWords(
+                    `Classic ${CHIP_TEXT[card.classic.state]}, Human ${CHIP_TEXT[card.human.state]}`,
+                  )}
                 >
-                  C{glyph(card.classic.state)} H{glyph(card.human.state)}
+                  C{settingWords(glyph(card.classic.state))} H{settingWords(glyph(card.human.state))}
                 </span>
               )}
             </button>
@@ -232,13 +237,13 @@ export function News({ news, onShow }: { news: readonly HurtNews[]; onShow(n: Hu
     <div className="well-news-list">
       {[...news].reverse().map((n) => (
         <div key={`${n.minute}-${n.side}-${n.personId}`}>
-          <p>{hurtText(n)}</p>
+          <p>{settingWords(hurtText(n))}</p>
           <button type="button" onClick={() => onShow(n)}>
-            Show {shortName(n.personId)}
+            Show {settingWords(shortName(n.personId))}
           </button>
           {n.side === 'human' && (
             <button type="button" onClick={() => onShow(n)}>
-              {shortName(n.personId)} · Home
+              {settingWords(shortName(n.personId))} · Home
             </button>
           )}
         </div>
@@ -260,7 +265,7 @@ export function Orders({
   return (
     <>
       <SheetHeader
-        title={`All orders (${frame.cards.filter((c) => c.status !== 'cancelled').length})`}
+        title={settingWords(`All orders (${frame.cards.filter((c) => c.status !== 'cancelled').length})`)}
         onBack={onBack}
       />
       <div className="well-reading">
@@ -326,7 +331,7 @@ export function PersonSheet({
   return (
     <>
       <SheetHeader
-        title={`${shortName(id)} · H: ${h?.label ?? 'waiting'} · C: ${c?.label ?? 'waiting'}`}
+        title={settingWords(`${shortName(id)} · H: ${h?.label ?? 'waiting'} · C: ${c?.label ?? 'waiting'}`)}
         onBack={onBack}
       />
       <div className="well-person-body">
@@ -335,7 +340,8 @@ export function PersonSheet({
             <>
               <div>
                 <strong>
-                  Latest · {PLACE_LABEL[card.order.placeId]} · {jobPhrase(card.order.action)}
+                  Latest · {settingWords(PLACE_LABEL[card.order.placeId])} ·{' '}
+                  {settingWords(jobPhrase(card.order.action))}
                 </strong>
                 <Status card={card} />
               </div>
@@ -373,10 +379,11 @@ export function PersonSheet({
         {pending ? (
           <div className="well-risk">
             <strong>
-              {shortName(id)} → {PLACE_LABEL[pending]} · {jobPhrase(inferredJob(frame, pending))}
+              {settingWords(shortName(id))} → {settingWords(PLACE_LABEL[pending])} ·{' '}
+              {settingWords(jobPhrase(inferredJob(frame, pending)))}
             </strong>
             <p>
-              {riskyPlace(frame, pending)} Human:{' '}
+              {settingWords(riskyPlace(frame, pending))} Human:{' '}
               {forecasts[pending]?.prediction.text ?? 'checking the answer…'}
             </p>
             <button type="button" className="well-send-anyway" onClick={onConfirm}>
@@ -427,12 +434,12 @@ export function PersonSheet({
                   onPointerEnter={() => onHover(p)}
                   onPointerLeave={() => onHover(null)}
                 >
-                  <strong>{PLACE_LABEL[p]}</strong>
-                  <span>{JOB_SHORT[inferredJob(frame, p)] ?? inferredJob(frame, p)}</span>
-                  <small title={match ? prediction.prediction.text : undefined}>
-                    {answer}
+                  <strong>{settingWords(PLACE_LABEL[p])}</strong>
+                  <span>{settingWords(JOB_SHORT[inferredJob(frame, p)] ?? inferredJob(frame, p))}</span>
+                  <small title={settingWords(match ? prediction.prediction.text : undefined)}>
+                    {settingWords(answer)}
                     <span className="well-forecast-long">
-                      {match && kind === 'notNow' ? `: ${prediction.prediction.text}` : ''}
+                      {settingWords(match && kind === 'notNow' ? `: ${prediction.prediction.text}` : '')}
                     </span>
                   </small>
                 </button>
@@ -442,16 +449,16 @@ export function PersonSheet({
         )}
         {card && (
           <div className="well-order-notes">
-            {homeOrderMeaning(card) && <p>{homeOrderMeaning(card)}</p>}
+            {homeOrderMeaning(card) && <p>{settingWords(homeOrderMeaning(card))}</p>}
             {card.order.insist && <p>Insist was used. Asking again may cost trust.</p>}
             {(card.human.state === 'complied' || card.human.first?.state === 'complied') && (
-              <p>{shortName(id)} went along, but minded being pushed.</p>
+              <p>{settingWords(shortName(id))} went along, but minded being pushed.</p>
             )}
             {h?.trust.history
               .filter((e) => e.minute > card.order.issuedAt && e.delta < 0)
               .map((e) => (
                 <p key={`${e.minute}-${e.label}`}>
-                  {shortName(id)} trusts you less. {e.label}.
+                  {settingWords(shortName(id))} trusts you less. {settingWords(e.label)}.
                 </p>
               ))}
           </div>

@@ -1,3 +1,4 @@
+import { settingWords } from '../../shared/setting-words.ts';
 /**
  * Canvas 2D drawing of the wall at night. Lanes run from the treeline (top) to the wall (bottom third), the
  * village sits below. The lantern lights one lane; every other lane is dark and shows only moving grass and
@@ -307,8 +308,10 @@ export function placeMapLabels<T extends { x: number; y: number; width: number }
 export function drawMap(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, ease: Ease, o: DrawOpts): void {
   const { w, h, laneW } = l;
   const labels: MapLabel[] = [];
-  const label = (text: string, x: number, y: number) =>
+  const label = (original: string, x: number, y: number) => {
+    const text = settingWords(original);
     labels.push({ text, x, y, width: ctx.measureText(text).width, font: ctx.font, fill: ctx.fillStyle });
+  };
   noteFrame(ease, f, o.now);
   const span = ease.span;
   const touched = new Set<string>();
@@ -1285,14 +1288,16 @@ function drawVillagers(ctx: CanvasRenderingContext2D, l: Layout, f: Frame, days:
       ctx.font = '600 10px "Instrument Sans", system-ui, sans-serif';
       ctx.textAlign = 'center';
       ctx.fillStyle = 'rgba(255, 243, 220, 0.85)';
-      labels.push({ text: v.name, x, y: y + 16 * size, width: ctx.measureText(v.name).width });
+      const text = settingWords(v.name);
+      labels.push({ text, x, y: y + 16 * size, width: ctx.measureText(text).width });
     }
   }
   for (const item of placeMapLabels(labels, l.w, l.h)) nameLabel(ctx, item.text, item.x, item.y);
 }
 
 /** A name on the map, outlined in the night colour so it reads over huts and wall. Uses the current fill and font. */
-function nameLabel(ctx: CanvasRenderingContext2D, text: string, x: number, y: number): void {
+function nameLabel(ctx: CanvasRenderingContext2D, original: string, x: number, y: number): void {
+  const text = settingWords(original);
   ctx.save();
   ctx.lineJoin = 'round';
   ctx.lineWidth = 3;

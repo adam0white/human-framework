@@ -8,6 +8,7 @@
  * No orientation lock.
  */
 import { useEffect, useState } from 'react';
+import { settingWords } from './setting-words.ts';
 import './fullscreen.css';
 
 function fullscreenEnabled(): boolean {
@@ -83,8 +84,8 @@ export function FullscreenButton({
       type="button"
       className={`fs-btn fs-${variant} ${className}`}
       aria-pressed={active}
-      aria-label={label}
-      title={label}
+      aria-label={settingWords(label)}
+      title={settingWords(label)}
       onClick={toggle}
     >
       <svg viewBox="0 0 16 16" aria-hidden="true" width="16" height="16">

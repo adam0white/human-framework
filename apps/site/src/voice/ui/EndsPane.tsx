@@ -1,3 +1,4 @@
+import { settingWords } from '../../shared/setting-words.ts';
 /** His goals (voice.md §3): things he holds, in his words, as his record. Not points; no pass or fail. */
 
 import { memo } from 'react';
@@ -24,12 +25,13 @@ export function UnaskedStrip({
   if (!items || items.length === 0) return null;
   return (
     <div className="v-unasked">
-      <span className="v-unasked-lead">{lead}</span>
+      <span className="v-unasked-lead">{settingWords(lead)}</span>
       <ul>
         {items.map((u) => (
           <li key={u.label} className={`v-unasked-item is-${u.state}`}>
-            <span>{u.label}</span> <span className="v-unasked-choice">— {UNASKED_WORD[u.state]}</span>
-            {u.day && <span className="v-unasked-day"> ({storyDates(u.day)})</span>}
+            <span>{settingWords(u.label)}</span>{' '}
+            <span className="v-unasked-choice">— {settingWords(UNASKED_WORD[u.state])}</span>
+            {u.day && <span className="v-unasked-day"> ({settingWords(storyDates(u.day))})</span>}
           </li>
         ))}
       </ul>
@@ -42,12 +44,14 @@ export function EndsList({ ends, compact = false }: { ends: EndView[]; compact?:
     <ul className={`v-ends ${compact ? 'is-compact' : ''}`}>
       {ends.map((e) => (
         <li key={e.id} className={`v-end v-end-${e.id}`}>
-          <p className="v-end-label">“{e.label}”</p>
-          <p className="v-end-status">{storyDates(e.status)}</p>
-          {!compact && e.id !== 'trust' && <p className="v-end-detail">{storyDates(e.detail)}</p>}
+          <p className="v-end-label">“{settingWords(e.label)}”</p>
+          <p className="v-end-status">{settingWords(storyDates(e.status))}</p>
+          {!compact && e.id !== 'trust' && (
+            <p className="v-end-detail">{settingWords(storyDates(e.detail))}</p>
+          )}
           {!compact && e.after && (
             <p className="v-end-after">
-              <span>Without you</span> {e.after}
+              <span>Without you</span> {settingWords(e.after)}
             </p>
           )}
         </li>

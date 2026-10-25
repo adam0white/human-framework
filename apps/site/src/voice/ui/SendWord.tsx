@@ -4,6 +4,7 @@ import { setTelemetryOff, telemetryOn } from '@adam0white/lab-kit';
 import { useEffect, useRef, useState } from 'react';
 import { optionalFeedbackRun } from '../../shared/feedback-run.ts';
 import { gameLabs } from '../../shared/lab.tsx';
+import { settingWords } from '../../shared/setting-words.ts';
 import type { VoiceActions } from './useVoice.ts';
 import './feedback.css';
 
@@ -185,7 +186,7 @@ export function SendWord({
               aria-pressed={verdict === value}
               onClick={() => setVerdict(verdict === value ? '' : (value ?? ''))}
             >
-              {label}
+              {settingWords(label)}
             </button>
           ))}
         </fieldset>
@@ -216,7 +217,7 @@ export function SendWord({
         </details>
         {status ? (
           <p role="status" className="v-feedback-note">
-            {status}
+            {settingWords(status)}
           </p>
         ) : null}
       </div>

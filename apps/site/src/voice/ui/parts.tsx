@@ -1,4 +1,5 @@
 import { Help } from '../../shared/Help.tsx';
+import { settingWords } from '../../shared/setting-words.ts';
 /** Small shared pieces: verdict styling, appeal and strength labels, the model notes. */
 import { type Appeal, MODEL_NOTES, type Strength, type Tone, type VoiceId } from '../protocol.ts';
 
@@ -62,7 +63,7 @@ export function Meter({ value, label, tone }: { value: number; label?: string; t
       aria-valuemin={0}
       aria-valuemax={100}
       aria-valuenow={pct}
-      aria-label={label}
+      aria-label={settingWords(label)}
     >
       <span style={{ width: `${pct}%` }} />
     </span>

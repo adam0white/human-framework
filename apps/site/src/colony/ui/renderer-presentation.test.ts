@@ -102,7 +102,7 @@ describe('Well map presentation', () => {
     const { ctx, calls } = canvasRecorder();
     drawScene(ctx, input);
     const text = calls.filter((c) => c.method === 'fillText').map((c) => c.args[0]);
-    expect(text).toContain('MASJID');
+    expect(text).toContain('MOSQUE');
     expect(text).toContain('WELL');
     expect(text).toContain('Yusuf');
     expect(text).toContain('Walking to the well');
@@ -156,7 +156,7 @@ it.each(['House: later, after I pray Fajr', 'House: won’t — “that is my wo
     expect(tag.x + tag.w).toBeLessThanOrEqual(bounds.x + bounds.w);
     expect(tag.y + tag.h).toBeLessThanOrEqual(bounds.y + bounds.h);
     const lines = calls.filter((c) => c.method === 'fillText').map((c) => String(c.args[0]));
-    expect(lines.join(' ')).toContain(status);
+    expect(lines.join(' ')).toContain(status.replace('pray Fajr', 'pray the dawn prayer'));
   },
 );
 

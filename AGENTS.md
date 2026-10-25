@@ -21,7 +21,7 @@
 
 ## Simplify increment (owner, 2026-10-24)
 
-Follow [plain English](docs/lab/plain-english.md) and the [verbatim owner direction](docs/owner-directions-2026-10-18.md). Simplify Voice first, then the shared platform and other games. Keep culture and Turkish words/names pending discussion. Friends’ playtests and Show HN are paused until owner readiness acceptance. Commonstead branch protection is dropped.
+Follow [plain English](docs/lab/plain-english.md) and the [verbatim owner direction](docs/owner-directions-2026-10-18.md). Simplify Voice first, then the shared platform and other games. Keep the setting, places and personal names. Use English for common terms so every sentence is understandable without Turkish. Keep at most two flavour words per game and explain each within its first sentence. Follow the setting rule in the plain-English guide. Friends’ playtests and Show HN are paused until owner readiness acceptance. Commonstead branch protection is dropped.
 
 Done means all requested source changes, the independent Codex review, exact green CI, signed commits and fresh-worktree deployment, live Chromium and WebKit checks at all four requested sizes, shared artifact adoption instructions, measured reading flags and Turkish inventory are recorded. The owner accepts games readiness. No new playtest rounds. Keep F-491, deterministic replay and HF legacy continuation intact. Do not alter engine rules for copy.
 

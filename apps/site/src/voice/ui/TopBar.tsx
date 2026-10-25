@@ -1,5 +1,6 @@
 /** Top bar (voice.md §7.2) with the sky band (§4): the hour's light, prayer notches, the fast, and a "now" mark. */
 import { memo } from 'react';
+import { settingWords } from '../../shared/setting-words.ts';
 import type { Frame } from '../protocol.ts';
 import { storyDate } from './dates.ts';
 import { deriveScene } from './scenes.ts';
@@ -36,7 +37,9 @@ export const SkyBand = memo(function SkyBand({ sky }: { sky: Frame['sky'] }) {
           key={p.name}
           className={`v-sky-notch ${p.state ? `is-${p.state}` : ''}`}
           style={{ left: pct(p.minute) }}
-          title={`${p.name}${p.state ? `: ${p.state}${p.mosque ? ', at the mosque' : ''}` : ''}`}
+          title={settingWords(
+            `${p.name}${p.state ? `: ${p.state}${p.mosque ? ', at the mosque' : ''}` : ''}`,
+          )}
         >
           <span className="v-sky-pip">{p.mosque && <span className="v-sky-pip-dot" />}</span>
         </span>
@@ -78,11 +81,14 @@ export const TopBar = memo(function TopBar({
       `After Eid · day ${frame.day - 31} · ${frame.clock}`
     ) : (
       <>
-        {frame.dayLabel} · <span className="v-calendar-desktop">{storyDate(frame.day)}</span>
+        {settingWords(frame.dayLabel)} ·{' '}
+        <span className="v-calendar-desktop">{settingWords(storyDate(frame.day))}</span>
         <span className="v-calendar-phone">
-          {storyDate(frame.day).replace(
-            /Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday|March|April/g,
-            (word) => word.slice(0, 3),
+          {settingWords(
+            storyDate(frame.day).replace(
+              /Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday|March|April/g,
+              (word) => word.slice(0, 3),
+            ),
           )}
         </span>{' '}
         · <time>{frame.clock}</time>
@@ -95,10 +101,12 @@ export const TopBar = memo(function TopBar({
         <div className="v-shell-state">
           <SkyBand sky={frame.sky} />
           <span className="v-sr">
-            {frame.sky.prayers
-              .filter((p) => p.state)
-              .map((p) => `${p.name} ${p.state}`)
-              .join(', ')}
+            {settingWords(
+              frame.sky.prayers
+                .filter((p) => p.state)
+                .map((p) => `${p.name} ${p.state}`)
+                .join(', '),
+            )}
           </span>
           <div className="v-shell-state-words" style={!runningPage ? { visibility: 'hidden' } : undefined}>
             <span>
@@ -111,15 +119,17 @@ export const TopBar = memo(function TopBar({
                     : ''}
             </span>
             <span>
-              {menuOpen || infoOpen
-                ? menuOpen
-                  ? 'held: menu open'
-                  : 'held: information open'
-                : frame.paused
-                  ? `stopped: ${scene?.current ? scene.names.join(' and ') : (frame.pauseBeat?.text ?? 'a moment with Halil')}`
-                  : reading
-                    ? 'reading: the day slows while you choose'
-                    : ''}
+              {settingWords(
+                menuOpen || infoOpen
+                  ? menuOpen
+                    ? 'held: menu open'
+                    : 'held: information open'
+                  : frame.paused
+                    ? `stopped: ${scene?.current ? scene.names.join(' and ') : (frame.pauseBeat?.text ?? 'a moment with Halil')}`
+                    : reading
+                      ? 'reading: the day slows while you choose'
+                      : '',
+              )}
             </span>
           </div>
         </div>

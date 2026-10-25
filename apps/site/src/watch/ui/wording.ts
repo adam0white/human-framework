@@ -1,3 +1,5 @@
+import { settingWords } from '../../shared/setting-words.ts';
+
 /** Display-only wording. Recorded dialogue, estimated state, confidence and replay inputs stay unchanged. */
 const spoken: readonly (readonly [string, string])[] = [
   [
@@ -24,16 +26,18 @@ const spoken: readonly (readonly [string, string])[] = [
 export function watchWords(text: string | undefined | null): string {
   let result = text ?? '';
   for (const [before, after] of spoken) result = result.replaceAll(before, after);
-  return result
-    .replace(/“Quiet\. /g, '“It is quiet at home. ')
-    .replace(
-      /“([^”]+) and I… it’s not good just now\. Ask me another day\.”/g,
-      '“$1 and I are not getting along just now. Ask me another day.”',
-    )
-    .replace(
-      /“([^”]+)\. I keep seeing it when I shut my eyes\.”/g,
-      '“I keep seeing $1 when I shut my eyes.”',
-    );
+  return settingWords(
+    result
+      .replace(/“Quiet\. /g, '“It is quiet at home. ')
+      .replace(
+        /“([^”]+) and I… it’s not good just now\. Ask me another day\.”/g,
+        '“$1 and I are not getting along just now. Ask me another day.”',
+      )
+      .replace(
+        /“([^”]+)\. I keep seeing it when I shut my eyes\.”/g,
+        '“I keep seeing $1 when I shut my eyes.”',
+      ),
+  );
 }
 const impressions: Readonly<Record<string, string>> = {
   'worn out': 'They look very tired.',
@@ -61,5 +65,5 @@ export function watchImpression(text: string): string {
   if (text.startsWith('afraid of ')) return `They seem ${text}.`;
   if (text.startsWith('close to ')) return `They seem ${text}.`;
   if (text.startsWith('at odds with ')) return `They do not seem to get along with ${text.slice(13)}.`;
-  return text;
+  return settingWords(text);
 }

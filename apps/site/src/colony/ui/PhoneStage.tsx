@@ -1,5 +1,6 @@
 import { type PhoneStage, phoneStage } from '@adam0white/lab-kit';
 import { type RefObject, useEffect, useRef, useState } from 'react';
+import { settingWords } from '../../shared/setting-words.ts';
 import type { HurtNews } from '../sim/game.ts';
 import type { Prediction } from '../sim/human-side.ts';
 import type { PlaceId } from '../sim/map.ts';
@@ -40,7 +41,7 @@ export function VillageStrip({ frame, side }: { frame: Frame | null; side: 'huma
     <section
       className="well-phone-strip lk-strip"
       data-expanded={expanded}
-      aria-label={`${side === 'human' ? 'Human' : 'Classic'} village state`}
+      aria-label={settingWords(`${side === 'human' ? 'Human' : 'Classic'} village state`)}
     >
       <button
         type="button"
@@ -53,14 +54,14 @@ export function VillageStrip({ frame, side }: { frame: Frame | null; side: 'huma
         </span>
         <span>
           Meals {meals}
-          {food ? ` / ${food.targetValue}` : ''}
+          {settingWords(food ? ` / ${food.targetValue}` : '')}
         </span>
         <span>
-          {stormPassed ? `${label} by ` : 'Storm '}
+          {settingWords(stormPassed ? `${label} by ` : 'Storm ')}
           {deadline === undefined ? 'not scheduled' : dayClock(deadline).replace('D', 'Day ')}
         </span>
       </button>
-      <p className="village-setting">{VILLAGE_WORDS[frame?.village ?? 'default'].season}</p>
+      <p className="village-setting">{settingWords(VILLAGE_WORDS[frame?.village ?? 'default'].season)}</p>
       <p className="lk-strip-detail" data-expanded={expanded}>
         The {side === 'human' ? 'Human' : 'Classic'} village has completed {stage} of {target}{' '}
         {label.toLowerCase()} stages and stores {meals} meals.{' '}
@@ -244,7 +245,7 @@ export function PhoneSheet(props: {
             show(s.personId ? 'order' : 'worker', e.currentTarget);
           }}
         >
-          {s.personId ? `Order options · ${shortName(s.personId)}` : 'Choose person'}
+          {settingWords(s.personId ? `Order options · ${shortName(s.personId)}` : 'Choose person')}
         </button>
         {s.personId && (
           <button
@@ -267,12 +268,16 @@ export function PhoneSheet(props: {
           History ({cards.length})
         </button>
       </nav>
-      <section className="well-phone-sheet lk-sheet" hidden={!open || props.inspecting} aria-label={title}>
+      <section
+        className="well-phone-sheet lk-sheet"
+        hidden={!open || props.inspecting}
+        aria-label={settingWords(title)}
+      >
         <header className="lk-sheet-head">
           <span className="lk-sheet-handle" aria-hidden="true">
             ↕
           </span>
-          <h2>{title}</h2>
+          <h2>{settingWords(title)}</h2>
           {canBack && (
             <button type="button" onClick={back}>
               Back
@@ -335,7 +340,7 @@ export function PhoneSheet(props: {
             <>
               <div className="well-order-picks">
                 <button type="button" id="well-pick-worker" onClick={(e) => show('worker', e.currentTarget)}>
-                  Worker · {s.personId ? shortName(s.personId) : 'Choose'}
+                  Worker · {settingWords(s.personId ? shortName(s.personId) : 'Choose')}
                 </button>
                 <button
                   type="button"
@@ -343,7 +348,7 @@ export function PhoneSheet(props: {
                   disabled={!s.personId}
                   onClick={(e) => show('place', e.currentTarget)}
                 >
-                  Place · {s.placeId ? PLACE_LABEL[s.placeId] : 'Choose'}
+                  Place · {settingWords(s.placeId ? PLACE_LABEL[s.placeId] : 'Choose')}
                 </button>
                 {s.personId && (
                   <button
@@ -358,32 +363,37 @@ export function PhoneSheet(props: {
                 )}
               </div>
               <p className="well-order-preview" hidden={!s.personId}>
-                {!s.personId
-                  ? 'Pick a villager here or on the map.'
-                  : !s.placeId
-                    ? `${shortName(s.personId)}: now pick a place.`
-                    : `${shortName(s.personId)} → ${PLACE_LABEL[s.placeId]}`}
+                {settingWords(
+                  !s.personId
+                    ? 'Pick a villager here or on the map.'
+                    : !s.placeId
+                      ? `${shortName(s.personId)}: now pick a place.`
+                      : `${shortName(s.personId)} → ${PLACE_LABEL[s.placeId]}`,
+                )}
               </p>
               {ready && (
                 <p>
-                  {props.job && <>{jobPhrase(props.job)} · </>}
+                  {props.job && <>{settingWords(jobPhrase(props.job))} · </>}
                   {props.prediction?.text ?? 'Checking current answer…'}
                 </p>
               )}
               {(s.rush || s.insist || s.appeal) && (
                 <p className="well-order-costs">
-                  {[
-                    s.rush && 'Rush: faster, hungrier',
-                    s.insist && 'Insist: trust at risk',
-                    s.appeal === 'safety' && 'Safety: a promise; hurt on this job, they will hold you to it',
-                    s.appeal === 'children' && 'For the children',
-                    s.appeal === 'duty' && 'Duty',
-                  ]
-                    .filter(Boolean)
-                    .join(' · ')}
+                  {settingWords(
+                    [
+                      s.rush && 'Rush: faster, hungrier',
+                      s.insist && 'Insist: trust at risk',
+                      s.appeal === 'safety' &&
+                        'Safety: a promise; hurt on this job, they will hold you to it',
+                      s.appeal === 'children' && 'For the children',
+                      s.appeal === 'duty' && 'Duty',
+                    ]
+                      .filter(Boolean)
+                      .join(' · '),
+                  )}
                 </p>
               )}
-              {s.reason && <p>{s.reason}</p>}
+              {s.reason && <p>{settingWords(s.reason)}</p>}
             </>
           )}
           {view === 'worker' && (
@@ -399,7 +409,7 @@ export function PhoneSheet(props: {
                     close();
                   }}
                 >
-                  {shortName(p.id)}
+                  {settingWords(shortName(p.id))}
                 </button>
               ))}
             </div>
@@ -435,7 +445,7 @@ export function PhoneSheet(props: {
                     }
                   }}
                 >
-                  {PLACE_LABEL[p]}
+                  {settingWords(PLACE_LABEL[p])}
                 </button>
               ))}
             </div>
@@ -466,7 +476,7 @@ export function PhoneSheet(props: {
                   aria-pressed={s.appeal === a.id}
                   onClick={() => props.onChange({ ...s, appeal: s.appeal === a.id ? null : a.id })}
                 >
-                  Appeal: {a.label}
+                  Appeal: {settingWords(a.label)}
                 </button>
               ))}
               {s.personId && (
@@ -475,7 +485,7 @@ export function PhoneSheet(props: {
                   id="well-about-worker"
                   onClick={() => props.onInspect(s.personId as VillagerId)}
                 >
-                  About {shortName(s.personId)}
+                  About {settingWords(shortName(s.personId))}
                 </button>
               )}
               <button type="button" onClick={() => props.onChange(EMPTY_COMPOSER)}>

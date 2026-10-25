@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { labMode } from '../../shared/lab-mode.ts';
+import { settingWords } from '../../shared/setting-words.ts';
 import './feedback.css';
 import { EndTally } from '../../shared/EndTally.tsx';
 import type { HindsightReply, HindsightRequest } from '../hindsight-worker.ts';
@@ -67,7 +68,7 @@ function HindsightBlock({ summary }: { summary: EndSummary }) {
         <ul className="end-misses">
           {misses.map((m) => (
             <li key={`${m.side}-${m.text}`}>
-              <b>{m.side}</b> {m.text}
+              <b>{settingWords(m.side)}</b> {settingWords(m.text)}
             </li>
           ))}
         </ul>
@@ -77,13 +78,15 @@ function HindsightBlock({ summary }: { summary: EndSummary }) {
           <summary>What would have won</summary>
           <p className="end-won" aria-live="polite">
             <b>What would have won (Human):</b>{' '}
-            {h.kind === 'working'
-              ? 'replaying this seed with a simple plan…'
-              : h.kind === 'error'
-                ? 'the replay could not run in this browser.'
-                : h.result
-                  ? hindsightLine(h.result)
-                  : 'the simple plan (everyone but Maryam rushed to the house) did not win from any point we tried.'}
+            {settingWords(
+              h.kind === 'working'
+                ? 'replaying this seed with a simple plan…'
+                : h.kind === 'error'
+                  ? 'the replay could not run in this browser.'
+                  : h.result
+                    ? hindsightLine(h.result)
+                    : 'the simple plan (everyone but Maryam rushed to the house) did not win from any point we tried.',
+            )}
           </p>
         </details>
       )}
@@ -137,7 +140,7 @@ function Report({ summary, humanKind }: { summary: EndSummary; humanKind: string
             return (
               <tr key={g.id}>
                 <th scope="row">
-                  {g.label}
+                  {settingWords(g.label)}
                   <span className="end-when">judged {dayClock(g.deadlineMinute)}</span>
                 </th>
                 <td>
@@ -153,17 +156,17 @@ function Report({ summary, humanKind }: { summary: EndSummary; humanKind: string
           {village.map(([label, when, c, h, s]) => (
             <tr key={label} className="end-row-minor">
               <th scope="row">
-                {label}
-                <span className="end-when">{when}</span>
+                {settingWords(label)}
+                <span className="end-when">{settingWords(when)}</span>
               </th>
-              <td>{c}</td>
-              <td>{h}</td>
-              <td className="ghost">{s}</td>
+              <td>{settingWords(c)}</td>
+              <td>{settingWords(h)}</td>
+              <td className="ghost">{settingWords(s)}</td>
             </tr>
           ))}
         </tbody>
       </table>
-      <p className="end-changed">{ordersChanged(summary)}</p>
+      <p className="end-changed">{settingWords(ordersChanged(summary))}</p>
       <HindsightBlock summary={summary} />
       {summary.cards.length > 0 && (
         <details className="end-fold">
@@ -172,11 +175,12 @@ function Report({ summary, humanKind }: { summary: EndSummary; humanKind: string
             {summary.cards.map((c) => (
               <li key={c.order.id}>
                 <span className="end-order-time">{formatClock(c.order.issuedAt)}</span>{' '}
-                <b>{shortName(c.order.personId)}</b> → {PLACE_LABEL[c.order.placeId]},{' '}
-                {jobPhrase(c.order.action)} · Classic {classicOutcome(c)} · Human{' '}
-                <span className={`end-says says-${c.human.state}`}>{humanOutcome(c)}</span>
-                {humanQuotes(c) ? ` (${humanQuotes(c)})` : ''}
-                {cardEnd(c) ? ` · ${cardEnd(c)}` : ''}
+                <b>{settingWords(shortName(c.order.personId))}</b> →{' '}
+                {settingWords(PLACE_LABEL[c.order.placeId])}, {settingWords(jobPhrase(c.order.action))} ·
+                Classic {settingWords(classicOutcome(c))} · Human{' '}
+                <span className={`end-says says-${c.human.state}`}>{settingWords(humanOutcome(c))}</span>
+                {settingWords(humanQuotes(c) ? ` (${humanQuotes(c)})` : '')}
+                {settingWords(cardEnd(c) ? ` · ${cardEnd(c)}` : '')}
               </li>
             ))}
           </ul>
@@ -195,12 +199,12 @@ function Report({ summary, humanKind }: { summary: EndSummary; humanKind: string
         <tbody>
           {character.map(([label, h, s]) => (
             <tr key={label}>
-              <th scope="row">{label}</th>
+              <th scope="row">{settingWords(label)}</th>
               <td className="no-concept">
                 <NoConcept text={NO_CONCEPT} />
               </td>
-              <td>{h}</td>
-              <td className="ghost">{s}</td>
+              <td>{settingWords(h)}</td>
+              <td className="ghost">{settingWords(s)}</td>
             </tr>
           ))}
         </tbody>
@@ -209,7 +213,7 @@ function Report({ summary, humanKind }: { summary: EndSummary; humanKind: string
         <span className="no-concept-mark">
           <Icon name="none" />
         </span>{' '}
-        {NO_CONCEPT}: the point of the comparison.
+        {settingWords(NO_CONCEPT)}: the point of the comparison.
       </p>
       <h3>Moments you saw</h3>
       {summary.moments.length === 0 ? (
@@ -222,12 +226,12 @@ function Report({ summary, humanKind }: { summary: EndSummary; humanKind: string
         <ul className="moments">
           {summary.moments.map((m) => (
             <li key={`${m.id}-${m.minute}`}>
-              <span className="moment-n" title={`Moment ${m.id} of 5`}>
+              <span className="moment-n" title={settingWords(`Moment ${m.id} of 5`)}>
                 #{m.id}
               </span>
               <div>
-                <b>{shortName(m.personId)}</b> · {formatClock(m.minute)}
-                <p>{m.line}</p>
+                <b>{settingWords(shortName(m.personId))}</b> · {formatClock(m.minute)}
+                <p>{settingWords(m.line)}</p>
               </div>
             </li>
           ))}

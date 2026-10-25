@@ -1,18 +1,13 @@
 import { Help } from '../../shared/Help.tsx';
-/** Presentation only: repeat short meanings so any entry point can be a first encounter. */
-export function explainTerms(text: string): string {
-  return text.replace(
-    /\b(suhoor|iftar)\b/gi,
-    (term) =>
-      `${term} (${term.toLowerCase() === 'suhoor' ? 'meal before the fast' : 'meal that breaks the fast'})`,
-  );
-}
+import { settingWords } from '../../shared/setting-words.ts';
+/** Translate at display time; simulation text and replay remain unchanged. */
+export const explainTerms = settingWords;
 
 export function MealTerms() {
   return (
     <Help title="Meal terms">
-      <p>Suhoor is the meal before the fast, eaten before dawn.</p>
-      <p>Iftar is the meal that breaks the fast, eaten after sunset.</p>
+      <p>The pre-dawn meal is eaten before the fast begins.</p>
+      <p>The sunset meal breaks the fast after sunset.</p>
     </Help>
   );
 }

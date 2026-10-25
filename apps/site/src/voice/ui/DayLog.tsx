@@ -1,3 +1,4 @@
+import { settingWords } from '../../shared/setting-words.ts';
 /**
  * The day, in his narration (voice.md §7.2). Scrolls inside its own panel. A spoken answer holds the transcript until Latest, another answer or a new request;
  * the simulation clock runs on. The held snapshot survives the worker trimming its recent log. Consecutive entries of the same action collapse into one line with a time span.
@@ -145,7 +146,7 @@ export const DayLog = memo(function DayLog({
         <div className={`v-beat v-beat-${pauseBeat.kind}`} role="status">
           <span className="v-beat-kind">
             <Icon name={BEAT_ICON[pauseBeat.kind]} size={18} />
-            {BEAT_LABEL[pauseBeat.kind]}
+            {settingWords(BEAT_LABEL[pauseBeat.kind])}
           </span>
           <span className="v-beat-text">{explainTerms(pauseBeat.text)}</span>
           <kbd>Space</kbd>
@@ -173,7 +174,7 @@ export const DayLog = memo(function DayLog({
                   {voice && e.kind !== 'you' && !e.text.startsWith(VOICE_NAMES[voice] ?? '\u0000') && (
                     <span className="v-log-who" style={{ color: VOICE_COLOURS[voice] }}>
                       <Icon name={VOICE_ICON[voice]} />
-                      {VOICE_NAMES[voice]}
+                      {settingWords(VOICE_NAMES[voice])}
                       <span className="v-sr">: </span>
                     </span>
                   )}
@@ -181,13 +182,13 @@ export const DayLog = memo(function DayLog({
                   {exchange.length > 0 && (
                     <>
                       <span className="v-scene-title">
-                        Halil and {exchange.find((line) => line.speaker !== 'Halil')?.speaker}{' '}
+                        Halil and {settingWords(exchange.find((line) => line.speaker !== 'Halil')?.speaker)}{' '}
                         <small>· {e.clock}</small>
                       </span>
                       <span className="v-exchange">
                         {exchange.map((line) => (
                           <span className="v-exchange-line" key={`${line.speaker}:${line.words}`}>
-                            <strong>{line.speaker}:</strong> “{line.words}”
+                            <strong>{settingWords(line.speaker)}:</strong> “{settingWords(line.words)}”
                           </span>
                         ))}
                       </span>
@@ -196,13 +197,16 @@ export const DayLog = memo(function DayLog({
                   {exchange.length > 0 && (
                     <span className="v-scene-record">{explainTerms(storyDates(spokenLogText(e.text)))}</span>
                   )}
-                  {count > 1 && to ? <span className="v-log-span"> · until {to}</span> : null}
+                  {count > 1 && to ? <span className="v-log-span"> · until {settingWords(to)}</span> : null}
                   {count === 1 && e.until && e.kind === 'act' ? (
-                    <span className="v-log-span"> · until {e.until}</span>
+                    <span className="v-log-span"> · until {settingWords(e.until)}</span>
                   ) : null}
                 </span>
                 {e.beat && (
-                  <span className={`v-log-beat v-beat-dot-${e.beat}`} title={BEAT_LABEL[e.beat]}>
+                  <span
+                    className={`v-log-beat v-beat-dot-${e.beat}`}
+                    title={settingWords(BEAT_LABEL[e.beat])}
+                  >
                     <Icon name={BEAT_ICON[e.beat]} label={BEAT_LABEL[e.beat]} />
                   </span>
                 )}
@@ -224,7 +228,7 @@ export const DayLog = memo(function DayLog({
                       <button
                         type="button"
                         className="v-scene-why"
-                        aria-label={`Why his action at ${e.clock}?`}
+                        aria-label={settingWords(`Why his action at ${e.clock}?`)}
                         aria-pressed={e.decisionId === selected}
                         onClick={() => e.decisionId && onWhy(e.decisionId)}
                       >

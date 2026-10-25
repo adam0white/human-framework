@@ -1,9 +1,10 @@
 import type { ReactNode } from 'react';
+import { settingWords } from './setting-words.ts';
 
 /** Monoline ink sketches, one per game. Strokes use currentColor; the accent marks the player's part. */
 export function Sketch({ children, label }: { children: ReactNode; label: string }) {
   return (
-    <svg className="sketch" viewBox="0 0 120 72" role="img" aria-label={label}>
+    <svg className="sketch" viewBox="0 0 120 72" role="img" aria-label={settingWords(label)}>
       {children}
     </svg>
   );

@@ -1,3 +1,4 @@
+import { settingWords } from '../../shared/setting-words.ts';
 /** The intro card that opens a played day or Eid (voice.md §7.3–7.4); play starts paused after Continue. */
 
 import { useEffect, useRef } from 'react';
@@ -25,7 +26,7 @@ export function Intro({
             <path d="M30 6a18 18 0 1 0 12 30A15 15 0 0 1 30 6z" />
           </svg>
         )}
-        <h2 id="intro-title">{storyDates(intro.label)}</h2>
+        <h2 id="intro-title">{settingWords(storyDates(intro.label))}</h2>
         <ul className="v-lines">
           {intro.lines.map((l) => (
             <li key={l}>{explainTerms(storyDates(l))}</li>
@@ -35,7 +36,7 @@ export function Intro({
       </div>
       <div className="v-page-actions">
         <button ref={button} type="button" className="v-btn v-btn-primary v-btn-big" onClick={onContinue}>
-          {eid ? 'Watch Eid' : 'Into the day'}
+          {settingWords(eid ? 'Watch Eid' : 'Into the day')}
         </button>
       </div>
     </section>
