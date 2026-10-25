@@ -6432,8 +6432,8 @@
    "words": "I would not return voluntarily yet.",
    "verdict": "quit",
    "routes": [
-    "fix:hearsay First conversations with Emre and Elif tell something personal about the marriage (open, target 2026-11-03)",
-    "fix:hearsay Asking a different neighbour gives a reason to keep listening beyond the repeated uncertainty sentence (open, target 2026-11-03)",
+    "fix:hearsay First conversations with Emre and Elif tell something personal about the marriage (superseded by canonical recast f273ceb, Emre, Elif and marriage explicitly retired, owner review target 2026-11-03)",
+    "fix:hearsay Asking a different neighbour gives a reason to keep listening beyond the repeated uncertainty sentence (fixed 637267b, 2026-10-25), distinct public concerns and a visible quiet-conversation invitation, private discoveries still require completed conversations (owner retest target 2026-11-03)",
     "fix:hearsay Read every recipient button without another control covering it (superseded by canonical recast f273ceb, old recipient panel and banner no longer mounted, independent review and current both-size 121-second play/save-reload checks pass, owner retest target 2026-11-03)"
    ],
    "source": "docs/lab/reviews/rebuild-2026-10-23/hearsay-free.md"
