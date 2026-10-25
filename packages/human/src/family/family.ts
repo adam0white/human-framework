@@ -29,11 +29,19 @@
  * security starts at 0.6 (58% of nonclinical mothers are secure-autonomous, F12) and moves toward the caregivers'
  * responsiveness (warmth and mood) at 50% per year, most in the first three years, with a floor of 0.1 of that
  * plasticity by age 12 (responsiveness and intergenerational correspondence, F10, F11; rates assumed). Optionally a
- * child comes to trust the voices the household trusts (`adoptVoiceTrust`). This file writes `values` for minors: one of the
+ * child comes to trust the voices the household trusts (`adoptVoiceTrust`). This file writes `values` through young adulthood: one of the
  * documented exceptions to values being fixed at creation (docs/framework.md); the opt-in `character/` drift is
  * the other. It does not model siblings'
  * influence, peers, schooling, abuse, divorce or temperament-by-parenting interactions, and it never assigns a
  * religious obligation by age: a child holds only the understanding the household lived.
+ *
+ * Opt-in `RaiseOptions.model: 'warmth-through-25'` scales norm and attachment relaxation rates by mean warmth,
+ * as values and voice trust already do. All influence tapers continuously to zero at 25 using `valuePlasticity`;
+ * attachment also keeps its early-life plasticity. The return is responsiveness × mean warmth × value plasticity.
+ * These coefficients and the age horizon are engineering assumptions, not empirical calibration or rulings.
+ * F7–F11 in research/family-environment-sources.md support the shapes, not these rates. No abuse, schooling or
+ * adult culture diffusion is modelled. Without this option, arithmetic and the normalized return stay unchanged.
+ * Hosts must pin this option in saved-run configuration and supply it again after restore; no state infers it.
  *
  * Aptitudes are read by the composite as a multiplier on learning (`aptitudeOf`); they are drawn at birth by
  * `createChild` (`ChildSpec.aptitudes`).
@@ -261,6 +269,8 @@ export interface Household {
 }
 
 export interface RaiseOptions {
+  /** Explicit household influence through young adulthood. Omit for exact legacy behavior. Pin in host saves. */
+  model?: 'warmth-through-25';
   /** Also move the child's trust in voices the caregivers trust (default true). */
   voices?: boolean;
 }
@@ -271,12 +281,16 @@ const relax = (rate: number, years: number) => clamp01(1 - dpow(1 - clamp01(rate
  * Apply `minutes` of upbringing in `household` to `child`, at `child.now`. Warmth-weighted: a caregiver with no
  * warmth toward the child teaches nothing. Values, norm understanding, attachment and (optionally) trust in the
  * household's voices move by the age plasticities in the SCOPE paragraph. Returns the warmth-weighted
- * responsiveness the child experienced (0..1).
+ * responsiveness the child experienced (0..1) in legacy mode. With `warmth-through-25`, returns effective
+ * responsiveness weighted by mean warmth and age plasticity, approaching zero with either. The host supplies
+ * this model again after restoring a save. Raised minutes count even when warmth or plasticity is zero.
  */
 export function raise(child: Person, household: Household, minutes: number, opts: RaiseOptions = {}): Unit {
   if (!(minutes > 0) || !child.body.alive) return 0;
   const F = FAMILY_DEFAULTS;
-  const carers = household.caregivers.filter((c) => c.id !== child.id && c.body.alive);
+  const continuous = opts.model === 'warmth-through-25';
+  const eligible = household.caregivers.filter((c) => c.id !== child.id && c.body.alive);
+  const carers = continuous ? [...new Map(eligible.map((c) => [c.id, c])).values()] : eligible;
   const warmth = carers.map((c) => Math.max(0, relationshipWith(c, child.id).affection));
   const total = warmth.reduce((s, w) => s + w, 0);
   const fam = familyOf(child);
@@ -286,6 +300,7 @@ export function raise(child: Person, household: Household, minutes: number, opts
   const age = ageYears(child);
   const meanWarmth = total / carers.length;
   const vp = valuePlasticity(age);
+  if (continuous && vp <= 0) return 0;
 
   // Values.
   if (vp > 0) {
@@ -304,7 +319,7 @@ export function raise(child: Person, household: Household, minutes: number, opts
   if (vp > 0) {
     const since = child.now - MINUTES_PER_YEAR;
     const ids = [...new Set(carers.flatMap((c) => c.conscience.norms.map((n) => n.normId)))].sort();
-    const k = relax(F.normRatePerYear, years * vp);
+    const k = relax(continuous ? F.normRatePerYear * meanWarmth : F.normRatePerYear, years * vp);
     for (const id of ids) {
       let target = 0;
       let standing: Person['conscience']['norms'][number]['standing'] | undefined;
@@ -337,7 +352,9 @@ export function raise(child: Person, household: Household, minutes: number, opts
     responsiveness += w * clamp01(0.7 * w + 0.3 * ((c.affect.mood.valence + 1) / 2));
   });
   responsiveness /= total;
-  const ka = relax(F.attachmentRatePerYear, years * attachmentPlasticity(age));
+  const ka = continuous
+    ? relax(F.attachmentRatePerYear * meanWarmth, years * attachmentPlasticity(age) * vp)
+    : relax(F.attachmentRatePerYear, years * attachmentPlasticity(age));
   const att = fam.attachment ?? F.attachmentStart;
   fam.attachment = clamp01(att + ka * (responsiveness - att));
 
@@ -359,5 +376,5 @@ export function raise(child: Person, household: Household, minutes: number, opts
       if (wsum > 0 && kv > 0) adoptVoiceTrust(child, id, target / wsum, kv);
     }
   }
-  return clamp01(responsiveness);
+  return clamp01(continuous ? responsiveness * meanWarmth * vp : responsiveness);
 }

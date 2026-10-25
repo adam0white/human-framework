@@ -1,4 +1,24 @@
 // biome-ignore-all lint/correctness/noPrecisionLoss: fdlibm constants are kept digit for digit as published; each parses to the intended double.
+/*
+ * fdlibm notices: e_exp.c (Sun 2004); e_log.c, k_cos.c, k_sin.c and e_rem_pio2.c (Sun 1993).
+ * Sources: https://netlib.org/fdlibm/ and FreeBSD lib/msun/src/e_exp.c.
+ * ====================================================
+ * Copyright (C) 2004 by Sun Microsystems, Inc. All rights reserved.
+ *
+ * Permission to use, copy, modify, and distribute this
+ * software is freely granted, provided that this notice
+ * is preserved.
+ * ====================================================
+ *
+ * ====================================================
+ * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
+ *
+ * Developed at SunSoft, a Sun Microsystems, Inc. business.
+ * Permission to use, copy, modify, and distribute this
+ * software is freely granted, provided that this notice
+ * is preserved.
+ * ====================================================
+ */
 /**
  * Platform-independent transcendental functions for the engine.
  *

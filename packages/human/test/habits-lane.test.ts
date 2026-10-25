@@ -131,15 +131,14 @@ describe('habitEase', () => {
 });
 
 /**
- * N4 calibration experiment (docs/games/voice.md §13). Question: should a plateau habit only add utility
- * (current `habitScale` term), add utility scaled by the action's cost, or lower the cost of the habitual
- * action (habitEase)? Discriminating finding: Neal, Wood & Drolet (2013, JPSP 104:959): when self-control is
- * depleted, people fall back on their habits; habit performance rises relative to deliberate alternatives.
- * Prediction checked: the habitual person's advantage for the habitual option over a deliberate
- * alternative must GROW from a fresh to a depleted state. Only the effort and habit terms differ between
- * the hypotheses; every other term is identical across conditions and cancels.
+ * N4 candidate engineering comparison for habit initiation/attention under authored tiredness.
+ * The fixture supplies fatigue and sleepiness directly and compares four local effort formulas.
+ * It does not manipulate restraint depletion, use participant data, or run the full choice loop.
+ * It therefore does not replicate Neal, Wood & Drolet (2013) or validate a willpower-fuel account.
+ * The chosen convention eases initiation/attention while leaving physical exertion unchanged.
+ * Only effort and habit terms differ here; the other authored terms cancel.
  */
-describe('N4 habit-term calibration experiment', () => {
+describe('N4 habit-term candidate engineering comparison', () => {
   const K = COGNITION_DEFAULTS;
   // Plateau habit built the way the game builds it: ~66 spaced daily repetitions.
   const habitual: P = { habits: [] };
@@ -178,7 +177,7 @@ describe('N4 habit-term calibration experiment', () => {
     if (model === 'ease-initiation') cost = initiation * e + physical;
     return h - K.effortScale * cost;
   }
-  const deliberate = aff('read', 0.05, 0.6); // the alternative he would choose by thinking it through
+  const deliberate = aff('read', 0.05, 0.6); // authored deliberate alternative
   /** Habitual person's margin (pray - read) minus a non-habitual person's margin. */
   function advantage(model: Model, fatigue: number, sleepiness: number): number {
     const withHabit =
@@ -189,21 +188,21 @@ describe('N4 habit-term calibration experiment', () => {
     return withHabit - without;
   }
   const fresh = [0.15, 0.15] as const;
-  const depleted = [0.7, 0.75] as const;
+  const tired = [0.7, 0.75] as const;
 
-  test('setup: a real plateau habit', () => {
+  test('setup: a seeded repetition schedule reaches a habit plateau', () => {
     expect(pull).toBeGreaterThan(0.6);
     expect(ease).toBeLessThan(0.75);
   });
 
-  test('additive and cost-scaled habit terms cannot reproduce depletion -> habit (rejected)', () => {
+  test('additive and cost-scaled terms leave the authored tiredness advantage unchanged', () => {
     for (const m of ['additive', 'cost-scaled'] as const)
-      expect(advantage(m, ...depleted) - advantage(m, ...fresh)).toBeCloseTo(0, 9);
+      expect(advantage(m, ...tired) - advantage(m, ...fresh)).toBeCloseTo(0, 9);
   });
 
-  test('an ease multiplier reproduces it (accepted)', () => {
+  test('ease multipliers increase the authored tiredness advantage', () => {
     for (const m of ['ease-all', 'ease-initiation'] as const)
-      expect(advantage(m, ...depleted)).toBeGreaterThan(advantage(m, ...fresh) + 0.05);
+      expect(advantage(m, ...tired)).toBeGreaterThan(advantage(m, ...fresh) + 0.05);
   });
 
   test('ease does not overturn the 2026-10-03 negative finding: habit alone still loses to a moderate sleep need', () => {

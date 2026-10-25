@@ -19,7 +19,7 @@ export function goodhandsSelinPassport(parent: PersonaEnvelope) {
   if (
     p.mappingVersion !== 'goodhands-agency-calendar/1' ||
     p.source.id !== 'selin-voice' ||
-    (p.source.engine !== '2.17.0' && p.source.engine !== ENGINE_VERSION) ||
+    (p.source.engine !== '2.17.0' && p.source.engine !== '2.23.0' && p.source.engine !== ENGINE_VERSION) ||
     p.name !== 'Selin' ||
     p.life.sex !== 'female' ||
     portable.calendar.offset !== 0 ||

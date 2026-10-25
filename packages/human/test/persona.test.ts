@@ -50,19 +50,24 @@ function fixture() {
 }
 
 describe('explicit persona projection', () => {
-  test.each(['2.14.1', '2.17.0'])('published engine %s passports retain portable semantics', (engine) => {
-    const { source, target, mapping } = fixture();
-    const current = projectPersona(source, mapping);
-    const prior = { ...current, source: { ...current.source, engine } };
-    const before = JSON.stringify(prior);
-    const policy = { mappingVersion: 'test/1', sourceId: 'source', targetId: 'target' };
-    expect(validatePersonaProjection(prior)).toEqual(prior);
-    expect(admitPersona(prior, target, policy).person).toEqual(admitPersona(current, target, policy).person);
-    expect(JSON.stringify(prior)).toBe(before);
-    expect(() =>
-      validatePersonaProjection({ ...prior, source: { ...prior.source, engine: '2.13.0' } }),
-    ).toThrow(/engine/);
-  });
+  test.each(['2.14.1', '2.17.0', '2.23.0'])(
+    'published engine %s passports retain portable semantics',
+    (engine) => {
+      const { source, target, mapping } = fixture();
+      const current = projectPersona(source, mapping);
+      const prior = { ...current, source: { ...current.source, engine } };
+      const before = JSON.stringify(prior);
+      const policy = { mappingVersion: 'test/1', sourceId: 'source', targetId: 'target' };
+      expect(validatePersonaProjection(prior)).toEqual(prior);
+      expect(admitPersona(prior, target, policy).person).toEqual(
+        admitPersona(current, target, policy).person,
+      );
+      expect(JSON.stringify(prior)).toBe(before);
+      expect(() =>
+        validatePersonaProjection({ ...prior, source: { ...prior.source, engine: '2.13.0' } }),
+      ).toThrow(/engine/);
+    },
+  );
 
   test('admits exact approved state, maps timestamps, retains RNG and leaves both hosts untouched', () => {
     const { source, target, mapping } = fixture();

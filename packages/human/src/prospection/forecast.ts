@@ -11,8 +11,13 @@
  * current effort; only a person with the opt-in fatigue store (2.6.0, `enableFatigueStore`) carries accumulated
  * exertion, so only then does a long climb by itself leave them more spent for the descent; unfelt
  * sleep debt stays unfelt in the forecast; an open fast's damping of hunger and thirst applies (2.6.0) as it is
- * now, held for the whole forecast even if the fast would end during it; host surroundings are not applied (the person's own body rates and life
- * modifiers are, but not `ambient` parameters). Existing bleeding, illness and healing run in the copy, so an
+ * now, held for the whole forecast even if the fast would end during it. By default host surroundings are not
+ * applied. Q26: explicit per-call conditioned forecasts instead hold current age, pregnancy and ambient
+ * modifiers AND ambient body parameters through the bounded horizon (four follow-on spans, 1440 minutes).
+ * This is a frozen current-conditions approximation: no future weather, pregnancy progression or world
+ * lookahead. Readouts remain perceived; integration and interpolation retain the existing body model's limits.
+ * Direct helpers retain caller-supplied modifiers and default body parameters unless given other parameters.
+ * Existing bleeding, illness and healing run in the copy, so an
  * open wound can read as being spent, and death in the forecast reads as fully spent. The term is absolute
  * (see `bodyForecastTerm`). It does not plan, search routes, schedule rests on the way or
  * predict injuries, and it is not a calibrated estimate of human anticipation. Every number is an engineering
@@ -22,6 +27,7 @@
 import {
   BODY_DEFAULTS,
   type BodyForecastSpan,
+  type BodyParams,
   type BodyPerceptionContext,
   forecastBody,
 } from '../body/index.ts';
@@ -69,6 +75,7 @@ export function bodyForecastFor(
   aff: Affordance,
   mods: LifeModifiers,
   perception?: BodyPerceptionContext,
+  params: BodyParams = BODY_DEFAULTS,
 ): BodyForecastSpan[] {
   const follow = aff.followedBy;
   if (!Array.isArray(follow) || follow.length === 0 || !p.body.alive) return [];
@@ -97,7 +104,7 @@ export function bodyForecastFor(
       load: { effort: clamp01(f.effort), focus: clamp01(f.focus ?? 0), mode: 'awake' },
     });
   }
-  return forecastBody(p, spans, mods, BODY_DEFAULTS, 30, perception);
+  return forecastBody(p, spans, mods, params, 30, perception);
 }
 
 /**
@@ -112,8 +119,9 @@ export function bodyForecastTerm(
   aff: Affordance,
   mods: LifeModifiers,
   perception?: BodyPerceptionContext,
+  params: BodyParams = BODY_DEFAULTS,
 ): Term | undefined {
-  const spans = bodyForecastFor(p, aff, mods, perception).slice(1);
+  const spans = bodyForecastFor(p, aff, mods, perception, params).slice(1);
   if (spans.length === 0) return undefined;
   const D = FORECAST_DEFAULTS;
   const at = forecastThresholds(aff);

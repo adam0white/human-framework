@@ -1075,6 +1075,13 @@ export function perceive(p: Person, percepts: readonly Percept[], options: Perce
 // ---------------------------------------------------------------------------------------------
 
 export interface DecideOptions {
+  /**
+   * Q26: forecast with current pregnancy and surroundings held through the bounded horizon.
+   * Approximation, not future conditions. Absent preserves legacy. Pin in host saved-run config;
+   * restore never infers this choice from Person state. Changes only the bodily forecast term.
+   * planRoute and begin pursuit fallback have no bodily forecast term and keep their existing inputs.
+   */
+  forecastContext?: 'conditioned';
   suggestion?: Suggestion;
   /** Several voices in one decision (N1); merged with `suggestion`, one per voice id. */
   suggestions?: readonly Suggestion[];
@@ -1101,6 +1108,16 @@ function currentOffer(p: Person): Affordance | undefined {
   const act = p.activity;
   if (!act || p.now >= act.endsAt) return undefined;
   return { ...act.affordance, duration: act.endsAt - p.now };
+}
+
+/** Q26: compose one held snapshot for all public forecast paths; does not alter Person or ordinary scoring. */
+function bodyForecastContext(p: Person, opts: Pick<DecideOptions, 'forecastContext'>) {
+  return opts.forecastContext === 'conditioned'
+    ? {
+        mods: segmentModifiers(p),
+        params: p.ambient ? ambientBodyParams(p, BODY_DEFAULTS) : BODY_DEFAULTS,
+      }
+    : { mods: lifeModifiers(p), params: BODY_DEFAULTS };
 }
 
 /** Offers (plus the current activity) and the scoring context for a decision at `p.now`. Reads only. */
@@ -1133,6 +1150,7 @@ function decisionInputs(
   };
   const perception = fastingCtx(p);
   if (perception) ctx.perception = perception;
+  if (opts.forecastContext === 'conditioned') ctx.forecastContext = bodyForecastContext(p, opts);
   if (opts.suggestion) ctx.suggestion = opts.suggestion;
   // Only set when voices were given this way, so single-voice records keep their shape.
   if (opts.suggestions && opts.suggestions.length > 0) ctx.suggestions = [...opts.suggestions];
@@ -1160,10 +1178,15 @@ export function predict(
   p: Person,
   affordances: readonly Affordance[],
   suggestion: Suggestion,
-  opts: { necessity?: boolean; others?: readonly Suggestion[]; scarcity?: Unit } = {},
+  opts: Pick<DecideOptions, 'forecastContext'> & {
+    necessity?: boolean;
+    others?: readonly Suggestion[];
+    scarcity?: Unit;
+  } = {},
 ): SuggestionResolution {
   const others = (opts.others ?? []).filter((s) => s.voiceId !== suggestion.voiceId);
   const decideOpts: DecideOptions = { suggestion };
+  if (opts.forecastContext !== undefined) decideOpts.forecastContext = opts.forecastContext;
   if (others.length > 0) decideOpts.suggestions = others;
   if (opts.necessity !== undefined) decideOpts.necessity = opts.necessity;
   if (opts.scarcity !== undefined) decideOpts.scarcity = opts.scarcity;
@@ -1187,10 +1210,15 @@ export function answerNow(
   p: Person,
   affordances: readonly Affordance[],
   suggestion: Suggestion,
-  opts: { necessity?: boolean; others?: readonly Suggestion[]; scarcity?: Unit } = {},
+  opts: Pick<DecideOptions, 'forecastContext'> & {
+    necessity?: boolean;
+    others?: readonly Suggestion[];
+    scarcity?: Unit;
+  } = {},
 ): { resolution: SuggestionResolution; booked: boolean } {
   const others = (opts.others ?? []).filter((s) => s.voiceId !== suggestion.voiceId);
   const decideOpts: DecideOptions = { suggestion };
+  if (opts.forecastContext !== undefined) decideOpts.forecastContext = opts.forecastContext;
   if (others.length > 0) decideOpts.suggestions = others;
   if (opts.necessity !== undefined) decideOpts.necessity = opts.necessity;
   if (opts.scarcity !== undefined) decideOpts.scarcity = opts.scarcity;
@@ -1357,8 +1385,13 @@ export function releaseCommand(p: Person, reason = 'released'): boolean {
  * (a UI showing "they will do it, but would rather eat" before the host takes control). `margin` is the gap
  * the hourly autonomy and trust costs scale with.
  */
-export function previewCommand(p: Person, affordances: readonly Affordance[], cmd: Command): CommandOutcome {
-  const { list, ctx } = decisionInputs(p, affordances, 'preview', { command: cmd });
+export function previewCommand(
+  p: Person,
+  affordances: readonly Affordance[],
+  cmd: Command,
+  opts: Pick<DecideOptions, 'forecastContext'> = {},
+): CommandOutcome {
+  const { list, ctx } = decisionInputs(p, affordances, 'preview', { ...opts, command: cmd });
   const { considered, willCtx } = scoreAll(p, list, ctx);
   return resolveCommand(p, considered, willCtx);
 }
@@ -1950,8 +1983,13 @@ export function nafsReading(p: Person): NafsPattern[] {
  * The person's own forecast of their body through an offer and its `followedBy` spans (2.5.0, read-only), with a
  * first-person line ("I can do it, but I'll be spent for the descent."). Empty spans without `followedBy`.
  */
-export function bodyForecast(p: Person, aff: Affordance): { spans: BodyForecastSpan[]; line: string } {
-  const spans = bodyForecastFor(p, aff, lifeModifiers(p), fastingCtx(p));
+export function bodyForecast(
+  p: Person,
+  aff: Affordance,
+  opts: Pick<DecideOptions, 'forecastContext'> = {},
+): { spans: BodyForecastSpan[]; line: string } {
+  const { mods, params } = bodyForecastContext(p, opts);
+  const spans = bodyForecastFor(p, aff, mods, fastingCtx(p), params);
   return {
     spans,
     line: forecastLine(spans, forecastThresholds(aff), { plainEnglish: p.lexicon?.plainEnglish }),

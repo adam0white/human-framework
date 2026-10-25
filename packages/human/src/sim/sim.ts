@@ -348,6 +348,8 @@ export interface LifecourseOptions {
 }
 
 export interface StepOptions {
+  /** Hold current pregnancy and ambient conditions through body forecasts; pin in host run config. */
+  forecastContext?: 'conditioned';
   /** Standing suggestions, applied at every decision of that person (resolved quietly at reviews); one or several voices. */
   suggestions?: Record<PersonId, Suggestion | readonly Suggestion[]>;
   /** Contagion rolls between people who just shared an activity (default true). */
@@ -359,6 +361,15 @@ export interface StepOptions {
    * noticed (1.8.0, default true): they grieve, keep the tie as a memory, and a spouse is widowed (`partnering/`).
    */
   tellDeaths?: boolean;
+  /**
+   * Opt in to transition-based dispatch around driver-owned tick and finish advancement. Discovery is the advanced clock
+   * minute, not an inferred biological death time. Notices use attended receipts. Pin this option in
+   * the host run config on every call and restore; no community/save mark enables it implicitly.
+   * A future-dated host outcome advances discovery and tied recipients to that future clock, even past
+   * the step bound and their intervening events. Hosts needing bounded event order must resolve at
+   * the current event minute. Returned finish/death entries record scheduling and discovery clocks.
+   */
+  deathHandling?: 'community';
   /** Hosts may disable the necessity exception. */
   necessity?: boolean;
   /** Minutes an idle person waits when no option is chosen. */
@@ -456,13 +467,15 @@ export function birth(c: Community, a: Person, b: Person, spec: ChildSpec): Pers
  * percept through `perceive`, so they grieve, the tie is kept and marked, and a spouse is widowed. Each listener's
  * receipt time is at least their own `now`. `late: 'now'` explicitly permits listeners past `at`, as does the
  * existing default. `late: 'throw'` requires all eligible listeners to be at or before `at` and throws before
- * delivering any news if one is ahead. This changes no listener's clock.
+ * delivering any news if one is ahead. This changes no listener's clock. `receipt: 'attended'`
+ * opts into knowledge-consistent bereavement: only an attended percept marks the tie and widows;
+ * dropped news changes neither. Omitted receipt keeps the original unconditional widow call.
  */
 export function tellDeath(
   c: Community,
   dead: Person,
   at: Minute,
-  opts: { late?: 'throw' | 'now' } = {},
+  opts: { late?: 'throw' | 'now'; receipt?: 'attended' } = {},
 ): void {
   if (opts.late === 'throw') {
     for (const q of c.people) {
@@ -485,8 +498,86 @@ export function tellDeath(
         summary: q.lexicon?.plainEnglish ? `${dead.name} died.` : `${dead.name} died`,
       },
     ]);
-    // A spouse is widowed even if the news went unattended.
-    if (q.bonds) widow(q, dead.id, Math.max(at, q.now));
+    // Legacy calls widow even when unattended; attended mode leaves all receipt effects to perceive.
+    if (opts.receipt !== 'attended' && q.bonds) widow(q, dead.id, Math.max(at, q.now));
+  }
+}
+
+/**
+ * SCOPE: opt-in community death discovery and scheduler cleanup, not a mortality model. Wrap one
+ * driver-owned advancement (tick by default); dispatch its alive-to-dead transition at the resulting clock.
+ * The optional advancement callback supports life-course rolls without another tick. It must be
+ * synchronous and advance only `p`; hosts own discovery of external deaths. No RNG or state mark
+ * is added. Pin `deathHandling` in the host run config, including after JSON restore. Event caps
+ * may omit returned log entries but never suppress cleanup or notices. No funeral is modeled.
+ */
+export function advanceCommunityPerson(
+  c: Community,
+  p: Person,
+  at: Minute,
+  opts: Pick<StepOptions, 'deathHandling' | 'tellDeaths'> = {},
+  log: (e: SimEvent) => void = () => {},
+  advance: (p: Person, at: Minute) => void = tick,
+): void {
+  const alive = p.body.alive;
+  advance(p, at);
+  // Composite finish may advance beyond the scheduled event. Discovery uses that actual clock.
+  at = p.now;
+  if (opts.deathHandling !== 'community' || !alive || p.body.alive) return;
+  log({ at, personId: p.id, kind: 'died', detail: `${p.name} died` });
+  if (opts.tellDeaths ?? true) {
+    // Perception clamps faculty time to the listener's clock. Synchronize eligible recipients first,
+    // discovering any deaths there too, so a notice is never encoded before its discovery minute.
+    for (const q of c.people) {
+      if (q === p || !q.body.alive || q.now >= at) continue;
+      if (q.social.relationships.some((r) => r.otherId === p.id)) advanceCommunityPerson(c, q, at, opts, log);
+    }
+    tellDeath(c, p, at, { receipt: 'attended' });
+  }
+  cleanupCommunityDeath(c, p, at, opts, log);
+}
+
+/** Preserve finish's host-declared timing and return value; discover any internal advancement death. */
+function finishCommunityPerson(
+  c: Community,
+  world: World,
+  p: Person,
+  outcome: Parameters<typeof finish>[1],
+  opts: Pick<StepOptions, 'deathHandling' | 'tellDeaths'>,
+  log: (e: SimEvent) => void,
+): ReturnType<typeof finish> {
+  let report: ReturnType<typeof finish> = null;
+  advanceCommunityPerson(c, p, p.now, opts, log, () => {
+    report = finish(p, outcome, finishOpts(world));
+  });
+  return report;
+}
+
+/** Internal scheduler settlement. Routine callers wait until every person's day has run. */
+export function cleanupCommunityDeath(
+  c: Community,
+  p: Person,
+  at: Minute,
+  opts: Pick<StepOptions, 'deathHandling' | 'tellDeaths'>,
+  log: (e: SimEvent) => void,
+): void {
+  for (const proposal of pendingProposals(c)) {
+    if (proposal.proposerId !== p.id && !proposal.partnerIds.includes(p.id)) continue;
+    // Settle before synchronization: a second discovered death cannot cancel this proposal twice.
+    settle(c, proposal, 'declined');
+    const proposer = personById(c, proposal.proposerId);
+    if (proposer?.body.alive) {
+      const when = Math.max(at, proposer.now);
+      const ex = c.joint.excluded[proposer.id];
+      if (ex?.at === when) ex.ids.push(proposal.offer.id);
+      else c.joint.excluded[proposer.id] = { at: when, ids: [proposal.offer.id] };
+    }
+    for (const id of [proposal.proposerId, ...proposal.partnerIds]) {
+      const q = personById(c, id);
+      if (!q?.body.alive) continue;
+      if (q.now < at) advanceCommunityPerson(c, q, at, opts, log);
+      interruptPerson(c, q, Math.max(at, q.now), `declined:${proposal.id}`);
+    }
   }
 }
 
@@ -525,7 +616,12 @@ export function preview(
   p: Person,
   affordances: readonly Affordance[],
   suggestion: Suggestion,
-  opts: { necessity?: boolean; others?: readonly Suggestion[]; scarcity?: number } = {},
+  opts: {
+    necessity?: boolean;
+    others?: readonly Suggestion[];
+    scarcity?: number;
+    forecastContext?: 'conditioned';
+  } = {},
 ): SuggestionResolution {
   return predict(p, affordances, suggestion, opts);
 }
@@ -659,6 +755,7 @@ export function acceptJoint(
   partner: Person,
   partnerRecord: DecisionRecord,
   writeLog: (e: SimEvent) => void = () => {},
+  opts: Pick<StepOptions, 'deathHandling' | 'tellDeaths'> = {},
 ): Activity[] {
   const log = (e: SimEvent) => {
     const person = personById(c, e.personId);
@@ -676,27 +773,15 @@ export function acceptJoint(
     const rec = proposal.partnerRecords[id];
     if (q && rec) participants.push({ person: q, offer: mirrorFor(world, q, proposal), record: rec });
   }
-  const at = Math.max(...participants.map((x) => x.person.now));
-  // Opted-in catch-up can physically stop a participant. Validate everyone before any begin.
-  if (participants.some(({ person }) => person.body.doze !== undefined)) {
-    for (const { person } of participants) if (person.now < at) tick(person, at);
-    if (participants.some(({ person }) => person.body.doze?.since !== undefined)) {
-      declineJoint(c, proposal);
-      for (const { person } of participants)
-        interruptPerson(c, person, at, person.activity?.interrupt?.reason ?? `declined:${proposal.id}`);
-      return [];
-    }
-  }
-  settle(c, proposal, 'accepted');
-  const begun: Activity[] = [];
-  for (const { person, offer, record } of participants) {
-    if (person.now < at) tick(person, at);
+  let at = Math.max(...participants.map((x) => x.person.now));
+  const finishExisting = (person: Person) => {
     const act = person.activity;
     if (act) {
-      const outcome = world.resolve(person, act, at >= act.endsAt ? 'ended' : 'interrupted');
-      finish(person, outcome, finishOpts(world));
+      const finishAt = opts.deathHandling === 'community' ? Math.max(at, person.now) : at;
+      const outcome = world.resolve(person, act, finishAt >= act.endsAt ? 'ended' : 'interrupted');
+      finishCommunityPerson(c, world, person, outcome, opts, log);
       log({
-        at,
+        at: finishAt,
         personId: person.id,
         kind: 'finish',
         detail: person.lexicon?.plainEnglish
@@ -708,6 +793,47 @@ export function acceptJoint(
         status: outcome.status,
       });
     }
+  };
+  if (opts.deathHandling === 'community') {
+    for (const { person } of participants)
+      if (person.now < at) advanceCommunityPerson(c, person, at, opts, log);
+    if (proposal.status !== 'pending' || participants.some(({ person }) => !person.body.alive)) {
+      declineJoint(c, proposal);
+      return [];
+    }
+  }
+  // Opted-in catch-up can physically stop a participant. Validate everyone before any begin.
+  if (participants.some(({ person }) => person.body.doze !== undefined)) {
+    for (const { person } of participants)
+      if (person.now < at) advanceCommunityPerson(c, person, at, opts, log);
+    if (participants.some(({ person }) => person.body.doze?.since !== undefined)) {
+      declineJoint(c, proposal);
+      for (const { person } of participants)
+        interruptPerson(c, person, at, person.activity?.interrupt?.reason ?? `declined:${proposal.id}`);
+      return [];
+    }
+  }
+  if (opts.deathHandling === 'community') {
+    // Host outcomes may advance beyond `at`. Resolve all old work before anyone starts shared work.
+    for (const { person } of participants) finishExisting(person);
+    at = Math.max(...participants.map(({ person }) => person.now));
+    for (const { person } of participants)
+      if (person.now < at) advanceCommunityPerson(c, person, at, opts, log);
+    if (
+      proposal.status !== 'pending' ||
+      participants.some(({ person }) => !person.body.alive || person.body.doze?.since !== undefined)
+    ) {
+      declineJoint(c, proposal);
+      for (const { person } of participants)
+        if (person.body.alive) interruptPerson(c, person, at, `declined:${proposal.id}`);
+      return [];
+    }
+  }
+  settle(c, proposal, 'accepted');
+  const begun: Activity[] = [];
+  for (const { person, offer, record } of participants) {
+    if (person.now < at) advanceCommunityPerson(c, person, at, opts, log);
+    if (opts.deathHandling !== 'community') finishExisting(person);
     const started = begin(person, offer, record, {
       ...world.beginOptions?.(person, offer, record),
       jointId: proposal.id,
@@ -866,8 +992,9 @@ function converseBoth(
   act: Activity,
   t: Minute,
   log: (e: SimEvent) => void,
+  opts: StepOptions,
 ): void {
-  if (q.now < t) tick(q, t);
+  if (q.now < t) advanceCommunityPerson(c, q, t, opts, log);
   // Non-joint conversation offers assume the partner is available; nobody talks with someone asleep.
   if (!q.body.alive || q.body.asleep) return;
   for (const [speaker, listener] of [
@@ -979,6 +1106,7 @@ function decisionOptions(
   affordances: readonly Affordance[],
 ): Parameters<typeof decide>[2] {
   const o: Parameters<typeof decide>[2] = {};
+  if (opts.forecastContext !== undefined) o.forecastContext = opts.forecastContext;
   // Voices: queued conversation advice first (fresher), then the host's standing suggestions that are heard now
   // (standing-advice SCOPE); one per voice. At reviews they still weigh in, but `decide` resolves them quietly
   // (no counters, pressure or autonomy cost), so one request is not re-counted as many verdicts.
@@ -1061,7 +1189,8 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
       const waiters = [x.proposerId, ...x.accepted]
         .map((id) => personById(c, id))
         .filter((q): q is Person => q !== undefined);
-      for (const q of waiters) if (q.now < t) tick(q, t);
+      for (const q of waiters) if (q.now < t) advanceCommunityPerson(c, q, t, opts, log);
+      if (opts.deathHandling === 'community' && x.status !== 'pending') continue;
       const reasons = new Map(
         waiters.map((q) => [q.id, q.activity?.interrupt?.reason ?? c.interrupts[q.id]?.reason]),
       );
@@ -1089,7 +1218,8 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
     if (!next || t > until) break;
     const p = next;
     const ordinaryDue = ordinaryEventAt(c, p) <= t;
-    tick(p, t);
+    advanceCommunityPerson(c, p, t, opts, log);
+    if (opts.deathHandling === 'community' && !p.body.alive) continue;
     const dozed = p.activity?.dozedAt !== undefined || p.body.doze?.since !== undefined;
     if (dozed) {
       cancelDozeWaiting(p, t);
@@ -1097,7 +1227,7 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
       if (act?.dozedAt !== undefined) {
         if (act.interrupt) c.interrupts[p.id] ??= { ...act.interrupt };
         const outcome = world.resolve(p, act, 'interrupted');
-        finish(p, outcome, finishOpts(world));
+        finishCommunityPerson(c, world, p, outcome, opts, log);
         log(
           {
             at: t,
@@ -1116,11 +1246,13 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
           outcome.summary !== undefined,
         );
       }
+      if (opts.deathHandling === 'community' && !p.body.alive) continue;
       c.idleUntil[p.id] = t + quantum;
       if (!ordinaryDue) continue;
     }
     if (!ordinaryDue && p.body.alive) continue;
-    bookkeepDay(p, world, t, c.dayDone, opts);
+    advanceCommunityPerson(c, p, t, opts, log, () => bookkeepDay(p, world, t, c.dayDone ?? {}, opts));
+    if (opts.deathHandling === 'community' && !p.body.alive) continue;
     if (!p.body.alive) {
       log({ at: t, personId: p.id, kind: 'died', detail: `${p.name} died` });
       if (opts.tellDeaths ?? true) tellDeath(c, p, t);
@@ -1163,7 +1295,7 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
     perceptReason ??= act?.interrupt?.reason;
     if (act && t >= act.endsAt) {
       const outcome = world.resolve(p, act, 'ended');
-      const report = finish(p, outcome, finishOpts(world));
+      const report = finishCommunityPerson(c, world, p, outcome, opts, log);
       const ev: SimEvent = {
         at: t,
         personId: p.id,
@@ -1179,6 +1311,7 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
       };
       if (report) ev.status = report.status;
       log(ev, outcome.summary !== undefined);
+      if (opts.deathHandling === 'community' && !p.body.alive) continue;
       if (outcome.status === 'completed') {
         noteStandingDone(c, p, act, t);
         if (pairMinute !== t) {
@@ -1189,8 +1322,9 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
           const key = p.id < q.id ? `${p.id}|${q.id}` : `${q.id}|${p.id}`;
           if (pairsDone.has(key)) continue;
           pairsDone.add(key);
-          if (isConversation(act)) converseBoth(c, world, p, q, act, t, log);
-          if (contagion && sharesPlace(q, act)) contagionBetween(p, q, act, t, log);
+          if (isConversation(act)) converseBoth(c, world, p, q, act, t, log, opts);
+          if (contagion && (opts.deathHandling !== 'community' || q.body.alive) && sharesPlace(q, act))
+            contagionBetween(p, q, act, t, log);
         }
       }
       act = p.activity;
@@ -1230,7 +1364,7 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
         detail: `joins ${acceptedProposal.offer.label}`,
         jointId: acceptedProposal.id,
       });
-      acceptJoint(c, world, acceptedProposal, p, record, (event) => log(event, true));
+      acceptJoint(c, world, acceptedProposal, p, record, (event) => log(event, true), opts);
       continue;
     }
 
@@ -1273,7 +1407,7 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
     }
     if (act) {
       const outcome = world.resolve(p, act, 'interrupted');
-      finish(p, outcome, finishOpts(world));
+      finishCommunityPerson(c, world, p, outcome, opts, log);
       log({
         at: t,
         personId: p.id,
@@ -1287,6 +1421,7 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
         status: outcome.status,
       });
     }
+    if (opts.deathHandling === 'community' && !p.body.alive) continue;
     if (!chosen) {
       c.idleUntil[p.id] = t + quantum;
       log({ at: t, personId: p.id, kind: 'idle', detail: 'nothing chosen' });
@@ -1310,7 +1445,7 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
     });
   }
 
-  for (const p of c.people) if (p.now < until) tick(p, until);
+  for (const p of c.people) if (p.now < until) advanceCommunityPerson(c, p, until, opts, log);
   return events;
 }
 

@@ -160,10 +160,32 @@ describe('body', () => {
   test('chronic short sleep builds debt that is under-perceived and impairs capacity', () => {
     const rested = person(7 * 60);
     const short = person(7 * 60);
+    const days = [];
     for (let d = 0; d < 7; d++) {
       sleepDay(rested, 8);
       sleepDay(short, 5);
+      const objective = readBody(short);
+      days.push({
+        day: d + 1,
+        debt: short.body.sleepDebt,
+        sleepiness: objective.sleepiness,
+        awareness: objective.perceived.sleepiness,
+        capacityLoss: readBody(rested).capacity - objective.capacity,
+      });
     }
+    // Sample every day at 07:00. Awareness and objective sleepiness share a 0..1 scale.
+    // Perfect awareness substitutes objective sleepiness, so its gap is zero. Capacity loss
+    // is a separate performance proxy: do not compare slopes across these different scales.
+    for (const day of days) {
+      expect(day.sleepiness - day.awareness, `day ${day.day}: awareness gap`).toBeGreaterThan(0);
+      expect(day.capacityLoss, `day ${day.day}: objective impairment`).toBeGreaterThan(0);
+    }
+    const early = days[2];
+    const late = days[6];
+    if (!early || !late) throw new Error('missing daily readouts');
+    expect(late.debt).toBeGreaterThan(early.debt);
+    expect(late.capacityLoss).toBeGreaterThan(early.capacityLoss);
+    expect(late.sleepiness - late.awareness).toBeGreaterThan(early.sleepiness - early.awareness);
     expect(rested.body.sleepDebt).toBeLessThan(1);
     expect(short.body.sleepDebt).toBeGreaterThan(5);
     const r = readBody(short);

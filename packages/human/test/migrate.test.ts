@@ -27,6 +27,7 @@ import {
   type CommunityState,
   communityState,
   createCommunity,
+  createPerson,
   createVillage,
   ENGINE_VERSION,
   MINUTES_PER_DAY,
@@ -85,7 +86,6 @@ describe('migrate: saves from earlier engines restore under the current one', ()
     expect(v140.engine).toBe('1.4.0');
     expect(v150.engine).toBe('1.5.0');
     for (const j of v140.village.saved.people) expect((j as { engine: string }).engine).toBe('1.4.0');
-    expect(ENGINE_VERSION).toBe('2.23.0');
     expect(migratableVersions()).toEqual([
       '1.4.0',
       '1.5.0',
@@ -112,6 +112,7 @@ describe('migrate: saves from earlier engines restore under the current one', ()
       '2.17.0',
       '2.21.0',
       '2.23.0',
+      ENGINE_VERSION,
     ]);
   });
 
@@ -171,9 +172,9 @@ describe('migrate: saves from earlier engines restore under the current one', ()
 
   test('migrate renames the 1.9.0 surroundings field and leaves the input alone', () => {
     const j = { engine: '1.9.0', ambient: { now: { cold: 0.3 }, since: 5 } };
-    expect(migrate(j)).toEqual({ engine: '2.23.0', ambient: { percept: { cold: 0.3 }, since: 5 } });
+    expect(migrate(j)).toEqual({ engine: ENGINE_VERSION, ambient: { percept: { cold: 0.3 }, since: 5 } });
     expect(j.ambient.now).toEqual({ cold: 0.3 });
-    expect(migrate({ engine: '1.9.0' })).toEqual({ engine: '2.23.0' });
+    expect(migrate({ engine: '1.9.0' })).toEqual({ engine: ENGINE_VERSION });
   });
 
   test('older and unknown engines are refused with the supported list', () => {
@@ -216,3 +217,40 @@ test.each(['2.0.0', '2.17.0'])('engine %s gains only a stamp, without invented f
   expect(current.body.doze).toBeUndefined();
   expect(current.body.bladder).toBeUndefined();
 });
+
+// Published HF 3.0.0 (engine 2.23.0): the explicit PersonSpec below,
+// createVillage seed 3, then stepCommunity to minute 120 with omitted options.
+// Pin the entire saved input before testing migration; no external package or scratch fixture is needed.
+test.each(['2.23.0', '2.21.0'])(
+  'engine %s preserves published 3.0 state and continuation through migration',
+  (engine) => {
+    const person = createPerson({
+      id: 'migration',
+      name: 'Migration',
+      bornAt: -30 * 525_600,
+      sex: 'female',
+      seed: 31,
+      norms: [],
+    });
+    const world = createVillage([person], { seed: 3 });
+    const c = createCommunity([person]);
+    const prior = { ...rt(snapshot(person)), engine: '2.23.0' };
+    const saved = { people: [prior], c: rt(communityState(c)), state: rt(world.state) };
+    expect(hash(saved)).toBe('978e3bcfff24c46264b59663775491129e3dc8cf95a906b0838ca770a4f7b72c');
+    // 2.21.0 exercises the older stamp-only link before the new 2.23.0 link.
+    prior.engine = engine;
+    const before = JSON.stringify(prior);
+    const expected = { ...prior, engine: ENGINE_VERSION };
+    expect(migrate(prior)).toEqual(expected);
+    expect(rt(snapshot(restore(prior)))).toEqual(expected);
+    expect(JSON.stringify(prior)).toBe(before);
+    const run: Run = {
+      start: 0,
+      saveAt: 0,
+      endAt: 120 / MINUTES_PER_DAY,
+      saved,
+      continued: 'efd267fa5f1d0fb4336f79975e4755c22d670b51a05ec1c3727477be7ad2950b',
+    };
+    expect(continueRun('village', run).digest).toBe(run.continued);
+  },
+);

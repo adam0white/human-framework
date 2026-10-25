@@ -10,6 +10,18 @@ The release version is the package version and `FRAMEWORK_VERSION`, tagged `vX.Y
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
+## [3.1.0] - 2026-10-25
+
+Engine: 3.1.0. Explicit community death handling, continuous household influence and conditioned body forecasts. Omitted options preserve the HF3.0 continuation, apart from the engine stamp. No new Person state or automatic opt-in is added.
+
+- Add `deathHandling: 'community'` to fine and routine community stepping and joint acceptance. Driver-owned alive-to-dead transitions emit one death at the resulting clock, deliver attended news and release pending joint proposals. Cover catch-up, partner/wait synchronization, daily batches and future-dated `finish` advancement. `tellDeaths: false` suppresses news while retaining cleanup. Direct `tellDeath` gains `receipt: 'attended'`; it keeps its existing clock behavior.
+- Add `RaiseOptions.model: 'warmth-through-25'` and matching `LiveCommunityOptions.upbringing`. Living parents or guardians can provide routine upbringing through young adulthood. Warmth scales norm and attachment learning continuously; guardianship supplies no affection. The age horizon and rates are engineering assumptions. Existing calls retain their old arithmetic and parent-only routine cutoff.
+- Add per-call `forecastContext: 'conditioned'` to body forecasts, decisions, predictions and command previews, including driver and observer wrappers. Only the forecast term uses current pregnancy/environment modifiers and effective body parameters, held through the bounded horizon. The existing observer model remains partial for traits, motives and selected body cues; pregnancy and surroundings are copied from the target, so these are not inferred observer knowledge. This predicts no future weather, pregnancy progression or clinical outcome. Direct forecast helpers gain an optional body-parameters argument.
+- Hosts save these options in their run configuration and supply them after restore. The options are never inferred from Person or community snapshots. Keep exact package pins for replay.
+- Add the missing setting-choice and supported-task-completion engineering controls; strengthen existing sleep-awareness, unrelated-skill and age-peak assertions. These are program regressions, not participant-data replication or calibrated human predictions. Correct N4's evidence wording without changing its formulas.
+- Preserve released engine2.23 portable fields and the existing finite native Selin guard when advancing the current engine. Keep the same validation, calendar, health, norm and obligation gates. No new cross-game journey is established by the metadata guard test.
+- Preserve the upstream Sun fdlibm notices in source, emitted package JavaScript and README. Exponential and other kernel arithmetic stays unchanged. Internal community helpers remain outside the public root exports.
+
 ## [3.0.0] - 2026-10-25
 
 Engine: 2.23.0. Breaking API cleanup and current toolchain. Seeded numerical behavior and saved Person state stay unchanged relative to HF 2.23.0.

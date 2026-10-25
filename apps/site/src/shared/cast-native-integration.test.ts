@@ -47,6 +47,15 @@ describe('actual native checkpoint adapters', () => {
     requireValue(calendar.commitments.find((c) => c.kind === 'job')).actions = ['agency-placement'];
     expect(() => goodhandsSelinPassport(unknown)).toThrow(/Unsupported native/);
   });
+  it('preserves the previously current2.23 Selin engine guard without admitting unknown engines', async () => {
+    // Metadata guard regression only. This edited header is not a new host-export or journey receipt.
+    const parent = await validatePersona(selin);
+    const projection = parent.transfer.agencyPerson as typeof selin.transfer.agencyPerson;
+    projection.person.source.engine = '2.23.0';
+    expect(goodhandsSelinPassport(parent).portable.person.source.engine).toBe('2.23.0');
+    projection.person.source.engine = '2.22.0';
+    expect(() => goodhandsSelinPassport(parent)).toThrow(/Unsupported native|unsupported source/);
+  });
   it('admits native Stairwell Hacer into Voice without granting a new trade', async () => {
     const parent = await validatePersona(hacer);
     const input = preparePersonaLife(parent, 0);

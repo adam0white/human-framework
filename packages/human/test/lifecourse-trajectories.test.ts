@@ -63,8 +63,10 @@ describe('development trajectories', () => {
     expect(at(60).crystallized).toBeGreaterThan(at(25).crystallized);
     expect(at(50).elderDecline).toBe(0);
     expect(at(80).elderDecline).toBeGreaterThan(at(70).elderDecline);
+    const grid = [];
     for (let a = 0; a <= 100; a += 5) {
       const d = at(a);
+      grid.push(d);
       for (const v of [
         d.sensationSeeking,
         d.processingSpeed,
@@ -76,6 +78,16 @@ describe('development trajectories', () => {
         expect(v).toBeGreaterThanOrEqual(0);
       }
     }
+    // Grid peaks describe these engineering readers, not longitudinal task performance.
+    const speedMax = Math.max(...grid.map((d) => d.processingSpeed));
+    const knowledgeMax = Math.max(...grid.map((d) => d.crystallized));
+    const speedPeaks = grid.filter((d) => d.processingSpeed === speedMax).map((d) => d.ageYears);
+    const knowledgePeaks = grid.filter((d) => d.crystallized === knowledgeMax).map((d) => d.ageYears);
+    expect(speedPeaks).toEqual([20]); // Five-year sampling brackets the underlying peak at 22.
+    expect(knowledgePeaks).toEqual([55, 60, 65, 70, 75]); // Entire plateau, not one chosen argmax.
+    expect(Math.max(...speedPeaks)).toBeLessThan(Math.min(...knowledgePeaks));
+    expect(at(50).crystallized).toBeLessThan(knowledgeMax);
+    expect(at(80).crystallized).toBeLessThan(knowledgeMax);
   });
 
   test('learning multipliers by domain: language plateaus to ~17 then declines; general matches LifeModifiers', () => {

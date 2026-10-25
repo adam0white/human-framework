@@ -4,7 +4,7 @@
  * identity, age, family and health compatibility before returning a new Person. Neither input is mutated.
  * This is not a world migration, identity registry, transport, hash, authentication or general calendar mapper.
  * v1 admits zero-duration travel and healthy compatible bodies only; family/bonds remain host-authored and must
- * match source provenance. Portable v1 accepts its published 2.14.1 and 2.17.0 stamps and the current engine;
+ * match source provenance. Portable v1 accepts its published 2.14.1, 2.17.0, 2.21.0 and 2.23.0 stamps and the current engine;
  * the bodily opt-ins change no portable field semantics. Pregnancy and nonempty temporal bonds are unsupported in v1. All other world-dependent stores stay with the source and are disclosed as omitted.
  */
 import { hasUnresolvedMakeUps, sameChain } from './agenda/agenda.ts';
@@ -248,6 +248,7 @@ export function validatePersonaProjection(input: unknown): PersonaProjectionSnap
   // The 2.14.1 and 2.17.0 portable fields retain their semantics across the bodily opt-ins.
   const compatibleEngine =
     input.source.engine === ENGINE_VERSION ||
+    input.source.engine === '2.23.0' ||
     input.source.engine === '2.21.0' ||
     input.source.engine === '2.17.0' ||
     input.source.engine === '2.14.1';

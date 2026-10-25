@@ -951,7 +951,10 @@ export interface Activity {
 
 export const PERSON_SCHEMA = 'human/person@1';
 /**
- * Current: 2.3.0 (2026-10-17): optional temporal goals and received consequences.
+ * Engine compatibility stamp. Package versions and engine versions may differ.
+ * See CHANGELOG.md for current changes and migrate.ts for supported saved versions.
+ *
+ * 2.3.0 (2026-10-17): optional temporal goals and received consequences.
  * 2.2.0 (2026-10-14): method evidence grades each action independently.
  * Successful alternatives no longer count as failures of another action. Person state shape is unchanged.
  * 2.1.0 saves migrate by stamping the version.
@@ -987,7 +990,7 @@ export const PERSON_SCHEMA = 'human/person@1';
  * and an activity that would cover a closing stretch is reviewed when the stretch begins (`isUnderWay`,
  * `dutyReviewAt`). Person shape unchanged.
  */
-export const ENGINE_VERSION = '2.23.0';
+export const ENGINE_VERSION = '3.1.0';
 
 // ---------------------------------------------------------------------------------------------
 // Family, bonds and ambient (1.8.0, optional slices)

@@ -4,13 +4,15 @@ HF is a TypeScript library for simulated people in games and headless simulation
 possible actions. Each person weighs needs, habits, duties, goals and suggestions, then chooses.
 A player can suggest an action; the person can defer or refuse it.
 
-HF 3.0.0 uses utility scoring and seeded randomness, with no LLM in the actor loop and no runtime
+HF 3.1.0 uses utility scoring and seeded randomness, with no LLM in the actor loop and no runtime
 dependencies. Decision records expose scored terms and template narration. Person state is plain JSON.
 This is an authored simulation model, not a validated predictor of real people.
 
 ## Migrating to v3
 
-The API migration keeps engine `2.23.0`. Relative to HF 2.23.0, it does not change seeded draws, numeric rules or saved Person state. The package version is `3.0.0`; publication is recorded separately in the release history.
+The HF 3.0 API migration kept engine `2.23.0`. Relative to HF 2.23.0, that release changed no seeded draws, numeric rules or saved Person state.
+
+HF 3.1 uses engine `3.1.0` and migrates earlier supported snapshots by preserving admitted state. Community death handling, warmth-through-25 upbringing and conditioned bodily forecasts require explicit host options, pinned again after restore. Omitted options preserve HF 3.0 continuation apart from the engine stamp. These are authored simulation rules, not validated predictions of real people.
 
 | Before                                                                         | v3                                                                                                |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------- |
@@ -57,10 +59,10 @@ This is a bounded host convention, not transport, consensus or fairness. It read
 
 ## Quick start
 
-Use Node 24 or newer. In an empty directory, install the version this README describes:
+Use Node 24 or newer and TypeScript 7 or newer. In an empty directory, install the version this README describes:
 
 ```sh
-npm install @adam0white/human-framework@3.0.0
+npm install @adam0white/human-framework@3.1.0
 ```
 
 Save these 20 lines as `quickstart.mjs`, then run `node quickstart.mjs`:
@@ -265,7 +267,7 @@ reference host: `createVillage`.
 
 There are two version numbers, and they move independently.
 
-- **The release version** is the package version (`package.json`, currently `3.0.0`) and `FRAMEWORK_VERSION`, the same
+- **The release version** is the package version (`package.json`, currently `3.1.0`) and `FRAMEWORK_VERSION`, the same
   string compiled into the build; a test keeps them equal. It versions the public API under
   [semver](https://semver.org/): a breaking change to an exported name or signature bumps the major, a new
   faculty or export the minor, a fix the patch. Each release is a tag `vX.Y.Z` and a GitHub release whose notes
@@ -637,3 +639,32 @@ Use `gestureVoiceTrust(p, voiceId, amount, { reason, at?, action? })` for an exp
 `confirmObservedReputation(p, prop, truth, now, table?)` replaces the manual `credence → confirm → applyReputationBelief` sequence. Supply only a fact the person could observe. It does not run attention or invent a moral judgement.
 
 `qalbReading(p)` is a read-only, sourced narration lens over existing records. Its detached categorical rows are this person's recorded understanding and evidence. They are never a spiritual health score, a ruling, a rank, or a decision input. Do not present mood, low social trust or missing memories as evidence of poor faith.
+
+## fdlibm notices
+
+`dist/core/libm.js` ports `e_exp.c`, `e_log.c`, `k_cos.c`, `k_sin.c` and `e_rem_pio2.c`
+from Sun/FreeBSD fdlibm. The original notices are preserved below and in that module.
+Sources: [Netlib fdlibm](https://netlib.org/fdlibm/) and
+[FreeBSD e_exp.c](https://cgit.freebsd.org/src/tree/lib/msun/src/e_exp.c).
+
+```text
+ * fdlibm notices: e_exp.c (Sun 2004); e_log.c, k_cos.c, k_sin.c and e_rem_pio2.c (Sun 1993).
+ * Sources: https://netlib.org/fdlibm/ and FreeBSD lib/msun/src/e_exp.c.
+ * ====================================================
+ * Copyright (C) 2004 by Sun Microsystems, Inc. All rights reserved.
+ *
+ * Permission to use, copy, modify, and distribute this
+ * software is freely granted, provided that this notice
+ * is preserved.
+ * ====================================================
+ *
+ * ====================================================
+ * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
+ *
+ * Developed at SunSoft, a Sun Microsystems, Inc. business.
+ * Permission to use, copy, modify, and distribute this
+ * software is freely granted, provided that this notice
+ * is preserved.
+ * ====================================================
+
+```

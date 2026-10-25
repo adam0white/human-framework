@@ -184,7 +184,13 @@ export function predictAs(
   target: Person,
   affordances: readonly Affordance[],
   suggestion: Suggestion,
-  opts: { necessity?: boolean; others?: readonly Suggestion[]; scarcity?: Unit; now?: Minute } = {},
+  opts: {
+    necessity?: boolean;
+    others?: readonly Suggestion[];
+    scarcity?: Unit;
+    now?: Minute;
+    forecastContext?: 'conditioned';
+  } = {},
 ): ImpressionPrediction {
   const now = opts.now ?? target.now;
   const { now: _now, ...rest } = opts;
@@ -202,10 +208,11 @@ export function previewCommandAs(
   affordances: readonly Affordance[],
   cmd: Command,
   now: Minute = target.now,
+  opts: { forecastContext?: 'conditioned' } = {},
 ): { outcome: CommandOutcome; confidence: Unit } {
   const model = imagine(observer, target, now);
   return {
-    outcome: previewCommand(model, affordances, cmd),
+    outcome: previewCommand(model, affordances, cmd, opts),
     confidence: impressionConfidence(observer, target.id, now),
   };
 }

@@ -28,11 +28,11 @@
  * assumption. Does not claim: pharmacology, dependence severity or relapse probabilities.
  *
  * SCOPE (habit ease, N4): `habitEase` is a multiplier < 1 on the initiation and attentional parts of an
- * option's effort cost for a cued habitual action. Chosen by the discriminating experiment in
- * `test/habits.test.ts`: depletion increases habit performance relative to deliberate alternatives (Neal,
- * Wood & Drolet 2013, JPSP 104:959); an additive habit term cannot produce that (fatigue costs habitual and
- * deliberate options alike), an ease multiplier can. Physical exertion is not eased (habit does not make a
- * walk lighter). Does not claim: a measured size of the effect, or that automaticity removes intention.
+ * option's effort cost for a cued habitual action. `test/habits-lane.test.ts` compares candidate effort
+ * formulas under authored fatigue and sleepiness. That engineering comparison is not a restraint-depletion
+ * manipulation, participant-data replication, or full choice experiment; it does not validate a fungible
+ * willpower fuel. Physical exertion is not eased (habit does not make a walk lighter). Does not claim:
+ * a measured effect size, an empirically established explanation, or that automaticity removes intention.
  */
 import { clamp01, decay, dexp, hourOf, minuteOfDay } from '../core/index.ts';
 import {

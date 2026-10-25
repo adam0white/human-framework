@@ -10,7 +10,8 @@ describe('skill transfer', () => {
 
   test('practising a source moves a related skill by a fraction, without spending its practice minutes', () => {
     const a = mk({ 'repair-bicycle': 0.5 });
-    const b = mk({ 'repair-bicycle': 0.5 });
+    const b = mk({ 'repair-bicycle': 0.5, turkish: 0.35 });
+    const unrelated = structuredClone(b.skills.turkish);
     const own = practise(a, 'repair-bicycle', 600, 0.6, true, 1, 0);
     expect(a.skills['repair-sewing-machine']).toBeUndefined();
     practise(b, 'repair-bicycle', 600, 0.6, true, 1, 0, transfer);
@@ -19,6 +20,8 @@ describe('skill transfer', () => {
     expect(related?.level ?? 0).toBeGreaterThan(SKILL_DEFAULTS.base);
     expect((related?.level ?? 0) - SKILL_DEFAULTS.base).toBeLessThan(own.after - own.before);
     expect(related?.practice).toBe(0);
+    expect(b.skills['repair-bicycle']?.level).toBeGreaterThan(0.5);
+    expect(b.skills.turkish).toEqual(unrelated);
     // Transfer is one-way unless the map says otherwise; unrelated skills are untouched.
     const c = mk({ 'repair-sewing-machine': 0.5 });
     practise(c, 'repair-sewing-machine', 600, 0.6, true, 1, 0, transfer);

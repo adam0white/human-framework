@@ -40,7 +40,7 @@ import { emotionLevel, inBreak } from '../affect/index.ts';
 import { agendaTermsWithGoalEstimates } from '../agenda/index.ts';
 import { trustOf } from '../beliefs/index.ts';
 import { bladderMotivation } from '../body/bladder.ts';
-import type { BodyPerceptionContext } from '../body/index.ts';
+import type { BodyParams, BodyPerceptionContext } from '../body/index.ts';
 import { normTerms } from '../conscience/index.ts';
 import { clamp01, cmpStr, dexp, minuteOfDay, round } from '../core/index.ts';
 import { keysOf } from '../core/keys.ts';
@@ -201,6 +201,8 @@ export interface ConsiderContext {
   scarcity?: Unit;
   /** The body's perception context now (an open fast), for the bodily forecast (2.6.0). */
   perception?: BodyPerceptionContext;
+  /** Q26: held current conditions, used only by the bodily forecast, never other decision terms. */
+  forecastContext?: { mods: LifeModifiers; params: BodyParams };
 }
 
 function voiceTrust(p: Person, voiceId: string): number {
@@ -486,7 +488,13 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
   if (effort < 0) push('effort', effort);
   // Bodily forecast (2.5.0): only offers that declare known follow-on exertion.
   if (aff.followedBy?.length) {
-    const t = bodyForecastTerm(p, aff, ctx.mods, ctx.perception);
+    const t = bodyForecastTerm(
+      p,
+      aff,
+      ctx.forecastContext?.mods ?? ctx.mods,
+      ctx.perception,
+      ctx.forecastContext?.params,
+    );
     if (t) push(t.source, t.value);
   }
   // Risk: chance × severity × (fear + emotionality).

@@ -10,22 +10,41 @@
  * back to `stepCommunity` at the stretch's end: a common pattern is routine for the years nobody watches, lived
  * minutes for the days someone is watching. Switching fidelity is the host's decision and happens on a day boundary.
  *
+ * With `deathHandling: 'community'`, entry and dawn catch-up deaths are discovered at the sync minute and
+ * skip routine work. Routine deaths retain their whole-day batch ordering; attended news and proposal cleanup
+ * run only after every person's routine. Suppressing news does not suppress cleanup. This adds no mortality,
+ * funeral or religious model. The host pins the option after restore; omission retains the old path.
+ *
  * It does not run decisions, conversation, joint activities, contagion or the world's percepts and affordances: those
  * belong to lived time. Companions are listed by the host on both sides (each person's routine names the other),
  * since a routine day writes only its own person. Births and arrivals are the host's (`birth`, `addPerson` in
  * `onDay`); a person added during the stretch starts on the next day.
+ *
+ * Opt-in `upbringing.model: 'warmth-through-25'` selects living parents or guardians from the young person's
+ * ties, counting each different person once, through young adulthood (under 25). Guardianship does not supply
+ * warmth: `raise` reads caregiver-to-child affection. Its continuous age taper and warmth-scaled rates are
+ * engineering assumptions; no abuse, schooling or adult culture diffusion. Hosts pin `upbringing` in saved-run
+ * configuration and supply it after restore. Marriage, parenthood and co-residence do not gate this model;
+ * a living carer in the community suffices. Omitted, the under-18, parents-only path stays exact.
  */
 
 import { endDay } from '../chronicle/index.ts';
 import { dayOf } from '../core/index.ts';
-import { raise } from '../family/index.ts';
+import { type RaiseOptions, raise } from '../family/index.ts';
 import { ageYears } from '../lifecourse/index.ts';
 import { type RoutineDay, type RoutineSource, routineDay } from '../longrun.ts';
-import { tick } from '../person.ts';
 import type { SkillTransfer } from '../skills/index.ts';
 import type { Minute, Person, PersonId } from '../types.ts';
 import { MINUTES_PER_DAY } from '../types.ts';
-import { type Community, type LifecourseOptions, type SimEvent, tellDeath } from './sim.ts';
+import {
+  advanceCommunityPerson,
+  type Community,
+  cleanupCommunityDeath,
+  type LifecourseOptions,
+  type SimEvent,
+  type StepOptions,
+  tellDeath,
+} from './sim.ts';
 
 export const LIVE_COMMUNITY_DEFAULTS = {
   /** Upbringing time a day with the parents (engineering assumption: a few waking hours together). */
@@ -42,11 +61,16 @@ export interface LiveCommunityOptions {
   onDay?(c: Community, day: number, at: Minute): void;
   /** Tell each death to everyone with a tie (default true; see `tellDeath`). */
   tellDeaths?: boolean;
+  /** Opt into attended death receipts and scheduler cleanup; pin on every resumed call. */
+  deathHandling?: StepOptions['deathHandling'];
   /**
-   * Minutes of upbringing a day for each living minor with a living parent in the community (`family.raise`; default
-   * `LIVE_COMMUNITY_DEFAULTS.upbringingMinutes`, 0 turns it off).
+   * Minutes of upbringing a day for eligible young people with a living carer in the community (`family.raise`).
+   * Default eligibility is under 18 with a parent; warmth-through-25 includes guardians and ages under 25.
+   * Defaults to `LIVE_COMMUNITY_DEFAULTS.upbringingMinutes`; 0 turns it off.
    */
   upbringingMinutes?: number;
+  /** Opt-in household model and voice selection, passed to `raise`. Pin in host saved-run configuration. */
+  upbringing?: RaiseOptions;
   lifecourse?: LifecourseOptions;
   transfer?: SkillTransfer;
 }
@@ -64,6 +88,15 @@ export interface LiveCommunityResult {
 export function liveCommunity(c: Community, until: Minute, opts: LiveCommunityOptions): LiveCommunityResult {
   const events: SimEvent[] = [];
   const days: Record<PersonId, RoutineDay[]> = {};
+  const log = (e: SimEvent) => {
+    const p = c.people.find((q) => q.id === e.personId);
+    events.push(p?.lexicon?.plainEnglish && e.kind === 'died' ? { ...e, detail: `${p.name} died.` } : e);
+  };
+  if (opts.deathHandling === 'community') {
+    // Older raw community JSON lacks these maps. Only the opt-in needs them here.
+    c.interrupts ??= {};
+    c.joint ??= { nextId: 0, proposals: [], excluded: {} };
+  }
   // Start at the first midnight at or after the community's clock: whoever is behind lives up to it minute by
   // minute, and open chronicle days are closed so none is carried through the stretch.
   let now = 0;
@@ -71,7 +104,7 @@ export function liveCommunity(c: Community, until: Minute, opts: LiveCommunityOp
   now = Math.ceil(now / MINUTES_PER_DAY) * MINUTES_PER_DAY;
   if (now + MINUTES_PER_DAY > until) return { events, days };
   for (const p of c.people) {
-    if (p.body.alive && p.now < now) tick(p, now);
+    if (p.body.alive && p.now < now) advanceCommunityPerson(c, p, now, opts, log);
     endDay(p);
     if (!p.body.alive && p.now < now) p.now = now;
   }
@@ -87,7 +120,8 @@ export function liveCommunity(c: Community, until: Minute, opts: LiveCommunityOp
     const died: Person[] = [];
     for (const p of c.people) {
       if (!p.body.alive) continue;
-      if (p.now < now) tick(p, now);
+      if (p.now < now) advanceCommunityPerson(c, p, now, opts, log);
+      if (opts.deathHandling === 'community' && !p.body.alive) continue;
       if (p.now !== now) continue; // added mid-stretch with a later clock: joins when the day catches up
       const r = routineDay(p, opts.routineFor(p, day), routineOpts);
       if (r.episodes.length > 0 || r.onsets.length > 0 || r.stage || r.died) {
@@ -123,19 +157,27 @@ export function liveCommunity(c: Community, until: Minute, opts: LiveCommunityOp
     }
     now += MINUTES_PER_DAY;
     for (const p of c.people) if (!p.body.alive && p.now < now) p.now = now;
-    if (tell) for (const d of died) tellDeath(c, d, now);
-    // Upbringing (1.8.0): each living minor spends the day's upbringing time with their living parents.
+    // Keep routine deaths batched: recipients must run their own routine before end-of-day news/cleanup.
+    for (const d of died) {
+      if (tell) tellDeath(c, d, now, opts.deathHandling === 'community' ? { receipt: 'attended' } : {});
+      if (opts.deathHandling === 'community') cleanupCommunityDeath(c, d, now, opts, log);
+    }
+    // Legacy: minors with parents. Opt-in: household influence through young adulthood with parents/guardians.
     if (upbringing > 0) {
       const byId = new Map(c.people.map((q) => [q.id, q]));
       for (const child of c.people) {
-        if (!child.body.alive || ageYears(child) >= UPBRINGING_UNTIL) continue;
+        const continuous = opts.upbringing?.model === 'warmth-through-25';
+        if (!child.body.alive || ageYears(child) >= (continuous ? 25 : UPBRINGING_UNTIL)) continue;
         const caregivers = child.social.relationships
-          .filter((r) => r.roles.includes('parent'))
+          .filter((r) => r.roles.includes('parent') || (continuous && r.roles.includes('guardian')))
           .flatMap((r) => {
             const q = byId.get(r.otherId);
             return q?.body.alive ? [q] : [];
           });
-        if (caregivers.length > 0) raise(child, { caregivers }, upbringing);
+        const selected = continuous
+          ? [...new Map(caregivers.filter((q) => q.id !== child.id).map((q) => [q.id, q])).values()]
+          : caregivers;
+        if (selected.length > 0) raise(child, { caregivers: selected }, upbringing, opts.upbringing);
       }
     }
   }
