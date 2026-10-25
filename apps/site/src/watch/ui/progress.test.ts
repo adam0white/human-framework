@@ -11,6 +11,8 @@ describe('the winter goal in approximate words', () => {
   it('separates the last played watch from the rest of winter', () => {
     const winter = { night: 1, nights: 7, why: '', question: null };
     expect(thawProgress({ winter, phase: 'dusk' })).toContain('still far off');
+    expect(thawProgress({ winter, phase: 'dusk' })).toContain('7 watches to complete, including this one');
+    expect(thawProgress({ winter, phase: 'dawn' })).toContain('6 watches left');
     expect(thawProgress({ winter: { ...winter, night: 5 }, phase: 'night' })).toContain('a few watches');
     expect(thawProgress({ winter: { ...winter, night: 7 }, phase: 'night' })).toContain(
       'last watch you control',
@@ -19,6 +21,17 @@ describe('the winter goal in approximate words', () => {
       'watches you control are finished',
     );
     expect(thawProgress({ winter: { ...winter, night: 7 }, phase: 'dawn' })).toContain('usual watches');
+  });
+  it('counts only controlled watches and handles one remaining watch and the thaw', () => {
+    const winter = { night: 1, nights: 1, why: '', question: null };
+    for (const phase of ['dusk', 'night'] as const) {
+      expect(thawProgress({ winter, phase })).toContain('1 watch to complete, including this one');
+    }
+    expect(thawProgress({ winter: { ...winter, nights: 2 }, phase: 'dawn' })).toContain('1 watch left');
+    for (const phase of ['dawn', 'thaw'] as const) {
+      expect(thawProgress({ winter, phase })).toContain('watches you control are finished');
+      expect(thawProgress({ winter, phase })).not.toContain('1 watch');
+    }
   });
 });
 

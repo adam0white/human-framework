@@ -14,7 +14,7 @@ vi.mock('../../shared/lab.tsx', () => ({
 }));
 vi.mock('./useWatch.ts', () => ({ useWatch: vi.fn() }));
 vi.mock('./MapCanvas.tsx', () => ({ MapCanvas: () => null }));
-const { App, DuskPanel, NightPanel, DawnPanel, headerLine } = await import('./App.tsx');
+const { App, DuskPanel, NightPanel, DawnPanel, WatchStrip, headerLine } = await import('./App.tsx');
 const { Chronicle, Shelf } = await import('./chronicle.tsx');
 const actions = {
   input: vi.fn(),
@@ -30,6 +30,11 @@ function render(node: Parameters<typeof renderToStaticMarkup>[0]) {
 const state = newGame(4242);
 applyInput(state, { k: 'start' });
 const dusk = buildFrame(state, 0, false);
+it('shows the controlled-watch count as ordinary visible strip text', () => {
+  if (!dusk.winter) throw new Error('Missing winter');
+  const strip = render(createElement(WatchStrip, { frame: dusk }));
+  expect(strip.querySelector('.w-thaw-state > span')?.textContent).toBe(`${dusk.winter.nights} watches left`);
+});
 it('separates starting lantern from the selected person’s post actions', () => {
   const props = {
     frame: dusk,
@@ -47,6 +52,8 @@ it('separates starting lantern from the selected person’s post actions', () =>
   expect(selected.querySelector('footer')?.textContent).toContain('Post Samira at');
   expect(selected.querySelectorAll('.w-place')).toHaveLength(4);
   expect(selected.querySelector('.w-press[aria-pressed=true]')?.textContent).toBe('Urge');
+  expect(selected.textContent).toContain('Dusk posting does not give a night off.');
+  expect(selected.textContent).toContain('At night, select the watcher and choose Rest');
   expect(selected.querySelectorAll('.game-help-button')).toHaveLength(0);
 });
 it('keeps lantern and bell in the night action bar and people in the sheet', () => {
@@ -55,6 +62,9 @@ it('keeps lantern and bell in the night action bar and people in the sheet', () 
   expect(night.querySelector('footer .w-bellbtn small')).not.toBeNull();
   expect(night.querySelector('.lk-sheet-body .w-night-roster')).not.toBeNull();
   expect(night.querySelector('.w-place')).toBeNull();
+  expect(night.querySelector('.w-night-roster')?.previousElementSibling?.textContent).toContain(
+    'You cannot assign an empty post directly at night.',
+  );
 });
 it('keeps restart and export out of the menu and puts Resume last', () => {
   const menu = render(

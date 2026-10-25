@@ -79,6 +79,99 @@ it('names shuttering in the latest House order as well as the destination tile',
   expect(node.querySelector('.well-latest strong')?.textContent).toContain('shutter the house');
 });
 
+it('links the sent appeal to its answer and keeps current goal numbers beside the order', () => {
+  const game = new ColonyGame(20261003, createFrameworkHumanSide);
+  game.issue({ personId: 'idris', placeId: 'site', appeal: 'safety' });
+  const frame = game.frame();
+  const card = frame.cards[0];
+  if (!card) throw new Error('Missing order');
+  card.human.outcome = 'I did more building work. House 3/10.';
+  const person = frame.human.find((p) => p.id === 'idris');
+  if (!person) throw new Error('Missing Idris');
+  person.label = 'Praying Fajr';
+  const issued = frame.cards[0]?.order.issuedAt ?? 0;
+  frame.minute = issued + 30;
+  person.trust.history = [
+    { minute: issued - 1, delta: -0.1, label: 'before this order' },
+    { minute: issued, delta: 0.1, label: 'Your order went well' },
+    { minute: issued + 1, delta: -0.1, label: 'You pushed too hard' },
+    { minute: issued + 31, delta: -0.1, label: 'future event' },
+  ];
+  const noop = () => {};
+  const node = document.createElement('div');
+  const renderSheet = () => {
+    node.innerHTML = renderToStaticMarkup(
+      createElement(PersonSheet, {
+        frame,
+        id: 'idris',
+        rush: false,
+        insist: false,
+        appeal: 'children',
+        appealOpen: false,
+        pending: null,
+        asked: null,
+        forecasts: {},
+        outline: null,
+        onBack: noop,
+        onRush: noop,
+        onInsist: noop,
+        onAppeal: noop,
+        onAppealOpen: noop,
+        onAbout: noop,
+        onPlace: noop,
+        onHover: noop,
+        onConfirm: noop,
+        onCancelRisk: noop,
+        onCancel: noop,
+        onRepeat: noop,
+      }),
+    );
+  };
+  renderSheet();
+  expect(node.querySelector('.well-person-body > p')?.textContent).toContain('dawn prayer');
+  expect(node.querySelector('.well-person-body > p')?.textContent).not.toContain('Fajr');
+  expect(node.querySelector('.well-latest')?.textContent).toContain('Sent appeal: you’ll be safer.');
+  expect(node.querySelector('.well-latest')?.textContent).not.toContain('for the children');
+  expect(node.querySelector('.well-latest')?.textContent).toContain('I did more building work. House 3/10.');
+  expect(node.querySelector('.well-order-goals')?.textContent).toContain(
+    `Human village: roof ${frame.humanWorld.houseStage} of 10 stages`,
+  );
+  expect(node.querySelector('.well-order-goals')?.textContent).toContain(
+    `${frame.humanWorld.resources.meals} of 12 meals`,
+  );
+  expect(node.querySelector('.well-order-goals')?.textContent).toContain('toward the next stage');
+  expect(node.querySelector('.well-trust-changes')?.textContent).toContain(
+    'Other events can also affect trust.',
+  );
+  expect(node.querySelector('.well-trust-changes')?.textContent).toContain('Idris trusts you more.');
+  expect(node.querySelector('.well-trust-changes')?.textContent).toContain('Idris trusts you less.');
+  expect(node.querySelector('.well-trust-changes')?.textContent).not.toMatch(
+    /before this order|future event/,
+  );
+  delete card.order.appeal;
+  frame.humanWorld.project = { kind: 'storeroom', stage: 2, stages: 6 };
+  frame.humanWorld.houseProgress = 0.999;
+  const stock = frame.goals.find((g) => g.id === 'stock');
+  if (!stock) throw new Error('Missing meal goal');
+  stock.targetValue = 5;
+  renderSheet();
+  expect(node.querySelector('.well-latest')?.textContent).toContain('No appeal sent.');
+  expect(node.querySelector('.well-order-goals')?.textContent).toContain('store-room 2 of 6 stages');
+  expect(node.querySelector('.well-order-goals')?.textContent).toContain('99% toward the next stage');
+  expect(node.querySelector('.well-order-goals')?.textContent).toContain('of 5 meals');
+  frame.humanWorld.project.stage = 6;
+  renderSheet();
+  const humanGoals = node.querySelector('.well-order-goals p:last-child')?.textContent;
+  expect(humanGoals).toBeTruthy();
+  expect(humanGoals).not.toContain('toward the next stage');
+  card.order.action = 'cook';
+  card.human.says = 'We have enough food stored. I’ll cook when it runs low.';
+  renderSheet();
+  expect(node.querySelector('.well-latest')?.textContent).toContain('We have enough food stored.');
+  expect(node.querySelector('.well-food-explanation')?.textContent).toContain('ordinary meals');
+  expect(node.querySelector('.well-food-explanation')?.textContent).toContain('storm reserve');
+});
+
 it('offers Home shelter for the well-house resident without changing old Home meaning', async () => {
   const { homeOrderMeaning } = await import('./order-status.ts');
   const { inferredJob } = await import('./parts.tsx');

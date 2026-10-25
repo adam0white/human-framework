@@ -350,15 +350,15 @@ body,
   overflow: auto;
   overscroll-behavior: contain;
 }
-.well-village-heading {
+.well-layout .well-village-heading {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  border: 0 !important;
-  padding: 4px 8px !important;
-  border-radius: 0 !important;
+  border: 0;
+  padding: 4px 8px;
+  border-radius: 0;
 }
 .well-village-heading strong {
   font-size: 12px;
@@ -434,7 +434,7 @@ body,
 }
 .well-latest {
   min-height: 52px;
-  font-size: 10px;
+  font-size: 14px;
 }
 .well-latest p {
   margin: 0;
@@ -453,24 +453,23 @@ body,
 }
 .well-answer-pair .chip {
   display: inline-block;
-  font-size: 9px;
+  font-size: 14px;
   padding: 1px 3px;
 }
 .well-reply-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 33px;
+  min-height: 44px;
   gap: 4px;
 }
 .well-reply-row p {
-  font-size: 10px;
-  line-height: 14px;
-  max-height: 28px;
-  overflow: hidden;
+  font-size: 14px;
+  line-height: 1.4;
 }
 .well-reply-row button {
-  font-size: 10px;
+  font-size: 14px;
+  min-height: 44px;
   padding: 0 4px;
   flex: none;
 }
@@ -536,7 +535,16 @@ body,
   gap: 4px;
 }
 .well-order-notes {
-  font-size: 12px;
+  font-size: 14px;
+}
+.well-order-goals {
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 8px 0;
+  border-top: 1px solid var(--line);
+}
+.well-order-goals p {
+  margin: 8px 0;
 }
 .well-reading {
   padding: 12px;
@@ -700,9 +708,11 @@ body,
   position: fixed;
   inset: 44px 0 0;
   z-index: 45;
-  background: #0003 !important;
-  border: 0 !important;
-  border-radius: 0 !important;
+}
+.well-layout .well-info-outside {
+  background: #0003;
+  border: 0;
+  border-radius: 0;
 }
 .well-info {
   position: fixed;
@@ -865,9 +875,6 @@ body,
   }
   .well-menu-body {
     flex: 1;
-  }
-  .well-phone-fullscreen {
-    display: none !important;
   }
   .well-info {
     top: 56px;

@@ -105,17 +105,29 @@ export function grainCondition(f: Pick<Frame, 'grain' | 'need'>): string {
   return 'There is enough grain for spring, with plenty to spare.';
 }
 
+export function controlledWatchesLeft(f: Pick<Frame, 'winter' | 'phase'>): number {
+  if (!f.winter || f.phase === 'thaw') return 0;
+  return Math.max(0, f.winter.nights - f.winter.night + (f.phase === 'dawn' ? 0 : 1));
+}
+
 export function thawProgress(f: Pick<Frame, 'winter' | 'phase'>): string {
   const w = f.winter;
   if (!w) return '';
   const left = w.nights - w.night;
+  if (f.phase === 'thaw')
+    return 'The watches you control are finished. The usual watches continued until the spring thaw.';
+  const remaining = controlledWatchesLeft(f);
+  const count =
+    f.phase === 'dawn'
+      ? `You have ${remaining} ${remaining === 1 ? 'watch' : 'watches'} left. `
+      : `You have ${remaining} ${remaining === 1 ? 'watch' : 'watches'} to complete, including this one. `;
   if (left <= 0)
     return f.phase === 'dawn'
       ? 'The watches you control are finished. The usual watches continue until the spring thaw.'
-      : 'This is the last watch you control. Then the usual watches continue until the spring thaw.';
+      : `${count}This is the last watch you control. Then the usual watches continue until the spring thaw.`;
   if (left <= 2)
-    return 'You have a few watches left to control. Then the usual watches continue until the spring thaw.';
-  return 'These are the early watches. The spring thaw is still far off.';
+    return `${count}You have a few watches left to control. Then the usual watches continue until the spring thaw.`;
+  return `${count}These are the early watches. The spring thaw is still far off.`;
 }
 
 /** Morning's plain account, using the same small-loss band as the winter account. */

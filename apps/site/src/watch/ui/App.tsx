@@ -39,6 +39,7 @@ import { PageActions, PageCommitContext } from './SheetActions.tsx';
 import { useWatch, type WatchActions } from './useWatch.ts';
 import {
   awayWords,
+  controlledWatchesLeft,
   dawnOutcome,
   daylightWords,
   hourWords,
@@ -428,18 +429,23 @@ export function WatchStrip({
   selected?: WatcherId | null;
   helper?: boolean;
 }) {
+  const remaining = controlledWatchesLeft(frame);
+  const hint = helper
+    ? 'Choosing a helper'
+    : frame.slowed
+      ? frame.moment
+        ? `${nameIn(frame, frame.moment.who)} is deciding`
+        : 'News from the village'
+      : null;
   return (
     <section className="w-state lk-strip" aria-label="Watch state">
       <div className="w-thaw-state">
         <WinterProgress frame={frame} />
         <span>
-          {helper
-            ? 'Choosing a helper'
-            : frame.slowed
-              ? frame.moment
-                ? `${nameIn(frame, frame.moment.who)} is deciding`
-                : 'News from the village'
-              : 'thaw'}
+          <span className="w-watch-count">
+            {frame.winter ? `${remaining} ${remaining === 1 ? 'watch' : 'watches'} left` : 'thaw'}
+          </span>
+          {hint && <small>{hint}</small>}
         </span>
       </div>
       <Sacks
@@ -785,7 +791,13 @@ export function DuskPanel({
           </details>
         ) : null}
         {sel ? (
-          <Impressions impressions={sel.impressions} />
+          <>
+            <p className="w-note w-rule-note">
+              Dusk posting does not give a night off. At night, select the watcher and choose Rest when
+              offered. The account explains when a request is unavailable.
+            </p>
+            <Impressions impressions={sel.impressions} />
+          </>
         ) : (
           <ul className="w-roster">
             {frame.watchers.map((w) => (
@@ -972,6 +984,10 @@ export function NightPanel({
                 {off.map((w) => `${settingWords(w.name)} (${awayWords(w.place, frame.phase)})`).join(', ')}
               </p>
             ) : null}
+            <p className="w-note w-rule-note">
+              You assign posts at dusk. You cannot assign an empty post directly at night. Select a watcher to
+              ask for relief, help or rest when offered.
+            </p>
             <fieldset className="w-night-roster" aria-label="Hear a watcher">
               {frame.watchers.map((w) => (
                 <button

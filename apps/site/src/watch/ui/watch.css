@@ -1762,13 +1762,18 @@
   gap: 5px;
 }
 .w-thaw-state > span {
-  font-size: 10px;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+  font-size: 14px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 .w-thaw-state .w-winter-progress {
-  width: 70%;
+  flex: 1;
+  min-width: 0;
   margin: 0;
   padding: 0;
 }
@@ -1911,10 +1916,7 @@
   min-height: 52px;
   width: 100%;
   padding: 8px 12px;
-  border: 1px solid var(--w-accent);
   border-radius: 8px;
-  background: var(--w-accent);
-  color: var(--w-bg);
   font-weight: 600;
 }
 .w-secondary,
@@ -1924,8 +1926,12 @@
   min-height: 44px;
   border: 1px solid var(--w-line);
   border-radius: 8px;
-  padding: 8px 10px;
   background: transparent;
+}
+.w-secondary,
+.w-menu-row,
+.w-night-act {
+  padding: 8px 10px;
 }
 .w-menu-row {
   display: flex;
@@ -2179,7 +2185,6 @@
   flex-direction: column;
   gap: 3px;
   font-size: 12px;
-  padding: 5px;
 }
 .w-option small {
   font-size: 10px;
@@ -2790,5 +2795,12 @@
   }
   .watch .w-person-head strong {
     font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .watch .w-rule-note {
+    font-size: 14px;
+    line-height: 1.4;
   }
 }

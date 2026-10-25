@@ -2082,10 +2082,10 @@ fieldset.v-appeals {
   flex: none;
   vertical-align: -0.2em;
 }
-.v-seg button .v-icon,
 .v-insist .v-icon,
 .v-log-who .v-icon,
-.v-money .v-icon {
+.v-money .v-icon,
+.v-seg button .v-icon {
   margin-right: 4px;
 }
 .v-verdict-icon,

@@ -325,14 +325,20 @@ export function PersonSheet({
     c = frame.classic.find((p) => p.id === id),
     card = latestPersonOrder(frame.cards, id);
   const refused = card && ['willNot', 'notNow'].includes(card.human.state);
+  const stockGoal = frame.goals.find((goal) => goal.id === 'stock');
+  const trustChanges =
+    h?.trust.history.filter(
+      (event) =>
+        card && event.minute >= card.order.issuedAt && event.minute <= frame.minute && event.delta !== 0,
+    ) ?? [];
   const places = placesFor(id, frame.rules);
   if (outline?.startsWith('home-')) places.unshift(...places.splice(7, 1));
   return (
     <>
       <SheetHeader title={shortName(id)} onBack={onBack} />
       <div className="well-person-body">
-        <p>Human village: {activityLabel(h?.label ?? 'waiting')}</p>
-        <p>Classic village: {activityLabel(c?.label ?? 'waiting')}</p>
+        <p>Human village: {settingWords(activityLabel(h?.label ?? 'waiting'))}</p>
+        <p>Classic village: {settingWords(activityLabel(c?.label ?? 'waiting'))}</p>
         <section className="well-latest" aria-label="Latest order">
           {card ? (
             <>
@@ -342,6 +348,11 @@ export function PersonSheet({
                 </strong>
                 <Status card={card} />
               </div>
+              <p>
+                {card.order.appeal
+                  ? `Sent appeal: ${APPEALS.find((a) => a.id === card.order.appeal)?.label}.`
+                  : 'No appeal sent.'}
+              </p>
               <div className="well-reply-row">
                 <p>{settingWords(card.human.says ?? card.human.label ?? 'Waiting for an answer.')}</p>
                 {refused ? (
@@ -354,10 +365,34 @@ export function PersonSheet({
                   </button>
                 ) : null}
               </div>
+              {card.human.outcome && <p>{settingWords(card.human.outcome)}</p>}
+              {card.order.action === 'cook' && card.human.says?.includes('enough food stored') && (
+                <p className="well-food-explanation">
+                  Before storm preparations, villagers cook for ordinary meals. The storm reserve is a
+                  separate goal. Meal duties, ingredients and the weather also affect whether cooking is
+                  available.
+                </p>
+              )}
             </>
           ) : (
             <p>Choose a place. Each order goes to both villages.</p>
           )}
+        </section>
+        <section className="well-order-goals" aria-label="Current stores and construction">
+          {(['classic', 'human'] as const).map((side) => {
+            const world = side === 'classic' ? frame.classicWorld : frame.humanWorld;
+            const project = world.project;
+            const open = project.stage < project.stages && (project.kind !== 'house' || !world.shuttered);
+            return (
+              <p key={side}>
+                {side === 'classic' ? 'Classic' : 'Human'} village:{' '}
+                {project.kind === 'house' ? 'roof' : 'store-room'} {project.stage} of {project.stages} stages
+                {open ? `; ${Math.floor(world.houseProgress * 100)}% toward the next stage` : ''};{' '}
+                {world.resources.meals}
+                {stockGoal ? ` of ${stockGoal.targetValue}` : ''} meals currently in store.
+              </p>
+            );
+          })}
         </section>
         <div className="well-how">
           <button type="button" aria-pressed={rush} onClick={onRush}>
@@ -367,7 +402,7 @@ export function PersonSheet({
             Insist
           </button>
           <button type="button" aria-expanded={appealOpen} onClick={onAppealOpen}>
-            {appeal ? `Appeal: ${appeal}` : 'Appeal ▾'}
+            {appeal ? `Next appeal: ${APPEALS.find((a) => a.id === appeal)?.label}` : 'Appeal ▾'}
           </button>
           <button type="button" onClick={onAbout}>
             About
@@ -450,13 +485,17 @@ export function PersonSheet({
             {(card.human.state === 'complied' || card.human.first?.state === 'complied') && (
               <p>{shortName(id)} went along, but minded being pushed.</p>
             )}
-            {h?.trust.history
-              .filter((e) => e.minute > card.order.issuedAt && e.delta < 0)
-              .map((e) => (
-                <p key={`${e.minute}-${e.label}`}>
-                  {shortName(id)} trusts you less. {settingWords(e.label)}.
-                </p>
-              ))}
+            {trustChanges.length > 0 && (
+              <section className="well-trust-changes">
+                <p>Recent recorded trust changes since this order. Other events can also affect trust.</p>
+                {trustChanges.map((e) => (
+                  <p key={`${e.minute}-${e.label}`}>
+                    {shortName(id)} trusts you {e.delta < 0 ? 'less' : 'more'}.{' '}
+                    {settingWords(e.label).replace(/[.!?]+$/, '')}.
+                  </p>
+                ))}
+              </section>
+            )}
           </div>
         )}
       </div>
