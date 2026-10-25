@@ -529,3 +529,14 @@ wording, the generic fact sentence still includes that id so the claim is not hi
 Stock village outcomes, birth/marriage memories, routine fallbacks and generated
 community log details use the same per-person option. World-supplied outcome
 summaries and routine summaries remain exact.
+
+
+### Authored setup and explicit host effects
+
+Hosts may pass `habits: Habit[]` and `expectations: ActionExpectation[]` to `createPerson`. The framework copies records and their nested objects in order. Invalid or over-bound setup throws `RangeError`; omission preserves prior state. Duplicates remain authored records, with the existing matcher semantics.
+
+Use `gestureVoiceTrust(p, voiceId, amount, { reason, at?, action? })` for an explicit signed gesture toward an existing advising voice. It records the realized delta in bounded history and returns `undefined` for a missing voice. Reasons must be nonempty strings; optional action must be a string. Use `addTiredness(p, { sleepPressure?, exertion? })` for positive host-caused costs. Neither advances time or draws randomness. Host magnitudes are engineering premises.
+
+`confirmObservedReputation(p, prop, truth, now, table?)` replaces the manual `credence → confirm → applyReputationBelief` sequence. Supply only a fact the person could observe. It does not run attention or invent a moral judgement.
+
+`qalbReading(p)` is a read-only, sourced narration lens over existing records. Its detached categorical rows are this person's recorded understanding and evidence. They are never a spiritual health score, a ruling, a rank, or a decision input. Do not present mood, low social trust or missing memories as evidence of poor faith.

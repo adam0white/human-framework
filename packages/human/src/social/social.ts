@@ -558,6 +558,17 @@ export const REPUTATION_DEFAULTS = {
   familiarityDamping: 0.5,
 };
 
+/** Only authored, finite effects count; prototype properties are not character traits. */
+function reputationEffect(trait: string, table: Record<string, TraitEffect>): TraitEffect | undefined {
+  const effect = Object.hasOwn(table, trait) ? table[trait] : undefined;
+  return effect &&
+    Number.isFinite(effect.affection) &&
+    Number.isFinite(effect.trust) &&
+    Number.isFinite(effect.respect)
+    ? effect
+    : undefined;
+}
+
 /** Splits a character proposition '<personId>:<trait>[:...]' into its subject and trait, if it is one. */
 export function parseTraitProp(
   prop: string,
@@ -567,7 +578,7 @@ export function parseTraitProp(
   if (parts.length < 2) return undefined;
   const personId = parts[0] as string;
   const trait = parts[1] as string;
-  if (personId === '' || table[trait] === undefined) return undefined;
+  if (personId === '' || reputationEffect(trait, table) === undefined) return undefined;
   return { personId, trait };
 }
 
@@ -607,7 +618,7 @@ export function isUnfavourableTrait(
   value: boolean,
   table: Record<string, TraitEffect> = REPUTATION_TRAITS,
 ): boolean {
-  const e = table[trait];
+  const e = reputationEffect(trait, table);
   if (!e) return false;
   const sum = e.affection + e.trust + e.respect;
   return value ? sum < 0 : sum > 0;

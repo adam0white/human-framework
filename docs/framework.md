@@ -457,3 +457,14 @@ Relationships (`social.relationships`) and impressions (`social.impressions`) ar
 ### Optional chapter clock (HF2.18.0)
 
 `chapter-clock.ts` owns only a seeded monotone real-hour watermark and bounded24-slot return calculation. It does not own Person state or step the actor loop. The browser host pins its input and outcomes, authors qualified assignment/local encounter fiction and applies existing passport gates before an atomic shelf claim. Secret biographies, host roles and storage remain outside `packages/human`. The engine remains2.17.0.
+
+
+## Explicit host setup and effects
+
+`PersonSpec.habits` and `PersonSpec.expectations` copy authored records in source order, including nested cues and need deltas. Omission keeps the prior creation path. Setup rejects non-finite/out-of-domain numbers, empty action/key identifiers and lists beyond the existing40-habit/150-expectation bounds with `RangeError`. Duplicate records remain as authored; the existing matcher and learning rules decide their meaning. Setup does not sort, learn or draw RNG.
+
+`gestureVoiceTrust(p, voiceId, amount, { reason, at?, action? })` adds a signed host-supplied amount to an existing advising voice, clamps it and records the actual change through the existing bounded/folded history. A missing voice stays missing. Non-finite amounts do nothing; non-finite time falls back to `p.now`. Empty/non-string reasons or non-string actions reject before mutation. Source trust and relationship trust are separate stores. `addTiredness(p, { sleepPressure?, exertion? })` applies positive finite host costs only, clamped to1; absent/negative/non-finite costs and dead bodies stay unchanged. Neither helper advances time, changes other stores, or draws RNG. Magnitudes are host premises, not empirical calibration.
+
+`confirmObservedReputation(p, prop, truth, now, table?)` composes existing belief confirmation, source recalibration and reputation-belief application in the same order as Hearsay's manual wrapper. It introduces no formula, attention or observation inference and returns the existing detached misled-source IDs. The host supplies only facts the person observed.
+
+`qalbReading(p)` returns detached, attributed descriptions of retained attention evidence, held norms/conviction, mood and separate trust records. Missing memories do not show absent attention. Sources justify this narration lens, not a diagnosis. No state, RNG, decision term, spiritual score, rank or ruling is produced. Hosts must not present the rows as spiritual health or religious assessment. The control compares the complete state/RNG and next decision before and after a read. Inner-life behavioral faculties remain separate deferred work.

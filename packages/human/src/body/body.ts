@@ -635,6 +635,21 @@ export function readBody(
   };
 }
 
+/**
+ * SCOPE (host-caused tiredness): add nonnegative sleep-pressure and exertion costs, clamped to 0..1.
+ * The host supplies magnitudes; these are not calibrated claims. Absent, negative and non-finite costs
+ * do nothing. A dead body is unchanged, as with consume. Writes only these two body fields: no ticking,
+ * sleep transition, depletion, memory, RNG or other effects. Recovery remains with the existing body APIs.
+ */
+export function addTiredness(p: Person, costs: { sleepPressure?: number; exertion?: number }): void {
+  if (!p.body.alive) return;
+  for (const key of ['sleepPressure', 'exertion'] as const) {
+    const amount = costs[key];
+    if (amount !== undefined && Number.isFinite(amount) && amount > 0)
+      p.body[key] = clamp01(p.body[key] + amount);
+  }
+}
+
 /** Eat, drink or take pain relief. `relief` lowers current pain; it then relaxes back toward its sources. */
 export function consume(p: Person, deltas: { food?: number; water?: number; relief?: number }): void {
   const b = p.body;

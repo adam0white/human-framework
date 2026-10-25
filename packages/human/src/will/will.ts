@@ -376,6 +376,32 @@ export function noteVoicePromise(
   return v;
 }
 
+/**
+ * SCOPE (host trust gesture): add a host-supplied signed amount to an existing advising voice's trust,
+ * clamped to 0..1, and record the realized change in the usual bounded history. Magnitudes and reason
+ * are host premises, not calibrated claims. Missing voices return undefined without creating a voice.
+ * Non-finite amounts are ignored. No pressure, credit, counters, memory, time or RNG changes occur.
+ * Empty/non-string reasons and non-string actions reject before mutation with RangeError.
+ */
+export function gestureVoiceTrust(
+  p: Person,
+  voiceId: EntityId,
+  amount: number,
+  event: { reason: string; at?: Minute; action?: string },
+): VoiceRelation | undefined {
+  if (!event || typeof event.reason !== 'string' || event.reason.length === 0)
+    throw new RangeError('A trust gesture needs a reason');
+  if (event.action !== undefined && typeof event.action !== 'string')
+    throw new RangeError('Invalid trust gesture action');
+  const v = voiceOf(p, voiceId);
+  if (!v || !Number.isFinite(amount)) return v;
+  const before = v.trust;
+  v.trust = clamp01(before + amount);
+  const at = event.at !== undefined && Number.isFinite(event.at) ? event.at : p.now;
+  noteTrust(v, v.trust - before, event.reason, at, event.action);
+  return v;
+}
+
 const finite = (x: number | undefined): boolean => x === undefined || Number.isFinite(x);
 
 /** Host numbers the framework computes with must be finite; a NaN offer is vetoed, never chosen. */

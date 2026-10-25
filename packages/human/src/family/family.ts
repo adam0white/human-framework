@@ -89,7 +89,7 @@ function sanitizeAptitudes(x: unknown): Record<string, number> | undefined {
   return Object.keys(out).length > 0 ? out : undefined;
 }
 
-/** Validate a saved family slice; undefined when nothing usable remains (used by `restore`). @internal */
+/** Validate a saved family slice; drop malformed pregnancies, keep usable fields. Undefined when none remain. @internal */
 export function sanitizeFamily(x: unknown): FamilyState | undefined {
   if (!isObj(x)) return undefined;
   const f = x as Record<string, unknown>;
@@ -101,9 +101,9 @@ export function sanitizeFamily(x: unknown): FamilyState | undefined {
     pg &&
     typeof pg === 'object' &&
     typeof pg.fatherId === 'string' &&
-    typeof pg.conceivedAt === 'number' &&
-    typeof pg.dueAt === 'number' &&
-    typeof pg.seed === 'number'
+    isNum(pg.conceivedAt) &&
+    isNum(pg.dueAt) &&
+    isNum(pg.seed)
   )
     out.pregnancy = { fatherId: pg.fatherId, conceivedAt: pg.conceivedAt, dueAt: pg.dueAt, seed: pg.seed };
   if (isNum(f.attachment)) out.attachment = clamp01(f.attachment);

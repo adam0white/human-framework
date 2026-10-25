@@ -110,6 +110,18 @@ describe('memory/episodes', () => {
 });
 
 describe('memory/expectations', () => {
+  test('learning preserves saved need order and appends newly observed needs', () => {
+    const p = person();
+    p.memory.expectations = JSON.parse(
+      '[{"key":"eat@stew","needs":{"water":0.2,"food":0.4},"successRate":1,"samples":2,"valence":0}]',
+    );
+    const offer = { ...eat, advertises: { rest: 0.1, food: 0.6 } };
+    learnOutcome(p, offer, done(), { leisure: 0.1, water: 0.3 }, 0);
+    expect(Object.keys(p.memory.expectations[0]?.needs ?? {})).toEqual(['water', 'food', 'rest', 'leisure']);
+    // Believed effects retain their existing sorted output contract.
+    expect(Object.keys(expectedEffect(p, offer).needs)).toEqual(['food', 'leisure', 'rest', 'water']);
+  });
+
   test('converge toward realized outcomes with clamped steps', () => {
     const p = person();
     learnOutcome(p, eat, done(), { food: 0.1 }, -0.5);

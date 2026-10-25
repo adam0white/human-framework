@@ -10,6 +10,18 @@ The release version is the package version and `FRAMEWORK_VERSION`, tagged `vX.Y
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
+## [2.20.0] - 2026-10-25
+
+Engine: 2.17.0. Existing callers retain their state and RNG continuation.
+
+- Reject non-finite pregnancy dates and seeds during restore while retaining other usable family fields. Finite engine-produced saves follow the same path.
+- Consolidate need-key enumeration through `keysOf`, preserving saved insertion order and existing sorted readouts.
+- Add optional authored `PersonSpec.habits` and `expectations`, copied defensively in order with explicit validation and existing bounds.
+- Add explicit `gestureVoiceTrust` and `addTiredness` host calls. Magnitudes remain host premises; neither ticks or draws RNG.
+- Ignore inherited or non-finite reputation trait effects instead of allowing invalid effects to corrupt relationships.
+- Add `confirmObservedReputation`, equivalent to the existing manual primitive composition, and the read-only attributed `qalbReading` narration lens. No spiritual score, state mutation or decision input.
+- Add a bounded thousand-lives measurement harness. Fine and coarse workloads remain explicitly distinct; no engine tuning.
+
 ## [2.19.0] - 2026-10-25
 
 Engine: 2.17.0. Actor-loop behaviour and save format are unchanged.

@@ -1572,6 +1572,10 @@ export interface PersonSpec {
   values?: Partial<Values>;
   norms?: HeldNorm[];
   skills?: Record<string, Unit>;
+  /** Authored habits, copied in order. Invalid or over-bound setup throws RangeError. */
+  habits?: Habit[];
+  /** Authored expectations, copied in order. Invalid or over-bound setup throws RangeError. */
+  expectations?: ActionExpectation[];
   body?: Partial<Omit<BodyState, 'injuries' | 'illnesses' | 'nextId'>>;
   needs?: Partial<NeedReservoirs>;
   relationships?: (Partial<Relationship> & { otherId: PersonId })[];

@@ -35,12 +35,14 @@
  * 1971), so idle choice stops cycling short consumption at full hydration (The Rope, owner Kestrel export
  * 2026-10-19). It models no bladder, sensory-specific satiety by food, or overeating for comfort.
  */
+
 import { emotionLevel, inBreak } from '../affect/index.ts';
 import { agendaTermsWithGoalEstimates } from '../agenda/index.ts';
 import { trustOf } from '../beliefs/index.ts';
 import type { BodyPerceptionContext } from '../body/index.ts';
 import { normTerms } from '../conscience/index.ts';
 import { clamp01, cmpStr, dexp, minuteOfDay, round } from '../core/index.ts';
+import { keysOf } from '../core/keys.ts';
 import { curiosityTerms } from '../curiosity/index.ts';
 import { type HabitContext, habitEase, habitPull } from '../habits/index.ts';
 import { expectedEffect } from '../memory/index.ts';
@@ -66,7 +68,6 @@ import type {
   DecisionRecord,
   LifeModifiers,
   Minute,
-  NeedId,
   NeedReading,
   Person,
   Suggestion,
@@ -352,7 +353,7 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
 
   // Needs: urgency × believed gain × believed success.
   const expected = expectedEffect(p, aff);
-  for (const id of Object.keys(expected.needs) as NeedId[]) {
+  for (const id of keysOf(expected.needs)) {
     const gain = expected.needs[id] ?? 0;
     if (gain === 0) continue;
     const u = urgencyOf(ctx.needs, id);
@@ -375,7 +376,7 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
     let relevance = 1;
     if (expected.valence > 0) {
       let served = -1;
-      for (const id of Object.keys(expected.needs) as NeedId[])
+      for (const id of keysOf(expected.needs))
         if ((expected.needs[id] ?? 0) > 0) served = Math.max(served, urgencyOf(ctx.needs, id));
       if (served >= 0) relevance = served;
     }

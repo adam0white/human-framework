@@ -24,6 +24,7 @@
  * choices. It does not model reconstruction errors in gists, deliberate rehearsal beyond retelling (`recall`
  * boosts), or semantic knowledge abstracted from gists.
  */
+
 import {
   clamp,
   clamp01,
@@ -35,6 +36,7 @@ import {
   lerp,
   runningMean,
 } from '../core/index.ts';
+import { keysOf } from '../core/keys.ts';
 import type {
   ActionExpectation,
   Affordance,
@@ -596,10 +598,7 @@ export function expectedEffect(p: Person, aff: Affordance): ExpectedEffect {
   const samples = learned?.samples ?? 0;
   const confidence = samples / (samples + MEMORY_DEFAULTS.confidenceK);
   const needs: Partial<Record<NeedId, number>> = {};
-  const keys = new Set<NeedId>([
-    ...(Object.keys(aff.advertises) as NeedId[]),
-    ...(learned ? (Object.keys(learned.needs) as NeedId[]) : []),
-  ]);
+  const keys = new Set<NeedId>([...keysOf(aff.advertises), ...(learned ? keysOf(learned.needs) : [])]);
   for (const k of [...keys].sort()) {
     const adv = aff.advertises[k] ?? 0;
     const lv = learned?.needs[k];
@@ -657,11 +656,7 @@ function updateExpectation(
   }
   x.samples += 1;
   const n = x.samples;
-  const keys = new Set<NeedId>([
-    ...(Object.keys(x.needs) as NeedId[]),
-    ...(Object.keys(aff.advertises) as NeedId[]),
-    ...(Object.keys(realized) as NeedId[]),
-  ]);
+  const keys = new Set<NeedId>([...keysOf(x.needs), ...keysOf(aff.advertises), ...keysOf(realized)]);
   for (const k of keys) {
     const prior = x.needs[k] ?? aff.advertises[k] ?? 0;
     x.needs[k] = step(prior, realized[k] ?? 0, n);

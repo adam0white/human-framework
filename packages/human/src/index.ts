@@ -1,5 +1,5 @@
 /** Human Framework public surface. */
-export const FRAMEWORK_VERSION = '2.19.0';
+export const FRAMEWORK_VERSION = '2.20.0';
 
 // `affect.release` is re-exported as `releaseEmotion` (beside `releaseCommitment`); `skipAffect` stays internal.
 export type { CrisisEvent, PracticeKind } from './affect/index.ts';
@@ -120,6 +120,7 @@ export type { MigrationStep } from './migrate.ts';
 export { MIGRATIONS, migratableVersions, migrate } from './migrate.ts';
 export * from './narrate/index.ts';
 export * from './needs/index.ts';
+export { confirmObservedReputation } from './observed-reputation.ts';
 export * from './partnering/index.ts';
 export { enablePersistence, PERSISTENCE_DEFAULTS, pursuitOf } from './persistence/index.ts';
 export * from './person.ts';
@@ -146,6 +147,7 @@ export {
   PROSPECTION_DEFAULTS,
   seedConsequences,
 } from './prospection/index.ts';
+export { type QalbDescription, qalbReading } from './qalb.ts';
 export { fingerprint, restore, snapshot } from './restore.ts';
 export * from './review/index.ts';
 export * from './scenarios/index.ts';

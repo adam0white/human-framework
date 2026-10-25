@@ -103,11 +103,11 @@ import {
   recordRepair,
   repent,
 } from './conscience/index.ts';
-import { clamp01, clampSigned, createRng, dayOf, isObj, minuteOfDay, round } from './core/index.ts';
+import { clamp01, clampSigned, createRng, dayOf, isObj, keysOf, minuteOfDay, round } from './core/index.ts';
 import { enableCuriosity, noteCuriosity } from './curiosity/index.ts';
 import { ambientBodyParams, ambientModifiers, ambientMood, ambientNeeds } from './environment/index.ts';
 import { aptitudeOf, createFamily, pregnancyModifiers } from './family/index.ts';
-import { advanceHabits, reinforce, withholdCued } from './habits/index.ts';
+import { advanceHabits, HABIT_DEFAULTS, reinforce, withholdCued } from './habits/index.ts';
 import { ageYears, learningMultiplier, lifeModifiers } from './lifecourse/index.ts';
 import {
   advanceMemory,
@@ -116,6 +116,7 @@ import {
   enableGists,
   foldGists,
   learnOutcome,
+  MEMORY_DEFAULTS,
   recallByCue,
   remember,
 } from './memory/index.ts';
@@ -301,7 +302,64 @@ function fill<T extends object>(keys: readonly (keyof T)[], given: Partial<T> | 
   return out;
 }
 
+function validateHostSetup(spec: PersonSpec): void {
+  const finite = (n: number) => Number.isFinite(n);
+  const unit = (n: number) => finite(n) && n >= 0 && n <= 1;
+  const count = (n: number) => Number.isSafeInteger(n) && n >= 0;
+  const optional = (n: number | undefined, valid: (n: number) => boolean) => n === undefined || valid(n);
+  if (spec.habits !== undefined) {
+    if (!Array.isArray(spec.habits) || spec.habits.length > HABIT_DEFAULTS.maxHabits)
+      throw new RangeError('Invalid habits setup bound');
+    for (const h of spec.habits) {
+      if (
+        !h ||
+        !isObj(h.cue) ||
+        typeof h.action !== 'string' ||
+        h.action.length === 0 ||
+        !unit(h.strength) ||
+        !count(h.repetitions) ||
+        !finite(h.lastAt) ||
+        !optional(h.withheld, count) ||
+        !optional(h.lastWithheldAt, finite) ||
+        !optional(h.craving, unit) ||
+        !optional(h.cue.hour, (n) => finite(n) && n >= 0 && n < 24) ||
+        (h.cue.placeId !== undefined && typeof h.cue.placeId !== 'string') ||
+        (h.cue.after !== undefined && typeof h.cue.after !== 'string')
+      )
+        throw new RangeError('Invalid habit setup record');
+    }
+  }
+  if (spec.expectations !== undefined) {
+    if (!Array.isArray(spec.expectations) || spec.expectations.length > MEMORY_DEFAULTS.maxExpectations)
+      throw new RangeError('Invalid expectations setup bound');
+    for (const e of spec.expectations) {
+      if (
+        !e ||
+        typeof e.key !== 'string' ||
+        e.key.length === 0 ||
+        !isObj(e.needs) ||
+        !unit(e.successRate) ||
+        !count(e.samples) ||
+        !finite(e.valence) ||
+        Math.abs(e.valence) > 1 ||
+        Object.entries(e.needs).some(
+          ([key, n]) =>
+            ![...PHYSIOLOGICAL_NEEDS, ...PSYCHOLOGICAL_NEEDS].some((need) => need === key) ||
+            (n !== undefined && !finite(n)),
+        )
+      )
+        throw new RangeError('Invalid expectation setup record');
+    }
+  }
+}
+
+/**
+ * SCOPE (host setup): optional habits and expectations copy authored records, including nested cues and
+ * need deltas, in source order. Invalid numbers, domains or collection bounds reject with RangeError;
+ * setup never clamps, evicts, learns, advances time or consumes RNG. Omitted options keep legacy state.
+ */
 export function createPerson(spec: PersonSpec): Person {
+  validateHostSetup(spec);
   const now = spec.now ?? 0;
   const traits = fill<Traits>(TRAIT_KEYS, spec.traits, 0.5);
   const values = fill<Values>(VALUE_KEYS, spec.values, 0.5);
@@ -330,6 +388,32 @@ export function createPerson(spec: PersonSpec): Person {
     trace: [],
     nextDecision: 0,
   };
+  if (spec.habits)
+    p.habits = spec.habits.map((h) => {
+      const cue: Person['habits'][number]['cue'] = {};
+      if (h.cue.hour !== undefined) cue.hour = h.cue.hour;
+      if (h.cue.placeId !== undefined) cue.placeId = h.cue.placeId;
+      if (h.cue.after !== undefined) cue.after = h.cue.after;
+      const out: Person['habits'][number] = {
+        cue,
+        action: h.action,
+        strength: h.strength,
+        repetitions: h.repetitions,
+        lastAt: h.lastAt,
+      };
+      if (h.craving !== undefined) out.craving = h.craving;
+      if (h.withheld !== undefined) out.withheld = h.withheld;
+      if (h.lastWithheldAt !== undefined) out.lastWithheldAt = h.lastWithheldAt;
+      return out;
+    });
+  if (spec.expectations)
+    p.memory.expectations = spec.expectations.map((e) => ({
+      key: e.key,
+      needs: Object.fromEntries(Object.entries(e.needs)),
+      successRate: e.successRate,
+      samples: e.samples,
+      valence: e.valence,
+    }));
   if (spec.lexicon) p.lexicon = structuredClone(spec.lexicon);
   if (spec.retention) setRetention(p, spec.retention);
   const family = createFamily(spec.family);
@@ -1632,7 +1716,7 @@ export function finish(p: Person, outcome: Outcome, opts: FinishOptions = {}): F
 
   // Felt valence.
   let felt = 0;
-  for (const id of Object.keys(realized) as NeedId[]) {
+  for (const id of keysOf(realized)) {
     felt += D.feltGain * (D.feltBase + urgencyOf(before, id)) * (realized[id] ?? 0);
   }
   if (outcome.status === 'failed') felt -= D.failedPenalty;
