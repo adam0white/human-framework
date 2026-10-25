@@ -137,7 +137,7 @@ export const GAMES: Game[] = [
   {
     id: 'repair',
     rank: 12,
-    status: 'frozen',
+    status: 'active',
     name: 'Small Works',
     href: 'https://repair.adamwhite.work',
     line: 'You run a repair workshop. Your neighbours can watch, learn and choose whether to help.',
@@ -146,7 +146,7 @@ export const GAMES: Game[] = [
   {
     id: 'neighbours',
     rank: 13,
-    status: 'frozen',
+    status: 'active',
     name: 'Neighbours',
     href: 'https://neighbours.adamwhite.work',
     line: 'Change one part of a town of 208 people and compare two possible futures.',
@@ -155,7 +155,7 @@ export const GAMES: Game[] = [
   {
     id: 'rope',
     rank: 14,
-    status: 'frozen',
+    status: 'active',
     name: 'The Rope',
     href: 'https://rope.adamwhite.work',
     line: 'You guide a climber up a rock face and back down. They must save enough strength for the descent.',

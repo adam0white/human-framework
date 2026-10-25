@@ -23,7 +23,7 @@ it('keeps all15 games in the same order while moving development metadata behind
   expect(ordinary.textContent).not.toMatch(/Owner acceptance pending|Frozen experiment/);
   expect(lab.querySelector('.game-shows')).not.toBeNull();
   expect(lab.textContent).toContain('Owner acceptance pending');
-  expect(lab.textContent).toContain('Frozen experiment');
+  expect(lab.textContent).not.toContain('Frozen experiment');
   expect(ordinary.textContent).toContain('four weeks');
   expect(ordinary.textContent).toContain('caretaker');
   expect(ordinary.textContent).toContain('landlord');

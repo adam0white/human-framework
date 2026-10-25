@@ -12,7 +12,7 @@ describe('ranked games', () => {
     for (const g of GAMES) expect(['active', 'frozen']).toContain(g.status);
   });
 
-  it('keeps the owner’s order and the three frozen experiments', () => {
+  it('keeps the owner’s order and the active experiments', () => {
     expect(GAMES.map((g) => g.id)).toEqual([
       'murmur',
       'stairwell',
@@ -30,11 +30,7 @@ describe('ranked games', () => {
       'rope',
       'commonstead',
     ]);
-    expect(GAMES.filter((g) => g.status === 'frozen').map((g) => g.id)).toEqual([
-      'repair',
-      'neighbours',
-      'rope',
-    ]);
+    expect(GAMES.filter((g) => g.status === 'frozen').map((g) => g.id)).toEqual([]);
     expect(LAB_GAMES).toEqual(
       GAMES.map(({ id, name, href, rank, status }) => ({
         id,

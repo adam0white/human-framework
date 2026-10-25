@@ -34,7 +34,8 @@ function Collection() {
           <GameList games={GAMES} />
           {labMode() && (
             <p className="note">
-              Frozen experiments stay playable; no further work is planned unless the owner unfreezes them.
+              All games remain playable. Framework upgrades and maintenance are in progress. Lab panel rounds
+              are allowed on HF 3.0 builds. Friends’ playtests and Show HN remain paused.
             </p>
           )}
         </section>
