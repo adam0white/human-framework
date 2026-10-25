@@ -5,6 +5,10 @@ import { ENGINE_VERSION } from '@adam0white/human-framework';
  */
 import type { PersonaEnvelope } from '@adam0white/lab-client';
 
+// Portable fields keep their semantics across the 2.23 doze/narration corrections.
+const compatibleEngine = (engine: string) =>
+  engine === '2.17.0' || engine === '2.21.0' || engine === ENGINE_VERSION;
+
 export function nativeCastSource(
   target: string,
   parent: PersonaEnvelope,
@@ -20,7 +24,7 @@ export function nativeCastSource(
     if (
       parent.source.game !== target ||
       parent.source.rules !== 'cast-1' ||
-      (parent.source.engine !== '2.17.0' && parent.source.engine !== ENGINE_VERSION) ||
+      !compatibleEngine(parent.source.engine) ||
       receipt.version !== 'site-native-claim/1' ||
       !receipt.source ||
       typeof receipt.revision !== 'string' ||
@@ -30,7 +34,7 @@ export function nativeCastSource(
     source = receipt.source;
   }
   const role = String(transfer.sourceRole);
-  if (source.engine !== '2.17.0' && source.engine !== ENGINE_VERSION) return undefined;
+  if (!compatibleEngine(source.engine)) return undefined;
   if (
     target === 'voice' &&
     source.game === 'goodhands' &&
