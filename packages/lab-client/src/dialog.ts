@@ -4,6 +4,7 @@
  * can use it. It shows exactly what will be sent before anything is sent.
  */
 
+import { FEEDBACK_LABELS, type FeedbackLabel } from './feedback.ts';
 import { readLocal, writeLocal } from './identity.ts';
 import type { Lab } from './index.ts';
 import { checkRun, RUN_LIMITS } from './limits.ts';
@@ -12,6 +13,8 @@ import { type CompactOptions, gzip, PRIVACY_URL, runEnvelope } from './util.ts';
 export type SendDialogOptions = CompactOptions & {
   /** Initial feedback text, retained when a consented send falls back to this dialog. */
   note?: string;
+  /** Opt in to quiet stop/confusion choices. Selection sends nothing until Submit. */
+  feedbackChoices?: boolean;
   lab: Lab;
   /** Returns the game's playtest export (seed, input log, state) at the moment the dialog opens. */
   getRun: () => unknown;
@@ -120,6 +123,21 @@ export function openSendDialog(options: SendDialogOptions): void {
     });
     verdict.append(button);
   }
+  const choices = el('fieldset', { 'aria-label': 'What is happening?' });
+  let feedbackLabel: FeedbackLabel | undefined;
+  if (options.feedbackChoices) {
+    for (const label of Object.keys(FEEDBACK_LABELS) as FeedbackLabel[]) {
+      const button = el('button', { type: 'button', 'aria-pressed': 'false' }, FEEDBACK_LABELS[label]);
+      button.addEventListener('click', () => {
+        if (sending) return;
+        feedbackLabel = feedbackLabel === label ? undefined : label;
+        for (const node of choices.querySelectorAll('button'))
+          node.setAttribute('aria-pressed', String(node === button && feedbackLabel === label));
+        void refresh();
+      });
+      choices.append(button);
+    }
+  }
   const exact = el('textarea', {
     className: 'exact',
     readOnly: true,
@@ -174,7 +192,11 @@ export function openSendDialog(options: SendDialogOptions): void {
     send.disabled = true;
     status.className = 'status';
     status.textContent = 'Checking run size…';
-    const message = [verdictValue ? `Verdict: ${verdictValue}` : '', note.value.trim()]
+    const message = [
+      feedbackLabel ? FEEDBACK_LABELS[feedbackLabel] : '',
+      verdictValue ? `Verdict: ${verdictValue}` : '',
+      note.value.trim(),
+    ]
       .filter(Boolean)
       .join('\n\n')
       .slice(0, 4000);
@@ -230,6 +252,7 @@ export function openSendDialog(options: SendDialogOptions): void {
     { className: 'hflab', role: 'dialog', 'aria-modal': 'true', 'aria-labelledby': 'hflab-title' },
     el('h2', { id: 'hflab-title' }, options.title ?? 'Feedback'),
     verdict,
+    ...(options.feedbackChoices ? [choices] : []),
     el('label', { for: 'hflab-note' }, 'A note (optional)'),
     note,
     el('label', { for: 'hflab-name' }, 'Name (optional)'),
@@ -287,7 +310,8 @@ export function openSendDialog(options: SendDialogOptions): void {
     note.readOnly = true;
     name.readOnly = true;
     persona.disabled = true;
-    for (const button of verdict.querySelectorAll('button')) button.disabled = true;
+    for (const button of [...verdict.querySelectorAll('button'), ...choices.querySelectorAll('button')])
+      button.disabled = true;
     writeLocal(draftKey, approvedNote);
     status.textContent = 'Sending…';
     try {
@@ -316,7 +340,8 @@ export function openSendDialog(options: SendDialogOptions): void {
       note.readOnly = false;
       name.readOnly = false;
       persona.disabled = false;
-      for (const button of verdict.querySelectorAll('button')) button.disabled = false;
+      for (const button of [...verdict.querySelectorAll('button'), ...choices.querySelectorAll('button')])
+        button.disabled = false;
     }
   });
   document.body.append(veil);

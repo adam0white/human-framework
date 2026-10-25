@@ -272,3 +272,26 @@ it('uses Feedback as the default one-page dialog title', async () => {
   expect(find('hflab-title').children).toContain('Feedback');
   expect(find('hflab-note')).toBeDefined();
 });
+
+it('opts in to quiet choices, previews their exact text and sends only on Submit', async () => {
+  const { lab, find, sent, document } = setup();
+  lab.openSendDialog({ getRun: () => ({ seed: 17 }), feedbackChoices: true });
+  await settled();
+  const stopping = document.body.all().find((n) => n.children.includes("I'm stopping"));
+  const confused = document.body.all().find((n) => n.children.includes("I'm confused"));
+  expect(stopping).toBeDefined();
+  await stopping?.fire('click');
+  await confused?.fire('click');
+  await settled();
+  expect(sent).toHaveLength(0);
+  expect(JSON.parse(find('exact').value).note).toBe("I'm confused");
+  await find('send').fire('click');
+  expect(JSON.parse(sent[0] ?? '{}').note).toBe("I'm confused");
+  expect(find('status ok').textContent).toContain('Reference r-example');
+});
+it('keeps quiet choices absent without opt-in', async () => {
+  const { lab, document } = setup();
+  lab.openSendDialog({ getRun: () => ({ seed: 1 }) });
+  await settled();
+  expect(document.body.all().some((n) => n.children.includes("I'm stopping"))).toBe(false);
+});

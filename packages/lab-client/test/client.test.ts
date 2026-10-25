@@ -7,6 +7,7 @@ import {
   newSessionId,
   privacySignal,
   runEnvelope,
+  sendFeedbackLabel,
   viewportClass,
 } from '../src/index.ts';
 import { LINKED_LIMITS, linkedTransport } from '../src/linked.ts';
@@ -35,7 +36,7 @@ beforeEach(() => {
         gunzipSync(new Uint8Array(await ((init?.body ?? new Blob()) as Blob).arrayBuffer())).toString(),
       ),
     );
-    return Response.json({ ok: true });
+    return Response.json({ ok: true, id: 'r-control' });
   });
 });
 afterEach(() => {
@@ -455,3 +456,40 @@ describe('linked lab client', () => {
     });
   });
 });
+
+// Executable headless control: the public label API reaches the admitted note transport.
+it('controls labelled feedback linkage, receipt and recording-off privacy without new fields', async () => {
+  const lab = createLab({ game: 'pass', build: { a: 'feedback-control' } });
+  const run = { seed: 17, inputs: ['wait'], state: { clock: 4 } };
+  const receipt = await sendFeedbackLabel(lab, 'stopping', { run });
+  expect(receipt).toMatch(/^[a-f0-9]{32}$/);
+  const note = envelopes.find((e) => e.kind === 'note');
+  const snapshot = envelopes.find((e) => e.kind === 'run');
+  expect(note?.data).toEqual({ note: "I'm stopping" });
+  if (!snapshot) throw new Error('Missing run upload.');
+  expect(JSON.parse((snapshot.data as { text: string }).text)).toEqual(run);
+  for (const key of ['player', 'session', 'runId']) expect(note?.[key]).toBe(snapshot?.[key]);
+  expect(note).not.toHaveProperty('who');
+  lab.setTelemetryOff(true);
+  envelopes.length = 0;
+  await sendFeedbackLabel(lab, 'confused', { run });
+  expect(envelopes).toHaveLength(1);
+  expect(envelopes[0]?.note).toBe("I'm confused");
+  expect(envelopes[0]?.run).toEqual({ feedbackOnly: true });
+  expect(envelopes[0]).not.toHaveProperty('player');
+  expect(lab.telemetryOn).toBe(false);
+});
+
+it.each([{ doNotTrack: '1' }, { globalPrivacyControl: true }])(
+  'keeps labelled feedback unlinked under %j',
+  async (signal) => {
+    vi.stubGlobal('navigator', signal);
+    const lab = createLab({ game: 'pass', build: {} });
+    await sendFeedbackLabel(lab, 'confused', { run: { seed: 17 } });
+    expect(envelopes).toHaveLength(1);
+    expect(envelopes[0]?.note).toBe("I'm confused");
+    expect(envelopes[0]?.run).toEqual({ feedbackOnly: true });
+    expect(envelopes[0]).not.toHaveProperty('player');
+    expect(lab.telemetryOn).toBe(false);
+  },
+);

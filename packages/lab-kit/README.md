@@ -231,3 +231,14 @@ Use `telemetryNotice()` once on the game screen and mount that same returned nod
 `personaControls({ enabled, setEnabled, recordingAllowed, allowRecording })` renders the fictional continuity switch and shelf link. The recording fields remain accepted for older hosts; no separate linkage prompt appears. Recording and linkage follow the single `telemetryToggle(lab)` switch, including explicit opt-in under DNT/GPC.
 
 `feedbackPersonaControl(lab)` returns null when recording is on. Otherwise it returns one unticked checkbox labelled “Share this run and my play with the lab”. On Submit pass `sharePlay: feedbackSharePlay(control)` to `lab.sendFeedback(note, { run, name, sharePlay })`. The helper does not change recording when the checkbox is ticked. Submit applies the choice. Unticked feedback sends the note alone, without linkage.
+
+## Stop and confusion choices (candidate artifact)
+
+After adopting the matching reviewed client and kit release artifacts, pass
+`feedbackChoices: true` to `notebookMenu({ lab, getRun, filename, feedbackChoices: true })`.
+The kit forwards the opt-in when opening Feedback after its native sheet closes.
+Hosts with custom menus can pass the same option directly to `lab.openSendDialog`.
+The client renders the two quiet choices and owns preview, submission, privacy,
+run linkage, byte limits and receipts. The default omits the option and preserves
+the old dialog. Older clients may ignore the flag; upgrade both artifacts before
+claiming adoption. No npm publication or host adoption is part of this candidate.
