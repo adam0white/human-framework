@@ -192,9 +192,37 @@ describe('bounded send dialog', () => {
     await settled();
     await find('send').fire('click');
     expect(
-      document.body.all().some((node) => node.textContent === 'Not sent: the notebook could not be reached.'),
+      document.body
+        .all()
+        .some((node) => node.textContent.startsWith('Not sent: the notebook could not be reached.')),
     ).toBe(true);
     expect(find('send').disabled).toBe(false);
+  });
+
+  it('keeps refused feedback across closing and reopening the dialog', async () => {
+    const values = new Map<string, string>();
+    vi.stubGlobal('localStorage', {
+      getItem: (key: string) => values.get(key) ?? null,
+      setItem: (key: string, value: string) => values.set(key, value),
+      removeItem: (key: string) => values.delete(key),
+    });
+    const { lab, find, document } = setup();
+    lab.sendFeedback = async () => {
+      throw new Error('offline');
+    };
+    lab.openSendDialog({ getRun: () => ({ seed: 1 }) });
+    find('hflab-note').value = 'Keep my feedback';
+    await find('hflab-note').fire('input');
+    await settled();
+    await find('send').fire('click');
+    expect(find('status err').textContent).toContain('saved on this device');
+    await document.body
+      .all()
+      .find((node) => node.textContent === 'Back to the game')
+      ?.fire('click');
+    lab.openSendDialog({ getRun: () => ({ seed: 1 }) });
+    expect(find('hflab-note').value).toBe('Keep my feedback');
+    await settled();
   });
 
   it('ignores a stale compressed-size result after a later edit', async () => {

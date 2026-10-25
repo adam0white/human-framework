@@ -112,16 +112,18 @@ describe('linked lab records', () => {
     ).toBe(false);
   });
 
-  it('suppresses all linked kinds for DNT and GPC unless explicitly overridden', async () => {
+  it('suppresses automatic recording under DNT and GPC while storing explicit notes', async () => {
     const { store, post } = setup();
     for (const kind of ['run', 'save', 'note', 'logs', 'events']) {
       const data = kind === 'events' ? { vp: 'phone', e: [['start', 0]] } : {};
       for (const signal of [{ DNT: '1' }, { 'Sec-GPC': '1' }] as Record<string, string>[])
-        expect((await post(envelope({ kind, data }), signal)).status).toBe(204);
+        expect((await post(envelope({ kind, data }), signal)).status).toBe(kind === 'note' ? 200 : 204);
     }
-    expect(store.size).toBe(0);
-    expect((await post(envelope({ privacyOverride: true }), { DNT: '1' })).status).toBe(200);
-    expect([...store.keys()].filter((key) => key.startsWith('linked/'))).toHaveLength(1);
+    expect([...store.keys()].filter((key) => key.startsWith('linked/')).length).toBe(1);
+    expect((await post(envelope({ id: 'e'.repeat(32), privacyOverride: true }), { DNT: '1' })).status).toBe(
+      200,
+    );
+    expect([...store.keys()].filter((key) => key.startsWith('linked/'))).toHaveLength(2);
   });
 
   it('keeps retries idempotent across UTC dates, repairs a missing manifest and rejects changed content', async () => {

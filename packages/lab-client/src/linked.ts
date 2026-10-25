@@ -16,7 +16,15 @@ export const LINKED_LIMITS = {
 } as const;
 export type LinkedKind = 'events' | 'run' | 'save' | 'logs' | 'note';
 export type Link = { player: string; session: string; runId: string };
-type Pending = { id: string; body: Blob; next: number; attempts: number; player: string; at: number };
+type Pending = {
+  kind?: LinkedKind;
+  id: string;
+  body: Blob;
+  next: number;
+  attempts: number;
+  player: string;
+  at: number;
+};
 export const randomId = () =>
   [...crypto.getRandomValues(new Uint8Array(16))].map((b) => b.toString(16).padStart(2, '0')).join('');
 const hash = async (text: string) =>
@@ -51,10 +59,12 @@ export function linkedTransport(options: {
 }) {
   const pending = new Map<string, Pending>();
   const acknowledged = new Set<string>();
+  const durable = new Set<string>();
   let bytes = 0;
   let busy = false;
   let generation = 0;
-  let active: AbortController | undefined;
+  const active = new Set<AbortController>();
+  const deliveries = new Map<string, Promise<boolean>>();
   const db = database();
   const persist = async (record: Pending | string) => {
     const connection = await db;
@@ -65,7 +75,11 @@ export function linkedTransport(options: {
         const store = tx.objectStore('pieces');
         if (typeof record === 'string') store.delete(record);
         else store.put(record);
-        tx.oncomplete = () => resolve();
+        tx.oncomplete = () => {
+          if (typeof record === 'string') durable.delete(record);
+          else durable.add(record.id);
+          resolve();
+        };
         tx.onerror = () => resolve();
         tx.onabort = () => resolve();
       } catch {
@@ -85,13 +99,25 @@ export function linkedTransport(options: {
           if (!connection) return resolve();
           try {
             const request = connection.transaction('pieces').objectStore('pieces').getAll();
-            request.onsuccess = () => {
+            request.onsuccess = async () => {
               const link = options.link();
               for (const record of request.result as Pending[]) {
+                // Queues written before 0.4.7 omitted kind. Recover it without
+                // changing the original compressed envelope or content id.
+                if (!record.kind) {
+                  try {
+                    const envelope = (await new Response(
+                      record.body.stream().pipeThrough(new DecompressionStream('gzip')),
+                    ).json()) as { kind?: LinkedKind };
+                    record.kind = envelope.kind;
+                  } catch {
+                    /* Keep unreadable pieces under the usual bounded retry policy. */
+                  }
+                }
                 if (
                   !options.enabled() ||
                   record.player !== link?.player ||
-                  Date.now() - record.at > 7 * 86400000 ||
+                  (record.kind !== 'note' && Date.now() - record.at > 7 * 86400000) ||
                   pending.size >= LINKED_LIMITS.queued ||
                   bytes + record.body.size > LINKED_LIMITS.queueBytes
                 ) {
@@ -99,6 +125,7 @@ export function linkedTransport(options: {
                   continue;
                 }
                 pending.set(record.id, record);
+                durable.add(record.id);
                 bytes += record.body.size;
               }
               resolve();
@@ -109,64 +136,84 @@ export function linkedTransport(options: {
           }
         }),
     );
+  function deliver(record: Pending): Promise<boolean> {
+    const existing = deliveries.get(record.id);
+    if (existing) return existing;
+    const task = (async () => {
+      const epoch = generation;
+      const controller = new AbortController();
+      active.add(controller);
+      const timeout = setTimeout(() => controller.abort(), 15000);
+      let status = 0;
+      try {
+        const response = await fetch(`${options.endpoint}/linked`, {
+          method: 'POST',
+          body: record.body,
+          headers: { 'Content-Type': 'application/gzip' },
+          credentials: 'omit',
+          referrerPolicy: 'no-referrer',
+          mode: 'cors',
+          signal: controller.signal,
+        });
+        status = response.status;
+      } catch {
+      } finally {
+        clearTimeout(timeout);
+        active.delete(controller);
+      }
+      if (epoch !== generation) return false;
+      // Only the Worker's stored receipt acknowledges a linked object. A privacy
+      // 204 is a refusal, not a receipt. Explicit notes must survive every refusal.
+      if (status === 200) {
+        acknowledged.add(record.id);
+        if (acknowledged.size > 2048) acknowledged.delete(acknowledged.values().next().value ?? '');
+        remove(record);
+        return true;
+      }
+      record.attempts++;
+      if (
+        record.kind !== 'note' &&
+        ((status >= 400 && status < 500 && status !== 429) || record.attempts >= 5)
+      ) {
+        remove(record);
+      } else {
+        record.next =
+          Date.now() +
+          Math.min(3600000, 60000 * 2 ** Math.min(6, record.attempts - 1)) +
+          Math.random() * 5000;
+        await persist(record);
+      }
+      return false;
+    })();
+    deliveries.set(record.id, task);
+    void task.finally(() => deliveries.delete(record.id));
+    return task;
+  }
   async function drain() {
     await ready;
     if (busy || !options.enabled()) return;
     busy = true;
+    const drainingGeneration = generation;
     try {
-      for (const record of pending.values()) {
-        const recordGeneration = generation;
+      for (const record of [...pending.values()].sort(
+        (a, b) => Number(b.kind === 'note') - Number(a.kind === 'note'),
+      )) {
         if (!options.enabled()) break;
         if (record.player !== options.link()?.player) {
           remove(record);
           continue;
         }
         if (record.next > Date.now()) continue;
-        active = new AbortController();
-        const timeout = setTimeout(() => active?.abort(), 15000);
-        let status = 0;
-        try {
-          const response = await fetch(`${options.endpoint}/linked`, {
-            method: 'POST',
-            body: record.body,
-            headers: { 'Content-Type': 'application/gzip' },
-            credentials: 'omit',
-            referrerPolicy: 'no-referrer',
-            mode: 'cors',
-            signal: active.signal,
-          });
-          status = response.status;
-        } catch {
-        } finally {
-          clearTimeout(timeout);
-          active = undefined;
-        }
-        // Off/identity reset cleared this record while fetch was pending. Never
-        // restore it, and continue to any newly queued feedback in the current epoch.
-        if (recordGeneration !== generation) continue;
-        if (status >= 200 && status < 300) {
-          acknowledged.add(record.id);
-          if (acknowledged.size > 2048) acknowledged.delete(acknowledged.values().next().value ?? '');
-          remove(record);
-        } else if (status >= 400 && status < 500 && status !== 429) remove(record);
-        else {
-          record.attempts++;
-          if (record.attempts >= 5) remove(record);
-          else {
-            record.next =
-              Date.now() + Math.min(3600000, 60000 * 2 ** (record.attempts - 1)) + Math.random() * 5000;
-            void persist(record);
-          }
-          break;
-        }
+        if (!(await deliver(record))) break;
       }
     } finally {
       busy = false;
+      if (drainingGeneration !== generation) void drain();
     }
   }
   const clear = () => {
     generation++;
-    active?.abort();
+    for (const controller of active) controller.abort();
     for (const record of pending.values()) remove(record);
     pending.clear();
     bytes = 0;
@@ -181,6 +228,7 @@ export function linkedTransport(options: {
     data: unknown,
     captured?: Link,
     feedbackName?: string,
+    confirm = false,
   ): Promise<string> {
     await ready;
     const epoch = generation;
@@ -206,8 +254,10 @@ export function linkedTransport(options: {
     if (pieces.length > LINKED_LIMITS.chunks)
       throw new Error('This snapshot exceeds the recording chunk limit.');
     const additions: Pending[] = [];
+    const ids: string[] = [];
     for (const piece of pieces) {
       const id = await hash(JSON.stringify({ upload, piece }));
+      ids.push(id);
       if (acknowledged.has(id) || pending.has(id)) continue;
       const at = Date.now();
       const envelope = JSON.stringify({
@@ -220,18 +270,28 @@ export function linkedTransport(options: {
         build: options.build(),
         data: piece,
         ...(name ? { name } : {}),
-        ...(options.override() ? { privacyOverride: true } : {}),
+        ...(kind === 'note' || options.override() ? { privacyOverride: true } : {}),
       });
       if (new TextEncoder().encode(envelope).byteLength > LINKED_LIMITS.inflated)
         throw new Error('Recording piece exceeds the server limit.');
       const body = await gzip(envelope);
       if (body.size > LINKED_LIMITS.compressed)
         throw new Error('Compressed recording piece exceeds the server limit.');
-      additions.push({ id, body, next: 0, attempts: 0, player: link.player, at });
+      additions.push({ kind, id, body, next: 0, attempts: 0, player: link.player, at });
     }
     if (epoch !== generation || !options.enabled() || options.link()?.player !== link.player)
       throw new Error('Lab recording is off.');
     const addedBytes = additions.reduce((sum, r) => sum + r.body.size, 0);
+    if (kind === 'note') {
+      for (const record of pending.values()) {
+        if (
+          bytes + addedBytes <= LINKED_LIMITS.queueBytes &&
+          pending.size + additions.length <= LINKED_LIMITS.queued
+        )
+          break;
+        if (record.kind !== 'note') remove(record);
+      }
+    }
     if (
       bytes + addedBytes > LINKED_LIMITS.queueBytes ||
       pending.size + additions.length > LINKED_LIMITS.queued
@@ -243,7 +303,23 @@ export function linkedTransport(options: {
       bytes += record.body.size;
       await persist(record);
     }
-    void drain();
+    if (epoch !== generation || !options.enabled() || options.link()?.player !== link.player)
+      throw new Error('Lab recording is off.');
+    if (confirm) {
+      // A note bypasses a busy or backed-off snapshot queue. Its content id still
+      // deduplicates concurrent delivery and retries on the server.
+      const records = [...pending.values()].filter((record) => ids.includes(record.id));
+      const results = await Promise.all(records.map(deliver));
+      if (epoch !== generation || !options.enabled() || options.link()?.player !== link.player)
+        throw new Error('Lab recording is off.');
+      if (results.some((stored) => !stored) || !ids.every((id) => acknowledged.has(id))) {
+        throw new Error(
+          records.every((record) => durable.has(record.id))
+            ? 'A copy is saved on this device. It will retry while recording is on; you can also try Send again.'
+            : 'A copy is kept in this open page. Keep it open and try Send again.',
+        );
+      }
+    } else void drain();
     return upload;
   }
   return { send, drain, clear };

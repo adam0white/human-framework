@@ -95,7 +95,8 @@ export function openSendDialog(options: SendDialogOptions): void {
   }
   const build = { ...lab.build() };
   const note = el('textarea', { id: 'hflab-note', rows: 4, maxLength: 4000 });
-  note.value = options.note?.slice(0, 4000) ?? '';
+  const draftKey = `hf-lab-feedback-draft:${lab.game}`;
+  note.value = (options.note ?? readLocal(draftKey) ?? '').slice(0, 4000);
   note.placeholder = 'What happened, what you wanted, what got in the way.';
   const name = el('input', {
     id: 'hflab-name',
@@ -287,26 +288,29 @@ export function openSendDialog(options: SendDialogOptions): void {
     name.readOnly = true;
     persona.disabled = true;
     for (const button of verdict.querySelectorAll('button')) button.disabled = true;
+    writeLocal(draftKey, approvedNote);
     status.textContent = 'Sending…';
     try {
-      const linked = lab.eventsOn || persona.checked;
       const id = await lab.sendFeedback(approvedNote, {
         name: approvedName,
         sharePlay: persona.checked,
         ...(approvedRun !== undefined ? { run: approvedRun } : {}),
       });
+      writeLocal(draftKey, null);
       writeLocal('hf-lab-feedback-name', approvedName || null);
       status.className = 'status ok';
-      status.textContent = linked
-        ? `Queued for background upload. Reference ${id}.`
-        : `Sent. Reference ${id}.`;
+      status.textContent = `Sent. Reference ${id}.`;
       send.remove();
       cancel.textContent = 'Close';
       cancel.focus();
       options.onSent?.(id);
     } catch (error) {
       status.className = 'status err';
-      status.textContent = `Not sent: ${errorMessage(error, 'the notebook could not be reached.')}`;
+      const kept =
+        readLocal(draftKey) === approvedNote
+          ? ' Your text is saved on this device. Reopen Feedback to retry.'
+          : ' Your text is still in this dialog. Keep it open to retry.';
+      status.textContent = `Not sent: ${errorMessage(error, 'the notebook could not be reached.')}${kept}`;
       sending = false;
       send.disabled = false;
       note.readOnly = false;

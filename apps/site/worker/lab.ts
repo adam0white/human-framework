@@ -458,7 +458,10 @@ async function postLinked(req: Request, env: Env, origin: string | null): Promis
   const parsed = parseLinked(text, now);
   if (!parsed.ok) return reply(400, { error: parsed.error }, origin);
   const record = parsed.record;
-  if (privacySignal(req.headers) && !record.privacyOverride) return reply(204, null, origin);
+  // A note is an explicit submission, including pending notes from older clients.
+  // Privacy signals still suppress every kind of automatic recording.
+  if (record.kind !== 'note' && privacySignal(req.headers) && !record.privacyOverride)
+    return reply(204, null, origin);
   const key = linkedKey(record);
   const canonical = JSON.stringify(record);
   // Content IDs survive a reload; timestamp changes alone must not duplicate a snapshot.

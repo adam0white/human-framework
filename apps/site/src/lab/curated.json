@@ -6718,6 +6718,23 @@
     "fix:pass Keep scroll position when clicking promise cards and dismiss fulfilled promise cards (open)"
    ],
    "source": "Owner in chat, 2026-10-25; source labels this second note paraphrased by the owner, wording copied exactly from owner-2026-10-25-pass.md"
+  },
+  {
+   "id": "F-496",
+   "date": "2026-10-25",
+   "game": "pass",
+   "kind": "owner",
+   "who": "Adam",
+   "words": "Sent feedback from within the pass.",
+   "verdict": "-",
+   "routes": [
+    "fix:lab Require stored note receipt and retain failed feedback (open)",
+    "fix:pass Bypass cached build manifest (open)",
+    "fix:murmur Bypass cached build manifest (open)",
+    "fix:stairwell Bypass cached build manifest (open)",
+    "fix:glance Bypass cached build manifest (open)"
+   ],
+   "source": "docs/lab/note-delivery-2026-10-25.md"
   }
  ],
  "lessons": [
@@ -7324,7 +7341,7 @@
   }
  ],
  "routes": {
-  "fix": 677,
+  "fix": 682,
   "lesson": 291,
   "hf": 12,
   "calibration": 42,

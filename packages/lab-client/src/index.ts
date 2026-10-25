@@ -300,7 +300,7 @@ export function createLab(options: LabOptions): Lab {
     if (queue.length >= 40) flush(true);
   };
   if (!buildKnown && typeof fetch === 'function') {
-    fetch('/release.json', { cache: 'no-store', credentials: 'omit' })
+    fetch('/release.json?lab-client=0.4.7', { cache: 'no-store', credentials: 'omit' })
       .then((r) => (r.ok ? r.json() : {}))
       .then((r: Record<string, unknown>) => {
         build = {
@@ -440,7 +440,8 @@ export function createLab(options: LabOptions): Lab {
         referrerPolicy: 'no-referrer',
       });
       const reply = (await res.json().catch(() => ({}))) as { id?: string; error?: string };
-      if (!res.ok || !reply.id) throw new Error(reply.error ?? `The notebook answered ${res.status}.`);
+      if (res.status !== 200 || !reply.id)
+        throw new Error(reply.error ?? `The notebook answered ${res.status}.`);
       return reply.id;
     } catch (error) {
       if (fallback && upload?.signal.aborted) return sendUnlinked(fallback, fallback);
@@ -587,7 +588,7 @@ export function createLab(options: LabOptions): Lab {
       const fallback = prepareRun(game, build, { feedbackOnly: true }, { note: text, name: options.name });
       if (stopped() || generation !== feedbackGeneration) return sendUnlinked(fallback, fallback);
       try {
-        return await transport.send('note', { note: text }, undefined, options.name);
+        return await transport.send('note', { note: text }, undefined, options.name, true);
       } catch (error) {
         if (stopped() || generation !== feedbackGeneration) return sendUnlinked(fallback, fallback);
         throw error;
