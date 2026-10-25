@@ -43,11 +43,11 @@ export function InfoPanel({ phase, onClose }: { phase: string; onClose: () => vo
           </p>
           <p>He hopes to keep the fast, pay Osman, see the doctor and stay close to Selin.</p>
           <p>He also hears Selin, Rıza, Hacer, Osman and the doctor.</p>
-          <p>The story begins on Monday 11 March 2024. These dates locate a fictional month.</p>
+          <p>The story begins on Monday 11 March 2024. The dates belong to a fictional month.</p>
         </>
       ) : report ? (
         <>
-          <p>The silent run is the same town from the same start, with no suggestions from you.</p>
+          <p>The comparison replays the same month from the same starting point, without your suggestions.</p>
           <p>
             The tally counts what he did, what you said and what he chose without you. It does not measure his
             worth.
@@ -70,8 +70,8 @@ export function InfoPanel({ phase, onClose }: { phase: string; onClose: () => vo
             care or ask a question.
           </p>
           <p>
-            Choose Plan something specific to give stronger advice or explain your reason. Pressing Halil when
-            he is already pressed costs his trust.
+            Choose Plan something specific to give stronger advice or explain your reason. Insisting when
+            Halil already feels under pressure reduces his trust in you.
           </p>
           <p>
             The band shows daylight. The dots mark prayer times. The gold line shows when Halil is fasting.

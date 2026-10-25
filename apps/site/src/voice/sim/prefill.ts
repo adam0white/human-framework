@@ -89,7 +89,7 @@ export function prefillFor(i: PrefillInput): Prefill | undefined {
     return {
       optionId: 'eat',
       strength: 'mention',
-      why: `The fast begins at ${pad(fajr)}. He hasn’t cooked since Nuran died; there’s bread and cheese.`,
+      why: `The fast begins at ${pad(fajr)}. He has not cooked since Nuran died. There is bread and cheese.`,
       source: 'tutorial',
     };
   }
@@ -100,7 +100,7 @@ export function prefillFor(i: PrefillInput): Prefill | undefined {
       return {
         optionId: 'work-extra',
         strength: 'mention',
-        why: `Mornings alone get him to about ${short.projected} by ${short.by}; ${short.wants}. He has ${Math.round(town.state.money.halil ?? 0)}.`,
+        why: `Morning work alone would leave him with about ${short.projected} by ${short.by}; ${short.wants}. He has ${Math.round(town.state.money.halil ?? 0)}.`,
         source: 'end',
         appeal: 'duty',
       };
@@ -110,7 +110,7 @@ export function prefillFor(i: PrefillInput): Prefill | undefined {
     return {
       optionId: 'call:selin',
       strength: 'mention',
-      why: `Tomorrow is Eid. Selin will leave the first call to him; she will not call before about ${pad(selinEidCallMinute(town.state))}.`,
+      why: `Tomorrow is Eid. Selin is waiting for him to call first. She will not call before about ${pad(selinEidCallMinute(town.state))}.`,
       source: 'end',
       appeal: 'benevolence',
     };
@@ -163,7 +163,7 @@ export function prefillFor(i: PrefillInput): Prefill | undefined {
   if (short && offered('work-extra') && leaningId !== 'work-extra')
     return end(
       'work-extra',
-      `Mornings alone get him to about ${short.projected} by ${short.by}; ${short.wants}. He has ${money}.`,
+      `Morning work alone would leave him with about ${short.projected} by ${short.by}; ${short.wants}. He has ${money}.`,
       'duty',
     );
   if (
@@ -171,7 +171,11 @@ export function prefillFor(i: PrefillInput): Prefill | undefined {
     leaningId !== 'see-doctor' &&
     (town.state.completed.halil?.['see-doctor'] ?? 0) === 0
   )
-    return end('see-doctor', 'Selin wants his pressure seen; he hasn’t gone.', 'safety');
+    return end(
+      'see-doctor',
+      'Selin wants him to have his blood pressure checked. He has not gone to the clinic.',
+      'safety',
+    );
   const since = i.halilCalledAt === undefined ? undefined : day - dayOf(i.halilCalledAt);
   if (
     offered('call:selin') &&
@@ -207,7 +211,7 @@ export function moneyShort(
   const paid = Math.round(town.state.rentPaid);
   const lastFast = T.ramadanFirstDay + T.ramadanDays - 1;
   // The date ends at 20:00 on Ramadan 15, not at midnight: the 23:30 card that night looks to the rest (review:
-  // "Mornings alone get him to about 291 by Ramadan 15" on the card after the date had passed).
+  // "Morning work alone would leave him with about 291 by Ramadan 15" on the card after the date had passed).
   const dateOpen = t < T.rentPromiseDay * MINUTES_PER_DAY + 20 * 60;
   const [goal, byDay, wants] =
     paid < T.rent && dateOpen

@@ -16,12 +16,12 @@ import { townCalendar, townDay } from './town.ts';
 import { dayLabel } from './view.ts';
 
 export const UNASKED: readonly { key: string; optionId: string; label: string }[] = [
-  { key: 'suhoor', optionId: 'eat', label: 'eat at suhoor' },
+  { key: 'suhoor', optionId: 'eat', label: 'eat the pre-dawn meal' },
   { key: 'call', optionId: 'call:selin', label: 'call Selin' },
   { key: 'doctor', optionId: 'see-doctor', label: 'see the doctor' },
   { key: 'rent', optionId: 'pay-rent', label: 'pay Osman' },
   { key: 'extra', optionId: 'work-extra', label: 'take the afternoon shift' },
-  { key: 'walk', optionId: 'walk', label: 'walk, not the cigarette' },
+  { key: 'walk', optionId: 'walk', label: 'walk instead of smoking' },
 ];
 
 export type UnaskedState = Record<string, { did: boolean; day: number }>;

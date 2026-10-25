@@ -4,7 +4,6 @@
  * Reads surfaced scene words and present concerns/body. Does not write a log or consume simulation RNG.
  */
 import type { Frame } from '../protocol.ts';
-import { spokenLogText } from './conversations.ts';
 import type { DayScene } from './scenes.ts';
 
 type Line = DayScene['lines'][number];
@@ -99,10 +98,7 @@ export function sceneResponse(frame: Frame, scene: DayScene | null) {
   const request = frame.log.slice(0, index).findLast((e) => e.kind === 'you');
   // Delayed standing replies name the action themselves. Otherwise use the recorded player words.
   const named = latest && /\?/.test(latest.text.split(/[“"]/, 1)[0] ?? '');
-  const answer =
-    latest && ACTION[who].test(named ? spokenLogText(latest.text) : (request?.text ?? ''))
-      ? latest
-      : undefined;
+  const answer = latest && ACTION[who].test(named ? latest.text : (request?.text ?? '')) ? latest : undefined;
   if (answer && answer.tone !== 'yes')
     return {
       answer,
@@ -110,7 +106,7 @@ export function sceneResponse(frame: Frame, scene: DayScene | null) {
       lines: [
         {
           speaker: 'Halil',
-          words: spokenLogText(answer.text)
+          words: answer.text
             .replace(/^[^“"]*\?\s*/, '')
             .replace(/^[“"]/, '')
             .replace(/[”"](?=\s*—|$)/, ''),

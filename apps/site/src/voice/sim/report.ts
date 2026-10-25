@@ -119,16 +119,16 @@ export function eidLedger(
     if (done.length === 0) {
       const heavy = i.weighs?.find(
         (w) =>
-          (key === 'see-doctor' && w.label === 'the clinic') ||
+          (key === 'see-doctor' && w.label === 'going to the clinic') ||
           (key === 'call:selin' && w.label === 'calling Selin'),
       );
       what =
         key === 'work-repair' || key === 'work-extra'
           ? 'Not on Eid: the workshop was shut.'
           : key === 'see-doctor'
-            ? `Not on Eid${heavy ? `; the clinic still ${heavy.word === 'dreads it' ? 'is something he dreads' : `feels ${heavy.word}`}` : ''}.`
-            : heavy && heavy.word !== 'all right' && heavy.word !== 'good'
-              ? `${absent}; it still feels ${heavy.word}.`
+            ? `He did not go to the clinic on Eid.${heavy ? ` When he thinks about going, ${heavy.word}.` : ''}`
+            : heavy && heavy.word !== 'it feels all right' && heavy.word !== 'it feels good'
+              ? `${absent}. When he thinks about it, ${heavy.word}.`
               : `${absent}.`;
     } else {
       const first = done[0];
@@ -201,20 +201,20 @@ function summary(i: ReportInput): string[] {
     (!date &&
       pays[0] !== undefined &&
       pays[0].from <= TOWN_DEFAULTS.rentPromiseDay * MINUTES_PER_DAY + 20 * 60)
-      ? `He kept his date with Osman: 300 paid on Ramadan ${firstPay ?? TOWN_DEFAULTS.rentPromiseDay}.`
+      ? `He paid Osman 300 by the deadline, on Ramadan ${firstPay ?? TOWN_DEFAULTS.rentPromiseDay}.`
       : firstPay !== undefined && firstPay < TOWN_EID_DAY
-        ? `He missed Osman’s date (300 by Ramadan ${TOWN_DEFAULTS.rentPromiseDay}); the first 300 came on Ramadan ${firstPay}.`
-        : `He missed Osman’s date (300 by Ramadan ${TOWN_DEFAULTS.rentPromiseDay}) and paid nothing in Ramadan.`) +
+        ? `He missed Osman’s payment deadline (300 by Ramadan ${TOWN_DEFAULTS.rentPromiseDay}); he first paid 300 on Ramadan ${firstPay}.`
+        : `He missed Osman’s payment deadline (300 by Ramadan ${TOWN_DEFAULTS.rentPromiseDay}) and paid nothing in Ramadan.`) +
       (extra.length === 0
         ? ' He never took an afternoon shift.'
-        : ` He took an afternoon shift ${times(extra.length)}${extraYours === extra.length ? (extra.length === 1 ? ', on your word' : ', each time on your word') : extraYours > 0 ? `, ${times(extraYours)} on your word` : ''}.`),
+        : ` He took an afternoon shift ${times(extra.length)}${extraYours === extra.length ? (extra.length === 1 ? ', because you suggested it' : ', each time because you suggested it') : extraYours > 0 ? `, ${times(extraYours)} because you suggested it` : ''}.`),
   );
   const clinic = i.cells.filter((c) => c.affordanceId === 'see-doctor' && c.from < eidStart);
   const yours = clinic.filter((c) => c.promptedBy === 'you').length;
   out.push(
     clinic.length === 0
       ? 'He never went to the clinic this month.'
-      : `He went to the clinic ${times(clinic.length)} this month${yours === clinic.length ? (clinic.length === 1 ? ', after you spoke' : ', each time after you spoke') : yours > 0 ? `, ${times(yours)} after you spoke` : ', never on your word'}.`,
+      : `He went to the clinic ${times(clinic.length)} this month${yours === clinic.length ? (clinic.length === 1 ? ', after you spoke' : ', each time after you spoke') : yours > 0 ? `, ${times(yours)} after you spoke` : ', never because you suggested it'}.`,
   );
   const d = i.trustEid - i.trustStart;
   const word = trustWord(i.trustEid, true);
@@ -225,7 +225,7 @@ function summary(i: ReportInput): string[] {
   );
   if (i.insisted > 0)
     out.push(
-      `You insisted ${times(i.insisted)}. Insisting never earned trust, and when he was already pressed it cost some.`,
+      `You insisted ${times(i.insisted)}. Insisting never earned trust, and when he already felt under pressure, it reduced his trust in you.`,
     );
   return out;
 }
@@ -317,22 +317,24 @@ export function buildReport(i: ReportInput): ReportView {
   const sev = hyper?.severity ?? 0;
   const body = [
     `Blood pressure: ${pressureWord(sev)}.`,
-    `Sleep: ${h.body.sleepDebt < 60 ? 'enough' : h.body.sleepDebt < 240 ? 'a little short' : 'short; he is running on a debt'}.`,
-    `Fed: ${h.body.satiety > 0.6 ? 'well' : h.body.satiety > 0.3 ? 'enough' : 'underfed'}.`,
+    `Sleep: ${h.body.sleepDebt < 60 ? 'enough' : h.body.sleepDebt < 240 ? 'a little short' : 'too little; he still needs to catch up'}.`,
+    `He ${h.body.satiety > 0.6 ? 'has eaten well' : h.body.satiety > 0.3 ? 'has eaten enough' : 'has not eaten enough'}.`,
   ];
   // Round 3: the game records the excused days as they happen (the agenda keeps only the last few closed fasts).
   const ill = [...(i.illDays ?? [])].sort((a, b) => a - b);
   if (ill.length > 0)
     body.push(
-      `His blood pressure made him unwell on ${ill.length === 1 ? '1 day' : `${ill.length} days`} of Ramadan (${ill.map((d) => dayLabel(d)).join(', ')}); he counted himself ill and did not fast, to make ${ill.length === 1 ? 'it' : 'them'} up after Eid.`,
+      `His blood pressure made him unwell on ${ill.length === 1 ? '1 day' : `${ill.length} days`} of Ramadan (${ill.map((d) => dayLabel(d)).join(', ')}); he considered himself too ill to fast. He will make ${ill.length === 1 ? 'it' : 'them'} up after Eid.`,
     );
   if (i.doctor) body.push(i.doctor);
   const owed = Math.round(town.state.rentOwed);
   const makeUps = owedMakeUps(h).length;
   const call = town.state.lastCall;
   const open = [
-    owed > 0 ? `${owed} still owed to Osman.` : 'Nothing owed to Osman.',
-    makeUps > 0 ? `${makeUps} make-up fast${makeUps === 1 ? '' : 's'} still owed.` : 'No make-up fasts owed.',
+    owed > 0 ? `He still owes Osman ${owed}.` : 'He owes Osman nothing.',
+    makeUps > 0
+      ? `He still has ${makeUps} missed fast${makeUps === 1 ? '' : 's'} to make up.`
+      : 'He has no missed fasts to make up.',
     call ? sinceSelin(Math.max(0, dayOf(t) - dayOf(call.at))) : 'He has not spoken to Selin.',
   ];
   return {
@@ -393,10 +395,10 @@ export function reportEnds(i: ReportInput): EndView[] {
   const paidWeek = week.reduce((a, p) => a + p.amount, 0);
   const rentAfter =
     paidWeek > 0
-      ? `In the week after Eid he paid ${owed === 0 && Math.round(before.rentOwed) > 0 ? `the rest (${Math.round(paidWeek)})` : Math.round(paidWeek)} on ${week.map((p) => dayLabel(dayOf(p.at))).join(' and ')}; ${owed > 0 ? `${owed} still owed` : 'nothing owed now'}. He has ${money}.`
+      ? `In the week after Eid he paid ${owed === 0 && Math.round(before.rentOwed) > 0 ? `the rest (${Math.round(paidWeek)})` : Math.round(paidWeek)} on ${week.map((p) => dayLabel(dayOf(p.at))).join(' and ')}; ${owed > 0 ? `he still owes ${owed}` : 'he owes nothing now'}. He has ${money}.`
       : Math.round(before.rentOwed) > 0
-        ? `In the week after Eid he paid nothing; ${owed} still owed. He has ${money}.`
-        : `Nothing owed. A week after Eid he has ${money}.`;
+        ? `In the week after Eid he paid nothing; he still owes ${owed}. He has ${money}.`
+        : `He owes nothing. A week after Eid he has ${money}.`;
   const visits = (now.completed.halil?.['see-doctor'] ?? 0) - (before.completed.halil?.['see-doctor'] ?? 0);
   const makeUps = owedMakeUps(h).length;
   const trustNow = voiceOf(h, 'you')?.trust ?? i.trustEid;
@@ -437,7 +439,7 @@ export function smokingLines(i: Pick<ReportInput, 'cells'>): { month: string; ei
   return {
     month: `Cigarettes: ${rate(pair(first))} on Ramadan ${first}–${first + 1}, ${rate(pair(last - 1))} on Ramadan ${last - 1}–${last}.${
       walks.length > 0
-        ? ` He walked by the river ${times(walks.length)} in Ramadan${yours === walks.length ? (walks.length === 1 ? ', on your word' : ', each time on your word') : yours > 0 ? `, ${times(yours)} on your word` : ''}.`
+        ? ` He walked by the river ${times(walks.length)} in Ramadan${yours === walks.length ? (walks.length === 1 ? ', because you suggested it' : ', each time because you suggested it') : yours > 0 ? `, ${times(yours)} because you suggested it` : ''}.`
         : ''
     }`,
     eid: `On Eid he smoked ${eid === 0 ? 'no cigarettes' : eid === 1 ? 'one cigarette' : `${eid} cigarettes`}${eidWalk ? ' and walked by the river' : ''}.`,
@@ -450,7 +452,7 @@ function ownWithCalls(own: string[], i: ReportInput): string[] {
   const line = epilogueCalls(i);
   if (line.includes('he called her himself') && !out.some((l) => /Selin/.test(l)))
     out.push(line.replace('In the six days after Eid he called her himself', 'He called Selin himself'));
-  return out.length ? out : ['Nothing you had prompted became something he did on his own.'];
+  return out.length ? out : ['He did not start doing anything on his own that you had suggested.'];
 }
 
 const sinceSelin = (n: number) =>
@@ -458,4 +460,4 @@ const sinceSelin = (n: number) =>
     ? 'He spoke to Selin today.'
     : n === 1
       ? 'He last spoke to Selin yesterday.'
-      : `${n} days since he spoke to Selin.`;
+      : `He last spoke to Selin ${n} days ago.`;

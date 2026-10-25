@@ -19,8 +19,8 @@ const ends: EndView[] = [
   {
     id: 'fast',
     label: 'Keep the fast.',
-    status: 'keeping it',
-    detail: 'Fast until 19:06. Kept 0 of 1 so far.',
+    status: 'he is fasting',
+    detail: 'The fast ends at 19:06. He has kept 0 of 1 fasts so far.',
     progress: 0.4,
   },
   {
@@ -32,15 +32,20 @@ const ends: EndView[] = [
   },
   {
     id: 'doctor',
-    label: 'Selin, my daughter, wants my blood pressure seen.',
+    label: 'Selin, my daughter, wants me to have my blood pressure checked.',
     status: 'not yet',
     detail: 'He has not been to the clinic.',
   },
-  { id: 'selin', label: 'Talk to Selin.', status: 'no call yet', detail: 'No calls yet this Ramadan.' },
+  {
+    id: 'selin',
+    label: 'Talk to Selin.',
+    status: 'no call yet',
+    detail: 'He and Selin have not spoken yet this Ramadan.',
+  },
   {
     id: 'trust',
     label: 'Does he still listen to you?',
-    status: 'some',
+    status: 'a little',
     detail: 'Trust 0.50, unchanged.',
     progress: 0.5,
   },
@@ -170,7 +175,7 @@ const log: LogEntry[] = [
     clock: '12:40',
     kind: 'recall',
     who: 'halil',
-    text: 'Nuran, at this table, last Ramadan.',
+    text: 'He remembers Nuran at this table last Ramadan.',
     beat: 'recall',
   },
   {
@@ -224,13 +229,13 @@ export const sampleFrame: Frame = {
     ],
     feelings: [{ name: 'sadness', word: 'sad', intensity: 0.3 }],
     weighs: [
-      { label: 'the clinic', word: 'dreads it', trend: 'same' },
-      { label: 'calling Selin', word: 'heavy', trend: 'easier' },
+      { label: 'going to the clinic', word: 'he dreads it', trend: 'same' },
+      { label: 'calling Selin', word: 'it feels hard', trend: 'easier' },
     ],
     onMind: [
       { id: 'fast', label: 'the fast', due: 'until 18:46', state: 'open' },
       { id: 'prayer1', label: 'Dhuhr', due: 'before 16:00', state: 'open' },
-      { id: 'rent', label: 'Osman: 300 by Ramadan 15', due: 'Ramadan 15, 20:00', state: 'open' },
+      { id: 'rent', label: 'Pay Osman 300 by day 15 of Ramadan', due: 'Ramadan 15, 20:00', state: 'open' },
     ],
     money: 40,
     owed: 600,
@@ -248,7 +253,7 @@ export const sampleFrame: Frame = {
     optionId: 'see-doctor',
     strength: 'mention',
     appeal: 'safety',
-    why: 'Selin wants his pressure seen; he hasn’t gone.',
+    why: 'Selin wants him to have his blood pressure checked. He has not gone to the clinic.',
     source: 'end',
   },
   standing: {
@@ -306,17 +311,17 @@ export const sampleBetweenSkip: BetweenView = {
   // The real card's list and order (tenth pass), every row shown, the longest the card gets.
   choices: [
     { id: 'work', label: 'work in the morning', cost: SKIP_COST },
-    { id: 'sleepIn', label: 'sleep in after suhoor', cost: SKIP_COST },
+    { id: 'sleepIn', label: 'sleep in after the pre-dawn meal', cost: SKIP_COST },
     { id: 'doctor', label: 'see the doctor', cost: SKIP_COST },
     { id: 'rent', label: 'pay Osman when you can', cost: SKIP_COST },
-    { id: 'osmanWaits', label: 'Eid first; Osman can wait', cost: SKIP_COST },
+    { id: 'osmanWaits', label: 'Shop for Eid first. Osman can wait.', cost: SKIP_COST },
     { id: 'extra', label: 'take the afternoon shift', cost: SKIP_COST },
     { id: 'rest', label: 'rest in the afternoon', cost: SKIP_COST },
     { id: 'mosque', label: 'pray at the mosque', cost: SKIP_COST },
-    { id: 'walk', label: 'walk after iftar, not the cigarette', cost: SKIP_COST },
+    { id: 'walk', label: 'walk after the sunset meal instead of smoking', cost: SKIP_COST },
     { id: 'friends', label: 'stay out late with Rıza', cost: SKIP_COST },
     { id: 'selin', label: 'call Selin', cost: SKIP_COST },
-    { id: 'skipCall', label: 'skip the call, she’s busy', cost: SKIP_COST },
+    { id: 'skipCall', label: 'skip calling Selin because she is busy', cost: SKIP_COST },
   ],
 };
 
@@ -359,7 +364,7 @@ export const sampleReport: ReportView = {
       : e.id === 'doctor'
         ? {
             ...e,
-            detail: `${e.detail} Cigarettes: 1 a day on Ramadan 1–2, none on Ramadan 29–30. He walked by the river 12 times in Ramadan, each time on your word.`,
+            detail: `${e.detail} Cigarettes: 1 a day on Ramadan 1–2, none on Ramadan 29–30. He walked by the river 12 times in Ramadan, each time because you suggested it.`,
             after: 'Not seen in the week after Eid. On Eid he smoked 3 cigarettes and walked by the river.',
           }
         : { ...e, after: 'Nothing changed in the week after Eid.' },
@@ -369,12 +374,12 @@ export const sampleReport: ReportView = {
   open: ['300 still owed to Osman.', 'No make-up fasts owed.'],
   rows: [strip, { ...strip, label: 'Ramadan 2' }, { ...strip, label: 'Eid al-Fitr' }],
   silent: {
-    intro: 'The same town from the same start, run again without a word from you.',
+    intro: 'This shows the same month played again from the same starting point, without your advice.',
     rows: [
       {
         topic: 'Osman',
-        spoke: 'He kept his date: 300 paid on Ramadan 15. All of it paid by Eid.',
-        silent: 'He missed his date; the first 300 came on Ramadan 17.',
+        spoke: 'He paid by the deadline: 300 paid on Ramadan 15. He had paid it all by Eid.',
+        silent: 'He missed the deadline. He first paid 300 came on Ramadan 17.',
       },
       {
         topic: 'Selin in Ramadan',

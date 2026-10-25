@@ -166,14 +166,14 @@ describe('Game 2 sim on the shipped seed', () => {
     const halilCalls = (g: VoiceGame) =>
       g.cells.filter((c) => c.affordanceId === 'call:selin' && c.from < at(31, 0)).length;
     // Silent: the clinic stays unvisited and he never calls Selin himself in Ramadan.
-    expect(doctor(quiet)).toBe('not seen in Ramadan');
+    expect(doctor(quiet)).toBe('he did not see the doctor in Ramadan');
     expect(halilCalls(quiet)).toBe(0);
     expect(quiet.report?.eid.summary.some((l) => /never went to the clinic/.test(l))).toBe(true);
     // Silent: morning wages alone miss Osman's date, and the report says so.
-    expect(quiet.report?.eid.summary.some((l) => /He missed Osman’s date/.test(l))).toBe(true);
+    expect(quiet.report?.eid.summary.some((l) => /He missed Osman’s payment deadline/.test(l))).toBe(true);
     expect(quiet.cells.some((c) => c.affordanceId === 'work-extra')).toBe(false);
     // Prefill: the doctor is seen, after you spoke, and the report says so.
-    expect(doctor(spoken)).toBe('seen once in Ramadan');
+    expect(doctor(spoken)).toBe('he saw the doctor once in Ramadan');
     expect(spoken.cells.some((c) => c.affordanceId === 'see-doctor' && c.promptedBy === 'you')).toBe(true);
     expect(spoken.report?.eid.summary).not.toEqual(quiet.report?.eid.summary);
     // Insist: insisting earns nothing, so the month ends no higher than it began and below the prefill month.
@@ -190,7 +190,7 @@ describe('Game 2 sim on the shipped seed', () => {
     expect(you?.trust ?? 1).toBeLessThan(voiceOf(spoken.halil, 'you')?.trust ?? 0);
   });
 
-  test('seventh pass: counts and "on your word" read acts that happened, not ones he stopped part-way', () => {
+  test('seventh pass: counts and "because you suggested it" read acts that happened, not ones he stopped part-way', () => {
     // There are stopped acts in a played month, so the filter matters.
     expect(spoken.cells.some((c) => c.done === false)).toBe(true);
     for (const g of [quiet, spoken]) {
@@ -210,10 +210,10 @@ describe('Game 2 sim on the shipped seed', () => {
     expect(hint ?? '').not.toMatch(/by Ramadan 15/);
     // The missed date costs something visible: the day card leads with it, the log says so at 20:00, and Osman's
     // deadline message stays dated independently of whether Osman chooses to visit again.
-    expect(lines[0]).toMatch(/He missed Osman’s date/);
+    expect(lines[0]).toMatch(/He missed Osman’s payment deadline/);
     const day15 = seen.day15Log ?? [];
     expect(day15.length).toBeGreaterThan(0);
-    expect(day15.some((e) => e.clock === '20:00' && /date has gone by/.test(e.text))).toBe(true);
+    expect(day15.some((e) => e.clock === '20:00' && /payment deadline has passed/.test(e.text))).toBe(true);
     // The log is in time order.
     expect(day15.map((e) => e.minute)).toEqual([...day15.map((e) => e.minute)].sort((a, b) => a - b));
   });
@@ -225,9 +225,9 @@ describe('Game 2 sim on the shipped seed', () => {
     expect(night?.paused).toBe(true);
     // Ramadan 15: the 17:00 beat is Osman's date (pinned in the running-late test). Digests: firsts, then totals.
     const intros = seen.introByDay;
-    expect(intros[2]?.some((l) => /Selin often calls after iftar/.test(l))).toBe(true);
+    expect(intros[2]?.some((l) => /Selin often calls after the sunset meal/.test(l))).toBe(true);
     expect(intros[15]?.[0]).toMatch(/^Nothing new since Ramadan 2/);
-    expect(intros[30]?.[0]).toMatch(/^First time he paid Osman: Ramadan \d+, on his own\./);
+    expect(intros[30]?.[0]).toMatch(/^For the first time, he paid Osman, on Ramadan \d+, on his own\./);
   });
 
   test('every report section is non-empty, with no input and with prefill confirmations', () => {
@@ -273,14 +273,14 @@ describe('Game 2 sim on the shipped seed', () => {
         return false;
       },
     });
-    expect(hint).toMatch(/bare mention won’t move him/);
+    expect(hint).toMatch(/a gentle suggestion is not enough/);
     const deadline = at(15, 20);
     const firstPay = money.cells.find((c) => c.affordanceId === 'pay-rent');
     expect(firstPay?.from ?? Number.POSITIVE_INFINITY).toBeLessThanOrEqual(deadline);
     expect(
       money.cells.filter((c) => c.affordanceId === 'work-extra' && c.promptedBy === 'you').length,
     ).toBeGreaterThan(5);
-    expect(money.report?.eid.summary.some((l) => /He kept his date with Osman/.test(l))).toBe(true);
+    expect(money.report?.eid.summary.some((l) => /He paid Osman 300 by the deadline/.test(l))).toBe(true);
     const quietPay = quiet.cells.find((c) => c.affordanceId === 'pay-rent');
     expect(quietPay?.from ?? Number.POSITIVE_INFINITY).toBeGreaterThan(deadline);
   });
@@ -302,13 +302,13 @@ describe('Game 2 sim on the shipped seed', () => {
   test('a running-late beat never fires for a sleeping man hours before the deadline', () => {
     for (const g of [quiet, spoken])
       for (const b of g.beats.history)
-        if (/nearly up|date is tonight/.test(b.text) && /asleep/.test(b.text)) {
+        if (/nearly up|payment is due tonight/.test(b.text) && /asleep/.test(b.text)) {
           const m = b.text.match(/(?:\(|by )(\d\d):(\d\d)/);
           const until = Math.floor(b.at / MIN_DAY) * MIN_DAY + Number(m?.[1]) * 60 + Number(m?.[2]);
           expect(until - b.at).toBeLessThanOrEqual(60);
         }
     const osman = [...quiet.beats.history, ...spoken.beats.history].filter((b) =>
-      /Osman’s date is tonight/.test(b.text),
+      /Osman’s payment is due tonight/.test(b.text),
     );
     expect(osman.length).toBeGreaterThan(0);
     for (const b of osman) expect(b.at % MIN_DAY).toBeGreaterThanOrEqual(17 * 60);
@@ -384,13 +384,15 @@ describe('Game 2 sim on the shipped seed', () => {
     expect(pays.reduce((a, p) => a + p.amount, 0)).toBe(Math.round(eid.run.town.state.rentPaid));
     // The status and detail are the month's result, with each payment's date; the week after has its own line.
     expect(rent?.status).toContain('at Eid');
-    expect(rent?.detail).toContain(owedAtEid > 0 ? `${owedAtEid} still owed at Eid` : 'nothing owed at Eid');
+    expect(rent?.detail).toContain(
+      owedAtEid > 0 ? `he still owed ${owedAtEid} at Eid` : 'he owed nothing at Eid',
+    );
     for (const p of pays) expect(rent?.detail).toContain(`on Ramadan ${dayOfMin(p.at)}`);
     expect(rent?.detail).toContain(`He had ${Math.round(eid.run.town.state.money.halil ?? 0)}.`);
     expect(rent?.after).toMatch(/week after Eid|A week after Eid/);
     // Canonical priors leave the same debt through this epilogue; the report must not invent a payment.
     expect(owedAtEid).toBe(300);
-    expect(rent?.after).toContain('paid nothing; 300 still owed');
+    expect(rent?.after).toContain('paid nothing; he still owes 300');
     for (const e of r.ends) expect(e.after, e.id).toBeTruthy();
     expect(r.ends.find((e) => e.id === 'fast')?.status).toContain('of Ramadan');
     expect(r.ends.find((e) => e.id === 'doctor')?.status).toMatch(/in Ramadan/);
@@ -423,7 +425,7 @@ describe('Game 2 sim on the shipped seed', () => {
     ];
     const s = smokingLines({ cells });
     expect(s.month).toBe(
-      `Cigarettes: 2 a day on Ramadan 1–2, 1 in two days on Ramadan ${last - 1}–${last}. He walked by the river twice in Ramadan, once on your word.`,
+      `Cigarettes: 2 a day on Ramadan 1–2, 1 in two days on Ramadan ${last - 1}–${last}. He walked by the river twice in Ramadan, once because you suggested it.`,
     );
     expect(s.eid).toBe('On Eid he smoked one cigarette.');
   });
@@ -432,7 +434,7 @@ describe('Game 2 sim on the shipped seed', () => {
     const state = (g: VoiceGame, label: string) => g.report?.unasked?.find((u) => u.label === label)?.state;
     // A silent month leaves the call to Selin where it began; suhoor he keeps on his own.
     expect(state(quiet, 'call Selin')).toBe('no');
-    expect(state(quiet, 'eat at suhoor')).toBe('yes');
+    expect(state(quiet, 'eat the pre-dawn meal')).toBe('yes');
     // The live frame carries it for the Ends pane.
     const g = new VoiceGame(SHIPPED_SEED);
     play(g, { confirm: true, stop: (x) => x.t >= at(1, 20) });
@@ -683,7 +685,7 @@ describe('Game 2 round 3 fixes', () => {
   test('Eid: the first cigarette after the meal and the Selin call each pause', () => {
     for (const g of [prefill, pushy]) {
       const eid = g.beats.history.filter((b) => b.at >= at(31, 0) && b.at < at(32, 0));
-      const smoke = eid.find((b) => b.kind === 'craving' && /the cigarette/.test(b.text));
+      const smoke = eid.find((b) => b.kind === 'craving' && /He lights a cigarette/.test(b.text));
       expect(smoke?.paused, 'cigarette beat').toBe(true);
       const call = eid.find((b) => /^(Selin called him|He called Selin) for Eid/.test(b.text));
       expect(call, 'eid call beat').toBeDefined();
@@ -722,7 +724,7 @@ describe('Game 2 round 3 fixes', () => {
     expect(g.report?.body.some((l) => /made him unwell on \d+ days? of Ramadan \(/.test(l))).toBe(true);
   });
 
-  test('round 5: no "can’t … just now" while he is doing it; a reply away from your words names what it answers', () => {
+  test('round 5: no "can’t … just now" while he is doing it; a reply away from your suggestions names what it answers', () => {
     const g = new VoiceGame(SHIPPED_SEED);
     const all = new Map<string, LogEntry>();
     const grab = () => {
@@ -768,7 +770,7 @@ describe('Game 2 round 3 fixes', () => {
       if (g.selinEidCallAt !== undefined) expect(g.selinEidCallAt % MIN_DAY).toBeGreaterThanOrEqual(18 * 60);
   });
 
-  test('round 4: the skip digest says how he answered your words, or that he acted on his own', () => {
+  test('round 4: the skip digest says how he answered your suggestions, or that he acted on his own', () => {
     for (const lines of pushyDigests)
       expect(/When he heard it|on his own|You left no word/.test(lines.join(' ')), lines.join(' ')).toBe(
         true,

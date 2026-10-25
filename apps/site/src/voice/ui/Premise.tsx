@@ -23,8 +23,8 @@ export function Premise({
         </svg>
         <h1>The Day You Say Nothing</h1>
         <p className="v-lede">
-          Help Halil reach his goals during Ramadan, the fasting month. On Eid, the festival at its end, he
-          will act without your advice.
+          Halil is a widower. Help him reach his goals during Ramadan, the fasting month. On Eid, the festival
+          at its end, he will act without your advice.
         </p>
         <p>You suggest what Halil could do. He decides whether to do it.</p>
         {labMode() && (
@@ -50,13 +50,13 @@ export function Premise({
             ? 'Starting…'
             : savedRun
               ? confirm
-                ? 'Replace the month and begin'
-                : 'Begin the month again'
-              : 'Begin'}
+                ? 'Replace this game and start again'
+                : 'New game'
+              : 'New game'}
         </button>
         {confirm && (
           <button type="button" className="v-btn" onClick={() => setConfirm(false)}>
-            Keep this month
+            Keep this game
           </button>
         )}
       </div>

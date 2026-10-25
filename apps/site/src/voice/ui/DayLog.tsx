@@ -6,7 +6,7 @@ import { settingWords } from '../../shared/setting-words.ts';
 
 import { memo, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { BeatKind, LogEntry } from '../protocol.ts';
-import { type ConversationMoment, conversationFor, type SpokenLine, spokenLogText } from './conversations.ts';
+import { type ConversationMoment, conversationFor, type SpokenLine } from './conversations.ts';
 import { storyDates } from './dates.ts';
 import { BEAT_ICON, Icon, TONE_ICON, TONE_WORD, VOICE_ICON } from './Icon.tsx';
 import { toneClass, VOICE_COLOURS, VOICE_NAMES } from './parts.tsx';
@@ -136,7 +136,7 @@ export const DayLog = memo(function DayLog({
           {newerTask && (
             <>
               {' '}
-              Latest task at {newerTask.clock}: {explainTerms(spokenLogText(newerTask.text))}
+              Latest task at {newerTask.clock}: {explainTerms(newerTask.text)}
             </>
           )}{' '}
           {paused ? 'Clock paused.' : 'Clock continues.'}
@@ -178,7 +178,7 @@ export const DayLog = memo(function DayLog({
                       <span className="v-sr">: </span>
                     </span>
                   )}
-                  {!exchange.length && explainTerms(storyDates(spokenLogText(e.text)))}
+                  {!exchange.length && explainTerms(storyDates(e.text))}
                   {exchange.length > 0 && (
                     <>
                       <span className="v-scene-title">
@@ -195,7 +195,7 @@ export const DayLog = memo(function DayLog({
                     </>
                   )}
                   {exchange.length > 0 && (
-                    <span className="v-scene-record">{explainTerms(storyDates(spokenLogText(e.text)))}</span>
+                    <span className="v-scene-record">{explainTerms(storyDates(e.text))}</span>
                   )}
                   {count > 1 && to ? <span className="v-log-span"> · until {settingWords(to)}</span> : null}
                   {count === 1 && e.until && e.kind === 'act' ? (

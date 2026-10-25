@@ -23,7 +23,7 @@ describe('Halil’s words and independent choices', () => {
         items: [
           { label: 'see the doctor', state: 'no' },
           { label: 'call Selin', state: 'unknown' },
-          { label: 'eat at suhoor', state: 'yes' },
+          { label: 'eat the pre-dawn meal', state: 'yes' },
         ],
       }),
     );

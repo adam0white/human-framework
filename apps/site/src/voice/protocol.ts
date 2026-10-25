@@ -391,7 +391,8 @@ export interface SilentMonthView {
   caption: string;
 }
 /** The caption the silent-month comparison must carry, verbatim (voice.md Stretch S1). */
-export const SILENT_CAPTION = 'Small differences compound; not every difference is your doing.';
+export const SILENT_CAPTION =
+  'Small differences grow over time. Your advice does not cause every difference.';
 
 export type WorkerReply =
   | CastReply

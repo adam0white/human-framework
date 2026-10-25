@@ -36,8 +36,8 @@ function exchange(frame: Frame, kind: Kind): { words: string; answer: string } {
       : {
           words: 'What stayed with you from that conversation?',
           answer: /Nuran|illness/.test(spoken)
-            ? 'The clinic brings Nuran back to mind. That is hard to separate from being here myself.'
-            : 'What he said about my health. I need a moment with it.',
+            ? 'The clinic brings Nuran back to mind. It is hard to think about my own visit without remembering hers.'
+            : 'What the doctor said about my health. I need a moment to think about it.',
         };
   }
   if (/doctor|clinic|pressure/i.test(spoken) && !/Nuran|Mum|your mum/.test(spoken)) {
@@ -75,11 +75,11 @@ function exchange(frame: Frame, kind: Kind): { words: string; answer: string } {
         }
       : {
           words: 'How does the day feel just now?',
-          answer: 'Long. I am tired, and I do not have much to say.',
+          answer: 'The day feels long. I am tired, and I do not have much to say.',
         };
   if (scene?.kind === 'workshop')
     return kind === 'care'
-      ? { words: 'Take your time. I can be quiet while you work.', answer: 'He keeps working; he heard you.' }
+      ? { words: 'Take your time. I can be quiet while you work.', answer: 'He heard you and keeps working.' }
       : {
           words: 'Would you rather have quiet while you work?',
           answer: 'For this part, yes. I want to keep my attention here.',
@@ -91,7 +91,7 @@ function exchange(frame: Frame, kind: Kind): { words: string; answer: string } {
   if (rent)
     return kind === 'care'
       ? {
-          words: 'The rent is a lot to carry in your head.',
+          words: 'You have a lot to think about with the rent.',
           answer: 'I keep adding it up. It is hard to set it aside.',
         }
       : { words: 'What is on your mind?', answer: 'What I owe Osman. I am still thinking about it.' };
@@ -100,7 +100,7 @@ function exchange(frame: Frame, kind: Kind): { words: string; answer: string } {
     return kind === 'care'
       ? {
           words: `It is good to hear ${who} with you.`,
-          answer: 'It is good to have company. We need not fill every silence.',
+          answer: 'It is good to have company. We do not have to keep talking.',
         }
       : {
           words: 'What did you want to say just now?',

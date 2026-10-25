@@ -14,12 +14,12 @@ export const APPEALS: { id: Appeal; label: string; key: string }[] = [
 export const appealLabel = (a?: Appeal) => APPEALS.find((x) => x.id === a)?.label;
 
 export const STRENGTHS: { id: Strength; label: string; key: string; hint: string }[] = [
-  { id: 'mention', label: 'Mention', key: 'M', hint: 'a passing thought' },
-  { id: 'urge', label: 'Urge', key: 'U', hint: 'a real pull' },
+  { id: 'mention', label: 'Mention', key: 'M', hint: 'a gentle suggestion' },
+  { id: 'urge', label: 'Urge', key: 'U', hint: 'stronger advice' },
 ];
 
 export const INSIST_PRICE =
-  'He may do it under protest. He’ll remember. If it goes well, you get no credit; insisting when he is already pressed costs his trust in you.';
+  'He may agree while objecting, and he will remember that. If it goes well, he will not trust you more. Insisting when he already feels under pressure reduces his trust in you.';
 
 export const toneClass = (tone?: Tone) => (tone ? `tone-${tone}` : '');
 

@@ -8,10 +8,10 @@ import { explainTerms } from './terms.tsx';
 
 const STATE_LABEL: Record<HalilView['onMind'][number]['state'], string> = {
   open: '',
-  closing: 'closing',
-  kept: 'kept',
+  closing: 'time is nearly up',
+  kept: 'completed',
   missed: 'missed',
-  excused: 'excused',
+  excused: 'he is excused',
 };
 
 export const HalilPane = memo(function HalilPane({ halil }: { halil: HalilView }) {
@@ -86,7 +86,7 @@ export const HalilPane = memo(function HalilPane({ halil }: { halil: HalilView }
                 <span className="v-mind-due">{settingWords(w.word)}</span>
                 {w.trend !== 'same' && (
                   <span className="v-mind-state">
-                    {w.trend === 'easier' ? 'easier than at the start' : 'heavier than at the start'}
+                    {w.trend === 'easier' ? 'easier than at the start' : 'harder than at the start'}
                   </span>
                 )}
               </li>
@@ -99,7 +99,7 @@ export const HalilPane = memo(function HalilPane({ halil }: { halil: HalilView }
       <p className="v-money">
         <span>
           <Icon name="coins" />
-          <strong>{halil.money}</strong> in hand
+          <strong>{halil.money}</strong> available
         </span>
         <span>
           <Icon name="circle-minus" />

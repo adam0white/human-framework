@@ -82,7 +82,9 @@ describe('the month you never spoke', () => {
       expect(v.rows.length).toBeLessThanOrEqual(SILENT_ROWS);
       expect(v.rows.map((r) => r.topic)).toContain('Osman');
       for (const r of v.rows) expect(r.spoke).not.toBe(r.silent);
-      expect(v.caption).toBe('Small differences compound; not every difference is your doing.');
+      expect(v.caption).toBe(
+        'Small differences grow over time. Your advice does not cause every difference.',
+      );
       // No score, no verdict, no worship: the section never ranks the months or measures faith.
       expect(JSON.stringify(v)).not.toMatch(/better|worse|good|bad|faith|pray|fast|accept|worth|score/i);
       // Computing it changes neither the played run's state nor its report (the section is attached by the worker).

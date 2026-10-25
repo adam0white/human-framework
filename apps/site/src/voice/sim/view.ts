@@ -88,31 +88,31 @@ export function trustWord(t: number, you = false): string {
         : t >= 0.55
           ? 'fairly well'
           : t >= 0.45
-            ? 'some'
+            ? 'a little'
             : t >= 0.3
-              ? 'warily'
+              ? 'carefully'
               : t >= 0.15
-                ? 'little'
+                ? 'very little'
                 : 'hardly at all';
   return you ? `listens to you ${w}` : `listens ${w}`;
 }
 
 /** The learned expectations the player can watch move: what each feels like to him, as words. */
 const WEIGHS: { key: string; label: string }[] = [
-  { key: 'see-doctor', label: 'the clinic' },
+  { key: 'see-doctor', label: 'going to the clinic' },
   { key: 'call@selin', label: 'calling Selin' },
-  { key: 'pray@mosque', label: 'the mosque' },
+  { key: 'pray@mosque', label: 'going to the mosque' },
 ];
 const weighWord = (v: number) =>
   v <= -0.6
-    ? 'dreads it'
+    ? 'he dreads it'
     : v <= -0.3
-      ? 'heavy'
+      ? 'it feels hard'
       : v < -0.05
-        ? 'a little heavy'
+        ? 'it feels a little hard'
         : v < 0.2
-          ? 'all right'
-          : 'good';
+          ? 'it feels all right'
+          : 'it feels good';
 
 export function weighsView(h: Person, start: Record<string, number>): NonNullable<HalilView['weighs']> {
   const out: NonNullable<HalilView['weighs']> = [];
@@ -141,6 +141,7 @@ export const ACTION_LABEL: Record<string, string> = {
   'work-extra': 'take an afternoon shift',
   drink: 'drink water',
   'call:selin': 'call Selin',
+  'talk:hacer': 'talk with Hacer at the door',
   call: 'call Selin',
   pray: 'pray at the mosque',
   'pray-home': 'pray at home',
@@ -219,10 +220,10 @@ function feelingCause(cause: string, targetId?: string): string | undefined {
         : w
           ? (ACTION_LABEL[w] ?? undefined)
           : undefined;
-  if (kind === 'breach') return thing(verb) ? `${thing(verb)} missed` : undefined;
-  if (kind === 'missed' && verb === 'promise' && what === 'pay-rent') return 'his word to Osman';
+  if (kind === 'breach') return thing(verb) ? `he missed ${thing(verb)}` : undefined;
+  if (kind === 'missed' && verb === 'promise' && what === 'pay-rent') return 'his promise to Osman';
   if (kind === 'event' && verb === 'demand' && what === 'osman') return 'Osman at the door';
-  if (kind === 'deed' && verb === 'fulfil') return thing(what) ? `${thing(what)} kept` : undefined;
+  if (kind === 'deed' && verb === 'fulfil') return thing(what) ? `he kept ${thing(what)}` : undefined;
   if (kind === 'recall' && targetId)
     return `remembering ${targetId === 'nuran' ? 'Nuran' : nameOfVoice(targetId)}`;
   return undefined;
@@ -258,7 +259,7 @@ export function halilView(h: Person, town: Town, t: number, start?: Record<strin
       // Fajr shows as open until Dhuhr. That is an engineering simplification, labelled as one; when Fajr's time
       // ends is not sourced in research/ (HANDOFF deferred question), so the label states no end of its own.
       const simplified = /Fajr/.test(c.label ?? '')
-        ? ' (a simplification: the game holds Fajr open until Dhuhr)'
+        ? ' (the game simplifies this: he can pray the dawn prayer until the noon prayer begins)'
         : '';
       const due = (c.kind === 'abstain' ? `until ${clock(c.until)}` : dueText(c.until, t)) + simplified;
       if (c.exempt !== undefined)
@@ -309,7 +310,7 @@ export function healthLines(h: Person, town: Town, t: number): string[] {
   );
   if (excused)
     out.push(
-      `Unwell: his blood pressure is ${pressureWord(sev)}. He counts himself ill and is not fasting today; he owes the day after Eid.`,
+      `Unwell: his blood pressure is ${pressureWord(sev)}. He considers himself too ill to fast today. He will make up this day after Eid.`,
     );
   else if (sev >= EXEMPTION_DEFAULTS.illnessSeverity)
     out.push(`Unwell: his blood pressure is ${pressureWord(sev)}.`);
@@ -324,9 +325,9 @@ function dueText(until: number, t: number): string {
 
 export function commitmentLabel(label: string | undefined, action: string | undefined, kind: string): string {
   if (kind === 'abstain') return 'the fast';
-  if (label === 'rent') return 'Osman: 300 by Ramadan 15';
-  if (label === 'suhoor') return 'suhoor';
-  if (label === 'iftar') return 'iftar';
+  if (label === 'rent') return 'Pay Osman 300 by day 15 of Ramadan';
+  if (label === 'suhoor') return 'the pre-dawn meal';
+  if (label === 'iftar') return 'the sunset meal';
   if (label) return label;
   return ACTION_LABEL[action ?? ''] ?? action ?? kind;
 }
@@ -343,7 +344,7 @@ export interface EndsInput {
   trustStart: number;
   /** Minute he last called Selin himself, if ever (the Selin end is his call, not hers). */
   halilCalledAt?: number;
-  /** That last call of his was not on your word. */
+  /** That last call of his was not because you suggested it. */
   calledUnasked?: boolean;
   /**
    * Read as the end of Ramadan (the report's snapshot at Eid morning): every status and detail names that date, so
@@ -395,16 +396,16 @@ export function endsView({
     day >= TOWN_EID_DAY
       ? 'Ramadan is over'
       : fastNow
-        ? 'keeping it'
+        ? 'he is fasting'
         : t % MINUTES_PER_DAY >= cal.maghrib
-          ? 'kept today'
-          : 'not yet begun';
+          ? 'he kept today’s fast'
+          : 'today’s fast has not begun';
   const tally =
     chron.length === 0
-      ? 'No day of the fast finished yet.'
-      : `Kept ${kept} of ${chron.length} ${chron.length === 1 ? 'day' : 'days'}${day >= TOWN_EID_DAY ? '' : ' so far'}` +
-        (excused > 0 ? `; ${excused} excused, made up later.` : '.');
-  const fastDetail = `${fastNow ? `Fast until ${clock(fastNow.until)}. ` : ''}${tally}`;
+      ? 'The first day of fasting has not ended yet.'
+      : `He kept ${kept} of ${chron.length} ${chron.length === 1 ? 'day' : 'days'}${day >= TOWN_EID_DAY ? '' : ' so far'}` +
+        (excused > 0 ? `. He was excused on ${excused} days and will make them up later.` : '.');
+  const fastDetail = `${fastNow ? `The fast ends at ${clock(fastNow.until)}. ` : ''}${tally}`;
   const owed = Math.round(town.state.rentOwed);
   const paid = Math.round(town.state.rentPaid);
   const money = Math.round(town.state.money.halil ?? 0);
@@ -427,9 +428,9 @@ export function endsView({
   const date = promise ?? inferred;
   const dateText =
     date?.status === 'kept'
-      ? `Osman’s date kept.`
+      ? `He paid Osman by the deadline.`
       : date?.status === 'broken'
-        ? `Osman’s date (300 by Ramadan ${RENT_PROMISED_DAY}, 20:00) missed; since then he presses harder when he comes.`
+        ? `He missed Osman’s deadline: 300 by 20:00 on day ${RENT_PROMISED_DAY} of Ramadan. Osman has pressed him harder for the rent since then.`
         : '';
   const his = halilCalledAt === undefined ? undefined : Math.max(0, day - dayOf(halilCalledAt));
   const delta = you - trustStart;
@@ -437,7 +438,7 @@ export function endsView({
     {
       id: 'fast',
       label: 'Keep the fast.',
-      status: asOfEid ? `kept ${kept} of ${chron.length} days of Ramadan` : fastStatus,
+      status: asOfEid ? `he kept ${kept} of ${chron.length} days of Ramadan` : fastStatus,
       detail: fastDetail,
       progress: round(chron.length ? kept / 30 : 0),
     },
@@ -446,75 +447,75 @@ export function endsView({
       label: 'Pay Osman, my landlord, what I owe.',
       status: asOfEid
         ? date?.status === 'broken' && owed > 0
-          ? `date missed; ${owed} owed at Eid`
+          ? `he missed the deadline and still owed ${owed} at Eid`
           : owed > 0
-            ? `${owed} still owed at Eid`
+            ? `he still owed ${owed} at Eid`
             : date?.status === 'broken'
-              ? 'paid up by Eid, late'
-              : 'paid up by Eid'
+              ? 'he paid it all by Eid, after the deadline'
+              : 'he paid it all by Eid'
         : date?.status === 'broken' && owed > 0
-          ? `date missed; ${owed} owed`
+          ? `he missed the deadline and still owes ${owed}`
           : date?.status === 'broken'
-            ? 'paid up, late'
+            ? 'he paid it all, after the deadline'
             : owed > 0
               ? day > RENT_PROMISED_DAY && day <= LAST_FAST
-                ? `${owed} owed by Ramadan ${LAST_FAST}`
-                : `${owed} owed`
-              : 'paid up',
+                ? `he owes ${owed} by day ${LAST_FAST} of Ramadan`
+                : `he owes ${owed}`
+              : 'he paid it all',
       // The deadline is named only while it is still ahead and something is owed (playtest: stale detail).
       detail: asOfEid
         ? `${dateText ? `${dateText} ` : ''}${
             payments.length > 0
-              ? `Paid ${payments.map((x) => `${Math.round(x.amount)} on ${dayLabel(dayOf(x.at))}`).join(' and ')}`
-              : 'Paid nothing in Ramadan'
-          }; ${owed > 0 ? `${owed} still owed at Eid` : 'nothing owed at Eid'}. He had ${money}.`
+              ? `He paid ${payments.map((x) => `${Math.round(x.amount)} on ${dayLabel(dayOf(x.at))}`).join(' and ')}`
+              : 'He paid nothing in Ramadan'
+          }; ${owed > 0 ? `he still owed ${owed} at Eid` : 'he owed nothing at Eid'}. He had ${money}.`
         : owed > 0
-          ? `${dateText ? `${dateText} ` : ''}${paid > 0 ? `Paid ${paid}. ` : ''}${
+          ? `${dateText ? `${dateText} ` : ''}${paid > 0 ? `He paid ${paid}. ` : ''}${
               paid < RENT_PROMISED && day <= RENT_PROMISED_DAY && date?.status !== 'broken'
                 ? `Osman wants ${RENT_PROMISED} by Ramadan ${RENT_PROMISED_DAY}`
                 : day <= LAST_FAST
                   ? `Osman wants the rest, ${owed}, by the end of Ramadan`
-                  : `Owed ${owed}`
+                  : `He owes ${owed}`
             }. He has ${money}.`
-          : `${dateText ? `${dateText} ` : ''}Paid ${paid}; nothing owed. He has ${money}.`,
+          : `${dateText ? `${dateText} ` : ''}He paid ${paid} and owes nothing. He has ${money}.`,
       progress: round(Math.min(1, paid / Math.max(1, paid + owed))),
     },
     {
       id: 'doctor',
-      label: 'Selin, my daughter, wants my blood pressure seen.',
+      label: 'Selin, my daughter, wants me to have my blood pressure checked.',
       status: seen
         ? asOfEid
-          ? `seen ${visits === 1 ? 'once' : `${visits} times`} in Ramadan`
-          : 'seen'
+          ? `he saw the doctor ${visits === 1 ? 'once' : `${visits} times`} in Ramadan`
+          : 'he saw the doctor'
         : asOfEid
-          ? 'not seen in Ramadan'
-          : 'not yet',
+          ? 'he did not see the doctor in Ramadan'
+          : 'he has not seen the doctor yet',
       detail: seen
-        ? `${lastVisit !== undefined ? `Last seen on ${dayLabel(dayOf(lastVisit))}. ` : ''}The doctor: ${doctorSaid ? stripSaid(doctorSaid.summary) : 'rest, walk, stop smoking'}.`
+        ? `${lastVisit !== undefined ? `He last saw the doctor on ${dayLabel(dayOf(lastVisit))}. ` : ''}The doctor: ${doctorSaid ? stripSaid(doctorSaid.summary) : 'rest, walk, stop smoking'}.`
         : asOfEid
           ? 'He did not go to the clinic in Ramadan.'
           : 'He has not been to the clinic.',
     },
     {
       id: 'selin',
-      label: 'Call Selin, my daughter, myself; not wait for her.',
+      label: 'Call Selin, my daughter, instead of waiting for her to call.',
       status:
         his === undefined || halilCalledAt === undefined
           ? asOfEid
             ? 'he did not call her in Ramadan'
-            : 'he never calls'
+            : 'he has not called her himself'
           : asOfEid
-            ? `he last called on ${dayLabel(dayOf(halilCalledAt))}${calledUnasked ? ', unasked' : ''}`
+            ? `he last called on ${dayLabel(dayOf(halilCalledAt))}${calledUnasked ? ', without being asked' : ''}`
             : his === 0
-              ? `he called today${calledUnasked ? ', unasked' : ''}`
+              ? `he called today${calledUnasked ? ', without being asked' : ''}`
               : his === 1
-                ? `he called yesterday${calledUnasked ? ', unasked' : ''}`
+                ? `he called yesterday${calledUnasked ? ', without being asked' : ''}`
                 : his <= 6
                   ? `he called ${his} days ago`
                   : `he last called on ${dayLabel(dayOf(halilCalledAt))}`,
       detail: call
         ? `${asOfEid ? 'Last call before Eid:' : 'Last call'} ${when(call.at)}; ${call.by === 'halil' ? 'he called her' : 'Selin called'}.${his === undefined ? ' Since the funeral he waits for her to call.' : ''}`
-        : 'No calls yet this Ramadan.',
+        : 'He and Selin have not spoken yet this Ramadan.',
     },
     {
       id: 'trust',
@@ -535,10 +536,10 @@ export const TRUST_REASON: Record<string, string> = {
   'went-badly': 'went badly',
   harm: 'hurt him',
   'harm-under-protest': 'hurt him, and he’d said no',
-  breach: 'broke something he holds to',
-  'breach-under-protest': 'broke something he holds to, under protest',
-  pushed: 'pushed him when he was already pressed',
-  worn: 'asked him again for what he did not want',
+  breach: 'went against a principle he follows',
+  'breach-under-protest': 'went against a principle he follows, after he objected',
+  pushed: 'put pressure on him when he already felt under pressure',
+  worn: 'repeated advice he did not want to follow',
 };
 
 export function voicesView(h: Person, t: number, conflict?: string): VoiceView[] {
@@ -597,7 +598,7 @@ export interface Cell {
   done?: boolean;
 }
 
-/** Acts that happened: everything but the ones he stopped part-way (counts and "on your word" lines read these). */
+/** Acts that happened: everything but the ones he stopped part-way (counts and "because you suggested it" lines read these). */
 export const happened = (c: Cell): boolean => c.done !== false;
 
 /** One day's strip from Halil's activity cells (absolute minutes, clipped to the day). */
@@ -630,8 +631,8 @@ function shortLabel(c: Cell): string {
     const m = c.from % MINUTES_PER_DAY;
     const cal = townCalendar(dayOf(c.from));
     const ramadan = townDay(dayOf(c.from)).kind === 'ramadan';
-    if (ramadan && m < cal.fajr) return 'suhoor';
-    if (ramadan && m >= cal.maghrib - 5) return 'iftar';
+    if (ramadan && m < cal.fajr) return 'pre-dawn meal';
+    if (ramadan && m >= cal.maghrib - 5) return 'sunset meal';
   }
   return c.label;
 }
@@ -646,8 +647,8 @@ const NEED_WORD: Record<string, string> = {
   relief: 'relief',
   safety: 'safety',
   belonging: 'company',
-  esteem: 'standing',
-  autonomy: 'his own way',
+  esteem: 'respect from others',
+  autonomy: 'deciding for himself',
   meaning: 'meaning',
   competence: 'doing it well',
   fun: 'enjoyment',
@@ -659,11 +660,11 @@ export function termLabel(t: Term, h: Person): string {
     case 'need':
       return NEED_WORD[a ?? ''] ?? a ?? 'need';
     case 'norm':
-      return `his understanding: ${a}`;
+      return `his understanding of ${a}`;
     case 'commitment': {
       if (!a) return 'keeping at it';
       const c = h.agenda.commitments.find((x) => x.id === a);
-      return c ? commitmentLabel(c.label, c.actions[0], c.kind) : 'something he had set himself to';
+      return c ? commitmentLabel(c.label, c.actions[0], c.kind) : 'something he had decided to do';
     }
     case 'goal':
       return 'a goal';
@@ -673,7 +674,7 @@ export function termLabel(t: Term, h: Person): string {
       return FEELING_WORD[a ?? ''] ?? a ?? 'feeling';
     case 'suggestion':
       if (a === 'remembered') return `${nameOfVoice(b ?? '')} said so earlier`;
-      return a === 'you' ? 'your words' : `${nameOfVoice(a ?? '')}’s words`;
+      return a === 'you' ? 'your suggestions' : `${nameOfVoice(a ?? '')}’s words`;
     case 'social':
       return `for ${nameOfVoice(a ?? '')}`;
     case 'expectation':
@@ -696,7 +697,7 @@ const VETO_WORD: Record<string, string> = {
   asleep: 'he is asleep',
   'not-sleepy': 'he is not sleepy',
   capacity: 'he is not up to it',
-  unavailable: 'it is not open to him now',
+  unavailable: 'he cannot do that right now',
   cannot: 'he cannot',
   invalid: 'he cannot',
   dead: 'he cannot',
@@ -742,10 +743,10 @@ export function whyView(
   if (chosen && best && best !== chosen && best.utility > chosen.utility) {
     const v = (r.suggestions ?? (r.suggestion ? [r.suggestion] : [])).find((s) => s.verdict === 'complied');
     view.note = v
-      ? `He did it because ${v.voiceId === 'you' ? 'you' : nameOfVoice(v.voiceId)} insisted, not because it came out on top.`
+      ? `He did it because ${v.voiceId === 'you' ? 'you' : nameOfVoice(v.voiceId)} insisted, even though another choice seemed better to him.`
       : r.review
-        ? 'He was already doing this; the other option was not far enough ahead to make him stop.'
-        : 'He did not take the top option: what he was already set on gets a margin before he switches.';
+        ? 'He was already doing this. The other choice was not much better, so he kept going.'
+        : 'He kept doing what he had started. He only changes when another choice is much better.';
   }
   const rec = chosen?.recalled
     ?.map((id) => h.memory.episodes.find((e) => e.id === id))

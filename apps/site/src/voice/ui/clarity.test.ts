@@ -60,13 +60,13 @@ it('puts saved continuation first and confirms replacing a month inline', () => 
     }),
   );
   expect(el.querySelector('.v-btn-primary')?.textContent).toBe('Continue · Ramadan 15, 14:20');
-  flushSync(() =>
-    [...el.querySelectorAll('button')].find((b) => b.textContent === 'Begin the month again')?.click(),
-  );
+  flushSync(() => [...el.querySelectorAll('button')].find((b) => b.textContent === 'New game')?.click());
   expect(begin).not.toHaveBeenCalled();
   expect(el.textContent).toContain('Start a new game? This replaces the saved month.');
   flushSync(() =>
-    [...el.querySelectorAll('button')].find((b) => b.textContent === 'Replace the month and begin')?.click(),
+    [...el.querySelectorAll('button')]
+      .find((b) => b.textContent === 'Replace this game and start again')
+      ?.click(),
   );
   expect(begin).toHaveBeenCalledOnce();
 });

@@ -12,19 +12,6 @@ export interface SpokenLine {
 }
 type Pair = readonly [string, string];
 
-const LABELS: Readonly<Record<string, string>> = {
-  'Talk hacer': 'Talk with Hacer at the door',
-  'Tea riza': 'Have tea with Rıza',
-  'Call selin': 'Call Selin',
-};
-/** Old answer text is part of the saved state. Translate its raw request prefix only for display. */
-export function spokenLogText(text: string): string {
-  return text.replace(
-    /^(Talk hacer|Tea riza|Call selin)\?/,
-    (match, key: string) => `${LABELS[key] ?? match}?`,
-  );
-}
-
 const EVERYDAY: Record<Companion, readonly Pair[]> = {
   Hacer: [
     [
@@ -35,7 +22,10 @@ const EVERYDAY: Record<Companion, readonly Pair[]> = {
   ],
   Rıza: [
     ['It is good to sit with you, Rıza.', 'I like having you here, Halil. Take the chair beside me.'],
-    ['I wanted some company. Is this seat taken?', 'You can sit here, Halil. Tell me about your day.'],
+    [
+      'I wanted some company. Is this seat taken?',
+      'For you? Of course there is a seat, Halil. Tell me about your day.',
+    ],
   ],
   Selin: [
     ['I wanted to hear your voice, Selin.', 'I am glad we are talking, Dad. How has today been?'],
@@ -48,7 +38,7 @@ const LATE: Record<Companion, readonly Pair[]> = {
       'The day has gone by, Hacer. I am glad we have a moment.',
       'I am glad too, Halil. We can talk for a little while.',
     ],
-    ['It is quiet tonight. Will you stay and talk a moment?', 'Of course. How has the day treated you?'],
+    ['It is quiet tonight. Will you stay and talk a moment?', 'Of course. How has your day been?'],
   ],
   Rıza: [
     ['Evenings feel long on my own, Rıza.', 'Then sit with me a while. There is no hurry.'],
@@ -61,21 +51,18 @@ const LATE: Record<Companion, readonly Pair[]> = {
 };
 const WORRIES: Record<Companion, readonly Pair[]> = {
   Hacer: [
+    ['I keep thinking about the rent, Hacer.', 'No wonder you look worried. We can stand here a moment.'],
     [
-      'I keep turning the rent over in my head, Hacer.',
-      'No wonder you look preoccupied. We can stand here a moment.',
+      'It is hard to put the rent out of my mind.',
+      'Even at your own door, Halil? That is a lot to worry about.',
     ],
-    ['It is hard to put the rent out of my mind.', 'Even at your own door, Halil? That is a heavy worry.'],
   ],
   Rıza: [
     [
       'I brought my worries about the rent with me, Rıza.',
       'Then put your chair beside mine. We can talk it over.',
     ],
-    [
-      'Osman and the rent are on my mind again.',
-      'Sit with me, Halil. You do not have to carry the worry in silence.',
-    ],
+    ['Osman and the rent are on my mind again.', 'Sit with me, Halil. You can talk to me about your worry.'],
   ],
   Selin: [
     ['I keep thinking about what I owe Osman.', 'I hear you, Dad. Tell me what is worrying you most.'],
@@ -91,7 +78,7 @@ const HEALTH: Record<Companion, readonly Pair[]> = {
     ],
   ],
   Rıza: [
-    ['Selin has been worrying about my health, Rıza.', 'She wants you around, old friend. So do I.'],
+    ['Selin has been worrying about my health, Rıza.', 'She wants you to stay alive, old friend. So do I.'],
     [
       'I keep thinking about what Selin said about the doctor.',
       'That is quite a subject to bring to the tea house. I am glad you told me.',

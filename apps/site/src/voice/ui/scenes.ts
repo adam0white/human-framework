@@ -80,21 +80,21 @@ const ORDINARY: Record<'workshop' | 'street', readonly (readonly [string, string
       'It is easier when I take one part at a time.',
     ],
     [
-      'Is it fiddly work?',
+      'Does the work need careful movements?',
       'Sometimes. I have done it a long time.',
       'Does that make it easier?',
-      'It makes it familiar. That is something.',
+      'The work feels familiar. That helps.',
     ],
     [
       'You are quiet when you work.',
       'I am looking at what is in front of me.',
-      'I will leave you to it, then.',
+      'I will let you work, then.',
       'You can stay. I do not mind the company.',
     ],
   ],
   street: [
     [
-      'Out for a walk, Halil?',
+      'Are you out for a walk, Halil?',
       'I am walking along the river for a while.',
       'You are in no hurry, then?',
       'I am in no hurry on this short walk.',

@@ -84,7 +84,7 @@ export function Report({
               <p className={view.silent.rows.length > 0 ? 'v-report-caption' : 'v-silent-same'}>
                 {view.spoke === false
                   ? 'You made no suggestions this month.'
-                  : 'The same town from the same start, run again without your suggestions.'}
+                  : 'The same month played again from the same starting point, without your suggestions.'}
               </p>
               {view.silent.rows.length > 0 && (
                 <ul className="v-lines v-silent-rows">
@@ -134,7 +134,7 @@ export function Report({
           <div className="v-report-cols">
             <section>
               <h2>What he did on his own</h2>
-              <Lines lines={view.own} empty="Nothing new that he did unprompted." />
+              <Lines lines={view.own} empty="He did not start doing anything new on his own." />
             </section>
             {view.others.length > 0 && (
               <section>
@@ -178,7 +178,10 @@ export function Report({
               As of Eid morning: his record of the month. Under each, what came of it on Eid and in the six
               days after.
             </p>
-            <UnaskedStrip items={view.unasked} lead="At Eid morning he would have done unasked:" />
+            <UnaskedStrip
+              items={view.unasked}
+              lead="On Eid morning, he would have chosen these without being asked:"
+            />
             <EndsList ends={view.ends} />
           </section>
 
@@ -186,11 +189,11 @@ export function Report({
             <section className="v-report-body">
               <h2>His body a week after Eid, as the doctor would read it</h2>
               <p className="v-report-caption">He never feels this directly.</p>
-              <Lines lines={view.body} empty="No reading." />
+              <Lines lines={view.body} empty="There is no information about his health." />
             </section>
             <section>
               <h2>Still open a week after Eid</h2>
-              <Lines lines={view.open} empty="Nothing left open." />
+              <Lines lines={view.open} empty="Nothing is left to do." />
             </section>
           </div>
 

@@ -25,14 +25,14 @@ function pullLine(label: string, toward: boolean): string {
     'what he expects from it': ['I expect this to help.', 'I do not expect this to go well.'],
     'a goal': ['This serves something I want to do.', 'This gets in the way of something I want to do.'],
     'keeping at it': ['I want to keep at what I started.', 'I am reluctant to keep at this.'],
-    'something he had set himself to': [
-      'I want to do what I set myself to.',
-      'This gets in the way of what I set myself to.',
+    'something he had decided to do': [
+      'I want to do what I decided to do.',
+      'This gets in the way of what I decided to do.',
     ],
     safety: ['This would help me feel safe.', 'This does not feel safe.'],
     relief: ['This would ease my discomfort.', 'This would add to my discomfort.'],
-    'his own way': ['I want to do this my own way.', 'This does not feel like my choice.'],
-    standing: ['I want to keep my standing with people.', 'I worry how this will look to people.'],
+    'deciding for himself': ['I want to do this my own way.', 'This does not feel like my choice.'],
+    'respect from others': ['I want people to respect me.', 'I worry how this will look to people.'],
     meaning: ['This matters to me.', 'I find little meaning in this.'],
     'doing it well': ['I want to do this well.', 'I do not feel able to do this well.'],
     enjoyment: ['I would enjoy this.', 'I would not enjoy this.'],
@@ -66,14 +66,14 @@ function pullLine(label: string, toward: boolean): string {
     return toward
       ? `I want to do this for ${label.slice(4)}.`
       : `My concern for ${label.slice(4)} holds me back.`;
-  if (label === 'suhoor' || label === 'iftar')
+  if (label === 'the pre-dawn meal' || label === 'the sunset meal')
     return toward ? 'I want to make time for my meal.' : 'This would get in the way of my meal.';
-  if (label.startsWith('Osman:'))
+  if (label.startsWith('Pay Osman '))
     return toward ? 'I want to keep my word to Osman.' : 'This gets in the way of my word to Osman.';
-  if (label.startsWith('his understanding:'))
+  if (label.startsWith('his understanding of '))
     return toward ? 'This fits how I understand my duties.' : 'This goes against how I understand my duties.';
   if (/^(Fajr|Dhuhr|Asr|Maghrib|Isha|the fast|Eid prayer)/i.test(label))
-    return toward ? 'I want to make room for my practice.' : 'I am reluctant because of my practice.';
+    return toward ? 'I want to make time for my religious duties.' : 'My religious duties make me reluctant.';
   if (/^[A-ZİŞÇÖÜĞ][\p{L}ı]+(?:’s words| said so earlier)$/u.test(label))
     return toward
       ? `I am taking ${label.replace(/ said so earlier$/, '’s words')} to heart.`
@@ -88,7 +88,7 @@ function answerReason(reason: string): string | null {
     'he is asleep': 'I am asleep.',
     'he is not sleepy': 'I am not sleepy.',
     'he is not up to it': 'I am not up to it.',
-    'it is not open to him now': 'I cannot do that just now.',
+    'he cannot do that right now': 'I cannot do that just now.',
     'he cannot': 'I cannot do that.',
     'he does not know how': 'I do not know how.',
     grieving: 'I am still grieving.',
@@ -150,7 +150,7 @@ export function Why({
             <p className="v-why-voice">
               {why.note.includes('insisted')
                 ? 'He went along because he was pressed to do it.'
-                : 'He was already set on this. The other possibilities did not draw him away.'}
+                : 'He kept doing what he had started. The other choices did not seem much better.'}
             </p>
           )}
           {why.voice && (

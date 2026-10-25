@@ -25,7 +25,10 @@ function view(log: LogEntry[]) {
   return el;
 }
 it('renders the stored action and a short spoken Hacer exchange without changing the log', () => {
-  const log = [talk, { ...talk, id: 'reply', kind: 'answer' as const, text: 'Talk hacer? “Fine.”' }];
+  const log = [
+    talk,
+    { ...talk, id: 'reply', kind: 'answer' as const, text: 'Talk with Hacer at the door? “Fine.”' },
+  ];
   const before = JSON.stringify(log);
   const el = view(log);
   expect(el.textContent).toContain(talk.text);
@@ -65,7 +68,9 @@ it('keeps non-social actions and refusal answers free of invented exchanges', ()
     view([{ ...talk, text: 'I repair in the workshop, to earn.' }]).querySelector('.v-exchange'),
   ).toBeNull();
   expect(
-    view([{ ...talk, kind: 'answer', text: 'Talk hacer? “Not now.”' }]).querySelector('.v-exchange'),
+    view([{ ...talk, kind: 'answer', text: 'Talk with Hacer at the door? “Not now.”' }]).querySelector(
+      '.v-exchange',
+    ),
   ).toBeNull();
 });
 

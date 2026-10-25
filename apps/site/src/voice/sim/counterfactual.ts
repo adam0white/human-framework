@@ -139,11 +139,11 @@ function facts(f: MonthFacts, other: MonthFacts): { topic: string; words: string
     topic: 'Osman',
     words: `${
       f.dateKept
-        ? `He kept his date: ${f.firstPay} paid on Ramadan ${f.firstPayDay}.`
+        ? `He paid ${f.firstPay} on Ramadan ${f.firstPayDay}, by the deadline.`
         : f.firstPayDay !== undefined
-          ? `He missed his date; the first ${f.firstPay} came on Ramadan ${f.firstPayDay}.`
-          : 'He missed his date and paid nothing in Ramadan.'
-    }${f.paidByEid >= 600 ? ' All of it paid by Eid.' : ''}`,
+          ? `He missed the deadline. He first paid ${f.firstPay} on Ramadan ${f.firstPayDay}.`
+          : 'He missed the deadline and paid nothing in Ramadan.'
+    }${f.paidByEid >= 600 ? ' He had paid it all by Eid.' : ''}`,
   });
   out.push({
     topic: 'Selin in Ramadan',
@@ -200,7 +200,8 @@ const lower = (s: string) =>
 
 /** The one line shown when you never spoke: there is no other month to set beside it. */
 export const NEVER_SPOKE = 'You said nothing; this was the month you never spoke.';
-export const SILENT_INTRO = 'The same town from the same start, run again without a word from you.';
+export const SILENT_INTRO =
+  'This shows the same month played again from the same starting point, without your advice.';
 
 /**
  * The report section: the month as played beside the month you never spoke (`silent`, the silent game's facts).

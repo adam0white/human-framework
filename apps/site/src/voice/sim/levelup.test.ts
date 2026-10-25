@@ -101,8 +101,8 @@ describe('level-up 2026-10-19 (rules 2)', () => {
     };
     const after = texts(2);
     expect(after.length).toBeGreaterThan(0);
-    expect(after.every((t) => t.includes('pays less'))).toBe(true);
-    expect(texts(1).some((t) => t.includes('pays less'))).toBe(false);
+    expect(after.every((t) => t.includes('earn less'))).toBe(true);
+    expect(texts(1).some((t) => t.includes('earn less'))).toBe(false);
   }, 60_000);
 
   test('the end of Ramadan says what is still owed to Osman on the day it passes', () => {
@@ -111,8 +111,8 @@ describe('level-up 2026-10-19 (rules 2)', () => {
     const owed = Math.round(g.run.town.state.rentOwed);
     // The quiet month on seed 7 ends Ramadan with the rest unpaid, so the line is exercised.
     expect(owed).toBeGreaterThan(0);
-    const line = g.between?.lines.find((l) => l.includes('still owed to Osman'));
-    expect(line).toContain(`${owed} still owed`);
+    const line = g.between?.lines.find((l) => l.includes('still owed Osman'));
+    expect(line).toContain(`he still owed Osman ${owed}`);
   }, 60_000);
 });
 

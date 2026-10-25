@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import { settingWords } from '../../shared/setting-words.ts';
 import type { Draft, Frame, SceneWords, Telegraph } from '../protocol.ts';
 import { Composer } from './Composer.tsx';
-import { spokenLogText } from './conversations.ts';
 import { storyDates } from './dates.ts';
 import { planningContext } from './PlanningContext.tsx';
 import { consequentialOffer, speakingOpportunity } from './pause-policy.ts';
@@ -237,11 +236,7 @@ function SceneDayContent(
   const choices = sceneChoices(scene ?? null, frame.options, offer);
   const encounter = nextEncounter(frame);
   const replyText =
-    answer &&
-    spokenLogText(answer.text).replace(
-      /^(Talk with Hacer at the door|Have tea with Rıza|Call Selin)\?\s*/,
-      '',
-    );
+    answer && answer.text.replace(/^(Talk with Hacer at the door|Have tea with Rıza|Call Selin)\?\s*/, '');
   const reply = answer && !response?.answer && (
     <div className="v-scene-answer" aria-live="polite">
       <small>His answer · {answer.clock}</small>
