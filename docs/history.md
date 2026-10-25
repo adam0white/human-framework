@@ -2,6 +2,10 @@
 
 Detail moved out of AGENTS.md on 2026-10-20 (owner: "Trim handoff and other documents"). AGENTS.md keeps one line per increment; the full text of each bounded increment as it stood in AGENTS.md is kept here verbatim.
 
+## Regular log byte budget (2026-10-25)
+
+Client 0.4.9/kit 0.5.10 fix a published 0.4.8 failure: a full burst of multibyte or escaped logs could exceed the journal byte budget and prevent later regular flushes. Redacted messages now have a serialized UTF-8 byte cap, preserving whole codepoints. Signed artifacts, downloaded digests, exact green CI, focused red/green regressions, packed controls and one independent review are recorded in [releases](releases.md). Game HF pins, notes and privacy controls remain separate. External adoption is continuing.
+
 ## Explicit observation and navigation journal (2026-10-25)
 
 HF2.22.0 keeps engine2.21.0 and adds explicit inherited aptitude for watching, with unchanged earlier observation calls and saved state. Host reset guidance separates current progress from the retained advancement threshold and records stale abandonment. Client0.4.8/kit0.5.9 use immutable local event/log chunks before asynchronous flush, with captured provenance, independent keys, bounded retry and expiry. Two reviews and focused red/green controls fixed duplication, in-flight loss and marker bookkeeping; a built-peer test alias is exact to the package root. npm provenance, signed SDK artifacts, exact CI and the central live deploy are in [releases](releases.md). External client rollout and owner readiness remain separate.
