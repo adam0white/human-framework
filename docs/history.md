@@ -2,6 +2,10 @@
 
 Detail moved out of AGENTS.md on 2026-10-20 (owner: "Trim handoff and other documents"). AGENTS.md keeps one line per increment; the full text of each bounded increment as it stood in AGENTS.md is kept here verbatim.
 
+## Plain English narration (2026-10-25)
+
+HF2.19.0 adds explicit plain-English narration while engine2.17.0 and default continuation remain unchanged. Complete sentences cover framework narration, replies, generated memories, stock outcomes and community logs. Host-authored prose and identity-bearing labels stay exact. Two independent reviews, focused tests, three headless controls, exact green CI and verified npm publication/provenance are recorded in [releases](releases.md). Game adoption waits for parallel source-rewrite workers; owner acceptance remains separate.
+
 ## Cast platform delivery (2026-10-23)
 
 HF2.18.0 publishes the optional bounded chapter clock without changing engine2.17.0 actor behavior. The host/client layer adds whole-cast browser claims, local source receipts, terminal closure, recording consent and canonical Voice/Well/Watch adapters. Package release, exact CI and provenance are recorded in [releases](releases.md). This package/platform delivery does not complete the fifteen-game adoption increment or owner acceptance review.

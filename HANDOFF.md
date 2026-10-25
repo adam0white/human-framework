@@ -1,10 +1,10 @@
 # Handoff — HF (Human Framework)
 
-Updated 2026-10-24. Read [AGENTS.md](AGENTS.md) for rules and the current increment, [docs/framework.md](docs/framework.md) for the architecture, and [docs/roadmap.md](docs/roadmap.md) for what could come next. Older state entries are in [docs/history.md](docs/history.md); every release receipt is in [docs/releases.md](docs/releases.md).
+Updated 2026-10-25. Read [AGENTS.md](AGENTS.md) for rules and the current increment, [docs/framework.md](docs/framework.md) for the architecture, and [docs/roadmap.md](docs/roadmap.md) for what could come next. Older state entries are in [docs/history.md](docs/history.md); every release receipt is in [docs/releases.md](docs/releases.md).
 
 ## What remains
 
-- **HF plain English (2026-10-25):** HF2.19.0 source adds explicit `Lexicon.plainEnglish` and label/reason display readers. Engine2.17.0 and default continuation remain exact. Publication receipts follow in `docs/releases.md`; game pins and opt-in adoption wait for their parallel plain-English workers to finish. Reports: `~/code/.lab-scratch/plain2/hf-report.md`. Owner reading/feel review remains separate, target2026-11-03.
+- **HF plain English (2026-10-25):** HF2.19.0 is published with verified npm signature/attestation and explicit `Lexicon.plainEnglish` and label/reason display readers. Engine2.17.0 and default continuation remain exact. Receipts are in `docs/releases.md`; game pins and saved opt-in adoption wait for their parallel plain-English workers to finish (follow up2026-10-26). Reports: `~/code/.lab-scratch/plain2/hf-report.md`. Owner reading/feel review remains separate, target2026-11-03.
 
 - **Setting copy (owner, 2026-10-24):** “Yes keep the setting, fix and cater it better.” F-493 records the direction. Keep names, places and setting; translate common terms; retain at most two explained flavour words per game. Delivery receipts for this bounded pass are tracked in `~/code/.lab-scratch/setting/workers/human-framework.md`. Owner readiness remains separate.
 
@@ -36,9 +36,11 @@ R2 `hf-lab`: applied and read back lifecycle rules `linked-180-days` (`linked/`)
 
 ## Current state
 
+- **HF2.19.0 / engine2.17.0, plain English (2026-10-25).** Explicit plain-English narration, display readers and generated outcome/log sentences; exact legacy default continuation. Signed release source425c708, exact CI40199344919, trusted publish40199865888 and npm signature/SLSA attestation are verified. Game adoption remains gated by their separate workers. [Release receipts](docs/releases.md).
+
 - Site native routes include Hearsay Rıza/Osman and Stairwell Hacer→Voice, Valley Danyal→Well, and finite native Warren Kian/Meryem→Watch. Each route validates its explicit source dialect, raw checkpoint header and supported calendar/body/family state. Source UI publication, receiving admission and completion of a return duty are distinct. See the current remaining list and `~/code/.lab-scratch/cast/platform-returns.md`; no every-pair portability claim is made.
 
-- **HF2.18.0 / engine2.17.0 (2026-10-23), latest release.** Pure opt-in bounded chapter clock; no actor-loop semantics change. Canonical cast/life, batch browser shelf and game adapters remain host/client code. Signed source `d3c7739`, exact CI40043181138, trusted publish40043504916 and npm SLSA provenance verified. Site manifest matched that source with framework2.18.0 and `dirty:false`. Site follow-up `e73bb3b` has exact green CI40044789194 and a verified `dirty:false` deployment. Browser/cross-origin receipts are tracked in `~/code/.lab-scratch/cast/platform.md`.
+- **HF2.18.0 / engine2.17.0 (2026-10-23).** Pure opt-in bounded chapter clock; no actor-loop semantics change. Canonical cast/life, batch browser shelf and game adapters remain host/client code. Signed source `d3c7739`, exact CI40043181138, trusted publish40043504916 and npm SLSA provenance verified. Site manifest matched that source with framework2.18.0 and `dirty:false`. Site follow-up `e73bb3b` has exact green CI40044789194 and a verified `dirty:false` deployment. Browser/cross-origin receipts are tracked in `~/code/.lab-scratch/cast/platform.md`.
 
 - **HF 2.17.0 / engine 2.17.0 (2026-10-23).** Explicit `protectProgress`/`diminishes`, bounded own-act learning, `adoptProjectTask`, and opt-in narration/social APIs. Exact legacy enabled-project continuations pass. Published 2.14.1-stamped passport payloads remain supported; older host packages need upgrading before receiving new 2.17.0-stamped exports. Consumer pins and cross-host journeys belong to their repository owners and the cast increment. Site pins 2.17.0. Release and CI receipts: [releases](docs/releases.md).
 
