@@ -30,6 +30,7 @@ Played through the text harness only (`apps/site/scripts/play-watch.ts`). State 
 - I stopped at dawn of winter 2, night 3, with about 17 sacks against a mark of 5, and exported the run.
 
 ## What I liked
+
 - **Dawn voices.** This is the best part. "I stayed because Tamar stayed." — Kian. "With Kian next to me I could stand it." — Tamar. "Ruslan got me off the wall. I owe him." — Yunus. "You rang us up for shadows." — Kian. Small, specific and human. I cared about Ruslan and Yunus by night 4.
 - **Cards that name a real conflict.** "Joss hears them near his two children" with "Let Joss go to his two children" was a real choice and I felt it.
 - **Honest odds.** "Urge Yunus to hold — won't (I'm asleep.)" tells me not to waste a press. "likely, you think" is a nice touch of uncertainty.
@@ -38,6 +39,7 @@ Played through the text harness only (`apps/site/scripts/play-watch.ts`). State 
 - **The delayed dawn report.** It cleared up things I couldn't follow at night, like the east-wall thief on night 5.
 
 ## What bored, confused or frustrated me
+
 1. **Every night ends the same way.** Nearly every night, in the small hours, one person after another reports: "says the X wall will have to wait. "I can't keep my eyes open."" It happened on the first night of winter 2, after a whole summer's rest. I found no decision that changes this: no shifts, no rest rota, no sending someone home early to sleep. By winter 2 the only night choice was where to stand with the lantern and whether to ring. **This is where Selin's interest drops.**
 2. **`off` doesn't mean rest.** `post yunus off` showed "not posted · will find a spot on the wall." Kian, left off in winter 2, went to the east wall anyway. I wanted to give someone the night off and couldn't tell how.
 3. **People leave without a prompt.** Mara left the Gate early in winter 2, night 2: "Off the wall: Mara (gone to the hall)." No card came and `wait` didn't stop, so the heir I had just named walked away and I only found out afterwards. I guess cards only come at the lit stretch, but the game never said so.
@@ -49,9 +51,11 @@ Played through the text harness only (`apps/site/scripts/play-watch.ts`). State 
 9. **Press options look identical.** At the first dusk, Ask, Urge and Insist all read "likely, maybe." I couldn't see what pressing harder buys.
 
 ## Where Selin would quit
+
 She would not quit in winter 1: the dawn voices and the Joss card carried it. She would probably stop for the evening around **winter 2, night 2–3**, and might not come back. The pattern was set by then: post by the tracks, carry the lantern there, everyone falls asleep at the small hours, ring, lose a few sacks. Her decisions stopped feeling different, and she had no lever for the one problem that kept happening, which was fatigue.
 
 ## Possible bugs (with repro)
+
 All commands below are run as `node apps/site/scripts/play-watch.ts --state playtest-run.json ...`.
 
 1. **The usage example creates the wrong seed.** The documented `--state run.json new 7` passes `new` and `7` as separate commands. Output: "(a new village, seed 1)" then "(unknown command "7"; try help)". It needs `"new 7"` in quotes. Either the usage note or the argument parsing is wrong.
@@ -69,9 +73,11 @@ All commands below are run as `node apps/site/scripts/play-watch.ts --state play
 My export is in the scratchpad: `/private/tmp/claude-504/-private-tmp-claude-504--Users-abdul-code-human-framework-675a9839-8299-4863-91be-017a92a76ff0-scratchpad-bake-t4-claude/08e8aea4-f067-4859-b09a-424be32a4f0a/scratchpad/playtest-export.json` (seed + input log + state). The command log is in `cmdlog.txt` next to it.
 
 ## Verdict (Selin)
+
 "Mixed: I'd come back for the people at dawn, but by the second winter every night was the same slow slide into sleep, and nothing I chose seemed to change that."
 
 ## Honesty note
+
 - **What I played.** 112 harness calls, including two failed starts. That covers seed 7 from the goal page through 6 played nights of winter 1, the thaw, year 1 at Seasons speed (one matter, the fair, Tamar's death) and 3 played nights of winter 2. Game time: about one year and three nights. Wall-clock time was about 12 minutes, because `wait` advances simulated seconds faster than real time. This is not literally Selin's hour.
 - **How I read the night.** From winter 1 night 5 on, I often filtered harness output with `grep`/`sed` to the ticker and map lines. My pattern `wall \[` never matched the `Gate [dark]`/`Gate [LIT]` row. So the Gate's own map row is missing from every filtered night output in winter 1 night 6 and winter 2 nights 1–3. For the Gate on those nights (Mara leaving with no card, and "Nobody stood the Gate" in bug 4), I saw only the ticker, the "Off the wall" line and the dawn report.
 - **Things I did not do.**

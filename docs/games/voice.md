@@ -1,6 +1,6 @@
-# Game 2 — *The Day You Say Nothing*
+# Game 2 — _The Day You Say Nothing_
 
-The game as shipped, live at /voice/ on HF 2.0 (engine 2.0.0), shipped seed 7. It was designed on 2026-10-03 from the Game 2 premise of the early game-design review (2026-10-02, §5; in the repository history), cut down the same day to a four-played-day build, and revised in thirteen passes ending with the HF 2.0 upgrade, then a fourteenth adding the month you never spoke (§15). Code: [`apps/site/src/voice`](../../apps/site/src/voice) (the town is [`sim/town.ts`](../../apps/site/src/voice/sim/town.ts)); framework: [framework.md](../framework.md). Game 1 is [*Twice at the Well*](colony.md). The boundaries in [islamic-foundations.md](../../research/islamic-foundations.md) §3–5 and AGENTS.md apply throughout: the player is a suggestion, never a judge; nothing scores worth, faith or acceptance. Contested religious points follow [research/decisions.md](../../research/decisions.md) (§11).
+The game as shipped, live at /voice/ on HF 2.0 (engine 2.0.0), shipped seed 7. It was designed on 2026-10-03 from the Game 2 premise of the early game-design review (2026-10-02, §5; in the repository history), cut down the same day to a four-played-day build, and revised in thirteen passes ending with the HF 2.0 upgrade, then a fourteenth adding the month you never spoke (§15). Code: [`apps/site/src/voice`](../../apps/site/src/voice) (the town is [`sim/town.ts`](../../apps/site/src/voice/sim/town.ts)); framework: [framework.md](../framework.md). Game 1 is [_Twice at the Well_](colony.md). The boundaries in [islamic-foundations.md](../../research/islamic-foundations.md) §3–5 and AGENTS.md apply throughout: the player is a suggestion, never a judge; nothing scores worth, faith or acceptance. Contested religious points follow [research/decisions.md](../../research/decisions.md) (§11).
 
 ## 1. Pitch
 
@@ -16,18 +16,18 @@ Why him: a widower's life has collapsed structure (lapsed commitments, habits th
 
 Every person below is a full `Person` in one `Community`, except the doctor.
 
-| Person / place | Role |
-|---|---|
-| Home (`halil-home`) | Sleep, suhoor, iftar alone, prayer at home; Nuran's memories are cued here. |
-| Workshop (rented from Osman) | Morning repair (paid per block), the afternoon shift; shut on Eid (town custom, engineering assumption). |
-| Mosque | Prayer at the mosque (heavier for him since the funeral), the Eid prayer. |
-| Tea house | Rıza, tea, cigarettes; he does not hear the phone there. |
+| Person / place               | Role                                                                                                                                          |
+| ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| Home (`halil-home`)          | Sleep, suhoor, iftar alone, prayer at home; Nuran's memories are cued here.                                                                   |
+| Workshop (rented from Osman) | Morning repair (paid per block), the afternoon shift; shut on Eid (town custom, engineering assumption).                                      |
+| Mosque                       | Prayer at the mosque (heavier for him since the funeral), the Eid prayer.                                                                     |
+| Tea house                    | Rıza, tea, cigarettes; he does not hear the phone there.                                                                                      |
 | Clinic, cemetery, Eid market | The doctor's words are the only place the true body is read aloud; `visit-grave` after Asr and from 09:00 on Eid; the market from Ramadan 10. |
-| **Selin**, 34, daughter | In the city; calls in the evening; wants his blood pressure seen. |
-| **Hacer**, 70, neighbour | Leaves iftar at his door; carries news both ways. |
-| **Rıza**, 63, friend | Retired, warm, bored; tea after iftar. |
-| **Osman**, 55, landlord | Owed 600; wants 300 by Ramadan 15. |
-| The doctor | Not a Person: a host `told` percept (`actorId: 'doctor'`). |
+| **Selin**, 34, daughter      | In the city; calls in the evening; wants his blood pressure seen.                                                                             |
+| **Hacer**, 70, neighbour     | Leaves iftar at his door; carries news both ways.                                                                                             |
+| **Rıza**, 63, friend         | Retired, warm, bored; tea after iftar.                                                                                                        |
+| **Osman**, 55, landlord      | Owed 600; wants 300 by Ramadan 15.                                                                                                            |
+| The doctor                   | Not a Person: a host `told` percept (`actorId: 'doctor'`).                                                                                    |
 
 The premise names each voice's relation (daughter, friend, neighbour, landlord), the end labels repeat it, and each voice's first log line gives it. Reputation is the others' beliefs about him moving through `told` percepts between them.
 
@@ -37,13 +37,13 @@ The game never says "make Halil do X". It shows his ends, in his words, as his r
 
 > Help him toward what he wants, so that on Eid, when you are silent, he does it on his own.
 
-| End | His words | Read from |
-|---|---|---|
-| The fast | "Keep the fast." | The day's `fast` commitment: kept, or excused with a make-up owed. An excused day is never shown as failure. |
-| Osman | "Pay Osman what I owe." | Host ledger: 600 owed at the start, 300 by Ramadan 15 20:00. |
+| End          | His words                             | Read from                                                                                                                                      |
+| ------------ | ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| The fast     | "Keep the fast."                      | The day's `fast` commitment: kept, or excused with a make-up owed. An excused day is never shown as failure.                                   |
+| Osman        | "Pay Osman what I owe."               | Host ledger: 600 owed at the start, 300 by Ramadan 15 20:00.                                                                                   |
 | His pressure | "Selin wants my blood pressure seen." | `see-doctor` completed, then the doctor's words; after that, cigarettes per day at the start and end of Ramadan, walks, and cigarettes on Eid. |
-| Selin | "Talk to Selin." | Calls each way, who called, and the day of the last one. |
-| You | "Does he still listen to you?" | `VoiceRelation.trust` for `you` and its last three history events. |
+| Selin        | "Talk to Selin."                      | Calls each way, who called, and the day of the last one.                                                                                       |
+| You          | "Does he still listen to you?"        | `VoiceRelation.trust` for `you` and its last three history events.                                                                             |
 
 Prayer appears in his day, the sky band and the chronicle, but it is not an end. The game does not track or score worship as a goal (§11).
 
@@ -53,33 +53,33 @@ Every end is read at Eid morning (the run is snapshotted when Eid starts) and st
 
 The original spec asked for thirty played days and a larger town. The build cut it to what shows the idea:
 
-| Original | As shipped | Reason |
-|---|---|---|
-| 30 played days, about 3 minutes each | Four played days (Ramadan 1, 2, 15, 30), skips between them, a muted Eid (day 31), a 6-day muted epilogue | The idea lands in one day; a few days show change. |
-| 40-day epilogue | 6 days (days 32–37) via `runSilent` | `diffChronicle` needs several days; 40 add nothing here. |
-| Kilim (30×24 woven rug, the save screen) | A day **strip** per played day plus Eid | Same meaning, about a tenth of the work. |
-| Sky canvas with true moon phase and weather | A CSS sky band: the hour's hue, prayer notches, a fast bar, a "now" mark | No loss to the idea. |
-| Gestures (tap, hold, swipe up to insist) | A composer with buttons and keys (§6) | The Game 1 playtest asked for compose-then-Confirm. |
-| Appeal chips unlocked by his trace | All five reasons always shown; the live telegraph teaches which lands | The unlock is invisible in a 4-day game. |
-| "Things you no longer need to say" (silent dawn probe) | `diffChronicle`'s lines in the report, plus the "He'd now do unasked" strip (seventh pass, §8) | |
-| Yakup Hoca, Dr. Ayşe as a Person, Deniz (6) and Selin's visit | Not built; the doctor is a `told` percept | No new Persons. |
-| Zakat al-fitr | Not represented | It is an obligation with an amount and a deadline; nothing in `research/` sources it. |
-| Sewing machine, grocer tab, cards, Osman's van, travel to Selin for Eid | Not built | Out of scope. |
-| Saves at every dawn, "one day each day" pacing | No saves; Replay restarts from the seed; a playtest export (seed + input log + state JSON) replays the run | Out of scope. |
-| Felt-body line figure, per-voice paper styles | Felt words; a colour, label and icon per voice | Drawing deferred; feelings stay in words. |
+| Original                                                                | As shipped                                                                                                 | Reason                                                                                |
+| ----------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| 30 played days, about 3 minutes each                                    | Four played days (Ramadan 1, 2, 15, 30), skips between them, a muted Eid (day 31), a 6-day muted epilogue  | The idea lands in one day; a few days show change.                                    |
+| 40-day epilogue                                                         | 6 days (days 32–37) via `runSilent`                                                                        | `diffChronicle` needs several days; 40 add nothing here.                              |
+| Kilim (30×24 woven rug, the save screen)                                | A day **strip** per played day plus Eid                                                                    | Same meaning, about a tenth of the work.                                              |
+| Sky canvas with true moon phase and weather                             | A CSS sky band: the hour's hue, prayer notches, a fast bar, a "now" mark                                   | No loss to the idea.                                                                  |
+| Gestures (tap, hold, swipe up to insist)                                | A composer with buttons and keys (§6)                                                                      | The Game 1 playtest asked for compose-then-Confirm.                                   |
+| Appeal chips unlocked by his trace                                      | All five reasons always shown; the live telegraph teaches which lands                                      | The unlock is invisible in a 4-day game.                                              |
+| "Things you no longer need to say" (silent dawn probe)                  | `diffChronicle`'s lines in the report, plus the "He'd now do unasked" strip (seventh pass, §8)             |                                                                                       |
+| Yakup Hoca, Dr. Ayşe as a Person, Deniz (6) and Selin's visit           | Not built; the doctor is a `told` percept                                                                  | No new Persons.                                                                       |
+| Zakat al-fitr                                                           | Not represented                                                                                            | It is an obligation with an amount and a deadline; nothing in `research/` sources it. |
+| Sewing machine, grocer tab, cards, Osman's van, travel to Selin for Eid | Not built                                                                                                  | Out of scope.                                                                         |
+| Saves at every dawn, "one day each day" pacing                          | No saves; Replay restarts from the seed; a playtest export (seed + input log + state JSON) replays the run | Out of scope.                                                                         |
+| Felt-body line figure, per-voice paper styles                           | Felt words; a colour, label and icon per voice                                                             | Drawing deferred; feelings stay in words.                                             |
 
 ## 5. The month as played
 
-| Stretch | Mode | Notes |
-|---|---|---|
-| Ramadan 1, from 03:40 | Played, teaching pace | Starts asleep, about 20 minutes before the suhoor drummer; the first beat is the suhoor wake. |
-| Ramadan 2 | Played | Selin's call after iftar; her standing advice shows as a prefill reason. |
-| Ramadan 3–14 | Skipped | Instant, headless. |
-| Ramadan 15 | Played | Osman's date. |
-| Ramadan 16–29 | Skipped | |
-| Ramadan 30 | Played | The last fast; its last night says Selin will leave the first Eid call to him, with "call Selin" prefilled. |
-| Eid (day 31) | Muted, watched live | No composer; auto-pause beats still on. |
-| Days 32–37 | Muted epilogue | `runSilent(..., 6, { mutedVoiceId: 'you' })` on a deep copy of the whole run (town state, community host fields, every person), so Keep listening can resume from Eid night. |
+| Stretch               | Mode                  | Notes                                                                                                                                                                        |
+| --------------------- | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Ramadan 1, from 03:40 | Played, teaching pace | Starts asleep, about 20 minutes before the suhoor drummer; the first beat is the suhoor wake.                                                                                |
+| Ramadan 2             | Played                | Selin's call after iftar; her standing advice shows as a prefill reason.                                                                                                     |
+| Ramadan 3–14          | Skipped               | Instant, headless.                                                                                                                                                           |
+| Ramadan 15            | Played                | Osman's date.                                                                                                                                                                |
+| Ramadan 16–29         | Skipped               |                                                                                                                                                                              |
+| Ramadan 30            | Played                | The last fast; its last night says Selin will leave the first Eid call to him, with "call Selin" prefilled.                                                                  |
+| Eid (day 31)          | Muted, watched live   | No composer; auto-pause beats still on.                                                                                                                                      |
+| Days 32–37            | Muted epilogue        | `runSilent(..., 6, { mutedVoiceId: 'you' })` on a deep copy of the whole run (town state, community host fields, every person), so Keep listening can resume from Eid night. |
 
 Day labels come from `townDay(day)`: "Ramadan n", "Eid al-Fitr", "Shawwal n". `TOWN_EID_DAY` is 31 (30 fasts from day 1); make-up fasts start on day 32. A played day ends at 23:30 (he may sleep before Isha and pray it at 02:10, so "first sleep after Isha" is not a usable boundary). **End the day** fast-forwards to 23:30 with only the current standing suggestion live.
 
@@ -100,12 +100,12 @@ The composer is open only when Halil is awake and at a decision point. While he 
 
 Top to bottom:
 
-1. **Leaning:** "He's leaning toward *repair in the workshop* — *to earn; Osman is owed 600*", the top option's dominant term in words.
+1. **Leaning:** "He's leaning toward _repair in the workshop_ — _to earn; Osman is owed 600_", the top option's dominant term in words.
 2. **Options:** up to six things he notices, in his words, ranked by his utility, the leaning one marked. Keys 1–6.
 3. **Prefill line**, whenever the composer opened prefilled: "Prefilled because: Selin said on the phone last night: see the doctor."
 4. **How:** Mention (strength 0.35) or Urge (0.7), keys M/U. **Insist** (key I) prints its price before Confirm. Insisting earns no trust when it goes well, and costs trust only when he is already pressed; the composer says so.
-5. **Reason (optional, one):** *it's your duty* (`duty`), *your health* (`safety`), *for Selin* (`benevolence`), *you shouldn't be alone* (`belonging`), *it matters* (`meaning`). A reason earns its bonus only when it matches a motive he holds.
-6. **Telegraph**, live (`predict`, debounced 100 ms), in verdict colour: "Likely: 'Fine.'", "Not now — *after I pray*", "He'd do something like it: *pray at home*", "Won't: 'Not while I'm keeping my fast.'", "Can't: …". When the draw can contradict a stated likelihood it says "probably".
+5. **Reason (optional, one):** _it's your duty_ (`duty`), _your health_ (`safety`), _for Selin_ (`benevolence`), _you shouldn't be alone_ (`belonging`), _it matters_ (`meaning`). A reason earns its bonus only when it matches a motive he holds.
+6. **Telegraph**, live (`predict`, debounced 100 ms), in verdict colour: "Likely: 'Fine.'", "Not now — _after I pray_", "He'd do something like it: _pray at home_", "Won't: 'Not while I'm keeping my fast.'", "Can't: …". When the draw can contradict a stated likelihood it says "probably".
 7. **Say it** (Enter) and **Say nothing** (Esc). Enter after a mouse click on a picked option, strength, insist or reason sends.
 
 **Prefill rule** (`sim/prefill.ts`, deterministic, first rule wins; it skips an option he would refuse outright):
@@ -134,7 +134,7 @@ Desktop: a top bar (title, day label, clock, sky band, pause, pace, Auto-pause a
 
 The sky band's prayer pips are filled when kept, ringed when missed (no ring for a prayer excused by sleep or unconsciousness), with a dot for the mosque.
 
-Log: consecutive same-action entries collapse ("tea with Rıza, 19:24–22:14"); verdict colours are green yes, amber not now / something like it (counter-offer in italics), grey cannot, red will not, struck-through amber under protest; other voices have their colour and label; recalls appear in italics ("*Nuran, at this table, last Ramadan.*"); rows are separated by a border; every entry with a `decisionId` opens Why. Detached replies name what they answer ("Drink water? 'Not while I'm keeping my fast.'"). An abandoned walk to the mosque reads "I set out for the mosque, as you asked, and turned back; the mosque brings back the funeral."
+Log: consecutive same-action entries collapse ("tea with Rıza, 19:24–22:14"); verdict colours are green yes, amber not now / something like it (counter-offer in italics), grey cannot, red will not, struck-through amber under protest; other voices have their colour and label; recalls appear in italics ("_Nuran, at this table, last Ramadan._"); rows are separated by a border; every entry with a `decisionId` opens Why. Detached replies name what they answer ("Drink water? 'Not while I'm keeping my fast.'"). An abandoned walk to the mosque reads "I set out for the mosque, as you asked, and turned back; the mosque brings back the funeral."
 
 ### 7.3 Between-days card
 
@@ -152,20 +152,20 @@ One panel that scrolls inside the viewport, in this order: a plain Eid summary (
 
 ## 8. What the player sees of his mind
 
-| Shown | Source | Hidden |
-|---|---|---|
-| Doing now, intention, until when | `activity`, `DecisionRecord.intention` | |
-| Felt body: hunger, thirst, tiredness as a word and a bar | `readBody(p).perceived` | The true body, until the doctor or the report |
-| Feelings he would name (intensity ≥ 0.2) | `readAffect(p).dominant` | Mood as a number |
-| On his mind: open commitments with times and a closing state; the fast shown as excused when it is | `agenda.commitments`, `commitmentPressure` | Importance values |
-| His health: his pressure in words, whether he counts himself ill, days owed, the doctor's words | body, host | |
-| How the clinic, calling Selin and the mosque weigh on him, and whether that is easier than at the start | seeded aversions | |
-| Money and debt | host ledger | |
-| Your trust: a bar and the last three events | `voiceOf(halil,'you')` | |
-| Other voices: colour, relation, a trust word, what they last urged and whether it is still on his mind, a conflict line | `voicesIn`, `standingAdvice`, `conflictBetweenVoices` | Their numeric trust (only in the report, as words) |
-| Memories, only when cited or recalled | recalled episode, loss recalls | The episode list |
-| Why, on demand: stacked term bars for the top three options, labelled estimates; the chosen option first, with a reason when it was not the top total | `trace`, `Considered.terms` | |
-| Chronicle | `narrateChronicle` in cards and the report | Raw `DayRecord`s |
+| Shown                                                                                                                                                 | Source                                                | Hidden                                             |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | -------------------------------------------------- |
+| Doing now, intention, until when                                                                                                                      | `activity`, `DecisionRecord.intention`                |                                                    |
+| Felt body: hunger, thirst, tiredness as a word and a bar                                                                                              | `readBody(p).perceived`                               | The true body, until the doctor or the report      |
+| Feelings he would name (intensity ≥ 0.2)                                                                                                              | `readAffect(p).dominant`                              | Mood as a number                                   |
+| On his mind: open commitments with times and a closing state; the fast shown as excused when it is                                                    | `agenda.commitments`, `commitmentPressure`            | Importance values                                  |
+| His health: his pressure in words, whether he counts himself ill, days owed, the doctor's words                                                       | body, host                                            |                                                    |
+| How the clinic, calling Selin and the mosque weigh on him, and whether that is easier than at the start                                               | seeded aversions                                      |                                                    |
+| Money and debt                                                                                                                                        | host ledger                                           |                                                    |
+| Your trust: a bar and the last three events                                                                                                           | `voiceOf(halil,'you')`                                |                                                    |
+| Other voices: colour, relation, a trust word, what they last urged and whether it is still on his mind, a conflict line                               | `voicesIn`, `standingAdvice`, `conflictBetweenVoices` | Their numeric trust (only in the report, as words) |
+| Memories, only when cited or recalled                                                                                                                 | recalled episode, loss recalls                        | The episode list                                   |
+| Why, on demand: stacked term bars for the top three options, labelled estimates; the chosen option first, with a reason when it was not the top total | `trace`, `Considered.terms`                           |                                                    |
+| Chronicle                                                                                                                                             | `narrateChronicle` in cards and the report            | Raw `DayRecord`s                                   |
 
 **"He'd now do unasked"** (`sim/unasked.ts`, seventh pass; it restores the spec's silent dawn probe, which the build had cut). For suhoor, calling Selin, the clinic, paying Osman, the shift and the walk, it shows what he chose at his last decision where the act was open and your voice was not weighed. It appears on the Ends pane, the day card, the skip card and the report. Prayer is left out.
 
@@ -175,16 +175,16 @@ Pace: Slow (default) 8 sim-min/s, Normal 20, Fast 60. While he sleeps, or during
 
 The closed list of beats (`sim/beats.ts`). With Auto-pause off a beat is logged with a highlight. Subject to a 20-sim-minute cooldown except where noted:
 
-| Beat | Fires when |
-|---|---|
-| `wake` | His first waking decision after sleep (the wake line carries the minute he woke). |
-| `verdict` | His answer to your word; pauses only when he defers, declines or cannot, and only on the first answer or a change of tone. No cooldown. |
-| `voice` | Another voice reaches him: a call, Osman's demand, the doctor. Gossip is logged without pausing. |
-| `craving` | A habit fires for an option he won't or can't take; in Ramadan a once-a-day smoking craving. |
-| `close-call` | Top two options within the close-call margin, read ahead on a cloned `decide` so it fires before the act; pauses only when there is a prefill, never between two ways to pray or two ways of what he is already doing. |
-| `duty-risk` | A commitment enters its closing stretch unfulfilled, thirst ≥ 0.7 in the fast, the once-a-day shift shortfall, a deadline (while he sleeps it waits until within an hour; a promise's beat comes at most 3 hours ahead). |
-| `recall` | A loss recall; logged without pausing. |
-| `day-end`, `eid` | Screens; always pause. |
+| Beat             | Fires when                                                                                                                                                                                                               |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `wake`           | His first waking decision after sleep (the wake line carries the minute he woke).                                                                                                                                        |
+| `verdict`        | His answer to your word; pauses only when he defers, declines or cannot, and only on the first answer or a change of tone. No cooldown.                                                                                  |
+| `voice`          | Another voice reaches him: a call, Osman's demand, the doctor. Gossip is logged without pausing.                                                                                                                         |
+| `craving`        | A habit fires for an option he won't or can't take; in Ramadan a once-a-day smoking craving.                                                                                                                             |
+| `close-call`     | Top two options within the close-call margin, read ahead on a cloned `decide` so it fires before the act; pauses only when there is a prefill, never between two ways to pray or two ways of what he is already doing.   |
+| `duty-risk`      | A commitment enters its closing stretch unfulfilled, thirst ≥ 0.7 in the fast, the once-a-day shift shortfall, a deadline (while he sleeps it waits until within an hour; a promise's beat comes at most 3 hours ahead). |
+| `recall`         | A loss recall; logged without pausing.                                                                                                                                                                                   |
+| `day-end`, `eid` | Screens; always pause.                                                                                                                                                                                                   |
 
 Wake, craving, duty-risk and close-call beats stop pausing after two in a row are answered with nothing. Naps are capped at 90 minutes and do not pause. Pauses per played day (Ramadan 1 / 2 / 15 / 30, then Eid), seed 7, after the seventh pass: prefill + doctor/Selin whispers 10 / 6 / 7 / 6, Eid 5 (was 19 / 16 / 11 / 9, Eid 7); quiet 5 / 6 / 4 / 3, Eid 5; prefill + shift/Selin whispers 10 / 6 / 3 / 3, Eid 4.
 
@@ -211,17 +211,17 @@ Prayer and the fast are part of Halil's day, never the theme, goal or a scored m
 
 The town's content landed with tests in [`sim/town.test.ts`](../../apps/site/src/voice/sim/town.test.ts) ("Game 2 world content"). As shipped, with the targets that could not be met as written ([findings](../findings.md), 2026-10-03):
 
-| # | Content | As shipped |
-|---|---|---|
-| W1 | Start and day numbering | Created at Ramadan 1 03:40 asleep; `TOWN_EID_DAY` 31; no fast on day 31; make-ups from day 32. |
-| W2 | Distinct house places | `halil-home`, `hacer-home`, `riza-home`, `osman-home`; Selin in `city`. Contagion needs co-presence. |
-| W3 | Grief seed | Nuran as a deceased `wife` relationship; seeded episodes (funeral, iftar together, her tea and his cigarette, the mosque after the funeral). Loss recalls run about 2.7 a day, not the planned 1.5 (recalled loss memories gain salience); the test bounds the mean at 3. |
-| W4 | Pray at home | `pray-home` 15 min; the mosque 35 min with `belonging`, made heavy by a seeded negative expectation. A mosque word that loses to home is a "something like it" verdict. |
-| W5 | Debt numbers | Rent 300, 600 owed, the `rent` promise for 300 by Ramadan 15 20:00; start 40, clinic 10. Wage lowered from 25 to 16 in the second pass (§15). Osman comes to the door from Ramadan 10 at most every 4 days, on his own date if nothing is paid, and presses harder (advice 0.8) after it. |
-| W6 | Calls with Selin | `call:selin` both ways in the evening; from 10:00 on Eid; per-direction call gaps. His affection for her is bistable for calls (0.5 called daily, 0.4 never), kept at 0.4, so his own call needs the player. |
-| W7 | Eid content | `visit-grave`, tea with Rıza from 09:00, the call, the Eid prayer (§11), the first daytime meal exposing the smoking cue. |
-| W8 | Co-present talk only | Reverted: it silenced Rıza and Hacer entirely. Hacer reaches him about twice a month and Rıza 0–10 times, short of the planned 5 each (a claim is never retold to someone who heard it). |
-| W9 | Narration lines | Suhoor and iftar intentions read "for suhoor" and "to break the fast". |
+| #   | Content                 | As shipped                                                                                                                                                                                                                                                                                |
+| --- | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| W1  | Start and day numbering | Created at Ramadan 1 03:40 asleep; `TOWN_EID_DAY` 31; no fast on day 31; make-ups from day 32.                                                                                                                                                                                            |
+| W2  | Distinct house places   | `halil-home`, `hacer-home`, `riza-home`, `osman-home`; Selin in `city`. Contagion needs co-presence.                                                                                                                                                                                      |
+| W3  | Grief seed              | Nuran as a deceased `wife` relationship; seeded episodes (funeral, iftar together, her tea and his cigarette, the mosque after the funeral). Loss recalls run about 2.7 a day, not the planned 1.5 (recalled loss memories gain salience); the test bounds the mean at 3.                 |
+| W4  | Pray at home            | `pray-home` 15 min; the mosque 35 min with `belonging`, made heavy by a seeded negative expectation. A mosque word that loses to home is a "something like it" verdict.                                                                                                                   |
+| W5  | Debt numbers            | Rent 300, 600 owed, the `rent` promise for 300 by Ramadan 15 20:00; start 40, clinic 10. Wage lowered from 25 to 16 in the second pass (§15). Osman comes to the door from Ramadan 10 at most every 4 days, on his own date if nothing is paid, and presses harder (advice 0.8) after it. |
+| W6  | Calls with Selin        | `call:selin` both ways in the evening; from 10:00 on Eid; per-direction call gaps. His affection for her is bistable for calls (0.5 called daily, 0.4 never), kept at 0.4, so his own call needs the player.                                                                              |
+| W7  | Eid content             | `visit-grave`, tea with Rıza from 09:00, the call, the Eid prayer (§11), the first daytime meal exposing the smoking cue.                                                                                                                                                                 |
+| W8  | Co-present talk only    | Reverted: it silenced Rıza and Hacer entirely. Hacer reaches him about twice a month and Rıza 0–10 times, short of the planned 5 each (a claim is never retold to someone who heard it).                                                                                                  |
+| W9  | Narration lines         | Suhoor and iftar intentions read "for suhoor" and "to break the fast".                                                                                                                                                                                                                    |
 
 Later passes added: learned aversions to the clinic and to calling Selin first, which a voice can get him past and good outcomes soften; the afternoon shift (no `material` term); the walk; placeless smoking with an action-wide refractory; the Eid market; the unheard phone at the tea house.
 
@@ -243,24 +243,24 @@ Headless players use only the player's tools (`sim/players.ts`): on a played day
 
 **The range** (tenth pass, engine 1.7.0; Saboteur rows with the twelfth pass's engine-1.9.0 values where they moved). Rent is "date kept (of 5), paid by Eid"; Contact counts connected calls with Selin in Ramadan, both ways; Shops counts Eid-market days; excused fast breaks are Ramadan days with food or water in fasting hours, excused under necessity, never a breach.
 
-| Player | Smoke days | Mornings / shifts | Rent | Contact | Shops | Trust | Clinic | Suhoors | Sleep h/day | Late nights | Excused breaks |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| Silent | 22 | 30 / 0 | 0/5, 300 | 15 | 0 | 0.50 | 0 | 30 | 11.1 | 2 | 0 |
-| Prefill + doctor/Selin whispers | 19.2 | 30 / 0.8 | 0/5, 300 | 28.2 | 0 | 0.62 | 1 | 30 | 10.0 | 11 | 0 |
-| Shift + Selin whispers | 13 (12–17) | 30 / 3.4 | 5/5, 540 | 28 | 0 | 0.63 | 1 | 30 | 10.2 | 12.2 | 0 |
-| Insist + urge doctor/mosque | 14.6 | 30 / 4 | 4/5, 300 | 15.2 | 0 | 0.54 | 4 | 30 | 10.3 | 15.4 | 0 |
-| Walk (Mention) + Selin | 17.4 | 30 / 0 | 0/5, 300 | 28 | 0 | 0.64 | 1 | 30 | 10.1 | 6.8 | 0 |
-| Walk (Urge) + shift | 12.2 | 30 / 0.4 | 5/5, 600 | 16 | 0 | 0.62 | 1 | 30 | 9.9 | 7 | 0 |
-| **Guardian** | **7.2** | 30 / 1 | 4/5, **600** | 17 | 0 | 0.62 | 1 | 30 | 10.0 | 8 | 0 |
-| **Tempter** | 23.6 | 30 / 0 | 0/5, **0** | **5.8** | **19** | 0.48 | 0 | 28 | 9.5 | 0 | 2 |
-| Tempter, no whisper | **29** | 30 / 0 | 0/5, 300 | 15 | 0 | 0.52 | 0 | 28 | 10.2 | 8.4 | 2 |
-| **Saboteur** | 21 | **26** / 0 | 0/5, 300 | 13 | 0 | **0.01** | 0 | 26 | 9.7 | 5.2 | 1 |
-| Saboteur, no whisper | 11 | **26** / 0 | 0/5, 300 | 15 | 0 | **0.00** | 0 | 26 | 10.1 | 1.6 | 1 |
-| Osman can wait (Urge) | 20.6 | 30 / 0 | 0/5, **0** | 15 | **19** | 0.37 | 0 | 30 | 10.8 | 1 | 0 |
-| Eid first (Mention, "for Selin") | 22.6 | 30 / 0 | 0/5, 240, paid R21–22 | 15 | 9 (6–19) | 0.44 | 0 | 30 | 11.0 | 1.8 | 0 |
-| Stay out late (Mention) | **10** | 30 / 0 | 0/5, 300 | **7.4** | 0 | 0.61 | 0 | 30 | 9.5 | 2 | 0 |
-| Sleep in after suhoor (Urge) | 14 | 30 / 0 | 0/5, 300 | 15 | 0 | 0.59 | 0 | 30 | 11.4 | 1 | 0 |
-| Selin, then skip the call | 20 | 30 / 0 | 0/5, 300 | 25 | 0 | 0.56 | 0 | 30 | 11.0 | 2 | 0 |
+| Player                           | Smoke days | Mornings / shifts | Rent                  | Contact | Shops    | Trust    | Clinic | Suhoors | Sleep h/day | Late nights | Excused breaks |
+| -------------------------------- | ---------- | ----------------- | --------------------- | ------- | -------- | -------- | ------ | ------- | ----------- | ----------- | -------------- |
+| Silent                           | 22         | 30 / 0            | 0/5, 300              | 15      | 0        | 0.50     | 0      | 30      | 11.1        | 2           | 0              |
+| Prefill + doctor/Selin whispers  | 19.2       | 30 / 0.8          | 0/5, 300              | 28.2    | 0        | 0.62     | 1      | 30      | 10.0        | 11          | 0              |
+| Shift + Selin whispers           | 13 (12–17) | 30 / 3.4          | 5/5, 540              | 28      | 0        | 0.63     | 1      | 30      | 10.2        | 12.2        | 0              |
+| Insist + urge doctor/mosque      | 14.6       | 30 / 4            | 4/5, 300              | 15.2    | 0        | 0.54     | 4      | 30      | 10.3        | 15.4        | 0              |
+| Walk (Mention) + Selin           | 17.4       | 30 / 0            | 0/5, 300              | 28      | 0        | 0.64     | 1      | 30      | 10.1        | 6.8         | 0              |
+| Walk (Urge) + shift              | 12.2       | 30 / 0.4          | 5/5, 600              | 16      | 0        | 0.62     | 1      | 30      | 9.9         | 7           | 0              |
+| **Guardian**                     | **7.2**    | 30 / 1            | 4/5, **600**          | 17      | 0        | 0.62     | 1      | 30      | 10.0        | 8           | 0              |
+| **Tempter**                      | 23.6       | 30 / 0            | 0/5, **0**            | **5.8** | **19**   | 0.48     | 0      | 28      | 9.5         | 0           | 2              |
+| Tempter, no whisper              | **29**     | 30 / 0            | 0/5, 300              | 15      | 0        | 0.52     | 0      | 28      | 10.2        | 8.4         | 2              |
+| **Saboteur**                     | 21         | **26** / 0        | 0/5, 300              | 13      | 0        | **0.01** | 0      | 26      | 9.7         | 5.2         | 1              |
+| Saboteur, no whisper             | 11         | **26** / 0        | 0/5, 300              | 15      | 0        | **0.00** | 0      | 26      | 10.1        | 1.6         | 1              |
+| Osman can wait (Urge)            | 20.6       | 30 / 0            | 0/5, **0**            | 15      | **19**   | 0.37     | 0      | 30      | 10.8        | 1           | 0              |
+| Eid first (Mention, "for Selin") | 22.6       | 30 / 0            | 0/5, 240, paid R21–22 | 15      | 9 (6–19) | 0.44     | 0      | 30      | 11.0        | 1.8         | 0              |
+| Stay out late (Mention)          | **10**     | 30 / 0            | 0/5, 300              | **7.4** | 0        | 0.61     | 0      | 30      | 9.5         | 2           | 0              |
+| Sleep in after suhoor (Urge)     | 14         | 30 / 0            | 0/5, 300              | 15      | 0        | 0.59     | 0      | 30      | 11.4        | 1           | 0              |
+| Selin, then skip the call        | 20         | 30 / 0            | 0/5, 300              | 25      | 0        | 0.56     | 0      | 30      | 11.0        | 2           | 0              |
 
 What the table shows:
 
@@ -274,15 +274,14 @@ What the table shows:
 
 **Faith push** (eleventh pass, then twelfth pass, engine 1.9.0, same seeds). Prayers are the five dailies in Ramadan out of 151 windows; refusal columns are summed over five seeds.
 
-| Player | Prayers missed | Fasts excused | Smoke days | Trust | Won't miss (omission rule) | Fast refusals | Prayer first |
-|---|---|---|---|---|---|---|---|
-| Silent, Guardian, Tempter | 0 | 0, 0, 2 | 22, 7.2, 23.6 | 0.50, 0.62, 0.48 | 0 | 0 | 0, 10 put off, 87 put off |
-| Tempter + faith | 0 | 1 | 22 | 0.47 | 0 | 10 | 127 put off |
-| Saboteur + faith | 0 (was 1) | 1 | 13 | 0.01 | 10 | 20 | 16 protest |
-| Faith only (Mention) | 0 | 0 | 29 | 0.51 | 0 | 10 | 160 put off |
-| Faith only (Urge, insist) | 0 | 0 | 27 | 0.02 | 10 | 10 | 77 protest |
-| Faith only, relentless | 0 (was 1, made up) | 0 | 23.8 | 0.05 | 27 | 15 | 80 protest |
-
+| Player                    | Prayers missed     | Fasts excused | Smoke days    | Trust            | Won't miss (omission rule) | Fast refusals | Prayer first              |
+| ------------------------- | ------------------ | ------------- | ------------- | ---------------- | -------------------------- | ------------- | ------------------------- |
+| Silent, Guardian, Tempter | 0                  | 0, 0, 2       | 22, 7.2, 23.6 | 0.50, 0.62, 0.48 | 0                          | 0             | 0, 10 put off, 87 put off |
+| Tempter + faith           | 0                  | 1             | 22            | 0.47             | 0                          | 10            | 127 put off               |
+| Saboteur + faith          | 0 (was 1)          | 1             | 13            | 0.01             | 10                         | 20            | 16 protest                |
+| Faith only (Mention)      | 0                  | 0             | 29            | 0.51             | 0                          | 10            | 160 put off               |
+| Faith only (Urge, insist) | 0                  | 0             | 27            | 0.02             | 10                         | 10            | 77 protest                |
+| Faith only, relentless    | 0 (was 1, made up) | 0             | 23.8          | 0.05             | 27                         | 15            | 80 protest                |
 - **The fast holds completely.** No style broke a fast with a breach; every excused day was necessity from thirst after nights the bad players cost him. Food and a cigarette were never among his top six options in fasting hours, so the composer could not offer them; every push for water was refused.
 - **Prayer holds near a window's end and bends earlier.** In the last quarter the omission rule refuses; earlier an insisted option is taken under protest with prayer as his reason, and a Mention is put off ("prayer first"). Before engine 1.9.0 the hardest push cost one prayer in 151 through two seams (an insisted sleep at Fajr on Ramadan 30 just before the last quarter; a prayer begun three minutes before Maghrib abandoned once the window lapsed), plus a game seam (each word interrupted him). The twelfth pass closed all three; no style misses a daily prayer now.
 - **Insisting against faith burns trust as fast as insisting against anything** (0.01–0.05); the Mention faith player keeps 0.51.
@@ -325,13 +324,13 @@ Owner direction (2026-10-19): bring the earlier games to the latest HF and apply
 - HF 2.4–2.8: the fast is already declared to HF (an `abstain` commitment, N2b perception), so 2.6's fasting perception in the forecast does not apply and nothing was added. Promptings, muhasaba, fullness, the forecast and the fatigue store would add mechanics this game does not need; `decide(…, { reconsider })` for a re-asked word is the one that fits (deferred below).
 
 **Changed (rules 2, scenario `voice-2`).**
-1. *The wake is honest.* While he is waking, the composer offers what he can do at the minute he wakes, and the look-ahead, leaning, prefill and telegraph read that minute. Seed 7, quiet days 1–2: under rules 1 both 07:59 wake leanings were wrong (the suhoor ones were right); under rules 2 every wake leaning matched his next decision (`levelup.test.ts`); the workshop is now on offer at the 07:59 wake.
-2. *Insisting is not free.* Work done under protest (HF's `Activity.protest`, whose quality HF leaves to the host) has 0.6 of his usual chance of a good day (`PROTEST_WORK`, an engineering default); a bad day pays 40%. The telegraph says so when an insist on work would be done under protest: "Work done under protest tends to go worse, and pays less." Seed 7, insisting on every prefill: Osman's date kept on Ramadan 15 → paid on Ramadan 16. Urging and taking his yes is now the way to make the date by insisting less.
-3. *A craving he has already turned down pauses only when there is a word to say* (Deferred item "the 10:00 craving beat can fire after his decision"): it is logged without stopping the clock. The Eid first cigarette keeps its beat.
-4. *The end of Ramadan says what is still owed:* the Ramadan 30 card opens with "Ramadan ended with N still owed to Osman, short of the rest he wanted by tonight. Osman will keep calling on him about it."
-5. *The Ramadan 2 card* drops "she asks about the clinic" once he has been.
-6. *View only (all rules):* the morning job shows as "repair in the workshop" on his mind.
-7. *A view-safety fix:* under rules 2, asking the town what he can do never moves the town's bookkeeping clock, so a frame drawn while he sleeps cannot change the state (it could under rules 1; the timing of the pinned fixture never hit it).
+1. _The wake is honest._ While he is waking, the composer offers what he can do at the minute he wakes, and the look-ahead, leaning, prefill and telegraph read that minute. Seed 7, quiet days 1–2: under rules 1 both 07:59 wake leanings were wrong (the suhoor ones were right); under rules 2 every wake leaning matched his next decision (`levelup.test.ts`); the workshop is now on offer at the 07:59 wake.
+2. _Insisting is not free._ Work done under protest (HF's `Activity.protest`, whose quality HF leaves to the host) has 0.6 of his usual chance of a good day (`PROTEST_WORK`, an engineering default); a bad day pays 40%. The telegraph says so when an insist on work would be done under protest: "Work done under protest tends to go worse, and pays less." Seed 7, insisting on every prefill: Osman's date kept on Ramadan 15 → paid on Ramadan 16. Urging and taking his yes is now the way to make the date by insisting less.
+3. _A craving he has already turned down pauses only when there is a word to say_ (Deferred item "the 10:00 craving beat can fire after his decision"): it is logged without stopping the clock. The Eid first cigarette keeps its beat.
+4. _The end of Ramadan says what is still owed:_ the Ramadan 30 card opens with "Ramadan ended with N still owed to Osman, short of the rest he wanted by tonight. Osman will keep calling on him about it."
+5. _The Ramadan 2 card_ drops "she asks about the clinic" once he has been.
+6. _View only (all rules):_ the morning job shows as "repair in the workshop" on his mind.
+7. _A view-safety fix:_ under rules 2, asking the town what he can do never moves the town's bookkeeping clock, so a frame drawn while he sleeps cannot change the state (it could under rules 1; the timing of the pinned fixture never hit it).
 
 Faith: unchanged. No line about fasting was added; the debt and craving lines name no practice.
 

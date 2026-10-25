@@ -124,7 +124,7 @@ Engine: 2.14.1. Corrects a modelling assumption inside the released projects and
 
 ## [2.14.0] - 2026-10-20
 
-Engine: 2.14.0. *Projects and persistence* (owner, 2026-10-20: "Add those faculties and other feat to HF"; sources in [research/projects-and-persistence.md](https://github.com/adam0white/human-framework/blob/main/research/projects-and-persistence.md)). The island rerun on 2.12.0 found that a person with met needs set no free-time goal and built nothing, and that a started chain was not kept. A person can now turn what they perceive into a self-set project, and keep a started pursuit going. Both are opt-in: without them, state, decisions and digests are the same as 2.13.0 with only the engine stamp normalized, including when percepts carry prospect data. Saves migrate from 2.13.0 by stamping the version.
+Engine: 2.14.0. _Projects and persistence_ (owner, 2026-10-20: "Add those faculties and other feat to HF"; sources in [research/projects-and-persistence.md](https://github.com/adam0white/human-framework/blob/main/research/projects-and-persistence.md)). The island rerun on 2.12.0 found that a person with met needs set no free-time goal and built nothing, and that a started chain was not kept. A person can now turn what they perceive into a self-set project, and keep a started pursuit going. Both are opt-in: without them, state, decisions and digests are the same as 2.13.0 with only the engine stamp normalized, including when percepts carry prospect data. Saves migrate from 2.13.0 by stamping the version.
 
 ### Added
 
@@ -146,7 +146,7 @@ Engine: 2.14.0. *Projects and persistence* (owner, 2026-10-20: "Add those facult
 
 ## [2.13.0] - 2026-10-20
 
-Engine: 2.13.0. *Why not* ([slice plan](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md#slice-3-if-time-allows); The Pass's requests 1 and 4 in [game-requests-2026-10-18.md](https://github.com/adam0white/human-framework/blob/main/docs/game-requests-2026-10-18.md)). A declined suggestion can say what decided it, and a person can hold a rule of their own as a will-not. Both are opt-in: without them, state, decisions, resolution JSON and digests are the same as 2.12.0 with only the engine stamp normalized. Saves migrate from 2.12.0 by stamping the version.
+Engine: 2.13.0. _Why not_ ([slice plan](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md#slice-3-if-time-allows); The Pass's requests 1 and 4 in [game-requests-2026-10-18.md](https://github.com/adam0white/human-framework/blob/main/docs/game-requests-2026-10-18.md)). A declined suggestion can say what decided it, and a person can hold a rule of their own as a will-not. Both are opt-in: without them, state, decisions, resolution JSON and digests are the same as 2.12.0 with only the engine stamp normalized. Saves migrate from 2.12.0 by stamping the version.
 
 ### Added
 
@@ -166,7 +166,7 @@ Engine: 2.13.0. *Why not* ([slice plan](https://github.com/adam0white/human-fram
 
 ## [2.12.0] - 2026-10-20
 
-Engine: 2.12.0. *Steps ahead* ([slice plan](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md#current-increment-curiosity-and-play-then-bounded-planning-owner-2026-10-20); sources in [research/curiosity-and-play.md](https://github.com/adam0white/human-framework/blob/main/research/curiosity-and-play.md#bounded-planning-and-present-bias)). A person can value the first step of a short chain toward a goal: go, take, carry, put. Opt-in: a person without the planning slice gives the same state, decisions and digests as 2.11.0 with only the engine stamp normalized, and received consequences keep their single successor. Saves migrate from 2.11.0 by stamping the version.
+Engine: 2.12.0. _Steps ahead_ ([slice plan](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md#current-increment-curiosity-and-play-then-bounded-planning-owner-2026-10-20); sources in [research/curiosity-and-play.md](https://github.com/adam0white/human-framework/blob/main/research/curiosity-and-play.md#bounded-planning-and-present-bias)). A person can value the first step of a short chain toward a goal: go, take, carry, put. Opt-in: a person without the planning slice gives the same state, decisions and digests as 2.11.0 with only the engine stamp normalized, and received consequences keep their single successor. Saves migrate from 2.11.0 by stamping the version.
 
 ### Added
 
@@ -188,7 +188,7 @@ Engine: 2.12.0. *Steps ahead* ([slice plan](https://github.com/adam0white/human-
 
 ## [2.11.0] - 2026-10-20
 
-Engine: 2.11.0. *Curiosity and play* ([slice plan](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md#current-increment-curiosity-and-play-then-bounded-planning-owner-2026-10-20); sources in [research/curiosity-and-play.md](https://github.com/adam0white/human-framework/blob/main/research/curiosity-and-play.md)). When a person's needs are met, they are drawn to try what they cannot yet predict, to keep at what they are getting better at, and to vary what they just did. Opt-in: a person without the slice gives the same state, decisions and digests as 2.10.0 with only the engine stamp normalized (the public `fingerprint` includes the stamp, so it changes). Saves migrate from 2.10.0 by stamping the version.
+Engine: 2.11.0. _Curiosity and play_ ([slice plan](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md#current-increment-curiosity-and-play-then-bounded-planning-owner-2026-10-20); sources in [research/curiosity-and-play.md](https://github.com/adam0white/human-framework/blob/main/research/curiosity-and-play.md)). When a person's needs are met, they are drawn to try what they cannot yet predict, to keep at what they are getting better at, and to vary what they just did. Opt-in: a person without the slice gives the same state, decisions and digests as 2.10.0 with only the engine stamp normalized (the public `fingerprint` includes the stamp, so it changes). Saves migrate from 2.10.0 by stamping the version.
 
 ### Added
 
@@ -207,7 +207,7 @@ Engine: 2.11.0. *Curiosity and play* ([slice plan](https://github.com/adam0white
 
 ## [2.10.0] - 2026-10-20
 
-Engine: 2.10.0. *Word and witness* ([roadmap](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md) §1.1): who first said a thing, what it costs a source to be caught telling two stories, and how a person believes others now see them. Everything is opt-in by data: a person, percept or call that uses none of the new fields gives byte-identical state and decisions to 2.9.x, and legacy digests are unchanged. The engine stamp moves because the new term can change decisions when a host supplies the evidence. Saves migrate from 2.9.0 by stamping the version.
+Engine: 2.10.0. _Word and witness_ ([roadmap](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md) §1.1): who first said a thing, what it costs a source to be caught telling two stories, and how a person believes others now see them. Everything is opt-in by data: a person, percept or call that uses none of the new fields gives byte-identical state and decisions to 2.9.x, and legacy digests are unchanged. The engine stamp moves because the new term can change decisions when a host supplies the evidence. Saves migrate from 2.9.0 by stamping the version.
 
 ### Added
 
@@ -228,7 +228,7 @@ Engine: 2.10.0. *Word and witness* ([roadmap](https://github.com/adam0white/huma
 
 ## [2.9.1] - 2026-10-20
 
-Engine: 2.9.0. The *Host kit* ([roadmap](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md) §1.2) and the owner's maintenance sweep. Behaviour-neutral: the engine stamp is unchanged, and every replay, fixture, hash and full-state legacy digest is unchanged. Patch number, not minor, because 2.10.0 is the approved name of *Word and witness*; nothing is removed.
+Engine: 2.9.0. The _Host kit_ ([roadmap](https://github.com/adam0white/human-framework/blob/main/docs/hf-roadmap-2026-10-20.md) §1.2) and the owner's maintenance sweep. Behaviour-neutral: the engine stamp is unchanged, and every replay, fixture, hash and full-state legacy digest is unchanged. Patch number, not minor, because 2.10.0 is the approved name of _Word and witness_; nothing is removed.
 
 ### Added
 

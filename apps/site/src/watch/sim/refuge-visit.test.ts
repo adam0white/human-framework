@@ -1,6 +1,7 @@
 import { snapshot } from '@adam0white/human-framework';
 import { describe, expect, it } from 'vitest';
 import { siteCastCheckpoint } from '../../shared/cast-chapter.ts';
+import { requireValue } from '../../shared/require-value.ts';
 import { WATCH_NORMS } from './people.ts';
 import { agreeRefugeVisit, refugeVisitPassport } from './refuge-visit.ts';
 import { endState, replay, WatchRun } from './run.ts';
@@ -17,15 +18,17 @@ describe('actual Watch refuge agreement', () => {
     const run = dawn(),
       s = run.state;
     expect(s.phase).toBe('dawn');
-    const k = s.community.people.find((p) => p.id === 'kian')!;
+    const k = requireValue(s.community.people.find((p) => p.id === 'kian'));
     const before = snapshot(k);
     const result = agreeRefugeVisit(s);
     expect(result).toContain('Ada');
     expect(s.refugeVisit?.kianAssented).toBe(true);
     expect(s.refugeVisit?.adaAssented).toBe(true);
-    expect(s.refugeVisit!.returnBy).toBe(s.minute + 1440);
+    expect(requireValue(s.refugeVisit).returnBy).toBe(s.minute + 1440);
     expect(k.activity).toEqual(before.activity);
-    const care = k.agenda.commitments.find((c) => c.id === s.refugeVisit!.commitmentId)!;
+    const care = requireValue(
+      k.agenda.commitments.find((c) => c.id === requireValue(s.refugeVisit).commitmentId),
+    );
     expect(care.toId).toBe('ada');
     expect(care.actions).toEqual(['care-ada']);
     expect(refugeVisitPassport(s)).toBeUndefined();
@@ -33,29 +36,33 @@ describe('actual Watch refuge agreement', () => {
     expect(run.input({ k: 'refugeVisit', choice: 'prepare' })).toBe(true);
     expect(s.grain).toBeCloseTo(grainBefore - 0.1);
     expect(s.refugeDeparture).toBeDefined();
-    const departure = s.refugeDeparture!;
+    const departure = requireValue(s.refugeDeparture);
     const transfer = await siteCastCheckpoint('watch', departure.person, WATCH_NORMS, departure.watchCare);
     expect(transfer.watchCare).toEqual(departure.watchCare);
     expect(transfer.sourceSnapshot).toEqual(snapshot(departure.person));
     expect(
-      departure.person.agenda.commitments.find((c) => c.id === s.refugeVisit!.commitmentId)?.status,
+      departure.person.agenda.commitments.find((c) => c.id === requireValue(s.refugeVisit).commitmentId)
+        ?.status,
     ).toBe('kept');
     expect(
-      departure.person.agenda.commitments.find((c) => c.id === s.refugeVisit!.returnCommitmentId)?.status,
+      departure.person.agenda.commitments.find((c) => c.id === requireValue(s.refugeVisit).returnCommitmentId)
+        ?.status,
     ).toBe('pending');
     expect(departure.person.activity).toBeNull();
-    expect(departure.person.now).toBeGreaterThan(s.refugeVisit!.sourceMinute);
+    expect(departure.person.now).toBeGreaterThan(requireValue(s.refugeVisit).sourceMinute);
     expect(run.input({ k: 'refugeVisit', choice: 'stay' })).toBe(true);
     expect(s.refugeDeparture).toBeUndefined();
-    expect(k.agenda.commitments.find((c) => c.id === s.refugeVisit!.commitmentId)?.status).toBe('kept');
-    expect(k.agenda.commitments.find((c) => c.id === s.refugeVisit!.returnCommitmentId)?.status).toBe(
-      'released',
+    expect(k.agenda.commitments.find((c) => c.id === requireValue(s.refugeVisit).commitmentId)?.status).toBe(
+      'kept',
     );
+    expect(
+      k.agenda.commitments.find((c) => c.id === requireValue(s.refugeVisit).returnCommitmentId)?.status,
+    ).toBe('released');
   });
   it('refuses a real retained home-threat promise and preserves the exact Person', () => {
     const run = dawn(),
       s = run.state,
-      k = s.community.people.find((p) => p.id === 'kian')!;
+      k = requireValue(s.community.people.find((p) => p.id === 'kian'));
     k.agenda.commitments.push({
       id: 'actual-home-threat-control',
       kind: 'duty',

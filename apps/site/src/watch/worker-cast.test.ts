@@ -7,6 +7,7 @@ import {
 import { expect, it, vi } from 'vitest';
 import { makeCastChapter } from '../shared/cast-chapter.ts';
 import actualCare from '../shared/fixtures/watch-kian-care-native.json';
+import { requireValue } from '../shared/require-value.ts';
 import type { MainToWorker } from './protocol.ts';
 import { WatchRun } from './sim/run.ts';
 import type { PageInfo } from './store.ts';
@@ -42,12 +43,12 @@ vi.mock('./store.ts', () => ({
     control.listing++;
     return control.pendingPages ?? [];
   },
-  loadPage: async () => JSON.parse(control.saved.at(-1)!),
+  loadPage: async () => JSON.parse(requireValue(control.saved.at(-1))),
 }));
 it('saves the old run with its exact accepted ownership before a fresh init and restores those local receipts', async () => {
   await import('./worker.ts');
   const send = (m: MainToWorker) =>
-    control.handle!(m, {
+    requireValue(control.handle)(m, {
       get gen() {
         return control.gen;
       },
@@ -74,7 +75,7 @@ it('saves the old run with its exact accepted ownership before a fresh init and 
   send({ type: 'castOwnership', heads: { [castId]: head } });
   send({ type: 'input', input: { k: 'begin' } });
   send({ type: 'init', seed: 2, gen: 2, scenarioVersion: 14 });
-  const old = JSON.parse(control.saved.at(-1)!);
+  const old = JSON.parse(requireValue(control.saved.at(-1)));
   expect(old.seed).toBe(1);
   expect(old.castOwnership[castId]).toEqual(head);
   send({ type: 'load', gen: 3, id: 'old:auto' });

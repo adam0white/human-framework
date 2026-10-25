@@ -305,6 +305,7 @@ try {
           throw new Error('Stale relief controls remain');
         if (
           test.name === 'live-awake-after-doze' &&
+          // biome-ignore lint/performance/useDomNodeTextContent: Check the account text visible to a player, excluding hidden content.
           !(await page.locator('.w-account-doze').innerText()).includes('nods off')
         )
           throw new Error('Heard doze missing from account');
@@ -346,6 +347,7 @@ try {
           r.right <= innerWidth + 1 &&
           !clipped.length;
         return {
+          // biome-ignore lint/performance/useDomNodeTextContent: Layout diagnostics need rendered text; textContent includes hidden controls.
           text: el.innerText,
           top: r.top,
           bottom: r.bottom,
@@ -361,6 +363,7 @@ try {
         excess: el.scrollHeight - el.clientHeight,
       }));
       const reasons = [...document.querySelectorAll<HTMLElement>('.w-place:disabled')].map((el) => ({
+        // biome-ignore lint/performance/useDomNodeTextContent: Layout diagnostics need rendered text; textContent includes hidden controls.
         text: el.innerText,
         reason: el.parentElement?.querySelector('.w-post-unavailable')?.textContent ?? '',
       }));
@@ -392,6 +395,7 @@ try {
       const smallTargets = targets
         .filter(({ r }) => r.width < 43.9 || r.height < 43.9)
         .map(({ el, r }) => ({
+          // biome-ignore lint/performance/useDomNodeTextContent: Layout diagnostics need rendered text; textContent includes hidden controls.
           text: el.innerText || el.getAttribute('aria-label'),
           width: r.width,
           height: r.height,
@@ -406,6 +410,7 @@ try {
             Math.min(a.r.right, b.r.right) - Math.max(a.r.left, b.r.left) > 1 &&
             Math.min(a.r.bottom, b.r.bottom) - Math.max(a.r.top, b.r.top) > 1
           )
+            // biome-ignore lint/performance/useDomNodeTextContent: Layout diagnostics need rendered text; textContent includes hidden controls.
             overlaps.push(`${a.el.innerText} / ${b.el.innerText}`);
         }
       return {

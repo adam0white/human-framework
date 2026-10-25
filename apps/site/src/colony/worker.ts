@@ -7,6 +7,7 @@
 import { ENGINE_VERSION } from '@adam0white/human-framework';
 import { chapterPeople } from '../shared/cast-chapter.ts';
 import { PlaytestError } from '../shared/playtest.ts';
+import { requireValue } from '../shared/require-value.ts';
 import { hostWorker } from '../shared/worker-host.ts';
 import type { MainToWorker, WorkerReply } from './protocol.ts';
 import { ColonyGame } from './sim/game.ts';
@@ -25,7 +26,7 @@ hostWorker<MainToWorker, WorkerReply>((msg, host) => {
           type: 'castReady',
           requestId: msg.requestId,
           initials: Object.fromEntries(
-            chapterPeople(msg.chapter).map((p) => [p.input.parent.castId, p.initial!]),
+            chapterPeople(msg.chapter).map((p) => [p.input.parent.castId, requireValue(p.initial)]),
           ),
         });
       } else {

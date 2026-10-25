@@ -10,15 +10,15 @@ URL: https://warren.adamwhite.work. The title visibly credited Human Framework 2
 
 Checkpoint at **64.0 real seconds**, late by 4.0 seconds while observing and capturing the screen. These answers were written before continuing. Screen: warren-shots/09-checkpoint.png; preceding selected-tool view: 08-first-minute.png.
 
-| Item | Status | Original checkpoint answer |
-|---|---|---|
-| DL-1 A reason to act | PASS | I need a refuge for nine villagers before riders come. The opening says to dig a refuge; the sleeping line says nine lack marked space. Now the red instruction says the harvest needs room below. |
-| DL-2 What can I touch | PASS | Begin, More about the hill and All games looked interactive. In play I see Zoom +, Zoom −, Fit hill, Open journal, Check shelter, the tool buttons, speed arrows, bell and Game menu. Chalk and the map responded. I have not tried the others. Nothing I tried seemed inert. |
-| DL-3 Urgency and selection | PASS | The red instruction draws me first; the nine people without beds compete with it. Chalk is the tool I selected and the dashed red squares are my plan. At this checkpoint the red instruction asks for a store. I cannot yet tell how soon the riders will arrive. |
-| DL-4 Why the limit | PASS | I met unreachable stone: “Nobody can get at that stone yet. Chalk a way to it from open ground, and they will dig toward it.” That tells me how to make the plan reachable. I also saw “That is open already. Chalk goes on stone.” |
-| DL-5 Readable situation | PASS | A dig was planned; people choose when to dig. Now Ayşe has broken through the first chalked wall. I can mark open ground as a store, as the red instruction says. |
-| DL-6 A choice soon | PASS | The room-planning tools were visible by 15.3 s, within 30 s, after a short opening. Begin input: 9.3 s. First planning-tool input: 30.9 s. First map plan: 35.6 s. The delay before choosing was mine. |
-| DL-7 Learn by doing | PASS | One interaction family reached: chalk planning. A dashed square means a planned dig, not instant excavation. The unreachable message taught me to connect it to open ground. Ayşe breaking through showed someone acted on it. No help opened. Store, beds, lamp, door, rub out, look inspection and bell not yet tested: seven tool interactions unmet. |
+| Item                       | Status | Original checkpoint answer                                                                                                                                                                                                                                                                                                                               |
+| -------------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DL-1 A reason to act       | PASS   | I need a refuge for nine villagers before riders come. The opening says to dig a refuge; the sleeping line says nine lack marked space. Now the red instruction says the harvest needs room below.                                                                                                                                                       |
+| DL-2 What can I touch      | PASS   | Begin, More about the hill and All games looked interactive. In play I see Zoom +, Zoom −, Fit hill, Open journal, Check shelter, the tool buttons, speed arrows, bell and Game menu. Chalk and the map responded. I have not tried the others. Nothing I tried seemed inert.                                                                            |
+| DL-3 Urgency and selection | PASS   | The red instruction draws me first; the nine people without beds compete with it. Chalk is the tool I selected and the dashed red squares are my plan. At this checkpoint the red instruction asks for a store. I cannot yet tell how soon the riders will arrive.                                                                                       |
+| DL-4 Why the limit         | PASS   | I met unreachable stone: “Nobody can get at that stone yet. Chalk a way to it from open ground, and they will dig toward it.” That tells me how to make the plan reachable. I also saw “That is open already. Chalk goes on stone.”                                                                                                                      |
+| DL-5 Readable situation    | PASS   | A dig was planned; people choose when to dig. Now Ayşe has broken through the first chalked wall. I can mark open ground as a store, as the red instruction says.                                                                                                                                                                                        |
+| DL-6 A choice soon         | PASS   | The room-planning tools were visible by 15.3 s, within 30 s, after a short opening. Begin input: 9.3 s. First planning-tool input: 30.9 s. First map plan: 35.6 s. The delay before choosing was mine.                                                                                                                                                   |
+| DL-7 Learn by doing        | PASS   | One interaction family reached: chalk planning. A dashed square means a planned dig, not instant excavation. The unreachable message taught me to connect it to open ground. Ayşe breaking through showed someone acted on it. No help opened. Store, beds, lamp, door, rub out, look inspection and bell not yet tested: seven tool interactions unmet. |
 
 
 ## Timing and access notes
@@ -105,29 +105,29 @@ The following reactions are copied without rewriting from the wall-clock log. Ti
 
 ## Important visible answers
 
-| Real elapsed | Input / observation | Answer visible in the screenshots |
-|---|---|---|
-| 0.0 s | Opening | “Dig a refuge where the village can outlast the riders.” Begin is a large outlined button. 01-opening.png. |
-| 15.3 s | After Begin | Date, nine souls, nine lacking marked space, map, tools and “Walk · 72 min/s” fit on the phone. 03-hill.png. |
-| 35.6 s | First chalk tap | Dashed red cell; “Dashed outlines plan a dig. People choose…” 05-first-mark.png. |
-| 42.4 s | Unreachable stone | “The chalk is beyond open ground. Chalk a way to it from the cellar.” 06-connected-plan.png. |
-| 47.1 s | Cellar edge | “Dig planned. People choose when to take up a pick.” 07-cellar-edge.png. |
-| 64.0 s | Checkpoint | Store request in red; Ayşe breaking through a chalked wall in the journal preview. 09-checkpoint.png. |
-| 133.3 s | Check shelter | “Beds make sleeping space; depth and shut doors put stone between people and riders. Open shafts give riders another way in.” 12-check-shelter.png. |
-| 193.5 s | Zoom tap | Larger map cells; normal player tap works. 14-zoom.png. |
-| 209.7 s | Deeper plan | Dashed cell under the shaft; a person above it; dig-planned acknowledgement. 17-plan-feedback.png. |
-| 221.2 s | Dark dig | Red instruction: “The chalked faces are dark. Hang a lamp beside open ground near the chalk.” 19-lamp-tool.png. |
-| 231.3 s | After lamp | “Lamp hung.” A lamp mark in the shaft; deeper excavation visible. 21-lit-shaft.png. |
-| 246.4 s | After beds | “Sleeping places: 0 beyond riders’ reach; 3 exposed near the entrance. 9 villagers; 6 lack marked space.” The journal preview cuts off “Not far enough along the passage from th…” 24-bed-result.png. |
-| 256.4 s | Open journal | Smoke, “Half a day, maybe less,” then lamp and earlier entries. This is what I found when trying to recover the bed explanation. 25-bed-explanation.png. |
-| 266.8 s | Close journal | Smoke instruction offers ring bell or keep watching. “Slow · 1 min/s · raid warning.” 26-raid-warning.png. |
-| 281.1 s | Mark door | Door mark in shaft; journal preview “A door marked. They will carve the rollin…” 29-door-result.png. |
-| 292.8 s | Look at door position | Hasan selected; “Now: carve the rolling stone.” Inspection text below this is clipped in the small panel. 31-door-inspect.png. |
-| 330.9 s | Ring bell | “You rang the bell.” Call active; people still choosing how to answer. Speed returns to Walk · 72 min/s. 34-ring-bell.png. |
-| 337.5 s | Check shelter | “The earlier call ended. Ring the bell to renew it.” Hasan and Elif are carving; their recorded answers are “Fine” and “Alright, I'll do it.” 35-call-check.png. |
-| 345.1 s | Scroll people sheet | Kerem, Zehra, Musa and Ayşe are exposed above ground and sleeping at home, alongside their affirmative bell replies. 36-people-scroll.png. |
-| 357.3 s | Stop | People sheet remains open. The background warning says riders are at the hill and the earlier call ended. I take no further gameplay action. 37-phone-stop.png. |
-| 362.8 s | Desktop look only | Same people sheet at 1280×800. More people and their current activity fit; the close control and tabs remain visible. This was not a desktop play session. 38-desktop-post-stop.png. |
+| Real elapsed | Input / observation   | Answer visible in the screenshots                                                                                                                                                                     |
+| ------------ | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0.0 s        | Opening               | “Dig a refuge where the village can outlast the riders.” Begin is a large outlined button. 01-opening.png.                                                                                            |
+| 15.3 s       | After Begin           | Date, nine souls, nine lacking marked space, map, tools and “Walk · 72 min/s” fit on the phone. 03-hill.png.                                                                                          |
+| 35.6 s       | First chalk tap       | Dashed red cell; “Dashed outlines plan a dig. People choose…” 05-first-mark.png.                                                                                                                      |
+| 42.4 s       | Unreachable stone     | “The chalk is beyond open ground. Chalk a way to it from the cellar.” 06-connected-plan.png.                                                                                                          |
+| 47.1 s       | Cellar edge           | “Dig planned. People choose when to take up a pick.” 07-cellar-edge.png.                                                                                                                              |
+| 64.0 s       | Checkpoint            | Store request in red; Ayşe breaking through a chalked wall in the journal preview. 09-checkpoint.png.                                                                                                 |
+| 133.3 s      | Check shelter         | “Beds make sleeping space; depth and shut doors put stone between people and riders. Open shafts give riders another way in.” 12-check-shelter.png.                                                   |
+| 193.5 s      | Zoom tap              | Larger map cells; normal player tap works. 14-zoom.png.                                                                                                                                               |
+| 209.7 s      | Deeper plan           | Dashed cell under the shaft; a person above it; dig-planned acknowledgement. 17-plan-feedback.png.                                                                                                    |
+| 221.2 s      | Dark dig              | Red instruction: “The chalked faces are dark. Hang a lamp beside open ground near the chalk.” 19-lamp-tool.png.                                                                                       |
+| 231.3 s      | After lamp            | “Lamp hung.” A lamp mark in the shaft; deeper excavation visible. 21-lit-shaft.png.                                                                                                                   |
+| 246.4 s      | After beds            | “Sleeping places: 0 beyond riders’ reach; 3 exposed near the entrance. 9 villagers; 6 lack marked space.” The journal preview cuts off “Not far enough along the passage from th…” 24-bed-result.png. |
+| 256.4 s      | Open journal          | Smoke, “Half a day, maybe less,” then lamp and earlier entries. This is what I found when trying to recover the bed explanation. 25-bed-explanation.png.                                              |
+| 266.8 s      | Close journal         | Smoke instruction offers ring bell or keep watching. “Slow · 1 min/s · raid warning.” 26-raid-warning.png.                                                                                            |
+| 281.1 s      | Mark door             | Door mark in shaft; journal preview “A door marked. They will carve the rollin…” 29-door-result.png.                                                                                                  |
+| 292.8 s      | Look at door position | Hasan selected; “Now: carve the rolling stone.” Inspection text below this is clipped in the small panel. 31-door-inspect.png.                                                                        |
+| 330.9 s      | Ring bell             | “You rang the bell.” Call active; people still choosing how to answer. Speed returns to Walk · 72 min/s. 34-ring-bell.png.                                                                            |
+| 337.5 s      | Check shelter         | “The earlier call ended. Ring the bell to renew it.” Hasan and Elif are carving; their recorded answers are “Fine” and “Alright, I'll do it.” 35-call-check.png.                                      |
+| 345.1 s      | Scroll people sheet   | Kerem, Zehra, Musa and Ayşe are exposed above ground and sleeping at home, alongside their affirmative bell replies. 36-people-scroll.png.                                                            |
+| 357.3 s      | Stop                  | People sheet remains open. The background warning says riders are at the hill and the earlier call ended. I take no further gameplay action. 37-phone-stop.png.                                       |
+| 362.8 s      | Desktop look only     | Same people sheet at 1280×800. More people and their current activity fit; the close control and tabs remain visible. This was not a desktop play session. 38-desktop-post-stop.png.                  |
 
 ## What playing felt like
 
@@ -149,11 +149,11 @@ The first-minute results above remain unchanged by later discoveries. There was 
 
 ## English, dates and phone layout
 
-| Item | Result | Evidence and limits |
-|---|---|---|
-| DL-20 | PASS for encountered play | I could act using chalk, store, beds, lamp, door, bell and Check shelter in English. Names did not prevent action. “Yusuf Usta” was a person's name in the UI; I did not need to translate it to play. |
-| DL-21 | PASS for the warning encountered | “30 August · Year 1 under the hill” and “Half a day, maybe less” let me compare the warning with today without translation. I saw progression to 31 August. A deadline crossing months/years and a return after a break were NOT TESTED. |
-| DL-22 | FAIL in the scope described above | The standard phone controls fit. Full immediate feedback and some inspection copy did not fit; essential bed-safety explanation was cut off. Screenshots, not extracted text length, establish this. |
+| Item  | Result                            | Evidence and limits                                                                                                                                                                                                                      |
+| ----- | --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DL-20 | PASS for encountered play         | I could act using chalk, store, beds, lamp, door, bell and Check shelter in English. Names did not prevent action. “Yusuf Usta” was a person's name in the UI; I did not need to translate it to play.                                   |
+| DL-21 | PASS for the warning encountered  | “30 August · Year 1 under the hill” and “Half a day, maybe less” let me compare the warning with today without translation. I saw progression to 31 August. A deadline crossing months/years and a return after a break were NOT TESTED. |
+| DL-22 | FAIL in the scope described above | The standard phone controls fit. Full immediate feedback and some inspection copy did not fit; essential bed-safety explanation was cut off. Screenshots, not extracted text length, establish this.                                     |
 
 **Evidence gaps:** no reload/resume test (DL-27); no run send (DL-28, prohibited); no export/import/replay (DL-29); no completed game/day-ending assessment (DL-12). Target sizes were not measured (DL-23). Alternate text sizes, 320 px, dark mode and horizontal overflow under those conditions were not tested (DL-25). No builder-only checks were performed. Rub out remained untested. Door completion, closing a completed door and protected-bed success were not reached during play. No export was downloaded.
 

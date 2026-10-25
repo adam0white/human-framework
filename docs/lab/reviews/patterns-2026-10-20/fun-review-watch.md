@@ -46,12 +46,12 @@ The ending remains reachable headlessly: the repository's own `playYears` policy
 
 ## DL-30..33 judgment
 
-| Item | Result in this session | Evidence |
-| --- | --- | --- |
-| DL-30 | Posting passes; timed-card coverage fails | Selected Tamar fits; the three-option Joss card partly hides say nothing. |
-| DL-31 | Posting improves; night decision context remains insufficient | Role and warning persist while posting. During Joss's card the wider watch/granary inspector disappears. Night and answer deadline remain visible. |
+| Item  | Result in this session                                                                | Evidence                                                                                                                                                                                                                       |
+| ----- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| DL-30 | Posting passes; timed-card coverage fails                                             | Selected Tamar fits; the three-option Joss card partly hides say nothing.                                                                                                                                                      |
+| DL-31 | Posting improves; night decision context remains insufficient                         | Role and warning persist while posting. During Joss's card the wider watch/granary inspector disappears. Night and answer deadline remain visible.                                                                             |
 | DL-32 | Legal availability passes the narrow measure; meaningful frequency is not established | Quiet stretches made me want to accelerate; moving the same light without new information is not a fresh meaningful act. The speed control is a valid chosen way to wait, but explicit silence still holds a pending slowdown. |
-| DL-33 | Pass for the acts reached | Lantern and bell act directly. Moment answers take one tap. The posting sheet offers fine control without making every act a form. |
+| DL-33 | Pass for the acts reached                                                             | Lantern and bell act directly. Moment answers take one tap. The posting sheet offers fine control without making every act a form.                                                                                             |
 
 **Was layout really the weakest phone feature? No.** It was the most concrete preparation defect. Sofia ranked consequence acknowledgment above it and described boredom independently. My play reproduced both the consequence problem and weak stretches after the layout repair. Enlarging the human encounters and making nonintervention readable matter more than adding more buttons.
 

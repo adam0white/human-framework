@@ -42,7 +42,6 @@ import {
   MINUTES_PER_YEAR,
   marry,
   meet,
-  type NormDefinition,
   type Outcome,
   type Percept,
   type Person,
@@ -63,6 +62,7 @@ import {
   personChapter,
   prepareSiteInitial,
 } from '../../shared/cast-chapter.ts';
+import { requireValue } from '../../shared/require-value.ts';
 import { assertWatchCareTarget } from './care-reentry.ts';
 import {
   ALL_POST_IDS,
@@ -454,10 +454,6 @@ export function personOf(s: WatchState, id: WatcherId): Person | undefined {
   return castIndex(s).byId.get(id);
 }
 
-export function present(s: WatchState): Person[] {
-  return s.community.people.filter((p) => isHere(s, p));
-}
-
 /**
  * Villagers who come on this night of this year join: founders as watchers, their kin at home. Each meets the others
  * (insiders or the newcomer) and they come to know each other as far as their ties go; the Keeper knows them by
@@ -477,13 +473,14 @@ export function arrive(s: WatchState): WatcherId[] {
     if (def) p = castPerson(s.seed, def, now);
     else if (kin) p = kinPerson(s.seed, kin, ki, now);
     else continue;
-    if (personChapter(s.castChapter, WATCH_CAST[id])) p = admitSiteCast('watch', p, s.castChapter!);
+    if (personChapter(s.castChapter, WATCH_CAST[id]))
+      p = admitSiteCast('watch', p, requireValue(s.castChapter));
     addPerson(s.community, p);
     v.status = 'here';
     s.place[id] = personChapter(s.castChapter, WATCH_CAST[id])
-      ? personChapter(s.castChapter, WATCH_CAST[id])!.input.life.place === 'home'
+      ? requireValue(personChapter(s.castChapter, WATCH_CAST[id])).input.life.place === 'home'
         ? 'home'
-        : personChapter(s.castChapter, WATCH_CAST[id])!.input.life.place === 'public-garden'
+        : requireValue(personChapter(s.castChapter, WATCH_CAST[id])).input.life.place === 'public-garden'
           ? 'hall'
           : 'village'
       : 'village';
@@ -894,8 +891,8 @@ export class WatchWorld implements World {
         id: 'day:work',
         action: 'work',
         label: personChapter(s.castChapter, WATCH_CAST[p.id])
-          ? (canonicalCast(WATCH_CAST[p.id]!).assignments[
-              personChapter(s.castChapter, WATCH_CAST[p.id])!.input.life.assignment
+          ? (canonicalCast(requireValue(WATCH_CAST[p.id])).assignments[
+              requireValue(personChapter(s.castChapter, WATCH_CAST[p.id])).input.life.assignment
             ] ?? 'work at their trade')
           : 'work at their trade',
         duration: 120,

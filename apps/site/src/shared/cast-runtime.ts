@@ -21,6 +21,7 @@ import {
 import { type CastChapter, makeCastChapter } from './cast-chapter.ts';
 import { claimSiteCastBatch } from './cast-site-claim.ts';
 import { fetchBuild } from './playtest.ts';
+import { requireValue } from './require-value.ts';
 
 const HOST_EXPORT_GAMES: Readonly<Record<string, string>> = {
   voice: 'voice',
@@ -434,10 +435,17 @@ export function postCastMessage(worker: Worker, game: string, message: Record<st
     // A dispatched atomic transaction cannot be rolled back. Finish that explicit start,
     // then replace it; never send its queued play controls into the replacement run.
     if (replacement) s.afterClaim = [structuredClone(message)];
-    else if (controlGeneration !== undefined && controlGeneration !== s.afterClaim![0]!.gen) return;
-    else if (!['tick', 'predict', 'why'].includes(String(message.type)) && s.afterClaim!.length < 32)
-      s.afterClaim!.push(structuredClone(message));
-    else if (s.afterClaim!.length >= 32) {
+    else if (
+      controlGeneration !== undefined &&
+      controlGeneration !== requireValue(requireValue(s.afterClaim)[0]).gen
+    )
+      return;
+    else if (
+      !['tick', 'predict', 'why'].includes(String(message.type)) &&
+      requireValue(s.afterClaim).length < 32
+    )
+      requireValue(s.afterClaim).push(structuredClone(message));
+    else if (requireValue(s.afterClaim).length >= 32) {
       s.status =
         'Too many controls arrived while accepting the explicit chapter. The extra control was refused.';
       changed();
@@ -452,7 +460,7 @@ export function postCastMessage(worker: Worker, game: string, message: Record<st
       (game === 'watch' && message.type === 'input' && (message.input as { k?: string })?.k === 'start'));
   if (startsPreview && typeof message.gen === 'number' && message.gen !== s.runGen) return;
   if (startsPreview) {
-    const init = s.previewInit!;
+    const init = requireValue(s.previewInit);
     postCastMessage(worker, game, init);
     postCastMessage(worker, game, message);
     return;
@@ -537,7 +545,7 @@ export function postCastMessage(worker: Worker, game: string, message: Record<st
         for (const input of inputs) {
           const initial = checked.initials?.[input.parent.castId];
           if (!initial) throw new Error('Preflight omitted a complete initial actor.');
-          chapter.people![input.parent.castId]!.initial = initial;
+          requireValue(requireValue(chapter.people)[input.parent.castId]).initial = initial;
         }
         return chapter;
       },
@@ -559,8 +567,8 @@ export function postCastMessage(worker: Worker, game: string, message: Record<st
     s.heads = Object.fromEntries(admitted.claims.map((p) => [p.castId, p]));
     s.histories = { ...s.heads };
     const chapter = makeCastChapter(admitted.inputs, admitted.claims);
-    for (const [id, person] of Object.entries(chapter.people!))
-      person.initial = admitted.initial.people![id]!.initial;
+    for (const [id, person] of Object.entries(requireValue(chapter.people)))
+      person.initial = requireValue(requireValue(admitted.initial.people)[id]).initial;
     s.line = admitted.inputs.map((p) => lifeAdmission(p, game).line).join(' ');
     gate(s, `cast-group-${crypto.randomUUID()}`);
     s.status = `${admitted.claims.length} continuing people begin together. Their initial state and life are pinned.`;

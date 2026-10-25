@@ -3,6 +3,7 @@
  * must validate the complete Person plus exact finite agreement before accepting it.
  */
 import { isContinuingCommitment, promise, releaseCommitment, selfReport } from '@adam0white/human-framework';
+import { requireValue } from '../../shared/require-value.ts';
 import type { WatchState } from './state.ts';
 export interface RefugeVisit {
   version: 'watch-warren-ada/1';
@@ -47,10 +48,10 @@ export function agreeRefugeVisit(s: WatchState): string {
   const blocked = obstacle(s);
   if (blocked) return blocked;
   const { kian, ada } = participants(s);
-  const k = selfReport(kian!),
-    a = selfReport(ada!);
+  const k = selfReport(requireValue(kian)),
+    a = selfReport(requireValue(ada));
   const kianAssented = k.fear < 0.5 && k.pain < 0.25;
-  const adaAssented = a.fear < 0.4 && a.pain < 0.2 && !ada!.body.downed;
+  const adaAssented = a.fear < 0.4 && a.pain < 0.2 && !requireValue(ada).body.downed;
   const agreement: RefugeVisit = {
     version: 'watch-warren-ada/1',
     guardian: 'kian',
@@ -64,7 +65,7 @@ export function agreeRefugeVisit(s: WatchState): string {
     status: kianAssented && adaAssented ? 'agreed' : 'declined',
   };
   if (agreement.status === 'agreed') {
-    const c = promise(kian!, {
+    const c = promise(requireValue(kian), {
       kind: 'duty',
       toId: 'ada',
       targetId: 'ada',
@@ -75,7 +76,7 @@ export function agreeRefugeVisit(s: WatchState): string {
       label: 'Share a small meal and water with Ada, then rest together during the one-day refuge visit',
     });
     agreement.commitmentId = c.id;
-    agreement.returnCommitmentId = promise(kian!, {
+    agreement.returnCommitmentId = promise(requireValue(kian), {
       kind: 'duty',
       toId: 'ada',
       targetId: 'ada',
@@ -93,7 +94,7 @@ export function agreeRefugeVisit(s: WatchState): string {
 }
 export function stayRefugeVisit(s: WatchState): boolean {
   const visit = s.refugeVisit;
-  if (!visit || visit.status !== 'agreed' || !['dawn', 'dusk'].includes(s.phase)) return false;
+  if (visit?.status !== 'agreed' || !['dawn', 'dusk'].includes(s.phase)) return false;
   const { kian } = participants(s);
   if (!kian) return false;
   releaseCommitment(kian, visit.commitmentId);
@@ -107,8 +108,7 @@ export function refugeVisitPassport(s: WatchState) {
   const agreement = s.refugeVisit,
     { kian, ada } = participants(s);
   if (
-    !agreement ||
-    agreement.status !== 'agreed' ||
+    agreement?.status !== 'agreed' ||
     !agreement.kianAssented ||
     !agreement.adaAssented ||
     s.phase !== 'dawn' ||
@@ -119,8 +119,7 @@ export function refugeVisitPassport(s: WatchState) {
     return undefined;
   const duty = kian.agenda.commitments.find((c) => c.id === agreement.commitmentId);
   if (
-    !duty ||
-    duty.status !== 'kept' ||
+    duty?.status !== 'kept' ||
     !Number.isSafeInteger(agreement.careCompletedAt) ||
     duty.toId !== 'ada' ||
     duty.targetId !== 'ada' ||
@@ -141,8 +140,7 @@ export function refugeVisitPassport(s: WatchState) {
     return undefined;
   const returning = kian.agenda.commitments.find((c) => c.id === agreement.returnCommitmentId);
   if (
-    !returning ||
-    returning.status !== 'pending' ||
+    returning?.status !== 'pending' ||
     returning.toId !== 'ada' ||
     returning.targetId !== 'ada' ||
     returning.until !== agreement.returnBy ||
@@ -159,7 +157,7 @@ export function refugeVisitPassport(s: WatchState) {
     return undefined;
   return {
     agreement: structuredClone(agreement),
-    care: { commitment: structuredClone(duty), completedAt: agreement.careCompletedAt! },
+    care: { commitment: structuredClone(duty), completedAt: requireValue(agreement.careCompletedAt) },
     dependent: {
       id: 'ada' as const,
       guardian: 'kian' as const,
@@ -177,8 +175,7 @@ export function refugeVisitPassport(s: WatchState) {
 export function completedAdaCare(s: WatchState, at: number): boolean {
   const { ada } = participants(s);
   if (
-    !s.refugeVisit ||
-    s.refugeVisit.status !== 'agreed' ||
+    s.refugeVisit?.status !== 'agreed' ||
     !ada?.body.alive ||
     s.grain < 0.1 ||
     (s.homeThreat.west ?? -1e9) > at - 90

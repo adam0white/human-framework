@@ -6,19 +6,19 @@ generic enough for HF.
 
 ## What is in it
 
-| Module | What it does |
-|---|---|
-| `adapter.ts` | The contract a game implements (`GameAdapter`). |
-| `persona.ts` | Player presets: four base players, three edge-pushers (`mischief`, `exploiter`, `rulesLawyer`) and a `returner`. |
-| `session.ts` | One sitting. Once a real minute, HF decides whether to play on, look away or stop. Each 3-second beat, one input is picked. |
-| `style.ts` | How the edge-pushers reshape what each input promises. A style never reads game state. |
-| `returner.ts` | Evenings in a row. An open loop on screen becomes a small HF goal overnight, and HF decides each evening whether to come back. |
-| `edges.ts` | The edge report: dominant strategies, degenerate loops, unexpected wins, mischief the game ignored or answered, silent inputs. Each edge is labelled "fun to keep" or "close", with a reason. |
-| `cohort.ts` | N personas × M seeds against one build, giving one plain-JSON `CohortSummary`. |
-| `compare.ts` | Two summaries of the same game, an earlier build against a later one. |
-| `designer.ts` | An experiment, not a tool (see `docs/findings.md`, 2026-10-19). An HF designer ranks templated proposals. |
-| `adapters/` | The canonical adapters: The Pass (`pass.ts`), The Glance (`glance.ts`), The Two Voices (`voices.ts`). |
-| `examples/cohort.ts` | The command line. |
+| Module               | What it does                                                                                                                                                                                  |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `adapter.ts`         | The contract a game implements (`GameAdapter`).                                                                                                                                               |
+| `persona.ts`         | Player presets: four base players, three edge-pushers (`mischief`, `exploiter`, `rulesLawyer`) and a `returner`.                                                                              |
+| `session.ts`         | One sitting. Once a real minute, HF decides whether to play on, look away or stop. Each 3-second beat, one input is picked.                                                                   |
+| `style.ts`           | How the edge-pushers reshape what each input promises. A style never reads game state.                                                                                                        |
+| `returner.ts`        | Evenings in a row. An open loop on screen becomes a small HF goal overnight, and HF decides each evening whether to come back.                                                                |
+| `edges.ts`           | The edge report: dominant strategies, degenerate loops, unexpected wins, mischief the game ignored or answered, silent inputs. Each edge is labelled "fun to keep" or "close", with a reason. |
+| `cohort.ts`          | N personas × M seeds against one build, giving one plain-JSON `CohortSummary`.                                                                                                                |
+| `compare.ts`         | Two summaries of the same game, an earlier build against a later one.                                                                                                                         |
+| `designer.ts`        | An experiment, not a tool (see `docs/findings.md`, 2026-10-19). An HF designer ranks templated proposals.                                                                                     |
+| `adapters/`          | The canonical adapters: The Pass (`pass.ts`), The Glance (`glance.ts`), The Two Voices (`voices.ts`).                                                                                         |
+| `examples/cohort.ts` | The command line.                                                                                                                                                                             |
 
 ## Commands
 
@@ -111,21 +111,21 @@ Every cohort adds `summary.clarity` and prints **First minute (DL-1..DL-7)**, fo
 The [lab checklist](../../docs/lab/design-language.md) defines the DL ids. Use the
 [source-unread prompt](../../docs/lab/playtester-prompt.md) for human-language and visual checks.
 
-| Recorded signal | DL id | Default |
-|---|---|---|
-| Time to first available action and, separately, first input; idle beats while actions were available | DL-6 | Warn after 30s, or 5 idle beats |
-| First-minute menu has no enabled action above a promise threshold | DL-3 | Highest promise at most 0.4 |
-| Many enabled actions look equally promising in the first minute | DL-3 | At least 3 within 0.05 of the highest |
-| Offered action disappears or becomes disabled without a reason or an event | DL-4 | Compare consecutive recorded menus |
-| Disabled action has no shown reason | DL-4 | Any such control |
-| Repeated inputs have no matching `answers` event | DL-13 | 3 attempts with complete 9s response windows |
-| No events, next line or visible open loop during a stretch | DL-5 | At least 30s; next, loops and openLoop must be exposed |
-| Empty goal copy throughout sampled first-minute screens | DL-1 | No non-empty goal in the first 60s |
-| Empty what-next line on a playable screen | DL-5 | Any sampled screen |
-| Voluntary quit / boredom during the first recorded chapter | DL-1 / DL-7 | Agenda stops excluded; proxy, not a diagnosis |
-| Non-English calendar word in load-bearing copy | DL-20, DL-21 | Whole words: Turkish plus common French, German, Spanish names |
-| Non-ASCII-heavy load-bearing copy | DL-20; DL-21 for clocks | More than half of at least 6 letters; language heuristic |
-| Must-read copy is too long | DL-11 | More than 60 words across exposed now, goal, next and control copy (exact duplicates counted once) |
+| Recorded signal                                                                                      | DL id                   | Default                                                                                            |
+| ---------------------------------------------------------------------------------------------------- | ----------------------- | -------------------------------------------------------------------------------------------------- |
+| Time to first available action and, separately, first input; idle beats while actions were available | DL-6                    | Warn after 30s, or 5 idle beats                                                                    |
+| First-minute menu has no enabled action above a promise threshold                                    | DL-3                    | Highest promise at most 0.4                                                                        |
+| Many enabled actions look equally promising in the first minute                                      | DL-3                    | At least 3 within 0.05 of the highest                                                              |
+| Offered action disappears or becomes disabled without a reason or an event                           | DL-4                    | Compare consecutive recorded menus                                                                 |
+| Disabled action has no shown reason                                                                  | DL-4                    | Any such control                                                                                   |
+| Repeated inputs have no matching `answers` event                                                     | DL-13                   | 3 attempts with complete 9s response windows                                                       |
+| No events, next line or visible open loop during a stretch                                           | DL-5                    | At least 30s; next, loops and openLoop must be exposed                                             |
+| Empty goal copy throughout sampled first-minute screens                                              | DL-1                    | No non-empty goal in the first 60s                                                                 |
+| Empty what-next line on a playable screen                                                            | DL-5                    | Any sampled screen                                                                                 |
+| Voluntary quit / boredom during the first recorded chapter                                           | DL-1 / DL-7             | Agenda stops excluded; proxy, not a diagnosis                                                      |
+| Non-English calendar word in load-bearing copy                                                       | DL-20, DL-21            | Whole words: Turkish plus common French, German, Spanish names                                     |
+| Non-ASCII-heavy load-bearing copy                                                                    | DL-20; DL-21 for clocks | More than half of at least 6 letters; language heuristic                                           |
+| Must-read copy is too long                                                                           | DL-11                   | More than 60 words across exposed now, goal, next and control copy (exact duplicates counted once) |
 
 `CLARITY_DEFAULTS` exports every threshold. They are playtesting premises, not measurements of real readers.
 The session records the raw menu before persona style changes promises. Disabled controls are recorded but never

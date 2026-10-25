@@ -6,15 +6,11 @@ import { clockOf, type Minute } from '../sim/world-types.ts';
 
 export type { MainToWorker as OutMsg, PauseInfo, PlaybackState, Speed } from '../protocol.ts';
 export type {
-  CharacterOutcome,
   EndSummary,
   Frame,
-  GoalId,
   GoalSide,
-  GoalStatus,
   GoalView,
   Nudge,
-  TimelineMarker,
 } from '../sim/game.ts';
 
 /** "06:30" for a sim minute. */

@@ -4,18 +4,18 @@ Protocol 2 retest of the round-3 builds on the live site at `1efbe30` (`/release
 
 Also here: the two fun reviews of the round-2 build (`aa68c62`) that ran before this retest, [Codex](fun-review-codex.md) (HOLD) and a [wildcard roguelike veteran](fun-review-wildcard.md) (Sonnet, PASS-WITH-FIXES). Both said to keep the difficulty. Their readability blockers became round 3b (`711fd15`, `32604bd`, `1efbe30`).
 
-| File | Game | Arm | Earliest wish to leave (blind) | Stop | Would return |
-|---|---|---|---|---|---|
-| `watch-free1.md` | Night Watch | free | 6:32.8 CONFUSED | 6:59.6 CONFUSED | no, not tonight |
-| `watch-free2.md` | Night Watch | free | 6:08.9 BORED | 6:18.5 BORED | unclear |
-| `watch-floor1.md` | Night Watch | floor | 12:58 CONFUSED | 15:11.9 CONFUSED | yes, another evening |
-| `watch-floor2.md` | Night Watch | floor | 6:53.2 FRUSTRATED, passed | 15:08.5 FRUSTRATED | yes, once, on Slow |
-| `well-free1.md` | Well | free | 4:13.3 FRUSTRATED | 4:17.0 FRUSTRATED | not on this phone |
-| `well-free2.md` | Well | free | 6:08.4 CONFUSED | 6:15.0 CONFUSED | no, not tonight |
-| `well-floor1.md` | Well | floor | 11:09.0 FRUSTRATED | 15:09 FINISHED | maybe |
-| `well-floor2.md` | Well | floor | 9:58.8 FRUSTRATED, passed | 15:14.1 FRUSTRATED | yes, probably on desktop |
-| `adr-free1.md` | A Dark Room (control) | free | 7:25.8 BORED | 7:55.1 BORED | yes |
-| `adr-floor1.md` | A Dark Room (control) | floor | 10:56.7 BORED | 15:09 BORED | yes |
+| File              | Game                  | Arm   | Earliest wish to leave (blind) | Stop               | Would return             |
+| ----------------- | --------------------- | ----- | ------------------------------ | ------------------ | ------------------------ |
+| `watch-free1.md`  | Night Watch           | free  | 6:32.8 CONFUSED                | 6:59.6 CONFUSED    | no, not tonight          |
+| `watch-free2.md`  | Night Watch           | free  | 6:08.9 BORED                   | 6:18.5 BORED       | unclear                  |
+| `watch-floor1.md` | Night Watch           | floor | 12:58 CONFUSED                 | 15:11.9 CONFUSED   | yes, another evening     |
+| `watch-floor2.md` | Night Watch           | floor | 6:53.2 FRUSTRATED, passed      | 15:08.5 FRUSTRATED | yes, once, on Slow       |
+| `well-free1.md`   | Well                  | free  | 4:13.3 FRUSTRATED              | 4:17.0 FRUSTRATED  | not on this phone        |
+| `well-free2.md`   | Well                  | free  | 6:08.4 CONFUSED                | 6:15.0 CONFUSED    | no, not tonight          |
+| `well-floor1.md`  | Well                  | floor | 11:09.0 FRUSTRATED             | 15:09 FINISHED     | maybe                    |
+| `well-floor2.md`  | Well                  | floor | 9:58.8 FRUSTRATED, passed      | 15:14.1 FRUSTRATED | yes, probably on desktop |
+| `adr-free1.md`    | A Dark Room (control) | free  | 7:25.8 BORED                   | 7:55.1 BORED       | yes                      |
+| `adr-floor1.md`   | A Dark Room (control) | floor | 10:56.7 BORED                  | 15:09 BORED        | yes                      |
 
 ## What this shows, and what it does not
 

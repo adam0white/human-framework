@@ -30,7 +30,14 @@ npm install ./adam0white-human-framework-<version>.tgz
 ```
 
 ```ts
-import { createCommunity, createPerson, createVillage, predict, stepCommunity, villagerSpec } from '@adam0white/human-framework';
+import {
+  createCommunity,
+  createPerson,
+  createVillage,
+  predict,
+  stepCommunity,
+  villagerSpec,
+} from '@adam0white/human-framework';
 
 const ids = ['ada', 'bora'];
 const people = ids.map((id, i) => createPerson(villagerSpec(id, id, 1 + i, { now: 6 * 60, others: ids })));
@@ -48,7 +55,7 @@ The [package README](packages/human/README.md) covers the host contract (your `W
 
 ## Norms and faith
 
-A person's conscience weighs norms from a catalog the host supplies. The bundled catalog (`DEFAULT_NORMS`) is Islam-guided, and a host can replace it with its own. HF models a person's *understanding* of a norm, held with some conviction, not a ruling, and it never computes divine acceptance. The sources behind each norm and the decisions taken where schools differ are recorded in [research/](research), notably [norm-sources.md](research/norm-sources.md) and [decisions.md](research/decisions.md). In the games, prayer and fasting appear as quiet parts of a character's life, not as the theme.
+A person's conscience weighs norms from a catalog the host supplies. The bundled catalog (`DEFAULT_NORMS`) is Islam-guided, and a host can replace it with its own. HF models a person's _understanding_ of a norm, held with some conviction, not a ruling, and it never computes divine acceptance. The sources behind each norm and the decisions taken where schools differ are recorded in [research/](research), notably [norm-sources.md](research/norm-sources.md) and [decisions.md](research/decisions.md). In the games, prayer and fasting appear as quiet parts of a character's life, not as the theme.
 
 ## Docs
 
@@ -63,13 +70,13 @@ A person's conscience weighs norms from a catalog the host supplies. The bundled
 
 ## Repository
 
-| Path | What |
-|---|---|
-| `packages/human` | the framework (`@adam0white/human-framework`): `src/`, `test/`, `examples/` |
-| `apps/site` | the games and the home page (React 19 shells, Canvas 2D maps, Vite; deployed as a Cloudflare Worker with static assets) |
-| `scripts` | release, deploy, API doc and bench scripts |
-| `docs`, `research` | documentation and sources |
-| `archive` | the earlier v0 codebase (tag `v0.16-final`) and v0-era research; provenance, not built or maintained |
+| Path               | What                                                                                                                    |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------- |
+| `packages/human`   | the framework (`@adam0white/human-framework`): `src/`, `test/`, `examples/`                                             |
+| `apps/site`        | the games and the home page (React 19 shells, Canvas 2D maps, Vite; deployed as a Cloudflare Worker with static assets) |
+| `scripts`          | release, deploy, API doc and bench scripts                                                                              |
+| `docs`, `research` | documentation and sources                                                                                               |
+| `archive`          | the earlier v0 codebase (tag `v0.16-final`) and v0-era research; provenance, not built or maintained                    |
 
 ## Commands
 

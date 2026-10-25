@@ -1,14 +1,14 @@
-# Game 3 — *The Night Watch*
+# Game 3 — _The Night Watch_
 
 Approved 2026-10-04; revised for endless play.
 
-Owner's brief: a known, deceptively small genre "within which player connects with each character and develops them". On approval he added: "potentially infinite play (until the characters die of natural causes? I dunno). We could see longer time effects of our framework. Though it should have more UI than just text, and showcase some stuff happening, yet similarly deeply integrate the human framework". AGENTS.md "Game direction" applies (approximate, subjective readouts; show rather than count; tactical slowdown, not pauses; continuous speed; limits from capabilities; saves and menus in the fiction), as does "Games keep faith gentle". Numbers marked *assumed* are unmeasured.
+Owner's brief: a known, deceptively small genre "within which player connects with each character and develops them". On approval he added: "potentially infinite play (until the characters die of natural causes? I dunno). We could see longer time effects of our framework. Though it should have more UI than just text, and showcase some stuff happening, yet similarly deeply integrate the human framework". AGENTS.md "Game direction" applies (approximate, subjective readouts; show rather than count; tactical slowdown, not pauses; continuous speed; limits from capabilities; saves and menus in the fiction), as does "Games keep faith gentle". Numbers marked _assumed_ are unmeasured.
 
 ## 1. Promise and fit
 
 **Promise:** you keep the watch of a small walled village, winter after winter. Every tower on the wall is a person who can say no, learn courage, break, marry, grow old, and hand the Gate to a grandchild.
 
-**Why tower defense.** TD is placement plus attrition, readable in seconds. HF replaces a tower's three properties: it stands where put (the will), improves only by upgrade (skills), and ignores its neighbours (social). The night's decisions are about people: *Mara is wavering, her house is on the east side; do I let her go?* Years add the decisions only time can ask: *who takes the Gate when Tamar's knees go?*
+**Why tower defense.** TD is placement plus attrition, readable in seconds. HF replaces a tower's three properties: it stands where put (the will), improves only by upgrade (skills), and ignores its neighbours (social). The night's decisions are about people: _Mara is wavering, her house is on the east side; do I let her go?_ Years add the decisions only time can ask: _who takes the Gate when Tamar's knees go?_
 
 **The player is the Keeper:** the office that writes the village chronicle, carries the lantern and rings the bell. It outlives any one person, so the same voice carries across generations. Villagers hold trust in the Keeper like any voice (HF `trust`); children learn it from their parents' stories.
 
@@ -16,18 +16,18 @@ Owner's brief: a known, deceptively small genre "within which player connects wi
 
 ## 2. Time
 
-**One continuous clock.** Speeds: 1/16× (card open), ¼× (tactical), 1× (a night of 12 sim-hours in about 3 real minutes), 3×, *Days* (a day in about 10 s) and *Seasons* (a week in about 10 s). Only the chronicle (the menu) stops the clock.
+**One continuous clock.** Speeds: 1/16× (card open), ¼× (tactical), 1× (a night of 12 sim-hours in about 3 real minutes), 3×, _Days_ (a day in about 10 s) and _Seasons_ (a week in about 10 s). Only the chronicle (the menu) stops the clock.
 
-**Tactical slowdown.** A moment (§4) eases play to ¼×; while its card is open, 1/16×. Moments queue and show one card at a time. The decision window is counted in sim time (about 2 sim-minutes, *assumed*), and inputs are logged by sim-minute, so replays are deterministic. Doing nothing is always legal: the person decides alone. A flyleaf setting chooses which moments slow play. *Days* and *Seasons* drop to 1× when something person-changing begins (a fight, a birth, a quarrel at the well).
+**Tactical slowdown.** A moment (§4) eases play to ¼×; while its card is open, 1/16×. Moments queue and show one card at a time. The decision window is counted in sim time (about 2 sim-minutes, _assumed_), and inputs are logged by sim-minute, so replays are deterministic. Doing nothing is always legal: the person decides alone. A flyleaf setting chooses which moments slow play. _Days_ and _Seasons_ drop to 1× when something person-changing begins (a fight, a birth, a quarrel at the well).
 
-**The year, about 15 minutes at default** (*assumed*):
+**The year, about 15 minutes at default** (_assumed_):
 
-| Season | What happens | Default |
-|---|---|---|
-| **Winter: the Watch** | 6–8 nights, one sharp peak. Nights where no moment fires run on standing posts and appear only as dawn-page lines. | 1× nights with moments; routine nights summarized |
-| **Spring: the thaw** | The thaw page (§3); repairs, weddings, births, who leaves. | *Days* |
-| **Summer** | Fields, practice, building; some years an event (a house fire, a sick well). | *Seasons* |
-| **Autumn: the reckoning** | Harvest fills the granary; the fair; 2–3 decade decisions (§4); who comes of age (15); next winter's tracks. | *Days* |
+| Season                    | What happens                                                                                                       | Default                                           |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------- |
+| **Winter: the Watch**     | 6–8 nights, one sharp peak. Nights where no moment fires run on standing posts and appear only as dawn-page lines. | 1× nights with moments; routine nights summarized |
+| **Spring: the thaw**      | The thaw page (§3); repairs, weddings, births, who leaves.                                                         | _Days_                                            |
+| **Summer**                | Fields, practice, building; some years an event (a house fire, a sick well).                                       | _Seasons_                                         |
+| **Autumn: the reckoning** | Harvest fills the granary; the fair; 2–3 decade decisions (§4); who comes of age (15); next winter's tracks.       | _Days_                                            |
 
 At 15 minutes a year, Mara's children come of age around evening 3: the inheritance is reachable.
 
@@ -52,24 +52,24 @@ At 15 minutes a year, Mara's children come of age around evening 3: the inherita
 
 ## 4. Play
 
-**The opening.** The chronicle opens with the clock stopped on a page that states the goal: *bring every soul and the granary to the thaw.* Night 1 is one wall section, two watchers (Tamar and Kian) and one wolf pack. The cast arrives over the first nights (Joss and Mara, then Yunus, then Ruslan with the thieves).
+**The opening.** The chronicle opens with the clock stopped on a page that states the goal: _bring every soul and the granary to the thaw._ Night 1 is one wall section, two watchers (Tamar and Kian) and one wolf pack. The cast arrives over the first nights (Joss and Mara, then Yunus, then Ruslan with the thieves).
 
-**Dusk: posting.** A scout line telegraphs the night ("pack tracks by the west wall"). There are always more posts than people. Tap a portrait, tap a post; a card offers *suggest*, *urge* or *insist* in words, with the person's likely answer **seen through the Keeper's impression** (L6): a well-known watcher reads "likely" or "won't: next to Joss"; a newcomer reads "you can't tell"; a hidden trait can make the preview wrong. The dawn page shows what actually happened, so the player checks their reads. Posts stay as standing suggestions. Posting is closed at night.
+**Dusk: posting.** A scout line telegraphs the night ("pack tracks by the west wall"). There are always more posts than people. Tap a portrait, tap a post; a card offers _suggest_, _urge_ or _insist_ in words, with the person's likely answer **seen through the Keeper's impression** (L6): a well-known watcher reads "likely" or "won't: next to Joss"; a newcomer reads "you can't tell"; a hidden trait can make the preview wrong. The dawn page shows what actually happened, so the player checks their reads. Posts stay as standing suggestions. Posting is closed at night.
 
 **Night: watching.** The night is abstract. Each wall section is a lane; enemies are tokens that advance along it; each sim-minute resolves as rolls from skill × capacity. No projectiles, no pathing, no fire spread. The Keeper's night actions are the lantern, the bell and moment cards:
 
 - **The lantern is the Keeper's position.** It lights one section: enemies there are seen and hit earlier, and the Keeper sees the people there. A waver on an unlit section raises no card: the player sees only a figure moving in the dark.
 - **The bell** hangs over the Gate; its rope runs along the wall-walk, so the Keeper pulls it from wherever the lantern is. A pull is heard by everyone in range, loudest at the Gate and fainter each stretch away (the hall by the Gate fully; a house only near the Gate, where it wakes the sleepers). Everyone who hears it is roused (a doze ends, and nobody nods off for a while) and called back to their post, more strongly the louder they heard it; with no posting, it calls them to any post, so the village can turn out. The call is an HF suggestion, weighed by trust, so its cost is small and spread over those who would rather do otherwise. Calling one watcher by name over the bell (a card's choice) is the strong form, an HF `command`, and needs the Keeper's own voice to reach them (his stretch and the next). It costs that watcher autonomy and trust and raises their break hazard, scaled by how much they wanted otherwise; the card says so in words ("Joss will resent this"). A pull with nothing out there is a false alarm, and the next call is weaker ("Again?"). No charges: overuse is limited by false alarms, by what a named call does to people, and by the rope, which frays visibly and must be mended by someone's day.
 
-| Moment (lit section only) | Trigger | Cards |
-|---|---|---|
-| Waver | `hold-post` within the close-call margin of `flee` or `go-home` | let go · urge hold · bell |
-| Family | a threat percept targets a watcher's home | let her go · send someone else (their post empties) · bell |
-| Downed | a watcher is down in the open | name a carrier (preview through the impression) · leave her |
+| Moment (lit section only) | Trigger                                                         | Cards                                                       |
+| ------------------------- | --------------------------------------------------------------- | ----------------------------------------------------------- |
+| Waver                     | `hold-post` within the close-call margin of `flee` or `go-home` | let go · urge hold · bell                                   |
+| Family                    | a threat percept targets a watcher's home                       | let her go · send someone else (their post empties) · bell  |
+| Downed                    | a watcher is down in the open                                   | name a carrier (preview through the impression) · leave her |
 
-At most three moments a night (*assumed*). Yunus may step off for Fajr near dawn: shown as a figure leaving, with no card and no slowdown.
+At most three moments a night (_assumed_). Yunus may step off for Fajr near dawn: shown as a figure leaving, with no card and no slowdown.
 
-**Day: talking.** The dawn page gives one line per watcher in their voice and a why for each refusal or departure. Talks cost the Keeper's daylight (about an hour each) and the person's sleep after a night on the wall, so influence trades against their rest. A talk is also how the Keeper learns: *tell me about last night* (cue recall), *how is the knee?* Topics are ranked by the person's inclination: *rest* · *practise with Tamar* · *mend things with Joss* · *take the Gate tonight* (a promise) · *teach Kian's daughter the sling*.
+**Day: talking.** The dawn page gives one line per watcher in their voice and a why for each refusal or departure. Talks cost the Keeper's daylight (about an hour each) and the person's sleep after a night on the wall, so influence trades against their rest. A talk is also how the Keeper learns: _tell me about last night_ (cue recall), _how is the knee?_ Topics are ranked by the person's inclination: _rest_ · _practise with Tamar_ · _mend things with Joss_ · _take the Gate tonight_ (a promise) · _teach Kian's daughter the sling_.
 
 **Autumn: decade decisions.** The fair is the drafting phase: 2–3 choices that cannot be undone and draw on the same grain and labour. Admit the outsider family or keep the grain; extend the wall (a new post, more posts than people); buy a bigger bell (the rope lasts longer, the bell carries further) or seed grain; name the Gate heir (pride and trust move on both sides).
 
@@ -81,7 +81,7 @@ At most three moments a night (*assumed*). Yunus may step off for Fajr near dawn
 
 **Show.** Sprites slump, then sit, as fatigue rises; a bandage and a limp; a torch gutters; a dog barks before a threat is lit; voices in short bubbles ("not the east wall again"); grey hair and a stick. No HP, fatigue or ammo numbers in play.
 
-**Subjective readouts.** A card shows the Keeper's impression, not true state: phrases with a confidence ("afraid of the east wall, *you think*") and soft bars whose width is uncertainty. It sharpens with nights watched under the lantern, talks, and what others say. Only what has actually changed goes stale, shown as "last seen at harvest" rather than a blur. The roster shows people of watch age. Hidden traits are a gap the Keeper can learn: Tamar's words say "fine", her limp says otherwise. A wrong read costs: post Tamar on "fine" and she cannot climb the stair, and the Gate stands empty. There is no truth toggle in play; HF's terms appear only in the playtest export.
+**Subjective readouts.** A card shows the Keeper's impression, not true state: phrases with a confidence ("afraid of the east wall, _you think_") and soft bars whose width is uncertainty. It sharpens with nights watched under the lantern, talks, and what others say. Only what has actually changed goes stale, shown as "last seen at harvest" rather than a blur. The roster shows people of watch age. Hidden traits are a gap the Keeper can learn: Tamar's words say "fine", her limp says otherwise. A wrong read costs: post Tamar on "fine" and she cannot climb the stair, and the Gate stands empty. There is no truth toggle in play; HF's terms appear only in the playtest export.
 
 ## 6. Saves and menus in the fiction
 
@@ -96,27 +96,27 @@ At most three moments a night (*assumed*). Yunus may step off for Fajr near dawn
 
 **New for HF 2.0** (general, no Night Watch names; each with tests, a headless control scenario and a scope paragraph):
 
-| # | Deliverable | Scope | Test sentence |
-|---|---|---|---|
-| L1 | **Experience over years** | Episodes past a horizon consolidate into a few lasting, valenced gists that keep recall, fear and retelling alive; skills age (slower learning, rust); state stays bounded. | A fear learned at 20 still shapes choices at 40 after its episodes are gone; a 50-year snapshot stays under a stated size. |
-| L2 | **Upbringing and heredity** | Per-skill aptitudes, loosely inherited; childhood exposure to household habits and values; parents' gists and voice trust passed by conversation. | A child of fearful parents believes a place riskier before going there; a child's trust in a voice starts from household stories. |
-| L3 | **Attraction and partnering** | Attraction from familiarity, shared events and trait fit; slow courtship; a proposal resolved by a host-supplied custom (consent, age); kin prohibition; household formation. PG. | Two people with many good shared events partner under a custom requiring family consent; a forbidding custom or kinship prevents it. |
-| L4 | **Ambient context** | A host `ambient` input on `tick` (cold, dark, crowding, comfort) feeding mood, sleep and fatigue. | Cold dark nights lower mood and raise fatigue; a warm hall restores them. |
-| L5 | **Long-run community driver** | Mixed fidelity: full stepping, or a coarse community `skip` with social events summarized. The switch happens only at dawn, by host request; coming of age and life transitions are events; a budget. | 25 people run 50 years headless, deterministically, within the bench budget; resume from a season snapshot plus log is byte-equal. |
-| L6 | **Impressions** | One person's estimate of another's state and likely answer, with uncertainty, from familiarity and observations; hidden pain and pride bias it. The Keeper's readout and the preview use the same function as villagers' judgements of each other. | An estimate narrows with shared time and errs where the target hides pain. |
+| #   | Deliverable                   | Scope                                                                                                                                                                                                                                              | Test sentence                                                                                                                        |
+| --- | ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| L1  | **Experience over years**     | Episodes past a horizon consolidate into a few lasting, valenced gists that keep recall, fear and retelling alive; skills age (slower learning, rust); state stays bounded.                                                                        | A fear learned at 20 still shapes choices at 40 after its episodes are gone; a 50-year snapshot stays under a stated size.           |
+| L2  | **Upbringing and heredity**   | Per-skill aptitudes, loosely inherited; childhood exposure to household habits and values; parents' gists and voice trust passed by conversation.                                                                                                  | A child of fearful parents believes a place riskier before going there; a child's trust in a voice starts from household stories.    |
+| L3  | **Attraction and partnering** | Attraction from familiarity, shared events and trait fit; slow courtship; a proposal resolved by a host-supplied custom (consent, age); kin prohibition; household formation. PG.                                                                  | Two people with many good shared events partner under a custom requiring family consent; a forbidding custom or kinship prevents it. |
+| L4  | **Ambient context**           | A host `ambient` input on `tick` (cold, dark, crowding, comfort) feeding mood, sleep and fatigue.                                                                                                                                                  | Cold dark nights lower mood and raise fatigue; a warm hall restores them.                                                            |
+| L5  | **Long-run community driver** | Mixed fidelity: full stepping, or a coarse community `skip` with social events summarized. The switch happens only at dawn, by host request; coming of age and life transitions are events; a budget.                                              | 25 people run 50 years headless, deterministically, within the bench budget; resume from a season snapshot plus log is byte-equal.   |
+| L6  | **Impressions**               | One person's estimate of another's state and likely answer, with uncertainty, from familiarity and observations; hidden pain and pride bias it. The Keeper's readout and the preview use the same function as villagers' judgements of each other. | An estimate narrows with shared time and errs where the target hides pain.                                                           |
 
 **Game-side only:** lanes, tokens and rolls; the seasons calendar and threat director; grain, the fair and decade decisions; the bell's reach, loudness and rope; marriage customs and coming-of-age age as host data; the break catalog; talk ranking; the permanent chronicle and storage. HF sees only affordances (`hold-post@gate`, `flee`, `go-home`, `carry@mara`, `court@kian`), outcomes, percepts, ambient input and what the Keeper observed.
 
 ## 8. Cast, year 1
 
-| Watcher | Strength | Flaw | Long arc | Ties |
-|---|---|---|---|---|
-| **Tamar**, 54 | Sling, steady | Pride: under-reports pain | Hands the Gate on, or wears herself out | Kian's mentor; grudge with Ruslan |
-| **Kian**, 16 | Fast, eager | Takes the risky post; freezes once hurt | Courage, or turns from the wall; may raise a watcher | Sister by the west wall |
-| **Mara**, 34 | Best sight | Home on the east edge | Trusts the wall enough to stay | Married to Joss; two children |
-| **Joss**, 38, smith | Strength | Anger; resents Ruslan over a debt | Puts the grudge down, or passes it to his son | Mends the bell rope |
-| **Ruslan**, 45 | Spear | Newcomer; high emotionality, bad sleep | Becomes one of them, or leaves at thaw | Suspected over missing grain (never confirmed) |
-| **Yunus**, 61, miller | Calm | Frail, poor sight | Likely the first natural death | Prays; texture only |
+| Watcher               | Strength      | Flaw                                    | Long arc                                             | Ties                                           |
+| --------------------- | ------------- | --------------------------------------- | ---------------------------------------------------- | ---------------------------------------------- |
+| **Tamar**, 54         | Sling, steady | Pride: under-reports pain               | Hands the Gate on, or wears herself out              | Kian's mentor; grudge with Ruslan              |
+| **Kian**, 16          | Fast, eager   | Takes the risky post; freezes once hurt | Courage, or turns from the wall; may raise a watcher | Sister by the west wall                        |
+| **Mara**, 34          | Best sight    | Home on the east edge                   | Trusts the wall enough to stay                       | Married to Joss; two children                  |
+| **Joss**, 38, smith   | Strength      | Anger; resents Ruslan over a debt       | Puts the grudge down, or passes it to his son        | Mends the bell rope                            |
+| **Ruslan**, 45        | Spear         | Newcomer; high emotionality, bad sleep  | Becomes one of them, or leaves at thaw               | Suspected over missing grain (never confirmed) |
+| **Yunus**, 61, miller | Calm          | Frail, poor sight                       | Likely the first natural death                       | Prays; texture only                            |
 
 ## 9. UI scope
 
@@ -124,12 +124,12 @@ React 19 shell; Canvas 2D; simulation in a Web Worker; React renders snapshots. 
 
 ## 10. Build plan
 
-| Phase | Work | Playtest gate |
-|---|---|---|
-| G3-1 | Abstract lane night without HF (obedient tokens): lanes, rolls, grain, scout line, lantern, dusk posting, continuous clock with speeds and slowdown. Small by design. | Against a telegraphed threat, testers post differently and a bad plan visibly loses sacks |
-| G3-2 | People on HF: verdicts, impressions (L6) on cards and previews, bell (`command`), breaks, injuries and downed, outsiders, moments, dawn page, talks, sprites; the year-1 winter | A fresh tester names one watcher's fear and one bond, unprompted, within three nights |
-| G3-3 | L1–L5 in HF; seasons, director, decade decisions, permanent losses, volumes, blank leaves, fall and resettlement, season snapshots | Headless: 3 seeds × 50 years; population and mood must swing by decade (flat lines fail) and years 10 and 20 must differ across seeds. Played: a tester plays three years and retells one cross-year story unprompted |
-| G3-4 | Phone fit, playtest export and replay, deploy `/watch/`, framework.md, api.md, README | The user plays; his words go in `watch-playtest-*.md` |
+| Phase | Work                                                                                                                                                                            | Playtest gate                                                                                                                                                                                                         |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| G3-1  | Abstract lane night without HF (obedient tokens): lanes, rolls, grain, scout line, lantern, dusk posting, continuous clock with speeds and slowdown. Small by design.           | Against a telegraphed threat, testers post differently and a bad plan visibly loses sacks                                                                                                                             |
+| G3-2  | People on HF: verdicts, impressions (L6) on cards and previews, bell (`command`), breaks, injuries and downed, outsiders, moments, dawn page, talks, sprites; the year-1 winter | A fresh tester names one watcher's fear and one bond, unprompted, within three nights                                                                                                                                 |
+| G3-3  | L1–L5 in HF; seasons, director, decade decisions, permanent losses, volumes, blank leaves, fall and resettlement, season snapshots                                              | Headless: 3 seeds × 50 years; population and mood must swing by decade (flat lines fail) and years 10 and 20 must differ across seeds. Played: a tester plays three years and retells one cross-year story unprompted |
+| G3-4  | Phone fit, playtest export and replay, deploy `/watch/`, framework.md, api.md, README                                                                                           | The user plays; his words go in `watch-playtest-*.md`                                                                                                                                                                 |
 
 ### G3-1 as built (2026-10-04)
 
@@ -145,11 +145,11 @@ At `/watch/`, linked from the landing page as an early prototype. Code: `apps/si
 
 **Gate, headless** (`sim/gate.test.ts`). 24 seeds × 3 nights, with one plan at every dusk and no night inputs. The table shows mean sacks lost of 20:
 
-| Plan | Lantern at Gate | Lantern at the plan's focus | Granary emptied (focus lantern) |
-|---|---|---|---|
-| Matched: two watchers where the scout said | 5.7 | 5.1 | 0/24 |
-| Usual: the standing posts | 14.4 | 14.4 | 4/24 |
-| Mismatched: two watchers at the far end | 16.4 | 17.9 | 15/24 |
+| Plan                                       | Lantern at Gate | Lantern at the plan's focus | Granary emptied (focus lantern) |
+| ------------------------------------------ | --------------- | --------------------------- | ------------------------------- |
+| Matched: two watchers where the scout said | 5.7             | 5.1                         | 0/24                            |
+| Usual: the standing posts                  | 14.4            | 14.4                        | 4/24                            |
+| Mismatched: two watchers at the far end    | 16.4            | 17.9                        | 15/24                           |
 
 The first night alone loses 0.5, 4.0 and 6.3 sacks. The matched plan beats the mismatched one on at least 18 of 24 seeds, and the test asserts this.
 
@@ -182,11 +182,11 @@ Watchers are HF `Person`s run by `stepCommunity` (`sim/people.ts`, `sim/night.ts
 
 **Gates, headless.** 24 seeds × 3 nights. G3-1 (`sim/gate.test.ts`), now with people, mean sacks lost of 20:
 
-| Plan | Lantern at Gate | Lantern at focus | Granary emptied (focus) |
-|---|---|---|---|
-| Matched | 12.1 | 7.3 | 0/24 |
-| Usual | 16.5 | 16.5 | 9/24 |
-| Mismatched | 18.3 | 19.3 | 17/24 |
+| Plan       | Lantern at Gate | Lantern at focus | Granary emptied (focus) |
+| ---------- | --------------- | ---------------- | ----------------------- |
+| Matched    | 12.1            | 7.3              | 0/24                    |
+| Usual      | 16.5            | 16.5             | 9/24                    |
+| Mismatched | 18.3            | 19.3             | 17/24                   |
 
 G3-2 (`sim/gate2.test.ts`) approximates "a tester names one fear and one bond within three nights" by matching dawn lines against fear and bond phrasings: matched plan 24/24 seeds both, usual 19/24; cards 3.9–4.3 per run. This is a templated-text check, not a tester.
 
@@ -320,8 +320,8 @@ The only framework change is one opt-in cue kind. HF impressions now read `skill
 - "Three nights nobody comes" is not built.
 
 **Review (wildcard: a phone player on 360×690, Sonnet).**
-- *What they said:* the player lost the first winter twice, on nights 4 and 5, when the granary ran out. They got no dawn for the last night and no warning beforehand. "a village that scatters after four or five nights is too harsh for a first winter."
-- *What mattered most to them:* dawn quotes that name a person and a place ("Joss got me off the wall. I owe him.").
+- _What they said:_ the player lost the first winter twice, on nights 4 and 5, when the granary ran out. They got no dawn for the last night and no warning beforehand. "a village that scatters after four or five nights is too harsh for a first winter."
+- _What mattered most to them:_ dawn quotes that name a person and a place ("Joss got me off the wall. I owe him.").
 - Accepted and done:
   - The first winter cannot end the village. The losing night gets its dawn.
   - Words warn of a low granary at dusk and dawn.
@@ -330,7 +330,7 @@ The only framework change is one opt-in cue kind. HF impressions now read `skill
 - Deferred to G3-4: eleven phone and feedback items (repeated dawn lines, the shifting lantern row, the card over the scene, the chronicle menu, the stale watcher at a post, the blank map, the hidden speed bar, bell feedback, similar talk answers, tap-to-move, leftovers). All were done in G3-4.
 
 **Review (game designer, Opus, 1280×800).** The reviewer played two years. Part of the play came before the first-winter change, so their run 1 fell on night 4.
-- *Their verdict:* the second year produced the first real long-run story: a wall came down where it was climbed, a hungry spring, refugees, a birth, aging in words, bonds from shared nights.
+- _Their verdict:_ the second year produced the first real long-run story: a wall came down where it was climbed, a hungry spring, refugees, a birth, aging in words, bonds from shared nights.
 - Accepted and done:
   - The Keeper's read of people no longer fades to "you don't know them yet" over the summer. Lasting cues hold and are marked "from last winter" (`sim/reads.ts`, tested in `sim/years.test.ts`).
   - A watcher who went home no longer says "I didn't blink till dawn".
@@ -585,16 +585,16 @@ Owner, 2026-10-19: bring the earlier games to the latest HF and apply what the o
 
 **HF playtester personas** (`node apps/site/scripts/hf-watch-session.ts seeds=2`, after the change):
 
-| persona | seed | ended | min | reached | engagement | longest lull |
-|---|---|---|---|---|---|---|
-| commuter | 1 | quit | 4 | year 1, night | 0.80 | 0 s |
-| commuter | 2 | quit | 3 | year 1, night | 0.81 | 0 s |
-| unwinder | 1 | quit | 20 | year 2, night | 0.85 | 0 s |
-| unwinder | 2 | quit | 14 | year 2, night | 0.85 | 0 s |
-| completionist | 1 | quit | 16 | year 2, night | 0.86 | 0 s |
-| completionist | 2 | quit | 14 | year 2, night | 0.87 | 0 s |
-| restless | 1 | quit | 12 | year 2, night | 0.74 | 3 s at dusk |
-| restless | 2 | quit | 12 | year 2, night | 0.76 | 0 s |
+| persona       | seed | ended | min | reached       | engagement | longest lull |
+| ------------- | ---- | ----- | --- | ------------- | ---------- | ------------ |
+| commuter      | 1    | quit  | 4   | year 1, night | 0.80       | 0 s          |
+| commuter      | 2    | quit  | 3   | year 1, night | 0.81       | 0 s          |
+| unwinder      | 1    | quit  | 20  | year 2, night | 0.85       | 0 s          |
+| unwinder      | 2    | quit  | 14  | year 2, night | 0.85       | 0 s          |
+| completionist | 1    | quit  | 16  | year 2, night | 0.86       | 0 s          |
+| completionist | 2    | quit  | 14  | year 2, night | 0.87       | 0 s          |
+| restless      | 1    | quit  | 12  | year 2, night | 0.74       | 3 s at dusk  |
+| restless      | 2    | quit  | 12  | year 2, night | 0.76       | 0 s          |
 
 How to read it:
 - No persona got bored. Every one quit on distress (HF `distress:rest`) during a winter night, after wolves over the wall and watchers going home.
@@ -603,26 +603,26 @@ How to read it:
 
 ## 11. Risks and cuts
 
-| Risk | Mitigation |
-|---|---|
-| A dead equilibrium | Permanent losses, growth costs, decade-swing gate |
-| Years feel the same | Generated winters, twists, life-stage questions |
-| Saves bloat | L1 bounded state; season snapshots plus log |
-| Mixed fidelity breaks determinism | Switch only at dawn; byte-equal resume tested |
-| UI eats the schedule | Abstract lanes; tap-only input; §9 guardrail |
-| Faith becomes a mechanic | Prayer, weddings, funerals are quiet events; no card, score or slowdown reads them |
+| Risk                              | Mitigation                                                                         |
+| --------------------------------- | ---------------------------------------------------------------------------------- |
+| A dead equilibrium                | Permanent losses, growth costs, decade-swing gate                                  |
+| Years feel the same               | Generated winters, twists, life-stage questions                                    |
+| Saves bloat                       | L1 bounded state; season snapshots plus log                                        |
+| Mixed fidelity breaks determinism | Switch only at dawn; byte-equal resume tested                                      |
+| UI eats the schedule              | Abstract lanes; tap-only input; §9 guardrail                                       |
+| Faith becomes a mechanic          | Prayer, weddings, funerals are quiet events; no card, score or slowdown reads them |
 
-**Cut first, in order:** summer events; resettlement (a fallen village just ends its volume); blank leaves; the bigger bell; *mend things*.
+**Cut first, in order:** summer events; resettlement (a fallen village just ends its volume); blank leaves; the bigger bell; _mend things_.
 
 ## Review notes (round 2)
 
 Three reviews of the endless-play draft, 2026-10-04.
 
-**(a) Adversarial systemic designer (Opus).** *Top:* the long run settles into a dead equilibrium. **Accepted:** permanent non-death losses and growth costs; decade-swing gate; ~15-minute years with routine nights summarized; decade decisions at autumn; preview through the impression, L6 made core and kept in HF; queued cards, 1/16× while open, sim-time windows, sim-minute input log, no night posting; season snapshots plus log; permanent chronicle game-side; L3 kin prohibition and director-supplied partners; fidelity switch at dawn only; abstract lane night with no fire spread; Yunus without a card. **Rejected:** merging G3-1 into G3-2 (G3-1 stays, abstract and small, because its gate tests planning before people); talks made scarce by sleeping watchers is kept, but children's stone-gathering competing with chores and oil competing at the fair are dropped for (c)'s fewer components.
+**(a) Adversarial systemic designer (Opus).** _Top:_ the long run settles into a dead equilibrium. **Accepted:** permanent non-death losses and growth costs; decade-swing gate; ~15-minute years with routine nights summarized; decade decisions at autumn; preview through the impression, L6 made core and kept in HF; queued cards, 1/16× while open, sim-time windows, sim-minute input log, no night posting; season snapshots plus log; permanent chronicle game-side; L3 kin prohibition and director-supplied partners; fidelity switch at dawn only; abstract lane night with no fire spread; Yunus without a card. **Rejected:** merging G3-1 into G3-2 (G3-1 stays, abstract and small, because its gate tests planning before people); talks made scarce by sleeping watchers is kept, but children's stone-gathering competing with chores and oil competing at the fair are dropped for (c)'s fewer components.
 
-**(b) Player advocate (Opus, owner's quotes only).** *Top:* no stated goal and nothing that can really go wrong. **Accepted:** stopped-clock goal page; gentle night 1 (one wall, two watchers); each winter's question as a failable goal with a visible cost; 6–8-night winters with routine nights as dawn lines; staleness only for what changed, "last seen at harvest"; watch-age roster; generations as volumes with inherited stakes; tap-only posting with suggest/urge/insist in words; prices in words; a setting for which moments slow play; replay jumps cut. **Rejected:** none.
+**(b) Player advocate (Opus, owner's quotes only).** _Top:_ no stated goal and nothing that can really go wrong. **Accepted:** stopped-clock goal page; gentle night 1 (one wall, two watchers); each winter's question as a failable goal with a visible cost; 6–8-night winters with routine nights as dawn lines; staleness only for what changed, "last seen at harvest"; watch-age roster; generations as volumes with inherited stakes; tap-only posting with suggest/urge/insist in words; prices in words; a setting for which moments slow play; replay jumps cut. **Rejected:** none.
 
-**(c) Wildcard: legacy board-game designer (Fable).** *Top:* a volume needs an end that is not failure. **Accepted:** volumes with a named question and end; blank leaves with printed conditions; irreversible map changes; the lantern as the Keeper's position, so unlit wavers raise no card; wrong reads cost; no truth toggle in play (export only); three managed limits, stones and oil ambient; the thaw page as cleanup; the fair as drafting. **Rejected:** none.
+**(c) Wildcard: legacy board-game designer (Fable).** _Top:_ a volume needs an end that is not failure. **Accepted:** volumes with a named question and end; blank leaves with printed conditions; irreversible map changes; the lantern as the Keeper's position, so unlit wavers raise no card; wrong reads cost; no truth toggle in play (export only); three managed limits, stones and oil ambient; the thaw page as cleanup; the fair as drafting. **Rejected:** none.
 
 ## 12. After graduation: deferred features
 
@@ -783,45 +783,45 @@ Scenario 11 versions the new `relieve`, `help` and `down` inputs. Scenarios 9 an
 
 `node apps/site/scripts/hf-watch-session.ts seeds=2`, before:
 
-| persona | seed | ended | min | reached | engagement | longest lull | looked away |
-|---|---|---|---|---|---|---|---|
-| commuter | 1 | quit | 8 | 1 night | 0.73 | 0s  | 0 |
-| commuter | 2 | quit | 10 | 1 night | 0.73 | 0s  | 0 |
-| unwinder | 1 | quit | 21 | 2 night | 0.77 | 0s  | 1 |
-| unwinder | 2 | quit | 13 | 2 night | 0.78 | 0s  | 0 |
-| completionist | 1 | quit | 26 | 3 night | 0.8 | 0s  | 1 |
-| completionist | 2 | quit | 12 | 2 night | 0.82 | 0s  | 0 |
-| restless | 1 | quit | 14 | 2 night | 0.64 | 21s dusk | 0 |
-| restless | 2 | quit | 11 | 1 fair | 0.66 | 18s night | 0 |
-| mischief | 1 | quit | 17 | 2 night | 0.68 | 3s night | 0 |
-| mischief | 2 | quit | 14 | 2 dusk | 0.69 | 0s  | 0 |
-| exploiter | 1 | quit | 16 | 2 dawn | 0.69 | 0s  | 0 |
-| exploiter | 2 | quit | 35 | 3 night | 0.67 | 0s  | 1 |
-| rulesLawyer | 1 | quit | 14 | 2 night | 0.7 | 3s night | 0 |
-| rulesLawyer | 2 | quit | 19 | 2 night | 0.68 | 0s  | 0 |
-| returner | 1 | quit | 15 | 2 night | 0.73 | 0s  | 0 |
-| returner | 2 | quit | 10 | 1 night | 0.74 | 0s  | 0 |
+| persona       | seed | ended | min | reached | engagement | longest lull | looked away |
+| ------------- | ---- | ----- | --- | ------- | ---------- | ------------ | ----------- |
+| commuter      | 1    | quit  | 8   | 1 night | 0.73       | 0s           | 0           |
+| commuter      | 2    | quit  | 10  | 1 night | 0.73       | 0s           | 0           |
+| unwinder      | 1    | quit  | 21  | 2 night | 0.77       | 0s           | 1           |
+| unwinder      | 2    | quit  | 13  | 2 night | 0.78       | 0s           | 0           |
+| completionist | 1    | quit  | 26  | 3 night | 0.8        | 0s           | 1           |
+| completionist | 2    | quit  | 12  | 2 night | 0.82       | 0s           | 0           |
+| restless      | 1    | quit  | 14  | 2 night | 0.64       | 21s dusk     | 0           |
+| restless      | 2    | quit  | 11  | 1 fair  | 0.66       | 18s night    | 0           |
+| mischief      | 1    | quit  | 17  | 2 night | 0.68       | 3s night     | 0           |
+| mischief      | 2    | quit  | 14  | 2 dusk  | 0.69       | 0s           | 0           |
+| exploiter     | 1    | quit  | 16  | 2 dawn  | 0.69       | 0s           | 0           |
+| exploiter     | 2    | quit  | 35  | 3 night | 0.67       | 0s           | 1           |
+| rulesLawyer   | 1    | quit  | 14  | 2 night | 0.7        | 3s night     | 0           |
+| rulesLawyer   | 2    | quit  | 19  | 2 night | 0.68       | 0s           | 0           |
+| returner      | 1    | quit  | 15  | 2 night | 0.73       | 0s           | 0           |
+| returner      | 2    | quit  | 10  | 1 night | 0.74       | 0s           | 0           |
 
 The same command after, with the adapter offering the new acts:
 
-| persona | seed | ended | min | reached | engagement | longest lull | looked away |
-|---|---|---|---|---|---|---|---|
-| commuter | 1 | quit | 14 | 2 night | 0.74 | 0s  | 0 |
-| commuter | 2 | quit | 19 | 2 night | 0.72 | 0s  | 0 |
-| unwinder | 1 | quit | 18 | 2 dusk | 0.77 | 0s  | 0 |
-| unwinder | 2 | quit | 17 | 2 night | 0.76 | 0s  | 0 |
-| completionist | 1 | quit | 15 | 2 dawn | 0.8 | 0s  | 0 |
-| completionist | 2 | quit | 16 | 2 night | 0.79 | 0s  | 0 |
-| restless | 1 | quit | 14 | 2 night | 0.65 | 21s dusk | 0 |
-| restless | 2 | quit | 11 | 1 autumn | 0.65 | 18s night | 0 |
-| mischief | 1 | agenda | 20 | 2 night | 0.66 | 3s night | 0 |
-| mischief | 2 | quit | 14 | 2 night | 0.68 | 0s  | 0 |
-| exploiter | 1 | quit | 17 | 2 night | 0.68 | 0s  | 0 |
-| exploiter | 2 | quit | 14 | 2 night | 0.68 | 0s  | 0 |
-| rulesLawyer | 1 | quit | 16 | 2 night | 0.68 | 3s night | 0 |
-| rulesLawyer | 2 | quit | 12 | 2 night | 0.68 | 0s  | 0 |
-| returner | 1 | quit | 9 | 1 dusk | 0.72 | 0s  | 0 |
-| returner | 2 | quit | 9 | 1 night | 0.73 | 0s  | 0 |
+| persona       | seed | ended  | min | reached  | engagement | longest lull | looked away |
+| ------------- | ---- | ------ | --- | -------- | ---------- | ------------ | ----------- |
+| commuter      | 1    | quit   | 14  | 2 night  | 0.74       | 0s           | 0           |
+| commuter      | 2    | quit   | 19  | 2 night  | 0.72       | 0s           | 0           |
+| unwinder      | 1    | quit   | 18  | 2 dusk   | 0.77       | 0s           | 0           |
+| unwinder      | 2    | quit   | 17  | 2 night  | 0.76       | 0s           | 0           |
+| completionist | 1    | quit   | 15  | 2 dawn   | 0.8        | 0s           | 0           |
+| completionist | 2    | quit   | 16  | 2 night  | 0.79       | 0s           | 0           |
+| restless      | 1    | quit   | 14  | 2 night  | 0.65       | 21s dusk     | 0           |
+| restless      | 2    | quit   | 11  | 1 autumn | 0.65       | 18s night    | 0           |
+| mischief      | 1    | agenda | 20  | 2 night  | 0.66       | 3s night     | 0           |
+| mischief      | 2    | quit   | 14  | 2 night  | 0.68       | 0s           | 0           |
+| exploiter     | 1    | quit   | 17  | 2 night  | 0.68       | 0s           | 0           |
+| exploiter     | 2    | quit   | 14  | 2 night  | 0.68       | 0s           | 0           |
+| rulesLawyer   | 1    | quit   | 16  | 2 night  | 0.68       | 3s night     | 0           |
+| rulesLawyer   | 2    | quit   | 12  | 2 night  | 0.68       | 0s           | 0           |
+| returner      | 1    | quit   | 9   | 1 dusk   | 0.72       | 0s           | 0           |
+| returner      | 2    | quit   | 9   | 1 night  | 0.73       | 0s           | 0           |
 
 These are deterministic simulated sessions with two seeds per persona, not fresh human retests. The action policy changed as well as the available inputs. Session duration, engagement and quitting do not establish that the new controls are discoverable or that posting still carries the same weight.
 

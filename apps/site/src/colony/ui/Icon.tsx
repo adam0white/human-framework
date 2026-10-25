@@ -16,7 +16,7 @@
  * An icon beside text is decorative (`aria-hidden`); a standalone icon takes a `label` and is `role="img"`.
  * `RingTimer` is drawn here, not copied.
  */
-import type { ReactElement } from 'react';
+import type { ReactElement, ReactNode } from 'react';
 import { makeIcon } from '../../shared/Icon.tsx';
 import { settingWords } from '../../shared/setting-words.ts';
 
@@ -117,15 +117,8 @@ function NoneGlyph(): ReactElement {
 
 const GLYPHS = {
   ...(Object.fromEntries(
-    Object.entries(PATHS).map(([name, paths]) => [
-      name,
-      <>
-        {paths.map((d) => (
-          <path key={d} d={d} />
-        ))}
-      </>,
-    ]),
-  ) as Record<keyof typeof PATHS, ReactElement>),
+    Object.entries(PATHS).map(([name, paths]) => [name, paths.map((d) => <path key={d} d={d} />)]),
+  ) as Record<keyof typeof PATHS, ReactNode[]>),
   none: <NoneGlyph />,
 };
 

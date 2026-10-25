@@ -8,6 +8,7 @@
  * community driver (sim/). The parser relies on the shape tsc emits for .d.ts files (top-level statements
  * start at column 0); it is not a general TypeScript parser.
  */
+import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, relative, resolve } from 'node:path';
 
@@ -233,7 +234,12 @@ for (const g of groupNames) {
     lines.push('');
   }
 }
-const generated = `${lines.join('\n').trimEnd()}\n`;
+// Match the checked-in formatter so --check and repository lint have one output.
+const generated = execFileSync(
+  process.execPath,
+  [join(root, 'node_modules/@biomejs/biome/bin/biome'), 'format', '--stdin-file-path=docs/api.md'],
+  { input: `${lines.join('\n').trimEnd()}\n`, encoding: 'utf8', cwd: root },
+);
 if (process.argv.includes('--check')) {
   const current = existsSync(out) ? readFileSync(out, 'utf8') : undefined;
   if (current !== generated) {

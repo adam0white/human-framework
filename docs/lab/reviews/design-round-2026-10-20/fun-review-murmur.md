@@ -26,14 +26,14 @@ The new rules address that request rather than merely explaining insistence agai
 
 My early sequence shows both the improvement and its limit:
 
-| UTC / elapsed from new week | What happened | Design significance |
-|---|---|---|
-| 11:53:31 / 0:04 | “Up. Feet on the floor.” failed. She added: “Feet on the floor. Not yet. I heard you, though.” | An immediate conversational response without an order. |
-| 11:54:19 / 0:52 | A plain “Say you overslept” succeeded against her stated leaning. She kept “Just say it plainly.” | An early action changed in the direction I wanted. |
-| 11:55:11 / 1:44 | My defence of Ece failed. “I didn’t stick up for Ece. But I’m still thinking about it.” | The old painful outcome remains, with a new trace. |
-| 11:55:36 / 2:09 | “Call Mum” failed and remained as a thought. | This was close to the original players’ quit point. |
-| 11:57:26 / 3:59 | Tuesday recalled Mum. I deliberately stayed quiet. She scrolled again. | Remembering alone does not deliver a satisfying change. |
-| 11:58:00–11 / 4:33–44 | I stayed quiet on Wednesday. She got up, then called Mum, while recalling my earlier suggestions. | The strongest payoff: I could see continuity without giving another order. |
+| UTC / elapsed from new week | What happened                                                                                     | Design significance                                                        |
+| --------------------------- | ------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| 11:53:31 / 0:04             | “Up. Feet on the floor.” failed. She added: “Feet on the floor. Not yet. I heard you, though.”    | An immediate conversational response without an order.                     |
+| 11:54:19 / 0:52             | A plain “Say you overslept” succeeded against her stated leaning. She kept “Just say it plainly.” | An early action changed in the direction I wanted.                         |
+| 11:55:11 / 1:44             | My defence of Ece failed. “I didn’t stick up for Ece. But I’m still thinking about it.”           | The old painful outcome remains, with a new trace.                         |
+| 11:55:36 / 2:09             | “Call Mum” failed and remained as a thought.                                                      | This was close to the original players’ quit point.                        |
+| 11:57:26 / 3:59             | Tuesday recalled Mum. I deliberately stayed quiet. She scrolled again.                            | Remembering alone does not deliver a satisfying change.                    |
+| 11:58:00–11 / 4:33–44       | I stayed quiet on Wednesday. She got up, then called Mum, while recalling my earlier suggestions. | The strongest payoff: I could see continuity without giving another order. |
 
 I cannot attribute those Wednesday actions exclusively to standing advice: learned phrases, resolves, bodily state and RNG also contributed. The player-visible sequence showed the continuity Lina requested: earlier unforced suggestions appeared in later choices. Whether she would find that satisfying remains untested. Monday still refused **four of my five taps against the pull**. The aligned coffee tap also succeeded.
 
@@ -61,10 +61,10 @@ My export retained eight thoughts; four had a later recorded appearance. In the 
 
 **The ending gives pressure almost no future to hurt.** In my live run I held “Send it.” She said “Fine.” The ending reported the sent note without distinguishing the hold. A local branch from that exact final-card state also showed:
 
-| Final input, same prior state | Result |
-|---|---|
-| Tap Delete | She sent it instead. |
-| Hold Delete | “If you insist. I’d rather not.” She deleted it. |
+| Final input, same prior state | Result                                           |
+| ----------------------------- | ------------------------------------------------ |
+| Tap Delete                    | She sent it instead.                             |
+| Hold Delete                   | “If you insist. I’d rather not.” She deleted it. |
 
 The forced deletion reduced trust from about 0.517 to 0.442, but there was no further playable decision. The ending softened it with “On Sunday she rang anyway.” Holds and this ending structure predate the change. The new difference is that ordinary taps are uncertain while holds remain deterministic, which strengthens the temptation to secure the desired final action by holding. This is an ending-specific incentive, not a proven whole-run dominant strategy. In this seed, tapping Send also sent it; my live hold was unnecessary. See last-day termination (driver scratch) and ending construction (driver scratch).
 

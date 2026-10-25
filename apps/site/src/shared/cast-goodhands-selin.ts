@@ -4,6 +4,7 @@
  */
 import { DEFAULT_NORMS, ENGINE_VERSION, validateCalendarPersona } from '@adam0white/human-framework';
 import { canonicalPersona, type PersonaEnvelope } from '@adam0white/lab-client';
+import { requireValue } from './require-value.ts';
 
 export function goodhandsSelinPassport(parent: PersonaEnvelope) {
   const fail = (): never => {
@@ -92,10 +93,10 @@ export function goodhandsSelinPassport(parent: PersonaEnvelope) {
   return {
     portable,
     checkpoint: {
-      schema: receipt!.sourceSchema,
-      sourceMinute: receipt!.sourceNow,
-      rng: receipt!.sourceRng,
-      sha256: receipt!.checkpointDigest,
+      schema: requireValue(receipt).sourceSchema,
+      sourceMinute: requireValue(receipt).sourceNow,
+      rng: requireValue(receipt).sourceRng,
+      sha256: requireValue(receipt).checkpointDigest,
     },
   };
 }

@@ -12,15 +12,15 @@ First usable cover: driver elapsed 0.456 s. Stop: 182.962 s (about 3:03 from ope
 
 The driver captured first-minute.png at 60.075 s. My written checkpoint was recorded at 63.520 s, about three seconds late. It describes only interactions reached before 60 s: three choices seen, two answered. The Ece answer came afterward.
 
-| Item | Status | Original checkpoint answer and visible evidence |
-|---|---|---|
-| DL-1 A reason to act | PASS | “I am accompanying Dilan through a Monday and suggesting what she says to herself.” The alarm and later letter gave immediate decisions. |
-| DL-2 What can I touch | PASS | “I can tap the outlined sentences or say nothing; the menu is clear.” Before the first answer I named the two full sentences as tappable. Both their outlines and the menu were visible in 01-monday-choice.png. No inert target tried or control found by accident. |
-| DL-3 Urgency and selection | PASS | “The countdown takes priority and no answer looks selected.” “She decides in 29s” appeared above the first decision. The lean-toward text described inclination, not my selection. |
-| DL-4 Why the limit | NOT TESTED | “I have met no disabled actions.” No unavailable action encountered. |
-| DL-5 Readable situation | PASS | “I can let Ece do the returns now.” Her offer and the two answer buttons were present by 55.814 s. |
-| DL-6 A choice soon | PASS | “The first choice was there almost immediately and I answered get up.” Meaningful choice available by 3.146 s driver elapsed, about 2.7 s after the usable cover. First gameplay answer at 9.579 s, about 9.1 s after the cover. The intervening second-week explanation and opening alarm text were short; no long mandatory passage blocked choice. |
-| DL-7 Learn by doing | PASS for reached interactions | “She did, and the log told me so. The letter choice did not let me read it. I have reached three choices, answered two, used no help.” “You suggested” and “She chose” distinguished suggestion from choice. “She was up before the second alarm” followed. This establishes two answered interactions only; the third answer and all later interactions were NOT TESTED at the checkpoint. |
+| Item                       | Status                        | Original checkpoint answer and visible evidence                                                                                                                                                                                                                                                                                                                                             |
+| -------------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DL-1 A reason to act       | PASS                          | “I am accompanying Dilan through a Monday and suggesting what she says to herself.” The alarm and later letter gave immediate decisions.                                                                                                                                                                                                                                                    |
+| DL-2 What can I touch      | PASS                          | “I can tap the outlined sentences or say nothing; the menu is clear.” Before the first answer I named the two full sentences as tappable. Both their outlines and the menu were visible in 01-monday-choice.png. No inert target tried or control found by accident.                                                                                                                        |
+| DL-3 Urgency and selection | PASS                          | “The countdown takes priority and no answer looks selected.” “She decides in 29s” appeared above the first decision. The lean-toward text described inclination, not my selection.                                                                                                                                                                                                          |
+| DL-4 Why the limit         | NOT TESTED                    | “I have met no disabled actions.” No unavailable action encountered.                                                                                                                                                                                                                                                                                                                        |
+| DL-5 Readable situation    | PASS                          | “I can let Ece do the returns now.” Her offer and the two answer buttons were present by 55.814 s.                                                                                                                                                                                                                                                                                          |
+| DL-6 A choice soon         | PASS                          | “The first choice was there almost immediately and I answered get up.” Meaningful choice available by 3.146 s driver elapsed, about 2.7 s after the usable cover. First gameplay answer at 9.579 s, about 9.1 s after the cover. The intervening second-week explanation and opening alarm text were short; no long mandatory passage blocked choice.                                       |
+| DL-7 Learn by doing        | PASS for reached interactions | “She did, and the log told me so. The letter choice did not let me read it. I have reached three choices, answered two, used no help.” “You suggested” and “She chose” distinguished suggestion from choice. “She was up before the second alarm” followed. This establishes two answered interactions only; the third answer and all later interactions were NOT TESTED at the checkpoint. |
 
 Original checkpoint, verbatim:
 
@@ -113,24 +113,23 @@ Times are driver elapsed seconds. Game clock is the clock supplied with the inpu
 - **182.962 s — Monday, in bed — stop; reason TASTE**
 
   > I am stopping at Monday in bed, before Tomorrow. The day has ended; the game has not. This is enough of this kind of conversation for one sitting. I would come back and try speaking less.
-
 ### Important visible answers
 
-| Elapsed s | Visible answer |
-|---|---|
-| 3.146 | Mon 06:41. “She kept ‘Just say it plainly’.” Alarm choice, “She decides in 32s.” |
-| 9.579 | “You suggested: Up. Feet on the floor.” “She chose: ‘Up. Feet on the floor.’” “‘Alright, I'll do it.’ she says.” |
-| 29.156 | “06:56 She was up before the second alarm.” Renewal choices: Sign it; Leave it unopened; Put it under the fruit bowl. |
-| 32.759 | She chose the fruit bowl. “‘Fine.’ she says.” |
-| 55.814 | “07:17 Under the fruit bowl. One corner still showed.” Ece offered to clear returns. |
-| 63.711 | She chose “Let her do them.” “‘Fine.’ she says.” |
-| 88.209 | “10:52 Ece cleared the returns. All of them, correctly. Dilan drank her tea while it was hot.” Mum's photograph; call, scroll, or text tomorrow. |
-| 93.175 | She chose “Call Mum.” “‘Fine.’ she says.” |
-| 117.874 | “18:34 It was a tomato. Mum held it further from the lens while they talked.” Shelf choice. |
-| 121.684 | Suggested “Finish the shelf.” She chose “Have your tea.” “‘Not now. After I sit with my tea.’ she says.” “She put yours off, so the pencil’s way, for now.” “‘‘Finish the shelf.’ I could still finish the shelf another time.’ she thinks.” |
-| 147.077 | “19:54 She sat with her tea. It stayed hot almost to the bottom.” Bed: write, video, or sleep. |
-| 152.552 | Suggested writing. She chose “One more video.” “‘I don’t want the day to be over yet. I’m going to watch one more video.’ she says.” Then “The notebook is beside the bed. I could put the phone down for it.” |
-| 172.690 | “Monday, in bed.” “Today I kept my alarm and my call to Mum.” “The returns were fine. She didn’t need me to check them.” “You had something to say about everything.” Tomorrow button. |
+| Elapsed s | Visible answer                                                                                                                                                                                                                               |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 3.146     | Mon 06:41. “She kept ‘Just say it plainly’.” Alarm choice, “She decides in 32s.”                                                                                                                                                             |
+| 9.579     | “You suggested: Up. Feet on the floor.” “She chose: ‘Up. Feet on the floor.’” “‘Alright, I'll do it.’ she says.”                                                                                                                             |
+| 29.156    | “06:56 She was up before the second alarm.” Renewal choices: Sign it; Leave it unopened; Put it under the fruit bowl.                                                                                                                        |
+| 32.759    | She chose the fruit bowl. “‘Fine.’ she says.”                                                                                                                                                                                                |
+| 55.814    | “07:17 Under the fruit bowl. One corner still showed.” Ece offered to clear returns.                                                                                                                                                         |
+| 63.711    | She chose “Let her do them.” “‘Fine.’ she says.”                                                                                                                                                                                             |
+| 88.209    | “10:52 Ece cleared the returns. All of them, correctly. Dilan drank her tea while it was hot.” Mum's photograph; call, scroll, or text tomorrow.                                                                                             |
+| 93.175    | She chose “Call Mum.” “‘Fine.’ she says.”                                                                                                                                                                                                    |
+| 117.874   | “18:34 It was a tomato. Mum held it further from the lens while they talked.” Shelf choice.                                                                                                                                                  |
+| 121.684   | Suggested “Finish the shelf.” She chose “Have your tea.” “‘Not now. After I sit with my tea.’ she says.” “She put yours off, so the pencil’s way, for now.” “‘‘Finish the shelf.’ I could still finish the shelf another time.’ she thinks.” |
+| 147.077   | “19:54 She sat with her tea. It stayed hot almost to the bottom.” Bed: write, video, or sleep.                                                                                                                                               |
+| 152.552   | Suggested writing. She chose “One more video.” “‘I don’t want the day to be over yet. I’m going to watch one more video.’ she says.” Then “The notebook is beside the bed. I could put the phone down for it.”                               |
+| 172.690   | “Monday, in bed.” “Today I kept my alarm and my call to Mum.” “The returns were fine. She didn’t need me to check them.” “You had something to say about everything.” Tomorrow button.                                                       |
 
 ## Best, worst, pulses and leaving
 
@@ -153,15 +152,15 @@ Hard, but kept going: **NOT TESTED**. I did not look for an easier setting, work
 
 ## Language, dates, layout and hands on
 
-| Item | Finding |
-|---|---|
-| DL-20 | FAIL for the pencil sentence above; ordinary action English otherwise understood. |
-| DL-21 | NOT TESTED for deadline comparison. Mon and 24-hour times were readable; no dated deadline met. “She decides in Ns” was a readable countdown. No month/year boundary or return after a break tested. |
-| DL-22 | FAIL at the bus card. Initial alarm choice fit fully in 01-monday-choice.png. Bedtime summary and Tomorrow fit in 03-monday-in-bed.png. |
-| DL-30 | FAIL for the bus card's lower response text at the screen edge. Other unseen screens remain NOT TESTED. |
+| Item  | Finding                                                                                                                                                                                                                                                                                                      |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| DL-20 | FAIL for the pencil sentence above; ordinary action English otherwise understood.                                                                                                                                                                                                                            |
+| DL-21 | NOT TESTED for deadline comparison. Mon and 24-hour times were readable; no dated deadline met. “She decides in Ns” was a readable countdown. No month/year boundary or return after a break tested.                                                                                                         |
+| DL-22 | FAIL at the bus card. Initial alarm choice fit fully in 01-monday-choice.png. Bedtime summary and Tomorrow fit in 03-monday-in-bed.png.                                                                                                                                                                      |
+| DL-30 | FAIL for the bus card's lower response text at the screen edge. Other unseen screens remain NOT TESTED.                                                                                                                                                                                                      |
 | DL-31 | PASS for the encountered live choice cards: Dilan's current situation, person concerned and decision countdown appeared above the answers. At the bus choice I could read the photograph context and 13s deadline together. No order sheet with separate goal progress encountered; that case is NOT TESTED. |
-| DL-32 | No demonstrated forced-watching failure. The longest explicit wait was 20 real seconds. I wanted Mum's answer during one such wait. “Let time pass faster ▸” was available between choices, so watching was optional; I did not try it. Actual duration with no meaningful act available was not measured. |
-| DL-33 | PASS for the reached speaking interaction. I tapped a complete spoken suggestion once; it was acknowledged immediately. No strength/reason/confirm form opened. Dilan could refuse. |
+| DL-32 | No demonstrated forced-watching failure. The longest explicit wait was 20 real seconds. I wanted Mum's answer during one such wait. “Let time pass faster ▸” was available between choices, so watching was optional; I did not try it. Actual duration with no meaningful act available was not measured.   |
+| DL-33 | PASS for the reached speaking interaction. I tapped a complete spoken suggestion once; it was acknowledged immediately. No strength/reason/confirm form opened. Dilan could refuse.                                                                                                                          |
 
 Additional observed checks: DL-12 PASS for the Monday boundary: “Monday, in bed” and Tomorrow clearly distinguished day end from game end. DL-13 PASS for the six answers reached: suggested and chosen lines appeared promptly, including two refusals. DL-17 PASS for encountered inclination cues expressed as words rather than percentages. DL-26: Game menu was discoverable without scrolling; menu contents NOT TESTED. Sending, replay, reload/resume, 200% text, other themes and builder checks were NOT TESTED.
 

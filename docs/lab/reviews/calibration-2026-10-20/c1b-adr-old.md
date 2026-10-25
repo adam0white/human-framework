@@ -12,15 +12,15 @@ The first actionable screen appeared at 2026-10-20T16:06:45.334Z. The budget was
 
 Recorded at **86.371 real seconds**, 26.371 s late. The last screen observation before 60 s was at 57.672 s. No gameplay input occurred after the second attempt at 48.784 s. Tool delays and a failed checkpoint-writing command delayed this record. These are the original checkpoint answers; no later gameplay informed them.
 
-| Item | Original checkpoint answer |
-|---|---|
-| DL-1 | PASS — I want to warm the freezing room. The opening says the fire is dead and the room is freezing. |
-| DL-2 | PASS — light fire has a clear rectangular border. The sound choices also have borders. Footer links look clickable. I did not try inert text; neither fire attempt completed through the text locator. |
-| DL-3 | PASS — light fire draws me first; the freezing-room lines explain the immediate need. A Dark Room is underlined. No gameplay selection was reached. The sound prompt temporarily took priority. |
-| DL-4 | NOT TESTED — no gameplay limit encountered. A modal interrupted access, and text-locator timeouts do not establish a game rule. |
-| DL-5 | PASS — the fire is dead and the room is freezing; lighting the fire is the visible response. I have not observed it underway. |
+| Item | Original checkpoint answer                                                                                                                                                                                |
+| ---- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DL-1 | PASS — I want to warm the freezing room. The opening says the fire is dead and the room is freezing.                                                                                                      |
+| DL-2 | PASS — light fire has a clear rectangular border. The sound choices also have borders. Footer links look clickable. I did not try inert text; neither fire attempt completed through the text locator.    |
+| DL-3 | PASS — light fire draws me first; the freezing-room lines explain the immediate need. A Dark Room is underlined. No gameplay selection was reached. The sound prompt temporarily took priority.           |
+| DL-4 | NOT TESTED — no gameplay limit encountered. A modal interrupted access, and text-locator timeouts do not establish a game rule.                                                                           |
+| DL-5 | PASS — the fire is dead and the room is freezing; lighting the fire is the visible response. I have not observed it underway.                                                                             |
 | DL-6 | PASS — light fire was available on the first screen at 0 s, before a long passage. First attempted input time is in the diary; neither attempt completed. The audio preference was not a gameplay choice. |
-| DL-7 | NOT TESTED — zero completed gameplay interactions. I learned how to dismiss the audio prompt, but no fire consequence was reached. |
+| DL-7 | NOT TESTED — zero completed gameplay interactions. I learned how to dismiss the audio prompt, but no fire consequence was reached.                                                                        |
 
 For DL-6, the first attempted gameplay input was **6.854 s**. The visible action was available at **0 s**; no gameplay input completed. This establishes an immediate offered act, not a tested choice between competing gameplay options. For DL-2, the pass covers the visible opening control and audio choices, not selection states in unreached play. DL-4's builder check and DL-7's unreached interactions are NOT TESTED.
 
@@ -82,7 +82,7 @@ The following preserves the reactions as recorded. Error entries were written wh
 The first gameplay command was:
 
 ```javascript
-await page.getByText('light fire', {exact:true}).click();
+await page.getByText('light fire', { exact: true }).click();
 ```
 
 It returned:
@@ -96,7 +96,7 @@ Call log:
 After clicking disable audio through its visible label, I attempted:
 
 ```javascript
-await page.getByText('light fire', {exact:true}).click({timeout:3000});
+await page.getByText('light fire', { exact: true }).click({ timeout: 3000 });
 ```
 
 It returned:
@@ -121,16 +121,16 @@ I stopped on the unchanged opening room at 136.785 s. The budget did not expire.
 
 No gameplay clarity failure is established by this attempt. The opening's purpose and main control were readable. The sound prompt temporarily occupied the middle of the room and interrupted my access attempt; [02-click-pending.png](c1b-adr-old-shots/02-click-pending.png) shows both choices. Its appearance is observed; its causal connection to the timeout is unknown.
 
-| Item | Status and evidence |
-|---|---|
-| DL-20 English | PASS for reached screens: “light fire”, “the fire is dead.”, “the room is freezing.”, “enable audio”, “disable audio”. No necessary local term encountered. Later play NOT TESTED. |
-| DL-21 Dates | NOT TESTED — no date or deadline encountered. |
-| DL-22 Phone response visibility | NOT TESTED — assigned device was 1280×800 desktop; no phone fixture used. |
-| DL-30 Clipping | PASS for observed desktop opening and audio prompt: no cut-off sentence or obscured essential text seen. Phone layout and later screens NOT TESTED. |
-| DL-31 State while acting | NOT TESTED — no order or answer sheet with a goal, deadline and person was reached. The audio preference prompt is not that interaction. |
-| DL-32 Hands on | NOT TESTED — no completed gameplay action, so no valid longest game-enforced waiting interval. The browser command waited up to 30 s; that is access latency. I wanted to light the fire. |
-| DL-33 Scene acts | NOT TESTED — I intended to light the fire with the single bordered action, but did not observe the act or a gameplay form. |
-| DL-13 Feedback | NOT TESTED for gameplay — locator failure cannot establish that a received game input lacked feedback. The audio prompt did dismiss. |
+| Item                            | Status and evidence                                                                                                                                                                       |
+| ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DL-20 English                   | PASS for reached screens: “light fire”, “the fire is dead.”, “the room is freezing.”, “enable audio”, “disable audio”. No necessary local term encountered. Later play NOT TESTED.        |
+| DL-21 Dates                     | NOT TESTED — no date or deadline encountered.                                                                                                                                             |
+| DL-22 Phone response visibility | NOT TESTED — assigned device was 1280×800 desktop; no phone fixture used.                                                                                                                 |
+| DL-30 Clipping                  | PASS for observed desktop opening and audio prompt: no cut-off sentence or obscured essential text seen. Phone layout and later screens NOT TESTED.                                       |
+| DL-31 State while acting        | NOT TESTED — no order or answer sheet with a goal, deadline and person was reached. The audio preference prompt is not that interaction.                                                  |
+| DL-32 Hands on                  | NOT TESTED — no completed gameplay action, so no valid longest game-enforced waiting interval. The browser command waited up to 30 s; that is access latency. I wanted to light the fire. |
+| DL-33 Scene acts                | NOT TESTED — I intended to light the fire with the single bordered action, but did not observe the act or a gameplay form.                                                                |
+| DL-13 Feedback                  | NOT TESTED for gameplay — locator failure cannot establish that a received game input lacked feedback. The audio prompt did dismiss.                                                      |
 
 Other checklist observations: DL-8 and DL-11 PASS only for the short, readable opening. DL-10, DL-12, DL-14–19, DL-23–29 and all builder checks NOT TESTED. DL-9 NOT TESTED: no time-critical obligation reached. DL-15's speed and live-choice test was not performed. No save/reload, export, replay or send test was performed. There is no export path.
 

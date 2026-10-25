@@ -15,15 +15,15 @@ I wanted to keep playing. Returning Mum’s repaired lantern was satisfying. The
 
 The first actionable title screen was available at 0.427s; the workshop at 3.323s. The checkpoint was logged late, at 75.173s, after a wait returned at 63.210s. No gameplay inputs occurred between 46.754s and the checkpoint, so the note describes the state already reached before 60s. This timing miss is a test limitation.
 
-| Item | Result | Checkpoint evidence, in my words |
-|---|---|---|
-| DL-1 A reason to act | PASS | I wanted Mum to have a light she could carry to the evening gathering. The request said it goes dark on the way to the garden. |
-| DL-2 What can I touch | PASS | Carry, the switch, Inside, the object dropdown, tool tabs, component buttons, probe buttons and Read Meter were recognisable controls. I used Carry, Inside, Contact and the meter guide. No inert thing was tried by 60s. The recording notice initially covered the top of the object; I dismissed it. |
-| DL-3 Urgency and selection | PASS | Carry drew me first. The evening gathering mattered, but I did not see an immediate countdown. At the checkpoint Contact was selected and Meter was open. The guide named B and C as my next probe pair. |
-| DL-4 Why the limit | PASS | Look closely needed a component selection. Read meter needed both probes. I supplied these and the buttons became available. These were the two unavailable actions met by 60s. |
-| DL-5 Readable situation | PASS | “Now compare both sides of the switch while it moves.” I could name the next action. “Last test: The light goes out while carried” preserved the symptom. The numeric meter reading was absent from the screenshot; see DL-22 below. |
-| DL-6 A choice soon | PASS | Open workshop was available at 0.427s and selected at 3.323s. The first repair action, Carry, was available at 3.323s and selected at 19.388s. Both were within 30s. Choosing Contact over other components occurred at 25.228s. No long introductory text prevented these choices. |
-| DL-7 Learn by doing | PASS for reached interactions | Carry demonstrated failure; opening exposed four parts; choosing Contact enabled examination; placing two probes enabled a 6.00V battery reading. I did not yet understand what that reading proved. Automatic guide used; no separate help opened. Repair and return interactions were not reached by 60s: 2 interaction types NOT TESTED at this checkpoint. |
+| Item                       | Result                        | Checkpoint evidence, in my words                                                                                                                                                                                                                                                                                                                               |
+| -------------------------- | ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DL-1 A reason to act       | PASS                          | I wanted Mum to have a light she could carry to the evening gathering. The request said it goes dark on the way to the garden.                                                                                                                                                                                                                                 |
+| DL-2 What can I touch      | PASS                          | Carry, the switch, Inside, the object dropdown, tool tabs, component buttons, probe buttons and Read Meter were recognisable controls. I used Carry, Inside, Contact and the meter guide. No inert thing was tried by 60s. The recording notice initially covered the top of the object; I dismissed it.                                                       |
+| DL-3 Urgency and selection | PASS                          | Carry drew me first. The evening gathering mattered, but I did not see an immediate countdown. At the checkpoint Contact was selected and Meter was open. The guide named B and C as my next probe pair.                                                                                                                                                       |
+| DL-4 Why the limit         | PASS                          | Look closely needed a component selection. Read meter needed both probes. I supplied these and the buttons became available. These were the two unavailable actions met by 60s.                                                                                                                                                                                |
+| DL-5 Readable situation    | PASS                          | “Now compare both sides of the switch while it moves.” I could name the next action. “Last test: The light goes out while carried” preserved the symptom. The numeric meter reading was absent from the screenshot; see DL-22 below.                                                                                                                           |
+| DL-6 A choice soon         | PASS                          | Open workshop was available at 0.427s and selected at 3.323s. The first repair action, Carry, was available at 3.323s and selected at 19.388s. Both were within 30s. Choosing Contact over other components occurred at 25.228s. No long introductory text prevented these choices.                                                                            |
+| DL-7 Learn by doing        | PASS for reached interactions | Carry demonstrated failure; opening exposed four parts; choosing Contact enabled examination; placing two probes enabled a 6.00V battery reading. I did not yet understand what that reading proved. Automatic guide used; no separate help opened. Repair and return interactions were not reached by 60s: 2 interaction types NOT TESTED at this checkpoint. |
 
 Original checkpoint note is preserved in the diary below. No later result has been used to improve these checkpoint ratings.
 
@@ -49,26 +49,26 @@ Original checkpoint note is preserved in the diary below. No later result has be
 
 Times are elapsed real seconds. The raw log below preserves every driver input. This table adds the visible answers that the input log itself does not contain.
 
-| Time | Input / game clock after input | Visible answer |
-|---|---|---|
-| 3.323 | Open the workshop / Day 1 09:00 | “Try carrying it.” Mum wanted the lantern for the evening gathering. |
-| 19.388 | Carry 15 min / 09:15 | “The light goes out while carried.” |
-| 22.352–28.043 | Look inside; Contact; Look closely / 09:25 | “Contact: The exposed metal is aged and dull.” Guide directed battery probes A and 0 while carried. |
-| 34.610–41.583 | Pick up meter; red A; black 0; Read meter / 09:35 | 6.00V, A → 0. “Voltage recorded for this probe pair and condition.” |
-| 63.210 | Wait 10 real seconds / 09:35 | No game clock change. |
-| 80.794–86.182 | Red B; black C; Read meter / 09:45 | 6.00V, B → C. “Large voltage drop across this measured span.” Guide said it pointed to switch. |
-| 89.096–91.812 | Work on the part; Look closely / 09:55 | “Switch: The outside looks intact.” One new switch or uncertain salvage offered in the guide. |
-| 99.498 | Replace 30 min · 1 switch (1 stocked) / 10:25 | “Replaced Switch. Test the object again.” Replace now disabled: “No switch stocked.” |
-| 117.712 | Carry 15 min / 10:40 | “Bright and steady while carried.” |
-| 120.415 | Return to Mum10 min / 10:50 | “Checked return · on time”; “A light Mum can carry”; “I can carry the light out to the garden table.” Family favour £0. |
-| 126.093 | To the board / 10:50 | Three requested jobs with Day 2 · 17:00 deadlines; two personal projects. |
-| 136.816 | Music box Accept promise at x278 y479 / 10:50 | “Promise accepted. You can put the object aside without losing evidence.” |
-| 147.529 | Music box Open on bench at x278 y397 / 10:50 | “Check the drive at the owner’s requested 15 ± 3 rpm under load.” |
-| 150.813 | Play 15 min / 11:05 | “The drum barely turns under load; the tune is hard to recognise.” |
-| 154.107–160.777 | Look inside; Spring; Look closely / 11:15 | “Spring: The outside looks intact.” |
-| 164.883, 167.913 | tap name meter / 11:15 | Both replies listed tab “meter” but rejected it: “meter is not on the page now, and it was not in the last reply either; use a name from the latest controls (not a driver failure)”. |
-| 174.669 | Stop / 11:15 | TOOL. No further gameplay. |
-| 174.880–206.671 | Menu → Send word; fill feedback; Send once | “Sent. Thank you.” |
+| Time             | Input / game clock after input                    | Visible answer                                                                                                                                                                        |
+| ---------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 3.323            | Open the workshop / Day 1 09:00                   | “Try carrying it.” Mum wanted the lantern for the evening gathering.                                                                                                                  |
+| 19.388           | Carry 15 min / 09:15                              | “The light goes out while carried.”                                                                                                                                                   |
+| 22.352–28.043    | Look inside; Contact; Look closely / 09:25        | “Contact: The exposed metal is aged and dull.” Guide directed battery probes A and 0 while carried.                                                                                   |
+| 34.610–41.583    | Pick up meter; red A; black 0; Read meter / 09:35 | 6.00V, A → 0. “Voltage recorded for this probe pair and condition.”                                                                                                                   |
+| 63.210           | Wait 10 real seconds / 09:35                      | No game clock change.                                                                                                                                                                 |
+| 80.794–86.182    | Red B; black C; Read meter / 09:45                | 6.00V, B → C. “Large voltage drop across this measured span.” Guide said it pointed to switch.                                                                                        |
+| 89.096–91.812    | Work on the part; Look closely / 09:55            | “Switch: The outside looks intact.” One new switch or uncertain salvage offered in the guide.                                                                                         |
+| 99.498           | Replace 30 min · 1 switch (1 stocked) / 10:25     | “Replaced Switch. Test the object again.” Replace now disabled: “No switch stocked.”                                                                                                  |
+| 117.712          | Carry 15 min / 10:40                              | “Bright and steady while carried.”                                                                                                                                                    |
+| 120.415          | Return to Mum10 min / 10:50                       | “Checked return · on time”; “A light Mum can carry”; “I can carry the light out to the garden table.” Family favour £0.                                                               |
+| 126.093          | To the board / 10:50                              | Three requested jobs with Day 2 · 17:00 deadlines; two personal projects.                                                                                                             |
+| 136.816          | Music box Accept promise at x278 y479 / 10:50     | “Promise accepted. You can put the object aside without losing evidence.”                                                                                                             |
+| 147.529          | Music box Open on bench at x278 y397 / 10:50      | “Check the drive at the owner’s requested 15 ± 3 rpm under load.”                                                                                                                     |
+| 150.813          | Play 15 min / 11:05                               | “The drum barely turns under load; the tune is hard to recognise.”                                                                                                                    |
+| 154.107–160.777  | Look inside; Spring; Look closely / 11:15         | “Spring: The outside looks intact.”                                                                                                                                                   |
+| 164.883, 167.913 | tap name meter / 11:15                            | Both replies listed tab “meter” but rejected it: “meter is not on the page now, and it was not in the last reply either; use a name from the latest controls (not a driver failure)”. |
+| 174.669          | Stop / 11:15                                      | TOOL. No further gameplay.                                                                                                                                                            |
+| 174.880–206.671  | Menu → Send word; fill feedback; Send once        | “Sent. Thank you.”                                                                                                                                                                    |
 
 ## Best, worst, and leaving
 

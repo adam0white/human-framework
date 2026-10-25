@@ -7,6 +7,7 @@ import { FOUNDER_KIN, WATCHERS } from '../watch/sim/config.ts';
 import { bear, newcomer } from '../watch/sim/life.ts';
 import { castPerson, createKeeper, kinPerson } from '../watch/sim/people.ts';
 import { WatchRun } from '../watch/sim/run.ts';
+import { requireValue } from './require-value.ts';
 
 it('persists plain narration in all fresh site actors, including later Watch arrivals', () => {
   const run = new WatchRun(7);
@@ -16,7 +17,12 @@ it('persists plain narration in all fresh site actors, including later Watch arr
     ...WATCHERS.map((w) => castPerson(7, w, 1020)),
     ...FOUNDER_KIN.map((k, i) => kinPerson(7, k, i, 1020)),
     createKeeper(7, 1020),
-    bear(run.state, run.state.community.people[0]!, run.state.community.people[1]!, run.state.minute),
+    bear(
+      run.state,
+      requireValue(run.state.community.people[0]),
+      requireValue(run.state.community.people[1]),
+      run.state.minute,
+    ),
     newcomer(run.state, 'female', 20, run.state.minute),
   ];
   for (const person of people) {
@@ -35,8 +41,8 @@ it('keeps a loaded Watch actor’s saved narration choice', () => {
 it('pins the adopted runtime in exports and keeps duty counter identity across narration', async () => {
   const { FRAMEWORK_PACKAGE_VERSION } = await import('./playtest.ts');
   const { counterIdentity } = await import('../colony/sim/human-view.ts');
-  const p = createPerson(villagerPersonSpec(7, VILLAGERS[1]!));
-  const duty = p.agenda.commitments.find((c) => c.label === 'Maghrib')!;
+  const p = createPerson(villagerPersonSpec(7, requireValue(VILLAGERS[1])));
+  const duty = requireValue(p.agenda.commitments.find((c) => c.label === 'Maghrib'));
   expect(FRAMEWORK_PACKAGE_VERSION).toBe('2.21.0');
   expect(new WatchRun(7).export().framework).toBe('2.21.0');
   expect(
@@ -68,7 +74,7 @@ it('preserves a pinned canonical actor’s explicit legacy narration during repl
     limitations: [],
   });
   const chapter = { version: 'site-cast/1' as const, input: preparePersonaLife(parent, 0) };
-  const opening = createPerson(watcherSpec(7, WATCHERS.find((p) => p.id === 'tamar')!, 1020));
+  const opening = createPerson(watcherSpec(7, requireValue(WATCHERS.find((p) => p.id === 'tamar')), 1020));
   opening.lexicon = { ...opening.lexicon, plainEnglish: false };
   prepareSiteInitial('watch', opening, chapter);
   const run = new WatchRun(7, undefined, chapter);

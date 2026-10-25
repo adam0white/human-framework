@@ -43,16 +43,25 @@ vi.mock('./transport.ts', () => ({
 }));
 vi.mock('../../shared/tick-loop.ts', () => ({ startTickLoop: () => () => {} }));
 
+function Harness({ capture }: { capture: (value: Voice) => void }) {
+  capture(useVoice());
+  return null;
+}
+
 it('retains the held answer’s Why without opening it, then reads it after the worker trace expires and clears it on replay', async () => {
   let voice: Voice | undefined;
-  function Harness() {
-    voice = useVoice();
-    return null;
-  }
   const el = document.createElement('div');
   const root = createRoot(el);
   try {
-    flushSync(() => root.render(createElement(Harness)));
+    flushSync(() =>
+      root.render(
+        createElement(Harness, {
+          capture: (value) => {
+            voice = value;
+          },
+        }),
+      ),
+    );
     await Promise.resolve();
     const current = () => {
       if (!voice) throw new Error('Hook did not mount');

@@ -20,7 +20,7 @@ Experiment #3 of the [frontier scan](../frontier-2026-10-20.md). The owner asked
 
 **Labels.** I labelled two fields myself, blind to any model output:
 
-- `category`: a closed set of ten. *bug, unclear, layout, pacing, difficulty, repetition, agency, delight, direction, tooling.* Each has a one-line definition in [bakeoff.ts](clairic-triage-2026-10-20/bakeoff.ts). I marked 8 rows `doubt` because two categories fit about equally (for example, F-029, "the cooks wandering", could be agency or difficulty). The "clear" column scores the other 42.
+- `category`: a closed set of ten. _bug, unclear, layout, pacing, difficulty, repetition, agency, delight, direction, tooling._ Each has a one-line definition in [bakeoff.ts](clairic-triage-2026-10-20/bakeoff.ts). I marked 8 rows `doubt` because two categories fit about equally (for example, F-029, "the cooks wandering", could be agency or difficulty). The "clear" column scores the other 42.
 - `severity`: 0 none (praise or neutral), 1 minor, 2 real friction, 3 made the player quit or blocks play.
 
 Three fields come from the ledger as it was triaged on 2026-10-19 and 2026-10-20, checked by me against each row: `game`, `verdict` (keep, quit, mixed, none) and `fix` (whether the row's routes include a game fix).
@@ -43,15 +43,15 @@ Every arm ran twice over all 50 rows. Calls went to the REST API with the existi
 
 ## Scores
 
-| arm | category (clear 42) | kappa | game | verdict | severity exact / MAE | fix | same on rerun | median / p90 ms | in+out tokens per row | USD per 50 rows |
-|---|---|---|---|---|---|---|---|---|---|---|
-| majority baseline | 16% | 0 | 18% | 40% | 30% | 64% | | | | |
-| **Clef** | **72% (79%)** | **0.68** | 58% | **72%** | **62% / 0.42** | 64% | 100% | 349 / 556 | 1237+0 | $0.0148 |
-| Qwen3 30B-A3B | 64% (71%) | 0.59 | 54% | 64% | 52% / 0.54 | 58% | 82% | 465 / 654 | 636+34 | $0.0022 |
-| Gemma 4 26B-A4B | 60% (64%) | 0.55 | 58% | 70% | 48% / 0.64 | 68% | 84% | 1095 / 1286 | 637+46 | $0.0039 |
-| Clairic | 56% (64%) | 0.50 | 12% | 34% | 28% / 1.02 | n/a | 92% | 313 / 383 | 2055+0 | $0.0103 |
-| Mistral Small 3.1 24B | 52% (57%) | 0.47 | 44% | 44% | 46% / 0.65 | 44% | 100% | 1761 / 4113 | 640+58 | $0.0128 |
-| Llama 3.2 3B | 44% (52%) | 0.38 | 40% | 54% | 46% / 0.75 | 42% | 92% | 397 / 557 | 658+36 | $0.0023 |
+| arm                   | category (clear 42) | kappa    | game | verdict | severity exact / MAE | fix | same on rerun | median / p90 ms | in+out tokens per row | USD per 50 rows |
+| --------------------- | ------------------- | -------- | ---- | ------- | -------------------- | --- | ------------- | --------------- | --------------------- | --------------- |
+| majority baseline     | 16%                 | 0        | 18%  | 40%     | 30%                  | 64% |               |                 |                       |                 |
+| **Clef**              | **72% (79%)**       | **0.68** | 58%  | **72%** | **62% / 0.42**       | 64% | 100%          | 349 / 556       | 1237+0                | $0.0148         |
+| Qwen3 30B-A3B         | 64% (71%)           | 0.59     | 54%  | 64%     | 52% / 0.54           | 58% | 82%           | 465 / 654       | 636+34                | $0.0022         |
+| Gemma 4 26B-A4B       | 60% (64%)           | 0.55     | 58%  | 70%     | 48% / 0.64           | 68% | 84%           | 1095 / 1286     | 637+46                | $0.0039         |
+| Clairic               | 56% (64%)           | 0.50     | 12%  | 34%     | 28% / 1.02           | n/a | 92%           | 313 / 383       | 2055+0                | $0.0103         |
+| Mistral Small 3.1 24B | 52% (57%)           | 0.47     | 44%  | 44%     | 46% / 0.65           | 44% | 100%          | 1761 / 4113     | 640+58                | $0.0128         |
+| Llama 3.2 3B          | 44% (52%)           | 0.38     | 40%  | 54%     | 46% / 0.75           | 42% | 92%           | 397 / 557       | 658+36                | $0.0023         |
 
 Mistral Small answered 11 of the 50 rows with a JSON array of two answers instead of one object. Those 11 are scored as missing, so its row measures format discipline as well as judgement.
 
@@ -98,16 +98,16 @@ In Cloudflare's own framing, Clairic extracts typed values, Clef decides among l
 
 ## Spend record
 
-| item | list-price USD |
-|---|---|
-| Probes (8 single-row calls) | 0.002 |
-| Clef, 2 × 50 | 0.030 |
-| Clairic, 2 × 50 | 0.021 |
-| Mistral Small, 2 × 50 | 0.026 |
-| Gemma 4, 2 × 50 | 0.008 |
-| Llama 3.2 3B, 2 × 50 | 0.005 |
-| Qwen3 30B, 2 × 50 | 0.004 |
-| **Total** | **about 0.094** |
+| item                        | list-price USD  |
+| --------------------------- | --------------- |
+| Probes (8 single-row calls) | 0.002           |
+| Clef, 2 × 50                | 0.030           |
+| Clairic, 2 × 50             | 0.021           |
+| Mistral Small, 2 × 50       | 0.026           |
+| Gemma 4, 2 × 50             | 0.008           |
+| Llama 3.2 3B, 2 × 50        | 0.005           |
+| Qwen3 30B, 2 × 50           | 0.004           |
+| **Total**                   | **about 0.094** |
 
 The total counts against the experiments budget the owner approved on 2026-10-20 ($5). The cap for this experiment was $0.50, enforced per process in the script.
 

@@ -8,7 +8,6 @@ Use HF `projectPersona(source, mapping)` and `admitPersona(projection, authoredO
 
 ## Shelf
 
-
 `personaChannel()` is separate from recording. Its `ready: Promise<boolean>` reads the central browser continuity choice through a boolean-only handshake. A fresh target must await `shelf.ready` before checking `shelf.enabled`, deciding an automatic arrival or attaching persona upload hooks. Enabling continuity in one participating game applies to later participating games in this browser; turning it off applies globally. No cast metadata or recording identity is returned by this handshake. Existing loaded runs remain pinned. Call `setEnabled(true)` only after the player enables continuity. The exact participating origins are HTTPS human, pass, murmur, stairwell, hearsay, goodhands, glance, rope, repair, valley, warren, neighbours and commonstead on adamwhite.work. Voice, Well and Watch share the human origin. A blocked bridge needs a local file fallback. The central screen is `/lab/people/`; it can inspect, download, import and delete browser continuity. Browser eviction can lose it. Deleting continuity does not delete received lab records.
 
 ```ts
@@ -18,15 +17,24 @@ await shelf.ready;
 // The host gets the player's explicit continuity choice before this call.
 shelf.setEnabled(true);
 const original = await createPersona({
-  format: 'hf-persona/1', castId: 'hf.cast.example.host', castRevision: '1',
-  branchId: crypto.randomUUID(), parentRevision: null,
+  format: 'hf-persona/1',
+  castId: 'hf.cast.example.host',
+  castRevision: '1',
+  branchId: crypto.randomUUID(),
+  parentRevision: null,
   source: { game: 'pass', build: 'abc123', engine: '2.14.1', rules: '1' },
-  transfer: { person: projection, history: [] }, limitations: projection.limitations,
+  transfer: { person: projection, history: [] },
+  limitations: projection.limitations,
 });
 // authored:true is only for a newly authored source. Never use it for imported history.
 // Capture a host generation BEFORE this query; invalidate it on identity/preference/storage changes.
-const epoch = await shelf.request<{recordingEpoch: string | null}>({action:'recording'});
-await shelf.request({ action: 'put', envelope: original, authored: generationUnchanged, recordingEpoch: epoch.recordingEpoch ?? undefined });
+const epoch = await shelf.request<{ recordingEpoch: string | null }>({ action: 'recording' });
+await shelf.request({
+  action: 'put',
+  envelope: original,
+  authored: generationUnchanged,
+  recordingEpoch: epoch.recordingEpoch ?? undefined,
+});
 ```
 
 The host owns HF projection validation, semantic admission and the complete admitted initial snapshot in its replay. `transfer.person` is the strict `PersonaProjectionSnapshot` from HF, serialized as plain JSON. Its source includes schema, engine, simulation minute and complete RNG; the envelope checksum covers all fields. `transfer.history` contains bounded host-approved facts. `transfer.admission`, if used, contains pinned host mapping stamps. This client admits bounded JSON, not fictional meaning.
@@ -53,13 +61,30 @@ lab.setPersonaRecording(arrival.branchId);
 // Keep a generation counter independent of playerId (which is null while gated).
 // Invalidate it on hf-lab-preference, identity/off storage events, load, reset and manual choice.
 const attempt = generation;
-const result = await shelf.request<{sameEpoch: boolean; branchId: string; revision: string; recordingEpoch: string | null}>({ action: 'recording', castId, envelope: arrival });
-if (attempt === generation && stillOwns(arrival) && result.sameEpoch && result.branchId === arrival.branchId && result.revision === arrival.revision) lab.allowPersonaRecording(true);
+const result = await shelf.request<{
+  sameEpoch: boolean;
+  branchId: string;
+  revision: string;
+  recordingEpoch: string | null;
+}>({ action: 'recording', castId, envelope: arrival });
+if (
+  attempt === generation &&
+  stillOwns(arrival) &&
+  result.sameEpoch &&
+  result.branchId === arrival.branchId &&
+  result.revision === arrival.revision
+)
+  lab.allowPersonaRecording(true);
 // Otherwise show the historical-linkage question; default is local-only play.
 // After an explicit choice, query a fresh epoch and check generation before sending it.
-await shelf.request({ action: 'recording', castId, envelope: arrival, allowRecording: choice, recordingEpoch: result.recordingEpoch ?? undefined });
+await shelf.request({
+  action: 'recording',
+  castId,
+  envelope: arrival,
+  allowRecording: choice,
+  recordingEpoch: result.recordingEpoch ?? undefined,
+});
 // Apply a positive reply only if this choice, loaded run and identity generation still match.
-
 ```
 
 The central recording association is separate from portable envelopes and never returns the recording id. Files have no association; absent or changed identity needs the explicit choice. `setPersonaRecording(null)` is for a genuinely fresh authored run with no imported history. The gate blocks events, milestones, automatic and explicit runs, saves, logs, notes and legacy Send until allowed. Recording off aborts pending uploads; a new identity invalidates the old association. Same-epoch continuation keeps normal recording. File export and local play always remain available. Character analysis remains a separate consent.

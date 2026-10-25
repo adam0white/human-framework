@@ -394,12 +394,6 @@ export const OPENING_CARRY_SHARE = 0.5;
 /** Hit chance per minute at sling 1, lit, unhurt, rested and calm. */
 export const AIM_SCALE = 0.36;
 
-export function watcherDef(id: WatcherId): WatcherDef {
-  const w = WATCHERS.find((x) => x.id === id);
-  if (!w) throw new Error(`unknown watcher ${id}`);
-  return w;
-}
-
 export type ThreatKind = 'wolf' | 'thief';
 
 export interface ThreatDef {

@@ -22,6 +22,7 @@ import {
   chapterPeople,
 } from '../shared/cast-chapter.ts';
 import { makePlaytestFile, PlaytestError, replayResult } from '../shared/playtest.ts';
+import { requireValue } from '../shared/require-value.ts';
 import { hostWorker } from '../shared/worker-host.ts';
 import {
   type Frame,
@@ -315,7 +316,7 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg) => {
           type: 'castReady',
           requestId: msg.requestId,
           initials: Object.fromEntries(
-            chapterPeople(msg.chapter).map((p) => [p.input.parent.castId, p.initial!]),
+            chapterPeople(msg.chapter).map((p) => [p.input.parent.castId, requireValue(p.initial)]),
           ),
         });
       } else {

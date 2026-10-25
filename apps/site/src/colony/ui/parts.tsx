@@ -1,7 +1,7 @@
 import { memo, type ReactNode, type RefObject, useState } from 'react';
 import { settingWords } from '../../shared/setting-words.ts';
-import type { HurtNews, MomentRecord } from '../sim/game.ts';
-import type { Prediction, VillagerView } from '../sim/human-side.ts';
+import type { HurtNews } from '../sim/game.ts';
+import type { Prediction } from '../sim/human-side.ts';
 import type { PlaceId } from '../sim/map.ts';
 import { APPEALS, type AppealChip, type ChipState, inferAction, type OrderCard } from '../sim/orders.ts';
 import {
@@ -30,7 +30,7 @@ import {
 import { moodDescription, trustDescription } from './descriptions.ts';
 import { goalValue, humanQuotes } from './end-report.ts';
 import { Icon, type IconName, RingTimer } from './Icon.tsx';
-import { homeOrderMeaning, PLACE_LABEL, personOrderStatus } from './order-status.ts';
+import { homeOrderMeaning, PLACE_LABEL } from './order-status.ts';
 import { LOOKS } from './renderer.ts';
 import { suggestionChoice } from './suggestion-choice.ts';
 
@@ -229,16 +229,6 @@ export function SpeedControls(props: {
         </button>
       ))}
     </fieldset>
-  );
-}
-
-export function AutoPauseToggle({ on, onChange }: { on: boolean; onChange(on: boolean): void }) {
-  return (
-    <label className="autopause" title="Slow the clock while a suggestion awaits your decision">
-      <input type="checkbox" checked={on} onChange={(e) => onChange(e.currentTarget.checked)} />
-      <span className="autopause-track" aria-hidden="true" />
-      <span>Slow for choices</span>
-    </label>
   );
 }
 
@@ -590,66 +580,6 @@ export const OrderLog = memo(function OrderLog({
     </ul>
   );
 });
-
-/** A person's latest answer and direct controls stay outside History. */
-export function PersonOrder({
-  card,
-  person,
-  onAgain,
-  onCancel,
-  onInsist,
-}: {
-  card: OrderCard;
-  person?: VillagerView | undefined;
-  onAgain(card: OrderCard): void;
-  onCancel(id: string): void;
-  onInsist(card: OrderCard): void;
-}) {
-  const refused = card.human.state === 'willNot';
-  const pushed = card.human.state === 'complied' || card.human.first?.state === 'complied';
-  const trustCosts =
-    person?.id === card.order.personId
-      ? person.trust.history.filter((event) => event.minute > card.order.issuedAt && event.delta < 0)
-      : [];
-  return (
-    <section className="person-order" aria-label="Latest order">
-      <p className="person-order-state">
-        <strong>Human · {settingWords(personOrderStatus(card))}</strong>
-      </p>
-      {(card.human.says ?? card.human.label) && (
-        <p className="person-order-reply">
-          {card.human.outcome ? 'Before completion' : 'Latest Human reply'}:{' '}
-          {settingWords(card.human.says ?? card.human.label)}
-        </p>
-      )}
-      {homeOrderMeaning(card) && <p>{homeOrderMeaning(card)}</p>}
-      {pushed && <p>{shortName(card.order.personId)} went along, but minded being pushed.</p>}
-      {trustCosts.map((event) => (
-        <p className="person-order-cost" key={`${event.minute}-${event.label}-${event.delta}`}>
-          Recent trust change · {dayClock(event.minute)} · {shortName(card.order.personId)} trusts you less.{' '}
-          {settingWords(event.label)}.
-        </p>
-      ))}
-      {card.order.insist && person && trustCosts.length === 0 && (
-        <p>The recent record shows no trust loss after this request.</p>
-      )}
-      {card.order.insist && <p>Insist was used. Asking again may cost trust.</p>}
-      <div className="person-order-actions">
-        <button type="button" onClick={() => onAgain(card)}>
-          Ask again
-        </button>
-        <button type="button" disabled={card.status !== 'active'} onClick={() => onCancel(card.order.id)}>
-          Cancel order
-        </button>
-      </div>
-      {refused && (
-        <button type="button" className="person-order-insist" onClick={() => onInsist(card)}>
-          Insist · may cost trust
-        </button>
-      )}
-    </section>
-  );
-}
 
 /** The newest answered order stays beside the phone composer. Labels can be counter-offers, not speech. */
 export function OrderReply({ cards }: { cards: OrderCard[] }) {
@@ -1200,24 +1130,6 @@ export function HurtLine({
 export function hurtText(n: HurtNews): string {
   const name = (VILLAGERS.find((v) => v.id === n.personId)?.name ?? n.personId).replace(/^Hajja /, '');
   return `${formatClock(n.minute)} ${name} (${n.side === 'classic' ? 'Classic' : 'Human'}), ${n.how}`;
-}
-
-const MOMENT_TITLE: Record<number, string> = {
-  1: 'Carried home before eating',
-  2: 'Same job, different answer',
-  3: 'A refusal on principle',
-  4: 'Done together',
-  5: 'Trust remembered',
-};
-
-export function MomentBanner({ moment }: { moment: MomentRecord }) {
-  return (
-    <div className="moment-banner" role="status" aria-live="polite" key={`${moment.id}-${moment.minute}`}>
-      <span className="moment-banner-n">Moment {moment.id}</span>
-      <strong>{MOMENT_TITLE[moment.id] ?? ''}</strong>
-      <p>{settingWords(moment.line)}</p>
-    </div>
-  );
 }
 
 export { NO_CONCEPT };

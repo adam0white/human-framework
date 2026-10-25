@@ -6,8 +6,19 @@ import { expect, it, vi } from 'vitest';
 import type { WorkerToMain } from '../protocol.ts';
 import { type Colony, useColony } from './useColony.ts';
 
+// Worker orchestration tests must not start the real lab client's metadata fetch.
+vi.mock('../../shared/lab.tsx', () => ({
+  gameLabs: {
+    well: { setPersonaRecording: vi.fn(), allowPersonaRecording: vi.fn(), personaRecordingAllowed: false },
+  },
+}));
 vi.mock('../../shared/tick-loop.ts', () => ({ startTickLoop: () => () => {} }));
 vi.mock('../../shared/worker-telemetry.ts', () => ({ trackWorkerRun: () => () => {} }));
+function Harness({ capture }: { capture: (value: Colony) => void }) {
+  capture(useColony());
+  return null;
+}
+
 it('matches concurrent export replies by request id rather than response order', async () => {
   const listeners: ((e: { data: WorkerToMain }) => void)[] = [];
   const receive = (e: { data: WorkerToMain }) => {
@@ -26,13 +37,17 @@ it('matches concurrent export replies by request id rather than response order',
     },
   );
   let colony: Colony | undefined;
-  function Harness() {
-    colony = useColony();
-    return null;
-  }
   const root = createRoot(document.createElement('div'));
   try {
-    flushSync(() => root.render(createElement(Harness)));
+    flushSync(() =>
+      root.render(
+        createElement(Harness, {
+          capture: (value) => {
+            colony = value;
+          },
+        }),
+      ),
+    );
     if (!colony) throw Error('Missing hook');
     await vi.waitFor(() => expect(post.mock.calls.some(([m]) => m.type === 'init')).toBe(true));
     const first = colony.actions.getRun(),

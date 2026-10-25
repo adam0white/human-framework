@@ -20,15 +20,15 @@ Original checkpoint wording:
 
 > I need a nanny for the Arslans by tomorrow morning and rent by Friday. Bench names, interview questions and the phone are clear things to touch; I chose Gül almost immediately. The phone drew me away but returned me safely. Gül sounds warm and experienced with twins, but the aunt story worries me because this family has a grandmother. Questions cost time and she has now left the questioning stage; I can let her go and call after 11:19. I can follow the English and the dates. The interview screenshot fits its response and choices on the phone, although the family deadline is absent during it. I have not used help.
 
-| Item | Result and first-minute evidence |
-|---|---|
-| DL-1 A reason to act | PASS — Nanny by tomorrow morning, rent Friday. Opening text supplied both. |
-| DL-2 What can I touch | PASS — Open office, bench names, interview questions, phone. I used all of those. Screenshot interview-phone.png shows outlined questions and Answer. No inert target tried; no known missed control. |
-| DL-3 Urgency and selection | PASS — Gül drew me first, then the incoming phone competed with her interview. Bench control reported Gül pressed at 6.763 s. Tuesday deadline was clear; “held: Gül is talking” told me the interview had the clock. |
-| DL-4 Why the limit | PASS — At 45.491 s questions disappeared after “one more question”; “I have to leave now” and “Call her back after 11:19” explained the next opportunity. I understood the restriction, even though I disliked losing the chance to follow up. |
-| DL-5 Readable situation | PASS — “Let the candidate go home” was available; “She has told you what she can for now” explained what was underway. |
-| DL-6 A choice soon | PASS — Candidate choice available at 3.550 s, first candidate input at 6.763 s; interview choice available at 6.763 s and entered at 10.143 s. First question at 15.151 s. Available within 30 seconds, before a long introduction. Opening office input was 3.550 s. |
-| DL-7 Learn by doing | PASS for reached interactions — I reached candidate selection, interview, four questions, phone interruption, response to family and return to interview. Questions advanced the game clock and used her remaining patience. Phone returned me to Gül with “Sorry. Where were we?” No help used. NOT TESTED: 3 later interaction types (reference, negotiation, placement) within this checkpoint. |
+| Item                       | Result and first-minute evidence                                                                                                                                                                                                                                                                                                                                                                   |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DL-1 A reason to act       | PASS — Nanny by tomorrow morning, rent Friday. Opening text supplied both.                                                                                                                                                                                                                                                                                                                         |
+| DL-2 What can I touch      | PASS — Open office, bench names, interview questions, phone. I used all of those. Screenshot interview-phone.png shows outlined questions and Answer. No inert target tried; no known missed control.                                                                                                                                                                                              |
+| DL-3 Urgency and selection | PASS — Gül drew me first, then the incoming phone competed with her interview. Bench control reported Gül pressed at 6.763 s. Tuesday deadline was clear; “held: Gül is talking” told me the interview had the clock.                                                                                                                                                                              |
+| DL-4 Why the limit         | PASS — At 45.491 s questions disappeared after “one more question”; “I have to leave now” and “Call her back after 11:19” explained the next opportunity. I understood the restriction, even though I disliked losing the chance to follow up.                                                                                                                                                     |
+| DL-5 Readable situation    | PASS — “Let the candidate go home” was available; “She has told you what she can for now” explained what was underway.                                                                                                                                                                                                                                                                             |
+| DL-6 A choice soon         | PASS — Candidate choice available at 3.550 s, first candidate input at 6.763 s; interview choice available at 6.763 s and entered at 10.143 s. First question at 15.151 s. Available within 30 seconds, before a long introduction. Opening office input was 3.550 s.                                                                                                                              |
+| DL-7 Learn by doing        | PASS for reached interactions — I reached candidate selection, interview, four questions, phone interruption, response to family and return to interview. Questions advanced the game clock and used her remaining patience. Phone returned me to Gül with “Sorry. Where were we?” No help used. NOT TESTED: 3 later interaction types (reference, negotiation, placement) within this checkpoint. |
 
 ## Verbatim diary and input record
 
@@ -114,28 +114,28 @@ The following is transcribed automatically from my own driver log. Reaction word
 
 ## Important visible answers
 
-| Real elapsed | Input and visible answer | Game clock |
-|---|---|---|
-| 3.550 s | Open office: “The Arslans need a nanny by Tuesday 3 November, 08:00.” Cash ₺3,000; rent ₺5,000 Fri 17:00. | Mon 2 Nov 08:30 |
-| 15.151 s | Last job: Gül described three years with twins and birthday paper crowns. Incoming Arslans call appeared. | 08:55 |
-| 25.239 s | Answer: twins Ada and Deniz, both three; Grandmother Saadet present; ₺9000 budget. | 08:55 |
-| 38.557 / 42.757 s | Wage ₺8000. Mornings until six; advance notice for longer. | 09:09 / 09:19 |
-| 45.491 s | Why leave: aunt moved in, “two of us giving orders in one kitchen.” She must leave; call after 11:19. | 09:30 |
-| 90.509 s | Sevda on crying: “I can sit beside him a while. Not all morning.” “Added to her card: patient.” | 10:07 |
-| 99.953 s | Card interpreted that as “Doubt: patient when someone needs time.” | 10:17 |
-| 106.871–120.522 s | Mrs Uslu complained Sevda asked her to count wages; alleged she left the boy crying. Then admitted the calendar matched and “I counted meals as pay; our agreement said wages.” | 10:40–10:52 |
-| 129.388 s | Confronted accusation: “His boots hurt. I took them off and sat beside him by the coat rack. He was crying; I waited. I did not leave him alone.” Sevda then had to leave; return call after 12:59. | 11:10 |
-| 140.719 s | Family card explained “Karşıyaka (the district across the bay).” | 11:10 |
-| 143.584 s | Phone form disabled children: “A child cannot take an agency call. Speak to an adult.” | 11:10 |
-| 147.588 s | Ece described ironing her work blouse twice, returning to work after three years. Another call disabled: “Finish this conversation before answering another call.” | 11:16 |
-| 158.254 s | Declined Kayas: “I understand. We will look elsewhere.” | 11:19 |
-| 173.953 s | Recalled Gül: journey about 35 minutes, arrival 12:10. Interview disabled with arrival explanation. | 11:35 |
-| 200.909 / 242.569 / 251.862 s | Real waits of 20, 20 and 4 seconds: game 11:49, 12:09, then 12:14, Gül available again. I also inspected negotiation between waits. | as listed |
-| 259.333 s | Asked terms: Sundays for her daughter and grandchildren; same need had already appeared on her card. | 12:28 |
-| 262.517 s | Gül on crying: “With twins, I let the first child finish crying before asking the second what happened.” Added patient. | 12:37 |
-| 283.387 s | Proposed: both accepted ₺9000, 08:00–18:00, Sunday off, seven working-day trial, agency fee ₺9000. Pınar left without interview or number. | 12:57 |
-| 287.103 s | Began agreement: “Gül placed with the Arslans. The deposit, ₺2250, is in the cash box.” Cash rose to ₺5,250. Remaining fee conditional on keeping her after trial. | 13:12 |
-| 295.987 s | End conversation: next street event 13:42; Gül working at Arslans until 18:00. | 13:14 |
+| Real elapsed                  | Input and visible answer                                                                                                                                                                            | Game clock      |
+| ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| 3.550 s                       | Open office: “The Arslans need a nanny by Tuesday 3 November, 08:00.” Cash ₺3,000; rent ₺5,000 Fri 17:00.                                                                                           | Mon 2 Nov 08:30 |
+| 15.151 s                      | Last job: Gül described three years with twins and birthday paper crowns. Incoming Arslans call appeared.                                                                                           | 08:55           |
+| 25.239 s                      | Answer: twins Ada and Deniz, both three; Grandmother Saadet present; ₺9000 budget.                                                                                                                  | 08:55           |
+| 38.557 / 42.757 s             | Wage ₺8000. Mornings until six; advance notice for longer.                                                                                                                                          | 09:09 / 09:19   |
+| 45.491 s                      | Why leave: aunt moved in, “two of us giving orders in one kitchen.” She must leave; call after 11:19.                                                                                               | 09:30           |
+| 90.509 s                      | Sevda on crying: “I can sit beside him a while. Not all morning.” “Added to her card: patient.”                                                                                                     | 10:07           |
+| 99.953 s                      | Card interpreted that as “Doubt: patient when someone needs time.”                                                                                                                                  | 10:17           |
+| 106.871–120.522 s             | Mrs Uslu complained Sevda asked her to count wages; alleged she left the boy crying. Then admitted the calendar matched and “I counted meals as pay; our agreement said wages.”                     | 10:40–10:52     |
+| 129.388 s                     | Confronted accusation: “His boots hurt. I took them off and sat beside him by the coat rack. He was crying; I waited. I did not leave him alone.” Sevda then had to leave; return call after 12:59. | 11:10           |
+| 140.719 s                     | Family card explained “Karşıyaka (the district across the bay).”                                                                                                                                    | 11:10           |
+| 143.584 s                     | Phone form disabled children: “A child cannot take an agency call. Speak to an adult.”                                                                                                              | 11:10           |
+| 147.588 s                     | Ece described ironing her work blouse twice, returning to work after three years. Another call disabled: “Finish this conversation before answering another call.”                                  | 11:16           |
+| 158.254 s                     | Declined Kayas: “I understand. We will look elsewhere.”                                                                                                                                             | 11:19           |
+| 173.953 s                     | Recalled Gül: journey about 35 minutes, arrival 12:10. Interview disabled with arrival explanation.                                                                                                 | 11:35           |
+| 200.909 / 242.569 / 251.862 s | Real waits of 20, 20 and 4 seconds: game 11:49, 12:09, then 12:14, Gül available again. I also inspected negotiation between waits.                                                                 | as listed       |
+| 259.333 s                     | Asked terms: Sundays for her daughter and grandchildren; same need had already appeared on her card.                                                                                                | 12:28           |
+| 262.517 s                     | Gül on crying: “With twins, I let the first child finish crying before asking the second what happened.” Added patient.                                                                             | 12:37           |
+| 283.387 s                     | Proposed: both accepted ₺9000, 08:00–18:00, Sunday off, seven working-day trial, agency fee ₺9000. Pınar left without interview or number.                                                          | 12:57           |
+| 287.103 s                     | Began agreement: “Gül placed with the Arslans. The deposit, ₺2250, is in the cash box.” Cash rose to ₺5,250. Remaining fee conditional on keeping her after trial.                                  | 13:12           |
+| 295.987 s                     | End conversation: next street event 13:42; Gül working at Arslans until 18:00.                                                                                                                      | 13:14           |
 
 ## High and low points
 

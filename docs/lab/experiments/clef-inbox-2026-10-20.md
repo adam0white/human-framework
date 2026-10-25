@@ -9,16 +9,16 @@ This is the check that the [triage bake-off](clairic-triage-2026-10-20.md) asked
   - **The 11 whole notes.** These are what the inbox actually shows.
 - **Clef held up well enough to try, as an 11-note sanity check.** The 36 statements are correlated pieces of 11 notes, not 36 independent samples.
 
-  | unit | measure | Clef | baseline |
-  |---|---|---|---|
-  | statement | category | 24/36 (67%) | majority 8/36 (22%) |
-  | statement | category, clear rows only | 19/25 (76%) | |
-  | statement | severity, exact | 28/36 (78%) | |
-  | statement | severity, mean absolute error | 0.22 | |
-  | statement | same category on rerun | 36/36 | |
-  | note | verdict | 11/11 | |
-  | note | worst severity, exact | 9/11 | |
-  | note | categories present (one `noul` per category, ≥ 0.5) | precision 0.89, recall 0.76 | |
+  | unit      | measure                                             | Clef                        | baseline            |
+  | --------- | --------------------------------------------------- | --------------------------- | ------------------- |
+  | statement | category                                            | 24/36 (67%)                 | majority 8/36 (22%) |
+  | statement | category, clear rows only                           | 19/25 (76%)                 |                     |
+  | statement | severity, exact                                     | 28/36 (78%)                 |                     |
+  | statement | severity, mean absolute error                       | 0.22                        |                     |
+  | statement | same category on rerun                              | 36/36                       |                     |
+  | note      | verdict                                             | 11/11                       |                     |
+  | note      | worst severity, exact                               | 9/11                        |                     |
+  | note      | categories present (one `noul` per category, ≥ 0.5) | precision 0.89, recall 0.76 |                     |
 
   On statements, category was a little below the bake-off on curated ledger quotes (67% against 72%) and severity was better (78% against 62%).
 - **What the aggregates hide.**

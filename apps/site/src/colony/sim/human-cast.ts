@@ -13,7 +13,6 @@ import {
   heldNorms,
   MINUTES_PER_DAY,
   MINUTES_PER_YEAR,
-  type NormDefinition,
   type PersonSpec,
   prayerWindows,
 } from '@adam0white/human-framework';
@@ -30,10 +29,6 @@ export const gm = (t: number): Minute => t - START_CLOCK;
  * as such; they are each person's understanding, not rulings.
  */
 export { WELL_CAST_NORMS as HOST_NORMS } from '../../shared/cast-norms.ts';
-
-import { WELL_CAST_NORMS as HOST_NORMS } from '../../shared/cast-norms.ts';
-
-export const HOST_NORM_IDS = HOST_NORMS.map((n) => n.id);
 
 /** Readable labels for the why panel and refusals. */
 export const NORM_LABELS: Record<string, string> = {

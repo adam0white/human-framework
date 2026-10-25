@@ -1,8 +1,10 @@
 // @vitest-environment happy-dom
+
 import { act, createElement } from 'react';
 import { createRoot } from 'react-dom/client';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { expect, it, vi } from 'vitest';
+import { requireValue } from '../../shared/require-value.ts';
 import { applyInput, newGame } from '../sim/night.ts';
 import { buildFrame } from '../sim/view.ts';
 import type { WatchActions } from './useWatch.ts';
@@ -395,7 +397,7 @@ it('requires an explicit season recovery choice and loads that existing local pa
     ),
   );
   const button = (text: string) =>
-    [...container.querySelectorAll('button')].find((b) => b.textContent === text)!;
+    requireValue([...container.querySelectorAll('button')].find((b) => b.textContent === text));
   await act(() => button('Restore season-start backup').click());
   expect(load).not.toHaveBeenCalled();
   expect(container.textContent).toContain('No new cast claim is made');

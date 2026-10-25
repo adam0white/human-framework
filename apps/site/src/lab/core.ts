@@ -10,8 +10,6 @@
 
 import { declaredLabel, LAB_GAMES } from './games.ts';
 
-export const LAB_SCHEMA = 1;
-
 /** Event kinds: session start, milestone, screen shown, error, session end. */
 export type EventKind = 'start' | 'ms' | 'scr' | 'err' | 'end';
 /** One event: kind, milliseconds since the session started, optional name (milestone, screen or error). */

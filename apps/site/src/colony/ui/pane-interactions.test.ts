@@ -90,6 +90,36 @@ async function draw() {
   });
 }
 
+function Harness({
+  store,
+  settings,
+  onSelect,
+  onPlace,
+  onHover,
+}: {
+  store: { current: FrameStore };
+  settings: Partial<PaneProps>;
+  onSelect: PaneProps['onSelect'];
+  onPlace: PaneProps['onPlace'];
+  onHover: (place: PlaceId | null) => void;
+}) {
+  const [hoverPlace, setHoverPlace] = useState<PlaceId | null>(null);
+  return createElement(Pane, {
+    side: 'human',
+    store,
+    selectedId: 'yusuf',
+    destination: null,
+    hoverPlace,
+    ...settings,
+    onSelect,
+    onPlace: settings.onPlace ?? onPlace,
+    onHoverPlace: (place) => {
+      onHover(place);
+      setHoverPlace(place);
+    },
+  });
+}
+
 async function setup(initial: Partial<PaneProps> = {}) {
   const frame = new ColonyGame(20261003, createFrameworkHumanSide).frame();
   const first = frame.human[0];
@@ -102,28 +132,11 @@ async function setup(initial: Partial<PaneProps> = {}) {
   const onPlace = vi.fn();
   const onHover = vi.fn();
   let settings = initial;
-  function Harness() {
-    const [hoverPlace, setHoverPlace] = useState<PlaceId | null>(null);
-    return createElement(Pane, {
-      side: 'human',
-      store,
-      selectedId: 'yusuf',
-      destination: null,
-      hoverPlace,
-      ...settings,
-      onSelect,
-      onPlace: settings.onPlace ?? onPlace,
-      onHoverPlace: (place) => {
-        onHover(place);
-        setHoverPlace(place);
-      },
-    });
-  }
   const container = document.createElement('div');
   document.body.append(container);
   const root = createRoot(container);
   roots.push(root);
-  await act(() => root.render(createElement(Harness)));
+  await act(() => root.render(createElement(Harness, { store, settings, onSelect, onPlace, onHover })));
   await draw();
   const canvas = container.querySelector('canvas');
   if (!canvas) throw new Error('Missing map canvas');
@@ -137,7 +150,7 @@ async function setup(initial: Partial<PaneProps> = {}) {
     onHover,
     async update(next: Partial<PaneProps>) {
       settings = { ...settings, ...next };
-      await act(() => root.render(createElement(Harness)));
+      await act(() => root.render(createElement(Harness, { store, settings, onSelect, onPlace, onHover })));
     },
   };
 }

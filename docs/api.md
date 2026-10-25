@@ -24,13 +24,18 @@ rules: [framework.md](framework.md). Package overview: [README](../packages/huma
 Answer a suggestion now, between decision points, without touching the running activity.
 
 ```ts
-function answerNow(p: Person, affordances: readonly Affordance[], suggestion: Suggestion, opts?: {
+function answerNow(
+  p: Person,
+  affordances: readonly Affordance[],
+  suggestion: Suggestion,
+  opts?: {
     necessity?: boolean;
     others?: readonly Suggestion[];
     scarcity?: Unit;
-}): {
-    resolution: SuggestionResolution;
-    booked: boolean;
+  },
+): {
+  resolution: SuggestionResolution;
+  booked: boolean;
 };
 ```
 
@@ -47,9 +52,12 @@ function begin(p: Person, aff: Affordance, record: DecisionRecord, opts?: BeginO
 The person's own forecast of their body through an offer and its `followedBy` spans (2.5.0, read-only), with a first-person line ("I can do it, but I'll be spent for the descent.").
 
 ```ts
-function bodyForecast(p: Person, aff: Affordance): {
-    spans: BodyForecastSpan[];
-    line: string;
+function bodyForecast(
+  p: Person,
+  aff: Affordance,
+): {
+  spans: BodyForecastSpan[];
+  line: string;
 };
 ```
 
@@ -96,10 +104,13 @@ function interrupt(p: Person, now: Minute, reason: string): boolean;
 Down a person (1.6.0; see the injury SCOPE in `body/`): from the next decision they can only lie, rest or sleep where they are, a command in force ends, and a running activity that is not one of th...
 
 ```ts
-function knockDown(p: Person, opts?: {
+function knockDown(
+  p: Person,
+  opts?: {
     reason?: string;
     until?: Minute;
-}): boolean;
+  },
+): boolean;
 ```
 
 #### learningFor
@@ -123,11 +134,18 @@ function nafsReading(p: Person): NafsPattern[];
 Watch someone practise skill `skill` at `modelLevel` for `minutes` (observational learning, 1.8.0): the composite's side of `skills.learnByWatching` at the person's age-and-domain learning rate.
 
 ```ts
-function observeSkill(p: Person, skill: string, minutes: number, modelLevel: Unit, domain?: LearningDomain, options?: {
+function observeSkill(
+  p: Person,
+  skill: string,
+  minutes: number,
+  modelLevel: Unit,
+  domain?: LearningDomain,
+  options?: {
     inheritedAptitude?: boolean;
-}): {
-    before: Unit;
-    after: Unit;
+  },
+): {
+  before: Unit;
+  after: Unit;
 };
 ```
 
@@ -144,7 +162,7 @@ function perceive(p: Person, percepts: readonly Percept[], options?: PerceiveOpt
 Read the best retained-claim route using ordinary scoring costs (scarcity absent).
 
 ```ts
-function planRoute(p: Person, aff: Affordance, now?: Minute): import("./index.ts").PlanRoute | undefined;
+function planRoute(p: Person, aff: Affordance, now?: Minute): import('./index.ts').PlanRoute | undefined;
 ```
 
 #### predict
@@ -152,11 +170,16 @@ function planRoute(p: Person, aff: Affordance, now?: Minute): import("./index.ts
 How this person would answer a suggestion right now, without changing them or consuming randomness (hover telegraph).
 
 ```ts
-function predict(p: Person, affordances: readonly Affordance[], suggestion: Suggestion, opts?: {
+function predict(
+  p: Person,
+  affordances: readonly Affordance[],
+  suggestion: Suggestion,
+  opts?: {
     necessity?: boolean;
     others?: readonly Suggestion[];
     scarcity?: Unit;
-}): SuggestionResolution;
+  },
+): SuggestionResolution;
 ```
 
 #### previewCommand
@@ -232,21 +255,21 @@ function tick(p: Person, now: Minute): void;
 
 ```ts
 interface BeginOptions {
-    /**
-     * Make a commitment at begin (e.g. carrying the injured): a pending commitment for this action and target,
-     * from now until the activity's end plus `PERSON_DEFAULTS.promiseSlack`. While it is pending the running
-     * activity gets a strong 'commitment' term at review, so ordinary need interrupts do not end it; completing
-     * the activity keeps it, abandoning it breaks it (a missed episode, and a breach if `normId` is set).
-     */
-    promise?: {
-        importance: number;
-        toId?: string;
-        normId?: string;
-        kind?: Commitment['kind'];
-        label?: string;
-    };
-    /** Joint-activity proposal id (set by `sim/` when both partners begin together). */
-    jointId?: string;
+  /**
+   * Make a commitment at begin (e.g. carrying the injured): a pending commitment for this action and target,
+   * from now until the activity's end plus `PERSON_DEFAULTS.promiseSlack`. While it is pending the running
+   * activity gets a strong 'commitment' term at review, so ordinary need interrupts do not end it; completing
+   * the activity keeps it, abandoning it breaks it (a missed episode, and a breach if `normId` is set).
+   */
+  promise?: {
+    importance: number;
+    toId?: string;
+    normId?: string;
+    kind?: Commitment['kind'];
+    label?: string;
+  };
+  /** Joint-activity proposal id (set by `sim/` when both partners begin together). */
+  jointId?: string;
 }
 ```
 
@@ -254,23 +277,23 @@ interface BeginOptions {
 
 ```ts
 interface DecideOptions {
-    suggestion?: Suggestion;
-    /** Several voices in one decision (N1); merged with `suggestion`, one per voice id. */
-    suggestions?: readonly Suggestion[];
-    /** How short of money the person is, 0..1 (N13); the host's ledger decides (e.g. debt relative to income). */
-    scarcity?: Unit;
-    /** Advance the person to this minute first. */
-    now?: Minute;
-    /** Hosts may disable the necessity exception. */
-    necessity?: boolean;
-    /** Why this decision was forced (recorded on the decision); defaults to the activity's pending interrupt. */
-    interrupt?: string;
-    /**
-     * Reconsider on the merits (2.8.0): the running activity gets no inertia bonus in this decision, for a review the
-     * host forces because something changed (a partner leaving, a call). Promise inertia (`begin` with a promise) and
-     * every other term stay. Absent = the usual hysteresis.
-     */
-    reconsider?: boolean;
+  suggestion?: Suggestion;
+  /** Several voices in one decision (N1); merged with `suggestion`, one per voice id. */
+  suggestions?: readonly Suggestion[];
+  /** How short of money the person is, 0..1 (N13); the host's ledger decides (e.g. debt relative to income). */
+  scarcity?: Unit;
+  /** Advance the person to this minute first. */
+  now?: Minute;
+  /** Hosts may disable the necessity exception. */
+  necessity?: boolean;
+  /** Why this decision was forced (recorded on the decision); defaults to the activity's pending interrupt. */
+  interrupt?: string;
+  /**
+   * Reconsider on the merits (2.8.0): the running activity gets no inertia bonus in this decision, for a review the
+   * host forces because something changed (a partner leaving, a call). Promise inertia (`begin` with a promise) and
+   * every other term stay. Absent = the usual hysteresis.
+   */
+  reconsider?: boolean;
 }
 ```
 
@@ -278,12 +301,12 @@ interface DecideOptions {
 
 ```ts
 interface FinishOptions {
-    catalog?: readonly NormDefinition[];
-    /**
-     * Related skills (1.8.0): practising a skill also moves the skills this map relates to it (`skills.SkillTransfer`,
-     * `skillFamilies`). Absent: no transfer, as before.
-     */
-    transfer?: SkillTransfer;
+  catalog?: readonly NormDefinition[];
+  /**
+   * Related skills (1.8.0): practising a skill also moves the skills this map relates to it (`skills.SkillTransfer`,
+   * `skillFamilies`). Absent: no transfer, as before.
+   */
+  transfer?: SkillTransfer;
 }
 ```
 
@@ -291,15 +314,15 @@ interface FinishOptions {
 
 ```ts
 interface FinishReport {
-    status: Outcome['status'];
-    /** How it felt, -1..1. */
-    felt: number;
-    realized: Partial<Record<NeedId, number>>;
-    /** Quality used for felt valence (host value, protest default, or 1). */
-    quality: number;
-    fulfilled: string[];
-    breached: string[];
-    kept: string[];
+  status: Outcome['status'];
+  /** How it felt, -1..1. */
+  felt: number;
+  realized: Partial<Record<NeedId, number>>;
+  /** Quality used for felt valence (host value, protest default, or 1). */
+  quality: number;
+  fulfilled: string[];
+  breached: string[];
+  kept: string[];
 }
 ```
 
@@ -307,8 +330,8 @@ interface FinishReport {
 
 ```ts
 interface PerceiveOptions {
-    /** Complete host character-trait vocabulary; absent uses HF's default table. */
-    reputationTraits?: Parameters<typeof applyReputationBelief>[5];
+  /** Complete host character-trait vocabulary; absent uses HF's default table. */
+  reputationTraits?: Parameters<typeof applyReputationBelief>[5];
 }
 ```
 
@@ -316,9 +339,9 @@ interface PerceiveOptions {
 
 ```ts
 interface PersonReadout {
-    body: BodyReadout;
-    needs: NeedReading[];
-    desperation: number;
+  body: BodyReadout;
+  needs: NeedReading[];
+  desperation: number;
 }
 ```
 
@@ -331,7 +354,14 @@ interface PersonReadout {
 A partner chose the mirror.
 
 ```ts
-function acceptJoint(c: Community, world: World, proposal: JointProposal, partner: Person, partnerRecord: DecisionRecord, writeLog?: (e: SimEvent) => void): Activity[];
+function acceptJoint(
+  c: Community,
+  world: World,
+  proposal: JointProposal,
+  partner: Person,
+  partnerRecord: DecisionRecord,
+  writeLog?: (e: SimEvent) => void,
+): Activity[];
 ```
 
 #### addPerson
@@ -395,7 +425,12 @@ function interrupts(p: Person, pc: Percept, salience: number): boolean;
 Chance that `lead` succeeds at a skilled task with `partners` helping: `successChance` with support = Σ partner skill × partner capacity / max(difficulty, 0.1), clamped to 0..1.
 
 ```ts
-function jointSuccessChance(lead: Person, partners: readonly Person[], skillId: string, difficulty: Unit): Unit;
+function jointSuccessChance(
+  lead: Person,
+  partners: readonly Person[],
+  skillId: string,
+  difficulty: Unit,
+): Unit;
 ```
 
 #### liveCommunity
@@ -427,11 +462,16 @@ function nextEventAt(c: Community, p: Person): Minute;
 How this person would answer `suggestion` now, without changing state (UI telegraph; wraps `predict`).
 
 ```ts
-function preview(p: Person, affordances: readonly Affordance[], suggestion: Suggestion, opts?: {
+function preview(
+  p: Person,
+  affordances: readonly Affordance[],
+  suggestion: Suggestion,
+  opts?: {
     necessity?: boolean;
     others?: readonly Suggestion[];
     scarcity?: number;
-}): SuggestionResolution;
+  },
+): SuggestionResolution;
 ```
 
 #### proposeJoint
@@ -439,7 +479,12 @@ function preview(p: Person, affordances: readonly Affordance[], suggestion: Sugg
 Register a joint proposal for `proposer`'s chosen `offer` and interrupt every partner at the proposer's minute so they answer it then.
 
 ```ts
-function proposeJoint(c: Community, proposer: Person, offer: Affordance, record: DecisionRecord): JointProposal;
+function proposeJoint(
+  c: Community,
+  proposer: Person,
+  offer: Affordance,
+  record: DecisionRecord,
+): JointProposal;
 ```
 
 #### runSilent
@@ -447,9 +492,14 @@ function proposeJoint(c: Community, proposer: Person, offer: Affordance, record:
 Headless epilogue (N16): run the community `days` days with one voice muted, i.e.
 
 ```ts
-function runSilent(c: Community, world: World, days: number, opts?: StepOptions & {
+function runSilent(
+  c: Community,
+  world: World,
+  days: number,
+  opts?: StepOptions & {
     mutedVoiceId?: PersonId;
-}): SilentRun;
+  },
+): SilentRun;
 ```
 
 #### sharesPlace
@@ -465,7 +515,13 @@ function sharesPlace(q: Person, act: Pick<Activity, 'action' | 'affordance'>): b
 Whether standing suggestion `s` is heard by `p` at a decision over `affordances` (standing-advice SCOPE): its target must be on offer or be the running activity, and if the action keeps commitments...
 
 ```ts
-function standingHeard(c: Community, p: Person, s: Suggestion, affordances: readonly Affordance[], now?: Minute): boolean;
+function standingHeard(
+  c: Community,
+  p: Person,
+  s: Suggestion,
+  affordances: readonly Affordance[],
+  now?: Minute,
+): boolean;
 ```
 
 #### stepCommunity
@@ -481,9 +537,14 @@ function stepCommunity(c: Community, world: World, until: Minute, opts?: StepOpt
 Tell `dead`'s death at `at` to everyone alive in the community who has a tie to them (1.8.0): a told `death` percept through `perceive`, so they grieve, the tie is kept and marked, and a spouse is ...
 
 ```ts
-function tellDeath(c: Community, dead: Person, at: Minute, opts?: {
+function tellDeath(
+  c: Community,
+  dead: Person,
+  at: Minute,
+  opts?: {
     late?: 'throw' | 'now';
-}): void;
+  },
+): void;
 ```
 
 ### Constants
@@ -497,39 +558,51 @@ function tellDeath(c: Community, dead: Person, at: Minute, opts?: {
 
 ```ts
 interface Community {
-    people: Person[];
-    /** Host-side: when an idle person who found nothing to do will look again. */
-    idleUntil: Record<PersonId, Minute>;
-    /** Host-side: the last minute each person was handed percepts up to. */
-    perceivedUntil: Record<PersonId, Minute>;
-    /** Host-side: forced decisions for idle people (`interruptPerson`), consumed at their next decision. */
-    interrupts: Record<PersonId, {
+  people: Person[];
+  /** Host-side: when an idle person who found nothing to do will look again. */
+  idleUntil: Record<PersonId, Minute>;
+  /** Host-side: the last minute each person was handed percepts up to. */
+  perceivedUntil: Record<PersonId, Minute>;
+  /** Host-side: forced decisions for idle people (`interruptPerson`), consumed at their next decision. */
+  interrupts: Record<
+    PersonId,
+    {
+      at: Minute;
+      reason: string;
+    }
+  >;
+  /** Host-side: joint proposals (pending and the most recent settled ones) and per-minute exclusions. */
+  joint: {
+    nextId: number;
+    proposals: JointProposal[];
+    /** Offers a person may not choose again at minute `at` (a partner just declined them). */
+    excluded: Record<
+      PersonId,
+      {
         at: Minute;
-        reason: string;
-    }>;
-    /** Host-side: joint proposals (pending and the most recent settled ones) and per-minute exclusions. */
-    joint: {
-        nextId: number;
-        proposals: JointProposal[];
-        /** Offers a person may not choose again at minute `at` (a partner just declined them). */
-        excluded: Record<PersonId, {
-            at: Minute;
-            ids: string[];
-        }>;
-    };
-    /** Host-side: suggestions heard in conversation, weighed at the next decisions and dropped after a fresh one. */
-    queued?: Record<PersonId, Suggestion[]>;
-    /** Host-side: the last day each person's `World.onDay` and life-course rolls ran for. */
-    dayDone?: Record<PersonId, number>;
-    /**
-     * Host-side (standing advice): the last completion of each commitment-keeping offer, keyed `aff:<id>` and
-     * `act:<action>`, with the target it was done at (see the standing-advice SCOPE and `standingHeard`).
-     */
-    standingDone?: Record<PersonId, Record<string, {
+        ids: string[];
+      }
+    >;
+  };
+  /** Host-side: suggestions heard in conversation, weighed at the next decisions and dropped after a fresh one. */
+  queued?: Record<PersonId, Suggestion[]>;
+  /** Host-side: the last day each person's `World.onDay` and life-course rolls ran for. */
+  dayDone?: Record<PersonId, number>;
+  /**
+   * Host-side (standing advice): the last completion of each commitment-keeping offer, keyed `aff:<id>` and
+   * `act:<action>`, with the target it was done at (see the standing-advice SCOPE and `standingHeard`).
+   */
+  standingDone?: Record<
+    PersonId,
+    Record<
+      string,
+      {
         at: Minute;
         action: string;
         targetId?: string;
-    }>>;
+      }
+    >
+  >;
 }
 ```
 
@@ -539,18 +612,18 @@ A pending or settled joint activity (host-side bookkeeping, plain JSON).
 
 ```ts
 interface JointProposal {
-    id: string;
-    proposerId: PersonId;
-    partnerIds: PersonId[];
-    /** The proposer's offer as chosen. */
-    offer: Affordance;
-    /** The proposer's decision, used when the proposal is accepted and the proposer begins. */
-    record: DecisionRecord;
-    at: Minute;
-    accepted: PersonId[];
-    /** Decisions of the partners who accepted, used when everyone begins. */
-    partnerRecords: Record<PersonId, DecisionRecord>;
-    status: 'pending' | 'accepted' | 'declined';
+  id: string;
+  proposerId: PersonId;
+  partnerIds: PersonId[];
+  /** The proposer's offer as chosen. */
+  offer: Affordance;
+  /** The proposer's decision, used when the proposal is accepted and the proposer begins. */
+  record: DecisionRecord;
+  at: Minute;
+  accepted: PersonId[];
+  /** Decisions of the partners who accepted, used when everyone begins. */
+  partnerRecords: Record<PersonId, DecisionRecord>;
+  status: 'pending' | 'accepted' | 'declined';
 }
 ```
 
@@ -558,15 +631,15 @@ interface JointProposal {
 
 ```ts
 interface LifecourseOptions {
-    /** Roll `mortalityEvent` once per day crossed (default false). */
-    mortality?: boolean;
-    /** Roll `chronicOnsets` once per day crossed (default false). */
-    chronicOnsets?: boolean;
-    /** Extra multiplier on the mortality hazard (testing, compressed time). `mortalityHazard` caps the result at 1/year. */
-    multiplier?: number;
-    conditions?: readonly ChronicCondition[];
-    /** Host-tracked exposures for `chronicOnsets` (smoking, ...). */
-    exposures?(p: Person): HealthExposures | undefined;
+  /** Roll `mortalityEvent` once per day crossed (default false). */
+  mortality?: boolean;
+  /** Roll `chronicOnsets` once per day crossed (default false). */
+  chronicOnsets?: boolean;
+  /** Extra multiplier on the mortality hazard (testing, compressed time). `mortalityHazard` caps the result at 1/year. */
+  multiplier?: number;
+  conditions?: readonly ChronicCondition[];
+  /** Host-tracked exposures for `chronicOnsets` (smoking, ...). */
+  exposures?(p: Person): HealthExposures | undefined;
 }
 ```
 
@@ -574,19 +647,19 @@ interface LifecourseOptions {
 
 ```ts
 interface LiveCommunityOptions {
-    /** Each living person's routine for a day (`day` is the day number being lived). */
-    routineFor(p: Person, day: number, c: Community): Routine;
-    /** At each dawn, before anyone's day: births, arrivals, routine changes. */
-    onDay?(c: Community, day: number, at: Minute): void;
-    /** Tell each death to everyone with a tie (default true; see `tellDeath`). */
-    tellDeaths?: boolean;
-    /**
-     * Minutes of upbringing a day for each living minor with a living parent in the community (`family.raise`; default
-     * `LIVE_COMMUNITY_DEFAULTS.upbringingMinutes`, 0 turns it off).
-     */
-    upbringingMinutes?: number;
-    lifecourse?: LifecourseOptions;
-    transfer?: SkillTransfer;
+  /** Each living person's routine for a day (`day` is the day number being lived). */
+  routineFor(p: Person, day: number, c: Community): Routine;
+  /** At each dawn, before anyone's day: births, arrivals, routine changes. */
+  onDay?(c: Community, day: number, at: Minute): void;
+  /** Tell each death to everyone with a tie (default true; see `tellDeath`). */
+  tellDeaths?: boolean;
+  /**
+   * Minutes of upbringing a day for each living minor with a living parent in the community (`family.raise`; default
+   * `LIVE_COMMUNITY_DEFAULTS.upbringingMinutes`, 0 turns it off).
+   */
+  upbringingMinutes?: number;
+  lifecourse?: LifecourseOptions;
+  transfer?: SkillTransfer;
 }
 ```
 
@@ -596,8 +669,8 @@ Notable days of each person, by id, plus the community's event log (deaths, stag
 
 ```ts
 interface LiveCommunityResult {
-    events: SimEvent[];
-    days: Record<PersonId, RoutineDay[]>;
+  events: SimEvent[];
+  days: Record<PersonId, RoutineDay[]>;
 }
 ```
 
@@ -605,11 +678,11 @@ interface LiveCommunityResult {
 
 ```ts
 interface SilentRun {
-    from: Minute;
-    to: Minute;
-    events: SimEvent[];
-    /** Each person's day records for the run (closed days only). */
-    chronicles: Record<PersonId, DayRecord[]>;
+  from: Minute;
+  to: Minute;
+  events: SimEvent[];
+  /** Each person's day records for the run (closed days only). */
+  chronicles: Record<PersonId, DayRecord[]>;
 }
 ```
 
@@ -617,21 +690,21 @@ interface SilentRun {
 
 ```ts
 interface SimEvent {
-    at: Minute;
-    personId: PersonId;
-    kind: SimEventKind;
-    detail: string;
-    decisionId?: string;
-    affordanceId?: string;
-    action?: string;
-    verdict?: SuggestionVerdict;
-    status?: Outcome['status'];
-    /** On 'decide': made while an activity was running (a suggestion then moves no voice counters). */
-    review?: boolean;
-    /** On joint events: the proposal id. */
-    jointId?: string;
-    /** On 'converse' and 'contagion': the other person. */
-    withId?: PersonId;
+  at: Minute;
+  personId: PersonId;
+  kind: SimEventKind;
+  detail: string;
+  decisionId?: string;
+  affordanceId?: string;
+  action?: string;
+  verdict?: SuggestionVerdict;
+  status?: Outcome['status'];
+  /** On 'decide': made while an activity was running (a suggestion then moves no voice counters). */
+  review?: boolean;
+  /** On joint events: the proposal id. */
+  jointId?: string;
+  /** On 'converse' and 'contagion': the other person. */
+  withId?: PersonId;
 }
 ```
 
@@ -639,36 +712,36 @@ interface SimEvent {
 
 ```ts
 interface StepOptions {
-    /** Standing suggestions, applied at every decision of that person (resolved quietly at reviews); one or several voices. */
-    suggestions?: Record<PersonId, Suggestion | readonly Suggestion[]>;
-    /** Contagion rolls between people who just shared an activity (default true). */
-    contagion?: boolean;
-    /** Life-course rolls (mortality, chronic onsets); default off. */
-    lifecourse?: LifecourseOptions;
-    /**
-     * Tell each death to everyone alive who had a tie to the dead person, as a `death` percept at the minute it is
-     * noticed (1.8.0, default true): they grieve, keep the tie as a memory, and a spouse is widowed (`partnering/`).
-     */
-    tellDeaths?: boolean;
-    /** Hosts may disable the necessity exception. */
-    necessity?: boolean;
-    /** Minutes an idle person waits when no option is chosen. */
-    idleQuantum?: number;
-    /** Stop collecting events beyond this many (the simulation still runs). */
-    maxEvents?: number;
-    /**
-     * Salience at or above which a perceived percept targeting the person (or flagged `near`) interrupts them;
-     * false disables. Default `SIM_DEFAULTS.interruptSalience`. Percepts are pulled at each person's own events,
-     * so a host wanting an immediate response calls `interruptPerson` when it queues the percept.
-     */
-    interruptSalience?: number | false;
-    /**
-     * Direct control (1.6.0): the command in force for each controlled person. When given, it is authoritative: an
-     * entry is put in force at the start of the step (unless that command, by voice and `since`, already ended), and
-     * a person without an entry who is under a command is released ('released'). Omit it to manage commands
-     * yourself through `command` / `releaseCommand`.
-     */
-    controlled?: Record<PersonId, Command>;
+  /** Standing suggestions, applied at every decision of that person (resolved quietly at reviews); one or several voices. */
+  suggestions?: Record<PersonId, Suggestion | readonly Suggestion[]>;
+  /** Contagion rolls between people who just shared an activity (default true). */
+  contagion?: boolean;
+  /** Life-course rolls (mortality, chronic onsets); default off. */
+  lifecourse?: LifecourseOptions;
+  /**
+   * Tell each death to everyone alive who had a tie to the dead person, as a `death` percept at the minute it is
+   * noticed (1.8.0, default true): they grieve, keep the tie as a memory, and a spouse is widowed (`partnering/`).
+   */
+  tellDeaths?: boolean;
+  /** Hosts may disable the necessity exception. */
+  necessity?: boolean;
+  /** Minutes an idle person waits when no option is chosen. */
+  idleQuantum?: number;
+  /** Stop collecting events beyond this many (the simulation still runs). */
+  maxEvents?: number;
+  /**
+   * Salience at or above which a perceived percept targeting the person (or flagged `near`) interrupts them;
+   * false disables. Default `SIM_DEFAULTS.interruptSalience`. Percepts are pulled at each person's own events,
+   * so a host wanting an immediate response calls `interruptPerson` when it queues the percept.
+   */
+  interruptSalience?: number | false;
+  /**
+   * Direct control (1.6.0): the command in force for each controlled person. When given, it is authoritative: an
+   * entry is put in force at the start of the step (unless that command, by voice and `since`, already ended), and
+   * a person without an entry who is under a command is released ('released'). Omit it to manage commands
+   * yourself through `command` / `releaseCommand`.
+   */
+  controlled?: Record<PersonId, Command>;
 }
 ```
 
@@ -676,40 +749,44 @@ interface StepOptions {
 
 ```ts
 interface World {
-    /** The world's clock (the latest minute it has been asked about). */
-    now(): Minute;
-    affordancesFor(p: Person): Affordance[];
-    /** Percepts queued for `p` in (since, until]. */
-    perceptsFor(p: Person, since: Minute, until: Minute): Percept[];
-    /** World truth about how an activity ended. `reason` says whether the person left it early. */
-    resolve(p: Person, activity: Activity, reason: 'ended' | 'interrupted'): Outcome;
-    /** Optional: the partner's version of a joint offer (default `mirrorAffordance`). Keep `jointId` set. */
-    mirror?(partner: Person, offer: Affordance, proposal: JointProposal): Affordance;
-    /**
-     * Optional: options for `begin` when `stepCommunity` starts an activity, e.g. a promise made at begin
-     * (carrying the injured). Called with the person at the begin minute; for joint activities the protocol's
-     * `jointId` is added on top.
-     */
-    beginOptions?(p: Person, offer: Affordance, record: DecisionRecord): BeginOptions | undefined;
-    /** Optional: the person's material shortfall now, 0..1 (rent owed against what they earn); fed to every decision. */
-    scarcityFor?(p: Person): Unit;
-    /** Optional: called at the person's first event of each day (`day` = `dayOf(minute)`), before they perceive. */
-    onDay?(p: Person, day: number): void;
-    /**
-     * Optional: the context for the conversation convention when `activity` (tagged 'conversation', or action
-     * 'talk'/'call') completes between `speaker` and `listener`; `false` vetoes it, `undefined` uses `{ at, placeId }`.
-     */
-    converse?(speaker: Person, listener: Person, activity: Activity): Partial<ConverseContext> | false | undefined;
-    /**
-     * Optional: the host's norm catalog, read when a finished activity breaks an abstention under necessity (the
-     * make-up owed comes from the norm's catalog entry). Default: the bundled `DEFAULT_NORMS`.
-     */
-    catalog?: readonly NormDefinition[];
-    /**
-     * Optional (1.8.0): related skills for practice transfer, passed to every `finish` (`FinishOptions.transfer`).
-     * Absent: no transfer.
-     */
-    skillTransfer?: SkillTransfer;
+  /** The world's clock (the latest minute it has been asked about). */
+  now(): Minute;
+  affordancesFor(p: Person): Affordance[];
+  /** Percepts queued for `p` in (since, until]. */
+  perceptsFor(p: Person, since: Minute, until: Minute): Percept[];
+  /** World truth about how an activity ended. `reason` says whether the person left it early. */
+  resolve(p: Person, activity: Activity, reason: 'ended' | 'interrupted'): Outcome;
+  /** Optional: the partner's version of a joint offer (default `mirrorAffordance`). Keep `jointId` set. */
+  mirror?(partner: Person, offer: Affordance, proposal: JointProposal): Affordance;
+  /**
+   * Optional: options for `begin` when `stepCommunity` starts an activity, e.g. a promise made at begin
+   * (carrying the injured). Called with the person at the begin minute; for joint activities the protocol's
+   * `jointId` is added on top.
+   */
+  beginOptions?(p: Person, offer: Affordance, record: DecisionRecord): BeginOptions | undefined;
+  /** Optional: the person's material shortfall now, 0..1 (rent owed against what they earn); fed to every decision. */
+  scarcityFor?(p: Person): Unit;
+  /** Optional: called at the person's first event of each day (`day` = `dayOf(minute)`), before they perceive. */
+  onDay?(p: Person, day: number): void;
+  /**
+   * Optional: the context for the conversation convention when `activity` (tagged 'conversation', or action
+   * 'talk'/'call') completes between `speaker` and `listener`; `false` vetoes it, `undefined` uses `{ at, placeId }`.
+   */
+  converse?(
+    speaker: Person,
+    listener: Person,
+    activity: Activity,
+  ): Partial<ConverseContext> | false | undefined;
+  /**
+   * Optional: the host's norm catalog, read when a finished activity breaks an abstention under necessity (the
+   * make-up owed comes from the norm's catalog entry). Default: the bundled `DEFAULT_NORMS`.
+   */
+  catalog?: readonly NormDefinition[];
+  /**
+   * Optional (1.8.0): related skills for practice transfer, passed to every `finish` (`FinishOptions.transfer`).
+   * Absent: no transfer.
+   */
+  skillTransfer?: SkillTransfer;
 }
 ```
 

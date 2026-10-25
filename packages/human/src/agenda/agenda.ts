@@ -971,7 +971,7 @@ function boundOwed(state: AgendaState): void {
   if (!owed) return;
   while (owed.length > AGENDA_DEFAULTS.maxOwed) {
     const i = owed.findIndex((o) => o.scheduledAs !== undefined);
-    owed.splice(i >= 0 ? i : 0, 1);
+    owed.splice(Math.max(i, 0), 1);
   }
 }
 

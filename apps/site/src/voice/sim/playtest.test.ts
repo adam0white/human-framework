@@ -16,10 +16,8 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { ENGINE_VERSION } from '@adam0white/human-framework';
 import { describe, expect, test } from 'vitest';
-import { withHistoricPersonEngine } from '../../../test/support/engine-stamp.ts';
 import {
   decodeSnapshot,
-  hashState,
   makePlaytestFile,
   PlaytestError,
   type PlaytestFile,
@@ -36,7 +34,6 @@ import {
   validateVoiceLog,
   voiceHash,
   voiceSnapshot,
-  voiceState,
 } from './record.ts';
 
 const FIXTURE = resolve(import.meta.dirname, '../../../test/fixtures/playtest-voice.json');

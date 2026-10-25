@@ -74,13 +74,13 @@ The persistent answer intensifies this. Ramadan 15’s new Hacer scene still car
 
 ## 4. What did it cost?
 
-| Quality | Finding |
-|---|---|
-| Halil’s autonomy | Preserved mechanically. He postponed requests, acted for other reasons, and talked with Hacer unprompted. A quick choice still suggests rather than commands. |
+| Quality                 | Finding                                                                                                                                                                                                                                                                                |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Halil’s autonomy        | Preserved mechanically. He postponed requests, acted for other reasons, and talked with Hacer unprompted. A quick choice still suggests rather than commands.                                                                                                                          |
 | Other people’s autonomy | More apparent company, but some is authored scenery. Mrs Aydın and the baker’s boy have no simulated relationship or consequences. The named exchanges also repeatedly cast others as patient listeners. This narrows their dramatic role even though their underlying Persons remain. |
-| Their words | The surfaced Nuran memory survives. Its repeated reuse across companions makes it less particular. Hacer’s spontaneous “Osman is stingy” was a useful exception: she briefly had something of her own to say. Capture `17-afternoon`. |
-| Difficulty | No simulation difficulty was removed. Default access to difficult decisions was reduced. Social options displace work, walking or the clinic even when those actions are available in the full composer. |
-| Ending | The muted day and counterfactual report survive. Their consequence still lands. The scene on the Eid call repeats the earlier Selin invitation, so the writing contributes less to the ending than the fact that she had to call him. |
+| Their words             | The surfaced Nuran memory survives. Its repeated reuse across companions makes it less particular. Hacer’s spontaneous “Osman is stingy” was a useful exception: she briefly had something of her own to say. Capture `17-afternoon`.                                                  |
+| Difficulty              | No simulation difficulty was removed. Default access to difficult decisions was reduced. Social options displace work, walking or the clinic even when those actions are available in the full composer.                                                                               |
+| Ending                  | The muted day and counterfactual report survive. Their consequence still lands. The scene on the Eid call repeats the earlier Selin invitation, so the writing contributes less to the ending than the fact that she had to call him.                                                  |
 
 The baseline simulation is still consequential. I ran the repository’s complete probe:
 
@@ -90,13 +90,13 @@ VOICE_MEASURE=1 npx vitest run apps/site/src/voice/sim/measure.test.ts --silent=
 
 It passed in **204.31 seconds**, covering **21 styles × five seeds (7,1,2,3,4)**. Selected current results:
 
-| Scripted style | Rent paid by deadline / by Eid, mean | Connected Ramadan calls, mean | Clinic visits, mean | Trust at Eid |
-|---|---:|---:|---:|---:|
-| Silent | 0 / 300 | 15 | 0 | 0.50 |
-| Prefill + doctor/Selin whispers | 0 / 300 | 28.2 | 1 | 0.62 |
-| Shift + Selin whispers | 300 / 540 | 28 | 1 | 0.63 |
-| Tempter | 0 / 0 | 5.8 | 0 | 0.48 |
-| Saboteur | 0 / 300 | 15 | 0 | 0.01 |
+| Scripted style                  | Rent paid by deadline / by Eid, mean | Connected Ramadan calls, mean | Clinic visits, mean | Trust at Eid |
+| ------------------------------- | -----------------------------------: | ----------------------------: | ------------------: | -----------: |
+| Silent                          |                              0 / 300 |                            15 |                   0 |         0.50 |
+| Prefill + doctor/Selin whispers |                              0 / 300 |                          28.2 |                   1 |         0.62 |
+| Shift + Selin whispers          |                            300 / 540 |                            28 |                   1 |         0.63 |
+| Tempter                         |                                0 / 0 |                           5.8 |                   0 |         0.48 |
+| Saboteur                        |                              0 / 300 |                            15 |                   0 |         0.01 |
 
 Full output: (driver scratch) (driver scratch). This is evidence of preserved agency and consequence, **not evidence that the new core is fun**. The existing headless driver uses frames, prefills and scripted choices; it does not exercise scene reading, scene-triggered React pauses or the two new quick-choice rankings (`sim/headless.ts:86–120`).
 

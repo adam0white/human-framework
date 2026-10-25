@@ -1,4 +1,4 @@
-import { type CastChapter, castOpeningLine } from '../../shared/cast-chapter.ts';
+import type { CastChapter } from '../../shared/cast-chapter.ts';
 /**
  * The lockstep engine: one clock, one order book, two worlds. Each sim minute it applies due orders to
  * both sides at the same boundary, applies world weather to both worlds, steps Classic, steps the

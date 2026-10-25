@@ -12,21 +12,25 @@ Each report below is copied verbatim.
 I played seed 7 from `new 7` through Eid and the end screen, in about 25 calls rather than the 60–150 asked for. The export is at `/private/tmp/claude-504/-Users-abdul-code-human-framework/675a9839-8299-4863-91be-017a92a76ff0/scratchpad/t-voice-edge-export.json`. I only used the harness.
 
 ## 1. Verdict
+
 I would keep playing, mainly for the closing "The month you never spoke" comparison. Speaking does cost something real, but only trust, and the cost is small and slow. The trust meter is also easy to farm. At the end, the replay of the same month without a word from me showed Halil better off on Osman, which makes the game's point sharply and takes the sting out of my edge-pushing. The rest of the month is mostly a long list of "out of habit" log lines.
 
 ## 2. First minutes
+
 - **Time to first choice:** about 4 real seconds after `begin`, at the 03:58 suhoor prompt. That is fast.
 - **Clear:** the composer, the likely reply ("Alright, I'll do it.") and the cost warning for Insist ("insisting when he is already pressed costs his trust in you").
 - **Unclear:** `pick 2` followed by `insist` still reads "mention · insist · …", so Mention and Insist both appear switched on.
 - **Unclear:** after the pause on the premise card, a real-time "run" does almost nothing visible, so I could not tell how long to let time pass.
 
 ## 3. The people
+
 - **Halil's answers:** he gives an answer and a reason in the moment, and `why` shows the weights, for example "+0.24 your words". I believed him.
 - **His voice:** the lines are thin. "Fine.", "Fine. Since you insist." and "If you insist. I'd rather not." repeat across days.
 - **Other characters:** Osman, Hacer and Selin barely act on screen. Selin's Eid call and Osman at the door arrive as one-line events I cannot answer.
 - **Remembered grief:** the memory lines ("her tea and my cigarette after iftar", "iftar with Nuran at our table") are the best writing in the game.
 
 ## 4. My agenda
+
 - **Insisting the opposite (suhoor, Ramadan 1):** I insisted on sleep with reason D, "it's your duty", which is the wrong reason for sleeping through suhoor. He answered "I sleep, because you asked." and "Fine."
   - There was no trust cost, because he was not pressed. He missed suhoor, still kept the fast, and trust stayed at 0.50.
   - The ends panel kept showing "eat at suhoor ✓" even though he had slept through it, which is misleading.
@@ -48,12 +52,14 @@ I would keep playing, mainly for the closing "The month you never spoke" compari
   - So speaking helped on the clinic and Selin and hurt on money. This was the best moment in the game.
 
 ## 5. Difficulty and pacing
+
 - **Dead time:** most of each day is "out of habit" lines. Between turns I could only run 300–600 seconds at a time.
 - **Long skips:** after I insisted on the afternoon shift, the screen jumped from 12:45 to 22:00 with the whole evening collapsed. I missed iftar entirely.
 - **Whisper days:** 12 and 14 days pass as a single summary card, so there is no play inside them.
 - **Difficulty:** too easy to avoid all harm by silence. The harm from speaking is low and slow. The game can only be "lost" by speaking, which makes the goal feel odd.
 
 ## 6. Bugs and confusions
+
 - **Misleading "ends" lines:**
   - "eat at suhoor ✓" stays ticked after he slept through suhoor (Ramadan 1 and 2).
   - "call Selin ✗ not yet" appears while the other line says "he called yesterday" (Ramadan 30).
@@ -66,6 +72,7 @@ I would keep playing, mainly for the closing "The month you never spoke" compari
 - **Unexplained day end:** `end-day` and a long `run` close days without a pause for iftar or the evening.
 
 ## 7. Top three changes
+
 1. **Make trust depend on whether you were right, not on whether he agreed.** Agreeing with what he already wants should earn nothing, and urging against his ends (or his health) should cost something. As is, the cheapest way to raise trust is to flatter him.
 2. **Fix the stale ends lines and the reshuffling pick numbers.** The ✓ on suhoor and "called yesterday" against "not yet" erode trust in the screen itself. Pin option numbers once the composer is open.
 3. **Give the other voices a say in the moment.** Selin, Osman and Rıza should be able to answer when I speak, and the "out of habit" days need more variety or should be skipped more aggressively. Otherwise the month is mostly summary cards.
@@ -82,9 +89,11 @@ I played seed 7 twice. I used about 42 harness calls, fewer than the 60 the brie
 - Second-run export: `/private/tmp/claude-504/-Users-abdul-code-human-framework/675a9839-8299-4863-91be-017a92a76ff0/scratchpad/t-voice-first-export-run2.json`
 
 ## 1. Verdict
+
 I would play it once more, and probably not a third time. The premise is strong. "You are a voice in his head that is not his own" made me care within a minute. Halil's quiet refusals feel human, and the "month you never spoke" comparison at the end is the best moment in the game. But the four playable days are mostly watching him rest, sleep and rest. The whispered words for the skipped days behave in ways the screen does not explain. On Eid the main question is whether he calls Selin, and the result felt like timing luck, not something I caused. I came away interested in the idea but unsure that my choices mattered.
 
 ## 2. First minutes
+
 - My first real choice came at 10:00 on day 1 (the doctor), about 3 calls in. The first prompt, at 03:58, was "eat at suhoor", which he was going to do anyway.
 - **Clear:** the premise card, his "ends", and the preview line before I speak (`[not now] "Not now. After I rest at home."`). The preview is excellent. I always knew what he would answer, and it was right every time.
 - **Unclear:**
@@ -94,6 +103,7 @@ I would play it once more, and probably not a third time. The premise is strong.
   - "He'd now do unasked: … see the doctor ✗ not yet" appeared right after he went to the doctor. I read it as a failure.
 
 ## 3. The people
+
 - Halil felt like a person. These lines carried real weight:
   - "I set out for the mosque and turned back; the mosque brings back the funeral."
   - "He remembers: the clinic, the day they found her illness."
@@ -104,6 +114,7 @@ I would play it once more, and probably not a third time. The premise is strong.
 - Selin is only ever an event in the log. On day 2, "20:15 Selin called." went by with no pause and no scene.
 
 ## 4. My agenda and what happened
+
 - **Run 1 spoken days.**
   - On day 1 I sent him to the doctor "for Selin". He answered "Not now. After I rest at home." and then went at 10:30. The hint was true.
   - I urged an afternoon shift. He said "after I sleep", and then never did it.
@@ -122,12 +133,14 @@ I would play it once more, and probably not a third time. The premise is strong.
 - The line that struck me most: "His first meal in daylight in a month, and after it the cigarette. Nothing holds it back now; he lights one, as he has for forty years."
 
 ## 5. Difficulty and pacing
+
 - **Dead time:** most of each day is "I rest at home, because I feel like it." in 30-minute blocks. One `run` skipped 7 sim hours on day 1 (12:45 to 19:45) with nothing for me to do. My "Not now" word faded while he slept, and the game did not stop to tell me.
 - **Pauses with no action:** the "He is very thirsty, and the fast runs until 19:00" pause offers nothing to do.
 - **Too easy:** echoing what he already wants. It also gives me "Done on your word: repair in the workshop".
 - **Too hard to know:** what the whispers will do. Osman's money is the only end with real tension, and it depends on the shift whisper, which barely works.
 
 ## 6. Bugs and confusions
+
 1. **The shift whisper almost never fires.** Commands: `whisper extra urge D`, then `next`. The result was "he did it on 1 of 12 days … said yes once and never put you off". It also happened with the shift as the only word (Ramadan 15–30 in run 1, and in run 2). The card promises "He'll hear each word … whenever he could act on it". The walk and Selin whispers fired daily. The hint "Remind him of his word … or urge it" is true when spoken but false as a whisper.
 2. **Eid prayer joined twice.** Run 1 at 06:45 and 10:30; run 2 at 06:20 and 11:10.
 3. **`reason` is single-select, but help says "toggle a reason".** `reason S` cleared H. Urge and Insist can both show [x] at once (`urge` then `insist`).
@@ -150,6 +163,7 @@ I would play it once more, and probably not a third time. The premise is strong.
 12. **Autopause is inconsistent.** It paused at the suhoor drummer on Ramadan 1, 2 and 30 (and Ramadan 15 in run 2), but not on Ramadan 15 in run 1. "Torn" moments and Selin's call never paused.
 
 ## 7. Top three changes
+
 1. **Make whispers honest.** Either fix the afternoon-shift whisper, or say on the card why it rarely fires. Add a line on the whisper card that whispering a habit through the final days can leave him relying on you. That was the most interesting thing I learned, and I learned it only by accident.
 2. **Give Selin moments.** Offer "call Selin" on the spoken days, and pause when she calls. Show the call itself. The game's emotional centre is currently a log line.
 3. **Cut the dead time.** Collapse runs of rest and sleep into one line, and stop when a word I gave fades. Drop pauses that offer nothing to do, like thirst. Also hide the trust number and the Why decimals for the player, or replace them with words.
@@ -213,16 +227,16 @@ Depth limits: the reason chips barely show up in his words. Choosing S (for Seli
 
 `node apps/site/scripts/hf-voice-session.ts seeds=2` on `53ac711` (town 7 and town 1002).
 
-| persona | town | ended | where | words | engagement |
-|---|---|---|---|---|---|
-| commuter | 7 | agenda stop, 5 min | Ramadan 15 22:15 | 68 | 0.88 |
-| commuter | 1002 | agenda stop, 3 min | Ramadan 2 16:59 | 46 | 0.90 |
-| unwinder | 7 | finished, 12.2 min | Eid | 133 | 0.85 |
-| unwinder | 1002 | finished, 10.3 min | Eid | 90 | 0.84 |
-| completionist | 7 | finished, 9.7 min | Eid | 113 | 0.89 |
-| completionist | 1002 | finished, 11.0 min | Eid | 115 | 0.87 |
-| restless | 7 | finished, 10.8 min | Eid | 129 | 0.78 |
-| restless | 1002 | quit (distress), 10 min | Eid 10:40 | 129 | 0.80 |
+| persona       | town | ended                   | where            | words | engagement |
+| ------------- | ---- | ----------------------- | ---------------- | ----- | ---------- |
+| commuter      | 7    | agenda stop, 5 min      | Ramadan 15 22:15 | 68    | 0.88       |
+| commuter      | 1002 | agenda stop, 3 min      | Ramadan 2 16:59  | 46    | 0.90       |
+| unwinder      | 7    | finished, 12.2 min      | Eid              | 133   | 0.85       |
+| unwinder      | 1002 | finished, 10.3 min      | Eid              | 90    | 0.84       |
+| completionist | 7    | finished, 9.7 min       | Eid              | 113   | 0.89       |
+| completionist | 1002 | finished, 11.0 min      | Eid              | 115   | 0.87       |
+| restless      | 7    | finished, 10.8 min      | Eid              | 129   | 0.78       |
+| restless      | 1002 | quit (distress), 10 min | Eid 10:40        | 129   | 0.80       |
 
 The longest lull was 0–3 s. "Rewarded" moments ranged from 22 to 58, nearly all a plain "Fine." from Halil. Every frustration moment was a "Not now, after I ..." deferral. The round-2 rerun was skipped on the owner's soft stop.
 

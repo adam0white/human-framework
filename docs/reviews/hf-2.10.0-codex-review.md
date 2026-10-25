@@ -17,14 +17,23 @@ Reproduction, from the candidate root after `npm run build -w packages/human`:
 ```js
 import * as hf from './packages/human/dist/index.js';
 
-const make = () => hf.createPerson({
-  id: 'p', name: 'P', seed: 17, now: 10,
-  bornAt: -30 * 365 * 1440, sex: 'female', norms: [],
-});
+const make = () =>
+  hf.createPerson({
+    id: 'p',
+    name: 'P',
+    seed: 17,
+    now: 10,
+    bornAt: -30 * 365 * 1440,
+    sex: 'female',
+    norms: [],
+  });
 
 for (const reverse of [false, true]) {
   const p = make();
-  for (const [source, prop] of [['a', 'qa'], ['b', 'qb']]) {
+  for (const [source, prop] of [
+    ['a', 'qa'],
+    ['b', 'qb'],
+  ]) {
     hf.seedSourceTrust(p, source, 0.8);
     hf.seedBelief(p, prop, { value: true, credence: 0.9, source });
   }
@@ -33,20 +42,27 @@ for (const reverse of [false, true]) {
     { sourceId: 'b', prop: 'qb', value: false },
   ];
   if (reverse) reports.reverse();
-  hf.perceive(p, [{
-    at: 10, channel: 'told', actorId: 'a', kind: 'fact',
-    salience: 1, summary: 'Both accounts', reports,
-  }]);
+  hf.perceive(p, [
+    {
+      at: 10,
+      channel: 'told',
+      actorId: 'a',
+      kind: 'fact',
+      salience: 1,
+      summary: 'Both accounts',
+      reports,
+    },
+  ]);
   console.log(reverse, p.memory.sourceTrust);
 }
 ```
 
 Observed:
 
-| Report order | Trust in a | Trust in b |
-|---|---:|---:|
-| a, then b | 0.6700961894323342 | 0.7099103060730969 |
-| b, then a | 0.6700961894323342 | 0.6700961894323342 |
+| Report order |         Trust in a |         Trust in b |
+| ------------ | -----------------: | -----------------: |
+| a, then b    | 0.6700961894323342 | 0.7099103060730969 |
+| b, then a    | 0.6700961894323342 | 0.6700961894323342 |
 
 Both percepts were attended. A can report its own earlier account; the API and design do not exclude this. Two same-minute calls with mutually reporting sources also produce different final trust when reversed. The permutation test at `packages/human/test/contradiction.test.ts:145` keeps reporter trust fixed, so it misses both cases. `docs/framework.md:297` qualifies commutativity with fixed reporter weights, but the approved design and this review's acceptance requirement contain no such restriction. Preserve the promised order behavior, or obtain acceptance for the narrower contract. At minimum, reports within one percept need a common trust basis.
 
@@ -78,9 +94,15 @@ The reporter variant is silent:
 for (const reporterId of ['ordinary', 'constructor', '__proto__']) {
   const p = make();
   hf.seedBelief(p, 'q', { value: true, credence: 0.9, source: 's' });
-  console.log(reporterId, hf.contradicted(p, {
-    sourceId: 's', prop: 'q', value: false, reporterId,
-  }));
+  console.log(
+    reporterId,
+    hf.contradicted(p, {
+      sourceId: 's',
+      prop: 'q',
+      value: false,
+      reporterId,
+    }),
+  );
 }
 ```
 
@@ -92,11 +114,11 @@ No legacy divergence was found in the measured cases. Both packages were built i
 
 **Differential comparison count: 173 matching SHA-256 records:** 92 streamed full-person state digests, 21 complete game-state digests, and 60 direct conversation comparison digests. The first two groups cover **19,135 full-state serializations**. The conversation group additionally compares both complete people and both conversation outputs in every case.
 
-| Coverage | Cases / invocations | Compared state |
-|---|---:|---|
-| Existing examples and controls | 22 | 19,114 full-person captures, grouped into 92 labelled function-exit digest streams |
-| Game replay regressions | 15 | 21 full-game state digests, including six mid-run checkpoints and their actual continuations |
-| Direct legacy conversation probes | 60 | 20 seeds × facts, temptation and advice; full speaker/listener state and first/repeated conversation outputs |
+| Coverage                          | Cases / invocations | Compared state                                                                                               |
+| --------------------------------- | ------------------: | ------------------------------------------------------------------------------------------------------------ |
+| Existing examples and controls    |                  22 | 19,114 full-person captures, grouped into 92 labelled function-exit digest streams                           |
+| Game replay regressions           |                  15 | 21 full-game state digests, including six mid-run checkpoints and their actual continuations                 |
+| Direct legacy conversation probes |                  60 | 20 seeds × facts, temptation and advice; full speaker/listener state and first/repeated conversation outputs |
 
 The 22 example/control invocations cover all eleven pre-existing example files: minimal, suggestions, community, body forecast in both renamed domains, methods, method alternatives, received consequences in both domains, promptings, review, game requests and game requests 2.9. The state tracer wraps exported composite functions and `snapshot`/`restore` in memory; it does not edit the checked-out source. It hashes full JSON after calls that receive a person. The control functions exercise their own internal arms.
 
@@ -133,9 +155,9 @@ PATH=/opt/homebrew/bin:$PATH npm test -- packages/human/test \
   apps/site/src/watch/sim/night-input-replay.test.ts
 ```
 
-| Checkout | Files passed | Tests passed | Skipped |
-|---|---:|---:|---:|
-| Candidate | 79 | 866 | 2 |
-| v2.9.1 | 75 | 793 | 2 |
+| Checkout  | Files passed | Tests passed | Skipped |
+| --------- | -----------: | -----------: | ------: |
+| Candidate |           79 |          866 |       2 |
+| v2.9.1    |           75 |          793 |       2 |
 
 The 73 added tests account for the difference; the two skips are the opt-in Colony/Voice fixture-regeneration tests. Both runs used the machine-wide suite lock. The candidate run includes the four focused feature files. The headless example was also run directly. No source fixes, fixture regeneration, push or release occurred.

@@ -19,6 +19,7 @@ Every piece of feedback the lab receives gets one row here: what was said, by wh
 
 ## Ledger
 
+<!-- biome-ignore format: Keep this wide append-only evidence table compact; column padding inflated it from 214 KB to 2.9 MB. -->
 | id | date | game | kind | who | words | verdict | routes | source |
 |---|---|---|---|---|---|---|---|---|
 | F-001 | 2026-10-18 | lab | owner | owner | "Naturally difficult games are fun, too, and we can always relax it later. The other way around is more troublesome as it feels like adding artificial difficulty." | - | lesson:L15 | docs/owner-directions-2026-10-18.md |

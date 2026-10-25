@@ -41,15 +41,18 @@
     "lab:play": "node scripts/lab-play.ts",
     "lab:wai-usage": "node scripts/lab-wai-budget.ts",
     "lab:wai-play": "node scripts/lab-wai-play.ts --run",
-    "lab:wai-install": "node scripts/install-wai-daily.ts"
+    "lab:wai-install": "node scripts/install-wai-daily.ts",
+    "knip": "knip"
   },
   "devDependencies": {
     "@babel/parser": "8.0.8",
-    "@biomejs/biome": "2.5.15",
+    "@biomejs/biome": "2.6.3",
     "@types/node": "26.6.5",
     "typescript": "7.0.2",
     "vitest": "5.0.5",
-    "wrangler": "4.151.3"
+    "wrangler": "4.152.0",
+    "knip": "6.43.0",
+    "playwright": "1.64.1"
   },
   "allowScripts": {
     "esbuild@0.28.2": true,
@@ -57,7 +60,7 @@
     "fsevents": false
   },
   "overrides": {
-    "vite": "8.3.4",
+    "vite": "8.3.5",
     "miniflare": {
       "undici": "7.30.1"
     }

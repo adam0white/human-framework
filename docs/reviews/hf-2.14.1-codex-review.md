@@ -85,7 +85,15 @@ PATH=/opt/homebrew/bin:$PATH node /Users/abdul/code/.lab-scratch/hf-2141/review/
 A host goal has progress 0.5 and positive `advancedBy` amount `1e-20`. After 60 stalled minutes:
 
 ```json
-{"initial":0.336,"decayed":0.084,"clock":660,"before":0.5,"after":0.5,"advanced":["task"],"afterUnchangedProgress":0.336}
+{
+  "initial": 0.336,
+  "decayed": 0.084,
+  "clock": 660,
+  "before": 0.5,
+  "after": 0.5,
+  "advanced": ["task"],
+  "afterUnchangedProgress": 0.336
+}
 ```
 
 **Impact:** Repeating such credited completions prevents decay despite unchanged represented progress. This needs extremely small configured credits; ordinary positive increments advance correctly. Event-only projects also cannot detect world reversals, as the changelog already acknowledges.
@@ -94,17 +102,17 @@ A host goal has progress 0.5 and positive `advancedBy` amount `1e-20`. After 60 
 
 ## Other probe results
 
-| Question | Observed result |
-|---|---|
-| Normal take/replace clocks and importance | A reversal and recovery to the old high preserve `lastAdvancedAt`, reduced importance and decayed pull. Stale abandonment still occurs. The `advanced` exception is above. |
-| Genuine new high | 0.4 after an initial 0.3 raises peak, sets `lastAdvancedAt` to 632, restores importance to 0.5989 and pull to 0.4791. |
-| Peak lifecycle | Ordinary adoption and progress perceived before adoption initialize the correct peak. Ordinary snapshot restore and repeated enable preserve it. Adoption without a progress reading creates an event-only goal with unused `peak: 0`; this is unnecessary but causes no observed credit change. Public adoption is the failing path above. |
-| Release/re-formation and re-enable | At 60 stalled minutes, pull stays 0.084 through release/re-formation and default `enablePersistence`. A real 0.1 progress increment restores full pull. |
-| Reconfiguration | Changing half-life from 30 to 1440 raises the 60-minute pull from 0.084 to 0.3264. This is explicit coefficient reconfiguration, not a hidden clock reset. Re-enabling with defaults preserves the elapsed goal time. |
-| Rest versus project identity | Rest binds the goal ID. With stale=3, cooldown=1, max=2 and rest=20, the same prospect is adopted as a new goal at minute 604 while the old ID rests until 622. The new adoption also gets a new decay clock. This follows the current goal-based design. Default project cooldown 60 exceeds default rest 20. |
-| Restore ownership | Two active projects and a dangling pointer restore to the newest active project, abandon the older project, record cooldown, and round-trip idempotently. Stale abandonment records cooldown even without the pointer. |
-| Missing pointer with explicit abandonment | Manually deleting the ownership pointer, then calling `abandonGoal`, bypasses history/cooldown and permits adoption at 630. This requires damaged/manually changed ownership state; ordinary restore reconciles the pointer first. |
-| Ninth-or-later material | Twelve IDs retain only m0…m7. A subsequent host reading of 1/12 still updates progress, peak and advancement time. Progress does not derive from the retained material IDs. Other changes in `54408c7` are documentation/type-comment/test changes. |
+| Question                                  | Observed result                                                                                                                                                                                                                                                                                                                             |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Normal take/replace clocks and importance | A reversal and recovery to the old high preserve `lastAdvancedAt`, reduced importance and decayed pull. Stale abandonment still occurs. The `advanced` exception is above.                                                                                                                                                                  |
+| Genuine new high                          | 0.4 after an initial 0.3 raises peak, sets `lastAdvancedAt` to 632, restores importance to 0.5989 and pull to 0.4791.                                                                                                                                                                                                                       |
+| Peak lifecycle                            | Ordinary adoption and progress perceived before adoption initialize the correct peak. Ordinary snapshot restore and repeated enable preserve it. Adoption without a progress reading creates an event-only goal with unused `peak: 0`; this is unnecessary but causes no observed credit change. Public adoption is the failing path above. |
+| Release/re-formation and re-enable        | At 60 stalled minutes, pull stays 0.084 through release/re-formation and default `enablePersistence`. A real 0.1 progress increment restores full pull.                                                                                                                                                                                     |
+| Reconfiguration                           | Changing half-life from 30 to 1440 raises the 60-minute pull from 0.084 to 0.3264. This is explicit coefficient reconfiguration, not a hidden clock reset. Re-enabling with defaults preserves the elapsed goal time.                                                                                                                       |
+| Rest versus project identity              | Rest binds the goal ID. With stale=3, cooldown=1, max=2 and rest=20, the same prospect is adopted as a new goal at minute 604 while the old ID rests until 622. The new adoption also gets a new decay clock. This follows the current goal-based design. Default project cooldown 60 exceeds default rest 20.                              |
+| Restore ownership                         | Two active projects and a dangling pointer restore to the newest active project, abandon the older project, record cooldown, and round-trip idempotently. Stale abandonment records cooldown even without the pointer.                                                                                                                      |
+| Missing pointer with explicit abandonment | Manually deleting the ownership pointer, then calling `abandonGoal`, bypasses history/cooldown and permits adoption at 630. This requires damaged/manually changed ownership state; ordinary restore reconciles the pointer first.                                                                                                          |
+| Ninth-or-later material                   | Twelve IDs retain only m0…m7. A subsequent host reading of 1/12 still updates progress, peak and advancement time. Progress does not derive from the retained material IDs. Other changes in `54408c7` are documentation/type-comment/test changes.                                                                                         |
 
 These probes are `net-probe.ts`, `restore-probe.ts`, `rest-public.ts` and `decay-probe.ts` in the review scratch directory.
 

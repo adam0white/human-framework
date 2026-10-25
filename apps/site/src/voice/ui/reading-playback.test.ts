@@ -48,15 +48,24 @@ vi.mock('../../shared/tick-loop.ts', () => ({
     return () => {};
   },
 }));
+function Harness({ capture }: { capture: (value: Voice) => void }) {
+  capture(useVoice());
+  return null;
+}
+
 it('slows reading ticks, keeps frame scheduling on wall time, and respects manual and replay holds', async () => {
   let voice: Voice | undefined;
-  function Harness() {
-    voice = useVoice();
-    return null;
-  }
   const root = createRoot(document.createElement('div'));
   try {
-    flushSync(() => root.render(createElement(Harness)));
+    flushSync(() =>
+      root.render(
+        createElement(Harness, {
+          capture: (value) => {
+            voice = value;
+          },
+        }),
+      ),
+    );
     await Promise.resolve();
     await vi.waitFor(() =>
       expect(channel.post.mock.calls.some(([message]) => message.type === 'init')).toBe(true),

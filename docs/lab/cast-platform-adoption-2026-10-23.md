@@ -48,9 +48,18 @@ Import every type below from the exact client artifact. Keep your existing HF pa
 
 ```ts
 import {
-  canonicalCast, castForGame, createPersona, initialPersonaLife, anchorPersonaLife,
-  claimCastChapterBatch, closePersonaBranch, lifeAdmission, personaChannel,
-  type PersonaEnvelope, type PersonaLife, type LifePreparation,
+  canonicalCast,
+  castForGame,
+  createPersona,
+  initialPersonaLife,
+  anchorPersonaLife,
+  claimCastChapterBatch,
+  closePersonaBranch,
+  lifeAdmission,
+  personaChannel,
+  type PersonaEnvelope,
+  type PersonaLife,
+  type LifePreparation,
 } from '@adam0white/lab-client';
 
 const game = 'goodhands'; // Hearsay uses 'hearsay'; Small Works uses 'repair'.
@@ -72,10 +81,14 @@ const life = oldLife
   : initialPersonaLife(castId, branchId, Date.now());
 const transfer = projectSupportedSource(actualSourcePerson);
 const next = await createPersona({
-  format: 'hf-persona/1', castId, castRevision: cast.revision, branchId,
+  format: 'hf-persona/1',
+  castId,
+  castRevision: cast.revision,
+  branchId,
   parentRevision: ownHead?.revision ?? null,
   source: { game: 'voice', build, engine: '2.17.0', rules: 'voice-4' },
-  transfer: { ...transfer, life }, limitations: transfer.person.person.limitations,
+  transfer: { ...transfer, life },
+  limitations: transfer.person.person.limitations,
 });
 // Keep the source generation and exact-parent CAS checks.
 // Recording and linking do not gate publication or require an epoch query.
@@ -87,7 +100,9 @@ Worker hosts await atomic admission and send prepared init before queued deliber
 
 ```ts
 const generationAtStart = generation;
-const chapter = await claimCastChapterBatch(shelf, allocation.map(p => p.castId),
+const chapter = await claimCastChapterBatch(
+  shelf,
+  allocation.map((p) => p.castId),
   { game, build, engine: '2.17.0', rules: hostRules },
   async (inputs: LifePreparation[]) => {
     const people: Record<string, unknown> = {};
@@ -97,10 +112,16 @@ const chapter = await claimCastChapterBatch(shelf, allocation.map(p => p.castId)
       people[input.parent.castId] = snapshotCompleteInitialPerson(initial);
     }
     return people;
-  }, { isCurrent: () => generationAtStart === generation });
+  },
+  { isCurrent: () => generationAtStart === generation },
+);
 if (chapter && generationAtStart === generation) {
-  loadedReplayHeader = structuredClone({ initial: chapter.initial, inputs: chapter.inputs, claims: chapter.claims });
-  ownedHeads = Object.fromEntries(chapter.claims.map(p => [p.castId, p]));
+  loadedReplayHeader = structuredClone({
+    initial: chapter.initial,
+    inputs: chapter.inputs,
+    claims: chapter.claims,
+  });
+  ownedHeads = Object.fromEntries(chapter.claims.map((p) => [p.castId, p]));
   startPreparedGame(chapter.initial);
 }
 ```
@@ -129,7 +150,7 @@ A real owned actor death closes the branch rather than attempting a living passp
 const parent = ownedHeads[castId]; // exact accepted parent belonging to this loaded source
 const terminal = await closePersonaBranch(parent, sourceStamps, actualDeathMinute);
 if (generationAtCapture !== generation) throw new Error('Run replaced.');
-await shelf.request({action:'put',envelope:terminal}); // exact-parent CAS
+await shelf.request({ action: 'put', envelope: terminal }); // exact-parent CAS
 if (generationAtCapture === generation) ownedHeads[castId] = terminal;
 ```
 
@@ -144,7 +165,8 @@ The generic site checkpoint is captured after a real action finishes, before the
 // Site adapter example; other hosts implement an equally explicit mapping.
 const captured = await captureSiteCastBoundary('voice', actualPerson, actualWorld);
 postMessage({
-  type: 'castReady', requestId,
+  type: 'castReady',
+  requestId,
   transfer: { ...captured, engine: ENGINE_VERSION }, // non-enumerable raw snapshot excluded
   sourceSnapshot: captured.sourceSnapshot, // source-local save/export only
 });

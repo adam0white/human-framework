@@ -19,13 +19,13 @@ import {
   type LifePreparation,
   lifeAdmission,
   type PersonaEnvelope,
-  type PersonaLife,
   preparePersonaLife,
 } from '@adam0white/lab-client';
 import { carriedCare, shiftedKeptMeal } from '../watch/sim/care-reentry.ts';
 import { goodhandsSelinPassport } from './cast-goodhands-selin.ts';
 import { nativeCastSource } from './cast-native-sources.ts';
 import { SITE_CAST_NORMS, VALLEY_CAST_DUES } from './cast-norms.ts';
+import { requireValue } from './require-value.ts';
 
 const SITE_CAST_TRUSTED_NORMS = [...SITE_CAST_NORMS, VALLEY_CAST_DUES];
 export interface CastPersonChapter {
@@ -71,7 +71,7 @@ export function makeCastChapter(inputs: LifePreparation[], claims: PersonaEnvelo
       },
     ]),
   );
-  return { ...Object.values(people)[0]!, people };
+  return { ...requireValue(Object.values(people)[0]), people };
 }
 export const SITE_CAST: Record<string, Record<string, string>> = {
   voice: Object.fromEntries(
@@ -275,7 +275,7 @@ export function admitSiteCast(game: string, opening: Person, chapter: CastChapte
   const single = personChapter(chapter, SITE_CAST[game]?.[opening.id]);
   if (!single) return opening;
   if (!single.initial) prepareSiteInitial(game, opening, single);
-  const pinned = restore(JSON.parse(single.initial!));
+  const pinned = restore(JSON.parse(requireValue(single.initial)));
   const offset = opening.now - pinned.now;
   if (!Number.isSafeInteger(offset) || offset < 0 || pinned.id !== opening.id)
     throw new Error('Unsupported pinned arrival clock.');
@@ -305,7 +305,7 @@ function admitRawSiteCast(game: string, opening: Person, chapter: CastPersonChap
   if (!selected) return opening;
   chapter = selected;
   const { input } = chapter;
-  const admission = lifeAdmission(input, game);
+  lifeAdmission(input, game);
   if (canonicalPersona(preparePersonaLife(input.parent, input.clockMs).life) !== canonicalPersona(input.life))
     throw new Error('Life outcomes differ from their pinned clock and parent.');
   const role = castRole(game, input.parent.castId);
@@ -352,7 +352,7 @@ function admitRawSiteCast(game: string, opening: Person, chapter: CastPersonChap
   if ([...portable.calendar.commitments, ...portable.calendar.owed].some((c) => c.normId === 'dues'))
     throw new Error('The source household dues still need their original host. Keep that chapter.');
   const care = game === 'watch' ? carriedCare(input.parent, portable) : undefined;
-  const allowed = care ? new Set([...ACTIONS.watch!, 'return-with-ada']) : ACTIONS[game];
+  const allowed = care ? new Set([...requireValue(ACTIONS.watch), 'return-with-ada']) : ACTIONS[game];
   if (
     !allowed ||
     portable.calendar.commitments.some((c) =>
@@ -454,20 +454,7 @@ function assignSiteTask(game: string, person: Person, chapter: CastChapter): Per
   }
   return person;
 }
-export function castLife(chapter: CastChapter | undefined, castId: string): PersonaLife | undefined {
-  const selected = personChapter(chapter, castId);
-  return selected ? structuredClone(selected.input.life) : undefined;
-}
-export function castOpeningLine(chapter: CastChapter | undefined, game: string): string | undefined {
-  return chapter
-    ? chapterPeople(chapter)
-        .map((p) => lifeAdmission(p.input, game).line)
-        .join(' ')
-    : undefined;
-}
-export function castEdition(castId: string): string {
-  return canonicalCast(castId).revision;
-}
+
 /** Public notice observations remain one-sided and carry no bond or truth about another person's private life. */
 export function lifeNotice(person: Person): string | undefined {
   return person.memory.episodes.find((e) => e.kind === 'cast-notice')?.summary;
@@ -516,7 +503,7 @@ export function captureSiteCastBoundary(
   person: Person,
   world: CaptureWorld,
   norms: NormDefinition[] = [],
-  watchCare?: ReturnType<typeof import('../watch/sim/refuge-visit.ts').refugeVisitPassport>,
+  _watchCare?: ReturnType<typeof import('../watch/sim/refuge-visit.ts').refugeVisitPassport>,
 ): Promise<SourceCheckpoint> {
   if (person.agenda.goals.some((g) => g.status === 'active') || person.projects?.currentGoalId)
     return Promise.reject(

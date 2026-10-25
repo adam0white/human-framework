@@ -148,7 +148,10 @@ it('claims two distinct histories atomically and a conflict in either parent cha
           blocked: [],
           expectedHeads: Object.fromEntries(inputs.map((p) => [p.parent.castId, p.parent.revision])),
         } as T;
-      if (r.action === 'putBatch') state = acceptPersonaBatch(state, r.envelopes!, r.expectedHeads);
+      if (r.action === 'putBatch') {
+        if (!r.envelopes) throw new Error('Missing batch envelopes');
+        state = acceptPersonaBatch(state, r.envelopes, r.expectedHeads);
+      }
       return r.envelopes as T;
     },
   };

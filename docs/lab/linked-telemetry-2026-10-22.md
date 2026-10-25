@@ -20,15 +20,15 @@ Run/save chunk payloads are `{encoding:'json',upload,index,total,text}`. The upl
 
 `npm run lab:inbox -- --days=30` retains the legacy run inbox and adds linked groups. It uses the owner's Wrangler login. Nothing is made public. The optional `--suggest` flow still applies only to voluntarily sent legacy feedback notes; linked records are not sent automatically to Workers AI.
 
-| Private storage | Contents |
-|---|---|
-| `private/linked-index.json` | Receipt days available in daily manifests |
-| `private/linked-index/YYYY-MM-DD.json` | Bounded daily record metadata with object keys and linkage |
-| `linked/<player>/<id>.json.gz` | Original compressed envelope, at an invariant deduplication key |
-| `.lab-inbox/linked/<player>-<id>.json` | Downloaded envelope on the owner's machine |
-| `.lab-inbox/linked/<player>-<game>-<session>-<run>.json` | Chronological linked records |
-| `.lab-inbox/linked-replay/` | Complete replay exports, ready for the game's existing replay loader |
-| `.lab-inbox/linked-save/` | Complete save exports; the game's own save loader decides compatibility |
+| Private storage                                          | Contents                                                                |
+| -------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `private/linked-index.json`                              | Receipt days available in daily manifests                               |
+| `private/linked-index/YYYY-MM-DD.json`                   | Bounded daily record metadata with object keys and linkage              |
+| `linked/<player>/<id>.json.gz`                           | Original compressed envelope, at an invariant deduplication key         |
+| `.lab-inbox/linked/<player>-<id>.json`                   | Downloaded envelope on the owner's machine                              |
+| `.lab-inbox/linked/<player>-<game>-<session>-<run>.json` | Chronological linked records                                            |
+| `.lab-inbox/linked-replay/`                              | Complete replay exports, ready for the game's existing replay loader    |
+| `.lab-inbox/linked-save/`                                | Complete save exports; the game's own save loader decides compatibility |
 
 The receipt day and play timestamp can differ on delayed retries. Inbox filtering uses receipt manifests, so it may contain older play timestamps. Index/envelope linkage mismatches stop retrieval visibly. R2 lifecycle retention does not delete local inbox copies. Local copies require a separate owner deletion pass.
 

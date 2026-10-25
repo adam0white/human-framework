@@ -7,7 +7,7 @@
  */
 import { IMPRESSION_DEFAULTS, type Person, reserveOf, selfReport } from '@adam0white/human-framework';
 import { DAY, postSection, SECTION_IDS, type SectionId, type WatcherId } from './config.ts';
-import { familyWords, isWatcher, nameOf, personOf, villager } from './people.ts';
+import { familyWords, isWatcher, nameOf, villager } from './people.ts';
 import type { NightNote, WatchState } from './state.ts';
 
 function theSec(id: SectionId): string {
@@ -375,13 +375,4 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
   }
   for (const o of out) s.lastVoices[o.who] = o.text;
   return { voices: out, tells };
-}
-
-function capital(t: string): string {
-  return t.charAt(0).toUpperCase() + t.slice(1);
-}
-
-/** For tests and the export: the person behind a voice. */
-export function voiceOf(s: WatchState, id: WatcherId): Person | undefined {
-  return personOf(s, id);
 }

@@ -20,12 +20,12 @@ DL-2 asks the tester to prove that no control was missed. DL-3 asks whether thei
 
 **Replace the affected tests:**
 
-| Item | Observable replacement |
-|---|---|
-| DL-2 | Before tapping, name what appears interactive. Try those things. Record inert-looking controls discovered later and apparently interactive things that do nothing. Do not claim exhaustive coverage. |
-| DL-3 | Name the first event or choice the presentation draws you toward. Record competing cues; do not infer author intent. |
-| DL-4 | For each visibly unavailable action encountered, say what prevents it and what would make it available, if the character knows. Undiscovered actions are outside this test. |
-| DL-29 | Test a short run, a representative long run, offline failure and recovery. Report the visible receipt or failure and whether download works. |
+| Item  | Observable replacement                                                                                                                                                                                                        |
+| ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DL-2  | Before tapping, name what appears interactive. Try those things. Record inert-looking controls discovered later and apparently interactive things that do nothing. Do not claim exhaustive coverage.                          |
+| DL-3  | Name the first event or choice the presentation draws you toward. Record competing cues; do not infer author intent.                                                                                                          |
+| DL-4  | For each visibly unavailable action encountered, say what prevents it and what would make it available, if the character knows. Undiscovered actions are outside this test.                                                   |
+| DL-29 | Test a short run, a representative long run, offline failure and recovery. Report the visible receipt or failure and whether download works.                                                                                  |
 | DL-30 | Export a run. Use the supplied player-facing replay/import route. Compare the ending and selected visible events. If no route exists, mark player verification untested; a separate builder test must establish exact replay. |
 
 Merely downloading JSON does not prove replay. A screenshot cannot establish that a displayed estimate comes from perceived rather than hidden state. Exact target/font measurements also need a measurement method; a text harness cannot establish visual hierarchy, hit areas, wrapping or clipping. Keep these evidence boundaries explicit.
@@ -54,7 +54,7 @@ The manifest changed from `0.1.1` to `0.1.2` during review, and the dialog acqui
 
 **Evidence:** DL-14 (`docs/lab/design-language.md:32`), DL-18–19 (`:39–40`), L5 (`docs/lab/lessons.md:21–22`); `AGENTS.md:11`.
 
-“What a choice will cost and risk” lacks a knowledge boundary. “If players keep guessing wrong, the wording is too vague” mistakes uncertain outcomes for bad wording. L5's “show the numbers” and “how near the goal is” can turn estimates into omniscient progress readouts. DL-18 helps, but conflicting instructions should not require a builder to choose which wins. Even a number the character *could* know is not necessarily something they have observed or counted.
+“What a choice will cost and risk” lacks a knowledge boundary. “If players keep guessing wrong, the wording is too vague” mistakes uncertain outcomes for bad wording. L5's “show the numbers” and “how near the goal is” can turn estimates into omniscient progress readouts. DL-18 helps, but conflicting instructions should not require a builder to choose which wins. Even a number the character _could_ know is not necessarily something they have observed or counted.
 
 **Replace DL-14:**
 
@@ -72,7 +72,7 @@ The manifest changed from `0.1.1` to `0.1.2` during review, and the dialog acqui
 
 **Evidence:** DL-1, DL-5, DL-8–9 (`docs/lab/design-language.md:13,17,23–24`); owner directions `:15–19,27`.
 
-A mandatory next-step line after *every* action, with the largest text devoted to “what to do now,” makes discovery play fail by design. Pinning every logged task also breaks down when several obligations coexist. The owner asked for progressive goals and allowed hands-on tutorials. They did not require a task manager to choose the player's strategy.
+A mandatory next-step line after _every_ action, with the largest text devoted to “what to do now,” makes discovery play fail by design. Pinning every logged task also breaks down when several obligations coexist. The owner asked for progressive goals and allowed hands-on tutorials. They did not require a task manager to choose the player's strategy.
 
 **Replace DL-5:**
 
@@ -166,12 +166,12 @@ An order may be received now and answered tomorrow. Requiring a reply within one
 
 The constraints are possible for a small set of actions. They are not universally possible:
 
-| Constraint | Consequence at 360×690 |
-|---|---|
-| Bottom 40% | 276 px of height. |
-| Six stacked 44 px targets | 264 px before gaps or padding. |
-| Add even one 15 px next-step line | At least 279 px. Already exceeds the thumb region; realistic line height makes it worse. |
-| Long reasons, two people, larger text or an open keyboard | Further shrink the usable space. A default-size fold promise cannot remain absolute. |
+| Constraint                                                | Consequence at 360×690                                                                   |
+| --------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| Bottom 40%                                                | 276 px of height.                                                                        |
+| Six stacked 44 px targets                                 | 264 px before gaps or padding.                                                           |
+| Add even one 15 px next-step line                         | At least 279 px. Already exceeds the thumb region; realistic line height makes it worse. |
+| Long reasons, two people, larger text or an open keyboard | Further shrink the usable space. A default-size fold promise cannot remain absolute.     |
 
 These are counterexamples to an unconditional layout rule, not measurements of an existing game. Do not shrink targets or text to make the rule pass. DL-23 must also distinguish gameplay from a long export/consent sheet.
 
@@ -189,13 +189,13 @@ An action at y=730 passes L9's current 780 px test and fails DL-23's 690 px test
 
 **Evidence:** DL-6, DL-11, DL-24, DL-26 (`docs/lab/design-language.md:18,26,53,55`); phone base (`docs/design-language.md:24`); owner wording F-191 (`docs/lab/feedback-ledger.md:214`).
 
-| Number | Finding and concrete rewrite |
-|---|---|
-| **44 px** | Keep it as a deliberate house target, not an alleged universal minimum. Specify the hit area, not the drawn glyph. **Rewrite:** “Use non-overlapping hit areas of at least 44×44 CSS px for standalone controls. Handle dense scene selection with zoom, a disambiguation list or an equivalent labelled action. Test adjacent controls for accidental activation.” W3C's enhanced target criterion uses 44 px at AAA with exceptions; its AA minimum is 24 px with exceptions. [Enhanced target size](https://www.w3.org/WAI/WCAG22/Understanding/target-size-enhanced.html), [minimum target size](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html). |
-| **60 words** | A budget is not a fit test. Long names and six short button labels can exceed the available layout without exceeding the count. “Must-read” also lacks a counting rule. **Rewrite:** “Aim for at most 60 essential words per immediate decision, including labels, reasons and costs. Verify the rendered layout separately. Keep longer context available on request.” |
-| **30 s** | The test times the player's first input, not when the choice becomes available. An attentive player may deliberate for 45 seconds. **Rewrite:** “Make a meaningful choice available within 30 seconds of the first usable screen. Record availability time separately from first-input time. Treat this as a lab default, not a player deadline.” |
-| **40 words** | An uncited house budget, not evidence that the opening is clear or engaging. Splitting the same setup across popups would game the count. **Rewrite:** “Aim for at most 40 mandatory story words before the first choice, counting all intervening screens. Permit a recorded exception when tested context improves comprehension.” |
-| **15 px** | An absolute floor does not establish readability and can encourage shrinking copy below the visual guide's 17 px base. **Rewrite:** “Keep the 17 px phone base. Test secondary text for readability in both themes. Preserve content and controls at 200% text enlargement and at 320 CSS px content width; allow vertical scrolling.” W3C's resize/reflow criteria test retained access, not a universal minimum font size. [Resize text](https://www.w3.org/TR/WCAG22/#resize-text), [reflow](https://www.w3.org/TR/WCAG22/#reflow). |
+| Number       | Finding and concrete rewrite                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **44 px**    | Keep it as a deliberate house target, not an alleged universal minimum. Specify the hit area, not the drawn glyph. **Rewrite:** “Use non-overlapping hit areas of at least 44×44 CSS px for standalone controls. Handle dense scene selection with zoom, a disambiguation list or an equivalent labelled action. Test adjacent controls for accidental activation.” W3C's enhanced target criterion uses 44 px at AAA with exceptions; its AA minimum is 24 px with exceptions. [Enhanced target size](https://www.w3.org/WAI/WCAG22/Understanding/target-size-enhanced.html), [minimum target size](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html). |
+| **60 words** | A budget is not a fit test. Long names and six short button labels can exceed the available layout without exceeding the count. “Must-read” also lacks a counting rule. **Rewrite:** “Aim for at most 60 essential words per immediate decision, including labels, reasons and costs. Verify the rendered layout separately. Keep longer context available on request.”                                                                                                                                                                                                                                                                                                     |
+| **30 s**     | The test times the player's first input, not when the choice becomes available. An attentive player may deliberate for 45 seconds. **Rewrite:** “Make a meaningful choice available within 30 seconds of the first usable screen. Record availability time separately from first-input time. Treat this as a lab default, not a player deadline.”                                                                                                                                                                                                                                                                                                                           |
+| **40 words** | An uncited house budget, not evidence that the opening is clear or engaging. Splitting the same setup across popups would game the count. **Rewrite:** “Aim for at most 40 mandatory story words before the first choice, counting all intervening screens. Permit a recorded exception when tested context improves comprehension.”                                                                                                                                                                                                                                                                                                                                        |
+| **15 px**    | An absolute floor does not establish readability and can encourage shrinking copy below the visual guide's 17 px base. **Rewrite:** “Keep the 17 px phone base. Test secondary text for readability in both themes. Preserve content and controls at 200% text enlargement and at 320 CSS px content width; allow vertical scrolling.” W3C's resize/reflow criteria test retained access, not a universal minimum font size. [Resize text](https://www.w3.org/TR/WCAG22/#resize-text), [reflow](https://www.w3.org/TR/WCAG22/#reflow).                                                                                                                                      |
 
 The same problem applies to “sentences under about 20 words.” The owner's own current feedback says slightly longer sentences may clear confusion. **Rewrite:** “Use the shortest sentence that conveys the necessary distinction. Do not remove the explanation merely to meet a word count.” The 60-second checkpoint can remain a sampling convention; define its start consistently and do not call unencountered rules failures.
 
@@ -271,7 +271,7 @@ The exact menu position can follow the game's fiction and phone layout. Another 
 
 **Evidence:** L7 (`docs/lab/lessons.md:29–30`), L14 (`:57–58`), L15 (`:61–62`); owner directions `:15–19,22,27`.
 
-“Fill” quiet stretches by adding “small life” can produce decorative event spam instead of agency. A mandatory open question at *every* session ending can prevent an earned, complete ending. “Check that week one bites” can also turn natural difficulty into a compulsory early punishment schedule. These are generalizations from useful feedback, not universal game structures.
+“Fill” quiet stretches by adding “small life” can produce decorative event spam instead of agency. A mandatory open question at _every_ session ending can prevent an earned, complete ending. “Check that week one bites” can also turn natural difficulty into a compulsory early punishment schedule. These are generalizations from useful feedback, not universal game structures.
 
 **Replace L7's prescription:**
 
@@ -291,13 +291,13 @@ The exact menu position can follow the game's fiction and phone layout. Another 
 
 **Evidence:** `docs/lab/design-language.md:3` claims not to repeat the visual language; the following rules repeat both it and the lessons.
 
-| Overlap | Concrete rewrite/ownership |
-|---|---|
-| DL-1, 3, 5, 8, 9 | Separate purpose, visual priority and current status. Let DL-5 own current-status wording; DL-9 tests its discoverability rather than demanding a second pinned copy. |
-| DL-14, 17, 18, 19; L5; visual marks | Let one knowledge-boundary rule govern known quantities, perceived state and uncertainty. Keep distinct tests for readable cues and inappropriate numerical displays. |
-| DL-20, 21, 22 | One English/terminology policy; separate first-use comprehension and deadline-reading tests. |
-| DL-23, 24, 26; L9; visual layout/type | Visual guide owns type/tokens; checklist owns viewport and interaction tests. L9 links to the current viewport fixture instead of copying 780 px. |
-| DL-12/L4, DL-15/L6, DL-16/L19, DL-28/L8 | Lessons retain evidence and rationale. Checklist supplies the observable test. Link instead of restating different-strength absolutes. |
+| Overlap                                 | Concrete rewrite/ownership                                                                                                                                            |
+| --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DL-1, 3, 5, 8, 9                        | Separate purpose, visual priority and current status. Let DL-5 own current-status wording; DL-9 tests its discoverability rather than demanding a second pinned copy. |
+| DL-14, 17, 18, 19; L5; visual marks     | Let one knowledge-boundary rule govern known quantities, perceived state and uncertainty. Keep distinct tests for readable cues and inappropriate numerical displays. |
+| DL-20, 21, 22                           | One English/terminology policy; separate first-use comprehension and deadline-reading tests.                                                                          |
+| DL-23, 24, 26; L9; visual layout/type   | Visual guide owns type/tokens; checklist owns viewport and interaction tests. L9 links to the current viewport fixture instead of copying 780 px.                     |
+| DL-12/L4, DL-15/L6, DL-16/L19, DL-28/L8 | Lessons retain evidence and rationale. Checklist supplies the observable test. Link instead of restating different-strength absolutes.                                |
 
 **Replace the opening distinction:**
 
@@ -333,15 +333,15 @@ The source-unread prompt and linked README rubric both landed during this review
 
 ## Coverage of the owner's Valley complaint
 
-| Complaint | What the current draft misses | Finding |
-|---|---|---|
-| No idea what to do | Knowing an immediate response without being assigned an optimal strategy; understanding the effect of one's action rather than tapping any first verb. | S2, S8, S11 |
-| What is clickable | Interactive scenery, selected state, ambiguous hit regions; a complete control inventory cannot be proved from first play. | B1, S5, S6 |
-| Which text matters | Clues versus decoration, multiple urgent demands, readability after wrapping and enlargement. | S5, S9–S11 |
-| Why actions are limited | Capability origin, recovery and when trying again makes sense; an explanation alone can legitimize a quota. | S3 |
-| What comes next | Time visibly passing, waiting/speed controls, enough time to respond, completion or end conditions distinguishable from an empty interval. | S2, S7 |
-| English dates and terms | Units and deadlines remain understandable after returning, including month/year where relevant; a Gregorian mandate is unnecessary. | S12 |
-| Upload refused after a little play | Actual successful short-session upload, long-session bounds, preserved note, usable download and retry, verified replay after compaction. | B2 |
+| Complaint                          | What the current draft misses                                                                                                                          | Finding     |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
+| No idea what to do                 | Knowing an immediate response without being assigned an optimal strategy; understanding the effect of one's action rather than tapping any first verb. | S2, S8, S11 |
+| What is clickable                  | Interactive scenery, selected state, ambiguous hit regions; a complete control inventory cannot be proved from first play.                             | B1, S5, S6  |
+| Which text matters                 | Clues versus decoration, multiple urgent demands, readability after wrapping and enlargement.                                                          | S5, S9–S11  |
+| Why actions are limited            | Capability origin, recovery and when trying again makes sense; an explanation alone can legitimize a quota.                                            | S3          |
+| What comes next                    | Time visibly passing, waiting/speed controls, enough time to respond, completion or end conditions distinguishable from an empty interval.             | S2, S7      |
+| English dates and terms            | Units and deadlines remain understandable after returning, including month/year where relevant; a Gregorian mandate is unnecessary.                    | S12         |
+| Upload refused after a little play | Actual successful short-session upload, long-session bounds, preserved note, usable download and retry, verified replay after compaction.              | B2          |
 
 The remaining missing test is an explicit **end-state check**. Add under current status: **“At a session boundary, the tester can tell whether play has ended, what resolved, and whether continuation is possible. Waiting at the fastest offered speed must not be the only way to discover that a game is over.”** This does not reveal a mystery's ending in advance.
 

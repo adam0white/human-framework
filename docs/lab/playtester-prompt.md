@@ -32,9 +32,9 @@ Include the standing busy second-language reader in each future round (Rosa Alva
 
 For every screen visited, add this report table:
 
-| Screen and purpose | New concepts (list every one) | Concept count | Sentences reread (verbatim) | Reason |
-|---|---|---|---|---|
-| `<screen>` | `<concepts>` | `<count>` | `<sentences or none observed>` | `<reason>` |
+| Screen and purpose | New concepts (list every one) | Concept count | Sentences reread (verbatim)    | Reason     |
+| ------------------ | ----------------------------- | ------------- | ------------------------------ | ---------- |
+| `<screen>`         | `<concepts>`                  | `<count>`     | `<sentences or none observed>` | `<reason>` |
 
 Count settings and lab topics as concepts even when you ignore them. Do not invent zero counts for screens you did not inspect. More than one new idea per screen is a clarity finding. This protocol update does not authorize a new playtest round.
 
@@ -122,15 +122,15 @@ For a text-only harness, state which visual checks it cannot establish.
 Mark those `NOT TESTED — not established by this harness`; do not claim a visual defect.
 If you quit early, use your final observations and give the elapsed time.
 
-| Item | What to say at the checkpoint |
-|---|---|
-| DL-1 A reason to act | State a reason to act now, in your own words. What told you? |
-| DL-2 What can I touch | List what looks tappable. Name inert things you tried or controls you missed. |
-| DL-3 Urgency and selection | Name what draws you first and any competing cues. What is urgent? What is selected? |
-| DL-4 Why the limit | For each unavailable action met, say what prevents it and what would free it, if known. |
-| DL-5 Readable situation | Name an available response or say what is underway. Quote any helpful cue; a next prompt is not required. |
-| DL-6 A choice soon | Time first meaningful choice availability and first input separately. Was a choice available within 30 s, before long text? |
-| DL-7 Learn by doing | What did the first choices mean? Did an action or consequence teach you? Record help used and choices reached. |
+| Item                       | What to say at the checkpoint                                                                                               |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| DL-1 A reason to act       | State a reason to act now, in your own words. What told you?                                                                |
+| DL-2 What can I touch      | List what looks tappable. Name inert things you tried or controls you missed.                                               |
+| DL-3 Urgency and selection | Name what draws you first and any competing cues. What is urgent? What is selected?                                         |
+| DL-4 Why the limit         | For each unavailable action met, say what prevents it and what would free it, if known.                                     |
+| DL-5 Readable situation    | Name an available response or say what is underway. Quote any helpful cue; a next prompt is not required.                   |
+| DL-6 A choice soon         | Time first meaningful choice availability and first input separately. Was a choice available within 30 s, before long text? |
+| DL-7 Learn by doing        | What did the first choices mean? Did an action or consequence teach you? Record help used and choices reached.              |
 
 For DL-4, no limits encountered means `NOT TESTED`.
 For DL-7, report only interactions reached; unmet interactions are `NOT TESTED`, with the count.

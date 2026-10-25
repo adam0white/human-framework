@@ -3,15 +3,18 @@
 These apply to all HF games and to the framework. They add to the game direction in AGENTS.md.
 
 ## Experiments
+
 - "I'm really open to anything, and especially multiple experiments though we shouldn't leave things half baked."
 - "I'm even open to an eventual finding that HF isn't as useful as we hoped it would become." Record such findings honestly in docs/findings.md.
 
 ## Framework scope
+
 - HF's no-quantification rule is confirmed: "We can't implement what we can't know, i.e. ruh. We may still be able to implement our understanding of things, as much as it reconciles with science and merges into HF."
 - Science directions HF did not pursue are in scope, and so are capabilities HF doesn't support yet.
 - Goal: "I really want the HF to become a one stop shop for many future games, which it already is becoming."
 
 ## Games
+
 - A meaningful back story that immerses the player "without being too ambitious or away from reality". Story may be implied and alluded to rather than told.
 - The feel of success and achievement for goals, while further complexity is revealed over time.
 - Progressive disclosure and hands-on tutorials are in scope.
@@ -19,9 +22,11 @@ These apply to all HF games and to the framework. They add to the game direction
 - "These are thoughts of mine and not necessarily the only good direction." Agents should bring their own taste.
 
 ## Difficulty
+
 - "Naturally difficult games are fun, too, and we can always relax it later. The other way around is more troublesome as it feels like adding artificial difficulty." Start hard where the difficulty is natural, and tune it down later.
 
 ## 2026-10-19 (Adam, near-verbatim)
+
 - Playtesters: "happy we found auto play testers that aren't easily satisfied." Keep them hard to please.
 - Edges: "we should keep those edges a bit fun and slightly in our calculations." When playtesters push a game to unintended edges, make the edge playable and a little rewarding rather than only closing it; design and measure for it.
 - Next games start from player psychology: "what players crave and what keeps them coming back for more, from the start." Open to "an unintended implied naughty edge in a normally innocent game". "With HF, we should be able to afford more open play."
@@ -82,7 +87,7 @@ The elision ("...") is the coordinator's, as received. How this is read: a scan 
 
 The same evening, as an addition (Adam, verbatim): "2.x should be a good excuse to do a sweep on maintenance and code quality and better practices and refactors and removing depreciations."
 
-How this is read: the recommended increment in [hf-roadmap-2026-10-20.md](hf-roadmap-2026-10-20.md) is approved. The Host kit ships first as a 2.x release and carries a maintenance sweep: an audit of `packages/human` (dead code, deprecated APIs, legacy shims, tangled modules, naming and docs, type strictness, test speed and duplication), then behaviour-preserving refactors with exact legacy continuation. A deprecated API is removed only where no released game pinning HF needs it; otherwise it keeps a deprecation note with a target version, or that game is upgraded. Then HF 2.10.0 / engine 2.10.0, *Word and witness*. The long-term direction, a game-engine-like standalone tool, is recorded as a long bet in the roadmap. Done is recorded in AGENTS.md.
+How this is read: the recommended increment in [hf-roadmap-2026-10-20.md](hf-roadmap-2026-10-20.md) is approved. The Host kit ships first as a 2.x release and carries a maintenance sweep: an audit of `packages/human` (dead code, deprecated APIs, legacy shims, tangled modules, naming and docs, type strictness, test speed and duplication), then behaviour-preserving refactors with exact legacy continuation. A deprecated API is removed only where no released game pinning HF needs it; otherwise it keeps a deprecation note with a target version, or that game is upgraded. Then HF 2.10.0 / engine 2.10.0, _Word and witness_. The long-term direction, a game-engine-like standalone tool, is recorded as a long bet in the roadmap. Done is recorded in AGENTS.md.
 
 ## 2026-10-20, experiments budget (Adam, verbatim)
 
@@ -170,12 +175,12 @@ Owner implementation direction: first-visit notice covers recording and automati
 
 ## 2026-10-24 — Simplify the games (Adam, verbatim)
 
-Wife doesn't like reading, especially in English, so we lost her as a gamer already lol. We may never be able to cater to her. When she plays some games, they're like tiny puzzles for kids and stuff like that. 
+Wife doesn't like reading, especially in English, so we lost her as a gamer already lol. We may never be able to cater to her. When she plays some games, they're like tiny puzzles for kids and stuff like that.
 Noting down some feedback from first BIL player, Safari on iPad. Do we already receive his logs?
-Some sentences are difficult to understand, like "20 minutes for a plate" isn't interpreted as meal break. He also disliked that the games cater to Turkish culture with some Turkish words. I never asked for this, I think we can target a more HN friendly culture for English speaking world. Though let's discuss this first, since kapıcı and whatnot may not translate immediately, and I like that we have a specific taste. 
-iPad serves mobile version I think, which has tiny text. We don't need to think about every device, but we can have a more dynamic approach to the UI. We don't need branch protection. 
-He tried and quit Pass and the two voices because of the same issue, it felt like reading broken sentences. He's studying at university and reading a lot of books. Yet he disliked that it's difficult to understand. I had the same thing but couldn't name it. I don't think our games are ready for more eyes yet. 
-It appears that you can't find some of the issues by yourself without me specifically naming them. The lab notice appears in every game. Turning continuity off, begin without carrying history, seed, verify, even import, these are useless or too much to throw at the player. We need to simplify, a lot. I was hoping we could have a much better experience by just doing a lot of automated play tests. "Send word" why do we overcomplicate everything? Just say feedback. 
+Some sentences are difficult to understand, like "20 minutes for a plate" isn't interpreted as meal break. He also disliked that the games cater to Turkish culture with some Turkish words. I never asked for this, I think we can target a more HN friendly culture for English speaking world. Though let's discuss this first, since kapıcı and whatnot may not translate immediately, and I like that we have a specific taste.
+iPad serves mobile version I think, which has tiny text. We don't need to think about every device, but we can have a more dynamic approach to the UI. We don't need branch protection.
+He tried and quit Pass and the two voices because of the same issue, it felt like reading broken sentences. He's studying at university and reading a lot of books. Yet he disliked that it's difficult to understand. I had the same thing but couldn't name it. I don't think our games are ready for more eyes yet.
+It appears that you can't find some of the issues by yourself without me specifically naming them. The lab notice appears in every game. Turning continuity off, begin without carrying history, seed, verify, even import, these are useless or too much to throw at the player. We need to simplify, a lot. I was hoping we could have a much better experience by just doing a lot of automated play tests. "Send word" why do we overcomplicate everything? Just say feedback.
 On the Ramadan game, for example, menu has tons of options. All increases cognitive load, new topics and concepts for the player they don't even need to know at all. I'm asking for background, opinionated auto decision on a lot of these. The difficulty of the English appears across games. I don't know if it's because of a claimed taste or consistent design, but it makes things harder to understand. Minor thing, also work on the artwork on the list of all games. Change the one for the Rope, it seems like a hanging man.
 
 Commonstead branch protection is dropped. Friends’ playtests and Show HN are paused until Adam says the games are ready. The later setting direction below resolves the vocabulary discussion; places, names and setting remain. F-491 remains mandatory: automatic recording linkage follows the recording switch; feedback stays on one page with optional sharing when recording is off.

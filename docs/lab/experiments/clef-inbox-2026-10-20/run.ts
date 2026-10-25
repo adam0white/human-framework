@@ -99,10 +99,17 @@ async function collect() {
   console.log(`pass ${PASS}: ${out.length} calls, ${spent.toFixed(5)} USD at list price`);
 }
 
-type Raw = { unit: string; id: string; ms: number; inTok: number; usd: number; answers: Record<string, any> };
+type Raw = {
+  unit: string;
+  id: string;
+  ms: number;
+  inTok: number;
+  usd: number;
+  answers: Record<string, unknown>;
+};
 // As in the bake-off's score.ts: severity is Clef's expected level, rounded; a noul answer is a probability.
-const scoreOf = (a: Record<string, any>) => Math.round(Number(a.score));
-const prob = (a: Record<string, any>) => Number(a.noul);
+const scoreOf = (a: Record<string, unknown>) => Math.round(Number(a.score));
+const prob = (a: Record<string, unknown>) => Number(a.noul);
 
 function score() {
   const raw1 = JSON.parse(readFileSync(join(here, 'raw.pass1.json'), 'utf8')) as Raw[];

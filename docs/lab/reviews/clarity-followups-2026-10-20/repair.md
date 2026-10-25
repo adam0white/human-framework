@@ -20,14 +20,14 @@ Screenshots stayed in the driver's scratch folder and are not kept.
 
 These are the original checkpoint answers, recorded before continuing. The last preserved screen was 09-before-checkpoint.png at 50.013 s; no subsequent game input occurred before this checkpoint.
 
-| Item | Original checkpoint answer |
-|---|---|
-| DL-1 | PASS — I want to stop Mum’s lantern going dark when she carries it to the evening gathering. Her opening request and my carry test told me. |
-| DL-2 | PASS — Carry, Look inside, the Object/Meter/Repair/Notes tabs, the component-name disclosure and Look closely look tappable. I used the name list because the circuit labels are tiny. One tap landed on the disclosure after the page continued moving; I have not established an inert control. |
-| DL-3 | PASS — The gold Carry button drew me first; the instruction panel told me what to try. Contact has a visible selection outline and its name below. No deadline is visible in my current view. |
-| DL-4 | PASS — Look closely was grey when no component was selected; Choose a component explained what I needed. Selecting Contact enabled it. |
-| DL-5 | PASS — I can choose a part and Look closely, or use the Meter tab. The latest visible answer is Contact: The exposed metal is aged and dull. |
-| DL-6 | PASS — Carry was available at the first usable screen (0 s); first input was at 7.228 s. First component choice was available by 14.55 s, before 30 s. The opening request was short. |
+| Item | Original checkpoint answer                                                                                                                                                                                                                                                                                                   |
+| ---- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DL-1 | PASS — I want to stop Mum’s lantern going dark when she carries it to the evening gathering. Her opening request and my carry test told me.                                                                                                                                                                                  |
+| DL-2 | PASS — Carry, Look inside, the Object/Meter/Repair/Notes tabs, the component-name disclosure and Look closely look tappable. I used the name list because the circuit labels are tiny. One tap landed on the disclosure after the page continued moving; I have not established an inert control.                            |
+| DL-3 | PASS — The gold Carry button drew me first; the instruction panel told me what to try. Contact has a visible selection outline and its name below. No deadline is visible in my current view.                                                                                                                                |
+| DL-4 | PASS — Look closely was grey when no component was selected; Choose a component explained what I needed. Selecting Contact enabled it.                                                                                                                                                                                       |
+| DL-5 | PASS — I can choose a part and Look closely, or use the Meter tab. The latest visible answer is Contact: The exposed metal is aged and dull.                                                                                                                                                                                 |
+| DL-6 | PASS — Carry was available at the first usable screen (0 s); first input was at 7.228 s. First component choice was available by 14.55 s, before 30 s. The opening request was short.                                                                                                                                        |
 | DL-7 | PASS for the three interactions reached — Carry showed the light going out; Look inside exposed a circuit; selecting Contact then Look closely described dull metal. I used the inline guidance and component-name list. Meter and Repair interactions are NOT TESTED (2 unreached interaction families at this checkpoint). |
 
 Timing clarification, without changing the checkpoint: Carry was a guided first action. The first choice among named components was available by 14.550 s; I successfully chose Contact at 37.457 s. The tap at 26.170 s opened the component-name list instead. The initial request contained 27 words; I encountered short inline instructions, not a long story passage.
@@ -36,22 +36,22 @@ Timing clarification, without changing the checkpoint: Carry was a guided first 
 
 The quoted reactions below preserve their original wording. UTC timestamps and elapsed times were written as they occurred to repair-shots/timeline.jsonl. Input/result entries are separate evidence, not rewritten diary quotations.
 
-| UTC | Elapsed | Verbatim reaction |
-|---|---:|---|
-| 10:18:21.828 | 3.366 s | “I want to find the loose connection. It works on the table and fails when carried; that sounds familiar. Carry looks like the first thing to try.” |
-| 10:18:29.992 | 11.530 s | “The lantern went dark when I carried it. Good, I can see the fault. Now it says to open the cover; I am looking for the cover on the drawing.” |
-| 10:18:38.096 | 19.634 s | “I opened it, but I still mostly see the outside. The parts seem to be below the bottom of my phone.” |
-| 10:18:52.226 | 33.764 s | “The page moved further after I scrolled. My tap has opened the component-name list instead of selecting the contact. I can use that list; the drawing labels are tiny.” |
-| 10:19:08.437 | 49.975 s | “The contact is aged and dull. I would clean that, but the game now wants a battery measurement while carried. I can follow that, though I want my hands on the actual contact.” |
-| 10:19:32.419 | 73.957 s | “First minute checkpoint recorded at 65.980 seconds; writing the checkpoint made it 5.980 seconds late. I took no further game input between 42.519 seconds and the checkpoint. I want to see what repair I can do to this contact.” |
-| 10:19:48.974 | 90.512 s | “Clean and Adjust both take 20 minutes. Replace says no contact stocked. Cleaning is a sensible first try on dull metal, and I would like to see it brighten.” |
-| 10:19:54.059 | 95.597 s | “It says I cleaned the mating contact faces. The little circuit symbol looks the same to me. I wanted that satisfying before and after, but I can at least carry it to find out.” |
-| 10:20:07.902 | 109.440 s | “Still goes out. Fair enough: dull did not prove dirty was the fault. I will measure it before changing anything else.” |
-| 10:20:21.235 | 122.773 s | “The meter has proper voltage and continuity choices. Carry is already selected. It wants A and 0, so I am putting the red probe at A first.” |
-| 10:20:36.195 | 137.733 s | “Six volts at the battery. That is a useful result, and I like seeing a real meter reading. The guide asks for B to C across the switch next.” |
-| 10:20:49.806 | 151.344 s | “Full battery voltage across the switch while it moves: there is my open circuit. This is the first moment I feel I have diagnosed something, rather than just followed buttons.” |
-| 10:21:08.361 | 169.899 s | “The outside looks intact. That fits an internal switch fault. I have one new switch, so I would use it for Mum rather than gamble on a salvage part.” |
-| 10:21:27.904 | 189.442 s | “There we are: bright and steady while carried. That is satisfying. I wish I had seen the switch itself change, but the light staying on does show the repair worked.” |
+| UTC          |   Elapsed | Verbatim reaction                                                                                                                                                                                                                                                      |
+| ------------ | --------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 10:18:21.828 |   3.366 s | “I want to find the loose connection. It works on the table and fails when carried; that sounds familiar. Carry looks like the first thing to try.”                                                                                                                    |
+| 10:18:29.992 |  11.530 s | “The lantern went dark when I carried it. Good, I can see the fault. Now it says to open the cover; I am looking for the cover on the drawing.”                                                                                                                        |
+| 10:18:38.096 |  19.634 s | “I opened it, but I still mostly see the outside. The parts seem to be below the bottom of my phone.”                                                                                                                                                                  |
+| 10:18:52.226 |  33.764 s | “The page moved further after I scrolled. My tap has opened the component-name list instead of selecting the contact. I can use that list; the drawing labels are tiny.”                                                                                               |
+| 10:19:08.437 |  49.975 s | “The contact is aged and dull. I would clean that, but the game now wants a battery measurement while carried. I can follow that, though I want my hands on the actual contact.”                                                                                       |
+| 10:19:32.419 |  73.957 s | “First minute checkpoint recorded at 65.980 seconds; writing the checkpoint made it 5.980 seconds late. I took no further game input between 42.519 seconds and the checkpoint. I want to see what repair I can do to this contact.”                                   |
+| 10:19:48.974 |  90.512 s | “Clean and Adjust both take 20 minutes. Replace says no contact stocked. Cleaning is a sensible first try on dull metal, and I would like to see it brighten.”                                                                                                         |
+| 10:19:54.059 |  95.597 s | “It says I cleaned the mating contact faces. The little circuit symbol looks the same to me. I wanted that satisfying before and after, but I can at least carry it to find out.”                                                                                      |
+| 10:20:07.902 | 109.440 s | “Still goes out. Fair enough: dull did not prove dirty was the fault. I will measure it before changing anything else.”                                                                                                                                                |
+| 10:20:21.235 | 122.773 s | “The meter has proper voltage and continuity choices. Carry is already selected. It wants A and 0, so I am putting the red probe at A first.”                                                                                                                          |
+| 10:20:36.195 | 137.733 s | “Six volts at the battery. That is a useful result, and I like seeing a real meter reading. The guide asks for B to C across the switch next.”                                                                                                                         |
+| 10:20:49.806 | 151.344 s | “Full battery voltage across the switch while it moves: there is my open circuit. This is the first moment I feel I have diagnosed something, rather than just followed buttons.”                                                                                      |
+| 10:21:08.361 | 169.899 s | “The outside looks intact. That fits an internal switch fault. I have one new switch, so I would use it for Mum rather than gamble on a salvage part.”                                                                                                                 |
+| 10:21:27.904 | 189.442 s | “There we are: bright and steady while carried. That is satisfying. I wish I had seen the switch itself change, but the light staying on does show the repair worked.”                                                                                                 |
 | 10:21:56.072 | 217.610 s | “I can carry the light out to the garden table. That is a pleasant ending. I am done for now: I fixed the fault, but I have had enough scrolling around the circuit on this phone. I would come back for another small repair if I could see more of the actual work.” |
 
 Evidence qualification: the reaction at 19.634 s is my original impression, not proof that the parts were absent. Screenshot 03 already shows the circuit after the view repositioned. The scroll and following tap also involved changing screen positions. I do not count that misdirected coordinate tap as a demonstrated inert control or game defect.
@@ -60,36 +60,36 @@ Evidence qualification: the reaction at 19.634 s is my original impression, not 
 
 All screenshots are in repair-shots/. File names describe the intended capture; for example, 05-contact-selected.png actually shows the opened list, not a selected contact.
 
-| Elapsed | Input | Visible answer / screenshot |
-|---:|---|---|
-| 0.077 s | First screen | Mum wants a lantern she can carry to the evening gathering; “Try carrying it.” Carry · 15 min. 01-first-screen.png |
-| 7.228 s | Carry | Lantern dark; “The light goes out while carried.” “Open the cover to look inside.” 02-carry.png |
-| 14.512 s | Look inside | Circuit and Object/Meter/Repair/Notes tabs. “Choose a part inside, then examine it.” Look closely unavailable until selection. 03-inside.png |
-| 19.653 s | Scroll down | Circuit and component-name disclosure. 04-parts-scroll.png |
-| 26.170 s | Intended Contact tap | Component-name list opened. 05-contact-selected.png, 06-list-still.png |
-| 37.457 s | Contact in name list | Contact outlined; Look closely enabled. 07-contact.png |
-| 42.519 s | Look closely | “Contact: The exposed metal is aged and dull.” 08-contact-examined.png, 09-before-checkpoint.png |
-| 73.975 s | Repair tab | Contact repair actions below circuit. 10-repair-tab.png |
-| 81.475 s | Scroll down | Clean · 20 min; Adjust · 20 min; Replace unavailable: “No contact stocked.” 11-clean-option.png |
-| 90.533 s | Clean Contact | “Cleaned the mating contact faces; run under load and movement to check the result.” Symbol looked unchanged to me. 12-cleaned.png |
-| 95.611 s | Scroll up | “The part has changed. Carry the lantern again to see what changed.” Test the lantern and Carry available. 13-return-to-carry.png |
-| 103.971 s | Carry | “The light goes out while carried.” Guide asks to start at battery, A ↔ 0, while carried. 14-test-after-clean.png, 15-meter-prompt.png |
-| 112.953 s | Pick up the meter | Voltage/continuity, power and conditions, probe controls, terminals 0/A/B/C/D. No reading yet. 16-meter.png |
-| 122.802 s | Terminal A | Red probe · A; black probe becomes selected. 17-red-A.png |
-| 126.885 s | Terminal 0 | Black probe · 0; Read meter enabled. 18-both-probes.png |
-| 131.241 s | Read meter | 6.00 V, A → 0 · Day 1 · 10:10. Guide: compare both sides of switch while it moves, B ↔ C. 19-battery-reading.png |
-| 137.749 s | Terminal B | Red probe · B. 20-switch-red.png |
-| 141.834 s | Terminal C | Black probe · C. Previous reading still labelled A → 0. 21-switch-probes.png |
-| 145.679 s | Read meter | 6.00 V, B → C · Day 1 · 10:20. “Large voltage drop across this measured span.” Guide points to switch. 22-switch-reading.png |
-| 151.359 s | Work on the part | Repair tab, Switch selected. 23-switch-work.png |
-| 154.319 s | Scroll down | Look closely; Clean/Adjust · 20 min; Replace · 30 min · 1 switch (1 stocked). 24-switch-options.png |
-| 162.175 s | Look closely | “Switch: The outside looks intact.” 25-switch-examined.png. Rendered guide text above explained the single new switch and risky salvage alternative; it was outside the current screenshot viewport. |
-| 169.913 s | Replace Switch | “Replaced Switch. Test the object again.” Replace now unavailable: “No switch stocked.” 26-switch-replaced.png |
-| 173.439 s | Scroll up | Test the lantern prompt and Carry. 27-test-ready.png |
-| 181.764 s | Carry | Lit lantern; “Last test: Bright and steady while carried.” “It stays lit when carried. Give it back to Mum.” Return to Mum · 10 min. 28-working-carry.png |
-| 189.456 s | Return to Mum | Workbench navigation and “Mum’s walking lantern · returned.” Day 1 · 11:25 · £24. Detailed result below viewport. 29-returned.png |
-| 194.506 s | Scroll down | “Checked return · on time”; “A light Mum can carry”; “I can carry the light out to the garden table.” “Recorded checks movement passed.” Family favour £0. Choose another object available. 30-return-result.png |
-| 217.616 s | Stop | Successful returned lantern; no second object chosen. |
+|   Elapsed | Input                | Visible answer / screenshot                                                                                                                                                                                      |
+| --------: | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|   0.077 s | First screen         | Mum wants a lantern she can carry to the evening gathering; “Try carrying it.” Carry · 15 min. 01-first-screen.png                                                                                               |
+|   7.228 s | Carry                | Lantern dark; “The light goes out while carried.” “Open the cover to look inside.” 02-carry.png                                                                                                                  |
+|  14.512 s | Look inside          | Circuit and Object/Meter/Repair/Notes tabs. “Choose a part inside, then examine it.” Look closely unavailable until selection. 03-inside.png                                                                     |
+|  19.653 s | Scroll down          | Circuit and component-name disclosure. 04-parts-scroll.png                                                                                                                                                       |
+|  26.170 s | Intended Contact tap | Component-name list opened. 05-contact-selected.png, 06-list-still.png                                                                                                                                           |
+|  37.457 s | Contact in name list | Contact outlined; Look closely enabled. 07-contact.png                                                                                                                                                           |
+|  42.519 s | Look closely         | “Contact: The exposed metal is aged and dull.” 08-contact-examined.png, 09-before-checkpoint.png                                                                                                                 |
+|  73.975 s | Repair tab           | Contact repair actions below circuit. 10-repair-tab.png                                                                                                                                                          |
+|  81.475 s | Scroll down          | Clean · 20 min; Adjust · 20 min; Replace unavailable: “No contact stocked.” 11-clean-option.png                                                                                                                  |
+|  90.533 s | Clean Contact        | “Cleaned the mating contact faces; run under load and movement to check the result.” Symbol looked unchanged to me. 12-cleaned.png                                                                               |
+|  95.611 s | Scroll up            | “The part has changed. Carry the lantern again to see what changed.” Test the lantern and Carry available. 13-return-to-carry.png                                                                                |
+| 103.971 s | Carry                | “The light goes out while carried.” Guide asks to start at battery, A ↔ 0, while carried. 14-test-after-clean.png, 15-meter-prompt.png                                                                           |
+| 112.953 s | Pick up the meter    | Voltage/continuity, power and conditions, probe controls, terminals 0/A/B/C/D. No reading yet. 16-meter.png                                                                                                      |
+| 122.802 s | Terminal A           | Red probe · A; black probe becomes selected. 17-red-A.png                                                                                                                                                        |
+| 126.885 s | Terminal 0           | Black probe · 0; Read meter enabled. 18-both-probes.png                                                                                                                                                          |
+| 131.241 s | Read meter           | 6.00 V, A → 0 · Day 1 · 10:10. Guide: compare both sides of switch while it moves, B ↔ C. 19-battery-reading.png                                                                                                 |
+| 137.749 s | Terminal B           | Red probe · B. 20-switch-red.png                                                                                                                                                                                 |
+| 141.834 s | Terminal C           | Black probe · C. Previous reading still labelled A → 0. 21-switch-probes.png                                                                                                                                     |
+| 145.679 s | Read meter           | 6.00 V, B → C · Day 1 · 10:20. “Large voltage drop across this measured span.” Guide points to switch. 22-switch-reading.png                                                                                     |
+| 151.359 s | Work on the part     | Repair tab, Switch selected. 23-switch-work.png                                                                                                                                                                  |
+| 154.319 s | Scroll down          | Look closely; Clean/Adjust · 20 min; Replace · 30 min · 1 switch (1 stocked). 24-switch-options.png                                                                                                              |
+| 162.175 s | Look closely         | “Switch: The outside looks intact.” 25-switch-examined.png. Rendered guide text above explained the single new switch and risky salvage alternative; it was outside the current screenshot viewport.             |
+| 169.913 s | Replace Switch       | “Replaced Switch. Test the object again.” Replace now unavailable: “No switch stocked.” 26-switch-replaced.png                                                                                                   |
+| 173.439 s | Scroll up            | Test the lantern prompt and Carry. 27-test-ready.png                                                                                                                                                             |
+| 181.764 s | Carry                | Lit lantern; “Last test: Bright and steady while carried.” “It stays lit when carried. Give it back to Mum.” Return to Mum · 10 min. 28-working-carry.png                                                        |
+| 189.456 s | Return to Mum        | Workbench navigation and “Mum’s walking lantern · returned.” Day 1 · 11:25 · £24. Detailed result below viewport. 29-returned.png                                                                                |
+| 194.506 s | Scroll down          | “Checked return · on time”; “A light Mum can carry”; “I can carry the light out to the garden table.” “Recorded checks movement passed.” Family favour £0. Choose another object available. 30-return-result.png |
+| 217.616 s | Stop                 | Successful returned lantern; no second object chosen.                                                                                                                                                            |
 
 ## Best, worst and stopping
 
@@ -118,11 +118,11 @@ Additional bounded observations:
 
 ## English, dates and phone
 
-| Item | Status | Evidence and limit |
-|---|---|---|
-| DL-20 English | PASS for play reached | Carry, Look inside, Contact, Switch, Voltage, Continuity, probe instructions, repair costs and return instructions were understandable in English. No necessary unexplained local term encountered. |
-| DL-21 Dates | NOT TESTED for deadline comparison | “Day 1 · 10:10”, “Day 1 · 10:20” and “Returned Day 1 · 11:25” were readable. The result said “on time.” I did not meet an explicit dated deadline to compare against today, or test across months/years or after a break. The opening “evening gathering” conveyed purpose but did not establish a calendar comparison. |
-| DL-22 Phone response/context | FAIL | Repeated scrolling between circuit/repair actions, guide, test and return outcome. Meter view passed this narrower layout check; that does not erase the other screens. |
+| Item                         | Status                             | Evidence and limit                                                                                                                                                                                                                                                                                                      |
+| ---------------------------- | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DL-20 English                | PASS for play reached              | Carry, Look inside, Contact, Switch, Voltage, Continuity, probe instructions, repair costs and return instructions were understandable in English. No necessary unexplained local term encountered.                                                                                                                     |
+| DL-21 Dates                  | NOT TESTED for deadline comparison | “Day 1 · 10:10”, “Day 1 · 10:20” and “Returned Day 1 · 11:25” were readable. The result said “on time.” I did not meet an explicit dated deadline to compare against today, or test across months/years or after a break. The opening “evening gathering” conveyed purpose but did not establish a calendar comparison. |
+| DL-22 Phone response/context | FAIL                               | Repeated scrolling between circuit/repair actions, guide, test and return outcome. Meter view passed this narrower layout check; that does not erase the other screens.                                                                                                                                                 |
 
 Post-session desktop first-screen look: 31-desktop-first-screen.png. At 1280×800, Mum’s request, Try carrying it, the whole lantern and Carry were all visible. This was only a first-screen look; I did not retest repair layouts on desktop.
 

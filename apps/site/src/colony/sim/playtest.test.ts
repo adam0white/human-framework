@@ -16,25 +16,11 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { ENGINE_VERSION } from '@adam0white/human-framework';
 import { describe, expect, test } from 'vitest';
-import { withHistoricPersonEngine } from '../../../test/support/engine-stamp.ts';
-import {
-  hashState,
-  makePlaytestFile,
-  PlaytestError,
-  type PlaytestFile,
-  parsePlaytest,
-} from '../../shared/playtest.ts';
+import { makePlaytestFile, PlaytestError, type PlaytestFile, parsePlaytest } from '../../shared/playtest.ts';
 import { ColonyGame, DEFAULT_SEED, type LogEntry, SCENARIO_VERSION } from './game.ts';
 import { createFrameworkHumanSide } from './human.ts';
 import { Playback } from './playback.ts';
-import {
-  colonyHash,
-  colonySnapshot,
-  colonyState,
-  parseColonyPlaytest,
-  replayColony,
-  validateColonyLog,
-} from './playtest.ts';
+import { colonyHash, replayColony, validateColonyLog } from './playtest.ts';
 
 /** colony-scenario@3, pinned; read only. */
 const FIXTURE_V3 = resolve(import.meta.dirname, '../../../test/fixtures/playtest-colony.json');

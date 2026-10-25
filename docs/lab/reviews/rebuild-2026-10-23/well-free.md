@@ -12,15 +12,15 @@ Original checkpoint reaction (written at 70.657 s, about eleven seconds late; th
 
 The table uses only observations reached by 60 s. The later checkpoint mentions one order only; it does not upgrade any result learned afterward.
 
-| Item | Result and evidence |
-|---|---|
-| DL-1 A reason to act | PASS — Roof the house, store twelve meals, keep six alive before the storm. The opening objective said this directly. |
-| DL-2 What can I touch | PASS — Person cards, Classic/Human, place buttons, Send, About, Rush, Insist and Appeal looked actionable. I used Send, About and Close. No inert object tried in this minute. The recording notice initially covered the header in first-screen.png; I dismissed it. |
-| DL-3 Urgency and selection | PASS — The storm countdown drew me first. Human was selected; House was outlined as selected in order-sheet.png. Hunger competed with the building order after About. |
-| DL-4 Why the limit | FAIL — “Later: after I pray Fajr” offered a reason for delay, and he subsequently agreed. I could not explain why Forest/Field/Well said “won’t” or Cedar said “risky,” or what would free them. These were forecasts, not demonstrated disabled buttons. |
-| DL-5 Readable situation | PASS — “Waiting for an answer,” then “Alright, I’ll do it,” and Building identified what was underway. |
-| DL-6 A choice soon | PASS — Two starting radio choices were available on the opening screen at 0.373 s, before a long reading passage. I left the default and began at 3.658 s. First village order availability was seen at 13.373 s; first order input was Send at 18.760 s. |
-| DL-7 Learn by doing | PASS for one order — Send gave Yusuf → House to both villages. By 36.209 s the Human answer was agreed and he was Building. About, reached at 38.982 s, said needs and duties can come first. This taught me agreement can follow prayer. Independent place-order selection, refusal, appeal, insist and rush were NOT TESTED in the first minute (five interaction types). |
+| Item                       | Result and evidence                                                                                                                                                                                                                                                                                                                                                         |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DL-1 A reason to act       | PASS — Roof the house, store twelve meals, keep six alive before the storm. The opening objective said this directly.                                                                                                                                                                                                                                                       |
+| DL-2 What can I touch      | PASS — Person cards, Classic/Human, place buttons, Send, About, Rush, Insist and Appeal looked actionable. I used Send, About and Close. No inert object tried in this minute. The recording notice initially covered the header in first-screen.png; I dismissed it.                                                                                                       |
+| DL-3 Urgency and selection | PASS — The storm countdown drew me first. Human was selected; House was outlined as selected in order-sheet.png. Hunger competed with the building order after About.                                                                                                                                                                                                       |
+| DL-4 Why the limit         | FAIL — “Later: after I pray Fajr” offered a reason for delay, and he subsequently agreed. I could not explain why Forest/Field/Well said “won’t” or Cedar said “risky,” or what would free them. These were forecasts, not demonstrated disabled buttons.                                                                                                                   |
+| DL-5 Readable situation    | PASS — “Waiting for an answer,” then “Alright, I’ll do it,” and Building identified what was underway.                                                                                                                                                                                                                                                                      |
+| DL-6 A choice soon         | PASS — Two starting radio choices were available on the opening screen at 0.373 s, before a long reading passage. I left the default and began at 3.658 s. First village order availability was seen at 13.373 s; first order input was Send at 18.760 s.                                                                                                                   |
+| DL-7 Learn by doing        | PASS for one order — Send gave Yusuf → House to both villages. By 36.209 s the Human answer was agreed and he was Building. About, reached at 38.982 s, said needs and duties can come first. This taught me agreement can follow prayer. Independent place-order selection, refusal, appeal, insist and rush were NOT TESTED in the first minute (five interaction types). |
 
 ## Experience and stopping
 
@@ -110,27 +110,27 @@ Below are the original recorded reactions and inputs, in order. The JSON preserv
 
 ## Important visible answers by elapsed time
 
-| Elapsed s | Input / visible answer |
-|---|---|
-| 0.373 | Open: “Two villages hear every order you give. One obeys. One decides.” Objective: roof, 12 meals, all six alive. |
-| 3.658 | Begin: D1 05:01; “Each order goes to both villages. Tap a person to begin.” |
-| 13.373 | Dismiss notice: D1 05:37; suggestion Yusuf → House; “Later: after I pray Fajr.” |
-| 18.760 | Send: D1 05:50; order given to both villages, waiting for an answer. |
-| 36.209 | Wait 15 s: D1 06:36; “Alright, I’ll do it”; Human agreed, Classic done. |
-| 38.982 | About: D1 06:47; “Very hungry,” “Could use a drink,” “Tired”; fresh orders carry extra weight for their first hour. |
-| 62.700 | Wait 5 s: D1 07:37; reply also included “Yusuf trusts you less. Hurt by your order: building.” This occurred after the first-minute boundary and did not inform its passes. |
-| 70.857 | Back: D1 08:02; Human roof 3/10, meals 2; suggestion Idris → Cedar, Likely yes. |
-| 74.804 | Maryam Cooking: D1 08:05; “Choose a place. Each order goes to both villages.” |
-| 77.654 | Kitchen cook ✓ yes: D1 08:07; waiting for answer. |
-| 81.587 | Dismiss suggestion: D1 08:11; “We’ve food enough put by. I’ll cook when it runs low.” Human meals 6. |
-| 101.725 | Wait 20 s: D1 09:22; Maryam Resting, same refusal. |
-| 107.536 | Appeal: D1 09:45; options For the children, Duty, You’ll be safer, No appeal. |
-| 110.772 | For the children: D1 09:58; “Appeal: children,” same old refusal. |
-| 114.778 | Kitchen cook ◷ later: D1 10:14; not on page now, live label became ✓ yes. Not a driver failure. |
-| 124.942 | Wait 10 s: D1 10:48; Maryam Cooking. Suggestion Maryam → Forest; “Will refuse: the others would go unfed.” |
-| 133.990 | Insist on it: D1 11:01; not on page now. Latest response “Fine,” Human agreed; meals 13. Causation uncertain. |
-| 141.737 | Comparison: D1 11:19; Human roof 5/10, meals 11, alive 6, injuries 0. Judging times D2 19:00 and D3 dawn. |
-| 151.022 | Menu after stopping: D1 12:04; village waits; Automatic selected. Human meals 13. |
-| 178.184 | Feedback Send: “Sent. Thank you.” |
+| Elapsed s | Input / visible answer                                                                                                                                                      |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0.373     | Open: “Two villages hear every order you give. One obeys. One decides.” Objective: roof, 12 meals, all six alive.                                                           |
+| 3.658     | Begin: D1 05:01; “Each order goes to both villages. Tap a person to begin.”                                                                                                 |
+| 13.373    | Dismiss notice: D1 05:37; suggestion Yusuf → House; “Later: after I pray Fajr.”                                                                                             |
+| 18.760    | Send: D1 05:50; order given to both villages, waiting for an answer.                                                                                                        |
+| 36.209    | Wait 15 s: D1 06:36; “Alright, I’ll do it”; Human agreed, Classic done.                                                                                                     |
+| 38.982    | About: D1 06:47; “Very hungry,” “Could use a drink,” “Tired”; fresh orders carry extra weight for their first hour.                                                         |
+| 62.700    | Wait 5 s: D1 07:37; reply also included “Yusuf trusts you less. Hurt by your order: building.” This occurred after the first-minute boundary and did not inform its passes. |
+| 70.857    | Back: D1 08:02; Human roof 3/10, meals 2; suggestion Idris → Cedar, Likely yes.                                                                                             |
+| 74.804    | Maryam Cooking: D1 08:05; “Choose a place. Each order goes to both villages.”                                                                                               |
+| 77.654    | Kitchen cook ✓ yes: D1 08:07; waiting for answer.                                                                                                                           |
+| 81.587    | Dismiss suggestion: D1 08:11; “We’ve food enough put by. I’ll cook when it runs low.” Human meals 6.                                                                        |
+| 101.725   | Wait 20 s: D1 09:22; Maryam Resting, same refusal.                                                                                                                          |
+| 107.536   | Appeal: D1 09:45; options For the children, Duty, You’ll be safer, No appeal.                                                                                               |
+| 110.772   | For the children: D1 09:58; “Appeal: children,” same old refusal.                                                                                                           |
+| 114.778   | Kitchen cook ◷ later: D1 10:14; not on page now, live label became ✓ yes. Not a driver failure.                                                                             |
+| 124.942   | Wait 10 s: D1 10:48; Maryam Cooking. Suggestion Maryam → Forest; “Will refuse: the others would go unfed.”                                                                  |
+| 133.990   | Insist on it: D1 11:01; not on page now. Latest response “Fine,” Human agreed; meals 13. Causation uncertain.                                                               |
+| 141.737   | Comparison: D1 11:19; Human roof 5/10, meals 11, alive 6, injuries 0. Judging times D2 19:00 and D3 dawn.                                                                   |
+| 151.022   | Menu after stopping: D1 12:04; village waits; Automatic selected. Human meals 13.                                                                                           |
+| 178.184   | Feedback Send: “Sent. Thank you.”                                                                                                                                           |
 
 Screenshots: (driver scratch)/first-screen.png, (driver scratch)/about-yusuf.png, (driver scratch)/order-sheet.png, (driver scratch)/feedback.png. Original log: (driver scratch)/wall-clock.jsonl. The driver's automatic first-minute screenshot was not viewed or used as visual evidence.

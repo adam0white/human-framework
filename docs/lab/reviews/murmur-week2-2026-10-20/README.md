@@ -2,13 +2,13 @@
 
 Protocol 2 retest of murmur 0.4.0, the second week ("getting better causes trouble"; murmur `docs/design.md`, "The second week"). Sessions were source-unread Codex testers on the live site, driven by `npm run lab:play` at `aa68c62`. Round 1 ran on murmur `a04b847`; round 2 ran on `5c1c471`, which fixed the round-1 defects (live `/release.json` dirty false for both). Each Two Voices tester used a 360×690 phone with touch emulation and started from "Begin at the second week" on the cover; the A Dark Room control ran on desktop. One persona (Mina) appeared in both arms with identical text; Deniz is a second persona, free arm only. Free arm: floor 0. Floor arm: floor 15 minutes, ceiling 25. Reports are the testers' own words. Local paths were replaced by "(driver scratch)", and screenshots stayed in the driver's scratch folder.
 
-| File | Game, build | Arm | Stop | First wish to leave (blind-coded) |
-|---|---|---|---|---|
-| `mina-free.md` | Two Voices, `a04b847` | free | 4:32.7 BORED | 4:09.4 BORED, "another bedtime with the same three answers" |
-| `mina-floor.md` | Two Voices, `a04b847` | floor | 1:09.8 TOOL (a 4 s choice expired during a 30 s wait; the stale driver copy repeated cached controls, so it stayed listed; fixed in human-framework 922daed) | none; invalid run |
-| `mina-floor2.md` | Two Voices, `5c1c471` | floor | 15:23.0 BORED, would return for the weekend | 10:54.9 BORED, the fourth bus call-or-scroll choice |
-| `deniz-free.md` | Two Voices, `5c1c471` | free | 3:03.0 TASTE, would return | 3:02.8 satisfied, "a good place to put the phone away" |
-| `adr-free.md` | A Dark Room (control) | free | 6:47.2 BORED, would return | 6:33.4 BORED |
+| File             | Game, build           | Arm   | Stop                                                                                                                                                         | First wish to leave (blind-coded)                           |
+| ---------------- | --------------------- | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------- |
+| `mina-free.md`   | Two Voices, `a04b847` | free  | 4:32.7 BORED                                                                                                                                                 | 4:09.4 BORED, "another bedtime with the same three answers" |
+| `mina-floor.md`  | Two Voices, `a04b847` | floor | 1:09.8 TOOL (a 4 s choice expired during a 30 s wait; the stale driver copy repeated cached controls, so it stayed listed; fixed in human-framework 922daed) | none; invalid run                                           |
+| `mina-floor2.md` | Two Voices, `5c1c471` | floor | 15:23.0 BORED, would return for the weekend                                                                                                                  | 10:54.9 BORED, the fourth bus call-or-scroll choice         |
+| `deniz-free.md`  | Two Voices, `5c1c471` | free  | 3:03.0 TASTE, would return                                                                                                                                   | 3:02.8 satisfied, "a good place to put the phone away"      |
+| `adr-free.md`    | A Dark Room (control) | free  | 6:47.2 BORED, would return                                                                                                                                   | 6:33.4 BORED                                                |
 
 The blind coder read only the reaction strings, without the arm or the game build, and agreed with each tester's own first want_quit, except Deniz, whom it coded SATISFIED rather than TASTE.
 

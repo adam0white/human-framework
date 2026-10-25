@@ -4,6 +4,7 @@ import { createPersona, initialPersonaLife, preparePersonaLife } from '@adam0whi
 import { expect, it } from 'vitest';
 import { makeCastChapter, siteCastCheckpoint } from '../shared/cast-chapter.ts';
 import actual from '../shared/fixtures/watch-kian-care-native.json';
+import { requireValue } from '../shared/require-value.ts';
 import { canRestoreSeason } from './season-recovery.ts';
 import { WATCHERS } from './sim/config.ts';
 import { prepareWatchCast, WATCH_NORMS, watcherSpec } from './sim/people.ts';
@@ -39,7 +40,7 @@ it('offers only a local season snapshot bound to its exact accepted cast and ret
 });
 
 it('keeps dormant carried dues through a native checkpoint and re-admission but refuses its active household duty', async () => {
-  const def = WATCHERS.find((w) => w.id === 'meryem')!;
+  const def = requireValue(WATCHERS.find((w) => w.id === 'meryem'));
   const p = createPerson(watcherSpec(1, def, 600));
   p.conscience.norms.push({ normId: 'dues', standing: 'obligatory', conviction: 0.8 });
   const transfer = await siteCastCheckpoint('watch', p, WATCH_NORMS);
@@ -58,9 +59,9 @@ it('keeps dormant carried dues through a native checkpoint and re-admission but 
   const chapter = makeCastChapter([preparePersonaLife(head, 0)]);
   expect(() => prepareWatchCast(1, chapter)).not.toThrow();
   expect(
-    JSON.parse(chapter.people![castId]!.initial!).conscience.norms.some(
-      (n: { normId: string }) => n.normId === 'dues',
-    ),
+    JSON.parse(
+      requireValue(requireValue(requireValue(chapter.people)[castId]).initial),
+    ).conscience.norms.some((n: { normId: string }) => n.normId === 'dues'),
   ).toBe(true);
   p.agenda.commitments.push({
     id: 'share',

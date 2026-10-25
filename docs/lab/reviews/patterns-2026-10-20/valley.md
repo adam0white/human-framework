@@ -20,15 +20,15 @@ Screenshots and original diary: `(driver scratch)/retest/valley-shots/`. Screens
 
 These are the original checkpoint answers, preserved verbatim from `wall-clock.jsonl`. They describe what I had reached then, not what I learned later. Screenshot: `07-first-minute.png`; the preceding About view is `06-about.png` at 56 seconds.
 
-| Item | Original answer |
-|---|---|
-| DL-1 | PASS — I must bring in the barley before rain; the charge says so. |
-| DL-2 | FAIL — the buttons and house tabs look tappable and Kavak selected visibly, but the map labels overlap so I cannot distinguish its places. The first attempt to find Kavak by button role was an automation failure; a coordinate tap worked. |
-| DL-3 | PASS — the red barley call draws me first; slow is selected and Kavak is selected blue with a circled house. Rain in two days is the urgency, though the later dates compete with it. |
-| DL-4 | PASS — the repeat call is unavailable while the current call is open; another opens on 24 July, year one. |
-| DL-5 | PASS — the call is underway; the charge says read replies, and I found We’ll be there under About. I can choose a household action. |
+| Item | Original answer                                                                                                                                                                                                                                                               |
+| ---- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DL-1 | PASS — I must bring in the barley before rain; the charge says so.                                                                                                                                                                                                            |
+| DL-2 | FAIL — the buttons and house tabs look tappable and Kavak selected visibly, but the map labels overlap so I cannot distinguish its places. The first attempt to find Kavak by button role was an automation failure; a coordinate tap worked.                                 |
+| DL-3 | PASS — the red barley call draws me first; slow is selected and Kavak is selected blue with a circled house. Rain in two days is the urgency, though the later dates compete with it.                                                                                         |
+| DL-4 | PASS — the repeat call is unavailable while the current call is open; another opens on 24 July, year one.                                                                                                                                                                     |
+| DL-5 | PASS — the call is underway; the charge says read replies, and I found We’ll be there under About. I can choose a household action.                                                                                                                                           |
 | DL-6 | FAIL — a meaningful harvest choice was visible at 9 seconds and I first sent it at 15 seconds, within 30 seconds. But the cover required reading about 55 story/instruction words before Take up the seal, above the roughly 40-word allowance. Cover input was at 5 seconds. |
-| DL-7 | PASS for 1 reached interaction — calling the hamlet changed the charge to Read the replies and disabled a second call until 24 July; About revealed We’ll be there. Other household actions NOT TESTED (0 executed). No help used. |
+| DL-7 | PASS for 1 reached interaction — calling the hamlet changed the charge to Read the replies and disabled a second call until 24 July; About revealed We’ll be there. Other household actions NOT TESTED (0 executed). No help used.                                            |
 
 ## Verbatim diary
 
@@ -38,7 +38,7 @@ UTC timestamps and elapsed seconds come from the live log. Reactions are the ori
 
 Input: Open game
 
-Reaction: 
+Reaction:
 
 
 
@@ -184,7 +184,7 @@ Reaction: I am leaving now. I like Yusuf and I want to help with food, but I am 
 
 Input: Post-stop desktop look at 1280x800
 
-Reaction: 
+Reaction:
 
 
 
@@ -200,22 +200,22 @@ Reaction: At 1280 by 800 I can distinguish the houses and read Yusuf’s whole p
 
 This evidence table supplements the diary; it does not rewrite its reactions.
 
-| Elapsed | Input or observation | Visible answer and screenshot |
-|---|---|---|
-| 0 s | Open | Steward's purpose; “The rain will not wait.” Clear “Take up the seal” button. `00-opening.png`. |
-| 9 s | First valley view | “Call households to cut the landowner’s barley before the rain.” Today is 18 July; note says rain in two days. Harvest button visible. `02-valley.png`. |
-| 15 s | Send harvest call | Charge changes to “Read the replies to your standing call”; repeated call becomes unavailable until 24 July, year one. `03-call.png`. |
-| 30 s | Tap Kavak | Blue selected tab and circled house; “the Kavak house”, About and Close, household action selector. `04-kavak.png`. |
-| 56 / 72 s | About / checkpoint | “We’ll be there.” Household explanation continues below the small reading area into the action-panel boundary. `06-about.png`, `07-first-minute.png`. |
-| 104–110 s | Close, ledger | New-child invitation from Çoban becomes visible above the ledger: “Come and see the child, steward, if you will.” Go and Send your regrets. `11-ledger-settled.png`. |
-| 117 s | Go | Charge says to read the notebook while finishing the visit; date line says “you are walking to the Çoban house.” `12-go-child.png`. |
-| 123 s | Scroll ledger | Walking cue has gone. I did not see the visit conversation appear automatically in this view. Ledger shows “Years short” and term-end text at this scroll position. `13-scroll-ledger.png`. |
-| 128 s | Scroll back | 30 grain measures in granary; about 190 cut; about 120 standing. Due row is at the lower boundary, with its deadline out of view. `14-ledger-top.png`. |
-| 135–141 s | Notebook, Read more notes | Notes expand; the small viewport still shows the current refusal and controls, rather than the visit paragraph farther down. `15-notebook.png`, `16-more-notes.png`. |
-| 146 s | Scroll | Yusuf's paragraph appears: exhausted household, no sleep and no food since yesterday. Sentence ends in view at “Don’t tell my wife I” and continues below the action-panel boundary. `17-yusuf-start.png`. |
-| 152 s | Scroll again | Can finish “told you.” and see the record of walking down to see the child. `18-yusuf-end.png`. |
-| 170 s | Stop | Charge now says barley is cut and suggests a household visit before threshing. Disabled call says harvest calls return on 30 June, year two. `19-stop-phone.png`. |
-| 170 s, after stop | One desktop look | Houses are distinguishable and Yusuf's paragraph fits at once in the right column. `20-desktop.png`. No gameplay resumed. |
+| Elapsed           | Input or observation      | Visible answer and screenshot                                                                                                                                                                              |
+| ----------------- | ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0 s               | Open                      | Steward's purpose; “The rain will not wait.” Clear “Take up the seal” button. `00-opening.png`.                                                                                                            |
+| 9 s               | First valley view         | “Call households to cut the landowner’s barley before the rain.” Today is 18 July; note says rain in two days. Harvest button visible. `02-valley.png`.                                                    |
+| 15 s              | Send harvest call         | Charge changes to “Read the replies to your standing call”; repeated call becomes unavailable until 24 July, year one. `03-call.png`.                                                                      |
+| 30 s              | Tap Kavak                 | Blue selected tab and circled house; “the Kavak house”, About and Close, household action selector. `04-kavak.png`.                                                                                        |
+| 56 / 72 s         | About / checkpoint        | “We’ll be there.” Household explanation continues below the small reading area into the action-panel boundary. `06-about.png`, `07-first-minute.png`.                                                      |
+| 104–110 s         | Close, ledger             | New-child invitation from Çoban becomes visible above the ledger: “Come and see the child, steward, if you will.” Go and Send your regrets. `11-ledger-settled.png`.                                       |
+| 117 s             | Go                        | Charge says to read the notebook while finishing the visit; date line says “you are walking to the Çoban house.” `12-go-child.png`.                                                                        |
+| 123 s             | Scroll ledger             | Walking cue has gone. I did not see the visit conversation appear automatically in this view. Ledger shows “Years short” and term-end text at this scroll position. `13-scroll-ledger.png`.                |
+| 128 s             | Scroll back               | 30 grain measures in granary; about 190 cut; about 120 standing. Due row is at the lower boundary, with its deadline out of view. `14-ledger-top.png`.                                                     |
+| 135–141 s         | Notebook, Read more notes | Notes expand; the small viewport still shows the current refusal and controls, rather than the visit paragraph farther down. `15-notebook.png`, `16-more-notes.png`.                                       |
+| 146 s             | Scroll                    | Yusuf's paragraph appears: exhausted household, no sleep and no food since yesterday. Sentence ends in view at “Don’t tell my wife I” and continues below the action-panel boundary. `17-yusuf-start.png`. |
+| 152 s             | Scroll again              | Can finish “told you.” and see the record of walking down to see the child. `18-yusuf-end.png`.                                                                                                            |
+| 170 s             | Stop                      | Charge now says barley is cut and suggests a household visit before threshing. Disabled call says harvest calls return on 30 June, year two. `19-stop-phone.png`.                                          |
+| 170 s, after stop | One desktop look          | Houses are distinguishable and Yusuf's paragraph fits at once in the right column. `20-desktop.png`. No gameplay resumed.                                                                                  |
 
 ## Best, worst and leaving
 
@@ -239,15 +239,15 @@ At the stop, the barley had been cut according to the charge. I had sent one ham
 
 ## English, dates, phone layout and hands on
 
-| Item | Result | Evidence and limits |
-|---|---|---|
-| DL-20 | PASS for encountered action language | Call, barley, grain measures, Go, household names and instructions were understandable in English. About supplied “reeve (local overseer)”. No necessary untranslated setting term blocked an action. |
-| DL-21 | PASS for encountered date labels | At first play I could compare 18 July, year one, with the current call's 24 July, year one. Threshing on 5 August follows July; final next-harvest label explicitly says 30 June, year two. No translation needed. Deadline comparison after returning from a break: NOT TESTED; no break/resume. I did not bring the 15 September ledger row into the phone screenshot, so simultaneous readability of that date is not a pass. |
-| DL-22 | FAIL | Immediate controls were reachable, but essential reply/ledger context needed scrolling; map labels overlapped. See findings above. |
-| DL-30 | FAIL | Mid-sentence panel cutoffs in `07-first-minute.png` and `17-yusuf-start.png`. No evidence of stacked sheets; no “Scroll ↓” label encountered. |
-| DL-31 | FAIL | Person and today remained visible; harvest progress and final due date did not remain readable with the household order sheet. |
+| Item  | Result                                              | Evidence and limits                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| ----- | --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DL-20 | PASS for encountered action language                | Call, barley, grain measures, Go, household names and instructions were understandable in English. About supplied “reeve (local overseer)”. No necessary untranslated setting term blocked an action.                                                                                                                                                                                                                                  |
+| DL-21 | PASS for encountered date labels                    | At first play I could compare 18 July, year one, with the current call's 24 July, year one. Threshing on 5 August follows July; final next-harvest label explicitly says 30 June, year two. No translation needed. Deadline comparison after returning from a break: NOT TESTED; no break/resume. I did not bring the 15 September ledger row into the phone screenshot, so simultaneous readability of that date is not a pass.       |
+| DL-22 | FAIL                                                | Immediate controls were reachable, but essential reply/ledger context needed scrolling; map labels overlapped. See findings above.                                                                                                                                                                                                                                                                                                     |
+| DL-30 | FAIL                                                | Mid-sentence panel cutoffs in `07-first-minute.png` and `17-yusuf-start.png`. No evidence of stacked sheets; no “Scroll ↓” label encountered.                                                                                                                                                                                                                                                                                          |
+| DL-31 | FAIL                                                | Person and today remained visible; harvest progress and final due date did not remain readable with the household order sheet.                                                                                                                                                                                                                                                                                                         |
 | DL-32 | NOT TESTED for a greater-than-20-second forced wait | Go at 117 seconds showed walking; by the 123-second observation it had ended, an observed interval of at most about six seconds. I could read meanwhile. My later wish to feed Yusuf was not followed by a completed attempt because the controller could not operate the native action selector. I cannot establish that the game had no response or no hands-on act available. No longer stretch with only watching was established. |
-| DL-33 | Partial evidence; core-verb claim NOT TESTED | I called through an action selector plus the displayed call button. Go on the child invitation started the visit in one act. The resulting conversation was something I read later in notes; I did not speak a line, cook or deliver food. I wanted to help Yusuf, but did not complete that action. I cannot claim the game only permits forms for those unmet verbs. |
+| DL-33 | Partial evidence; core-verb claim NOT TESTED        | I called through an action selector plus the displayed call button. Go on the child invitation started the visit in one act. The resulting conversation was something I read later in notes; I did not speak a line, cook or deliver food. I wanted to help Yusuf, but did not complete that action. I cannot claim the game only permits forms for those unmet verbs.                                                                 |
 
 No judgment is offered on unmet choices. Other untested checks include full-speed live-choice slowdown, save/reload, game-menu contents, upload, replay, 200% text, 320 px reflow, exact hit-area measurements and all source/export builder checks. DL-28 was deliberately not exercised because sending was prohibited. There was no export.
 

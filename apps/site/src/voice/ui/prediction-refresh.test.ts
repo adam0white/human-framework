@@ -43,16 +43,25 @@ vi.mock('./transport.ts', () => ({
 }));
 vi.mock('../../shared/tick-loop.ts', () => ({ startTickLoop: () => () => {} }));
 
+function Harness({ capture }: { capture: (value: Voice) => void }) {
+  capture(useVoice());
+  return null;
+}
+
 it('refreshes the same draft on a newer frame, drops old replies and clears a withdrawn or unavailable forecast', async () => {
   let voice: Voice | undefined;
-  function Harness() {
-    voice = useVoice();
-    return null;
-  }
   const el = document.createElement('div');
   const root = createRoot(el);
   try {
-    flushSync(() => root.render(createElement(Harness)));
+    flushSync(() =>
+      root.render(
+        createElement(Harness, {
+          capture: (value) => {
+            voice = value;
+          },
+        }),
+      ),
+    );
     await Promise.resolve();
     const current = () => {
       if (!voice) throw new Error('Hook did not mount');
@@ -125,13 +134,17 @@ it('refreshes the same draft on a newer frame, drops old replies and clears a wi
 it('filters routine beat stops through recorded inputs and preserves manual, Why, loaded and failed-answer holds', async () => {
   channel.post.mockClear();
   let voice: Voice | undefined;
-  function Harness() {
-    voice = useVoice();
-    return null;
-  }
   const root = createRoot(document.createElement('div'));
   try {
-    flushSync(() => root.render(createElement(Harness)));
+    flushSync(() =>
+      root.render(
+        createElement(Harness, {
+          capture: (value) => {
+            voice = value;
+          },
+        }),
+      ),
+    );
     await Promise.resolve();
     await vi.waitFor(() =>
       expect(channel.post.mock.calls.some(([message]) => message.type === 'init')).toBe(true),
@@ -202,13 +215,17 @@ it('filters routine beat stops through recorded inputs and preserves manual, Why
 it('does not send an old run automatic resume after a replacement file was requested', async () => {
   channel.post.mockClear();
   let current: Voice | undefined;
-  function Harness() {
-    current = useVoice();
-    return null;
-  }
   const root = createRoot(document.createElement('div'));
   try {
-    flushSync(() => root.render(createElement(Harness)));
+    flushSync(() =>
+      root.render(
+        createElement(Harness, {
+          capture: (value) => {
+            current = value;
+          },
+        }),
+      ),
+    );
     await Promise.resolve();
     await vi.waitFor(() =>
       expect(channel.post.mock.calls.some(([message]) => message.type === 'init')).toBe(true),

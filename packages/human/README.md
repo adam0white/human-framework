@@ -27,14 +27,16 @@ Save these 20 lines as `quickstart.mjs`, then run `node quickstart.mjs`:
 
 ```js
 import {
-  createCommunity, createPerson, createVillage,
-  predict, stepCommunity, villagerSpec,
+  createCommunity,
+  createPerson,
+  createVillage,
+  predict,
+  stepCommunity,
+  villagerSpec,
 } from '@adam0white/human-framework';
 const start = 6 * 60; // simulation minutes
 const ids = ['ada', 'bora'];
-const people = ids.map((id, i) => createPerson(
-  villagerSpec(id, id, i + 1, { now: start, others: ids }),
-));
+const people = ids.map((id, i) => createPerson(villagerSpec(id, id, i + 1, { now: start, others: ids })));
 const world = createVillage(people, { seed: 7 });
 const community = createCommunity(people);
 const ada = community.people[0];
@@ -83,14 +85,14 @@ A suggestion is one urge among many. Its weight is strength × trust in the voic
 fits the person's motives, and a suggestion alone never overrides a veto. Each one resolves to a typed
 verdict (`SuggestionResolution`):
 
-| verdict | meaning | `kind` |
-|---|---|---|
-| `assented` | the suggested option won | none |
-| `deferred` | the person's own preference won; carries a `counterOffer` ("after I eat lunch") | `notNow` |
-| `modified` | a near alternative with the same action or aim won; the `counterOffer` names it | `notNow` |
-| `refused` | cannot (asleep, exhausted, skill far too low, a pressing bodily need) or will not (a firmly held norm, broken trust) | `cannot` / `willNot` |
-| `complied` | the voice insisted on a "not now"; done under protest (`activity.protest`), at a cost to autonomy and trust | `notNow` |
-| `commanded` | the host took direct control (see [Direct control](#direct-control)); the person does the order whatever they would have chosen | none |
+| verdict     | meaning                                                                                                                         | `kind`               |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
+| `assented`  | the suggested option won                                                                                                        | none                 |
+| `deferred`  | the person's own preference won; carries a `counterOffer` ("after I eat lunch")                                                 | `notNow`             |
+| `modified`  | a near alternative with the same action or aim won; the `counterOffer` names it                                                 | `notNow`             |
+| `refused`   | cannot (asleep, exhausted, skill far too low, a pressing bodily need) or will not (a firmly held norm, broken trust)            | `cannot` / `willNot` |
+| `complied`  | the voice insisted on a "not now"; done under protest (`activity.protest`), at a cost to autonomy and trust                     | `notNow`             |
+| `commanded` | the host took direct control (see [Direct control](#direct-control)); the person does the order whatever they would have chosen | none                 |
 
 Insisting (`insist: true`) turns only a `notNow` into compliance, and not when a bodily need is pressing. It
 never overrides `cannot` or `willNot`.
@@ -132,11 +134,11 @@ An offer describes expected effects. An outcome reports what happened. The host 
 contact, inventory and payment; HF uses the reported outcome to update the person. Do not copy
 `Affordance.advertises` into `Outcome.needs` as a general completion rule.
 
-| Host situation | Offer | Completion report |
-|---|---|---|
-| A person sleeps for part of the planned night. | Advertise typical sleep/rest benefits and set `mode: 'sleep'`. | Leave `sleep` and `rest` absent from `Outcome.needs`. `finish` advances the body to the actual end time and measures their change since the activity began. Explicit values replace that measurement; copying the advertisement can overstate the realized recovery reported to learning. |
-| A task promises four coins but actually pays two. | Set expected `Affordance.material` to four host units. | Update the host ledger by two and report `Outcome.material: 2`. A completed task does not imply the promised payment arrived. Report zero for no payment and a negative value for an actual cost. HF does not maintain the host's money ledger. |
-| A person can talk with someone who is present. | Tag the offer `social` when it really involves social contact; put participants in `with`. | Resolve actual participation. An empty room, a sleeping neighbour or someone who arrives after the conversation ends is not a completed encounter. Do not award contact or belonging merely because the activity uses a shared place. |
+| Host situation                                    | Offer                                                                                      | Completion report                                                                                                                                                                                                                                                                        |
+| ------------------------------------------------- | ------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| A person sleeps for part of the planned night.    | Advertise typical sleep/rest benefits and set `mode: 'sleep'`.                             | Leave `sleep` and `rest` absent from `Outcome.needs`.`finish` advances the body to the actual end time and measures their change since the activity began. Explicit values replace that measurement; copying the advertisement can overstate the realized recovery reported to learning. |
+| A task promises four coins but actually pays two. | Set expected `Affordance.material` to four host units.                                     | Update the host ledger by two and report `Outcome.material: 2`. A completed task does not imply the promised payment arrived. Report zero for no payment and a negative value for an actual cost. HF does not maintain the host's money ledger.                                          |
+| A person can talk with someone who is present.    | Tag the offer `social` when it really involves social contact; put participants in `with`. | Resolve actual participation. An empty room, a sleeping neighbour or someone who arrives after the conversation ends is not a completed encounter. Do not award contact or belonging merely because the activity uses a shared place.                                                    |
 
 For in-person activities, the host must establish co-presence and overlapping participation. HF has
 no map and does not discover companions. `with` names people taking part, not everyone assigned to a
@@ -314,7 +316,7 @@ that place lose appeal until the fear fades. Groups and factions themselves stay
   the bundled `DEFAULT_NORMS` is Islam-guided; each reference's verification status is listed in
   [research/norm-sources.md](https://github.com/adam0white/human-framework/blob/main/research/norm-sources.md)). A host with its own catalog passes it as
   `World.catalog`, so necessity excuses and exemptions read that catalog; a norm not in it is not excused.
-  A person holds an *understanding* of a norm, with a standing and a conviction. That understanding is
+  A person holds an _understanding_ of a norm, with a standing and a conviction. That understanding is
   not a ruling. The library never computes divine acceptance. Where schools of thought differ, the
   position the bundled catalog takes, and why, is recorded in
   [research/decisions.md](https://github.com/adam0white/human-framework/blob/main/research/decisions.md).
@@ -341,18 +343,30 @@ Use observations the person actually received; the host owns what those observat
 ```ts
 receiveMethodCues(learner, {
   contextId: 'observed-example',
-  cues: [{ cue: 'route', value: 'north' }, { cue: 'signal', value: 'clear' }],
+  cues: [
+    { cue: 'route', value: 'north' },
+    { cue: 'signal', value: 'clear' },
+  ],
 });
 demonstrateMethod(learner, {
-  id: 'routing-north', demonstrationId: 'example-1',
-  contextId: 'observed-example', sourceId: 'instructor',
-  conditions: [{ cue: 'route', value: 'north' }, { cue: 'signal', value: 'clear' }],
-  action: 'send-north', outcome: 'success',
+  id: 'routing-north',
+  demonstrationId: 'example-1',
+  contextId: 'observed-example',
+  sourceId: 'instructor',
+  conditions: [
+    { cue: 'route', value: 'north' },
+    { cue: 'signal', value: 'clear' },
+  ],
+  action: 'send-north',
+  outcome: 'success',
 });
 // A new parcel can share the learned observation structure.
 receiveMethodCues(learner, {
   contextId: 'new-parcel',
-  cues: [{ cue: 'route', value: 'north' }, { cue: 'signal', value: 'clear' }],
+  cues: [
+    { cue: 'route', value: 'north' },
+    { cue: 'signal', value: 'clear' },
+  ],
 });
 const evidence = methodEvidence(learner, 'send-north', 'new-parcel');
 // Offers for that parcel carry methodContext: 'new-parcel'.
@@ -369,39 +383,67 @@ HF 2.3.0 lets an attended explanation connect one current action to one possible
 
 ```ts
 import {
-  type Affordance, type ReceivedConsequence,
-  consequenceEvidence, createPerson, decide, perceive,
+  type Affordance,
+  type ReceivedConsequence,
+  consequenceEvidence,
+  createPerson,
+  decide,
+  perceive,
 } from '@adam0white/human-framework';
 
 const person = createPerson({
-  id: 'courier', name: 'Courier', seed: 19, now: 600,
-  bornAt: -30 * 365 * 1440, sex: 'female',
-  goals: [{
-    id: 'delivery', label: 'Deliver the parcel', serves: ['achievement'],
-    advancedBy: [{ action: 'deliver', amount: 1 }], importance: 0.8,
-    temporal: { halfLifeMinutes: 30 },
-  }],
+  id: 'courier',
+  name: 'Courier',
+  seed: 19,
+  now: 600,
+  bornAt: -30 * 365 * 1440,
+  sex: 'female',
+  goals: [
+    {
+      id: 'delivery',
+      label: 'Deliver the parcel',
+      serves: ['achievement'],
+      advancedBy: [{ action: 'deliver', amount: 1 }],
+      importance: 0.8,
+      temporal: { halfLifeMinutes: 30 },
+    },
+  ],
 });
 const route: ReceivedConsequence = {
-  id: 'access-window', revision: 0,
+  id: 'access-window',
+  revision: 0,
   trigger: { action: 'ask-access', targetId: 'keeper' },
   successor: { action: 'deliver', duration: 20, effort: 0.1 },
-  availableFrom: 620, availableUntil: 680, expiresAt: 800,
-  chance: 0.8, confidence: 0.9,
+  availableFrom: 620,
+  availableUntil: 680,
+  expiresAt: 800,
+  chance: 0.8,
+  confidence: 0.9,
 };
-perceive(person, [{
-  at: 600, channel: 'told', kind: 'explanation', actorId: 'keeper',
-  targetId: person.id, salience: 1,
-  summary: 'If your request succeeds, this route may become available.',
-  consequences: [route],
-}]);
+perceive(person, [
+  {
+    at: 600,
+    channel: 'told',
+    kind: 'explanation',
+    actorId: 'keeper',
+    targetId: person.id,
+    salience: 1,
+    summary: 'If your request succeeds, this route may become available.',
+    consequences: [route],
+  },
+]);
 const request: Affordance = {
-  id: 'ask', action: 'ask-access', label: 'Request access', targetId: 'keeper',
-  duration: 10, effort: 0.1, advertises: {},
+  id: 'ask',
+  action: 'ask-access',
+  label: 'Request access',
+  targetId: 'keeper',
+  duration: 10,
+  effort: 0.1,
+  advertises: {},
 };
-const offers: Affordance[] = [request,
-  { id: 'direct', action: 'deliver', label: 'Deliver directly',
-    duration: 180, effort: 0.1, advertises: {} },
+const offers: Affordance[] = [
+  request,
+  { id: 'direct', action: 'deliver', label: 'Deliver directly', duration: 180, effort: 0.1, advertises: {} },
 ];
 const decision = decide(person, offers);
 const evidence = consequenceEvidence(person, request); // pure; no RNG consumed
