@@ -109,6 +109,8 @@ function night(restricted: boolean, arm: 'full' | 'doze-off' | 'estimate-off' | 
     if (p.activity?.interrupt?.reason === 'doze') {
       const act = p.activity;
       interruptedWorkMinutes.push(at - act.startedAt);
+      const sleep = { ...watch, mode: 'sleep' as const };
+      assert.equal(begin(p, sleep, decide(p, [sleep])), null);
       finish(p, { at, action: act.action, affordanceId: act.affordanceId, status: 'interrupted' });
     } else if (p.activity && at >= p.activity.endsAt) {
       const act = p.activity;
@@ -116,7 +118,7 @@ function night(restricted: boolean, arm: 'full' | 'doze-off' | 'estimate-off' | 
     }
     if (at === 180 || at === 300) {
       const asleep = p.body.asleep;
-      perceive(p, [alarm(p)]);
+      perceive(p, [{ ...alarm(p), at: at - 2 }]);
       if (asleep && !p.body.asleep) wakes.push(at);
     }
     if (at === 180) consume(p, { water: 0.5 });

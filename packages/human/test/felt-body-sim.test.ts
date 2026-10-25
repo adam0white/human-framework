@@ -113,7 +113,7 @@ test('onset resolves work interrupted even with no offered choice; sleeping idle
   if (alarmAt === undefined) throw new Error('Missing idle look');
   w.perceptsFor = (q) =>
     q.now === alarmAt
-      ? [{ at: q.now, channel: 'heard', kind: 'alarm', summary: 'Alarm', salience: 1, targetId: q.id }]
+      ? [{ at: q.now - 4, channel: 'heard', kind: 'alarm', summary: 'Alarm', salience: 1, targetId: q.id }]
       : [];
   stepCommunity(c, w, alarmAt);
   expect(p.body.asleep).toBe(false);

@@ -23,7 +23,10 @@ export function control(seed: number) {
     7: '05cc76932b558e67fb175c3ba5c7e4618eb3336f2171f28b488935da483987bc',
     42: '8fbf4cb72e3ab291f657d97e24d5c87c1796cae38e5735f23da6e5c457f2579b',
   };
-  if (result.stateHash !== legacyHash[seed]) throw new Error('Starter state differs from the HF2.22 base');
+  // HF2.22 used engine2.21. Compare behavior separately from the save's engine stamp.
+  const legacyState = { ...full, people: full.people.map((p) => ({ ...p, engine: '2.21.0' })) };
+  const continuationHash = createHash('sha256').update(JSON.stringify(legacyState)).digest('hex');
+  if (continuationHash !== legacyHash[seed]) throw new Error('Starter state differs from the HF2.22 base');
   if (result.repairs !== 4 || result.noWorkRepairs !== 0 || !result.restoredExact || !result.replayExact)
     throw new Error(JSON.stringify(result));
   return result;

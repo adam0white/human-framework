@@ -248,6 +248,7 @@ export function validatePersonaProjection(input: unknown): PersonaProjectionSnap
   // The 2.14.1 and 2.17.0 portable fields retain their semantics across the bodily opt-ins.
   const compatibleEngine =
     input.source.engine === ENGINE_VERSION ||
+    input.source.engine === '2.21.0' ||
     input.source.engine === '2.17.0' ||
     input.source.engine === '2.14.1';
   if (input.source.schema !== PERSON_SCHEMA || !compatibleEngine)

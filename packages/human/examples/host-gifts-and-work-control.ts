@@ -3,7 +3,7 @@
  * Two local inventories hold whole loaves. Offers use an admitted stock sighting;
  * only resolution reads stock truth. Gifts need no invented joint consent protocol.
  * This synchronous, in-memory control is not storage, a generic inventory system,
- * Valley mixed-routine integration, social realism, or evidence of player feel.
+ * a host’s mixed-routine integration, social realism, or evidence of player feel.
  */
 import assert from 'node:assert/strict';
 import {

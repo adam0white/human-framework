@@ -10,12 +10,21 @@ The release version is the package version and `FRAMEWORK_VERSION`, tagged `vX.Y
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
+## [2.23.0] - 2026-10-25
+
+Engine: 2.23.0. Doze and plain-English fixes change opted-in runs. Runs using neither option retain exact state and seeded RNG continuation after normalizing engine metadata. Existing saves restore under the corrected rules; replay old opted-in runs with their original package.
+
+- A dozing person can wake from a detectable urgent percept that occurred during the current doze span and arrived at a later checkpoint. Other delivered percepts pass through ordinary bounded attention instead of being discarded.
+- `begin` refuses every replacement of unfinished dozed work, including voluntary sleep and choices made after waking. Hosts must call `finish` for the interrupted activity first.
+- Correct plain-English shared-task proposals, interrupted-doze logs, named held-rule and trust descriptions, listener memories, singular urge counts, bodily-state lists and bladder explanations. Listener wording follows the listener's plain-English choice; mixed-lexicon conversations can therefore produce different stored memories. Legacy conversation and actor narration remain unchanged when plain English is absent; the explicitly called `qalbReading` reader now names its subjects.
+- Replace application-specific wording in framework comments and examples with neutral descriptions.
+
 ## [2.22.0] - 2026-10-25
 
 Engine: 2.21.0. The new observation input is explicit. Existing input behavior and saved Person shape are unchanged; legacy continuation remains byte-identical.
 
 - Add explicit inherited aptitude for `observeSkill` and attended demonstrations. Earlier observation calls retain their exact rate, state and RNG, including authored families.
-- Add a reset-world prospect identity control and host guidance. Current progress can fall while the peak and advancement clock persist; stale abandonment still applies. This does not resolve the island task carry result.
+- Add a reset-world prospect identity control and host guidance. Current progress can fall while the peak and advancement clock persist; stale abandonment still applies. This does not improve the measured performance of moving objects to a destination across repeated world resets.
 
 ## [2.21.0] - 2026-10-25
 

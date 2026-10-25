@@ -39,7 +39,9 @@
  * selection nor repetition rules; the host still owns the relay graph and disclosure. It does not establish
  * that an origin is truthful, expose deceit to the listener, or infer who else heard a claim.
  */
+
 import { clamp01, expit, round } from '../core/index.ts';
+import { nameOf as listenerNameOf } from '../narrate/lexicon.ts';
 import {
   isDeceased,
   isUnfavourableTrait,
@@ -367,10 +369,10 @@ export function converse(speaker: Person, listener: Person, ctx: ConverseContext
       actorId: speaker.id,
       salience: round(0.3 + 0.4 * c.confidence),
       claims: [{ prop: c.prop, value: c.value, confidence: c.confidence }],
-      summary: speaker.lexicon?.plainEnglish
+      summary: listener.lexicon?.plainEnglish
         ? c.about !== undefined
-          ? `${nameOf(speaker)} says ${speaker.lexicon.names?.[c.about] ?? c.about} ${c.prop.split(':')[1] === 'owes' ? `${c.value ? 'owes' : 'does not owe'} money to ${speaker.lexicon.names?.[c.prop.split(':').slice(2).join(':')] ?? c.prop.split(':').slice(2).join(':')}` : `is ${c.value ? '' : 'not '}${c.prop.split(':')[1] ?? ''}`}.`
-          : `${nameOf(speaker)} says this is ${c.value ? 'true' : 'false'}: ${c.prop}.`
+          ? `${listener.lexicon.names?.[speaker.id] ?? nameOf(speaker)} says ${listenerNameOf(listener, c.about)} ${c.prop.split(':')[1] === 'owes' ? `${c.value ? 'owes' : 'does not owe'} money to ${listenerNameOf(listener, c.prop.split(':').slice(2).join(':'))}` : `is ${c.value ? '' : 'not '}${c.prop.split(':')[1] ?? ''}`}.`
+          : `${listener.lexicon.names?.[speaker.id] ?? nameOf(speaker)} says this is ${c.value ? 'true' : 'false'}: ${c.prop}.`
         : c.about !== undefined
           ? `${nameOf(speaker)} says ${c.about} is ${c.value ? '' : 'not '}${c.prop.split(':')[1] ?? ''}`
           : `${nameOf(speaker)} says ${c.prop} is ${c.value ? 'so' : 'not so'}`,
@@ -414,8 +416,8 @@ export function converse(speaker: Person, listener: Person, ctx: ConverseContext
       valence: 0.1,
       salience: round(0.4 + 0.3 * a.strength),
       claims: [{ prop: `advice:${a.action}`, value: true, confidence: round(a.cred) }],
-      summary: speaker.lexicon?.plainEnglish
-        ? `${nameOf(speaker)} suggests this action: ${a.action.replace(/[-_]/g, ' ')}.`
+      summary: listener.lexicon?.plainEnglish
+        ? `${listener.lexicon.names?.[speaker.id] ?? nameOf(speaker)} suggests this action: ${a.action.replace(/[-_]/g, ' ')}.`
         : `${nameOf(speaker)} says I should ${a.action}`,
     };
     if (ctx.provenance) {

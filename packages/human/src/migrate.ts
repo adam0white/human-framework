@@ -52,6 +52,11 @@ function renameAmbient(json: Json): Json {
 
 /** The chain, keyed by the version each step upgrades from. */
 export const MIGRATIONS: Readonly<Record<string, MigrationStep>> = {
+  '2.21.0': {
+    to: '2.23.0',
+    note: 'shape unchanged; doze delivery and plain narration fixes apply to opted-in runs',
+    apply: stamp,
+  },
   '2.17.0': {
     to: '2.21.0',
     note: 'doze and bladder state start absent; old callers retain their continuation',

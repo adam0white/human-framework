@@ -340,7 +340,10 @@ export function describePerson(p: Person, lexicon?: Lexicon): string {
     ? `${p.activity.action}${p.activity.targetId ? ` (${p.activity.targetId})` : ''}`
     : phraseLine('describe.idle', {}, lex);
   if (lex?.plainEnglish) {
-    const state = bits.length > 0 ? bits.join(', ') : phraseLine('describe.well', {}, lex);
+    const state =
+      bits.length > 1
+        ? `${bits.slice(0, -1).join(', ')} and ${bits.at(-1)}`
+        : (bits[0] ?? phraseLine('describe.well', {}, lex));
     const activity = p.activity
       ? `${p.name} is doing this: ${p.activity.affordance.label}${p.activity.targetId ? ` (${nameOf(p, p.activity.targetId, lex)})` : ''}.`
       : `${p.name} is ${phraseLine('describe.idle', {}, lex)}.`;

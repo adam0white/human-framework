@@ -222,7 +222,7 @@ reference host: `createVillage`.
 
 There are two version numbers, and they move independently.
 
-- **The release version** is the package version (`package.json`, currently `2.22.0`) and `FRAMEWORK_VERSION`, the same
+- **The release version** is the package version (`package.json`, currently `2.23.0`) and `FRAMEWORK_VERSION`, the same
   string compiled into the build; a test keeps them equal. It versions the public API under
   [semver](https://semver.org/): a breaking change to an exported name or signature bumps the major, a new
   faculty or export the minor, a fix the patch. Each release is a tag `vX.Y.Z` and a GitHub release whose notes
@@ -242,7 +242,7 @@ this policy.
 
 ## Optional felt body (2.21 release)
 
-`PersonSpec.enable.doze` accepts `{ posture: 'upright' | 'seated' | 'reclined', stimulation: number }`; `enableDoze` and `setDozeContext` are the explicit host calls. Doze onset is checked at integer-minute boundaries while awake. `readDoze` reports the current hazard; `nextDozeCheck` tells a manual host when to tick next. The opt-in costs one check per elapsed minute, including when onset gates are closed. It changes integration granularity, so enabled runs require a new replay pin. A dozed activity records `dozedAt`; the host resolves interrupted work. Doze does not wake spontaneously. `perceive` wakes only for a percept delivered at `p.now`, with `salience >= 0.8`, a heard/felt/social channel, detectable proximity (`near !== false`) and either `targetId === p.id` or `near === true`. The host must supply those alarms. These hazard and salience values are engineering constants.
+`PersonSpec.enable.doze` accepts `{ posture: 'upright' | 'seated' | 'reclined', stimulation: number }`; `enableDoze` and `setDozeContext` are the explicit host calls. Doze onset is checked at integer-minute boundaries while awake. `readDoze` reports the current hazard; `nextDozeCheck` tells a manual host when to tick next. The opt-in costs one check per elapsed minute, including when onset gates are closed. It changes integration granularity, so enabled runs require a new replay pin. A dozed activity records `dozedAt`; the host resolves interrupted work with `finish`. Until that call, `begin` refuses every replacement, including voluntary sleep and work chosen after waking. Doze does not wake spontaneously. `perceive` wakes for a delivered percept stamped within the current doze span through `p.now`, including an alarm that occurred between community checkpoints, with `salience >= 0.8`, a heard/felt/social channel, detectable proximity (`near !== false`) and either `targetId === p.id` or `near === true`. The host must supply those alarms. Other delivered percepts pass through ordinary bounded attention, as during voluntary sleep. These hazard and salience values are engineering constants.
 
 `estimateQuantity(p, { truth, difficulty })` is an explicit observation, not a display reader. Finite nonnegative truth and difficulty in `[0,1]` are required. A nonzero request consumes one draw from the person's saved seeded RNG; zero truth or zero difficulty returns truth with confidence 1 and consumes none. The result does not store a belief. Objective sleepiness widens its uniform error; perceived sleepiness determines confidence. Coefficients are engineering choices, not calibrated uncertainty intervals.
 

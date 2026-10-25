@@ -75,6 +75,7 @@ export function reasonLine(reason: string, lexicon?: Lexicon): string {
     'need:water': 'I need to drink first.',
     'need:sleep': 'I need to sleep first.',
     'need:rest': 'I need to rest first.',
+    'need:bladder': 'I need to use the toilet first.',
     'need:survival': 'I need to meet an urgent bodily need first.',
   };
   if (Object.hasOwn(lines, reason)) return lines[reason] ?? '';

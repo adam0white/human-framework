@@ -454,7 +454,7 @@ export function nafsPatterns(p: Person, inputs: { guiltLoad: Unit; guilt: Unit }
       ref: 'Qur’an 12:53',
       evident: assentedAgainstNorm.length > 0,
       evidence: p.lexicon?.plainEnglish
-        ? `The person acted on ${assentedAgainstNorm.length} recent urges despite a rule they hold.`
+        ? `The person acted on ${assentedAgainstNorm.length} recent ${assentedAgainstNorm.length === 1 ? 'urge' : 'urges'} despite a rule they hold.`
         : `${assentedAgainstNorm.length} recent prompts followed against a held norm`,
     },
     {
@@ -470,7 +470,7 @@ export function nafsPatterns(p: Person, inputs: { guiltLoad: Unit; guilt: Unit }
       ref: 'Qur’an 89:27',
       evident: letPass > 0 && assentedAgainstNorm.length === 0 && !reproach,
       evidence: p.lexicon?.plainEnglish
-        ? `${letPass} recent urges passed without action. ${assentedAgainstNorm.length} were acted on against a held rule. Current guilt or unresolved breach: ${reproach ? 'yes' : 'no'}.`
+        ? `${letPass} recent ${letPass === 1 ? 'urge' : 'urges'} passed without action. ${assentedAgainstNorm.length} ${assentedAgainstNorm.length === 1 ? 'was' : 'were'} acted on against a held rule. Current guilt or unresolved breach: ${reproach ? 'yes' : 'no'}.`
         : `${letPass} recent prompts let pass, none followed against a norm, no felt reproach`,
     },
   ];

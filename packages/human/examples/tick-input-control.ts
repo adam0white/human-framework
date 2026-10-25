@@ -119,7 +119,12 @@ for (let tick = 1; tick <= 1440; tick++) {
     restoreExact = hash(sa) === hash(save(a)) && hash(sb) === hash(save(b));
   }
 }
-const legacyHash = digest(legacy);
+// The HF2.22 baseline used engine2.21; full replay/restore checks above keep current stamps.
+const legacyState = save(legacy);
+const legacyHash = hash({
+  ...legacyState,
+  p: legacyState.p.map((p) => ({ ...p, engine: '2.21.0' })),
+});
 const legacyExact = legacyHash === '8d02c5e917be4584fab1ab0628b161ce08cba62b7dc9f60175d269060da084a2';
 const pass =
   !mismatches.length &&

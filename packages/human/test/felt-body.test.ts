@@ -116,7 +116,7 @@ test('closed gates, reads and direct body integration do not sample onset', () =
   expect(p).toEqual(before);
 });
 
-test('only current detectable waking channels wake before attention; repeated input cannot rewrite sleep', () => {
+test('only detectable alarms from the current doze span wake; repeated input cannot rewrite sleep', () => {
   const p = person();
   onset(p);
   const before = snapshot(p);
@@ -128,9 +128,9 @@ test('only current detectable waking channels wake before attention; repeated in
     { ...alarm(p), channel: 'saw' as const },
     { ...alarm(p), targetId: 'other' },
   ])
-    expect(perceive(p, [pc])).toEqual([]);
+    perceive(p, [pc]);
   expect(perceive(p, [])).toEqual([]);
-  expect(p).toEqual(before);
+  expect(p.body).toEqual(before.body);
   perceive(p, [alarm(p)]);
   expect(p.body.asleep).toBe(false);
   expect(p.body.lastSleep).toEqual({ from: p.now, to: p.now });
@@ -348,4 +348,37 @@ test('unresolved doze stops work load and practice, preserves prior interrupt, a
 test('new body defaults cannot be mutated outside saved state', () => {
   expect(Object.isFrozen(DOZE_DEFAULTS)).toBe(true);
   expect(Object.isFrozen(BLADDER_DEFAULTS)).toBe(true);
+});
+
+test('interval-delivered alarms wake and non-waking percepts still reach memory', () => {
+  const p = person();
+  const since = onset(p);
+  tick(p, since + 10);
+  const quietPercept = { ...alarm(p), at: since + 2, salience: 0.7, summary: 'A nearby bell sounds' };
+  expect(perceive(p, [quietPercept])).toContainEqual(quietPercept);
+  expect(p.body.asleep).toBe(true);
+  expect(p.memory.episodes.some((e) => e.summary === quietPercept.summary)).toBe(true);
+  const delayed = { ...alarm(p), at: since + 4 };
+  expect(perceive(p, [delayed])).toContainEqual(delayed);
+  expect(p.body.asleep).toBe(false);
+  expect(p.body.lastSleep).toEqual({ from: since, to: since + 10 });
+});
+
+test('begin refuses every replacement of unresolved dozed work, including after waking', () => {
+  const p = person();
+  begin(p, work, decide(p, [work]));
+  onset(p);
+  const sleep = { ...work, mode: 'sleep' as const };
+  const record = decide(p, [sleep]);
+  const before = snapshot(p);
+  expect(begin(p, sleep, record)).toBeNull();
+  expect(p).toEqual(before);
+  tick(p, p.now + 5);
+  perceive(p, [{ ...alarm(p), at: p.now - 2 }]);
+  expect(p.body.asleep).toBe(false);
+  const awake = snapshot(p);
+  expect(begin(p, work, record)).toBeNull();
+  expect(p).toEqual(awake);
+  finish(p, { at: p.now, action: work.action, affordanceId: work.id, status: 'interrupted' });
+  expect(begin(p, work, decide(p, [work]))).not.toBeNull();
 });

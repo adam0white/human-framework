@@ -1,4 +1,4 @@
-/** Hearsay 2 control: composite equals manual correction; belief-only leaves the tie stale. */
+/** Observed-trait correction control: composite equals manual correction; belief-only leaves the tie stale. */
 import assert from 'node:assert/strict';
 import { believe, confirm, credence } from '../src/beliefs/beliefs.ts';
 import { confirmObservedReputation } from '../src/observed-reputation.ts';

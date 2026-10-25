@@ -1,5 +1,5 @@
 /**
- * SCOPE: opt-in minute-grid involuntary onset and current urgent-percept waking. Cole 1989
+ * SCOPE: opt-in minute-grid involuntary onset and interval-delivered urgent-percept waking. Cole 1989
  * (PMID 2606843) supports posture context; auditory arousal studies (PMIDs 8776786,
  * 8153254) distinguish arousal from attention. None calibrates these engineering gates,
  * hazard weights or salience. No stages, inertia, spontaneous wake or clinical prediction.
@@ -28,13 +28,16 @@ function context(raw: unknown): DozeContext | undefined {
 }
 /**
  * Enable involuntary doze without drawing RNG. Idempotent; off when absent.
- * Hosts must deliver current, detectable heard/felt/social alarms with salience >= 0.8
+ * Hosts must deliver detectable heard/felt/social alarms with salience >= 0.8
  * to this person (targetId, or near: true). There is no spontaneous wake: without such
- * percepts sleep continues. The community driver checks percepts on its ordinary idle cadence.
+ * percepts sleep continues. Alarm timestamps must be within the current doze span
+ * through p.now; delayed interval delivery can wake. Other delivered percepts still
+ * pass through ordinary bounded attention, as during voluntary sleep. The community driver checks percepts on its ordinary idle cadence.
  * Enabled tick integration uses one-minute boundaries even with closed gates or during sleep;
  * cost is O(elapsed minutes) and continuous state can differ from the absent opt-in arm.
  * Closed gates draw no onset RNG; passive community checkpoints do not call choice.
- * Activity.dozedAt pins stopped work until the host resolves it, even after an alarm;
+ * Activity.dozedAt pins stopped work until the host resolves it with finish, even after an alarm;
+ * begin refuses all replacements while that pin remains;
  * the pending interrupt reason may retain an earlier host/percept cause.
  */
 export function enableDoze(p: Person, input: DozeContext): void {

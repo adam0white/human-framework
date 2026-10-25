@@ -1035,19 +1035,20 @@ function judgeDeed(p: Person, actor: string, pc: Percept, at: Minute): number {
  */
 export function perceive(p: Person, percepts: readonly Percept[], options: PerceiveOptions = {}): Percept[] {
   if (percepts.length === 0 || !p.body.alive) return [];
-  if (p.body.doze?.since !== undefined) {
+  const dozeSince = p.body.doze?.since;
+  if (dozeSince !== undefined) {
     const wakes = percepts.some(
       (pc) =>
         Number.isFinite(pc.at) &&
-        pc.at === p.now &&
+        pc.at >= dozeSince &&
+        pc.at <= p.now &&
         Number.isFinite(pc.salience) &&
         pc.salience >= DOZE_DEFAULTS.wakeSalience &&
         pc.near !== false &&
         (pc.targetId === p.id || pc.near === true) &&
         (pc.channel === 'heard' || pc.channel === 'felt' || pc.channel === 'social'),
     );
-    if (!wakes) return [];
-    wakeDoze(p, p.now);
+    if (wakes) wakeDoze(p, p.now);
   }
   const body = readBodyOf(p);
   const attended = attend(p, [...percepts], {
@@ -1387,14 +1388,18 @@ function thresholdFor(p: Person, load: BodyLoad, review: number): Minute | undef
   return Number.isFinite(t) ? p.now + t : undefined;
 }
 
-/** Start an activity chosen by `record`. Returns null when the person is dead. */
+/**
+ * Start an activity chosen by `record`. Returns null when dead, or when dozed work
+ * is unresolved. Call `finish` for the stopped activity before starting any replacement,
+ * including voluntary sleep or an activity chosen after a waking percept.
+ */
 export function begin(
   p: Person,
   aff: Affordance,
   record: DecisionRecord,
   opts: BeginOptions = {},
 ): Activity | null {
-  if (!p.body.alive) return null;
+  if (!p.body.alive || p.activity?.dozedAt !== undefined) return null;
   if (p.body.doze?.since !== undefined && aff.mode !== 'sleep') return null;
   const now = p.now;
   if (p.pursuit) {

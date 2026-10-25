@@ -1098,14 +1098,23 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
         if (act.interrupt) c.interrupts[p.id] ??= { ...act.interrupt };
         const outcome = world.resolve(p, act, 'interrupted');
         finish(p, outcome, finishOpts(world));
-        log({
-          at: t,
-          personId: p.id,
-          kind: 'finish',
-          detail: `${act.action} interrupted by doze`,
-          action: act.action,
-          status: outcome.status,
-        });
+        log(
+          {
+            at: t,
+            personId: p.id,
+            kind: 'finish',
+            detail:
+              outcome.summary ??
+              (p.lexicon?.plainEnglish
+                ? `${p.name} stopped the task “${act.affordance.label}” because they dozed off.`
+                : `${act.action} interrupted by doze`),
+            decisionId: act.decisionId,
+            affordanceId: act.affordanceId,
+            action: act.action,
+            status: outcome.status,
+          },
+          outcome.summary !== undefined,
+        );
       }
       c.idleUntil[p.id] = t + quantum;
       if (!ordinaryDue) continue;
@@ -1252,13 +1261,13 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
           detail: p.lexicon?.plainEnglish
             ? proposal.status === 'declined'
               ? `The shared task “${chosen.label}” could not start because a partner was unavailable.`
-              : `${chosen.label} with ${proposal.partnerIds.map((id) => personById(c, id)?.name ?? id).join(', ')}`
+              : `${p.name} proposed the shared task “${chosen.label}” with ${proposal.partnerIds.map((id) => personById(c, id)?.name ?? id).join(', ')}.`
             : `${chosen.label} with ${proposal.partnerIds.join(', ')}`,
           affordanceId: chosen.id,
           action: chosen.action,
           jointId: proposal.id,
         },
-        Boolean(p.lexicon?.plainEnglish && proposal.status === 'declined'),
+        Boolean(p.lexicon?.plainEnglish),
       );
       continue;
     }

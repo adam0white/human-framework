@@ -1,6 +1,6 @@
 /**
  * SCOPE: opt-in composition of beliefs.confirm and social.applyReputationBelief, in that order.
- * Owns no state or formula. This is the Hearsay 2 wrapper: direct observation corrects the belief,
+ * Owns no state or formula. This host composition handles observed-trait correction: direct observation corrects the belief,
  * recalibrates its sources and applies the credence change to the subject's relationship. It does
  * not infer opposite traits, accuse a source of lying, run attention or record a percept. Hosts
  * supply only observations their person has access to. Existing callers remain unchanged.

@@ -10,6 +10,9 @@
  * diagnostic mapping. Sign/zero categories below are engineering descriptions of stored values,
  * not religious categories. Mood and interpersonal trust imply nothing about faith.
  */
+import { DEFAULT_NORMS } from './conscience/catalog.ts';
+import { nameOf } from './narrate/lexicon.ts';
+import { normLabel } from './presentation.ts';
 import type { Person } from './types.ts';
 
 export interface QalbDescription {
@@ -49,12 +52,16 @@ export function qalbReading(p: Person): QalbDescription[] {
   if (!p.conscience.norms.length)
     add('held-norm', 'unrecorded', 'Their records contain no held rules.', ['conscience.norms']);
   for (const n of p.conscience.norms) {
+    const rule = normLabel(
+      DEFAULT_NORMS.find((rule) => rule.id === n.normId) ?? { id: n.normId, label: n.normId },
+      { ...p.lexicon, plainEnglish: true },
+    );
     add(
       'held-norm',
       n.conviction === 0 ? 'no-conviction' : 'held-understanding',
       n.conviction === 0
-        ? 'They have a recorded rule with no stated conviction.'
-        : 'They hold an understanding of this rule. This is their view.',
+        ? `They have a recorded rule, “${rule}”, with no stated conviction.`
+        : `They hold an understanding of the rule “${rule}”. This is their view.`,
       [`norm:${n.normId}`, `standing:${n.standing}`, 'conscience.norms.conviction'],
     );
   }
@@ -71,9 +78,7 @@ export function qalbReading(p: Person): QalbDescription[] {
   add(
     'mood',
     p.affect.mood.arousal === 0 ? 'no-arousal' : 'some-arousal',
-    p.affect.mood.arousal === 0
-      ? 'Their recorded mood has no arousal.'
-      : 'Their recorded mood has some arousal.',
+    p.affect.mood.arousal === 0 ? 'Their recorded mood is calm.' : 'Their recorded mood is stirred.',
     ['affect.mood.arousal'],
   );
   // Keep stores distinct. Do not substitute relationship trust for source or advising-voice trust.
@@ -99,10 +104,10 @@ export function qalbReading(p: Person): QalbDescription[] {
     // 0.5 is the numeric range midpoint, not a faith threshold or personal baseline.
     const subject =
       t.store === 'social.relationships'
-        ? 'this person'
+        ? `the person ${nameOf(p, t.id)}`
         : t.store === 'will.voices'
-          ? 'this advising voice'
-          : 'this information source';
+          ? `the advising voice ${nameOf(p, t.id)}`
+          : `the information source ${nameOf(p, t.id)}`;
     add(
       'trust',
       t.trust < 0.5 ? 'below-midpoint' : t.trust > 0.5 ? 'above-midpoint' : 'at-midpoint',
