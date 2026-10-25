@@ -186,3 +186,11 @@ Commonstead branch protection is dropped. Friends’ playtests and Show HN are p
 > Yes keep the setting, fix and cater it better.
 
 Keep setting, places and personal names; make every sentence understandable without Turkish; translate common nouns; introduce the building’s caretaker in English and later use caretaker; retain at most two explained flavour words per game; keep faith quiet and sourced from research/; preserve meaning, rules and difficulty. This is a copy pass. Friends’ playtests and Show HN remain paused pending Adam’s readiness decision.
+
+## 2026-10-25 — Push HF and use every allowance (Adam, verbatim)
+
+> "codex reset its own limits, which we means we got a fresh week, as well as a banked reset expiring Oct 29th. Let's utilize codex abundantly."
+
+> "I think we can keep pushing HF further, especially with codex tokens. Keep using our allowance across codex, Claude, and workers AI every heartbeat"
+
+Coordinator reading: the heartbeat keeps work in flight instead of only checking. Codex workers build HF roadmap items (soonest targets first) and game fixes, one writer per repo, HF releases serialized. Claude does reading, taste and audits. Workers AI spends its daily free allowance on playtesters. The 5 GB disk guard and the existing review, test and release rules still apply.
