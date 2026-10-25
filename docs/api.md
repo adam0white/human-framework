@@ -329,7 +329,7 @@ interface PersonReadout {
 A partner chose the mirror.
 
 ```ts
-function acceptJoint(c: Community, world: World, proposal: JointProposal, partner: Person, partnerRecord: DecisionRecord, log?: (e: SimEvent) => void): Activity[];
+function acceptJoint(c: Community, world: World, proposal: JointProposal, partner: Person, partnerRecord: DecisionRecord, writeLog?: (e: SimEvent) => void): Activity[];
 ```
 
 #### addPerson
