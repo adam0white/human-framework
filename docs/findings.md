@@ -1,5 +1,11 @@
 # Findings
 
+## Community death clock limit (2026-10-25)
+
+**Negative result:** with HF3.1 community death handling, a future host `Outcome.at` can advance tied listeners and proposal survivors past `until` and intervening events. Hosts requiring bounded event order resolve at the event minute. This release adds no event queue, Person state or time oracle. The future catch-up audit remains P3, target2026-11-01 in [the roadmap](roadmap.md#1-framework-engine-changes-22).
+
+Conditioned observer forecasts copy target pregnancy and surroundings rather than infer observer knowledge. Warmth-through-25 upbringing has no marriage, parenthood or co-residence gate. These are model limits and engineering choices, not rulings. The replication controls are program regressions and rejection checks, not held-out human validation.
+
 ## Regular log byte budget (2026-10-25)
 
 Published client0.4.8 truncates logs by UTF-16 length. An isolated packed-artifact control with60 CJK logs exceeds the128KiB journal admission budget even when the journal is empty; later regular events remain blocked. ASCII sends. Client0.4.9 bounds redacted strings by JSON-escaped UTF-8 bytes, including escaped controls, and retains whole codepoints. Focused regressions fail before the fix and pass after it. This does not change feedback-note receipts or game state. External fix-forward delivery remains separate from source verification.

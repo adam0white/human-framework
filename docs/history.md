@@ -2,6 +2,10 @@
 
 Detail moved out of AGENTS.md on 2026-10-20 (owner: "Trim handoff and other documents"). AGENTS.md keeps one line per increment; the full text of each bounded increment as it stood in AGENTS.md is kept here verbatim.
 
+## HF 3.1 community death, upbringing and forecasts (2026-10-25)
+
+HF3.1.0 / engine3.1.0 publishes explicit community death handling, warmth-scaled upbringing through young adulthood including living guardians, and conditioned body forecasts. Hosts pin the options and supply them after restore; no new Person state or implicit opt-in is added. Three controls pass against the downloaded package. Complete default continuation and restored published3.0 snapshots match apart from Person engine metadata. Independent Codex and Claude Opus reviews found missing migration and partial joint starts; focused fixes also correct a later participant's ended-versus-interrupted classification. Final checks, exact CI, trusted publication and integrity/provenance verification are recorded in [releases](releases.md#hf-releases). Q26, Q28, Q29, Q30 and Q31/Q32 are complete. Other roadmap targets remain open. Site deployment is pending; games remain on actual HF3.0 and owner readiness remains separate.
+
 ## HF 3.0 API migration and maintenance (2026-10-25)
 
 HF3.0.0 ships engine2.23.0 with deprecated forms removed, explicit Person composite names, one callable routine source and the retained assignment-based tuning contract. Same-runtime canonical input ordering is public; speech/starter APIs have concrete November3 deliverable plans and bounded five-seed controls. Dependency/tooling and compatibility-date maintenance, dead-code cleanup and migration checks passed independent Codex and Claude Opus reviews, full checks, exact CI and npm provenance verification. Client0.4.10/kit0.5.11 use one HF3 runtime. [Release receipts](releases.md) distinguish published artifacts from the ongoing fifteen-game adoption, maintenance and ask dispositions; owner readiness is still separate.
