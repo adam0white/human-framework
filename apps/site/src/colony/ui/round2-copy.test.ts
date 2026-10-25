@@ -55,9 +55,11 @@ function suggestionMarkup(cards: OrderCard[]) {
 
 describe('Well round 2 task copy', () => {
   it('describes repeat work and infers the task from the selected village current world', () => {
-    expect(sameJobCopy('gather-timber', 'yusuf')).toBe('Already gathering timber: keeps him at it');
-    expect(sameJobCopy('cook', 'maryam')).toBe('Already cooking: keeps her at it');
-    expect(sameJobCopy('build', 'samira')).toBe('Already building: keeps her at it');
+    expect(sameJobCopy('gather-timber', 'yusuf')).toBe(
+      'They are already gathering timber. This asks him to keep doing it.',
+    );
+    expect(sameJobCopy('cook', 'maryam')).toBe('They are already cooking. This asks her to keep doing it.');
+    expect(sameJobCopy('build', 'samira')).toBe('They are already building. This asks her to keep doing it.');
     expect(inferredJob(frame, 'forest')).toBe('gather-timber');
     expect(inferredJob(frame, 'cedar')).toBe('fell-cedar');
     expect(inferredJob({ ...frame, humanWorld: { ...frame.humanWorld, cedarFelled: true } }, 'cedar')).toBe(
@@ -95,9 +97,7 @@ describe('Well round 2 task copy', () => {
       humanWorld: { ...frame.humanWorld, project: { kind: 'storeroom' as const, stage: 1, stages: 6 } },
     };
     const node = markup(createElement(VillageStrip, { frame: next, side: 'human' }));
-    expect(node.querySelector('.lk-chips')?.textContent).toContain(
-      `Store-room by ${dayClock(deadline).replace('D', 'Day ')}`,
-    );
+    expect(node.querySelector('.lk-chips')?.textContent).toContain(`Store-room by ${dayClock(deadline)}`);
     expect(node.querySelector('.lk-chips')?.textContent).toContain('Meals 0 / 12');
     expect(node.querySelector('.lk-chips')?.textContent).not.toContain('Storm');
     expect(node.querySelector('details')?.textContent).toContain('Storm passed');

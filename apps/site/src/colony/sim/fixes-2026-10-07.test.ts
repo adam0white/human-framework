@@ -59,7 +59,7 @@ describe('2026-10-07 export fixes', () => {
     expect(card?.human.state).toBe('notNow');
     expect(card?.human.label).toBe('when the store runs low');
     expect(card?.status).toBe('active');
-    expect(g.predict({ personId: 'maryam', placeId: 'kitchen' }).text).toBe('Later: food enough put by');
+    expect(g.predict({ personId: 'maryam', placeId: 'kitchen' }).text).toBe('Later: enough food stored');
   });
 
   it('the not-on-offer answer names the cause: in the storm the fire is out', () => {

@@ -64,7 +64,7 @@ describe('Well source-unread retest follow-up', () => {
   it('keeps roof and survival deadlines outside the collapsed goal labels', () => {
     const node = render(createElement(GoalStrip, { goals: frame.goals }));
     expect(node.querySelector('.goal-deadlines')?.textContent).toBe(
-      'Roof before D2 19:00Everyone lives by D3 05:00',
+      'Roof before Day 2 19:00Everyone lives by Day 3 05:00',
     );
     expect(node.querySelector('.goal-deadlines')?.closest('.goal-label')).toBeNull();
     expect(node.querySelector('.goal-strip-toggle')?.getAttribute('aria-expanded')).toBe('false');
@@ -73,7 +73,7 @@ describe('Well source-unread retest follow-up', () => {
   it('reads current deadlines from the goals, including the optional third day', () => {
     const goals = frame.goals.map((g) => ({ ...g, deadlineMinute: g.deadlineMinute + 1440 }));
     expect(render(createElement(GoalStrip, { goals })).querySelector('.goal-deadlines')?.textContent).toBe(
-      'Roof before D3 19:00Everyone lives by D4 05:00',
+      'Roof before Day 3 19:00Everyone lives by Day 4 05:00',
     );
     expect(render(createElement(GoalStrip, { goals: [] })).querySelector('.goal-deadlines')).toBeNull();
   });

@@ -410,7 +410,7 @@ export const VILLAGERS: readonly VillagerSpec[] = [
     satiety: 0.45,
     trust: 0.5,
     prays: true,
-    line: 'Widow, everyone’s grandmother. Cooks at 06:30, 12:00 and 18:00 by habit.',
+    line: 'She is a widow whom everyone treats as their grandmother. She usually cooks at 06:30, 12:00 and 18:00.',
   },
   {
     id: 'yusuf',
@@ -426,7 +426,7 @@ export const VILLAGERS: readonly VillagerSpec[] = [
     satiety: 0.45,
     trust: 0.5,
     prays: true,
-    line: 'Maryam’s son, Tariq’s father. Keeps promises; prays on time.',
+    line: 'He is Maryam’s son and Tariq’s father. He keeps his promises and prays on time.',
   },
   {
     id: 'tariq',
@@ -442,7 +442,7 @@ export const VILLAGERS: readonly VillagerSpec[] = [
     satiety: 0.45,
     trust: 0.75,
     prays: true,
-    line: 'Yusuf’s son. Eager, learns fast, trusts your voice most.',
+    line: 'He is Yusuf’s son. He is eager to help, learns quickly and trusts your orders most.',
   },
   {
     id: 'idris',
@@ -458,7 +458,7 @@ export const VILLAGERS: readonly VillagerSpec[] = [
     satiety: 0.3,
     trust: 0.5,
     prays: true,
-    line: 'Forester, Yusuf’s friend. Low fear, high ambition: the cedar tempts him.',
+    line: 'He works in the forest and is Yusuf’s friend. He is ambitious and rarely afraid, so he wants to cut down the cedar.',
   },
   {
     id: 'samira',
@@ -474,7 +474,7 @@ export const VILLAGERS: readonly VillagerSpec[] = [
     satiety: 0.45,
     trust: 0.5,
     prays: true,
-    line: 'Idris’s wife. Careful; weighs risk double and offers to go “with someone”.',
+    line: 'She is Idris’s wife. She is careful, gives danger twice as much weight and offers to go “with someone”.',
   },
   {
     id: 'danyal',
@@ -490,7 +490,7 @@ export const VILLAGERS: readonly VillagerSpec[] = [
     satiety: 0.45,
     trust: 0.5,
     prays: false,
-    line: 'Christian widower, Maryam’s old friend. Keeps the well and his own grain jar.',
+    line: 'He is a Christian widower and Maryam’s old friend. He looks after the well and keeps his own jar of grain.',
   },
 ];
 

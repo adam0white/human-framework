@@ -25,7 +25,7 @@ export function hhmm(m: Minute): string {
 
 /** "D2 19:00" for a sim minute. */
 export function dayClock(m: Minute): string {
-  return `D${clockOf(m).day} ${hhmm(m)}`;
+  return `Day ${clockOf(m).day} ${hhmm(m)}`;
 }
 
 /** Shown wherever Classic lacks something the Human side has (playtest item 16). */

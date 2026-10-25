@@ -118,7 +118,7 @@ export const PeopleRows = memo(function PeopleRows(props: {
             onClick={() => props.onSelect(r.id)}
           >
             <Portrait id={r.id} size={18} />
-            <span className="prow-name">{settingWords(shortName(r.id))}</span>
+            <span className="prow-name">{shortName(r.id)}</span>
             <span className="prow-doing">{settingWords(activityDescription(r.label))}</span>
             {r.bars.map((b) =>
               'description' in b ? (

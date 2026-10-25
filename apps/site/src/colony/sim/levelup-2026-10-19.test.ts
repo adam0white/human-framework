@@ -34,7 +34,7 @@ function cedarRun(rules: ColonyRules): ColonyGame {
 
 describe('2026-10-19 level-up (colony-scenario@4)', () => {
   it('a "something else instead" answer names its reason under @4 and keeps the @3 line under @3', () => {
-    expect(sayLine(modified, 4)).toBe("Not that — I'll draw water; that is my work.");
+    expect(sayLine(modified, 4)).toBe('I will draw water instead, because that is my work.');
     expect(sayLine(modified, 3)).toBe("Not that — I'll draw water.");
     expect(sayLine({ ...modified, reason: 'habit' } as SuggestionResolution, 4)).toBe(modified.says);
   });
@@ -102,7 +102,9 @@ describe('2026-10-19 level-up (colony-scenario@4)', () => {
       stock: 13,
       wins: true,
     });
-    expect(line).toMatch(/re-ordering Yusuf and Tariq to the house with Rush each time an order ended/);
+    expect(line).toMatch(
+      /Yusuf and Tariq received new orders to work at the house with Rush whenever their orders ended/,
+    );
     expect(line).toMatch(/One order at dawn is not enough/);
   });
 
@@ -118,7 +120,7 @@ describe('2026-10-19 level-up (colony-scenario@4)', () => {
           if (!r.review || !chosen) continue;
           if (!r.considered.some((c) => !c.vetoed && c.utility > chosen.utility)) continue;
           const why = g.why(v.id, r.id);
-          expect(why?.narration).toMatch(/already at it/);
+          expect(why?.narration).toMatch(/already doing this/);
           found += 1;
         }
       }

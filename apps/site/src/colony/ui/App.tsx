@@ -419,7 +419,7 @@ export function App() {
       ? `${shortName(newest.order.personId)} → ${PLACE_LABEL[newest.order.placeId]} · ${CHIP_TEXT[newest.human.state]} · “${newest.human.says ?? newest.human.label ?? ''}”`
       : flash ||
         (frame?.cards.length
-          ? 'Nothing waits for you. The villages work on their own.'
+          ? 'You do not need to make a choice now. The villages work on their own.'
           : 'Each order goes to both villages. Tap a person to begin.'));
   const title = frame
     ? `${dayClock(frame.minute)} · ${statusLine(frame).replace(/^Day \d+ of \d+ · /, '')}`
@@ -479,7 +479,7 @@ export function App() {
                 setNewsReturn(null);
               }}
             >
-              Showing {settingWords(shortName(person ?? following ?? 'idris'))} ·{' '}
+              Showing {shortName(person ?? following ?? 'idris')} ·{' '}
               {mapSide === 'human' ? 'Human' : 'Classic'} ← Back
             </button>
           ) : moment && moment.minute >= (frame?.news.at(-1)?.minute ?? -1) ? (
@@ -494,7 +494,7 @@ export function App() {
                 if (n) showNews(n);
               }}
             >
-              Hurt · {settingWords(shortName(frame.news.at(-1)?.personId ?? 'idris'))} (
+              Hurt · {shortName(frame.news.at(-1)?.personId ?? 'idris')} (
               {frame.news.at(-1)?.side === 'human' ? 'Human' : 'Classic'}) · Show
             </button>
           ) : null}
@@ -588,8 +588,8 @@ export function App() {
                           onChange={() => actions.restart(v)}
                         />
                         <span>
-                          {settingWords(VILLAGE_WORDS[v].choice)}
-                          <small>{settingWords(VILLAGE_WORDS[v].reply)}</small>
+                          {VILLAGE_WORDS[v].choice}
+                          <small>{VILLAGE_WORDS[v].reply}</small>
                         </span>
                       </label>
                     ))}
@@ -685,15 +685,14 @@ export function App() {
                       onClick={() => setSheet('suggestion')}
                     >
                       <strong>
-                        Suggestion · {settingWords(shortName(nudge.order.personId))} →{' '}
-                        {settingWords(PLACE_LABEL[nudge.order.placeId])}
+                        Suggestion · {shortName(nudge.order.personId)} → {PLACE_LABEL[nudge.order.placeId]}
                       </strong>
                       <small>
                         {choice?.underway
-                          ? 'Already underway in both villages.'
+                          ? 'They are already doing this in both villages.'
                           : (choice?.refusal ??
                             suggestionForecast?.text ??
-                            'Suggested earlier; availability may have changed.')}
+                            'This was suggested earlier. They may no longer be able to do it.')}
                       </small>
                     </button>
                     <button
@@ -756,9 +755,9 @@ export function App() {
                       <div className="well-reading">
                         <p>
                           {choice?.underway
-                            ? 'Already underway in both villages.'
+                            ? 'They are already doing this in both villages.'
                             : (suggestionForecast?.text ??
-                              'Suggested earlier; availability may have changed.')}
+                              'This was suggested earlier. They may no longer be able to do it.')}
                         </p>
                         <p>
                           {settingWords(
@@ -966,8 +965,8 @@ export function App() {
               {shelf ? (
                 <>
                   <p>
-                    Every order you give goes to both villages. Classic obeys. Human weighs your words against
-                    needs, duties and trust, and may say no or not yet.
+                    Every order you give goes to both villages. Classic obeys. Human considers your words
+                    alongside needs, duties and trust, and may say no or not yet.
                   </p>
                   <p>The bars and report compare your villages with the same villages receiving no orders.</p>
                   <p>
@@ -983,17 +982,20 @@ export function App() {
                 </>
               ) : interstitial ? (
                 <>
-                  <p>The store-room is six stages beside the house.</p>
-                  <p>A house without its roof is finished first.</p>
+                  <p>Building the store-room beside the house takes six steps.</p>
+                  <p>They finish the house’s roof before starting the store-room.</p>
                   <p>People remember Day 1 and Day 2.</p>
                 </>
               ) : (
                 <>
                   <p>
-                    Tap a person, then a place. The tile sends the order to both villages. The pencil is the
-                    Human side's likely answer. Risky work asks once more.
+                    Tap a person, then a place. Tapping the place sends the order to both villages. The pencil
+                    shows the Human side's likely answer. Risky work needs confirmation.
                   </p>
-                  <p>Rush is faster and hungrier. Insist may cost trust. An appeal gives them a reason.</p>
+                  <p>
+                    Rush makes them work faster and become hungrier. Insist may reduce their trust in you. An
+                    appeal gives them a reason.
+                  </p>
                   <p>
                     People stop to eat, sleep and pray, then come back.{' '}
                     {frame?.rules && frame.rules >= 8
@@ -1001,8 +1003,8 @@ export function App() {
                       : 'Home asks for one meal or one sleep; it does not keep them in.'}
                   </p>
                   <p>
-                    Drag the map to look around. Space holds or releases the clock on desktop. It slows for
-                    answers and runs quickly at night.
+                    Drag the map to look around. Press Space to pause or resume the clock on desktop. It slows
+                    for answers and runs quickly at night.
                   </p>
                   <p>
                     The Classic bars appear above the Human bars. The tick marks the target. The roof and

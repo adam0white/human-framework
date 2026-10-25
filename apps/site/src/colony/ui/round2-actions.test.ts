@@ -289,7 +289,7 @@ it('marks scheduled work already underway and lets the player dismiss it without
     ],
   };
   await act(() => root.render(createElement(App)));
-  expect(container.querySelector('.well-caption')?.textContent).toContain('Already underway');
+  expect(container.querySelector('.well-caption')?.textContent).toContain('They are already doing this');
   await click('Keep watching');
   expect(colony.actions.order).not.toHaveBeenCalled();
   expect(colony.actions.dismissNudge).toHaveBeenCalledWith(n.id);

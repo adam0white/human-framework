@@ -149,9 +149,9 @@ it('adds the optional dawn tally only when requested', () => {
     onAgain: () => {},
     onClose: () => {},
   };
-  expect(renderToStaticMarkup(createElement(EndScreen, props))).not.toContain('The well’s tally');
+  expect(renderToStaticMarkup(createElement(EndScreen, props))).not.toContain('The village scores');
   const on = renderToStaticMarkup(createElement(EndScreen, { ...props, tally: true }));
-  expect(on).toContain('The well’s tally');
+  expect(on).toContain('The village scores');
   expect(on).toContain('Classic:');
   expect(on).toContain('Human:');
   expect(on).toContain('marks');

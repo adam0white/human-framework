@@ -106,7 +106,7 @@ describe('conditional orders (colony-scenario@5)', () => {
     expect(labels.has('after I pray Fajr')).toBe(true);
     expect(labels.has('after I eat raw grain')).toBe(true);
     expect(g.book.cards[0]?.human.state).toBe('willNot');
-    expect(g.book.cards[0]?.human.says).toBe("Not that — I'll gather timber; that is my work.");
+    expect(g.book.cards[0]?.human.says).toBe('I will gather timber instead, because that is my work.');
     expect(g.human.working('o1')).toBe(false);
     expect(g.human.view().find((v) => v.id === 'idris')?.action).not.toBe('build');
     const p = (g.human as FrameworkHumanSide).person('idris');

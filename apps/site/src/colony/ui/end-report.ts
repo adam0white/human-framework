@@ -91,7 +91,7 @@ export function nearMisses(summary: EndSummary): { side: 'Classic' | 'Human'; te
       if (d.roofAt !== null && d.roofAt > GOAL_JUDGE) {
         out.push({
           side,
-          text: `The roof was finished at ${hhmm(d.roofAt)}, ${d.roofAt - GOAL_JUDGE} min after the storm came.`,
+          text: `The roof was finished at ${hhmm(d.roofAt)}, ${d.roofAt - GOAL_JUDGE} minutes after the storm arrived.`,
         });
       } else if (d.houseAtStorm !== null && d.houseAtStorm >= HOUSE_STAGES - 2) {
         const short = HOUSE_STAGES - Math.floor(d.houseAtStorm);
@@ -122,10 +122,10 @@ export function nearMisses(summary: EndSummary): { side: 'Classic' | 'Human'; te
  */
 export function hindsightLine(h: Hindsight): string {
   const from = h.from === 0 ? 'From dawn on Day 1' : `From ${dayClock(h.from)}`;
-  const cook = h.cook ? ', with Maryam sent to the kitchen D2 13:00–18:00,' : '';
+  const cook = h.cook ? ' Maryam was also sent to the kitchen on Day 2 from 13:00 to 18:00.' : '';
   const roof = h.roofAt !== null ? `roofed the house at ${dayClock(h.roofAt)}` : 'met the goals';
-  const kept = h.from === 0 ? '' : ' Your orders before then were kept; another run can give another line.';
-  return `${from}, re-ordering ${nameList(h.builders)} to the house with Rush each time an order ended (at most every 75 minutes, 05:00–21:30)${cook} ${roof} with ${h.stock} meals in store: all three goals met. One order at dawn is not enough: orders end.${kept}`;
+  const kept = h.from === 0 ? '' : ' Your earlier orders were kept. Another run may need a different plan.';
+  return `${from}, ${nameList(h.builders)} received new orders to work at the house with Rush whenever their orders ended. These orders were sent at most every 75 minutes, between 05:00 and 21:30.${cook} This plan ${roof} with ${h.stock} meals stored. It met all three goals. One order at dawn is not enough, because orders end.${kept}`;
 }
 
 // ---------------------------------------------------------------------------------------------

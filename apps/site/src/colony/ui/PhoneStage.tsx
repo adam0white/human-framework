@@ -58,19 +58,18 @@ export function VillageStrip({ frame, side }: { frame: Frame | null; side: 'huma
         </span>
         <span>
           {settingWords(stormPassed ? `${label} by ` : 'Storm ')}
-          {deadline === undefined ? 'not scheduled' : dayClock(deadline).replace('D', 'Day ')}
+          {deadline === undefined ? 'not scheduled' : dayClock(deadline)}
         </span>
       </button>
-      <p className="village-setting">{settingWords(VILLAGE_WORDS[frame?.village ?? 'default'].season)}</p>
+      <p className="village-setting">{VILLAGE_WORDS[frame?.village ?? 'default'].season}</p>
       <p className="lk-strip-detail" data-expanded={expanded}>
         The {side === 'human' ? 'Human' : 'Classic'} village has completed {stage} of {target}{' '}
         {label.toLowerCase()} stages and stores {meals} meals.{' '}
         {deadline !== undefined &&
           (stormPassed
-            ? `${label} due ${dayClock(deadline).replace('D', 'Day ')}.`
-            : `The storm arrives on ${dayClock(deadline).replace('D', 'Day ')}.`)}
-        {food &&
-          ` Food target: ${food.targetValue} meals by ${dayClock(food.deadlineMinute).replace('D', 'Day ')}.`}
+            ? `${label} due ${dayClock(deadline)}.`
+            : `The storm arrives on ${dayClock(deadline)}.`)}
+        {food && ` Food target: ${food.targetValue} meals by ${dayClock(food.deadlineMinute)}.`}
       </p>
       {stormPassed && storm && (
         <details className="well-storm-history">
@@ -373,7 +372,7 @@ export function PhoneSheet(props: {
               </p>
               {ready && (
                 <p>
-                  {props.job && <>{settingWords(jobPhrase(props.job))} · </>}
+                  {props.job && <>{jobPhrase(props.job)} · </>}
                   {props.prediction?.text ?? 'Checking current answer…'}
                 </p>
               )}
@@ -381,10 +380,10 @@ export function PhoneSheet(props: {
                 <p className="well-order-costs">
                   {settingWords(
                     [
-                      s.rush && 'Rush: faster, hungrier',
-                      s.insist && 'Insist: trust at risk',
+                      s.rush && 'Rush makes them work faster and become hungrier.',
+                      s.insist && 'Insist may reduce their trust in you.',
                       s.appeal === 'safety' &&
-                        'Safety: a promise; hurt on this job, they will hold you to it',
+                        'Safety is a promise. If this job hurts them, they will hold you responsible.',
                       s.appeal === 'children' && 'For the children',
                       s.appeal === 'duty' && 'Duty',
                     ]
@@ -409,7 +408,7 @@ export function PhoneSheet(props: {
                     close();
                   }}
                 >
-                  {settingWords(shortName(p.id))}
+                  {shortName(p.id)}
                 </button>
               ))}
             </div>
@@ -445,7 +444,7 @@ export function PhoneSheet(props: {
                     }
                   }}
                 >
-                  {settingWords(PLACE_LABEL[p])}
+                  {PLACE_LABEL[p]}
                 </button>
               ))}
             </div>
@@ -485,7 +484,7 @@ export function PhoneSheet(props: {
                   id="well-about-worker"
                   onClick={() => props.onInspect(s.personId as VillagerId)}
                 >
-                  About {settingWords(shortName(s.personId))}
+                  About {shortName(s.personId)}
                 </button>
               )}
               <button type="button" onClick={() => props.onChange(EMPTY_COMPOSER)}>

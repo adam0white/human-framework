@@ -23,11 +23,11 @@ const FAMILY_VAR: Record<TermFamily, string> = {
 
 const FAMILY_LABEL: Record<TermFamily, string> = {
   need: 'needs',
-  norm: 'norms',
+  norm: 'beliefs about right and wrong',
   commitment: 'commitments',
   emotion: 'emotion',
   social: 'social',
-  effort: 'effort / risk',
+  effort: 'effort and danger',
   suggestion: 'your voice',
   habit: 'habit',
   goal: 'goals',
@@ -35,7 +35,7 @@ const FAMILY_LABEL: Record<TermFamily, string> = {
 };
 
 const VERDICT_LABEL: Record<string, string> = {
-  assent: 'Assented',
+  assent: 'Agreed',
   notNow: 'Not now',
   complied: 'Complied under protest',
   cannot: 'Cannot',
@@ -208,11 +208,11 @@ export function Inspector(props: {
               {hv.needs.map((n) => (
                 <div className={`need ${n.urgent ? 'is-urgent' : ''}`} key={n.id}>
                   <span>{settingWords(n.label)}</span>
-                  <span className="need-description">{settingWords(needDescription(n.id, n.value))}</span>
+                  <span className="need-description">{needDescription(n.id, n.value)}</span>
                 </div>
               ))}
               <p className="emotion">
-                Feels <b>{hv.emotion?.label ?? 'calm'}</b>
+                They feel <b>{hv.emotion?.label ?? 'calm'}</b>
                 {settingWords(hv.emotion?.target ? ` about ${hv.emotion.target}` : '')}
               </p>
             </div>
@@ -254,8 +254,8 @@ export function Inspector(props: {
                     <thead>
                       <tr>
                         <th>Need</th>
-                        <th>Advertised</th>
-                        <th>Believed</th>
+                        <th>Possible effect</th>
+                        <th>Expected effect</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -279,7 +279,7 @@ export function Inspector(props: {
                 )}
                 <h3>Memories</h3>
                 {why.recalled.length === 0 ? (
-                  <p className="muted small">Nothing recalled for this decision.</p>
+                  <p className="muted small">They recalled no memories for this decision.</p>
                 ) : (
                   why.recalled.map((r) => <blockquote key={r}>remembers: {settingWords(r)}</blockquote>)
                 )}

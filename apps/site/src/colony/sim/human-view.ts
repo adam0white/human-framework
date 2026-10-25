@@ -53,7 +53,7 @@ export function verdictKind(r: SuggestionResolution, rules: ColonyRules = 3): Ve
 
 /** Lines for refusals on this host's own norms (the framework's verb table does not know them). */
 const HOST_REFUSALS: Record<string, string> = {
-  'norm:abandon-dependents': 'And leave the pot cold at noon? No. They eat from my hands.',
+  'norm:abandon-dependents': 'And leave them without a cooked meal at noon? No. They depend on me for food.',
 };
 
 /**
@@ -91,7 +91,7 @@ export function sayLine(r: SuggestionResolution, rules: ColonyRules = 3): string
   }
   if (rules >= 4 && r.verdict === 'modified' && r.counterOffer) {
     const because = MODIFIED_BECAUSE[r.reason];
-    if (because) return `Not that — I'll ${r.counterOffer.label}; ${because}.`;
+    if (because) return `I will ${r.counterOffer.label} instead, because ${because}.`;
   }
   return r.says;
 }
@@ -109,8 +109,8 @@ const NEED_LABELS: Record<string, string> = {
   relief: 'relief',
   safety: 'safety',
   belonging: 'belonging',
-  esteem: 'standing',
-  autonomy: 'autonomy',
+  esteem: 'respect',
+  autonomy: 'freedom to choose',
   competence: 'doing it well',
   leisure: 'leisure',
   meaning: 'meaning',
@@ -237,11 +237,11 @@ export const capital = (s: string): string => s.charAt(0).toUpperCase() + s.slic
 
 /** Thought lines for a choice led by a bodily need (the framework's lines vary; these stay short over a map). */
 const NEED_THOUGHTS: Record<string, string> = {
-  food: 'Hungry. Time to eat.',
-  water: 'Thirsty. Water first.',
-  sleep: 'Tired. Time to sleep.',
-  rest: 'Worn out. A short rest.',
-  safety: 'Better get under a roof.',
+  food: 'I am hungry. It is time to eat.',
+  water: 'I am thirsty. I need water first.',
+  sleep: 'I am tired. It is time to sleep.',
+  rest: 'I am worn out. I need a short rest.',
+  safety: 'I should get indoors.',
 };
 
 /** Framework filler lines that say nothing on a map; the job's own label replaces them. */
@@ -272,8 +272,9 @@ export function thoughtText(p: Person, record: DecisionRecord): string {
     if (src.startsWith('goal:')) {
       const goal = p.agenda.goals.find((g) => g.id === src.slice(5));
       // Name the goal only for the job it is mainly about ("Draw water: fill the granary." reads as a mistake).
-      if (goal && goal.advancedBy[0]?.action === chosen.action) return `${job}: ${goal.label}.`;
-      return `${job}.`;
+      if (goal && goal.advancedBy[0]?.action === chosen.action)
+        return `I will ${job[0]?.toLowerCase()}${job.slice(1)}. I want to ${goal.label}.`;
+      return `I will ${job[0]?.toLowerCase()}${job.slice(1)}.`;
     }
     if (src.startsWith('commitment:')) {
       const c = p.agenda.commitments.find((x) => x.id === src.slice(11));
@@ -283,8 +284,8 @@ export function thoughtText(p: Person, record: DecisionRecord): string {
       const line = NEED_THOUGHTS[src.slice(5)];
       if (line) return line;
     }
-    if (src === 'norm:aid-injured') return `${job}. Someone is hurt.`;
-    if (src === 'habit') return `${job}, as usual.`;
+    if (src === 'norm:aid-injured') return `I will ${job[0]?.toLowerCase()}${job.slice(1)}. Someone is hurt.`;
+    if (src === 'habit') return `I will ${job[0]?.toLowerCase()}${job.slice(1)}, as usual.`;
   }
   // Otherwise the framework's line, without the close-call aside and the episode citations.
   let text = record.narration;
@@ -293,7 +294,7 @@ export function thoughtText(p: Person, record: DecisionRecord): string {
     if (k >= 0) text = text.slice(0, k);
   }
   text = text.replace(/\s*(It was a close call\.|Nearly did otherwise\.)/g, '').trim();
-  if (!text || FILLER.has(text)) return `${job}.`;
+  if (!text || FILLER.has(text)) return `I will ${job[0]?.toLowerCase()}${job.slice(1)}.`;
   return text;
 }
 
@@ -306,7 +307,7 @@ function keptAtIt(record: DecisionRecord, chosen: Considered | undefined): strin
   if (!chosen || !record.review) return null;
   const best = Math.max(...record.considered.map((c) => (c.vetoed ? -Infinity : c.utility)));
   if (best <= chosen.utility) return null;
-  return `${capital(chosen.label ?? chosen.action)}: already at it, and a change has to be clearly better.`;
+  return `I am already doing this: ${chosen.label ?? chosen.action}. Another choice must be clearly better for me to stop.`;
 }
 
 /** The why panel for one decision. */
@@ -365,23 +366,23 @@ export function whyOf(
 const round2 = (x: number): number => Math.round(x * 100) / 100;
 
 const TRUST_LABELS: Record<string, (action: string) => string> = {
-  'went-well': (a) => `Good call: ${a}`,
-  'went-badly': (a) => `Went badly: ${a}`,
-  harm: (a) => `Hurt by your order: ${a}`,
-  'harm-under-protest': (a) => `Made to ${a} against his word`,
-  'promise-broken': (a) => `You said ${a} would be safer`,
-  'promise-kept': (a) => `Safe, as you said: ${a}`,
+  'went-well': (a) => `Your order went well: ${a}.`,
+  'went-badly': (a) => `Your order went badly: ${a}.`,
+  harm: (a) => `I was hurt while following your order: ${a}.`,
+  'harm-under-protest': (a) => `You made me do this after I objected: ${a}.`,
+  'promise-broken': (a) => `You said this would be safer: ${a}.`,
+  'promise-kept': (a) => `I was safe, as you said: ${a}.`,
 };
 
 const ACTION_WORDS: Record<string, string> = {
-  'gather-timber': 'timber run',
-  'gather-grain': 'grain',
-  'fell-cedar': 'the cedar',
-  'draw-water': 'water',
+  'gather-timber': 'gathering timber',
+  'gather-grain': 'gathering grain',
+  'fell-cedar': 'cutting down the cedar',
+  'draw-water': 'drawing water',
   cook: 'cooking',
   build: 'building',
-  'raise-beam': 'the beam',
-  'shutter-house': 'shutters',
+  'raise-beam': 'raising the beam',
+  'shutter-house': 'closing the shutters',
 };
 
 export function trustOf(p: Person): TrustView {

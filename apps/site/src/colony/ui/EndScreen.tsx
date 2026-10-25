@@ -80,12 +80,12 @@ function HindsightBlock({ summary }: { summary: EndSummary }) {
             <b>What would have won (Human):</b>{' '}
             {settingWords(
               h.kind === 'working'
-                ? 'replaying this seed with a simple plan…'
+                ? 'Trying a simple plan from the same starting conditions…'
                 : h.kind === 'error'
-                  ? 'the replay could not run in this browser.'
+                  ? 'This browser could not try the plan.'
                   : h.result
                     ? hindsightLine(h.result)
-                    : 'the simple plan (everyone but Maryam rushed to the house) did not win from any point we tried.',
+                    : 'Sending everyone except Maryam to the house with Rush did not win from any point we tried.',
             )}
           </p>
         </details>
@@ -166,7 +166,7 @@ function Report({ summary, humanKind }: { summary: EndSummary; humanKind: string
           ))}
         </tbody>
       </table>
-      <p className="end-changed">{settingWords(ordersChanged(summary))}</p>
+      <p className="end-changed">{ordersChanged(summary)}</p>
       <HindsightBlock summary={summary} />
       {summary.cards.length > 0 && (
         <details className="end-fold">
@@ -175,9 +175,8 @@ function Report({ summary, humanKind }: { summary: EndSummary; humanKind: string
             {summary.cards.map((c) => (
               <li key={c.order.id}>
                 <span className="end-order-time">{formatClock(c.order.issuedAt)}</span>{' '}
-                <b>{settingWords(shortName(c.order.personId))}</b> →{' '}
-                {settingWords(PLACE_LABEL[c.order.placeId])}, {settingWords(jobPhrase(c.order.action))} ·
-                Classic {settingWords(classicOutcome(c))} · Human{' '}
+                <b>{shortName(c.order.personId)}</b> → {PLACE_LABEL[c.order.placeId]},{' '}
+                {jobPhrase(c.order.action)} · Classic {settingWords(classicOutcome(c))} · Human{' '}
                 <span className={`end-says says-${c.human.state}`}>{settingWords(humanOutcome(c))}</span>
                 {settingWords(humanQuotes(c) ? ` (${humanQuotes(c)})` : '')}
                 {settingWords(cardEnd(c) ? ` · ${cardEnd(c)}` : '')}
@@ -230,7 +229,7 @@ function Report({ summary, humanKind }: { summary: EndSummary; humanKind: string
                 #{m.id}
               </span>
               <div>
-                <b>{settingWords(shortName(m.personId))}</b> · {formatClock(m.minute)}
+                <b>{shortName(m.personId)}</b> · {formatClock(m.minute)}
                 <p>{settingWords(m.line)}</p>
               </div>
             </li>
@@ -271,7 +270,7 @@ export function EndScreen(props: {
         <div className="colony-report-body">
           <p className="eyebrow">Day {tab + 1} · 05:00 · dawn</p>
           <h2 id="end-title" ref={head} tabIndex={-1}>
-            Same orders. Same seed.
+            Both villages received the same orders and started in the same conditions.
           </h2>
           {days.length > 1 && (
             <div className="end-tabs" role="tablist">
@@ -290,7 +289,7 @@ export function EndScreen(props: {
             </div>
           )}
           <Report summary={summary} humanKind={props.humanKind} />
-          {props.tally ? <EndTally title="The well’s tally" lines={wellTally(summary)} /> : null}
+          {props.tally ? <EndTally title="The village scores" lines={wellTally(summary)} /> : null}
           <div className="colony-report-body-footer">
             <button type="button" className="btn btn-ghost" onClick={props.onClose}>
               Look at the villages

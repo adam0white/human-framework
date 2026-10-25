@@ -364,15 +364,15 @@ export class ColonyHostWorld implements World {
     switch (action) {
       case 'cook':
         if (stormNoCook(m))
-          return no('The fire won’t keep in this wind.', 'when the storm passes', 'no fire in the storm');
+          return no('The fire won’t stay lit in this wind.', 'when the storm passes', 'no fire in the storm');
         if (w.resources.grain < HOST.cookGrain)
           return no('There’s no grain for a pot.', 'when there’s grain', 'no grain');
         if (w.resources.water < HOST.cookWater)
           return no('There’s no water for a pot.', 'when there’s water', 'no water');
         return no(
-          'We’ve food enough put by. I’ll cook when it runs low.',
+          'We have enough food stored. I’ll cook when it runs low.',
           'when the store runs low',
-          'food enough put by',
+          'enough food stored',
         );
       case 'build':
       case 'raise-beam':
@@ -516,7 +516,7 @@ export class ColonyHostWorld implements World {
           id: 'sleep',
           action: 'sleep',
           label: crowded
-            ? 'sleep in the crowded masjid'
+            ? 'sleep in the crowded mosque'
             : homePlace === 'site'
               ? 'sleep in the new house'
               : 'sleep at home',
@@ -566,7 +566,7 @@ export class ColonyHostWorld implements World {
       job(
         'shelter',
         'shelter',
-        inHouse ? 'shelter in the new house' : 'shelter in the masjid',
+        inHouse ? 'shelter in the new house' : 'shelter in the mosque',
         inHouse ? 'site' : 'masjid',
         {
           work: Math.max(30, fw(end) - t),
@@ -880,7 +880,7 @@ export class ColonyHostWorld implements World {
         targetId: victim,
         valence: -0.6,
         salience: near ? 0.9 : 0.6,
-        summary: near ? `${firstName(victim)} ${what}` : `a cry: ${firstName(victim)} is hurt`,
+        summary: near ? `${firstName(victim)} ${what}` : `I heard a cry. ${firstName(victim)} is hurt.`,
         near,
       });
       if (!o.body.asleep) interruptPerson(this.community, o, t, 'percept:injury');
@@ -916,7 +916,7 @@ export class ColonyHostWorld implements World {
     const done = (o: Partial<Outcome>): Outcome => {
       const out: Outcome = { ...base, ...o };
       if (out.status === 'completed' && act.suggestion?.voiceId === 'player' && lifeNotice(p))
-        out.summary = `${out.summary ?? aff.label}. ${lifeNotice(p)}`;
+        out.summary = `${(out.summary ?? aff.label).replace(/[.!?]$/, '')}. ${lifeNotice(p)}`;
       if (
         out.status === 'completed' &&
         act.suggestion?.voiceId === 'player' &&
@@ -926,7 +926,7 @@ export class ColonyHostWorld implements World {
         if (clue) {
           this.s.castDiscoveries ??= [];
           this.s.castDiscoveries.push(id);
-          out.summary = `${out.summary ?? aff.label}. ${clue}`;
+          out.summary = `${(out.summary ?? aff.label).replace(/[.!?]$/, '')}. ${clue}`;
         }
       }
       if (act.suggestion?.voiceId === 'player') {
@@ -972,7 +972,7 @@ export class ColonyHostWorld implements World {
             kind: 'weather',
             valence: -0.6,
             salience: 0.8,
-            summary: 'cold to the bone',
+            summary: 'I felt very cold.',
           },
         ],
       });
@@ -1008,17 +1008,17 @@ export class ColonyHostWorld implements World {
       if (act.action === 'gather-timber')
         w.resources.timber += Math.round(frac * gathered('timber', protest));
       if (act.action === 'gather-grain') w.resources.grain += Math.round(frac * gathered('grain', protest));
-      return done({ status: 'interrupted', summary: `${aff.label}: stopped` });
+      return done({ status: 'interrupted', summary: `I stopped this task: ${aff.label}.` });
     }
 
     const needs = realizedNeeds(aff);
     switch (action) {
       case 'gather-grain':
         w.resources.grain += gathered('grain', protest);
-        return done({ needs, summary: 'Gathered grain' });
+        return done({ needs, summary: 'I gathered grain.' });
       case 'gather-timber':
         w.resources.timber += gathered('timber', protest);
-        return done({ needs, summary: 'Brought timber' });
+        return done({ needs, summary: 'I brought back timber.' });
       case 'fell-cedar': {
         w.cedarFelled = true;
         w.resources.timber += JOBS['fell-cedar'].yields?.timber ?? 3;
@@ -1033,17 +1033,17 @@ export class ColonyHostWorld implements World {
           return done({
             needs,
             injury: { part: 'leg', severity: HOST.cedarInjury, healRatePerDay: 0.1 },
-            summary: 'Felled the cedar; it came down on my leg',
+            summary: 'I cut down the cedar, and it fell on my leg.',
           });
         }
-        return done({ needs, summary: 'Felled the big cedar' });
+        return done({ needs, summary: 'I cut down the big cedar.' });
       }
       case 'draw-water':
         w.resources.water += JOBS['draw-water'].yields?.water ?? 2;
-        return done({ needs, summary: 'Drew water' });
+        return done({ needs, summary: 'I drew water.' });
       case 'cook': {
         if (w.resources.grain < HOST.cookGrain || w.resources.water < HOST.cookWater)
-          return done({ status: 'failed', summary: 'Nothing to cook with' });
+          return done({ status: 'failed', summary: 'I had no ingredients to cook with.' });
         w.resources.grain -= HOST.cookGrain;
         w.resources.water -= HOST.cookWater;
         w.resources.meals += HOST.cookMeals;
@@ -1054,32 +1054,36 @@ export class ColonyHostWorld implements World {
           actorId: id,
           valence: 0.4,
           salience: 0.5,
-          summary: `${firstName(id)}’s pot is ready`,
+          summary: `${firstName(id)}’s pot of food is ready.`,
         });
-        return done({ needs, summary: aff.label === 'cook a pot' ? 'Cooked a pot' : `Cooked: ${aff.label}` });
+        return done({
+          needs,
+          summary:
+            aff.label === 'cook a pot' ? 'I cooked a pot of food.' : `I finished cooking: ${aff.label}.`,
+        });
       }
       case 'build': {
-        if (!this.payStage()) return done({ status: 'failed', summary: 'No timber to build with' });
+        if (!this.payStage()) return done({ status: 'failed', summary: 'I had no timber to build with.' });
         const q = protest ? HOST.protestQuality : 1;
         this.addBuild(this.buildRate(p) * q);
-        return done({ needs, summary: 'Laid another course' });
+        return done({ needs, summary: 'I did more building work.' });
       }
       case 'raise-beam':
         return this.resolveBeam(p, act, done, needs, t);
       case 'shutter-house':
         w.house.shuttered = true;
-        return done({ needs, summary: 'Shuttered the house' });
+        return done({ needs, summary: 'I closed the house’s shutters.' });
       case 'eat': {
         if (w.resources.meals > 0) {
           w.resources.meals -= 1;
           w.eaten += 1;
-          return done({ needs: { food: HOST.mealFood }, summary: 'Ate a meal' });
+          return done({ needs: { food: HOST.mealFood }, summary: 'I ate a meal.' });
         }
         if (w.resources.grain > 0) {
           w.resources.grain -= 1;
-          return done({ needs: { food: HOST.rawFood }, summary: 'Ate raw grain' });
+          return done({ needs: { food: HOST.rawFood }, summary: 'I ate raw grain.' });
         }
-        return done({ status: 'failed', summary: 'Nothing to eat' });
+        return done({ status: 'failed', summary: 'I had nothing to eat.' });
       }
       case 'take-grain':
         this.queue(['danyal'], {
@@ -1093,7 +1097,7 @@ export class ColonyHostWorld implements World {
           norms: [{ normId: 'theft', relation: 'violates' }],
           summary: `${firstName(id)} took from the jar`,
         });
-        return done({ needs, summary: 'Took grain from Danyal’s jar' });
+        return done({ needs, summary: 'I took grain from Danyal’s jar.' });
       case 'carry-injured':
         return this.resolveCarry(p, trip ?? null, done, needs, t);
       case 'tend-injured': {
@@ -1110,7 +1114,7 @@ export class ColonyHostWorld implements World {
             summary: `${firstName(id)} tended me`,
           });
         }
-        return done({ needs, summary: `Tended ${victim ? firstName(victim) : 'the injured'}` });
+        return done({ needs, summary: `I cared for ${victim ? firstName(victim) : 'the injured person'}.` });
       }
       default:
         return done({ needs, summary: aff.label });
@@ -1193,12 +1197,12 @@ export class ColonyHostWorld implements World {
         return done({
           needs,
           status: leadBeam.ok ? 'completed' : 'failed',
-          summary: leadBeam.ok ? 'Raised the beam together' : 'The beam slipped',
+          summary: leadBeam.ok ? 'We raised the beam together.' : 'The beam slipped.',
         });
-      if (w.house.stage >= BEAM_STAGE) return done({ needs, summary: 'Raised the beam together' });
+      if (w.house.stage >= BEAM_STAGE) return done({ needs, summary: 'We raised the beam together.' });
     }
     if (w.house.stage !== BEAM_STAGE - 1 || w.resources.timber < HOST.beamTimber)
-      return done({ status: 'failed', summary: 'The beam was not ready' });
+      return done({ status: 'failed', summary: 'The beam was not ready.' });
     const partners = (act.affordance.with ?? []).map((x) => this.person(x)).filter((q): q is Person => !!q);
     const difficulty = act.affordance.skill?.difficulty ?? 0.8;
     const chance = jointSuccessChance(p, partners, 'building', difficulty);
@@ -1217,10 +1221,13 @@ export class ColonyHostWorld implements World {
           targetId: q.id,
           valence: 0.5,
           salience: 0.6,
-          summary: `raised the beam with ${firstName(id)}`,
+          summary: `I raised the beam with ${firstName(id)}.`,
         });
       }
-      return done({ needs, summary: partners.length > 0 ? 'Raised the beam together' : 'Raised the beam' });
+      return done({
+        needs,
+        summary: partners.length > 0 ? 'We raised the beam together.' : 'I raised the beam.',
+      });
     }
     w.resources.timber -= 1;
     const hurt = scenarioRoll(this.seed, 'beam-human-injury', this.s.beamAttempts, 0) < HOST.beamInjuryChance;
@@ -1230,7 +1237,7 @@ export class ColonyHostWorld implements World {
     }
     return done({
       status: 'failed',
-      summary: 'The beam slipped',
+      summary: 'The beam slipped.',
       ...(hurt ? { injury: { part: 'shoulder', severity: 0.3, healRatePerDay: 0.2 } } : {}),
     });
   }
@@ -1244,7 +1251,8 @@ export class ColonyHostWorld implements World {
   ): Outcome {
     const id = villagerId(p.id);
     const victim = trip?.carry?.victim;
-    if (!victim || !this.s.down[victim]) return done({ status: 'failed', summary: 'No one to carry' });
+    if (!victim || !this.s.down[victim])
+      return done({ status: 'failed', summary: 'There was no one to carry.' });
     this.s.down[victim] = null;
     this.s.loc[victim] = trip?.carry?.home ?? this.s.loc[victim] ?? { x: 0, y: 0 };
     this.s.recovering[victim] = t + HOST.recoverMinutes;
@@ -1279,7 +1287,7 @@ export class ColonyHostWorld implements World {
     this.events.carried.push({ carrier: id, victim, minute: gm(t), hunger });
     return done({
       needs,
-      summary: `Carried ${firstName(victim)} home`,
+      summary: `I carried ${firstName(victim)} home.`,
       percepts: [
         {
           at: t,
@@ -1310,7 +1318,7 @@ export class ColonyHostWorld implements World {
         channel: 'heard',
         kind: 'adhan',
         salience: 0.5,
-        summary: `the call to ${adhan}`,
+        summary: `The call to ${adhan} sounds.`,
       });
     }
     const mod = ((t % 1440) + 1440) % 1440;
@@ -1321,12 +1329,12 @@ export class ColonyHostWorld implements World {
         kind: 'no-meal',
         valence: -0.4,
         salience: 0.6,
-        summary: 'no meal in the pot',
+        summary: 'There is no meal in the pot.',
       });
     }
     if (m === STORM_SUPPER || m === DAWN_MEAL) this.stormMeal(t);
     if (m === STORM_START && w.house.stage < HOUSE_STAGES) {
-      // No roof of their own: Idris and Samira shelter and sleep in the crowded masjid (colony.md §2).
+      // No roof of their own: Idris and Samira shelter and sleep in the crowded mosque (colony.md §2).
       const family = HOUSE_FAMILY.filter((id) => this.person(id)?.body.alive);
       this.queue(family, {
         at: t,
@@ -1334,7 +1342,7 @@ export class ColonyHostWorld implements World {
         kind: 'crowded',
         valence: -0.4,
         salience: 0.7,
-        summary: 'No roof of our own tonight.',
+        summary: 'We have no roof of our own tonight.',
       });
     }
     if (m === (w.preparationAt ?? WARNING_AT)) {
@@ -1350,8 +1358,8 @@ export class ColonyHostWorld implements World {
           claims: [{ prop: 'storm:tonight', value: true, confidence: 0.8 }],
           summary:
             w.preparationAt === undefined
-              ? 'the sky darkening in the west'
-              : 'the elders warn: the storm will reach us tonight',
+              ? 'The sky is getting darker in the west.'
+              : 'The elders warn that the storm will reach us tonight.',
         });
         if (!o.body.asleep) interruptPerson(this.community, o, t, 'percept:weather-warning');
       }
@@ -1371,7 +1379,7 @@ export class ColonyHostWorld implements World {
           kind: 'weather',
           valence: -0.4,
           salience: 0.6,
-          summary: 'the wind cuts through',
+          summary: 'The wind makes me cold.',
         });
       }
       if (m % 10 !== 0) continue;
@@ -1399,7 +1407,7 @@ export class ColonyHostWorld implements World {
         kind: 'meal',
         valence: 0.3,
         salience: 0.4,
-        summary: 'a meal from the store, shared in the dark',
+        summary: 'We shared a stored meal in the dark.',
       });
     }
   }

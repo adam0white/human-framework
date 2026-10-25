@@ -344,7 +344,7 @@ export class FrameworkHumanSide implements HumanSide {
           ev.completed.push({
             orderId: open.order.orderId,
             personId: id as VillagerId,
-            result: 'Home shelter request ended at dawn',
+            result: 'The request to stay sheltered at home ended at dawn.',
           });
         this.drop(id);
         interruptPerson(this.community, this.person(id), t, 'shelter-ended');
@@ -425,7 +425,7 @@ export class FrameworkHumanSide implements HumanSide {
             orderId: open.order.orderId,
             personId: id,
             kind: 'notNow',
-            says: 'Asleep; shelter request waits until waking.',
+            says: 'I am asleep. The request to stay sheltered waits until I wake up.',
             reason: 'asleep',
             decisionId: record.id,
           });
@@ -465,14 +465,14 @@ export class FrameworkHumanSide implements HumanSide {
           const w = this.world.world;
           const construction = ['build', 'raise-beam', 'shutter-house'].includes(open.order.action);
           const result = !construction
-            ? 'This action is no longer available; order ended'
+            ? 'This work is no longer available. The order has ended.'
             : w.storeroom !== null
-              ? `Store-room ${w.storeroom} of 6; shared job ended`
+              ? `The store-room has ${w.storeroom} of 6 steps finished. The shared job has ended.`
               : w.house.shuttered
-                ? 'House shuttered; roof work has stopped'
+                ? 'The shutters are closed. Work on the roof has stopped.'
                 : w.house.stage >= 10
-                  ? 'House roof finished'
-                  : 'The shared job is no longer available';
+                  ? 'The house’s roof is finished.'
+                  : 'The shared job is no longer available.';
           ev.completed.push({ orderId: open.order.orderId, personId: id, result });
           this.drop(id);
           continue;
@@ -598,7 +598,12 @@ export class FrameworkHumanSide implements HumanSide {
         a.action === order.action && a.orderId !== order.orderId && this.s.minute - a.minute >= MOMENT2_GAP,
     );
     if (id === 'yusuf' && kind === 'notNow' && /pray/i.test(v.counterOffer ?? '') && earlier) {
-      this.moment(2, id, `Same man, same job: yes in the morning, “${v.counterOffer}” at dusk.`, ev);
+      this.moment(
+        2,
+        id,
+        `He agreed to the same job this morning. At dusk, he answered, “${v.counterOffer}”.`,
+        ev,
+      );
     }
     if (id === 'maryam' && kind === 'willNot' && reason === 'norm:abandon-dependents') {
       this.moment(3, id, 'Maryam will not leave the meal undone.', ev);
@@ -646,7 +651,7 @@ export class FrameworkHumanSide implements HumanSide {
         personId: f.personId,
         result:
           this.world.s.shelterUntil?.[f.personId] !== undefined && f.status === 'completed'
-            ? 'Home shelter request ended at dawn'
+            ? 'The request to stay sheltered at home ended at dawn.'
             : `${f.status === 'failed' ? 'Failed: ' : ''}${f.action === 'sleep' ? 'Finished ' : ''}${f.summary}${progress}`,
       });
       this.drop(f.personId);
@@ -822,7 +827,7 @@ export class FrameworkHumanSide implements HumanSide {
   predict(order: Omit<HumanOrder, 'orderId'>): Prediction {
     const p = this.person(order.personId);
     const base = { personId: order.personId, action: order.action };
-    if (!p.body.alive) return { ...base, kind: 'cannot', text: 'Can’t: dead' };
+    if (!p.body.alive) return { ...base, kind: 'cannot', text: 'They cannot work because they are dead.' };
     const home = this.rules >= 8 && order.action === 'shelter' && order.placeId.startsWith('home-');
     const affs = this.world.affordancesFor(
       p,

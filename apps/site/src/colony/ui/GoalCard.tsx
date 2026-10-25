@@ -53,8 +53,8 @@ export function GoalCard(props: {
                   }}
                 />
                 <span>
-                  {settingWords(VILLAGE_WORDS[village].choice)}
-                  <small>{settingWords(VILLAGE_WORDS[village].reply)}</small>
+                  {VILLAGE_WORDS[village].choice}
+                  <small>{VILLAGE_WORDS[village].reply}</small>
                 </span>
               </label>
             ))}
@@ -84,10 +84,10 @@ export function GoalCard(props: {
             ))}
           </ol>
           <p className="muted small">
-            Both villages are scored on the same goals. Order options lets you add an appeal or a reason.
+            Both villages are scored on the same goals. Use Order options to add an appeal or a reason.
             {day3
               ? ''
-              : ' Suggestions on the clock set up the story and name their risk; following only them will not roof the Human house. Your own orders can.'}
+              : ' Timed suggestions set up the story and explain their risks. Following only these will not finish the Human house’s roof. Your own orders can.'}
             {props.autoPause ? ' The clock slows while a suggestion awaits your decision.' : ''}
             <span className="keys-hint"> Space pauses.</span>
           </p>

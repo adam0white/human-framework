@@ -113,7 +113,7 @@ export const PLACES: readonly Place[] = [
   },
   {
     id: 'masjid',
-    label: 'Masjid · shelter',
+    label: 'Mosque · shelter',
     x: 9,
     y: 1,
     w: 2,

@@ -8,7 +8,7 @@ it('keeps completion facts on the person and log without changing replay state',
   game.issue({ personId: 'yusuf', placeId: 'site' });
   game.advance(300);
   const card = game.frame().cards[0];
-  expect(card?.human.outcome).toMatch(/Laid another course.*House/);
+  expect(card?.human.outcome).toMatch(/I did more building work.*House/);
   expect(card?.classic.outcome).toMatch(/House/);
   expect(game.book.cards[0]?.human).not.toHaveProperty('outcome');
   const replay = replayColony(game.seed, createFrameworkHumanSide, game.log, game.minute, 5);
@@ -22,7 +22,7 @@ it('says Home means one meal or one sleep and reports the next activity honestly
   game.issue({ personId: 'idris', placeId: 'home-idris' });
   game.advance(180);
   const card = game.frame().cards[0];
-  expect(card?.human.outcome).toMatch(/Ate raw grain/);
+  expect(card?.human.outcome).toMatch(/I ate raw grain/);
   expect(card?.human.outcome).toContain('After Home ended, chose:');
   const after = card?.human.outcome?.split('. Now:')[0];
   game.advance(200);

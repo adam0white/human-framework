@@ -42,10 +42,10 @@ export const passesByItself = (v: { kind: string; reason: string }): boolean =>
   (v.reason.startsWith('need:') || v.reason.startsWith('commitment:salah') || v.reason === 'norm:salah');
 
 export const START_TEXT =
-  'Before the storm at Day 2 19:00: roof the house and store 12 meals. Keep all six alive until dawn on Day 3.';
+  'Finish the house’s roof and store 12 meals before the storm at 19:00 on Day 2. Keep all six villagers alive until dawn on Day 3.';
 export const LOADED_TEXT = 'Playtest file loaded. Play on from here, or look around.';
 export const DAY3_TEXT =
-  'Another day: build a store-room beside the house (finish the house first if it is open) and keep 12 meals by 18:00. Keep all six alive.';
+  'Build a store-room beside the house and store 12 meals by 18:00. Finish the house first if it is unfinished. Keep all six villagers alive.';
 
 export interface Candidate {
   reason: PauseReason;
@@ -290,30 +290,35 @@ export class Playback {
   private pacing(): { pace: Pace; rate: number; text: string } {
     const g = this.game;
     const held = this.context.menu
-      ? 'the menu is open'
+      ? 'the menu is open.'
       : this.context.info
-        ? "you're reading about the well"
+        ? 'you are reading about the well.'
         : this.context.inspector
-          ? `you're reading ${this.personName(this.context.person)}`
+          ? `you are reading about ${this.personName(this.context.person)}.`
           : this.paused
             ? this.pause?.kind === 'start'
-              ? 'the village is waiting'
-              : 'the clock is held'
+              ? 'the village is waiting.'
+              : 'you paused the clock.'
             : '';
     if (held || g?.ended)
-      return { pace: 'held', rate: 0, text: g?.ended ? 'the run is over' : `held: ${held}` };
-    if (this.context.reading) return { pace: 'reading', rate: 1, text: "slowed: you're reading an order" };
+      return {
+        pace: 'held',
+        rate: 0,
+        text: g?.ended ? 'The run is over.' : `Time is paused because ${held}`,
+      };
+    if (this.context.reading)
+      return { pace: 'reading', rate: 1, text: 'Time is slowed while you read an order.' };
     if (this.elapsed < this.readingUntil) return { pace: 'reading', rate: 1, text: this.readingText };
     const n = this.autoPause ? g?.visibleNudges().find((card) => !this.acknowledged.has(card.id)) : undefined;
     if (n) {
       const reading = this.elapsed - (this.suggestionAt.get(n.id) ?? this.elapsed) < 10000;
-      if (reading) return { pace: 'reading', rate: 1, text: 'slowed: a suggestion' };
+      if (reading) return { pace: 'reading', rate: 1, text: 'Time is slowed for a suggestion.' };
     }
     if (this.context.person)
       return {
         pace: 'looking',
         rate: 4,
-        text: `slowed: you're with ${this.personName(this.context.person)}`,
+        text: `Time is slowed while you are with ${this.personName(this.context.person)}.`,
       };
     const storm = !!g && g.minute >= STORM_START && g.minute < STORM_END;
     if (g && (this.automatic || this.speed === 1)) {
@@ -326,7 +331,7 @@ export class Playback {
         !g.book.cards.some((card) => card.status === 'active' && card.human.state === 'pending') &&
         g.human.view().every((person) => person.state === 'asleep')
       )
-        return { pace: 'night', rate: 16, text: 'night: the village sleeps' };
+        return { pace: 'night', rate: 16, text: 'The clock runs faster while the village sleeps.' };
     }
     return {
       pace: 'watching',
@@ -385,11 +390,11 @@ export class Playback {
       );
       for (const item of news) this.seenNews.add(`${item.side}:${item.personId}:${item.minute}`);
       const reply = g.lastStep.verdicts[0];
-      if (reply) this.readFor(4000, `slowed: ${this.personName(reply.personId)} is answering`);
+      if (reply) this.readFor(4000, `Time is slowed while ${this.personName(reply.personId)} answers.`);
       else if (g.lastStep.moments.length || news.length)
-        this.readFor(3000, 'slowed: something happened in the village');
-      else if (g.minute === WARNING_AT) this.readFor(3000, 'slowed: the storm is coming');
-      else if (g.minute === STORM_START) this.readFor(3000, 'slowed: the storm has begun');
+        this.readFor(3000, 'Time is slowed because something happened in the village.');
+      else if (g.minute === WARNING_AT) this.readFor(3000, 'Time is slowed because the storm is coming.');
+      else if (g.minute === STORM_START) this.readFor(3000, 'Time is slowed because the storm has begun.');
       this.syncDecision();
       if (serial !== this.readingSerial) {
         this.carry = 0;

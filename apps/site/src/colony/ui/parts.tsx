@@ -114,7 +114,7 @@ export function sameJobCopy(action: ActionId, personId: VillagerId): string {
     rest: 'resting',
   };
   const pronoun = personId === 'maryam' || personId === 'samira' ? 'her' : 'him';
-  return `Already ${ongoing[action] ?? jobPhrase(action)}: keeps ${pronoun} at it`;
+  return `They are already ${ongoing[action] ?? jobPhrase(action)}. This asks ${pronoun} to keep doing it.`;
 }
 
 export function shortName(id: VillagerId): string {
@@ -508,7 +508,7 @@ function Chip({
   return (
     <span className={`chip chip-${state}`} title={settingWords(label ? `${side}: ${label}` : side)}>
       <span className="chip-side">{side === 'classic' ? 'C' : 'H'}</span>
-      {settingWords(chipText(state, settled))}
+      {chipText(state, settled)}
     </span>
   );
 }
@@ -520,7 +520,7 @@ export function OrderCardView({ card, onCancel }: { card: OrderCard; onCancel(id
       <Portrait id={o.personId} />
       <div className="card-main">
         <div className="card-title">
-          <strong>{settingWords(shortName(o.personId))}</strong> → {settingWords(PLACE_LABEL[o.placeId])}
+          <strong>{shortName(o.personId)}</strong> → {PLACE_LABEL[o.placeId]}
           {o.rush && (
             <span className="flag" title="Rush">
               <Icon name="rush" size={12} label="Rush" />
@@ -533,7 +533,7 @@ export function OrderCardView({ card, onCancel }: { card: OrderCard; onCancel(id
           )}
         </div>
         <div className="card-sub">
-          {settingWords(jobPhrase(o.action))}
+          {jobPhrase(o.action)}
           {card.status === 'lapsed' && ' · lapsed'}
           {card.status === 'replaced' && ` · replaced by ${card.replacedBy ?? 'a newer order'}`}
           {card.human.label &&
@@ -552,7 +552,7 @@ export function OrderCardView({ card, onCancel }: { card: OrderCard; onCancel(id
           <p className="card-outcome">Classic · {settingWords(card.classic.outcome)}</p>
         )}
         {card.human.outcome && <p className="card-outcome">Human · {settingWords(card.human.outcome)}</p>}
-        {homeOrderMeaning(card) && <p className="card-outcome">{settingWords(homeOrderMeaning(card))}</p>}
+        {homeOrderMeaning(card) && <p className="card-outcome">{homeOrderMeaning(card)}</p>}
         <div className="card-chips">
           <Chip
             side="classic"
@@ -622,12 +622,12 @@ export function PersonOrder({
           {settingWords(card.human.says ?? card.human.label)}
         </p>
       )}
-      {homeOrderMeaning(card) && <p>{settingWords(homeOrderMeaning(card))}</p>}
-      {pushed && <p>{settingWords(shortName(card.order.personId))} went along, but minded being pushed.</p>}
+      {homeOrderMeaning(card) && <p>{homeOrderMeaning(card)}</p>}
+      {pushed && <p>{shortName(card.order.personId)} went along, but minded being pushed.</p>}
       {trustCosts.map((event) => (
         <p className="person-order-cost" key={`${event.minute}-${event.label}-${event.delta}`}>
-          Recent trust change · {dayClock(event.minute)} · {settingWords(shortName(card.order.personId))}{' '}
-          trusts you less. {settingWords(event.label)}.
+          Recent trust change · {dayClock(event.minute)} · {shortName(card.order.personId)} trusts you less.{' '}
+          {settingWords(event.label)}.
         </p>
       ))}
       {card.order.insist && person && trustCosts.length === 0 && (
@@ -659,9 +659,8 @@ export function OrderReply({ cards }: { cards: OrderCard[] }) {
   if (!card) return null;
   return (
     <p className="order-reply" role="status">
-      Human · <strong>{settingWords(shortName(card.order.personId))}</strong> →{' '}
-      {settingWords(PLACE_LABEL[card.order.placeId])}:{' '}
-      {settingWords(chipText(card.human.state, card.human.settled))} · {settingWords(card.human.label)}
+      Human · <strong>{shortName(card.order.personId)}</strong> → {PLACE_LABEL[card.order.placeId]}:{' '}
+      {chipText(card.human.state, card.human.settled)} · {settingWords(card.human.label)}
     </p>
   );
 }
@@ -722,7 +721,7 @@ export function SuggestionCard(props: {
         <div className="nudge-proposal">
           {choice.refusal && <p className="nudge-refusal">{settingWords(choice.refusal)}</p>}
           <p className="nudge-order">
-            {settingWords(shortName(n.order.personId))} → {settingWords(PLACE_LABEL[n.order.placeId])}
+            {shortName(n.order.personId)} → {PLACE_LABEL[n.order.placeId]}
           </p>
           {!choice.refusal && <p className="nudge-text">{settingWords(history ?? n.text)}</p>}
           {!choice.refusal && n.reason && <p className="nudge-reason">{settingWords(n.reason)}</p>}
@@ -753,8 +752,8 @@ export function SuggestionCard(props: {
       )}
       {choice.refusal && (
         <p className="nudge-warning">
-          Insisting may cost trust. {settingWords(shortName(n.order.personId))} can still refuse. Review the
-          warning before Confirm.
+          Insisting may cost trust. {shortName(n.order.personId)} can still refuse. Review the warning before
+          Confirm.
         </p>
       )}
       <p className="nudge-availability">
@@ -773,9 +772,9 @@ export function SuggestionCard(props: {
         {choice.refusal
           ? 'Choose Insist to review the order, or keep watching.'
           : review
-            ? 'Review the order, then Confirm sends it.'
-            : 'Send order sends it to both villages.'}{' '}
-        You can skip or choose your own.
+            ? 'Review the order, then choose Confirm to send it.'
+            : 'Choose Send order to send it to both villages.'}{' '}
+        You can skip this suggestion or give your own order.
       </p>
     </div>
   );
@@ -864,7 +863,7 @@ export function Composer(props: {
                   e.currentTarget.closest('details')?.removeAttribute('open');
                 }}
               >
-                {settingWords(shortName(p.id))}
+                {shortName(p.id)}
               </button>
             ))}
           </fieldset>
@@ -890,7 +889,7 @@ export function Composer(props: {
                   e.currentTarget.closest('details')?.removeAttribute('open');
                 }}
               >
-                {settingWords(PLACE_LABEL[p])}
+                {PLACE_LABEL[p]}
               </button>
             ))}
           </fieldset>
@@ -908,7 +907,7 @@ export function Composer(props: {
               onClick={() => props.onWho(p.id)}
             >
               <Portrait id={p.id} size={20} />
-              <span>{settingWords(shortName(p.id))}</span>
+              <span>{shortName(p.id)}</span>
             </button>
           );
         })}
@@ -926,7 +925,7 @@ export function Composer(props: {
             onPointerLeave={() => props.onHover(null)}
           >
             <Icon name={PLACE_ICON[p]} size={16} />
-            <span className="place-chip-label">{settingWords(PLACE_LABEL[p])}</span>
+            <span className="place-chip-label">{PLACE_LABEL[p]}</span>
           </button>
         ))}
       </div>
@@ -934,12 +933,12 @@ export function Composer(props: {
         {!who ? (
           <span className="muted">Pick a villager here or on either map.</span>
         ) : !s.placeId ? (
-          <span className="muted">{settingWords(shortName(who))}: now pick a place.</span>
+          <span className="muted">{shortName(who)}: now pick a place.</span>
         ) : (
           <>
             <span className="composer-job">
-              {settingWords(shortName(who))} → {settingWords(PLACE_LABEL[s.placeId])}
-              {props.job && <> · {settingWords(jobPhrase(props.job))}</>}
+              {shortName(who)} → {PLACE_LABEL[s.placeId]}
+              {props.job && <> · {jobPhrase(props.job)}</>}
             </span>
             {!pred && <span className="predict muted">Checking current answer…</span>}
             {pred && (
@@ -956,9 +955,9 @@ export function Composer(props: {
           <span className="active-costs">
             {settingWords(
               [
-                s.rush && 'Rush: hungrier',
-                s.insist && 'Insist: trust at risk',
-                s.appeal === 'safety' && 'Safety: promise',
+                s.rush && 'Rush makes them hungrier.',
+                s.insist && 'Insist may reduce their trust in you.',
+                s.appeal === 'safety' && 'Safety is a promise.',
                 s.appeal === 'children' && 'For the children',
                 s.appeal === 'duty' && 'Duty',
               ]
@@ -985,7 +984,7 @@ export function Composer(props: {
           </p>
           {who && (
             <button type="button" className="btn" onClick={() => props.onInspect(who)}>
-              About {settingWords(shortName(who))}
+              About {shortName(who)}
             </button>
           )}
           <button type="button" className="btn" onClick={() => props.onChange(EMPTY_COMPOSER)}>
@@ -1045,7 +1044,7 @@ export function Composer(props: {
         )}
         {who && (
           <button type="button" className="btn btn-small btn-ghost" onClick={() => props.onInspect(who)}>
-            About {settingWords(shortName(who))}
+            About {shortName(who)}
           </button>
         )}
         {(who || s.nudgeId) && (
@@ -1153,8 +1152,7 @@ export function HurtLine({
             setHeldNews(null);
           }}
         >
-          Hurt · {settingWords(shortName(latestNews.personId))} (
-          {latestNews.side === 'human' ? 'Human' : 'Classic'}) · Show
+          Hurt · {shortName(latestNews.personId)} ({latestNews.side === 'human' ? 'Human' : 'Classic'}) · Show
         </button>
       )}
       <strong>Hurt</strong>
@@ -1177,7 +1175,7 @@ export function HurtLine({
                 setHeldNews(null);
               }}
             >
-              Send {settingWords(shortName(n.personId))} home
+              Send {shortName(n.personId)} home
             </button>
           )}
           {onShow && (
@@ -1189,7 +1187,7 @@ export function HurtLine({
                 setHeldNews(null);
               }}
             >
-              Show {settingWords(shortName(n.personId))}
+              Show {shortName(n.personId)}
             </button>
           )}
         </div>

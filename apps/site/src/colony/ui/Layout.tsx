@@ -145,7 +145,7 @@ export function People({
     <>
       <button type="button" className="well-village-heading" onClick={onStand}>
         <strong>Human village · {moodDescription(frame.scoreboard.human.morale)}</strong>
-        <small>{settingWords(VILLAGE_WORDS[frame.village].season)}</small>
+        <small>{VILLAGE_WORDS[frame.village].season}</small>
       </button>
       <div className="well-people">
         {VILLAGERS.map((v) => {
@@ -155,7 +155,7 @@ export function People({
             <button type="button" key={v.id} data-person={v.id} onClick={() => onPick(v.id)}>
               <Portrait id={v.id} />
               <span>
-                <strong>{settingWords(shortName(v.id))}</strong>
+                <strong>{shortName(v.id)}</strong>
                 <small>{settingWords(activityDescription(p?.label ?? 'waiting'))}</small>
               </span>
               {card && (
@@ -239,11 +239,11 @@ export function News({ news, onShow }: { news: readonly HurtNews[]; onShow(n: Hu
         <div key={`${n.minute}-${n.side}-${n.personId}`}>
           <p>{settingWords(hurtText(n))}</p>
           <button type="button" onClick={() => onShow(n)}>
-            Show {settingWords(shortName(n.personId))}
+            Show {shortName(n.personId)}
           </button>
           {n.side === 'human' && (
             <button type="button" onClick={() => onShow(n)}>
-              {settingWords(shortName(n.personId))} · Home
+              {shortName(n.personId)} · Home
             </button>
           )}
         </div>
@@ -340,8 +340,7 @@ export function PersonSheet({
             <>
               <div>
                 <strong>
-                  Latest · {settingWords(PLACE_LABEL[card.order.placeId])} ·{' '}
-                  {settingWords(jobPhrase(card.order.action))}
+                  Latest · {PLACE_LABEL[card.order.placeId]} · {jobPhrase(card.order.action)}
                 </strong>
                 <Status card={card} />
               </div>
@@ -379,8 +378,7 @@ export function PersonSheet({
         {pending ? (
           <div className="well-risk">
             <strong>
-              {settingWords(shortName(id))} → {settingWords(PLACE_LABEL[pending])} ·{' '}
-              {settingWords(jobPhrase(inferredJob(frame, pending)))}
+              {shortName(id)} → {PLACE_LABEL[pending]} · {jobPhrase(inferredJob(frame, pending))}
             </strong>
             <p>
               {settingWords(riskyPlace(frame, pending))} Human:{' '}
@@ -434,7 +432,7 @@ export function PersonSheet({
                   onPointerEnter={() => onHover(p)}
                   onPointerLeave={() => onHover(null)}
                 >
-                  <strong>{settingWords(PLACE_LABEL[p])}</strong>
+                  <strong>{PLACE_LABEL[p]}</strong>
                   <span>{settingWords(JOB_SHORT[inferredJob(frame, p)] ?? inferredJob(frame, p))}</span>
                   <small title={settingWords(match ? prediction.prediction.text : undefined)}>
                     {settingWords(answer)}
@@ -449,16 +447,16 @@ export function PersonSheet({
         )}
         {card && (
           <div className="well-order-notes">
-            {homeOrderMeaning(card) && <p>{settingWords(homeOrderMeaning(card))}</p>}
+            {homeOrderMeaning(card) && <p>{homeOrderMeaning(card)}</p>}
             {card.order.insist && <p>Insist was used. Asking again may cost trust.</p>}
             {(card.human.state === 'complied' || card.human.first?.state === 'complied') && (
-              <p>{settingWords(shortName(id))} went along, but minded being pushed.</p>
+              <p>{shortName(id)} went along, but minded being pushed.</p>
             )}
             {h?.trust.history
               .filter((e) => e.minute > card.order.issuedAt && e.delta < 0)
               .map((e) => (
                 <p key={`${e.minute}-${e.label}`}>
-                  {settingWords(shortName(id))} trusts you less. {settingWords(e.label)}.
+                  {shortName(id)} trusts you less. {settingWords(e.label)}.
                 </p>
               ))}
           </div>

@@ -91,7 +91,7 @@ describe('Well first-minute clarity', () => {
       }),
     );
     expect(el.querySelector('.nudge-help')?.textContent).toBe(
-      'Review the order, then Confirm sends it. You can skip or choose your own.',
+      'Review the order, then choose Confirm to send it. You can skip this suggestion or give your own order.',
     );
     const css = readFileSync(sourcePath('colony.css'), 'utf8');
     for (const match of css.matchAll(/\.nudge-slot\s*\{([^}]+)\}/g)) {

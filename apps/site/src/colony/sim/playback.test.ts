@@ -35,7 +35,7 @@ describe('playback: explicit pause and continuous decision slowdown', () => {
     const pb = start();
     pb.handle({ type: 'resume' });
     runUntilDecision(pb);
-    expect(pb.state()).toMatchObject({ pace: 'reading', paceLine: 'slowed: a suggestion' });
+    expect(pb.state()).toMatchObject({ pace: 'reading', paceLine: 'Time is slowed for a suggestion.' });
     for (let i = 0; i < 39; i++) pb.handle({ type: 'tick', dtMs: 250 });
     expect(pb.state().pace).toBe('reading');
     for (let i = 0; i < 3; i++) pb.handle({ type: 'tick', dtMs: 250 });
@@ -49,7 +49,10 @@ describe('playback: explicit pause and continuous decision slowdown', () => {
     const pb = start();
     pb.handle({ type: 'resume' });
     pb.handle({ type: 'setContext', context: { person: 'maryam' } });
-    expect(pb.state()).toMatchObject({ pace: 'looking', paceLine: "slowed: you're with Maryam" });
+    expect(pb.state()).toMatchObject({
+      pace: 'looking',
+      paceLine: 'Time is slowed while you are with Maryam.',
+    });
     pb.handle({ type: 'tick', dtMs: 250 });
     pb.handle({ type: 'tick', dtMs: 150 });
     expect(pb.game?.minute).toBe(2); // 400ms ramp integrates 8 -> 4, without a jump.
@@ -69,7 +72,7 @@ describe('playback: explicit pause and continuous decision slowdown', () => {
     pb.handle({ type: 'setPace', pace: 2 });
     pb.handle({ type: 'order', input: { personId: 'yusuf', placeId: 'well' } });
     expect(pb.step(8)).toBe(1);
-    expect(pb.state()).toMatchObject({ pace: 'reading', paceLine: 'slowed: Yusuf is answering' });
+    expect(pb.state()).toMatchObject({ pace: 'reading', paceLine: 'Time is slowed while Yusuf answers.' });
     for (let i = 0; i < 17; i++) pb.handle({ type: 'tick', dtMs: 250 });
     expect(pb.state().pace).toBe('watching');
   });
@@ -95,7 +98,10 @@ describe('playback: explicit pause and continuous decision slowdown', () => {
     for (const n of NUDGES) pb.handle({ type: 'dismissNudge', id: n.id });
     pb.game?.advance(WARNING_AT - 1);
     expect(pb.step(8)).toBe(1);
-    expect(pb.state()).toMatchObject({ pace: 'reading', paceLine: 'slowed: the storm is coming' });
+    expect(pb.state()).toMatchObject({
+      pace: 'reading',
+      paceLine: 'Time is slowed because the storm is coming.',
+    });
     for (let i = 0; i < 13; i++) pb.handle({ type: 'tick', dtMs: 250 });
     expect(pb.state().pace).toBe('watching');
   });

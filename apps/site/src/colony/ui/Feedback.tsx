@@ -130,7 +130,7 @@ export function Feedback({
       <div className="colony-sheet-body">
         <p>
           {recording.on
-            ? 'Your run, saves and log reach us on their own. Tell us what they can’t show.'
+            ? 'Your play and saved games are recorded automatically. Tell us what the recording cannot show.'
             : 'Tell us what happened and what your run can’t show.'}
         </p>
         {!recording.on ? (
@@ -165,7 +165,7 @@ export function Feedback({
           className="colony-feedback-note"
           aria-label="Your feedback"
           rows={4}
-          placeholder="What happened at the well, what you wanted, what got in the way."
+          placeholder="What happened? What did you want to do? What got in your way?"
           value={note}
           onChange={(e) => setNote(e.target.value)}
         />
