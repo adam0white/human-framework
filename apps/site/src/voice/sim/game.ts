@@ -1496,7 +1496,7 @@ export class VoiceGame {
     const entry: Omit<LogEntry, 'id' | 'day' | 'minute' | 'clock'> = {
       kind: 'act',
       who: 'halil',
-      text: `I ${phrase}${intention ? `, ${intention}` : ''}.`,
+      text: `I ${phrase}${intention && /[.!?]$/.test(intention) ? `. ${intention}` : `${intention ? `, ${intention}` : ''}.`}`,
     };
     if (until) entry.until = until;
     if (e.decisionId) entry.decisionId = e.decisionId;

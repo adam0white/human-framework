@@ -2,7 +2,7 @@
  * Office work and the shared fictional spring calendar have explicit reverse meanings.
  * Agency encounters stay in the source archive; no placement, care or mutual trust is inferred.
  */
-import { DEFAULT_NORMS, validateCalendarPersona } from '@adam0white/human-framework';
+import { DEFAULT_NORMS, ENGINE_VERSION, validateCalendarPersona } from '@adam0white/human-framework';
 import { canonicalPersona, type PersonaEnvelope } from '@adam0white/lab-client';
 
 export function goodhandsSelinPassport(parent: PersonaEnvelope) {
@@ -18,7 +18,7 @@ export function goodhandsSelinPassport(parent: PersonaEnvelope) {
   if (
     p.mappingVersion !== 'goodhands-agency-calendar/1' ||
     p.source.id !== 'selin-voice' ||
-    p.source.engine !== '2.17.0' ||
+    (p.source.engine !== '2.17.0' && p.source.engine !== ENGINE_VERSION) ||
     p.name !== 'Selin' ||
     p.life.sex !== 'female' ||
     portable.calendar.offset !== 0 ||

@@ -392,6 +392,7 @@ export function bear(s: WatchState, mother: Person, father: Person, at: number):
     valueTransmission: 0.4,
     normExposure: 0.5,
   });
+  child.lexicon = { plainEnglish: true };
   // A newborn's trust in the Keeper starts from the household's (the stories they will hear; upbringing moves it).
   const trust =
     ((mother.will.voices.find((x) => x.voiceId === KEEPER_ID)?.trust ?? 0.5) +
@@ -444,6 +445,7 @@ export function newcomer(
   const name = freshName(s, sex);
   const r = () => nextRandom(s);
   const p = createPerson({
+    lexicon: { plainEnglish: true },
     id,
     name,
     seed: personSeed(s.seed, 1000 + n),

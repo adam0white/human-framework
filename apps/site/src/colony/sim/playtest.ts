@@ -7,7 +7,13 @@
  * `snapshot()`), its hash, a slim snapshot, and `replayColony` (replay to the file's minute). Does not cover: the
  * Solo control (built lazily by `summary()`; it is a second game from the same seed with no orders).
  */
-import { check, hashState, type PlaytestFile, parsePlaytest } from '../../shared/playtest.ts';
+import {
+  check,
+  FRAMEWORK_PACKAGE_VERSION,
+  hashState,
+  type PlaytestFile,
+  parsePlaytest,
+} from '../../shared/playtest.ts';
 import { ColonyGame, type LogEntry } from './game.ts';
 import { type ColonyRules, CURRENT_RULES, type HumanSideFactory, rulesOf, scenarioOf } from './human-side.ts';
 import { PLACES, type PlaceId } from './map.ts';
@@ -64,6 +70,8 @@ export function parseColonyPlaytest(text: string): { file: PlaytestFile<LogEntry
   }
   const rules = rulesOf(named) ?? CURRENT_RULES;
   const file = parsePlaytest(text, 'colony', scenarioOf(rules), validateColonyLog);
+  if (file.framework !== FRAMEWORK_PACKAGE_VERSION)
+    throw new Error('This file uses older narration. Start a fresh game; keep the old file as an archive.');
   if (rules < 6 && file.log.some((e) => e.kind === 'village'))
     throw new Error('Village choice requires rules 6');
   return { file, rules };

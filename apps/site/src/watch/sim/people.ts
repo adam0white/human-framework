@@ -161,6 +161,7 @@ export function watcherSpec(seed: number, def: WatcherDef, now: number): PersonS
   }));
   return {
     id: def.id,
+    lexicon: { plainEnglish: true },
     name: def.name,
     seed: personSeed(seed, index),
     now,
@@ -249,6 +250,7 @@ export function kinPerson(seed: number, kin: KinDef, index: number, now: number)
     });
   const p = createPerson({
     id: kin.id,
+    lexicon: { plainEnglish: true },
     name: kin.name,
     seed: personSeed(seed, 20 + index),
     now,
@@ -370,6 +372,7 @@ export function familyWords(s: WatchState, id: WatcherId): string | null {
 export function createKeeper(seed: number, now: number): Person {
   const k = createPerson({
     id: KEEPER_ID,
+    lexicon: { plainEnglish: true },
     name: 'Keeper',
     seed: personSeed(seed, 99),
     now,

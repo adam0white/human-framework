@@ -103,8 +103,8 @@ describe('conditional orders (colony-scenario@5)', () => {
       g.advance(1);
       labels.add(g.book.cards[0]?.human.label ?? '');
     }
-    expect(labels.has('after I pray Fajr')).toBe(true);
-    expect(labels.has('after I eat raw grain')).toBe(true);
+    expect(labels.has('after I finish this task (pray Fajr)')).toBe(true);
+    expect(labels.has('after I finish this task (eat raw grain)')).toBe(true);
     expect(g.book.cards[0]?.human.state).toBe('willNot');
     expect(g.book.cards[0]?.human.says).toBe('I will gather timber instead, because that is my work.');
     expect(g.human.working('o1')).toBe(false);

@@ -2,7 +2,12 @@
  * dependent reservoirs and the existing promise; it models no travel, healing or new ward.
  * The source watch-warren-ada/1 contract only publishes clinically healthy Ada.
  */
-import { type Commitment, type Person, validateCalendarPersona } from '@adam0white/human-framework';
+import {
+  type Commitment,
+  ENGINE_VERSION,
+  type Person,
+  validateCalendarPersona,
+} from '@adam0white/human-framework';
 import { canonicalPersona, type PersonaEnvelope } from '@adam0white/lab-client';
 import { nativeCastSource } from '../../shared/cast-native-sources.ts';
 import type { refugeVisitPassport } from './refuge-visit.ts';
@@ -15,7 +20,7 @@ export function watchCareReentry(parent: PersonaEnvelope, portable: Portable): C
   if (
     parent.castId !== 'hf.cast.kian.watch' ||
     parent.source.game !== 'watch' ||
-    parent.source.engine !== '2.17.0' ||
+    (parent.source.engine !== '2.17.0' && parent.source.engine !== ENGINE_VERSION) ||
     parent.source.rules !== 'cast-1' ||
     parent.transfer.castPassport !== 'site-cast/1' ||
     parent.transfer.sourceRole !== 'kian' ||

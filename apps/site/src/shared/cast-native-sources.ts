@@ -1,3 +1,4 @@
+import { ENGINE_VERSION } from '@adam0white/human-framework';
 /** Finite native return contracts. These recognize source semantics, never a cast id alone.
  * Host-specific episodes remain source-local. Calendar actions are retained only when the
  * target actually implements them; clinical/family/project gates remain HF's responsibility.
@@ -19,7 +20,7 @@ export function nativeCastSource(
     if (
       parent.source.game !== target ||
       parent.source.rules !== 'cast-1' ||
-      parent.source.engine !== '2.17.0' ||
+      (parent.source.engine !== '2.17.0' && parent.source.engine !== ENGINE_VERSION) ||
       receipt.version !== 'site-native-claim/1' ||
       !receipt.source ||
       typeof receipt.revision !== 'string' ||
@@ -29,7 +30,7 @@ export function nativeCastSource(
     source = receipt.source;
   }
   const role = String(transfer.sourceRole);
-  if (source.engine !== '2.17.0') return undefined;
+  if (source.engine !== '2.17.0' && source.engine !== ENGINE_VERSION) return undefined;
   if (
     target === 'voice' &&
     source.game === 'goodhands' &&

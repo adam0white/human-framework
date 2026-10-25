@@ -495,3 +495,12 @@ New runs use `colony-scenario@8`. Home asks a person to stay sheltered until the
 Rules @3–@7 retain one-meal/one-sleep Home, their recorded hashes and exact continuation. The order's action determines its displayed explanation, so old loaded runs retain the old Home wording. The @8 fixture and focused shelter control cover dawn expiry, meal and sleep interruptions, cancellation, replacement, autonomy and save continuation.
 
 The open-fix sweep also puts fresh suggestion forecasts before earlier context, marks matching work already underway in both villages, retains the refused destination when changing workers, and names the House action in its receipt. An unopened suggestion gets ten seconds of reading pace, then returns to the normal pace; opening its sheet keeps reading pace. These presentation changes do not alter recorded inputs or legacy simulation rules. Owner acceptance remains a playtest.
+
+
+## HF 2.21.0 narration adoption (2026-10-25)
+
+The site pins HF 2.21.0. Fresh actors opt into persisted `Lexicon.plainEnglish`; saved actors keep their choice. Canonical chapters pin that choice in the admitted initial actor. No new faculty is enabled. Current exports retain the runtime version and replay checks; Voice and Well refuse files from earlier narration versions with a start-fresh message.
+
+Regression: `src/shared/plain-narration.test.ts` covers fresh actors, later Watch arrivals and births, saved choice, export stamps and pinned canonical replay. Existing game export/replay and cast-chapter tests cover the upgrade. The before/after proof captures seeds 7, 42 and 1001: six Voice months, nine three-day Well runs with intermediate states, and three Watch years. All eighteen text-projected hashes match. It retains RNG, numbers, action IDs and semantic histories; only verified bijective Voice pause-word identities, display fields, the engine stamp and the narration opt-in differ. External evidence: `~/code/.lab-scratch/hfadopt/seeded-hashes.json` and `semantic-history-maps.json`.
+
+Lesson: narration can also be a comparison key. Well's HF duty counter and host duty counter previously shared a phrase. Plain narration changed only one and emitted an extra bubble. Preserve the existing counter identity separately from the displayed sentence. Never blank a history to make an upgrade proof pass.

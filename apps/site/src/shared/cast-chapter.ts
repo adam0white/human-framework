@@ -253,7 +253,18 @@ export async function siteCastCheckpoint(
 }
 /** Validate the complete detached actor before any shelf claim. Never consult fresh defaults at delayed arrival. */
 export function prepareSiteInitial(game: string, opening: Person, single: CastPersonChapter): void {
-  const actor = admitRawSiteCast(game, opening, single);
+  // Replay validates the original narration choice, rather than upgrading a pinned actor.
+  let target = opening;
+  if (single.initial !== undefined) {
+    const pinned = restore(JSON.parse(single.initial));
+    target = { ...opening };
+    const lexicon = { ...opening.lexicon };
+    delete lexicon.plainEnglish;
+    if (pinned.lexicon?.plainEnglish !== undefined) lexicon.plainEnglish = pinned.lexicon.plainEnglish;
+    if (Object.keys(lexicon).length) target.lexicon = lexicon;
+    else delete target.lexicon;
+  }
+  const actor = admitRawSiteCast(game, target, single);
   const initial = JSON.stringify(snapshot(actor));
   if (single.initial !== undefined && single.initial !== initial)
     throw new Error('Pinned initial actor differs from semantic preflight.');

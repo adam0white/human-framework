@@ -30,7 +30,7 @@ describe('Twice at the Well — Human side on the framework', () => {
     const of = (nudge: string) => run.cards.filter((c) => c.nudge === nudge);
     expect(of('dawn-site')[0]?.state).toBe('assent');
     // Moment 2: the dusk answer is a deferral whose counter-offer names the prayer.
-    expect(of('dusk-site').some((c) => c.state === 'notNow' && /maghrib/i.test(c.label))).toBe(true);
+    expect(of('dusk-site').some((c) => c.state === 'notNow' && /sunset prayer/i.test(c.label))).toBe(true);
     // Moment 3: the cook will not leave the meal.
     expect(of('cook-forest')[0]?.state).toBe('willNot');
     // Moment 5: insisted on in the squall, then refused the next morning out of distrust.

@@ -26,6 +26,18 @@ import type {
 } from './human-side.ts';
 import { VILLAGERS, type VillagerId } from './world-types.ts';
 
+/** Stable counter identity shared with the host's deferred-duty path. Display keeps HF's sentence. */
+export function counterIdentity(p: Person, r: SuggestionResolution): string | undefined {
+  const label = r.counterOffer?.label;
+  if (!p.lexicon?.plainEnglish || !label) return label;
+  if (label.startsWith('after I finish this duty (')) {
+    const duty = p.agenda.commitments.find((c) => c.id === r.commitmentId);
+    if (duty?.kind === 'worship') return duty.label ? `after I pray ${duty.label}` : 'after I pray';
+    if (duty?.label) return `after I ${duty.label}`;
+  }
+  return label.replace(/^after I finish this task \((.*)\)$/, 'after I $1');
+}
+
 export type VerdictKind = Exclude<BubbleKind, 'thought'>;
 
 /**
@@ -280,7 +292,7 @@ export function thoughtText(p: Person, record: DecisionRecord): string {
       const c = p.agenda.commitments.find((x) => x.id === src.slice(11));
       if (c?.kind === 'worship' && c.label) return `It is time for ${c.label}.`;
     }
-    if (src.startsWith('need:')) {
+    if (!p.lexicon?.plainEnglish && src.startsWith('need:')) {
       const line = NEED_THOUGHTS[src.slice(5)];
       if (line) return line;
     }

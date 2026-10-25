@@ -21,6 +21,7 @@ import { applyAdmittedLife } from '../../shared/cast-chapter.ts';
  */
 import {
   check,
+  FRAMEWORK_PACKAGE_VERSION,
   hashState,
   type PlaytestFile,
   parsePlaytest,
@@ -205,6 +206,8 @@ export function parseVoicePlaytest(
 } {
   const scenario = scenarioIn(text);
   const file = parsePlaytest(text, 'voice', scenario, validateVoiceLog, maxBytes);
+  if (file.framework !== FRAMEWORK_PACKAGE_VERSION)
+    throw new Error('This file uses older narration. Start a fresh game; keep the old file as an archive.');
   const raw = JSON.parse(text) as {
     voicePersona?: SelinReturn;
     oneCast?: OneCastRow[];

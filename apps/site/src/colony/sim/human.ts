@@ -50,6 +50,7 @@ import {
 } from './human-side.ts';
 import {
   capital,
+  counterIdentity,
   emotionOf,
   needsOf,
   sayLine,
@@ -441,7 +442,8 @@ export class FrameworkHumanSide implements HumanSide {
       if (open && r && r.voiceId === 'player' && record.at >= open.since) {
         const kind = verdictKind(r, this.rules);
         const counter = r.counterOffer?.label ?? (kind === 'notNow' ? r.says : undefined);
-        if (kind === open.lastKind && (kind !== 'notNow' || counter === open.lastCounter)) continue;
+        const counterKey = counterIdentity(p, r) ?? (kind === 'notNow' ? r.says : undefined);
+        if (kind === open.lastKind && (kind !== 'notNow' || counterKey === open.lastCounter)) continue;
         if (kind === 'notNow' && r.reason.startsWith('need:') && open.agreed) {
           // A drink or a meal in the middle of a job he already said yes to is a pause, not a new answer: the card
           // keeps its verdict (no flip to "not now" and back to "yes"); the pause shows as a thought.
@@ -502,7 +504,7 @@ export class FrameworkHumanSide implements HumanSide {
           }
         }
         if (kind === 'assent' || kind === 'complied') open.agreed = true;
-        if (counter) open.lastCounter = counter;
+        if (counterKey) open.lastCounter = counterKey;
         else delete open.lastCounter;
         this.bubble(
           {

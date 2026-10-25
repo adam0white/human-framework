@@ -423,6 +423,7 @@ export function villagerPersonSpec(seed: number, v: VillagerSpec): PersonSpec {
   const goal = ROLE_GOALS[v.id];
   return {
     id: v.id,
+    lexicon: { plainEnglish: true },
     name: v.name,
     seed: personSeed(seed, v.index),
     now,

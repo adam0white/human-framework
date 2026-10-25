@@ -857,3 +857,12 @@ Revert: revert “Clarify watcher access and changing night requests”.
 ### Owner trial, 2026-10-21 (F-422 and F-423)
 
 Morning now gives a plain outcome above the talks and four rough marks for watched-night progress. Routine winter still follows the last watch. Scenario 13 adds **0.08 exertion** once when HF accepts a relieve/help request that takes a helper off a different post, including a carry. The Keeper names the tiring crossing and the people left behind. Requests remain available; a refusal, same-post relief or helper from the hall pays no crossing cost. This adds no travel delay. Saved states without `nightDepartureEffort` and scenario 9–12 replays keep the old cost; their captured hashes still hold. Focused tests include an accepted-crossing control against the legacy arm. Owner feel remains to be tested; revisit by **2026-11-03** with the existing Watch retest.
+
+
+## HF 2.21.0 narration adoption (2026-10-25)
+
+The site pins HF 2.21.0. Fresh actors opt into persisted `Lexicon.plainEnglish`; saved actors keep their choice. Canonical chapters pin that choice in the admitted initial actor. No new faculty is enabled. Current exports retain the runtime version and replay checks; Voice and Well refuse files from earlier narration versions with a start-fresh message.
+
+Regression: `src/shared/plain-narration.test.ts` covers fresh actors, later Watch arrivals and births, saved choice, export stamps and pinned canonical replay. Existing game export/replay and cast-chapter tests cover the upgrade. The before/after proof captures seeds 7, 42 and 1001: six Voice months, nine three-day Well runs with intermediate states, and three Watch years. All eighteen text-projected hashes match. It retains RNG, numbers, action IDs and semantic histories; only verified bijective Voice pause-word identities, display fields, the engine stamp and the narration opt-in differ. External evidence: `~/code/.lab-scratch/hfadopt/seeded-hashes.json` and `semantic-history-maps.json`.
+
+Lesson: narration can also be a comparison key. Well's HF duty counter and host duty counter previously shared a phrase. Plain narration changed only one and emitted an extra bubble. Preserve the existing counter identity separately from the displayed sentence. Never blank a history to make an upgrade proof pass.

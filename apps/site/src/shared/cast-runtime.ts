@@ -1,3 +1,4 @@
+import { ENGINE_VERSION } from '@adam0white/human-framework';
 /** Browser orchestration only. Titles preview authored state without shelf ownership.
  * Explicit starts preflight the whole cast before one atomic claim. Replacements wait for
  * an already-dispatched transaction; pre-dispatch cancellation never writes. No rollback,
@@ -524,7 +525,7 @@ export function postCastMessage(worker: Worker, game: string, message: Record<st
       return;
     }
     gate(s, `cast-pending-${crypto.randomUUID()}`);
-    const source = { game, build: await fetchBuild(), engine: '2.17.0', rules: 'cast-1' };
+    const source = { game, build: await fetchBuild(), engine: ENGINE_VERSION, rules: 'cast-1' };
     const admitted = await claimSiteCastBatch(
       shelf,
       castForGame(game).map((p) => p.castId),

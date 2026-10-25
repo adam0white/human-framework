@@ -333,6 +333,7 @@ export interface TownOptions {
 }
 
 const HALIL_LEXICON: Lexicon = {
+  plainEnglish: true,
   locale: 'en',
   names: {
     halil: 'Halil',
@@ -592,7 +593,13 @@ export function townSpecs(opts: TownOptions = {}): Record<TownPersonId, PersonSp
   };
   for (const id of TOWN_IDS) {
     const cast = canonicalCast(`hf.cast.${id}.voice`);
-    specs[id] = { ...specs[id], traits: cast.traits, values: cast.values, bornAt: born(cast.age) };
+    specs[id] = {
+      ...specs[id],
+      lexicon: { ...specs[id].lexicon, plainEnglish: true },
+      traits: cast.traits,
+      values: cast.values,
+      bornAt: born(cast.age),
+    };
   }
   return specs;
 }

@@ -1,4 +1,4 @@
-import { createPerson } from '@adam0white/human-framework';
+import { createPerson, ENGINE_VERSION } from '@adam0white/human-framework';
 import type { PersonaEnvelope } from '@adam0white/lab-client';
 import { createPersona, initialPersonaLife, preparePersonaLife } from '@adam0white/lab-client';
 import { expect, it } from 'vitest';
@@ -51,7 +51,7 @@ it('keeps dormant carried dues through a native checkpoint and re-admission but 
     castRevision: '1',
     branchId,
     parentRevision: null,
-    source: { game: 'watch', build: 'control', engine: '2.17.0', rules: 'cast-1' },
+    source: { game: 'watch', build: 'control', engine: ENGINE_VERSION, rules: 'cast-1' },
     transfer: { ...transfer, life: initialPersonaLife(castId, branchId, 0) } as PersonaEnvelope['transfer'],
     limitations: [],
   });

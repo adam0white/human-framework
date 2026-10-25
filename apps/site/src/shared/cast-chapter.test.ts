@@ -1,4 +1,4 @@
-import { createPerson, type Person } from '@adam0white/human-framework';
+import { createPerson, ENGINE_VERSION, type Person } from '@adam0white/human-framework';
 import { createPersona, initialPersonaLife, preparePersonaLife } from '@adam0white/lab-client';
 import { describe, expect, it } from 'vitest';
 import { ColonyGame } from '../colony/sim/game.ts';
@@ -35,7 +35,7 @@ describe('site cast chapters', () => {
       castRevision: '1',
       branchId,
       parentRevision: null,
-      source: { game: 'well', engine: '2.17.0', rules: 'cast-1', build: 'control' },
+      source: { game: 'well', engine: ENGINE_VERSION, rules: 'cast-1', build: 'control' },
       transfer: { ...transfer, life: initialPersonaLife(castId, branchId, 0) },
       limitations: [],
     });
@@ -48,6 +48,7 @@ describe('site cast chapters', () => {
     run.input({ k: 'toDusk' });
     const person = run.state.community.people.find((p) => p.id === 'danyal')!;
     const portable = transfer.person as { person: { health: { fitness: number } } };
+    expect(person.lexicon?.plainEnglish).toBe(true);
     expect(person.body.fitness).toBe(portable.person.health.fitness);
     expect(person.agenda.commitments.some((c) => c.normId === 'daily-prayer')).toBe(true);
     expect(person.conscience.norms.some((n) => n.normId === 'daily-prayer')).toBe(true);
@@ -177,7 +178,7 @@ it('two ordinary played Voice people retain distinct acquired state together in 
         castRevision: '1',
         branchId,
         parentRevision: null,
-        source: { game: 'voice', build: 'control', engine: '2.17.0', rules: 'voice-4' },
+        source: { game: 'voice', build: 'control', engine: ENGINE_VERSION, rules: 'voice-4' },
         transfer: { ...transfers[i], life: initialPersonaLife(castId, branchId, 0) },
         limitations: [],
       });
