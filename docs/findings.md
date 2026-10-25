@@ -276,7 +276,7 @@ The CSS warning sweep leaves cascade diagnostics visible. Most compare different
 
 ## Serialized log byte bound — 2026-10-25
 
-Client0.4.9/kit0.5.10 carry the reviewed UTF-8 serialized-message bound from signedf54f1c6. Prior character-count truncation could exceed Worker byte limits for CJK, escaped controls and emoji, dropping an entire batch. Preserve code-point boundaries and bound the serialized string content to1000bytes; keep following screen events deliverable. Packed-burst controls and source receipts are tracked by the roadmap director. HF3 client/kit refresh will use next-free0.4.10/0.5.11 after core publication.
+Client0.4.9/kit0.5.10 carry the reviewed UTF-8 serialized-message bound from signedf54f1c6. Prior character-count truncation could exceed the local journal’s 128 KiB admission budget, blocking later regular flushes; packed CJK bursts reproduced this before any Worker request. Preserve code-point boundaries and bound the serialized string content to1000bytes; keep following screen events deliverable. Packed-burst controls and source receipts are tracked by the roadmap director. The later HF3 refresh published client0.4.10/kit0.5.11 with this bound; game adoption is coordinated separately.
 
 
 ## HF3 migration and release checks — 2026-10-25
@@ -288,3 +288,23 @@ npm12.2.1 pack JSON is keyed by package name; npm11 emits an array. The old rele
 An isolated binding-free Wrangler4.152 local probe using compatibility_date2026-10-25 returned HTTP200 and emitted no fallback warning despite bundled workerd1.20261019.1. No unsupported-date fallback was reproduced. All probe processes stopped and its port closed; no production resources were touched. See [Cloudflare local development](https://developers.cloudflare.com/workers/local-development/) and [compatibility dates](https://developers.cloudflare.com/workers/configuration/compatibility-dates/).
 
 Stairwell's historical source rules8/engine2.21 stays finite. The HF3 game upgrade must create a new source edition and real replaying checkpoint, then add that exact edition/engine tuple to Voice's receiver without weakening passport, role or building-obligation guards. Follow up2026-10-26 in the per-game adoption; this does not block the framework artifact.
+
+## Firefox production receipts and live navigation (2026-10-25)
+
+Published client 0.4.9 was bundled from its verified GitHub tarball and exercised in disposable native Firefox Nightly 160.0a1 profiles. In a controlled Pass → Glance → Pass journey, the first regular request was held before dispatch. After return, two separate cases received real HTTP 200 `ok/id` storage acknowledgments matching their intended envelopes: GPC off, and GPC on with recording explicitly enabled. GPC on by default produced no journal, request or receipt. The intended entries had transferred to IndexedDB before navigation; this proves that recovery path, while earlier local controls cover synchronous-journal interruption. No R2 object was independently read.
+
+A separate ordinary journey used deployed Pass source `7b5d8c8` without an injected SDK, forced flush or synthetic milestone. The returned page sent one regular event request and received HTTP 200 with a matching id. Its acknowledgment followed return; without a pre-navigation id it cannot identify recovered work versus a new event. The observer decompressed the request before forwarding it, and a zero-POST guard constrained Glance. The bounded live-game control was not repeated. All test profiles were deleted, and each browser process was awaited. F-192 remains open for the remaining game rollout; the owner's settings and historical note cause remain unknown.
+
+## Longer population measurements (2026-10-25)
+
+The unchanged released HF 2.23 source harness ran seed 19. Fine 100 completed day 30 twice and then day 365 once. Fine 1,000 completed day 30 once. Coarse 10,000 completed day 365 twice. Snapshot hashes match between the repeated runs at their shared checkpoints; the fine year and fine 1,000 month were not repeated. All scheduled people remained alive, and no inline yearbooks were enabled.
+
+| Profile       | Day 1 bytes/person | Day 30 bytes/person | Day 365 bytes/person |
+| ------------- | -----------------: | ------------------: | -------------------: |
+| Fine 100      |          85,046.90 |          186,327.22 |           296,789.92 |
+| Fine 1,000    |          84,645.50 |          186,202.19 |              Not run |
+| Coarse 10,000 |           3,832.05 |            3,856.05 |             3,860.05 |
+
+These are UTF-8 actor snapshots, excluding world state and external archives. Both longer fine runs completed within the 180-second admission budget. That budget is checked between synchronous day calls; it is not a hard timeout. The harness and actor source match released v2.23.0; these runs did not execute an independently packed npm runtime.
+
+These concurrent-machine observations do not establish quiet timing or scaling. Fine uses actual village decisions and a food-stock disruption; coarse holds body/needs, runs a host routine and makes no decisions or world simulation. Their sizes and timings do not establish matched fidelity or outcomes. The meaningful-opportunity predicate needed for decision starvation remains unavailable; idle counts are not a substitute. Quiet repetitions remain targeted for 2026-11-15.
