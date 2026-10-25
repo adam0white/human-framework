@@ -51,7 +51,7 @@ export function nativeCastSource(
   if (
     target === 'voice' &&
     source.game === 'stairwell' &&
-    source.rules === '7' &&
+    (source.rules === '7' || (source.rules === '8' && source.engine === '2.21.0')) &&
     transfer.castPassport === 'stairwell-cast/1' &&
     role === 'hacer' &&
     castId === 'hf.cast.hacer.voice'

@@ -40,3 +40,7 @@ Watch retains its chronicle and winter hopes as two gameplay menu entries. The c
 ## Setting and language (owner, 2026-10-24)
 
 Keep the setting, places and personal names. Every sentence must be understandable without Turkish. Use English for common nouns. On first use, call the kapıcı “the building’s caretaker”; later use “caretaker”. Keep at most two flavour words per game. Explain each within its sentence on first use. Faith stays quiet background. Source faith wording from `research/`; do not invent rulings. Change no meaning, rules or difficulty. Use display projections to preserve simulation and replay text.
+
+## HF upgrade lesson: source editions and native receivers
+
+An HF narration upgrade can also advance a game's export edition. Check the complete native source tuple, including game edition and engine, against receiving hosts. Stairwell edition8 exports engine2.21.0 while edition7 remains a supported historical source. The site accepts the exact new tuple through the existing Hacer role, passport and unresolved-building-account guards. The current fixture comes from Stairwell's real pause/projection and its source run replays; it is not a retagged old snapshot. The integration control plays and exactly replays the admitted Voice continuation. Raw source remains outside the public fixture.
