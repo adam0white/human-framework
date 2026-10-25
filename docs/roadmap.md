@@ -12,6 +12,21 @@ Items that move replays carry 2.2 or a later engine number; behaviour-neutral it
 
 **HF roadmap (2026-10-20).** The vision, three horizons and the recommended next increment are in [hf-roadmap-2026-10-20.md](hf-roadmap-2026-10-20.md), built from a blind consultation and the games' requests. This page stays the authoritative list of deferred items and targets; the roadmap orders them.
 
+## Horizon 3: first probes and remaining targets (2026-10-25)
+
+The [eight first probes](hf-roadmap-2026-10-20.md#horizon-3-long-bets) ran without an H3 release. Narrow GO does not establish emergence, human enjoyment or predictive validity. The H3 director owns these remaining items; v3 owns the serialized release and owner review remains2026-11-03.
+
+| Item | Remaining work | Target |
+|---|---|---|
+| H3 lockstep | Review/export the optional `canonicalTickInputs` slice in the serialized queue; keep caller-owned payloads, sender-priority convention and same-runtime limits explicit. No multiplayer service. | proposed3.0, review2026-11-03 |
+| H3 speech | First opt-in contingent host recipe and focused abuse controls are built; decide host adoption. Full nine-act grammar and general bargaining remain a new design, not this result. | adoption review2026-11-03; broader design2026-11-15 |
+| H3 starter | First copied people-centered template is built. Lab/playtester wiring, import validation and deployment scaffolding are listed gaps, not a full engine. | gap review2026-11-03 |
+| H3 traditions | Released2.22 conditional methods satisfy controlled transfer/revision; no duplicate faculty. Spontaneous teaching, chosen observation and adult practice need a new probe. | design2026-11-15 |
+| H3 fork | Full candidate capture and RNG at decision boundary, then varied intervention contexts; same-time divergence and truncated traces fail the first gate. |2026-11-15|
+| H3 cast | Exact Valley→Good Hands route conflicts with cohorts/allocations. Keep existing supported continuity; no identity or era override. Review any future explicit mapping separately. | owner mapping review2026-11-03 |
+| H3 ant farm | Original60s budget fails; separate200-person year completes with one persistent strong triangle and no paired baseline. Preregister feasible paired years and validated classifiers. |2026-11-15|
+| H3 prediction | Score frozen HF-derived forecasts only on the future eligible20-run cohort with known labels; keep unknowns/PENDING and report misses. No recruitment or new rounds before readiness acceptance. | availability/labels check2026-11-03 |
+
 ## 1. Framework: engine changes (2.2)
 
 These change what a run does, so each needs the engine bump and a recorded reason.

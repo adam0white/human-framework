@@ -251,3 +251,13 @@ Committed Glance960af698/HF2.21 was extracted and checked against its Git tree a
 ## Regular-event navigation delivery (2026-10-25)
 
 F-192: the old client spliced regular data before identity, gzip and IndexedDB could finish. Native local Firefox navigation reproduced loss. Client0.4.8 now writes immutable bounded chunks synchronously, retires each only after durable storage or a stored receipt, preserves captured metadata and enforces seven-day expiry. Tests cover in-flight loss, duplicate regrouping, cross-tab retirement, full retries, reset/privacy, and rejected-marker retry. Local GPC/DNT defaults suppress; explicit recording on permits delivery. Central deployment is verified; external rollout and a production navigation receipt remain before closing F-192. No production test upload or owner-profile inspection belongs to these new controls. Capacity exhaustion and denied storage remain explicit limits. The owner's historical feedback note is a separate unresolved event.
+
+## Horizon 3 first probes, 2026-10-25
+
+The [fork probe](lab/experiments/fork-the-day-2026-10-25.md) changed choices in20/20 seeds at the same minute, failing the required spread. Eight retained candidates cannot support its strict full-term attribution. The native [Valley→Good Hands probe](lab/experiments/one-cast-many-games-2026-10-25.md) stopped at the intentional cast-allocation boundary; no destination week or schema-failure claim follows.
+
+The [ant farm](lab/experiments/ant-farm-of-people-2026-10-25.md) reached28/365 days in its60-second budget. A separately registered unchanged fine-driver extension completed a year in499 seconds with200 alive and one persistent maximal strong triangle; no two disjoint persistent triangles, elder or feud signature and no paired baseline. Neither budget failure nor a single arm proves the absence or presence of general emergence.
+
+The original [speech label-only control](lab/experiments/speech-acts-you-can-play-2026-10-25.md) gave identical choices and0/20 agreements; raw promise accumulation was not a protocol exploit. A later real offer/accept/refuse/counter probe tests the missing protocol instead. The original [traditions assay](lab/experiments/traditions-that-travel-2026-10-25.md) had a discovery ceiling and universal lessons, so it could not isolate teaching or peer spread. Its later balanced peer-only probe retains the negative result and tests a narrower causal contrast.
+
+[Real-player prediction](lab/experiments/predicting-real-players-hf-forecast-2026-10-25.md) remains prospective. Historical feedback, absent labels and agenda-censored simulated sessions cannot establish predictive accuracy; the opening confusion signal is a rubric proxy. No new rounds or telemetry-derived trait model ran.

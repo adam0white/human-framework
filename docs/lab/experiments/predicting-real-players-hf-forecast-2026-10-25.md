@@ -19,3 +19,7 @@ GO for further predictive validation requires20 eligible runs, at least16 known 
 ## Instrument result and next step
 
 **PENDING EVIDENCE.** Historical HF archive parsed; derived quit count1/9, opening ambiguity warnings9/9 and exact point provenance. No prospective human score exists. No HF faculty or telemetry model was added. The analyst registration's earlier historical availability check cannot supply this future cohort. Next check **2026-11-03**: use the owner's private inbox to count qualifying post-freeze receipts and known labels, then score or retain PENDING with missing fields. Do not start new rounds before owner readiness acceptance. Frozen machine-readable forecast and registration hash remain in `~/code/.lab-scratch/h3/prediction-hf-forecast/`.
+
+## Review clarification
+
+The1/9 forecast uses all nine historical sessions as the denominator under a declared extrapolation convention. Five agenda stops censor observation before60 minutes; they are not observed60-minute non-quits. Thus1/9 is a frozen forecast derived from the HF cohort's mixed stopping rules, not a measured60-minute quit probability. This weak premise stays visible when scoring the unchanged prediction. Confusion remains a menu-rubric proxy, not an HF person's reported mental state.
