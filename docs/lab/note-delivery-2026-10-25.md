@@ -12,6 +12,6 @@ An old note still in IndexedDB can retry after the fixed client loads with the s
 
 Pass, Murmur, Stairwell and Glance cached /release.json in service workers. Their live HTTP manifests were current while an installed worker could return the old cached manifest. These workers now bypass that path. The remaining games were audited; Small Works and Neighbours also needed canonical app/framework manifest fields.
 
-Client0.4.7 and kit0.5.8 are signed immutable GitHub releases from `4c444da`, with exact green CI40197533896 and downloaded artifact bytes verified. Firefox could not start on this host using two supported builds; retry target 2026-10-26. The historical owner-note failure remains unknown. New records use a fresh stamp; historical records retain the captured stamp.
+Client 0.4.7 and kit 0.5.8 are signed, versioned GitHub tarball releases from `4c444da`, with exact green CI40197533896 and downloaded artifact bytes verified. GitHub reports `immutable:false` for both releases. Platform-enforced release immutability is off; game integrity pins identify the verified bytes. Firefox could not start on this host using two supported builds; retry target 2026-10-26. The historical owner-note failure remains unknown. New records use a fresh stamp; historical records retain the captured stamp.
 
 Delivery and cleanup receipts: ~/code/.lab-scratch/notelost/report.md. Owner acceptance remains a subsequent real feedback attempt, target 2026-11-03; no synthetic production notes are authorized.
