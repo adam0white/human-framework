@@ -2,6 +2,10 @@
 
 Detail moved out of AGENTS.md on 2026-10-20 (owner: "Trim handoff and other documents"). AGENTS.md keeps one line per increment; the full text of each bounded increment as it stood in AGENTS.md is kept here verbatim.
 
+## Roadmap host APIs and read-only helpers (2026-10-25)
+
+HF2.20.0 / engine2.17.0 adds authored habits/expectations, explicit voice-trust and tiredness calls, observed reputation composition and a sourced read-only Qalb lens. It rejects non-finite pregnancy fields and unsafe reputation effects while preserving valid legacy continuation and key order. Two independent batch reviews found and fixed setup-copy and prototype-trait defects. Focused controls, full checks, exact CI, npm provenance and clean live deployment are recorded in [releases](releases.md). Glance/Neighbours/Firefox investigations and bounded scale measurements retain their causal and fidelity limits. Body features, Watch adoption and owner acceptance remain separate.
+
 ## Plain English narration (2026-10-25)
 
 HF2.19.0 adds explicit plain-English narration while engine2.17.0 and default continuation remain unchanged. Complete sentences cover framework narration, replies, generated memories, stock outcomes and community logs. Host-authored prose and identity-bearing labels stay exact. Two independent reviews, focused tests, three headless controls, exact green CI and verified npm publication/provenance are recorded in [releases](releases.md). Game adoption waits for parallel source-rewrite workers; owner acceptance remains separate.

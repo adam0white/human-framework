@@ -4,6 +4,8 @@ Updated 2026-10-25. Read [AGENTS.md](AGENTS.md) for rules and the current increm
 
 ## What remains
 
+- **Roadmap director (2026-10-25):** HF2.20.0 / engine2.17.0 is published with npm provenance and live at signed source `ce1e0d6`. The additive setup/host APIs, Qalb lens, observed-reputation helper, finite family restore and ordered keys are delivered. Next: reviewed bodily candidate, Watch Q50 adoption, host recipes and site game-pin isolation before an engine bump. F-192 navigation-only delivery remains open; normal Firefox delivery and GPC/DNT defaults are verified. Glance screen-only gate replacement remains untested; Neighbours repair investigation found its existing host fix. Reports/status: `~/code/.lab-scratch/hfroad/`. Owner review remains2026-11-03.
+
 - **Missing Pass feedback (2026-10-25, F-496):** client0.4.7 and kit0.5.8 require a stored note receipt, retain failed linked notes and use a fresh build stamp. Worker and initial game rollouts are live. Per-game delivery and cleanup receipts are in `~/code/.lab-scratch/notelost/report.md`. The exact historical note failure remains unknown. Firefox startup blocked local verification; retry target2026-10-26. Owner feedback retest remains separate, target2026-11-03.
 
 - **HF plain English (2026-10-25):** HF2.19.0 is published with verified npm signature/attestation and explicit `Lexicon.plainEnglish` and label/reason display readers. Engine2.17.0 and default continuation remain exact. Receipts are in `docs/releases.md`; game pins and saved opt-in adoption wait for their parallel plain-English workers to finish (follow up2026-10-26). Reports: `~/code/.lab-scratch/plain2/hf-report.md`. Owner reading/feel review remains separate, target2026-11-03.
@@ -37,6 +39,8 @@ Private linked ingestion uses gzip pieces (256 KiB compressed / 512 KiB inflated
 R2 `hf-lab`: applied and read back lifecycle rules `linked-180-days` (`linked/`), `runs-180-days` (`runs/`), `private-180-days` (`private/`) and `raw-safety-180-days` (`ev/`), each expires after 180 days. Default multipart abort rule is retained. Existing raw-event aggregation/cleanup remains eligible after two calendar days; the lifecycle bounds outages. Public aggregates remain. No request logging added. Final commit/CI/live upload receipts are recorded in `~/code/.lab-scratch/codex/telemetry-on.md` after deployment.
 
 ## Current state
+
+- **HF2.20.0 / engine2.17.0 (2026-10-25).** Signed source `ce1e0d6b66fbae0396745ecfc3e166def109dc00`, exact green CI40201506536, trusted publish40202192799. Registry SHA512 matches the downloaded tarball; SLSA names that source and workflow. Fresh-worktree deployment `36adc412-23f2-4130-8ee3-b79e7ded5363`; live manifest matches source with `dirty:false`. Existing Chrome verified the homepage at360×690 and1280×800 with no horizontal overflow; task tab closed and viewport restored. The current workspace alias builds HF2.20 while the game declaration remains2.18; explicit Watch adoption and resolver isolation are the next batch. No body opt-in or cold playtest round was shipped.
 
 - **HF2.19.0 / engine2.17.0, plain English (2026-10-25).** Explicit plain-English narration, display readers and generated outcome/log sentences; exact legacy default continuation. Signed release source425c708, exact CI40199344919, trusted publish40199865888 and npm signature/SLSA attestation are verified. Game adoption remains gated by their separate workers. [Release receipts](docs/releases.md).
 
