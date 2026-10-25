@@ -194,3 +194,9 @@ Keep setting, places and personal names; make every sentence understandable with
 > "I think we can keep pushing HF further, especially with codex tokens. Keep using our allowance across codex, Claude, and workers AI every heartbeat"
 
 Coordinator reading: the heartbeat keeps work in flight instead of only checking. Codex workers build HF roadmap items (soonest targets first) and game fixes, one writer per repo, HF releases serialized. Claude does reading, taste and audits. Workers AI spends its daily free allowance on playtesters. The 5 GB disk guard and the existing review, test and release rules still apply.
+
+## 2026-10-25 — HF v3 and a codebase-wide sweep (Adam, verbatim)
+
+> "I think HF horizon 2 is almost done, and even some things from horizon 3 are partially addressed. Well this is exciting. Today, let's keep implementing and verifying everything that is on the HF roadmap, with some Claude and many Codex. Keep on checking and pushing things on your hourly heartbeats. Get things reviewed. As part of v3, we should upgrade all dependencies and compat_date and clean up deprecated methods. Do a codebase wide cleaning, maintenance, and best practices and whatever else sweep. We don't need to limit to the roadmap, we can address stuff play testers asked for and improvements. Let's go."
+
+> "Yeah, but we can include the horizon 3 goals into this, too."
