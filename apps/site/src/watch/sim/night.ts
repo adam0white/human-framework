@@ -23,7 +23,7 @@ import {
   type Affordance,
   type Command,
   finish,
-  glimpseOf,
+  glimpsePerson,
   hear,
   injure,
   interruptPerson,
@@ -1410,7 +1410,7 @@ export function stepMinute(s: WatchState): void {
   if (lit && (m - s.nightStart) % KEEPER_LOOK === 0)
     for (const id of postedIn(s, lit)) {
       const p = personOf(s, id);
-      if (p) glimpseOf(s.keeper, p, m, 0.9);
+      if (p) glimpsePerson(s.keeper, p, m, 0.9);
     }
   if ((m - s.nightStart) % PEER_LOOK === 0)
     for (const sec of SECTION_IDS) {
@@ -1420,7 +1420,7 @@ export function stepMinute(s: WatchState): void {
           if (a === b) continue;
           const pa = personOf(s, a);
           const pb = personOf(s, b);
-          if (pa && pb) glimpseOf(pa, pb, m, sec === lit ? 0.7 : 0.45);
+          if (pa && pb) glimpsePerson(pa, pb, m, sec === lit ? 0.7 : 0.45);
         }
     }
 
@@ -1615,7 +1615,7 @@ function bite(s: WatchState, id: WatcherId, t: Token): void {
       text: `A wolf has ${nameOf(s, id)} by the leg.`,
       slowed: true,
     });
-    glimpseOf(s.keeper, p, s.minute, 0.9);
+    glimpsePerson(s.keeper, p, s.minute, 0.9);
   }
   if (readCapacities(p).moving < 0.3) downed(s, id, t.section);
 }

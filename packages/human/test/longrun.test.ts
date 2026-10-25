@@ -42,15 +42,15 @@ describe('liveRoutine (one person)', () => {
   test('the same stretch gives the same bits however it is split into whole days', () => {
     const a = make();
     const b = make();
-    liveRoutine(a, 400 * DAY, routine);
-    liveRoutine(b, 123 * DAY, routine);
-    liveRoutine(b, 400 * DAY, routine);
+    liveRoutine(a, 400 * DAY, () => routine);
+    liveRoutine(b, 123 * DAY, () => routine);
+    liveRoutine(b, 400 * DAY, () => routine);
     expect(rt(snapshot(b))).toEqual(rt(snapshot(a)));
   });
 
   test('a year of routine practises, bonds, remembers events and ages; a remainder is skipped', () => {
     const p = make();
-    const notable = liveRoutine(p, YEAR + 600, routine);
+    const notable = liveRoutine(p, YEAR + 600, () => routine);
     expect(p.now).toBe(YEAR + 600);
     expect(p.skills.farming?.level ?? 0).toBeGreaterThan(0.3);
     expect(p.social.relationships.find((r) => r.otherId === 'q')).toBeDefined();
@@ -63,7 +63,7 @@ describe('liveRoutine (one person)', () => {
     const p = make();
     p.body.alive = false;
     const before = rt(snapshot(p));
-    expect(liveRoutine(p, 30 * DAY, routine)).toEqual([]);
+    expect(liveRoutine(p, 30 * DAY, () => routine)).toEqual([]);
     expect({ ...rt(snapshot(p)), now: before.now }).toEqual(before);
   });
 });
@@ -97,7 +97,11 @@ describe('fifty years of a settlement (L5 control)', () => {
     let deaths = 0;
     let stages = 0;
     for (let d = 1; d <= 5; d++) {
-      const r = liveCommunity(c, d * 10 * YEAR, { routineFor, onDay: families(18), lifecourse });
+      const r = liveCommunity(c, d * 10 * YEAR, {
+        routineFor: routineFor(c),
+        onDay: families(18),
+        lifecourse,
+      });
       deaths += r.events.filter((e) => e.kind === 'died').length;
       stages += r.events.filter((e) => e.kind === 'stage').length;
       decades.push(sample());
@@ -163,17 +167,21 @@ describe('fifty years of a settlement (L5 control)', () => {
   });
 
   test('a run saved and restored mid-way continues bit for bit', () => {
-    const opts = { routineFor, onDay: families(6), lifecourse: { ...lifecourse, multiplier: 5 } };
+    const opts = (c: Parameters<typeof routineFor>[0]) => ({
+      routineFor: routineFor(c),
+      onDay: families(6),
+      lifecourse: { ...lifecourse, multiplier: 5 },
+    });
     const a = settlement(6, 3, 20, 60);
-    liveCommunity(a, 4 * YEAR, opts);
+    liveCommunity(a, 4 * YEAR, opts(a));
     const b = settlement(6, 3, 20, 60);
-    liveCommunity(b, 2 * YEAR + 37 * DAY, opts);
+    liveCommunity(b, 2 * YEAR + 37 * DAY, opts(b));
     const saved = rt({ people: b.people.map(snapshot), c: communityState(b) });
     const resumed = createCommunity(
       saved.people.map((j) => restore(j)),
       saved.c,
     );
-    liveCommunity(resumed, 4 * YEAR, opts);
+    liveCommunity(resumed, 4 * YEAR, opts(resumed));
     expect(rt(resumed.people.map(snapshot))).toEqual(rt(a.people.map(snapshot)));
   });
 });

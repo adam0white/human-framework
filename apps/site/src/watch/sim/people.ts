@@ -22,7 +22,7 @@
 import {
   type Activity,
   type Affordance,
-  acquaintWith,
+  acquaintPerson,
   addPerson,
   type Community,
   createCommunity,
@@ -517,7 +517,7 @@ export function arrive(s: WatchState): WatcherId[] {
       }
       const tie = p.social.relationships.find((r) => r.otherId === q.id);
       const familiarity = v.newcomer || qv.newcomer ? 0.15 : Math.max(0.35, tie?.familiarity ?? 0.35);
-      acquaintWith(p, q, familiarity, now);
+      acquaintPerson(p, q, familiarity, now);
     }
   }
   for (const [a, b] of FOUNDER_MARRIAGES) {
@@ -530,7 +530,7 @@ export function arrive(s: WatchState): WatcherId[] {
     const p = personOf(s, id);
     const v = s.cast[id];
     if (!p || !v || !isWatcher(s, p)) continue;
-    if (v.known > 0) acquaintWith(s.keeper, p, v.known, now);
+    if (v.known > 0) acquaintPerson(s.keeper, p, v.known, now);
     else s.keeper.social.impressions ??= [];
   }
   return came;

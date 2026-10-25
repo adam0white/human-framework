@@ -1,13 +1,13 @@
 import { describe, expect, test } from 'vitest';
 import {
   type Affordance,
-  acquaintWith,
+  acquaintPerson,
   companionSteadiness,
   createCommunity,
   createPerson,
   estimate,
   feel,
-  glimpseOf,
+  glimpsePerson,
   hear,
   impressionConfidence,
   impressionOf,
@@ -69,9 +69,9 @@ describe('impressions (HF 2.0 L6)', () => {
     hurt(target, 0.5);
     feel(target, 'fear', 0.6, 'test', NOON);
     const truth = outwardSigns(target);
-    glimpseOf(watcher, target, NOON, 0.3);
+    glimpsePerson(watcher, target, NOON, 0.3);
     const first = estimate(watcher, 't', 'pain', NOON);
-    for (let k = 1; k <= 12; k++) glimpseOf(watcher, target, NOON + k, 0.3);
+    for (let k = 1; k <= 12; k++) glimpsePerson(watcher, target, NOON + k, 0.3);
     const later = estimate(watcher, 't', 'pain', NOON + 12);
     expect(later.confidence).toBeGreaterThan(first.confidence + 0.3);
     expect(Math.abs(later.value - truth.pain)).toBeLessThan(Math.abs(first.value - truth.pain) + 1e-9);
@@ -85,8 +85,8 @@ describe('impressions (HF 2.0 L6)', () => {
     for (const t of [proud, open]) hurt(t, 0.5);
     const w = person('w', 5);
     for (let k = 0; k < 10; k++) {
-      glimpseOf(w, proud, NOON + k);
-      glimpseOf(w, open, NOON + k);
+      glimpsePerson(w, proud, NOON + k);
+      glimpsePerson(w, open, NOON + k);
     }
     expect(estimate(w, 'p', 'pain', NOON + 10).value).toBeLessThan(estimate(w, 'o', 'pain', NOON + 10).value);
     // A host override: she hides it all, but her limp still shows.
@@ -105,7 +105,7 @@ describe('impressions (HF 2.0 L6)', () => {
     const saw = person('b', 8);
     for (let k = 0; k < 6; k++) {
       hear(told, 't', 'pain', selfReport(tamar).pain, NOON + k, 0.6);
-      glimpseOf(saw, tamar, NOON + k);
+      glimpsePerson(saw, tamar, NOON + k);
     }
     expect(estimate(saw, 't', 'pain', NOON + 6).value).toBeGreaterThan(
       estimate(told, 't', 'pain', NOON + 6).value,
@@ -116,7 +116,7 @@ describe('impressions (HF 2.0 L6)', () => {
     const w = person('w', 9);
     const t = person('t', 10);
     observeAct(w, 't', { at: NOON, tags: ['flee'] });
-    glimpseOf(w, t, NOON);
+    glimpsePerson(w, t, NOON);
     const s0 = estimate(w, 't', 'fatigue', NOON).confidence;
     const tr0 = estimate(w, 't', 'trait:emotionality', NOON).confidence;
     expect(estimate(w, 't', 'fatigue', NOON + 24 * 60).confidence).toBeLessThan(s0 / 4);
@@ -140,7 +140,7 @@ describe('impressions (HF 2.0 L6)', () => {
     expect(estimate(w, 'm', 'tie:j', NOON).value).toBeGreaterThan(0.9);
     expect(estimate(w, 'm', 'trust:keeper', NOON).value).toBeLessThan(0.1);
     const old = person('o', 13);
-    acquaintWith(old, mara, 0.9, NOON);
+    acquaintPerson(old, mara, 0.9, NOON);
     expect(
       Math.abs(estimate(old, 'm', 'trait:agreeableness', NOON).value - mara.traits.agreeableness),
     ).toBeLessThan(0.03);
@@ -154,7 +154,7 @@ describe('impressions (HF 2.0 L6)', () => {
     hurt(t);
     const rngW = JSON.stringify(w.rng);
     const before = JSON.stringify(t);
-    glimpseOf(w, t, NOON, 0.5);
+    glimpsePerson(w, t, NOON, 0.5);
     observeAct(w, 't', { at: NOON, tags: ['steady'] });
     expect(JSON.stringify(w.rng)).toBe(rngW);
     const offers: Affordance[] = [
@@ -189,7 +189,7 @@ describe('impressions (HF 2.0 L6)', () => {
     const tamar = person('t', 16, { traits: { emotionality: 0.15 } });
     setReserve(tamar, { pain: 1 });
     const keeper = person('k', 17);
-    acquaintWith(keeper, tamar, 0.8, NOON);
+    acquaintPerson(keeper, tamar, 0.8, NOON);
     // Her knee is real (so she cannot climb) but she says it is nothing: the true answer and the Keeper's read differ.
     injure(tamar, { part: 'knee', severity: 0.9, healRatePerDay: 0.02, affects: { moving: 0.9 } });
     for (let k = 0; k < 4; k++) hear(keeper, 't', 'pain', selfReport(tamar).pain, NOON + k, 0.8);
@@ -226,7 +226,7 @@ describe('impressions (HF 2.0 L6)', () => {
   test('impressions survive save and restore; malformed ones are dropped', () => {
     const w = person('w', 18);
     const t = person('t', 19);
-    glimpseOf(w, t, NOON);
+    glimpsePerson(w, t, NOON);
     setReserve(w, { pain: 0.4 });
     const r = restore(JSON.parse(JSON.stringify(snapshot(w))));
     expect(r.social).toEqual(w.social);
@@ -240,7 +240,7 @@ describe('impressions (HF 2.0 L6)', () => {
 
   test('bounded: a watcher who looks at forty people keeps at most thirty-two impressions', () => {
     const w = person('w', 20);
-    for (let i = 0; i < 40; i++) glimpseOf(w, person(`p${i}`, 100 + i), NOON + i);
+    for (let i = 0; i < 40; i++) glimpsePerson(w, person(`p${i}`, 100 + i), NOON + i);
     expect(w.social.impressions?.length).toBe(32);
     expect(impressionOf(w, 'p0', NOON + 40).cues).toEqual([]);
     expect(impressionOf(w, 'p39', NOON + 40).cues.length).toBeGreaterThan(0);
@@ -342,19 +342,5 @@ describe('control scenario (headless): choosing a companion for a dangerous job'
     ).toBe(true);
     // Deterministic.
     expect(JSON.stringify(snapshot(run(true).p))).toBe(JSON.stringify(snapshot(seen.p)));
-  });
-});
-
-describe('deprecated 2.0 option forms (removed in 3.0)', () => {
-  test('glimpseOf and hear with an options object write what the positional forms write', () => {
-    const t = person('t', 2);
-    hurt(t);
-    const a = person('a', 3);
-    const b = person('a', 3); // same id: the observation error is a hash of the observer
-    glimpseOf(a, t, NOON, 0.4);
-    glimpseOf(b, t, { at: NOON, clarity: 0.4 });
-    hear(a, 't', 'fear', 0.7, NOON + 1, 0.8);
-    hear(b, 't', 'fear', 0.7, { at: NOON + 1, weight: 0.8 });
-    expect(b.social.impressions).toEqual(a.social.impressions);
   });
 });

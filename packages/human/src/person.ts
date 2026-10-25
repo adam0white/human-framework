@@ -1645,7 +1645,7 @@ function respondToConscience(
     // Worship closes breaches against God alone; guilt toward a wronged person waits for repair.
     const repented = new Set<string>();
     for (const b of p.conscience.breaches) {
-      if (!b.repaired && b.victimId === undefined && repent(p, b.id, now)) repented.add(b.normId);
+      if (!b.repaired && b.victimId === undefined && repent(p, b.id)) repented.add(b.normId);
     }
     for (const b of p.conscience.breaches)
       if (!b.repaired && b.victimId !== undefined) repented.delete(b.normId);
@@ -1654,7 +1654,7 @@ function respondToConscience(
     regulate(p, minutes, 'worship');
   }
   if (completed && (tags.includes('repair') || tags.includes('apologize')) && aff.targetId !== undefined) {
-    recordRepair(p, aff.targetId, now);
+    recordRepair(p, aff.targetId);
     release(p, { id: 'guilt', targetId: aff.targetId });
     socialEvent(p, { at: now, kind: 'apology', otherId: aff.targetId, byMe: true, magnitude: 0.7 });
   }

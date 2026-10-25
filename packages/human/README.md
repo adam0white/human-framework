@@ -8,6 +8,31 @@ HF 2.14.1 uses utility scoring and seeded randomness, with no LLM in the actor l
 dependencies. Decision records expose scored terms and template narration. Person state is plain JSON.
 This is an authored simulation model, not a validated predictor of real people.
 
+## Migrating to v3
+
+The API migration keeps engine `2.21.0`. It does not change seeded draws, numeric rules or saved Person state. Package version stamping and release remain separate.
+
+| Before | v3 |
+|---|---|
+| `glimpse(p, id, signs, { at, clarity })` | `glimpse(p, id, signs, at, clarity)` |
+| `glimpseOf(p, target, at, clarity)` or `glimpseOf(p, target, { at, clarity })` | `glimpsePerson(p, target, at, clarity)` |
+| `acquaintWith(p, target, familiarity, at)` | `acquaintPerson(p, target, familiarity, at)` |
+| `hear(p, id, key, value, { at, weight })` | `hear(p, id, key, value, at, weight)` |
+| `conceive(mother, father, { seed, at })` | `conceive(mother, father, seed, at)` |
+| `retell(teller, listener, { at, trust, limit, placeIds })` | `retell(teller, listener, at, { trust, limit, placeIds })` |
+| `TRAIT_NAMES` | `TRAIT_KEYS` (same order) |
+| `expit(x)` | `sigmoid(x)` (same function body) |
+| `repent(p, breachId, unusedTime)` | `repent(p, breachId)` |
+| `recordRepair(p, victimId, unusedTime)` | `recordRepair(p, victimId)` |
+| `liveRoutine(p, to, fixedRoutine)` | `liveRoutine(p, to, () => fixedRoutine)` |
+| `routineFor: (p, day, community) => choose(p, day, community)` | `routineFor: (p, day) => choose(p, day, community)` with `community` captured from the host scope |
+
+Both routine drivers use `RoutineSource = (p: Person, day: number) => Routine`. `day` is the absolute day being started. Existing two-argument sources continue unchanged. A community source closes over the community for that run; bind a new closure after restoring a different community. Sources still run immediately before each person's routine day. Community dawn hooks still run first, and earlier people's days are already applied when later sources read community state. Do not precompute all routines at dawn if that would change those reads.
+
+The primitive names `glimpse` and `acquaint` stay. Their Person composites use the explicit `Person` suffix. The proposed `skip` → `skipTo` rename is dropped (Q15): it provides no player value and `skip` is clear in context.
+
+Mutable defaults remain unchanged pending the director's Q5 decision. No defaults are frozen by this migration and no tuning API is introduced.
+
 ## Try the games
 
 - [Twice at the Well](https://human.adamwhite.work/colony/): compare a colony without and with HF.
@@ -211,7 +236,7 @@ reference host: `createVillage`.
   const village2 = createVillage(people, { seed: 0, state: s.world });
   const c2 = createCommunity(people, s.community); // continues exactly as the unsaved run would
   ```
-- **Time arguments.** A host event takes `at` as its last required argument, with optional knobs after it (`glimpseOf(observer, target, at, clarity?)`, `retell(teller, listener, at, opts?)`); a query evaluated at a time takes `now`. The 2.0 options-object forms still work and are deprecated until 3.0. See docs/framework.md, "Argument order".
+- **Time arguments.** A host event takes `at` as its last required argument, with optional knobs after it (`glimpsePerson(observer, target, at, clarity?)`, `retell(teller, listener, at, opts?)`); a query evaluated at a time takes `now`. The former 2.0 options-object forms are removed in v3. See docs/framework.md, "Argument order".
 - Hosts that live people sparsely over decades can shrink what a save carries per person with
   `setRetention(p, { trace, chronicleDays })` (or `PersonSpec.retention`): fewer decision records, and day records
   bounded by age as well as count. No decision changes. `restore` also refuses a non-finite or out-of-range `now`
@@ -269,8 +294,8 @@ of it runs as before.
 - **Surroundings.** `setAmbient` (cold, dark, crowding, beauty, weather, day length) shifts mood, body and needs.
 - **Multi-year stepping.** `liveRoutine` and `liveCommunity` live people by routine a coarse day at a time, with
   natural death, chronic onsets, deaths told and minors raised.
-- **Impressions of others.** What one person believes about another (`glimpseOf(observer, target, at, clarity?)`, `observeAct`, `hear(observer, targetId, key, value, at, weight?)`,
-  `acquaintWith`), with confidence; `predictAs` runs a prediction on the person as the observer pictures them.
+- **Impressions of others.** What one person believes about another (`glimpsePerson(observer, target, at, clarity?)`, `observeAct`, `hear(observer, targetId, key, value, at, weight?)`,
+  `acquaintPerson`), with confidence; `predictAs` runs a prediction on the person as the observer pictures them.
 - **Switching on at creation.** `PersonSpec.enable: { gists, yearbook, character, skillRetention }` turns the long-run faculties above on when the person is created.
 - **Answering between decisions.** `answerNow` books a refusal at once without touching the running activity.
 

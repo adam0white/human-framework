@@ -24,7 +24,7 @@
  * not prove deceit, change the belief, or change relationship or voice trust. Loss and retention limits are
  * engineering defaults, not calibrated effect sizes. Deduplication lasts only while its bounded record stays.
  */
-import { clamp, clamp01, decay, dpow, expit, isNum, isObj, logit } from '../core/index.ts';
+import { clamp, clamp01, decay, dpow, isNum, isObj, logit, sigmoid } from '../core/index.ts';
 import type {
   Belief,
   BeliefProvenance,
@@ -264,7 +264,7 @@ export function believe(
 
 export function credence(p: Person, prop: string): Unit {
   const b = findBelief(p, prop);
-  return b ? expit(b.logOdds) : 0.5;
+  return b ? sigmoid(b.logOdds) : 0.5;
 }
 
 /**

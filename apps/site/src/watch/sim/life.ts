@@ -17,7 +17,7 @@
  */
 import {
   type Affordance,
-  acquaintWith,
+  acquaintPerson,
   addPerson,
   attraction,
   birth,
@@ -506,8 +506,8 @@ export function newcomer(
     if (q.id === id) continue;
     meet(p, q.id, ['village']);
     meet(q, id, ['incomers']);
-    acquaintWith(p, q, 0.1, at);
-    acquaintWith(q, p, 0.1, at);
+    acquaintPerson(p, q, 0.1, at);
+    acquaintPerson(q, p, 0.1, at);
   }
   return p;
 }
@@ -575,7 +575,8 @@ function comingOfAge(s: WatchState, at: number): void {
     if (before < 15 && now >= 15) {
       const v = villager(s, p.id);
       v.usual = freePostNear(s, v.home);
-      if (!s.keeper.social.impressions?.some((x) => x.targetId === p.id)) acquaintWith(s.keeper, p, 0.35, at);
+      if (!s.keeper.social.impressions?.some((x) => x.targetId === p.id))
+        acquaintPerson(s.keeper, p, 0.35, at);
       chronicle(s, 'age', `${v.name} turned fifteen and is old enough to watch the wall this winter.`, p.id);
     }
     if (before < RETIRE_AGE && now >= RETIRE_AGE) {

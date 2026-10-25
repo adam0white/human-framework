@@ -39,8 +39,7 @@
  * selection nor repetition rules; the host still owns the relay graph and disclosure. It does not establish
  * that an origin is truthful, expose deceit to the listener, or infer who else heard a claim.
  */
-
-import { clamp01, expit, round } from '../core/index.ts';
+import { clamp01, round, sigmoid } from '../core/index.ts';
 import { nameOf as listenerNameOf } from '../narrate/lexicon.ts';
 import {
   isDeceased,
@@ -263,7 +262,7 @@ export function converse(speaker: Person, listener: Person, ctx: ConverseContext
     if (b.prop.startsWith('advice:') || b.prop.includes(':should:')) continue;
     const subject = b.prop.split(':')[0];
     if (subject === speaker.id) continue;
-    const cred = expit(b.logOdds);
+    const cred = sigmoid(b.logOdds);
     const threshold =
       Number.isFinite(ctx.confidentMin) &&
       (ctx.confidentMin as number) >= 0 &&
@@ -297,7 +296,7 @@ export function converse(speaker: Person, listener: Person, ctx: ConverseContext
   // Temptations: claims the speaker would gain from the listener believing.
   for (const t of [...(ctx.temptations ?? [])].sort((a, b) => (a.prop < b.prop ? -1 : 1))) {
     const b = speaker.memory.beliefs.find((x) => x.prop === t.prop);
-    const cred = b ? expit(b.logOdds) : 0.5;
+    const cred = b ? sigmoid(b.logOdds) : 0.5;
     const forValue = t.value ? cred : 1 - cred;
     const gain = clamp01(t.gain);
     if (forValue >= 0.5) {
@@ -359,7 +358,7 @@ export function converse(speaker: Person, listener: Person, ctx: ConverseContext
     // deed (counted above) but yields no percept, so the same gossip retold at every tea is not judged afresh.
     const heard = listener.memory.beliefs.find((x) => x.prop === c.prop);
     if (heard) {
-      const cred = expit(heard.logOdds);
+      const cred = sigmoid(heard.logOdds);
       if ((c.value ? cred : 1 - cred) >= c.confidence) continue;
     }
     const pc: Percept = {
@@ -400,7 +399,7 @@ export function converse(speaker: Person, listener: Person, ctx: ConverseContext
   const advice: { action: string; cred: number; strength: number }[] = [];
   for (const b of beliefs) {
     if (!b.prop.startsWith(prefix)) continue;
-    const cred = expit(b.logOdds);
+    const cred = sigmoid(b.logOdds);
     if (cred < C.adviceMin) continue;
     const strength = clamp01((cred - 0.5) * 2 * (0.3 + 0.7 * care) * (0.5 + benevolence));
     advice.push({ action: b.prop.slice(prefix.length), cred, strength });
