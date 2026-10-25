@@ -64,7 +64,7 @@ export function repeatPersonOrder(card: OrderCard): OrderInput {
 export function homeOrderMeaning(card: OrderCard): string | null {
   if (!card.order.placeId.startsWith('home-')) return null;
   if (card.order.action === 'shelter')
-    return 'Home asks them to stay sheltered until the next dawn (05:00). Cancel or a new order ends the request. Human villagers can still refuse or leave for needs and duties.';
+    return 'Sending someone home asks them to stay indoors until dawn (05:00). Cancel the order or give a new one to end this request. Human villagers can still refuse or leave to meet a need or keep a duty.';
   return card.order.action === 'sleep'
     ? 'Home asks for one sleep, normally until dawn. When sleep ends, they choose their own work again.'
     : 'Home asks them to eat once. After eating, they choose their own work again; it does not keep them indoors.';

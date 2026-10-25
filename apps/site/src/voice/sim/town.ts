@@ -1028,7 +1028,7 @@ export function createTown(people: readonly Person[], opts: TownOptions & { seed
             role,
             ownChapter.input.life.place === 'home' ? homeOf(p.id as TownPersonId) : 'public-garden',
             'talk',
-            `ask ${q.name} about their public work note`,
+            `ask ${q.name} about ${q.life.sex === 'female' ? 'her' : 'his'} public work note`,
           );
       }
     }

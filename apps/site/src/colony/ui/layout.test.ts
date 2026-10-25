@@ -25,8 +25,8 @@ it('keeps a settled refusal distinct from completed work in the latest-order row
   };
   const node = document.createElement('div');
   node.innerHTML = renderToStaticMarkup(createElement(Status, { card }));
-  expect(node.querySelector('.chip-ok')?.textContent).toBe('C✓ done');
-  expect(node.querySelector('.chip-willNot')?.textContent).toBe('H✗ will not');
+  expect(node.querySelector('.chip-ok')?.textContent).toBe('Classic ✓ done');
+  expect(node.querySelector('.chip-willNot')?.textContent).toBe('Human ✗ will not');
 });
 
 it('names shuttering in the latest House order as well as the destination tile', () => {
@@ -90,6 +90,6 @@ it('offers Home shelter for the well-house resident without changing old Home me
   game.issue({ personId: 'idris', placeId: 'home-idris' });
   const card = game.frame().cards[0];
   if (!card) throw Error('Missing Home order');
-  expect(homeOrderMeaning(card)).toContain('next dawn (05:00)');
+  expect(homeOrderMeaning(card)).toContain('until dawn (05:00)');
   expect(homeOrderMeaning({ ...card, order: { ...card.order, action: 'eat' } })).toContain('eat once');
 });

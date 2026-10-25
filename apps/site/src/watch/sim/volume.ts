@@ -224,7 +224,7 @@ export function openVolume(s: WatchState): void {
     v = {
       n,
       title: 'The children',
-      question: 'Will a child of the village stand the wall?',
+      question: 'Will a child of the village guard the wall?',
       kind: 'child',
       openedYear: s.year,
       openedMinute: s.minute,

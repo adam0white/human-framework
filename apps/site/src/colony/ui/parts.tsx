@@ -114,7 +114,7 @@ export function sameJobCopy(action: ActionId, personId: VillagerId): string {
     rest: 'resting',
   };
   const pronoun = personId === 'maryam' || personId === 'samira' ? 'her' : 'him';
-  return `They are already ${ongoing[action] ?? jobPhrase(action)}. This asks ${pronoun} to keep doing it.`;
+  return `${personId === 'maryam' || personId === 'samira' ? 'She is' : 'He is'} already ${ongoing[action] ?? jobPhrase(action)}. This asks ${pronoun} to keep doing it.`;
 }
 
 export function shortName(id: VillagerId): string {
@@ -311,7 +311,7 @@ export function GoalChip({
   side: 'classic' | 'human' | 'solo';
   s: GoalSide;
 }) {
-  const tag = side === 'classic' ? 'C' : side === 'human' ? 'H' : 'S';
+  const tag = side === 'classic' ? 'Classic' : side === 'human' ? 'Human' : 'Solo';
   return (
     <span
       className={`goal-chip goal-${s.status} goal-chip-${side}`}
@@ -379,7 +379,7 @@ export function GoalBars({ goal }: { goal: GoalView }) {
   const target = goal.targetValue;
   const max = Math.max(target, goal.classic.value, goal.human.value, 1) * (goal.id === 'stock' ? 1.25 : 1);
   const tick = `${(target / max) * 100}%`;
-  const row = (tag: 'C' | 'H', s: GoalSide) => (
+  const row = (tag: 'Classic' | 'Human', s: GoalSide) => (
     <span className={`gbar goal-${s.status}`}>
       <span className="gbar-tag">{settingWords(tag)}</span>
       <span className="gbar-track">
@@ -399,8 +399,8 @@ export function GoalBars({ goal }: { goal: GoalView }) {
       <span className="gbar-name">
         {GOAL_SHORT[goal.id] ?? goal.label} <small>{target}</small>
       </span>
-      {row('C', goal.classic)}
-      {row('H', goal.human)}
+      {row('Classic', goal.classic)}
+      {row('Human', goal.human)}
     </span>
   );
 }
@@ -497,7 +497,7 @@ function Chip({
 }) {
   return (
     <span className={`chip chip-${state}`} title={settingWords(label ? `${side}: ${label}` : side)}>
-      <span className="chip-side">{side === 'classic' ? 'C' : 'H'}</span>
+      <span className="chip-side">{side === 'classic' ? 'Classic' : 'Human'}</span> ·{' '}
       {chipText(state, settled)}
     </span>
   );
@@ -525,7 +525,7 @@ export function OrderCardView({ card, onCancel }: { card: OrderCard; onCancel(id
         <div className="card-sub">
           {jobPhrase(o.action)}
           {card.status === 'lapsed' && ' · lapsed'}
-          {card.status === 'replaced' && ` · replaced by ${card.replacedBy ?? 'a newer order'}`}
+          {card.status === 'replaced' && ' · replaced by your next order'}
           {card.human.label &&
             card.human.state !== 'pending' &&
             (card.status === 'active' || card.human.state === 'willNot' || card.human.state === 'cannot') && (

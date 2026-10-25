@@ -37,7 +37,7 @@ describe('Well stable order controls', () => {
     };
     const node = document.createElement('div');
     node.innerHTML = renderToStaticMarkup(createElement(OrderCardView, { card, onCancel: vi.fn() }));
-    expect(node.querySelector('.card-chips')?.textContent).toBe('CdoneHagreed');
+    expect(node.querySelector('.card-chips')?.textContent).toBe('Classic · doneHuman · agreed');
   });
 
   it('shows completion under protest from the Human settled record', () => {
@@ -58,7 +58,7 @@ describe('Well stable order controls', () => {
     };
     const node = document.createElement('div');
     node.innerHTML = renderToStaticMarkup(createElement(OrderCardView, { card, onCancel: vi.fn() }));
-    expect(node.querySelector('.card-chips')?.textContent).toBe('CdoneHdone under protest');
+    expect(node.querySelector('.card-chips')?.textContent).toBe('Classic · doneHuman · done under protest');
   });
 
   it('leaves short landscape layouts outside the fixed phone reservation', () => {

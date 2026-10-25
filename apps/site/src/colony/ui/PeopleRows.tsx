@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { settingWords } from '../../shared/setting-words.ts';
 import type { VillagerId } from '../sim/world-types.ts';
 import type { Frame } from './contract.ts';
-import { activityDescription, needDescription } from './descriptions.ts';
+import { activityLabel, namedDescription, needDescription } from './descriptions.ts';
 import { Portrait, shortName } from './parts.tsx';
 
 function Bar({ label, value, urgent }: { label: string; value: number; urgent?: boolean | undefined }) {
@@ -55,13 +55,13 @@ export const PeopleRows = memo(function PeopleRows(props: {
                 label: 'Food',
                 value: food?.value ?? 1,
                 urgent: food?.urgent,
-                description: needDescription('food', food?.value ?? 1),
+                description: namedDescription(needDescription('food', food?.value ?? 1), shortName(v.id)),
               },
               {
                 label: 'Sleep',
                 value: sleep?.value ?? 1,
                 urgent: sleep?.urgent,
-                description: needDescription('sleep', sleep?.value ?? 1),
+                description: namedDescription(needDescription('sleep', sleep?.value ?? 1), shortName(v.id)),
               },
             ],
           };
@@ -89,7 +89,7 @@ export const PeopleRows = memo(function PeopleRows(props: {
           >
             <Portrait id={r.id} size={18} />
             <span className="prow-name">{shortName(r.id)}</span>
-            <span className="prow-doing">{settingWords(activityDescription(r.label))}</span>
+            <span className="prow-doing">{settingWords(activityLabel(r.label))}</span>
             {r.bars.map((b) =>
               'description' in b ? (
                 <span key={b.label} className={b.urgent ? 'need-description is-urgent' : 'need-description'}>

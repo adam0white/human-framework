@@ -473,6 +473,7 @@
 
 .card-chips {
   display: flex;
+  flex-wrap: wrap;
   gap: 5px;
   margin-top: 6px;
 }
@@ -494,9 +495,10 @@
 .chip-side {
   display: grid;
   place-items: center;
-  width: 15px;
+  min-width: 15px;
+  padding-inline: 3px;
   height: 15px;
-  border-radius: 50%;
+  border-radius: 6px;
   background: var(--c);
   color: #fff;
   font-size: 0.56rem;
@@ -1471,9 +1473,10 @@ body {
 .goal-chip-side {
   display: inline-grid;
   place-items: center;
-  width: 16px;
+  min-width: 16px;
+  padding-inline: 3px;
   height: 16px;
-  border-radius: 50%;
+  border-radius: 4px;
   font-size: 0.58rem;
   font-weight: 700;
   background: var(--line);
@@ -3006,7 +3009,8 @@ kbd {
 }
 
 .gbar-tag {
-  width: 7px;
+  width: 30px;
+  flex-shrink: 0;
   font-family: var(--font-mono);
   font-size: 0.52rem;
   font-weight: 700;

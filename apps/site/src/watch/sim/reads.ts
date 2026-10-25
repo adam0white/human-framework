@@ -12,7 +12,7 @@
 import { estimate, impressionOf, MINUTES_PER_DAY } from '@adam0white/human-framework';
 import { SECTIONS, type SectionId, type WatcherId } from './config.ts';
 import { theSection } from './night.ts';
-import { isHere, KEEPER_ID } from './people.ts';
+import { isHere, KEEPER_ID, villager } from './people.ts';
 import type { WatchState } from './state.ts';
 
 export interface Impression {
@@ -45,6 +45,9 @@ export function keeperFatigue(s: WatchState, id: WatcherId) {
 /** Up to `max` phrases, the surest first. A stranger gets one: "you don't know them yet". */
 export function keeperImpressions(s: WatchState, id: WatcherId, max = 4): Impression[] {
   const read = impressionOf(s.keeper, id, s.minute);
+  const female = villager(s, id).sex === 'female';
+  const subject = female ? 'She' : 'He';
+  const possessive = female ? 'her' : 'his';
   const out: Impression[] = [];
   let newest = -1;
   for (const raw of read.cues) {
@@ -62,42 +65,42 @@ export function keeperImpressions(s: WatchState, id: WatcherId, max = 4): Impres
     if (c.key === 'fatigue') {
       phrase =
         v > 0.55
-          ? { cue: 'worn out', text: 'They look very tired.' }
+          ? { cue: 'worn out', text: `${subject} looks very tired.` }
           : v > 0.35
-            ? { cue: 'tiring', text: 'They look tired.' }
+            ? { cue: 'tiring', text: `${subject} looks tired.` }
             : null;
       if (phrase && keeperFatigue(s, id).dusk)
         phrase = {
           cue: `seemed ${phrase.cue} at dusk`,
-          text: v > 0.55 ? 'They looked very tired at dusk.' : 'They looked tired at dusk.',
+          text: v > 0.55 ? `${subject} looked very tired at dusk.` : `${subject} looked tired at dusk.`,
         };
     } else if (c.key === 'pain')
       phrase =
         v > 0.45
-          ? { cue: 'hurting badly', text: 'They seem to be in a lot of pain.' }
+          ? { cue: 'hurting badly', text: `${subject} seems to be in a lot of pain.` }
           : v > 0.2
-            ? { cue: 'hurt', text: 'They look hurt.' }
+            ? { cue: 'hurt', text: `${subject} looks hurt.` }
             : null;
     else if (c.key === 'fear')
       phrase =
         v > 0.45
-          ? { cue: 'frightened', text: 'They seem frightened.' }
+          ? { cue: 'frightened', text: `${subject} seems frightened.` }
           : v > 0.22
-            ? { cue: 'uneasy', text: 'They seem uneasy.' }
+            ? { cue: 'uneasy', text: `${subject} seems uneasy.` }
             : null;
     else if (c.key.startsWith('fear@')) {
       const place = c.key.slice(5);
       if (SECTIONS.some((x) => x.id === place) && v > 0.3)
         phrase = {
           cue: `afraid of ${theSection(place as SectionId)}`,
-          text: `They seem afraid of ${theSection(place as SectionId)}.`,
+          text: `${subject} seems afraid of ${theSection(place as SectionId)}.`,
         };
     } else if (c.key === `trust:${KEEPER_ID}`)
       phrase =
         v > 0.65
-          ? { cue: 'heeds you', text: 'They seem to follow your advice.' }
+          ? { cue: 'heeds you', text: `${subject} seems to follow your advice.` }
           : v < 0.35
-            ? { cue: 'doesn’t heed you', text: 'They do not seem to follow your advice.' }
+            ? { cue: 'doesn’t heed you', text: `${subject} does not seem to follow your advice.` }
             : null;
     else if (c.key.startsWith('tie:')) {
       const other = c.key.slice(4);
@@ -105,30 +108,30 @@ export function keeperImpressions(s: WatchState, id: WatcherId, max = 4): Impres
       if (name && s.community.people.some((q) => q.id === other && isHere(s, q)))
         phrase =
           v > 0.4
-            ? { cue: `close to ${name}`, text: `They seem close to ${name}.` }
+            ? { cue: `close to ${name}`, text: `${subject} seems close to ${name}.` }
             : v < -0.3
-              ? { cue: `at odds with ${name}`, text: `They do not seem to get along with ${name}.` }
+              ? { cue: `at odds with ${name}`, text: `${subject} does not seem to get along with ${name}.` }
               : null;
     } else if (c.key === 'trait:emotionality')
       phrase =
         v > 0.65
-          ? { cue: 'jumpy by nature', text: 'They seem easily startled.' }
+          ? { cue: 'jumpy by nature', text: `${subject} seems easily startled.` }
           : v < 0.3
-            ? { cue: 'steady by nature', text: 'They seem calm by nature.' }
+            ? { cue: 'steady by nature', text: `${subject} seems calm by nature.` }
             : null;
     else if (c.key === 'skill:sling')
       phrase =
         v > 0.26
-          ? { cue: 'a sure arm', text: 'They seem accurate with a sling.' }
+          ? { cue: 'a sure arm', text: `${subject} seems accurate with a sling.` }
           : v < 0.13
-            ? { cue: 'wild with the sling', text: 'They seem to miss often with a sling.' }
+            ? { cue: 'wild with the sling', text: `${subject} seems to miss often with a sling.` }
             : null;
     else if (c.key === 'trait:conscientiousness')
       phrase =
         v > 0.7
-          ? { cue: 'dutiful', text: 'They seem careful about their duties.' }
+          ? { cue: 'dutiful', text: `${subject} seems careful about ${possessive} duties.` }
           : v < 0.3
-            ? { cue: 'careless', text: 'They seem careless about their duties.' }
+            ? { cue: 'careless', text: `${subject} seems careless about ${possessive} duties.` }
             : null;
     if (phrase) {
       out.push({ ...phrase, sure });
@@ -136,7 +139,8 @@ export function keeperImpressions(s: WatchState, id: WatcherId, max = 4): Impres
     }
   }
   out.sort((a, b) => b.sure - a.sure || ((a.cue ?? a.text) < (b.cue ?? b.text) ? -1 : 1));
-  if (out.length === 0) return [{ text: 'You do not know them well enough yet.', sure: 0 }];
+  if (out.length === 0)
+    return [{ text: `You do not know ${female ? 'her' : 'him'} well enough yet.`, sure: 0 }];
   const shown = out.slice(0, max);
   // How old the read is, when nothing in it is recent.
   const age = newest < 0 ? 0 : s.minute - newest;

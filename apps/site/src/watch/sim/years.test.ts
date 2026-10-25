@@ -274,7 +274,9 @@ describe('Game 3 reads over the year (G3-3 review)', () => {
     const reads = s.community.people
       .filter((p) => isWatcher(s, p))
       .map((p) => keeperImpressions(s, p.id).map((r) => r.text));
-    const known = reads.filter((r) => !r.includes('You do not know them well enough yet.'));
+    const known = reads.filter(
+      (r) => !r.some((line) => /^You do not know (?:her|him) well enough yet\.$/.test(line)),
+    );
     expect(known.length).toBeGreaterThanOrEqual(3);
     for (const r of known) expect(r).toContain('This impression comes from last winter.');
   }, 300_000);

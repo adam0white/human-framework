@@ -196,7 +196,7 @@ it('history has no send footer and the comparison exposes both villages', async 
   expect(container.querySelector('.well-sheet .well-risk')).toBeNull();
   await click('←');
   await act(() => container.querySelector<HTMLButtonElement>('.well-goals')?.click());
-  expect(container.querySelector('.well-stand')?.textContent).toContain('Classic has no such concept');
+  expect(container.querySelector('.well-stand')?.textContent).toContain('Not tracked in the Classic village');
   expect(container.querySelectorAll('.goal-bars')).toHaveLength(6);
 });
 it('injury selection binds subsequent orders to the named person and selects its map', async () => {
@@ -289,7 +289,7 @@ it('marks scheduled work already underway and lets the player dismiss it without
     ],
   };
   await act(() => root.render(createElement(App)));
-  expect(container.querySelector('.well-caption')?.textContent).toContain('They are already doing this');
+  expect(container.querySelector('.well-caption')?.textContent).toContain('This work is already underway');
   await click('Keep watching');
   expect(colony.actions.order).not.toHaveBeenCalled();
   expect(colony.actions.dismissNudge).toHaveBeenCalledWith(n.id);

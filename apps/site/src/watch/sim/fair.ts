@@ -87,9 +87,9 @@ export function openFair(s: WatchState): void {
     const [first, second] = names;
     const said = (id: string) =>
       s.gateWilling[id] === true
-        ? ' They told you at dawn they would.'
+        ? ' The watcher said yes at dawn.'
         : s.gateWilling[id] === false
-          ? ' They told you they did not want it.'
+          ? ' The watcher said no.'
           : '';
     if (first)
       heirOffers.push({

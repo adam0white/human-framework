@@ -222,10 +222,10 @@ it('replaces an account with helper choice and restores it without a game input'
   const helper = frame.watchers.find((w) => w.id === 'kian');
   if (!helper) throw new Error('Expected Kian');
   helper.post = 'mill-1';
-  helper.account = { text: 'They appear asleep. No reply comes.', spoken: false };
+  helper.account = { text: 'The watcher appears asleep. No reply comes.', spoken: false };
   await act(async () => root.render(createElement(NightPanel, props)));
   expect(container.querySelector('.w-helper-choice')?.textContent).toContain(
-    'They appear asleep. No reply comes.',
+    'The watcher appears asleep. No reply comes.',
   );
   await act(async () => button(`← ${who.name}`)?.click());
   await act(async () => button('Rest')?.click());
@@ -317,13 +317,13 @@ it('keeps a heard doze in the account and removes stale acts after relief while 
   expect(container.querySelector('.w-account-doze')?.textContent).toContain(
     'Tamar falls asleep at the Gate.',
   );
-  expect(container.querySelector('.w-account-doze')?.textContent).toContain('They can answer now.');
+  expect(container.querySelector('.w-account-doze')?.textContent).toContain('A reply is possible now.');
   const relief = [...container.querySelectorAll('button')].find((b) => b.textContent === 'Send relief');
   await act(async () => relief?.click());
   who.post = null;
   who.acts = [];
   who.account = { text: 'Too far away for your voice to reach.', spoken: false };
-  who.actsUnavailable = 'They are off the wall. Night requests need someone at a post.';
+  who.actsUnavailable = 'The watcher is off the wall. Night requests need someone at a post.';
   await act(async () => root.render(createElement(NightPanel, props)));
   expect(container.querySelector('.w-helper-choice')).toBeNull();
   expect(container.querySelector('.w-account')?.textContent).toContain('Too far away');

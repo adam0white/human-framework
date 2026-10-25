@@ -25,4 +25,4 @@ export function dayClock(m: Minute): string {
 }
 
 /** Shown wherever Classic lacks something the Human side has (playtest item 16). */
-export const NO_CONCEPT = 'Classic has no such concept';
+export const NO_CONCEPT = 'Not tracked in the Classic village';

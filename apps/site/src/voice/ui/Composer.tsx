@@ -59,9 +59,12 @@ function TelegraphLine({ telegraph, pending }: { telegraph: Telegraph | null; pe
       {telegraph.says && !telegraph.text.includes(telegraph.says) && (
         <span className="v-telegraph-says">“{explainTerms(telegraph.says)}”</span>
       )}
-      {!obstacle && telegraph.counter && !telegraph.text.includes(telegraph.counter) && (
-        <em className="v-telegraph-counter">{explainTerms(telegraph.counter)}</em>
-      )}
+      {!obstacle &&
+        telegraph.counter &&
+        !telegraph.text.toLowerCase().includes(telegraph.counter.toLowerCase()) &&
+        !telegraph.says?.toLowerCase().includes(telegraph.counter.toLowerCase()) && (
+          <em className="v-telegraph-counter">{explainTerms(telegraph.counter)}</em>
+        )}
     </p>
   );
 }

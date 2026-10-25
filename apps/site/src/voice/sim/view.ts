@@ -404,7 +404,11 @@ export function endsView({
   const tally =
     chron.length === 0
       ? 'The first day of fasting has not ended yet.'
-      : `He fasted on ${kept} of ${chron.length} ${chron.length === 1 ? 'day' : 'days'}${day >= TOWN_EID_DAY ? '' : ' so far'}` +
+      : (chron.length === 1
+          ? kept === 1
+            ? 'He fasted on the first day'
+            : 'He did not fast on the first day'
+          : `He fasted on ${kept} of the ${chron.length} days${day >= TOWN_EID_DAY ? '' : ' so far'}`) +
         (excused > 0
           ? `. He was excused on ${excused} ${excused === 1 ? 'day' : 'days'} and needs to make ${excused === 1 ? 'it' : 'them'} up later.`
           : '.');
@@ -433,7 +437,7 @@ export function endsView({
     date?.status === 'kept'
       ? `He paid Osman by the deadline.`
       : date?.status === 'broken'
-        ? `He missed Osman’s deadline: 300 by 20:00 on day ${RENT_PROMISED_DAY} of Ramadan. Osman has pressed him harder for the rent since then.`
+        ? `He missed Osman’s deadline: 300 lira by 20:00 on day ${RENT_PROMISED_DAY} of Ramadan. Osman has pressed him harder for the rent since then.`
         : '';
   const his = halilCalledAt === undefined ? undefined : Math.max(0, day - dayOf(halilCalledAt));
   const delta = you - trustStart;
@@ -524,7 +528,7 @@ export function endsView({
       id: 'trust',
       label: 'Does he still listen to you?',
       status: trustWord(you, true).replace('listens to you ', ''),
-      detail: `Trust ${you.toFixed(2)}${asOfEid ? ' at Eid' : ''}, ${Math.abs(delta) < 0.005 ? 'unchanged' : `${delta > 0 ? 'up' : 'down'} ${Math.abs(delta).toFixed(2)}`} since Ramadan 1.`,
+      detail: `He listens ${Math.abs(delta) < 0.005 ? 'about as closely as' : delta > 0 ? 'more closely than' : 'less closely than'} he did at the start of Ramadan${asOfEid ? ', as of Eid' : ''}.`,
       progress: round(you),
     },
   ];
@@ -542,6 +546,19 @@ export const TRUST_REASON: Record<string, string> = {
   pushed: 'put pressure on him when he already felt under pressure',
   worn: 'repeated advice he did not want to follow',
 };
+
+/** Display account only; the trust record and its numeric delta stay unchanged. */
+export function trustHistoryWords(delta: number, reason: string, action?: string, count = 1): string {
+  const label = action ? ACTION_LABEL[action] : undefined;
+  const advice = label ? `Your suggestion to ${label}` : 'Your suggestion';
+  const result = TRUST_REASON[reason] ?? reason.replace(/-/g, ' ');
+  const frequency = count > 1 ? ` ${count} times` : '';
+  const event =
+    reason === 'worn'
+      ? `You repeated advice he did not want to follow${frequency}.`
+      : `${advice} ${result}${frequency}.`;
+  return `${event} He trusts you ${delta >= 0 ? 'a little more' : 'a little less'}.`;
+}
 
 export function voicesView(h: Person, t: number, conflict?: string): VoiceView[] {
   const advice = standingAdvice(h, t);
@@ -563,7 +580,7 @@ export function voicesView(h: Person, t: number, conflict?: string): VoiceView[]
               .slice(-3)
               .map((e) => ({
                 delta: round(e.delta),
-                text: `${e.delta >= 0 ? '+' : '−'}${Math.abs(e.delta).toFixed(2)} ${ACTION_LABEL[e.action ?? ''] ?? e.action ?? 'what you said'} ${TRUST_REASON[e.reason] ?? e.reason}`,
+                text: trustHistoryWords(e.delta, e.reason, e.action),
               }))
           : [],
     };

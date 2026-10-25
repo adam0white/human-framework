@@ -95,6 +95,21 @@ const MODIFIED_BECAUSE: Record<string, string> = {
   'need:safety': 'it is not safe out there',
 };
 
+/** Correct remembered first-person prose at the display boundary; episode identities stay untouched. */
+export function memoryText(text: string): string {
+  return text
+    .replace(/\bi\b/g, 'I')
+    .replace(
+      'Last time you sent me: I went to gather timber in a sudden storm.',
+      'Last time you sent me for timber, a storm came.',
+    )
+    .replace(
+      'I remember what happened last time: I went to gather timber in a sudden storm.',
+      'I remember what happened last time. A sudden storm came while I was gathering timber.',
+    )
+    .replace('I came back hurt and without timber.', 'I came back hurt, with no timber.');
+}
+
 /** The person's line, with this host's wording where the framework has none. `rules` 3 keeps the @3 lines. */
 export function sayLine(r: SuggestionResolution, rules: ColonyRules = 3): string {
   if (r.verdict === 'refused' && r.kind === 'willNot') {
@@ -105,7 +120,7 @@ export function sayLine(r: SuggestionResolution, rules: ColonyRules = 3): string
     const because = MODIFIED_BECAUSE[r.reason];
     if (because) return `I will ${r.counterOffer.label} instead, because ${because}.`;
   }
-  return r.says;
+  return memoryText(r.says);
 }
 
 const NAMES: Record<string, string> = Object.fromEntries(
@@ -319,7 +334,7 @@ function keptAtIt(record: DecisionRecord, chosen: Considered | undefined): strin
   if (!chosen || !record.review) return null;
   const best = Math.max(...record.considered.map((c) => (c.vetoed ? -Infinity : c.utility)));
   if (best <= chosen.utility) return null;
-  return `I am already doing this: ${chosen.label ?? chosen.action}. Another choice must be clearly better for me to stop.`;
+  return `I will keep doing this. Another choice must be clearly better for me to stop.`;
 }
 
 /** The why panel for one decision. */
@@ -351,7 +366,7 @@ export function whyOf(
   const recalled = p.memory.episodes
     .filter((e) => recalledIds.has(e.id))
     .slice(-3)
-    .map((e) => `“${e.summary}”`);
+    .map((e) => `“${memoryText(e.summary)}”`);
   const out: WhyBreakdown = {
     personId: p.id as VillagerId,
     decisionId: record.id,
@@ -378,23 +393,28 @@ export function whyOf(
 const round2 = (x: number): number => Math.round(x * 100) / 100;
 
 const TRUST_LABELS: Record<string, (action: string) => string> = {
-  'went-well': (a) => `Your order went well: ${a}.`,
-  'went-badly': (a) => `Your order went badly: ${a}.`,
-  harm: (a) => `I was hurt while following your order: ${a}.`,
-  'harm-under-protest': (a) => `You made me do this after I objected: ${a}.`,
-  'promise-broken': (a) => `You said this would be safer: ${a}.`,
-  'promise-kept': (a) => `I was safe, as you said: ${a}.`,
+  'went-well': (a) => `Your order to ${a} went well.`,
+  'went-badly': (a) => `Your order to ${a} went badly.`,
+  harm: (a) => `I was hurt while following your order to ${a}.`,
+  'harm-under-protest': (a) => `You made me ${a} after I objected.`,
+  'promise-broken': (a) => `You said it would be safer to ${a}.`,
+  'promise-kept': (a) => `I was safe while following your order to ${a}, as you said.`,
 };
 
 const ACTION_WORDS: Record<string, string> = {
-  'gather-timber': 'gathering timber',
-  'gather-grain': 'gathering grain',
-  'fell-cedar': 'cutting down the cedar',
-  'draw-water': 'drawing water',
-  cook: 'cooking',
-  build: 'building',
-  'raise-beam': 'raising the beam',
-  'shutter-house': 'closing the shutters',
+  'gather-timber': 'gather timber',
+  'gather-grain': 'gather grain',
+  'fell-cedar': 'cut down the cedar',
+  'draw-water': 'draw water',
+  cook: 'cook',
+  eat: 'eat',
+  sleep: 'sleep',
+  pray: 'pray',
+  shelter: 'stay indoors',
+  'carry-injured': 'carry someone home',
+  build: 'build',
+  'raise-beam': 'raise the beam',
+  'shutter-house': 'close the shutters',
 };
 
 export function trustOf(p: Person): TrustView {
@@ -404,7 +424,7 @@ export function trustOf(p: Person): TrustView {
     .reverse()
     .slice(0, 3)
     .map((h) => {
-      const a = ACTION_WORDS[h.action ?? ''] ?? h.action ?? 'an order';
+      const a = ACTION_WORDS[h.action ?? ''] ?? 'do this work';
       const fmt = TRUST_LABELS[h.reason] ?? ((x: string) => x);
       return { minute: gm(h.at), delta: round2(h.delta), label: fmt(a) };
     });

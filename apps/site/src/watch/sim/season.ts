@@ -219,8 +219,8 @@ function thaw(s: WatchState): void {
   if (living(s).length < SMALL_VILLAGE && living(s).length > 0 && nextRandom(worldRng(s, 'refugees')) < 0.5)
     familyComes(s, s.minute, 'refugees');
   if (!living(s).some((p) => ageOf(p, s.minute) >= 15)) {
-    chronicle(s, 'loss', 'Nobody was left who could stand the wall. The village is empty.');
-    closeVolume(s, 'Nobody was left to stand the wall.');
+    chronicle(s, 'loss', 'Nobody was left who could guard the wall. The village is empty.');
+    closeVolume(s, 'Nobody was left to guard the wall.');
     s.phase = 'fallen';
     return;
   }
@@ -367,7 +367,7 @@ export function leaveThaw(s: WatchState): void {
 /** Leaves the closed volume's page: the next volume opens with spring. */
 export function leaveClosed(s: WatchState): void {
   openVolume(s);
-  chronicle(s, 'volume', `Volume ${s.volume.n} opens: ${s.volume.question}`);
+  chronicle(s, 'volume', `Part ${s.volume.n} begins: ${s.volume.question}`);
   s.phase = 'spring';
 }
 

@@ -141,25 +141,28 @@ export function readWords(r: Read): string {
   const why = r.why ? ` (${r.why.replace(/^[“"]|[”"]$/g, '')})` : '';
   switch (r.word) {
     case 'likely':
-      return `They will probably agree${sure}.`;
+      return `The watcher will probably agree${sure}.`;
     case 'grudging':
-      return `They will agree unwillingly${sure}.`;
+      return `The watcher will agree unwillingly${sure}.`;
     case 'unsure':
-      return `They might agree${sure}.${why}`;
+      return `The watcher might agree${sure}.${why}`;
     case "won't":
-      return `They will not agree${sure}.${why}`;
+      return `The watcher will not agree${sure}.${why}`;
     default:
       return 'You cannot tell.';
   }
 }
 
 export function bellWords(b: ReturnType<typeof readBell>): string {
-  if (!b.holds) return b.confidence < 0.2 ? 'You cannot tell whether they will stay.' : 'They may not stay.';
+  if (!b.holds)
+    return b.confidence < 0.2
+      ? 'You cannot tell whether the watcher will stay.'
+      : 'The watcher may not stay.';
   return b.resent === 'much'
-    ? 'They will stay, but they will resent it.'
+    ? 'The watcher will stay, but will resent it.'
     : b.resent === 'some'
-      ? 'They will stay, with some resentment.'
-      : 'They will stay.';
+      ? 'The watcher will stay, with some resentment.'
+      : 'The watcher will stay.';
 }
 
 /** Whether a watcher's true choice right now would take them off the wall, and why (the waver trigger). Pure. */

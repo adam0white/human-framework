@@ -30,7 +30,7 @@ export function settingWords(value: string | null | undefined): string | null | 
     .replace(/\bShawwal (\d+)\b/g, (_match, day: string) =>
       Number(day) === 1 ? 'Eid day' : `day ${Number(day) - 1} after Eid`,
     )
-    .replace(/\b(pray|prays|prayed) (Fajr|Dhuhr|Asr|Maghrib|Isha)\b/gi, '$1 the $2')
+    .replace(/\b(pray|prays|prayed|praying) (Fajr|Dhuhr|Asr|Maghrib|Isha)\b/gi, '$1 the $2')
     .replace(
       /\b(after|before|for|until|missed|kept|have|has|had|eat|eats|ate|cook|cooks|cooked|through|miss|misses|remember|remembers|remembered) (suhoor|iftar|Fajr|Dhuhr|Asr|Maghrib|Isha)\b/gi,
       '$1 the $2',

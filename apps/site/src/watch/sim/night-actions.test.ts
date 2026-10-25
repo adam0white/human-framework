@@ -69,7 +69,7 @@ describe('night asks on a watcher', () => {
     (k) => {
       const { run, s, target, helper } = night();
       if (k === 'help') hurt(target);
-      expect(act(s, k)?.read).toContain('tire them a little');
+      expect(act(s, k)?.read).toContain('tire the relief watcher a little');
       expect(run.input({ k, who: 'tamar', by: 'kian' })).toBe(true);
       expect(helper.body.exertion).toBe(0);
       const event = {
@@ -126,7 +126,7 @@ describe('night asks on a watcher', () => {
     target.social.reserve = { fatigue: 1 };
     expect(act(s, 'relieve')?.available).toBe(true);
     expect(buildFrame(s, 0, false).watchers.find((w) => w.id === 'tamar')?.impressions).toContainEqual(
-      expect.objectContaining({ text: 'They looked tired at dusk.' }),
+      expect.objectContaining({ text: 'She looked tired at dusk.' }),
     );
     s.minute += 200;
     expect(act(s, 'relieve')?.available).toBe(true);

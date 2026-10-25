@@ -115,7 +115,7 @@ export function Shelf({
         <h2>The shelf</h2>
       </div>
       <div className="w-sheet-body">
-        <p className="w-note">Taking up a closed volume begins a new chronicle from its last page.</p>
+        <p className="w-note">Continue a finished part to begin a new chronicle from its last page.</p>
         <h3>Other chronicles</h3>
         {all.length === 0 ? <p>No chronicles are kept yet.</p> : null}
         {all.map((g) => (
@@ -175,7 +175,7 @@ export function Shelf({
               {g.volumes.map((p) => (
                 <li key={p.id} className="w-pagerow">
                   <span>
-                    Volume {p.volume?.numeral}, <em>{p.volume?.title}</em>
+                    Part {p.volume?.numeral}, <em>{p.volume?.title}</em>
                     <span className="w-note"> · {p.volume?.end}</span>
                   </span>
                   <button
@@ -228,7 +228,7 @@ function ReadChronicle({ frame, onClose }: { frame: Frame; onClose: () => void }
               </li>
             ))}
         </ol>
-        <h3>The volumes</h3>
+        <h3>The parts</h3>
         <ul className="w-vols">
           {volumes(frame).map((v) => (
             <li key={v.n} className="w-vol">

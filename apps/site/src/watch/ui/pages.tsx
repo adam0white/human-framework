@@ -45,7 +45,7 @@ export function ChronicleStrip({ frame }: { frame: Frame }) {
 function VolumeLine({ v }: { v: FrameVolume }) {
   return (
     <p className="w-kicker">
-      Volume {v.numeral} · {v.title}
+      Part {v.numeral} · {v.title}
     </p>
   );
 }
@@ -232,8 +232,8 @@ export function FairPage({ frame, actions }: { frame: Frame; actions: WatchActio
 function Leaves({ frame }: { frame: Frame }) {
   if (frame.leaves.length === 0) return null;
   return (
-    <section className="w-leaves" aria-label="Blank leaves at the back of the volume">
-      <h3>Leaves at the back of the volume</h3>
+    <section className="w-leaves" aria-label="Blank pages at the end of this part">
+      <h3>Blank pages at the end of this part</h3>
       <ul>
         {frame.leaves.map((l) => (
           <li key={l.id} className={l.filled ? 'w-leaf is-filled' : 'w-leaf'}>
@@ -283,7 +283,7 @@ export function ThawPage({ frame, actions }: { frame: Frame; actions: WatchActio
       <Leaves frame={frame} />
       <PageActions>
         <button type="button" className="w-primary" onClick={() => actions.input({ k: 'continue' })}>
-          {closing ? 'Turn to the volume’s last page' : 'Into the spring'}
+          {closing ? 'Read this part’s last page' : 'Into the spring'}
         </button>
       </PageActions>
     </div>
@@ -317,7 +317,7 @@ export function ClosedPage({
   const v = frame.volume;
   return (
     <div className="w-page w-closed">
-      <p className="w-kicker">Here ends volume {v.numeral}</p>
+      <p className="w-kicker">Here ends part {v.numeral}</p>
       <h2>{v.title}</h2>
       <p className="w-closed-q">{v.question}</p>
       {v.end ? <p className="w-closed-end">{v.end}</p> : null}
@@ -325,10 +325,10 @@ export function ClosedPage({
         ❦
       </p>
       <Epilogue v={v} />
-      <p className="w-note">The village goes on. The next volume asks its own question of the living.</p>
+      <p className="w-note">The village goes on. The next part brings a new question for its people.</p>
       <PageActions>
         <button type="button" className="w-primary" onClick={() => actions.input({ k: 'continue' })}>
-          <Icon name="book-open" size={18} /> Open the next volume
+          <Icon name="book-open" size={18} /> Open the next part
         </button>
       </PageActions>
       <RunSecondaries actions={actions} onFeedback={onFeedback} />
@@ -360,7 +360,7 @@ export function FallenPage({
         ❦
       </p>
       <Epilogue v={v} />
-      <p>The village cannot stay. The chronicle closes this volume.</p>
+      <p>The villagers cannot stay here. This part of the chronicle ends.</p>
       <EndTally title="The chronicle’s tally" lines={watchTally(frame)} />
       <RunSecondaries actions={actions} onFeedback={onFeedback} />
       <PageActions>

@@ -6,7 +6,7 @@ import type { PlaceId } from '../sim/map.ts';
 import { APPEALS, type AppealChip, type OrderCard, type OrderInput } from '../sim/orders.ts';
 import { VILLAGERS, type VillagerId, villagerById } from '../sim/world-types.ts';
 import { dayClock, type Frame, NO_CONCEPT } from './contract.ts';
-import { activityDescription, moodDescription, trustDescription } from './descriptions.ts';
+import { activityLabel, moodDescription, trustDescription } from './descriptions.ts';
 import { RingTimer } from './Icon.tsx';
 import { homeOrderMeaning, latestPersonOrder } from './order-status.ts';
 import {
@@ -53,7 +53,7 @@ export function riskyPlace(frame: Frame, place: PlaceId): string | null {
   const jobs = (['human', 'classic'] as const).map((side) => inferredJob(frame, place, side));
   if (jobs.includes('fell-cedar')) return 'The cedar can injure whoever fells it.';
   if (jobs.includes('raise-beam')) return 'Raising the roof beam can injure the builder.';
-  if (jobs.includes('shutter-house')) return 'Shuttering the house is risky work.';
+  if (jobs.includes('shutter-house')) return 'Closing the house’s shutters is risky work.';
   if (
     ['squall', 'storm'].includes(frame.weather.kind) &&
     ['forest', 'cedar', 'field', 'site', 'well'].includes(place)
@@ -75,8 +75,7 @@ export function Status({ card }: { card: OrderCard }) {
     <span className="well-answer-pair">
       {(['classic', 'human'] as const).map((side) => (
         <span key={side} className={`chip chip-${card[side].state}`}>
-          {side === 'classic' ? 'C' : 'H'}
-          {settingWords(glyph(card[side].state))}{' '}
+          {side === 'classic' ? 'Classic' : 'Human'} {settingWords(glyph(card[side].state))}{' '}
           {settingWords(
             card[side].settled && ['ok', 'assent', 'complied', 'done'].includes(card[side].state)
               ? card[side].state === 'complied'
@@ -156,7 +155,7 @@ export function People({
               <Portrait id={v.id} />
               <span>
                 <strong>{shortName(v.id)}</strong>
-                <small>{settingWords(activityDescription(p?.label ?? 'waiting'))}</small>
+                <small>{settingWords(activityLabel(p?.label ?? 'waiting'))}</small>
               </span>
               {card && (
                 <span
@@ -211,7 +210,7 @@ export function Stand({ frame, onBack }: { frame: Frame; onBack(): void }) {
                   {name === 'Roof' && (
                     <progress aria-label="Classic roof" value={frame.classicWorld.houseStage} max={10} />
                   )}
-                  {c === NO_CONCEPT ? '∅ ' : ''}
+
                   {c}
                 </td>
                 <td>
@@ -330,11 +329,10 @@ export function PersonSheet({
   if (outline?.startsWith('home-')) places.unshift(...places.splice(7, 1));
   return (
     <>
-      <SheetHeader
-        title={settingWords(`${shortName(id)} · H: ${h?.label ?? 'waiting'} · C: ${c?.label ?? 'waiting'}`)}
-        onBack={onBack}
-      />
+      <SheetHeader title={shortName(id)} onBack={onBack} />
       <div className="well-person-body">
+        <p>Human village: {activityLabel(h?.label ?? 'waiting')}</p>
+        <p>Classic village: {activityLabel(c?.label ?? 'waiting')}</p>
         <section className="well-latest" aria-label="Latest order">
           {card ? (
             <>
@@ -345,7 +343,7 @@ export function PersonSheet({
                 <Status card={card} />
               </div>
               <div className="well-reply-row">
-                <p>{card.human.says ?? card.human.label ?? 'Waiting for an answer.'}</p>
+                <p>{settingWords(card.human.says ?? card.human.label ?? 'Waiting for an answer.')}</p>
                 {refused ? (
                   <button type="button" onClick={() => onRepeat(card)}>
                     Insist on it

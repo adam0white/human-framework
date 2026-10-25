@@ -117,7 +117,8 @@ describe('Well first-minute clarity', () => {
     expect(human?.textContent).not.toMatch(/\d|%/);
     const injury = frame.human.find((p) => p.id === 'maryam')?.needs.find((n) => n.id === 'injury');
     expect(injury?.value).toBe(1);
-    expect(human?.textContent).toContain('They are unhurt.');
+    expect(human?.textContent).toContain('Maryam is unhurt.');
+    expect(human?.textContent).not.toContain('They ');
     expect(human?.textContent).not.toContain('Little pain');
     expect(needDescription('injury', 0.9)).toBe('They are slightly hurt.');
     expect(needDescription('sleep', 0.2)).toBe('They are exhausted.');

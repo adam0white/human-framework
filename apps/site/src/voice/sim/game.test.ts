@@ -280,7 +280,9 @@ describe('Game 2 sim on the shipped seed', () => {
     expect(
       money.cells.filter((c) => c.affordanceId === 'work-extra' && c.promptedBy === 'you').length,
     ).toBeGreaterThan(5);
-    expect(money.report?.eid.summary.some((l) => /He paid Osman 300 by the deadline/.test(l))).toBe(true);
+    expect(money.report?.eid.summary.some((l) => /He paid Osman 300 lira by the deadline/.test(l))).toBe(
+      true,
+    );
     const quietPay = quiet.cells.find((c) => c.affordanceId === 'pay-rent');
     expect(quietPay?.from ?? Number.POSITIVE_INFINITY).toBeGreaterThan(deadline);
   });

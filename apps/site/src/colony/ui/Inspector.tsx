@@ -1,12 +1,13 @@
 import { useEffect, useRef } from 'react';
+import { labMode } from '../../shared/lab-mode.ts';
 import { settingWords } from '../../shared/setting-words.ts';
 import type { TermFamily, TrustView, WhyBreakdown, WhyOption } from '../sim/human-side.ts';
 import { type VillagerId, villagerById } from '../sim/world-types.ts';
 import { type Frame, NO_CONCEPT } from './contract.ts';
-import { needDescription, trustDescription } from './descriptions.ts';
+import { namedDescription, needDescription, trustDescription } from './descriptions.ts';
 import { Icon, NoConcept } from './Icon.tsx';
 import { saysIt } from './Pane.tsx';
-import { Portrait, ROLE_LABEL } from './parts.tsx';
+import { Portrait, ROLE_LABEL, shortName } from './parts.tsx';
 
 const FAMILY_VAR: Record<TermFamily, string> = {
   need: 'var(--fam-need)',
@@ -72,11 +73,14 @@ function OptionBar({ option }: { option: WhyOption }) {
   );
 }
 
-export function TrustMeter({ trust }: { trust: TrustView }) {
+export function TrustMeter({ trust, name }: { trust: TrustView; name?: string }) {
   return (
     <div className="trust">
       <p>
-        Trust in you: <strong>{trustDescription(trust.value)}</strong>
+        Trust in you:{' '}
+        <strong>
+          {name ? namedDescription(trustDescription(trust.value), name) : trustDescription(trust.value)}
+        </strong>
       </p>
       {trust.history.length === 0 ? (
         <p className="muted small">Nothing has moved it today.</p>
@@ -169,36 +173,38 @@ export function Inspector(props: {
       </header>
 
       <div className="inspector-cols">
-        <section className="inspector-classic" aria-label="Classic unit">
-          <span className="kicker">Classic unit</span>
-          <p className="inspector-now">
-            {cu?.label ?? '–'}
-            {cu?.rush && <span className="flag">rush</span>}
-          </p>
-          {cu && (
-            <div className="needs">
-              <Meter label="Hunger" value={cu.hunger} />
-              <Meter label="HP" value={cu.hp} />
-            </div>
-          )}
-          <p className="inspector-caption">
-            That is all a Classic unit has.{' '}
-            <span className="no-concept-mark">
-              <Icon name="none" />
-            </span>{' '}
-            = {settingWords(NO_CONCEPT.toLowerCase())}.
-          </p>
-          <dl className="no-concept-list">
-            {['Needs', 'Emotion', 'Trust in you', 'Why', 'Memories'].map((row) => (
-              <div key={row}>
-                <dt>{settingWords(row)}</dt>
-                <dd>
-                  <NoConcept text={NO_CONCEPT} />
-                </dd>
+        {labMode() && (
+          <section className="inspector-classic" aria-label="Classic unit">
+            <span className="kicker">Classic unit</span>
+            <p className="inspector-now">
+              {cu?.label ?? '–'}
+              {cu?.rush && <span className="flag">rush</span>}
+            </p>
+            {cu && (
+              <div className="needs">
+                <Meter label="Hunger" value={cu.hunger} />
+                <Meter label="HP" value={cu.hp} />
               </div>
-            ))}
-          </dl>
-        </section>
+            )}
+            <p className="inspector-caption">
+              That is all a Classic unit has.{' '}
+              <span className="no-concept-mark">
+                <Icon name="none" />
+              </span>{' '}
+              = {settingWords(NO_CONCEPT.toLowerCase())}.
+            </p>
+            <dl className="no-concept-list">
+              {['Needs', 'Emotion', 'Trust in you', 'Why', 'Memories'].map((row) => (
+                <div key={row}>
+                  <dt>{settingWords(row)}</dt>
+                  <dd>
+                    <NoConcept text={NO_CONCEPT} />
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        )}
 
         <section className="inspector-human" aria-label="Human person">
           <span className="kicker">Human person</span>
@@ -208,84 +214,89 @@ export function Inspector(props: {
               {hv.needs.map((n) => (
                 <div className={`need ${n.urgent ? 'is-urgent' : ''}`} key={n.id}>
                   <span>{settingWords(n.label)}</span>
-                  <span className="need-description">{needDescription(n.id, n.value)}</span>
+                  <span className="need-description">
+                    {namedDescription(needDescription(n.id, n.value), shortName(props.personId))}
+                  </span>
                 </div>
               ))}
               <p className="emotion">
-                They feel <b>{hv.emotion?.label ?? 'calm'}</b>
+                {shortName(props.personId)} feels <b>{hv.emotion?.label ?? 'calm'}</b>
                 {settingWords(hv.emotion?.target ? ` about ${hv.emotion.target}` : '')}
               </p>
             </div>
           )}
-          {hv && <TrustMeter trust={hv.trust} />}
+          {hv && <TrustMeter trust={hv.trust} name={shortName(props.personId)} />}
 
-          <section className="why">
-            <h3>Why</h3>
-            {!why ? (
-              <p className="muted">Reading the decision…</p>
-            ) : (
-              <>
-                {why.verdict && (
-                  <p className={`verdict-line verdict-${why.verdict.kind}`}>
-                    <b>{settingWords(VERDICT_LABEL[why.verdict.kind])}</b> “{settingWords(why.verdict.says)}”
-                    {why.verdict.counterOffer && !saysIt(why.verdict.says, why.verdict.counterOffer) && (
-                      <em> {settingWords(why.verdict.counterOffer)}</em>
-                    )}
-                  </p>
-                )}
-                <p className="narration">{settingWords(why.narration)}</p>
-                <ol className="why-options">
-                  {why.options.slice(0, 3).map((o) => (
-                    <OptionBar key={o.affordanceId} option={o} />
-                  ))}
-                </ol>
-                {families.length > 0 && (
-                  <p className="legend">
-                    {families.map((f) => (
-                      <span key={f}>
-                        <i style={{ background: FAMILY_VAR[f] }} />
-                        {settingWords(FAMILY_LABEL[f])}
-                      </span>
+          {labMode() && (
+            <section className="why">
+              <h3>Why</h3>
+              {!why ? (
+                <p className="muted">Reading the decision…</p>
+              ) : (
+                <>
+                  {why.verdict && (
+                    <p className={`verdict-line verdict-${why.verdict.kind}`}>
+                      <b>{settingWords(VERDICT_LABEL[why.verdict.kind])}</b> “{settingWords(why.verdict.says)}
+                      ”
+                      {why.verdict.counterOffer && !saysIt(why.verdict.says, why.verdict.counterOffer) && (
+                        <em> {settingWords(why.verdict.counterOffer)}</em>
+                      )}
+                    </p>
+                  )}
+                  <p className="narration">{settingWords(why.narration)}</p>
+                  <ol className="why-options">
+                    {why.options.slice(0, 3).map((o) => (
+                      <OptionBar key={o.affordanceId} option={o} />
                     ))}
-                  </p>
-                )}
-                {why.deltas.length > 0 && (
-                  <table className="deltas">
-                    <thead>
-                      <tr>
-                        <th>Need</th>
-                        <th>Possible effect</th>
-                        <th>Expected effect</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {why.deltas.map((d) => (
-                        <tr key={d.need}>
-                          <td>{settingWords(d.need)}</td>
-                          <td>
-                            {d.advertised > 0 ? 'May help' : d.advertised < 0 ? 'May strain' : 'No change'}
-                          </td>
-                          <td>
-                            {d.believed > 0
-                              ? 'Expects relief'
-                              : d.believed < 0
-                                ? 'Expects strain'
-                                : 'Expects no change'}
-                          </td>
-                        </tr>
+                  </ol>
+                  {families.length > 0 && (
+                    <p className="legend">
+                      {families.map((f) => (
+                        <span key={f}>
+                          <i style={{ background: FAMILY_VAR[f] }} />
+                          {settingWords(FAMILY_LABEL[f])}
+                        </span>
                       ))}
-                    </tbody>
-                  </table>
-                )}
-                <h3>Memories</h3>
-                {why.recalled.length === 0 ? (
-                  <p className="muted small">They recalled no memories for this decision.</p>
-                ) : (
-                  why.recalled.map((r) => <blockquote key={r}>remembers: {settingWords(r)}</blockquote>)
-                )}
-              </>
-            )}
-          </section>
+                    </p>
+                  )}
+                  {why.deltas.length > 0 && (
+                    <table className="deltas">
+                      <thead>
+                        <tr>
+                          <th>Need</th>
+                          <th>Possible effect</th>
+                          <th>Expected effect</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {why.deltas.map((d) => (
+                          <tr key={d.need}>
+                            <td>{settingWords(d.need)}</td>
+                            <td>
+                              {d.advertised > 0 ? 'May help' : d.advertised < 0 ? 'May strain' : 'No change'}
+                            </td>
+                            <td>
+                              {d.believed > 0
+                                ? 'Expects relief'
+                                : d.believed < 0
+                                  ? 'Expects strain'
+                                  : 'Expects no change'}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  )}
+                  <h3>Memories</h3>
+                  {why.recalled.length === 0 ? (
+                    <p className="muted small">They recalled no memories for this decision.</p>
+                  ) : (
+                    why.recalled.map((r) => <blockquote key={r}>Remembers {settingWords(r)}</blockquote>)
+                  )}
+                </>
+              )}
+            </section>
+          )}
         </section>
       </div>
     </dialog>

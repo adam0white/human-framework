@@ -80,7 +80,7 @@ export function InfoPanel({ phase, onClose }: { phase: string; onClose: () => vo
           <p>The pre-dawn meal is the meal before dawn. The sunset meal is the meal at sunset.</p>
         </>
       )}
-      {(premise || report) && (
+      {labMode() && (premise || report) && (
         <details>
           <summary>Model notes</summary>
           <ul>

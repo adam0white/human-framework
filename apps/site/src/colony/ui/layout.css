@@ -147,7 +147,8 @@ body,
   gap: 3px;
 }
 .well-goal .gbar-tag {
-  width: 7px;
+  width: 30px;
+  flex-shrink: 0;
   font-size: 6px;
   line-height: 5px;
 }
@@ -432,9 +433,8 @@ body,
   padding: 0 8px 8px;
 }
 .well-latest {
-  height: 52px;
+  min-height: 52px;
   font-size: 10px;
-  overflow: hidden;
 }
 .well-latest p {
   margin: 0;
@@ -443,11 +443,13 @@ body,
   display: flex;
   align-items: center;
   gap: 5px;
-  white-space: nowrap;
+  flex-wrap: wrap;
 }
 .well-answer-pair {
   display: flex;
   gap: 4px;
+  flex-wrap: wrap;
+  max-width: 100%;
 }
 .well-answer-pair .chip {
   display: inline-block;

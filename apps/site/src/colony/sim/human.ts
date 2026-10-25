@@ -155,7 +155,7 @@ const DOING: Record<string, string> = {
   cook: 'Cooking',
   build: 'Building',
   'raise-beam': 'Raising the beam',
-  'shutter-house': 'Shuttering the house',
+  'shutter-house': 'Closing the house’s shutters',
   eat: 'Eating',
   shelter: 'Sheltering',
   sleep: 'Asleep',

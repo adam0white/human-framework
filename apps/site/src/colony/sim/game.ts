@@ -932,7 +932,7 @@ export class ColonyGame {
   timeline(): Frame['timeline'] {
     const markers: TimelineMarker[] = [
       { minute: at(2, 5, 0), kind: 'day', label: 'Day 2' },
-      { minute: SQUALL_START, kind: 'squall', label: 'Squall', until: SQUALL_END },
+      { minute: SQUALL_START, kind: 'squall', label: 'Sudden storm', until: SQUALL_END },
       {
         minute: this.humanWorld.preparationAt ?? WARNING_AT,
         kind: 'warning',

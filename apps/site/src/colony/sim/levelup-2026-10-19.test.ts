@@ -120,7 +120,7 @@ describe('2026-10-19 level-up (colony-scenario@4)', () => {
           if (!r.review || !chosen) continue;
           if (!r.considered.some((c) => !c.vetoed && c.utility > chosen.utility)) continue;
           const why = g.why(v.id, r.id);
-          expect(why?.narration).toMatch(/already doing this/);
+          expect(why?.narration).toMatch(/keep doing this/);
           found += 1;
         }
       }

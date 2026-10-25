@@ -135,11 +135,15 @@ export function PlaytestNotice({ status, onClose }: { status: PlaytestStatus; on
         ? ` The file was made with framework ${r.file.framework} (engine ${r.file.engine}); this page runs ${r.here.framework} (engine ${r.here.engine}).`
         : '';
     tone = r.matches ? 'good' : 'bad';
-    body = r.matches
-      ? `Playtest file replayed. The state matches the file (hash ${r.hash}).${builds}`
-      : `Playtest file replayed, but the state differs from the file: hash ${r.hash}, file ${r.expected}.${
-          r.driftAt >= 0 ? ` The replay first parted from the file at log entry ${r.driftAt}.` : ''
-        }${builds} Build of the file: ${r.file.build}.`;
+    body = !labMode()
+      ? r.matches
+        ? 'The saved game replayed correctly.'
+        : 'The saved game could not replay correctly. Start a fresh game.'
+      : r.matches
+        ? `Playtest file replayed. The state matches the file (hash ${r.hash}).${builds}`
+        : `Playtest file replayed, but the state differs from the file: hash ${r.hash}, file ${r.expected}.${
+            r.driftAt >= 0 ? ` The replay first parted from the file at log entry ${r.driftAt}.` : ''
+          }${builds} Build of the file: ${r.file.build}.`;
   }
   return (
     <div className={`pt-notice is-${tone}`} role="status" data-testid="playtest-notice">

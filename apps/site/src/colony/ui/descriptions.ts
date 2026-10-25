@@ -44,8 +44,12 @@ export function needDescription(id: string, value: number): string {
 
 /** Display only: action labels remain unchanged in saved frames and the canvas. */
 export function activityDescription(label: string): string {
+  label = label
+    .replace(/^Shuttering the house$/, 'Closing the house’s shutters')
+    .replace(/^Shuttering$/, 'Closing the shutters')
+    .replace(/to Big cedar/, 'to the big cedar');
   label = label.replace(
-    /\bto (House|Forest|Field|Kitchen|Well|Site|Cedar|Home|Wellhouse|Masjid)\b/g,
+    /\bto (House|Forest|Field|Kitchen|Well|Site|Cedar|Home|Wellhouse|Mosque|Masjid)\b/g,
     (_, place: string) => `to the ${place === 'Masjid' ? place : place.toLowerCase()}`,
   );
   if (label === 'Idle' || label === 'waiting') return 'They are waiting.';
@@ -53,4 +57,22 @@ export function activityDescription(label: string): string {
   if (label.startsWith('Collapsed')) return `They have ${label[0]?.toLowerCase()}${label.slice(1)}.`;
   if (label.startsWith('Carried by ')) return `They are being carried by ${label.slice(11)}.`;
   return `They are ${label[0]?.toLowerCase()}${label.slice(1)}.`;
+}
+
+/** A status label sits beside the person's name; it needs no plural pronoun. */
+export function activityLabel(label: string): string {
+  const text = activityDescription(label).replace(/^They (?:are|have) /, '');
+  return `${text[0]?.toUpperCase()}${text.slice(1)}`;
+}
+
+/** Use the selected person's name when a shared village description describes one person. */
+export function namedDescription(text: string, name: string): string {
+  return text
+    .replace(/^They are /, `${name} is `)
+    .replace(/^They have /, `${name} has `)
+    .replace(/^They feel /, `${name} feels `)
+    .replace(/^They usually trust /, `${name} usually trusts `)
+    .replace(/^They trust /, `${name} trusts `)
+    .replace(/^They could /, `${name} could `)
+    .replace(/\btheir mind\b/, `${name}’s mind`);
 }

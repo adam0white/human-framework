@@ -181,7 +181,7 @@ export function humanOutcome(card: OrderCard): string {
 export function cardEnd(card: OrderCard): string | null {
   if (card.status === 'lapsed') return 'lapsed';
   if (card.status === 'cancelled') return 'cancelled';
-  if (card.status === 'replaced') return `replaced by ${card.replacedBy ?? 'a newer order'}`;
+  if (card.status === 'replaced') return 'replaced by your next order';
   if (card.status === 'active') return 'open at the end';
   return null;
 }

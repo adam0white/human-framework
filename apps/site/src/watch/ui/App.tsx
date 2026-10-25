@@ -582,11 +582,11 @@ function whereWords(w: FrameWatcher, phase: Frame['phase']): string {
   const posted = w.posted
     ? `${sectionName(postSection(w.posted))}, ${PRESS_WORDS[w.press].done}`
     : phase === 'dusk'
-      ? 'No post assigned. They may choose an open post.'
+      ? 'No post assigned. Free to choose an open post.'
       : 'No post assigned';
   if (!w.posted && phase === 'dusk' && !w.post) return posted;
   const stands = w.post ? `on the ${sectionName(postSection(w.post))}` : awayWords(w.place, phase);
-  if (w.post && w.post === w.posted) return `${posted} · They are there now.`;
+  if (w.post && w.post === w.posted) return `${posted} · At the assigned post now.`;
   return `${posted} · ${stands}`;
 }
 
@@ -896,7 +896,7 @@ function MomentCard({
         ))}
       </div>
       <button type="button" className="w-moment-let" onClick={onLet}>
-        …or say nothing. They decide for themselves.
+        …or say nothing. The watcher decides without your advice.
       </button>
     </section>
   );
@@ -961,8 +961,8 @@ export function NightPanel({
           <>
             {released ? (
               <p role="status">
-                {settingWords(released.name)} is released from the assigned post. They choose whether to stay
-                or go.
+                {settingWords(released.name)} is released from the assigned post and can choose whether to
+                stay or go.
               </p>
             ) : null}
             <NightMessages frame={frame} />
@@ -1190,7 +1190,7 @@ function NightAccount({
             {who.account?.spoken ? <blockquote>{who.account.text}</blockquote> : <p>{who.account?.text}</p>}
             {recentDoze ? (
               <p className="w-note w-account-doze">
-                Last heard: “{recentDoze.text}”{who.account?.spoken ? ' They can answer now.' : ''}
+                Last heard: “{recentDoze.text}”{who.account?.spoken ? ' A reply is possible now.' : ''}
               </p>
             ) : null}
             {who.restRead ? <p className="w-note">Keeper’s read: {who.restRead}.</p> : null}

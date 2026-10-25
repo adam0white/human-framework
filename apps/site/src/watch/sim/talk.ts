@@ -131,7 +131,7 @@ export function talk(s: WatchState, who: string, topic: Topic): boolean {
     else if (said.fatigue > 0.5) text = '“I am very tired, that is all.”';
     // Pain they won't own to still shows in how they stand: the one "fine" worth noticing.
     else if (outwardSigns(p).pain > 0.15)
-      text = '“I am fine. I really am.” (They shift their weight off one leg.)';
+      text = '“I am fine. I really am.” (The watcher avoids putting weight on one leg.)';
     else
       text =
         p.traits.conscientiousness > 0.65

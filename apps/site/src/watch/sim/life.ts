@@ -1130,7 +1130,7 @@ export function maybeFire(s: WatchState): void {
   chronicle(
     s,
     'loss',
-    `${v.name}’s house by the ${from === 'gate' ? 'Gate' : `${from} wall`} burned in the dry heat. They live behind the ${to === 'gate' ? 'Gate' : `${to} wall`} now.`,
+    `${v.name}’s house by the ${from === 'gate' ? 'Gate' : `${from} wall`} burned in the dry heat. The household now lives behind the ${to === 'gate' ? 'Gate' : `${to} wall`} now.`,
     head.id,
   );
 }

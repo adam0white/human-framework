@@ -102,14 +102,14 @@ describe('a watcher’s read-only night account', () => {
   it('does not give sleepers or downed watchers a spoken account, or expose their state in the dark', () => {
     const { s, p } = night();
     p.body.asleep = true;
-    expect(account(s)).toEqual({ text: 'They appear asleep. No reply comes.', spoken: false });
+    expect(account(s)).toEqual({ text: 'The watcher appears asleep. No reply comes.', spoken: false });
     s.place.tamar = 'mill-1';
     expect(account(s)).toEqual({ text: 'No reply comes from the dark.', spoken: false });
     p.body.asleep = false;
     p.body.downed = { since: s.minute, reason: 'test injury' };
     expect(account(s)).toEqual({ text: 'No reply comes from the dark.', spoken: false });
     s.place.tamar = 'gate-1';
-    expect(account(s)).toEqual({ text: 'They are down and cannot answer.', spoken: false });
+    expect(account(s)).toEqual({ text: 'The watcher is down and cannot answer.', spoken: false });
   });
 });
 
@@ -127,6 +127,6 @@ it('gives a read-only reason when a night account has no applicable request', ()
   const far = buildFrame(s, 0, false).watchers.find((w) => w.id === 'tamar');
   // Unseen sleep is never disclosed by an availability explanation.
   if (!far?.acts.length)
-    expect(far?.actsUnavailable).toBe('They cannot hear you from here: the lantern is at the Gate.');
+    expect(far?.actsUnavailable).toBe('Your voice cannot reach this post: the lantern is at the Gate.');
   expect(far?.actsUnavailable).not.toMatch(/asleep|sleeping/);
 });

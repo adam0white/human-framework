@@ -1080,7 +1080,7 @@ function personLine(s: WatchState, n: NightNote): string {
   // Leaving while the bell holds them: said, with whose voice they did not heed (G3-4 designer review).
   const c = s.commands[n.who];
   const leaving = n.kind === 'fled' || n.kind === 'ran' || n.kind === 'slept' || n.kind === 'home';
-  if (leaving && c && s.minute < c.until) return `You called them by name, but ${lower(line)}`;
+  if (leaving && c && s.minute < c.until) return `You called out by name, but ${lower(line)}`;
   if (leaving && s.minute < s.bell.until && (s.bell.heard[n.who] ?? 0) > 0)
     return `The bell rang, but ${lower(line)}`;
   return line;
@@ -1120,7 +1120,7 @@ function personLineBare(s: WatchState, n: NightNote): string {
     case 'refused':
       return `${name} won't take the post you gave.`;
     case 'deferred':
-      return `${name} says they are not ready yet.`;
+      return `${name} is not ready yet.`;
     case 'modified':
       return `${name} stands somewhere else.`;
     case 'dozed':
@@ -1183,7 +1183,8 @@ export function refusalLine(
   const why = ownReason(s, id, chosen, posted);
   const quote = why ? ` “${why}”` : '';
   if (verdict === 'deferred') return `${name} says ${theSection(posted)} will have to wait.${quote}`;
-  if (verdict === 'modified') return `${name} won’t stand where you posted them.${quote}`;
+  if (verdict === 'modified')
+    return `${name} won’t stand where you posted ${villager(s, id).sex === 'female' ? 'her' : 'him'}.${quote}`;
   return `${name} won’t take ${theSection(posted)} tonight.${quote}`;
 }
 
@@ -1386,7 +1387,7 @@ export function stepMinute(s: WatchState): void {
                 : `${capital(plural(t.kind, 1))} got over the ${name}.${why} It escaped without taking any grain.`
               : took > 0
                 ? `Grain is gone: something got over the ${name}.`
-                : `Something got over the ${name} in the dark and got away with nothing.`,
+                : `Something climbed over the ${name} in the dark, but it took nothing.`,
             slowed: true,
           });
       }

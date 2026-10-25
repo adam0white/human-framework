@@ -103,9 +103,9 @@ import {
   nameOfVoice,
   pressureWord,
   stripFor,
-  TRUST_REASON,
   toldLine,
   toneOf,
+  trustHistoryWords,
   voicesView,
   weighsView,
   whyView,
@@ -784,7 +784,7 @@ export class VoiceGame {
       const after = voiceOf(this.halil, 'you')?.trust ?? 0.5;
       const firstWorn = tally.worn[0];
       lines.push(
-        `His trust in you went ${before.trust.toFixed(2)} → ${after.toFixed(2)}.` +
+        `He listens ${Math.abs(after - before.trust) < 0.005 ? 'about as closely as' : after > before.trust ? 'more closely than' : 'less closely than'} he did before these days passed.` +
           (firstWorn !== undefined
             ? ` By ${dayLabel(dayOf(firstWorn))} he was tired of hearing it: repeated advice he did not want reduced his trust ${times(tally.worn.length)}.`
             : ''),
@@ -1386,7 +1386,7 @@ export class VoiceGame {
       !takeCloseCall(this.beats, this.t)
     )
       return;
-    const text = `He finds it hard to choose between these actions: “${top.label ?? top.action}” or “${rival.label ?? rival.action}”.`;
+    const text = `He finds it hard to choose: “${top.label ?? top.action}” or “${rival.label ?? rival.action}”.`;
     this.push({ kind: 'note', who: 'halil', text, decisionId: record.id, beat: 'close-call' });
     // Seventh pass: torn pauses only when the composer has a word to offer; otherwise it is a log row (the reviewer
     // saw "He's torn" over a composer with nothing prefilled).
@@ -1414,7 +1414,7 @@ export class VoiceGame {
     if (before && before.to >= r.at - 1 && before.action === top.action && before.action === rival.action)
       return;
     if (!takeCloseCall(this.beats, r.at)) return;
-    const text = `He finds it hard to choose between these actions: “${top.label ?? top.action}” or “${rival.label ?? rival.action}”.`;
+    const text = `He finds it hard to choose: “${top.label ?? top.action}” or “${rival.label ?? rival.action}”.`;
     this.push({ kind: 'note', who: 'halil', text, decisionId: r.id, beat: 'close-call' }, r.at);
     const note = this.log.pop();
     const i = this.log.findIndex((e) => e.kind === 'act' && e.decisionId === r.id);
@@ -1515,7 +1515,7 @@ export class VoiceGame {
       const what =
         ACTION_LABEL[this.standing.draft.optionId] ?? this.standing.draft.optionId.replace(/[-:]/g, ' ');
       const asked = direct ? '' : `${capital(what)}? `;
-      const text = `${asked}“${you.says}”${a?.counter && !you.says.includes(a.counter) ? ` — ${a.counter}` : ''}`;
+      const text = `${asked}“${you.says}”${a?.counter && !you.says.toLowerCase().includes(a.counter.toLowerCase()) ? ` — ${a.counter}` : ''}`;
       const entry: Omit<LogEntry, 'id' | 'day' | 'minute' | 'clock'> = {
         kind: 'answer',
         who: 'halil',
@@ -1830,10 +1830,7 @@ export class VoiceGame {
     // earlier day is not stamped on today's last act (playtest: "+0.14 went well" on a nap).
     const events = (you?.history ?? [])
       .filter((e) => (e.from ?? e.at) >= dayStart && e.at <= this.t && Math.abs(e.delta) >= 0.005)
-      .map(
-        (e) =>
-          `${e.delta >= 0 ? '+' : '−'}${Math.abs(e.delta).toFixed(2)} ${ACTION_LABEL[e.action ?? ''] ?? e.action ?? 'what you said'}: ${TRUST_REASON[e.reason] ?? e.reason.replace(/-/g, ' ')}${(e.count ?? 1) > 1 ? ` (${e.count} times)` : ''}`,
-      );
+      .map((e) => trustHistoryWords(e.delta, e.reason, e.action, e.count ?? 1));
     let next: BetweenView['next'];
     if (this.free) next = { label: dayLabel(d + 1), day: d + 1, skipped: 0 };
     else {
@@ -1920,10 +1917,10 @@ export class VoiceGame {
     }
     const n = (...t: string[]) => last.filter((x) => x !== undefined && t.includes(x)).length;
     const parts = [
-      n('yes') ? `said yes to ${n('yes') === said ? (said === 1 ? 'it' : 'all of them') : n('yes')}` : '',
-      n('protest') ? `gave in under protest to ${n('protest')}` : '',
-      n('notNow') ? `asked you to wait or did something like it on ${n('notNow')}` : '',
-      n('willNot', 'cannot') ? `refused ${n('willNot', 'cannot')}` : '',
+      n('yes') ? `agreed ${times(n('yes'))}` : '',
+      n('protest') ? `agreed while objecting ${times(n('protest'))}` : '',
+      n('notNow') ? `asked you to wait or offered another way ${times(n('notNow'))}` : '',
+      n('willNot', 'cannot') ? `refused ${times(n('willNot', 'cannot'))}` : '',
     ].filter(Boolean);
     const out = [
       `You spoke ${times(said)}.${parts.length ? ` In the end he ${listed(parts)}.` : ' He gave no answer.'}`,

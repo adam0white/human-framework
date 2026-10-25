@@ -43,7 +43,7 @@ describe('the frame shows what the Keeper can see', () => {
     expect(darkSeen).toBeGreaterThan(0);
   });
 
-  it('the newcomer is a stranger on his first night', () => {
+  it('the newcomer is a stranger on her first night', () => {
     const run = new WatchRun(4242);
     run.input({ k: 'start' });
     for (let n = 1; n < 3; n++) {
@@ -54,7 +54,7 @@ describe('the frame shows what the Keeper can see', () => {
       run.input({ k: 'toDusk' });
     }
     const r = buildFrame(run.state, 0, false).watchers.find((w) => w.id === 'meryem');
-    expect(r?.impressions[0]?.text).toBe('You do not know them well enough yet.');
+    expect(r?.impressions[0]?.text).toBe('You do not know her well enough yet.');
   });
 });
 

@@ -144,12 +144,16 @@ export function eidLedger(
         what = `${done.length === 1 ? 'Once' : `${times(done.length)}`}, first at ${clock(first?.from ?? eidStart)}${why ? `, ${why}` : ''}.`;
     }
     const how = [
-      said.played > 0 ? `said ${times(said.played)} on the days you spoke` : '',
-      said.days > 0 ? `whispered through ${said.days} days` : '',
+      said.played > 0 ? `You suggested this ${times(said.played)} on the days you played.` : '',
+      said.days > 0 ? `You left this suggestion for ${said.days} skipped days.` : '',
     ]
       .filter(Boolean)
-      .join(', ');
-    rows.push({ said: `${capital(said.label)} (${how})`, times: said.played + said.days, eid: what });
+      .join(' ');
+    rows.push({
+      said: `${capital(said.label).replace(/[.!?]+$/, '')}. ${how}`,
+      times: said.played + said.days,
+      eid: what,
+    });
   }
   return rows;
 }
@@ -201,10 +205,10 @@ function summary(i: ReportInput): string[] {
     (!date &&
       pays[0] !== undefined &&
       pays[0].from <= TOWN_DEFAULTS.rentPromiseDay * MINUTES_PER_DAY + 20 * 60)
-      ? `He paid Osman 300 by the deadline, on Ramadan ${firstPay ?? TOWN_DEFAULTS.rentPromiseDay}.`
+      ? `He paid Osman 300 lira by the deadline, on Ramadan ${firstPay ?? TOWN_DEFAULTS.rentPromiseDay}.`
       : firstPay !== undefined && firstPay < TOWN_EID_DAY
-        ? `He missed Osman’s payment deadline (300 by Ramadan ${TOWN_DEFAULTS.rentPromiseDay}); he first paid 300 on Ramadan ${firstPay}.`
-        : `He missed Osman’s payment deadline (300 by Ramadan ${TOWN_DEFAULTS.rentPromiseDay}) and paid nothing in Ramadan.`) +
+        ? `He missed Osman’s payment deadline (300 lira by Ramadan ${TOWN_DEFAULTS.rentPromiseDay}); he first paid 300 lira on Ramadan ${firstPay}.`
+        : `He missed Osman’s payment deadline (300 lira by Ramadan ${TOWN_DEFAULTS.rentPromiseDay}) and paid nothing in Ramadan.`) +
       (extra.length === 0
         ? ' He never took an afternoon shift.'
         : ` He took an afternoon shift ${times(extra.length)}${extraYours === extra.length ? (extra.length === 1 ? ', because you suggested it' : ', each time because you suggested it') : extraYours > 0 ? `, ${times(extraYours)} because you suggested it` : ''}.`),
@@ -221,7 +225,7 @@ function summary(i: ReportInput): string[] {
   out.push(
     Math.abs(d) < 0.05
       ? `He ${word.replace(/^listens/, 'listened')}, as at the start.`
-      : `He ${word.replace(/^listens/, 'listened')} by Eid (trust ${i.trustStart.toFixed(2)} → ${i.trustEid.toFixed(2)}).`,
+      : `By Eid he listened to you ${d > 0 ? 'more' : 'less'} closely than at the start.`,
   );
   if (i.insisted > 0)
     out.push(
@@ -297,10 +301,17 @@ export function buildReport(i: ReportInput): ReportView {
   // "Had mostly stopped: calling" beside "he called yesterday, unasked" reads as a contradiction: six days against
   // thirty, one call rates as rare. When he called her himself after Eid, the calls line says it instead.
   const calledAfter = epilogueHis(i) > 0;
-  const stopped = pick(yours, ['stopped']).filter((_, k, all) => {
-    const line = all[k] ?? '';
-    return !(calledAfter && /\bcall/i.test(line));
-  });
+  const stopped = pick(yours, ['stopped'])
+    .filter((_, k, all) => {
+      const line = all[k] ?? '';
+      return !(calledAfter && /\bcall/i.test(line));
+    })
+    .map((line) =>
+      line
+        .replace('By the end ', 'By the end, ')
+        .replace('stopped: ', 'stopped ')
+        .replace(/\bcalling\.$/, 'calling Selin.'),
+    );
   const t = h.now;
   const trust = VOICE_IDS.map((id) => {
     const before = i.endRamadanTrust[id] ?? 0.5;
@@ -414,7 +425,7 @@ export function reportEnds(i: ReportInput): EndView[] {
     trust:
       Math.abs(trustNow - trustEidMorning) < 0.005
         ? 'You were silent from Eid; his trust in you stayed where it was.'
-        : `A week after Eid, trust ${trustNow.toFixed(2)}.`,
+        : `A week after Eid, he listens to you ${trustNow > trustEidMorning ? 'more' : 'less'} closely than on Eid morning.`,
   };
   const smoke = smokingLines(i);
   return ends.map((e) =>

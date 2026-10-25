@@ -108,7 +108,7 @@ export function App() {
     });
   }, [actions, person, sheet, pending, info]);
   useEffect(() => {
-    if (!inspect) {
+    if (!inspect || !labMode()) {
       actions.clearWhy();
       return;
     }
@@ -688,11 +688,13 @@ export function App() {
                         Suggestion · {shortName(nudge.order.personId)} → {PLACE_LABEL[nudge.order.placeId]}
                       </strong>
                       <small>
-                        {choice?.underway
-                          ? 'They are already doing this in both villages.'
-                          : (choice?.refusal ??
-                            suggestionForecast?.text ??
-                            'This was suggested earlier. They may no longer be able to do it.')}
+                        {settingWords(
+                          choice?.underway
+                            ? 'This work is already underway in both villages.'
+                            : (choice?.refusal ??
+                                suggestionForecast?.text ??
+                                'This was suggested earlier. It may no longer be possible.'),
+                        )}
                       </small>
                     </button>
                     <button
@@ -754,10 +756,12 @@ export function App() {
                       </header>
                       <div className="well-reading">
                         <p>
-                          {choice?.underway
-                            ? 'They are already doing this in both villages.'
-                            : (suggestionForecast?.text ??
-                              'This was suggested earlier. They may no longer be able to do it.')}
+                          {settingWords(
+                            choice?.underway
+                              ? 'This work is already underway in both villages.'
+                              : (suggestionForecast?.text ??
+                                  'This was suggested earlier. It may no longer be possible.'),
+                          )}
                         </p>
                         <p>
                           {settingWords(

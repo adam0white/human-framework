@@ -193,7 +193,7 @@ export function nightActs(s: WatchState, who: WatcherId): NightAct[] {
       isPost(old) && (input.k === 'down' || old !== s.place[who]) ? ` ${leavingRead(s, id)}.` : '';
     const crossing =
       s.nightDepartureEffort && input.k !== 'down' && isPost(old) && old !== s.place[who]
-        ? ' I think leaving another post will also tire them a little.'
+        ? ' I think leaving another post will also tire the relief watcher a little.'
         : '';
     const cover = input.k === 'relieve' ? ` The helper takes over before you ask ${name} to sleep.` : '';
     return {
@@ -326,7 +326,7 @@ export function resolveNightRequest(s: WatchState, e: SimEvent, before = s.place
         ? 'I’m going home to sleep.'
         : 'I’m going down to the hall.'
       : r.affordance.startsWith('carry:')
-        ? 'I’m coming. I’ll carry them down.'
+        ? 'I’m coming. I’ll carry the watcher down.'
         : `I’ll take ${theSection(r.section)}.`;
   alert(s, {
     section: r.section,

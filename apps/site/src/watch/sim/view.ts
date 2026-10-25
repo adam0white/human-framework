@@ -322,12 +322,12 @@ function nightAccount(
   if (!inVoice(s, p.id)) return { text: 'Too far away for your voice to reach.', spoken: false };
   if (p.body.downed)
     return {
-      text: onLit ? 'They are down and cannot answer.' : 'No reply comes from the dark.',
+      text: onLit ? 'The watcher is down and cannot answer.' : 'No reply comes from the dark.',
       spoken: false,
     };
   if (p.body.asleep || p.activity?.action === 'doze' || p.activity?.action === 'sleep')
     return {
-      text: onLit ? 'They appear asleep. No reply comes.' : 'No reply comes from the dark.',
+      text: onLit ? 'The watcher appears asleep. No reply comes.' : 'No reply comes from the dark.',
       spoken: false,
     };
   const told = selfReport(p);
@@ -547,11 +547,11 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean, rate = 0
       actsUnavailable:
         s.phase === 'night' && acts.length === 0
           ? !inVoice(s, w.id)
-            ? `They cannot hear you from here: ${lit === null ? 'the lantern is moving' : `the lantern is at ${theSection(lit)}`}.`
+            ? `Your voice cannot reach this post: ${lit === null ? 'the lantern is moving' : `the lantern is at ${theSection(lit)}`}.`
             : !post
               ? s.rope.snapped
-                ? 'They are off the wall. Night requests need someone at a post, and the bell rope is snapped.'
-                : 'They are off the wall. Night requests need someone at a post; the bell calls back those who hear it.'
+                ? 'The watcher is off the wall. Night requests need someone at a post, and the bell rope is snapped.'
+                : 'The watcher is off the wall. Night requests need someone at a post; the bell calls back those who hear it.'
               : onLit && (p.body.asleep || ['doze', 'sleep'].includes(p.activity?.action ?? ''))
                 ? s.rope.snapped
                   ? 'No spoken request can wake them, and the bell rope is snapped.'
@@ -562,8 +562,8 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean, rate = 0
         const fatigue = keeperFatigue(s, w.id);
         return s.phase === 'night' && fatigue.confidence >= 0.12 && fatigue.value > 0.35
           ? fatigue.dusk
-            ? 'They looked tired at dusk'
-            : 'They looked tired at the last look'
+            ? 'Looked tired at dusk'
+            : 'Looked tired at the last look'
           : null;
       })(),
       handover: s.phase === 'night' ? nightHandover(s, w.id) : null,
@@ -597,7 +597,10 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean, rate = 0
     // Only what is still news: alerts from the last hour of the night.
     alerts: s.alerts.filter((a) => s.minute - a.minute < 60).slice(-6),
     ...(s.refugeVisit ? { refugeVisit: structuredClone(s.refugeVisit) } : {}),
-    dawn: s.dawn,
+    // Keep authored phrases in state: lastVoices uses them to avoid repeats next dawn.
+    dawn: s.dawn
+      ? { ...s.dawn, voices: s.dawn.voices.map((v) => ({ ...v, text: dawnSpeech(v.text) })) }
+      : null,
     moment: s.phase === 'night' ? s.moment : null,
     decisionSeconds:
       s.phase === 'night' && s.moment && rate > 0
@@ -725,7 +728,7 @@ function folk(s: WatchState): { need: number; souls: string; homes: number } {
 export function soulsWords(souls: number, homes: number): string {
   const a = countWords(souls);
   const b = countWords(homes);
-  return `${a.charAt(0).toUpperCase()}${a.slice(1)} ${souls === 1 ? 'soul' : 'souls'} in ${b} ${homes === 1 ? 'home' : 'homes'}`;
+  return `${a.charAt(0).toUpperCase()}${a.slice(1)} ${souls === 1 ? 'person' : 'people'} in ${b} ${homes === 1 ? 'home' : 'homes'}`;
 }
 
 function count(n: number): string {
@@ -945,4 +948,11 @@ function yearFrame(s: WatchState) {
         : null,
     villagers,
   };
+}
+
+/** Join a watcher's reports into one speech without changing the stored anti-repeat phrases. */
+export function dawnSpeech(text: string): string {
+  return text
+    .replaceAll('” “', ' ')
+    .replace(/I stayed because ([^.]+) stayed\./g, 'It helped when $1 stayed beside me.');
 }

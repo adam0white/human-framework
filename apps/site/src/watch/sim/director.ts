@@ -53,7 +53,7 @@ export function planWinter(s: WatchState): void {
     why =
       lead === 'wolf'
         ? 'The thieves have gone elsewhere. The wolf packs are back.'
-        : 'The wolf packs have gone north. Men have taken their place.';
+        : 'The wolves have gone north, and raiders have come instead.';
   }
   const twist: WinterPlan['twist'] = s.leads.includes(lead) ? (lead === 'wolf' ? 'dark' : 'inside') : null;
   const peak = 3 + Math.floor(nextRandom(r) * (nights - 2));
@@ -107,7 +107,7 @@ function winterQuestion(s: WatchState, r: { rng: number }): WinterPlan['question
     out.push({
       kind: 'parent',
       who: parent,
-      text: `${nameOf(s, parent)} has a child not a year old. Bring ${nameOf(s, parent)} home unhurt every dawn.`,
+      text: `${nameOf(s, parent)} has a baby under one year old. Bring ${nameOf(s, parent)} home unhurt every morning.`,
       met: null,
     });
     break;
