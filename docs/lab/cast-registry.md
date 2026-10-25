@@ -459,7 +459,7 @@ A player can learn about the map when she offers a resting place on a walk or as
 
 **HF profile:** honesty .45; conscientiousness .35; extraversion .80; agreeableness .55; emotionality .45; openness .60. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
 
-**Source anchor:** Pass cooks.ts age and döner background; Murmur supervisor and bowling notes; deliberate new career connection.
+**Source anchor:** Pass cooks.ts age and roast-meat stand background; Murmur supervisor and bowling notes; deliberate new career connection.
 
 **Games and roles:** Pass: grill hire. Murmur: depot supervisor in a later chapter.
 
@@ -994,12 +994,12 @@ Rows which mention old constructors describe source identities only. A replaceme
 | Pass | Selim | HF; 56, founder, grill | canonical → `hf.cast.selim.pass`; reconcile against biography |
 | Pass | Dilek | HF; 34, founder, cold | canonical → `hf.cast.dilek.pass`; reconcile against biography |
 | Pass | Rafi | HF; 19, founder, dish; skims jar | canonical → `hf.cast.rafi.pass`; reconcile against biography |
-| Pass | Murat | HF hire; 27, grill; döner work Bornova | canonical → `hf.cast.murat.murmur`; reconcile against biography |
+| Pass | Murat | HF hire; 27, grill; roast-meat stand work in Bornova | canonical → `hf.cast.murat.murmur`; reconcile against biography |
 | Pass | Zeynep | HF hire; 45, cold; school canteen; sons | canonical → `hf.cast.zeynep.pass`; reconcile against biography |
 | Pass | Can | HF hire; 17, dish; Rafi’s cousin | named family background; retain only stated kinship and immediate episode role; no maintained personal arc |
 | Pass | Hülya | HF hire; 38, oven; former Antalya hotel cook | canonical → `hf.cast.hulya.pass`; reconcile against biography |
 | Pass | Chef | HF player observer; 31 female | background; retire maintained arc; seeded episode actor or unnamed role |
-| Pass | Nevin | Narrative-only; deceased lokanta owner | remembered background; deceased, no live Person |
+| Pass | Nevin | Narrative-only; deceased restaurant owner | remembered background; deceased, no live Person |
 | Pass | Ahmet | Narrative-only; butcher, bill collector | background; retire maintained arc; seeded episode actor or unnamed role |
 | Pass | Mr Hasan | Host-side regular; pensioner, tab | background; retire maintained arc; seeded episode actor or unnamed role |
 | Pass | Mrs Arslan | Host-side regular; ledger names her Gül Arslan; grandson | background; retire maintained arc; seeded episode actor or unnamed role |
@@ -1451,7 +1451,7 @@ Rows which mention old constructors describe source identities only. A replaceme
 | The Day You Say Nothing | Rıza | 63; Halil’s friend at the tea house. | canonical → `hf.cast.riza.voice`; reconcile against biography |
 | The Day You Say Nothing | Hacer | 58; neighbour who talks about people; weak conviction against backbiting (0.15). | canonical → `hf.cast.hacer.voice`; reconcile against biography |
 | The Day You Say Nothing | Osman | 55; landlord and market trader; seeks rent repayment. | canonical → `hf.cast.osman.voice`; reconcile against biography |
-| The Day You Say Nothing | Nuran | Halil’s deceased wife; narrative and relationship entry, not a live Person. Funeral and sunset meal last Ramadan are memories; grave can be visited. | remembered background; deceased, no live Person |
+| The Day You Say Nothing | Nuran | Halil’s deceased wife; narrative and relationship entry, not a live Person. Her funeral and a sunset meal last Ramadan, the fasting month, are memories; her grave can be visited. | remembered background; deceased, no live Person |
 | The Day You Say Nothing | You | Player’s voice in Halil’s head; not a named independent person. | background; retire maintained arc; seeded episode actor or unnamed role |
 | The Night Watch | Tamar | 54; watcher. Sling, steady. | canonical → `hf.cast.tamar.watch`; reconcile against biography |
 | The Night Watch | Kian | 16; watcher. Fast, eager. | canonical → `hf.cast.kian.watch`; reconcile against biography |
@@ -1466,7 +1466,7 @@ Rows which mention old constructors describe source identities only. A replaceme
 
 ### Source pools and narrative identities not represented by a single fixed row
 
-- **Pass:** Hasan's brother; Gül Arslan's grandson, his two school friends and father; Aksoy reading-group members; Kemal's wife and the three other drivers; Ilyas's retiring foreman and shift colleagues; Zeynep's sons; Rafi's sister/mother; neighbours, bank and döner-chain representatives; Demir/Yıldız party members and the unnamed food writer are all background. Collective surnames do not count as one person or expand into newly maintained biographies. Gül Arslan and Mrs Arslan are the same background customer. Can retains the cousin fact only. Chef is the player's current role/body, not a new canonical person.
+- **Pass:** Hasan's brother; Gül Arslan's grandson, his two school friends and father; Aksoy reading-group members; Kemal's wife and the three other drivers; Ilyas's retiring foreman and shift colleagues; Zeynep's sons; Rafi's sister/mother; neighbours, bank and roast-meat restaurant chain representatives; Demir/Yıldız party members and the unnamed food writer are all background. Collective surnames do not count as one person or expand into newly maintained biographies. Gül Arslan and Mrs Arslan are the same background customer. Can retains the cousin fact only. Chef is the player's current role/body, not a new canonical person.
 - **Glance:** Mr Pugh addresses Dai, not another actor. His full legal surname is not newly inferred. Morgan is remembered predecessor background. The player engineer, Met Office and radio voices, and Callum's baby and partner are role/family background. Bilal and Wren are new visitors with their own qualifications and chapter boundaries.
 - **Murmur:** Mum is the same unnamed background mother for Dilan and Aylin. The two inner voices are simulation/player channels, not persons in the forty. All work and family references not named in the inventory are episode background. Aylin/Ece/Murat receive canonical occupations and ages only through this new edition.
 - **Rope:** Nell's mother (`nell-mother`) remains family background. Ezra's absence does not establish death; no living return or resurrection is asserted here. The player leader is a voice/role. Rope Tamar and Watch Tamar are deliberately different people.
