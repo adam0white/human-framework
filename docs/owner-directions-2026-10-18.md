@@ -235,3 +235,17 @@ Coordinator reading of "finish … playtests and iterations": each game gets a l
 > "Yeah, and cf cli instead of wrangler + wrangler.json, too. Worth experimenting and probably switching."
 
 Trial HF first. Merge after the package-manager switch. Switch deployment only after resolved config and upload-manifest equivalence, exact green CI and the Voice deployment hold permit it. A proven beta gap keeps Wrangler with a dated re-check.
+
+## 2026-10-26 — tsrs trial (Adam, verbatim)
+
+> "I've also heard about now-Cloudflare-owned tsrs experiment for ts compiler, and we can check that, too."
+
+Trial result: wait, re-check 2026-11-09. tsrs `0.18.0-ts7.1.0-dev.20260929` halved the full HF typecheck (3.6 s to 1.7 s cold) with about a third of the memory, but its process exit codes differed from tsc on injected errors. tsc stays the gate.
+
+## 2026-10-26 — Bold: new games, HF further, pnpm everywhere (Adam, verbatim)
+
+> "Alright, good progress, thanks. Now, Claude limits reset Tuesday 2 am, so we have a little more than 24 hours to spend about 40% of our weekly limits. Good job on spending Codex, I reset it, too. So let's be bold and abundant, including some Fable and Astra consults and light reviews for good measure. Is it time to get another game or four, now that the existing ones have been polished greatly? Let's go bold. Push HF further, too. Maybe it's time to push our own limits, like a faith themed game, or an action type one? What's that question for me? We should cleanly move everything under your control to pnpm and possibly a shared node, sure. Enable pnpm specific best practices, too, unless you think we should switch to bun in the near future. If there are your folders under code that aren't on GitHub, either clean up properly or push them too. Anything else from me right now?"
+
+Coordinator reading, acted on now: spend Claude abundantly until the Tuesday 02:00 reset (Fable and Opus subagents, plus Astra as `gpt-6-astra` through Codex) on new-game concepts, HF horizon consults and light reviews. Move every lab-controlled repo to pnpm with HF's settings, one at a time, skipping games whose playtest round is open until it closes. "Shared node" is read as one pinned Node version across repos (pnpm-managed runtime where it works), not per-repo installs. Stay on pnpm; bun is not planned. Clean up or push lab folders under `~/code`; the owner's personal repos are left alone.
+
+Not yet lifted, pending the owner's explicit answer: a faith-themed game (against "Games keep faith gentle", 2026-10-04) and an action game (against "no action-game polish, real-time graphics"). New-game concepts for both are drafted and reviewed; nothing in either is built until he answers.
