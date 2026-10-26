@@ -200,6 +200,16 @@ export const GAMES: Game[] = [
     line: 'Elif learns from the work she sees. Choose what to show her as she grows, then let her decide what to do alone.',
     faculties: ['A whole life', 'Memory and belief', 'Will'],
   },
+  {
+    id: 'days',
+    labNote: 'Owner acceptance pending.',
+    rank: 19,
+    status: 'active',
+    name: 'Three Days',
+    href: 'https://days.adamwhite.work',
+    line: 'A daughter has three days of leave, an uncertain account and a promised visit. Choose what to check, what to share and when to ask for help.',
+    faculties: ['Relationships', 'Body', 'Memory and belief'],
+  },
 ];
 
 export const isExternal = (g: Game): boolean => /^https?:\/\//.test(g.href);
