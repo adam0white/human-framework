@@ -1,5 +1,5 @@
 /** Measurement only: unchanged HF 3.2. Node 26 strips types. JSONL stdout is retained outside Git.
- * Usage: node scripts/hf4-baseline.ts --mode=quick|year|antfarm|longrun|doze|selectors [--module=/absolute/dist/index.js]
+ * Usage: node scripts/hf4-baseline.ts --mode=quick|year|antfarm|longrun|doze|doze-control|selectors [--module=/absolute/dist/index.js]
  * [--seeds=1,2,...,10] [--days=365]. No time extrapolation. Each year checkpoint is one completed day.
  * Village workload comes from bench-thousand-lives.ts (four ring ties) and the real village world.
  * Longrun uses the real L5 routineFor fixture, not decision simulation; these fidelities are distinct.
@@ -22,7 +22,7 @@ const hf: typeof import('../packages/human/src/index.ts') = await import(
 const seeds = arg('seeds', '1,2,3,4,5,6,7,8,9,10').split(',').map(Number);
 const days = Number(arg('days', '365'));
 if (
-  !['quick', 'year', 'antfarm', 'longrun', 'doze', 'selectors'].includes(mode) ||
+  !['quick', 'year', 'antfarm', 'longrun', 'doze', 'doze-control', 'selectors'].includes(mode) ||
   seeds.some((s) => !Number.isInteger(s) || s < 1 || s > 10) ||
   !Number.isInteger(days) ||
   days < 1 ||
@@ -95,6 +95,12 @@ const selectors = {
   decide: { forecastContext: 'conditioned', necessity: true },
   conversation: { provenance: true, loyalWarning: true, confidentMin: 0.2 },
   observation: { inheritedAptitude: true },
+  renderer: {
+    review: { variety: true },
+    prompting: { voice: 'first', plainEnglish: true },
+    forecast: { plainEnglish: true },
+  },
+  transfer: { farming: { cooking: 0.3 } },
   fitr: { enabled: true, eligible: true, amount: 1, from: 420, deadline: 600, action: 'pay-fitr' },
 } as const;
 const context = {
@@ -122,12 +128,16 @@ const context = {
   load: loadavg(),
   freeDiskBytes: disk(),
   selectors,
+  comparison:
+    mode === 'doze-control'
+      ? 'paired fed years, all other faculties on; doze omitted only in labelled off arm; no behavioral equivalence claimed'
+      : null,
   timing: 'concurrent machine; process CPU and load recorded; no quiet-machine or browser equivalence claim',
   alternatives:
     'catchUp events is separately sampled; eager main year. Longrun is declared coarse routine fidelity, not equivalent. Other mutually exclusive readings remain data, not simultaneously selectable.',
 };
 emit(context);
-function person(seed: number, i: number, ids: string[], now = 420): Person {
+function person(seed: number, i: number, ids: string[], now = 420, doze = true): Person {
   const id = ids[i];
   if (!id) throw new Error('Missing person id');
   const spec = hf.villagerSpec(id, id, seed * 1000 + i, {
@@ -136,6 +146,7 @@ function person(seed: number, i: number, ids: string[], now = 420): Person {
     others: [1, 2, 3, 4].map((offset) => ids[(i + offset) % ids.length] as string),
   });
   spec.enable = structuredClone(enable);
+  if (!doze) spec.enable.doze = undefined;
   spec.lexicon = { ...selectors.lexicon };
   for (const c of spec.commitments ?? []) c.completion = 'end';
   spec.goals = [
@@ -176,7 +187,7 @@ function person(seed: number, i: number, ids: string[], now = 420): Person {
   if (
     p.projects?.behaviour !== 2 ||
     p.pursuit?.behaviour !== 2 ||
-    !p.body.doze ||
+    (doze && !p.body.doze) ||
     !p.affect.crisis ||
     !p.will.assentCost
   )
@@ -267,12 +278,19 @@ for (const seed of seeds) {
           times.push(performance.now() - t);
         }
       });
+      const synchronization =
+        catchUp === 'events'
+          ? measured(() => hf.synchronizeCommunity(s.community, s.village, 1860, selectors.step))
+          : { wallMs: 0, cpu: { user: 0, system: 0 } };
+      hf.requireCommunityCurrent(s.community, 1860);
       emit({
         kind: 'village-day',
         seed,
         people: 20,
         completedDays: 1,
         catchUp: catchUp ?? 'eager',
+        synchronization,
+        coherentReadWallMs: result.wallMs + synchronization.wallMs,
         stepMinutes: 30,
         ...result,
         ...stats(times),
@@ -419,30 +437,90 @@ for (const seed of seeds) {
       duration: 5,
       effort: 0.3,
       skill: { id: 'farming', difficulty: 0.4 },
+      followedBy: [{ label: 'return from the field', duration: 60, effort: 0.5, focus: 0.2 }],
       advertises: { competence: 0.1 },
     };
     const record = hf.decide(a, [practiceOffer], selectors.decide);
     if (!hf.begin(a, practiceOffer, record)) throw new Error('Practice did not begin');
     hf.tick(a, a.now + 5);
-    hf.finish(a, {
-      affordanceId: practiceOffer.id,
-      action: practiceOffer.action,
-      status: 'completed',
-      at: a.now,
-      practice: { quality: 0.8, instruction: { level: 0.9, engagement: 0.8, teacherId: b.id } },
-      percepts: [
-        {
-          at: a.now,
-          kind: 'help',
-          summary: 'I helped with the field while my neighbour watched.',
-          channel: 'outcome',
-          actorId: a.id,
-          witnesses: [b.id],
-          salience: 1,
-        },
-      ],
-    });
+    hf.finish(
+      a,
+      {
+        affordanceId: practiceOffer.id,
+        action: practiceOffer.action,
+        status: 'completed',
+        at: a.now,
+        practice: { quality: 0.8, instruction: { level: 0.9, engagement: 0.8, teacherId: b.id } },
+        percepts: [
+          {
+            at: a.now,
+            kind: 'help',
+            summary: 'I helped with the field while my neighbour watched.',
+            channel: 'outcome',
+            actorId: a.id,
+            witnesses: [b.id],
+            salience: 1,
+          },
+        ],
+      },
+      { transfer: selectors.transfer },
+    );
 
+    // Received prospect shape from the real projects-control fixture; no host writes to project goals.
+    hf.perceive(a, [
+      {
+        at: a.now,
+        channel: 'saw',
+        kind: 'fact',
+        salience: 1,
+        summary: 'An unfinished pile',
+        prospect: { id: 'pile', label: 'Arrange a pile', kind: 'arrange', progress: 0.3 },
+      },
+    ]);
+    hf.considerProjects(a, a.now);
+    const heldProject = a.agenda.goals.find((g) => g.project?.prospectId === 'pile');
+    // Rested, uncommitted actor from projects-control; no due duty is removed from the village actor.
+    const maker = hf.createPerson({
+      id: 'maker',
+      name: 'Maker',
+      seed: seed * 1000 + 900,
+      now: a.now,
+      bornAt: -30 * hf.MINUTES_PER_YEAR,
+      sex: 'female',
+      traits: { openness: 1 },
+      norms: [],
+      enable: structuredClone(enable),
+      lexicon: { ...selectors.lexicon },
+      body: { satiety: 1, hydration: 1, sleepPressure: 0, exertion: 0 },
+    });
+    hf.enableBreaks(
+      maker,
+      selectors.breaks.map((b) => ({
+        ...b,
+        actions: [...b.actions],
+        minutes: [b.minutes[0], b.minutes[1]] as [number, number],
+      })),
+    );
+    hf.enableDowned(maker, selectors.downed);
+    hf.enableAssentCost(maker, selectors.assentCost);
+    hf.perceive(maker, [
+      {
+        at: maker.now,
+        channel: 'saw',
+        kind: 'fact',
+        salience: 1,
+        summary: 'An unfinished pile',
+        prospect: { id: 'pile', label: 'Arrange a pile', kind: 'arrange', progress: 0.3 },
+      },
+    ]);
+    hf.considerProjects(maker, maker.now);
+    const makerProject = maker.agenda.goals.find((g) => g.project?.prospectId === 'pile');
+    if (makerProject?.project?.peak === undefined)
+      throw new Error('Project net-credit selector not admitted');
+
+    const forecast = hf.bodyForecastFor(a, practiceOffer, hf.lifeModifiers(a));
+    const forecastText = hf.forecastLine(forecast, hf.FORECAST_DEFAULTS, selectors.renderer.forecast);
+    const promptingText = hf.promptingLine('fault', 'turned', 'redirect', selectors.renderer.prompting);
     hf.seedBelief(a, 'field:water-ready', { value: true, credence: 0.95, source: 'host:benchmark' });
     hf.seedBelief(a, `${b.id}:honesty`, { value: false, credence: 0.9, source: 'host:benchmark' });
     const conversation = hf.converse(a, b, { at: a.now, ...selectors.conversation });
@@ -453,15 +531,44 @@ for (const seed of seeds) {
     hf.promise(a, fitr.commitment);
     hf.promise(a, fitr.payment);
     hf.raise(b, { caregivers: [a] }, 240, { model: 'warmth-through-25', voices: true });
+    hf.tick(a, 1260);
+    const reviewText = hf.reviewLine(a, selectors.renderer.review);
     emit({
       kind: 'context-selectors',
       seed,
       observed,
       acquiredMethod,
+      project: heldProject?.project,
+      makerProject: makerProject.project,
+      makerState: state([maker]),
+      rendererFixtures: { forecastText, promptingText, reviewText },
       conversationClaims: conversation.claims.length,
       fitr,
       ...state(s.people),
     });
+  } else if (mode === 'doze-control') {
+    for (const doze of [false, true]) {
+      const p = person(seed, 0, ['p0'], 0, doze);
+      let livingHours = 0;
+      const result = measured(() => {
+        for (let hour = 1; hour <= 8760; hour++) {
+          hf.consume(p, { food: 1, water: 1 });
+          hf.tick(p, hour * 60);
+          if (p.body.alive) livingHours++;
+        }
+      });
+      emit({
+        kind: 'doze-control',
+        seed,
+        doze,
+        posture: 'upright',
+        minutes: 525600,
+        livingHours,
+        ...result,
+        ...state([p]),
+        load: loadavg(),
+      });
+    }
   } else {
     for (const minutes of [60, 1440, 525600]) {
       const p = person(seed, 0, ['p0'], 0);
