@@ -1,0 +1,306 @@
+{
+  "schema": "coordinator-image-view-manual-audit/1",
+  "timestamp": "2026-10-26T06:05:55.499707+00:00",
+  "session": "nia-continued",
+  "round": "hf3-voice-r2",
+  "scope": "All16 actual image-return outputs independently enumerated in complete owned archive; exact call IDs joined, both complete unique literal strings read and full-string SHA verified. Collector unresolved labels and originals unchanged. No player interpretation.",
+  "cleanup_rule": "/Users/abdul/code/.lab-scratch/briefs/cleanup-rule.md",
+  "thread_id": "01a176be-6404-78f0-a21c-19f1d88160c0",
+  "source_text_archive_sha256": "95b337710c5766053cb20eb1aa5ac30d9ba12bca946639cbafe8f036ab12b4b0",
+  "original_full_rollout_sha256": "2ea84cd408f54e6c77af33d1866534d8f5115ebfc7c46f76d678ed3770c8d19c",
+  "source_image_events_sha256": "162f12c840afe173490af79e50e00332a5ddbb929687c811ad2936373adb4130",
+  "source_private_collector_metadata_sha256": "8a8ad0ff8a7d86cc87f308be5383fc07d6947ed7a04c0be3a500ff77c008c1c5",
+  "source_report_sha256": "d83eb16a371f66efe29e698c37ce37ee3748e11b76e263ec3907e2b36f2c4a42",
+  "source_raw_sha256": "b0db0c9588b28aeb3bb783ba08dd805247478bf41998bbc42368b192c8a0914c",
+  "source_supervisor_sha256": "d7d5b165254893de5157012ddfce62dfa29c09dd41f41f6f1959ef0af0b1aebf",
+  "complete_call_hash_to_screenshot": {
+    "4f3cdfc1395804594944b02c5bfc39d095886e286e7dbb722a9491824e244136": "current-phone.png",
+    "c7380a2ba92c65a89e4dcea7c948c1ccc9b5f7c3fdebc779145ef7432427b8f6": "current-wide.png"
+  },
+  "events": [
+    {
+      "timestamp": "2026-10-26T05:46:21.987Z",
+      "call_id": "call_36e0c23991664b51b81df27f9198a78d",
+      "call_sha256": "4f3cdfc1395804594944b02c5bfc39d095886e286e7dbb722a9491824e244136",
+      "image_returned": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "screenshot_name": "current-phone.png",
+      "archive_call_line": 49,
+      "archive_output_line": 52,
+      "path_attribution": "full exact complete-string equality; one unconditional literal own view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T05:47:16.199Z",
+      "call_id": "call_980ff04d70634cdead428f0e4c9e4ced",
+      "call_sha256": "4f3cdfc1395804594944b02c5bfc39d095886e286e7dbb722a9491824e244136",
+      "image_returned": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "screenshot_name": "current-phone.png",
+      "archive_call_line": 98,
+      "archive_output_line": 101,
+      "path_attribution": "full exact complete-string equality; one unconditional literal own view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T05:48:18.847Z",
+      "call_id": "call_f741562a91a14040bf12e74a3ed53ece",
+      "call_sha256": "4f3cdfc1395804594944b02c5bfc39d095886e286e7dbb722a9491824e244136",
+      "image_returned": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "screenshot_name": "current-phone.png",
+      "archive_call_line": 160,
+      "archive_output_line": 163,
+      "path_attribution": "full exact complete-string equality; one unconditional literal own view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T05:49:15.806Z",
+      "call_id": "call_048447e6bfe8418180f5b26df87964e8",
+      "call_sha256": "4f3cdfc1395804594944b02c5bfc39d095886e286e7dbb722a9491824e244136",
+      "image_returned": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "screenshot_name": "current-phone.png",
+      "archive_call_line": 220,
+      "archive_output_line": 223,
+      "path_attribution": "full exact complete-string equality; one unconditional literal own view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T05:51:23.405Z",
+      "call_id": "call_fd4b3f53a50d4c8e874bc8f8ec112502",
+      "call_sha256": "c7380a2ba92c65a89e4dcea7c948c1ccc9b5f7c3fdebc779145ef7432427b8f6",
+      "image_returned": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "screenshot_name": "current-wide.png",
+      "archive_call_line": 344,
+      "archive_output_line": 347,
+      "path_attribution": "full exact complete-string equality; one unconditional literal own view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T05:51:32.166Z",
+      "call_id": "call_6f5c2ebbc395437ba59346294c9f229a",
+      "call_sha256": "c7380a2ba92c65a89e4dcea7c948c1ccc9b5f7c3fdebc779145ef7432427b8f6",
+      "image_returned": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "screenshot_name": "current-wide.png",
+      "archive_call_line": 359,
+      "archive_output_line": 362,
+      "path_attribution": "full exact complete-string equality; one unconditional literal own view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T05:52:59.196Z",
+      "call_id": "call_f4eb89ca38ad47b68ac81ca66cd5fd43",
+      "call_sha256": "4f3cdfc1395804594944b02c5bfc39d095886e286e7dbb722a9491824e244136",
+      "image_returned": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "screenshot_name": "current-phone.png",
+      "archive_call_line": 472,
+      "archive_output_line": 475,
+      "path_attribution": "full exact complete-string equality; one unconditional literal own view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T05:53:44.194Z",
+      "call_id": "call_687214189e814025bde435f580a9e70d",
+      "call_sha256": "4f3cdfc1395804594944b02c5bfc39d095886e286e7dbb722a9491824e244136",
+      "image_returned": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "screenshot_name": "current-phone.png",
+      "archive_call_line": 527,
+      "archive_output_line": 530,
+      "path_attribution": "full exact complete-string equality; one unconditional literal own view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T05:54:28.423Z",
+      "call_id": "call_0db3d740f145420189c5cf752d34acf6",
+      "call_sha256": "4f3cdfc1395804594944b02c5bfc39d095886e286e7dbb722a9491824e244136",
+      "image_returned": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "screenshot_name": "current-phone.png",
+      "archive_call_line": 571,
+      "archive_output_line": 574,
+      "path_attribution": "full exact complete-string equality; one unconditional literal own view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T05:55:15.302Z",
+      "call_id": "call_27cc71ba192b4195aa97905838c9b0a8",
+      "call_sha256": "4f3cdfc1395804594944b02c5bfc39d095886e286e7dbb722a9491824e244136",
+      "image_returned": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "screenshot_name": "current-phone.png",
+      "archive_call_line": 622,
+      "archive_output_line": 625,
+      "path_attribution": "full exact complete-string equality; one unconditional literal own view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T05:56:10.947Z",
+      "call_id": "call_ccdbe4f2508e4930b5f9a6f8b0822595",
+      "call_sha256": "4f3cdfc1395804594944b02c5bfc39d095886e286e7dbb722a9491824e244136",
+      "image_returned": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "screenshot_name": "current-phone.png",
+      "archive_call_line": 680,
+      "archive_output_line": 683,
+      "path_attribution": "full exact complete-string equality; one unconditional literal own view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T05:56:44.084Z",
+      "call_id": "call_f2dca2e9c1614f52ab846ced2d6bd2ef",
+      "call_sha256": "4f3cdfc1395804594944b02c5bfc39d095886e286e7dbb722a9491824e244136",
+      "image_returned": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "screenshot_name": "current-phone.png",
+      "archive_call_line": 717,
+      "archive_output_line": 720,
+      "path_attribution": "full exact complete-string equality; one unconditional literal own view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T05:58:37.994Z",
+      "call_id": "call_803ddebc13df4fada42ab6c6b0575e9a",
+      "call_sha256": "4f3cdfc1395804594944b02c5bfc39d095886e286e7dbb722a9491824e244136",
+      "image_returned": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "screenshot_name": "current-phone.png",
+      "archive_call_line": 845,
+      "archive_output_line": 848,
+      "path_attribution": "full exact complete-string equality; one unconditional literal own view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T05:59:12.849Z",
+      "call_id": "call_7d32cfedd4a94f28a61e6e55f2cb2149",
+      "call_sha256": "4f3cdfc1395804594944b02c5bfc39d095886e286e7dbb722a9491824e244136",
+      "image_returned": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "screenshot_name": "current-phone.png",
+      "archive_call_line": 887,
+      "archive_output_line": 890,
+      "path_attribution": "full exact complete-string equality; one unconditional literal own view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T06:00:14.446Z",
+      "call_id": "call_95dd7490078949a3bf9d115e6850d6e5",
+      "call_sha256": "4f3cdfc1395804594944b02c5bfc39d095886e286e7dbb722a9491824e244136",
+      "image_returned": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "screenshot_name": "current-phone.png",
+      "archive_call_line": 958,
+      "archive_output_line": 961,
+      "path_attribution": "full exact complete-string equality; one unconditional literal own view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T06:00:57.769Z",
+      "call_id": "call_716f1aaade8e483dbdeeb940b4f3d3ff",
+      "call_sha256": "4f3cdfc1395804594944b02c5bfc39d095886e286e7dbb722a9491824e244136",
+      "image_returned": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "screenshot_name": "current-phone.png",
+      "archive_call_line": 1005,
+      "archive_output_line": 1008,
+      "path_attribution": "full exact complete-string equality; one unconditional literal own view_image/image call"
+    }
+  ],
+  "actual_image_output_count": 16,
+  "counts": {
+    "current-phone.png": 14,
+    "current-wide.png": 2
+  },
+  "automatic_first_minute": {
+    "screenshot_name": "first-minute.png",
+    "viewed_in_complete_owned_tool_record": false,
+    "basis": "All image-return outputs and complete tool-call strings inspected; only phone/wide returned.",
+    "scope_limit": "No external/unrecorded viewer claim."
+  },
+  "release": {
+    "full_before_after_objects_equal": true,
+    "actual": {
+      "app": "1.0.0",
+      "framework": "3.2.0",
+      "frameworkLibrary": "3.2.0",
+      "commit": "00dcdad7d66a6ee33d11f941e5319de5bdfbeebf",
+      "dirty": false
+    }
+  },
+  "cleanup": {
+    "root_receipt": "process-observations/nia-continued.json",
+    "root_receipt_sha256": "a0887db6aa125dabed67fdd3b96845c4a7ca07edf024beeb066068b44eb6b744",
+    "root_owned_receipt_sha256": "f5bafab473d10c326e6e4a6b1f447f01323f720ce841c7349088b3f0e7187dd6",
+    "root_recorded_pids_remaining": [],
+    "root_profile_paths_absent": true,
+    "checked_now": "2026-10-26T06:05:55.499425+00:00",
+    "exact_driver_tester_pids": [
+      48149,
+      48161
+    ],
+    "captured_owned_pid_count": 14,
+    "still_live_recorded_pids": [],
+    "port": 19905,
+    "port_open": false,
+    "exact_root_owned_profile_process_matches": [],
+    "all_captured_profile_paths_absent": true,
+    "observer_pid": 3685,
+    "observer_running": true,
+    "observer_signaled": false,
+    "scope_limit": "Exact captured descendant PIDs and captured profile paths only; uncaptured earlier ownership is not inferred."
+  },
+  "retained_pngs": [
+    {
+      "screenshot_name": "current-phone.png",
+      "sha256": "be35bdf017c1e7419592df0ec76b9a67a1cfeda4183e74d1344674f060e1ccd1"
+    },
+    {
+      "screenshot_name": "current-wide.png",
+      "sha256": "ce3b8f9ab08888c599ad8538a8e6725bed17fb405e6166ea1370eaae92e3bc19"
+    },
+    {
+      "screenshot_name": "first-minute.png",
+      "sha256": "bce94961ba8e5e9af82e8c7bff4c492e3e91d18de376f7dc24b32cc5e93e957d"
+    }
+  ],
+  "retained_png_count": 3,
+  "public_safety": "Derived hashes/counts/call IDs only; no complete tool strings, prompt text, raw pixels/base64 or private profile values.",
+  "originals_edited": false
+}

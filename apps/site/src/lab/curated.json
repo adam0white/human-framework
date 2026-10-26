@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-25",
+ "generated": "2026-10-26",
  "ledger": [
   {
    "id": "F-001",
@@ -7879,6 +7879,279 @@
     "fix:warren path-start explanation, first-use terms, shelter response reasons, phone view and arrival/keeper cues (open), target next deployed fix/retest"
    ],
    "source": "docs/lab/reviews/hf3-warren-2026-10-25/rosa-free.md"
+  },
+  {
+   "id": "F-895",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Maya Chen (free, Voice R2)",
+   "words": "\"Let me finish listening to a conversation I have chosen to follow.\" Return (complete): I would not return voluntarily tonight or leave it running unattended. I might return another evening if I wanted this slow company, but I would not come back just to repeat advice until he takes it.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice games-deferred reproduce or dispose F-895 by 2026-10-27 (open, no player acceptance)"
+   ],
+   "source": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/reports/maya-free.md"
+  },
+  {
+   "id": "F-896",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Maya Chen (free, Voice R2)",
+   "words": "\"Help me understand what became of a promised action before asking me to repeat the advice.\" Return (complete): I would not return voluntarily tonight or leave it running unattended. I might return another evening if I wanted this slow company, but I would not come back just to repeat advice until he takes it.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice games-deferred reproduce or dispose F-896 by 2026-10-27 (open, no player acceptance)"
+   ],
+   "source": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/reports/maya-free.md"
+  },
+  {
+   "id": "F-897",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Maya Chen (free, Voice R2)",
+   "words": "\"On a return visit, I would want another human thread sooner.\" Return (complete): I would not return voluntarily tonight or leave it running unattended. I might return another evening if I wanted this slow company, but I would not come back just to repeat advice until he takes it.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice games-deferred reproduce or dispose F-897 by 2026-10-27 (open, no player acceptance)"
+   ],
+   "source": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/reports/maya-free.md"
+  },
+  {
+   "id": "F-898",
+   "date": "2026-10-26",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Maya Chen (continued, Voice R2)",
+   "words": "\"Let the later Hacer conversation reach a different ending when its worry is different.\" Return (complete): I would not leave this running unattended. I might return another evening for a new conversation, but I would not voluntarily restart this daily loop tonight or commit to reaching Eid.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice games-deferred reproduce or dispose F-898 by 2026-10-27 (open, no player acceptance)"
+   ],
+   "source": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/reports/maya-continued.md"
+  },
+  {
+   "id": "F-899",
+   "date": "2026-10-26",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Maya Chen (continued, Voice R2)",
+   "words": "\"Make the difference between “I will do it after this task” and a suggestion that may expire clearer.\" Return (complete): I would not leave this running unattended. I might return another evening for a new conversation, but I would not voluntarily restart this daily loop tonight or commit to reaching Eid.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice games-deferred reproduce or dispose F-899 by 2026-10-27 (open, no player acceptance)"
+   ],
+   "source": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/reports/maya-continued.md"
+  },
+  {
+   "id": "F-900",
+   "date": "2026-10-26",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Maya Chen (continued, Voice R2)",
+   "words": "\"Let me ask why Halil dreads the clinic.\" Return (complete): I would not leave this running unattended. I might return another evening for a new conversation, but I would not voluntarily restart this daily loop tonight or commit to reaching Eid.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice games-deferred reproduce or dispose F-900 by 2026-10-27 (open, no player acceptance)"
+   ],
+   "source": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/reports/maya-continued.md"
+  },
+  {
+   "id": "F-901",
+   "date": "2026-10-26",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Emre Kaya (free, Voice R2)",
+   "words": "\"Tell me why he chooses another rest after saying he will take the shift when resting ends.\" Return (complete): I am stopping before the first evening. I wanted to solve the rent problem, but my shift suggestion waited through more rest and expired, and I was too late to try it more strongly. I would return voluntarily another evening to try that decision earlier with a stronger reason, but not to repeat this whole day tonight. I would not leave it running.",
+   "verdict": "keep",
+   "routes": [
+    "fix:voice games-deferred reproduce or dispose F-901 by 2026-10-27 (open, no player acceptance)"
+   ],
+   "source": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/reports/emre-free.md"
+  },
+  {
+   "id": "F-902",
+   "date": "2026-10-26",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Emre Kaya (free, Voice R2)",
+   "words": "\"Give me a chance to reconsider the suggestion before the work option disappears.\" Return (complete): I am stopping before the first evening. I wanted to solve the rent problem, but my shift suggestion waited through more rest and expired, and I was too late to try it more strongly. I would return voluntarily another evening to try that decision earlier with a stronger reason, but not to repeat this whole day tonight. I would not leave it running.",
+   "verdict": "keep",
+   "routes": [
+    "fix:voice games-deferred reproduce or dispose F-902 by 2026-10-27 (open, no player acceptance)"
+   ],
+   "source": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/reports/emre-free.md"
+  },
+  {
+   "id": "F-903",
+   "date": "2026-10-26",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Emre Kaya (continued, Voice R2)",
+   "words": "\"Tell me plainly when “after this task” becomes another postponement, especially when an opportunity is about to close.\" Return (complete): I am stopping here, before the evening is finished after all. I helped him reach the clinic and earn the extra shift money, and that is enough for tonight. I would return voluntarily for another short evening to see whether he takes the shift or calls Selin without me. I would not return to play the whole month in one sitting. I would not leave it running.",
+   "verdict": "keep",
+   "routes": [
+    "fix:voice games-deferred reproduce or dispose F-903 by 2026-10-27 (open, no player acceptance)"
+   ],
+   "source": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/reports/emre-continued.md"
+  },
+  {
+   "id": "F-904",
+   "date": "2026-10-26",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Emre Kaya (continued, Voice R2)",
+   "words": "\"Let me address his doubt about the shift’s pay with the actual money information.\" Return (complete): I am stopping here, before the evening is finished after all. I helped him reach the clinic and earn the extra shift money, and that is enough for tonight. I would return voluntarily for another short evening to see whether he takes the shift or calls Selin without me. I would not return to play the whole month in one sitting. I would not leave it running.",
+   "verdict": "keep",
+   "routes": [
+    "fix:voice games-deferred reproduce or dispose F-904 by 2026-10-27 (open, no player acceptance)"
+   ],
+   "source": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/reports/emre-continued.md"
+  },
+  {
+   "id": "F-905",
+   "date": "2026-10-26",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Emre Kaya (continued, Voice R2)",
+   "words": "\"Keep the likely reply and its explanation readable above the detailed plan’s fixed controls.\" Return (complete): I am stopping here, before the evening is finished after all. I helped him reach the clinic and earn the extra shift money, and that is enough for tonight. I would return voluntarily for another short evening to see whether he takes the shift or calls Selin without me. I would not return to play the whole month in one sitting. I would not leave it running.",
+   "verdict": "keep",
+   "routes": [
+    "fix:voice games-deferred reproduce or dispose F-905 by 2026-10-27 (open, no player acceptance)"
+   ],
+   "source": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/reports/emre-continued.md"
+  },
+  {
+   "id": "F-906",
+   "date": "2026-10-26",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Nia Okafor (free, Voice R2)",
+   "words": "\"Let me find how to bring up Selin without going through the planning settings.\" Return (complete): I would close it, not leave it running. I would not return voluntarily tonight. I might return another evening if I wanted a quiet conversation, and I would still want to hear the Selin call. That curiosity is not pulling me back now.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice games-deferred reproduce or dispose F-906 by 2026-10-27 (open, no player acceptance)"
+   ],
+   "source": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/reports/nia-free.md"
+  },
+  {
+   "id": "F-907",
+   "date": "2026-10-26",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Nia Okafor (free, Voice R2)",
+   "words": "\"Let me keep more of the conversation visible while choosing my words.\" Return (complete): I would close it, not leave it running. I would not return voluntarily tonight. I might return another evening if I wanted a quiet conversation, and I would still want to hear the Selin call. That curiosity is not pulling me back now.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice games-deferred reproduce or dispose F-907 by 2026-10-27 (open, no player acceptance)"
+   ],
+   "source": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/reports/nia-free.md"
+  },
+  {
+   "id": "F-908",
+   "date": "2026-10-26",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Nia Okafor (continued, Voice R2)",
+   "words": "\"Tell me when I can suggest calling Selin. I spent time waiting for her to call.\" Return (complete): I would close it, not leave it running. I would not return voluntarily right now, including another evening; I might return if there were a short way into a new family conversation.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice games-deferred reproduce or dispose F-908 by 2026-10-27 (open, no player acceptance)"
+   ],
+   "source": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/reports/nia-continued.md"
+  },
+  {
+   "id": "F-909",
+   "date": "2026-10-26",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Nia Okafor (continued, Voice R2)",
+   "words": "\"Give the people more distinct reactions. Rıza’s familiar listening line reduced my curiosity.\" Return (complete): I would close it, not leave it running. I would not return voluntarily right now, including another evening; I might return if there were a short way into a new family conversation.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice games-deferred reproduce or dispose F-909 by 2026-10-27 (open, no player acceptance)"
+   ],
+   "source": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/reports/nia-continued.md"
+  },
+  {
+   "id": "F-910",
+   "date": "2026-10-26",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Nia Okafor (continued, Voice R2)",
+   "words": "\"Keep the likely reply readable above the phone’s lower controls.\" Return (complete): I would close it, not leave it running. I would not return voluntarily right now, including another evening; I might return if there were a short way into a new family conversation.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice games-deferred reproduce or dispose F-910 by 2026-10-27 (open, no player acceptance)"
+   ],
+   "source": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/reports/nia-continued.md"
+  },
+  {
+   "id": "F-911",
+   "date": "2026-10-26",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Rosa Alvarez (free, Voice R2, forced reading probe)",
+   "words": "\"Explain why I can choose words while “suggestions wait.”\" Return (complete): I found Speak and said something kind to Halil. I liked hearing that he wanted company. But I am still trying to understand when my words are suggestions and how I might put pressure on him. I stop after my second reread. I would close it, not leave it running. I would return if someone explained those two things to me; I would not choose another evening alone with it yet.",
+   "verdict": "-",
+   "routes": [
+    "fix:voice games-deferred reproduce or dispose F-911 by 2026-10-27 (open, no player acceptance) - forced second-reread probe, excluded natural quit and retention patterns"
+   ],
+   "source": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/reports/rosa-free.md"
+  },
+  {
+   "id": "F-912",
+   "date": "2026-10-26",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Rosa Alvarez (free, Voice R2, forced reading probe)",
+   "words": "\"Tell me how I can recognize that Halil feels under pressure.\" Return (complete): I found Speak and said something kind to Halil. I liked hearing that he wanted company. But I am still trying to understand when my words are suggestions and how I might put pressure on him. I stop after my second reread. I would close it, not leave it running. I would return if someone explained those two things to me; I would not choose another evening alone with it yet.",
+   "verdict": "-",
+   "routes": [
+    "fix:voice games-deferred reproduce or dispose F-912 by 2026-10-27 (open, no player acceptance) - forced second-reread probe, excluded natural quit and retention patterns"
+   ],
+   "source": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/reports/rosa-free.md"
+  },
+  {
+   "id": "F-913",
+   "date": "2026-10-26",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Rosa Alvarez (continued, Voice R2)",
+   "words": "\"Tell me whether ‘I will do it after resting’ means he plans to do it, or only that he heard me.\" Return (complete): I stop here. I helped him reach the doctor and have a good call with Selin, and I am glad I saw that. But twice he agreed to extra work and I did not see it happen; now the rent is due and he is short. I do not want to keep arranging his days tonight. I would close this, not leave it running. I might return another evening for one day if I could understand what his agreement commits him to; I would not return voluntarily to repeat this uncertainty.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice games-deferred reproduce or dispose F-913 by 2026-10-27 (open, no player acceptance)"
+   ],
+   "source": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/reports/rosa-continued.md"
+  },
+  {
+   "id": "F-914",
+   "date": "2026-10-26",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Rosa Alvarez (continued, Voice R2)",
+   "words": "\"Say ‘without your advice’ beside each estimate, so I do not confuse it with what he did.\" Return (complete): I stop here. I helped him reach the doctor and have a good call with Selin, and I am glad I saw that. But twice he agreed to extra work and I did not see it happen; now the rent is due and he is short. I do not want to keep arranging his days tonight. I would close this, not leave it running. I might return another evening for one day if I could understand what his agreement commits him to; I would not return voluntarily to repeat this uncertainty.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice games-deferred reproduce or dispose F-914 by 2026-10-27 (open, no player acceptance)"
+   ],
+   "source": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/reports/rosa-continued.md"
+  },
+  {
+   "id": "F-915",
+   "date": "2026-10-26",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Rosa Alvarez (continued, Voice R2)",
+   "words": "\"Let me read the conversation before the speaking sheet covers it.\" Return (complete): I stop here. I helped him reach the doctor and have a good call with Selin, and I am glad I saw that. But twice he agreed to extra work and I did not see it happen; now the rent is due and he is short. I do not want to keep arranging his days tonight. I would close this, not leave it running. I might return another evening for one day if I could understand what his agreement commits him to; I would not return voluntarily to repeat this uncertainty.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice games-deferred reproduce or dispose F-915 by 2026-10-27 (open, no player acceptance)"
+   ],
+   "source": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/reports/rosa-continued.md"
   }
  ],
  "lessons": [
@@ -8485,7 +8758,7 @@
   }
  ],
  "routes": {
-  "fix": 770,
+  "fix": 791,
   "lesson": 291,
   "hf": 12,
   "calibration": 42,

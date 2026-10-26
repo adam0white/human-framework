@@ -1,0 +1,78 @@
+{
+  "schema": "coordinator-image-view-manual-audit/1",
+  "timestamp": "2026-10-26T08:11:39.773885+00:00",
+  "round": "hf3-voice-r2",
+  "session": "rosa-free",
+  "scope": "Complete owned archive, all4 returned images joined to exact full literal unconditional single-path calls. No inference from filenames or self report.",
+  "source_text_archive_sha256": "feaab6d3808e50e555c11b4c3619c29ba265d0435f2273f3703aed7d72b09c4f",
+  "source_image_events_sha256": "96d253c0f8f7f2318221e2ad6330bbebce235edbe8359f87a070721c0b8747c8",
+  "source_report_sha256": "f4c486d92e327ea480c4d464bbd6f1a9fb730fe889293e52c609f557ee3d7960",
+  "complete_call_hash_to_screenshot": {
+    "10b342b351b001ac0cd67d6ca326add631e4a3ecbc3e890e057ba2af86e23aae": "current-phone.png"
+  },
+  "events": [
+    {
+      "timestamp": "2026-10-26T08:05:25.180Z",
+      "call_id": "call_2e66c53413e74222a5bdf8e07020718a",
+      "call_sha256": "10b342b351b001ac0cd67d6ca326add631e4a3ecbc3e890e057ba2af86e23aae",
+      "screenshot_paths": [],
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "exact complete unconditional one-image call equality",
+      "screenshot_name": "current-phone.png"
+    },
+    {
+      "timestamp": "2026-10-26T08:05:50.741Z",
+      "call_id": "call_62f5a98a86234b75b111ef49f00411e2",
+      "call_sha256": "10b342b351b001ac0cd67d6ca326add631e4a3ecbc3e890e057ba2af86e23aae",
+      "screenshot_paths": [],
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "exact complete unconditional one-image call equality",
+      "screenshot_name": "current-phone.png"
+    },
+    {
+      "timestamp": "2026-10-26T08:06:02.129Z",
+      "call_id": "call_4c7a8a75bf494a65ab683d1ad60310c5",
+      "call_sha256": "10b342b351b001ac0cd67d6ca326add631e4a3ecbc3e890e057ba2af86e23aae",
+      "screenshot_paths": [],
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "exact complete unconditional one-image call equality",
+      "screenshot_name": "current-phone.png"
+    },
+    {
+      "timestamp": "2026-10-26T08:07:26.397Z",
+      "call_id": "call_e3354ce8b9d94fd08e293aafca116024",
+      "call_sha256": "10b342b351b001ac0cd67d6ca326add631e4a3ecbc3e890e057ba2af86e23aae",
+      "screenshot_paths": [],
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "exact complete unconditional one-image call equality",
+      "screenshot_name": "current-phone.png"
+    }
+  ],
+  "phone": 4,
+  "wide": 0,
+  "limits": "Desktop unseen; first-minute image not viewed; automatic collector original unresolved labels preserved. Menu/Feedback remained driver-only."
+}

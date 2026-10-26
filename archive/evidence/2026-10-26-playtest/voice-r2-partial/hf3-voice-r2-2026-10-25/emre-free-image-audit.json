@@ -1,0 +1,165 @@
+{
+  "timestamp": "2026-10-26T05:26:57.833938+00:00",
+  "schema": "coordinator-image-view-manual-audit/1",
+  "round": "hf3-voice-r2",
+  "session": "emre-free",
+  "scope": "All6 complete exact tool-call strings read and compared in full; every actual image output independently joined by call_id; no partial regex/player self-claim or absence-of-collector-event inference. Original unresolved collector untouched. Coordinator evidence only, no taste/fix review.",
+  "cleanup_rule": "/Users/abdul/code/.lab-scratch/briefs/cleanup-rule.md",
+  "thread_id": "01a176a7-5386-7dd3-84c0-c4ce3d931fa8",
+  "source_text_archive_sha256": "8e89ff97ec3e590062192085cfaa2c041d668a383cd77d21ec16ff586adf1616",
+  "original_full_rollout_sha256": "0e6ad1bab5451dc0a9123b791c2dc66ec9e9af9c52af635cfe6fd8339d1a49cf",
+  "source_image_events_sha256": "940ef830f37582d6c91f4881fd1ca27cd8001b3f7a6c914cd83db8a297015b5b",
+  "source_private_collector_metadata_sha256": "bb48c2e313a0b00cd829b316f30307ce6de32c8efb371e1b4015f73a6b9b4fba",
+  "source_supervisor_sha256": "bb84cb2031db87ab2fee3e3528ddc5ecbae450003e6d754b4b2a650040b4879a",
+  "source_report_sha256": "2f44f6bb5e5f4be3255d4cb37ac63050c62da964a77ea7170e9795f45b991a52",
+  "source_raw_sha256": "cbaece03753be4b62a65373914469b260cb89e49eac9152ba7ca0eda7b9ff5e5",
+  "staged_original_hashes_verified": {
+    "reports/emre-free.md": "2f44f6bb5e5f4be3255d4cb37ac63050c62da964a77ea7170e9795f45b991a52",
+    "raw/emre-free.jsonl": "cbaece03753be4b62a65373914469b260cb89e49eac9152ba7ca0eda7b9ff5e5"
+  },
+  "complete_call_hash_to_screenshot": {
+    "b919db5908fd2249f6c0f1ee07d0dbbbd12540e997865b9cf831585f8feaefe9": "current-wide.png"
+  },
+  "events": [
+    {
+      "timestamp": "2026-10-26T05:20:58.496Z",
+      "call_id": "call_8caa8498269942369ea16d51798eca23",
+      "call_sha256": "b919db5908fd2249f6c0f1ee07d0dbbbd12540e997865b9cf831585f8feaefe9",
+      "image_returned": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "screenshot_name": "current-wide.png",
+      "archive_call_line": 45,
+      "archive_output_line": 48,
+      "path_attribution": "manual complete-string equality; exact single unconditional literal own tools.view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T05:21:13.136Z",
+      "call_id": "call_7eb07698dc2942ca8d3b5adee9b61b04",
+      "call_sha256": "b919db5908fd2249f6c0f1ee07d0dbbbd12540e997865b9cf831585f8feaefe9",
+      "image_returned": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "screenshot_name": "current-wide.png",
+      "archive_call_line": 70,
+      "archive_output_line": 73,
+      "path_attribution": "manual complete-string equality; exact single unconditional literal own tools.view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T05:22:04.253Z",
+      "call_id": "call_c4e4d76418b547dbaa663896073cc0a6",
+      "call_sha256": "b919db5908fd2249f6c0f1ee07d0dbbbd12540e997865b9cf831585f8feaefe9",
+      "image_returned": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "screenshot_name": "current-wide.png",
+      "archive_call_line": 130,
+      "archive_output_line": 133,
+      "path_attribution": "manual complete-string equality; exact single unconditional literal own tools.view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T05:22:39.014Z",
+      "call_id": "call_a818e834eae648b08437527e07346282",
+      "call_sha256": "b919db5908fd2249f6c0f1ee07d0dbbbd12540e997865b9cf831585f8feaefe9",
+      "image_returned": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "screenshot_name": "current-wide.png",
+      "archive_call_line": 160,
+      "archive_output_line": 163,
+      "path_attribution": "manual complete-string equality; exact single unconditional literal own tools.view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T05:23:12.756Z",
+      "call_id": "call_e278c236a5fe43af8a742aba2fda4c41",
+      "call_sha256": "b919db5908fd2249f6c0f1ee07d0dbbbd12540e997865b9cf831585f8feaefe9",
+      "image_returned": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "screenshot_name": "current-wide.png",
+      "archive_call_line": 197,
+      "archive_output_line": 200,
+      "path_attribution": "manual complete-string equality; exact single unconditional literal own tools.view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T05:24:11.311Z",
+      "call_id": "call_ba83041234e34d3c89fcc086ee6d266b",
+      "call_sha256": "b919db5908fd2249f6c0f1ee07d0dbbbd12540e997865b9cf831585f8feaefe9",
+      "image_returned": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "screenshot_name": "current-wide.png",
+      "archive_call_line": 266,
+      "archive_output_line": 269,
+      "path_attribution": "manual complete-string equality; exact single unconditional literal own tools.view_image/image call"
+    }
+  ],
+  "actual_image_output_count": 6,
+  "counts": {
+    "current-wide.png": 6,
+    "current-phone.png": 0
+  },
+  "automatic_first_minute": {
+    "screenshot_name": "first-minute.png",
+    "viewed_in_complete_owned_tool_record": false,
+    "basis": "All6 actual image outputs enumerated in complete ID/hash-verified text archive; each complete call is the same single literal current-wide view; no first-minute call in full owned tool-call inputs.",
+    "scope_limit": "Does not establish absence of external/unrecorded viewers."
+  },
+  "viewport_scope": {
+    "initial_device": "desktop",
+    "raw_resize_records": 0,
+    "phone_visit_verified": false,
+    "description": "Desktop initial viewport and no resize operation in complete raw log; all actual image outputs wide. No phone exposure evidenced in this arm.",
+    "final_stop_elapsed_s": 229.054,
+    "final_stop_reason": "FRUSTRATED",
+    "before_five_minutes": true
+  },
+  "release": {
+    "before_after_full_objects_equal": true,
+    "actual": {
+      "app": "1.0.0",
+      "framework": "3.2.0",
+      "frameworkLibrary": "3.2.0",
+      "commit": "00dcdad7d66a6ee33d11f941e5319de5bdfbeebf",
+      "dirty": false
+    }
+  },
+  "cleanup": {
+    "checked_at": "2026-10-26T05:26:57.834112+00:00",
+    "exact_recorded_driver_tester_pids": [
+      79426,
+      79441
+    ],
+    "still_live_recorded_pids": [],
+    "port": 19902,
+    "port_open": false,
+    "processes_referencing_exact_session_path_pids": [],
+    "historical_browser_descendants_and_native_profile_cleanup": "UNVERIFIED: no exact historical browser PID/profile receipt; no unrelated browser attributed",
+    "isolated_context_exists": true,
+    "isolated_context_meaning": "CLI working directory, not browser profile"
+  },
+  "retained_pngs": [
+    {
+      "screenshot_name": "first-minute.png",
+      "sha256": "64bd66a73269b1897a139b0de9d781a237eef5baeba2632c31baa1fd36f0bb08"
+    },
+    {
+      "screenshot_name": "current-wide.png",
+      "sha256": "5fed2fab443c7d0a776f73d1571decb7f1af672e13e185543781ac1736cf4202"
+    }
+  ],
+  "retained_png_count": 2,
+  "public_safety": "Only derived hashes/call IDs/screenshot names/session metadata; no complete tool code, trace contents, pixels/base64, private original rollout path or native values."
+}

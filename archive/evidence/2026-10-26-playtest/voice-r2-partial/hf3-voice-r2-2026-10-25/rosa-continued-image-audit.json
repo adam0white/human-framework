@@ -1,0 +1,304 @@
+{
+  "schema": "coordinator-image-view-manual-audit/1",
+  "timestamp": "2026-10-26T08:26:58.000401+00:00",
+  "round": "hf3-voice-r2",
+  "session": "rosa-continued",
+  "scope": "Complete owned archive: all 19 returned images joined to exact, full, unconditional single-path calls.",
+  "source_text_archive_sha256": "d56e3a0bee9bec5096d143cd8289181e9f83c800da19f9b408a7df054d3c0a45",
+  "source_image_events_sha256": "1b2b6ee694ce085b51d13f1739b1d3d73a218a4380f75e7d71403a7df568c46a",
+  "source_report_sha256": "b2f92aa500d6d41b4c55405b8d18fabe9c6b5a1bed93a730abba14e5aae9665c",
+  "complete_call_hash_to_screenshot": {
+    "d4ba63be93ff294ec631d1fe33596090fc36ab8e122b2c649320000a95dbf2e0": "current-phone.png",
+    "f5fd87c66e191235f1db3f600156c25ec336cc5fb3aef7a9ba12219e907ea18b": "current-wide.png"
+  },
+  "events": [
+    {
+      "timestamp": "2026-10-26T08:05:30.327Z",
+      "call_id": "call_d83c7549725c47219e94317b91a8c28b",
+      "call_sha256": "d4ba63be93ff294ec631d1fe33596090fc36ab8e122b2c649320000a95dbf2e0",
+      "screenshot_paths": [],
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "Exact complete unconditional one-image call equality",
+      "screenshot_name": "current-phone.png"
+    },
+    {
+      "timestamp": "2026-10-26T08:05:40.242Z",
+      "call_id": "call_2dc9661d4a9e4509ac86fcdd8b922116",
+      "call_sha256": "d4ba63be93ff294ec631d1fe33596090fc36ab8e122b2c649320000a95dbf2e0",
+      "screenshot_paths": [],
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "Exact complete unconditional one-image call equality",
+      "screenshot_name": "current-phone.png"
+    },
+    {
+      "timestamp": "2026-10-26T08:05:57.605Z",
+      "call_id": "call_542c9e3c2a984f17a074720d3ad813bc",
+      "call_sha256": "d4ba63be93ff294ec631d1fe33596090fc36ab8e122b2c649320000a95dbf2e0",
+      "screenshot_paths": [],
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "Exact complete unconditional one-image call equality",
+      "screenshot_name": "current-phone.png"
+    },
+    {
+      "timestamp": "2026-10-26T08:07:01.480Z",
+      "call_id": "call_c1634826b6734aef8e2562625f8ef93c",
+      "call_sha256": "d4ba63be93ff294ec631d1fe33596090fc36ab8e122b2c649320000a95dbf2e0",
+      "screenshot_paths": [],
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "Exact complete unconditional one-image call equality",
+      "screenshot_name": "current-phone.png"
+    },
+    {
+      "timestamp": "2026-10-26T08:08:31.798Z",
+      "call_id": "call_a2cf4780589d4e0aa91145050637c4f9",
+      "call_sha256": "d4ba63be93ff294ec631d1fe33596090fc36ab8e122b2c649320000a95dbf2e0",
+      "screenshot_paths": [],
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "Exact complete unconditional one-image call equality",
+      "screenshot_name": "current-phone.png"
+    },
+    {
+      "timestamp": "2026-10-26T08:09:21.385Z",
+      "call_id": "call_9f1e5c82a1ab4cd7be284854b060466f",
+      "call_sha256": "d4ba63be93ff294ec631d1fe33596090fc36ab8e122b2c649320000a95dbf2e0",
+      "screenshot_paths": [],
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "Exact complete unconditional one-image call equality",
+      "screenshot_name": "current-phone.png"
+    },
+    {
+      "timestamp": "2026-10-26T08:09:47.226Z",
+      "call_id": "call_f2e88a2ccf6e429b905e25eb5977dc27",
+      "call_sha256": "d4ba63be93ff294ec631d1fe33596090fc36ab8e122b2c649320000a95dbf2e0",
+      "screenshot_paths": [],
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "Exact complete unconditional one-image call equality",
+      "screenshot_name": "current-phone.png"
+    },
+    {
+      "timestamp": "2026-10-26T08:10:26.828Z",
+      "call_id": "call_1d95047d250f4aa5b735747982774238",
+      "call_sha256": "f5fd87c66e191235f1db3f600156c25ec336cc5fb3aef7a9ba12219e907ea18b",
+      "screenshot_paths": [],
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "Exact complete unconditional one-image call equality",
+      "screenshot_name": "current-wide.png"
+    },
+    {
+      "timestamp": "2026-10-26T08:10:36.614Z",
+      "call_id": "call_95b511b19a6944baa91765adad50cf11",
+      "call_sha256": "f5fd87c66e191235f1db3f600156c25ec336cc5fb3aef7a9ba12219e907ea18b",
+      "screenshot_paths": [],
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "Exact complete unconditional one-image call equality",
+      "screenshot_name": "current-wide.png"
+    },
+    {
+      "timestamp": "2026-10-26T08:11:30.857Z",
+      "call_id": "call_c49401ea63384690968bd220833cb9d7",
+      "call_sha256": "d4ba63be93ff294ec631d1fe33596090fc36ab8e122b2c649320000a95dbf2e0",
+      "screenshot_paths": [],
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "Exact complete unconditional one-image call equality",
+      "screenshot_name": "current-phone.png"
+    },
+    {
+      "timestamp": "2026-10-26T08:12:21.968Z",
+      "call_id": "call_7e1f011ed0b24df896b6caf75ec42d58",
+      "call_sha256": "d4ba63be93ff294ec631d1fe33596090fc36ab8e122b2c649320000a95dbf2e0",
+      "screenshot_paths": [],
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "Exact complete unconditional one-image call equality",
+      "screenshot_name": "current-phone.png"
+    },
+    {
+      "timestamp": "2026-10-26T08:13:54.936Z",
+      "call_id": "call_3123876533c14954a5f01c08764a6821",
+      "call_sha256": "d4ba63be93ff294ec631d1fe33596090fc36ab8e122b2c649320000a95dbf2e0",
+      "screenshot_paths": [],
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "Exact complete unconditional one-image call equality",
+      "screenshot_name": "current-phone.png"
+    },
+    {
+      "timestamp": "2026-10-26T08:15:07.848Z",
+      "call_id": "call_7ea1ea54704945da88fe2c42584d55fd",
+      "call_sha256": "d4ba63be93ff294ec631d1fe33596090fc36ab8e122b2c649320000a95dbf2e0",
+      "screenshot_paths": [],
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "Exact complete unconditional one-image call equality",
+      "screenshot_name": "current-phone.png"
+    },
+    {
+      "timestamp": "2026-10-26T08:16:10.630Z",
+      "call_id": "call_459912bfc0a248a3b497c3205081d0a2",
+      "call_sha256": "d4ba63be93ff294ec631d1fe33596090fc36ab8e122b2c649320000a95dbf2e0",
+      "screenshot_paths": [],
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "Exact complete unconditional one-image call equality",
+      "screenshot_name": "current-phone.png"
+    },
+    {
+      "timestamp": "2026-10-26T08:17:04.689Z",
+      "call_id": "call_3e3d3d3612ed4e149138749a5b74f941",
+      "call_sha256": "d4ba63be93ff294ec631d1fe33596090fc36ab8e122b2c649320000a95dbf2e0",
+      "screenshot_paths": [],
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "Exact complete unconditional one-image call equality",
+      "screenshot_name": "current-phone.png"
+    },
+    {
+      "timestamp": "2026-10-26T08:17:17.062Z",
+      "call_id": "call_762ae62d92ca455b81bd0eeef391b0c2",
+      "call_sha256": "d4ba63be93ff294ec631d1fe33596090fc36ab8e122b2c649320000a95dbf2e0",
+      "screenshot_paths": [],
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "Exact complete unconditional one-image call equality",
+      "screenshot_name": "current-phone.png"
+    },
+    {
+      "timestamp": "2026-10-26T08:18:10.994Z",
+      "call_id": "call_b53d08418be042cdafbb9cba5401bf9c",
+      "call_sha256": "d4ba63be93ff294ec631d1fe33596090fc36ab8e122b2c649320000a95dbf2e0",
+      "screenshot_paths": [],
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "Exact complete unconditional one-image call equality",
+      "screenshot_name": "current-phone.png"
+    },
+    {
+      "timestamp": "2026-10-26T08:18:30.288Z",
+      "call_id": "call_160fa409be99413caabb36c8d37716ca",
+      "call_sha256": "d4ba63be93ff294ec631d1fe33596090fc36ab8e122b2c649320000a95dbf2e0",
+      "screenshot_paths": [],
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "Exact complete unconditional one-image call equality",
+      "screenshot_name": "current-phone.png"
+    },
+    {
+      "timestamp": "2026-10-26T08:19:15.503Z",
+      "call_id": "call_16651bc15c3d4cf9a58ca8be3bbbfa27",
+      "call_sha256": "d4ba63be93ff294ec631d1fe33596090fc36ab8e122b2c649320000a95dbf2e0",
+      "screenshot_paths": [],
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "Exact complete unconditional one-image call equality",
+      "screenshot_name": "current-phone.png"
+    }
+  ],
+  "phone": 17,
+  "wide": 2,
+  "limits": "Automatic collector unresolved labels remain unchanged. Menus and Feedback remained driver text only. No claim about the automatic first-minute image."
+}

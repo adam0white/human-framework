@@ -1,0 +1,108 @@
+{
+  "timestamp": "2026-10-26T05:51:27.531221+00:00",
+  "schema": "coordinator-image-view-manual-audit/1",
+  "session": "nia-free",
+  "round": "hf3-voice-r2",
+  "scope": "Root read BOTH complete unique tool-call strings and independently enumerated ALL image-return outputs in complete owned archive; joined5byexactcallID and verifiedentirecallSHA. No partialregex/pathguess/player-selfreport substitution.",
+  "source_text_archive_sha256": "023e314594ec9b94cacbd0abd41ec43abb1a64bf3913d1997d085a1097e1fb31",
+  "original_full_rollout_sha256": "fe61c6dedd88cc4be21624a725b7cd2f88515390fd6ac8cea78b12dd2f4b2b59",
+  "events_sha256": "4c81c6566667c6b07410dd3f470ce71b06906274a4ceb4a12e34ba09b1685dfb",
+  "image_outputs": 5,
+  "phone": 5,
+  "wide": 0,
+  "first_minute": "Unviewed within verified complete owned image-return trace; automaticfile notoverwritten",
+  "complete_call_strings_reviewed": [
+    "const r=await tools.view_image({path:\"/Users/abdul/code/.lab-scratch/playtest/hf3-voice-r2/nia-free/current-phone.png\"});image(r.image_url);\n",
+    "image((await tools.view_image({path:\"/Users/abdul/code/.lab-scratch/playtest/hf3-voice-r2/nia-free/current-phone.png\"})).image_url);\n"
+  ],
+  "events": [
+    {
+      "timestamp": "2026-10-26T05:42:16.177Z",
+      "call_id": "call_e689a4cb257048d4a0c78ebc5021ca8e",
+      "call_sha256": "234e82a613fcec93ca79bea2942f203ee6f3a522d0cf9c788c71c870128eb2ff",
+      "screenshot_paths": [
+        "/Users/abdul/code/.lab-scratch/playtest/hf3-voice-r2/nia-free/current-phone.png"
+      ],
+      "paths_unresolved_or_disallowed": false,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "recognized_single_unconditional_literal_call"
+    },
+    {
+      "timestamp": "2026-10-26T05:42:33.031Z",
+      "call_id": "call_9c7bc9e9a95f48bab80f31e7d625a698",
+      "call_sha256": "4ee0d6b7ffe981c4e2225725393501e6ea18273c5c7467920d404ad9d4e1f9aa",
+      "screenshot_paths": [],
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved"
+    },
+    {
+      "timestamp": "2026-10-26T05:43:24.617Z",
+      "call_id": "call_c505045c498649368625f46123d58e48",
+      "call_sha256": "4ee0d6b7ffe981c4e2225725393501e6ea18273c5c7467920d404ad9d4e1f9aa",
+      "screenshot_paths": [],
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved"
+    },
+    {
+      "timestamp": "2026-10-26T05:44:08.359Z",
+      "call_id": "call_5885c0b5971244b4b583af5607b7731c",
+      "call_sha256": "4ee0d6b7ffe981c4e2225725393501e6ea18273c5c7467920d404ad9d4e1f9aa",
+      "screenshot_paths": [],
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved"
+    },
+    {
+      "timestamp": "2026-10-26T05:44:39.715Z",
+      "call_id": "call_0f03c1bc31094199b6288d54be0681a4",
+      "call_sha256": "4ee0d6b7ffe981c4e2225725393501e6ea18273c5c7467920d404ad9d4e1f9aa",
+      "screenshot_paths": [],
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved"
+    }
+  ],
+  "source_hashes": {
+    "report.md": "fd6e3f1bab8ac1cb54948827c87c6d6e07ad4ed79f456540b7b86a83a6202d68",
+    "wall-clock.jsonl": "c0786f5d74b95b86bf3ddf038de7f4b93f18445b95e4d31a4c86fa033ade30a6",
+    "supervisor.json": "24bc7dbbebc69895c4574cbee062003acb41cc3e16d4593a5dad0aab2db3b7e0",
+    "codex-rollout-private.json": "5f47a6ff702a9bfb389abaf123eefebd656ebfe67af40758300edc9fe661e537"
+  },
+  "cleanup": {
+    "time": "2026-10-26T05:48:58.308173+00:00",
+    "recorded_pids_remaining": [],
+    "profile_processes": [],
+    "profiles_exist": {
+      "/var/folders/6r/ypdjgl911p92261djn7bv_l40000gr/T/playwright_chromiumdev_profile-0Z3eWK": false
+    }
+  },
+  "originals_edited": false,
+  "cleanup_rule": "/Users/abdul/code/.lab-scratch/briefs/cleanup-rule.md"
+}

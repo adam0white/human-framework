@@ -1,0 +1,133 @@
+{
+  "started": "2026-10-26T04:59:33.758760+00:00",
+  "ended": "2026-10-26T05:04:09.837020+00:00",
+  "status": "report-ready",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "floor_minutes": 0,
+  "ceiling_minutes": 25,
+  "device": "phone",
+  "url": "https://human.adamwhite.work/voice/",
+  "brief_sha256": "6e03da019c8b33421b3fc07a418a806e39fa996dcb2c21b951823ff958d5f50f",
+  "release_before": {
+    "app": "1.0.0",
+    "framework": "3.2.0",
+    "frameworkLibrary": "3.2.0",
+    "commit": "00dcdad7d66a6ee33d11f941e5319de5bdfbeebf",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "1.0.0",
+    "framework": "3.2.0",
+    "frameworkLibrary": "3.2.0",
+    "commit": "00dcdad7d66a6ee33d11f941e5319de5bdfbeebf",
+    "dirty": false
+  },
+  "instrument_sha256": {
+    "/Users/abdul/code/.lab-scratch/playtest/lab-play-no-post.ts": "0eaec4fac67b7b3ff88b532072b27130f613524b01c913e941e2a83673e548d4",
+    "/Users/abdul/code/human-framework/scripts/lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "/Users/abdul/code/human-framework/scripts/lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "persona": "Maya Chen",
+  "arm": "free",
+  "report_sha256": "6d39be5cee4d59d851822d7f410362e55c53f02423db3ffe4f2ea8b0c1a6eee2",
+  "raw_sha256": "b64bdb3fb303cf9021851d9b0c7765899de34f7a83710460e1be9ca0105d62fc",
+  "stop_records": [
+    {
+      "t": "2026-10-26T05:03:29.906Z",
+      "elapsed_s": 226.008,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "I am stopping before the evening call. I still like Halil letting someone sit quietly with him, but returning has felt more like waiting for a new scene than discovering one. I would not return voluntarily tonight or leave it running unattended. I might return another evening if I wanted this slow company, but I would not come back just to repeat advice until he takes it.",
+      "game_clock": "Ramadan 1, 15:48",
+      "engagement": null,
+      "reason": "BORED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    }
+  ],
+  "actual_image_events": [
+    {
+      "timestamp": "2026-10-26T04:59:55.103Z",
+      "call_id": "call_63243978fbcf45059270f2d65aa1c961",
+      "call_sha256": "248e8a9d619201e2c6b3a884cda0cd4c79b6295b4e51f4e5c43d6604adb752c7",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T05:00:08.631Z",
+      "call_id": "call_1447c4cb5d154c318f11fcecd8177b61",
+      "call_sha256": "248e8a9d619201e2c6b3a884cda0cd4c79b6295b4e51f4e5c43d6604adb752c7",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T05:01:03.331Z",
+      "call_id": "call_634a405d552345e39320b432a9dde545",
+      "call_sha256": "248e8a9d619201e2c6b3a884cda0cd4c79b6295b4e51f4e5c43d6604adb752c7",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T05:02:15.841Z",
+      "call_id": "call_ce575990f4a840deaa4e5faa20cd266c",
+      "call_sha256": "248e8a9d619201e2c6b3a884cda0cd4c79b6295b4e51f4e5c43d6604adb752c7",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T05:02:58.556Z",
+      "call_id": "call_5fc73dbdcef04c2d81f78e22554d2ea1",
+      "call_sha256": "248e8a9d619201e2c6b3a884cda0cd4c79b6295b4e51f4e5c43d6604adb752c7",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    }
+  ],
+  "image_scope": "Actual safe tool evidence where present. Absence is unverified; self-reported viewing stays qualified.",
+  "feedback_scope": "API paths blocked by harness; no production feedback receipt or owner consent change authorized.",
+  "coordinator_limits": {
+    "forced": false,
+    "disposition": "Natural free stop; mixed from full conditional return; phone only before5minutes. Listening timing asks await independent human-speed reproduction; no defect inferred yet.",
+    "verdict": "mixed",
+    "limits": "Natural free stop; first wish207.247BORED, stop226.008. Conditional another-evening slow company, no tonight or unattended play; mixed not blanket quit. Phone image/position evidence, desktop unseen before5minutes; continued coverswide. Timing ask1 UNROUTED pending separate human-speed reproduction; raw consecutive Keep listening inputs199.086/201.871 show2.785second gap, changed-control reply; player distinguishes game state fromdriver failure. No automatic obedience request: ask2 wants promised-action result visibility, notforcedcompliance. Exact00d cleanbefore/after, noSubmit/consentchange.",
+    "raw_stop": {
+      "t": "2026-10-26T05:03:29.906Z",
+      "elapsed_s": 226.008,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "I am stopping before the evening call. I still like Halil letting someone sit quietly with him, but returning has felt more like waiting for a new scene than discovering one. I would not return voluntarily tonight or leave it running unattended. I might return another evening if I wanted this slow company, but I would not come back just to repeat advice until he takes it.",
+      "game_clock": "Ramadan 1, 15:48",
+      "engagement": null,
+      "reason": "BORED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    },
+    "public_report": "docs/lab/reviews/hf3-voice-r2-2026-10-25/reports/maya-free.md",
+    "public_raw": "docs/lab/reviews/hf3-voice-r2-2026-10-25/raw/maya-free.jsonl"
+  }
+}

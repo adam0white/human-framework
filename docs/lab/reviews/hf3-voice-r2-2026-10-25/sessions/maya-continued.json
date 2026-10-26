@@ -1,0 +1,232 @@
+{
+  "started": "2026-10-26T05:04:11.332134+00:00",
+  "ended": "2026-10-26T05:20:33.560806+00:00",
+  "status": "report-ready",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "floor_minutes": 15,
+  "ceiling_minutes": 25,
+  "device": "phone",
+  "url": "https://human.adamwhite.work/voice/",
+  "brief_sha256": "f59f9056cdfaa67e5ac91a14cf174c7847e77ea616b5ebecc2c9e70980f0b025",
+  "release_before": {
+    "app": "1.0.0",
+    "framework": "3.2.0",
+    "frameworkLibrary": "3.2.0",
+    "commit": "00dcdad7d66a6ee33d11f941e5319de5bdfbeebf",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "1.0.0",
+    "framework": "3.2.0",
+    "frameworkLibrary": "3.2.0",
+    "commit": "00dcdad7d66a6ee33d11f941e5319de5bdfbeebf",
+    "dirty": false
+  },
+  "instrument_sha256": {
+    "/Users/abdul/code/.lab-scratch/playtest/lab-play-no-post.ts": "0eaec4fac67b7b3ff88b532072b27130f613524b01c913e941e2a83673e548d4",
+    "/Users/abdul/code/human-framework/scripts/lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "/Users/abdul/code/human-framework/scripts/lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "persona": "Maya Chen",
+  "arm": "continued",
+  "report_sha256": "6612c048638148662fb88d7607b9bc8e5ea735cc05b2ff06f69c341d68f07f39",
+  "raw_sha256": "6a18ce9921f83ed1b982b835b594ccec51cb8e73a42f3ee749ed8da02df6c118",
+  "stop_records": [
+    {
+      "t": "2026-10-26T05:19:36.129Z",
+      "elapsed_s": 918.289,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "I am stopping on Ramadan 2 at six in the evening. Rıza's chair and the baker's boy were worth seeing, but my wish to leave came back, and I do not want another cycle of suggestions that expire and conversations that return to the same ending. I selected I'm stopping in Feedback, typed nothing and submitted nothing. I would not leave this running unattended. I might return another evening for a new conversation, but I would not voluntarily restart this daily loop tonight or commit to reaching Eid.",
+      "game_clock": null,
+      "engagement": null,
+      "reason": "BORED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    }
+  ],
+  "actual_image_events": [
+    {
+      "timestamp": "2026-10-26T05:04:29.258Z",
+      "call_id": "call_95fb489f22c843419c463b5ce979fc94",
+      "call_sha256": "5b08e069cf27e5eabf42d513e77510a22bb6e08753fc679ec4d842078981cc8b",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T05:04:49.185Z",
+      "call_id": "call_3defab621cea43839e5ffe431bf60c2c",
+      "call_sha256": "5b08e069cf27e5eabf42d513e77510a22bb6e08753fc679ec4d842078981cc8b",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T05:05:32.513Z",
+      "call_id": "call_e534e2a5dd1a4bd8adee1c83a7f7c671",
+      "call_sha256": "a985aac7dae098b0c8af90948715feecdc8a5fc3f88121044a91f0cc700505b9",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image", "input_text"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T05:07:24.000Z",
+      "call_id": "call_953a40e1beba44cf85b4e0da8f828609",
+      "call_sha256": "db16215d117b635b9ba88a7d59eebb557a306f49b1cc4fd6c53488c0af317e12",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image", "input_text"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T05:08:16.608Z",
+      "call_id": "call_8e5ee3c33ad343de831ba0d0d3900d6e",
+      "call_sha256": "9ab6e5d1a7ade82e752efb28af40c285ebe8374181abe69f9552f2c25bd9a3f5",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image", "input_text"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T05:09:39.412Z",
+      "call_id": "call_73cedca5e2584d468d6d4459c8e589fc",
+      "call_sha256": "983b38d442296b02bac5ac8750b162ede931cbbd4eaf19fb525f49a5ad1a9c2c",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T05:09:54.420Z",
+      "call_id": "call_b7c9d02ce5eb4c1fa1d54e12df50d410",
+      "call_sha256": "8df52b1b1d8a70e6f73198e6fe423a81370b333765b3d861518fcfb50785e146",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image", "input_text"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T05:10:38.927Z",
+      "call_id": "call_4c535583aca84392bbf37766b748eb03",
+      "call_sha256": "7f074c1eebc47a050b31c767308b98e3cbac90e513dc1c0c30f11d707fbd85f6",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image", "input_text"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T05:11:51.881Z",
+      "call_id": "call_7995937bbee445d695c7cf8b7bc7e1ef",
+      "call_sha256": "85f9c6faa2a2b97283530fd4a8e2d52c8f0b82bb119a7ae1146825ad995f6076",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image", "input_text"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T05:13:20.724Z",
+      "call_id": "call_5649b1b77d944ffbbd7f632991442505",
+      "call_sha256": "03b5d1c7bc6e5228e6c70f889655d9d4ec0020095443cbbf14c3c5c74455b26a",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image", "input_text"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T05:14:03.223Z",
+      "call_id": "call_766131ff79d240c8abf6401255956e29",
+      "call_sha256": "13e90909be954d45b85359c751709de56647c088b57271932e7506a36500a82a",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image", "input_text"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T05:14:54.243Z",
+      "call_id": "call_486b61f5c13c48a5a012f95c6f73e169",
+      "call_sha256": "a14ea552b11fc60ccec56db24a35da4386c790d599d00583e22b2f3f0ed4667b",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image", "input_text"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T05:15:01.725Z",
+      "call_id": "call_34981787f0244fc2949693b4ec4fa862",
+      "call_sha256": "e240517291c2b26c9166c96140e53c2b5826481a3bdf3ebb62e94a8bcf96cbc9",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image", "input_text"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T05:17:08.384Z",
+      "call_id": "call_12b787a4030a44468d5368f24c6fbb06",
+      "call_sha256": "4ad5a9ce628b3fb6847eef184e75122300cc60a29907ee3072150c3d3e42b145",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image", "input_text"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    }
+  ],
+  "image_scope": "Actual safe tool evidence where present. Absence is unverified; self-reported viewing stays qualified.",
+  "feedback_scope": "API paths blocked by harness; no production feedback receipt or owner consent change authorized.",
+  "coordinator_limits": {
+    "forced": false,
+    "disposition": "Natural post-floor stop; mixed from full conditional return. Floor continuation exposed worthwhile new scenes but is not voluntary retention. Three new original asks routed, no acceptance or source defect ruling.",
+    "verdict": "mixed",
+    "limits": "Declared return with identical frozen pre-game history to free alternative. First want_quit454.093BORED; floor led to further play; wish softened for new scenes then returned728.845; stop918.289BORED naturally after15minute floor, not retention evidence. Full conditional another-evening return preserved; no tonight daily-loop or unattended play. Actual primary phone and requested wide images/position taps reported; automatic image audit complete, coordinator detailed audit pending. Both quiet Feedback choices selected locally, no typing/Submit/consent change. Keep listening absent248.063 is game-state change, not physical failed tap; separate human-speed engineering reproduced same affordance change, not hidden cause. Exact00d clean before/after.",
+    "raw_stop": {
+      "t": "2026-10-26T05:19:36.129Z",
+      "elapsed_s": 918.289,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "I am stopping on Ramadan 2 at six in the evening. Rıza's chair and the baker's boy were worth seeing, but my wish to leave came back, and I do not want another cycle of suggestions that expire and conversations that return to the same ending. I selected I'm stopping in Feedback, typed nothing and submitted nothing. I would not leave this running unattended. I might return another evening for a new conversation, but I would not voluntarily restart this daily loop tonight or commit to reaching Eid.",
+      "game_clock": null,
+      "engagement": null,
+      "reason": "BORED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    },
+    "public_report": "docs/lab/reviews/hf3-voice-r2-2026-10-25/reports/maya-continued.md",
+    "public_raw": "docs/lab/reviews/hf3-voice-r2-2026-10-25/raw/maya-continued.jsonl"
+  }
+}

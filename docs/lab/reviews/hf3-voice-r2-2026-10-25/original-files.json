@@ -1,0 +1,305 @@
+{
+  "status": "Original bytes retained before any formatting; published copies are readable renderings",
+  "files": [
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/README.md",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/README.md",
+      "sha256": "f4c7f22b2d6aa36f2c92952b98b3a00a4095ff4edb4820bdbdb55f7853d67ef8",
+      "bytes": 472
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/emre-continued-image-audit.json",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/emre-continued-image-audit.json",
+      "sha256": "32e638b82299fcae138b805871b85992815beb0c26d2207f599dfb6d377fc062",
+      "bytes": 12378
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/emre-free-image-audit.json",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/emre-free-image-audit.json",
+      "sha256": "e8298b18aba025026829e5bf58c44355d48959d6e2aadc5d7aec3e498a891d77",
+      "bytes": 7261
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/evidence-addenda.json",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/evidence-addenda.json",
+      "sha256": "6d27be860bf0fe324ca0bff21c9329b5c5e9f2616cca8dee1bffe388bb9ebd33",
+      "bytes": 4412
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/maya-continued-image-audit.json",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/maya-continued-image-audit.json",
+      "sha256": "82f8692375e83acbff2f0d9119e18cf2820f93ebd976f0553cc20815446f2748",
+      "bytes": 16987
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/nia-continued-image-audit.json",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/nia-continued-image-audit.json",
+      "sha256": "bdea5424a20021697f631a323d4475c5dd1d604c09903aa32cc40676085fb730",
+      "bytes": 12433
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/nia-free-image-audit.json",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/nia-free-image-audit.json",
+      "sha256": "c0e69ab86e07e2054b88578e5055583f51b3c31eea493034724cd20c761b7f55",
+      "bytes": 4543
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/raw/emre-continued.jsonl",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/raw/emre-continued.jsonl",
+      "sha256": "b693ab4b81ec93c6e1a0f23b8a10321a3be59b02ec2c93c496b289a1d48913ff",
+      "bytes": 33128
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/raw/emre-free.jsonl",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/raw/emre-free.jsonl",
+      "sha256": "cbaece03753be4b62a65373914469b260cb89e49eac9152ba7ca0eda7b9ff5e5",
+      "bytes": 14096
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/raw/maya-continued.jsonl",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/raw/maya-continued.jsonl",
+      "sha256": "6a18ce9921f83ed1b982b835b594ccec51cb8e73a42f3ee749ed8da02df6c118",
+      "bytes": 30413
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/raw/maya-free.jsonl",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/raw/maya-free.jsonl",
+      "sha256": "b64bdb3fb303cf9021851d9b0c7765899de34f7a83710460e1be9ca0105d62fc",
+      "bytes": 12069
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/raw/nia-continued.jsonl",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/raw/nia-continued.jsonl",
+      "sha256": "b0db0c9588b28aeb3bb783ba08dd805247478bf41998bbc42368b192c8a0914c",
+      "bytes": 35303
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/raw/nia-free.jsonl",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/raw/nia-free.jsonl",
+      "sha256": "c0786f5d74b95b86bf3ddf038de7f4b93f18445b95e4d31a4c86fa033ade30a6",
+      "bytes": 10463
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/raw/rosa-continued.jsonl",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/raw/rosa-continued.jsonl",
+      "sha256": "6e000674a18bd3ea490e2eed5b2763d8e2c9941c43e7cc9ff49a97d5cde5e6a3",
+      "bytes": 36154
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/raw/rosa-free.jsonl",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/raw/rosa-free.jsonl",
+      "sha256": "5de281ed7950c498bccf3b5836d8364fbfc30a938ff5a50d51c648be49e322fb",
+      "bytes": 9913
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/reports/emre-continued.md",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/reports/emre-continued.md",
+      "sha256": "c7f085e81b7c05db7af8074a71e52e1884944861bac4fc87ecce9b28386fe1f5",
+      "bytes": 12509
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/reports/emre-free.md",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/reports/emre-free.md",
+      "sha256": "2f44f6bb5e5f4be3255d4cb37ac63050c62da964a77ea7170e9795f45b991a52",
+      "bytes": 8114
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/reports/maya-continued.md",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/reports/maya-continued.md",
+      "sha256": "6612c048638148662fb88d7607b9bc8e5ea735cc05b2ff06f69c341d68f07f39",
+      "bytes": 12529
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/reports/maya-free.md",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/reports/maya-free.md",
+      "sha256": "6d39be5cee4d59d851822d7f410362e55c53f02423db3ffe4f2ea8b0c1a6eee2",
+      "bytes": 7648
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/reports/nia-continued.md",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/reports/nia-continued.md",
+      "sha256": "d83eb16a371f66efe29e698c37ce37ee3748e11b76e263ec3907e2b36f2c4a42",
+      "bytes": 12797
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/reports/nia-free.md",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/reports/nia-free.md",
+      "sha256": "fd6e3f1bab8ac1cb54948827c87c6d6e07ad4ed79f456540b7b86a83a6202d68",
+      "bytes": 8218
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/reports/rosa-continued.md",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/reports/rosa-continued.md",
+      "sha256": "b2f92aa500d6d41b4c55405b8d18fabe9c6b5a1bed93a730abba14e5aae9665c",
+      "bytes": 17835
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/reports/rosa-free.md",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/reports/rosa-free.md",
+      "sha256": "f4c486d92e327ea480c4d464bbd6f1a9fb730fe889293e52c609f557ee3d7960",
+      "bytes": 9613
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/rosa-continued-image-audit.json",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/rosa-continued-image-audit.json",
+      "sha256": "a4f49915bcb0fc47d75239f7cbe8eeb066539e79c2c5dde4e3d4bc43163a974c",
+      "bytes": 11940
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/rosa-free-image-audit.json",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/rosa-free-image-audit.json",
+      "sha256": "0cdd0d415d4c46c9c9afffdec971a0cedcced28d7e3137ba683993b5f659cc47",
+      "bytes": 3257
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/sessions/emre-continued.json",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/sessions/emre-continued.json",
+      "sha256": "c3d2d5c48e581852b71b6a88aa23b53a7b9a64fd48b3363b4ffdcb60e0f5a46b",
+      "bytes": 12184
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/sessions/emre-free.json",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/sessions/emre-free.json",
+      "sha256": "78196f7941e6d4a518b56c3be6760605b078f7788c0d24f688e1b9140457040d",
+      "bytes": 7334
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/sessions/maya-continued.json",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/sessions/maya-continued.json",
+      "sha256": "b429e10e1453221f5e4b84890f217a2c7bfc7ea7abacd6aaa18b52771d7e7682",
+      "bytes": 11706
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/sessions/maya-free.json",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/sessions/maya-free.json",
+      "sha256": "c84018dc0ec8b936b1e38becfb0a107f85e38fa491c2b54e4305b9fe98d28e2c",
+      "bytes": 6640
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/sessions/nia-continued.json",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/sessions/nia-continued.json",
+      "sha256": "528a54919785bf5d358d0347c09b063c3e8a6bac861f2e3b92c5c02ffe9e308c",
+      "bytes": 12581
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/sessions/nia-free.json",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/sessions/nia-free.json",
+      "sha256": "1e27048e545846b2cda4d296ffdea18ec40a23a86e546b3e9d874756af394d1c",
+      "bytes": 6766
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/sessions/rosa-continued.json",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/sessions/rosa-continued.json",
+      "sha256": "90b8092fa200d44faeb48448fdb883ef0d1ae78ac7aecb938c8ceceb5b0b6402",
+      "bytes": 14116
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/sessions/rosa-free.json",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/sessions/rosa-free.json",
+      "sha256": "6a56abdad0c4c504525ab583872157c3cb1a9eba47684b71e7962db8df1566c5",
+      "bytes": 6303
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/staging-manifest.json",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/staging-manifest.json",
+      "sha256": "3ff3e3e187d8b43745e69b0df56f46acf31faeb2a2b483babc1242337c5c244f",
+      "bytes": 5532
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/tester-ledger.md",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-2026-10-25/tester-ledger.md",
+      "sha256": "a5ab76b9f487f55ece9acb6123dda934e0f1c05e1389ab6610eadcfcea82f37f",
+      "bytes": 5956
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-capacity-tail-2026-10-26/README.md",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-capacity-tail-2026-10-26/README.md",
+      "sha256": "a2932696b20459e3e283eb40c72d7bb14d059e6e0bcb883752e824be9cbfe7b9",
+      "bytes": 486
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-capacity-tail-2026-10-26/raw/aisha-continued.jsonl",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-capacity-tail-2026-10-26/raw/aisha-continued.jsonl",
+      "sha256": "3aacaefdc8e5d8fbe70d9e96368784b650fd23055bb6a2f1bb53a8edff7e3b47",
+      "bytes": 41821
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-capacity-tail-2026-10-26/raw/aisha-free.jsonl",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-capacity-tail-2026-10-26/raw/aisha-free.jsonl",
+      "sha256": "4946dff923e09616267e5cf024de9c75ff7b3c754988e9edf33b77e93432ba3a",
+      "bytes": 56948
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-capacity-tail-2026-10-26/raw/jonas-free.jsonl",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-capacity-tail-2026-10-26/raw/jonas-free.jsonl",
+      "sha256": "40ff396748a5b328bc4b1879c5273c20e7d495b2fa2b9a4d12f22fc7faa53c21",
+      "bytes": 14003
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-capacity-tail-2026-10-26/reports/aisha-continued.md",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-capacity-tail-2026-10-26/reports/aisha-continued.md",
+      "sha256": "8d795f1ab2e3d26b361b577be8b321a88253ab4b0ed8a7ecd13493fa91f56640",
+      "bytes": 8909
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-capacity-tail-2026-10-26/reports/aisha-free.md",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-capacity-tail-2026-10-26/reports/aisha-free.md",
+      "sha256": "4f18ac78ff0668450881f12c87d1159030b71e3b9c61ff61df02456c88a9575f",
+      "bytes": 12514
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-capacity-tail-2026-10-26/reports/jonas-free.md",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-capacity-tail-2026-10-26/reports/jonas-free.md",
+      "sha256": "65aead889bedc510156b835094debe97b9acd17365720a599e9ab228f7aa5551",
+      "bytes": 9978
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-capacity-tail-2026-10-26/sessions/aisha-continued.json",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-capacity-tail-2026-10-26/sessions/aisha-continued.json",
+      "sha256": "e0abe2bff66ce3a8ab6847a0751f4e31850e4e6ad0ce7d2d2ec75b8c9fa51ae0",
+      "bytes": 4854
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-capacity-tail-2026-10-26/sessions/aisha-free.json",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-capacity-tail-2026-10-26/sessions/aisha-free.json",
+      "sha256": "e0611abc82443697ed4d43d0aee61c0160d6ef24670cf4ad974e69e1ce791610",
+      "bytes": 5185
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-capacity-tail-2026-10-26/sessions/jonas-free.json",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-capacity-tail-2026-10-26/sessions/jonas-free.json",
+      "sha256": "2db6ddf661cdf7f34c4efdb428d44337928e97e4bfa41c17ee78f36223f27385",
+      "bytes": 8368
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-capacity-tail-2026-10-26/staging-manifest.json",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-capacity-tail-2026-10-26/staging-manifest.json",
+      "sha256": "33c0a44d67579cdfa70af14773fc99f76f9649f2a000b05343bf26700c6f6065",
+      "bytes": 2200
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-capacity-tail-2026-10-26/tester-ledger.md",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-capacity-tail-2026-10-26/tester-ledger.md",
+      "sha256": "7d3d01b8cc1818ed10e8ea3f4bc1d5adb3a67d4bc5d313feddd096e8b5198f4b",
+      "bytes": 3475
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-capacity-tail-2026-10-26/verbatim/aisha-continued.md",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-capacity-tail-2026-10-26/verbatim/aisha-continued.md",
+      "sha256": "5be2e4d9e2c7569f0e62dbe8a1ccdc07006bab938de1d2e92baee3c538830aec",
+      "bytes": 42046
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-capacity-tail-2026-10-26/verbatim/aisha-free.md",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-capacity-tail-2026-10-26/verbatim/aisha-free.md",
+      "sha256": "4c6f76f16e060d2141f596f0739887c0c72334f4acf6390866e9e857bbf16909",
+      "bytes": 57129
+    },
+    {
+      "published_source": "docs/lab/reviews/hf3-voice-r2-capacity-tail-2026-10-26/verbatim/jonas-free.md",
+      "verbatim_archive": "archive/evidence/2026-10-26-playtest/voice-r2-partial/hf3-voice-r2-capacity-tail-2026-10-26/verbatim/jonas-free.md",
+      "sha256": "150af9464908c20924a9780584abc577ec51c2f8f79224b885ff6659d43f53b8",
+      "bytes": 14182
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "schema": "lab-evidence-addenda/1",
+  "entries": [
+    {
+      "at": "2026-10-26T05:16:11.011919+00:00",
+      "tester": "Maya Chen",
+      "arm": "free",
+      "ordinal": 1,
+      "quote": "Let me finish listening to a conversation I have chosen to follow.",
+      "quote_sha256": "fbaffb324e9e56a1add8a412069034bea04dd86957b37164a2114b93405ffa23",
+      "original_intake_limit_time": "2026-10-26T05:11:16Z timingpending; remains historical",
+      "new_evidence": "Human-speed ordinary UI reproduction on same00d: first Keep listening223.673 stilllisted it; second226.486 after2.813seconds gotcurrentcontrolabsent, no physical secondtap; visibleHacerconversationended/home15:05.",
+      "comparison_to_player": "Maya original199.086/201.871,2.785seconds",
+      "source": "human-speed-maya-listening-repro/attempt-1/report.md",
+      "source_report_sha256": "1ccfe2b299641e8d7983afcea402d769168dc11ae67880050c9993a9ecf04ee2",
+      "human_speed_gate": "PASS for this observed1\u20133second interval; no universal timingclaim",
+      "classification_limit": "DefaultdriverHTTP500/kindtoolmisclassifieschanged-game-control; notTOOLtaste/broken-controlproof. Fixwhatplayerasked,preserveautonomy/edges; nohidden-causeinference.",
+      "route_state": "NOW ROUTED forsourceassessment",
+      "target": "2026-10-27",
+      "root_freeze_hashes_match": true,
+      "owned_cleanup": "6exactPIDsabsent/portclosed/profilegone/0PNGs; ownertool97809exit0"
+    },
+    {
+      "at": "2026-10-26T05:28:15.373377+00:00",
+      "tester": "Maya Chen",
+      "arm": "continued",
+      "kind": "complete-owned-trace image audit",
+      "source": "maya-continued-image-audit.json",
+      "sha256": "82f8692375e83acbff2f0d9119e18cf2820f93ebd976f0553cc20815446f2748",
+      "verified": "14 actual image-return outputs:12phone/2wide; no first-minute imageview in complete owned trace",
+      "cleanup": "Recorded driver43807/tester43818 absent/port19901closed; historical browser descendant PIDs/profile not captured, remainUNVERIFIED",
+      "limits": "This addendum supersedes original intake detailed-audit-pending only. No original report or taste rewritten."
+    },
+    {
+      "at": "2026-10-26T05:30:53.937996+00:00",
+      "tester": "Emre Kaya",
+      "arm": "free",
+      "kind": "complete-owned-trace image audit",
+      "source": "emre-free-image-audit.json",
+      "sha256": "e8298b18aba025026829e5bf58c44355d48959d6e2aadc5d7aec3e498a891d77",
+      "verified": "6 actual current-wide image outputs; no phone exposure/resize; no first-minute imageview in complete owned trace",
+      "cleanup": "Recorded driver79426/tester79441 absent/port19902closed; historical browser descendant PIDs/profile not captured, remainUNVERIFIED",
+      "limits": "Supersedes at-intake detailed-audit-pending only. Natural earlystop remains qualified; no report/return/taste rewritten."
+    },
+    {
+      "at": "2026-10-26T05:52:30.213254+00:00",
+      "tester": "Emre Kaya",
+      "arm": "continued",
+      "kind": "completeownedtrace imageaudit",
+      "source": "emre-continued-image-audit.json",
+      "sha256": "32e638b82299fcae138b805871b85992815beb0c26d2207f599dfb6d377fc062",
+      "verified": "16actualoutputs14wide2phone",
+      "cleanup": "rootcaptured exactPIDsabsent/ownedprofilegone",
+      "limits": "Supersedes at-intake detailed-audit-pending only; originals unchanged"
+    },
+    {
+      "at": "2026-10-26T05:52:30.213254+00:00",
+      "tester": "Nia Okafor",
+      "arm": "free",
+      "kind": "completeownedtrace imageaudit",
+      "source": "nia-free-image-audit.json",
+      "sha256": "c0e69ab86e07e2054b88578e5055583f51b3c31eea493034724cd20c761b7f55",
+      "verified": "5actualphoneoutputs/no desktop",
+      "cleanup": "rootcaptured exactPIDsabsent/ownedprofilegone",
+      "limits": "Supersedes at-intake detailed-audit-pending only; originals unchanged"
+    },
+    {
+      "at": "2026-10-26T08:01:46.558234+00:00",
+      "tester": "Nia Okafor",
+      "arm": "continued",
+      "kind": "complete owned trace image audit",
+      "source": "nia-continued-image-audit.json",
+      "sha256": "bdea5424a20021697f631a323d4475c5dd1d604c09903aa32cc40676085fb730",
+      "verified": "16 actual image-return outputs:14phone/2wide",
+      "cleanup": "root captured exact PIDs absent/owned profile gone",
+      "limits": "Supersedes at-intake detailed-audit-pending only; original report/diary/return unchanged"
+    }
+  ]
+}

@@ -1,0 +1,178 @@
+{
+  "updated": "2026-10-26T08:23:19.635546+00:00",
+  "status": "partial collection; no round closure or fix acceptance",
+  "sessions": [
+    {
+      "persona": "Maya Chen",
+      "arm": "free",
+      "session": "maya-free"
+    },
+    {
+      "persona": "Maya Chen",
+      "arm": "continued",
+      "session": "maya-continued"
+    },
+    {
+      "persona": "Emre Kaya",
+      "arm": "free",
+      "session": "emre-free"
+    },
+    {
+      "persona": "Emre Kaya",
+      "arm": "continued",
+      "session": "emre-continued"
+    },
+    {
+      "persona": "Nia Okafor",
+      "arm": "free",
+      "session": "nia-free"
+    },
+    {
+      "persona": "Nia Okafor",
+      "arm": "continued",
+      "session": "nia-continued"
+    },
+    {
+      "persona": "Rosa Alvarez",
+      "arm": "free",
+      "session": "rosa-free"
+    },
+    {
+      "persona": "Rosa Alvarez",
+      "arm": "continued",
+      "session": "rosa-continued"
+    }
+  ],
+  "original_files": [
+    {
+      "path": "reports/maya-free.md",
+      "sha256": "6d39be5cee4d59d851822d7f410362e55c53f02423db3ffe4f2ea8b0c1a6eee2",
+      "bytes": 7648
+    },
+    {
+      "path": "raw/maya-free.jsonl",
+      "sha256": "b64bdb3fb303cf9021851d9b0c7765899de34f7a83710460e1be9ca0105d62fc",
+      "bytes": 12069
+    },
+    {
+      "path": "reports/maya-continued.md",
+      "sha256": "6612c048638148662fb88d7607b9bc8e5ea735cc05b2ff06f69c341d68f07f39",
+      "bytes": 12529
+    },
+    {
+      "path": "raw/maya-continued.jsonl",
+      "sha256": "6a18ce9921f83ed1b982b835b594ccec51cb8e73a42f3ee749ed8da02df6c118",
+      "bytes": 30413
+    },
+    {
+      "path": "reports/emre-free.md",
+      "sha256": "2f44f6bb5e5f4be3255d4cb37ac63050c62da964a77ea7170e9795f45b991a52",
+      "bytes": 8114
+    },
+    {
+      "path": "raw/emre-free.jsonl",
+      "sha256": "cbaece03753be4b62a65373914469b260cb89e49eac9152ba7ca0eda7b9ff5e5",
+      "bytes": 14096
+    },
+    {
+      "path": "reports/emre-continued.md",
+      "sha256": "c7f085e81b7c05db7af8074a71e52e1884944861bac4fc87ecce9b28386fe1f5",
+      "bytes": 12509
+    },
+    {
+      "path": "raw/emre-continued.jsonl",
+      "sha256": "b693ab4b81ec93c6e1a0f23b8a10321a3be59b02ec2c93c496b289a1d48913ff",
+      "bytes": 33128
+    },
+    {
+      "path": "reports/nia-free.md",
+      "sha256": "fd6e3f1bab8ac1cb54948827c87c6d6e07ad4ed79f456540b7b86a83a6202d68",
+      "bytes": 8218
+    },
+    {
+      "path": "raw/nia-free.jsonl",
+      "sha256": "c0786f5d74b95b86bf3ddf038de7f4b93f18445b95e4d31a4c86fa033ade30a6",
+      "bytes": 10463
+    },
+    {
+      "path": "reports/nia-continued.md",
+      "sha256": "d83eb16a371f66efe29e698c37ce37ee3748e11b76e263ec3907e2b36f2c4a42",
+      "bytes": 12797
+    },
+    {
+      "path": "raw/nia-continued.jsonl",
+      "sha256": "b0db0c9588b28aeb3bb783ba08dd805247478bf41998bbc42368b192c8a0914c",
+      "bytes": 35303
+    },
+    {
+      "path": "reports/rosa-free.md",
+      "sha256": "f4c486d92e327ea480c4d464bbd6f1a9fb730fe889293e52c609f557ee3d7960",
+      "bytes": 9613
+    },
+    {
+      "path": "raw/rosa-free.jsonl",
+      "sha256": "5de281ed7950c498bccf3b5836d8364fbfc30a938ff5a50d51c648be49e322fb",
+      "bytes": 9913
+    },
+    {
+      "path": "reports/rosa-continued.md",
+      "sha256": "b2f92aa500d6d41b4c55405b8d18fabe9c6b5a1bed93a730abba14e5aae9665c",
+      "bytes": 17835
+    },
+    {
+      "path": "raw/rosa-continued.jsonl",
+      "sha256": "6e000674a18bd3ea490e2eed5b2763d8e2c9941c43e7cc9ff49a97d5cde5e6a3",
+      "bytes": 36154
+    }
+  ],
+  "derived_files": [
+    {
+      "path": "sessions/maya-free.json",
+      "sha256": "c84018dc0ec8b936b1e38becfb0a107f85e38fa491c2b54e4305b9fe98d28e2c",
+      "bytes": 6640,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/maya-continued.json",
+      "sha256": "b429e10e1453221f5e4b84890f217a2c7bfc7ea7abacd6aaa18b52771d7e7682",
+      "bytes": 11706,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/emre-free.json",
+      "sha256": "78196f7941e6d4a518b56c3be6760605b078f7788c0d24f688e1b9140457040d",
+      "bytes": 7334,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/emre-continued.json",
+      "sha256": "c3d2d5c48e581852b71b6a88aa23b53a7b9a64fd48b3363b4ffdcb60e0f5a46b",
+      "bytes": 12184,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/nia-free.json",
+      "sha256": "1e27048e545846b2cda4d296ffdea18ec40a23a86e546b3e9d874756af394d1c",
+      "bytes": 6766,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/nia-continued.json",
+      "sha256": "528a54919785bf5d358d0347c09b063c3e8a6bac861f2e3b92c5c02ffe9e308c",
+      "bytes": 12581,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/rosa-free.json",
+      "sha256": "6a56abdad0c4c504525ab583872157c3cb1a9eba47684b71e7962db8df1566c5",
+      "bytes": 6303,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/rosa-continued.json",
+      "sha256": "90b8092fa200d44faeb48448fdb883ef0d1ae78ac7aecb938c8ceceb5b0b6402",
+      "bytes": 14116,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    }
+  ]
+}

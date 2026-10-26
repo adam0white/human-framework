@@ -1,0 +1,73 @@
+{
+  "updated": "2026-10-26T08:48:03.868428+00:00",
+  "status": "partial collection; no round closure or fix acceptance",
+  "sessions": [
+    {
+      "persona": "Aisha Rahman",
+      "arm": "free",
+      "session": "aisha-free"
+    },
+    {
+      "persona": "Aisha Rahman",
+      "arm": "continued",
+      "session": "aisha-continued"
+    },
+    {
+      "persona": "Jonas Berg",
+      "arm": "free",
+      "session": "jonas-free"
+    }
+  ],
+  "original_files": [
+    {
+      "path": "reports/aisha-free.md",
+      "sha256": "4f18ac78ff0668450881f12c87d1159030b71e3b9c61ff61df02456c88a9575f",
+      "bytes": 12514
+    },
+    {
+      "path": "raw/aisha-free.jsonl",
+      "sha256": "4946dff923e09616267e5cf024de9c75ff7b3c754988e9edf33b77e93432ba3a",
+      "bytes": 56948
+    },
+    {
+      "path": "reports/aisha-continued.md",
+      "sha256": "8d795f1ab2e3d26b361b577be8b321a88253ab4b0ed8a7ecd13493fa91f56640",
+      "bytes": 8909
+    },
+    {
+      "path": "raw/aisha-continued.jsonl",
+      "sha256": "3aacaefdc8e5d8fbe70d9e96368784b650fd23055bb6a2f1bb53a8edff7e3b47",
+      "bytes": 41821
+    },
+    {
+      "path": "reports/jonas-free.md",
+      "sha256": "65aead889bedc510156b835094debe97b9acd17365720a599e9ab228f7aa5551",
+      "bytes": 9978
+    },
+    {
+      "path": "raw/jonas-free.jsonl",
+      "sha256": "40ff396748a5b328bc4b1879c5273c20e7d495b2fa2b9a4d12f22fc7faa53c21",
+      "bytes": 14003
+    }
+  ],
+  "derived_files": [
+    {
+      "path": "sessions/aisha-free.json",
+      "sha256": "e0611abc82443697ed4d43d0aee61c0160d6ef24670cf4ad974e69e1ce791610",
+      "bytes": 5185,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/aisha-continued.json",
+      "sha256": "e0abe2bff66ce3a8ab6847a0751f4e31850e4e6ad0ce7d2d2ec75b8c9fa51ae0",
+      "bytes": 4854,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/jonas-free.json",
+      "sha256": "2db6ddf661cdf7f34c4efdb428d44337928e97e4bfa41c17ee78f36223f27385",
+      "bytes": 8368,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    }
+  ]
+}

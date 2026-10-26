@@ -1,0 +1,254 @@
+{
+  "started": "2026-10-26T05:25:15.983712+00:00",
+  "ended": "2026-10-26T05:41:38.285921+00:00",
+  "status": "report-ready",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "floor_minutes": 15,
+  "ceiling_minutes": 25,
+  "device": "desktop",
+  "url": "https://human.adamwhite.work/voice/",
+  "brief_sha256": "a2a49ca6466907806e4d112c4eb90b4faa4dcb9a87a73c0e7c318deddf278e79",
+  "release_before": {
+    "app": "1.0.0",
+    "framework": "3.2.0",
+    "frameworkLibrary": "3.2.0",
+    "commit": "00dcdad7d66a6ee33d11f941e5319de5bdfbeebf",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "1.0.0",
+    "framework": "3.2.0",
+    "frameworkLibrary": "3.2.0",
+    "commit": "00dcdad7d66a6ee33d11f941e5319de5bdfbeebf",
+    "dirty": false
+  },
+  "instrument_sha256": {
+    "/Users/abdul/code/.lab-scratch/playtest/lab-play-no-post.ts": "0eaec4fac67b7b3ff88b532072b27130f613524b01c913e941e2a83673e548d4",
+    "/Users/abdul/code/human-framework/scripts/lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "/Users/abdul/code/human-framework/scripts/lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "persona": "Emre Kaya",
+  "arm": "continued",
+  "report_sha256": "c7f085e81b7c05db7af8074a71e52e1884944861bac4fc87ecce9b28386fe1f5",
+  "raw_sha256": "b693ab4b81ec93c6e1a0f23b8a10321a3be59b02ec2c93c496b289a1d48913ff",
+  "stop_records": [
+    {
+      "t": "2026-10-26T05:40:45.828Z",
+      "elapsed_s": 923.588,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "I am stopping here, before the evening is finished after all. I helped him reach the clinic and earn the extra shift money, and that is enough for tonight. I would return voluntarily for another short evening to see whether he takes the shift or calls Selin without me. I would not return to play the whole month in one sitting. I would not leave it running.",
+      "game_clock": null,
+      "engagement": null,
+      "reason": "TASTE",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    }
+  ],
+  "actual_image_events": [
+    {
+      "timestamp": "2026-10-26T05:25:32.725Z",
+      "call_id": "call_2216d3468ea84ff499be1dc597ab966e",
+      "call_sha256": "aeddefd52053976934d25e29107377640d8dbd3d545c99026d54df854a2b9de8",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T05:26:16.576Z",
+      "call_id": "call_6a121cc0201d418f87e2621ee014950d",
+      "call_sha256": "aeddefd52053976934d25e29107377640d8dbd3d545c99026d54df854a2b9de8",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T05:27:14.980Z",
+      "call_id": "call_29a795ec174148f5bd2b9022975b42eb",
+      "call_sha256": "aeddefd52053976934d25e29107377640d8dbd3d545c99026d54df854a2b9de8",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T05:28:12.566Z",
+      "call_id": "call_a31c487b74514c329a4f63a1d483d03c",
+      "call_sha256": "aeddefd52053976934d25e29107377640d8dbd3d545c99026d54df854a2b9de8",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T05:28:35.701Z",
+      "call_id": "call_09b68a08697b44e6935f7af2f5a1e847",
+      "call_sha256": "aeddefd52053976934d25e29107377640d8dbd3d545c99026d54df854a2b9de8",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T05:29:41.538Z",
+      "call_id": "call_dbfd907509274ca39e3eaaa3052267ba",
+      "call_sha256": "aeddefd52053976934d25e29107377640d8dbd3d545c99026d54df854a2b9de8",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T05:30:37.139Z",
+      "call_id": "call_7f5e527455be415d8b8589ed36848a31",
+      "call_sha256": "9e9b9aab074166360f14827b041614a5e3a472ae97346d3140dd492791ddb2e6",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T05:30:43.304Z",
+      "call_id": "call_ee7f608da64b4439b5b6881815c118ed",
+      "call_sha256": "9e9b9aab074166360f14827b041614a5e3a472ae97346d3140dd492791ddb2e6",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T05:31:33.996Z",
+      "call_id": "call_923af4f502354cf490c670d7d5ca6e5b",
+      "call_sha256": "aeddefd52053976934d25e29107377640d8dbd3d545c99026d54df854a2b9de8",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T05:33:11.694Z",
+      "call_id": "call_7c62c8e1ae9b4d349a9b44010bec0616",
+      "call_sha256": "aeddefd52053976934d25e29107377640d8dbd3d545c99026d54df854a2b9de8",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T05:34:02.753Z",
+      "call_id": "call_5eeb6e38dd0144648761a2bb8a81c018",
+      "call_sha256": "aeddefd52053976934d25e29107377640d8dbd3d545c99026d54df854a2b9de8",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T05:35:12.212Z",
+      "call_id": "call_cfe160bda7bd4c2f9beb15ed50e3b7d9",
+      "call_sha256": "aeddefd52053976934d25e29107377640d8dbd3d545c99026d54df854a2b9de8",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T05:35:52.079Z",
+      "call_id": "call_e0f9bba1b0bf45dabe031015e9ebb7b8",
+      "call_sha256": "aeddefd52053976934d25e29107377640d8dbd3d545c99026d54df854a2b9de8",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T05:36:45.045Z",
+      "call_id": "call_dc40b9acd7a14c56b0993f8897a52707",
+      "call_sha256": "aeddefd52053976934d25e29107377640d8dbd3d545c99026d54df854a2b9de8",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T05:37:41.515Z",
+      "call_id": "call_5521ae4119bf4ae6bf4ec4c97d59aa6b",
+      "call_sha256": "aeddefd52053976934d25e29107377640d8dbd3d545c99026d54df854a2b9de8",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T05:38:37.887Z",
+      "call_id": "call_e246faf0e6ea4112852b94659397a01d",
+      "call_sha256": "aeddefd52053976934d25e29107377640d8dbd3d545c99026d54df854a2b9de8",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    }
+  ],
+  "image_scope": "Actual safe tool evidence where present. Absence is unverified; self-reported viewing stays qualified.",
+  "feedback_scope": "API paths blocked by harness; no production feedback receipt or owner consent change authorized.",
+  "coordinator_limits": {
+    "forced": false,
+    "disposition": "Natural postfloor stopTASTE/KEEP qualifiedfullreturn; persistedonlyquitwish at816.841. Threeoriginalasks; successesordinaryUI, no blanketcauseclaim. Fullsourceoriginals preserve1msreport/rawdifference.",
+    "verdict": "keep",
+    "limits": "Declared return; identical frozen own history to free alternative, no counterpartknowledge. Natural want_quit816.841TASTE persisted; final raw923.588TASTE/report923.589 differs1ms, both originals retained. Floor continuation not voluntary retention; KEEP from explicit another-short-evening voluntaryreturn to observe autonomy, no wholemonth/unattended. Actualdesktop14images+requestedphone2 reported, exactimage auditpending; phonesession310.531–325.795 withpositiontap. ShiftconfirmedToday13:45, originalmissed14:31 deadline nowobservedhistory; timing vsstrongerwording effectsnotseparable. Cliniccost10 assumption notvisiblecost explanation. Bothquietchoices locallyselecteddriveronly/no typing/Submit/consent. Captured exactownedPIDsabsent/profilegone rootverified. Exact00d clean before/after.",
+    "raw_stop": {
+      "t": "2026-10-26T05:40:45.828Z",
+      "elapsed_s": 923.588,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "I am stopping here, before the evening is finished after all. I helped him reach the clinic and earn the extra shift money, and that is enough for tonight. I would return voluntarily for another short evening to see whether he takes the shift or calls Selin without me. I would not return to play the whole month in one sitting. I would not leave it running.",
+      "game_clock": null,
+      "engagement": null,
+      "reason": "TASTE",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    },
+    "public_report": "docs/lab/reviews/hf3-voice-r2-2026-10-25/reports/emre-continued.md",
+    "public_raw": "docs/lab/reviews/hf3-voice-r2-2026-10-25/raw/emre-continued.jsonl"
+  }
+}

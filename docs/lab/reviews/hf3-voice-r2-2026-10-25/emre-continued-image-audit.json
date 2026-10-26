@@ -1,0 +1,249 @@
+{
+  "schema": "coordinator-image-view-manual-audit/1",
+  "timestamp": "2026-10-26T05:45:35.757934+00:00",
+  "session": "emre-continued",
+  "round": "hf3-voice-r2",
+  "scope": "All16 actual image outputs independently enumerated and joined to complete owned calls. Both complete unique literal strings manually read and exact whole-string/hash verified. Original collector unresolved labels/original reports unchanged. Coordinator evidence only.",
+  "cleanup_rule": "/Users/abdul/code/.lab-scratch/briefs/cleanup-rule.md",
+  "thread_id": "01a176ab-8dca-7933-9305-52e7a56f82e8",
+  "source_text_archive_sha256": "14bdf51422090295b4f8b929b1f938e11f199997e1168ac5edc94d15bb4490e8",
+  "original_full_rollout_sha256": "b54e33808fe87ad5e917d9734e36622e1b518cbeedebb8dc7fbd10f719b77487",
+  "source_image_events_sha256": "6ada18cfc07efbcf154d8c6f821336c974699699f0d6ac154c84ad4a94c059df",
+  "source_private_collector_metadata_sha256": "6d0f8a4d075fc8edaa9a9e3b21e28b301202c62feabaf428486d6e806022f3db",
+  "source_report_sha256": "c7f085e81b7c05db7af8074a71e52e1884944861bac4fc87ecce9b28386fe1f5",
+  "source_raw_sha256": "b693ab4b81ec93c6e1a0f23b8a10321a3be59b02ec2c93c496b289a1d48913ff",
+  "source_supervisor_sha256": "e3a7f74505e3c3fbd602c5105c5dbb36818549aa713a255bdb5f61179d1552a4",
+  "complete_call_hash_to_screenshot": {
+    "aeddefd52053976934d25e29107377640d8dbd3d545c99026d54df854a2b9de8": "current-wide.png",
+    "9e9b9aab074166360f14827b041614a5e3a472ae97346d3140dd492791ddb2e6": "current-phone.png"
+  },
+  "events": [
+    {
+      "timestamp": "2026-10-26T05:25:32.725Z",
+      "call_id": "call_2216d3468ea84ff499be1dc597ab966e",
+      "call_sha256": "aeddefd52053976934d25e29107377640d8dbd3d545c99026d54df854a2b9de8",
+      "image_returned": true,
+      "content_types": ["input_text", "input_image"],
+      "screenshot_name": "current-wide.png",
+      "archive_call_line": 40,
+      "archive_output_line": 43,
+      "path_attribution": "full exact complete-string equality; one unconditional literal own view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T05:26:16.576Z",
+      "call_id": "call_6a121cc0201d418f87e2621ee014950d",
+      "call_sha256": "aeddefd52053976934d25e29107377640d8dbd3d545c99026d54df854a2b9de8",
+      "image_returned": true,
+      "content_types": ["input_text", "input_image"],
+      "screenshot_name": "current-wide.png",
+      "archive_call_line": 79,
+      "archive_output_line": 82,
+      "path_attribution": "full exact complete-string equality; one unconditional literal own view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T05:27:14.980Z",
+      "call_id": "call_29a795ec174148f5bd2b9022975b42eb",
+      "call_sha256": "aeddefd52053976934d25e29107377640d8dbd3d545c99026d54df854a2b9de8",
+      "image_returned": true,
+      "content_types": ["input_text", "input_image"],
+      "screenshot_name": "current-wide.png",
+      "archive_call_line": 155,
+      "archive_output_line": 158,
+      "path_attribution": "full exact complete-string equality; one unconditional literal own view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T05:28:12.566Z",
+      "call_id": "call_a31c487b74514c329a4f63a1d483d03c",
+      "call_sha256": "aeddefd52053976934d25e29107377640d8dbd3d545c99026d54df854a2b9de8",
+      "image_returned": true,
+      "content_types": ["input_text", "input_image"],
+      "screenshot_name": "current-wide.png",
+      "archive_call_line": 194,
+      "archive_output_line": 197,
+      "path_attribution": "full exact complete-string equality; one unconditional literal own view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T05:28:35.701Z",
+      "call_id": "call_09b68a08697b44e6935f7af2f5a1e847",
+      "call_sha256": "aeddefd52053976934d25e29107377640d8dbd3d545c99026d54df854a2b9de8",
+      "image_returned": true,
+      "content_types": ["input_text", "input_image"],
+      "screenshot_name": "current-wide.png",
+      "archive_call_line": 229,
+      "archive_output_line": 232,
+      "path_attribution": "full exact complete-string equality; one unconditional literal own view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T05:29:41.538Z",
+      "call_id": "call_dbfd907509274ca39e3eaaa3052267ba",
+      "call_sha256": "aeddefd52053976934d25e29107377640d8dbd3d545c99026d54df854a2b9de8",
+      "image_returned": true,
+      "content_types": ["input_text", "input_image"],
+      "screenshot_name": "current-wide.png",
+      "archive_call_line": 295,
+      "archive_output_line": 298,
+      "path_attribution": "full exact complete-string equality; one unconditional literal own view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T05:30:37.139Z",
+      "call_id": "call_7f5e527455be415d8b8589ed36848a31",
+      "call_sha256": "9e9b9aab074166360f14827b041614a5e3a472ae97346d3140dd492791ddb2e6",
+      "image_returned": true,
+      "content_types": ["input_text", "input_image"],
+      "screenshot_name": "current-phone.png",
+      "archive_call_line": 345,
+      "archive_output_line": 348,
+      "path_attribution": "full exact complete-string equality; one unconditional literal own view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T05:30:43.304Z",
+      "call_id": "call_ee7f608da64b4439b5b6881815c118ed",
+      "call_sha256": "9e9b9aab074166360f14827b041614a5e3a472ae97346d3140dd492791ddb2e6",
+      "image_returned": true,
+      "content_types": ["input_text", "input_image"],
+      "screenshot_name": "current-phone.png",
+      "archive_call_line": 360,
+      "archive_output_line": 363,
+      "path_attribution": "full exact complete-string equality; one unconditional literal own view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T05:31:33.996Z",
+      "call_id": "call_923af4f502354cf490c670d7d5ca6e5b",
+      "call_sha256": "aeddefd52053976934d25e29107377640d8dbd3d545c99026d54df854a2b9de8",
+      "image_returned": true,
+      "content_types": ["input_text", "input_image"],
+      "screenshot_name": "current-wide.png",
+      "archive_call_line": 394,
+      "archive_output_line": 397,
+      "path_attribution": "full exact complete-string equality; one unconditional literal own view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T05:33:11.694Z",
+      "call_id": "call_7c62c8e1ae9b4d349a9b44010bec0616",
+      "call_sha256": "aeddefd52053976934d25e29107377640d8dbd3d545c99026d54df854a2b9de8",
+      "image_returned": true,
+      "content_types": ["input_text", "input_image"],
+      "screenshot_name": "current-wide.png",
+      "archive_call_line": 438,
+      "archive_output_line": 441,
+      "path_attribution": "full exact complete-string equality; one unconditional literal own view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T05:34:02.753Z",
+      "call_id": "call_5eeb6e38dd0144648761a2bb8a81c018",
+      "call_sha256": "aeddefd52053976934d25e29107377640d8dbd3d545c99026d54df854a2b9de8",
+      "image_returned": true,
+      "content_types": ["input_text", "input_image"],
+      "screenshot_name": "current-wide.png",
+      "archive_call_line": 477,
+      "archive_output_line": 480,
+      "path_attribution": "full exact complete-string equality; one unconditional literal own view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T05:35:12.212Z",
+      "call_id": "call_cfe160bda7bd4c2f9beb15ed50e3b7d9",
+      "call_sha256": "aeddefd52053976934d25e29107377640d8dbd3d545c99026d54df854a2b9de8",
+      "image_returned": true,
+      "content_types": ["input_text", "input_image"],
+      "screenshot_name": "current-wide.png",
+      "archive_call_line": 528,
+      "archive_output_line": 531,
+      "path_attribution": "full exact complete-string equality; one unconditional literal own view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T05:35:52.079Z",
+      "call_id": "call_e0f9bba1b0bf45dabe031015e9ebb7b8",
+      "call_sha256": "aeddefd52053976934d25e29107377640d8dbd3d545c99026d54df854a2b9de8",
+      "image_returned": true,
+      "content_types": ["input_text", "input_image"],
+      "screenshot_name": "current-wide.png",
+      "archive_call_line": 548,
+      "archive_output_line": 551,
+      "path_attribution": "full exact complete-string equality; one unconditional literal own view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T05:36:45.045Z",
+      "call_id": "call_dc40b9acd7a14c56b0993f8897a52707",
+      "call_sha256": "aeddefd52053976934d25e29107377640d8dbd3d545c99026d54df854a2b9de8",
+      "image_returned": true,
+      "content_types": ["input_text", "input_image"],
+      "screenshot_name": "current-wide.png",
+      "archive_call_line": 592,
+      "archive_output_line": 595,
+      "path_attribution": "full exact complete-string equality; one unconditional literal own view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T05:37:41.515Z",
+      "call_id": "call_5521ae4119bf4ae6bf4ec4c97d59aa6b",
+      "call_sha256": "aeddefd52053976934d25e29107377640d8dbd3d545c99026d54df854a2b9de8",
+      "image_returned": true,
+      "content_types": ["input_text", "input_image"],
+      "screenshot_name": "current-wide.png",
+      "archive_call_line": 648,
+      "archive_output_line": 651,
+      "path_attribution": "full exact complete-string equality; one unconditional literal own view_image/image call"
+    },
+    {
+      "timestamp": "2026-10-26T05:38:37.887Z",
+      "call_id": "call_e246faf0e6ea4112852b94659397a01d",
+      "call_sha256": "aeddefd52053976934d25e29107377640d8dbd3d545c99026d54df854a2b9de8",
+      "image_returned": true,
+      "content_types": ["input_text", "input_image"],
+      "screenshot_name": "current-wide.png",
+      "archive_call_line": 686,
+      "archive_output_line": 689,
+      "path_attribution": "full exact complete-string equality; one unconditional literal own view_image/image call"
+    }
+  ],
+  "actual_image_output_count": 16,
+  "counts": {
+    "current-wide.png": 14,
+    "current-phone.png": 2
+  },
+  "automatic_first_minute": {
+    "screenshot_name": "first-minute.png",
+    "viewed_in_complete_owned_tool_record": false,
+    "basis": "All16 image outputs in complete ID/hash-verified archive resolve only to phone/wide. All complete tool-call inputs inspected with no first-minute view. Not inference from missing collector event alone.",
+    "scope_limit": "No external/unrecorded viewer claim."
+  },
+  "release": {
+    "full_before_after_objects_equal": true,
+    "actual": {
+      "app": "1.0.0",
+      "framework": "3.2.0",
+      "frameworkLibrary": "3.2.0",
+      "commit": "00dcdad7d66a6ee33d11f941e5319de5bdfbeebf",
+      "dirty": false
+    }
+  },
+  "cleanup": {
+    "root_receipt": "emre-continued-cleanup.json",
+    "root_receipt_sha256": "590ea2c3031d8bd6df81de2f9fd2dbbffef78c24958e9676f768dea41b6e710d",
+    "root_recorded_pids_remaining": [],
+    "root_profile_processes": [],
+    "root_profile_paths_absent": true,
+    "checked_now": "2026-10-26T05:45:35.758168+00:00",
+    "exact_driver_tester_pids": [87382, 87393],
+    "still_live_recorded_pids": [],
+    "port": 19903,
+    "port_open": false,
+    "exact_root_owned_profile_process_matches": [],
+    "scope_limit": "Root cleanup receipt records no remaining captured PIDs but omits original full PID list; independently rechecked supervisor PIDs and exact root-captured profile path, not invented historical descendant ownership."
+  },
+  "retained_pngs": [
+    {
+      "screenshot_name": "current-phone.png",
+      "sha256": "91680269562ba503383e34e60891271890494e48e1e5feffe6a513ab6706a734"
+    },
+    {
+      "screenshot_name": "first-minute.png",
+      "sha256": "9f724f310d058f5e6ee57d4bcd134588e901cdec4c87bc1313670bfa6b13a784"
+    },
+    {
+      "screenshot_name": "current-wide.png",
+      "sha256": "af7ef11026e1001109f83d7040f601bf3179698f66d52c852ee189307bf7fa43"
+    }
+  ],
+  "retained_png_count": 3,
+  "public_safety": "Safe derived metadata only; no complete tool strings, trace text, raw pixels/base64, native values or private full rollout/profile path."
+}
