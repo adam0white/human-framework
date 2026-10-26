@@ -1073,3 +1073,16 @@ These are my reactions as logged. The raw JSONL is with the coordinator.
 3. Give delayed people their own words instead of the same sentence.
 
 My only screenshot is current-wide.png. The driver and browser cleanup is yours. I touched no repositories, servers or worktrees, so there is no `git worktree list` to show.
+
+
+## Valley R1 external control — 2026-10-26
+
+This sole completed A Dark Room control belongs to Maya’s continuing diary. It was archived and blind coded with Valley R1 but omitted from this diary’s direct links in b738756; this append corrects that omission. Both paired Valley alternatives remain archived; only Valley FREE supplies paired future continuity. This external control has no paired alternative.
+
+[Complete original control report](../../../archive/evidence/2026-10-26-playtest-b/valley-r1-packet-001/docs/lab/reviews/hf3-valley-2026-10-26-control/maya-continued-control.md) · [readable report](../reviews/hf3-valley-2026-10-26-control/maya-continued-control.md) · [raw reactions](../reviews/hf3-valley-2026-10-26-control/maya-continued-control.jsonl). Original report SHA256: `b9f8ca421b4122a491273ce3797f4723df617bd27da1a968ca7d6340516377df`. The complete original words remain at that link.
+
+The control lasted 916.976 seconds; the continued floor is not evidence of voluntary retention. One BORED wish at report371.461/raw371.460 seconds persisted. Full voluntary-return answer:
+
+> I would leave it running while I made tea, but I would not return voluntarily another evening for this building loop. Another small mystery might tempt me in principle; I am not curious enough to keep checking for one now.
+
+Desktop and the brief requested phone check are reported with their limits. No HF feedback controls existed on the external control and no note was submitted.
