@@ -1812,17 +1812,15 @@
   height: 100%;
   overflow: hidden;
 }
-.w-scene-title {
-  position: absolute;
-  top: 50%;
-  width: 100%;
+.w-game-title {
+  flex: 2;
+  min-width: 0;
+  margin: 0;
+  font: 18px var(--font-display);
+  white-space: nowrap;
   text-align: center;
-  font: 32px var(--font-display);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  text-shadow: 0 2px 8px #000;
-  pointer-events: none;
 }
+
 .w-scout-overlay {
   position: absolute;
   top: 0;
@@ -2539,10 +2537,6 @@
     height: min(700px, calc(100dvh - 56px));
     border: 1px solid var(--w-line);
     border-radius: 12px;
-  }
-  .w-scene-title {
-    top: 35%;
-    font-size: 42px;
   }
 }
 .watch .w-panel.lk-sheet {

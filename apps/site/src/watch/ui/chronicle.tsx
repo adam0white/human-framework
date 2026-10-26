@@ -10,7 +10,7 @@ import { Icon } from './icons.tsx';
 import { SEASON_WORDS, yearWords } from './pages.tsx';
 import type { WatchActions } from './useWatch.ts';
 import { WinterSetting } from './WinterSetting.tsx';
-import { pageWhen } from './words.ts';
+import { pageWhen, watchWords } from './words.ts';
 
 interface Group {
   chronicle: string;
@@ -176,7 +176,7 @@ export function Shelf({
                 <li key={p.id} className="w-pagerow">
                   <span>
                     Part {p.volume?.numeral}, <em>{p.volume?.title}</em>
-                    <span className="w-note"> · {p.volume?.end}</span>
+                    <span className="w-note"> · {watchWords(p.volume?.end ?? '')}</span>
                   </span>
                   <button
                     type="button"
@@ -224,7 +224,7 @@ function ReadChronicle({ frame, onClose }: { frame: Frame; onClose: () => void }
                 <span className="w-line-when">
                   {SEASON_WORDS[l.season]}, {yearWords(l.year)}
                 </span>
-                {l.text}
+                {watchWords(l.text)}
               </li>
             ))}
         </ol>
@@ -236,7 +236,7 @@ function ReadChronicle({ frame, onClose }: { frame: Frame; onClose: () => void }
               <span className="w-vol-body">
                 <strong>{v.title}</strong>
                 <span>{v.question}</span>
-                <span>{v.end ?? 'Still being written.'}</span>
+                <span>{watchWords(v.end ?? 'Still being written.')}</span>
               </span>
             </li>
           ))}

@@ -149,3 +149,23 @@ export function winterWatchMarks(f: Pick<Frame, 'winter' | 'phase'>): number {
   if (finished >= w.nights) return 4;
   return Math.min(3, Math.max(1, Math.floor((finished / w.nights) * 4)));
 }
+
+/** Display saved prose without changing simulation text, input logs or replay hashes. */
+export function watchWords(text: string): string {
+  return text
+    .replace(/The watcher will probably agree, maybe\./g, 'The watcher might agree.')
+    .replace(/The watcher will probably agree, you think\./g, 'The watcher will probably agree.')
+    .replace(/The watcher might agree, (?:maybe|you think)\./g, 'The watcher might agree.')
+    .replace(
+      /The watcher will (not agree|agree unwillingly), (maybe|you think)\./g,
+      (_line, outcome: string, confidence: string) =>
+        `The watcher ${confidence === 'maybe' ? 'may' : 'will probably'} ${outcome}.`,
+    )
+    .replace(/The watcher might agree\. \(someone else stands there now\)/g, 'Someone else stands there now.')
+    .replace(/ \([“"]?I[’']m asleep\.[”"]?\)/g, ' The watcher may be asleep.')
+    .replace(/(The watcher [^.]+\.) \(([^)]+)\)/g, '$1 The Keeper imagines the reply: “$2”')
+    .replace(/were married last year and both guard the wall/g, 'are married and both guard the wall')
+    .replace(/the wall stair\b/g, 'the stairs up to the wall')
+    .replace(/the Gate stair/g, 'the stairs up to the Gate')
+    .replace(/the stair\b/g, 'the stairs up to the wall');
+}

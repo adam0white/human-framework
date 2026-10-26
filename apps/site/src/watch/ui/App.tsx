@@ -46,6 +46,7 @@ import {
   PRESS_WORDS,
   pageWhen,
   ropeWords,
+  watchWords,
 } from './words.ts';
 
 const SPEEDS = ['Slow', 'Steady', 'Fast'] as const;
@@ -254,9 +255,12 @@ export function App() {
       <div className="lab-game-header">
         <header className="w-top">
           {showingTitle ? (
-            <a className="w-home" href="/games/">
-              All games
-            </a>
+            <>
+              <a className="w-home" href="/games/">
+                All games
+              </a>
+              <h1 className="w-game-title">The Night Watch</h1>
+            </>
           ) : (
             <p className="w-where">
               <span className="w-desktop-name">The Night Watch · </span>
@@ -310,9 +314,7 @@ export function App() {
         ) : null}
         <div className="w-mapwrap lk-scene" inert={menu || feedback}>
           <MapCanvas frame={displayFrame} selected={selected} onHit={onHit} />
-          {showingTitle ? (
-            <h1 className="w-scene-title">The Night Watch</h1>
-          ) : frame.phase === 'dusk' ? (
+          {showingTitle ? null : frame.phase === 'dusk' ? (
             <p className="w-scout-overlay">{frame.warning}</p>
           ) : SEASON_PHASES.has(frame.phase) || frame.phase === 'fair' ? (
             <ChronicleStrip frame={frame} />
@@ -521,7 +523,10 @@ function PhaseInfo({ frame, onToggle }: { frame: Frame; onToggle: (open: boolean
   } else if (phase === 'dawn') {
     title = 'Mornings';
     content = (
-      <p>Each talk costs them a little sleep. The night's account shows what each stretch saw and lost.</p>
+      <p>
+        Each talk costs them a little sleep. The night's account is a report of what each stretch saw and
+        lost.
+      </p>
     );
   } else if (SEASON_PHASES.has(phase)) {
     title = 'The open seasons';
@@ -737,7 +742,8 @@ export function DuskPanel({
         <section aria-label="Kian and Ada’s pending visit">
           <p>
             Kian and Ada still have their prepared visit and return promise. Their earlier meal stays kept.
-            Opening this chapter did not take them to the refuge. Choose to stay before beginning the watch.
+            Opening this chapter did not take them to the refuge, a safe place to stay. Choose to stay before
+            beginning the watch.
           </p>
           <button type="button" onClick={() => actions.input({ k: 'refugeVisit', choice: 'stay' })}>
             Stay here together
@@ -770,7 +776,7 @@ export function DuskPanel({
                 </button>
               ))}
             </fieldset>
-            {reads ? <p className="w-posting-read">{reads[press]}</p> : null}
+            {reads ? <p className="w-posting-read">{watchWords(reads[press])}</p> : null}
           </>
         ) : (
           <>
@@ -807,14 +813,14 @@ export function DuskPanel({
       <div className="lk-sheet-body">
         {frame.grainWarning ? <p className="w-grain-warning">{frame.grainWarning}</p> : null}
         {!sel && frame.winter && frame.winter.night <= 2 ? (
-          <p className="w-winter-q">{frame.winter.question?.text}</p>
+          <p className="w-winter-q">{watchWords(frame.winter.question?.text ?? '')}</p>
         ) : null}
         {!sel && frame.day?.lines.length ? (
           <details className="w-day" open={frame.day.lines.some((l) => l.came)}>
             <summary>Today ▸</summary>
             <ul>
               {frame.day.lines.map((l) => (
-                <li key={l.text}>{l.text}</li>
+                <li key={l.text}>{watchWords(l.text)}</li>
               ))}
             </ul>
           </details>
@@ -941,7 +947,7 @@ function MomentCard({
 }) {
   return (
     <section className="w-moment" aria-label="A moment on the wall">
-      <p className="w-moment-text">{m.text}</p>
+      <p className="w-moment-text">{watchWords(m.text)}</p>
       <progress className="w-decision-bar" max={120} value={seconds ?? 120} aria-label="Time to decide" />
       <div className="w-moment-options">
         {m.options.map((o) => (
@@ -952,7 +958,7 @@ function MomentCard({
             onClick={() => actions.input({ k: 'answer', id: m.id, choice: o.id })}
           >
             <span>{o.label}</span>
-            {o.read ? <small>{o.read}</small> : null}
+            {o.read ? <small>{watchWords(o.read)}</small> : null}
           </button>
         ))}
       </div>
@@ -1240,7 +1246,7 @@ function NightAccount({
               {available.map((act) => (
                 <li key={key(act)}>
                   <p className="w-night-act-read">
-                    {helperName(act)}: {act.read}
+                    {helperName(act)}: {watchWords(act.read)}
                   </p>
                   <button type="button" className="w-night-act" onClick={() => dispatch(act)}>
                     {act.label}
@@ -1286,7 +1292,7 @@ function NightAccount({
           ) : null}
           {down ? (
             <>
-              <p className="w-note">{down.read}</p>
+              <p className="w-note">{watchWords(down.read)}</p>
               <button
                 type="button"
                 className="w-night-act"
@@ -1464,14 +1470,14 @@ export function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActi
         </blockquote>
       ))}
       <button type="button" className="w-secondary" onClick={() => setAccount(true)}>
-        The night's account
+        The night's account — what happened on the wall
       </button>
       <Talks frame={frame} actions={actions} />
       {frame.watchers.some((w) => w.id === 'kian') ? (
         <section aria-label="A visit together">
           <p>
-            A one-day refuge visit needs both Kian and Ada to agree. Ada remains Kian’s ward; a home threat or
-            unfinished duty keeps them here.
+            A one-day visit to the refuge, a safe place to stay, needs both Kian and his little sister Ada to
+            agree. Kian remains responsible for Ada’s care; a home threat or unfinished duty keeps them here.
           </p>
           {frame.refugeVisit?.status === 'agreed' ? (
             <>
@@ -1508,7 +1514,7 @@ export function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActi
             <div className="w-sheet-body">
               <ul className="w-dawnlines">
                 {d.lines.map((l) => (
-                  <li key={l.section}>{l.text}</li>
+                  <li key={l.section}>{watchWords(l.text)}</li>
                 ))}
               </ul>
               {d.voices.length > 0 ? (

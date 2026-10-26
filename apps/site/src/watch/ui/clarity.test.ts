@@ -446,3 +446,15 @@ it('offers night off separately from posting only in the admitted village, with 
   expect(checkbox.checked).toBe(false);
   expect(title.textContent).toContain('Offer night-off requests at dusk in the new village');
 });
+
+it('explains stairs in saved volume endings and epilogues without changing saved prose', async () => {
+  const { ClosedPage } = await import('./pages.tsx');
+  const frame = structuredClone(dusk);
+  frame.volume.end = 'Tamar is too old for the stair; Kian keeps the Gate.';
+  frame.volume.epilogue = [{ name: 'Tamar', text: '“I counted the stars from the wall stair.”' }];
+  const before = JSON.stringify(frame);
+  const page = render(createElement(ClosedPage, { frame, actions }));
+  expect(page.textContent).toContain('the stairs up to the wall');
+  expect(page.textContent).not.toContain('the wall stair');
+  expect(JSON.stringify(frame)).toBe(before);
+});

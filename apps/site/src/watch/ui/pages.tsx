@@ -14,7 +14,7 @@ import { Icon } from './icons.tsx';
 import { Impressions, Sacks } from './parts.tsx';
 import { PageActions } from './SheetActions.tsx';
 import type { WatchActions } from './useWatch.ts';
-import { epilogueText, metWords, ordinalWord, picksWords, rootsWords } from './words.ts';
+import { epilogueText, metWords, ordinalWord, picksWords, rootsWords, watchWords } from './words.ts';
 
 const SEASON_WORDS: Record<Frame['season'], string> = {
   winter: 'winter',
@@ -35,7 +35,7 @@ export function ChronicleStrip({ frame }: { frame: Frame }) {
     <ol className="w-strip" aria-label="The chronicle, newest first" aria-live="off">
       {lines.map((l) => (
         <li key={`${l.year}-${l.minute}-${l.text}`} className={`w-strip-line w-strip-${l.kind}`}>
-          {l.text}
+          {watchWords(l.text)}
         </li>
       ))}
     </ol>
@@ -54,8 +54,8 @@ function VolumeLine({ v }: { v: FrameVolume }) {
 export function SeasonCardView({ card, actions }: { card: SeasonCard; actions: WatchActions }) {
   return (
     <section className="w-moment w-card" aria-label="A matter for the Keeper">
-      <p className="w-moment-text">{card.text}</p>
-      <p className="w-card-read">{card.read}</p>
+      <p className="w-moment-text">{watchWords(card.text)}</p>
+      <p className="w-card-read">{watchWords(card.read)}</p>
       <div className="w-moment-options">
         {card.options.map((o) => (
           <button
@@ -187,7 +187,7 @@ export function FairPage({ frame, actions }: { frame: Frame; actions: WatchActio
         {fair.offers.map((o) => (
           <li key={o.id} className={o.taken ? 'w-offer is-taken' : 'w-offer'}>
             <h3>{o.label}</h3>
-            <p>{o.text}</p>
+            <p>{watchWords(o.text)}</p>
             {!o.taken && o.affordable && o.after < frame.grain ? (
               <div className="w-offer-after">
                 <span className="w-note">Grain remaining after this offer</span>
@@ -237,8 +237,12 @@ function Leaves({ frame }: { frame: Frame }) {
       <ul>
         {frame.leaves.map((l) => (
           <li key={l.id} className={l.filled ? 'w-leaf is-filled' : 'w-leaf'}>
-            {l.filled ? <p className="w-leaf-text">{l.filled}</p> : <span className="w-leaf-blank" />}
-            <span className="w-leaf-cond">{l.condition}</span>
+            {l.filled ? (
+              <p className="w-leaf-text">{watchWords(l.filled)}</p>
+            ) : (
+              <span className="w-leaf-blank" />
+            )}
+            <span className="w-leaf-cond">{watchWords(l.condition)}</span>
           </li>
         ))}
       </ul>
@@ -263,7 +267,7 @@ export function ThawPage({ frame, actions }: { frame: Frame; actions: WatchActio
       {q ? (
         <div className={`w-question-box is-${q.met === true ? 'met' : q.met === false ? 'unmet' : 'open'}`}>
           <span className="w-kicker">This winter’s question</span>
-          <p>{q.text}</p>
+          <p>{watchWords(q.text)}</p>
           <p className="w-met">{metWords(q.met)}</p>
         </div>
       ) : null}
@@ -297,7 +301,7 @@ function Epilogue({ v }: { v: FrameVolume }) {
       {v.epilogue.map((e) => (
         <li key={`${e.name}-${e.text}`}>
           <span className="w-epi-name">{e.name}</span>
-          <span className="w-epi-text">{epilogueText(e.text)}</span>
+          <span className="w-epi-text">{watchWords(epilogueText(e.text))}</span>
         </li>
       ))}
     </ul>
@@ -320,7 +324,7 @@ export function ClosedPage({
       <p className="w-kicker">Here ends part {v.numeral}</p>
       <h2>{v.title}</h2>
       <p className="w-closed-q">{v.question}</p>
-      {v.end ? <p className="w-closed-end">{v.end}</p> : null}
+      {v.end ? <p className="w-closed-end">{watchWords(v.end)}</p> : null}
       <p className="w-fleuron" aria-hidden="true">
         ❦
       </p>
@@ -354,7 +358,7 @@ export function FallenPage({
   return (
     <div className="w-page w-closed w-fallen">
       <p className="w-kicker">The chronicle closes · {frame.date}</p>
-      <h2>{v.end ?? 'The granary is empty.'}</h2>
+      <h2>{watchWords(v.end ?? 'The granary is empty.')}</h2>
       <Sacks have={frame.grain} lost={0} label="The granary as it was left" />
       <p className="w-fleuron" aria-hidden="true">
         ❦

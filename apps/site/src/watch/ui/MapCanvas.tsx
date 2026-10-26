@@ -69,7 +69,7 @@ export function MapCanvas({
 
   const label =
     frame.phase === 'night'
-      ? `The wall at night. The lantern is ${frame.lit ? `at the ${frame.sections.find((s) => s.id === frame.lit)?.name}` : 'moving'}. Tap a watcher for their account, or a section to carry the lantern there.`
+      ? `The wall at night. The lantern is ${frame.lit ? `at the ${frame.sections.find((s) => s.id === frame.lit)?.name}` : 'moving'}. Tap a watcher to hear what happened on their watch, or a section to carry the lantern there.`
       : isDay(frame)
         ? `The village by day, ${frame.season}: the fields above the wall and the villagers below it.`
         : 'The wall at dusk. Pick a watcher, then tap a post.';
