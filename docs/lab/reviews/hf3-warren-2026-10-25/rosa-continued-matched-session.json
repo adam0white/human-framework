@@ -1,0 +1,72 @@
+{
+  "started": "2026-10-26T02:27:49.586023+00:00",
+  "ended": "2026-10-26T02:44:51.913780+00:00",
+  "backend": "claude",
+  "model": "opus",
+  "effort": "low",
+  "device": "phone",
+  "floor_minutes": 15,
+  "ceiling_minutes": 25,
+  "release_before": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "floor_met": true,
+  "pairing_role": "paired-arm collection",
+  "source": "Coordinator metadata, not player-visible content or production feedback receipt.",
+  "harness_session_id": "7c6932c4-66c7-47ac-b822-4996069d93b7",
+  "same_start_sha256": "c71ad6d43833967c8c07e754d31ac2602fedb9a9d0ead145b687892a549665a4",
+  "state_restore_matched": true,
+  "report_is_coordinator_recovery": false,
+  "stop": {
+    "harness_session_id": "7c6932c4-66c7-47ac-b822-4996069d93b7",
+    "t": "2026-10-26T02:43:44.624Z",
+    "elapsed_s": 949.776,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "Ten people safe enough, a new family of five just came. I understand what to do now, but it is mostly waiting for people to dig. Good place to stop for today. I would come back later to make room for the Arslan family.",
+    "game_clock": null,
+    "engagement": null,
+    "reason": "BORED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "viewport_resizes": [
+    {
+      "elapsed_s": 298.233,
+      "input": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "elapsed_s": 306.141,
+      "input": {
+        "width": 360,
+        "height": 690
+      }
+    }
+  ],
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "d1eed2ee6b3a77ecd279ca71fc1989b3a0c4124e6463f54ed67e09415f21ab92",
+    "lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "image_view_evidence": {
+    "source": "No independent full tool-event capture retained. Player report may declare image viewing. Exec JSONL alone cannot establish presence or absence.",
+    "status": "unverified"
+  },
+  "report.md_sha256": "514f8e5ab05cbddb99e2a11b0f86915f97a13fbaea29f62f931b20fed2d5998a",
+  "wall-clock.jsonl_sha256": "4e14a38a58d2cdfb98c064f6e56efd76d845dad6632b40d020e72d6355666136"
+}

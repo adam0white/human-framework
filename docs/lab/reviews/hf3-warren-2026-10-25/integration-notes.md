@@ -1,3 +1,5 @@
+> Historical packet002 note. Current R1 collection, allocations and remaining work are in [the current index](README.md). F581–584 remain historical identity umbrellas; each distinct ask now has its own F-number. No later ask reuses those umbrella IDs. Original archive/readable-view mappings below remain unchanged.
+
 # Warren R1 integration and provenance correction
 
 Packet002 preserves eight original reports from four testers on source `43adc50`. They are unmatched qualitative exposures with independent random seeds, not a paired causal comparison or a complete round. F-581 Maya, F-582 Emre, F-583 Nia and F-584 Rosa retain their assigned identities in the [canonical ledger](../../feedback-ledger.md); later corrected exposures reuse those IDs. Other reserved IDs are not allocated here. See the [original packet index](README.md) and [starting-state correction](STARTING-STATE-CORRECTION.md). Full collection, desktop control, coding, fixes and same-tester retests remain open with the playtest director.
@@ -25,3 +27,9 @@ Four approved diary blocks append both original alternatives without replacing e
 ## Original authority and readable derivatives
 
 The [archive index](../../../../archive/evidence/2026-10-26-docsweb/README.md) and [source-to-view manifest](../../../../archive/evidence/2026-10-26-docsweb/manifest.json) map every approved original packet path and SHA256 to its exact archived bytes and readable path, with the readable hash recorded at integration commit `c8b7630dbe95a2bf61ecae2e36819baadf48c7b2`. Later metadata corrections, ledger additions and diary appends may change the linked canonical view; the manifest hash remains a snapshot of that integration revision. Formatter-only readable views can differ in table padding, emphasis delimiters or JSON indentation. Original report words, parsed JSON values and raw JSONL records remain authoritative. Hash fields in copied producer manifests, asks maps and frozen coding records name the archived **original** sequence, not a newly formatted view. Resolve those paths through the archive map. Archived original links retain their original-root meaning; they are not all portable from the archive directory. Current navigable artifact links are listed above.
+
+## Exact originals and readable formatting
+
+New original reports are retained byte for byte in `archive/evidence/2026-10-26-playtest-b/warren-r1-packet-003/`, with a hash manifest. The ask and return maps link to those originals and separately name readable report views. Readable copies and metadata use repository formatting. The 117 canonical rows quote the complete original return sections, including all conditions and evidence limits. Original raw logs and earlier readable views are unchanged.
+
+The independent evidence review found and corrected one ledger presentation defect: individual and tester aggregate rows now quote complete original return sections. The final source packet includes all117 canonical rows; signed push, exact CI, fixed-build retests and owner acceptance remain distinct checks.

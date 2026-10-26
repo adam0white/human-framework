@@ -1,0 +1,34 @@
+{
+  "time": "2026-10-26T03:28:27.590457+00:00",
+  "status": "accepted-completed-play",
+  "original_supervisor_status": "incomplete",
+  "reason": "Only post-game image trace parser failed on system.message string; original gameplay/final report completed normally. No player words compiled or changed.",
+  "original_model_report": true,
+  "report_sha256": "04795b8b833d5f58295f39ab6485e0822b6c800a5eb031a9054b26abf887ecb3",
+  "raw_log_sha256": "8b7907a2014cf33f372f338792f097d7919dbd02242ac9b03473ddc84b3d836b",
+  "observed_stop": {
+    "harness_session_id": "11689297-56da-4e10-8929-cd65c615d240",
+    "t": "2026-10-26T03:19:54.943Z",
+    "elapsed_s": 473.138,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "I am stopping at 30 August. The shelter has room for six behind one stone door, and I understood how I got there. But since 23 August I have had nothing to decide: no date for the riders, the same journal lines every day, and an empty-jars warning I cannot act on. I selected I would stop here in Feedback and left it unsubmitted. I would come back if the riders had a date I could prepare for.",
+    "game_clock": "Morning · 30 Aug · year 1",
+    "engagement": null,
+    "reason": "BORED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "floor_met": true,
+  "release_after": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "release_after_observed_at": "2026-10-26T03:28:27.590457+00:00",
+  "release_after_limit": "Delayed coordinator check after parser failure; original supervisor did not reach post-run manifest fetch. Game held on same43adc50; sample enclosing this completed play is explicitly delayed.",
+  "image_view_calls": 7
+}

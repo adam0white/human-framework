@@ -1,0 +1,382 @@
+{
+  "status": "PASS",
+  "time": "2026-10-26T06:10:51.314931+00:00",
+  "valid_arms": 28,
+  "expected_arms": 28,
+  "pairs": [
+    {
+      "persona": "Maya Chen",
+      "arms": [
+        {
+          "arm": "free",
+          "collection": "hf3-warren-r1-matched",
+          "session_id": "76f4acf2-b288-4a7f-b689-5250ae5d8850",
+          "brief_sha256": "363751711ee952d8cb8f71aff490737785edd2263d66ddf3701f045b0c7f5482",
+          "report_sha256": "4bdfa54cfa7e34f19d83c20afcb58840e708d797f4a43f46ef0b880134022eda",
+          "stop_elapsed_s": 240.848,
+          "actual_interaction_sizes": [[360, 690]],
+          "recovery_compilation": true
+        },
+        {
+          "arm": "continued",
+          "collection": "hf3-warren-r1-matched",
+          "session_id": "88fa399b-278e-41be-ad0a-65320d36fb23",
+          "brief_sha256": "88b57a42f27cbd8f03eecef9b2a96af3e0ea577d4b21912886d00353bd5f57ee",
+          "report_sha256": "a3bbba8ae681a5da2407b6884e4639fb96c13be9192a1dce3481cabc00d88b48",
+          "stop_elapsed_s": 923.549,
+          "actual_interaction_sizes": [[360, 690], [1280, 800]],
+          "recovery_compilation": false
+        }
+      ],
+      "same_frozen_history": true
+    },
+    {
+      "persona": "Emre Kaya",
+      "arms": [
+        {
+          "arm": "free",
+          "collection": "hf3-warren-r1-matched",
+          "session_id": "3867c9c2-603b-4cd0-9f0b-c613b387401b",
+          "brief_sha256": "c9e48c202c0172b09932131d76e216ba806b2e5e3c7f275002bca336252959eb",
+          "report_sha256": "1ac552d22f9c58e8ae04f1ed7e467453c5184ffde0a967fe949ade522e52617a",
+          "stop_elapsed_s": 588.855,
+          "actual_interaction_sizes": [[360, 690], [1280, 800]],
+          "recovery_compilation": false
+        },
+        {
+          "arm": "continued",
+          "collection": "hf3-warren-r1-matched",
+          "session_id": "4d50a54b-81b1-4e7b-a441-60c3dc9e18ef",
+          "brief_sha256": "d1a99c2b2ae1912b3d5658280f6ad7f1089d6fcd3d2e8e3dc3f3382b3e86e1e3",
+          "report_sha256": "834ee61a8f939d49e8d0c935e44b97f9b2c8f6099b8bcc9a9996b746ecd2501f",
+          "stop_elapsed_s": 946.794,
+          "actual_interaction_sizes": [[360, 690], [1280, 800]],
+          "recovery_compilation": false
+        }
+      ],
+      "same_frozen_history": true
+    },
+    {
+      "persona": "Nia Okafor",
+      "arms": [
+        {
+          "arm": "free",
+          "collection": "hf3-warren-r1-matched",
+          "session_id": "dd46305d-8ed5-43e0-ad82-003296976354",
+          "brief_sha256": "b672d2f7908410943ada9afd8547cbbb55477b9d49254fb801e3d0400afc4b28",
+          "report_sha256": "b9e7c41e516f3e275ff43458ad942e9b57d1bbf3fcd51fbd18c67950c2486a2d",
+          "stop_elapsed_s": 157.912,
+          "actual_interaction_sizes": [[360, 690]],
+          "recovery_compilation": false
+        },
+        {
+          "arm": "continued",
+          "collection": "hf3-warren-r1-matched",
+          "session_id": "a7af8593-7a96-4009-8ff4-496a200060c5",
+          "brief_sha256": "89bfe826c8fbead49b5fb31a635b6428a3199aa308f3ed38406677c048f6e94d",
+          "report_sha256": "f5afded5c6049a2f60b2fd5ae1bec0cea1bb69aff5699e7bbe23550118208362",
+          "stop_elapsed_s": 936.793,
+          "actual_interaction_sizes": [[360, 690], [1280, 800]],
+          "recovery_compilation": false
+        }
+      ],
+      "same_frozen_history": true
+    },
+    {
+      "persona": "Rosa Alvarez",
+      "arms": [
+        {
+          "arm": "free",
+          "collection": "hf3-warren-r1-matched",
+          "session_id": "aba9385a-75c0-4e03-ae3f-4bec81c6a5b9",
+          "brief_sha256": "a236126c16e41cdf6aab0c7ac9c8464e658d668feee84d175ceed54c54dedb46",
+          "report_sha256": "24de4ceda722fb2f8467d54fc7ad6f7b4a44c7829dc3eff0083989b09be48ddd",
+          "stop_elapsed_s": 47.765,
+          "actual_interaction_sizes": [[360, 690]],
+          "recovery_compilation": false
+        },
+        {
+          "arm": "continued",
+          "collection": "hf3-warren-r1-matched",
+          "session_id": "7c6932c4-66c7-47ac-b822-4996069d93b7",
+          "brief_sha256": "0c32ce27874b024ae8af481c360b9f3a0911c24d364dfb8f27e3c2842895a375",
+          "report_sha256": "514f8e5ab05cbddb99e2a11b0f86915f97a13fbaea29f62f931b20fed2d5998a",
+          "stop_elapsed_s": 949.776,
+          "actual_interaction_sizes": [[360, 690], [1280, 800]],
+          "recovery_compilation": false
+        }
+      ],
+      "same_frozen_history": true
+    },
+    {
+      "persona": "Jonas Berg",
+      "arms": [
+        {
+          "arm": "free",
+          "collection": "hf3-warren-r1-prompt-return",
+          "session_id": "7650911f-88dc-4b1e-a14e-9f4720008472",
+          "brief_sha256": "a2c3e98008ed0bf2b0724acd42436fdb4a4c7a4d2d3be84d64a34e407005f2cf",
+          "report_sha256": "72b58ec7b5c0251ffc67b9a62abd7eb3fcdfafbc5b141c6efd20a8376d00d29b",
+          "stop_elapsed_s": 75.586,
+          "actual_interaction_sizes": [[360, 690]],
+          "recovery_compilation": false
+        },
+        {
+          "arm": "continued",
+          "collection": "hf3-warren-r1-prompt-return",
+          "session_id": "43edb8e5-7726-49d3-9078-7af70dfbeeb2",
+          "brief_sha256": "a2ea5f0bab70cb24e2f557b1f2cf3fb8ff8ca97cc9ab711b7487d4143ad6e8e8",
+          "report_sha256": "f08306f842519c46ec5df733c6b5e6929a75708be20ca55f6ed89b3c0e2cd957",
+          "stop_elapsed_s": 927.282,
+          "actual_interaction_sizes": [[360, 690], [1280, 800]],
+          "recovery_compilation": false
+        }
+      ],
+      "same_frozen_history": true
+    },
+    {
+      "persona": "Aisha Rahman",
+      "arms": [
+        {
+          "arm": "free",
+          "collection": "hf3-warren-r1-matched",
+          "session_id": "f9a4ed7d-4599-4d05-8025-170b3eb637cd",
+          "brief_sha256": "7e8ebeefb568fa3190adeab4f36578f2e298fde924c13d865d33a7d3f11f5d1d",
+          "report_sha256": "255ba960dfd18ab1e29ef6356ed1e7a533efe249a05ba5f36aa99fb85b209c7b",
+          "stop_elapsed_s": 905.827,
+          "actual_interaction_sizes": [[360, 690], [1280, 800]],
+          "recovery_compilation": false
+        },
+        {
+          "arm": "continued",
+          "collection": "hf3-warren-r1-matched",
+          "session_id": "73250e06-4cc2-4180-8875-6705ad89ae6c",
+          "brief_sha256": "1dbdfd5bde43def9ea83e1a72a21cc6494eb0ab9cd9c2cdd52342048bbda64fe",
+          "report_sha256": "199ff2609615eb6e9d210d40007bd8e6ba79a90d607fb935ab7229db92257c02",
+          "stop_elapsed_s": 936.005,
+          "actual_interaction_sizes": [[360, 690], [1280, 800]],
+          "recovery_compilation": false
+        }
+      ],
+      "same_frozen_history": true
+    },
+    {
+      "persona": "Diego Silva",
+      "arms": [
+        {
+          "arm": "free",
+          "collection": "hf3-warren-r1-matched",
+          "session_id": "aa866259-9cca-4854-ba0c-01b70a7a96bc",
+          "brief_sha256": "3a5ce3a46c22a6234a44df7d9d22878ef79e868b03a6c8b5a4abb1491f719e28",
+          "report_sha256": "57dfd5409930593bc0fcc90852316f1ae3401f151e67116438c136d149a39270",
+          "stop_elapsed_s": 271.329,
+          "actual_interaction_sizes": [[360, 690]],
+          "recovery_compilation": false
+        },
+        {
+          "arm": "continued",
+          "collection": "hf3-warren-r1-matched",
+          "session_id": "829791b8-0790-4ee8-87d6-1e795bf7cabf",
+          "brief_sha256": "15f490992b9e4a1bd2754374b95cf4746e38209021c6aa3f9e3f1716253ae02a",
+          "report_sha256": "e4d68091c7c9516cfc1bdcc30d3ec34357151b2dd99330ed3b0d379ae14090f7",
+          "stop_elapsed_s": 920.89,
+          "actual_interaction_sizes": [[360, 690], [1280, 800]],
+          "recovery_compilation": false
+        }
+      ],
+      "same_frozen_history": true
+    },
+    {
+      "persona": "Mei Tan",
+      "arms": [
+        {
+          "arm": "free",
+          "collection": "hf3-warren-r1-disk-return",
+          "session_id": "be7f190c-e348-4346-bd2c-c14671a9c6c9",
+          "brief_sha256": "5b4e21d54de08f09f15650b3e19888d2853794d09276278f05d3093f211d1425",
+          "report_sha256": "1ea7536321a67cbd5f3ab5b10b16170cfc2bb9068ffdb36c65751ef3f7caea25",
+          "stop_elapsed_s": 326.76,
+          "actual_interaction_sizes": [[360, 690], [1280, 800]],
+          "recovery_compilation": false
+        },
+        {
+          "arm": "continued",
+          "collection": "hf3-warren-r1-disk-return",
+          "session_id": "57cf2bda-2466-4511-9c13-a0ab5fe9278e",
+          "brief_sha256": "b8c729e67c97684f4af501f17b1c68963f7850d89e6875d3b14d14c97154cb7c",
+          "report_sha256": "ff383b944b4c1e62b420cf94ade2fd22e3929ef3a2998082edbbc90bf50c1373",
+          "stop_elapsed_s": 915.785,
+          "actual_interaction_sizes": [[360, 690], [1280, 800]],
+          "recovery_compilation": false
+        }
+      ],
+      "same_frozen_history": true
+    },
+    {
+      "persona": "Samir Haddad",
+      "arms": [
+        {
+          "arm": "free",
+          "collection": "hf3-warren-r1-disk-return",
+          "session_id": "d356c799-06aa-46af-a373-642956644fce",
+          "brief_sha256": "21b003a9a531bb30b53f2ca45e84495cfb1cf79076c2e8b7a805f64c5cdb798d",
+          "report_sha256": "90d2e01bfe5a6c47cbc7d7d7043ee58c89ce174ae98f88a2c5941d2c077eb7bc",
+          "stop_elapsed_s": 182.942,
+          "actual_interaction_sizes": [[360, 690]],
+          "recovery_compilation": false
+        },
+        {
+          "arm": "continued",
+          "collection": "hf3-warren-r1-disk-return",
+          "session_id": "2659a881-ec8c-45a5-a6e9-fac5e3ad9708",
+          "brief_sha256": "a4ebef0660ec14351da29201d663042322dd8ac7a34868b368af960e744dfce2",
+          "report_sha256": "500c17bb1786210c8ed135f37c44f79bed48ed977715e5580c29a7424861017a",
+          "stop_elapsed_s": 912.86,
+          "actual_interaction_sizes": [[360, 690], [1280, 800]],
+          "recovery_compilation": false
+        }
+      ],
+      "same_frozen_history": true
+    },
+    {
+      "persona": "Tessa Williams",
+      "arms": [
+        {
+          "arm": "free",
+          "collection": "hf3-warren-r1-matched",
+          "session_id": "33088b69-41ff-4856-95cf-30ea743ef0d7",
+          "brief_sha256": "b6b2f9b0a41b269db2fcd1e736bbdb390e61d0eacfae693f860e91af64fb6d10",
+          "report_sha256": "e4ce7dacda952c9575eb7d436daaa6c342fd8770b4c8b71d79d64ec05dac7557",
+          "stop_elapsed_s": 708.802,
+          "actual_interaction_sizes": [[360, 690], [1280, 800]],
+          "recovery_compilation": false
+        },
+        {
+          "arm": "continued",
+          "collection": "hf3-warren-r1-matched",
+          "session_id": "a9392651-5712-4368-b171-4987d48cb380",
+          "brief_sha256": "0bb3256eb3ef7e1ca11e0e49bf88647dc1eb668b38db4c3405d5be993e14ac07",
+          "report_sha256": "bff085bc65098c64e1e545f290344b8e6f703064c7971dad479747f85ab96246",
+          "stop_elapsed_s": 986.063,
+          "actual_interaction_sizes": [[360, 690], [1280, 800]],
+          "recovery_compilation": false
+        }
+      ],
+      "same_frozen_history": true
+    },
+    {
+      "persona": "Pavel Novak",
+      "arms": [
+        {
+          "arm": "free",
+          "collection": "hf3-warren-r1-matched",
+          "session_id": "d03e8f8a-2196-4047-98af-856f68b40afd",
+          "brief_sha256": "dc49ab94a3622a6df612ab25ebcda3be1dd3e651771fe5e2d040a3caabf4f6f6",
+          "report_sha256": "e501408d845b947436234018ee6489ebe032ebe9c302fef88db4c0855eaa909b",
+          "stop_elapsed_s": 170.598,
+          "actual_interaction_sizes": [[360, 690]],
+          "recovery_compilation": false
+        },
+        {
+          "arm": "continued",
+          "collection": "hf3-warren-r1-matched",
+          "session_id": "35dd62a2-ff81-4578-8d92-cb53bafab0db",
+          "brief_sha256": "8c1cf1d48bc637c6b639f8ac6b7c2fd113c1cec005983adb37f28e765fc17fa2",
+          "report_sha256": "be9d000e57c2166b34547eeeff032e63dd423c9d24cd31258de9e811690c2315",
+          "stop_elapsed_s": 925.419,
+          "actual_interaction_sizes": [[360, 690], [1280, 800]],
+          "recovery_compilation": false
+        }
+      ],
+      "same_frozen_history": true
+    },
+    {
+      "persona": "Leila Mansour",
+      "arms": [
+        {
+          "arm": "free",
+          "collection": "hf3-warren-r1-matched",
+          "session_id": "40f8538a-7dc4-4d7c-9aa6-adf3fbe3b3d7",
+          "brief_sha256": "1e7fa32f627a0c45ec2a6351a2955de6dd9df9074ed1c80777a2c6d084058495",
+          "report_sha256": "1b0123f1c14e20af9ee197a11656996e686a221065c5e96b7183ba494c640030",
+          "stop_elapsed_s": 288.773,
+          "actual_interaction_sizes": [[1280, 800]],
+          "recovery_compilation": false
+        },
+        {
+          "arm": "continued",
+          "collection": "hf3-warren-r1-matched",
+          "session_id": "02319b1e-95b8-4823-a6b6-ff4b6ab937fc",
+          "brief_sha256": "a08970bbdb7927da314e87ffee33d1b762145d466c036a2373434db19ecfce7d",
+          "report_sha256": "398b9d6ef14ba4e333759bf2c0754326ecbc3875de3b6e4c52d4a368b3b72121",
+          "stop_elapsed_s": 916.058,
+          "actual_interaction_sizes": [[360, 690], [1280, 800]],
+          "recovery_compilation": false
+        }
+      ],
+      "same_frozen_history": true
+    },
+    {
+      "persona": "Celia Morel",
+      "arms": [
+        {
+          "arm": "free",
+          "collection": "hf3-warren-r1-matched",
+          "session_id": "e981db33-0d48-450d-b8fb-1b64911a4771",
+          "brief_sha256": "60ce11bf765937ec4fbe7aa590d9ba587023a86848bc56b4240946872d0dd0df",
+          "report_sha256": "31d58adbc0f158a8fabb9224665df57cacba74b851130e03caa2199b3afb9a55",
+          "stop_elapsed_s": 192.961,
+          "actual_interaction_sizes": [[1280, 800]],
+          "recovery_compilation": false
+        },
+        {
+          "arm": "continued",
+          "collection": "hf3-warren-r1-matched",
+          "session_id": "15c01cb2-d43c-4fd8-a497-42bf371b5a84",
+          "brief_sha256": "91c0ba33cede88e05c01883811f20db286e3d01e17256f24a1220dd4060af218",
+          "report_sha256": "8f6ec64ec7949e508dc91224dafa54b6340f1b2a5bfaeb6fab9d0f0d06e6a381",
+          "stop_elapsed_s": 911.323,
+          "actual_interaction_sizes": [[360, 690], [1280, 800]],
+          "recovery_compilation": false
+        }
+      ],
+      "same_frozen_history": true
+    },
+    {
+      "persona": "Bashir Osman",
+      "arms": [
+        {
+          "arm": "free",
+          "collection": "hf3-warren-r1-matched",
+          "session_id": "b9af707e-eba4-41c5-b429-2c6d65c75257",
+          "brief_sha256": "890ff2bfc24b054ef6ddbdeb68c03ccaeefe2d443c034ce14cfc545c9f43f413",
+          "report_sha256": "0a5bfe0697c3b7b4166505dc7dc3548662eab375c31075eebaf2cfb1dd4ecc92",
+          "stop_elapsed_s": 1055.101,
+          "actual_interaction_sizes": [[360, 690], [1280, 800]],
+          "recovery_compilation": false
+        },
+        {
+          "arm": "continued",
+          "collection": "hf3-warren-r1-matched",
+          "session_id": "8575a725-024b-422c-ad55-650a1bdb5dd2",
+          "brief_sha256": "8995247c03f4705ba72f9c7a0894c8f3955e7e79c78d65dd8dc292f15a9fbb80",
+          "report_sha256": "5b967c407c2136c599f9a919d3202cc1dc0f2f87314ca32cbb02369db328db03",
+          "stop_elapsed_s": 913.628,
+          "actual_interaction_sizes": [[360, 690], [1280, 800]],
+          "recovery_compilation": false
+        }
+      ],
+      "same_frozen_history": true
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "First four pairs retain audit prompt bias and declared prior exposure.",
+    "Rosa protocol quits excluded from taste patterns.",
+    "Maya free final report is accepted coordinator compilation; original raw words retained.",
+    "Legacy actual image-view capture has gaps; missing capture is unverified, not proof no image was viewed.",
+    "Shared central cutover has separate narrow source-context disclosure.",
+    "Both viewport normal interaction is a browser evidence gate, not proof all layouts were inspected.",
+    "This gate does not close blind coding, ledger integration, fixes or retest."
+  ]
+}

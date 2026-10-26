@@ -1,0 +1,72 @@
+{
+  "started": "2026-10-26T02:09:27.203458+00:00",
+  "ended": "2026-10-26T02:26:04.251768+00:00",
+  "backend": "claude",
+  "model": "opus",
+  "effort": "low",
+  "device": "desktop",
+  "floor_minutes": 15,
+  "ceiling_minutes": 25,
+  "release_before": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "floor_met": true,
+  "pairing_role": "paired-arm collection",
+  "source": "Coordinator metadata, not player-visible content or production feedback receipt.",
+  "harness_session_id": "4d50a54b-81b1-4e7b-a441-60c3dc9e18ef",
+  "same_start_sha256": "c71ad6d43833967c8c07e754d31ac2602fedb9a9d0ead145b687892a549665a4",
+  "state_restore_matched": true,
+  "report_is_coordinator_recovery": false,
+  "stop": {
+    "harness_session_id": "4d50a54b-81b1-4e7b-a441-60c3dc9e18ef",
+    "t": "2026-10-26T02:25:22.592Z",
+    "elapsed_s": 946.794,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "Feedback has keep playing / not sure / would stop here, no I am stopping or I am confused, so I touch nothing. I stop. This hill was better than my last: the bell replies explained more, the water hint gave me a project. But again people slept above the hill after the bell, again exposed is unexplained, and now the loop is families arrive, beds, wait. I would leave it in a tab and maybe come back for the water, not tonight.",
+    "game_clock": "Morning · 22 Sep · year 1",
+    "engagement": null,
+    "reason": "BORED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "viewport_resizes": [
+    {
+      "elapsed_s": 299.155,
+      "input": {
+        "width": 360,
+        "height": 690
+      }
+    },
+    {
+      "elapsed_s": 307.146,
+      "input": {
+        "width": 1280,
+        "height": 800
+      }
+    }
+  ],
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "d1eed2ee6b3a77ecd279ca71fc1989b3a0c4124e6463f54ed67e09415f21ab92",
+    "lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "image_view_evidence": {
+    "source": "No independent full tool-event capture retained. Player report may declare image viewing. Exec JSONL alone cannot establish presence or absence.",
+    "status": "unverified"
+  },
+  "report.md_sha256": "834ee61a8f939d49e8d0c935e44b97f9b2c8f6099b8bcc9a9996b746ecd2501f",
+  "wall-clock.jsonl_sha256": "5042d99933afc884d3a71a505b381627db2cf43c06b42c294cbdb68ae269de7f"
+}

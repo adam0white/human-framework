@@ -1,0 +1,74 @@
+{
+  "started": "2026-10-26T05:12:34.093404+00:00",
+  "ended": "2026-10-26T05:28:23.306649+00:00",
+  "backend": "claude",
+  "model": "opus",
+  "effort": "low",
+  "device": "phone",
+  "floor_minutes": 15,
+  "ceiling_minutes": 25,
+  "release_before": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "floor_met": true,
+  "pairing_role": "paired-arm collection",
+  "source": "Coordinator metadata, not player-visible content or production feedback receipt.",
+  "harness_session_id": "8575a725-024b-422c-ad55-650a1bdb5dd2",
+  "same_start_sha256": "c71ad6d43833967c8c07e754d31ac2602fedb9a9d0ead145b687892a549665a4",
+  "state_restore_matched": true,
+  "report_is_coordinator_recovery": false,
+  "stop": {
+    "harness_session_id": "8575a725-024b-422c-ad55-650a1bdb5dd2",
+    "t": "2026-10-26T05:27:55.485Z",
+    "elapsed_s": 913.628,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "Everyone has a bed, the store got its tick, the scouts went away. The village is quiet and my order is finished. The rest is waiting for the next riders, and I would rather come back to that another evening than sit and watch the same journal lines now. Stopping here contentedly, a little tired of tapping tiny squares.",
+    "game_clock": null,
+    "engagement": null,
+    "reason": "BORED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "viewport_resizes": [
+    {
+      "elapsed_s": 284.914,
+      "input": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "elapsed_s": 291.875,
+      "input": {
+        "width": 360,
+        "height": 690
+      }
+    }
+  ],
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "d1eed2ee6b3a77ecd279ca71fc1989b3a0c4124e6463f54ed67e09415f21ab92",
+    "lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "image_view_evidence": {
+    "source": "Actual private rollout tool events; no image bytes published.",
+    "calls": 15,
+    "returned_image_calls": 15,
+    "times": [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
+  },
+  "report.md_sha256": "5b967c407c2136c599f9a919d3202cc1dc0f2f87314ca32cbb02369db328db03",
+  "wall-clock.jsonl_sha256": "15aa1eb1c3eacc584539beb69fde9d3e5a33174b2d40f37d9364853e14b41e88"
+}

@@ -1,0 +1,72 @@
+{
+  "started": "2026-10-26T01:53:03.255009+00:00",
+  "ended": "2026-10-26T02:03:49.978420+00:00",
+  "backend": "claude",
+  "model": "opus",
+  "effort": "low",
+  "device": "desktop",
+  "floor_minutes": 0,
+  "ceiling_minutes": 25,
+  "release_before": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "floor_met": true,
+  "pairing_role": "paired-arm collection",
+  "source": "Coordinator metadata, not player-visible content or production feedback receipt.",
+  "harness_session_id": "3867c9c2-603b-4cd0-9f0b-c613b387401b",
+  "same_start_sha256": "c71ad6d43833967c8c07e754d31ac2602fedb9a9d0ead145b687892a549665a4",
+  "state_restore_matched": true,
+  "report_is_coordinator_recovery": false,
+  "stop": {
+    "harness_session_id": "3867c9c2-603b-4cd0-9f0b-c613b387401b",
+    "t": "2026-10-26T02:02:58.609Z",
+    "elapsed_s": 588.855,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "Feedback has keep playing / not sure / stop here, no I am stopping or I am confused, so I choose nothing and submit nothing. I stop. This time I built the deep room and door early and the game told me why the bell matters, which is better than last time. But the result was the same: people agreed, then ate and slept at home, and the door stayed open. I cannot send anyone. Now it is the same slow waiting with the same journal lines. I would come back only if I could see the real attack, not tonight.",
+    "game_clock": "Morning · 7 Sep · year 1",
+    "engagement": null,
+    "reason": "BORED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "viewport_resizes": [
+    {
+      "elapsed_s": 290.865,
+      "input": {
+        "width": 360,
+        "height": 690
+      }
+    },
+    {
+      "elapsed_s": 301.155,
+      "input": {
+        "width": 1280,
+        "height": 800
+      }
+    }
+  ],
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "d1eed2ee6b3a77ecd279ca71fc1989b3a0c4124e6463f54ed67e09415f21ab92",
+    "lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "image_view_evidence": {
+    "source": "No independent full tool-event capture retained. Player report may declare image viewing. Exec JSONL alone cannot establish presence or absence.",
+    "status": "unverified"
+  },
+  "report.md_sha256": "1ac552d22f9c58e8ae04f1ed7e467453c5184ffde0a967fe949ade522e52617a",
+  "wall-clock.jsonl_sha256": "54c371ca0d0d1d15d90521aa6c82f017d95a226ddcfa813c2a731e531b14715e"
+}

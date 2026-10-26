@@ -1,0 +1,33 @@
+{
+  "started": "2026-10-26T05:24:26.317676+00:00",
+  "ended": "2026-10-26T05:40:28.148261+00:00",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "device": "desktop",
+  "floor_minutes": 15,
+  "ceiling_minutes": 25,
+  "external_control": "https://adarkroom.doublespeakgames.com/",
+  "observed_stop": {
+    "harness_session_id": "f19cdeb8-cdc4-411f-8da9-90442e9fae3f",
+    "t": "2026-10-26T05:39:43.882Z",
+    "elapsed_s": 911.087,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "I am stopping at the tiny village with eight gatherers and two remaining traps. I liked warming the builder and finding the bundle outside, but I do not want to wait for enough fur tonight. I would leave this running while I made tea. I would not return another evening for the building loop alone; I would be tempted by another small mystery, but I am not curious enough to keep checking for one now.",
+    "game_clock": null,
+    "engagement": null,
+    "reason": "BORED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "floor_met": true,
+  "role": "sole logical-R1 external control; declared return; fresh world",
+  "production_feedback_submitted": false,
+  "source_hashes": {
+    "report.md": "f52240348e1d6ef5313c391248c63924599380e9c60a0b8a01a77f6e52f4f999",
+    "wall-clock.jsonl": "e68d5fa1e897eb54d0cc3e727d955e713d26f52ed622c2fdc85effdbe99d68f6"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "time": "2026-10-26T05:46:06.498665+00:00",
+  "status": "PROMPT MISMATCH; original pair qualitative",
+  "actual_free_brief_recovered_by_exact_recorded_sha256": "2af2b8b0fd8a9cd9b58add4353cdbb2f2c26f0aeb9715a51aa3b58a1b80754cf",
+  "recovered_file": "/Users/abdul/code/.lab-scratch/playtest-b/hf3-warren-r1-matched/jonas-free-brief-actual-dispatched.txt",
+  "method": "Saved pre-audit-correction generator, existing frozen history, original CLI arguments and original first-visit exposure. Candidate bytes exactly match dispatch supervisor SHA; no claim from an unmatched candidate.",
+  "free_started": "2026-10-26T02:32:35.456151+00:00",
+  "later_diary_brief_overwrote_path_at": "2026-10-26T02:33:07.342558Z",
+  "continued_started": "2026-10-26T02:39:08.312673+00:00",
+  "free_report_DL_references": 19,
+  "continued_report_DL_references": 0,
+  "replacement": "hf3-warren-r1-prompt-return; same logical R1, not a fix iteration",
+  "source_reports_changed": false
+}

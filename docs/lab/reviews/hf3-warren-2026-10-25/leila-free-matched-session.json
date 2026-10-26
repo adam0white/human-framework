@@ -1,0 +1,59 @@
+{
+  "started": "2026-10-26T04:44:59.845440+00:00",
+  "ended": "2026-10-26T04:50:21.116981+00:00",
+  "backend": "claude",
+  "model": "opus",
+  "effort": "low",
+  "device": "desktop",
+  "floor_minutes": 0,
+  "ceiling_minutes": 25,
+  "release_before": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "floor_met": true,
+  "pairing_role": "paired-arm collection",
+  "source": "Coordinator metadata, not player-visible content or production feedback receipt.",
+  "harness_session_id": "40f8538a-7dc4-4d7c-9aa6-adf3fbe3b3d7",
+  "same_start_sha256": "c71ad6d43833967c8c07e754d31ac2602fedb9a9d0ead145b687892a549665a4",
+  "state_restore_matched": true,
+  "report_is_coordinator_recovery": false,
+  "stop": {
+    "harness_session_id": "40f8538a-7dc4-4d7c-9aa6-adf3fbe3b3d7",
+    "t": "2026-10-26T04:49:53.667Z",
+    "elapsed_s": 288.773,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "The prose is clean and the village panel is the best thing here, but after the first room nothing I chalk gets dug, the log loops the same eight lines for three days, and I cannot tell whether I placed marks wrong or people are choosing not to dig. I am guessing at the reach rule instead of making choices. Stopping at Night 24 Aug.",
+    "game_clock": null,
+    "engagement": null,
+    "reason": "CONFUSED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "viewport_resizes": [],
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "d1eed2ee6b3a77ecd279ca71fc1989b3a0c4124e6463f54ed67e09415f21ab92",
+    "lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "image_view_evidence": {
+    "source": "Actual private rollout tool events; no image bytes published.",
+    "calls": 3,
+    "returned_image_calls": 3,
+    "times": [null, null, null]
+  },
+  "report.md_sha256": "1b0123f1c14e20af9ee197a11656996e686a221065c5e96b7183ba494c640030",
+  "wall-clock.jsonl_sha256": "0e0d705c4ed82e7222da47058378b82c73f5d72dd1b45b1ebf43654777460489"
+}

@@ -1,0 +1,83 @@
+{
+  "started": "2026-10-26T04:35:53.861006+00:00",
+  "ended": "2026-10-26T04:52:25.524065+00:00",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "device": "phone",
+  "floor_minutes": 15,
+  "ceiling_minutes": 25,
+  "release_before": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "floor_met": true,
+  "pairing_role": "paired-arm collection",
+  "source": "Coordinator metadata, not player-visible content or production feedback receipt.",
+  "harness_session_id": "35dd62a2-ff81-4578-8d92-cb53bafab0db",
+  "same_start_sha256": "c71ad6d43833967c8c07e754d31ac2602fedb9a9d0ead145b687892a549665a4",
+  "state_restore_matched": true,
+  "report_is_coordinator_recovery": false,
+  "stop": {
+    "harness_session_id": "35dd62a2-ff81-4578-8d92-cb53bafab0db",
+    "t": "2026-10-26T04:51:27.038Z",
+    "elapsed_s": 925.419,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "I am stopping with the menu open on 8 September. I liked making room and seeing Meryem test the door. I would not return voluntarily tonight. I might return another evening to try a deeper shelter, if I felt ready to watch people ignore the alarm again. I would leave it paused, not running. The jars finally filling does not remove my frustration about the open door and the unfinished digging.",
+    "game_clock": "Morning · 8 Sep · year 1",
+    "engagement": null,
+    "reason": "FRUSTRATED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "viewport_resizes": [
+    {
+      "elapsed_s": 300.416,
+      "input": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "elapsed_s": 315.007,
+      "input": {
+        "width": 360,
+        "height": 690
+      }
+    }
+  ],
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "d1eed2ee6b3a77ecd279ca71fc1989b3a0c4124e6463f54ed67e09415f21ab92",
+    "lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "image_view_evidence": {
+    "source": "Actual private rollout tool events; no image bytes published.",
+    "calls": 8,
+    "returned_image_calls": 8,
+    "times": [
+      "2026-10-26T04:36:10.293Z",
+      "2026-10-26T04:37:30.225Z",
+      "2026-10-26T04:40:01.375Z",
+      "2026-10-26T04:41:09.705Z",
+      "2026-10-26T04:42:17.110Z",
+      "2026-10-26T04:42:30.657Z",
+      "2026-10-26T04:47:03.557Z",
+      "2026-10-26T04:48:17.083Z"
+    ]
+  },
+  "report.md_sha256": "be9d000e57c2166b34547eeeff032e63dd423c9d24cd31258de9e811690c2315",
+  "wall-clock.jsonl_sha256": "73be9c6d026d63bc6b388d291c0a8204c6c738e9ffdee9d150480d351efcab5b"
+}

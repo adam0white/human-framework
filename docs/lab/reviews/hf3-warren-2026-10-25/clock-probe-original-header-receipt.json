@@ -1,0 +1,50 @@
+{
+  "source": "/Users/abdul/code/.lab-scratch/playtest-b/hf3-warren-r1-matched/bashir-free/claude-events-private.jsonl",
+  "source_sha256": "42607d0471d82cd6a700f39fd1f81290243cf953a96e9bd5bdc62b88ffaf5e9b",
+  "receipts": [
+    {
+      "line": 447,
+      "tool_call_id": "toolu_013cMfb1Q4syi6Ye2Tbr5Sdw",
+      "timestamp": "2026-10-26T05:23:07.433Z",
+      "elapsed_s": 1009.698,
+      "op_ms": 140,
+      "visible_header": "Afternoon \u00b7 16 Sep \u00b7 year 1",
+      "controls_header": "- banner:\n  - text: Afternoon \u00b7 16 Sep \u00b7 year 1",
+      "tool_result_sha256": "67522d1a87d50fc81e80773e5a76862554dfebc50a90fba140bfbc0fbd0d4006",
+      "source_line_sha256": "179f144964b1af961179c3caa5b64440b3fd07f7a254097642208026d6a6a624"
+    },
+    {
+      "line": 448,
+      "tool_call_id": "toolu_01JNdFqLdaaVimXfecbV2K3H",
+      "timestamp": "2026-10-26T05:23:07.604Z",
+      "elapsed_s": 1009.869,
+      "op_ms": 142,
+      "visible_header": "Dusk \u00b7 16 Sep \u00b7 year 1",
+      "controls_header": "- banner:\n  - text: Dusk \u00b7 16 Sep \u00b7 year 1",
+      "tool_result_sha256": "ddaee74a388bd1091c2b615c93b994dd899eb7ec7fb2b9c212eca651d0da64d6",
+      "source_line_sha256": "26d3c70abdfe3a966ef6119ef9789fe0265ad05ae20aa94e205743be2c135311"
+    },
+    {
+      "line": 451,
+      "tool_call_id": "toolu_01BvTYDLVJkw6auFL77E9pSB",
+      "timestamp": "2026-10-26T05:23:11.066Z",
+      "elapsed_s": 1013.332,
+      "op_ms": 145,
+      "visible_header": "Afternoon \u00b7 16 Sep \u00b7 year 1",
+      "controls_header": "- banner:\n  - text: Afternoon \u00b7 16 Sep \u00b7 year 1",
+      "tool_result_sha256": "29d8d9c796006a13d21e32158d3e685e782fa6103e06e91fdd707e7affe81a49",
+      "source_line_sha256": "d381132dc94a1566dd9f147672465cbe5839fb9d37d17fff119f9f668e533263"
+    },
+    {
+      "line": 452,
+      "tool_call_id": "toolu_0117dPyHtJKWxCqD6h6ZB1gV",
+      "timestamp": "2026-10-26T05:23:11.234Z",
+      "elapsed_s": 1013.5,
+      "op_ms": 140,
+      "visible_header": "Dusk \u00b7 16 Sep \u00b7 year 1",
+      "controls_header": "- banner:\n  - text: Dusk \u00b7 16 Sep \u00b7 year 1",
+      "tool_result_sha256": "fafdd14ae343b944c7f5404efacfe7b7ef3bef61e7608bf7270fba78791ba3e1",
+      "source_line_sha256": "fcc74a5388ab856f66ea39009d31602be1d44cb5bb5f08654a7c031f312bdd6b"
+    }
+  ]
+}

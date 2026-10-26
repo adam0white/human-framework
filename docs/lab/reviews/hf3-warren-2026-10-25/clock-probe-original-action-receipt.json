@@ -1,0 +1,37 @@
+{
+  "source": "/Users/abdul/code/.lab-scratch/playtest-b/hf3-warren-r1-matched/bashir-free/wall-clock.jsonl",
+  "records": [
+    {
+      "t": "2026-10-26T05:23:07.427Z",
+      "elapsed_s": 1009.698,
+      "op": "tap",
+      "input": {
+        "name": "beds Mark open ground for sleeping."
+      },
+      "op_ms": 140,
+      "error": null
+    },
+    {
+      "t": "2026-10-26T05:23:07.598Z",
+      "elapsed_s": 1009.869,
+      "op": "tap",
+      "input": {
+        "x": 262,
+        "y": 250
+      },
+      "op_ms": 142,
+      "error": null
+    },
+    {
+      "t": "2026-10-26T05:23:11.061Z",
+      "elapsed_s": 1013.332,
+      "op": "tap",
+      "input": {
+        "name": "Close reading"
+      },
+      "op_ms": 145,
+      "error": null
+    }
+  ],
+  "critical_request_gap_s": 3.4629999999999654
+}

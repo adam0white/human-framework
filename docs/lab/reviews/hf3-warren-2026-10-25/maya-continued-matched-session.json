@@ -1,0 +1,72 @@
+{
+  "started": "2026-10-26T01:47:12.632932+00:00",
+  "ended": "2026-10-26T02:05:40.043342+00:00",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "device": "phone",
+  "floor_minutes": 15,
+  "ceiling_minutes": 25,
+  "release_before": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "floor_met": true,
+  "pairing_role": "paired-arm collection",
+  "source": "Coordinator metadata, not player-visible content or production feedback receipt.",
+  "harness_session_id": "88fa399b-278e-41be-ad0a-65320d36fb23",
+  "same_start_sha256": "c71ad6d43833967c8c07e754d31ac2602fedb9a9d0ead145b687892a549665a4",
+  "state_restore_matched": true,
+  "report_is_coordinator_recovery": false,
+  "stop": {
+    "harness_session_id": "88fa399b-278e-41be-ad0a-65320d36fb23",
+    "t": "2026-10-26T02:02:46.468Z",
+    "elapsed_s": 923.549,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "I am stopping with three unsafe sleeping places, a lamp and a store that people are filling. The digging finally happened, but I never understood its delay, and Kian never shared the story I asked for. My first wish to leave did not pass. I would pause this hill, not leave it running; I would not return voluntarily tonight. Feedback is selected locally and not submitted.",
+    "game_clock": "Afternoon · 5 Sep · year 1",
+    "engagement": null,
+    "reason": "CONFUSED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "viewport_resizes": [
+    {
+      "elapsed_s": 311.524,
+      "input": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "elapsed_s": 324.331,
+      "input": {
+        "width": 360,
+        "height": 690
+      }
+    }
+  ],
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "d1eed2ee6b3a77ecd279ca71fc1989b3a0c4124e6463f54ed67e09415f21ab92",
+    "lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "image_view_evidence": {
+    "source": "No independent full tool-event capture retained. Player report may declare image viewing. Exec JSONL alone cannot establish presence or absence.",
+    "status": "unverified"
+  },
+  "report.md_sha256": "a3bbba8ae681a5da2407b6884e4639fb96c13be9192a1dce3481cabc00d88b48",
+  "wall-clock.jsonl_sha256": "9cb4c82c3da3d8beb153ea1cb0c4aeb1e458d56ebd23b0b631cfc9916e2e6af1"
+}

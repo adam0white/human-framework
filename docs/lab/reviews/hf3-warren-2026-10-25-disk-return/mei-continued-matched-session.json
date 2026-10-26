@@ -1,0 +1,74 @@
+{
+  "started": "2026-10-26T04:11:37.477678+00:00",
+  "ended": "2026-10-26T04:27:34.779011+00:00",
+  "backend": "claude",
+  "model": "opus",
+  "effort": "low",
+  "device": "desktop",
+  "floor_minutes": 15,
+  "ceiling_minutes": 25,
+  "release_before": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "floor_met": true,
+  "pairing_role": "paired-arm collection",
+  "source": "Coordinator metadata, not player-visible content or production feedback receipt.",
+  "harness_session_id": "57cf2bda-2466-4511-9c13-a0ab5fe9278e",
+  "same_start_sha256": "c71ad6d43833967c8c07e754d31ac2602fedb9a9d0ead145b687892a549665a4",
+  "state_restore_matched": true,
+  "report_is_coordinator_recovery": false,
+  "stop": {
+    "harness_session_id": "57cf2bda-2466-4511-9c13-a0ab5fe9278e",
+    "t": "2026-10-26T04:26:59.586Z",
+    "elapsed_s": 915.785,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "I am stopping at 16 September. This visit went further than the last: the riders did come, on 30 August, the game paused for my choice and I rang the bell, and the scouts left without striking. New families gave me work to do, and Master Yusuf's quiet look at my mark under the ridge was the best moment. But nobody ever slept in the beds I made, everyone who promised to come below chose something else, and now the families arrive faster than any reason to build for them. The picture also kept moving under my hand. I selected I would stop here in Feedback and left it unsubmitted. The game is paused in the menu.",
+    "game_clock": "Morning · 16 Sep · year 1",
+    "engagement": null,
+    "reason": "BORED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "viewport_resizes": [
+    {
+      "elapsed_s": 291.033,
+      "input": {
+        "width": 360,
+        "height": 690
+      }
+    },
+    {
+      "elapsed_s": 301.847,
+      "input": {
+        "width": 1280,
+        "height": 800
+      }
+    }
+  ],
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "d1eed2ee6b3a77ecd279ca71fc1989b3a0c4124e6463f54ed67e09415f21ab92",
+    "lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "image_view_evidence": {
+    "source": "Actual private rollout tool events; no image bytes published.",
+    "calls": 11,
+    "returned_image_calls": 11,
+    "times": [null, null, null, null, null, null, null, null, null, null, null]
+  },
+  "report.md_sha256": "ff383b944b4c1e62b420cf94ade2fd22e3929ef3a2998082edbbc90bf50c1373",
+  "wall-clock.jsonl_sha256": "a3a36a85e7bbda7bf0e1a121a957d08854d1f9b2e1f8e6398f5edd7d2b204619"
+}

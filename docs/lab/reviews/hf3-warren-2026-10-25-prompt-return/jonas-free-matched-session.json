@@ -1,0 +1,59 @@
+{
+  "started": "2026-10-26T05:51:44.326926+00:00",
+  "ended": "2026-10-26T05:53:50.384556+00:00",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "device": "phone",
+  "floor_minutes": 0,
+  "ceiling_minutes": 25,
+  "release_before": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "floor_met": true,
+  "pairing_role": "paired-arm collection",
+  "source": "Coordinator metadata, not player-visible content or production feedback receipt.",
+  "harness_session_id": "7650911f-88dc-4b1e-a14e-9f4720008472",
+  "same_start_sha256": "c71ad6d43833967c8c07e754d31ac2602fedb9a9d0ead145b687892a549665a4",
+  "state_restore_matched": true,
+  "report_is_coordinator_recovery": false,
+  "stop": {
+    "harness_session_id": "7650911f-88dc-4b1e-a14e-9f4720008472",
+    "t": "2026-10-26T05:53:06.605Z",
+    "elapsed_s": 75.586,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "I stopped playing at 54.505 seconds. The wish did not pass. I would not return voluntarily now, leave this running, or come back another evening just to repeat this search. I would reconsider if I could learn how water is handled. Feedback is selected locally; nothing was typed or submitted. The browser is no longer needed.",
+    "game_clock": "Night · 19 Aug · year 1",
+    "engagement": null,
+    "reason": "CONFUSED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "viewport_resizes": [],
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "d1eed2ee6b3a77ecd279ca71fc1989b3a0c4124e6463f54ed67e09415f21ab92",
+    "lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "image_view_evidence": {
+    "source": "Actual private rollout tool events; no image bytes published.",
+    "calls": 1,
+    "returned_image_calls": 1,
+    "times": ["2026-10-26T05:52:02.860Z"]
+  },
+  "report.md_sha256": "72b58ec7b5c0251ffc67b9a62abd7eb3fcdfafbc5b141c6efd20a8376d00d29b",
+  "wall-clock.jsonl_sha256": "510ab38d4201f8cff2e0fd1fb3aa29215183dffafc17e4fdfb376e5ac2adc200"
+}

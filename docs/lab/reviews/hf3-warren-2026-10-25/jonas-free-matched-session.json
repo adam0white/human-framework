@@ -1,0 +1,57 @@
+{
+  "started": "2026-10-26T02:32:35.456151+00:00",
+  "ended": "2026-10-26T02:39:07.002837+00:00",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "device": "phone",
+  "floor_minutes": 0,
+  "ceiling_minutes": 25,
+  "release_before": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "floor_met": true,
+  "pairing_role": "qualitative after mismatched audit/diary prompts",
+  "source": "Coordinator metadata, not player-visible content or production feedback receipt.",
+  "harness_session_id": "e2a1cf47-1a80-4fbd-a69c-49a76a5aa569",
+  "same_start_sha256": "c71ad6d43833967c8c07e754d31ac2602fedb9a9d0ead145b687892a549665a4",
+  "state_restore_matched": true,
+  "report_is_coordinator_recovery": false,
+  "stop": {
+    "harness_session_id": "e2a1cf47-1a80-4fbd-a69c-49a76a5aa569",
+    "t": "2026-10-26T02:36:59.119Z",
+    "elapsed_s": 252.357,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "I stopped playing at 230 seconds because I could not find how to answer the dry-water warning. The wish has not passed. The dig and door were satisfying, but I would not resume voluntarily now or leave it running. Feedback is selected locally; no note, name or submission. The browser is no longer needed.",
+    "game_clock": "Dawn · 23 Aug · year 1",
+    "engagement": null,
+    "reason": "CONFUSED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "viewport_resizes": [],
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "d1eed2ee6b3a77ecd279ca71fc1989b3a0c4124e6463f54ed67e09415f21ab92",
+    "lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "image_view_evidence": {
+    "source": "No independent full tool-event capture retained. Player report may declare image viewing. Exec JSONL alone cannot establish presence or absence.",
+    "status": "unverified"
+  },
+  "report.md_sha256": "4f81ea72cb7665ffdc32553dbd21ec0a726ef9c2e5747f7ff67a872773d575fe",
+  "wall-clock.jsonl_sha256": "3f71a0e6652c03d7305bac0704ca9f420beec9562abacdf7ab9f60ca3b6469bd"
+}

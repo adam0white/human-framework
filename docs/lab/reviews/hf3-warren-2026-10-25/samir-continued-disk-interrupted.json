@@ -1,0 +1,8 @@
+{
+  "status": "incomplete disk interruption; not a player verdict or completed continued arm",
+  "failure": "STOP all own work below5GB free",
+  "raw_sha256": "5428c7b802a6e6bf9b57c4c12d3529cf51a04d642d74b2262eadd5147eafbd41",
+  "replacement": "../hf3-warren-2026-10-25-disk-return/",
+  "logical_round": "hf3-warren-r1",
+  "production_feedback_submitted": false
+}

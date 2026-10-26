@@ -1,0 +1,74 @@
+{
+  "started": "2026-10-26T02:55:39.799387+00:00",
+  "ended": "2026-10-26T03:11:51.638833+00:00",
+  "backend": "claude",
+  "model": "opus",
+  "effort": "low",
+  "device": "desktop",
+  "floor_minutes": 15,
+  "ceiling_minutes": 25,
+  "release_before": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "floor_met": true,
+  "pairing_role": "paired-arm collection",
+  "source": "Coordinator metadata, not player-visible content or production feedback receipt.",
+  "harness_session_id": "73250e06-4cc2-4180-8875-6705ad89ae6c",
+  "same_start_sha256": "c71ad6d43833967c8c07e754d31ac2602fedb9a9d0ead145b687892a549665a4",
+  "state_restore_matched": true,
+  "report_is_coordinator_recovery": false,
+  "stop": {
+    "harness_session_id": "73250e06-4cc2-4180-8875-6705ad89ae6c",
+    "t": "2026-10-26T03:11:20.952Z",
+    "elapsed_s": 936.005,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "I am stopping here. The digging finally clicked once I learned about lamps, and Maryam and Yusuf were lovely. But now families arrive faster than I can get to know them, the journal says the same four things every day, and I am counting beds rather than caring for people. I would not leave it running.",
+    "game_clock": "Night · 10 Sep · year 1",
+    "engagement": null,
+    "reason": "BORED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "viewport_resizes": [
+    {
+      "elapsed_s": 301.617,
+      "input": {
+        "width": 360,
+        "height": 690
+      }
+    },
+    {
+      "elapsed_s": 307.851,
+      "input": {
+        "width": 1280,
+        "height": 800
+      }
+    }
+  ],
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "d1eed2ee6b3a77ecd279ca71fc1989b3a0c4124e6463f54ed67e09415f21ab92",
+    "lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "image_view_evidence": {
+    "source": "Actual private rollout tool events; no image bytes published.",
+    "calls": 11,
+    "returned_image_calls": 11,
+    "times": [null, null, null, null, null, null, null, null, null, null, null]
+  },
+  "report.md_sha256": "199ff2609615eb6e9d210d40007bd8e6ba79a90d607fb935ab7229db92257c02",
+  "wall-clock.jsonl_sha256": "3d82347f5653d76df3d1d00f24c89c62d9640ff9e5bb03dc73a1c90b978ca089"
+}

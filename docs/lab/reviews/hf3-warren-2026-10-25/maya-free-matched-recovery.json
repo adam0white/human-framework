@@ -1,0 +1,10 @@
+{
+  "time": "2026-10-26T02:09:27.108318+00:00",
+  "status": "accepted-coordinator-recovery",
+  "original_supervisor_status": "incomplete",
+  "cause": "model capacity after completed gameplay",
+  "source_sha256": "0f8161756f6d1b8a72e2fc2d1645b06a53cf5640147819b596bba8bb7ea479ed",
+  "report_sha256": "4bdfa54cfa7e34f19d83c20afcb58840e708d797f4a43f46ef0b880134022eda",
+  "limits": "Coordinator compilation from recorded words; not a new player session or original final report. Original supervisor failure preserved. No new feelings or player ranking inferred.",
+  "edits": "Clarified manifest is coordinator evidence and wish to quit persisted."
+}

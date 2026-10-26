@@ -1,0 +1,74 @@
+{
+  "started": "2026-10-26T04:50:25.491258+00:00",
+  "ended": "2026-10-26T05:06:12.439273+00:00",
+  "backend": "claude",
+  "model": "opus",
+  "effort": "low",
+  "device": "desktop",
+  "floor_minutes": 15,
+  "ceiling_minutes": 25,
+  "release_before": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "floor_met": true,
+  "pairing_role": "paired-arm collection",
+  "source": "Coordinator metadata, not player-visible content or production feedback receipt.",
+  "harness_session_id": "02319b1e-95b8-4823-a6b6-ff4b6ab937fc",
+  "same_start_sha256": "c71ad6d43833967c8c07e754d31ac2602fedb9a9d0ead145b687892a549665a4",
+  "state_restore_matched": true,
+  "report_is_coordinator_recovery": false,
+  "stop": {
+    "harness_session_id": "02319b1e-95b8-4823-a6b6-ff4b6ab937fc",
+    "t": "2026-10-26T05:05:45.223Z",
+    "elapsed_s": 916.058,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "I like the people - Maryam keeping her mistakes, Kian and the Very Small King, the Erdems who heard there was room. The night the scouts saw Meryem from the entrance was the best fifteen seconds. But between those, I watch the same nine sentences repeat while the jars stay empty and I cannot tell how to make anyone carry grain. I would come back only if something told me what my chalk is waiting for.",
+    "game_clock": null,
+    "engagement": null,
+    "reason": "BORED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "viewport_resizes": [
+    {
+      "elapsed_s": 302.459,
+      "input": {
+        "width": 360,
+        "height": 690
+      }
+    },
+    {
+      "elapsed_s": 310.066,
+      "input": {
+        "width": 1280,
+        "height": 800
+      }
+    }
+  ],
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "d1eed2ee6b3a77ecd279ca71fc1989b3a0c4124e6463f54ed67e09415f21ab92",
+    "lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "image_view_evidence": {
+    "source": "Actual private rollout tool events; no image bytes published.",
+    "calls": 8,
+    "returned_image_calls": 8,
+    "times": [null, null, null, null, null, null, null, null]
+  },
+  "report.md_sha256": "398b9d6ef14ba4e333759bf2c0754326ecbc3875de3b6e4c52d4a368b3b72121",
+  "wall-clock.jsonl_sha256": "d5faa30faa767e3661fa07ea555ea4eab78e5525f978d2e2fcc7682de5d3a90f"
+}

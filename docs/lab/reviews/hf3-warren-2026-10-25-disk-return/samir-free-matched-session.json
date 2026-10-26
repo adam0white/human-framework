@@ -1,0 +1,59 @@
+{
+  "started": "2026-10-26T04:11:47.534653+00:00",
+  "ended": "2026-10-26T04:15:44.078055+00:00",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "device": "phone",
+  "floor_minutes": 0,
+  "ceiling_minutes": 25,
+  "release_before": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "floor_met": true,
+  "pairing_role": "paired-arm collection",
+  "source": "Coordinator metadata, not player-visible content or production feedback receipt.",
+  "harness_session_id": "d356c799-06aa-46af-a373-642956644fce",
+  "same_start_sha256": "c71ad6d43833967c8c07e754d31ac2602fedb9a9d0ead145b687892a549665a4",
+  "state_restore_matched": true,
+  "report_is_coordinator_recovery": false,
+  "stop": {
+    "harness_session_id": "d356c799-06aa-46af-a373-642956644fce",
+    "t": "2026-10-26T04:15:00.520Z",
+    "elapsed_s": 182.942,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "I am stopping here. I made three sleeping places again, and I still do not understand how grain reaches the cellar. I would not leave it running. I might return another evening on desktop if I could follow what Meryem needs and see the shelter clearly, but I do not want another attempt on this small screen tonight.",
+    "game_clock": "Dusk · 21 Aug · year 1",
+    "engagement": null,
+    "reason": "FRUSTRATED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "viewport_resizes": [],
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "d1eed2ee6b3a77ecd279ca71fc1989b3a0c4124e6463f54ed67e09415f21ab92",
+    "lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "image_view_evidence": {
+    "source": "Actual private rollout tool events; no image bytes published.",
+    "calls": 3,
+    "returned_image_calls": 3,
+    "times": ["2026-10-26T04:12:09.857Z", "2026-10-26T04:13:20.936Z", "2026-10-26T04:13:30.814Z"]
+  },
+  "report.md_sha256": "90d2e01bfe5a6c47cbc7d7d7043ee58c89ce174ae98f88a2c5941d2c077eb7bc",
+  "wall-clock.jsonl_sha256": "13d5c04e7259d92630ac72ebfe5cac720211b521ffb4539a036ed765fd01dba9"
+}

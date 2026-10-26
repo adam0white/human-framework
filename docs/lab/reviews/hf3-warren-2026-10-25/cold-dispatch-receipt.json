@@ -1,0 +1,35 @@
+{
+  "time": "2026-10-26T05:31:36.840306+00:00",
+  "Celia Morel": {
+    "first_dispatch": "2026-10-26T04:52:25.786675+00:00",
+    "first_brief_sha256": "60ce11bf765937ec4fbe7aa590d9ba587023a86848bc56b4240946872d0dd0df",
+    "status": "both arms complete; free selected for any future declared return; never fresh cold again",
+    "reports": {
+      "free": {
+        "report": "/Users/abdul/code/.lab-scratch/playtest-b/hf3-warren-r1-matched/celia-free/report.md",
+        "sha256": "31d58adbc0f158a8fabb9224665df57cacba74b851130e03caa2199b3afb9a55"
+      },
+      "continued": {
+        "report": "/Users/abdul/code/.lab-scratch/playtest-b/hf3-warren-r1-matched/celia-continued/report.md",
+        "sha256": "8f6ec64ec7949e508dc91224dafa54b6340f1b2a5bfaeb6fab9d0f0d06e6a381"
+      }
+    }
+  },
+  "Bashir Osman": {
+    "first_dispatch": "2026-10-26T05:06:13.128186+00:00",
+    "first_brief_sha256": "890ff2bfc24b054ef6ddbdeb68c03ccaeefe2d443c034ce14cfc545c9f43f413",
+    "status": "both arms complete; free selected for any future declared return; never fresh cold again",
+    "reports": {
+      "free": {
+        "report": "/Users/abdul/code/.lab-scratch/playtest-b/hf3-warren-r1-matched/bashir-free/report.md",
+        "sha256": "0a5bfe0697c3b7b4166505dc7dc3548662eab375c31075eebaf2cfb1dd4ecc92"
+      },
+      "continued": {
+        "report": "/Users/abdul/code/.lab-scratch/playtest-b/hf3-warren-r1-matched/bashir-continued/report.md",
+        "sha256": "5b967c407c2136c599f9a919d3202cc1dc0f2f87314ca32cbb02369db328db03"
+      }
+    }
+  },
+  "shared_registry_not_mutated": true,
+  "precheck": "cold-launch-precheck.json"
+}

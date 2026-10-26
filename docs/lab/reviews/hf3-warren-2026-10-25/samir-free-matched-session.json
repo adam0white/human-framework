@@ -1,0 +1,59 @@
+{
+  "started": "2026-10-26T03:23:38.128137+00:00",
+  "ended": "2026-10-26T03:28:29.788439+00:00",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "device": "phone",
+  "floor_minutes": 0,
+  "ceiling_minutes": 25,
+  "release_before": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "floor_met": true,
+  "pairing_role": "qualitative after alternative-arm disk interruption",
+  "source": "Coordinator metadata, not player-visible content or production feedback receipt.",
+  "harness_session_id": "da172ad3-4915-461f-854f-b3864d6e98ca",
+  "same_start_sha256": "c71ad6d43833967c8c07e754d31ac2602fedb9a9d0ead145b687892a549665a4",
+  "state_restore_matched": true,
+  "report_is_coordinator_recovery": false,
+  "stop": {
+    "harness_session_id": "da172ad3-4915-461f-854f-b3864d6e98ca",
+    "t": "2026-10-26T03:27:49.066Z",
+    "elapsed_s": 241.345,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "I am stopping here. I made a store, a lamp and three beds, but I cannot tell what the people need from me to bring grain down. I would not leave it running. I might return another evening on desktop to try building a proper shelter, because I like the place and these households; I would not return tonight.",
+    "game_clock": "Morning · 23 Aug · year 1",
+    "engagement": null,
+    "reason": "CONFUSED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "viewport_resizes": [],
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "d1eed2ee6b3a77ecd279ca71fc1989b3a0c4124e6463f54ed67e09415f21ab92",
+    "lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "image_view_evidence": {
+    "source": "Actual private rollout tool events; no image bytes published.",
+    "calls": 1,
+    "returned_image_calls": 1,
+    "times": ["2026-10-26T03:24:07.154Z"]
+  },
+  "report.md_sha256": "d26c38fa7b700f4c790a73a414ada0f2a9a1790bd73f4e515b600ddf2deda66d",
+  "wall-clock.jsonl_sha256": "924dde5a308179607ae90d0cd77ad029d61f1f0dbd53dd237e0f7dab576f9fad"
+}

@@ -1,0 +1,72 @@
+{
+  "started": "2026-10-26T02:44:53.404943+00:00",
+  "ended": "2026-10-26T03:00:50.397330+00:00",
+  "backend": "claude",
+  "model": "opus",
+  "effort": "low",
+  "device": "desktop",
+  "floor_minutes": 0,
+  "ceiling_minutes": 25,
+  "release_before": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "floor_met": true,
+  "pairing_role": "paired-arm collection",
+  "source": "Coordinator metadata, not player-visible content or production feedback receipt.",
+  "harness_session_id": "f9a4ed7d-4599-4d05-8025-170b3eb637cd",
+  "same_start_sha256": "c71ad6d43833967c8c07e754d31ac2602fedb9a9d0ead145b687892a549665a4",
+  "state_restore_matched": true,
+  "report_is_coordinator_recovery": false,
+  "stop": {
+    "harness_session_id": "f9a4ed7d-4599-4d05-8025-170b3eb637cd",
+    "t": "2026-10-26T03:00:03.304Z",
+    "elapsed_s": 905.827,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "Same lines again: Maryam cooked, Tamar checked the route, Kian still needs to care for Ada. The wish to leave did not pass. I liked the pencil hill, the smoke scare and Yusuf owning his mistake, but there is nothing left I want to do tonight. Stopping here.",
+    "game_clock": "Night · 9 Sep · year 1",
+    "engagement": null,
+    "reason": "BORED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "viewport_resizes": [
+    {
+      "elapsed_s": 301.275,
+      "input": {
+        "width": 360,
+        "height": 690
+      }
+    },
+    {
+      "elapsed_s": 308.13,
+      "input": {
+        "width": 1280,
+        "height": 800
+      }
+    }
+  ],
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "d1eed2ee6b3a77ecd279ca71fc1989b3a0c4124e6463f54ed67e09415f21ab92",
+    "lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "image_view_evidence": {
+    "source": "No independent full tool-event capture retained. Player report may declare image viewing. Exec JSONL alone cannot establish presence or absence.",
+    "status": "unverified"
+  },
+  "report.md_sha256": "255ba960dfd18ab1e29ef6356ed1e7a533efe249a05ba5f36aa99fb85b209c7b",
+  "wall-clock.jsonl_sha256": "5fe104ab41517f707e0c5823f44ad36c5c620a9b49fbfbbd03620aca5b8835e3"
+}

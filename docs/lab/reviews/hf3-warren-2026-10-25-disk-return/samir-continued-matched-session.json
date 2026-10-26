@@ -1,0 +1,79 @@
+{
+  "started": "2026-10-26T04:15:48.115363+00:00",
+  "ended": "2026-10-26T04:32:05.183542+00:00",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "device": "phone",
+  "floor_minutes": 15,
+  "ceiling_minutes": 25,
+  "release_before": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "floor_met": true,
+  "pairing_role": "paired-arm collection",
+  "source": "Coordinator metadata, not player-visible content or production feedback receipt.",
+  "harness_session_id": "2659a881-ec8c-45a5-a6e9-fac5e3ad9708",
+  "same_start_sha256": "c71ad6d43833967c8c07e754d31ac2602fedb9a9d0ead145b687892a549665a4",
+  "state_restore_matched": true,
+  "report_is_coordinator_recovery": false,
+  "stop": {
+    "harness_session_id": "2659a881-ec8c-45a5-a6e9-fac5e3ad9708",
+    "t": "2026-10-26T04:31:10.193Z",
+    "elapsed_s": 912.86,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "I am stopping here. I made six beds and a door, and nobody was hurt by the scouts, but I still cannot tell how to help with grain or follow through on a conversation. I would not leave it running. I would not return voluntarily another evening now; I gave it the longer visit I wanted, and the people still feel out of reach.",
+    "game_clock": "Morning · 7 Sep · year 1",
+    "engagement": null,
+    "reason": "CONFUSED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "viewport_resizes": [
+    {
+      "elapsed_s": 307.257,
+      "input": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "elapsed_s": 316.402,
+      "input": {
+        "width": 360,
+        "height": 690
+      }
+    }
+  ],
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "d1eed2ee6b3a77ecd279ca71fc1989b3a0c4124e6463f54ed67e09415f21ab92",
+    "lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "image_view_evidence": {
+    "source": "Actual private rollout tool events; no image bytes published.",
+    "calls": 4,
+    "returned_image_calls": 4,
+    "times": [
+      "2026-10-26T04:16:22.437Z",
+      "2026-10-26T04:21:10.616Z",
+      "2026-10-26T04:22:26.368Z",
+      "2026-10-26T04:22:35.703Z"
+    ]
+  },
+  "report.md_sha256": "500c17bb1786210c8ed135f37c44f79bed48ed977715e5580c29a7424861017a",
+  "wall-clock.jsonl_sha256": "d9831bed47133eb06aaf9170529709b52d4bc8dfb57391e2e35d41e2c643b7f8"
+}

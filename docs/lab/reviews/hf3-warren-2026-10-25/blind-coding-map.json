@@ -1,0 +1,415 @@
+{
+  "method": "One independent coder read all41 anonymous whole diaries before seeing identity/arm mapping. Formal log-kind/reason metadata withheld; original words retained. Qualitative reports and sole control are not additional independent people or paired-arm samples.",
+  "rows": [
+    {
+      "diary": "D01",
+      "collection": "hf3-warren-r1-matched",
+      "session": "samir-free",
+      "evidence_role": "qualitative after alternative-arm disk interruption",
+      "report_file": "../hf3-warren-2026-10-25/samir-free-matched.md",
+      "report_sha256": "d26c38fa7b700f4c790a73a414ada0f2a9a1790bd73f4e515b600ddf2deda66d",
+      "raw_sha256": "924dde5a308179607ae90d0cd77ad029d61f1f0dbd53dd237e0f7dab576f9fad",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D02",
+      "collection": "hf3-warren-r1-matched",
+      "session": "jonas-continued",
+      "evidence_role": "qualitative after mismatched audit/diary prompts",
+      "report_file": "../hf3-warren-2026-10-25/jonas-continued-matched.md",
+      "report_sha256": "9c8f39abe45ec273e5e73811e471bff2baa8925474440a7963779a162b7e7dd8",
+      "raw_sha256": "dba57343a9a6b23c2f2460cffd531d45a93fc0fcda8af476541542efa0bcd604",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D03",
+      "collection": "hf3-warren-r1-matched",
+      "session": "leila-continued",
+      "evidence_role": "paired-arm collection",
+      "report_file": "../hf3-warren-2026-10-25/leila-continued-matched.md",
+      "report_sha256": "398b9d6ef14ba4e333759bf2c0754326ecbc3875de3b6e4c52d4a368b3b72121",
+      "raw_sha256": "d5faa30faa767e3661fa07ea555ea4eab78e5525f978d2e2fcc7682de5d3a90f",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D04",
+      "collection": "hf3-warren-r1-matched",
+      "session": "aisha-continued",
+      "evidence_role": "paired-arm collection",
+      "report_file": "../hf3-warren-2026-10-25/aisha-continued-matched.md",
+      "report_sha256": "199ff2609615eb6e9d210d40007bd8e6ba79a90d607fb935ab7229db92257c02",
+      "raw_sha256": "3d82347f5653d76df3d1d00f24c89c62d9640ff9e5bb03dc73a1c90b978ca089",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D05",
+      "collection": "hf3-warren-r1",
+      "session": "maya-continued",
+      "evidence_role": "original unmatched qualitative",
+      "report_file": "../hf3-warren-2026-10-25/maya-continued.md",
+      "report_sha256": "0352605cb5c24094090ae1ebd9c8788de38c5e510177e8cbfe6510873eda548a",
+      "raw_sha256": "89920e3ae5b13a6de5d47974eb007fa8c1845d04fa3fa3115d8ddd29054ff0ea",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D06",
+      "collection": "hf3-warren-r1-matched",
+      "session": "maya-free",
+      "evidence_role": "paired-arm collection",
+      "report_file": "../hf3-warren-2026-10-25/maya-free-matched.md",
+      "report_sha256": "4bdfa54cfa7e34f19d83c20afcb58840e708d797f4a43f46ef0b880134022eda",
+      "raw_sha256": "0c6310ab6e03071dbb01ad19edd1372fb5ffe0b0f94c059dac7ee4ed9609b0eb",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D07",
+      "collection": "hf3-warren-r1",
+      "session": "rosa-continued",
+      "evidence_role": "original unmatched qualitative",
+      "report_file": "../hf3-warren-2026-10-25/rosa-continued.md",
+      "report_sha256": "d5ed747213829a19d4745900e2bf958d8df3334f6c0e29d2a79267e4de3ac381",
+      "raw_sha256": "bd13639265c0ff9638f653440f4c6b3e3fe8b94924c0bcac87c83bf86acb62f1",
+      "taste_pattern_exclusion": "Reread rule-associated stop; exclude forced quit from taste patterns."
+    },
+    {
+      "diary": "D08",
+      "collection": "hf3-warren-r1-matched",
+      "session": "emre-free",
+      "evidence_role": "paired-arm collection",
+      "report_file": "../hf3-warren-2026-10-25/emre-free-matched.md",
+      "report_sha256": "1ac552d22f9c58e8ae04f1ed7e467453c5184ffde0a967fe949ade522e52617a",
+      "raw_sha256": "54c371ca0d0d1d15d90521aa6c82f017d95a226ddcfa813c2a731e531b14715e",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D09",
+      "collection": "hf3-warren-r1-matched",
+      "session": "bashir-continued",
+      "evidence_role": "paired-arm collection",
+      "report_file": "../hf3-warren-2026-10-25/bashir-continued-matched.md",
+      "report_sha256": "5b967c407c2136c599f9a919d3202cc1dc0f2f87314ca32cbb02369db328db03",
+      "raw_sha256": "15aa1eb1c3eacc584539beb69fde9d3e5a33174b2d40f37d9364853e14b41e88",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D10",
+      "collection": "hf3-warren-r1-disk-return",
+      "session": "mei-free",
+      "evidence_role": "paired-arm collection",
+      "report_file": "../hf3-warren-2026-10-25-disk-return/mei-free-matched.md",
+      "report_sha256": "1ea7536321a67cbd5f3ab5b10b16170cfc2bb9068ffdb36c65751ef3f7caea25",
+      "raw_sha256": "57239b6e6cc35e47d31006a7ddce55ef3e3fe84a2332dd30abc548363bc647e3",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D11",
+      "collection": "hf3-warren-r1-matched",
+      "session": "pavel-continued",
+      "evidence_role": "paired-arm collection",
+      "report_file": "../hf3-warren-2026-10-25/pavel-continued-matched.md",
+      "report_sha256": "be9d000e57c2166b34547eeeff032e63dd423c9d24cd31258de9e811690c2315",
+      "raw_sha256": "73be9c6d026d63bc6b388d291c0a8204c6c738e9ffdee9d150480d351efcab5b",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D12",
+      "collection": "hf3-warren-r1-matched",
+      "session": "maya-continued",
+      "evidence_role": "paired-arm collection",
+      "report_file": "../hf3-warren-2026-10-25/maya-continued-matched.md",
+      "report_sha256": "a3bbba8ae681a5da2407b6884e4639fb96c13be9192a1dce3481cabc00d88b48",
+      "raw_sha256": "9cb4c82c3da3d8beb153ea1cb0c4aeb1e458d56ebd23b0b631cfc9916e2e6af1",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D13",
+      "collection": "hf3-warren-r1-disk-return",
+      "session": "samir-free",
+      "evidence_role": "paired-arm collection",
+      "report_file": "../hf3-warren-2026-10-25-disk-return/samir-free-matched.md",
+      "report_sha256": "90d2e01bfe5a6c47cbc7d7d7043ee58c89ce174ae98f88a2c5941d2c077eb7bc",
+      "raw_sha256": "13d5c04e7259d92630ac72ebfe5cac720211b521ffb4539a036ed765fd01dba9",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D14",
+      "collection": "hf3-warren-r1-matched",
+      "session": "diego-continued",
+      "evidence_role": "paired-arm collection",
+      "report_file": "../hf3-warren-2026-10-25/diego-continued-matched.md",
+      "report_sha256": "e4d68091c7c9516cfc1bdcc30d3ec34357151b2dd99330ed3b0d379ae14090f7",
+      "raw_sha256": "2495dc64ca6858b76826d0b4f4c7fea1ac0c7ca1486d384edcf6ae2a4595a59f",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D15",
+      "collection": "hf3-warren-r1-disk-return",
+      "session": "mei-continued",
+      "evidence_role": "paired-arm collection",
+      "report_file": "../hf3-warren-2026-10-25-disk-return/mei-continued-matched.md",
+      "report_sha256": "ff383b944b4c1e62b420cf94ade2fd22e3929ef3a2998082edbbc90bf50c1373",
+      "raw_sha256": "a3a36a85e7bbda7bf0e1a121a957d08854d1f9b2e1f8e6398f5edd7d2b204619",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D16",
+      "collection": "hf3-warren-r1-matched",
+      "session": "diego-free",
+      "evidence_role": "paired-arm collection",
+      "report_file": "../hf3-warren-2026-10-25/diego-free-matched.md",
+      "report_sha256": "57dfd5409930593bc0fcc90852316f1ae3401f151e67116438c136d149a39270",
+      "raw_sha256": "64fadf67bce06058d94127c564770b3807ad7b45d78ada00bf81e66131840609",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D17",
+      "collection": "hf3-warren-r1-matched",
+      "session": "nia-free",
+      "evidence_role": "paired-arm collection",
+      "report_file": "../hf3-warren-2026-10-25/nia-free-matched.md",
+      "report_sha256": "b9e7c41e516f3e275ff43458ad942e9b57d1bbf3fcd51fbd18c67950c2486a2d",
+      "raw_sha256": "f1959bec28aa97b041dd73718e5af69243ca62553eb8f51bb3b077b7c7d2a4c8",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D18",
+      "collection": "hf3-warren-r1-matched",
+      "session": "pavel-free",
+      "evidence_role": "paired-arm collection",
+      "report_file": "../hf3-warren-2026-10-25/pavel-free-matched.md",
+      "report_sha256": "e501408d845b947436234018ee6489ebe032ebe9c302fef88db4c0855eaa909b",
+      "raw_sha256": "c9fc9ba02267c268681a36cde1ddf5ccc0decbec15a85d4e0d1532a94ad2ef51",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D19",
+      "collection": "hf3-warren-r1",
+      "session": "emre-free",
+      "evidence_role": "original unmatched qualitative",
+      "report_file": "../hf3-warren-2026-10-25/emre-free.md",
+      "report_sha256": "319a5ee1c667afca8eeda2a5fb986985b829e0d22d20c0faecb216a84f075414",
+      "raw_sha256": "f87afc7d89220aee4e192e449de9141ce79e33315cfa389068fcf55dd38af01f",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D20",
+      "collection": "hf3-warren-r1-matched",
+      "session": "leila-free",
+      "evidence_role": "paired-arm collection",
+      "report_file": "../hf3-warren-2026-10-25/leila-free-matched.md",
+      "report_sha256": "1b0123f1c14e20af9ee197a11656996e686a221065c5e96b7183ba494c640030",
+      "raw_sha256": "0e0d705c4ed82e7222da47058378b82c73f5d72dd1b45b1ebf43654777460489",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D21",
+      "collection": "hf3-warren-r1-matched",
+      "session": "celia-free",
+      "evidence_role": "paired-arm collection",
+      "report_file": "../hf3-warren-2026-10-25/celia-free-matched.md",
+      "report_sha256": "31d58adbc0f158a8fabb9224665df57cacba74b851130e03caa2199b3afb9a55",
+      "raw_sha256": "4ab02c1120170d2820d0043d507ef872f604d3510237fc26c4185fdf7597d87d",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D22",
+      "collection": "hf3-warren-r1-matched",
+      "session": "rosa-continued",
+      "evidence_role": "paired-arm collection",
+      "report_file": "../hf3-warren-2026-10-25/rosa-continued-matched.md",
+      "report_sha256": "514f8e5ab05cbddb99e2a11b0f86915f97a13fbaea29f62f931b20fed2d5998a",
+      "raw_sha256": "4e14a38a58d2cdfb98c064f6e56efd76d845dad6632b40d020e72d6355666136",
+      "taste_pattern_exclusion": "Reread rule-associated stop; exclude forced quit from taste patterns."
+    },
+    {
+      "diary": "D23",
+      "collection": "hf3-warren-r1",
+      "session": "emre-continued",
+      "evidence_role": "original unmatched qualitative",
+      "report_file": "../hf3-warren-2026-10-25/emre-continued.md",
+      "report_sha256": "18226005217263038f0a09f7f4e039e7a644ab1f1dcdae8b313e1836f986f9df",
+      "raw_sha256": "edc37f3765c2b397157fa95e092397859d2dfc659a049853afdaa561e94beee5",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D24",
+      "collection": "hf3-warren-r1-matched",
+      "session": "emre-continued",
+      "evidence_role": "paired-arm collection",
+      "report_file": "../hf3-warren-2026-10-25/emre-continued-matched.md",
+      "report_sha256": "834ee61a8f939d49e8d0c935e44b97f9b2c8f6099b8bcc9a9996b746ecd2501f",
+      "raw_sha256": "5042d99933afc884d3a71a505b381627db2cf43c06b42c294cbdb68ae269de7f",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D25",
+      "collection": "hf3-warren-r1-matched",
+      "session": "jonas-free",
+      "evidence_role": "qualitative after mismatched audit/diary prompts",
+      "report_file": "../hf3-warren-2026-10-25/jonas-free-matched.md",
+      "report_sha256": "4f81ea72cb7665ffdc32553dbd21ec0a726ef9c2e5747f7ff67a872773d575fe",
+      "raw_sha256": "3f71a0e6652c03d7305bac0704ca9f420beec9562abacdf7ab9f60ca3b6469bd",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D26",
+      "collection": "hf3-warren-r1-matched",
+      "session": "nia-continued",
+      "evidence_role": "paired-arm collection",
+      "report_file": "../hf3-warren-2026-10-25/nia-continued-matched.md",
+      "report_sha256": "f5afded5c6049a2f60b2fd5ae1bec0cea1bb69aff5699e7bbe23550118208362",
+      "raw_sha256": "815a1da0461934ef00f245484265f44c2a1fb224ea4c03b46c54328b352de360",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D27",
+      "collection": "hf3-warren-r1",
+      "session": "nia-free",
+      "evidence_role": "original unmatched qualitative",
+      "report_file": "../hf3-warren-2026-10-25/nia-free.md",
+      "report_sha256": "a19b2d24572f4ac5e9f1605e4fabdf8f6c1da24283f4fe9258aa20c64cd6509b",
+      "raw_sha256": "06608fc190d8718a40c0f8a4f241489db2ce610853b5453287dac4363795bb45",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D28",
+      "collection": "hf3-warren-r1-disk-return",
+      "session": "samir-continued",
+      "evidence_role": "paired-arm collection",
+      "report_file": "../hf3-warren-2026-10-25-disk-return/samir-continued-matched.md",
+      "report_sha256": "500c17bb1786210c8ed135f37c44f79bed48ed977715e5580c29a7424861017a",
+      "raw_sha256": "d9831bed47133eb06aaf9170529709b52d4bc8dfb57391e2e35d41e2c643b7f8",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D29",
+      "collection": "hf3-warren-r1",
+      "session": "nia-continued",
+      "evidence_role": "original unmatched qualitative",
+      "report_file": "../hf3-warren-2026-10-25/nia-continued.md",
+      "report_sha256": "69672707fbfdd620c72cf56fa3cc6830274335d6a280323cdeb0535492bf211b",
+      "raw_sha256": "d1a65577a638358a05176bd83423ea6cdefe7a1f8e20efd779c464930962ab36",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D30",
+      "collection": "hf3-warren-r1-matched",
+      "session": "aisha-free",
+      "evidence_role": "paired-arm collection",
+      "report_file": "../hf3-warren-2026-10-25/aisha-free-matched.md",
+      "report_sha256": "255ba960dfd18ab1e29ef6356ed1e7a533efe249a05ba5f36aa99fb85b209c7b",
+      "raw_sha256": "5fe104ab41517f707e0c5823f44ad36c5c620a9b49fbfbbd03620aca5b8835e3",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D31",
+      "collection": "hf3-warren-r1-matched",
+      "session": "bashir-free",
+      "evidence_role": "paired-arm collection",
+      "report_file": "../hf3-warren-2026-10-25/bashir-free-matched.md",
+      "report_sha256": "0a5bfe0697c3b7b4166505dc7dc3548662eab375c31075eebaf2cfb1dd4ecc92",
+      "raw_sha256": "6ad48a08bf1c62fae76a2d6e1871f6618a051e1a1e2f62687b90a89e45493a70",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D32",
+      "collection": "hf3-warren-r1-matched",
+      "session": "tessa-free",
+      "evidence_role": "paired-arm collection",
+      "report_file": "../hf3-warren-2026-10-25/tessa-free-matched.md",
+      "report_sha256": "e4ce7dacda952c9575eb7d436daaa6c342fd8770b4c8b71d79d64ec05dac7557",
+      "raw_sha256": "6ec75f80a55b5a0c8373b225d5b304e50a0bbd8b280c6008b51b88591bf6584d",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D33",
+      "collection": "hf3-warren-r1-matched",
+      "session": "mei-free",
+      "evidence_role": "qualitative after alternative-arm disk interruption",
+      "report_file": "../hf3-warren-2026-10-25/mei-free-matched.md",
+      "report_sha256": "04795b8b833d5f58295f39ab6485e0822b6c800a5eb031a9054b26abf887ecb3",
+      "raw_sha256": "8b7907a2014cf33f372f338792f097d7919dbd02242ac9b03473ddc84b3d836b",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D34",
+      "collection": "hf3-warren-r1-matched",
+      "session": "celia-continued",
+      "evidence_role": "paired-arm collection",
+      "report_file": "../hf3-warren-2026-10-25/celia-continued-matched.md",
+      "report_sha256": "8f6ec64ec7949e508dc91224dafa54b6340f1b2a5bfaeb6fab9d0f0d06e6a381",
+      "raw_sha256": "1f9a7a871c14418a655c027b98c42d7ca6f202a672d016d37f9864d13029e162",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D35",
+      "collection": "hf3-warren-r1-prompt-return",
+      "session": "jonas-free",
+      "evidence_role": "paired-arm collection",
+      "report_file": "../hf3-warren-2026-10-25-prompt-return/jonas-free-matched.md",
+      "report_sha256": "72b58ec7b5c0251ffc67b9a62abd7eb3fcdfafbc5b141c6efd20a8376d00d29b",
+      "raw_sha256": "510ab38d4201f8cff2e0fd1fb3aa29215183dffafc17e4fdfb376e5ac2adc200",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D36",
+      "collection": "hf3-warren-r1-matched-control",
+      "session": "maya-continued",
+      "evidence_role": "sole external control",
+      "report_file": "../hf3-warren-2026-10-25/adr-maya-continued-report.md",
+      "report_sha256": "f52240348e1d6ef5313c391248c63924599380e9c60a0b8a01a77f6e52f4f999",
+      "raw_sha256": "e68d5fa1e897eb54d0cc3e727d955e713d26f52ed622c2fdc85effdbe99d68f6",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D37",
+      "collection": "hf3-warren-r1",
+      "session": "maya-free",
+      "evidence_role": "original unmatched qualitative",
+      "report_file": "../hf3-warren-2026-10-25/maya-free.md",
+      "report_sha256": "0fd48c2503aece1446781e6f23a090a7fe5b6847ebdcab54593e4cad54d0f7c1",
+      "raw_sha256": "c1ea7c6224158d28b5be174ee5eb6cc06f4cf5d96ea58d1373616213878b0f77",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D38",
+      "collection": "hf3-warren-r1",
+      "session": "rosa-free",
+      "evidence_role": "original unmatched qualitative",
+      "report_file": "../hf3-warren-2026-10-25/rosa-free.md",
+      "report_sha256": "077147ed94ef146cf0c25525c4618c8bb7e80694e3a254cd8305517622986dad",
+      "raw_sha256": "37ba8e9e5cdb5bc9e9f7ce39412e2fd521f4d1616b60612606182e2b98110c5a",
+      "taste_pattern_exclusion": "Reread rule-associated stop; exclude forced quit from taste patterns."
+    },
+    {
+      "diary": "D39",
+      "collection": "hf3-warren-r1-matched",
+      "session": "tessa-continued",
+      "evidence_role": "paired-arm collection",
+      "report_file": "../hf3-warren-2026-10-25/tessa-continued-matched.md",
+      "report_sha256": "bff085bc65098c64e1e545f290344b8e6f703064c7971dad479747f85ab96246",
+      "raw_sha256": "e36fd009e0a852cf79fd85988675a87b82b84f8d0dfd698d22f76587d8fa59f9",
+      "taste_pattern_exclusion": null
+    },
+    {
+      "diary": "D40",
+      "collection": "hf3-warren-r1-matched",
+      "session": "rosa-free",
+      "evidence_role": "paired-arm collection",
+      "report_file": "../hf3-warren-2026-10-25/rosa-free-matched.md",
+      "report_sha256": "24de4ceda722fb2f8467d54fc7ad6f7b4a44c7829dc3eff0083989b09be48ddd",
+      "raw_sha256": "17b4f36d898a91210717942e9a2775eb72fdc60d199e51b77cc59893f6708b27",
+      "taste_pattern_exclusion": "Reread rule-associated stop; exclude forced quit from taste patterns."
+    },
+    {
+      "diary": "D41",
+      "collection": "hf3-warren-r1-prompt-return",
+      "session": "jonas-continued",
+      "evidence_role": "paired-arm collection",
+      "report_file": "../hf3-warren-2026-10-25-prompt-return/jonas-continued-matched.md",
+      "report_sha256": "f08306f842519c46ec5df733c6b5e6929a75708be20ca55f6ed89b3c0e2cd957",
+      "raw_sha256": "3ba4f3ea2f9330de393c0e87582a03e44f59a20939bc9e4b1e6924d5371f3c84",
+      "taste_pattern_exclusion": null
+    }
+  ]
+}

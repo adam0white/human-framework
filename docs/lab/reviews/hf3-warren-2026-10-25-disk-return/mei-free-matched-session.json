@@ -1,0 +1,74 @@
+{
+  "started": "2026-10-26T04:05:41.695785+00:00",
+  "ended": "2026-10-26T04:11:44.141147+00:00",
+  "backend": "claude",
+  "model": "opus",
+  "effort": "low",
+  "device": "desktop",
+  "floor_minutes": 0,
+  "ceiling_minutes": 25,
+  "release_before": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "floor_met": true,
+  "pairing_role": "paired-arm collection",
+  "source": "Coordinator metadata, not player-visible content or production feedback receipt.",
+  "harness_session_id": "be7f190c-e348-4346-bd2c-c14671a9c6c9",
+  "same_start_sha256": "c71ad6d43833967c8c07e754d31ac2602fedb9a9d0ead145b687892a549665a4",
+  "state_restore_matched": true,
+  "report_is_coordinator_recovery": false,
+  "stop": {
+    "harness_session_id": "be7f190c-e348-4346-bd2c-c14671a9c6c9",
+    "t": "2026-10-26T04:11:16.652Z",
+    "elapsed_s": 326.76,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "I am stopping at 27 August. Coming back, I built the whole shelter - six places, store, lamp, stone door - by 22 August in under three minutes, and that part was satisfying because every mark answered me plainly. Then it was exactly what I left last time: the same journal lines each day, no date or sign for the riders, nothing to decide but whether to ring a bell I must not ring falsely. Knowing the game made me reach the empty waiting sooner. I selected I would stop here in Feedback and left it unsubmitted. I would come back if the riders had a date, or a warning I could prepare against.",
+    "game_clock": null,
+    "engagement": null,
+    "reason": "BORED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "viewport_resizes": [
+    {
+      "elapsed_s": 310.373,
+      "input": {
+        "width": 360,
+        "height": 690
+      }
+    },
+    {
+      "elapsed_s": 318.163,
+      "input": {
+        "width": 1280,
+        "height": 800
+      }
+    }
+  ],
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "d1eed2ee6b3a77ecd279ca71fc1989b3a0c4124e6463f54ed67e09415f21ab92",
+    "lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "image_view_evidence": {
+    "source": "Actual private rollout tool events; no image bytes published.",
+    "calls": 5,
+    "returned_image_calls": 5,
+    "times": [null, null, null, null, null]
+  },
+  "report.md_sha256": "1ea7536321a67cbd5f3ab5b10b16170cfc2bb9068ffdb36c65751ef3f7caea25",
+  "wall-clock.jsonl_sha256": "57239b6e6cc35e47d31006a7ddce55ef3e3fe84a2332dd30abc548363bc647e3"
+}

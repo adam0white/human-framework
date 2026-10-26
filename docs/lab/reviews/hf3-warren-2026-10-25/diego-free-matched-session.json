@@ -1,0 +1,59 @@
+{
+  "started": "2026-10-26T03:00:55.283627+00:00",
+  "ended": "2026-10-26T03:06:36.679942+00:00",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "device": "phone",
+  "floor_minutes": 0,
+  "ceiling_minutes": 25,
+  "release_before": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "floor_met": true,
+  "pairing_role": "paired-arm collection",
+  "source": "Coordinator metadata, not player-visible content or production feedback receipt.",
+  "harness_session_id": "aa866259-9cca-4854-ba0c-01b70a7a96bc",
+  "same_start_sha256": "c71ad6d43833967c8c07e754d31ac2602fedb9a9d0ead145b687892a549665a4",
+  "state_restore_matched": true,
+  "report_is_coordinator_recovery": false,
+  "stop": {
+    "harness_session_id": "aa866259-9cca-4854-ba0c-01b70a7a96bc",
+    "t": "2026-10-26T03:05:43.961Z",
+    "elapsed_s": 271.329,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "I am stopping here. I liked cutting a room and getting a door built. Now I am waiting without knowing what to attend to. I would not leave this running; I would worry that riders would arrive while I was away. I might return another evening on a bigger screen, but I would not choose to resume this phone session now. I selected the stopping choice locally and will not submit it.",
+    "game_clock": "Morning · 24 Aug · year 1",
+    "engagement": null,
+    "reason": "CONFUSED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "viewport_resizes": [],
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "d1eed2ee6b3a77ecd279ca71fc1989b3a0c4124e6463f54ed67e09415f21ab92",
+    "lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "image_view_evidence": {
+    "source": "Actual private rollout tool events; no image bytes published.",
+    "calls": 2,
+    "returned_image_calls": 2,
+    "times": ["2026-10-26T03:01:26.854Z", "2026-10-26T03:03:19.343Z"]
+  },
+  "report.md_sha256": "57dfd5409930593bc0fcc90852316f1ae3401f151e67116438c136d149a39270",
+  "wall-clock.jsonl_sha256": "64fadf67bce06058d94127c564770b3807ad7b45d78ada00bf81e66131840609"
+}

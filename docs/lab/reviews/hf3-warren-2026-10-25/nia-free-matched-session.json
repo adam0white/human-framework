@@ -1,0 +1,57 @@
+{
+  "started": "2026-10-26T02:09:32.285727+00:00",
+  "ended": "2026-10-26T02:13:48.268281+00:00",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "device": "phone",
+  "floor_minutes": 0,
+  "ceiling_minutes": 25,
+  "release_before": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "floor_met": true,
+  "pairing_role": "paired-arm collection",
+  "source": "Coordinator metadata, not player-visible content or production feedback receipt.",
+  "harness_session_id": "dd46305d-8ed5-43e0-ad82-003296976354",
+  "same_start_sha256": "c71ad6d43833967c8c07e754d31ac2602fedb9a9d0ead145b687892a549665a4",
+  "state_restore_matched": true,
+  "report_is_coordinator_recovery": false,
+  "stop": {
+    "harness_session_id": "dd46305d-8ed5-43e0-ad82-003296976354",
+    "t": "2026-10-26T02:12:16.870Z",
+    "elapsed_s": 157.912,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "Stopping after looking at the finished door. The quit wish did not pass. I would close it, not leave it running. I liked the door test and the Journal, but I would not return voluntarily right now. Feedback inspected and I would stop here selected locally; nothing typed or submitted.",
+    "game_clock": "Morning · 22 Aug · year 1",
+    "engagement": null,
+    "reason": "BORED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "viewport_resizes": [],
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "d1eed2ee6b3a77ecd279ca71fc1989b3a0c4124e6463f54ed67e09415f21ab92",
+    "lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "image_view_evidence": {
+    "source": "No independent full tool-event capture retained. Player report may declare image viewing. Exec JSONL alone cannot establish presence or absence.",
+    "status": "unverified"
+  },
+  "report.md_sha256": "b9e7c41e516f3e275ff43458ad942e9b57d1bbf3fcd51fbd18c67950c2486a2d",
+  "wall-clock.jsonl_sha256": "f1959bec28aa97b041dd73718e5af69243ca62553eb8f51bb3b077b7c7d2a4c8"
+}

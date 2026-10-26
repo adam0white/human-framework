@@ -1,0 +1,67 @@
+{
+  "time": "2026-10-26T04:50:53.792001+00:00",
+  "central_deployment_observed_at": "2026-10-26T04:42:55Z",
+  "central_old_commit": "1712fc5",
+  "central_new_commit": "00dcdad7d66a6ee33d11f941e5319de5bdfbeebf",
+  "warren_commit_unchanged": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+  "source_files": [
+    {
+      "path": "apps/site/lab/identity/index.html",
+      "sha256": "3f40011d952d5dabe5df6e542735f93b81167f4a61992d320da25ece91856de7",
+      "source_identical": true
+    },
+    {
+      "path": "apps/site/src/lab/identity.ts",
+      "sha256": "6ba3fec10dec244565112210ab80d4cde8c1d2e35917b7cbc92efb75a0e562d2",
+      "source_identical": true
+    },
+    {
+      "path": "apps/site/src/lab/persona-store.ts",
+      "sha256": "1ec2e5f66c44357f34dde76dbee368d05cbd4de7ed6b9808b6a6be4792a2323f",
+      "source_identical": true
+    },
+    {
+      "path": "packages/lab-client/src/identity.ts",
+      "sha256": "0365ec1e14d70e0b0ae427d0f56b28f3b0bac85111edb576278b7f69ef4be798",
+      "source_identical": true
+    },
+    {
+      "path": "packages/lab-client/src/notice.ts",
+      "sha256": "a016dd4e7f10abe7e74916a359dad47bc73680dfc0a5cbd17417d4c41f6500c6",
+      "source_identical": true
+    },
+    {
+      "path": "packages/lab-client/src/persona.ts",
+      "sha256": "89205d34ef328486cf82067093790146dad79d05a79c9d7e8f7fc6bfb22b0b86",
+      "source_identical": true
+    },
+    {
+      "path": "packages/lab-client/src/life.ts",
+      "sha256": "4794b4cd0e9b0b4ee294ca12a20a37a756753437aed4850e20f777329da5c572",
+      "source_identical": true
+    },
+    {
+      "path": "packages/lab-client/src/cast.ts",
+      "sha256": "ead763f5ad7ea875847f41f501249d49f2abf19c574b9ae9e88b7fa4b9dda005",
+      "source_identical": true
+    },
+    {
+      "path": "packages/lab-client/src/linked.ts",
+      "sha256": "8f13e35e742bfd7d3dd11e0fa5b07143348d2282e189135de3400fe7c9ff587e",
+      "source_identical": true
+    },
+    {
+      "path": "packages/lab-client/src/util.ts",
+      "sha256": "b662b67e04ce0601f14b39b291fdc8e37603294051b5cb79a085933ab2ac8e79",
+      "source_identical": true
+    },
+    {
+      "path": "packages/human/src/chapter-clock.ts",
+      "sha256": "8f01cc481be7ae6194d85a45f83c24abba698842862b0ca1dd9c6a773fbe8399",
+      "source_identical": true
+    }
+  ],
+  "served_identity_html": "<!doctype html><html lang=\"en\">\n<script type=\"module\" crossorigin src=\"/assets/labIdentity-BMncA0W7.js\"></script>\n<link rel=\"modulepreload\" crossorigin href=\"/assets/modulepreload-polyfill-P2Xu9kJm.js\">\n<link rel=\"modulepreload\" crossorigin href=\"/assets/persona-ByxTOuWy.js\">\n<link rel=\"modulepreload\" crossorigin href=\"/assets/notice-BDLdLPYT.js\">\n<link rel=\"modulepreload\" crossorigin href=\"/assets/life-QJMDS8c7.js\">\n<link rel=\"modulepreload\" crossorigin href=\"/assets/persona-store-BZwjtT-D.js\">\n<meta charset=\"utf-8\"><title>Lab recording preference</title></html>\n",
+  "upload_evidence": "all/site32-final-deploy.log lists22new/modifiedassets; identity page, persona/store/life/notice bundles are absent from changed list",
+  "limit": "Source and served asset evidence, not independent before/after runtime equivalence of every shared integration. Per-arm pre-navigation storage equivalence remains separately checked. Loaded Warren localLoad uses saved people and does not read newer shelf heads."
+}

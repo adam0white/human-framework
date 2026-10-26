@@ -1,0 +1,82 @@
+{
+  "started": "2026-10-26T03:06:40.905976+00:00",
+  "ended": "2026-10-26T03:23:37.791869+00:00",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "device": "phone",
+  "floor_minutes": 15,
+  "ceiling_minutes": 25,
+  "release_before": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.6.0",
+    "framework": "3.0.0",
+    "commit": "43adc501f4c91b93d50bc697c42dcf33014117c6",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "floor_met": true,
+  "pairing_role": "paired-arm collection",
+  "source": "Coordinator metadata, not player-visible content or production feedback receipt.",
+  "harness_session_id": "829791b8-0790-4ee8-87d6-1e795bf7cabf",
+  "same_start_sha256": "c71ad6d43833967c8c07e754d31ac2602fedb9a9d0ead145b687892a549665a4",
+  "state_restore_matched": true,
+  "report_is_coordinator_recovery": false,
+  "stop": {
+    "harness_session_id": "829791b8-0790-4ee8-87d6-1e795bf7cabf",
+    "t": "2026-10-26T03:22:15.095Z",
+    "elapsed_s": 920.89,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "I am stopping here. I enjoyed making the first shelter and worrying about the smoke. Now I am chasing beds and waiting. I would not return voluntarily, would not leave it running, and would not come back another evening on the strength of this session.",
+    "game_clock": "Morning · 22 Sep · year 1",
+    "engagement": null,
+    "reason": "BORED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "viewport_resizes": [
+    {
+      "elapsed_s": 309.741,
+      "input": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "elapsed_s": 326.307,
+      "input": {
+        "width": 360,
+        "height": 690
+      }
+    }
+  ],
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "d1eed2ee6b3a77ecd279ca71fc1989b3a0c4124e6463f54ed67e09415f21ab92",
+    "lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "image_view_evidence": {
+    "source": "Actual private rollout tool events; no image bytes published.",
+    "calls": 7,
+    "returned_image_calls": 7,
+    "times": [
+      "2026-10-26T03:07:06.752Z",
+      "2026-10-26T03:08:38.503Z",
+      "2026-10-26T03:12:14.508Z",
+      "2026-10-26T03:14:08.827Z",
+      "2026-10-26T03:14:22.228Z",
+      "2026-10-26T03:15:40.032Z",
+      "2026-10-26T03:18:40.686Z"
+    ]
+  },
+  "report.md_sha256": "e4d68091c7c9516cfc1bdcc30d3ec34357151b2dd99330ed3b0d379ae14090f7",
+  "wall-clock.jsonl_sha256": "2495dc64ca6858b76826d0b4f4c7fea1ac0c7ca1486d384edcf6ae2a4595a59f"
+}
