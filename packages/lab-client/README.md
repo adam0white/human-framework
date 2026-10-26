@@ -1,8 +1,8 @@
 # Lab client
 
-This README describes client 0.4.11, distributed as an immutable GitHub release artifact, not an npm publication. It depends on exact HF 3.0.0. Use the [SDK adoption guide](../../docs/lab/navigation-journal-adoption-2026-10-25.md) and verify the [release digests](../../docs/releases.md#lab-package-artifacts--2026-10-25).
+This README describes the client 0.4.12 candidate. Client distribution uses immutable GitHub release artifacts, not npm publication. It depends on exact HF 3.0.0. Use the [SDK adoption guide](../../docs/lab/navigation-journal-adoption-2026-10-25.md) and verify the [release digests](../../docs/releases.md#lab-package-artifacts--2026-10-25).
 
-Workspace candidate version: **0.4.11**. The **0.4.11** [GitHub artifact](https://github.com/adam0white/human-framework/releases/tag/lab-client-v0.4.11) is published from separate source `569bfeed`, with exact CI 40241110596. Its source is integrated into this 3.2 candidate; live host adoption still needs deployment. See [SDK adoption](../../docs/lab/navigation-journal-adoption-2026-10-25.md) before using its opt-in Feedback choices.
+Workspace candidate version: **0.4.12**. This candidate adds exact-origin admission for smoke, word, child, days and lefthand. Recording off and notice fallback create no player ID. The **0.4.11** [GitHub artifact](https://github.com/adam0white/human-framework/releases/tag/lab-client-v0.4.11) is published from separate source `569bfeed`, with exact CI 40241110596. Its source is integrated into this 3.2 candidate; live host adoption still needs deployment. See [SDK adoption](../../docs/lab/navigation-journal-adoption-2026-10-25.md) before using its opt-in Feedback choices.
 
 Default-on, pseudonymous play recording for the HF game lab. The visible notice and menu toggle come from `@adam0white/lab-kit`. Games supply full replay exports and actual saves. Screens remain game-owned.
 

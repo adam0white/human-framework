@@ -61,3 +61,30 @@ it('does not override a local Recording off choice during navigation', () => {
   expect(localStorage.getItem('hf-lab-recording-off')).toBe('1');
   expect(localStorage.getItem('hf-lab-player')).toBeNull();
 });
+
+// Current-increment origins need the top-level fallback when iframe storage is unavailable.
+it('carries Recording off and the notice to each current-increment game', () => {
+  for (const host of ['smoke', 'word', 'child', 'days', 'lefthand']) {
+    localStorage.clear();
+    localStorage.setItem('hf-lab-recording-off', '1');
+    localStorage.setItem(NOTICE_KEY, '1');
+    vi.stubGlobal('location', { origin: 'https://human.adamwhite.work' });
+    const destination = new URL(gameNavigation(`https://${host}.adamwhite.work/`, 1000));
+    expect(destination.hash).toContain('hf-lab-navigation=');
+    expect(localStorage.getItem('hf-lab-player')).toBeNull();
+    localStorage.clear();
+    vi.stubGlobal('location', {
+      origin: destination.origin,
+      href: destination.href,
+      pathname: '/',
+      search: '',
+      hash: destination.hash,
+    });
+    vi.stubGlobal('document', { referrer: 'https://human.adamwhite.work/games/' });
+    vi.stubGlobal('history', { state: null, replaceState: vi.fn() });
+    expect(acceptGameNavigation(1000)).toBe(true);
+    expect(localStorage.getItem('hf-lab-recording-off')).toBe('1');
+    expect(localStorage.getItem(NOTICE_KEY)).toBe('1');
+    expect(localStorage.getItem('hf-lab-player')).toBeNull();
+  }
+});

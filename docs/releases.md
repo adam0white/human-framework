@@ -82,3 +82,9 @@ Set up 2026-10-07 (owner: "do npm publishing properly"; then, the same day, "No 
 First publish: the owner published 2.1.3 by hand on 2026-10-07; it went through npm's staging and became `latest` at that checkpoint (no provenance). A placeholder `0.0.0-stage` from that staging stays on the registry; the owner can hide it with `npm deprecate @adam0white/human-framework@0.0.0-stage "placeholder; install 2.1.3 or later"`. 2.1.4 is the first version published by the workflow, which also validates the trusted publisher (a new one must publish within 2 days). The homepage and README install from npm.
 
 An npm token, if the owner provides one for publishing by hand, lives only in the user's `~/.npmrc` or a GitHub Actions secret, never in the repository, logs or build output.
+
+## SDK origin admission candidate — 2026-10-26
+
+Client 0.4.12 admits the exact smoke, word, child, days and lefthand HTTPS origins alongside all prior origins. One navigation regression exercises Recording off and notice fallback creation and acceptance at all five destinations without creating a player ID. Existing hostile, stale, copied and local-off checks remain. Consent, F-491, DNT/GPC and separate character-analysis opt-in are unchanged. Client retains exact HF 3.0.0.
+
+Kit 0.5.14 changes only version, documentation and its optional client peer to `0.4.11 || 0.4.12`; kit implementation and scorer are unchanged. Site workspace pins client 0.4.12 and kit 0.5.14. Source review, exact CI and immutable GitHub artifact verification are prerequisites to publication; this candidate receipt claims none of those outcomes. Central deployment, host adoption, browser navigation and player acceptance remain separate.

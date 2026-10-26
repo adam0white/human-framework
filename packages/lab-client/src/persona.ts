@@ -23,6 +23,11 @@ export const PERSONA_ORIGINS = new Set(
     'warren',
     'neighbours',
     'commonstead',
+    'smoke',
+    'word',
+    'child',
+    'days',
+    'lefthand',
   ].map((host) => `https://${host}.adamwhite.work`),
 );
 export type PersonaEnvelope = {
