@@ -1,12 +1,14 @@
 /**
  * Presentation only: keep the scene and its speech targets together during a gesture, and give
- * each displayed frame 600 ms before replacement. The worker and game clock keep running.
+ * each displayed frame 600 ms before replacement. An open sheet retains its rendered choices until closed.
+ * The worker and game clock keep running; input guards still check the live occasion.
  */
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 const SETTLE_MS = 600;
 
-export function useStableSpeechFrame<T>(frame: T) {
+export function useStableSpeechFrame<T>(frame: T, held = false) {
+  const holding = useRef(held);
   const [shown, setShown] = useState(frame);
   const latest = useRef(frame);
   const current = useRef(frame);
@@ -18,7 +20,8 @@ export function useStableSpeechFrame<T>(frame: T) {
   refresh.current = () => {
     if (timer.current !== null) clearTimeout(timer.current);
     timer.current = null;
-    if (pointers.current.size || keys.current.size || latest.current === current.current) return;
+    if (holding.current || pointers.current.size || keys.current.size || latest.current === current.current)
+      return;
     const wait = until.current - Date.now();
     if (wait > 0) {
       timer.current = setTimeout(() => refresh.current(), wait);
@@ -29,9 +32,10 @@ export function useStableSpeechFrame<T>(frame: T) {
     setShown(current.current);
   };
   useLayoutEffect(() => {
+    holding.current = held;
     latest.current = frame;
     refresh.current();
-  }, [frame]);
+  }, [frame, held]);
   useEffect(() => {
     const release = (event: PointerEvent) => {
       if (!pointers.current.delete(event.pointerId)) return;

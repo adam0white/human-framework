@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Draft, Frame, SceneWords, Telegraph } from '../protocol.ts';
 import { Composer } from './Composer.tsx';
 import { storyDates } from './dates.ts';
@@ -35,13 +35,39 @@ export interface SceneDayProps {
 }
 /** Scenes are presentation only. Inputs still use the existing suggestion protocol. */
 export function SceneDay(props: SceneDayProps) {
-  const stable = useStableSpeechFrame(props.frame);
+  const [holdingSheet, setHoldingSheet] = useState(false);
+  const stable = useStableSpeechFrame(props.frame, holdingSheet);
+  const sheetWasOpen = useRef(false);
+  const latestFrame = useRef(props.liveFrame ?? props.frame);
+  latestFrame.current = props.liveFrame ?? props.frame;
+  const onSpeakingChange = useCallback(
+    (open: boolean) => {
+      if (open !== sheetWasOpen.current) {
+        sheetWasOpen.current = open;
+        // A stopped clock cannot expire a choice. Retain choices when reading a running day.
+        setHoldingSheet(open && !latestFrame.current.paused);
+      }
+      props.onSpeakingChange?.(open);
+    },
+    [props.onSpeakingChange],
+  );
   const [unsaid, setUnsaid] = useState<string | null>(null);
   const suggest = (draft: Draft, words?: string) => {
+    setHoldingSheet(false);
     const live = props.liveFrame ?? props.frame;
-    if (words && sceneBeat(stable.frame) !== sceneBeat(live)) {
+    const available =
+      ['day', 'free', 'eid'].includes(live.phase) &&
+      live.composer.open &&
+      !live.muted &&
+      live.options.some((option) => option.id === draft.optionId);
+    if (!available || sceneBeat(stable.frame) !== sceneBeat(live)) {
       // This occasion ended even if the same action is offered again. Do not send it to a new one.
-      setUnsaid(words);
+      props.onPersonalReply?.(true);
+      setUnsaid(
+        words ??
+          stable.frame.options.find((option) => option.id === draft.optionId)?.label ??
+          'Your suggestion',
+      );
       return;
     }
     setUnsaid(null);
@@ -53,6 +79,16 @@ export function SceneDay(props: SceneDayProps) {
       {...props}
       frame={stable.frame}
       onSuggest={suggest}
+      onSpeakingChange={onSpeakingChange}
+      onSceneWord={(kind, beat, words) => {
+        setHoldingSheet(false);
+        props.onSceneWord?.(kind, beat, words);
+      }}
+      onSayNothing={() => {
+        setHoldingSheet(false);
+        props.onSayNothing();
+      }}
+      earlierMoment={sceneBeat(stable.frame) !== sceneBeat(props.liveFrame ?? props.frame)}
       unsaid={unsaid}
       onDismissUnsaid={() => setUnsaid(null)}
       onKeyDownCapture={stable.onKeyDownCapture}
@@ -63,6 +99,7 @@ export function SceneDay(props: SceneDayProps) {
 
 function SceneDayContent(
   props: SceneDayProps & {
+    earlierMoment: boolean;
     unsaid: string | null;
     onDismissUnsaid: () => void;
     onKeyDownCapture: (event: { key: string; target: EventTarget | null }) => void;
@@ -127,7 +164,7 @@ function SceneDayContent(
     restoreFocus.current = true;
     setEditor(false);
   };
-  const available = frame.composer.open && !frame.muted;
+  const available = ['day', 'free', 'eid'].includes(frame.phase) && frame.composer.open && !frame.muted;
   const beat = sceneBeat(frame);
   const wordChoices = sceneWordChoices(frame);
   const lastRequest = frame.log.findLast((entry) => entry.kind === 'you');
@@ -463,6 +500,11 @@ function SceneDayContent(
             </button>
           </header>
           <div className="v-speaking-body">
+            {props.earlierMoment && (
+              <p role="status">
+                These choices are from an earlier moment. If a choice has ended, nothing will be said.
+              </p>
+            )}
             {offer && <p className="v-scene-offer">{explainTerms(storyDates(offer.why))}</p>}
             {available && (
               <div className="v-scene-choices">

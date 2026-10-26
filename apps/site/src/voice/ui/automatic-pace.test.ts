@@ -6,11 +6,11 @@ import { RecordedGame, replayVoice, voiceHash } from '../sim/record.ts';
 import { automaticTick, skipStop, skipTick } from './automatic-pace.ts';
 import { savedVoice, saveVoice } from './autosave.ts';
 
-test('automatic and menu pace affect wall time while reading holds the clock', () => {
+test('automatic and menu pace affect wall time while reading slows the clock', () => {
   const frame = { ...sampleFrame, pace: 'slow' as const, fastForward: undefined };
   expect(automaticTick(1000, frame, 'automatic', false, false)).toBe(1000);
   expect(automaticTick(1000, frame, 'fast', false, false)).toBe(7500);
-  expect(automaticTick(1000, frame, 'fast', true, false)).toBe(0);
+  expect(automaticTick(1000, frame, 'fast', true, false)).toBe(31.25);
   expect(skipTick({ ...frame, fastForward: 'busy' }) * 240).toBeCloseTo(1000);
 });
 

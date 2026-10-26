@@ -16,10 +16,9 @@ export function pendingSceneOffer(frame: Frame | null): string | null {
     ? scene.id
     : null;
 }
-/** Hold explicit reading. Unopened stay offers keep their slower automatic pace. */
+/** Tactical slowdown only. The displayed choice is retained separately from the running clock. */
 export function readingTick(dtMs: number, frame: Frame | null, reading: boolean, sceneOffer = false): number {
   if ((!reading && !sceneOffer) || !frame) return dtMs;
-  if (reading) return 0;
   const rate = frame.fastForward ? 240 : PACE_MINUTES_PER_SECOND[frame.pace];
-  return (dtMs / rate) * (sceneOffer ? 0.25 : 1);
+  return (dtMs / rate) * 0.25;
 }

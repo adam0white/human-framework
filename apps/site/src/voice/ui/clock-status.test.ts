@@ -20,6 +20,6 @@ test('clock status describes this clock, separately from the scene start time', 
     );
   expect(status(false, false)).toContain('Clock running.');
   expect(status(true, false)).toContain('Clock stopped at 09:33.');
-  expect(status(true, true)).toContain('Clock held while you read.');
-  expect(status(false, true)).toContain('Clock held while you read.');
+  expect(status(true, true)).toContain('Clock stopped at 09:33.');
+  expect(status(false, true)).toContain('Clock slowed while you read.');
 });

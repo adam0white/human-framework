@@ -694,3 +694,69 @@ it('keeps expired advice and the rent outcome visible beside an ongoing scene un
   click(el, '[aria-label="What happened"] button');
   expect(el.querySelector('[aria-label="What happened"]')).toBeNull();
 });
+
+it('keeps the open choice through queued frames, then explains an ended occasion instead of sending to a later one', () => {
+  const { el, props, update } = mount(false);
+  props.speakRequest += 1;
+  update();
+  const choice = el.querySelector('.v-scene-choice');
+  if (!choice) throw Error('No open choice');
+  const label = choice.textContent;
+  props.frame.composer = { open: false, reason: 'busy' };
+  props.frame.options = [];
+  props.frame.log.push({
+    id: 'later',
+    day: 1,
+    minute: 610,
+    clock: '10:10',
+    kind: 'act',
+    who: 'halil',
+    text: 'I rest at home.',
+  });
+  props.frame.minute = 610;
+  update();
+  flushSync(() => vi.advanceTimersByTime(3000));
+  expect(el.querySelector('.v-speaking-sheet')).not.toBeNull();
+  expect(el.querySelector('.v-scene-choice')?.textContent).toBe(label);
+  click(el, '.v-scene-choice');
+  expect(props.onSuggest).not.toHaveBeenCalled();
+  expect(el.textContent).toContain('That moment has passed. Nothing was said.');
+});
+
+it('does not send a frozen planner draft to a later occasion even when its action is offered again', () => {
+  const { el, props, update } = mount(false);
+  props.speakRequest += 1;
+  update();
+  click(el, '.v-scene-more');
+  click(el, '.v-scene-plan');
+  click(el, '.v-option');
+  props.frame.log.push({
+    id: 'later',
+    day: 1,
+    minute: 610,
+    clock: '10:10',
+    kind: 'act',
+    who: 'halil',
+    text: 'I rest at home.',
+  });
+  props.frame.minute = 610;
+  update();
+  click(el, '.v-say .v-btn-primary');
+  expect(props.onSuggest).not.toHaveBeenCalled();
+  expect(el.textContent).toContain('That moment has passed. Nothing was said.');
+});
+
+it('rejects a frozen planner action that has expired without a new scene beat', () => {
+  const { el, props, update } = mount(false);
+  props.speakRequest += 1;
+  update();
+  click(el, '.v-scene-more');
+  click(el, '.v-scene-plan');
+  click(el, '.v-option');
+  props.frame.options = [];
+  props.frame.composer = { open: false, reason: 'busy' };
+  update();
+  click(el, '.v-say .v-btn-primary');
+  expect(props.onSuggest).not.toHaveBeenCalled();
+  expect(el.textContent).toContain('That moment has passed. Nothing was said.');
+});

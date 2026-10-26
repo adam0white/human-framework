@@ -122,10 +122,10 @@ export const TopBar = memo(function TopBar({
                   ? menuOpen
                     ? 'held: menu open'
                     : 'held: information open'
-                  : reading
-                    ? 'Clock held while you read.'
-                    : frame.paused
-                      ? `Clock stopped at ${frame.clock}.`
+                  : frame.paused
+                    ? `Clock stopped at ${frame.clock}.`
+                    : reading
+                      ? 'Clock slowed while you read.'
                       : 'Clock running.',
               )}
             </span>

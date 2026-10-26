@@ -53,7 +53,7 @@ function Harness({ capture }: { capture: (value: Voice) => void }) {
   return null;
 }
 
-it('holds reading ticks, keeps frame scheduling on wall time, and respects manual and replay holds', async () => {
+it('slows reading ticks, keeps frame scheduling on wall time, and respects manual and replay holds', async () => {
   let voice: Voice | undefined;
   const root = createRoot(document.createElement('div'));
   try {
@@ -113,7 +113,7 @@ it('holds reading ticks, keeps frame scheduling on wall time, and respects manua
     flushSync(() => actions.setReading(true));
     expect(channel.post).not.toHaveBeenCalled();
     channel.tick(240);
-    expect(channel.post).toHaveBeenLastCalledWith({ type: 'tick', dtMs: 0, wallDtMs: 240 });
+    expect(channel.post).toHaveBeenLastCalledWith({ type: 'tick', dtMs: 0.25, wallDtMs: 240 });
     flushSync(() => actions.setReading(false));
     channel.tick(240);
     expect(channel.post).toHaveBeenLastCalledWith({ type: 'tick', dtMs: 240, wallDtMs: 240 });

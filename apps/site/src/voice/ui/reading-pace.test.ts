@@ -2,12 +2,12 @@ import { expect, test } from 'vitest';
 import { sampleFrame } from '../sim/fixtures.ts';
 import { pendingSceneOffer, readingTick } from './reading-pace.ts';
 
-test('reading holds normal and busy playback so a choice cannot expire', () => {
+test('reading keeps a nonzero tactical slowdown at every playback pace', () => {
   for (const pace of ['slow', 'normal', 'fast'] as const) {
     const frame = { ...sampleFrame, pace, fastForward: undefined };
     const rates = { slow: 8, normal: 20, fast: 60 };
-    expect(readingTick(3000, frame, true) * rates[pace]).toBe(0);
-    expect(readingTick(3000, { ...frame, fastForward: 'repairing' }, true) * 240).toBe(0);
+    expect(readingTick(3000, frame, true) * rates[pace]).toBeCloseTo(750);
+    expect(readingTick(3000, { ...frame, fastForward: 'repairing' }, true) * 240).toBeCloseTo(750);
     expect(readingTick(1000, frame, false)).toBe(1000);
   }
   expect(readingTick(1000, null, true)).toBe(1000);

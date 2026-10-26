@@ -71,11 +71,11 @@ export function App() {
     !frame || phase === 'premise' || titleOpen
       ? 'premise'
       : phase === 'between'
-        ? holdingReply
+        ? holdingReply || speaking
           ? null
           : 'between'
         : phase === 'report'
-          ? holdingReply
+          ? holdingReply || speaking
             ? null
             : 'report'
           : frame.intro

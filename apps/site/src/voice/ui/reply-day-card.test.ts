@@ -75,7 +75,7 @@ it('holds speech through the automatic day card and acknowledges an expired occa
   Object.assign(frame, {
     day: 1,
     phase: 'day',
-    paused: true,
+    paused: false,
     muted: false,
     intro: undefined,
     minute: 600,
@@ -123,9 +123,12 @@ it('holds speech through the automatic day card and acknowledges an expired occa
   try {
     await act(() => root.render(createElement(App)));
     await act(() => vi.advanceTimersByTime(600));
+    const speak = [...el.querySelectorAll<HTMLButtonElement>('button')].find(
+      (b) => b.textContent === 'Speak',
+    );
+    await act(() => speak?.click());
     const target = el.querySelector<HTMLButtonElement>('.v-scene-choice');
     if (!target) throw Error('No suggestion');
-    await act(() => target.dispatchEvent(new PointerEvent('pointerdown', { pointerId: 7, bubbles: true })));
     channel.voice = {
       ...channel.voice,
       frame: { ...frame, day: 2, phase: 'between', minute: 1440, log: [] },
@@ -134,7 +137,6 @@ it('holds speech through the automatic day card and acknowledges an expired occa
     await act(() => vi.advanceTimersByTime(2000));
     expect(el.querySelector('.v-scene-choice')).toBe(target);
     expect(el.querySelector('.v-overlay-night')).toBeNull();
-    await act(() => target.dispatchEvent(new PointerEvent('pointerup', { pointerId: 7, bubbles: true })));
     await act(() => target.click());
     expect(suggest).not.toHaveBeenCalled();
     expect(el.querySelector('[role=status]')?.textContent).toContain(
