@@ -309,3 +309,43 @@ describe('read-only day scenes', () => {
     }
   });
 });
+
+it('does not replay the workshop visitor exchange on later work occasions', () => {
+  const first = act('I repair in the workshop.', 2000, 'first');
+  const again = act('I repair in the workshop.', 2040, 'again');
+  const third = act('I repair in the workshop.', 2080, 'third');
+  const scenes = [first, again, third].map((_entry, index) =>
+    deriveScene(frame([first, again, third].slice(0, index + 1), 'repair in the workshop')),
+  );
+  expect(new Set(scenes.map((scene) => JSON.stringify(scene?.lines))).size).toBe(3);
+  expect(scenes[2]?.lines).toEqual([
+    { speaker: 'Scene', words: 'Halil is doing repairs again. He last worked here on day 1 at 10:00.' },
+  ]);
+});
+
+it('summarizes a repeated Nuran memory using its earlier recorded occasion', () => {
+  const first = {
+    ...act('He remembers: Nuran at our table.', 2000, 'memory-first'),
+    kind: 'recall' as const,
+  };
+  const again = { ...first, id: 'memory-again', minute: 2060, clock: '10:20' };
+  const scene = deriveScene(frame([first, again]));
+  expect(scene?.lines).toEqual([
+    {
+      speaker: 'Scene',
+      words:
+        'Halil recalls the same memory: “I remember Nuran at our table.” He last recalled it on day 1 at 10:00.',
+    },
+  ]);
+});
+it('does not replay the same table-memory exchange at another meal', () => {
+  const memory = { ...act('He remembers: Nuran at our table.', 1900, 'memory'), kind: 'recall' as const };
+  const first = act('I eat at home.', 2000, 'meal-first');
+  const again = act('I eat at home.', 2080, 'meal-again');
+  expect(deriveScene(frame([memory, first, again]))?.lines).toEqual([
+    {
+      speaker: 'Scene',
+      words: 'Halil eats at his table again, remembering Nuran. He last ate here on day 1 at 10:00.',
+    },
+  ]);
+});

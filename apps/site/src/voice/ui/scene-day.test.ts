@@ -644,3 +644,53 @@ it('closes the speaking sheet without resolving its stop and opens it from the s
   expect(el.querySelector('.v-speaking-sheet')).not.toBeNull();
   expect(el.querySelector('.v-speaking-actions > .v-scene-silence')).not.toBeNull();
 });
+
+it('keeps expired advice and the rent outcome visible beside an ongoing scene until acknowledged', () => {
+  const { el, props, update } = mount(false);
+  props.frame.log.push({
+    id: 'expired',
+    day: 1,
+    minute: 601,
+    clock: '10:01',
+    kind: 'note',
+    who: 'you',
+    text: 'He asked you to wait. Your suggestion has now ended.',
+  });
+  props.frame.minute = 601;
+  update();
+  expect(el.querySelector('[aria-label="What happened"]')?.textContent).toContain(
+    'Your suggestion has now ended.',
+  );
+  expect(props.onReading).toHaveBeenLastCalledWith(true);
+  props.frame.log.push({
+    id: 'noise',
+    day: 1,
+    minute: 602,
+    clock: '10:02',
+    kind: 'feel',
+    who: 'halil',
+    text: 'He feels tired.',
+  });
+  props.frame.minute = 602;
+  update();
+  expect(el.querySelector('[aria-label="What happened"]')?.textContent).toContain(
+    'Your suggestion has now ended.',
+  );
+  props.frame.log.push({
+    id: 'rent',
+    day: 1,
+    minute: 603,
+    clock: '10:03',
+    kind: 'note',
+    who: 'halil',
+    beat: 'duty-risk',
+    text: 'Osman’s payment deadline has passed. Halil paid nothing by 20:00.',
+  });
+  props.frame.minute = 603;
+  update();
+  expect(el.querySelector('[aria-label="What happened"]')?.textContent).toContain(
+    'Halil paid nothing by 20:00.',
+  );
+  click(el, '[aria-label="What happened"] button');
+  expect(el.querySelector('[aria-label="What happened"]')).toBeNull();
+});

@@ -268,3 +268,50 @@ it('keeps table-specific admissions tied to a surfaced table memory', () => {
   expect(table[2]?.words).toContain('across the table');
   expect(table[3]?.words).toContain('Keep the door open');
 });
+
+it('moves on from an already discussed recall and shortens repeated encounters without inventing events', () => {
+  const memory: LogEntry = {
+    ...talk,
+    id: 'm',
+    minute: 1900,
+    kind: 'recall',
+    text: 'He remembers: Nuran at our table.',
+  };
+  const again = { ...talk, id: 'again', minute: 2080, clock: '10:40' };
+  const third = { ...talk, id: 'third', minute: 2120, clock: '11:20' };
+  const log = [memory, talk, again, third];
+  const before = JSON.stringify(log);
+  expect(conversationFor(talk, log)[0]?.words).toContain('Nuran');
+  expect(
+    conversationFor(again, log)
+      .map((l) => l.words)
+      .join(' '),
+  ).not.toContain('Nuran');
+  expect(conversationFor(third, log)).toEqual([
+    { speaker: 'Scene', words: 'Halil talks with Hacer again. They last spoke on day 1 at 10:40.' },
+  ]);
+  expect(JSON.stringify(log)).toBe(before);
+});
+it('does not use a recall or encounter recorded after the anchor at the same minute', () => {
+  const memory: LogEntry = {
+    ...talk,
+    id: 'later-memory',
+    kind: 'recall',
+    text: 'He remembers: Nuran at our table.',
+  };
+  expect(conversationFor(talk, [talk, memory])).toEqual(conversationFor(talk, [talk]));
+});
+it('does not restart the same grief exchange when that recall repeats on a later day', () => {
+  const memory: LogEntry = {
+    ...talk,
+    id: 'm1',
+    minute: 1900,
+    kind: 'recall',
+    text: 'He remembers: Nuran at our table.',
+  };
+  const again = { ...talk, id: 'day2', day: 2, minute: 3480 };
+  const repeated = { ...memory, id: 'm2', day: 2, minute: 3479 };
+  expect(conversationFor(again, [memory, talk, repeated, again])[0]?.words).not.toContain('Nuran');
+  const fresh = { ...repeated, text: 'He remembers: Nuran’s funeral.' };
+  expect(conversationFor(again, [memory, talk, fresh, again])[0]?.words).toContain('funeral');
+});

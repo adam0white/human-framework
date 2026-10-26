@@ -2138,6 +2138,49 @@ export class VoiceGame {
     return pip;
   }
 
+  /** Display receipts only. Keep the recorded log and replay state byte-for-byte unchanged. */
+  private outcomeLog(): LogEntry[] {
+    let shiftSuggested = false;
+    let shiftExplained = false;
+    let deferred = false;
+    return this.log
+      .map((entry) => {
+        if (entry.kind === 'you') {
+          shiftSuggested = /take an afternoon shift/.test(entry.text);
+          shiftExplained = false;
+          deferred = false;
+        }
+        let text = entry.text;
+        if (entry.kind === 'answer') {
+          deferred = entry.tone === 'notNow';
+          if (shiftSuggested && !shiftExplained && (entry.tone === 'notNow' || entry.tone === 'willNot')) {
+            text += ' He also doubts the afternoon shift will pay.';
+            shiftExplained = true;
+          }
+        }
+        if (entry.kind === 'note' && entry.who === 'you') {
+          if (text === 'Your suggestion fades.') {
+            text = `${deferred ? 'He asked you to wait. ' : ''}Your suggestion has now ended. Say it again if you still want him to hear it.`;
+            shiftSuggested = false;
+            deferred = false;
+          } else if (text === 'He is asleep. Your suggestion fades.') {
+            text =
+              'He is asleep. Your suggestion has ended. Say it again when he wakes if you still want him to hear it.';
+            shiftSuggested = false;
+            deferred = false;
+          }
+        }
+        if (entry.kind === 'note' && text.startsWith('Osman’s payment deadline has passed,')) {
+          text = text.replace(
+            'Osman’s payment deadline has passed, and he has paid nothing; he had',
+            'Osman’s payment deadline has passed. Halil paid nothing by 20:00. He had',
+          );
+        }
+        return text === entry.text ? entry : { ...entry, text };
+      })
+      .slice(-LOG_CAP);
+  }
+
   frame(): Frame {
     const h = this.halil;
     const t = this.t;
@@ -2177,7 +2220,7 @@ export class VoiceGame {
       halil: halilView(h, this.run.town, t, this.weighsStart),
       composer,
       options,
-      log: this.log.slice(-LOG_CAP),
+      log: this.outcomeLog(),
       ends: this.ends(),
       unasked: this.unaskedNow(),
       voices: voicesView(h, t),

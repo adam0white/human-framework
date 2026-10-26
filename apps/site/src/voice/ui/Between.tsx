@@ -146,7 +146,16 @@ export function Between({
                   >
                     {settingWords(c.label)}
                   </button>
-                  {c.hint && <p className="v-whisper-hint">{settingWords(c.hint)}</p>}
+                  {c.hint && (
+                    <p className="v-whisper-hint">
+                      {settingWords(
+                        c.hint.replace(
+                          'He does not expect to earn that pay, so a gentle suggestion is not enough. Remind him of his promise (“it’s your duty”), or choose Urge.',
+                          'He doubts the afternoon shift will pay. Mention with “it’s your duty” may still be refused. Choose Urge for stronger advice; he may object.',
+                        ),
+                      )}
+                    </p>
+                  )}
                 </li>
               );
             })}

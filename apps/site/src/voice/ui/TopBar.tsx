@@ -2,7 +2,6 @@
 import { memo } from 'react';
 import type { Frame } from '../protocol.ts';
 import { storyDate } from './dates.ts';
-import { deriveScene } from './scenes.ts';
 import { explainTerms } from './terms.tsx';
 import { voiceWords as settingWords } from './words.ts';
 
@@ -68,7 +67,6 @@ export const TopBar = memo(function TopBar({
   onInfo: () => void;
   onMenu: () => void;
 }) {
-  const scene = frame ? deriveScene(frame) : null;
   const runningPage = frame && !frame.intro && ['day', 'eid', 'free'].includes(frame.phase);
   const label =
     !frame || title ? (
@@ -112,7 +110,7 @@ export const TopBar = memo(function TopBar({
             <span>
               {skipping
                 ? 'skipping to the next event…'
-                : frame.fastForward
+                : frame.fastForward && !reading && !frame.paused
                   ? `skipping: ${explainTerms(frame.fastForward)}`
                   : frame.sky.fast
                     ? `fasting until ${String(Math.floor(frame.sky.fast.until / 60)).padStart(2, '0')}:${String(frame.sky.fast.until % 60).padStart(2, '0')}`
@@ -124,11 +122,11 @@ export const TopBar = memo(function TopBar({
                   ? menuOpen
                     ? 'held: menu open'
                     : 'held: information open'
-                  : frame.paused
-                    ? `stopped: ${scene?.current ? scene.names.join(' and ') : (frame.pauseBeat?.text ?? 'a moment with Halil')}`
-                    : reading
-                      ? 'reading: the day slows while you choose'
-                      : '',
+                  : reading
+                    ? 'Clock held while you read.'
+                    : frame.paused
+                      ? `Clock stopped at ${frame.clock}.`
+                      : 'Clock running.',
               )}
             </span>
           </div>

@@ -343,9 +343,13 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
               const pacing = pausePolicy.current.update(
                 current,
                 prev,
-                loadingRun.current || manualHold.current || readingWhy.current || awaitingSuggestion.current,
+                loadingRun.current ||
+                  manualHold.current ||
+                  readingWhy.current ||
+                  reading.current ||
+                  awaitingSuggestion.current,
               );
-              // An unavailable suggestion stays held. Actual answers read on the slowed clock.
+              // An unavailable suggestion stays held. The reader controls when the answer gives way to the clock.
               if (awaitingSuggestion.current) {
                 const last = current.log.at(-1);
                 const failed =
@@ -354,17 +358,7 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
                 manualHold.current = current.paused && !!failed;
                 awaitingSuggestion.current = false;
               }
-              if (
-                !loadingRun.current &&
-                !readingWhy.current &&
-                (reading.current || sceneReading(current)) &&
-                current.paused &&
-                !manualHold.current &&
-                !current.intro &&
-                ['day', 'free'].includes(current.phase)
-              )
-                send({ type: 'resume' });
-              else if (pacing) {
+              if (pacing && !reading.current) {
                 if (pacing === 'pause') manualHold.current = true;
                 send({ type: pacing });
               }
@@ -634,17 +628,6 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
         if (on) cancelSkip();
         reading.current = on;
         setReadingView(on);
-        const current = frameRef.current;
-        if (
-          !loadingRun.current &&
-          !readingWhy.current &&
-          on &&
-          current?.paused &&
-          !manualHold.current &&
-          !current.intro &&
-          ['day', 'free'].includes(current.phase)
-        )
-          send({ type: 'resume' });
       },
       sceneWord: (kind, beat, words) => send({ type: 'sceneWord', kind, beat, words }),
       withdraw: () => send({ type: 'withdraw' }),

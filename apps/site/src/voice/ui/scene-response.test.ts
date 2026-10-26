@@ -131,3 +131,16 @@ it('preserves the recorded alternative in a delayed scene reply', () => {
     { speaker: 'Halil', words: 'Not now. — rest at home' },
   ]);
 });
+
+it('does not attach a recycled spoken continuation to a summarized repeat encounter', () => {
+  const { frame, scene } = setup();
+  scene.lines = [{ speaker: 'Scene', words: 'Halil talks with Selin again.' }];
+  expect(sceneResponse(frame, scene)).toBeNull();
+});
+it('gives a second recorded encounter a different spoken continuation', () => {
+  const { frame, scene } = setup();
+  const first = sceneResponse(frame, scene);
+  frame.log.unshift({ ...entry(frame, 1), id: 'prior', minute: 500, clock: '08:20' });
+  expect(sceneResponse(frame, scene)?.lines).not.toEqual(first?.lines);
+  expect(sceneResponse(frame, scene)?.more).not.toEqual(first?.more);
+});

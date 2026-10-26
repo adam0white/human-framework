@@ -89,6 +89,16 @@ const MORE: Record<Companion, readonly [string, string]> = {
     'It is good to have you beside me too, old friend.',
   ],
 };
+const RETURNING: Record<Companion, readonly [string, string]> = {
+  Hacer: ['It is good to talk again, Hacer.', 'You can take your time at the door, Halil.'],
+  Rıza: ['I wanted a little more company, Rıza.', 'Then sit beside me. We do not need a new subject.'],
+  Selin: ['I am glad we are talking again, love.', 'So am I, Dad. We do not need to fill every moment.'],
+};
+const RETURNING_MORE: Record<Companion, readonly [string, string]> = {
+  Hacer: ['A short talk is enough for me just now.', 'We can leave it there, Halil.'],
+  Rıza: ['I do not have much else to say, Rıza.', 'That is all right. You can just sit with me.'],
+  Selin: ['I do not have much news, love.', 'You do not need news to talk to me, Dad.'],
+};
 export function sceneResponse(frame: Frame, scene: DayScene | null) {
   if (!scene?.current || !['call', 'door', 'tea'].includes(scene.kind)) return null;
   const who = scene.names.find((n): n is Companion => n === 'Selin' || n === 'Hacer' || n === 'Rıza');
@@ -114,6 +124,7 @@ export function sceneResponse(frame: Frame, scene: DayScene | null) {
       ],
       more: [] as Line[],
     };
+  if (scene.lines.every((line) => line.speaker === 'Scene')) return null;
   const words = scene.lines.map((l) => l.words).join(' ');
   const tired = frame.halil.felt.some((f) => f.id === 'tired' && f.level >= 0.55);
   const rent = frame.halil.onMind.some(
@@ -140,5 +151,16 @@ export function sceneResponse(frame: Frame, scene: DayScene | null) {
               : 'I hear you, Halil. I can listen while you go through it.',
           ] as const)
         : ORDINARY[who];
-  return { answer, accepted: !!answer, lines: pair(who, opening), more: pair(who, MORE[who]) };
+  const anchor = frame.log.findIndex((entry) => `scene:${entry.id}` === scene.id);
+  const returning =
+    anchor >= 0 &&
+    frame.log
+      .slice(0, anchor)
+      .some((entry) => entry.kind === 'act' && entry.who === 'halil' && ACTION[who].test(entry.text));
+  return {
+    answer,
+    accepted: !!answer,
+    lines: pair(who, returning ? RETURNING[who] : opening),
+    more: pair(who, returning ? RETURNING_MORE[who] : MORE[who]),
+  };
 }

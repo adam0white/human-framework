@@ -168,7 +168,17 @@ function SceneDayContent(
       opportunity !== null &&
       opportunity !== resolvedOpportunity.current &&
       opportunity !== closedOpportunity);
-  const reading = (expanded && canSpeak && !heldPersonal) || editor || answerHold;
+  const [dismissedOutcomes, setDismissedOutcomes] = useState<Set<string>>(() => new Set());
+  const outcomes = frame.log.filter(
+    (entry) =>
+      entry.day === frame.day &&
+      entry.minute <= frame.minute &&
+      entry.kind === 'note' &&
+      !dismissedOutcomes.has(entry.id) &&
+      ((entry.who === 'you' && /Your suggestion (?:has (?:now )?ended|fades)/.test(entry.text)) ||
+        /Osman’s payment deadline has passed/.test(entry.text)),
+  );
+  const reading = (expanded && canSpeak && !heldPersonal) || editor || answerHold || outcomes.length > 0;
   const requested = useRef(props.speakRequest);
   useEffect(() => {
     if (props.speakRequest === requested.current) return;
@@ -269,6 +279,26 @@ function SceneDayContent(
         </div>
       )}
       <div className="v-scene-reading">
+        {outcomes.length > 0 && (
+          <aside className="v-scene-answer" aria-label="What happened" role="status">
+            {outcomes.map((entry) => (
+              <p key={entry.id}>
+                <small>{entry.clock}</small> · {settingWords(entry.text)}
+              </p>
+            ))}
+            <button
+              type="button"
+              className="v-btn v-btn-quiet"
+              onClick={() =>
+                setDismissedOutcomes(
+                  (previous) => new Set([...previous, ...outcomes.map((entry) => entry.id)]),
+                )
+              }
+            >
+              Continue
+            </button>
+          </aside>
+        )}
         {props.unsaid && (
           <div className="v-spoken-lines" role="status">
             <p>
@@ -306,7 +336,7 @@ function SceneDayContent(
         ) : scene ? (
           <article className="v-scene-stage" key={scene.id}>
             <p className="v-scene-place">
-              {settingWords(scene.place)} · {scene.clock}
+              {settingWords(scene.place)} · Started at {scene.clock}
             </p>
             <h1>{settingWords(scene.names.join(' and '))}</h1>
             {scene.kind === 'memory' && <p className="v-scene-memory">He remembers Nuran.</p>}

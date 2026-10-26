@@ -1,5 +1,5 @@
 /**
- * Four-line scenes beside recorded social acts. Reads only the act's time and already surfaced log facts;
+ * Short scenes beside recorded social acts; repeated encounters can become factual recaps. Reads only the act's time and already surfaced log facts;
  * never consumes simulation RNG, writes a log record, invents a remembered event or promises an outcome.
  * Felt body and open concerns are read only when the frame is at the act’s minute. Later feelings never rewrite history.
  */
@@ -7,7 +7,7 @@ import type { HalilView, LogEntry } from '../protocol.ts';
 
 type Companion = 'Hacer' | 'Rıza' | 'Selin';
 export interface SpokenLine {
-  speaker: 'Halil' | Companion;
+  speaker: 'Halil' | Companion | 'Scene';
   words: string;
 }
 type Pair = readonly [string, string];
@@ -225,8 +225,17 @@ const CONTINUATIONS: Record<Topic, Record<Companion, Pair>> = {
     ],
   },
 };
-function exchange(who: Companion, opening: Pair, topic: Topic): SpokenLine[] {
-  const ending = CONTINUATIONS[topic][who];
+function exchange(who: Companion, opening: Pair, topic: Topic, returning = false): SpokenLine[] {
+  const ending = returning
+    ? ([
+        CONTINUATIONS[topic][who][0],
+        who === 'Selin'
+          ? 'I am listening, Dad. We can talk for a little.'
+          : who === 'Hacer'
+            ? 'I am listening, Halil. You do not have to hurry.'
+            : 'Stay beside me, Halil. I am listening.',
+      ] as const)
+    : CONTINUATIONS[topic][who];
   return [
     { speaker: 'Halil', words: opening[0] },
     { speaker: who, words: opening[1] },
@@ -244,11 +253,6 @@ function companion(entry: LogEntry): Companion | undefined {
   if (entry.kind === 'voice' && entry.who === 'selin' && /^Selin called/.test(entry.text)) return 'Selin';
   return undefined;
 }
-function hash(key: string): number {
-  let h = 2166136261;
-  for (const char of key) h = Math.imul(h ^ char.charCodeAt(0), 16777619);
-  return h >>> 0;
-}
 export interface ConversationMoment {
   minute: number;
   halil: Pick<HalilView, 'felt' | 'onMind'>;
@@ -260,14 +264,23 @@ export function conversationFor(
 ): SpokenLine[] {
   const who = companion(entry);
   if (!who) return [];
+  // Array order also bounds same-minute events. A frame can include later events at the same time.
+  const index = log.findIndex((e) => e.id === entry.id);
+  const history = (index >= 0 ? log.slice(0, index) : log).filter((e) => e.minute <= entry.minute);
+  const previous = history.filter((e) => companion(e) === who);
+  const last = previous.at(-1);
+  const returning = previous.length > 0;
   // Bound context to this occasion. A later memory, payment or diagnosis cannot alter an earlier exchange.
-  const nearby = log.filter(
+  const nearby = history.filter(
     (e) => e.day === entry.day && e.minute <= entry.minute && entry.minute - e.minute <= 360,
   );
-  const memory = log.findLast(
+  const memory = history.findLast(
     (e) => e.day === entry.day && e.minute <= entry.minute && e.kind === 'recall' && /Nuran/.test(e.text),
   );
-  if (memory) {
+  // One recalled event starts one conversation. It must not restart the same speech with every friend.
+  const firstRecall = memory && history.find((e) => e.kind === 'recall' && e.text === memory.text);
+  const discussed = firstRecall && history.slice(history.indexOf(firstRecall) + 1).some((e) => companion(e));
+  if (memory && !discussed) {
     const recalled = memory.text.replace(/^He remembers:\s*/, '').replace(/\.$/, '');
     return exchange(
       who,
@@ -278,7 +291,31 @@ export function conversationFor(
           : 'You can tell me about Nuran, Halil. I have time.',
       ],
       /\btable\b/i.test(recalled) ? 'table-memory' : 'memory',
+      returning,
     );
+  }
+  // Once an exchange has been offered twice, retain the occasion without recycling a script.
+  // A newly surfaced concern or memory earns a full exchange instead of this recap.
+  const beforeLast = last ? history.slice(0, history.indexOf(last)) : [];
+  const changed =
+    last &&
+    history
+      .slice(history.indexOf(last) + 1)
+      .some(
+        (e) =>
+          (e.kind === 'recall' ||
+            ((e.kind === 'voice' || e.kind === 'note') && /Nuran|Osman|rent|doctor|clinic/.test(e.text))) &&
+          !beforeLast.some((old) => old.kind === e.kind && old.who === e.who && old.text === e.text),
+      );
+  if (last && previous.length >= 2 && !changed) {
+    const action =
+      who === 'Hacer' ? 'talks with Hacer' : who === 'Rıza' ? 'has tea with Rıza' : 'talks with Selin';
+    return [
+      {
+        speaker: 'Scene',
+        words: `Halil ${action} again. They last spoke on day ${last.day} at ${last.clock}.`,
+      },
+    ];
   }
   const present = moment?.minute === entry.minute ? moment.halil : undefined;
   const felt = present?.felt
@@ -306,7 +343,7 @@ export function conversationFor(
     ? felt.id === 'tired'
       ? TIRED[who]
       : HUNGRY[who]
-    : variants[hash(`${entry.day}|${entry.minute}|${who}|${entry.text}`) % variants.length];
+    : variants[(previous.length || Math.max(0, entry.day - 1)) % variants.length];
   if (!pair) return [];
   const topic: Topic = felt
     ? felt.id === 'tired'
@@ -319,5 +356,5 @@ export function conversationFor(
         : bank === LATE
           ? 'late'
           : 'everyday';
-  return exchange(who, pair, topic);
+  return exchange(who, pair, topic, returning);
 }

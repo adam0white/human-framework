@@ -1,6 +1,7 @@
 /**
  * Read-only scene presentation. Recorded acts anchor UI-authored incidental exchanges (incidental customers and neighbours); recorded recalls alone
  * supply Nuran's memories. No scene changes an input, advances time, or consumes simulation randomness.
+ * Repeated occasions become short recaps of recorded acts and recalls, rather than cycling the same exchanges.
  * These incidental speakers are narrative presentation, not simulated people or recorded events.
  * It does not infer completed acts, future encounters, consequential requests, or named people’s availability.
  */
@@ -145,7 +146,7 @@ export function deriveScene(frame: SceneFrame): DayScene | null {
   // Array order distinguishes a later act; a timestamp alone cannot do that.
   const superseded = latestActIndex > anchorIndex;
   const current = !superseded && (!doing || matchingActivity);
-  let lines: DayScene['lines'] = conversationFor(anchor, log);
+  let lines: DayScene['lines'] = conversationFor(anchor, frame.log);
   if (place.kind === 'door' && anchor.kind === 'voice') {
     lines = [
       {
@@ -155,25 +156,69 @@ export function deriveScene(frame: SceneFrame): DayScene | null {
       { speaker: 'Halil', words: 'I am listening, Hacer.' },
     ];
   } else if (place.kind === 'memory') {
-    lines = [{ speaker: 'Halil', words: memoryWords(anchor.text) }];
+    const previous = frame.log
+      .slice(0, frame.log.indexOf(anchor))
+      .findLast(
+        (entry) => entry.kind === 'recall' && entry.text === anchor.text && entry.minute <= anchor.minute,
+      );
+    lines = previous
+      ? [
+          {
+            speaker: 'Scene',
+            words: `Halil recalls the same memory: “${memoryWords(anchor.text)}” He last recalled it on day ${previous.day} at ${previous.clock}.`,
+          },
+        ]
+      : [{ speaker: 'Halil', words: memoryWords(anchor.text) }];
   } else if (place.kind === 'meal') {
     const memory = log.findLast(
       (entry) => entry.minute <= anchor.minute && entry.kind === 'recall' && /Nuran/.test(entry.text),
     );
     if (!memory) return null;
-    lines = [
-      { speaker: 'Scene', words: 'Halil remembers Nuran as he sits at the table.' },
-      { speaker: 'Halil', words: memoryWords(memory.text) },
-      { speaker: 'Halil', words: 'I miss you, Nuran.' },
-    ];
+    const history = frame.log.slice(0, frame.log.indexOf(anchor));
+    const previousMeal = history.findLast((entry) => setting(entry)?.kind === 'meal');
+    const previousMemory =
+      previousMeal &&
+      history
+        .slice(0, history.indexOf(previousMeal))
+        .findLast((entry) => entry.kind === 'recall' && /Nuran/.test(entry.text));
+    lines =
+      previousMeal && previousMemory?.text === memory.text
+        ? [
+            {
+              speaker: 'Scene',
+              words: `Halil eats at his table again, remembering Nuran. He last ate here on day ${previousMeal.day} at ${previousMeal.clock}.`,
+            },
+          ]
+        : [
+            { speaker: 'Scene', words: 'Halil remembers Nuran as he sits at the table.' },
+            { speaker: 'Halil', words: memoryWords(memory.text) },
+            { speaker: 'Halil', words: 'I miss you, Nuran.' },
+          ];
   } else if (place.kind === 'workshop' || place.kind === 'street') {
     const bank = ORDINARY[place.kind];
-    const pair = bank[hash(`${anchor.day}|${anchor.minute}|${anchor.text}`) % bank.length];
+    const prior = frame.log
+      .slice(0, frame.log.indexOf(anchor))
+      .filter((entry) => entry.minute <= anchor.minute && setting(entry)?.kind === place.kind);
+    const first = prior[0] ?? anchor;
+    const pair = bank[(hash(`${first.day}|${first.minute}|${first.text}`) + prior.length) % bank.length];
     // A day's visitor keeps the same identity across repairs/walks and replayed occasions.
     const identities = ['Mrs Aydın', 'Mr Demir', 'The baker’s boy'] as const;
     const other = identities[hash(`${frame.day}|${place.kind}`) % identities.length] ?? identities[0];
     place.names = ['Halil', other];
-    if (pair) lines = pair.map((words, index) => ({ speaker: index % 2 === 0 ? other : 'Halil', words }));
+    const last = prior.at(-1);
+    if (last && prior.length >= 2) {
+      place.names = ['Halil'];
+      lines = [
+        {
+          speaker: 'Scene',
+          words:
+            place.kind === 'workshop'
+              ? `Halil is doing repairs again. He last worked here on day ${last.day} at ${last.clock}.`
+              : `Halil walks by the river again. His last walk was on day ${last.day} at ${last.clock}.`,
+        },
+      ];
+    } else if (pair)
+      lines = pair.map((words, index) => ({ speaker: index % 2 === 0 ? other : 'Halil', words }));
   } else if (place.kind === 'clinic') {
     lines = [
       { speaker: 'Halil', words: 'Tell me plainly.' },

@@ -51,6 +51,7 @@ export function App() {
   const [titleOpen, setTitleOpen] = useState(false);
   const [speakRequest, setSpeakRequest] = useState(0);
   const [speaking, setSpeaking] = useState(false);
+  const [readingScene, setReadingScene] = useState(false);
   const [canSpeak, setCanSpeak] = useState(false);
   const [speakCaption, setSpeakCaption] = useState('You can wait without choosing a suggestion.');
   const [holdingReply, setHoldingReply] = useState(false);
@@ -83,6 +84,10 @@ export function App() {
 
   // Keep the screen awake only while the day's clock runs (not paused, not on a card or the report).
   useWakeLock(live && overlay === null && frame !== null && !frame.paused);
+
+  useEffect(() => {
+    actions.setReading(readingScene || panelOpen);
+  }, [actions, readingScene, panelOpen]);
 
   const clockHeld = menuOpen || infoOpen || feedbackOpen || titleOpen || otherWays;
   useEffect(() => {
@@ -183,9 +188,9 @@ export function App() {
       <CastStartGate game="voice" />
       <CastLifeNote game="voice" />
       <TopBar
-        frame={frame}
+        frame={liveVoice.frame}
         title={overlay === 'premise'}
-        reading={voice.reading}
+        reading={readingScene || panelOpen}
         skipping={voice.skipping}
         infoOpen={infoOpen}
         menuOpen={menuOpen}
@@ -245,7 +250,7 @@ export function App() {
               onPredict={actions.predict}
               onSuggest={suggest}
               onSceneWord={actions.sceneWord}
-              onReading={actions.setReading}
+              onReading={setReadingScene}
               sceneReading={voice.sceneReading}
               onPersonalReply={setHoldingReply}
               onSayNothing={sayNothing}
@@ -298,7 +303,7 @@ export function App() {
               ) : (
                 <DayLog
                   log={frame.log}
-                  paused={frame.paused}
+                  paused={frame.paused || readingScene || panelOpen}
                   {...(frame.pauseBeat ? { pauseBeat: frame.pauseBeat } : {})}
                   onWhy={openWhy}
                   selected={whyId}
