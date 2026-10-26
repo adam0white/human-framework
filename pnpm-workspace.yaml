@@ -5,6 +5,9 @@ packages:
 # Keep exact published pins; link a local package only when its version matches.
 linkWorkspacePackages: true
 hoist: false
+# HF releases are consumed on the day we publish them. Keep the 24h delay for third parties.
+minimumReleaseAgeExclude:
+  - "@adam0white/*"
 # Hardlinks share bytes across worktrees and make sharing measurable by inode.
 packageImportMethod: hardlink
 allowBuilds:
