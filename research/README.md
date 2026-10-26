@@ -13,6 +13,7 @@ Source records behind HF's norms, formulas and decisions. Code doc comments, `No
 - [prayer-times-sources.md](prayer-times-sources.md): prayer windows and disliked times.
 - [fasting-sources.md](fasting-sources.md): Ramadan fasting, illness, fidya, suhoor, tarawih.
 - [eid-and-mourning-sources.md](eid-and-mourning-sources.md): Eid, zakat al-fitr, grave visits, condolence.
+- [janazah-and-taziyah-sources.md](janazah-and-taziyah-sources.md): funeral prayer, burial, condolence and the deceased's debts; access and unsourced limits retained.
 - [capacity-and-excuse-sources.md](capacity-and-excuse-sources.md): prayers and fasts missed while not in control of oneself.
 - [marriage-sources.md](marriage-sources.md): marriage, courtship, widowhood.
 - [cooperation-boundary.md](cooperation-boundary.md): what a cooperation record means; source for `keep-promise`.
