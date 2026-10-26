@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "00dcdad7d66a6ee33d11f941e5319de5bdfbeebf",
+  "sourcePath": "docs/lab/experiments/predicting-real-players-hf-forecast-2026-10-25.md",
+  "studySha256": "6138c110243edc1bf06850c4d1bc8743bce7d64ad95526266667d26a52a63bb7",
+  "registrationSha256": "4f2e9296fc406e1504a5eb6c9885f0e427cfe9f6853ab9f65c24c14736d2b62a",
+  "forecastSha256": "4466dc907615bf59c32d880aa349f9f9160595537b1037cf4e6d527056b7fdb4",
+  "sourceArchiveSha256": "4583333d94838cf7763c403327390bfb657c89cd14bb6bc1ccd73931953ff820",
+  "scope": "metadata-instrument-only"
+}

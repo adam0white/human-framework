@@ -1,0 +1,23 @@
+{
+  "registeredAt": "2026-10-25T17:19:27.729743+00:00",
+  "game": "goodhands",
+  "sourceBuild": "27d8d90",
+  "sourceHF": "2.9.0",
+  "sourcePlaytester": "b715021",
+  "sourceArchiveSha256": "4583333d94838cf7763c403327390bfb657c89cd14bb6bc1ccd73931953ff820",
+  "sourceSeeds": [
+    1,
+    2,
+    3
+  ],
+  "sourceSessions": 9,
+  "hfQuitCount": 1,
+  "hfQuitProbability": 0.1111111111111111,
+  "hfQuitPoint": "week 1, Saturday",
+  "hfQuitModeledSeconds": 1260,
+  "rubricOpeningAmbiguityWarnings": 9,
+  "confusionProxyProbability": 1.0,
+  "confusionPoint": "opening interview choice",
+  "baselineProbability": 0.5,
+  "verdict": "PENDING_EVIDENCE"
+}

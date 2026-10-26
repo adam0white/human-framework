@@ -4,6 +4,10 @@ Moved verbatim from HANDOFF.md on 2026-10-20 (owner: "Trim handoff and other doc
 
 > Each receipt records its release-time state. Historical site pins, “latest” labels and follow-up instructions are not current deployment or queue status. Package publication, SDK artifacts, game deployment and owner acceptance are separate outcomes. See [HANDOFF](../HANDOFF.md) for the current coordination state.
 
+## Prepared lab kit 0.5.13 scorer — not published
+
+The prepared SDK adds optional `freezeForecastCohort` and `scoreFrozenForecast` exports, with a study CLI and public synthetic control. Cohort freezing uses metadata only; scoring uses separately supplied explicit labels and a review date. Reports retain unknowns, registered gates and `humanEvidenceVerified:false`. This is an instrument, with no empirical prediction claim; real evidence remains PENDING for 2026-11-03. HF/engine 3.2.0, client 0.4.11 and SDK defaults are unchanged. The site workspace dependency is prepared at exact kit 0.5.13. No artifact publication or deployment is recorded by this entry.
+
 ## Central site 3.2 delivery 2026-10-26
 
 The central site was deployed from signed [source 00dcdad](https://github.com/adam0white/human-framework/commit/00dcdad7d66a6ee33d11f941e5319de5bdfbeebf), after [exact CI 40269580618](https://github.com/adam0white/human-framework/actions/runs/40269580618) and [CodeQL 40269580572](https://github.com/adam0white/human-framework/actions/runs/40269580572) passed. The normal gated check passed 2,528 tests with seven existing skips. Guarded deployment exited 0; Cloudflare version `89229655-32f5-4374-9ecf-b964b62dee1e`. An uncached [release.json](https://human.adamwhite.work/release.json) returned exact commit `00dcdad7d66a6ee33d11f941e5319de5bdfbeebf`, HF/engine 3.2.0, library 3.2.0 and `dirty:false`. This site source includes the integrated documentation/archive changes and Voice successor `67ab71d`. Package source `a92081e` and tag `v3.2.0` remain unchanged. External games retain their actual HF 3.0 / engine 2.23 pins.

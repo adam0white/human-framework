@@ -1,0 +1,972 @@
+{
+  "schemaVersion": 1,
+  "scope": "synthetic-control",
+  "description": "All records and declarations are fabricated instrument evidence. Human-shaped assertions do not establish real humans, consent or validation.",
+  "metadata": [
+    {
+      "receiptId": "fabricated-receipt-00",
+      "runId": "fabricated-run-0",
+      "game": "goodhands",
+      "build": "fabricated-preferred",
+      "receivedAt": "2026-10-26T01:00:00Z",
+      "startedAt": "2026-10-25T20:00:00Z",
+      "provenance": "human-attested",
+      "runKind": "fresh",
+      "authorization": "explicit-recording",
+      "completeDataAvailable": true,
+      "outcomeLabelsAvailable": null
+    },
+    {
+      "receiptId": "fabricated-receipt-01",
+      "runId": "fabricated-run-1",
+      "game": "goodhands",
+      "build": "fabricated-first-build",
+      "receivedAt": "2026-10-26T01:00:01Z",
+      "startedAt": "2026-10-25T20:00:00Z",
+      "provenance": "human-attested",
+      "runKind": "fresh",
+      "authorization": "explicit-recording",
+      "completeDataAvailable": true,
+      "outcomeLabelsAvailable": true
+    },
+    {
+      "receiptId": "fabricated-receipt-02",
+      "runId": "fabricated-run-2",
+      "game": "goodhands",
+      "build": "fabricated-first-build",
+      "receivedAt": "2026-10-26T01:00:02Z",
+      "startedAt": "2026-10-25T20:00:00Z",
+      "provenance": "human-attested",
+      "runKind": "fresh",
+      "authorization": "explicit-recording",
+      "completeDataAvailable": true,
+      "outcomeLabelsAvailable": true
+    },
+    {
+      "receiptId": "fabricated-receipt-03",
+      "runId": "fabricated-run-3",
+      "game": "goodhands",
+      "build": "fabricated-first-build",
+      "receivedAt": "2026-10-26T01:00:03Z",
+      "startedAt": "2026-10-25T20:00:00Z",
+      "provenance": "human-attested",
+      "runKind": "fresh",
+      "authorization": "explicit-recording",
+      "completeDataAvailable": true,
+      "outcomeLabelsAvailable": true
+    },
+    {
+      "receiptId": "fabricated-receipt-04",
+      "runId": "fabricated-run-4",
+      "game": "goodhands",
+      "build": "fabricated-first-build",
+      "receivedAt": "2026-10-26T01:00:04Z",
+      "startedAt": "2026-10-25T20:00:00Z",
+      "provenance": "human-attested",
+      "runKind": "fresh",
+      "authorization": "explicit-recording",
+      "completeDataAvailable": true,
+      "outcomeLabelsAvailable": true
+    },
+    {
+      "receiptId": "fabricated-receipt-05",
+      "runId": "fabricated-run-5",
+      "game": "goodhands",
+      "build": "fabricated-first-build",
+      "receivedAt": "2026-10-26T01:00:05Z",
+      "startedAt": "2026-10-25T20:00:00Z",
+      "provenance": "human-attested",
+      "runKind": "fresh",
+      "authorization": "explicit-recording",
+      "completeDataAvailable": true,
+      "outcomeLabelsAvailable": true
+    },
+    {
+      "receiptId": "fabricated-receipt-06",
+      "runId": "fabricated-run-6",
+      "game": "goodhands",
+      "build": "fabricated-first-build",
+      "receivedAt": "2026-10-26T01:00:06Z",
+      "startedAt": "2026-10-25T20:00:00Z",
+      "provenance": "human-attested",
+      "runKind": "fresh",
+      "authorization": "explicit-recording",
+      "completeDataAvailable": true,
+      "outcomeLabelsAvailable": true
+    },
+    {
+      "receiptId": "fabricated-receipt-07",
+      "runId": "fabricated-run-7",
+      "game": "goodhands",
+      "build": "fabricated-first-build",
+      "receivedAt": "2026-10-26T01:00:07Z",
+      "startedAt": "2026-10-25T20:00:00Z",
+      "provenance": "human-attested",
+      "runKind": "fresh",
+      "authorization": "explicit-recording",
+      "completeDataAvailable": true,
+      "outcomeLabelsAvailable": true
+    },
+    {
+      "receiptId": "fabricated-receipt-08",
+      "runId": "fabricated-run-8",
+      "game": "goodhands",
+      "build": "fabricated-first-build",
+      "receivedAt": "2026-10-26T01:00:08Z",
+      "startedAt": "2026-10-25T20:00:00Z",
+      "provenance": "human-attested",
+      "runKind": "fresh",
+      "authorization": "explicit-recording",
+      "completeDataAvailable": true,
+      "outcomeLabelsAvailable": true
+    },
+    {
+      "receiptId": "fabricated-receipt-09",
+      "runId": "fabricated-run-9",
+      "game": "goodhands",
+      "build": "fabricated-first-build",
+      "receivedAt": "2026-10-26T01:00:09Z",
+      "startedAt": "2026-10-25T20:00:00Z",
+      "provenance": "human-attested",
+      "runKind": "fresh",
+      "authorization": "explicit-recording",
+      "completeDataAvailable": true,
+      "outcomeLabelsAvailable": true
+    },
+    {
+      "receiptId": "fabricated-receipt-10",
+      "runId": "fabricated-run-10",
+      "game": "goodhands",
+      "build": "fabricated-first-build",
+      "receivedAt": "2026-10-26T01:00:10Z",
+      "startedAt": "2026-10-25T20:00:00Z",
+      "provenance": "human-attested",
+      "runKind": "fresh",
+      "authorization": "explicit-recording",
+      "completeDataAvailable": true,
+      "outcomeLabelsAvailable": true
+    },
+    {
+      "receiptId": "fabricated-receipt-11",
+      "runId": "fabricated-run-11",
+      "game": "goodhands",
+      "build": "fabricated-first-build",
+      "receivedAt": "2026-10-26T01:00:11Z",
+      "startedAt": "2026-10-25T20:00:00Z",
+      "provenance": "human-attested",
+      "runKind": "fresh",
+      "authorization": "explicit-recording",
+      "completeDataAvailable": true,
+      "outcomeLabelsAvailable": true
+    },
+    {
+      "receiptId": "fabricated-receipt-12",
+      "runId": "fabricated-run-12",
+      "game": "goodhands",
+      "build": "fabricated-first-build",
+      "receivedAt": "2026-10-26T01:00:12Z",
+      "startedAt": "2026-10-25T20:00:00Z",
+      "provenance": "human-attested",
+      "runKind": "fresh",
+      "authorization": "explicit-recording",
+      "completeDataAvailable": true,
+      "outcomeLabelsAvailable": true
+    },
+    {
+      "receiptId": "fabricated-receipt-13",
+      "runId": "fabricated-run-13",
+      "game": "goodhands",
+      "build": "fabricated-first-build",
+      "receivedAt": "2026-10-26T01:00:13Z",
+      "startedAt": "2026-10-25T20:00:00Z",
+      "provenance": "human-attested",
+      "runKind": "fresh",
+      "authorization": "explicit-recording",
+      "completeDataAvailable": true,
+      "outcomeLabelsAvailable": true
+    },
+    {
+      "receiptId": "fabricated-receipt-14",
+      "runId": "fabricated-run-14",
+      "game": "goodhands",
+      "build": "fabricated-first-build",
+      "receivedAt": "2026-10-26T01:00:14Z",
+      "startedAt": "2026-10-25T20:00:00Z",
+      "provenance": "human-attested",
+      "runKind": "fresh",
+      "authorization": "explicit-recording",
+      "completeDataAvailable": true,
+      "outcomeLabelsAvailable": true
+    },
+    {
+      "receiptId": "fabricated-receipt-15",
+      "runId": "fabricated-run-15",
+      "game": "goodhands",
+      "build": "fabricated-first-build",
+      "receivedAt": "2026-10-26T01:00:15Z",
+      "startedAt": "2026-10-25T20:00:00Z",
+      "provenance": "human-attested",
+      "runKind": "fresh",
+      "authorization": "explicit-recording",
+      "completeDataAvailable": true,
+      "outcomeLabelsAvailable": true
+    },
+    {
+      "receiptId": "fabricated-receipt-16",
+      "runId": "fabricated-run-16",
+      "game": "goodhands",
+      "build": "fabricated-first-build",
+      "receivedAt": "2026-10-26T01:00:16Z",
+      "startedAt": "2026-10-25T20:00:00Z",
+      "provenance": "human-attested",
+      "runKind": "fresh",
+      "authorization": "explicit-recording",
+      "completeDataAvailable": true,
+      "outcomeLabelsAvailable": true
+    },
+    {
+      "receiptId": "fabricated-receipt-17",
+      "runId": "fabricated-run-17",
+      "game": "goodhands",
+      "build": "fabricated-first-build",
+      "receivedAt": "2026-10-26T01:00:17Z",
+      "startedAt": "2026-10-25T20:00:00Z",
+      "provenance": "human-attested",
+      "runKind": "fresh",
+      "authorization": "explicit-recording",
+      "completeDataAvailable": true,
+      "outcomeLabelsAvailable": true
+    },
+    {
+      "receiptId": "fabricated-receipt-18",
+      "runId": "fabricated-run-18",
+      "game": "goodhands",
+      "build": "fabricated-first-build",
+      "receivedAt": "2026-10-26T01:00:18Z",
+      "startedAt": "2026-10-25T20:00:00Z",
+      "provenance": "human-attested",
+      "runKind": "fresh",
+      "authorization": "explicit-recording",
+      "completeDataAvailable": true,
+      "outcomeLabelsAvailable": true
+    },
+    {
+      "receiptId": "fabricated-receipt-19",
+      "runId": "fabricated-run-19",
+      "game": "goodhands",
+      "build": "fabricated-first-build",
+      "receivedAt": "2026-10-26T01:00:19Z",
+      "startedAt": "2026-10-25T20:00:00Z",
+      "provenance": "human-attested",
+      "runKind": "fresh",
+      "authorization": "explicit-recording",
+      "completeDataAvailable": true,
+      "outcomeLabelsAvailable": true
+    },
+    {
+      "receiptId": "fabricated-receipt-20",
+      "runId": "fabricated-run-20",
+      "game": "goodhands",
+      "build": "fabricated-first-build",
+      "receivedAt": "2026-10-26T01:00:20Z",
+      "startedAt": "2026-10-25T20:00:00Z",
+      "provenance": "human-attested",
+      "runKind": "fresh",
+      "authorization": "explicit-recording",
+      "completeDataAvailable": true,
+      "outcomeLabelsAvailable": true
+    },
+    {
+      "receiptId": "fabricated-receipt-21",
+      "runId": "fabricated-run-21",
+      "game": "goodhands",
+      "build": "fabricated-preferred",
+      "receivedAt": "2026-10-26T01:00:21Z",
+      "startedAt": "2026-10-25T18:00:00Z",
+      "provenance": "human-attested",
+      "runKind": "fresh",
+      "authorization": "explicit-recording",
+      "completeDataAvailable": true,
+      "outcomeLabelsAvailable": true
+    },
+    {
+      "receiptId": "fabricated-receipt-22",
+      "runId": "fabricated-run-22",
+      "game": "goodhands",
+      "build": "fabricated-first-build",
+      "receivedAt": "2026-10-26T01:00:22Z",
+      "startedAt": "2026-10-25T20:00:00Z",
+      "provenance": "human-attested",
+      "runKind": "import",
+      "authorization": "explicit-recording",
+      "completeDataAvailable": true,
+      "outcomeLabelsAvailable": true
+    },
+    {
+      "receiptId": "fabricated-receipt-23",
+      "runId": "fabricated-run-23",
+      "game": "goodhands",
+      "build": "fabricated-first-build",
+      "receivedAt": "2026-10-26T01:00:23Z",
+      "startedAt": "2026-10-25T20:00:00Z",
+      "provenance": "human-attested",
+      "runKind": "fresh",
+      "authorization": "default-capture",
+      "completeDataAvailable": true,
+      "outcomeLabelsAvailable": true
+    },
+    {
+      "receiptId": "fabricated-receipt-24",
+      "runId": "fabricated-run-24",
+      "game": "goodhands",
+      "build": "fabricated-first-build",
+      "receivedAt": "2026-10-26T01:00:24Z",
+      "startedAt": "2026-10-25T20:00:00Z",
+      "provenance": "synthetic",
+      "runKind": "fresh",
+      "authorization": "explicit-recording",
+      "completeDataAvailable": true,
+      "outcomeLabelsAvailable": true
+    },
+    {
+      "receiptId": "fabricated-receipt-25",
+      "runId": "fabricated-run-1",
+      "game": "goodhands",
+      "build": "fabricated-first-build",
+      "receivedAt": "2026-10-26T01:00:25Z",
+      "startedAt": "2026-10-25T20:00:00Z",
+      "provenance": "human-attested",
+      "runKind": "fresh",
+      "authorization": "explicit-recording",
+      "completeDataAvailable": true,
+      "outcomeLabelsAvailable": true
+    },
+    {
+      "receiptId": "fabricated-receipt-26",
+      "runId": "fabricated-run-26",
+      "game": "goodhands",
+      "build": "fabricated-first-build",
+      "receivedAt": "2026-10-26T01:00:26Z",
+      "startedAt": "2026-10-25T20:00:00Z",
+      "provenance": "human-attested",
+      "runKind": "fresh",
+      "authorization": "explicit-recording",
+      "completeDataAvailable": true,
+      "outcomeLabelsAvailable": true
+    }
+  ],
+  "labelViews": {
+    "go": [
+      {
+        "runId": "fabricated-run-1",
+        "quit": {
+          "evidence": "voluntary-stop-before-60m-without-completion",
+          "point": "week 1, Saturday"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      },
+      {
+        "runId": "fabricated-run-2",
+        "quit": {
+          "evidence": "voluntary-stop-before-60m-without-completion",
+          "point": "week 1, Saturday"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      },
+      {
+        "runId": "fabricated-run-3",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      },
+      {
+        "runId": "fabricated-run-4",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      },
+      {
+        "runId": "fabricated-run-5",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      },
+      {
+        "runId": "fabricated-run-6",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      },
+      {
+        "runId": "fabricated-run-7",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      },
+      {
+        "runId": "fabricated-run-8",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      },
+      {
+        "runId": "fabricated-run-9",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      },
+      {
+        "runId": "fabricated-run-10",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      },
+      {
+        "runId": "fabricated-run-11",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      },
+      {
+        "runId": "fabricated-run-12",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      },
+      {
+        "runId": "fabricated-run-13",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      },
+      {
+        "runId": "fabricated-run-14",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      },
+      {
+        "runId": "fabricated-run-15",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      },
+      {
+        "runId": "fabricated-run-16",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      },
+      {
+        "runId": "fabricated-run-17",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      },
+      {
+        "runId": "fabricated-run-18",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      },
+      {
+        "runId": "fabricated-run-19",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      },
+      {
+        "runId": "fabricated-run-20",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      }
+    ],
+    "wrongPoints": [
+      {
+        "runId": "fabricated-run-1",
+        "quit": {
+          "evidence": "voluntary-stop-before-60m-without-completion",
+          "point": "fabricated wrong point"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "fabricated wrong point"
+        }
+      },
+      {
+        "runId": "fabricated-run-2",
+        "quit": {
+          "evidence": "voluntary-stop-before-60m-without-completion",
+          "point": "fabricated wrong point"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "fabricated wrong point"
+        }
+      },
+      {
+        "runId": "fabricated-run-3",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "fabricated wrong point"
+        }
+      },
+      {
+        "runId": "fabricated-run-4",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "fabricated wrong point"
+        }
+      },
+      {
+        "runId": "fabricated-run-5",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "fabricated wrong point"
+        }
+      },
+      {
+        "runId": "fabricated-run-6",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "fabricated wrong point"
+        }
+      },
+      {
+        "runId": "fabricated-run-7",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "fabricated wrong point"
+        }
+      },
+      {
+        "runId": "fabricated-run-8",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "fabricated wrong point"
+        }
+      },
+      {
+        "runId": "fabricated-run-9",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "fabricated wrong point"
+        }
+      },
+      {
+        "runId": "fabricated-run-10",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "fabricated wrong point"
+        }
+      },
+      {
+        "runId": "fabricated-run-11",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "fabricated wrong point"
+        }
+      },
+      {
+        "runId": "fabricated-run-12",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "fabricated wrong point"
+        }
+      },
+      {
+        "runId": "fabricated-run-13",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "fabricated wrong point"
+        }
+      },
+      {
+        "runId": "fabricated-run-14",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "fabricated wrong point"
+        }
+      },
+      {
+        "runId": "fabricated-run-15",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "fabricated wrong point"
+        }
+      },
+      {
+        "runId": "fabricated-run-16",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "fabricated wrong point"
+        }
+      },
+      {
+        "runId": "fabricated-run-17",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "fabricated wrong point"
+        }
+      },
+      {
+        "runId": "fabricated-run-18",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "fabricated wrong point"
+        }
+      },
+      {
+        "runId": "fabricated-run-19",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "fabricated wrong point"
+        }
+      },
+      {
+        "runId": "fabricated-run-20",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "fabricated wrong point"
+        }
+      }
+    ],
+    "missingEvidence": [
+      {
+        "runId": "fabricated-run-1",
+        "quit": {
+          "evidence": "voluntary-stop-before-60m-without-completion",
+          "point": null
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      },
+      {
+        "runId": "fabricated-run-2",
+        "quit": {
+          "evidence": "voluntary-stop-before-60m-without-completion",
+          "point": "week 1, Saturday"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      },
+      {
+        "runId": "fabricated-run-3",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      },
+      {
+        "runId": "fabricated-run-4",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      },
+      {
+        "runId": "fabricated-run-5",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      },
+      {
+        "runId": "fabricated-run-6",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      },
+      {
+        "runId": "fabricated-run-7",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      },
+      {
+        "runId": "fabricated-run-8",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      },
+      {
+        "runId": "fabricated-run-9",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      },
+      {
+        "runId": "fabricated-run-10",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      },
+      {
+        "runId": "fabricated-run-11",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      },
+      {
+        "runId": "fabricated-run-12",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      },
+      {
+        "runId": "fabricated-run-13",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      },
+      {
+        "runId": "fabricated-run-14",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      },
+      {
+        "runId": "fabricated-run-15",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "explicit-opening-interview-confusion",
+          "point": "opening interview choice"
+        }
+      },
+      {
+        "runId": "fabricated-run-16",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "unknown",
+          "reason": "insufficient-observation"
+        }
+      },
+      {
+        "runId": "fabricated-run-17",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "unknown",
+          "reason": "insufficient-observation"
+        }
+      },
+      {
+        "runId": "fabricated-run-18",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "unknown",
+          "reason": "insufficient-observation"
+        }
+      },
+      {
+        "runId": "fabricated-run-19",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "unknown",
+          "reason": "insufficient-observation"
+        }
+      },
+      {
+        "runId": "fabricated-run-20",
+        "quit": {
+          "evidence": "explicit-observation-through-60m-without-quit"
+        },
+        "confusion": {
+          "evidence": "unknown",
+          "reason": "insufficient-observation"
+        }
+      }
+    ]
+  }
+}

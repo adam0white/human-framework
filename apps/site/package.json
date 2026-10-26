@@ -14,7 +14,7 @@
     "@adam0white/lab-client": "0.4.11",
     "react": "19.3.1",
     "react-dom": "19.3.1",
-    "@adam0white/lab-kit": "0.5.12"
+    "@adam0white/lab-kit": "0.5.13"
   },
   "devDependencies": {
     "@types/react": "19.3.0",

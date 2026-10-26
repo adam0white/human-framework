@@ -1,10 +1,26 @@
 /**
- * Scope: framework-free lab UI primitives. Import tokens.css explicitly for the Field Notebook look.
+ * Scope: framework-free lab UI primitives and an optional fixed forecast instrument. Import tokens.css explicitly for the Field Notebook look.
  * No client is created on import; game rules, simulation state and telemetry transport remain outside this kit.
  */
 
 export { auditPhone, type PhoneFinding, type PhoneFindingKind } from './audit-phone.ts';
 export { dayOf, englishDate, month, weekday } from './english-date.ts';
+export {
+  type ForecastConfusionLabel,
+  type ForecastExclusion,
+  type ForecastOutcomeReport,
+  type ForecastPointReport,
+  type ForecastQuitLabel,
+  type ForecastReason,
+  type ForecastRunMetadata,
+  type ForecastStudyBinding,
+  type ForecastUnknownReason,
+  type FrozenForecastLabels,
+  type FrozenForecastReceipt,
+  type FrozenForecastReport,
+  freezeForecastCohort,
+  scoreFrozenForecast,
+} from './frozen-forecast.ts';
 export { defineTerms, glossaryPanel, term } from './glossary.ts';
 export { type IntroCardOptions, introCard } from './intro-card.ts';
 export { nextLine, setNext } from './next-line.ts';

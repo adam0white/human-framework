@@ -197,6 +197,72 @@ The table follows the revised 2026-10-20 checklist ids. Current labels are Game 
 
 The kit does not certify any game against the full checklist.
 
+## Frozen Good Hands forecast (candidate instrument)
+
+`freezeForecastCohort(metadata, binding)` and `scoreFrozenForecast(receipt, labels, reviewDate)`
+are optional async root exports. They accept bounded plain JSON and return detached JSON.
+They create no client and use no Person state, RNG, DOM, storage, network or wall clock.
+The binding fixes one study and its three SHA256 digests; it is not a prediction configuration.
+This candidate has no release version or host adoption claim.
+
+Freeze metadata before inspecting outcomes. Supply receipt/run IDs, game/build, UTC receipt/start
+timestamps, provenance, run kind, authorization and complete-data/label availability as defined
+by `ForecastRunMetadata`. The first otherwise eligible server receipt pins the build, then the
+first 20 distinct eligible runs on that build stay selected. Start time must be strictly after
+`2026-10-25T17:19:27.729743+00:00`; comparison retains nanoseconds. Explicit recording or explicit
+run-send authorization is required. Default capture alone is insufficient. Availability means
+that a label record exists, including an explicit unknown; it does not mean a known outcome.
+No caller option selects a preferred build or replaces a selected run.
+
+`FrozenForecastReceipt` contains metadata, selected IDs, exclusions and full SHA256 hashes.
+Keep receipts and label files outside Git and public output. Hashes detect corruption, not
+forgery, consent or human identity. The scorer independently recomputes the receipt.
+`FrozenForecastLabels` binds its hash and supplies exactly one quit/confusion pair per selected
+run. Positive quit evidence is `voluntary-stop-before-60m-without-completion`; negative evidence
+is `explicit-observation-through-60m-without-quit`. Positive confusion evidence is
+`explicit-opening-interview-confusion`; negative evidence is `explicit-no-opening-interview-confusion`.
+Positive labels carry an exact point string or `null` for missing point evidence. Negative labels
+have no point. Unknown labels use `{ evidence: 'unknown', reason }`, where reason is
+`absent-declaration`, `technical-failure`, `silent-ending` or `insufficient-observation`.
+Supply explicit unknown entries when declarations are absent; do not infer labels from silence,
+generic events, rubric warnings or completion. The instrument gathers no declarations.
+
+`FrozenForecastReport` returns aggregate outcome counts, matched-subset Brier metrics, unknown
+reasons, point modes, exclusions and registered gates. Each outcome needs at least 16 known
+labels. The Brier gate uses the equal mean of the two outcome improvements over baseline 0.5;
+it requires at least 0.02. Both absolute rate errors must be at most 0.15 and both exact predicted
+points must be modal among positive labels. Decision gates use integer rational arithmetic.
+Unknowns do not enter either matched denominator. Zero known labels yield null metrics; zero
+positives mean a point miss. Any missing positive point leaves that point pending. Insufficient
+evidence gives `PENDING` before `2026-11-03` and `NO_GO_MISSING_EVIDENCE` on or after that date.
+Sufficient evidence gives `GO` or `NO_GO_OBSERVED_FAILURE`. `reviewDate` is explicit `YYYY-MM-DD`.
+Reports always set `humanEvidenceVerified: false`. GO computes registered gates only.
+
+The file-only study wrapper retains the [public study and frozen bytes](../../docs/lab/experiments/fixtures/hf-forecast/).
+From this repository root, use explicit file paths and new output files:
+
+```sh
+pnpm exec node scripts/frozen-forecast.ts freeze --metadata <file> --out <new-private-file> [--expect-build <id>]
+pnpm exec node scripts/frozen-forecast.ts score --receipt <file> --labels <file> --review-date YYYY-MM-DD --out <new-report-file>
+pnpm exec node scripts/frozen-forecast.ts control
+```
+
+`--expect-build` can only reject a mismatch after freezing. Outputs are created exclusively with
+mode 0600 and never overwritten. Stdout shows scope and aggregate counts/verdict; errors contain
+codes only. Exit 0 means valid computation, including PENDING/NO-GO; exit 2 means invalid input,
+invocation or a failed control. Inputs are limited to 8 MiB, 10,000 metadata records, 20 selected
+label entries, JSON depth 12 and 32 keys per object. Strings are limited to 256 UTF-8 bytes;
+timestamps to 40 ASCII characters; IDs/builds to 128 ASCII characters from `[A-Za-z0-9._:-]+`.
+Point strings must be nonempty and contain no control characters. Extra fields and malformed
+JSON values reject.
+
+The one headless control uses only labelled fabricated metadata and three label views. It checks
+GO, incorrect-point failure and missing evidence before/on the deadline. Human-shaped assertions
+in this fixture are fabricated instrument evidence, never real human validation. The nine source
+sessions, censored agenda stops, rubric proxy, old build and changed live copy remain limitations.
+No human cohort was retrieved or scored by this candidate. Immutable artifact JS/TypeScript 7
+consumer proof, independent reviews and the normal final gate belong to the release owner.
+
 ## Develop
 
 From the repository root:
