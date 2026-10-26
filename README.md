@@ -101,3 +101,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). Report vulnerabilities privately as desc
 - **Code** (everything outside the documentation directories, including `packages/human`, `apps/site`, `scripts` and the archived v0 code): [MIT](LICENSE).
 - **Documentation and research** (`docs/`, `research/`, and the archived prose in `archive/research/` and `archive/v0/docs/`): [CC BY 4.0](docs/LICENSE). Quotations from third-party sources keep their own terms.
 - **Third-party data**: the archived learning-pilot dataset under `archive/v0/artifacts/learning-pilot/data-access/` mirrors [OSF project xzm5c](https://osf.io/xzm5c/), which its authors released under [CC0 1.0](archive/v0/artifacts/learning-pilot/data-access/LICENSE-OSF-CC0.txt); credit Zhang, McDougle and Leonard (2025).
+
+### Repository development
+
+Use Node ≥24 and pnpm 12.14.0. Run `pnpm install --frozen-lockfile` to install this repository. The default store (`~/Library/pnpm/store` on macOS) shares dependency files across worktrees. `npm run check`, `npm run build`, and the other script commands still work. Published-package consumers can keep their preferred installer.

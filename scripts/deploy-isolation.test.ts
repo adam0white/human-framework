@@ -102,9 +102,9 @@ describe('deploy workflow identity and isolation', () => {
       commands.findIndex(([cmd]) => cmd === 'npm'),
     );
     for (const [cmd, , options] of commands) {
-      if (cmd === 'npm' || cmd === 'npx') expect(options).toMatchObject({ cwd: checkout });
+      if (cmd === 'pnpm' || cmd === 'npm' || cmd === 'npx') expect(options).toMatchObject({ cwd: checkout });
     }
-    expect(calls()).toContainEqual(['npm', ['ci', '--no-audit', '--no-fund']]);
+    expect(calls()).toContainEqual(['pnpm', ['install', '--frozen-lockfile']]);
     expect(calls()).toContainEqual(['npm', ['run', 'build']]);
     expect(calls()).toContainEqual(['npx', ['wrangler', 'deploy']]);
     expect(readFileSync).toHaveBeenCalledWith(join(checkout, 'package.json'), 'utf8');
@@ -262,7 +262,7 @@ describe('deploy workflow identity and isolation', () => {
     expect(mkdtempSync).not.toHaveBeenCalled();
   });
 
-  it.each(['npm ci --no-audit --no-fund', 'npm run build', 'npx wrangler deploy'])(
+  it.each(['pnpm install --frozen-lockfile', 'npm run build', 'npx wrangler deploy'])(
     'cleans up after %s fails',
     async (command) => {
       failure = command;

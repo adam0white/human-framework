@@ -34,7 +34,7 @@ Dependabot alerts are on; `.github/dependabot.yml` excludes `archive/**` (owner,
 
 ## npm
 
-`@adam0white/human-framework` publishes from `packages/human`. After stamping a package version, run `npm install --package-lock-only` and stage `package-lock.json` with the changed `package.json` before committing. Release with `npm run release` (tag, GitHub release, tarball); the GitHub release starts [.github/workflows/publish.yml](.github/workflows/publish.yml), which checks the tag against the version, runs typecheck and framework tests, and publishes with trusted publishing (OIDC, provenance, no token). A version npm already has is skipped. Rehearse with Actions, "Publish to npm", dry run on. An npm token, if the owner provides one, lives only in `~/.npmrc` or an Actions secret. Setup history: [releases.md](docs/releases.md#npm-setup-2026-10-07).
+`@adam0white/human-framework` publishes from `packages/human`. After stamping a package version, run `pnpm install --lockfile-only` and stage `pnpm-lock.yaml` with the changed `package.json` before committing. Release with `npm run release` (tag, GitHub release, tarball); the GitHub release starts [.github/workflows/publish.yml](.github/workflows/publish.yml), which checks the tag against the version, runs typecheck and framework tests, and publishes with trusted publishing (OIDC, provenance, no token). A version npm already has is skipped. Rehearse with Actions, "Publish to npm", dry run on. An npm token, if the owner provides one, lives only in `~/.npmrc` or an Actions secret. Setup history: [releases.md](docs/releases.md#npm-setup-2026-10-07).
 
 ## Cloudflare
 
@@ -55,3 +55,7 @@ Clef labels on reports and new inbox notes are opt-in suggestions for a person, 
 ## Frictionless recording and feedback — owner, 2026-10-23
 
 The [new owner direction](docs/owner-directions-2026-10-18.md#2026-10-23-frictionless-recording-and-feedback-adam-verbatim) supersedes earlier separate recording-linkage consent rules. Recording on automatically links continuing play across games on this device, including after identity changes and imports. The first-visit notice covers recording and linkage. DNT/GPC sets the default off only. Turning the single menu recording switch on explicitly opts in. One-page Feedback offers an unticked “Share this run and my play with the lab” checkbox only while recording is off. Submit with it ticked enables recording and linking and sends the run. Unticked sends the note alone, unlinked. Earlier consent state migrates silently. Separate character-analysis opt-in remains.
+
+## Package manager — 2026-10-26
+
+HF uses pnpm 12.14.0 with Node ≥24. Install with `pnpm install --frozen-lockfile`; `npm ci` no longer applies. The shared store is on the internal drive at `~/Library/pnpm/store` (versioned by pnpm). Worktrees link dependencies from that store. Keep using `npm run` for scripts if preferred. Hoisting is disabled; add real direct dependencies. `pnpm-workspace.yaml` contains the build allowlist and overrides. npm still packs and publishes release tarballs with SLSA provenance through the existing trusted publisher workflows. No package release is needed for this migration. Measurements and stale-worktree conversion instructions: `~/code/.lab-scratch/pkgmgr/report.md`.

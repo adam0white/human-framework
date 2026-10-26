@@ -6,11 +6,11 @@ Report security problems privately, as described in [SECURITY.md](SECURITY.md).
 
 ## Setup
 
-- Node ≥ 24 (`.nvmrc` selects Node 26); npm discovers workspaces through `packages/*` and `apps/*`.
+- Node ≥ 24 (`.nvmrc` selects Node 26); pnpm 12.14.0 discovers workspaces through `packages/*` and `apps/*`.
   These include the framework, lab client, lab kit, private playtester and site.
 - TypeScript 7.0.2 (strict, `noUncheckedIndexedAccess`), Vite 8.3.5, Vitest 5.0.5, Biome 2.6.3, React 19.3.1 for UI shells and Canvas 2D
   for maps.
-- `npm ci`, then `npm run dev` for the site.
+- `pnpm install --frozen-lockfile`, then `npm run dev` for the site.
 
 ## Rules
 

@@ -26,6 +26,8 @@ const cases: [string, Lane][] = [
   ['CLAUDE.md', 'gated'],
   ['apps/site/AGENTS.md', 'gated'],
   ['package-lock.json', 'gated'],
+  ['pnpm-lock.yaml', 'gated'],
+  ['pnpm-workspace.yaml', 'gated'],
   ['package.json', 'gated'],
   ['apps/site/package.json', 'gated'],
   ['.github/workflows/ci.yml', 'gated'],
@@ -119,7 +121,12 @@ describe('lane CLI arguments', () => {
 
 describe('lockfile preflight', () => {
   it('checks manifest and lockfile changes before the suite', () => {
-    for (const path of ['package.json', 'packages/human/package.json', 'package-lock.json']) {
+    for (const path of [
+      'package.json',
+      'packages/human/package.json',
+      'pnpm-lock.yaml',
+      'pnpm-workspace.yaml',
+    ]) {
       expect(laneCommands([path], 'gated')[0]).toEqual(['node', 'scripts/lockfile-sync.ts']);
     }
     expect(laneCommands(['scripts/lane.ts'], 'gated')[0]).toEqual(['npm', 'run', 'check']);

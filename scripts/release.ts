@@ -73,6 +73,7 @@ run('node', ['scripts/lockfile-sync.ts']);
 run('npm', ['run', 'check']);
 
 const out = mkdtempSync(join(tmpdir(), 'hf-release-'));
+// Keep npm pack for the release artifact and trusted npm publishing; dependency versions use no workspace: protocol.
 // Prepack may emit lifecycle messages; npm 11 and 12 use different JSON metadata shapes.
 const packed = run('npm', ['pack', '-w', 'packages/human', '--pack-destination', out, '--json'], true);
 const tarball = join(out, packedFilename(packed));

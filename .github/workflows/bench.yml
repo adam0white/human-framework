@@ -17,7 +17,11 @@ on:
       - "packages/*/vitest.bench.config.ts"
       - "apps/*/vitest.bench.config.ts"
       - ".github/workflows/bench.yml"
-      - "package-lock.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - "package.json"
+      - "packages/*/package.json"
+      - "apps/*/package.json"
   pull_request:
     branches: [main]
     paths:
@@ -29,7 +33,11 @@ on:
       - "packages/*/vitest.bench.config.ts"
       - "apps/*/vitest.bench.config.ts"
       - ".github/workflows/bench.yml"
-      - "package-lock.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - "package.json"
+      - "packages/*/package.json"
+      - "apps/*/package.json"
   schedule:
     - cron: "41 7 * * 1" # Mondays 07:41 UTC
   workflow_dispatch:
@@ -56,11 +64,16 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+      - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+        with:
+          version: 12.14.0
+          run_install: false
+          cache: false
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version-file: .nvmrc
-          cache: npm
-      - run: npm ci --no-audit --no-fund
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
       - name: Timing budgets (npm run bench, BENCH_SCALE=3)
         continue-on-error: true
         env:
@@ -90,11 +103,16 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+      - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+        with:
+          version: 12.14.0
+          run_install: false
+          cache: false
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version-file: .nvmrc
-          cache: npm
-      - run: npm ci --no-audit --no-fund
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
       - name: Install hyperfine (pinned release, checksum verified)
         run: |
           name="hyperfine-v${HYPERFINE_VERSION}-x86_64-unknown-linux-musl"

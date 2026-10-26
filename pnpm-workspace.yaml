@@ -1,0 +1,16 @@
+packages:
+  - packages/*
+  - apps/*
+
+# Keep exact published pins; link a local package only when its version matches.
+linkWorkspacePackages: true
+hoist: false
+# Hardlinks share bytes across worktrees and make sharing measurable by inode.
+packageImportMethod: hardlink
+allowBuilds:
+  esbuild@0.28.2: true
+  workerd@1.20261019.1: true
+  fsevents: false
+overrides:
+  vite: 8.3.5
+  miniflare>undici: 7.30.1

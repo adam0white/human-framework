@@ -4,7 +4,7 @@
  * the CI workflow's push run on main for that SHA. Wait up to 15 minutes for pending CI;
  * fail closed on missing/failed/unavailable CI unless --full-check enables local checks.
  * Build and deploy only from a fresh detached temporary worktree of that exact SHA,
- * installed with npm ci; always remove it afterwards. Local checkout edits are excluded.
+ * installed with pnpm install --frozen-lockfile; always remove it afterwards. Local checkout edits are excluded.
  * --dry-run uses the same guards, install, build and cleanup; --trust-ci is a legacy alias.
  * Stamp release.json with that SHA and verify the live manifest after a real upload.
  */
@@ -123,7 +123,7 @@ try {
   git('worktree', 'add', '--detach', checkout, commit);
   added = true;
   const isolated = (cmd: string, args: string[]) => run(cmd, args, false, undefined, checkout);
-  isolated('npm', ['ci', '--no-audit', '--no-fund']);
+  isolated('pnpm', ['install', '--frozen-lockfile']);
   if (!trustedCiUrl) isolated('npm', ['run', 'check']);
   isolated('npm', ['run', 'build']);
   const pkg = (path: string) => JSON.parse(readFileSync(join(checkout, path), 'utf8')) as { version: string };

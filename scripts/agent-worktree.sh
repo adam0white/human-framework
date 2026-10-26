@@ -124,7 +124,11 @@ for (const group of ['apps', 'packages']) {
 }
 NODE
 }
-if clone_dependencies; then
+if [[ -f $worktree/pnpm-lock.yaml ]]; then
+  # Never clone pnpm's virtual store: install links from the shared internal store.
+  printf 'Installing dependencies from the shared pnpm store.\n'
+  (cd -- "$worktree" && pnpm install --frozen-lockfile)
+elif clone_dependencies; then
   printf 'Cloned dependencies with copy-on-write; workspace links verified.\n'
 else
   printf 'Installing dependencies with npm ci.\n'

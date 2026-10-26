@@ -4,6 +4,7 @@
     "includes": [
       "**",
       "!archive",
+      "!pnpm-lock.yaml",
       "!research",
       "!**/dist",
       "!**/.types",

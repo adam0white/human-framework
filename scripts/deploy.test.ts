@@ -87,9 +87,9 @@ afterEach(() => {
 describe('deploy CI gate', () => {
   it('trusts exact-HEAD successful CI before isolated installation, then deploys and verifies', async () => {
     await run();
-    expect(calls()).toContainEqual(['npm', ['ci', '--no-audit', '--no-fund']]);
+    expect(calls()).toContainEqual(['pnpm', ['install', '--frozen-lockfile']]);
     expect(calls().findIndex(([cmd]) => cmd === 'gh')).toBeLessThan(
-      calls().findIndex(([cmd]) => cmd === 'npm'),
+      calls().findIndex(([cmd]) => cmd === 'pnpm'),
     );
     expect(calls()).not.toContainEqual(['npm', ['run', 'check']]);
     expect(calls()).toContainEqual(['npm', ['run', 'build']]);
@@ -189,7 +189,7 @@ describe('deploy CI gate', () => {
     branch = name;
     await run();
     expect(calls()).toContainEqual(['git', ['fetch', 'origin', 'main']]);
-    expect(calls()).toContainEqual(['npm', ['ci', '--no-audit', '--no-fund']]);
+    expect(calls()).toContainEqual(['pnpm', ['install', '--frozen-lockfile']]);
     expect(calls()).toContainEqual(['npx', ['wrangler', 'deploy']]);
   });
 
@@ -197,7 +197,7 @@ describe('deploy CI gate', () => {
     pushed = 'other';
     await expect(run('--full-check')).rejects.toThrow('HEAD abc123 is not origin/main other: push it first');
     expect(calls()).toContainEqual(['git', ['fetch', 'origin', 'main']]);
-    expect(calls().some(([cmd]) => cmd === 'npm')).toBe(false);
+    expect(calls().some(([cmd]) => cmd === 'pnpm' || cmd === 'npm')).toBe(false);
     expect(mkdtempSync).not.toHaveBeenCalled();
   });
 });
