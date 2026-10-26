@@ -19,6 +19,7 @@ afterEach(async () => {
   for (const root of roots) await act(() => root.unmount());
   roots.length = 0;
   vi.mocked(chooseCastRecording).mockReset();
+  vi.mocked(actions.exportRun).mockClear();
   localStorage.clear();
   document.body.innerHTML = '';
 });
@@ -106,4 +107,112 @@ it('recording on sends the run with no separate linkage controls, including old 
     run: { seed: 42, inputs: [], end: { year: 1 } },
   });
   expect(lab.allowPersonaRecording).not.toHaveBeenCalled();
+});
+
+function choice(node: HTMLElement, text: string) {
+  const button = [...node.querySelectorAll('button')].find((b) => b.textContent === text);
+  if (!button) throw new Error(`Expected feedback choice: ${text}`);
+  return button;
+}
+it.each(["I'm stopping", "I'm confused"])(
+  'sends %s only on explicit Submit while recording and privacy are off',
+  async (label) => {
+    const lab = labStub();
+    lab.telemetryOn = false;
+    lab.privacySignalOn = true;
+    const { node, send } = await mount(lab);
+    for (const text of ["I'm stopping", "I'm confused"]) {
+      expect(choice(node, text).type).toBe('button');
+      expect(choice(node, text).getAttribute('aria-pressed')).toBe('false');
+    }
+    await act(() => choice(node, label).click());
+    expect(choice(node, label).getAttribute('aria-pressed')).toBe('true');
+    expect(lab.sendFeedback).not.toHaveBeenCalled();
+    expect(actions.exportRun).not.toHaveBeenCalled();
+    expect(lab.setTelemetryOff).not.toHaveBeenCalled();
+    await act(async () => send().click());
+    expect(lab.sendFeedback).toHaveBeenCalledWith(label, { name: '', sharePlay: false });
+    expect(actions.exportRun).not.toHaveBeenCalled();
+    expect(node.textContent).toContain('Sent. Your note is stored.');
+  },
+);
+it('toggles the choice off and preserves the legacy blank submission', async () => {
+  const lab = labStub();
+  lab.telemetryOn = false;
+  const { node, send } = await mount(lab);
+  await act(() => choice(node, "I'm stopping").click());
+  await act(() => choice(node, "I'm confused").click());
+  expect(choice(node, "I'm stopping").getAttribute('aria-pressed')).toBe('false');
+  await act(() => choice(node, "I'm confused").click());
+  expect(choice(node, "I'm confused").getAttribute('aria-pressed')).toBe('false');
+  await act(async () => send().click());
+  expect(lab.sendFeedback).toHaveBeenCalledWith('', { name: '', sharePlay: false });
+  expect(actions.exportRun).not.toHaveBeenCalled();
+});
+it('keeps the selected choice through pending and retry without duplicate sends', async () => {
+  const lab = labStub();
+  lab.telemetryOn = false;
+  let reject!: (error: Error) => void;
+  lab.sendFeedback.mockImplementationOnce(
+    () =>
+      new Promise<string>((_resolve, fail) => {
+        reject = fail;
+      }),
+  );
+  const { node, send } = await mount(lab);
+  await act(() => choice(node, "I'm confused").click());
+  const submit = send();
+  await act(() => {
+    submit.click();
+    submit.click();
+  });
+  expect(lab.sendFeedback).toHaveBeenCalledTimes(1);
+  expect(submit.disabled).toBe(true);
+  for (const label of ["I'm stopping", "I'm confused"]) expect(choice(node, label).disabled).toBe(true);
+  await act(async () => reject(new Error('offline')));
+  expect(node.textContent).toContain('Your feedback could not be sent. Please try again.');
+  expect(choice(node, "I'm confused").getAttribute('aria-pressed')).toBe('true');
+  expect(choice(node, "I'm confused").disabled).toBe(false);
+  await act(async () => send().click());
+  expect(lab.sendFeedback.mock.calls.map(([note]) => note)).toEqual(["I'm confused", "I'm confused"]);
+  expect(actions.exportRun).not.toHaveBeenCalled();
+});
+it('bounds the selected label, verdict and note together like the SDK dialog', async () => {
+  const lab = labStub();
+  const { node, send } = await mount(lab);
+  await act(() => choice(node, "I'm stopping").click());
+  await act(() => choice(node, 'I’d keep playing').click());
+  const textarea = node.querySelector('textarea');
+  if (!textarea) throw new Error('Expected feedback note');
+  const note = 'x'.repeat(4100);
+  await act(() => {
+    Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value')?.set?.call(textarea, note);
+    textarea.dispatchEvent(new Event('input', { bubbles: true }));
+  });
+  await act(async () => send().click());
+  expect(lab.sendFeedback).toHaveBeenCalledWith(`I'm stopping\n\nVerdict: keep\n\n${note}`.slice(0, 4000), {
+    name: '',
+    sharePlay: false,
+    run: { seed: 42, inputs: [], end: { year: 1 } },
+  });
+});
+
+it('keeps selected feedback separate from the optional run-sharing consent', async () => {
+  const lab = labStub();
+  lab.telemetryOn = false;
+  lab.privacySignalOn = true;
+  const { node, send } = await mount(lab);
+  await act(() => choice(node, "I'm stopping").click());
+  const checkbox = node.querySelector<HTMLInputElement>('input[type=checkbox]');
+  expect(checkbox?.checked).toBe(false);
+  await act(() => checkbox?.click());
+  expect(lab.sendFeedback).not.toHaveBeenCalled();
+  expect(actions.exportRun).not.toHaveBeenCalled();
+  expect(lab.setTelemetryOff).not.toHaveBeenCalled();
+  await act(async () => send().click());
+  expect(lab.sendFeedback).toHaveBeenCalledWith("I'm stopping", {
+    name: '',
+    sharePlay: true,
+    run: { seed: 42, inputs: [], end: { year: 1 } },
+  });
 });

@@ -1,7 +1,8 @@
 /** Feedback is separate from reading and saves. Downloads always remain available. */
-import type { Lab } from '@adam0white/lab-client';
+import type { FeedbackLabel, Lab } from '@adam0white/lab-client';
 import { setTelemetryOff, telemetryOn } from '@adam0white/lab-kit';
 import { useEffect, useRef, useState } from 'react';
+import { FeedbackChoices, feedbackMessage } from '../../shared/FeedbackChoices.tsx';
 import { optionalFeedbackRun } from '../../shared/feedback-run.ts';
 import { gameLabs } from '../../shared/lab.tsx';
 import { labMode } from '../../shared/lab-mode.ts';
@@ -159,6 +160,7 @@ export function FeedbackScreen({
 }) {
   const recording = useRecording(lab);
   const [sharePlay, setSharePlay] = useState(false);
+  const [feedbackLabel, setFeedbackLabel] = useState<FeedbackLabel>();
   const [verdict, setVerdict] = useState('');
   const [note, setNote] = useState('');
   const [name, setName] = useState(() => stored(NAME_KEY));
@@ -187,7 +189,7 @@ export function FeedbackScreen({
     pending.current = true;
     setBusy(true);
     setStatus('');
-    const message = [verdict ? `Verdict: ${verdict}` : '', note.trim()].filter(Boolean).join('\n\n');
+    const message = feedbackMessage(feedbackLabel, verdict, note);
     try {
       const includeRun = recording.on || sharePlay;
       const run = includeRun ? await optionalFeedbackRun(() => actions.exportRun()) : undefined;
@@ -228,6 +230,13 @@ export function FeedbackScreen({
             Share this run and my play with the lab
           </label>
         ) : null}
+        <FeedbackChoices
+          value={feedbackLabel}
+          onChange={setFeedbackLabel}
+          disabled={busy}
+          className="w-verdicts w-feedback-choices"
+          buttonClassName="w-secondary"
+        />
         <fieldset className="w-verdicts" aria-label="Would you keep playing?">
           {[
             ['keep', 'I’d keep playing'],

@@ -2430,6 +2430,12 @@
   flex: 1;
   font-size: 12px;
 }
+.w-feedback-choices button[aria-pressed="true"] {
+  background: var(--w-surface-2);
+  color: var(--w-text);
+  border-color: var(--w-text);
+  box-shadow: inset 0 0 0 1px var(--w-text);
+}
 .w-feedback-preview pre {
   white-space: pre-wrap;
   overflow-wrap: anywhere;

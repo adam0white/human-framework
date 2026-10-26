@@ -1,5 +1,7 @@
 // @vitest-environment happy-dom
-import type { Lab } from '@adam0white/lab-client';
+import { Blob as NodeBlob } from 'node:buffer';
+import { gunzipSync } from 'node:zlib';
+import { createLab, type Lab } from '@adam0white/lab-client';
 import { act, createElement } from 'react';
 import { createRoot } from 'react-dom/client';
 import { afterEach, expect, it, vi } from 'vitest';
@@ -22,6 +24,7 @@ afterEach(async () => {
   for (const root of roots) await act(() => root.unmount());
   roots.length = 0;
   vi.mocked(chooseVoiceRecording).mockReset();
+  vi.mocked(actions.getPlaytest).mockClear();
   localStorage.clear();
   document.body.innerHTML = '';
 });
@@ -41,7 +44,7 @@ function labStub() {
     setTelemetryOff: vi.fn(),
   };
 }
-async function mount(lab: ReturnType<typeof labStub>) {
+async function mount(lab: ReturnType<typeof labStub> | Lab) {
   const node = document.createElement('div');
   document.body.append(node);
   const root = createRoot(node);
@@ -109,4 +112,173 @@ it('recording on sends the run with no separate linkage controls, including old 
     run: { seed: 42, inputs: [], end: { year: 1 } },
   });
   expect(lab.allowPersonaRecording).not.toHaveBeenCalled();
+});
+
+function choice(node: HTMLElement, text: string) {
+  const button = [...node.querySelectorAll('button')].find((b) => b.textContent === text);
+  if (!button) throw new Error(`Expected feedback choice: ${text}`);
+  return button;
+}
+it.each(["I'm stopping", "I'm confused"])(
+  'sends %s only on explicit Submit while recording and privacy are off',
+  async (label) => {
+    const lab = labStub();
+    lab.telemetryOn = false;
+    lab.privacySignalOn = true;
+    const { node, send } = await mount(lab);
+    for (const text of ["I'm stopping", "I'm confused"]) {
+      expect(choice(node, text).type).toBe('button');
+      expect(choice(node, text).getAttribute('aria-pressed')).toBe('false');
+    }
+    await act(() => choice(node, label).click());
+    expect(choice(node, label).getAttribute('aria-pressed')).toBe('true');
+    expect(lab.sendFeedback).not.toHaveBeenCalled();
+    expect(actions.getPlaytest).not.toHaveBeenCalled();
+    expect(lab.setTelemetryOff).not.toHaveBeenCalled();
+    await act(async () => send().click());
+    expect(lab.sendFeedback).toHaveBeenCalledWith(label, { name: '', sharePlay: false });
+    expect(actions.getPlaytest).not.toHaveBeenCalled();
+    expect(node.textContent).toContain('Sent. Your note is stored.');
+  },
+);
+it('toggles the choice off and preserves the legacy blank submission', async () => {
+  const lab = labStub();
+  lab.telemetryOn = false;
+  const { node, send } = await mount(lab);
+  await act(() => choice(node, "I'm stopping").click());
+  await act(() => choice(node, "I'm confused").click());
+  expect(choice(node, "I'm stopping").getAttribute('aria-pressed')).toBe('false');
+  await act(() => choice(node, "I'm confused").click());
+  expect(choice(node, "I'm confused").getAttribute('aria-pressed')).toBe('false');
+  await act(async () => send().click());
+  expect(lab.sendFeedback).toHaveBeenCalledWith('', { name: '', sharePlay: false });
+  expect(actions.getPlaytest).not.toHaveBeenCalled();
+});
+it('keeps the selected choice through pending and retry without duplicate sends', async () => {
+  const lab = labStub();
+  lab.telemetryOn = false;
+  let reject!: (error: Error) => void;
+  lab.sendFeedback.mockImplementationOnce(
+    () =>
+      new Promise<string>((_resolve, fail) => {
+        reject = fail;
+      }),
+  );
+  const { node, send } = await mount(lab);
+  await act(() => choice(node, "I'm confused").click());
+  const submit = send();
+  await act(() => {
+    submit.click();
+    submit.click();
+  });
+  expect(lab.sendFeedback).toHaveBeenCalledTimes(1);
+  expect(submit.disabled).toBe(true);
+  for (const label of ["I'm stopping", "I'm confused"]) expect(choice(node, label).disabled).toBe(true);
+  await act(async () => reject(new Error('offline')));
+  expect(node.textContent).toContain('Your feedback could not be sent. Please try again.');
+  expect(choice(node, "I'm confused").getAttribute('aria-pressed')).toBe('true');
+  expect(choice(node, "I'm confused").disabled).toBe(false);
+  await act(async () => send().click());
+  expect(lab.sendFeedback.mock.calls.map(([note]) => note)).toEqual(["I'm confused", "I'm confused"]);
+  expect(actions.getPlaytest).not.toHaveBeenCalled();
+});
+it('bounds the selected label, verdict and note together like the SDK dialog', async () => {
+  const lab = labStub();
+  const { node, send } = await mount(lab);
+  await act(() => choice(node, "I'm stopping").click());
+  await act(() => choice(node, 'I’d keep playing').click());
+  const textarea = node.querySelector('textarea');
+  if (!textarea) throw new Error('Expected feedback note');
+  const note = 'x'.repeat(4100);
+  await act(() => {
+    Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value')?.set?.call(textarea, note);
+    textarea.dispatchEvent(new Event('input', { bubbles: true }));
+  });
+  await act(async () => send().click());
+  expect(lab.sendFeedback).toHaveBeenCalledWith(`I'm stopping\n\nVerdict: keep\n\n${note}`.slice(0, 4000), {
+    name: '',
+    sharePlay: false,
+    run: { seed: 42, inputs: [], end: { year: 1 } },
+  });
+});
+
+it('preserves the unselected legacy note without adding a label or pre-truncating it', async () => {
+  const lab = labStub();
+  lab.telemetryOn = false;
+  const { node, send } = await mount(lab);
+  const textarea = node.querySelector('textarea');
+  if (!textarea) throw new Error('Expected feedback note');
+  const note = 'x'.repeat(4100);
+  await act(() => {
+    Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value')?.set?.call(
+      textarea,
+      `  ${note}  `,
+    );
+    textarea.dispatchEvent(new Event('input', { bubbles: true }));
+  });
+  await act(async () => send().click());
+  expect(lab.sendFeedback).toHaveBeenCalledWith(note, { name: '', sharePlay: false });
+  expect(actions.getPlaytest).not.toHaveBeenCalled();
+});
+
+it('headless UI control sends one unlinked SDK envelope only after explicit Submit', async () => {
+  localStorage.setItem('hf-lab-recording-off', '1');
+  const envelopes: unknown[] = [];
+  const fetch = vi.fn(async (_url: unknown, init?: RequestInit) => {
+    if (!init?.body) throw new Error('Expected compressed feedback body');
+    envelopes.push(
+      JSON.parse(gunzipSync(new Uint8Array(await (init.body as Blob).arrayBuffer())).toString()),
+    );
+    return Response.json({ ok: true, id: 'r-central-control' });
+  });
+  vi.stubGlobal('fetch', fetch);
+  vi.stubGlobal('Blob', NodeBlob);
+  // Recording is off before construction, so this control creates no identity or background telemetry.
+  const lab = createLab({ game: 'voice', build: { c: 'central-control' }, captureErrors: false });
+  try {
+    const { node, send } = await mount(lab);
+    await act(() => choice(node, "I'm confused").click());
+    expect(fetch).not.toHaveBeenCalled();
+    expect(actions.getPlaytest).not.toHaveBeenCalled();
+    await act(async () => {
+      send().click();
+      // React does not await an async event handler's stream compression and transport.
+      await vi.waitFor(() => expect(envelopes).toHaveLength(1));
+    });
+    expect(envelopes).toEqual([
+      {
+        v: 1,
+        game: 'voice',
+        build: { c: 'central-control' },
+        run: { feedbackOnly: true },
+        note: "I'm confused",
+      },
+    ]);
+    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(lab.telemetryOn).toBe(false);
+    expect(actions.getPlaytest).not.toHaveBeenCalled();
+    expect(node.textContent).toContain('Sent. Your note is stored.');
+  } finally {
+    vi.unstubAllGlobals();
+  }
+});
+
+it('keeps selected feedback separate from the optional run-sharing consent', async () => {
+  const lab = labStub();
+  lab.telemetryOn = false;
+  lab.privacySignalOn = true;
+  const { node, send } = await mount(lab);
+  await act(() => choice(node, "I'm stopping").click());
+  const checkbox = node.querySelector<HTMLInputElement>('input[type=checkbox]');
+  expect(checkbox?.checked).toBe(false);
+  await act(() => checkbox?.click());
+  expect(lab.sendFeedback).not.toHaveBeenCalled();
+  expect(actions.getPlaytest).not.toHaveBeenCalled();
+  expect(lab.setTelemetryOff).not.toHaveBeenCalled();
+  await act(async () => send().click());
+  expect(lab.sendFeedback).toHaveBeenCalledWith("I'm stopping", {
+    name: '',
+    sharePlay: true,
+    run: { seed: 42, inputs: [], end: { year: 1 } },
+  });
 });

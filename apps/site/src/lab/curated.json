@@ -6738,7 +6738,7 @@
   },
   {
    "id": "F-497",
-   "date": "2026-10-24",
+   "date": "2026-10-25",
    "game": "voice",
    "kind": "playtester",
    "who": "Maya Chen (legacy Codex, HF3 Voice R1 free)",
@@ -6751,7 +6751,7 @@
   },
   {
    "id": "F-498",
-   "date": "2026-10-24",
+   "date": "2026-10-25",
    "game": "voice",
    "kind": "playtester",
    "who": "Maya Chen (legacy Codex, HF3 Voice R1 free)",
@@ -6764,7 +6764,7 @@
   },
   {
    "id": "F-499",
-   "date": "2026-10-24",
+   "date": "2026-10-25",
    "game": "voice",
    "kind": "playtester",
    "who": "Maya Chen (legacy Codex, HF3 Voice R1 free)",
@@ -6777,7 +6777,7 @@
   },
   {
    "id": "F-500",
-   "date": "2026-10-24",
+   "date": "2026-10-25",
    "game": "voice",
    "kind": "playtester",
    "who": "Maya Chen (legacy Codex, HF3 Voice R1 continued)",
@@ -6790,7 +6790,7 @@
   },
   {
    "id": "F-501",
-   "date": "2026-10-24",
+   "date": "2026-10-25",
    "game": "voice",
    "kind": "playtester",
    "who": "Maya Chen (legacy Codex, HF3 Voice R1 continued)",
@@ -6803,7 +6803,7 @@
   },
   {
    "id": "F-502",
-   "date": "2026-10-24",
+   "date": "2026-10-25",
    "game": "voice",
    "kind": "playtester",
    "who": "Maya Chen (legacy Codex, HF3 Voice R1 continued)",
@@ -6816,10 +6816,10 @@
   },
   {
    "id": "F-503",
-   "date": "2026-10-24",
+   "date": "2026-10-25",
    "game": "voice",
    "kind": "playtester",
-   "who": "Aisha Rahman (legacy Codex, HF3 Voice R1 free)",
+   "who": "Aisha Rahman (Claude Opus, legacy coordinator attribution; supervisor receipt unavailable, HF3 Voice R1 free)",
    "words": "**Let me address a broken promise.** Add a \"You said you would…\" option. Have Halil acknowledge it when he drops a promise. Explain the rule that gentle suggestions fail when he doesn't expect the pay at the moment it applies.\" Return: \"Possibly once, for the characters and the Selin thread. Not if the repetition stays and I still cannot repair a mistake.",
    "verdict": "mixed",
    "routes": [
@@ -6829,10 +6829,10 @@
   },
   {
    "id": "F-504",
-   "date": "2026-10-24",
+   "date": "2026-10-25",
    "game": "voice",
    "kind": "playtester",
-   "who": "Aisha Rahman (legacy Codex, HF3 Voice R1 free)",
+   "who": "Aisha Rahman (Claude Opus, legacy coordinator attribution; supervisor receipt unavailable, HF3 Voice R1 free)",
    "words": "**Stop the scenes repeating and put the goal actions in the planner.** Never replay a scene in the same day. On the day of a deadline, offer the actions that serve the deadline goal, such as work or talking to Osman.\" Return: \"Possibly once, for the characters and the Selin thread. Not if the repetition stays and I still cannot repair a mistake.",
    "verdict": "mixed",
    "routes": [
@@ -6842,10 +6842,10 @@
   },
   {
    "id": "F-505",
-   "date": "2026-10-24",
+   "date": "2026-10-25",
    "game": "voice",
    "kind": "playtester",
-   "who": "Aisha Rahman (legacy Codex, HF3 Voice R1 free)",
+   "who": "Aisha Rahman (Claude Opus, legacy coordinator attribution; supervisor receipt unavailable, HF3 Voice R1 free)",
    "words": "**Stop interface changes from discarding my input.** Keep the speaking sheet open through clock jumps. Show replies whichever tab is open. Announce the 12-day skip before it happens. Make Let time pass work inside past conversations.\" Return: \"Possibly once, for the characters and the Selin thread. Not if the repetition stays and I still cannot repair a mistake.",
    "verdict": "mixed",
    "routes": [
@@ -6855,10 +6855,10 @@
   },
   {
    "id": "F-506",
-   "date": "2026-10-24",
+   "date": "2026-10-25",
    "game": "voice",
    "kind": "playtester",
-   "who": "Aisha Rahman (legacy Codex, HF3 Voice R1 continued)",
+   "who": "Aisha Rahman (Claude Opus, legacy coordinator attribution; supervisor receipt unavailable, HF3 Voice R1 continued)",
    "words": "**Make the 12-day planner match what it advises.** Either let \"it's your duty\" actually work, or say plainly that only Urge will. After the skip, add short summaries of those days to the Today log.\" Return: \"Maybe. I want to know whether he pays Osman and rings Selin. But if the lines keep repeating, Aisha would not come back a second time.",
    "verdict": "mixed",
    "routes": [
@@ -6868,10 +6868,10 @@
   },
   {
    "id": "F-507",
-   "date": "2026-10-24",
+   "date": "2026-10-25",
    "game": "voice",
    "kind": "playtester",
-   "who": "Aisha Rahman (legacy Codex, HF3 Voice R1 continued)",
+   "who": "Aisha Rahman (Claude Opus, legacy coordinator attribution; supervisor receipt unavailable, HF3 Voice R1 continued)",
    "words": "**Stop repeating the grief dialogue.** Give Hacer, Rıza and Selin their own voices, and make lines change over time, so Ramadan 15 doesn't reuse Ramadan 2 word for word.\" Return: \"Maybe. I want to know whether he pays Osman and rings Selin. But if the lines keep repeating, Aisha would not come back a second time.",
    "verdict": "mixed",
    "routes": [
@@ -6881,10 +6881,10 @@
   },
   {
    "id": "F-508",
-   "date": "2026-10-24",
+   "date": "2026-10-25",
    "game": "voice",
    "kind": "playtester",
-   "who": "Aisha Rahman (legacy Codex, HF3 Voice R1 continued)",
+   "who": "Aisha Rahman (Claude Opus, legacy coordinator attribution; supervisor receipt unavailable, HF3 Voice R1 continued)",
    "words": "**Warn before a new suggestion replaces the old one** (\"This replaces: walk by the river\"), and make \"Let time pass\" visibly move the clock.\" Return: \"Maybe. I want to know whether he pays Osman and rings Selin. But if the lines keep repeating, Aisha would not come back a second time.",
    "verdict": "mixed",
    "routes": [
@@ -6894,7 +6894,7 @@
   },
   {
    "id": "F-509",
-   "date": "2026-10-24",
+   "date": "2026-10-25",
    "game": "voice",
    "kind": "playtester",
    "who": "Rosa Alvarez (legacy Codex, HF3 Voice R1 free)",
@@ -6907,7 +6907,7 @@
   },
   {
    "id": "F-510",
-   "date": "2026-10-24",
+   "date": "2026-10-25",
    "game": "voice",
    "kind": "playtester",
    "who": "Rosa Alvarez (legacy Codex, HF3 Voice R1 free)",
@@ -6920,7 +6920,7 @@
   },
   {
    "id": "F-511",
-   "date": "2026-10-24",
+   "date": "2026-10-25",
    "game": "voice",
    "kind": "playtester",
    "who": "Rosa Alvarez (legacy Codex, HF3 Voice R1 free)",
@@ -6933,7 +6933,7 @@
   },
   {
    "id": "F-512",
-   "date": "2026-10-24",
+   "date": "2026-10-25",
    "game": "voice",
    "kind": "playtester",
    "who": "Rosa Alvarez (legacy Codex, HF3 Voice R1 continued)",
@@ -6946,7 +6946,7 @@
   },
   {
    "id": "F-513",
-   "date": "2026-10-24",
+   "date": "2026-10-25",
    "game": "voice",
    "kind": "playtester",
    "who": "Rosa Alvarez (legacy Codex, HF3 Voice R1 continued)",
@@ -6959,7 +6959,7 @@
   },
   {
    "id": "F-514",
-   "date": "2026-10-24",
+   "date": "2026-10-25",
    "game": "voice",
    "kind": "playtester",
    "who": "Rosa Alvarez (legacy Codex, HF3 Voice R1 continued)",
@@ -6972,7 +6972,7 @@
   },
   {
    "id": "F-515",
-   "date": "2026-10-24",
+   "date": "2026-10-25",
    "game": "voice",
    "kind": "playtester",
    "who": "Nia Okafor (legacy Codex, HF3 Voice R1 free)",
@@ -6985,7 +6985,7 @@
   },
   {
    "id": "F-516",
-   "date": "2026-10-24",
+   "date": "2026-10-25",
    "game": "voice",
    "kind": "playtester",
    "who": "Nia Okafor (legacy Codex, HF3 Voice R1 free)",
@@ -6998,7 +6998,7 @@
   },
   {
    "id": "F-517",
-   "date": "2026-10-24",
+   "date": "2026-10-25",
    "game": "voice",
    "kind": "playtester",
    "who": "Nia Okafor (legacy Codex, HF3 Voice R1 free)",
