@@ -1,5 +1,5 @@
 /** Measurement only: unchanged HF 3.2. Node 26 strips types. JSONL stdout is retained outside Git.
- * Usage: node scripts/hf4-baseline.ts --mode=quick|year|antfarm|longrun|doze|selectors [--module=/absolute/dist/index.js]
+ * Usage: node scripts/hf4-baseline.ts --mode=quick|year|antfarm|longrun|doze|doze-control|selectors [--module=/absolute/dist/index.js]
  * [--seeds=1,2,...,10] [--days=365]. No time extrapolation. Each year checkpoint is one completed day.
  * Village workload comes from bench-thousand-lives.ts (four ring ties) and the real village world.
  * Longrun uses the real L5 routineFor fixture, not decision simulation; these fidelities are distinct.
@@ -22,7 +22,7 @@ const hf: typeof import('../packages/human/src/index.ts') = await import(
 const seeds = arg('seeds', '1,2,3,4,5,6,7,8,9,10').split(',').map(Number);
 const days = Number(arg('days', '365'));
 if (
-  !['quick', 'year', 'antfarm', 'longrun', 'doze', 'selectors'].includes(mode) ||
+  !['quick', 'year', 'antfarm', 'longrun', 'doze', 'doze-control', 'selectors'].includes(mode) ||
   seeds.some((s) => !Number.isInteger(s) || s < 1 || s > 10) ||
   !Number.isInteger(days) ||
   days < 1 ||
@@ -122,12 +122,16 @@ const context = {
   load: loadavg(),
   freeDiskBytes: disk(),
   selectors,
+  comparison:
+    mode === 'doze-control'
+      ? 'paired fed years, all other faculties on; doze omitted only in labelled off arm; no behavioral equivalence claimed'
+      : null,
   timing: 'concurrent machine; process CPU and load recorded; no quiet-machine or browser equivalence claim',
   alternatives:
     'catchUp events is separately sampled; eager main year. Longrun is declared coarse routine fidelity, not equivalent. Other mutually exclusive readings remain data, not simultaneously selectable.',
 };
 emit(context);
-function person(seed: number, i: number, ids: string[], now = 420): Person {
+function person(seed: number, i: number, ids: string[], now = 420, doze = true): Person {
   const id = ids[i];
   if (!id) throw new Error('Missing person id');
   const spec = hf.villagerSpec(id, id, seed * 1000 + i, {
@@ -136,6 +140,7 @@ function person(seed: number, i: number, ids: string[], now = 420): Person {
     others: [1, 2, 3, 4].map((offset) => ids[(i + offset) % ids.length] as string),
   });
   spec.enable = structuredClone(enable);
+  if (!doze) spec.enable.doze = undefined;
   spec.lexicon = { ...selectors.lexicon };
   for (const c of spec.commitments ?? []) c.completion = 'end';
   spec.goals = [
@@ -176,7 +181,7 @@ function person(seed: number, i: number, ids: string[], now = 420): Person {
   if (
     p.projects?.behaviour !== 2 ||
     p.pursuit?.behaviour !== 2 ||
-    !p.body.doze ||
+    (doze && !p.body.doze) ||
     !p.affect.crisis ||
     !p.will.assentCost
   )
@@ -462,6 +467,29 @@ for (const seed of seeds) {
       fitr,
       ...state(s.people),
     });
+  } else if (mode === 'doze-control') {
+    for (const doze of [false, true]) {
+      const p = person(seed, 0, ['p0'], 0, doze);
+      let livingHours = 0;
+      const result = measured(() => {
+        for (let hour = 1; hour <= 8760; hour++) {
+          hf.consume(p, { food: 1, water: 1 });
+          hf.tick(p, hour * 60);
+          if (p.body.alive) livingHours++;
+        }
+      });
+      emit({
+        kind: 'doze-control',
+        seed,
+        doze,
+        posture: 'upright',
+        minutes: 525600,
+        livingHours,
+        ...result,
+        ...state([p]),
+        load: loadavg(),
+      });
+    }
   } else {
     for (const minutes of [60, 1440, 525600]) {
       const p = person(seed, 0, ['p0'], 0);
