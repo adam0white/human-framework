@@ -143,6 +143,8 @@ Each game doc ends with its deferred list; the games are graduated and none is s
 
 **Next set of games: classics rebuilt with HF (owner, 2026-10-26, [OD](owner-directions-2026-10-18.md#2026-10-26--next-games-are-classics-with-hf-baked-in-adam-verbatim)).** After HF 4.x folds in the planned faculties and most games are migrated to it, the next new games are not new ideas: they are replicas of classic games or known game types, rebuilt with HF people inside. No new concepts are drafted before then. Target: propose a shortlist when 4.x is in place and most games run on it (earliest after the 2026-11-03 owner review).
 
+**Named design approaches and game categories (owner, 2026-10-26, [OD](owner-directions-2026-10-18.md#2026-10-26--big-picture-taste-named-design-approaches-categories-adam-verbatim)).** After HF 4.x, alongside the classics: a few named, carefully chosen design approaches that follow great games and game makers, each held by a designer persona and used across several games, so the games stop sharing one look and feel. The site groups the games into categories instead of one flat list of 20+. Human taste comes from the owner, friends on selected games and later Show HN; the LLM panel stays a filter for bugs and clarity. Target: propose the approaches and categories with the classics shortlist (earliest after the 2026-11-03 owner review).
+
 Site-wide, from the R2 reviews (all unscheduled):
 - R2 V5: the framework is bundled once per worker; serve the hindsight job from the colony worker.
 - R2 V6: worker download waits for the entry JS; a small Vite plugin for `<link rel=prefetch>`.
