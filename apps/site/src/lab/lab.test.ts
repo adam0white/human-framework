@@ -984,6 +984,11 @@ describe('lab ledger', () => {
       asks: read('docs/lab/testing-asks.md'),
     });
     expect(problems).toEqual([]);
+    // Every authored F-row must reach the dashboard, including rows appended after prose.
+    const authoredIds = [...read('docs/lab/feedback-ledger.md').matchAll(/^\| (F-\d+) \|/gm)].map(
+      (match) => match[1],
+    );
+    expect(curated.ledger.map((row) => row.id)).toEqual(authoredIds);
     expect(read('apps/site/src/lab/curated.json')).toBe(`${JSON.stringify(curated, null, 1)}\n`);
   });
 
