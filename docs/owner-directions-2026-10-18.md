@@ -229,3 +229,9 @@ Coordinator reading of "finish … playtests and iterations": each game gets a l
 > Thanks, keep going. A codex thread checking for redundant storage space found (with my prompt though) that HF games repos can save some space.
 > For HF, use pnpm with Node and a shared store on the internal drive. We measured roughly 2.5 GiB of redundant identical workerd binaries. The HF thread can test the actual savings before other repositories adopt it.
 > Test, switch, and let me know. I'm open to switching to bun instead as well, if it performs and saves better.
+
+## 2026-10-26 — cf CLI instead of Wrangler (Adam, verbatim)
+
+> "Yeah, and cf cli instead of wrangler + wrangler.json, too. Worth experimenting and probably switching."
+
+Trial HF first. Merge after the package-manager switch. Switch deployment only after resolved config and upload-manifest equivalence, exact green CI and the Voice deployment hold permit it. A proven beta gap keeps Wrangler with a dated re-check.

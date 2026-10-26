@@ -59,3 +59,9 @@ The [new owner direction](docs/owner-directions-2026-10-18.md#2026-10-23-frictio
 ## Package manager — 2026-10-26
 
 HF uses pnpm 12.14.0 with Node ≥24. Install with `pnpm install --frozen-lockfile`; `npm ci` no longer applies. The shared store is on the internal drive at `~/Library/pnpm/store` (versioned by pnpm). Worktrees link dependencies from that store. Keep using `npm run` for scripts if preferred. Hoisting is disabled; add real direct dependencies. `pnpm-workspace.yaml` contains the build allowlist and overrides. npm still packs and publishes release tarballs with SLSA provenance through the existing trusted publisher workflows. No package release is needed for this migration. Measurements and stale-worktree conversion instructions: `~/code/.lab-scratch/pkgmgr/report.md`.
+
+## cf CLI trial — 2026-10-26
+
+**Remaining:** workspace Build Output support and upload equivalence; re-check 2026-11-02 ([roadmap](docs/roadmap.md#cf-cli-migration-trial--2026-10-26)). Retain Wrangler 4.152.0, `wrangler.jsonc`, current deploy/auth/R2 scripts and their tests. `cf@1.0.0-beta.21` migration generates the expected config, but root build/dry-run reject the workspace. An app-directory trial builds Vite assets then fails for missing cf Build Output. No cf deployment, authentication change, telemetry write, secret operation or live browser session occurred. Live `/release.json` still reports `1712fc5aeaacfc7a401c89c8e3e24dfa462fb8e3`, `dirty:false` at trial time. Voice round 1 hold remains in force.
+
+Trial configs and command logs: `~/code/.lab-scratch/cfcli/evidence/`; mapping and other-repo instructions: `~/code/.lab-scratch/cfcli/report.md`. Only adopt after pkgmgr's actual switch commit and a successful new equivalence trial. A future live cf switch must retain a one-command Wrangler rollback for a clean week; that period has not started.
