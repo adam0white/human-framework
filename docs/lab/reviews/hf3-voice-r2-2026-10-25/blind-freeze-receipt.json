@@ -1,0 +1,16 @@
+{
+  "input_frozen_at": "2026-10-26T13:18:16.787747+00:00",
+  "reader_output_frozen_at": "2026-10-26T13:22:41.295082+00:00",
+  "input_sha256": "3c8847105d663a64e62a146ceb8ba92e505cee288946f19ac2345fd4f242c821",
+  "reader_output_sha256": "0e6ba329961e8efe06d21a363d9af601c16ce417897a602331cc5e1d796c826c",
+  "unblind_receipt_sha256": "d73440e1b0a4ef823d2a09512cd16cb6ffde5c7fc218d44ed4cd54b478c00c72",
+  "diaries": 34,
+  "whole_raw_records": 3795,
+  "root_exact_quote_checks": 189,
+  "matched": 32,
+  "additional_unpaired": 1,
+  "external_control": 1,
+  "forced_matched_excluded_primary": 1,
+  "method": "Fresh independent gpt-6.1-sol/low reader with anonymous whole raw records, no mapping/otherhistory/source; output frozen before role unblind. Own words may reveal identity/arm/game.",
+  "limitations": "Descriptive synthetic observations, repeated identities; no randomized causal A/B. Formal tags withheld; literal departure statements differ from tag times. Continued floor is not retention."
+}

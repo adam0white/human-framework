@@ -1,0 +1,742 @@
+{
+  "updated": "2026-10-26T12:59:04.821878+00:00",
+  "status": "Partial; matched arms distinct; originalMeiCONT additionalunpaired",
+  "matched_reports": 32,
+  "additional_reports": 1,
+  "ask_count": 92,
+  "testers": [
+    {
+      "tester": "Maya Chen",
+      "observations": [
+        {
+          "tester": "Maya Chen",
+          "arm": "free",
+          "game": "voice",
+          "report": "docs/lab/reviews/hf3-voice-r2-2026-10-25/reports/maya-free.md",
+          "ask_quotes": [
+            "Let me finish listening to a conversation I have chosen to follow.",
+            "Help me understand what became of a promised action before asking me to repeat the advice.",
+            "On a return visit, I would want another human thread sooner."
+          ],
+          "return_quote": "I would not return voluntarily tonight or leave it running unattended. I might return another evening if I wanted this slow company, but I would not come back just to repeat advice until he takes it.",
+          "verdict": "mixed",
+          "forced": false,
+          "raw_stop": "BORED",
+          "coordinator_limits": "Natural free stop; first wish207.247BORED, stop226.008. Conditional another-evening slow company, no tonight or unattended play; mixed not blanket quit. Phone image/position evidence, desktop unseen before5minutes; continued coverswide. Timing ask1 UNROUTED pending separate human-speed reproduction; raw consecutive Keep listening inputs199.086/201.871 show2.785second gap, changed-control reply; player distinguishes game state fromdriver failure. No automatic obedience request: ask2 wants promised-action result visibility, notforcedcompliance. Exact00d cleanbefore/after, noSubmit/consentchange.",
+          "proposed_repro_target": "2026-10-27",
+          "first_handoff": "2026-10-26T05:11:16.381567+00:00",
+          "dataset": "hf3-voice-r2",
+          "role": "matched"
+        },
+        {
+          "tester": "Maya Chen",
+          "arm": "continued",
+          "game": "voice",
+          "report": "docs/lab/reviews/hf3-voice-r2-2026-10-25/reports/maya-continued.md",
+          "ask_quotes": [
+            "Let the later Hacer conversation reach a different ending when its worry is different.",
+            "Make the difference between “I will do it after this task” and a suggestion that may expire clearer.",
+            "Let me ask why Halil dreads the clinic."
+          ],
+          "return_quote": "I would not leave this running unattended. I might return another evening for a new conversation, but I would not voluntarily restart this daily loop tonight or commit to reaching Eid.",
+          "verdict": "mixed",
+          "forced": false,
+          "raw_stop": "BORED",
+          "coordinator_limits": "Declared return with identical frozen pre-game history to free alternative. First want_quit454.093BORED; floor led to further play; wish softened for new scenes then returned728.845; stop918.289BORED naturally after15minute floor, not retention evidence. Full conditional another-evening return preserved; no tonight daily-loop or unattended play. Actual primary phone and requested wide images/position taps reported; automatic image audit complete, coordinator detailed audit pending. Both quiet Feedback choices selected locally, no typing/Submit/consent change. Keep listening absent248.063 is game-state change, not physical failed tap; separate human-speed engineering reproduced same affordance change, not hidden cause. Exact00d clean before/after.",
+          "proposed_repro_target": "2026-10-27",
+          "first_handoff": "2026-10-26T05:23:29.186436+00:00",
+          "dataset": "hf3-voice-r2",
+          "role": "matched"
+        }
+      ]
+    },
+    {
+      "tester": "Emre Kaya",
+      "observations": [
+        {
+          "tester": "Emre Kaya",
+          "arm": "free",
+          "game": "voice",
+          "report": "docs/lab/reviews/hf3-voice-r2-2026-10-25/reports/emre-free.md",
+          "ask_quotes": [
+            "Tell me why he chooses another rest after saying he will take the shift when resting ends.",
+            "Give me a chance to reconsider the suggestion before the work option disappears."
+          ],
+          "return_quote": "I am stopping before the first evening. I wanted to solve the rent problem, but my shift suggestion waited through more rest and expired, and I was too late to try it more strongly. I would return voluntarily another evening to try that decision earlier with a stronger reason, but not to repeat this whole day tonight. I would not leave it running.",
+          "verdict": "keep",
+          "forced": false,
+          "raw_stop": "FRUSTRATED",
+          "coordinator_limits": "Declared return with selected own Voice/Warren/Commonstead history. Natural firstwish208.585FRUSTRATED/final229.054; verdictkeep from explicit would return voluntarily another evening for concrete earlier/stronger retry, qualified no repeat whole day tonight/no unattended. Stop reason alone does not determine verdict. Actual desktop images/position input; phone unmet because natural stopbefore5minutes, counterpart active. His goals distinguish estimates/actions; shift expiry clearer but why repeatedrest unestablished; doubt about payment visible not proven cause. Work unavailable at17:40, ask is opportunity/understanding not forcedobedience. Both quietFeedback choices observed driveronly; stopping selected locally/no typing/Submit/consent. Exact00d cleanbefore/after. Imagecollector6actualoutputs; detailed audit pending.",
+          "proposed_repro_target": "2026-10-27",
+          "first_handoff": "2026-10-26T05:25:50.724701+00:00",
+          "dataset": "hf3-voice-r2",
+          "role": "matched"
+        },
+        {
+          "tester": "Emre Kaya",
+          "arm": "continued",
+          "game": "voice",
+          "report": "docs/lab/reviews/hf3-voice-r2-2026-10-25/reports/emre-continued.md",
+          "ask_quotes": [
+            "Tell me plainly when “after this task” becomes another postponement, especially when an opportunity is about to close.",
+            "Let me address his doubt about the shift’s pay with the actual money information.",
+            "Keep the likely reply and its explanation readable above the detailed plan’s fixed controls."
+          ],
+          "return_quote": "I am stopping here, before the evening is finished after all. I helped him reach the clinic and earn the extra shift money, and that is enough for tonight. I would return voluntarily for another short evening to see whether he takes the shift or calls Selin without me. I would not return to play the whole month in one sitting. I would not leave it running.",
+          "verdict": "keep",
+          "forced": false,
+          "raw_stop": "TASTE",
+          "coordinator_limits": "Declared return; identical frozen own history to free alternative, no counterpartknowledge. Natural want_quit816.841TASTE persisted; final raw923.588TASTE/report923.589 differs1ms, both originals retained. Floor continuation not voluntary retention; KEEP from explicit another-short-evening voluntaryreturn to observe autonomy, no wholemonth/unattended. Actualdesktop14images+requestedphone2 reported, exactimage auditpending; phonesession310.531–325.795 withpositiontap. ShiftconfirmedToday13:45, originalmissed14:31 deadline nowobservedhistory; timing vsstrongerwording effectsnotseparable. Cliniccost10 assumption notvisiblecost explanation. Bothquietchoices locallyselecteddriveronly/no typing/Submit/consent. Captured exactownedPIDsabsent/profilegone rootverified. Exact00d clean before/after.",
+          "proposed_repro_target": "2026-10-27",
+          "first_handoff": "2026-10-26T05:43:06.848187+00:00",
+          "dataset": "hf3-voice-r2",
+          "role": "matched"
+        }
+      ]
+    },
+    {
+      "tester": "Nia Okafor",
+      "observations": [
+        {
+          "tester": "Nia Okafor",
+          "arm": "free",
+          "game": "voice",
+          "report": "docs/lab/reviews/hf3-voice-r2-2026-10-25/reports/nia-free.md",
+          "ask_quotes": [
+            "Let me find how to bring up Selin without going through the planning settings.",
+            "Let me keep more of the conversation visible while choosing my words."
+          ],
+          "return_quote": "I would close it, not leave it running. I would not return voluntarily tonight. I might return another evening if I wanted a quiet conversation, and I would still want to hear the Selin call. That curiosity is not pulling me back now.",
+          "verdict": "mixed",
+          "forced": false,
+          "raw_stop": "TASTE",
+          "coordinator_limits": "Declared return with own priorVoice+twoWarren selectedhistories. Natural want_quit172.125TASTE persisted; rawfinal191.704/report191.705 differ1ms originals retained. Mixed conditionalanother-evening quietconversation, expresslynotvoluntarytonight/unattended andcuriositynotpullingnow; not an affirmative returnplan. Hacerfollowthrough+memoryansweractual; Selinnotfound inexaminedchoices, untestedlater/nocause forpriorquestiondisappearanceestablished. Actual5phone images/positioninputreported; desktopunmet naturalstopbefore5min. Imageauditpending. Bothquietchoicespresent driveronly, stoppinglocalselected/no typing/Submit/consent. Exact00d cleanbefore/after.",
+          "proposed_repro_target": "2026-10-27",
+          "first_handoff": "2026-10-26T05:48:24.850238+00:00",
+          "dataset": "hf3-voice-r2",
+          "role": "matched"
+        },
+        {
+          "tester": "Nia Okafor",
+          "arm": "continued",
+          "game": "voice",
+          "report": "docs/lab/reviews/hf3-voice-r2-2026-10-25/reports/nia-continued.md",
+          "ask_quotes": [
+            "Tell me when I can suggest calling Selin. I spent time waiting for her to call.",
+            "Give the people more distinct reactions. Rıza’s familiar listening line reduced my curiosity.",
+            "Keep the likely reply readable above the phone’s lower controls."
+          ],
+          "return_quote": "I would close it, not leave it running. I would not return voluntarily right now, including another evening; I might return if there were a short way into a new family conversation.",
+          "verdict": "mixed",
+          "forced": false,
+          "raw_stop": "BORED",
+          "coordinator_limits": "Declaredreturn with SAMEfrozenownhistory asfreealternative. Firstwish690.696BORED persisted717.538; eased800.572 afterdesiredSelincall, readinessstopreturned902.504. Naturalpostfloorraw910.709/report910.710 differ1msoriginalsretained. MIXED conditionalnewshortfamily-entry only; explicitlyNO voluntaryreturnnow INCLUDINGanother-evening/unattended, not affirmativecurrentreturnplan. Floorcontinuation notvoluntaryretention. Actual14phone2wideimages/positionreported, detailedauditpending. Likelyreplybelowphonefixedcontrols viewed; scrollingnot tested. Day1 no observedSelinincomingcall, actualday2outgoingSpeakoption18:00 thenfollowthrough; completeavailabilityruleunknown. Repeatedlisteningresponsespersonalreaction notallcontentduplicateclaim. KeepListening343.321/345.592 changedcontrol2.271s; noTOOL/physicalfailedtap inference, separateMaya humanproofexists. BothquietFeedbacklocalselected/no typing/Submit/consent. Exact00d cleanbefore/after. Nofullmonth/Eid/laterfamilyoutcomeobserved.",
+          "proposed_repro_target": "2026-10-27",
+          "first_handoff": "2026-10-26T06:04:37.622161+00:00",
+          "dataset": "hf3-voice-r2",
+          "role": "matched"
+        }
+      ]
+    },
+    {
+      "tester": "Rosa Alvarez",
+      "observations": [
+        {
+          "tester": "Rosa Alvarez",
+          "arm": "free",
+          "game": "voice",
+          "report": "docs/lab/reviews/hf3-voice-r2-2026-10-25/reports/rosa-free.md",
+          "ask_quotes": [
+            "Explain why I can choose words while “suggestions wait.”",
+            "Tell me how I can recognize that Halil feels under pressure."
+          ],
+          "return_quote": "I found Speak and said something kind to Halil. I liked hearing that he wanted company. But I am still trying to understand when my words are suggestions and how I might put pressure on him. I stop after my second reread. I would close it, not leave it running. I would return if someone explained those two things to me; I would not choose another evening alone with it yet.",
+          "verdict": "-",
+          "forced": true,
+          "raw_stop": "CONFUSED",
+          "coordinator_limits": "Busy-reader assigned second-reread probe, forcedprotocolstop147.604CONFUSED/firstwish141.156; excludednaturalquit/retention/patterns. Conditionalexplainedreturn retainedverbatim, notcodedmixedorquit. Declaredreturn sameownfrozenhistory ascontinuedalternative. Phone4actualimageoutputs/positiontap; desktopUNSEENbefore5minutes; noimagefirstminute. Menus/Feedback/immediateanswerdrivertextonly. Bothquietchoiceslocalpressed/noprefill inVoice/no typing/Submit/consentchange. “He heard you and keeps working” appearedafterInformationopened; do notinferactualdroppedaction. Noclock/timingdefect established; no1–3sreproduction. Suggestionsvswords/pressureclarity asks only,preserveagency/difficulty. Providerstartupdelay excludeddriverelapsed; originalnoaction429attempt preservedseparately. Exact00dcleanbeforeafter.",
+          "proposed_repro_target": "2026-10-27",
+          "first_handoff": "2026-10-26T08:10:14.755564+00:00",
+          "dataset": "hf3-voice-r2",
+          "role": "matched"
+        },
+        {
+          "tester": "Rosa Alvarez",
+          "arm": "continued",
+          "game": "voice",
+          "report": "docs/lab/reviews/hf3-voice-r2-2026-10-25/reports/rosa-continued.md",
+          "ask_quotes": [
+            "Tell me whether ‘I will do it after resting’ means he plans to do it, or only that he heard me.",
+            "Say ‘without your advice’ beside each estimate, so I do not confuse it with what he did.",
+            "Let me read the conversation before the speaking sheet covers it."
+          ],
+          "return_quote": "I stop here. I helped him reach the doctor and have a good call with Selin, and I am glad I saw that. But twice he agreed to extra work and I did not see it happen; now the rent is due and he is short. I do not want to keep arranging his days tonight. I would close this, not leave it running. I might return another evening for one day if I could understand what his agreement commits him to; I would not return voluntarily to repeat this uncertainty.",
+          "verdict": "mixed",
+          "forced": false,
+          "raw_stop": "FRUSTRATED",
+          "coordinator_limits": "Declaredreturn SAMEownfrozenhistory asfreealternative; readingprobepremise retained. First54.678CONFUSEDsecondreread wasprotocolinduced, excludednaturalquit/retentionpatterns; eased371.375/call andpassed553.711. Separate later666.601FRUSTRATED wish persisted throughnaturalpostfloor911.184stop. MIXED conditionalanother-eveningONEday onlyifagreementunderstood; expresslynowillingnessrepeatuncertaintytonight/unattended. Floor isnotretention. Actual17phone+2wideviewsreported/positiontaps; detailedimageauditpending. Feedbackmenusdrivertextonly, bothlocalpressed/emptybox/no typing/Submit/consent. Day1shiftsuggestion replaced bydoctorafterownchoice; do NOT callthisfirstunfulfilledpromise a confirmedbug. Day2leftshiftalone, observedexpirewhilesleeping; grief/habitWhyexplainsrest notagreementcommitment. Initialanswerdelay latercorrected:appearedafterwaitwithoutLettimepass. KeepListeningchanged14.295safterpriorinput, not1–3sspeedreproduction; timingcomponentunconfirmed.12dayadvancewasofferedUI, notdriverSkip/speed. Exact00dcleanbeforeafter; providerstartupdelay excludeddriverelapsed.",
+          "proposed_repro_target": "2026-10-27",
+          "first_handoff": "2026-10-26T08:23:19.599798+00:00",
+          "dataset": "hf3-voice-r2",
+          "role": "matched"
+        }
+      ]
+    },
+    {
+      "tester": "Jonas Berg",
+      "observations": [
+        {
+          "tester": "Jonas Berg",
+          "arm": "free",
+          "game": "voice",
+          "report": "docs/lab/reviews/hf3-voice-r2-capacity-tail-2026-10-26/reports/jonas-free.md",
+          "ask_quotes": [
+            "I want to understand what could make him take the shift before its window closes.",
+            "I want his promise to distinguish an intention from something I can expect him to do."
+          ],
+          "return_quote": "I would not return voluntarily now or another evening to repeat this shift attempt. I would reconsider if I understood what could make him act before the window closes. I would not leave it running.",
+          "verdict": "mixed",
+          "forced": false,
+          "raw_stop": "FRUSTRATED",
+          "coordinator_limits": "Declared retry after original capacity-interrupted partial exposure; same new paired frozen own history plus literal interruption disclosure, original frozen file/partial untouched. Natural first wish220.458FRUSTRATED persisted; gameplay ended there, Feedback228.508 and raw final stop232.483. Original report says232.484 (1ms difference), retained. MIXED changed-understanding return only; explicit no voluntary return now OR another evening to repeat this attempt, not a positive current return plan. First-minute note58.802 too early, corrected67.082 by tester; no reconstructed60s checkpoint. All9 reactions present unchanged in report/raw. Seven wide image outputs reported and collector available; phone UNSEEN before5min, continued arm pending. Ordinary wide position tap Today; panel obstruction resolved by closing sheet, not a broken driver. Both quiet choices locally selected, empty note/no typing/Submit/consent. Limited shift window/expiry now visible; grief/rest Why repeats promise, but absent shift from inspected13:15 choices not established engine defect. Stronger advice untested, no guaranteed-win or obedience request. Actual waits3/20/15/5/10s, no speed/Skip; no independent1–3s timing reproduction. Exact00dclean beforeafter.",
+          "proposed_repro_target": "2026-10-27",
+          "first_handoff": "2026-10-26T08:48:03.832363+00:00",
+          "dataset": "hf3-voice-r2-capacity-tail",
+          "role": "matched"
+        },
+        {
+          "tester": "Jonas Berg",
+          "arm": "continued",
+          "game": "voice",
+          "report": "docs/lab/reviews/hf3-voice-r2-capacity-tail-2026-10-26/reports/jonas-continued.md",
+          "ask_quotes": [
+            "I want to see the shift’s time-window explanation while I am following the suggestion, before I have to search the long record.",
+            "I want “after this task” to help me distinguish a promise that is still waiting from one that is about to expire.",
+            "I want to see whether he begins choosing the shift himself after doing it with my encouragement."
+          ],
+          "return_quote": "I would return voluntarily another evening to see whether he chooses the shift without my request. I would not resume immediately. I would not leave it running.",
+          "verdict": "keep",
+          "forced": false,
+          "raw_stop": "BORED",
+          "coordinator_limits": "Natural BORED wish962.768(raw) vs962.769report; finalstop981.645(raw) governs. Concrete voluntary another-evening intention supports keep; floor alone does not. Full raw timeline retained; early confusion did not produce quitwish. Clinic/shift actually observed, corrected earlier unexplained-disappearance impression after finding timewindow in long record. Stronger request successful but day/timing/reason/task all varied: no causal guarantee or dominant move. Third ask not established absent feature. Report15wide2phone images; exact Codex audit pending. Both sizes actualresize and positiontaps reported; automaticminute image unseen; lowerpanelscrolluntested. Changed Keep listening control not driverblock. Firstminute62.554late, waits3–30s not humanlatencyproof. Bothquietchoiceslocallyselected, no typing/Submit/consent. Declared original partialexposure unchanged. Exact00dclean beforeafter.",
+          "proposed_repro_target": "2026-10-27",
+          "first_handoff": "2026-10-26T09:11:30.530084+00:00",
+          "dataset": "hf3-voice-r2-capacity-tail",
+          "role": "matched"
+        }
+      ]
+    },
+    {
+      "tester": "Aisha Rahman",
+      "observations": [
+        {
+          "tester": "Aisha Rahman",
+          "arm": "continued",
+          "game": "voice",
+          "report": "docs/lab/reviews/hf3-voice-r2-capacity-tail-2026-10-26/reports/aisha-continued.md",
+          "ask_quotes": [
+            "Show me the payment to Osman as a scene. The goal I worried about for two visits resolved off-screen.",
+            "Make my urging matter, or tell me why it didn't: \"1 of 12 days\" after \"it's your duty\" felt like being ignored. Also stop the summary saying \"nothing new toward his goals\" over 12 calls to Selin.",
+            "Let conversations end and the clock move on, and open Today on today rather than on Ramadan 1."
+          ],
+          "return_quote": "Maybe once more, for Selin and Hacer. Those voices are kind, and this time the game owned a lapsed promise, which is exactly what I asked for last time. But I'd only come back if:\n- the important moment, paying Osman, happens where I can see it;\n- urging \"it's your duty\" visibly matters;\n- conversations stop looping backwards with the clock frozen.\n\nIf rent day is again something that happens while I wait, then no.\n\n**Leave it running vs. another evening:** I wouldn't leave it running; I don't need to watch him rest. I might come back another evening to see Eid, if those conditions were met.",
+          "verdict": "mixed",
+          "forced": false,
+          "raw_stop": "BORED",
+          "coordinator_limits": "Opus, source-unread declared return; same own paired history. Natural raw stop920.303BORED; report repeatedly says about913seconds: original approximation retained, actual raw time governs. First wish835.44FRUSTRATED partly eased after payment; no floor-retention inference. MIXED return conditional on visible payment/understandable urging/conversation behavior; full negative rent-day clause and another-evening/Eid clause retained. Report Verbatim omits earlier reactions before784s; ALL31 original local reactions/raw lines preserved separately, no reconstruction. Actual browser resizes300.198phone/313.291wide and position tap; image viewing is SELF-REPORTED2images, no independent Claude tool trace. Automatic first-minute image unseen. Grep/Read on saved visible driver reply and fb.json violate curl-only operation rule; disclosed, no source/hidden-state evidence inferred. Four kind=tool replies concern changed/covered controls, reason=null, not a forced stop or confirmed driver bug. Timing complaints during20/30second waits lack1–3second reproduction; no confirmed speed/clock defect. Both quiet choices locally used, no typing/Submit/consent. Keep all compound ask clauses, agency, difficulty. Exact00dclean before/after; complete full native state not inspected by persona.",
+          "proposed_repro_target": "2026-10-27",
+          "first_handoff": "2026-10-26T08:42:21.684230+00:00",
+          "dataset": "hf3-voice-r2-capacity-tail",
+          "role": "matched"
+        },
+        {
+          "tester": "Aisha Rahman",
+          "arm": "free",
+          "game": "voice",
+          "report": "docs/lab/reviews/hf3-voice-r2-capacity-tail-2026-10-26/reports/aisha-free.md",
+          "ask_quotes": [
+            "Show me the moments that matter: the rent being paid, a promise kept, Selin's call. Give them a short scene or a line from Halil, not just a changed number.",
+            "Don't bring the same neighbour scene and line back several times a day. If Hacer visits again, let her say something new.",
+            "When a standing suggestion barely happens over the skipped days, as with the shift on 1 of 12, tell me why in plain words. And let the Today tab show today."
+          ],
+          "return_quote": "Yes, probably one more evening. This visit was better than the last: he paid Osman, kept his promises, and called Selin almost every day. The small new lines from Hacer and Mrs Aydın felt like a man slowly letting people back in. I'd come back to see Eid and whether he calls Selin on his own. That's only if I get to *see* the important things happen rather than read them off a number. If the same neighbour scene keeps coming round three times a day, I'll stop again at about the same point.\n\n**Leave it running vs. another evening:** I wouldn't leave it running. I'd come back another evening for the Selin thread and Eid, on the conditions above.",
+          "verdict": "mixed",
+          "forced": false,
+          "raw_stop": "BORED",
+          "coordinator_limits": "Opus declared return, same own frozen history as continued alternative. Natural free stop1093.235BORED, first wish1057.271 persisted. Report gives several approximate times (first-minute note actual69.595, stop actual1093.235); original times not rewritten. MIXED despite initial Yes/probably: full return expressly only if important moments become visible and repeated neighbour scenes change; preserve both concrete Eid/Selin interest and those conditions. Doctor/Day2shift/walk/payment actually perceived as successes; do not call rent unpaid or urging universally ineffective. New Hacer/river lines praised; later repeated Hacer/quiet-inside line lost her. Missing Selin on that observed evening is not proof whole call system broken. Report Verbatim omits early reactions; all original raw reactions retained separately. Image viewing SELF-REPORTEDtwo wide/one phone; actual resize296.522/318.195 and position taps recorded, no independent Claude image trace. Phone planner/scene unseen; quietchoices both available, stopping used, confusion not used in this arm. No typing/Submit/consent. Grep on saved visible driver reply violates curl-only rule, disclosed; no source or hidden-state evidence. One invalid shot filename and covered/changed-control replies are request/game-state limits, not a forced stop. Timing complaints lack independent human-speed reproduction; preserve difficulty and agency. Exact00dclean beforeafter.",
+          "proposed_repro_target": "2026-10-27",
+          "first_handoff": "2026-10-26T08:46:25.884066+00:00",
+          "dataset": "hf3-voice-r2-capacity-tail",
+          "role": "matched"
+        }
+      ]
+    },
+    {
+      "tester": "Diego Silva",
+      "observations": [
+        {
+          "tester": "Diego Silva",
+          "arm": "free",
+          "game": "voice",
+          "report": "docs/lab/reviews/hf3-voice-r2-capacity-tail-2026-10-26/reports/diego-free.md",
+          "ask_quotes": [
+            "Tell me whether he tried the afternoon shift after saying he would.",
+            "Give me speaking choices that still belong to the moment I opened."
+          ],
+          "return_quote": "I would not return voluntarily. I would not leave it running, and I would not choose to return another evening.",
+          "verdict": "quit",
+          "forced": false,
+          "raw_stop": "TASTE",
+          "coordinator_limits": "Natural TASTE wish272.915 persisted; actual rawstop287.755 vs report287.756 (1ms retained). Explicit negative voluntary/another-evening/unattended return, no conditional return. All9 raw reactions occur in report unchanged. First-minute note late81.645 includes workshop64.556; not exact60s evidence. Five phone images reported; collector available, exact output audit pending. Wide unseen before5min natural quit. Position Speak tap; stale choices warning appeared before choosing a sentence. No failed browser operation. No claim shift did not occur or engine defect: tester did not establish what happened between commands. Actual quiet answer after5s wait, not independent human-latency reproduction. Both quiet options visible, stopping selected locally, no typing/Submit/consent change. Exact00dclean beforeafter.",
+          "proposed_repro_target": "2026-10-27",
+          "first_handoff": "2026-10-26T09:10:42.122528+00:00",
+          "dataset": "hf3-voice-r2-capacity-tail",
+          "role": "matched"
+        },
+        {
+          "tester": "Diego Silva",
+          "arm": "continued",
+          "game": "voice",
+          "report": "docs/lab/reviews/hf3-voice-r2-capacity-tail-2026-10-26/reports/diego-continued.md",
+          "ask_quotes": [
+            "Tell me plainly when “after I finish” stops being an agreement I can rely on.",
+            "Let me stay with a conversation without wondering which time control to press.",
+            "Give me more of the short exchanges about Nuran and Halil’s work."
+          ],
+          "return_quote": "I am stopping here. I would not return voluntarily to manage the rest of Ramadan. I might read another short conversation with Rıza, but I would not come back another evening for this advice loop. I would close it, not leave it running. The extra time gave me the Nuran conversation I wanted; it did not make me want the whole month.",
+          "verdict": "mixed",
+          "forced": false,
+          "raw_stop": "TASTE",
+          "coordinator_limits": "Natural final TASTE afterfloor, not TOOL/ceiling. Earlier420.414FRUSTRATEDwish eased548.182duringNuranmemory; final913.857waitingoutfloor explicitlynegative. MIXED limited possibility of shortconversation ONLY; explicitlydeclines another-eveningadviceloop/fullmonth/unattended. Do notcount floor asretention. All raw reactions checkedagainstreport. Firstminute70.423late. Actualshiftoutcomenotestablished bytester, no claimunfulfilledshiftdefect. 7phone2wide images reported, exactauditpending. Requestedwidevisit309.720–332.117 withpositiontap, preferredphone; no voluntarydeviceswitchinference. Initialpositiontapreplysleep thenworkshopsheet, timingunknown notconfirmedmissedtap. Changed Keep listening page notdriverblock; textonlyintervals, actualwaitsnotcontinuousreading. Bothquietchoicesvisible, stoppingselectedlocally; no typing/Submit/consent. Exact00dclean beforeafter.",
+          "proposed_repro_target": "2026-10-27",
+          "first_handoff": "2026-10-26T09:11:30.644328+00:00",
+          "dataset": "hf3-voice-r2-capacity-tail",
+          "role": "matched"
+        }
+      ]
+    },
+    {
+      "tester": "Mei Tan",
+      "observations": [
+        {
+          "tester": "Mei Tan",
+          "arm": "continued",
+          "game": "voice",
+          "report": "docs/lab/reviews/hf3-voice-r2-capacity-tail-2026-10-26/reports/mei-continued.md",
+          "ask_quotes": [
+            "Tell me what to expect when he agrees to work after resting, including whether I must ask again.",
+            "Let me arrange the afternoon shift before it starts.",
+            "Keep the completed-action summary easy to find while I play."
+          ],
+          "return_quote": "I would return another evening if this same saved day is kept and I can understand how to turn his agreement into work without catching a narrow waking moment. I care about Halil, and the doctor visit and call gave me reasons to continue. I do not want to restart those gains or repeat afternoon promises without understanding what I should expect.\n\n**Leave it running?** No. Returning another evening under those conditions is different from leaving him running now.",
+          "verdict": "mixed",
+          "forced": false,
+          "raw_stop": "FRUSTRATED",
+          "coordinator_limits": "ADDITIONAL UNPAIRED observation, excludedmatched32 because originalpairedFREE capacityexit/no report. Do notcall matched/combineoriginalFREE/Newrecovery ormergeCONTintofuturehistory. Natural FRUSTRATEDwish893.093 persisted to944.526 afterfloor. MIXED conditional savedday/understandingagreement return, notpositivecurrentpull orfloorretention. All19rawreactions occurreportverbatim; severalreporttimes1ms differ raw (280.223vs280.224;554.387vs554.388;728.755vs728.756), originalsretained. Firstminute65.796late. Clinicrestchoiceactuallyused176.386, doctor/walk/callseen; phonegoalconfirmedcalllater, no lackofcall defect. Shiftexpirywhileasleep observed, causalwhy notestablished. No promised obedience/dominantmove. Wide/phoneimagesreported, exactCodexoutputauditpending. Actualphone303.283–319.065,phonepositionContinue, wideMenu positiontap. Phonegoals/speakingunseen, automaticminuteimageunseen. Goalscontrolcoveredbysheet waschangedpage notTOOL. Wait20snotindependenthumanlatencyproof. Bothquietchoiceslocallyused no typing/Submit/consent. Exact00dclean beforeafter.",
+          "proposed_repro_target": "2026-10-27",
+          "first_handoff": "2026-10-26T09:28:51.521518+00:00",
+          "dataset": "hf3-voice-r2-capacity-tail",
+          "role": "additional unpaired"
+        },
+        {
+          "tester": "Mei Tan",
+          "arm": "free",
+          "game": "voice",
+          "report": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/mei-free.md",
+          "ask_quotes": [
+            "Tell me when I can suggest calling Selin.",
+            "Let me choose the reason before a plan starts with duty selected.",
+            "Let me see the whole action list and likely reply without the lower controls covering them."
+          ],
+          "return_quote": "I would return another evening if I could tell when calling becomes possible and choose my own reason from the start. Getting him to the doctor and home to rest was satisfying, and having time to read made this return calmer. I would not continue this session now.\n\n**Leave it running?** No. Returning another evening under those conditions is separate from leaving it running.",
+          "verdict": "mixed",
+          "forced": false,
+          "raw_stop": "CONFUSED",
+          "coordinator_limits": "MatchedfreshretryFREE afterdisclosed own361.848s partialcapacityexposure, nineoriginalreactions sharedidenticallyinnewpair; originalCONT alternativewithheld andexcludedmatched32. NaturalCONFUSEDwish488.717 persistedstop508.724. MIXED conditionscallingavailability/ownreasonchoice; explicitnotcontinuecurrent/unattended. All10rawreactions presentreportunchanged; report351.951/433.720 differraw351.950/433.7191ms, originalsretained. Firstminute78.828late. Doctor/restactuallychosen269.375 andvisiblefollowthrough; calmerreading reported, notgeneralclosure. Noabsenceofcallingfeatureproven: limitedcurrentchoices at12:45; sixvisibleactions, oneattemptedscroll/nochange, remainingactions/availabilitynotestablished. Work/Mention/dutyinitiallyselectedinplan, didnotchoose/sendthisplan. 6wide2phoneimagesreported; exactoutputauditpending. Actualphone303.948–325.791 andordinarypositioncross tap; otherphonecontrolsuntested, automaticminuteimageunseen. Initialgoalspositiontapmetarrivingsheet, notconfirmedmissedtap. WrongcurlyapostropheFeedbacklabel correctedtoworkingexactlabel, notdriverblock/forcedstop. Bothquietchoicesselectedlocal,no typing/Submit/consent. Exact00dclean beforeafter.",
+          "proposed_repro_target": "2026-10-27",
+          "first_handoff": "2026-10-26T09:41:40.576425+00:00",
+          "dataset": "hf3-voice-r2-capacity-recovery",
+          "role": "matched"
+        },
+        {
+          "tester": "Mei Tan",
+          "arm": "continued",
+          "game": "voice",
+          "report": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/mei-continued.md",
+          "ask_quotes": [
+            "Let me make a plan that survives his sleep, or let him clearly decline it.",
+            "Make it clear which current choices will wait while I read.",
+            "Show me sooner that I can give a reason for advice."
+          ],
+          "return_quote": "I would return another evening to this saved life if I could make a plan he remembers. I care about Halil, and the doctor visit and call gave me reasons to continue. I would not voluntarily continue this session now while the shift feels like a reminder I must keep catching and repeating.\n\nI would **not leave the day running unattended**. Returning another evening is conditional, not a promise.",
+          "verdict": "mixed",
+          "forced": false,
+          "raw_stop": "FRUSTRATED",
+          "coordinator_limits": "FIRSTprotocol-complete CONTreplicate2, selectionfixedbeforeoutcome; failedCONT1capacity602.108s archived14byteverifiedfiles, nofinalstop/report/wish, excludedtechnicalalternative. Currentcapturebrief/inputBYTEEQUALfailedattempt; originalninepartialFREEreactions alreadysharedunchangedbaselineinBOTHmatchedarms. CompleteFREE/failedCONT wordswithheldfromreplicatehistory; freshprofile, nofalsecoldclaim. NaturalFRUSTRATEDwish730.995persistedstop911.930; report730.996/911.9311msretained. MIXED savedlife/rememberedplancondition, explicitlynotvoluntarycurrent/unattendedandnotpromise; floorretentionnotinferred. All17rawreactionsverbatimreport. Firstminute73.159late(report73.160), providerstartupnotplaytime. Doctor/rest/walk/callactuallyseen, initialunsaidcalllaterrecoveredwithfreshchoice; secondwalkhappenedbutshiftunresolved. Adviceplanningstrength/reasonsalreadyavailablebutfoundlate, discoveryasknotmissingcapabilityclaim. Sleep-expiry causalwhy notestablished, quoteORcleardeclinepreservesagency/notguaranteedobedience. Nineteenwide2phoneimagesreported, exactoutputauditpending. Actualphone307.863–320.931/positionwalktap317.359; otherphonepanels/planningunseen, automaticminuteimageunseen. Initialgoalspositiontapmetworkshopsheet, Todaydisappearedatdaytransition, notdriverblocks/physicalmissedcontrolproof. Waitsnot1–3shumantimingrepro. Bothquietchoiceslocallyselectedempty/no typing/Submit/consent. Exact00dclean beforeafter.",
+          "proposed_repro_target": "2026-10-27",
+          "first_handoff": "2026-10-26T10:30:08.576662+00:00",
+          "dataset": "hf3-voice-r2-capacity-recovery",
+          "role": "matched"
+        }
+      ]
+    },
+    {
+      "tester": "Samir Haddad",
+      "observations": [
+        {
+          "tester": "Samir Haddad",
+          "arm": "free",
+          "game": "voice",
+          "report": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/samir-free.md",
+          "ask_quotes": [
+            "Show the rent payment as a scene with Osman. Don't leave it as a Today-log line and a balance of 2 lira.",
+            "Give Rıza and the other neighbours their own on-screen voices. The lines I liked (\"pull your chair closer\", the paper room) were hidden in the log, while repeated lines were what I actually saw.",
+            "Show his answer to my question in place, right away, without the old scene snapping back and a separate \"Back to now\" step."
+          ],
+          "return_quote": "I might come back once more another evening on desktop to see Eid, but not to work through the second rent. Halil, Selin and Hacer's warmer rent-day lines are what would bring me back. Repeated lines and a second identical money grind would keep me away. I would not leave it running.",
+          "verdict": "mixed",
+          "forced": false,
+          "raw_stop": "FINISHED",
+          "coordinator_limits": "Opus declaredreturn, matchedFREE; pairedCONTsamefrozenownhistory, nofreewordsleaked. Naturalstop1117.602 rawreasonFINISHED; ownlaternote correctsreason toBORED because gameNOTended, onlyownrentquestionanswered. Preserve rawFINISHED, no engine/gamecompletionclaim. MIXED possibleanother-eveningDESKTOP/EidONLY, explicitlynotsecondrent/unattended; repeatedlines/secondgrindkeepaway. All30rawreactionsverbatiminreport. Firstminute64.478late; original~110slogfailedshellquote, later139srecordexplicitlylate notreconstruction. Wishes770.082BORED/868.492FRUSTRATED: goalkeptgoing, laterpaymentrelief; reportselfdescribesfirstpassed/secondpartlyeased. ActualpaidOsman10:00Day15foundinToday, notunpaidrentclaim; initiallyRiza/HacercopycomplaintlaterfounddistinctRizalinesmissedinlog, preservecorrection/noclaimnoauthoredvoice. Mention/Urge/time/task varied; reportnotcausalproofguaranteeordominantmove. ActualUI12dayskipbyLetdayspass, nottimerbypass; returnsroughestimatesnotindependentnumbersaudit. Twoselfreportedviewedimages phonehome/widedaycard, automaticminuteimageunseen; reportthreeimagestotalincludesunviewedartifact. WidegameplayTodaydrivertextonly, notviewedlayoutproof. Bothsizesordinarypositiontapsrecorded. Two grep calls onsavedvisibleTodayreplyviolatecurlonly; nohiddenstate/sourceevidence. Invalidshotbasenameandshellquotingonefailedlog, changingoldcontrolsreasonnull notTOOL/forcedstop. Waits20/30secnotindependenthumanlatencyrepro. Bothquietchoicesvisible, stoppinglocallyselected; confusednotselectedthisarm. No typing/Submit/consent. Exact00dclean beforeafter.",
+          "proposed_repro_target": "2026-10-27",
+          "first_handoff": "2026-10-26T10:02:40.317491+00:00",
+          "dataset": "hf3-voice-r2-capacity-recovery",
+          "role": "matched"
+        },
+        {
+          "tester": "Samir Haddad",
+          "arm": "continued",
+          "game": "voice",
+          "report": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/samir-continued.md",
+          "ask_quotes": [
+            "Stop repeating the same lines across people and days, especially Selin's sentence in Rıza's mouth.",
+            "Show things like Hacer's paper room and the clinic memory in the scene itself, not only in the Today log.",
+            "On the skip screen, let me keep Selin as well as the rent, or make \"call Selin\" available on the deadline evening."
+          ],
+          "return_quote": "I might come back another evening on desktop, but only if there were something new between Halil and Selin. I would not return for the rent. I would not leave it running.",
+          "verdict": "mixed",
+          "forced": false,
+          "raw_stop": "BORED",
+          "coordinator_limits": "Opus matchedCONT, samefrozenownhistory asFREE, no freewordsleaked. NaturalBOREDstop1056.587 postfloor; wish643.497BORED easedwithpaymentthenreturned. MIXED conditionalnewHalil/Selinmaterialanother-eveningDESKTOPONLY, explicitnotrent/unattended. Floor/extragoalattentionnotvoluntaryretention. Reportabbreviates26of32rawreactionswith ellipses; originalreportunchanged, ALL32completeoriginalreactionsretained separateverbatim/samir-continued.md andrawJSONL. Firstminuteactual61.311late; automatic60.017notviewed diarycheckpoint. One~14:35shellquotingfailedlog re-sent15:12actualmarkedlate, no retrospectivecontemporaryinference. PlainpaymentactuallysaidpaidDay14; sunsetmeal/clinicmemoryoriginallythoughtabsentlaterfoundsummary/Today; retaincorrections, notcontentabsencebug. Urgedshiftworksday1/day2 then1of12skip, variablesdiffer no guaranteedobedienceordominantmove. ThirdaskORavailabilityalternative preserved; do notautomaticallyaddthirdslot/reduceinterestingtradeoff. Deadlinecallnotfoundat18:42inspectedchoices, notgloballyabsent. TwoSELFREPORTEDviewedimages(phonehome/widegameplay), automaticthirdartifactUNSEEN; noindependentClaudeimageoutputtrace. Actualresizes308.723wide319.579phone andpositiontapsrecorded. Outsideimageslayoutnotviewed. Changedcontrolsreasonnull/notdriverblock, waits25/30secnoindependent1–3shumanlatencyrepro. Bothquietchoicesdriverreportedvisible; stoppingselectedlocal, confusedunselected. No typing/Submit/consent; exact00dclean beforeafter.",
+          "proposed_repro_target": "2026-10-27",
+          "first_handoff": "2026-10-26T10:21:30.157127+00:00",
+          "dataset": "hf3-voice-r2-capacity-recovery",
+          "role": "matched"
+        }
+      ]
+    },
+    {
+      "tester": "Tessa Williams",
+      "observations": [
+        {
+          "tester": "Tessa Williams",
+          "arm": "free",
+          "game": "voice",
+          "report": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/tessa-free.md",
+          "ask_quotes": [
+            "More room to say something playful in my own way.",
+            "More chances to have a conversation without feeling responsible for managing his work, money and wellbeing."
+          ],
+          "return_quote": "I am stopping here. I liked hearing about the empty place at his table, but I do not want to spend tonight steering his adult life. I would not return on my own, leave it running, or come back another evening.",
+          "verdict": "quit",
+          "forced": false,
+          "raw_stop": "TASTE",
+          "coordinator_limits": "Codex declaredreturn, matchedFREE samefrozenhistory aspendingCONT. NaturalTASTEwish164.322persistedstop182.163; explicitno voluntary/another-evening/unattendedreturn, QUIT notconditional. All8rawreactionsverbatiminreport. Firstminute74.039late;180secondpulsemissedwhileFeedback/stop, noscoreinvented. TwoasksONLY, explicitlynothird. Hacermemorydirectansweractuallyseenafterfollowthrough; notfailedadviceclaim. Fourwideimagesreported, exactoutputauditpending; PHONEunseenbefore5minnaturalquit, counterpartpending. OneordinarywideSpeakpositiontap afterpicture21.796/tap27.500 returnedasleep; exactpagechangetimevsphysicaltapunknown, notconfirmedtapbug/1–3shuman-speedrepro. Lateranswers/Feedbackdrivertextonly, automaticminuteimageunseen. No TOOL/driverblock; realwaits/clockadvancementreported. PriorR1watercontradictionnotretested, noclosureinferred. Playfulownexpressionaskdesignscope, preserveagency/difficulty/determinismratherthanforcedobedience. Bothquietlabelsvisible, stoppingselectedlocal/no typing/Submit/consent. Exact00dclean beforeafter.",
+          "proposed_repro_target": "2026-10-27",
+          "first_handoff": "2026-10-26T10:26:17.774801+00:00",
+          "dataset": "hf3-voice-r2-capacity-recovery",
+          "role": "matched"
+        },
+        {
+          "tester": "Tessa Williams",
+          "arm": "continued",
+          "game": "voice",
+          "report": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/tessa-continued.md",
+          "ask_quotes": [
+            "Let me say something playful in my own way.",
+            "Make it clearer when I am continuing a conversation and when I am scheduling another one.",
+            "Give me a clearer reason when the clock stops or suddenly moves through hours."
+          ],
+          "return_quote": "I am stopping here. Hacer and the empty place at the table got to me, but I still want more freedom than choosing helpful advice and waiting for him to accept it. I would not return voluntarily. I would not leave it running or come back another evening just to chase the clinic and rent.",
+          "verdict": "quit",
+          "forced": false,
+          "raw_stop": "TASTE",
+          "coordinator_limits": "FIRSTprotocol-complete CONT technicalreplicate, selectionfixedbeforeoutcome/samefrozenbaseline and actualcapturedsupervisorinputsbyteequal failedattempt. PriorattempttechnicalSignal15 retained14hashverifiedfiles; providerstartupbudgetdefect independentlyreviewed/futureonlyfixed. AllpriorpartialCONTwordswithheld, completeFREEretained; no freshcoldclaim. NaturalTASTEstop924.647 vs report924.6481msretained, want_quit494.614persisted; QUIT fullnoown/current/another-evening/unattendedreturn. Hacer/emptytableanswer brieflyengaging, nogossipheard/clinicpostponed; no engineabsenceclaim. All23rawreactionsfullreport. Firstminute69.973late; fiveactualpulses196.672=2/378.686=3/569.405=2/719.470=2/903.150=2. Elevenwide/twophoneimagesreported/exactauditpending; automaticminuteunseen, actualbothresizes/positiontaps. Clockpaused/slowedcontradiction selfreport/intermittentviews/30swait, not1–3shumanrepro or continuousreading. Sleeprequestsuccessfollowedgenericrepeat-after-wake wording; showrelevancewithoutforcedobedience/difficultyremoval. Threeasks playfulexpression/conversation-vs-schedule/clockexplanation, notguaranteedobedience. Bothquietchoices selectedlocally, curlyapostrophematcherror134.097correctedexactcontrol138.355; ordinarynameerrornotdriverblock. No text/Submit/consent. Exact00d/HF3.2clean beforeafter; testerexit0/capturedcleanupverifiedseparately.",
+          "proposed_repro_target": "2026-10-27",
+          "first_handoff": "2026-10-26T11:18:41.619009+00:00",
+          "dataset": "hf3-voice-r2-capacity-recovery",
+          "role": "matched"
+        }
+      ]
+    },
+    {
+      "tester": "Pavel Novak",
+      "observations": [
+        {
+          "tester": "Pavel Novak",
+          "arm": "free",
+          "game": "voice",
+          "report": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/pavel-free.md",
+          "ask_quotes": [
+            "Tell me why his agreement to take the shift ended without him doing it.",
+            "Let his agreement remain something he intends to do, so I do not have to repeat the same instruction.",
+            "Tell me why time stops short of the stated workshop finish."
+          ],
+          "return_quote": "I am stopping at the first afternoon. The clock wording helped me get further this time, but the promised shift became another reminder for me to give. I would not return voluntarily this evening. I might try another evening on my desktop if I felt more willing to follow his choices instead of getting the rent arranged. I would not leave it running.",
+          "verdict": "mixed",
+          "forced": false,
+          "raw_stop": "FRUSTRATED",
+          "coordinator_limits": "Codexdeclaredreturn, matchedFREE; pairedCONTsamefrozenhistory, nofreewordsleaked. NaturalFRUSTRATEDwish187.792persistedstop204.236. MIXED possibleanother-eveningDESKTOPONLYifPERSONALLYmorewillingtofollowchoices ratherthanarrangerent; explicitnotvoluntarycurrentevening/unattended, notdefinitefutureplan. All10rawreactionsverbatimreport. Firstminute62.134slightlylate; pulse183.733=2/5actual. ClockwordinghelpedinterpretStartedat08:00 asretainedconversation, selfinterpretationnotindependentmechanismproof. Shiftagreement+paydoubtseen, latersleep/talk/prayer/expiry, causalwhynotestablished. Ask2intentiondoesnotauthorizeforcedobedience, keepautonomy/difficulty. Sevenphoneimagesreported/exactauditpending, WIDEunseenbeforenatural5minquit; automaticminuteimageunseen. OrdinaryphoneSpeakpositiontap, readableoperablecontrols/noobstructionreported. FeedbackshellunmatchedquoteoccurredbeforeHTTP, correctedworked, notdriverblock/TOOL. Waits3/5/15/20snotindependent1–3shumanpacingrepro. Bothquietlabelsvisible, stoppingselectedonly/empty/no typing/Submit/consent. Exact00dclean beforeafter.",
+          "proposed_repro_target": "2026-10-27",
+          "first_handoff": "2026-10-26T10:40:03.370055+00:00",
+          "dataset": "hf3-voice-r2-capacity-recovery",
+          "role": "matched"
+        },
+        {
+          "tester": "Pavel Novak",
+          "arm": "continued",
+          "game": "voice",
+          "report": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/pavel-continued.md",
+          "ask_quotes": [
+            "Tell me plainly whether “after this task” means he has committed or is only putting me off.",
+            "Keep the action name consistent between what I suggest and what the later result calls it."
+          ],
+          "return_quote": "I am stopping at six on the second evening. I understand the clock better than last time, and I liked the quiet company and the extra money. But I do not want to keep asking after promises that move to the next task. I would not voluntarily resume tonight. I might return another evening on my desktop to see whether a firmer word helps with the clinic, but I would not make that a commitment. I would leave this paused, not running.",
+          "verdict": "mixed",
+          "forced": false,
+          "raw_stop": "FRUSTRATED",
+          "coordinator_limits": "Codex declared return, matched CONT same frozen history, no FREE words leaked. Raw stop910.657 vs report910.658, raw want_quit630.002 persisted; other 1ms report rounding retained. All18 raw reactions verbatim. Firstminute60.952 slightly late, actual pulses185.841=4/370.163=3/549.622=3/733.268=2/906.375=2. MIXED possible another-evening DESKTOP firmer clinic word, explicitly no commitment/currentevening/unattended. Clock labels helped interpretation; 09:33 choicepoint his inference, not mechanismproof. Promise expiry observed, clinic notseen; repair-result wording vs shift his mismatch, actual72to88lira seen, cause unknown. Two asks preserve autonomy/difficulty, no forcedobedience. Ninephone/twowide image views selfreported/exactauditpending, automaticminuteimage unseen. Bothviewportresizes and positiontaps actual. Todaypagechanged tap410.166 vs report410.167, ordinarystatechange/no driverblock. Quietlabels both visible, stopping selected locally only/no text/Submit/consent. Exact00d/HF3.2 clean beforeafter, testerexit0/ownedcapturedprocessesprofilesclosed.",
+          "proposed_repro_target": "2026-10-27",
+          "first_handoff": "2026-10-26T10:59:39.493940+00:00",
+          "dataset": "hf3-voice-r2-capacity-recovery",
+          "role": "matched"
+        }
+      ]
+    },
+    {
+      "tester": "Leila Mansour",
+      "observations": [
+        {
+          "tester": "Leila Mansour",
+          "arm": "free",
+          "game": "voice",
+          "report": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/leila-free.md",
+          "ask_quotes": [
+            "Stop the clock, or at least slow it hard, when he wakes, when a standing promise is due, or when he drops my suggestion. Make Let time pass and Skip one control with a known speed.",
+            "Show my line and his answer immediately, every time, in one rhythm. Keep the standing-word banner accurate to what I chose.",
+            "Make the goals and trust panels agree with what happened, and name actions consistently (afternoon shift, not repair in the workshop). Don't reuse identical dialogue across different people."
+          ],
+          "return_quote": "Yes, probably, and more readily than after my first visit. I would return if:\n- I could hold Halil to a promise, or at least be stopped when he breaks one, the way scenes stop me now.\n- \"Let time pass\" and Skip stopped at the moment he wakes, so I don't overshoot it.\n\nHalil, Hacer and the Selin call are worth coming back for. If day 2 keeps feeling like day 2 felt tonight, I would drift away again.\n\n**Leave it running or come back another evening?** I would not leave it running; it runs off without me. I might come back another evening, on those conditions.",
+          "verdict": "mixed",
+          "forced": false,
+          "raw_stop": "FRUSTRATED",
+          "coordinator_limits": "Opus declaredreturn matchedFREE, pairedCONT identicalfrozenhistory/no FREEwords leaked. NaturalFRUSTRATEDwant_quit536.025 persistedstop568.712, reportrounds569s. MIXEDprobableconditionalreturn: promise/wakepause and skipstops, explicitnottonight/unattended; ifDay2samewoulddriftaway. All31rawreactionsverbatiminseparatepublicverbatim; originalreportunchanged, threepulses+stopintroabbreviatedthere. Firstminute60.895slightlylate; pulses170.755=4/360.032=5/537.201=3. Day1mosque/clinic/Hacer/shift/Selin/Riza/walkactuallyseen; initialHacerunknownlaterintroduced/Hisgoalstab, initialSelincallmissinglaterheard/Todayopeningfound, preservecorrections. Day2sleep/expiry/overshootobserved; 20s+modeldiarywaittiming notindependent1–3shumanrepro. MentionvsUrgebanner selfreportsresizerefresh discovery, exactcauseneedsrepro. Repairvsafternoonshiftwording/summarytrustnumbers disagreementneedcausalrepro, notlicensedforcedobedience/zeroInsistcost. Ask1compoundpause/knownspeednotguaranteedobedience; ask3compoundpanelconsistency+actionname+differentpeoplevoice allretained. Two wide/onephoneimages SELFREPORTED; threefilesincludesautomaticUNSEEN, no independentClaudeimage-outputtrace; actualbothresizes/positiontaps. Bothquietlabelsverifyraw separately; stoppinglocalonly/no text/Submit/consent. Statechangedcontrols ordinarynotdriverblocks. Exact00d/HF3.2clean beforeafter, testerexit0/closedcapturedchildrenprofiles.",
+          "proposed_repro_target": "2026-10-27",
+          "first_handoff": "2026-10-26T11:11:43.862052+00:00",
+          "dataset": "hf3-voice-r2-capacity-recovery",
+          "role": "matched"
+        },
+        {
+          "tester": "Leila Mansour",
+          "arm": "continued",
+          "game": "voice",
+          "report": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/leila-continued.md",
+          "ask_quotes": [
+            "A Speak tap or a short wait should never jump hours. Freeze the clock the moment I reach for Speak, and tell me when a time window, like the afternoon shift, is closed or about to open.",
+            "Show the payoffs as scenes: paying Osman, the grave visit, the end of the Selin call. Stop repeating neighbours' lines word for word.",
+            "Make the goals panel agree with what happened (walk 12 of 12, and who gets credit for the doctor visit), and explain 600 versus 300 where I first see the number."
+          ],
+          "return_quote": "- Maybe. It is clearly better than my first visit. The game now stops for scenes, my refused words can come true later, and the 12-day screen finally tells me the rules. Selin, Rıza and the walk are worth coming back for.\n  - I would return only if a Speak tap stops costing me hours, and I'm told a time window like the afternoon shift when I speak, not afterwards in a log.\n  - Also only if the big payoffs, like paying Osman, happen as scenes I see rather than a line in a side panel, and the neighbours stop repeating the same lines.\n  - Without those changes, I would not come back on my own.\n- **Leave it running, or come back another evening?** I wouldn't leave it running, because the clock punishes that. I might come back another evening to see Eid and the rest of the rent, but only on the conditions above.",
+          "verdict": "mixed",
+          "forced": false,
+          "raw_stop": "BORED",
+          "coordinator_limits": "Opus declaredreturn matchedCONT samefrozenhistory, noFREEwords leaked. NaturalBOREDstop910.286(report910rounded), threeFRUSTRATEDwishes382.734/510.146/730.735 easedatdifferenttimesbutnotgoneforgood. MIXEDallconditionalreturnclausesretained: Speak/window/visiblepayoffs/differentneighbourlines, another-eveningEid/restofrentONLYonconditions, explicitwithoutchangesnoreturn/nounattended. Contextbreakacknowledged/originalreportstartsverbatim~255s; all54rawreactionrecordscompleteinseparateverbatim, includingearlynotes/firstminute/pulse andinvalidpulse175.263+successful178.790samewords, notdoublecountvalidpulse. Firstminute66.156late. Actualfivevalidpulses178.790=4/336.764=4/489.537=3/642.157=3/786.247=3. Newgameactual4.512; Continue6.620stalenamefailedaftergamestatechange, notcarriedsave. Clock/hoursjumps andtwoBacktonowhiddenSpeak discovery, correctlatenoanswer/refusalguesses retained; refusal20:04seenlaterandwaitingSelincallactual21:05. Initially600vs300confused/planlaterclearedtotalvsinstalment; retaincorrectionnotclaimdifferentdebts. Rentpaidbydeadlineactuallyfoundsidepanel18:42, noenginecompletionclaim/causalguarantee; mosque/credit/12dayshiftrate/logdisagreements needrepro. ThreeCOMPOUNDasksallclausesretained; keepautonomy/Insistcosts/difficulty, noforcedoutcome. Three-secondwaitplusmodelthinkingnotindependent1–3shumanreproduction. WideviewsandtwophoneimagesSELFREPORTED/noindependentClaudeimage-outputtrace; automaticminuteUNSEEN. Bothsizesactualresizes/positiontaps. NamedFeedbackwronglabel andtexttaperrorscorrectedposition, confusionchipselectedbutreportdidnotseehighlight; stoppingpressedlocally/no text/Submit/consent. Unsupportedpulseop/invalidshotfilename/coveredHalil/statechangedcontrols ordinarytoolorpageissues, no driverblock/TOOLverdict. Exact00d/HF3.2clean beforeafter; testerexit0/owncapturedclosureverified.",
+          "proposed_repro_target": "2026-10-27",
+          "first_handoff": "2026-10-26T11:29:05.331546+00:00",
+          "dataset": "hf3-voice-r2-capacity-recovery",
+          "role": "matched"
+        }
+      ]
+    },
+    {
+      "tester": "Haruto Sato",
+      "observations": [
+        {
+          "tester": "Haruto Sato",
+          "arm": "free",
+          "game": "voice",
+          "report": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/haruto-free.md",
+          "ask_quotes": [
+            "In the many-days summary, tell me why a suggestion like the shift only came up once, and what Urge actually did.",
+            "Let me give a word in the morning for something later that day, like the afternoon shift, instead of only when it's possible right then.",
+            "Show his answer right after \"Say it\", without needing another tap."
+          ],
+          "return_quote": "Probably not soon. I came back to test one thing, whether Urge would make him take the shift, and the answer in the 12-day summary looked the same as last time, 1 of 12. If I knew the shift could be set ahead in the morning, or the planner told me why he only heard it once, I would try again, because Halil and Hacer are good people to help. Without that I would be doing the same dance a third time.\"\n\n**Left running?** No.\n\n**Return another evening?** Only if something changes about how the shift can be held. This was a natural stop, not one forced by the ceiling, the tool or the coordinator.",
+          "verdict": "mixed",
+          "forced": false,
+          "raw_stop": "FRUSTRATED",
+          "coordinator_limits": "Opus originalcoldR1 RETURNER, notnewcoldslot; matchedFREE pairedCONT identicalfrozenownVoiceR1only, alternativeswithheld. NaturalBOREDwish619.143persisted/turnedFRUSTRATEDstop718.505(report718.5rounded). MIXEDprobablynotsoon, retryONLYif morningfutureplanning OR explanationwhyshiftheardonce, no unattended/thirdunchangedloop; literalORretainednotbothconditionsforced. All23rawreactionscompleteverbatimcompanion; originalreportonlylatest6full, earlier17retainedseparately. Firstminute67.373late(reportrecalled63notrewritten), actualpulses[[162.233, 4], [335.394, 4], [528.629, 4], [663.473, 3]]. Initial600differentstartguess corrected40.422300instalment/600totalguess; no actualdifferentauthoredstartclaim. ManualshiftDay1/Day2success/increasedmoney, doctor/promise/Hacer/Selincallactuallyseen; Urgedominantleverhisinterpretationnotmechanismproof, no forcedobedienceorcostremoval. EarlyRiza/Selintemplate complaintlaterdistinctwarmRizalinesfound, Todaydifferentdialoguehisobservedmismatchneedrepro. ManydaysUIUrge shift1/12 +walk12/12 reported/rentpaidonown, cause unknown; noenginecompletionclaim. Gamecounterfactualgoalsdiscoverylaterunderstoodbutstillredmarkfeeling, retaincorrection. TwoSELFREPORTEDimageviews one widegameplay/onephoneToday; automaticminuteunseen; otherviewsdrivertextonly/noindependentClaudeimage-outputtrace. Bothactualresizes/positiontaps. Invalidshotfilename corrected; stoppinglabel shellquoteerrorbeforeHTTP correctednotdriverblock. Stoppingselectedpressedlocalonly/no text/Submit/consent; confusedcoveragependingthissession. Real8/otherwaits+modeldiarynot1–3shumanpacingreproduction. Exact00d/HF3.2clean beforeafter/testerexit0; owncaptureclosureverifyseparately.",
+          "proposed_repro_target": "2026-10-27",
+          "first_handoff": "2026-10-26T11:30:25.537875+00:00",
+          "dataset": "hf3-voice-r2-capacity-recovery",
+          "role": "matched"
+        },
+        {
+          "tester": "Haruto Sato",
+          "arm": "continued",
+          "game": "voice",
+          "report": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/haruto-continued.md",
+          "ask_quotes": [
+            "Make Urge in the multi-day planner either work or explain itself before the skip. Show why it fails (\"he hears it when…\") so I can plan around it.",
+            "When he says \"after X, I will do it\", show whether it still fits the window, or let me hold him to it.",
+            "Fix contradictory lines (worked \"day 2\" vs \"12 mornings\", \"chose something else\" vs an actual call) and stop repeating neighbour scenes word for word."
+          ],
+          "return_quote": "Maybe not soon. I came back to test whether Urge holds the shift, and the planner still gave 1 of 12 and day 15 slept through it again exactly like my first visit. The Selin call and the walking habit are the parts I'd come back for. If I knew Urge actually held across a skip, or he'd tell me when 'after X' won't fit, I'd try another evening.\"\n\n**Left running?** No.\n\n**Another evening?** Only under that condition.",
+          "verdict": "mixed",
+          "forced": false,
+          "raw_stop": "FRUSTRATED",
+          "coordinator_limits": "Haruto is an original cold RETURNER, outside fresh slots. Matched CONT uses identical frozen own R1 history; no FREE words leaked. Natural FRUSTRATED stop929.593; report929.6 rounded. CONFUSED wish615.996 (report610) eased with deadline day; FRUSTRATED wish793.510 (report787) eased slightly with Selin but remained. All29 raw reactions retained in complete verbatim companion; original report ellipses/times remain unchanged. Firstminute60.772; five actual pulses176.633=4/385.364=4/544.337=3/707.976=3/923.959=3. MIXED notsoon, another-evening retry only if Urge holds across skip OR timing explanation; keep literal alternatives and no unattended interest. His own day15 attempt was Mention, not Urge: do not label its failure a failed Urge. Manual Urge shifts/clinic/calls succeeded; skip shift1/12 and walk12/12 reported, cause unknown. Rent paid on own day14 found summary; no game completion claim or guaranteed lever. Counterfactual-goals wording later understood, still reads contradictory. One wide and one phone image SELFREPORTED; remainder driver text only, automatic minute unseen. Actual viewport changes/position taps. First Speak point could have hit Skip or page changed; cause unknown, not independently reproduced at human pace. 20/25second waits not 1–3second human reproduction. Both quiet choices shared build; this session selected confused only, did not look for stopping at end. No text or Submit. Wrong screenshot filename corrected, statechanged controls not driver block. Keep autonomy/difficulty and Urge costs. Exact00d/HF3.2 clean beforeafter, testerexit0; captured closure checked separately.",
+          "proposed_repro_target": "2026-10-27",
+          "first_handoff": "2026-10-26T11:45:31.496424+00:00",
+          "dataset": "hf3-voice-r2-capacity-recovery",
+          "role": "matched"
+        }
+      ]
+    },
+    {
+      "tester": "Marisol Reyes",
+      "observations": [
+        {
+          "tester": "Marisol Reyes",
+          "arm": "free",
+          "game": "voice",
+          "report": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/marisol-free.md",
+          "ask_quotes": [
+            "Give each friend their own words. Rıza should not say Hacer's sentences.",
+            "Show his reply when I speak, without needing \"Let time pass\", and don't let choices expire seconds after the sheet opens.",
+            "Show me the important things, like the shift he took and the mosque he turned back from, in the scene itself, not only in the long Today list."
+          ],
+          "return_quote": "Perhaps. This visit was better than the first: I could actually help with the rent and see what he would say. I would come back if Rıza, Hacer and Mrs Aydın each had their own words. I would also come back if I could reach rent day without sitting through quiet afternoons. As it is, I would not come back another evening on my own. I would not leave it running either, because the best moments need me there to answer them.",
+          "verdict": "mixed",
+          "forced": false,
+          "raw_stop": "BORED",
+          "coordinator_limits": "Marisol is an original cold RETURNER, not fresh. Matched FREE and CONT use identical frozen own R1 diary, no FREE words leaked. Natural BORED stop806.515; report806 rounded. FRUSTRATED wish236.064 passed when Selin returned/called; BORED wish787.293 grew and persisted. All27 raw reactions retained in verbatim companion because original report quotes abbreviated excerpts. Firstminute64.695; pulses167.659=4/348.781=4/533.578=4/689.242=3. MIXED conditional own words for each friend, also possible return if rentday reachable without quiet afternoons; explicit no another evening on own now/no unattended. Title and counterfactual goals became clear; still visually reads as contradiction. One-standing-suggestion limit her inference, not mechanism proof. Mention meaning discovered in detailed plan. Manual Day2 urged shift seen in Today, helping toward rent not a paid-rent receipt. Initial copy complaint later admits Riza oldfriend wording warmer; retain correction, no claim zero distinct authored voice. One phone/one wide screenshot SELFREPORTED, automatic minute unseen; all other views driver text. Both actual resizes/position taps. Three-second sheet expiry and 15second waits plus model thinking are not independent 1–3second human reproductions. Newgame followed stale Continue title/state change; fresh authored start, not carried save. Both quiet labels shared build; this session stopping selected pressed only, confused not independently evidenced. No text/Submit/consent change. Exact00d/HF3.2 clean beforeafter/testerexit0; own captured closure checked separately.",
+          "proposed_repro_target": "2026-10-27",
+          "first_handoff": "2026-10-26T11:45:31.605269+00:00",
+          "dataset": "hf3-voice-r2-capacity-recovery",
+          "role": "matched"
+        },
+        {
+          "tester": "Marisol Reyes",
+          "arm": "continued",
+          "game": "voice",
+          "report": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/marisol-continued.md",
+          "ask_quotes": [
+            "Show the important events of the day, like the rent payment and missed deadlines, as scenes, and give me a way to speak about the rent.",
+            "Always show his reply to what I say, and warn me before a new suggestion replaces my standing word.",
+            "Bring Urge closer than three taps deep."
+          ],
+          "return_quote": "Perhaps, but only if I could act on the money myself, for example by talking to Osman or asking for time, and if what I say got an answer on screen. The voices are warmer and clearer than last time, and that pulls me a little. As it stands, I would not come back another evening on my own. I would not leave it running either: when I let time pass, the important things happen without me.",
+          "verdict": "mixed",
+          "forced": false,
+          "raw_stop": "BORED",
+          "coordinator_limits": "Opus original cold RETURNER, not fresh slot. Matched CONT shares frozen own R1 FREE diary only; R2 FREE words withheld. Natural BORED wish979.529 persisted to stop991.644 (report992rounded). All34 raw reactions in complete companion; original report keeps latest six, earlier28 preserved separately. Firstminute71.960late (report68 retained). Pulses176.281=4/380.109=3/534.176=4/726.799=3/946.340=3, last gap219.541s deliberately not backfilled. MIXED full rent-conversation AND on-screen-answer conditions, explicit asstands no voluntary another-evening/unattended; voices warmer pull her somewhat. Manual shift/clinic/call succeeded; initially goals counterfactual confusion cleared, still individual perceived inconsistencies retained. Actual payment found goals850.875 at13:41, not a witnessed payment scene; morning work closing14lira gap is her supposition, not independently established cause. First300 paid and next300 recurring pressure retained, no game-complete claim or removal of debt stakes. ManydayUrge1/12, spoilt-job explanation unclear needs reproduction; no guaranteed obedience/zero Urge cost. Choosing Hacer replaced shift noticed; other speech no reply claim provisional, engineering finds some answer can appear after3s without Lettimepass, not all cases. Onephone/onewide image SELFREPORTED, automaticminuteunseen; both actual resizes/positiontaps. Phone sheet stayedopen in this arm; do not overwrite FREE expiry observation. Lettimepass/Skip swaps reported, required independent cadence check now underway; all timing complaints provisional pending classification. Stopping selected pressed locally, no text/Submit/consent changes. No driver blocks. Exact00d/HF3.2 clean beforeafter/testerexit0; captured PIDs/profiles absent.",
+          "proposed_repro_target": "2026-10-27",
+          "first_handoff": "2026-10-26T12:05:54.480184+00:00",
+          "dataset": "hf3-voice-r2-capacity-recovery",
+          "role": "matched"
+        }
+      ]
+    },
+    {
+      "tester": "Elena Markovic",
+      "observations": [
+        {
+          "tester": "Elena Markovic",
+          "arm": "free",
+          "game": "voice",
+          "report": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/elena-free.md",
+          "ask_quotes": [
+            "Show big events (paying the rent, his own call to Selin, the grave visit) as scenes, not only as lines in His goals or the summary.",
+            "Vary his replies, or say why he can't do something now. \"After I finish this task\" three times felt like talking into a dead radio.",
+            "Make it clear when the clock is running and when my words have been heard, and don't hide the current choice behind \"Back to now\"."
+          ],
+          "return_quote": "Maybe, on one condition. I like Halil, and I'm curious whether Selin's calls lead anywhere. I would come back if the important moments (the rent, the calls, the grave) happened as scenes I could watch, rather than as lines in a status list. And if he stopped answering me with the same sentence. As it played tonight, I spent more time waiting and reading summaries than noticing and predicting, and noticing and predicting is what I enjoy.\n\n**Leave it running or return another evening?** I wouldn't leave it running; nothing in it rewards checking back. Another evening, possibly once, for Selin.",
+          "verdict": "mixed",
+          "forced": false,
+          "raw_stop": "BORED",
+          "coordinator_limits": "Opus genuinely fresh never-HF slot Elena Markovic, empty pregame diary and independent context; matched CONT remains pending and frozen to same empty baseline. Natural BORED stop804.048; report Session about806 vs stopabout804 retained, poststop note806.379 only reports final response follows and is not new play. One BORED wish702.790 softened after own line appeared, then boredom returned. All41 raw reaction records retained in complete companion; original report keeps only four late reactions and summaries. Firstminute60.516, selfreported written~55 then shellquote typo; no reconstructed earlier timestamp. Actual pulses180.482=4/339.490=3/483.455=4/571.066=3/761.665=2, original approximations retained. MIXED full visible-scenes and varied-replies return conditions; another evening possibly once for Selin, no unattended, not unconditional return. Predictions were part of her play: likely-reply preview reduced suspense, do not silently treat as asked removal; actual ask2 replies vary OR explain refusal, preserve alternatives/autonomy/difficulty. Early brokenpromise interpretation corrected222.052 with time-window log, no confirmed deliberate brokenpromise/guaranteed obedience. Doctor and shift succeeded Day2; own call/rent payment found goals634.944, not observed payment scene or causal proof. Initial missing ownwords correctedafterLettimepass727approx; all corrections retained, no claim no authored response. Header and goals/skip disagreements need causal reproduction. Ordinary 20second/modeldiary waits not1–3second human-cadence proof; separate engineering check queued before actionable timing triage. Onephone and onewide image SELFREPORTED; wide Today side panel open whole visit, drivertext for rest; automaticminuteimage unseen/created separately, not claimed viewed. Both actual resizes/positiontaps. Bothquietchoices explicitly available and selected locally/pressed, no typing/Submit/consent. Wrong screenshot basename, unsupportedpulseop and statechangedcontrols corrected, no driver block. Newgame4.669 followed staleContinue8.358, not carried save. Exact00d/HF3.2 clean beforeafter/testerexit0, captured closure absent.",
+          "proposed_repro_target": "2026-10-27",
+          "first_handoff": "2026-10-26T11:59:24.636147+00:00",
+          "dataset": "hf3-voice-r2-capacity-recovery",
+          "role": "matched"
+        },
+        {
+          "tester": "Elena Markovic",
+          "arm": "continued",
+          "game": "voice",
+          "report": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/elena-continued.md",
+          "ask_quotes": [
+            "Tell me plainly in the main view when something important happens off-screen, like \"He paid Osman 300 lira.\" I shouldn't have to find it by scrolling the log.",
+            "Let me just listen to a scene without the speaking sheet covering \"Keep listening\". And give Rıza and Hacer their own words instead of the same line.",
+            "Explain \"chose something else\" and what Eid will test, in the goals panel or in the help."
+          ],
+          "return_quote": "Probably not to finish. I liked Halil, and the evening phone call with Selin really reached me. But once the rent was paid my question was answered, and what was left looked like the same days again with a second 300 lira. I might come back once, briefly, but only if I could jump straight to Eid and see whether he calls Selin and walks instead of smoking without me. That is the one prediction I'd still like to check. I wouldn't come back to replay evenings at the tea house.\n\n**Running vs. another evening:** I wouldn't leave it running; the game waits for my taps anyway. Another evening is unlikely, apart from that one peek at Eid if it's quick to reach.",
+          "verdict": "mixed",
+          "forced": false,
+          "raw_stop": "BORED",
+          "coordinator_limits": "Opus genuine fresh never-HF CONT slot; identical empty frozen pregame history to FREE, no FREE words leaked. Natural BORED stop952.654; reported952 rounded. One BORED wish671.215 (report666 retained) passed/interest rose to4 at12day deadline screen, later3 after payment found. MIXED only a brief quick jump straight to Eid to check independent calls/walks; explicit not finish15days/replayteahouse/no unattended, another evening unlikely exceptthatpeek. All33 raw reactions full original report. Firstminute54.735 EARLY, not a valid60second checkpoint; no later actual firstminute note, no reconstructed observation. Automatic minute image unseen. Actual pulses162.122=4/326.245=4/483.896=4/624.823=3/776.583=4/939.513=3. Own sums/predictions recorded; manual doctor/walk/shift/call seen, skip shift1/12 and calls12/12 reported, no causal guarantee or enginecompletion. Payment10:00 found afterscrollingToday, 286plus16 hercheckedvisiblearithmetic; no witnessedpayment scene. Counterfactual goals meaning remaineduncertain despiteown guess; do not importMarisol/Haruto explanations. Likelyreplypredictionreduction is reaction, not askedremoval. Threecompoundasks notification/uncoverslistening+distinctfriendwords/counterfactual+Eidexplanation allclausesretained; keepautonomy/difficulty. Fourphone/onewideimageviews SELFREPORTED, no independentClaudeimage-outputtrace; wide one requestedTodaycheck only, othertextstretchesdriveronly. Bothactualresizes/positiontaps. Firstminuteearly and other approximate reporttimes retained. Bothquietlabels available, stopping selectedpressed only/no text/Submit/verdict/consent. Statechangednamedcontrols and coveredKeepListeningnotdriverblock; separate reviewed engineering qualifies timingcausality, no blanket timingbug inference. Exact00d/HF3.2clean beforeafter/testerexit0/owncapturedcleanupabsent.",
+          "proposed_repro_target": "2026-10-27",
+          "first_handoff": "2026-10-26T12:26:37.833780+00:00",
+          "dataset": "hf3-voice-r2-capacity-recovery",
+          "role": "matched"
+        }
+      ]
+    },
+    {
+      "tester": "Kwame Mensah",
+      "observations": [
+        {
+          "tester": "Kwame Mensah",
+          "arm": "free",
+          "game": "voice",
+          "report": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/kwame-free.md",
+          "ask_quotes": [
+            "Show a clear \"next day\" step at day's end, or a visible countdown, so I know whether to wait or to press something.",
+            "Show his reply right when I tap a line, or at least a \"said, waiting for his answer\" note.",
+            "Flag or pause big moments like iftar and Selin's call, and warn me before a new suggestion replaces my standing one."
+          ],
+          "return_quote": "Maybe, if someone told me how the day turns over, or a later version made the next day obvious. I'd come back for Halil, Nuran and Hacer, and for the debt puzzle (280 vs 300 lira). I would not come back to sit in front of \"Ramadan 1 is over\" pressing a button that changes nothing.\n- **Leave it running?** No. I didn't trust that leaving it would turn the day.\n- **Another evening?** Only under the condition above.",
+          "verdict": "mixed",
+          "forced": false,
+          "raw_stop": "CONFUSED",
+          "coordinator_limits": "Opus genuine fresh never-HF Kwame Mensah with empty pregame diary; matched CONT same frozen empty baseline, still active and no FREE words supplied. Natural CONFUSED stop408.338, one wish283.263 persisted and grew. All20 raw reaction records retained in separate verbatim companion because original report abbreviates earlier words; poststop correction412.574 retained and not extra play. Firstminute65.126 late; pulses173.168=4/367.185=2, report approximations retained. MIXED conditional another evening only if someone explains day turnover or later version makes next day obvious; attachment to Halil/Nuran/Hacer/debt puzzle, no unattended trust, no unconditional return. End screen Ramadan1over with menu23:30 and actor asleep until23:50 did not visibly advance despite named/point/key/waits; no demonstrated universal freeze, independent CONT already reached Day2. Reproduce before defect attribution; whether frozen or slow is expressly unknown. Actual physical target accuracy not instrumented. Initial reply-only-after-Lettimepass belief later own reaction150.971 records answer came on its own; retain correction and do not assert required extra tap. Skip used205.728; event loss/standing-suggestion replacement are player asks, retain autonomy/difficulty. Compound asks preserve both nextday OR countdown, immediate reply OR waiting acknowledgement, big-moment flag OR pause plus replacement warning; no blanket hard-pause implementation authorized. One requested phone307.071-321.814 check after first wish is protocol exposure, not new natural interest. Two wide and one phone images SELFREPORTED, no independent Claude image-output trace; automaticminute image unseen; other views driver text. Both actual resizes/position taps. Both quiet labels available, confused locally pressed then reopening neither pressed; correction412.574 supersedes original stop implication of persistence, then stopping locally pressed. No text/Submit/consent change. Shell quoting and changed-control errors corrected, not driver-block. Exact00d/HF3.2clean beforeafter/testerexit0; captured cleanup verified separately. Target2026-10-27 for reproduction/disposition.",
+          "proposed_repro_target": "2026-10-27",
+          "first_handoff": "2026-10-26T12:39:07.256650+00:00",
+          "dataset": "hf3-voice-r2-capacity-recovery",
+          "role": "matched"
+        },
+        {
+          "tester": "Kwame Mensah",
+          "arm": "continued",
+          "game": "voice",
+          "report": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/kwame-continued.md",
+          "ask_quotes": [
+            "When he agrees (\"after I finish this task\") and then doesn't follow through, tell me why.",
+            "Vary the repeated Hacer, Rıza and Halil lines.",
+            "In the skip-days summary, explain the refusals, for example the shift happening 1 time out of 12."
+          ],
+          "return_quote": "Maybe, once, to see Eid: whether Halil pays the other 300 and calls Selin without me. I'd come back if the afternoons didn't loop the same neighbour lines, and if I could see why he ignored a suggestion he had agreed to. If it's another quiet afternoon of Hacer at the door, I wouldn't stay.\n\n**Leave it running?** No. **Return another evening?** Possibly, just to see Eid. Not tonight.",
+          "verdict": "mixed",
+          "forced": false,
+          "raw_stop": "BORED",
+          "coordinator_limits": "Opus genuine fresh never-HF Kwame Mensah, matched empty frozen pregame diary; no FREE words supplied. Natural BORED stop905.303 just past actual15minute floor, not voluntary retention through floor. Wishes709.888BORED and832.374FRUSTRATED; report says passed only in sense kept playing, which is not evidence wish resolved. Firstminute58.186 EARLY, no valid60note/no backfill. Pulses169.436=4/334.492=4/517.732=3/662.875=4/858.620=2; report approximations retained. All37 raw reaction records in full companion because report excerpts abbreviated; corrections218.768 and672.371 show answer arrived without extra Lettimepass and apparent wrongline was older text, no wrongtap claim. MIXED maybeonceEid, only if afternoons stop repeating and reasons for ignored agreed suggestions visible; no tonight/unattended, possible another evening justEid. ActualDay2 and12dayskip reachedDay15, doctor/call/manualshift and payment seen; not universal dayturn failure, separate FREE inability still unresolved. Counterfactual guess at302.549 vs later uncertainty preserved. Autonomy and promise/refusal explanations requested; do not guarantee obedience, remove Urgecosts/debt/difficulty or assert skipped-shiftcause. Called12times counterfactual confusion/1of12shift needs explanation not proved engine contradiction. Two named controls changed before requests, no driverblock. Requested phonecheck289.920 beginsbefore300 requested layouttime, image/position observed302.549; no fabricated later start. Onephone/onewide screenshot SELFREPORTED, automaticminute unseen; no independentClaudeimageoutputtrace, othertextviews driveronly. Both actual resizes/position taps. Bothquietlabels available, stopping locallypressed only; no text/Submit/consent. Exact00d/HF3.2clean beforeafter/testerexit0, captured closure checked separately. Target2026-10-27 for reproduction/disposition.",
+          "proposed_repro_target": "2026-10-27",
+          "first_handoff": "2026-10-26T12:41:54.359824+00:00",
+          "dataset": "hf3-voice-r2-capacity-recovery",
+          "role": "matched"
+        }
+      ]
+    }
+  ]
+}

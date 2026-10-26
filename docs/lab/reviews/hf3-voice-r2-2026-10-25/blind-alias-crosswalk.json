@@ -1,0 +1,308 @@
+[
+  {
+    "alias": "D01",
+    "role": "matched",
+    "persona": "Pavel Novak",
+    "arm": "free",
+    "forced_exclude_primary_taste": false,
+    "primary_taste_eligible": true,
+    "report_source": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/pavel-free.md"
+  },
+  {
+    "alias": "D02",
+    "role": "matched",
+    "persona": "Nia Okafor",
+    "arm": "continued",
+    "forced_exclude_primary_taste": false,
+    "primary_taste_eligible": true,
+    "report_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/reports/nia-continued.md"
+  },
+  {
+    "alias": "D03",
+    "role": "matched",
+    "persona": "Jonas Berg",
+    "arm": "continued",
+    "forced_exclude_primary_taste": false,
+    "primary_taste_eligible": true,
+    "report_source": "docs/lab/reviews/hf3-voice-r2-capacity-tail-2026-10-26/reports/jonas-continued.md"
+  },
+  {
+    "alias": "D04",
+    "role": "matched",
+    "persona": "Samir Haddad",
+    "arm": "free",
+    "forced_exclude_primary_taste": false,
+    "primary_taste_eligible": true,
+    "report_source": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/samir-free.md"
+  },
+  {
+    "alias": "D05",
+    "role": "matched",
+    "persona": "Emre Kaya",
+    "arm": "free",
+    "forced_exclude_primary_taste": false,
+    "primary_taste_eligible": true,
+    "report_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/reports/emre-free.md"
+  },
+  {
+    "alias": "D06",
+    "role": "matched",
+    "persona": "Tessa Williams",
+    "arm": "free",
+    "forced_exclude_primary_taste": false,
+    "primary_taste_eligible": true,
+    "report_source": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/tessa-free.md"
+  },
+  {
+    "alias": "D07",
+    "role": "matched",
+    "persona": "Elena Markovic",
+    "arm": "free",
+    "forced_exclude_primary_taste": false,
+    "primary_taste_eligible": true,
+    "report_source": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/elena-free.md"
+  },
+  {
+    "alias": "D08",
+    "role": "matched",
+    "persona": "Kwame Mensah",
+    "arm": "continued",
+    "forced_exclude_primary_taste": false,
+    "primary_taste_eligible": true,
+    "report_source": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/kwame-continued.md"
+  },
+  {
+    "alias": "D09",
+    "role": "matched",
+    "persona": "Maya Chen",
+    "arm": "free",
+    "forced_exclude_primary_taste": false,
+    "primary_taste_eligible": true,
+    "report_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/reports/maya-free.md"
+  },
+  {
+    "alias": "D10",
+    "role": "matched",
+    "persona": "Kwame Mensah",
+    "arm": "free",
+    "forced_exclude_primary_taste": false,
+    "primary_taste_eligible": true,
+    "report_source": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/kwame-free.md"
+  },
+  {
+    "alias": "D11",
+    "role": "matched",
+    "persona": "Aisha Rahman",
+    "arm": "free",
+    "forced_exclude_primary_taste": false,
+    "primary_taste_eligible": true,
+    "report_source": "docs/lab/reviews/hf3-voice-r2-capacity-tail-2026-10-26/reports/aisha-free.md"
+  },
+  {
+    "alias": "D12",
+    "role": "matched",
+    "persona": "Elena Markovic",
+    "arm": "continued",
+    "forced_exclude_primary_taste": false,
+    "primary_taste_eligible": true,
+    "report_source": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/elena-continued.md"
+  },
+  {
+    "alias": "D13",
+    "role": "control",
+    "persona": "Emre Kaya",
+    "arm": "continued",
+    "forced_exclude_primary_taste": false,
+    "primary_taste_eligible": false,
+    "report_source": "docs/lab/reviews/hf3-voice-r2-control-2026-10-26/reports/emre-continued.md"
+  },
+  {
+    "alias": "D14",
+    "role": "matched",
+    "persona": "Leila Mansour",
+    "arm": "free",
+    "forced_exclude_primary_taste": false,
+    "primary_taste_eligible": true,
+    "report_source": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/leila-free.md"
+  },
+  {
+    "alias": "D15",
+    "role": "matched",
+    "persona": "Jonas Berg",
+    "arm": "free",
+    "forced_exclude_primary_taste": false,
+    "primary_taste_eligible": true,
+    "report_source": "docs/lab/reviews/hf3-voice-r2-capacity-tail-2026-10-26/reports/jonas-free.md"
+  },
+  {
+    "alias": "D16",
+    "role": "matched",
+    "persona": "Rosa Alvarez",
+    "arm": "continued",
+    "forced_exclude_primary_taste": false,
+    "primary_taste_eligible": true,
+    "report_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/reports/rosa-continued.md"
+  },
+  {
+    "alias": "D17",
+    "role": "additional unpaired",
+    "persona": "Mei Tan",
+    "arm": "continued",
+    "forced_exclude_primary_taste": false,
+    "primary_taste_eligible": false,
+    "report_source": "docs/lab/reviews/hf3-voice-r2-capacity-tail-2026-10-26/reports/mei-continued.md"
+  },
+  {
+    "alias": "D18",
+    "role": "matched",
+    "persona": "Leila Mansour",
+    "arm": "continued",
+    "forced_exclude_primary_taste": false,
+    "primary_taste_eligible": true,
+    "report_source": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/leila-continued.md"
+  },
+  {
+    "alias": "D19",
+    "role": "matched",
+    "persona": "Marisol Reyes",
+    "arm": "free",
+    "forced_exclude_primary_taste": false,
+    "primary_taste_eligible": true,
+    "report_source": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/marisol-free.md"
+  },
+  {
+    "alias": "D20",
+    "role": "matched",
+    "persona": "Emre Kaya",
+    "arm": "continued",
+    "forced_exclude_primary_taste": false,
+    "primary_taste_eligible": true,
+    "report_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/reports/emre-continued.md"
+  },
+  {
+    "alias": "D21",
+    "role": "matched",
+    "persona": "Haruto Sato",
+    "arm": "free",
+    "forced_exclude_primary_taste": false,
+    "primary_taste_eligible": true,
+    "report_source": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/haruto-free.md"
+  },
+  {
+    "alias": "D22",
+    "role": "matched",
+    "persona": "Mei Tan",
+    "arm": "continued",
+    "forced_exclude_primary_taste": false,
+    "primary_taste_eligible": true,
+    "report_source": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/mei-continued.md"
+  },
+  {
+    "alias": "D23",
+    "role": "matched",
+    "persona": "Haruto Sato",
+    "arm": "continued",
+    "forced_exclude_primary_taste": false,
+    "primary_taste_eligible": true,
+    "report_source": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/haruto-continued.md"
+  },
+  {
+    "alias": "D24",
+    "role": "matched",
+    "persona": "Diego Silva",
+    "arm": "free",
+    "forced_exclude_primary_taste": false,
+    "primary_taste_eligible": true,
+    "report_source": "docs/lab/reviews/hf3-voice-r2-capacity-tail-2026-10-26/reports/diego-free.md"
+  },
+  {
+    "alias": "D25",
+    "role": "matched",
+    "persona": "Diego Silva",
+    "arm": "continued",
+    "forced_exclude_primary_taste": false,
+    "primary_taste_eligible": true,
+    "report_source": "docs/lab/reviews/hf3-voice-r2-capacity-tail-2026-10-26/reports/diego-continued.md"
+  },
+  {
+    "alias": "D26",
+    "role": "matched",
+    "persona": "Marisol Reyes",
+    "arm": "continued",
+    "forced_exclude_primary_taste": false,
+    "primary_taste_eligible": true,
+    "report_source": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/marisol-continued.md"
+  },
+  {
+    "alias": "D27",
+    "role": "matched",
+    "persona": "Maya Chen",
+    "arm": "continued",
+    "forced_exclude_primary_taste": false,
+    "primary_taste_eligible": true,
+    "report_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/reports/maya-continued.md"
+  },
+  {
+    "alias": "D28",
+    "role": "matched",
+    "persona": "Pavel Novak",
+    "arm": "continued",
+    "forced_exclude_primary_taste": false,
+    "primary_taste_eligible": true,
+    "report_source": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/pavel-continued.md"
+  },
+  {
+    "alias": "D29",
+    "role": "matched",
+    "persona": "Mei Tan",
+    "arm": "free",
+    "forced_exclude_primary_taste": false,
+    "primary_taste_eligible": true,
+    "report_source": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/mei-free.md"
+  },
+  {
+    "alias": "D30",
+    "role": "matched",
+    "persona": "Nia Okafor",
+    "arm": "free",
+    "forced_exclude_primary_taste": false,
+    "primary_taste_eligible": true,
+    "report_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/reports/nia-free.md"
+  },
+  {
+    "alias": "D31",
+    "role": "matched",
+    "persona": "Tessa Williams",
+    "arm": "continued",
+    "forced_exclude_primary_taste": false,
+    "primary_taste_eligible": true,
+    "report_source": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/tessa-continued.md"
+  },
+  {
+    "alias": "D32",
+    "role": "matched",
+    "persona": "Aisha Rahman",
+    "arm": "continued",
+    "forced_exclude_primary_taste": false,
+    "primary_taste_eligible": true,
+    "report_source": "docs/lab/reviews/hf3-voice-r2-capacity-tail-2026-10-26/reports/aisha-continued.md"
+  },
+  {
+    "alias": "D33",
+    "role": "matched",
+    "persona": "Rosa Alvarez",
+    "arm": "free",
+    "forced_exclude_primary_taste": true,
+    "primary_taste_eligible": false,
+    "report_source": "docs/lab/reviews/hf3-voice-r2-2026-10-25/reports/rosa-free.md"
+  },
+  {
+    "alias": "D34",
+    "role": "matched",
+    "persona": "Samir Haddad",
+    "arm": "continued",
+    "forced_exclude_primary_taste": false,
+    "primary_taste_eligible": true,
+    "report_source": "docs/lab/reviews/hf3-voice-r2-capacity-recovery-2026-10-26/reports/samir-continued.md"
+  }
+]
