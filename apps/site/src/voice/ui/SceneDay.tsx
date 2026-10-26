@@ -4,6 +4,7 @@ import { Composer } from './Composer.tsx';
 import { storyDates } from './dates.ts';
 import { planningContext } from './PlanningContext.tsx';
 import { consequentialOffer, speakingOpportunity } from './pause-policy.ts';
+import { callAccount, requestAccount } from './request-account.ts';
 import { currentReply, sceneResponse } from './scene-response.ts';
 import { sceneBeat, sceneWordChoices } from './scene-words.ts';
 import { deriveScene, nextEncounter, sceneChoices } from './scenes.ts';
@@ -107,6 +108,15 @@ function SceneDayContent(
   },
 ) {
   const { frame, onPredict, onSuggest, onSayNothing } = props;
+  const accountFrame = props.liveFrame ?? frame;
+  const account = requestAccount(accountFrame);
+  const calls = callAccount(accountFrame);
+  const dayEnd = accountFrame.phase === 'between';
+  const leaveLabel = dayEnd
+    ? 'Day over · See recap and next day'
+    : accountFrame.phase === 'report'
+      ? 'See the ending'
+      : 'Back to now';
   const derived = deriveScene(frame);
   // Freeze a scene's words for its occasion; a later body reading cannot rewrite the exchange.
   const cache = useRef<{ id: string; scene: NonNullable<typeof derived> } | null>(null);
@@ -316,6 +326,43 @@ function SceneDayContent(
         </div>
       )}
       <div className="v-scene-reading">
+        {account && (
+          <aside className="v-scene-answer" aria-label="Your latest suggestion" role="status">
+            <p>
+              <small>
+                Day {account.sent.day} · {account.sent.clock}
+              </small>{' '}
+              · {settingWords(account.sent.text)}
+            </p>
+            {account.answer && (
+              <p>
+                <small>
+                  Day {account.answer.day} · {account.answer.clock}
+                </small>{' '}
+                · {settingWords(account.answer.text)}
+              </p>
+            )}
+            <p>{settingWords(account.status)}</p>
+            {account.window && <p>{settingWords(account.window)}</p>}
+            {accountFrame.halil.doing && (
+              <p>
+                Now: {settingWords(accountFrame.halil.doing.label)}. This does not establish why he chose it.
+              </p>
+            )}
+          </aside>
+        )}
+        {calls.length > 0 && (
+          <aside className="v-scene-answer" aria-label="Recorded calls">
+            {calls.map((call) => (
+              <p key={call.id}>
+                <small>
+                  Day {call.day} · recorded at {call.clock}
+                </small>{' '}
+                · {settingWords(call.text)}
+              </p>
+            ))}
+          </aside>
+        )}
         {outcomes.length > 0 && (
           <aside className="v-scene-answer" aria-label="What happened" role="status">
             {outcomes.map((entry) => (
@@ -347,7 +394,7 @@ function SceneDayContent(
               className="v-personal-leave v-btn v-btn-quiet"
               onClick={props.onDismissUnsaid}
             >
-              Back to now
+              {leaveLabel}
             </button>
           </div>
         )}
@@ -366,8 +413,11 @@ function SceneDayContent(
                 {settingWords(heldPersonal.line.answer)}
               </p>
             </div>
+            {dayEnd && (
+              <p role="status">The day is over. Leave this reply to see the recap and the next-day step.</p>
+            )}
             <button type="button" className="v-personal-leave v-btn v-btn-quiet" onClick={leaveReply}>
-              Back to now
+              {leaveLabel}
             </button>
           </article>
         ) : scene ? (
@@ -394,7 +444,7 @@ function SceneDayContent(
                 </p>
               ))}
             </div>
-            {canListen && !condensed && (
+            {canListen && !condensed && !sheetOpen && (
               <button
                 type="button"
                 className="v-conversation-listen v-btn v-btn-quiet"
@@ -459,6 +509,7 @@ function SceneDayContent(
             ← Back to the scene · Plan something specific
           </button>
           <Composer
+            standingLabel={accountFrame.standing?.label}
             planningContext={shownPlanning}
             composer={frame.composer}
             prefill={frame.prefill}
@@ -500,12 +551,23 @@ function SceneDayContent(
             </button>
           </header>
           <div className="v-speaking-body">
+            {scene && presentedLines.at(-1) && (
+              <p className="v-scene-offer">
+                {settingWords(scene.names.join(' and '))} · {settingWords(presentedLines.at(-1)?.words ?? '')}
+              </p>
+            )}
             {props.earlierMoment && (
               <p role="status">
                 These choices are from an earlier moment. If a choice has ended, nothing will be said.
               </p>
             )}
             {offer && <p className="v-scene-offer">{explainTerms(storyDates(offer.why))}</p>}
+            {available && accountFrame.standing && (
+              <p role="note">
+                A new suggestion replaces your standing word: {settingWords(accountFrame.standing.label)}.
+                Saying nothing keeps it.
+              </p>
+            )}
             {available && (
               <div className="v-scene-choices">
                 {choices.map((choice) => (
@@ -572,6 +634,21 @@ function SceneDayContent(
             )}
           </div>
           <div className="v-speaking-actions">
+            {canListen && (
+              <button
+                type="button"
+                className="v-conversation-listen v-btn v-btn-quiet"
+                onClick={() => {
+                  resolvedOpportunity.current = opportunity;
+                  setSpeaking(null);
+                  setClosedOpportunity(opportunity);
+                  setMoreFor(null);
+                  setListened({ id: responseKey, page: page + 1 });
+                }}
+              >
+                Keep listening
+              </button>
+            )}
             <button
               type="button"
               className="v-scene-silence v-btn"

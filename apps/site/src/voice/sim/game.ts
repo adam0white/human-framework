@@ -2226,6 +2226,21 @@ export class VoiceGame {
       voices: voicesView(h, t),
       muted: this.muted || this.phase === 'eid',
     };
+    // Presentation only: copy existing host receipts. No new saved state, inference or RNG.
+    const connected = this.calls.at(-1);
+    const missed = this.run.town.state.selinMissedAt;
+    if (connected || missed !== undefined) {
+      f.callFacts = {};
+      if (connected)
+        f.callFacts.connected = {
+          minute: connected.at,
+          day: dayOf(connected.at),
+          clock: clock(connected.at),
+          by: connected.by,
+        };
+      if (missed !== undefined)
+        f.callFacts.missed = { minute: missed, day: dayOf(missed), clock: clock(missed) };
+    }
     if (townDay(day).kind === 'ramadan') f.sky.fast = { from: cal.fajr, until: cal.maghrib };
     if (!this.paused && this.live() && this.fastForward()) {
       f.fastForward = h.body.asleep
@@ -2249,7 +2264,14 @@ export class VoiceGame {
         }
       }
     }
-    if (this.standing) f.standing = standingView(this.standing);
+    if (this.standing) {
+      f.standing = standingView(this.standing);
+      f.standing.minutesLeft = Math.max(0, Math.ceil(this.standing.expires - t));
+      f.standing.offered = offers.some((offer) => offer.id === this.standing?.draft.optionId);
+      const begun =
+        this.standing.going && this.cells.findLast((cell) => cell.decisionId === this.standing?.going);
+      if (begun) f.standing.begun = { clock: clock(begun.from), label: begun.label };
+    }
     return f;
   }
 }

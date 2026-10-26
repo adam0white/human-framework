@@ -59,6 +59,7 @@ it('waits for the player to leave a personal reply before showing the automatic 
     await act(() => vi.advanceTimersByTime(600));
     expect(el.querySelector('.v-personal-reply')?.textContent).toContain('I miss sitting across from her.');
     expect(el.querySelector('.v-overlay-night')).toBeNull();
+    expect(el.querySelector('.v-personal-leave')?.textContent).toContain('Day over · See recap and next day');
     await act(() => el.querySelector<HTMLButtonElement>('.v-personal-leave')?.click());
     expect(el.querySelector('.v-overlay-night')).not.toBeNull();
   } finally {

@@ -178,7 +178,7 @@ it('leaves routine decisions compact even while paused, with silence costing no 
   expect(props.onSpeakAvailability).toHaveBeenLastCalledWith(true, expect.any(String));
   expect(props.onSayNothing).not.toHaveBeenCalled();
 });
-it('moves unrelated earlier answers into the timeline without a second panel beside the scene', () => {
+it('keeps an unrelated earlier answer in the labelled request account, separate from the current scene', () => {
   const { el, props, update } = mount();
   props.frame.log.unshift(
     {
@@ -196,7 +196,10 @@ it('moves unrelated earlier answers into the timeline without a second panel bes
   expect(el.querySelector('.v-held-words details')).toBeNull();
   expect(el.querySelector('.v-earlier-reply')).toBeNull();
   expect(props.frame.log.some((line) => line.text === 'Fine.')).toBe(true);
-  expect(el.querySelector('.v-scene-reading > .v-scene-answer')).toBeNull();
+  expect(
+    el.querySelector('.v-scene-reading > .v-scene-answer:not([aria-label="Your latest suggestion"])'),
+  ).toBeNull();
+  expect(el.querySelector('[aria-label="Your latest suggestion"]')?.textContent).toContain('Fine.');
 });
 
 it('Back in the full composer keeps Enter and Escape cannot send a draft', () => {
@@ -291,7 +294,7 @@ it('reveals a bounded continuation locally without sending words or moving the c
   expect(props.onSuggest).not.toHaveBeenCalled();
   expect(props.onSayNothing).not.toHaveBeenCalled();
   expect(JSON.stringify(props.frame)).toBe(before);
-  expect(el.querySelector('.v-scene-choice')).not.toBeNull();
+  expect(el.querySelector('.v-scene-choice')).toBeNull();
   props.frame.log = [
     {
       ...props.frame.log[0],
@@ -335,7 +338,7 @@ it('speaks an accepted stay and a refusal inside the exchange, retaining raw rec
   expect(el.querySelector('.v-scene-stage .v-exchange')?.textContent).toContain(
     'I am glad I opened the door',
   );
-  expect(el.querySelector('.v-scene-answer')).toBeNull();
+  expect(el.querySelector('.v-scene-answer:not([aria-label="Your latest suggestion"])')).toBeNull();
   expect(props.frame.log.at(-1)?.text).toContain('Alright, I’ll do it.');
   click(el, '.v-conversation-listen');
   expect(el.querySelectorAll('.v-scene-stage .v-exchange-line')).toHaveLength(4);

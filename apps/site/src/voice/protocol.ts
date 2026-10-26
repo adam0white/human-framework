@@ -211,6 +211,10 @@ export interface Telegraph {
   likelihood?: number;
 }
 export interface StandingView {
+  /** Derived from existing host records; not saved or used to decide. */
+  begun?: { clock: string; label: string };
+  offered?: boolean;
+  minutesLeft?: number;
   draft: Draft;
   label: string;
   since: string;
@@ -291,6 +295,11 @@ export interface SceneWords {
   said?: false;
 }
 export interface Frame {
+  /** Existing host connection/missed-call receipts, never inferred from a begun activity. */
+  callFacts?: {
+    connected?: { minute: number; day: number; clock: string; by: string };
+    missed?: { minute: number; day: number; clock: string };
+  };
   sceneWords?: SceneWords[];
   phase: Phase;
   day: number;

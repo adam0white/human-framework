@@ -1,0 +1,15 @@
+# Voice accounts candidate — 2026-10-26
+
+This finite APP-only candidate exposes existing host facts. It is not deployed or independently reviewed. Parent games-deferred owns one independent review and any later integration/delivery. No player acceptance or broad ask closure follows.
+
+The main scene retains the last sent suggestion by its log ID and its actual subsequent answer. An active suggestion shows its deadline, remaining minutes and whether the actual offer exists now. A begun standing action uses the existing standing decision and activity cell. A planned end time never proves completion. Refusal, expiry, sleep and withdrawal use actual recorded text. When a suggestion disappears without a retained finish receipt, the display says its end or result is not recorded. The current activity is shown separately, without a private explanation or causal credit.
+
+Calls copy the existing connected-call list and the town's last missed-call record. A started outgoing activity alone does not establish a connection. The visible dates are host receipt dates, not invented ring/start/end timestamps. No new call is created. Only the last retained connection and missed attempt are shown; a conversation ending remains unproved.
+
+Both the direct-choice sheet and detailed planner warn before a confirmed suggestion replaces the standing word. The sheet retains a line from the current conversation and exposes passive Keep listening; this advances only local reading and sends no suggestion. A pinned personal reply at day end has an explicit “Day over · See recap and next day” button. This dismisses the reply and exposes the existing recap/next-day card. The underlying reading guards, scene admission, autonomy, costs, faith rules and simulation inputs remain unchanged.
+
+No saved field, input, scenario edition, opt-in or framework faculty was added. The additive frame fields copy existing host records. Raw baseline/candidate state and RNG continuation must match under identical ordinary reads, without normalization. The existing legacy `frame()` reader can advance the host town clock watermark; this candidate neither fixes that behavior nor claims the whole reader is pure. The new projection helpers themselves do not mutate their input.
+
+Uncovered engineering clauses, target 2026-10-27: durable request-to-finish linkage and explicit completion/interruption/replacement history; exact remaining work-window fit; call start/end chronology and full call history; action-name unification; payment and grave scenes; distinct conversation content; goal/planner totals and skip accounts; timing changes and the original F895 encounter. The existing 92 literal asks, compound clauses, conditional returns and source limits remain intact. This candidate does not guarantee obedience or attribute a later action to the player's advice.
+
+Private candidate hashes, focused results, raw full/compact and baseline proof, browser-fixture limits, failed setup attempts and cleanup evidence are in games-deferred/voice-accounts-report.md and voice-accounts-manifest.json. Actual same-tester retest and Adam's 2026-11-03 readiness remain separate.

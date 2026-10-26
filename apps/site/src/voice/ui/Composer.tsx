@@ -76,6 +76,7 @@ export type ComposerFields = Pick<Frame, 'composer' | 'options' | 'muted'> & {
   /** What he is doing, for the closed line while he is busy. */
   doingLabel: string | undefined;
   planningContext?: PlanningContextData;
+  standingLabel?: string;
 };
 
 export const Composer = memo(function Composer({
@@ -86,6 +87,7 @@ export const Composer = memo(function Composer({
   muted,
   doingLabel,
   planningContext,
+  standingLabel,
   telegraph,
   whyOpen,
   onPredict,
@@ -402,6 +404,11 @@ export const Composer = memo(function Composer({
               </button>
             ))}
           </fieldset>
+          {standingLabel && (
+            <p role="note">
+              Say it replaces your standing word: {explainTerms(standingLabel)}. Say nothing keeps it.
+            </p>
+          )}
           {sendRow}
         </div>
       </div>
