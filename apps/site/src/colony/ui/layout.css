@@ -966,3 +966,46 @@ body,
     min-height: 64px;
   }
 }
+
+/* Keep long order accounts beside reachable controls without changing their labels. */
+.well-reviewed {
+  padding: 0.75rem;
+  border-block-end: 1px solid var(--line, #ccc);
+}
+.well-reviewed p,
+.well-latest p,
+.well-draft-how {
+  overflow-wrap: anywhere;
+}
+.well-reviewed button {
+  min-height: 44px;
+  margin: 0.25rem;
+}
+.well-caption-text {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.well-nudge-send {
+  min-width: 7rem;
+  min-height: 44px;
+}
+.well-reply-row {
+  align-items: start;
+}
+.well-reply-row p {
+  min-width: 0;
+}
+.map-controls {
+  flex-wrap: wrap;
+}
+.map-controls button {
+  min-height: 44px;
+}
+
+.well-layout .bubble {
+  max-width: min(220px, 60vw);
+  max-height: min(9rem, 24dvh);
+  overflow-y: auto;
+  overflow-wrap: anywhere;
+  overscroll-behavior: contain;
+}

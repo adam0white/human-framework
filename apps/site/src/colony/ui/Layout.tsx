@@ -351,12 +351,40 @@ export function PersonSheet({
                 <Status card={card} />
               </div>
               <p>
+                Order {card.order.id} · Issued {dayClock(card.order.issuedAt)} · Status: {card.status}. Human
+                answer: {card.human.state === 'notNow' ? 'later' : card.human.state}.
+                {card.status !== 'active' &&
+                  ' This order has ended. Choose a new order if you want more work.'}
+              </p>
+              <p>
+                Sent modifiers: Rush {card.order.rush ? 'on' : 'off'}; Insist{' '}
+                {card.order.insist ? 'on' : 'off'}.
+              </p>
+              <p>
                 {card.order.appeal
                   ? `Sent appeal: ${APPEALS.find((a) => a.id === card.order.appeal)?.label}.`
                   : 'No appeal sent.'}
               </p>
               <div className="well-reply-row">
-                <p>{settingWords(card.human.says ?? card.human.label ?? 'Waiting for an answer.')}</p>
+                <p>
+                  {card.human.state === 'pending' ? (
+                    <>
+                      Waiting for an answer to this order.{' '}
+                      {card.human.says && (
+                        <>
+                          Recorded words: {settingWords(card.human.says)} Answer time unavailable. This is not
+                          current speech.
+                        </>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      Answer to this order:{' '}
+                      {settingWords(card.human.says ?? card.human.label ?? 'No spoken answer available.')}{' '}
+                      Answer time unavailable. This is not current speech.
+                    </>
+                  )}
+                </p>
                 {refused ? (
                   <button type="button" onClick={() => onRepeat(card)}>
                     Insist on it
@@ -442,6 +470,10 @@ export function PersonSheet({
             );
           })}
         </details>
+        <p className="well-draft-how">
+          Next order: Rush {rush ? 'on' : 'off'} · Insist {insist ? 'on' : 'off'}. Rush means faster work and
+          more hunger. Insist may cost trust. The person can still refuse or wait.
+        </p>
         <div className="well-how">
           <button type="button" aria-pressed={rush} onClick={onRush}>
             Rush
@@ -468,7 +500,11 @@ export function PersonSheet({
                 'can cause injury',
                 `can injure ${shortName(id)}`,
               )}{' '}
-              {forecasts[pending]
+              {forecasts[pending]?.input.personId === id &&
+              forecasts[pending]?.input.placeId === pending &&
+              Boolean(forecasts[pending]?.input.rush) === rush &&
+              Boolean(forecasts[pending]?.input.insist) === insist &&
+              (forecasts[pending]?.input.appeal ?? null) === appeal
                 ? forecastWords(forecasts[pending].prediction.text)
                 : 'Checking the answer…'}
             </p>
@@ -515,6 +551,7 @@ export function PersonSheet({
                   type="button"
                   key={p}
                   className={outline === p ? 'is-outlined' : ''}
+                  aria-label={`Order ${shortName(id)} to ${PLACE_LABEL[p]}`}
                   aria-pressed={asked === p}
                   onClick={() => onPlace(p)}
                   onPointerEnter={() => onHover(p)}

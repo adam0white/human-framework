@@ -27,6 +27,11 @@ vi.mock('./Pane.tsx', () => ({
       createElement('button', { type: 'button', onClick: () => p.onPlace('well') }, `Scene well ${p.side}`),
       createElement(
         'button',
+        { type: 'button', onClick: p.onShowVillage },
+        `Show ${p.side === 'human' ? 'Human' : 'Classic'} village`,
+      ),
+      createElement(
+        'button',
         { type: 'button', onClick: () => p.onSelect('idris') },
         `Scene person ${p.side}`,
       ),
@@ -351,4 +356,145 @@ it('keeps the refused destination outlined when choosing another worker', async 
   await act(() => container.querySelector<HTMLButtonElement>('[data-person="yusuf"]')?.click());
   expect(container.querySelector('.well-places .is-outlined')?.textContent).toContain('House');
   expect(colony.actions.order).not.toHaveBeenCalled();
+});
+
+it('keeps a reviewed proposal deliberate through moving frames and its order lifecycle', async () => {
+  await begin();
+  const proposal = NUDGES.find((n) => n.id === 'cedar');
+  if (!proposal || !colony.frame) throw Error('Missing proposal');
+  const reviewed = { ...proposal, until: colony.frame.minute + 30, prefill: { rush: true } };
+  colony.frame = { ...colony.frame, nudges: [reviewed] };
+  await act(() => root.render(createElement(App)));
+  const reviewButton = [...container.querySelectorAll<HTMLButtonElement>('button')].find(
+    (b) => b.textContent === 'Review',
+  );
+  expect(reviewButton).toBeDefined();
+  await act(() => reviewButton?.dispatchEvent(new PointerEvent('pointerdown', { bubbles: true })));
+  colony.frame = {
+    ...colony.frame,
+    nudges: [{ ...reviewed, id: 'new-under-finger', order: { personId: 'maryam', placeId: 'cedar' } }],
+  };
+  await act(() => root.render(createElement(App)));
+  await act(() => reviewButton?.dispatchEvent(new MouseEvent('click', { bubbles: true, detail: 1 })));
+  expect(colony.actions.order).not.toHaveBeenCalled();
+  expect(container.querySelector('.well-reviewed')?.textContent).toContain('Rush is suggested');
+  expect(container.querySelector('.well-draft-how')?.textContent).toContain('Rush off');
+  expect(container.querySelector('.well-reviewed')?.textContent).toContain(reviewed.reason);
+  const next = {
+    ...reviewed,
+    id: 'different',
+    order: { personId: 'maryam' as const, placeId: 'well' as const },
+  };
+  colony.frame = { ...colony.frame, nudges: [next], minute: colony.frame.minute + 1 };
+  await act(() => root.render(createElement(App)));
+  expect(container.querySelector('.well-reviewed')?.textContent).toContain('Idris');
+  await click('Rush');
+  await click('Insist');
+  await click('Appeal ▾');
+  await click('Duty');
+  await click('Send reviewed order');
+  expect(colony.actions.order).not.toHaveBeenCalled();
+  expect(container.querySelector('.well-risk')?.textContent).toContain('Idris');
+  await click('Send anyway');
+  expect(colony.actions.order).toHaveBeenCalledExactlyOnceWith(
+    { ...reviewed.order, rush: true, insist: true, appeal: 'duty' },
+    reviewed.id,
+  );
+  await click('Show Human village');
+  expect(colony.actions.order).toHaveBeenCalledTimes(1);
+  expect(container.textContent).toContain('Back to Idris');
+  await click('Scene well human');
+  expect(colony.actions.order).toHaveBeenCalledTimes(1);
+  await click('Back to Idris');
+  const game = new ColonyGame(20261003, createFrameworkHumanSide);
+  game.issue({ ...reviewed.order, rush: true, insist: true, appeal: 'duty' });
+  colony.frame = game.frame();
+  await act(() => root.render(createElement(App)));
+  expect(container.querySelector('.well-latest')?.textContent).toContain('Rush on');
+  expect(container.querySelector('.well-latest')?.textContent).toContain('Insist on');
+  expect(container.querySelector('.well-latest')?.textContent).toContain('Sent appeal: it’s your duty');
+  await click('Rush');
+  expect(container.querySelector('.well-latest')?.textContent).toContain('Rush on');
+  expect(container.querySelector('.well-latest')?.textContent).toContain('pending');
+  game.advance(1);
+  colony.frame = game.frame();
+  await act(() => root.render(createElement(App)));
+  colony.frame = {
+    ...colony.frame,
+    cards: colony.frame.cards.map((c) => ({
+      ...c,
+      human: { state: 'notNow' as const, says: 'After I drink.' },
+    })),
+  };
+  await act(() => root.render(createElement(App)));
+  expect(container.querySelector('.well-latest')?.textContent).toContain('Human answer: later');
+  expect(container.querySelector('.well-latest')?.textContent).toContain('Issued');
+  expect(container.querySelector('.well-latest')?.textContent).toContain('Answer time unavailable');
+  colony.frame = {
+    ...colony.frame,
+    cards: colony.frame.cards.map((c) => ({ ...c, status: 'lapsed' as const })),
+  };
+  await act(() => root.render(createElement(App)));
+  expect(container.querySelector('.well-latest')?.textContent).toContain('lapsed');
+  colony.frame = {
+    ...new ColonyGame(20261003, createFrameworkHumanSide).frame(),
+    nudges: [reviewed],
+    minute: reviewed.until - 1,
+  };
+  await act(() => root.render(createElement(App)));
+  await click('Review');
+  colony.frame = { ...colony.frame, nudges: [next], minute: reviewed.until };
+  await act(() => root.render(createElement(App)));
+  expect(container.querySelector('.well-reviewed')?.textContent).toContain('unavailable');
+  const send = [...container.querySelectorAll<HTMLButtonElement>('button')].find(
+    (b) => b.textContent === 'Send reviewed order',
+  );
+  expect(send?.disabled).toBe(true);
+  await act(() => send?.click());
+  expect(colony.actions.order).toHaveBeenCalledTimes(1);
+});
+
+// Independent review concern: current danger must be checked after a held press.
+it('review concern revalidates danger after pointer down', async () => {
+  await begin();
+  const proposal = NUDGES.find((n) => n.id === 'dawn-site');
+  if (!proposal || !colony.frame) throw Error('Missing proposal');
+  const held = { ...proposal, until: colony.frame.minute + 30 };
+  colony.frame = { ...colony.frame, weather: { ...colony.frame.weather, kind: 'clear' }, nudges: [held] };
+  await act(() => root.render(createElement(App)));
+  const button = [...container.querySelectorAll<HTMLButtonElement>('button')].find(
+    (b) => b.textContent === 'Send',
+  );
+  expect(button).toBeDefined();
+  await act(() => button?.dispatchEvent(new PointerEvent('pointerdown', { bubbles: true })));
+  colony.frame = {
+    ...colony.frame,
+    minute: colony.frame.minute + 1,
+    weather: { ...colony.frame.weather, kind: 'storm' },
+  };
+  await act(() => root.render(createElement(App)));
+  await act(() => button?.dispatchEvent(new MouseEvent('click', { bubbles: true, detail: 1 })));
+  expect(colony.actions.order).not.toHaveBeenCalled();
+});
+
+it('checks current storm risk again when sending the captured reviewed draft', async () => {
+  await begin();
+  const proposal = NUDGES.find((n) => n.id === 'dawn-site');
+  if (!proposal || !colony.frame) throw Error('Missing proposal');
+  const held = { ...proposal, until: colony.frame.minute + 30, prefill: { rush: true } };
+  colony.frame = { ...colony.frame, weather: { ...colony.frame.weather, kind: 'clear' }, nudges: [held] };
+  await act(() => root.render(createElement(App)));
+  await click('Review');
+  colony.frame = {
+    ...colony.frame,
+    minute: colony.frame.minute + 1,
+    weather: { ...colony.frame.weather, kind: 'storm' },
+    nudges: [],
+  };
+  await act(() => root.render(createElement(App)));
+  await click('Send reviewed order');
+  expect(colony.actions.order).not.toHaveBeenCalled();
+  expect(container.querySelector('.well-risk')?.textContent).toContain('Yusuf');
+  await click('Send anyway');
+  expect(colony.actions.order).toHaveBeenCalledExactlyOnceWith(held.order, held.id);
 });

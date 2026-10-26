@@ -40,6 +40,7 @@ export interface PaneProps {
   onSelect(id: VillagerId): void;
   onPlace(place: PlaceId): void;
   onMorePlaces?(): void;
+  onShowVillage?(): void;
   onHoverPlace(place: PlaceId | null): void;
   bubbles?: BubbleManager;
 }
@@ -552,6 +553,20 @@ export const Pane = memo(function Pane(props: PaneProps) {
   return (
     <div className={`pane-canvas pane-canvas-${side}`}>
       <div className="map-controls">
+        {props.onShowVillage && (
+          <button
+            type="button"
+            onClick={() => {
+              pan.current = null;
+              localFollow.current = false;
+              setChoices([]);
+              setPanned(false);
+              props.onShowVillage?.();
+            }}
+          >
+            Show {side === 'human' ? 'Human' : 'Classic'} village
+          </button>
+        )}
         <span className="map-hint">Drag to look around</span>
         {(panned || (props.following === false && !props.frameSelection)) && (
           <button

@@ -111,7 +111,7 @@ function Harness({
     destination: null,
     hoverPlace,
     ...settings,
-    onSelect,
+    onSelect: settings.onSelect ?? onSelect,
     onPlace: settings.onPlace ?? onPlace,
     onHoverPlace: (place) => {
       onHover(place);
@@ -556,4 +556,39 @@ it('dismisses only the visible dated speech through the actual map control acros
   await draw();
   await draw(5000);
   expect(container.querySelector('.bubble')).not.toBeNull();
+});
+
+it('preserves pointer identity through moving overlap and explicit village navigation', async () => {
+  const overview = vi.fn();
+  const { canvas, container, store, update, onSelect, onPlace } = await setup({
+    following: false,
+    selectedId: null,
+    onShowVillage: overview,
+  });
+  const point = mapPoint({ x: 320, y: 234 }, mapView(360, 380, null, null), 360, 380);
+  await pointer(canvas, 'pointerdown', point.x, point.y, 1);
+  const old = required(store.current.curr);
+  store.current.curr = { ...old, human: [{ ...required(old.human[0]), id: 'maryam', label: 'Walking' }] };
+  const replacement = vi.fn();
+  await update({ onSelect: replacement });
+  await draw();
+  expect(vi.mocked(drawScene).mock.calls.at(-1)?.[1].people[0]?.id).toBe('maryam');
+  await pointer(canvas, 'pointerup', point.x, point.y);
+  expect(onSelect).toHaveBeenCalledExactlyOnceWith('yusuf');
+  expect(replacement).not.toHaveBeenCalled();
+  await pointer(canvas, 'pointerdown', point.x, point.y, 1);
+  await pointer(canvas, 'pointercancel', point.x, point.y);
+  await pointer(canvas, 'pointerup', point.x, point.y);
+  await pointer(canvas, 'pointerdown', point.x, point.y, 1);
+  await pointer(canvas, 'pointermove', point.x + 60, point.y, 1);
+  await pointer(canvas, 'pointerup', point.x + 60, point.y);
+  expect(replacement).not.toHaveBeenCalled();
+  const button = [...container.querySelectorAll<HTMLButtonElement>('button')].find(
+    (b) => b.textContent === 'Show Human village',
+  );
+  expect(button).toBeDefined();
+  await act(() => button?.click());
+  expect(overview).toHaveBeenCalledOnce();
+  expect(onPlace).not.toHaveBeenCalled();
+  expect(onSelect).toHaveBeenCalledTimes(1);
 });

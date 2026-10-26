@@ -9,7 +9,7 @@ import { playerError } from '../../shared/player-error.ts';
 import type { PlaytestFile } from '../../shared/playtest.ts';
 import type { HurtNews, MomentRecord } from '../sim/game.ts';
 import type { PlaceId } from '../sim/map.ts';
-import type { AppealChip, OrderInput } from '../sim/orders.ts';
+import { APPEALS, type AppealChip, type OrderInput } from '../sim/orders.ts';
 import type { Village } from '../sim/village.ts';
 import { type VillagerId, villagerById } from '../sim/world-types.ts';
 import { BubbleManager } from './bubbles.ts';
@@ -46,6 +46,17 @@ import { VILLAGE_WORDS } from './village-words.ts';
 import { wellWords as settingWords } from './words.ts';
 import './layout.css';
 
+type ReviewedDraft = {
+  input: OrderInput;
+  id: string;
+  until: number;
+  text: string;
+  reason?: string;
+  suggestedRush: boolean;
+  suggestedInsist: boolean;
+  suggestedAppeal?: AppealChip;
+  dispatch(input: OrderInput, id?: string): void;
+};
 type Sheet = 'people' | 'person' | 'orders' | 'stand' | 'suggestion';
 function savedRun(): PlaytestFile | null {
   try {
@@ -74,6 +85,13 @@ export function App() {
     [insist, setInsist] = useState(false),
     [appeal, setAppeal] = useState<AppealChip | null>(null),
     [appealOpen, setAppealOpen] = useState(false);
+  const [draft, setDraft] = useState<ReviewedDraft | null>(null);
+  const [villageReturn, setVillageReturn] = useState<{ id: VillagerId; side: 'human' | 'classic' } | null>(
+    null,
+  );
+  const heldSuggestion = useRef<(() => void) | null>(null);
+  const currentFrame = useRef(frame);
+  currentFrame.current = frame;
   const [pending, setPending] = useState<PlaceId | null>(null),
     [asked, setAsked] = useState<PlaceId | null>(null),
     [outline, setOutline] = useState<PlaceId | null>(null),
@@ -196,6 +214,7 @@ export function App() {
         : playerError('The restored game does not match.', 'load')
     : null;
   const resetHow = () => {
+    setDraft(null);
     setRush(false);
     setInsist(false);
     setAppeal(null);
@@ -228,6 +247,7 @@ export function App() {
   const send = useCallback(
     (input: OrderInput, id?: string) => {
       actions.order(input, id);
+      setDraft(null);
       setPerson(input.personId);
       setFollowing(input.personId);
       setSheet('person');
@@ -260,15 +280,22 @@ export function App() {
       : null;
   const choosePlace = (place: PlaceId) => {
     if (!person || !frame || shelf) return;
+    const sourceId = draft ? undefined : nudgeId;
+    setDraft(null);
+    setNudgeId(sourceId);
     const input = inputFor(place);
     if (!input) return;
     if (riskyPlace(frame, place)) {
       setPending(place);
       setAppealOpen(false);
-    } else send(input, nudgeId);
+    } else send(input, sourceId);
   };
   const confirm = () => {
     if (pending) {
+      if (draft && pending === draft.input.placeId) {
+        sendDraft(true);
+        return;
+      }
       const input = inputFor(pending);
       if (input) send(input, nudgeId);
     }
@@ -313,18 +340,81 @@ export function App() {
   const review = nudge ? suggestionNeedsReview(choice?.nudge ?? nudge, frame) : false;
   const applyNudge = () => {
     if (!nudge) return;
+    const now = currentFrame.current;
+    if (!now || now.ended || now.minute >= nudge.until) {
+      setFlash('This proposal is unavailable. Choose a new order deliberately.');
+      return;
+    }
     const actual = choice?.nudge ?? nudge;
     const input = suggestionInput(actual);
-    if (!review) {
+    if (!review && !suggestionNeedsReview(actual, now)) {
       send(input, nudge.id);
       return;
     }
     pick(input.personId);
-    setRush(Boolean(input.rush));
-    setInsist(Boolean(input.insist));
-    setAppeal(input.appeal ?? null);
+    // Review is a proposal, not consent to any suggested modifier.
+    setRush(false);
+    setInsist(false);
+    setAppeal(null);
+    setDraft({
+      input: { personId: input.personId, placeId: input.placeId },
+      id: nudge.id,
+      until: nudge.until,
+      text: actual.text,
+      reason: actual.reason,
+      suggestedRush: Boolean(input.rush),
+      suggestedInsist: Boolean(input.insist),
+      suggestedAppeal: input.appeal,
+      dispatch: send,
+    });
     setOutline(input.placeId);
     setNudgeId(nudge.id);
+  };
+  const draftAvailable = Boolean(
+    draft &&
+      frame &&
+      !frame.ended &&
+      frame.minute < draft.until &&
+      frame.human.some((p) => p.id === draft.input.personId) &&
+      placesFor(draft.input.personId, frame.rules).includes(draft.input.placeId),
+  );
+  const sendDraft = (riskConfirmed = false) => {
+    const now = currentFrame.current;
+    if (
+      !draft ||
+      !now ||
+      now.ended ||
+      now.minute >= draft.until ||
+      !now.human.some((p) => p.id === draft.input.personId) ||
+      !placesFor(draft.input.personId, now.rules).includes(draft.input.placeId)
+    )
+      return;
+    if (riskyPlace(now, draft.input.placeId) && !riskConfirmed) {
+      setPending(draft.input.placeId);
+      setAppealOpen(false);
+      return;
+    }
+    draft.dispatch(
+      {
+        ...draft.input,
+        ...(rush ? { rush: true } : {}),
+        ...(insist ? { insist: true } : {}),
+        ...(appeal ? { appeal } : {}),
+      },
+      draft.id,
+    );
+  };
+  const showVillage = (side: 'human' | 'classic') => {
+    const id = person ?? following;
+    if (id) setVillageReturn({ id, side: mapSide });
+    setMapSide(side);
+    setPerson(null);
+    setFollowing(null);
+    setOutline(null);
+    setHover(null);
+    setPending(null);
+    setSheet('people');
+    setFollowKey((k) => k + 1);
   };
   const skipNudge = () => {
     if (nudge) {
@@ -463,6 +553,7 @@ export function App() {
             following={Boolean(following)}
             frameSelection={true}
             followKey={followKey}
+            onShowVillage={() => showVillage(side)}
             onSelect={pick}
             onPlace={scenePlace}
             onHoverPlace={setHover}
@@ -472,7 +563,19 @@ export function App() {
       ))}
       {!shelf && (
         <div className="well-scene-alert">
-          {newsReturn ? (
+          {villageReturn ? (
+            <button
+              type="button"
+              onClick={() => {
+                const r = villageReturn;
+                setMapSide(r.side);
+                pick(r.id);
+                setVillageReturn(null);
+              }}
+            >
+              Back to {shortName(villageReturn.id)}
+            </button>
+          ) : newsReturn ? (
             <button
               type="button"
               onClick={() => {
@@ -707,15 +810,19 @@ export function App() {
                     <button
                       type="button"
                       className="well-nudge-send"
-                      onClick={choice?.underway ? skipNudge : applyNudge}
+                      onPointerDown={() => {
+                        heldSuggestion.current = choice?.underway ? skipNudge : applyNudge;
+                      }}
+                      onPointerCancel={() => {
+                        heldSuggestion.current = null;
+                      }}
+                      onClick={(event) => {
+                        const selected = event.detail > 0 ? heldSuggestion.current : null;
+                        heldSuggestion.current = null;
+                        (selected ?? (choice?.underway ? skipNudge : applyNudge))();
+                      }}
                     >
-                      {choice?.underway
-                        ? 'Keep watching'
-                        : choice?.refusal
-                          ? 'Insist'
-                          : review
-                            ? 'Review'
-                            : 'Send'}
+                      {choice?.underway ? 'Keep watching' : review ? 'Review' : 'Send'}
                     </button>
                     <button type="button" aria-label="Dismiss suggestion" onClick={skipNudge}>
                       ×
@@ -780,14 +887,21 @@ export function App() {
                         <p>The person can still refuse or wait.</p>
                         {nudge && (
                           <>
-                            <button type="button" onClick={choice?.underway ? skipNudge : applyNudge}>
-                              {choice?.underway
-                                ? 'Keep watching'
-                                : choice?.refusal
-                                  ? 'Insist'
-                                  : review
-                                    ? 'Review'
-                                    : 'Send'}
+                            <button
+                              type="button"
+                              onPointerDown={() => {
+                                heldSuggestion.current = choice?.underway ? skipNudge : applyNudge;
+                              }}
+                              onPointerCancel={() => {
+                                heldSuggestion.current = null;
+                              }}
+                              onClick={(event) => {
+                                const selected = event.detail > 0 ? heldSuggestion.current : null;
+                                heldSuggestion.current = null;
+                                (selected ?? (choice?.underway ? skipNudge : applyNudge))();
+                              }}
+                            >
+                              {choice?.underway ? 'Keep watching' : review ? 'Review' : 'Send'}
                             </button>
                             <button type="button" onClick={skipNudge}>
                               ×
@@ -797,39 +911,74 @@ export function App() {
                       </div>
                     </>
                   ) : person ? (
-                    <PersonSheet
-                      frame={frame}
-                      id={person}
-                      rush={rush}
-                      insist={insist}
-                      appeal={appeal}
-                      appealOpen={appealOpen}
-                      pending={pending}
-                      asked={asked}
-                      forecasts={colony.scenePredictions ?? {}}
-                      onBack={backPeople}
-                      onRush={() => setRush((v) => !v)}
-                      onInsist={() => setInsist((v) => !v)}
-                      onAppeal={(a) => {
-                        setAppeal(a);
-                        setAppealOpen(false);
-                      }}
-                      onAppealOpen={() => {
-                        setAppealOpen((v) => !v);
-                        setPending(null);
-                      }}
-                      onAbout={() => setInspect(person)}
-                      onPlace={choosePlace}
-                      onHover={setHover}
-                      onConfirm={confirm}
-                      onCancelRisk={() => setPending(null)}
-                      onCancel={(id) => {
-                        actions.cancel(id);
-                        saveNow();
-                      }}
-                      onRepeat={(card) => send({ ...repeatPersonOrder(card), insist: true })}
-                      outline={outline}
-                    />
+                    <>
+                      {draft && (
+                        <section className="well-reviewed" aria-label="Reviewed proposal">
+                          <strong>
+                            Reviewed proposal · {shortName(draft.input.personId)} →{' '}
+                            {PLACE_LABEL[draft.input.placeId]}
+                          </strong>
+                          <p>{settingWords(draft.text)}</p>
+                          {draft.reason && <p>Earlier reason: {settingWords(draft.reason)}</p>}
+                          {draft.suggestedInsist && (
+                            <p>Insist is suggested. It may cost trust. Choose it yourself below.</p>
+                          )}
+                          {draft.suggestedAppeal && (
+                            <p>
+                              Suggested appeal: {APPEALS.find((a) => a.id === draft.suggestedAppeal)?.label}.
+                              Choose an appeal yourself below.
+                            </p>
+                          )}
+                          {draft.suggestedRush && (
+                            <p>Rush is suggested: faster work, more hunger. Choose it yourself below.</p>
+                          )}
+                          {!draftAvailable && (
+                            <p role="status">
+                              This proposal is unavailable. Choose a new order deliberately.
+                            </p>
+                          )}
+                          <button type="button" disabled={!draftAvailable} onClick={() => sendDraft()}>
+                            Send reviewed order
+                          </button>
+                          <button type="button" onClick={resetHow}>
+                            Discard proposal
+                          </button>
+                        </section>
+                      )}
+                      <PersonSheet
+                        frame={frame}
+                        id={person}
+                        rush={rush}
+                        insist={insist}
+                        appeal={appeal}
+                        appealOpen={appealOpen}
+                        pending={pending}
+                        asked={asked}
+                        forecasts={colony.scenePredictions ?? {}}
+                        onBack={backPeople}
+                        onRush={() => setRush((v) => !v)}
+                        onInsist={() => setInsist((v) => !v)}
+                        onAppeal={(a) => {
+                          setAppeal(a);
+                          setAppealOpen(false);
+                        }}
+                        onAppealOpen={() => {
+                          setAppealOpen((v) => !v);
+                          setPending(null);
+                        }}
+                        onAbout={() => setInspect(person)}
+                        onPlace={choosePlace}
+                        onHover={setHover}
+                        onConfirm={confirm}
+                        onCancelRisk={() => setPending(null)}
+                        onCancel={(id) => {
+                          actions.cancel(id);
+                          saveNow();
+                        }}
+                        onRepeat={(card) => send({ ...repeatPersonOrder(card), insist: true })}
+                        outline={outline}
+                      />
+                    </>
                   ) : null)}
               </section>
             </>
