@@ -17,9 +17,11 @@
  * Does not cover: keeping estimates over time (that is `social/impressions.ts`), detecting deception, or any
  * sign beyond the reserve-reduced outward ones.
  */
+
 import { readAffect } from './affect/index.ts';
 import { readCapacities } from './body/index.ts';
 import { clamp01, round } from './core/index.ts';
+import { assertSelector } from './feature-selectors.ts';
 import { predict, previewCommand, readPerson } from './person.ts';
 import {
   acquaint,
@@ -192,6 +194,7 @@ export function predictAs(
     forecastContext?: 'conditioned';
   } = {},
 ): ImpressionPrediction {
+  assertSelector('forecastContext', opts.forecastContext, 'conditioned');
   const now = opts.now ?? target.now;
   const { now: _now, ...rest } = opts;
   const model = imagine(observer, target, now);
@@ -210,6 +213,7 @@ export function previewCommandAs(
   now: Minute = target.now,
   opts: { forecastContext?: 'conditioned' } = {},
 ): { outcome: CommandOutcome; confidence: Unit } {
+  assertSelector('forecastContext', opts.forecastContext, 'conditioned');
   const model = imagine(observer, target, now);
   return {
     outcome: previewCommand(model, affordances, cmd, opts),

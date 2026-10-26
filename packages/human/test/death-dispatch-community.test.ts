@@ -1,12 +1,17 @@
 import { createHash } from 'node:crypto';
 import { describe, expect, test } from 'vitest';
+import {
+  prunedJointDeathArm,
+  runCommunityDeathRepairControl,
+} from '../examples/community-death-repair-control.ts';
 import { deathDispatchControl } from '../examples/death-dispatch-control.ts';
 import { BELIEF_DEFAULTS } from '../src/beliefs/index.ts';
 import { die, enableDoze, injure } from '../src/body/index.ts';
-import { marry, spousesOf } from '../src/partnering/index.ts';
+import { MUSLIM_CUSTOM, marry, spousesOf } from '../src/partnering/index.ts';
 import { begin, createPerson, decide } from '../src/person.ts';
 import {
   acceptJoint,
+  advanceCommunityPerson,
   createCommunity,
   proposeJoint,
   stepCommunity,
@@ -29,11 +34,12 @@ function bleed(p: ReturnType<typeof person>) {
   injure(p, { part: 'leg', severity: 0.5, bleeding: 1, healRatePerDay: 0 });
   p.body.health = 0.0001;
 }
-function family() {
+function family(waiting = false) {
   const dead = person('a', 'male');
   const spouse = person('b');
   const friend = person('c');
-  if (!marry(dead, spouse, 0).ok) throw new Error('test marriage failed');
+  if (!marry(dead, spouse, 0, waiting ? MUSLIM_CUSTOM : undefined).ok)
+    throw new Error('test marriage failed');
   seedTie(friend, { otherId: dead.id, roles: ['friend'], affection: 0.8 });
   const c = createCommunity([dead, spouse, friend]);
   c.idleUntil = { a: 20, b: 20, c: 20 };
@@ -51,6 +57,129 @@ const joint: Affordance = {
 };
 
 describe('opt-in community death discovery', () => {
+  test('headless running partner cleanup and factual widowhood controls', runCommunityDeathRepairControl);
+
+  test('a passive dead target is admitted and completes; a declared conversation coactor is required', () => {
+    for (const action of ['remember', 'talk']) {
+      const a = person('a');
+      const b = person('b');
+      const c = createCommunity([a, b]);
+      die(b);
+      const offer: Affordance = {
+        id: action,
+        action,
+        label: action,
+        targetId: b.id,
+        duration: 20,
+        effort: 0,
+        advertises: { leisure: 1 },
+      };
+      const resolved: string[] = [];
+      const host: World = {
+        ...world,
+        affordancesFor: (p) => (p.id === 'a' && p.now < 20 ? [offer] : []),
+        resolve: (p, act, reason) => {
+          resolved.push(reason);
+          return {
+            at: p.now,
+            action: act.action,
+            affordanceId: act.affordanceId,
+            status: reason === 'ended' ? 'completed' : 'interrupted',
+          };
+        },
+      };
+      stepCommunity(c, host, 0, policy);
+      expect(a.activity?.action).toBe(action === 'remember' ? action : undefined);
+      stepCommunity(c, host, 25, policy);
+      expect(resolved).toEqual(action === 'remember' ? ['ended'] : []);
+      // Running work uses the same participant contract as offer admission.
+      const actor = person('a');
+      const coactor = person('b');
+      const running = createCommunity([actor, coactor]);
+      begin(actor, offer, decide(actor, [offer]));
+      bleed(coactor);
+      running.idleUntil.b = 10;
+      const events = [
+        ...stepCommunity(running, world, 10, policy),
+        ...stepCommunity(running, world, 25, policy),
+      ];
+      expect(events.find((e) => e.kind === 'finish')?.status).toBe(
+        action === 'remember' ? 'completed' : 'interrupted',
+      );
+    }
+  });
+
+  test('pruned public joint history distinguishes pending-proposal death from actual participant loss across restore', () => {
+    for (const partnerDies of [false, true]) {
+      const direct = prunedJointDeathArm(partnerDies);
+      expect(prunedJointDeathArm(partnerDies, true)).toEqual(direct);
+      expect(direct.resolved.filter((x) => x.startsWith('b:'))).toEqual([
+        partnerDies ? 'b:interrupted' : 'b:ended',
+      ]);
+    }
+  });
+
+  test('a pruned joint-only mirror preflights its living coactor before end credit', () => {
+    const direct = prunedJointDeathArm(true, false, true, true);
+    expect(prunedJointDeathArm(true, true, true, true)).toEqual(direct);
+    expect(direct.events.filter((e) => e.kind === 'died')).toMatchObject([{ personId: 'd', at: 20 }]);
+    expect(direct.resolved.filter((x) => x.startsWith('b:'))).toEqual(['b:interrupted']);
+    expect(direct.events.filter((e) => e.kind === 'finish' && e.personId === 'b')).toMatchObject([
+      { at: 20, status: 'interrupted' },
+    ]);
+  });
+
+  test('attended widowhood uses actual death time even with late receipt or a missing social tie', () => {
+    for (const tied of [true, false]) {
+      const f = family(true);
+      f.spouse.now = 100;
+      if (!tied) f.spouse.social.relationships = [];
+      tellDeath(f.c, f.dead, 10, { receipt: 'attended' });
+      expect(f.spouse.bonds?.marriages[0]?.endedAt).toBe(10);
+      expect(f.spouse.bonds?.mourning?.since).toBe(10);
+      const before = JSON.stringify(f.spouse.bonds);
+      tellDeath(f.c, f.dead, 50, { receipt: 'attended' });
+      expect(JSON.stringify(f.spouse.bonds)).toBe(before);
+    }
+  });
+
+  test('recursive deaths cancel running joint-only mirrors even when a world percept interrupts too', () => {
+    const { dead, spouse, friend, c } = family();
+    let survivorOffer: Affordance | undefined;
+    const host: World = {
+      ...world,
+      mirror: (_p, offer) => ({ ...offer, with: [] }),
+      perceptsFor: (p) => [
+        {
+          at: p.now,
+          channel: 'saw',
+          kind: 'alarm',
+          targetId: p.id,
+          salience: 1,
+          valence: -0.8,
+          summary: 'An alarm sounds.',
+        },
+      ],
+      affordancesFor: (p) => (p.id === friend.id && survivorOffer ? [survivorOffer] : []),
+    };
+    const proposal = proposeJoint(c, dead, joint, decide(dead, [joint]));
+    acceptJoint(c, host, proposal, spouse, decide(spouse, [joint]), () => {}, policy);
+    expect(acceptJoint(c, host, proposal, friend, decide(friend, [joint]), () => {}, policy)).toHaveLength(3);
+    survivorOffer = friend.activity?.affordance;
+    if (!dead.activity) throw new Error('missing activity');
+    dead.activity.reviewAt = 10;
+    bleed(dead);
+    bleed(spouse);
+    const events = stepCommunity(c, host, 25, policy);
+    expect(events.filter((e) => e.kind === 'died')).toHaveLength(2);
+    expect(
+      events.filter((e) => e.kind === 'finish' && e.personId === friend.id).map((e) => e.status),
+    ).toEqual(['interrupted']);
+    expect(friend.trace.some((d) => d.interrupt?.startsWith('death:'))).toBe(true);
+    expect(friend.activity).toBeNull();
+    expect(stepCommunity(c, host, 30, policy).filter((e) => e.kind === 'died')).toEqual([]);
+  });
+
   test('headless catch-up control dispatches once across plain JSON restore', () => {
     expect(deathDispatchControl()).toEqual({
       deaths: [{ id: 'a', at: 10 }],
@@ -95,12 +224,77 @@ describe('opt-in community death discovery', () => {
     bleed(dead);
     const events = stepCommunity(c, world, 10, { ...policy, tellDeaths: false });
     expect(proposal.status).toBe('declined');
-    expect(c.interrupts.b).toMatchObject({ at: 10, reason: `declined:${proposal.id}` });
-    expect(c.interrupts.c).toMatchObject({ at: 10, reason: `declined:${proposal.id}` });
+    expect(c.interrupts.b).toMatchObject({ at: 10, reason: `death:${dead.id}` });
+    expect(c.interrupts.c).toMatchObject({ at: 10, reason: `death:${dead.id}` });
     expect(events.filter((e) => e.kind === 'died')).toHaveLength(1);
-    expect(spousesOf(spouse)).toEqual(['a']);
+    expect(spousesOf(spouse)).toEqual([]);
     expect(friend.social.relationships[0]?.deceasedAt).toBeUndefined();
     expect(stepCommunity(c, world, 11, policy).filter((e) => e.kind === 'died')).toEqual([]);
+  });
+
+  test('a pending proposal death does not cancel unrelated running work in the ordinary driver', () => {
+    const { dead, spouse, friend, c } = family();
+    const old = { ...joint, id: 'old', action: 'old', with: undefined };
+    begin(spouse, old, decide(spouse, [old]));
+    const proposal = proposeJoint(c, dead, joint, decide(dead, [joint]));
+    proposal.accepted.push(spouse.id);
+    c.idleUntil.a = 10;
+    c.idleUntil.c = 30;
+    delete c.interrupts.b;
+    delete c.interrupts.c;
+    bleed(dead);
+    const resolved: string[] = [];
+    const host: World = {
+      ...world,
+      resolve: (p, act, reason) => {
+        resolved.push(`${p.id}:${reason}`);
+        return {
+          at: p.now,
+          affordanceId: act.affordanceId,
+          action: act.action,
+          status: reason === 'ended' ? 'completed' : 'interrupted',
+        };
+      },
+    };
+    stepCommunity(c, host, 10, { ...policy, tellDeaths: false });
+    stepCommunity(c, host, 25, { ...policy, tellDeaths: false });
+    expect(proposal.settledReason).toBe(`death:${dead.id}`);
+    expect(resolved).toEqual([`${spouse.id}:ended`]);
+    expect(friend.body.alive).toBe(true);
+  });
+
+  test('accepting other work cannot finish an old task with a dead partner for completion credit', () => {
+    const { dead, spouse, friend, c } = family();
+    const old: Affordance = {
+      ...joint,
+      id: 'old',
+      action: 'talk',
+      duration: 10,
+      tags: ['conversation'],
+      with: [dead.id],
+      advertises: {},
+    };
+    begin(spouse, old, decide(spouse, [old]));
+    bleed(dead);
+    advanceCommunityPerson(c, dead, 10, { ...policy, tellDeaths: false });
+    friend.now = 10;
+    const offer = { ...joint, with: [spouse.id] };
+    const proposal = proposeJoint(c, friend, offer, decide(friend, [offer]));
+    const records: string[] = [];
+    const host: World = {
+      ...world,
+      resolve: (p, act, reason) => {
+        records.push(reason);
+        return {
+          at: p.now,
+          affordanceId: act.affordanceId,
+          action: act.action,
+          status: reason === 'ended' ? 'completed' : 'interrupted',
+        };
+      },
+    };
+    acceptJoint(c, host, proposal, spouse, decide(spouse, [offer]), () => {}, policy);
+    expect(records).toEqual(['interrupted']);
   });
 
   test('joint synchronization cannot begin any participant after a partner dies during catch-up', () => {
@@ -158,7 +352,7 @@ describe('opt-in community death discovery', () => {
         expect(proposal.status).toBe('declined');
         expect(a.activity).toBeNull();
         expect(events.filter((e) => e.kind === 'begin')).toEqual([]);
-        expect(c.interrupts.a).toMatchObject({ at: 100, reason: `declined:${proposal.id}` });
+        expect(c.interrupts.a).toMatchObject({ at: 100, reason: `death:${b.id}` });
       } else {
         expect(begun).toHaveLength(2);
         expect(proposal.status).toBe('accepted');
@@ -264,15 +458,14 @@ describe('opt-in community death discovery', () => {
     );
   });
 
-  test('dropped notices keep both tie and marriage knowledge unchanged; legacy receipt still widows', () => {
+  test('dropped notices leave knowledge unchanged but factual widowhood starts at death', () => {
     const saved = { ...BELIEF_DEFAULTS };
     try {
       Object.assign(BELIEF_DEFAULTS, { attentionBase: 0, attentionRange: 0, alwaysSalience: 1 });
       const attended = family();
       die(attended.dead);
-      const before = JSON.stringify(attended.spouse.bonds);
       tellDeath(attended.c, attended.dead, 10, { receipt: 'attended' });
-      expect(JSON.stringify(attended.spouse.bonds)).toBe(before);
+      expect(attended.spouse.bonds?.marriages[0]?.endedAt).toBe(10);
       expect(attended.spouse.social.relationships.find((r) => r.otherId === 'a')?.deceasedAt).toBeUndefined();
       expect(attended.spouse.memory.episodes.some((e) => e.summary === 'a died')).toBe(false);
       const legacy = family();
@@ -283,7 +476,7 @@ describe('opt-in community death discovery', () => {
       const automatic = family();
       bleed(automatic.dead);
       stepCommunity(automatic.c, world, 10, policy);
-      expect(spousesOf(automatic.spouse)).toEqual(['a']);
+      expect(spousesOf(automatic.spouse)).toEqual([]);
       expect(
         automatic.spouse.social.relationships.find((r) => r.otherId === 'a')?.deceasedAt,
       ).toBeUndefined();

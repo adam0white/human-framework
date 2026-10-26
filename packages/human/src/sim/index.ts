@@ -1,3 +1,4 @@
+export * from './catch-up.ts';
 export * from './longrun.ts';
 export {
   acceptJoint,

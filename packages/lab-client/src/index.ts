@@ -1,3 +1,4 @@
+export { FEEDBACK_LABELS, type FeedbackLabel, sendFeedbackLabel } from './feedback.ts';
 export { claimLabNotice } from './notice.ts';
 
 /** Default-on linked lab telemetry. Games own their replay exports; this client owns consent and delivery.

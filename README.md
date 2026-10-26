@@ -11,6 +11,7 @@ HF is a deterministic, explainable model of a simulated person, written in TypeS
   - [Twice at the Well](https://human.adamwhite.work/colony/): a colony sim played side by side without and with HF.
   - [The Day You Say Nothing](https://human.adamwhite.work/voice/): you are a voice in one man's head; he may refuse you.
   - [The Night Watch](https://human.adamwhite.work/watch/): a village's night watch over generations, endless.
+- The prepared **HF 3.2.0 / engine 3.2.0** candidate pins the central site to 3.2.0 and adds bounded opt-ins and repairs described in [CHANGELOG](CHANGELOG.md). It still needs the final release reviews and publication/deployment gates. SDK client 0.4.11 / kit 0.5.12 remain immutable artifacts; external game adoption is separate.
 
 ## Quick start
 

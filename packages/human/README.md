@@ -4,9 +4,13 @@ HF is a TypeScript library for simulated people in games and headless simulation
 possible actions. Each person weighs needs, habits, duties, goals and suggestions, then chooses.
 A player can suggest an action; the person can defer or refuse it.
 
-HF 3.1.0 uses utility scoring and seeded randomness, with no LLM in the actor loop and no runtime
+HF 3.2.0 uses utility scoring and seeded randomness, with no LLM in the actor loop and no runtime
 dependencies. Decision records expose scored terms and template narration. Person state is plain JSON.
 This is an authored simulation model, not a validated predictor of real people.
+
+HF 3.2 uses engine `3.2.0`. New runs carry that stamp. Valid loaded 3.1 people retain raw state and RNG through default mutators with optional behavior selectors omitted. `restore` separately migrates supported 3.1 snapshots by changing the engine stamp only. Restored runs then use current rules; exact replay of older opted-in behavior needs the original package. No migration enables a feature or rewrites stored narration.
+
+New explicit surfaces are `validateFeatureInputs` ([bounded diagnostics](../../docs/feature-inputs.md)), `lexicon.wording: 'literal-v1'`, `enableAssentCost`, and `zakatAlFitr` / `readZakatAlFitr`. [Event catch-up](../../docs/event-catch-up.md) is a fine-driver opt-in with mandatory host read barriers and stale-state limits. Death, upbringing and forecast selectors reject unsupported defined values before mutation. Hosts pin these options, package, tuning and ordered inputs in their own run configuration and supply them after restore. Engine stamps describe supported rules, not actual option use.
 
 ## Migrating to v3
 
@@ -62,7 +66,7 @@ This is a same-runtime host convention with lexical sender priority, not transpo
 Use Node 24 or newer and TypeScript 7 or newer. In an empty directory, install the version this README describes:
 
 ```sh
-npm install @adam0white/human-framework@3.1.0
+npm install @adam0white/human-framework@3.2.0
 ```
 
 Save these 20 lines as `quickstart.mjs`, then run `node quickstart.mjs`:
@@ -267,13 +271,13 @@ reference host: `createVillage`.
 
 There are two version numbers, and they move independently.
 
-- **The release version** is the package version (`package.json`, currently `3.1.0`) and `FRAMEWORK_VERSION`, the same
+- **The release version** is the package version (`package.json`, currently `3.2.0`) and `FRAMEWORK_VERSION`, the same
   string compiled into the build; a test keeps them equal. It versions the public API under
   [semver](https://semver.org/): a breaking change to an exported name or signature bumps the major, a new
   faculty or export the minor, a fix the patch. Each release is a tag `vX.Y.Z` and a GitHub release whose notes
   are that version's section of the root [CHANGELOG.md](https://github.com/adam0white/human-framework/blob/main/CHANGELOG.md), with the package tarball attached
   (`npm run release`, from a clean checkout of pushed `origin/main`).
-- **`ENGINE_VERSION`** (exported; `3.1.0` at release 3.1.0) versions simulation behaviour and the save format. It
+- **`ENGINE_VERSION`** (exported; `3.2.0` at release 3.2.0) versions simulation behaviour and the save format. It
   changes when the same seed and inputs would give different decisions, or when person state changes shape.
   `restore` upgrades saves from engine 1.4.0 and later through `migrate` and refuses older ones. Every release's notes name the
   `ENGINE_VERSION` it ships, so a host can tell whether its saves still restore.
@@ -509,7 +513,7 @@ Knowledge lives in optional `Person.prospection` and survives snapshot/restore. 
 `projectPersona(source, mapping)` produces `PersonaProjectionSnapshot` (`hf-persona-state/1`).
 `admitPersona(projection, targetOpening, { mappingVersion, sourceId, targetId })` returns a detached
 `{ person, report }`. `validatePersonaProjection(unknown)` validates portable data without filling defaults.
-In HF 3.1.0, portable v1 accepts source engines `2.14.1`, `2.17.0`, `2.21.0`, `2.23.0` and `3.1.0`; it preserves that source provenance. Unknown source engines remain rejected.
+In HF 3.2.0, portable v1 accepts source engines `2.14.1`, `2.17.0`, `2.21.0`, `2.23.0`, `3.1.0` and `3.2.0`; it preserves that source provenance. Unknown source engines remain rejected.
 These functions never enter the actor loop and never mutate the source or the host opening.
 
 The host supplies a versioned map of skill ids, selected episode ids and every continuing obligation.
@@ -598,7 +602,7 @@ overwrite a loaded run's saved choice. Built-in decision narration,
 spoken replies, intentions and person summaries then use complete, literal English.
 Keep this choice in the saved person and replay setup. It changes recorded prose.
 Without the option, legacy wording and continuation stay exact. HF 2.19.0 introduced
-this option without changing engine 2.17.0. HF 3.0.0 used engine 2.23.0; HF 3.1.0 uses engine 3.1.0.
+this option without changing engine 2.17.0. HF 3.0.0 used engine 2.23.0; HF 3.1.0 uses engine 3.1.0; HF 3.2.0 uses engine 3.2.0.
 
 Host `lines`, `extend`, names and action forms still apply. A host phrase pack owns
 its own grammar. HF does not translate arbitrary host labels or memory summaries.

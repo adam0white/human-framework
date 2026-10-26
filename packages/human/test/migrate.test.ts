@@ -112,6 +112,7 @@ describe('migrate: saves from earlier engines restore under the current one', ()
       '2.17.0',
       '2.21.0',
       '2.23.0',
+      '3.1.0',
       ENGINE_VERSION,
     ]);
   });
@@ -254,3 +255,13 @@ test.each(['2.23.0', '2.21.0'])(
     expect(continueRun('village', run).digest).toBe(run.continued);
   },
 );
+
+// Raw immutable npm3.1 input; provenance and tar digest are shared with literal-engine-3.1.0.json.
+test('published 3.1 snapshot migrates only its engine stamp without mutating input', () => {
+  const raw = JSON.parse(readFileSync(new URL('./fixtures/engine-3.1.0.json', import.meta.url), 'utf8'));
+  const before = JSON.stringify(raw);
+  expect(raw.engine).toBe('3.1.0');
+  expect(migrate(raw)).toEqual({ ...raw, engine: ENGINE_VERSION });
+  expect(snapshot(restore(raw))).toEqual({ ...raw, engine: ENGINE_VERSION });
+  expect(JSON.stringify(raw)).toBe(before);
+});

@@ -50,7 +50,7 @@ function fixture() {
 }
 
 describe('explicit persona projection', () => {
-  test.each(['2.14.1', '2.17.0', '2.23.0'])(
+  test.each(['2.14.1', '2.17.0', '2.23.0', '3.1.0'])(
     'published engine %s passports retain portable semantics',
     (engine) => {
       const { source, target, mapping } = fixture();

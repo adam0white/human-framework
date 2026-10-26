@@ -67,6 +67,7 @@ export async function acquireSuiteLock(options: LockOptions = {}): Promise<() =>
   };
   mkdirSync(dirname(directory), { recursive: true });
   let announced = false;
+  let ownerlessObservations = 0;
   for (;;) {
     try {
       mkdirSync(directory);
@@ -90,6 +91,11 @@ export async function acquireSuiteLock(options: LockOptions = {}): Promise<() =>
       if (code(error) !== 'EEXIST') throw error;
     }
     const holder = readOwner(ownerPath);
+    if (holder) ownerlessObservations = 0;
+    else if (++ownerlessObservations >= 6)
+      throw new Error(
+        `Suite lock has no readable owner at ${ownerPath} after six observations. No lock was taken or removed. Inspect the lock before retrying.`,
+      );
     if (holder && !alive(holder.pid)) {
       // One reaper at a time. Re-read after claiming it: another waiter may already
       // have replaced the stale directory. Rename keeps the marker with the old lock.

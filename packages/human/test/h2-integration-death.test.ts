@@ -50,7 +50,7 @@ describe('H2 routine death integration', () => {
       expect(first.days.a).toBeUndefined();
       expect(first.events.filter((e) => e.kind === 'died')).toMatchObject([{ personId: 'a', at: DAY }]);
       expect(proposal.status).toBe('declined');
-      expect(c.interrupts.b).toMatchObject({ at: DAY, reason: `declined:${proposal.id}` });
+      expect(c.interrupts.b).toMatchObject({ at: DAY, reason: `death:${dead.id}` });
       expect(friend.social.relationships[0]?.deceasedAt).toBe(tellDeaths ? DAY : undefined);
       const episodes = friend.memory.episodes.filter((e) => e.summary === 'a died').length;
       const restored = JSON.parse(JSON.stringify(c)) as typeof c;
@@ -122,7 +122,7 @@ describe('H2 routine death integration', () => {
       expect(friend.social.relationships[0]?.deceasedAt).toBe(tellDeaths ? DAY : undefined);
       expect(friend.memory.episodes.filter((e) => e.summary === 'a died')).toHaveLength(tellDeaths ? 1 : 0);
       expect(proposal.status).toBe('declined');
-      expect(c.interrupts.b).toMatchObject({ at: DAY, reason: `declined:${proposal.id}` });
+      expect(c.interrupts.b).toMatchObject({ at: DAY, reason: `death:${dead.id}` });
     }
   });
 });

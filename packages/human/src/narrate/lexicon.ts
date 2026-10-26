@@ -10,6 +10,7 @@
  * reads back into the simulation.
  */
 import type { EntityId, Lexicon, Person } from '../types.ts';
+import { LITERAL_EN_LINES, LITERAL_PLAIN_EN_LINES } from './literal.ts';
 import { PLAIN_EN_LINES } from './plain.ts';
 
 /** FNV-1a 32-bit hash for deterministic template selection. */
@@ -282,8 +283,16 @@ export const EN_LINES: Readonly<Record<string, readonly string[]>> = {
 
 /** Templates for a key after the lexicon's replacements and extensions; empty when unknown. */
 export function linesFor(key: string, lex?: Lexicon): readonly string[] {
+  const overlay =
+    lex?.wording === 'literal-v1'
+      ? (lex.plainEnglish ? LITERAL_PLAIN_EN_LINES : LITERAL_EN_LINES)[key]
+      : undefined;
   const base =
-    lex?.lines?.[key] ?? (lex?.plainEnglish ? PLAIN_EN_LINES[key] : undefined) ?? EN_LINES[key] ?? [];
+    lex?.lines?.[key] ??
+    overlay ??
+    (lex?.plainEnglish ? PLAIN_EN_LINES[key] : undefined) ??
+    EN_LINES[key] ??
+    [];
   const more = lex?.extend?.[key];
   return more && more.length > 0 ? [...base, ...more] : base;
 }

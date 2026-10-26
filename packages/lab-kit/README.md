@@ -1,8 +1,8 @@
 # @adam0white/lab-kit
 
-Small plain-DOM components for lab games. No framework, simulation logic, automatic telemetry or font downloads. This README describes kit 0.5.11. The CSS-first phone stage and browser layout audit were added in 0.2.0. Kit 0.5.11 is an immutable GitHub release artifact, not an npm publication; use the [SDK adoption guide](../../docs/lab/navigation-journal-adoption-2026-10-25.md) and [release digests](../../docs/releases.md#lab-package-artifacts--2026-10-25).
+Small plain-DOM components for lab games. No framework, simulation logic, automatic telemetry or font downloads. This README describes kit 0.5.12. The CSS-first phone stage and browser layout audit were added in 0.2.0. Kit 0.5.12 is an immutable GitHub release artifact, not an npm publication; use the [SDK adoption guide](../../docs/lab/navigation-journal-adoption-2026-10-25.md) and [release digests](../../docs/releases.md#lab-package-artifacts--2026-10-25).
 
-Workspace version: **0.5.11**. The later **0.5.12** [GitHub artifact](https://github.com/adam0white/human-framework/releases/tag/lab-kit-v0.5.12) is published from separate source `569bfeed`, with exact CI 40241110596. It is not integrated into this workspace or adopted by hosts by default. See [SDK adoption](../../docs/lab/navigation-journal-adoption-2026-10-25.md) before using its opt-in Feedback choices.
+Workspace candidate version: **0.5.12**. The **0.5.12** [GitHub artifact](https://github.com/adam0white/human-framework/releases/tag/lab-kit-v0.5.12) is published from separate source `569bfeed`, with exact CI 40241110596. Its source is integrated into this 3.2 candidate; live host adoption still needs deployment. See [SDK adoption](../../docs/lab/navigation-journal-adoption-2026-10-25.md) before using its opt-in Feedback choices.
 
 Import the CSS once. JavaScript exports are tree-shakeable; CSS is explicitly marked as a side effect.
 
@@ -233,3 +233,14 @@ Use `telemetryNotice()` once on the game screen and mount that same returned nod
 `personaControls({ enabled, setEnabled, recordingAllowed, allowRecording })` is a compatibility helper that still renders a fictional continuity switch and shelf link. Do not mount that switch in current ordinary play: continuity runs automatically. The recording fields remain accepted for older hosts; no separate linkage prompt appears. Recording and linkage follow the single `telemetryToggle(lab)` switch, including explicit opt-in under DNT/GPC.
 
 `feedbackPersonaControl(lab)` returns null when recording is on. Otherwise it returns one unticked checkbox labelled “Share this run and my play with the lab”. On Submit pass `sharePlay: feedbackSharePlay(control)` to `lab.sendFeedback(note, { run, name, sharePlay })`. The helper does not change recording when the checkbox is ticked. Submit applies the choice. Unticked feedback sends the note alone, without linkage.
+
+## Stop and confusion choices (candidate artifact)
+
+After adopting the matching reviewed client and kit release artifacts, pass
+`feedbackChoices: true` to `notebookMenu({ lab, getRun, filename, feedbackChoices: true })`.
+The kit forwards the opt-in when opening Feedback after its native sheet closes.
+Hosts with custom menus can pass the same option directly to `lab.openSendDialog`.
+The client renders the two quiet choices and owns preview, submission, privacy,
+run linkage, byte limits and receipts. The default omits the option and preserves
+the old dialog. Older clients may ignore the flag; upgrade both artifacts before
+claiming adoption. No npm publication or host adoption is part of this candidate.

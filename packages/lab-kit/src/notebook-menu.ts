@@ -8,6 +8,7 @@ import { type TelemetryLab, telemetryToggle } from './telemetry.ts';
 export type NotebookLab = TelemetryLab & {
   openSendDialog(options: {
     getRun: () => unknown;
+    feedbackChoices?: boolean;
     name?: string;
     compact?: (run: unknown) => unknown;
     compactNote?: string;
@@ -19,6 +20,8 @@ export type NotebookMenuOptions = {
   lab?: NotebookLab | null;
   getRun: () => unknown;
   filename: string;
+  /** Requires a client artifact with feedbackChoices support. Default preserves the old dialog. */
+  feedbackChoices?: boolean;
   /** Optional feedback name prefill; the client remembers submitted names on this device. */
   name?: string;
   compact?: (run: unknown) => unknown;
@@ -117,6 +120,7 @@ export function notebookMenu(options: NotebookMenuOptions): HTMLButtonElement {
         try {
           lab.openSendDialog({
             getRun: options.getRun,
+            ...(options.feedbackChoices ? { feedbackChoices: true } : {}),
             ...(options.name !== undefined ? { name: options.name } : {}),
             ...compact,
           });

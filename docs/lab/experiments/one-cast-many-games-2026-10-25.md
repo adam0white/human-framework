@@ -21,3 +21,13 @@ Method/source: read-only archived native adapter trees `~/code/.lab-scratch/hfad
 ## V3 report scope — 2026-10-25
 
 The destination registry refused this route before exercising a destination schema or week. This policy proxy does not test general cross-game portability. Next: map a supported destination without an era/identity override, target2026-11-03.
+
+## Supported-route correction — 2026-10-26
+
+The original Danyal refusal is still valid: registry row13 separates Coast and Valley. It cannot establish a general portability failure. A later probe used an actual supported Murmur Aylin source, signed producer `92cdebd9fe73d59ccf40c7bdcbd66e8ed310b27e` and Good Hands receiver `2b930668c5b48035b3f600937241747434ec3c97`. Native admission, a seven-day run, full restore and compact replay passed separately under published HF3.0 and HF3.1. No cross-version byte-equality claim is made; their created engine stamps and fingerprints differ honestly.
+
+The native map carries zero of the source's200 episodes. A separate explicit scratch map using published HF3.1 `projectCalendarPersona` / `admitCalendarPersona` carries eight actual source episodes with source references and tags. Declared clock translation preserves age, RNG, traits and values. Missing action binding, wrong identity and wrong offset refuse. The source remains unchanged. The remaining192 episodes and unsupported stores stay archived and disclosed. Actual belief and duty stores are empty; empty equality is not coverage of nonempty semantics.
+
+The unmodified destination correctly refuses this richer chapter because its native contract reconstructs no episodes. A finite opt-in host patch is handed to games-deferred; it is not delivered by the scratch success. No new generic HF API or widened receiving guard is needed. Full memory, belief and duty continuity remains open for real nonempty fixtures and explicit host semantics, target2026-11-03.
+
+Evidence is preserved in director artifacts `all/cast-evidence-report.md`, `all/cast-evidence/provenance.json`, `all/cast-evidence/results.json` and `all/cast-evidence/generic-results.json` under `~/code/.lab-scratch/`. These paths are evidence locations, not runtime dependencies. No probe code or game-specific helper is added to the framework.

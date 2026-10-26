@@ -34,7 +34,7 @@
  */
 
 import { breakAllows, inBreak } from '../affect/index.ts';
-import { commitmentPressure, isUnderWay, pressureReachedAt } from '../agenda/index.ts';
+import { commitmentPressure, isUnderWay, pressureReachedAt, spanMeetsWindow } from '../agenda/index.ts';
 import { downedAllows, readCapacities } from '../body/index.ts';
 import { CONSCIENCE_DEFAULTS, normVeto } from '../conscience/index.ts';
 import { clamp01, cmpStr, decay, dexp, dpow, hasNumbers, isObj, random, round } from '../core/index.ts';
@@ -42,6 +42,7 @@ import { commitmentLabel } from '../presentation.ts';
 import { skillLevel } from '../skills/index.ts';
 import type {
   Affordance,
+  AssentCostSpec,
   BodyReadout,
   Command,
   Commitment,
@@ -234,6 +235,7 @@ export interface ChoiceResolution {
  * or `lastCommand` (1.6.0, 1.7.0) are dropped (absent means none). A save the engine wrote is unchanged. @internal
  */
 export function sanitizeWill(w: WillState): void {
+  if (!validAssentCost(w.assentCost)) delete w.assentCost;
   if (w.suggestionReasons !== true) delete w.suggestionReasons;
   if (w.advice !== undefined && !Array.isArray(w.advice)) delete w.advice;
   const cmd = w.command as unknown;
@@ -457,10 +459,15 @@ const stretchStart = (c: Commitment): Minute => c.from + WILL_DEFAULTS.omissionF
 /**
  * Whether `aff` would keep duty `c` if chosen at `now`. Inside the window: any option serving it. Past the window's
  * end (1.9.0): only continuing the running activity that began inside the window (`agenda.isUnderWay`); a fresh start
- * after `until` would not count, so it does not exempt.
+ * after `until` would not count, so it does not exempt. Explicit completion-time commitments also require
+ * the offered completion minute to fit; their underway activity never extends the deadline.
  */
 function keepsDuty(p: Person, c: Commitment, aff: Affordance, now: Minute): boolean {
-  if (now <= c.until) return servesCommitment(c, aff);
+  if (now <= c.until)
+    return (
+      (c.completion !== 'end' || spanMeetsWindow(c, now, now + Math.max(0, aff.duration))) &&
+      servesCommitment(c, aff)
+    );
   return p.activity?.affordance.id === aff.id && isUnderWay(p, c, now);
 }
 
@@ -642,6 +649,7 @@ interface VoiceSide {
   pressure: number;
   accepted: number;
   refused: number;
+  assentPressure?: number;
 }
 
 interface Evaluation {
@@ -913,6 +921,34 @@ interface Judged {
 }
 
 /**
+ * SCOPE (RM-130): explicit host-authored pressure from strong outside advice even when accepted willingly.
+ * This engineering assumption adds at most 0.15 to that voice's bounded, normally decaying pressure per
+ * booked final assent, including ordinary advice promoted during insistence arbitration. Existing reactance
+ * can then make repeated urging less attractive. It does not charge
+ * internal promptings, ordinary mentions below the host threshold, displaced assents, quiet continuation,
+ * previews, or insistence (which already has its own cost). No direct trust/autonomy loss, moral judgement,
+ * willpower fuel, RNG draw or game rule is added. Absent this opt-in, exact legacy behavior remains.
+ */
+export function enableAssentCost(p: Person, spec: AssentCostSpec): void {
+  if (!validAssentCost(spec))
+    throw new RangeError('Assent cost needs provenance, strength in (0,1], pressure in (0,0.15].');
+  p.will.assentCost = { provenance: spec.provenance, minStrength: spec.minStrength, pressure: spec.pressure };
+}
+
+function validAssentCost(spec: unknown): spec is AssentCostSpec {
+  return (
+    isObj(spec) &&
+    typeof spec.provenance === 'string' &&
+    spec.provenance.trim().length > 0 &&
+    hasNumbers(spec, 'minStrength', 'pressure') &&
+    (spec.minStrength as number) > 0 &&
+    (spec.minStrength as number) <= 1 &&
+    (spec.pressure as number) > 0 &&
+    (spec.pressure as number) <= 0.15
+  );
+}
+
+/**
  * SCOPE (suggestion reasons): opt-in read-only explanations of score-based deferrals and modifications.
  * The gap includes running-activity inertia; source differences aggregate like-labelled terms and tie by
  * source string. This does not change selection, voice wording, counters or RNG, explain vetoes, or claim
@@ -983,6 +1019,14 @@ function judgeVoices(
       likelihood = total > 0 ? hit / total : 0;
     }
     const side: VoiceSide = { id: s.voiceId, pressure: 0, accepted: 0, refused: 0 };
+    // Eligibility follows the request; booking follows the final arbitrated verdict.
+    if (
+      !s.insist &&
+      p.will.assentCost &&
+      Number.isFinite(s.strength) &&
+      s.strength >= p.will.assentCost.minStrength
+    )
+      side.assentPressure = p.will.assentCost.pressure;
     const resolution = (
       verdict: SuggestionVerdict,
       why: string,
@@ -1104,9 +1148,7 @@ function judgeVoices(
         counterOffer: winnerAff
           ? {
               affordanceId: bestSuggested.affordanceId,
-              label: p.lexicon?.plainEnglish
-                ? `after I finish this task (${winnerAff.label})`
-                : `after I ${winnerAff.label}`,
+              label: afterTask(p, winnerAff.label),
             }
           : { affordanceId: bestSuggested.affordanceId, label: 'later' },
       }),
@@ -1164,11 +1206,7 @@ function arbitrateInsistence(
           insteadAffordanceId: forced,
           counterOffer: {
             ...(firstTarget !== undefined ? { affordanceId: firstTarget } : {}),
-            label: forcedAff
-              ? p.lexicon?.plainEnglish
-                ? `after I finish this task (${forcedAff.label})`
-                : `after I ${forcedAff.label}`
-              : 'later',
+            label: forcedAff ? afterTask(p, forcedAff.label) : 'later',
           },
         };
         if (j.res.likelihood !== undefined) res.likelihood = j.res.likelihood;
@@ -1371,11 +1409,24 @@ export function conflictBetweenVoices(
   };
 }
 
+/**
+ * Literal-v1 contains arbitrary labels without inferring verbs or changing their bytes.
+ * Only new counter-offers opt in; existing labels, rules, IDs and RNG remain unchanged.
+ */
+function afterTask(p: Person, label: string, kind: 'task' | 'duty' = 'task'): string {
+  if (p.lexicon?.plainEnglish) {
+    return p.lexicon.wording === 'literal-v1'
+      ? `after I finish the ${kind} called “${label}”`
+      : `after I finish this ${kind} (${label})`;
+  }
+  return `after I ${label}`;
+}
+
 /** Counter-offer for a request deferred behind a duty: "after I pray", "after I feed the children". */
 function dutyLabel(duty: Commitment | undefined, winner: Affordance | undefined, p: Person): string {
   if (p.lexicon?.plainEnglish) {
-    if (duty) return `after I finish this duty (${commitmentLabel(duty, p.lexicon)})`;
-    return winner ? `after I finish this task (${winner.label})` : 'after my duty';
+    if (duty) return afterTask(p, commitmentLabel(duty, p.lexicon), 'duty');
+    return winner ? afterTask(p, winner.label) : 'after my duty';
   }
   if (duty?.kind === 'worship') return duty.label ? `after I pray ${duty.label}` : 'after I pray';
   if (duty?.label) return `after I ${duty.label}`;
@@ -1426,12 +1477,17 @@ function bookVoices(
   const W = WILL_DEFAULTS;
   for (const [i, side] of voices.entries()) {
     const v = ensureVoice(p, side.id);
+    const res = resolutions[i];
+    if (res?.verdict === 'assented' && side.accepted > 0 && side.assentPressure && p.will.assentCost) {
+      const pressure = clamp01(v.pressure + side.assentPressure) - v.pressure;
+      v.pressure += pressure;
+      res.assentCost = { pressure, provenance: p.will.assentCost.provenance };
+    }
     v.pressure = clamp01(v.pressure + side.pressure);
     v.accepted += side.accepted;
     v.refused += side.refused;
     // Being insisted at while already pressed wears trust down, whatever they then do (engineering default), so
     // a voice that insists at every turn reaches the distrust refusal.
-    const res = resolutions[i];
     if (res?.insisted && res.kind !== 'cannot' && v.pressure >= W.distrustPressure) {
       const before = v.trust;
       v.trust = clamp01(v.trust * (1 - W.trustLossPushed));

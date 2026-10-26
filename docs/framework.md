@@ -8,6 +8,10 @@ This reference describes HF **3.1.0**, with engine **3.1.0**, published on 2026-
 
 Version-labelled sections below retain the history and limits of each feature. They do not state current game pins. Game adoption and deployment have separate receipts in [HANDOFF.md](../HANDOFF.md). Later 3.x work remains in [the roadmap](roadmap.md); a target or a successful first probe does not mean an API has shipped. In particular, the H3 speech and starter results are bounded host recipes and experiments. They do not establish a general speech grammar, a complete game engine or a predictor of real players.
 
+## Prepared 3.2 contract
+
+The next candidate is HF 3.2.0 / engine 3.2.0; publication and site deployment still need release receipts. It adds [explicit input diagnostics](feature-inputs.md), literal wording, assent cost, payment planning and [event-only catch-up](event-catch-up.md). New people carry 3.2.0. Raw valid loaded 3.1 people retain state and RNG through default mutators when optional behavior selectors are omitted; `restore` separately migrates the stamp and continues under current rules. Host options are never inferred from a save. Community death and warmth-through-25 repairs change those opted-in rules. The central site candidate actually pins 3.2.0; external game delivery remains separate.
+
 ## The spine: Urge → Assent → Act
 
 A person does not execute commands. At each decision point, many pulls act on them at once:

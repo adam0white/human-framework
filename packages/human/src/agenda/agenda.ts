@@ -8,6 +8,10 @@
  * through conscience; the agenda itself does not judge. It does not plan multi-step routes, model
  * implementation intentions, or claim calibrated procrastination curves.
  *
+ * SCOPE (completion time): `completion: 'end'` admits only outcomes ending inside the window and
+ * never extends it for an underway activity. It models a host-confirmed receipt, not transfer validation.
+ * Absent this option, span overlap and underway protection remain exact.
+ *
  * SCOPE (abstention, lane agenda+conscience): an `abstain` commitment (a fast, e.g. "no work after the evening prayer") is kept by
  * not completing any `violatedBy` action whose span overlaps the window, and broken by the first one that does.
  * While open it pushes against violating options with a constant negative term (importance x held conviction);
@@ -201,9 +205,13 @@ function sanitizeGoalTemporal(g: Goal): void {
   else if (g.temporal) g.temporal = { halfLifeMinutes: g.temporal.halfLifeMinutes };
 }
 
-/** Restore-time check of optional lapse and firm flags; malformed values are dropped. @internal */
+/** Restore-time check of optional lapse, firm and completion flags; malformed values are dropped. @internal */
 export function sanitizeAgenda(a: AgendaState): void {
-  for (const c of a.commitments) if (isObj(c) && (c.firm !== true || c.kind !== 'abstain')) delete c.firm;
+  for (const c of a.commitments) {
+    if (!isObj(c)) continue;
+    if (c.firm !== true || c.kind !== 'abstain') delete c.firm;
+    if (c.completion !== 'end' || c.kind === 'abstain') delete c.completion;
+  }
   for (const g of a.goals) if (isObj(g)) sanitizeGoalTemporal(g);
   const lapse = a.lapse as unknown;
   if (lapse !== undefined && !(isObj(lapse) && hasNumbers(lapse, 'since', 'missed'))) delete a.lapse;
@@ -274,6 +282,7 @@ const sameShape = (a: Commitment, b: Commitment): boolean =>
   a.kind === b.kind &&
   (a.violatedBy ?? []).join('|') === (b.violatedBy ?? []).join('|') &&
   a.normId === b.normId &&
+  a.completion === b.completion &&
   a.targetId === b.targetId &&
   a.toId === b.toId &&
   a.recurEvery === b.recurEvery &&
@@ -322,6 +331,7 @@ export function isUnderWay(p: Person, c: Commitment, now: Minute): boolean {
     act.mode !== 'sleep' &&
     c.kind !== 'abstain' &&
     act.startedAt <= c.until &&
+    (c.completion !== 'end' || act.endsAt <= c.until) &&
     act.endsAt >= now &&
     ((act.affordance.fulfills?.includes(c.id) ?? false) || matchesCommitment(c, act.action, act.targetId))
   );
@@ -554,9 +564,10 @@ function heldConviction(p: Person, c: Commitment): number {
  * The single rule for "this activity counts toward that commitment": the activity's span [start, end] overlaps
  * the window [from, until]. `agendaTerms` pulls only toward options that would satisfy it, and `onFinished`
  * keeps by the same rule, so a pull never leads to an activity that cannot keep the commitment.
+ * With explicit `completion: 'end'`, only the end minute counts.
  */
 export const spanMeetsWindow = (c: Commitment, start: Minute, end: Minute): boolean =>
-  start <= c.until && end >= c.from;
+  c.completion === 'end' ? end >= c.from && end <= c.until : start <= c.until && end >= c.from;
 
 /** Explicit host progress can name either the adopted goal or its perceived prospect. */
 function namesGoal(g: Goal, advances: string[] | undefined): boolean {
@@ -638,6 +649,7 @@ export function agendaTermsWithGoalEstimates(
     // would miss it.
     const act = p.activity;
     const finishing =
+      c.completion !== 'end' &&
       act !== null &&
       act !== undefined &&
       act.affordanceId === aff.id &&

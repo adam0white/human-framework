@@ -19,6 +19,7 @@
  * reported by outcomes, purpose revision and the chronicle's day accumulator closed at midnight, and `skip` for
  * long-horizon runs. Each hook calls the owning module; nothing here writes another module's slice.
  */
+
 import {
   actionTendencies,
   advanceAffect,
@@ -110,6 +111,7 @@ import { keysOf } from './core/keys.ts';
 import { enableCuriosity, noteCuriosity } from './curiosity/index.ts';
 import { ambientBodyParams, ambientModifiers, ambientMood, ambientNeeds } from './environment/index.ts';
 import { aptitudeOf, createFamily, pregnancyModifiers } from './family/index.ts';
+import { assertSelector } from './feature-selectors.ts';
 import { advanceHabits, HABIT_DEFAULTS, reinforce, withholdCued } from './habits/index.ts';
 import { ageYears, learningMultiplier, lifeModifiers } from './lifecourse/index.ts';
 import {
@@ -1112,6 +1114,7 @@ function currentOffer(p: Person): Affordance | undefined {
 
 /** Q26: compose one held snapshot for all public forecast paths; does not alter Person or ordinary scoring. */
 function bodyForecastContext(p: Person, opts: Pick<DecideOptions, 'forecastContext'>) {
+  assertSelector('forecastContext', opts.forecastContext, 'conditioned');
   return opts.forecastContext === 'conditioned'
     ? {
         mods: segmentModifiers(p),
@@ -1127,6 +1130,7 @@ function decisionInputs(
   id: string,
   opts: DecideOptions,
 ): { list: Affordance[]; ctx: Parameters<typeof cognitionDecide>[2] } {
+  assertSelector('forecastContext', opts.forecastContext, 'conditioned');
   const list = [...affordances];
   const current = currentOffer(p);
   if (current && !list.some((a) => a.id === current.id)) list.push(current);
@@ -1263,6 +1267,7 @@ export function decide(
   affordances: readonly Affordance[],
   opts: DecideOptions = {},
 ): DecisionRecord {
+  assertSelector('forecastContext', opts.forecastContext, 'conditioned');
   if (opts.now !== undefined && opts.now > p.now) tick(p, opts.now);
   const { list, ctx } = decisionInputs(p, affordances, `d${p.nextDecision}`, opts);
   p.nextDecision += 1;
@@ -1609,6 +1614,8 @@ export function learningFor(p: Person, domain?: LearningDomain): number {
  * composite's side of `skills.learnByWatching` at the person's age-and-domain learning rate. A `Percept.demonstrates` on an
  * attended percept does the same. `inheritedAptitude: true` applies the family's existing aptitude factor to
  * watching. Absent or false keeps earlier observation learning, including for a person with an authored family.
+ * This promises the same inherited aptitude multiplier, not the same rate as direct practice (which can
+ * use affect-adjusted learning). Without a domain, observation uses lifeModifiers.learning.
  * This changes no practice rule, draws no RNG, and stores no new state. Returns the level before and after.
  */
 export function observeSkill(

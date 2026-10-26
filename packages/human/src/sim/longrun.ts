@@ -21,8 +21,11 @@
  * `onDay`); a person added during the stretch starts on the next day.
  *
  * Opt-in `upbringing.model: 'warmth-through-25'` selects living parents or guardians from the young person's
- * ties, counting each different person once, through young adulthood (under 25). Guardianship does not supply
- * warmth: `raise` reads caregiver-to-child affection. Its continuous age taper and warmth-scaled rates are
+ * ties, counting each different person once. 'guardian' means a day-to-day caregiver, not a marriage wali,
+ * whose stance uses the partnering API's explicit guardian option. Selected carers contribute through
+ * young adulthood (under 25). Guardianship does not supply
+ * warmth: `raise` reads caregiver-to-child affection. Warmth scales value, norm and voice rates;
+ * attachment follows responsiveness with age plasticity and the continuous age taper. Rates are
  * engineering assumptions; no abuse, schooling or adult culture diffusion. Hosts pin `upbringing` in saved-run
  * configuration and supply it after restore. Marriage, parenthood and co-residence do not gate this model;
  * a living carer in the community suffices. Omitted, the under-18, parents-only path stays exact.
@@ -31,6 +34,7 @@
 import { endDay } from '../chronicle/index.ts';
 import { dayOf } from '../core/index.ts';
 import { type RaiseOptions, raise } from '../family/index.ts';
+import { assertSelector, assertUpbringing } from '../feature-selectors.ts';
 import { ageYears } from '../lifecourse/index.ts';
 import { type RoutineDay, type RoutineSource, routineDay } from '../longrun.ts';
 import type { SkillTransfer } from '../skills/index.ts';
@@ -86,6 +90,8 @@ export interface LiveCommunityResult {
  * remainder shorter than a day is left for the fine-grained driver. Returns notable days and events (see SCOPE).
  */
 export function liveCommunity(c: Community, until: Minute, opts: LiveCommunityOptions): LiveCommunityResult {
+  assertSelector('deathHandling', opts.deathHandling, 'community');
+  assertUpbringing(opts.upbringing);
   const events: SimEvent[] = [];
   const days: Record<PersonId, RoutineDay[]> = {};
   const log = (e: SimEvent) => {

@@ -35,9 +35,11 @@
  * influence, peers, schooling, abuse, divorce or temperament-by-parenting interactions, and it never assigns a
  * religious obligation by age: a child holds only the understanding the household lived.
  *
- * Opt-in `RaiseOptions.model: 'warmth-through-25'` scales norm and attachment relaxation rates by mean warmth,
+ * Opt-in `RaiseOptions.model: 'warmth-through-25'` scales norm relaxation by mean warmth,
  * as values and voice trust already do. All influence tapers continuously to zero at 25 using `valuePlasticity`;
- * attachment also keeps its early-life plasticity. The return is responsiveness × mean warmth × value plasticity.
+ * attachment keeps its early-life plasticity; warmth enters its responsiveness target, not its rate. Living zero-warmth carers use the existing
+ * target at warmth zero (0.3 × normalized mood), equally weighted when all warmth weights vanish.
+ * No living carers supplies no attachment exposure. Values, norms and voice trust still receive zero influence. The return is responsiveness × mean warmth × value plasticity.
  * These coefficients and the age horizon are engineering assumptions, not empirical calibration or rulings.
  * F7–F11 in research/family-environment-sources.md support the shapes, not these rates. No abuse, schooling or
  * adult culture diffusion is modelled. Without this option, arithmetic and the normalized return stay unchanged.
@@ -46,8 +48,10 @@
  * Aptitudes are read by the composite as a multiplier on learning (`aptitudeOf`); they are drawn at birth by
  * `createChild` (`ChildSpec.aptitudes`).
  */
+
 import { understandNorm } from '../conscience/index.ts';
 import { clamp, clamp01, createRng, dpow, isNum, isObj, normal } from '../core/index.ts';
+import { assertUpbringing } from '../feature-selectors.ts';
 import { ageYears } from '../lifecourse/index.ts';
 import { remember } from '../memory/index.ts';
 import { relationshipWith } from '../social/index.ts';
@@ -279,13 +283,15 @@ const relax = (rate: number, years: number) => clamp01(1 - dpow(1 - clamp01(rate
 
 /**
  * Apply `minutes` of upbringing in `household` to `child`, at `child.now`. Warmth-weighted: a caregiver with no
- * warmth toward the child teaches nothing. Values, norm understanding, attachment and (optionally) trust in the
+ * warmth toward the child transmits no values, norms or voice trust. In the opted-in model, attachment still
+ * responds to living zero-warmth carers. Values, norm understanding, attachment and (optionally) trust in the
  * household's voices move by the age plasticities in the SCOPE paragraph. Returns the warmth-weighted
  * responsiveness the child experienced (0..1) in legacy mode. With `warmth-through-25`, returns effective
  * responsiveness weighted by mean warmth and age plasticity, approaching zero with either. The host supplies
  * this model again after restoring a save. Raised minutes count even when warmth or plasticity is zero.
  */
 export function raise(child: Person, household: Household, minutes: number, opts: RaiseOptions = {}): Unit {
+  assertUpbringing(opts);
   if (!(minutes > 0) || !child.body.alive) return 0;
   const F = FAMILY_DEFAULTS;
   const continuous = opts.model === 'warmth-through-25';
@@ -295,7 +301,23 @@ export function raise(child: Person, household: Household, minutes: number, opts
   const total = warmth.reduce((s, w) => s + w, 0);
   const fam = familyOf(child);
   fam.raisedMinutes = (fam.raisedMinutes ?? 0) + minutes;
-  if (total <= 0) return 0;
+  if (total <= 0) {
+    if (continuous && carers.length > 0 && valuePlasticity(ageYears(child)) > 0) {
+      // At zero warmth the existing target is 0.3 × normalized mood. Equal weighting
+      // when all weights vanish is an engineering boundary, not a fitted coefficient.
+      const response =
+        carers.reduce((sum, c) => sum + clamp01(0.3 * ((c.affect.mood.valence + 1) / 2)), 0) / carers.length;
+      const k = relax(
+        F.attachmentRatePerYear,
+        (minutes / MINUTES_PER_YEAR) *
+          attachmentPlasticity(ageYears(child)) *
+          valuePlasticity(ageYears(child)),
+      );
+      const att = fam.attachment ?? F.attachmentStart;
+      fam.attachment = clamp01(att + k * (response - att));
+    }
+    return 0;
+  }
   const years = minutes / MINUTES_PER_YEAR;
   const age = ageYears(child);
   const meanWarmth = total / carers.length;
@@ -353,7 +375,7 @@ export function raise(child: Person, household: Household, minutes: number, opts
   });
   responsiveness /= total;
   const ka = continuous
-    ? relax(F.attachmentRatePerYear * meanWarmth, years * attachmentPlasticity(age) * vp)
+    ? relax(F.attachmentRatePerYear, years * attachmentPlasticity(age) * vp)
     : relax(F.attachmentRatePerYear, years * attachmentPlasticity(age));
   const att = fam.attachment ?? F.attachmentStart;
   fam.attachment = clamp01(att + ka * (responsiveness - att));

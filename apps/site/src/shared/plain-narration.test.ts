@@ -43,8 +43,8 @@ it('pins the adopted runtime in exports and keeps duty counter identity across n
   const { counterIdentity } = await import('../colony/sim/human-view.ts');
   const p = createPerson(villagerPersonSpec(7, requireValue(VILLAGERS[1])));
   const duty = requireValue(p.agenda.commitments.find((c) => c.label === 'Maghrib'));
-  expect(FRAMEWORK_PACKAGE_VERSION).toBe('3.0.0');
-  expect(new WatchRun(7).export().framework).toBe('3.0.0');
+  expect(FRAMEWORK_PACKAGE_VERSION).toBe('3.2.0');
+  expect(new WatchRun(7).export().framework).toBe('3.2.0');
   expect(
     counterIdentity(p, {
       voiceId: 'player',

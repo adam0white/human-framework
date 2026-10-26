@@ -149,3 +149,11 @@ it('keeps saves and exports out of the ordinary notebook menu', () => {
   expect(sheet.textContent).not.toMatch(/Download this run|Save/);
   expect(button(sheet, 'Resume')).toBeDefined();
 });
+
+it('passes the explicit feedback choices opt-in through the native sheet handoff', async () => {
+  const openSendDialog = vi.fn();
+  const getRun = () => ({ seed: 17 });
+  const sheet = open({ lab: { openSendDialog }, getRun, filename: 'run.json', feedbackChoices: true });
+  button(sheet, 'Feedback').click();
+  await vi.waitFor(() => expect(openSendDialog).toHaveBeenCalledWith({ getRun, feedbackChoices: true }));
+});

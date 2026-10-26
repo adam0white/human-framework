@@ -2,6 +2,7 @@
 import assert from 'node:assert/strict';
 import { pathToFileURL } from 'node:url';
 import {
+  attachmentOf,
   communityState,
   createCommunity,
   createPerson,
@@ -50,6 +51,23 @@ export function runUpbringingControl() {
     const response = raise(child, { caregivers: [carer] }, YEAR, model);
     return { child, response };
   };
+  const coldInfant = direct(0, 0.1);
+  const legacyInfant = upbringingFixture(0, 0.1);
+  raise(legacyInfant.child, { caregivers: [legacyInfant.carer] }, YEAR);
+  assert.equal(attachmentOf(coldInfant.child), attachmentOf(legacyInfant.child));
+  assert(attachmentOf(coldInfant.child) < 0.52);
+  const absent = upbringingFixture(0, 0.1);
+  raise(absent.child, { caregivers: [] }, YEAR, model);
+  assert.equal(attachmentOf(absent.child), 0.6);
+  const zeroInfant = direct(0, 0);
+  const tinyInfant = direct(0, 1e-8);
+  assert(Math.abs(attachmentOf(zeroInfant.child) - 0.45) < 1e-14);
+  assert(attachmentOf(zeroInfant.child) < attachmentOf(tinyInfant.child));
+  const legacyZero = upbringingFixture(0, 0);
+  raise(legacyZero.child, { caregivers: [legacyZero.carer] }, YEAR);
+  assert.equal(attachmentOf(legacyZero.child), 0.6);
+  const warmInfant = direct(0, 0.8);
+  assert(attachmentOf(warmInfant.child) > 0.6);
   const ordinary = direct(18, 0.8);
   const tiny = direct(18, 1e-8);
   const zero = direct(18, 0);
@@ -85,7 +103,9 @@ export function runUpbringingControl() {
   liveCommunity(opted.community, 2 * DAY, { routineFor: upbringingRoutine, upbringing: model });
   liveCommunity(resumed, 2 * DAY, { routineFor: upbringingRoutine, upbringing: saved.options });
   assert.deepEqual(resumed.people.map(snapshot), opted.community.people.map(snapshot));
-  console.log('Upbringing control: direct warmth, guardian routine, age 25 cutoff and pinned restore pass.');
+  console.log(
+    'Upbringing control: warm/cold infant attachment with absent-care ablation, guardian routine, age 25 cutoff and pinned restore pass.',
+  );
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) runUpbringingControl();

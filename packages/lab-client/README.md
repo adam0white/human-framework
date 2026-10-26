@@ -1,8 +1,8 @@
 # Lab client
 
-This README describes client 0.4.10, distributed as an immutable GitHub release artifact, not an npm publication. It depends on exact HF 3.0.0. Use the [SDK adoption guide](../../docs/lab/navigation-journal-adoption-2026-10-25.md) and verify the [release digests](../../docs/releases.md#lab-package-artifacts--2026-10-25).
+This README describes client 0.4.11, distributed as an immutable GitHub release artifact, not an npm publication. It depends on exact HF 3.0.0. Use the [SDK adoption guide](../../docs/lab/navigation-journal-adoption-2026-10-25.md) and verify the [release digests](../../docs/releases.md#lab-package-artifacts--2026-10-25).
 
-Workspace version: **0.4.10**. The later **0.4.11** [GitHub artifact](https://github.com/adam0white/human-framework/releases/tag/lab-client-v0.4.11) is published from separate source `569bfeed`, with exact CI 40241110596. It is not integrated into this workspace or adopted by hosts by default. See [SDK adoption](../../docs/lab/navigation-journal-adoption-2026-10-25.md) before using its opt-in Feedback choices.
+Workspace candidate version: **0.4.11**. The **0.4.11** [GitHub artifact](https://github.com/adam0white/human-framework/releases/tag/lab-client-v0.4.11) is published from separate source `569bfeed`, with exact CI 40241110596. Its source is integrated into this 3.2 candidate; live host adoption still needs deployment. See [SDK adoption](../../docs/lab/navigation-journal-adoption-2026-10-25.md) before using its opt-in Feedback choices.
 
 Default-on, pseudonymous play recording for the HF game lab. The visible notice and menu toggle come from `@adam0white/lab-kit`. Games supply full replay exports and actual saves. Screens remain game-owned.
 
@@ -102,3 +102,27 @@ const admitted = await claimCastChapterBatch(
 `LifePreparation` pins the full parent, quantized `clockMs` and derived `life`. `preparePersonaLife` is deterministic and touches no Person. It changes an existing qualified assignment, local whereabouts and bounded one-sided public work-note encounters. It grants no mutual acquaintance/trust, consent, payment, completed work, health recovery or settled obligation. No maintained background people are generated. Temperament and values weight coarse opportunities. Modern and historical cohorts never mix. Hosts retain the source passport and private omitted state at the source; this is no full world migration.
 
 The central shelf retains40 active heads and up to80 additional historical revisions (120 total),16MiB overall,256KiB per envelope. Only non-heads are pruned. `history` with a selected cast id returns retained revision metadata; `get` with that cast id and optional `revision` retrieves its exact retained envelope. Recording linkage follows the recording switch without another prompt. Loaded runs stay pinned; fresh runs alone prepare and claim current heads.
+
+## Stop and confusion choices (candidate artifact)
+
+Opt in with `lab.openSendDialog({ getRun, feedbackChoices: true })`. The Feedback
+sheet offers “I'm stopping” and “I'm confused”. Selecting either only updates the
+preview. Submit sends its literal text as an ordinary bounded note, with any
+optional written note. No selection preserves the existing payload. These choices
+do not stop the game or change recording.
+
+Custom Feedback menus can import `FEEDBACK_LABELS`, `FeedbackLabel` and
+`sendFeedbackLabel` from this artifact. For example,
+`await sendFeedbackLabel(lab, 'confused', { run: getRun() })` explicitly submits
+that label and returns the existing stored-note receipt. Without a supplied run,
+the client tries its registered `trackRun` snapshot. Recording off or DNT/GPC
+without override sends an unlinked note and excludes the supplied run. Ordinary
+`sendFeedback` remains unchanged. Never display success before the promise resolves.
+
+The v2 linked envelope has no agent attribution field. `LabOptions` has no `who`
+option, and the linked path of `sendRun` does not forward its legacy `who` option.
+Worker admission rebuilds the envelope without unknown top-level fields. Thus a
+synthetic session cannot safely mark linked records as agent evidence through this
+API. Do not submit synthetic labels or runs to production. A separately reviewed
+client/Worker/index attribution contract is required first; name and note text are
+not substitutes.

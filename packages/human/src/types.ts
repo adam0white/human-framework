@@ -573,7 +573,12 @@ export interface Relationship {
   respect: Signed;
   /** How well I know them, 0..1. Grows with interaction, decays slowly. */
   familiarity: Unit;
-  /** Named roles: 'spouse', 'parent', 'child', 'sibling', 'friend', 'colleague', 'neighbor', 'leader', ... */
+  /**
+   * Named roles: 'spouse', 'parent', 'guardian', 'child', 'sibling', 'friend', 'colleague', 'neighbor', 'leader', ...
+   * On a young person's tie, 'parent' and 'guardian' identify upbringing caregivers. 'guardian' means a
+   * day-to-day family carer, not a marriage wali. Use the partnering API's explicit guardian stance for
+   * marriage permission; that stance does not add a family role or select an upbringing caregiver.
+   */
   roles: string[];
   /** Balance of favours: positive = they owe me. */
   ledger: number;
@@ -642,6 +647,8 @@ export interface Commitment {
   /** Window in which fulfilment counts. */
   from: Minute;
   until: Minute;
+  /** Opt-in receipt timing: completion itself must be in the window. Absent: legacy span overlap. */
+  completion?: 'end';
   /** Linked norm (e.g. 'keep-promise', 'salah'); breaking it is recorded as a breach. */
   normId?: string;
   importance: Unit;
@@ -794,7 +801,19 @@ export interface VoiceTrustEvent {
  * No single "willpower fuel" is modelled (rejected in research/empirical-models.md §6). Acting against an
  * impulse emerges from competing terms, real fatigue costs, habits and precommitments.
  */
+/** Host-authored pressure from strong accepted advice; engineering assumption, not a moral cost. */
+export interface AssentCostSpec {
+  /** Host source or design record explaining this consequence. */
+  provenance: string;
+  /** Minimum suggestion strength, in (0, 1]. */
+  minStrength: Unit;
+  /** Added voice pressure per accepted decision, in (0, 0.15]. */
+  pressure: Unit;
+}
+
 export interface WillState {
+  /** Absent preserves exact legacy assent behavior. */
+  assentCost?: AssentCostSpec;
   /** Opt-in score explanations on suggestion resolutions; absent preserves legacy JSON. */
   suggestionReasons?: true;
   voices: VoiceRelation[];
@@ -990,7 +1009,7 @@ export const PERSON_SCHEMA = 'human/person@1';
  * and an activity that would cover a closing stretch is reviewed when the stretch begins (`isUnderWay`,
  * `dutyReviewAt`). Person shape unchanged.
  */
-export const ENGINE_VERSION = '3.1.0';
+export const ENGINE_VERSION = '3.2.0';
 
 // ---------------------------------------------------------------------------------------------
 // Family, bonds and ambient (1.8.0, optional slices)
@@ -1498,6 +1517,8 @@ export type SuggestionVerdict = 'assented' | 'complied' | 'deferred' | 'modified
 export type RefusalKind = 'cannot' | 'notNow' | 'willNot';
 
 export interface SuggestionResolution {
+  /** Actual added pressure, booked only for a strong non-insisted assent with the host opt-in. */
+  assentCost?: { pressure: Unit; provenance: string };
   /** Read-only score explanation, only with `enableSuggestionReasons`; margin includes activity inertia. */
   decidedBy?: { kind: 'inertia' | 'term'; source?: string; margin: number };
   voiceId: EntityId;
@@ -1896,6 +1917,8 @@ export interface VoiceConflict {
 export interface Lexicon {
   /** Use complete, plain English in built-in narration. Omitted keeps exact legacy wording. */
   plainEnglish?: boolean;
+  /** Frozen built-in wording revision. Omission preserves exact prior text; does not enable plainEnglish. */
+  wording?: 'literal-v1';
   /** Include person identity and stable temperament in assent/deferral selection (no RNG draws). */
   variety?: boolean;
   /** What material gains mean here, e.g. 'food', 'household keep' or 'resources'; absent keeps legacy money lines. */

@@ -49,18 +49,44 @@ function routine(age: number, roles: string[], mode = true) {
 }
 
 describe('opt-in warmth through young adulthood (Q30/Q31/Q32)', () => {
-  test('zero teaches nothing; tiny warmth has tiny norm, attachment and returned effects', () => {
+  test('zero warmth follows responsiveness while omitted and absent care retain their boundary', () => {
+    const cold = upbringingFixture(0, 0);
+    const tiny = upbringingFixture(0, 1e-8);
+    const omitted = upbringingFixture(0, 0);
+    const absent = upbringingFixture(0, 0);
+    const rng = copy(cold.child.rng);
+    raise(cold.child, { caregivers: [cold.carer] }, YEAR, model);
+    raise(tiny.child, { caregivers: [tiny.carer] }, YEAR, model);
+    raise(omitted.child, { caregivers: [omitted.carer] }, YEAR);
+    raise(absent.child, { caregivers: [] }, YEAR, model);
+    // Existing formula at warmth 0 and mood +1 gives responsiveness 0.3.
+    expect(attachmentOf(cold.child)).toBeCloseTo(0.45, 14);
+    expect(attachmentOf(cold.child)).toBeLessThan(attachmentOf(tiny.child));
+    expect(attachmentOf(omitted.child)).toBe(0.6);
+    expect(attachmentOf(absent.child)).toBe(0.6);
+    expect(cold.child.rng).toEqual(rng);
+  });
+
+  test('low warmth does not slow attachment response to unresponsive caregiving', () => {
+    const opted = upbringingFixture(0, 0.1);
+    const legacy = upbringingFixture(0, 0.1);
+    raise(opted.child, { caregivers: [opted.carer] }, YEAR, model);
+    raise(legacy.child, { caregivers: [legacy.carer] }, YEAR);
+    expect(attachmentOf(opted.child)).toBe(attachmentOf(legacy.child));
+    expect(attachmentOf(opted.child)).toBeLessThan(0.52);
+  });
+  test('zero teaches nothing; tiny warmth has tiny norm and returned effects; attachment follows responsiveness', () => {
     const zero = direct(0);
     const tiny = direct(1e-8);
     const ordinary = direct(0.8);
     expect(zero.child.values.tradition).toBe(0.2);
     expect(conviction(zero.child)).toBe(0.2);
-    expect(attachmentOf(zero.child)).toBe(0.6);
+    expect(attachmentOf(zero.child)).toBeLessThan(attachmentOf(tiny.child));
     expect(zero.response).toBe(0);
     expect(zero.child.family?.raisedMinutes).toBe(YEAR);
     expect(conviction(tiny.child)).toBeGreaterThan(0.2);
     expect(conviction(tiny.child) - 0.2).toBeLessThan(1e-8);
-    expect(Math.abs(attachmentOf(tiny.child) - 0.6)).toBeLessThan(1e-8);
+    expect(attachmentOf(tiny.child)).toBeLessThan(0.6);
     expect(tiny.response).toBeGreaterThan(0);
     expect(tiny.response).toBeLessThan(1e-8);
     expect(conviction(ordinary.child)).toBeGreaterThan(conviction(tiny.child));
@@ -94,7 +120,7 @@ describe('opt-in warmth through young adulthood (Q30/Q31/Q32)', () => {
     const tiny = upbringingFixture(18, 1e-8);
     liveCommunity(tiny.community, DAY, { routineFor: upbringingRoutine, upbringing: model });
     expect(conviction(tiny.child) - conviction(cold.child)).toBeLessThan(1e-8);
-    expect(Math.abs(attachmentOf(tiny.child) - attachmentOf(cold.child))).toBeLessThan(1e-8);
+    expect(attachmentOf(cold.child)).toBeLessThan(attachmentOf(tiny.child));
     expect(conviction(guardian.child)).toBeGreaterThan(conviction(tiny.child));
     expect(tiny.child.rng).toEqual(cold.child.rng);
   });

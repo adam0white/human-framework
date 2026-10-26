@@ -21,7 +21,9 @@ export function watchCareReentry(parent: PersonaEnvelope, portable: Portable): C
   if (
     parent.castId !== 'hf.cast.kian.watch' ||
     parent.source.game !== 'watch' ||
-    (parent.source.engine !== '2.17.0' && parent.source.engine !== ENGINE_VERSION) ||
+    (parent.source.engine !== '2.17.0' &&
+      parent.source.engine !== '2.23.0' &&
+      parent.source.engine !== ENGINE_VERSION) ||
     parent.source.rules !== 'cast-1' ||
     parent.transfer.castPassport !== 'site-cast/1' ||
     parent.transfer.sourceRole !== 'kian' ||

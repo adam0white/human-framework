@@ -1,5 +1,5 @@
 /** Human Framework public surface. */
-export const FRAMEWORK_VERSION = '3.1.0';
+export const FRAMEWORK_VERSION = '3.2.0';
 
 // `affect.release` is re-exported as `releaseEmotion` (beside `releaseCommitment`); `skipAffect` stays internal.
 export type { CrisisEvent, PracticeKind } from './affect/index.ts';
@@ -33,6 +33,8 @@ export type {
   PrayerSchedule,
   PrayerTimes,
   Retimer,
+  ZakatAlFitrOptions,
+  ZakatAlFitrPlan,
 } from './agenda/index.ts';
 // `agenda.release` collides with `affect.release`; the agenda one is re-exported under a clearer name.
 export {
@@ -71,6 +73,7 @@ export {
   RAMADAN_DEFAULTS,
   ramadanFast,
   ramadanMeals,
+  readZakatAlFitr,
   release as releaseCommitment,
   retimeCommitments,
   retirePaidMakeUps,
@@ -80,6 +83,8 @@ export {
   suhoorWindow,
   timesFor,
   violatesAbstention,
+  ZAKAT_AL_FITR_NORM,
+  zakatAlFitr,
 } from './agenda/index.ts';
 export * from './beliefs/index.ts';
 export * from './body/index.ts';
@@ -103,6 +108,8 @@ export * from './core/index.ts';
 export { CURIOSITY_DEFAULTS, curiosityOf, enableCuriosity } from './curiosity/index.ts';
 export * from './environment/index.ts';
 export * from './family/index.ts';
+export type { FeatureInputIssue } from './feature-inputs.ts';
+export { validateFeatureInputs } from './feature-inputs.ts';
 export * from './habits/index.ts';
 export * from './impression.ts';
 export * from './lifecourse/index.ts';

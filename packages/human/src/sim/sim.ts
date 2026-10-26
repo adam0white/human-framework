@@ -56,6 +56,7 @@ import { chronicleBetween } from '../chronicle/index.ts';
 import { recordDeed } from '../conscience/index.ts';
 import { type ConverseContext, converse } from '../conversation/index.ts';
 import { clamp01, cmpStr, dayOf, rowOf } from '../core/index.ts';
+import { assertSelector } from '../feature-selectors.ts';
 import {
   type ChildSpec,
   type ChronicCondition,
@@ -259,6 +260,8 @@ export interface JointProposal {
   /** Decisions of the partners who accepted, used when everyone begins. */
   partnerRecords: Record<PersonId, DecisionRecord>;
   status: 'pending' | 'accepted' | 'declined';
+  /** In community death mode, an involuntary settlement, distinct from a chosen refusal. */
+  settledReason?: string;
 }
 
 export interface Community {
@@ -276,6 +279,8 @@ export interface Community {
     /** Offers a person may not choose again at minute `at` (a partner just declined them). */
     excluded: Record<PersonId, { at: Minute; ids: string[] }>;
   };
+  /** Community death mode only: actual participant loss tied to the running decision, retained across JSON saves. */
+  partnerDeaths?: Record<PersonId, { decisionId: string; jointId?: string; deceasedId: PersonId }>;
   /** Host-side: suggestions heard in conversation, weighed at the next decisions and dropped after a fresh one. */
   queued?: Record<PersonId, Suggestion[]>;
   /** Host-side: the last day each person's `World.onDay` and life-course rolls ran for. */
@@ -348,6 +353,13 @@ export interface LifecourseOptions {
 }
 
 export interface StepOptions {
+  /**
+   * Explicit prototype: omit final catch-up ticks between scheduled events. Requires
+   * deathHandling:'community'. People can be stale after return; synchronizeCommunity before
+   * every host read or mutation (including HUD, offers outside callbacks, saves and previews).
+   * Pin this choice in host run configuration. Omitted: exact eager continuation.
+   */
+  catchUp?: 'events';
   /** Hold current pregnancy and ambient conditions through body forecasts; pin in host run config. */
   forecastContext?: 'conditioned';
   /** Standing suggestions, applied at every decision of that person (resolved quietly at reviews); one or several voices. */
@@ -368,6 +380,10 @@ export interface StepOptions {
    * A future-dated host outcome advances discovery and tied recipients to that future clock, even past
    * the step bound and their intervening events. Hosts needing bounded event order must resolve at
    * the current event minute. Returned finish/death entries record scheduling and discovery clocks.
+   * Running work preflights lagging declared participants even without a death: `with`, retained joint
+   * membership, and `targetId` only for talk/call/conversation. Generic targets do not require life.
+   * These extra ticks can change floating-point partitions, thresholds and later choices versus 3.1.
+   * Actual participant loss is saved in optional Community.partnerDeaths by running decision identity.
    */
   deathHandling?: 'community';
   /** Hosts may disable the necessity exception. */
@@ -468,8 +484,9 @@ export function birth(c: Community, a: Person, b: Person, spec: ChildSpec): Pers
  * receipt time is at least their own `now`. `late: 'now'` explicitly permits listeners past `at`, as does the
  * existing default. `late: 'throw'` requires all eligible listeners to be at or before `at` and throws before
  * delivering any news if one is ahead. This changes no listener's clock. `receipt: 'attended'`
- * opts into knowledge-consistent bereavement: only an attended percept marks the tie and widows;
- * dropped news changes neither. Omitted receipt keeps the original unconditional widow call.
+ * opts into attended knowledge: only attended news marks the tie and produces grief. Factual widowhood
+ * and its waiting interval start at `at`, even without a social tie or attended news (marriage-sources §8).
+ * Omitted receipt keeps the original receipt-time widow call.
  */
 export function tellDeath(
   c: Community,
@@ -486,6 +503,8 @@ export function tellDeath(
   }
   for (const q of c.people) {
     if (q === dead || !q.body.alive) continue;
+    // Set the fact before perception can use its later receipt clock. widow is idempotent.
+    if (opts.receipt === 'attended' && q.bonds) widow(q, dead.id, at);
     if (!q.social.relationships.some((r) => r.otherId === dead.id)) continue;
     perceive(q, [
       {
@@ -498,7 +517,7 @@ export function tellDeath(
         summary: q.lexicon?.plainEnglish ? `${dead.name} died.` : `${dead.name} died`,
       },
     ]);
-    // Legacy calls widow even when unattended; attended mode leaves all receipt effects to perceive.
+    // Legacy uses receipt time even when unattended; explicit mode already anchored the fact.
     if (opts.receipt !== 'attended' && q.bonds) widow(q, dead.id, Math.max(at, q.now));
   }
 }
@@ -507,9 +526,11 @@ export function tellDeath(
  * SCOPE: opt-in community death discovery and scheduler cleanup, not a mortality model. Wrap one
  * driver-owned advancement (tick by default); dispatch its alive-to-dead transition at the resulting clock.
  * The optional advancement callback supports life-course rolls without another tick. It must be
- * synchronous and advance only `p`; hosts own discovery of external deaths. No RNG or state mark
+ * synchronous and advance only `p`; hosts own discovery of external deaths. No RNG draw or Person state mark
  * is added. Pin `deathHandling` in the host run config, including after JSON restore. Event caps
- * may omit returned log entries but never suppress cleanup or notices. No funeral is modeled.
+ * may omit returned log entries but never suppress cleanup or notices. Cleanup interrupts running shared
+ * work with the dead community participant, with no completion credit or conversation exchange.
+ * Pending proposal status stays compatible; settledReason distinguishes death from refusal. No funeral is modeled.
  */
 export function advanceCommunityPerson(
   c: Community,
@@ -519,7 +540,9 @@ export function advanceCommunityPerson(
   log: (e: SimEvent) => void = () => {},
   advance: (p: Person, at: Minute) => void = tick,
 ): void {
+  assertSelector('deathHandling', opts.deathHandling, 'community');
   const alive = p.body.alive;
+  const runningJointId = p.activity?.jointId;
   advance(p, at);
   // Composite finish may advance beyond the scheduled event. Discovery uses that actual clock.
   at = p.now;
@@ -534,7 +557,7 @@ export function advanceCommunityPerson(
     }
     tellDeath(c, p, at, { receipt: 'attended' });
   }
-  cleanupCommunityDeath(c, p, at, opts, log);
+  cleanupCommunityDeath(c, p, at, opts, log, runningJointId);
 }
 
 /** Preserve finish's host-declared timing and return value; discover any internal advancement death. */
@@ -546,10 +569,13 @@ function finishCommunityPerson(
   opts: Pick<StepOptions, 'deathHandling' | 'tellDeaths'>,
   log: (e: SimEvent) => void,
 ): ReturnType<typeof finish> {
+  const decisionId = p.activity?.decisionId;
   let report: ReturnType<typeof finish> = null;
   advanceCommunityPerson(c, p, p.now, opts, log, () => {
     report = finish(p, outcome, finishOpts(world));
   });
+  if (opts.deathHandling === 'community' && c.partnerDeaths?.[p.id]?.decisionId === decisionId)
+    delete c.partnerDeaths?.[p.id];
   return report;
 }
 
@@ -560,10 +586,27 @@ export function cleanupCommunityDeath(
   at: Minute,
   opts: Pick<StepOptions, 'deathHandling' | 'tellDeaths'>,
   log: (e: SimEvent) => void,
+  runningJointId?: string,
 ): void {
+  assertSelector('deathHandling', opts.deathHandling, 'community');
+  if (opts.deathHandling !== 'community') return;
+  // Factual bonds do not depend on whether death news is enabled or attended.
+  for (const q of c.people) if (q !== p && q.body.alive && q.bonds) widow(q, p.id, at);
+  const jointIds = new Set(runningJointId === undefined ? [] : [runningJointId]);
+  for (const proposal of c.joint.proposals) {
+    if (
+      proposal.status === 'accepted' &&
+      (proposal.proposerId === p.id || proposal.partnerIds.includes(p.id)) &&
+      (proposal.id === runningJointId || c.people.some((q) => q.activity?.jointId === proposal.id))
+    ) {
+      jointIds.add(proposal.id);
+      proposal.settledReason ??= `death:${p.id}`;
+    }
+  }
   for (const proposal of pendingProposals(c)) {
     if (proposal.proposerId !== p.id && !proposal.partnerIds.includes(p.id)) continue;
     // Settle before synchronization: a second discovered death cannot cancel this proposal twice.
+    proposal.settledReason = `death:${p.id}`;
     settle(c, proposal, 'declined');
     const proposer = personById(c, proposal.proposerId);
     if (proposer?.body.alive) {
@@ -576,9 +619,57 @@ export function cleanupCommunityDeath(
       const q = personById(c, id);
       if (!q?.body.alive) continue;
       if (q.now < at) advanceCommunityPerson(c, q, at, opts, log);
-      interruptPerson(c, q, Math.max(at, q.now), `declined:${proposal.id}`);
+      interruptPerson(c, q, Math.max(at, q.now), `death:${p.id}`);
     }
   }
+  // Running work is independent of notices and of the bounded settled-proposal history.
+  for (const q of c.people) {
+    const act = q.activity;
+    if (!q.body.alive || !act) continue;
+    if (
+      !participantIds(c, act.affordance, act.jointId).includes(p.id) &&
+      !(act.jointId !== undefined && jointIds.has(act.jointId))
+    )
+      continue;
+    if (q.now < at) advanceCommunityPerson(c, q, at, opts, log);
+    if (!q.body.alive || q.activity !== act) continue;
+    // Unlike pending-proposal review, this is evidence about this exact running activity.
+    c.partnerDeaths ??= {};
+    c.partnerDeaths[q.id] = {
+      decisionId: act.decisionId,
+      ...(act.jointId === undefined ? {} : { jointId: act.jointId }),
+      deceasedId: p.id,
+    };
+    interruptPerson(c, q, Math.max(at, q.now), `death:${p.id}`);
+  }
+}
+
+/** Participation includes living current joint members after settled history is pruned. */
+function participantIds(c: Community, aff: Affordance, jointId = aff.jointId): PersonId[] {
+  const proposal = jointId === undefined ? undefined : c.joint.proposals.find((x) => x.id === jointId);
+  return [
+    ...new Set([
+      ...(aff.with ?? []),
+      ...(isConversation({ action: aff.action, affordance: aff }) && aff.targetId !== undefined
+        ? [aff.targetId]
+        : []),
+      ...(proposal ? [proposal.proposerId, ...proposal.partnerIds] : []),
+      ...(jointId === undefined
+        ? []
+        : c.people.filter((q) => q.body.alive && q.activity?.jointId === jointId).map((q) => q.id)),
+    ]),
+  ];
+}
+
+/** A generic target is a referent, not a required living coactor. */
+function deadPartner(c: Community, aff: Affordance, jointId = aff.jointId): Person | undefined {
+  const ids = participantIds(c, aff, jointId);
+  return c.people.find((q) => !q.body.alive && ids.includes(q.id));
+}
+
+function activityPartnerDeath(c: Community, p: Person, act: Activity): PersonId | undefined {
+  const loss = c.partnerDeaths?.[p.id];
+  return loss?.decisionId === act.decisionId && loss.jointId === act.jointId ? loss.deceasedId : undefined;
 }
 
 /** Settled proposals kept for inspection. */
@@ -757,6 +848,7 @@ export function acceptJoint(
   writeLog: (e: SimEvent) => void = () => {},
   opts: Pick<StepOptions, 'deathHandling' | 'tellDeaths'> = {},
 ): Activity[] {
+  assertSelector('deathHandling', opts.deathHandling, 'community');
   const log = (e: SimEvent) => {
     const person = personById(c, e.personId);
     writeLog(person?.lexicon?.plainEnglish ? { ...e, detail: plainEventDetail(person, e) } : e);
@@ -778,7 +870,16 @@ export function acceptJoint(
     const act = person.activity;
     if (act) {
       const finishAt = opts.deathHandling === 'community' ? Math.max(at, person.now) : at;
-      const outcome = world.resolve(person, act, finishAt >= act.endsAt ? 'ended' : 'interrupted');
+      const deathStopped =
+        opts.deathHandling === 'community' &&
+        (deadPartner(c, act.affordance, act.jointId) !== undefined ||
+          activityPartnerDeath(c, person, act) !== undefined);
+      const resolved = world.resolve(
+        person,
+        act,
+        !deathStopped && finishAt >= act.endsAt ? 'ended' : 'interrupted',
+      );
+      const outcome = deathStopped ? { ...resolved, status: 'interrupted' as const } : resolved;
       finishCommunityPerson(c, world, person, outcome, opts, log);
       log({
         at: finishAt,
@@ -825,7 +926,8 @@ export function acceptJoint(
     ) {
       declineJoint(c, proposal);
       for (const { person } of participants)
-        if (person.body.alive) interruptPerson(c, person, at, `declined:${proposal.id}`);
+        if (person.body.alive)
+          interruptPerson(c, person, at, proposal.settledReason ?? `declined:${proposal.id}`);
       return [];
     }
   }
@@ -1161,6 +1263,11 @@ function offersForDecision(
  * Advance the community to `until`, processing person events in (time, id) order. Returns the events.
  */
 export function stepCommunity(c: Community, world: World, until: Minute, opts: StepOptions = {}): SimEvent[] {
+  assertSelector('deathHandling', opts.deathHandling, 'community');
+  assertSelector('forecastContext', opts.forecastContext, 'conditioned');
+  if (opts.catchUp === 'events' && opts.deathHandling !== 'community') {
+    throw new Error("event-only catch-up requires deathHandling:'community'");
+  }
   const events: SimEvent[] = [];
   const quantum = Math.max(1, opts.idleQuantum ?? SIM_DEFAULTS.idleQuantum);
   const maxEvents = opts.maxEvents ?? SIM_DEFAULTS.maxEvents;
@@ -1205,11 +1312,17 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
   let pairMinute = Number.NEGATIVE_INFINITY;
   const pairsDone = new Set<string>();
 
+  // A different pending proposal may hold ordinary reviews. Actual running participant loss
+  // still needs settlement now; this record never enables the policy when it is omitted.
+  const lostPartner = (p: Person) =>
+    opts.deathHandling === 'community' &&
+    p.activity !== null &&
+    activityPartnerDeath(c, p, p.activity) !== undefined;
   for (;;) {
     let next: Person | undefined;
     let t = Number.POSITIVE_INFINITY;
     for (const p of c.people) {
-      const at = nextEventAt(c, p);
+      const at = lostPartner(p) ? p.now : nextEventAt(c, p);
       if (at < t) {
         t = at;
         next = p;
@@ -1217,7 +1330,7 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
     }
     if (!next || t > until) break;
     const p = next;
-    const ordinaryDue = ordinaryEventAt(c, p) <= t;
+    const ordinaryDue = lostPartner(p) || ordinaryEventAt(c, p) <= t;
     advanceCommunityPerson(c, p, t, opts, log);
     if (opts.deathHandling === 'community' && !p.body.alive) continue;
     const dozed = p.activity?.dozedAt !== undefined || p.body.doze?.since !== undefined;
@@ -1291,6 +1404,39 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
     }
 
     let act = p.activity;
+    if (opts.deathHandling === 'community' && act) {
+      // Discover a lagging partner's death before resolving an ended task or exchanging words.
+      for (const q of c.people) {
+        if (q === p || !q.body.alive || q.now >= t) continue;
+        if (participantIds(c, act.affordance, act.jointId).includes(q.id))
+          advanceCommunityPerson(c, q, t, opts, log);
+      }
+      if (!p.body.alive) continue;
+      act = p.activity;
+      const dead = act && deadPartner(c, act.affordance, act.jointId);
+      if (dead) interruptPerson(c, p, t, `death:${dead.id}`);
+      // Perception may replace the ordinary interrupt. Only cleanup's activity-specific
+      // provenance survives that overwrite; a pending proposal's death is not partner loss.
+      const deceasedId = dead?.id ?? (act && activityPartnerDeath(c, p, act));
+      const deathReason = deceasedId === undefined ? undefined : `death:${deceasedId}`;
+      if (act && deathReason?.startsWith('death:')) {
+        perceptReason = deathReason;
+        const outcome = { ...world.resolve(p, act, 'interrupted'), status: 'interrupted' as const };
+        finishCommunityPerson(c, world, p, outcome, opts, log);
+        log({
+          at: t,
+          personId: p.id,
+          kind: 'finish',
+          detail: `${act.action} interrupted`,
+          decisionId: act.decisionId,
+          affordanceId: act.affordanceId,
+          action: act.action,
+          status: 'interrupted',
+        });
+        if (!p.body.alive) continue;
+        act = p.activity;
+      }
+    }
     // An interrupt on an activity that ends at this event still reaches the next decision.
     perceptReason ??= act?.interrupt?.reason;
     if (act && t >= act.endsAt) {
@@ -1330,7 +1476,12 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
       act = p.activity;
     }
 
-    const { asked, mirrors, affordances } = offersForDecision(c, world, p, t);
+    const offered = offersForDecision(c, world, p, t);
+    const { asked, mirrors } = offered;
+    const affordances =
+      opts.deathHandling === 'community'
+        ? offered.affordances.filter((a) => !deadPartner(c, a))
+        : offered.affordances;
     const record = decide(p, affordances, decisionOptions(c, world, p, opts, perceptReason, affordances));
     delete c.interrupts[p.id];
     // Conversation advice is weighed until the next fresh decision, then it has been heard.
@@ -1445,7 +1596,9 @@ export function stepCommunity(c: Community, world: World, until: Minute, opts: S
     });
   }
 
-  for (const p of c.people) if (p.now < until) advanceCommunityPerson(c, p, until, opts, log);
+  if (opts.catchUp !== 'events') {
+    for (const p of c.people) if (p.now < until) advanceCommunityPerson(c, p, until, opts, log);
+  }
   return events;
 }
 
@@ -1469,6 +1622,11 @@ export function runSilent(
   days: number,
   opts: StepOptions & { mutedVoiceId?: PersonId } = {},
 ): SilentRun {
+  if (opts.catchUp === 'events') {
+    throw new Error(
+      'runSilent requires eager catch-up; use stepCommunity and synchronizeCommunity for event-only runs',
+    );
+  }
   const from = Math.min(...c.people.map((p) => p.now));
   const to = from + Math.max(0, days) * MINUTES_PER_DAY;
   const { mutedVoiceId, ...step } = opts;

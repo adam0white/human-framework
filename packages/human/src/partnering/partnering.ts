@@ -533,7 +533,11 @@ export function widow(p: Person, spouseId: PersonId, at: Minute): boolean {
   return true;
 }
 
-/** Hazard multiplier from widowhood for the host's mortality model (1 when not widowed or remarried; F20). */
+/**
+ * Status-based hazard multiplier for the host's mortality model (1 when not widowed or remarried; F20).
+ * Reads factual endedAt, not attended death knowledge or grief. Applying the aggregate F20 association
+ * before news is heard is an engineering assumption; F20 does not establish that timing or mechanism.
+ */
 export function widowhoodMortality(p: Person, now: Minute = p.now): number {
   if (!p.bonds || spousesOf(p).length > 0) return 1;
   let last: Marriage | undefined;
