@@ -13,6 +13,7 @@ import type { CastChapter } from '../../shared/cast-chapter.ts';
 import { FRAMEWORK_PACKAGE_VERSION } from '../../shared/playtest.ts';
 import { ALL_POST_IDS, WINTER_RULES } from './config.ts';
 import { validWatchOptions, type WatchOptions } from './dusk-rest.ts';
+import { ownsWarningCast, validateLocalWarningState, validLocalWarningInput } from './local-warning.ts';
 import { applyInput, clockRuns, type Input, newGame, stepMinute } from './night.ts';
 import type { WatchState } from './state.ts';
 
@@ -80,6 +81,7 @@ export function ruleState(s: WatchState, people = summarise(s)): unknown {
     ...(s.refugeVisit ? { refugeVisit: s.refugeVisit } : {}),
     ...(s.warrenCareReturn ? { warrenCareReturn: s.warrenCareReturn } : {}),
     ...(s.duskRest ? { duskRest: s.duskRest } : {}),
+    ...(s.localWarning ? { localWarning: s.localWarning } : {}),
     ...(s.nightDepartureEffort ? { nightDepartureEffort: true } : {}),
     ...(s.winterSetting ? { winterSetting: s.winterSetting, winterRules: WINTER_RULES } : {}),
     leads: s.leads,
@@ -207,12 +209,16 @@ export function endState(s: WatchState): EndState {
  */
 export const WATCH_SCENARIO_VERSION = 14;
 export const WATCH_DUSK_REST_SCENARIO_VERSION = 15;
+export const WATCH_LOCAL_WARNING_SCENARIO_VERSION = 16;
 export function scenarioForOptions(options?: WatchOptions): number {
   if (!validWatchOptions(options)) throw new Error('Unknown watch option');
+  if (options?.localWarning) return WATCH_LOCAL_WARNING_SCENARIO_VERSION;
   return options?.duskRest ? WATCH_DUSK_REST_SCENARIO_VERSION : WATCH_SCENARIO_VERSION;
 }
 export function scenarioForState(s: WatchState): number {
-  if (s.duskRest === undefined) return WATCH_SCENARIO_VERSION;
+  validateLocalWarningState(s);
+  const edition = s.localWarning ? WATCH_LOCAL_WARNING_SCENARIO_VERSION : WATCH_SCENARIO_VERSION;
+  if (s.duskRest === undefined) return edition;
   if (!s.duskRest) throw new Error('Invalid night-off state');
   if (
     s.duskRest.edition !== 'dusk-rest@1' ||
@@ -244,7 +250,7 @@ export function scenarioForState(s: WatchState): number {
     )
       throw new Error('Invalid night-off request');
   }
-  return WATCH_DUSK_REST_SCENARIO_VERSION;
+  return s.localWarning ? WATCH_LOCAL_WARNING_SCENARIO_VERSION : WATCH_DUSK_REST_SCENARIO_VERSION;
 }
 
 /** The oldest scenario whose saved pages still load (`migrateSnapshot`). */
@@ -306,10 +312,27 @@ export function migrateSnapshot(snap: Snapshot): Snapshot {
   if (
     snap.scenario !== scenarioForState(snap.state) ||
     snap.scenario < OLDEST_LOADABLE_SCENARIO ||
-    ![WATCH_SCENARIO_VERSION, WATCH_DUSK_REST_SCENARIO_VERSION].includes(snap.scenario)
+    ![
+      WATCH_SCENARIO_VERSION,
+      WATCH_DUSK_REST_SCENARIO_VERSION,
+      WATCH_LOCAL_WARNING_SCENARIO_VERSION,
+    ].includes(snap.scenario)
   )
     throw new Error(`save scenario ${snap.scenario} does not match its admitted night-off choice`);
-  if (snap.scenario === WATCH_SCENARIO_VERSION && snap.log.some((e) => e.i.k === 'dusk-rest'))
+  if (
+    snap.log.some(
+      (e) =>
+        e.i.k === 'local-warning' &&
+        (!snap.state.localWarning ||
+          !validLocalWarningInput(e.i) ||
+          !ownsWarningCast(snap.state, e.i.who) ||
+          !Number.isFinite(e.m) ||
+          e.m < 0 ||
+          e.m > snap.state.minute),
+    )
+  )
+    throw new Error('Local warning input is not admitted in this save');
+  if (!snap.state.duskRest && snap.log.some((e) => e.i.k === 'dusk-rest'))
     throw new Error('Night-off input is not admitted in this save');
   return snap;
 }
@@ -394,7 +417,14 @@ export class WatchRun {
   export(): PlaytestExport {
     return {
       ...(this.state.castChapter ? { castChapter: structuredClone(this.state.castChapter) } : {}),
-      ...(this.state.duskRest ? { options: { duskRest: 'dusk-rest@1' as const } } : {}),
+      ...(this.state.duskRest || this.state.localWarning
+        ? {
+            options: {
+              ...(this.state.duskRest ? { duskRest: 'dusk-rest@1' as const } : {}),
+              ...(this.state.localWarning ? { localWarning: 'local-warning@1' as const } : {}),
+            },
+          }
+        : {}),
       game: 'the-night-watch',
       phase: 'G3-4',
       scenario: scenarioForState(this.state),

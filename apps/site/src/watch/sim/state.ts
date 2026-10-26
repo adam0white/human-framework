@@ -316,6 +316,7 @@ export interface BellState {
 
 export interface WatchState {
   duskRest?: import('./dusk-rest.ts').DuskRestState;
+  localWarning?: import('./local-warning.ts').LocalWarningState;
   /** Exact native Warren bounded record, plus one onward clock offset; not travel. */
   warrenCareReturn?: { source: import('./care-reentry.ts').WarrenCareReturn; onwardOffset: number };
   refugeVisit?: import('./refuge-visit.ts').RefugeVisit;

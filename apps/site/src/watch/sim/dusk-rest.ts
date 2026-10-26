@@ -11,6 +11,7 @@ import type { WatchState } from './state.ts';
 
 export interface WatchOptions {
   duskRest?: 'dusk-rest@1';
+  localWarning?: 'local-warning@1';
 }
 export interface DuskRestRequest {
   askedAt: number;
@@ -33,8 +34,10 @@ export function validWatchOptions(options: WatchOptions | undefined): boolean {
     options === undefined ||
     (!!options &&
       typeof options === 'object' &&
-      Object.keys(options).every((k) => k === 'duskRest') &&
-      (options.duskRest === undefined || options.duskRest === 'dusk-rest@1'))
+      !Array.isArray(options) &&
+      Object.keys(options).every((k) => k === 'duskRest' || k === 'localWarning') &&
+      (options.duskRest === undefined || options.duskRest === 'dusk-rest@1') &&
+      (options.localWarning === undefined || options.localWarning === 'local-warning@1'))
   );
 }
 export function activeRest(r: DuskRestRequest | undefined, at: number): boolean {

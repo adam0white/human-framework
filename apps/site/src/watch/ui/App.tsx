@@ -367,7 +367,11 @@ export function App() {
                   onContinue={title ? () => setTitle(false) : undefined}
                   onNew={(options) => {
                     setTitle(false);
-                    if (frame.phase === 'goal' && Boolean(frame.duskRest) === Boolean(options?.duskRest))
+                    if (
+                      frame.phase === 'goal' &&
+                      Boolean(frame.duskRest) === Boolean(options?.duskRest) &&
+                      Boolean(frame.localWarning) === Boolean(options?.localWarning)
+                    )
                       actions.input({ k: 'start' });
                     else actions.restart(Math.floor(Math.random() * 1e9), options, true);
                   }}
@@ -622,8 +626,18 @@ export function GoalPage({
       setNote('That page could not be read. You can begin a new village.');
   };
   const [nightOff, setNightOff] = useState(false);
+  const [localWarning, setLocalWarning] = useState(false);
   const begin = () =>
-    onNew ? onNew(nightOff ? { duskRest: 'dusk-rest@1' } : undefined) : actions.input({ k: 'start' });
+    onNew
+      ? onNew(
+          nightOff || localWarning
+            ? {
+                ...(nightOff ? { duskRest: 'dusk-rest@1' as const } : {}),
+                ...(localWarning ? { localWarning: 'local-warning@1' as const } : {}),
+              }
+            : undefined,
+        )
+      : actions.input({ k: 'start' });
   return (
     <div className="w-page w-goal">
       <h2>Keep everyone alive and protect the grain until the snow melts in spring.</h2>
@@ -644,6 +658,12 @@ export function GoalPage({
         <label>
           <input type="checkbox" checked={nightOff} onChange={(e) => setNightOff(e.target.checked)} /> Offer
           night-off requests at dusk in the new village
+        </label>
+      ) : null}
+      {onNew ? (
+        <label>
+          <input type="checkbox" checked={localWarning} onChange={(e) => setLocalWarning(e.target.checked)} />{' '}
+          Offer spoken cautions at night in the new village
         </label>
       ) : null}
       {note ? <p className="w-soft-fail">{note}</p> : null}
@@ -1233,6 +1253,7 @@ function NightAccount({
         ) : (
           <section className="w-account" aria-label={settingWords(`${settingWords(who.name)} on watch`)}>
             {who.handover ? <p role="status">{who.handover}</p> : null}
+            {who.localWarning?.account ? <p role="status">{who.localWarning.account}</p> : null}
             {who.duskRest?.account ? <p role="status">{who.duskRest.account}</p> : null}
             <NightMessages frame={frame} />
             {who.account?.spoken ? <blockquote>{who.account.text}</blockquote> : <p>{who.account?.text}</p>}
@@ -1247,6 +1268,19 @@ function NightAccount({
       </div>
       {!showingChoice ? (
         <footer className="lk-commit w-account-commit">
+          {who.localWarning ? (
+            <>
+              <button
+                type="button"
+                className="w-night-act"
+                disabled={!!who.localWarning.unavailable}
+                onClick={() => actions.input({ k: 'local-warning', who: who.id })}
+              >
+                Warn {settingWords(who.name)}: keep an eye on this stretch
+              </button>
+              {who.localWarning.unavailable ? <p>{who.localWarning.unavailable}</p> : null}
+            </>
+          ) : null}
           {!acts.length ? (
             <p className="w-note w-account-unavailable">{requestWords(who.actsUnavailable)}</p>
           ) : null}

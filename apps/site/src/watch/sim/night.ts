@@ -102,6 +102,7 @@ import {
 } from './dusk-rest.ts';
 import { takeOffer } from './fair.ts';
 import { fillLeaf, maybeLimp } from './life.ts';
+import { applyLocalWarning, deliverLocalWarnings, type LocalWarningInput } from './local-warning.ts';
 import { answerMoment, catchLeaving, checkMoments } from './moments.ts';
 import { applyNightAct, type NightInput, resolveNightRequest } from './night-actions.ts';
 import {
@@ -143,6 +144,7 @@ import { dawnVoices } from './voices.ts';
 import { firstStand, freshLeaves } from './volume.ts';
 
 export type Input =
+  | LocalWarningInput
   | DuskRestInput
   | NightInput
   | { k: 'start' }
@@ -185,6 +187,7 @@ export function newGame(
 ): WatchState {
   if (!validWatchOptions(options)) throw new Error('Unknown watch option');
   const s = createState(seed);
+  if (options?.localWarning) s.localWarning = { edition: 'local-warning@1', pending: [], receipts: {} };
   if (options?.duskRest) s.duskRest = { edition: 'dusk-rest@1', requests: {} };
   if (castChapter) {
     s.castChapter = structuredClone(castChapter);
@@ -630,6 +633,8 @@ export function applyInput(s: WatchState, input: Input): boolean {
       s.phase = 'dusk';
       if (s.winterSetting) planNight(s);
       return true;
+    case 'local-warning':
+      return applyLocalWarning(s, input);
     case 'dusk-rest':
       return applyDuskRest(s, input);
     case 'post': {
@@ -951,6 +956,7 @@ export function stepPeople(s: WatchState, until: number, world = new WatchWorld(
     }
   }
   if (s.duskRest) resolveDuskRest(s, events, until);
+  if (s.localWarning) deliverLocalWarnings(s, until);
   if (s.phase === 'night') readEvents(s, events, before);
   // Prune percepts each person has already been handed.
   for (const id of presentIds(s)) {

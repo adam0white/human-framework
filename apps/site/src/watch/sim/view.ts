@@ -30,6 +30,7 @@ import {
 } from './config.ts';
 import { duskRestAccount, duskRestUnavailable } from './dusk-rest.ts';
 import { ageOf, dayOfYear, householdCount, living, seasonOfDay } from './life.ts';
+import { localWarningAccount, localWarningUnavailable } from './local-warning.ts';
 import { type Moment, readPosting, readWords } from './moments.ts';
 import { bellCarry, bellSwinging, inVoice, litSection, nightEnd, presentIds, theSection } from './night.ts';
 import { type NightAct, nightActs, nightBodyCondition, nightHandover } from './night-actions.ts';
@@ -94,6 +95,7 @@ export interface Motion {
 
 export interface Frame {
   duskRest?: true;
+  localWarning?: true;
   phase: Phase;
   /** Current winter and the choice for the next dusk. */
   winterSetting: { active: 'hard' | 'milder'; next: 'hard' | 'milder' } | null;
@@ -247,6 +249,7 @@ export interface FrameVillager {
 export type Posture = 'stand' | 'sit' | 'doze' | 'eat' | 'pray' | 'down' | 'frozen' | 'carry' | 'figure';
 
 export interface FrameWatcher {
+  localWarning?: { unavailable: string | null; account: string | null };
   duskRest?: { unavailable: string | null; account: string | null };
   id: WatcherId;
   name: string;
@@ -569,6 +572,14 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean, rate = 0
             : 'Looked tired at the last look'
           : null;
       })(),
+      ...(s.localWarning
+        ? {
+            localWarning: {
+              unavailable: localWarningUnavailable(s, w.id),
+              account: localWarningAccount(s, w.id),
+            },
+          }
+        : {}),
       ...(s.duskRest
         ? {
             duskRest: {
@@ -585,6 +596,7 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean, rate = 0
   return {
     phase: s.phase,
     ...(s.duskRest ? { duskRest: true as const } : {}),
+    ...(s.localWarning ? { localWarning: true as const } : {}),
     winterSetting: { ...(s.winterSetting ?? { active: 'hard', next: 'hard' }) },
     clock: ((s.minute % DAY) + DAY) % DAY,
     nightProgress: (s.minute - s.nightStart) / nightLen,
