@@ -5,6 +5,14 @@ packages:
 # Keep exact published pins; link a local package only when its version matches.
 linkWorkspacePackages: true
 hoist: false
+# Match the shared lab runtime; never download a runtime per repository.
+engineStrict: true
+strictPeerDependencies: true
+# Resolve intentionally and fail on stale modules instead of mutating installs before scripts.
+resolutionMode: highest
+verifyDepsBeforeRun: error
+dedupePeerDependents: true
+minimumReleaseAge: 1440
 # HF releases are consumed on the day we publish them. Keep the 24h delay for third parties.
 minimumReleaseAgeExclude:
   - "@adam0white/*"

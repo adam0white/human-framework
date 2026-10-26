@@ -82,7 +82,7 @@ A person's conscience weighs norms from a catalog the host supplies. The bundled
 
 ## Commands
 
-Node ≥ 24 with `/opt/homebrew/bin` first on `PATH`.
+For repository development, use the shared lab Node 26.12.0 with `/opt/homebrew/bin` first on `PATH`.
 
 - `npm run check`: lint (Biome), typecheck and tests, with no wall-clock assertions. `npm run check:lane` runs the checks for the files you changed; run it before every commit.
 - `npm run bench`: the timing budgets (`*.timing.ts`), one file at a time, printing each measurement; run it alone on a quiet machine (`BENCH_SCALE=3` multiplies every budget). `npm run bench:hyperfine` times the headless 20-person, 30-day village run with [hyperfine](https://github.com/sharkdp/hyperfine).
@@ -90,7 +90,7 @@ Node ≥ 24 with `/opt/homebrew/bin` first on `PATH`.
 - `npm run deploy`: uses pinned Wrangler 4.152.0 and `wrangler.jsonc` (the [cf beta trial](docs/roadmap.md#cf-cli-migration-trial--2026-10-26) is blocked on Build Output equivalence); deploys the site build to https://human.adamwhite.work (see AGENTS.md, Delivery); verify the live `/release.json` against the commit.
 - `npm run release`: from a clean checkout of pushed `origin/main`, checks versions and the changelog, runs `npm run check`, tags `vX.Y.Z` and creates the GitHub release with the tarball (`-- --dry-run` stops after packing). Versions follow [the version policy](packages/human/README.md#versions).
 
-CI ([.github/workflows/ci.yml](.github/workflows/ci.yml)) runs the pieces of check and build in parallel (lint, typecheck and build in one job, the tests in shards) as the gate on pushes and pull requests to `main`; its `ci` job is the single check that passes when all of them pass. [bench.yml](.github/workflows/bench.yml) runs the bench at 3× budgets and hyperfine as information, skipped for prose-only changes. CI uses the Node version in `.nvmrc`.
+CI ([.github/workflows/ci.yml](.github/workflows/ci.yml)) runs the pieces of check and build in parallel (lint, typecheck and build in one job, the tests in shards) as the gate on pushes and pull requests to `main`; its `ci` job is the single check that passes when all of them pass. [bench.yml](.github/workflows/bench.yml) runs the bench at 3× budgets and hyperfine as information, skipped for prose-only changes. CI uses the Node version in `.node-version`.
 
 ## Contributing and security
 
@@ -104,4 +104,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). Report vulnerabilities privately as desc
 
 ### Repository development
 
-Use Node ≥24 and pnpm 12.14.0. Run `pnpm install --frozen-lockfile` to install this repository. The default store (`~/Library/pnpm/store` on macOS) shares dependency files across worktrees. `npm run check`, `npm run build`, and the other script commands still work. Published-package consumers can keep their preferred installer.
+Use the shared Node 26.12.0 and pnpm 12.14.0. Run `pnpm install --frozen-lockfile` to install this repository. The default store (`~/Library/pnpm/store` on macOS) shares dependency files across worktrees. `npm run check`, `npm run build`, and the other script commands still work. Published-package consumers can keep their preferred installer.

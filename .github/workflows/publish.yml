@@ -52,7 +52,7 @@ jobs:
           cache: false
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version-file: .nvmrc
+          node-version-file: .node-version
           registry-url: https://registry.npmjs.org
           package-manager-cache: false # no caches in release builds
       # Pinned rather than whatever the Node release bundles: OIDC needs npm >= 11.5.1.

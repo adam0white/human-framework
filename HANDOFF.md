@@ -30,7 +30,7 @@ A real Galaxy S26 (wake lock, fullscreen, safe areas) and iOS; the playtest file
 
 Public since 2026-10-06: MIT for code, CC BY 4.0 for `docs/`, `research/`, `archive/research/` and `archive/v0/docs/`. `bash scripts/after-public.sh` (safe to re-run) set secret scanning with push protection, private vulnerability reporting, ruleset `main` (id 24627807, [.github/rulesets/main.json](.github/rulesets/main.json): no deletion, no force-push, required check `ci`, admins bypass), SHA-pinned actions, approval for outside fork PRs, and weekly CodeQL (variable `CODEQL_SCHEDULE=true`; clear it if the repository goes private). Do not enable CodeQL default setup.
 
-Dependabot alerts are on; `.github/dependabot.yml` excludes `archive/**` (owner, 2026-10-20). `allowScripts` permits the installed esbuild and workerd install scripts; fsevents stays denied. Wrangler's miniflare pins a patched sharp, so no override is needed.
+Dependabot alerts are on; `.github/dependabot.yml` excludes `archive/**` (owner, 2026-10-20). `allowBuilds` permits the installed esbuild and workerd install scripts; fsevents stays denied. Wrangler's miniflare pins a patched sharp, so no override is needed.
 
 ## npm
 
@@ -58,7 +58,7 @@ The [new owner direction](docs/owner-directions-2026-10-18.md#2026-10-23-frictio
 
 ## Package manager — 2026-10-26
 
-HF uses pnpm 12.14.0 with Node ≥24. Install with `pnpm install --frozen-lockfile`; `npm ci` no longer applies. The shared store is on the internal drive at `~/Library/pnpm/store` (versioned by pnpm). Worktrees link dependencies from that store. Keep using `npm run` for scripts if preferred. Hoisting is disabled; add real direct dependencies. `pnpm-workspace.yaml` contains the build allowlist and overrides. npm still packs and publishes release tarballs with SLSA provenance through the existing trusted publisher workflows. No package release is needed for this migration. Measurements and stale-worktree conversion instructions: `~/code/.lab-scratch/pkgmgr/report.md`.
+HF development uses pnpm 12.14.0 with the shared Node 26.12.0 runtime pinned in `.node-version`, `.nvmrc` and root `engines`. Published packages keep their Node ≥24 consumer contract. Install with `pnpm install --frozen-lockfile`; `npm ci` no longer applies. The shared store is on the internal drive at `~/Library/pnpm/store` (versioned by pnpm). Worktrees link dependencies from that store. Keep using `npm run` for scripts if preferred. Hoisting is disabled; add real direct dependencies. `pnpm-workspace.yaml` contains the build allowlist and overrides. npm still packs and publishes release tarballs with SLSA provenance through the existing trusted publisher workflows. No package release is needed for this migration. Measurements and stale-worktree conversion instructions: `~/code/.lab-scratch/pkgmgr/report.md`.
 
 ## cf CLI trial — 2026-10-26
 
