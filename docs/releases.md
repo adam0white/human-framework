@@ -88,3 +88,20 @@ An npm token, if the owner provides one for publishing by hand, lives only in th
 Client 0.4.12 admits the exact smoke, word, child, days and lefthand HTTPS origins alongside all prior origins. One navigation regression exercises Recording off and notice fallback creation and acceptance at all five destinations without creating a player ID. Existing hostile, stale, copied and local-off checks remain. Consent, F-491, DNT/GPC and separate character-analysis opt-in are unchanged. Client retains exact HF 3.0.0.
 
 Kit 0.5.14 changes only version, documentation and its optional client peer to `0.4.11 || 0.4.12`; kit implementation and scorer are unchanged. Site workspace pins client 0.4.12 and kit 0.5.14. Source review, exact CI and immutable GitHub artifact verification are prerequisites to publication; this candidate receipt claims none of those outcomes. Central deployment, host adoption, browser navigation and player acceptance remain separate.
+
+### SDK artifact delivery receipt — client 0.4.12 / kit 0.5.14
+
+Signed source [`623a98c49fdf8a591b2eca79597bb2e021ad0965`](https://github.com/adam0white/human-framework/commit/623a98c49fdf8a591b2eca79597bb2e021ad0965) passed independent Codex review and [exact CI 40328708896](https://github.com/adam0white/human-framework/actions/runs/40328708896). Normal gated checks passed 2,559 tests with seven existing skips; focused navigation/persona checks passed 12 tests after the new regression failed before the origin additions. Client, kit and site builds passed on the shared machine under the normal suite lock, with at least 27 GiB free disk at artifact launch; no quiet-machine timing claim follows.
+
+The signed annotated [client 0.4.12 tag and release](https://github.com/adam0white/human-framework/releases/tag/lab-client-v0.4.12) and [kit 0.5.14 tag and release](https://github.com/adam0white/human-framework/releases/tag/lab-kit-v0.5.14) resolve to that exact source. Each has a tarball, artifact manifest and SHA256SUMS. All downloaded assets match the uploaded bytes; SHA256, SHA512 and GitHub asset digests agree. Remote tag signatures verify. Both releases used `--latest=false`; HF 3.2.0 remains the primary release.
+
+| Artifact                           |  Bytes | SHA256                                                             |
+| ---------------------------------- | -----: | ------------------------------------------------------------------ |
+| `adam0white-lab-client-0.4.12.tgz` | 52,394 | `e1b709ac83dc8b511f17a4a822d004d197e98c05cf4029ebb31011b35d2aae17` |
+| `adam0white-lab-kit-0.5.14.tgz`    | 33,522 | `f89f893bbd07b577c7b3e52a66305eef19fd1a068bda35e4643de77eb3ad545c` |
+
+Fresh downloaded-artifact JavaScript and strict TypeScript 7.0.2 consumers passed with client 0.4.12, retained client 0.4.11, and no optional client peer. The new client smoke exercised exact-origin/explicit persona opt-in and off/notice fallback at all five destinations without creating a player ID. Both client consumers resolved exact HF 3.0.0. Every packed dist file matches its source build; kit 0.5.14 dist is byte-identical to the downloaded 0.5.13 dist, including the scorer.
+
+[Client publish workflow 40329397394](https://github.com/adam0white/human-framework/actions/runs/40329397394) succeeded by detecting that the package is absent on npm and skipping publication. The core workflow and the client workflow for the kit release skipped on their tag guards. There is no dedicated kit publish workflow. No npm SDK publication or SLSA provenance is claimed. The owned shared release lock was removed after verification. Source receipt and raw proofs are in `~/code/.lab-scratch/hf4/sdk/`.
+
+Central deployment and host adoption remain pending. Shared origin admission is not browser navigation, iframe-storage, player-panel or owner-acceptance proof. No browser, devserver, screenshot, synthetic production data or feedback was used in this SDK task. This later documentation receipt does not change the immutable release source or tags.
