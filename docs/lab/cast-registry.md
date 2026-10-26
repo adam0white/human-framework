@@ -48,6 +48,7 @@ These are the complete foreground lists. Roles may change, identity does not. Al
 | The Night Watch         | Tamar of the Wall, Kian, Idris, Samira, Danyal, Meryem       |     6 |
 | Commonstead             | Nora, Sam, Dai, Nerys, Dilek, Burak, Sevim, Oskar            |     8 |
 | Smoke on the Stairs     | Hacer, Burak, Sevim, Derya                                   |     4 |
+| The Left Hand           | Yusuf, Idris, Samira, Danyal, Tariq                          |     5 |
 
 Commonstead's eight are its complete foreground opening cohort, not eight extra personas. Nora is the resident designer. Sam is the resident playtester. Other cast members can give feedback in their ordinary roles without becoming separate designer or reviewer characters. Every game has three to eight. Thirty-five of the forty have at least two allocated games. A single-game person remains intentional where a second appearance would weaken the setting or overload another game's cast.
 
@@ -88,11 +89,11 @@ The values below are the stable machine-readable roster. The four existing wave-
 | `hf.cast.nora.smallworks`  | Nora              |  28 | Coast  |        1 | Small Works; Neighbours; Commonstead                            |
 | `hf.cast.sam.smallworks`   | Sam               |  18 | Coast  |        1 | Small Works; Pass; Neighbours; Commonstead                      |
 | `hf.cast.maryam.well`      | Maryam            |  68 | Valley |        1 | Well; Valley; Warren                                            |
-| `hf.cast.yusuf.well`       | Yusuf             |  34 | Valley |        1 | Well; Valley                                                    |
-| `hf.cast.tariq.well`       | Tariq             |  16 | Valley |        1 | Well; Warren                                                    |
-| `hf.cast.idris.well`       | Idris             |  41 | Valley |        1 | Well; Watch                                                     |
-| `hf.cast.samira.well`      | Samira            |  29 | Valley |        1 | Well; Valley; Watch                                             |
-| `hf.cast.danyal.well`      | Danyal            |  52 | Valley |        1 | Well; Valley; Watch                                             |
+| `hf.cast.yusuf.well`       | Yusuf             |  34 | Valley |        1 | Well; Valley; The Left Hand                                     |
+| `hf.cast.tariq.well`       | Tariq             |  16 | Valley |        1 | Well; Warren; The Left Hand                                     |
+| `hf.cast.idris.well`       | Idris             |  41 | Valley |        1 | Well; Watch; The Left Hand                                      |
+| `hf.cast.samira.well`      | Samira            |  29 | Valley |        1 | Well; Valley; Watch; The Left Hand                              |
+| `hf.cast.danyal.well`      | Danyal            |  52 | Valley |        1 | Well; Valley; Watch; The Left Hand                              |
 | `hf.cast.yusuf.warren`     | Master Yusuf      |  74 | Valley |        1 | Warren; Valley                                                  |
 | `hf.cast.meryem.warren`    | Meryem            |  19 | Valley |        1 | Warren; Valley; Watch                                           |
 | `hf.cast.tamar.watch`      | Tamar of the Wall |  54 | Valley |        1 | Watch; Warren                                                   |
@@ -1718,3 +1719,13 @@ For each host, adoption requires its exact castIds and edition pinned, source co
 Hacer, Burak, Sevim and Derya return as themselves in one possible night at Lale Apartmanı. Hacer visits the upper landing; Tarık is away. The caretaker must persuade people who can walk out themselves. Burak checks the front stair and can return to help Sevim secure her exercise books without an order. Derya needs a moment after nights. Hacer needs to see where the unfamiliar stair goes. Canonical backstories, secrets and existing discoverable outcomes above remain their authority; this appearance introduces no new foreground person or secret.
 
 An all-four rescue and a partial rescue are possible. Firefighters bring anyone left inside out for hospital checks. No canonical person dies. The game keeps every consequence inside its own possible night and writes nothing into Stairwell or a continuing shelf. Reruns are alternatives, not repeated canonical fires.
+
+## The Left Hand — three winter nights (2026-10-26)
+
+**Episode fiction.** Yusuf34, the builder (`hf.cast.yusuf.well`), returns with Idris41, Samira29, Danyal52 and Tariq16. These five are the complete foreground cast. They remain the people described above, with the same families, trades, backstories and secrets. This chapter introduces no new foreground person. Danyal remains a Christian well keeper; Yusuf is not the older dig-master Master Yusuf.
+
+**Opening and chronology.** Household stores are thin over three winter nights in the Well settlement. Idris has a broken leg in this episode and cannot bring home his usual woodland load. Samira remains his wife and a competent gatherer who knows her household's needs. The injury is authored for this opening; it is not inferred from an earlier Well or Watch run, and does not rewrite those openings. Reruns are alternative episodes. This first slice does not write the injury or its outcomes into other games or the continuing shelf. Yusuf's existing family and store commitments still matter. Thin stores do not make another household's grain his to give.
+
+**Discoverable knowledge.** A witnessed delivery, a conversation or a person's inference may reveal who gave. The host must record who observed what and distinguish inference from confirmation. Yusuf's wish to conceal a gift does not give everyone else that knowledge. Existing biography secrets remain private until their own recorded disclosure; this episode does not award those discoveries. Tariq remains a sixteen-year-old apprentice and Yusuf's son, with a household arrangement for any night work; usefulness does not grant adult independence.
+
+**Possible outcomes.** Aid can arrive even when the giver is recognised. Some deliveries can be missed, leaving the household to manage with less. Yusuf can be brought home cold and need care. These are possible outcomes, not events already added to anyone's biography. No child dies in this episode. A public gift is not automatically a failed gift. Yusuf's preference for concealed voluntary giving is his held understanding, sourced in [the concealed-charity record](../../research/concealed-charity-sources.md); no outcome declares divine acceptance, reward, expiation or sincerity.
