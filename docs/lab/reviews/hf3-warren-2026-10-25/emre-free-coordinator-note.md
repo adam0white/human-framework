@@ -1,0 +1,1 @@
+Coordinator note: The report heading claims Rosa would quit. Emre was the assigned player. No Rosa session was observed here; that hypothetical claim is excluded from evidence and all Rosa diaries. The original wording is preserved. Other findings are Emre own reactions, with raw elapsed times authoritative.

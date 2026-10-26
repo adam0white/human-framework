@@ -1,0 +1,263 @@
+[
+  {
+    "diary": "D01",
+    "earliest_log_elapsed_s": 189.397,
+    "classification": "Clear present stop wish",
+    "earliest_words": "I would stop here. I cannot account for why the shift did not happen, and I do not want to keep issuing suggestions without seeing their answers. I might return if I had time to learn the timing, but I would not leave this running.",
+    "retrospective_context": "",
+    "later_words": "[205.931 s] “Stopped playing at 189 seconds, Ramadan 1 19:11; feedback inspection ended at 200 seconds, 19:55. Selected I’d stop here locally. I typed nothing and submitted nothing. The wish to stop did not pass. The browser is no longer needed.”",
+    "assessment": "Persists explicitly. Conditional future return is separate."
+  },
+  {
+    "diary": "D02",
+    "earliest_log_elapsed_s": 89.674,
+    "classification": "Clear present leave wish",
+    "earliest_words": "I would leave here. The clock says stopped but has gone to 09:33, and Back to now brings back the old conversation. I cannot settle into a routine when I cannot tell what time is doing. I would leave it paused, rather than start another day.",
+    "retrospective_context": "",
+    "later_words": "[100.524 s] “I selected Id stop here in Feedback. I have not written or submitted anything. I am stopping at the workshop on the first morning. Quiet company interested me, but the clock and the return to the old conversation have put me off continuing today.”",
+    "assessment": "Persists through the final words."
+  },
+  {
+    "diary": "D03",
+    "earliest_log_elapsed_s": 644.075,
+    "classification": "Clear stop-for-tonight wish",
+    "earliest_words": "I would stop here for tonight. I asked for the extra shift, he said after resting and then after sleeping, and the suggestion faded while he slept. I understand that he chooses, but I do not know how to help the rent problem without chasing him. I will continue for the time I set aside.",
+    "retrospective_context": "",
+    "later_words": "[698.743 s] “Now it says a gentle suggestion is not enough because he does not expect the pay. I can mention the shift as his duty. That is the kind of explanation I needed. My wish to stop has eased; I want to see whether this different approach works.” [918.331 s] “He paid three hundred lira without another suggestion from me. I am relieved. Hacer staying at the door is a warmer place to leave him than another list of duties. I have had enough advising for tonight.” [929.659 s] “I am stopping for tonight. The rent payment gave me a useful stopping point, but I do not want another stretch of waiting and reminding now. I would return another evening to see whether he calls Selin without me and what happens on Eid, provided I can continue this life rather than start again. I would not leave it running while I am away.”",
+    "assessment": "Eases explicitly at 698.743; renewed enough-for-tonight wish at 918.331, then stops."
+  },
+  {
+    "diary": "D04",
+    "earliest_log_elapsed_s": 580.75,
+    "classification": "Clear present leave wish",
+    "earliest_words": "Forty-one postponements and zero shifts after I used the recommended duty reason. I would leave here. I know what I wanted, but the answer keeps being later until later is impossible. I will stay for the assigned time and try Urge once.",
+    "retrospective_context": "",
+    "later_words": "[820.45 s] “There it is. At 13:55 he agreed and took the shift because I asked. The quit wish has eased: changing the strength mattered. I still need to see the pay, and I do not know whether this is a habit he can learn or only my pressure.” [896.542 s] “He missed the deadline. The goal panel says Osman now wants 600 by the end of Ramadan. It also says my suggestion to repair in the workshop went well, although I asked for an afternoon shift. I cannot tell whether that is a broad work label or a mistaken credit. I have the result of my test; I would stop for today and might return to try Urge earlier.” [916.244 s] “I am stopping for today after testing one thing to an outcome. Urge worked, but I do not want to manage another block of days now. I might return voluntarily to try it earlier. Feedback had neither I’m stopping nor I’m confused; I selected I’d stop here locally. I typed nothing and did not submit. The browser is no longer needed.”",
+    "assessment": "Eases explicitly at 820.45 after an intervention works; stop-for-today wish returns at 896.542."
+  },
+  {
+    "diary": "D05",
+    "earliest_log_elapsed_s": 594.518,
+    "classification": "Indirect, figurative wish for a brief break; less literal than a leave wish",
+    "earliest_words": "After I finish this task, after I finish this task. Now it is Hacer at the door again. Mention never works for the shift and I keep forgetting to Urge. I feel like I am talking to a wall, and the scenes repeat. If this were a radio play I would turn the dial for a minute. I will keep going.",
+    "retrospective_context": "",
+    "later_words": "[644.844 s] “Warm lines from Hacer keep me, but it is the same doorway again and again and I mostly wait. I told him stay with her - he said he was lonely. That feels right.” [935.098 s] “I stop here. He is 54 lira short on the last day and the work choice is not in my list when I want it, and when I stayed quiet he walked home anyway. I cannot tell any more what my words do for the money. The Hacer and Selin moments I liked, they felt like real neighbours. I might come back another evening to see Eid, not to fight the lira again.”",
+    "assessment": "Warm lines keep the writer at 644.844; first unambiguous literal stop statement is 935.098. Earlier “I nearly tapped away” at 329.981 may mean leaving a reply, not the session."
+  },
+  {
+    "diary": "D06",
+    "earliest_log_elapsed_s": 189.585,
+    "classification": "Clear wish not to continue this sitting",
+    "earliest_words": "That is the same ending to the conversation. I was hoping the new worry would lead somewhere different. I have had a nice little scene, but I do not want to manage another twenty-nine days of this right now.",
+    "retrospective_context": "",
+    "later_words": "[189.636 s] “I am stopping here after the second Hacer conversation. I would try it again for more people to talk to, but I would not leave it running unattended.”",
+    "assessment": "Persists to immediate stopping statement."
+  },
+  {
+    "diary": "D07",
+    "earliest_log_elapsed_s": 1108.099,
+    "classification": "Clear stop wish",
+    "earliest_words": "The rent deadline I worked toward passed at 20:00 with no scene and no word. Now it says 600 is owed. Did he pay? I do not know. And Hacer has said the same lines four times. I would stop here.",
+    "retrospective_context": "",
+    "later_words": "",
+    "assessment": "Last words; no later evidence of passing or persistence."
+  },
+  {
+    "diary": "D08",
+    "earliest_log_elapsed_s": 564.592,
+    "classification": "Clear leave wish despite continued allotted time",
+    "earliest_words": "I would leave here. I know he is worried about rent, but I am mostly asking him to do things and watching him rest. I wanted to mess around with a voice, not keep nudging a timetable. I will stay for the time I set aside.",
+    "retrospective_context": "",
+    "later_words": "[730.047 s] “Rıza is nice. I am enjoying reading this bit, but I still would not sign up for all thirty days of telling him to go places.” [776.291 s] “Oh, I do not have to sit through every day. That is a relief. I want him to see the doctor and then have a night out with Rıza.” [872.736 s] “Mr Demir has exactly the quiet-at-work conversation Mrs Aydın had. That makes the people feel less different. The twelve-day result woke me up a bit, but I am ready to leave again.” [913.277 s] “I am stopping with Halil resting on rent day. I like him and his friends, but I do not want another cycle of suggestions and waiting. I would close this, not leave it running. I might tell a friend about the fifty-five waits; I would not come back on my own.”",
+    "assessment": "Interest returns in parts; 872.736 says ready to leave again, and final words reject another cycle. No explicit claim of full passing."
+  },
+  {
+    "diary": "D09",
+    "earliest_log_elapsed_s": 181.979,
+    "classification": "Clear close-tab wish",
+    "earliest_words": "I said take the afternoon shift. No answer ever appeared, and 3 game hours passed in 12 real seconds; he just rested. Did he refuse? Did my words even land? I would close the tab here.",
+    "retrospective_context": "",
+    "later_words": "[188.344 s] “Today log explains it: he put me off twice, then slept. That log is what I needed live. Also he saw the doctor because Selin asked, not me, yet panel said my suggestion went well. And he remembered condolences at the mosque - lovely, and I never saw it in the scene. Want-quit easing. Going to insist on the shift.” [310.433 s] “I like Halil and the stakes are honest. But I spend my turns reading the log of what already happened while the clock eats the choices I wanted. Day 2 started by taking my Selin call away. Selected I would stop here in Feedback, did not type or submit. I might come back if I could slow the day down.”",
+    "assessment": "Explicitly easing at 188.344; final words again select stop and condition possible return on slower time."
+  },
+  {
+    "diary": "D10",
+    "earliest_log_elapsed_s": 491.034,
+    "classification": "Clear close-tab wish despite continued allotted time",
+    "earliest_words": "Keep listening gives me the same feeling a third time in new words: I miss having Nuran across the table. Every conversation circles the one chair. I understand the man now and nothing new is being said. I would close the tab here. Staying because I set the time aside; I want to try the mosque - the one thing he refuses.",
+    "retrospective_context": "",
+    "later_words": "[605.161 s] “Payday, 14 lira short. Calling Selin now feels all right, mosque only a little hard - the skip worked on him even if I did not watch it. I have a concrete aim today: urge the afternoon shift and get him to pay Osman before 20:00. The deadline gives me back some pull after the bored stretch.” [911.876 s] “Same sheet, same Hacer at the door, same after-this-I-will promise. The one big moment, paying Osman, happened while I was not looking. I understand the loop now and it is not giving me anything new to decide. I am done for tonight.”",
+    "assessment": "Deadline gives back some pull at 605.161; final words say done for tonight. Partial renewal, not proof of full passing."
+  },
+  {
+    "diary": "D11",
+    "earliest_log_elapsed_s": 629.29,
+    "classification": "Clear stop wish despite continued allotted time",
+    "earliest_words": "I would stop here. He said he would see the doctor after rest, then the suggestion expired and he has not gone. I do not mind a refusal, but I cannot rely on his yes. I will stay for the time I set aside and try a stronger, reasoned suggestion.",
+    "retrospective_context": "",
+    "later_words": "[690.398 s] “He went to the clinic. That is a relief: Urge with a health reason did something concrete. My wish to leave has passed for now. Seeing “see the doctor — chose something else” above “he saw the doctor” still makes me read twice, even though I know they are different measures.” [916.235 s] “The day ends with useful advice about why gentle suggestions were not enough. I am interested in Halil, but I have had enough of checking promises and progress for one sitting.” [922.72 s] “I will stop at the end of Ramadan 2, before choosing advice for the skipped days. The clinic success did remove my earlier frustration. I care about him, but this is enough supervision for tonight. I would keep this save and might return; I would not leave the clock running.”",
+    "assessment": "Explicitly passes for now at 690.398; later enough-for-one-sitting wish at 916.235 and stops at 922.72."
+  },
+  {
+    "diary": "D12",
+    "earliest_log_elapsed_s": 944.485,
+    "classification": "Clear preference to stop rather than repeat",
+    "earliest_words": "Third identical Hacer door scene today. I cannot help with the rent and only watch the same lines. I would rather stop than see it a fourth time.",
+    "retrospective_context": "",
+    "later_words": "",
+    "assessment": "Last words; no later evidence."
+  },
+  {
+    "diary": "D13",
+    "earliest_log_elapsed_s": 432.113,
+    "classification": "Clear wish for a temporary break",
+    "earliest_words": "Asleep at 18:00. The shift never happened again; he rests, sleeps, rests. I understand now, but the afternoons are just me watching a man nap and my suggestion fading. I would put the phone down here for a while.",
+    "retrospective_context": "",
+    "later_words": "[551.839 s] “Rent day gives me a clear worry again, 25 lira short, and that pulls me back in. But the twelve skipped days felt like reading a report about someone instead of being with him.” [823.604 s] “I stop here. The phone calls with Selin were beautiful and I am glad he calls her himself now. But the rent day passed without any way for me to help and without anything happening, and the friends keep saying the same sentences. I knew what I wanted to tell him and the game would not let me say it. I marked I would stop here in Feedback, did not write or submit anything.”",
+    "assessment": "Rent worry explicitly pulls writer back in at 551.839; final stop at 823.604."
+  },
+  {
+    "diary": "D14",
+    "earliest_log_elapsed_s": 261.869,
+    "classification": "Conditional close-tab wish",
+    "earliest_words": "The sheet vanished in under two seconds and he went to pray instead. My click never landed. I knew exactly what I wanted to say and the moment was gone. If this keeps happening I want to close the tab.",
+    "retrospective_context": "",
+    "later_words": "[294.887 s] “He called Selin — ‘because you asked’ — even though the panel says he dreads it. ‘I did not want to say that to an empty room.’ This is the payoff I wanted. Want-quit passed. ‘Go home and rest’ as an option while he is at home is odd though.” [890.201 s] “The 14-day summary paid off my choices and there is an ending coming, Eid. I want to see the last day.” [978.984 s] “Hacer at the door, 10:30, the same four lines as Ramadan 15, word for word. I know what comes next: rest, sleep, the shift window, the sheet closing. I wanted to see Eid, but I do not want to fight the same noon race a fourth time to get there. The 14-day summary was the best moment; the live days now feel like a loop I already solved and still cannot win. I stop here. Not angry, just done for tonight.”",
+    "assessment": "Explicitly passed at 294.887; wants last day later; final stop wish returns at 978.984."
+  },
+  {
+    "diary": "D15",
+    "earliest_log_elapsed_s": 331.029,
+    "classification": "Clear stop-after-first-day wish despite continued allotted time",
+    "earliest_words": "I liked getting him to call his daughter. A whole month of managing predictions and prayers feels like homework now. I would stop after this first day, but I have set this time aside so I will try another.",
+    "retrospective_context": "",
+    "later_words": "[774.776 s] “Oh! It skips twelve days itself. I thought I had to do every day. That makes the month less frightening. Now it tells me gentle is not enough for the shift. I had not understood that from after I finish.” [827.783 s] “Thirty-nine waits and not one shift. It told me duty or Urge, and duty was selected. I feel tricked by the advice. I do not want to spend another day chasing him to do it.” [903.468 s] “This is the same quiet-work exchange with a different visitor. I am ready to leave. I do not want to solve the rent now.” [909.466 s] “I am stopping here. I liked Halil answering my questions, but the repeated later answers and thirty-nine waits killed my curiosity about managing his goals. I would close it, not leave it running. I would not come back voluntarily right now.”",
+    "assessment": "Skip reduces perceived burden at 774.776; no explicit full passing. Renewed reluctance at 827.783 and leave wish at 903.468, then stops."
+  },
+  {
+    "diary": "D16",
+    "earliest_log_elapsed_s": 488.428,
+    "classification": "Clear put-down-now wish",
+    "earliest_words": "He said he would see the doctor after work, but his goals still say he has not been. I would put this down now because I cannot tell if my suggestion matters. I still like him; I am tired of checking the panels.",
+    "retrospective_context": "",
+    "later_words": "[542.313 s] “He went to the clinic after I urged him for Selin. That gives me a reason to keep trying. I found the detailed plan harder to read, but its likely reply helped me choose.” [591.541 s] “I tried the plan to look for call Selin, but it is not listed now. I can accept that he is asleep; I wish I could leave him a suggestion for later. My earlier wish to quit eased when he went to the clinic.” [857.68 s] “Mr Demir is saying the same words Mrs Aydın said on the first morning. I understand the quiet company now. I would leave after this day rather than keep meeting the same scene with another name.” [900.677 s] “Hacer has a new scene, which helps. I am ready for a break, but I want to see whether the rent deadline ends this day badly.” [939.192 s] “I am stopping here for a break. I wanted the rent outcome, but another round of waiting feels too long right now. I would return for Halil and Selin another evening, not leave this running.”",
+    "assessment": "Explicitly eased by clinic visit; later planned end-of-day departure, then break before hoped-for outcome."
+  },
+  {
+    "diary": "D17",
+    "earliest_log_elapsed_s": 799.451,
+    "classification": "First clear contemporaneous put-down wish",
+    "earliest_words": "I waited only 15 seconds to catch the sunset meal and it jumped from 18:00 to 20:38. Missed it again. And Riza says the exact same four lines as yesterday, word for word. Day 2 feels like a copy of day 1. I would put it down here, maybe come back later.",
+    "retrospective_context": "",
+    "later_words": "[924.244 s] “Stopping at 15:20, Ramadan 2 22:10. I care about Halil and the Selin call really moved me, but day 2 is replaying day 1 word for word and the moments I want to see - the sunset meal, the grave - happen while I am not looking. I would maybe come back later, not tonight. Selected I would stop here in Feedback; did not type or submit.”",
+    "assessment": "Earlier 693.168 expresses frustration and staying, without a literal leave wish; at 735.524 writer retrospectively says “my want_quit passed a little.” Earlier internal wish is self-reported but its onset is not established. Clear 799.451 wish persists to final stop."
+  },
+  {
+    "diary": "D18",
+    "earliest_log_elapsed_s": 104.154,
+    "classification": "Clear stop wish",
+    "earliest_words": "I would stop here. I want to get to the daughter, and instead I am choosing the strength and reason for a work suggestion. The good reply was interesting, but this menu loses me.",
+    "retrospective_context": "",
+    "later_words": "[119.098 s] “Stopping at the planning form. I would not leave it running. I might try again if I could get to the family conversation quickly, but I would not return voluntarily right now. Feedback inspected and I’d stop here selected locally; no text typed and no submission.”",
+    "assessment": "Persists to final stopping words."
+  },
+  {
+    "diary": "D19",
+    "earliest_log_elapsed_s": 909.376,
+    "classification": "First clear contemporaneous stop wish",
+    "earliest_words": "Twelve days on, rent day, and Hacer says the exact same words at the door as on Ramadan 2. Everyone talks about Nuran at the table in one voice. I liked these people, but now they feel like a recording, and the one thing I needed (help with the 46) is not in any of it. I will stop here.",
+    "retrospective_context": "",
+    "later_words": "[257.246 s] “The phone call with Selin is the best thing so far - quiet, true, and it came from my nudge. The first want_quit has passed.”",
+    "assessment": "At 257.246 writer retrospectively says “The first want_quit has passed.” No preceding contemporaneous words explicitly state a leave wish; cannot time that earlier self-reported wish. The clear 909.376 wish has no later words."
+  },
+  {
+    "diary": "D20",
+    "earliest_log_elapsed_s": 545.262,
+    "classification": "Clear wish to step away while leaving it running",
+    "earliest_words": "I would leave this running and make tea now. I understand gathering and buying buildings, but I wanted people or a puzzle, and I am mostly waiting for numbers. I will stay for the time I set aside.",
+    "retrospective_context": "",
+    "later_words": "[560.365 s] “A weathered family arrived just as I wanted to leave. I hoped I could meet them, but they appear as three gatherers. That is useful, but it is not the kind of company I was waiting for. I will try the lodge to see whether giving them a role makes a more interesting decision.” [731.235 s] “The attack made me pay attention, but it did not give me a decision. I am back to collecting wood and would still rather pause this for now.” [909.91 s] “Just as I was about to stop, there is scratching in the store room. I will look once. A concrete mystery still gets me.” [926.802 s] “I am stopping at the tiny village after investigating the store room. I liked rescuing the builder and the strange little signs of life, but I do not want another cycle of gathering and waiting tonight. My earlier wish to leave never really passed. I might leave it running while I made tea, but I would not choose to return for the building loop alone.”",
+    "assessment": "Discoveries briefly attract attention, but final words explicitly say earlier wish never really passed. Stepping away is distinct from closing or pausing."
+  },
+  {
+    "diary": "D21",
+    "earliest_log_elapsed_s": 301.596,
+    "classification": "Clear enough-for-tonight / stop wish",
+    "earliest_words": "One day feels like enough for tonight. I like that he went to the doctor and called Selin, but I do not want to manage another twenty-nine days of these suggestions now. I would stop here and consider another evening.",
+    "retrospective_context": "",
+    "later_words": "[318.364 s] “The day summary confirms he called and says my suggestions went well three times. That is satisfying. Feedback has keep-playing verdict buttons, but no I am stopping or I am confused control; I leave it untouched.” [325.626 s] “I am stopping after one day. I would return voluntarily for another evening to see whether he starts calling Selin without me and to try to cover the rent shortfall. I would not leave the game running. I do not want to play the whole month tonight.”",
+    "assessment": "Later satisfaction does not erase wish; final words stop after one day and permit another evening."
+  },
+  {
+    "diary": "D22",
+    "earliest_log_elapsed_s": 143.49,
+    "classification": "Clear stop wish",
+    "earliest_words": "I wanted to tell him to rest after the doctor, but the choice disappeared while I checked his progress. I do not want to hurry through this man’s day just to catch the buttons. I would stop here.",
+    "retrospective_context": "",
+    "later_words": "[159.579 s] “I am stopping after the doctor visit. I care whether he manages the rent, but I do not trust that I can read his progress and still catch the next choice. I selected I’d stop here in Feedback and left it unsubmitted. I would consider returning if I could keep the day still while reading.”",
+    "assessment": "Persists to final words; return conditional on keeping day still while reading."
+  },
+  {
+    "diary": "D23",
+    "earliest_log_elapsed_s": 112.729,
+    "classification": "Clear enough-for-me expression",
+    "earliest_words": "I wanted to invent something daft to say, and now I am picking advice about an adult life. I have seen enough for me.",
+    "retrospective_context": "",
+    "later_words": "[125.08 s] “I am stopping here. The quiet reply was nice, but I wanted more room to play with what I say. I would not come back on my own.”",
+    "assessment": "Persists to stopping statement."
+  },
+  {
+    "diary": "D24",
+    "earliest_log_elapsed_s": 766.398,
+    "classification": "Clear planned stop at end of this day",
+    "earliest_words": "This is the same tea-house conversation as yesterday. I would stop at the end of this day and come back another evening. I do not want to watch the same memory every day for a whole month.",
+    "retrospective_context": "",
+    "later_words": "[847.946 s] “He is on the phone with Selin now. “I did not want to say that to an empty room” makes the call feel worthwhile. I would still finish for tonight after this day, but this was worth staying for.” [903.263 s] “The call and the walk made this day different. I am satisfied with two days for tonight. I would prefer to stop between days, not leave him frozen in a conversation.” [976.311 s] “I am stopping between days, before choosing the twelve-day suggestions. Now it explains why gentle work suggestions were not enough. I would return another evening to try Urge for the shift, but I have had enough reading and repeated conversations tonight.”",
+    "assessment": "Call is worth staying for but writer explicitly retains plan to finish tonight. Stops between days."
+  },
+  {
+    "diary": "D25",
+    "earliest_log_elapsed_s": null,
+    "classification": "Clear recalled stop wish; retrospective only",
+    "earliest_words": "That is my second reread. I would stop here.",
+    "retrospective_context": "No live diary was written. The quoted first-person reactions here are my post-stop recollection in my own words, preserved without rewriting them after learning a rule. Times identify the corresponding driver observations, not measured reading durations.",
+    "later_words": "Recalled: “This was a recalled quit at the second sentence, not a driver log operation. No further game action was taken.”",
+    "assessment": "No live diary. Recollection associates wish with the 10.322 s observation, but that is not a measured wish or reading-duration timestamp. Recalled sequence reports no further play; menu/feedback inspection follows. No evidence of passing."
+  },
+  {
+    "diary": "D26",
+    "earliest_log_elapsed_s": 26.296,
+    "classification": "Clear leave-now wish despite continued assignment",
+    "earliest_words": "I reread two sentences: “Help him toward these, so that on Eid he does them without you.” I had to work out what these meant and whether I was teaching habits. “These are estimates of what he would choose without your advice.” I had to read it again because chose it looked like a completed meal, but this says an estimate. I would leave now; the continued assignment keeps me here.",
+    "retrospective_context": "",
+    "later_words": "[188.854 s] “Now he is telling Hacer what hurts. That is more interesting than the estimates; I am glad I kept him talking.” [361.365 s] “He called his daughter and admitted he misses her mum. This is what I wanted to help him do. On the phone picture the answer sheet covers their conversation, so I need to close it to read them.” [559.152 s] “I looked in the menu for a slower reading setting after Say something else disappeared again. I see Feedback, Full screen, New game, All games and Recording. I do not see reading speed. The day waits in this menu; that is a relief. I will keep playing because I care whether the rent gets paid.” [778.799 s] “He asked me to wait 24 times and did no afternoon shifts. I chose his duty as the screen recommended, or thought it was already selected. I cannot tell why that did not help. Now he cannot pay the 300 today. I want to leave again.” [910.443 s] “I stop at Ramadan 15, 06:21 after fifteen real minutes. The first confusion passed for a while when he spoke to Hacer and Selin, but the rent outcome brought it back as frustration. I would not return voluntarily now. Feedback has I’d stop here selected locally; I typed nothing and did not submit.”",
+    "assessment": "Final words explicitly say first confusion passed for a while with conversations, then returned as frustration; leave-again wish at 778.799."
+  },
+  {
+    "diary": "D27",
+    "earliest_log_elapsed_s": 688.745,
+    "classification": "Clear feeling of leaving",
+    "earliest_words": "After rest I will do it, now after sleep I will do it, sleeping until 15:55 when the shift window is basically gone. This is exactly day 1 again. I know what I want and he keeps sliding it. I feel like leaving here.",
+    "retrospective_context": "",
+    "later_words": "[674.772 s] “Rent done, and straight away a new 300 by Ramadan 30 appears. It is a treadmill. I liked solving it once. I am less sure I want the same loop again.” [735.709 s] “I am stopping here. I liked steering him and the rent payoff felt earned, sort of, but the afternoon shift keeps sliding behind rest and sleep exactly like day 1, and Hacer just repeated herself word for word. I picked I would stop here in Feedback, typed nothing, did not submit. I might come back another evening to try Urge on the shift from the start.”",
+    "assessment": "674.772 is earlier reluctance (“less sure I want the same loop again”), not a clear present wish to leave. Clear 688.745 wish persists to final stop."
+  },
+  {
+    "diary": "D28",
+    "earliest_log_elapsed_s": 97.973,
+    "classification": "Clear leave wish",
+    "earliest_words": "I want to leave. I wanted to talk about his grief, but I got rest, sleep, and a planning form. Now I am looking at the same workshop exchange while the clock moves. I do not feel much connection between what I say and what I see.",
+    "retrospective_context": "",
+    "later_words": "[110.079 s] “I am stopping here. The quiet company had a little warmth, but I do not want to manage this man through menus. I selected I’d stop here in Feedback and did not submit anything.”",
+    "assessment": "Persists to final stop."
+  },
+  {
+    "diary": "D29",
+    "earliest_log_elapsed_s": 246.955,
+    "classification": "Clear counterfactual leave wish absent set-aside time",
+    "earliest_words": "I picked the call as soon as it appeared and it was already gone. I want to talk to his daughter, not chase a moving menu. I would leave here if I had not set this time aside.",
+    "retrospective_context": "",
+    "later_words": "[358.924 s] “The empty-room line is the first thing I would remember tomorrow. Getting him to call feels worth doing. The earlier wish to leave has eased.” [369.102 s] “I looked in Information for a slower speed because the call vanished so fast. I found an explanation of the daylight band and stronger advice, but no speed setting. I will keep going because the call landed emotionally.” [915.322 s] “I still like the phone conversation, but I do not want another cycle of promises and hidden follow-up. I have enough of this for today.” [919.074 s] “I am stopping here. I cared when he called Selin, but I do not want to keep supervising advice that turns into waiting. I would close this, not leave it running, and I would not come back voluntarily today.”",
+    "assessment": "Explicitly eases at 358.924; later enough-for-today and final stopping words."
+  }
+]

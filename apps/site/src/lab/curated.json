@@ -4007,7 +4007,7 @@
    "words": "I wanted the acts of prep and plating to be more satisfying than successive label changes beside the same drawing.\" … \"I would not return voluntarily for this kind of eight-minute break in its observed form.",
    "verdict": "quit",
    "routes": [
-    "fix:pass DL-33 act on the food itself and see it change as you work it (open, target 2026-11-03, owner call: it nears the no action-game polish line)",
+    "fix:pass DL-33 act on the food itself and see it change as you work it (superseded by F-430/F-431 owner direction, hands-on cooking/manual table calls removed in favor of people-run service, legacy controls retained, do not build)",
     "fix:pass DL-23 service targets keep their place while tickets and messages change (fixed pass f3dfbd8d1f676e0790a39fcf3ebff4f1f5b78de3)",
     "fix:pass DL-30 the cook's spoken sentence fits beside the work controls (resolved by rebuild 1025ee1de9abfed7e672d12b2298014c4e526f97)"
    ],
@@ -4213,7 +4213,7 @@
    "words": "Keep the readable posting screen, but do not count this layout change as a cure for the reasons Sofia stopped; the waits and unclear consequences remain.",
    "verdict": "mixed",
    "routes": [
-    "fix:watch waits and unclear consequences, partly in round 2, HF e6a344f (done), the rest with the F-290 routes (open, target 2026-11-03)"
+    "fix:watch waits and unclear consequences, partly in round 2, HF e6a344f (done), the F-290 bell/lantern, morning outcome and breach-account routes fixed f5f6148 and 6f9cedb (ledger reconciled 2026-10-25), distinct later F-470 lifecycle asks stay open"
    ],
    "source": "docs/lab/reviews/patterns-2026-10-20/fun-review-watch.md"
   },
@@ -6279,7 +6279,7 @@
    "verdict": "mixed",
    "routes": [
     "fix:watch Recognize how to ask someone to cover an empty wall during the night or explain why I cannot (open, target 2026-11-03)",
-    "fix:watch Recognize how to give a tiring watcher the night off at dusk (open, target 2026-11-03)",
+    "fix:watch Recognize how to give a tiring watcher the night off at dusk (partly addressed f0b5879, 2026-10-25: dusk posting and night-rest limits explained, recognizable night-off request at dusk remains open, target 2026-11-03)",
     "fix:watch Read both helpers and their send controls without fixed controls hiding the lower option (open, target 2026-11-03)",
     "fix:lab Operate the visible feedback name expander reliably (open, target 2026-11-03)"
    ],
@@ -6296,7 +6296,7 @@
    "routes": [
     "fix:watch Follow each person’s answer and return more clearly especially when a rest request ends or the bell brings someone back (open, target 2026-11-03)",
     "fix:watch Give more of the named person’s view after a consequential moment (open, target 2026-11-03)",
-    "fix:watch Tell how much of the watch sequence remains before thaw (open, target 2026-11-03)",
+    "fix:watch Tell how much of the watch sequence remains before thaw (fixed f0b5879, 2026-10-25), visible controlled-watch count, owner retest target 2026-11-03",
     "fix:lab Operate the visible feedback name expander reliably (open, target 2026-11-03)"
    ],
    "source": "docs/lab/reviews/rebuild-2026-10-23/watch-continued.md"
@@ -6340,9 +6340,9 @@
    "words": "I would close this, not leave it running, and I would not voluntarily return tonight.",
    "verdict": "quit",
    "routes": [
-    "fix:well Tell me whether my appeal was sent and which later answer belongs to it (open, target 2026-11-03)",
-    "fix:well Explain why enough food differs from the twelve-meal storm goal when refusing my order (open, target 2026-11-03)",
-    "fix:well Put exact roof and meal numbers alongside the order without opening comparison (open, target 2026-11-03)"
+    "fix:well Tell me whether my appeal was sent and which later answer belongs to it (fixed f0b5879, 2026-10-25), owner retest target 2026-11-03",
+    "fix:well Explain why enough food differs from the twelve-meal storm goal when refusing my order (fixed f0b5879, 2026-10-25), owner retest target 2026-11-03",
+    "fix:well Put exact roof and meal numbers alongside the order without opening comparison (fixed f0b5879, 2026-10-25), current stores and active targets, owner retest target 2026-11-03"
    ],
    "source": "docs/lab/reviews/rebuild-2026-10-23/well-free.md"
   },
@@ -6355,8 +6355,8 @@
    "words": "I would not voluntarily return at this point, though I had wanted to read the winning explanation before the tool block.",
    "verdict": "quit",
    "routes": [
-    "fix:well See what is holding up the roof while builders work including progress toward the next stage (open, target 2026-11-03)",
-    "fix:well Tell what my appeal or ordinary order changed especially when it costs trust (open, target 2026-11-03)",
+    "fix:well See what is holding up the roof while builders work including progress toward the next stage (next-stage progress (fixed f0b5879, 2026-10-25), explain what is holding up construction remains open, target 2026-11-03)",
+    "fix:well Tell what my appeal or ordinary order changed especially when it costs trust (fixed f0b5879, 2026-10-25), latest order outcome and bounded recent trust records, no appeal causality inferred, owner retest target 2026-11-03",
     "fix:well Keep the inspected person’s information readable without map and order text showing through it (open, target 2026-11-03)",
     "fix:lab Operate visible disclosure groups reliably through supplied access (open, target 2026-11-03)"
    ],
@@ -6700,8 +6700,8 @@
    "words": "Good changes thanks. Things are much more clear now; do the other games, too. I like the situation text below the cooks, like \"waiting for cooks to finish\" but I don't like when we replace that with redundant text from the log. Instead, highlight the new log temporarily. Also, when ordering someone to work elsewhere and they accept it, they ask another decision \"my station is empty, leave it or order someone there?\" This is useless as player is aware already, drop. ",
    "verdict": "mixed",
    "routes": [
-    "fix:pass Keep situation text below cooks and temporarily highlight new log entries (open)",
-    "fix:pass Remove redundant empty-station decision after accepted reassignment (open)",
+    "fix:pass Keep situation text below cooks and temporarily highlight new log entries (fixed 76abcb9, 2026-10-25), exact CI40197164353 success, retained by the verified HF3 delivery453be903, owner retest separate",
+    "fix:pass Remove redundant empty-station decision after accepted reassignment (fixed 76abcb9, 2026-10-25), owner retest separate",
     "fix:lab Apply clearer English across the remaining games (open, owner readiness remains separate)"
    ],
    "source": "Owner in chat, 2026-10-25, copied in-game note; verbatim, owner-2026-10-25-pass.md"
@@ -6715,7 +6715,7 @@
    "words": "promise cards jump the screen to the top upon clicking and they don't auto disappear.",
    "verdict": "-",
    "routes": [
-    "fix:pass Keep scroll position when clicking promise cards and dismiss fulfilled promise cards (open)"
+    "fix:pass Keep scroll position when clicking promise cards and dismiss fulfilled promise cards (fixed 76abcb9, 2026-10-25), owner retest separate"
    ],
    "source": "Owner in chat, 2026-10-25; source labels this second note paraphrased by the owner, wording copied exactly from owner-2026-10-25-pass.md"
   },
@@ -6735,6 +6735,1150 @@
     "fix:glance Bypass cached build manifest (source fixed, live rollout receipts in report, owner retest 2026-11-03)"
    ],
    "source": "docs/lab/note-delivery-2026-10-25.md"
+  },
+  {
+   "id": "F-497",
+   "date": "2026-10-24",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Maya Chen (legacy Codex, HF3 Voice R1 free)",
+   "words": "Let the next Hacer conversation develop the new worry rather than end in the same exchange.\" Return: \"I would try it again for more people to talk to, but I would not leave it running unattended.",
+   "verdict": "keep",
+   "routes": [
+    "fix:voice Voice Hacer conversation content (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), matched source scope (fixed 67ab71d, 2026-10-26), exact CI 40258693035 success, deployment, human-speed player retest and acceptance pending, compound clauses are not closed by this stamp"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/maya-free.md"
+  },
+  {
+   "id": "F-498",
+   "date": "2026-10-24",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Maya Chen (legacy Codex, HF3 Voice R1 free)",
+   "words": "Make “stopped” agree with the moving clock, so I know whether to wait or resume.\" Return: \"I would try it again for more people to talk to, but I would not leave it running unattended.",
+   "verdict": "keep",
+   "routes": [
+    "fix:voice Voice scene stop/resume status (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), matched source scope (fixed 67ab71d, 2026-10-26), exact CI 40258693035 success, deployment, human-speed player retest and acceptance pending, compound clauses are not closed by this stamp"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/maya-free.md"
+  },
+  {
+   "id": "F-499",
+   "date": "2026-10-24",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Maya Chen (legacy Codex, HF3 Voice R1 free)",
+   "words": "Show rent amount, shortfall and deadline more compactly; the repeated full date took a reread.\" Return: \"I would try it again for more people to talk to, but I would not leave it running unattended.",
+   "verdict": "keep",
+   "routes": [
+    "fix:voice Voice rent forecast suggestion copy (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/maya-free.md"
+  },
+  {
+   "id": "F-500",
+   "date": "2026-10-24",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Maya Chen (legacy Codex, HF3 Voice R1 continued)",
+   "words": "Let me see a promised action’s result without checking several panels or wondering whether the promise expired.\" Return: \"I would return for Halil and Selin another evening, not leave this running.",
+   "verdict": "keep",
+   "routes": [
+    "fix:voice Voice promised-action outcome/expiry feedback (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), partially addressed in source 67ab71d (2026-10-26), exact CI 40258693035 success: suggestion expiry receipt, completed-action result still open, remaining clauses open, target 2026-10-27, deployment and same-tester retest pending, no player acceptance"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/maya-continued.md"
+  },
+  {
+   "id": "F-501",
+   "date": "2026-10-24",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Maya Chen (legacy Codex, HF3 Voice R1 continued)",
+   "words": "Give repeated visitors something new to say sooner. Identical scenes with changed names wear out my interest.\" Return: \"I would return for Halil and Selin another evening, not leave this running.",
+   "verdict": "keep",
+   "routes": [
+    "fix:voice Voice repeated visitor dialogue (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), matched source scope (fixed 67ab71d, 2026-10-26), exact CI 40258693035 success, deployment, human-speed player retest and acceptance pending, compound clauses are not closed by this stamp"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/maya-continued.md"
+  },
+  {
+   "id": "F-502",
+   "date": "2026-10-24",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Maya Chen (legacy Codex, HF3 Voice R1 continued)",
+   "words": "Keep immediate conversation context visible while I choose a phone reply.\" Return: \"I would return for Halil and Selin another evening, not leave this running.",
+   "verdict": "keep",
+   "routes": [
+    "fix:voice Voice phone conversation context (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/maya-continued.md"
+  },
+  {
+   "id": "F-503",
+   "date": "2026-10-24",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Aisha Rahman (legacy Codex, HF3 Voice R1 free)",
+   "words": "**Let me address a broken promise.** Add a \"You said you would…\" option. Have Halil acknowledge it when he drops a promise. Explain the rule that gentle suggestions fail when he doesn't expect the pay at the moment it applies.\" Return: \"Possibly once, for the characters and the Selin thread. Not if the repetition stays and I still cannot repair a mistake.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice promise acknowledgment and explanation (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), partially addressed in source 67ab71d (2026-10-26), exact CI 40258693035 success: shift-pay doubt and suggestion expiry, no new accountability action, remaining clauses open, target 2026-10-27, deployment and same-tester retest pending, no player acceptance"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/aisha-free.md"
+  },
+  {
+   "id": "F-504",
+   "date": "2026-10-24",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Aisha Rahman (legacy Codex, HF3 Voice R1 free)",
+   "words": "**Stop the scenes repeating and put the goal actions in the planner.** Never replay a scene in the same day. On the day of a deadline, offer the actions that serve the deadline goal, such as work or talking to Osman.\" Return: \"Possibly once, for the characters and the Selin thread. Not if the repetition stays and I still cannot repair a mistake.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice repeated scene identity and deadline-goal available actions (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), partially addressed in source 67ab71d (2026-10-26), exact CI 40258693035 success: repeated scenes only, action availability unchanged, remaining clauses open, target 2026-10-27, deployment and same-tester retest pending, no player acceptance"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/aisha-free.md"
+  },
+  {
+   "id": "F-505",
+   "date": "2026-10-24",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Aisha Rahman (legacy Codex, HF3 Voice R1 free)",
+   "words": "**Stop interface changes from discarding my input.** Keep the speaking sheet open through clock jumps. Show replies whichever tab is open. Announce the 12-day skip before it happens. Make Let time pass work inside past conversations.\" Return: \"Possibly once, for the characters and the Selin thread. Not if the repetition stays and I still cannot repair a mistake.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice speaking sheet/clock/reply visibility (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), partially addressed in source 67ab71d (2026-10-26), exact CI 40258693035 success: sheet retention with nonzero reading slowdown only, other clauses remain open, remaining clauses open, target 2026-10-27, deployment and same-tester retest pending, no player acceptance"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/aisha-free.md"
+  },
+  {
+   "id": "F-506",
+   "date": "2026-10-24",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Aisha Rahman (legacy Codex, HF3 Voice R1 continued)",
+   "words": "**Make the 12-day planner match what it advises.** Either let \"it's your duty\" actually work, or say plainly that only Urge will. After the skip, add short summaries of those days to the Today log.\" Return: \"Maybe. I want to know whether he pays Osman and rings Selin. But if the lines keep repeating, Aisha would not come back a second time.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice planner advice/summary, reproduce rule first (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), partially addressed in source 67ab71d (2026-10-26), exact CI 40258693035 success: duty/Urge hint only, skip-day log summaries remain open, remaining clauses open, target 2026-10-27, deployment and same-tester retest pending, no player acceptance"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/aisha-continued.md"
+  },
+  {
+   "id": "F-507",
+   "date": "2026-10-24",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Aisha Rahman (legacy Codex, HF3 Voice R1 continued)",
+   "words": "**Stop repeating the grief dialogue.** Give Hacer, Rıza and Selin their own voices, and make lines change over time, so Ramadan 15 doesn't reuse Ramadan 2 word for word.\" Return: \"Maybe. I want to know whether he pays Osman and rings Selin. But if the lines keep repeating, Aisha would not come back a second time.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice repeated dialogue (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), matched source scope (fixed 67ab71d, 2026-10-26), exact CI 40258693035 success, deployment, human-speed player retest and acceptance pending, compound clauses are not closed by this stamp"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/aisha-continued.md"
+  },
+  {
+   "id": "F-508",
+   "date": "2026-10-24",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Aisha Rahman (legacy Codex, HF3 Voice R1 continued)",
+   "words": "**Warn before a new suggestion replaces the old one** (\"This replaces: walk by the river\"), and make \"Let time pass\" visibly move the clock.\" Return: \"Maybe. I want to know whether he pays Osman and rings Selin. But if the lines keep repeating, Aisha would not come back a second time.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice standing suggestion replacement and clock feedback (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/aisha-continued.md"
+  },
+  {
+   "id": "F-509",
+   "date": "2026-10-24",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Rosa Alvarez (legacy Codex, HF3 Voice R1 free)",
+   "words": "“Show me the first suggestion when you tell me I can choose one.”\" Return: \"I would close it, rather than leave it running. I would not return voluntarily from this exposure.",
+   "verdict": "-",
+   "routes": [
+    "fix:voice Voice first suggestion cue (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/rosa-free.md"
+  },
+  {
+   "id": "F-510",
+   "date": "2026-10-24",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Rosa Alvarez (legacy Codex, HF3 Voice R1 free)",
+   "words": "“Say separately when Eid comes and what happens to my advice then.”\" Return: \"I would close it, rather than leave it running. I would not return voluntarily from this exposure.",
+   "verdict": "-",
+   "routes": [
+    "fix:voice Voice Eid/advice intro wording (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/rosa-free.md"
+  },
+  {
+   "id": "F-511",
+   "date": "2026-10-24",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Rosa Alvarez (legacy Codex, HF3 Voice R1 free)",
+   "words": "“Tell me whether I need to hurry while I read.”\" Return: \"I would close it, rather than leave it running. I would not return voluntarily from this exposure.",
+   "verdict": "-",
+   "routes": [
+    "fix:voice Voice reading-time/urgency cue (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), matched source scope (fixed 67ab71d, 2026-10-26), exact CI 40258693035 success, deployment, human-speed player retest and acceptance pending, compound clauses are not closed by this stamp"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/rosa-free.md"
+  },
+  {
+   "id": "F-512",
+   "date": "2026-10-24",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Rosa Alvarez (legacy Codex, HF3 Voice R1 continued)",
+   "words": "Let me finish reading and choosing without losing a speech choice. A visible way to hold the day while reading would help me.\" Return: \"I would not return voluntarily now.",
+   "verdict": "quit",
+   "routes": [
+    "fix:voice Voice reading-time and choice stability (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), matched source scope (fixed 67ab71d, 2026-10-26), exact CI 40258693035 success, deployment, human-speed player retest and acceptance pending, compound clauses are not closed by this stamp"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/rosa-continued.md"
+  },
+  {
+   "id": "F-513",
+   "date": "2026-10-24",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Rosa Alvarez (legacy Codex, HF3 Voice R1 continued)",
+   "words": "Use different wording for predicted independent choices and actions he actually completed. I do not want to keep translating “chose something else” above “he called today.”\" Return: \"I would not return voluntarily now.",
+   "verdict": "quit",
+   "routes": [
+    "fix:voice Voice prediction/completed-action wording (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/rosa-continued.md"
+  },
+  {
+   "id": "F-514",
+   "date": "2026-10-24",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Rosa Alvarez (legacy Codex, HF3 Voice R1 continued)",
+   "words": "Keep the sentence I am answering visible beside the speech choices on the phone, and tell me plainly why the rent advice did not work.\" Return: \"I would not return voluntarily now.",
+   "verdict": "quit",
+   "routes": [
+    "fix:voice Voice phone context and rent advice explanation (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), partially addressed in source 67ab71d (2026-10-26), exact CI 40258693035 success: rent-advice explanation only, phone layout clause remains open, remaining clauses open, target 2026-10-27, deployment and same-tester retest pending, no player acceptance"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/rosa-continued.md"
+  },
+  {
+   "id": "F-515",
+   "date": "2026-10-24",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Nia Okafor (legacy Codex, HF3 Voice R1 free)",
+   "words": "Let me find how to suggest calling his daughter when that is the goal I care about, or tell me why it is unavailable.\" Return: \"I would not leave it running or return voluntarily right now. I might retry if I could reach the family conversation quickly.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice family action availability explanation (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/nia-free.md"
+  },
+  {
+   "id": "F-516",
+   "date": "2026-10-24",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Nia Okafor (legacy Codex, HF3 Voice R1 free)",
+   "words": "Keep a reply choice available while I am reading it.\" Return: \"I would not leave it running or return voluntarily right now. I might retry if I could reach the family conversation quickly.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice reading-time and choice stability (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), matched source scope (fixed 67ab71d, 2026-10-26), exact CI 40258693035 success, deployment, human-speed player retest and acceptance pending, compound clauses are not closed by this stamp"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/nia-free.md"
+  },
+  {
+   "id": "F-517",
+   "date": "2026-10-24",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Nia Okafor (legacy Codex, HF3 Voice R1 free)",
+   "words": "Keep the likely answer visible above the phone’s strength/reason buttons.\" Return: \"I would not leave it running or return voluntarily right now. I might retry if I could reach the family conversation quickly.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice phone planning preview visibility (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/nia-free.md"
+  },
+  {
+   "id": "F-518",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Nia Okafor (Codex, HF3 Voice R1 continued)",
+   "words": "Let me trust what “after this task” means. I want to know whether I should wait or change what I said.\" Return: \"I would close the game, not leave it running, and would not return voluntarily right now.",
+   "verdict": "quit",
+   "routes": [
+    "fix:voice Voice deferred promise meaning/outcome (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), partially addressed in source 67ab71d (2026-10-26), exact CI 40258693035 success: expiry receipt only, no guarantee of obedience, remaining clauses open, target 2026-10-27, deployment and same-tester retest pending, no player acceptance"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/nia-continued.md"
+  },
+  {
+   "id": "F-519",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Nia Okafor (Codex, HF3 Voice R1 continued)",
+   "words": "Keep the answer I am reacting to visible while I choose on my phone.\" Return: \"I would close the game, not leave it running, and would not return voluntarily right now.",
+   "verdict": "quit",
+   "routes": [
+    "fix:voice Voice phone reply visibility (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/nia-continued.md"
+  },
+  {
+   "id": "F-520",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Nia Okafor (Codex, HF3 Voice R1 continued)",
+   "words": "Let me stay with the specific questions about his life. Those were what made me care.\" Return: \"I would close the game, not leave it running, and would not return voluntarily right now.",
+   "verdict": "quit",
+   "routes": [
+    "fix:voice Voice specific conversation choices (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/nia-continued.md"
+  },
+  {
+   "id": "F-521",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Jonas Berg (Codex, HF3 Voice R1 free)",
+   "words": "I want to find the answer to my shift suggestion after the day moves on.\" Return: \"I might return with time specifically to learn the timing; I would not choose to resume immediately.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice suggestion outcome history (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/jonas-free.md"
+  },
+  {
+   "id": "F-522",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Jonas Berg (Codex, HF3 Voice R1 free)",
+   "words": "I want “stopped” to tell me clearly whether the clock or only the conversation is stopped.\" Return: \"I might return with time specifically to learn the timing; I would not choose to resume immediately.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice stopped status wording (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), matched source scope (fixed 67ab71d, 2026-10-26), exact CI 40258693035 success, deployment, human-speed player retest and acceptance pending, compound clauses are not closed by this stamp"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/jonas-free.md"
+  },
+  {
+   "id": "F-523",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Jonas Berg (Codex, HF3 Voice R1 free)",
+   "words": "I want to watch one choice resolve before another sheet takes my attention.\" Return: \"I might return with time specifically to learn the timing; I would not choose to resume immediately.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice choice/result continuity (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/jonas-free.md"
+  },
+  {
+   "id": "F-524",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Jonas Berg (Codex, HF3 Voice R1 continued)",
+   "words": "Tell me at the first shift refusal that he doubts the pay, so I can test strength or duty before repeating a failed plan for twelve days.\" Return: \"I might voluntarily return to try Urge earlier. I would not leave the game running unattended; the menu/feedback was holding the day when I stopped.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice first deferred/refused shift explanation (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), matched source scope (fixed 67ab71d, 2026-10-26), exact CI 40258693035 success, deployment, human-speed player retest and acceptance pending, compound clauses are not closed by this stamp"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/jonas-continued.md"
+  },
+  {
+   "id": "F-525",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Jonas Berg (Codex, HF3 Voice R1 continued)",
+   "words": "Make it clear whether I am reading an earlier conversation or the present task when the scene and sleep status disagree.\" Return: \"I might voluntarily return to try Urge earlier. I would not leave the game running unattended; the menu/feedback was holding the day when I stopped.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice history versus current scene status (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), partially addressed in source 67ab71d (2026-10-26), exact CI 40258693035 success: explicit scene start and live clock labels, remaining clauses open, target 2026-10-27, deployment and same-tester retest pending, no player acceptance"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/jonas-continued.md"
+  },
+  {
+   "id": "F-526",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Jonas Berg (Codex, HF3 Voice R1 continued)",
+   "words": "Let me read the whole likely reply while choosing strength and reason in the desktop planner.\" Return: \"I might voluntarily return to try Urge earlier. I would not leave the game running unattended; the menu/feedback was holding the day when I stopped.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice desktop planning reply visibility (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/jonas-continued.md"
+  },
+  {
+   "id": "F-527",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Diego Silva (Codex, HF3 Voice R1 free)",
+   "words": "Let me respond to the grief that made me interested in speaking.\" Return: \"I would not return voluntarily from this exposure. I would close the game rather than leave it running.",
+   "verdict": "quit",
+   "routes": [
+    "fix:voice Voice available response to visible grief (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/diego-free.md"
+  },
+  {
+   "id": "F-528",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Diego Silva (Codex, HF3 Voice R1 free)",
+   "words": "Make the answer to my spoken suggestion easier to notice.\" Return: \"I would not return voluntarily from this exposure. I would close the game rather than leave it running.",
+   "verdict": "quit",
+   "routes": [
+    "fix:voice Voice immediate answer visibility (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/diego-free.md"
+  },
+  {
+   "id": "F-529",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Diego Silva (Codex, HF3 Voice R1 free)",
+   "words": "Give me a shorter route from Speak to a simple suggestion.\" Return: \"I would not return voluntarily from this exposure. I would close the game rather than leave it running.",
+   "verdict": "quit",
+   "routes": [
+    "fix:voice Voice simple suggestion flow (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/diego-free.md"
+  },
+  {
+   "id": "F-530",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Diego Silva (Codex, HF3 Voice R1 continued)",
+   "words": "Keep a speaking choice available long enough for me to read and tap it.\" Return: \"I would close the game, not leave it running. I would not return voluntarily today.",
+   "verdict": "quit",
+   "routes": [
+    "fix:voice Voice reading/choice stability (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), matched source scope (fixed 67ab71d, 2026-10-26), exact CI 40258693035 success, deployment, human-speed player retest and acceptance pending, compound clauses are not closed by this stamp"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/diego-continued.md"
+  },
+  {
+   "id": "F-531",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Diego Silva (Codex, HF3 Voice R1 continued)",
+   "words": "Show why an accepted suggestion is likely to fail when I give it, especially for a limited work window.\" Return: \"I would close the game, not leave it running. I would not return voluntarily today.",
+   "verdict": "quit",
+   "routes": [
+    "fix:voice Voice work-window forecast explanation (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/diego-continued.md"
+  },
+  {
+   "id": "F-532",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Diego Silva (Codex, HF3 Voice R1 continued)",
+   "words": "Let me read the conversation and relevant goal while choosing my reply.\" Return: \"I would close the game, not leave it running. I would not return voluntarily today.",
+   "verdict": "quit",
+   "routes": [
+    "fix:voice Voice conversation/goal context (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/diego-continued.md"
+  },
+  {
+   "id": "F-533",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Mei Tan (Codex, HF3 Voice R1 free)",
+   "words": "Keep the current choice available while I read his goals.\" Return: \"I would consider returning if I could read progress without losing the current choice. I would not voluntarily continue this session now.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice current choice stability while reading goals (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), matched source scope (fixed 67ab71d, 2026-10-26), exact CI 40258693035 success, deployment, human-speed player retest and acceptance pending, compound clauses are not closed by this stamp"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/mei-free.md"
+  },
+  {
+   "id": "F-534",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Mei Tan (Codex, HF3 Voice R1 free)",
+   "words": "Make completed progress easier to distinguish from estimates of independent behaviour.\" Return: \"I would consider returning if I could read progress without losing the current choice. I would not voluntarily continue this session now.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice prediction and completed-progress wording (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/mei-free.md"
+  },
+  {
+   "id": "F-535",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Mei Tan (Codex, HF3 Voice R1 free)",
+   "words": "Show a clear acknowledgment immediately after I choose words.\" Return: \"I would consider returning if I could read progress without losing the current choice. I would not voluntarily continue this session now.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice immediate input acknowledgment (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/mei-free.md"
+  },
+  {
+   "id": "F-536",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Mei Tan (Codex, HF3 Voice R1 continued)",
+   "words": "**A dependable account of deferred promises:** whether he still intends to act, changed his mind, or let the suggestion expire.\" Return: \"I might voluntarily return to this save. I would not restart or leave the clock running.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice deferred promise lifecycle (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), partially addressed in source 67ab71d (2026-10-26), exact CI 40258693035 success: expiry receipt, no inferred intent or change-of-mind claim, remaining clauses open, target 2026-10-27, deployment and same-tester retest pending, no player acceptance"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/mei-continued.md"
+  },
+  {
+   "id": "F-537",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Mei Tan (Codex, HF3 Voice R1 continued)",
+   "words": "**Unambiguous completed progress:** especially who initiated Selin’s call, alongside a clearly different presentation of independent-choice estimates.\" Return: \"I might voluntarily return to this save. I would not restart or leave the clock running.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice initiated/completed call and independent estimate wording (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/mei-continued.md"
+  },
+  {
+   "id": "F-538",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Mei Tan (Codex, HF3 Voice R1 continued)",
+   "words": "**Stable choices while I read:** retain my selected action or clearly explain its removal before I press Say it.\" Return: \"I might voluntarily return to this save. I would not restart or leave the clock running.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice selection stability and invalidation explanation (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), matched source scope (fixed 67ab71d, 2026-10-26), exact CI 40258693035 success, deployment, human-speed player retest and acceptance pending, compound clauses are not closed by this stamp"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/mei-continued.md"
+  },
+  {
+   "id": "F-539",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Samir Haddad (Claude Opus, HF3 Voice R1 free)",
+   "words": "Show the outcome of the deadline as a scene: Osman at the door at 20:00, paid or not, and what happens next.\" Return: \"Maybe once, for Selin and Rıza, but not to manage the rent.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice rent deadline outcome scene (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), partially addressed in source 67ab71d (2026-10-26), exact CI 40258693035 success: visible held missed-deadline receipt, no invented Osman visit or new paid-deadline scene, remaining clauses open, target 2026-10-27, deployment and same-tester retest pending, no player acceptance"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/samir-free.md"
+  },
+  {
+   "id": "F-540",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Samir Haddad (Claude Opus, HF3 Voice R1 free)",
+   "words": "Keep the speak sheet from closing under my finger. If he chooses, let my line apply to his next choice.\" Return: \"Maybe once, for Selin and Rıza, but not to manage the rent.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice choice stability, preserve refusal/state rules (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), partially addressed in source 67ab71d (2026-10-26), exact CI 40258693035 success: sheet retention with nonzero reading slowdown, no queuing to future choice, remaining clauses open, target 2026-10-27, deployment and same-tester retest pending, no player acceptance"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/samir-free.md"
+  },
+  {
+   "id": "F-541",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Samir Haddad (Claude Opus, HF3 Voice R1 free)",
+   "words": "Put Urge in the normal speak sheet before the first skip, and stop repeating the same neighbour and workshop lines word for word.\" Return: \"Maybe once, for Selin and Rıza, but not to manage the rent.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice advice strength discovery and repeated dialogue (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), partially addressed in source 67ab71d (2026-10-26), exact CI 40258693035 success: scene variety only, Urge discovery remains open, remaining clauses open, target 2026-10-27, deployment and same-tester retest pending, no player acceptance"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/samir-free.md"
+  },
+  {
+   "id": "F-542",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Samir Haddad (Claude Opus, HF3 Voice R1 continued)",
+   "words": "Let me see the moments I helped bring about, such as the grave visit and the sunset meal, or at least slow down around them.\" Return: \"I would maybe come back later, not tonight.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice meaningful event visibility (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/samir-continued.md"
+  },
+  {
+   "id": "F-543",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Samir Haddad (Claude Opus, HF3 Voice R1 continued)",
+   "words": "Make the speak sheet truly hold time until I pick something or close it.\" Return: \"I would maybe come back later, not tonight.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice reading and choice timing (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), partially addressed in source 67ab71d (2026-10-26), exact CI 40258693035 success: stable choices and nonzero reading slowdown, requested hard pause remains open under the game direction, target 2026-10-27, remaining clauses open, target 2026-10-27, deployment and same-tester retest pending, no player acceptance"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/samir-continued.md"
+  },
+  {
+   "id": "F-544",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Samir Haddad (Claude Opus, HF3 Voice R1 continued)",
+   "words": "Vary repeated dialogue, and explain \"estimates\" and \"mention\" where they first appear.\" Return: \"I would maybe come back later, not tonight.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice repeated dialogue and first-use explanation (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), partially addressed in source 67ab71d (2026-10-26), exact CI 40258693035 success: scene variety only, first-use definitions remain open, remaining clauses open, target 2026-10-27, deployment and same-tester retest pending, no player acceptance"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/samir-continued.md"
+  },
+  {
+   "id": "F-545",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Tessa Williams (Codex, HF3 Voice R1 free)",
+   "words": "More room to say something playful in my own way.\" Return: \"I would not return voluntarily or leave it running to check later.",
+   "verdict": "quit",
+   "routes": [
+    "fix:voice Voice expressive response options, no free-text obedience promise (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/tessa-free.md"
+  },
+  {
+   "id": "F-546",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Tessa Williams (Codex, HF3 Voice R1 free)",
+   "words": "A prediction I can understand when Halil gives the opposite answer.\" Return: \"I would not return voluntarily or leave it running to check later.",
+   "verdict": "quit",
+   "routes": [
+    "fix:voice Voice prediction versus actual answer explanation (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/tessa-free.md"
+  },
+  {
+   "id": "F-547",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Tessa Williams (Codex, HF3 Voice R1 free)",
+   "words": "Less information competing with the current conversation.\" Return: \"I would not return voluntarily or leave it running to check later.",
+   "verdict": "quit",
+   "routes": [
+    "fix:voice Voice immediate conversation focus (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/tessa-free.md"
+  },
+  {
+   "id": "F-548",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Tessa Williams (Codex, HF3 Voice R1 continued)",
+   "words": "**Let me say something playful in my own words.**\" Return: \"I would close the game rather than leave it running. I would not return voluntarily. I might tell a friend about the fifty-five deferrals.",
+   "verdict": "quit",
+   "routes": [
+    "fix:voice Voice Say something else expectation and own-word expression (open, proposed target 2026-10-28, design scope, preserve deterministic game and difficulty)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/tessa-continued.md"
+  },
+  {
+   "id": "F-549",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Tessa Williams (Codex, HF3 Voice R1 continued)",
+   "words": "**Give different people more distinct replies.**\" Return: \"I would close the game rather than leave it running. I would not return voluntarily. I might tell a friend about the fifty-five deferrals.",
+   "verdict": "quit",
+   "routes": [
+    "fix:voice Voice repeated dialogue and distinct cast replies (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), matched source scope (fixed 67ab71d, 2026-10-26), exact CI 40258693035 success, deployment, human-speed player retest and acceptance pending, compound clauses are not closed by this stamp"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/tessa-continued.md"
+  },
+  {
+   "id": "F-550",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Tessa Williams (Codex, HF3 Voice R1 continued)",
+   "words": "**Tell me sooner that I will not play every day.**\" Return: \"I would close the game rather than leave it running. I would not return voluntarily. I might tell a friend about the fifty-five deferrals.",
+   "verdict": "quit",
+   "routes": [
+    "fix:voice Voice twelve-day jump expectation (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/tessa-continued.md"
+  },
+  {
+   "id": "F-551",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Pavel Novak (Codex, HF3 Voice R1 free)",
+   "words": "“Tell me plainly when the clock is running and when it is stopped.”\" Return: \"I would leave this session for now. I would not voluntarily resume today.",
+   "verdict": "quit",
+   "routes": [
+    "fix:voice Voice live versus held clock wording (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), matched source scope (fixed 67ab71d, 2026-10-26), exact CI 40258693035 success, deployment, human-speed player retest and acceptance pending, compound clauses are not closed by this stamp"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/pavel-free.md"
+  },
+  {
+   "id": "F-552",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Pavel Novak (Codex, HF3 Voice R1 free)",
+   "words": "“When I choose Back to now, make it clear why I am seeing an eight oclock conversation at 09:33.”\" Return: \"I would leave this session for now. I would not voluntarily resume today.",
+   "verdict": "quit",
+   "routes": [
+    "fix:voice Voice current versus earlier conversation (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), matched source scope (fixed 67ab71d, 2026-10-26), exact CI 40258693035 success, deployment, human-speed player retest and acceptance pending, compound clauses are not closed by this stamp"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/pavel-free.md"
+  },
+  {
+   "id": "F-553",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Pavel Novak (Codex, HF3 Voice R1 free)",
+   "words": "“Keep the estimate and completed-action wording distinct enough that I do not mistake one for the other.”\" Return: \"I would leave this session for now. I would not voluntarily resume today.",
+   "verdict": "quit",
+   "routes": [
+    "fix:voice Voice estimates/completed action distinction (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/pavel-free.md"
+  },
+  {
+   "id": "F-554",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Pavel Novak (Codex, HF3 Voice R1 continued)",
+   "words": "**Show the answer to my suggestion where I can read it before another sheet covers it.**\" Return: \"I would return another evening to try Urge for the shift, but I have had enough reading and repeated conversations tonight.",
+   "verdict": "keep",
+   "routes": [
+    "fix:voice Voice immediate answer visibility and speaking-sheet stacking (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/pavel-continued.md"
+  },
+  {
+   "id": "F-555",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Pavel Novak (Codex, HF3 Voice R1 continued)",
+   "words": "**Give the afternoon shift’s opening and closing clock times.**\" Return: \"I would return another evening to try Urge for the shift, but I have had enough reading and repeated conversations tonight.",
+   "verdict": "keep",
+   "routes": [
+    "fix:voice Voice afternoon-shift availability explanation (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/pavel-continued.md"
+  },
+  {
+   "id": "F-556",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Pavel Novak (Codex, HF3 Voice R1 continued)",
+   "words": "**Make repeated conversations shorter on later days.**\" Return: \"I would return another evening to try Urge for the shift, but I have had enough reading and repeated conversations tonight.",
+   "verdict": "keep",
+   "routes": [
+    "fix:voice Voice repeated conversation content (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), matched source scope (fixed 67ab71d, 2026-10-26), exact CI 40258693035 success, deployment, human-speed player retest and acceptance pending, compound clauses are not closed by this stamp"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/pavel-continued.md"
+  },
+  {
+   "id": "F-557",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Leila Mansour (Claude Opus, HF3 Voice R1 free)",
+   "words": "Pause or slow the clock while I'm reading the log or have a sheet open. It should be fully paused, not \"slows\".\" Return: \"Maybe, if I could slow or pause the day while I read.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice reading/speaking clock policy and lost choices (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), partially addressed in source 67ab71d (2026-10-26), exact CI 40258693035 success: stable choices and nonzero reading slowdown, requested hard pause remains open under the game direction, target 2026-10-27, remaining clauses open, target 2026-10-27, deployment and same-tester retest pending, no player acceptance"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/leila-free.md"
+  },
+  {
+   "id": "F-558",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Leila Mansour (Claude Opus, HF3 Voice R1 free)",
+   "words": "Show my words and his answer immediately in the scene, not only later in the Today log.\" Return: \"Maybe, if I could slow or pause the day while I read.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice immediate input/answer feedback (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/leila-free.md"
+  },
+  {
+   "id": "F-559",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Leila Mansour (Claude Opus, HF3 Voice R1 free)",
+   "words": "Make the goals estimate list agree with what happened, or label it clearly as a separate forecast.\" Return: \"Maybe, if I could slow or pause the day while I read.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice independent-choice forecasts versus completed actions (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/leila-free.md"
+  },
+  {
+   "id": "F-560",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Leila Mansour (Claude Opus, HF3 Voice R1 continued)",
+   "words": "Tell me when Halil drops or ignores my suggestion, and why, at the moment it happens.\" Return: \"Probably not on my own. I'd come back if:<br>- my suggestions got a clear answer when he drops them,<br>- big events like paying Osman happened on-screen as moments I could see,<br>- the conversations at the door stopped repeating.<br><br>The Selin and doctor moments showed the writing can land, and that alone might tempt me to see Ramadan 30 if someone told me those things had changed.<br><br>**Leave it running?** No. Return another evening? Only under the conditions above.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice suggestion expiry/ignored-result feedback (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), partially addressed in source 67ab71d (2026-10-26), exact CI 40258693035 success: expiry/asleep receipt only, no inferred reason for ignoring, remaining clauses open, target 2026-10-27, deployment and same-tester retest pending, no player acceptance"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/leila-continued.md"
+  },
+  {
+   "id": "F-561",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Leila Mansour (Claude Opus, HF3 Voice R1 continued)",
+   "words": "Show key events like paying a debt as a scene, not a silent change in a number.\" Return: \"Probably not on my own. I'd come back if:<br>- my suggestions got a clear answer when he drops them,<br>- big events like paying Osman happened on-screen as moments I could see,<br>- the conversations at the door stopped repeating.<br><br>The Selin and doctor moments showed the writing can land, and that alone might tempt me to see Ramadan 30 if someone told me those things had changed.<br><br>**Leave it running?** No. Return another evening? Only under the conditions above.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice debt-deadline outcome scene (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/leila-continued.md"
+  },
+  {
+   "id": "F-562",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Leila Mansour (Claude Opus, HF3 Voice R1 continued)",
+   "words": "Make \"Your words\" show what I actually just said, and vary the repeated Hacer/Nuran lines.\" Return: \"Probably not on my own. I'd come back if:<br>- my suggestions got a clear answer when he drops them,<br>- big events like paying Osman happened on-screen as moments I could see,<br>- the conversations at the door stopped repeating.<br><br>The Selin and doctor moments showed the writing can land, and that alone might tempt me to see Ramadan 30 if someone told me those things had changed.<br><br>**Leave it running?** No. Return another evening? Only under the conditions above.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice stale suggestion transcript and repeated dialogue (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), partially addressed in source 67ab71d (2026-10-26), exact CI 40258693035 success: repeated dialogue only, Your words clause remains open, remaining clauses open, target 2026-10-27, deployment and same-tester retest pending, no player acceptance"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/leila-continued.md"
+  },
+  {
+   "id": "F-563",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Haruto Sato (Claude Opus, HF3 Voice R1 free)",
+   "words": "When he says \"after X, I will do it,\" show me whether that will still fit in the window, or let me hold him to it. Right now he slides past it every time.\" Return: \"\"Maybe, another evening, if I go in planning to Urge the shift from the very start and see whether he actually follows. I liked steering him and the people react to practical help, which is what I want. But if he keeps saying 'after I rest' and then sleeps through it, and the neighbours repeat their lines, I won't stay long a second time.\"<br><br>**Left running?** No.<br><br>**Return another evening?** Possibly, under that condition. This was a natural stop, not one forced by the ceiling, the tool or the coordinator.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice promise-window explanation, accountability without guaranteed obedience (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/haruto-free.md"
+  },
+  {
+   "id": "F-564",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Haruto Sato (Claude Opus, HF3 Voice R1 free)",
+   "words": "Show his reply right away after \"Say it,\" even just \"He heard you.\"\" Return: \"\"Maybe, another evening, if I go in planning to Urge the shift from the very start and see whether he actually follows. I liked steering him and the people react to practical help, which is what I want. But if he keeps saying 'after I rest' and then sleeps through it, and the neighbours repeat their lines, I won't stay long a second time.\"<br><br>**Left running?** No.<br><br>**Return another evening?** Possibly, under that condition. This was a natural stop, not one forced by the ceiling, the tool or the coordinator.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice immediate answer visibility (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/haruto-free.md"
+  },
+  {
+   "id": "F-565",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Haruto Sato (Claude Opus, HF3 Voice R1 free)",
+   "words": "Don't repeat the same neighbour scene word for word on the same day.\" Return: \"\"Maybe, another evening, if I go in planning to Urge the shift from the very start and see whether he actually follows. I liked steering him and the people react to practical help, which is what I want. But if he keeps saying 'after I rest' and then sleeps through it, and the neighbours repeat their lines, I won't stay long a second time.\"<br><br>**Left running?** No.<br><br>**Return another evening?** Possibly, under that condition. This was a natural stop, not one forced by the ceiling, the tool or the coordinator.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice same-day repeated dialogue (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), matched source scope (fixed 67ab71d, 2026-10-26), exact CI 40258693035 success, deployment, human-speed player retest and acceptance pending, compound clauses are not closed by this stamp"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/haruto-free.md"
+  },
+  {
+   "id": "F-569",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Haruto Sato (Claude Opus, HF3 Voice R1 continued)",
+   "words": "Let me queue a suggestion for a future window, like the afternoon shift, or keep the sheet open until I close it.\" Return: \"Maybe, once, to see Eid. The 14-day summary made me care whether Halil manages alone. I'd come back only if I could set my words for the afternoon shift without racing a sheet that closes in two seconds. I also wouldn't want to sit through the same workshop and Hacer lines again. If the live days stay like this, I wouldn't come back.<br><br>**Leave it running?** No. I wouldn't leave it running, because the clock moves on its own and I'd miss things.<br><br>**Another evening?** Possibly, if I just want the ending, and probably using the skip summaries.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice future-window suggestion planning and choice-reading stability, human-speed repro (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), matched source scope (fixed 67ab71d, 2026-10-26), exact CI 40258693035 success, deployment, human-speed player retest and acceptance pending, compound clauses are not closed by this stamp"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/haruto-continued.md"
+  },
+  {
+   "id": "F-570",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Haruto Sato (Claude Opus, HF3 Voice R1 continued)",
+   "words": "Show a deadline result as an event when it happens, not only later in a side panel.\" Return: \"Maybe, once, to see Eid. The 14-day summary made me care whether Halil manages alone. I'd come back only if I could set my words for the afternoon shift without racing a sheet that closes in two seconds. I also wouldn't want to sit through the same workshop and Hacer lines again. If the live days stay like this, I wouldn't come back.<br><br>**Leave it running?** No. I wouldn't leave it running, because the clock moves on its own and I'd miss things.<br><br>**Another evening?** Possibly, if I just want the ending, and probably using the skip summaries.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice visible deadline outcome event (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), partially addressed in source 67ab71d (2026-10-26), exact CI 40258693035 success: visible rent missed-deadline event, other deadline events unchanged, remaining clauses open, target 2026-10-27, deployment and same-tester retest pending, no player acceptance"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/haruto-continued.md"
+  },
+  {
+   "id": "F-571",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Haruto Sato (Claude Opus, HF3 Voice R1 continued)",
+   "words": "Vary the repeated scene dialogue (workshop, Hacer, Selin) after the first time.\" Return: \"Maybe, once, to see Eid. The 14-day summary made me care whether Halil manages alone. I'd come back only if I could set my words for the afternoon shift without racing a sheet that closes in two seconds. I also wouldn't want to sit through the same workshop and Hacer lines again. If the live days stay like this, I wouldn't come back.<br><br>**Leave it running?** No. I wouldn't leave it running, because the clock moves on its own and I'd miss things.<br><br>**Another evening?** Possibly, if I just want the ending, and probably using the skip summaries.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice repeated dialogue progression (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), matched source scope (fixed 67ab71d, 2026-10-26), exact CI 40258693035 success, deployment, human-speed player retest and acceptance pending, compound clauses are not closed by this stamp"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/haruto-continued.md"
+  },
+  {
+   "id": "F-566",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Marisol Reyes (Claude Opus, HF3 Voice R1 free)",
+   "words": "Let me speak about the real problem on its day. On rent day I want options like paying Osman, asking for time or borrowing.\" Return: \"Perhaps, for the voices, if the friends said something new each time and I could actually help with the rent. As it is, I would not come back another evening on my own. I would not leave it running either; when nothing happens it is just a man asleep.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice deadline speech/action availability, new borrowing is design scope (open, proposed target 2026-10-28, design scope, preserve deterministic game and difficulty)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/marisol-free.md"
+  },
+  {
+   "id": "F-567",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Marisol Reyes (Claude Opus, HF3 Voice R1 free)",
+   "words": "Don't close the suggestion sheet while I am reading it.\" Return: \"Perhaps, for the voices, if the friends said something new each time and I could actually help with the rent. As it is, I would not come back another evening on my own. I would not leave it running either; when nothing happens it is just a man asleep.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice choice-reading stability, human-speed repro pending (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), matched source scope (fixed 67ab71d, 2026-10-26), exact CI 40258693035 success, deployment, human-speed player retest and acceptance pending, compound clauses are not closed by this stamp"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/marisol-free.md"
+  },
+  {
+   "id": "F-568",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Marisol Reyes (Claude Opus, HF3 Voice R1 free)",
+   "words": "Vary what the friends and neighbours say, and show the full \"stopped:\" reason on the phone.\" Return: \"Perhaps, for the voices, if the friends said something new each time and I could actually help with the rent. As it is, I would not come back another evening on my own. I would not leave it running either; when nothing happens it is just a man asleep.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice repeated dialogue and phone status visibility (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), partially addressed in source 67ab71d (2026-10-26), exact CI 40258693035 success: variety and literal clock status, no long stopped-reason label, remaining clauses open, target 2026-10-27, deployment and same-tester retest pending, no player acceptance"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/marisol-free.md"
+  },
+  {
+   "id": "F-572",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Marisol Reyes (Claude Opus, HF3 Voice R1 continued)",
+   "words": "Let me ask him to work whenever he could work, and tell me in plain words why he refused or forgot.\" Return: \"Maybe, on one condition. I would come back another evening to see Eid and to spend time again with Hacer and Selin, because they felt like real neighbours. I would not come back to fight the lira again. If the money keeps slipping away for reasons I can't see, I would let it go.<br><br>**Leave it running?** No. I would close it and perhaps return another evening.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice work-action availability and refusal/expiry explanation, preserve agency (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), partially addressed in source 67ab71d (2026-10-26), exact CI 40258693035 success: shift-pay refusal and expiry explanation, action availability unchanged, remaining clauses open, target 2026-10-27, deployment and same-tester retest pending, no player acceptance"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/marisol-continued.md"
+  },
+  {
+   "id": "F-573",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Marisol Reyes (Claude Opus, HF3 Voice R1 continued)",
+   "words": "Don't repeat neighbours' lines word for word, and make the goals panel agree with itself.\" Return: \"Maybe, on one condition. I would come back another evening to see Eid and to spend time again with Hacer and Selin, because they felt like real neighbours. I would not come back to fight the lira again. If the money keeps slipping away for reasons I can't see, I would let it go.<br><br>**Leave it running?** No. I would close it and perhaps return another evening.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice repeated dialogue and consistent goals panel (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), partially addressed in source 67ab71d (2026-10-26), exact CI 40258693035 success: dialogue variety, goals-panel consistency remains open, remaining clauses open, target 2026-10-27, deployment and same-tester retest pending, no player acceptance"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/marisol-continued.md"
+  },
+  {
+   "id": "F-574",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Marisol Reyes (Claude Opus, HF3 Voice R1 continued)",
+   "words": "Tell me right away, in the scene, when a quick line replaces my standing suggestion or stops his shift, not only later in the diary.\" Return: \"Maybe, on one condition. I would come back another evening to see Eid and to spend time again with Hacer and Selin, because they felt like real neighbours. I would not come back to fight the lira again. If the money keeps slipping away for reasons I can't see, I would let it go.<br><br>**Leave it running?** No. I would close it and perhaps return another evening.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice immediate standing-suggestion replacement/shift-interruption notice (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/marisol-continued.md"
+  },
+  {
+   "id": "F-575",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Emre Kaya (Codex, HF3 Voice R1 free)",
+   "words": "I want enough time to finish reading a conversation before its controls disappear.\" Return: \"I am stopping after one day. I would return voluntarily for another evening to see whether he starts calling Selin without me and to try to cover the rent shortfall. I would not leave the game running. I do not want to play the whole month tonight.",
+   "verdict": "keep",
+   "routes": [
+    "fix:voice Voice conversation-reading hold, human-speed repro required (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), partially addressed in source 67ab71d (2026-10-26), exact CI 40258693035 success: offered speech controls retained while reading, passive conversation playback remains running, remaining clauses open, target 2026-10-27, deployment and same-tester retest pending, no player acceptance"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/emre-free.md"
+  },
+  {
+   "id": "F-576",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Emre Kaya (Codex, HF3 Voice R1 free)",
+   "words": "I want a clearer distinction between “he did it after my suggestion” and “he would choose it without me.”\" Return: \"I am stopping after one day. I would return voluntarily for another evening to see whether he starts calling Selin without me and to try to cover the rent shortfall. I would not leave the game running. I do not want to play the whole month tonight.",
+   "verdict": "keep",
+   "routes": [
+    "fix:voice Voice suggested-action outcome versus independent-choice forecast (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/emre-free.md"
+  },
+  {
+   "id": "F-577",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Emre Kaya (Codex, HF3 Voice R1 free)",
+   "words": "I want to understand whether a new suggestion replaces the previous one before I give it.\" Return: \"I am stopping after one day. I would return voluntarily for another evening to see whether he starts calling Selin without me and to try to cover the rent shortfall. I would not leave the game running. I do not want to play the whole month tonight.",
+   "verdict": "keep",
+   "routes": [
+    "fix:voice Voice suggestion-replacement notice before commitment (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/emre-free.md"
+  },
+  {
+   "id": "F-578",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Emre Kaya (Codex, HF3 Voice R1 continued)",
+   "words": "Let me finish reading an offered choice before it disappears.\" Return: \"I am stopping for tonight. The rent payment gave me a useful stopping point, but I do not want another stretch of waiting and reminding now. I would return another evening to see whether he calls Selin without me and what happens on Eid, provided I can continue this life rather than start again. I would not leave it running while I am away.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice choice-reading stability, human-speed repro required (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), matched source scope (fixed 67ab71d, 2026-10-26), exact CI 40258693035 success, deployment, human-speed player retest and acceptance pending, compound clauses are not closed by this stamp"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/emre-continued.md"
+  },
+  {
+   "id": "F-579",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Emre Kaya (Codex, HF3 Voice R1 continued)",
+   "words": "Explain the extra-shift obstacle when I first suggest it.\" Return: \"I am stopping for tonight. The rent payment gave me a useful stopping point, but I do not want another stretch of waiting and reminding now. I would return another evening to see whether he calls Selin without me and what happens on Eid, provided I can continue this life rather than start again. I would not leave it running while I am away.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice extra-shift obstacle explanation at suggestion (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof), matched source scope (fixed 67ab71d, 2026-10-26), exact CI 40258693035 success, deployment, human-speed player retest and acceptance pending, compound clauses are not closed by this stamp"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/emre-continued.md"
+  },
+  {
+   "id": "F-580",
+   "date": "2026-10-25",
+   "game": "voice",
+   "kind": "playtester",
+   "who": "Emre Kaya (Codex, HF3 Voice R1 continued)",
+   "words": "Keep his answer easy to find without searching the long Today record.\" Return: \"I am stopping for tonight. The rent payment gave me a useful stopping point, but I do not want another stretch of waiting and reminding now. I would return another evening to see whether he calls Selin without me and what happens on Eid, provided I can continue this life rather than start again. I would not leave it running while I am away.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:voice Voice immediate answer visibility versus long Today record (open, proposed target 2026-10-27, reproduce current build before fix, timing needs human-speed proof)"
+   ],
+   "source": "docs/lab/reviews/hf3-voice-2026-10-25/emre-continued.md"
+  },
+  {
+   "id": "F-581",
+   "date": "2026-10-25",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "Maya Chen",
+   "words": "Let me speak to Meryem when I inspect her, especially when she needs rest. Show me what depth would make the marked beds safe. Make people and objects easier to target on the phone before I zoom.",
+   "verdict": "quit",
+   "routes": [
+    "fix:warren person action discoverability/wording, safe depth, phone targeting, door closure reasons, mark/work connection and repetition (open), target next deployed fix/retest"
+   ],
+   "source": "docs/lab/reviews/hf3-warren-2026-10-25/maya-free.md"
+  },
+  {
+   "id": "F-582",
+   "date": "2026-10-25",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "Emre Kaya",
+   "words": "When people ignore the bell or sleep exposed, tell me why: a fear, a task, or a route problem. Otherwise I can't learn from the setback.",
+   "verdict": "quit",
+   "routes": [
+    "fix:warren bell/exposure reasons, quiet planning/repetition, room/referent wording (open), target next deployed fix/retest"
+   ],
+   "source": "docs/lab/reviews/hf3-warren-2026-10-25/emre-free.md"
+  },
+  {
+   "id": "F-583",
+   "date": "2026-10-25",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "Nia Okafor",
+   "words": "Let me notice a person reacting to my experiments. Make potential room capacity distinct from beds I have actually placed. Give me a larger working view of the hill on my phone.",
+   "verdict": "quit",
+   "routes": [
+    "fix:warren visible reactions, potential vs actual beds, phone working view (open), target next deployed fix/retest"
+   ],
+   "source": "docs/lab/reviews/hf3-warren-2026-10-25/nia-free.md"
+  },
+  {
+   "id": "F-584",
+   "date": "2026-10-25",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "Rosa Alvarez",
+   "words": "When you say 'beside the cellar', make that tap work, or show me where the path must start.",
+   "verdict": "quit",
+   "routes": [
+    "fix:warren path-start explanation, first-use terms, shelter response reasons, phone view and arrival/keeper cues (open), target next deployed fix/retest"
+   ],
+   "source": "docs/lab/reviews/hf3-warren-2026-10-25/rosa-free.md"
   }
  ],
  "lessons": [
@@ -7341,7 +8485,7 @@
   }
  ],
  "routes": {
-  "fix": 682,
+  "fix": 770,
   "lesson": 291,
   "hf": 12,
   "calibration": 42,

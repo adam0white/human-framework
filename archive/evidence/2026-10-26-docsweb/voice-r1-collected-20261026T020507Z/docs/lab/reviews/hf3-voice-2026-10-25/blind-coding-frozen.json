@@ -1,0 +1,9 @@
+{
+  "time": "2026-10-26T02:03:04.884656+00:00",
+  "before_unblinding": true,
+  "sha256": {
+    "blind-reader-input.json": "fff2428392c165c319b7793fb4cd6fe75b26a171a80d03c599d7305f1634320c",
+    "blind-quit-coding.md": "8013972485e1cb54adf85c4a690ee28b84e9763aafcd5cb1acca68d05a85f9c2",
+    "blind-quit-coding.json": "e991ef5e5c70111e71df60ffde4c4d076e03971a75bcc31a28ec0ac693bce9a4"
+  }
+}

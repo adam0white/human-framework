@@ -1,0 +1,42 @@
+{
+  "started": "2026-10-25T22:42:47.805547+00:00",
+  "ended": "2026-10-25T23:02:30.055704+00:00",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "release_before": {
+    "app": "1.0.0",
+    "framework": "3.0.0",
+    "frameworkLibrary": "3.0.0",
+    "commit": "b638c2297c844b232a167c3c87bf790cbc922495",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "1.0.0",
+    "framework": "3.0.0",
+    "frameworkLibrary": "3.0.0",
+    "commit": "b638c2297c844b232a167c3c87bf790cbc922495",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "raw_log_sha256": "142294c41db348127aba9023eba3b4ed1d818e32d1ceb3e1c9b06e2cc7431be0",
+  "original_report_sha256": "6c48bfeec46523acf0290b33a43ffe9842477630275bb940581e71c20ebffbbc",
+  "observed_viewport_resizes": [
+    {
+      "elapsed_s": 305.327,
+      "input": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "elapsed_s": 317.924,
+      "input": {
+        "width": 360,
+        "height": 690
+      }
+    }
+  ],
+  "instrument_sha256": {},
+  "source": "Coordinator session metadata; not player-visible game content or a production feedback receipt."
+}

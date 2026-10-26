@@ -1,5 +1,9 @@
 # Game 2 — _The Day You Say Nothing_
 
+**Current source and separate live receipt.** Current source uses published HF 3.2.0 / engine 3.2.0, lab-client 0.4.11 and lab-kit 0.5.12. The last recorded live central manifest `1712fc5` instead reports library 3.1.0 and games 3.0.0 / engine 2.23.0. Package publication and source pins do not establish site delivery or external-game adoption.
+
+**Original delivery snapshot.** The following opening paragraph records the HF 2.0 delivery. Its live-version description is historical.
+
 The game as shipped, live at /voice/ on HF 2.0 (engine 2.0.0), shipped seed 7. It was designed on 2026-10-03 from the Game 2 premise of the early game-design review (2026-10-02, §5; in the repository history), cut down the same day to a four-played-day build, and revised in thirteen passes ending with the HF 2.0 upgrade, then a fourteenth adding the month you never spoke (§15). Code: [`apps/site/src/voice`](../../apps/site/src/voice) (the town is [`sim/town.ts`](../../apps/site/src/voice/sim/town.ts)); framework: [framework.md](../framework.md). Game 1 is [_Twice at the Well_](colony.md). The boundaries in [islamic-foundations.md](../../research/islamic-foundations.md) §3–5 and AGENTS.md apply throughout: the player is a suggestion, never a judge; nothing scores worth, faith or acceptance. Contested religious points follow [research/decisions.md](../../research/decisions.md) (§11).
 
 ## 1. Pitch

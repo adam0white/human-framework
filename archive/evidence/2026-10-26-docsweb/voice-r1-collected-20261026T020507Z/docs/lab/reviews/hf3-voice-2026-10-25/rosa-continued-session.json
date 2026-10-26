@@ -1,0 +1,23 @@
+{
+  "legacy_receipt_limit": "No per-session supervisor manifest was retained. Initial coordinator live-build observation and declared device appear in round README/report; exact per-session release bounds unestablished.",
+  "raw_log_sha256": "ad0b44ccc03c3ab481f6c410d96133e9273ba8ba554de5413f79eeb68f582018",
+  "original_report_sha256": "1d63270d50b3ec6fbca15c5abb49b3904b91cf9d7bdf1b5950eada2181146895",
+  "observed_viewport_resizes": [
+    {
+      "elapsed_s": 306.691,
+      "input": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "elapsed_s": 314.378,
+      "input": {
+        "width": 360,
+        "height": 690
+      }
+    }
+  ],
+  "instrument_sha256": {},
+  "source": "Coordinator session metadata; not player-visible game content or a production feedback receipt."
+}

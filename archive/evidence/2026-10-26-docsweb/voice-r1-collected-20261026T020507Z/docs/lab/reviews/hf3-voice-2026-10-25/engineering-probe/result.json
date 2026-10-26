@@ -1,0 +1,25 @@
+{
+  "time": "2026-10-26T00:40:50.417071+00:00",
+  "build": "1712fc5aeaacfc7a401c89c8e3e24dfa462fb8e3",
+  "role": "engineering reproduction; not player verdict",
+  "phone": "Newgame then Speak accepted1.658s apart. Later named-click stability fallback timed out31.5s after button changed; driver artifact excluded.",
+  "desktop": "Newgame\u2192Speak\u2192Say something else succeeded1.5s decisions. Later four planner taps succeeded at1.649\u20131.662s actual intervals,139\u2013151ms op time, no disappearance. They are a separate burst, not one continuous human-speed chain.",
+  "conclusion": "No clean positive human-speed reproduction of choice loss yet. Original timing complaints remain unverified; no game fix ranked from model delay alone. This short negative result does not establish safety for longer human reading or all scenes.",
+  "evidence": [
+    "wall-clock.jsonl",
+    "wide/wall-clock.jsonl",
+    "wide/human-taps-2.json"
+  ],
+  "cleanup": {
+    "exact_driver_pids_stopped": [
+      43025,
+      54640
+    ],
+    "retained_screenshots": [
+      "current-phone.png",
+      "wide/first-minute.png",
+      "wide/current-wide.png"
+    ],
+    "worktrees": []
+  }
+}

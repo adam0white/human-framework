@@ -26,7 +26,7 @@ These documents remain references. A dated receipt inside one describes its own 
 
 Dated experiment scripts, labels and raw JSON remain with their experiment records. They are preserved artifacts, not dispatch instructions or public package APIs.
 
-The [panel diaries](panel/) contain the standing players’ own observations. All twelve inventoried diaries currently say “No sessions recorded.” They are empty evidence records, not completed playtests.
+The [panel diaries](panel/) now include 12 producer-frozen Voice selected-free append blocks and four Warren unmatched preflight append blocks. Earlier empty-record checkpoint text and all prior history remain preserved. Continued exposures remain alternatives, never merged future memory. These appends do not establish completed game cycles or owner acceptance. [Voice integration and artifacts](reviews/hf3-voice-2026-10-25/integration-notes.md) and [Warren integration and correction](reviews/hf3-warren-2026-10-25/integration-notes.md) link the original reports, raw records and limits.
 
 ## Historical experiments
 

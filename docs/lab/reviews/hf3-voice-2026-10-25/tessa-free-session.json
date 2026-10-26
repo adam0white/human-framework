@@ -1,0 +1,35 @@
+{
+  "started": "2026-10-25T23:43:23.859315+00:00",
+  "ended": "2026-10-25T23:46:54.844405+00:00",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "device": "desktop",
+  "floor_minutes": 0,
+  "ceiling_minutes": 25,
+  "release_before": {
+    "app": "1.0.0",
+    "framework": "3.0.0",
+    "frameworkLibrary": "3.1.0",
+    "commit": "1712fc5aeaacfc7a401c89c8e3e24dfa462fb8e3",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "1.0.0",
+    "framework": "3.0.0",
+    "frameworkLibrary": "3.1.0",
+    "commit": "1712fc5aeaacfc7a401c89c8e3e24dfa462fb8e3",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "floor_met": true,
+  "raw_log_sha256": "00ba31dc5335ec5d0816e72857096b3cf69d02b89342d2e61a84c203bc5a30cf",
+  "original_report_sha256": "23e7c736f72df98adceb5e82e4409ff4ba2641a0ccb7e130fe5a76b0661b2262",
+  "observed_viewport_resizes": [],
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "0eaec4fac67b7b3ff88b532072b27130f613524b01c913e941e2a83673e548d4",
+    "lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "source": "Coordinator session metadata; not player-visible game content or a production feedback receipt."
+}

@@ -6,12 +6,12 @@ HF is a deterministic, explainable model of a simulated person, written in TypeS
 
 ## Status
 
-- **HF 3.1.0** is published ([GitHub release](https://github.com/adam0white/human-framework/releases/tag/v3.1.0), engine 3.1.0; [release receipts](docs/releases.md)). Read the [v3 migration guide](packages/human/README.md#migrating-to-v3) before upgrading from 2.x. The widened v3 increment continues through later 3.x work in the [roadmap](docs/roadmap.md); a planned or reviewed change is not a published release.
+- **HF 3.2.0** is published ([GitHub release](https://github.com/adam0white/human-framework/releases/tag/v3.2.0), engine 3.2.0; [release receipts](docs/releases.md)). Read the [v3 migration guide](packages/human/README.md#migrating-to-v3) before upgrading from 2.x. The widened v3 increment continues through later 3.x work in the [roadmap](docs/roadmap.md); a planned or reviewed change is not a published release.
 - **Three in-site example games**, live at [human.adamwhite.work](https://human.adamwhite.work); more games built on HF are listed on [/games/](https://human.adamwhite.work/games/):
   - [Twice at the Well](https://human.adamwhite.work/colony/): a colony sim played side by side without and with HF.
   - [The Day You Say Nothing](https://human.adamwhite.work/voice/): you are a voice in one man's head; he may refuse you.
   - [The Night Watch](https://human.adamwhite.work/watch/): a village's night watch over generations, endless.
-- The prepared **HF 3.2.0 / engine 3.2.0** candidate pins the central site to 3.2.0 and adds bounded opt-ins and repairs described in [CHANGELOG](CHANGELOG.md). It still needs the final release reviews and publication/deployment gates. SDK client 0.4.11 / kit 0.5.12 remain immutable artifacts; external game adoption is separate.
+- The current source pins the central site to **HF 3.2.0 / engine 3.2.0** and includes the bounded opt-ins and repairs described in [CHANGELOG](CHANGELOG.md). Package publication is verified; site delivery has its own manifest receipt. The last recorded live central manifest is `1712fc5`, library 3.1.0 and games 3.0.0 / engine 2.23.0. SDK client 0.4.11 / kit 0.5.12 remain immutable artifacts, including their original manifests; external games retain their actual 3.0 pins until separately upgraded.
 
 ## Quick start
 

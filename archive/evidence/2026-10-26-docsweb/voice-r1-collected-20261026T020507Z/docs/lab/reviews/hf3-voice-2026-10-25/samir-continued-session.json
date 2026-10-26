@@ -1,0 +1,50 @@
+{
+  "started": "2026-10-25T23:32:47.905875+00:00",
+  "ended": "2026-10-25T23:49:24.814229+00:00",
+  "backend": "claude",
+  "model": "opus",
+  "effort": "low",
+  "device": "phone",
+  "floor_minutes": 15,
+  "ceiling_minutes": 25,
+  "release_before": {
+    "app": "1.0.0",
+    "framework": "3.0.0",
+    "frameworkLibrary": "3.1.0",
+    "commit": "1712fc5aeaacfc7a401c89c8e3e24dfa462fb8e3",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "1.0.0",
+    "framework": "3.0.0",
+    "frameworkLibrary": "3.1.0",
+    "commit": "1712fc5aeaacfc7a401c89c8e3e24dfa462fb8e3",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "floor_met": true,
+  "raw_log_sha256": "87b25811314966e3888533b7af1879221d900eb78910af6416f7b1dbc88630da",
+  "original_report_sha256": "9b5e9f51e2b770d5efcb0b96831714c8569f4dcbf5391499072231e812d2c8c0",
+  "observed_viewport_resizes": [
+    {
+      "elapsed_s": 321.124,
+      "input": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "elapsed_s": 333.768,
+      "input": {
+        "width": 360,
+        "height": 690
+      }
+    }
+  ],
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "a2e9ca74b9bac68feb55af2afe52e6d0b1d75e46c7ec9d0bc3ce170ff4a16644",
+    "lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "source": "Coordinator session metadata; not player-visible game content or a production feedback receipt."
+}

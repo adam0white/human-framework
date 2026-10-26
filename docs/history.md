@@ -4,6 +4,10 @@ Detail moved out of AGENTS.md on 2026-10-20 (owner: "Trim handoff and other docu
 
 > This file preserves dated state and owner records. Old current-state headings, pins and worker instructions apply to their checkpoint. Use [HANDOFF](../HANDOFF.md) for current work.
 
+## HF 3.2 bounded opt-ins and repairs (2026-10-26)
+
+HF 3.2.0 / engine 3.2.0 is published from signed a92081e with exact CI, trusted publishing and verified registry/SLSA provenance. Literal wording, assent cost, payment planning, input diagnostics and event-only catch-up are explicit options; opted-in death/upbringing repairs and replay limits are in [CHANGELOG](../CHANGELOG.md#320---2026-10-26). [Release receipts](releases.md#hf-releases) distinguish the package from central site delivery, external game pins and owner acceptance. The dated 3.1 entry below records its publication-time state; its site follow-up is recorded separately in releases.
+
 ## HF 3.1 community death, upbringing and forecasts (2026-10-25)
 
 HF3.1.0 / engine3.1.0 publishes explicit community death handling, warmth-scaled upbringing through young adulthood including living guardians, and conditioned body forecasts. Hosts pin the options and supply them after restore; no new Person state or implicit opt-in is added. Three controls pass against the downloaded package. Complete default continuation and restored published3.0 snapshots match apart from Person engine metadata. Independent Codex and Claude Opus reviews found missing migration and partial joint starts; focused fixes also correct a later participant's ended-versus-interrupted classification. Final checks, exact CI, trusted publication and integrity/provenance verification are recorded in [releases](releases.md#hf-releases). Q26, Q28, Q29, Q30 and Q31/Q32 are complete. Other roadmap targets remain open. Site deployment is pending; games remain on actual HF3.0 and owner readiness remains separate.

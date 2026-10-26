@@ -1,0 +1,110 @@
+[
+  {
+    "persona": "Maya Chen",
+    "game": "warren",
+    "round": "hf3-warren-r1",
+    "arm": "free",
+    "report": "maya-free.md",
+    "source_sha256": "0fd48c2503aece1446781e6f23a090a7fe5b6847ebdcab54593e4cad54d0f7c1",
+    "asks": [
+      "Let me speak to Meryem when I inspect her, especially when she needs rest.",
+      "Show me what depth would make the marked beds safe.",
+      "Make people and objects easier to target on the phone before I zoom."
+    ],
+    "triage": "speech/needed-result clarity/phone targeting; reproduce before fixing; preserve indirect agency, alarm trust consequences, difficulty and edges",
+    "target": "games-deferred next Warren slice; retest after actual deploy; first routed2026-10-26T00:44Z",
+    "status": "Both arms complete; one tester ledger row; blind coding pending.",
+    "continued": {
+      "report": "maya-continued.md",
+      "source_sha256": "0352605cb5c24094090ae1ebd9c8788de38c5e510177e8cbfe6510873eda548a",
+      "asks": [
+        "Let me understand why the door stayed open after the alarm, so my next shelter choice feels informed.",
+        "Put the personal invitation where I can find it sooner, and make its object and consequence clearer.",
+        "Give me a clearer connection between marking a place and the later work, with fewer repeated reports while I wait."
+      ],
+      "stop_elapsed_s": 932.198,
+      "reason": "BORED",
+      "limit": "First-minute note late71.156s; unsupported furnish op reported honestly; no game/driver block. Both viewport evidence reached; primary phone."
+    },
+    "starting_state_limit": "Fresh Begin used independently random seeds. No paired comparison is valid. Original reports remain qualitative; corrected declared returns will follow."
+  },
+  {
+    "persona": "Emre Kaya",
+    "game": "warren",
+    "round": "hf3-warren-r1",
+    "arm": "free",
+    "report": "emre-free.md",
+    "source_sha256": "319a5ee1c667afca8eeda2a5fb986985b829e0d22d20c0faecb216a84f075414",
+    "asks": [
+      "When people ignore the bell or sleep exposed, tell me why: a fear, a task, or a route problem. Otherwise I can't learn from the setback.",
+      "Give me something to plan during quiet stretches, a hint toward the next threat, and stop repeating the same journal lines every day.",
+      "Say which part of a room is \"exposed\" and how to fix it, and make the \"it\" in \"I will do it\" lines explicit."
+    ],
+    "triage": "Reproduce explanations for exposed sleep/bell response, quiet-stretch choices/repeated journal, exact referents. Preserve refusals and challenge. No claim that Fast is objectively broken from felt speed.",
+    "target": "games-deferred current Warren slice; deployed same-tester retest",
+    "limits": "Coordinator note: The report heading claims Rosa would quit. Emre was the assigned player. No Rosa session was observed here; that hypothetical claim is excluded from evidence and all Rosa diaries. The original wording is preserved. Other findings are Emre own reactions, with raw elapsed times authoritative.\n",
+    "status": "Both arms complete as unmatched qualitative evidence; corrected matched round pending.",
+    "continued": {
+      "report": "emre-continued.md",
+      "source_sha256": "18226005217263038f0a09f7f4e039e7a644ab1f1dcdae8b313e1836f986f9df",
+      "asks": [
+        "Some way to get people to actually use the shelter, or a clear reason why they don't. The bell answers \"I will do it\", then they choose a different task.",
+        "Explain water: what a well is and how to get one, or why the water refills.",
+        "Show the goal list and the frost date at the start, and put the bell's trust warning on the bell button itself."
+      ]
+    },
+    "starting_state_limit": "Fresh Begin used independently random seeds. No paired comparison is valid. Original reports remain qualitative; corrected declared returns will follow."
+  },
+  {
+    "persona": "Nia Okafor",
+    "game": "warren",
+    "round": "hf3-warren-r1",
+    "arm": "free",
+    "report": "nia-free.md",
+    "source_sha256": "a19b2d24572f4ac5e9f1605e4fabdf8f6c1da24283f4fe9258aa20c64cd6509b",
+    "asks": [
+      "Let me notice a person reacting to my experiments.",
+      "Make potential room capacity distinct from beds I have actually placed.",
+      "Give me a larger working view of the hill on my phone."
+    ],
+    "context": "Full original ranked wishes retain each explanatory sentence. No observed raid; bell experiment followed by15s wait is not proof nobody reacted.",
+    "triage": "Reproduce visible response and potential-vs-actual capacity; larger phone working view. Preserve autonomous choice and challenge.",
+    "target": "games-deferred Warren slice; actual deployed same-tester retest",
+    "status": "Both arms complete as unmatched qualitative evidence; corrected matched round pending.",
+    "continued": {
+      "report": "nia-continued.md",
+      "source_sha256": "69672707fbfdd620c72cf56fa3cc6830274335d6a280323cdeb0535492bf211b",
+      "asks": [
+        "Show the reaction beside the action I just used.",
+        "Tell me the bell’s false-alarm consequence before my first ring.",
+        "Give me a clearer way to pursue the current warning."
+      ]
+    },
+    "starting_state_limit": "Fresh Begin used independently random seeds. No paired comparison is valid. Original reports remain qualitative; corrected declared returns will follow."
+  },
+  {
+    "persona": "Rosa Alvarez",
+    "game": "warren",
+    "round": "hf3-warren-r1",
+    "arm": "free",
+    "report": "rosa-free.md",
+    "asks": [
+      "When you say 'beside the cellar', make that tap work, or show me where the path must start.",
+      "Tell me what 'open ground' is the first time you say it.",
+      "Explain 'hill' and 'furnishings' on the first screen in plain words."
+    ],
+    "target": "games-deferred Warren slice; deployed same-tester retest",
+    "status": "Both arms complete as unmatched qualitative evidence; corrected matched round pending.",
+    "source_sha256": "077147ed94ef146cf0c25525c4618c8bb7e80694e3a254cd8305517622986dad",
+    "continued": {
+      "report": "rosa-continued.md",
+      "source_sha256": "d5ed747213829a19d4745900e2bf958d8df3334f6c0e29d2a79267e4de3ac381",
+      "asks": [
+        "Let me ask people to come below, or tell me plainly why they shut or do not shut the door.",
+        "Make the squares bigger on my phone, and keep the message from covering the hill.",
+        "Tell me when new people arrive, and say once at the start that I am the keeper."
+      ]
+    },
+    "starting_state_limit": "Fresh Begin used independently random seeds. No paired comparison is valid. Original reports remain qualitative; corrected declared returns will follow."
+  }
+]

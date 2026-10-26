@@ -1,0 +1,123 @@
+{
+  "maya-free": {
+    "quote": "I would try it again for more people to talk to, but I would not leave it running unattended.",
+    "verdict": "keep"
+  },
+  "maya-continued": {
+    "quote": "I would return for Halil and Selin another evening, not leave this running.",
+    "verdict": "keep"
+  },
+  "nia-free": {
+    "quote": "I would not leave it running or return voluntarily right now. I might retry if I could reach the family conversation quickly.",
+    "verdict": "mixed"
+  },
+  "nia-continued": {
+    "quote": "I would close the game, not leave it running, and would not return voluntarily right now.",
+    "verdict": "quit"
+  },
+  "rosa-free": {
+    "quote": "I would close it, rather than leave it running. I would not return voluntarily from this exposure.",
+    "verdict": "-",
+    "forced": true,
+    "limit": "Two-reread protocol cut the session short; retrospective diary. Excluded from taste patterns."
+  },
+  "rosa-continued": {
+    "quote": "I would not return voluntarily now.",
+    "verdict": "quit"
+  },
+  "jonas-free": {
+    "quote": "I might return with time specifically to learn the timing; I would not choose to resume immediately.",
+    "verdict": "mixed"
+  },
+  "jonas-continued": {
+    "quote": "I might voluntarily return to try Urge earlier. I would not leave the game running unattended; the menu/feedback was holding the day when I stopped.",
+    "verdict": "mixed"
+  },
+  "aisha-free": {
+    "quote": "Possibly once, for the characters and the Selin thread. Not if the repetition stays and I still cannot repair a mistake.",
+    "verdict": "mixed"
+  },
+  "aisha-continued": {
+    "quote": "Maybe. I want to know whether he pays Osman and rings Selin. But if the lines keep repeating, Aisha would not come back a second time.",
+    "verdict": "mixed"
+  },
+  "diego-free": {
+    "quote": "I would not return voluntarily from this exposure. I would close the game rather than leave it running.",
+    "verdict": "quit"
+  },
+  "diego-continued": {
+    "quote": "I would close the game, not leave it running. I would not return voluntarily today.",
+    "verdict": "quit"
+  },
+  "mei-free": {
+    "quote": "I would consider returning if I could read progress without losing the current choice. I would not voluntarily continue this session now.",
+    "verdict": "mixed"
+  },
+  "mei-continued": {
+    "quote": "I might voluntarily return to this save. I would not restart or leave the clock running.",
+    "verdict": "mixed"
+  },
+  "samir-free": {
+    "quote": "Maybe once, for Selin and Rıza, but not to manage the rent.",
+    "verdict": "mixed"
+  },
+  "samir-continued": {
+    "quote": "I would maybe come back later, not tonight.",
+    "verdict": "mixed"
+  },
+  "tessa-free": {
+    "quote": "I would not return voluntarily or leave it running to check later.",
+    "verdict": "quit"
+  },
+  "tessa-continued": {
+    "quote": "I would close the game rather than leave it running. I would not return voluntarily. I might tell a friend about the fifty-five deferrals.",
+    "verdict": "quit"
+  },
+  "pavel-free": {
+    "quote": "I would leave this session for now. I would not voluntarily resume today.",
+    "verdict": "quit"
+  },
+  "pavel-continued": {
+    "quote": "I would return another evening to try Urge for the shift, but I have had enough reading and repeated conversations tonight.",
+    "verdict": "keep"
+  },
+  "leila-free": {
+    "quote": "Maybe, if I could slow or pause the day while I read.",
+    "verdict": "mixed"
+  },
+  "leila-continued": {
+    "quote": "Probably not on my own. I'd come back if:\n- my suggestions got a clear answer when he drops them,\n- big events like paying Osman happened on-screen as moments I could see,\n- the conversations at the door stopped repeating.\n\nThe Selin and doctor moments showed the writing can land, and that alone might tempt me to see Ramadan 30 if someone told me those things had changed.\n\n**Leave it running?** No. Return another evening? Only under the conditions above.",
+    "verdict": "mixed",
+    "source": "Original persona final report, including every condition and final return/leave-running answer."
+  },
+  "haruto-free": {
+    "quote": "\"Maybe, another evening, if I go in planning to Urge the shift from the very start and see whether he actually follows. I liked steering him and the people react to practical help, which is what I want. But if he keeps saying 'after I rest' and then sleeps through it, and the neighbours repeat their lines, I won't stay long a second time.\"\n\n**Left running?** No.\n\n**Return another evening?** Possibly, under that condition. This was a natural stop, not one forced by the ceiling, the tool or the coordinator.",
+    "verdict": "mixed",
+    "source": "Original final report with every return condition and natural-stop qualification."
+  },
+  "marisol-free": {
+    "quote": "Perhaps, for the voices, if the friends said something new each time and I could actually help with the rent. As it is, I would not come back another evening on my own. I would not leave it running either; when nothing happens it is just a man asleep.",
+    "verdict": "mixed",
+    "source": "Original final report, full condition and no-return-now/leave-running clauses."
+  },
+  "haruto-continued": {
+    "quote": "Maybe, once, to see Eid. The 14-day summary made me care whether Halil manages alone. I'd come back only if I could set my words for the afternoon shift without racing a sheet that closes in two seconds. I also wouldn't want to sit through the same workshop and Hacer lines again. If the live days stay like this, I wouldn't come back.\n\n**Leave it running?** No. I wouldn't leave it running, because the clock moves on its own and I'd miss things.\n\n**Another evening?** Possibly, if I just want the ending, and probably using the skip summaries.",
+    "verdict": "mixed",
+    "source": "Original final report with every return condition and leave-running/another-evening clause."
+  },
+  "marisol-continued": {
+    "quote": "Maybe, on one condition. I would come back another evening to see Eid and to spend time again with Hacer and Selin, because they felt like real neighbours. I would not come back to fight the lira again. If the money keeps slipping away for reasons I can't see, I would let it go.\n\n**Leave it running?** No. I would close it and perhaps return another evening.",
+    "verdict": "mixed",
+    "source": "Original final report with every return condition and leave-running/another-evening clause."
+  },
+  "emre-free": {
+    "quote": "I am stopping after one day. I would return voluntarily for another evening to see whether he starts calling Selin without me and to try to cover the rent shortfall. I would not leave the game running. I do not want to play the whole month tonight.",
+    "verdict": "keep",
+    "source": "Original final stop/return quotation, including every leave-running and length condition."
+  },
+  "emre-continued": {
+    "quote": "I am stopping for tonight. The rent payment gave me a useful stopping point, but I do not want another stretch of waiting and reminding now. I would return another evening to see whether he calls Selin without me and what happens on Eid, provided I can continue this life rather than start again. I would not leave it running while I am away.",
+    "verdict": "mixed",
+    "source": "Original final quotation, full continuing-life return condition and leave-running clause."
+  }
+}

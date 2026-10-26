@@ -1,0 +1,125 @@
+
+<!-- selected-continuity-key: hf3-voice-r1:nia-okafor:free -->
+## 2026-10-25 Voice R1 — selected free branch
+
+Future continuity: **free only**. The continued arm is an independent alternative, not a later autobiographical visit.
+
+[Free original report](../reviews/hf3-voice-2026-10-25/nia-free.md) · [Raw local diary](../reviews/hf3-voice-2026-10-25/nia-free.jsonl).
+
+<details>
+<summary>Original selected-free diary, unchanged words</summary>
+
+# Nia Okafor — Voice free report
+
+## 1. Session
+Nia Okafor, 19, Lagos design student; first visit to Voice, source-unread. Round HF3 Voice R1; arm free; paired session hf3-voice-r1-nia-okafor. Frozen diary: no sessions recorded; earlier other-game attempts ended TOOL before accepted inputs. No recognition occurred. URL https://human.adamwhite.work/voice/. Visible title: The Day You Say Nothing. No visible build or player id. Device 360×690 touch/light; supplied localhost HTTP player driver, curl POST only. Floor 0, ceiling 25 real minutes. Open at elapsed 0.436s; natural quit wish 104.154s; final stop 119.098s. No production feedback submission, consent change, export, source inspection, or extra browser.
+
+## 2. First minute
+The automatic screenshot was recorded at 60.036s. My checkpoint note was late, at 70.960s, after a 10-second wait returned at 62.562s. This is a protocol deviation. The answers below use only interactions reached before 60s. I inspected the screenshot after stopping; visual findings from that inspection are not claimed as my original checkpoint perception.
+
+Original checkpoint words:
+> I want him to call Selin himself, because His goals says he keeps waiting for her. Speak, the panels, Back to now and Let time pass look touchable from the text. I picked Speak first; no urgent deadline grabbed me, though fasting ends at 18:46. His goals was selected when open. He was asleep so I could not speak until waking; now I have spoken and must give him room. I can let time pass. A real reply choice appeared at 21s, first real words tried at 26s but vanished; accepted words at 38s. He answered my quiet question by 45s, which taught me this can be a conversation. No help used. I cannot judge phone layout from text yet.
+
+| Item | Result and original evidence |
+|---|---|
+| DL-1 A reason to act | PASS: I wanted him to call Selin himself. “Call Selin, my daughter, instead of waiting for her to call” supplied that reason at 30.700s. |
+| DL-2 What can I touch | PASS for text controls: Speak, panels, Back to now, Let time pass. No inert item tried. Visual affordances NOT TESTED at checkpoint — not established by this harness text view then. |
+| DL-3 Urgency and selection | PASS for text state: Speak drew me first. Fasting until 18:46 was a competing cue, not an urgent demand to me. His goals was marked selected. Visual hierarchy NOT TESTED at checkpoint. |
+| DL-4 Why the limit | PASS for sleeping: “You can speak when he wakes.” PASS for occupation: “He is occupied. Suggestions wait until he is choosing.” Partial/FAIL for “You have spoken. Give him a little room”: I knew I had spoken, but did not know how much room freed speaking. |
+| DL-5 Readable situation | PASS: “Let time pass” was available, and he had answered “For this part, yes. I want to keep my attention here.” |
+| DL-6 A choice soon | PASS: first Speak choices visible 21.216s; first substantive question attempted 26.096s, rejected because it disappeared; first accepted question 38.382s. Start input 17.634s. A meaningful choice existed within 30s, before long goals text. |
+| DL-7 Learn by doing | PASS for one accepted conversation: quiet question got a specific answer by 45.112s. Failed memory question taught no consequence because it was not accepted. No help used. Planning and direct suggestions NOT TESTED at checkpoint: 2 interaction types unmet. |
+
+## 3. Verbatim diary and input record
+All original reactions and driver inputs follow in the appendix without rewriting. The driver's game_clock field remained null; visible clocks from replies are recorded here separately. Wall time and game time are different. The game advanced between operations: 04:11 at 19.566s, 04:20 at 21.216s, 04:28 at 23.686s, 04:43 at 26.096s, 06:34 at 30.700s, 08:00 at 36.417–50.414s, 09:33 at 62.562–76.647s, 12:41 at 88.823s, 12:47 at 91.344s, 12:49 at 93.853s, 12:52 at 96.607–104.154s, 13:02 at screenshot 106.698s, 13:06 at menu/feedback/stop. I used only real waits and ordinary controls. No speed setting changed. The text said “reading: the day slows while you choose”; the memory option still disappeared within two seconds of its listing. Driver error lines explicitly identify changed game state, not driver failure.
+
+Important visible answers: memory-question tap at 26.096s was not accepted; Halil chose rest until 04:59. Quiet question at 38.382s was accepted; by 45.112s he said “For this part, yes. I want to keep my attention here.” At 96.607s planning showed rest, wait, Hacer, prayer, doctor, and afternoon shift, but no call Selin option. Its likely reply was “I want to finish this task (rest at home) first. I’m grieving.” I did not send this suggestion.
+
+## 4. Engagement
+Best moment 47.808s: “That answered me! He wants me out of his way. I like that he can say yes to quiet instead of giving a generic reply.” Worst moment 99.782s: wanted call Selin but found a planning form without that option. Only want_quit: 104.154s FRUSTRATED, verbatim in appendix. It did not pass; following actions were screenshot and required feedback inspection. No pulse was due: stopped before 180s. No easier setting or accessibility search; no “hard, but kept going” evidence.
+
+## 5. Clarity and concept counts
+DL-4: I could not tell why call Selin was absent or when it would become available. This is my uncertainty, not evidence that the game has no rule. DL-7: the first memory question disappeared before my tap; I could not learn whether he would answer. DL-30: current-phone.png shows the likely-reply area almost entirely under the fixed strength/reason controls; only an orange sliver and clipped heading are visible. The transcript contains “I want to finish this task (rest at home) first. I’m grieving.” but I could not read it on that screenshot. No “Scroll ↓” cue seen. The response screenshot first-minute.png is readable and not clipped.
+
+Each row counts new ideas encountered on that screen, not every repeated idea. More than one new idea per screen is a clarity finding under this protocol. I did not report rereading any sentence; no invented rereads.
+
+| Screen and purpose | New concepts (list every one) | Concept count | Sentences reread (verbatim) | Reason |
+|---|---|---:|---|---|
+| Opening / enter | cross-game recording; widower Halil; Ramadan fasting month; Eid festival; independent action on Eid; player suggests and Halil decides; All games navigation; Information; menu; starting availability | 10 | none observed | Short introduction interested me. |
+| Home table / first situation | game date and clock; fasting cutoff; Halil panel; goals panel; Today panel; Nuran; memory/grief; passive waiting; Speak; skip event | 10 | none observed | I tried Speak quickly. |
+| Speak / basic suggestions | slowed reading time; return home/rest suggestion; eat-at-home suggestion; more words; say nothing; close sheet | 6 | none observed | Curious about expressive reply. |
+| More words / memory | permission not to discuss grief; memory question; specific planning | 3 | none observed | Question vanished. |
+| Rest/asleep / ongoing activity | rest until clock time; Selin evening call; dawn prayer kept; sleep until 08:00; speak after wake | 5 | none observed | Clear sleep limit. |
+| His goals / purpose and relationships | estimates versus completed actions; pre-dawn meal habit; autonomous calling; doctor goal; landlord debt goal; afternoon shift habit; fast progress; debt 600; 300 deadline; cash40; blood pressure; clinic; daughter relationship; funeral-linked waiting; influence/listening; player is internal voice; Selin influence; Rıza friend; Hacer neighbour; Osman landlord; other voices persist | 21 | none observed | Too many goals at once; daughter became my own interest. |
+| Workshop / conversation | workshop work; Mrs Aydın company; quiet-versus-company tension; occupied suggestions limit; stopped scene; quiet reassurance option; quiet question | 7 | none observed | Specific answer was best moment. |
+| Reply / give room | own words displayed; direct reply; Back to now; give-room limit; Let time pass | 5 | none observed | I let time pass twice. |
+| Noon rest / suggestions | noon prayer; rent projection280; current cash56; work shortage20; afternoon shift suggestion; talk with Hacer suggestion; rent acknowledgment; open question | 8 | none observed | Wanted family instead. |
+| Specific planning / assemble suggestion | scene context; leaning action; stated reason; wait suggestion; doctor-at-clinic suggestion; pressed suggestion default; Mention strength; Urge; Insist; optional reason; no reason; duty; health; for Selin; not alone; matters; likely reply preview; Say it | 18 | none observed | Felt like settings to construct speech. |
+| Game menu / session controls | held clock; Feedback; full screen; new game; recording checked; Resume | 6 | none observed | Required inspection only. |
+| Feedback / local stop choice | keep playing verdict; unsure verdict; stop verdict; feedback text; optional tester name; Submit; Back | 7 | none observed | Selected stop locally; no text or submission. |
+
+## 6. English, dates, phone and hands on
+DL-20 PASS for encountered English: I could choose and understand the reply. Ramadan and Eid meanings were nearby in the introduction. Names needed no translation. No on-request term explanation tested.
+DL-21 PASS for encountered deadline: today “Mon 11 Mar” and “Ramadan 15 (Monday 25 March)” let me compare the rent deadline in English. Across months/years NOT TESTED.
+DL-22 PASS for the one reply captured in first-minute.png: my question, Halil’s answer, scene, date/time, and Let time pass fit without scrolling. Planning layout FAIL for essential likely reply visibility in current-phone.png. This screenshot inspection happened after stopping, not during original first minute.
+DL-30 FAIL at planning screenshot as above. No visible sentence clipped in first-minute.png. DL-31 PASS for planning context: Halil, rent owed600, cash56, 300 deadline25March remained at top of current-phone.png. Other goal progress not visible there; NOT TESTED for an open speaking sheet screenshot.
+DL-32 Longest observed stretch of wanting another action while waiting was roughly45.112–74.549s (29.437 wall seconds): I had spoken, saw “Give him a little room,” then used Let time pass and waited. I could also inspect panels/Back to now, so this was not a period with no possible controls. No claim about longer unseen waits.
+DL-33 Speaking opened a sheet; specific planning opened a form with action, strength, and reasons. I tapped Speak rather than a person directly. No cooking/digging tested.
+Required alternate viewport after five minutes NOT TESTED: natural quit occurred before five minutes. No desktop claim.
+DL-13: Feedback was reachable; “I’d stop here” selected locally at115.615s. No “I’m stopping” or “I’m confused” exact labels were present. No note typed, name entered, Submit pressed, receipt obtained, or player id shown. Owner override prohibits submission.
+
+## 7. Stop
+Stopped at planning form, then local Feedback inspection. FRUSTRATED at119.098s, first wish104.154s. Wish did not pass. I would not leave it running or return voluntarily right now. I might retry if I could reach the family conversation quickly. This is a free-stop result, not a completed run or TOOL. No export downloaded.
+
+## 8. My requested changes
+1. Let me find how to suggest calling his daughter when that is the goal I care about, or tell me why it is unavailable.
+2. Keep a reply choice available while I am reading it.
+3. Keep the likely answer visible above the phone’s strength/reason buttons.
+
+Evidence limits: one short first visit, one accepted conversation, no completed goal/day/run, late first-minute note, text-led play with two inspected phone screenshots. No visual desktop, later family scene, long-term simulation or telemetry claims.
+
+## Original local log
+```jsonl
+{"t":"2026-10-25T22:39:08.789Z","elapsed_s":null,"kind":"input","op":"start","input":{"driver":"52d9c11","driver_check":"current"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":0,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-25T22:39:21.283Z","elapsed_s":0.436,"kind":"input","op":"open","input":{},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":436,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-25T22:39:24.288Z","elapsed_s":3.441,"kind":"note","op":"log","input":null,"reaction":"A man can ignore my advice? Okay, I want to test that. Starting is still grey.","game_clock":null,"engagement":null,"reason":null,"op_ms":0,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-25T22:39:36.418Z","elapsed_s":15.571,"kind":"input","op":"wait","input":{"s":10},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":10106,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-25T22:39:38.481Z","elapsed_s":17.634,"kind":"input","op":"tap","input":{"name":"New game"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":155,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-25T22:39:40.413Z","elapsed_s":19.566,"kind":"tool","op":"tap","input":{"name":"Continue · Ramadan 1 · 03:55"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":5,"error":"Continue · Ramadan 1 · 03:55 is not on the page now; it was listed 2 s ago and the page has changed (game state, not a driver failure)","requested_control_present_before":false}
+{"t":"2026-10-25T22:39:42.063Z","elapsed_s":21.216,"kind":"input","op":"tap","input":{"name":"Speak"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":137,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-25T22:39:44.533Z","elapsed_s":23.686,"kind":"input","op":"tap","input":{"name":"Say something else…"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":139,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-25T22:39:46.943Z","elapsed_s":26.096,"kind":"tool","op":"tap","input":{"name":"Which part of that memory stays with you?"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":4,"error":"Which part of that memory stays with you? is not on the page now; it was listed 2 s ago and the page has changed (game state, not a driver failure)","requested_control_present_before":false}
+{"t":"2026-10-25T22:39:49.492Z","elapsed_s":28.645,"kind":"note","op":"log","input":null,"reaction":"Wait, I asked about his memory and now he is resting. Did he hear me? The question disappeared before my tap landed.","game_clock":null,"engagement":null,"reason":null,"op_ms":0,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-25T22:39:51.547Z","elapsed_s":30.7,"kind":"input","op":"tap","input":{"name":"His goals ▸"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":169,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-25T22:39:55.144Z","elapsed_s":34.297,"kind":"note","op":"log","input":null,"reaction":"Oh, I am a voice in his head. Those are quite a lot of goals at once. I mostly want to get him to phone his daughter.","game_clock":null,"engagement":null,"reason":null,"op_ms":0,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-25T22:39:57.264Z","elapsed_s":36.417,"kind":"input","op":"tap","input":{"name":"Close panel"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":152,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-25T22:39:59.229Z","elapsed_s":38.382,"kind":"input","op":"tap","input":{"name":"Would you rather have quiet while you work?"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":144,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-25T22:40:05.959Z","elapsed_s":45.112,"kind":"input","op":"wait","input":{"s":5},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":5106,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-25T22:40:08.655Z","elapsed_s":47.808,"kind":"note","op":"log","input":null,"reaction":"That answered me! He wants me out of his way. I like that he can say yes to quiet instead of giving a generic reply.","game_clock":null,"engagement":null,"reason":null,"op_ms":0,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-25T22:40:11.261Z","elapsed_s":50.414,"kind":"input","op":"tap","input":{"name":"Let time pass"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":143,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-25T22:40:20.883Z","elapsed_s":60.036,"kind":"first_minute","op":"shot","input":{"file":"first-minute.png"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":35,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-25T22:40:23.409Z","elapsed_s":62.562,"kind":"input","op":"wait","input":{"s":10},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":10111,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-25T22:40:31.807Z","elapsed_s":70.96,"kind":"first_minute","op":"log","input":null,"reaction":"I want him to call Selin himself, because His goals says he keeps waiting for her. Speak, the panels, Back to now and Let time pass look touchable from the text. I picked Speak first; no urgent deadline grabbed me, though fasting ends at 18:46. His goals was selected when open. He was asleep so I could not speak until waking; now I have spoken and must give him room. I can let time pass. A real reply choice appeared at 21s, first real words tried at 26s but vanished; accepted words at 38s. He answered my quiet question by 45s, which taught me this can be a conversation. No help used. I cannot judge phone layout from text yet.","game_clock":null,"engagement":null,"reason":null,"op_ms":0,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-25T22:40:35.396Z","elapsed_s":74.549,"kind":"input","op":"tap","input":{"name":"Back to now"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":150,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-25T22:40:37.494Z","elapsed_s":76.647,"kind":"input","op":"tap","input":{"name":"Let time pass"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":151,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-25T22:40:49.670Z","elapsed_s":88.823,"kind":"input","op":"wait","input":{"s":10},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":10107,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-25T22:40:52.191Z","elapsed_s":91.344,"kind":"tool","op":"tap","input":{"name":"Speak"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":3,"error":"Speak is not on the page now; it was listed 3 s ago and the page has changed (game state, not a driver failure)","requested_control_present_before":false}
+{"t":"2026-10-25T22:40:54.700Z","elapsed_s":93.853,"kind":"input","op":"tap","input":{"name":"Say something else…"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":154,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-25T22:40:57.454Z","elapsed_s":96.607,"kind":"input","op":"tap","input":{"name":"Plan something specific…"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":173,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-25T22:41:00.629Z","elapsed_s":99.782,"kind":"note","op":"log","input":null,"reaction":"Where is call Selin? I dug into planning and it is not in this list. This suddenly looks like assembling a sentence from settings. I wanted to say something simple.","game_clock":null,"engagement":null,"reason":null,"op_ms":0,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-25T22:41:05.001Z","elapsed_s":104.154,"kind":"want_quit","op":"log","input":null,"reaction":"I would stop here. I want to get to the daughter, and instead I am choosing the strength and reason for a work suggestion. The good reply was interesting, but this menu loses me.","game_clock":null,"engagement":null,"reason":"FRUSTRATED","op_ms":0,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-25T22:41:07.545Z","elapsed_s":106.698,"kind":"input","op":"shot","input":{"file":"current-phone.png"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":141,"error":null,"requested_control_present_before":null}
+{"t":"2026-10-25T22:41:11.788Z","elapsed_s":110.941,"kind":"input","op":"tap","input":{"name":"Game menu"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":189,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-25T22:41:14.014Z","elapsed_s":113.167,"kind":"input","op":"tap","input":{"name":"Feedback ▸"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":183,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-25T22:41:16.462Z","elapsed_s":115.615,"kind":"input","op":"tap","input":{"name":"I’d stop here"},"reaction":null,"game_clock":null,"engagement":null,"reason":null,"op_ms":153,"error":null,"requested_control_present_before":true}
+{"t":"2026-10-25T22:41:19.945Z","elapsed_s":119.098,"kind":"stop","op":"log","input":null,"reaction":"Stopping at the planning form. I would not leave it running. I might try again if I could get to the family conversation quickly, but I would not return voluntarily right now. Feedback inspected and I’d stop here selected locally; no text typed and no submission.","game_clock":null,"engagement":null,"reason":"FRUSTRATED","op_ms":0,"error":null,"requested_control_present_before":null}
+```
+
+Cleanup: no repository, worktree, server, or browser created by this worker. Coordinator owns driver/browser cleanup. Two screenshots retained, within limit. No repo touched, so git worktree list is not applicable.
+
+
+</details>
+
+### Alternative continued archive — excluded from future memory
+
+[Original alternative continued report](../reviews/hf3-voice-2026-10-25/nia-continued.md) · [Raw local diary](../reviews/hf3-voice-2026-10-25/nia-continued.jsonl). Both alternatives are archived separately. Do not merge their events.

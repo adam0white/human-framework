@@ -1,0 +1,45 @@
+{
+  "started": "2026-10-25T23:59:56.250826+00:00",
+  "backend": "codex",
+  "port": 19480,
+  "status": "report-ready",
+  "floor_minutes": 15,
+  "ceiling_minutes": 25,
+  "device": "desktop",
+  "url": "https://adarkroom.doublespeakgames.com/",
+  "brief_sha256": "e4832bb9f2f31eb1cf035388f03e9f3ecf8815399bd3f40fa82c3d768b582c93",
+  "external_control": "https://adarkroom.doublespeakgames.com/",
+  "instrument_sha256": {
+    "/Users/abdul/code/.lab-scratch/playtest/lab-play-no-post.ts": "0eaec4fac67b7b3ff88b532072b27130f613524b01c913e941e2a83673e548d4",
+    "/Users/abdul/code/human-framework/scripts/lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "/Users/abdul/code/human-framework/scripts/lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "driver_pid": 34826,
+  "updated": "2026-10-26T00:17:32.994419+00:00",
+  "driver_startup": {
+    "driver": "52d9c11",
+    "driver_check": "current",
+    "pid": 34826,
+    "port": 19480
+  },
+  "tester_pid": 34927,
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "tester_exit": 0,
+  "observed_stop": {
+    "t": "2026-10-26T00:15:33.351Z",
+    "elapsed_s": 926.802,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "I am stopping at the tiny village after investigating the store room. I liked rescuing the builder and the strange little signs of life, but I do not want another cycle of gathering and waiting tonight. My earlier wish to leave never really passed. I might leave it running while I made tea, but I would not choose to return for the building loop alone.",
+    "game_clock": null,
+    "engagement": null,
+    "reason": "BORED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "floor_met": true,
+  "ended": "2026-10-26T00:17:32.994388+00:00"
+}

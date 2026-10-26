@@ -2,15 +2,15 @@
 
 This is the design reference for `packages/human` (`@adam0white/human-framework`). For installation, a quick start and the host contract in brief, see the [package README](../packages/human/README.md). The [API reference](api.md) lists every export. The shared data contract lives in [`packages/human/src/types.ts`](../packages/human/src/types.ts). Modules expose deterministic readers and mutators over a `Person`. Faculty modules mutate only their owned slices; composites coordinate calls across faculties.
 
-## Published baseline and later work
+## Published contract and earlier baseline
 
-This reference describes HF **3.1.0**, with engine **3.1.0**, published on 2026-10-25. HF 3.0 removed deprecated API forms while keeping engine 2.23.0. HF 3.1 adds explicit host options for community death handling, upbringing and conditioned body forecasts. Omitted options preserve HF 3.0 continuation apart from the engine stamp. The package and engine versions have different meanings. See [the migration guide](../packages/human/README.md#migrating-to-v3) for changed calls and [release receipts](releases.md) for publication evidence.
+This reference describes published HF **3.2.0**, with engine **3.2.0**. The earlier HF 3.1 baseline was published on 2026-10-25. HF 3.0 removed deprecated API forms while keeping engine 2.23.0. HF 3.1 adds explicit host options for community death handling, upbringing and conditioned body forecasts. Omitted options preserve HF 3.0 continuation apart from the engine stamp. The package and engine versions have different meanings. See [the migration guide](../packages/human/README.md#migrating-to-v3) for changed calls and [release receipts](releases.md) for publication evidence.
 
 Version-labelled sections below retain the history and limits of each feature. They do not state current game pins. Game adoption and deployment have separate receipts in [HANDOFF.md](../HANDOFF.md). Later 3.x work remains in [the roadmap](roadmap.md); a target or a successful first probe does not mean an API has shipped. In particular, the H3 speech and starter results are bounded host recipes and experiments. They do not establish a general speech grammar, a complete game engine or a predictor of real players.
 
-## Prepared 3.2 contract
+## Published 3.2 contract
 
-The next candidate is HF 3.2.0 / engine 3.2.0; publication and site deployment still need release receipts. It adds [explicit input diagnostics](feature-inputs.md), literal wording, assent cost, payment planning and [event-only catch-up](event-catch-up.md). New people carry 3.2.0. Raw valid loaded 3.1 people retain state and RNG through default mutators when optional behavior selectors are omitted; `restore` separately migrates the stamp and continues under current rules. Host options are never inferred from a save. Community death and warmth-through-25 repairs change those opted-in rules. The central site candidate actually pins 3.2.0; external game delivery remains separate.
+HF 3.2.0 / engine 3.2.0 is published; [release receipts](releases.md) record its exact source, CI and provenance. Site deployment is a separate delivery with its own manifest receipt. It adds [explicit input diagnostics](feature-inputs.md), literal wording, assent cost, payment planning and [event-only catch-up](event-catch-up.md). New people carry 3.2.0. Raw valid loaded 3.1 people retain state and RNG through default mutators when optional behavior selectors are omitted; `restore` separately migrates the stamp and continues under current rules. Host options are never inferred from a save. Community death and warmth-through-25 repairs change those opted-in rules. Current central site source pins 3.2.0. The last recorded live central manifest `1712fc5` reports library 3.1.0 and games 3.0.0 / engine 2.23.0; external games retain their actual 3.0 pins and separate delivery receipts.
 
 ## The spine: Urge → Assent → Act
 

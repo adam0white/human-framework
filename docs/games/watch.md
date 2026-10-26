@@ -1,5 +1,9 @@
 # Game 3 — _The Night Watch_
 
+**Current cast and opening.** The six canonical watchers are Tamar, Kian, Samira, Idris, Danyal and Meryem. Tamar, Kian and Samira arrive on night 1; Idris and Danyal on night 2; Meryem on night 3. The two-person opening in §2 and the Mara/Joss/Ruslan/Yunus table in §8 record the earlier design. Their names remain historical evidence.
+
+Current source uses published HF 3.2.0 / engine 3.2.0, lab-client 0.4.11 and lab-kit 0.5.12. The last recorded live central manifest `1712fc5` instead reports library 3.1.0 and games 3.0.0 / engine 2.23.0. Package publication and source pins do not establish site delivery or external-game adoption.
+
 Approved 2026-10-04; revised for endless play.
 
 Owner's brief: a known, deceptively small genre "within which player connects with each character and develops them". On approval he added: "potentially infinite play (until the characters die of natural causes? I dunno). We could see longer time effects of our framework. Though it should have more UI than just text, and showcase some stuff happening, yet similarly deeply integrate the human framework". AGENTS.md "Game direction" applies (approximate, subjective readouts; show rather than count; tactical slowdown, not pauses; continuous speed; limits from capabilities; saves and menus in the fiction), as does "Games keep faith gentle". Numbers marked _assumed_ are unmeasured.
