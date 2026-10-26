@@ -1,0 +1,17 @@
+{
+  "closed_at": "2026-10-26T04:38:07.486337+00:00",
+  "round": "hf3-voice-r1",
+  "scope": "Collection/canonical evidence and metadata closure only; game unfinished",
+  "reports": 28,
+  "identities": 14,
+  "asks": 84,
+  "source_commit": "00dcdad7d66a6ee33d11f941e5319de5bdfbeebf",
+  "exact_green_ci": 40269580618,
+  "originals": "137 original files exact at c8; identical archive subtree at00dcdad",
+  "player_words_changed": false,
+  "metadata_correction": "21dates/6qualifiedbackendlabels; originals/historical handed rows preserved",
+  "protocol_limits": "All prior disclosed cutovers, audit prompts, forced Rosa free, legacy receipt/image/timing gaps, interrupted/invalid WAI exclusions remain. No population claim or unverified image coverage added.",
+  "game_finished": false,
+  "player_acceptance": false,
+  "fix_deployed": false
+}

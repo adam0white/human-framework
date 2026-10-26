@@ -2,7 +2,7 @@
 
 This archive preserves 169 approved source payloads: 137 Voice collection files, 13 Warren packet002 public review files and 16 original diary append blocks and three reviewed ledger handoff originals. Original source packets remain unchanged. No private rollout, storage fixture, media/base64 file or F-TBD ledger proposal is included.
 
-[Manifest](manifest.json) maps original packet plus relative path to archive path and identical SHA256, then current readable path and its separate SHA256. Producer source/hash fields refer to these archived originals. They do not assert that a formatted derivative has the original hash. Archived links retain their original-root/path interpretation and may not resolve from this folder. Use the readable round indexes for navigation.
+[Manifest](manifest.json) maps original packet plus relative path to archive path and identical SHA256. Its readable hashes are snapshots at integration commit `c8b7630dbe95a2bf61ecae2e36819baadf48c7b2`, not claims about later mutable canonical files. Later metadata corrections, ledger additions and diary appends may change the linked readable views. Producer source/hash fields still refer to unchanged archived originals. They do not assert that a formatted derivative has the original hash. Archived links retain their original-root/path interpretation and may not resolve from this folder. Use the readable round indexes for navigation.
 
 [Voice readable index](../../../docs/lab/reviews/hf3-voice-2026-10-25/integration-notes.md) · [Warren readable index](../../../docs/lab/reviews/hf3-warren-2026-10-25/integration-notes.md) · [Canonical ledger](../../../docs/lab/feedback-ledger.md).
 

@@ -26,7 +26,7 @@ These documents remain references. A dated receipt inside one describes its own 
 
 Dated experiment scripts, labels and raw JSON remain with their experiment records. They are preserved artifacts, not dispatch instructions or public package APIs.
 
-The [panel diaries](panel/) now include 12 producer-frozen Voice selected-free append blocks and four Warren unmatched preflight append blocks. Earlier empty-record checkpoint text and all prior history remain preserved. Continued exposures remain alternatives, never merged future memory. These appends do not establish completed game cycles or owner acceptance. [Voice integration and artifacts](reviews/hf3-voice-2026-10-25/integration-notes.md) and [Warren integration and correction](reviews/hf3-warren-2026-10-25/integration-notes.md) link the original reports, raw records and limits.
+The [panel diaries](panel/) now include 12 producer-frozen Voice selected-free append blocks and four Warren unmatched preflight append blocks. Earlier empty-record checkpoint text and all prior history remain preserved. Continued exposures remain alternatives, never merged future memory. The [Voice R1 closure](reviews/hf3-voice-2026-10-25/round1-closure.json) closes collection/canonical metadata for 28 arms, 14 identities and 84 asks only. Its `fix_deployed:false` records closure time, before the [later site delivery](../releases.md#central-site-32-delivery-2026-10-26). These appends and closure do not establish completed game cycles or owner acceptance. [Voice integration and artifacts](reviews/hf3-voice-2026-10-25/integration-notes.md) and [Warren integration and correction](reviews/hf3-warren-2026-10-25/integration-notes.md) link the original reports, raw records and limits.
 
 ## Historical experiments
 

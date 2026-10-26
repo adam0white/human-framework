@@ -11,7 +11,7 @@ HF is a deterministic, explainable model of a simulated person, written in TypeS
   - [Twice at the Well](https://human.adamwhite.work/colony/): a colony sim played side by side without and with HF.
   - [The Day You Say Nothing](https://human.adamwhite.work/voice/): you are a voice in one man's head; he may refuse you.
   - [The Night Watch](https://human.adamwhite.work/watch/): a village's night watch over generations, endless.
-- The current source pins the central site to **HF 3.2.0 / engine 3.2.0** and includes the bounded opt-ins and repairs described in [CHANGELOG](CHANGELOG.md). Package publication is verified; site delivery has its own manifest receipt. The last recorded live central manifest is `1712fc5`, library 3.1.0 and games 3.0.0 / engine 2.23.0. SDK client 0.4.11 / kit 0.5.12 remain immutable artifacts, including their original manifests; external games retain their actual 3.0 pins until separately upgraded.
+- The central site was verified on 2026-10-26 at **HF 3.2.0 / engine 3.2.0**, signed source `00dcdad`, with library 3.2.0 and `dirty:false`. See the [site receipt](docs/releases.md#central-site-32-delivery-2026-10-26) and live [release.json](https://human.adamwhite.work/release.json). The bounded opt-ins and repairs are described in [CHANGELOG](CHANGELOG.md). SDK client 0.4.11 / kit 0.5.12 remain immutable artifacts, including their original manifests; external games retain their actual 3.0 pins until separately upgraded.
 
 ## Quick start
 

@@ -1,6 +1,6 @@
 # Game 2 — _The Day You Say Nothing_
 
-**Current source and separate live receipt.** Current source uses published HF 3.2.0 / engine 3.2.0, lab-client 0.4.11 and lab-kit 0.5.12. The last recorded live central manifest `1712fc5` instead reports library 3.1.0 and games 3.0.0 / engine 2.23.0. Package publication and source pins do not establish site delivery or external-game adoption.
+**Verified site delivery.** The central site was verified on 2026-10-26 at signed `00dcdad`, with published HF 3.2.0 / engine 3.2.0, library 3.2.0 and `dirty:false`. It includes lab-client 0.4.11 and lab-kit 0.5.12. See the [site receipt](../releases.md#central-site-32-delivery-2026-10-26) and live [release.json](https://human.adamwhite.work/release.json). External-game adoption and player acceptance need separate receipts.
 
 **Original delivery snapshot.** The following opening paragraph records the HF 2.0 delivery. Its live-version description is historical.
 
