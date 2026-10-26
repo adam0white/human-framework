@@ -6387,9 +6387,9 @@
    "words": "I might voluntarily return with the menu pause in mind.",
    "verdict": "mixed",
    "routes": [
-    "fix:murmur More time to read and answer before Dilan decides for herself (open, target 2026-11-03)",
-    "fix:murmur A clearer indication of how much response time remains (open, target 2026-11-03)",
-    "fix:murmur A clear statement of whether Slow changes the time available to answer (open, target 2026-11-03)"
+    "fix:murmur More time to read and answer before Dilan decides for herself (fixed 92cdebd, 2026-10-25), answer window increased from 32 to 64 seconds, player reading/feel retest target 2026-11-03",
+    "fix:murmur A clearer indication of how much response time remains (fixed 92cdebd, 2026-10-25), visible seconds to answer, player retest target 2026-11-03",
+    "fix:murmur A clear statement of whether Slow changes the time available to answer (fixed 92cdebd, 2026-10-25), menu states Slow changes only the time between choices, player retest target 2026-11-03"
    ],
    "source": "docs/lab/reviews/rebuild-2026-10-23/murmur-free.md"
   },
@@ -6404,7 +6404,7 @@
    "routes": [
     "fix:stairwell See and use the Tell choices on this phone (fixed b8fcedc, exact CI green, clean live deployment and both-size verification, owner retest target 2026-11-03)",
     "fix:stairwell Read the notebook sentence from its beginning (fixed b8fcedc, exact CI green, clean live deployment and both-size verification, owner retest target 2026-11-03)",
-    "fix:stairwell Tell when Sunday support stops being too early (open, target 2026-11-03)"
+    "fix:stairwell Tell when Sunday support stops being too early (fixed a47d128, 2026-10-25), hint names Thursday at 07:00 and face-to-face contact, player retest target 2026-11-03"
    ],
    "source": "docs/lab/reviews/rebuild-2026-10-23/stairwell-free.md"
   },
