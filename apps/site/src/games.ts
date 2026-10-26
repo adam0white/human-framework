@@ -149,7 +149,7 @@ export const GAMES: Game[] = [
     status: 'active',
     name: 'Neighbours',
     href: 'https://neighbours.adamwhite.work',
-    line: 'Change one part of a town of 208 people and compare two possible futures.',
+    line: 'Help a riverside town reopen its flooded community hall.',
     faculties: ['Relationships', 'Memory and belief', 'Needs and feelings'],
   },
   {
@@ -158,7 +158,7 @@ export const GAMES: Game[] = [
     status: 'active',
     name: 'The Rope',
     href: 'https://rope.adamwhite.work',
-    line: 'You guide a climber up a rock face and back down. They must save enough strength for the descent.',
+    line: 'Lead five people up a mountain and back. Every one of them can say no.',
     faculties: ['Body', 'Forecast', 'Will'],
   },
   {
