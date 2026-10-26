@@ -12884,6 +12884,1826 @@
     "fix:commonstead games-deferred reproduce qualified additional F-750 by 2026-10-27 (open, no complete-floor or player acceptance)"
    ],
    "source": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-r1-floor-shortfall-2026-10-26/reports/samir-continued.md"
+  },
+  {
+   "id": "F-1281",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): maya-free",
+   "words": "Let me follow a visit without losing the conversation between panels.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-maya-free"
+  },
+  {
+   "id": "F-1282",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): maya-free",
+   "words": "Make it clear whether someone is answering what I said.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-maya-free"
+  },
+  {
+   "id": "F-1283",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): maya-free",
+   "words": "Keep the complete walking countdown visible on my phone.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-maya-free"
+  },
+  {
+   "id": "F-1284",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): maya-continued",
+   "words": "Let me follow up on the particular thing someone said.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-maya-continued"
+  },
+  {
+   "id": "F-1285",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): maya-continued",
+   "words": "Let someone visibly answer my listening sentence.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-maya-continued"
+  },
+  {
+   "id": "F-1286",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): maya-continued",
+   "words": "Keep the person’s words readable above the long status and phone controls.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-maya-continued"
+  },
+  {
+   "id": "F-1287",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): emre-free",
+   "words": "Tell me whether the current cutters will finish before the rain, so I don't have to work out the rate myself.",
+   "verdict": "keep",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-emre-free"
+  },
+  {
+   "id": "F-1288",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): emre-free",
+   "words": "Give me more to say on a visit than \"I came to listen\", for example asking for help before the rain in exchange for help afterwards.",
+   "verdict": "keep",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-emre-free"
+  },
+  {
+   "id": "F-1289",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): emre-free",
+   "words": "Show the insist hold filling, and show the reply count update straight away.",
+   "verdict": "keep",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-emre-free"
+  },
+  {
+   "id": "F-1290",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): emre-continued",
+   "words": "Tell me what happened to the people I pressed, at the moment it happens.",
+   "verdict": "keep",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-emre-continued"
+  },
+  {
+   "id": "F-1291",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): emre-continued",
+   "words": "Make the spoken answer a real exchange: let me say why I need their hands and hear a reply that changes something.",
+   "verdict": "keep",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-emre-continued"
+  },
+  {
+   "id": "F-1292",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): emre-continued",
+   "words": "Confirm each insist and each gift right away (who is coming, how many measures went), so the counts match the list.",
+   "verdict": "keep",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-emre-continued"
+  },
+  {
+   "id": "F-1293",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): nia-free",
+   "words": "Let somebody answer my listening sentence in a way I can respond to.",
+   "verdict": "quit",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-nia-free"
+  },
+  {
+   "id": "F-1294",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): nia-free",
+   "words": "Keep the household’s reply visible above the fixed phone controls.",
+   "verdict": "quit",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-nia-free"
+  },
+  {
+   "id": "F-1295",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): nia-continued",
+   "words": "Let someone clearly answer the listening sentence I chose.",
+   "verdict": "quit",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-nia-continued"
+  },
+  {
+   "id": "F-1296",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): nia-continued",
+   "words": "Give me different things to say during a visit.",
+   "verdict": "quit",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-nia-continued"
+  },
+  {
+   "id": "F-1297",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): nia-continued",
+   "words": "Let me read the whole travel status on my phone.",
+   "verdict": "quit",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-nia-continued"
+  },
+  {
+   "id": "F-1298",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): rosa-free",
+   "words": "Tell me why Skip is grey, or let it take me to the rain.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-rosa-free"
+  },
+  {
+   "id": "F-1299",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): rosa-free",
+   "words": "Show one line per house instead of the same sentence nine times.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-rosa-free"
+  },
+  {
+   "id": "F-1300",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): rosa-free",
+   "words": "Let me choose how much grain to send before it goes.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-rosa-free"
+  },
+  {
+   "id": "F-1301",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): rosa-continued",
+   "words": "When nothing needs me, let the hours pass faster, and tell me plainly what Skip does.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-rosa-continued"
+  },
+  {
+   "id": "F-1302",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): rosa-continued",
+   "words": "Give me more than one thing to say. Let the answer come after my words, not 'Say what you came to say'.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-rosa-continued"
+  },
+  {
+   "id": "F-1303",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): rosa-continued",
+   "words": "Before Send grain gives anything, show how much it gives, and show my gifts in the ledger.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-rosa-continued"
+  },
+  {
+   "id": "F-1304",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): jonas-free",
+   "words": "I want to see what my spoken answer changed, beyond having sat with the household.",
+   "verdict": "quit",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-jonas-free"
+  },
+  {
+   "id": "F-1305",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): jonas-free",
+   "words": "I want to know how much grain Send grain will give before I commit it.",
+   "verdict": "quit",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-jonas-free"
+  },
+  {
+   "id": "F-1306",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): jonas-continued",
+   "words": "I want a conversation to give me something specific to answer, and a reply that follows what I said.",
+   "verdict": "quit",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-jonas-continued"
+  },
+  {
+   "id": "F-1307",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): jonas-continued",
+   "words": "I want to know the grain amount before Send grain commits it.",
+   "verdict": "quit",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-jonas-continued"
+  },
+  {
+   "id": "F-1308",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): jonas-continued",
+   "words": "I want to judge whether waiting for people’s own harvest will still beat the rain.",
+   "verdict": "quit",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-jonas-continued"
+  },
+  {
+   "id": "F-1309",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): aisha-free",
+   "words": "Let a visit become a short conversation, with more than one thing to say, replies that answer what I said, and room to ask about what I can see (Zehra's pregnancy, the low jars).",
+   "verdict": "mixed",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-aisha-free"
+  },
+  {
+   "id": "F-1310",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): aisha-free",
+   "words": "Collapse the identical reply lines into a single summary line, and don't keep time crawling just because I chose not to insist.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-aisha-free"
+  },
+  {
+   "id": "F-1311",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): aisha-free",
+   "words": "Tell me when a gift leaves the landowner short, at the moment I give it.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-aisha-free"
+  },
+  {
+   "id": "F-1312",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): aisha-continued",
+   "words": "Let a visit go on: a second thing to say that follows from what they told me, such as the food, the baby, the roof, or \"stay home, Zehra\".",
+   "verdict": "mixed",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-aisha-continued"
+  },
+  {
+   "id": "F-1313",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): aisha-continued",
+   "words": "Show me how much a gift costs before I send it, and let me excuse someone from the call, especially children and a pregnant woman.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-aisha-continued"
+  },
+  {
+   "id": "F-1314",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): aisha-continued",
+   "words": "Don't fill the page with the same reply twenty-five times, and keep time from racing ten hours while I'm only reading the notebook.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-aisha-continued"
+  },
+  {
+   "id": "F-1315",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): diego-free",
+   "words": "Let me hear a response to “I came to listen” that I can connect to saying it.",
+   "verdict": "quit",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-diego-free"
+  },
+  {
+   "id": "F-1316",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): diego-free",
+   "words": "Let the empty walking and waiting pass faster.",
+   "verdict": "quit",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-diego-free"
+  },
+  {
+   "id": "F-1317",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): diego-continued",
+   "words": "Let listening lead to something I can hear or answer during the visit.",
+   "verdict": "quit",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-diego-continued"
+  },
+  {
+   "id": "F-1318",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): diego-continued",
+   "words": "Let empty walking and waiting pass faster.",
+   "verdict": "quit",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-diego-continued"
+  },
+  {
+   "id": "F-1319",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): diego-continued",
+   "words": "Make the grain confirmation and granary total understandable together.",
+   "verdict": "quit",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-diego-continued"
+  },
+  {
+   "id": "F-1320",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): mei-free",
+   "words": "Tell me whether the current reapers are enough to finish before the rain.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-mei-free"
+  },
+  {
+   "id": "F-1321",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): mei-free",
+   "words": "Let the person I visit answer what I say.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-mei-free"
+  },
+  {
+   "id": "F-1322",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): mei-free",
+   "words": "Give me a way to accept a delay without insisting.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-mei-free"
+  },
+  {
+   "id": "F-1323",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): mei-continued",
+   "words": "Let the household answer what I say when I say \"I came to listen\", or tell me what it changed.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-mei-continued"
+  },
+  {
+   "id": "F-1324",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): mei-continued",
+   "words": "Let the day move on when I have nothing left to decide, or make Skip visibly jump ahead.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-mei-continued"
+  },
+  {
+   "id": "F-1325",
+   "date": "2026-10-26",
+   "game": "valley",
+   "kind": "playtester",
+   "who": "Lab panel (agent): mei-continued",
+   "words": "Let me accept a delay without insisting, so the reply list stops waiting on me.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:valley OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-mei-continued"
+  },
+  {
+   "id": "F-1377",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): emre-free",
+   "words": "Explain “enough food stored” in relation to the twelve-meal storm target.",
+   "verdict": "keep",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-emre-free"
+  },
+  {
+   "id": "F-1378",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): emre-free",
+   "words": "Show what is holding up the remaining roof stages.",
+   "verdict": "keep",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-emre-free"
+  },
+  {
+   "id": "F-1379",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): emre-free",
+   "words": "Let me dismiss the old speech bubble so I can see the village.",
+   "verdict": "keep",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-emre-free"
+  },
+  {
+   "id": "F-1380",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): emre-continued",
+   "words": "Tell me before my first house order ends that it covers a short task, not the finished roof.",
+   "verdict": "keep",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-emre-continued"
+  },
+  {
+   "id": "F-1381",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): emre-continued",
+   "words": "Explain ordinary food versus the storm reserve when cooking first says there is enough stored.",
+   "verdict": "keep",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-emre-continued"
+  },
+  {
+   "id": "F-1382",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): emre-continued",
+   "words": "Let me distinguish a past injury from a current injury when reading someone’s trust explanation.",
+   "verdict": "keep",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-emre-continued"
+  },
+  {
+   "id": "F-1383",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): nia-free",
+   "words": "Give me more personal replies like Maryam’s cooking refusal and string puzzle.",
+   "verdict": "quit",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-nia-free"
+  },
+  {
+   "id": "F-1384",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): nia-free",
+   "words": "Keep the action choices visible without pushing them beneath repeated status text.",
+   "verdict": "quit",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-nia-free"
+  },
+  {
+   "id": "F-1385",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): nia-free",
+   "words": "Make the consequence of insisting clearer to me.",
+   "verdict": "quit",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-nia-free"
+  },
+  {
+   "id": "F-1386",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): rosa-free",
+   "words": "Tell me when cooking is for ordinary meals and when it fills the storm reserve.",
+   "verdict": "-",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-rosa-free"
+  },
+  {
+   "id": "F-1387",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): rosa-free",
+   "words": "Put the roof progress and meal total in separate short lines.",
+   "verdict": "-",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-rosa-free"
+  },
+  {
+   "id": "F-1388",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): rosa-free",
+   "words": "Make it clear whose order Send will send while I am looking at someone else.",
+   "verdict": "-",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-rosa-free"
+  },
+  {
+   "id": "F-1389",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): nia-continued",
+   "words": "Let me answer the boundary-marker and promised-repair admissions.",
+   "verdict": "quit",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-nia-continued"
+  },
+  {
+   "id": "F-1390",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): nia-continued",
+   "words": "Make the completed cedar answer clear instead of showing done beside “Not now.”",
+   "verdict": "quit",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-nia-continued"
+  },
+  {
+   "id": "F-1391",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): nia-continued",
+   "words": "Let old speech bubbles get out of my phone map.",
+   "verdict": "quit",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-nia-continued"
+  },
+  {
+   "id": "F-1392",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): rosa-continued",
+   "words": "Explain when food becomes a storm reserve.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-rosa-continued"
+  },
+  {
+   "id": "F-1393",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): rosa-continued",
+   "words": "Keep the selected person and that persons choices together on my phone.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-rosa-continued"
+  },
+  {
+   "id": "F-1394",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): rosa-continued",
+   "words": "Show me whether Review has chosen Rush before I send an order.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-rosa-continued"
+  },
+  {
+   "id": "F-1395",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): jonas-free",
+   "words": "I want building materials and assigned-stage information visible when I first inspect a builder.",
+   "verdict": "keep",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-jonas-free"
+  },
+  {
+   "id": "F-1396",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): jonas-free",
+   "words": "I want the reason an order could not finish beside its result, where I found the agreement.",
+   "verdict": "keep",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-jonas-free"
+  },
+  {
+   "id": "F-1397",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): jonas-free",
+   "words": "I want to select a person reliably while their activity changes.",
+   "verdict": "keep",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-jonas-free"
+  },
+  {
+   "id": "F-1398",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): jonas-continued",
+   "words": "I want “build the house” to tell me how much work the order covers before it ends.",
+   "verdict": "keep",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-jonas-continued"
+  },
+  {
+   "id": "F-1399",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): jonas-continued",
+   "words": "I want to see whether Rush is active before sending the order.",
+   "verdict": "keep",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-jonas-continued"
+  },
+  {
+   "id": "F-1400",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): jonas-continued",
+   "words": "I want the injury memory to tell me when the injury happened, especially when the person currently says unhurt.",
+   "verdict": "keep",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-jonas-continued"
+  },
+  {
+   "id": "F-1401",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): aisha-free",
+   "words": "Let me speak with a person, not just send them to a place. I'd want to ask about Zehra or the jar of grain, and to tend or apologise to someone who's hurt, with injuries named.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-aisha-free"
+  },
+  {
+   "id": "F-1402",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): aisha-free",
+   "words": "Stop the order buttons from changing their labels under my finger, or keep my choice when the status changes.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-aisha-free"
+  },
+  {
+   "id": "F-1403",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): aisha-free",
+   "words": "Tell me before a whole household leaves shelter for a duty, such as the sunset prayer in a storm. Then I could suggest praying at home instead of only seeing \"Insist\" afterwards.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-aisha-free"
+  },
+  {
+   "id": "F-1404",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): aisha-continued",
+   "words": "Let me ask someone whether they're all right, and let me apologise after an order goes badly, such as the storm walk.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-aisha-continued"
+  },
+  {
+   "id": "F-1405",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): aisha-continued",
+   "words": "Make the injury information agree with itself: one clear answer to who is hurt.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-aisha-continued"
+  },
+  {
+   "id": "F-1406",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): aisha-continued",
+   "words": "Don't press Rush for me, and show me more moments like the beam instead of only status lines.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-aisha-continued"
+  },
+  {
+   "id": "F-1407",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): diego-free",
+   "words": "Give me a clearer reason to issue an order when everyone already has a job.",
+   "verdict": "quit",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-diego-free"
+  },
+  {
+   "id": "F-1408",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): diego-free",
+   "words": "After someone is hurt, help me understand whether there is anything useful for me to do.",
+   "verdict": "quit",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-diego-free"
+  },
+  {
+   "id": "F-1409",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): diego-free",
+   "words": "Make the time of an old order account easier to distinguish from current construction.",
+   "verdict": "quit",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-diego-free"
+  },
+  {
+   "id": "F-1410",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): mei-free",
+   "words": "Explain how “enough food” relates to the twelve-meal storm reserve.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-mei-free"
+  },
+  {
+   "id": "F-1411",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): mei-free",
+   "words": "Let me request that reserve clearly before choosing whether to insist.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-mei-free"
+  },
+  {
+   "id": "F-1412",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): diego-continued",
+   "words": "Make it clearer during play when a completed order needs renewing to achieve the roof target.",
+   "verdict": "quit",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-diego-continued"
+  },
+  {
+   "id": "F-1413",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): diego-continued",
+   "words": "Let me understand what benefit the cedar risk buys before I choose it.",
+   "verdict": "quit",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-diego-continued"
+  },
+  {
+   "id": "F-1414",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): diego-continued",
+   "words": "Give me a clearer way to act on the timber-token story if it is asking something of me.",
+   "verdict": "quit",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-diego-continued"
+  },
+  {
+   "id": "F-1415",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): mei-continued",
+   "words": "Make it clearer during play when an order has ended and needs another decision.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-mei-continued"
+  },
+  {
+   "id": "F-1416",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): mei-continued",
+   "words": "Make the difference between ordinary food and the twelve-meal storm reserve clear before I ask the cook.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-mei-continued"
+  },
+  {
+   "id": "F-1417",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): mei-continued",
+   "words": "Let an injury’s Show control lead to that village’s injury details.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-mei-continued"
+  },
+  {
+   "id": "F-1418",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): samir-free",
+   "words": "When \"something happened in the village\", tell me who and what in one sentence: who fell, and where.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-samir-free"
+  },
+  {
+   "id": "F-1419",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): samir-free",
+   "words": "Let me see the Moments I missed, or tell me where they happened, so the people stay people through the storm.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-samir-free"
+  },
+  {
+   "id": "F-1420",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): samir-free",
+   "words": "Don't let Review switch on Rush for me, and clear stale answers like \"I'm asleep\" off the cards.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-samir-free"
+  },
+  {
+   "id": "F-1421",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): tessa-free",
+   "words": "More ways to play with the village itself beyond assigning jobs.",
+   "verdict": "quit",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-tessa-free"
+  },
+  {
+   "id": "F-1422",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): tessa-free",
+   "words": "Keep the person’s answer near the job choices on my phone.",
+   "verdict": "quit",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-tessa-free"
+  },
+  {
+   "id": "F-1423",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): tessa-free",
+   "words": "Tell me who is making the suggestions and why they appear.",
+   "verdict": "quit",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-tessa-free"
+  },
+  {
+   "id": "F-1424",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): samir-continued",
+   "words": "Don't make constant Rushing the \"what would have won\" answer. Let care for prayer and rest count in the result, not only in \"Not tracked\".",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-samir-continued"
+  },
+  {
+   "id": "F-1425",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): samir-continued",
+   "words": "At the end, let the people speak: Idris about being made to shelter, Samira, Tariq. Don't reduce me to \"+3 meals\".",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-samir-continued"
+  },
+  {
+   "id": "F-1426",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): samir-continued",
+   "words": "Tell me why things happen, such as obedient villagers getting hurt indoors and meals swinging 7 → 1 → 7, and stop the map labels piling on top of each other.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-samir-continued"
+  },
+  {
+   "id": "F-1427",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): pavel-free",
+   "words": "Tell me when an injury happened and whether the person recovered.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-pavel-free"
+  },
+  {
+   "id": "F-1428",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): pavel-free",
+   "words": "Make the rain tonight and the later storm deadline easier for me to distinguish.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-pavel-free"
+  },
+  {
+   "id": "F-1429",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): pavel-free",
+   "words": "Let me follow Yusuf’s timber account, or tell me plainly that it is only an account of earlier work.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-pavel-free"
+  },
+  {
+   "id": "F-1430",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): tessa-continued",
+   "words": "Let me answer Yusuf about the timber story, rather than only give him another job.",
+   "verdict": "quit",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-tessa-continued"
+  },
+  {
+   "id": "F-1431",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): tessa-continued",
+   "words": "Give me some way to make the place my own.",
+   "verdict": "quit",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-tessa-continued"
+  },
+  {
+   "id": "F-1432",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): tessa-continued",
+   "words": "Make old replies easier to distinguish from what someone is saying now.",
+   "verdict": "quit",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-tessa-continued"
+  },
+  {
+   "id": "F-1433",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): pavel-continued",
+   "words": "Tell me how my building order led to the extra injury and later construction delay shown in the report.",
+   "verdict": "keep",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-pavel-continued"
+  },
+  {
+   "id": "F-1434",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): pavel-continued",
+   "words": "Explain “enough food stored” when the stores are below the stated twelve-meal target.",
+   "verdict": "keep",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-pavel-continued"
+  },
+  {
+   "id": "F-1435",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): pavel-continued",
+   "words": "Let me follow Yusuf’s timber account further, or tell me that there is nothing more for me to do with it.",
+   "verdict": "keep",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-pavel-continued"
+  },
+  {
+   "id": "F-1436",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): leila-free",
+   "words": "Make hurt notices say where, how and what I can do. Don't let the order answer and the card status contradict each other.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-leila-free"
+  },
+  {
+   "id": "F-1437",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): leila-free",
+   "words": "Make Insist and Rush show their cost or effect when I use them, not only at dawn.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-leila-free"
+  },
+  {
+   "id": "F-1438",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): leila-free",
+   "words": "Vary the villagers' refusal lines per person, and show the storm timing on the phone the way the desktop does.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-leila-free"
+  },
+  {
+   "id": "F-1439",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): leila-continued",
+   "words": "Tell me when an order ends, and show it during play.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-leila-continued"
+  },
+  {
+   "id": "F-1440",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): leila-continued",
+   "words": "Show the cost of my pushing as it happens, not only in the end-of-day table: injuries, slower work, \"would have done better without you\".",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-leila-continued"
+  },
+  {
+   "id": "F-1441",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): leila-continued",
+   "words": "Make the panels agree with each other: injuries, meals counts, risk text that names the right job, and stale map bubbles. Also give refusals each person's own words, not one shared template.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-leila-continued"
+  },
+  {
+   "id": "F-1442",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): maya-free",
+   "words": "Let me ask Yusuf about the timber token and Zehra after he brings them up.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-maya-free"
+  },
+  {
+   "id": "F-1443",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): maya-free",
+   "words": "Give me a way to respond to his injury beyond another work order or appeal.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-maya-free"
+  },
+  {
+   "id": "F-1444",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): maya-free",
+   "words": "Keep long speech bubbles from covering so much of the phone map.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-maya-free"
+  },
+  {
+   "id": "F-1445",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): maya-continued",
+   "words": "Let me follow Maryam’s puzzle, Danyal’s friendship or the father-and-son moment with words of my own.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-maya-continued"
+  },
+  {
+   "id": "F-1446",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): maya-continued",
+   "words": "Tell me what is happening when people say Building but the remaining stage appears unchanged.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-maya-continued"
+  },
+  {
+   "id": "F-1447",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): maya-continued",
+   "words": "Make an earlier order answer clearly distinct from what someone is doing now.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-maya-continued"
+  },
+  {
+   "id": "F-1448",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): luca-free",
+   "words": "Make the speech cards and stories readable without overlap, for example as a log I can scroll back through.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-luca-free"
+  },
+  {
+   "id": "F-1449",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): luca-free",
+   "words": "Show me which orders are pending or \"later\", and what Insist or Appeal actually changed.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-luca-free"
+  },
+  {
+   "id": "F-1450",
+   "date": "2026-10-26",
+   "game": "well",
+   "kind": "playtester",
+   "who": "Lab panel (agent): luca-free",
+   "words": "Tell me earlier which goal is at risk. Here it was the roof, and I learned that only from the final report.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:well OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#well-hf3-well-r1-post-cutover-luca-free"
+  },
+  {
+   "id": "F-1473",
+   "date": "2026-10-26",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Lab panel (agent): maya-free",
+   "words": "Let me ask the owner before a repair that goes against what they asked, like a new gear for Nora's grandmother's box.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:repair OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#repair-game-hf3-repair-r1-maya-free"
+  },
+  {
+   "id": "F-1474",
+   "date": "2026-10-26",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Lab panel (agent): maya-free",
+   "words": "When someone answers \"about the work\", let it be about the object I'm actually holding.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:repair OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#repair-game-hf3-repair-r1-maya-free"
+  },
+  {
+   "id": "F-1475",
+   "date": "2026-10-26",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Lab panel (agent): maya-free",
+   "words": "Show me how to \"share an observation\" with Sam when the game asks me to.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:repair OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#repair-game-hf3-repair-r1-maya-free"
+  },
+  {
+   "id": "F-1476",
+   "date": "2026-10-26",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Lab panel (agent): maya-continued",
+   "words": "When I've found the exact faulty part, point me to where I can get one before I hand the object back.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:repair OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#repair-game-hf3-repair-r1-maya-continued"
+  },
+  {
+   "id": "F-1477",
+   "date": "2026-10-26",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Lab panel (agent): maya-continued",
+   "words": "Let me say something back when someone tells me something personal.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:repair OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#repair-game-hf3-repair-r1-maya-continued"
+  },
+  {
+   "id": "F-1478",
+   "date": "2026-10-26",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Lab panel (agent): maya-continued",
+   "words": "Keep Halil's story in his own words instead of following it with a list of his problems.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:repair OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#repair-game-hf3-repair-r1-maya-continued"
+  },
+  {
+   "id": "F-1479",
+   "date": "2026-10-26",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Lab panel (agent): emre-free",
+   "words": "Tell me what the nightly £4 is for, at the moment it is taken.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:repair OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#repair-game-hf3-repair-r1-emre-free"
+  },
+  {
+   "id": "F-1480",
+   "date": "2026-10-26",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Lab panel (agent): emre-free",
+   "words": "When I recover a part from the donor lantern, put it in the drawer, or tell me why it is not there.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:repair OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#repair-game-hf3-repair-r1-emre-free"
+  },
+  {
+   "id": "F-1481",
+   "date": "2026-10-26",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Lab panel (agent): emre-free",
+   "words": "Vary the faults, so the second fan is not the same battery swap as the first.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:repair OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#repair-game-hf3-repair-r1-emre-free"
+  },
+  {
+   "id": "F-1482",
+   "date": "2026-10-26",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Lab panel (agent): emre-continued",
+   "words": "Point me to the Reference table the first time a target speed or voltage appears.",
+   "verdict": "keep",
+   "routes": [
+    "fix:repair OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#repair-game-hf3-repair-r1-emre-continued"
+  },
+  {
+   "id": "F-1483",
+   "date": "2026-10-26",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Lab panel (agent): emre-continued",
+   "words": "Explain where my money and parts go: the £4 overnight and the recovered cells.",
+   "verdict": "keep",
+   "routes": [
+    "fix:repair OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#repair-game-hf3-repair-r1-emre-continued"
+  },
+  {
+   "id": "F-1484",
+   "date": "2026-10-26",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Lab panel (agent): emre-continued",
+   "words": "When a part is out of stock, tell me where to get one on the same screen.",
+   "verdict": "keep",
+   "routes": [
+    "fix:repair OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#repair-game-hf3-repair-r1-emre-continued"
+  },
+  {
+   "id": "F-1485",
+   "date": "2026-10-26",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Lab panel (agent): nia-free",
+   "words": "Show the owner's own words, like \"my grandmother's, no new parts\", on the bench next to the repair buttons, not only on People.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:repair OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#repair-game-hf3-repair-r1-nia-free"
+  },
+  {
+   "id": "F-1486",
+   "date": "2026-10-26",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Lab panel (agent): nia-free",
+   "words": "Let the people react to how I fixed something, and let me reply when Nora or Rafi tells me something.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:repair OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#repair-game-hf3-repair-r1-nia-free"
+  },
+  {
+   "id": "F-1487",
+   "date": "2026-10-26",
+   "game": "repair",
+   "kind": "playtester",
+   "who": "Lab panel (agent): nia-free",
+   "words": "Let my own project do something when it works. I wanted the paper theatre to put on its show.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:repair OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#repair-game-hf3-repair-r1-nia-free"
+  },
+  {
+   "id": "F-1569",
+   "date": "2026-10-26",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Lab panel (agent): maya-free",
+   "words": "Let people react when they find work I did while they were out, like Hacer's table.",
+   "verdict": "keep",
+   "routes": [
+    "fix:stairwell OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#stairwell-hf3-stairwell-r1-maya-free"
+  },
+  {
+   "id": "F-1570",
+   "date": "2026-10-26",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Lab panel (agent): maya-free",
+   "words": "Keep the evening alive once everyone's one line is used up, so the log isn't the same stories repeating.",
+   "verdict": "keep",
+   "routes": [
+    "fix:stairwell OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#stairwell-hf3-stairwell-r1-maya-free"
+  },
+  {
+   "id": "F-1571",
+   "date": "2026-10-26",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Lab panel (agent): maya-free",
+   "words": "Fix \"You are already here\" when an order for that flat is still showing.",
+   "verdict": "keep",
+   "routes": [
+    "fix:stairwell OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#stairwell-hf3-stairwell-r1-maya-free"
+  },
+  {
+   "id": "F-1572",
+   "date": "2026-10-26",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Lab panel (agent): maya-continued",
+   "words": "Let me say something back when someone shares something personal, like Burak's line about not knowing when you've said enough.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:stairwell OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#stairwell-hf3-stairwell-r1-maya-continued"
+  },
+  {
+   "id": "F-1573",
+   "date": "2026-10-26",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Lab panel (agent): maya-continued",
+   "words": "When I'm holding a parcel for someone who is out, tell me when they'll be back, or let me get on with other things without the clock crawling.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:stairwell OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#stairwell-hf3-stairwell-r1-maya-continued"
+  },
+  {
+   "id": "F-1574",
+   "date": "2026-10-26",
+   "game": "stairwell",
+   "kind": "playtester",
+   "who": "Lab panel (agent): maya-continued",
+   "words": "Let an order start when I'm already standing at the right place, instead of \"You are already here.\"",
+   "verdict": "mixed",
+   "routes": [
+    "fix:stairwell OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/games-deferred-intake-2026-10-26.md#stairwell-hf3-stairwell-r1-maya-continued"
   }
  ],
  "lessons": [
@@ -13490,7 +15310,7 @@
   }
  ],
  "routes": {
-  "fix": 1167,
+  "fix": 1307,
   "lesson": 291,
   "hf": 12,
   "calibration": 42,
