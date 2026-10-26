@@ -346,3 +346,25 @@ The paired doze-cost follow-up completed ten fed person-years per arm on the pub
 Correction to the early event-only quick arm: it took final snapshots before the required synchronization barrier. Those raw outputs remain retained, but their event-only snapshots are stale-state measurements. The corrected `quick-readbarrier` runs measure `synchronizeCommunity` separately and assert current clocks before reading. Source/package hashes match all forty corrected cases; coherent event-only and eager snapshot sizes both have median 105,173.25 bytes/person. On the corrected concurrent runs, source decision p50/p95 was 0.043/0.153 ms (14 offers) and 0.877/1.795 ms (300); published was 0.042/0.124 and 0.828/1.140 ms. Source village driver-step p50/p95 was 2.967/7.885 ms eager and 3.102/8.980 event-only; published was 2.719/5.178 and 2.770/5.555. Median final synchronization cost was 1.691 ms source and 1.509 ms published, outside those driver-step timings. Changing concurrent load precludes a speedup claim from the earlier run. The eager fine-year run was unaffected.
 
 The supplementary selector audit now also covers actual instructed skill transfer, all three standalone narration option surfaces, and natural project adoption by a rested uncommitted actor from the real projects control. Its perceived-progress/peak marker is admitted at 0.3. Current duties correctly prevent the village actor from adopting that project. Exact source/package results match ten seeds, including the separate maker snapshot. `baseline/selector-audit.md` and JSON distinguish all eighteen enable APIs and the other curated selectors from alternative execution routes, host actions, model data and validation. Selecting a faculty is not a saturated-state worst-case test; neither unknown contacts nor absent exposures are invented to fill a branch.
+
+### HF4 baseline retention qualification (2026-10-26)
+
+The frozen fine ant-farm harness requests `{ trace: 12, chronicleDays: 7 }`, matching the prior driver's request. That is not its effective retention. HF 3.2 `cleanRetention` rejects `chronicleDays` below 31. A probe of the retained published 3.2.0 package confirms the effective setting is `{ trace: 12 }`; chronicle trimming therefore retains its default maximum of 120 day records. Earlier baseline wording describing matched retention refers to the request, not a seven-day effective bound. The selected ten-seed workload remains frozen; completed years are not rerun. Probe and full measurements: `~/code/.lab-scratch/hf4/baseline/retention-effective-probe.json` and `baseline-report.md`. Raw actor bytes remain distinct from portable shelf envelopes.
+
+### HF4 all-on baseline: ten full fine years complete (2026-10-26)
+
+Published `@adam0white/human-framework@3.2.0`, actor source tree `6cbebaf02c908f97345dcde907971c0a97474921`, completed seeds 1–10: 3,650 actual fine day steps, 200 initial people per year. Every selected year has 365 contiguous checkpoints and a final state hash. Fixed selection and exact frozen harness/PIDs are in `~/code/.lab-scratch/hf4/baseline/parallel-plan.json`; `final-fine-summary.json` contains each result and `final-raw-manifest.json` hashes retained streams. All benchmark processes and the owned watcher have exited. No coarse result or extrapolation substitutes for these years.
+
+| Measurement                              |                Result |
+| ---------------------------------------- | --------------------: |
+| Median engine wall seconds per full year |            10,353.713 |
+| Full-year wall range, seconds            |  9,573.780–11,230.879 |
+| Median CPU seconds per full year         |             9,893.222 |
+| Pooled fine day-step p50 / p95, seconds  |       25.927 / 45.091 |
+| Median final UTF-8 bytes per actor       |            328,231.12 |
+| Final bytes per actor range              | 327,846.61–328,714.89 |
+| Final living actors per initial 200      |               198–200 |
+
+These are shared Apple M4/16 GiB Node 26.12.0 timings, with up to four benchmark processes and other machine activity. Recorded one-minute load reached 39.97. Mortality stays on. Actor counts do not identify death causes. Requested/effective retention is qualified above. Raw actor bytes are not a portable shelf envelope or a transfer admission verdict.
+
+The full result table, quick source/package comparisons, doze and long-run cases, exact enable/selector inventory, proposed frame/shelf budgets and remaining gates are in `~/code/.lab-scratch/hf4/baseline-report.md`. Budget acceptance, integrated game/browser/frame measurements, actual portable-envelope/storage admission, HF4 adapter comparison and parent review/integration remain open. This closes the ten-fine-year measurement requirement; it does not authorize a coarse-fidelity change.
