@@ -738,7 +738,11 @@ async function buildData(env: Env, deadline: number): Promise<string> {
   const today = dayOf(now);
   const days = lastDays(now, WINDOW_DAYS);
   const aggs = [];
-  const previewBudget = { left: 10 };
+  // Reserve three R2 operations per day, one deferred list and each game's release fetch.
+  // Keep the complete rebuild below fifty subrequests as the game shelf grows.
+  const previewBudget = {
+    left: Math.min(10, Math.max(0, 49 - (3 * WINDOW_DAYS + 1 + LAB_GAMES.length))),
+  };
   for (const d of [...days].reverse()) aggs.push(await dayAggregate(env, d, previewBudget, deadline));
   const events = mergeAggregates(aggs);
   const since = days[0] ?? today;

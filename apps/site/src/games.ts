@@ -190,6 +190,16 @@ export const GAMES: Game[] = [
     line: 'A tailor left conflicting promises. Ask what each person needs, then agree on work, storage and rent before time runs out.',
     faculties: ['Memory and belief', 'Relationships'],
   },
+  {
+    id: 'child',
+    labNote: 'Owner acceptance pending.',
+    rank: 18,
+    status: 'active',
+    name: 'What the Child Saw',
+    href: 'https://child.adamwhite.work',
+    line: 'Elif learns from the work she sees. Choose what to show her as she grows, then let her decide what to do alone.',
+    faculties: ['A whole life', 'Memory and belief', 'Will'],
+  },
 ];
 
 export const isExternal = (g: Game): boolean => /^https?:\/\//.test(g.href);
