@@ -210,6 +210,16 @@ export const GAMES: Game[] = [
     line: 'A daughter has three days of leave, an uncertain account and a promised visit. Choose what to check, what to share and when to ask for help.',
     faculties: ['Relationships', 'Body', 'Memory and belief'],
   },
+  {
+    id: 'lefthand',
+    labNote: 'Owner acceptance pending.',
+    rank: 20,
+    status: 'active',
+    name: 'The Left Hand',
+    href: 'https://lefthand.adamwhite.work',
+    line: 'Carry help through a snowy village over three nights. Reach a family before dawn and decide what to say when a neighbour sees you.',
+    faculties: ['Memory and belief', 'Relationships', 'Will'],
+  },
 ];
 
 export const isExternal = (g: Game): boolean => /^https?:\/\//.test(g.href);
