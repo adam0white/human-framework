@@ -248,4 +248,9 @@ Trial result: wait, re-check 2026-11-09. tsrs `0.18.0-ts7.1.0-dev.20260929` halv
 
 Coordinator reading, acted on now: spend Claude abundantly until the Tuesday 02:00 reset (Fable and Opus subagents, plus Astra as `gpt-6-astra` through Codex) on new-game concepts, HF horizon consults and light reviews. Move every lab-controlled repo to pnpm with HF's settings, one at a time, skipping games whose playtest round is open until it closes. "Shared node" is read as one pinned Node version across repos (pnpm-managed runtime where it works), not per-repo installs. Stay on pnpm; bun is not planned. Clean up or push lab folders under `~/code`; the owner's personal repos are left alone.
 
-Not yet lifted, pending the owner's explicit answer: a faith-themed game (against "Games keep faith gentle", 2026-10-04) and an action game (against "no action-game polish, real-time graphics"). New-game concepts for both are drafted and reviewed; nothing in either is built until he answers.
+Both lifts were then granted for one game each (answers below).
+
+Owner answers, 2026-10-26 (to the coordinator's three questions):
+- Faith-themed game, lift "Games keep faith gentle" for one game: **"Yes, for one game"**.
+- Action game, lift "no action-game polish, real-time graphics" for one game: **"Yes, for one game"**.
+- New games before the 2026-11-03 review: **"Up to 4, added (Recommended)"**: build every concept that passes review, on top of the current goal; playtests of the existing 15 keep priority.
