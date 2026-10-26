@@ -1,0 +1,190 @@
+{
+  "at": "2026-10-26T17:42:28.214317+00:00",
+  "frozenOutputSHA256": "89847b0ebf4cd1daf90a4d4bc101f866dd97f98a402c01c1c364d6ecd01c5e39",
+  "all30Aliases": true,
+  "all595VerbalRecordQuotesExact": true,
+  "earliestQuoteAndTimestampAllExact": true,
+  "codingIsInterpretationNotTagEquivalent": true,
+  "earliest": [
+    {
+      "alias": "D01",
+      "earliest_index": 59,
+      "elapsed_s": 446.892,
+      "quote": "I would leave now. I got a confession and wanted to answer, but collaboration sends me back to the break instructions. She is tired again. I feel like I am maintaining a conversation permission rather than having a conversation. I will keep playing for the time I set aside."
+    },
+    {
+      "alias": "D02",
+      "earliest_index": 34,
+      "elapsed_s": 266.316,
+      "quote": "I would leave this conversation loop now. I got the confession, but I cannot tell what the collaboration still needs from me. I will stay for the time I set aside and try the storehouse instead."
+    },
+    {
+      "alias": "D03",
+      "earliest_index": 72,
+      "elapsed_s": 204.731,
+      "quote": "Four taps, four times \"Choose open ground\". I have all the boards and bags, I know exactly what I want - put the storehouse down - and I cannot find ground on a strip of map the size of my thumb. And Nora says she is tired again, right after resting. I would close it here. Keeping on."
+    },
+    {
+      "alias": "D04",
+      "earliest_index": 120,
+      "elapsed_s": 259.279,
+      "quote": "Three taps, three times: choose open ground, away from cabins and delivered materials. I cannot see any cabins or materials - the map is a green strip with a hub and faint circles, half covered by the speed buttons and a label. I have the boards, the people, the time, and I cannot put the building down. I would leave here. I will keep going and look at Feedback."
+    },
+    {
+      "alias": "D05",
+      "earliest_index": 87,
+      "elapsed_s": 465.958,
+      "quote": "The storm came at 10:00, The supplies stayed dry. Tally says 9 people, 3 completed buildings, but I only counted a storehouse and a cabin; maybe the hub counts. In Feedback I pressed I'm stopping; it pressed the button and also put the words I'm stopping into the text box by itself. I did not type or submit. The day is over, so I stop here. Pleasant, a little too easy; the people interested me more than the building."
+    },
+    {
+      "alias": "D06",
+      "earliest_index": 105,
+      "elapsed_s": 326.449,
+      "quote": "Oskar drafts an accurate caption, marks the repair unfinished, still needs to correct the earlier story. Every collaboration ends the same way: a draft, an admission, and still needs to. I can see the pattern now and the storehouse was done hours ago. I understand everything and nothing I choose changes anything. I would close the tab here."
+    },
+    {
+      "alias": "D07",
+      "earliest_index": 72,
+      "elapsed_s": 661.616,
+      "quote": "I would stop at this loss. I left one builder too little time and could not add help through the controls I found. I do want one cleaner attempt with several builders selected before placing it. I have committed fifteen minutes, so I will use the remaining time for that rather than sit on the ending."
+    },
+    {
+      "alias": "D08",
+      "earliest_index": 25,
+      "elapsed_s": 130.733,
+      "quote": "I liked putting the cabin where I wanted, but now our little collaboration is an inspection card about his work. I do not feel like being the workshop manager. I would leave here."
+    },
+    {
+      "alias": "D09",
+      "earliest_index": 50,
+      "elapsed_s": 434.653,
+      "quote": "I would put this down on the telephone now. I have the materials, but two apparently empty patches refuse the building. I cannot see enough ground to make a sensible placement. I will keep the time I set aside, but this is where I would normally leave."
+    },
+    {
+      "alias": "D10",
+      "earliest_index": 32,
+      "elapsed_s": 281.501,
+      "quote": "That is my second reread. I would leave because I cannot tell whether these breaks are enough for the people. I will continue for the time I set aside, and try to finish their storehouse."
+    },
+    {
+      "alias": "D11",
+      "earliest_index": 39,
+      "elapsed_s": 190.337,
+      "quote": "I would leave now. I found the personal bit I wanted, and it turned into an inspection card. That is fine for him, but I want a conversation I can play with, not another round of assigning bags and breaks."
+    },
+    {
+      "alias": "D12",
+      "earliest_index": 24,
+      "elapsed_s": 125.735,
+      "quote": "Reread 2: \u201cAfter a minute together, offer one person a break.\u201d Together where? Nora and Sam are going to different work. I opened help because I wondered about People 8/10, and now I have instructions for a private conversation as well as building. That is my second reread. I want to stop here. I did learn that tapping Nora again leaves Sam selected, and I sent Sam for bags. New concepts, 4 from Sam: he is 18 and lives here, learning repairs, kitchen work, testing games. New concepts, 15 from help: soaked supplies if unfinished, cabin room for two, inviting a local helper at the hub, computer box selection, right-click orders, phone box selection, holding a destination, a minute together before a break, five-second wait, inviting conversation through About this resident, private sharing, optional collaboration, 35-second rest, meals used at the current place, pressure may be remembered. Selecting builders and placing the storehouse on open ground are 2 more, making 17 in help. The help picture starts halfway through a sentence at the top; I have the text reply, but I cannot see its heading in this picture."
+    },
+    {
+      "alias": "D13",
+      "earliest_index": 30,
+      "elapsed_s": 189.628,
+      "quote": "I would leave here. I found one lovely thing about Nerys, but trying to follow it gave me the instructions I thought I had already followed. I do not want to repeat breaks and invitations to guess how to make the collaboration happen."
+    },
+    {
+      "alias": "D14",
+      "earliest_index": 158,
+      "elapsed_s": 483.072,
+      "quote": "I have heard everyone once, the storehouse is built, and now I just send tired people to eat and they come back tired. I would close the laptop here. I will stay to see the storm, and to see whether the empty cabin brings anyone with a story."
+    },
+    {
+      "alias": "D15",
+      "earliest_index": 77,
+      "elapsed_s": 195.811,
+      "quote": "Third refusal. I know exactly what I want - put the storehouse down, we have the boards and the bags - and the phone map is a strip with buttons on top of it. Every tap is not open ground and it throws me out of placing. I would put the phone down here. I will look at the help first."
+    },
+    {
+      "alias": "D16",
+      "earliest_index": 36,
+      "elapsed_s": 256.42,
+      "quote": "I would put this down now. I liked Dai telling me about the old temporary solution, but I have given him a rest and he is tired again at once. Sam has stopped adding bags at fifty-seven, and I have lost the simple routine I thought I had arranged. I selected confused in Feedback; it put those words into the note itself. I typed nothing."
+    },
+    {
+      "alias": "D17",
+      "earliest_index": 42,
+      "elapsed_s": 395.442,
+      "quote": "I would stop here. I am waiting for the last boards rather than making a difficult choice. The repeated tired message is unclear, but it has not stopped the supplies growing. I do not feel a reason to manage the other five people."
+    },
+    {
+      "alias": "D18",
+      "earliest_index": 55,
+      "elapsed_s": 338.626,
+      "quote": "I have finished the building I came to make. I do not want to wait another four game minutes just for rain. Help says I could invite people at the workshop; I did not know that when I made the cabin, but I no longer need workers."
+    },
+    {
+      "alias": "D19",
+      "earliest_index": 63,
+      "elapsed_s": 189.038,
+      "quote": "Four tries now, every patch of green says no. I know what I want - put the storehouse down - and the game keeps saying the ground is not open. On my phone I would put it down here. Keeping going because I set the time aside."
+    },
+    {
+      "alias": "D20",
+      "earliest_index": 91,
+      "elapsed_s": 647.062,
+      "quote": "The supplies stayed dry. I would stop here satisfied: I made a plan, adjusted the workers, and finished before rain. I have set aside fifteen minutes, so I will look at the tally and keep exploring until that time is up."
+    },
+    {
+      "alias": "D21",
+      "earliest_index": 59,
+      "elapsed_s": 653.013,
+      "quote": "The storehouse is ready and everyone has food. I feel I have kept the commitment. I would leave now rather than wait another five game minutes for a storm when I have nothing else I want to build. I am pleased with finishing it, but I do not want to start collecting again for a cabin."
+    },
+    {
+      "alias": "D22",
+      "earliest_index": 71,
+      "elapsed_s": 732.654,
+      "quote": "The building part is done and I would normally close it now. I am still curious about Sam, but I cannot chat on this ending screen."
+    },
+    {
+      "alias": "D23",
+      "earliest_index": 58,
+      "elapsed_s": 199.182,
+      "quote": "Three taps on the map, three times: choose open ground away from cabins and delivered materials. I have no idea what ground counts. The map is a strip the height of my thumb with buttons on top of it. I have all the materials and nowhere to put them. This is where I would put the phone down."
+    },
+    {
+      "alias": "D24",
+      "earliest_index": 54,
+      "elapsed_s": 200.358,
+      "quote": "The storehouse is done at 2:49 game time and the storm is seven hours away. The only thing left is collecting confessions I cannot reply to. I understand the game; there is nothing here I need to decide. I would close the tab."
+    },
+    {
+      "alias": "D25",
+      "earliest_index": 60,
+      "elapsed_s": 364.859,
+      "quote": "I want to leave the phone session. I have the supplies and a builder, but two apparently empty places are rejected. I am fighting the strip of map instead of choosing a risk. I will keep going with the time I set aside, on the bigger screen."
+    },
+    {
+      "alias": "D26",
+      "earliest_index": 88,
+      "elapsed_s": 807.571,
+      "quote": "I would stop now. Sam has had a break and food, yet I get the same tired sentence. I can finish the building, but I cannot tell whether I am taking care of the people. I will keep my set-aside time and watch the storehouse through."
+    },
+    {
+      "alias": "D27",
+      "earliest_index": 32,
+      "elapsed_s": 266.877,
+      "quote": "I want to leave. I gathered everything and now I am poking two bits of what looks like empty ground and getting the same refusal. I do not want to hunt for a legal pixel in this little strip."
+    },
+    {
+      "alias": "D28",
+      "earliest_index": 68,
+      "elapsed_s": 513.372,
+      "quote": "I would put this aside now. I am waiting for wood and grey buttons rather than choosing between things that matter. The cart was satisfying, but the routine since then has been gather, wait, buy the next thing. I will keep playing for the committed time."
+    },
+    {
+      "alias": "D29",
+      "earliest_index": 120,
+      "elapsed_s": 478.765,
+      "quote": "Nerys again: the same spend a minute together, after I watched her for nearly a whole game minute and gave her the break. My guess was wrong and I have no other idea. Two of three worked and I do not know why. The storehouse is done, so the only thing I wanted left is the people, and the door to them opens by a rule I cannot see. I would close the laptop here."
+    },
+    {
+      "alias": "D30",
+      "earliest_index": 74,
+      "elapsed_s": 337.597,
+      "quote": "Want to leave at 5:23 game. I won already, at 4:13, and nothing threatens the storehouse. I would close the tab here. Staying because I set the time aside; I will try talking to the others in case there is more to them."
+    }
+  ]
+}

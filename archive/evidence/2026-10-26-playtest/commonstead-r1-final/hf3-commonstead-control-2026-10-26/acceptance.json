@@ -1,0 +1,79 @@
+{
+  "accepted": "2026-10-26T17:39:13.158549+00:00",
+  "persona": "Jonas Berg",
+  "arm": "continued",
+  "game": "A Dark Room",
+  "originals": {
+    "jonas-continued/report.md": "e2d6ee017d0ba30d7f51c4dda0dd0a0b0a6d35d15082eaf4128158451d72aa9d",
+    "jonas-continued/wall-clock.jsonl": "c9fd0b5182fc9578de8681f23073e97d86887e0963fdf84c55b7c618dedb5577"
+  },
+  "rawRows": 124,
+  "verbatimReactions": 18,
+  "rawStop": {
+    "t": "2026-10-26T17:36:44.904Z",
+    "elapsed_s": 935.875,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "I am stopping at fifteen and a half minutes. The wish to take a break never went away, though the lodge and wanderer briefly interested me. I gave him one hundred wood and saw him leave; I have not seen a return. I would return voluntarily another evening for a short try at the lodge and to see whether he comes back, but I would not continue tonight or leave it running. I do not yet know whether the later choices will be demanding enough for me. Feedback is unavailable in this external control. Nothing was submitted. The browser is no longer needed.",
+    "game_clock": null,
+    "engagement": null,
+    "reason": "BORED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "return_quote": "I would return voluntarily another evening for a short try at the lodge and to see whether he comes back, but I would not continue tonight or leave it running. I do not yet know whether the later choices will be demanding enough for me.",
+  "verdict": "mixed",
+  "qualifications": [
+    "sole after-panel desktop external control; context/order qualified, notrandomized/causal/HF ask",
+    "firstminute66.112late; pulses~3min; floor continuation notretention",
+    "reportstop935.876 differsraw935.875 by.001s; sourcepreserved",
+    "fournonblockinginputerrors incl unsupportedcheck; noTOOLrepair",
+    "28actualimageoutputs independentlybound singletonviewcurrent-wide; autodriverfirstminute notviewed",
+    "lodge/wandererreturnoutcome notobserved"
+  ],
+  "cleanup": {
+    "capturedPIDsAbsent": [
+      153,
+      401,
+      425,
+      1378,
+      1815,
+      2169,
+      2690,
+      4239,
+      4240,
+      4532,
+      5196,
+      5308,
+      6853,
+      7952,
+      10235,
+      11933,
+      17363,
+      23756,
+      26280,
+      28405,
+      30830,
+      35809,
+      99486,
+      99488,
+      99534,
+      99535,
+      99536,
+      99538,
+      99539,
+      99578,
+      99579,
+      99580,
+      99585,
+      99610
+    ],
+    "capturedProfilesAbsent": [
+      "/var/folders/6r/ypdjgl911p92261djn7bv_l40000gr/T/playwright_chromiumdev_profile-fcK9Qh"
+    ],
+    "portClosed": 20240,
+    "retainedPNGs": 2
+  }
+}

@@ -1,0 +1,204 @@
+{
+  "started": "2026-10-26T03:57:34.978032+00:00",
+  "ended": "2026-10-26T04:14:02.127101+00:00",
+  "status": "report-ready",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "floor_minutes": 15,
+  "ceiling_minutes": 25,
+  "device": "phone",
+  "url": "https://commonstead.adamwhite.work/",
+  "brief_sha256": "e23c442f799040e07037c4cfca62c3ce239309077fae4ea129efc8bec42662a4",
+  "release_before": {
+    "app": "0.2.0",
+    "framework": "3.0.0",
+    "commit": "24eaf9bf1d46f90c44466475562c2e575a960e18",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.2.0",
+    "framework": "3.0.0",
+    "commit": "24eaf9bf1d46f90c44466475562c2e575a960e18",
+    "dirty": false
+  },
+  "instrument_sha256": {
+    "/Users/abdul/code/.lab-scratch/playtest/lab-play-no-post.ts": "0eaec4fac67b7b3ff88b532072b27130f613524b01c913e941e2a83673e548d4",
+    "/Users/abdul/code/human-framework/scripts/lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "/Users/abdul/code/human-framework/scripts/lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "persona": "Rosa Alvarez",
+  "arm": "continued",
+  "report_sha256": "99ea702c12a50abc97ed9ed974b612b404a76f940d47f0a364ff95b39d5d11fa",
+  "raw_sha256": "9544acfdf884fde047daec1fb356aa1e6e7c95870ce351668d10f6b77250dcf9",
+  "stop_records": [
+    {
+      "t": "2026-10-26T04:12:53.863Z",
+      "elapsed_s": 910.858,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "The supplies stayed dry and the game ended. I am stopping after my fifteen minutes. The last part was waiting on the ending, not more play. I would close it now.",
+      "game_clock": null,
+      "engagement": null,
+      "reason": "FINISHED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    }
+  ],
+  "actual_image_events": [
+    {
+      "timestamp": "2026-10-26T03:58:01.073Z",
+      "call_id": "call_d19af994a21d4a028b6c81a43d9106b9",
+      "call_sha256": "63d9ac5f777c3a642334fbe66973855e1c173cd86904f2deb0331090d3ec7799",
+      "paths_unresolved_or_disallowed": false,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "recognized_single_unconditional_literal_call",
+      "screenshot_names": ["current-phone.png"]
+    },
+    {
+      "timestamp": "2026-10-26T03:59:02.318Z",
+      "call_id": "call_0761c0f2b8214de29cc4fcb91faf741e",
+      "call_sha256": "2f63a5dfca2c3c16c448b1615439a8d4c4b420b9f63bacda276ee234007ee594",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T03:59:42.439Z",
+      "call_id": "call_849d96ae92df418380a1a5d8de79f9da",
+      "call_sha256": "2f63a5dfca2c3c16c448b1615439a8d4c4b420b9f63bacda276ee234007ee594",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T04:02:15.746Z",
+      "call_id": "call_993b4c72257f4503ae3e80f1e4b88177",
+      "call_sha256": "2f63a5dfca2c3c16c448b1615439a8d4c4b420b9f63bacda276ee234007ee594",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T04:02:53.282Z",
+      "call_id": "call_cb6ce9c1b6954d5fa36d79e5bb058186",
+      "call_sha256": "1488ed6ed62264b3fedd20853641f3557da5f5c30f648228aceb9c72f05fe1f3",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T04:03:02.333Z",
+      "call_id": "call_b8e5e5a57fb24813b163dcdbeba4a2e5",
+      "call_sha256": "1488ed6ed62264b3fedd20853641f3557da5f5c30f648228aceb9c72f05fe1f3",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T04:04:44.024Z",
+      "call_id": "call_1033d0c3ec0e48aeb97e4458020d92a8",
+      "call_sha256": "2f63a5dfca2c3c16c448b1615439a8d4c4b420b9f63bacda276ee234007ee594",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T04:04:58.284Z",
+      "call_id": "call_3ad61ed146114350ba4dc47d3ad0c8c6",
+      "call_sha256": "1488ed6ed62264b3fedd20853641f3557da5f5c30f648228aceb9c72f05fe1f3",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T04:05:08.374Z",
+      "call_id": "call_5712c712f8ae4ce4b3f00e8c0d1da4c3",
+      "call_sha256": "1488ed6ed62264b3fedd20853641f3557da5f5c30f648228aceb9c72f05fe1f3",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T04:06:57.726Z",
+      "call_id": "call_40c4ab26800c4e36aad9a61d2f689770",
+      "call_sha256": "1488ed6ed62264b3fedd20853641f3557da5f5c30f648228aceb9c72f05fe1f3",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T04:08:06.510Z",
+      "call_id": "call_0d81807121ad4020bc28409011e67c7d",
+      "call_sha256": "2f63a5dfca2c3c16c448b1615439a8d4c4b420b9f63bacda276ee234007ee594",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T04:08:48.638Z",
+      "call_id": "call_8d873b1c648b4efba0251f554f82f727",
+      "call_sha256": "2f63a5dfca2c3c16c448b1615439a8d4c4b420b9f63bacda276ee234007ee594",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T04:10:09.486Z",
+      "call_id": "call_7a4e3b8d8b8342d5b153a18a405fb1c8",
+      "call_sha256": "2f63a5dfca2c3c16c448b1615439a8d4c4b420b9f63bacda276ee234007ee594",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    }
+  ],
+  "image_scope": "Actual safe tool evidence where present. Absence is unverified; self-reported viewing stays qualified.",
+  "feedback_scope": "API paths blocked by harness; no production feedback receipt or owner consent change authorized.",
+  "coordinator_limits": {
+    "history": "declared reentry; comparison unmatched after disk interruption",
+    "verdict": "mixed",
+    "timing": "want_quit281.502CONFUSED; ending656.113; final910.858FINISHED includes waiting, not retention",
+    "limits": "Declared fresh-game return after disk-forced interrupted continued exposure; own437.051s partial diary supplied, new15minute floor only. Unmatched history versus original free, which was a forced reading probe. First want_quit281.502CONFUSED, ending observed656.113; final910.858FINISHED includes ending inspection/waiting, not retention. Voluntary return conditional on larger screen; no phone return or leave-running. Ordinary Move to existing storehouse visibly assigned assembly and more workers; discoverability ask, not absent game ability. No right-click/drag proof. Exact24 clean before/after; both viewport image evidence retained separately.",
+    "original_report_rounding": "Report differs from raw times by1–3ms in places; raw wall-clock remains authoritative, original words unchanged."
+  }
+}

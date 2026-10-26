@@ -1,0 +1,85 @@
+{
+  "timestamp": "2026-10-26T04:09:10.444625+00:00",
+  "scope": "Coordinator inspected all complete exact owned call strings. Collector correctly leaves unsupported nested syntax unresolved. No partial regex or player claim used.",
+  "source_text_archive_sha256": "1fa3709ca5a4ca11e0b875e1416b3f7b92c5782b3e5864bbd0477575df34605c",
+  "complete_call_shape": "image((await tools.view_image({path: literal_owned_screenshot})).image_url);",
+  "events": [
+    {
+      "timestamp": "2026-10-26T03:16:08.517Z",
+      "call_id": "call_c1862c967f4f4edc8c7fe01c979adcdc",
+      "call_sha256": "7986f12feb76a8e5d1272989a284ff006a4eb448650dd29127202b25f0e4339e",
+      "image_returned": true,
+      "screenshot_name": "current-wide.png"
+    },
+    {
+      "timestamp": "2026-10-26T03:17:01.505Z",
+      "call_id": "call_e300eeb5ecf94a4bb99e23b151f96afc",
+      "call_sha256": "7986f12feb76a8e5d1272989a284ff006a4eb448650dd29127202b25f0e4339e",
+      "image_returned": true,
+      "screenshot_name": "current-wide.png"
+    },
+    {
+      "timestamp": "2026-10-26T03:17:58.441Z",
+      "call_id": "call_c4d765de3f454c07ae1ad78fcf703251",
+      "call_sha256": "7986f12feb76a8e5d1272989a284ff006a4eb448650dd29127202b25f0e4339e",
+      "image_returned": true,
+      "screenshot_name": "current-wide.png"
+    },
+    {
+      "timestamp": "2026-10-26T03:19:00.986Z",
+      "call_id": "call_c90a71b4e0a746d390056e53581ff58d",
+      "call_sha256": "7986f12feb76a8e5d1272989a284ff006a4eb448650dd29127202b25f0e4339e",
+      "image_returned": true,
+      "screenshot_name": "current-wide.png"
+    },
+    {
+      "timestamp": "2026-10-26T03:21:15.456Z",
+      "call_id": "call_3079ddb585c2418e95bae5f55a7c8b5b",
+      "call_sha256": "3777fa64525a6856327c34a634a9ac80f674afee31a90f72fd777775a99d9449",
+      "image_returned": true,
+      "screenshot_name": "current-phone.png"
+    },
+    {
+      "timestamp": "2026-10-26T03:21:25.618Z",
+      "call_id": "call_1f82841aaabe4f88a741ac20e5696a40",
+      "call_sha256": "3777fa64525a6856327c34a634a9ac80f674afee31a90f72fd777775a99d9449",
+      "image_returned": true,
+      "screenshot_name": "current-phone.png"
+    },
+    {
+      "timestamp": "2026-10-26T03:22:20.236Z",
+      "call_id": "call_f2b824d770cc4e288f14866edaaeb588",
+      "call_sha256": "7986f12feb76a8e5d1272989a284ff006a4eb448650dd29127202b25f0e4339e",
+      "image_returned": true,
+      "screenshot_name": "current-wide.png"
+    },
+    {
+      "timestamp": "2026-10-26T03:23:15.014Z",
+      "call_id": "call_2091f95c94d84410b7b06595d7d03e2d",
+      "call_sha256": "7986f12feb76a8e5d1272989a284ff006a4eb448650dd29127202b25f0e4339e",
+      "image_returned": true,
+      "screenshot_name": "current-wide.png"
+    },
+    {
+      "timestamp": "2026-10-26T03:26:21.789Z",
+      "call_id": "call_1b5e76d662204930b40ef765ec5125c0",
+      "call_sha256": "7986f12feb76a8e5d1272989a284ff006a4eb448650dd29127202b25f0e4339e",
+      "image_returned": true,
+      "screenshot_name": "current-wide.png"
+    },
+    {
+      "timestamp": "2026-10-26T03:28:58.691Z",
+      "call_id": "call_9f85b729c0614454acf455fbf8dd452a",
+      "call_sha256": "7986f12feb76a8e5d1272989a284ff006a4eb448650dd29127202b25f0e4339e",
+      "image_returned": true,
+      "screenshot_name": "current-wide.png"
+    },
+    {
+      "timestamp": "2026-10-26T03:30:27.123Z",
+      "call_id": "call_642ba118f369414aa69221cee6d56570",
+      "call_sha256": "7986f12feb76a8e5d1272989a284ff006a4eb448650dd29127202b25f0e4339e",
+      "image_returned": true,
+      "screenshot_name": "current-wide.png"
+    }
+  ]
+}

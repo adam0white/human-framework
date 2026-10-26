@@ -1,0 +1,598 @@
+{
+  "updated": "2026-10-26T17:15:44.598266+00:00",
+  "status": "partial collection; no round closure or fix acceptance",
+  "sessions": [
+    {
+      "persona": "Jonas Berg",
+      "arm": "free",
+      "session": "jonas-free"
+    },
+    {
+      "persona": "Jonas Berg",
+      "arm": "continued",
+      "session": "jonas-continued"
+    },
+    {
+      "persona": "Rosa Alvarez",
+      "arm": "free",
+      "session": "rosa-free"
+    },
+    {
+      "persona": "Rosa Alvarez",
+      "arm": "continued",
+      "session": "rosa-continued"
+    },
+    {
+      "persona": "Emre Kaya",
+      "arm": "free",
+      "session": "emre-free"
+    },
+    {
+      "persona": "Emre Kaya",
+      "arm": "continued",
+      "session": "emre-continued"
+    },
+    {
+      "persona": "Maya Chen",
+      "arm": "free",
+      "session": "maya-free"
+    },
+    {
+      "persona": "Maya Chen",
+      "arm": "continued",
+      "session": "maya-continued"
+    },
+    {
+      "persona": "Nia Okafor",
+      "arm": "free",
+      "session": "nia-free"
+    },
+    {
+      "persona": "Nia Okafor",
+      "arm": "continued",
+      "session": "nia-continued"
+    },
+    {
+      "persona": "Mei Tan",
+      "arm": "free",
+      "session": "mei-free"
+    },
+    {
+      "persona": "Mei Tan",
+      "arm": "continued",
+      "session": "mei-continued"
+    },
+    {
+      "persona": "Samir Haddad",
+      "arm": "free",
+      "session": "samir-free"
+    },
+    {
+      "persona": "Samir Haddad",
+      "arm": "continued",
+      "session": "samir-continued"
+    },
+    {
+      "persona": "Tessa Williams",
+      "arm": "free",
+      "session": "tessa-free"
+    },
+    {
+      "persona": "Tessa Williams",
+      "arm": "continued",
+      "session": "tessa-continued"
+    },
+    {
+      "persona": "Pavel Novak",
+      "arm": "free",
+      "session": "pavel-free"
+    },
+    {
+      "persona": "Pavel Novak",
+      "arm": "continued",
+      "session": "pavel-continued"
+    },
+    {
+      "persona": "Leila Mansour",
+      "arm": "free",
+      "session": "leila-free"
+    },
+    {
+      "persona": "Leila Mansour",
+      "arm": "continued",
+      "session": "leila-continued"
+    },
+    {
+      "persona": "Aisha Rahman",
+      "arm": "free",
+      "session": "aisha-free"
+    },
+    {
+      "persona": "Aisha Rahman",
+      "arm": "continued",
+      "session": "aisha-continued"
+    },
+    {
+      "persona": "Diego Silva",
+      "arm": "free",
+      "session": "diego-free"
+    },
+    {
+      "persona": "Diego Silva",
+      "arm": "continued",
+      "session": "diego-continued"
+    },
+    {
+      "persona": "Alina Popescu",
+      "arm": "free",
+      "session": "alina-free"
+    },
+    {
+      "persona": "Alina Popescu",
+      "arm": "continued",
+      "session": "alina-continued"
+    },
+    {
+      "persona": "Julio Romero",
+      "arm": "free",
+      "session": "julio-free"
+    },
+    {
+      "persona": "Julio Romero",
+      "arm": "continued",
+      "session": "julio-continued"
+    }
+  ],
+  "original_files": [
+    {
+      "path": "reports/jonas-free.md",
+      "sha256": "f3ea010959d3057599baf6b626d0911e61c44e18f34595827822333a9c55e96f",
+      "bytes": 10376
+    },
+    {
+      "path": "raw/jonas-free.jsonl",
+      "sha256": "9f6659b97a9d3170b35132cfcebe656b6ec834914f6a6003b3e2b3b58f74a24f",
+      "bytes": 13566
+    },
+    {
+      "path": "reports/jonas-continued.md",
+      "sha256": "d3b6d18ba3cb8d92f0049e19223e47b24ff89669919787fd692052a003d9ab48",
+      "bytes": 15383
+    },
+    {
+      "path": "raw/jonas-continued.jsonl",
+      "sha256": "9d3eaf0963e61da3bf7187194a48bbc97c1f6f392917f277938563c50ab5f41c",
+      "bytes": 28958
+    },
+    {
+      "path": "reports/rosa-free.md",
+      "sha256": "32d96c759d35eb8347ad2109b8737b1940c04748ae9055107f8836e8d53b8c06",
+      "bytes": 11076
+    },
+    {
+      "path": "raw/rosa-free.jsonl",
+      "sha256": "7409ee75b676fd183fdf8f886932a8475a475021aa84524f971dbc3acecfdcd7",
+      "bytes": 11248
+    },
+    {
+      "path": "reports/rosa-continued.md",
+      "sha256": "99ea702c12a50abc97ed9ed974b612b404a76f940d47f0a364ff95b39d5d11fa",
+      "bytes": 13550
+    },
+    {
+      "path": "raw/rosa-continued.jsonl",
+      "sha256": "9544acfdf884fde047daec1fb356aa1e6e7c95870ce351668d10f6b77250dcf9",
+      "bytes": 29849
+    },
+    {
+      "path": "reports/emre-free.md",
+      "sha256": "7198ca5c4474b1d425048627ac4317476973e37a1704d8ba2d63862e7dc70391",
+      "bytes": 8622
+    },
+    {
+      "path": "raw/emre-free.jsonl",
+      "sha256": "3c1d86e8ff009bd8983d7efc8e7cdb2120bcae7a500cc77e25b48c082ee4c9c5",
+      "bytes": 17022
+    },
+    {
+      "path": "reports/emre-continued.md",
+      "sha256": "144a7f2f94e18c8185e2abc09317f28633a9f8e43027f48fe2316c1344066cea",
+      "bytes": 11899
+    },
+    {
+      "path": "raw/emre-continued.jsonl",
+      "sha256": "8606c40232f1a06d5231d93b5daf476ad7d9f77322017bc454a88082bdfb5499",
+      "bytes": 33241
+    },
+    {
+      "path": "reports/maya-free.md",
+      "sha256": "1843258a5d42ecceaee40facf9bb59d06fb94394c36ecd8dd515feb3bc470084",
+      "bytes": 8694
+    },
+    {
+      "path": "raw/maya-free.jsonl",
+      "sha256": "06eb8dd41ce91c742ae6a6a237ca7d6ca7f9052d6bd18a433cd23c1ad4dbfa93",
+      "bytes": 10278
+    },
+    {
+      "path": "reports/maya-continued.md",
+      "sha256": "f6cb187ba8f0b6afed07cce0911e0a30e038e6393859e5bb6db37efba1f249a9",
+      "bytes": 12697
+    },
+    {
+      "path": "raw/maya-continued.jsonl",
+      "sha256": "a4bb4f7d0571a8bde472847db0b968aa827630c47cd9731f938ee450f980fa3b",
+      "bytes": 28942
+    },
+    {
+      "path": "reports/nia-free.md",
+      "sha256": "de96702bf45b89226467a142fa6ce6bdf5f37fa41f0cbc0ece97a023eed34939",
+      "bytes": 9617
+    },
+    {
+      "path": "raw/nia-free.jsonl",
+      "sha256": "c2cb9f3dfb5a19b4546e3b25e4211336068be6cafd40e5f719c05ea5de08a8f5",
+      "bytes": 13001
+    },
+    {
+      "path": "reports/nia-continued.md",
+      "sha256": "8912c83d7fe4ef12da95d92a00b35e2c566d722114cc4a55969bd87ef33f2fa7",
+      "bytes": 13852
+    },
+    {
+      "path": "raw/nia-continued.jsonl",
+      "sha256": "7ba3259073d69d5840e0a8931521da5bc106eaf587cd08c1f9c1e8e473aa0bd8",
+      "bytes": 30594
+    },
+    {
+      "path": "reports/mei-free.md",
+      "sha256": "3dc723ddf0ea9035c10c2e9f030ee15e3923893436258bd4a3714d36beca4fd0",
+      "bytes": 10079
+    },
+    {
+      "path": "raw/mei-free.jsonl",
+      "sha256": "0779150431517fd5ab876fb3b998e033cd2e1b3db1ea0972377d7657d06133c9",
+      "bytes": 17724
+    },
+    {
+      "path": "reports/mei-continued.md",
+      "sha256": "d743ee8f752235f34f23cdf748c5cb62377d4c4017df55e5b500ce29cb6a6bbf",
+      "bytes": 12979
+    },
+    {
+      "path": "raw/mei-continued.jsonl",
+      "sha256": "a1b128ed5ac18959b41a0b7fd2d87cad3c1e9f19efa0365e31b42ca55f3270d4",
+      "bytes": 27205
+    },
+    {
+      "path": "reports/samir-free.md",
+      "sha256": "7fdd7572996d40a40e8ea8e90bb5402bf72fed79ef9e00c9faeae952738a0065",
+      "bytes": 7314
+    },
+    {
+      "path": "raw/samir-free.jsonl",
+      "sha256": "1e8dd2caac9672565fcad6ae8f6b4f9fe76680d58c93b49a4a5d0e2dabb131d4",
+      "bytes": 48145
+    },
+    {
+      "path": "reports/samir-continued.md",
+      "sha256": "eab5b456dd0c0e96dbc082208807f2762f3b0c80cface4411ba6db466b76054d",
+      "bytes": 12045
+    },
+    {
+      "path": "raw/samir-continued.jsonl",
+      "sha256": "3bcc1afe9c9a1ecf882dfbbe3bc6c63f28f1557ef5fa6fc4b4b0d456aa444c44",
+      "bytes": 62026
+    },
+    {
+      "path": "reports/tessa-free.md",
+      "sha256": "7902cab020a1a7c055aa0ed27f839b1f48255cb5e238867c4e1869365f9826cf",
+      "bytes": 8278
+    },
+    {
+      "path": "raw/tessa-free.jsonl",
+      "sha256": "0e3e477cf4ee2fe45a037ed38cee86d567d6e223db3870821ecd9a629f9991c1",
+      "bytes": 8662
+    },
+    {
+      "path": "reports/tessa-continued.md",
+      "sha256": "9e3ac45fb9248e6830f9ff44ec52334884cdbb226eb7ab20d9f6ee5f1fda37ed",
+      "bytes": 11330
+    },
+    {
+      "path": "raw/tessa-continued.jsonl",
+      "sha256": "c5c5add16c03f2b256c2aaa3714e58aa9764a158abeb1f87870b08f22b2a0061",
+      "bytes": 22748
+    },
+    {
+      "path": "reports/pavel-free.md",
+      "sha256": "295d9f7a380c8c9aec615c1c8cac332681f14b28946878ca8de5de0bcef07c7b",
+      "bytes": 8746
+    },
+    {
+      "path": "raw/pavel-free.jsonl",
+      "sha256": "df548698833c488cf60fdddafea34b77684d3103140d59e8aedd0296ed86b118",
+      "bytes": 11277
+    },
+    {
+      "path": "reports/pavel-continued.md",
+      "sha256": "5727a7176d7d966a17331f05f3221a784229387af3f4b6f64471240774fd5be7",
+      "bytes": 11949
+    },
+    {
+      "path": "raw/pavel-continued.jsonl",
+      "sha256": "b558be45c63b2acce461948b502d941d59656ee5312b856006028fbc1e5226e2",
+      "bytes": 21866
+    },
+    {
+      "path": "reports/leila-free.md",
+      "sha256": "0569b2d098b49a1bedd86722e503af3b071feaa39a6c2d713c8bafd545fc8c43",
+      "bytes": 8930
+    },
+    {
+      "path": "raw/leila-free.jsonl",
+      "sha256": "51457ddcb67f7f2a2c875eb2b4ef0d129e47ffd8b7fa476da7d966a17ec396f7",
+      "bytes": 18705
+    },
+    {
+      "path": "reports/leila-continued.md",
+      "sha256": "6c457098b742dd4f0584edcb4089b78d3e2bd03404d1d3d4f6d39f214f9d634d",
+      "bytes": 12990
+    },
+    {
+      "path": "raw/leila-continued.jsonl",
+      "sha256": "54d41d6467ca7a8526b07008a53b49cf3d17db8d200921ecfedbeb815622ded9",
+      "bytes": 57819
+    },
+    {
+      "path": "reports/aisha-free.md",
+      "sha256": "7ad8873698b2c95a7f1f7305a80cb9f9aaf8f711896460d59aa8edeeded6c844",
+      "bytes": 12575
+    },
+    {
+      "path": "raw/aisha-free.jsonl",
+      "sha256": "0b995d266f137a241738ac8dbc1e7fc243e9e51515154a3528e6a7c9a160d833",
+      "bytes": 37266
+    },
+    {
+      "path": "reports/aisha-continued.md",
+      "sha256": "80771e1058992c10911a673f2002a611c9a3d06a74204f864f22079381f31918",
+      "bytes": 14367
+    },
+    {
+      "path": "raw/aisha-continued.jsonl",
+      "sha256": "91e6c8b06f60e68f9e3efd27aba34ec28ed7857d0a9356f1a2ecc8f1551399e5",
+      "bytes": 61491
+    },
+    {
+      "path": "reports/diego-free.md",
+      "sha256": "3aa0beba86230638238024aa92b51775c96f0f3a2d916a32f56e1ba0c92fa62e",
+      "bytes": 7797
+    },
+    {
+      "path": "raw/diego-free.jsonl",
+      "sha256": "39f27b674ef5b32cc0e0272484075b2c0a5f61a8ae338d88746ceec0138515cb",
+      "bytes": 10324
+    },
+    {
+      "path": "reports/diego-continued.md",
+      "sha256": "5f4d215ba7999b8840d5f7975a766ddd9641c83f0f1a3c3f36805d75dce8fd67",
+      "bytes": 13909
+    },
+    {
+      "path": "raw/diego-continued.jsonl",
+      "sha256": "5c8b30a50a41750747ff6640550762bf34c8d237dc1804094373dbb5ad115bdd",
+      "bytes": 33601
+    },
+    {
+      "path": "reports/alina-free.md",
+      "sha256": "e4e9c1c56da6cc60be179d0c529019484ae8daa38ad6fb5acc7f0a770b36fcc2",
+      "bytes": 8524
+    },
+    {
+      "path": "raw/alina-free.jsonl",
+      "sha256": "e9f56d0a0796b36895047022cee7ba0aa9282922a199e4234f1bd565b7e0af9d",
+      "bytes": 34941
+    },
+    {
+      "path": "reports/alina-continued.md",
+      "sha256": "45c9d9965c7a7ef46301da97abe74577d8f0dd496984ba150be1d5545ab34592",
+      "bytes": 7481
+    },
+    {
+      "path": "raw/alina-continued.jsonl",
+      "sha256": "95e12abcb347a45ade6785562892775585e46ff7023e026b49442d6778a6656b",
+      "bytes": 48643
+    },
+    {
+      "path": "reports/julio-free.md",
+      "sha256": "cf8ce03c28f2f0b872d29e07ed53795344c5b25fb093e8789b6994ed7e9c9159",
+      "bytes": 9206
+    },
+    {
+      "path": "raw/julio-free.jsonl",
+      "sha256": "f87825387fad9d3fb26f1a640eab9f74da640ecda04302e0a23cefa4f1862715",
+      "bytes": 24458
+    },
+    {
+      "path": "reports/julio-continued.md",
+      "sha256": "eec674e4d1ca470907542f83a2d217add2587a869c43a6d94566a921a7978d6e",
+      "bytes": 6776
+    },
+    {
+      "path": "raw/julio-continued.jsonl",
+      "sha256": "9feab1dec5e314e43ae34fe16cc04a96fa2f69001c46feaf919b255621db5192",
+      "bytes": 43139
+    }
+  ],
+  "derived_files": [
+    {
+      "path": "sessions/jonas-free.json",
+      "sha256": "a5d49ffea3a5c2d1c875d43e06415bbb77ad3f811cb36e52904da6ab628c975a",
+      "bytes": 5289,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/jonas-continued.json",
+      "sha256": "b0dc05da2d9486c764ce591d5c1d98c6808c0d46bab3a7ecd637f8d3015fdf79",
+      "bytes": 7833,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/rosa-free.json",
+      "sha256": "3d1562633035e8b6adbb999d933759361696d1af1acf9109fab5d79a13f38254",
+      "bytes": 4794,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/rosa-continued.json",
+      "sha256": "55b5131edc0f1ea35927323a00f76fd80cde4ff477b00260642fc8575b3fcb44",
+      "bytes": 9608,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/emre-free.json",
+      "sha256": "5bdb45e7bb78bae6ea598e0ecd59132a3327856cb83ede1a03e5834bd0c37c28",
+      "bytes": 6422,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/emre-continued.json",
+      "sha256": "988466e23a59ef43278f8c3dd3ff823e3457bbbbf8e6ea8fcea1cc76b67c1331",
+      "bytes": 10565,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/maya-free.json",
+      "sha256": "2cfbe52bbad73ec9c84a8e61e6823b2f868f516702480c880f63855ca37bbf71",
+      "bytes": 7059,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/maya-continued.json",
+      "sha256": "45473a58cbc4502ebff4718ace10c3c4ed8ff4b816a077c39168d8d887569a85",
+      "bytes": 10582,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/nia-free.json",
+      "sha256": "89ba65b903b00b892c7184070efb6cce991149bd54db8c39191db3efaba31891",
+      "bytes": 7215,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/nia-continued.json",
+      "sha256": "8915129ee12ccc1d6d7ff95c74dff270d91b7e0e4ba3781360671014bafe0675",
+      "bytes": 12389,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/mei-free.json",
+      "sha256": "09b49da4f5b605f55d20820e3a1b095786e77cf2e3b7b379754244ac8064882e",
+      "bytes": 8789,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/mei-continued.json",
+      "sha256": "7d69661a0d0ec10b8a7cd07f8b13bf2fcc83c6fe46d01fe021edeb3c9b90ff31",
+      "bytes": 12243,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/samir-free.json",
+      "sha256": "0c0f412ebf7fe98eda069ddf1a090d2f475b3afc19103b3c56fab83b5192c8c9",
+      "bytes": 5544,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/samir-continued.json",
+      "sha256": "4ca795d09aeea8e5bfb0731142a51c0ccca6af9838661cab64496073e122e64f",
+      "bytes": 5981,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/tessa-free.json",
+      "sha256": "4a2b0e4a89201c9d61fcb01131a1ce32e531a24eacb57da5c7cf6e15a37d5a69",
+      "bytes": 6115,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/tessa-continued.json",
+      "sha256": "2e62b53e2db27f38e7aa0c550e954f171f974b066c7ced20a80f40394325d2de",
+      "bytes": 10159,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/pavel-free.json",
+      "sha256": "fd671cfa245f1ad8a9ab68993010e328786e15ac5e21c4d4a3627618557d42d7",
+      "bytes": 7893,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/pavel-continued.json",
+      "sha256": "10704a77970e4110c42dd28bb9517bede2aee42d8e84c0ac6a9bc3f63e1ed7e5",
+      "bytes": 9759,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/leila-free.json",
+      "sha256": "eaf3ea4d754c824a3a3c35dcac1c43e34ed68893f25ef33ee8c143001d62548c",
+      "bytes": 5910,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/leila-continued.json",
+      "sha256": "93dc17c351e5092760f7417af3aa7e48c13ad2a94289ef80fcb7bac800624609",
+      "bytes": 6617,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/aisha-free.json",
+      "sha256": "a6abc626a362010b2fcfde7f602866e0b9eaebc35ed160b2751c22e163ba2b35",
+      "bytes": 5839,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/aisha-continued.json",
+      "sha256": "7575422bbe6a664d523e5ea568170613bf3337d98303ce51aa33152b89086586",
+      "bytes": 6453,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/diego-free.json",
+      "sha256": "1a6c1d3b291b2ee04e0b6f8be476b71b798dfb776a5a22d60e03d0b844b30b3a",
+      "bytes": 6893,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/diego-continued.json",
+      "sha256": "22c3a74228285c4c42ef041b6a9c93032b1cc8826a56b3e6757820931625bc00",
+      "bytes": 11258,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/alina-free.json",
+      "sha256": "19632fd76281f714038454cb70699585e75cef5f6a58cc0913027dde30860e5e",
+      "bytes": 5381,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/alina-continued.json",
+      "sha256": "9f7cf9ae8ae58c0c671974cb1ab798fbc10a5a91c7d017e20e9118025df3dc3e",
+      "bytes": 5795,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/julio-free.json",
+      "sha256": "4cc8227533529f4fab0aa51f3ee085b88ad49d5a2adf13c56ac67ce7d53b1162",
+      "bytes": 5953,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    },
+    {
+      "path": "sessions/julio-continued.json",
+      "sha256": "7d2d47115fa346122fadf6c003095ad86c59b46fa2b713da21f0c634261f2ba6",
+      "bytes": 5405,
+      "kind": "coordinator-derived metadata; previous changed revisions retained privately"
+    }
+  ]
+}

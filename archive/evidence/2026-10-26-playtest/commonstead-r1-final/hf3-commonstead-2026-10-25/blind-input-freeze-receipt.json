@@ -1,0 +1,23 @@
+{
+  "stage": "inputs and mapping frozen before reader dispatch",
+  "utc": "2026-10-26T17:39:32.317025+00:00",
+  "partial_metadata_blind": true,
+  "counts": {
+    "main_verified": 28,
+    "expected_main": 28,
+    "additional_verified": true,
+    "control_verified": true,
+    "expected_total": 30,
+    "raw_rows_verified": 3155,
+    "reaction_rows_verified": 595,
+    "qualification": "28main source observations are not28clean protocols; private exclusions retained, no taste/causal inference",
+    "errors": []
+  },
+  "sha256": {
+    "reader/input.json": "30a8f7227e7c0179782bd3b19e719f8fdc2a1c0def51324b67cc1c055836cd71",
+    "reader/brief.txt": "0bf5149c2d6233a16e00fcba97e8704de0a3192bbc44dbc5044d1eb7df851e52",
+    "private/mapping.json": "89694d4915047dc37825af86a521746510b330463f91580bff3f851d86285770",
+    "private/selection-plan.json": "3bf93f97a410ef798cd93f22fc6ed8dca452c3b2a4d8f41938e645432397fa5a"
+  },
+  "generator_sha256": "c428ddda6f9f6473e559717dda38ce72e04c669d8ab90a22dc993c0592af9b97"
+}

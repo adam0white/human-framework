@@ -1,0 +1,131 @@
+{
+  "started": "2026-10-26T14:01:54.750608+00:00",
+  "ended": "2026-10-26T14:06:32.884140+00:00",
+  "status": "report-ready",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "floor_minutes": 0,
+  "ceiling_minutes": 25,
+  "device": "phone",
+  "url": "https://commonstead.adamwhite.work/",
+  "brief_sha256": "9821958118a63671c99f3196cf41ca069a86b092d11bc97adad30f6c9644da93",
+  "release_before": {
+    "app": "0.2.0",
+    "framework": "3.0.0",
+    "commit": "24eaf9bf1d46f90c44466475562c2e575a960e18",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.2.0",
+    "framework": "3.0.0",
+    "commit": "24eaf9bf1d46f90c44466475562c2e575a960e18",
+    "dirty": false
+  },
+  "instrument_sha256": {
+    "/Users/abdul/code/.lab-scratch/playtest/lab-play-no-post.ts": "0eaec4fac67b7b3ff88b532072b27130f613524b01c913e941e2a83673e548d4",
+    "/Users/abdul/code/human-framework/scripts/lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "/Users/abdul/code/human-framework/scripts/lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "persona": "Nia Okafor",
+  "arm": "free",
+  "report_sha256": "de96702bf45b89226467a142fa6ce6bdf5f37fa41f0cbc0ece97a023eed34939",
+  "raw_sha256": "c2cb9f3dfb5a19b4546e3b25e4211336068be6cafd40e5f719c05ea5de08a8f5",
+  "stop_records": [
+    {
+      "t": "2026-10-26T14:05:40.354Z",
+      "elapsed_s": 210.536,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "Stopping after Dai wrote the inspection card. The quit wish did not pass. I would close it, not leave it running, and I would not return voluntarily tonight or plan another evening. I liked his admission, but I wanted to answer him myself. Feedback marked I'm stopping and filled the box itself. Nothing typed or submitted; consent unchanged.",
+      "game_clock": "2:45",
+      "engagement": null,
+      "reason": "TASTE",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    }
+  ],
+  "actual_image_events": [
+    {
+      "timestamp": "2026-10-26T14:02:22.322Z",
+      "call_id": "call_421256a8cf714d8ab3d70eee47c097c5",
+      "call_sha256": "d79775edca3fde54c7f2df6c567679fe170d9a856e2b0a35564efbca8db07dc9",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T14:02:55.758Z",
+      "call_id": "call_3cf15f84c50a40128f5edd39c354b3b2",
+      "call_sha256": "d79775edca3fde54c7f2df6c567679fe170d9a856e2b0a35564efbca8db07dc9",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T14:03:40.516Z",
+      "call_id": "call_6d7bcb79474e468eaafa77120004e806",
+      "call_sha256": "d79775edca3fde54c7f2df6c567679fe170d9a856e2b0a35564efbca8db07dc9",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T14:03:49.612Z",
+      "call_id": "call_04e19441afa245c38e8f02aa04df1319",
+      "call_sha256": "d79775edca3fde54c7f2df6c567679fe170d9a856e2b0a35564efbca8db07dc9",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T14:05:02.747Z",
+      "call_id": "call_2c8185f4a46e4c58a2648a5e43399c19",
+      "call_sha256": "d79775edca3fde54c7f2df6c567679fe170d9a856e2b0a35564efbca8db07dc9",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    }
+  ],
+  "image_scope": "Actual safe tool evidence where present. Absence is unverified; self-reported viewing stays qualified.",
+  "feedback_scope": "API paths blocked by harness; no production feedback receipt or owner consent change authorized.",
+  "coordinator_limits": {
+    "forced": false,
+    "disposition": "Natural TASTE persistentleavewish afterDaiinspectioncard; nofuture/currenttonight/unattended.",
+    "verdict": "quit",
+    "limits": "Standingtester firstCommonstead visit, sameimmutable selectedpregamehistory for pairedCONT; noFREEwordsleaked. Natural TASTE rawstop210.536/report210.537, wish190.337/report190.338persisted; no storehouse/storm/completedrun. Firstminute65.042late; pulse182.844engagement2. All10rawreactionwords fullunchanged inreport; minorreporttimestampdifferences retained. Fiveactualdeliveredphoneimages360x690 manuallybound toexactunconditionalnestedcalls; automaticparserunresolved preserved, automaticminuteunseen. No1280x800before5minnaturalstop; CONTmustcoverremainingviewport. OrdinarypositiontapNoraused; additive-selection learned. Daiadmission liked, firstcollaborationinstructions confused, retryduringbreak producedactualinspectioncard/Norafollowthrough and partlyclearedruleconfusion. Exacteligibility/needanotherbreaknotestablished, do notinferhiddenstate orremoveautonomy/timecost. Quitwish persisted despiteactualfollowthrough; wantedreplychoice and notmoreshufflingwork, nofutureevening/unattended. Phoneworkshopthinstrip/scrolledsentencefragments observed, severaldrivertextonlysegments explicitlylabelled. OnecurlyapostropheFeedbacktapmiss correctedusinglistedstraightapostrophe, notdriverblock/forced. BothquietFeedbackchipslocal/autofillednoteitself, no typing/Submit/consent/productionnote. Exact24eaf9b cleanHF3 beforeafter/exit0; driver/testerabsent/profileempty/portclosed. Target2026-10-27.",
+    "raw_stop": {
+      "t": "2026-10-26T14:05:40.354Z",
+      "elapsed_s": 210.536,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "Stopping after Dai wrote the inspection card. The quit wish did not pass. I would close it, not leave it running, and I would not return voluntarily tonight or plan another evening. I liked his admission, but I wanted to answer him myself. Feedback marked I'm stopping and filled the box itself. Nothing typed or submitted; consent unchanged.",
+      "game_clock": "2:45",
+      "engagement": null,
+      "reason": "TASTE",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    },
+    "public_report": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/nia-free.md",
+    "public_raw": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/nia-free.jsonl"
+  }
+}

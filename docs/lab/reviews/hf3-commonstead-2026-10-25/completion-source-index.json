@@ -1,0 +1,892 @@
+{
+  "created": "2026-10-26T17:49:33.638966+00:00",
+  "original_lineages": [
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/README.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/README.md",
+      "originalSHA256": "77e27b5a2f940c97bf7726b516e43b505346b1e265ad19894d748f1b2abc663c",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/README.md",
+      "publicReadableSHA256": "4bfb6ffceaa16463584513dfe6c0b934413947b34e53548518e937f4fcc58994"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/method-clarifications.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/method-clarifications.md",
+      "originalSHA256": "f6a6191dadc089ac073b46cd00168cf4c37ee1a669c5f3ebb1402876963be375",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/method-clarifications.md",
+      "publicReadableSHA256": "f6a6191dadc089ac073b46cd00168cf4c37ee1a669c5f3ebb1402876963be375"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/raw/aisha-continued.jsonl",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/aisha-continued.jsonl",
+      "originalSHA256": "91e6c8b06f60e68f9e3efd27aba34ec28ed7857d0a9356f1a2ecc8f1551399e5",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/raw/aisha-continued.jsonl",
+      "publicReadableSHA256": "91e6c8b06f60e68f9e3efd27aba34ec28ed7857d0a9356f1a2ecc8f1551399e5"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/raw/aisha-free.jsonl",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/aisha-free.jsonl",
+      "originalSHA256": "0b995d266f137a241738ac8dbc1e7fc243e9e51515154a3528e6a7c9a160d833",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/raw/aisha-free.jsonl",
+      "publicReadableSHA256": "0b995d266f137a241738ac8dbc1e7fc243e9e51515154a3528e6a7c9a160d833"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/raw/alina-continued.jsonl",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/alina-continued.jsonl",
+      "originalSHA256": "95e12abcb347a45ade6785562892775585e46ff7023e026b49442d6778a6656b",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/raw/alina-continued.jsonl",
+      "publicReadableSHA256": "95e12abcb347a45ade6785562892775585e46ff7023e026b49442d6778a6656b"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/raw/alina-free.jsonl",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/alina-free.jsonl",
+      "originalSHA256": "e9f56d0a0796b36895047022cee7ba0aa9282922a199e4234f1bd565b7e0af9d",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/raw/alina-free.jsonl",
+      "publicReadableSHA256": "e9f56d0a0796b36895047022cee7ba0aa9282922a199e4234f1bd565b7e0af9d"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/raw/diego-continued.jsonl",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/diego-continued.jsonl",
+      "originalSHA256": "5c8b30a50a41750747ff6640550762bf34c8d237dc1804094373dbb5ad115bdd",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/raw/diego-continued.jsonl",
+      "publicReadableSHA256": "5c8b30a50a41750747ff6640550762bf34c8d237dc1804094373dbb5ad115bdd"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/raw/diego-free.jsonl",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/diego-free.jsonl",
+      "originalSHA256": "39f27b674ef5b32cc0e0272484075b2c0a5f61a8ae338d88746ceec0138515cb",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/raw/diego-free.jsonl",
+      "publicReadableSHA256": "39f27b674ef5b32cc0e0272484075b2c0a5f61a8ae338d88746ceec0138515cb"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/raw/emre-continued.jsonl",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/emre-continued.jsonl",
+      "originalSHA256": "8606c40232f1a06d5231d93b5daf476ad7d9f77322017bc454a88082bdfb5499",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/raw/emre-continued.jsonl",
+      "publicReadableSHA256": "8606c40232f1a06d5231d93b5daf476ad7d9f77322017bc454a88082bdfb5499"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/raw/emre-free.jsonl",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/emre-free.jsonl",
+      "originalSHA256": "3c1d86e8ff009bd8983d7efc8e7cdb2120bcae7a500cc77e25b48c082ee4c9c5",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/raw/emre-free.jsonl",
+      "publicReadableSHA256": "3c1d86e8ff009bd8983d7efc8e7cdb2120bcae7a500cc77e25b48c082ee4c9c5"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/raw/jonas-continued.jsonl",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/jonas-continued.jsonl",
+      "originalSHA256": "9d3eaf0963e61da3bf7187194a48bbc97c1f6f392917f277938563c50ab5f41c",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/raw/jonas-continued.jsonl",
+      "publicReadableSHA256": "9d3eaf0963e61da3bf7187194a48bbc97c1f6f392917f277938563c50ab5f41c"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/raw/jonas-free.jsonl",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/jonas-free.jsonl",
+      "originalSHA256": "9f6659b97a9d3170b35132cfcebe656b6ec834914f6a6003b3e2b3b58f74a24f",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/raw/jonas-free.jsonl",
+      "publicReadableSHA256": "9f6659b97a9d3170b35132cfcebe656b6ec834914f6a6003b3e2b3b58f74a24f"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/raw/julio-continued.jsonl",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/julio-continued.jsonl",
+      "originalSHA256": "9feab1dec5e314e43ae34fe16cc04a96fa2f69001c46feaf919b255621db5192",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/raw/julio-continued.jsonl",
+      "publicReadableSHA256": "9feab1dec5e314e43ae34fe16cc04a96fa2f69001c46feaf919b255621db5192"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/raw/julio-free.jsonl",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/julio-free.jsonl",
+      "originalSHA256": "f87825387fad9d3fb26f1a640eab9f74da640ecda04302e0a23cefa4f1862715",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/raw/julio-free.jsonl",
+      "publicReadableSHA256": "f87825387fad9d3fb26f1a640eab9f74da640ecda04302e0a23cefa4f1862715"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/raw/leila-continued.jsonl",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/leila-continued.jsonl",
+      "originalSHA256": "54d41d6467ca7a8526b07008a53b49cf3d17db8d200921ecfedbeb815622ded9",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/raw/leila-continued.jsonl",
+      "publicReadableSHA256": "54d41d6467ca7a8526b07008a53b49cf3d17db8d200921ecfedbeb815622ded9"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/raw/leila-free.jsonl",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/leila-free.jsonl",
+      "originalSHA256": "51457ddcb67f7f2a2c875eb2b4ef0d129e47ffd8b7fa476da7d966a17ec396f7",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/raw/leila-free.jsonl",
+      "publicReadableSHA256": "51457ddcb67f7f2a2c875eb2b4ef0d129e47ffd8b7fa476da7d966a17ec396f7"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/raw/maya-continued.jsonl",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/maya-continued.jsonl",
+      "originalSHA256": "a4bb4f7d0571a8bde472847db0b968aa827630c47cd9731f938ee450f980fa3b",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/raw/maya-continued.jsonl",
+      "publicReadableSHA256": "a4bb4f7d0571a8bde472847db0b968aa827630c47cd9731f938ee450f980fa3b"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/raw/maya-free.jsonl",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/maya-free.jsonl",
+      "originalSHA256": "06eb8dd41ce91c742ae6a6a237ca7d6ca7f9052d6bd18a433cd23c1ad4dbfa93",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/raw/maya-free.jsonl",
+      "publicReadableSHA256": "06eb8dd41ce91c742ae6a6a237ca7d6ca7f9052d6bd18a433cd23c1ad4dbfa93"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/raw/mei-continued.jsonl",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/mei-continued.jsonl",
+      "originalSHA256": "a1b128ed5ac18959b41a0b7fd2d87cad3c1e9f19efa0365e31b42ca55f3270d4",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/raw/mei-continued.jsonl",
+      "publicReadableSHA256": "a1b128ed5ac18959b41a0b7fd2d87cad3c1e9f19efa0365e31b42ca55f3270d4"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/raw/mei-free.jsonl",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/mei-free.jsonl",
+      "originalSHA256": "0779150431517fd5ab876fb3b998e033cd2e1b3db1ea0972377d7657d06133c9",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/raw/mei-free.jsonl",
+      "publicReadableSHA256": "0779150431517fd5ab876fb3b998e033cd2e1b3db1ea0972377d7657d06133c9"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/raw/nia-continued.jsonl",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/nia-continued.jsonl",
+      "originalSHA256": "7ba3259073d69d5840e0a8931521da5bc106eaf587cd08c1f9c1e8e473aa0bd8",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/raw/nia-continued.jsonl",
+      "publicReadableSHA256": "7ba3259073d69d5840e0a8931521da5bc106eaf587cd08c1f9c1e8e473aa0bd8"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/raw/nia-free.jsonl",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/nia-free.jsonl",
+      "originalSHA256": "c2cb9f3dfb5a19b4546e3b25e4211336068be6cafd40e5f719c05ea5de08a8f5",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/raw/nia-free.jsonl",
+      "publicReadableSHA256": "c2cb9f3dfb5a19b4546e3b25e4211336068be6cafd40e5f719c05ea5de08a8f5"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/raw/pavel-continued.jsonl",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/pavel-continued.jsonl",
+      "originalSHA256": "b558be45c63b2acce461948b502d941d59656ee5312b856006028fbc1e5226e2",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/raw/pavel-continued.jsonl",
+      "publicReadableSHA256": "b558be45c63b2acce461948b502d941d59656ee5312b856006028fbc1e5226e2"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/raw/pavel-free.jsonl",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/pavel-free.jsonl",
+      "originalSHA256": "df548698833c488cf60fdddafea34b77684d3103140d59e8aedd0296ed86b118",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/raw/pavel-free.jsonl",
+      "publicReadableSHA256": "df548698833c488cf60fdddafea34b77684d3103140d59e8aedd0296ed86b118"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/raw/rosa-continued.jsonl",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/rosa-continued.jsonl",
+      "originalSHA256": "9544acfdf884fde047daec1fb356aa1e6e7c95870ce351668d10f6b77250dcf9",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/raw/rosa-continued.jsonl",
+      "publicReadableSHA256": "9544acfdf884fde047daec1fb356aa1e6e7c95870ce351668d10f6b77250dcf9"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/raw/rosa-free.jsonl",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/rosa-free.jsonl",
+      "originalSHA256": "7409ee75b676fd183fdf8f886932a8475a475021aa84524f971dbc3acecfdcd7",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/raw/rosa-free.jsonl",
+      "publicReadableSHA256": "7409ee75b676fd183fdf8f886932a8475a475021aa84524f971dbc3acecfdcd7"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/raw/samir-continued.jsonl",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/samir-continued.jsonl",
+      "originalSHA256": "3bcc1afe9c9a1ecf882dfbbe3bc6c63f28f1557ef5fa6fc4b4b0d456aa444c44",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/raw/samir-continued.jsonl",
+      "publicReadableSHA256": "3bcc1afe9c9a1ecf882dfbbe3bc6c63f28f1557ef5fa6fc4b4b0d456aa444c44"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/raw/samir-free.jsonl",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/samir-free.jsonl",
+      "originalSHA256": "1e8dd2caac9672565fcad6ae8f6b4f9fe76680d58c93b49a4a5d0e2dabb131d4",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/raw/samir-free.jsonl",
+      "publicReadableSHA256": "1e8dd2caac9672565fcad6ae8f6b4f9fe76680d58c93b49a4a5d0e2dabb131d4"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/raw/tessa-continued.jsonl",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/tessa-continued.jsonl",
+      "originalSHA256": "c5c5add16c03f2b256c2aaa3714e58aa9764a158abeb1f87870b08f22b2a0061",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/raw/tessa-continued.jsonl",
+      "publicReadableSHA256": "c5c5add16c03f2b256c2aaa3714e58aa9764a158abeb1f87870b08f22b2a0061"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/raw/tessa-free.jsonl",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/tessa-free.jsonl",
+      "originalSHA256": "0e3e477cf4ee2fe45a037ed38cee86d567d6e223db3870821ecd9a629f9991c1",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/raw/tessa-free.jsonl",
+      "publicReadableSHA256": "0e3e477cf4ee2fe45a037ed38cee86d567d6e223db3870821ecd9a629f9991c1"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/reports/aisha-continued.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/aisha-continued.md",
+      "originalSHA256": "80771e1058992c10911a673f2002a611c9a3d06a74204f864f22079381f31918",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/reports/aisha-continued.md",
+      "publicReadableSHA256": "439b72defc168f14ebb78920121db2b7e565e15bdbe0f9c7d3f99b77ce331dd0"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/reports/aisha-free.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/aisha-free.md",
+      "originalSHA256": "7ad8873698b2c95a7f1f7305a80cb9f9aaf8f711896460d59aa8edeeded6c844",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/reports/aisha-free.md",
+      "publicReadableSHA256": "c9a802375617a92197edc3f376809775728edc797a74b002a792808c2efdacc6"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/reports/alina-continued.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/alina-continued.md",
+      "originalSHA256": "45c9d9965c7a7ef46301da97abe74577d8f0dd496984ba150be1d5545ab34592",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/reports/alina-continued.md",
+      "publicReadableSHA256": "3ed2c2b059f2b18db3b662bcf8a65f19468521cc7d5a4c0417e1660be7be39f4"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/reports/alina-free.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/alina-free.md",
+      "originalSHA256": "e4e9c1c56da6cc60be179d0c529019484ae8daa38ad6fb5acc7f0a770b36fcc2",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/reports/alina-free.md",
+      "publicReadableSHA256": "451af0fe3f6cb43544b5c03ffefd60dd7546b63f72edc94656caa7a252cacc2c"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/reports/diego-continued.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/diego-continued.md",
+      "originalSHA256": "5f4d215ba7999b8840d5f7975a766ddd9641c83f0f1a3c3f36805d75dce8fd67",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/reports/diego-continued.md",
+      "publicReadableSHA256": "c6cf0d6e811d14dee25ad9dcad97aa339869f32daed3544ca3a1c22d34b86588"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/reports/diego-free.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/diego-free.md",
+      "originalSHA256": "3aa0beba86230638238024aa92b51775c96f0f3a2d916a32f56e1ba0c92fa62e",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/reports/diego-free.md",
+      "publicReadableSHA256": "06ddff2cf9d4c3774b551e0f74526bc86028efddc26e8fb0d05f9438ded1d3df"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/reports/emre-continued.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/emre-continued.md",
+      "originalSHA256": "144a7f2f94e18c8185e2abc09317f28633a9f8e43027f48fe2316c1344066cea",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/reports/emre-continued.md",
+      "publicReadableSHA256": "ba6d925c57e66938006bf90493b104d5911425319b8d016bdea7fadb15e172a3"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/reports/emre-free.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/emre-free.md",
+      "originalSHA256": "7198ca5c4474b1d425048627ac4317476973e37a1704d8ba2d63862e7dc70391",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/reports/emre-free.md",
+      "publicReadableSHA256": "d4890277d3ba3541b8536c2a638ab6439ceb871a57c92b1786802ee5b50c8b77"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/reports/jonas-continued.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/jonas-continued.md",
+      "originalSHA256": "d3b6d18ba3cb8d92f0049e19223e47b24ff89669919787fd692052a003d9ab48",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/reports/jonas-continued.md",
+      "publicReadableSHA256": "96b75d1dd6582b3d397f6c0cfc3ebdceac8b8e675c7d50a2845265e90cdac74d"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/reports/jonas-free.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/jonas-free.md",
+      "originalSHA256": "f3ea010959d3057599baf6b626d0911e61c44e18f34595827822333a9c55e96f",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/reports/jonas-free.md",
+      "publicReadableSHA256": "5a34df210bd489183f9f5b9c5885decb468fa4a9c755145635e3020eaa70a7e7"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/reports/julio-continued.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/julio-continued.md",
+      "originalSHA256": "eec674e4d1ca470907542f83a2d217add2587a869c43a6d94566a921a7978d6e",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/reports/julio-continued.md",
+      "publicReadableSHA256": "214a3d85028048069470a4a278712eb2ced1105fa549c02aaeeed22eaafa431c"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/reports/julio-free.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/julio-free.md",
+      "originalSHA256": "cf8ce03c28f2f0b872d29e07ed53795344c5b25fb093e8789b6994ed7e9c9159",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/reports/julio-free.md",
+      "publicReadableSHA256": "d3be95950f4886b375a2b182c6ac4435610922b0bbe13d70e7a92c08f1788c3c"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/reports/leila-continued.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/leila-continued.md",
+      "originalSHA256": "6c457098b742dd4f0584edcb4089b78d3e2bd03404d1d3d4f6d39f214f9d634d",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/reports/leila-continued.md",
+      "publicReadableSHA256": "e89920c5c50dd4fc88f6acae73085704b87f52d968f9f14c15365b6988abac95"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/reports/leila-free.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/leila-free.md",
+      "originalSHA256": "0569b2d098b49a1bedd86722e503af3b071feaa39a6c2d713c8bafd545fc8c43",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/reports/leila-free.md",
+      "publicReadableSHA256": "0f613c9231b009758885cefb4ef8722ac1e3288da9814278b451048a304f9135"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/reports/maya-continued.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/maya-continued.md",
+      "originalSHA256": "f6cb187ba8f0b6afed07cce0911e0a30e038e6393859e5bb6db37efba1f249a9",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/reports/maya-continued.md",
+      "publicReadableSHA256": "1a586a3a7712f050ae6dbd79c3969a76ece9aafff371c3bf4c47097e2316185b"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/reports/maya-free.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/maya-free.md",
+      "originalSHA256": "1843258a5d42ecceaee40facf9bb59d06fb94394c36ecd8dd515feb3bc470084",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/reports/maya-free.md",
+      "publicReadableSHA256": "01c562454fb28e55445cf8f4ea7eb92839f21dab866f7224d421be3a05cef1d8"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/reports/mei-continued.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/mei-continued.md",
+      "originalSHA256": "d743ee8f752235f34f23cdf748c5cb62377d4c4017df55e5b500ce29cb6a6bbf",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/reports/mei-continued.md",
+      "publicReadableSHA256": "37acdd029d8e51bbb6fc291e63804e66e73d0a734299f9a59cce4faf7cc93456"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/reports/mei-free.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/mei-free.md",
+      "originalSHA256": "3dc723ddf0ea9035c10c2e9f030ee15e3923893436258bd4a3714d36beca4fd0",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/reports/mei-free.md",
+      "publicReadableSHA256": "6ce67db330cc51debd7dc2d5e78a9b0d478e87449bfa2b21c84fdaef738653c5"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/reports/nia-continued.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/nia-continued.md",
+      "originalSHA256": "8912c83d7fe4ef12da95d92a00b35e2c566d722114cc4a55969bd87ef33f2fa7",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/reports/nia-continued.md",
+      "publicReadableSHA256": "ed60d106d0af8398bffca30d1a9e4071ded07c4b299d25d19a632f7412fd65de"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/reports/nia-free.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/nia-free.md",
+      "originalSHA256": "de96702bf45b89226467a142fa6ce6bdf5f37fa41f0cbc0ece97a023eed34939",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/reports/nia-free.md",
+      "publicReadableSHA256": "10ca9743e8929f4ad1e631177550677c1de5b18a1392fbee7a6aab25ac67b060"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/reports/pavel-continued.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/pavel-continued.md",
+      "originalSHA256": "5727a7176d7d966a17331f05f3221a784229387af3f4b6f64471240774fd5be7",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/reports/pavel-continued.md",
+      "publicReadableSHA256": "631e23a0c95f3302e3cd57f71f1ac0347806af69388be7e71f04670bd518c87f"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/reports/pavel-free.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/pavel-free.md",
+      "originalSHA256": "295d9f7a380c8c9aec615c1c8cac332681f14b28946878ca8de5de0bcef07c7b",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/reports/pavel-free.md",
+      "publicReadableSHA256": "0d58a553105e6cc0d06250563e426e698a2400712ed03e47e37c84985df36943"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/reports/rosa-continued.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/rosa-continued.md",
+      "originalSHA256": "99ea702c12a50abc97ed9ed974b612b404a76f940d47f0a364ff95b39d5d11fa",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/reports/rosa-continued.md",
+      "publicReadableSHA256": "423c75076489994ddf69aa1fce4039fb6e17e6593ff030bd1047d9f54728038a"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/reports/rosa-free.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/rosa-free.md",
+      "originalSHA256": "32d96c759d35eb8347ad2109b8737b1940c04748ae9055107f8836e8d53b8c06",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/reports/rosa-free.md",
+      "publicReadableSHA256": "d0ff5b123f8eb2c5862d3e3e123b2d4ac2695f75f68945471ba0a2e239316d2c"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/reports/samir-continued.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/samir-continued.md",
+      "originalSHA256": "eab5b456dd0c0e96dbc082208807f2762f3b0c80cface4411ba6db466b76054d",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/reports/samir-continued.md",
+      "publicReadableSHA256": "a02a069d95ce5590a89cf5f59adbf69a41f9a25a94b09ab30fb3a7a2097b79da"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/reports/samir-free.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/samir-free.md",
+      "originalSHA256": "7fdd7572996d40a40e8ea8e90bb5402bf72fed79ef9e00c9faeae952738a0065",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/reports/samir-free.md",
+      "publicReadableSHA256": "73f8a8229613b9304df9875cb19b1e1081c0f8ac20752dc7c966c95136b4ef97"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/reports/tessa-continued.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/tessa-continued.md",
+      "originalSHA256": "9e3ac45fb9248e6830f9ff44ec52334884cdbb226eb7ab20d9f6ee5f1fda37ed",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/reports/tessa-continued.md",
+      "publicReadableSHA256": "e96901eb313833f2f7a4c66288452095afa1418d15bf098eaf9b76c30ee268a7"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/reports/tessa-free.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/tessa-free.md",
+      "originalSHA256": "7902cab020a1a7c055aa0ed27f839b1f48255cb5e238867c4e1869365f9826cf",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/reports/tessa-free.md",
+      "publicReadableSHA256": "0649e6bc06c5f2e565668b38f2003cf2ca5d12957ca0aed6e369dbfa90871a14"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/aisha-continued.json",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/aisha-continued.json",
+      "originalSHA256": "7575422bbe6a664d523e5ea568170613bf3337d98303ce51aa33152b89086586",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/sessions/aisha-continued.json",
+      "publicReadableSHA256": "7575422bbe6a664d523e5ea568170613bf3337d98303ce51aa33152b89086586"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/aisha-free.json",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/aisha-free.json",
+      "originalSHA256": "a6abc626a362010b2fcfde7f602866e0b9eaebc35ed160b2751c22e163ba2b35",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/sessions/aisha-free.json",
+      "publicReadableSHA256": "a6abc626a362010b2fcfde7f602866e0b9eaebc35ed160b2751c22e163ba2b35"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/alina-continued.json",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/alina-continued.json",
+      "originalSHA256": "9f7cf9ae8ae58c0c671974cb1ab798fbc10a5a91c7d017e20e9118025df3dc3e",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/sessions/alina-continued.json",
+      "publicReadableSHA256": "9f7cf9ae8ae58c0c671974cb1ab798fbc10a5a91c7d017e20e9118025df3dc3e"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/alina-free.json",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/alina-free.json",
+      "originalSHA256": "19632fd76281f714038454cb70699585e75cef5f6a58cc0913027dde30860e5e",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/sessions/alina-free.json",
+      "publicReadableSHA256": "19632fd76281f714038454cb70699585e75cef5f6a58cc0913027dde30860e5e"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/diego-continued.json",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/diego-continued.json",
+      "originalSHA256": "22c3a74228285c4c42ef041b6a9c93032b1cc8826a56b3e6757820931625bc00",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/sessions/diego-continued.json",
+      "publicReadableSHA256": "b67e7687e08fd07e6d4bacb5c75f8fdcf690390500333ef766924e7c6086b549"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/diego-free.json",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/diego-free.json",
+      "originalSHA256": "1a6c1d3b291b2ee04e0b6f8be476b71b798dfb776a5a22d60e03d0b844b30b3a",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/sessions/diego-free.json",
+      "publicReadableSHA256": "403784b256a169e1e04d3eb660e1438bb82c1274b50bf62a7df9dfe3038bc37b"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/emre-continued-image-audit.json",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/emre-continued-image-audit.json",
+      "originalSHA256": "8bdd7e2c6c04315f76b8aa7f608996d85136441aa77aff15d4063870956278a6",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/sessions/emre-continued-image-audit.json",
+      "publicReadableSHA256": "af1c52904a7891d2e006a23e3b8a9deb420d801739e39e43ce5062e53935eeb9"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/emre-continued.json",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/emre-continued.json",
+      "originalSHA256": "988466e23a59ef43278f8c3dd3ff823e3457bbbbf8e6ea8fcea1cc76b67c1331",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/sessions/emre-continued.json",
+      "publicReadableSHA256": "804540a9b883e8a467a1e911c8b392e31d52c8b2efb4f48fa4fb29fc41aeb126"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/emre-free-image-audit.json",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/emre-free-image-audit.json",
+      "originalSHA256": "a093ea0a7ecfb965a211293c513d22e14aa417a79182c4e055e2f2a01d635de5",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/sessions/emre-free-image-audit.json",
+      "publicReadableSHA256": "c87323c14fcab81d9410221eca79130efee8a4076e1716a7bf0f9eb5c3d39dd0"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/emre-free.json",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/emre-free.json",
+      "originalSHA256": "5bdb45e7bb78bae6ea598e0ecd59132a3327856cb83ede1a03e5834bd0c37c28",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/sessions/emre-free.json",
+      "publicReadableSHA256": "0173e338108e8ecca7d3d5a3a8ac0fc31ee1e2b5daff054eb75e2202cdce44c7"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/jonas-continued-image-audit.json",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/jonas-continued-image-audit.json",
+      "originalSHA256": "3e44c36ba3792bbd95bc43def21750724a5b52a2a95860faee471a58d9279403",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/sessions/jonas-continued-image-audit.json",
+      "publicReadableSHA256": "3e44c36ba3792bbd95bc43def21750724a5b52a2a95860faee471a58d9279403"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/jonas-continued.json",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/jonas-continued.json",
+      "originalSHA256": "b0dc05da2d9486c764ce591d5c1d98c6808c0d46bab3a7ecd637f8d3015fdf79",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/sessions/jonas-continued.json",
+      "publicReadableSHA256": "89daa56a820e70c3778f5c4fb40e05e9f79dfe2738f8682db2124b084966c208"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/jonas-free-image-audit.json",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/jonas-free-image-audit.json",
+      "originalSHA256": "02612d1ab5b4966a2ae9c55865cee11e054038fd5dc7a489ef299bf98ffb216a",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/sessions/jonas-free-image-audit.json",
+      "publicReadableSHA256": "02612d1ab5b4966a2ae9c55865cee11e054038fd5dc7a489ef299bf98ffb216a"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/jonas-free.json",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/jonas-free.json",
+      "originalSHA256": "a5d49ffea3a5c2d1c875d43e06415bbb77ad3f811cb36e52904da6ab628c975a",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/sessions/jonas-free.json",
+      "publicReadableSHA256": "5b98297a036ae7fe95bd776064d7ad041836bae078721a1309e39a45f05c02fe"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/julio-continued.json",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/julio-continued.json",
+      "originalSHA256": "7d2d47115fa346122fadf6c003095ad86c59b46fa2b713da21f0c634261f2ba6",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/sessions/julio-continued.json",
+      "publicReadableSHA256": "7d2d47115fa346122fadf6c003095ad86c59b46fa2b713da21f0c634261f2ba6"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/julio-free.json",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/julio-free.json",
+      "originalSHA256": "4cc8227533529f4fab0aa51f3ee085b88ad49d5a2adf13c56ac67ce7d53b1162",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/sessions/julio-free.json",
+      "publicReadableSHA256": "4cc8227533529f4fab0aa51f3ee085b88ad49d5a2adf13c56ac67ce7d53b1162"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/leila-continued.json",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/leila-continued.json",
+      "originalSHA256": "93dc17c351e5092760f7417af3aa7e48c13ad2a94289ef80fcb7bac800624609",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/sessions/leila-continued.json",
+      "publicReadableSHA256": "93dc17c351e5092760f7417af3aa7e48c13ad2a94289ef80fcb7bac800624609"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/leila-free.json",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/leila-free.json",
+      "originalSHA256": "eaf3ea4d754c824a3a3c35dcac1c43e34ed68893f25ef33ee8c143001d62548c",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/sessions/leila-free.json",
+      "publicReadableSHA256": "eaf3ea4d754c824a3a3c35dcac1c43e34ed68893f25ef33ee8c143001d62548c"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/maya-continued.json",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/maya-continued.json",
+      "originalSHA256": "45473a58cbc4502ebff4718ace10c3c4ed8ff4b816a077c39168d8d887569a85",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/sessions/maya-continued.json",
+      "publicReadableSHA256": "f85b2e2ace1e8fe9ffe44df2bc935ef06c0ed536dc2627b46a8a224300cf3fbb"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/maya-free.json",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/maya-free.json",
+      "originalSHA256": "2cfbe52bbad73ec9c84a8e61e6823b2f868f516702480c880f63855ca37bbf71",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/sessions/maya-free.json",
+      "publicReadableSHA256": "1c9eedf364053ca6ca657b7eb02851528475580c666c8d78e63fed2f4d8ba5ca"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/mei-continued.json",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/mei-continued.json",
+      "originalSHA256": "7d69661a0d0ec10b8a7cd07f8b13bf2fcc83c6fe46d01fe021edeb3c9b90ff31",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/sessions/mei-continued.json",
+      "publicReadableSHA256": "207407a0113e7c48277a74bf259e1070184aa09ff6b3a31a345011698ea1f6b0"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/mei-free.json",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/mei-free.json",
+      "originalSHA256": "09b49da4f5b605f55d20820e3a1b095786e77cf2e3b7b379754244ac8064882e",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/sessions/mei-free.json",
+      "publicReadableSHA256": "a4e96dc45a3dc282431845103c24ec95c07d4b32b44699394228149e399d1995"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/nia-continued.json",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/nia-continued.json",
+      "originalSHA256": "8915129ee12ccc1d6d7ff95c74dff270d91b7e0e4ba3781360671014bafe0675",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/sessions/nia-continued.json",
+      "publicReadableSHA256": "862b5f677f323550c4e3713a4efaa1c4f16776e6e9bdbc05617dd79a489ee12d"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/nia-free.json",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/nia-free.json",
+      "originalSHA256": "89ba65b903b00b892c7184070efb6cce991149bd54db8c39191db3efaba31891",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/sessions/nia-free.json",
+      "publicReadableSHA256": "21d16c231b268a774dba581b57ebf44f435fb04747b4d14882826231c3536d55"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/pavel-continued.json",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/pavel-continued.json",
+      "originalSHA256": "10704a77970e4110c42dd28bb9517bede2aee42d8e84c0ac6a9bc3f63e1ed7e5",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/sessions/pavel-continued.json",
+      "publicReadableSHA256": "d41f7c08a6c4f1e9dec8c8b45044c55955fe74afc3dcdf404f3574b168e0b06c"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/pavel-free.json",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/pavel-free.json",
+      "originalSHA256": "fd671cfa245f1ad8a9ab68993010e328786e15ac5e21c4d4a3627618557d42d7",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/sessions/pavel-free.json",
+      "publicReadableSHA256": "b98b5d8b655a9a817e5e8dfacbde03fadf7396ff6f58d2b99c58b221022123d2"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/rosa-continued-image-audit.json",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/rosa-continued-image-audit.json",
+      "originalSHA256": "25c3b5ea3ee4a145a51e4677834c0558eafbb175c3ad4795e1ea4389d5982123",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/sessions/rosa-continued-image-audit.json",
+      "publicReadableSHA256": "25c3b5ea3ee4a145a51e4677834c0558eafbb175c3ad4795e1ea4389d5982123"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/rosa-continued.json",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/rosa-continued.json",
+      "originalSHA256": "55b5131edc0f1ea35927323a00f76fd80cde4ff477b00260642fc8575b3fcb44",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/sessions/rosa-continued.json",
+      "publicReadableSHA256": "0b5a10885886f37e7739a185df543f0b02d8f73d51ff0fcffe970c80489e5c10"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/rosa-free.json",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/rosa-free.json",
+      "originalSHA256": "3d1562633035e8b6adbb999d933759361696d1af1acf9109fab5d79a13f38254",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/sessions/rosa-free.json",
+      "publicReadableSHA256": "ae5f8c5d4b45faeb3671455ea3d9b2ca88dd8595ea6eb977a64b4f8537f9b6fa"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/samir-continued.json",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/samir-continued.json",
+      "originalSHA256": "4ca795d09aeea8e5bfb0731142a51c0ccca6af9838661cab64496073e122e64f",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/sessions/samir-continued.json",
+      "publicReadableSHA256": "4ca795d09aeea8e5bfb0731142a51c0ccca6af9838661cab64496073e122e64f"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/samir-free.json",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/samir-free.json",
+      "originalSHA256": "0c0f412ebf7fe98eda069ddf1a090d2f475b3afc19103b3c56fab83b5192c8c9",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/sessions/samir-free.json",
+      "publicReadableSHA256": "0c0f412ebf7fe98eda069ddf1a090d2f475b3afc19103b3c56fab83b5192c8c9"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/tessa-continued.json",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/tessa-continued.json",
+      "originalSHA256": "2e62b53e2db27f38e7aa0c550e954f171f974b066c7ced20a80f40394325d2de",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/sessions/tessa-continued.json",
+      "publicReadableSHA256": "073288a52693b55170952cf721b91ff834945c5c60ef394a23918cfb3e64bd3a"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/tessa-free.json",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/tessa-free.json",
+      "originalSHA256": "4a2b0e4a89201c9d61fcb01131a1ce32e531a24eacb57da5c7cf6e15a37d5a69",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/sessions/tessa-free.json",
+      "publicReadableSHA256": "7fdacd36ff316ea71a9c4a1231258cb45737d4d7f12f26fb8b120cdc002eded2"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/staging-manifest.json",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/staging-manifest.json",
+      "originalSHA256": "9159fd356db9ecd185248463f39b7a160075376be091be564440bfc7a8803ca5",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/staging-manifest.json",
+      "publicReadableSHA256": "9159fd356db9ecd185248463f39b7a160075376be091be564440bfc7a8803ca5"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/verbatim/aisha-continued.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/verbatim/aisha-continued.md",
+      "originalSHA256": "2ab28c38e66afe306dfc453a50ca6a0feb4d90a1dfd2ef20334d5df71e4ddd82",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/verbatim/aisha-continued.md",
+      "publicReadableSHA256": "9c602b00ee7c32eac18ffe4bf18ff7df35640ee4313e383d8299f3f8d94452d9"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/verbatim/aisha-free.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/verbatim/aisha-free.md",
+      "originalSHA256": "76b19bcad6f00088190c782e0eb1955f98a54bf5749fb3323d7b10eff6284690",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/verbatim/aisha-free.md",
+      "publicReadableSHA256": "ac0e3dddb3d5c21ab7f44e2ba688f356df29d63a44f688325e5d494889c288e7"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/verbatim/alina-continued.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/verbatim/alina-continued.md",
+      "originalSHA256": "bca0dfc8d76f3d351f81ed4e6d466c18cbf259af01810449776a2d57907cb81f",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/verbatim/alina-continued.md",
+      "publicReadableSHA256": "c66ef1b6abaa0775c197bf97844352baeb3ace52e1fb5b1aa3b53d61b998d190"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/verbatim/alina-free.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/verbatim/alina-free.md",
+      "originalSHA256": "3a0118dd5c71dcae559a3951e2f21255e2968e0ca0286521635f3dd53bcf8e51",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/verbatim/alina-free.md",
+      "publicReadableSHA256": "9fe0208ca68593a9a7feccde144cd728f8e552f4ee28dd61f417a8befe76f2ea"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/verbatim/julio-continued.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/verbatim/julio-continued.md",
+      "originalSHA256": "8f0b095c88b57570e60413150db64c28ca6b0d112a3129106a515a1c50609158",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/verbatim/julio-continued.md",
+      "publicReadableSHA256": "b0edf046cb0486474a8f6a1ce17e9c1d9039110096dc78778f386d1449a1c341"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/verbatim/julio-free.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/verbatim/julio-free.md",
+      "originalSHA256": "e47aeac2a62674fcdc12216d13c9a5737f160a6841061ea63df8001ee999728d",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/verbatim/julio-free.md",
+      "publicReadableSHA256": "051be83a1a5ec5a54dceb1e3852ec9c4f72ee363f828f77619ad32e847832c28"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/verbatim/leila-continued.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/verbatim/leila-continued.md",
+      "originalSHA256": "67aa700bb621746edfa5dbb36b1b001d99a36c2ae1c18b97e78a25fd3c5ddab8",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/verbatim/leila-continued.md",
+      "publicReadableSHA256": "c78933689a5371bd89ba3ae4392432eabc6d1e9b4843e8a8dde5806c1b7d2be3"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/verbatim/samir-continued.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/verbatim/samir-continued.md",
+      "originalSHA256": "015023e9ff482c7f9e85cb625ceaa9feba89367ef848a2c719178aeefb7758ad",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/verbatim/samir-continued.md",
+      "publicReadableSHA256": "c19d8f125453d466b7bfd07ea6a02f01f049d14bd32095a33e835fba2ba64ae6"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-2026-10-25/verbatim/samir-free.md",
+      "public": "docs/lab/reviews/hf3-commonstead-2026-10-25/verbatim/samir-free.md",
+      "originalSHA256": "3098b5887ea1a927bcd5c09a08ee3cb99eaae2fc52e1d5c19c5680822d269a58",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-2026-10-25/verbatim/samir-free.md",
+      "publicReadableSHA256": "de24ddb7af20d2ade85879ba83980f342f8587ac0e47977c5a7f733c17f56e8b"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-r1-floor-shortfall-2026-10-26/README.md",
+      "public": "docs/lab/reviews/hf3-commonstead-r1-floor-shortfall-2026-10-26/README.md",
+      "originalSHA256": "16a5b047fd5702d03a3b771f7a53b8eb47ad4f91cc0132b92427e8d1d84f06a5",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-r1-floor-shortfall-2026-10-26/README.md",
+      "publicReadableSHA256": "16a5b047fd5702d03a3b771f7a53b8eb47ad4f91cc0132b92427e8d1d84f06a5"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-r1-floor-shortfall-2026-10-26/raw/samir-continued.jsonl",
+      "public": "docs/lab/reviews/hf3-commonstead-r1-floor-shortfall-2026-10-26/raw/samir-continued.jsonl",
+      "originalSHA256": "60306932c6433654adfc474dde7d4b6c50410ac67a359d52e51e4882b23d3807",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-r1-floor-shortfall-2026-10-26/raw/samir-continued.jsonl",
+      "publicReadableSHA256": "60306932c6433654adfc474dde7d4b6c50410ac67a359d52e51e4882b23d3807"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-r1-floor-shortfall-2026-10-26/reports/samir-continued.md",
+      "public": "docs/lab/reviews/hf3-commonstead-r1-floor-shortfall-2026-10-26/reports/samir-continued.md",
+      "originalSHA256": "be0612c5d15417aea3b57602a2efb043374401e4b6fa37af1402eee21e1467ed",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-r1-floor-shortfall-2026-10-26/reports/samir-continued.md",
+      "publicReadableSHA256": "380ce473a02660030cb5ab2df06ce75c1fe11c3bd793b377bfd71d221563c528"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/public/docs/lab/reviews/hf3-commonstead-r1-floor-shortfall-2026-10-26/verbatim/samir-continued.md",
+      "public": "docs/lab/reviews/hf3-commonstead-r1-floor-shortfall-2026-10-26/verbatim/samir-continued.md",
+      "originalSHA256": "63c568c54acfbb3309f0e023fc0edda2fb32bbf640e55598dee8250f98e22906",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-r1-floor-shortfall-2026-10-26/verbatim/samir-continued.md",
+      "publicReadableSHA256": "43e870717e25ff13fdd7dfea88ab7953ba25fc2759246e171160ac48d80af701"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/hf3-commonstead-r1-control/jonas-continued/report.md",
+      "public": "docs/lab/reviews/hf3-commonstead-control-2026-10-26/reports/jonas-continued.md",
+      "originalSHA256": "e2d6ee017d0ba30d7f51c4dda0dd0a0b0a6d35d15082eaf4128158451d72aa9d",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-control-2026-10-26/reports/jonas-continued.md",
+      "publicReadableSHA256": "de9bb428adcc85af8c2813ae99b6b2ddbf9dbb3b3cc79112e1d278500929a86b"
+    },
+    {
+      "source": "/Users/abdul/code/.lab-scratch/playtest/hf3-commonstead-r1-control/jonas-continued/wall-clock.jsonl",
+      "public": "docs/lab/reviews/hf3-commonstead-control-2026-10-26/raw/jonas-continued.jsonl",
+      "originalSHA256": "c9fd0b5182fc9578de8681f23073e97d86887e0963fdf84c55b7c618dedb5577",
+      "exactArchive": "archive/evidence/2026-10-26-playtest/commonstead-r1-final/hf3-commonstead-control-2026-10-26/raw/jonas-continued.jsonl",
+      "publicReadableSHA256": "c9fd0b5182fc9578de8681f23073e97d86887e0963fdf84c55b7c618dedb5577"
+    }
+  ],
+  "public_before_format": {
+    "docs/lab/reviews/hf3-commonstead-r1-floor-shortfall-2026-10-26/README.md": "16a5b047fd5702d03a3b771f7a53b8eb47ad4f91cc0132b92427e8d1d84f06a5",
+    "docs/lab/reviews/hf3-commonstead-control-2026-10-26/image-output-bindings.json": "307606499b038a0913e8f53243ff4b4fe97f717365b7141a591c9ed870e9ddf9",
+    "docs/lab/reviews/hf3-commonstead-control-2026-10-26/acceptance.json": "1485ea39559bf94cbcdd2f88fa6e7a0d20dfa72444d4b6e9c05f722ce9380d09",
+    "docs/lab/reviews/hf3-commonstead-control-2026-10-26/README.md": "f8d14a197a1ba4b95f18ba148f2f5969d49e6e30b6576190ce261731c699760e",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/capture-view-director-amendment.json": "51cb9f61a22d13fce075cb8ec101301df4c3463e7b64dcf5f048567b2b2f9c11",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/completion-notes.md": "feeb8f6bef5789b1fb23ec8e6db4fe8e1d8bea61335483c57567a728abd24762",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/julio-free-leave-director-amendment.json": "a1461dea62e891ce6d69d44907719082c4cf97621bcbc10feeacab36502011ce",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/alina-continued-companion-header-amendment.json": "d9b813bf53d75db0f9c0f6e138024991d1f15753161a46d5ac548e4c9202fbbc",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/blind-reader-output-freeze-receipt.json": "ad0729b3927718a232ed1fb301bd0d88aeb75e4e015dca49b3aad62cc68a30e2",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/blind-input-freeze-receipt.json": "23a3105d3ea098c23f993765c263c1c818614af97b3a7a489ffa42d14c8dfc8a",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/tester-ledger-logical.json": "c18ec3d6ca49ce620b121b936a7ee92d05eb360750b85b9929253d75b2c299de",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/method-clarifications.md": "f6a6191dadc089ac073b46cd00168cf4c37ee1a669c5f3ebb1402876963be375",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/reader-quote-verification.json": "9191691f4b7abe9360e548b24940a531f2ecbeb288282fb344ffd724f2d77165",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/allocated-id-crosswalk.json": "e0063c99f253fa21709995663d26181ac7b61c73fc2349f49d2e6eecb5513650",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/README.md": "77e27b5a2f940c97bf7726b516e43b505346b1e265ad19894d748f1b2abc663c",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/blind-reader-findings.md": "89847b0ebf4cd1daf90a4d4bc101f866dd97f98a402c01c1c364d6ecd01c5e39",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/staging-manifest.json": "9159fd356db9ecd185248463f39b7a160075376be091be564440bfc7a8803ca5",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/logical-tester-ledger.md": "d80c713acd797bef3f5190954fc8fac4319c108186d9b633b06ea76d4750694c",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/main-collection-closure.json": "954bb5c92f10966028925e34d45d1c7be36de5312705e2bcc17f1ed4ca29e7af",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/r1-synthesis.md": "9fe8172a49c7d61a53c0663e691baac2513e4202797c479056dd82a83b32f06c",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/blind-alias-crosswalk.json": "114718a6c1838ca2645d246a235e5de13eb90112593230ed96da2ad30c4a9d53",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/verbatim/leila-continued.md": "67aa700bb621746edfa5dbb36b1b001d99a36c2ae1c18b97e78a25fd3c5ddab8",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/verbatim/alina-free.md": "3a0118dd5c71dcae559a3951e2f21255e2968e0ca0286521635f3dd53bcf8e51",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/verbatim/alina-continued.md": "bca0dfc8d76f3d351f81ed4e6d466c18cbf259af01810449776a2d57907cb81f",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/verbatim/samir-continued.md": "015023e9ff482c7f9e85cb625ceaa9feba89367ef848a2c719178aeefb7758ad",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/verbatim/julio-continued.md": "8f0b095c88b57570e60413150db64c28ca6b0d112a3129106a515a1c50609158",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/verbatim/julio-free.md": "e47aeac2a62674fcdc12216d13c9a5737f160a6841061ea63df8001ee999728d",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/verbatim/aisha-continued.md": "2ab28c38e66afe306dfc453a50ca6a0feb4d90a1dfd2ef20334d5df71e4ddd82",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/verbatim/samir-free.md": "3098b5887ea1a927bcd5c09a08ee3cb99eaae2fc52e1d5c19c5680822d269a58",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/verbatim/aisha-free.md": "76b19bcad6f00088190c782e0eb1955f98a54bf5749fb3323d7b10eff6284690",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/tessa-free.json": "4a2b0e4a89201c9d61fcb01131a1ce32e531a24eacb57da5c7cf6e15a37d5a69",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/jonas-continued.json": "b0dc05da2d9486c764ce591d5c1d98c6808c0d46bab3a7ecd637f8d3015fdf79",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/leila-continued.json": "93dc17c351e5092760f7417af3aa7e48c13ad2a94289ef80fcb7bac800624609",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/diego-free.json": "1a6c1d3b291b2ee04e0b6f8be476b71b798dfb776a5a22d60e03d0b844b30b3a",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/jonas-continued-image-audit.json": "3e44c36ba3792bbd95bc43def21750724a5b52a2a95860faee471a58d9279403",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/aisha-continued.json": "7575422bbe6a664d523e5ea568170613bf3337d98303ce51aa33152b89086586",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/nia-free.json": "89ba65b903b00b892c7184070efb6cce991149bd54db8c39191db3efaba31891",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/maya-free.json": "2cfbe52bbad73ec9c84a8e61e6823b2f868f516702480c880f63855ca37bbf71",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/mei-free.json": "09b49da4f5b605f55d20820e3a1b095786e77cf2e3b7b379754244ac8064882e",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/rosa-continued-image-audit.json": "25c3b5ea3ee4a145a51e4677834c0558eafbb175c3ad4795e1ea4389d5982123",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/alina-continued.json": "9f7cf9ae8ae58c0c671974cb1ab798fbc10a5a91c7d017e20e9118025df3dc3e",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/julio-free.json": "4cc8227533529f4fab0aa51f3ee085b88ad49d5a2adf13c56ac67ce7d53b1162",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/tessa-continued.json": "2e62b53e2db27f38e7aa0c550e954f171f974b066c7ced20a80f40394325d2de",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/samir-continued.json": "4ca795d09aeea8e5bfb0731142a51c0ccca6af9838661cab64496073e122e64f",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/julio-continued.json": "7d2d47115fa346122fadf6c003095ad86c59b46fa2b713da21f0c634261f2ba6",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/aisha-free.json": "a6abc626a362010b2fcfde7f602866e0b9eaebc35ed160b2751c22e163ba2b35",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/pavel-continued.json": "10704a77970e4110c42dd28bb9517bede2aee42d8e84c0ac6a9bc3f63e1ed7e5",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/alina-free.json": "19632fd76281f714038454cb70699585e75cef5f6a58cc0913027dde30860e5e",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/maya-continued.json": "45473a58cbc4502ebff4718ace10c3c4ed8ff4b816a077c39168d8d887569a85",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/rosa-free.json": "3d1562633035e8b6adbb999d933759361696d1af1acf9109fab5d79a13f38254",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/emre-continued.json": "988466e23a59ef43278f8c3dd3ff823e3457bbbbf8e6ea8fcea1cc76b67c1331",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/emre-free-image-audit.json": "a093ea0a7ecfb965a211293c513d22e14aa417a79182c4e055e2f2a01d635de5",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/nia-continued.json": "8915129ee12ccc1d6d7ff95c74dff270d91b7e0e4ba3781360671014bafe0675",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/mei-continued.json": "7d69661a0d0ec10b8a7cd07f8b13bf2fcc83c6fe46d01fe021edeb3c9b90ff31",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/emre-free.json": "5bdb45e7bb78bae6ea598e0ecd59132a3327856cb83ede1a03e5834bd0c37c28",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/leila-free.json": "eaf3ea4d754c824a3a3c35dcac1c43e34ed68893f25ef33ee8c143001d62548c",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/pavel-free.json": "fd671cfa245f1ad8a9ab68993010e328786e15ac5e21c4d4a3627618557d42d7",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/rosa-continued.json": "55b5131edc0f1ea35927323a00f76fd80cde4ff477b00260642fc8575b3fcb44",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/emre-continued-image-audit.json": "8bdd7e2c6c04315f76b8aa7f608996d85136441aa77aff15d4063870956278a6",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/jonas-free.json": "a5d49ffea3a5c2d1c875d43e06415bbb77ad3f811cb36e52904da6ab628c975a",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/jonas-free-image-audit.json": "02612d1ab5b4966a2ae9c55865cee11e054038fd5dc7a489ef299bf98ffb216a",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/diego-continued.json": "22c3a74228285c4c42ef041b6a9c93032b1cc8826a56b3e6757820931625bc00",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/sessions/samir-free.json": "0c0f412ebf7fe98eda069ddf1a090d2f475b3afc19103b3c56fab83b5192c8c9",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/aisha-continued.jsonl": "91e6c8b06f60e68f9e3efd27aba34ec28ed7857d0a9356f1a2ecc8f1551399e5",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/nia-free.jsonl": "c2cb9f3dfb5a19b4546e3b25e4211336068be6cafd40e5f719c05ea5de08a8f5",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/maya-free.jsonl": "06eb8dd41ce91c742ae6a6a237ca7d6ca7f9052d6bd18a433cd23c1ad4dbfa93",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/tessa-free.jsonl": "0e3e477cf4ee2fe45a037ed38cee86d567d6e223db3870821ecd9a629f9991c1",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/samir-free.jsonl": "1e8dd2caac9672565fcad6ae8f6b4f9fe76680d58c93b49a4a5d0e2dabb131d4",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/julio-continued.jsonl": "9feab1dec5e314e43ae34fe16cc04a96fa2f69001c46feaf919b255621db5192",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/jonas-free.jsonl": "9f6659b97a9d3170b35132cfcebe656b6ec834914f6a6003b3e2b3b58f74a24f",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/pavel-continued.jsonl": "b558be45c63b2acce461948b502d941d59656ee5312b856006028fbc1e5226e2",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/leila-free.jsonl": "51457ddcb67f7f2a2c875eb2b4ef0d129e47ffd8b7fa476da7d966a17ec396f7",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/mei-continued.jsonl": "a1b128ed5ac18959b41a0b7fd2d87cad3c1e9f19efa0365e31b42ca55f3270d4",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/samir-continued.jsonl": "3bcc1afe9c9a1ecf882dfbbe3bc6c63f28f1557ef5fa6fc4b4b0d456aa444c44",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/rosa-continued.jsonl": "9544acfdf884fde047daec1fb356aa1e6e7c95870ce351668d10f6b77250dcf9",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/diego-free.jsonl": "39f27b674ef5b32cc0e0272484075b2c0a5f61a8ae338d88746ceec0138515cb",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/leila-continued.jsonl": "54d41d6467ca7a8526b07008a53b49cf3d17db8d200921ecfedbeb815622ded9",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/diego-continued.jsonl": "5c8b30a50a41750747ff6640550762bf34c8d237dc1804094373dbb5ad115bdd",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/pavel-free.jsonl": "df548698833c488cf60fdddafea34b77684d3103140d59e8aedd0296ed86b118",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/alina-free.jsonl": "e9f56d0a0796b36895047022cee7ba0aa9282922a199e4234f1bd565b7e0af9d",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/emre-free.jsonl": "3c1d86e8ff009bd8983d7efc8e7cdb2120bcae7a500cc77e25b48c082ee4c9c5",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/rosa-free.jsonl": "7409ee75b676fd183fdf8f886932a8475a475021aa84524f971dbc3acecfdcd7",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/julio-free.jsonl": "f87825387fad9d3fb26f1a640eab9f74da640ecda04302e0a23cefa4f1862715",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/maya-continued.jsonl": "a4bb4f7d0571a8bde472847db0b968aa827630c47cd9731f938ee450f980fa3b",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/mei-free.jsonl": "0779150431517fd5ab876fb3b998e033cd2e1b3db1ea0972377d7657d06133c9",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/alina-continued.jsonl": "95e12abcb347a45ade6785562892775585e46ff7023e026b49442d6778a6656b",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/jonas-continued.jsonl": "9d3eaf0963e61da3bf7187194a48bbc97c1f6f392917f277938563c50ab5f41c",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/tessa-continued.jsonl": "c5c5add16c03f2b256c2aaa3714e58aa9764a158abeb1f87870b08f22b2a0061",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/emre-continued.jsonl": "8606c40232f1a06d5231d93b5daf476ad7d9f77322017bc454a88082bdfb5499",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/aisha-free.jsonl": "0b995d266f137a241738ac8dbc1e7fc243e9e51515154a3528e6a7c9a160d833",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/nia-continued.jsonl": "7ba3259073d69d5840e0a8931521da5bc106eaf587cd08c1f9c1e8e473aa0bd8",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/nia-free.md": "de96702bf45b89226467a142fa6ce6bdf5f37fa41f0cbc0ece97a023eed34939",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/emre-continued.md": "144a7f2f94e18c8185e2abc09317f28633a9f8e43027f48fe2316c1344066cea",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/mei-continued.md": "d743ee8f752235f34f23cdf748c5cb62377d4c4017df55e5b500ce29cb6a6bbf",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/emre-free.md": "7198ca5c4474b1d425048627ac4317476973e37a1704d8ba2d63862e7dc70391",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/leila-continued.md": "6c457098b742dd4f0584edcb4089b78d3e2bd03404d1d3d4f6d39f214f9d634d",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/diego-continued.md": "5f4d215ba7999b8840d5f7975a766ddd9641c83f0f1a3c3f36805d75dce8fd67",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/alina-free.md": "e4e9c1c56da6cc60be179d0c529019484ae8daa38ad6fb5acc7f0a770b36fcc2",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/alina-continued.md": "45c9d9965c7a7ef46301da97abe74577d8f0dd496984ba150be1d5545ab34592",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/jonas-free.md": "f3ea010959d3057599baf6b626d0911e61c44e18f34595827822333a9c55e96f",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/maya-continued.md": "f6cb187ba8f0b6afed07cce0911e0a30e038e6393859e5bb6db37efba1f249a9",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/diego-free.md": "3aa0beba86230638238024aa92b51775c96f0f3a2d916a32f56e1ba0c92fa62e",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/tessa-continued.md": "9e3ac45fb9248e6830f9ff44ec52334884cdbb226eb7ab20d9f6ee5f1fda37ed",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/samir-continued.md": "eab5b456dd0c0e96dbc082208807f2762f3b0c80cface4411ba6db466b76054d",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/nia-continued.md": "8912c83d7fe4ef12da95d92a00b35e2c566d722114cc4a55969bd87ef33f2fa7",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/jonas-continued.md": "d3b6d18ba3cb8d92f0049e19223e47b24ff89669919787fd692052a003d9ab48",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/julio-continued.md": "eec674e4d1ca470907542f83a2d217add2587a869c43a6d94566a921a7978d6e",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/pavel-free.md": "295d9f7a380c8c9aec615c1c8cac332681f14b28946878ca8de5de0bcef07c7b",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/rosa-continued.md": "99ea702c12a50abc97ed9ed974b612b404a76f940d47f0a364ff95b39d5d11fa",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/julio-free.md": "cf8ce03c28f2f0b872d29e07ed53795344c5b25fb093e8789b6994ed7e9c9159",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/mei-free.md": "3dc723ddf0ea9035c10c2e9f030ee15e3923893436258bd4a3714d36beca4fd0",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/leila-free.md": "0569b2d098b49a1bedd86722e503af3b071feaa39a6c2d713c8bafd545fc8c43",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/maya-free.md": "1843258a5d42ecceaee40facf9bb59d06fb94394c36ecd8dd515feb3bc470084",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/aisha-continued.md": "80771e1058992c10911a673f2002a611c9a3d06a74204f864f22079381f31918",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/pavel-continued.md": "5727a7176d7d966a17331f05f3221a784229387af3f4b6f64471240774fd5be7",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/tessa-free.md": "7902cab020a1a7c055aa0ed27f839b1f48255cb5e238867c4e1869365f9826cf",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/samir-free.md": "7fdd7572996d40a40e8ea8e90bb5402bf72fed79ef9e00c9faeae952738a0065",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/rosa-free.md": "32d96c759d35eb8347ad2109b8737b1940c04748ae9055107f8836e8d53b8c06",
+    "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/aisha-free.md": "7ad8873698b2c95a7f1f7305a80cb9f9aaf8f711896460d59aa8edeeded6c844",
+    "docs/lab/reviews/hf3-commonstead-control-2026-10-26/raw/jonas-continued.jsonl": "c9fd0b5182fc9578de8681f23073e97d86887e0963fdf84c55b7c618dedb5577",
+    "docs/lab/reviews/hf3-commonstead-control-2026-10-26/reports/jonas-continued.md": "e2d6ee017d0ba30d7f51c4dda0dd0a0b0a6d35d15082eaf4128158451d72aa9d",
+    "docs/lab/reviews/hf3-commonstead-r1-floor-shortfall-2026-10-26/verbatim/samir-continued.md": "63c568c54acfbb3309f0e023fc0edda2fb32bbf640e55598dee8250f98e22906",
+    "docs/lab/reviews/hf3-commonstead-r1-floor-shortfall-2026-10-26/raw/samir-continued.jsonl": "60306932c6433654adfc474dde7d4b6c50410ac67a359d52e51e4882b23d3807",
+    "docs/lab/reviews/hf3-commonstead-r1-floor-shortfall-2026-10-26/reports/samir-continued.md": "be0612c5d15417aea3b57602a2efb043374401e4b6fa37af1402eee21e1467ed"
+  },
+  "counts": {
+    "main_reports": 28,
+    "main_asks": 83,
+    "additional_reports": 1,
+    "additional_asks": 3,
+    "separate_control": 1,
+    "logical_testers": 14,
+    "blind_rows": 3155,
+    "blind_reactions": 595
+  },
+  "scope": "Candidate only; exact original archives separate; no source delivery, fix, retest or game acceptance",
+  "public_readable_note": "Biome formatting and README supplement prefix preserve separate original archive and readable hashes. private source paths are provenance only; canonical ledger links point to exact archives."
+}

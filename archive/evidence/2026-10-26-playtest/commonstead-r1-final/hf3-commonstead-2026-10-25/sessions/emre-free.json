@@ -1,0 +1,152 @@
+{
+  "started": "2026-10-26T04:24:35.856057+00:00",
+  "ended": "2026-10-26T04:31:44.616073+00:00",
+  "status": "report-ready",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "floor_minutes": 0,
+  "ceiling_minutes": 25,
+  "device": "desktop",
+  "url": "https://commonstead.adamwhite.work/",
+  "brief_sha256": "6f2cb1dce26cf35c602ab2d646793851816634f2cc9a90241024762f92c5bc30",
+  "release_before": {
+    "app": "0.2.0",
+    "framework": "3.0.0",
+    "commit": "24eaf9bf1d46f90c44466475562c2e575a960e18",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.2.0",
+    "framework": "3.0.0",
+    "commit": "24eaf9bf1d46f90c44466475562c2e575a960e18",
+    "dirty": false
+  },
+  "instrument_sha256": {
+    "/Users/abdul/code/.lab-scratch/playtest/lab-play-mouse-no-post.ts": "976a6bae0fe6716b5a4e33134bddb4dad558bf9089dc15d95a78b97b04cfd52a",
+    "/Users/abdul/code/human-framework/scripts/lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "/Users/abdul/code/human-framework/scripts/lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b",
+    "/Users/abdul/code/.lab-scratch/playtest/mouse_play_ops.ts": "d68b3a8e81e62267c1271f2dd164d350168f343d885d9c8b793cbff3f453705c",
+    "/Users/abdul/code/.lab-scratch/playtest/mouse_request_classification.ts": "6fe9db9b029315e31470a8d4b1fb1dc434273adda8c444c4eb02cfe64321aa01"
+  },
+  "persona": "Emre Kaya",
+  "arm": "free",
+  "report_sha256": "7198ca5c4474b1d425048627ac4317476973e37a1704d8ba2d63862e7dc70391",
+  "raw_sha256": "3c1d86e8ff009bd8983d7efc8e7cdb2120bcae7a500cc77e25b48c082ee4c9c5",
+  "stop_records": [
+    {
+      "t": "2026-10-26T04:31:00.360Z",
+      "elapsed_s": 370.833,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "I am stopping with the storehouse ready. I enjoyed arranging the work and seeing it finish, but I do not want to sit until the storm. I would return voluntarily only if there is another building problem to solve; I would not return another evening just to collect more supplies or invite conversations. I would not leave it running.",
+      "game_clock": null,
+      "engagement": null,
+      "reason": "BORED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    }
+  ],
+  "actual_image_events": [
+    {
+      "timestamp": "2026-10-26T04:24:57.107Z",
+      "call_id": "call_600d875142d0446ba50f2bffddb418d8",
+      "call_sha256": "d85905b7c9ad8d7c5813f39771b680cdc4bc3716cac748be101c12b3febfac4d",
+      "paths_unresolved_or_disallowed": false,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "recognized_single_unconditional_literal_call",
+      "screenshot_names": [
+        "current-wide.png"
+      ]
+    },
+    {
+      "timestamp": "2026-10-26T04:26:18.124Z",
+      "call_id": "call_55c8fd158e484d11879741ea63b61e1c",
+      "call_sha256": "a6454cb6f1fd97d7be5dfc81a019481a94a7feca0b196d76529b2c40aafd2fb9",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T04:27:24.850Z",
+      "call_id": "call_738bb7b5bf634447a60060e8ed3cdcd4",
+      "call_sha256": "64dd97efe5db45244145a3b9d6fda43d2cd82ba4c34800e3b7a44916e38e0264",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T04:28:54.755Z",
+      "call_id": "call_427ec399ab8947d18a05db4147a8bd9c",
+      "call_sha256": "64dd97efe5db45244145a3b9d6fda43d2cd82ba4c34800e3b7a44916e38e0264",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T04:30:01.869Z",
+      "call_id": "call_1fda5bae3e174a0a86d9d98e7b9d321e",
+      "call_sha256": "f3d5e09dde6e52c06cff4ffba6ab805a092da3468c8158317a41018c5c9a65cf",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T04:30:07.190Z",
+      "call_id": "call_8f81973765b14e0a9115047c2a85bdcb",
+      "call_sha256": "f3d5e09dde6e52c06cff4ffba6ab805a092da3468c8158317a41018c5c9a65cf",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    }
+  ],
+  "image_scope": "Actual safe tool evidence where present. Absence is unverified; self-reported viewing stays qualified.",
+  "feedback_scope": "API paths blocked by harness; no production feedback receipt or owner consent change authorized.",
+  "coordinator_limits": {
+    "verdict": "mixed",
+    "timing": "want_quit338.626BORED; stop370.833BORED",
+    "limits": "Natural free stop after storehouse ready; first want_quit338.626BORED, final370.833. Conditional return only for another building problem, no repeat supplies/conversation or leave-running; verdict mixed is conditional, not positive retention. Did not witness rain/final supplies outcome, invite helpers, use speed controls, right-click or drag. Keep difficulty and later consequences; existing fast controls not tested, so finish-without-wait ask needs reproduction. Actual both viewports, desktop explanation occlusion/phone tiny overlapping map observed. Exact24 clean before/after; continued pending."
+  }
+}

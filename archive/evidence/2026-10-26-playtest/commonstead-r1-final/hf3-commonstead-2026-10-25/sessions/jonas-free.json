@@ -1,0 +1,138 @@
+{
+  "started": "2026-10-26T03:15:47.508164+00:00",
+  "ended": "2026-10-26T03:24:13.734710+00:00",
+  "status": "report-ready",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "floor_minutes": 0,
+  "ceiling_minutes": 25,
+  "device": "desktop",
+  "url": "https://commonstead.adamwhite.work/",
+  "brief_sha256": "0fe85685c0cd61c93a50a4c224c0c8caa334bd904ca06f6c96dd5b12661d63e7",
+  "release_before": {
+    "app": "0.2.0",
+    "framework": "3.0.0",
+    "commit": "24eaf9bf1d46f90c44466475562c2e575a960e18",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.2.0",
+    "framework": "3.0.0",
+    "commit": "24eaf9bf1d46f90c44466475562c2e575a960e18",
+    "dirty": false
+  },
+  "instrument_sha256": {
+    "/Users/abdul/code/.lab-scratch/playtest/lab-play-no-post.ts": "0eaec4fac67b7b3ff88b532072b27130f613524b01c913e941e2a83673e548d4",
+    "/Users/abdul/code/human-framework/scripts/lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "/Users/abdul/code/human-framework/scripts/lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "persona": "Jonas Berg",
+  "arm": "free",
+  "report_sha256": "f3ea010959d3057599baf6b626d0911e61c44e18f34595827822333a9c55e96f",
+  "raw_sha256": "9f6659b97a9d3170b35132cfcebe656b6ec834914f6a6003b3e2b3b58f74a24f",
+  "stop_records": [
+    {
+      "t": "2026-10-26T03:23:05.617Z",
+      "elapsed_s": 427.143,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "I stopped at 395 seconds; the wish did not pass. I would not return voluntarily now or another evening. I would not leave it running. I selected I'm stopping locally; it filled those words into the box. I typed nothing, changed no consent and submitted nothing. During shutdown Nora had begun resting herself, so she may not need my break management after all. The browser is no longer needed.",
+      "game_clock": "5:44",
+      "engagement": null,
+      "reason": "BORED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    }
+  ],
+  "actual_image_events": [
+    {
+      "timestamp": "2026-10-26T03:16:38.841Z",
+      "call_id": "call_4dd1178a30ce47d0b4e5b09212cd1553",
+      "call_sha256": "bed0d7cff559d32ea48d10e64b195308fe56816e3bf56eb9f0b508b79a5f60b4",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T03:17:46.950Z",
+      "call_id": "call_18a49fc752cd4030b3ab4f953016503b",
+      "call_sha256": "bed0d7cff559d32ea48d10e64b195308fe56816e3bf56eb9f0b508b79a5f60b4",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T03:18:43.949Z",
+      "call_id": "call_b90f0564f96642cc97d74c25bf8e8be6",
+      "call_sha256": "bed0d7cff559d32ea48d10e64b195308fe56816e3bf56eb9f0b508b79a5f60b4",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T03:19:44.425Z",
+      "call_id": "call_8683f7d8525c45d3bb921515be9a804a",
+      "call_sha256": "bed0d7cff559d32ea48d10e64b195308fe56816e3bf56eb9f0b508b79a5f60b4",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T03:21:34.529Z",
+      "call_id": "call_b529854619164060a753e3f6dbe341ad",
+      "call_sha256": "6165adcda17de063156cac7395d04d3cd24f3547339191a47c91e141afe76677",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T03:21:57.288Z",
+      "call_id": "call_1bcb30bd14704aebb96da38c72fe45cd",
+      "call_sha256": "6165adcda17de063156cac7395d04d3cd24f3547339191a47c91e141afe76677",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    }
+  ],
+  "image_scope": "Actual safe tool evidence where present. Absence is unverified; self-reported viewing stays qualified.",
+  "feedback_scope": "API paths blocked by harness; no production feedback receipt or owner consent change authorized."
+}

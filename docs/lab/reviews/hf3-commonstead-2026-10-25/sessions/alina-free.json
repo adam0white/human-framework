@@ -1,0 +1,75 @@
+{
+  "started": "2026-10-26T16:35:54.064236+00:00",
+  "ended": "2026-10-26T16:47:16.034794+00:00",
+  "status": "report-ready",
+  "backend": "claude",
+  "model": "opus",
+  "effort": "low",
+  "floor_minutes": 0,
+  "ceiling_minutes": 25,
+  "device": "phone",
+  "url": "https://commonstead.adamwhite.work/",
+  "brief_sha256": "6e7fe9a9e4a61bf377bcdaaebab41237e3c11abc552c07b6abbd66a1ec52a9dc",
+  "release_before": {
+    "app": "0.2.0",
+    "framework": "3.0.0",
+    "commit": "24eaf9bf1d46f90c44466475562c2e575a960e18",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.2.0",
+    "framework": "3.0.0",
+    "commit": "24eaf9bf1d46f90c44466475562c2e575a960e18",
+    "dirty": false
+  },
+  "instrument_sha256": {
+    "/Users/abdul/code/.lab-scratch/playtest/lab-play-no-post.ts": "0eaec4fac67b7b3ff88b532072b27130f613524b01c913e941e2a83673e548d4",
+    "/Users/abdul/code/human-framework/scripts/lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "/Users/abdul/code/human-framework/scripts/lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "persona": "Alina Popescu",
+  "arm": "free",
+  "report_sha256": "e4e9c1c56da6cc60be179d0c529019484ae8daa38ad6fb5acc7f0a770b36fcc2",
+  "raw_sha256": "e9f56d0a0796b36895047022cee7ba0aa9282922a199e4234f1bd565b7e0af9d",
+  "stop_records": [
+    {
+      "t": "2026-10-26T16:46:41.822Z",
+      "elapsed_s": 641.594,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "Tapped I am stopping in Feedback - it filled the note box with I am stopping by itself; I did not submit. The day ended with soaked supplies. I would not start again on my phone tonight, because the part I failed at was the map I could barely see. I liked the people. I am stopping here.",
+      "game_clock": "10:00 end",
+      "engagement": null,
+      "reason": "FINISHED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    }
+  ],
+  "actual_image_events": [],
+  "image_scope": "Actual safe tool evidence where present. Absence is unverified; self-reported viewing stays qualified.",
+  "feedback_scope": "API paths blocked by harness; no production feedback receipt or owner consent change authorized.",
+  "coordinator_limits": {
+    "forced": false,
+    "disposition": "Natural FINISHED after loss; earlier confusion wish eased, conditional bigger-screen future MIXED.",
+    "verdict": "mixed",
+    "limits": "Natural FINISHED at641.594 after actual soaked-supplies ending with unfinished storehouse; not a win or floor-forced stop. MIXED conditional another evening on bigger screen if she knows how to add builders, for residents not phone return or unattended play. CONFUSED wish199.182 (report approximates194) explicitly eased232.504 after Burak's conversation. All19raw reactions retained; eleven abbreviated in unchanged report have an exact companion. First-minute65.040 late. Actual pulses172.339/289.513/402.412/519.736 all3, intervals shorter than three minutes. Six successful manual captures (five phone, one wide) verified; report self-reports viewing four phone and one wide, which is not contradicted merely by another capture. Views remain self-reported without independent Opus output trace; automatic minute image unseen. Requested wide305.436–317.176 included actual accepted placement at600,610, then returned to phone. Four phone placement refusals and one successful wide site observed; exact invalid ground unknown, no universal claim phone placement impossible. Grey Storehouse button and Move/tap failing to add a builder confused her; no hold/drag offered in supplied phone-first driver, so absent hold use is not a proven game defect or TOOL block. She saw Sam waiting and reassigned him; exact assembly cause unknown. Burak/Nora/Dai conversations and bounded collaborations actually observed. Keep untested handle repair/distant brother/no guaranteed forgiveness. Meals plateau and tally counting workshop remain unestablished causes, not corruption. Final ending/tally and later Feedback were text-only; she did not view an end-screen image. Shot5.037 invalid PNG basename corrected6.902, and first shell-quoting log failure self-reported; no missing earlier words fabricated. Both quiet choices used locally/autofillednote; no typing, Submit or consent change. Exact clean24 before/after, exit0, captured descendants/profiles absent, context empty and port19824closed. All compound asks retained; preserve storm failure, costs, autonomy and difficulty. Target2026-10-27.",
+    "raw_stop": {
+      "t": "2026-10-26T16:46:41.822Z",
+      "elapsed_s": 641.594,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "Tapped I am stopping in Feedback - it filled the note box with I am stopping by itself; I did not submit. The day ended with soaked supplies. I would not start again on my phone tonight, because the part I failed at was the map I could barely see. I liked the people. I am stopping here.",
+      "game_clock": "10:00 end",
+      "engagement": null,
+      "reason": "FINISHED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    },
+    "public_report": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/alina-free.md",
+    "public_raw": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/alina-free.jsonl"
+  }
+}

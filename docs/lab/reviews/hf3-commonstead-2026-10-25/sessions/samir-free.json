@@ -1,0 +1,75 @@
+{
+  "started": "2026-10-26T15:08:24.333520+00:00",
+  "ended": "2026-10-26T15:19:36.115796+00:00",
+  "status": "report-ready",
+  "backend": "claude",
+  "model": "opus",
+  "effort": "low",
+  "floor_minutes": 0,
+  "ceiling_minutes": 25,
+  "device": "phone",
+  "url": "https://commonstead.adamwhite.work/",
+  "brief_sha256": "9cd9b270c5ac3d9df28767d153a51d6038391369834e593c1f0024ab81dca608",
+  "release_before": {
+    "app": "0.2.0",
+    "framework": "3.0.0",
+    "commit": "24eaf9bf1d46f90c44466475562c2e575a960e18",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.2.0",
+    "framework": "3.0.0",
+    "commit": "24eaf9bf1d46f90c44466475562c2e575a960e18",
+    "dirty": false
+  },
+  "instrument_sha256": {
+    "/Users/abdul/code/.lab-scratch/playtest/lab-play-no-post.ts": "0eaec4fac67b7b3ff88b532072b27130f613524b01c913e941e2a83673e548d4",
+    "/Users/abdul/code/human-framework/scripts/lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "/Users/abdul/code/human-framework/scripts/lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "persona": "Samir Haddad",
+  "arm": "free",
+  "report_sha256": "7fdd7572996d40a40e8ea8e90bb5402bf72fed79ef9e00c9faeae952738a0065",
+  "raw_sha256": "1e8dd2caac9672565fcad6ae8f6b4f9fe76680d58c93b49a4a5d0e2dabb131d4",
+  "stop_records": [
+    {
+      "t": "2026-10-26T15:19:05.250Z",
+      "elapsed_s": 635.515,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "I am stopping here. The storm came at 10:00 and the supplies stayed dry; the game ended itself. I pressed I am stopping in Feedback and the note box filled itself with I am stopping - I did not type that. I did not submit. I liked the eight small honest confessions, but by the end they were all the same shape and the ending gave nobody a voice. I would not leave it running. I might return another evening on desktop if the people remembered what they told me.",
+      "game_clock": "10:00 end",
+      "engagement": null,
+      "reason": "FINISHED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    }
+  ],
+  "actual_image_events": [],
+  "image_scope": "Actual safe tool evidence where present. Absence is unverified; self-reported viewing stays qualified.",
+  "feedback_scope": "API paths blocked by harness; no production feedback receipt or owner consent change authorized.",
+  "coordinator_limits": {
+    "forced": false,
+    "disposition": "NaturalFINISHED afterstorm; earlierplacementwish explicitlyeased; conditionaldesktopfuture mixed, no phone/unattended.",
+    "verdict": "mixed",
+    "limits": "Natural FINISHED rawstop635.515 after actualstorm/suppliesdry ending, not an independent retention measure. MIXED conditional anothernight desktop if people remember/confessions lead somewhere; no phone return/unattended. Earliest wish195.811FRUSTRATED explicitly eased207.773 when fourthstorehouseplacement succeeded; do not call it persistent to end. Originalreport abbreviated earlierwords; all26fullrawreactions copied unchanged in separateverbatimcompanion. Firstminute64.181late despite report ontime; pulses162.590=4/288.966=3/373.535=3/557.455=2 irregular/early, no fabricated180 cadence. Actual manualcaptures4phone(9.746,171.005,186.221,421.196)+1wide307.451; reportselfclaims3phone+1wide, no independent Opusimageoutputtrace. Automaticfirstminuteunseen. Rootactuallyviewed retained finalphone/wide afterplay and confirms phone map strip/speedcontrol overlap; cannot retroactively establish every player imageview or exact invalidground. Wide resize306.515–316.562 after5minutes, positiontapstorehouse helpedbuilders; primarilyphone, no desktopdragavailable in suppliedphone-first driver. Failedshot7.730 missingpngbasename corrected9.746 invalidrequestnotdriverblock; reportedapostrophe shellfailure not rawdriverfailure. All8conversations/partialcollaborations observed; own-restnotcounting inference/onebuilderstallcause/tally2buildings workshopguess remain unestablished. Dilek note356.258 explicitly noticed nonconfession; preserve alongside later broader sameshape generalization. Repetitiveconfessionpattern/endvoice/waiting asks do not authorize removed storm/costs/difficulty/automaticobedience or computedforgiveness. Only stoppingquietchip actuallypressed; confusedavailable/textseen not useclaim. No typing/Submit/consent/productionnote. Exact24 cleanHF3 beforeafter/exit0. CapturedpreviousdescendantPIDs/profiles gone, driver/tester/portclosed. Target2026-10-27.",
+    "raw_stop": {
+      "t": "2026-10-26T15:19:05.250Z",
+      "elapsed_s": 635.515,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "I am stopping here. The storm came at 10:00 and the supplies stayed dry; the game ended itself. I pressed I am stopping in Feedback and the note box filled itself with I am stopping - I did not type that. I did not submit. I liked the eight small honest confessions, but by the end they were all the same shape and the ending gave nobody a voice. I would not leave it running. I might return another evening on desktop if the people remembered what they told me.",
+      "game_clock": "10:00 end",
+      "engagement": null,
+      "reason": "FINISHED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    },
+    "public_report": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/samir-free.md",
+    "public_raw": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/samir-free.jsonl"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "started": "2026-10-26T16:55:55.826692+00:00",
+  "ended": "2026-10-26T17:11:57.933437+00:00",
+  "status": "report-ready",
+  "backend": "claude",
+  "model": "opus",
+  "effort": "low",
+  "floor_minutes": 15,
+  "ceiling_minutes": 25,
+  "device": "desktop",
+  "url": "https://commonstead.adamwhite.work/",
+  "brief_sha256": "b7aec5bbcb2d5b370dd37319a88455745717c31b9a20020d7abd449a6bfa18ad",
+  "release_before": {
+    "app": "0.2.0",
+    "framework": "3.0.0",
+    "commit": "24eaf9bf1d46f90c44466475562c2e575a960e18",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.2.0",
+    "framework": "3.0.0",
+    "commit": "24eaf9bf1d46f90c44466475562c2e575a960e18",
+    "dirty": false
+  },
+  "instrument_sha256": {
+    "/Users/abdul/code/.lab-scratch/playtest/lab-play-mouse-no-post.ts": "976a6bae0fe6716b5a4e33134bddb4dad558bf9089dc15d95a78b97b04cfd52a",
+    "/Users/abdul/code/human-framework/scripts/lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "/Users/abdul/code/human-framework/scripts/lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b",
+    "/Users/abdul/code/.lab-scratch/playtest/mouse_play_ops.ts": "d68b3a8e81e62267c1271f2dd164d350168f343d885d9c8b793cbff3f453705c",
+    "/Users/abdul/code/.lab-scratch/playtest/mouse_request_classification.ts": "6fe9db9b029315e31470a8d4b1fb1dc434273adda8c444c4eb02cfe64321aa01"
+  },
+  "persona": "Julio Romero",
+  "arm": "continued",
+  "report_sha256": "eec674e4d1ca470907542f83a2d217add2587a869c43a6d94566a921a7978d6e",
+  "raw_sha256": "9feab1dec5e314e43ae34fe16cc04a96fa2f69001c46feaf919b255621db5192",
+  "stop_records": [
+    {
+      "t": "2026-10-26T17:11:11.588Z",
+      "elapsed_s": 908.663,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "11:26, ballast stuck at 27 again, Nora inspecting the cache over and over, the event log repeating itself. I understand the goal and the deadline but not what my requests actually do, so I am stopping. I would not leave it running.",
+      "game_clock": null,
+      "engagement": null,
+      "reason": "CONFUSED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    }
+  ],
+  "actual_image_events": [],
+  "image_scope": "Actual safe tool evidence where present. Absence is unverified; self-reported viewing stays qualified.",
+  "feedback_scope": "API paths blocked by harness; no production feedback receipt or owner consent change authorized.",
+  "coordinator_limits": {
+    "forced": false,
+    "disposition": "Floor-complete natural CONFUSED; conditional future MIXED, not unconditional QUIT or retention.",
+    "verdict": "mixed",
+    "limits": "Natural CONFUSED908.663, strict floor met. MIXED full conditional return: probably not as played; another evening only if consequences/readable work and request reasons are visible together. He liked actual rest and route friction; do not remove it or force obedience. BORED337.597 partly eased on longer-day start; CONFUSED751.331 persisted. Dry short ending reached, longer day unfinished11:26 before20:00 storm; floor exposure and trying optional mode are not independent retention. All30raw reactions preserved;26 omitted/abbreviated in report supplied unchanged by companion. First-minute64.795 late; actual pulses166.187=3/344.152=2/497.855=2/705.700=3/870.746=2 irregular. Failed earlier quote/typing pulse attempt self-reported, no earlier pulse fabricated. Four successful manual captures3wide/1phone and retained dimensions verified; Opus image views self-reported without independent output trace. Automatic minute view not established. Requested phone297.525–309.169 began2.475 seconds early, actual Nora position tap succeeded; longer day phone unseen. Actual chosen Sam and Dai yields opened route; exact count/carry/request/inspection/repetition causes unestablished. Burak/Nerys hobby scenes qualify broad confession-pattern language. Tally counting hub is only a guess. Missing About control277.096 message says not driver failure while legacy error_class says driver_failure; retain both, no TOOL block. Invalid PNG basename5.365 corrected8.315. Long-day Pause menu→Feedback at759.781 actually offered stopping and confused; confused used locally/autofillednote, no final stopping use. This is another actual wide observation, not a correction of Alina's unlocated phone/fullscreen control. No typing, Submit or consent change. Later events/Feedback mostly text-only. Exact clean24 before/after, exit0, captured descendants/profile absent, context empty and port19827closed. All compound asks preserved. Target2026-10-27.",
+    "raw_stop": {
+      "t": "2026-10-26T17:11:11.588Z",
+      "elapsed_s": 908.663,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "11:26, ballast stuck at 27 again, Nora inspecting the cache over and over, the event log repeating itself. I understand the goal and the deadline but not what my requests actually do, so I am stopping. I would not leave it running.",
+      "game_clock": null,
+      "engagement": null,
+      "reason": "CONFUSED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    },
+    "public_report": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/julio-continued.md",
+    "public_raw": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/julio-continued.jsonl"
+  }
+}

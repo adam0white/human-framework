@@ -1,0 +1,77 @@
+{
+  "started": "2026-10-26T16:03:40.033426+00:00",
+  "ended": "2026-10-26T16:08:26.285096+00:00",
+  "status": "report-ready",
+  "backend": "claude",
+  "model": "opus",
+  "effort": "low",
+  "floor_minutes": 0,
+  "ceiling_minutes": 25,
+  "device": "desktop",
+  "url": "https://commonstead.adamwhite.work/",
+  "brief_sha256": "4634df499ce8669627488028a2380113a8ace65685d630675358b58d766d2360",
+  "release_before": {
+    "app": "0.2.0",
+    "framework": "3.0.0",
+    "commit": "24eaf9bf1d46f90c44466475562c2e575a960e18",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.2.0",
+    "framework": "3.0.0",
+    "commit": "24eaf9bf1d46f90c44466475562c2e575a960e18",
+    "dirty": false
+  },
+  "instrument_sha256": {
+    "/Users/abdul/code/.lab-scratch/playtest/lab-play-mouse-no-post.ts": "976a6bae0fe6716b5a4e33134bddb4dad558bf9089dc15d95a78b97b04cfd52a",
+    "/Users/abdul/code/human-framework/scripts/lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "/Users/abdul/code/human-framework/scripts/lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b",
+    "/Users/abdul/code/.lab-scratch/playtest/mouse_play_ops.ts": "d68b3a8e81e62267c1271f2dd164d350168f343d885d9c8b793cbff3f453705c",
+    "/Users/abdul/code/.lab-scratch/playtest/mouse_request_classification.ts": "6fe9db9b029315e31470a8d4b1fb1dc434273adda8c444c4eb02cfe64321aa01"
+  },
+  "persona": "Leila Mansour",
+  "arm": "free",
+  "report_sha256": "0569b2d098b49a1bedd86722e503af3b071feaa39a6c2d713c8bafd545fc8c43",
+  "raw_sha256": "51457ddcb67f7f2a2c875eb2b4ef0d129e47ffd8b7fa476da7d966a17ec396f7",
+  "stop_records": [
+    {
+      "t": "2026-10-26T16:07:55.482Z",
+      "elapsed_s": 251.256,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "Selected I am stopping in Feedback; it filled the text box by itself; I typed nothing and did not submit. I stop at 5:41 game time with the storehouse and cabin both done and the storm still four hours off. The storm was never a threat - 180 boards in under two game hours with eight willing people, nobody objected, nobody refused. The two confessions, Nora and her handle and Sam and his false report, were the best writing, but each was a single line I could not answer. I understood everything and had nothing to decide. The want-quit did not pass. I would not leave it running.",
+      "game_clock": null,
+      "engagement": null,
+      "reason": "BORED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    }
+  ],
+  "actual_image_events": [],
+  "image_scope": "Actual safe tool evidence where present. Absence is unverified; self-reported viewing stays qualified.",
+  "feedback_scope": "API paths blocked by harness; no production feedback receipt or owner consent change authorized.",
+  "coordinator_limits": {
+    "forced": false,
+    "disposition": "NaturalBORED persistentwish, conditionalMIXED on challenge+response, notblanketquit/positivecurrentretention.",
+    "verdict": "mixed",
+    "limits": "Natural BORED stop at 251.256 seconds; her 200.358-second quit wish persisted after Fast speed and cabin placement. No storm or final outcome was observed. Return is MIXED: another evening only if the storm or resident limits create a real choice AND she can answer a confession; no return as played tonight or unattended play. All 13 raw reactions are unchanged in the report. First-minute note was late at 65.978 seconds. The only pulse was the successful 180.634-second resend, engagement 2; the earlier shell-quoting failure was self-reported and supplies no earlier score or driver failure. Two wide manual captures at 3.995 and 110.440 seconds and the retained 1280x800 PNG are verified; player views are self-reported without an independent Opus image-output trace. The automatic first-minute image was unseen. Phone coverage remains unmet because she quit before five minutes; CONT must cover it. Position placement, the actual 128.315-second right-click, group collection and completed buildings were observed. One run does not prove a universal strategy or actor-refusal defect. Fast speed was used only near the end. Nora's tired/slower speech was observed. Repeated confession text, generic collaboration prerequisites and 'existing cabin' wording confused her; exact eligibility remains unknown. Preserve both clauses in asks 2 and 3. Her challenge request does not authorize fabricated pressure, guaranteed refusal or hidden-state claims. Both quiet choices were available; only stopping was used locally. It filled the note itself; no typing, Submit, consent change or production note. Later observations were text-only. Exact clean 24eaf9b before and after, tester exit 0, captured PIDs/profile absent and port closed. Target 2026-10-27.",
+    "raw_stop": {
+      "t": "2026-10-26T16:07:55.482Z",
+      "elapsed_s": 251.256,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "Selected I am stopping in Feedback; it filled the text box by itself; I typed nothing and did not submit. I stop at 5:41 game time with the storehouse and cabin both done and the storm still four hours off. The storm was never a threat - 180 boards in under two game hours with eight willing people, nobody objected, nobody refused. The two confessions, Nora and her handle and Sam and his false report, were the best writing, but each was a single line I could not answer. I understood everything and had nothing to decide. The want-quit did not pass. I would not leave it running.",
+      "game_clock": null,
+      "engagement": null,
+      "reason": "BORED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    },
+    "public_report": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/leila-free.md",
+    "public_raw": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/leila-free.jsonl"
+  }
+}

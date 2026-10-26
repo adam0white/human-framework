@@ -1,0 +1,77 @@
+{
+  "started": "2026-10-26T16:10:13.391391+00:00",
+  "ended": "2026-10-26T16:19:40.817656+00:00",
+  "status": "report-ready",
+  "backend": "claude",
+  "model": "opus",
+  "effort": "low",
+  "floor_minutes": 0,
+  "ceiling_minutes": 25,
+  "device": "desktop",
+  "url": "https://commonstead.adamwhite.work/",
+  "brief_sha256": "9ddc6e2b94fd1317588b1b91d471b83547cdf3551aff37951cb36162ad6f8ee2",
+  "release_before": {
+    "app": "0.2.0",
+    "framework": "3.0.0",
+    "commit": "24eaf9bf1d46f90c44466475562c2e575a960e18",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.2.0",
+    "framework": "3.0.0",
+    "commit": "24eaf9bf1d46f90c44466475562c2e575a960e18",
+    "dirty": false
+  },
+  "instrument_sha256": {
+    "/Users/abdul/code/.lab-scratch/playtest/lab-play-mouse-no-post.ts": "976a6bae0fe6716b5a4e33134bddb4dad558bf9089dc15d95a78b97b04cfd52a",
+    "/Users/abdul/code/human-framework/scripts/lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "/Users/abdul/code/human-framework/scripts/lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b",
+    "/Users/abdul/code/.lab-scratch/playtest/mouse_play_ops.ts": "d68b3a8e81e62267c1271f2dd164d350168f343d885d9c8b793cbff3f453705c",
+    "/Users/abdul/code/.lab-scratch/playtest/mouse_request_classification.ts": "6fe9db9b029315e31470a8d4b1fb1dc434273adda8c444c4eb02cfe64321aa01"
+  },
+  "persona": "Aisha Rahman",
+  "arm": "free",
+  "report_sha256": "7ad8873698b2c95a7f1f7305a80cb9f9aaf8f711896460d59aa8edeeded6c844",
+  "raw_sha256": "0b995d266f137a241738ac8dbc1e7fc243e9e51515154a3528e6a7c9a160d833",
+  "stop_records": [
+    {
+      "t": "2026-10-26T16:18:56.530Z",
+      "elapsed_s": 518.111,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "Stopping here. Dai turned me away with the same sentence, the third refusal in a row, and the want to leave did not pass. I liked Burak and his paper ferry and Nora putting the easier grip back while she and her brother stay distant; those two moments were honest and gentle. But the storehouse is done at 4:05 with nothing pressing, and the only thing I want, the people, opens by a rule I cannot work out. Feedback shows I am stopping pressed; it filled the box itself, I typed nothing and did not submit. Game paused at 4:05, saved on the device.",
+      "game_clock": null,
+      "engagement": null,
+      "reason": "CONFUSED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    }
+  ],
+  "actual_image_events": [],
+  "image_scope": "Actual safe tool evidence where present. Absence is unverified; self-reported viewing stays qualified.",
+  "feedback_scope": "API paths blocked by harness; no production feedback receipt or owner consent change authorized.",
+  "coordinator_limits": {
+    "forced": false,
+    "disposition": "Natural CONFUSED stop with persistent wish; conditional future interest in people, not current retention.",
+    "verdict": "mixed",
+    "limits": "Natural CONFUSED stop at 518.111 seconds. The 478.765-second wish persisted. Return is MIXED: possibly another evening for Burak and Nora only if conversation requirements become understandable; no building-based return or unattended play. All 21 raw reactions are preserved; the original report abbreviates four, so the separate companion supplies their exact full words. First-minute note was late at 67.059 seconds. Actual pulses were 173.029=3, 347.352=4 and 480.166=2; do not claim exact three-minute cadence. Four manual captures (three wide, one phone) and both retained PNG dimensions are verified; image viewing remains self-reported without an independent Opus output trace. The automatic first-minute image was not opened. Requested phone check at 309.882–321.037 seconds was distinct from voluntary device choice. She reported overlapping map labels/hint and a cut-off name row; an actual position tap selected Nora. No root visual judgment is added. Burak and Nora conversations and collaborations actually succeeded. She liked the limited repair that left Nora and her brother distant. Her selected-person hypothesis explicitly failed with Nerys; exact eligibility remains unknown. Storehouse became ready at game 3:38; no storm or final outcome was observed. Rest and right-click worked, and a helper arrived. One early completion does not establish a universal strategy or authorize removing the storm, costs, autonomy or difficulty. All three asks remain literal. Both quiet choices were used locally and autofilled notes; no typing, Submit or consent change. Exact clean 24eaf9b before and after, tester exit 0. Previously captured descendants and profiles are absent, isolated context empty and port closed. Target 2026-10-27.",
+    "raw_stop": {
+      "t": "2026-10-26T16:18:56.530Z",
+      "elapsed_s": 518.111,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "Stopping here. Dai turned me away with the same sentence, the third refusal in a row, and the want to leave did not pass. I liked Burak and his paper ferry and Nora putting the easier grip back while she and her brother stay distant; those two moments were honest and gentle. But the storehouse is done at 4:05 with nothing pressing, and the only thing I want, the people, opens by a rule I cannot work out. Feedback shows I am stopping pressed; it filled the box itself, I typed nothing and did not submit. Game paused at 4:05, saved on the device.",
+      "game_clock": null,
+      "engagement": null,
+      "reason": "CONFUSED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    },
+    "public_report": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/aisha-free.md",
+    "public_raw": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/aisha-free.jsonl"
+  }
+}

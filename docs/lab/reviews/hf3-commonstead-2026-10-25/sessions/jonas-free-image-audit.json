@@ -1,0 +1,50 @@
+{
+  "timestamp": "2026-10-26T03:25:47.653941+00:00",
+  "scope": "Coordinator inspected complete exact owned call strings. Collector correctly left unsupported nested single-call syntax unresolved. No tool output attributed from a partial regex or player claim.",
+  "source_text_archive_sha256": "fe8f4bb7a13166338685309edc912cbc8ed443b50536f1ecd7c32a04502086fd",
+  "complete_call_shape": "image((await tools.view_image({path: literal_owned_screenshot})).image_url);",
+  "events": [
+    {
+      "timestamp": "2026-10-26T03:16:38.841Z",
+      "call_id": "call_4dd1178a30ce47d0b4e5b09212cd1553",
+      "call_sha256": "bed0d7cff559d32ea48d10e64b195308fe56816e3bf56eb9f0b508b79a5f60b4",
+      "screenshot_name": "current-wide.png",
+      "image_returned": true
+    },
+    {
+      "timestamp": "2026-10-26T03:17:46.950Z",
+      "call_id": "call_18a49fc752cd4030b3ab4f953016503b",
+      "call_sha256": "bed0d7cff559d32ea48d10e64b195308fe56816e3bf56eb9f0b508b79a5f60b4",
+      "screenshot_name": "current-wide.png",
+      "image_returned": true
+    },
+    {
+      "timestamp": "2026-10-26T03:18:43.949Z",
+      "call_id": "call_b90f0564f96642cc97d74c25bf8e8be6",
+      "call_sha256": "bed0d7cff559d32ea48d10e64b195308fe56816e3bf56eb9f0b508b79a5f60b4",
+      "screenshot_name": "current-wide.png",
+      "image_returned": true
+    },
+    {
+      "timestamp": "2026-10-26T03:19:44.425Z",
+      "call_id": "call_8683f7d8525c45d3bb921515be9a804a",
+      "call_sha256": "bed0d7cff559d32ea48d10e64b195308fe56816e3bf56eb9f0b508b79a5f60b4",
+      "screenshot_name": "current-wide.png",
+      "image_returned": true
+    },
+    {
+      "timestamp": "2026-10-26T03:21:34.529Z",
+      "call_id": "call_b529854619164060a753e3f6dbe341ad",
+      "call_sha256": "6165adcda17de063156cac7395d04d3cd24f3547339191a47c91e141afe76677",
+      "screenshot_name": "current-phone.png",
+      "image_returned": true
+    },
+    {
+      "timestamp": "2026-10-26T03:21:57.288Z",
+      "call_id": "call_1bcb30bd14704aebb96da38c72fe45cd",
+      "call_sha256": "6165adcda17de063156cac7395d04d3cd24f3547339191a47c91e141afe76677",
+      "screenshot_name": "current-phone.png",
+      "image_returned": true
+    }
+  ]
+}

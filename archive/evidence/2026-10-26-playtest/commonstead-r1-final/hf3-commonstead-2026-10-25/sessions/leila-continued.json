@@ -1,0 +1,77 @@
+{
+  "started": "2026-10-26T16:08:27.275519+00:00",
+  "ended": "2026-10-26T16:24:34.296155+00:00",
+  "status": "report-ready",
+  "backend": "claude",
+  "model": "opus",
+  "effort": "low",
+  "floor_minutes": 15,
+  "ceiling_minutes": 25,
+  "device": "desktop",
+  "url": "https://commonstead.adamwhite.work/",
+  "brief_sha256": "6d283152a56d55af18e9a72d2482807ab6998187d7ff73aabcd674eea72f1be5",
+  "release_before": {
+    "app": "0.2.0",
+    "framework": "3.0.0",
+    "commit": "24eaf9bf1d46f90c44466475562c2e575a960e18",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.2.0",
+    "framework": "3.0.0",
+    "commit": "24eaf9bf1d46f90c44466475562c2e575a960e18",
+    "dirty": false
+  },
+  "instrument_sha256": {
+    "/Users/abdul/code/.lab-scratch/playtest/lab-play-mouse-no-post.ts": "976a6bae0fe6716b5a4e33134bddb4dad558bf9089dc15d95a78b97b04cfd52a",
+    "/Users/abdul/code/human-framework/scripts/lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "/Users/abdul/code/human-framework/scripts/lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b",
+    "/Users/abdul/code/.lab-scratch/playtest/mouse_play_ops.ts": "d68b3a8e81e62267c1271f2dd164d350168f343d885d9c8b793cbff3f453705c",
+    "/Users/abdul/code/.lab-scratch/playtest/mouse_request_classification.ts": "6fe9db9b029315e31470a8d4b1fb1dc434273adda8c444c4eb02cfe64321aa01"
+  },
+  "persona": "Leila Mansour",
+  "arm": "continued",
+  "report_sha256": "6c457098b742dd4f0584edcb4089b78d3e2bd03404d1d3d4f6d39f214f9d634d",
+  "raw_sha256": "54d41d6467ca7a8526b07008a53b49cf3d17db8d200921ecfedbeb815622ded9",
+  "stop_records": [
+    {
+      "t": "2026-10-26T16:23:41.442Z",
+      "elapsed_s": 908.481,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "Selected I am stopping in Feedback; it filled the text box with I am stopping by itself. I typed nothing and did not submit. Stopping at 15:00 on the settlement day, boards 80 of 180, ballast 14 of 120, storm at 20:00. Burak just said I trust you, so I will go - the warmest line in an hour, and it came as I was leaving. The confessions in the first chapter were neat, the rumour idea in Heard accounts is clever, the yield dispute was the first real choice. But every act ends in a status line, nobody answers me in their own words, and six game hours passed with nothing counted. I understand it; I do not care what happens to the storehouse. I would not leave it running.",
+      "game_clock": "15:00",
+      "engagement": null,
+      "reason": "BORED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    }
+  ],
+  "actual_image_events": [],
+  "image_scope": "Actual safe tool evidence where present. Absence is unverified; self-reported viewing stays qualified.",
+  "feedback_scope": "API paths blocked by harness; no production feedback receipt or owner consent change authorized.",
+  "coordinator_limits": {
+    "forced": false,
+    "disposition": "Floor-complete natural BORED, conditional future MIXED; continued longer day and floor wait are not retention.",
+    "verdict": "mixed",
+    "limits": "Natural BORED stop at 908.481 seconds; strict floor met. Return is MIXED: no return as played tonight, another evening only if residents answer in their own words AND requests visibly affect supplies or explain why they do not; no unattended play. First BORED wish at 326.449 persisted according to her diary, followed by a FINISHED wish at 483.898 after the actual dry-supplies ending. She chose the longer day because she had set aside the floor time, not as an independent retention result. It briefly lifted interest; the 699.768 BORED wish persisted. Longer day ended unfinished at 15:00, before its 20:00 storm. All 39 raw reactions are unchanged in the companion; 25 are abbreviated in the original report after its disclosed context break. First-minute66.518 late; pulses180.472=2/349.387=2/536.183=2/698.717=2/864.851=1 are actual, not exact cadence. Six successful manual captures (five wide, one phone), not the report's four wide claim; retained PNG dimensions verified. Player views including automatic first-minute are self-reported without an independent Opus output trace. Requested phone check actually resized at295.429 and returned307.855, starting4.571 seconds before five minutes; do not claim exact timing compliance. Actual drag388.652/rightclick391.525 worked. Shot6.899 invalid basename corrected9.256; no driver block. Nerys, Dilek and Burak explicitly supplied non-confession hobbies; preserve beside her broader pattern criticism. Sevim's unsent draft did not imply forgiveness. Self-rest, repeated worker speech and an actual chosen yield were observed; exact request refusal, work, recovery, rumour and travel causes remain unestablished. Fast carried into the longer day; she explicitly blamed herself for lost time while writing and switched back to Steady. Boards80/ballast14 and grey construction confused her; do not label this a proven engine defect or demand automatic obedience. Preserve all compound clauses of her three literal asks and the actual difficulty/costs/autonomy. Stopping quiet choice used locally, confused available but unpressed; no typing, Submit or consent change. Exact clean24 before/after, exit0, captured descendants/profile absent, isolated context empty and port closed. Target2026-10-27.",
+    "raw_stop": {
+      "t": "2026-10-26T16:23:41.442Z",
+      "elapsed_s": 908.481,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "Selected I am stopping in Feedback; it filled the text box with I am stopping by itself. I typed nothing and did not submit. Stopping at 15:00 on the settlement day, boards 80 of 180, ballast 14 of 120, storm at 20:00. Burak just said I trust you, so I will go - the warmest line in an hour, and it came as I was leaving. The confessions in the first chapter were neat, the rumour idea in Heard accounts is clever, the yield dispute was the first real choice. But every act ends in a status line, nobody answers me in their own words, and six game hours passed with nothing counted. I understand it; I do not care what happens to the storehouse. I would not leave it running.",
+      "game_clock": "15:00",
+      "engagement": null,
+      "reason": "BORED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    },
+    "public_report": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/leila-continued.md",
+    "public_raw": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/leila-continued.jsonl"
+  }
+}

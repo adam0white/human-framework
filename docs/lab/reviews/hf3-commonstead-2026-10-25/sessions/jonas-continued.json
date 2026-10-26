@@ -1,0 +1,175 @@
+{
+  "started": "2026-10-26T03:15:47.764876+00:00",
+  "ended": "2026-10-26T03:34:04.872978+00:00",
+  "status": "report-ready",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "floor_minutes": 15,
+  "ceiling_minutes": 25,
+  "device": "desktop",
+  "url": "https://commonstead.adamwhite.work/",
+  "brief_sha256": "f19517892987a6ff0b3cfa0065f86e92c2604346f62c3060613af6f2653daa5c",
+  "release_before": {
+    "app": "0.2.0",
+    "framework": "3.0.0",
+    "commit": "24eaf9bf1d46f90c44466475562c2e575a960e18",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.2.0",
+    "framework": "3.0.0",
+    "commit": "24eaf9bf1d46f90c44466475562c2e575a960e18",
+    "dirty": false
+  },
+  "instrument_sha256": {
+    "/Users/abdul/code/.lab-scratch/playtest/lab-play-no-post.ts": "0eaec4fac67b7b3ff88b532072b27130f613524b01c913e941e2a83673e548d4",
+    "/Users/abdul/code/human-framework/scripts/lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "/Users/abdul/code/human-framework/scripts/lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "persona": "Jonas Berg",
+  "arm": "continued",
+  "report_sha256": "d3b6d18ba3cb8d92f0049e19223e47b24ff89669919787fd692052a003d9ab48",
+  "raw_sha256": "9d3eaf0963e61da3bf7187194a48bbc97c1f6f392917f277938563c50ab5f41c",
+  "stop_records": [
+    {
+      "t": "2026-10-26T03:32:41.687Z",
+      "elapsed_s": 1002.339,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "I stopped playing when the second storehouse was ready at 3:45, seen at 929 seconds; my wish to leave was logged at 957 seconds. Feedback is now selected locally at 4:18. I typed nothing and submitted nothing. I would not return voluntarily to repeat this storm task. I might try the longer settlement day another evening if it offers different decisions, but I have not opened it and that is curiosity rather than a plan to return. I would not leave this running. The browser is no longer needed.",
+      "game_clock": null,
+      "engagement": null,
+      "reason": "BORED",
+      "op_ms": 1,
+      "error": null,
+      "requested_control_present_before": null
+    }
+  ],
+  "actual_image_events": [
+    {
+      "timestamp": "2026-10-26T03:16:08.517Z",
+      "call_id": "call_c1862c967f4f4edc8c7fe01c979adcdc",
+      "call_sha256": "7986f12feb76a8e5d1272989a284ff006a4eb448650dd29127202b25f0e4339e",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T03:17:01.505Z",
+      "call_id": "call_e300eeb5ecf94a4bb99e23b151f96afc",
+      "call_sha256": "7986f12feb76a8e5d1272989a284ff006a4eb448650dd29127202b25f0e4339e",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T03:17:58.441Z",
+      "call_id": "call_c4d765de3f454c07ae1ad78fcf703251",
+      "call_sha256": "7986f12feb76a8e5d1272989a284ff006a4eb448650dd29127202b25f0e4339e",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T03:19:00.986Z",
+      "call_id": "call_c90a71b4e0a746d390056e53581ff58d",
+      "call_sha256": "7986f12feb76a8e5d1272989a284ff006a4eb448650dd29127202b25f0e4339e",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T03:21:15.456Z",
+      "call_id": "call_3079ddb585c2418e95bae5f55a7c8b5b",
+      "call_sha256": "3777fa64525a6856327c34a634a9ac80f674afee31a90f72fd777775a99d9449",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T03:21:25.618Z",
+      "call_id": "call_1f82841aaabe4f88a741ac20e5696a40",
+      "call_sha256": "3777fa64525a6856327c34a634a9ac80f674afee31a90f72fd777775a99d9449",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T03:22:20.236Z",
+      "call_id": "call_f2b824d770cc4e288f14866edaaeb588",
+      "call_sha256": "7986f12feb76a8e5d1272989a284ff006a4eb448650dd29127202b25f0e4339e",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T03:23:15.014Z",
+      "call_id": "call_2091f95c94d84410b7b06595d7d03e2d",
+      "call_sha256": "7986f12feb76a8e5d1272989a284ff006a4eb448650dd29127202b25f0e4339e",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T03:26:21.789Z",
+      "call_id": "call_1b5e76d662204930b40ef765ec5125c0",
+      "call_sha256": "7986f12feb76a8e5d1272989a284ff006a4eb448650dd29127202b25f0e4339e",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T03:28:58.691Z",
+      "call_id": "call_9f85b729c0614454acf455fbf8dd452a",
+      "call_sha256": "7986f12feb76a8e5d1272989a284ff006a4eb448650dd29127202b25f0e4339e",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T03:30:27.123Z",
+      "call_id": "call_642ba118f369414aa69221cee6d56570",
+      "call_sha256": "7986f12feb76a8e5d1272989a284ff006a4eb448650dd29127202b25f0e4339e",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    }
+  ],
+  "image_scope": "Actual safe tool evidence where present. Absence is unverified; self-reported viewing stays qualified.",
+  "feedback_scope": "API paths blocked by harness; no production feedback receipt or owner consent change authorized."
+}

@@ -1,0 +1,102 @@
+{
+  "timestamp": "2026-10-26T04:15:25.213522+00:00",
+  "scope": "Coordinator inspected all complete exact owned call strings. No partial regex or player claim used. Original collector resolution labels remain unchanged.",
+  "source_text_archive_sha256": "39ee23399e15e9a1b424485dbb4c31db9ca47d8bfc41389e81b989e996c5e341",
+  "complete_call_shapes": [
+    "image((await tools.view_image({path:literal})).image_url);",
+    "const r=await tools.view_image({path:literal});image(r.image_url);"
+  ],
+  "events": [
+    {
+      "timestamp": "2026-10-26T03:58:01.073Z",
+      "call_id": "call_d19af994a21d4a028b6c81a43d9106b9",
+      "call_sha256": "63d9ac5f777c3a642334fbe66973855e1c173cd86904f2deb0331090d3ec7799",
+      "image_returned": true,
+      "screenshot_name": "current-phone.png"
+    },
+    {
+      "timestamp": "2026-10-26T03:59:02.318Z",
+      "call_id": "call_0761c0f2b8214de29cc4fcb91faf741e",
+      "call_sha256": "2f63a5dfca2c3c16c448b1615439a8d4c4b420b9f63bacda276ee234007ee594",
+      "image_returned": true,
+      "screenshot_name": "current-phone.png"
+    },
+    {
+      "timestamp": "2026-10-26T03:59:42.439Z",
+      "call_id": "call_849d96ae92df418380a1a5d8de79f9da",
+      "call_sha256": "2f63a5dfca2c3c16c448b1615439a8d4c4b420b9f63bacda276ee234007ee594",
+      "image_returned": true,
+      "screenshot_name": "current-phone.png"
+    },
+    {
+      "timestamp": "2026-10-26T04:02:15.746Z",
+      "call_id": "call_993b4c72257f4503ae3e80f1e4b88177",
+      "call_sha256": "2f63a5dfca2c3c16c448b1615439a8d4c4b420b9f63bacda276ee234007ee594",
+      "image_returned": true,
+      "screenshot_name": "current-phone.png"
+    },
+    {
+      "timestamp": "2026-10-26T04:02:53.282Z",
+      "call_id": "call_cb6ce9c1b6954d5fa36d79e5bb058186",
+      "call_sha256": "1488ed6ed62264b3fedd20853641f3557da5f5c30f648228aceb9c72f05fe1f3",
+      "image_returned": true,
+      "screenshot_name": "current-wide.png"
+    },
+    {
+      "timestamp": "2026-10-26T04:03:02.333Z",
+      "call_id": "call_b8e5e5a57fb24813b163dcdbeba4a2e5",
+      "call_sha256": "1488ed6ed62264b3fedd20853641f3557da5f5c30f648228aceb9c72f05fe1f3",
+      "image_returned": true,
+      "screenshot_name": "current-wide.png"
+    },
+    {
+      "timestamp": "2026-10-26T04:04:44.024Z",
+      "call_id": "call_1033d0c3ec0e48aeb97e4458020d92a8",
+      "call_sha256": "2f63a5dfca2c3c16c448b1615439a8d4c4b420b9f63bacda276ee234007ee594",
+      "image_returned": true,
+      "screenshot_name": "current-phone.png"
+    },
+    {
+      "timestamp": "2026-10-26T04:04:58.284Z",
+      "call_id": "call_3ad61ed146114350ba4dc47d3ad0c8c6",
+      "call_sha256": "1488ed6ed62264b3fedd20853641f3557da5f5c30f648228aceb9c72f05fe1f3",
+      "image_returned": true,
+      "screenshot_name": "current-wide.png"
+    },
+    {
+      "timestamp": "2026-10-26T04:05:08.374Z",
+      "call_id": "call_5712c712f8ae4ce4b3f00e8c0d1da4c3",
+      "call_sha256": "1488ed6ed62264b3fedd20853641f3557da5f5c30f648228aceb9c72f05fe1f3",
+      "image_returned": true,
+      "screenshot_name": "current-wide.png"
+    },
+    {
+      "timestamp": "2026-10-26T04:06:57.726Z",
+      "call_id": "call_40c4ab26800c4e36aad9a61d2f689770",
+      "call_sha256": "1488ed6ed62264b3fedd20853641f3557da5f5c30f648228aceb9c72f05fe1f3",
+      "image_returned": true,
+      "screenshot_name": "current-wide.png"
+    },
+    {
+      "timestamp": "2026-10-26T04:08:06.510Z",
+      "call_id": "call_0d81807121ad4020bc28409011e67c7d",
+      "call_sha256": "2f63a5dfca2c3c16c448b1615439a8d4c4b420b9f63bacda276ee234007ee594",
+      "image_returned": true,
+      "screenshot_name": "current-phone.png"
+    },
+    {
+      "timestamp": "2026-10-26T04:08:48.638Z",
+      "call_id": "call_8d873b1c648b4efba0251f554f82f727",
+      "call_sha256": "2f63a5dfca2c3c16c448b1615439a8d4c4b420b9f63bacda276ee234007ee594",
+      "image_returned": true,
+      "screenshot_name": "current-phone.png"
+    },
+    {
+      "timestamp": "2026-10-26T04:10:09.486Z",
+      "call_id": "call_7a4e3b8d8b8342d5b153a18a405fb1c8",
+      "call_sha256": "2f63a5dfca2c3c16c448b1615439a8d4c4b420b9f63bacda276ee234007ee594",
+      "image_returned": true,
+      "screenshot_name": "current-phone.png"
+    }
+  ]
+}

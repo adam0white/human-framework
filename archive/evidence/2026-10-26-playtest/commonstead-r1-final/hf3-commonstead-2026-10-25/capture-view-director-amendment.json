@@ -1,0 +1,33 @@
+{
+  "at": "2026-10-26T16:50:32.764579+00:00",
+  "kind": "Director evidence wording correction",
+  "scopes": [
+    {
+      "session": "leila-continued",
+      "original_approved_input_sha256": "dffb44e10338046e2741641fbbc29e4903d20cabf7f4102bfc8eaac05ca2136b",
+      "verified_manual_capture_counts": {
+        "wide": 5,
+        "phone": 1
+      },
+      "original_self_reported_image_view_counts": {
+        "wide": 4,
+        "phone": 1
+      },
+      "correction": "Different capture and self-reported view counts do not establish a report error. A screenshot can be captured without being viewed. No independent Opus image-output trace was retained, so actual view counts remain unverified. This supersedes coordinator wording that treated capture counts as correcting a view claim. Original report/raw/asks/full return/verdict and approved input remain unchanged."
+    },
+    {
+      "session": "aisha-continued",
+      "original_approved_input_sha256": "b8252a61fcb29e8a27b6e9baedd401da9958d6eb317a12ada894bd51a70b4a77",
+      "verified_manual_capture_counts": {
+        "wide": 7,
+        "phone": 1
+      },
+      "original_self_reported_image_view_counts": {
+        "wide": 5,
+        "phone": 1
+      },
+      "correction": "Different capture and self-reported view counts do not establish a report error. A screenshot can be captured without being viewed. No independent Opus image-output trace was retained, so actual view counts remain unverified. This supersedes coordinator wording that treated capture counts as correcting a view claim. Original report/raw/asks/full return/verdict and approved input remain unchanged."
+    }
+  ],
+  "canonical_batch_requirement": "Include this correction alongside original arm limits; do not present capture count as independently verified Opus view count."
+}

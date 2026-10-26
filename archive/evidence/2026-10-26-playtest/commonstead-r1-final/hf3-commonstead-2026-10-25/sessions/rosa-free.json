@@ -1,0 +1,118 @@
+{
+  "started": "2026-10-26T03:24:16.431697+00:00",
+  "ended": "2026-10-26T03:28:12.846587+00:00",
+  "status": "report-ready",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "floor_minutes": 0,
+  "ceiling_minutes": 25,
+  "device": "phone",
+  "url": "https://commonstead.adamwhite.work/",
+  "brief_sha256": "e0c154d5b74cde28f0d06d8d8103fdca0bcb588f17594b42dfdd4f3edf73a129",
+  "release_before": {
+    "app": "0.2.0",
+    "framework": "3.0.0",
+    "commit": "24eaf9bf1d46f90c44466475562c2e575a960e18",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.2.0",
+    "framework": "3.0.0",
+    "commit": "24eaf9bf1d46f90c44466475562c2e575a960e18",
+    "dirty": false
+  },
+  "instrument_sha256": {
+    "/Users/abdul/code/.lab-scratch/playtest/lab-play-no-post.ts": "0eaec4fac67b7b3ff88b532072b27130f613524b01c913e941e2a83673e548d4",
+    "/Users/abdul/code/human-framework/scripts/lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "/Users/abdul/code/human-framework/scripts/lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "persona": "Rosa Alvarez",
+  "arm": "free",
+  "report_sha256": "32d96c759d35eb8347ad2109b8737b1940c04748ae9055107f8836e8d53b8c06",
+  "raw_sha256": "7409ee75b676fd183fdf8f886932a8475a475021aa84524f971dbc3acecfdcd7",
+  "stop_records": [
+    {
+      "t": "2026-10-26T03:26:43.900Z",
+      "elapsed_s": 132.64,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "I got two people started, which pleased me. But I came to build the storehouse and now I am trying to understand what a minute together means. I stop here after my second reread. I would close it, not leave it running. I would return if someone sat with me for the first few jobs; I would not choose another evening with it on my own.",
+      "game_clock": null,
+      "engagement": null,
+      "reason": "CONFUSED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    }
+  ],
+  "actual_image_events": [
+    {
+      "timestamp": "2026-10-26T03:24:36.385Z",
+      "call_id": "call_9ec31c83556f4cd0a2708293993bae41",
+      "call_sha256": "e0d2e12ef302db977a2099e60613d259efdac62fa47b0a157b1c1283db99c444",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T03:24:54.919Z",
+      "call_id": "call_a0a2b41cf5ea4609b065560f51835b9f",
+      "call_sha256": "e0d2e12ef302db977a2099e60613d259efdac62fa47b0a157b1c1283db99c444",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T03:25:17.270Z",
+      "call_id": "call_51d5a8d439924011994e513c9f839957",
+      "call_sha256": "e0d2e12ef302db977a2099e60613d259efdac62fa47b0a157b1c1283db99c444",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T03:26:23.328Z",
+      "call_id": "call_19ccf6fd030841188d98ba525effe49c",
+      "call_sha256": "e0d2e12ef302db977a2099e60613d259efdac62fa47b0a157b1c1283db99c444",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    }
+  ],
+  "image_scope": "Actual safe tool evidence where present. Absence is unverified; self-reported viewing stays qualified.",
+  "feedback_scope": "API paths blocked by harness; no production feedback receipt or owner consent change authorized.",
+  "coordinator_limits": {
+    "forced": true,
+    "disposition": "reading-protocol stop at second individual reread; excluded from taste patterns",
+    "verdict": "-",
+    "natural_stop_self_label": "Original report calls it natural; coordinator applies supplied second-reread forced-stop rule, preserves original words",
+    "viewport_limit": "Phone observed; desktop unseen in this early arm, continued arm remains pending",
+    "timing": "stop132.640s; laterlocalFeedback shutdown notes through153.027s; no production submission"
+  }
+}

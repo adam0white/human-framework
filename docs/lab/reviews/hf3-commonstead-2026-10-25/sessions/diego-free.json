@@ -1,0 +1,120 @@
+{
+  "started": "2026-10-26T16:24:36.980457+00:00",
+  "ended": "2026-10-26T16:30:23.207389+00:00",
+  "status": "report-ready",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "floor_minutes": 0,
+  "ceiling_minutes": 25,
+  "device": "phone",
+  "url": "https://commonstead.adamwhite.work/",
+  "brief_sha256": "2961aa065088c5b4d2e72c606f5733affe0934d32dd2cf4ec459ecc2762b891b",
+  "release_before": {
+    "app": "0.2.0",
+    "framework": "3.0.0",
+    "commit": "24eaf9bf1d46f90c44466475562c2e575a960e18",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.2.0",
+    "framework": "3.0.0",
+    "commit": "24eaf9bf1d46f90c44466475562c2e575a960e18",
+    "dirty": false
+  },
+  "instrument_sha256": {
+    "/Users/abdul/code/.lab-scratch/playtest/lab-play-no-post.ts": "0eaec4fac67b7b3ff88b532072b27130f613524b01c913e941e2a83673e548d4",
+    "/Users/abdul/code/human-framework/scripts/lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "/Users/abdul/code/human-framework/scripts/lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "persona": "Diego Silva",
+  "arm": "free",
+  "report_sha256": "3aa0beba86230638238024aa92b51775c96f0f3a2d916a32f56e1ba0c92fa62e",
+  "raw_sha256": "39f27b674ef5b32cc0e0272484075b2c0a5f61a8ae338d88746ceec0138515cb",
+  "stop_records": [
+    {
+      "t": "2026-10-26T16:29:35.726Z",
+      "elapsed_s": 285.842,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "I am stopping here. Getting the materials was clear and fairly quick, but placing the thing I collected them for defeated me on this phone. I might try again another evening on a bigger screen; I would not resume this phone session voluntarily or leave it running. Feedback offered both choices. I selected I am stopping; it filled the note itself. I typed nothing and did not submit.",
+      "game_clock": null,
+      "engagement": null,
+      "reason": "FRUSTRATED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    }
+  ],
+  "actual_image_events": [
+    {
+      "timestamp": "2026-10-26T16:25:03.299Z",
+      "call_id": "call_83a0c73ad2b340d39b82a5875723a2b0",
+      "call_sha256": "275969d69f2a7fa8d45b42909d37def6f1877ea8de404ad8fa5f5fec7b0e8161",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T16:26:10.048Z",
+      "call_id": "call_fc00b80a4a8b4fb4aadee78d62f69d12",
+      "call_sha256": "275969d69f2a7fa8d45b42909d37def6f1877ea8de404ad8fa5f5fec7b0e8161",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T16:27:01.809Z",
+      "call_id": "call_21e95df178044fe9ae9065428843b460",
+      "call_sha256": "275969d69f2a7fa8d45b42909d37def6f1877ea8de404ad8fa5f5fec7b0e8161",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T16:28:45.133Z",
+      "call_id": "call_f31b24b119f743b6b1af948ec0ff8ea8",
+      "call_sha256": "275969d69f2a7fa8d45b42909d37def6f1877ea8de404ad8fa5f5fec7b0e8161",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    }
+  ],
+  "image_scope": "Actual safe tool evidence where present. Absence is unverified; self-reported viewing stays qualified.",
+  "feedback_scope": "API paths blocked by harness; no production feedback receipt or owner consent change authorized.",
+  "coordinator_limits": {
+    "forced": false,
+    "disposition": "Natural persistent FRUSTRATED wish; conditional bigger-screen future MIXED.",
+    "verdict": "mixed",
+    "limits": "Natural FRUSTRATED stop at285.842; wish266.877 persisted. MIXED full return: might try another evening on a bigger screen, no voluntary phone resumption or unattended play. All seven raw reactions unchanged in original report, with report timestamps differing by1ms in several places. First-minute73.483 late (report73.484); one actual pulse182.294=3. Four actual delivered phone images bound to exact literal calls and successful captures. Automatic first-minute image unseen. No wide view because natural quit before five minutes; CONT must cover it. Actual position tap selected Nora. Additive selection became clear. Group collection produced enough supplies, but two storehouse ground taps at70,151 and295,150 were rejected. Exact ground validity remains unknown; this is player frustration and visible-layout feedback, not a proven engine defect or TOOL failure. Placement replies and Feedback after final image were text-only. Rest advertised35 seconds and resumption; subsequent tired speech confused him, hidden recovery unknown. No storehouse, storm, conversations, helpers or final outcome reached. Steady and consent unchanged; do not remove costs, difficulty or autonomy to satisfy visibility and recovery asks. Both quiet choices available, only stopping pressed locally/autofilled note. No typing, Submit, consent change or production note. Exact clean24 before/after, exit0, captured descendants and profiles absent, isolated context empty and port closed. Target2026-10-27.",
+    "raw_stop": {
+      "t": "2026-10-26T16:29:35.726Z",
+      "elapsed_s": 285.842,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "I am stopping here. Getting the materials was clear and fairly quick, but placing the thing I collected them for defeated me on this phone. I might try again another evening on a bigger screen; I would not resume this phone session voluntarily or leave it running. Feedback offered both choices. I selected I am stopping; it filled the note itself. I typed nothing and did not submit.",
+      "game_clock": null,
+      "engagement": null,
+      "reason": "FRUSTRATED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    },
+    "public_report": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/diego-free.md",
+    "public_raw": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/diego-free.jsonl"
+  }
+}

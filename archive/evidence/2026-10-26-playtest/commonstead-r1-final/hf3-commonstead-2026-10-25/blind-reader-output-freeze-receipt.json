@@ -1,0 +1,8 @@
+{
+  "stage": "reader output frozen before unblinding",
+  "input_freeze_sha256": "23a3105d3ea098c23f993765c263c1c818614af97b3a7a489ffa42d14c8dfc8a",
+  "utc": "2026-10-26T17:41:46.052664+00:00",
+  "sha256": {
+    "reader-output-frozen/01-commonstead-blind-reader-findings-20261026.md": "89847b0ebf4cd1daf90a4d4bc101f866dd97f98a402c01c1c364d6ecd01c5e39"
+  }
+}

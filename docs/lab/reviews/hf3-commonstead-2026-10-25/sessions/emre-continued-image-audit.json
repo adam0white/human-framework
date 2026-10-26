@@ -1,0 +1,126 @@
+{
+  "timestamp": "2026-10-26T04:52:37.544437+00:00",
+  "scope": "Coordinator read ALL FIVE complete unique call strings and whitelisted their exact SHA256. Each has one unconditional literal own screenshot view_image/image call; some first capture the same file with localcurl. No partial regex/player claim. Original collector labels remain unchanged.",
+  "source_text_archive_sha256": "60ec3dabd6faf4f3b79f53e6a7d23e1527b2d7d520b8def5569adfc193ebde22",
+  "complete_call_hash_to_screenshot": {
+    "9d386e826c97d4da4b702ef21303ce0cb8e192eec290020d7e9cd9152e232339": "current-wide.png",
+    "6aeed8c983f5bf4c46077779241a5d053b96c5df50630a2d76dca040496b3a26": "current-wide.png",
+    "4c6982e3d8892ae47ac8744cafcac56790d72ded045af0d3f4dac7439bb58c25": "current-wide.png",
+    "b0226f3b92f21f18102cf7f9406386de6b023e2ac45ad38418a2af74be26acaf": "current-wide.png",
+    "5cbd9cf01cf5c32b6f55670f5991270f0d82e04fd741f5434db6356861210f26": "current-phone.png"
+  },
+  "events": [
+    {
+      "timestamp": "2026-10-26T04:32:07.151Z",
+      "call_id": "call_61fe5266b7f64a3cba38a54e78f98edb",
+      "call_sha256": "9d386e826c97d4da4b702ef21303ce0cb8e192eec290020d7e9cd9152e232339",
+      "image_returned": true,
+      "content_types": ["input_text", "input_image"],
+      "screenshot_name": "current-wide.png"
+    },
+    {
+      "timestamp": "2026-10-26T04:32:40.334Z",
+      "call_id": "call_884a42d246a54ae09ac424239883ed87",
+      "call_sha256": "9d386e826c97d4da4b702ef21303ce0cb8e192eec290020d7e9cd9152e232339",
+      "image_returned": true,
+      "content_types": ["input_text", "input_image"],
+      "screenshot_name": "current-wide.png"
+    },
+    {
+      "timestamp": "2026-10-26T04:34:01.447Z",
+      "call_id": "call_cf5bed768d7641a190176b171ecf665b",
+      "call_sha256": "6aeed8c983f5bf4c46077779241a5d053b96c5df50630a2d76dca040496b3a26",
+      "image_returned": true,
+      "content_types": ["input_text", "input_text", "input_image"],
+      "screenshot_name": "current-wide.png"
+    },
+    {
+      "timestamp": "2026-10-26T04:35:25.930Z",
+      "call_id": "call_1daa567200c64195ba67c1537c9ea482",
+      "call_sha256": "4c6982e3d8892ae47ac8744cafcac56790d72ded045af0d3f4dac7439bb58c25",
+      "image_returned": true,
+      "content_types": ["input_text", "input_text", "input_image"],
+      "screenshot_name": "current-wide.png"
+    },
+    {
+      "timestamp": "2026-10-26T04:37:08.319Z",
+      "call_id": "call_dd882c5fe90e4998b41bb35180d3b942",
+      "call_sha256": "5cbd9cf01cf5c32b6f55670f5991270f0d82e04fd741f5434db6356861210f26",
+      "image_returned": true,
+      "content_types": ["input_text", "input_text", "input_image"],
+      "screenshot_name": "current-phone.png"
+    },
+    {
+      "timestamp": "2026-10-26T04:37:14.255Z",
+      "call_id": "call_015ac0ea05cf44deae51fad4735bd521",
+      "call_sha256": "5cbd9cf01cf5c32b6f55670f5991270f0d82e04fd741f5434db6356861210f26",
+      "image_returned": true,
+      "content_types": ["input_text", "input_text", "input_image"],
+      "screenshot_name": "current-phone.png"
+    },
+    {
+      "timestamp": "2026-10-26T04:37:22.935Z",
+      "call_id": "call_fb5370eeba644fd39a23aa636687be12",
+      "call_sha256": "4c6982e3d8892ae47ac8744cafcac56790d72ded045af0d3f4dac7439bb58c25",
+      "image_returned": true,
+      "content_types": ["input_text", "input_text", "input_image"],
+      "screenshot_name": "current-wide.png"
+    },
+    {
+      "timestamp": "2026-10-26T04:37:53.055Z",
+      "call_id": "call_f4a03d4211454ea9aa55657b3df57833",
+      "call_sha256": "4c6982e3d8892ae47ac8744cafcac56790d72ded045af0d3f4dac7439bb58c25",
+      "image_returned": true,
+      "content_types": ["input_text", "input_text", "input_image"],
+      "screenshot_name": "current-wide.png"
+    },
+    {
+      "timestamp": "2026-10-26T04:38:52.358Z",
+      "call_id": "call_33aecc4a60ef4f119f3b938d6a6cd720",
+      "call_sha256": "4c6982e3d8892ae47ac8744cafcac56790d72ded045af0d3f4dac7439bb58c25",
+      "image_returned": true,
+      "content_types": ["input_text", "input_text", "input_image"],
+      "screenshot_name": "current-wide.png"
+    },
+    {
+      "timestamp": "2026-10-26T04:39:42.768Z",
+      "call_id": "call_e31d75d55e724b79975460b9c13f28d2",
+      "call_sha256": "b0226f3b92f21f18102cf7f9406386de6b023e2ac45ad38418a2af74be26acaf",
+      "image_returned": true,
+      "content_types": ["input_text", "input_text", "input_image"],
+      "screenshot_name": "current-wide.png"
+    },
+    {
+      "timestamp": "2026-10-26T04:41:13.631Z",
+      "call_id": "call_7f05206485bb464f8a31799b409bf59b",
+      "call_sha256": "4c6982e3d8892ae47ac8744cafcac56790d72ded045af0d3f4dac7439bb58c25",
+      "image_returned": true,
+      "content_types": ["input_text", "input_text", "input_image"],
+      "screenshot_name": "current-wide.png"
+    },
+    {
+      "timestamp": "2026-10-26T04:42:37.216Z",
+      "call_id": "call_2f8568f7865c427fa7f7154e2cb39476",
+      "call_sha256": "4c6982e3d8892ae47ac8744cafcac56790d72ded045af0d3f4dac7439bb58c25",
+      "image_returned": true,
+      "content_types": ["input_text", "input_text", "input_image"],
+      "screenshot_name": "current-wide.png"
+    },
+    {
+      "timestamp": "2026-10-26T04:43:21.563Z",
+      "call_id": "call_28d7dd6a8a0547b49570cb2ea6ec7533",
+      "call_sha256": "4c6982e3d8892ae47ac8744cafcac56790d72ded045af0d3f4dac7439bb58c25",
+      "image_returned": true,
+      "content_types": ["input_text", "input_text", "input_image"],
+      "screenshot_name": "current-wide.png"
+    },
+    {
+      "timestamp": "2026-10-26T04:44:48.812Z",
+      "call_id": "call_ba747e8e05154394be76e8704e01e02b",
+      "call_sha256": "4c6982e3d8892ae47ac8744cafcac56790d72ded045af0d3f4dac7439bb58c25",
+      "image_returned": true,
+      "content_types": ["input_text", "input_text", "input_image"],
+      "screenshot_name": "current-wide.png"
+    }
+  ]
+}

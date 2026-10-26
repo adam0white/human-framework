@@ -1,0 +1,75 @@
+{
+  "started": "2026-10-26T16:47:19.952097+00:00",
+  "ended": "2026-10-26T17:03:17.419142+00:00",
+  "status": "report-ready",
+  "backend": "claude",
+  "model": "opus",
+  "effort": "low",
+  "floor_minutes": 15,
+  "ceiling_minutes": 25,
+  "device": "phone",
+  "url": "https://commonstead.adamwhite.work/",
+  "brief_sha256": "0f6e2c8fa069318cc80a9b81547e851e3d28ab82a3789c24cbf73347286afc39",
+  "release_before": {
+    "app": "0.2.0",
+    "framework": "3.0.0",
+    "commit": "24eaf9bf1d46f90c44466475562c2e575a960e18",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.2.0",
+    "framework": "3.0.0",
+    "commit": "24eaf9bf1d46f90c44466475562c2e575a960e18",
+    "dirty": false
+  },
+  "instrument_sha256": {
+    "/Users/abdul/code/.lab-scratch/playtest/lab-play-no-post.ts": "0eaec4fac67b7b3ff88b532072b27130f613524b01c913e941e2a83673e548d4",
+    "/Users/abdul/code/human-framework/scripts/lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "/Users/abdul/code/human-framework/scripts/lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "persona": "Alina Popescu",
+  "arm": "continued",
+  "report_sha256": "45c9d9965c7a7ef46301da97abe74577d8f0dd496984ba150be1d5545ab34592",
+  "raw_sha256": "95e12abcb347a45ade6785562892775585e46ff7023e026b49442d6778a6656b",
+  "stop_records": [
+    {
+      "t": "2026-10-26T17:02:29.797Z",
+      "elapsed_s": 903.629,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "I am stopping here. The short storm chapter I finished and liked, Sam yielding was nice. But this long day is a wall of text about frameworks and requests, ballast crawls, and I cannot see my people on the map. I do not know what I am meant to do for the next nine game hours.",
+      "game_clock": "11:09",
+      "engagement": null,
+      "reason": "CONFUSED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    }
+  ],
+  "actual_image_events": [],
+  "image_scope": "Actual safe tool evidence where present. Absence is unverified; self-reported viewing stays qualified.",
+  "feedback_scope": "API paths blocked by harness; no production feedback receipt or owner consent change authorized.",
+  "coordinator_limits": {
+    "forced": false,
+    "disposition": "Floor-complete source only, qualified instrumentation exposure and unmet wide check; conditional short-chapter MIXED.",
+    "verdict": "mixed",
+    "limits": "Qualified main SOURCE report, not a clean all-protocol or matched retention observation. Natural CONFUSED903.629, strict floor met, but requested1280x800 check failed three times after Full screen. Actual errors306.369/316.278/403.076 and Escape314.514 retained; no wide coverage in this arm. Both retained current-wide/current-phone PNGs are actually360x690; filename and failed resize do not establish wide size. FREE actual wide305.436–317.176 is separate. Instrument-exposed CONT remains outside clean matched-taste comparisons; a bounded independent diagnosis is pending before final synthesis. No rerun or protocol waiver inferred. All38raw reactions preserved;32 omitted/abbreviated in original report supplied by exact companion. Original report approximate first-minute62 differs from raw67.033 late; pulse reported716 is actually720.489. Actual pulses176.063=3/396.685=2/463.430=4/569.399=4/720.489=3/901.873=2 are irregular. Wishes189.038 and417.309 FRUSTRATED explicitly eased432.953 after accepted phone placement with All; exact cause (fullscreen map, legal ground or selection) unknown. CONFUSED730.971 in longer day persisted. Short dry ending/storehouse+cabin reached; longer day unfinished11:09. Trying longer day with time set aside is not independent retention. MIXED conditional future short chapter only if phone placement/visible people improve; no current long-day or unattended return. Sam's eventual chosen yield pleased her; do not force obedience or erase delays/costs. Specific non-confession telescope and bounded unfinished repair remain beside broad confession wording. Tally including workshop is only a guess; unchanged-count/repeated-dispute/meal-speech causes unestablished. Nine successful manual capture events8phone+1wide-named; only retained dimensions establish360. Opus views self-reported, no independent output trace; automatic-minute view only conditionally reported, not verified. Initial invalid PNG basename corrected; no fabricated missing early log. Confused used locally in short chapter/autofillednote; stopping NOT used at final long-day stop because she reported no Feedback control there. Long-day quiet availability remains unproved and needs actual UI reproduction; don't call player report proof of global absence. No typing/Submit/consent. Exact clean24 before/after, exit0, captured descendants/profile absent, context empty and port19825closed. Preserve all three compound asks and actual storm/costs/autonomy/difficulty. Target2026-10-27.",
+    "raw_stop": {
+      "t": "2026-10-26T17:02:29.797Z",
+      "elapsed_s": 903.629,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "I am stopping here. The short storm chapter I finished and liked, Sam yielding was nice. But this long day is a wall of text about frameworks and requests, ballast crawls, and I cannot see my people on the map. I do not know what I am meant to do for the next nine game hours.",
+      "game_clock": "11:09",
+      "engagement": null,
+      "reason": "CONFUSED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    },
+    "public_report": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/alina-continued.md",
+    "public_raw": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/alina-continued.jsonl"
+  }
+}

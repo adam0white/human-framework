@@ -1,0 +1,78 @@
+{
+  "timestamp": "2026-10-26T04:35:00.520778+00:00",
+  "scope": "Coordinator inspected every complete exact owned call. Each contains exactly one unconditional literal-path view_image followed by image; some first capture that same screenshot via one literal local curl. No partial regex/player claim used. Original collector labels unchanged.",
+  "source_text_archive_sha256": "e99b33c561c75303eda51fce818fde6c806e82fdd280c3e1f95fbf3a0ffda7e2",
+  "events": [
+    {
+      "timestamp": "2026-10-26T04:24:57.107Z",
+      "call_id": "call_600d875142d0446ba50f2bffddb418d8",
+      "call_sha256": "d85905b7c9ad8d7c5813f39771b680cdc4bc3716cac748be101c12b3febfac4d",
+      "image_returned": true,
+      "content_types": [
+        "input_text",
+        "input_image"
+      ],
+      "screenshot_name": "current-wide.png"
+    },
+    {
+      "timestamp": "2026-10-26T04:26:18.124Z",
+      "call_id": "call_55c8fd158e484d11879741ea63b61e1c",
+      "call_sha256": "a6454cb6f1fd97d7be5dfc81a019481a94a7feca0b196d76529b2c40aafd2fb9",
+      "image_returned": true,
+      "content_types": [
+        "input_text",
+        "input_text",
+        "input_image"
+      ],
+      "screenshot_name": "current-wide.png"
+    },
+    {
+      "timestamp": "2026-10-26T04:27:24.850Z",
+      "call_id": "call_738bb7b5bf634447a60060e8ed3cdcd4",
+      "call_sha256": "64dd97efe5db45244145a3b9d6fda43d2cd82ba4c34800e3b7a44916e38e0264",
+      "image_returned": true,
+      "content_types": [
+        "input_text",
+        "input_text",
+        "input_image"
+      ],
+      "screenshot_name": "current-wide.png"
+    },
+    {
+      "timestamp": "2026-10-26T04:28:54.755Z",
+      "call_id": "call_427ec399ab8947d18a05db4147a8bd9c",
+      "call_sha256": "64dd97efe5db45244145a3b9d6fda43d2cd82ba4c34800e3b7a44916e38e0264",
+      "image_returned": true,
+      "content_types": [
+        "input_text",
+        "input_text",
+        "input_image"
+      ],
+      "screenshot_name": "current-wide.png"
+    },
+    {
+      "timestamp": "2026-10-26T04:30:01.869Z",
+      "call_id": "call_1fda5bae3e174a0a86d9d98e7b9d321e",
+      "call_sha256": "f3d5e09dde6e52c06cff4ffba6ab805a092da3468c8158317a41018c5c9a65cf",
+      "image_returned": true,
+      "content_types": [
+        "input_text",
+        "input_text",
+        "input_image"
+      ],
+      "screenshot_name": "current-phone.png"
+    },
+    {
+      "timestamp": "2026-10-26T04:30:07.190Z",
+      "call_id": "call_8f81973765b14e0a9115047c2a85bdcb",
+      "call_sha256": "f3d5e09dde6e52c06cff4ffba6ab805a092da3468c8158317a41018c5c9a65cf",
+      "image_returned": true,
+      "content_types": [
+        "input_text",
+        "input_text",
+        "input_image"
+      ],
+      "screenshot_name": "current-phone.png"
+    }
+  ]
+}

@@ -1,0 +1,221 @@
+{
+  "started": "2026-10-26T15:08:24.033764+00:00",
+  "ended": "2026-10-26T15:25:51.655686+00:00",
+  "status": "report-ready",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "floor_minutes": 15,
+  "ceiling_minutes": 25,
+  "device": "desktop",
+  "url": "https://commonstead.adamwhite.work/",
+  "brief_sha256": "397bbb114d9b1ed4e67383644358bdb2a9f5f06cd9aa6073d688cd0e21580f8f",
+  "release_before": {
+    "app": "0.2.0",
+    "framework": "3.0.0",
+    "commit": "24eaf9bf1d46f90c44466475562c2e575a960e18",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.2.0",
+    "framework": "3.0.0",
+    "commit": "24eaf9bf1d46f90c44466475562c2e575a960e18",
+    "dirty": false
+  },
+  "instrument_sha256": {
+    "/Users/abdul/code/.lab-scratch/playtest/lab-play-mouse-no-post.ts": "976a6bae0fe6716b5a4e33134bddb4dad558bf9089dc15d95a78b97b04cfd52a",
+    "/Users/abdul/code/human-framework/scripts/lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "/Users/abdul/code/human-framework/scripts/lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b",
+    "/Users/abdul/code/.lab-scratch/playtest/mouse_play_ops.ts": "d68b3a8e81e62267c1271f2dd164d350168f343d885d9c8b793cbff3f453705c",
+    "/Users/abdul/code/.lab-scratch/playtest/mouse_request_classification.ts": "6fe9db9b029315e31470a8d4b1fb1dc434273adda8c444c4eb02cfe64321aa01"
+  },
+  "persona": "Mei Tan",
+  "arm": "continued",
+  "report_sha256": "d743ee8f752235f34f23cdf748c5cb62377d4c4017df55e5b500ce29cb6a6bbf",
+  "raw_sha256": "a1b128ed5ac18959b41a0b7fd2d87cad3c1e9f19efa0365e31b42ca55f3270d4",
+  "stop_records": [
+    {
+      "t": "2026-10-26T15:24:32.957Z",
+      "elapsed_s": 955.877,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "I am stopping at 7:10 with the storehouse ready. Finishing it before the storm was satisfying, and the costs and progress were clear. My wish to leave stayed because rest and food did not give me a clear sense of recovery. Just as I opened the menu, Sam was resting again without another instruction from me; that helps me see he can stop himself, but I still do not understand his condition. I would return another evening from this saved place if I could tell what a break had changed. I would not leave it running. I selected I am stopping in Feedback; the game filled the note itself, and I typed and submitted nothing.",
+      "game_clock": null,
+      "engagement": null,
+      "reason": "CONFUSED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    }
+  ],
+  "actual_image_events": [
+    {
+      "timestamp": "2026-10-26T15:09:04.844Z",
+      "call_id": "call_bedbb8788a7b45f390040f1aa1685dd8",
+      "call_sha256": "7169e80620b188bfa1925dfea30481d44855c21b5ff5ab34982a7d2d59f13d51",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T15:10:18.673Z",
+      "call_id": "call_fec01e2a78a94f2e957e412a92a250ff",
+      "call_sha256": "7169e80620b188bfa1925dfea30481d44855c21b5ff5ab34982a7d2d59f13d51",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T15:12:37.541Z",
+      "call_id": "call_a4ea23730b5943729f3663bf232d2046",
+      "call_sha256": "7169e80620b188bfa1925dfea30481d44855c21b5ff5ab34982a7d2d59f13d51",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T15:13:41.370Z",
+      "call_id": "call_1e17a4c50a7c474aa8b4d2d93c38a094",
+      "call_sha256": "7169e80620b188bfa1925dfea30481d44855c21b5ff5ab34982a7d2d59f13d51",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T15:13:54.666Z",
+      "call_id": "call_a46c238f282f49839abb385332368abb",
+      "call_sha256": "7be622c9aa19dc54c2e25b3a7aa854fcbddc6c7f711696c0f78dab8aa61904c3",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T15:14:05.996Z",
+      "call_id": "call_c1013fce382040f88e5faaa162d1755e",
+      "call_sha256": "7be622c9aa19dc54c2e25b3a7aa854fcbddc6c7f711696c0f78dab8aa61904c3",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T15:15:29.219Z",
+      "call_id": "call_6123487c048a49b5982ff91427ed6886",
+      "call_sha256": "7169e80620b188bfa1925dfea30481d44855c21b5ff5ab34982a7d2d59f13d51",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T15:16:00.913Z",
+      "call_id": "call_7ce53034f4e34f50b17197017239e118",
+      "call_sha256": "7169e80620b188bfa1925dfea30481d44855c21b5ff5ab34982a7d2d59f13d51",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T15:16:33.532Z",
+      "call_id": "call_7a070cebdcb040e28712b9d20c0146a8",
+      "call_sha256": "7169e80620b188bfa1925dfea30481d44855c21b5ff5ab34982a7d2d59f13d51",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T15:16:58.641Z",
+      "call_id": "call_dba1e50b0b064855b2713d10f90034f4",
+      "call_sha256": "7169e80620b188bfa1925dfea30481d44855c21b5ff5ab34982a7d2d59f13d51",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T15:18:00.071Z",
+      "call_id": "call_09660c024992413b83aef20775828f1f",
+      "call_sha256": "7169e80620b188bfa1925dfea30481d44855c21b5ff5ab34982a7d2d59f13d51",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T15:21:22.456Z",
+      "call_id": "call_e02ec23c66da482bbae0c2f1944bd26c",
+      "call_sha256": "7169e80620b188bfa1925dfea30481d44855c21b5ff5ab34982a7d2d59f13d51",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T15:24:05.966Z",
+      "call_id": "call_f4fa66d4819e4c79a6442524d774cf75",
+      "call_sha256": "7169e80620b188bfa1925dfea30481d44855c21b5ff5ab34982a7d2d59f13d51",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    }
+  ],
+  "image_scope": "Actual safe tool evidence where present. Absence is unverified; self-reported viewing stays qualified.",
+  "feedback_scope": "API paths blocked by harness; no production feedback receipt or owner consent change authorized.",
+  "coordinator_limits": {
+    "forced": false,
+    "disposition": "NaturalCONFUSED afterfloor, wishpersisted despiteconstruction; conditionalfuture mixed; actualselfrest correction retained.",
+    "verdict": "mixed",
+    "limits": "Independent pairedCONT same immutable selectedpregame88972f68 history; FREE words and capacitypartial withheld. Natural CONFUSED rawstop955.877/report955.878 after15minute floor, only wish807.571 persisted; not voluntary retention throughfloor. Storehouse/cabin complete and Aylin helper actually invited for35meals and joined/building; not assumed automatichelpers. Storm/finaloutcome notseen. MIXED conditional anothernight savedplace if breakeffects understandable, no continuedsessionnow/unattended. All14rawreactions verbatim in report with minor1–2ms timestampdifferences retained. Firstminute62.035late; pulses188.238=4/376.970=4/553.252=4/722.332=3/917.618=3 irregular. Thirteen actual delivered images manuallybound exactliteralcalls:11wide/2phone; phonevisit307.955–332.539, Aboutresident positiontap arrowchanged but addedtext notvisible, no phonescroll/otherphonecontrols. Otherintervalsdrivertextonly; automaticminuteunseen. Actual Oskarcaptioncollaboration leavesoldstoryuncorrected; no forgiveness/earlierrepairclaim. Sam resumedwork/tiredspeech after grouprest/food confused; selfrest935.662 expresslyobserved and corrected dependencyassumption, exactrecoverycause/hiddenstate unknown. No automaticobedience/fullrecovery/difficulty/cost removal. One curlyapostrophefeedbacktap688.151 rejected, exactstraightlabel succeeded, notdriverblock. Lost30secondwait response in modelpresentation notreconstructed; nextactualshotrefresh, noTOOLstop. Bothquietchipsusedlocal/autofillednoteitself, no typing/Submit/consent/productionnote. Exact24 cleanHF3 beforeafter/exit0, capturedPIDs/profiles gone/portclosed. Target2026-10-27.",
+    "raw_stop": {
+      "t": "2026-10-26T15:24:32.957Z",
+      "elapsed_s": 955.877,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "I am stopping at 7:10 with the storehouse ready. Finishing it before the storm was satisfying, and the costs and progress were clear. My wish to leave stayed because rest and food did not give me a clear sense of recovery. Just as I opened the menu, Sam was resting again without another instruction from me; that helps me see he can stop himself, but I still do not understand his condition. I would return another evening from this saved place if I could tell what a break had changed. I would not leave it running. I selected I am stopping in Feedback; the game filled the note itself, and I typed and submitted nothing.",
+      "game_clock": null,
+      "engagement": null,
+      "reason": "CONFUSED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    },
+    "public_report": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/mei-continued.md",
+    "public_raw": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/mei-continued.jsonl"
+  }
+}

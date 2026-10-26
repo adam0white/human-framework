@@ -1,0 +1,175 @@
+{
+  "started": "2026-10-26T15:53:45.261966+00:00",
+  "ended": "2026-10-26T16:10:12.713447+00:00",
+  "status": "report-ready",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "floor_minutes": 15,
+  "ceiling_minutes": 25,
+  "device": "phone",
+  "url": "https://commonstead.adamwhite.work/",
+  "brief_sha256": "f8af8d281b6278a1f2d8c731b91f215ce05de1a738f14be5a4baa8f718a31524",
+  "release_before": {
+    "app": "0.2.0",
+    "framework": "3.0.0",
+    "commit": "24eaf9bf1d46f90c44466475562c2e575a960e18",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.2.0",
+    "framework": "3.0.0",
+    "commit": "24eaf9bf1d46f90c44466475562c2e575a960e18",
+    "dirty": false
+  },
+  "instrument_sha256": {
+    "/Users/abdul/code/.lab-scratch/playtest/lab-play-no-post.ts": "0eaec4fac67b7b3ff88b532072b27130f613524b01c913e941e2a83673e548d4",
+    "/Users/abdul/code/human-framework/scripts/lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "/Users/abdul/code/human-framework/scripts/lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "persona": "Pavel Novak",
+  "arm": "continued",
+  "report_sha256": "5727a7176d7d966a17331f05f3221a784229387af3f4b6f64471240774fd5be7",
+  "raw_sha256": "b558be45c63b2acce461948b502d941d59656ee5312b856006028fbc1e5226e2",
+  "stop_records": [
+    {
+      "t": "2026-10-26T16:09:10.462Z",
+      "elapsed_s": 913.741,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "I am stopping with the supplies dry and the storehouse finished before the storm. I would return voluntarily another evening on my desktop to try a different division of work and perhaps prepare the guest cabin. I would not replay tonight or return on this telephone. I would not leave it running. I stayed after the ending only to honour the fifteen minutes. Feedback remains unsent.",
+      "game_clock": null,
+      "engagement": null,
+      "reason": "FINISHED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    }
+  ],
+  "actual_image_events": [
+    {
+      "timestamp": "2026-10-26T15:54:24.287Z",
+      "call_id": "call_18d01cb32f0b43ec989279190e531dda",
+      "call_sha256": "a2502db042eb7d27c04c0dc18f8287690c6fe5dd902ba2409b7cf1d28c47b079",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T15:54:54.788Z",
+      "call_id": "call_c4fe2e54ee35494a9091cb7c5a37e1ad",
+      "call_sha256": "a2502db042eb7d27c04c0dc18f8287690c6fe5dd902ba2409b7cf1d28c47b079",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T15:57:47.102Z",
+      "call_id": "call_24645cf8193844ff867ed7155ea01f9a",
+      "call_sha256": "a2502db042eb7d27c04c0dc18f8287690c6fe5dd902ba2409b7cf1d28c47b079",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T15:59:20.012Z",
+      "call_id": "call_016a79153d404493975c35496dc6437c",
+      "call_sha256": "61b186b4af17206559a9d52ec1dec93f3d3380d70e9e525ffedf4db52a263ae0",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T15:59:32.608Z",
+      "call_id": "call_5c29dd8cf6d942a5bbf270bccfb13ee2",
+      "call_sha256": "61b186b4af17206559a9d52ec1dec93f3d3380d70e9e525ffedf4db52a263ae0",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T16:00:46.418Z",
+      "call_id": "call_a54e002d179c47929e2d21dd3af0cff3",
+      "call_sha256": "a2502db042eb7d27c04c0dc18f8287690c6fe5dd902ba2409b7cf1d28c47b079",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T16:01:31.275Z",
+      "call_id": "call_62661cc6c89f423cba89e052503a7466",
+      "call_sha256": "61b186b4af17206559a9d52ec1dec93f3d3380d70e9e525ffedf4db52a263ae0",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T16:02:50.899Z",
+      "call_id": "call_d80013c68b0a4727984589db7589a9ca",
+      "call_sha256": "61b186b4af17206559a9d52ec1dec93f3d3380d70e9e525ffedf4db52a263ae0",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    },
+    {
+      "timestamp": "2026-10-26T16:05:03.966Z",
+      "call_id": "call_a2de1404bc554c898e9e5b1b292e3098",
+      "call_sha256": "61b186b4af17206559a9d52ec1dec93f3d3380d70e9e525ffedf4db52a263ae0",
+      "paths_unresolved_or_disallowed": true,
+      "content_types": ["input_text", "input_image"],
+      "image_returned": true,
+      "image_returned_scope": "entire_tool_call_output",
+      "path_attribution": "unresolved",
+      "screenshot_names": []
+    }
+  ],
+  "image_scope": "Actual safe tool evidence where present. Absence is unverified; self-reported viewing stays qualified.",
+  "feedback_scope": "API paths blocked by harness; no production feedback receipt or owner consent change authorized.",
+  "coordinator_limits": {
+    "forced": false,
+    "disposition": "NaturalFINISHED after floor; explicit future desktop KEEP, no phone/tonight/unattended; floor waiting separate.",
+    "verdict": "keep",
+    "limits": "Natural FINISHED stop at913.741 seconds (report913.742), strict floor met. The FRUSTRATED wish at434.653 eased at485.474 after a voluntary switch from phone to desktop and successful placement. The later FINISHED wish673.812 persisted after the dry-supplies ending654.114; waiting on the result was solely for the floor, not retention. KEEP comes from a definite future desktop evening to try different work division or the cabin, with no tonight/phone/unattended return. All16raw reactions are unchanged in the report, with1ms timestamp differences preserved. First-minute76.873 was late. Pulses186.089=3,370.317=3,539.637=4,738.401=2 and907.908=2; last two describe required waiting. Nine actual image outputs verified by exact literal calls: four phone and five wide. Requested wide315.191–341.017 included a food position tap; voluntary wide438.876 onward was a separate player choice. Two phone placement refusals were game answers; exact invalid ground remains unknown. Desktop lower-right ground accepted immediately, building and dry ending observed. Nora self-rest corrected the possible need to manage every break. Nerys returned to work but tired speech persisted; food did not resolve uncertainty, and exact hidden recovery is unknown. He deliberately skipped private stories, helpers and the guest cabin; no missing-story bug is claimed. Two-building tally counting the hub is only his guess. Static finish-warning interpretation is not a proven engine defect. Both quiet choices were used locally and autofilled the note; no typing, Submit, consent change or production note. Off-image and later Feedback intervals remain text-only; automatic minute image unseen. No driver block, physical touch, drag or hold. Preserve ground constraints, costs, fatigue and autonomy. Exact clean24before/after, exit0 and captured PIDs/profile/port absent. Target2026-10-27.",
+    "raw_stop": {
+      "t": "2026-10-26T16:09:10.462Z",
+      "elapsed_s": 913.741,
+      "kind": "stop",
+      "op": "log",
+      "input": null,
+      "reaction": "I am stopping with the supplies dry and the storehouse finished before the storm. I would return voluntarily another evening on my desktop to try a different division of work and perhaps prepare the guest cabin. I would not replay tonight or return on this telephone. I would not leave it running. I stayed after the ending only to honour the fifteen minutes. Feedback remains unsent.",
+      "game_clock": null,
+      "engagement": null,
+      "reason": "FINISHED",
+      "op_ms": 0,
+      "error": null,
+      "requested_control_present_before": null
+    },
+    "public_report": "docs/lab/reviews/hf3-commonstead-2026-10-25/reports/pavel-continued.md",
+    "public_raw": "docs/lab/reviews/hf3-commonstead-2026-10-25/raw/pavel-continued.jsonl"
+  }
+}
