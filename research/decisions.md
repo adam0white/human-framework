@@ -95,3 +95,11 @@ These record a pragmatic held-understanding default for a proposed opt-in slice,
 | Three permitted untruths | Not modeled here; no generic exception follows | The draft's Muslim 2605a three-case list is Ibn Shihab's statement, not attributed here to the Prophet; no separate marfu passage verified in this record | fiction-and-lying-sources.md §2 |
 
 No acceptance, ruh quantity, faith score or worship score is computed. These decisions represent a person's understanding. Actual reviewed research integration, the normal prose lane, a signed commit and exact green CI remain prerequisites to gateC.
+
+## Concealed charity source decision (2026-10-26)
+
+This is a source decision for _The Left Hand_, not a new runtime rule or a ruling.
+
+| Point | Decision (held-understanding default) | Basis | Source notes |
+|---|---|---|---|
+| Concealing voluntary charity | Yusuf holds that concealment is generally preferable. Open giving is also praised and may have a stronger benefit. Visibility alone never proves ostentation or sincerity | Qur'an 2:271 and 2:274; Bukhari 1423 and Muslim 1031a; majority interpretation of voluntary charity reported by al-Shawkani via Islamweb, not independently surveyed | [concealed-charity-sources.md](concealed-charity-sources.md) §1–3. Model Yusuf's understanding, not a ruling. Never compute divine acceptance, reward, expiation, shade or ruh |
