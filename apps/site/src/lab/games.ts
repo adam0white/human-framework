@@ -95,6 +95,19 @@ export const EVENT_LABELS: Readonly<Record<string, { scr: readonly string[]; ms:
     ],
     ms: ['ending reached', ...numbered(7, (n) => `day ${n} done`)],
   },
+  word: {
+    scr: [
+      'His Word',
+      'At the cutting table',
+      'What they need',
+      'One agreement',
+      'Your word',
+      'Read it together',
+      'They kept their word.',
+      'The shop stayed shut.',
+    ],
+    ms: ['ending:win', 'ending:loss'],
+  },
 };
 const basic = { scr: ['title', 'play', 'ending'], ms: ['run started', 'ending reached'] };
 export function declaredLabel(game: string, kind: string, value: unknown): string | undefined {

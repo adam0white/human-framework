@@ -180,6 +180,16 @@ export const GAMES: Game[] = [
     line: 'Lead four neighbours down a smoke-filled stairwell. They can refuse you, find a route, or help each other.',
     faculties: ['Will', 'Relationships', 'Body'],
   },
+  {
+    id: 'word',
+    labNote: 'Owner acceptance pending.',
+    rank: 17,
+    status: 'active',
+    name: 'His Word',
+    href: 'https://word.adamwhite.work',
+    line: 'A tailor left conflicting promises. Ask what each person needs, then agree on work, storage and rent before time runs out.',
+    faculties: ['Memory and belief', 'Relationships'],
+  },
 ];
 
 export const isExternal = (g: Game): boolean => /^https?:\/\//.test(g.href);
