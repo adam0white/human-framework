@@ -47,6 +47,7 @@ These are the complete foreground lists. Roles may change, identity does not. Al
 | The Day You Say Nothing | Halil, Selin, Rıza, Hacer, Osman                             |     5 |
 | The Night Watch         | Tamar of the Wall, Kian, Idris, Samira, Danyal, Meryem       |     6 |
 | Commonstead             | Nora, Sam, Dai, Nerys, Dilek, Burak, Sevim, Oskar            |     8 |
+| Smoke on the Stairs     | Hacer, Burak, Sevim, Derya                                   |     4 |
 
 Commonstead's eight are its complete foreground opening cohort, not eight extra personas. Nora is the resident designer. Sam is the resident playtester. Other cast members can give feedback in their ordinary roles without becoming separate designer or reviewer characters. Every game has three to eight. Thirty-five of the forty have at least two allocated games. A single-game person remains intentional where a second appearance would weaken the setting or overload another game's cast.
 
@@ -54,48 +55,48 @@ Commonstead's eight are its complete foreground opening cohort, not eight extra 
 
 The values below are the stable machine-readable roster. The four existing wave-1 identities keep their exact ids and advance to revision 2; their earlier revision-1 contracts are immutable. The thirty-six newly authored identities start at revision 1. The role descriptions in the biography and allocation table are normative; display names can use the short forms without changing identity.
 
-| castId                     | name              | age | cohort | revision | games                                      |
-| -------------------------- | ----------------- | --: | ------ | -------: | ------------------------------------------ |
-| `hf.cast.zeynep.pass`      | Zeynep            |  45 | Coast  |        2 | Pass; Good Hands                           |
-| `hf.cast.dilan.murmur`     | Dilan             |  33 | Coast  |        2 | Murmur; Hearsay                            |
-| `hf.cast.derya.stairwell`  | Derya             |  44 | Coast  |        2 | Stairwell; Hearsay; Good Hands; Neighbours |
-| `hf.cast.selin.voice`      | Selin             |  32 | Coast  |        2 | Voice; Good Hands                          |
-| `hf.cast.halil.voice`      | Halil             |  61 | Coast  |        1 | Voice; Small Works                         |
-| `hf.cast.riza.voice`       | Rıza              |  63 | Coast  |        1 | Voice; Hearsay                             |
-| `hf.cast.hacer.voice`      | Hacer             |  58 | Coast  |        1 | Voice; Stairwell                           |
-| `hf.cast.osman.voice`      | Osman             |  55 | Coast  |        1 | Voice; Hearsay                             |
-| `hf.cast.selim.pass`       | Selim             |  56 | Coast  |        1 | Pass                                       |
-| `hf.cast.dilek.pass`       | Dilek             |  34 | Coast  |        1 | Pass; Commonstead                          |
-| `hf.cast.rafi.pass`        | Rafi              |  19 | Coast  |        1 | Pass; Small Works; Neighbours              |
-| `hf.cast.hulya.pass`       | Hülya             |  38 | Coast  |        1 | Pass; Good Hands                           |
-| `hf.cast.nermin.goodhands` | Nermin            |  45 | Coast  |        1 | Good Hands; Hearsay                        |
-| `hf.cast.hatice.hearsay`   | Hatice            |  48 | Coast  |        1 | Hearsay; Good Hands                        |
-| `hf.cast.aylin.murmur`     | Aylin             |  36 | Coast  |        1 | Murmur; Hearsay; Good Hands                |
-| `hf.cast.ece.murmur`       | Ece               |  24 | Coast  |        1 | Murmur; Hearsay; Neighbours                |
-| `hf.cast.murat.murmur`     | Murat             |  27 | Coast  |        1 | Pass; Murmur                               |
-| `hf.cast.burak.stairwell`  | Burak             |  31 | Coast  |        1 | Stairwell; Commonstead                     |
-| `hf.cast.sevim.stairwell`  | Sevim             |  69 | Coast  |        1 | Stairwell; Commonstead                     |
-| `hf.cast.tarik.stairwell`  | Tarık             |  81 | Coast  |        1 | Stairwell                                  |
-| `hf.cast.tamar.rope`       | Tamar Vale        |  52 | Coast  |        1 | The Rope                                   |
-| `hf.cast.oskar.rope`       | Oskar             |  34 | Coast  |        1 | Rope; Commonstead                          |
-| `hf.cast.nell.rope`        | Nell              |  23 | Coast  |        1 | The Rope                                   |
-| `hf.cast.bilal.rope`       | Bilal             |  41 | Coast  |        1 | Rope; Glance; Neighbours                   |
-| `hf.cast.wren.rope`        | Wren              |  29 | Coast  |        1 | Rope; Glance                               |
-| `hf.cast.dai.glance`       | Dai               |  63 | Coast  |        1 | Glance; Commonstead                        |
-| `hf.cast.callum.glance`    | Callum            |  24 | Coast  |        1 | Glance                                     |
-| `hf.cast.nerys.glance`     | Nerys             |  47 | Coast  |        1 | Glance; Commonstead                        |
-| `hf.cast.nora.smallworks`  | Nora              |  28 | Coast  |        1 | Small Works; Neighbours; Commonstead       |
-| `hf.cast.sam.smallworks`   | Sam               |  18 | Coast  |        1 | Small Works; Pass; Neighbours; Commonstead |
-| `hf.cast.maryam.well`      | Maryam            |  68 | Valley |        1 | Well; Valley; Warren                       |
-| `hf.cast.yusuf.well`       | Yusuf             |  34 | Valley |        1 | Well; Valley                               |
-| `hf.cast.tariq.well`       | Tariq             |  16 | Valley |        1 | Well; Warren                               |
-| `hf.cast.idris.well`       | Idris             |  41 | Valley |        1 | Well; Watch                                |
-| `hf.cast.samira.well`      | Samira            |  29 | Valley |        1 | Well; Valley; Watch                        |
-| `hf.cast.danyal.well`      | Danyal            |  52 | Valley |        1 | Well; Valley; Watch                        |
-| `hf.cast.yusuf.warren`     | Master Yusuf      |  74 | Valley |        1 | Warren; Valley                             |
-| `hf.cast.meryem.warren`    | Meryem            |  19 | Valley |        1 | Warren; Valley; Watch                      |
-| `hf.cast.tamar.watch`      | Tamar of the Wall |  54 | Valley |        1 | Watch; Warren                              |
-| `hf.cast.kian.watch`       | Kian              |  16 | Valley |        1 | Watch; Warren                              |
+| castId                     | name              | age | cohort | revision | games                                                           |
+| -------------------------- | ----------------- | --: | ------ | -------: | --------------------------------------------------------------- |
+| `hf.cast.zeynep.pass`      | Zeynep            |  45 | Coast  |        2 | Pass; Good Hands                                                |
+| `hf.cast.dilan.murmur`     | Dilan             |  33 | Coast  |        2 | Murmur; Hearsay                                                 |
+| `hf.cast.derya.stairwell`  | Derya             |  44 | Coast  |        2 | Stairwell; Hearsay; Good Hands; Neighbours; Smoke on the Stairs |
+| `hf.cast.selin.voice`      | Selin             |  32 | Coast  |        2 | Voice; Good Hands                                               |
+| `hf.cast.halil.voice`      | Halil             |  61 | Coast  |        1 | Voice; Small Works                                              |
+| `hf.cast.riza.voice`       | Rıza              |  63 | Coast  |        1 | Voice; Hearsay                                                  |
+| `hf.cast.hacer.voice`      | Hacer             |  58 | Coast  |        1 | Voice; Stairwell; Smoke on the Stairs                           |
+| `hf.cast.osman.voice`      | Osman             |  55 | Coast  |        1 | Voice; Hearsay                                                  |
+| `hf.cast.selim.pass`       | Selim             |  56 | Coast  |        1 | Pass                                                            |
+| `hf.cast.dilek.pass`       | Dilek             |  34 | Coast  |        1 | Pass; Commonstead                                               |
+| `hf.cast.rafi.pass`        | Rafi              |  19 | Coast  |        1 | Pass; Small Works; Neighbours                                   |
+| `hf.cast.hulya.pass`       | Hülya             |  38 | Coast  |        1 | Pass; Good Hands                                                |
+| `hf.cast.nermin.goodhands` | Nermin            |  45 | Coast  |        1 | Good Hands; Hearsay                                             |
+| `hf.cast.hatice.hearsay`   | Hatice            |  48 | Coast  |        1 | Hearsay; Good Hands                                             |
+| `hf.cast.aylin.murmur`     | Aylin             |  36 | Coast  |        1 | Murmur; Hearsay; Good Hands                                     |
+| `hf.cast.ece.murmur`       | Ece               |  24 | Coast  |        1 | Murmur; Hearsay; Neighbours                                     |
+| `hf.cast.murat.murmur`     | Murat             |  27 | Coast  |        1 | Pass; Murmur                                                    |
+| `hf.cast.burak.stairwell`  | Burak             |  31 | Coast  |        1 | Stairwell; Commonstead; Smoke on the Stairs                     |
+| `hf.cast.sevim.stairwell`  | Sevim             |  69 | Coast  |        1 | Stairwell; Commonstead; Smoke on the Stairs                     |
+| `hf.cast.tarik.stairwell`  | Tarık             |  81 | Coast  |        1 | Stairwell                                                       |
+| `hf.cast.tamar.rope`       | Tamar Vale        |  52 | Coast  |        1 | The Rope                                                        |
+| `hf.cast.oskar.rope`       | Oskar             |  34 | Coast  |        1 | Rope; Commonstead                                               |
+| `hf.cast.nell.rope`        | Nell              |  23 | Coast  |        1 | The Rope                                                        |
+| `hf.cast.bilal.rope`       | Bilal             |  41 | Coast  |        1 | Rope; Glance; Neighbours                                        |
+| `hf.cast.wren.rope`        | Wren              |  29 | Coast  |        1 | Rope; Glance                                                    |
+| `hf.cast.dai.glance`       | Dai               |  63 | Coast  |        1 | Glance; Commonstead                                             |
+| `hf.cast.callum.glance`    | Callum            |  24 | Coast  |        1 | Glance                                                          |
+| `hf.cast.nerys.glance`     | Nerys             |  47 | Coast  |        1 | Glance; Commonstead                                             |
+| `hf.cast.nora.smallworks`  | Nora              |  28 | Coast  |        1 | Small Works; Neighbours; Commonstead                            |
+| `hf.cast.sam.smallworks`   | Sam               |  18 | Coast  |        1 | Small Works; Pass; Neighbours; Commonstead                      |
+| `hf.cast.maryam.well`      | Maryam            |  68 | Valley |        1 | Well; Valley; Warren                                            |
+| `hf.cast.yusuf.well`       | Yusuf             |  34 | Valley |        1 | Well; Valley                                                    |
+| `hf.cast.tariq.well`       | Tariq             |  16 | Valley |        1 | Well; Warren                                                    |
+| `hf.cast.idris.well`       | Idris             |  41 | Valley |        1 | Well; Watch                                                     |
+| `hf.cast.samira.well`      | Samira            |  29 | Valley |        1 | Well; Valley; Watch                                             |
+| `hf.cast.danyal.well`      | Danyal            |  52 | Valley |        1 | Well; Valley; Watch                                             |
+| `hf.cast.yusuf.warren`     | Master Yusuf      |  74 | Valley |        1 | Warren; Valley                                                  |
+| `hf.cast.meryem.warren`    | Meryem            |  19 | Valley |        1 | Warren; Valley; Watch                                           |
+| `hf.cast.tamar.watch`      | Tamar of the Wall |  54 | Valley |        1 | Watch; Warren                                                   |
+| `hf.cast.kian.watch`       | Kian              |  16 | Valley |        1 | Watch; Warren                                                   |
 
 ## Individual biographies
 
@@ -1711,3 +1712,9 @@ The canonical forty are authored. All fifteen hosts have verified runtime adopti
 Each host report must enumerate every player-recognizable person using the owner’s name/face-or-voice/choices definition, map each to the allocated canonical cast, and show that incidental background roles do not retain extra foreground arcs. A table of exportable IDs alone does not prove the 3–8 limit.
 
 For each host, adoption requires its exact castIds and edition pinned, source contradictions removed from constructors and scenes, background arcs actually retired or reduced to episodes, compatible carry mappings, discoverable authored secrets gated by actual encounters, and deterministic replay of current-version exports. These are implementation requirements, not evidence that implementation occurred. Do not create a secret-success flag because a biography describes a possible outcome. The coordinator owns assignment of host work and records each actual receipt. No framework/package, bridge, between-games life or release work is authorized by the writing of this file itself.
+
+## Smoke on the Stairs — first slice (2026-10-26)
+
+Hacer, Burak, Sevim and Derya return as themselves in one possible night at Lale Apartmanı. Hacer visits the upper landing; Tarık is away. The caretaker must persuade people who can walk out themselves. Burak checks the front stair and can return to help Sevim secure her exercise books without an order. Derya needs a moment after nights. Hacer needs to see where the unfamiliar stair goes. Canonical backstories, secrets and existing discoverable outcomes above remain their authority; this appearance introduces no new foreground person or secret.
+
+An all-four rescue and a partial rescue are possible. Firefighters bring anyone left inside out for hospital checks. No canonical person dies. The game keeps every consequence inside its own possible night and writes nothing into Stairwell or a continuing shelf. Reruns are alternatives, not repeated canonical fires.

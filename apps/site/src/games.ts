@@ -171,6 +171,15 @@ export const GAMES: Game[] = [
     line: 'Eight people prepare a shared workshop before a storm. You help them arrange meals, guest cabins and supplies.',
     faculties: ['Body', 'Will', 'Memory and belief'],
   },
+  {
+    id: 'smoke',
+    rank: 16,
+    status: 'active',
+    name: 'Smoke on the Stairs',
+    href: 'https://smoke.adamwhite.work',
+    line: 'Lead four neighbours down a smoke-filled stairwell. They can refuse you, find a route, or help each other.',
+    faculties: ['Will', 'Relationships', 'Body'],
+  },
 ];
 
 export const isExternal = (g: Game): boolean => /^https?:\/\//.test(g.href);

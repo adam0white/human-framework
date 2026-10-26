@@ -12,10 +12,10 @@ function shelf(search: string) {
   node.innerHTML = renderToStaticMarkup(createElement(GameList, { games: GAMES }));
   return node;
 }
-it('keeps all15 games in the same order while moving development metadata behind exact lab=1', () => {
+it('keeps all listed games in the same order while moving development metadata behind exact lab=1', () => {
   const ordinary = shelf('?lab=0');
   const lab = shelf('?lab=1');
-  expect(ordinary.querySelectorAll('li')).toHaveLength(15);
+  expect(ordinary.querySelectorAll('li')).toHaveLength(GAMES.length);
   expect([...ordinary.querySelectorAll('.game-name')].map((n) => n.textContent)).toEqual(
     [...lab.querySelectorAll('.game-name')].map((n) => n.textContent),
   );

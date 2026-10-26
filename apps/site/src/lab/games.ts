@@ -9,6 +9,7 @@ export const LAB_GAMES: Pick<Game, 'id' | 'name' | 'href' | 'rank' | 'status'>[]
 const numbered = (count: number, render: (n: number) => string): string[] =>
   Array.from({ length: count }, (_, i) => render(i + 1));
 export const EVENT_LABELS: Readonly<Record<string, { scr: readonly string[]; ms: readonly string[] }>> = {
+  smoke: { scr: ['stairwell', 'outcome', 'replay'], ms: [] },
   rope: {
     scr: [
       'title',

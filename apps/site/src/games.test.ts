@@ -29,6 +29,7 @@ describe('ranked games', () => {
       'neighbours',
       'rope',
       'commonstead',
+      'smoke',
     ]);
     expect(GAMES.filter((g) => g.status === 'frozen').map((g) => g.id)).toEqual([]);
     expect(LAB_GAMES).toEqual(
