@@ -254,3 +254,9 @@ Owner answers, 2026-10-26 (to the coordinator's three questions):
 - Faith-themed game, lift "Games keep faith gentle" for one game: **"Yes, for one game"**.
 - Action game, lift "no action-game polish, real-time graphics" for one game: **"Yes, for one game"**.
 - New games before the 2026-11-03 review: **"Up to 4, added (Recommended)"**: build every concept that passes review, on top of the current goal; playtests of the existing 15 keep priority.
+
+## 2026-10-26 — New approaches for new games (Adam, verbatim)
+
+> "I'm open to new approaches as well, like using a different coding language or a technology or tool to build the game. Many of our games have been looking similar so far. And some are more like simulations than games anyway."
+
+Coordinator reading: new games may use another language, engine or tool (for example Godot web export, Rust and WASM, PixiJS or WebGL, a text engine), as long as HF stays the actor engine through a JS or WASM bridge with no framework logic in the game. Each new game must be a game, with a goal, stakes, failure and decisions with tension, and must look different from the existing 15.
