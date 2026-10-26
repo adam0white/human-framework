@@ -1059,6 +1059,59 @@ The notebook's accounts are incomplete. Some entries lack dates, some may record
 
 Possible outcomes concern the living: an uncertain entry gets checked, a creditor confirms a receipt, an object is returned by agreement, or Leyla records that a claim remains unresolved. Visitors may revise a story after hearing another account. They may also refuse to listen. Kemal does not respond from beyond death, supply an authoritative final explanation or acquire a posthumous achievement. The player's discoveries are the actual encounters and inspected objects in that run, never a prefilled set of secrets.
 
+## His Word cast addition — 2026-10-26
+
+The coordinator’s new-game instructions lift the forty-person cap for these new games on 2026-10-26. This addition allocates four living foreground people to _His Word_: canonical Halil (`hf.cast.halil.voice`, revision 1, age 61), Rıza (`hf.cast.riza.voice`, revision 1, age 63), Osman (`hf.cast.osman.voice`, revision 1, age 55), and new Ferda below. Nuri is a deceased reference, not a fifth living actor. The player is Nuri's nephew and has no foreground biography. This fresh authored opening imports no continuing saves or completed outcomes. It copies the three existing complete canonical opening profiles without changing their biographies or profiles.
+
+The meeting takes place in a shuttered garment shop near an Istanbul delivery depot. Halil has travelled for a short repair contract; he still rents his established workshop from Osman and owes its existing rent. The additional work does not threaten or replace that tenancy. Rıza visits on his bread-delivery round. Osman visits as landlord and trader. Ferda proposes a new shop tenancy. This meeting is separate from Voice's town and cast situation. Nuri and Nuran are different people; this addition makes no change to Halil's grief or family.
+
+| castId               | name  |         age | cohort | revision | games                                          |
+| -------------------- | ----- | ----------: | ------ | -------: | ---------------------------------------------- |
+| `hf.cast.ferda.word` | Ferda |          50 | Coast  |        1 | His Word                                       |
+| `hf.cast.nuri.word`  | Nuri  | 79 at death | Coast  |        1 | His Word: objects and attributed promises only |
+
+Only living people can negotiate the future work, cart storage and rent. Nuri's incompatible promises provide attributed evidence, not authority to dispose of property. The game allocates no estate, bequest or inheritance shares and offers no ruling on fara'id or wasiyya. Nobody can prove his final intention. Any continuation of this new arrangement needs an explicit receiving contract; the first slice is fresh only.
+
+### 44. Ferda
+
+**Identity:** `hf.cast.ferda.word`, revision 1. Age 50. **Place:** Istanbul, near the garment shop and delivery depot. **Work:** clothing-order manager and prospective shop tenant. **Family:** Nuri's daughter; the player is her cousin. Other relatives remain background.
+
+**HF profile:** Start all six trait keys and all ten value keys at exactly `0.5`. Override only conscientiousness `.75`, honesty `.75` and extraversion `.40`. These are authored opening priors, not measurements. Pin the completed profile in the host cast data and replay; never substitute engine defaults or reroll her profile.
+
+**Source anchor:** His Word cast addition, 2026-10-26; new fiction under the coordinator-authorized new-game roster expansion.
+
+**Games and roles:** His Word: a prospective tenant who must choose a viable first month for her own business.
+
+**Carry policy:** Clothing-order experience is not legal authority. Her doubt about reopening remains private until disclosed. A signed agreement concerns only the explicit work, storage and rent proposal. It grants no ownership, inherited entitlement or authority over another person's existing tenancy.
+
+**Authored life**
+
+Ferda has managed clothing orders for years. She checks delivery dates, notices when an alteration has been promised twice and keeps customers informed when a job slips. Her father's shop gave her useful work and a familiar place to be. It also made it easy for other people to assume that her plans would always follow his.
+
+After Nuri's death, friends began speaking of reopening as loyalty to him. Ferda did not correct them. She wants a viable business, but she has hidden her doubt about taking the lease because she fears that declining it will sound like declining her father. She has privately begun to prefer a smaller late repair service that she could organize herself. A supplier order described in Nuri's letter could support that plan. The letter is practical evidence of an order, not a final account of what Nuri wanted.
+
+Possible outcomes include a viable late service she chooses, a morning service whose rent guarantee costs her cousin's travel fund, or declining an unworkable lease and returning the keys. Her relief can become known through an actual conversation; it is not public opening knowledge. Agreement does not make every remembered promise compatible. Refusal can protect her future without settling how she remembers her father.
+
+### 45. Nuri — deceased reference identity
+
+**Identity:** `hf.cast.nuri.word`, revision 1. Age 79 at death. **Place:** Istanbul, at the garment shop near the delivery depot. **Work:** tailor. **Family:** Ferda's father and the player's uncle; no relation to Nuran is established.
+
+**HF profile:** Not instantiated. This deceased reference has no live Person, HF state, continuing branch or posthumous decisions.
+
+**Source anchor:** His Word cast addition, 2026-10-26; new authored objects and attributed accounts, not a living actor.
+
+**Games and roles:** His Word: remembered tailor whose sincere practical promises conflict.
+
+**Carry policy:** Keep testimony attached to its speaker and source. His notebook and letter are incomplete records, not commands to the living. Never compute his spiritual condition, acceptance, reward or blame. His promises convey no property, job, estate, bequest or inheritance shares. The living negotiate any new arrangement themselves.
+
+**Authored life**
+
+Nuri worked as a tailor and liked helping a friend leave with a workable answer. He sincerely promised Halil steady morning repair work. He also sincerely promised Rıza that the same shop floor would hold his delivery cart all day. He avoided the conversation in which he would have had to choose between those two uses. Neither promise created a tenancy, ownership right or guaranteed job.
+
+His private avoidance is the author fact behind the conflict. A player cannot inspect that fact as proof of his final intention. The notebook preserves separate assurances. The letter mentions a supplier order that may support a late service, but it does not explain away what either listener heard. People can remember his generosity and still acknowledge that he left them incompatible expectations.
+
+Possible outcomes belong to the living: they compare the player's assurances, reject a false account, make costly concessions or leave without agreement. A later page may show whether the signed practical plan worked. Nuri never returns to confirm the correct interpretation. No ending assigns his property, determines a bequest or resolves a religious or legal question.
+
 ## Exhaustive disposition of the existing cast
 
 This table covers **every inventory row** in the fourteen-game source census, including its seed-42 generated examples. The source context column disambiguates repeated names and household IDs. `canonical` means the named source appearance is deliberately reconciled into that identity in a new content edition. It does not admit an old save automatically. `replacement` means an old individual's role is reused by a different canonical person: the old individual is not secretly that person. `background` means the old maintained personal arc is retired; the new episode uses a seeded local actor or an unnamed role, with no cross-game branch. Such an actor may have immediate scene needs and relationships but cannot retain a multi-game personal arc, become a hidden forty-first foreground biography, or become exportable merely because it receives a name.
