@@ -276,3 +276,11 @@ Coordinator reading, acted on now:
 Sent with it (Adam, verbatim): "I think as HF moves major versions, we can shed some rules and clean up agents.md and other files, too."
 
 Coordinator reading: at 4.0, AGENTS.md and the other instruction files are slimmed. Rules made obsolete by the removal of opt-ins and legacy continuation are dropped, history moves to `docs/history.md`, and a short set of binding rules stays.
+
+## 2026-10-26 — Godot, the five limits, daily clock, useless tests (Adam, verbatim)
+
+> "Let's have one godot game for the learnings and limitations it'll bring into the lab. What about unity? Yes to 1, 2, 3, 4. 5, too; as in we can choose to lift it whenever we want and upgrade/update them, too. Larger clock such as daily mode would unlock new paths for us. Get rid of useless tests as well; such as ruh number checker; it's not the end of the world and we would fix it once we see it."
+
+The five were the coordinator's questions from the limits audit (`~/code/.lab-scratch/hf4/limits-audit.md`): (1) faith may be a theme, goal or stake in any game; (2) only unexplained flavour words count against plain English; (3) names that are hard to read get plain names generally; (4) the action-game polish rule is dropped; (5) frozen games (Small Works, Neighbours, Rope) may be unfrozen and updated whenever the work needs it.
+
+Coordinator reading: one new game is built in Godot (web export) for what it teaches the lab, despite the measured 10 MB and slow phone load; the load time is a finding to record, not a reason to stop. Unity is not planned: its web builds are larger and slower to start than Godot's, its runtime is closed source under a commercial licence, and bridging HF into C# in the browser is awkward; Godot already covers the "real engine" lesson. HF 4.0 keeps a daily clock as a first-class larger step alongside the fine clock. Tests that only guard against an unlikely mistake (such as a check that no ruh number exists) are deleted; such a mistake is fixed when seen. AGENTS.md was slimmed to the binding rules in the same change.
