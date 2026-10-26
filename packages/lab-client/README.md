@@ -129,7 +129,7 @@ not substitutes.
 
 ### Self-declared agent runs (source candidate)
 
-Use `createLab({ game: 'pass', runSource: 'agent' })` for an agent client. Browser agents can instead open a destination with the exact query parameter `labRunSource=agent`. Both select the same optional linked envelope field, `runSource: 'agent'`, once when the client is created. Mark each destination explicitly; navigation does not propagate this marker. No marker is stored as a preference. Reloading a marked URL selects it again; a future unmarked URL does not.
+Use `createLab({ game: 'pass', runSource: 'agent' })` for an agent client. Browser agents can instead open a destination with the exact query parameter `labRunSource=agent`. Both select the same optional linked envelope field, `runSource: 'agent'`, once when the client is created. Mark each destination explicitly; navigation does not propagate this marker. No marker is stored as a preference. The client removes the marker from the address bar after reading it, preserving other query parameters and the fragment. A later unmarked load is unattributed.
 
 The marker covers linked events, runs, saves, logs and notes, including each snapshot chunk. Journals and retry pieces keep their original source; missing legacy fields stay absent. Absence means **UNATTRIBUTED**, never verified human. This is a self-declaration, not authentication. The client does not infer source from webdriver, user agent, names, fictional cast, identity or browsing history. Invalid explicit typed-option values are refused at runtime; unrelated URL values do not declare a source.
 

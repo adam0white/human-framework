@@ -497,8 +497,15 @@ it.each([{ doNotTrack: '1' }, { globalPrivacyControl: true }])(
 
 // One linked source control exercises the actual public client and transport.
 it('captures agent source on every linked kind without enabling recording', async () => {
-  vi.stubGlobal('location', { hostname: 'human.adamwhite.work', search: '?labRunSource=agent' });
+  const url = new URL('https://human.adamwhite.work/play?keep=1&labRunSource=agent#menu');
+  vi.stubGlobal('location', url);
+  const state = { kept: true };
+  const replaceState = vi.fn((_state, _unused, href) => {
+    url.href = href;
+  });
+  vi.stubGlobal('history', { state, replaceState });
   const lab = createLab({ game: 'pass', build: { a: 'source-control' } });
+  expect(replaceState).toHaveBeenCalledWith(state, '', 'https://human.adamwhite.work/play?keep=1#menu');
   lab.log('game', 'source control');
   lab.flush();
   lab.captureSave({ state: 'x'.repeat(LINKED_LIMITS.chunkChars + 1) });
@@ -544,7 +551,20 @@ it('retries original pending source after reload without relabeling legacy piece
   await legacy.send('run', { state: 'x'.repeat(LINKED_LIMITS.chunkChars + 1) });
   await vi.waitFor(() => expect(attempts.length).toBe(1));
   // Wait for the failed request to persist its backoff before opening another client.
-  await new Promise((resolve) => setTimeout(resolve, 30));
+  const db = await new Promise<IDBDatabase>((resolve, reject) => {
+    const request = indexedDB.open('hf-lab-pending', 1);
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = () => reject(request.error);
+  });
+  await vi.waitFor(async () => {
+    const pieces = await new Promise<{ attempts: number; next: number }[]>((resolve, reject) => {
+      const request = db.transaction('pieces').objectStore('pieces').getAll();
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => reject(request.error);
+    });
+    expect(pieces.some((piece) => piece.attempts > 0 && piece.next > Date.now())).toBe(true);
+  });
+  db.close();
   source = 'agent';
   const marked = make();
   await marked.send('note', { note: 'pending source fixture' }, undefined, undefined, true).catch(() => {});

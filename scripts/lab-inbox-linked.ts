@@ -11,6 +11,7 @@ export type LinkedRecord = {
   build: Record<string, string>;
   data: unknown;
   name?: string;
+  runSource?: 'agent';
 };
 export type LinkedEntry = Omit<LinkedRecord, 'v' | 'data'> & { key: string; size: number };
 const hex = /^[a-f0-9]{32}$/;
@@ -19,6 +20,7 @@ export function linkedRecord(value: unknown): value is LinkedRecord {
   const r = value as LinkedRecord;
   return (
     r.v === 2 &&
+    (r.runSource === undefined || r.runSource === 'agent') &&
     [r.id, r.player, r.session, r.runId].every((v) => typeof v === 'string' && hex.test(v)) &&
     typeof r.game === 'string' &&
     /^[a-z][a-z0-9-]{0,47}$/.test(r.game) &&
@@ -117,4 +119,20 @@ export function legacyPlayer(
   if (names.has(label)) return label;
   const matches = [...names].filter(([, name]) => name === label);
   return matches.length === 1 ? matches[0]?.[0] : undefined;
+}
+
+/** Split at record level: a shared player id never attributes its other records. */
+export function sourceSections(records: LinkedRecord[]) {
+  const sources = new Map<string, Set<string>>();
+  for (const record of records) {
+    const labels = sources.get(record.player) ?? new Set<string>();
+    labels.add(record.runSource ?? 'unattributed');
+    sources.set(record.player, labels);
+  }
+  return ([undefined, 'agent'] as const).map((source) => ({
+    title: source === 'agent' ? 'Agent runs' : 'Unattributed runs',
+    label: source ?? 'unattributed',
+    records: records.filter((record) => record.runSource === source),
+    mixedPlayers: new Set([...sources].filter(([, labels]) => labels.size > 1).map(([player]) => player)),
+  }));
 }

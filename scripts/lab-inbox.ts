@@ -29,6 +29,7 @@ import {
   linkedRecord,
   linkedUploads,
   playerNames,
+  sourceSections,
 } from './lab-inbox-linked.ts';
 import { personaMeasurements } from './lab-inbox-persona.ts';
 import {
@@ -146,7 +147,7 @@ for (const e of entries) {
 }
 
 // Missing linked indexes are normal before the first linked upload. Other failures stay visible.
-const linkedRows: string[] = [];
+const sections: string[] = [];
 const linkedRecords: LinkedRecord[] = [];
 mkdirSync(join(dir, 'linked'), { recursive: true });
 mkdirSync(join(dir, 'linked-replay'), { recursive: true });
@@ -215,64 +216,73 @@ const playerLabel = (player: string) =>
 for (const { entry: e, env, suggestion } of legacyRuns) {
   const player = legacyPlayer(env, names);
   rows.push(`<article>
-  <h2>${esc(e.game)} <small>${esc(e.hour.replace('T', ' '))}:00 UTC · ${esc(e.id)}${env.name || env.who ? ` · ${esc(env.name || env.who || '')}` : ''}${player ? ` · possible label match: ${esc(playerLabel(player))}` : ''}</small></h2>
+  <h2>${esc(e.game)} <small class="badge">unattributed</small> <small>${esc(e.hour.replace('T', ' '))}:00 UTC · ${esc(e.id)}${env.name || env.who ? ` · ${esc(env.name || env.who || '')}` : ''}${player ? ` · possible label match: ${esc(playerLabel(player))}` : ''}</small></h2>
   ${env.note ? `<blockquote>${esc(env.note).replace(/\n/g, '<br>')}</blockquote>` : '<p class="soft">No note.</p>'}${suggestion ? `\n  ${suggestion}` : ''}
   <p class="soft">build ${esc(env.build?.c ?? '?')} · HF ${esc(env.build?.hf ?? '?')} · game ${esc(env.build?.a ?? '?')} ·
   <a href="replay/${esc(e.id)}.json" download>replay file</a> (load it in <a href="https://${esc(e.game)}.adamwhite.work">the game</a> with “Replay a run file”) ·
   <a href="runs/${esc(e.id)}.json">everything sent</a></p>
 </article>`);
 }
-const players = new Map<string, LinkedRecord[]>();
-for (const record of linkedRecords) {
-  const records = players.get(record.player) ?? [];
-  records.push(record);
-  players.set(record.player, records);
-}
-const timelines = [...players]
-  .map(([player, records]) => {
-    records.sort((a, b) => a.at - b.at || a.id.localeCompare(b.id));
-    return `<section><h2>${esc(playerLabel(player))}</h2><p>${new Set(records.map((r) => r.game)).size} games · ${new Set(records.map((r) => r.session)).size} sessions</p><ol>${records.map((r) => `<li>${esc(new Date(r.at).toISOString())} · ${esc(r.game)} · ${r.kind} · run ${esc(r.runId)} · session ${esc(r.session)}<details><summary>Record ${esc(r.id)}</summary><pre style="white-space:pre-wrap;overflow-wrap:anywhere">${esc(r.kind === 'run' || r.kind === 'save' ? 'Snapshot data is in the linked exports below.' : JSON.stringify(r.data, null, 2))}</pre></details></li>`).join('')}</ol>${legacyRuns
-      .filter(({ env }) => legacyPlayer(env, names) === player)
-      .map(
-        ({ entry: e, env }) =>
-          `<p>Legacy run · possible label match · ${esc(e.game)} · ${esc(e.hour)} · ${esc(env.note ?? '')} · <a href="replay/${esc(e.id)}.json" download>replay file</a></p>`,
-      )
-      .join('')}</section>`;
-  })
-  .join('');
-const groups = new Map<string, LinkedRecord[]>();
-for (const record of linkedRecords) {
-  const key = linkedKey(record);
-  const group = groups.get(key) ?? [];
-  group.push(record);
-  groups.set(key, group);
-}
-for (const [key, records] of groups) {
-  records.sort((a, b) => a.at - b.at || a.id.localeCompare(b.id));
-  writeFileSync(join(dir, 'linked', `${key}.json`), JSON.stringify(records));
-  const first = records[0];
-  if (!first) continue;
-  const exports: string[] = [];
-  for (const upload of linkedUploads(records)) {
-    if (upload.status === 'complete') {
-      const folder = upload.kind === 'run' ? 'linked-replay' : 'linked-save';
-      writeFileSync(join(dir, folder, `${upload.name}.json`), JSON.stringify(upload.value));
-      exports.push(
-        `<a href="${folder}/${upload.name}.json" download>${upload.kind === 'run' ? 'replay' : 'save'} file</a>`,
-      );
-    } else exports.push(`${upload.kind}: ${esc(upload.status)}`);
+const playerCount = new Set(linkedRecords.map((r) => r.player)).size;
+for (const source of sourceSections(linkedRecords)) {
+  const linkedRows: string[] = [];
+  const badge = `<small class="badge">${source.label}</small>`;
+  const players = new Map<string, LinkedRecord[]>();
+  for (const record of source.records) {
+    const records = players.get(record.player) ?? [];
+    records.push(record);
+    players.set(record.player, records);
   }
-  linkedRows.push(`<article><h2>${esc(first.game)} · linked run <small>${esc(first.runId)}</small></h2>
+  const timelines = [...players]
+    .map(([player, records]) => {
+      records.sort((a, b) => a.at - b.at || a.id.localeCompare(b.id));
+      return `<section><h2>${esc(playerLabel(player))} ${badge}${source.mixedPlayers.has(player) ? ' <small>mixed attribution; records separated</small>' : ''}</h2><p>${new Set(records.map((r) => r.game)).size} games · ${new Set(records.map((r) => r.session)).size} sessions</p><ol>${records.map((r) => `<li>${esc(new Date(r.at).toISOString())} · ${esc(r.game)} · ${r.kind} · ${badge} · run ${esc(r.runId)} · session ${esc(r.session)}<details><summary>Record ${esc(r.id)} · ${badge}</summary><pre style="white-space:pre-wrap;overflow-wrap:anywhere">${esc(r.kind === 'run' || r.kind === 'save' ? 'Snapshot data is in the linked exports below.' : JSON.stringify(r.data, null, 2))}</pre></details></li>`).join('')}</ol>${legacyRuns
+        .filter(({ env }) => source.label === 'unattributed' && legacyPlayer(env, names) === player)
+        .map(
+          ({ entry: e, env }) =>
+            `<p>Legacy run · possible label match · ${esc(e.game)} · ${esc(e.hour)} · ${esc(env.note ?? '')} · <a href="replay/${esc(e.id)}.json" download>replay file</a></p>`,
+        )
+        .join('')}</section>`;
+    })
+    .join('');
+  const groups = new Map<string, LinkedRecord[]>();
+  for (const record of source.records) {
+    const key = linkedKey(record);
+    const group = groups.get(key) ?? [];
+    group.push(record);
+    groups.set(key, group);
+  }
+  for (const [key, records] of groups) {
+    records.sort((a, b) => a.at - b.at || a.id.localeCompare(b.id));
+    writeFileSync(join(dir, 'linked', `${key}-${source.label}.json`), JSON.stringify(records));
+    const first = records[0];
+    if (!first) continue;
+    const exports: string[] = [];
+    for (const upload of linkedUploads(records)) {
+      if (upload.status === 'complete') {
+        const folder = upload.kind === 'run' ? 'linked-replay' : 'linked-save';
+        writeFileSync(join(dir, folder, `${upload.name}-${source.label}.json`), JSON.stringify(upload.value));
+        exports.push(
+          `<a href="${folder}/${upload.name}-${source.label}.json" download>${upload.kind === 'run' ? 'replay' : 'save'} file</a>`,
+        );
+      } else exports.push(`${upload.kind}: ${esc(upload.status)}`);
+    }
+    linkedRows.push(`<article><h2>${esc(first.game)} ${badge} · linked run <small>${esc(first.runId)}</small></h2>
 <p class="soft">${esc(playerLabel(first.player))} · session ${esc(first.session)} · ${records.length} records · ${esc(new Date(first.at).toISOString())}</p>
-<p>${exports.join(' · ') || 'No complete replay or save yet.'} · <a href="linked/${key}.json">all linked records</a></p>
+<p>${exports.join(' · ') || 'No complete replay or save yet.'} · <a href="linked/${key}-${source.label}.json">all linked records</a></p>
 ${records
   .filter((r) => r.kind === 'note' || r.kind === 'logs')
   .map(
     (r) =>
-      `<details><summary>${r.kind} · ${esc(new Date(r.at).toISOString())}</summary><pre style="white-space:pre-wrap;overflow-wrap:anywhere">${esc(r.kind === 'run' || r.kind === 'save' ? 'Snapshot data is in the linked exports below.' : JSON.stringify(r.data, null, 2))}</pre></details>`,
+      `<details><summary>${r.kind} · ${esc(new Date(r.at).toISOString())} · ${badge}</summary><pre style="white-space:pre-wrap;overflow-wrap:anywhere">${esc(r.kind === 'run' || r.kind === 'save' ? 'Snapshot data is in the linked exports below.' : JSON.stringify(r.data, null, 2))}</pre></details>`,
   )
   .join('')}
 </article>`);
+  }
+
+  sections.push(
+    `<h2>${source.title}</h2>${timelines}${linkedRows.join('\n') || '<p>No records fetched.</p>'}`,
+  );
 }
 
 const personas = personaMeasurements(linkedRecords);
@@ -288,15 +298,15 @@ writeFileSync(
   `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Lab inbox (private)</title>
 <style>body{font:17px/1.5 Literata,Georgia,serif;background:#F3ECDD;color:#23201B;max-width:44rem;margin:0 auto;padding:16px}
-h2{font-size:1.1rem;margin:1.4rem 0 .2rem}small,.soft{color:#6E665A;font-weight:400}blockquote{margin:.3rem 0;padding-left:.8rem;border-left:2px solid #C2412D}
+.badge{border:1px solid currentColor;border-radius:.25rem;padding:0 .3rem}h2{font-size:1.1rem;margin:1.4rem 0 .2rem}small,.soft{color:#6E665A;font-weight:400}blockquote{margin:.3rem 0;padding-left:.8rem;border-left:2px solid #C2412D}
 @media (prefers-color-scheme:dark){body{background:#1E1B16;color:#E8DFCC}small,.soft{color:#9A9080}}</style>
 <h1>Lab inbox</h1><p class="soft">Private, on this machine only. ${entries.length} runs in the last ${days} days. Made ${new Date().toISOString().slice(0, 16)} by npm run lab:inbox.</p>
 ${spendStopped ? `<p><strong>${esc(spendStop())}</strong></p>\n` : ''}${rows.join('\n') || '<p>No legacy runs yet.</p>'}
 <h2>One cast</h2><p>${personas.milestones} received run milestones (${personas.rows.length} revision records) · ${personas.joins} shared-only linked cross-game branches · ${personas.fileJoins} file-origin linked cross-game branches · ${personas.incomplete} incomplete replay uploads excluded. <a href="one-cast.json">Private continuity measurements</a></p>
-<p class="soft">Counts use complete received exports, deduplicated by player, game, run, probe, cast and stage. File/local imports are separate. Missing, recording-off and privacy-suppressed plays are outside these counts. Recognition and attachment require the player's words.</p>
+<p class="soft">Counts include agent and unattributed records. Counts use complete received exports, deduplicated by player, game, run, probe, cast and stage. File/local imports are separate. Missing, recording-off and privacy-suppressed plays are outside these counts. Recognition and attachment require the player's words.</p>
 <table><thead><tr><th>Game</th><th>Probe</th><th>Arm</th><th>Scope</th><th>Stage</th><th>Outcome</th></tr></thead><tbody>${castRows}</tbody></table>
-<h2>Linked play records</h2><p class="soft">Random player ids link visits. An optional feedback name labels the entire player timeline. Legacy matches use an exact current name or player id; names are unverified and ambiguous matches are omitted. These exports do not grant consent to character analysis.</p>
-${linkedWarning ? `<p>${esc(linkedWarning)}</p>` : ''}${timelines}${linkedRows.join('\n') || '<p>No linked records fetched.</p>'}
+<h2>Linked play records</h2><p class="soft">Random player ids link visits. An optional feedback name labels the entire player timeline. Source labels are self-declared, not authentication. Missing labels are unattributed. Legacy records are unattributed. Legacy matches use an exact current name or player id; names are unverified and ambiguous matches are omitted. These exports do not grant consent to character analysis.</p>
+${linkedWarning ? `<p>${esc(linkedWarning)}</p>` : ''}${sections.join('\n')}
 </html>
 `,
 );
@@ -305,7 +315,7 @@ console.log(
 );
 if (linkedWarning) console.warn(linkedWarning);
 console.log(
-  `lab inbox: ${entries.length} legacy runs (${fetched} new), ${players.size} linked players, ${linkedRecords.length} linked records. Open ${join(dir, 'index.html')}`,
+  `lab inbox: ${entries.length} legacy runs (${fetched} new), ${playerCount} linked players, ${linkedRecords.length} linked records. Open ${join(dir, 'index.html')}`,
 );
 
 if (suggest) {

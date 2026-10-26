@@ -2,7 +2,7 @@ import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { expect, it } from 'vitest';
 
-const { linkedUploads, playerNames, legacyPlayer } = await import(
+const { linkedUploads, playerNames, legacyPlayer, sourceSections, linkedRecord } = await import(
   pathToFileURL(resolve('scripts/lab-inbox-linked.ts')).href
 );
 const id = (digit: string) => digit.repeat(32);
@@ -72,4 +72,20 @@ it('labels an entire player timeline by its latest name and matches only unique 
   expect(legacyPlayer({ who: 'Old name' }, names)).toBeUndefined();
   names.delete(id('f'));
   expect(legacyPlayer({ who: ' Sam ' }, names)).toBe(id('a'));
+});
+
+it('keeps agent records separate from unattributed records even for a shared player', () => {
+  const agent = record(0, '{}', { runSource: 'agent' });
+  const unattributed = record(1, '{}');
+  expect(linkedRecord(agent)).toBe(true);
+  expect(linkedRecord(unattributed)).toBe(true);
+  expect(linkedRecord({ ...agent, runSource: 'human' })).toBe(false);
+  const [unknown, agents] = sourceSections([agent, unattributed]);
+  expect(unknown).toMatchObject({
+    title: 'Unattributed runs',
+    label: 'unattributed',
+    records: [unattributed],
+  });
+  expect(agents).toMatchObject({ title: 'Agent runs', label: 'agent', records: [agent] });
+  expect(agents.mixedPlayers.has(agent.player)).toBe(true);
 });

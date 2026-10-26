@@ -8,3 +8,5 @@ Apply these from now on, in both playtest and playtest-b.
 5. **Human speed.** Before routing a timing complaint (for example a choice that vanishes before the tap), reproduce it at human tapping speed, 1 to 3 seconds per decision. If the driver delay caused it, record that and drop the complaint.
 6. **Forced quits are not taste verdicts.** Label sessions that a protocol cut short, and leave them out of the patterns.
 7. **Play checklist.** Remove pass/fail audit checklists from tester prompts. Ask for play diaries and the return question.
+
+Use a fresh browser profile per agent run; never share a marked URL.
