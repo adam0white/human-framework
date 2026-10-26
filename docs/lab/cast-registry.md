@@ -981,6 +981,84 @@ His private game is naming imaginary inns on the roads beyond the district. The 
 
 A player can discover the map when Kian chooses a place to explain a joke, asks for a scrap of paper or invites someone into a story. A hidden outcome lets him send Ada a new inn from Warren and receive her correction to its menu. Another lets Tariq contribute a boat landing, making a friendship without requiring either boy to speak about his whole family. They can disagree about how the imaginary world works and keep separate maps. At Watch, Kian may tell a brief story during a safe off-duty wait, then put it away when work resumes. Nothing requires a public performance or turns imagination into prophecy. His recurrence should preserve restless eagerness while showing that responsibility and play can share a life, even when that life acquired responsibility much earlier than it should have.
 
+## Three Days cast addition — 2026-10-26
+
+The owner lifted the forty-person cap for the new games on 2026-10-26. The forty-person edition and the existing fifteen allocations above remain their dated baseline. This addition supplies two new living foreground people and one deceased reference identity for _Three Days_. It adds no retrospective fact to another game. The opening is a later, bounded Istanbul visit for Hacer (`hf.cast.hacer.voice`) and Burak (`hf.cast.burak.stairwell`); active obligations require the existing carry policy. Burak still occupies Flat 3 at Lale Apartmanı. Kemal rented a house on another street. Leyla's temporary stay there creates no tenancy or ownership claim.
+
+| castId               | name  |         age | cohort | revision | games                                      |
+| -------------------- | ----- | ----------: | ------ | -------: | ------------------------------------------ |
+| `hf.cast.leyla.days` | Leyla |          49 | Coast  |        1 | Three Days                                 |
+| `hf.cast.sukru.days` | Şükrü |          79 | Coast  |        1 | Three Days                                 |
+| `hf.cast.kemal.days` | Kemal | 74 at death | Coast  |        1 | Three Days: objects and received news only |
+
+_Three Days_ casts Leyla as the daughter keeping the condolence door open, Şükrü as Kemal's former colleague, Hacer as a visitor who brings food, and Burak as a visitor who can help read accounts. Neither existing person becomes an established relative of Kemal. Kemal has no living actor, continuing branch or posthumous decisions. His identity identifies objects, attributed testimony and received news; it is not a simulated state of the dead. Selin (`hf.cast.selin.voice`, revision 2, age 32) visits through her acquaintance with Hacer to check a practical promise. She remains an office worker and Halil's daughter; Nuran died fourteen weeks before the Voice opening. This appearance establishes no new diagnosis, religious conviction or family relationship. Days has five living foreground people and the one deceased reference above. Danyal is not allocated here; the Coast–Valley boundary remains intact.
+
+### 41. Leyla
+
+**Identity:** `hf.cast.leyla.days`, revision 1. Age 49. **Place:** Rotterdam; temporarily at her late father's rented Istanbul house. **Work:** laboratory technician. **Family:** Kemal's daughter; divorced; other relatives remain background.
+
+**HF profile:** conscientiousness .75; extraversion .35; agreeableness .45; emotionality .65; honesty .70; openness .60. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline above; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Three Days cast addition, 2026-10-26; new fiction, with the owner-authorized new-game roster expansion.
+
+**Games and roles:** Three Days: daughter receiving condolence visitors during a short stay in Istanbul.
+
+**Carry policy:** Her job is laboratory work, not clinical authority or forensic expertise. Her divorce and estrangement are private until disclosed. A visit does not settle the relationship with her father, and accepting practical help does not imply agreement with a visitor's account of him.
+
+**Authored life**
+
+Leyla left Istanbul for work in Rotterdam and stayed because she built a useful life there. She likes the order of a laboratory shift: labels checked, a doubtful result repeated, the next person told what remains uncertain. At home she is less orderly. Her cupboard contains several repaired radios she has not found places for. She likes hearing a familiar station through a set someone else thought finished. She has friends who know her as a patient repairer and colleagues who know she will challenge a result without raising her voice.
+
+Her father opposed her marriage. When it ended, she did not call him. She could imagine the conversation too easily: concern becoming a claim that he had been right about everything. The divorce did not vindicate his interference. It also did not erase the years when he helped her learn to mend a plug or waited outside an examination hall. She has kept these memories without reaching a single account of the man. Returning after his death requires practical decisions before she can decide what she wants to say about him.
+
+She has not told every visitor that the marriage ended. The omission protects her from advice as well as shame. She kept an unsent letter asking Kemal to speak to her without discussing her former husband. The letter contains a joke about one of their failed repairs. Leyla may disclose it, keep it, or destroy it without the game treating one choice as emotional completion. A visitor learns about her divorce only through an actual disclosure; the biography is not their knowledge.
+
+Possible outcomes include accepting a meal and asking the visitor to leave it at the door, sharing a particular memory without accepting a general tribute, and making a call she wants to continue after returning to Rotterdam. She may correct a story told about her father, or decide that this is not the moment. She may leave with an ordinary unresolved task and a clear arrangement for who will handle it. No outcome requires forgiveness, public disclosure or a repaired family. Her fatigue and grief affect what she can manage; they do not measure the quality of her mourning.
+
+### 42. Şükrü
+
+**Identity:** `hf.cast.sukru.days`, revision 1. Age 79. **Place:** Istanbul, near Kemal's former customs office. **Work:** retired customs clerk and Kemal's former colleague. **Family:** His household and relatives remain background.
+
+**HF profile:** conscientiousness .65; extraversion .60; agreeableness .55; emotionality .45; honesty .55; openness .40. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline above; never use a host lottery or rebuild continuing state from this summary.
+
+**Source anchor:** Three Days cast addition, 2026-10-26; new fiction, with the owner-authorized new-game roster expansion.
+
+**Games and roles:** Three Days: an old colleague who brings memories and an unfinished ordinary promise.
+
+**Carry policy:** Customs work supplies no religious expertise or present legal authority. His recollections are attributed testimony. Another person's receipt or recollection may contradict them. Age does not make him a complete witness to Kemal's life.
+
+**Authored life**
+
+Şükrü and Kemal spent years checking forms beside the same draughty window. Şükrü remembers which manager moved the desks and which tea seller gave credit, and tells those stories more readily than dates. Retirement has made the office sound friendlier in his accounts. He still takes a long route home to pass the building. He likes recognizing a small change before anyone explains it to him.
+
+He keeps a tin of damaged fountain pens and can usually get one writing again. He gives repaired pens away with stern advice about keeping their caps. Kemal used to mock the advice and then bring him another broken pen. Their friendship included annoyance, small favours and stretches when neither called. Şükrü misses the ordinary expectation that Kemal would have an opinion about a new shop or a careless official letter.
+
+He knows Kemal promised to return a neighbour's borrowed folding table after a move and failed to do it. Şükrü helped carry it into the rented house. Later he accepted Kemal's explanation that he would deal with it next week. He has not checked whether the neighbour still needs it, and would prefer to tell the condolence visitors a cleaner story about a dependable friend. The failed promise is ordinary. It matters because somebody else has been left waiting, not because discovering it reveals Kemal's whole character.
+
+A player may hear about the table if Şükrü recognizes it, is asked about an account, or chooses to correct his own tribute. He can offer to contact the owner, admit that he also let the matter drift, or decline to take on work he cannot manage. Leyla may accept his help without taking responsibility for every promise he remembers. Possible outcomes include a recorded return arrangement, an unanswered call with a named next step, or an explicit refusal to settle an uncertain claim. No secret is marked discovered before the encounter that conveys it.
+
+### 43. Kemal — deceased reference identity
+
+**Identity:** `hf.cast.kemal.days`, revision 1. Age 74 at death. **Place:** a rented house in Istanbul, on a different street from Lale Apartmanı. **Work:** retired customs clerk. **Family:** Leyla's father; other relatives remain background.
+
+**HF profile:** Not instantiated. This deceased reference has no fresh Person profile, HF state or continuing branch.
+
+**Source anchor:** Three Days cast addition, 2026-10-26; new authored objects and attributed accounts, not a living actor.
+
+**Games and roles:** Three Days: the deceased named in objects, visitors' testimony and received news.
+
+**Carry policy:** Never compute his spiritual condition, acceptance, reward or blame. The notebook is an incomplete physical record. A number written there is a claim to examine, not a verified debt or an inheritance instruction. The game computes no inheritance shares or bequest rulings. Memories remain attached to their speakers and encounters.
+
+**Authored life**
+
+Kemal worked as a customs clerk and liked to describe the job as keeping things in order. He saved carbon copies, checked totals twice and disliked lending a book without writing down the title. Colleagues remember times he stayed late to resolve a mistake. Leyla remembers how the same insistence could close a conversation before she had finished speaking. Neither account cancels the other.
+
+He rented the house where visitors now arrive. It is not Burak's flat and was never established as part of Lale Apartmanı. A repaired chair, old work papers and a notebook remain there. A pencilled list of things to mend includes jobs completed without being crossed out. The objects establish what is present; they do not establish why he kept it or what he intended to say.
+
+The notebook's accounts are incomplete. Some entries lack dates, some may record money received rather than owed, and a loose receipt can contradict a visitor who remembers Kemal settling every matter promptly. Şükrü's recollection of a borrowed table supplies another limited account. No single discovery proves that Kemal was secretly good or bad. His opposition to Leyla's marriage remains his conduct even though the marriage ended.
+
+Possible outcomes concern the living: an uncertain entry gets checked, a creditor confirms a receipt, an object is returned by agreement, or Leyla records that a claim remains unresolved. Visitors may revise a story after hearing another account. They may also refuse to listen. Kemal does not respond from beyond death, supply an authoritative final explanation or acquire a posthumous achievement. The player's discoveries are the actual encounters and inspected objects in that run, never a prefilled set of secrets.
+
 ## Exhaustive disposition of the existing cast
 
 This table covers **every inventory row** in the fourteen-game source census, including its seed-42 generated examples. The source context column disambiguates repeated names and household IDs. `canonical` means the named source appearance is deliberately reconciled into that identity in a new content edition. It does not admit an old save automatically. `replacement` means an old individual's role is reused by a different canonical person: the old individual is not secretly that person. `background` means the old maintained personal arc is retired; the new episode uses a seeded local actor or an unnamed role, with no cross-game branch. Such an actor may have immediate scene needs and relationships but cannot retain a multi-game personal arc, become a hidden forty-first foreground biography, or become exportable merely because it receives a name.
