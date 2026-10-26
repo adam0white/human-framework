@@ -4,6 +4,8 @@
 
 These are fictional working personas, not recruited people or evidence about a population. Their countries and ages supply individual context, not national or age stereotypes. Temperaments use HF trait names as qualitative premises, not measured scores. This document defines briefs; it does not add runtime presets to `packages/playtester`.
 
+Follow the [playtest harness rules](playtest-harness.md) for build records, raw diaries, ledger rows, browser sessions and timing complaints.
+
 ## Count and use
 
 The coordinator proposed “17 standing”; this roster implements **17 positions: 12 recurring players + 2 rotating never-HF cold positions + 3 recurring designers/reviewers**. There are **15 maintained identities**, not 17 permanent people. The two cold positions receive two new identities each round. After N rounds with distinct cold entrants, the panel has used 15 + 2N identities. Do not reuse a cold entrant as a never-HF player. Record any later return explicitly as a returner outside those two positions.
