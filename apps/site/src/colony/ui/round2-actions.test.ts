@@ -166,20 +166,40 @@ it('map taps use the same how settings as tiles', async () => {
     undefined,
   );
 });
-it('sends a safe suggestion directly with its nudge id, while risky suggestions only prepare a tile', async () => {
+it('explains initial quick suggestions before sending their unchanged payload, while risky ones still review', async () => {
   await begin();
   const n = NUDGES[0];
   if (!n || !colony.frame) throw Error('Missing fixture');
-  colony.frame = { ...colony.frame, nudges: [n] };
+  // Public stepping supplies the real initial offer; useColony/Pane remain presentation mocks.
+  const game = new ColonyGame(20261003, createFrameworkHumanSide);
+  game.advance(n.minute + 7); // The observed 05:37 offer; at onset both builders are already working.
+  colony.frame = game.frame();
+  expect(colony.frame.cards).toHaveLength(0);
   await act(() => root.render(createElement(App)));
+  expect(container.querySelector('.well-sheet-head')).toBeNull();
+  expect(container.querySelector('.well-caption .well-task-context')?.textContent ?? '').toContain(
+    'not the finished roof',
+  );
+  expect(colony.actions.order).not.toHaveBeenCalled();
   await click('Send');
   expect(colony.actions.order).toHaveBeenCalledExactlyOnceWith(suggestionInputForTest(n), n.id);
+  const cooking = NUDGES.find((n) => n.id === 'storm-pot');
+  if (!cooking) throw Error('Missing cooking suggestion');
+  // Presentation-only cooking offer on a real fresh idle frame, not a native scheduled-cooking run.
+  const idle = new ColonyGame(20261003, createFrameworkHumanSide).frame();
+  colony.frame = { ...idle, nudges: [cooking] };
+  await act(() => root.render(createElement(App)));
+  expect(container.querySelector('.well-caption .well-task-context')?.textContent ?? '').toContain(
+    '12-meal storm reserve',
+  );
+  await click('Send');
+  expect(colony.actions.order).toHaveBeenNthCalledWith(2, suggestionInputForTest(cooking), cooking.id);
   const risky = NUDGES.find((n) => n.id === 'cedar');
   if (!risky) throw Error('Missing cedar');
   colony.frame = { ...colony.frame, nudges: [risky] };
   await act(() => root.render(createElement(App)));
   await click('Review');
-  expect(colony.actions.order).toHaveBeenCalledTimes(1);
+  expect(colony.actions.order).toHaveBeenCalledTimes(2);
   expect(container.querySelector('.well-places .is-outlined')?.textContent).toContain('Cedar');
 });
 function suggestionInputForTest(n: (typeof NUDGES)[number]) {
@@ -290,6 +310,7 @@ it('marks scheduled work already underway and lets the player dismiss it without
   };
   await act(() => root.render(createElement(App)));
   expect(container.querySelector('.well-caption')?.textContent).toContain('This work is already underway');
+  expect(container.querySelector('.well-caption .well-task-context')).toBeNull();
   await click('Keep watching');
   expect(colony.actions.order).not.toHaveBeenCalled();
   expect(colony.actions.dismissNudge).toHaveBeenCalledWith(n.id);

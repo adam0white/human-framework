@@ -5,7 +5,7 @@ import type { PlaceId } from '../sim/map.ts';
 import { APPEALS, type AppealChip, type OrderCard, type OrderInput } from '../sim/orders.ts';
 import { VILLAGERS, type VillagerId, villagerById } from '../sim/world-types.ts';
 import { dayClock, type Frame, NO_CONCEPT } from './contract.ts';
-import { activityLabel, moodDescription, trustDescription } from './descriptions.ts';
+import { activityLabel, moodDescription, needDescription, trustDescription } from './descriptions.ts';
 import { RingTimer } from './Icon.tsx';
 import { homeOrderMeaning, latestPersonOrder } from './order-status.ts';
 import {
@@ -18,6 +18,7 @@ import {
   PLACE_LABEL,
   Portrait,
   shortName,
+  TaskContext,
 } from './parts.tsx';
 import { VILLAGE_WORDS } from './village-words.ts';
 import { forecastWords, wellWords as settingWords } from './words.ts';
@@ -331,6 +332,7 @@ export function PersonSheet({
       (event) =>
         card && event.minute >= card.order.issuedAt && event.minute <= frame.minute && event.delta !== 0,
     ) ?? [];
+  const injury = h?.needs.find((need) => need.id === 'injury');
   const places = placesFor(id, frame.rules);
   if (outline?.startsWith('home-')) places.unshift(...places.splice(7, 1));
   return (
@@ -378,7 +380,8 @@ export function PersonSheet({
             <p>Choose a place. Each order goes to both villages.</p>
           )}
         </section>
-        <section className="well-order-goals" aria-label="Current stores and construction">
+        <details className="well-order-goals" aria-label="Current stores and construction">
+          <summary>Current stores and construction</summary>
           {(['classic', 'human'] as const).map((side) => {
             const world = side === 'classic' ? frame.classicWorld : frame.humanWorld;
             const project = world.project;
@@ -390,6 +393,17 @@ export function PersonSheet({
                 {open ? `; ${Math.floor(world.houseProgress * 100)}% toward the next stage` : ''};{' '}
                 {world.resources.meals}
                 {stockGoal ? ` of ${stockGoal.targetValue}` : ''} meals currently in store.
+                {open && (
+                  <span>
+                    {' '}
+                    Current activity for {shortName(id)}:{' '}
+                    {side === 'human'
+                      ? settingWords(activityLabel(h?.label ?? 'unknown'))
+                      : settingWords(activityLabel(c?.label ?? 'unknown'))}
+                    . An incomplete stage does not establish why work is delayed.
+                  </span>
+                )}
+                {open && !world.construction && <span> The cause of the remaining delay is unknown.</span>}
                 {world.construction ? (
                   <span className="well-building-details">
                     {' '}
@@ -404,7 +418,9 @@ export function PersonSheet({
                       ? ` Next ${world.construction.nextWork === 'beam' ? 'beam work' : 'stage'}: ${world.construction.nextTimber} timber${world.construction.payment === 'on-site' ? ' already paid' : ' needed from stores'}.`
                       : world.construction.active.length
                         ? ' No further stage can be claimed yet.'
-                        : ' Building is complete.'}
+                        : open
+                          ? ' The cause of the remaining delay is unknown.'
+                          : ' Building is complete.'}
                     {world.construction.payment === 'unpaid' &&
                     world.construction.nextTimber !== null &&
                     world.construction.stockTimber < world.construction.nextTimber
@@ -425,7 +441,7 @@ export function PersonSheet({
               </p>
             );
           })}
-        </section>
+        </details>
         <div className="well-how">
           <button type="button" aria-pressed={rush} onClick={onRush}>
             Rush
@@ -440,6 +456,8 @@ export function PersonSheet({
             About
           </button>
         </div>
+        <TaskContext job={inferredJob(frame, 'site')} />
+        <TaskContext job={inferredJob(frame, 'kitchen')} />
         {pending ? (
           <div className="well-risk">
             <strong>
@@ -531,10 +549,15 @@ export function PersonSheet({
             {trustChanges.length > 0 && (
               <section className="well-trust-changes">
                 <p>Recent recorded trust changes since this order. Other events can also affect trust.</p>
+                <p>
+                  These are dated events, not a current injury report. A past injury does not establish
+                  healing or present pain. Current injury reading:{' '}
+                  {injury ? needDescription('injury', injury.value) : 'unknown.'}
+                </p>
                 {trustChanges.map((e) => (
                   <p key={`${e.minute}-${e.label}`}>
-                    {shortName(id)} trusts you {e.delta < 0 ? 'less' : 'more'}.{' '}
-                    {settingWords(e.label).replace(/[.!?]+$/, '')}.
+                    Recorded at {dayClock(e.minute)}: {shortName(id)} trusts you{' '}
+                    {e.delta < 0 ? 'less' : 'more'}. {settingWords(e.label).replace(/[.!?]+$/, '')}.
                   </p>
                 ))}
               </section>

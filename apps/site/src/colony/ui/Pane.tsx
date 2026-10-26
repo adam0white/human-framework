@@ -110,6 +110,10 @@ function cookingNow(frame: Frame | null, side: Side): boolean {
     : frame.human.some((v) => v.action === 'cook' && v.state === 'working');
 }
 
+function utteranceKey(sb: ShownBubble): string {
+  return `${sb.bubble.id}:${sb.bubble.minute}`;
+}
+
 export const Pane = memo(function Pane(props: PaneProps) {
   const { side, store, bubbles } = props;
   const wrap = useRef<HTMLDivElement>(null);
@@ -121,6 +125,7 @@ export const Pane = memo(function Pane(props: PaneProps) {
   const live = useRef(props);
   live.current = props;
   const bubbleEls = useRef(new Map<string, HTMLButtonElement>());
+  const dismissed = useRef(new Set<string>());
   const [shown, setShown] = useState<ShownBubble[]>([]);
   const people = useRef<DrawPerson[]>([]);
   const labels = useRef<PersonLabel[]>([]);
@@ -325,7 +330,7 @@ export const Pane = memo(function Pane(props: PaneProps) {
           bubbles.ingest(f.human, now);
           lastFrame = f;
         }
-        const list = latestReply(bubbles.tick(now));
+        const list = latestReply(bubbles.tick(now)).filter((sb) => !dismissed.current.has(utteranceKey(sb)));
         if (bubbles.version !== lastVersion) {
           lastVersion = bubbles.version;
           setShown(list);
@@ -674,6 +679,14 @@ export const Pane = memo(function Pane(props: PaneProps) {
               >
                 <strong>{settingWords(item.label)}</strong>
                 <span>{settingWords(item.answer)}</span>
+                {item.placeId === 'site' && (
+                  <span>
+                    Short building task, not a finished roof. Continuing on their own is not guaranteed.
+                  </span>
+                )}
+                {item.placeId === 'kitchen' && (
+                  <span>Ordinary meals can be enough below the separate twelve-meal storm reserve.</span>
+                )}
               </button>
             ))}
           </section>
@@ -703,6 +716,21 @@ export const Pane = memo(function Pane(props: PaneProps) {
           </div>
         )}
       </div>
+      {shown
+        .filter((sb) => sb.bubble.kind !== 'thought' && sb.phase === 'line')
+        .map((sb) => (
+          <button
+            type="button"
+            key={utteranceKey(sb)}
+            aria-label={`Dismiss ${shortName(sb.bubble.personId)} speech from minute ${sb.bubble.minute}`}
+            onClick={() => {
+              dismissed.current.add(utteranceKey(sb));
+              setShown((current) => current.filter((item) => utteranceKey(item) !== utteranceKey(sb)));
+            }}
+          >
+            Dismiss {shortName(sb.bubble.personId)}’s speech · minute {sb.bubble.minute}
+          </button>
+        ))}
       {props.selectedId && (props.scenePlaces?.length ?? 0) > 0 && props.onMorePlaces && (
         <button type="button" className="scene-more-places" onClick={props.onMorePlaces}>
           {settingWords(
@@ -720,6 +748,14 @@ export const Pane = memo(function Pane(props: PaneProps) {
                 <button key={item.placeId} type="button" onClick={() => props.onPlace(item.placeId)}>
                   <strong>{settingWords(item.label)}</strong>
                   <span>{settingWords(item.answer)}</span>
+                  {item.placeId === 'site' && (
+                    <span>
+                      Short building task, not a finished roof. Continuing on their own is not guaranteed.
+                    </span>
+                  )}
+                  {item.placeId === 'kitchen' && (
+                    <span>Ordinary meals can be enough below the separate twelve-meal storm reserve.</span>
+                  )}
                 </button>
               ))}
           </div>

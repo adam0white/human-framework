@@ -31,11 +31,13 @@ import { latestPersonOrder, repeatPersonOrder } from './order-status.ts';
 import { Pane } from './Pane.tsx';
 import {
   CHIP_TEXT,
+  inferredJob,
   PaneStats,
   PLACE_LABEL,
   shortName,
   statusLine,
   suggestionNeedsReview,
+  TaskContext,
   Timeline,
 } from './parts.tsx';
 import { suggestionChoice, suggestionInput } from './suggestion-choice.ts';
@@ -698,6 +700,9 @@ export function App() {
                                 'This was suggested earlier. It may no longer be possible.'),
                         )}
                       </small>
+                      {frame && !choice?.underway && (
+                        <TaskContext job={inferredJob(frame, nudge.order.placeId)} compact />
+                      )}
                     </button>
                     <button
                       type="button"

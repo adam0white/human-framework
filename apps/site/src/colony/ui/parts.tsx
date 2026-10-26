@@ -654,6 +654,17 @@ export function SuggestionCard(props: {
             {shortName(n.order.personId)} → {PLACE_LABEL[n.order.placeId]}
           </p>
           {!choice.refusal && <p className="nudge-text">{settingWords(history ?? n.text)}</p>}
+          <TaskContext
+            job={
+              props.frame
+                ? inferredJob(props.frame, n.order.placeId)
+                : n.order.placeId === 'site'
+                  ? 'build'
+                  : n.order.placeId === 'kitchen'
+                    ? 'cook'
+                    : null
+            }
+          />
           {!choice.refusal && n.reason && <p className="nudge-reason">{settingWords(n.reason)}</p>}
         </div>
         <button type="button" className="btn btn-small nudge-use" onClick={() => props.onUse(choice.nudge)}>
@@ -744,6 +755,32 @@ export function keepOneDisclosure(current: HTMLDetailsElement): void {
     .forEach((el) => {
       if (el !== current) el.removeAttribute('open');
     });
+}
+
+/** Presentation only: short requests do not promise autonomous continuation. */
+export function TaskContext({ job, compact = false }: { job: string | null; compact?: boolean }) {
+  if (job === 'build' || job === 'raise-beam')
+    return compact ? (
+      <span className="well-task-context">
+        A short building task, not the finished roof. Further work is not guaranteed.
+      </span>
+    ) : (
+      <p className="well-task-context">
+        A building order requests a short task or stage, not a finished roof. They may choose other work
+        afterward. Continuing on their own is not guaranteed.
+      </p>
+    );
+  if (job === 'cook')
+    return compact ? (
+      <span className="well-task-context">Ordinary meals are separate from the 12-meal storm reserve.</span>
+    ) : (
+      <p className="well-task-context">
+        Villagers cook for ordinary meals before storm preparations. “Enough food stored” can mean enough for
+        ordinary meals, below the separate twelve-meal storm reserve. Ingredients, meal duties and weather
+        still affect cooking.
+      </p>
+    );
+  return null;
 }
 
 export function Composer(props: {
@@ -897,6 +934,7 @@ export function Composer(props: {
           </span>
         )}
       </p>
+      <TaskContext job={props.job} />
       {s.reason && <p className="composer-reason">{settingWords(s.reason)}</p>}
       <details className="order-options" onToggle={(e) => keepOneDisclosure(e.currentTarget)}>
         <summary>

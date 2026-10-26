@@ -82,11 +82,11 @@ function lastTransform(canvas: HTMLCanvasElement): number[] {
   ) as unknown as number[];
 }
 
-async function draw() {
+async function draw(now = 1000) {
   const callbacks = [...animationFrames.values()];
   animationFrames.clear();
   await act(() => {
-    for (const callback of callbacks) callback(1000);
+    for (const callback of callbacks) callback(now);
   });
 }
 
@@ -529,4 +529,31 @@ it('selects the person standing at a place even when another worker is selected'
   expect(onSelect).toHaveBeenCalledExactlyOnceWith('idris');
   expect(onPlace).not.toHaveBeenCalled();
   expect(container.querySelector('[aria-label="Choose map target"]')).toBeNull();
+});
+
+it('dismisses only the visible dated speech through the actual map control across redraws', async () => {
+  const bubbles = new BubbleManager();
+  const { container, store, update } = await setup({ bubbles });
+  const frame = required(store.current.curr);
+  const person = required(frame.human[0]);
+  person.bubble = { id: 'speech-one', personId: 'yusuf', kind: 'assent', text: 'I will do it.', minute: 12 };
+  store.current.curr = { ...frame };
+  await draw();
+  // Move from typing to the actual visible line, using the manager's public timer.
+  await draw(1401);
+  const dismiss = required(
+    container.querySelector<HTMLButtonElement>('[aria-label="Dismiss Yusuf speech from minute 12"]'),
+  );
+  const before = JSON.stringify(store.current);
+  await act(() => dismiss.click());
+  expect(container.querySelector('.bubble')).toBeNull();
+  await update({ selectedId: 'maryam' });
+  await draw();
+  expect(container.querySelector('.bubble')).toBeNull();
+  expect(JSON.stringify(store.current)).toBe(before);
+  person.bubble = { ...person.bubble, id: 'speech-two', minute: 13, text: 'A new answer.' };
+  store.current.curr = { ...frame };
+  await draw();
+  await draw(5000);
+  expect(container.querySelector('.bubble')).not.toBeNull();
 });

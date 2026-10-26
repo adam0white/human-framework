@@ -186,3 +186,68 @@ it('offers Home shelter for the well-house resident without changing old Home me
   expect(homeOrderMeaning(card)).toContain('until dawn (05:00)');
   expect(homeOrderMeaning({ ...card, order: { ...card.order, action: 'eat' } })).toContain('eat once');
 });
+
+it('keeps initial task context separate from later dated injury history and unknown roof delay', () => {
+  const game = new ColonyGame(20261003, createFrameworkHumanSide);
+  const frame = game.frame();
+  const noop = () => {};
+  const node = document.createElement('div');
+  const render = () => {
+    node.innerHTML = renderToStaticMarkup(
+      createElement(PersonSheet, {
+        frame,
+        id: 'yusuf',
+        rush: false,
+        insist: false,
+        appeal: null,
+        appealOpen: false,
+        pending: null,
+        asked: null,
+        forecasts: {},
+        outline: null,
+        onBack: noop,
+        onRush: noop,
+        onInsist: noop,
+        onAppeal: noop,
+        onAppealOpen: noop,
+        onAbout: noop,
+        onPlace: noop,
+        onHover: noop,
+        onConfirm: noop,
+        onCancelRisk: noop,
+        onCancel: noop,
+        onRepeat: noop,
+      }),
+    );
+  };
+  expect(frame.cards).toEqual([]);
+  render();
+  expect(node.textContent).toContain('not a finished roof');
+  expect(node.textContent).toContain('separate twelve-meal storm reserve');
+  const details = node.querySelector('details.well-order-goals');
+  expect(details?.hasAttribute('open')).toBe(false);
+  expect(details?.querySelector('summary')?.textContent).toBe('Current stores and construction');
+  expect(details?.textContent).toContain('The cause of the remaining delay is unknown');
+  expect(node.querySelector('.well-places button')).not.toBeNull();
+  game.issue({ personId: 'yusuf', placeId: 'site' });
+  frame.cards = game.frame().cards;
+  frame.minute = 20;
+  const person = frame.human.find((p) => p.id === 'yusuf');
+  if (!person) throw Error('Missing Yusuf');
+  person.trust.history = [
+    { minute: 10, delta: -0.01, label: 'I was hurt while following your order to build.' },
+  ];
+  person.needs = person.needs.filter((need) => need.id !== 'injury');
+  render();
+  expect(node.querySelector('.well-trust-changes')?.textContent).toContain('Recorded at Day 1 05:10');
+  expect(node.querySelector('.well-trust-changes')?.textContent).toContain('Current injury reading: unknown');
+  person.needs.push({ id: 'injury', label: 'Injury', value: 1 });
+  render();
+  expect(node.querySelector('.well-trust-changes')?.textContent).toContain('They are unhurt');
+  expect(node.querySelector('.well-trust-changes')?.textContent).toContain(
+    'does not establish healing or present pain',
+  );
+  expect(node.querySelector('.well-trust-changes')?.textContent).toContain(
+    'I was hurt while following your order to build',
+  );
+});
