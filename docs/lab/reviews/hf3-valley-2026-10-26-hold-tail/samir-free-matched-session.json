@@ -1,0 +1,124 @@
+{
+  "started": "2026-10-26T10:46:51.722848+00:00",
+  "ended": "2026-10-26T11:03:25.295068+00:00",
+  "backend": "claude",
+  "model": "opus",
+  "effort": "low",
+  "device": "desktop",
+  "floor_minutes": 0,
+  "ceiling_minutes": 25,
+  "release_before": {
+    "app": "0.3.0",
+    "framework": "3.0.0",
+    "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.3.0",
+    "framework": "3.0.0",
+    "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "floor_met": true,
+  "pairing_role": "paired-arm collection",
+  "source": "Coordinator metadata, not player-visible content or production feedback receipt.",
+  "harness_session_id": "93314dd1-a675-40e7-917a-58e2e21af5f3",
+  "same_start_sha256": "0f056b4519c6fe40cdc6da69ecfc89deedcc66b152489aa59a75847c12daa4af",
+  "state_restore_matched": true,
+  "report_is_coordinator_recovery": false,
+  "stop": {
+    "harness_session_id": "93314dd1-a675-40e7-917a-58e2e21af5f3",
+    "t": "2026-10-26T11:02:54.464Z",
+    "elapsed_s": 956.123,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "I am stopping here. Sixteen minutes and it is only 19 July. I sent the Ak family two sacks when I meant one, I insisted on one Demirci and both vanished from the list, and twenty people came to the field yet the ledger has said 75 cut, 290 standing for minutes and a whole night, with rain tomorrow. I do not know whether the valley is working or waiting on me. I liked Danyal's paragraph and the Çoban family, Zehra near her time. I would not leave it running. I might come back another evening if visits gave me more than one line and I could see the barley being cut.",
+    "game_clock": null,
+    "engagement": null,
+    "reason": "CONFUSED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "viewport_resizes": [
+    {
+      "elapsed_s": 3.236,
+      "input": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "elapsed_s": 302.306,
+      "input": {
+        "width": 360,
+        "height": 690
+      }
+    },
+    {
+      "elapsed_s": 313.443,
+      "input": {
+        "width": 1280,
+        "height": 800
+      }
+    }
+  ],
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "3cecc66181c0158b6a50916aa3b966dcb11cc89d4aa3c1252b484c77e70a73c7",
+    "lab-play-hold-helpers.ts": "97bb8bfdc278d43e5a7636fcb4d36a5cd5d0cabd30c1e35f087d677adfda3c61",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "native_blob_admission": {
+    "status": "PASS",
+    "fixture_hashes": {
+      "snapshot": "0f056b4519c6fe40cdc6da69ecfc89deedcc66b152489aa59a75847c12daa4af",
+      "sidecar": "b17ce0102e7158f74360eac8d47c57242397c47afc8c965763453b6f11067eed",
+      "helper": "63c208e5aa8e9210347f9c409c2666035c4f0c49cd8dbb5864ddb5bc294f8132",
+      "proof": "2db94615a0130bd7d4945dfb260c73ab736ac7f273ce5fcb54c36a4a61e43862"
+    },
+    "inert_full_equality": true,
+    "loaded_raw_equality": false,
+    "allowed_queue_delta": {
+      "origin": "https://valley.adamwhite.work",
+      "database": "hf-lab-pending",
+      "store": "pieces",
+      "before": 7,
+      "after": 0,
+      "explanation": "Old-player queue discarded by pinned lab-client0.4.11 linked.js:100–106 and55–56 after fresh identity.js:23–29; not new-session journal creation"
+    },
+    "all_checkpoint_comparisons": {
+      "seed": true,
+      "minute": true,
+      "input_history": true,
+      "input_history_sha256": true,
+      "log_sha256": true,
+      "bound": true,
+      "full_state_sha256": true,
+      "full_state_bytes": true,
+      "full_state_seed": true,
+      "full_state_minute": true,
+      "person_count": true,
+      "household_count": true
+    },
+    "actual_identity_hashes": {
+      "player": "00ca124612eb9a1b460d28ec5c31f6247c973220a831d7f470c52c9645a74f1f",
+      "session": "935ad2251ee5d4591aec68f40396dd14b41b7198520d8c074f2e94053b9d569d",
+      "run": "70266ee3c25304d397b408c0c40acbab12eac8d37f63bd345f28d3b52d365324"
+    },
+    "post_run_release_match": true,
+    "final_private_receipt_sha256": "15dc416ddbf82d0f95bd3d5f6833e5678989082279ea897c4f5cb09bab3a94ff",
+    "launch_private_receipt_sha256": "e1292bd87d347f379c91b558c3944caad8bd9184af669c652a2175d97c9b4de8",
+    "launch_copy_retained": false,
+    "limit": "Private full inventories omitted; source-explained recording queue discard does not change game/Shelf/consent."
+  },
+  "image_view_evidence": {
+    "source": "Actual private rollout tool events; no image bytes published.",
+    "calls": 2,
+    "returned_image_calls": 2,
+    "times": [null, null]
+  },
+  "report.md_sha256": "84121c751eb0fa3ac72c8f9425adb2dc02ffcd6e213611230304adf411f441e9",
+  "wall-clock.jsonl_sha256": "946c4a8574ed02360e730065e3908c8ff58ba7d33ff573a70b3cffe913c2db65"
+}

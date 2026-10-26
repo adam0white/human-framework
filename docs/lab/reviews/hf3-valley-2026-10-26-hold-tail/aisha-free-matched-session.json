@@ -1,0 +1,102 @@
+{
+  "started": "2026-10-26T10:07:42.381772+00:00",
+  "ended": "2026-10-26T10:15:59.825254+00:00",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "device": "phone",
+  "floor_minutes": 0,
+  "ceiling_minutes": 25,
+  "release_before": {
+    "app": "0.3.0",
+    "framework": "3.0.0",
+    "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.3.0",
+    "framework": "3.0.0",
+    "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "floor_met": true,
+  "pairing_role": "paired-arm collection",
+  "source": "Coordinator metadata, not player-visible content or production feedback receipt.",
+  "harness_session_id": "659554b5-3371-46f0-bf53-f4394b01bdb0",
+  "same_start_sha256": "0f056b4519c6fe40cdc6da69ecfc89deedcc66b152489aa59a75847c12daa4af",
+  "state_restore_matched": true,
+  "report_is_coordinator_recovery": false,
+  "stop": {
+    "harness_session_id": "659554b5-3371-46f0-bf53-f4394b01bdb0",
+    "t": "2026-10-26T10:15:14.273Z",
+    "elapsed_s": 220.327,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "Stopping here. I liked the boys shirts and the invitation to sit, but I could not turn either visit into a conversation. I called for barley and a child came; I tried to send food and cannot tell whether I did. I would not leave this running. I might return another evening if I could understand how to help the Ak family without making more uncertain orders. Feedback has I'm confused selected; I typed nothing and submitted nothing.",
+    "game_clock": "18 July · year 1 · cloud",
+    "engagement": null,
+    "reason": "CONFUSED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "viewport_resizes": [],
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "3cecc66181c0158b6a50916aa3b966dcb11cc89d4aa3c1252b484c77e70a73c7",
+    "lab-play-hold-helpers.ts": "97bb8bfdc278d43e5a7636fcb4d36a5cd5d0cabd30c1e35f087d677adfda3c61",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "native_blob_admission": {
+    "status": "PASS",
+    "fixture_hashes": {
+      "snapshot": "0f056b4519c6fe40cdc6da69ecfc89deedcc66b152489aa59a75847c12daa4af",
+      "sidecar": "b17ce0102e7158f74360eac8d47c57242397c47afc8c965763453b6f11067eed",
+      "helper": "63c208e5aa8e9210347f9c409c2666035c4f0c49cd8dbb5864ddb5bc294f8132",
+      "proof": "2db94615a0130bd7d4945dfb260c73ab736ac7f273ce5fcb54c36a4a61e43862"
+    },
+    "inert_full_equality": true,
+    "loaded_raw_equality": false,
+    "allowed_queue_delta": {
+      "origin": "https://valley.adamwhite.work",
+      "database": "hf-lab-pending",
+      "store": "pieces",
+      "before": 7,
+      "after": 0,
+      "explanation": "Old-player queue discarded by pinned lab-client0.4.11 linked.js:100–106 and55–56 after fresh identity.js:23–29; not new-session journal creation"
+    },
+    "all_checkpoint_comparisons": {
+      "seed": true,
+      "minute": true,
+      "input_history": true,
+      "input_history_sha256": true,
+      "log_sha256": true,
+      "bound": true,
+      "full_state_sha256": true,
+      "full_state_bytes": true,
+      "full_state_seed": true,
+      "full_state_minute": true,
+      "person_count": true,
+      "household_count": true
+    },
+    "actual_identity_hashes": {
+      "player": "da65d6fa9b93ca10a296bc32e7cd5f38cfbf844b928e0f5b1252685dc40eee98",
+      "session": "9b55672a964f02fb31649c3f71178e3c35ce1c97df6df204b19f313b547ca9e9",
+      "run": "c489f4aaaec16a3ac7b21e305ed8835f5ac811f7a6e1356de00a190a5ad0e9fe"
+    },
+    "post_run_release_match": true,
+    "final_private_receipt_sha256": "50745b8e255c9284bb1bb9d9ded1a0008f7663b39cc1692e0d4257aea8346012",
+    "launch_private_receipt_sha256": "32bac25b803af2e1c4497b4aff802a56983d8d10c7fc6a266c8b9d598e0223ee",
+    "launch_copy_retained": false,
+    "limit": "Private full inventories omitted; source-explained recording queue discard does not change game/Shelf/consent."
+  },
+  "image_view_evidence": {
+    "source": "Actual private rollout tool events; no image bytes published.",
+    "calls": 1,
+    "returned_image_calls": 1,
+    "times": ["2026-10-26T10:12:32.240Z"]
+  },
+  "report.md_sha256": "7b138e51f4d0b0ad03185fb4efb064b463bf7ce37c9eb94ea0edd44f2c96dc94",
+  "wall-clock.jsonl_sha256": "2968d4e8342cc9f80002016cb59d4f8c3e23b1fd1f6d3130586ae0f34647840c"
+}

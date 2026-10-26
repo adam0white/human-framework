@@ -1,0 +1,117 @@
+{
+  "started": "2026-10-26T08:30:44.219667+00:00",
+  "ended": "2026-10-26T08:51:57.466540+00:00",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "device": "phone",
+  "floor_minutes": 15,
+  "ceiling_minutes": 25,
+  "release_before": {
+    "app": "0.3.0",
+    "framework": "3.0.0",
+    "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.3.0",
+    "framework": "3.0.0",
+    "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "floor_met": true,
+  "pairing_role": "paired-arm collection",
+  "source": "Coordinator metadata, not player-visible content or production feedback receipt.",
+  "harness_session_id": "3f07a714-bdc3-4809-9470-7cb3ae4d07f5",
+  "same_start_sha256": "0f056b4519c6fe40cdc6da69ecfc89deedcc66b152489aa59a75847c12daa4af",
+  "state_restore_matched": true,
+  "report_is_coordinator_recovery": false,
+  "stop": {
+    "harness_session_id": "3f07a714-bdc3-4809-9470-7cb3ae4d07f5",
+    "t": "2026-10-26T08:50:29.591Z",
+    "elapsed_s": 914.034,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "I stop here. I learned how to visit and I was glad the family accepted the grain. But I have spent too much of this evening waiting for a welcome and a walk home. I would close it, not leave it running. I would not return another evening on my own. I might return with someone who wanted to talk through the households with me; I do not want another long session of these visits alone.",
+    "game_clock": "18 July · year 1 · cloud",
+    "engagement": null,
+    "reason": "BORED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "viewport_resizes": [
+    {
+      "elapsed_s": 310.378,
+      "input": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "elapsed_s": 324.598,
+      "input": {
+        "width": 360,
+        "height": 690
+      }
+    }
+  ],
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "b625da83c25dc634e33a3c1cc2fd1ec3016cc8b3abe671323882d4b1f2828404",
+    "lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "native_blob_admission": {
+    "status": "PASS",
+    "fixture_hashes": {
+      "snapshot": "0f056b4519c6fe40cdc6da69ecfc89deedcc66b152489aa59a75847c12daa4af",
+      "sidecar": "b17ce0102e7158f74360eac8d47c57242397c47afc8c965763453b6f11067eed",
+      "helper": "63c208e5aa8e9210347f9c409c2666035c4f0c49cd8dbb5864ddb5bc294f8132",
+      "proof": "2db94615a0130bd7d4945dfb260c73ab736ac7f273ce5fcb54c36a4a61e43862"
+    },
+    "inert_full_equality": true,
+    "loaded_raw_equality": false,
+    "allowed_queue_delta": {
+      "origin": "https://valley.adamwhite.work",
+      "database": "hf-lab-pending",
+      "store": "pieces",
+      "before": 7,
+      "after": 0,
+      "explanation": "Old-player queue discarded by pinned lab-client0.4.11 linked.js:100–106 and55–56 after fresh identity.js:23–29; not new-session journal creation"
+    },
+    "all_checkpoint_comparisons": {
+      "seed": true,
+      "minute": true,
+      "input_history": true,
+      "input_history_sha256": true,
+      "log_sha256": true,
+      "bound": true,
+      "full_state_sha256": true,
+      "full_state_bytes": true,
+      "full_state_seed": true,
+      "full_state_minute": true,
+      "person_count": true,
+      "household_count": true
+    },
+    "actual_identity_hashes": {
+      "player": "940f385b69da32767760b49369c139db728eb9b36f23d9c6278f1a67e16b7771",
+      "session": "efc1ae35002ab18ad7ab03030f06dec0803ebdc0b00437f0c2312b50f8526186",
+      "run": "14dcca731d14de2693cefea50db9fc50bcaa98c7e6cbe82547f76dc5efba71e6"
+    },
+    "post_run_release_match": true,
+    "final_private_receipt_sha256": "be5cf0e48c1906306c240ea82dbd9e0f002ceb16b33fe7f769def510ce4c6e0d",
+    "launch_private_receipt_sha256": "34743f241871466f6bce4f9aa47c28e79956eda08bd6931ecd38ee358702febe",
+    "launch_copy_retained": false,
+    "limit": "Private full inventories omitted; source-explained recording queue discard does not change game/Shelf/consent."
+  },
+  "image_view_evidence": {
+    "source": "Actual private rollout tool events; no image bytes published.",
+    "calls": 2,
+    "returned_image_calls": 2,
+    "times": ["2026-10-26T08:36:40.856Z", "2026-10-26T08:40:34.994Z"]
+  },
+  "report.md_sha256": "02069229396f86d3fabc6093472d60136bb16207ca8f54e20b2693f9fe3897a0",
+  "wall-clock.jsonl_sha256": "57c2d61a3553ec5ed94650d7c6f84798bb14dfdee6d7239895cde160e67a2513"
+}

@@ -1,0 +1,117 @@
+{
+  "started": "2026-10-26T12:07:49.278836+00:00",
+  "ended": "2026-10-26T12:24:27.586627+00:00",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "device": "phone",
+  "floor_minutes": 15,
+  "ceiling_minutes": 25,
+  "release_before": {
+    "app": "0.3.0",
+    "framework": "3.0.0",
+    "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.3.0",
+    "framework": "3.0.0",
+    "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "floor_met": true,
+  "pairing_role": "paired-arm collection",
+  "source": "Coordinator metadata, not player-visible content or production feedback receipt.",
+  "harness_session_id": "61549cc3-c516-4bc2-81ba-4b3f75bbf066",
+  "same_start_sha256": "0f056b4519c6fe40cdc6da69ecfc89deedcc66b152489aa59a75847c12daa4af",
+  "state_restore_matched": true,
+  "report_is_coordinator_recovery": false,
+  "stop": {
+    "harness_session_id": "61549cc3-c516-4bc2-81ba-4b3f75bbf066",
+    "t": "2026-10-26T12:23:24.885Z",
+    "elapsed_s": 926.65,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "I am stopping for tonight. I would leave the valley working and check it another evening, but I do not want to sit through more walks now.",
+    "game_clock": null,
+    "engagement": null,
+    "reason": "BORED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "viewport_resizes": [
+    {
+      "elapsed_s": 308.743,
+      "input": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    {
+      "elapsed_s": 315.178,
+      "input": {
+        "width": 360,
+        "height": 690
+      }
+    }
+  ],
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "3cecc66181c0158b6a50916aa3b966dcb11cc89d4aa3c1252b484c77e70a73c7",
+    "lab-play-hold-helpers.ts": "97bb8bfdc278d43e5a7636fcb4d36a5cd5d0cabd30c1e35f087d677adfda3c61",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "native_blob_admission": {
+    "status": "PASS",
+    "fixture_hashes": {
+      "snapshot": "0f056b4519c6fe40cdc6da69ecfc89deedcc66b152489aa59a75847c12daa4af",
+      "sidecar": "b17ce0102e7158f74360eac8d47c57242397c47afc8c965763453b6f11067eed",
+      "helper": "63c208e5aa8e9210347f9c409c2666035c4f0c49cd8dbb5864ddb5bc294f8132",
+      "proof": "2db94615a0130bd7d4945dfb260c73ab736ac7f273ce5fcb54c36a4a61e43862"
+    },
+    "inert_full_equality": true,
+    "loaded_raw_equality": false,
+    "allowed_queue_delta": {
+      "origin": "https://valley.adamwhite.work",
+      "database": "hf-lab-pending",
+      "store": "pieces",
+      "before": 7,
+      "after": 0,
+      "explanation": "Old-player queue discarded by pinned lab-client0.4.11 linked.js:100–106 and55–56 after fresh identity.js:23–29; not new-session journal creation"
+    },
+    "all_checkpoint_comparisons": {
+      "seed": true,
+      "minute": true,
+      "input_history": true,
+      "input_history_sha256": true,
+      "log_sha256": true,
+      "bound": true,
+      "full_state_sha256": true,
+      "full_state_bytes": true,
+      "full_state_seed": true,
+      "full_state_minute": true,
+      "person_count": true,
+      "household_count": true
+    },
+    "actual_identity_hashes": {
+      "player": "eb0bbdfc9d6ba738cbdfbbaf1a5b5095ede873cd7521db54162ca85da6ef5a08",
+      "session": "74e743c92459bb6d6ff41aff22fc2f9af0effc514ff9939e1a2b9aa4b49e090f",
+      "run": "f341f6d36c1930ef41cf74246abefa88b6922b9ab9dae5bc12e2e03bb9c8f8eb"
+    },
+    "post_run_release_match": true,
+    "final_private_receipt_sha256": "70e9c83de97f773523807d569469949ea530e705e3a0a096c14dfc97e594acd5",
+    "launch_private_receipt_sha256": "144a5e8611f731df699abe018dd3b37fd2ccdd81da0a0d6ba41f7295ce97720e",
+    "launch_copy_retained": false,
+    "limit": "Private full inventories omitted; source-explained recording queue discard does not change game/Shelf/consent."
+  },
+  "image_view_evidence": {
+    "source": "Actual private rollout tool events; no image bytes published.",
+    "calls": 2,
+    "returned_image_calls": 2,
+    "times": ["2026-10-26T12:08:09.869Z", "2026-10-26T12:13:13.236Z"]
+  },
+  "report.md_sha256": "c9effa70e10c49d2902afc592149e1ecf8e6979939e256654afad11914d95d24",
+  "wall-clock.jsonl_sha256": "5dfdbf35ecc747f081e19de99135bf9b67620c11b1a9537c3ec17709143fad6b"
+}

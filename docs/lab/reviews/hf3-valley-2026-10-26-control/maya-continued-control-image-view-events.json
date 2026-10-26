@@ -1,0 +1,23 @@
+{
+  "source": "Derived actual returned-image tool-event metadata. Original private source hash retained in staging receipt; no image bytes or toolcall source published.",
+  "events": [
+    {
+      "time": "2026-10-26T12:22:38.536Z",
+      "image_returned": true,
+      "content_types": ["input_text", "input_image"],
+      "filename": "current-wide.png"
+    },
+    {
+      "time": "2026-10-26T12:25:23.495Z",
+      "image_returned": true,
+      "content_types": ["input_text", "input_image"],
+      "filename": "current-phone.png"
+    },
+    {
+      "time": "2026-10-26T12:32:14.412Z",
+      "image_returned": true,
+      "content_types": ["input_text", "input_image"],
+      "filename": "current-wide.png"
+    }
+  ]
+}

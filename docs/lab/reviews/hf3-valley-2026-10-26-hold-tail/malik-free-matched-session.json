@@ -1,0 +1,102 @@
+{
+  "started": "2026-10-26T12:04:33.555344+00:00",
+  "ended": "2026-10-26T12:07:45.883253+00:00",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "device": "phone",
+  "floor_minutes": 0,
+  "ceiling_minutes": 25,
+  "release_before": {
+    "app": "0.3.0",
+    "framework": "3.0.0",
+    "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.3.0",
+    "framework": "3.0.0",
+    "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "floor_met": true,
+  "pairing_role": "paired-arm collection",
+  "source": "Coordinator metadata, not player-visible content or production feedback receipt.",
+  "harness_session_id": "1da45069-4c56-465c-86a8-3650dcd65c9c",
+  "same_start_sha256": "0f056b4519c6fe40cdc6da69ecfc89deedcc66b152489aa59a75847c12daa4af",
+  "state_restore_matched": true,
+  "report_is_coordinator_recovery": false,
+  "stop": {
+    "harness_session_id": "1da45069-4c56-465c-86a8-3650dcd65c9c",
+    "t": "2026-10-26T12:07:10.183Z",
+    "elapsed_s": 144.222,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "I am stopping here. I still like the idea of helping these households, but I do not feel sure what I have actually done. I would not leave it running. I might try again another evening if I could understand the visit and grain actions better.",
+    "game_clock": "18 July · year 1 · cloud",
+    "engagement": null,
+    "reason": "CONFUSED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "viewport_resizes": [],
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "3cecc66181c0158b6a50916aa3b966dcb11cc89d4aa3c1252b484c77e70a73c7",
+    "lab-play-hold-helpers.ts": "97bb8bfdc278d43e5a7636fcb4d36a5cd5d0cabd30c1e35f087d677adfda3c61",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "native_blob_admission": {
+    "status": "PASS",
+    "fixture_hashes": {
+      "snapshot": "0f056b4519c6fe40cdc6da69ecfc89deedcc66b152489aa59a75847c12daa4af",
+      "sidecar": "b17ce0102e7158f74360eac8d47c57242397c47afc8c965763453b6f11067eed",
+      "helper": "63c208e5aa8e9210347f9c409c2666035c4f0c49cd8dbb5864ddb5bc294f8132",
+      "proof": "2db94615a0130bd7d4945dfb260c73ab736ac7f273ce5fcb54c36a4a61e43862"
+    },
+    "inert_full_equality": true,
+    "loaded_raw_equality": false,
+    "allowed_queue_delta": {
+      "origin": "https://valley.adamwhite.work",
+      "database": "hf-lab-pending",
+      "store": "pieces",
+      "before": 7,
+      "after": 0,
+      "explanation": "Old-player queue discarded by pinned lab-client0.4.11 linked.js:100–106 and55–56 after fresh identity.js:23–29; not new-session journal creation"
+    },
+    "all_checkpoint_comparisons": {
+      "seed": true,
+      "minute": true,
+      "input_history": true,
+      "input_history_sha256": true,
+      "log_sha256": true,
+      "bound": true,
+      "full_state_sha256": true,
+      "full_state_bytes": true,
+      "full_state_seed": true,
+      "full_state_minute": true,
+      "person_count": true,
+      "household_count": true
+    },
+    "actual_identity_hashes": {
+      "player": "b8a31aa8c6192e615e4b59e7db0619e602cbbb7c39c6bc4d5a915aad0d6ca063",
+      "session": "38bc7926418f63a75c9e227f49b38d4ab6cdbbe3a2a164b75276b68e0d64d8ce",
+      "run": "b9dbe53364528201ff950aef831cb082e6718459e7d1af56ddd0d0aca4f96999"
+    },
+    "post_run_release_match": true,
+    "final_private_receipt_sha256": "df3a9dfaa8b89497bd52cb9d1abbe98d12685cf5d57ba355894bb861e50595d4",
+    "launch_private_receipt_sha256": "526cf6c3479e06001304b6dc121c6a7d135eb4e75fa5202a2c91967d1da5ec31",
+    "launch_copy_retained": false,
+    "limit": "Private full inventories omitted; source-explained recording queue discard does not change game/Shelf/consent."
+  },
+  "image_view_evidence": {
+    "source": "Actual private rollout tool events; no image bytes published.",
+    "calls": 1,
+    "returned_image_calls": 1,
+    "times": ["2026-10-26T12:04:55.880Z"]
+  },
+  "report.md_sha256": "e48db5c90626424d4db48e21b1b152ab5c0fca56df1c00f5c450cfb85e74da3a",
+  "wall-clock.jsonl_sha256": "27a4f1391c45188681c8c5ce83f00da7e9e76c1617d2474d76950107c0fe9b4c"
+}

@@ -1,0 +1,117 @@
+{
+  "started": "2026-10-26T11:24:35.827929+00:00",
+  "ended": "2026-10-26T11:35:08.760115+00:00",
+  "backend": "claude",
+  "model": "opus",
+  "effort": "low",
+  "device": "desktop",
+  "floor_minutes": 0,
+  "ceiling_minutes": 25,
+  "release_before": {
+    "app": "0.3.0",
+    "framework": "3.0.0",
+    "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.3.0",
+    "framework": "3.0.0",
+    "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "floor_met": true,
+  "pairing_role": "paired-arm collection",
+  "source": "Coordinator metadata, not player-visible content or production feedback receipt.",
+  "harness_session_id": "20e30d31-b3a5-4fb5-8f67-b870c198c0ff",
+  "same_start_sha256": "0f056b4519c6fe40cdc6da69ecfc89deedcc66b152489aa59a75847c12daa4af",
+  "state_restore_matched": true,
+  "report_is_coordinator_recovery": false,
+  "stop": {
+    "harness_session_id": "20e30d31-b3a5-4fb5-8f67-b870c198c0ff",
+    "t": "2026-10-26T11:34:15.336Z",
+    "elapsed_s": 572.201,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "I am stopping on 21 July with twenty-seven of twenty-eight at the landowner's barley and about 230 still standing. I liked the people answering in their own way and catching the overseer and Yusuf changing their answers. But after I called them there was nothing for me to decide, the day stood still for minutes, and the ledger still promised rain on a date already past. Pressing I'm stopping put those words into the note box by itself; I typed nothing and did not press Submit. I would not leave it running. I might come back another evening on the desktop to see the threshing and whether the households make up the hundred missing measures, but not tonight.",
+    "game_clock": "21 July · year 1",
+    "engagement": null,
+    "reason": "BORED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "viewport_resizes": [
+    {
+      "elapsed_s": 287.029,
+      "input": {
+        "width": 360,
+        "height": 690
+      }
+    },
+    {
+      "elapsed_s": 297.092,
+      "input": {
+        "width": 1280,
+        "height": 800
+      }
+    }
+  ],
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "3cecc66181c0158b6a50916aa3b966dcb11cc89d4aa3c1252b484c77e70a73c7",
+    "lab-play-hold-helpers.ts": "97bb8bfdc278d43e5a7636fcb4d36a5cd5d0cabd30c1e35f087d677adfda3c61",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "native_blob_admission": {
+    "status": "PASS",
+    "fixture_hashes": {
+      "snapshot": "0f056b4519c6fe40cdc6da69ecfc89deedcc66b152489aa59a75847c12daa4af",
+      "sidecar": "b17ce0102e7158f74360eac8d47c57242397c47afc8c965763453b6f11067eed",
+      "helper": "63c208e5aa8e9210347f9c409c2666035c4f0c49cd8dbb5864ddb5bc294f8132",
+      "proof": "2db94615a0130bd7d4945dfb260c73ab736ac7f273ce5fcb54c36a4a61e43862"
+    },
+    "inert_full_equality": true,
+    "loaded_raw_equality": false,
+    "allowed_queue_delta": {
+      "origin": "https://valley.adamwhite.work",
+      "database": "hf-lab-pending",
+      "store": "pieces",
+      "before": 7,
+      "after": 0,
+      "explanation": "Old-player queue discarded by pinned lab-client0.4.11 linked.js:100–106 and55–56 after fresh identity.js:23–29; not new-session journal creation"
+    },
+    "all_checkpoint_comparisons": {
+      "seed": true,
+      "minute": true,
+      "input_history": true,
+      "input_history_sha256": true,
+      "log_sha256": true,
+      "bound": true,
+      "full_state_sha256": true,
+      "full_state_bytes": true,
+      "full_state_seed": true,
+      "full_state_minute": true,
+      "person_count": true,
+      "household_count": true
+    },
+    "actual_identity_hashes": {
+      "player": "1259aaccab7bbb5d734a4709462844f3bf2c5527ec09ff5b838435159ea0d8f7",
+      "session": "314aa4ad37b6ec15ae9c9a282b729131f5ef878ace13ff3ec846f38f7e812d2a",
+      "run": "66a07bf0fca878141034704eb3eecd1bd8f2c5cd52e3313fd4b47d017f5a3c31"
+    },
+    "post_run_release_match": true,
+    "final_private_receipt_sha256": "367d84c2502f5fb5a293d99f5d5f97ef995bb9cbaa7666b420b769ec2c07f3d2",
+    "launch_private_receipt_sha256": "583a5ff9eed04d3fd26871bbbc8d28ad8facb418e240d1e76092a1d6e0d09a07",
+    "launch_copy_retained": false,
+    "limit": "Private full inventories omitted; source-explained recording queue discard does not change game/Shelf/consent."
+  },
+  "image_view_evidence": {
+    "source": "Actual private rollout tool events; no image bytes published.",
+    "calls": 3,
+    "returned_image_calls": 3,
+    "times": [null, null, null]
+  },
+  "report.md_sha256": "1c2f2bdab5f22c2f93ecac6559d5acd05d4c9067f9c1c963c1628ba6b15dd3b0",
+  "wall-clock.jsonl_sha256": "bfd076e6c84d299ef491f44a71a808040e6786d6341f6428f3e65a89746092dd"
+}

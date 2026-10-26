@@ -1,0 +1,41 @@
+{
+  "started": "2026-10-26T12:20:01.689368+00:00",
+  "ended": "2026-10-26T12:36:03.347768+00:00",
+  "status": "report-ready",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "device": "desktop",
+  "url": "https://adarkroom.doublespeakgames.com/",
+  "external_control": "https://adarkroom.doublespeakgames.com/",
+  "floor_minutes": 15,
+  "ceiling_minutes": 25,
+  "floor_met": true,
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "3cecc66181c0158b6a50916aa3b966dcb11cc89d4aa3c1252b484c77e70a73c7",
+    "lab-play-hold-helpers.ts": "97bb8bfdc278d43e5a7636fcb4d36a5cd5d0cabd30c1e35f087d677adfda3c61",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "role": "External desktop control; A Dark Room; separate from Valley target reports, HF asks, paired effects and HF release/native-admission claims.",
+  "harness_session_id": "2c4d3b6c-8191-4c32-a04d-35ede2c9d7b9",
+  "prepared_storage": false,
+  "stop": {
+    "harness_session_id": "2c4d3b6c-8191-4c32-a04d-35ede2c9d7b9",
+    "t": "2026-10-26T12:35:25.330Z",
+    "elapsed_s": 916.976,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "I am stopping at the tiny village with eight gatherers and the ruined-trap choice open. Warming the builder still felt kind, but this return has mostly been repeating purchases and waiting. My wish to make tea never passed. I would leave it running while I made tea, but I would not return voluntarily another evening for this building loop. Another small mystery might tempt me in principle; I am not curious enough to keep checking for one now.",
+    "game_clock": null,
+    "engagement": null,
+    "reason": "BORED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "source_report_sha256": "b9f8ca421b4122a491273ce3797f4723df617bd27da1a968ca7d6340516377df",
+  "source_raw_sha256": "865e4bd8d18028e853e67837699669397fd486a6cae4c65be8a29683d1e0f95d",
+  "release_identity_limit": "No HF release.json or immutable third-party build identity established. Do not assign Valley dab2 to this control.",
+  "production_feedback_submitted": false
+}

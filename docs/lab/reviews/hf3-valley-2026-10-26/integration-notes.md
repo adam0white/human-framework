@@ -1,0 +1,7 @@
+# Valley R1 evidence integration
+
+Thirty Valley reports supply 89 literal asks from 14 fictional identities. F-1095–F-1136 retain their previously published rows verbatim. F-1137–F-1183 are appended; F-1184 is unused because Malik FREE supplied only two asks. The original TOOL exposure and forced Rosa reading probe remain qualitative and excluded from natural taste/retention. The external desktop control is separate evidence, not another Valley arm.
+
+Original reports are archived byte for byte in `archive/evidence/2026-10-26-playtest-b/valley-r1-packet-001/`, with SHA256 manifest. Ask/return maps name the exact originals and separately name formatted readable views. Earlier 14 upstream report archives remain unchanged. Full original return sections, including every condition, remain in per-ask and aggregate evidence. Twelve standing diaries append selected FREE history only; prior prefixes remain unchanged and both alternatives stay in round evidence. Cold records remain round evidence.
+
+Collection, coding, source integration, implementation, exact CI, deployment, same-tester retest and owner acceptance are separate outcomes. All 89 actions remain open for reproduction or disposition by 2026-10-27; no game completion or fix acceptance is inferred. Engineering image/native admission and human-paced control limits are reported separately in evidence-gates. Old dab2 R1 observations cannot prove the new local reply edition.

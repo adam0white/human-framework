@@ -1,0 +1,117 @@
+{
+  "started": "2026-10-26T11:35:12.798361+00:00",
+  "ended": "2026-10-26T11:51:50.709909+00:00",
+  "backend": "claude",
+  "model": "opus",
+  "effort": "low",
+  "device": "desktop",
+  "floor_minutes": 15,
+  "ceiling_minutes": 25,
+  "release_before": {
+    "app": "0.3.0",
+    "framework": "3.0.0",
+    "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.3.0",
+    "framework": "3.0.0",
+    "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "floor_met": true,
+  "pairing_role": "paired-arm collection",
+  "source": "Coordinator metadata, not player-visible content or production feedback receipt.",
+  "harness_session_id": "c028493e-2e95-4bdd-b50b-226a82c00a41",
+  "same_start_sha256": "0f056b4519c6fe40cdc6da69ecfc89deedcc66b152489aa59a75847c12daa4af",
+  "state_restore_matched": true,
+  "report_is_coordinator_recovery": false,
+  "stop": {
+    "harness_session_id": "c028493e-2e95-4bdd-b50b-226a82c00a41",
+    "t": "2026-10-26T11:50:56.299Z",
+    "elapsed_s": 935.834,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "I am stopping in the night of 19 July, rain due tomorrow, with about 55 cut and 310 standing. Choosing I am confused put the words I am confused into the note box by itself; I did not type it and I am not submitting. I liked the sums and the people with reasons: Zehra asking who will feed her family, Maryam changing her excuse to talk at the spring, Yusuf saying his wife is in the field. But I could not tell what time was doing: an afternoon that lasted ten minutes, a Skip that went grey and changed nothing I could see, a ledger whose abouts add up differently each time, a hold that worked at one length and not the next, and once the reply list printed one letter per line. I would leave it paused overnight, not running. I might come back another evening to see whether the rain came and what the field count says, if I could be told plainly when time is moving.",
+    "game_clock": "19 July year 1 night",
+    "engagement": null,
+    "reason": "CONFUSED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "viewport_resizes": [
+    {
+      "elapsed_s": 296.689,
+      "input": {
+        "width": 360,
+        "height": 690
+      }
+    },
+    {
+      "elapsed_s": 305.157,
+      "input": {
+        "width": 1280,
+        "height": 800
+      }
+    }
+  ],
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "3cecc66181c0158b6a50916aa3b966dcb11cc89d4aa3c1252b484c77e70a73c7",
+    "lab-play-hold-helpers.ts": "97bb8bfdc278d43e5a7636fcb4d36a5cd5d0cabd30c1e35f087d677adfda3c61",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "native_blob_admission": {
+    "status": "PASS",
+    "fixture_hashes": {
+      "snapshot": "0f056b4519c6fe40cdc6da69ecfc89deedcc66b152489aa59a75847c12daa4af",
+      "sidecar": "b17ce0102e7158f74360eac8d47c57242397c47afc8c965763453b6f11067eed",
+      "helper": "63c208e5aa8e9210347f9c409c2666035c4f0c49cd8dbb5864ddb5bc294f8132",
+      "proof": "2db94615a0130bd7d4945dfb260c73ab736ac7f273ce5fcb54c36a4a61e43862"
+    },
+    "inert_full_equality": true,
+    "loaded_raw_equality": false,
+    "allowed_queue_delta": {
+      "origin": "https://valley.adamwhite.work",
+      "database": "hf-lab-pending",
+      "store": "pieces",
+      "before": 7,
+      "after": 0,
+      "explanation": "Old-player queue discarded by pinned lab-client0.4.11 linked.js:100–106 and55–56 after fresh identity.js:23–29; not new-session journal creation"
+    },
+    "all_checkpoint_comparisons": {
+      "seed": true,
+      "minute": true,
+      "input_history": true,
+      "input_history_sha256": true,
+      "log_sha256": true,
+      "bound": true,
+      "full_state_sha256": true,
+      "full_state_bytes": true,
+      "full_state_seed": true,
+      "full_state_minute": true,
+      "person_count": true,
+      "household_count": true
+    },
+    "actual_identity_hashes": {
+      "player": "6206e3ef5bb907fc1cd26e4fb2631222939e2a5a81713362657def390caafa17",
+      "session": "3c094affe6dbee5146486a05ed685438d915d5da3393a5f0e4d78eb66b9123f9",
+      "run": "f32970161126267b208d4da694285d55c4351f3e968df34ec996cfc2fe502c7c"
+    },
+    "post_run_release_match": true,
+    "final_private_receipt_sha256": "ef55f11a8753281ab6de611d35573fe8aaada73225510a41c523c938316b318f",
+    "launch_private_receipt_sha256": "2aff1fdb5ebfac86654b795b7b3cfa0ce7bdc64807042657f1f72f6a1827f715",
+    "launch_copy_retained": false,
+    "limit": "Private full inventories omitted; source-explained recording queue discard does not change game/Shelf/consent."
+  },
+  "image_view_evidence": {
+    "source": "Actual private rollout tool events; no image bytes published.",
+    "calls": 8,
+    "returned_image_calls": 8,
+    "times": [null, null, null, null, null, null, null, null]
+  },
+  "report.md_sha256": "fc82356e4aa50b0548c8d2fa0d61419b8867ac50f5a36f8856090d3408cf64fc",
+  "wall-clock.jsonl_sha256": "312a97d9334951f6496e06997a9b0ef714cbc522d222685a0c51288a5e6c636e"
+}

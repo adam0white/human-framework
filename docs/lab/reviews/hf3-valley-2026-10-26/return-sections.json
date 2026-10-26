@@ -1,0 +1,42 @@
+{
+  "maya-free": {
+    "full_return_section_verbatim": "## 7. Stop and return\n**Stop at 306.022s, BORED:** \"I am stopping on the afternoon of 18 July, sitting in the Ak house after they said they were not expecting me. Pressing I'm stopping put those words into the note box by itself; I typed nothing and pressed no Submit. I liked the map, Maryam talking at the spring, and being told people remember insisting. But every visit was a walk and one sentence I could not answer, and the replies were mostly the same line eight times. I would not leave it running. I might come back another evening if I wanted a slow valley to watch, and I would be curious to see whether anyone remembers that I never insisted, but I would not return tonight.\"\n\n**Would I return voluntarily?** Not tonight. I might come back another evening if I wanted a slow valley to watch. I'd be curious whether anyone remembers that I never insisted.\n\n**Leave it running?** No.\n\n**Feedback:** \"I'm stopping\" is selected locally and its text was filled in automatically. I typed nothing and pressed no Submit. There is no receipt and no export.\n\n",
+    "disposition": "mixed",
+    "basis": "Not tonight; conditional another evening and curiosity about remembered restraint; no unattended play.",
+    "report_sha256": "fd0b2fa8f95a408ea7c24865926238424fdb38b66bc2f7dae893ed44292d7470"
+  },
+  "nia-free": {
+    "full_return_section_verbatim": "## 7. Stop and return\n**Stop, BORED, at 241.069s:** \"Stopping at the Çoban house, still the morning of 18 July. Yusuf answering my grain was the one thing that grabbed me. Everything else was waiting for a counter, and I never got to say a word to anyone. I would close it, not leave it running. I would not return voluntarily tonight; maybe another evening if I knew the day actually moves and I can talk back at a fire. Feedback: I'm stopping pressed locally, it put those words in the note box by itself; I typed nothing and did not submit.\"\n\n**Would I return voluntarily?** No, not tonight. Maybe another evening, if I knew the day actually moves and I could talk back at a fire.\n\n**Leave it running?** No. I'd close it.\n\n**Feedback:** it offered \"I'm stopping\" and \"I'm confused\". I pressed \"I'm stopping\". Pressing it filled \"I'm stopping\" into the note box by itself. I typed nothing and didn't press Submit, so there's no receipt.\n\n",
+    "disposition": "mixed",
+    "basis": "No return tonight; conditional another evening if day progression and replies are understood; no leave-running. No blanket quit.",
+    "report_sha256": "de3ee3ae4399e1b6f9712c09fcbed3606d0a9d5b41f333db7adc2637b5778733"
+  },
+  "nia-continued": {
+    "full_return_section_verbatim": "## 7. Stop and return\n**Stop at 916.568 s, reason BORED:** \"Stopping on the afternoon of 18 July at the Kara house. The want_quit did not pass. I selected I'm stopping in Feedback; it became pressed and the game itself put \"I'm stopping\" into the note box — I did not type anything and did not press Submit. I would close it, not leave it running. I would not return voluntarily tonight. I might come back another evening only if I could actually answer the people by the fire, and I am a little curious whether my grain-giving gets me in trouble with the rider and what Yusuf and Meryem do here. But the waiting is too slow for me.\"\n\n**Would you return voluntarily?** Not tonight. I might come back another evening, but only if I could actually answer people by the fire. My grain gamble and seeing Yusuf and Meryem again pull at me a little. The slow waiting pushes me away more.\n\n**Leave it running?** No, I would close it.\n\n**Feedback:** I selected \"I'm stopping\". Selecting it filled the note box with \"I'm stopping\" without my typing. I did not press Submit, I gave no name and I did not change consent. Recording stayed checked.\n\n",
+    "disposition": "mixed",
+    "basis": "No return tonight; conditional another evening if she can answer people, plus curiosity about grain consequence and Yusuf/Meryem; no unattended play. Continued floor is not voluntary retention.",
+    "report_sha256": "26d426212648bac641796d1ae85201caffbb3d40141ee9750e2d9bde54b33efb"
+  },
+  "rosa-free": {
+    "full_return_section_verbatim": "## 7. Stop and return\n\nStop: **78.305 s — CONFUSED**, at Kavak’s household panel, **20 July · year 1 · storm**.\n\n> I wanted to help bring in the barley. I made the call, but now the rain is here and the first house has no answer. I stop after my second reread. I would close it, not leave it running. I would return if someone explained the first call and how much time I have to read; I would not choose to return alone another evening.\n\nThis was a natural free-arm stop. I would close it. I would not leave it running or choose another evening alone. My willingness to return depends on someone explaining the first call and reading time.\n\n**I’m stopping** became pressed at **96.666 s** and automatically filled the note field. I typed nothing and did not submit. No production receipt exists.\n\n",
+    "disposition": "-",
+    "forced": true,
+    "pattern_exclusion": "Second-reread instruction triggered78.305s stop; exclude natural quit, taste and retention. Preserve original report calling it natural without adopting that classification.",
+    "basis": "Conditional return with explanation, refuses another evening alone/unattended. Protocol forced second-reread probe; no natural taste verdict.",
+    "report_sha256": "03f45a148ae6b29f0208e684e738a4ddbd3c1939f2c6576904ef4da0538453cd"
+  },
+  "rosa-continued": {
+    "full_return_section_verbatim": "## 7. Stop and return\n\n**914.034 s — stop, BORED**, at the residence with the ledger open. Visible date: **18 July · year 1 · cloud**.\n\nExact stop words:\n\n> I stop here. I learned how to visit and I was glad the family accepted the grain. But I have spent too much of this evening waiting for a welcome and a walk home. I would close it, not leave it running. I would not return another evening on my own. I might return with someone who wanted to talk through the households with me; I do not want another long session of these visits alone.\n\nI would **not return voluntarily alone another evening**. I might return with someone who wanted to discuss the households with me. I would close the game rather than leave it running.\n\nThis was a natural stop after the floor, not a ceiling, tool or game-ending stop.\n\nBoth **I'm confused** and **I'm stopping** were available. I selected them locally at **569.282 s** and **925.152 s**. Each filled the note box automatically. I typed nothing and never pressed Submit. No production receipt exists.\n\n",
+    "disposition": "mixed",
+    "basis": "No voluntary return alone; might return with someone to discuss households. No unattended play. Early second-reread quit wish was forced; actual final post-floor boredom stop is separate.",
+    "report_sha256": "02069229396f86d3fabc6093472d60136bb16207ca8f54e20b2693f9fe3897a0",
+    "forced": false
+  },
+  "jonas-free": {
+    "full_return_section_verbatim": "## 7. Stop and return\n\n**Stop:** 304.004 s, 18 July, year 1, reason **TOOL**. My stop words are in the 307.979 row above. This was a forced stop, not a verdict on the game's taste.\n\n**Would you return voluntarily?** \"Yes, probably. The six-measure margin and the insist-or-visit trade are the kind of system I want to learn, and I had a test ready on Maryam that I never got to run. I would come back if I could actually hold the insist button, and if I could see faster whether the barley gets cut before the rain. If visits keep costing two minutes for 'Come in.', my patience would wear down.\"\n\nI wouldn't leave it running unattended, because I don't trust what happens near the rain. I would return another evening to finish the harvest test.\n\n",
+    "disposition": "-",
+    "forced": true,
+    "basis": "TOOL forced stop, excluded natural taste/retention. Conditional voluntary return remains original words; source reads304.004 vs actual307.979s stop in raw.",
+    "report_sha256": "165476eeb6521169bf9a284f514941812a31711fb3b3c3dea419628adc96b9be"
+  }
+}

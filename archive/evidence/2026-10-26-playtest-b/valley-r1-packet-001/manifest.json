@@ -1,0 +1,166 @@
+{
+  "created": "2026-10-26T14:28:40.520395+00:00",
+  "original_reports": {
+    "archive/evidence/2026-10-26-playtest-b/valley-r1-packet-001/docs/lab/reviews/hf3-valley-2026-10-26/maya-free-matched.md": "fd0b2fa8f95a408ea7c24865926238424fdb38b66bc2f7dae893ed44292d7470",
+    "archive/evidence/2026-10-26-playtest-b/valley-r1-packet-001/docs/lab/reviews/hf3-valley-2026-10-26/nia-free-matched.md": "de3ee3ae4399e1b6f9712c09fcbed3606d0a9d5b41f333db7adc2637b5778733",
+    "archive/evidence/2026-10-26-playtest-b/valley-r1-packet-001/docs/lab/reviews/hf3-valley-2026-10-26/nia-continued-matched.md": "26d426212648bac641796d1ae85201caffbb3d40141ee9750e2d9bde54b33efb",
+    "archive/evidence/2026-10-26-playtest-b/valley-r1-packet-001/docs/lab/reviews/hf3-valley-2026-10-26/rosa-free-matched.md": "03f45a148ae6b29f0208e684e738a4ddbd3c1939f2c6576904ef4da0538453cd",
+    "archive/evidence/2026-10-26-playtest-b/valley-r1-packet-001/docs/lab/reviews/hf3-valley-2026-10-26/rosa-continued-matched.md": "02069229396f86d3fabc6093472d60136bb16207ca8f54e20b2693f9fe3897a0",
+    "archive/evidence/2026-10-26-playtest-b/valley-r1-packet-001/docs/lab/reviews/hf3-valley-2026-10-26/jonas-free-matched.md": "165476eeb6521169bf9a284f514941812a31711fb3b3c3dea419628adc96b9be",
+    "archive/evidence/2026-10-26-playtest-b/valley-r1-packet-001/docs/lab/reviews/hf3-valley-2026-10-26-hold-tail/maya-free-matched.md": "ccecebf30b4d2b91f408567591f96b391d835817fa2c24ecf75314968ffde428",
+    "archive/evidence/2026-10-26-playtest-b/valley-r1-packet-001/docs/lab/reviews/hf3-valley-2026-10-26-hold-tail/emre-free-matched.md": "e82626aa24f31416551f89181a048aa4ca349e076342c7ec5e34d490bbb6de24",
+    "archive/evidence/2026-10-26-playtest-b/valley-r1-packet-001/docs/lab/reviews/hf3-valley-2026-10-26-hold-tail/maya-continued-matched.md": "7fd10b6d2d6a7a57c79a73911b914220abe7cab4a749100412d0392c07ebbeb8",
+    "archive/evidence/2026-10-26-playtest-b/valley-r1-packet-001/docs/lab/reviews/hf3-valley-2026-10-26-hold-tail/jonas-free-matched.md": "e5891f0b3ce56fdf98b3ab9e35aae560921dfafb810497332c03b0a953b64343",
+    "archive/evidence/2026-10-26-playtest-b/valley-r1-packet-001/docs/lab/reviews/hf3-valley-2026-10-26-hold-tail/emre-continued-matched.md": "a0f44db19db3313faeeddfe4acd2b94b4866f5aa0f75d0f9afd9177a214d1f19",
+    "archive/evidence/2026-10-26-playtest-b/valley-r1-packet-001/docs/lab/reviews/hf3-valley-2026-10-26-hold-tail/jonas-continued-matched.md": "7bbc86db8b4d5c084678a53676f5e54e495df01fec785084484c62bdde0006fc",
+    "archive/evidence/2026-10-26-playtest-b/valley-r1-packet-001/docs/lab/reviews/hf3-valley-2026-10-26-hold-tail/aisha-free-matched.md": "7b138e51f4d0b0ad03185fb4efb064b463bf7ce37c9eb94ea0edd44f2c96dc94",
+    "archive/evidence/2026-10-26-playtest-b/valley-r1-packet-001/docs/lab/reviews/hf3-valley-2026-10-26-hold-tail/diego-free-matched.md": "baa4899fd84b241a06e144e4565547d00fc45fb4f93f4496247b03f9641ebcc5",
+    "archive/evidence/2026-10-26-playtest-b/valley-r1-packet-001/docs/lab/reviews/hf3-valley-2026-10-26-hold-tail/aisha-continued-matched.md": "24b913885b2523dfb42b85aa62e7f7c6ace1015946ab8ad63e2161aae6774974",
+    "archive/evidence/2026-10-26-playtest-b/valley-r1-packet-001/docs/lab/reviews/hf3-valley-2026-10-26-hold-tail/diego-continued-matched.md": "4f6c232fc47474226efbf061e49cf1a9bfc759fca8f572a1220a3371ba658a4f",
+    "archive/evidence/2026-10-26-playtest-b/valley-r1-packet-001/docs/lab/reviews/hf3-valley-2026-10-26-hold-tail/mei-free-matched.md": "d470a04fbddfb73a6439f36aa78d5e01bb6d0f0857888b01f99d294a8eaf5967",
+    "archive/evidence/2026-10-26-playtest-b/valley-r1-packet-001/docs/lab/reviews/hf3-valley-2026-10-26-hold-tail/mei-continued-matched.md": "fd6dd05ac4cd86e3be8ec7216720a91a58e461cb45553e83f6fc464e4aa0972a",
+    "archive/evidence/2026-10-26-playtest-b/valley-r1-packet-001/docs/lab/reviews/hf3-valley-2026-10-26-hold-tail/samir-free-matched.md": "84121c751eb0fa3ac72c8f9425adb2dc02ffcd6e213611230304adf411f441e9",
+    "archive/evidence/2026-10-26-playtest-b/valley-r1-packet-001/docs/lab/reviews/hf3-valley-2026-10-26-hold-tail/tessa-free-matched.md": "b264494386f7f5d3ae88048da720946d26371b5b9e7d240748781cb11877a1d3",
+    "archive/evidence/2026-10-26-playtest-b/valley-r1-packet-001/docs/lab/reviews/hf3-valley-2026-10-26-hold-tail/samir-continued-matched.md": "688965c2d1f0c72a3c3066434bce54a46e21cba4a3cfd4f47232bd0d3b7db3e2",
+    "archive/evidence/2026-10-26-playtest-b/valley-r1-packet-001/docs/lab/reviews/hf3-valley-2026-10-26-hold-tail/tessa-continued-matched.md": "f6fc5ad2a5d158429f4725544f0101334764fefe0c6dcd7131d0cbae13094885",
+    "archive/evidence/2026-10-26-playtest-b/valley-r1-packet-001/docs/lab/reviews/hf3-valley-2026-10-26-hold-tail/pavel-free-matched.md": "1c2f2bdab5f22c2f93ecac6559d5acd05d4c9067f9c1c963c1628ba6b15dd3b0",
+    "archive/evidence/2026-10-26-playtest-b/valley-r1-packet-001/docs/lab/reviews/hf3-valley-2026-10-26-hold-tail/leila-free-matched.md": "3fbc5f622497853b6c5d0d5e8d6f60bd03fca97a624446e24cd7ba7325bfc98a",
+    "archive/evidence/2026-10-26-playtest-b/valley-r1-packet-001/docs/lab/reviews/hf3-valley-2026-10-26-hold-tail/pavel-continued-matched.md": "fc82356e4aa50b0548c8d2fa0d61419b8867ac50f5a36f8856090d3408cf64fc",
+    "archive/evidence/2026-10-26-playtest-b/valley-r1-packet-001/docs/lab/reviews/hf3-valley-2026-10-26-hold-tail/leila-continued-matched.md": "4dcb8b2d1081e5efc1f8cc5ad1a21f1949a3268439bc658b8e2b1b84b60749bc",
+    "archive/evidence/2026-10-26-playtest-b/valley-r1-packet-001/docs/lab/reviews/hf3-valley-2026-10-26-hold-tail/irene-free-matched.md": "c863d25102b646379648ab63c678754a366ead2d2b8f83bf388b0750fb5e9086",
+    "archive/evidence/2026-10-26-playtest-b/valley-r1-packet-001/docs/lab/reviews/hf3-valley-2026-10-26-hold-tail/irene-continued-matched.md": "cb44dbef1cfc38cbbfa3450d709c3babd08f730af08b32a5079aaf236381855d",
+    "archive/evidence/2026-10-26-playtest-b/valley-r1-packet-001/docs/lab/reviews/hf3-valley-2026-10-26-hold-tail/malik-free-matched.md": "e48db5c90626424d4db48e21b1b152ab5c0fca56df1c00f5c450cfb85e74da3a",
+    "archive/evidence/2026-10-26-playtest-b/valley-r1-packet-001/docs/lab/reviews/hf3-valley-2026-10-26-hold-tail/malik-continued-matched.md": "c9effa70e10c49d2902afc592149e1ecf8e6979939e256654afad11914d95d24",
+    "archive/evidence/2026-10-26-playtest-b/valley-r1-packet-001/docs/lab/reviews/hf3-valley-2026-10-26-control/maya-continued-control.md": "b9f8ca421b4122a491273ce3797f4723df617bd27da1a968ca7d6340516377df"
+  },
+  "diary_appends": {
+    "docs/lab/panel/aisha-rahman.md": {
+      "prior_sha256": "576d35603132172495c476186159288323fa60d423eacc1dc363a8d48e1c3f4c",
+      "append_sha256": "b9dd11c4aa92a1e50213c67089f88bcd2b8db7648f17529174d0f5d41aad53f7",
+      "source_report_sha256": "7b138e51f4d0b0ad03185fb4efb064b463bf7ce37c9eb94ea0edd44f2c96dc94",
+      "selected_arm": "free",
+      "round": "hf3-valley-r1-hold-tail"
+    },
+    "docs/lab/panel/diego-silva.md": {
+      "prior_sha256": "d0791684d1af24362953f6262abd9852c02460b61beb3e4d5471a9697752c13b",
+      "append_sha256": "4837b6531019b65cbf6acd10d6df7b3b19cd01b4ed72fb509c491dd8ef485ee8",
+      "source_report_sha256": "baa4899fd84b241a06e144e4565547d00fc45fb4f93f4496247b03f9641ebcc5",
+      "selected_arm": "free",
+      "round": "hf3-valley-r1-hold-tail"
+    },
+    "docs/lab/panel/emre-kaya.md": {
+      "prior_sha256": "192175eec33765fe5747ad33c2df1a68fdd3bf24f0da0da3991bdab601b92592",
+      "append_sha256": "e2a2917ff4a628f616dfcd5f0749fc6b0cd0623c95b911e892dae8958a7a6d7b",
+      "source_report_sha256": "e82626aa24f31416551f89181a048aa4ca349e076342c7ec5e34d490bbb6de24",
+      "selected_arm": "free",
+      "round": "hf3-valley-r1-hold-tail"
+    },
+    "docs/lab/panel/jonas-berg.md": {
+      "prior_sha256": "98a54bea9a3e891f08759f16c52172ae5a77641cb922b5824acc212b337c76c9",
+      "append_sha256": "55f62c77cb18f23dfc2d56865aaf5793ec2848afde320731cb90082e1d4ce2ec",
+      "source_report_sha256": "e5891f0b3ce56fdf98b3ab9e35aae560921dfafb810497332c03b0a953b64343",
+      "selected_arm": "free",
+      "round": "hf3-valley-r1-hold-tail"
+    },
+    "docs/lab/panel/leila-mansour.md": {
+      "prior_sha256": "557faf84396133d2d2a6e5e54e25222bfa93eec0a2c2d63edb8fca1f8ad0e801",
+      "append_sha256": "43bac78efe4bd59f34b9739bfc4b4876255a49b3c078e68d442b3724816cc874",
+      "source_report_sha256": "3fbc5f622497853b6c5d0d5e8d6f60bd03fca97a624446e24cd7ba7325bfc98a",
+      "selected_arm": "free",
+      "round": "hf3-valley-r1-hold-tail"
+    },
+    "docs/lab/panel/maya-chen.md": {
+      "prior_sha256": "35c87e2816563797fff68fcf0846e0584cb4eba075842092f059b0a28349e3a2",
+      "append_sha256": "5310db7c9bbd4727f502e96bea54abff55ecdb01291a43f359ce212f311a8b52",
+      "source_report_sha256": "ccecebf30b4d2b91f408567591f96b391d835817fa2c24ecf75314968ffde428",
+      "selected_arm": "free",
+      "round": "hf3-valley-r1-hold-tail"
+    },
+    "docs/lab/panel/mei-tan.md": {
+      "prior_sha256": "a9f7c5a2d74884344d2760a5f78f1ad3e03a066dce7f0e6e1b7dbee9692b7537",
+      "append_sha256": "bd776d28ae35d27ddd507197290c1122ee581f59949c58aeb50c03dd167e1193",
+      "source_report_sha256": "d470a04fbddfb73a6439f36aa78d5e01bb6d0f0857888b01f99d294a8eaf5967",
+      "selected_arm": "free",
+      "round": "hf3-valley-r1-hold-tail"
+    },
+    "docs/lab/panel/nia-okafor.md": {
+      "prior_sha256": "fa2aab78cf569c052895120f69353d9901643a9dc061bf467af7e3f61ef2a325",
+      "append_sha256": "c0c3b4f33351fe8d134a3b1e9862280f83556300b7f4ae4b3b9ce34f1c6ba5b6",
+      "source_report_sha256": "de3ee3ae4399e1b6f9712c09fcbed3606d0a9d5b41f333db7adc2637b5778733",
+      "selected_arm": "free",
+      "round": "hf3-valley-r1"
+    },
+    "docs/lab/panel/pavel-novak.md": {
+      "prior_sha256": "450511e2e76e83d329594e50bd2d50e6cc9c2e327dc2c027836d4e06d315fe06",
+      "append_sha256": "d57b9453d6644e081abe8af79222b6a4eb300f248e5b6c0c542fc56788e380e4",
+      "source_report_sha256": "1c2f2bdab5f22c2f93ecac6559d5acd05d4c9067f9c1c963c1628ba6b15dd3b0",
+      "selected_arm": "free",
+      "round": "hf3-valley-r1-hold-tail"
+    },
+    "docs/lab/panel/rosa-alvarez.md": {
+      "prior_sha256": "fa62dcce498d4d5779e665bef496427cb988e455874ed910f126ecb644dff115",
+      "append_sha256": "d4d22fcf75ef4131761d845cfc45a61949224a94182a2df837f1ac14c3e15d14",
+      "source_report_sha256": "03f45a148ae6b29f0208e684e738a4ddbd3c1939f2c6576904ef4da0538453cd",
+      "selected_arm": "free",
+      "round": "hf3-valley-r1"
+    },
+    "docs/lab/panel/samir-haddad.md": {
+      "prior_sha256": "76d6bfd9d4e9085500d435f7bb010260f2559f4694a4ef6bb7e9342d9c3822a9",
+      "append_sha256": "fba01cfb2287eda4456b4681d8d0f7db5ebed5c2433f6893295f6fe62869a96d",
+      "source_report_sha256": "84121c751eb0fa3ac72c8f9425adb2dc02ffcd6e213611230304adf411f441e9",
+      "selected_arm": "free",
+      "round": "hf3-valley-r1-hold-tail"
+    },
+    "docs/lab/panel/tessa-williams.md": {
+      "prior_sha256": "557b4b9005a37bfc1a2776e6109ad6adf2804144211a4dbd0808e3e716d050ca",
+      "append_sha256": "1a092f4f14c301be5ef924614a963b60b1b427e71657a537697268855a3f11e5",
+      "source_report_sha256": "b264494386f7f5d3ae88048da720946d26371b5b9e7d240748781cb11877a1d3",
+      "selected_arm": "free",
+      "round": "hf3-valley-r1-hold-tail"
+    }
+  },
+  "old_ledger_rows": {
+    "F-1095": "97f461bcdd53ba491a5175705d0902d990c7b91993d8d79c1790c0124d302f9c",
+    "F-1096": "302772f824e3a282cd3d3a3cb5d598e24dfba3459800b69d38393c022e11f287",
+    "F-1097": "d52b53784b5d8014aff85838548c73f48d490b78cf70a498f3cd0a4b22abb3bc",
+    "F-1098": "4fbca1a90e84cd0ddcac1abfe8b4db6cad8a539ae261c7b15861c8a05e8f7a9e",
+    "F-1099": "05e3b593785ea64a1e1f4a3db6e964d4b2143c52f16aec9add166be4bbb3c6ff",
+    "F-1100": "054c2a49e2b130c28c561ded623b523a19bca405df4eca1ce01e70572e6b1356",
+    "F-1101": "ab272cce5f859e32fe279edefe159e5c1878d51e813ce60f82506f0a5fee6816",
+    "F-1102": "32c4cd27a33d65bc3ba10fd45228ff45f5e588052f7fed1349636861361c59e3",
+    "F-1103": "c8a51099a7fda95217b93e1fe25d350d2dcd2b7cac6e8fc2eb704cfc512fc1f7",
+    "F-1104": "a4dad79bd0b542ad7aaed63fe42af01b89c6e2b1ea7661c05215194adae9ff3e",
+    "F-1105": "02f000a3615b1b0f8e770c581b2722d33a2cfd3e2e4f70b8ffa223b5128a70fe",
+    "F-1106": "e47cd69e7106f9805c7c6e186b9063b9d9b14b1499d02eafbc8f861e38ea56b8",
+    "F-1107": "f3d6f7492fa6e8d7ca40a185f181b3f9aa9532e42cf919bce01b5c390282b64e",
+    "F-1108": "0aaff84401cf668687898d5e24fd88f1b17f522f01436218939d4e73e51d7863",
+    "F-1109": "7f18c5e807591f117ad0f008c994c7b0870be838a2bd681f2ceacb3613fe02f3",
+    "F-1110": "3db2c613b27ce0a1c9855aee2b1f761f35ff4c0e92e90c0e72a9bd5b688a2b4b",
+    "F-1111": "365c2a23eb32f35a22d9a2db7ff3bbc2c01d108afe998e90a19645a48981541c",
+    "F-1112": "0703c1498cf397ca44b9bf9229dedf9d132c138e91997b078ddfa642f0b4f72e",
+    "F-1113": "4360bcee8fc6781333106962ea7f9ed4cd69e785f8518e423d9511667592e65b",
+    "F-1114": "7ccd74f35e5c149eee526d379800e5ecdbd4fa80e804004f4e281ee4192d6e7f",
+    "F-1115": "7555922e59b890acb08b8e3af056d4b981061d2fe9f936ca98443ba9ca0dc694",
+    "F-1116": "d99e1f82c6b64af6d66b31ed7ef566a64af4ecb369d3e54837dd4ded98f89b11",
+    "F-1117": "74061aec37f8c48e68379e85a62dbaafa58a13c54ad5e1890d357bda71dd70e6",
+    "F-1118": "2582bddc123602f3fa3c4866c4a76428921e5ed921aab17961ea04f67a7b46d6",
+    "F-1119": "b3eeb7e37a4a81200f37b5fc30b3d4fc553a25cfc4f38060586f945c52fa8a26",
+    "F-1120": "e5208bb5879f18957d4f87f1de5c8f311624423d90a65110883f8c84bc0b10f8",
+    "F-1121": "8b080cdd5b8c0f664b4a5bfbf31e3e8e811f84e95f7ee4fb79d0a44cd4eb96a3",
+    "F-1122": "377b1c9a7a3f7678072a5bc47ae7c2c305405e04967040d055c579c14e6a4271",
+    "F-1123": "935c63f2c1c4db3d16f4df664274abf845ba863574da4f7231fdf911746d7855",
+    "F-1124": "6fcfde58fdf10b0d80f373786358aa6a42b3070592463c0024e13d59039bf485",
+    "F-1125": "45bb3932fa4e8b47a71b51068b5b2df83877fd6e103cd7e93272447880417f5f",
+    "F-1126": "e195280cbf745e90cd0cdcc908a54f43f14be5355182d4325bd3eebe62ad1636",
+    "F-1127": "d522e24483ccffb5d31c9562d4c4c2fcb4d1c2357f57dbcbdacf2061b4e62b1e",
+    "F-1128": "00d330be2b843abd22501933025871b112905ae0a5c93e6c20f93b0fb2a98d36",
+    "F-1129": "1ccddf2a82ba2ab380be80e8af9d605bb52427db965af88fa320587a09392ed3",
+    "F-1130": "450da5b9da527d7629096451c53b95cea653bb1a42685ea17e0fa54130f1bc06",
+    "F-1131": "f5359ab122554a5d84e4bd142f91823e172210a590ddfa16c78f805fbbb9c6f2",
+    "F-1132": "dbb994ea92a71cf02aba2d42c1958099346a95d9675487a1152de84fa50d453b",
+    "F-1133": "2d12dd188695721f62e2e4a61b94aa9a873cf4759cba4923869be4e15380fb36",
+    "F-1134": "e213e409aad61ba0ec52d2a3cedb0c60de345e137380201b9cdbf22f7610ae2e",
+    "F-1135": "302ba7e8390a405cd990b70c223df059516f0bf20ddd9836945666c552fdae80",
+    "F-1136": "c329f74293eb16635f7ddf2c2e77d54b347fffacff18a946d3c5e206588291f7"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "time": "2026-10-26T14:27:00.015862+00:00",
+  "source": "hf3-valley-r1-hold-tail-control/maya-continued",
+  "control_records": 1,
+  "hf_target_reports_added": 0,
+  "hf_asks_added": 0,
+  "immutable_copies": [
+    {
+      "source": "hf3-valley-r1-hold-tail-control/maya-continued/report.md",
+      "path": "../../../../archive/evidence/2026-10-26-playtest-b/valley-r1-packet-001/docs/lab/reviews/hf3-valley-2026-10-26-control/maya-continued-control.md",
+      "sha256": "b9f8ca421b4122a491273ce3797f4723df617bd27da1a968ca7d6340516377df",
+      "bytes": 9278,
+      "readable_report_file": "maya-continued-control.md"
+    },
+    {
+      "source": "hf3-valley-r1-hold-tail-control/maya-continued/wall-clock.jsonl",
+      "path": "maya-continued-control.jsonl",
+      "sha256": "865e4bd8d18028e853e67837699669397fd486a6cae4c65be8a29683d1e0f95d",
+      "bytes": 27475
+    }
+  ],
+  "generated_metadata_sha256": "3949459029f19d4b3733b954ce600a1ed5358df66a748dad618d3ae8cd21f750",
+  "original_bytes_preserved": true,
+  "private_storage_published": false,
+  "source_mutated": false,
+  "stage_matched_not_used": "Control has no panel-plan.json and no Valley native fixture/admission. Explicit allowlist prevents accidental HF classification.",
+  "original_private_image_events_sha256": "6e50caa65a1dc4eecea5a9b99d26393cc486f020bd7c1a4f57cb1c43def57285",
+  "derived_image_metadata_sha256": "b5cc9819c78f4cd78b77cd68af2c43321ece98518334d93aa8e01b54aad6e276"
+}

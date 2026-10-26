@@ -1,0 +1,102 @@
+{
+  "started": "2026-10-26T11:43:04.185860+00:00",
+  "ended": "2026-10-26T11:47:56.691631+00:00",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "device": "phone",
+  "floor_minutes": 0,
+  "ceiling_minutes": 25,
+  "release_before": {
+    "app": "0.3.0",
+    "framework": "3.0.0",
+    "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.3.0",
+    "framework": "3.0.0",
+    "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "floor_met": true,
+  "pairing_role": "paired-arm collection",
+  "source": "Coordinator metadata, not player-visible content or production feedback receipt.",
+  "harness_session_id": "115880c5-0c4b-4f93-975e-013348b89939",
+  "same_start_sha256": "0f056b4519c6fe40cdc6da69ecfc89deedcc66b152489aa59a75847c12daa4af",
+  "state_restore_matched": true,
+  "report_is_coordinator_recovery": false,
+  "stop": {
+    "harness_session_id": "115880c5-0c4b-4f93-975e-013348b89939",
+    "t": "2026-10-26T11:47:08.384Z",
+    "elapsed_s": 232.438,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "I am stopping. Zehra had a good reason and I wanted to answer it with grain. I sent twice without knowing, then spent the visit looking at repeated promises. I am not curious enough to wait for tomorrow tonight. I would not leave it running. I might try another evening if visits gave me something to hear and my gifts answered me where I sent them.",
+    "game_clock": "18 July · year 1 · cloud",
+    "engagement": null,
+    "reason": "BORED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "viewport_resizes": [],
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "3cecc66181c0158b6a50916aa3b966dcb11cc89d4aa3c1252b484c77e70a73c7",
+    "lab-play-hold-helpers.ts": "97bb8bfdc278d43e5a7636fcb4d36a5cd5d0cabd30c1e35f087d677adfda3c61",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "native_blob_admission": {
+    "status": "PASS",
+    "fixture_hashes": {
+      "snapshot": "0f056b4519c6fe40cdc6da69ecfc89deedcc66b152489aa59a75847c12daa4af",
+      "sidecar": "b17ce0102e7158f74360eac8d47c57242397c47afc8c965763453b6f11067eed",
+      "helper": "63c208e5aa8e9210347f9c409c2666035c4f0c49cd8dbb5864ddb5bc294f8132",
+      "proof": "2db94615a0130bd7d4945dfb260c73ab736ac7f273ce5fcb54c36a4a61e43862"
+    },
+    "inert_full_equality": true,
+    "loaded_raw_equality": false,
+    "allowed_queue_delta": {
+      "origin": "https://valley.adamwhite.work",
+      "database": "hf-lab-pending",
+      "store": "pieces",
+      "before": 7,
+      "after": 0,
+      "explanation": "Old-player queue discarded by pinned lab-client0.4.11 linked.js:100–106 and55–56 after fresh identity.js:23–29; not new-session journal creation"
+    },
+    "all_checkpoint_comparisons": {
+      "seed": true,
+      "minute": true,
+      "input_history": true,
+      "input_history_sha256": true,
+      "log_sha256": true,
+      "bound": true,
+      "full_state_sha256": true,
+      "full_state_bytes": true,
+      "full_state_seed": true,
+      "full_state_minute": true,
+      "person_count": true,
+      "household_count": true
+    },
+    "actual_identity_hashes": {
+      "player": "3b4a770026acebf99aa4aab8332a5fc7e6e94e8dae126a5e55e341d1e54a0124",
+      "session": "ec9129aa7cbab654e8fd66864c64fb3051b97021a36f69fa2c99c3ec46f71b9c",
+      "run": "091ce6f29b780a7666c0f4d165170146e58c419597fb8ceb71e0f51956eb0b70"
+    },
+    "post_run_release_match": true,
+    "final_private_receipt_sha256": "266b641df1d8f1c3d8f5b25f9ae3c0b7e865483ab4512883d960f662f0cdccaf",
+    "launch_private_receipt_sha256": "00379e80bad67ee688078816f18d49f430385c2a7a919876af56a1e41a615202",
+    "launch_copy_retained": false,
+    "limit": "Private full inventories omitted; source-explained recording queue discard does not change game/Shelf/consent."
+  },
+  "image_view_evidence": {
+    "source": "Actual private rollout tool events; no image bytes published.",
+    "calls": 1,
+    "returned_image_calls": 1,
+    "times": ["2026-10-26T11:43:27.496Z"]
+  },
+  "report.md_sha256": "3fbc5f622497853b6c5d0d5e8d6f60bd03fca97a624446e24cd7ba7325bfc98a",
+  "wall-clock.jsonl_sha256": "95efed2578f1db473278bc4d209b537a230bed7bb77141b86ae2f3172030e806"
+}

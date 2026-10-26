@@ -1,0 +1,1658 @@
+{
+  "time": "2026-10-26T14:25:59.330232+00:00",
+  "expected": 31,
+  "records": [
+    {
+      "source": "hf3-valley-r1/maya-free",
+      "control": false,
+      "status": "report-ready",
+      "ended": "2026-10-26T06:35:00.118629+00:00",
+      "report_sha256": "fd0b2fa8f95a408ea7c24865926238424fdb38b66bc2f7dae893ed44292d7470",
+      "raw_sha256": "b0c3273c5693bdd618a850e4b1018fd21554883b7f0b8a43dd9d227dc4572f58",
+      "brief_hash_matches": true,
+      "floor_minutes": 0,
+      "floor_met": true,
+      "stop_elapsed_s": 306.022,
+      "stop_reason": "BORED",
+      "measured_floor_pass": true,
+      "admission_checks": {
+        "PASS": true,
+        "post_run": true,
+        "inert_equal": true,
+        "loaded_unequal": true,
+        "queue_7_to_0": true,
+        "checkpoint": true,
+        "snapshot": true,
+        "sid": true,
+        "build": true,
+        "api_blocked": true,
+        "launch_hash": true
+      },
+      "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+      "image_calls": 1,
+      "returned_images": 1,
+      "image_phone": false,
+      "image_wide": true,
+      "image_dimensions_from_shot_log": [[1280, 800]],
+      "successful_taps_by_viewport": {
+        "(1280, 800)": 17
+      },
+      "resizes": [],
+      "both_size_image_and_tap": false,
+      "public_original_bytes_match": true
+    },
+    {
+      "source": "hf3-valley-r1/nia-free",
+      "control": false,
+      "status": "report-ready",
+      "ended": "2026-10-26T07:51:54.798197+00:00",
+      "report_sha256": "de3ee3ae4399e1b6f9712c09fcbed3606d0a9d5b41f333db7adc2637b5778733",
+      "raw_sha256": "ffbe0b60f445b9f0d4b4f39319ae882c7fc666af0a6f93787624305d72035700",
+      "brief_hash_matches": true,
+      "floor_minutes": 0,
+      "floor_met": true,
+      "stop_elapsed_s": 241.069,
+      "stop_reason": "BORED",
+      "measured_floor_pass": true,
+      "admission_checks": {
+        "PASS": true,
+        "post_run": true,
+        "inert_equal": true,
+        "loaded_unequal": true,
+        "queue_7_to_0": true,
+        "checkpoint": true,
+        "snapshot": true,
+        "sid": true,
+        "build": true,
+        "api_blocked": true,
+        "launch_hash": true
+      },
+      "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+      "image_calls": 1,
+      "returned_images": 1,
+      "image_phone": false,
+      "image_wide": true,
+      "image_dimensions_from_shot_log": [[1280, 800]],
+      "successful_taps_by_viewport": {
+        "(1280, 800)": 18
+      },
+      "resizes": [],
+      "both_size_image_and_tap": false,
+      "public_original_bytes_match": true
+    },
+    {
+      "source": "hf3-valley-r1/nia-continued",
+      "control": false,
+      "status": "report-ready",
+      "ended": "2026-10-26T08:08:11.413403+00:00",
+      "report_sha256": "26d426212648bac641796d1ae85201caffbb3d40141ee9750e2d9bde54b33efb",
+      "raw_sha256": "fbf9a393d3e5ce92e98fdcb4859ce8ecd707bcfef20a762f7cc1652f86ef9dbb",
+      "brief_hash_matches": true,
+      "floor_minutes": 15,
+      "floor_met": true,
+      "stop_elapsed_s": 916.568,
+      "stop_reason": "BORED",
+      "measured_floor_pass": true,
+      "admission_checks": {
+        "PASS": true,
+        "post_run": true,
+        "inert_equal": true,
+        "loaded_unequal": true,
+        "queue_7_to_0": true,
+        "checkpoint": true,
+        "snapshot": true,
+        "sid": true,
+        "build": true,
+        "api_blocked": true,
+        "launch_hash": true
+      },
+      "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+      "image_calls": 2,
+      "returned_images": 2,
+      "image_phone": true,
+      "image_wide": true,
+      "image_dimensions_from_shot_log": [[360, 690], [1280, 800]],
+      "successful_taps_by_viewport": {
+        "(1280, 800)": 56,
+        "(360, 690)": 1
+      },
+      "resizes": [
+        {
+          "elapsed_s": 303.08,
+          "input": {
+            "width": 360,
+            "height": 690
+          }
+        },
+        {
+          "elapsed_s": 312.3,
+          "input": {
+            "width": 1280,
+            "height": 800
+          }
+        }
+      ],
+      "both_size_image_and_tap": true,
+      "public_original_bytes_match": true
+    },
+    {
+      "source": "hf3-valley-r1/rosa-free",
+      "control": false,
+      "status": "report-ready",
+      "ended": "2026-10-26T08:30:40.434725+00:00",
+      "report_sha256": "03f45a148ae6b29f0208e684e738a4ddbd3c1939f2c6576904ef4da0538453cd",
+      "raw_sha256": "62d3f17fc2893a9505f439bbb6dded1f2d6ab18457be11559acc7d8e17c7885f",
+      "brief_hash_matches": true,
+      "floor_minutes": 0,
+      "floor_met": true,
+      "stop_elapsed_s": 78.304,
+      "stop_reason": "CONFUSED",
+      "measured_floor_pass": true,
+      "admission_checks": {
+        "PASS": true,
+        "post_run": true,
+        "inert_equal": true,
+        "loaded_unequal": true,
+        "queue_7_to_0": true,
+        "checkpoint": true,
+        "snapshot": true,
+        "sid": true,
+        "build": true,
+        "api_blocked": true,
+        "launch_hash": null
+      },
+      "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+      "image_calls": 1,
+      "returned_images": 1,
+      "image_phone": true,
+      "image_wide": false,
+      "image_dimensions_from_shot_log": [[360, 690]],
+      "successful_taps_by_viewport": {
+        "(360, 690)": 6
+      },
+      "resizes": [],
+      "both_size_image_and_tap": false,
+      "public_original_bytes_match": true
+    },
+    {
+      "source": "hf3-valley-r1/rosa-continued",
+      "control": false,
+      "status": "report-ready",
+      "ended": "2026-10-26T08:51:57.466540+00:00",
+      "report_sha256": "02069229396f86d3fabc6093472d60136bb16207ca8f54e20b2693f9fe3897a0",
+      "raw_sha256": "57c2d61a3553ec5ed94650d7c6f84798bb14dfdee6d7239895cde160e67a2513",
+      "brief_hash_matches": true,
+      "floor_minutes": 15,
+      "floor_met": true,
+      "stop_elapsed_s": 914.034,
+      "stop_reason": "BORED",
+      "measured_floor_pass": true,
+      "admission_checks": {
+        "PASS": true,
+        "post_run": true,
+        "inert_equal": true,
+        "loaded_unequal": true,
+        "queue_7_to_0": true,
+        "checkpoint": true,
+        "snapshot": true,
+        "sid": true,
+        "build": true,
+        "api_blocked": true,
+        "launch_hash": null
+      },
+      "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+      "image_calls": 2,
+      "returned_images": 2,
+      "image_phone": true,
+      "image_wide": true,
+      "image_dimensions_from_shot_log": [[360, 690], [1280, 800]],
+      "successful_taps_by_viewport": {
+        "(360, 690)": 31,
+        "(1280, 800)": 1
+      },
+      "resizes": [
+        {
+          "elapsed_s": 310.378,
+          "input": {
+            "width": 1280,
+            "height": 800
+          }
+        },
+        {
+          "elapsed_s": 324.598,
+          "input": {
+            "width": 360,
+            "height": 690
+          }
+        }
+      ],
+      "both_size_image_and_tap": true,
+      "public_original_bytes_match": true
+    },
+    {
+      "source": "hf3-valley-r1/jonas-free",
+      "control": false,
+      "status": "report-ready",
+      "ended": "2026-10-26T09:07:39.172594+00:00",
+      "report_sha256": "165476eeb6521169bf9a284f514941812a31711fb3b3c3dea419628adc96b9be",
+      "raw_sha256": "d0cc9f4e56d06a2c50854674352069ef031298c983b581e96813f6dfbe759093",
+      "brief_hash_matches": true,
+      "floor_minutes": 0,
+      "floor_met": true,
+      "stop_elapsed_s": 307.979,
+      "stop_reason": "TOOL",
+      "measured_floor_pass": true,
+      "admission_checks": {
+        "PASS": true,
+        "post_run": true,
+        "inert_equal": true,
+        "loaded_unequal": true,
+        "queue_7_to_0": true,
+        "checkpoint": true,
+        "snapshot": true,
+        "sid": true,
+        "build": true,
+        "api_blocked": true,
+        "launch_hash": null
+      },
+      "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+      "image_calls": 3,
+      "returned_images": 3,
+      "image_phone": true,
+      "image_wide": true,
+      "image_dimensions_from_shot_log": [[360, 690], [1280, 800]],
+      "successful_taps_by_viewport": {
+        "(1280, 800)": 15,
+        "(360, 690)": 1
+      },
+      "resizes": [
+        {
+          "elapsed_s": 282.218,
+          "input": {
+            "width": 360,
+            "height": 690
+          }
+        },
+        {
+          "elapsed_s": 288.984,
+          "input": {
+            "width": 1280,
+            "height": 800
+          }
+        }
+      ],
+      "both_size_image_and_tap": true,
+      "public_original_bytes_match": true
+    },
+    {
+      "source": "hf3-valley-r1-hold-tail/maya-free",
+      "control": false,
+      "status": "report-ready",
+      "ended": "2026-10-26T09:31:20.617756+00:00",
+      "report_sha256": "ccecebf30b4d2b91f408567591f96b391d835817fa2c24ecf75314968ffde428",
+      "raw_sha256": "0eb118d84216b54508f35fc2d27662b96660ff9832f5f0a81c41090fee1e1735",
+      "brief_hash_matches": true,
+      "floor_minutes": 0,
+      "floor_met": true,
+      "stop_elapsed_s": 296.165,
+      "stop_reason": "BORED",
+      "measured_floor_pass": true,
+      "admission_checks": {
+        "PASS": true,
+        "post_run": true,
+        "inert_equal": true,
+        "loaded_unequal": true,
+        "queue_7_to_0": true,
+        "checkpoint": true,
+        "snapshot": true,
+        "sid": true,
+        "build": true,
+        "api_blocked": true,
+        "launch_hash": null
+      },
+      "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+      "image_calls": 1,
+      "returned_images": 1,
+      "image_phone": false,
+      "image_wide": true,
+      "image_dimensions_from_shot_log": [[1280, 800]],
+      "successful_taps_by_viewport": {
+        "(1280, 800)": 22
+      },
+      "resizes": [],
+      "both_size_image_and_tap": false,
+      "public_original_bytes_match": true
+    },
+    {
+      "source": "hf3-valley-r1-hold-tail/maya-continued",
+      "control": false,
+      "status": "report-ready",
+      "ended": "2026-10-26T09:47:32.893209+00:00",
+      "report_sha256": "7fd10b6d2d6a7a57c79a73911b914220abe7cab4a749100412d0392c07ebbeb8",
+      "raw_sha256": "d20c016aa08f0216ee8e684789a8b16a01432cb875de7d28a73b4f4375409a1d",
+      "brief_hash_matches": true,
+      "floor_minutes": 15,
+      "floor_met": true,
+      "stop_elapsed_s": 919.258,
+      "stop_reason": "BORED",
+      "measured_floor_pass": true,
+      "admission_checks": {
+        "PASS": true,
+        "post_run": true,
+        "inert_equal": true,
+        "loaded_unequal": true,
+        "queue_7_to_0": true,
+        "checkpoint": true,
+        "snapshot": true,
+        "sid": true,
+        "build": true,
+        "api_blocked": true,
+        "launch_hash": null
+      },
+      "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+      "image_calls": 2,
+      "returned_images": 2,
+      "image_phone": true,
+      "image_wide": true,
+      "image_dimensions_from_shot_log": [[360, 690], [1280, 800]],
+      "successful_taps_by_viewport": {
+        "(1280, 800)": 31,
+        "(360, 690)": 1
+      },
+      "resizes": [
+        {
+          "elapsed_s": 309.086,
+          "input": {
+            "width": 360,
+            "height": 690
+          }
+        },
+        {
+          "elapsed_s": 316.77,
+          "input": {
+            "width": 1280,
+            "height": 800
+          }
+        }
+      ],
+      "both_size_image_and_tap": true,
+      "public_original_bytes_match": true
+    },
+    {
+      "source": "hf3-valley-r1-hold-tail/emre-free",
+      "control": false,
+      "status": "report-ready",
+      "ended": "2026-10-26T09:46:42.872981+00:00",
+      "report_sha256": "e82626aa24f31416551f89181a048aa4ca349e076342c7ec5e34d490bbb6de24",
+      "raw_sha256": "2de098e123022da496204b0167f5db22da7d88cb1d145ba73e89199478a38cc9",
+      "brief_hash_matches": true,
+      "floor_minutes": 0,
+      "floor_met": true,
+      "stop_elapsed_s": 246.802,
+      "stop_reason": "BORED",
+      "measured_floor_pass": true,
+      "admission_checks": {
+        "PASS": true,
+        "post_run": true,
+        "inert_equal": true,
+        "loaded_unequal": true,
+        "queue_7_to_0": true,
+        "checkpoint": true,
+        "snapshot": true,
+        "sid": true,
+        "build": true,
+        "api_blocked": true,
+        "launch_hash": null
+      },
+      "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+      "image_calls": 1,
+      "returned_images": 1,
+      "image_phone": true,
+      "image_wide": false,
+      "image_dimensions_from_shot_log": [[360, 690]],
+      "successful_taps_by_viewport": {
+        "(360, 690)": 16
+      },
+      "resizes": [],
+      "both_size_image_and_tap": false,
+      "public_original_bytes_match": true
+    },
+    {
+      "source": "hf3-valley-r1-hold-tail/emre-continued",
+      "control": false,
+      "status": "report-ready",
+      "ended": "2026-10-26T10:07:40.952819+00:00",
+      "report_sha256": "a0f44db19db3313faeeddfe4acd2b94b4866f5aa0f75d0f9afd9177a214d1f19",
+      "raw_sha256": "f7ec514f2bc185b88180243ab41985a29ff245bad211a6e66f4f9e5c5d95682e",
+      "brief_hash_matches": true,
+      "floor_minutes": 15,
+      "floor_met": true,
+      "stop_elapsed_s": 913.808,
+      "stop_reason": "BORED",
+      "measured_floor_pass": true,
+      "admission_checks": {
+        "PASS": true,
+        "post_run": true,
+        "inert_equal": true,
+        "loaded_unequal": true,
+        "queue_7_to_0": true,
+        "checkpoint": true,
+        "snapshot": true,
+        "sid": true,
+        "build": true,
+        "api_blocked": true,
+        "launch_hash": null
+      },
+      "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+      "image_calls": 3,
+      "returned_images": 3,
+      "image_phone": true,
+      "image_wide": true,
+      "image_dimensions_from_shot_log": [[360, 690], [1280, 800]],
+      "successful_taps_by_viewport": {
+        "(360, 690)": 26,
+        "(1280, 800)": 1
+      },
+      "resizes": [
+        {
+          "elapsed_s": 301.771,
+          "input": {
+            "width": 1280,
+            "height": 800
+          }
+        },
+        {
+          "elapsed_s": 323.822,
+          "input": {
+            "width": 360,
+            "height": 690
+          }
+        }
+      ],
+      "both_size_image_and_tap": true,
+      "public_original_bytes_match": true
+    },
+    {
+      "source": "hf3-valley-r1-hold-tail/jonas-free",
+      "control": false,
+      "status": "report-ready",
+      "ended": "2026-10-26T09:55:34.896796+00:00",
+      "report_sha256": "e5891f0b3ce56fdf98b3ab9e35aae560921dfafb810497332c03b0a953b64343",
+      "raw_sha256": "a4403d04e3e69186375dd94501c3a0f6afcb4f92bc47725629a61ab3bf9a6fee",
+      "brief_hash_matches": true,
+      "floor_minutes": 0,
+      "floor_met": true,
+      "stop_elapsed_s": 425.721,
+      "stop_reason": "BORED",
+      "measured_floor_pass": true,
+      "admission_checks": {
+        "PASS": true,
+        "post_run": true,
+        "inert_equal": true,
+        "loaded_unequal": true,
+        "queue_7_to_0": true,
+        "checkpoint": true,
+        "snapshot": true,
+        "sid": true,
+        "build": true,
+        "api_blocked": true,
+        "launch_hash": null
+      },
+      "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+      "image_calls": 2,
+      "returned_images": 2,
+      "image_phone": true,
+      "image_wide": true,
+      "image_dimensions_from_shot_log": [[360, 690], [1280, 800]],
+      "successful_taps_by_viewport": {
+        "(1280, 800)": 23,
+        "(360, 690)": 1
+      },
+      "resizes": [
+        {
+          "elapsed_s": 281.304,
+          "input": {
+            "width": 360,
+            "height": 690
+          }
+        },
+        {
+          "elapsed_s": 289.474,
+          "input": {
+            "width": 1280,
+            "height": 800
+          }
+        }
+      ],
+      "both_size_image_and_tap": true,
+      "public_original_bytes_match": true
+    },
+    {
+      "source": "hf3-valley-r1-hold-tail/jonas-continued",
+      "control": false,
+      "status": "report-ready",
+      "ended": "2026-10-26T10:11:42.980996+00:00",
+      "report_sha256": "7bbc86db8b4d5c084678a53676f5e54e495df01fec785084484c62bdde0006fc",
+      "raw_sha256": "68cded4cc32edf13ebe6298d71d4fe606a887e775c6a91a6744de3f5ed925cf9",
+      "brief_hash_matches": true,
+      "floor_minutes": 15,
+      "floor_met": true,
+      "stop_elapsed_s": 912.29,
+      "stop_reason": "BORED",
+      "measured_floor_pass": true,
+      "admission_checks": {
+        "PASS": true,
+        "post_run": true,
+        "inert_equal": true,
+        "loaded_unequal": true,
+        "queue_7_to_0": true,
+        "checkpoint": true,
+        "snapshot": true,
+        "sid": true,
+        "build": true,
+        "api_blocked": true,
+        "launch_hash": null
+      },
+      "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+      "image_calls": 3,
+      "returned_images": 3,
+      "image_phone": true,
+      "image_wide": true,
+      "image_dimensions_from_shot_log": [[360, 690], [1280, 800]],
+      "successful_taps_by_viewport": {
+        "(1280, 800)": 41,
+        "(360, 690)": 1
+      },
+      "resizes": [
+        {
+          "elapsed_s": 315.614,
+          "input": {
+            "width": 360,
+            "height": 690
+          }
+        },
+        {
+          "elapsed_s": 325.194,
+          "input": {
+            "width": 1280,
+            "height": 800
+          }
+        }
+      ],
+      "both_size_image_and_tap": true,
+      "public_original_bytes_match": true
+    },
+    {
+      "source": "hf3-valley-r1-hold-tail/aisha-free",
+      "control": false,
+      "status": "report-ready",
+      "ended": "2026-10-26T10:15:59.825254+00:00",
+      "report_sha256": "7b138e51f4d0b0ad03185fb4efb064b463bf7ce37c9eb94ea0edd44f2c96dc94",
+      "raw_sha256": "2968d4e8342cc9f80002016cb59d4f8c3e23b1fd1f6d3130586ae0f34647840c",
+      "brief_hash_matches": true,
+      "floor_minutes": 0,
+      "floor_met": true,
+      "stop_elapsed_s": 220.327,
+      "stop_reason": "CONFUSED",
+      "measured_floor_pass": true,
+      "admission_checks": {
+        "PASS": true,
+        "post_run": true,
+        "inert_equal": true,
+        "loaded_unequal": true,
+        "queue_7_to_0": true,
+        "checkpoint": true,
+        "snapshot": true,
+        "sid": true,
+        "build": true,
+        "api_blocked": true,
+        "launch_hash": null
+      },
+      "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+      "image_calls": 1,
+      "returned_images": 1,
+      "image_phone": true,
+      "image_wide": false,
+      "image_dimensions_from_shot_log": [[360, 690]],
+      "successful_taps_by_viewport": {
+        "(360, 690)": 20
+      },
+      "resizes": [],
+      "both_size_image_and_tap": false,
+      "public_original_bytes_match": true
+    },
+    {
+      "source": "hf3-valley-r1-hold-tail/aisha-continued",
+      "control": false,
+      "status": "report-ready",
+      "ended": "2026-10-26T10:37:57.254590+00:00",
+      "report_sha256": "24b913885b2523dfb42b85aa62e7f7c6ace1015946ab8ad63e2161aae6774974",
+      "raw_sha256": "a7032241c746fefd4ffff4c17d98d8ab1c6ee00b0ba155dc7948ee8166113f5f",
+      "brief_hash_matches": true,
+      "floor_minutes": 15,
+      "floor_met": true,
+      "stop_elapsed_s": 928.418,
+      "stop_reason": "FRUSTRATED",
+      "measured_floor_pass": true,
+      "admission_checks": {
+        "PASS": true,
+        "post_run": true,
+        "inert_equal": true,
+        "loaded_unequal": true,
+        "queue_7_to_0": true,
+        "checkpoint": true,
+        "snapshot": true,
+        "sid": true,
+        "build": true,
+        "api_blocked": true,
+        "launch_hash": null
+      },
+      "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+      "image_calls": 2,
+      "returned_images": 2,
+      "image_phone": true,
+      "image_wide": true,
+      "image_dimensions_from_shot_log": [[360, 690], [1280, 800]],
+      "successful_taps_by_viewport": {
+        "(360, 690)": 35,
+        "(1280, 800)": 1
+      },
+      "resizes": [
+        {
+          "elapsed_s": 307.785,
+          "input": {
+            "width": 1280,
+            "height": 800
+          }
+        },
+        {
+          "elapsed_s": 316.947,
+          "input": {
+            "width": 360,
+            "height": 690
+          }
+        }
+      ],
+      "both_size_image_and_tap": true,
+      "public_original_bytes_match": true
+    },
+    {
+      "source": "hf3-valley-r1-hold-tail/diego-free",
+      "control": false,
+      "status": "report-ready",
+      "ended": "2026-10-26T10:25:27.284046+00:00",
+      "report_sha256": "baa4899fd84b241a06e144e4565547d00fc45fb4f93f4496247b03f9641ebcc5",
+      "raw_sha256": "77f51b6e5a82d96181c2b2a6c323c09dd5b6c909cf3ecc2b719c17fd9222767f",
+      "brief_hash_matches": true,
+      "floor_minutes": 0,
+      "floor_met": true,
+      "stop_elapsed_s": 518.996,
+      "stop_reason": "BORED",
+      "measured_floor_pass": true,
+      "admission_checks": {
+        "PASS": true,
+        "post_run": true,
+        "inert_equal": true,
+        "loaded_unequal": true,
+        "queue_7_to_0": true,
+        "checkpoint": true,
+        "snapshot": true,
+        "sid": true,
+        "build": true,
+        "api_blocked": true,
+        "launch_hash": null
+      },
+      "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+      "image_calls": 4,
+      "returned_images": 4,
+      "image_phone": true,
+      "image_wide": true,
+      "image_dimensions_from_shot_log": [[360, 690], [1280, 800]],
+      "successful_taps_by_viewport": {
+        "(1280, 800)": 21,
+        "(360, 690)": 1
+      },
+      "resizes": [
+        {
+          "elapsed_s": 305.598,
+          "input": {
+            "width": 360,
+            "height": 690
+          }
+        },
+        {
+          "elapsed_s": 312.192,
+          "input": {
+            "width": 1280,
+            "height": 800
+          }
+        }
+      ],
+      "both_size_image_and_tap": true,
+      "public_original_bytes_match": true
+    },
+    {
+      "source": "hf3-valley-r1-hold-tail/diego-continued",
+      "control": false,
+      "status": "report-ready",
+      "ended": "2026-10-26T10:42:20.067315+00:00",
+      "report_sha256": "4f6c232fc47474226efbf061e49cf1a9bfc759fca8f572a1220a3371ba658a4f",
+      "raw_sha256": "4c7714393512b0bc2cf952869435429a95358bf24f4499bb22a346efdd6afeff",
+      "brief_hash_matches": true,
+      "floor_minutes": 15,
+      "floor_met": true,
+      "stop_elapsed_s": 914.204,
+      "stop_reason": "BORED",
+      "measured_floor_pass": true,
+      "admission_checks": {
+        "PASS": true,
+        "post_run": true,
+        "inert_equal": true,
+        "loaded_unequal": true,
+        "queue_7_to_0": true,
+        "checkpoint": true,
+        "snapshot": true,
+        "sid": true,
+        "build": true,
+        "api_blocked": true,
+        "launch_hash": null
+      },
+      "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+      "image_calls": 3,
+      "returned_images": 3,
+      "image_phone": true,
+      "image_wide": true,
+      "image_dimensions_from_shot_log": [[360, 690], [1280, 800]],
+      "successful_taps_by_viewport": {
+        "(1280, 800)": 44,
+        "(360, 690)": 1
+      },
+      "resizes": [
+        {
+          "elapsed_s": 309.366,
+          "input": {
+            "width": 360,
+            "height": 690
+          }
+        },
+        {
+          "elapsed_s": 324.127,
+          "input": {
+            "width": 1280,
+            "height": 800
+          }
+        }
+      ],
+      "both_size_image_and_tap": true,
+      "public_original_bytes_match": true
+    },
+    {
+      "source": "hf3-valley-r1-hold-tail/mei-free",
+      "control": false,
+      "status": "report-ready",
+      "ended": "2026-10-26T10:46:47.542029+00:00",
+      "report_sha256": "d470a04fbddfb73a6439f36aa78d5e01bb6d0f0857888b01f99d294a8eaf5967",
+      "raw_sha256": "0cfb9b878ac8ce790245beecee2fc3b802deabd65a529f25bcafd2994b54e20a",
+      "brief_hash_matches": true,
+      "floor_minutes": 0,
+      "floor_met": true,
+      "stop_elapsed_s": 262.351,
+      "stop_reason": "BORED",
+      "measured_floor_pass": true,
+      "admission_checks": {
+        "PASS": true,
+        "post_run": true,
+        "inert_equal": true,
+        "loaded_unequal": true,
+        "queue_7_to_0": true,
+        "checkpoint": true,
+        "snapshot": true,
+        "sid": true,
+        "build": true,
+        "api_blocked": true,
+        "launch_hash": null
+      },
+      "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+      "image_calls": 1,
+      "returned_images": 1,
+      "image_phone": true,
+      "image_wide": false,
+      "image_dimensions_from_shot_log": [[360, 690]],
+      "successful_taps_by_viewport": {
+        "(360, 690)": 19
+      },
+      "resizes": [],
+      "both_size_image_and_tap": false,
+      "public_original_bytes_match": true
+    },
+    {
+      "source": "hf3-valley-r1-hold-tail/mei-continued",
+      "control": false,
+      "status": "report-ready",
+      "ended": "2026-10-26T10:58:58.830782+00:00",
+      "report_sha256": "fd6dd05ac4cd86e3be8ec7216720a91a58e461cb45553e83f6fc464e4aa0972a",
+      "raw_sha256": "daf4d6fd3051942097be5c0398b91a7c05ebbc504901da5654df9cc4e8ed3700",
+      "brief_hash_matches": true,
+      "floor_minutes": 15,
+      "floor_met": true,
+      "stop_elapsed_s": 924.134,
+      "stop_reason": "BORED",
+      "measured_floor_pass": true,
+      "admission_checks": {
+        "PASS": true,
+        "post_run": true,
+        "inert_equal": true,
+        "loaded_unequal": true,
+        "queue_7_to_0": true,
+        "checkpoint": true,
+        "snapshot": true,
+        "sid": true,
+        "build": true,
+        "api_blocked": true,
+        "launch_hash": null
+      },
+      "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+      "image_calls": 5,
+      "returned_images": 5,
+      "image_phone": true,
+      "image_wide": true,
+      "image_dimensions_from_shot_log": [[360, 690], [1280, 800]],
+      "successful_taps_by_viewport": {
+        "(360, 690)": 37,
+        "(1280, 800)": 1
+      },
+      "resizes": [
+        {
+          "elapsed_s": 313.48,
+          "input": {
+            "width": 1280,
+            "height": 800
+          }
+        },
+        {
+          "elapsed_s": 328.147,
+          "input": {
+            "width": 360,
+            "height": 690
+          }
+        }
+      ],
+      "both_size_image_and_tap": true,
+      "public_original_bytes_match": true
+    },
+    {
+      "source": "hf3-valley-r1-hold-tail/samir-free",
+      "control": false,
+      "status": "report-ready",
+      "ended": "2026-10-26T11:03:25.295068+00:00",
+      "report_sha256": "84121c751eb0fa3ac72c8f9425adb2dc02ffcd6e213611230304adf411f441e9",
+      "raw_sha256": "946c4a8574ed02360e730065e3908c8ff58ba7d33ff573a70b3cffe913c2db65",
+      "brief_hash_matches": true,
+      "floor_minutes": 0,
+      "floor_met": true,
+      "stop_elapsed_s": 956.123,
+      "stop_reason": "CONFUSED",
+      "measured_floor_pass": true,
+      "admission_checks": {
+        "PASS": true,
+        "post_run": true,
+        "inert_equal": true,
+        "loaded_unequal": true,
+        "queue_7_to_0": true,
+        "checkpoint": true,
+        "snapshot": true,
+        "sid": true,
+        "build": true,
+        "api_blocked": true,
+        "launch_hash": null
+      },
+      "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+      "image_calls": 2,
+      "returned_images": 2,
+      "image_phone": true,
+      "image_wide": true,
+      "image_dimensions_from_shot_log": [[360, 690], [1280, 800]],
+      "successful_taps_by_viewport": {
+        "(1280, 800)": 37,
+        "(360, 690)": 1
+      },
+      "resizes": [
+        {
+          "elapsed_s": 3.236,
+          "input": {
+            "width": 1280,
+            "height": 800
+          }
+        },
+        {
+          "elapsed_s": 302.306,
+          "input": {
+            "width": 360,
+            "height": 690
+          }
+        },
+        {
+          "elapsed_s": 313.443,
+          "input": {
+            "width": 1280,
+            "height": 800
+          }
+        }
+      ],
+      "both_size_image_and_tap": true,
+      "public_original_bytes_match": true
+    },
+    {
+      "source": "hf3-valley-r1-hold-tail/samir-continued",
+      "control": false,
+      "status": "report-ready",
+      "ended": "2026-10-26T11:15:23.093983+00:00",
+      "report_sha256": "688965c2d1f0c72a3c3066434bce54a46e21cba4a3cfd4f47232bd0d3b7db3e2",
+      "raw_sha256": "eeb94ecd5c18de9e85fb0548ebecdf80a4ddd5ad036f3314fed09f88c0492b87",
+      "brief_hash_matches": true,
+      "floor_minutes": 15,
+      "floor_met": true,
+      "stop_elapsed_s": 941.187,
+      "stop_reason": "BORED",
+      "measured_floor_pass": true,
+      "admission_checks": {
+        "PASS": true,
+        "post_run": true,
+        "inert_equal": true,
+        "loaded_unequal": true,
+        "queue_7_to_0": true,
+        "checkpoint": true,
+        "snapshot": true,
+        "sid": true,
+        "build": true,
+        "api_blocked": true,
+        "launch_hash": null
+      },
+      "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+      "image_calls": 2,
+      "returned_images": 2,
+      "image_phone": true,
+      "image_wide": true,
+      "image_dimensions_from_shot_log": [[360, 690], [1280, 800]],
+      "successful_taps_by_viewport": {
+        "(1280, 800)": 46,
+        "(360, 690)": 1
+      },
+      "resizes": [
+        {
+          "elapsed_s": 296.92,
+          "input": {
+            "width": 360,
+            "height": 690
+          }
+        },
+        {
+          "elapsed_s": 306.327,
+          "input": {
+            "width": 1280,
+            "height": 800
+          }
+        }
+      ],
+      "both_size_image_and_tap": true,
+      "public_original_bytes_match": true
+    },
+    {
+      "source": "hf3-valley-r1-hold-tail/tessa-free",
+      "control": false,
+      "status": "report-ready",
+      "ended": "2026-10-26T11:06:32.787452+00:00",
+      "report_sha256": "b264494386f7f5d3ae88048da720946d26371b5b9e7d240748781cb11877a1d3",
+      "raw_sha256": "efe0f827e4104be5ff6aab87fa76e8e14619d587925f6b25a4f7c7fcc8b3c35d",
+      "brief_hash_matches": true,
+      "floor_minutes": 0,
+      "floor_met": true,
+      "stop_elapsed_s": 140.261,
+      "stop_reason": "CONFUSED",
+      "measured_floor_pass": true,
+      "admission_checks": {
+        "PASS": true,
+        "post_run": true,
+        "inert_equal": true,
+        "loaded_unequal": true,
+        "queue_7_to_0": true,
+        "checkpoint": true,
+        "snapshot": true,
+        "sid": true,
+        "build": true,
+        "api_blocked": true,
+        "launch_hash": null
+      },
+      "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+      "image_calls": 2,
+      "returned_images": 2,
+      "image_phone": true,
+      "image_wide": false,
+      "image_dimensions_from_shot_log": [[360, 690]],
+      "successful_taps_by_viewport": {
+        "(360, 690)": 17
+      },
+      "resizes": [],
+      "both_size_image_and_tap": false,
+      "public_original_bytes_match": true
+    },
+    {
+      "source": "hf3-valley-r1-hold-tail/tessa-continued",
+      "control": false,
+      "status": "report-ready",
+      "ended": "2026-10-26T11:23:19.214232+00:00",
+      "report_sha256": "f6fc5ad2a5d158429f4725544f0101334764fefe0c6dcd7131d0cbae13094885",
+      "raw_sha256": "ef5b9eb3d1c937e1a247aa9a38add0ac3c429e34be1f2d4e4c790a36c360db5e",
+      "brief_hash_matches": true,
+      "floor_minutes": 15,
+      "floor_met": true,
+      "stop_elapsed_s": 917.086,
+      "stop_reason": "BORED",
+      "measured_floor_pass": true,
+      "admission_checks": {
+        "PASS": true,
+        "post_run": true,
+        "inert_equal": true,
+        "loaded_unequal": true,
+        "queue_7_to_0": true,
+        "checkpoint": true,
+        "snapshot": true,
+        "sid": true,
+        "build": true,
+        "api_blocked": true,
+        "launch_hash": null
+      },
+      "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+      "image_calls": 3,
+      "returned_images": 3,
+      "image_phone": true,
+      "image_wide": true,
+      "image_dimensions_from_shot_log": [[360, 690], [1280, 800]],
+      "successful_taps_by_viewport": {
+        "(360, 690)": 40,
+        "(1280, 800)": 1
+      },
+      "resizes": [
+        {
+          "elapsed_s": 314.981,
+          "input": {
+            "width": 1280,
+            "height": 800
+          }
+        },
+        {
+          "elapsed_s": 329.145,
+          "input": {
+            "width": 360,
+            "height": 690
+          }
+        }
+      ],
+      "both_size_image_and_tap": true,
+      "public_original_bytes_match": true
+    },
+    {
+      "source": "hf3-valley-r1-hold-tail/pavel-free",
+      "control": false,
+      "status": "report-ready",
+      "ended": "2026-10-26T11:35:08.760115+00:00",
+      "report_sha256": "1c2f2bdab5f22c2f93ecac6559d5acd05d4c9067f9c1c963c1628ba6b15dd3b0",
+      "raw_sha256": "bfd076e6c84d299ef491f44a71a808040e6786d6341f6428f3e65a89746092dd",
+      "brief_hash_matches": true,
+      "floor_minutes": 0,
+      "floor_met": true,
+      "stop_elapsed_s": 572.201,
+      "stop_reason": "BORED",
+      "measured_floor_pass": true,
+      "admission_checks": {
+        "PASS": true,
+        "post_run": true,
+        "inert_equal": true,
+        "loaded_unequal": true,
+        "queue_7_to_0": true,
+        "checkpoint": true,
+        "snapshot": true,
+        "sid": true,
+        "build": true,
+        "api_blocked": true,
+        "launch_hash": null
+      },
+      "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+      "image_calls": 3,
+      "returned_images": 3,
+      "image_phone": true,
+      "image_wide": true,
+      "image_dimensions_from_shot_log": [[360, 690], [1280, 800]],
+      "successful_taps_by_viewport": {
+        "(1280, 800)": 27,
+        "(360, 690)": 1
+      },
+      "resizes": [
+        {
+          "elapsed_s": 287.029,
+          "input": {
+            "width": 360,
+            "height": 690
+          }
+        },
+        {
+          "elapsed_s": 297.092,
+          "input": {
+            "width": 1280,
+            "height": 800
+          }
+        }
+      ],
+      "both_size_image_and_tap": true,
+      "public_original_bytes_match": true
+    },
+    {
+      "source": "hf3-valley-r1-hold-tail/pavel-continued",
+      "control": false,
+      "status": "report-ready",
+      "ended": "2026-10-26T11:51:50.709909+00:00",
+      "report_sha256": "fc82356e4aa50b0548c8d2fa0d61419b8867ac50f5a36f8856090d3408cf64fc",
+      "raw_sha256": "312a97d9334951f6496e06997a9b0ef714cbc522d222685a0c51288a5e6c636e",
+      "brief_hash_matches": true,
+      "floor_minutes": 15,
+      "floor_met": true,
+      "stop_elapsed_s": 935.834,
+      "stop_reason": "CONFUSED",
+      "measured_floor_pass": true,
+      "admission_checks": {
+        "PASS": true,
+        "post_run": true,
+        "inert_equal": true,
+        "loaded_unequal": true,
+        "queue_7_to_0": true,
+        "checkpoint": true,
+        "snapshot": true,
+        "sid": true,
+        "build": true,
+        "api_blocked": true,
+        "launch_hash": null
+      },
+      "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+      "image_calls": 8,
+      "returned_images": 8,
+      "image_phone": true,
+      "image_wide": true,
+      "image_dimensions_from_shot_log": [[360, 690], [1280, 800]],
+      "successful_taps_by_viewport": {
+        "(1280, 800)": 42,
+        "(360, 690)": 1
+      },
+      "resizes": [
+        {
+          "elapsed_s": 296.689,
+          "input": {
+            "width": 360,
+            "height": 690
+          }
+        },
+        {
+          "elapsed_s": 305.157,
+          "input": {
+            "width": 1280,
+            "height": 800
+          }
+        }
+      ],
+      "both_size_image_and_tap": true,
+      "public_original_bytes_match": true
+    },
+    {
+      "source": "hf3-valley-r1-hold-tail/leila-free",
+      "control": false,
+      "status": "report-ready",
+      "ended": "2026-10-26T11:47:56.691631+00:00",
+      "report_sha256": "3fbc5f622497853b6c5d0d5e8d6f60bd03fca97a624446e24cd7ba7325bfc98a",
+      "raw_sha256": "95efed2578f1db473278bc4d209b537a230bed7bb77141b86ae2f3172030e806",
+      "brief_hash_matches": true,
+      "floor_minutes": 0,
+      "floor_met": true,
+      "stop_elapsed_s": 232.438,
+      "stop_reason": "BORED",
+      "measured_floor_pass": true,
+      "admission_checks": {
+        "PASS": true,
+        "post_run": true,
+        "inert_equal": true,
+        "loaded_unequal": true,
+        "queue_7_to_0": true,
+        "checkpoint": true,
+        "snapshot": true,
+        "sid": true,
+        "build": true,
+        "api_blocked": true,
+        "launch_hash": null
+      },
+      "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+      "image_calls": 1,
+      "returned_images": 1,
+      "image_phone": true,
+      "image_wide": false,
+      "image_dimensions_from_shot_log": [[360, 690]],
+      "successful_taps_by_viewport": {
+        "(360, 690)": 19
+      },
+      "resizes": [],
+      "both_size_image_and_tap": false,
+      "public_original_bytes_match": true
+    },
+    {
+      "source": "hf3-valley-r1-hold-tail/leila-continued",
+      "control": false,
+      "status": "report-ready",
+      "ended": "2026-10-26T12:04:33.163399+00:00",
+      "report_sha256": "4dcb8b2d1081e5efc1f8cc5ad1a21f1949a3268439bc658b8e2b1b84b60749bc",
+      "raw_sha256": "d22bb0bb2aedf915a4a26f2f6bbb24879bce585b25314ada46078563e8c8da2d",
+      "brief_hash_matches": true,
+      "floor_minutes": 15,
+      "floor_met": true,
+      "stop_elapsed_s": 923.434,
+      "stop_reason": "BORED",
+      "measured_floor_pass": true,
+      "admission_checks": {
+        "PASS": true,
+        "post_run": true,
+        "inert_equal": true,
+        "loaded_unequal": true,
+        "queue_7_to_0": true,
+        "checkpoint": true,
+        "snapshot": true,
+        "sid": true,
+        "build": true,
+        "api_blocked": true,
+        "launch_hash": null
+      },
+      "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+      "image_calls": 2,
+      "returned_images": 2,
+      "image_phone": true,
+      "image_wide": true,
+      "image_dimensions_from_shot_log": [[360, 690], [1280, 800]],
+      "successful_taps_by_viewport": {
+        "(360, 690)": 37,
+        "(1280, 800)": 1
+      },
+      "resizes": [
+        {
+          "elapsed_s": 20.671,
+          "input": {
+            "width": 360,
+            "height": 690
+          }
+        },
+        {
+          "elapsed_s": 300.806,
+          "input": {
+            "width": 1280,
+            "height": 800
+          }
+        },
+        {
+          "elapsed_s": 314.105,
+          "input": {
+            "width": 360,
+            "height": 690
+          }
+        }
+      ],
+      "both_size_image_and_tap": true,
+      "public_original_bytes_match": true
+    },
+    {
+      "source": "hf3-valley-r1-hold-tail/irene-free",
+      "control": false,
+      "status": "report-ready",
+      "ended": "2026-10-26T12:02:48.719400+00:00",
+      "report_sha256": "c863d25102b646379648ab63c678754a366ead2d2b8f83bf388b0750fb5e9086",
+      "raw_sha256": "31a5227ec59e36d7fddbc49f40b31dc7ef276ff1da0dd47837d1b580e74c8557",
+      "brief_hash_matches": true,
+      "floor_minutes": 0,
+      "floor_met": true,
+      "stop_elapsed_s": 615.136,
+      "stop_reason": "BORED",
+      "measured_floor_pass": true,
+      "admission_checks": {
+        "PASS": true,
+        "post_run": true,
+        "inert_equal": true,
+        "loaded_unequal": true,
+        "queue_7_to_0": true,
+        "checkpoint": true,
+        "snapshot": true,
+        "sid": true,
+        "build": true,
+        "api_blocked": true,
+        "launch_hash": null
+      },
+      "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+      "image_calls": 3,
+      "returned_images": 3,
+      "image_phone": true,
+      "image_wide": true,
+      "image_dimensions_from_shot_log": [[360, 690], [1280, 800]],
+      "successful_taps_by_viewport": {
+        "(1280, 800)": 28,
+        "(360, 690)": 1
+      },
+      "resizes": [
+        {
+          "elapsed_s": 283.236,
+          "input": {
+            "width": 360,
+            "height": 690
+          }
+        },
+        {
+          "elapsed_s": 286.686,
+          "input": {
+            "width": 1280,
+            "height": 800
+          }
+        }
+      ],
+      "both_size_image_and_tap": true,
+      "public_original_bytes_match": true
+    },
+    {
+      "source": "hf3-valley-r1-hold-tail/irene-continued",
+      "control": false,
+      "status": "report-ready",
+      "ended": "2026-10-26T12:20:01.411955+00:00",
+      "report_sha256": "cb44dbef1cfc38cbbfa3450d709c3babd08f730af08b32a5079aaf236381855d",
+      "raw_sha256": "1621ac7c81470d385736ed8cf0e0ff3751322dfad840d2e2c203f4fdba5c94fe",
+      "brief_hash_matches": true,
+      "floor_minutes": 15,
+      "floor_met": true,
+      "stop_elapsed_s": 989.062,
+      "stop_reason": "BORED",
+      "measured_floor_pass": true,
+      "admission_checks": {
+        "PASS": true,
+        "post_run": true,
+        "inert_equal": true,
+        "loaded_unequal": true,
+        "queue_7_to_0": true,
+        "checkpoint": true,
+        "snapshot": true,
+        "sid": true,
+        "build": true,
+        "api_blocked": true,
+        "launch_hash": null
+      },
+      "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+      "image_calls": 3,
+      "returned_images": 3,
+      "image_phone": true,
+      "image_wide": true,
+      "image_dimensions_from_shot_log": [[360, 690], [1280, 800]],
+      "successful_taps_by_viewport": {
+        "(1280, 800)": 39,
+        "(360, 690)": 1
+      },
+      "resizes": [
+        {
+          "elapsed_s": 301.138,
+          "input": {
+            "width": 360,
+            "height": 690
+          }
+        },
+        {
+          "elapsed_s": 310.131,
+          "input": {
+            "width": 1280,
+            "height": 800
+          }
+        }
+      ],
+      "both_size_image_and_tap": true,
+      "public_original_bytes_match": true
+    },
+    {
+      "source": "hf3-valley-r1-hold-tail/malik-free",
+      "control": false,
+      "status": "report-ready",
+      "ended": "2026-10-26T12:07:45.883253+00:00",
+      "report_sha256": "e48db5c90626424d4db48e21b1b152ab5c0fca56df1c00f5c450cfb85e74da3a",
+      "raw_sha256": "27a4f1391c45188681c8c5ce83f00da7e9e76c1617d2474d76950107c0fe9b4c",
+      "brief_hash_matches": true,
+      "floor_minutes": 0,
+      "floor_met": true,
+      "stop_elapsed_s": 144.222,
+      "stop_reason": "CONFUSED",
+      "measured_floor_pass": true,
+      "admission_checks": {
+        "PASS": true,
+        "post_run": true,
+        "inert_equal": true,
+        "loaded_unequal": true,
+        "queue_7_to_0": true,
+        "checkpoint": true,
+        "snapshot": true,
+        "sid": true,
+        "build": true,
+        "api_blocked": true,
+        "launch_hash": null
+      },
+      "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+      "image_calls": 1,
+      "returned_images": 1,
+      "image_phone": true,
+      "image_wide": false,
+      "image_dimensions_from_shot_log": [[360, 690]],
+      "successful_taps_by_viewport": {
+        "(360, 690)": 12
+      },
+      "resizes": [],
+      "both_size_image_and_tap": false,
+      "public_original_bytes_match": true
+    },
+    {
+      "source": "hf3-valley-r1-hold-tail/malik-continued",
+      "control": false,
+      "status": "report-ready",
+      "ended": "2026-10-26T12:24:27.586627+00:00",
+      "report_sha256": "c9effa70e10c49d2902afc592149e1ecf8e6979939e256654afad11914d95d24",
+      "raw_sha256": "5dfdbf35ecc747f081e19de99135bf9b67620c11b1a9537c3ec17709143fad6b",
+      "brief_hash_matches": true,
+      "floor_minutes": 15,
+      "floor_met": true,
+      "stop_elapsed_s": 926.65,
+      "stop_reason": "BORED",
+      "measured_floor_pass": true,
+      "admission_checks": {
+        "PASS": true,
+        "post_run": true,
+        "inert_equal": true,
+        "loaded_unequal": true,
+        "queue_7_to_0": true,
+        "checkpoint": true,
+        "snapshot": true,
+        "sid": true,
+        "build": true,
+        "api_blocked": true,
+        "launch_hash": null
+      },
+      "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+      "image_calls": 2,
+      "returned_images": 2,
+      "image_phone": true,
+      "image_wide": true,
+      "image_dimensions_from_shot_log": [[360, 690], [1280, 800]],
+      "successful_taps_by_viewport": {
+        "(360, 690)": 38,
+        "(1280, 800)": 1
+      },
+      "resizes": [
+        {
+          "elapsed_s": 308.743,
+          "input": {
+            "width": 1280,
+            "height": 800
+          }
+        },
+        {
+          "elapsed_s": 315.178,
+          "input": {
+            "width": 360,
+            "height": 690
+          }
+        }
+      ],
+      "both_size_image_and_tap": true,
+      "public_original_bytes_match": true
+    },
+    {
+      "source": "hf3-valley-r1-hold-tail-control/maya-continued",
+      "control": true,
+      "status": "report-ready",
+      "ended": "2026-10-26T12:36:03.347768+00:00",
+      "report_sha256": "b9f8ca421b4122a491273ce3797f4723df617bd27da1a968ca7d6340516377df",
+      "raw_sha256": "865e4bd8d18028e853e67837699669397fd486a6cae4c65be8a29683d1e0f95d",
+      "brief_hash_matches": true,
+      "floor_minutes": 15,
+      "floor_met": true,
+      "stop_elapsed_s": 916.976,
+      "stop_reason": "BORED",
+      "measured_floor_pass": true,
+      "image_calls": 3,
+      "returned_images": 3,
+      "image_phone": true,
+      "image_wide": true,
+      "image_dimensions_from_shot_log": [[360, 690], [1280, 800]],
+      "successful_taps_by_viewport": {
+        "(1280, 800)": 37,
+        "(360, 690)": 1
+      },
+      "resizes": [
+        {
+          "elapsed_s": 307.435,
+          "input": {
+            "width": 360,
+            "height": 690
+          }
+        },
+        {
+          "elapsed_s": 318.692,
+          "input": {
+            "width": 1280,
+            "height": 800
+          }
+        }
+      ],
+      "both_size_image_and_tap": true
+    }
+  ],
+  "duplicate_identities": {
+    "harness": [],
+    "player": [],
+    "session": [],
+    "run": [],
+    "local_uuid": []
+  },
+  "blind_output_or_mapping_read": false,
+  "source_mutated": false,
+  "ask_audit": {
+    "count": 89,
+    "unique_ids": 89,
+    "min": 1095,
+    "max": 1183,
+    "continuous": true,
+    "all_report_hashes_match": true,
+    "all_quote_hashes_match": true,
+    "all_quotes_in_reports": true
+  },
+  "replacement_provenance": [
+    {
+      "persona": "maya",
+      "selected_source": "hf3-valley-r1/maya-free/report.md",
+      "source_sha256": "fd0b2fa8f95a408ea7c24865926238424fdb38b66bc2f7dae893ed44292d7470",
+      "original_source_embedded_both": true,
+      "continuity_equal_except_driver_port": true
+    },
+    {
+      "persona": "emre",
+      "selected_source": "hf3-valley-r1/emre-free/wall-clock.jsonl",
+      "source_sha256": "3373abe07833ac48e8bcba89c3b8bf62ff4bf6f520a8fd3f9d6ef918b06d1d61",
+      "original_source_embedded_both": true,
+      "continuity_equal_except_driver_port": true
+    },
+    {
+      "persona": "jonas",
+      "selected_source": "hf3-valley-r1/jonas-free/report.md",
+      "source_sha256": "165476eeb6521169bf9a284f514941812a31711fb3b3c3dea419628adc96b9be",
+      "original_source_embedded_both": true,
+      "continuity_equal_except_driver_port": true
+    }
+  ],
+  "tester_both_size_coverage": {
+    "nia": {
+      "phone": true,
+      "wide": true
+    },
+    "rosa": {
+      "phone": true,
+      "wide": true
+    },
+    "maya": {
+      "phone": true,
+      "wide": true
+    },
+    "emre": {
+      "phone": true,
+      "wide": true
+    },
+    "jonas": {
+      "phone": true,
+      "wide": true
+    },
+    "aisha": {
+      "phone": true,
+      "wide": true
+    },
+    "diego": {
+      "phone": true,
+      "wide": true
+    },
+    "mei": {
+      "phone": true,
+      "wide": true
+    },
+    "samir": {
+      "phone": true,
+      "wide": true
+    },
+    "tessa": {
+      "phone": true,
+      "wide": true
+    },
+    "pavel": {
+      "phone": true,
+      "wide": true
+    },
+    "leila": {
+      "phone": true,
+      "wide": true
+    },
+    "irene": {
+      "phone": true,
+      "wide": true
+    },
+    "malik": {
+      "phone": true,
+      "wide": true
+    }
+  },
+  "cleanup": {
+    "owned_processes_created": 0,
+    "owned_worktrees_created": 0,
+    "all_31_record_driver_tester_pids_absent": true,
+    "ps_receipt": "valley-r1-cleanup-ps.txt"
+  },
+  "launch_receipt_limit": "27 records have no retained at-launch copy. Null launch_hash means unverified historical launch bytes, not failed final native admission. Final admission adds post-run fields and cannot be compared to launch hash.",
+  "human_speed_limit": "No human-cadence reproduction conducted by this read-only audit. Timing/hold causal findings remain unverified; obey valley-retest-preconditions.md."
+}

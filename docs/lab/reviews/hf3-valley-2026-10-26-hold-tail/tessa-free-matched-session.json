@@ -1,0 +1,102 @@
+{
+  "started": "2026-10-26T11:03:25.783179+00:00",
+  "ended": "2026-10-26T11:06:32.787452+00:00",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "device": "phone",
+  "floor_minutes": 0,
+  "ceiling_minutes": 25,
+  "release_before": {
+    "app": "0.3.0",
+    "framework": "3.0.0",
+    "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.3.0",
+    "framework": "3.0.0",
+    "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "floor_met": true,
+  "pairing_role": "paired-arm collection",
+  "source": "Coordinator metadata, not player-visible content or production feedback receipt.",
+  "harness_session_id": "9e83a6f2-1251-4fcc-a7c2-3f81925deb67",
+  "same_start_sha256": "0f056b4519c6fe40cdc6da69ecfc89deedcc66b152489aa59a75847c12daa4af",
+  "state_restore_matched": true,
+  "report_is_coordinator_recovery": false,
+  "stop": {
+    "harness_session_id": "9e83a6f2-1251-4fcc-a7c2-3f81925deb67",
+    "t": "2026-10-26T11:05:55.456Z",
+    "elapsed_s": 140.261,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "I am stopping here. I liked choosing a household and seeing the overseer actually turn up, but I could not work out how to give the Ak family grain. I would not return on my own after this. I would not leave it running or plan another evening.",
+    "game_clock": "18 July · year 1 · cloud",
+    "engagement": null,
+    "reason": "CONFUSED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "viewport_resizes": [],
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "3cecc66181c0158b6a50916aa3b966dcb11cc89d4aa3c1252b484c77e70a73c7",
+    "lab-play-hold-helpers.ts": "97bb8bfdc278d43e5a7636fcb4d36a5cd5d0cabd30c1e35f087d677adfda3c61",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "native_blob_admission": {
+    "status": "PASS",
+    "fixture_hashes": {
+      "snapshot": "0f056b4519c6fe40cdc6da69ecfc89deedcc66b152489aa59a75847c12daa4af",
+      "sidecar": "b17ce0102e7158f74360eac8d47c57242397c47afc8c965763453b6f11067eed",
+      "helper": "63c208e5aa8e9210347f9c409c2666035c4f0c49cd8dbb5864ddb5bc294f8132",
+      "proof": "2db94615a0130bd7d4945dfb260c73ab736ac7f273ce5fcb54c36a4a61e43862"
+    },
+    "inert_full_equality": true,
+    "loaded_raw_equality": false,
+    "allowed_queue_delta": {
+      "origin": "https://valley.adamwhite.work",
+      "database": "hf-lab-pending",
+      "store": "pieces",
+      "before": 7,
+      "after": 0,
+      "explanation": "Old-player queue discarded by pinned lab-client0.4.11 linked.js:100–106 and55–56 after fresh identity.js:23–29; not new-session journal creation"
+    },
+    "all_checkpoint_comparisons": {
+      "seed": true,
+      "minute": true,
+      "input_history": true,
+      "input_history_sha256": true,
+      "log_sha256": true,
+      "bound": true,
+      "full_state_sha256": true,
+      "full_state_bytes": true,
+      "full_state_seed": true,
+      "full_state_minute": true,
+      "person_count": true,
+      "household_count": true
+    },
+    "actual_identity_hashes": {
+      "player": "f27d5c874b5e83f97e0b8fbd12a0bff5659a59cff7f739386213f9de4581bbc9",
+      "session": "79ead1c012af4e64af5f4f91be25170296c914c329bb9f81f2d9e4d0f28c1465",
+      "run": "bc923cf751980888e7e425e52933c7470faef13f7a2e17e6cda7c4343ef7db0a"
+    },
+    "post_run_release_match": true,
+    "final_private_receipt_sha256": "37becfa986471f255fa8168b3c5e0a3de456e8e310fa74c26b2956401ca63fd3",
+    "launch_private_receipt_sha256": "879695cc28e4e59b5bda36e9bd38f8d686f364f4a5fc6777e4a0a08b27eb737b",
+    "launch_copy_retained": false,
+    "limit": "Private full inventories omitted; source-explained recording queue discard does not change game/Shelf/consent."
+  },
+  "image_view_evidence": {
+    "source": "Actual private rollout tool events; no image bytes published.",
+    "calls": 2,
+    "returned_image_calls": 2,
+    "times": ["2026-10-26T11:03:42.367Z", "2026-10-26T11:05:34.411Z"]
+  },
+  "report.md_sha256": "b264494386f7f5d3ae88048da720946d26371b5b9e7d240748781cb11877a1d3",
+  "wall-clock.jsonl_sha256": "efe0f827e4104be5ff6aab87fa76e8e14619d587925f6b25a4f7c7fcc8b3c35d"
+}

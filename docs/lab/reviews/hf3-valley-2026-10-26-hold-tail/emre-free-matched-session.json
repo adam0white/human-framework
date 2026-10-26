@@ -1,0 +1,102 @@
+{
+  "started": "2026-10-26T09:33:49.636978+00:00",
+  "ended": "2026-10-26T09:46:42.872981+00:00",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "device": "phone",
+  "floor_minutes": 0,
+  "ceiling_minutes": 25,
+  "release_before": {
+    "app": "0.3.0",
+    "framework": "3.0.0",
+    "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.3.0",
+    "framework": "3.0.0",
+    "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "floor_met": true,
+  "pairing_role": "paired-arm collection",
+  "source": "Coordinator metadata, not player-visible content or production feedback receipt.",
+  "harness_session_id": "82419ea8-4bf8-4fe6-a619-c24785e6359f",
+  "same_start_sha256": "0f056b4519c6fe40cdc6da69ecfc89deedcc66b152489aa59a75847c12daa4af",
+  "state_restore_matched": true,
+  "report_is_coordinator_recovery": false,
+  "stop": {
+    "harness_session_id": "82419ea8-4bf8-4fe6-a619-c24785e6359f",
+    "t": "2026-10-26T09:45:39.480Z",
+    "elapsed_s": 246.802,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "I am stopping on the first morning. Helping the hungry house and seeing Yusuf acknowledge it interested me, but I do not want to keep checking a slowly changing ledger tonight. I would return voluntarily another evening to see whether the barley gets in before rain and whether the gift leaves me short. I would leave it running if I could check back later, but I am not asking to keep this test browser open.",
+    "game_clock": "18 July · year 1 · cloud",
+    "engagement": null,
+    "reason": "BORED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "viewport_resizes": [],
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "3cecc66181c0158b6a50916aa3b966dcb11cc89d4aa3c1252b484c77e70a73c7",
+    "lab-play-hold-helpers.ts": "97bb8bfdc278d43e5a7636fcb4d36a5cd5d0cabd30c1e35f087d677adfda3c61",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "native_blob_admission": {
+    "status": "PASS",
+    "fixture_hashes": {
+      "snapshot": "0f056b4519c6fe40cdc6da69ecfc89deedcc66b152489aa59a75847c12daa4af",
+      "sidecar": "b17ce0102e7158f74360eac8d47c57242397c47afc8c965763453b6f11067eed",
+      "helper": "63c208e5aa8e9210347f9c409c2666035c4f0c49cd8dbb5864ddb5bc294f8132",
+      "proof": "2db94615a0130bd7d4945dfb260c73ab736ac7f273ce5fcb54c36a4a61e43862"
+    },
+    "inert_full_equality": true,
+    "loaded_raw_equality": false,
+    "allowed_queue_delta": {
+      "origin": "https://valley.adamwhite.work",
+      "database": "hf-lab-pending",
+      "store": "pieces",
+      "before": 7,
+      "after": 0,
+      "explanation": "Old-player queue discarded by pinned lab-client0.4.11 linked.js:100–106 and55–56 after fresh identity.js:23–29; not new-session journal creation"
+    },
+    "all_checkpoint_comparisons": {
+      "seed": true,
+      "minute": true,
+      "input_history": true,
+      "input_history_sha256": true,
+      "log_sha256": true,
+      "bound": true,
+      "full_state_sha256": true,
+      "full_state_bytes": true,
+      "full_state_seed": true,
+      "full_state_minute": true,
+      "person_count": true,
+      "household_count": true
+    },
+    "actual_identity_hashes": {
+      "player": "ce2670f4f1d918c7c9d1240008b8b89faa5c8341d23c2a40eb9954d2dedd0cd2",
+      "session": "ce8e6d0345b9c8f772dc5c95fba9548d627fa7b01687167ff38f80616b173237",
+      "run": "496726110f4ae541b063385a7863f6f2c01faea2412e360a6696c8c45de9490a"
+    },
+    "post_run_release_match": true,
+    "final_private_receipt_sha256": "5b9ab81551a226ae6a8a74d3b955c70d37cfffb8e60359ab1abcaa9cbf9a4bb7",
+    "launch_private_receipt_sha256": "db475f3f537a3e65007fbb9dc47609e8aa00a78fc401f4d0f9d101eee59fe319",
+    "launch_copy_retained": false,
+    "limit": "Private full inventories omitted; source-explained recording queue discard does not change game/Shelf/consent."
+  },
+  "image_view_evidence": {
+    "source": "Actual private rollout tool events; no image bytes published.",
+    "calls": 1,
+    "returned_image_calls": 1,
+    "times": ["2026-10-26T09:41:44.918Z"]
+  },
+  "report.md_sha256": "e82626aa24f31416551f89181a048aa4ca349e076342c7ec5e34d490bbb6de24",
+  "wall-clock.jsonl_sha256": "2de098e123022da496204b0167f5db22da7d88cb1d145ba73e89199478a38cc9"
+}

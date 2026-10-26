@@ -1,0 +1,117 @@
+{
+  "started": "2026-10-26T09:55:39.630546+00:00",
+  "ended": "2026-10-26T10:11:42.980996+00:00",
+  "backend": "claude",
+  "model": "opus",
+  "effort": "low",
+  "device": "desktop",
+  "floor_minutes": 15,
+  "ceiling_minutes": 25,
+  "release_before": {
+    "app": "0.3.0",
+    "framework": "3.0.0",
+    "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.3.0",
+    "framework": "3.0.0",
+    "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "floor_met": true,
+  "pairing_role": "paired-arm collection",
+  "source": "Coordinator metadata, not player-visible content or production feedback receipt.",
+  "harness_session_id": "ebb5978c-9547-44ab-8b6b-6609e35dc4f5",
+  "same_start_sha256": "0f056b4519c6fe40cdc6da69ecfc89deedcc66b152489aa59a75847c12daa4af",
+  "state_restore_matched": true,
+  "report_is_coordinator_recovery": false,
+  "stop": {
+    "harness_session_id": "ebb5978c-9547-44ab-8b6b-6609e35dc4f5",
+    "t": "2026-10-26T10:10:57.943Z",
+    "elapsed_s": 912.29,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "Stopping at 907 seconds, 18 July, afternoon, with the feedback open. I pressed I’m stopping; it put those words in the note box by itself. I typed nothing and submitted nothing. I got my answers: insist works with a hold and its cost depends on who you press, a visit shows the need but grain is what moves a house, and the cutting may beat the rain. What is left tonight is fifteen to thirty more minutes of watching 18 July. I would come back another evening to see whether the field is cut and what Zehra meant. I would not leave it running. The browser is no longer needed.",
+    "game_clock": null,
+    "engagement": null,
+    "reason": "BORED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "viewport_resizes": [
+    {
+      "elapsed_s": 315.614,
+      "input": {
+        "width": 360,
+        "height": 690
+      }
+    },
+    {
+      "elapsed_s": 325.194,
+      "input": {
+        "width": 1280,
+        "height": 800
+      }
+    }
+  ],
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "3cecc66181c0158b6a50916aa3b966dcb11cc89d4aa3c1252b484c77e70a73c7",
+    "lab-play-hold-helpers.ts": "97bb8bfdc278d43e5a7636fcb4d36a5cd5d0cabd30c1e35f087d677adfda3c61",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "native_blob_admission": {
+    "status": "PASS",
+    "fixture_hashes": {
+      "snapshot": "0f056b4519c6fe40cdc6da69ecfc89deedcc66b152489aa59a75847c12daa4af",
+      "sidecar": "b17ce0102e7158f74360eac8d47c57242397c47afc8c965763453b6f11067eed",
+      "helper": "63c208e5aa8e9210347f9c409c2666035c4f0c49cd8dbb5864ddb5bc294f8132",
+      "proof": "2db94615a0130bd7d4945dfb260c73ab736ac7f273ce5fcb54c36a4a61e43862"
+    },
+    "inert_full_equality": true,
+    "loaded_raw_equality": false,
+    "allowed_queue_delta": {
+      "origin": "https://valley.adamwhite.work",
+      "database": "hf-lab-pending",
+      "store": "pieces",
+      "before": 7,
+      "after": 0,
+      "explanation": "Old-player queue discarded by pinned lab-client0.4.11 linked.js:100–106 and55–56 after fresh identity.js:23–29; not new-session journal creation"
+    },
+    "all_checkpoint_comparisons": {
+      "seed": true,
+      "minute": true,
+      "input_history": true,
+      "input_history_sha256": true,
+      "log_sha256": true,
+      "bound": true,
+      "full_state_sha256": true,
+      "full_state_bytes": true,
+      "full_state_seed": true,
+      "full_state_minute": true,
+      "person_count": true,
+      "household_count": true
+    },
+    "actual_identity_hashes": {
+      "player": "f9d45d2aa03b43db27e7a9f09d6c2008296efded69dcfff49d48cf1508d46f20",
+      "session": "5ab98ea2ac36b941cd02d8feaab69c7b049fec360f29f3e08a26253d997ce7fd",
+      "run": "5531952488f2aec84b76ff10795cd8a7f027b015ce51f5097d17158e43a12ef4"
+    },
+    "post_run_release_match": true,
+    "final_private_receipt_sha256": "23e966e5e95f61cc42e15454c9362632e916f9086a22a8ccdc064e7d62a60d36",
+    "launch_private_receipt_sha256": "e7d9eadd75b209674d753c5af6fda6c423381c60bc59827cbfb5cd5c3882d4a6",
+    "launch_copy_retained": false,
+    "limit": "Private full inventories omitted; source-explained recording queue discard does not change game/Shelf/consent."
+  },
+  "image_view_evidence": {
+    "source": "Actual private rollout tool events; no image bytes published.",
+    "calls": 3,
+    "returned_image_calls": 3,
+    "times": [null, null, null]
+  },
+  "report.md_sha256": "7bbc86db8b4d5c084678a53676f5e54e495df01fec785084484c62bdde0006fc",
+  "wall-clock.jsonl_sha256": "68cded4cc32edf13ebe6298d71d4fe606a887e775c6a91a6744de3f5ed925cf9"
+}

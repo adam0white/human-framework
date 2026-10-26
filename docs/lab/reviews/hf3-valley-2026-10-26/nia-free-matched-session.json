@@ -1,0 +1,102 @@
+{
+  "started": "2026-10-26T07:47:12.391105+00:00",
+  "ended": "2026-10-26T07:51:54.798197+00:00",
+  "backend": "claude",
+  "model": "opus",
+  "effort": "low",
+  "device": "desktop",
+  "floor_minutes": 0,
+  "ceiling_minutes": 25,
+  "release_before": {
+    "app": "0.3.0",
+    "framework": "3.0.0",
+    "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+    "dirty": false
+  },
+  "release_after": {
+    "app": "0.3.0",
+    "framework": "3.0.0",
+    "commit": "dab2d1eceb56df07e6b636237ce4d9fda68fd3ee",
+    "dirty": false
+  },
+  "status": "report-ready",
+  "floor_met": true,
+  "pairing_role": "paired-arm collection",
+  "source": "Coordinator metadata, not player-visible content or production feedback receipt.",
+  "harness_session_id": "b8c8c707-9a9e-45bf-b676-43d66c62e055",
+  "same_start_sha256": "0f056b4519c6fe40cdc6da69ecfc89deedcc66b152489aa59a75847c12daa4af",
+  "state_restore_matched": true,
+  "report_is_coordinator_recovery": false,
+  "stop": {
+    "harness_session_id": "b8c8c707-9a9e-45bf-b676-43d66c62e055",
+    "t": "2026-10-26T07:51:20.474Z",
+    "elapsed_s": 241.069,
+    "kind": "stop",
+    "op": "log",
+    "input": null,
+    "reaction": "Stopping at the Çoban house, still the morning of 18 July. Yusuf answering my grain was the one thing that grabbed me. Everything else was waiting for a counter, and I never got to say a word to anyone. I would close it, not leave it running. I would not return voluntarily tonight; maybe another evening if I knew the day actually moves and I can talk back at a fire. Feedback: I'm stopping pressed locally, it put those words in the note box by itself; I typed nothing and did not submit.",
+    "game_clock": "18 July · year 1",
+    "engagement": null,
+    "reason": "BORED",
+    "op_ms": 0,
+    "error": null,
+    "requested_control_present_before": null
+  },
+  "viewport_resizes": [],
+  "instrument_sha256": {
+    "lab-play-no-post.ts": "b625da83c25dc634e33a3c1cc2fd1ec3016cc8b3abe671323882d4b1f2828404",
+    "lab-play-helpers.ts": "f92ffe8cdccb93c3a77d3e41b3d3bd203cd22aa7155b230364c70551a75b9aaa",
+    "lab-play-text.ts": "5d3c368aece6451807226dafb1296f58861cef6fcbedfe0e7d406f165066125b"
+  },
+  "native_blob_admission": {
+    "status": "PASS",
+    "fixture_hashes": {
+      "snapshot": "0f056b4519c6fe40cdc6da69ecfc89deedcc66b152489aa59a75847c12daa4af",
+      "sidecar": "b17ce0102e7158f74360eac8d47c57242397c47afc8c965763453b6f11067eed",
+      "helper": "63c208e5aa8e9210347f9c409c2666035c4f0c49cd8dbb5864ddb5bc294f8132",
+      "proof": "2db94615a0130bd7d4945dfb260c73ab736ac7f273ce5fcb54c36a4a61e43862"
+    },
+    "inert_full_equality": true,
+    "loaded_raw_equality": false,
+    "allowed_queue_delta": {
+      "origin": "https://valley.adamwhite.work",
+      "database": "hf-lab-pending",
+      "store": "pieces",
+      "before": 7,
+      "after": 0,
+      "explanation": "Old-player queue discarded by pinned lab-client0.4.11 linked.js:100–106 and55–56 after fresh identity.js:23–29; not new-session journal creation"
+    },
+    "all_checkpoint_comparisons": {
+      "seed": true,
+      "minute": true,
+      "input_history": true,
+      "input_history_sha256": true,
+      "log_sha256": true,
+      "bound": true,
+      "full_state_sha256": true,
+      "full_state_bytes": true,
+      "full_state_seed": true,
+      "full_state_minute": true,
+      "person_count": true,
+      "household_count": true
+    },
+    "actual_identity_hashes": {
+      "player": "98278266489b4dae9ea92fc2eb34ec0ced4fc6f3e8c7f36035e4d859bf2e5ed6",
+      "session": "ed2fc38d36cd688a18ecb03ad074122ebb32a67b7b0a49e8eadcebea71b8ef1f",
+      "run": "464c3170d39fd7a98217cc5551e27f22d564b576a6103139db94a23661173dec"
+    },
+    "post_run_release_match": true,
+    "final_private_receipt_sha256": "002ff41c53d1d1dc3030fb03d98ae073772d740e521dd12043f4228010b1d42f",
+    "launch_private_receipt_sha256": "fec678a567e1b3ff4a68d122228b329d1359cdbe20a289fafd7788975078a62f",
+    "launch_copy_retained": true,
+    "limit": "Private full inventories omitted; source-explained recording queue discard does not change game/Shelf/consent."
+  },
+  "image_view_evidence": {
+    "source": "Actual private rollout tool events; no image bytes published.",
+    "calls": 1,
+    "returned_image_calls": 1,
+    "times": [null]
+  },
+  "report.md_sha256": "de3ee3ae4399e1b6f9712c09fcbed3606d0a9d5b41f333db7adc2637b5778733",
+  "wall-clock.jsonl_sha256": "ffbe0b60f445b9f0d4b4f39319ae882c7fc666af0a6f93787624305d72035700"
+}

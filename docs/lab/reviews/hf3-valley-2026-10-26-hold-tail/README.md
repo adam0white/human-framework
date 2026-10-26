@@ -1,0 +1,34 @@
+# Valley R1 hold-instrument tail and disclosed replacement pairs
+
+## Corrected matched return collection
+
+One logical R1. Original Nia and Rosa pairs remain; these12identities supply24arms, completing same14identity panel after technical recovery. No new cold identities; Irene and Malik entered the original cold slots with no prior HF exposure. New bounded native keyboard hold gesture is an instrument change; no gamebuild/difficultychange. Original Maya and Jonas free are qualitative, Emre old partials incomplete. Three fresh replacement pairs retain one declared own selected partial/return history per identity.
+
+Collection reports are complete. The separate desktop control and blind coding are retained with their own limits. Fixes, same-tester retest and acceptance remain pending. No game is finished. Original9arms and every report/raw/brief remain untouched. Earlier technical-return preparation was not dispatched. This dataset replaces its two pairs plus Jonas and completes nine untouched identities, all same logicalR1.
+
+The identical native saved Valley world and full Shelf/consent are restored with the exact reviewed Blob transport. Full inert equality passes. After ordinary title scripts start, raw all-storage equality is false solely because seven old-player recording-queue pieces are discarded. Full game state, input history, time, Shelf and consent remain equal. Actual player/session/run identity hashes and local UUIDs are distinct. Each session passes this gate before its model starts. No production feedback receipt is claimed. No production feedback was submitted. Private storage state, full model rollouts and private tool streams are omitted. Generic key hold syntax added only to future sessions; frozen persona and own diary rules unchanged. Keyboard hold on phone is labelled keyboard, not touch fidelity. Rosa forced reading probe remains in original dataset. Tool-level image viewing is unverified where no full trace was retained; exec JSONL omits image calls, so absence there is inconclusive.
+
+- [maya-free-matched](maya-free-matched.md), [untouched words](maya-free-matched-verbatim.md), [evidence](maya-free-matched-session.json): paired-arm collection; 296.165 seconds, BORED.
+- [maya-continued-matched](maya-continued-matched.md), [untouched words](maya-continued-matched-verbatim.md), [evidence](maya-continued-matched-session.json): paired-arm collection; 919.258 seconds, BORED.
+- [emre-free-matched](emre-free-matched.md), [untouched words](emre-free-matched-verbatim.md), [evidence](emre-free-matched-session.json): paired-arm collection; 246.802 seconds, BORED.
+- [emre-continued-matched](emre-continued-matched.md), [untouched words](emre-continued-matched-verbatim.md), [evidence](emre-continued-matched-session.json): paired-arm collection; 913.808 seconds, BORED.
+- [jonas-free-matched](jonas-free-matched.md), [untouched words](jonas-free-matched-verbatim.md), [evidence](jonas-free-matched-session.json): paired-arm collection; 425.721 seconds, BORED.
+- [jonas-continued-matched](jonas-continued-matched.md), [untouched words](jonas-continued-matched-verbatim.md), [evidence](jonas-continued-matched-session.json): paired-arm collection; 912.29 seconds, BORED.
+- [aisha-free-matched](aisha-free-matched.md), [untouched words](aisha-free-matched-verbatim.md), [evidence](aisha-free-matched-session.json): paired-arm collection; 220.327 seconds, CONFUSED.
+- [aisha-continued-matched](aisha-continued-matched.md), [untouched words](aisha-continued-matched-verbatim.md), [evidence](aisha-continued-matched-session.json): paired-arm collection; 928.418 seconds, FRUSTRATED.
+- [diego-free-matched](diego-free-matched.md), [untouched words](diego-free-matched-verbatim.md), [evidence](diego-free-matched-session.json): paired-arm collection; 518.996 seconds, BORED.
+- [diego-continued-matched](diego-continued-matched.md), [untouched words](diego-continued-matched-verbatim.md), [evidence](diego-continued-matched-session.json): paired-arm collection; 914.204 seconds, BORED.
+- [mei-free-matched](mei-free-matched.md), [untouched words](mei-free-matched-verbatim.md), [evidence](mei-free-matched-session.json): paired-arm collection; 262.351 seconds, BORED.
+- [mei-continued-matched](mei-continued-matched.md), [untouched words](mei-continued-matched-verbatim.md), [evidence](mei-continued-matched-session.json): paired-arm collection; 924.134 seconds, BORED.
+- [samir-free-matched](samir-free-matched.md), [untouched words](samir-free-matched-verbatim.md), [evidence](samir-free-matched-session.json): paired-arm collection; 956.123 seconds, CONFUSED.
+- [samir-continued-matched](samir-continued-matched.md), [untouched words](samir-continued-matched-verbatim.md), [evidence](samir-continued-matched-session.json): paired-arm collection; 941.187 seconds, BORED.
+- [tessa-free-matched](tessa-free-matched.md), [untouched words](tessa-free-matched-verbatim.md), [evidence](tessa-free-matched-session.json): paired-arm collection; 140.261 seconds, CONFUSED.
+- [tessa-continued-matched](tessa-continued-matched.md), [untouched words](tessa-continued-matched-verbatim.md), [evidence](tessa-continued-matched-session.json): paired-arm collection; 917.086 seconds, BORED.
+- [pavel-free-matched](pavel-free-matched.md), [untouched words](pavel-free-matched-verbatim.md), [evidence](pavel-free-matched-session.json): paired-arm collection; 572.201 seconds, BORED.
+- [pavel-continued-matched](pavel-continued-matched.md), [untouched words](pavel-continued-matched-verbatim.md), [evidence](pavel-continued-matched-session.json): paired-arm collection; 935.834 seconds, CONFUSED.
+- [leila-free-matched](leila-free-matched.md), [untouched words](leila-free-matched-verbatim.md), [evidence](leila-free-matched-session.json): paired-arm collection; 232.438 seconds, BORED.
+- [leila-continued-matched](leila-continued-matched.md), [untouched words](leila-continued-matched-verbatim.md), [evidence](leila-continued-matched-session.json): paired-arm collection; 923.434 seconds, BORED.
+- [irene-free-matched](irene-free-matched.md), [untouched words](irene-free-matched-verbatim.md), [evidence](irene-free-matched-session.json): paired-arm collection; 615.136 seconds, BORED.
+- [irene-continued-matched](irene-continued-matched.md), [untouched words](irene-continued-matched-verbatim.md), [evidence](irene-continued-matched-session.json): paired-arm collection; 989.062 seconds, BORED.
+- [malik-free-matched](malik-free-matched.md), [untouched words](malik-free-matched-verbatim.md), [evidence](malik-free-matched-session.json): paired-arm collection; 144.222 seconds, CONFUSED.
+- [malik-continued-matched](malik-continued-matched.md), [untouched words](malik-continued-matched-verbatim.md), [evidence](malik-continued-matched-session.json): paired-arm collection; 926.65 seconds, BORED.
