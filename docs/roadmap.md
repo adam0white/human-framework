@@ -135,6 +135,8 @@ Each game doc ends with its deferred list; the games are graduated and none is s
 - _The Day You Say Nothing_ (Game 2): [voice.md, Deferred](games/voice.md#deferred).
 - _The Night Watch_ (Game 3): [watch.md §12](games/watch.md#12-after-graduation-deferred-features), targets T1 (first pass if resumed), T2 (needs an HF release first: Q50, larger cast), T3 (polish). It carries the H2 game rows P8, P10, S7, Q49, Q50, Q51.
 
+**Next set of games: classics rebuilt with HF (owner, 2026-10-26, [OD](owner-directions-2026-10-18.md#2026-10-26--next-games-are-classics-with-hf-baked-in-adam-verbatim)).** After HF 4.x folds in the planned faculties and most games are migrated to it, the next new games are not new ideas: they are replicas of classic games or known game types, rebuilt with HF people inside. No new concepts are drafted before then. Target: propose a shortlist when 4.x is in place and most games run on it (earliest after the 2026-11-03 owner review).
+
 Site-wide, from the R2 reviews (all unscheduled):
 - R2 V5: the framework is bundled once per worker; serve the hindsight job from the colony worker.
 - R2 V6: worker download waits for the entry JS; a small Vite plugin for `<link rel=prefetch>`.
