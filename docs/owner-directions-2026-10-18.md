@@ -272,3 +272,7 @@ Coordinator reading, acted on now:
 - **Death is allowed in games again** where the design needs it. The coordinator's earlier "no canonical death" ruling for Smoke on the Stairs is withdrawn.
 - **Alder Quay gets a plain name** under the plain-English rule, applied in each game at its next build after any open playtest round closes.
 - **Limits review.** The lab's standing limits (rules, rulings and habits) are audited for which ones hold the games and HF back, with a keep, change or drop recommendation for each.
+
+Sent with it (Adam, verbatim): "I think as HF moves major versions, we can shed some rules and clean up agents.md and other files, too."
+
+Coordinator reading: at 4.0, AGENTS.md and the other instruction files are slimmed. Rules made obsolete by the removal of opt-ins and legacy continuation are dropped, history moves to `docs/history.md`, and a short set of binding rules stays.
