@@ -1,8 +1,8 @@
 # Lab client
 
-This README describes the client 0.4.12 candidate. Client distribution uses immutable GitHub release artifacts, not npm publication. It depends on exact HF 3.0.0. Use the [SDK adoption guide](../../docs/lab/navigation-journal-adoption-2026-10-25.md) and verify the [release digests](../../docs/releases.md#lab-package-artifacts--2026-10-25).
+This README describes the client 0.4.13 candidate. Client distribution uses immutable GitHub release artifacts, not npm publication. It depends on exact HF 3.0.0. Use the [SDK adoption guide](../../docs/lab/navigation-journal-adoption-2026-10-25.md) and verify the [release digests](../../docs/releases.md#lab-package-artifacts--2026-10-25).
 
-Workspace candidate version: **0.4.12**. This candidate adds exact-origin admission for smoke, word, child, days and lefthand. Recording off and notice fallback create no player ID. The **0.4.11** [GitHub artifact](https://github.com/adam0white/human-framework/releases/tag/lab-client-v0.4.11) is published from separate source `569bfeed`, with exact CI 40241110596. Its source is integrated into this 3.2 candidate; live host adoption still needs deployment. See [SDK adoption](../../docs/lab/navigation-journal-adoption-2026-10-25.md) before using its opt-in Feedback choices.
+Workspace candidate version: **0.4.13**. This candidate adds exact-origin admission for smoke, word, child, days and lefthand. Recording off and notice fallback create no player ID. The **0.4.11** [GitHub artifact](https://github.com/adam0white/human-framework/releases/tag/lab-client-v0.4.11) is published from separate source `569bfeed`, with exact CI 40241110596. Its source is integrated into this 3.2 candidate; live host adoption still needs deployment. See [SDK adoption](../../docs/lab/navigation-journal-adoption-2026-10-25.md) before using its opt-in Feedback choices.
 
 Default-on, pseudonymous play recording for the HF game lab. The visible notice and menu toggle come from `@adam0white/lab-kit`. Games supply full replay exports and actual saves. Screens remain game-owned.
 
@@ -126,3 +126,11 @@ synthetic session cannot safely mark linked records as agent evidence through th
 API. Do not submit synthetic labels or runs to production. A separately reviewed
 client/Worker/index attribution contract is required first; name and note text are
 not substitutes.
+
+### Self-declared agent runs (source candidate)
+
+Use `createLab({ game: 'pass', runSource: 'agent' })` for an agent client. Browser agents can instead open a destination with the exact query parameter `labRunSource=agent`. Both select the same optional linked envelope field, `runSource: 'agent'`, once when the client is created. Mark each destination explicitly; navigation does not propagate this marker. No marker is stored as a preference. Reloading a marked URL selects it again; a future unmarked URL does not.
+
+The marker covers linked events, runs, saves, logs and notes, including each snapshot chunk. Journals and retry pieces keep their original source; missing legacy fields stay absent. Absence means **UNATTRIBUTED**, never verified human. This is a self-declaration, not authentication. The client does not infer source from webdriver, user agent, names, fictional cast, identity or browsing history. Invalid explicit typed-option values are refused at runtime; unrelated URL values do not declare a source.
+
+Source does not turn Recording on, override DNT/GPC, share play or submit feedback. Agents use the ordinary Recording controls. Explicit unlinked legacy uploads and note-only feedback are outside this linked marker contract. Source is transport metadata, never part of native replay or portable-person identity. The server retains it in canonical linked records, object metadata and the private linked index. Aggregate event projections omit linkage/source and cannot establish human origin. This source candidate needs new released artifacts, host adoption and backend deployment before delivery can be claimed; client 0.4.12 and kit 0.5.14 remain immutable.

@@ -1,4 +1,5 @@
 import { gunzipSync } from 'node:zlib';
+import { IDBFactory } from 'fake-indexeddb';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import * as identity from '../src/identity.ts';
 import {
@@ -493,3 +494,74 @@ it.each([{ doNotTrack: '1' }, { globalPrivacyControl: true }])(
     expect(lab.telemetryOn).toBe(false);
   },
 );
+
+// One linked source control exercises the actual public client and transport.
+it('captures agent source on every linked kind without enabling recording', async () => {
+  vi.stubGlobal('location', { hostname: 'human.adamwhite.work', search: '?labRunSource=agent' });
+  const lab = createLab({ game: 'pass', build: { a: 'source-control' } });
+  lab.log('game', 'source control');
+  lab.flush();
+  lab.captureSave({ state: 'x'.repeat(LINKED_LIMITS.chunkChars + 1) });
+  await lab.sendRun({ seed: 1 });
+  await lab.sendFeedback('synthetic test fixture');
+  await vi.waitFor(() => expect(new Set(envelopes.map((e) => e.kind)).size).toBe(5));
+  expect(envelopes.every((e) => e.runSource === 'agent')).toBe(true);
+  expect(envelopes.filter((e) => e.kind === 'save')).toHaveLength(2);
+  expect(envelopes.every((e) => e.game === 'pass' && e.player === lab.playerId)).toBe(true);
+  lab.setTelemetryOff(true);
+  const count = envelopes.length;
+  const marked = createLab({ game: 'pass', build: {}, runSource: 'agent' });
+  expect(marked.telemetryOn).toBe(false);
+  marked.captureSave({ seed: 2 });
+  await Promise.resolve();
+  expect(envelopes).toHaveLength(count);
+  values.clear();
+  vi.stubGlobal('navigator', { globalPrivacyControl: true });
+  expect(createLab({ game: 'pass', build: {}, runSource: 'agent' }).telemetryOn).toBe(false);
+});
+
+it('retries original pending source after reload without relabeling legacy pieces', async () => {
+  vi.stubGlobal('indexedDB', new IDBFactory());
+  let source: 'agent' | undefined;
+  let status = 503;
+  const attempts: { text: string; value: Record<string, unknown> }[] = [];
+  vi.stubGlobal('fetch', async (_url: string, init: RequestInit) => {
+    const text = gunzipSync(new Uint8Array(await (init.body as Blob).arrayBuffer())).toString();
+    attempts.push({ text, value: JSON.parse(text) });
+    return new Response(null, { status });
+  });
+  const make = () =>
+    linkedTransport({
+      game: 'pass',
+      endpoint: '/lab/api',
+      runSource: source,
+      link: () => ({ player: id, session: id, runId: id }),
+      build: () => ({}),
+      override: () => false,
+      enabled: () => true,
+    });
+  const legacy = make();
+  await legacy.send('run', { state: 'x'.repeat(LINKED_LIMITS.chunkChars + 1) });
+  await vi.waitFor(() => expect(attempts.length).toBe(1));
+  // Wait for the failed request to persist its backoff before opening another client.
+  await new Promise((resolve) => setTimeout(resolve, 30));
+  source = 'agent';
+  const marked = make();
+  await marked.send('note', { note: 'pending source fixture' }, undefined, undefined, true).catch(() => {});
+  await vi.waitFor(() => expect(attempts.length).toBe(2));
+  const failed = attempts.map((a) => a.text);
+  status = 200;
+  source = undefined;
+  vi.spyOn(Date, 'now').mockReturnValue(Date.now() + 2 * 3600000);
+  const recovered = make();
+  await recovered.drain();
+  expect(attempts.slice(2).map((a) => a.text)).toEqual(expect.arrayContaining(failed));
+  const delivered = attempts.slice(2).map((a) => a.value);
+  expect(delivered.filter((r) => r.kind === 'run')).toHaveLength(2);
+  expect(delivered.filter((r) => r.kind === 'run').every((r) => !Object.hasOwn(r, 'runSource'))).toBe(true);
+  expect(delivered.find((r) => r.kind === 'note')?.runSource).toBe('agent');
+  await recovered.send('run', { state: 'x'.repeat(LINKED_LIMITS.chunkChars + 1) });
+  // Same legacy payload remains deduplicated after recovery.
+  await recovered.drain();
+  expect(attempts).toHaveLength(5);
+});

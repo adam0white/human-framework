@@ -3,6 +3,7 @@
  * stable content id, so retries replace no data and create no second object. IndexedDB keeps pending
  * pieces across reloads. Covers delivery, not game exports or consent to character analysis.
  */
+import type { RunSource } from './run-source.ts';
 import { type Build, gzip } from './util.ts';
 
 export const LINKED_LIMITS = {
@@ -50,6 +51,7 @@ function database(): Promise<IDBDatabase | null> {
 
 export function linkedTransport(options: {
   game: string;
+  runSource?: RunSource;
   endpoint: string;
   link: () => Link | null;
   build: () => Build;
@@ -230,8 +232,11 @@ export function linkedTransport(options: {
     feedbackName?: string,
     confirm = false,
     requireDurable = false,
-    capturedMeta?: { build: Build; privacyOverride: boolean; at: number },
+    capturedMeta?: { build: Build; privacyOverride: boolean; at: number; runSource?: RunSource },
   ): Promise<string> {
+    // An old journal with absent source stays unattributed on a marked page.
+    const runSource = capturedMeta ? capturedMeta.runSource : options.runSource;
+    const source = runSource === 'agent' ? { runSource } : {};
     await ready;
     const epoch = generation;
     const link = captured ?? options.link();
@@ -241,7 +246,7 @@ export function linkedTransport(options: {
     if (text === undefined || new TextEncoder().encode(text).byteLength > LINKED_LIMITS.total)
       throw new Error('This snapshot exceeds the 16 MiB recording limit.');
     const upload = await hash(
-      JSON.stringify({ ...link, game: options.game, kind, text, ...(name ? { name } : {}) }),
+      JSON.stringify({ ...link, ...source, game: options.game, kind, text, ...(name ? { name } : {}) }),
     );
     const pieces: unknown[] =
       kind === 'run' || kind === 'save'
@@ -266,6 +271,7 @@ export function linkedTransport(options: {
         v: 2,
         id,
         ...link,
+        ...source,
         game: options.game,
         kind,
         at,

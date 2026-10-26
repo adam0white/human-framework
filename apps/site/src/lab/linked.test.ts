@@ -240,3 +240,20 @@ it('preserves a bounded optional name only on feedback records', () => {
     record: expect.not.objectContaining({ name: 'Sam' }),
   });
 });
+
+it('retains self-declared agent source in canonical records and private metadata', async () => {
+  const { store, post } = setup();
+  const marked = envelope({ runSource: 'agent' });
+  expect((await post(marked)).status).toBe(200);
+  const stored = required(store.get(linkedKey(marked as Parameters<typeof linkedKey>[0])));
+  expect(JSON.parse(gunzipSync(stored.bytes).toString()).runSource).toBe('agent');
+  expect(stored.customMetadata?.runSource).toBe('agent');
+  const index = [...store.entries()].find(([key]) => /^private\/linked-index\/.*\.json$/.test(key));
+  expect(new TextDecoder().decode(required(index)[1].bytes)).toContain('"runSource":"agent"');
+  expect((await post(marked)).status).toBe(200);
+  const legacy = parseLinked(JSON.stringify(envelope()), Date.now());
+  expect(legacy.ok).toBe(true);
+  if (legacy.ok) expect(legacy.record).not.toHaveProperty('runSource');
+  expect(parseLinked(JSON.stringify(envelope({ runSource: 'human' })), Date.now()).ok).toBe(false);
+  expect(parseLinked(JSON.stringify(envelope({ runSource: null })), Date.now()).ok).toBe(false);
+});

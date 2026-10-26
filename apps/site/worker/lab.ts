@@ -486,6 +486,7 @@ async function postLinked(req: Request, env: Env, origin: string | null): Promis
       httpMetadata: { contentType: 'application/gzip' },
       customMetadata: {
         digest,
+        ...(record.runSource ? { runSource: record.runSource } : {}),
         indexDay: day,
         id: record.id,
         player: record.player,

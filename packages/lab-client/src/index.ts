@@ -7,6 +7,10 @@ export { claimLabNotice } from './notice.ts';
  * suppress automatic linked data unless the player explicitly overrides them for this game.
  */
 
+import { type RunSource, resolveRunSource } from './run-source.ts';
+
+export type { RunSource } from './run-source.ts';
+
 import { acceptGameNavigation } from './navigation.ts';
 
 export { acceptGameNavigation, gameNavigation } from './navigation.ts';
@@ -58,10 +62,13 @@ type JournalEntry = {
   link: { player: string; session: string; runId: string };
   build: Build;
   override: boolean;
+  runSource?: RunSource;
   at: number;
 };
 
 export type LabOptions = {
+  /** Self-declared agent source; absence is unattributed, never verified human. */
+  runSource?: RunSource;
   /** game id, the subdomain: 'pass', 'glance', 'murmur' */
   game: string;
   /** build info. Default: read from this site's /release.json (commit, framework, app). */
@@ -187,6 +194,7 @@ const setItem = (s: Storage | undefined, k: string, v: string | null) => {
 };
 
 export function createLab(options: LabOptions): Lab {
+  const runSource = resolveRunSource(options.runSource);
   acceptGameNavigation();
   const game = options.game;
   const endpoint = (options.endpoint ?? DEFAULT_ENDPOINT).replace(/\/$/, '');
@@ -269,6 +277,7 @@ export function createLab(options: LabOptions): Lab {
   transport = linkedTransport({
     game,
     endpoint,
+    runSource,
     build: () => build,
     override: () => override,
     enabled: () => !stopped(),
@@ -307,6 +316,7 @@ export function createLab(options: LabOptions): Lab {
     Number.isFinite(entry.at) &&
     entry.at <= Date.now() + 10000 &&
     typeof entry.override === 'boolean' &&
+    (entry.runSource === undefined || entry.runSource === 'agent') &&
     !!entry.build &&
     typeof entry.build === 'object' &&
     !Array.isArray(entry.build) &&
@@ -381,6 +391,7 @@ export function createLab(options: LabOptions): Lab {
       await transport.send(entry.kind, entry.data, entry.link, undefined, false, true, {
         build: entry.build,
         privacyOverride: entry.override,
+        runSource: entry.runSource,
         at: entry.at,
       });
       if (epoch === generation && !stopped() && player === entry.link.player) removeJournal(entry.id);
@@ -441,6 +452,7 @@ export function createLab(options: LabOptions): Lab {
           link: { ...base, runId: id },
           build: capturedBuild,
           override: capturedOverride,
+          ...(runSource ? { runSource } : {}),
           at: capturedAt,
         });
     }
@@ -454,6 +466,7 @@ export function createLab(options: LabOptions): Lab {
         link: { ...base, runId: id },
         build: capturedBuild,
         override: capturedOverride,
+        ...(runSource ? { runSource } : {}),
         at: capturedAt,
       });
     }
@@ -476,6 +489,7 @@ export function createLab(options: LabOptions): Lab {
             await transport.send(entry.kind, entry.data, entry.link, undefined, false, false, {
               build: entry.build,
               privacyOverride: entry.override,
+              runSource: entry.runSource,
               at: entry.at,
             });
           }

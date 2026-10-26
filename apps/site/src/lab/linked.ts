@@ -25,6 +25,7 @@ export type LinkedEnvelope = {
   data: unknown;
   name?: string;
   privacyOverride?: true;
+  runSource?: 'agent';
 };
 export type LinkedMeta = Omit<LinkedEnvelope, 'v' | 'data' | 'privacyOverride'> & {
   key: string;
@@ -51,6 +52,7 @@ export function parseLinked(
   }
   if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return fail('not an object');
   const r = raw as Record<string, unknown>;
+  if (Object.hasOwn(r, 'runSource') && r.runSource !== 'agent') return fail('bad runSource');
   if (r.v !== 2) return fail('unknown version');
   for (const field of ['id', 'player', 'session', 'runId'])
     if (typeof r[field] !== 'string' || !HEX.test(r[field])) return fail(`bad ${field}`);
@@ -132,6 +134,7 @@ export function parseLinked(
       at: r.at,
       build,
       data,
+      ...(r.runSource === 'agent' ? { runSource: 'agent' } : {}),
       ...(name ? { name } : {}),
       ...(r.privacyOverride === true ? { privacyOverride: true } : {}),
     },

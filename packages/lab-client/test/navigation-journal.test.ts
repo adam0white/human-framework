@@ -256,3 +256,20 @@ it('retries rejected milestone, screen and end markers after journal space retur
     { timeout: 5000 },
   );
 });
+
+it('preserves captured agent and legacy source across journal reload', async () => {
+  const h = harness([false, false, true]);
+  const first = createLab({ game: 'pass', build: {}, runSource: 'agent' });
+  first.milestone('agent journal');
+  first.flush();
+  const second = createLab({ game: 'pass', build: {} });
+  second.milestone('legacy journal');
+  second.flush();
+  createLab({ game: 'pass', build: {}, runSource: 'agent' });
+  await vi.waitFor(() => expect(h.received.length).toBe(2));
+  const records = h.received as Record<string, unknown>[];
+  expect(records.find((r) => JSON.stringify(r.data).includes('agent journal'))?.runSource).toBe('agent');
+  expect(records.find((r) => JSON.stringify(r.data).includes('legacy journal'))).not.toHaveProperty(
+    'runSource',
+  );
+});
