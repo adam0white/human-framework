@@ -785,7 +785,7 @@ A player can discover the collection when Maryam offers a puzzle during a wait o
 
 ### 32. Yusuf
 
-**Identity:** `hf.cast.yusuf.well`, revision 1. Age 34. **Place:** Well settlement and lower-valley Çoban household in successive chapters. **Work:** builder; part-time flock and household work. **Family:** Maryam’s son; Tariq’s father; Zehra is his wife. The Child addition below promotes the existing Zehra family reference and names their daughter Elif. Other younger children remain background; Tariq's maternity is not established here.
+**Identity:** `hf.cast.yusuf.well`, revision 1. Age 34. **Place:** Well settlement and lower-valley Çoban household in successive chapters. **Work:** builder; part-time flock and household work. **Family:** Maryam’s son; Tariq’s father; Zehra is his wife and Tariq's stepmother. The Child addition below promotes the existing Zehra family reference and names their daughter Elif. Other younger children and Tariq's birth mother remain background with no new life history assigned.
 
 **HF profile:** honesty .75; emotionality .40; extraversion .50; agreeableness .60; conscientiousness .85; openness .50. These are authored opening priors, not measurements. Complete missing traits and values from the single canonical baseline below; never use a host lottery or rebuild continuing state from this summary.
 
@@ -1129,7 +1129,7 @@ The first Child slice records fresh play and its deterministic current-version e
 
 ### 46. Zehra
 
-**Identity:** `hf.cast.zehra.child`, revision 1. Age 31 when Elif is 3. **Place:** Well settlement and the lower-valley Çoban household. **Work:** household provisioning, field work and shared water collection. **Family:** Wife of `hf.cast.yusuf.well`; Elif's mother; Maryam's daughter-in-law. Tariq is Yusuf's son; this addition does not assign his maternity.
+**Identity:** `hf.cast.zehra.child`, revision 1. Age 31 when Elif is 3. **Place:** Well settlement and the lower-valley Çoban household. **Work:** household provisioning, field work and shared water collection. **Family:** Wife of `hf.cast.yusuf.well`; Elif's mother; Maryam's daughter-in-law; Tariq's stepmother. Tariq's birth mother remains background with no new life history assigned.
 
 **HF profile:** Start all six trait keys and all ten value keys at exactly `0.5`, with no overrides. These are authored opening priors, not measurements or a claim that she lacks distinct preferences. Pin the complete profile in the host and replay. A continuing branch retains its actual supported state.
 
