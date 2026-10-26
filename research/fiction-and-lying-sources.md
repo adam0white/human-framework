@@ -1,0 +1,39 @@
+# Fiction, acting and the held lying norm
+
+Prepared 2026-10-26. This records named sources and a pragmatic modeling decision under AGENTS.md. It is not a ruling or a qualified scholarly verdict. It supplements the `lying` references in [norm-sources.md](norm-sources.md). No norm, Person or engine change is made here.
+
+## 1. Source record
+
+The official pages below were retrieved and read on 2026-10-26. Each is primary evidence for its publisher's words, not independent verification of the earlier works it quotes. Classical works and transmitted texts mentioned through a page remain **cited via** that page. No classical original was read. Arabic and Turkish summaries below are this author's renderings.
+
+| Source | What the page supports | Limit |
+|---|---|---|
+| [Egypt, Dar al-Ifta, Ali Gomaa, fatwa 547, 2011-09-04](https://www.dar-alifta.org/ar/fatwa/details/11459/حكم-تمثيل-الأنبياء-والعشرة-المبشرين-بالجنة-وآل-البيت-في-الأعمال-الدرامية) | Defines acting to include imagined events and states a permissive starting position. Portrayals of other Companions require respectful, accurate treatment and a noble purpose. It prohibits portraying prophets and specified sacred people, including the Ten promised Paradise, the Mothers of the Believers, the Prophet's daughters and Ahl al-Bayt. | Conditional permission, not permission for all content or for invented history. Its angel narrative is transmitted evidence cited via this page, not a hadith independently checked here. |
+| [Jordan, archived Nuh Ali Salman fatwa 2518](https://www.aliftaa.jo/fatwa/2518/) | Records disagreement: some prohibit acting for falsehood, imitation and associated offenses; some permit it when it promotes virtue or discourages vice and contains nothing prohibited. Warns that historical series invent material and cannot establish history. | The official archive explicitly says these older personal fatwas do **not necessarily represent the department's adopted position**. This is neither an institutional permission nor a board ruling. |
+| [Islam Q&A 224977, educational dialogues](https://islamqa.info/en/answers/224977) | Permits invented educational dialogues free of prohibited content and false attribution to a real person. Reports Ibn Uthaymin's permission for unattributed illustrative stories, his rejection of invented attribution, and his objection to lying for laughs. | The answer expressly distinguishes educational dialogue from acting. It does not establish general permission for acting, interactive pretending or jest. Ibn Uthaymin is cited via this answer, not his original recording or transcript. |
+| [Ibn Baz, official fatwa 3179](https://binbaz.org.sa/fatwas/3179/حكم-تمثيل-ادوار-الصحابة-والعلماء-والايمة) | Rejects acting broadly as falsehood, for Companions and others. Proposes direct explanation and advice instead. | This is substantive dissent from permissive acting readings. It must not be reduced to a ban only on sacred portrayals. The proposed strict per-person reading below preserves this objection. |
+| [TDV, Mustafa Çağrıcı, “Yalan”](https://islamansiklopedisi.org.tr/yalan) | Describes false reporting and distinguishes error from knowing falsehood in responsibility. Cites Raghib al-Isfahani, *al-Dhari'a*, pp. 270–271, for invented speech aimed at instruction rather than factual reporting, including talking-animal fables. Cites p. 273 for his account of the elements of blameworthy false reporting. | These are classical claims **cited via TDV**. They do not establish agreement among all classical authors or a general permission for stage acting. The earlier 429 was a fetch failure; the successful refetch establishes access to TDV, not to the originals. |
+
+Q&A 224977 also cites al-Haytami, *Tuhfat al-Muhtaj* 9/398, on instructive invented stories, and Rashid Rida, *Fatawa* 3/1091–1092, on didactic stories and the Maqamat. Rida's report of not knowing a prohibition remains his report, not this record's finding of consensus. Neither original was read.
+
+## 2. Evidence boundaries
+
+This small source set establishes disagreement. It cannot establish a numerical majority, a universal definition accepted by every source, or universal agreement on impersonation. Egypt's conditional acting permission and Q&A's narrower educational permission must remain distinct. The conservative false-attribution rule below adopts the explicit Q&A condition; it is not attributed to every source.
+
+The earlier draft's wider verse, hadith and contemporary quote catalog is not independently reverified here and does not supply additional premises. Ibn Baz 6539 is not used; verified 3179 supplies the dissent. No source-age survey or further theological catalog is added.
+
+For the draft's Muslim 2605a reference, the three-case list (war, reconciliation and spouses) is attributed to **Ibn Shihab**, not to the Prophet. This note does not verify another marfu passage or turn the list into a general permission. These exceptions are not modeled here. The existing Qur'an 22:30 catalog reference retains the review status in norm-sources.md; fiction does not erase that norm.
+
+## 3. Recorded interpretation and engineering extension
+
+**Interpretation chosen pragmatically:** a person may understand an invented illustrative story in an acknowledged fiction frame as something other than a false factual report. TDV's cited Raghib account and Q&A's educational conditions support that distinction in their stated contexts. Egypt supplies a separate conditional acting position. This is a chosen held understanding, not a demonstrated majority position or an assertion that these authors share one rule.
+
+**Engineering extension:** using shared-frame fiction as the proposed default for interactive pretending, role-play and improvisation goes beyond those verified passages. Extending it to a joke known by everyone concerned to be invented is also an assumption, contested by the stricter approach and by the quoted Ibn Uthaymin warning about laughs. No theological permission for these extensions is claimed.
+
+For any later opt-in design, the host must record the frame, speaker, intended audience, and provenance that the intended audience understands the subject and content of each line as fictional. Shared knowledge that a scene is staged, or a host fiction tag, does not establish that an individual assertion is fictional. Unknown or mixed assertion scope, a new audience, or reuse outside the frame receives no automatic fiction exception. That uncertainty is not an automatic lying breach or divine verdict; the ordinary held norm still decides. Real-world factual assertions, including those made inside agreed fiction, retain the ordinary held lying norm and foreseeable real-world consequences.
+
+Invented words or deeds falsely attributed to an identifiable real person, whether named or not, remain a breach under the proposed conservative understanding, even inside a fiction frame. This does not turn an accurate quotation into an invention. A person's stricter “acting is lying” understanding, sourced to Ibn Baz 3179, still treats in-role falsehood as a breach despite shared knowledge. Mapping that objection to a per-person selector is engineering, not wording supplied by Ibn Baz.
+
+**Scope:** any later law-scope rule concerns plain real-world norms. A fiction tag never bypasses real-world duties, harms, consent, promises, prohibited content or applicable law. An imagined act and a real act performed during rehearsal must stay distinct. Shared fiction creates no automatic exception to another norm. These are host-contract safeguards, not new religious rulings.
+
+Only a person's understanding is represented. No divine acceptance is computed. No quantity is assigned to the ruh. No faith or worship score is added. The specific faith-themed game exception does not lift these rules. Source integration and its review must precede gateC; this record authorizes no code or study execution.
