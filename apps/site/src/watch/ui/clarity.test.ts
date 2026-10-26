@@ -5,7 +5,7 @@ import { createRoot } from 'react-dom/client';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { expect, it, vi } from 'vitest';
 import { requireValue } from '../../shared/require-value.ts';
-import { applyInput, newGame } from '../sim/night.ts';
+import { applyInput, newGame, stepMinute } from '../sim/night.ts';
 import { buildFrame } from '../sim/view.ts';
 import type { WatchActions } from './useWatch.ts';
 
@@ -14,7 +14,7 @@ vi.mock('../../shared/lab.tsx', () => ({
 }));
 vi.mock('./useWatch.ts', () => ({ useWatch: vi.fn() }));
 vi.mock('./MapCanvas.tsx', () => ({ MapCanvas: () => null }));
-const { App, DuskPanel, NightPanel, DawnPanel, WatchStrip, headerLine } = await import('./App.tsx');
+const { App, GoalPage, DuskPanel, NightPanel, DawnPanel, WatchStrip, headerLine } = await import('./App.tsx');
 const { Chronicle, Shelf } = await import('./chronicle.tsx');
 const actions = {
   input: vi.fn(),
@@ -52,7 +52,7 @@ it('separates starting lantern from the selected person’s post actions', () =>
   expect(selected.querySelector('footer')?.textContent).toContain('Post Samira at');
   expect(selected.querySelectorAll('.w-place')).toHaveLength(4);
   expect(selected.querySelector('.w-press[aria-pressed=true]')?.textContent).toBe('Urge');
-  expect(selected.textContent).toContain('Dusk posting does not give a night off.');
+  expect(selected.textContent).toContain('Choosing a post does not give a night off.');
   expect(selected.textContent).toContain('At night, select the watcher and choose Rest');
   expect(selected.querySelectorAll('.game-help-button')).toHaveLength(0);
 });
@@ -418,4 +418,31 @@ it('requires an explicit season recovery choice and loads that existing local pa
   expect(load).toHaveBeenCalledExactlyOnceWith('owned:1:winter');
   await act(() => root.unmount());
   container.remove();
+});
+
+it('offers night off separately from posting only in the admitted village, with literal player wording', () => {
+  const state = newGame(2026, undefined, { duskRest: 'dusk-rest@1' });
+  applyInput(state, { k: 'start' });
+  stepMinute(state);
+  const frame = buildFrame(state, 0, false);
+  const props = {
+    frame,
+    actions,
+    selected: 'tamar' as const,
+    setSelected: vi.fn(),
+    press: 'ask' as const,
+    setPress: vi.fn(),
+    post: vi.fn(),
+  };
+  const el = render(createElement(DuskPanel, props));
+  expect(el.textContent).toContain('Ask Tamar of the Wall to take tonight off');
+  expect(el.textContent).toContain('until dawn');
+  expect(el.textContent).toContain('Choosing a post stays separate');
+  expect(el.textContent).not.toMatch(/dusk-rest@|scenario 15/);
+  const title = render(
+    createElement(GoalPage, { frame, actions, shelf: [], current: 'new', onNew: vi.fn() }),
+  );
+  const checkbox = title.querySelector('input[type=checkbox]') as HTMLInputElement;
+  expect(checkbox.checked).toBe(false);
+  expect(title.textContent).toContain('Offer night-off requests at dusk in the new village');
 });

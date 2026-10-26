@@ -28,6 +28,7 @@ import {
   type WatcherId,
   WINTER_RULES,
 } from './config.ts';
+import { duskRestAccount, duskRestUnavailable } from './dusk-rest.ts';
 import { ageOf, dayOfYear, householdCount, living, seasonOfDay } from './life.ts';
 import { type Moment, readPosting, readWords } from './moments.ts';
 import { bellCarry, bellSwinging, inVoice, litSection, nightEnd, presentIds, theSection } from './night.ts';
@@ -92,6 +93,7 @@ export interface Motion {
 }
 
 export interface Frame {
+  duskRest?: true;
   phase: Phase;
   /** Current winter and the choice for the next dusk. */
   winterSetting: { active: 'hard' | 'milder'; next: 'hard' | 'milder' } | null;
@@ -245,6 +247,7 @@ export interface FrameVillager {
 export type Posture = 'stand' | 'sit' | 'doze' | 'eat' | 'pray' | 'down' | 'frozen' | 'carry' | 'figure';
 
 export interface FrameWatcher {
+  duskRest?: { unavailable: string | null; account: string | null };
   id: WatcherId;
   name: string;
   /** Which figure the map draws. */
@@ -566,6 +569,14 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean, rate = 0
             : 'Looked tired at the last look'
           : null;
       })(),
+      ...(s.duskRest
+        ? {
+            duskRest: {
+              unavailable: duskRestUnavailable(s, w.id),
+              account: s.duskRest.requests[w.id] ? duskRestAccount(s.duskRest.requests[w.id]!) : null,
+            },
+          }
+        : {}),
       handover: s.phase === 'night' ? nightHandover(s, w.id) : null,
     });
   }
@@ -573,6 +584,7 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean, rate = 0
   const bell = bellRead(s);
   return {
     phase: s.phase,
+    ...(s.duskRest ? { duskRest: true as const } : {}),
     winterSetting: { ...(s.winterSetting ?? { active: 'hard', next: 'hard' }) },
     clock: ((s.minute % DAY) + DAY) % DAY,
     nightProgress: (s.minute - s.nightStart) / nightLen,

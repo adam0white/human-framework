@@ -1,8 +1,8 @@
 /** Explicit recovery of an existing local season page; never infer ownership from a seed or shelf head. */
 import { canonicalPersona } from '@adam0white/lab-client';
 import { chapterPeople } from '../shared/cast-chapter.ts';
-import { WATCH_SCENARIO_VERSION } from './protocol.ts';
 import type { Snapshot } from './sim/run.ts';
+import { scenarioForState } from './sim/run.ts';
 import type { PageInfo } from './store.ts';
 
 export function canRestoreSeason(page: PageInfo, snap: Snapshot | null): boolean {
@@ -12,7 +12,7 @@ export function canRestoreSeason(page: PageInfo, snap: Snapshot | null): boolean
       !page.id.startsWith(`${page.chronicle}:`) ||
       !snap ||
       snap.fileOrigin ||
-      snap.scenario !== WATCH_SCENARIO_VERSION ||
+      snap.scenario !== scenarioForState(snap.state) ||
       snap.seed !== page.seed ||
       snap.state.seed !== snap.seed ||
       !snap.state.castChapter

@@ -60,6 +60,7 @@ export function App() {
     [save, setSave] = useState(savedRun),
     [newConfirm, setNewConfirm] = useState(false),
     [other, setOther] = useState(false);
+  const [buildingDetails, setBuildingDetails] = useState(false);
   const [menu, setMenu] = useState(false),
     [info, setInfo] = useState(false),
     [feedback, setFeedback] = useState<'menu' | 'end' | null>(null);
@@ -103,10 +104,11 @@ export function App() {
   useEffect(() => {
     actions.setContext?.({
       person: sheet === 'person' ? person : null,
+      buildingDetails,
       reading: pending !== null || sheet === 'suggestion',
       info,
     });
-  }, [actions, person, sheet, pending, info]);
+  }, [actions, person, sheet, pending, info, buildingDetails]);
   useEffect(() => {
     if (!inspect || !labMode()) {
       actions.clearWhy();
@@ -878,6 +880,14 @@ export function App() {
             </header>
             <div className="well-menu-body">
               <p>The game is paused while this menu is open.</p>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={buildingDetails}
+                  onChange={(e) => setBuildingDetails(e.target.checked)}
+                />{' '}
+                Show building details
+              </label>
               {labMode() && (
                 <fieldset className="well-menu-pace">
                   <legend>The village's pace</legend>

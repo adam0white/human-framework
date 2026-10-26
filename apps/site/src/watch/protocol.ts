@@ -21,6 +21,8 @@ export type MainToWorker =
       seed: number;
       gen: number;
       scenarioVersion: number;
+      startAtDusk?: boolean;
+      options?: import('./sim/dusk-rest.ts').WatchOptions;
     }
   | { type: 'tick'; dtMs: number }
   | { type: 'input'; input: Input }

@@ -84,6 +84,7 @@ export interface UnitView {
 export type ProjectKind = 'house' | 'storeroom';
 
 export interface WorldView {
+  construction?: import('./human-side.ts').ConstructionView;
   resources: Resources;
   houseStage: number;
   /** 0..1 toward the next stage of the open project. */
@@ -1015,7 +1016,7 @@ export class ColonyGame {
     return best;
   }
 
-  frame(): Frame {
+  frame(options?: { buildingDetails?: boolean; personId?: VillagerId }): Frame {
     return {
       rules: this.rules,
       minute: this.minute,
@@ -1039,8 +1040,16 @@ export class ColonyGame {
         carriedBy: u.carriedBy,
       })),
       human: this.human.view(),
-      classicWorld: worldView(this.classicWorld, this.classicProgress()),
-      humanWorld: worldView(this.humanWorld, this.humanWorld.house.progress),
+      classicWorld: {
+        ...worldView(this.classicWorld, this.classicProgress()),
+        ...(options?.buildingDetails ? { construction: this.classic.constructionView() } : {}),
+      },
+      humanWorld: {
+        ...worldView(this.humanWorld, this.humanWorld.house.progress),
+        ...(options?.buildingDetails
+          ? { construction: this.human.constructionView?.(options.personId) }
+          : {}),
+      },
       scoreboard: this.scoreboard(),
       cards: structuredClone(this.book.cards).map((card) => {
         const classicReceipt = this.#classicReceipts.get(card.order.id);

@@ -27,6 +27,7 @@ import {
 import { applyLifeOffers, type CastChapter, lifeNotice } from '../../shared/cast-chapter.ts';
 import { wellDiscovery } from '../../shared/cast-discoveries.ts';
 import { fw, gm, STRENGTH } from './human-cast.ts';
+import type { ConstructionView } from './human-side.ts';
 import type { NotOnOffer } from './human-view.ts';
 import { findPath, type GameMap, type PlaceId, spotFor, type Tile } from './map.ts';
 import {
@@ -1134,6 +1135,45 @@ export class ColonyHostWorld implements World {
   }
 
   /** Put the stage's timber on site if it is not there yet; false when there is none. */
+  constructionView(p?: Person): ConstructionView {
+    const w = this.world;
+    const open = siteOpen(w);
+    const beam = w.storeroom === null && w.house.stage === BEAM_STAGE - 1;
+    // A stale paid flag belongs to the lost house stage or to the previous project.
+    const paid =
+      this.s.buildPaid &&
+      !(this.s.buildStage !== undefined && w.house.stage < this.s.buildStage) &&
+      !(w.storeroom !== null && !this.s.storeroom);
+    const offers = p ? this.affordancesFor(p) : [];
+    return {
+      stockTimber: w.resources.timber,
+      nextStage: open ? (w.storeroom ?? w.house.stage) + 1 : null,
+      nextTimber: open ? (beam ? HOST.beamTimber : nextStageCost(w).timber) : null,
+      payment: !open ? 'not-needed' : paid && !beam ? 'on-site' : 'unpaid',
+      nextWork: !open ? 'none' : beam ? 'beam' : 'ordinary',
+      active: this.community.people.flatMap((person) => {
+        const a = person.activity;
+        return a && (a.action === 'build' || a.action === 'raise-beam')
+          ? [
+              {
+                personId: person.id as VillagerId,
+                stage: (w.storeroom ?? w.house.stage) + 1,
+                action: a.action as 'build' | 'raise-beam',
+              },
+            ]
+          : [];
+      }),
+      ...(p
+        ? {
+            selectedOffer: {
+              build: offers.some((a) => a.action === 'build'),
+              beam: offers.some((a) => a.action === 'raise-beam'),
+            },
+          }
+        : {}),
+    };
+  }
+
   private payStage(): boolean {
     this.syncProject();
     if (this.s.buildPaid) return true;

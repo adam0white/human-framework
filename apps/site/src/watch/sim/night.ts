@@ -91,6 +91,15 @@ import {
 } from './config.ts';
 import { advanceDay } from './day.ts';
 import { planDirectedNight } from './director.ts';
+import {
+  applyDuskRest,
+  type DuskRestInput,
+  endDuskRest,
+  resolveDuskRest,
+  restSuggestion,
+  validWatchOptions,
+  type WatchOptions,
+} from './dusk-rest.ts';
 import { takeOffer } from './fair.ts';
 import { fillLeaf, maybeLimp } from './life.ts';
 import { answerMoment, catchLeaving, checkMoments } from './moments.ts';
@@ -134,6 +143,7 @@ import { dawnVoices } from './voices.ts';
 import { firstStand, freshLeaves } from './volume.ts';
 
 export type Input =
+  | DuskRestInput
   | NightInput
   | { k: 'start' }
   | { k: 'winter'; winter: WinterChoice }
@@ -171,8 +181,11 @@ const NOTE_GAP = 90;
 export function newGame(
   seed: number,
   castChapter?: import('../../shared/cast-chapter.ts').CastChapter,
+  options?: WatchOptions,
 ): WatchState {
+  if (!validWatchOptions(options)) throw new Error('Unknown watch option');
   const s = createState(seed);
+  if (options?.duskRest) s.duskRest = { edition: 'dusk-rest@1', requests: {} };
   if (castChapter) {
     s.castChapter = structuredClone(castChapter);
     prepareWatchCast(seed, s.castChapter);
@@ -504,6 +517,7 @@ function nightMemories(s: WatchState): void {
 }
 
 function enterDawn(s: WatchState): void {
+  if (s.duskRest) resolveDuskRest(s, [], s.minute);
   // A pull still waiting to be borne out when the night ends was a false alarm (review 2026-10-05).
   if (s.bell.pendingCry !== null) {
     s.bell.pendingCry = null;
@@ -616,6 +630,8 @@ export function applyInput(s: WatchState, input: Input): boolean {
       s.phase = 'dusk';
       if (s.winterSetting) planNight(s);
       return true;
+    case 'dusk-rest':
+      return applyDuskRest(s, input);
     case 'post': {
       if (s.phase !== 'dusk' && s.phase !== 'goal') return false;
       const who = personOf(s, input.watcher);
@@ -630,6 +646,7 @@ export function applyInput(s: WatchState, input: Input): boolean {
         for (const w of presentIds(s))
           if (w !== input.watcher && s.posts[w] === input.post) s.posts[w] = null;
       }
+      endDuskRest(s, input.watcher, s.minute, 'reposted');
       s.posts[input.watcher] = input.post;
       s.press[input.watcher] = input.press ?? 'ask';
       s.postedAt[input.watcher] = s.minute;
@@ -860,6 +877,11 @@ function bellAnswer(s: WatchState, targets: WatcherId[], named: boolean): string
 export function suggestions(s: WatchState): Record<string, Suggestion[]> {
   const out: Record<string, Suggestion[]> = {};
   for (const id of presentIds(s)) {
+    const rest = restSuggestion(s, id);
+    if (rest) {
+      out[id] = [rest];
+      continue;
+    }
     const list: Suggestion[] = [];
     const a = s.asks[id];
     if (a && s.minute < a.until) list.push(a.sug);
@@ -928,6 +950,7 @@ export function stepPeople(s: WatchState, until: number, world = new WatchWorld(
       if (pl !== undefined) s.place[id] = pl;
     }
   }
+  if (s.duskRest) resolveDuskRest(s, events, until);
   if (s.phase === 'night') readEvents(s, events, before);
   // Prune percepts each person has already been handed.
   for (const id of presentIds(s)) {

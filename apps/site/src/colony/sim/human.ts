@@ -730,6 +730,10 @@ export class FrameworkHumanSide implements HumanSide {
 
   // --- view ---------------------------------------------------------------------------------------
 
+  constructionView(personId?: VillagerId) {
+    return this.world.constructionView(personId ? this.person(personId) : undefined);
+  }
+
   view(): VillagerView[] {
     const world = this.world;
     const t = fw(this.s.minute);

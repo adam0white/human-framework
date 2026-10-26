@@ -6,7 +6,7 @@
  * norms. Pure TS: deterministic given the seed, the order log and the scenario rolls.
  */
 
-import { type ColonyRules, CURRENT_RULES, type VillagerState } from './human-side.ts';
+import { type ColonyRules, type ConstructionView, CURRENT_RULES, type VillagerState } from './human-side.ts';
 import { findPath, MAP, type PlaceId, placeAt, placeById, spotFor, type Tile } from './map.ts';
 import type { ClassicCommand } from './orders.ts';
 import {
@@ -515,6 +515,25 @@ export class ClassicSim {
    * The next stage a builder may claim at the open project, or null: stages already claimed by a started builder
    * are skipped, and the beam and roof stages wait for the stage below them (no parallel work across the beam).
    */
+  constructionView(): ConstructionView {
+    const stage = this.claimableStage();
+    const active = this.units.flatMap((u) => {
+      const t = u.task;
+      return t?.started && t.stage !== undefined && (t.action === 'build' || t.action === 'raise-beam')
+        ? [{ personId: u.id, stage: t.stage, action: t.action as 'build' | 'raise-beam' }]
+        : [];
+    });
+    return {
+      stockTimber: this.world.resources.timber,
+      nextStage: stage,
+      nextTimber: stage === null ? null : this.stageCost(stage).timber,
+      payment: stage !== null ? 'unpaid' : active.length ? 'claimed' : 'not-needed',
+      nextWork:
+        stage === null ? 'none' : this.world.storeroom === null && stage === BEAM_STAGE ? 'beam' : 'ordinary',
+      active,
+    };
+  }
+
   claimableStage(): number | null {
     const w = this.world;
     if (!siteOpen(w)) return null;

@@ -108,7 +108,16 @@ export class Playback {
     const g = this.game;
     if (!g) return [];
     this.syncDecision();
-    const out: WorkerReply[] = [{ type: 'frame', frame: g.frame(), playback: this.state() }];
+    const out: WorkerReply[] = [
+      {
+        type: 'frame',
+        frame: g.frame({
+          buildingDetails: this.context.buildingDetails,
+          personId: this.context.person ?? undefined,
+        }),
+        playback: this.state(),
+      },
+    ];
     if (g.ended && !this.endedSent) {
       this.endedSent = true;
       out.push({ type: 'ended', summary: g.summary() });

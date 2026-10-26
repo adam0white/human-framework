@@ -24,7 +24,11 @@ export function needDescription(id: string, value: number): string {
     case 'sleep':
       return low ? 'They are exhausted.' : middling ? 'They are tired.' : 'They are rested.';
     case 'health':
-      return low ? 'They feel unwell.' : middling ? 'They are recovering.' : 'They feel well.';
+      return low
+        ? 'They feel unwell.'
+        : middling
+          ? 'They are recovering.'
+          : 'Their general health seems steady.';
     case 'injury':
       return value >= 1
         ? 'They are unhurt.'

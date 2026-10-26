@@ -11,9 +11,10 @@
 import { impressionOf, readCapacities } from '@adam0white/human-framework';
 import type { CastChapter } from '../../shared/cast-chapter.ts';
 import { FRAMEWORK_PACKAGE_VERSION } from '../../shared/playtest.ts';
-import { WINTER_RULES } from './config.ts';
+import { ALL_POST_IDS, WINTER_RULES } from './config.ts';
+import { validWatchOptions, type WatchOptions } from './dusk-rest.ts';
 import { applyInput, clockRuns, type Input, newGame, stepMinute } from './night.ts';
-import { emptyBell, mixSeed, type WatchState } from './state.ts';
+import type { WatchState } from './state.ts';
 
 /** A person as the export shows them: enough to read a run, not to resume it. */
 export interface PersonSummary {
@@ -78,6 +79,7 @@ export function ruleState(s: WatchState, people = summarise(s)): unknown {
     },
     ...(s.refugeVisit ? { refugeVisit: s.refugeVisit } : {}),
     ...(s.warrenCareReturn ? { warrenCareReturn: s.warrenCareReturn } : {}),
+    ...(s.duskRest ? { duskRest: s.duskRest } : {}),
     ...(s.nightDepartureEffort ? { nightDepartureEffort: true } : {}),
     ...(s.winterSetting ? { winterSetting: s.winterSetting, winterRules: WINTER_RULES } : {}),
     leads: s.leads,
@@ -204,6 +206,46 @@ export function endState(s: WatchState): EndState {
  * 10: each pair waits one year after a proposal; legacy pages without proposalHolds retain the old rules.
  */
 export const WATCH_SCENARIO_VERSION = 14;
+export const WATCH_DUSK_REST_SCENARIO_VERSION = 15;
+export function scenarioForOptions(options?: WatchOptions): number {
+  if (!validWatchOptions(options)) throw new Error('Unknown watch option');
+  return options?.duskRest ? WATCH_DUSK_REST_SCENARIO_VERSION : WATCH_SCENARIO_VERSION;
+}
+export function scenarioForState(s: WatchState): number {
+  if (s.duskRest === undefined) return WATCH_SCENARIO_VERSION;
+  if (!s.duskRest) throw new Error('Invalid night-off state');
+  if (
+    s.duskRest.edition !== 'dusk-rest@1' ||
+    !s.duskRest.requests ||
+    typeof s.duskRest.requests !== 'object' ||
+    Array.isArray(s.duskRest.requests)
+  )
+    throw new Error('Invalid night-off state');
+  for (const [who, r] of Object.entries(s.duskRest.requests)) {
+    if (
+      !r ||
+      !s.cast[who] ||
+      !['pending', 'deferred', 'refused', 'resting', 'ended', 'returned', 'expired'].includes(r.status) ||
+      !Number.isFinite(r.askedAt) ||
+      !Number.isFinite(r.until) ||
+      r.until <= r.askedAt ||
+      (r.priorPost !== null && !ALL_POST_IDS.includes(r.priorPost)) ||
+      ['decisionAt', 'begunAt', 'endedAt', 'returnedAt'].some((k) => {
+        const at = r[k as 'decisionAt'];
+        return at !== undefined && (!Number.isFinite(at) || at < r.askedAt);
+      }) ||
+      (r.begunAt !== undefined && r.begunAt >= r.until) ||
+      (r.status === 'resting' && (r.begunAt === undefined || r.endedAt !== undefined)) ||
+      (['ended', 'returned'].includes(r.status) && (r.begunAt === undefined || r.endedAt === undefined)) ||
+      (['refused', 'expired'].includes(r.status) && r.endedAt === undefined) ||
+      (r.status === 'returned' && r.returnedAt === undefined) ||
+      (r.endedAt !== undefined && r.endedAt > r.until) ||
+      (r.returnedAt !== undefined && (r.endedAt === undefined || r.returnedAt < r.endedAt))
+    )
+      throw new Error('Invalid night-off request');
+  }
+  return WATCH_DUSK_REST_SCENARIO_VERSION;
+}
 
 /** The oldest scenario whose saved pages still load (`migrateSnapshot`). */
 export const OLDEST_LOADABLE_SCENARIO = 14;
@@ -224,6 +266,7 @@ export interface LogEntry {
 }
 
 export interface PlaytestExport {
+  options?: WatchOptions;
   castChapter?: CastChapter;
   game: 'the-night-watch';
   phase: 'G3-4';
@@ -256,26 +299,19 @@ export interface Snapshot {
 }
 
 /**
- * Brings a page saved by an older scenario up to this one by shape only: the fields added since get their starting
- * values, and the page is stamped with where it came from (`Origin`). The rules it was played under are not
- * replayed. 7 → 8 adds the bell's state and the world stream; 8 → 9 adds no state. Older pages than `OLDEST_LOADABLE_SCENARIO` are refused. Pure.
+ * Validate the saved scenario against its admitted state. Both supported scenarios resume unchanged.
+ * No new-run option is applied here, and no migration or origin stamp is inserted. Pure.
  */
 export function migrateSnapshot(snap: Snapshot): Snapshot {
-  if (snap.scenario === WATCH_SCENARIO_VERSION) return snap;
-  if (snap.scenario < OLDEST_LOADABLE_SCENARIO || snap.scenario > WATCH_SCENARIO_VERSION)
-    throw new Error(`save is scenario ${snap.scenario}, this build is ${WATCH_SCENARIO_VERSION}`);
-  const state = structuredClone(snap.state) as WatchState & Partial<Pick<WatchState, 'bell' | 'world'>>;
-  if (!state.bell) state.bell = emptyBell();
-  if (!state.world) state.world = { rng: mixSeed(state.seed) };
-  return {
-    scenario: WATCH_SCENARIO_VERSION,
-    seed: snap.seed,
-    log: snap.log,
-    state,
-    ...(snap.fileOrigin ? { fileOrigin: true } : {}),
-    ...(snap.castOwnership ? { castOwnership: structuredClone(snap.castOwnership) } : {}),
-    origin: snap.origin ?? { scenario: snap.scenario, minute: snap.state.minute },
-  };
+  if (
+    snap.scenario !== scenarioForState(snap.state) ||
+    snap.scenario < OLDEST_LOADABLE_SCENARIO ||
+    ![WATCH_SCENARIO_VERSION, WATCH_DUSK_REST_SCENARIO_VERSION].includes(snap.scenario)
+  )
+    throw new Error(`save scenario ${snap.scenario} does not match its admitted night-off choice`);
+  if (snap.scenario === WATCH_SCENARIO_VERSION && snap.log.some((e) => e.i.k === 'dusk-rest'))
+    throw new Error('Night-off input is not admitted in this save');
+  return snap;
 }
 
 export class WatchRun {
@@ -287,7 +323,9 @@ export class WatchRun {
   /** Set when this run was resumed from an older scenario's page (see `Origin`). */
   readonly origin: Origin | undefined;
 
-  constructor(seed: number, saved?: Snapshot, castChapter?: CastChapter) {
+  constructor(seed: number, saved?: Snapshot, castChapter?: CastChapter, options?: WatchOptions) {
+    if (!validWatchOptions(options)) throw new Error('Unknown watch option');
+    if (saved && options !== undefined) throw new Error('A saved village retains its admitted choices');
     this.seed = seed;
     if (saved) {
       const from = migrateSnapshot(saved);
@@ -297,7 +335,7 @@ export class WatchRun {
       this.origin = from.origin;
       this.fileOrigin = from.fileOrigin;
     } else {
-      this.state = newGame(seed, castChapter);
+      this.state = newGame(seed, castChapter, options);
     }
   }
 
@@ -309,7 +347,7 @@ export class WatchRun {
   /** The current page as snapshot JSON, without copying the state first (for saving between minutes). */
   snapshotText(): string {
     return JSON.stringify({
-      scenario: WATCH_SCENARIO_VERSION,
+      scenario: scenarioForState(this.state),
       seed: this.seed,
       log: this.log,
       state: this.state,
@@ -321,7 +359,7 @@ export class WatchRun {
   /** The current page as a snapshot (deep copies: the run goes on unchanged). */
   snapshot(): Snapshot {
     return {
-      scenario: WATCH_SCENARIO_VERSION,
+      scenario: scenarioForState(this.state),
       seed: this.seed,
       log: this.log.map((e) => ({ m: e.m, i: { ...e.i } })),
       state: structuredClone(this.state),
@@ -356,9 +394,10 @@ export class WatchRun {
   export(): PlaytestExport {
     return {
       ...(this.state.castChapter ? { castChapter: structuredClone(this.state.castChapter) } : {}),
+      ...(this.state.duskRest ? { options: { duskRest: 'dusk-rest@1' as const } } : {}),
       game: 'the-night-watch',
       phase: 'G3-4',
-      scenario: WATCH_SCENARIO_VERSION,
+      scenario: scenarioForState(this.state),
       build: 'dev',
       framework: FRAMEWORK_PACKAGE_VERSION,
       seed: this.seed,
@@ -373,15 +412,18 @@ export class WatchRun {
 
 /** Rebuilds a run's end state from its seed and input log. Throws if the log does not fit the rules. */
 export function replay(
-  exp: Pick<PlaytestExport, 'scenario' | 'seed' | 'inputs' | 'endMinute' | 'origin' | 'castChapter'>,
+  exp: Pick<
+    PlaytestExport,
+    'scenario' | 'seed' | 'inputs' | 'endMinute' | 'origin' | 'castChapter' | 'options'
+  >,
 ): WatchState {
-  if (exp.scenario !== WATCH_SCENARIO_VERSION)
+  if (exp.scenario !== scenarioForOptions(exp.options))
     throw new Error(`export is scenario ${exp.scenario}, this build is ${WATCH_SCENARIO_VERSION}`);
   if (exp.origin)
     throw new Error(
       `export was resumed from a scenario ${exp.origin.scenario} page; it does not replay from its seed`,
     );
-  const run = new WatchRun(exp.seed, undefined, exp.castChapter);
+  const run = new WatchRun(exp.seed, undefined, exp.castChapter, exp.options);
   const s = run.state;
 
   let idx = 0;

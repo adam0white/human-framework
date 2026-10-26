@@ -187,7 +187,7 @@ export function Stand({ frame, onBack }: { frame: Frame; onBack(): void }) {
     ['Injuries', c.injuries, h.injuries],
     ['Alive', c.alive, h.alive],
     ['Mood', NO_CONCEPT, moodDescription(h.morale)],
-    ['Trust', NO_CONCEPT, trustDescription(h.trust)],
+    ['Village trust in you', NO_CONCEPT, trustDescription(h.trust)],
     ['Prayers kept', NO_CONCEPT, `${h.prayersKept} of ${h.prayersDue}`],
   ];
   return (
@@ -382,7 +382,7 @@ export function PersonSheet({
           {(['classic', 'human'] as const).map((side) => {
             const world = side === 'classic' ? frame.classicWorld : frame.humanWorld;
             const project = world.project;
-            const open = project.stage < project.stages && (project.kind !== 'house' || !world.shuttered);
+            const open = project.stage < project.stages;
             return (
               <p key={side}>
                 {side === 'classic' ? 'Classic' : 'Human'} village:{' '}
@@ -390,6 +390,38 @@ export function PersonSheet({
                 {open ? `; ${Math.floor(world.houseProgress * 100)}% toward the next stage` : ''};{' '}
                 {world.resources.meals}
                 {stockGoal ? ` of ${stockGoal.targetValue}` : ''} meals currently in store.
+                {world.construction ? (
+                  <span className="well-building-details">
+                    {' '}
+                    Timber in store: {world.construction.stockTimber}.
+                    {world.shuttered
+                      ? ' The shutters are closed; this does not close the building site.'
+                      : ''}
+                    {world.construction.payment === 'on-site'
+                      ? ' Materials for this stage are already on site.'
+                      : ''}
+                    {world.construction.nextStage !== null
+                      ? ` Next ${world.construction.nextWork === 'beam' ? 'beam work' : 'stage'}: ${world.construction.nextTimber} timber${world.construction.payment === 'on-site' ? ' already paid' : ' needed from stores'}.`
+                      : world.construction.active.length
+                        ? ' No further stage can be claimed yet.'
+                        : ' Building is complete.'}
+                    {world.construction.payment === 'unpaid' &&
+                    world.construction.nextTimber !== null &&
+                    world.construction.stockTimber < world.construction.nextTimber
+                      ? ' There is not enough timber in store for that work.'
+                      : ''}
+                    {world.construction.active
+                      .map((a) => ` ${shortName(a.personId)} is working on stage ${a.stage}.`)
+                      .join('')}
+                    {world.construction.selectedOffer
+                      ? world.construction.selectedOffer.beam
+                        ? ' Raising the beam is available to this person; they still choose.'
+                        : world.construction.selectedOffer.build
+                          ? ' Building is available to this person; they still choose.'
+                          : ' Building is not currently offered to this person.'
+                      : ''}
+                  </span>
+                ) : null}
               </p>
             );
           })}

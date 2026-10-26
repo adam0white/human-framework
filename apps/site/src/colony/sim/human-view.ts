@@ -441,7 +441,7 @@ export function needsOf(p: Person): NeedBar[] {
     { id: 'health', label: 'General health', value: round2(p.body.health), urgent: p.body.health < 0.4 },
     {
       id: 'injury',
-      label: 'Uninjured',
+      label: 'Injury',
       value: round2(1 - Math.max(0, ...p.body.injuries.map((i) => i.severity))),
       urgent: p.body.injuries.some((i) => i.severity >= 0.4),
     },

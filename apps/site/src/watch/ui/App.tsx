@@ -365,10 +365,11 @@ export function App() {
                   shelf={shelf}
                   current={current}
                   onContinue={title ? () => setTitle(false) : undefined}
-                  onNew={() => {
+                  onNew={(options) => {
                     setTitle(false);
-                    if (frame.phase === 'goal') actions.input({ k: 'start' });
-                    else actions.restart(Math.floor(Math.random() * 1e9));
+                    if (frame.phase === 'goal' && Boolean(frame.duskRest) === Boolean(options?.duskRest))
+                      actions.input({ k: 'start' });
+                    else actions.restart(Math.floor(Math.random() * 1e9), options, true);
                   }}
                 />
               ) : null}
@@ -609,7 +610,7 @@ export function GoalPage({
   shelf: PageInfo[];
   current: string;
   onContinue?: () => void;
-  onNew?: () => void;
+  onNew?: (options?: import('../sim/dusk-rest.ts').WatchOptions) => void;
 }) {
   const saved = shelf.find((p) => p.kind === 'auto' && (onContinue || p.chronicle !== current));
   const [sheet, setSheet] = useState<'hopes' | 'shelf' | null>(null);
@@ -620,7 +621,9 @@ export function GoalPage({
     else if (saved && !(await actions.load(saved.id)))
       setNote('That page could not be read. You can begin a new village.');
   };
-  const begin = () => (onNew ? onNew() : actions.input({ k: 'start' }));
+  const [nightOff, setNightOff] = useState(false);
+  const begin = () =>
+    onNew ? onNew(nightOff ? { duskRest: 'dusk-rest@1' } : undefined) : actions.input({ k: 'start' });
   return (
     <div className="w-page w-goal">
       <h2>Keep everyone alive and protect the grain until the snow melts in spring.</h2>
@@ -636,6 +639,12 @@ export function GoalPage({
         <button type="button" className="w-menu-row" onClick={() => setSheet('shelf')}>
           The shelf · {new Set(shelf.map((p) => p.chronicle)).size} chronicles ▸
         </button>
+      ) : null}
+      {onNew ? (
+        <label>
+          <input type="checkbox" checked={nightOff} onChange={(e) => setNightOff(e.target.checked)} /> Offer
+          night-off requests at dusk in the new village
+        </label>
       ) : null}
       {note ? <p className="w-soft-fail">{note}</p> : null}
       <PageActions>
@@ -793,9 +802,29 @@ export function DuskPanel({
         {sel ? (
           <>
             <p className="w-note w-rule-note">
-              Dusk posting does not give a night off. At night, select the watcher and choose Rest when
-              offered. The account explains when a request is unavailable.
+              Choosing a post does not give a night off.{' '}
+              {frame.duskRest
+                ? 'Use the separate night-off request below.'
+                : 'At night, select the watcher and choose Rest when offered.'}{' '}
+              The account explains when a request is unavailable.
             </p>
+            {sel.duskRest ? (
+              <div>
+                <p>
+                  Ask them to take tonight off, until dawn. They may decline or return sooner. Choosing a post
+                  stays separate.
+                </p>
+                {sel.duskRest.account ? <p role="status">{sel.duskRest.account}</p> : null}
+                <button
+                  type="button"
+                  disabled={!!sel.duskRest.unavailable}
+                  onClick={() => actions.input({ k: 'dusk-rest', who: sel.id, until: 'dawn' })}
+                >
+                  Ask {settingWords(sel.name)} to take tonight off
+                </button>
+                {sel.duskRest.unavailable ? <p>{sel.duskRest.unavailable}</p> : null}
+              </div>
+            ) : null}
             <Impressions impressions={sel.impressions} />
           </>
         ) : (
@@ -1204,6 +1233,7 @@ function NightAccount({
         ) : (
           <section className="w-account" aria-label={settingWords(`${settingWords(who.name)} on watch`)}>
             {who.handover ? <p role="status">{who.handover}</p> : null}
+            {who.duskRest?.account ? <p role="status">{who.duskRest.account}</p> : null}
             <NightMessages frame={frame} />
             {who.account?.spoken ? <blockquote>{who.account.text}</blockquote> : <p>{who.account?.text}</p>}
             {recentDoze ? (
@@ -1387,6 +1417,13 @@ export function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActi
   return (
     <div className="w-page w-dawn">
       <h2 className="w-dawn-outcome">{dawnOutcome(d)}</h2>
+      {frame.watchers
+        .filter((w) => w.duskRest?.account)
+        .map((w) => (
+          <p key={w.id}>
+            {settingWords(w.name)}: {w.duskRest?.account}
+          </p>
+        ))}
       {(frame.talks?.said.length ? [] : d.voices.slice(-1)).map((v) => (
         <blockquote className="w-dawn-heard" key={`${v.who}-${v.text}`}>
           {v.text} <cite>{nameIn(frame, v.who)}</cite>

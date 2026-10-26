@@ -4,9 +4,11 @@ Moved verbatim from HANDOFF.md on 2026-10-20 (owner: "Trim handoff and other doc
 
 > Each receipt records its release-time state. Historical site pins, “latest” labels and follow-up instructions are not current deployment or queue status. Package publication, SDK artifacts, game deployment and owner acceptance are separate outcomes. See [HANDOFF](../HANDOFF.md) for the current coordination state.
 
-## Prepared lab kit 0.5.13 scorer — not published
+## Lab kit 0.5.13 scorer artifact — 2026-10-26
 
-The prepared SDK adds optional `freezeForecastCohort` and `scoreFrozenForecast` exports, with a study CLI and public synthetic control. Cohort freezing uses metadata only; scoring uses separately supplied explicit labels and a review date. Reports retain unknowns, registered gates and `humanEvidenceVerified:false`. This is an instrument, with no empirical prediction claim; real evidence remains PENDING for 2026-11-03. HF/engine 3.2.0, client 0.4.11 and SDK defaults are unchanged. The site workspace dependency is prepared at exact kit 0.5.13. No artifact publication or deployment is recorded by this entry.
+Signed [source cfd4a524](https://github.com/adam0white/human-framework/commit/cfd4a524a542a623c53620bbd587d47ed209e66e) passed [exact CI 40303167929](https://github.com/adam0white/human-framework/actions/runs/40303167929), normal gated checks (2,547 passed, seven existing skips) and independent integration review. Signed [tag and immutable artifact lab-kit-v0.5.13](https://github.com/adam0white/human-framework/releases/tag/lab-kit-v0.5.13) are published. The manifest, tar and SHA256SUMS downloaded exactly. The tar is 33,467 bytes, SHA256 `9e29dd81e413ca9f38c6e3fa11c3f94b6481f41e66d227dea15dc76ef69fe5ed`; its manifest retains SHA512. Fresh downloaded-root JavaScript and strict TypeScript 7.0.2 NodeNext consumers passed with `skipLibCheck:false`, without the optional client peer or DOM.
+
+The kit adds optional `freezeForecastCohort` and `scoreFrozenForecast` exports, a study CLI and synthetic control. Cohorts use metadata; scoring uses separately supplied explicit labels and a review date. Reports retain unknowns, registered gates and `humanEvidenceVerified:false`. This is instrument delivery, not empirical prediction evidence. Real evidence remains PENDING for 2026-11-03. HF/engine 3.2.0, client 0.4.11 and SDK defaults are unchanged. The source site pins exact kit 0.5.13. No npm SDK publication, external-game upgrade or central deployment is claimed.
 
 ## Central site 3.2 delivery 2026-10-26
 

@@ -880,3 +880,8 @@ F-469: selecting a watcher at dusk now explains that posting does not grant a ni
 Regression: focused count tests cover early, singular, final and thaw boundaries; the ordinary DOM test requires visible count text, and the dusk component test requires the rest explanation. Lesson: updating an SVG's accessible description alone does not make a count visible in ordinary play.
 
 F-299's reference to F-290 is a stale umbrella, not a new failure of the three closed F-290 routes. Morning outcomes and the watched-night bar remain. F-423's scenario13 departure cost remains unchanged, with owner feel due2026-11-03. F-289's warning remains a deferred design question, review2026-11-03. F-360's during-fight Keeper call remains a candidate, not a commitment or a new fighting role; review2026-11-05. Existing handover messages, night helper sheets and named accounts require current UI verification rather than a second implementation. F-492 readiness, F-465 receiving acceptance and F-491 owner retest remain due2026-11-03.
+
+
+### Source delivery pending — 2026-10-26
+
+Source now implements an explicit new-village dusk night-off option (scenario15); omitted selection keeps14. Actual HF decisions and events own refusal, rest, expiry and observed return. Dawn does not guarantee a return. This is the bounded F469 dusk capability, not guaranteed obedience or a full request-history faculty. Normal related checks and raw legacy/export controls passed at author handback. Independent source review and exact CI remain required before integration. Public deployment is held with the Voice round; follow-up target 2026-10-27 after the hold clears. Browser verification, same-tester observations and Adam’s 2026-11-03 acceptance remain separate.

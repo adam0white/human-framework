@@ -18,6 +18,7 @@ export type Speed = 0.5 | 1 | 2;
 export type Pace = 'held' | 'reading' | 'looking' | 'watching' | 'night';
 /** Presentation only. Never enters simulation state or the input log. */
 export interface PresentationContext {
+  buildingDetails?: boolean;
   person: VillagerId | null;
   reading: boolean;
   info: boolean;

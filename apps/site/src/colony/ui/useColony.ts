@@ -58,7 +58,12 @@ export interface ColonyActions {
   dismissNudge(id: string): void;
   setSpeed(speed: Speed): void;
   setPace?(pace: Speed | 'auto'): void;
-  setContext?(context: { person?: VillagerId | null; reading?: boolean; info?: boolean }): void;
+  setContext?(context: {
+    buildingDetails?: boolean;
+    person?: VillagerId | null;
+    reading?: boolean;
+    info?: boolean;
+  }): void;
   getRun(): Promise<PlaytestFile>;
   /** Manual pause or resume (Space, the pause button, Play on the goal card). */
   setPaused(paused: boolean): void;

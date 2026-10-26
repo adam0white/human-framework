@@ -617,7 +617,7 @@ export function placeOfActivity(act: Activity): Place | undefined {
   )
     return arg as PostId;
   if (kind === 'flee' || kind === 'run-off') return 'hall';
-  if (kind === 'go-home' || kind === 'sleep' || kind === 'home') return 'home';
+  if (kind === 'dusk-rest' || kind === 'go-home' || kind === 'sleep' || kind === 'home') return 'home';
   if (kind === 'day') return 'village';
   return undefined;
 }
@@ -829,6 +829,19 @@ export class WatchWorld implements World {
       advertises: { sleep: 0.8, rest: 0.4 },
       norms: LEAVE,
     });
+    const request = s.duskRest?.requests[id];
+    if (request && ['pending', 'deferred', 'resting'].includes(request.status) && p.now < request.until)
+      out.push({
+        id: 'dusk-rest',
+        action: 'sleep',
+        label: 'take tonight off at home',
+        placeId: 'home',
+        duration: request.until - p.now,
+        effort: 0,
+        mode: 'sleep',
+        advertises: { sleep: 0.8, rest: 0.4 },
+        norms: LEAVE,
+      });
     const family = familyWords(s, id);
     const homeThreat = family !== null && (s.homeThreat[v.home] ?? -1e9) > p.now - 60;
     if (homeThreat)

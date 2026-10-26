@@ -77,7 +77,7 @@ export function TrustMeter({ trust, name }: { trust: TrustView; name?: string })
   return (
     <div className="trust">
       <p>
-        Trust in you:{' '}
+        {name ? `${name}’s trust in you:` : 'This person’s trust in you:'}{' '}
         <strong>
           {name ? namedDescription(trustDescription(trust.value), name) : trustDescription(trust.value)}
         </strong>
@@ -211,14 +211,19 @@ export function Inspector(props: {
           <p className="inspector-now">{hv?.label ?? '–'}</p>
           {hv && (
             <div className="needs">
-              {hv.needs.map((n) => (
-                <div className={`need ${n.urgent ? 'is-urgent' : ''}`} key={n.id}>
-                  <span>{settingWords(n.label)}</span>
-                  <span className="need-description">
-                    {namedDescription(needDescription(n.id, n.value), shortName(props.personId))}
-                  </span>
-                </div>
-              ))}
+              {[...hv.needs]
+                .sort(
+                  (a, b) =>
+                    (b.id === 'injury' && b.value < 1 ? 1 : 0) - (a.id === 'injury' && a.value < 1 ? 1 : 0),
+                )
+                .map((n) => (
+                  <div className={`need ${n.urgent ? 'is-urgent' : ''}`} key={n.id}>
+                    <span>{settingWords(n.label)}</span>
+                    <span className="need-description">
+                      {namedDescription(needDescription(n.id, n.value), shortName(props.personId))}
+                    </span>
+                  </div>
+                ))}
               <p className="emotion">
                 {shortName(props.personId)} feels <b>{hv.emotion?.label ?? 'calm'}</b>
                 {settingWords(hv.emotion?.target ? ` about ${hv.emotion.target}` : '')}

@@ -19,11 +19,12 @@ import { hostWorker } from '../shared/worker-host.ts';
 import { type MainToWorker, WATCH_SCENARIO_VERSION, type WorkerReply } from './protocol.ts';
 import { canRestoreSeason } from './season-recovery.ts';
 import { DAY } from './sim/config.ts';
+import { validWatchOptions } from './sim/dusk-rest.ts';
 import { dayOfYear, seasonOfDay } from './sim/life.ts';
 import { clockRuns, nightEnd } from './sim/night.ts';
 import { Pacer } from './sim/pace.ts';
 import { prepareWatchCast, WATCH_NORMS, watchTerminalReceipts } from './sim/people.ts';
-import { WatchRun } from './sim/run.ts';
+import { scenarioForOptions, WatchRun } from './sim/run.ts';
 import { isSeason } from './sim/season.ts';
 import type { WatchState } from './sim/state.ts';
 import { buildFrame, ordinal } from './sim/view.ts';
@@ -248,7 +249,7 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
     case 'init':
       loadOperation++;
       lastKey = '';
-      if (msg.scenarioVersion !== WATCH_SCENARIO_VERSION) {
+      if (!validWatchOptions(msg.options) || msg.scenarioVersion !== scenarioForOptions(msg.options)) {
         host.gen = msg.gen;
         run = null;
         host.post({
@@ -260,7 +261,8 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
       if (run && behind()) save('auto');
       castOwnership = {};
       host.gen = msg.gen;
-      begin(new WatchRun(msg.seed, undefined, msg.castChapter), newChronicleId());
+      begin(new WatchRun(msg.seed, undefined, msg.castChapter, msg.options), newChronicleId());
+      if (msg.startAtDusk) run?.input({ k: 'start' });
       flush(true);
       postShelf();
       return;

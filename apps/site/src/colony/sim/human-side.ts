@@ -226,7 +226,19 @@ export function emptyHumanEvents(): HumanSideEvents {
 // The adapter
 // ---------------------------------------------------------------------------------------------
 
+/** Known construction facts. Reads never pay, synchronise projects or decide for a person. */
+export interface ConstructionView {
+  stockTimber: number;
+  nextStage: number | null;
+  nextTimber: number | null;
+  payment: 'on-site' | 'unpaid' | 'claimed' | 'not-needed';
+  nextWork: 'ordinary' | 'beam' | 'none';
+  active: { personId: VillagerId; stage: number; action: 'build' | 'raise-beam' }[];
+  selectedOffer?: { build: boolean; beam: boolean };
+}
+
 export interface HumanSide {
+  constructionView?(personId?: VillagerId): ConstructionView;
   /** 'placeholder' until the framework adapter lands, then 'framework'. Shown in the UI footer. */
   readonly kind: string;
 

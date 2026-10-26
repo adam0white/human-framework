@@ -2049,7 +2049,22 @@ kbd {
 }
 
 .inspector[open] {
-  animation: slide-in 0.2s ease-out;
+  animation: inspector-enter 0.2s ease-out;
+  opacity: 1;
+}
+
+@keyframes inspector-enter {
+  from {
+    transform: translateY(12px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .inspector[open] {
+    animation: none;
+  }
 }
 
 .inspector-cols {

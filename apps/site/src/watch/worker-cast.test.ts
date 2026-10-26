@@ -136,3 +136,47 @@ it('saves the old run with its exact accepted ownership before a fresh init and 
     seed: 3,
   });
 });
+
+it('admits the explicit fresh night-off choice and retains that scenario through worker save/load', async () => {
+  await import('./worker.ts');
+  const send = (m: MainToWorker) =>
+    requireValue(control.handle)(m, {
+      get gen() {
+        return control.gen;
+      },
+      set gen(g: number) {
+        control.gen = g;
+      },
+      post: (m: Record<string, unknown>, gen = control.gen) => control.replies.push({ ...m, gen }),
+    });
+  send({
+    type: 'init',
+    seed: 2026,
+    gen: 20,
+    scenarioVersion: 15,
+    options: { duskRest: 'dusk-rest@1' },
+    startAtDusk: true,
+  });
+  send({ type: 'export', requestId: 200 });
+  const data = control.replies.findLast((r) => r.type === 'exported' && r.requestId === 200)
+    ?.data as ReturnType<WatchRun['export']>;
+  expect(data.scenario).toBe(15);
+  expect(data.options).toEqual({ duskRest: 'dusk-rest@1' });
+  expect(data.end.phase).toBe('dusk');
+  expect(data.inputs).toEqual([{ m: 1020, i: { k: 'start' } }]);
+  send({ type: 'save' });
+  expect(JSON.parse(requireValue(control.saved.at(-1))).scenario).toBe(15);
+  // The existing loader retains the saved state; no fresh-run checkbox is applied to it.
+  control.pendingPages = undefined;
+  send({ type: 'load', id: 'saved:auto', gen: 21 });
+  await vi.waitFor(() =>
+    expect(control.replies.some((r) => r.type === 'loaded' && r.gen === 21 && r.ok === true)).toBe(true),
+  );
+  send({ type: 'export', requestId: 201 });
+  const restored = control.replies.findLast((r) => r.type === 'exported' && r.requestId === 201)
+    ?.data as typeof data;
+  expect(restored.scenario).toBe(15);
+  expect(restored.end.fullHash).toBe(data.end.fullHash);
+  send({ type: 'init', seed: 2026, gen: 22, scenarioVersion: 15 });
+  expect(control.replies.findLast((r) => r.gen === 22)?.type).toBe('error');
+});

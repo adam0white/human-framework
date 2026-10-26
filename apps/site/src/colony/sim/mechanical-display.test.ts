@@ -8,7 +8,7 @@ it('separates injuries from general health reserve in the inspector', () => {
   const needs = needsOf(p);
   expect(needs.find((x) => x.id === 'health')?.label).toBe('General health');
   expect(needs.find((x) => x.id === 'injury')).toMatchObject({
-    label: 'Uninjured',
+    label: 'Injury',
     value: 0.4,
     urgent: true,
   });

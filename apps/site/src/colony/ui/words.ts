@@ -39,6 +39,11 @@ export function wellWords(value: string | null | undefined): string | null | und
 export function wellWords(value: string | null | undefined): string | null | undefined {
   if (typeof value !== 'string') return value;
   return settingWords(value)
+    .replace(
+      'Closing the shutters stops work on the roof.',
+      'Closing the shutters protects the unfinished house from storm damage.',
+    )
+    .replace('House shuttered; roof work has stopped', 'The house’s shutters are closed')
     .replace(/^Carried by /, 'Being carried by ')
     .replace(/^Shuttering the house$/, 'Closing the house’s shutters')
     .replace(/^Shuttering$/, 'Closing the shutters')
