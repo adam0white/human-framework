@@ -12,7 +12,7 @@ Updated 2026-10-26. Read [AGENTS.md](AGENTS.md) for owner directions and done cr
 - The playtest director runs the authorized HF 3 lab panel: twelve standing testers and two cold slots. Each game gets a round, fixes and the same testers' retest. A retest with no new blocking ask, or two iterations, ends the cycle; remaining asks keep dated Deferred entries. Claim completion only from actual receipts. Friends' playtests and Show HN stay paused. Owner game readiness remains separate.
 - Follow up the unresolved historical feedback-note cause and owner retest on 2026-11-03. Production transport acknowledgments do not identify the cause of the owner's missing note. Reports remain in `~/code/.lab-scratch/notelost/` and `~/code/.lab-scratch/hfroad/`.
 - Keep the lab client and kit as immutable GitHub release artifacts. The owner chose no npm migration. Client 0.4.11 / kit 0.5.12 are published artifacts; current source integrates that exact source and pins both versions; central adoption was delivered at `00dcdad`; external host adoption needs separate receipts. New Feedback choices require host opt-in and adoption; artifact publication alone does not deliver them to games.
-- Recheck the lane trial on 2026-10-27, Watch's deferred list by 2026-11-05 and the Cloudflare CLI on 2026-12-01. Read the current reports before resuming a worker; historical disk-stop instructions are not current ownership instructions.
+- Recheck the lane trial on 2026-10-27, Watch's deferred list by 2026-11-05 and the Cloudflare CLI on 2026-11-02. Read the current reports before resuming a worker; historical disk-stop instructions are not current ownership instructions.
 
 ## Confirmed checkpoint and evidence limits
 
