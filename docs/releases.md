@@ -4,6 +4,22 @@ Moved verbatim from HANDOFF.md on 2026-10-20 (owner: "Trim handoff and other doc
 
 > Each receipt records its release-time state. Historical site pins, “latest” labels and follow-up instructions are not current deployment or queue status. Package publication, SDK artifacts, game deployment and owner acceptance are separate outcomes. See [HANDOFF](../HANDOFF.md) for the current coordination state.
 
+## HF 4.0.1 — 2026-10-27
+
+[v4.0.1](https://github.com/adam0white/human-framework/releases/tag/v4.0.1) is published to npm as `@adam0white/human-framework@4.0.1` (`latest`) with publish and SLSA provenance attestations naming commit [`09c2aa8`](https://github.com/adam0white/human-framework/commit/09c2aa8ef1d6f051cba8cec7d7ce1535af564821), the merge of [PR #23](https://github.com/adam0white/human-framework/pull/23). The required `ci` check passed on that exact commit ([job 122338259217](https://github.com/adam0white/human-framework/actions/runs/40544890413/job/122338259217), run attempt 2; attempt 1 was cancelled by the next push to main, and the run-level conclusion still reads cancelled although all eight jobs passed). The PR head `0be6277` passed CI 40544441527, Bench and CodeQL. One independent Codex review found no blocking defect; its two P3 findings (warm the step-cost benchmark, keep measurement receipts) were fixed before merge. `npm run release` ran from a detached origin/main under the shared release lock, which was then released.
+
+| Artifact                               |   Bytes | SHA256                                                             |
+| -------------------------------------- | ------: | ------------------------------------------------------------------ |
+| `adam0white-human-framework-4.0.1.tgz` | 419,963 | `4a90c61726db512891e905e633d5509f3f8bbc2e3ee63076aa31ebea5fea6c7b` |
+
+A behaviour-neutral speed patch: `hashes.current` and `hashes.history` match 4.0.0; `hashes.initial` and `hashes.full` change through the engine stamp, so 4.0.1 refuses 4.0.0 archives. Engine stamp: build `b4930949…`, schema `380fd79a…`. Numbers and the corrected diagnosis are in [findings](findings.md#hf-401-step-cost-2026-10-27). Archives still grow without bound ([roadmap, Bounded save](roadmap.md), 2026-11-17).
+
+Game status at release. Under the owner direction of 2026-10-27 ("I'd like all games to work 1:1 on improving HF for their needs so everyone can upgrade to v4 properly"), a game left on 3.x carries HF needs with targets, not a reason to stay; this supersedes the "stays" framing in the 4.0 dispositions below.
+
+- **Smoke on the Stairs** stays live on 3.2.0 (`5b2fab9`) for now. On 4.0.1 its whole-frame p95 at 4x throttle is 16.6 ms against 16 ms (25.0 ms on 4.0.0), and its 100-night bot test still runs about 90–100 s against 30 s. HF needs, target 2026-11-03: a step about 10% cheaper again (memory validation inside the retained probe, slice copies in the physiology probe) and a replay cheaper than play. Smoke's own share is splitting its bot test per seed, as His Word and Three Days did; that waits on the Codex worker changing Smoke's rules on 3.2.0.
+- **What the Child Saw**: unchanged by 4.0.1; its cost is the daily clock's integration (4.1 row) and its archive growth is the Bounded save row.
+- His Word and Three Days remain on 4.0.0; moving them to 4.0.1 needs only a pin bump and starts their saves fresh.
+
 ## Lab client 0.4.15 / kit 0.5.17 artifacts — 2026-10-27
 
 Signed source [`d5b54b1`](https://github.com/adam0white/human-framework/commit/d5b54b1fd521b5d28a1d046b5391494bfb40c67d) passed [exact CI 40467980702](https://github.com/adam0white/human-framework/actions/runs/40467980702) and one independent Opus review. Signed annotated tags [lab-client-v0.4.15](https://github.com/adam0white/human-framework/releases/tag/lab-client-v0.4.15) and [lab-kit-v0.5.17](https://github.com/adam0white/human-framework/releases/tag/lab-kit-v0.5.17) point at that source. Both releases used `--latest=false`, and each has its tarball, `artifact-manifest.json`, `package-members.json` and `SHA256SUMS`. The downloaded assets equal the uploaded bytes. These are GitHub artifacts, not npm publications.
