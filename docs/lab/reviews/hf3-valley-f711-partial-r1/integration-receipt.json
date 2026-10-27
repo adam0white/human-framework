@@ -914,5 +914,526 @@
     "separate_recording_limit": "Recording-on transport conditions and permitted attribution gaps are separate; they do not cure the profile-protocol timing error.",
     "supervisor_original_sha256": "135c8a84002502fb8cb9fc3377a0c2bf8bfd3856d4588fc959a96d1deaad3e45",
     "coordination_excerpt_sha256": "2acf22bcf2ac0b522f5859328cdea10b931da8310f6cc01fc010b15e478280bc"
+  },
+  "per_tester_existing_asks_table": {
+    "source_original_sha256": "502a8f000eeca72cc4a7345bb0e3c4f06c6cf03fe86a819cd95d8cb3bc13d781",
+    "description": "One row per completed tester. Existing canonical ask IDs and literal asks are grouped by FREE and CONT in the same row. Links refer to the sixteen complete reports and already canonical complete return sections. No new feedback-ledger rows or complete return bodies are inserted.",
+    "rows": [
+      {
+        "tester": "Maya Chen",
+        "asks_by_arm": {
+          "FREE": [
+            {
+              "canonical_action_id": "F-1281",
+              "ask": "Let me follow a visit without losing the conversation between panels.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "0035ead5bdf675adccba2d602ce159eb71751eb82346c709a044c25caa3462bf"
+            },
+            {
+              "canonical_action_id": "F-1282",
+              "ask": "Make it clear whether someone is answering what I said.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "0035ead5bdf675adccba2d602ce159eb71751eb82346c709a044c25caa3462bf"
+            },
+            {
+              "canonical_action_id": "F-1283",
+              "ask": "Keep the complete walking countdown visible on my phone.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "0035ead5bdf675adccba2d602ce159eb71751eb82346c709a044c25caa3462bf"
+            }
+          ],
+          "CONT": [
+            {
+              "canonical_action_id": "F-1284",
+              "ask": "Let me follow up on the particular thing someone said.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "b93822fe2117569d9969dba9b8e921357d67ccc582ebd821ba8284789c31e87f"
+            },
+            {
+              "canonical_action_id": "F-1285",
+              "ask": "Let someone visibly answer my listening sentence.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "b93822fe2117569d9969dba9b8e921357d67ccc582ebd821ba8284789c31e87f"
+            },
+            {
+              "canonical_action_id": "F-1286",
+              "ask": "Keep the person’s words readable above the long status and phone controls.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "b93822fe2117569d9969dba9b8e921357d67ccc582ebd821ba8284789c31e87f"
+            }
+          ]
+        },
+        "target": "games-deferred → Valley",
+        "target_date": "2026-10-27",
+        "complete_reports_and_returns": [
+          {
+            "arm": "CONT",
+            "report": "reports/maya-continued.md",
+            "complete_return": "../games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-maya-continued",
+            "report_source_sha256": "b93822fe2117569d9969dba9b8e921357d67ccc582ebd821ba8284789c31e87f"
+          },
+          {
+            "arm": "FREE",
+            "report": "reports/maya-free.md",
+            "complete_return": "../games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-maya-free",
+            "report_source_sha256": "0035ead5bdf675adccba2d602ce159eb71751eb82346c709a044c25caa3462bf"
+          }
+        ]
+      },
+      {
+        "tester": "Emre Kaya",
+        "asks_by_arm": {
+          "FREE": [
+            {
+              "canonical_action_id": "F-1287",
+              "ask": "Tell me whether the current cutters will finish before the rain, so I don't have to work out the rate myself.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "70105a49974a63242034be37e85f604a5540ec80adce9a5e4afe951895c49b1a"
+            },
+            {
+              "canonical_action_id": "F-1288",
+              "ask": "Give me more to say on a visit than \"I came to listen\", for example asking for help before the rain in exchange for help afterwards.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "70105a49974a63242034be37e85f604a5540ec80adce9a5e4afe951895c49b1a"
+            },
+            {
+              "canonical_action_id": "F-1289",
+              "ask": "Show the insist hold filling, and show the reply count update straight away.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "70105a49974a63242034be37e85f604a5540ec80adce9a5e4afe951895c49b1a"
+            }
+          ],
+          "CONT": [
+            {
+              "canonical_action_id": "F-1290",
+              "ask": "Tell me what happened to the people I pressed, at the moment it happens.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "4bf25218ff905a100fe6f4f1fc694ab7e025f770980c8649c1867f7981ca434d"
+            },
+            {
+              "canonical_action_id": "F-1291",
+              "ask": "Make the spoken answer a real exchange: let me say why I need their hands and hear a reply that changes something.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "4bf25218ff905a100fe6f4f1fc694ab7e025f770980c8649c1867f7981ca434d"
+            },
+            {
+              "canonical_action_id": "F-1292",
+              "ask": "Confirm each insist and each gift right away (who is coming, how many measures went), so the counts match the list.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "4bf25218ff905a100fe6f4f1fc694ab7e025f770980c8649c1867f7981ca434d"
+            }
+          ]
+        },
+        "target": "games-deferred → Valley",
+        "target_date": "2026-10-27",
+        "complete_reports_and_returns": [
+          {
+            "arm": "CONT",
+            "report": "reports/emre-continued.md",
+            "complete_return": "../games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-emre-continued",
+            "report_source_sha256": "4bf25218ff905a100fe6f4f1fc694ab7e025f770980c8649c1867f7981ca434d"
+          },
+          {
+            "arm": "FREE",
+            "report": "reports/emre-free.md",
+            "complete_return": "../games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-emre-free",
+            "report_source_sha256": "70105a49974a63242034be37e85f604a5540ec80adce9a5e4afe951895c49b1a"
+          }
+        ]
+      },
+      {
+        "tester": "Nia Okafor",
+        "asks_by_arm": {
+          "FREE": [
+            {
+              "canonical_action_id": "F-1293",
+              "ask": "Let somebody answer my listening sentence in a way I can respond to.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "868c9c8552703ac8a7e1076050c4a3cc00786d0d9bf01858cd96ffef18a015c7"
+            },
+            {
+              "canonical_action_id": "F-1294",
+              "ask": "Keep the household’s reply visible above the fixed phone controls.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "868c9c8552703ac8a7e1076050c4a3cc00786d0d9bf01858cd96ffef18a015c7"
+            }
+          ],
+          "CONT": [
+            {
+              "canonical_action_id": "F-1295",
+              "ask": "Let someone clearly answer the listening sentence I chose.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "50452bf33b9250a7ca839bb54d2b734f6257663cf0b4fbd33552a4f63eb65f10"
+            },
+            {
+              "canonical_action_id": "F-1296",
+              "ask": "Give me different things to say during a visit.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "50452bf33b9250a7ca839bb54d2b734f6257663cf0b4fbd33552a4f63eb65f10"
+            },
+            {
+              "canonical_action_id": "F-1297",
+              "ask": "Let me read the whole travel status on my phone.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "50452bf33b9250a7ca839bb54d2b734f6257663cf0b4fbd33552a4f63eb65f10"
+            }
+          ]
+        },
+        "target": "games-deferred → Valley",
+        "target_date": "2026-10-27",
+        "complete_reports_and_returns": [
+          {
+            "arm": "CONT",
+            "report": "reports/nia-continued.md",
+            "complete_return": "../games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-nia-continued",
+            "report_source_sha256": "50452bf33b9250a7ca839bb54d2b734f6257663cf0b4fbd33552a4f63eb65f10"
+          },
+          {
+            "arm": "FREE",
+            "report": "reports/nia-free.md",
+            "complete_return": "../games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-nia-free",
+            "report_source_sha256": "868c9c8552703ac8a7e1076050c4a3cc00786d0d9bf01858cd96ffef18a015c7"
+          }
+        ]
+      },
+      {
+        "tester": "Rosa Alvarez",
+        "asks_by_arm": {
+          "FREE": [
+            {
+              "canonical_action_id": "F-1298",
+              "ask": "Tell me why Skip is grey, or let it take me to the rain.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "95ce2c5a8b284f3bdf440e2d498847a34d0e566dc3524702b813c3d674753560"
+            },
+            {
+              "canonical_action_id": "F-1299",
+              "ask": "Show one line per house instead of the same sentence nine times.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "95ce2c5a8b284f3bdf440e2d498847a34d0e566dc3524702b813c3d674753560"
+            },
+            {
+              "canonical_action_id": "F-1300",
+              "ask": "Let me choose how much grain to send before it goes.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "95ce2c5a8b284f3bdf440e2d498847a34d0e566dc3524702b813c3d674753560"
+            }
+          ],
+          "CONT": [
+            {
+              "canonical_action_id": "F-1301",
+              "ask": "When nothing needs me, let the hours pass faster, and tell me plainly what Skip does.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "dd88a4765ee2ed7f61ae8284ad40e7df319956b77434018547bbd787ec691440"
+            },
+            {
+              "canonical_action_id": "F-1302",
+              "ask": "Give me more than one thing to say. Let the answer come after my words, not 'Say what you came to say'.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "dd88a4765ee2ed7f61ae8284ad40e7df319956b77434018547bbd787ec691440"
+            },
+            {
+              "canonical_action_id": "F-1303",
+              "ask": "Before Send grain gives anything, show how much it gives, and show my gifts in the ledger.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "dd88a4765ee2ed7f61ae8284ad40e7df319956b77434018547bbd787ec691440"
+            }
+          ]
+        },
+        "target": "games-deferred → Valley",
+        "target_date": "2026-10-27",
+        "complete_reports_and_returns": [
+          {
+            "arm": "CONT",
+            "report": "reports/rosa-continued.md",
+            "complete_return": "../games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-rosa-continued",
+            "report_source_sha256": "dd88a4765ee2ed7f61ae8284ad40e7df319956b77434018547bbd787ec691440"
+          },
+          {
+            "arm": "FREE",
+            "report": "reports/rosa-free.md",
+            "complete_return": "../games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-rosa-free",
+            "report_source_sha256": "95ce2c5a8b284f3bdf440e2d498847a34d0e566dc3524702b813c3d674753560"
+          }
+        ]
+      },
+      {
+        "tester": "Jonas Berg",
+        "asks_by_arm": {
+          "FREE": [
+            {
+              "canonical_action_id": "F-1304",
+              "ask": "I want to see what my spoken answer changed, beyond having sat with the household.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "a3e024d21fbf475035b706e2fbbb2215591db043a6c14a6566402aa70c629965"
+            },
+            {
+              "canonical_action_id": "F-1305",
+              "ask": "I want to know how much grain Send grain will give before I commit it.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "a3e024d21fbf475035b706e2fbbb2215591db043a6c14a6566402aa70c629965"
+            }
+          ],
+          "CONT": [
+            {
+              "canonical_action_id": "F-1306",
+              "ask": "I want a conversation to give me something specific to answer, and a reply that follows what I said.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "3b4920ae304064d9d6ecd249d4bd5e165ef2be61a6f46854ac339eb29287b064"
+            },
+            {
+              "canonical_action_id": "F-1307",
+              "ask": "I want to know the grain amount before Send grain commits it.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "3b4920ae304064d9d6ecd249d4bd5e165ef2be61a6f46854ac339eb29287b064"
+            },
+            {
+              "canonical_action_id": "F-1308",
+              "ask": "I want to judge whether waiting for people’s own harvest will still beat the rain.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "3b4920ae304064d9d6ecd249d4bd5e165ef2be61a6f46854ac339eb29287b064"
+            }
+          ]
+        },
+        "target": "games-deferred → Valley",
+        "target_date": "2026-10-27",
+        "complete_reports_and_returns": [
+          {
+            "arm": "CONT",
+            "report": "reports/jonas-continued.md",
+            "complete_return": "../games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-jonas-continued",
+            "report_source_sha256": "3b4920ae304064d9d6ecd249d4bd5e165ef2be61a6f46854ac339eb29287b064"
+          },
+          {
+            "arm": "FREE",
+            "report": "reports/jonas-free.md",
+            "complete_return": "../games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-jonas-free",
+            "report_source_sha256": "a3e024d21fbf475035b706e2fbbb2215591db043a6c14a6566402aa70c629965"
+          }
+        ]
+      },
+      {
+        "tester": "Aisha Rahman",
+        "asks_by_arm": {
+          "FREE": [
+            {
+              "canonical_action_id": "F-1309",
+              "ask": "Let a visit become a short conversation, with more than one thing to say, replies that answer what I said, and room to ask about what I can see (Zehra's pregnancy, the low jars).",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "32d2365bf4b9e1d9aa6301414351b2049e49b9b66b7ac2b971930356d4022889"
+            },
+            {
+              "canonical_action_id": "F-1310",
+              "ask": "Collapse the identical reply lines into a single summary line, and don't keep time crawling just because I chose not to insist.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "32d2365bf4b9e1d9aa6301414351b2049e49b9b66b7ac2b971930356d4022889"
+            },
+            {
+              "canonical_action_id": "F-1311",
+              "ask": "Tell me when a gift leaves the landowner short, at the moment I give it.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "32d2365bf4b9e1d9aa6301414351b2049e49b9b66b7ac2b971930356d4022889"
+            }
+          ],
+          "CONT": [
+            {
+              "canonical_action_id": "F-1312",
+              "ask": "Let a visit go on: a second thing to say that follows from what they told me, such as the food, the baby, the roof, or \"stay home, Zehra\".",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "a92bac0567796a482329adf778db09239a413cd8d6959b6b7519a4d75ea39ebb"
+            },
+            {
+              "canonical_action_id": "F-1313",
+              "ask": "Show me how much a gift costs before I send it, and let me excuse someone from the call, especially children and a pregnant woman.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "a92bac0567796a482329adf778db09239a413cd8d6959b6b7519a4d75ea39ebb"
+            },
+            {
+              "canonical_action_id": "F-1314",
+              "ask": "Don't fill the page with the same reply twenty-five times, and keep time from racing ten hours while I'm only reading the notebook.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "a92bac0567796a482329adf778db09239a413cd8d6959b6b7519a4d75ea39ebb"
+            }
+          ]
+        },
+        "target": "games-deferred → Valley",
+        "target_date": "2026-10-27",
+        "complete_reports_and_returns": [
+          {
+            "arm": "CONT",
+            "report": "reports/aisha-continued.md",
+            "complete_return": "../games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-aisha-continued",
+            "report_source_sha256": "a92bac0567796a482329adf778db09239a413cd8d6959b6b7519a4d75ea39ebb"
+          },
+          {
+            "arm": "FREE",
+            "report": "reports/aisha-free.md",
+            "complete_return": "../games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-aisha-free",
+            "report_source_sha256": "32d2365bf4b9e1d9aa6301414351b2049e49b9b66b7ac2b971930356d4022889"
+          }
+        ]
+      },
+      {
+        "tester": "Diego Silva",
+        "asks_by_arm": {
+          "FREE": [
+            {
+              "canonical_action_id": "F-1315",
+              "ask": "Let me hear a response to “I came to listen” that I can connect to saying it.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "473287321b070fe30bca7291ca9cc764acd8057e92e9ae25502d9787ec3acca4"
+            },
+            {
+              "canonical_action_id": "F-1316",
+              "ask": "Let the empty walking and waiting pass faster.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "473287321b070fe30bca7291ca9cc764acd8057e92e9ae25502d9787ec3acca4"
+            }
+          ],
+          "CONT": [
+            {
+              "canonical_action_id": "F-1317",
+              "ask": "Let listening lead to something I can hear or answer during the visit.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "65a8310e83a6cca7b501625498c33284e8335fc797d12bd34452cea21138a1f7"
+            },
+            {
+              "canonical_action_id": "F-1318",
+              "ask": "Let empty walking and waiting pass faster.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "65a8310e83a6cca7b501625498c33284e8335fc797d12bd34452cea21138a1f7"
+            },
+            {
+              "canonical_action_id": "F-1319",
+              "ask": "Make the grain confirmation and granary total understandable together.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "65a8310e83a6cca7b501625498c33284e8335fc797d12bd34452cea21138a1f7"
+            }
+          ]
+        },
+        "target": "games-deferred → Valley",
+        "target_date": "2026-10-27",
+        "complete_reports_and_returns": [
+          {
+            "arm": "CONT",
+            "report": "reports/diego-continued.md",
+            "complete_return": "../games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-diego-continued",
+            "report_source_sha256": "65a8310e83a6cca7b501625498c33284e8335fc797d12bd34452cea21138a1f7"
+          },
+          {
+            "arm": "FREE",
+            "report": "reports/diego-free.md",
+            "complete_return": "../games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-diego-free",
+            "report_source_sha256": "473287321b070fe30bca7291ca9cc764acd8057e92e9ae25502d9787ec3acca4"
+          }
+        ]
+      },
+      {
+        "tester": "Mei Tan",
+        "asks_by_arm": {
+          "FREE": [
+            {
+              "canonical_action_id": "F-1320",
+              "ask": "Tell me whether the current reapers are enough to finish before the rain.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "0c7cf35126dbefb752db0a8d3f0e4bc633d1da3ca86c8f7cc8f3bb214b0a9e9a"
+            },
+            {
+              "canonical_action_id": "F-1321",
+              "ask": "Let the person I visit answer what I say.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "0c7cf35126dbefb752db0a8d3f0e4bc633d1da3ca86c8f7cc8f3bb214b0a9e9a"
+            },
+            {
+              "canonical_action_id": "F-1322",
+              "ask": "Give me a way to accept a delay without insisting.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "0c7cf35126dbefb752db0a8d3f0e4bc633d1da3ca86c8f7cc8f3bb214b0a9e9a"
+            }
+          ],
+          "CONT": [
+            {
+              "canonical_action_id": "F-1323",
+              "ask": "Let the household answer what I say when I say \"I came to listen\", or tell me what it changed.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "d90b36f9e6e78b51f6ee323975904ecaf32491f1e2fe9167cba2c2409993b225"
+            },
+            {
+              "canonical_action_id": "F-1324",
+              "ask": "Let the day move on when I have nothing left to decide, or make Skip visibly jump ahead.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "d90b36f9e6e78b51f6ee323975904ecaf32491f1e2fe9167cba2c2409993b225"
+            },
+            {
+              "canonical_action_id": "F-1325",
+              "ask": "Let me accept a delay without insisting, so the reply list stops waiting on me.",
+              "target": "games-deferred → valley",
+              "target_date": "2026-10-27",
+              "report_sha256": "d90b36f9e6e78b51f6ee323975904ecaf32491f1e2fe9167cba2c2409993b225"
+            }
+          ]
+        },
+        "target": "games-deferred → Valley",
+        "target_date": "2026-10-27",
+        "complete_reports_and_returns": [
+          {
+            "arm": "CONT",
+            "report": "reports/mei-continued.md",
+            "complete_return": "../games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-mei-continued",
+            "report_source_sha256": "d90b36f9e6e78b51f6ee323975904ecaf32491f1e2fe9167cba2c2409993b225"
+          },
+          {
+            "arm": "FREE",
+            "report": "reports/mei-free.md",
+            "complete_return": "../games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-mei-free",
+            "report_source_sha256": "0c7cf35126dbefb752db0a8d3f0e4bc633d1da3ca86c8f7cc8f3bb214b0a9e9a"
+          }
+        ]
+      }
+    ]
   }
 }
