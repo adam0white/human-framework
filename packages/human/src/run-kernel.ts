@@ -3,6 +3,7 @@
  * Export/replay materializes that history. Preview clones only its current branch
  * state, and shares immutable definitions/parameters/history nodes.
  */
+import { cloneData } from './core/clone.ts';
 import type { DerivedParameters } from './run-parameters.ts';
 import type * as T from './run-schema.ts';
 import { initialRunState } from './run-state.ts';
@@ -122,7 +123,7 @@ export function makeKernel(
   spec: T.DeepReadonly<T.RunSpec>,
   parameters: T.DeepReadonly<DerivedParameters>,
 ): T.Run {
-  const privateSpec = freezeData(structuredClone(spec));
+  const privateSpec = freezeData(cloneData(spec));
   const current = initialRunState(privateSpec);
   return Kernel.create({
     spec: privateSpec,
@@ -151,7 +152,7 @@ export function restoreKernel(
   archive: T.DeepReadonly<T.RunArchive>,
   parameters: T.DeepReadonly<DerivedParameters>,
 ): T.Run {
-  const current = structuredClone(archive.current) as T.RunState;
+  const current = cloneData(archive.current) as T.RunState;
   const journal = bindJournal(current);
   const allocations = new Map<T.PersonId, T.Reference[]>();
   for (const allocation of current.receipts.allocated) {
@@ -168,13 +169,13 @@ export function restoreKernel(
   for (const transaction of archive.history)
     history = Object.freeze({
       previous: history,
-      transaction: freezeData(structuredClone(transaction)),
+      transaction: freezeData(cloneData(transaction)),
       length: transaction.ordinal,
     });
   return Kernel.create({
-    spec: freezeData(structuredClone(archive.initial.spec)),
+    spec: freezeData(cloneData(archive.initial.spec)),
     parameters,
-    initialPeople: freezeData(structuredClone(archive.initial.people)),
+    initialPeople: freezeData(cloneData(archive.initial.people)),
     current,
     started: archive.history.length > 0,
     history,
@@ -191,7 +192,7 @@ export function restoreKernel(
 }
 export function forkKernel(run: T.Run): T.Run {
   const source = Kernel.read(run);
-  const current = structuredClone(source.current);
+  const current = cloneData(source.current);
   return Kernel.create({
     spec: source.spec,
     parameters: source.parameters,
@@ -259,14 +260,14 @@ export function commitTransaction(
     if (transaction.ordinal !== ordinal) throw new TypeError('non-successive transaction ordinal');
     history = Object.freeze({
       previous: history,
-      transaction: freezeData(structuredClone(transaction)),
+      transaction: freezeData(cloneData(transaction)),
       length: ordinal,
     });
   }
   // Detach only this transaction's new records. A later owner mutation cannot
   // rewrite previously committed evidence through a shared nested object.
-  const events = structuredClone(stage.events);
-  const receipts = structuredClone(stage.receipts);
+  const events = cloneData(stage.events);
+  const receipts = cloneData(stage.receipts);
   freezeData(events);
   freezeData(receipts);
   const active=new Set(Object.values(stage.current.people).flatMap(actor=>actor.activity?[actor.activity.id]:[]));
@@ -317,7 +318,7 @@ export function appendHistory(run: T.Run, transaction: T.DeepReadonly<T.Accepted
   if (transaction.ordinal !== ordinal) throw new TypeError('non-successive transaction ordinal');
   record.history = Object.freeze({
     previous: record.history,
-    transaction: freezeData(structuredClone(transaction)),
+    transaction: freezeData(cloneData(transaction)),
     length: ordinal,
   });
 }

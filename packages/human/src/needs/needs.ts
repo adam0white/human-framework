@@ -11,6 +11,7 @@
  * body's fatigue already folds it in). Parameters are engineering defaults for game time scales; this does
  * not claim an exhaustive need list, calibrated rates, or a universal weighting between needs.
  */
+import { cloneData } from '../core/clone.ts';
 import { evaluateCell, initialWidth, integrateCell, required } from '../body/span.ts';
 import { characterTraitSegments, readCharacterTrajectory } from '../character/character.ts';
 import { clamp, clamp01, dexp, dlog, dpow } from '../core/index.ts';
@@ -532,7 +533,7 @@ export const needsOwner: import('../run-schema.ts').NeedsOwner = {
   advance(_state, context) {
     return {
       state: materializeNeeds(context, context.to),
-      continuation: structuredClone(context.continuation),
+      continuation: cloneData(context.continuation),
       trajectory: projectNeedTrajectory(context),
       effects: { terms: [], modifiers: [], appraisals: [] },
       events: [],

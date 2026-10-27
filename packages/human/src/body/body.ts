@@ -1,6 +1,7 @@
 /** SCOPE: always-present body owner. Continuous engineering laws replace the 3.x
  * ordered 15-minute recurrence. Parameters are run-local; no clinical calibration.
  * See W1 METHOD-INTERFACE.md for equation provenance and numerical limits. */
+import { cloneData } from '../core/clone.ts';
 import { dcos, dexp, dlog } from '../core/libm.ts';
 import { modifiersForAge } from '../lifecourse/lifecourse.ts';
 import type * as T from '../run-schema.ts';
@@ -296,7 +297,7 @@ function materialize(
   keys: readonly T.DeepReadonly<T.BodyFieldKey>[],
   y: readonly number[],
 ): T.BodyState {
-  const o: T.BodyState = structuredClone(b) as T.BodyState;
+  const o: T.BodyState = cloneData(b) as T.BodyState;
   const get = (component: T.BodyComponent, recordId: string | null = null) => {
     const n = keys.findIndex((k) => k.component === component && k.recordId === recordId);
     if (n < 0) throw new RangeError('missing body component');
@@ -676,15 +677,15 @@ function init(
     since: input.since,
     alive: input.health > 0,
     nextId: 0,
-    doze: structuredClone(input.doze),
-    bladder: structuredClone(input.bladder),
-    injuries: structuredClone(input.injuries) as T.Injury[],
-    illnesses: structuredClone(input.illnesses) as T.Illness[],
+    doze: cloneData(input.doze),
+    bladder: cloneData(input.bladder),
+    injuries: cloneData(input.injuries) as T.Injury[],
+    illnesses: cloneData(input.illnesses) as T.Illness[],
     exposures: Object.fromEntries(
       input.exposures.map((e) => [e.agent, { recent: e.recent, cumulative: e.cumulative, lastAt: e.lastAt }]),
     ),
   };
-  if (input.downed) b.downed = structuredClone(input.downed);
+  if (input.downed) b.downed = cloneData(input.downed);
   for (const i of b.illnesses) if (i.chronic && i.baseline === undefined) i.baseline = i.severity;
   const id = `body:${c.person}:${c.at}`;
   const d: T.DozeContinuation = {
@@ -877,7 +878,7 @@ function constantBodyTrajectory(
 }
 const advance: T.BodyOwner['advance'] = (state, ctx) => {
   minutes(ctx.from, ctx.to);
-  let b: T.BodyState = structuredClone(state) as T.BodyState,
+  let b: T.BodyState = cloneData(state) as T.BodyState,
     c: T.BodyContinuation = copy<T.BodyContinuation>(ctx.continuation),
     d: T.DozeContinuation = copy<T.DozeContinuation>(ctx.dozeContinuation);
   if (!b.alive)
@@ -1227,7 +1228,7 @@ const advance: T.BodyOwner['advance'] = (state, ctx) => {
   };
 };
 const receive: T.BodyOwner['receive'] = (state, input, ctx) => {
-  const b: T.BodyState = structuredClone(state) as T.BodyState;
+  const b: T.BodyState = cloneData(state) as T.BodyState;
   const events: T.EventData[] = [];
   const emit = (change: T.BodyChange) => events.push({ kind: 'body-change', change });
   const id = (prefix: string) => {
@@ -1257,7 +1258,7 @@ const receive: T.BodyOwner['receive'] = (state, input, ctx) => {
             );
         }
         if (q.relief) b.pain = clip(b.pain - q.relief);
-        emit({ kind: 'consumed', received: structuredClone(q), receiptId });
+        emit({ kind: 'consumed', received: cloneData(q), receiptId });
         break;
       }
       case 'exerted':
@@ -1265,10 +1266,10 @@ const receive: T.BodyOwner['receive'] = (state, input, ctx) => {
           const v = r.costs[k];
           if (v !== undefined && Number.isFinite(v) && v > 0) b[k] = clip(b[k] + v);
         }
-        emit({ kind: 'exerted', costs: structuredClone(r.costs), receiptId });
+        emit({ kind: 'exerted', costs: cloneData(r.costs), receiptId });
         break;
       case 'injured': {
-        const injury: T.Injury = { ...structuredClone(r.injury), id: id('injury'), since: ctx.at };
+        const injury: T.Injury = { ...cloneData(r.injury), id: id('injury'), since: ctx.at };
         b.injuries.push(injury);
         if (b.injuries.length > ctx.effective.builtins.BODY_DEFAULTS.maxInjuries) {
           let min = 0;
@@ -1282,7 +1283,7 @@ const receive: T.BodyOwner['receive'] = (state, input, ctx) => {
       }
       case 'illness': {
         const illness: T.Illness = {
-          ...structuredClone(r.illness),
+          ...cloneData(r.illness),
           aggravatedBy: r.illness.aggravatedBy ? [...r.illness.aggravatedBy] : undefined,
           id: id('illness'),
           since: ctx.at,
@@ -1358,7 +1359,7 @@ const receive: T.BodyOwner['receive'] = (state, input, ctx) => {
       emit({ kind: 'died', discoveredAt: ctx.at });
     }
   } else if (input.kind === 'ambient-context') {
-    b.doze = { ...b.doze, context: structuredClone(input.context), basis: structuredClone(input.basis) };
+    b.doze = { ...b.doze, context: cloneData(input.context), basis: cloneData(input.basis) };
   } else if (input.kind === 'wake') {
     const e = input.evidence;
     if (
@@ -1408,7 +1409,7 @@ const receive: T.BodyOwner['receive'] = (state, input, ctx) => {
       conditionId: c.clock.conditionId,
     },
     hazard: {
-      ...structuredClone(old),
+      ...cloneData(old),
       clock: clock(ctx.at, c.clock.conditionId, ctx.effectiveParametersHash),
       anchorIntegral: integral,
       acceptedIntegral: integral,
@@ -1420,9 +1421,9 @@ const receive: T.BodyOwner['receive'] = (state, input, ctx) => {
   return { ...output(b, ctx.at), events, continuation: c, dozeContinuation: d };
 };
 const commitHazard: T.BodyOwner['commitHazard'] = (state, boundary, ctx) => {
-  let b: T.BodyState = structuredClone(state) as T.BodyState;
+  let b: T.BodyState = cloneData(state) as T.BodyState;
   let d: T.DozeContinuation = copy<T.DozeContinuation>(ctx.dozeContinuation),
-    rng: T.ActorRandomCursor = structuredClone(ctx.rng);
+    rng: T.ActorRandomCursor = cloneData(ctx.rng);
   const c = ctx.continuation;
   const intensity = dozeIntensity(
     readBody(b, ctx.at, ctx.effective.builtins.BODY_DEFAULTS).sleepiness,

@@ -1,6 +1,7 @@
 /** SCOPE: public run entry points. Definitions and effective parameters are admitted
  * once. Full history materialization and canonical hashes belong to cold export.
  */
+import { cloneData } from './core/clone.ts';
 import { checkPersonAuthoring, checkRunSpec } from './run-admission.ts';
 import { archiveHashes } from './run-archive.ts';
 import { hashCanonical } from './run-canonical.ts';
@@ -162,7 +163,7 @@ export function exportRun(run: T.Run): T.DeepReadonly<T.RunArchive> {
     current: record.current,
   };
   // The caller cannot freeze or mutate private live state through an export.
-  return freezeData(structuredClone({ ...body, hashes: archiveHashes(body) }));
+  return freezeData(cloneData({ ...body, hashes: archiveHashes(body) }));
 }
 
 export function inspect(
@@ -198,7 +199,7 @@ export function inspect(
     if(!life.ok)return life;
     value={...value,lifecycle:life.value};
   }
-  return {ok:true,value:freezeData(structuredClone(value))};
+  return {ok:true,value:freezeData(cloneData(value))};
 }
 export { preview } from './run-preview.ts';
 export { step } from './run-step.ts';

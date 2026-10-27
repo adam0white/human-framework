@@ -3,6 +3,7 @@
  * No host adapter, migration, repair, or archived-state execution shortcut.
  */
 
+import { cloneData } from './core/clone.ts';
 import { projectChapterClock } from './chapter-clock.ts';
 import { compareInputs } from './run-admission.ts';
 import { archiveHashes, checkArchiveEnvelope } from './run-archive.ts';
@@ -616,7 +617,7 @@ function admit(
 }> {
   const checked = checkArchiveEnvelope(input, RUN_ENGINE);
   if (!checked.ok) return checked;
-  const archive = structuredClone(checked.value);
+  const archive = cloneData(checked.value);
   const parameters = buildParameters(archive.initial.spec.tuning);
   if (!parameters.ok) return parameters;
   const current = validateCurrent(archive, parameters.value.hash);
@@ -626,7 +627,7 @@ function admit(
   if (!created.ok) return created;
   const run = created.value;
   for (const person of archive.initial.people) {
-    const admitted = operations.createPerson(run, structuredClone(person));
+    const admitted = operations.createPerson(run, cloneData(person));
     if (!admitted.ok) return admitted;
     if (admitted.value !== person.id)
       return reject('$.initial.people', 'constructor returned a different identity');
@@ -645,8 +646,8 @@ function reconstruct(input: unknown, operations: RecoveryOperations): T.Result<T
     const path = `$.history[${index}]`;
     const reached = operations.step(run, {
       until: transaction.until,
-      inputs: structuredClone(transaction.inputs),
-      fidelity: structuredClone(transaction.fidelity),
+      inputs: cloneData(transaction.inputs),
+      fidelity: cloneData(transaction.fidelity),
     });
     if (!reached.ok) return reached;
     const current = readKernel(run).current;

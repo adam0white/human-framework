@@ -2,6 +2,7 @@
  * Variation uses domain-separated event/meaning/audience identity, never actor RNG or read counts.
  * Authored names/actions remain data. No legacy packs or stored-text rewrites.
  */
+import { cloneData } from '../core/clone.ts';
 import type {
   DeepReadonly,
   EventData,
@@ -281,7 +282,7 @@ export const rendererOwner: RendererOwner = {
     return [
       {
         eventId: event.id,
-        audience: structuredClone(perspective),
+        audience: cloneData(perspective),
         text: variants[slot]!,
         variantId: `en:${event.data.kind}:${slot}`,
       },

@@ -1,4 +1,5 @@
 /** SCOPE: HF4 always-present owner. Source equations use immutable run parameters; no legacy continuation. */
+import { cloneData } from '../core/clone.ts';
 import { clamp01, cmpStr, round } from '../core/index.ts';
 export const PROJECTS_DEFAULTS = {
   maxProspects: 8,
@@ -19,7 +20,7 @@ export const projectsOwner: import('../run-schema.ts').ProjectsOwner = {
     return { prospects: [], history: [], contributions: [], setbacks: [] };
   },
   receive(previous, input, context) {
-    const state = structuredClone(previous) as import('../run-schema.ts').ProjectsState;
+    const state = cloneData(previous) as import('../run-schema.ts').ProjectsState;
     const agendaReceipts: import('../run-schema.ts').ProjectAgendaReceipt[] = [];
     const d = context.effective.builtins.PROJECTS_DEFAULTS;
     const observe = (
@@ -78,7 +79,7 @@ export const projectsOwner: import('../run-schema.ts').ProjectsOwner = {
         if (!pending.readings.length || at - pending.at > 300000) delete state.pendingAct;
       }
       const held = {
-        ...structuredClone(prospect),
+        ...cloneData(prospect),
         lastSeenAt: at,
       } as import('../run-schema.ts').ProjectsState['prospects'][number];
       if (old) state.prospects[state.prospects.indexOf(old)] = held;
@@ -167,7 +168,7 @@ export const projectsOwner: import('../run-schema.ts').ProjectsOwner = {
     };
   },
   consider(previous, context) {
-    const state = structuredClone(previous) as import('../run-schema.ts').ProjectsState;
+    const state = cloneData(previous) as import('../run-schema.ts').ProjectsState;
     const agendaReceipts: import('../run-schema.ts').ProjectAgendaReceipt[] = [];
     const d = context.effective.builtins.PROJECTS_DEFAULTS;
     state.prospects = state.prospects.filter((p) => context.at - p.lastSeenAt <= d.forgetMinutes * 60000);

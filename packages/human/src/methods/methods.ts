@@ -1,4 +1,5 @@
 /** SCOPE: HF4 always-present owner. Source equations use immutable run parameters; no legacy continuation. */
+import { cloneData } from '../core/clone.ts';
 import { clamp01, cmpStr, decay, isObj } from '../core/index.ts';
 import type { MethodCue } from '../run-schema.ts';
 
@@ -156,7 +157,7 @@ export function receiveMethodEvidence(
     };
   },
 ): import('../run-schema.ts').OwnerOutput<import('../run-schema.ts').MethodsState> {
-  const state = structuredClone(previous) as import('../run-schema.ts').MethodsState;
+  const state = cloneData(previous) as import('../run-schema.ts').MethodsState;
   const defaults = context.effective.builtins.METHOD_DEFAULTS;
   if (input.kind === 'context-left') {
     if (state.context?.id === input.contextId) delete state.context;

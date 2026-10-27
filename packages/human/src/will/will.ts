@@ -1,3 +1,4 @@
+import { cloneData } from '../core/clone.ts';
 import type {
   ActorState,
   BodyReadout,
@@ -1562,7 +1563,7 @@ export const willOwner: import('../run-schema.ts').WillOwner = {
     };
   },
   decide(previous, context) {
-    const state = structuredClone(previous) as WillState;
+    const state = cloneData(previous) as WillState;
     const cursor = {
       words: { ...context.rng.words },
       identity: { ...context.rng.identity, origin: { ...context.rng.identity.origin } },
@@ -1592,7 +1593,7 @@ export const willOwner: import('../run-schema.ts').WillOwner = {
     const ctx: WillContext = {
       frame: context as import('../run-schema.ts').FrameContext,
       now: context.at,
-      affordances: context.offers.map((o) => structuredClone(o)) as Offer[],
+      affordances: context.offers.map((o) => cloneData(o)) as Offer[],
       body: context.body as BodyReadout,
       desperation,
       reconsider: context.treatment === 'reconsider',
@@ -1651,7 +1652,7 @@ export const willOwner: import('../run-schema.ts').WillOwner = {
     };
   },
   receive(previous, input, context) {
-    const state = structuredClone(previous) as WillState;
+    const state = cloneData(previous) as WillState;
     const actor = { ...context.actor, will: state, effective: context.effective } as WillActor;
     const needReceipts: import('../run-schema.ts').WillAutonomyReceipt[] = [];
     const crisisReceipts: import('../run-schema.ts').WillMutationOutput['crisisReceipts'][number][] = [];
@@ -1740,7 +1741,7 @@ export const willOwner: import('../run-schema.ts').WillOwner = {
     };
   },
   advance(_previous, context) {
-    const state = structuredClone(context.continuation.state) as WillState;
+    const state = cloneData(context.continuation.state) as WillState;
     const elapsed = BigInt(context.to) - BigInt(context.continuation.anchor.at);
     if (elapsed < 0n || elapsed > BigInt(Number.MAX_SAFE_INTEGER)) throw new RangeError('Invalid will span');
     const actor = { will: state, now: context.continuation.anchor.at };
@@ -1749,7 +1750,7 @@ export const willOwner: import('../run-schema.ts').WillOwner = {
     const crisisReceipts: import('../run-schema.ts').WillMutationOutput['crisisReceipts'][number][] = [];
     return {
       state,
-      continuation: structuredClone(
+      continuation: cloneData(
         context.continuation,
       ) as import('../run-schema.ts').DeliberationContinuation['will'],
       resolutions: [],
@@ -1762,7 +1763,7 @@ export const willOwner: import('../run-schema.ts').WillOwner = {
     };
   },
   receiveUpbringing(previous, input, context) {
-    const state = structuredClone(previous) as WillState;
+    const state = cloneData(previous) as WillState;
     const carers = input.caregivers.filter((c) => c.id !== context.person),
       total = carers.reduce((sum, c) => sum + Math.max(0, c.warmth), 0);
     const age = (context.at - context.life.bornAt) / (365 * 86400000),

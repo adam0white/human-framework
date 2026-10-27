@@ -2,6 +2,7 @@
  * deceit stays private. Norm costs model the speaker's held understanding (research/).
  * C0 settles actual recipients/items/attention once. No automatic hearing or RNG.
  */
+import { cloneData } from '../core/clone.ts';
 import { dexp } from '../core/libm.ts';
 import type {
   Belief,
@@ -304,7 +305,7 @@ export const conversationOwner: ConversationOwner = {
       .slice(0, 3)
       .map((g) => ({
         id: `${context.causes[0] ?? input.teller}:gist:${g.id}`,
-        data: { kind: 'gist', sourceGistId: g.id, gist: structuredClone(g) as Gist },
+        data: { kind: 'gist', sourceGistId: g.id, gist: cloneData(g) as Gist },
       }));
   },
 };

@@ -1,5 +1,6 @@
 /** SCOPE: one source of decision terms, composed from faculty-owned projections. */
 
+import { cloneData } from '../core/clone.ts';
 import * as affectModule from '../affect/affect.ts';
 import { agendaTermsWithGoalEstimates } from '../agenda/agenda.ts';
 import { trustOf } from '../beliefs/beliefs.ts';
@@ -582,7 +583,7 @@ export function consider(p: CognitiveActor, aff: Offer, ctx: ConsiderContext): C
     desperation: ctx.desperation,
   });
   for (const t of prompt.terms) push(t.source, t.value, t.ref);
-  if (prompt.noticed) ctx.noticed.push(structuredClone(prompt.noticed));
+  if (prompt.noticed) ctx.noticed.push(cloneData(prompt.noticed));
   for (const t of reviewModule.reviewOwner.terms(p.review, terms, { ...ctx.frame, agenda: p.agenda }))
     push(t.source, t.value, t.ref);
   let utility = 0;

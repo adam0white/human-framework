@@ -3,6 +3,7 @@
  * limits are in research/reconciliation.md §7. No acceptance, diagnosis, RNG or repair.
  */
 
+import { cloneData } from '../core/clone.ts';
 import { dexp } from '../core/libm.ts';
 import { validateNarrativeFields, validateNarrativeJson } from '../memory/memory.ts';
 import type {
@@ -137,7 +138,7 @@ function validate(s: DeepReadonly<ReviewState>): ValidationIssue[] {
 function checked(s: DeepReadonly<ReviewState>): ReviewState {
   const issues = validate(s);
   if (issues.length) throw new RangeError(issues[0]!.message);
-  return structuredClone(s) as ReviewState;
+  return cloneData(s) as ReviewState;
 }
 /** Closed evidence port including the current day; requested for C0 schema routing. */
 export function reviewEvidence(
@@ -207,7 +208,7 @@ export function reviewEvidence(
   s.seen = [...new Set([...s.seen, ...broken.map((n) => n.id), ...kept.map((n) => n.id)])].slice(-K.maxSeen);
   s.lastDay = day;
   s.last = { day, missed, kept: keptNames, resolved: s.style === 'accounting' ? resolved : [] };
-  out.events = [{ kind: 'review', record: structuredClone(s.last) }];
+  out.events = [{ kind: 'review', record: cloneData(s.last) }];
   const affectReceipts: import('../run-schema.ts').AffectEndpoint[] =
     s.style === 'ruminating' && missed.length
       ? [
@@ -223,7 +224,7 @@ export function reviewEvidence(
 }
 export const reviewOwner: ReviewOwner = {
   initialize(input) {
-    return checked({ ...structuredClone(input), resolves: [], seen: [] });
+    return checked({ ...cloneData(input), resolves: [], seen: [] });
   },
   validate,
   terms(state, terms, context) {

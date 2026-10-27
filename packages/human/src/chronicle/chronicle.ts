@@ -2,6 +2,7 @@
  * never devotion or acceptance scores. C0 supplies actual actor snapshots and outcomes
  * through closed evidence ports; missing samples are not fabricated observations.
  */
+import { cloneData } from '../core/clone.ts';
 import { validateNarrativeFields, validateNarrativeJson } from '../memory/memory.ts';
 import type {
   ActorState,
@@ -76,7 +77,7 @@ export function chronicleState(p: DeepReadonly<ChronicleSnapshot>): ChronicleSta
 export function openDay(day: number, baseline: DeepReadonly<ChronicleState>): ChronicleDay {
   return {
     day,
-    baseline: structuredClone(baseline) as ChronicleState,
+    baseline: cloneData(baseline) as ChronicleState,
     kept: [],
     broken: [],
     released: [],
@@ -267,7 +268,7 @@ function foldDay(
   y.actions.sort((a, b) => b.days - a.days || compare(a.action, b.action));
   y.actions = y.actions.slice(0, 4 * K.yearActions);
   for (const e of d.episodes)
-    if (!y.episodes.some((x) => x.id === e.id)) y.episodes.push({ ...structuredClone(e), day: d.day });
+    if (!y.episodes.some((x) => x.id === e.id)) y.episodes.push({ ...cloneData(e), day: d.day });
   y.episodes.sort(
     (a, b) => Math.abs(b.valence) * b.salience - Math.abs(a.valence) * a.salience || a.day - b.day,
   );
@@ -491,7 +492,7 @@ function validate(s: DeepReadonly<State>): ValidationIssue[] {
 function checked(s: DeepReadonly<State>): State {
   const issues = validate(s);
   if (issues.length) throw new RangeError(issues[0]!.message);
-  return structuredClone(s) as State;
+  return cloneData(s) as State;
 }
 const result = (state: State, at: number): ReturnType<ChronicleOwner['receive']> => ({
   state,
@@ -513,8 +514,8 @@ export function closeChronicleDay(
   append(s, record, context.effective.builtins.CHRONICLE_DEFAULTS, actor.retention.chronicleDays);
   return {
     ...result(s, context.at),
-    events: [{ kind: 'day-closed', record: structuredClone(record) }],
-    day: structuredClone(record),
+    events: [{ kind: 'day-closed', record: cloneData(record) }],
+    day: cloneData(record),
     socialMs,
   };
 }

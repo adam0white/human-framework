@@ -2,6 +2,7 @@
  * Portable admission and two-parent construction prepare distinct validated owner
  * inputs upstream. This helper does not infer genetics, norms, kin or memories.
  */
+import { cloneData } from './core/clone.ts';
 import { canonicalJson, hashCanonical } from './run-canonical.ts';
 import type * as T from './run-schema.ts';
 import { actorStream } from './run-state.ts';
@@ -99,7 +100,7 @@ export function constructAuthoredActor(
   const pursuit = owners.persistence.initialize(context);
   const curiosity = owners.curiosity.initialize(context);
   const character = owners.character.initialize({ traits: source.traits, values: source.values }, context);
-  const retention = structuredClone(source.retention);
+  const retention = cloneData(source.retention);
   const chronicle = owners.chronicle.initialize({
     ...context,
     snapshot: {
@@ -120,7 +121,7 @@ export function constructAuthoredActor(
     name: spec.identity.name,
     now: context.at,
     rng: { ...random.words },
-    randomIdentity: structuredClone(random.identity),
+    randomIdentity: cloneData(random.identity),
     life: life.state,
     body: body.state,
     needs,
@@ -141,7 +142,7 @@ export function constructAuthoredActor(
     habits,
     memory: { ...memory, ...beliefs },
     social,
-    context: structuredClone(source.context),
+    context: cloneData(source.context),
     agenda,
     will,
     activity: null,

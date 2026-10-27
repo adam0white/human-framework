@@ -1,3 +1,4 @@
+import { cloneData } from '../core/clone.ts';
 import type {
   ActorState,
   HeldNorm,
@@ -683,14 +684,14 @@ export function reputation(
 export const socialOwner: import('../run-schema.ts').SocialOwner = {
   initialize(input) {
     return {
-      relationships: input.relationships.map((r) => structuredClone(r)) as Relationship[],
+      relationships: input.relationships.map((r) => cloneData(r)) as Relationship[],
       groups: { memberOf: [...input.groups] },
       impressions: [],
       reserve: { ...input.reserve },
     };
   },
   advance(_state, context) {
-    const state = structuredClone(context.continuation.state) as SocialState;
+    const state = cloneData(context.continuation.state) as SocialState;
     const elapsed = BigInt(context.to) - BigInt(context.continuation.anchor.at);
     if (elapsed < 0n || elapsed > BigInt(Number.MAX_SAFE_INTEGER))
       throw new RangeError('Invalid social span');
@@ -703,7 +704,7 @@ export const socialOwner: import('../run-schema.ts').SocialOwner = {
     }
     return {
       state,
-      continuation: structuredClone(
+      continuation: cloneData(
         context.continuation,
       ) as import('../run-schema.ts').DeliberationContinuation['social'],
       effects: { terms: [], modifiers: [], appraisals: [] },
@@ -713,14 +714,14 @@ export const socialOwner: import('../run-schema.ts').SocialOwner = {
     };
   },
   receive(previous, input, context) {
-    const state = structuredClone(previous) as SocialState;
+    const state = cloneData(previous) as SocialState;
     const actor: SocialActor = {
       id: context.person,
       now: context.at,
       traits: { ...context.traits },
       values: { ...context.values },
       social: state,
-      conscience: { norms: context.norms.map((n) => structuredClone(n)) as HeldNorm[] },
+      conscience: { norms: context.norms.map((n) => cloneData(n)) as HeldNorm[] },
       memory: { sourceTrust: Object.fromEntries(context.sourceTrust.map((t) => [t.sourceId, t.trust])) },
     };
     const events: import('../run-schema.ts').EventData[] = [];
@@ -887,7 +888,7 @@ export const socialOwner: import('../run-schema.ts').SocialOwner = {
     }
     return {
       state,
-      rng: structuredClone(context.rng),
+      rng: cloneData(context.rng),
       effects: { terms: [], modifiers: [], appraisals },
       events,
       nextBoundary: null,

@@ -1,4 +1,5 @@
 /** SCOPE: HF4 always-present owner. Source equations use immutable run parameters; no legacy continuation. */
+import { cloneData } from '../core/clone.ts';
 import { clamp, clamp01, decay, dpow, logit } from '../core/index.ts';
 
 const MINUTES_PER_DAY = 1440;
@@ -54,14 +55,14 @@ export const BELIEF_DEFAULTS = {
 export const beliefOwner: import('../run-schema.ts').BeliefOwner = {
   initialize(input) {
     return {
-      beliefs: input.beliefs.map((b) => structuredClone(b)) as import('../run-schema.ts').Belief[],
+      beliefs: input.beliefs.map((b) => cloneData(b)) as import('../run-schema.ts').Belief[],
       sourceTrust: Object.fromEntries(input.sourceTrust.map((s) => [s.sourceId, s.trust])),
       contradictions: [],
     };
   },
   receive: receiveBeliefEvidence,
   advance(_state, context) {
-    const state = structuredClone(context.continuation.state) as import('../run-schema.ts').BeliefOwnedState;
+    const state = cloneData(context.continuation.state) as import('../run-schema.ts').BeliefOwnedState;
     const duration = BigInt(context.to) - BigInt(context.continuation.anchor.at);
     if (duration < 0n || duration > BigInt(Number.MAX_SAFE_INTEGER))
       throw new RangeError('Invalid belief span');
@@ -73,7 +74,7 @@ export const beliefOwner: import('../run-schema.ts').BeliefOwner = {
       );
     return {
       state,
-      continuation: structuredClone(
+      continuation: cloneData(
         context.continuation,
       ) as import('../run-schema.ts').DeliberationContinuation['beliefs'],
       effects: { terms: [], modifiers: [], appraisals: [] },
@@ -141,7 +142,7 @@ export function receiveBeliefEvidence(
     };
   },
 ): import('../run-schema.ts').OwnerOutput<import('../run-schema.ts').BeliefOwnedState> {
-  const state = structuredClone(previous) as import('../run-schema.ts').BeliefOwnedState;
+  const state = cloneData(previous) as import('../run-schema.ts').BeliefOwnedState;
   const d = context.effective.builtins.BELIEF_DEFAULTS;
   const trust = (id: string) =>
     id === context.person || id === 'self'

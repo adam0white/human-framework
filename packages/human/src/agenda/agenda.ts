@@ -1,4 +1,5 @@
 /** SCOPE: one always-present agenda; commitments, sourced make-up debt and temporal goals. */
+import { cloneData } from '../core/clone.ts';
 import { clamp01, dpow } from '../core/index.ts';
 import { projectDiminishes } from '../projects/projects.ts';
 import type { ActorState, AgendaState, Commitment, NeedId, PsychologicalNeed, Time } from '../run-schema.ts';
@@ -275,11 +276,11 @@ export const CARE_DEFAULTS = {
 export const agendaOwner: import('../run-schema.ts').AgendaOwner = {
   initialize(input, context) {
     const commitments = input.commitments.map((c) => ({
-      ...structuredClone(c),
+      ...cloneData(c),
       status: 'pending' as const,
     })) as import('../run-schema.ts').Commitment[];
     const goals = input.goals.map((g) => ({
-      ...structuredClone(g),
+      ...cloneData(g),
       status: 'active' as const,
       adoptedAt: context.at,
       lastAdvancedAt: context.at,
@@ -290,26 +291,26 @@ export const agendaOwner: import('../run-schema.ts').AgendaOwner = {
       if (match?.[1]) nextId = Math.max(nextId, Number(match[1]) + 1);
     }
     return {
-      exemptions: structuredClone(input.exemptions),
+      exemptions: cloneData(input.exemptions),
       commitments,
       goals,
       nextId,
       lastProposalDay: Math.floor(context.at / 86400000) - 1,
-      owed: input.owed.map((o) => structuredClone(o)) as import('../run-schema.ts').OwedMakeUp[],
+      owed: input.owed.map((o) => cloneData(o)) as import('../run-schema.ts').OwedMakeUp[],
     };
   },
   receive(previous, input, context) {
-    const state = structuredClone(previous) as import('../run-schema.ts').AgendaState;
+    const state = cloneData(previous) as import('../run-schema.ts').AgendaState;
     const events: import('../run-schema.ts').EventData[] = [];
     const d = context.effective.builtins.AGENDA_DEFAULTS;
     const changedCommitment = (
       c: import('../run-schema.ts').Commitment,
       before: import('../run-schema.ts').Commitment['status'] | null,
-    ) => events.push({ kind: 'commitment-changed', commitmentId: c.id, before, after: structuredClone(c) });
+    ) => events.push({ kind: 'commitment-changed', commitmentId: c.id, before, after: cloneData(c) });
     const changedGoal = (
       g: import('../run-schema.ts').Goal,
       before: import('../run-schema.ts').Goal['status'] | null,
-    ) => events.push({ kind: 'goal-changed', goalId: g.id, before, after: structuredClone(g) });
+    ) => events.push({ kind: 'goal-changed', goalId: g.id, before, after: cloneData(g) });
     const addGoal = (
       data: import('../run-schema.ts').DeepReadonly<import('../run-schema.ts').GoalData>,
       allocate: boolean,
@@ -318,7 +319,7 @@ export const agendaOwner: import('../run-schema.ts').AgendaOwner = {
       if (state.goals.some((g) => g.id === id) || state.commitments.some((c) => c.id === id))
         throw new RangeError('Duplicate agenda identity');
       const goal = {
-        ...structuredClone(data),
+        ...cloneData(data),
         id,
         status: 'active' as const,
         adoptedAt: context.at,
@@ -331,7 +332,7 @@ export const agendaOwner: import('../run-schema.ts').AgendaOwner = {
     if ('kind' in input) {
       if (input.kind === 'exemption') {
         const { kind: _kind, ...premises } = input;
-        state.exemptions = structuredClone(premises);
+        state.exemptions = cloneData(premises);
         applyAgendaExemptions(state, context.at, context.catalog, context.effective, events);
       } else if (input.kind === 'dependent-needs') {
         const care = context.effective.builtins.CARE_DEFAULTS;
@@ -413,8 +414,8 @@ export const agendaOwner: import('../run-schema.ts').AgendaOwner = {
             return commitment
               ? [
                   {
-                    owed: structuredClone(owed),
-                    commitment: structuredClone(commitment),
+                    owed: cloneData(owed),
+                    commitment: cloneData(commitment),
                     recordedAt: context.at,
                   },
                 ]
@@ -429,7 +430,7 @@ export const agendaOwner: import('../run-schema.ts').AgendaOwner = {
         }
         case 'commit': {
           const c = {
-            ...structuredClone(input.commitment),
+            ...cloneData(input.commitment),
             status: 'pending' as const,
           } as import('../run-schema.ts').Commitment;
           if (
@@ -465,7 +466,7 @@ export const agendaOwner: import('../run-schema.ts').AgendaOwner = {
             (g) => g.status === 'active' && g.project?.prospectId === input.prospectId,
           );
           if (g) {
-            const { id: _id, progress: _progress, project: _project, ...task } = structuredClone(input.task);
+            const { id: _id, progress: _progress, project: _project, ...task } = cloneData(input.task);
             Object.assign(g, task);
             changedGoal(g, 'active');
           }
@@ -582,7 +583,7 @@ export const agendaOwner: import('../run-schema.ts').AgendaOwner = {
     };
   },
   advance(previous, context) {
-    const state = structuredClone(previous) as import('../run-schema.ts').AgendaState;
+    const state = cloneData(previous) as import('../run-schema.ts').AgendaState;
     const d = context.effective.builtins.AGENDA_DEFAULTS,
       events: import('../run-schema.ts').EventData[] = [];
     const owe = (
@@ -676,7 +677,7 @@ export const agendaOwner: import('../run-schema.ts').AgendaOwner = {
         if (c.recurUntil !== undefined) k = Math.max(1, Math.min(k, Math.floor((c.recurUntil - c.from) / r)));
         const { id: _id, status: _status, exempt: _exempt, ...rest } = c;
         const next = {
-          ...structuredClone(rest),
+          ...cloneData(rest),
           id: allocateAgendaId(state, 'c'),
           from: c.from + k * r,
           until: c.until + k * r,
@@ -689,11 +690,11 @@ export const agendaOwner: import('../run-schema.ts').AgendaOwner = {
           kind: 'commitment-changed',
           commitmentId: next.id,
           before: null,
-          after: structuredClone(next),
+          after: cloneData(next),
         });
       }
       if (c.status !== before)
-        events.push({ kind: 'commitment-changed', commitmentId: c.id, before, after: structuredClone(c) });
+        events.push({ kind: 'commitment-changed', commitmentId: c.id, before, after: cloneData(c) });
       if (work === 9999) throw new RangeError('Agenda advancement work limit exceeded');
     }
     applyAgendaExemptions(state, context.to, context.catalog, context.effective, events);
@@ -704,7 +705,7 @@ export const agendaOwner: import('../run-schema.ts').AgendaOwner = {
         g.importance = clamp01(g.baseImportance * dpow(p.decayPerDay, neglected));
         if (g.importance < p.abandonBelow) {
           g.status = 'abandoned';
-          events.push({ kind: 'goal-changed', goalId: g.id, before: 'active', after: structuredClone(g) });
+          events.push({ kind: 'goal-changed', goalId: g.id, before: 'active', after: cloneData(g) });
         }
       }
     const removable = state.commitments
@@ -730,7 +731,7 @@ export const agendaOwner: import('../run-schema.ts').AgendaOwner = {
     };
   },
   consider(previous, context) {
-    const state = structuredClone(previous) as import('../run-schema.ts').AgendaState;
+    const state = cloneData(previous) as import('../run-schema.ts').AgendaState;
     const d = context.effective.builtins.AGENDA_DEFAULTS,
       day = Math.floor(context.at / 86400000),
       events: import('../run-schema.ts').EventData[] = [];
@@ -768,7 +769,7 @@ export const agendaOwner: import('../run-schema.ts').AgendaOwner = {
         };
         state.goals.push(goal);
         state.lastProposalDay = day;
-        events.push({ kind: 'goal-changed', goalId: goal.id, before: null, after: structuredClone(goal) });
+        events.push({ kind: 'goal-changed', goalId: goal.id, before: null, after: cloneData(goal) });
       }
     }
     return {
@@ -931,7 +932,7 @@ function applyAgendaExemptions(
       kind: 'commitment-changed',
       commitmentId: c.id,
       before: 'pending',
-      after: structuredClone(c),
+      after: cloneData(c),
     });
   }
 }

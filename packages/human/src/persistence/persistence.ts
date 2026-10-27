@@ -1,4 +1,5 @@
 /** SCOPE: HF4 always-present owner. Source equations use immutable run parameters; no legacy continuation. */
+import { cloneData } from '../core/clone.ts';
 import { clamp01, cmpStr, dpow, round } from '../core/index.ts';
 export const PERSISTENCE_DEFAULTS = {
   continueScale: 0.8,
@@ -18,7 +19,7 @@ export const persistenceOwner: import('../run-schema.ts').PersistenceOwner = {
   },
   begin(previous, context) {
     const d = context.effective.builtins.PERSISTENCE_DEFAULTS;
-    const state = structuredClone(previous) as import('../run-schema.ts').PursuitState;
+    const state = cloneData(previous) as import('../run-schema.ts').PursuitState;
     if (state.rested && context.at >= state.rested.until) delete state.rested;
     if (
       state.current &&
@@ -63,7 +64,7 @@ export const persistenceOwner: import('../run-schema.ts').PersistenceOwner = {
     };
   },
   advance(previous, context) {
-    const state = structuredClone(previous) as import('../run-schema.ts').PursuitState;
+    const state = cloneData(previous) as import('../run-schema.ts').PursuitState;
     const d = context.effective.builtins.PERSISTENCE_DEFAULTS;
     if (state.rested && context.to >= state.rested.until) delete state.rested;
     const current = state.current;

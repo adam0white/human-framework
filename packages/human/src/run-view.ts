@@ -1,6 +1,7 @@
 /** SCOPE: closed event projection. Privileged events never become a person view
  * by copying a raw payload. Rendering follows the admitted audience selection.
  */
+import { cloneData } from './core/clone.ts';
 import { rendererOwner } from './narrate/literal.ts';
 import { freezeData } from './run-kernel.ts';
 import type * as T from './run-schema.ts';
@@ -93,5 +94,5 @@ export function projectEvents(
         break;
     }
   }
-  return freezeData(structuredClone(visible));
+  return freezeData(cloneData(visible));
 }

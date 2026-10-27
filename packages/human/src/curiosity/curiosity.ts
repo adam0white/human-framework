@@ -1,4 +1,5 @@
 /** SCOPE: HF4 always-present owner. Source equations use immutable run parameters; no legacy continuation. */
+import { cloneData } from '../core/clone.ts';
 import { clamp01 } from '../core/index.ts';
 
 const PHYSIOLOGICAL_NEEDS = ['food', 'water', 'sleep', 'rest', 'relief'] as const;
@@ -20,7 +21,7 @@ export const curiosityOwner: import('../run-schema.ts').CuriosityOwner = {
     return { errors: [], recent: [] };
   },
   learn(previous, input, context) {
-    const state = structuredClone(previous) as import('../run-schema.ts').CuriosityState;
+    const state = cloneData(previous) as import('../run-schema.ts').CuriosityState;
     const d = context.effective.builtins.CURIOSITY_DEFAULTS;
     let needReward: import('../run-schema.ts').NeedRewardReceipt | null = null;
     if (input.outcome.status !== 'interrupted') {

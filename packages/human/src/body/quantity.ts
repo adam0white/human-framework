@@ -1,5 +1,6 @@
 /** SCOPE: bounded noisy amount estimate, with explicit actor stream. No observation
  * or truth is inferred from absent evidence. Return detaches its RNG cursor. */
+import { cloneData } from '../core/clone.ts';
 import type { ActorRandomCursor, DeepReadonly } from '../run-schema.ts';
 import { clip, draw } from './span.ts';
 export function estimateQuantity(
@@ -17,7 +18,7 @@ export function estimateQuantity(
     difficulty > 1
   )
     throw new RangeError('invalid quantity premise');
-  if (truth === 0 || difficulty === 0) return { value: truth, confidence: 1, rng: structuredClone(cursor) };
+  if (truth === 0 || difficulty === 0) return { value: truth, confidence: 1, rng: cloneData(cursor) };
   const error = difficulty * (0.05 + 0.45 * sleepiness);
   if (!Number.isFinite(truth * (1 + error))) throw new RangeError('quantity estimate overflow');
   const d = draw(cursor);

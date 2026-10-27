@@ -2,6 +2,7 @@
  * DP5(4) with Shampine quartic extension; estimates are not certified global error bounds.
  * Integer-ms adaptive mesh is anchored to physical conditions, never caller targets.
  */
+import { cloneData } from '../core/clone.ts';
 import { dexp, dlog } from '../core/libm.ts';
 import { random } from '../core/random.ts';
 import type {
@@ -205,7 +206,7 @@ export function newHazard(key: HazardKey, at: number, id: string, hash: string):
   };
 }
 export function draw(cursor: DeepReadonly<ActorRandomCursor>): { value: number; rng: ActorRandomCursor } {
-  const rng: ActorRandomCursor = structuredClone(cursor);
+  const rng: ActorRandomCursor = cloneData(cursor);
   if (
     !Number.isSafeInteger(rng.identity.uniformDraws) ||
     rng.identity.uniformDraws >= Number.MAX_SAFE_INTEGER
@@ -286,7 +287,7 @@ export function sampledPath(
 }
 /** Detached data clone; DeepReadonly maps tuple arrays to readonly arrays in v3. */
 export function copy<T>(value: DeepReadonly<T>): T {
-  return structuredClone(value) as T;
+  return cloneData(value) as T;
 }
 export function advanceHazard(
   input: DeepReadonly<HazardContinuation>,

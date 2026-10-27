@@ -1,4 +1,5 @@
 /** SCOPE: HF4 always-present owner. Source equations use immutable run parameters; no legacy continuation. */
+import { cloneData } from '../core/clone.ts';
 import { clamp01, decay, dexp } from '../core/index.ts';
 
 const MINUTES_PER_DAY = 1440;
@@ -41,7 +42,7 @@ export const HABIT_DEFAULTS = {
 /** HF4 owned habit state. Elapsed decay always uses the retained condition anchor. */
 export const habitsOwner: import('../run-schema.ts').HabitsOwner = {
   initialize(input) {
-    return input.map((h) => structuredClone(h)) as import('../run-schema.ts').Habit[];
+    return input.map((h) => cloneData(h)) as import('../run-schema.ts').Habit[];
   },
   advance(_state, context) {
     const state = materializeHabits(
@@ -51,7 +52,7 @@ export const habitsOwner: import('../run-schema.ts').HabitsOwner = {
     );
     return {
       state,
-      continuation: structuredClone(
+      continuation: cloneData(
         context.continuation,
       ) as import('../run-schema.ts').DeliberationContinuation['habits'],
       effects: { terms: [], modifiers: [], appraisals: [] },
@@ -61,7 +62,7 @@ export const habitsOwner: import('../run-schema.ts').HabitsOwner = {
     };
   },
   learn(previous, input, context) {
-    const state = previous.map((h) => structuredClone(h)) as import('../run-schema.ts').Habit[];
+    const state = previous.map((h) => cloneData(h)) as import('../run-schema.ts').Habit[];
     const d = context.effective.builtins.HABIT_DEFAULTS;
     const now = context.at;
     if (input.outcome.status === 'completed') {
@@ -172,7 +173,7 @@ export function materializeHabits(
   const elapsed = BigInt(to) - BigInt(continuation.anchor.at);
   if (elapsed < 0n || elapsed > BigInt(Number.MAX_SAFE_INTEGER)) throw new RangeError('Invalid habit span');
   return continuation.state.map((h) => ({
-    ...structuredClone(h),
+    ...cloneData(h),
     strength: decay(h.strength, Number(elapsed) / 60000, halfLifeMinutes),
   }));
 }

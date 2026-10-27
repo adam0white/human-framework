@@ -1,6 +1,7 @@
 /** SCOPE: one always-present bounded route from attended, source-labelled consequence claims.
  * No action execution, world facts, old planning selector or legacy restoration. */
 
+import { cloneData } from '../core/clone.ts';
 import { temporalGoalValue } from '../agenda/agenda.ts';
 import { trustOf } from '../beliefs/beliefs.ts';
 import { cmpStr, round } from '../core/index.ts';
@@ -35,7 +36,7 @@ export const prospectionOwner: import('../run-schema.ts').ProspectionOwner = {
   },
   receive(previous, input, context) {
     const d = context.effective.builtins.PROSPECTION_DEFAULTS;
-    const state = structuredClone(previous) as import('../run-schema.ts').ProspectionState;
+    const state = cloneData(previous) as import('../run-schema.ts').ProspectionState;
     state.revisions = state.revisions.filter((r) => context.at - r.receivedAt <= d.horizon * 60000);
     state.entries = state.entries.filter(
       (e) =>
@@ -72,7 +73,7 @@ export const prospectionOwner: import('../run-schema.ts').ProspectionOwner = {
         const addition = input.data.claims.find((claim) => claim.id === c.id);
         if (addition)
           state.entries.push({
-            ...structuredClone(addition),
+            ...cloneData(addition),
             sourceId,
             channel: input.kind === 'authored' ? 'known' : 'told',
             receivedAt: context.at,
@@ -252,7 +253,7 @@ export function receivedGoalRoute(
         nextPath = [...path, entry],
         nextSteps = [
           ...steps,
-          { successor: structuredClone(entry.successor), start, end, access: nextAccess },
+          { successor: cloneData(entry.successor), start, end, access: nextAccess },
         ];
       if (round(total - bestScore) > 0) {
         bestScore = total;

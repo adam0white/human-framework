@@ -1,4 +1,5 @@
 /** SCOPE: HF4 always-present owner. Source equations use immutable run parameters; no legacy continuation. */
+import { cloneData } from '../core/clone.ts';
 import { clamp01, decay, dexp, dlog, sigmoid } from '../core/index.ts';
 import { learningMultiplier } from '../lifecourse/development.ts';
 
@@ -62,8 +63,8 @@ export const skillsOwner: import('../run-schema.ts').SkillsOwner = {
   advance(_state, context) {
     // Levels remain anchored at lastPracticed. Rust is read at use, never compounded at call targets.
     return {
-      state: structuredClone(context.continuation.state) as Record<string, import('../run-schema.ts').Skill>,
-      continuation: structuredClone(
+      state: cloneData(context.continuation.state) as Record<string, import('../run-schema.ts').Skill>,
+      continuation: cloneData(
         context.continuation,
       ) as import('../run-schema.ts').DeliberationContinuation['skills'],
       consolidationHours: context.consolidationHours,
@@ -74,7 +75,7 @@ export const skillsOwner: import('../run-schema.ts').SkillsOwner = {
     };
   },
   learn(previous, input, context) {
-    const state = structuredClone(previous) as Record<string, import('../run-schema.ts').Skill>;
+    const state = cloneData(previous) as Record<string, import('../run-schema.ts').Skill>;
     const d = context.effective.builtins.SKILL_DEFAULTS;
     const witness = input.kind === 'witness';
     const skill = witness ? input.data.skill : input.activity.offer.demands.skill?.id;

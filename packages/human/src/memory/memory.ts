@@ -2,6 +2,7 @@
  * engineering priors (research/long-run-sources.md). No belief writes, save repair or RNG.
  * Allocation validation includes C0 retained references/tombstones after eviction.
  */
+import { cloneData } from '../core/clone.ts';
 import { dexp } from '../core/libm.ts';
 import { renderProjection } from '../narrate/literal.ts';
 import type {
@@ -276,7 +277,7 @@ function checked(
 ): MemoryOwnedState {
   const issues = validateMemory(state, allocations);
   if (issues.length) throw new RangeError(issues[0]!.message);
-  return structuredClone(state) as MemoryOwnedState;
+  return cloneData(state) as MemoryOwnedState;
 }
 function trim<T extends Episode>(
   list: T[],
@@ -355,7 +356,7 @@ function encode(
   G: DeepReadonly<typeof GIST_DEFAULTS>,
 ): Episode {
   if (!Number.isSafeInteger(state.nextEpisode + 1)) throw new RangeError('Episode counter exhausted');
-  const ep = { ...structuredClone(episode), id: `e${state.nextEpisode++}` } as Episode;
+  const ep = { ...cloneData(episode), id: `e${state.nextEpisode++}` } as Episode;
   const issues = validateMemory({ ...state, episodes: [ep], gists: [] }, []);
   if (issues.length) throw new RangeError(issues[0]?.message ?? 'Invalid episode');
   state.episodes.push(ep);
@@ -368,7 +369,7 @@ export const memoryOwner: MemoryOwner = {
     const state: MemoryOwnedState = {
       episodes: [],
       gists: [],
-      expectations: structuredClone(input.expectations) as MemoryOwnedState['expectations'],
+      expectations: cloneData(input.expectations) as MemoryOwnedState['expectations'],
       nextEpisode: 0,
       nextGist: 0,
     };
@@ -376,7 +377,7 @@ export const memoryOwner: MemoryOwner = {
       const { basis: _basis, provenance: _provenance, ...ep } = authored;
       const n = numericId(ep.id, 'e');
       if (n === null) throw new RangeError('Invalid authored episode identity');
-      state.episodes.push(structuredClone(ep) as Episode);
+      state.episodes.push(cloneData(ep) as Episode);
       state.nextEpisode = Math.max(state.nextEpisode, n + 1);
     }
     return checked(state, context.allocations);
@@ -509,7 +510,7 @@ export const memoryOwner: MemoryOwner = {
       }
       if (!Number.isSafeInteger(out.nextGist + 1)) throw new RangeError('Gist counter exhausted');
       out.gists.push({
-        ...structuredClone(src),
+        ...cloneData(src),
         id: `g${out.nextGist++}`,
         at: context.at,
         firstAt: context.at,

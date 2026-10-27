@@ -1,8 +1,9 @@
+import { cloneData } from './core/clone.ts';
 /**
  * Human Framework v1 — shared contract.
  *
  * Every piece of person state is plain JSON (no classes, no functions, no Maps) so that a
- * snapshot is `structuredClone(person)` and a save is `JSON.stringify(person)`.
+ * snapshot is `cloneData(person)` and a save is `JSON.stringify(person)`.
  *
  * Time is an integer count of simulated minutes since the host's epoch (minute 0 = 00:00 of day 0).
  * All values documented as 0..1 are clamped to that range by the module that owns them.

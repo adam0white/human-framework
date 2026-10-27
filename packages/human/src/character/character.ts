@@ -1,3 +1,4 @@
+import { cloneData } from '../core/clone.ts';
 import { hashCanonical } from '../run-canonical.ts';
 /** SCOPE: always-present bounded maturation and annual sustained experience.
  * Rates and reversion are engineering assumptions, directions from research/long-run-sources.md.
@@ -169,7 +170,7 @@ function validate(s: DeepReadonly<State>): ValidationIssue[] {
 const checked = (s: DeepReadonly<State>): State => {
   const issues = validate(s);
   if (issues.length) throw new RangeError(issues[0]!.message);
-  return structuredClone(s) as State;
+  return cloneData(s) as State;
 };
 /** Pure source maturation from a retained semantic anchor. No RNG or caller endpoint. */
 function matureCharacter(
@@ -178,7 +179,7 @@ function matureCharacter(
   at: number,
   K: DeepReadonly<import('../run-schema.ts').Effective_CHARACTER_DEFAULTS>,
 ): State {
-  const out = structuredClone(state) as State,
+  const out = cloneData(state) as State,
     c = out.character;
   if (!Number.isFinite(at) || at < c.agedTo) throw new RangeError('Character clock rewound');
   const fromAge = (c.agedTo - bornAt) / YEAR,
@@ -215,7 +216,7 @@ export function projectCharacterTrajectory(
     effectiveParametersHash: string;
   }>,
 ): import('../run-schema.ts').CharacterTrajectory {
-  const continuation = structuredClone(context.continuation);
+  const continuation = cloneData(context.continuation);
   checked(continuation.state);
   return freezeData({
     id: hashCanonical(
@@ -228,7 +229,7 @@ export function projectCharacterTrajectory(
     ),
     bornAt: context.life.bornAt,
     continuation,
-    parameters: structuredClone(context.effective.builtins.CHARACTER_DEFAULTS),
+    parameters: cloneData(context.effective.builtins.CHARACTER_DEFAULTS),
   });
 }
 export function readCharacterTrajectory(
@@ -288,11 +289,11 @@ export function characterTraitSegments(
 export const characterOwner: CharacterOwner = {
   initialize(input, context) {
     return checked({
-      traits: structuredClone(input.traits),
-      values: structuredClone(input.values),
+      traits: cloneData(input.traits),
+      values: cloneData(input.values),
       character: {
-        baseTraits: structuredClone(input.traits),
-        baseValues: structuredClone(input.values),
+        baseTraits: cloneData(input.traits),
+        baseValues: cloneData(input.values),
         year: Math.floor(context.at / YEAR),
         acc: emptyAcc(),
         agedTo: context.at,
@@ -409,7 +410,7 @@ export const characterOwner: CharacterOwner = {
   },
   deriveTraits(parents, cursor) {
     if (parents.length !== 2) throw new RangeError('Two parents required');
-    const rng = structuredClone(cursor);
+    const rng = cloneData(cursor);
     if (cursor.status !== 'active') throw new RangeError('Completed inheritance cursor');
     const traits = {} as Traits;
     const h = 0.3,

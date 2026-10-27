@@ -2,6 +2,7 @@
  * This module never copies private target memory, norms, values, skills or agenda into
  * an observer's imagined actor. Reserve hides signs, never physical loss of movement.
  */
+import { cloneData } from './core/clone.ts';
 import type {
   ActorState,
   BodyReadout,
@@ -73,5 +74,5 @@ function signs(
 export function imagine(
   view: DeepReadonly<Extract<PersonView, { kind: 'other' }>>,
 ): Extract<PersonView, { kind: 'other' }> {
-  return structuredClone(view) as Extract<PersonView, { kind: 'other' }>;
+  return cloneData(view) as Extract<PersonView, { kind: 'other' }>;
 }

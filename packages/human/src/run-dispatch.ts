@@ -2,6 +2,7 @@
  * Journals remain append deltas until the complete transaction succeeds.
  */
 
+import { cloneData } from './core/clone.ts';
 import { attendEvidence } from './beliefs/beliefs.ts';
 import { ageYearsAt } from './body/span.ts';
 import { projectChapterClock } from './chapter-clock.ts';
@@ -2387,7 +2388,7 @@ export class Frame {
       const premises = [...this.state.lifecycle.kinPremises];
       for (const premise of input.premises) {
         if (premises.some((old) => old.id === premise.id)) throw new RangeError('Duplicate kin premise');
-        premises.push(structuredClone(premise));
+        premises.push(cloneData(premise));
       }
       if (input.scope.premiseIds.some((id) => !premises.some((premise) => premise.id === id)))
         throw new RangeError('Kin scope references an absent premise');
@@ -2401,7 +2402,7 @@ export class Frame {
         ...this.state.lifecycle,
         kinRevision: input.scope.kinRevision,
         kinPremises: premises,
-        kinScopes: [...this.state.lifecycle.kinScopes.filter(scope=>scope.id!==input.scope.id), structuredClone(input.scope)],
+        kinScopes: [...this.state.lifecycle.kinScopes.filter(scope=>scope.id!==input.scope.id), cloneData(input.scope)],
         entities: [...entities.values()],
       };
       return;

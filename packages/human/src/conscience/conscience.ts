@@ -1,4 +1,5 @@
 /** SCOPE: held understanding, private deeds, necessity and repair; never a ruling or acceptance. */
+import { cloneData } from '../core/clone.ts';
 import { clamp01, dpow } from '../core/index.ts';
 import type {
   ActorState,
@@ -218,7 +219,7 @@ export function abstentionVeto(
 export const conscienceOwner: import('../run-schema.ts').ConscienceOwner = {
   initialize(input) {
     return {
-      norms: input.map((n) => structuredClone(n)) as import('../run-schema.ts').HeldNorm[],
+      norms: input.map((n) => cloneData(n)) as import('../run-schema.ts').HeldNorm[],
       breaches: [],
       intentions: [],
       nextBreach: 0,
@@ -226,7 +227,7 @@ export const conscienceOwner: import('../run-schema.ts').ConscienceOwner = {
   },
   receive: receiveConscienceEvidence,
   receiveUpbringing(previous, input, context) {
-    const state = structuredClone(previous) as import('../run-schema.ts').ConscienceState;
+    const state = cloneData(previous) as import('../run-schema.ts').ConscienceState;
     const d = context.effective.builtins.FAMILY_DEFAULTS;
     const carers = input.caregivers.filter((c) => c.id !== context.person);
     const total = carers.reduce((sum, c) => sum + Math.max(0, c.warmth), 0);
@@ -269,7 +270,7 @@ export const conscienceOwner: import('../run-schema.ts').ConscienceOwner = {
         if (mine) mine.conviction = clamp01(next);
         else if (exemplar && next >= 0.01)
           state.norms.push({
-            ...structuredClone(exemplar),
+            ...cloneData(exemplar),
             conviction: clamp01(next),
           } as import('../run-schema.ts').HeldNorm);
       }
@@ -337,7 +338,7 @@ export function receiveConscienceEvidence(
     };
   },
 ): import('../run-schema.ts').OwnerOutput<import('../run-schema.ts').ConscienceState> {
-  const state = structuredClone(previous) as import('../run-schema.ts').ConscienceState;
+  const state = cloneData(previous) as import('../run-schema.ts').ConscienceState;
   const d = context.effective.builtins.CONSCIENCE_DEFAULTS;
   const appraisals: import('../run-schema.ts').AppraisalEffect[] = [];
   if (input.kind === 'interpretation') {
@@ -347,7 +348,7 @@ export function receiveConscienceEvidence(
       normId: data.normId,
       standing: data.standing,
       conviction: data.conviction,
-      provenance: structuredClone(data.provenance),
+      provenance: cloneData(data.provenance),
     } as import('../run-schema.ts').HeldNorm;
     if (held) Object.assign(held, value);
     else state.norms.push(value);

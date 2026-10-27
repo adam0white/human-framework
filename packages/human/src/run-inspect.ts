@@ -1,6 +1,7 @@
 /** SCOPE: detached current reads. Subjective views use only the observer's own
  * stores. Unknown other-person facts stay unknown. No RNG or normal-read hash. */
 
+import { cloneData } from './core/clone.ts';
 import { exportRun } from './run.ts';
 import { freezeData, readKernel } from './run-kernel.ts';
 import { OWNERS } from './run-owners.ts';
@@ -273,5 +274,5 @@ export function inspectCurrentRun(
     ...(method ? { method } : {}),
     ...(q.diagnostic ? { fullHash: exportRun(run).hashes.full } : {}),
   };
-  return { ok: true, value: freezeData(structuredClone(result)) };
+  return { ok: true, value: freezeData(cloneData(result)) };
 }

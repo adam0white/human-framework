@@ -3,6 +3,7 @@
  * Reading none and empty responses are ordinary state. No RNG, invented norm or acceptance.
  */
 
+import { cloneData } from '../core/clone.ts';
 import { dexp } from '../core/libm.ts';
 import { validateNarrativeFields, validateNarrativeJson } from '../memory/memory.ts';
 import type {
@@ -216,13 +217,13 @@ function validate(s: DeepReadonly<PromptingsState>): ValidationIssue[] {
 function checked(s: DeepReadonly<PromptingsState>): PromptingsState {
   const issues = validate(s);
   if (issues.length) throw new RangeError(issues[0]!.message);
-  return structuredClone(s) as PromptingsState;
+  return cloneData(s) as PromptingsState;
 }
 export const promptingsOwner: PromptingsOwner = {
   initialize(input) {
     const s: PromptingsState = {
-      ...structuredClone(input),
-      responses: structuredClone(input.responses) as PromptingsState['responses'],
+      ...cloneData(input),
+      responses: cloneData(input.responses) as PromptingsState['responses'],
       recent: [],
       echo: {},
     };

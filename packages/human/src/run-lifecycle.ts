@@ -1,5 +1,6 @@
 /** SCOPE: pure lifecycle inspection from current model or held evidence.
  * No source equations live here. Customs and kin completeness remain premises. */
+import { cloneData } from './core/clone.ts';
 import { ageYearsAt } from './body/span.ts';
 import * as family from './family/family.ts';
 import { developmentForAge, learningMultiplier } from './lifecourse/development.ts';
@@ -69,7 +70,7 @@ export function inspectLifecycle(
       return {
         ok: true,
         value: freezeData(
-          structuredClone({
+          cloneData({
             perspective,
             query: input.query,
             basis: 'held-evidence' as const,
@@ -329,7 +330,7 @@ export function inspectLifecycle(
       case 'mortality-hazard':
         throw new RangeError('Mortality diagnostic awaits the owning pure reader port');
     }
-    return { ok: true, value: freezeData(structuredClone(value)) };
+    return { ok: true, value: freezeData(cloneData(value)) };
   } catch (error) {
     if (!(error instanceof RangeError || error instanceof TypeError)) throw error;
     return { ok: false, error: { code: 'invalid-admission', path: '$.lifecycle', message: error.message } };
