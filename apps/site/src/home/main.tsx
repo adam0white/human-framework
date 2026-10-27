@@ -3,7 +3,6 @@ import { createRoot } from 'react-dom/client';
 import { FACULTIES, GAMES } from '../games.ts';
 import { GameList } from '../shared/GameList.tsx';
 import './home.css';
-import { SAMPLE_OUTPUT } from './sampleOutput.ts';
 
 declare const __HF_LIBRARY_VERSION__: string;
 declare const __HF_PACKAGE_VERSION__: string;
@@ -12,13 +11,16 @@ const ACTIVE_GAMES = GAMES.filter((g) => g.status === 'active');
 const TOP_GAME = ACTIVE_GAMES[0] ?? { name: 'Twice at the Well', href: '/colony/' };
 
 const REPO = 'https://github.com/adam0white/human-framework';
-// Shortened from sample.ts; the printed answer is SAMPLE_OUTPUT, which sample.test.ts checks against the real API.
-const SNIPPET = `const answer = predict(aylin, offers, {
-  voiceId: 'player', action: 'steal',
-  strength: 1, insist: true,
-});
-// ${SAMPLE_OUTPUT.verdict}: ${SAMPLE_OUTPUT.kind} (${SAMPLE_OUTPUT.reason})
-// "${SAMPLE_OUTPUT.says}"`;
+// The shape of packages/human/examples/minimal.ts, the complete host that the package tests run.
+const SNIPPET = `const run = need(createRun(spec));        // need() unwraps { ok, value }
+need(createPerson(run, aylin));             // authored state: body, character, norms...
+let result = need(step(run, { until, inputs: [offers] }));
+while (result.boundary.type === 'world-required') {
+  // Aylin chose. Your world decides what happened and says so.
+  result = need(step(run, { until, inputs: resolve(result.boundary.requests) }));
+}
+inspect(run, { perspective: { kind: 'person', observer: 'aylin' }, people: ['aylin'],
+  select: ['summary', 'events'] });       // what she did, and why`;
 const INSTALL = 'npm install @adam0white/human-framework';
 
 function Answer({ kind, children }: { kind: 'yes' | 'later' | 'no'; children: string }) {
@@ -96,13 +98,13 @@ function Home() {
             <code>{SNIPPET}</code>
           </pre>
           <ol className="steps">
-            <li>Create a person from a seed and a few traits.</li>
-            <li>Offer what your world allows right now.</li>
-            <li>Ask them to decide, run the action, report what happened.</li>
+            <li>Create a run from a seed and add a person with authored state.</li>
+            <li>Step time forward with what your world offers right now.</li>
+            <li>When they act, decide what happened and send it back; inspect why they chose.</li>
           </ol>
           <p>
             <a href={`${REPO}/blob/main/docs/api.md`}>Read the API</a> ·{' '}
-            <a href={`${REPO}/blob/main/apps/site/src/home/sample.ts`}>full example</a> ·{' '}
+            <a href={`${REPO}/blob/main/packages/human/examples/minimal.ts`}>full example</a> ·{' '}
             <a href="https://www.npmjs.com/package/@adam0white/human-framework">npm</a>
           </p>
         </section>

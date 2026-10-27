@@ -34,8 +34,9 @@ function Collection() {
           <GameList games={GAMES} />
           {labMode() && (
             <p className="note">
-              All games remain playable. Framework upgrades and maintenance are in progress. Lab panel rounds
-              are allowed on HF 3.0 builds. Friends’ playtests and Show HN remain paused.
+              All games remain playable. Framework upgrades and maintenance are in progress. HF 4.0.0 is
+              published; each game names the HF version it runs on. Lab panel rounds are allowed. Friends’
+              playtests and Show HN remain paused.
             </p>
           )}
         </section>

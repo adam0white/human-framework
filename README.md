@@ -2,16 +2,16 @@
 
 [![CI](https://github.com/adam0white/human-framework/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/adam0white/human-framework/actions/workflows/ci.yml)
 
-HF is a deterministic, explainable model of a simulated person, written in TypeScript (`@adam0white/human-framework`). A person has a body, needs, emotions, memory, beliefs, habits, relationships, values, a conscience and a will, and optional faculties for learning, aging, marriage, upbringing and death over decades. At each decision they weigh many urges, including suggestions from outside voices such as a player, and choose an action. Decision records expose scored terms and template narration, and a person may refuse a suggestion.
+HF is a deterministic, explainable model of a simulated person, written in TypeScript (`@adam0white/human-framework`). A person has a body, needs, emotions, memory, beliefs, habits, relationships, values, a conscience and a will, and faculties for learning, aging, marriage, upbringing and death over decades, all always on. At each decision they weigh many urges, including suggestions from outside voices such as a player, and choose an action. Decision records expose scored terms and template narration, and a person may refuse a suggestion.
 
 ## Status
 
-- **HF 3.2.0** is published ([GitHub release](https://github.com/adam0white/human-framework/releases/tag/v3.2.0), engine 3.2.0; [release receipts](docs/releases.md)). Read the [v3 migration guide](packages/human/README.md#migrating-to-v3) before upgrading from 2.x. The widened v3 increment continues through later 3.x work in the [roadmap](docs/roadmap.md); a planned or reviewed change is not a published release.
+- **HF 4.0.0** is published ([GitHub release](https://github.com/adam0white/human-framework/releases/tag/v4.0.0), [release receipts](docs/releases.md)). It is one run API with every faculty always on; 3.x saves and exports are not read. Read the [CHANGELOG 4.0.0 migration section](CHANGELOG.md) before upgrading. HF 3.2.0 stays published for games that stay on 3.x.
 - **Three in-site example games**, live at [human.adamwhite.work](https://human.adamwhite.work); more games built on HF are listed on [/games/](https://human.adamwhite.work/games/):
   - [Twice at the Well](https://human.adamwhite.work/colony/): a colony sim played side by side without and with HF.
   - [The Day You Say Nothing](https://human.adamwhite.work/voice/): you are a voice in one man's head; he may refuse you.
   - [The Night Watch](https://human.adamwhite.work/watch/): a village's night watch over generations, endless.
-- The central site was verified on 2026-10-26 at **HF 3.2.0 / engine 3.2.0**, signed source `00dcdad`, with library 3.2.0 and `dirty:false`. See the [site receipt](docs/releases.md#central-site-32-delivery-2026-10-26) and live [release.json](https://human.adamwhite.work/release.json). The bounded opt-ins and repairs are described in [CHANGELOG](CHANGELOG.md). SDK client 0.4.11 / kit 0.5.12 remain immutable artifacts, including their original manifests; external games retain their actual 3.0 pins until separately upgraded.
+- The central site's three games run on **HF 3.2.0**; the site's library version is 4.0.0. The live [release.json](https://human.adamwhite.work/release.json) names the deployed commit, both versions and `dirty:false`; receipts are in [docs/releases.md](docs/releases.md). Each external game names its own HF pin.
 
 ## Quick start
 
