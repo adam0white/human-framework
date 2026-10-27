@@ -3,7 +3,7 @@
  * playtest export. Replies from an earlier run (`gen`) are dropped.
  */
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { bindCastWorker, postCastMessage } from '../../shared/cast-runtime.ts';
+import { bindCastWorker, fileSession, postCastMessage } from '../../shared/cast-runtime.ts';
 import { gameLabs } from '../../shared/lab.tsx';
 import { fetchBuild } from '../../shared/playtest.ts';
 import { startTickLoop } from '../../shared/tick-loop.ts';
@@ -18,6 +18,8 @@ import WatchWorker from '../worker.ts?worker';
 
 export interface WatchActions {
   input(i: Input): void;
+  loadFile(text: string): void;
+  cancelFileLoad(): void;
   setSpeed(s: Speed): void;
   hold(on: boolean): void;
   /** A helper sheet uses the same reading pace as a pending night decision. */
@@ -71,6 +73,8 @@ export function useWatch(): Watch {
   const loads = useRef(new Map<string, { prev: number; done: (ok: boolean) => void }>());
   const exports = useRef(new Map<number, (d: PlaytestExport) => void>());
   const exportSeq = useRef(0);
+  const fileLoadSeq = useRef(0);
+  const pendingFileGen = useRef(0);
 
   const send = useCallback(
     (msg: MainToWorker) =>
@@ -88,6 +92,19 @@ export function useWatch(): Watch {
     worker.current = w;
     w.addEventListener('message', (e: MessageEvent<WorkerToMain>) => {
       const msg = e.data;
+      if (msg.type === 'fileLoaded') {
+        if (msg.gen !== pendingFileGen.current) return;
+        if (!msg.ok) setError(msg.error ?? 'The file could not be loaded.');
+        else {
+          gen.current = msg.gen;
+          setError(null);
+          if (msg.seed !== undefined) {
+            seedRef.current = msg.seed;
+            setSeed(msg.seed);
+          }
+        }
+        return;
+      }
       if (msg.type === 'loaded') {
         const wait = loads.current.get(msg.id);
         loads.current.delete(msg.id);
@@ -136,13 +153,15 @@ export function useWatch(): Watch {
       setError(`The simulation failed to load: ${e.message || 'worker error'}`),
     );
     gen.current += 1;
-    postCastMessage(w, 'watch', {
-      type: 'init',
-      castPreview: true,
-      seed: seedRef.current,
-      gen: gen.current,
-      scenarioVersion: WATCH_SCENARIO_VERSION,
-    } satisfies MainToWorker);
+    if (fileSession) w.postMessage({ type: 'fileSession' } satisfies MainToWorker);
+    else
+      postCastMessage(w, 'watch', {
+        type: 'init',
+        castPreview: true,
+        seed: seedRef.current,
+        gen: gen.current,
+        scenarioVersion: WATCH_SCENARIO_VERSION,
+      } satisfies MainToWorker);
     const stopTelemetry = trackWorkerRun(w, gameLabs.watch, () => gen.current);
     let readingFactor = 1;
     const stop = startTickLoop((dtMs) => {
@@ -156,9 +175,10 @@ export function useWatch(): Watch {
     });
     // Write the running page when the tab is hidden or closed, so a reload loses next to nothing.
     const keep = () => {
-      if (document.visibilityState === 'hidden') w.postMessage({ type: 'save' } satisfies MainToWorker);
+      if (!fileSession && document.visibilityState === 'hidden')
+        w.postMessage({ type: 'save' } satisfies MainToWorker);
     };
-    const leave = () => w.postMessage({ type: 'save' } satisfies MainToWorker);
+    const leave = () => !fileSession && w.postMessage({ type: 'save' } satisfies MainToWorker);
     document.addEventListener('visibilitychange', keep);
     window.addEventListener('pagehide', leave);
     return () => {
@@ -175,6 +195,18 @@ export function useWatch(): Watch {
   const actions = useMemo<WatchActions>(
     () => ({
       input: (input) => send({ type: 'input', input }),
+      cancelFileLoad: () => {
+        if (!fileSession) throw new Error('File cancellation requires a file session.');
+        setError(null);
+        pendingFileGen.current = ++fileLoadSeq.current;
+        send({ type: 'cancelFileLoad' });
+      },
+      loadFile: (text) => {
+        if (!fileSession) throw new Error('Open a file session first.');
+        fileLoadSeq.current = Math.max(fileLoadSeq.current, gen.current) + 1;
+        pendingFileGen.current = fileLoadSeq.current;
+        send({ type: 'loadFile', text, gen: pendingFileGen.current });
+      },
       setSpeed: (s) => {
         setSpeedState(s);
         send({ type: 'speed', speed: s });
@@ -191,11 +223,12 @@ export function useWatch(): Watch {
             exports.current.set(exportSeq.current, resolve);
             send({ type: 'export', requestId: exportSeq.current });
           }),
-          fetchBuild(),
+          fileSession ? Promise.resolve('') : fetchBuild(),
         ]);
-        return { ...data, build };
+        return fileSession ? data : { ...data, build };
       },
       restart: (next, options, startAtDusk) => {
+        if (fileSession) throw new Error('A file session cannot start a native chronicle.');
         gen.current += 1;
         seedRef.current = next;
         setSeed(next);
@@ -210,9 +243,13 @@ export function useWatch(): Watch {
           ...(options ? { options } : {}),
         });
       },
-      refreshShelf: () => send({ type: 'shelf' }),
+      refreshShelf: () => {
+        if (fileSession) throw new Error('No native shelf in a file session.');
+        send({ type: 'shelf' });
+      },
       load: (id) =>
         new Promise<boolean>((resolve) => {
+          if (fileSession) throw new Error('No native shelf in a file session.');
           const prev = gen.current;
           gen.current += 1;
           loads.current.set(id, {

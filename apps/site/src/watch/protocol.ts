@@ -12,6 +12,9 @@ export { WATCH_SCENARIO_VERSION } from './sim/run.ts';
 export type { PageInfo } from './store.ts';
 
 export type MainToWorker =
+  | { type: 'fileSession' }
+  | { type: 'cancelFileLoad' }
+  | { type: 'loadFile'; text: string; gen: number }
   | CastRequest
   | TelemetryRequest
   | {
@@ -37,10 +40,15 @@ export type MainToWorker =
   | { type: 'load'; id: string; gen: number };
 
 export type WorkerReply =
+  | { type: 'fileLoaded'; ok: boolean; error?: string; seed?: number }
   | CastReply
   | TelemetryReply
   | { type: 'frame'; frame: Frame; speed: Speed }
-  | { type: 'exported'; requestId: number; data: PlaytestExport }
+  | {
+      type: 'exported';
+      requestId: number;
+      data: PlaytestExport & { snapshot?: import('./sim/run.ts').Snapshot };
+    }
   /** The saved pages, newest first ([] without storage), and whether this run's saves are being kept. */
   | { type: 'shelf'; pages: PageInfo[]; saving: boolean; current: string }
   /** A load finished: `ok` false if the page was gone or unreadable (the old run goes on). */

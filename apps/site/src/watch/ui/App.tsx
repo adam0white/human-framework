@@ -6,11 +6,13 @@
 import { phoneStage } from '@adam0white/lab-kit';
 import { type ReactNode, useCallback, useEffect, useId, useRef, useState } from 'react';
 import { CastLifeNote, CastStartGate } from '../../shared/CastMenu.tsx';
+import { fileSession, readGameFile } from '../../shared/cast-runtime.ts';
 import { useWakeLock } from '../../shared/fullscreen.tsx';
 import { LabNotice } from '../../shared/LabNotice.tsx';
 import { gameLabs } from '../../shared/lab.tsx';
 import { labMode } from '../../shared/lab-mode.ts';
 import { playerError } from '../../shared/player-error.ts';
+import { downloadJson } from '../../shared/playtest.ts';
 import { settingWords } from '../../shared/setting-words.ts';
 import type { PageInfo } from '../protocol.ts';
 import { type PostId, postSection, SECTIONS, type SectionId, type WatcherId } from '../sim/config.ts';
@@ -82,12 +84,24 @@ function freePost(f: Frame, section: SectionId, who: WatcherId): PostId | null {
 }
 
 export function App() {
+  const [fileError, setFileError] = useState<string | null>(null);
+  const fileRead = useRef(0);
   const { frame, speed, error, seed, shelf, saving, current, actions } = useWatch();
   const [selected, setSelectedState] = useState<WatcherId | null>(null);
   /** The press picked for the selected watcher before a post is tapped; null starts with Ask. */
   const [pressPick, setPressPick] = useState<Press | null>(null);
   const [pageCommit, setPageCommit] = useState<HTMLElement | null>(null);
   const [menu, setMenu] = useState(false);
+  const cancelFileSelection = useCallback(() => {
+    if (!fileSession) return;
+    fileRead.current++;
+    actions.cancelFileLoad();
+  }, [actions]);
+  const closeFileMenu = useCallback(() => {
+    cancelFileSelection();
+    setMenu(false);
+  }, [cancelFileSelection]);
+
   const [info, setInfo] = useState(false);
   const [title, setTitle] = useState(false);
   const [feedback, setFeedback] = useState(false);
@@ -149,12 +163,12 @@ export function App() {
   useEffect(() => {
     const back = (event: KeyboardEvent) => {
       if (event.key !== 'Escape' || document.querySelector(':popover-open')) return;
-      if (menu) setMenu(false);
+      if (menu) closeFileMenu();
       else if (selected) setSelected(null);
     };
     window.addEventListener('keydown', back);
     return () => window.removeEventListener('keydown', back);
-  }, [menu, selected, setSelected]);
+  }, [menu, selected, setSelected, closeFileMenu]);
   useEffect(() => {
     if (menu) stage.current?.querySelector<HTMLButtonElement>('.w-menu .w-x')?.focus();
     else menuOrigin.current?.focus();
@@ -178,7 +192,65 @@ export function App() {
   // Keep the screen awake only while the clock runs (dusk, night, the open seasons), chronicle closed.
   useWakeLock(frame !== null && RUNNING.has(frame.phase) && !menu);
 
-  if (error) {
+  const fileControls = fileSession ? (
+    <section aria-label="Game file">
+      <p>This file stays in this tab. Download it before closing.</p>
+      <label>
+        Open a game file{' '}
+        <input
+          type="file"
+          accept="application/json,.json"
+          ref={(input) => {
+            if (!input) return;
+            const cancel = () => {
+              cancelFileSelection();
+              setFileError(null);
+            };
+            input.addEventListener('cancel', cancel);
+            return () => input.removeEventListener('cancel', cancel);
+          }}
+          onChange={(event) => {
+            cancelFileSelection();
+            const request = fileRead.current;
+            setFileError(null);
+            const file = event.target.files?.[0];
+            if (!file) return;
+            void readGameFile(file)
+              .then((text) => {
+                if (request !== fileRead.current) return;
+                setFileError(null);
+                actions.loadFile(text);
+              })
+              .catch((error) => {
+                if (request === fileRead.current) setFileError(String(error));
+              });
+            event.target.value = '';
+          }}
+        />
+      </label>
+      {frame && (
+        <button
+          type="button"
+          onClick={() => {
+            void actions
+              .exportRun()
+              .then((data) => downloadJson('watch.playtest.json', data))
+              .catch((error) => setFileError(String(error)));
+          }}
+        >
+          Download complete game file
+        </button>
+      )}
+      {frame?.phase === 'goal' && (
+        <button type="button" onClick={() => actions.input({ k: 'start' })}>
+          Go up to the wall
+        </button>
+      )}
+      {(fileError || error) && <p role="alert">{fileError || error}</p>}
+    </section>
+  ) : null;
+  if (fileSession && !frame) return <main>{fileControls}</main>;
+  if (error && !fileSession) {
     return (
       <div className="watch watch-error">
         <p>{playerError(error, 'play')}</p>
@@ -193,7 +265,7 @@ export function App() {
   if (!frame) {
     return (
       <div className="watch watch-loading">
-        <CastStartGate game="watch" />
+        {!fileSession && <CastStartGate game="watch" />}
         <p>Lighting the lantern…</p>
       </div>
     );
@@ -245,13 +317,19 @@ export function App() {
     } else actions.input({ k: 'lantern', section: hit.section });
   };
 
-  const showingTitle = title || frame.phase === 'goal';
+  const showingTitle = !fileSession && (title || frame.phase === 'goal');
   const showSpeed = !showingTitle && (frame.phase === 'night' || SEASON_PHASES.has(frame.phase));
   const ids = speedIds(SEASON_PHASES.has(frame.phase));
   const displayFrame = showingTitle ? { ...frame, phase: 'goal' as const } : frame;
   return (
     <div className={`watch phase-${displayFrame.phase}${frame.slowed ? ' is-slowed' : ''}`}>
-      <CastStartGate game="watch" />
+      {fileControls}
+      {fileSession && menu && (
+        <button type="button" onClick={closeFileMenu}>
+          Resume
+        </button>
+      )}
+      {!fileSession && <CastStartGate game="watch" />}
       <div className="lab-game-header">
         <header className="w-top">
           {showingTitle ? (
@@ -275,13 +353,14 @@ export function App() {
             aria-expanded={menu}
             onClick={(event) => {
               menuOrigin.current = event.currentTarget;
-              setMenu((m) => !m);
+              if (menu) closeFileMenu();
+              else setMenu(true);
             }}
           >
             ≡<span>Menu</span>
           </button>
         </header>
-        <CastLifeNote game="watch" />
+        {!fileSession && <CastLifeNote game="watch" />}
       </div>
 
       <main
@@ -329,7 +408,7 @@ export function App() {
           // One key for the open seasons, so the people list keeps its fold across spring, summer and autumn.
           key={SEASON_PHASES.has(frame.phase) ? 'season' : frame.phase}
         >
-          {menu ? (
+          {menu && !fileSession ? (
             <Chronicle
               frame={frame}
               actions={actions}
@@ -337,13 +416,13 @@ export function App() {
               shelf={shelf}
               saving={saving}
               current={current}
-              onClose={() => setMenu(false)}
+              onClose={closeFileMenu}
               onFeedback={() => {
-                setMenu(false);
+                closeFileMenu();
                 setFeedback(true);
               }}
               onTitle={() => {
-                setMenu(false);
+                closeFileMenu();
                 setTitle(true);
                 actions.refreshShelf();
               }}

@@ -4,6 +4,7 @@
  * from an earlier run (`gen`) and stale predictions (`requestId`) are dropped.
  */
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { fileSession } from '../../shared/cast-runtime.ts';
 import { gameLabs } from '../../shared/lab.tsx';
 import type { PlaytestStatus } from '../../shared/PlaytestMenu.tsx';
 import {
@@ -48,6 +49,7 @@ import { pendingSceneOffer } from './reading-pace.ts';
 import { openTransport, type Transport } from './transport.ts';
 
 export interface VoiceActions {
+  cancelFileLoad(): void;
   begin(): void;
   continueRun(): void;
   skip(): void;
@@ -107,7 +109,7 @@ export interface Voice {
 export function useVoice(seed = SHIPPED_SEED): Voice {
   const [savedRun, setSavedRun] = useState<{ label: string } | null>(() => {
     try {
-      return savedVoice(localStorage);
+      return fileSession ? null : savedVoice(localStorage);
     } catch {
       return null;
     }
@@ -171,7 +173,8 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
   const awaitingSuggestion = useRef(false);
 
   const requestSave = useCallback(() => {
-    if (loadingRun.current || !frameRef.current || frameRef.current.phase === 'premise') return;
+    if (fileSession || loadingRun.current || !frameRef.current || frameRef.current.phase === 'premise')
+      return;
     if (exportPending.current) {
       exportAgain.current = true;
       return;
@@ -202,6 +205,10 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
     let stopTelemetry = () => {};
     let stopPersona = () => {};
     let opened: Transport | null = null;
+    if (fileSession && new URLSearchParams(window.location.search).get('mock') === '1') {
+      setError('Remove mock=1 to open a game file.');
+      return;
+    }
     openTransport()
       .then(async (t) => {
         if (cancelled) {
@@ -275,7 +282,11 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
             case 'playtest': {
               exportPending.current = false;
               try {
-                if (frameRef.current?.phase !== 'premise' && saveVoice(localStorage, msg.file))
+                if (
+                  !fileSession &&
+                  frameRef.current?.phase !== 'premise' &&
+                  saveVoice(localStorage, msg.file)
+                )
                   setSavedRun(savedVoice(localStorage));
               } catch {
                 /* Storage may be unavailable. */
@@ -289,7 +300,7 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
               if (ticket === null) return;
               const file = msg.file;
               const toLab = exportRequest.current.destination(msg.gen);
-              fetchBuild()
+              (fileSession ? Promise.resolve(file.build) : fetchBuild())
                 .then((build) => {
                   if (exportRequest.current.ticket(msg.gen) !== ticket) return;
                   if (toLab) {
@@ -415,13 +426,15 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
         await voicePersonaReady;
         if (cancelled) return;
         gen.current += 1;
-        t.post({
-          type: 'init',
-          seed: seedRef.current,
-          castPreview: true,
-          gen: gen.current,
-          scenarioVersion: VOICE_SCENARIO_VERSION,
-        });
+        if (fileSession) t.post({ type: 'fileSession' });
+        else
+          t.post({
+            type: 'init',
+            seed: seedRef.current,
+            castPreview: true,
+            gen: gen.current,
+            scenarioVersion: VOICE_SCENARIO_VERSION,
+          });
         if (t.kind === 'worker')
           stopTelemetry = trackTransportRun(
             {
@@ -458,7 +471,7 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
                   ),
           });
         });
-        const url = replayParam();
+        const url = fileSession ? null : replayParam();
         if (url) {
           setPlaytest({ busy: 'load' });
           fetchPlaytestText(url)
@@ -522,7 +535,15 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
     };
     resetRef.current = resetRun;
     return {
+      cancelFileLoad: () => {
+        if (!fileSession) throw new Error('File cancellation requires a file session.');
+        setPlaytest(null);
+        pendingLoad.current = Math.max(gen.current, pendingLoad.current) + 1;
+        loadingRun.current = false;
+        transport.current?.post({ type: 'cancelFileLoad' });
+      },
       continueRun: () => {
+        if (fileSession) throw new Error('A file session cannot restore native play.');
         try {
           const saved = savedVoice(localStorage);
           if (saved) {
@@ -578,7 +599,7 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
           // Explicit feedback exports work on the title page too. Autosave still excludes the premise.
           if (!exportPending.current) {
             exportPending.current = true;
-            send({ type: 'exportPlaytest' });
+            send({ type: 'exportPlaytest', ...(fileSession ? { full: true } : {}) });
           }
         }),
       begin: () => {
@@ -677,12 +698,12 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
       sendPlaytest: () => {
         if (!exportRequest.current.begin(gen.current, true)) return;
         setPlaytest({ busy: 'export' });
-        send({ type: 'exportPlaytest' });
+        send({ type: 'exportPlaytest', ...(fileSession ? { full: true } : {}) });
       },
       exportPlaytest: () => {
         if (!exportRequest.current.begin(gen.current, false)) return;
         setPlaytest({ busy: 'export' });
-        send({ type: 'exportPlaytest' });
+        send({ type: 'exportPlaytest', ...(fileSession ? { full: true } : {}) });
       },
       loadPlaytest: (text) => {
         // Old frames can still arrive while the worker replaces the run. Never send a stale resume into it.
@@ -703,6 +724,7 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
       clearPlaytest: () => setPlaytest(null),
       playtestError: (message) => setPlaytest({ error: message }),
       replay: (nextSeed) => {
+        if (fileSession) throw new Error('A file session cannot start a native town.');
         resetVoicePersona();
         gen.current = Math.max(gen.current, pendingLoad.current) + 1;
         if (nextSeed !== undefined) seedRef.current = nextSeed;

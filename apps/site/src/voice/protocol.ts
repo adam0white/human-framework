@@ -138,6 +138,8 @@ export const defaultWhisper = (choiceId: StandingWhisper['choiceId']): StandingW
 });
 
 export type MainToWorker =
+  | { type: 'fileSession' }
+  | { type: 'cancelFileLoad' }
   | CastRequest
   | TelemetryRequest
   | {
@@ -169,7 +171,7 @@ export type MainToWorker =
   | { type: 'dismissIntro' }
   | { type: 'keepListening' }
   /** Playtest file (additive): the worker answers `playtest` with the file (its `build` is filled in by the page). */
-  | { type: 'exportPlaytest' }
+  | { type: 'exportPlaytest'; full?: boolean }
   /** Replay a playtest file's text as a new run numbered `gen`; answers `replayed`, or `playtestError`. */
   | { type: 'loadPlaytest'; gen: number; text: string; local?: boolean };
 

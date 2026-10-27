@@ -1,6 +1,7 @@
 import { setTelemetryOff, telemetryOn } from '@adam0white/lab-kit';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { CastLifeNote, CastMenu, CastStartGate } from '../../shared/CastMenu.tsx';
+import { fileSession, readGameFile } from '../../shared/cast-runtime.ts';
 import { FullscreenButton, useWakeLock } from '../../shared/fullscreen.tsx';
 import { LabNotice } from '../../shared/LabNotice.tsx';
 import { gameLabs, useLabScreen } from '../../shared/lab.tsx';
@@ -59,6 +60,7 @@ type ReviewedDraft = {
 };
 type Sheet = 'people' | 'person' | 'orders' | 'stand' | 'suggestion';
 function savedRun(): PlaytestFile | null {
+  if (fileSession) return null;
   try {
     const s = JSON.parse(localStorage.getItem('colony.run') ?? 'null') as PlaytestFile | null;
     return s?.kind === 'human-playtest' && s.game === 'colony' ? s : null;
@@ -67,9 +69,11 @@ function savedRun(): PlaytestFile | null {
   }
 }
 export function App() {
+  const [fileError, setFileError] = useState<string | null>(null);
+  const fileRead = useRef(0);
   const colony = useColony();
   const { frame, actions, playback } = colony;
-  const [shelf, setShelf] = useState(true),
+  const [shelf, setShelf] = useState(!fileSession),
     [save, setSave] = useState(savedRun),
     [newConfirm, setNewConfirm] = useState(false),
     [other, setOther] = useState(false);
@@ -104,6 +108,15 @@ export function App() {
     [flash, setFlash] = useState(''),
     [moment, setMoment] = useState<MomentRecord | null>(null),
     [newsReturn, setNewsReturn] = useState<{ id: VillagerId | null; side: 'human' | 'classic' } | null>(null);
+  const cancelFileSelection = useCallback(() => {
+    if (!fileSession) return;
+    fileRead.current++;
+    actions.cancelFileLoad();
+  }, [actions]);
+  const closeFileMenu = useCallback(() => {
+    cancelFileSelection();
+    setMenu(false);
+  }, [cancelFileSelection]);
   const bubbles = useMemo(() => new BubbleManager(), []);
   const flashTimer = useRef(0);
   const saveSequence = useRef(0);
@@ -172,12 +185,12 @@ export function App() {
     }
   }, [loaded, actions, bubbles]);
   const saveNow = useCallback(() => {
-    if (!frame || shelf) return;
+    if (fileSession || !frame || shelf) return;
     const sequence = ++saveSequence.current;
     void actions
       .getRun()
       .then((run) => {
-        if (saveSequence.current !== sequence) return;
+        if (fileSession || saveSequence.current !== sequence) return;
         try {
           localStorage.setItem('colony.run', JSON.stringify(run));
           setSave(run);
@@ -192,7 +205,7 @@ export function App() {
   const saveRef = useRef(saveNow);
   saveRef.current = saveNow;
   useEffect(() => {
-    if (shelf) return;
+    if (fileSession || shelf) return;
     const t = window.setInterval(() => saveRef.current(), 60000);
     const hide = () => {
       if (document.hidden) saveRef.current();
@@ -430,6 +443,7 @@ export function App() {
     setOutline(villagerById(news.personId)?.home ?? 'home-yusuf');
   };
   const restart = (village?: Village) => {
+    if (fileSession) throw new Error('A file session cannot replace native play.');
     saveSequence.current += 1;
     actions.restart(village ?? frame?.village);
     setShelf(true);
@@ -473,7 +487,7 @@ export function App() {
         if (x.inspect) setInspect(null);
         else if (x.info) setInfo(false);
         else if (x.feedback) setFeedback(null);
-        else if (x.menu) setMenu(false);
+        else if (x.menu) closeFileMenu();
         else if (x.other) setOther(false);
         else if (x.pending) setPending(null);
         else if (x.showEnd) setEndOpen(false);
@@ -493,7 +507,7 @@ export function App() {
     };
     window.addEventListener('keydown', key);
     return () => window.removeEventListener('keydown', key);
-  }, [actions, colony.playback.paused]);
+  }, [actions, colony.playback.paused, closeFileMenu]);
   const newest =
     latestPersonOrder(frame?.cards ?? [], person) ??
     frame?.cards.findLast((c) => c.human.state !== 'pending');
@@ -610,10 +624,68 @@ export function App() {
       {shelf && <h1 className="well-title-overlay">Twice at the Well</h1>}
     </div>
   );
+  const fileControls = fileSession ? (
+    <section aria-label="Game file">
+      <p>This file stays in this tab. Download it before closing.</p>
+      <label>
+        Open a game file{' '}
+        <input
+          type="file"
+          accept="application/json,.json"
+          ref={(input) => {
+            if (!input) return;
+            const cancel = () => {
+              cancelFileSelection();
+              setFileError(null);
+            };
+            input.addEventListener('cancel', cancel);
+            return () => input.removeEventListener('cancel', cancel);
+          }}
+          onChange={(event) => {
+            cancelFileSelection();
+            const request = fileRead.current;
+            setFileError(null);
+            const file = event.target.files?.[0];
+            if (!file) return;
+            void readGameFile(file)
+              .then((text) => {
+                if (request !== fileRead.current) return;
+                setFileError(null);
+                actions.loadPlaytest(text);
+                setShelf(false);
+              })
+              .catch((error) => {
+                if (request === fileRead.current) setFileError(String(error));
+              });
+            event.target.value = '';
+          }}
+        />
+      </label>
+      {frame && (
+        <button
+          type="button"
+          onClick={() => {
+            actions.exportPlaytest();
+          }}
+        >
+          Download complete game file
+        </button>
+      )}
+      {(fileError ||
+        (colony.playtest && 'error' in colony.playtest ? colony.playtest.error : colony.error)) && (
+        <p role="alert">
+          {fileError ||
+            (colony.playtest && 'error' in colony.playtest ? colony.playtest.error : colony.error)}
+        </p>
+      )}
+    </section>
+  ) : null;
+  if (fileSession && !frame) return <main>{fileControls}</main>;
   return (
     <div className={`colony well-layout ${shelf ? 'well-on-shelf' : ''} ${showEnd ? 'well-on-end' : ''}`}>
-      <CastStartGate game="well" />
-      <CastLifeNote game="well" />
+      {fileControls}
+      {!fileSession && <CastStartGate game="well" />}
+      {!fileSession && <CastLifeNote game="well" />}
       <header className="well-topbar">
         <div className="well-time">
           {shelf ? (
@@ -640,7 +712,7 @@ export function App() {
           aria-expanded={info}
           onClick={() => {
             setInfo((v) => !v);
-            setMenu(false);
+            closeFileMenu();
           }}
         >
           i
@@ -649,7 +721,7 @@ export function App() {
           type="button"
           aria-label="Game menu"
           aria-expanded={menu}
-          onClick={() => (menu ? setMenu(false) : openMenu())}
+          onClick={() => (menu ? closeFileMenu() : openMenu())}
         >
           ≡
         </button>
@@ -985,7 +1057,7 @@ export function App() {
           )}
         </aside>
       </main>
-      {other && (
+      {other && !fileSession && (
         <div className="well-overlay">
           <section className="well-drawer" role="dialog" aria-modal="true" aria-label="Other ways in">
             <header className="well-sheet-head">
@@ -1003,8 +1075,7 @@ export function App() {
                   onChange={(e) => {
                     const file = e.target.files?.[0];
                     if (file)
-                      void file
-                        .text()
+                      void (fileSession ? readGameFile(file) : file.text())
                         .then(actions.loadPlaytest)
                         .catch((err) => actions.playtestError(String(err)));
                   }}
@@ -1020,7 +1091,7 @@ export function App() {
         <div
           className="well-overlay"
           onClick={(e) => {
-            if (e.target === e.currentTarget) setMenu(false);
+            if (e.target === e.currentTarget) closeFileMenu();
           }}
           role="presentation"
           onKeyDown={() => undefined}
@@ -1028,7 +1099,7 @@ export function App() {
           <section className="well-drawer well-menu" role="dialog" aria-modal="true" aria-label="Game menu">
             <header className="well-sheet-head">
               <h2>Game menu · {frame ? dayClock(frame.minute) : ''}</h2>
-              <button type="button" aria-label="Close menu" onClick={() => setMenu(false)}>
+              <button type="button" aria-label="Close menu" onClick={closeFileMenu}>
                 ×
               </button>
             </header>
@@ -1070,19 +1141,21 @@ export function App() {
                 </button>
               )}
               <FullscreenButton variant="item" className="well-menu-fullscreen" />
-              <button
-                type="button"
-                onClick={() => {
-                  if (!newConfirm) {
-                    setNewConfirm(true);
-                    return;
-                  }
-                  restart();
-                  setMenu(false);
-                }}
-              >
-                {newConfirm ? 'Replace this game and start again' : 'New game'}
-              </button>
+              {!fileSession && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (!newConfirm) {
+                      setNewConfirm(true);
+                      return;
+                    }
+                    restart();
+                    closeFileMenu();
+                  }}
+                >
+                  {newConfirm ? 'Replace this game and start again' : 'New game'}
+                </button>
+              )}
               <a href="/games/">All games</a>
               <label className="well-record">
                 <input
@@ -1096,10 +1169,10 @@ export function App() {
                 Recording
               </label>
               {labMode() && <a href="/lab/privacy/">Lab privacy</a>}
-              <CastMenu game="well" />
+              {!fileSession && <CastMenu game="well" />}
             </div>
             <footer className="well-actions">
-              <button type="button" className="well-primary" onClick={() => setMenu(false)}>
+              <button type="button" className="well-primary" onClick={closeFileMenu}>
                 Resume
               </button>
             </footer>
@@ -1199,7 +1272,7 @@ export function App() {
             setEndOpen(true);
             saveNow();
           }}
-          onAgain={() => restart()}
+          onAgain={fileSession ? undefined : () => restart()}
           onClose={() => {
             setLoadPage(false);
             setEndOpen(false);

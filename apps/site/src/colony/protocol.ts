@@ -26,6 +26,7 @@ export interface PresentationContext {
   inspector: boolean;
 }
 
+export type FileSessionRequest = { type: 'fileSession' } | { type: 'cancelFileLoad' };
 export type MainToWorker =
   | CastRequest
   | TelemetryRequest
@@ -56,7 +57,7 @@ export type MainToWorker =
   /** "Another day": only honoured when `frame.canContinue`. */
   | { type: 'continue' }
   /** Playtest file: the worker answers `playtest` (the page fills in `build`). */
-  | { type: 'exportPlaytest'; requestId?: number }
+  | { type: 'exportPlaytest'; full?: boolean; requestId?: number }
   /** Replay a playtest file's text as run `gen`; answers `replayed` then frames, or `playtestError`. */
   | { type: 'loadPlaytest'; gen: number; text: string; local?: boolean };
 

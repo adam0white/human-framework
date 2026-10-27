@@ -4,7 +4,7 @@
  * Everything the worker sends passes through `contract.ts` first, so the rest of the UI reads one shape.
  */
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { bindCastWorker, postCastMessage } from '../../shared/cast-runtime.ts';
+import { bindCastWorker, fileSession, postCastMessage } from '../../shared/cast-runtime.ts';
 import { gameLabs } from '../../shared/lab.tsx';
 import type { PlaytestStatus } from '../../shared/PlaytestMenu.tsx';
 import {
@@ -17,7 +17,7 @@ import {
 } from '../../shared/playtest.ts';
 import { startTickLoop } from '../../shared/tick-loop.ts';
 import { trackWorkerRun } from '../../shared/worker-telemetry.ts';
-import type { WorkerToMain } from '../protocol.ts';
+import type { FileSessionRequest, WorkerToMain } from '../protocol.ts';
 import { DEFAULT_SEED, SCENARIO_VERSION } from '../sim/game.ts';
 import type { Prediction, WhyBreakdown } from '../sim/human-side.ts';
 import type { PlaceId } from '../sim/map.ts';
@@ -53,6 +53,7 @@ export interface Colony {
 
 /** Stable action functions (same identities for the life of the hook). */
 export interface ColonyActions {
+  cancelFileLoad(): void;
   order(input: OrderInput, nudgeId?: string): void;
   cancel(orderId: string): void;
   dismissNudge(id: string): void;
@@ -93,6 +94,7 @@ export interface ColonyActions {
 const AUTO_PAUSE_KEY = 'colony.autoPause';
 
 function writeAutoPause(on: boolean): void {
+  if (fileSession) return;
   try {
     localStorage.setItem(AUTO_PAUSE_KEY, on ? '1' : '0');
   } catch {
@@ -161,13 +163,18 @@ export function useColony(seed = DEFAULT_SEED): Colony {
       new Promise<PlaytestFile>((resolve, reject) => {
         exportRequest.current += 1;
         runWaiters.current.set(exportRequest.current, { resolve, reject });
-        send({ type: 'exportPlaytest', requestId: exportRequest.current });
+        send({
+          type: 'exportPlaytest',
+          requestId: exportRequest.current,
+          ...(fileSession ? { full: true } : {}),
+        });
       }),
     [send],
   );
 
   const init = useCallback(
     (w: Worker | null, village: Village = 'default', castPreview = false) => {
+      if (fileSession) throw new Error('A file session cannot start a native village.');
       gen.current = Math.max(gen.current, pendingLoad.current) + 1;
       setPlayback(START_PLAYBACK(autoPause.current));
       const msg: OutMsg = {
@@ -290,8 +297,9 @@ export function useColony(seed = DEFAULT_SEED): Colony {
     w.addEventListener('messageerror', () =>
       setError('The simulation sent a message the page could not read.'),
     );
-    init(w, 'default', true);
-    const replayUrl = replayParam();
+    if (fileSession) w.postMessage({ type: 'fileSession' } satisfies FileSessionRequest);
+    else init(w, 'default', true);
+    const replayUrl = fileSession ? null : replayParam();
     if (replayUrl) {
       setPlaytest({ busy: 'load' });
       fetchPlaytestText(replayUrl)
@@ -322,6 +330,12 @@ export function useColony(seed = DEFAULT_SEED): Colony {
 
   const actions = useMemo<ColonyActions>(
     () => ({
+      cancelFileLoad: () => {
+        if (!fileSession) throw new Error('File cancellation requires a file session.');
+        setPlaytest(null);
+        pendingLoad.current = Math.max(gen.current, pendingLoad.current) + 1;
+        worker.current?.postMessage({ type: 'cancelFileLoad' } satisfies FileSessionRequest);
+      },
       order: (input, nudgeId) => send(nudgeId ? { type: 'order', input, nudgeId } : { type: 'order', input }),
       cancel: (orderId) => send({ type: 'cancel', orderId }),
       dismissNudge: (id) => send({ type: 'dismissNudge', id }),
@@ -410,7 +424,7 @@ export function useColony(seed = DEFAULT_SEED): Colony {
       sendPlaytest: () => {
         void requestRun()
           .then((file) =>
-            fetchBuild().then((build) => {
+            (fileSession ? Promise.resolve(file.build) : fetchBuild()).then((build) => {
               gameLabs.well.openSendDialog({ getRun: () => ({ ...file, build }) });
             }),
           )
@@ -421,7 +435,7 @@ export function useColony(seed = DEFAULT_SEED): Colony {
         exportPending.current = true;
         void requestRun()
           .then((file) =>
-            fetchBuild().then((build) => {
+            (fileSession ? Promise.resolve(file.build) : fetchBuild()).then((build) => {
               downloadJson(PLAYTEST_FILE_NAME.colony, { ...file, build });
             }),
           )
@@ -431,6 +445,7 @@ export function useColony(seed = DEFAULT_SEED): Colony {
           });
       },
       loadPlaytest: (text, local = false) => {
+        if (fileSession && local) throw new Error('A file session cannot restore local ownership.');
         for (const waiter of runWaiters.current.values()) waiter.reject(new Error('The run was replaced.'));
         runWaiters.current.clear();
         exportPending.current = false;

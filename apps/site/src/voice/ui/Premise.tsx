@@ -6,7 +6,7 @@ export function Premise({
   savedRun = null,
   onBegin,
   onContinue = onBegin,
-  onOtherWays = () => {},
+  onOtherWays,
 }: {
   ready: boolean;
   savedRun?: { label: string } | null;
@@ -27,7 +27,7 @@ export function Premise({
           at its end, he will act without your advice.
         </p>
         <p>You suggest what Halil could do. He decides whether to do it.</p>
-        {labMode() && (
+        {labMode() && onOtherWays && (
           <button type="button" className="v-shelf-row" onClick={onOtherWays}>
             Lab tools <span>▸</span>
           </button>

@@ -6,7 +6,7 @@
  */
 import 'fake-indexeddb/auto';
 import { gzipSync } from 'node:zlib';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { playYears } from '../../test/watch/years.ts';
 import { seasonNow } from './sim/life.ts';
 import { endState, replay, WatchRun } from './sim/run.ts';
@@ -90,4 +90,74 @@ describe('Game 3 saves (G3-4)', () => {
     expect(snap?.state.minute).toBe(run.state.minute);
     expect((await listPages()).some((p) => p.id === 'c9:auto')).toBe(true);
   });
+});
+
+it('a complete file session leaves all four existing chronicle info and Blob bytes unchanged through play/hide/export', async () => {
+  for (let n = 1; n <= 4; n++) {
+    const source = new WatchRun(n);
+    source.input({ k: 'start' });
+    expect(
+      await savePage(page(`preserve${n}:auto`, `preserve${n}`, 'auto', 1000 + n), source.snapshotText()),
+    ).toBe(true);
+  }
+  const database = await new Promise<IDBDatabase>((resolve, reject) => {
+    const request = indexedDB.open('night-watch', 1);
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = () => reject(request.error);
+  });
+  const rawRows = async () => {
+    const result: Record<string, unknown> = {};
+    for (const name of ['info', 'data']) {
+      const tx = database.transaction(name, 'readonly');
+      const store = tx.objectStore(name);
+      const values = await new Promise<unknown[]>((resolve) => {
+        const req = store.getAll();
+        req.onsuccess = () => resolve(req.result);
+      });
+      result[name] = await Promise.all(
+        values.map(async (value) =>
+          value instanceof Blob
+            ? { type: value.type, bytes: Array.from(new Uint8Array(await value.arrayBuffer())) }
+            : value,
+        ),
+      );
+    }
+    return result;
+  };
+  const before = await rawRows();
+  const beforeChronicles = new Set((await listPages()).map((info) => info.chronicle));
+  expect([...beforeChronicles]).toEqual(
+    expect.arrayContaining(['preserve1', 'preserve2', 'preserve3', 'preserve4']),
+  );
+  let receive!: (event: { data: unknown }) => void;
+  const replies: Record<string, unknown>[] = [];
+  vi.stubGlobal('addEventListener', (_type: string, handler: typeof receive) => {
+    receive = handler;
+  });
+  vi.stubGlobal('postMessage', (reply: Record<string, unknown>) => replies.push(reply));
+  try {
+    await import('./worker.ts');
+    const send = (data: Record<string, unknown>) => receive({ data });
+    const source = new WatchRun(991);
+    source.input({ k: 'start' });
+    const file = { ...source.export(), snapshot: source.snapshot() };
+    send({ type: 'fileSession' });
+    send({ type: 'loadFile', gen: 1, text: JSON.stringify(file) });
+    await vi.waitFor(() =>
+      expect(replies.some((reply) => reply.type === 'fileLoaded' && reply.ok)).toBe(true),
+    );
+    send({ type: 'input', input: { k: 'begin' } });
+    for (let n = 0; n < 150; n++) send({ type: 'tick', dtMs: 250 });
+    send({ type: 'hold', on: true });
+    send({ type: 'save' });
+    send({ type: 'export', requestId: 1 });
+    expect(replies.some((reply) => reply.type === 'exported')).toBe(true);
+    expect(replies.some((reply) => ['shelf', 'saved', 'castReady'].includes(String(reply.type)))).toBe(false);
+    expect(await rawRows()).toEqual(before);
+    const pages = await listPages();
+    expect(new Set(pages.map((info) => info.chronicle))).toEqual(beforeChronicles);
+  } finally {
+    database.close();
+    vi.unstubAllGlobals();
+  }
 });

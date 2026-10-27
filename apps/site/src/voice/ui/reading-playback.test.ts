@@ -1,3 +1,11 @@
+import { requireValue } from '../../shared/require-value.ts';
+
+let usePolicyVoice: typeof import('./useVoice.ts').useVoice;
+function PolicyVoice({ capture }: { capture(value: Voice): void }) {
+  capture(usePolicyVoice());
+  return null;
+}
+
 // @vitest-environment happy-dom
 import { createElement } from 'react';
 import { flushSync } from 'react-dom';
@@ -7,7 +15,7 @@ import type { MainToWorker, WorkerToMain } from '../protocol.ts';
 import { sampleFrame } from '../sim/fixtures.ts';
 import { useVoice, type Voice } from './useVoice.ts';
 
-vi.mock('../../shared/lab.tsx', () => ({ gameLabs: { voice: {} } }));
+vi.mock('../../shared/lab.tsx', () => ({ useLabScreen: () => {}, gameLabs: { voice: {} } }));
 
 const channel = vi.hoisted(() => ({
   post: vi.fn<(msg: MainToWorker) => void>(),
@@ -214,5 +222,138 @@ it('slows reading ticks, keeps frame scheduling on wall time, and respects manua
     expect(channel.post).toHaveBeenLastCalledWith({ type: 'resume' });
   } finally {
     root.unmount();
+  }
+});
+
+it('file-mode Voice enters without native reads and refuses Continue/replay while late exports cannot autosave', async () => {
+  vi.resetModules();
+  window.history.replaceState(null, '', '/voice/?file=1');
+  channel.post.mockClear();
+  channel.listeners.clear();
+  const { useVoice: useCurrent } = await import('./useVoice.ts');
+  let current: Voice | undefined;
+  usePolicyVoice = useCurrent;
+  const reads = vi.spyOn(Storage.prototype, 'getItem'),
+    writes = vi.spyOn(Storage.prototype, 'setItem');
+  const root = createRoot(document.createElement('div'));
+  try {
+    flushSync(() =>
+      root.render(
+        createElement(PolicyVoice, {
+          capture: (value) => {
+            current = value;
+          },
+        }),
+      ),
+    );
+    await vi.waitFor(() =>
+      expect(channel.post.mock.calls.some(([message]) => message.type === 'fileSession')).toBe(true),
+    );
+    expect(channel.post.mock.calls.some(([message]) => message.type === 'init')).toBe(false);
+    expect(reads).not.toHaveBeenCalled();
+    expect(() => requireValue(current).actions.continueRun()).toThrow(/file/i);
+    expect(() => requireValue(current).actions.replay()).toThrow(/file/i);
+    const file = {
+      kind: 'human-playtest' as const,
+      format: 1 as const,
+      game: 'voice' as const,
+      build: 'synthetic',
+      framework: '3.2.0',
+      engine: '3.2.0',
+      seed: 7,
+      scenario: 'voice-4',
+      minute: 1660,
+      log: [],
+      hash: 'source-unit-seam',
+      snapshotEncoding: 'json' as const,
+      snapshot: {},
+    };
+    flushSync(() => channel.receive({ type: 'frame', gen: 1, frame: sampleFrame }));
+    flushSync(() => channel.receive({ type: 'playtest', gen: 1, file }));
+    requireValue(current).actions.setMenuOpen(true);
+    requireValue(current).actions.setMenuOpen(false);
+    channel.tick(250);
+    expect(reads).not.toHaveBeenCalled();
+    expect(writes).not.toHaveBeenCalled();
+    expect(channel.post.mock.calls.some(([message]) => message.type === 'exportPlaytest')).toBe(false);
+  } finally {
+    flushSync(() => root.unmount());
+    reads.mockRestore();
+    writes.mockRestore();
+    window.history.replaceState(null, '', '/');
+  }
+});
+
+it('file-mode Voice App renders its chooser before the premise and all native saved-run reads', async () => {
+  vi.resetModules();
+  window.history.replaceState(null, '', '/voice/?file=1');
+  channel.post.mockClear();
+  channel.listeners.clear();
+  const { App } = await import('./App.tsx');
+  const reads = vi.spyOn(Storage.prototype, 'getItem'),
+    writes = vi.spyOn(Storage.prototype, 'setItem');
+  const node = document.createElement('div'),
+    root = createRoot(node);
+  try {
+    flushSync(() => root.render(createElement(App)));
+    await vi.waitFor(() =>
+      expect(channel.post.mock.calls.some(([message]) => message.type === 'fileSession')).toBe(true),
+    );
+    expect(node.textContent).toContain('This file stays in this tab.');
+    expect(node.querySelector('input[type=file]')).not.toBeNull();
+    expect(channel.post.mock.calls.some(([message]) => message.type === 'init')).toBe(false);
+    expect(reads).not.toHaveBeenCalled();
+    expect(writes).not.toHaveBeenCalled();
+    const picker = requireValue(node.querySelector<HTMLInputElement>('input[type=file]'));
+    let resolveOld: (bytes: ArrayBuffer) => void = () => {};
+    const oldRead = new Promise<ArrayBuffer>((resolve) => {
+      resolveOld = resolve;
+    });
+    const latest = '{"syntheticChooser":"latest"}';
+    const select = (read: () => Promise<ArrayBuffer>) => {
+      Object.defineProperty(picker, 'files', {
+        configurable: true,
+        value: [{ size: 100, arrayBuffer: read }],
+      });
+      picker.dispatchEvent(new Event('change', { bubbles: true }));
+    };
+    flushSync(() => select(() => oldRead));
+    flushSync(() => select(async () => new TextEncoder().encode(latest).buffer));
+    await vi.waitFor(() =>
+      expect(
+        channel.post.mock.calls
+          .map(([message]) => message)
+          .filter((message) => message.type === 'loadPlaytest')
+          .map((message) => message.text),
+      ).toEqual([latest]),
+    );
+    resolveOld(new Uint8Array([0xff]).buffer);
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(
+      channel.post.mock.calls
+        .map(([message]) => message)
+        .filter((message) => message.type === 'loadPlaytest')
+        .map((message) => message.text),
+    ).toEqual([latest]);
+    expect(node.querySelector('[role=alert]')).toBeNull();
+    let resolveCancelled: (bytes: ArrayBuffer) => void = () => {};
+    const cancelled = new Promise<ArrayBuffer>((resolve) => {
+      resolveCancelled = resolve;
+    });
+    flushSync(() => select(() => cancelled));
+    flushSync(() => picker.dispatchEvent(new Event('cancel')));
+    resolveCancelled(new TextEncoder().encode('{"syntheticChooser":"cancelled"}').buffer);
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(
+      channel.post.mock.calls
+        .map(([message]) => message)
+        .filter((message) => message.type === 'loadPlaytest')
+        .map((message) => message.text),
+    ).toEqual([latest]);
+  } finally {
+    flushSync(() => root.unmount());
+    reads.mockRestore();
+    writes.mockRestore();
+    window.history.replaceState(null, '', '/');
   }
 });

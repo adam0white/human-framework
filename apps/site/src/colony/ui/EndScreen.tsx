@@ -246,7 +246,7 @@ export function EndScreen(props: {
   humanKind: string;
   canContinue: boolean;
   onContinue(): void;
-  onAgain(): void;
+  onAgain?: () => void;
   onClose(): void;
   onFeedback?: () => void;
   /** Download this run as a playtest file. */
@@ -294,7 +294,7 @@ export function EndScreen(props: {
             <button type="button" className="btn btn-ghost" onClick={props.onClose}>
               Look at the villages
             </button>
-            {offerDay && (
+            {offerDay && props.onAgain && (
               <button type="button" className="btn btn-ghost" onClick={props.onAgain}>
                 Play again
               </button>
@@ -314,9 +314,11 @@ export function EndScreen(props: {
               </button>
             )}
           </div>
-          <button type="button" className="btn" onClick={offerDay ? props.onContinue : props.onAgain}>
-            {offerDay ? 'Another day' : 'Play again'}
-          </button>
+          {(offerDay || props.onAgain) && (
+            <button type="button" className="btn" onClick={offerDay ? props.onContinue : props.onAgain}>
+              {offerDay ? 'Another day' : 'Play again'}
+            </button>
+          )}
         </div>
       </div>
     </div>

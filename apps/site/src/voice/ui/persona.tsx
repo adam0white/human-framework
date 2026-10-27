@@ -14,11 +14,13 @@ import { useEffect, useRef } from 'react';
 import {
   castRecordingGate,
   chooseCastRecording,
+  fileSession,
   setCastEnabled,
   sitePersonaShelf,
 } from '../../shared/cast-runtime.ts';
 import { gameLabs } from '../../shared/lab.tsx';
 import { downloadJson, fetchBuild, type PlaytestFile } from '../../shared/playtest.ts';
+import { requireValue } from '../../shared/require-value.ts';
 import type { MainToWorker, WorkerToMain } from '../protocol.ts';
 import type { OneCastRow, SelinReturn } from '../sim/persona.ts';
 import { claimAfterValidation, PersonaSession, requireOwnHead } from './persona-session.ts';
@@ -27,8 +29,8 @@ const SELIN_CAST = 'hf.cast.selin.voice';
 
 const departureKey = (branch: string) => `hf-voice-departure:${branch}`;
 const shelf = sitePersonaShelf;
-export const voicePersonaReady = shelf.ready;
-void shelf.ready.then(() => changed());
+export const voicePersonaReady = fileSession ? Promise.resolve(false) : requireValue(shelf).ready;
+if (!fileSession) void requireValue(shelf).ready.then(() => changed());
 let send: ((message: MainToWorker) => void) | undefined;
 let startReturn: ((header: SelinReturn, seed: number) => void) | undefined;
 const session = new PersonaSession((key) => {
@@ -51,10 +53,12 @@ const message = (text: string) => {
 };
 
 export async function gateVoiceFile(text: string): Promise<void> {
+  if (fileSession) return;
   session.beginFile(text);
 }
 
 export function settleVoiceFileGate(accepted: boolean): void {
+  if (fileSession) return;
   session.finish(accepted);
   changed();
 }
@@ -64,6 +68,7 @@ export function bindVoicePersona(
   begin: (header: SelinReturn, seed: number) => void,
   verify: (header: SelinReturn) => Promise<SelinReturn>,
 ): () => void {
+  if (fileSession) return () => {};
   send = post;
   startReturn = begin;
   checkReturn = verify;
@@ -76,13 +81,15 @@ export function bindVoicePersona(
   };
 }
 export function resetVoicePersona(): void {
+  if (fileSession) return;
   session.reset();
   published = '';
   pending = false;
   gameLabs.voice.setPersonaRecording(null);
 }
 export function checkpointVoicePersona(): void {
-  if (!shelf.enabled || !send || pending) return;
+  if (fileSession) return;
+  if (!requireValue(shelf).enabled || !send || pending) return;
   send({ type: 'personaCheckpoint' });
   message(
     'Selin will finish her current action. Her enquiry waits until after work; her commitments travel with her.',
@@ -90,16 +97,24 @@ export function checkpointVoicePersona(): void {
 }
 
 export async function receiveVoicePersona(reply: WorkerToMain): Promise<void> {
+  if (fileSession) return;
   if (reply.type !== 'personaCheckpoint') return;
   if (reply.error) {
     message(reply.error);
     return;
   }
-  if (!reply.transfer || !reply.file || !shelf.enabled || pending || reply.file.hash === published) return;
+  if (
+    !reply.transfer ||
+    !reply.file ||
+    !requireValue(shelf).enabled ||
+    pending ||
+    reply.file.hash === published
+  )
+    return;
   pending = true;
   try {
     let local = false;
-    const existing = await shelf
+    const existing = await requireValue(shelf)
       .request<PersonaEnvelope | null>({ action: 'get', castId: SELIN_CAST })
       .catch(() => {
         local = true;
@@ -122,7 +137,7 @@ export async function receiveVoicePersona(reply: WorkerToMain): Promise<void> {
     });
     const accepted = local
       ? envelope
-      : await shelf.request<PersonaEnvelope>({
+      : await requireValue(shelf).request<PersonaEnvelope>({
           action: 'put',
           envelope,
           authored: !session.head,
@@ -167,12 +182,14 @@ export async function prepareVoiceReturn(
   automatic = false,
   imported?: PersonaEnvelope,
 ): Promise<{ header: SelinReturn; seed: number } | null> {
-  await shelf.ready;
-  if (!shelf.enabled || pending || session.loading) return null;
+  if (fileSession) return null;
+  await requireValue(shelf).ready;
+  if (!requireValue(shelf).enabled || pending || session.loading) return null;
   pending = true;
   try {
     const envelope =
-      imported ?? (await shelf.request<PersonaEnvelope | null>({ action: 'get', castId: SELIN_CAST }));
+      imported ??
+      (await requireValue(shelf).request<PersonaEnvelope | null>({ action: 'get', castId: SELIN_CAST }));
     if (envelope?.source.game !== 'goodhands') {
       if (automatic) return null;
       throw new Error('No returned enquiry from Good Hands is on this browser’s shelf.');
@@ -187,7 +204,7 @@ export async function prepareVoiceReturn(
     session.begin(envelope.branchId);
     const life = imported
       ? preparePersonaLife(envelope, Date.now())
-      : await shelf.request<import('@adam0white/lab-client').LifePreparation>({
+      : await requireValue(shelf).request<import('@adam0white/lab-client').LifePreparation>({
           action: 'prepare',
           castId: SELIN_CAST,
         });
@@ -214,7 +231,9 @@ export async function prepareVoiceReturn(
           rules: 'voice-4',
         },
       });
-      return imported ? claim : await shelf.request<PersonaEnvelope>({ action: 'put', envelope: claim });
+      return imported
+        ? claim
+        : await requireValue(shelf).request<PersonaEnvelope>({ action: 'put', envelope: claim });
     });
     const accepted = checked.head;
     const row: OneCastRow = {
@@ -262,12 +281,13 @@ export function chooseVoiceRecording(value: boolean) {
 export function VoicePersonaControls({ canReturn }: { canReturn: boolean }) {
   const root = useRef<HTMLDivElement>(null);
   useEffect(() => {
+    if (fileSession) return;
     const render = () => {
       const element = root.current;
       if (!element) return;
       element.replaceChildren(
         personaControls({
-          enabled: shelf.enabled,
+          enabled: requireValue(shelf).enabled,
           recordingAllowed: gameLabs.voice.personaRecordingAllowed,
           setEnabled(value) {
             setCastEnabled(value);
@@ -284,7 +304,7 @@ export function VoicePersonaControls({ canReturn }: { canReturn: boolean }) {
       const button = document.createElement('button');
       button.type = 'button';
       button.textContent = 'Start Selin’s return chapter';
-      button.disabled = !canReturn || !shelf.enabled || pending || session.loading;
+      button.disabled = !canReturn || !requireValue(shelf).enabled || pending || session.loading;
       button.onclick = () => {
         void continueReturn();
       };
@@ -302,7 +322,7 @@ export function VoicePersonaControls({ canReturn }: { canReturn: boolean }) {
       const input = document.createElement('input');
       input.type = 'file';
       input.accept = 'application/json,.json';
-      input.disabled = !canReturn || !shelf.enabled || session.loading;
+      input.disabled = !canReturn || !requireValue(shelf).enabled || session.loading;
       input.onchange = () => {
         const file = input.files?.[0];
         if (!file) return;

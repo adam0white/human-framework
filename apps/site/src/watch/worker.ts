@@ -1,5 +1,7 @@
 import { ENGINE_VERSION } from '@adam0white/human-framework';
+import { canonicalPersona, validatePersona } from '@adam0white/lab-client';
 import { castRole, chapterPeople, siteCastCheckpoint } from '../shared/cast-chapter.ts';
+import { FRAMEWORK_PACKAGE_VERSION, stableStringify } from '../shared/playtest.ts';
 import { requireValue } from '../shared/require-value.ts';
 /**
  * Dedicated worker for The Night Watch. Real time enters only as `tick{dtMs}`; the pacer steps whole sim
@@ -24,14 +26,46 @@ import { dayOfYear, seasonOfDay } from './sim/life.ts';
 import { clockRuns, nightEnd } from './sim/night.ts';
 import { Pacer } from './sim/pace.ts';
 import { prepareWatchCast, WATCH_NORMS, watchTerminalReceipts } from './sim/people.ts';
-import { scenarioForOptions, WatchRun } from './sim/run.ts';
+import { type PlaytestExport, replay, type Snapshot, scenarioForOptions, WatchRun } from './sim/run.ts';
 import { isSeason } from './sim/season.ts';
 import type { WatchState } from './sim/state.ts';
 import { buildFrame, ordinal } from './sim/view.ts';
 import { roman } from './sim/volume.ts';
 import { listPages, loadPage, type PageInfo, savePage } from './store.ts';
 
+/** Imported receipt archives are provenance only; validate their binding without any Shelf access. */
+async function validateFileSources(raw: Record<string, unknown>): Promise<void> {
+  const ownership = raw.castOwnership;
+  const sources = raw.castSources;
+  if (ownership !== undefined && (!ownership || typeof ownership !== 'object' || Array.isArray(ownership)))
+    throw new Error('Invalid imported ownership provenance.');
+  if (sources !== undefined && (!sources || typeof sources !== 'object' || Array.isArray(sources)))
+    throw new Error('Invalid imported source archive.');
+  const heads = Object.entries((ownership ?? {}) as Record<string, unknown>);
+  if (heads.length > 8) throw new Error('Too many imported ownership receipts.');
+  for (const [id, value] of heads) {
+    const head = await validatePersona(value);
+    if (id !== head.castId) throw new Error('Imported receipt identity differs.');
+  }
+  for (const [id, source] of Object.entries((sources ?? {}) as Record<string, unknown>)) {
+    const head = (
+      ownership as Record<string, { transfer: { checkpoint?: { sha256?: string } } }> | undefined
+    )?.[id];
+    if (!head?.transfer.checkpoint?.sha256 || !source || typeof source !== 'object')
+      throw new Error('Imported source has no bound full-source receipt.');
+    const digest = Array.from(
+      new Uint8Array(
+        await crypto.subtle.digest('SHA-256', new TextEncoder().encode(canonicalPersona(source))),
+      ),
+      (byte) => byte.toString(16).padStart(2, '0'),
+    ).join('');
+    if (digest !== head.transfer.checkpoint.sha256) throw new Error('Imported source checksum differs.');
+  }
+}
+
 let run: WatchRun | null = null;
+let fileMode = false;
+let imported: Record<string, unknown> = {};
 /** Only the latest explicit init/load may install a run after storage awaits. */
 let loadOperation = 0;
 let castOwnership: import('../shared/cast-runtime.ts').CastHeads = {};
@@ -82,7 +116,7 @@ function whenWords(s: WatchState): string {
 }
 
 function save(kind: PageInfo['kind']): void {
-  if (!run || !saving || run.state.phase === 'goal') return;
+  if (fileMode || !run || !saving || run.state.phase === 'goal') return;
   const s = run.state;
   const id =
     kind === 'auto'
@@ -122,7 +156,7 @@ function behind(): boolean {
 
 /** Saves the pages that are due: a season backup, a closed volume, and the running page (see the file comment). */
 function maybeSave(): void {
-  if (!run) return;
+  if (fileMode || !run) return;
   const s = run.state;
   const mark = seasonMark(s);
   const phase = PAGE_PHASES.has(s.phase) ? `${s.phase}:${s.minute}` : '';
@@ -155,8 +189,23 @@ function begin(r: WatchRun, id: string): void {
 }
 
 const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
+  if (msg.type === 'cancelFileLoad') {
+    if (!fileMode) throw new Error('File cancellation requires a file session.');
+    loadOperation++;
+    return;
+  }
+  if (msg.type === 'fileSession') {
+    if (run) throw new Error('Session mode must be selected before a game.');
+    fileMode = true;
+    return;
+  }
+  if (
+    fileMode &&
+    ['init', 'load', 'shelf', 'castOwnership', 'castPreflight', 'castCheckpoint'].includes(msg.type)
+  )
+    throw new Error('Native chronicles and continuity are unavailable in a file session.');
   const deaths = () => {
-    if (!run) return;
+    if (fileMode || !run) return;
     for (const terminal of watchTerminalReceipts(run.state, castOwnership))
       host.post({ type: 'castReady', requestId: 0, terminal });
   };
@@ -185,6 +234,48 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
     host.post({ type: 'frame', frame, speed: pacer.speed });
   };
 
+  if (msg.type === 'loadFile') {
+    if (!fileMode) throw new Error('Open a file session first.');
+    const operation = ++loadOperation;
+    void (async () => {
+      if (new TextEncoder().encode(msg.text).length > 5 * 1024 * 1024)
+        throw new Error('This file is too large.');
+      const raw = JSON.parse(msg.text) as PlaytestExport & { snapshot: Snapshot; fileOrigin?: true };
+      if (raw.game !== 'the-night-watch' || raw.framework !== FRAMEWORK_PACKAGE_VERSION || !raw.snapshot)
+        throw new Error('A complete current Watch native file is required.');
+      await validateFileSources(raw as unknown as Record<string, unknown>);
+      const state = replay(raw);
+      const expected = {
+        scenario: raw.scenario,
+        seed: raw.seed,
+        log: raw.inputs,
+        state,
+        ...(raw.origin ? { origin: raw.origin } : {}),
+        ...(raw.fileOrigin ? { fileOrigin: true } : {}),
+      };
+      if (stableStringify(expected) !== stableStringify(raw.snapshot))
+        throw new Error('The complete Watch state does not replay. Keep the original file.');
+      const next = WatchRun.resume(raw.snapshot);
+      if (
+        stableStringify(next.snapshot()) !== stableStringify(raw.snapshot) ||
+        stableStringify(next.export().end) !== stableStringify(raw.end)
+      )
+        throw new Error('The Watch native envelope differs from its complete state.');
+      buildFrame(next.state, 0, false);
+      if (operation !== loadOperation) return;
+      imported = structuredClone(raw) as unknown as Record<string, unknown>;
+      castOwnership = {};
+      host.gen = msg.gen;
+      begin(next, '');
+      host.post({ type: 'fileLoaded', ok: true, seed: next.seed });
+      // Re-enter only the frame branch, after the accepted generation is installed.
+      flush(true);
+    })().catch((error) => {
+      if (operation === loadOperation)
+        host.post({ type: 'fileLoaded', ok: false, error: String(error) }, msg.gen);
+    });
+    return;
+  }
   if (msg.type === 'castPreflight' || msg.type === 'castCheckpoint') {
     try {
       if (msg.type === 'castPreflight') {
@@ -307,7 +398,19 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
         });
       return;
     case 'export':
-      if (run) host.post({ type: 'exported', requestId: msg.requestId, data: run.export() });
+      if (run)
+        host.post({
+          type: 'exported',
+          requestId: msg.requestId,
+          data: fileMode
+            ? {
+                ...imported,
+                ...run.export(),
+                snapshot: run.snapshot(),
+                build: typeof imported.build === 'string' ? imported.build : 'dev',
+              }
+            : run.export(),
+        });
       return;
     case 'shelf':
       postShelf();
@@ -359,6 +462,7 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
 });
 
 function postShelf(): void {
+  if (fileMode) return;
   const gen = host.gen;
   void listPages().then(async (pages) => {
     const checked = await Promise.all(

@@ -37,8 +37,8 @@ export function Report({
   tally?: boolean;
   sceneWords?: readonly SceneWords[] | undefined;
   onKeepListening: () => void;
-  onReplay: () => void;
-  onNewTown: () => void;
+  onReplay?: () => void;
+  onNewTown?: () => void;
   /** Download this run as a playtest file. */
   onDownload?: () => void;
   onSendWord?: () => void;
@@ -223,14 +223,16 @@ export function Report({
             )}
           </div>
           <div className="v-report-action-row">
-            {labMode() && (
+            {labMode() && onReplay && (
               <button type="button" className="v-btn" onClick={onReplay}>
                 The same town again
               </button>
             )}
-            <button type="button" className="v-btn" onClick={onNewTown}>
-              New game
-            </button>
+            {onNewTown && (
+              <button type="button" className="v-btn" onClick={onNewTown}>
+                New game
+              </button>
+            )}
           </div>
           <button type="button" className="v-btn v-btn-primary v-btn-big" onClick={onKeepListening}>
             Keep listening

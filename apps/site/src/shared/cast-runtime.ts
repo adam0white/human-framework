@@ -43,8 +43,30 @@ export type CastReply = {
   initials?: Record<string, string>;
   sourceSnapshot?: unknown;
 };
-export const sitePersonaShelf = personaChannel();
+/** Immutable host policy, decided before the real browser Shelf is constructed. */
+export const fileSession =
+  typeof window !== 'undefined' &&
+  /^\/(?:colony|voice|watch)\/?$/.test(window.location?.pathname ?? '') &&
+  new URLSearchParams(window.location?.search ?? '').get('file') === '1';
+export const sitePersonaShelf = fileSession ? undefined : personaChannel();
+// Every entry into native orchestration checks fileSession before using this native-only value.
 const shelf = sitePersonaShelf;
+function requireNativeSession(): void {
+  if (fileSession) throw new Error('This file stays in this tab. Native continuity is unavailable.');
+}
+/** Reject encodings that File.text would normalize, before parsing or claiming original bytes. */
+export async function readGameFile(file: File): Promise<string> {
+  if (file.size > 5 * 1024 * 1024) throw new Error('This game file is too large.');
+  const bytes = new Uint8Array(await file.arrayBuffer());
+  if (bytes.length > 5 * 1024 * 1024) throw new Error('This game file is too large.');
+  const text = new TextDecoder('utf-8', { fatal: true, ignoreBOM: true }).decode(bytes);
+  const encoded = new TextEncoder().encode(text);
+  if (bytes.length !== encoded.length || bytes.some((byte, i) => byte !== encoded[i]))
+    throw new Error('This game file is not exact UTF-8.');
+  // JSON does not admit a leading BOM. Refuse it without silently changing the original.
+  JSON.parse(text);
+  return text;
+}
 type State = {
   game: string;
   lab: Lab;
@@ -119,8 +141,8 @@ export function castState(game: string) {
   const s = states.get(game);
   return {
     blocked: s?.blocked ?? false,
-    enabled: shelf.enabled,
-    ready: shelf.ready,
+    enabled: fileSession ? false : requireValue(shelf).enabled,
+    ready: fileSession ? Promise.resolve(false) : requireValue(shelf).ready,
     line: s?.line,
     status: s?.status ?? 'Local play. Between-game life is optional.',
     busy: s?.busy ?? false,
@@ -136,7 +158,8 @@ export function selectCast(game: string, id: string) {
   changed();
 }
 export function setCastEnabled(enabled: boolean) {
-  shelf.setEnabled(enabled);
+  requireNativeSession();
+  requireValue(shelf).setEnabled(enabled);
   window.dispatchEvent(new Event('hf-cast-preference'));
   changed();
 }
@@ -270,14 +293,14 @@ async function restoreOwnership(s: State, value: unknown, generation: number) {
 }
 async function closeOwned(s: State, terminal: { castId: string; at: number }, generation: number) {
   const parent = s.heads[terminal.castId];
-  if (!parent || parent.terminal || generation !== s.generation || !shelf.enabled) return;
+  if (!parent || parent.terminal || generation !== s.generation || !requireValue(shelf).enabled) return;
   const receipt = await closePersonaBranch(
     parent,
     { ...parent.source, game: s.game, build: await fetchBuild() },
     terminal.at,
   );
   if (generation !== s.generation) return;
-  await shelf.request({ action: 'put', envelope: receipt });
+  await requireValue(shelf).request({ action: 'put', envelope: receipt });
   if (generation !== s.generation || s.heads[terminal.castId]?.revision !== parent.revision) return;
   s.heads[terminal.castId] = receipt;
   s.histories[terminal.castId] = receipt;
@@ -286,6 +309,7 @@ async function closeOwned(s: State, terminal: { castId: string; at: number }, ge
   changed();
 }
 export function bindCastWorker(worker: Worker, game: string, lab: Lab): () => void {
+  if (fileSession) return () => {};
   const s: State = {
     worker,
     game,
@@ -308,7 +332,7 @@ export function bindCastWorker(worker: Worker, game: string, lab: Lab): () => vo
   states.set(game, s);
   const automatic = () => {
     if (
-      !shelf.enabled ||
+      !requireValue(shelf).enabled ||
       !s.played ||
       s.busy ||
       s.auto ||
@@ -409,7 +433,7 @@ export function bindCastWorker(worker: Worker, game: string, lab: Lab): () => vo
   // Transport owns its recording reset; ownership and run replacement keep their own generation checks.
   document.addEventListener('visibilitychange', hidden);
   window.addEventListener('pagehide', automatic);
-  void shelf.ready.then(changed);
+  void requireValue(shelf).ready.then(changed);
   return () => {
     reset(s);
     worker.removeEventListener('message', receive);
@@ -420,6 +444,16 @@ export function bindCastWorker(worker: Worker, game: string, lab: Lab): () => vo
 }
 /** Loaded simulation never reads current shelf state. Only explicit local reload restores its pinned receipts. */
 export function postCastMessage(worker: Worker, game: string, message: Record<string, unknown>): void {
+  if (fileSession) {
+    if (
+      ['init', 'load', 'castOwnership', 'castPreflight', 'castCheckpoint'].includes(String(message.type)) ||
+      message.local === true
+    )
+      requireNativeSession();
+    const { castRunGeneration: _generation, ...input } = message;
+    worker.postMessage(input);
+    return;
+  }
   const s = states.get(game);
   if (!s || s.worker !== worker) {
     worker.postMessage(message);
@@ -525,9 +559,9 @@ export function postCastMessage(worker: Worker, game: string, message: Record<st
   s.busy = true;
   changed();
   void (async () => {
-    await shelf.ready;
+    await requireValue(shelf).ready;
     if (generation !== s.generation) return;
-    if (!shelf.enabled) {
+    if (!requireValue(shelf).enabled) {
       gate(s, null);
       startWorker(s, message);
       return;
@@ -535,7 +569,7 @@ export function postCastMessage(worker: Worker, game: string, message: Record<st
     gate(s, `cast-pending-${crypto.randomUUID()}`);
     const source = { game, build: await fetchBuild(), engine: ENGINE_VERSION, rules: 'cast-1' };
     const admitted = await claimSiteCastBatch(
-      shelf,
+      requireValue(shelf),
       castForGame(game).map((p) => p.castId),
       source,
       async (inputs) => {
@@ -550,7 +584,7 @@ export function postCastMessage(worker: Worker, game: string, message: Record<st
         return chapter;
       },
       {
-        isCurrent: () => generation === s.generation && shelf.enabled,
+        isCurrent: () => generation === s.generation && requireValue(shelf).enabled,
         onDispatch: () => {
           s.claiming = generation;
         },
@@ -596,9 +630,10 @@ export function postCastMessage(worker: Worker, game: string, message: Record<st
     });
 }
 export function startCastFresh(game: string) {
+  requireNativeSession();
   const s = states.get(game);
   if (!s) return;
-  shelf.setEnabled(false);
+  requireValue(shelf).setEnabled(false);
   if (s.blocked && s.pendingInit) {
     const message = s.pendingInit;
     postCastMessage(s.worker, game, message);
@@ -614,8 +649,8 @@ async function checkpointPerson(s: State, selectedCastId: string, fork: boolean)
   s.status = `Waiting for ${canonicalCast(selectedCastId).name}'s actual action to finish. Close the menu and continue play.`;
   changed();
   try {
-    await shelf.ready;
-    if (!shelf.enabled) throw new Error('Enable fictional-person continuity first.');
+    await requireValue(shelf).ready;
+    if (!requireValue(shelf).enabled) throw new Error('Enable fictional-person continuity first.');
     const result = await ask(s, { type: 'castCheckpoint', castId: selectedCastId });
     if (generation !== s.generation) return;
     if (result.terminal) {
@@ -669,7 +704,10 @@ async function checkpointPerson(s: State, selectedCastId: string, fork: boolean)
       if (typeof localStorage !== 'undefined') localStorage.setItem(key, journal);
     }
     const cast = canonicalCast(selectedCastId);
-    const existing = await shelf.request<PersonaEnvelope | null>({ action: 'get', castId: cast.castId });
+    const existing = await requireValue(shelf).request<PersonaEnvelope | null>({
+      action: 'get',
+      castId: cast.castId,
+    });
     if (existing && !fork && s.heads[cast.castId]?.revision !== existing.revision)
       throw new Error('Another chapter owns this person. Export or explicitly fork.');
     const branchId = !fork && existing ? existing.branchId : crypto.randomUUID();
@@ -694,8 +732,8 @@ async function checkpointPerson(s: State, selectedCastId: string, fork: boolean)
         'Bounded coarse local life; no full days, travel, healing or duty completion is inferred.',
       ],
     });
-    if (generation !== s.generation || !shelf.enabled) return;
-    await shelf.request({
+    if (generation !== s.generation || !requireValue(shelf).enabled) return;
+    await requireValue(shelf).request({
       action: 'put',
       envelope,
       fork,
@@ -716,6 +754,7 @@ async function checkpointPerson(s: State, selectedCastId: string, fork: boolean)
   }
 }
 export async function checkpointCast(game: string, fork = false): Promise<void> {
+  requireNativeSession();
   const s = states.get(game);
   if (s) await checkpointPerson(s, s.selected, fork);
 }

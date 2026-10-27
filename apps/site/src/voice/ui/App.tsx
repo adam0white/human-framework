@@ -6,6 +6,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { sceneKey } from '../../free-text/core.ts';
 import { RequestTranslator } from '../../free-text/RequestTranslator.tsx';
 import { CastLifeNote, CastStartGate } from '../../shared/CastMenu.tsx';
+import { fileSession, readGameFile } from '../../shared/cast-runtime.ts';
 import { useWakeLock } from '../../shared/fullscreen.tsx';
 import { LabNotice } from '../../shared/LabNotice.tsx';
 import { gameLabs, useLabScreen } from '../../shared/lab.tsx';
@@ -37,6 +38,8 @@ const TABS: { id: Tab; label: string }[] = [
 ];
 
 export function App() {
+  const [fileError, setFileError] = useState<string | null>(null);
+  const fileRead = useRef(0);
   const liveVoice = useVoice();
   const stable = useStableSpeechFrame(liveVoice.frame);
   const voice = { ...liveVoice, frame: stable.frame };
@@ -57,6 +60,15 @@ export function App() {
   const [holdingReply, setHoldingReply] = useState(false);
   const [whyId, setWhyId] = useState<string | null>(null);
 
+  const cancelFileSelection = useCallback(() => {
+    if (!fileSession) return;
+    fileRead.current++;
+    actions.cancelFileLoad();
+  }, [actions]);
+  const closeFileMenu = useCallback(() => {
+    cancelFileSelection();
+    setMenuOpen(false);
+  }, [cancelFileSelection]);
   useEffect(() => {
     if (voice.runId > 0) {
       setTitleOpen(false);
@@ -68,7 +80,7 @@ export function App() {
   useLabScreen(gameLabs.voice, phase === 'premise' ? 'title' : phase === 'report' ? 'ending' : 'play');
   const live = phase === 'day' || phase === 'eid' || phase === 'free';
   const overlay: 'premise' | 'intro' | 'between' | 'report' | null =
-    !frame || phase === 'premise' || titleOpen
+    !frame || phase === 'premise' || (!fileSession && titleOpen)
       ? 'premise'
       : phase === 'between'
         ? holdingReply || speaking
@@ -119,7 +131,7 @@ export function App() {
           event.stopImmediatePropagation();
         }
         setInfoOpen(false);
-        setMenuOpen(false);
+        closeFileMenu();
         setPanelOpen(false);
         setOtherWays(false);
         return;
@@ -151,7 +163,7 @@ export function App() {
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [actions]);
+  }, [actions, closeFileMenu]);
 
   const openWhy = useCallback(
     (decisionId: string) => {
@@ -177,6 +189,60 @@ export function App() {
     if (overlay) closeWhy();
   }, [overlay, closeWhy]);
 
+  const fileControls = fileSession ? (
+    <section aria-label="Game file">
+      <p>This file stays in this tab. Download it before closing.</p>
+      <label>
+        Open a game file{' '}
+        <input
+          type="file"
+          accept="application/json,.json"
+          ref={(input) => {
+            if (!input) return;
+            const cancel = () => {
+              cancelFileSelection();
+              setFileError(null);
+            };
+            input.addEventListener('cancel', cancel);
+            return () => input.removeEventListener('cancel', cancel);
+          }}
+          onChange={(event) => {
+            cancelFileSelection();
+            const request = fileRead.current;
+            setFileError(null);
+            const file = event.target.files?.[0];
+            if (!file) return;
+            void readGameFile(file)
+              .then((text) => {
+                if (request !== fileRead.current) return;
+                setFileError(null);
+                actions.loadPlaytest(text);
+              })
+              .catch((error) => {
+                if (request === fileRead.current) setFileError(String(error));
+              });
+            event.target.value = '';
+          }}
+        />
+      </label>
+      {frame && (
+        <button
+          type="button"
+          onClick={() => {
+            actions.exportPlaytest();
+          }}
+        >
+          Download complete game file
+        </button>
+      )}
+      {(fileError || (voice.playtest && 'error' in voice.playtest ? voice.playtest.error : voice.error)) && (
+        <p role="alert">
+          {fileError || (voice.playtest && 'error' in voice.playtest ? voice.playtest.error : voice.error)}
+        </p>
+      )}
+    </section>
+  ) : null;
+  if (fileSession && !frame) return <main>{fileControls}</main>;
   return (
     <div
       className={`voice phase-${phase}`}
@@ -185,8 +251,14 @@ export function App() {
       onPointerDownCapture={stable.onPointerDownCapture}
       onKeyDownCapture={stable.onKeyDownCapture}
     >
-      <CastStartGate game="voice" />
-      <CastLifeNote game="voice" />
+      {!fileSession && <CastStartGate game="voice" />}
+      {!fileSession && <CastLifeNote game="voice" />}
+      {fileControls}
+      {fileSession && menuOpen && (
+        <button type="button" onClick={closeFileMenu}>
+          Resume
+        </button>
+      )}
       <TopBar
         frame={liveVoice.frame}
         title={overlay === 'premise'}
@@ -196,10 +268,11 @@ export function App() {
         menuOpen={menuOpen}
         onInfo={() => {
           setInfoOpen((open) => !open);
-          setMenuOpen(false);
+          closeFileMenu();
         }}
         onMenu={() => {
-          setMenuOpen((open) => !open);
+          if (menuOpen) closeFileMenu();
+          else setMenuOpen(true);
           setInfoOpen(false);
         }}
       />
@@ -360,7 +433,7 @@ export function App() {
             setTitleOpen(false);
             actions.continueRun();
           }}
-          onOtherWays={() => setOtherWays(true)}
+          onOtherWays={fileSession ? undefined : () => setOtherWays(true)}
           onBegin={() => {
             setTitleOpen(false);
             if (phase === 'premise') actions.begin();
@@ -396,8 +469,10 @@ export function App() {
             tally={true}
             sceneWords={frame?.sceneWords}
             onKeepListening={actions.keepListening}
-            onReplay={() => actions.replay()}
-            onNewTown={() => actions.replay(1 + Math.floor(Math.random() * 1_000_000))}
+            onReplay={fileSession ? undefined : () => actions.replay()}
+            onNewTown={
+              fileSession ? undefined : () => actions.replay(1 + Math.floor(Math.random() * 1_000_000))
+            }
             onDownload={actions.exportPlaytest}
             onSendWord={() => setFeedbackOpen(true)}
           />
@@ -412,7 +487,7 @@ export function App() {
       {infoOpen && (
         <InfoPanel phase={overlay === 'premise' ? 'premise' : phase} onClose={() => setInfoOpen(false)} />
       )}
-      {menuOpen && (
+      {menuOpen && !fileSession && (
         <MenuPanel
           freeText={freeText}
           onFreeText={setFreeText}
@@ -420,20 +495,20 @@ export function App() {
           label={frame ? `${frame.dayLabel} · ${frame.clock}` : 'Halil'}
           pace={voice.paceSetting}
           actions={actions}
-          onClose={() => setMenuOpen(false)}
+          onClose={closeFileMenu}
           onTitle={() => {
-            setMenuOpen(false);
+            closeFileMenu();
             setTitleOpen(false);
             actions.replay();
             actions.begin();
           }}
           onSendWord={() => {
-            setMenuOpen(false);
+            closeFileMenu();
             setFeedbackOpen(true);
           }}
         />
       )}
-      {otherWays && (
+      {otherWays && !fileSession && (
         <OtherWays
           actions={actions}
           onClose={() => setOtherWays(false)}
@@ -459,9 +534,11 @@ export function App() {
       {voice.error && !feedbackOpen && (
         <div className="v-error" role="alert">
           {settingWords(playerError(voice.error, 'play'))}{' '}
-          <button type="button" className="v-btn v-btn-small" onClick={() => actions.replay()}>
-            Start again
-          </button>
+          {!fileSession && (
+            <button type="button" className="v-btn v-btn-small" onClick={() => actions.replay()}>
+              Start again
+            </button>
+          )}
           <button type="button" className="v-btn v-btn-small" onClick={() => setFeedbackOpen(true)}>
             Feedback
           </button>

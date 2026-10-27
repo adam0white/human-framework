@@ -21,7 +21,13 @@ import {
   castRole,
   chapterPeople,
 } from '../shared/cast-chapter.ts';
-import { makePlaytestFile, PlaytestError, replayResult } from '../shared/playtest.ts';
+import {
+  decodeSnapshot,
+  makePlaytestFile,
+  PlaytestError,
+  replayResult,
+  stableStringify,
+} from '../shared/playtest.ts';
 import { requireValue } from '../shared/require-value.ts';
 import { hostWorker } from '../shared/worker-host.ts';
 import {
@@ -54,7 +60,40 @@ import {
   voiceState,
 } from './sim/record.ts';
 
+/** Imported receipt archives are provenance only; validate their binding without any Shelf access. */
+async function validateFileSources(raw: Record<string, unknown>): Promise<void> {
+  const ownership = raw.castOwnership;
+  const sources = raw.castSources;
+  if (ownership !== undefined && (!ownership || typeof ownership !== 'object' || Array.isArray(ownership)))
+    throw new Error('Invalid imported ownership provenance.');
+  if (sources !== undefined && (!sources || typeof sources !== 'object' || Array.isArray(sources)))
+    throw new Error('Invalid imported source archive.');
+  const heads = Object.entries((ownership ?? {}) as Record<string, unknown>);
+  if (heads.length > 8) throw new Error('Too many imported ownership receipts.');
+  for (const [id, value] of heads) {
+    const head = await validatePersona(value);
+    if (id !== head.castId) throw new Error('Imported receipt identity differs.');
+  }
+  for (const [id, source] of Object.entries((sources ?? {}) as Record<string, unknown>)) {
+    const head = (
+      ownership as Record<string, { transfer: { checkpoint?: { sha256?: string } } }> | undefined
+    )?.[id];
+    if (!head?.transfer.checkpoint?.sha256 || !source || typeof source !== 'object')
+      throw new Error('Imported source has no bound full-source receipt.');
+    const digest = Array.from(
+      new Uint8Array(
+        await crypto.subtle.digest('SHA-256', new TextEncoder().encode(canonicalPersona(source))),
+      ),
+      (byte) => byte.toString(16).padStart(2, '0'),
+    ).join('');
+    if (digest !== head.transfer.checkpoint.sha256) throw new Error('Imported source checksum differs.');
+  }
+}
+
 let rec: RecordedGame | null = null;
+let fileMode = false;
+let imported: Record<string, unknown> = {};
+let loadOperation = 0;
 let initializing = false;
 let checkpointError = '';
 /** The silent game being stepped for the current run's seed (dropped once its facts are read, or on a new seed). */
@@ -159,11 +198,27 @@ async function voiceFile(r: RecordedGame, full = false) {
     ...(r.oneCast.length ? { oneCast: structuredClone(r.oneCast) } : {}),
   };
 }
-async function exportPlaytest(r: RecordedGame): Promise<void> {
-  host.post({ type: 'playtest', file: await voiceFile(r) });
+async function exportPlaytest(r: RecordedGame, full = false): Promise<void> {
+  const gen = host.gen;
+  const provenance = imported;
+  const file = await voiceFile(r, full || fileMode);
+  host.post(
+    {
+      type: 'playtest',
+      file: fileMode
+        ? {
+            ...provenance,
+            ...file,
+            build: typeof provenance.build === 'string' ? provenance.build : file.build,
+          }
+        : file,
+    },
+    gen,
+  );
 }
 let checkpointSending = false;
 function publishBoundary(): void {
+  if (fileMode) return;
   const r = rec;
   const state = r?.game.personaDeparture;
   if (!r || !state) return;
@@ -211,6 +266,9 @@ function publishBoundary(): void {
 
 /** Validate and replay a file; only then does it replace the current run (a bad file leaves the run as it was). */
 async function loadPlaytest(text: string, nextGen: number): Promise<void> {
+  const operation = ++loadOperation;
+  const raw = fileMode ? (JSON.parse(text) as Record<string, unknown>) : undefined;
+  if (raw) await validateFileSources(raw);
   // A file replays under its own scenario's rules (voice-1 files from before the 2026-10-19 level-up included).
   const { file: f, rules, chapter, rows, head } = parseVoicePlaytest(text);
   if (chapter) await validatePersona(chapter.admission);
@@ -222,6 +280,15 @@ async function loadPlaytest(text: string, nextGen: number): Promise<void> {
   const g = replayed.game;
   // Hash first: pausing for the page changes the state.
   const result = replayResult(f, voiceHash(g), ENGINE_VERSION, g.t, driftAt);
+  if (
+    fileMode &&
+    (!result.matches ||
+      driftAt !== -1 ||
+      stableStringify(await decodeSnapshot(raw as never)) !== stableStringify(voiceState(g)))
+  )
+    throw new Error('The complete Voice state does not replay. Keep the original file.');
+  if (fileMode && operation !== loadOperation) return;
+  if (raw) imported = structuredClone(raw);
   rec = replayed;
   host.gen = nextGen;
   lastFields = new Map();
@@ -268,6 +335,31 @@ async function prepareSelinReturn(header: SelinReturn): Promise<SelinReturn> {
 }
 
 const host = hostWorker<MainToWorker, WorkerReply>((msg) => {
+  if (msg.type === 'cancelFileLoad') {
+    if (!fileMode) throw new Error('File cancellation requires a file session.');
+    loadOperation++;
+    initializing = false;
+    return;
+  }
+  if (msg.type === 'fileSession') {
+    if (rec) throw new Error('Session mode must be selected before a game.');
+    fileMode = true;
+    return;
+  }
+  if (
+    fileMode &&
+    [
+      'init',
+      'castOwnership',
+      'castPreflight',
+      'castCheckpoint',
+      'personaReturnCheck',
+      'personaCheckpoint',
+      'personaCheckpointCancel',
+      'personaPublished',
+    ].includes(msg.type)
+  )
+    throw new Error('Native continuity is unavailable in a file session.');
   if (msg.type === 'init') {
     host.gen = msg.gen;
     lastFields = new Map();
@@ -355,9 +447,11 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg) => {
     return;
   }
   if (msg.type === 'loadPlaytest') {
+    const operation = loadOperation + 1;
     initializing = true;
     void loadPlaytest(msg.text, msg.gen)
       .catch((err) => {
+        if (fileMode && operation !== loadOperation) return;
         const message =
           err instanceof PlaytestError
             ? err.message
@@ -365,7 +459,7 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg) => {
         host.post({ type: 'playtestError', message }, msg.gen);
       })
       .finally(() => {
-        initializing = false;
+        if (!fileMode || operation === loadOperation) initializing = false;
       });
     return;
   }
@@ -427,7 +521,7 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg) => {
       return;
     }
     case 'exportPlaytest':
-      exportPlaytest(rec).catch((err: unknown) =>
+      exportPlaytest(rec, msg.full).catch((err: unknown) =>
         host.post({ type: 'playtestError', message: `The playtest file could not be made: ${String(err)}` }),
       );
       return;

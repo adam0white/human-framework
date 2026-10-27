@@ -5,18 +5,65 @@
  * made and replayed here (a loaded file is replayed from its seed and log; its snapshot is never loaded).
  */
 import { ENGINE_VERSION } from '@adam0white/human-framework';
+import { canonicalPersona, validatePersona } from '@adam0white/lab-client';
 import { chapterPeople } from '../shared/cast-chapter.ts';
-import { PlaytestError } from '../shared/playtest.ts';
+import { decodeSnapshot, PlaytestError, stableStringify } from '../shared/playtest.ts';
 import { requireValue } from '../shared/require-value.ts';
 import { hostWorker } from '../shared/worker-host.ts';
-import type { MainToWorker, WorkerReply } from './protocol.ts';
+import type { FileSessionRequest, MainToWorker, WorkerReply } from './protocol.ts';
 import { ColonyGame } from './sim/game.ts';
 import { createFrameworkHumanSide } from './sim/human.ts';
 import { Playback } from './sim/playback.ts';
+import { colonyState } from './sim/playtest.ts';
 
-const playback = new Playback(createFrameworkHumanSide);
+/** Imported receipt archives are provenance only; validate their binding without any Shelf access. */
+async function validateFileSources(raw: Record<string, unknown>): Promise<void> {
+  const ownership = raw.castOwnership;
+  const sources = raw.castSources;
+  if (ownership !== undefined && (!ownership || typeof ownership !== 'object' || Array.isArray(ownership)))
+    throw new Error('Invalid imported ownership provenance.');
+  if (sources !== undefined && (!sources || typeof sources !== 'object' || Array.isArray(sources)))
+    throw new Error('Invalid imported source archive.');
+  const heads = Object.entries((ownership ?? {}) as Record<string, unknown>);
+  if (heads.length > 8) throw new Error('Too many imported ownership receipts.');
+  for (const [id, value] of heads) {
+    const head = await validatePersona(value);
+    if (id !== head.castId) throw new Error('Imported receipt identity differs.');
+  }
+  for (const [id, source] of Object.entries((sources ?? {}) as Record<string, unknown>)) {
+    const head = (
+      ownership as Record<string, { transfer: { checkpoint?: { sha256?: string } } }> | undefined
+    )?.[id];
+    if (!head?.transfer.checkpoint?.sha256 || !source || typeof source !== 'object')
+      throw new Error('Imported source has no bound full-source receipt.');
+    const digest = Array.from(
+      new Uint8Array(
+        await crypto.subtle.digest('SHA-256', new TextEncoder().encode(canonicalPersona(source))),
+      ),
+      (byte) => byte.toString(16).padStart(2, '0'),
+    ).join('');
+    if (digest !== head.transfer.checkpoint.sha256) throw new Error('Imported source checksum differs.');
+  }
+}
 
-hostWorker<MainToWorker, WorkerReply>((msg, host) => {
+let playback = new Playback(createFrameworkHumanSide);
+let fileMode = false;
+let imported: Record<string, unknown> = {};
+let loadOperation = 0;
+
+hostWorker<MainToWorker | FileSessionRequest, WorkerReply>((msg, host) => {
+  if (msg.type === 'cancelFileLoad') {
+    if (!fileMode) throw new Error('File cancellation requires a file session.');
+    loadOperation++;
+    return;
+  }
+  if (msg.type === 'fileSession') {
+    if (playback.game) throw new Error('Session mode must be selected before a game.');
+    fileMode = true;
+    return;
+  }
+  if (fileMode && ['init', 'castOwnership', 'castPreflight', 'castCheckpoint'].includes(msg.type))
+    throw new Error('Native continuity is unavailable in a file session.');
   if (msg.type === 'castOwnership') return;
   if (msg.type === 'castPreflight' || msg.type === 'castCheckpoint') {
     try {
@@ -65,11 +112,22 @@ hostWorker<MainToWorker, WorkerReply>((msg, host) => {
   }
   if (msg.type === 'exportPlaytest') {
     const gen = host.gen;
+    const provenance = imported;
     playback
-      .playtestFile(ENGINE_VERSION)
+      .playtestFile(ENGINE_VERSION, fileMode || msg.full === true)
       .then((file) =>
         host.post(
-          { type: 'playtest', file, ...(msg.requestId !== undefined ? { requestId: msg.requestId } : {}) },
+          {
+            type: 'playtest',
+            file: fileMode
+              ? {
+                  ...provenance,
+                  ...file,
+                  build: typeof provenance.build === 'string' ? provenance.build : file.build,
+                }
+              : file,
+            ...(msg.requestId !== undefined ? { requestId: msg.requestId } : {}),
+          },
           gen,
         ),
       )
@@ -86,18 +144,50 @@ hostWorker<MainToWorker, WorkerReply>((msg, host) => {
     return;
   }
   if (msg.type === 'loadPlaytest') {
-    try {
-      const { result, replies } = playback.load(msg.text, ENGINE_VERSION);
+    if (!fileMode) {
+      try {
+        const { result, replies } = playback.load(msg.text, ENGINE_VERSION);
+        host.gen = msg.gen;
+        host.post({ type: 'replayed', result });
+        for (const reply of replies) host.post(reply);
+      } catch (err) {
+        const message =
+          err instanceof PlaytestError
+            ? err.message
+            : `The playtest file could not be replayed: ${err instanceof Error ? err.message : String(err)}`;
+        host.post({ type: 'playtestError', message }, msg.gen);
+      }
+      return;
+    }
+    const operation = ++loadOperation;
+    void (async () => {
+      const target = fileMode ? new Playback(createFrameworkHumanSide) : playback;
+      const raw = fileMode ? (JSON.parse(msg.text) as Record<string, unknown>) : undefined;
+      if (raw) await validateFileSources(raw);
+      const { result, replies } = target.load(msg.text, ENGINE_VERSION);
+      if (fileMode) {
+        if (
+          msg.local ||
+          !result.matches ||
+          !target.game ||
+          stableStringify(await decodeSnapshot(raw as never)) !== stableStringify(colonyState(target.game))
+        )
+          throw new Error('The complete game state does not replay. Keep the original file.');
+      }
+      if (operation !== loadOperation) return;
+      if (raw) imported = structuredClone(raw);
+      playback = target;
       host.gen = msg.gen;
       host.post({ type: 'replayed', result });
       for (const reply of replies) host.post(reply);
-    } catch (err) {
+    })().catch((err) => {
+      if (operation !== loadOperation) return;
       const message =
         err instanceof PlaytestError
           ? err.message
           : `The playtest file could not be replayed: ${err instanceof Error ? err.message : String(err)}`;
       host.post({ type: 'playtestError', message }, msg.gen);
-    }
+    });
     return;
   }
   if (msg.type === 'init') host.gen = msg.gen;

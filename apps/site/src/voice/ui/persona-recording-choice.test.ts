@@ -4,6 +4,7 @@ import { gameLabs } from '../../shared/lab.tsx';
 import { chooseVoiceRecording } from './persona.tsx';
 
 vi.mock('../../shared/cast-runtime.ts', () => ({
+  fileSession: false,
   castState: vi.fn(() => ({ gated: true })),
   chooseCastRecording: vi.fn(),
   castRecordingGate: vi.fn(() => 'whole-cast'),

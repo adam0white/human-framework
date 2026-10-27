@@ -1,10 +1,11 @@
 import { createLab, type Lab } from '@adam0white/lab-client';
 import { setTelemetryOff, telemetryOn } from '@adam0white/lab-kit';
 import { useEffect, useRef, useState } from 'react';
+import { fileSession } from './cast-runtime.ts';
 
 const instances: Partial<Record<'well' | 'voice' | 'watch', Lab>> = {};
 function gameLab(game: 'well' | 'voice' | 'watch'): Lab {
-  const lab = instances[game] ?? createLab({ game });
+  const lab = instances[game] ?? createLab(fileSession ? { game, preservation: 'preserve' } : { game });
   instances[game] = lab;
   return lab;
 }

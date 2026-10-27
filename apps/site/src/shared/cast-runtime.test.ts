@@ -6,6 +6,7 @@ const control = vi.hoisted(() => ({
   state: { heads: {}, revisions: [] } as PersonaShelfState,
   puts: [] as PersonaEnvelope[],
   batches: 0,
+  channels: 0,
   requests: [] as string[],
   allowed: new Set<string>(),
   enabled: true,
@@ -24,79 +25,82 @@ vi.mock('@adam0white/lab-client', async () => {
       await control.beforeCreate?.();
       return actual.createPersona(...args);
     },
-    personaChannel: () => ({
-      get enabled() {
-        return control.enabled;
-      },
-      ready: Promise.resolve(true),
-      setEnabled(value: boolean) {
-        control.enabled = value;
-      },
-      async request<T>(r: import('@adam0white/lab-client').PersonaRequest): Promise<T> {
-        control.requests.push(r.action);
-        if (control.rejectRecording && ['recording', 'recordingBatch'].includes(r.action))
-          throw new Error('Obsolete recording RPC must not gate publication');
-        if (r.action === 'get')
-          return (control.state.revisions.find(
-            (p) => p.revision === control.state.heads[requireValue(r.castId)],
-          ) ?? null) as T;
-        if (r.action === 'prepareBatch') {
-          const inputs = [],
-            blocked = [];
-          for (const id of r.castIds ?? []) {
-            const p = control.state.revisions.find((p) => p.revision === control.state.heads[id]);
-            if (!p) continue;
-            try {
-              inputs.push(actual.preparePersonaLife(p, 3600000));
-            } catch (e) {
-              blocked.push({ castId: id, reason: String(e) });
+    personaChannel: () => {
+      control.channels++;
+      return {
+        get enabled() {
+          return control.enabled;
+        },
+        ready: Promise.resolve(true),
+        setEnabled(value: boolean) {
+          control.enabled = value;
+        },
+        async request<T>(r: import('@adam0white/lab-client').PersonaRequest): Promise<T> {
+          control.requests.push(r.action);
+          if (control.rejectRecording && ['recording', 'recordingBatch'].includes(r.action))
+            throw new Error('Obsolete recording RPC must not gate publication');
+          if (r.action === 'get')
+            return (control.state.revisions.find(
+              (p) => p.revision === control.state.heads[requireValue(r.castId)],
+            ) ?? null) as T;
+          if (r.action === 'prepareBatch') {
+            const inputs = [],
+              blocked = [];
+            for (const id of r.castIds ?? []) {
+              const p = control.state.revisions.find((p) => p.revision === control.state.heads[id]);
+              if (!p) continue;
+              try {
+                inputs.push(actual.preparePersonaLife(p, 3600000));
+              } catch (e) {
+                blocked.push({ castId: id, reason: String(e) });
+              }
             }
+            return {
+              inputs,
+              blocked,
+              expectedHeads: Object.fromEntries(
+                (r.castIds ?? []).map((id) => [id, control.state.heads[id] ?? null]),
+              ),
+            } as T;
           }
-          return {
-            inputs,
-            blocked,
-            expectedHeads: Object.fromEntries(
-              (r.castIds ?? []).map((id) => [id, control.state.heads[id] ?? null]),
-            ),
-          } as T;
-        }
-        if (r.action === 'putBatch') {
-          control.batches++;
-          await control.beforeBatch?.();
-          control.state = actual.acceptPersonaBatch(
-            control.state,
-            requireValue(r.envelopes),
-            r.expectedHeads,
-          );
-          control.puts.push(...requireValue(r.envelopes));
-          return r.envelopes as T;
-        }
-        if (r.action === 'put') {
-          control.state = actual.acceptPersona(control.state, requireValue(r.envelope), r.fork);
-          control.puts.push(requireValue(r.envelope));
-          if (r.authored)
-            control.allowed.add(`${requireValue(r.envelope).castId}/${requireValue(r.envelope).branchId}`);
-          return r.envelope as T;
-        }
-        if (r.action === 'recordingBatch') {
-          if (r.allowRecording !== undefined)
-            for (const p of requireValue(r.envelopes)) {
-              const key = `${p.castId}/${p.branchId}`;
-              if (r.allowRecording) control.allowed.add(key);
-              else control.allowed.delete(key);
-            }
-          return {
-            sameEpoch: requireValue(r.envelopes).every((p) =>
-              control.allowed.has(`${p.castId}/${p.branchId}`),
-            ),
-            recordingEpoch: 'epoch',
-            revisions: requireValue(r.envelopes).map((p) => p.revision),
-          } as T;
-        }
-        if (r.action === 'recording') return { recordingEpoch: 'epoch', sameEpoch: false } as T;
-        return null as T;
-      },
-    }),
+          if (r.action === 'putBatch') {
+            control.batches++;
+            await control.beforeBatch?.();
+            control.state = actual.acceptPersonaBatch(
+              control.state,
+              requireValue(r.envelopes),
+              r.expectedHeads,
+            );
+            control.puts.push(...requireValue(r.envelopes));
+            return r.envelopes as T;
+          }
+          if (r.action === 'put') {
+            control.state = actual.acceptPersona(control.state, requireValue(r.envelope), r.fork);
+            control.puts.push(requireValue(r.envelope));
+            if (r.authored)
+              control.allowed.add(`${requireValue(r.envelope).castId}/${requireValue(r.envelope).branchId}`);
+            return r.envelope as T;
+          }
+          if (r.action === 'recordingBatch') {
+            if (r.allowRecording !== undefined)
+              for (const p of requireValue(r.envelopes)) {
+                const key = `${p.castId}/${p.branchId}`;
+                if (r.allowRecording) control.allowed.add(key);
+                else control.allowed.delete(key);
+              }
+            return {
+              sameEpoch: requireValue(r.envelopes).every((p) =>
+                control.allowed.has(`${p.castId}/${p.branchId}`),
+              ),
+              recordingEpoch: 'epoch',
+              revisions: requireValue(r.envelopes).map((p) => p.revision),
+            } as T;
+          }
+          if (r.action === 'recording') return { recordingEpoch: 'epoch', sameEpoch: false } as T;
+          return null as T;
+        },
+      };
+    },
   };
 });
 vi.mock('./playtest.ts', async () => ({
@@ -327,6 +331,29 @@ describe('whole-cast browser continuity', () => {
       worker.reply({ type: 'exported', data: file });
       expect(file.castSources).toEqual({ [id]: raw });
       expect(file.castOwnership).toEqual({ [id]: control.puts.at(-1) });
+      const saved = JSON.stringify(file);
+      const heads = structuredClone(file.castOwnership);
+      const restores = worker.requests('castOwnership').length;
+      postCastMessage(
+        worker as unknown as Worker,
+        game,
+        game === 'watch'
+          ? { type: 'load', gen: 2, id: 'native:auto' }
+          : { type: 'loadPlaytest', gen: 2, text: saved, local: true },
+      );
+      worker.reply(
+        game === 'watch'
+          ? { type: 'castReady', requestId: 0, gen: 2, ownership: heads }
+          : { type: 'replayed', gen: 2, result: { matches: true } },
+      );
+      await vi.waitFor(() => expect(worker.requests('castOwnership').length).toBeGreaterThan(restores));
+      expect(worker.requests('castOwnership').at(-1)?.heads).toEqual(heads);
+      const restored: Record<string, unknown> =
+        game === 'watch' ? { game: 'the-night-watch' } : { kind: 'human-playtest', game: 'voice' };
+      worker.reply({ type: 'exported', gen: 2, data: restored });
+      expect(restored.castSources).toEqual({ [id]: raw });
+      expect(restored.castOwnership).toEqual(heads);
+      expect(JSON.parse(requireValue(localStorage.getItem(`hf-cast-source:${game}`)))).toEqual({ [id]: raw });
     },
   );
   it('opens an owned title and restores Continue without writing or replacing its accepted receipts', async () => {
@@ -849,4 +876,80 @@ describe('whole-cast browser continuity', () => {
     window.dispatchEvent(new Event('hf-lab-preference'));
     expect(castState('well').busy).toBe(true);
   });
+});
+
+it('native phase, hidden and pagehide checkpoints publish real bound source journals and accepted parents', async () => {
+  const storage = new Map<string, string>();
+  vi.stubGlobal('localStorage', {
+    getItem: (key: string) => storage.get(key) ?? null,
+    setItem: (key: string, value: string) => storage.set(key, value),
+  });
+  control.state = acceptPersona(control.state, await head());
+  const worker = new FakeWorker();
+  await begin(worker);
+  const { snapshot } = await import('@adam0white/human-framework');
+  const { canonicalPersona } = await import('@adam0white/lab-client');
+  const { VoiceGame } = await import('../voice/sim/game.ts');
+  const raw = snapshot(new VoiceGame(1, 4).run.ppl.riza);
+  const sha256 = Array.from(
+    new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(canonicalPersona(raw)))),
+    (byte) => byte.toString(16).padStart(2, '0'),
+  ).join('');
+  worker.reply({ type: 'frame', gen: 1, frame: { day: 1, phase: 'day', minute: 400 } });
+  const id = 'hf.cast.riza.voice';
+  const triggers = [
+    () => worker.reply({ type: 'frame', gen: 1, frame: { day: 1, phase: 'between' } }),
+    () => {
+      Object.defineProperty(document, 'visibilityState', { value: 'hidden' });
+      document.dispatchEvent(new Event('visibilitychange'));
+    },
+    () => window.dispatchEvent(new Event('pagehide')),
+  ];
+  for (let n = 0; n < triggers.length; n++) {
+    const prior = control.puts.at(-1)?.revision;
+    const puts = control.puts.length;
+    requireValue(triggers[n])();
+    await vi.waitFor(() => expect(worker.requests('castCheckpoint')).toHaveLength(n + 1));
+    worker.reply({
+      type: 'castReady',
+      gen: 1,
+      requestId: requireValue(worker.requests('castCheckpoint').at(-1)).requestId,
+      sourceSnapshot: raw,
+      transfer: {
+        castPassport: 'site-cast/1',
+        sourceRole: 'riza',
+        engine: '3.2.0',
+        checkpoint: { schema: raw.schema, sourceMinute: raw.now, rng: raw.rng, sha256 },
+      },
+    });
+    await vi.waitFor(() => expect(control.puts).toHaveLength(puts + 1));
+    await vi.waitFor(() => expect(castState('voice').busy).toBe(false));
+    expect(control.puts.at(-1)?.parentRevision).toBe(prior);
+    expect(JSON.parse(requireValue(storage.get('hf-cast-source:voice')))).toEqual({ [id]: raw });
+  }
+});
+
+it('file entry has no Shelf construction and rejects native actions before access', async () => {
+  vi.resetModules();
+  Object.assign(window, { location: { pathname: '/watch/', search: '?file=1' } });
+  const before = control.channels;
+  const runtime = await import('./cast-runtime.ts');
+  expect(control.channels).toBe(before);
+  expect(runtime.sitePersonaShelf).toBeUndefined();
+  const worker = { postMessage: vi.fn(), addEventListener: vi.fn() } as unknown as Worker;
+  const stop = runtime.bindCastWorker(worker, 'watch', lab as never);
+  expect(worker.addEventListener).not.toHaveBeenCalled();
+  expect(() => runtime.setCastEnabled(true)).toThrow(/file/i);
+  expect(() => runtime.startCastFresh('watch')).toThrow(/file/i);
+  await expect(runtime.checkpointCast('watch')).rejects.toThrow(/file/i);
+  expect(control.channels).toBe(before);
+  const valid = new TextEncoder().encode('{"full":"native"}');
+  expect(await runtime.readGameFile({ arrayBuffer: async () => valid.buffer } as File)).toBe(
+    '{"full":"native"}',
+  );
+  const bom = new Uint8Array([0xef, 0xbb, 0xbf, ...valid]);
+  await expect(runtime.readGameFile({ arrayBuffer: async () => bom.buffer } as File)).rejects.toThrow();
+  const invalid = new Uint8Array([0xff, 0xfe]);
+  await expect(runtime.readGameFile({ arrayBuffer: async () => invalid.buffer } as File)).rejects.toThrow();
+  stop();
 });

@@ -1,6 +1,17 @@
+let usePolicyWatch: typeof import('./useWatch.ts').useWatch;
+function PolicyWatch({
+  capture,
+}: {
+  capture(value: ReturnType<typeof import('./useWatch.ts').useWatch>): void;
+}) {
+  capture(usePolicyWatch());
+  return null;
+}
+
 // @vitest-environment happy-dom
 
 import { act, createElement } from 'react';
+import { flushSync } from 'react-dom';
 import { createRoot } from 'react-dom/client';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { expect, it, vi } from 'vitest';
@@ -457,4 +468,92 @@ it('explains stairs in saved volume endings and epilogues without changing saved
   expect(page.textContent).toContain('the stairs up to the wall');
   expect(page.textContent).not.toContain('the wall stair');
   expect(JSON.stringify(frame)).toBe(before);
+});
+
+it('file entry renders the ordinary chooser with no authored worker or native shelf access', async () => {
+  vi.resetModules();
+  window.history.replaceState(null, '', '/watch/?file=1');
+  const post = vi.fn();
+  vi.stubGlobal(
+    'Worker',
+    class {
+      postMessage = post;
+      addEventListener() {}
+      removeEventListener() {}
+      terminate() {}
+    },
+  );
+  const { useWatch: useCurrent } = await vi.importActual<typeof import('./useWatch.ts')>('./useWatch.ts');
+  let current: ReturnType<typeof useCurrent> | undefined;
+  usePolicyWatch = useCurrent;
+  const reads = vi.spyOn(Storage.prototype, 'getItem'),
+    writes = vi.spyOn(Storage.prototype, 'setItem');
+  const node = document.createElement('div'),
+    root = createRoot(node);
+  try {
+    await act(() =>
+      root.render(
+        createElement(PolicyWatch, {
+          capture: (value) => {
+            current = value;
+          },
+        }),
+      ),
+    );
+    expect(post.mock.calls.some(([message]) => message.type === 'fileSession')).toBe(true);
+    expect(
+      post.mock.calls.some(([message]) => ['init', 'load', 'shelf', 'save'].includes(message.type)),
+    ).toBe(false);
+    expect(() => requireValue(current).actions.restart(1)).toThrow(/file/i);
+    expect(() => requireValue(current).actions.refreshShelf()).toThrow(/file/i);
+    await expect(requireValue(current).actions.load('native:auto')).rejects.toThrow(/file/i);
+    const mocked = await import('./useWatch.ts');
+    const fileLoads = vi.fn();
+    vi.mocked(mocked.useWatch).mockReturnValue({
+      ...requireValue(current),
+      actions: { ...requireValue(current).actions, loadFile: fileLoads, cancelFileLoad: vi.fn() },
+    });
+    const { App: FileApp } = await import('./App.tsx');
+    await act(() => root.render(createElement(FileApp)));
+    expect(node.textContent).toContain('This file stays in this tab.');
+    expect(node.querySelector('input[type=file]')).not.toBeNull();
+    expect(node.textContent).not.toContain('Lighting the lantern');
+    expect(reads).not.toHaveBeenCalled();
+    expect(writes).not.toHaveBeenCalled();
+    const picker = requireValue(node.querySelector<HTMLInputElement>('input[type=file]'));
+    let resolveOld: (bytes: ArrayBuffer) => void = () => {};
+    const oldRead = new Promise<ArrayBuffer>((resolve) => {
+      resolveOld = resolve;
+    });
+    const latest = '{"syntheticChooser":"latest"}';
+    const select = (read: () => Promise<ArrayBuffer>) => {
+      Object.defineProperty(picker, 'files', {
+        configurable: true,
+        value: [{ size: 100, arrayBuffer: read }],
+      });
+      picker.dispatchEvent(new Event('change', { bubbles: true }));
+    };
+    flushSync(() => select(() => oldRead));
+    flushSync(() => select(async () => new TextEncoder().encode(latest).buffer));
+    await vi.waitFor(() => expect(fileLoads.mock.calls.map(([text]) => text)).toEqual([latest]));
+    resolveOld(new Uint8Array([0xff]).buffer);
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(fileLoads.mock.calls.map(([text]) => text)).toEqual([latest]);
+    expect(node.querySelector('[role=alert]')).toBeNull();
+    let resolveCancelled: (bytes: ArrayBuffer) => void = () => {};
+    const cancelled = new Promise<ArrayBuffer>((resolve) => {
+      resolveCancelled = resolve;
+    });
+    flushSync(() => select(() => cancelled));
+    flushSync(() => picker.dispatchEvent(new Event('cancel')));
+    resolveCancelled(new TextEncoder().encode('{"syntheticChooser":"cancelled"}').buffer);
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(fileLoads.mock.calls.map(([text]) => text)).toEqual([latest]);
+  } finally {
+    await act(() => root.unmount());
+    reads.mockRestore();
+    writes.mockRestore();
+    vi.unstubAllGlobals();
+    window.history.replaceState(null, '', '/');
+  }
 });
