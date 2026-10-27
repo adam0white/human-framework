@@ -3,11 +3,11 @@ import { act, createElement } from 'react';
 import { createRoot } from 'react-dom/client';
 import { expect, it, vi } from 'vitest';
 
-const controls = vi.hoisted(() => ({ save: vi.fn<() => Promise<boolean>>() }));
+const controls = vi.hoisted(() => ({ save: vi.fn<() => Promise<boolean>>(), busy: false }));
 vi.mock('./cast-runtime.ts', () => ({
   fileSession: false,
   castChanges: () => () => {},
-  castState: () => ({ enabled: true, busy: false, selected: 'hf.cast.selin.voice', status: '' }),
+  castState: () => ({ enabled: true, busy: controls.busy, selected: 'hf.cast.selin.voice', status: '' }),
   selectCast: () => {},
   checkpointCast: controls.save,
 }));
@@ -28,6 +28,23 @@ it('automatically saves the selected person and offers a retry if saving fails',
     host.querySelector('button')?.click();
   });
   expect(host.querySelector('a')?.getAttribute('href')).toBe('https://goodhands.adamwhite.work');
+  await act(() => root.unmount());
+  host.remove();
+});
+
+it('waits for an existing checkpoint before capturing the ending', async () => {
+  const host = document.createElement('div');
+  document.body.append(host);
+  const root = createRoot(host);
+  controls.save.mockReset().mockResolvedValue(true);
+  controls.busy = true;
+  await act(async () => root.render(createElement(CastOffer, { game: 'voice' })));
+  expect(controls.save).not.toHaveBeenCalled();
+  expect(host.textContent).toContain('Saving this chapter');
+  controls.busy = false;
+  await act(async () => root.render(createElement(CastOffer, { game: 'voice' })));
+  expect(controls.save).toHaveBeenCalledOnce();
+  expect(host.querySelector('a')).not.toBeNull();
   await act(() => root.unmount());
   host.remove();
 });

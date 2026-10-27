@@ -22,6 +22,7 @@ export function CastOffer({ game }: { game: string }) {
     const key = `${game}:${id}:${retry}`;
     setResult({ id, status: 'saving' });
     if (capture.current?.key !== key) {
+      if (state.busy) return;
       selectCast(game, id);
       capture.current = { key, promise: checkpointCast(game) };
     }
@@ -35,7 +36,7 @@ export function CastOffer({ game }: { game: string }) {
     return () => {
       current = false;
     };
-  }, [game, id, retry, state.enabled]);
+  }, [game, id, retry, state.enabled, state.busy]);
   if (fileSession || !person || !state.enabled) return null;
   const destinations = person.games
     .filter((entry) => entry !== game)
