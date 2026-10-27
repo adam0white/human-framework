@@ -4,6 +4,20 @@ Moved verbatim from HANDOFF.md on 2026-10-20 (owner: "Trim handoff and other doc
 
 > Each receipt records its release-time state. Historical site pins, “latest” labels and follow-up instructions are not current deployment or queue status. Package publication, SDK artifacts, game deployment and owner acceptance are separate outcomes. See [HANDOFF](../HANDOFF.md) for the current coordination state.
 
+## Lab client 0.4.15 / kit 0.5.17 artifacts — 2026-10-27
+
+Signed source [`d5b54b1`](https://github.com/adam0white/human-framework/commit/d5b54b1fd521b5d28a1d046b5391494bfb40c67d) passed [exact CI 40467980702](https://github.com/adam0white/human-framework/actions/runs/40467980702) and one independent Opus review. Signed annotated tags [lab-client-v0.4.15](https://github.com/adam0white/human-framework/releases/tag/lab-client-v0.4.15) and [lab-kit-v0.5.17](https://github.com/adam0white/human-framework/releases/tag/lab-kit-v0.5.17) point at that source. Both releases used `--latest=false`, and each has its tarball, `artifact-manifest.json`, `package-members.json` and `SHA256SUMS`. The downloaded assets equal the uploaded bytes. These are GitHub artifacts, not npm publications.
+
+- **Client 0.4.15:** whole-queue backoff for linked delivery. Any failed automatic delivery pauses every automatic delivery with capped exponential backoff and jitter (2 s doubling, 15 min cap), and Retry-After is honoured. Each retry pass stops at its first failure, and at most two automatic deliveries are in flight. An explicit note Send still goes at once. The fix answers the Valley reload that sent about 513 POSTs, all 429.
+- **Kit 0.5.17:** ships 818c352 (the recording notice never blocks game controls at phone width) and adds client 0.4.15 to the optional peer range. Its package members are the same as 0.5.16.
+
+| Artifact                           |  Bytes | SHA256                                                             |
+| ---------------------------------- | -----: | ------------------------------------------------------------------ |
+| `adam0white-lab-client-0.4.15.tgz` | 57,398 | `a317b83fdbf9239a9fea729d9ec7a95cf5b2c54d87d70d780148720a7e2a2eb7` |
+| `adam0white-lab-kit-0.5.17.tgz`    | 34,093 | `e31e2d632617a3b680e7ba5f0d0e5f3e8c477f5584277e1302cb83177091db16` |
+
+The HF package version and npm were not touched. The shared release lock was taken and released. Central site deployment and game adoption are tracked separately in `~/code/.lab-scratch/claude-builds/lab-client-backoff.md`.
+
 ## Lab kit 0.5.13 scorer artifact — 2026-10-26
 
 Signed [source cfd4a524](https://github.com/adam0white/human-framework/commit/cfd4a524a542a623c53620bbd587d47ed209e66e) passed [exact CI 40303167929](https://github.com/adam0white/human-framework/actions/runs/40303167929), normal gated checks (2,547 passed, seven existing skips) and independent integration review. Signed [tag and immutable artifact lab-kit-v0.5.13](https://github.com/adam0white/human-framework/releases/tag/lab-kit-v0.5.13) are published. The manifest, tar and SHA256SUMS downloaded exactly. The tar is 33,467 bytes, SHA256 `9e29dd81e413ca9f38c6e3fa11c3f94b6481f41e66d227dea15dc76ef69fe5ed`; its manifest retains SHA512. Fresh downloaded-root JavaScript and strict TypeScript 7.0.2 NodeNext consumers passed with `skipLibCheck:false`, without the optional client peer or DOM.
