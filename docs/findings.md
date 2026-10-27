@@ -4,6 +4,14 @@ Short records of results that cut against expectations. Keep them; do not tune t
 
 Each entry describes its dated source or artifact. Historical defects do not describe the current SDK. Horizon 3 results and limits remain in the linked experiments.
 
+## HF 4.0.3 widowhood boundary probe: no reproduced failure (2026-10-27)
+
+The independent 4.0.2 read suspected that the day-182 widowhood mortality drop could cause the same numerical-cell failure as crisis refractory expiry. On unmodified 4.0.2, the [public control](../packages/human/test/run-widowhood-boundary.test.ts) starts one hour before day 182, with widowhood beginning at 123 ms and an authored woman aged about 114 years. Her early mortality is near its one-per-year cap. A whole four-hour step and hourly steps both finish, produce identical events and actor RNG, and restore and replay exactly. Their accepted mortality integrals differ by about 1e-19, within the 1e-12 numerical tolerance. An initial age-110 control also completed. An exact comparison of all continuation coefficients was rejected: continuous floating-point values may differ across chunkings under the existing contract.
+
+The multiplier does jump inside the rate function, but the default mortality jump is much smaller than crisis onset intensity. For a woman the largest default drop at the cap is `1 - 1.15 / 1.41` per year. At the one-millisecond resolution floor its embedded error is below the integrator's 1e-12 tolerance. These bounded controls did not reproduce `numerical cell unresolved`; they do not prove every authored parameter choice or numerical path safe. No mortality code or engine stamp changed, and **4.0.3 was not released** under the requested reproduce-first gate.
+
+The accompanying crisis test now checks that the second onset is at least 12 hours after the first recovery. A separate one-hour public fixture run on the exact v4.0.1 and v4.0.2 tag sources confirms that `hashes.initial`, `hashes.current` and `hashes.full` change while `hashes.history` matches in that control. Both 4.0.2 `restoreRun` and `replay` reject its 4.0.1 archive with `unsupported-archive` at `$.engine`. The 4.0.2 CHANGELOG now states those compatibility limits. Raw comparison evidence is retained outside Git in `.lab-scratch/codex/hf403-evidence/`.
+
 ## HF 4.0 crisis refractory expiry (2026-10-27)
 
 A public Run with sustained authored grief could reach a crisis and recover, then become unsteppable when its 12-hour refractory period ended. With numerical fixture seed 1, grief intensity 1 and a seven-day half-life, upright posture and low initial sleep pressure, onset was at 54,350,069 ms and recovery at 73,790,069 ms. At 116,990,069 ms, crisis eligibility changed from zero to positive inside a hazard integration cell. Even a one-millisecond cell failed with `limit-exceeded: numerical cell unresolved`; shorter caller steps could not resolve the discontinuity.
