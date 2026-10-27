@@ -1,5 +1,5 @@
 import { gunzipSync, gzipSync } from 'node:zlib';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import worker, { cleanupLinked, type Env } from '../../worker/lab.ts';
 import { dayOf } from './core.ts';
 import { LINKED_LIMITS, linkedKey, parseLinked } from './linked.ts';
@@ -185,8 +185,59 @@ describe('linked lab records', () => {
     const budgetKey = `private/linked-capacity/${dayOf(Date.now())}.json`;
     const old = JSON.parse(new TextDecoder().decode(required(store.get(budgetKey)).bytes));
     await env.LAB.put(budgetKey, JSON.stringify({ ...old, bytes: LINKED_LIMITS.dailyBytes }));
-    expect((await post(envelope({ id: 'f'.repeat(32), at: Date.now() - 120 * 86400000 }))).status).toBe(503);
+    const exhausted = await post(envelope({ id: 'f'.repeat(32), at: Date.now() - 120 * 86400000 }));
+    expect(exhausted.status).toBe(429);
+    expect(await exhausted.json()).toMatchObject({ code: 'daily_capacity' });
+    expect(Number(exhausted.headers.get('Retry-After'))).toBeGreaterThan(0);
     expect((await post(record)).status).toBe(200);
+  });
+
+  it('admits beyond the old object cap, then distinguishes daily exhaustion from CAS contention', async () => {
+    const clock = vi.spyOn(Date, 'now').mockReturnValue(Date.parse('2026-10-26T23:20:00Z'));
+    try {
+      const { env, store, post } = setup();
+      const budgetKey = 'private/linked-capacity/2026-10-26.json';
+      const records = Object.fromEntries(Array.from({ length: 2000 }, (_, i) => [`reserved-${i}`, 1]));
+      await env.LAB.put(budgetKey, JSON.stringify({ bytes: 2000, records }));
+      expect((await post(envelope())).status).toBe(200);
+      await env.LAB.put(
+        budgetKey,
+        JSON.stringify({
+          bytes: 20000,
+          records: Object.fromEntries(Array.from({ length: 20000 }, (_, i) => [`reserved-${i}`, 1])),
+        }),
+      );
+      const full = await post(envelope({ id: 'e'.repeat(32) }));
+      expect(full.status).toBe(429);
+      expect(await full.json()).toMatchObject({ code: 'daily_capacity' });
+      expect(full.headers.get('Retry-After')).toBe('2400');
+      expect(full.headers.get('Access-Control-Expose-Headers')).toContain('Retry-After');
+      expect([...store.keys()].filter((key) => key.startsWith('linked/'))).toHaveLength(1);
+      // A receipt already stored is acknowledged even when today's admission budget is full.
+      expect((await post(envelope())).status).toBe(200);
+      store.delete(budgetKey);
+      const put = env.LAB.put;
+      env.LAB.put = async (key, value, options) => (key === budgetKey ? null : put(key, value, options));
+      const busy = await post(envelope({ id: 'f'.repeat(32) }));
+      expect(busy.status).toBe(503);
+      expect(await busy.json()).toMatchObject({ code: 'capacity_busy' });
+      expect(busy.headers.get('Retry-After')).toBe('1');
+      expect([...store.keys()].filter((key) => key.startsWith('linked/'))).toHaveLength(1);
+    } finally {
+      clock.mockRestore();
+    }
+  });
+
+  it('returns a short retry delay when linked index or directory CAS is busy', async () => {
+    for (const prefix of ['private/linked-index/', 'private/linked-index.json']) {
+      const { env, post } = setup();
+      const put = env.LAB.put;
+      env.LAB.put = async (key, value, options) => (key.startsWith(prefix) ? null : put(key, value, options));
+      const busy = await post(envelope());
+      expect(busy.status).toBe(503);
+      expect(await busy.json()).toMatchObject({ code: 'capacity_busy' });
+      expect(busy.headers.get('Retry-After')).toBe('1');
+    }
   });
 
   it('bounds legacy run bytes separately from the linked budget', async () => {

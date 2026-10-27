@@ -101,6 +101,7 @@ function cors(origin: string | null): Record<string, string> {
     'Access-Control-Allow-Origin': origin,
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Expose-Headers': 'Retry-After',
     'Access-Control-Max-Age': '86400',
     Vary: 'Origin',
   };
@@ -116,6 +117,31 @@ function reply(status: number, body: unknown, origin: string | null, extra: Reco
       ...extra,
     },
   });
+}
+
+/** Daily admission resets at UTC midnight; CAS conflicts should retry promptly. */
+function linkedAdmissionReply(
+  code: 'daily_capacity' | 'capacity_busy' | 'capacity_unavailable',
+  origin: string | null,
+  now: number,
+) {
+  const exhausted = code === 'daily_capacity';
+  const retry = exhausted
+    ? Math.ceil((86400000 - (now % 86400000)) / 1000)
+    : code === 'capacity_busy'
+      ? 1
+      : 60;
+  return reply(
+    exhausted ? 429 : 503,
+    {
+      code,
+      error: exhausted
+        ? 'Daily linked storage budget exhausted. Retry after UTC midnight.'
+        : 'Linked storage is temporarily unavailable. Retry this record.',
+    },
+    origin,
+    { 'Retry-After': String(retry) },
+  );
 }
 
 /** Reads at most `max` bytes of a body stream; returns null when it is longer. */
@@ -275,16 +301,16 @@ async function postRun(req: Request, env: Env, origin: string | null, ctx: Ctx):
     new Blob([JSON.stringify(parsed.run)]).stream().pipeThrough(new CompressionStream('gzip')),
   ).arrayBuffer();
   // Legacy run uploads have a separate 8 MiB/day ceiling. Together with linked records,
-  // retained compressed payloads admit at most 40 MiB/day before the 180-day lifecycle.
+  // retained compressed payloads admit at most 264 MiB/day before the 180-day lifecycle.
   if (
-    !(await reserveLinked(
+    (await reserveLinked(
       env,
       dayOf(now),
       keys.run(dayOf(now), id),
       stored.byteLength,
       'private/run-byte-capacity',
       8 * 1024 * 1024,
-    ))
+    )) !== 'ok'
   )
     return reply(503, { error: 'The notebook byte budget is full or busy today.' }, origin);
   await env.LAB.put(keys.run(dayOf(now), id), stored, {
@@ -309,7 +335,7 @@ async function reserveLinked(
   size: number,
   prefix = 'private/linked-capacity',
   maxBytes: number = LINKED_LIMITS.dailyBytes,
-): Promise<boolean> {
+): Promise<'ok' | 'daily_capacity' | 'capacity_busy' | 'capacity_unavailable'> {
   const path = `${prefix}/${day}.json`;
   for (let attempt = 0; attempt < 8; attempt++) {
     const body = await env.LAB.get(path);
@@ -322,10 +348,10 @@ async function reserveLinked(
       !state.records ||
       typeof state.records !== 'object'
     )
-      return false;
-    if (Object.hasOwn(state.records, key)) return state.records[key] === size;
+      return 'capacity_unavailable';
+    if (Object.hasOwn(state.records, key)) return state.records[key] === size ? 'ok' : 'capacity_unavailable';
     if (Object.keys(state.records).length >= LINKED_LIMITS.dailyObjects || state.bytes + size > maxBytes)
-      return false;
+      return 'daily_capacity';
     const saved = await env.LAB.put(
       path,
       JSON.stringify({ bytes: state.bytes + size, records: { ...state.records, [key]: size } }),
@@ -334,9 +360,9 @@ async function reserveLinked(
         httpMetadata: { contentType: 'application/json' },
       },
     );
-    if (saved) return true;
+    if (saved) return 'ok';
   }
-  return false;
+  return 'capacity_busy';
 }
 
 async function indexLinked(env: Env, day: string, entry: LinkedMeta): Promise<boolean> {
@@ -356,7 +382,7 @@ async function indexLinked(env: Env, day: string, entry: LinkedMeta): Promise<bo
 }
 
 /** CAS unions actual receipt days so the inbox never tries empty calendar manifests. */
-async function linkedDirectory(env: Env, now: number, day?: string): Promise<void> {
+async function linkedDirectory(env: Env, now: number, day?: string): Promise<boolean> {
   const key = 'private/linked-index.json';
   for (let attempt = 0; attempt < 8; attempt++) {
     const body = await env.LAB.get(key);
@@ -371,9 +397,9 @@ async function linkedDirectory(env: Env, now: number, day?: string): Promise<voi
         httpMetadata: { contentType: 'application/json' },
       })
     )
-      return;
+      return true;
   }
-  throw new Error('Linked directory is busy.');
+  return false;
 }
 
 async function projectLinkedEvents(env: Env, record: LinkedEnvelope, receiptDay: string): Promise<boolean> {
@@ -479,8 +505,8 @@ async function postLinked(req: Request, env: Env, origin: string | null): Promis
       new Blob([canonical]).stream().pipeThrough(new CompressionStream('gzip')),
     ).arrayBuffer();
     const day = dayOf(now);
-    if (!(await reserveLinked(env, day, key, stored.byteLength)))
-      return reply(503, { error: 'Linked storage is full or busy today.' }, origin);
+    const admission = await reserveLinked(env, day, key, stored.byteLength);
+    if (admission !== 'ok') return linkedAdmissionReply(admission, origin, now);
     const result = await env.LAB.put(key, stored, {
       onlyIf: { etagDoesNotMatch: '*' },
       httpMetadata: { contentType: 'application/gzip' },
@@ -512,8 +538,8 @@ async function postLinked(req: Request, env: Env, origin: string | null): Promis
       size: object.size,
     }))
   )
-    return reply(503, { error: 'Linked index is busy. Retry this record.' }, origin);
-  await linkedDirectory(env, now, indexDay);
+    return linkedAdmissionReply('capacity_busy', origin, now);
+  if (!(await linkedDirectory(env, now, indexDay))) return linkedAdmissionReply('capacity_busy', origin, now);
   if (!(await projectLinkedEvents(env, record, indexDay)))
     return reply(503, { error: 'Event storage is full or busy today.' }, origin);
   return reply(200, { ok: true, id: record.id }, origin);

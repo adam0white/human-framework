@@ -7,8 +7,8 @@ export const LINKED_LIMITS = {
   inflated: 512 * 1024,
   chunkBytes: 256 * 1024,
   chunks: 128,
-  dailyBytes: 32 * 1024 * 1024,
-  dailyObjects: 2000,
+  dailyBytes: 256 * 1024 * 1024,
+  dailyObjects: 20000,
   retentionDays: 180,
 } as const;
 
