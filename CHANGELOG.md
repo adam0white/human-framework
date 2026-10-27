@@ -2,13 +2,41 @@
 
 Releases of Human Framework (HF), packaged as `@adam0white/human-framework` (`@human/framework` up to 2.1.0). The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and versions follow [Semantic Versioning](https://semver.org/).
-The release version is the package version and `FRAMEWORK_VERSION`, tagged `vX.Y.Z`. Each entry also names the
-`ENGINE_VERSION` (simulation behaviour and save format) it ships; see the version policy in
+The release version is the package version, tagged `vX.Y.Z`. Up to 3.x each entry also names the
+`ENGINE_VERSION` (simulation behaviour and save format) it ships; from 4.0.0 the engine version is the package
+version, stamped with build and schema hashes in `RUN_ENGINE`. See the version policy in
 [packages/human/README.md](packages/human/README.md#versions). The games in `apps/site` are not covered here.
 
 `npm run release` publishes the section whose heading matches the package version as the GitHub release notes.
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
+
+## [4.0.0] - Unreleased
+
+Engine: 4.0.0. One run API, with every faculty always on. The owner set the goal on 2026-10-26: "Let's make every opt in feature default v4 go! Sacrifice compatibility and saves." People now differ through their state, never through switches. Each concern has one way in and one way out. 3.x saves, exports and option selectors are not read by 4.0. Games may stay on 3.x, and 3.x patches keep explicit opt-in and exact legacy continuation.
+
+- **Eight calls.** `createRun`, `createPerson`, `step(run, { until, fidelity?, inputs })`, `inspect`, `preview`, `exportRun`, `restoreRun` and `replay` are the whole callable API, plus the pure `projectChapterClock`. Every host change enters as a timestamped `Input`. Every reading leaves through `inspect` (actual state, from the host or one person's perspective) or `preview` (a counterfactual that never changes the run). The host is the only writer of the world. Two runs in one process share no state, including tuning.
+- **Always on.** The `enable*` flags, `PersonSpec.enable`, feature selectors, version markers and legacy-continuation branches are deleted. Faculties that 3.x left opt-in are always on in 4.0: assent cost, literal wording, curiosity, projects, planning, promptings, review, crisis, community death handling and the warmth-through-25 upbringing. Where no sourced default exists, the faculty runs with an engineering default recorded in docs/findings.md. A zero coefficient never switches a faculty off.
+- **One clock, with a daily step.** `skip`, `catchUp: 'events'`, `runSilent`, `liveRoutine` and `liveCommunity` are deleted as public paths. A batch chooses `fidelity: { mode: 'fine' }` (the default) or `{ mode: 'daily', dayMs: 86400000, anchor }`. The daily clock is a first-class larger step, not a separate simulation. This reverses two 3.0 decisions: Q15 kept `skip`, and Q5 kept assignment-based tuning of module-wide mutable defaults. Tuning now belongs to the run spec and is copied per run.
+- **Replay.** `exportRun` gives a closed `hf-run` version 4 archive. `replay` rebuilds it from its spec and input log and checks every hash. Replaying the same input log with the same step chunking is byte-exact. Different chunkings of the same inputs keep clocks, counters, RNG, the set of events and their order exact; continuous values such as mood and needs agree within 1e-9 (ruling 26, owner-approved).
+- **One renderer.** Narration, review, promptings and forecasts are rendered from structured events by one renderer with stable variation. The plain pack and the selectable wording modes are deleted; literal wording is the one vocabulary, and the host lexicon supplies names and action forms. Host prose given with an observation is kept verbatim and reaches that person's own events.
+- **Communication** goes through the same step boundary: a `CommunicationRequest` is issued, the host resolves it with `communication.resolved`, and the listener hears only what was delivered.
+- **Portable admission is rejected.** `PersonAuthoring.admission`, and host `inspect` selections of `persona`, `calendar` or `chapter`, fail with one documented `invalid-admission` message (`PORTABLE_ADMISSION_REJECTED`). A person enters a 4.0 run only as authored state. A new design must first pass the third-world admission gate that failed on 2026-10-26.
+- **Performance** (one Apple Silicon machine under load from other work; engineering measurements, not a budget proof): 50 ms steps for one person, p50/p95 0.57/2.02 ms; for six people, 2.98/6.02 ms; one 24-hour fine step for one person, about 0.5 s. Plain-data copies replace `structuredClone`, and trajectories are memoized per segment.
+
+### Owner-approved scope
+
+The owner approved the scope rulings on 2026-10-27: "All good decisions (codex to 4.1, delete code, allow difference), keep going." ([owner directions](https://github.com/adam0white/human-framework/blob/main/docs/owner-directions-2026-10-18.md#2026-10-27--hf-40-scope-rulings-approved-adam-verbatim)). Deferred to 4.1 with a target of 2026-11-17, listed in [the roadmap](https://github.com/adam0white/human-framework/blob/main/docs/roadmap.md): the JSON wire adapter, the request and settlement ledger beyond what retelling needs, the 44-coefficient tuning surface, a sourced default norm set with research references, a run route for the Zakat al-Fitr planner (4.0 keeps the pure planner and its sourced norm unexported; a host authors the commitments itself), a portable admission design, and run-level controls for death news and communication with retelling.
+
+### Host migration
+
+There is no migration path from 3.x. Start a fresh 4.0 run and author each person with `createPerson`; a 3.x save restored into 4.0 is refused. Pin the exact package `4.0.0` and keep the archive (`exportRun`) as the save and the playtest export: it carries the seed, the input log and the state, and `replay` verifies it. Replace each 3.x call with an input to `step`, a read with `inspect`, or a what-if with `preview`. Hosts that need a 3.x API stay on 3.2.x. Node 24 or later and TypeScript 7 or later remain required.
+
+### Removed
+
+- Source: `person.ts`, `restore.ts`, `migrate.ts`, `persona.ts`, `persona-calendar.ts`, `feature-selectors.ts`, the 3.x `types.ts`, the old narration packs and the faculty barrels that re-exported them. The legacy 3.x code is deleted rather than ported (ruling 25).
+- Tests that pinned removed behaviour or restated code: 3.x migration fixtures, legacy continuation, feature selectors, event catch-up, the 3.x community simulation and long-run timing. One control per merged faculty and the replay-hash test are kept.
+- Examples in `packages/human/examples/`: assent-cost-control, body-forecast-control, chapter-clock-control, community-death-repair-control, curiosity-control, death-dispatch-control, event-catch-up-control, event-catch-up-profile, feature-inputs-control, felt-body-control, game-requests-29-control, game-requests-control, h3-starter (README.md, control.ts, starter.ts), host-api-control, literal-wording-control, method-alternatives-control, method-control, narration-control, observation-aptitude-control, observed-reputation-control, persona-control, plain-narration-control, plain-surfaces-control, planning-control, projects-control, promptings-control, q26-conditioned-forecast-control, qalb-control, received-consequences, reset-prospect-control, review-control, tick-input-control, upbringing-warmth-control, why-not-control and zakat-al-fitr-control. Their faculty controls are now 4.0 tests. Kept and rewritten for 4.0: minimal, suggestions, community, host-gifts-and-work-control, word-and-witness-control and plain-world-control.
 
 ## [3.2.0] - 2026-10-26
 

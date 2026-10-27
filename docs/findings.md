@@ -4,6 +4,15 @@ Short records of results that cut against expectations. Keep them; do not tune t
 
 Each entry describes its dated source or artifact. Historical defects do not describe the current SDK. Horizon 3 results and limits remain in the linked experiments.
 
+## HF 4.0 step cost before release (2026-10-27)
+
+Engine-only timings on one Apple Silicon machine while other agents ran (load average 5 to 16), from a scratch bench of the public `step` call. They are engineering measurements, not a budget proof.
+
+- **Copying dominated.** `structuredClone` took about 45% of step time in the first 4.0 candidate. A plain-data copy (`core/clone.ts`) and per-segment memoized trajectories (`core/memo.ts`) cut one person at 50 ms steps from p50/p95 2.68/4.15 ms to 0.57/2.02 ms, and six people from 14.50/19.27 ms to 2.98/6.02 ms. One 24-hour fine step for one person fell from about 2 s to about 0.5 s. The numerical control fell from about 195 s to about 18.5 s.
+- **Hazard draining is now the largest cost**, about 37% of the profile. It is the next target if a game's frame needs it.
+- **Numerical cells near floors.** A one-day step with no food failed at hour 17 with "numerical cell unresolved; use shorter span": the step had shrunk to 1 ms with the error still above 1e-12, at the satiety and hydration floor kinks. Shorter caller steps could not help, so the message misled. Integration now splits cells at those kinks.
+- **Not yet measured:** the game-level budgets in the HF 4.0 plan (Smoke whole-frame p95 under 16 ms, the 3000 ms shelf bridge message, the ten-seed 200-person year). They need games on 4.0 and are recorded when each game migrates.
+
 ## Bounded scratch gates (2026-10-26)
 
 These results originate in scratch prototypes and retained preregistrations, runners and raw traces. An independent four-probe review checked the first four gates; separate independent reviews checked fiction, second-order attribution and shared plans. They are not shipped API or human validation. The methods and limits below make the recorded comparisons explicit; executable receipts have not been incorporated here.
