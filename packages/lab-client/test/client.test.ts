@@ -552,7 +552,8 @@ it('retries original pending source after reload without relabeling legacy piece
     });
   const legacy = make();
   await legacy.send('run', { state: 'x'.repeat(LINKED_LIMITS.chunkChars + 1) });
-  await vi.waitFor(() => expect(attempts.length).toBe(2));
+  // The pass stops at the first 503; the second piece waits for the queue pause.
+  await vi.waitFor(() => expect(attempts.length).toBe(1));
   // Wait for the failed request to persist its backoff before opening another client.
   const db = await new Promise<IDBDatabase>((resolve, reject) => {
     const request = indexedDB.open('hf-lab-pending', 1);
@@ -572,6 +573,7 @@ it('retries original pending source after reload without relabeling legacy piece
   legacy.dispose();
   const marked = make();
   await marked.send('note', { note: 'pending source fixture' }, undefined, undefined, true).catch(() => {});
+  // The new page's own first pass tries the waiting piece once; the note goes too.
   await vi.waitFor(() => expect(attempts.length).toBe(3));
   const failed = attempts.map((a) => a.text);
   marked.dispose();
