@@ -34,6 +34,7 @@ import {
   bindVoicePersona,
   checkpointVoicePersona,
   gateVoiceFile,
+  prepareVoiceReturn,
   receiveVoicePersona,
   resetVoicePersona,
   settleVoiceFileGate,
@@ -499,6 +500,7 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
     };
   }, [send, sceneReading, requestSave, cancelSkip]);
 
+  const automaticReturnPending = useRef(false);
   const actions = useMemo<VoiceActions>(() => {
     const resetRun = () => {
       for (const waiter of returnChecks.current.values()) waiter.reject(new Error('The run changed.'));
@@ -534,6 +536,49 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
       predictionFrame.current = null;
     };
     resetRef.current = resetRun;
+    const continuePerson = async (): Promise<boolean> => {
+      if (fileSession) return false;
+      if (automaticReturnPending.current) return true;
+      const priorGeneration = gen.current;
+      const priorLoad = pendingLoad.current;
+      const priorTransport = transport.current;
+      automaticReturnPending.current = true;
+      let prepared: Awaited<ReturnType<typeof prepareVoiceReturn>>;
+      try {
+        prepared = await prepareVoiceReturn(
+          true,
+          undefined,
+          () =>
+            priorGeneration === gen.current &&
+            priorLoad === pendingLoad.current &&
+            priorTransport === transport.current &&
+            !!transport.current,
+        );
+      } catch (error) {
+        setError(String(error));
+        return true;
+      } finally {
+        automaticReturnPending.current = false;
+      }
+      if (
+        priorGeneration !== gen.current ||
+        priorLoad !== pendingLoad.current ||
+        priorTransport !== transport.current ||
+        !transport.current
+      )
+        return true;
+      if (!prepared) return false;
+      gen.current = Math.max(gen.current, pendingLoad.current) + 1;
+      resetRun();
+      send({
+        type: 'init',
+        seed: prepared.seed,
+        gen: gen.current,
+        scenarioVersion: VOICE_SCENARIO_VERSION,
+        selinReturn: prepared.header,
+      });
+      return true;
+    };
     return {
       cancelFileLoad: () => {
         if (!fileSession) throw new Error('File cancellation requires a file session.');
@@ -544,25 +589,28 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
       },
       continueRun: () => {
         if (fileSession) throw new Error('A file session cannot restore native play.');
-        try {
-          const saved = savedVoice(localStorage);
-          if (saved) {
-            loadingRun.current = true;
-            pendingLoad.current = Math.max(gen.current, pendingLoad.current) + 1;
-            setPlaytest({ busy: 'load' });
-            void gateVoiceFile(saved.text)
-              .then(() =>
-                send({ type: 'loadPlaytest', gen: pendingLoad.current, text: saved.text, local: true }),
-              )
-              .catch((error) => {
-                loadingRun.current = false;
-                settleVoiceFileGate(false);
-                setPlaytest({ error: String(error) });
-              });
+        void continuePerson().then((continued) => {
+          if (continued) return;
+          try {
+            const saved = savedVoice(localStorage);
+            if (saved) {
+              loadingRun.current = true;
+              pendingLoad.current = Math.max(gen.current, pendingLoad.current) + 1;
+              setPlaytest({ busy: 'load' });
+              void gateVoiceFile(saved.text)
+                .then(() =>
+                  send({ type: 'loadPlaytest', gen: pendingLoad.current, text: saved.text, local: true }),
+                )
+                .catch((error) => {
+                  loadingRun.current = false;
+                  settleVoiceFileGate(false);
+                  setPlaytest({ error: String(error) });
+                });
+            }
+          } catch {
+            /* No storage. */
           }
-        } catch {
-          /* No storage. */
-        }
+        });
       },
       skip: () => {
         if (skipRef.current) {
@@ -604,7 +652,9 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
         }),
       begin: () => {
         manualHold.current = false;
-        send({ type: 'begin' });
+        void continuePerson().then((continued) => {
+          if (!continued) send({ type: 'begin' });
+        });
       },
       setMenuOpen: (open) => {
         menuOpen.current = open;
@@ -706,6 +756,10 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
         send({ type: 'exportPlaytest', ...(fileSession ? { full: true } : {}) });
       },
       loadPlaytest: (text) => {
+        if (automaticReturnPending.current) {
+          setPlaytest({ error: 'A person is arriving. Wait for that chapter before importing a run.' });
+          return;
+        }
         // Old frames can still arrive while the worker replaces the run. Never send a stale resume into it.
         loadingRun.current = true;
         reading.current = false;
@@ -724,6 +778,10 @@ export function useVoice(seed = SHIPPED_SEED): Voice {
       clearPlaytest: () => setPlaytest(null),
       playtestError: (message) => setPlaytest({ error: message }),
       replay: (nextSeed) => {
+        if (automaticReturnPending.current) {
+          setPlaytest({ error: 'A person is arriving. Wait for that chapter before starting again.' });
+          return;
+        }
         if (fileSession) throw new Error('A file session cannot start a native town.');
         resetVoicePersona();
         gen.current = Math.max(gen.current, pendingLoad.current) + 1;

@@ -1,3 +1,4 @@
+import { DebugMenu } from './DebugMenu.tsx';
 import { playerError } from './player-error.ts';
 import { settingWords } from './setting-words.ts';
 import './cast-life.css';
@@ -64,6 +65,9 @@ export function CastStartGate({ game }: { game: string }) {
       </button>
       <a href="/lab/people/">Open your people shelf</a>
       <a href="/games/">All games</a>
+      <DebugMenu>
+        <p>{s.status}</p>
+      </DebugMenu>
     </section>
   );
 }

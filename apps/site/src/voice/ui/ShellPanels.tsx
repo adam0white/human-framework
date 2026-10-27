@@ -1,9 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import { CastMenu } from '../../shared/CastMenu.tsx';
+import { DebugMenu } from '../../shared/DebugMenu.tsx';
 import { FullscreenButton } from '../../shared/fullscreen.tsx';
-import { labMode } from '../../shared/lab-mode.ts';
 import { MODEL_NOTES, type Pace } from '../protocol.ts';
-import { VoicePersonaControls } from './persona.tsx';
 import { RecordingPreference } from './SendWord.tsx';
 import type { VoiceActions } from './useVoice.ts';
 import { voiceWords as settingWords } from './words.ts';
@@ -80,16 +78,6 @@ export function InfoPanel({ phase, onClose }: { phase: string; onClose: () => vo
           <p>The pre-dawn meal is the meal before dawn. The sunset meal is the meal at sunset.</p>
         </>
       )}
-      {labMode() && (premise || report) && (
-        <details>
-          <summary>Model notes</summary>
-          <ul>
-            {MODEL_NOTES.map((note) => (
-              <li key={note}>{settingWords(note)}</li>
-            ))}
-          </ul>
-        </details>
-      )}
     </section>
   );
 }
@@ -103,7 +91,6 @@ export function MenuPanel({
   onClose,
   onTitle,
   onSendWord,
-  canReturn,
 }: {
   label: string;
   pace: 'automatic' | Pace;
@@ -143,7 +130,7 @@ export function MenuPanel({
           </button>
         </header>
         <p className="v-hint">The day waits while this is open.</p>
-        {labMode() && (
+        {
           <fieldset className="v-menu-pace">
             <legend>How the day passes</legend>
             {(
@@ -164,16 +151,16 @@ export function MenuPanel({
               </button>
             ))}
           </fieldset>
-        )}
+        }
         <button ref={first} type="button" onClick={onSendWord}>
           Feedback <span>▸</span>
         </button>
-        {labMode() && (
+        {
           <label>
             <input type="checkbox" checked={freeText} onChange={(e) => onFreeText(e.target.checked)} />
             Experimental free-text suggestions (Cloudflare AI)
           </label>
-        )}
+        }
         <FullscreenButton variant="item" />
         <button type="button" onClick={() => (confirmNew ? onTitle() : setConfirmNew(true))}>
           {confirmNew ? 'Replace this game and start again' : 'New game'}
@@ -186,12 +173,45 @@ export function MenuPanel({
         <a href="/games/">All games</a>
         <footer>
           <RecordingPreference privacy={false} />
-          {labMode() && <CastMenu game="voice" />}
-          {labMode() && <VoicePersonaControls canReturn={canReturn} />}
+          <a href="/lab/people/">People from this browser</a>
         </footer>
         <button type="button" className="v-btn v-btn-primary" onClick={onClose}>
           Resume
         </button>
+        <DebugMenu>
+          <details>
+            <summary>Model notes</summary>
+            <ul>
+              {MODEL_NOTES.map((note) => (
+                <li key={note}>{settingWords(note)}</li>
+              ))}
+            </ul>
+          </details>
+          <button type="button" onClick={actions.exportPlaytest}>
+            Download this run
+          </button>
+          <label>
+            Import run
+            <input
+              type="file"
+              accept="application/json,.json"
+              onChange={async (event) => {
+                const file = event.target.files?.[0];
+                if (!file) return;
+                if (file.size > 32 * 1024 * 1024) {
+                  actions.playtestError('This file is too large to load.');
+                  return;
+                }
+                try {
+                  actions.loadPlaytest(await file.text());
+                  onClose();
+                } catch {
+                  actions.playtestError('This file could not be read.');
+                }
+              }}
+            />
+          </label>
+        </DebugMenu>
       </section>
     </div>
   );
@@ -220,27 +240,29 @@ export function OtherWays({
           A different town
         </button>
         <p>You meet Halil again in a different month.</p>
-        <label className="v-load-run">
-          Load a playtest run
-          <input
-            type="file"
-            accept="application/json,.json"
-            onChange={async (event) => {
-              const file = event.target.files?.[0];
-              if (!file) return;
-              if (file.size > 32 * 1024 * 1024) {
-                actions.playtestError('This file is too large to load.');
-                return;
-              }
-              try {
-                actions.loadPlaytest(await file.text());
-                onClose();
-              } catch {
-                actions.playtestError('This file could not be read.');
-              }
-            }}
-          />
-        </label>
+        <DebugMenu>
+          <label className="v-load-run">
+            Load a playtest run
+            <input
+              type="file"
+              accept="application/json,.json"
+              onChange={async (event) => {
+                const file = event.target.files?.[0];
+                if (!file) return;
+                if (file.size > 32 * 1024 * 1024) {
+                  actions.playtestError('This file is too large to load.');
+                  return;
+                }
+                try {
+                  actions.loadPlaytest(await file.text());
+                  onClose();
+                } catch {
+                  actions.playtestError('This file could not be read.');
+                }
+              }}
+            />
+          </label>
+        </DebugMenu>
         <button type="button" className="v-btn v-btn-primary" onClick={onClose}>
           Done
         </button>

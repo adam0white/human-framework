@@ -4,7 +4,7 @@
  * a file says is rendered as React text.
  */
 import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
-import { labMode } from './lab-mode.ts';
+import { DebugMenu } from './DebugMenu.tsx';
 import { playerError } from './player-error.ts';
 import { pickJsonFile, type ReplayResult } from './playtest.ts';
 import './playtest.css';
@@ -35,7 +35,7 @@ export function PlaytestMenu({
   const id = useId();
   const root = useRef<HTMLDivElement>(null);
   const button = useRef<HTMLButtonElement>(null);
-  const first = useRef<HTMLButtonElement>(null);
+  const first = useRef<HTMLAnchorElement>(null);
 
   useLayoutEffect(() => {
     onOpenChange?.(open);
@@ -93,10 +93,13 @@ export function PlaytestMenu({
       </button>
       {open && (
         <div className="pt-menu-list" id={id}>
-          {labMode() && (
+          {extra}
+          <a href="/games/" ref={first}>
+            All games
+          </a>
+          <DebugMenu>
             <button
               type="button"
-              ref={first}
               onClick={() => {
                 setOpen(false);
                 onExport();
@@ -104,14 +107,10 @@ export function PlaytestMenu({
             >
               Download this run
             </button>
-          )}
-          {labMode() && (
             <button type="button" onClick={load}>
-              Load playtest file
+              Import run
             </button>
-          )}
-          {extra}
-          <a href="/games/">All games</a>
+          </DebugMenu>
         </div>
       )}
     </div>
@@ -123,11 +122,13 @@ export function PlaytestNotice({ status, onClose }: { status: PlaytestStatus; on
   if (!status) return null;
   let body: React.ReactNode;
   let tone = 'info';
+  let diagnostic: React.ReactNode;
   if ('busy' in status)
     body = status.busy === 'export' ? 'Making the playtest file…' : 'Replaying the playtest file…';
   else if ('error' in status) {
     tone = 'bad';
     body = playerError(status.error, 'load');
+    diagnostic = status.error;
   } else {
     const r = status.result;
     const builds =
@@ -135,19 +136,21 @@ export function PlaytestNotice({ status, onClose }: { status: PlaytestStatus; on
         ? ` The file was made with framework ${r.file.framework} (engine ${r.file.engine}); this page runs ${r.here.framework} (engine ${r.here.engine}).`
         : '';
     tone = r.matches ? 'good' : 'bad';
-    body = !labMode()
-      ? r.matches
-        ? 'The saved game replayed correctly.'
-        : 'The saved game could not replay correctly. Start a fresh game.'
-      : r.matches
-        ? `Playtest file replayed. The state matches the file (hash ${r.hash}).${builds}`
-        : `Playtest file replayed, but the state differs from the file: hash ${r.hash}, file ${r.expected}.${
-            r.driftAt >= 0 ? ` The replay first parted from the file at log entry ${r.driftAt}.` : ''
-          }${builds} Build of the file: ${r.file.build}.`;
+    body = r.matches
+      ? 'The saved game replayed correctly.'
+      : 'The saved game could not replay correctly. Start a fresh game.';
+    diagnostic = `Replay ${r.matches ? 'matched' : 'differed'}: hash ${r.hash}, file ${r.expected}. First difference: ${r.driftAt}. Build: ${r.file.build}.${builds}`;
   }
   return (
     <div className={`pt-notice is-${tone}`} role="status" data-testid="playtest-notice">
-      <span>{body}</span>
+      <span>
+        {body}
+        {diagnostic && (
+          <DebugMenu>
+            <p>{diagnostic}</p>
+          </DebugMenu>
+        )}
+      </span>
       {!('busy' in status) && (
         <button type="button" className="pt-notice-close" onClick={onClose} aria-label="Close">
           ×

@@ -69,7 +69,7 @@ export type Family =
 export const SHIPPED_SEED = 7;
 
 /**
- * Model notes (voice.md §10), the one copy: the premise card, the report and the mock all read this. Visible only with ?lab=1. Wording rules: his understanding, never a ruling; nothing about acceptance; anything not
+ * Model notes (voice.md §10), the one copy: the premise card, the report and the mock all read this. Available in Debug. Wording rules: his understanding, never a ruling; nothing about acceptance; anything not
  * sourced in research/ is named an engineering assumption.
  */
 export const MODEL_NOTES: readonly string[] = [

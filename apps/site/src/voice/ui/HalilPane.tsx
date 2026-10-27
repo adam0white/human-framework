@@ -14,14 +14,26 @@ const STATE_LABEL: Record<HalilView['onMind'][number]['state'], string> = {
   excused: 'he is excused',
 };
 
-export const HalilPane = memo(function HalilPane({ halil }: { halil: HalilView }) {
+export const HalilPane = memo(function HalilPane({ halil, onWhy }: { halil: HalilView; onWhy?: () => void }) {
   return (
     <section className="v-pane v-halil" aria-label="Halil">
       <h2 className="v-pane-title">Halil</h2>
       <div className="v-doing">
         {halil.doing ? (
           <>
-            <p className="v-doing-label">{settingWords(`Halil chose to ${halil.doing.label}.`)}</p>
+            <p className="v-doing-label">
+              {settingWords(`Halil chose to ${halil.doing.label}.`)}{' '}
+              {onWhy && (
+                <button
+                  type="button"
+                  className="v-scene-why"
+                  aria-label="Why is he doing this?"
+                  onClick={onWhy}
+                >
+                  i
+                </button>
+              )}
+            </p>
             {halil.doing.intention && <p className="v-doing-why">{explainTerms(halil.doing.intention)}</p>}
             <p className="v-doing-until">until {settingWords(halil.doing.until)}</p>
           </>

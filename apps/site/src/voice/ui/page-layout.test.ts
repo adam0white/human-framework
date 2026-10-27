@@ -46,13 +46,14 @@ it('puts the silent comparison second and keeps report actions outside its scrol
   ).toEqual(['Eid, without you', 'A month without your suggestions']);
   expect(el.querySelector<HTMLDetailsElement>('.end-tally')?.open).toBe(false);
   expect(el.querySelector('.end-tally summary')?.textContent).toBe('See the tally');
+  expect(el.querySelector('.v-page-actions details')?.hasAttribute('open')).toBe(false);
   const actions = el.querySelector('.v-page-actions');
   expect(actions?.closest('.v-page-body')).toBeNull();
-  expect([...(actions?.querySelectorAll('button') ?? [])].map((button) => button.textContent)).toEqual([
-    'Feedback',
-    'New game',
-    'Keep listening',
-  ]);
+  expect(
+    [...(actions?.querySelectorAll('button') ?? [])]
+      .filter((button) => !button.closest('details'))
+      .map((button) => button.textContent),
+  ).toEqual(['Feedback', 'New game', 'Keep listening']);
   flushSync(() => actions?.querySelector<HTMLButtonElement>('button')?.click());
   expect(onSendWord).toHaveBeenCalledOnce();
 });

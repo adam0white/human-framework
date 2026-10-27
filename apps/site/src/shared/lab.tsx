@@ -83,7 +83,6 @@ export function LabMenuContent({ lab, onSend }: { lab: Lab; onSend: () => void |
         />{' '}
         Recording
       </label>
-      <a href="https://human.adamwhite.work/lab/privacy/">Privacy</a>
     </>
   );
 }

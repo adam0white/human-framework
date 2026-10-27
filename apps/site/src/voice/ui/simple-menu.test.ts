@@ -36,7 +36,7 @@ afterEach(() => {
   for (const cleanup of cleanups.splice(0)) cleanup();
   history.replaceState(null, '', '/');
 });
-it('keeps diagnostic concepts behind exact lab=1 and confirms a new game inline', () => {
+it('offers gameplay controls publicly and confirms a new game inline', () => {
   const onTitle = vi.fn();
   const render = () =>
     createElement(MenuPanel, {
@@ -52,7 +52,10 @@ it('keeps diagnostic concepts behind exact lab=1 and confirms a new game inline'
     });
   history.replaceState(null, '', '/?lab=0');
   const ordinary = mount(render());
-  expect(ordinary.textContent).not.toMatch(/cast tools|persona tools|Experimental|How the day passes/);
+  expect(ordinary.textContent).not.toMatch(/cast tools|persona tools/);
+  expect(ordinary.textContent).toContain('How the day passes');
+  expect(ordinary.textContent).toContain('Experimental');
+  expect(ordinary.querySelector('details')?.open).toBe(false);
   expect(ordinary.textContent).toContain('Feedback');
   const next = [...ordinary.querySelectorAll('button')].find((b) => b.textContent === 'New game');
   flushSync(() => next?.click());
@@ -62,7 +65,7 @@ it('keeps diagnostic concepts behind exact lab=1 and confirms a new game inline'
   expect(onTitle).toHaveBeenCalledOnce();
   history.replaceState(null, '', '/?lab=1');
   const lab = mount(render());
-  expect(lab.textContent).toMatch(/cast tools/);
+  expect(lab.textContent).toContain('People from this browser');
   expect(lab.textContent).toMatch(/Experimental/);
 });
 it('cancels a pending file read through the mounted file input and keeps Feedback reachable', async () => {

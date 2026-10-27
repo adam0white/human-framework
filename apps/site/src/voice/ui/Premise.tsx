@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { labMode } from '../../shared/lab-mode.ts';
 import { voiceWords as settingWords } from './words.ts';
 export function Premise({
   ready,
@@ -27,9 +26,9 @@ export function Premise({
           at its end, he will act without your advice.
         </p>
         <p>You suggest what Halil could do. He decides whether to do it.</p>
-        {labMode() && onOtherWays && (
+        {onOtherWays && (
           <button type="button" className="v-shelf-row" onClick={onOtherWays}>
-            Lab tools <span>▸</span>
+            Other ways in <span>▸</span>
           </button>
         )}
       </div>

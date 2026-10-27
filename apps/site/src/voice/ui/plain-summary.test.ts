@@ -12,7 +12,7 @@ it('keeps research notes behind the exact lab flag on the premise and report scr
     history.replaceState(null, '', `/${search}`);
     for (const phase of ['premise', 'report']) {
       const info = renderToStaticMarkup(createElement(InfoPanel, { phase, onClose() {} }));
-      expect(info.includes('empirical citation')).toBe(search === '?lab=1');
+      expect(info.includes('empirical citation')).toBe(false);
     }
   }
 });
