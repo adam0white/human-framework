@@ -304,3 +304,9 @@ Coordinator reading: after HF 4.x, alongside the classics work, the lab defines 
 > "Wait, why do your agents need to block recording? Wasn't getting more data from them the whole point? Yes, I'm okay with default-on recording and linking all the things. Keep friends paused. It looks like we have quite a few tasks building up, even some for post-v4, let's lean more on the dev side to clean all that up nicely, holding play testers tokens as secondary to that."
 
 Coordinator reading: agent players (panel, cold plays, bots, verification runs) leave recording and linking on, as any player would; where the lab can label a record as an agent run, they set that label so human records stay separable. Blocking the lab API in harness runs ends. Friends' playtests stay paused. Allowance order: development work (HF 4.0, game fixes, the roadmap backlog, post-v4 preparation) comes first; panel and playtester runs use what remains.
+
+## 2026-10-27 — Pause Codex; use Claude liberally (Adam, verbatim)
+
+> "Alright, once the current codex runners come back, stop codex usage until further notice. However, we have much Claude usage left expiring at 2 am today. Use those liberally"
+
+Coordinator reading: Codex runs already in flight finish; no new Codex processes start until the owner lifts the pause. Claude subagents take building, reviews and play in the meantime, under the same delivery rules (one worktree per agent, check:lane, signed commits, one independent review, exact green CI before deploy). "2 am today" is read as Central time, 2026-10-27 07:00 UTC.
