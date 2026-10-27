@@ -1,0 +1,620 @@
+{
+  "diary": "D08",
+  "records": [
+    {
+      "elapsed_s": 2.341,
+      "elapsed_s_source_lexeme": "2.341",
+      "words": "A practical question: why the lantern goes dark. I like that, sounds like a fault to trace."
+    },
+    {
+      "elapsed_s": 5.174,
+      "elapsed_s_source_lexeme": "5.174",
+      "words": "Works on the table, dies when carried. My electrician guess: loose connection that opens with movement. I will reproduce it first, like at work."
+    },
+    {
+      "elapsed_s": 7.8,
+      "elapsed_s_source_lexeme": "7.8",
+      "words": "Fault reproduced. Before I open anything I switch it off, habit from work."
+    },
+    {
+      "elapsed_s": 12.599,
+      "elapsed_s_source_lexeme": "12.599",
+      "words": "A real circuit: cell pack, switch, contact, bulb, nodes A to D. I suspect the contact first, it is the part that moves when carried."
+    },
+    {
+      "elapsed_s": 17.36,
+      "elapsed_s_source_lexeme": "17.36",
+      "words": "Contact is aged and dull - a suspect, but looks are not proof. The guide wants me to measure from the battery outward while carrying. Proper method, I approve."
+    },
+    {
+      "elapsed_s": 23.334,
+      "elapsed_s_source_lexeme": "23.334",
+      "words": "Voltage needs power, so I switch it back on for the measurement."
+    },
+    {
+      "elapsed_s": 30.148,
+      "elapsed_s_source_lexeme": "30.148",
+      "words": "6.00 V while carried, battery is healthy. Guide says switch next, but I want across the contact first - if it opens, the full 6 V shows across it. My own order."
+    },
+    {
+      "elapsed_s": 37.697,
+      "elapsed_s_source_lexeme": "37.697",
+      "words": "0.00 V across the contact. So either the contact is fine or no voltage even reaches C - the break is upstream. My aged-contact theory is weaker. The guide was right to point at the switch. B to C now."
+    },
+    {
+      "elapsed_s": 44.667,
+      "elapsed_s_source_lexeme": "44.667",
+      "words": "6.00 V across the switch while carried - it opens when moved. Exactly how I would find it at work. Satisfying. The dull contact was a red herring."
+    },
+    {
+      "elapsed_s": 47.319,
+      "elapsed_s_source_lexeme": "47.319",
+      "words": "Clean, adjust, replace. Only one spare switch, so I will not spend it blindly. Look first - 10 min is cheap."
+    },
+    {
+      "elapsed_s": 51.164,
+      "elapsed_s_source_lexeme": "51.164",
+      "words": "A real tradeoff: my only new switch, or strip the cracked spare lantern which may give a useless part. Guide says replace. I try adjust first - costs only time, keeps the spare. If it fails I learn something."
+    },
+    {
+      "elapsed_s": 57.418,
+      "elapsed_s_source_lexeme": "57.418",
+      "words": "Adjust did not help, still goes out. Fair, I can explain that: mounting was not the problem, the switch inside is. 35 min lost, but I learned. The guide wants me to measure the battery again - why? I already know. I spend the new switch."
+    },
+    {
+      "elapsed_s": 63.407,
+      "elapsed_s_source_lexeme": "63.407",
+      "words": "Fixed in under a minute of real time. Reproduce, measure battery, measure across parts while carried, switch shows 6 V, adjust failed, replace worked. That is real fault-finding, I enjoyed it. I used my only new switch, and I wonder if that will cost me later. Tappable: power switch, carry, look inside, parts, meter probes and conditions, repair actions, notes. The day bar and £24 at top are the limits."
+    },
+    {
+      "elapsed_s": 68.265,
+      "elapsed_s_source_lexeme": "68.265",
+      "words": "Family favour, £0. Fine, it was Sam's mother. But my only switch is gone for nothing. Now the workshop opens up: Bench, Board, People."
+    },
+    {
+      "elapsed_s": 72.214,
+      "elapsed_s_source_lexeme": "72.214",
+      "words": "Now the planning game. Three jobs, all due Day 2 17:00, none examined, so I promise blind. I have about 1.5 workdays. I take two, not three: the fan pays most, the reading light is like the lantern I just fixed. I will skip the music box unless time is left."
+    },
+    {
+      "elapsed_s": 75.024,
+      "elapsed_s_source_lexeme": "75.024",
+      "words": "Three identical Accept buttons, I pick the fan one by position."
+    },
+    {
+      "elapsed_s": 77.895,
+      "elapsed_s_source_lexeme": "77.895",
+      "words": "Now the reading light."
+    },
+    {
+      "elapsed_s": 84.687,
+      "elapsed_s_source_lexeme": "84.687",
+      "words": "My tap at 376 missed, the layout moved up after the fan left the column. Tapping where the button actually is."
+    },
+    {
+      "elapsed_s": 96.289,
+      "elapsed_s_source_lexeme": "96.289",
+      "words": "Fan first, it pays most. A bit fiddly finding it: everything stacks in one narrow column and the right half of the screen is empty."
+    },
+    {
+      "elapsed_s": 98.598,
+      "elapsed_s_source_lexeme": "98.598",
+      "words": "Same circuit shape, motor instead of bulb. Test is work harder with filter fitted. Reproduce first."
+    },
+    {
+      "elapsed_s": 101.994,
+      "elapsed_s_source_lexeme": "101.994",
+      "words": "Weak under load. My guess: a high-resistance joint eating voltage when current rises, or a tired battery. Meter under load will tell."
+    },
+    {
+      "elapsed_s": 105.661,
+      "elapsed_s_source_lexeme": "105.661",
+      "words": "Meter condition still on Carry from the lantern - I nearly missed that. Switching to work harder."
+    },
+    {
+      "elapsed_s": 114.893,
+      "elapsed_s_source_lexeme": "114.893",
+      "words": "Motor gets only 1.49 V under load. So the motor is starved, the loss is before it. 4.5 V is going somewhere. Contact next."
+    },
+    {
+      "elapsed_s": 117.847,
+      "elapsed_s_source_lexeme": "117.847",
+      "words": "C to 0 this time: if C is near 6 V, the contact eats it."
+    },
+    {
+      "elapsed_s": 120.67,
+      "elapsed_s_source_lexeme": "120.67",
+      "words": "C is 1.51 V too. Contact is innocent, wrong again. Loss is at the switch or the battery itself sags. Battery under load next."
+    },
+    {
+      "elapsed_s": 123.193,
+      "elapsed_s_source_lexeme": "123.193",
+      "words": "The black probe was active, not the red. I have to pick which probe I am moving."
+    },
+    {
+      "elapsed_s": 130.874,
+      "elapsed_s_source_lexeme": "130.874",
+      "words": "Battery itself only 1.54 V under load. Dead cells. I should have measured the battery first, like the guide taught me on the lantern - I went downstream first and spent 20 minutes. My mistake, I can explain it."
+    },
+    {
+      "elapsed_s": 136.599,
+      "elapsed_s_source_lexeme": "136.599",
+      "words": "Again only one in stock. If Nora's reading light also needs a cell I am stuck, but the fan pays £32 against £18. I spend it here. Worry noted: I have no visible way to buy parts yet."
+    },
+    {
+      "elapsed_s": 141.747,
+      "elapsed_s_source_lexeme": "141.747",
+      "words": "Steady air. Back to Rafi. I never looked at the filter the request mentioned - I hope that does not bite me."
+    },
+    {
+      "elapsed_s": 144.86,
+      "elapsed_s_source_lexeme": "144.86",
+      "words": "£32 in, now £56. Rafi works at a dish station in Bornova - Izmir, close to home, I smiled at that. Reading light next. No cells, no switches left in stock though."
+    },
+    {
+      "elapsed_s": 155.376,
+      "elapsed_s_source_lexeme": "155.376",
+      "words": "Two jobs done, money up from 24 to 56, and each fault I could explain with the meter. I like it. The only friction is hunting buttons in one long column, and the worry that my part stock is now empty."
+    },
+    {
+      "elapsed_s": 157.977,
+      "elapsed_s_source_lexeme": "157.977",
+      "words": "Reading light, same 4-part circuit. Reproduce first."
+    },
+    {
+      "elapsed_s": 161.006,
+      "elapsed_s_source_lexeme": "161.006",
+      "words": "Dim under load, same symptom family as the fan. Lesson learned: battery first this time. If it is the battery I have no cell left - that would hurt."
+    },
+    {
+      "elapsed_s": 173.224,
+      "elapsed_s_source_lexeme": "173.224",
+      "words": "Battery 5.91 V, healthy. Relief - I do not need a cell. Now what reaches the bulb."
+    },
+    {
+      "elapsed_s": 180.69,
+      "elapsed_s_source_lexeme": "180.69",
+      "words": "C still 5.88 V. Switch is fine. So the contact or the bulb. D next."
+    },
+    {
+      "elapsed_s": 188.122,
+      "elapsed_s_source_lexeme": "188.122",
+      "words": "D only 3.21 V. 2.7 V lost across the contact under load. Finally the contact IS guilty this time - a corroded joint. Clean costs no part. Perfect."
+    },
+    {
+      "elapsed_s": 197.078,
+      "elapsed_s_source_lexeme": "197.078",
+      "words": "Bright and steady. Clean worked, no part spent. Best repair of the day - measured, fixed cheaply."
+    },
+    {
+      "elapsed_s": 200.656,
+      "elapsed_s_source_lexeme": "200.656",
+      "words": "£74 now. Three for three. I still have 2 hours and a whole Day 2, so the music box is affordable in time. Accepting it."
+    },
+    {
+      "elapsed_s": 211.128,
+      "elapsed_s_source_lexeme": "211.128",
+      "words": "A mechanical one: spring, gear, governor, drum, target 15 ± 3 turns per minute. Outside my trade, but the same chain logic. Play it first."
+    },
+    {
+      "elapsed_s": 217.221,
+      "elapsed_s_source_lexeme": "217.221",
+      "words": "Meter switches to motion mode for mechanical things. Clever. Source first again: the spring."
+    },
+    {
+      "elapsed_s": 224.691,
+      "elapsed_s_source_lexeme": "224.691",
+      "words": "-150.00 turns per minute (difference)? Negative, difference from what? A to 0 should be the spring output. I had to read it twice. It tells me to compare with Notes."
+    },
+    {
+      "elapsed_s": 232.473,
+      "elapsed_s_source_lexeme": "232.473",
+      "words": "Now I have a ratio sheet: spring 150, gear /5 = 30, governor x ring, drum /2. Ring 2 gives 15. Proper calculation, I like it. The spring shows 150 in size - the minus sign I guess is probe direction, not sure. Check the gear output next, should be 30."
+    },
+    {
+      "elapsed_s": 236.703,
+      "elapsed_s_source_lexeme": "236.703",
+      "words": "Wait - maybe -150 difference means 150 below the rating, so the spring shaft is not turning at all? But the drum barely turns, not stopped. I really do not know which reading it is. Measure B and compare."
+    },
+    {
+      "elapsed_s": 246.493,
+      "elapsed_s_source_lexeme": "246.493",
+      "words": "B reads -7.50, \"this shaft turns slowly\". So the minus is direction and the numbers are speeds: spring 150 ok, after gear should be 30, is 7.5. The gear is slipping. Clear now - I was confused by the word difference for two readings."
+    },
+    {
+      "elapsed_s": 252.008,
+      "elapsed_s_source_lexeme": "252.008",
+      "words": "Look before spending my one gear. On the lantern I wasted adjust; looking first is cheaper."
+    },
+    {
+      "elapsed_s": 257.701,
+      "elapsed_s_source_lexeme": "257.701",
+      "words": "\"The outside looks intact\" - same words as the switch, it tells me nothing. 10 minutes for nothing. I have 90 minutes left today: adjust and test fits, and replace still fits after if needed. Try adjust."
+    },
+    {
+      "elapsed_s": 264.961,
+      "elapsed_s_source_lexeme": "264.961",
+      "words": "Same speed after adjust. Second time adjusting wastes 35 min - I should learn that adjust rarely helps here. Replace the gear, should finish by 16:50."
+    },
+    {
+      "elapsed_s": 270.863,
+      "elapsed_s_source_lexeme": "270.863",
+      "words": "Melody keeps its pace. 16:50 - returning lands right at 17:00. Tight, but a whole Day 2 job done on Day 1."
+    },
+    {
+      "elapsed_s": 276.136,
+      "elapsed_s_source_lexeme": "276.136",
+      "words": "Ouch. \"I do not want new parts; I want this one to work.\" It was her grandmother's box. I never saw that request before I replaced the gear - on the lantern the owner's words showed on the bench, here I only saw the Play instructions. Maybe it was behind the ▾ name button. I feel bad, and a bit cheated: I would have tried clean first. Still paid £26, now £100."
+    },
+    {
+      "elapsed_s": 278.993,
+      "elapsed_s_source_lexeme": "278.993",
+      "words": "Ouch. \"I do not want new parts; I want this one to work.\" It was her grandmother's box. I never saw that request before I replaced the gear - on the lantern the owner's words showed on the bench, here I only saw the Play instructions. Maybe it was behind the ▾ name button. I feel bad, and a bit cheated: I would have tried clean first. Still paid £26, now £100."
+    },
+    {
+      "elapsed_s": 281.706,
+      "elapsed_s_source_lexeme": "281.706",
+      "words": "Requested layout check, not my own choice."
+    },
+    {
+      "elapsed_s": 290.414,
+      "elapsed_s_source_lexeme": "290.414",
+      "words": "Phone check: the board actually reads better on phone - cards are compact, buttons beside the title, Wait and Close at the bottom. Nothing cut off that I saw. Back to desktop."
+    },
+    {
+      "elapsed_s": 293.765,
+      "elapsed_s_source_lexeme": "293.765",
+      "words": "Day is used up. Close. I want to see what Day 2 brings and whether I can buy parts - my stock of switch, cell and gear is all gone."
+    },
+    {
+      "elapsed_s": 297.089,
+      "elapsed_s_source_lexeme": "297.089",
+      "words": "Day 2, no new requests on the board. Empty Asked-of-you column. Maybe People shows who might bring work."
+    },
+    {
+      "elapsed_s": 301.89,
+      "elapsed_s_source_lexeme": "301.89",
+      "words": "Here is the shop I was missing: parts £4 to £18, a second bench £48, a tester £35. Now £100 means something - real tradeoffs. Also I see Nora's no-new-parts request was written here all along; I missed it. And Sam asked to watch me on Day 1 and I ignored him. Two things I can fix today."
+    },
+    {
+      "elapsed_s": 306.163,
+      "elapsed_s_source_lexeme": "306.163",
+      "words": "The tester for harder use says compare readings while it works harder - but I already measured under work harder yesterday. Why would I buy that? Confusing, I skip it. Instead I ask Sam to watch; he wanted that on Day 1 and I ignored him. Then I will open the cracked spare lantern - the title asks why the lantern goes dark."
+    },
+    {
+      "elapsed_s": 316.279,
+      "elapsed_s_source_lexeme": "316.279",
+      "words": "Sam is watching. The cracked spare lantern, same circuit as Sam's mother's. I will do it properly this time: reproduce, battery first, walk down the chain."
+    },
+    {
+      "elapsed_s": 323.902,
+      "elapsed_s_source_lexeme": "323.902",
+      "words": "Meter remembers the last condition (work harder) again - I have to remember to switch it. Carry."
+    },
+    {
+      "elapsed_s": 335.882,
+      "elapsed_s_source_lexeme": "335.882",
+      "words": "0 V across the switch - not the switch this time (unless battery is dead). Contact C-D next, it is the cracked one maybe."
+    },
+    {
+      "elapsed_s": 338.774,
+      "elapsed_s_source_lexeme": "338.774",
+      "words": "B to D now spans switch and contact together. Fine, it still tells me something."
+    },
+    {
+      "elapsed_s": 342.317,
+      "elapsed_s_source_lexeme": "342.317",
+      "words": "0 V across switch and contact. So either the bulb opens or the battery is dead. Across the bulb next."
+    },
+    {
+      "elapsed_s": 344.867,
+      "elapsed_s_source_lexeme": "344.867",
+      "words": "Both probes on D now, silly. Moving black to 0."
+    },
+    {
+      "elapsed_s": 350.9,
+      "elapsed_s_source_lexeme": "350.9",
+      "words": "6.00 V across the bulb while carried - the bulb opens when moved. Same symptom as Sam's mother's lantern, different part! That is a nice lesson: symptom does not equal cause. I have one bulb in stock."
+    },
+    {
+      "elapsed_s": 357.732,
+      "elapsed_s_source_lexeme": "357.732",
+      "words": "Wait. On the cracked spare lantern the repair tab only offers Look closely and Recover part. No clean, adjust or replace. So it is not a repair, it is a parts donor? I spent 45 game minutes and Sam's lesson diagnosing something I am not allowed to fix. Nobody told me that before I opened it. Mildly annoyed. I do not know what Sam learns from this now."
+    },
+    {
+      "elapsed_s": 396.207,
+      "elapsed_s_source_lexeme": "396.207",
+      "words": "Look closely at the bulb, maybe it tells me why I cannot replace it."
+    },
+    {
+      "elapsed_s": 398.667,
+      "elapsed_s_source_lexeme": "398.667",
+      "words": "Outside looks intact again, same as the gear. Look closely never tells me anything. I check the board for new work."
+    },
+    {
+      "elapsed_s": 405.842,
+      "elapsed_s_source_lexeme": "405.842",
+      "words": "More on the lantern card. Maybe it says what I can do with it."
+    },
+    {
+      "elapsed_s": 409.51,
+      "elapsed_s_source_lexeme": "409.51",
+      "words": "OK, the card explains it: casing ruined, it is a parts donor. That was written here, I just never opened More. Fair. So the lesson was diagnosis practice and a free bulb source? The bulb is the broken part though, so recovering it is useless. Switch and cell are good, I could recover those. Now the paper theatre, unexamined."
+    },
+    {
+      "elapsed_s": 414.833,
+      "elapsed_s_source_lexeme": "414.833",
+      "words": "Paper theatre has a music note icon, so probably the mechanical kind. Open it."
+    },
+    {
+      "elapsed_s": 417.539,
+      "elapsed_s_source_lexeme": "417.539",
+      "words": "Target 12 plus minus 1 turns per minute when working harder. Clear. Play it first."
+    },
+    {
+      "elapsed_s": 420.83,
+      "elapsed_s_source_lexeme": "420.83",
+      "words": "Too fast. My guess is the governor, it is the part that should slow it. But I measure first, I learned that with the gear."
+    },
+    {
+      "elapsed_s": 425.612,
+      "elapsed_s_source_lexeme": "425.612",
+      "words": "Meter remembered Carry from the lantern again. Switch to work harder."
+    },
+    {
+      "elapsed_s": 432.624,
+      "elapsed_s_source_lexeme": "432.624",
+      "words": "Red at C, after the governor, black at ground. Should show how fast the governor output turns."
+    },
+    {
+      "elapsed_s": 435.033,
+      "elapsed_s_source_lexeme": "435.033",
+      "words": "-48 at C. Negative again, I still do not love the minus sign. Check notes for the normal speed."
+    },
+    {
+      "elapsed_s": 441.59,
+      "elapsed_s_source_lexeme": "441.59",
+      "words": "Now I like this. 150 divided by 5 is 30 at B. I need 12 at the drum, so 24 out of the governor, so ring setting 1, times 0.8. I read 48, that is times 1.6, setting 4. If B is really 30 the ring is just turned too far and Adjust should fix it without a new part. Good, no new parts this time. I check B before I trust it."
+    },
+    {
+      "elapsed_s": 448.973,
+      "elapsed_s_source_lexeme": "448.973",
+      "words": "Black still on 0, red on B now. Read."
+    },
+    {
+      "elapsed_s": 452.712,
+      "elapsed_s_source_lexeme": "452.712",
+      "words": "B is 30, as I calculated. So the governor ring is wrong, and the little 4 on the governor icon was the setting all along. I did not notice it was the ring number until now. Sam left right at the end of the measurement; he kept what he saw. Adjust governor."
+    },
+    {
+      "elapsed_s": 457.294,
+      "elapsed_s_source_lexeme": "457.294",
+      "words": "Ring is set to 4, a real dial with 0 to 4. I pick 1 from my calculation."
+    },
+    {
+      "elapsed_s": 462.137,
+      "elapsed_s_source_lexeme": "462.137",
+      "words": "Skip the extra measurement, I trust the math. Straight to the test."
+    },
+    {
+      "elapsed_s": 465.185,
+      "elapsed_s_source_lexeme": "465.185",
+      "words": "Best moment so far. I did the arithmetic from the notes, predicted setting 1, measured B to confirm, set the ring, and it passed first time. No part spent, no owner upset. This is exactly the kind of thing I enjoy: a visible reason and my own plan."
+    },
+    {
+      "elapsed_s": 471.337,
+      "elapsed_s_source_lexeme": "471.337",
+      "words": "Both projects are mine, no paying work. I do not know what my projects are for, there is no money for them. Wait half an hour for a customer."
+    },
+    {
+      "elapsed_s": 473.83,
+      "elapsed_s_source_lexeme": "473.83",
+      "words": "Nobody came. Check People, maybe someone asks there."
+    },
+    {
+      "elapsed_s": 477.754,
+      "elapsed_s_source_lexeme": "477.754",
+      "words": "Sam's list now has the steps he watched, written very mechanically. Repairs alone: 0. Maybe that is the real goal, to get him to do one alone. I ask him."
+    },
+    {
+      "elapsed_s": 483.728,
+      "elapsed_s_source_lexeme": "483.728",
+      "words": "Sam talks about copying another player's bug report and the developer. That is strange inside a repair shop, it pulled me out of the workshop for a second. Is this game about playtesting? I do not know. No paying work, no requests. I close the day and see if day 3 brings customers."
+    },
+    {
+      "elapsed_s": 490.625,
+      "elapsed_s_source_lexeme": "490.625",
+      "words": "Recognition, before checking anything: Halil, 61, a repairman working fewer hours, planning to call his daughter Selin. That is the Halil from the Voice game, where I told him to call Selin and see the doctor. Visible cue: name Halil plus daughter Selin plus repairs. Confidence: fairly high that it is meant to be him, but it stays a guess. My reaction: oh, Halil! Nice to see him somewhere he can just bring a lantern. Also: money went from 100 to 96 overnight and nothing told me why. Rent? I do not like an unexplained loss."
+    },
+    {
+      "elapsed_s": 493.695,
+      "elapsed_s_source_lexeme": "493.695",
+      "words": "Maybe the day button explains the 4 pounds."
+    },
+    {
+      "elapsed_s": 498.51,
+      "elapsed_s_source_lexeme": "498.51",
+      "words": "The day sheet says nothing about the 4 pounds. Unexplained, I leave it. Go take Halil's lantern."
+    },
+    {
+      "elapsed_s": 502.136,
+      "elapsed_s_source_lexeme": "502.136",
+      "words": "Suddenly four requests at once, after a whole empty morning yesterday. And a community afternoon. Feast or famine."
+    },
+    {
+      "elapsed_s": 507.25,
+      "elapsed_s_source_lexeme": "507.25",
+      "words": "Meeting-room fan, 24 pounds, accept. Fans I know: check the cell under work harder."
+    },
+    {
+      "elapsed_s": 510.235,
+      "elapsed_s_source_lexeme": "510.235",
+      "words": "Sam's winding toy, 22. Accept."
+    },
+    {
+      "elapsed_s": 512.6,
+      "elapsed_s_source_lexeme": "512.6",
+      "words": "Halil's lantern, 20. Of course I accept."
+    },
+    {
+      "elapsed_s": 516.725,
+      "elapsed_s_source_lexeme": "516.725",
+      "words": "The community fan pays nothing but Sam's mother asks and it is for the community afternoon, I think. Accept it, I have two days."
+    },
+    {
+      "elapsed_s": 522.603,
+      "elapsed_s_source_lexeme": "522.603",
+      "words": "Bench opened the community fan, the earliest one. Fine, do it first."
+    },
+    {
+      "elapsed_s": 533.601,
+      "elapsed_s_source_lexeme": "533.601",
+      "words": "Voltage at the motor under load first. If it is full 6 the motor is bad, if low I walk back up the chain."
+    },
+    {
+      "elapsed_s": 543.302,
+      "elapsed_s_source_lexeme": "543.302",
+      "words": "Motor gets 1.69 V. Now the battery itself."
+    },
+    {
+      "elapsed_s": 547.742,
+      "elapsed_s_source_lexeme": "547.742",
+      "words": "Battery dead again, 1.76 V. No cell in the drawer. But the cracked spare lantern had a good battery, 6.00 V. Recover it: 25 minutes and free, versus 6 pounds and 20 minutes to buy. Now the parts donor makes sense. I like this tradeoff."
+    },
+    {
+      "elapsed_s": 565.418,
+      "elapsed_s_source_lexeme": "565.418",
+      "words": "Recover the good battery."
+    },
+    {
+      "elapsed_s": 580.422,
+      "elapsed_s_source_lexeme": "580.422",
+      "words": "The object list sheet does not scroll and the community fan is off the bottom. I go round by the board instead. A bit of fiddling."
+    },
+    {
+      "elapsed_s": 598.647,
+      "elapsed_s_source_lexeme": "598.647",
+      "words": "What? Replace says No cell stocked. I just spent 25 minutes recovering the cell from the cracked lantern and it said You finished recovering the part. Where did it go? This is exactly the kind of loss I hate. I check the drawer."
+    },
+    {
+      "elapsed_s": 603.555,
+      "elapsed_s_source_lexeme": "603.555",
+      "words": "Drawer says cell 0 in stock. The recovered battery just disappeared, 25 game minutes and a whole spare lantern for nothing that I can see. Plus 4 pounds gone overnight with no reason. I made a good plan and the game ate it without telling me why. I want to stop here. I will buy a cell and finish the fan and Halil's lantern, then see."
+    },
+    {
+      "elapsed_s": 606.718,
+      "elapsed_s_source_lexeme": "606.718",
+      "words": "Fine, buy a cell for 6 pounds."
+    },
+    {
+      "elapsed_s": 616.199,
+      "elapsed_s_source_lexeme": "616.199",
+      "words": "Fan works. Return it."
+    },
+    {
+      "elapsed_s": 619.739,
+      "elapsed_s_source_lexeme": "619.739",
+      "words": "Done. Now Halil."
+    },
+    {
+      "elapsed_s": 629.09,
+      "elapsed_s_source_lexeme": "629.09",
+      "words": "Halil's lantern. Same symptom as Sam's mother's lantern: dark when carried."
+    },
+    {
+      "elapsed_s": 645.667,
+      "elapsed_s_source_lexeme": "645.667",
+      "words": "Straight to the bulb while carried. If 6 V, the bulb is bad and I have one bulb in stock."
+    },
+    {
+      "elapsed_s": 648.952,
+      "elapsed_s_source_lexeme": "648.952",
+      "words": "The diagnosis itself still holds me, I can walk the chain with the meter and that feels like real work. But the vanished battery and the 4 pounds still bother me, and moving between objects is fiddly. Halil's bulb has 0 V, so the break is upstream. Middle of the road now."
+    },
+    {
+      "elapsed_s": 668.484,
+      "elapsed_s_source_lexeme": "668.484",
+      "words": "B 6 V, C 0 V: the switch opens when carried. Same fault as the very first lantern. No switch in the drawer. Adjust failed last time, but I try once before paying 9 pounds."
+    },
+    {
+      "elapsed_s": 708.655,
+      "elapsed_s_source_lexeme": "708.655",
+      "words": "Adjusting the switch did nothing, the light still goes out while carried. Twenty minutes for a fix that was never going to work - the meter said switch, but not that adjusting cannot fix it. I will buy a switch for nine pounds."
+    },
+    {
+      "elapsed_s": 720.815,
+      "elapsed_s_source_lexeme": "720.815",
+      "words": "Steady while carried. The new switch did it; adjusting was a wasted twenty minutes but I can explain it. Returning to Halil."
+    },
+    {
+      "elapsed_s": 742.033,
+      "elapsed_s_source_lexeme": "742.033",
+      "words": "Same symptom as the community fan. I will measure the battery first this time."
+    },
+    {
+      "elapsed_s": 752.451,
+      "elapsed_s_source_lexeme": "752.451",
+      "words": "Battery low again, 1.54 V. Now I know the pattern: fans come in with weak cells. Buy a cell, six pounds, fitting cost is clear."
+    },
+    {
+      "elapsed_s": 770.776,
+      "elapsed_s_source_lexeme": "770.776",
+      "words": "Second fan, same fault, fixed in under a minute of my time. £119 now. It feels good but also a bit like a routine: test, meter A to 0, buy cell, replace. Only the winding toy is left."
+    },
+    {
+      "elapsed_s": 787.901,
+      "elapsed_s_source_lexeme": "787.901",
+      "words": "I tapped the wrong card - the page was a different height than I thought. Second try on the winding toy."
+    },
+    {
+      "elapsed_s": 811.357,
+      "elapsed_s_source_lexeme": "811.357",
+      "words": "The toy is a proper puzzle again: spring reads 31.5 slow against 90, and even with a good spring the ring at 2 gives 15, so I need ring 3 for 18. Two faults, I can see both on paper. This is what I like."
+    },
+    {
+      "elapsed_s": 834.343,
+      "elapsed_s_source_lexeme": "834.343",
+      "words": "Not enough time to set the ring today - fair, it is 16:45 and the day ends at 17. It said so clearly. I close the day and finish the toy tomorrow morning; it is due Day 4 17:00."
+    },
+    {
+      "elapsed_s": 842.883,
+      "elapsed_s_source_lexeme": "842.883",
+      "words": "107 became 103 overnight again. Four pounds every night and still nothing tells me what for - rent? I can guess but I do not like guessing about money. The community afternoon is now open: three activities, my theatre could be used. Interesting, but first the toy."
+    },
+    {
+      "elapsed_s": 851.86,
+      "elapsed_s_source_lexeme": "851.86",
+      "words": "Passed first try. My arithmetic was right: new spring plus ring 3. That is the satisfying kind of repair."
+    },
+    {
+      "elapsed_s": 860.495,
+      "elapsed_s_source_lexeme": "860.495",
+      "words": "My own theatre on the stage - that is a nice use for the thing I fixed. Nothing else to repair, so I wait for the site to open."
+    },
+    {
+      "elapsed_s": 867.962,
+      "elapsed_s_source_lexeme": "867.962",
+      "words": "Everyone chose my paper theatre - all five. Including Halil. I am pleased, honestly."
+    },
+    {
+      "elapsed_s": 871.166,
+      "elapsed_s_source_lexeme": "871.166",
+      "words": "All five came and watched the theatre I repaired. That closes the circle nicely. I close the day to see if there is more."
+    },
+    {
+      "elapsed_s": 874.01,
+      "elapsed_s_source_lexeme": "874.01",
+      "words": "Day 5, minus four pounds again, no new requests on the board. I wait once to see if anyone brings work."
+    },
+    {
+      "elapsed_s": 877.12,
+      "elapsed_s_source_lexeme": "877.12",
+      "words": "Every job is returned, the theatre show went well, and now the board is empty and the money just drips four pounds a night. I have nothing to plan. This is a good place to leave."
+    },
+    {
+      "elapsed_s": 885.844,
+      "elapsed_s_source_lexeme": "885.844",
+      "words": "I am stopping on Day 5 with every promise kept and the paper theatre shown to all five neighbours. The meter puzzles - the governor sums, the spring and ring together - were the best part, and I could explain every setback except the four pounds that vanish each night and the recovered cell that never reached the drawer. Now the board is empty. I would return voluntarily another evening if new objects arrive with puzzles like the theatre and the toy; I would not come back just to repeat the battery swap on fans. I would not leave it running. Feedback: I selected I am stopping, typed nothing, submitted nothing."
+    }
+  ]
+}

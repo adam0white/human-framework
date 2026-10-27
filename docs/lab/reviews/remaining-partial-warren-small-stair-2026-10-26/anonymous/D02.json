@@ -1,0 +1,275 @@
+{
+  "diary": "D02",
+  "records": [
+    {
+      "elapsed_s": 2.226,
+      "elapsed_s_source_lexeme": "2.226",
+      "words": "A lantern mystery, short and to the point. Just go."
+    },
+    {
+      "elapsed_s": 4.702,
+      "elapsed_s_source_lexeme": "4.702",
+      "words": "Repair bench! Sam wants to watch me find the fault. Carry it, like the guide says."
+    },
+    {
+      "elapsed_s": 7.17,
+      "elapsed_s_source_lexeme": "7.17",
+      "words": "It went out, cost me 15 minutes. Open it up."
+    },
+    {
+      "elapsed_s": 9.906,
+      "elapsed_s_source_lexeme": "9.906",
+      "words": "Goes out when carried = something loose. My bet is the contact."
+    },
+    {
+      "elapsed_s": 15.201,
+      "elapsed_s_source_lexeme": "15.201",
+      "words": "Aged and dull, so not obviously broken. Hm, Sam disappeared from the screen? Did she leave already? Fine, meter."
+    },
+    {
+      "elapsed_s": 17.925,
+      "elapsed_s_source_lexeme": "17.925",
+      "words": "Guide says start at battery but I want to go straight at the contact, C and D."
+    },
+    {
+      "elapsed_s": 25.493,
+      "elapsed_s_source_lexeme": "25.493",
+      "words": "0.00V across the contact while carried. Is zero good or bad? I honestly do not know what zero across a contact means. Okay, maybe I do the guide thing after all."
+    },
+    {
+      "elapsed_s": 28.461,
+      "elapsed_s_source_lexeme": "28.461",
+      "words": "Compare: same probes but sitting on the table where it works."
+    },
+    {
+      "elapsed_s": 32.677,
+      "elapsed_s_source_lexeme": "32.677",
+      "words": "0.04 on the table, 0.00 carried. Both basically nothing, so the contact is probably not it? Annoying, my hunch was wrong. Battery then, A to 0, carried."
+    },
+    {
+      "elapsed_s": 39.627,
+      "elapsed_s_source_lexeme": "39.627",
+      "words": "Battery is fine, 6V. Guide moved on to the switch. Okay, switch it is, B to C."
+    },
+    {
+      "elapsed_s": 45.338,
+      "elapsed_s_source_lexeme": "45.338",
+      "words": "6V across the switch! So the whole voltage is stuck at the switch, that is the break. Oh, so 0V across the contact meant fine. That clicked. Nice little detective moment."
+    },
+    {
+      "elapsed_s": 48.361,
+      "elapsed_s_source_lexeme": "48.361",
+      "words": "Clean, adjust, replace. I want to just replace it but it says examine first, fine."
+    },
+    {
+      "elapsed_s": 51.594,
+      "elapsed_s_source_lexeme": "51.594",
+      "words": "Only one spare switch and it says use it. But outside looks intact, so maybe it is just loose? Gamble: adjust first, save my switch."
+    },
+    {
+      "elapsed_s": 57.012,
+      "elapsed_s_source_lexeme": "57.012",
+      "words": "Gamble lost, still goes dark. And now the guide wants me to measure the battery all over again? No. Replace the switch."
+    },
+    {
+      "elapsed_s": 64.09,
+      "elapsed_s_source_lexeme": "64.09",
+      "words": "I want the lantern to stay lit for the gathering, and I want to see Sam react. The part buttons, probes A-D, carry/table, and clean/adjust/replace all looked tappable and did things. The guide kept telling me the next step; I went off-script once (contact first) and got a 0V I could not read. Then battery 6V, switch 6V and the guide said that is the break, which made the contact reading click. My adjust gamble failed, replace worked: now it shines while carried. Choice within seconds. Sam vanished from the screen after my first look and I do not know why. Now Return to Sam s mother."
+    },
+    {
+      "elapsed_s": 66.829,
+      "elapsed_s_source_lexeme": "66.829",
+      "words": "Fixed! Oh it is Sam s mother s lantern. Give it back, I want to see her face."
+    },
+    {
+      "elapsed_s": 69.792,
+      "elapsed_s_source_lexeme": "69.792",
+      "words": "That is it? A receipt card. She says one line. I wanted Sam to see me find it, she asked for that and she was not even there. Bit flat. Let us see the board."
+    },
+    {
+      "elapsed_s": 73.194,
+      "elapsed_s_source_lexeme": "73.194",
+      "words": "Ooh a board of jobs. Keepsake music box, that one has a story. And a paper theatre project of my own? Cute. Music box first."
+    },
+    {
+      "elapsed_s": 76.261,
+      "elapsed_s_source_lexeme": "76.261",
+      "words": "The title is not a button. Three identical Accept promise buttons, I need to see which is which."
+    },
+    {
+      "elapsed_s": 84.957,
+      "elapsed_s_source_lexeme": "84.957",
+      "words": "Accepting the music box."
+    },
+    {
+      "elapsed_s": 91.988,
+      "elapsed_s_source_lexeme": "91.988",
+      "words": "It slid into the workshop column. Open the music box."
+    },
+    {
+      "elapsed_s": 95.095,
+      "elapsed_s_source_lexeme": "95.095",
+      "words": "Turns per minute, governor... okay, less story than I hoped, it is a speed spec. No note from Nora about why it is a keepsake. Play it."
+    },
+    {
+      "elapsed_s": 98.738,
+      "elapsed_s_source_lexeme": "98.738",
+      "words": "Tune hard to recognise, I like that detail. No guide this time. Same trick as the lantern? Probe along the chain and see where it drops."
+    },
+    {
+      "elapsed_s": 102.839,
+      "elapsed_s_source_lexeme": "102.839",
+      "words": "Governor sounds like a brake. Hunch: B to C."
+    },
+    {
+      "elapsed_s": 109.722,
+      "elapsed_s_source_lexeme": "109.722",
+      "words": "Zero difference across the governor, so not that, and it already slow before it. Lantern lesson: zero difference means fine. Go back toward the spring."
+    },
+    {
+      "elapsed_s": 115.354,
+      "elapsed_s_source_lexeme": "115.354",
+      "words": "MINUS 142 across the gear! That is the big drop. Although... gears are supposed to slow things down? I am not sure that number is bad. Look at it anyway."
+    },
+    {
+      "elapsed_s": 121.759,
+      "elapsed_s_source_lexeme": "121.759",
+      "words": "Intact outside, same as the switch. Last time replace worked, so replace. Not wasting 20 min on adjust again."
+    },
+    {
+      "elapsed_s": 126.739,
+      "elapsed_s_source_lexeme": "126.739",
+      "words": "Solved it alone this time, no guide! That felt good, faster than the lantern. Now give it to Nora, hope she says more than one line."
+    },
+    {
+      "elapsed_s": 130.167,
+      "elapsed_s_source_lexeme": "130.167",
+      "words": "OUCH. It was her grandmother s and she did not want new parts, and I never saw that request before she said it now! I skipped reading the card because there was no story on the bench, only turns per minute. That is actually a great sting, but I feel tricked. Where was that sentence? I want to know if I could have read it."
+    },
+    {
+      "elapsed_s": 134.574,
+      "elapsed_s_source_lexeme": "134.574",
+      "words": "With the lantern the request sat right on the bench. With the music box I only saw the speed spec; maybe it was hiding in that little ▾ name button. Let me see People, maybe Nora is upset with me."
+    },
+    {
+      "elapsed_s": 137.325,
+      "elapsed_s_source_lexeme": "137.325",
+      "words": "So the grandmother line was here on People all along. Rafi is from Bornova, nice. I want to talk to Nora about the gear."
+    },
+    {
+      "elapsed_s": 143.269,
+      "elapsed_s_source_lexeme": "143.269",
+      "words": "Wait, what? I asked about the work hoping to say sorry about the gear and she confesses a whole design-credit scandal with her brother. Juicy, actually! But it has nothing to do with what I just did to her grandmother s box, and there is no reply button. She ignored my gear completely."
+    },
+    {
+      "elapsed_s": 147.661,
+      "elapsed_s_source_lexeme": "147.661",
+      "words": "Rafi s fan slows when pressed, sounds like the music box again. And he says he is here to learn, maybe I can teach him? Take his fan."
+    },
+    {
+      "elapsed_s": 164.604,
+      "elapsed_s_source_lexeme": "164.604",
+      "words": "Nora s confession is now pinned above Rafi s fan, a bit random. Fan is the lantern circuit with a motor. I know the drill: probe."
+    },
+    {
+      "elapsed_s": 171.652,
+      "elapsed_s_source_lexeme": "171.652",
+      "words": "I am getting quick at the probing and the battery is low on the first try, that is satisfying. The music box sting made me care. People still do not answer me though."
+    },
+    {
+      "elapsed_s": 173.253,
+      "elapsed_s_source_lexeme": "173.253",
+      "words": "Battery is 1.54V when working hard, under normal. Swap the cell, I have one."
+    },
+    {
+      "elapsed_s": 177.724,
+      "elapsed_s_source_lexeme": "177.724",
+      "words": "After Nora I checked: Rafi did not say no new parts. A battery is not an heirloom. Replace."
+    },
+    {
+      "elapsed_s": 182.523,
+      "elapsed_s_source_lexeme": "182.523",
+      "words": "Third fix and it was first try. Return it."
+    },
+    {
+      "elapsed_s": 186.602,
+      "elapsed_s_source_lexeme": "186.602",
+      "words": "Rafi came to learn repairs and I just fixed it without him, and he says a status line. I expected him to want to watch. The money is nice, £82. My own paper theatre project, let us see that, maybe it is the creative bit."
+    },
+    {
+      "elapsed_s": 190.265,
+      "elapsed_s_source_lexeme": "190.265",
+      "words": "Just open the paper theatre."
+    },
+    {
+      "elapsed_s": 193.456,
+      "elapsed_s_source_lexeme": "193.456",
+      "words": "Hmm, my paper theatre is just the music box again: spring, gear, governor, drum, turns per minute. I hoped I could make or decorate something. Play it anyway."
+    },
+    {
+      "elapsed_s": 196.899,
+      "elapsed_s_source_lexeme": "196.899",
+      "words": "Too fast this time! Governor had a 2 on the music box and a 4 here. Brake thing. Skip the meter, gamble on adjusting the governor."
+    },
+    {
+      "elapsed_s": 201.7,
+      "elapsed_s_source_lexeme": "201.7",
+      "words": "A dial! 0 to 4, set to 4. Finally a knob I get to choose. Guess 4 is fastest; Nora s box was on 2, try 2."
+    },
+    {
+      "elapsed_s": 208.266,
+      "elapsed_s_source_lexeme": "208.266",
+      "words": "Warmer! Slower but still a little fast. Hot-and-cold game, I like this. Go to 1."
+    },
+    {
+      "elapsed_s": 215.432,
+      "elapsed_s_source_lexeme": "215.432",
+      "words": "Dial game worked in two tries, that was the most fun bit. But it is my project and nothing happens, no theatre opens, no little show. It just says keeps its pace. I wanted the paper theatre to perform!"
+    },
+    {
+      "elapsed_s": 219.606,
+      "elapsed_s_source_lexeme": "219.606",
+      "words": "Nora s reading light, she said test it with the light actually working. Maybe I can make it up to her after the gear."
+    },
+    {
+      "elapsed_s": 230.898,
+      "elapsed_s_source_lexeme": "230.898",
+      "words": "Bright then fades, that smells like battery again, and I used my only cell on Rafi. Uh oh. Check anyway."
+    },
+    {
+      "elapsed_s": 237.199,
+      "elapsed_s_source_lexeme": "237.199",
+      "words": "Battery fine, phew. Contact this time? C to D."
+    },
+    {
+      "elapsed_s": 242.749,
+      "elapsed_s_source_lexeme": "242.749",
+      "words": "Got it on the second probe, the contact. No contacts in stock. Dull metal, I bet cleaning works. And it is not new parts, Nora might like that."
+    },
+    {
+      "elapsed_s": 249.47,
+      "elapsed_s_source_lexeme": "249.47",
+      "words": "Cleaned, no new parts, works. Just before closing. Come on Nora, notice I did it the gentle way this time."
+    },
+    {
+      "elapsed_s": 253.628,
+      "elapsed_s_source_lexeme": "253.628",
+      "words": "Status line again. She does not notice I did it without new parts, only the gear one got a reaction. £100 and the board is empty. Close the day and see if anything surprising happens overnight."
+    },
+    {
+      "elapsed_s": 260.27,
+      "elapsed_s_source_lexeme": "260.27",
+      "words": "New morning and... nothing. Empty asked column, no one comes in. Wait 30 and see if someone walks in."
+    },
+    {
+      "elapsed_s": 264.104,
+      "elapsed_s_source_lexeme": "264.104",
+      "words": "I would leave now. I fixed everything on the board, the probing puzzle was fun for four objects, and the music box sting was the best moment. But now the board is empty, nobody walks in, and the people only ever give me status lines. Repairing the cracked spare lantern for nothing does not pull me."
+    },
+    {
+      "elapsed_s": 273.327,
+      "elapsed_s_source_lexeme": "273.327",
+      "words": "Stopping on Day 2 morning with an empty board and £100. Four repairs done; the probe puzzle and the governor dial were fun, and Nora telling me the new gear made it not her grandmother s box any more was the best moment. The quit wish did not pass. I would close it, not leave it running. I would not return voluntarily tonight; maybe another evening if new people walk in with stories and someone actually answers me. Feedback: I m stopping pressed locally, nothing typed, nothing submitted, consent unchanged."
+    }
+  ]
+}

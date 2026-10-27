@@ -1209,3 +1209,403 @@ The browser is no longer needed. Coordinator owns driver and browser cleanup and
 2. Make it clear whether someone is answering what I said.
 3. Keep the complete walking countdown visible on my phone.
 ```
+
+
+## hf3-warren-r2 partial evidence — selected FREE
+
+Selected own FREE report only. Both archived alternatives: [maya-free](../reviews/remaining-partial-warren-small-stair-2026-10-26/reports/hf3-warren-r2--maya-free.md), [maya-continued](../reviews/remaining-partial-warren-small-stair-2026-10-26/reports/hf3-warren-r2--maya-continued.md). Source report SHA256 `a7bd13f244ca2ca46313ea42223ce03c0a4c34a0d8f28fddf7f639e02c7218ff`. CONT is an alternative report, not personal history. This append does not select any new record.
+
+```text
+I stopped at **685.6s (11m26s), reason FRUSTRATED**. I'm finished with the browser. I couldn't write `report.md` because each Bash call here may contain only curl and I have no file-writing tool, so please save this response as the report.
+
+## 1. Session
+- **Who:** Maya Chen, 24, Vancouver library assistant.
+- **Exposure:** declared return to Warren. I used only my supplied diary history, including my earlier Warren R1 visit, where I stopped CONFUSED because I couldn't find the safe depth.
+- **Round:** `hf3-warren-r2`, free arm, session `hf3-warren-r2-maya-chen`.
+- **URL:** https://warren.adamwhite.work. I chose Resume · 19 August.
+- **Device:** 1280×800 keyboard/mouse/light, through the curl driver at 127.0.0.1:20400.
+- **Time:** page opened at 0.11s, Resume at 3.15s, stop at 685.6s. Floor 0, ceiling 25 minutes.
+- **Game clock:** Dawn · 19 Aug → Evening · 2 Sep, year 1.
+- **Speed changes:**
+  - Slow at 7.2s, because last time a day passed while I read.
+  - Steady at 535s, because I was only waiting.
+  - Slow at 610s, to watch the riders.
+- I changed no consent or recording setting. The coordinator will add the release commit.
+
+## 2. First impressions
+- **3.1s:** "Back to the hill. Last time I could not picture the safe room. The title now mentions people asking to talk about rest; that is what I would want, but those boxes are for new hills, so I will just resume."
+- **14.4s:** "On the wide screen the cellar is finally big enough to see, with the jars and someone by a fire. This time I am going straight down, deeper, instead of guessing at doors."
+- **29.9s:** "Oh. Riders search 9 passage steps from each opening; count steps, not depth. That is the sentence I needed last time and never found…"
+- **First-minute note:** logged late, at 69.4s, after a wait returned at 65.2s. I did not reconstruct anything at the 60s mark.
+
+## 3. Verbatim
+These are my logged words, unchanged. The raw JSONL is with the coordinator.
+- 7.2: "Slow straight away this time; last visit a day went while I read."
+- 17.4: "Tamar checking the route in daylight is a nice small touch. Marking the stone right under the cellar floor."
+- 20.9: "The same answer as last time: dig deeper, or shut doors. I am going to open More before I add squares blindly."
+- 29.9: "Oh. Riders search 9 passage steps from each opening; count steps, not depth. That is the sentence I needed last time and never found. And it paused for reading. Now I can actually plan: a passage that winds more than nine steps, with beds at the end. That feels like a puzzle I can read."
+- 33.4: "One more square down, then I will turn the passage sideways."
+- 39.7: "I like that it lists each reachable square. Turning right now."
+- 49.5: "Three places are beyond riders reach! First time this hill has said anything is safe. Six people, so one more square should do it."
+- 52.8: "Six places are beyond riders reach. That is exactly six people. I could have cried a little last time for that sentence."
+- 69.4 (first_minute, late): "This note is a little late, just after a wait returned at sixty-five seconds. I chose Slow at once, chalked below the cellar, and opened More in the reading. It told me riders search nine passage steps from each opening. I marked a passage down and then right until it said six places are beyond riders reach, for six people. On the wide screen I can see the whole cellar. Now I am waiting for someone to choose to dig; Yusuf says some stone may still be loose."
+- 100.1: "Meryem coughing dust again. And storage is asking for attention, like last time. I want to see how far the passage has gone first."
+- 107.9: "Now I can see it: my dashed plan is still there this time, an L of pickaxe squares, and the last two at the far end are shaded grey. I am guessing grey means the safe part. Someone is already standing in the first dug square. I will leave storage for a moment; I want this passage to exist."
+- 142.2: "Kian still needs to care for his sister Ada. That small line makes him a person. The storage request has stayed, so I will look at furnish; last time it felt like a distraction, but jars matter for the same six people."
+- 148.2: "Water dry again, same moment as last time. First the store in the cellar corner."
+- 151.0: "Store marked. It says tap here for water, so I will."
+- 154.5: "So water is not mine to fix; people choose when to fetch it. Nobody is digging right now either. I can only wait and trust them, which is fine if I can see it moving."
+- 191.0 (pulse 4): "I finally have a plan I understand, and now the game told me plainly why digging stopped: no daylight down there, so I need a lamp. That is a readable consequence, like a puzzle piece."
+- 197.6: "Hanging the lamp in the dug square at the top of my passage, right above the next chalk."
+- 233.1: "The lamp got a tick. The log is now mostly the same five people repeated five and six times. I want to see whether the passage grew."
+- 239.0: "The downward part is dug, three squares, and the store has jars. The sideways chalk is next to the dark bottom, so I am hanging a second lamp there before they stop again."
+- 307.7: "Requested phone check, not my own choice. Nothing new for two days in the log; I was going to look at the hill anyway."
+- 316.4: "On the phone the hill is just blank stone with the cellar corner pushed off the top right; my passage is out of view. That is what I fought last time. Back to the wide screen."
+- 326.5: "Two lamps, the sideways chalk untouched, and nobody in the hill at all for three game days. The view also jumped after the resize. The log is only repeats. Is anyone going to dig it?"
+- 330.2: "Nobody is digging it now. People may choose another task or rest. That tells me what, not why. I will look at the people themselves."
+- 333.5: "Everyone has a reason: Yusuf discussing marks, Meryem labelling a route, Tariq resting. Nobody is choosing my chalk. I want to see if I can ask Meryem."
+- 337.4: "I can invite her, which I like, but she has labelled that same visible route seven times. End optional work sounds like it might free her for the chalk. I am guessing."
+- 341.7: "Nothing visibly changed after End optional work. Same text. Time is paused, so maybe it happens when I close. I will close and watch."
+- 376.8 (pulse 3): "I thought Close would close everything, but it only stepped back to the village list, and time stayed paused the whole wait. Meryem still labels the same route. I liked learning the rule; now I am stuck between a good plan and people who will not dig it."
+- 415.4: "Oh no. Meryem agrees to stop optional work on the refuge. I thought End optional work would end her route labelling and free her for the chalk. Instead I told the one person I like to stop working on the shelter. It did answer me, at least, and she agreed, but the opposite of what I meant."
+- 418.9: "Meryem is resting in the shade now. I want to see whether I can take back what I asked."
+- 422.1: "No way to take it back; End optional work is just greyed. Maybe the words underneath say something."
+- 427.6: "I need a break from all this. So she did want it. That softens my mistake a lot; maybe I accidentally listened to her. I still need someone to dig. Yusuf is the dig-master; I will look at him."
+- 431.2: "He keeps saying some stone may still be loose. The line where work must stop today sounds like the thing nobody has told me. I will ask him."
+- 435.5: "Pending, waits for a quiet moment. Fair. But he has been discussing the same marks for nine entries; I wonder when a quiet moment comes."
+- 471.9: "Yusuf answered! He showed a crossed-out passage and admitted he once kept people working past the agreed time; a mark must show others when they can stop me. That is a real person with a past, and it was my question that opened it. But the injured worker? I do not know who that is. And a family with a donkey went away because there were no beds. That stung."
+- 507.8: "Three more game days, still nobody on my sideways chalk. Yusuf keeps saying some stone may still be loose. I am using look on the first undug square to see if that is the reason."
+- 511.3: "Look gave me no reading at all. Water is dry again. I need to see where things are."
+- 519.1: "The view has slid on its own; now my chalk is at the very bottom edge, which is why look missed it. I am fitting the hill."
+- 532.3 (want_quit FRUSTRATED): "I know exactly what I want: two more squares dug and six beds. The hill even agrees six places would be safe. But for six game days nobody has touched them, the lamp is hung, and every reading just says people may choose another task or rest. The log is the same six lines repeated twelve times. I would close it here. I will give it one more stretch on Steady to see if waiting is all it needs."
+- 535.0: "Switching to Steady because I am only waiting now, not reading."
+- 570.8 (pulse 2): "Steady only made the same lines repeat faster: thirteen times now. Water still dry, my chalk still untouched. Yusuf's confession was the best thing tonight, and it is already sinking under the repeats."
+- 604.8: "Smoke, more than a field fire. This is real, so ringing is not a false alarm. My heart actually jumped. Four are below already, two above. Ringing."
+- 610.2: "Back to Slow; I want to watch who comes down, not miss it."
+- 636.9: "Scouts, not an attack. And the report goes person by person: Tamar sleeping three levels down, Kian and Meryem and Yusuf sleeping above ground, all would have been caught. That is very clear and a little chilling; it is the clearest the hill has ever been with me. They searched my passage six levels down too. They may return with more riders, and my two safe squares are still chalk. I rang the bell and they slept anyway."
+- 672.5: "Kian: I am asleep. That made me laugh, as an answer to an alarm bell. We lived through the first visit, with a tick. But next time they may strike, and my safe room is still two chalk squares nobody will dig. I think this is where I would stop for tonight."
+- 679.1: "There is an I am stopping choice this time. Selecting it locally. I will not type anything or press Submit."
+- 685.6 (stop): see section 7.
+
+## 4. Moments
+- **What held me:**
+  - Finding the nine-step rule under More at 21–30s. This was the turnaround from last visit.
+  - Marking a passage until the reading said "Six places are beyond riders' reach" at 49.5s.
+  - The lamp prompt, which gave me a clear reason why digging had stopped.
+  - Yusuf's crossed-out-passage confession at about 467s, which my question opened.
+  - The scouts' report going person by person.
+  - Kian answering the bell with "I'm asleep."
+- **What lost me:**
+  - My sideways chalk sat undug from about 24 Aug to 2 Sep, even with lamps hung.
+  - The same lines repeated in the log up to 14 times.
+  - My End optional work mistake with Meryem.
+  - The view sliding after the resize.
+- **Pulses:** 191.0s = 4, 376.8s = 3, 570.8s = 2.
+- **Quit wish:** one, at 532.3s, FRUSTRATED. The riders lifted my interest briefly, but the wish never really passed, and I stopped at 685.6s.
+
+## 5. Confusion and clarity
+- **Became clear:**
+  - Riders search 9 passage steps, and you count steps rather than depth.
+  - The planner counts safe places as you mark squares.
+  - People need a lamp beside dark stone before they will dig there.
+  - Water is fetched by people, not by me.
+  - The bell is a request; people may refuse.
+- **Stayed unclear:**
+  - Why nobody dug the lit sideways squares. Every reading said only "Nobody is digging it now. People may choose another task or rest."
+  - My guess is that it has to do with Yusuf's "some stone may still be loose", but that is unverified.
+- **My misreading:** "End optional work" meant stopping her work on the refuge, not ending her route-labelling. She said she needed a break, so it may have been kind anyway.
+- **Panels:** Close on a person's panel went back to the village list, and time stayed paused through a whole 30-second wait at about 342–372s.
+- **The injured worker** in Yusuf's line was never identified for me.
+
+## 6. Actual device use
+- **Main size:** 1280×800. I viewed current-wide.png captures at:
+  - 7.4s: the whole cellar.
+  - 100.1s: the L-shaped dashed plan, with its last two squares grey.
+  - 233.1s: the downward squares dug, store jars in place.
+  - 320.0s: the view shifted up after the resize.
+  - 511.3s: the chalk at the bottom edge.
+  - 519.4s: after Fit hill, the plan fully visible again.
+
+  The same file was overwritten each time.
+- **Requested phone check (not my own choice):** I resized to 360×690 at 307.7s and tapped look at 311.0s. I viewed current-phone.png at 311.2s: the hill showed mostly blank stone, with the cellar corner clipped at the top right and my passage out of view. I returned to 1280×800 at 316.4s.
+- **Controls used:**
+  - Resume, Slow/Steady, chalk, map position taps, More ▸, Close reading.
+  - furnish ▾, then store and lamp.
+  - Current work and help, The village, Meryem, End optional work, More activity and words, Back to The village.
+  - Master Yusuf, his map invitation, Close, Fit hill, look.
+  - 🔔 Ring the bell, Game menu, Feedback, I'm stopping.
+- **Driver limits:** there is no drag op, so I marked by single taps. Responses from log ops reuse the last snapshot. No driver block occurred. I did not view first-minute.png. The retained files are current-wide.png and current-phone.png, plus the driver's first-minute.png.
+
+## 7. Stop and return
+**Stop at 685.6s, FRUSTRATED:** "I am stopping on the evening of 2 September, after the riders scouts left. This visit I finally found the rule I missed last time, nine passage steps, and planned a passage the game agreed would give six safe places. That felt wonderful. Then for most of two weeks nobody dug the last squares, even with lamps, and every reading just said people may choose another task. I accidentally told Meryem to stop work on the refuge, though she did want a break. Yusuf telling me about the crossed-out passage, and Kian saying I am asleep to the bell, were the best moments. I would not leave it running unattended. I would come back another evening if I could understand why people are not digging my marks, because the plan itself is now a puzzle I care about. I am stopping is selected locally; I typed nothing and pressed no Submit."
+
+**Would I return voluntarily?** Not tonight. I would come back another evening if I could understand why people are not digging my marks, because the plan itself is now a puzzle I care about.
+
+**Leave it running?** No, not unattended.
+
+**Feedback:** I'm stopping is selected locally. I typed nothing, pressed no Submit, and changed no consent. There is no receipt and no export.
+
+## 8. Changes I would want
+1. When my lit, available chalk goes undug for days, tell me why: loose stone, nobody free, or something else.
+2. Make "End optional work" say plainly that it stops work on the refuge, before I press it.
+3. Collapse the repeated routine lines so new words, like Yusuf's, don't sink under them.
+
+The coordinator owns the driver and browser cleanup. I created no workers, servers, repositories, branches or worktrees, so there is no `git worktree list` to show.
+```
+
+
+## hf3-repair-r1 partial evidence — selected FREE
+
+Selected own FREE report only. Both archived alternatives: [maya-free](../reviews/remaining-partial-warren-small-stair-2026-10-26/reports/hf3-repair-r1--maya-free.md), [maya-continued](../reviews/remaining-partial-warren-small-stair-2026-10-26/reports/hf3-repair-r1--maya-continued.md). Source report SHA256 `c8a72f4ddf6112456dde17b5238b2539eddeec04c9a4e007f32313565e193a9c`. CONT is an alternative report, not personal history. This append does not select any new record.
+
+```text
+I stopped at 234.953s (about 3m55s), reason FRUSTRATED. I'm finished with the browser. I couldn't write `report.md`: each Bash call may contain only curl, and I have no file-writing tool. Please save this response as the report.
+
+## 1. Session
+- **Who:** Maya Chen, 24, Vancouver library assistant.
+- **Exposure:** first visit to Small Works, with no known exposure to this game. I brought only my supplied diary from Voice, A Dark Room, Warren, Valley and Commonstead. No one from those games appeared, so there was no recognition.
+- **Round:** `hf3-repair-r1`, free arm, session `hf3-repair-r1-maya-chen`.
+- **URL:** https://repair.adamwhite.work. I chose ordinary Resume on the prepared workshop.
+- **Device:** 1280×800 keyboard/mouse/light, through the curl driver at 127.0.0.1:19720.
+- **Time:** opened at 0.111s, Resume at 2.764s, stop at 234.953s. Floor 0, ceiling 25 minutes.
+- **Game clock:** Day 1 · 09:00 → 13:40. The clock only moved when I acted; each action cost game minutes.
+- **Settings:** there was no speed control. I left recording and consent unchanged.
+- **Release commit:** the coordinator will add it.
+
+## 2. First impressions
+- **2.764s, Resume:** "A lantern going dark is a nice small mystery to start with. I like that it is one question, not a lore page."
+- **9.812s, Carry:** "A lovely warm lantern and Sam wanting to watch me find the fault. The guide says carry it, so I will, and I want to see it go dark myself."
+- **First-minute note:** logged at 61.449s, just after sixty seconds. It is quoted in section 3.
+
+## 3. Verbatim
+These are my logged reactions in order. The raw JSONL is with the coordinator.
+- 13.692 "It went dark, just like they said. A quarter of an hour for one test. Now I want to look inside."
+- 17.203 "Four parts in a little circuit. It works on the table and dies when moved, so I am guessing something is loose. Contact sounds like the loose thing."
+- 22.832 "Aged and dull, a hint but not proof. The guide now wants me to measure from the battery while carrying. Fine, I will follow it rather than guess."
+- 32.139 "6.00 volts at the battery while carried, so the battery is fine. The guide moves me along step by step; I like that it reads like a little detective trail, though I wanted to test my contact guess."
+- 41.77 "Six volts across the switch, so it opens when shaken. It is the switch, not my dull contact. I was wrong, and the meter told me so plainly; that is a readable consequence. But the guide did the thinking."
+- 44.65 "It says examine before changing anything. Replace would be the lazy answer and uses my only switch, so I will look first."
+- 47.937 "The guide says fit a replacement, but the outside is intact and it is my only spare. I want to try adjusting it first; maybe it is just loose inside. That is the unusual reply, and I want to see if the game lets it matter."
+- 50.768 "Tightened again, it says. Again? Someone has done this before. Testing."
+- 54.332 "Still dark. My adjustment did not fix it, or not enough. The guide sends me back to the battery, which feels like starting over; I would rather check the switch again myself."
+- 57.257 "I like that it marks the old reading as taken before the latest work. Probes are still on the switch, so I will read again there instead of the battery."
+- 61.449 first_minute "Just after sixty seconds. I am finding why a lantern goes dark when carried, with Sam watching. The meter, probes, carry and repair buttons are clear. I guessed the contact, the meter said the switch. I tried adjusting instead of replacing my only switch; it still drops six volts across the switch while carried, so my gentler fix failed. Each action costs game minutes on a 9-to-5 bar. I like the readable trail; I have not heard from Sam since the start."
+- 66.951 "All right, I give in and use my only switch. The cracked spare lantern stays whole for now; I did not want to break one thing to fix another."
+- 72.387 "Bright and steady. Oh, it is Sam’s mother’s lantern. I want to see whether she or Sam notices that I tried the gentle fix first."
+- 75.815 "Fixed, on time, a family favour for nothing. Her line about carrying it to the garden table is sweet but short, and nobody mentions my adjust attempt. Sam went quiet after the first line. I want to look at People."
+- 79.095 "Nora’s grandmother’s music box, and she does not want new parts. That is the one I care about. Rafi is from Bornova, like the Turkish names elsewhere. I want to ask Nora first."
+- 81.764 "Look at an object together first. Fair, I asked too early. I will find the music box on the board."
+- 89.761 "The music box card is below the bottom bar. Scrolling to reach it."
+- 94.843 "Accepting the music box. Three identical Accept promise buttons, so I am tapping the one on her card."
+- 102.14 "Opening the music box on the bench."
+- 105.496 "Spring, gear, governor, drum. It wants 15 turns a minute while working harder. I want to hear it sound wrong first."
+- 110.027 "The drum barely turns, the tune is unrecognisable. The guide has gone quiet, which I actually like. Now that I have looked at her box, I want to ask Nora about it."
+- 113.389 "Nora chose to tell me about the work, but her words are folded away. Opening them."
+- 117.297 "I asked about the music box and she told me about a handle sketch, her brother’s repair, an exhibition, an accessible grip. That is a real confession, and I like that she trusted me, but it has nothing to do with her grandmother’s music box. I am not sure what object she means, and there is nothing I can say back."
+- 121.427 "Without the guide I will try the same method as the lantern: measure along the chain and find where it drops."
+- 125.408 "The meter is set to Carry from the lantern; the box needs Work harder. Switching."
+- 129.579 "Across the spring first."
+- 132.444 "150 turns per minute difference across the spring. I have no idea if that is good. It says compare with Notes, so I will look."
+- 135.416 "The normal speed must be under Reference."
+- 139.797 "Oh, this is a real little puzzle. Spring 150 is right. Divide by 5 for the gear: 30. Governor at setting 2 keeps it 30, drum halves it to 15, exactly what Nora wants. So I should measure at the governor and see what the ring is doing. I like doing the arithmetic myself."
+- 147.297 "After the governor it should be 30 if the ring is right."
+- 150.958 "7.5 instead of 30. A quarter. No ring setting gives a quarter, so either the gear is slipping or the governor is stuck. I will measure at the gear to split them."
+- 158.745 pulse 4 "It is 7.5 already after the gear, where it should be 30, so the gear is the culprit and the governor is innocent. I worked that out myself from the reference, and that felt really good. Nora asked for no new parts, so I want to fix this gear rather than swap it."
+- 163.497 "Looking at the gear before touching it, like the lantern taught me."
+- 167.063 "Intact outside again, same as the switch. That tells me nothing. Last time adjust did nothing, so this time I will try cleaning; old music boxes get gummed up, I think. Keeping her grandmother’s gear."
+- 169.911 "Residue on the teeth! That sounds like the real thing. Testing."
+- 172.913 "Same speed. Cleaning removed residue but did not help. I will try adjusting before I give up on her original gear."
+- 181.043 "Cleaned and reseated, still the same. The only thing left is replacing the gear, and she said no new parts. I do not want to decide that for her. I want to ask Nora."
+- 184.314 "The Ask Nora button is gone now. Maybe What Nora said has something about the box."
+- 187.706 "Same handle-sketch story, no way to ask her about the gear. Sam wanted to see how I find the fault; maybe he has an idea."
+- 194.758 "Share an actual observation with Sam first. But I have measured the box four times and cleaned and adjusted the gear. How do I share an observation? I do not see a button for that. I am stuck between replacing a gear Nora asked me not to replace and a meter that says the gear is wrong."
+- 195.422 "Checking the i button for how sharing works."
+- 200.961 "The i panel is about Sam’s goodwill and time, not how to share an observation. Closing."
+- 205.221 "The help panel followed me to the bench and changed to Finding the fault. Closing with the corner ×."
+- 209.075 "Maybe the little arrow by the box name lets me ask Nora or put it aside."
+- 215.94 want_quit FRUSTRATED "I know what I want: to tell Nora the gear is worn and ask whether she will accept a new one. There is no way to ask her. Her sheet repeats no new parts, the people page repeats the handle sketch, and Sam wants an observation I do not know how to share. I would close it here, or replace the gear and feel I went behind her back."
+- 220.721 "There is a Recent conversation fold in her sheet. One more look before I decide."
+- 224.866 "Third time I have read the handle sketch. Nothing about the music box. Closing."
+- 225.276 "The wish has not passed. Looking at the menu before I leave."
+- 230.536 "I am stopping fits. Selecting it locally; I will not type or submit anything."
+- 234.953 stop: see section 7.
+
+## 4. Moments
+- **What held me:**
+  - The meter showing six volts across the switch, which proved my contact guess wrong in a way I could read.
+  - Old readings being marked as taken before my latest work.
+  - The music box reference table. I worked out the expected speeds myself (150 → 30 → 30 → 15) and traced the loss to the gear at 7.5. That was my favourite moment.
+- **What lost me:**
+  - The lantern owner's return line didn't mention that I had tried adjusting first.
+  - Sam went quiet after his opening line.
+  - Nora's only words were about a handle sketch, never about her music box, and they repeated in three places.
+  - Cleaning and reseating the gear changed nothing. The one remaining repair contradicted what Nora asked, and I couldn't ask her.
+- **Pulse:** one, at 158.745s, engagement 4.
+- **Quit wish:** one, at 215.94s, FRUSTRATED. It didn't pass, and I stopped about 19 seconds later.
+
+## 5. Confusion and clarity
+- **Became clear:**
+  - Probing along the chain finds where the voltage or speed drops.
+  - The meter's condition setting carried over from the lantern, so I had to switch it to Work harder.
+  - The Reference ratios let me predict the speed at each point.
+  - Look closely only reported "the outside looks intact" for both parts I examined.
+- **Stayed unclear:**
+  - "Share an actual observation with Sam first" — I found no control for sharing an observation.
+  - Which object Nora's handle sketch belonged to.
+  - Whether a gear that fails after cleaning and adjusting can be saved at all, or whether replacing it breaks her promise. I never tried replacing, so I don't know what would have happened.
+- **Lantern mystery:** the switch "tightened again" line made me wonder who had worked on it before. Nothing followed up on that.
+
+## 6. Actual device use
+- **Size:** 1280×800 only. I viewed `current-wide.png` three times, overwriting the same file:
+  - **5.011s:** the lantern scene with Sam's line, the Carry button and the guide panel.
+  - **84.738s:** the workboard. The music box card was hidden below the fixed Wait and Close bar.
+  - **97.537s:** after scrolling, the music box card was in the workshop column.
+- **Point taps:** I tapped by position twice:
+  - (185,593) to Accept the music box.
+  - (442,593) to Open it on the bench.
+  
+  I did this because three controls on the board shared the name "Accept promise" and three shared "Open on bench".
+- **Other controls used:**
+  - Carry, Look inside, part selection, Look closely, Pick up the meter, probe terminals, Read meter, Work on the part.
+  - Adjust, Replace, Clean, test buttons, Return to Sam's mother.
+  - People, Board, Bench, the meter/repair/notes tabs, Reference, ◉ Work harder, Black probe selection.
+  - Ask Nora and Ask Sam, the What Nora told me / What Nora said / Recent conversation folds.
+  - Information, the object ▾ sheet, the Close × buttons (by point when names were duplicated), Menu, Feedback ▸ and I'm stopping.
+- **Requested phone check:** I stopped before five minutes, so I never visited or saw 360×690. That check is unmet in this arm.
+- **first-minute.png:** I didn't view it.
+- **Driver:** no driver block. "Duplicate name" errors were game-state answers, and I resolved them by point taps. The clock only advanced on actions, so the game was effectively frozen between my commands.
+
+## 7. Stop and return
+**Stop at 234.953s, FRUSTRATED:** "I am stopping at 13:40 on day one with Nora’s music box on the bench. I fixed the lantern, and working out from the reference that the gear was the culprit was the best moment. But cleaning and reseating did nothing, the only fix left is a new gear she asked me not to use, and I could not ask her. I would not leave it running. I would come back another evening if I could talk to Nora about the gear, because I care how that box ends. I am stopping is selected locally; I typed nothing and pressed no Submit."
+
+**Would I return voluntarily?** Not tonight. I would come back another evening if I could talk to Nora about the gear, because I care how that box ends.
+
+**Leave it running?** No. The game says time stops while I'm away anyway.
+
+**Feedback:** I'm stopping is selected locally. I typed nothing, pressed no Submit, and changed no consent or recording setting. There is no receipt and no export.
+
+## 8. Changes I would want
+1. Let me ask the owner before a repair that goes against what they asked, like a new gear for Nora's grandmother's box.
+2. When someone answers "about the work", let it be about the object I'm actually holding.
+3. Show me how to "share an observation" with Sam when the game asks me to.
+
+The coordinator owns cleanup of the driver and browser. I created no workers, servers, repositories or worktrees, so there is no `git worktree list` to show. The only screenshot I made is `current-wide.png`, within the limit.
+```
+
+
+## hf3-stairwell-r1 partial evidence — selected FREE
+
+Selected own FREE report only. Both archived alternatives: [maya-free](../reviews/remaining-partial-warren-small-stair-2026-10-26/reports/hf3-stairwell-r1--maya-free.md), [maya-continued](../reviews/remaining-partial-warren-small-stair-2026-10-26/reports/hf3-stairwell-r1--maya-continued.md). Source report SHA256 `8c3e56faf5cc08158944eabbb4a228789566eb03b890a0d2f562879056652482`. CONT is an alternative report, not personal history. This append does not select any new record.
+
+```text
+I stopped at **613.774s (about 10m14s), reason BORED**. I'm done with the browser, so the coordinator can clean up the driver. I couldn't write `report.md` because I have no file-writing tool and Bash is limited to curl, so please save this response as the report.
+
+## 1. Session
+- **Who:** Maya Chen, 24, Vancouver library assistant.
+- **Exposure:** my first Stairwell visit. I resumed the prepared Monday 07:00 notebook with Continue. That save is not a past visit of mine.
+- **Round:** `hf3-stairwell-r1`, free arm, session `hf3-stairwell-r1-maya-chen`.
+- **History I brought:** only my supplied diary extracts from Voice, A Dark Room, Warren, Valley and Commonstead.
+- **URL:** https://stairwell.adamwhite.work
+- **Device:** 1280×800 keyboard/mouse/light, through the curl driver at 127.0.0.1:19760. I also did the requested 360×690 check.
+- **Time:** page opened at 0.11s, Continue at 3.34s, stop at 613.774s. Floor 0, ceiling 25 minutes.
+- **Game clock:** Monday 07:00 to Monday 19:46.
+- **Settings:** no speed control was changed and I never used Skip. Recording and consent were unchanged.
+- **Release commit:** the coordinator will add it.
+
+## 2. First impressions
+- **About 3–9s:** two names gave me low-confidence recognition guesses. "Rıza" in the title reminded me of Halil's friend in Voice. "Hacer" in flat 1 reminded me of Halil's neighbour in Voice. At 182s I decided Hacer was probably a coincidence, because she is a retired shop assistant handling her niece's paperwork. Both stay guesses.
+- **14–53s:** the bread round was readable straight away. Tarık said "May your legs stay strong" and Sevim said "You arrived on time. I noticed."
+- **First-minute note:** logged at 64.1s, which is after the 60-second mark.
+
+## 3. Verbatim
+These are my words from this part of the session. The earlier lines are in the raw JSONL, which the coordinator holds unchanged.
+- 433: "At last, Derya. A night nurse who is not sure she can trust me. I would rather sit with her than ask her anything."
+- 474: "People are honest at four in the morning. That is a lovely line from a night nurse. Five people, five small true things today. I would like to ask her about the work boundaries option, but I suspect it is a different kind of conversation."
+- 503: "Hacer opened herself again with nothing left to say today. I have met all five. I will let the evening pass and see what Tuesday brings."
+- 537: "Leave the courtyard gate open is new. I do not know who it is for. Maybe the cat that may or may not exist. I am curious."
+- 541 (pulse 3): "I met Derya and liked her four in the morning line. Then the gate button did nothing I could see, and now the log says I have already heard these stories today. The people are good; the evening is empty."
+- 574: "Bins from the top floor. Of course. They repeated the same stories, the log says, and so am I. I will carry the bins."
+- 595 (want_quit BORED): "The bins were out before the truck, and Hacer has opened herself again with nothing to say until tomorrow. I have met all five, heard my rumour travel, and now the evening is the same lines repeating. I like these people, but I would close it here tonight and come back to see Tuesday."
+- 608: "Selecting the stopping choice locally by position, because its name has an apostrophe my shell will not pass. I will not type or Submit."
+- 613.8 (stop): see section 7.
+
+Earlier lines summarised from the JSONL (my own words there, not reproduced here):
+- I was delighted when "Sevim: Tarık is kind" travelled.
+- Sevim's forty years of children reading aloud moved me.
+- At the phone check I noted that the labels overlapped.
+- Hacer's table felt flat to carry while she was out.
+- My invented rumour "Derya works hard" travelled through the building, which was delightful and a bit unnerving.
+
+## 4. Moments
+**What held me:**
+- Sitting with each person and getting one specific true line:
+  - Tarık's frozen ferry in 1974: "Nobody believes me."
+  - Burak on knowing when you have said enough.
+  - Sevim's children reading aloud.
+  - Derya's four in the morning.
+- Overhearing my own told and invented facts move from flat to flat.
+- Tarık offering to pass on Sevim's parcel.
+
+**What lost me:**
+- Each person has only one new thing per day.
+- Errands done for absent people ("will find the work done") got no acknowledgement.
+- Hacer kept opening herself with nothing left to say.
+- By evening the log read "They repeated the same stories."
+
+**Pulses:** 171.7s = 4, 356.99s = 3, 541s = 3.
+
+**Quit wish:** one, at 595s, BORED. It did not pass, and I stopped at 613.8s.
+
+## 5. Confusion and clarity
+**What became clear:**
+- Talking pauses time.
+- I can ask "Anything new?" and sit together once per person per day.
+- Telling something "for certain" spreads, and so does something I make up.
+- The Notebook tracks trust and how much I have learned.
+
+**What stayed confusing:**
+- At flat 2, "Go to flat 2" answered "You are already here. There is nothing to pick up or deliver just now" while Sevim's parcel order was still showing. I got around it by leaving the parcel at the step.
+- "Leave the courtyard gate open" produced no visible result.
+- I can't tell whether Hacer ever noticed the table.
+- I didn't try "Ask about work boundaries and training", so I don't know what it is.
+
+## 6. Actual device use
+**Desktop, 1280×800 (primary):**
+- I viewed `current-wide.png` at 9.7s and 67.2s. The image was overwritten at 604.1s with the Feedback dialog, and I viewed that too. The dialog was readable; "I'm stopping" and "I'm confused" sat above an empty note box and Submit.
+- Controls I used:
+  - Continue, Orders, Go to…, the flat buttons, Residents, Notebook.
+  - Anything new?, Sit together, Tell… (including Make something up), and Leave Sevim's parcel here.
+  - Close conversation, the resident tabs, Leave the courtyard gate open.
+  - Game menu, Feedback, and "I'm stopping".
+
+**Requested phone check, 360×690 (not my own choice):**
+- I resized at 274.7s, tapped Tarık at 278s, and viewed `current-phone.png` at 278.2s.
+- In that image the step labels and stick figures overlapped, and the parcel button and Tarık's description were not in view.
+- I returned to 1280×800 at 284.8s.
+
+**Driver limits:**
+- Any name containing an apostrophe broke my shell quoting.
+  - The first shot request was refused, and I resent it without the apostrophe.
+  - At 604s "I'm stopping" would not go through by name, so I tapped it by position at (507,188) after viewing the screenshot. It became pressed.
+- A coordinate tap at (1000,200) earlier missed Sevim, and tapping by name worked.
+- None of these blocked me.
+- I did not view the driver's `first-minute.png`.
+
+## 7. Stop and return
+**Stop at 613.774s, BORED:**
+
+> I am stopping on Monday evening at the front step, after the bins. My first day: bread for five, a parcel Tarık offered to pass on, and a table carried for Hacer, who never mentioned it. I loved the small true things people said when I sat with them: the frozen ferry, forty years of children reading aloud, people being honest at four in the morning. Best of all, I heard my own words travel the building, even the one I made up about Derya, which was a little unnerving. But by evening everyone had said their one thing, and the log was the same lines over and over. I would not leave it running. I would come back another evening to see Tuesday, whether anyone remembers what I told them, and whether Tarık ever gets believed about the ice. I am stopping is selected locally; I typed nothing and pressed no Submit.
+
+**Would I return voluntarily?** Not tonight. I would come back another evening to see Tuesday, whether anyone remembers what I told them, and whether Tarık ever gets believed about the ice.
+
+**Would I leave it running?** No.
+
+**Feedback:** "I'm stopping" is selected locally and nothing else. I typed nothing, pressed no Submit, and changed no consent. There is no receipt and no export.
+
+## 8. Changes I would want
+1. Let people react when they find work I did while they were out, like Hacer's table.
+2. Keep the evening alive once everyone's one line is used up, so the log isn't the same stories repeating.
+3. Fix "You are already here" when an order for that flat is still showing.
+
+I created no workers, servers, repositories, branches or worktrees, so there is no `git worktree list` to show. The retained screenshots are `current-wide.png`, `current-phone.png` and the driver's `first-minute.png`.
+```

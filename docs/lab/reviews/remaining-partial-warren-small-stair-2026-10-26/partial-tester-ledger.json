@@ -1,0 +1,558 @@
+[
+  {
+    "round": "hf3-repair-r1",
+    "person": "maya",
+    "status": "PARTIAL accepted reports only; no unrun verdict/control",
+    "target_date": "2026-10-27",
+    "arms": [
+      {
+        "arm": "CONT",
+        "session": "hf3-repair-r1/maya-continued",
+        "report": "reports/hf3-repair-r1--maya-continued.md",
+        "complete_return": "../games-deferred-intake-2026-10-26.md#repair-game-hf3-repair-r1-maya-continued",
+        "asks": [
+          {
+            "canonical_action_id": "F-1476",
+            "ask": "When I've found the exact faulty part, point me to where I can get one before I hand the object back.",
+            "target": "games-deferred → repair",
+            "target_date": "2026-10-27",
+            "report_sha256": "76d7622637770bf960be50bf7dfa3596caa0e4c825891f37527c17107d9a2821",
+            "quote_sha256": "208ea13e55d789d96b97bb3db844ae5d4ccf2d9c1571da12588e958963926ce7",
+            "disposition": "mixed",
+            "canonical_action": "preserve existing row verbatim"
+          },
+          {
+            "canonical_action_id": "F-1477",
+            "ask": "Let me say something back when someone tells me something personal.",
+            "target": "games-deferred → repair",
+            "target_date": "2026-10-27",
+            "report_sha256": "76d7622637770bf960be50bf7dfa3596caa0e4c825891f37527c17107d9a2821",
+            "quote_sha256": "7972a84d6d59d8388bd834a0d22cdc2a8fcbb99660442b655d41580b6149ab19",
+            "disposition": "mixed",
+            "canonical_action": "preserve existing row verbatim"
+          },
+          {
+            "canonical_action_id": "F-1478",
+            "ask": "Keep Halil's story in his own words instead of following it with a list of his problems.",
+            "target": "games-deferred → repair",
+            "target_date": "2026-10-27",
+            "report_sha256": "76d7622637770bf960be50bf7dfa3596caa0e4c825891f37527c17107d9a2821",
+            "quote_sha256": "1ae036cfdc41731428d74eb4280ed7f88fc038bf7c1970590549aa31379c3c6b",
+            "disposition": "mixed",
+            "canonical_action": "preserve existing row verbatim"
+          }
+        ]
+      },
+      {
+        "arm": "FREE",
+        "session": "hf3-repair-r1/maya-free",
+        "report": "reports/hf3-repair-r1--maya-free.md",
+        "complete_return": "../games-deferred-intake-2026-10-26.md#repair-game-hf3-repair-r1-maya-free",
+        "asks": [
+          {
+            "canonical_action_id": "F-1473",
+            "ask": "Let me ask the owner before a repair that goes against what they asked, like a new gear for Nora's grandmother's box.",
+            "target": "games-deferred → repair-game (Small Works)",
+            "target_date": "2026-10-27",
+            "report_sha256": "c8a72f4ddf6112456dde17b5238b2539eddeec04c9a4e007f32313565e193a9c",
+            "quote_sha256": "bbaea1622e6b587b7f06a42b08755b3dddbf9612d49f313c7b0ff23219fea953",
+            "disposition": "mixed",
+            "canonical_action": "preserve existing row verbatim"
+          },
+          {
+            "canonical_action_id": "F-1474",
+            "ask": "When someone answers \"about the work\", let it be about the object I'm actually holding.",
+            "target": "games-deferred → repair-game (Small Works)",
+            "target_date": "2026-10-27",
+            "report_sha256": "c8a72f4ddf6112456dde17b5238b2539eddeec04c9a4e007f32313565e193a9c",
+            "quote_sha256": "06eb38856e8153fcac16c18aed407032ca3aad4240e332617a9357dc4c6fed18",
+            "disposition": "mixed",
+            "canonical_action": "preserve existing row verbatim"
+          },
+          {
+            "canonical_action_id": "F-1475",
+            "ask": "Show me how to \"share an observation\" with Sam when the game asks me to.",
+            "target": "games-deferred → repair-game (Small Works)",
+            "target_date": "2026-10-27",
+            "report_sha256": "c8a72f4ddf6112456dde17b5238b2539eddeec04c9a4e007f32313565e193a9c",
+            "quote_sha256": "656932db82cce86dac9bd0f9c9d66bed054e366773c7c0d6e37ca93dfffe8ad4",
+            "disposition": "mixed",
+            "canonical_action": "preserve existing row verbatim"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "round": "hf3-repair-r1",
+    "person": "nia",
+    "status": "PARTIAL accepted reports only; no unrun verdict/control",
+    "target_date": "2026-10-27",
+    "arms": [
+      {
+        "arm": "FREE",
+        "session": "hf3-repair-r1/nia-free",
+        "report": "reports/hf3-repair-r1--nia-free.md",
+        "complete_return": "../games-deferred-intake-2026-10-26.md#repair-game-hf3-repair-r1-nia-free",
+        "asks": [
+          {
+            "canonical_action_id": "F-1485",
+            "ask": "Show the owner's own words, like \"my grandmother's, no new parts\", on the bench next to the repair buttons, not only on People.",
+            "target": "games-deferred → small works",
+            "target_date": "2026-10-27",
+            "report_sha256": "08d4b791219316d1cce8fac92d4d6a10998eac3485bb4d05b1a7d31eb82e1afc",
+            "quote_sha256": "021ebd46ded9af29d32cd63dd94f9220eab621e1aa45f4aa4fea91f1f950e89a",
+            "disposition": "mixed",
+            "canonical_action": "preserve existing row verbatim"
+          },
+          {
+            "canonical_action_id": "F-1486",
+            "ask": "Let the people react to how I fixed something, and let me reply when Nora or Rafi tells me something.",
+            "target": "games-deferred → small works",
+            "target_date": "2026-10-27",
+            "report_sha256": "08d4b791219316d1cce8fac92d4d6a10998eac3485bb4d05b1a7d31eb82e1afc",
+            "quote_sha256": "7acb6b42c34edbc4c84803d2e25cfb0191ea9bcb6877f1575b87cc700f5bb8ca",
+            "disposition": "mixed",
+            "canonical_action": "preserve existing row verbatim"
+          },
+          {
+            "canonical_action_id": "F-1487",
+            "ask": "Let my own project do something when it works. I wanted the paper theatre to put on its show.",
+            "target": "games-deferred → small works",
+            "target_date": "2026-10-27",
+            "report_sha256": "08d4b791219316d1cce8fac92d4d6a10998eac3485bb4d05b1a7d31eb82e1afc",
+            "quote_sha256": "cb5e1670d8f04d953ef8a5b3503126bc6bf709799ee9b47d49a7d700f2ad7f76",
+            "disposition": "mixed",
+            "canonical_action": "preserve existing row verbatim"
+          }
+        ]
+      }
+    ],
+    "unrun_alternative": {
+      "arm": "CONT",
+      "status": "PENDING / NOT RUN",
+      "verdict": null,
+      "FREE_selected_for_history": false
+    }
+  },
+  {
+    "round": "hf3-warren-r2",
+    "person": "nia",
+    "status": "PARTIAL accepted reports only; no unrun verdict/control",
+    "target_date": "2026-10-27",
+    "arms": [
+      {
+        "arm": "CONT",
+        "session": "hf3-warren-r2/nia-continued",
+        "report": "reports/hf3-warren-r2--nia-continued.md",
+        "complete_return": "../games-deferred-intake-2026-10-26.md#warren-hf3-warren-r2-nia-continued",
+        "asks": [
+          {
+            "canonical_action_id": "F-1200",
+            "ask": "Give the families who arrive later their own invitations and stories.",
+            "target": "games-deferred → warren",
+            "target_date": "2026-10-27",
+            "report_sha256": "74aad6a287b2a71d4af449684ed751d96d308918c5248a5c29abab793a38ca67",
+            "quote_sha256": "8ef72c0451c06a6cb7646c2904aab8d1a1dd6b334695b8e21468a90bc6e05cbf",
+            "disposition": "mixed",
+            "canonical_action": "insert existing reserved row"
+          },
+          {
+            "canonical_action_id": "F-1201",
+            "ask": "Let me test a finished door myself when it's quiet, without a false alarm.",
+            "target": "games-deferred → warren",
+            "target_date": "2026-10-27",
+            "report_sha256": "74aad6a287b2a71d4af449684ed751d96d308918c5248a5c29abab793a38ca67",
+            "quote_sha256": "4c39b7e937cf9ae369e72001d54d05165a440ddae721807978feb63e3093c0d6",
+            "disposition": "mixed",
+            "canonical_action": "insert existing reserved row"
+          },
+          {
+            "canonical_action_id": "F-1202",
+            "ask": "Stop repeating the same chore line over and over in the news, and show me what's actually new.",
+            "target": "games-deferred → warren",
+            "target_date": "2026-10-27",
+            "report_sha256": "74aad6a287b2a71d4af449684ed751d96d308918c5248a5c29abab793a38ca67",
+            "quote_sha256": "f8b0d1b9fd3a7145c3622500a447ff75125d5f5f7bf89d828a921b963aaeb040",
+            "disposition": "mixed",
+            "canonical_action": "insert existing reserved row"
+          }
+        ]
+      },
+      {
+        "arm": "FREE",
+        "session": "hf3-warren-r2/nia-free",
+        "report": "reports/hf3-warren-r2--nia-free.md",
+        "complete_return": "../games-deferred-intake-2026-10-26.md#warren-hf3-warren-r2-nia-free",
+        "asks": [
+          {
+            "canonical_action_id": "F-1197",
+            "ask": "Let me test a finished door on the hill I already have, without a false alarm.",
+            "target": "games-deferred → warren",
+            "target_date": "2026-10-27",
+            "report_sha256": "c0d10e74db914446531d38c410603c502eb08b24e798481f35e1816a07640674",
+            "quote_sha256": "9794b29d0072748137ca6df1e0b672a33f26d47c39b73d6f1b8ab31833ca8465",
+            "disposition": "mixed",
+            "canonical_action": "insert existing reserved row"
+          },
+          {
+            "canonical_action_id": "F-1198",
+            "ask": "Tell me plainly in the Journal whether anyone shut the door during a bell call.",
+            "target": "games-deferred → warren",
+            "target_date": "2026-10-27",
+            "report_sha256": "c0d10e74db914446531d38c410603c502eb08b24e798481f35e1816a07640674",
+            "quote_sha256": "c9ff43058c485adc55ee51bf7c399cf14bb844b2462dbae5dd13fbea54520170",
+            "disposition": "mixed",
+            "canonical_action": "insert existing reserved row"
+          },
+          {
+            "canonical_action_id": "F-1199",
+            "ask": "Slow down or pause on Fast when something I set up happens, so I can actually watch it.",
+            "target": "games-deferred → warren",
+            "target_date": "2026-10-27",
+            "report_sha256": "c0d10e74db914446531d38c410603c502eb08b24e798481f35e1816a07640674",
+            "quote_sha256": "cf975cbbcfee4d93f83186f88eedaafe8d64cccb4618a7a39b6e296035845880",
+            "disposition": "mixed",
+            "canonical_action": "insert existing reserved row"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "round": "hf3-stairwell-r1",
+    "person": "maya",
+    "status": "PARTIAL accepted reports only; no unrun verdict/control",
+    "target_date": "2026-10-27",
+    "arms": [
+      {
+        "arm": "CONT",
+        "session": "hf3-stairwell-r1/maya-continued",
+        "report": "reports/hf3-stairwell-r1--maya-continued.md",
+        "complete_return": "../games-deferred-intake-2026-10-26.md#stairwell-hf3-stairwell-r1-maya-continued",
+        "asks": [
+          {
+            "canonical_action_id": "F-1572",
+            "ask": "Let me say something back when someone shares something personal, like Burak's line about not knowing when you've said enough.",
+            "target": "games-deferred → stairwell",
+            "target_date": "2026-10-27",
+            "report_sha256": "b6b8f3796fbbee510abd0e55542440d20ac7200f346376ac16d3f6bd886f5892",
+            "quote_sha256": "4e5f9dcd63b76f34324f5bf4e6d9054d5b0fbe83217fb234aab6b87c8690a1c0",
+            "disposition": "mixed",
+            "canonical_action": "preserve existing row verbatim"
+          },
+          {
+            "canonical_action_id": "F-1573",
+            "ask": "When I'm holding a parcel for someone who is out, tell me when they'll be back, or let me get on with other things without the clock crawling.",
+            "target": "games-deferred → stairwell",
+            "target_date": "2026-10-27",
+            "report_sha256": "b6b8f3796fbbee510abd0e55542440d20ac7200f346376ac16d3f6bd886f5892",
+            "quote_sha256": "ea07469ef599ce2ad8c65733512fe2e7b770415bc517aee0405302f775fd4ec7",
+            "disposition": "mixed",
+            "canonical_action": "preserve existing row verbatim"
+          },
+          {
+            "canonical_action_id": "F-1574",
+            "ask": "Let an order start when I'm already standing at the right place, instead of \"You are already here.\"",
+            "target": "games-deferred → stairwell",
+            "target_date": "2026-10-27",
+            "report_sha256": "b6b8f3796fbbee510abd0e55542440d20ac7200f346376ac16d3f6bd886f5892",
+            "quote_sha256": "0a123cbf462d5afbb43ef1c72353ac3c7d7eb23c4e09d09f4e787d8ae299ee06",
+            "disposition": "mixed",
+            "canonical_action": "preserve existing row verbatim"
+          }
+        ]
+      },
+      {
+        "arm": "FREE",
+        "session": "hf3-stairwell-r1/maya-free",
+        "report": "reports/hf3-stairwell-r1--maya-free.md",
+        "complete_return": "../games-deferred-intake-2026-10-26.md#stairwell-hf3-stairwell-r1-maya-free",
+        "asks": [
+          {
+            "canonical_action_id": "F-1569",
+            "ask": "Let people react when they find work I did while they were out, like Hacer's table.",
+            "target": "games-deferred → stairwell",
+            "target_date": "2026-10-27",
+            "report_sha256": "8c3e56faf5cc08158944eabbb4a228789566eb03b890a0d2f562879056652482",
+            "quote_sha256": "63e513ecc87795a141542f8db5bd98f2abd4f9b45fbfcfa4c39a0a0d90249572",
+            "disposition": "keep",
+            "canonical_action": "preserve existing row verbatim"
+          },
+          {
+            "canonical_action_id": "F-1570",
+            "ask": "Keep the evening alive once everyone's one line is used up, so the log isn't the same stories repeating.",
+            "target": "games-deferred → stairwell",
+            "target_date": "2026-10-27",
+            "report_sha256": "8c3e56faf5cc08158944eabbb4a228789566eb03b890a0d2f562879056652482",
+            "quote_sha256": "df2968ad36576a00ed0e91d763d16bae3ed5ea61c2c6d2b0dc7dfbe33d4f627b",
+            "disposition": "keep",
+            "canonical_action": "preserve existing row verbatim"
+          },
+          {
+            "canonical_action_id": "F-1571",
+            "ask": "Fix \"You are already here\" when an order for that flat is still showing.",
+            "target": "games-deferred → stairwell",
+            "target_date": "2026-10-27",
+            "report_sha256": "8c3e56faf5cc08158944eabbb4a228789566eb03b890a0d2f562879056652482",
+            "quote_sha256": "ed5d4046c954abb9123a58c3658c31f86f80cc555f39d497264ff446d712b290",
+            "disposition": "keep",
+            "canonical_action": "preserve existing row verbatim"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "round": "hf3-warren-r2",
+    "person": "emre",
+    "status": "PARTIAL accepted reports only; no unrun verdict/control",
+    "target_date": "2026-10-27",
+    "arms": [
+      {
+        "arm": "FREE",
+        "session": "hf3-warren-r2/emre-free",
+        "report": "reports/hf3-warren-r2--emre-free.md",
+        "complete_return": "../games-deferred-intake-2026-10-26.md#warren-hf3-warren-r2-emre-free",
+        "asks": [
+          {
+            "canonical_action_id": "F-1191",
+            "ask": "Tell me why a marked square is still waiting and whether I can do anything useful about it.",
+            "target": "games-deferred → warren",
+            "target_date": "2026-10-27",
+            "report_sha256": "59c96bdce1feaecfaa8a6db669172cf36c120f507264afb88e636d3a787a8365",
+            "quote_sha256": "639264ad4980448f2d0910ff600fb3e90fbe62a412faaa22e090ce19a2ccbff4",
+            "disposition": "mixed",
+            "canonical_action": "insert existing reserved row"
+          },
+          {
+            "canonical_action_id": "F-1192",
+            "ask": "Make an invitation’s answer noticeable without requiring me to reopen the person.",
+            "target": "games-deferred → warren",
+            "target_date": "2026-10-27",
+            "report_sha256": "59c96bdce1feaecfaa8a6db669172cf36c120f507264afb88e636d3a787a8365",
+            "quote_sha256": "66cd65d2433182fce49389d74924f9d075f1d4c810c972946e6d390a16ca4ef5",
+            "disposition": "mixed",
+            "canonical_action": "insert existing reserved row"
+          },
+          {
+            "canonical_action_id": "F-1193",
+            "ask": "Let me understand how Yusuf’s stopping line applies to the work I am planning.",
+            "target": "games-deferred → warren",
+            "target_date": "2026-10-27",
+            "report_sha256": "59c96bdce1feaecfaa8a6db669172cf36c120f507264afb88e636d3a787a8365",
+            "quote_sha256": "c3d119f939148b900cc3b97293382fe282700babc57a7cb97e2b905837c3c2fa",
+            "disposition": "mixed",
+            "canonical_action": "insert existing reserved row"
+          }
+        ]
+      },
+      {
+        "arm": "CONT",
+        "session": "hf3-warren-r2/emre-continued",
+        "report": "reports/hf3-warren-r2--emre-continued.md",
+        "complete_return": "../games-deferred-intake-2026-10-26.md#warren-hf3-warren-r2-emre-continued",
+        "asks": [
+          {
+            "canonical_action_id": "F-1194",
+            "ask": "Let me see when a marked dig starts or finishes without repeatedly inspecting it.",
+            "target": "games-deferred → warren",
+            "target_date": "2026-10-27",
+            "report_sha256": "3131868a97b5a5887053a65a565ef43b0e30cd8b635e53c642f4588e99899462",
+            "quote_sha256": "a8ac235441b31d36a606d53129c112061100e2aa47b8109f82427799c22e783e",
+            "disposition": "mixed",
+            "canonical_action": "insert existing reserved row"
+          },
+          {
+            "canonical_action_id": "F-1195",
+            "ask": "Keep the phone hill easier to locate and tap after closing panels or changing its scale.",
+            "target": "games-deferred → warren",
+            "target_date": "2026-10-27",
+            "report_sha256": "3131868a97b5a5887053a65a565ef43b0e30cd8b635e53c642f4588e99899462",
+            "quote_sha256": "e6321d2c3611f4a3fccd74c15764a64b6ca33a82070f9ee2134ca79c98d45109",
+            "disposition": "mixed",
+            "canonical_action": "insert existing reserved row"
+          },
+          {
+            "canonical_action_id": "F-1196",
+            "ask": "Give me a way to return when the next threat needs attention, rather than watch repeated daily lines.",
+            "target": "games-deferred → warren",
+            "target_date": "2026-10-27",
+            "report_sha256": "3131868a97b5a5887053a65a565ef43b0e30cd8b635e53c642f4588e99899462",
+            "quote_sha256": "0cf4b16f16fd1ac1a43599ba7f09e93e330c867ccd5611f29a54aae0a64f8ce5",
+            "disposition": "mixed",
+            "canonical_action": "insert existing reserved row"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "round": "hf3-repair-r1",
+    "person": "emre",
+    "status": "PARTIAL accepted reports only; no unrun verdict/control",
+    "target_date": "2026-10-27",
+    "arms": [
+      {
+        "arm": "CONT",
+        "session": "hf3-repair-r1/emre-continued",
+        "report": "reports/hf3-repair-r1--emre-continued.md",
+        "complete_return": "../games-deferred-intake-2026-10-26.md#repair-game-hf3-repair-r1-emre-continued",
+        "asks": [
+          {
+            "canonical_action_id": "F-1482",
+            "ask": "Point me to the Reference table the first time a target speed or voltage appears.",
+            "target": "games-deferred → small works",
+            "target_date": "2026-10-27",
+            "report_sha256": "769b61aa7dea8450c1820e03f40f350d0b4335d08a93077b74d5415ceb7686ac",
+            "quote_sha256": "d49f1f6bf1b7a7c907c70f604435e52a50573ac306bba04afdb9a4726a40ac78",
+            "disposition": "keep",
+            "canonical_action": "preserve existing row verbatim"
+          },
+          {
+            "canonical_action_id": "F-1483",
+            "ask": "Explain where my money and parts go: the £4 overnight and the recovered cells.",
+            "target": "games-deferred → small works",
+            "target_date": "2026-10-27",
+            "report_sha256": "769b61aa7dea8450c1820e03f40f350d0b4335d08a93077b74d5415ceb7686ac",
+            "quote_sha256": "1ffc8203c0a4c54248cf64d58dbf0cf526f04b5b5fb9b112cb5bd2f917a4f1c1",
+            "disposition": "keep",
+            "canonical_action": "preserve existing row verbatim"
+          },
+          {
+            "canonical_action_id": "F-1484",
+            "ask": "When a part is out of stock, tell me where to get one on the same screen.",
+            "target": "games-deferred → small works",
+            "target_date": "2026-10-27",
+            "report_sha256": "769b61aa7dea8450c1820e03f40f350d0b4335d08a93077b74d5415ceb7686ac",
+            "quote_sha256": "6ae237ee3f3d1e610165946404609c8a02d4a274e2a214798d21acf7efdcc14e",
+            "disposition": "keep",
+            "canonical_action": "preserve existing row verbatim"
+          }
+        ]
+      },
+      {
+        "arm": "FREE",
+        "session": "hf3-repair-r1/emre-free",
+        "report": "reports/hf3-repair-r1--emre-free.md",
+        "complete_return": "../games-deferred-intake-2026-10-26.md#repair-game-hf3-repair-r1-emre-free",
+        "asks": [
+          {
+            "canonical_action_id": "F-1479",
+            "ask": "Tell me what the nightly £4 is for, at the moment it is taken.",
+            "target": "games-deferred → small works",
+            "target_date": "2026-10-27",
+            "report_sha256": "2872aebc47212c358214515cfb643a528166eeeb472cdaa208e4f93316e5431f",
+            "quote_sha256": "ebbaa2c22f179b6cb413fdb0096ab16f923896b15277baaec386ff7ab1ac9a86",
+            "disposition": "mixed",
+            "canonical_action": "preserve existing row verbatim"
+          },
+          {
+            "canonical_action_id": "F-1480",
+            "ask": "When I recover a part from the donor lantern, put it in the drawer, or tell me why it is not there.",
+            "target": "games-deferred → small works",
+            "target_date": "2026-10-27",
+            "report_sha256": "2872aebc47212c358214515cfb643a528166eeeb472cdaa208e4f93316e5431f",
+            "quote_sha256": "40a1542d3b6632e6341ae29470a2af52eeb89c5b56994ce5349e2aea206b9c8c",
+            "disposition": "mixed",
+            "canonical_action": "preserve existing row verbatim"
+          },
+          {
+            "canonical_action_id": "F-1481",
+            "ask": "Vary the faults, so the second fan is not the same battery swap as the first.",
+            "target": "games-deferred → small works",
+            "target_date": "2026-10-27",
+            "report_sha256": "2872aebc47212c358214515cfb643a528166eeeb472cdaa208e4f93316e5431f",
+            "quote_sha256": "0ff89e8497af5725407bbafb420396979d387b606f9b7323fb4a98a06f6e712f",
+            "disposition": "mixed",
+            "canonical_action": "preserve existing row verbatim"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "round": "hf3-warren-r2",
+    "person": "maya",
+    "status": "PARTIAL accepted reports only; no unrun verdict/control",
+    "target_date": "2026-10-27",
+    "arms": [
+      {
+        "arm": "FREE",
+        "session": "hf3-warren-r2/maya-free",
+        "report": "reports/hf3-warren-r2--maya-free.md",
+        "complete_return": "../games-deferred-intake-2026-10-26.md#warren-hf3-warren-r2-maya-free",
+        "asks": [
+          {
+            "canonical_action_id": "F-1185",
+            "ask": "When my lit, available chalk goes undug for days, tell me why: loose stone, nobody free, or something else.",
+            "target": "games-deferred → warren",
+            "target_date": "2026-10-27",
+            "report_sha256": "a7bd13f244ca2ca46313ea42223ce03c0a4c34a0d8f28fddf7f639e02c7218ff",
+            "quote_sha256": "2a695fb36732600aae2d838b592f3678131b6b317144982308010bbabc14b672",
+            "disposition": "mixed",
+            "canonical_action": "insert existing reserved row"
+          },
+          {
+            "canonical_action_id": "F-1186",
+            "ask": "Make \"End optional work\" say plainly that it stops work on the refuge, before I press it.",
+            "target": "games-deferred → warren",
+            "target_date": "2026-10-27",
+            "report_sha256": "a7bd13f244ca2ca46313ea42223ce03c0a4c34a0d8f28fddf7f639e02c7218ff",
+            "quote_sha256": "521c77298729d10b17a3acb1d8657ad95ec10e90b13da0b48abf16b92d2ff7b8",
+            "disposition": "mixed",
+            "canonical_action": "insert existing reserved row"
+          },
+          {
+            "canonical_action_id": "F-1187",
+            "ask": "Collapse the repeated routine lines so new words, like Yusuf's, don't sink under them.",
+            "target": "games-deferred → warren",
+            "target_date": "2026-10-27",
+            "report_sha256": "a7bd13f244ca2ca46313ea42223ce03c0a4c34a0d8f28fddf7f639e02c7218ff",
+            "quote_sha256": "7db7358d70d0c18204ae106f559740cb97bf1006af546fb306f6697f02b99d7b",
+            "disposition": "mixed",
+            "canonical_action": "insert existing reserved row"
+          }
+        ]
+      },
+      {
+        "arm": "CONT",
+        "session": "hf3-warren-r2/maya-continued",
+        "report": "reports/hf3-warren-r2--maya-continued.md",
+        "complete_return": "../games-deferred-intake-2026-10-26.md#warren-hf3-warren-r2-maya-continued",
+        "asks": [
+          {
+            "canonical_action_id": "F-1188",
+            "ask": "Tell me why nobody is digging a marked, lit plan.",
+            "target": "games-deferred → warren",
+            "target_date": "2026-10-27",
+            "report_sha256": "3b15a5e1f6b8d8cf7d2da5eb2c95ed5333772c855670ea95027859ef1a36ddab",
+            "quote_sha256": "d0637a93ee407c8dd0d17ed5c542ef2d54e3bbd9aa9b13f82cb106513f392a20",
+            "disposition": "mixed",
+            "canonical_action": "insert existing reserved row"
+          },
+          {
+            "canonical_action_id": "F-1189",
+            "ask": "Let a gift or story lead somewhere, like trying Maryam's knot, instead of greying out after one line.",
+            "target": "games-deferred → warren",
+            "target_date": "2026-10-27",
+            "report_sha256": "3b15a5e1f6b8d8cf7d2da5eb2c95ed5333772c855670ea95027859ef1a36ddab",
+            "quote_sha256": "44590cb1b1d89c9db636d658b17a8cbed12b9cd720580b76fda6ceaab5f9d861",
+            "disposition": "mixed",
+            "canonical_action": "insert existing reserved row"
+          },
+          {
+            "canonical_action_id": "F-1190",
+            "ask": "Put the nine-step rule in the first reading, not behind More.",
+            "target": "games-deferred → warren",
+            "target_date": "2026-10-27",
+            "report_sha256": "3b15a5e1f6b8d8cf7d2da5eb2c95ed5333772c855670ea95027859ef1a36ddab",
+            "quote_sha256": "45a5dcb578372329eab827de34bdc607b1bb6559b02b03a280f05b81e5a2ae64",
+            "disposition": "mixed",
+            "canonical_action": "insert existing reserved row"
+          }
+        ]
+      }
+    ]
+  }
+]

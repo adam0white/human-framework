@@ -2079,3 +2079,96 @@ Report SHA256: b6b8f3796fbbee510abd0e55542440d20ac7200f346376ac16d3f6bd886f5892.
 - **F-1574**, target 2026-10-27: Let an order start when I'm already standing at the right place, instead of "You are already here."
 
   Quote SHA256: 0a123cbf462d5afbb43ef1c72353ac3c7d7eb23c4e09d09f4e787d8ae299ee06. OPEN source engineering; no whole-ask closure from this intake.
+
+### Warren hf3-warren-r2 emre-continued
+
+Partial accepted evidence; target games-deferred → Warren, 2026-10-27. [emre-continued complete original report](remaining-partial-warren-small-stair-2026-10-26/reports/hf3-warren-r2--emre-continued.md). Source SHA256 `3131868a97b5a5887053a65a565ef43b0e30cd8b635e53c642f4588e99899462`. Disposition `mixed`; forced `false`.
+
+```text
+## 7. Stop and return
+
+Final reason: **BORED**, at **904.922s**, after meeting the fifteen-minute floor. The game had not ended.
+
+> I am stopping after the fifteen minutes I set aside. I recovered the bed shortage once and the door was finished, but I spent the later days waiting for an attack while more families made the beds short again. I would return voluntarily another evening only to see a real attack test this shelter, not to repeat this preparation or keep adding beds tonight. I would leave it running if I could check back when something happens, but I am not asking to keep this test browser open.
+
+The browser is no longer needed. The coordinator owns its cleanup. I created no workers, browsers, servers, branches or worktrees. No repository was touched, so no worktree listing was run.
+
+```
+
+### Warren hf3-warren-r2 emre-free
+
+Partial accepted evidence; target games-deferred → Warren, 2026-10-27. [emre-free complete original report](remaining-partial-warren-small-stair-2026-10-26/reports/hf3-warren-r2--emre-free.md). Source SHA256 `59c96bdce1feaecfaa8a6db669172cf36c120f507264afb88e636d3a787a8365`. Disposition `mixed`; forced `false`.
+
+```text
+## 7. Stop and return
+
+Final reason: **BORED**, voluntary, at **276.199s**.
+
+> I am stopping before the riders come. I made a store, lit the deeper passage and marked another square, but I am tired of checking people while the work waits. Yusuf admitting his mistake interested me; I did not find a practical use for it tonight. I would return voluntarily only when I feel like waiting to see the actual attack, not another evening just to repeat this preparation. I would not leave it running.
+
+The browser is no longer needed. The coordinator owns its cleanup and saves this report. I created no workers, browsers, servers, branches or worktrees. No repository was touched, so no worktree listing was run.
+
+```
+
+### Warren hf3-warren-r2 maya-continued
+
+Partial accepted evidence; target games-deferred → Warren, 2026-10-27. [maya-continued complete original report](remaining-partial-warren-small-stair-2026-10-26/reports/hf3-warren-r2--maya-continued.md). Source SHA256 `3b15a5e1f6b8d8cf7d2da5eb2c95ed5333772c855670ea95027859ef1a36ddab`. Disposition `mixed`; forced `false`.
+
+```text
+## 7. Stop and return
+**Stop, about 909s, CONFUSED:** "I am stopping on 7 September with the game menu open. This visit was much better than my last: the More section finally told me about the nine passage steps, I could see my plan on the wide screen, and the hill said nine places would be safe. Kian's Very Small King, Maryam's impossible knots, Tariq's little boat and Yusuf's crossed-out passage were each lovely. The scouts made the danger real. But after the 25th nobody dug another square, everyone rested, and I could not find out why. My wish to stop did not pass. I would not leave it running. I would return another evening if I knew what stops people digging a marked plan, because I want to see those six beds past the ninth step. I selected I am confused locally, typed nothing and pressed no Submit."
+
+- **Would I return voluntarily?** Not tonight. I would come back another evening if I knew what stops people digging a marked plan, because I want to see those six beds past the ninth step.
+- **Leave it running?** No.
+- **Feedback:** "I'm confused" is selected locally. The note box stayed empty. I typed nothing, pressed no Submit, and changed no consent. There's no receipt or export.
+
+```
+
+### Warren hf3-warren-r2 maya-free
+
+Partial accepted evidence; target games-deferred → Warren, 2026-10-27. [maya-free complete original report](remaining-partial-warren-small-stair-2026-10-26/reports/hf3-warren-r2--maya-free.md). Source SHA256 `a7bd13f244ca2ca46313ea42223ce03c0a4c34a0d8f28fddf7f639e02c7218ff`. Disposition `mixed`; forced `false`.
+
+```text
+## 7. Stop and return
+**Stop at 685.6s, FRUSTRATED:** "I am stopping on the evening of 2 September, after the riders scouts left. This visit I finally found the rule I missed last time, nine passage steps, and planned a passage the game agreed would give six safe places. That felt wonderful. Then for most of two weeks nobody dug the last squares, even with lamps, and every reading just said people may choose another task. I accidentally told Meryem to stop work on the refuge, though she did want a break. Yusuf telling me about the crossed-out passage, and Kian saying I am asleep to the bell, were the best moments. I would not leave it running unattended. I would come back another evening if I could understand why people are not digging my marks, because the plan itself is now a puzzle I care about. I am stopping is selected locally; I typed nothing and pressed no Submit."
+
+**Would I return voluntarily?** Not tonight. I would come back another evening if I could understand why people are not digging my marks, because the plan itself is now a puzzle I care about.
+
+**Leave it running?** No, not unattended.
+
+**Feedback:** I'm stopping is selected locally. I typed nothing, pressed no Submit, and changed no consent. There is no receipt and no export.
+
+```
+
+### Warren hf3-warren-r2 nia-continued
+
+Partial accepted evidence; target games-deferred → Warren, 2026-10-27. [nia-continued complete original report](remaining-partial-warren-small-stair-2026-10-26/reports/hf3-warren-r2--nia-continued.md). Source SHA256 `74aad6a287b2a71d4af449684ed751d96d308918c5248a5c29abab793a38ca67`. Disposition `mixed`; forced `false`.
+
+```text
+## 7. Stop and return
+**Stop, BORED, at 913.905s:**
+> "Stopping at 21 September with the hill full of donkey families. The invites were the best thing: Kian's Very Small King, Tariq's boat, Maryam keeping her mistakes. Once everyone had answered, it became chalk, beds, wait, and the same five lines repeated thirty times. I still could not test the door myself. I would close it, not leave it running. I would not return voluntarily tonight. Maybe another evening if new people came with their own words to discover. Feedback: I'm stopping pressed locally, nothing typed, nothing submitted, consent unchanged."
+
+**Would I return voluntarily?** Not tonight. Maybe another evening, if new people came with their own words to discover.
+
+**Leave it running?** No. I'd close it.
+
+**Feedback:** both "I'm stopping" and "I'm confused" were present. I pressed "I'm stopping" locally. I typed nothing and pressed no Submit.
+
+```
+
+### Warren hf3-warren-r2 nia-free
+
+Partial accepted evidence; target games-deferred → Warren, 2026-10-27. [nia-free complete original report](remaining-partial-warren-small-stair-2026-10-26/reports/hf3-warren-r2--nia-free.md). Source SHA256 `c0d10e74db914446531d38c410603c502eb08b24e798481f35e1816a07640674`. Disposition `mixed`; forced `false`.
+
+```text
+## 7. Stop and return
+**Stop, FRUSTRATED, at 109.45s:** "Stopping after the false alarm. The quit wish did not pass. Fast got me the door quickly, which was nice, but then the bell call blew past on Fast and I never saw anyone shut my door, just them looking at me. I would close it, not leave it running. I would not return voluntarily tonight. Maybe another evening on a new hill if the quiet door test the start page mentions lets me just try the door. Feedback: I'm stopping pressed locally; nothing typed or submitted, consent unchanged."
+
+**Would I return voluntarily?** No, not tonight. Maybe another evening on a new hill, if the quiet door test lets me just try the door.
+
+**Leave it running?** No. I'd close it.
+
+**Feedback:** I pressed "I'm stopping" locally. I typed nothing and didn't press Submit.
+
+```

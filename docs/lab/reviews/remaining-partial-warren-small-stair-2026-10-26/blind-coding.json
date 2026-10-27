@@ -1,0 +1,499 @@
+{
+  "method_limits": [
+    "Independent coding used only the cleanup rule, blind-input README and D01-D13 literal diaries. Metadata is omitted, but literal words reveal context and prior experiences; blinding is imperfect. No attribution guesses are supplied.",
+    "Initial combined full-file presentation was truncated. Root explicitly authorized recovery. All records were subsequently presented completely in 28 bounded sequential chunks; some initially visible prefixes were reread. This is a disclosed presentation failure and authorized complete coverage recovery, not selective keyword mining.",
+    "Indices are zero-based positions in each records array. Exact words reproduce the complete reaction. elapsed_s is measured utterance elapsed time; elapsed_s_source_lexeme preserves literal numeric spelling. Neither measures private wish onset. Retrospective mentions do not become measured earlier onset.",
+    "Strict wish criterion includes want/would stop, leave or close the session. In-world day closing, panel closing, stopping another activity/person and final stop action alone are not earlier wishes. No absent wish implies enjoyment. Continued activity, positive reaction, local feedback choice and voluntary return preference are distinct observations. No retention, forced verdict, unrun arm or control comparison is inferred."
+  ],
+  "records": [
+    {
+      "id": "D01",
+      "inputSHA": "d1523fdd59b70a7d26366f54207fd4821440364b5540fbd8c0cdebf929c7dcb3",
+      "record_count": 151,
+      "earliest_explicit_wish": {
+        "index": 136,
+        "elapsed_s": 819.428,
+        "elapsed_s_source_lexeme": "819.428",
+        "exact_words": "Returned honestly, unfinished, three times in a row and nothing else. No chance to tell him it was the spring, no word from Sam about his sister's toy, even though he watched me measure it. I found the exact fault and there was nowhere for that knowledge to go. I would close it here. I will keep going to the time I set aside."
+      },
+      "later_evidence": [
+        {
+          "index": 138,
+          "elapsed_s": 829.905,
+          "elapsed_s_source_lexeme": "829.905",
+          "exact_words": "Two things at once. Halil is resting before calling Selin, his daughter. In Voice, Halil's daughter was Selin and I waited for her evening call. Confidence now high that this is the same Halil, 61, working fewer hours. Oh, it is him, and he is still putting off that call. Nobody here knows that, but I do, and I am a little moved. Second: the parts drawer was on this page all along. Spring, 12 pounds. I returned Sam's toy unfinished when I could have bought the spring. That is my mistake, but the drawer was hidden under People and not on the bench where I said No spring stocked."
+        },
+        {
+          "index": 140,
+          "elapsed_s": 837.95,
+          "elapsed_s_source_lexeme": "837.95",
+          "exact_words": "Nuran. It is him. In Voice he said I miss you, Nuran in the first scene. Here he says Nuran asked why he would not name a price. That one name did more than everything else tonight; I actually sat back. But then the next sentences read like a case file: hypertension, cigarettes, rent arrears, this conversation does not treat his illness. It is the same flat confession shape as Sam and Rafi, and I still cannot answer him."
+        },
+        {
+          "index": 143,
+          "elapsed_s": 848.763,
+          "elapsed_s_source_lexeme": "848.763",
+          "exact_words": "Halil is now reading by the visiting lantern I fixed, and the Selin call has quietly dropped off his plans. That small sight of my repair in his hands is the best thing tonight, and the dropped call hurts a little, but I can only watch."
+        },
+        {
+          "index": 146,
+          "elapsed_s": 915.478,
+          "elapsed_s_source_lexeme": "915.478",
+          "exact_words": "Rest before calling Selin is back, until 16:40. So the call did not vanish, it was just waiting behind the lantern. I like that he read by it first. I still cannot say anything to him about it."
+        },
+        {
+          "index": 147,
+          "elapsed_s": 916.426,
+          "elapsed_s_source_lexeme": "916.426",
+          "exact_words": "Past the time I set aside. Opening the menu to stop."
+        },
+        {
+          "index": 150,
+          "elapsed_s": 925.965,
+          "elapsed_s_source_lexeme": "925.965",
+          "exact_words": "I am stopping at four in the afternoon on day three, with Halil resting before calling Selin. Fixing his lantern and then seeing him read by it was the best thing tonight, and the name Nuran made me sure it was him. But Sam’s toy went back unfinished when I knew the spring was the fault, because I found the parts drawer too late, and I could never say anything back to Halil, Sam or Rafi when they told me something real. I would not leave it running; time stops anyway. I might come back another evening to buy that spring and finish Sam’s toy, and to see whether Halil makes his call, but not tonight. I am stopping is selected locally; I typed nothing and pressed no Submit."
+        }
+      ],
+      "ambiguity_limits": "Explicit conditional close wish. Continuing for time set aside is stated in the same reaction. Later interest and moving moments occur; no literal statement that this wish passed. Final stopping follows the time set aside. Do not code the earlier close-early wording about an in-world day as leaving the session."
+    },
+    {
+      "id": "D02",
+      "inputSHA": "b33613057fd8e8599c7b8f79c32b3a5fe41940ee1147b23132ffdd1c0c199175",
+      "record_count": 54,
+      "earliest_explicit_wish": {
+        "index": 52,
+        "elapsed_s": 264.104,
+        "elapsed_s_source_lexeme": "264.104",
+        "exact_words": "I would leave now. I fixed everything on the board, the probing puzzle was fun for four objects, and the music box sting was the best moment. But now the board is empty, nobody walks in, and the people only ever give me status lines. Repairing the cracked spare lantern for nothing does not pull me."
+      },
+      "later_evidence": [
+        {
+          "index": 53,
+          "elapsed_s": 273.327,
+          "elapsed_s_source_lexeme": "273.327",
+          "exact_words": "Stopping on Day 2 morning with an empty board and £100. Four repairs done; the probe puzzle and the governor dial were fun, and Nora telling me the new gear made it not her grandmother s box any more was the best moment. The quit wish did not pass. I would close it, not leave it running. I would not return voluntarily tonight; maybe another evening if new people walk in with stories and someone actually answers me. Feedback: I m stopping pressed locally, nothing typed, nothing submitted, consent unchanged."
+        }
+      ],
+      "ambiguity_limits": "Explicit leave wish. Final reaction explicitly says the quit wish did not pass. No post-wish protocol continuation stated."
+    },
+    {
+      "id": "D03",
+      "inputSHA": "93401d62b5163e97823038f0e87ce9d350200fe143d85c9403174ec4269943f0",
+      "record_count": 86,
+      "earliest_explicit_wish": {
+        "index": 58,
+        "elapsed_s": 565.637,
+        "elapsed_s_source_lexeme": "565.637",
+        "exact_words": "I would stop here. The start screen promised “test finished doors in quiet time” and it is quiet time and the door still only says ring the bell. I think those options were for a new hill, not this one, but nothing told me that once I clicked Resume. And during the real raid nobody shut it either. The one thing I came back for, I still cannot touch."
+      },
+      "later_evidence": [
+        {
+          "index": 59,
+          "elapsed_s": 604.303,
+          "elapsed_s_source_lexeme": "604.303",
+          "exact_words": "Nobody has a new invite line. Kian and Tamar are still sleeping-outside people. Closing and letting the days run."
+        },
+        {
+          "index": 61,
+          "elapsed_s": 635.04,
+          "elapsed_s_source_lexeme": "635.04",
+          "exact_words": "A day jumped. Storage done, new goal: room for families who hear of the hill. More newcomers might bring new stories, that I want."
+        },
+        {
+          "index": 71,
+          "elapsed_s": 705.864,
+          "elapsed_s_source_lexeme": "705.864",
+          "exact_words": "Beds for twelve, all filled dots. Satisfying for a second, but I am just answering the top line now: newcomers arrive, dig, beds, repeat. The donkey family has no words for me."
+        },
+        {
+          "index": 78,
+          "elapsed_s": 794.634,
+          "elapsed_s_source_lexeme": "794.634",
+          "exact_words": "Just waiting for riders now. Phone face-down energy."
+        },
+        {
+          "index": 83,
+          "elapsed_s": 905.477,
+          "elapsed_s_source_lexeme": "905.477",
+          "exact_words": "Fifteen minutes. I am done; the loop is clear and the people have gone quiet."
+        },
+        {
+          "index": 84,
+          "elapsed_s": 908.042,
+          "elapsed_s_source_lexeme": "908.042",
+          "exact_words": "Wait, eight more empty dots just appeared, another family or two came. Still stopping."
+        },
+        {
+          "index": 85,
+          "elapsed_s": 913.904,
+          "elapsed_s_source_lexeme": "913.904",
+          "exact_words": "Stopping at 21 September with the hill full of donkey families. The invites were the best thing: Kian's Very Small King, Tariq's boat, Maryam keeping her mistakes. Once everyone had answered, it became chalk, beds, wait, and the same five lines repeated thirty times. I still could not test the door myself. I would close it, not leave it running. I would not return voluntarily tonight. Maybe another evening if new people came with their own words to discover. Feedback: I'm stopping pressed locally, nothing typed, nothing submitted, consent unchanged."
+        }
+      ],
+      "ambiguity_limits": "Explicit stop wish. Later interest and continued activity do not establish that the wish passed. Fifteen-minute final stop is stated, but no literal post-wish obligation explains the intervening continuation."
+    },
+    {
+      "id": "D04",
+      "inputSHA": "2eb196c14c3ef714713f3617f8d390ecc90182370798f9199c03b6ef04b43c8f",
+      "record_count": 101,
+      "earliest_explicit_wish": {
+        "index": 96,
+        "elapsed_s": 857.836,
+        "elapsed_s_source_lexeme": "857.836",
+        "exact_words": "I am holding Burak’s card supplies outside an empty flat while the clock crawls at a tenth of its speed because an order is waiting. The label was the nicest thing today, but now I am just watching minutes tick. It is due by 20:00 and I do not want to watch eight game hours at this pace. I would close the laptop here and come back to see whether he shows me the cards."
+      },
+      "later_evidence": [
+        {
+          "index": 97,
+          "elapsed_s": 890.776,
+          "elapsed_s_source_lexeme": "890.776",
+          "exact_words": "Staying for the time I set aside. One more stretch outside his door."
+        },
+        {
+          "index": 98,
+          "elapsed_s": 894.446,
+          "elapsed_s_source_lexeme": "894.446",
+          "exact_words": "Still out. A second order has appeared but I am still holding his parcel. My wish to stop has not passed; opening the menu."
+        },
+        {
+          "index": 100,
+          "elapsed_s": 903.332,
+          "elapsed_s_source_lexeme": "903.332",
+          "exact_words": "I am stopping at Tuesday noon, holding Burak’s card-making parcel outside his empty flat. The best things were the little phrase Tarık is kind travelling from Hacer to Derya to Sevim, and the label hinting Burak makes cards, with R. telling me to let him choose whether to show me. But most of my time was the same bread round, one-line answers I cannot reply to, and now watching a slowed clock until someone comes home. I would not leave it running. I might come back another evening to see whether Burak shows me his cards and whether Tarık’s family rings on Sunday, but not tonight. I am stopping is selected locally; I typed nothing and pressed no Submit."
+        }
+      ],
+      "ambiguity_limits": "Explicit conditional close-laptop wish. Later continuation is expressly for time set aside. Later reaction explicitly says the wish has not passed."
+    },
+    {
+      "id": "D05",
+      "inputSHA": "5e846bda85535382a112db16e4ecc00fb093d1ddc68b127bfe1f1eead1ccebe8",
+      "record_count": 9,
+      "earliest_explicit_wish": {
+        "index": 6,
+        "elapsed_s": 253.043,
+        "elapsed_s_source_lexeme": "253.043",
+        "exact_words": "I am back to checking what everyone is doing while the marked room waits. Yusuf gave me an interesting admission, but it did not give me a shelter decision. I do not want another evening of waiting for people to choose the work. I would stop now."
+      },
+      "later_evidence": [
+        {
+          "index": 7,
+          "elapsed_s": 269.503,
+          "elapsed_s_source_lexeme": "269.503",
+          "exact_words": "Feedback has both stopping and confused choices. I selected stopping; it is pressed and the note stays empty. I typed nothing and submitted nothing."
+        },
+        {
+          "index": 8,
+          "elapsed_s": 276.199,
+          "elapsed_s_source_lexeme": "276.199",
+          "exact_words": "I am stopping before the riders come. I made a store, lit the deeper passage and marked another square, but I am tired of checking people while the work waits. Yusuf admitting his mistake interested me; I did not find a practical use for it tonight. I would return voluntarily only when I feel like waiting to see the actual attack, not another evening just to repeat this preparation. I would not leave it running."
+        }
+      ],
+      "ambiguity_limits": "Explicit stop-now wish. Later stopping and return conditions do not expressly name persistence or passing. No protocol continuation stated after wish."
+    },
+    {
+      "id": "D06",
+      "inputSHA": "aeec382be3e884802493d2864324ecf97b8e912fb283b91a14c3ebc3062270fd",
+      "record_count": 110,
+      "earliest_explicit_wish": null,
+      "later_evidence": [
+        {
+          "index": 109,
+          "elapsed_s": 1048.131,
+          "elapsed_s_source_lexeme": "1048.131",
+          "exact_words": "I am stopping at Day 3, 13:00. I solved the toy on paper - weak spring, then governor 3 - but I have no spring and I spent 40 game minutes on clean and adjust that changed nothing. Feedback has I am stopping; I pressed it, typed nothing, did not submit. I would return voluntarily another evening to buy a spring and finish Sams toy, now that I know the Reference table exists. I would not leave it running; time stops anyway when I am away."
+        }
+      ],
+      "ambiguity_limits": "No explicit wish to leave before final stopping decision. Final I am stopping is an action/decision, not a report of an earlier wish. Earliest wish is null under a strict wish criterion; including decisions would place a stop expression at index 109, 1048.131 s. Do not infer onset from final stopping or prior frustration."
+    },
+    {
+      "id": "D07",
+      "inputSHA": "0e70b21502f0d9f5fe648068874d5751aa6c5ef95f161d5440c2a0e81900b030",
+      "record_count": 48,
+      "earliest_explicit_wish": {
+        "index": 39,
+        "elapsed_s": 532.276,
+        "elapsed_s_source_lexeme": "532.276",
+        "exact_words": "I know exactly what I want: two more squares dug and six beds. The hill even agrees six places would be safe. But for six game days nobody has touched them, the lamp is hung, and every reading just says people may choose another task or rest. The log is the same six lines repeated twelve times. I would close it here. I will give it one more stretch on Steady to see if waiting is all it needs."
+      },
+      "later_evidence": [
+        {
+          "index": 41,
+          "elapsed_s": 570.798,
+          "elapsed_s_source_lexeme": "570.798",
+          "exact_words": "Steady only made the same lines repeat faster: thirteen times now. Water still dry, my chalk still untouched. Yusuf’s confession was the best thing tonight, and it is already sinking under the repeats."
+        },
+        {
+          "index": 42,
+          "elapsed_s": 604.787,
+          "elapsed_s_source_lexeme": "604.787",
+          "exact_words": "Smoke, more than a field fire. This is real, so ringing is not a false alarm. My heart actually jumped. Four are below already, two above. Ringing."
+        },
+        {
+          "index": 44,
+          "elapsed_s": 636.925,
+          "elapsed_s_source_lexeme": "636.925",
+          "exact_words": "Scouts, not an attack. And the report goes person by person: Tamar sleeping three levels down, Kian and Meryem and Yusuf sleeping above ground, all would have been caught. That is very clear and a little chilling; it is the clearest the hill has ever been with me. They searched my passage six levels down too. They may return with more riders, and my two safe squares are still chalk. I rang the bell and they slept anyway."
+        },
+        {
+          "index": 45,
+          "elapsed_s": 672.455,
+          "elapsed_s_source_lexeme": "672.455",
+          "exact_words": "Kian: I am asleep. That made me laugh, as an answer to an alarm bell. We lived through the first visit, with a tick. But next time they may strike, and my safe room is still two chalk squares nobody will dig. I think this is where I would stop for tonight."
+        },
+        {
+          "index": 47,
+          "elapsed_s": 685.62,
+          "elapsed_s_source_lexeme": "685.62",
+          "exact_words": "I am stopping on the evening of 2 September, after the riders scouts left. This visit I finally found the rule I missed last time, nine passage steps, and planned a passage the game agreed would give six safe places. That felt wonderful. Then for most of two weeks nobody dug the last squares, even with lamps, and every reading just said people may choose another task. I accidentally told Meryem to stop work on the refuge, though she did want a break. Yusuf telling me about the crossed-out passage, and Kian saying I am asleep to the bell, were the best moments. I would not leave it running unattended. I would come back another evening if I could understand why people are not digging my marks, because the plan itself is now a puzzle I care about. I am stopping is selected locally; I typed nothing and pressed no Submit."
+        }
+      ],
+      "ambiguity_limits": "Explicit close wish followed by voluntary one-more-stretch experiment. Later stop wish reiterates it; no literal statement of passing. Scout reaction adds interest but does not establish passing."
+    },
+    {
+      "id": "D08",
+      "inputSHA": "6bc69f5ca9b0a7150deed4368a0733bd0088892d691ca3e5fdb5ce0cec1eb623",
+      "record_count": 123,
+      "earliest_explicit_wish": {
+        "index": 99,
+        "elapsed_s": 603.555,
+        "elapsed_s_source_lexeme": "603.555",
+        "exact_words": "Drawer says cell 0 in stock. The recovered battery just disappeared, 25 game minutes and a whole spare lantern for nothing that I can see. Plus 4 pounds gone overnight with no reason. I made a good plan and the game ate it without telling me why. I want to stop here. I will buy a cell and finish the fan and Halil's lantern, then see."
+      },
+      "later_evidence": [
+        {
+          "index": 105,
+          "elapsed_s": 648.952,
+          "elapsed_s_source_lexeme": "648.952",
+          "exact_words": "The diagnosis itself still holds me, I can walk the chain with the meter and that feels like real work. But the vanished battery and the 4 pounds still bother me, and moving between objects is fiddly. Halil's bulb has 0 V, so the break is upstream. Middle of the road now."
+        },
+        {
+          "index": 111,
+          "elapsed_s": 770.776,
+          "elapsed_s_source_lexeme": "770.776",
+          "exact_words": "Second fan, same fault, fixed in under a minute of my time. £119 now. It feels good but also a bit like a routine: test, meter A to 0, buy cell, replace. Only the winding toy is left."
+        },
+        {
+          "index": 113,
+          "elapsed_s": 811.357,
+          "elapsed_s_source_lexeme": "811.357",
+          "exact_words": "The toy is a proper puzzle again: spring reads 31.5 slow against 90, and even with a good spring the ring at 2 gives 15, so I need ring 3 for 18. Two faults, I can see both on paper. This is what I like."
+        },
+        {
+          "index": 116,
+          "elapsed_s": 851.86,
+          "elapsed_s_source_lexeme": "851.86",
+          "exact_words": "Passed first try. My arithmetic was right: new spring plus ring 3. That is the satisfying kind of repair."
+        },
+        {
+          "index": 118,
+          "elapsed_s": 867.962,
+          "elapsed_s_source_lexeme": "867.962",
+          "exact_words": "Everyone chose my paper theatre - all five. Including Halil. I am pleased, honestly."
+        },
+        {
+          "index": 121,
+          "elapsed_s": 877.12,
+          "elapsed_s_source_lexeme": "877.12",
+          "exact_words": "Every job is returned, the theatre show went well, and now the board is empty and the money just drips four pounds a night. I have nothing to plan. This is a good place to leave."
+        },
+        {
+          "index": 122,
+          "elapsed_s": 885.844,
+          "elapsed_s_source_lexeme": "885.844",
+          "exact_words": "I am stopping on Day 5 with every promise kept and the paper theatre shown to all five neighbours. The meter puzzles - the governor sums, the spring and ring together - were the best part, and I could explain every setback except the four pounds that vanish each night and the recovered cell that never reached the drawer. Now the board is empty. I would return voluntarily another evening if new objects arrive with puzzles like the theatre and the toy; I would not come back just to repeat the battery swap on fans. I would not leave it running. Feedback: I selected I am stopping, typed nothing, submitted nothing."
+        }
+      ],
+      "ambiguity_limits": "Explicit want-to-stop wish, followed by a self-chosen plan to finish tasks and see. Later puzzles and show produce positive reactions; no literal statement that the wish passed. Later good-place-to-leave is a further explicit leave expression, not a new earliest wish."
+    },
+    {
+      "id": "D09",
+      "inputSHA": "9eb1d8e1bea8f8634a554c088fabe0e87b72e884b302cb34df25bce087ede890",
+      "record_count": 11,
+      "earliest_explicit_wish": {
+        "index": 9,
+        "elapsed_s": 98.354,
+        "elapsed_s_source_lexeme": "98.354",
+        "exact_words": "Nothing in the Journal about the door being shut. I spent their trust on the false alarm and got a dirty look and no answer to the one thing I wanted. I could ring it again on Slow, but now it costs more trust and I am not sure anyone will do it. I would leave here."
+      },
+      "later_evidence": [
+        {
+          "index": 10,
+          "elapsed_s": 109.45,
+          "elapsed_s_source_lexeme": "109.45",
+          "exact_words": "Stopping after the false alarm. The quit wish did not pass. Fast got me the door quickly, which was nice, but then the bell call blew past on Fast and I never saw anyone shut my door, just them looking at me. I would close it, not leave it running. I would not return voluntarily tonight. Maybe another evening on a new hill if the quiet door test the start page mentions lets me just try the door. Feedback: I'm stopping pressed locally; nothing typed or submitted, consent unchanged."
+        }
+      ],
+      "ambiguity_limits": "Explicit leave wish. Final reaction explicitly says the quit wish did not pass. The earlier last-time account is retrospective and does not date a current-session wish."
+    },
+    {
+      "id": "D10",
+      "inputSHA": "878792ea2d411d133a5a8abd81ccf9ccfd4b7c07c8fc7cc5df9df0f8150896c1",
+      "record_count": 62,
+      "earliest_explicit_wish": {
+        "index": 59,
+        "elapsed_s": 594.97,
+        "elapsed_s_source_lexeme": "594.97",
+        "exact_words": "The bins were out before the truck, and Hacer has opened herself again with nothing to say until tomorrow. I have met all five, heard my rumour travel, and now the evening is the same lines repeating. I like these people, but I would close it here tonight and come back to see Tuesday."
+      },
+      "later_evidence": [
+        {
+          "index": 60,
+          "elapsed_s": 608.353,
+          "elapsed_s_source_lexeme": "608.353",
+          "exact_words": "Selecting the stopping choice locally by position, because its name has an apostrophe my shell will not pass. I will not type or Submit."
+        },
+        {
+          "index": 61,
+          "elapsed_s": 613.773,
+          "elapsed_s_source_lexeme": "613.773",
+          "exact_words": "I am stopping on Monday evening at the front step, after the bins. My first day: bread for five, a parcel Tarık offered to pass on, and a table carried for Hacer, who never mentioned it. I loved the small true things people said when I sat with them: the frozen ferry, forty years of children reading aloud, people being honest at four in the morning. Best of all, I heard my own words travel the building, even the one I made up about Derya, which was a little unnerving. But by evening everyone had said their one thing, and the log was the same lines over and over. I would not leave it running. I would come back another evening to see Tuesday, whether anyone remembers what I told them, and whether Tarık ever gets believed about the ice. I am stopping is selected locally; I typed nothing and pressed no Submit."
+        }
+      ],
+      "ambiguity_limits": "Explicit conditional close wish. Final stop is consistent with it but does not expressly name passing/persistence. No stated protocol continuation after wish."
+    },
+    {
+      "id": "D11",
+      "inputSHA": "b56949a1b91b879006631c3faec7569e9c9aa14c84ea9ff537546adca405b493",
+      "record_count": 54,
+      "earliest_explicit_wish": {
+        "index": 48,
+        "elapsed_s": 215.939,
+        "elapsed_s_source_lexeme": "215.939",
+        "exact_words": "I know what I want: to tell Nora the gear is worn and ask whether she will accept a new one. There is no way to ask her. Her sheet repeats no new parts, the people page repeats the handle sketch, and Sam wants an observation I do not know how to share. I would close it here, or replace the gear and feel I went behind her back."
+      },
+      "later_evidence": [
+        {
+          "index": 49,
+          "elapsed_s": 220.721,
+          "elapsed_s_source_lexeme": "220.721",
+          "exact_words": "There is a Recent conversation fold in her sheet. One more look before I decide."
+        },
+        {
+          "index": 50,
+          "elapsed_s": 224.866,
+          "elapsed_s_source_lexeme": "224.866",
+          "exact_words": "Third time I have read the handle sketch. Nothing about the music box. Closing."
+        },
+        {
+          "index": 51,
+          "elapsed_s": 225.275,
+          "elapsed_s_source_lexeme": "225.275",
+          "exact_words": "The wish has not passed. Looking at the menu before I leave."
+        },
+        {
+          "index": 53,
+          "elapsed_s": 234.953,
+          "elapsed_s_source_lexeme": "234.953",
+          "exact_words": "I am stopping at 13:40 on day one with Nora’s music box on the bench. I fixed the lantern, and working out from the reference that the gear was the culprit was the best moment. But cleaning and reseating did nothing, the only fix left is a new gear she asked me not to use, and I could not ask her. I would not leave it running. I would come back another evening if I could talk to Nora about the gear, because I care how that box ends. I am stopping is selected locally; I typed nothing and pressed no Submit."
+        }
+      ],
+      "ambiguity_limits": "Explicit conditional close wish with an alternative: replace gear and feel complicit. Alternative action does not erase the stated wish. Later reaction expressly says wish has not passed. Closing panels earlier is not a session-exit wish."
+    },
+    {
+      "id": "D12",
+      "inputSHA": "c72b7b21e24d71ecc9d3f6734055e35e9cd7ca7817d171976112df8398ac45f7",
+      "record_count": 71,
+      "earliest_explicit_wish": {
+        "index": 62,
+        "elapsed_s": 803.469,
+        "elapsed_s_source_lexeme": "803.469",
+        "exact_words": "Everyone is resting in the shade or sitting. Nobody has touched my chalk in ten game days, even after riders came, and I cannot tell why. Master Yusuf keeps discussing the marks; some stone may still be loose. Is that what blocks it? I am back where I was last visit: I know what I want, and the hill is not telling me what is in the way. I would stop here. I will keep going for the time I set aside."
+      },
+      "later_evidence": [
+        {
+          "index": 64,
+          "elapsed_s": 810.375,
+          "elapsed_s_source_lexeme": "810.375",
+          "exact_words": "Nine places beyond riders’ reach if dug. So the plan is right; it just is not being dug. People choose when to dig is all it says. I cannot find the reason."
+        },
+        {
+          "index": 67,
+          "elapsed_s": 883.047,
+          "elapsed_s_source_lexeme": "883.047",
+          "exact_words": "Ten game days and nobody has dug my squares. I like the people, but the shelter has stopped and I cannot find the reason anywhere I look."
+        },
+        {
+          "index": 68,
+          "elapsed_s": 888.937,
+          "elapsed_s_source_lexeme": "888.937",
+          "exact_words": "There is an I am confused choice this time. That is what I am. Selecting it locally; I will type nothing and press no Submit."
+        },
+        {
+          "index": 69,
+          "elapsed_s": 892.438,
+          "elapsed_s_source_lexeme": "892.438",
+          "exact_words": "I'm confused is pressed; the note box looks empty. One last look at the hill before I go."
+        },
+        {
+          "index": 70,
+          "elapsed_s": 913.065,
+          "elapsed_s_source_lexeme": "913.065",
+          "exact_words": "I am stopping on 7 September with the game menu open. This visit was much better than my last: the More section finally told me about the nine passage steps, I could see my plan on the wide screen, and the hill said nine places would be safe. Kian’s Very Small King, Maryam’s impossible knots, Tariq’s little boat and Yusuf’s crossed-out passage were each lovely. The scouts made the danger real. But after the 25th nobody dug another square, everyone rested, and I could not find out why. My wish to stop did not pass. I would not leave it running. I would return another evening if I knew what stops people digging a marked plan, because I want to see those six beds past the ninth step. I selected I am confused locally, typed nothing and pressed no Submit."
+        }
+      ],
+      "ambiguity_limits": "Explicit stop wish, with continuation expressly for time set aside. Final reaction expressly says wish did not pass. Confused feedback selection is distinct from literal stop wish."
+    },
+    {
+      "id": "D13",
+      "inputSHA": "5fa28f5592f792831667f5871b1163452c7f439a1970df0b699516e99f5b5c47",
+      "record_count": 24,
+      "earliest_explicit_wish": {
+        "index": 14,
+        "elapsed_s": 533.273,
+        "elapsed_s_source_lexeme": "533.273",
+        "exact_words": "I would stop here tonight. I know I need more beds, and the next square is available, but I cannot get anyone to dig it. The door being ready is progress; watching the same jobs instead of completing the shelter is wearing me down. I have set aside fifteen minutes, so I will stay."
+      },
+      "later_evidence": [
+        {
+          "index": 15,
+          "elapsed_s": 539.093,
+          "elapsed_s_source_lexeme": "539.093",
+          "exact_words": "The new family gives me more need for beds, not a new way to build them. I am continuing because I set this time aside; I would rather leave than keep checking the same mark."
+        },
+        {
+          "index": 16,
+          "elapsed_s": 573.629,
+          "elapsed_s_source_lexeme": "573.629",
+          "exact_words": "It did get dug while I was looking elsewhere. Now there are six beds and the new room has the door above it. That eases my frustration a little. I still need three more places for the family."
+        },
+        {
+          "index": 17,
+          "elapsed_s": 591.378,
+          "elapsed_s_source_lexeme": "591.378",
+          "exact_words": "Nine places. I could put beds beside the lamp without another dig. That was a useful recovery from my own narrow plan. Now I want to see the next attack rather than keep expanding."
+        },
+        {
+          "index": 19,
+          "elapsed_s": 726.894,
+          "elapsed_s_source_lexeme": "726.894",
+          "exact_words": "Finishing nine beds briefly helped, but now I am waiting for a threat with no date. I would rather return when something needs attention than watch these same daily lines."
+        },
+        {
+          "index": 20,
+          "elapsed_s": 773.242,
+          "elapsed_s_source_lexeme": "773.242",
+          "exact_words": "Now twelve people need the nine beds. I could keep extending for each family, but that is not what I came back to find out. I want the attack and the door outcome. I would leave this running and check later if that were practical; I do not want another expansion round tonight."
+        },
+        {
+          "index": 21,
+          "elapsed_s": 821.133,
+          "elapsed_s_source_lexeme": "821.133",
+          "exact_words": "Feedback has both stopping and confused choices. I selected stopping locally; it is pressed and the note is empty. I typed nothing and submitted nothing. I will let the remaining time run on the hill."
+        },
+        {
+          "index": 22,
+          "elapsed_s": 899.479,
+          "elapsed_s_source_lexeme": "899.479",
+          "exact_words": "The extra time let me finish beds and understand water and search distance. It has not made the quiet waiting interesting. I am ready to stop, with the door still untested by a real attack in my play."
+        },
+        {
+          "index": 23,
+          "elapsed_s": 904.922,
+          "elapsed_s_source_lexeme": "904.922",
+          "exact_words": "I am stopping after the fifteen minutes I set aside. I recovered the bed shortage once and the door was finished, but I spent the later days waiting for an attack while more families made the beds short again. I would return voluntarily another evening only to see a real attack test this shelter, not to repeat this preparation or keep adding beds tonight. I would leave it running if I could check back when something happens, but I am not asking to keep this test browser open."
+        }
+      ],
+      "ambiguity_limits": "Explicit stop wish; staying is expressly because fifteen minutes were set aside. Next reaction repeats preference to leave. Later easing frustration and wanting an attack show partial relief/renewed interest, not an explicit passed-wish claim. Later return/check-later preferences and readiness to stop show continuing exit preference; do not label uninterrupted persistence more strongly than words allow."
+    }
+  ]
+}

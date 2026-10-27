@@ -1,0 +1,156 @@
+{
+  "frozen_input_manifest_sha256": "93c3a4c7a7022a41513fd11d05f32ae10907cb6d570f5e904b0c86d4a66b5be4",
+  "canonical_base": "d5f39a4e12935cc36512b6dd1d6d0681a3c8c92e",
+  "sessions": {
+    "hf3-repair-r1/maya-continued": {
+      "original_report": {
+        "sha256": "76d7622637770bf960be50bf7dfa3596caa0e4c825891f37527c17107d9a2821",
+        "bytes": 7086
+      },
+      "original_raw": {
+        "sha256": "d4e70182d16fae6692a389c835bcd10ddd2b17d8af6bc8d501cd9b72f7053780",
+        "bytes": 117361
+      },
+      "original_supervisor_sha256": "8654a09b93af86eef3cab0b2caa30ea7b9bb8dc9ed1ba462287aadfb2d35f019"
+    },
+    "hf3-repair-r1/nia-free": {
+      "original_report": {
+        "sha256": "08d4b791219316d1cce8fac92d4d6a10998eac3485bb4d05b1a7d31eb82e1afc",
+        "bytes": 15285
+      },
+      "original_raw": {
+        "sha256": "c131fe9e7f016fbf7e1d82422260f5ff38e8f355c5aef1976938aa83a4eb7cd9",
+        "bytes": 43711
+      },
+      "original_supervisor_sha256": "e43470f5a8d0ea6b043855b59c4d776b3c52e0747f7e286915bf6398576a2049"
+    },
+    "hf3-warren-r2/nia-continued": {
+      "original_report": {
+        "sha256": "74aad6a287b2a71d4af449684ed751d96d308918c5248a5c29abab793a38ca67",
+        "bytes": 8684
+      },
+      "original_raw": {
+        "sha256": "c9cfc50c8f035d4a5b687bf4e56b71a958ca5f22e3db32e5f8f31e670ec6024c",
+        "bytes": 66497
+      },
+      "original_supervisor_sha256": "df268bfc0d36e200aca55b407e66f8d37ebad9e1817954535c3604a4c8400e61"
+    },
+    "hf3-stairwell-r1/maya-continued": {
+      "original_report": {
+        "sha256": "b6b8f3796fbbee510abd0e55542440d20ac7200f346376ac16d3f6bd886f5892",
+        "bytes": 12073
+      },
+      "original_raw": {
+        "sha256": "24a11abf7cee271136608d6127157646fef12c075c2fd58e926601d63f1cef36",
+        "bytes": 64971
+      },
+      "original_supervisor_sha256": "cd48f07fd188441f2a3d7f7435039fc2a32a7307dc8832bf76d785aad05feba4"
+    },
+    "hf3-warren-r2/emre-free": {
+      "original_report": {
+        "sha256": "59c96bdce1feaecfaa8a6db669172cf36c120f507264afb88e636d3a787a8365",
+        "bytes": 8104
+      },
+      "original_raw": {
+        "sha256": "883c5b0cbe2b6a6f9f4bf8450b506e9318d5eac5557f6b21c536acf7214dd7bb",
+        "bytes": 16074
+      },
+      "original_supervisor_sha256": "6022c306aae3c58122c045266f2d9030c8be869f5cc502c1265c36b4e39a786e"
+    },
+    "hf3-repair-r1/emre-continued": {
+      "original_report": {
+        "sha256": "769b61aa7dea8450c1820e03f40f350d0b4335d08a93077b74d5415ceb7686ac",
+        "bytes": 7925
+      },
+      "original_raw": {
+        "sha256": "0656a2491201da3804828165258b690ef8babe781fcf8c90f442889ece937546",
+        "bytes": 104196
+      },
+      "original_supervisor_sha256": "a83245351987a1df4b46358058a03102eb158034387ed3006ca37facbe4f600e"
+    },
+    "hf3-warren-r2/maya-free": {
+      "original_report": {
+        "sha256": "a7bd13f244ca2ca46313ea42223ce03c0a4c34a0d8f28fddf7f639e02c7218ff",
+        "bytes": 15185
+      },
+      "original_raw": {
+        "sha256": "2ea0523a6e3098cfb136ce8d035b8f40a54b1744683a4f90e98402d0e8fe799f",
+        "bytes": 35802
+      },
+      "original_supervisor_sha256": "cf0a5ff1e5fc07f13f594f51175833b70d7c1daf938a7d0b7d156056466d92ed"
+    },
+    "hf3-repair-r1/emre-free": {
+      "original_report": {
+        "sha256": "2872aebc47212c358214515cfb643a528166eeeb472cdaa208e4f93316e5431f",
+        "bytes": 9843
+      },
+      "original_raw": {
+        "sha256": "8f8af7b917852c9c414dc5f95bb4408f73b1ea1e6ad6803b0ebafdf0bd7f6d7e",
+        "bytes": 113475
+      },
+      "original_supervisor_sha256": "3c6db267718bcf7686a8c85bf77b8813a3f0b9c6060dfe63677e551763e1cac1"
+    },
+    "hf3-warren-r2/nia-free": {
+      "original_report": {
+        "sha256": "c0d10e74db914446531d38c410603c502eb08b24e798481f35e1816a07640674",
+        "bytes": 7331
+      },
+      "original_raw": {
+        "sha256": "e97086342bfe375fc498038d168a35251fcce7b7910e4de1cc1ab151020ec627",
+        "bytes": 11218
+      },
+      "original_supervisor_sha256": "d4c9429fb8916b942a1b7ee0e38390614fbcefa0834303ec80beed19f6ad1418"
+    },
+    "hf3-stairwell-r1/maya-free": {
+      "original_report": {
+        "sha256": "8c3e56faf5cc08158944eabbb4a228789566eb03b890a0d2f562879056652482",
+        "bytes": 8451
+      },
+      "original_raw": {
+        "sha256": "52c5ac73c6dc0402950d34d1be59dbcd896590a8f7a455f52f5cc6e4d0493fbc",
+        "bytes": 44369
+      },
+      "original_supervisor_sha256": "05930427afa7374dcc2e596eeadd7597c9d04b988434f260a05963a93039d8b7"
+    },
+    "hf3-repair-r1/maya-free": {
+      "original_report": {
+        "sha256": "c8a72f4ddf6112456dde17b5238b2539eddeec04c9a4e007f32313565e193a9c",
+        "bytes": 13968
+      },
+      "original_raw": {
+        "sha256": "1743b78ff38546b759106955d0aba31d58101017069e1f1fa6d8d923ab112ae3",
+        "bytes": 33802
+      },
+      "original_supervisor_sha256": "01c174689e5f9124e989ad1211353d0d0996f38887e541679775ac082fd72569"
+    },
+    "hf3-warren-r2/maya-continued": {
+      "original_report": {
+        "sha256": "3b15a5e1f6b8d8cf7d2da5eb2c95ed5333772c855670ea95027859ef1a36ddab",
+        "bytes": 14961
+      },
+      "original_raw": {
+        "sha256": "71d1d40ee3f79ffbb61c16d76dd1c9e619f00efa1b8e24e4b0a66a5e73925150",
+        "bytes": 53063
+      },
+      "original_supervisor_sha256": "7abbe6b6644edeeab15a649c790dd3b80ec5b5c0d2d105b2c78add86231c7951"
+    },
+    "hf3-warren-r2/emre-continued": {
+      "original_report": {
+        "sha256": "3131868a97b5a5887053a65a565ef43b0e30cd8b635e53c642f4588e99899462",
+        "bytes": 12793
+      },
+      "original_raw": {
+        "sha256": "751bfe54c2ec352908a1310b58a47674b83237409960adcbf6a70bac48357413",
+        "bytes": 40272
+      },
+      "original_supervisor_sha256": "826d7fcfb92141060bf9f5e822523ec0d8df85b1575d6d3174f2ed0de225416d"
+    }
+  },
+  "blind_coding_json_sha256": "5972f18589c5a6ffbe154056682769a8e39266d6e27817d207332813d1cfa5e8",
+  "blind_coding_md_sha256": "4349b627e265ba561e84f49ee125639e6c16dfa683aa8758956a4d5a370ef53a",
+  "parent_readbacks": {
+    "remaining-partial-candidate-parent-readback.json": "045e6ebc5ea7001985c0b55a974fec61a46e433824b19317af60f486d4eaff71",
+    "remaining-partial-reaction-parent-readback.json": "691cf4a39c596b7664e755a6d48f7d3d9a2634c393c8fe7397918f4f36c915f2",
+    "remaining-partial-blind-coding-parent-readback.json": "208090028448422cfd9559f26e8ec60f527fcb770b64075ed05bff41c91ba453"
+  }
+}

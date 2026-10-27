@@ -1,0 +1,93 @@
+{
+  "hf3-repair-r1/maya-continued": {
+    "source_sha256": "76d7622637770bf960be50bf7dfa3596caa0e4c825891f37527c17107d9a2821",
+    "source_bytes": 7086,
+    "public_file": "reports/hf3-repair-r1--maya-continued.md",
+    "fence": "```",
+    "original_body_byte_exact": true
+  },
+  "hf3-repair-r1/nia-free": {
+    "source_sha256": "08d4b791219316d1cce8fac92d4d6a10998eac3485bb4d05b1a7d31eb82e1afc",
+    "source_bytes": 15285,
+    "public_file": "reports/hf3-repair-r1--nia-free.md",
+    "fence": "```",
+    "original_body_byte_exact": true
+  },
+  "hf3-warren-r2/nia-continued": {
+    "source_sha256": "74aad6a287b2a71d4af449684ed751d96d308918c5248a5c29abab793a38ca67",
+    "source_bytes": 8684,
+    "public_file": "reports/hf3-warren-r2--nia-continued.md",
+    "fence": "```",
+    "original_body_byte_exact": true
+  },
+  "hf3-stairwell-r1/maya-continued": {
+    "source_sha256": "b6b8f3796fbbee510abd0e55542440d20ac7200f346376ac16d3f6bd886f5892",
+    "source_bytes": 12073,
+    "public_file": "reports/hf3-stairwell-r1--maya-continued.md",
+    "fence": "```",
+    "original_body_byte_exact": true
+  },
+  "hf3-warren-r2/emre-free": {
+    "source_sha256": "59c96bdce1feaecfaa8a6db669172cf36c120f507264afb88e636d3a787a8365",
+    "source_bytes": 8104,
+    "public_file": "reports/hf3-warren-r2--emre-free.md",
+    "fence": "```",
+    "original_body_byte_exact": true
+  },
+  "hf3-repair-r1/emre-continued": {
+    "source_sha256": "769b61aa7dea8450c1820e03f40f350d0b4335d08a93077b74d5415ceb7686ac",
+    "source_bytes": 7925,
+    "public_file": "reports/hf3-repair-r1--emre-continued.md",
+    "fence": "```",
+    "original_body_byte_exact": true
+  },
+  "hf3-warren-r2/maya-free": {
+    "source_sha256": "a7bd13f244ca2ca46313ea42223ce03c0a4c34a0d8f28fddf7f639e02c7218ff",
+    "source_bytes": 15185,
+    "public_file": "reports/hf3-warren-r2--maya-free.md",
+    "fence": "```",
+    "original_body_byte_exact": true
+  },
+  "hf3-repair-r1/emre-free": {
+    "source_sha256": "2872aebc47212c358214515cfb643a528166eeeb472cdaa208e4f93316e5431f",
+    "source_bytes": 9843,
+    "public_file": "reports/hf3-repair-r1--emre-free.md",
+    "fence": "```",
+    "original_body_byte_exact": true
+  },
+  "hf3-warren-r2/nia-free": {
+    "source_sha256": "c0d10e74db914446531d38c410603c502eb08b24e798481f35e1816a07640674",
+    "source_bytes": 7331,
+    "public_file": "reports/hf3-warren-r2--nia-free.md",
+    "fence": "```",
+    "original_body_byte_exact": true
+  },
+  "hf3-stairwell-r1/maya-free": {
+    "source_sha256": "8c3e56faf5cc08158944eabbb4a228789566eb03b890a0d2f562879056652482",
+    "source_bytes": 8451,
+    "public_file": "reports/hf3-stairwell-r1--maya-free.md",
+    "fence": "```",
+    "original_body_byte_exact": true
+  },
+  "hf3-repair-r1/maya-free": {
+    "source_sha256": "c8a72f4ddf6112456dde17b5238b2539eddeec04c9a4e007f32313565e193a9c",
+    "source_bytes": 13968,
+    "public_file": "reports/hf3-repair-r1--maya-free.md",
+    "fence": "```",
+    "original_body_byte_exact": true
+  },
+  "hf3-warren-r2/maya-continued": {
+    "source_sha256": "3b15a5e1f6b8d8cf7d2da5eb2c95ed5333772c855670ea95027859ef1a36ddab",
+    "source_bytes": 14961,
+    "public_file": "reports/hf3-warren-r2--maya-continued.md",
+    "fence": "```",
+    "original_body_byte_exact": true
+  },
+  "hf3-warren-r2/emre-continued": {
+    "source_sha256": "3131868a97b5a5887053a65a565ef43b0e30cd8b635e53c642f4588e99899462",
+    "source_bytes": 12793,
+    "public_file": "reports/hf3-warren-r2--emre-continued.md",
+    "fence": "```",
+    "original_body_byte_exact": true
+  }
+}

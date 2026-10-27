@@ -1,0 +1,132 @@
+{
+  "D01": {
+    "session": "hf3-repair-r1/maya-continued",
+    "source_report_sha256": "76d7622637770bf960be50bf7dfa3596caa0e4c825891f37527c17107d9a2821",
+    "source_raw_sha256": "d4e70182d16fae6692a389c835bcd10ddd2b17d8af6bc8d501cd9b72f7053780",
+    "report": "reports/hf3-repair-r1--maya-continued.md",
+    "events": "reactions/hf3-repair-r1--maya-continued.jsonl",
+    "anonymous": "anonymous/D01.json",
+    "events_count": 290,
+    "reaction_count": 151
+  },
+  "D02": {
+    "session": "hf3-repair-r1/nia-free",
+    "source_report_sha256": "08d4b791219316d1cce8fac92d4d6a10998eac3485bb4d05b1a7d31eb82e1afc",
+    "source_raw_sha256": "c131fe9e7f016fbf7e1d82422260f5ff38e8f355c5aef1976938aa83a4eb7cd9",
+    "report": "reports/hf3-repair-r1--nia-free.md",
+    "events": "reactions/hf3-repair-r1--nia-free.jsonl",
+    "anonymous": "anonymous/D02.json",
+    "events_count": 115,
+    "reaction_count": 54
+  },
+  "D03": {
+    "session": "hf3-warren-r2/nia-continued",
+    "source_report_sha256": "74aad6a287b2a71d4af449684ed751d96d308918c5248a5c29abab793a38ca67",
+    "source_raw_sha256": "c9cfc50c8f035d4a5b687bf4e56b71a958ca5f22e3db32e5f8f31e670ec6024c",
+    "report": "reports/hf3-warren-r2--nia-continued.md",
+    "events": "reactions/hf3-warren-r2--nia-continued.jsonl",
+    "anonymous": "anonymous/D03.json",
+    "events_count": 174,
+    "reaction_count": 86
+  },
+  "D04": {
+    "session": "hf3-stairwell-r1/maya-continued",
+    "source_report_sha256": "b6b8f3796fbbee510abd0e55542440d20ac7200f346376ac16d3f6bd886f5892",
+    "source_raw_sha256": "24a11abf7cee271136608d6127157646fef12c075c2fd58e926601d63f1cef36",
+    "report": "reports/hf3-stairwell-r1--maya-continued.md",
+    "events": "reactions/hf3-stairwell-r1--maya-continued.jsonl",
+    "anonymous": "anonymous/D04.json",
+    "events_count": 160,
+    "reaction_count": 101
+  },
+  "D05": {
+    "session": "hf3-warren-r2/emre-free",
+    "source_report_sha256": "59c96bdce1feaecfaa8a6db669172cf36c120f507264afb88e636d3a787a8365",
+    "source_raw_sha256": "883c5b0cbe2b6a6f9f4bf8450b506e9318d5eac5557f6b21c536acf7214dd7bb",
+    "report": "reports/hf3-warren-r2--emre-free.md",
+    "events": "reactions/hf3-warren-r2--emre-free.jsonl",
+    "anonymous": "anonymous/D05.json",
+    "events_count": 45,
+    "reaction_count": 9
+  },
+  "D06": {
+    "session": "hf3-repair-r1/emre-continued",
+    "source_report_sha256": "769b61aa7dea8450c1820e03f40f350d0b4335d08a93077b74d5415ceb7686ac",
+    "source_raw_sha256": "0656a2491201da3804828165258b690ef8babe781fcf8c90f442889ece937546",
+    "report": "reports/hf3-repair-r1--emre-continued.md",
+    "events": "reactions/hf3-repair-r1--emre-continued.jsonl",
+    "anonymous": "anonymous/D06.json",
+    "events_count": 270,
+    "reaction_count": 110
+  },
+  "D07": {
+    "session": "hf3-warren-r2/maya-free",
+    "source_report_sha256": "a7bd13f244ca2ca46313ea42223ce03c0a4c34a0d8f28fddf7f639e02c7218ff",
+    "source_raw_sha256": "2ea0523a6e3098cfb136ce8d035b8f40a54b1744683a4f90e98402d0e8fe799f",
+    "report": "reports/hf3-warren-r2--maya-free.md",
+    "events": "reactions/hf3-warren-r2--maya-free.jsonl",
+    "anonymous": "anonymous/D07.json",
+    "events_count": 86,
+    "reaction_count": 48
+  },
+  "D08": {
+    "session": "hf3-repair-r1/emre-free",
+    "source_report_sha256": "2872aebc47212c358214515cfb643a528166eeeb472cdaa208e4f93316e5431f",
+    "source_raw_sha256": "8f8af7b917852c9c414dc5f95bb4408f73b1ea1e6ad6803b0ebafdf0bd7f6d7e",
+    "report": "reports/hf3-repair-r1--emre-free.md",
+    "events": "reactions/hf3-repair-r1--emre-free.jsonl",
+    "anonymous": "anonymous/D08.json",
+    "events_count": 303,
+    "reaction_count": 123
+  },
+  "D09": {
+    "session": "hf3-warren-r2/nia-free",
+    "source_report_sha256": "c0d10e74db914446531d38c410603c502eb08b24e798481f35e1816a07640674",
+    "source_raw_sha256": "e97086342bfe375fc498038d168a35251fcce7b7910e4de1cc1ab151020ec627",
+    "report": "reports/hf3-warren-r2--nia-free.md",
+    "events": "reactions/hf3-warren-r2--nia-free.jsonl",
+    "anonymous": "anonymous/D09.json",
+    "events_count": 29,
+    "reaction_count": 11
+  },
+  "D10": {
+    "session": "hf3-stairwell-r1/maya-free",
+    "source_report_sha256": "8c3e56faf5cc08158944eabbb4a228789566eb03b890a0d2f562879056652482",
+    "source_raw_sha256": "52c5ac73c6dc0402950d34d1be59dbcd896590a8f7a455f52f5cc6e4d0493fbc",
+    "report": "reports/hf3-stairwell-r1--maya-free.md",
+    "events": "reactions/hf3-stairwell-r1--maya-free.jsonl",
+    "anonymous": "anonymous/D10.json",
+    "events_count": 108,
+    "reaction_count": 62
+  },
+  "D11": {
+    "session": "hf3-repair-r1/maya-free",
+    "source_report_sha256": "c8a72f4ddf6112456dde17b5238b2539eddeec04c9a4e007f32313565e193a9c",
+    "source_raw_sha256": "1743b78ff38546b759106955d0aba31d58101017069e1f1fa6d8d923ab112ae3",
+    "report": "reports/hf3-repair-r1--maya-free.md",
+    "events": "reactions/hf3-repair-r1--maya-free.jsonl",
+    "anonymous": "anonymous/D11.json",
+    "events_count": 83,
+    "reaction_count": 54
+  },
+  "D12": {
+    "session": "hf3-warren-r2/maya-continued",
+    "source_report_sha256": "3b15a5e1f6b8d8cf7d2da5eb2c95ed5333772c855670ea95027859ef1a36ddab",
+    "source_raw_sha256": "71d1d40ee3f79ffbb61c16d76dd1c9e619f00efa1b8e24e4b0a66a5e73925150",
+    "report": "reports/hf3-warren-r2--maya-continued.md",
+    "events": "reactions/hf3-warren-r2--maya-continued.jsonl",
+    "anonymous": "anonymous/D12.json",
+    "events_count": 134,
+    "reaction_count": 71
+  },
+  "D13": {
+    "session": "hf3-warren-r2/emre-continued",
+    "source_report_sha256": "3131868a97b5a5887053a65a565ef43b0e30cd8b635e53c642f4588e99899462",
+    "source_raw_sha256": "751bfe54c2ec352908a1310b58a47674b83237409960adcbf6a70bac48357413",
+    "report": "reports/hf3-warren-r2--emre-continued.md",
+    "events": "reactions/hf3-warren-r2--emre-continued.jsonl",
+    "anonymous": "anonymous/D13.json",
+    "events_count": 111,
+    "reaction_count": 24
+  }
+}

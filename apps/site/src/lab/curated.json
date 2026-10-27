@@ -14704,6 +14704,240 @@
     "fix:stairwell OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
    ],
    "source": "reviews/games-deferred-intake-2026-10-26.md#stairwell-hf3-stairwell-r1-maya-continued"
+  },
+  {
+   "id": "F-1185",
+   "date": "2026-10-26",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "Lab panel (agent): maya-free",
+   "words": "When my lit, available chalk goes undug for days, tell me why: loose stone, nobody free, or something else.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:warren OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/remaining-partial-warren-small-stair-2026-10-26/reports/hf3-warren-r2--maya-free.md"
+  },
+  {
+   "id": "F-1186",
+   "date": "2026-10-26",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "Lab panel (agent): maya-free",
+   "words": "Make \"End optional work\" say plainly that it stops work on the refuge, before I press it.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:warren OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/remaining-partial-warren-small-stair-2026-10-26/reports/hf3-warren-r2--maya-free.md"
+  },
+  {
+   "id": "F-1187",
+   "date": "2026-10-26",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "Lab panel (agent): maya-free",
+   "words": "Collapse the repeated routine lines so new words, like Yusuf's, don't sink under them.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:warren OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/remaining-partial-warren-small-stair-2026-10-26/reports/hf3-warren-r2--maya-free.md"
+  },
+  {
+   "id": "F-1188",
+   "date": "2026-10-26",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "Lab panel (agent): maya-continued",
+   "words": "Tell me why nobody is digging a marked, lit plan.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:warren OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/remaining-partial-warren-small-stair-2026-10-26/reports/hf3-warren-r2--maya-continued.md"
+  },
+  {
+   "id": "F-1189",
+   "date": "2026-10-26",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "Lab panel (agent): maya-continued",
+   "words": "Let a gift or story lead somewhere, like trying Maryam's knot, instead of greying out after one line.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:warren OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/remaining-partial-warren-small-stair-2026-10-26/reports/hf3-warren-r2--maya-continued.md"
+  },
+  {
+   "id": "F-1190",
+   "date": "2026-10-26",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "Lab panel (agent): maya-continued",
+   "words": "Put the nine-step rule in the first reading, not behind More.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:warren OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/remaining-partial-warren-small-stair-2026-10-26/reports/hf3-warren-r2--maya-continued.md"
+  },
+  {
+   "id": "F-1191",
+   "date": "2026-10-26",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "Lab panel (agent): emre-free",
+   "words": "Tell me why a marked square is still waiting and whether I can do anything useful about it.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:warren OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/remaining-partial-warren-small-stair-2026-10-26/reports/hf3-warren-r2--emre-free.md"
+  },
+  {
+   "id": "F-1192",
+   "date": "2026-10-26",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "Lab panel (agent): emre-free",
+   "words": "Make an invitation’s answer noticeable without requiring me to reopen the person.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:warren OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/remaining-partial-warren-small-stair-2026-10-26/reports/hf3-warren-r2--emre-free.md"
+  },
+  {
+   "id": "F-1193",
+   "date": "2026-10-26",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "Lab panel (agent): emre-free",
+   "words": "Let me understand how Yusuf’s stopping line applies to the work I am planning.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:warren OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/remaining-partial-warren-small-stair-2026-10-26/reports/hf3-warren-r2--emre-free.md"
+  },
+  {
+   "id": "F-1194",
+   "date": "2026-10-26",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "Lab panel (agent): emre-continued",
+   "words": "Let me see when a marked dig starts or finishes without repeatedly inspecting it.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:warren OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/remaining-partial-warren-small-stair-2026-10-26/reports/hf3-warren-r2--emre-continued.md"
+  },
+  {
+   "id": "F-1195",
+   "date": "2026-10-26",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "Lab panel (agent): emre-continued",
+   "words": "Keep the phone hill easier to locate and tap after closing panels or changing its scale.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:warren OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/remaining-partial-warren-small-stair-2026-10-26/reports/hf3-warren-r2--emre-continued.md"
+  },
+  {
+   "id": "F-1196",
+   "date": "2026-10-26",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "Lab panel (agent): emre-continued",
+   "words": "Give me a way to return when the next threat needs attention, rather than watch repeated daily lines.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:warren OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/remaining-partial-warren-small-stair-2026-10-26/reports/hf3-warren-r2--emre-continued.md"
+  },
+  {
+   "id": "F-1197",
+   "date": "2026-10-26",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "Lab panel (agent): nia-free",
+   "words": "Let me test a finished door on the hill I already have, without a false alarm.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:warren OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/remaining-partial-warren-small-stair-2026-10-26/reports/hf3-warren-r2--nia-free.md"
+  },
+  {
+   "id": "F-1198",
+   "date": "2026-10-26",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "Lab panel (agent): nia-free",
+   "words": "Tell me plainly in the Journal whether anyone shut the door during a bell call.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:warren OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/remaining-partial-warren-small-stair-2026-10-26/reports/hf3-warren-r2--nia-free.md"
+  },
+  {
+   "id": "F-1199",
+   "date": "2026-10-26",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "Lab panel (agent): nia-free",
+   "words": "Slow down or pause on Fast when something I set up happens, so I can actually watch it.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:warren OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/remaining-partial-warren-small-stair-2026-10-26/reports/hf3-warren-r2--nia-free.md"
+  },
+  {
+   "id": "F-1200",
+   "date": "2026-10-26",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "Lab panel (agent): nia-continued",
+   "words": "Give the families who arrive later their own invitations and stories.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:warren OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/remaining-partial-warren-small-stair-2026-10-26/reports/hf3-warren-r2--nia-continued.md"
+  },
+  {
+   "id": "F-1201",
+   "date": "2026-10-26",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "Lab panel (agent): nia-continued",
+   "words": "Let me test a finished door myself when it's quiet, without a false alarm.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:warren OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/remaining-partial-warren-small-stair-2026-10-26/reports/hf3-warren-r2--nia-continued.md"
+  },
+  {
+   "id": "F-1202",
+   "date": "2026-10-26",
+   "game": "warren",
+   "kind": "playtester",
+   "who": "Lab panel (agent): nia-continued",
+   "words": "Stop repeating the same chore line over and over in the news, and show me what's actually new.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:warren OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
+   ],
+   "source": "reviews/remaining-partial-warren-small-stair-2026-10-26/reports/hf3-warren-r2--nia-continued.md"
   }
  ],
  "lessons": [
@@ -15310,7 +15544,7 @@
   }
  ],
  "routes": {
-  "fix": 1307,
+  "fix": 1325,
   "lesson": 291,
   "hf": 12,
   "calibration": 42,
