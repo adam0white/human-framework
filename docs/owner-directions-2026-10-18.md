@@ -340,3 +340,9 @@ Coordinator reading: after HF 4.x, every game moves to its named approach in ful
 > "All good decisions (codex to 4.1, delete code, allow difference), keep going."
 
 Approves the coordinator's HF 4.0 rulings: the Codex additions (portable admission beyond an explicit rejection, the JSON wire adapter, the settlement ledger and the tuning surface) move to 4.1; legacy 3.x code, tests and examples are deleted rather than ported; continuous fields may differ within 1e-9 across chunking while clocks, counters, RNG and event order stay exact.
+
+## 2026-10-27 — Soft stop on new Claude agents (Adam, verbatim)
+
+> "Alright let's soft stop launching new Claude agents as well. Thanks"
+
+Coordinator reading: no new Claude agents start. Agents already running finish their current task at a clean checkpoint and do not fan out further. Heartbeats keep doing the checks, the coordinator's own deploys and the report. Codex stays paused.
