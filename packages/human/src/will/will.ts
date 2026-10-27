@@ -1262,12 +1262,21 @@ function resolveChoice(
   const draw = p.will.temperature > 0 ? () => random(p.rng) : undefined;
   const ev = evaluate(p, considered, ctx, list, draw);
   if (opts.quiet && (ev.chosenId === null || ev.chosenId === p.activity?.offer.id)) {
-    // A review that continues the running activity re-weighs standing requests: same verdicts, but no
-    // counters, pressure or autonomy cost. A review that switches activity is a new choice and counts.
-    ev.voices = [];
+    // A review that continues the running activity answers each received suggestion as 3.x answerNow did:
+    // a refusal books that voice's side (counters, pressure, trust cost); anything else books nothing, and
+    // there is no autonomy cost. A review that switches activity is a new choice and counts in full.
+    const kept = ev.voices.flatMap((side, i) => {
+      const res = ev.resolutions[i];
+      return res?.verdict === 'refused' ? [{ side, res }] : [];
+    });
+    bookVoices(
+      p,
+      kept.map((k) => k.side),
+      kept.map((k) => k.res),
+      ctx.now,
+    );
     ev.autonomyDelta = 0;
-  }
-  bookVoices(p, ev.voices, ev.resolutions, ctx.now);
+  } else bookVoices(p, ev.voices, ev.resolutions, ctx.now);
   const out: ChoiceResolution = {
     chosenAffordanceId: ev.chosenId,
     considered: ev.considered,

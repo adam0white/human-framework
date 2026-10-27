@@ -2857,6 +2857,7 @@ export class Frame {
           attention,
           deliveredAt: context.at,
           occurredAt: percept.occurredAt,
+          ...(percept.summary ? { summary: percept.summary } : {}),
         },
         context,
       );

@@ -85,6 +85,7 @@ export function projectEvents(
       case 'prompting':
       case 'review':
       case 'voice-promise':
+      case 'observation-attended':
         visible.push({
           ...base,
           access: 'self',

@@ -260,12 +260,18 @@ export function firstMs(lo: number, hi: number, predicate: (at: number) => boole
  * limit scales with the span: 20 levels reach 1 ms only for spans up to 2^20 ms, and a
  * daily cell is hours wide. Work is bounded separately: one path fits at most 8192
  * intervals. Neither limit ever accepts a wider residual. */
+/** Exact integer ceil(log2(span)) without a platform transcendental (libm rule). */
+function halvingsToOneMs(span: number): number {
+  let halvings = 0;
+  for (let width = 1; width < span; width *= 2) halvings++;
+  return halvings;
+}
 export function sampledPath(
   from: number,
   to: number,
   f: (at: number) => number,
   depth = 0,
-  maxDepth = Math.max(20, Math.ceil(Math.log2(Math.max(1, to - from))) + 1),
+  maxDepth = Math.max(20, halvingsToOneMs(to - from) + 1),
   work = { fits: 0 },
 ): ScalarTrajectory['segments'] {
   if (to === from) return [{ kind: 'constant', from, to, value: f(from) }];

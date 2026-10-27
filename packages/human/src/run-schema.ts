@@ -2252,6 +2252,8 @@ export type EventData =
       episodeId?: Id;
       deliveredAt: Time;
       occurredAt: Time;
+      /** The host's own prose for what was perceived, kept verbatim. */
+      summary?: string;
     }
   | { kind: 'make-ups-retired'; receipts: readonly MakeUpRetirementReceipt[] }
   | { kind: 'suggestion-resolved'; adviceId: Id; decisionId: Id; resolution: SuggestionResolution }
@@ -3100,7 +3102,8 @@ export type SelfEventData =
           | 'goal-changed'
           | 'prompting'
           | 'review'
-          | 'voice-promise';
+          | 'voice-promise'
+          | 'observation-attended';
       }
     >
   | { kind: 'body-felt'; body: SelfBody }
