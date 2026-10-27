@@ -44,13 +44,24 @@ export function clock(at: number, id: string, hash: string): NumericalClock {
   return { advancedThroughMs: at, conditionAnchorMs: at, conditionId: id, effectiveParametersHash: hash };
 }
 export function validateNumbers(value: unknown, path = 'state'): ValidationIssue[] {
-  const out: ValidationIssue[] = [];
-  const walk = (v: unknown, p: string) => {
+  const out: ValidationIssue[] = [],
+    keys: string[] = [];
+  // The path is joined only for a reported number; a valid walk builds no strings.
+  const walk = (v: unknown) => {
     if (typeof v === 'number' && !Number.isFinite(v))
-      out.push({ path: p, code: 'invalid-schema', message: 'finite number required' });
-    else if (v && typeof v === 'object') for (const [k, x] of Object.entries(v)) walk(x, `${p}.${k}`);
+      out.push({
+        path: [path, ...keys].join('.'),
+        code: 'invalid-schema',
+        message: 'finite number required',
+      });
+    else if (v && typeof v === 'object')
+      for (const k of Object.keys(v)) {
+        keys.push(k);
+        walk((v as Record<string, unknown>)[k]);
+        keys.pop();
+      }
   };
-  walk(value, path);
+  walk(value);
   return out;
 }
 export function evaluateCell(c: DeepReadonly<ScalarCell>, at: number): number {

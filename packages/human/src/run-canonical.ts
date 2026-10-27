@@ -107,12 +107,9 @@ const K = new Uint32Array([
   0x5b9cca4f, 0x682e6ff3, 0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7,
   0xc67178f2,
 ]);
-const rotate = (x: number, n: number): number => (x >>> n) | (x << (32 - n));
-const word = (words: Uint32Array, i: number): number => {
-  const value = words[i];
-  if (value === undefined) throw new RangeError('SHA-256 word index');
-  return value;
-};
+// One schedule buffer, reused: sha256 is synchronous and never re-entered.
+const schedule = new Uint32Array(64);
+const hex = (x: number): string => (x >>> 0).toString(16).padStart(8, '0');
 
 function sha256(input: Uint8Array): string {
   const bytes = new Uint8Array(Math.ceil((input.length + 9) / 64) * 64);
@@ -122,32 +119,37 @@ function sha256(input: Uint8Array): string {
   const bits = input.length * 8;
   view.setUint32(bytes.length - 8, Math.floor(bits / 0x100000000));
   view.setUint32(bytes.length - 4, bits >>> 0);
-  const state = new Uint32Array([
-    0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19,
-  ]);
-  const w = new Uint32Array(64);
+  let h0 = 0x6a09e667,
+    h1 = 0xbb67ae85,
+    h2 = 0x3c6ef372,
+    h3 = 0xa54ff53a,
+    h4 = 0x510e527f,
+    h5 = 0x9b05688c,
+    h6 = 0x1f83d9ab,
+    h7 = 0x5be0cd19;
+  const w = schedule;
   for (let offset = 0; offset < bytes.length; offset += 64) {
     for (let i = 0; i < 16; i += 1) w[i] = view.getUint32(offset + i * 4);
     for (let i = 16; i < 64; i += 1) {
-      const a = word(w, i - 15);
-      const b = word(w, i - 2);
-      const s0 = rotate(a, 7) ^ rotate(a, 18) ^ (a >>> 3);
-      const s1 = rotate(b, 17) ^ rotate(b, 19) ^ (b >>> 10);
-      w[i] = (word(w, i - 16) + s0 + word(w, i - 7) + s1) >>> 0;
+      const a = w[i - 15] as number;
+      const b = w[i - 2] as number;
+      const s0 = ((a >>> 7) | (a << 25)) ^ ((a >>> 18) | (a << 14)) ^ (a >>> 3);
+      const s1 = ((b >>> 17) | (b << 15)) ^ ((b >>> 19) | (b << 13)) ^ (b >>> 10);
+      w[i] = ((w[i - 16] as number) + s0 + (w[i - 7] as number) + s1) >>> 0;
     }
-    let a = word(state, 0);
-    let b = word(state, 1);
-    let c = word(state, 2);
-    let d = word(state, 3);
-    let e = word(state, 4);
-    let f = word(state, 5);
-    let g = word(state, 6);
-    let h = word(state, 7);
+    let a = h0,
+      b = h1,
+      c = h2,
+      d = h3,
+      e = h4,
+      f = h5,
+      g = h6,
+      h = h7;
     for (let i = 0; i < 64; i += 1) {
-      const sum1 = rotate(e, 6) ^ rotate(e, 11) ^ rotate(e, 25);
+      const sum1 = ((e >>> 6) | (e << 26)) ^ ((e >>> 11) | (e << 21)) ^ ((e >>> 25) | (e << 7));
       const choose = (e & f) ^ (~e & g);
-      const t1 = (h + sum1 + choose + word(K, i) + word(w, i)) >>> 0;
-      const sum0 = rotate(a, 2) ^ rotate(a, 13) ^ rotate(a, 22);
+      const t1 = (h + sum1 + choose + (K[i] as number) + (w[i] as number)) >>> 0;
+      const sum0 = ((a >>> 2) | (a << 30)) ^ ((a >>> 13) | (a << 19)) ^ ((a >>> 22) | (a << 10));
       const majority = (a & b) ^ (a & c) ^ (b & c);
       const t2 = (sum0 + majority) >>> 0;
       h = g;
@@ -159,10 +161,16 @@ function sha256(input: Uint8Array): string {
       b = a;
       a = (t1 + t2) >>> 0;
     }
-    const result = [a, b, c, d, e, f, g, h];
-    for (const [i, value] of result.entries()) state[i] = (word(state, i) + value) >>> 0;
+    h0 = (h0 + a) >>> 0;
+    h1 = (h1 + b) >>> 0;
+    h2 = (h2 + c) >>> 0;
+    h3 = (h3 + d) >>> 0;
+    h4 = (h4 + e) >>> 0;
+    h5 = (h5 + f) >>> 0;
+    h6 = (h6 + g) >>> 0;
+    h7 = (h7 + h) >>> 0;
   }
-  return Array.from(state, (x) => x.toString(16).padStart(8, '0')).join('');
+  return hex(h0) + hex(h1) + hex(h2) + hex(h3) + hex(h4) + hex(h5) + hex(h6) + hex(h7);
 }
 
 /** UTF-8 bytes of a string; lone surrogates encode as U+FFFD, as TextEncoder does, without a host global. */

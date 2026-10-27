@@ -11,7 +11,7 @@ import { canonicalJson, hashCanonical } from './run-canonical.ts';
 import { RUN_ENGINE } from './run-engine.ts';
 import { validateActor, validateRequestHash } from './run-integrity.ts';
 import * as kernel from './run-kernel.ts';
-import { historyEntries, readKernel } from './run-kernel.ts';
+import { newestTransaction, readKernel } from './run-kernel.ts';
 import { OWNERS } from './run-owners.ts';
 import { buildParameters } from './run-parameters.ts';
 import type * as T from './run-schema.ts';
@@ -658,7 +658,8 @@ function reconstruct(input: unknown, operations: RecoveryOperations): T.Result<T
       !same(current.cursor, transaction.cursor)
     )
       return reject(path, 'executed boundary or scheduler cursor differs from accepted history');
-    const actual = historyEntries(run)[index];
+    // The newest node is this transaction; materializing the whole history here made replay quadratic.
+    const actual = newestTransaction(run, index + 1);
     if (!actual) return reject(path, 'dispatcher did not record the accepted transaction');
     if (
       transaction.eventHash !== undefined &&

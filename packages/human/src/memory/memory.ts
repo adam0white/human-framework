@@ -113,8 +113,14 @@ export const CUE_RECALL_DEFAULTS = {
 
 const unit = (x: number) => Math.max(0, Math.min(1, x));
 const signed = (x: number) => Math.max(-1, Math.min(1, x));
+const ordinalPatterns = new Map<string, RegExp>();
 const numericId = (id: string, prefix: string): number | null => {
-  if (!new RegExp(`^${prefix}(0|[1-9][0-9]*)$`).test(id)) return null;
+  let pattern = ordinalPatterns.get(prefix);
+  if (!pattern) {
+    pattern = new RegExp(`^${prefix}(0|[1-9][0-9]*)$`);
+    ordinalPatterns.set(prefix, pattern);
+  }
+  if (!pattern.test(id)) return null;
   const n = Number(id.slice(1));
   return Number.isSafeInteger(n) ? n : null;
 };
@@ -272,6 +278,9 @@ export function validateMemory(
       bad(`expectations.${x.key}`, 'Malformed expectation');
   }
   return issues;
+}
+function copyMemory(state: DeepReadonly<MemoryOwnedState>): MemoryOwnedState {
+  return cloneData(state) as MemoryOwnedState;
 }
 function checked(
   state: DeepReadonly<MemoryOwnedState>,
@@ -437,7 +446,8 @@ export const memoryOwner: MemoryOwner = {
     const base = context.continuation;
     if (context.from < base.anchor.at || context.to < context.from)
       throw new RangeError('Memory clock rewound');
-    const out = checked(base.state, context.allocations),
+    // Validation is pure, so a state this call has already validated is copied, not validated again.
+    const out = base.state === state ? copyMemory(state) : checked(base.state, context.allocations),
       K = context.effective.builtins.MEMORY_DEFAULTS,
       G = context.effective.builtins.GIST_DEFAULTS;
     const decay = (minutes: number) => {
@@ -465,7 +475,8 @@ export const memoryOwner: MemoryOwner = {
     }
     const firstFold = out.episodes.reduce<number>((next, e) => Math.min(next, e.at + horizon + 1), Infinity);
     const through = Math.min(context.to, Math.max(context.from, firstFold));
-    const settled = folded ? checked(out) : checked(base.state);
+    // base.state passed above with the allocations, a stricter check than this one without them.
+    const settled = folded ? checked(out) : copyMemory(base.state);
     decay((through - anchor.at) / 60000);
     // Fold on the first integer millisecond beyond the horizon, not an arbitrary caller endpoint.
     const due = out.episodes.filter((e) => through - e.at > horizon);
@@ -724,19 +735,29 @@ export function expectedEffect(
   };
 }
 
+// biome-ignore lint/suspicious/noControlCharactersInRegex: any ASCII text is already NFC, control characters included.
+const ASCII = /^[\x00-\x7f]*$/;
 /** Shared W3 admission primitive. Reject non-JSON values, unsafe keys and cycles; never repair. */
 export function validateNarrativeJson(value: unknown, path = ''): ValidationIssue[] {
   const issues: ValidationIssue[] = [],
-    seen = new Set<object>();
-  const walk = (x: unknown, p: string): void => {
-    const fail = (message: string) => issues.push({ path: p, code: 'invalid-schema', message });
+    seen = new Set<object>(),
+    keys: string[] = [];
+  // The path is joined only when an issue is reported; a valid walk builds no strings.
+  const at = () => {
+    let p = path;
+    for (const key of keys) p = p ? `${p}.${key}` : key;
+    return p;
+  };
+  const fail = (message: string) => issues.push({ path: at(), code: 'invalid-schema', message });
+  const walk = (x: unknown): void => {
     if (x === null || typeof x === 'boolean') return;
     if (typeof x === 'number') {
       if (!Number.isFinite(x)) fail('Nonfinite number');
       return;
     }
     if (typeof x === 'string') {
-      if (x.normalize('NFC') !== x) fail('Noncanonical string');
+      // ASCII text is always NFC; only other text pays for normalization.
+      if (!ASCII.test(x) && x.normalize('NFC') !== x) fail('Noncanonical string');
       return;
     }
     if (typeof x !== 'object') {
@@ -757,12 +778,14 @@ export function validateNarrativeJson(value: unknown, path = ''): ValidationIssu
       return;
     }
     for (const key of Object.keys(x)) {
-      if (['__proto__', 'constructor', 'prototype'].includes(key)) fail('Reserved property key');
-      walk((x as Record<string, unknown>)[key], p ? `${p}.${key}` : key);
+      if (key === '__proto__' || key === 'constructor' || key === 'prototype') fail('Reserved property key');
+      keys.push(key);
+      walk((x as Record<string, unknown>)[key]);
+      keys.pop();
     }
     seen.delete(x);
   };
-  walk(value, path);
+  walk(value);
   return issues;
 }
 Object.freeze(MEMORY_DEFAULTS.kindSalience);

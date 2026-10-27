@@ -36,3 +36,53 @@ test('one person lives a 24-hour fine step', () => {
   accepted(step(run, { until: 24 * HOUR, inputs: [] }));
   expect(performance.now() - t0).toBeLessThan(3000 * SCALE);
 });
+
+/** p50 of `frames` steps of 50 ms each from the run's current time. */
+function frameP50(run: ReturnType<typeof benchRun>, from: number, frames: number): number {
+  const times: number[] = [];
+  let at = from;
+  for (let i = 0; i < frames; i++) {
+    at += 50;
+    const t0 = performance.now();
+    accepted(step(run, { until: at, inputs: [] }));
+    times.push(performance.now() - t0);
+  }
+  times.sort((a, b) => a - b);
+  return times[times.length >> 1] ?? Infinity;
+}
+
+// 4.0.1: a frame reads no history, so its cost does not grow with the run. Three fed days of hourly meals
+// accumulate events and receipts between the two samples; a step that copied or hashed them would slow down.
+test('a 50 ms step costs the same after three fed days as at the start (p50)', () => {
+  const run = benchRun(1);
+  const early = frameP50(run, 0, 300);
+  let at = 300 * 50;
+  for (let hour = 1; hour <= 72; hour++) {
+    const next = hour * HOUR;
+    accepted(
+      step(run, {
+        until: next,
+        inputs: [
+          {
+            id: `meal-${hour}`,
+            at: at + 1,
+            source: { type: 'host', id: 'numerical-host' },
+            kind: 'body.received',
+            payload: {
+              person: 'numerical-person',
+              evidenceId: `meal-evidence-${hour}`,
+              receipt: {
+                type: 'consumed',
+                actionReceipt: `meal-${hour}`,
+                received: { food: 0.2, water: 0.3 },
+              },
+            },
+          },
+        ],
+      }),
+    );
+    at = next;
+  }
+  const late = frameP50(run, at, 300);
+  expect(late).toBeLessThan(early * 1.5 + 0.05);
+});

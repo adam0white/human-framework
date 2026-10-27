@@ -11,6 +11,15 @@ version, stamped with build and schema hashes in `RUN_ENGINE`. See the version p
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
+## [4.0.1] - Unreleased
+
+Engine: 4.0.1. A speed patch with no change in behaviour: every decision, `hashes.current` and `hashes.history` match 4.0.0 on the same inputs.
+
+- **Diagnosis corrected.** A 4.0.0 `step` did not copy or hash the whole run; its cost stays flat as a run grows. The time went to fixed per-step work ([finding](https://github.com/adam0white/human-framework/blob/main/docs/findings.md#hf-401-step-cost-2026-10-27)).
+- **Cheaper steps.** Hazard draining skips its physiology probes when nothing they read has changed. Memory validated on entry is not validated again. Validators build an issue path only when they report one. `sha256` reuses one buffer, and stream origins and per-span id hashes are memoized. A Smoke night costs about a third less CPU; its whole-frame p95 at 4x CPU throttle fell from 25.0 to 16.6 ms.
+- **Linear replay.** `replay` reads each re-stepped transaction from the newest history node instead of rebuilding the history list per step, which made replay quadratic in run length.
+- **Archives.** `hashes.full` covers the engine stamp, which names the exact package version, so `replay` and `restoreRun` in 4.0.1 refuse a 4.0.0 archive with `unsupported-archive` at `$.engine`; games start fresh. Archives still grow with every step; bounding events and receipts changes the archive format and is a [roadmap row](https://github.com/adam0white/human-framework/blob/main/docs/roadmap.md).
+
 ## [4.0.0] - 2026-10-27
 
 Engine: 4.0.0. One run API, with every faculty always on. The owner set the goal on 2026-10-26: "Let's make every opt in feature default v4 go! Sacrifice compatibility and saves." People now differ through their state, never through switches. Each concern has one way in and one way out. 3.x saves, exports and option selectors are not read by 4.0. Games may stay on 3.x, and 3.x patches keep explicit opt-in and exact legacy continuation.
