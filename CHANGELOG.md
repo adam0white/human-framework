@@ -11,7 +11,7 @@ version, stamped with build and schema hashes in `RUN_ENGINE`. See the version p
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
-## [4.0.0] - Unreleased
+## [4.0.0] - 2026-10-27
 
 Engine: 4.0.0. One run API, with every faculty always on. The owner set the goal on 2026-10-26: "Let's make every opt in feature default v4 go! Sacrifice compatibility and saves." People now differ through their state, never through switches. Each concern has one way in and one way out. 3.x saves, exports and option selectors are not read by 4.0. Games may stay on 3.x, and 3.x patches keep explicit opt-in and exact legacy continuation.
 
