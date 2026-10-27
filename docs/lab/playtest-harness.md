@@ -8,5 +8,6 @@ Apply these from now on, in both playtest and playtest-b.
 5. **Human speed.** Before routing a timing complaint (for example a choice that vanishes before the tap), reproduce it at human tapping speed, 1 to 3 seconds per decision. If the driver delay caused it, record that and drop the complaint.
 6. **Forced quits are not taste verdicts.** Label sessions that a protocol cut short, and leave them out of the patterns.
 7. **Play checklist.** Remove pass/fail audit checklists from tester prompts. Ask for play diaries and the return question.
+8. **Driver names and errors (2026-10-27).** Tester prompts say: copy the full control name from the latest reply, and never drop error replies. Any helper script a tester writes must print each reply's `error` and `clickable` fields. The driver accepts a unique prefix or a unique run of whole words, reports the name it tapped in `tapped`, and refuses an ambiguous name with every candidate listed. Before routing a finding that the game did not answer an input, the coordinator checks the session's `wall-clock.jsonl` for refused taps.
 
 Use a fresh browser profile per agent run; never share a marked URL.

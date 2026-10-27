@@ -184,6 +184,7 @@ export function makeLogLine(
   timing: { now: number; openedAt: number | null; op_ms: number },
   error?: string,
   requestedControlPresentBefore?: boolean | null,
+  resolved?: { name: string; matched_by: string },
 ) {
   return {
     t: new Date(timing.now).toISOString(),
@@ -222,6 +223,7 @@ export function makeLogLine(
     ...(requestedControlPresentBefore !== undefined
       ? { requested_control_present_before: requestedControlPresentBefore }
       : {}),
+    ...(resolved ? { tapped: resolved } : {}),
   };
 }
 
@@ -243,13 +245,14 @@ export function driverCheck(commit: string | null, diffStatus: number | null, al
 }
 // Named taps cover the same actionable roles exposed by the control snapshot.
 export const namedTapRoles = ['button', 'link', 'tab', 'menuitem', 'checkbox', 'radio', 'option', 'switch'];
-function requestedControlPresent(snapshot: PlaySnapshot | null, op: Record<string, unknown>): boolean | null {
-  if (op.op !== 'tap' || (typeof op.name !== 'string' && typeof op.text !== 'string')) return null;
-  if (!snapshot) return false;
-  const normalize = (text: string) => text.replace(/\s+/g, ' ').trim();
-  const wanted = normalize(typeof op.name === 'string' ? op.name : String(op.text));
-  const roles = typeof op.role === 'string' ? [op.role] : namedTapRoles;
-  for (const line of snapshot.controls.split('\n')) {
+export interface ControlEntry {
+  role: string;
+  name: string;
+}
+/** Parse the role and accessible name of each control line in an ariaSnapshot. */
+export function listControls(controls: string): ControlEntry[] {
+  const entries: ControlEntry[] = [];
+  for (const line of controls.split('\n')) {
     // ariaSnapshot emits a YAML single-quoted entry when the label contains ": ".
     const entry = line.replace(/^\s*-\s+/, '');
     const unquoted = entry.startsWith("'")
@@ -257,28 +260,95 @@ function requestedControlPresent(snapshot: PlaySnapshot | null, op: Record<strin
       : entry;
     const match = /^(\S+)\s+"((?:\\.|[^"\\])*)"/.exec(unquoted);
     if (!match?.[1] || match[2] === undefined) continue;
-    let name: string;
     try {
-      name = JSON.parse(`"${match[2]}"`) as string;
+      entries.push({ role: match[1], name: JSON.parse(`"${match[2]}"`) as string });
     } catch {
-      continue;
-    }
-    if (normalize(name) === wanted && (typeof op.text === 'string' || roles.includes(match[1]))) return true;
-  }
-  if (typeof op.text === 'string') {
-    // A custom control may render its complete label across adjacent text lines.
-    // Match whole lines only; the text resolver still verifies the exact control label.
-    const lines = snapshot.visible.split('\n');
-    for (let start = 0; start < lines.length; start++) {
-      let label = '';
-      for (let end = start; end < lines.length; end++) {
-        label = normalize(`${label} ${lines[end] ?? ''}`);
-        if (label === wanted) return true;
-        if (label.length >= wanted.length) break;
-      }
+      /* not a control line */
     }
   }
-  return false;
+  return entries;
+}
+/** Distinct names of the tappable controls in a snapshot, in page order, for refusal replies. */
+export function clickableNames(snapshot: PlaySnapshot | null): string[] {
+  if (!snapshot) return [];
+  const names = listControls(snapshot.controls)
+    .filter((control) => namedTapRoles.includes(control.role))
+    .map((control) => control.name.replace(/\s+/g, ' ').trim())
+    .filter(Boolean);
+  return [...new Set(names)];
+}
+export type TapResolution =
+  | { kind: 'exact' }
+  | { kind: 'normalized' | 'prefix' | 'substring'; name: string }
+  | { kind: 'ambiguous'; candidates: string[]; visibleText?: boolean }
+  | { kind: 'none' };
+const spaces = (text: string) => text.replace(/\s+/g, ' ').trim();
+// Case, punctuation and separators (· — – : | /) fold to single spaces, so matches stay on word boundaries.
+const fold = (text: string) =>
+  text
+    .normalize('NFKD')
+    .replace(/\p{M}/gu, '')
+    .toLowerCase()
+    .replace(/[\p{P}\p{S}]+/gu, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+/**
+ * Resolve a tester's name to one current control: exact first, then case/punctuation-folded
+ * equality, then a unique prefix, then a unique substring of two or more words. Matches end on
+ * word boundaries ("Rest" never resolves to "Restart"). The first stage with any candidate decides:
+ * several distinct names there are ambiguous and are refused, never guessed.
+ */
+export function resolveTapName(
+  controls: ControlEntry[],
+  wanted: string,
+  roles: readonly string[],
+): TapResolution {
+  const exact = spaces(wanted);
+  const pool = controls.filter((control) => roles.includes(control.role));
+  if (pool.some((control) => spaces(control.name) === exact)) return { kind: 'exact' };
+  const key = fold(wanted);
+  if (!key) return { kind: 'none' };
+  const stages: ['normalized' | 'prefix' | 'substring', (name: string) => boolean][] = [
+    ['normalized', (name) => name === key],
+    ['prefix', (name) => name.startsWith(`${key} `)],
+    ['substring', (name) => key.includes(' ') && ` ${name} `.includes(` ${key} `)],
+  ];
+  for (const [kind, test] of stages) {
+    const candidates = [
+      ...new Set(pool.filter((control) => test(fold(control.name))).map((control) => spaces(control.name))),
+    ];
+    if (candidates.length > 1) return { kind: 'ambiguous', candidates };
+    if (candidates[0] !== undefined) return { kind, name: candidates[0] };
+  }
+  return { kind: 'none' };
+}
+function findTapTarget(snapshot: PlaySnapshot | null, op: Record<string, unknown>): TapResolution {
+  if (!snapshot) return { kind: 'none' };
+  const text = typeof op.text === 'string' ? op.text : null;
+  const wanted = typeof op.name === 'string' ? op.name : String(op.text);
+  const controls = listControls(snapshot.controls);
+  // A text tap may name any control role exactly, as before.
+  if (text !== null && controls.some((control) => spaces(control.name) === spaces(text)))
+    return { kind: 'exact' };
+  const resolved = resolveTapName(controls, wanted, typeof op.role === 'string' ? [op.role] : namedTapRoles);
+  if (text === null) return resolved;
+  // A custom control may render its complete label across adjacent text lines.
+  // Match whole lines only; the text resolver still verifies the exact control label.
+  let visibleExact = false;
+  const lines = snapshot.visible.split('\n');
+  for (let start = 0; start < lines.length && !visibleExact; start++) {
+    let label = '';
+    for (let end = start; end < lines.length; end++) {
+      label = spaces(`${label} ${lines[end] ?? ''}`);
+      if (label === spaces(text)) visibleExact = true;
+      if (label.length >= spaces(text).length) break;
+    }
+  }
+  if (!visibleExact) return resolved;
+  // Exact visible text that also begins a longer control name could mean either; refuse, never guess.
+  if (resolved.kind === 'normalized' || resolved.kind === 'prefix' || resolved.kind === 'substring')
+    return { kind: 'ambiguous', candidates: [resolved.name], visibleText: true };
+  return { kind: 'exact' };
 }
 interface PlayOutcome {
   status: number;
@@ -288,11 +358,14 @@ interface PlayOutcome {
   error?: string;
   snapshot_warning?: string;
   requested_control_present_before: boolean | null;
+  /** Set when a tap name was not exact: the full control name the driver tapped instead. */
+  resolved?: { name: string; matched_by: 'normalized' | 'prefix' | 'substring' };
 }
 export async function runPlayOperation(
   op: Record<string, unknown>,
   options: {
-    act: () => Promise<string | undefined>;
+    /** Receives the full control name when the requested name resolved to a different exact name. */
+    act: (resolvedName?: string) => Promise<string | undefined>;
     snapshot: (timeout: number) => Promise<Omit<PlaySnapshot, 'takenAt'>>;
     previous: PlaySnapshot | null;
     now?: () => number;
@@ -313,19 +386,40 @@ export async function runPlayOperation(
       const before = { ...(await options.snapshot(5000)), takenAt: now() };
       result.snapshot = before;
       result.snapshotAvailable = true;
-      result.requested_control_present_before = requestedControlPresent(before, op);
-      if (result.requested_control_present_before === false) {
+      const isNamedTap = op.op === 'tap' && (typeof op.name === 'string' || typeof op.text === 'string');
+      const target: TapResolution | null = isNamedTap ? findTapTarget(before, op) : null;
+      result.requested_control_present_before = target === null ? null : target.kind !== 'none';
+      // A name that was exact in the last reply and is not exact now is stale; never re-aim it at a newer control.
+      const stale =
+        target !== null &&
+        target.kind !== 'exact' &&
+        target.kind !== 'none' &&
+        target.kind !== 'ambiguous' &&
+        findTapTarget(options.previous, op).kind === 'exact';
+      if (stale) result.requested_control_present_before = false;
+      if (stale || target?.kind === 'ambiguous' || target?.kind === 'none') {
         refusedBeforeAction = true;
         const name = typeof op.name === 'string' ? op.name : String(op.text);
         const age = Math.max(0, (now() - (options.previous?.takenAt ?? now())) / 1000);
+        const copy = 'copy one full name from clickable in this reply';
+        if (target?.kind === 'ambiguous' && target.visibleText)
+          throw new Error(
+            `${name} is visible text and also the start of the control ${JSON.stringify(target.candidates[0])}; nothing was tapped; to tap that control, send its full name, or tap the text by point (ambiguous target, not a driver failure)`,
+          );
+        if (target?.kind === 'ambiguous')
+          throw new Error(
+            `${name} matches ${target.candidates.length} controls: ${target.candidates.map((c) => JSON.stringify(c)).join(', ')}; nothing was tapped; ${copy} (ambiguous target, not a driver failure)`,
+          );
+        const earlier = findTapTarget(options.previous, op).kind;
         throw new Error(
-          requestedControlPresent(options.previous, op)
-            ? `${name} is not on the page now; it was listed ${Math.round(age)} s ago and the page has changed (game state, not a driver failure)`
-            : `${name} is not on the page now, and it was not in the last reply either; use a name from the latest controls (not a driver failure)`,
+          stale || earlier !== 'none'
+            ? `${name} is not on the page now; it was listed ${Math.round(age)} s ago and the page has changed; ${copy} (game state, not a driver failure)`
+            : `${name} is not on the page now, and it was not in the last reply either; ${copy} (not a driver failure)`,
         );
       }
+      if (target && target.kind !== 'exact') result.resolved = { name: target.name, matched_by: target.kind };
     }
-    const shot = await options.act();
+    const shot = await options.act(result.resolved?.name);
     if (shot) result.screenshot = shot;
   } catch (error) {
     result.status = 500;
@@ -368,7 +462,13 @@ export function makePlayReply(
     snapshot_ms: result.snapshotAvailable && result.snapshot ? timing.now - result.snapshot.takenAt : null,
     requested_control_present_before: result.requested_control_present_before,
     ...(result.screenshot ? { screenshot: result.screenshot } : {}),
-    ...(result.error !== undefined ? { error: result.error } : {}),
+    ...(result.resolved && result.error === undefined ? { tapped: result.resolved } : {}),
+    ...(result.error !== undefined
+      ? {
+          error: result.error,
+          clickable: result.snapshotAvailable ? clickableNames(result.snapshot) : [],
+        }
+      : {}),
     ...(result.snapshot_warning ? { snapshot_warning: result.snapshot_warning } : {}),
   };
 }
