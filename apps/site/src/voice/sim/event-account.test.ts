@@ -21,7 +21,7 @@ test('ordinary evening tea inputs projects actual connected and missed host rece
       if (f.callFacts?.connected) {
         connected++;
         expect(f.callFacts.connected.minute).toBe(g.calls.at(-1)?.at);
-        expect(rows.some((row) => row.text.includes('connected'))).toBe(true);
+        expect(rows.some((row) => row.text.includes('they talked'))).toBe(true);
       }
       if (f.callFacts?.missed) {
         missed++;
@@ -55,7 +55,7 @@ test('ordinary confirmed inputs retain request identity, actual answers and stan
         if (f.standing?.begun) {
           begun++;
           expect(g.standing?.going).toBeTruthy();
-          expect(account.status).toContain('Began at');
+          expect(account.status).toContain('He started at');
         }
         if (/suggestion.*ended|withdraw/.test(account.status)) ended++;
       }
@@ -87,7 +87,7 @@ test('an actual refusal is shown immediately and another confirmed word replaces
   game.suggest(draft);
   const declined = requestAccount(game.frame());
   expect(declined?.answer?.tone).toBe('willNot');
-  expect(declined?.status).toContain('declined');
+  expect(declined?.status).toContain('He said no');
   expect(game.standing).toBeUndefined();
 
   const replacement = new VoiceGame(SHIPPED_SEED, 4);
@@ -132,5 +132,5 @@ test('a deferred request can actually begin and finish without treating its miss
   expect(game.standing).toBeUndefined();
   const after = requestAccount(game.frame());
   expect(after?.id).toBe(started.id);
-  expect(after?.status).toContain('end or result is not recorded');
+  expect(after?.status).toMatch(/^He did what you suggested/);
 }, 60_000);

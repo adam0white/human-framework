@@ -97,6 +97,13 @@ export function App() {
   // Keep the screen awake only while the day's clock runs (not paused, not on a card or the report).
   useWakeLock(live && overlay === null && frame !== null && !frame.paused);
 
+  // R2: the "replayed correctly" notice sat over the Say it button on a phone. Good news clears itself.
+  const playtest = voice.playtest;
+  useEffect(() => {
+    if (!playtest || !('result' in playtest) || !playtest.result.matches) return;
+    const timer = setTimeout(actions.clearPlaytest, 4000);
+    return () => clearTimeout(timer);
+  }, [playtest, actions]);
   useEffect(() => {
     actions.setReading(readingScene || panelOpen);
   }, [actions, readingScene, panelOpen]);
@@ -379,6 +386,7 @@ export function App() {
               ) : (
                 <DayLog
                   log={frame.log}
+                  day={frame.day}
                   paused={frame.paused || readingScene || panelOpen}
                   {...(frame.pauseBeat ? { pauseBeat: frame.pauseBeat } : {})}
                   onWhy={openWhy}

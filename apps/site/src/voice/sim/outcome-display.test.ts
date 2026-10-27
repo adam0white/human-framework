@@ -16,25 +16,25 @@ const row = (id: string, kind: LogEntry['kind'], text: string, extra: Partial<Lo
 });
 
 describe('outcome display without changing the recorded run', () => {
-  test('a deferred suggestion ends visibly without claiming he never acted', () => {
+  test('a lapsed suggestion says why it ended, in plain words (R2: what "after X" committed him to)', () => {
     const g = new VoiceGame(SHIPPED_SEED, 4);
-    g.log = [
-      row('l1', 'you', 'You: mention · call Selin'),
-      row('l2', 'answer', '“After this task.”', { tone: 'notNow' }),
-      row('l3', 'note', 'Your suggestion fades.'),
-    ];
-    const before = voiceHash(g);
-    expect(g.frame().log.at(-1)?.text).toBe(
-      'He asked you to wait. Your suggestion has now ended. Say it again if you still want him to hear it.',
-    );
-    expect(voiceHash(g)).toBe(before);
-    expect(g.log.at(-1)?.text).toBe('Your suggestion fades.');
+    play(g, { stop: (x) => x.paused && x.frame().prefill?.optionId === 'work-extra' });
+    g.suggest({ optionId: 'work-extra', strength: 'mention', appeal: 'duty', insist: false });
+    const from = g.log.length;
+    for (let n = 0; n < 2000 && g.standing; n++) {
+      if (g.paused) g.resume();
+      g.step(1);
+    }
+    const ended = g.log.slice(from).findLast((e) => e.kind === 'note' && e.who === 'you');
+    const answer = g.log.slice(from - 1).findLast((e) => e.kind === 'answer');
+    if (answer?.tone === 'cannot' || answer?.tone === 'willNot') return;
+    expect(ended?.text).toMatch(/Your suggestion has ended/);
+    expect(ended?.text).toMatch(/Halil: “|moved on to|stopped partway|fell asleep|Three hours passed/);
   });
 
-  test('sleep ends the suggestion and the rent deadline reports a missed payment, not a visit', () => {
+  test('the rent deadline reports a missed payment, not a visit', () => {
     const g = new VoiceGame(SHIPPED_SEED, 4);
     g.log = [
-      row('l1', 'note', 'He is asleep. Your suggestion fades.'),
       row(
         'l2',
         'note',
@@ -43,9 +43,8 @@ describe('outcome display without changing the recorded run', () => {
       ),
     ];
     const before = voiceHash(g);
-    expect(g.frame().log[0]?.text).toMatch(/asleep.*suggestion has ended/);
-    expect(g.frame().log[1]?.text).toContain('Halil paid nothing by 20:00');
-    expect(g.frame().log[1]?.text).not.toMatch(/at the door|arrived|came/);
+    expect(g.frame().log[0]?.text).toContain('Halil paid nothing by 20:00');
+    expect(g.frame().log[0]?.text).not.toMatch(/at the door|arrived|came/);
     expect(voiceHash(g)).toBe(before);
   });
 

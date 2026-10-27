@@ -27,8 +27,8 @@ describe('Halil’s words and independent choices', () => {
         ],
       }),
     );
-    expect(html).toContain('chose something else');
-    expect(html).toContain('no choice observed yet');
+    expect(html).toContain('without your advice, he chose something else');
+    expect(html).toContain('not seen yet without your advice');
     expect(html).toContain('chose it');
     expect(html).not.toContain('<svg');
     expect(html).not.toMatch(/refused|missed/);

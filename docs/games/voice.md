@@ -463,6 +463,17 @@ Not built: the round stopped on the owner's soft stop before any fix. Every item
 - Selin and Hacer scenes on screen; a Selin call on days the player speaks. Target: 2026-12-01.
 - Collapsing dead time (long rest and sleep stretches) if it proves large. Target: 2026-12-01.
 
+**Voice R2 panel (2026-10-26, asks F-895..F-986; fates in the feedback ledger)**
+
+Shipped in the R2 cycle: every lapse of a suggestion says why; "after X" says it is a plan, not a promise; the clock says why it moved quickly; the payment to Osman, a kept suggestion and a grave visit show in the scene; Today opens on today; the likely reply is no longer cut on a phone. Deferred:
+
+- Booking a later-today option in the morning (the afternoon shift before noon; F-933, F-946, F-964). It changes when HF hears a word, so it needs a decision on windows that keeps the difficulty. Target: 2026-11-15.
+- When Selin's call becomes possible, said before the evening (F-908, F-935), and keeping Selin as a skip-screen choice on the deadline evening (F-943). Target: 2026-11-15.
+- A rent conversation the player can open (F-975) and the payment as a scene with Osman rather than a line (F-916, F-938, F-961, F-972). Target: 2026-11-30.
+- Companion scene lines in ui/conversations.ts still repeat across days and people (F-920, F-939, F-941, F-969, F-985); this cycle varied the reply lines only. Target: 2026-11-15.
+- Showing whether he later chooses the shift himself (F-928) and naming Eid's test in the help (F-980). Target: 2026-11-30.
+- Smaller asks, each needing an export check or new content: the day planner's money line (F-904), later Hacer endings (F-898), a new thread sooner on return (F-897), asking why he dreads the clinic (F-900), Selin outside the planner (F-906), goals-panel counts and credit (F-962), and the "day 2" versus "12 mornings" line (F-968). Target: 2026-11-30.
+
 **Framework seams the game exposed**
 
 - Joint activities are one-sided: a joint-activity handshake (`proposeJoint`) is the fix; co-present-only talk (W8) silenced the voices. Unscheduled.

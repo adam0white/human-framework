@@ -158,7 +158,7 @@ test('shows actual sent line, immediate reply and waiting status beside the scen
     });
     render();
     const account = el.querySelector('[aria-label="Your latest suggestion"]');
-    expect(account?.textContent).toContain('You: urge · call Selin');
+    expect(account?.textContent).toContain('You: call Selin');
     expect(account?.textContent).toContain('“After I rest.”');
     expect(account?.textContent).not.toContain('Waiting for his answer');
   } finally {
