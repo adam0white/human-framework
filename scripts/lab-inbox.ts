@@ -45,6 +45,9 @@ import {
 import { waiRun } from './lab-wai-budget.ts';
 
 const suggest = process.argv.includes('--suggest');
+const expectedDay = process.argv
+  .find((arg) => arg.startsWith('--expected-day='))
+  ?.slice('--expected-day='.length);
 let calls = 0;
 let cached = 0;
 let spent = 0;
@@ -72,7 +75,7 @@ async function suggestionLine(id: string, env: Envelope): Promise<string> {
     failure = 'guarded Clef request could not complete';
     calls++;
     spendUnknown = true;
-    const { result } = await waiRun(MODEL, request);
+    const { result } = await waiRun(MODEL, request, expectedDay);
     const json = { result };
     spent += suggestionUsage(json.result).usd;
     spendUnknown = false;

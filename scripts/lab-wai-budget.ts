@@ -180,9 +180,23 @@ export function usageNeurons(model: string, result: Record<string, unknown>): nu
   if (!rate) throw new Error('Model not allowlisted');
   return (input * rate[0] + output * rate[1]) / 1e6;
 }
+/** Analytics can lag; the local hard limit remains independent of the account high-water gate. */
+export function admissionAllowed(
+  accountNeurons: number | null,
+  localReserved: number,
+  reserve: number,
+): boolean {
+  return (
+    (accountNeurons === null
+      ? localReserved + reserve <= 8_000
+      : Math.max(accountNeurons, localReserved) + reserve <= 9_900) &&
+    localReserved + reserve <= DAILY_HARD_NEURONS
+  );
+}
 export async function waiRun(
   model: string,
   body: Record<string, unknown>,
+  expectedDay?: string,
 ): Promise<{ result: Record<string, unknown>; neurons: number; usd: number }> {
   diskCheck();
   mkdirSync(ROOT, { recursive: true, mode: 0o700 });
@@ -194,17 +208,15 @@ export async function waiRun(
   try {
     const state = waiSummary();
     const date = utcDate();
+    if (expectedDay && expectedDay !== date) throw new Error('STOP: UTC day ended');
     state.days[date] ??= { models: {}, reservedNeurons: 0, neurons: 0 };
     const day = state.days[date];
     if (!Number.isFinite(day.reservedNeurons) || day.reservedNeurons < 0)
       throw new Error('Invalid daily budget');
     const reserve = reservation(model, body);
     const account = await waiUsage();
-    if (
-      (account && account.neurons + reserve > 9500) ||
-      (!account && day.reservedNeurons + reserve > 8000) ||
-      day.reservedNeurons + reserve > DAILY_HARD_NEURONS
-    )
+    if (utcDate() !== date) throw new Error('STOP: UTC day ended');
+    if (!admissionAllowed(account?.neurons ?? null, day.reservedNeurons, reserve))
       throw new Error('STOP: daily neuron cap reached');
     const usdReserve = reserve * 0.000011;
     if (state.reservedUSD + usdReserve > LOCAL_BUDGET_USD)
@@ -234,9 +246,11 @@ export async function waiRun(
     }
     let response: Response;
     try {
+      const auth = waiAuth();
+      if (utcDate() !== date) throw new Error('STOP: UTC day ended; reservation retained');
       response = await fetch(`https://api.cloudflare.com/client/v4/accounts/${ACCOUNT}/ai/run/${model}`, {
         method: 'POST',
-        headers: { authorization: `Bearer ${waiAuth()}`, 'content-type': 'application/json' },
+        headers: { authorization: `Bearer ${auth}`, 'content-type': 'application/json' },
         body: JSON.stringify(body),
         signal: AbortSignal.timeout(60_000),
       });

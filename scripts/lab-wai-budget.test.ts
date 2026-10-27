@@ -1,7 +1,21 @@
 import { describe, expect, it } from 'vitest';
-import { DAILY_HARD_NEURONS, reservation, usageNeurons, utcDate } from './lab-wai-budget.ts';
+import {
+  admissionAllowed,
+  DAILY_HARD_NEURONS,
+  reservation,
+  usageNeurons,
+  utcDate,
+} from './lab-wai-budget.ts';
 
 describe('Workers AI admission and response accounting', () => {
+  it('admits up to the readable ceiling and preserves the fallback and hard ceilings', () => {
+    expect(admissionAllowed(9_800, 9_000, 100)).toBe(true);
+    expect(admissionAllowed(9_800, 9_000, 101)).toBe(false);
+    expect(admissionAllowed(null, 7_900, 100)).toBe(true);
+    expect(admissionAllowed(null, 7_900, 101)).toBe(false);
+    expect(admissionAllowed(0, 9_850, 51)).toBe(false);
+    expect(admissionAllowed(0, 11_900, 101)).toBe(false);
+  });
   it('charges token usage at the published rate and rejects missing input usage', () => {
     expect(
       usageNeurons('@cf/qwen/qwen3-30b-a3b-fp8', { usage: { prompt_tokens: 1000, completion_tokens: 100 } }),
