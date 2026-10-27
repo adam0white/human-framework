@@ -72,3 +72,17 @@ export function actionForms(
     gerund: given?.gerund ?? `${regularGerund(verb)}${tail}`,
   };
 }
+
+/** One authored-table lookup for emission and rendering; shared events have no voice. */
+export function authoredWordings(
+  lexicon: DeepReadonly<Lexicon>,
+  person: string | undefined,
+  key: string,
+): readonly string[] | undefined {
+  const voice =
+    person !== undefined && Object.hasOwn(lexicon.voices ?? {}, person)
+      ? lexicon.voices?.[person]
+      : undefined;
+  if (voice && Object.hasOwn(voice, key)) return voice[key];
+  return Object.hasOwn(lexicon.wordings ?? {}, key) ? lexicon.wordings?.[key] : undefined;
+}

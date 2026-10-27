@@ -2018,6 +2018,8 @@ export type WordingSequence = { rng: RngState; occurrence: number; last: number 
 export type Lexicon = {
   /** Reviewed alternatives for keys in NARRATION_TEMPLATES; same named slots. */
   wordings?: Record<string, readonly string[]>;
+  /** Per-person partial overrides; missing keys use wordings, then built-in templates. */
+  voices?: Record<Id, Record<string, readonly string[]>>;
   locale?: string;
   materialMeaning?: string;
   names: Record<Id, string>;

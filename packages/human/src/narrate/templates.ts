@@ -32,7 +32,12 @@ export const NARRATION_TEMPLATES = {
   'observation.death': ['I heard that {person} died.'],
 } as const satisfies Record<string, readonly string[]>;
 
-for (const templates of Object.values(NARRATION_TEMPLATES)) Object.freeze(templates);
+for (const [key, templates] of Object.entries(NARRATION_TEMPLATES)) {
+  const expected = JSON.stringify(templateSlots(templates[0]));
+  if (templates.some((template) => JSON.stringify(templateSlots(template)) !== expected))
+    throw new Error(`Built-in wording ${key} has inconsistent slots`);
+  Object.freeze(templates);
+}
 Object.freeze(NARRATION_TEMPLATES);
 
 /** Returns undefined for unmatched braces or invalid slot names. */

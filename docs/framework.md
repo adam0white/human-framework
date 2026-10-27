@@ -2,18 +2,18 @@
 
 This is the design reference for `packages/human` (`@adam0white/human-framework`). For installation, a quick start and the host contract in brief, see the [package README](../packages/human/README.md). The [API reference](api.md) lists every export. The shared data contract lives in [`packages/human/src/run-schema.ts`](../packages/human/src/run-schema.ts). Modules expose deterministic readers and mutators over a `Person`. Faculty modules mutate only their owned slices; composites coordinate calls across faculties.
 
-## HF 4.0 contract
+## HF 4.2 contract
 
-This reference is being moved to HF **4.0.0**. In 4.0 a host uses eight calls (`createRun`, `createPerson`, `step`, `inspect`, `preview`, `exportRun`, `restoreRun`, `replay`); the [package README](../packages/human/README.md) describes them. Every faculty is always on, every host change is a timestamped input to `step`, and every reading leaves through `inspect` or `preview`. The data contract is [`packages/human/src/run-schema.ts`](../packages/human/src/run-schema.ts). The [CHANGELOG](../CHANGELOG.md) 4.0.0 section lists what was removed and what moved to 4.1.
+HF **4.2** retains the HF 4 host contract. A host uses eight calls (`createRun`, `createPerson`, `step`, `inspect`, `preview`, `exportRun`, `restoreRun`, `replay`); the [package README](../packages/human/README.md) describes them. Every faculty is always on, every host change is a timestamped input to `step`, and every reading leaves through `inspect` or `preview`. The data contract is [`packages/human/src/run-schema.ts`](../packages/human/src/run-schema.ts). The [CHANGELOG](../CHANGELOG.md) 4.0.0 section lists what was removed and what moved to 4.1.
 
 **How to read the sections below.** The sections below retain the 3.x faculty reference. Only rules retained in 4.0 apply; the [CHANGELOG Removed list](../CHANGELOG.md#removed) names removed behavior, including comfort percepts, body-threshold interrupts and the default protest-quality penalty. The function names, `enable*` options and "opt-in" labels are the 3.x host surface: in 4.0 the faculty is on, and the host reaches it through an input kind (for example `observation.received`, `suggestion.received`, `agenda.received`, `testimony.received`) instead of a call. Links to deleted examples point to the v3.2.0 tag. Rewriting these sections in 4.0 terms is open work with a target of 2026-11-10.
 
 The 3.x reference is kept at [v3.2.0](https://github.com/adam0white/human-framework/blob/v3.2.0/docs/framework.md).
 
-## Pre-generated wording variants (HF 4.1)
+## Pre-generated wording variants (HF 4.1–4.2)
 
 Games put reviewed alternative lines in `RunSpec.definitions.lexicon.wordings`.
-This is plain JSON. Workers AI generates it offline. A person reviews meaning and
+This is plain JSON. A partial `lexicon.voices[personId]` table can provide the same keys for an individual person. For each event key, HF uses that person’s entry first, then `wordings`, then the built-in templates. Events without a person use `wordings` and the built-in templates. Workers AI generates the wording offline. A person reviews meaning and
 voice, then commits it as game data. Runtime HF does not call a model.
 
 ```json
@@ -41,25 +41,42 @@ missing slots and duplicate strings fail run admission. There is no brace escape
 syntax. Reviewers must check that each alternative preserves meaning; schema
 validation cannot establish that.
 
-Slots contain already admitted display text. For `decision.act`, `{action}` is the
-base action phrase; `{why}` includes its leading space and punctuation, or is empty.
-For `voice.promise`, `{outcome}` is “kept” or “broke”. Summary templates use the entire
-admitted `{summary}` rather than rewriting its contents. Slot insertion happens
-once, so braces or replacement characters inside a name or host summary stay literal.
+Slots contain admitted display text. Authors should preserve their grammatical role:
+
+| Key                                                                                                                                                  | Slots and values                                                                                                                                                                          |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `review.kept`, `review.unresolved`, `review.resolved`                                                                                                | `{items}`: a list of labels, joined with commas and “and”; for example, `the dawn prayer and the evening task`.                                                                           |
+| `prompting.assented`, `prompting.turned`, `prompting.other`                                                                                          | `{action}`: the action’s base verb phrase, such as `take a walk`.                                                                                                                         |
+| `decision.act`                                                                                                                                       | `{action}`: a base verb phrase, for example `take a walk`; `{why}`: the optional reason suffix described below, including its leading space.                                              |
+| `claim.told`                                                                                                                                         | `{speaker}`: display name, for example `Ada`; `{prop}`: raw host proposition identifier, such as `door-open`; `{value}`: `true` or `false`.                                               |
+| `conversation`                                                                                                                                       | `{speaker}`, `{listener}`: display names, for example `Ada` and `Bea`.                                                                                                                    |
+| `suggestion.resolved`                                                                                                                                | `{verdict}`: `assented`, `complied`, `deferred`, `modified`, `refused`, or `commanded`.                                                                                                   |
+| `commitment.changed`                                                                                                                                 | `{label}`: authored label, for example `Bring bread`, or raw kind: `promise`, `duty`, `appointment`, `worship`, `job`, `abstain`; `{status}`: `pending`, `kept`, `broken`, or `released`. |
+| `goal.changed`                                                                                                                                       | `{label}`: authored goal label, for example `Repair the boat`; `{status}`: `active`, `achieved`, or `abandoned`.                                                                          |
+| `day.closed`, `observation.summary`                                                                                                                  | `{summary}`: the entire generated day summary or admitted host observation summary, for example `The door is open.`; complete prose, including its own punctuation.                       |
+| `year.closed`                                                                                                                                        | `{days}`, `{kept}`, `{broken}`: nonnegative decimal counts, for example `3`, `2`, `1`; cardinal numbers.                                                                                  |
+| `voice.promise`                                                                                                                                      | `{voice}`: display name, for example `Bea`; `{outcome}`: `kept` or `broke`.                                                                                                               |
+| `observation.death`                                                                                                                                  | `{person}`: display name, for example `Bea`.                                                                                                                                              |
+| `decision.wait`, `body.died`, `body.dozed`, `body.woke`, `body.downed`, `body.stood`, `body.injured`, `body.illness`, `crisis.onset`, `crisis.other` | No slots.                                                                                                                                                                                 |
+
+For `decision.act`, `{why}` is empty when no supported motive applies. Need motives can supply ` I need to eat first.`, ` I need to drink first.`, ` I need to sleep first.`, ` I need to rest first.`, ` I need to use the toilet first.`, or ` I need to meet an urgent bodily need first.` A norm motive supplies ` I want to act according to a rule I hold.` A memory motive supplies ` I remember what happened before.` An unrecognized `need:` source supplies a single space. Preserve the suffix as supplied; do not add punctuation around it.
+
+The Workers AI sweep uses [the cast registry](lab/cast-registry.md) for each person's voice and writes partial tables under that person's id in `lexicon.voices`. Both table levels follow the same admission rules above.
+
+Display names and host text are data, not fixed vocabulary. Summary templates use the entire `{summary}` rather than rewriting its contents. Slot insertion happens once, so braces or replacement characters inside a name or host summary stay literal.
 
 At event emission, HF selects once using a seeded RNG stream held in
 `RunState.wording`, separate for each `(person, key)`. Events without a person use a
 separate shared stream. The event's `wording` records `key`, one-based `occurrence`
 and zero-based `index`. Consecutive occurrences of the same person/key exclude the
 previous index when at least two alternatives exist. A singleton necessarily
-repeats. Interleaving other people or keys does not advance that stream.
+repeats. Interleaving other people or keys does not advance that stream. An extra earlier event for the same person and key shifts later selections for that pair, without changing behaviour.
 
 `inspect` and `preview` use the existing renderer after visibility admission. Reads
 never advance wording state. Host and person views use the same recorded choice;
 pagination does not reset it. Exported initial definitions retain the table, and
 exports retain both choices and stream state. Current-engine replay and restore
-preserve continuation. A missing table or key keeps existing wording and consumes
-no wording randomness. Portable persona inspection remains outside HF4's admitted
+preserve continuation. `decision.intention` stores the rendered decision line in the decision trace and conscience intentions, so wording can change person state. Behaviour currently only checks whether an intention is `missed`; a meaning-preserving `decision.act` variant does not equal that value, so wording does not change that behaviour. A missing table or key falls through to the next table. When no authored entry applies, built-in wording consumes no wording randomness. Sequencing is scoped to each person and key, not to a voice table or to the run as a whole. Portable persona inspection remains outside HF4's admitted
 surface; these keys cover the current persona-style event lines and narration.
 
 ## Capability evidence (2026-10-26)

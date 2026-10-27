@@ -12,7 +12,7 @@ import type {
   RendererOwner,
   RunEvent,
 } from '../run-schema.ts';
-import { actionForms, displayName, stableHash } from './lexicon.ts';
+import { actionForms, authoredWordings, displayName, stableHash } from './lexicon.ts';
 import { fillTemplate, NARRATION_TEMPLATES } from './templates.ts';
 
 const LABELS: Readonly<Record<string, string>> = {
@@ -308,7 +308,10 @@ export const rendererOwner: RendererOwner = {
     if (!visible(event, perspective)) return [];
     const descriptor = describeWording(event.data, lexicon);
     if (!descriptor) return [];
-    const authored = event.wording?.key === descriptor.key ? lexicon.wordings?.[descriptor.key] : undefined;
+    const authored =
+      event.wording?.key === descriptor.key
+        ? authoredWordings(lexicon, event.person, descriptor.key)
+        : undefined;
     const variants = authored ?? descriptor.templates;
     const audience = perspective.kind === 'host' ? 'host' : `person:${perspective.observer}`;
     const slot =
