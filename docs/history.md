@@ -4,6 +4,10 @@ Detail moved out of AGENTS.md on 2026-10-20 (owner: "Trim handoff and other docu
 
 > This file preserves dated state and owner records. Old current-state headings, pins and worker instructions apply to their checkpoint. Use [HANDOFF](../HANDOFF.md) for current work.
 
+## HF 4.1 pre-generated wording variants (2026-10-27)
+
+HF 4.1.0 is published with provenance. Games supply reviewed JSON alternatives to the existing renderer; seeded per-person/key streams choose once per event and avoid immediate repeats when two or more wordings exist. Pure reads, pagination, restore continuation and replay preserve the choices. Missing entries retain existing text. Exact CI, the completed GitHub Codex review, the coordinator's requested Opus review, registry verification and the clean central deployment are recorded in [release receipts](releases.md#hf-410--2026-10-27). No runtime model or game adoption was added.
+
 ## HF 3.2 bounded opt-ins and repairs (2026-10-26)
 
 HF 3.2.0 / engine 3.2.0 is published from signed a92081e with exact CI, trusted publishing and verified registry/SLSA provenance. Literal wording, assent cost, payment planning, input diagnostics and event-only catch-up are explicit options; opted-in death/upbringing repairs and replay limits are in [CHANGELOG](../CHANGELOG.md#320---2026-10-26). [Release receipts](releases.md#hf-releases) distinguish the package from central site delivery, external game pins and owner acceptance. The dated 3.1 entry below records its publication-time state; its site follow-up is recorded separately in releases.
