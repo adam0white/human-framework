@@ -135,7 +135,7 @@ Every resolution also carries a machine-readable `reason` (`need:food`, `norm:th
 
 ## Versions
 
-The release version is the package version (`package.json`, currently `4.0.1`). From 4.0.0 the engine version is
+The release version is the package version (`package.json`, currently `4.0.2`). From 4.0.0 the engine version is
 the same string; `RUN_ENGINE` in each archive adds a build hash and a schema hash, so a host can tell exactly
 which engine wrote a save. The public API follows [semver](https://semver.org/). Each release is a tag `vX.Y.Z`
 and a GitHub release whose notes are that version's section of the root
