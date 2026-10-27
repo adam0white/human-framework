@@ -18,6 +18,11 @@ vi.mock('@adam0white/lab-kit', () => ({
   telemetryOn: () => false,
   setTelemetryOff: () => {},
   telemetryNotice: () => null,
+  debugFooter: (slot: Node) => {
+    const node = document.createElement('div');
+    node.append(slot);
+    return node;
+  },
 }));
 vi.mock('./Pane.tsx', () => ({
   Pane: (p: PaneProps) =>
@@ -117,7 +122,7 @@ async function begin() {
 it('starts on the shelf with one primary, default village and folded import', async () => {
   await act(() => root.render(createElement(App)));
   expect(container.querySelectorAll('.well-primary')).toHaveLength(1);
-  expect(container.querySelector('input[type=radio]')).toBeNull();
+  expect(container.querySelectorAll('input[type=radio]')).toHaveLength(2);
   expect(container.querySelector('input[type=file]')).toBeNull();
   expect(container.textContent).not.toContain('Lab tools');
 });

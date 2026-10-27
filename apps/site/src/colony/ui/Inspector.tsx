@@ -1,5 +1,4 @@
-import { useEffect, useRef } from 'react';
-import { labMode } from '../../shared/lab-mode.ts';
+import { useEffect, useRef, useState } from 'react';
 import type { TermFamily, TrustView, WhyBreakdown, WhyOption } from '../sim/human-side.ts';
 import { type VillagerId, villagerById } from '../sim/world-types.ts';
 import { type Frame, NO_CONCEPT } from './contract.ts';
@@ -124,6 +123,7 @@ export function Inspector(props: {
   const v = villagerById(props.personId);
   const hv = props.frame?.human.find((h) => h.id === props.personId);
   const cu = props.frame?.classic.find((u) => u.id === props.personId);
+  const [showWhy, setShowWhy] = useState(false);
   const why =
     props.why?.personId === props.personId &&
     (props.decisionId === undefined || props.why.decisionId === props.decisionId)
@@ -173,42 +173,51 @@ export function Inspector(props: {
       </header>
 
       <div className="inspector-cols">
-        {labMode() && (
-          <section className="inspector-classic" aria-label="Classic unit">
-            <span className="kicker">Classic unit</span>
-            <p className="inspector-now">
-              {cu?.label ?? '–'}
-              {cu?.rush && <span className="flag">rush</span>}
-            </p>
-            {cu && (
-              <div className="needs">
-                <Meter label="Hunger" value={cu.hunger} />
-                <Meter label="HP" value={cu.hp} />
+        <section className="inspector-classic" aria-label="Classic unit">
+          <span className="kicker">Classic unit</span>
+          <p className="inspector-now">
+            {cu?.label ?? '–'}
+            {cu?.rush && <span className="flag">rush</span>}
+          </p>
+          {cu && (
+            <div className="needs">
+              <Meter label="Hunger" value={cu.hunger} />
+              <Meter label="HP" value={cu.hp} />
+            </div>
+          )}
+          <p className="inspector-caption">
+            That is all a Classic unit has.{' '}
+            <span className="no-concept-mark">
+              <Icon name="none" />
+            </span>{' '}
+            = {settingWords(NO_CONCEPT.toLowerCase())}.
+          </p>
+          <dl className="no-concept-list">
+            {['Needs', 'Emotion', 'Trust in you', 'Why', 'Memories'].map((row) => (
+              <div key={row}>
+                <dt>{settingWords(row)}</dt>
+                <dd>
+                  <NoConcept text={NO_CONCEPT} />
+                </dd>
               </div>
-            )}
-            <p className="inspector-caption">
-              That is all a Classic unit has.{' '}
-              <span className="no-concept-mark">
-                <Icon name="none" />
-              </span>{' '}
-              = {settingWords(NO_CONCEPT.toLowerCase())}.
-            </p>
-            <dl className="no-concept-list">
-              {['Needs', 'Emotion', 'Trust in you', 'Why', 'Memories'].map((row) => (
-                <div key={row}>
-                  <dt>{settingWords(row)}</dt>
-                  <dd>
-                    <NoConcept text={NO_CONCEPT} />
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </section>
-        )}
+            ))}
+          </dl>
+        </section>
 
         <section className="inspector-human" aria-label="Human person">
           <span className="kicker">Human person</span>
-          <p className="inspector-now">{hv?.label ?? '–'}</p>
+          <p className="inspector-now">
+            {hv?.label ?? '–'}{' '}
+            <button
+              type="button"
+              className="why-info"
+              aria-label="Why this decision"
+              aria-expanded={showWhy}
+              onClick={() => setShowWhy(!showWhy)}
+            >
+              i
+            </button>
+          </p>
           {hv && (
             <div className="needs">
               {[...hv.needs]
@@ -232,7 +241,7 @@ export function Inspector(props: {
           )}
           {hv && <TrustMeter trust={hv.trust} name={shortName(props.personId)} />}
 
-          {labMode() && (
+          {showWhy && (
             <section className="why">
               <h3>Why</h3>
               {!why ? (

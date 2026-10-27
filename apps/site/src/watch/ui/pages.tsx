@@ -1,3 +1,4 @@
+import { CastOffer } from '../../shared/CastOffer.tsx';
 import { EndTally } from '../../shared/EndTally.tsx';
 import { watchTally } from './end-tally.ts';
 import { RunSecondaries } from './exporting.tsx';
@@ -335,6 +336,7 @@ export function ClosedPage({
           <Icon name="book-open" size={18} /> Open the next part
         </button>
       </PageActions>
+      <CastOffer game="watch" />
       <RunSecondaries actions={actions} onFeedback={onFeedback} />
     </div>
   );
@@ -366,6 +368,7 @@ export function FallenPage({
       <Epilogue v={v} />
       <p>The villagers cannot stay here. This part of the chronicle ends.</p>
       <EndTally title="The chronicle’s tally" lines={watchTally(frame)} />
+      <CastOffer game="watch" />
       <RunSecondaries actions={actions} onFeedback={onFeedback} />
       <PageActions>
         <button type="button" className="w-primary" onClick={() => actions.restart(seed + 1)}>

@@ -2,7 +2,6 @@ import { gameNavigation } from '@adam0white/lab-client';
 import { telemetryNotice } from '@adam0white/lab-kit';
 import { useEffect, useRef } from 'react';
 import { type Game, isExternal } from '../games.ts';
-import { labMode } from './lab-mode.ts';
 import { sketchFor } from './sketches.tsx';
 
 /** The notebook cards for a list of games (home.css). */
@@ -22,7 +21,7 @@ export function GameList({ games }: { games: Game[] }) {
         {games.map((g) => (
           <li key={g.id} value={g.rank}>
             <a
-              className={`game${labMode() && g.status === 'frozen' ? ' game-frozen' : ''}`}
+              className="game"
               href={g.href}
               onClick={(event) => {
                 event.currentTarget.href = gameNavigation(g.href);
@@ -42,10 +41,8 @@ export function GameList({ games }: { games: Game[] }) {
                     </span>
                   )}
                 </span>
-                {labMode() && g.status === 'frozen' && <span className="game-status">Frozen experiment</span>}
                 <span className="game-line">{g.line}</span>
-                {labMode() && <span className="game-shows">{g.faculties.join(' · ')}</span>}
-                {labMode() && g.labNote && <span className="game-status">{g.labNote}</span>}
+                <span className="game-shows">{g.faculties.join(' · ')}</span>
               </span>
             </a>
           </li>

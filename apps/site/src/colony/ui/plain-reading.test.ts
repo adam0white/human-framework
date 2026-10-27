@@ -1,6 +1,7 @@
 // @vitest-environment happy-dom
 import { voiceOf } from '@adam0white/human-framework';
-import { createElement } from 'react';
+import { act, createElement } from 'react';
+import { createRoot } from 'react-dom/client';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { afterEach, expect, it, vi } from 'vitest';
 import { ColonyGame } from '../sim/game.ts';
@@ -58,16 +59,20 @@ it('repairs first-person memory prose without changing its source', () => {
   expect(memoryText('I remember: i ate a meal.')).toBe('I remember: I ate a meal.');
 });
 
-it('keeps the decision comparison in lab mode and the person description in normal play', () => {
+it('opens the decision explanation from the inline control without a query flag', () => {
   const frame = new ColonyGame(7, createFrameworkHumanSide).frame();
-  const element = createElement(Inspector, { personId: 'maryam', frame, why: null, onClose: vi.fn() });
-  const player = render(element);
-  expect(player.querySelector('.inspector-human')).not.toBeNull();
-  expect(player.querySelector('.why, .inspector-classic')).toBeNull();
-  history.replaceState(null, '', '/?lab=1');
-  const lab = render(element);
-  expect(lab.querySelector('.why')).not.toBeNull();
-  expect(lab.querySelector('.inspector-classic')).not.toBeNull();
+  const host = document.createElement('div');
+  document.body.append(host);
+  const root = createRoot(host);
+  act(() =>
+    root.render(createElement(Inspector, { personId: 'maryam', frame, why: null, onClose: vi.fn() })),
+  );
+  const button = host.querySelector<HTMLButtonElement>('[aria-label="Why this decision"]');
+  expect(button?.getAttribute('aria-expanded')).toBe('false');
+  act(() => button?.click());
+  expect(host.querySelector('.why')).not.toBeNull();
+  act(() => root.unmount());
+  host.remove();
 });
 
 it('uses a status label beside a named person', () => {

@@ -5418,3 +5418,17 @@ kbd {
     font-size: max(1rem, 16px);
   }
 }
+
+.why-info {
+  display: inline-grid;
+  place-items: center;
+  width: 1.35em;
+  height: 1.35em;
+  padding: 0;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  font-size: 0.8em;
+  cursor: pointer;
+}

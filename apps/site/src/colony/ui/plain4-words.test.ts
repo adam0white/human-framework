@@ -1,6 +1,7 @@
 // @vitest-environment happy-dom
 
-import { createElement } from 'react';
+import { act, createElement } from 'react';
+import { createRoot } from 'react-dom/client';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { expect, it } from 'vitest';
 import { ColonyGame } from '../sim/game.ts';
@@ -96,9 +97,14 @@ it('names Maryam in the actual Inspector narration and empty-memory line', () =>
     recalled: [],
     trust: frame.human[0]!.trust,
   };
-  const html = renderToStaticMarkup(
-    createElement(Inspector, { personId: 'maryam', why, frame, onClose: () => {} }),
-  );
+  const host = document.createElement('div');
+  document.body.append(host);
+  const root = createRoot(host);
+  act(() => root.render(createElement(Inspector, { personId: 'maryam', why, frame, onClose: () => {} })));
+  act(() => host.querySelector<HTMLButtonElement>('[aria-label="Why this decision"]')?.click());
+  const html = host.innerHTML;
+  act(() => root.unmount());
+  host.remove();
   expect(html).toContain('Maryam recalled no memories for this decision.');
   expect(html).toContain('You insisted that Maryam gather timber.');
   expect(html).not.toContain('They recalled');

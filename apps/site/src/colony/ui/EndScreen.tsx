@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { labMode } from '../../shared/lab-mode.ts';
+import { CastOffer } from '../../shared/CastOffer.tsx';
 import { wellWords as settingWords } from './words.ts';
 import './feedback.css';
 import { EndTally } from '../../shared/EndTally.tsx';
@@ -302,15 +302,11 @@ export function EndScreen(props: {
           </div>
         </div>
         <div className="colony-report-actions">
+          <CastOffer game="well" />
           <div className="colony-report-secondaries">
             {props.onFeedback && (
               <button type="button" className="btn btn-ghost" onClick={props.onFeedback}>
                 Feedback
-              </button>
-            )}
-            {labMode() && props.onDownload && (
-              <button type="button" className="btn btn-ghost" onClick={props.onDownload}>
-                Download this run
               </button>
             )}
           </div>
