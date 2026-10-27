@@ -384,3 +384,9 @@ Coordinator reading: Codex runs many workers in parallel again; Claude stays at 
 > "Cool thanks, keep going. I'd like all games to work 1:1 on improving HF for their needs so everyone can upgrade to v4 properly without compromising much. Eventually."
 
 Coordinator reading: staying on 3.x is no longer an end state. Each game works with HF, one game at a time, to name what it needs from 4.x; HF gains those as ordinary faculties or fixes, and the game then moves to 4.x with little compromise. This changes the 4.0 done-means clause "each existing game on 4.0 or recorded as staying on 3.x with a reason": a recorded reason now becomes a list of HF needs with targets, and the end point is every game on 4.x.
+
+## 2026-10-27 — Cheaper models for speed: Terra 6.1 and Sonnet 5.5 (Adam, verbatim)
+
+> "Just like how we sporadically get Fable or Astra reviews, it's also fair to sometimes use chatgpt's new Terra 6.1 and your Sonnet 5.5 for speedier work. These shouldn't count towards your agents limit as these are cheaper. I'd welcome some experiments about how these compare as a code reviewer, documentation writer, play tester, easy implementation dev. This way we can go both faster and further with existing allowance."
+
+Coordinator reading: `gpt-6.1-terra` (through `codex exec -m`) and Claude Sonnet 5.5 may be used for faster work and do not count toward the agent limit. A first experiment compares them on four roles with identical packets and known answers; results go to `docs/lab/experiments/model-roles-2026-10-27.md`.
