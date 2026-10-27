@@ -924,7 +924,7 @@ The [2026-10-27 retest](watch-playtest-2026-10-27-retest.md) asked that "my taps
 - Each Urge option carries its likely answer ("Urge Kian to hold The watcher will probably agree."). Two taps by the name "Urge Kian to hold" matched nothing. The tap that worked, "Ring and call Kian by name The watcher will stay.", used the full name. A third Urge tap, by text, was refused as "not on the page now" although the control was there just before. Its cause is not confirmed.
 - Assumed, not confirmed: the tester's helper script dropped the driver's error replies, so the failures looked silent.
 
-From the code, not observed in that run: the post rule, the hit area and the disabled state work, and a tap on "East wall · tracks" posts the watcher. The live check below confirms it at 360x690.
+From the code, not observed in that run: the post rule, the hit area and the disabled state work, and a tap on "East wall · tracks" posts the watcher. After deploy, a live tap on a tracks-labelled button ("Gate · tracks") posted the watcher at 360x690 and 1280x800.
 
 **What changed (words only; rules and difficulty unchanged).**
 - An Urge or call-back answer now puts the watcher's reply in the ticker, as a named bell call does: "You urge Kian to hold the Gate. “I’ll hold,” Kian answers." The reply follows the same read the card's option shows, so "will not agree" is answered "Kian does not answer." It is not a promise; they still decide. Sending someone else to the post says so too ("“I’ll go,”"). An Urge with no post to go back to says that it changes nothing; it used to close silently.
