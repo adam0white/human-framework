@@ -35,7 +35,7 @@ Return sentence (mixed): "Yes, I would come back for one more night to see wheth
 
 ## Tester ledger
 
-Disposition is keep, mixed or quit from the first answer in the return sentence. Session times are the driver's elapsed seconds at the stop line, not the player's own estimate.
+Disposition: keep is yes with no condition; mixed is yes or maybe with a condition; quit is a sentence that opens with no or not tonight. Session times are the driver's elapsed seconds at the stop line, not the player's own estimate.
 
 | tester             | commit  | sessions (device, stop reason, driver time)                                         | return sentence                                                                                                                                                                                | disposition |
 | ------------------ | ------- | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |

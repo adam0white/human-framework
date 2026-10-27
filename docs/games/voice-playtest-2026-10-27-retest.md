@@ -15,7 +15,7 @@
 
 This retest is the second iteration after R2. By the playtest rule, the game is finished. The remaining asks go to the [Deferred list](voice.md#deferred) with dates.
 
-Dispositions: 5 keep, 7 mixed, 4 quit.
+Dispositions: 4 keep, 8 mixed, 4 quit.
 
 ### Seen working from the R2 cycle, in the testers' words
 
@@ -62,7 +62,7 @@ Dispositions: 5 keep, 7 mixed, 4 quit.
 
 ## Tester ledger
 
-Disposition is keep, mixed or quit from the first answer in the return sentence. Session times are the driver's elapsed seconds at the stop line, not the player's own estimate.
+Disposition: keep is yes with no condition; mixed is yes or maybe with a condition; quit is a sentence that opens with no or not tonight. Session times are the driver's elapsed seconds at the stop line, not the player's own estimate.
 
 | tester         | commit  | sessions (device, stop reason, driver time)                                         | return sentence                                                                                                                                                                                                                                                                                                                 | disposition |
 | -------------- | ------- | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
@@ -80,7 +80,7 @@ Disposition is keep, mixed or quit from the first answer in the return sentence.
 | Leila Mansour  | 82135ac | phone TASTE at 437 s; desktop TASTE at 466 s                                        | Yes, I would come back another evening, and more readily than after my last visit. Day 2 no longer drove me out. I would not leave it running, because it still runs on while I write.                                                                                                                                          | keep        |
 | Haruto Sato    | 82135ac | desktop TASTE at 554 s; phone TASTE at 150 s                                        | "Yes, another evening, because this time my words visibly changed what Halil did (doctor, river, Selin call, afternoon shift), and I want to see whether I can get the rent to Osman by Ramadan 15 and whether the late-Ramadan days hold up. I would not leave it running; I would come back and play it by hand."             | keep        |
 | Marisol Reyes  | 82135ac | phone TASTE at 281 s; desktop BORED at 209 s                                        | Perhaps. I would come back another evening, but only if Rıza and Hacer had their own words and I could reach rent day without sitting through a day of quiet. I would not leave it running, because the good moments need me there to answer them.                                                                              | mixed       |
-| Elena Markovic | 82135ac | desktop TASTE at 521 s; phone TASTE at 156 s                                        | Yes, probably once more, on one condition: that the later days (rent, Selin's calls, the afternoon shift) now play out as scenes like Day 1 did. I stopped on Day 1 because I had seen what I wanted from it, not because I was bored. I would not leave it running. I would come back another evening to see Day 2 and onward. | keep        |
+| Elena Markovic | 82135ac | desktop TASTE at 521 s; phone TASTE at 156 s                                        | Yes, probably once more, on one condition: that the later days (rent, Selin's calls, the afternoon shift) now play out as scenes like Day 1 did. I stopped on Day 1 because I had seen what I wanted from it, not because I was bored. I would not leave it running. I would come back another evening to see Day 2 and onward. | mixed       |
 | Kwame Mensah   | 82135ac | desktop CONFUSED at 634 s; phone BORED at 112 s                                     | "Maybe, one more evening, if Halil's morning moved faster and the Speak button was there when he actually chooses. I'd come back for the planner, his answers showing straight away, and the mosque thread. I would not come back to watch a clock crawl for ten minutes."                                                      | mixed       |
 
 ## Player words
