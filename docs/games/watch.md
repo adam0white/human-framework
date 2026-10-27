@@ -885,3 +885,32 @@ F-299's reference to F-290 is a stale umbrella, not a new failure of the three c
 ### Source delivery pending — 2026-10-26
 
 Source now implements an explicit new-village dusk night-off option (scenario15); omitted selection keeps14. Actual HF decisions and events own refusal, rest, expiry and observed return. Dawn does not guarantee a return. This is the bounded F469 dusk capability, not guaranteed obedience or a full request-history faculty. Normal related checks and raw legacy/export controls passed at author handback. Independent source review and exact CI remain required before integration. Public deployment is held with the Voice round; follow-up target 2026-10-27 after the hold clears. Browser verification, same-tester observations and Adam’s 2026-11-03 acceptance remain separate.
+
+## Design change 2026-10-27: loss carries across the year (owner may veto)
+
+Cold play (2026-10-26, 3d199d8): a careless Keeper lost "much of the granary" and heard "someone is down", then autumn brought "An ordinary harvest". Nobody died and no winter failed. Headless, a passive or wrong-end Keeper emptied all 20 sacks every winter for three years and kept the same village; the harvest (18–29) refilled the granary each autumn. Owner directions: death is allowed where the design needs it; bold over safe; keep difficulty edges; show rather than count.
+
+New villages get the **hardship rules** (`WatchState.hardship`, scenarios 17, 18 and 19 for the three editions 14, 15 and 16). Each consequence is a chronicle line or a roster note:
+
+- **Seed for sowing.** After the spring's eating, the sowing takes up to 4 sacks. Unsown fields cost the harvest: it is 70% (kitchen gardens and what was sown anyway) plus the other 30% in proportion to the seed. The thaw says "There was no seed grain left to sow…", and the harvest line says why it is poor.
+- **The hunger can kill.** In a hungry spring, the frailest face the thaw already names (the oldest from fifty, else the youngest under six) dies with a chance of 75% times how short the granary fell. The shortfall is measured before households leave, so a spring that also loses a family still counts its full hunger. At most one death a spring. It is a world draw, so nothing else moves it. The death goes through HF `die` and `tellDeath`, so the bereaved grieve and a spouse is widowed.
+- **A lean winter.** A winter is lean when it opens with less grain than the spring will eat plus the seed, or after a hungry spring. Every watcher's fitness drops to 60% of what it was, so they tire sooner. The roster says "weak from hunger", and the winter opens with a line saying so.
+- **Wounds last.** Bites heal at 0.035 a day (was 0.12) and blows to the head at 0.08 (was 0.2). A watcher bitten early is still hurt at the last played night, and the roster says "still hurt". The limp roll at dawn reads only the night's new wounds, so an old wound is not rolled again. A watcher with a leg wound who went down and lay on the wall until dawn, carried by nobody, is lamed at severity 0.4 with a 60% chance (otherwise 0.55 and 30%).
+- **The fall.** A second hungry spring in a row ends the village when it runs half short or worse: "A second hungry spring in a row. The families could not stay to starve, and the village went down the valley." This is the fall at the thaw from spec §3. A milder second hungry spring is survived, so one bad winter followed by careful play can still recover.
+- **Plain warnings (F-290).** The granary line on the dusk and dawn pages names what the grain left can still do. It says when the granary cannot feed the village to the harvest, when there will be no seed, and, after a hungry spring, that another short spring will end the village. The thaw headline says when next winter will start thin.
+
+Saves and exports: a page saved under 14–16 has no `hardship` and keeps its rules exactly. A 14–16 export still replays under its own rules (`replay` drops `hardship` for it). Nothing old is refused.
+
+Headless evidence (scripted Keeper, seeds 1, 2, 3, 5, 7, 9, 11, 23, 4 years, no fair purchases):
+
+| Keeper                             | Before                                               | After                                                                                                                                           |
+| ---------------------------------- | ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| Matched (careful) every winter     | never hungry                                         | 7 of 8 standing after 4 years, never hungry. Seed 9 (the hard seed) had a hungry spring in year 2, lost one person and fell at the year-3 thaw. |
+| Mismatched or passive every winter | hungry most springs, 0–1 households left, never fell | 20 of 20 sacks lost in winter 1; the hungry spring killed the frailest in 14 of 16 runs; the harvest was 13–21; all 16 fell at the year-2 thaw  |
+| Passive in winter 1, matched after | not measured                                         | 2 of 8 standing after 4 years (seeds 3 and 5); seed 7 recovered and fell in year 4; 5 fell at the year-2 thaw                                   |
+
+The third row is the difficulty edge: one careless winter is usually fatal, but not always. Tuning constants (`SOWN_FLOOR`, `FALL_SHORT`, `LEAN_FITNESS`, `HUNGER_DEATH` in `sim/season.ts`) are the levers if the owner wants it gentler.
+
+Not covered: eating the seed or keeping it as a Keeper's choice; hunger in the routine days of winter; a death on the wall from a wound. The scenario 13 departure cost and the night acts (F-423, kept by the owner) are unchanged.
+
+WATCH-cold-timing: the downloaded playtest file now carries `clock`, kept by the worker outside the game state. It holds the ticks the page sent, the real milliseconds offered and admitted (each tick capped at 250 ms), the capped and held ticks, and the same counts for the timed decision open at export. Replay ignores it. It covers this page session only: a run loaded from a file starts a fresh count. The foreground decision timeout is still undecided; this field is the evidence for that decision.

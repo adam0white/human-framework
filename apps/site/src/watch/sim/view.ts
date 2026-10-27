@@ -46,7 +46,7 @@ import {
   villager,
 } from './people.ts';
 import { type Impression, keeperFatigue, keeperImpressions } from './reads.ts';
-import { EAT_PER_HEAD, SPRING_DAY } from './season.ts';
+import { EAT_PER_HEAD, SOW_SEED, SPRING_DAY } from './season.ts';
 import type {
   Alert,
   ChronicleLine,
@@ -703,6 +703,11 @@ export function tagline(s: WatchState, p: Person): string {
   const roles: string[] = [];
   if (s.gateKeeper === p.id) roles.push('keeps the Gate');
   if (s.heir === p.id) roles.push('heir to the Gate');
+  // Hardship rules: what this winter has cost them, on the roster where the Keeper posts them.
+  if (s.hardship && (s.phase === 'dusk' || s.phase === 'night' || s.phase === 'dawn')) {
+    if (v.thin === s.year) roles.push('weak from hunger');
+    if (!v.limp && p.body.injuries.some((i) => i.severity >= 0.2)) roles.push('still hurt');
+  }
   let years: string | null = null;
   if (age >= 15 && stood >= 1) {
     const n = COUNT[stood] ?? 'many';
@@ -816,7 +821,9 @@ function winterMarks(s: WatchState): string[] {
   return out;
 }
 
-function winterWords(lost: number, hungry: boolean): string {
+function winterWords(s: WatchState): string {
+  const lost = s.yearGrain.lostWinter;
+  const hungry = s.yearGrain.hungry;
   const winter =
     lost === 0
       ? 'Not a sack was lost all winter.'
@@ -825,7 +832,29 @@ function winterWords(lost: number, hungry: boolean): string {
         : lost <= 8
           ? 'The granary was hit hard this winter.'
           : 'This winter carried off much of the granary.';
-  return hungry ? `${winter} The spring will be hungry.` : winter;
+  const said = hungry ? `${winter} The spring will be hungry.` : winter;
+  if (!s.hardship || (s.yearGrain.sown ?? 1) >= 1) return said;
+  return `${said} With ${(s.yearGrain.sown ?? 0) <= 0 ? 'no seed' : 'too little seed'} to sow, next winter will start with a thin granary.`;
+}
+
+/** The granary line on the dusk and dawn pages: what the grain left can still do, in the village's words. */
+function grainWarningOf(s: WatchState): string | null {
+  if (s.hardship) {
+    const eat = Math.ceil(living(s).length * EAT_PER_HEAD);
+    if (s.grain < eat)
+      return s.annals.at(-1)?.hungry
+        ? 'The granary cannot feed the village to the harvest. Last spring was already hungry: if this spring runs half short or worse, the families will leave and the village will end.'
+        : 'The granary cannot feed the village to the harvest. The spring will be hungry: the old and the very young may not live through it, and there will be no seed to sow.';
+    if (s.grain < eat + SOW_SEED)
+      return 'The granary can feed the village to the harvest, but there will not be enough seed to sow every field.';
+  }
+  return s.grain <= 0
+    ? 'The granary is empty. The spring will be hungry.'
+    : s.grain <= 4
+      ? 'The granary is nearly bare: one bad night could empty it.'
+      : s.grain <= 9
+        ? 'The granary is running low.'
+        : null;
 }
 
 const YEAR_LINES = 40;
@@ -915,16 +944,7 @@ function yearFrame(s: WatchState) {
     yearProgress: d / 365,
     ...folk(s),
     ruins: s.marks.ruins.filter((r) => r.year >= s.year - 3).length,
-    grainWarning:
-      inWinter && s.phase !== 'thaw'
-        ? s.grain <= 0
-          ? 'The granary is empty. The spring will be hungry.'
-          : s.grain <= 4
-            ? 'The granary is nearly bare: one bad night could empty it.'
-            : s.grain <= 9
-              ? 'The granary is running low.'
-              : null
-        : null,
+    grainWarning: inWinter && s.phase !== 'thaw' ? grainWarningOf(s) : null,
     winter: inWinter ? { night: s.winterNight, nights: s.winter.nights, why: s.winter.why, question } : null,
     chronicle: lines.slice(-YEAR_LINES),
     volume: frameVolume(s, s.volume),
@@ -953,7 +973,7 @@ function yearFrame(s: WatchState) {
               ...lines.filter((l) => l.year === s.year && l.kind !== 'talk').map((l) => l.text),
               ...winterMarks(s),
             ],
-            winter: winterWords(s.yearGrain.lostWinter, s.yearGrain.hungry),
+            winter: winterWords(s),
             hungry: s.yearGrain.hungry,
           }
         : null,

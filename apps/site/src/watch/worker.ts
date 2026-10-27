@@ -48,6 +48,21 @@ const FRAME_MS = 50;
 /** The most real time one tick may carry (a stalled tab or a long GC pause). */
 const MAX_TICK_MS = 250;
 /**
+ * WATCH-cold-timing diagnostic: real time offered by the page against real time admitted to the clock, over the
+ * run and over the open timed decision. Kept here, outside the game state, and added to the playtest file only, so
+ * it changes no rule, hash or replay. A decision that seems stuck shows whether ticks stopped coming (few ticks),
+ * came coarse (raw far above admitted), or the clock was held.
+ */
+const clock = {
+  ticks: 0,
+  rawMs: 0,
+  admittedMs: 0,
+  cappedTicks: 0,
+  maxRawMs: 0,
+  heldTicks: 0,
+  moment: null as null | { id: number; ticks: number; rawMs: number; admittedMs: number },
+};
+/**
  * Write the running page at most this often after an input, and this often while the clock runs. During a night
  * both wait `NIGHT_SAVE_MS`: writing the page stops the clock for a moment (the snapshot is taken between minutes),
  * the Keeper's lantern moves are inputs, and hiding or closing the tab still writes it at once.
@@ -149,6 +164,15 @@ function maybeSave(): void {
 
 function begin(r: WatchRun, id: string): void {
   run = r;
+  Object.assign(clock, {
+    ticks: 0,
+    rawMs: 0,
+    admittedMs: 0,
+    cappedTicks: 0,
+    maxRawMs: 0,
+    heldTicks: 0,
+    moment: null,
+  });
   pacer.adopt(r);
   chronicleId = id;
   savedSeason = seasonMark(r.state);
@@ -334,6 +358,21 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
     case 'tick': {
       if (!run) return;
       const dt = Math.min(MAX_TICK_MS, Math.max(0, msg.dtMs));
+      const raw = Math.max(0, msg.dtMs);
+      clock.ticks += 1;
+      clock.rawMs += raw;
+      clock.admittedMs += dt;
+      if (raw > MAX_TICK_MS) clock.cappedTicks += 1;
+      clock.maxRawMs = Math.max(clock.maxRawMs, raw);
+      if (pacer.held) clock.heldTicks += 1;
+      const open = run.state.moment;
+      if (!open) clock.moment = null;
+      else {
+        if (clock.moment?.id !== open.id) clock.moment = { id: open.id, ticks: 0, rawMs: 0, admittedMs: 0 };
+        clock.moment.ticks += 1;
+        clock.moment.rawMs += raw;
+        clock.moment.admittedMs += dt;
+      }
       sinceFrame += dt;
       sinceSave += dt;
       pacer.tick(run, dt);
@@ -376,18 +415,21 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
         host.post({
           type: 'exported',
           requestId: msg.requestId,
-          data: recordFile(
-            run,
-            fileMode
-              ? {
-                  ...imported,
-                  ...run.export(),
-                  snapshot: run.snapshot(),
-                  build: typeof imported.build === 'string' ? imported.build : 'dev',
-                }
-              : run.export(),
-            fileImport,
-          ),
+          data: {
+            ...recordFile(
+              run,
+              fileMode
+                ? {
+                    ...imported,
+                    ...run.export(),
+                    snapshot: run.snapshot(),
+                    build: typeof imported.build === 'string' ? imported.build : 'dev',
+                  }
+                : run.export(),
+              fileImport,
+            ),
+            clock: structuredClone(clock),
+          },
         });
       return;
     case 'shelf':

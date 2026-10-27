@@ -52,6 +52,7 @@ import {
   SMALL_VILLAGE,
   settleLifeCard,
   settleProposal,
+  starve,
   winterStories,
 } from './life.ts';
 import { planNight, presentIds, stepPeople } from './night.ts';
@@ -73,6 +74,26 @@ export const EAT_PER_HEAD = 0.4;
 
 /** The granary never holds more than this. */
 export const GRANARY_MAX = 45;
+
+/**
+ * Hardship rules (`s.hardship`, scenarios 17–19; WATCH-cold-loss). The cold play found that a careless winter
+ * emptied the granary and the harvest refilled it: nobody died and nothing carried over. Now:
+ * - the spring sowing takes `SOW_SEED` sacks after the eating; a field not sown gives nothing, so the harvest is
+ *   `SOWN_FLOOR` (kitchen gardens and the fields sown anyway) plus the rest in proportion to the seed sown;
+ * - a hungry spring can kill its frailest face (the oldest from fifty, else the youngest under six), more likely the
+ *   emptier the granary;
+ * - a winter that opens with less grain than the spring's eating and sowing need, or after a hungry spring, is lean: the watchers go up weak
+ *   (fitness `LEAN_FITNESS` of what it was), so they tire sooner on the wall;
+ * - a second hungry spring running ends the village if the granary falls half short or worse (the design's fall
+ *   at the thaw, spec §3).
+ */
+export const SOW_SEED = 4;
+export const SOWN_FLOOR = 0.7;
+export const LEAN_FITNESS = 0.6;
+/** Chance the hunger takes its frailest face, at an empty granary; scaled by how short the granary fell. */
+export const HUNGER_DEATH = 0.75;
+/** A second hungry spring running ends the village when the granary falls at least this share short. */
+export const FALL_SHORT = 0.5;
 
 export const isSeason = (s: WatchState): boolean =>
   s.phase === 'spring' || s.phase === 'summer' || s.phase === 'autumn';
@@ -199,6 +220,7 @@ function thaw(s: WatchState): void {
       s.phase = 'fallen';
       return;
     }
+    const short = 1 - s.grain / eat;
     chronicle(
       s,
       'loss',
@@ -207,11 +229,28 @@ function thaw(s: WatchState): void {
         : `The grain ran out before the harvest. ${went === 1 ? 'One household' : `${went} households`} went down the valley.`) +
         hungerFaces(s),
     );
+    if (s.hardship) {
+      hungerDeath(s, short);
+      // The design's fall at the thaw (spec §3): a village cannot live through two hungry springs running when the
+      // second leaves it less than half of what the spring needs. A smaller shortfall is survived, narrowly.
+      if (s.annals.at(-1)?.hungry && short >= FALL_SHORT) {
+        chronicle(
+          s,
+          'loss',
+          'A second hungry spring in a row. The families could not stay to starve, and the village went down the valley.',
+        );
+        closeVolume(s, 'Two hungry springs in a row. The village went down the valley.');
+        s.yearGrain.sown = 0;
+        s.phase = 'fallen';
+        return;
+      }
+    }
     s.yearGrain.eaten = Math.min(s.grain, Math.ceil(living(s).length * EAT_PER_HEAD));
     s.grain -= s.yearGrain.eaten;
   } else {
     s.grain -= eat;
   }
+  if (s.hardship) sow(s);
   outgrown(s);
   prune(s);
   maybePartner(s);
@@ -238,6 +277,36 @@ function hungerFaces(s: WatchState): string {
   if (young && young !== old && ageOf(young, s.minute) < 6)
     parts.push(`${nameOf(s, young.id)} cried with hunger at night`);
   return parts.length === 0 ? '' : ` ${parts.join('; ')}.`;
+}
+
+/**
+ * The hunger takes its frailest face (hardship rules): the oldest from fifty, else the youngest under six, with
+ * `HUNGER_DEATH` times how short the granary fell. At most one a spring. A world draw: what the Keeper did set the
+ * shortfall, and nothing else moves the roll.
+ */
+function hungerDeath(s: WatchState, short: number): void {
+  const people = living(s).sort((a, b) => a.life.bornAt - b.life.bornAt || (a.id < b.id ? -1 : 1));
+  const old = people[0];
+  const young = people.at(-1);
+  const frail =
+    old && ageOf(old, s.minute) >= 50 ? old : young && ageOf(young, s.minute) < 6 ? young : undefined;
+  if (!frail || nextRandom(worldRng(s, 'hunger')) >= HUNGER_DEATH * Math.max(0, Math.min(1, short))) return;
+  starve(s, frail);
+}
+
+/** The spring sowing (hardship rules): up to `SOW_SEED` sacks go into the fields; the share sown sets the harvest. */
+function sow(s: WatchState): void {
+  const seed = Math.min(SOW_SEED, Math.max(0, s.grain));
+  s.grain -= seed;
+  s.yearGrain.sown = seed / SOW_SEED;
+  if (seed >= SOW_SEED) return;
+  chronicle(
+    s,
+    'loss',
+    seed === 0
+      ? 'There was no seed grain left to sow. Only the kitchen gardens were planted, so the harvest will be poor.'
+      : 'There was too little seed grain to sow every field, so the harvest will be smaller.',
+  );
 }
 
 /**
@@ -379,7 +448,9 @@ function harvest(s: WatchState): void {
   const weather = 0.7 + 0.5 * nextRandom(worldRng(s, 'weather'));
   const seed = s.marks.seed ? 1.3 : 1;
   s.marks.seed = false;
-  const got = Math.max(0, Math.round((14 + 1.5 * workers) * weather * seed));
+  const sown = s.hardship ? (s.yearGrain.sown ?? 1) : 1;
+  const fields = SOWN_FLOOR + (1 - SOWN_FLOOR) * sown;
+  const got = Math.max(0, Math.round((14 + 1.5 * workers) * weather * seed * fields));
   s.yearGrain.harvest = got;
   s.grain = Math.min(GRANARY_MAX, s.grain + got);
   const good = weather > 1.05;
@@ -393,7 +464,13 @@ function harvest(s: WatchState): void {
   ][level];
   // A poor harvest can still leave a full store (last year's grain), and a good one a half-empty store.
   const but = (thin && level > 0) || (good && level === 0);
-  chronicle(s, 'harvest', `${words}${but ? ', but' : ':'} ${store}.`);
+  const unsown =
+    sown >= 1
+      ? ''
+      : sown <= 0
+        ? ' No seed was left to sow in spring, so only the kitchen gardens were planted.'
+        : ' Too little seed was left in spring to sow every field.';
+  chronicle(s, 'harvest', `${words}${but ? ', but' : ':'} ${store}.${unsown}`);
 }
 
 /** The open posts for a winter: the four stretches' two posts, raised stretches' thirds, a lost stretch closed. */
@@ -443,6 +520,9 @@ export function startWinter(s: WatchState): void {
   s.nightStart = day * DAY + NIGHTFALL;
   for (const p of s.community.people) tend(p);
   postEveryone(s, presentIds(s));
+  const need = Math.ceil(living(s).length * EAT_PER_HEAD) + SOW_SEED;
+  const lean = s.hardship && (s.grain < need || s.annals.at(-1)?.hungry === true);
+  if (lean) leanWinter(s);
   s.dawn = null;
   s.day = { night: s.night, lines: [], ropeBefore: s.rope.wear, ropeAfter: s.rope.wear };
   s.alerts = [];
@@ -454,4 +534,21 @@ export function startWinter(s: WatchState): void {
     'winter',
     `Winter came. ${s.winter.why}${s.winter.question ? ` ${s.winter.question.text}` : ''}`,
   );
+  if (lean)
+    chronicle(
+      s,
+      'loss',
+      'A lean winter: there is not enough food for everyone. The watchers go up the wall weak from hunger and will tire sooner.',
+    );
+}
+
+/** A lean winter (hardship rules): every watcher goes up weak, and their roster line says so. */
+function leanWinter(s: WatchState): void {
+  for (const id of presentIds(s)) {
+    const p = personOf(s, id);
+    const v = s.cast[id];
+    if (!p || !v) continue;
+    p.body.fitness *= LEAN_FITNESS;
+    v.thin = s.year;
+  }
 }

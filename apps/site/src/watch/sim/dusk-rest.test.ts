@@ -32,12 +32,12 @@ describe('explicit dusk night off', () => {
     const before = JSON.stringify(legacy.snapshot());
     expect(legacy.input({ k: 'dusk-rest', who: 'tamar', until: 'dawn' })).toBe(false);
     expect(JSON.stringify(legacy.snapshot())).toBe(before);
-    expect(legacy.export().scenario).toBe(14);
+    expect(legacy.export().scenario).toBe(17);
     expect(legacy.state).not.toHaveProperty('duskRest');
     const r = fresh();
-    expect(r.export().scenario).toBe(15);
-    expect(() => WatchRun.resume({ ...r.snapshot(), scenario: 14 })).toThrow();
-    expect(() => WatchRun.resume({ ...legacy.snapshot(), scenario: 15 })).toThrow();
+    expect(r.export().scenario).toBe(18);
+    expect(() => WatchRun.resume({ ...r.snapshot(), scenario: 17 })).toThrow();
+    expect(() => WatchRun.resume({ ...legacy.snapshot(), scenario: 18 })).toThrow();
     expect(() => replay({ ...r.export(), options: undefined })).toThrow();
     expect(() => replay({ ...legacy.export(), options: { duskRest: 'dusk-rest@1' } })).toThrow();
     expect(() => new WatchRun(1, undefined, undefined, { duskRest: 'unknown' } as never)).toThrow();

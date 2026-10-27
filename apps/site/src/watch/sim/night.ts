@@ -1614,11 +1614,23 @@ function warnWatchers(s: WatchState, t: Token, severity: number): void {
   }
 }
 
+/**
+ * Hardship rules (WATCH-cold-loss): wounds heal at these rates (severity per day) instead of 0.12 and 0.2, so a
+ * watcher bitten early in the played nights is still hurt at the last of them (a bite of 0.5 takes about two weeks).
+ */
+const BITE_HEAL_HARD = 0.035;
+const STRIKE_HEAL_HARD = 0.08;
+
 function bite(s: WatchState, id: WatcherId, t: Token): void {
   const p = personOf(s, id);
   if (!p) return;
   const severity = 0.3 + 0.35 * nextRandom(s);
-  injure(p, { part: 'leg', severity, healRatePerDay: 0.12, bleeding: 0.25 + 0.3 * nextRandom(s) });
+  injure(p, {
+    part: 'leg',
+    severity,
+    healRatePerDay: s.hardship ? BITE_HEAL_HARD : 0.12,
+    bleeding: 0.25 + 0.3 * nextRandom(s),
+  });
   strain(p, 0.3 * severity);
   note(s, { who: id, kind: 'bitten', section: t.section });
   tell(
@@ -1653,7 +1665,7 @@ function bite(s: WatchState, id: WatcherId, t: Token): void {
 function strike(s: WatchState, id: WatcherId, section: SectionId): void {
   const p = personOf(s, id);
   if (!p) return;
-  injure(p, { part: 'head', severity: 0.4, healRatePerDay: 0.2 });
+  injure(p, { part: 'head', severity: 0.4, healRatePerDay: s.hardship ? STRIKE_HEAL_HARD : 0.2 });
   knockDown(p, { reason: 'struck', until: s.minute + 120 });
   strain(p, 0.15);
   downed(s, id, section);
