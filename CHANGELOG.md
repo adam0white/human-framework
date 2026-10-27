@@ -11,6 +11,14 @@ version, stamped with build and schema hashes in `RUN_ENGINE`. See the version p
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
+## [4.3.0] — 2026-10-27
+
+Engine: 4.3.0.
+
+- Add the pure `./portable` projection/admission contract for approximate people across HF3 and HF4. Existing shelf envelopes, registry checks, CAS and replay inputs remain authoritative. Identity, profile, body resources, mood and bounded source summaries travel; unsupported source obligations and clinical state refuse plainly.
+- Add reciprocal Days/Commonstead shelf adapters through lab-client 0.5.0, and central receiving admission. The site and Commonstead retain their HF3 actor engines.
+- Migration: this does not convert old run saves or enable the previously rejected lossless portable admission DTO. Games opt into the new versioned passport through the HF-owned shelf helpers and pin its complete admission input for replay. Unknown passports refuse without replacing saved history.
+
 ## [4.2.0] - 2026-10-27
 
 Engine: 4.2.0.

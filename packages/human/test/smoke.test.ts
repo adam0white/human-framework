@@ -15,9 +15,16 @@ test('the public run contract has eight operations and archive identity matches 
     replay: api.replay,
   };
   for (const [name, operation] of Object.entries(operations)) expect(typeof operation, name).toBe('function');
-  // Eight run calls, one pure chapter-clock projection, and the immutable wording catalog.
+  // Eight run calls, pure clock/portable projections, and the immutable wording catalog.
   expect(Object.keys(api).sort()).toEqual(
-    [...Object.keys(operations), 'projectChapterClock', 'NARRATION_TEMPLATES'].sort(),
+    [
+      ...Object.keys(operations),
+      'projectChapterClock',
+      'projectPortablePerson',
+      'admitPortablePerson',
+      'validatePortablePerson',
+      'NARRATION_TEMPLATES',
+    ].sort(),
   );
   expect(Object.isFrozen(api.NARRATION_TEMPLATES)).toBe(true);
   expect(Object.values(api.NARRATION_TEMPLATES).every(Object.isFrozen)).toBe(true);

@@ -933,3 +933,5 @@ export * from './cast.ts';
 export * from './life.ts';
 export { claimCastChapterBatch, type LifeBatchPreparation } from './life.ts';
 export { acceptPersonaBatch, closePersonaBranch } from './persona.ts';
+
+export * from './persona-portable.ts';

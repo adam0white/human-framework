@@ -3,7 +3,12 @@ import { ENGINE_VERSION } from '@adam0white/human-framework';
  * Host-specific episodes remain source-local. Calendar actions are retained only when the
  * target actually implements them; clinical/family/project gates remain HF's responsibility.
  */
-import type { PersonaEnvelope } from '@adam0white/lab-client';
+import {
+  canonicalCast,
+  type PersonaEnvelope,
+  portablePassport,
+  validatePortablePerson,
+} from '@adam0white/lab-client';
 
 // Portable fields keep their semantics across the 2.23 doze/narration corrections.
 const compatibleEngine = (engine: string) =>
@@ -14,6 +19,28 @@ export function nativeCastSource(
   parent: PersonaEnvelope,
 ): { mapping: string; role: string } | undefined {
   const { transfer, castId } = parent;
+  if (portablePassport(parent)) {
+    const p = validatePortablePerson(transfer.portable);
+    const cast = canonicalCast(castId);
+    if (
+      transfer.castPassport !== 'hf-portable-person/1' ||
+      p.castId !== castId ||
+      p.castRevision !== cast.revision ||
+      parent.castRevision !== cast.revision ||
+      p.source.game !== parent.source.game ||
+      p.source.engine !== parent.source.engine ||
+      !cast.games.includes(p.source.game) ||
+      !cast.games.includes(target) ||
+      parent.terminal
+    )
+      throw new Error(
+        'This saved person cannot continue in this game. Keep the source chapter or export it.',
+      );
+    const claim = transfer.portableClaim as { game?: unknown } | undefined;
+    if (claim && claim.game !== target)
+      throw new Error('This person still belongs to the receiving chapter. Continue or export it there.');
+    return { mapping: 'hf-portable-person/1', role: castId.split('.')[2] as string };
+  }
   let source = parent.source;
   if (transfer.siteNativeClaim !== undefined) {
     const receipt = transfer.siteNativeClaim as {

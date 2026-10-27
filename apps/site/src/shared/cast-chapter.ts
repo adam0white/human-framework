@@ -14,11 +14,13 @@ import {
   validateCalendarPersona,
 } from '@adam0white/human-framework';
 import {
+  admitPortablePerson,
   canonicalCast,
   canonicalPersona,
   type LifePreparation,
   lifeAdmission,
   type PersonaEnvelope,
+  portablePassport,
   preparePersonaLife,
 } from '@adam0white/lab-client';
 import { carriedCare, shiftedKeptMeal } from '../watch/sim/care-reentry.ts';
@@ -185,6 +187,7 @@ export function siteCastTransfer(
     );
   const castId = SITE_CAST[game]?.[person.id];
   if (!castId) throw new Error('Background people do not have cast passports.');
+
   const personState = calendarProjection(person, extraNorms, 0);
   personState.person.limitations.push(
     'Zero-duration host chapter projection; coarse local life does not simulate travel, resolve duties or recover health.',
@@ -308,6 +311,8 @@ function admitRawSiteCast(game: string, opening: Person, chapter: CastPersonChap
   lifeAdmission(input, game);
   if (canonicalPersona(preparePersonaLife(input.parent, input.clockMs).life) !== canonicalPersona(input.life))
     throw new Error('Life outcomes differ from their pinned clock and parent.');
+  if (portablePassport(input.parent))
+    return restore(snapshot(admitPortablePerson(input.parent, game, opening)));
   const role = castRole(game, input.parent.castId);
   const native = nativeCastSource(game, input.parent);
   if (

@@ -30,17 +30,17 @@ async function envelope() {
   });
 }
 describe('canonical cast and bounded browser life', () => {
-  it('contains exactly forty complete host-independent profiles and fifteen allocations', () => {
+  it('contains exactly forty complete host-independent profiles and sixteen allocations', () => {
     expect(CANONICAL_CAST).toHaveLength(40);
     expect(CANONICAL_CAST.filter((p) => p.cohort === 'coast')).toHaveLength(30);
     const games = new Set(CANONICAL_CAST.flatMap((p) => p.games));
-    expect(games.size).toBe(15);
+    expect(games.size).toBe(16);
     for (const p of CANONICAL_CAST) {
       expect(Object.keys(p.traits)).toHaveLength(6);
       expect(Object.keys(p.values)).toHaveLength(10);
     }
     expect([...games].sort()).toEqual(
-      'pass murmur stairwell voice goodhands hearsay rope glance repair neighbours commonstead well valley warren watch'
+      'pass murmur stairwell voice goodhands hearsay rope glance repair neighbours commonstead well valley warren watch days'
         .split(' ')
         .sort(),
     );

@@ -2,7 +2,7 @@
  * Bounded host-authored coarse life. No Person mutation, health recovery, duty settlement, secret
  * disclosure, qualification or full lived-day claim. Only new chapters consume this pinned input. Assignment changes stay inside the authored occupation and qualifications; minors remain supervised. No work completion or payment is asserted. Existing obligations still take precedence.
  */
-import { advanceChapterClock, type ChapterClock, createChapterClock } from '@adam0white/human-framework';
+import { advanceChapterClock, type ChapterClock, createChapterClock } from '@adam0white/hf-legacy';
 import { CANONICAL_CAST, canonicalCast } from './cast.ts';
 import { boundedPersonaJson, createPersona, type PersonaEnvelope, type PersonaRequest } from './persona.ts';
 
@@ -200,7 +200,10 @@ export async function claimCastChapterBatch<T>(
   castIds: string[],
   source: PersonaEnvelope['source'],
   admit: (inputs: LifePreparation[]) => Promise<T>,
-  options: { isCurrent?: () => boolean } = {},
+  options: {
+    isCurrent?: () => boolean;
+    claimTransfer?: (initial: T, input: LifePreparation) => Record<string, unknown>;
+  } = {},
 ) {
   const current = () => {
     if (options.isCurrent && !options.isCurrent())
@@ -226,7 +229,10 @@ export async function claimCastChapterBatch<T>(
         ...body,
         parentRevision: revision,
         source,
-        transfer: { ...body.transfer, life: input.life },
+        transfer: {
+          ...(options.claimTransfer ? options.claimTransfer(initial, input) : body.transfer),
+          life: input.life,
+        },
       });
     }),
   );

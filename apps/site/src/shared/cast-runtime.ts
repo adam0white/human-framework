@@ -16,6 +16,8 @@ import {
   lifeAdmission,
   type PersonaEnvelope,
   personaChannel,
+  portablePassport,
+  projectPortablePerson,
   validatePersona,
 } from '@adam0white/lab-client';
 import { type CastChapter, makeCastChapter } from './cast-chapter.ts';
@@ -740,6 +742,20 @@ async function checkpointPerson(s: State, selectedCastId: string, fork: boolean)
       !fork && existing?.transfer.life
         ? anchorPersonaLife(existing.transfer.life as never, cast.castId, Date.now())
         : initialPersonaLife(cast.castId, branchId, Date.now());
+    const transfer =
+      result.transfer.castPassport === 'hf-portable-person/1'
+        ? {
+            ...result.transfer,
+            ...projectPortablePerson({
+              castId: cast.castId,
+              game: s.game,
+              engine: String(result.transfer.engine),
+              person: result.sourceSnapshot,
+              history: ['Continued an ordinary chapter in Voice. Exact events remain in its run export.'],
+              ...(!fork && existing && portablePassport(existing) ? { previous: existing } : {}),
+            }),
+          }
+        : result.transfer;
     const envelope = await createPersona({
       format: 'hf-persona/1',
       castId: cast.castId,
@@ -752,7 +768,7 @@ async function checkpointPerson(s: State, selectedCastId: string, fork: boolean)
         engine: String(result.transfer.engine),
         rules: 'cast-1',
       },
-      transfer: { ...result.transfer, life },
+      transfer: { ...transfer, life },
       limitations: [
         'Bounded coarse local life; no full days, travel, healing or duty completion is inferred.',
       ],
