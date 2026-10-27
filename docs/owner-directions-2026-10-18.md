@@ -346,3 +346,9 @@ Approves the coordinator's HF 4.0 rulings: the Codex additions (portable admissi
 > "Alright let's soft stop launching new Claude agents as well. Thanks"
 
 Coordinator reading: no new Claude agents start. Agents already running finish their current task at a clean checkpoint and do not fan out further. Heartbeats keep doing the checks, the coordinator's own deploys and the report. Codex stays paused.
+
+## 2026-10-27 — Finish HF 4.0 despite the soft stop (Adam, verbatim)
+
+> "Let's resume the hf4 agent to let it run reviewers and fully finish the v4 work"
+
+Coordinator reading: the soft stop on new Claude agents is lifted for HF 4.0 only. The HF 4.0 lead may start the two release reviewers and per-game migration builders, and carries 4.0 to its done-means: release, docs and site, and every game moved to 4.0 or recorded as staying on 3.x. Everything else stays under the soft stop.
