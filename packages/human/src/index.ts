@@ -1,166 +1,76 @@
-/** Human Framework public surface. */
-export const FRAMEWORK_VERSION = '3.2.0';
+/** Human Framework 4: one run runtime and pure portable projections. */
 
-// `affect.release` is re-exported as `releaseEmotion` (beside `releaseCommitment`); `skipAffect` stays internal.
-export type { CrisisEvent, PracticeKind } from './affect/index.ts';
-export {
-  AFFECT_DEFAULTS,
-  actionTendencies,
-  advanceAffect,
-  appraise,
-  breakAllows,
-  breakBehaviour,
-  breakHazard,
-  CRISIS_DEFAULTS,
-  checkCrisis,
-  createAffect,
-  easeBreak,
-  emotionLevel,
-  enableBreaks,
-  feel,
-  inBreak,
-  readAffect,
-  regulate,
-  release as releaseEmotion,
-  skipCrisis,
-  strain,
-  tendencyEmotions,
-} from './affect/index.ts';
+export { projectChapterClock } from './chapter-clock.ts';
+export { createPerson, createRun, exportRun, inspect, preview, replay, restoreRun, step } from './run.ts';
 export type {
-  GoalTemplate,
-  MakeUpReceipt,
-  PrayerCalendar,
-  PrayerSchedule,
-  PrayerTimes,
-  Retimer,
-  ZakatAlFitrOptions,
-  ZakatAlFitrPlan,
-} from './agenda/index.ts';
-// `agenda.release` collides with `affect.release`; the agenda one is re-exported under a clearer name.
-export {
-  AGENDA_DEFAULTS,
-  abandonGoal,
-  adoptGoal,
-  advanceAgenda,
-  agendaTerms,
-  applyExemptions,
-  CARE_DEFAULTS,
-  calendarRetimer,
-  careDuty,
-  commitmentPressure,
-  createAgenda,
-  DEFAULT_PRAYER_TIMES,
-  EID_PRAYER_IMPORTANCE,
-  EXEMPTION_DEFAULTS,
-  eidPrayer,
-  eidWindow,
-  fastWindow,
-  iftarWindow,
-  inMakruhTime,
-  isContinuingCommitment,
-  isUnderWay,
-  MAKRUH_DEFAULTS,
-  makruhWindows,
-  missedExcuse,
-  onFinished,
-  owedMakeUps,
-  PRAYER_IMPORTANCE,
-  PURPOSE_DEFAULTS,
-  prayerWindows,
-  pressureReachedAt,
-  promise,
-  proposeGoals,
-  RAMADAN_DEFAULTS,
-  ramadanFast,
-  ramadanMeals,
-  readZakatAlFitr,
-  release as releaseCommitment,
-  retimeCommitments,
-  retirePaidMakeUps,
-  revisePurposes,
-  scheduleMakeUp,
-  spanMeetsWindow,
-  suhoorWindow,
-  timesFor,
-  violatesAbstention,
-  ZAKAT_AL_FITR_NORM,
-  zakatAlFitr,
-} from './agenda/index.ts';
-export * from './beliefs/index.ts';
-export * from './body/index.ts';
-export * from './chapter-clock.ts';
-export * from './character/index.ts';
-export * from './chronicle/index.ts';
-export type { ConsiderContext, DecideContext, Decision, SocialContext } from './cognition/index.ts';
-// `cognition.decide` is the raw scorer; the composite's `decide` (person.ts) is the one hosts call.
-export {
-  COGNITION_DEFAULTS,
-  consider,
-  decide as scoreAndResolve,
-  desperationOf,
-  rememberedTerms,
-  scoreAll,
-  socialContext,
-} from './cognition/index.ts';
-export * from './conscience/index.ts';
-export * from './conversation/index.ts';
-export * from './core/index.ts';
-export { CURIOSITY_DEFAULTS, curiosityOf, enableCuriosity } from './curiosity/index.ts';
-export * from './environment/index.ts';
-export * from './family/index.ts';
-export type { FeatureInputIssue } from './feature-inputs.ts';
-export { validateFeatureInputs } from './feature-inputs.ts';
-export * from './habits/index.ts';
-export * from './impression.ts';
-export * from './lifecourse/index.ts';
-export * from './longrun.ts';
-export * from './memory/index.ts';
-export type { MethodDemonstration, MethodEvidence } from './methods/index.ts';
-export {
-  clearMethodContext,
-  demonstrateMethod,
-  METHOD_DEFAULTS,
-  methodEvidence,
-  receiveMethodCues,
-} from './methods/index.ts';
-export type { MigrationStep } from './migrate.ts';
-export { MIGRATIONS, migratableVersions, migrate } from './migrate.ts';
-export * from './narrate/index.ts';
-export * from './needs/index.ts';
-export { confirmObservedReputation } from './observed-reputation.ts';
-export * from './partnering/index.ts';
-export { enablePersistence, PERSISTENCE_DEFAULTS, pursuitOf } from './persistence/index.ts';
-export * from './person.ts';
-export * from './persona.ts';
-export * from './persona-calendar.ts';
-export * from './presentation.ts';
-export {
-  adoptProjectTask,
-  considerProjects,
-  enableProjects,
-  PROJECTS_DEFAULTS,
-  projectAppeal,
-} from './projects/index.ts';
-export * from './promptings/index.ts';
-export type { ConsequenceEvidence, PlanRoute, PlanStep } from './prospection/index.ts';
-export {
-  bodyForecastFor,
-  bodyForecastTerm,
-  consequenceEvidence,
-  enablePlanning,
-  FORECAST_DEFAULTS,
-  forecastLine,
-  forecastThresholds,
-  PROSPECTION_DEFAULTS,
-  seedConsequences,
-} from './prospection/index.ts';
-export { type QalbDescription, qalbReading } from './qalb.ts';
-export { fingerprint, restore, snapshot } from './restore.ts';
-export * from './review/index.ts';
-export * from './scenarios/index.ts';
-export * from './sim/index.ts';
-export * from './skills/index.ts';
-export * from './social/index.ts';
-export { canonicalTickInputs, type TickInput, type TickInputKey } from './tick-input.ts';
-export * from './types.ts';
-export * from './will/index.ts';
+  ActionRequest,
+  ActionResolution,
+  ActorActivity,
+  ActualConsequences,
+  AuthoredPersonState,
+  CalendarMapping,
+  CalendarProjection,
+  ChapterClock,
+  ChapterProjection,
+  CommunicationReception,
+  CommunicationRequest,
+  CommunicationResolution,
+  ContractError,
+  DeepReadonly,
+  Definitions,
+  EvidenceRef,
+  Fidelity,
+  Hash,
+  HeldNorm,
+  HostRequest,
+  Id,
+  Input,
+  Inspection,
+  InspectQuery,
+  Json,
+  Lexicon,
+  LifecycleReceipt,
+  MethodEvidence,
+  NormProvenance,
+  ObservedOutcome,
+  Offer,
+  Payloads,
+  PerceptData,
+  PersonAuthoring,
+  PersonaAdmission,
+  PersonaMapping,
+  PersonaProjection,
+  PersonId,
+  PersonView,
+  Perspective,
+  PortablePersonEnvelope,
+  PortableProvenance,
+  PortableUnknown,
+  PreviewQuery,
+  PreviewResult,
+  ProjectionExclusion,
+  ProjectionOperations,
+  Reference,
+  ReferenceBinding,
+  ReplayResult,
+  Result,
+  Run,
+  RunArchive,
+  RunOperations,
+  RunSpec,
+  RunTuning,
+  Signed,
+  SkillDefinition,
+  SkillReading,
+  SkillSuccess,
+  Source,
+  SourcedNorm,
+  StepBatch,
+  StepResult,
+  Time,
+  Unit,
+  VisibleEvent,
+  WorldChange,
+  WorldFact,
+  WorldSnapshot,
+} from './run-schema.ts';

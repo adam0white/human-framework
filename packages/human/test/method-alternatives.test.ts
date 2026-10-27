@@ -1,27 +1,33 @@
-import { describe, expect, test } from 'vitest';
-import { runMethodAlternativesControl } from '../examples/method-alternatives-control.ts';
+import { expect, test } from 'vitest';
+import { methodOwner } from '../src/methods/methods.ts';
+import { frame } from './w2-fixture.ts';
 
-describe('independently successful procedures under the same observations', () => {
-  test('another successful procedure preserves own acquired support and ordinary autonomy', () => {
-    const result = runMethodAlternativesControl(19);
-    expect(result.one.action).toBe('sort-by-label');
-    expect(result.both.accepted).toBe(true);
-    expect(result.both.evidence[0]?.support).toBe(result.one.evidence[0]?.support);
-    expect(result.both.evidence[1]?.support).toBeGreaterThan(0);
-    for (const arm of [result.withheld, result['skill-only']]) {
-      expect(arm.action).toBe('ask-help');
-      expect(arm.evidence.map((e) => e.support)).toEqual([0, 0]);
-    }
-    expect(result.failed.action).toBe('sort-with-template');
-    expect(result.failed.evidence[0]?.support).toBeLessThan(0);
-    expect(result.failed.evidence[1]?.support).toBe(result.both.evidence[1]?.support);
-    expect(result.hungry.action).toBe('eat');
-    expect(result.restored).toEqual(result.both);
-    const methodTerms = result.both.trace.considered.flatMap((c) =>
-      c.terms.filter((t) => t.source.startsWith('method:')),
-    );
-    expect(methodTerms.length).toBeGreaterThan(0);
-    expect(methodTerms.every((t) => t.source.includes(':instructor'))).toBe(true);
-    expect(runMethodAlternativesControl(19)).toEqual(result);
-  });
+test('a successful alternative is not failure evidence; voice trust and source trust remain separate inputs', () => {
+  const ctx = {
+    ...frame(),
+    available: true,
+    sourceTrust: [{ sourceId: 'teacher', trust: 0.1 }],
+    voices: [{ voiceId: 'teacher', trust: 0.9, pressure: 0, accepted: 0, refused: 0, history: [] }],
+    action: 'north',
+    contextId: 'job',
+  };
+  const state = {
+    context: { id: 'job', at: 0, cues: [{ cue: 'route', value: 'open' }] },
+    recentDemonstrations: ['example'],
+    rules: [
+      {
+        id: 'method',
+        action: 'south',
+        conditions: [{ cue: 'route', value: 'open' }],
+        evidence: [{ id: 'example', sourceId: 'teacher', at: 0, attention: 1, outcome: 'success' as const }],
+      },
+    ],
+  };
+  expect(methodOwner.evidence(state, ctx).support).toBe(0);
+  const south = methodOwner.evidence(state, { ...ctx, action: 'south' });
+  expect(south.support).toBeCloseTo(0.3, 14);
+  expect(methodOwner.evidence(state, { ...ctx, action: 'south', voices: [] }).support).toBeCloseTo(
+    0.1 / 3,
+    14,
+  );
 });

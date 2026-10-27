@@ -12,7 +12,7 @@ on:
       - "packages/human/src/**"
       - "packages/human/test/**/*.timing.ts"
       - "apps/site/src/**/sim/**"
-      - "scripts/bench-village.ts"
+      - "scripts/bench-run.ts"
       - "vitest.bench.config.ts"
       - "packages/*/vitest.bench.config.ts"
       - "apps/*/vitest.bench.config.ts"
@@ -28,7 +28,7 @@ on:
       - "packages/human/src/**"
       - "packages/human/test/**/*.timing.ts"
       - "apps/site/src/**/sim/**"
-      - "scripts/bench-village.ts"
+      - "scripts/bench-run.ts"
       - "vitest.bench.config.ts"
       - "packages/*/vitest.bench.config.ts"
       - "apps/*/vitest.bench.config.ts"
@@ -123,16 +123,16 @@ jobs:
           mkdir -p "$RUNNER_TEMP/bin"
           install -m 0755 "$RUNNER_TEMP/${name}/hyperfine" "$RUNNER_TEMP/bin/hyperfine"
           echo "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"
-      - name: hyperfine, village 20 people x 30 days (headless CLI)
+      - name: hyperfine, 6 people x 6 hours of one-minute steps (headless CLI)
         run: |
-          node scripts/bench-village.ts | tee "$RUNNER_TEMP/village.txt"
+          node scripts/bench-run.ts | tee "$RUNNER_TEMP/run.txt"
           npm run bench:hyperfine -- --export-markdown "$RUNNER_TEMP/hyperfine.md"
           {
-            echo '### hyperfine: node scripts/bench-village.ts'
+            echo '### hyperfine: node scripts/bench-run.ts'
             echo
             echo "Runner: $(nproc) CPUs, Node $(node --version), hyperfine $(hyperfine --version | cut -d' ' -f2). Includes Node start-up and type stripping."
             echo
             cat "$RUNNER_TEMP/hyperfine.md"
             echo
-            echo "One run: $(cat "$RUNNER_TEMP/village.txt")"
+            echo "One run: $(cat "$RUNNER_TEMP/run.txt")"
           } >> "$GITHUB_STEP_SUMMARY"

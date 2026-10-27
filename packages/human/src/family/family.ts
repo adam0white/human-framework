@@ -1,65 +1,13 @@
-/**
- * SCOPE: the family faculty (HF 2.0 L2): conception, pregnancy and birth as host-driven events, inherited learning
- * aptitudes, and upbringing. It owns the optional `Person.family` slice; a person a host never touches has none, so
- * existing runs are unchanged.
- *
- * Conception. `conceptionChance(mother, father, days)` is the chance of conceiving over `days` of living together:
- * 1 − (1 − c)^(days / 29.5) with a per-cycle chance c = 0.2 × a female age factor × a male age factor. The peak is
- * an engineering prior for a fertile couple: cohorts that include subfertile couples give about 0.12–0.15 per
- * cycle at 25–27 (F14 in research/family-environment-sources.md), and women 19–26 conceive about twice as often per
- * cycle as women 35–39 (F14). The female factor is 1 to 30, 0.5 at 37, 0.4 at 42 and 0 at 50; the male factor is 1
- * to 40, falling to 0.7 at 60 (both engineering assumptions shaped on F14). `conceive` records a pregnancy whose due
- * date is 268 ± 9 days on (median ovulation-to-birth 268 days, range 37 days, F13; the sd is range/4, an
- * assumption), drawn from a stream derived from the given seed, so no person's RNG is consumed. `deliver` ends it
- * and returns the child's seed and birth minute for `createChild` (or `sim.birth`); the host decides when birth
- * happens (`pregnancyDue`) and whether it goes well. `pregnancyModifiers` raises metabolism in the second and third
- * trimesters by about 15% (engineering assumption, in line with the common dietary guidance of a few hundred extra
- * kilocalories a day; not in research/). Miscarriage, stillbirth, twins, infertility as a trait, contraception,
- * birth complications and maternal mortality are not modelled; a host adds them as events.
- *
- * Upbringing. `raise(child, household, minutes)` is called by the host for time a child spends in a household. Each
- * caregiver's influence is weighted by their warmth toward the child (their affection, floored at 0). Values relax
- * toward the warmth-weighted household values at 5% per year at full plasticity, scaled by the caregivers' mean
- * warmth (value transmission runs through
- * family climate and is more accurate with warmth, F7, F8; the rate is an engineering assumption chosen so that a
- * childhood moves values part of the way, never a copy). Plasticity of values is 1 to age 12 and falls to 0 at 25.
- * Understanding of a norm relaxes toward the household's exemplar, conviction × (1 − breach share), where the breach
- * share counts the caregiver's breaches of that norm in the last year (4 or more = 1): children learn what is lived,
- * not what is said (assumption; about 6 in 10 parent–child pairs share a religious affiliation, F9). Attachment
- * security starts at 0.6 (58% of nonclinical mothers are secure-autonomous, F12) and moves toward the caregivers'
- * responsiveness (warmth and mood) at 50% per year, most in the first three years, with a floor of 0.1 of that
- * plasticity by age 12 (responsiveness and intergenerational correspondence, F10, F11; rates assumed). Optionally a
- * child comes to trust the voices the household trusts (`adoptVoiceTrust`). This file writes `values` through young adulthood: one of the
- * documented exceptions to values being fixed at creation (docs/framework.md); the opt-in `character/` drift is
- * the other. It does not model siblings'
- * influence, peers, schooling, abuse, divorce or temperament-by-parenting interactions, and it never assigns a
- * religious obligation by age: a child holds only the understanding the household lived.
- *
- * Opt-in `RaiseOptions.model: 'warmth-through-25'` scales norm relaxation by mean warmth,
- * as values and voice trust already do. All influence tapers continuously to zero at 25 using `valuePlasticity`;
- * attachment keeps its early-life plasticity; warmth enters its responsiveness target, not its rate. Living zero-warmth carers use the existing
- * target at warmth zero (0.3 × normalized mood), equally weighted when all warmth weights vanish.
- * No living carers supplies no attachment exposure. Values, norms and voice trust still receive zero influence. The return is responsiveness × mean warmth × value plasticity.
- * These coefficients and the age horizon are engineering assumptions, not empirical calibration or rulings.
- * F7–F11 in research/family-environment-sources.md support the shapes, not these rates. No abuse, schooling or
- * adult culture diffusion is modelled. Without this option, arithmetic and the normalized return stay unchanged.
- * Hosts must pin this option in saved-run configuration and supply it again after restore; no state infers it.
- *
- * Aptitudes are read by the composite as a multiplier on learning (`aptitudeOf`); they are drawn at birth by
- * `createChild` (`ChildSpec.aptitudes`).
- */
+import { freezeData, required } from '../body/span.ts';
+/** SCOPE: actual family receipts and contact-based attachment. No invented kin,
+ * pregnancy, caregiver warmth, inherited values or observed contact. */
 
-import { understandNorm } from '../conscience/index.ts';
-import { clamp, clamp01, createRng, dpow, isNum, isObj, normal } from '../core/index.ts';
-import { assertUpbringing } from '../feature-selectors.ts';
-import { ageYears } from '../lifecourse/index.ts';
-import { remember } from '../memory/index.ts';
-import { relationshipWith } from '../social/index.ts';
-import type { FamilyState, LifeModifiers, Minute, Person, PersonId, Pregnancy, Unit } from '../types.ts';
-import { MINUTES_PER_DAY, MINUTES_PER_YEAR, VALUE_KEYS } from '../types.ts';
-import { adoptVoiceTrust } from '../will/index.ts';
-
-export const FAMILY_DEFAULTS = {
+import { addTime, clip, copy, DAY, minutes, output, validateNumbers, YEAR } from '../body/span.ts';
+import { dcos, dlog, dpow } from '../core/libm.ts';
+import { random } from '../core/random.ts';
+import { deriveAptitudes } from '../lifecourse/birth.ts';
+import type * as T from '../run-schema.ts';
+export const FAMILY_DEFAULTS = freezeData({
   /** Per-cycle conception chance for a fertile couple at peak age (engineering prior; F14 gives 0.12–0.15 for all couples). */
   peakCycleChance: 0.2,
   cycleDays: 29.5,
@@ -80,71 +28,9 @@ export const FAMILY_DEFAULTS = {
   attachmentRatePerYear: 0.5,
   /** Voice-trust relaxation per year at full plasticity (assumption). */
   voiceRatePerYear: 0.3,
-};
+});
 
-/** A fresh family slice from a creation spec (`createPerson`); undefined when the spec gives nothing. @internal */
-export function createFamily(
-  init: Pick<FamilyState, 'aptitudes' | 'attachment'> | undefined,
-): FamilyState | undefined {
-  if (!init) return undefined;
-  const out: FamilyState = {};
-  const apt = sanitizeAptitudes(init.aptitudes);
-  if (apt) out.aptitudes = apt;
-  if (isNum(init.attachment)) out.attachment = clamp01(init.attachment);
-  return Object.keys(out).length > 0 ? out : undefined;
-}
-
-function sanitizeAptitudes(x: unknown): Record<string, number> | undefined {
-  if (!isObj(x)) return undefined;
-  const out: Record<string, number> = {};
-  for (const [k, v] of Object.entries(x)) if (isNum(v) && v > 0) out[k] = clamp(v, 0.25, 4);
-  return Object.keys(out).length > 0 ? out : undefined;
-}
-
-/** Validate a saved family slice; drop malformed pregnancies, keep usable fields. Undefined when none remain. @internal */
-export function sanitizeFamily(x: unknown): FamilyState | undefined {
-  if (!isObj(x)) return undefined;
-  const f = x as Record<string, unknown>;
-  const out: FamilyState = {};
-  const apt = sanitizeAptitudes(f.aptitudes);
-  if (apt) out.aptitudes = apt;
-  const pg = f.pregnancy as Record<string, unknown> | undefined;
-  if (
-    pg &&
-    typeof pg === 'object' &&
-    typeof pg.fatherId === 'string' &&
-    isNum(pg.conceivedAt) &&
-    isNum(pg.dueAt) &&
-    isNum(pg.seed)
-  )
-    out.pregnancy = { fatherId: pg.fatherId, conceivedAt: pg.conceivedAt, dueAt: pg.dueAt, seed: pg.seed };
-  if (isNum(f.attachment)) out.attachment = clamp01(f.attachment);
-  if (isNum(f.raisedMinutes) && f.raisedMinutes >= 0) out.raisedMinutes = f.raisedMinutes;
-  return Object.keys(out).length > 0 ? out : undefined;
-}
-
-const familyOf = (p: Person): FamilyState => {
-  p.family ??= {};
-  return p.family;
-};
-
-/** Learning multiplier for a skill (1 = average, or no family slice). */
-export function aptitudeOf(p: Person, skillId: string): number {
-  const v = p.family?.aptitudes?.[skillId];
-  return isNum(v) && v > 0 ? v : 1;
-}
-
-/** Attachment security 0..1 (the starting 0.6 when never raised). */
-export function attachmentOf(p: Person): Unit {
-  return p.family?.attachment ?? FAMILY_DEFAULTS.attachmentStart;
-}
-
-// ---------------------------------------------------------------------------------------------
-// Conception, pregnancy and birth
-// ---------------------------------------------------------------------------------------------
-
-/** Female fecundity by age, 1 = peak (assumption shaped on F14). */
-export function femaleFecundity(age: number): Unit {
+export function femaleFecundity(age: number): T.Unit {
   if (age < 15 || age >= 50) return 0;
   if (age <= 30) return 1;
   if (age <= 37) return 1 - (0.5 * (age - 30)) / 7;
@@ -153,250 +39,316 @@ export function femaleFecundity(age: number): Unit {
 }
 
 /** Male fertility by age, 1 = peak (assumption). */
-export function maleFertility(age: number): Unit {
+export function maleFertility(age: number): T.Unit {
   if (age < 15) return 0;
   if (age <= 40) return 1;
   return Math.max(0.7, 1 - (0.3 * (age - 40)) / 20);
 }
 
-/**
- * Chance that `mother` conceives by `father` over `days` of living together (0 if either is dead, the sexes do not
- * fit, or she is already pregnant). Read only; the host rolls it on its own stream or calls `conceive`.
- */
-export function conceptionChance(mother: Person, father: Person, days: number): Unit {
-  if (!(days > 0) || !mother.body.alive || !father.body.alive) return 0;
-  if (mother.life.sex !== 'female' || father.life.sex !== 'male' || mother.family?.pregnancy) return 0;
-  const c =
-    FAMILY_DEFAULTS.peakCycleChance * femaleFecundity(ageYears(mother)) * maleFertility(ageYears(father));
-  if (c <= 0) return 0;
-  return clamp01(1 - dpow(1 - c, days / FAMILY_DEFAULTS.cycleDays));
-}
-
-/**
- * Record that `mother` has conceived by `father` at `at`. The due date is drawn from a stream derived from `seed`;
- * `seed` also becomes the child's seed at delivery. The drawn length is clamped to 4 sd below and 3 sd above the
- * median (an engineering bound against extreme draws). Returns the pregnancy, or undefined if one is already open.
- */
-export function conceive(
-  mother: Person,
-  father: Person | PersonId,
-  seed: number,
-  at: Minute,
-): Pregnancy | undefined {
-  if (!Number.isFinite(at)) throw new TypeError('conceive requires a finite positional time');
-  const fam = familyOf(mother);
-  if (fam.pregnancy) return undefined;
-  const rng = createRng((seed ^ 0x9e3779b9) >>> 0);
-  const F = FAMILY_DEFAULTS;
-  const days = clamp(
-    normal(rng, F.gestationDays, F.gestationSdDays),
-    F.gestationDays - 4 * F.gestationSdDays,
-    F.gestationDays + 3 * F.gestationSdDays,
+export const valuePlasticity = (age: number) => (age <= 12 ? 1 : clip(1 - (age - 12) / 13));
+export const attachmentPlasticity = (age: number) =>
+  age <= 3 ? 1 : Math.max(0.1, 1 - (0.9 * (age - 3)) / 9);
+export const aptitudeOf = (family: T.DeepReadonly<T.FamilyState>, skill: string) =>
+  family.aptitudes[skill] ?? 1;
+export const attachmentOf = (
+  family: T.DeepReadonly<T.FamilyState>,
+  p: T.DeepReadonly<T.Effective_FAMILY_DEFAULTS>,
+) => family.attachment ?? p.attachmentStart;
+export const pregnancyWeeks = (family: T.DeepReadonly<T.FamilyState>, at: number) =>
+  family.pregnancy ? Math.max(0, (at - family.pregnancy.conceivedAt) / (7 * DAY)) : 0;
+export const pregnancyDue = (family: T.DeepReadonly<T.FamilyState>, at: number) =>
+  family.pregnancy !== undefined && at >= family.pregnancy.dueAt;
+const receive: T.FamilyOwner['receive'] = (state, input, ctx) => {
+  const s = copy<T.FamilyState>(state);
+  let construction: T.FamilyConstructionResult = { kind: 'none' };
+  const memoryReceipts: T.MaternalBirthMemory[] = [];
+  if (input.type === 'conception' && input.mother.id === ctx.person) {
+    if (s.pregnancy) throw new RangeError('pregnancy already open');
+    if (ctx.construction.kind !== 'gestation') throw new RangeError('gestation construction cursor required');
+    const rng = copy<T.GestationCursor>(ctx.construction.cursor),
+      p = ctx.effective.builtins.FAMILY_DEFAULTS;
+    const u = Math.max(random(rng.words), 1e-12),
+      v = random(rng.words);
+    rng.uniformDraws += 2;
+    rng.status = 'completed';
+    const days = clip(
+      p.gestationDays + p.gestationSdDays * Math.sqrt(-2 * dlog(u)) * dcos(2 * Math.PI * v),
+      p.gestationDays - 4 * p.gestationSdDays,
+      p.gestationDays + 3 * p.gestationSdDays,
+    );
+    s.pregnancy = {
+      id: input.pregnancyId,
+      mother: copy<T.ActorRef>(input.mother),
+      father: copy<T.KnownFather>(input.father),
+      offspring: copy<T.EntityRef>(input.offspring),
+      conceivedAt: ctx.at,
+      dueAt: addTime(ctx.at, Math.round(days * 1440) * 60000),
+      basis: {
+        kind: 'derived-gestation',
+        conceptionInput: ctx.causes[0] ?? input.basis.evidence.id,
+        stream: rng.id,
+      },
+    };
+    construction = { kind: 'gestation', cursor: rng };
+  } else if (
+    input.type === 'birth' &&
+    input.delivery.kind === 'open-pregnancy' &&
+    input.delivery.mother.id === ctx.person
+  ) {
+    const pg = s.pregnancy;
+    if (!pg || pg.id !== input.delivery.pregnancyId) throw new RangeError('birth pregnancy mismatch');
+    const child =
+      input.child.kind === 'reference'
+        ? input.child.child
+        : {
+            kind: 'entity' as const,
+            id:
+              input.child.newborn.kind === 'authored'
+                ? input.child.newborn.person.id
+                : input.child.newborn.id,
+          };
+    if (child.id !== pg.offspring.id) throw new RangeError('birth offspring mismatch');
+    delete s.pregnancy;
+    memoryReceipts.push({
+      kind: 'maternal-birth',
+      id: `maternal:${input.basis.evidence.id}`,
+      cause: ctx.causes[0] ?? input.basis.evidence.id,
+      mother: ctx.person,
+      child: copy<T.EntityRef>(child),
+      at: ctx.at,
+      valence: 0.9,
+      salience: 0.95,
+    });
+  }
+  return { ...output(s, ctx.at), memoryReceipts, construction };
+};
+type ContactSpan = T.SpanContext & {
+  life: T.LifeCourse;
+  contact: readonly T.FamilyContactReceipt[];
+  caregivers: readonly T.UpbringingExposure['caregivers'][number][];
+  knownVoices: readonly T.VoiceRelation[];
+};
+const contactMath = (
+  state: T.DeepReadonly<T.FamilyState>,
+  ctx: T.DeepReadonly<ContactSpan>,
+): T.OwnerOutput<T.FamilyState> & { upbringing: readonly T.UpbringingExposure[] } => {
+  const s = copy<T.FamilyState>(state);
+  const relevant = ctx.contact.filter(
+    (x) => x.person === ctx.person && x.caregiver !== ctx.person && x.to > ctx.from && x.from < ctx.to,
   );
-  const pregnancy: Pregnancy = {
-    fatherId: typeof father === 'string' ? father : father.id,
-    conceivedAt: at,
-    dueAt: at + Math.round(days * MINUTES_PER_DAY),
-    seed,
-  };
-  fam.pregnancy = pregnancy;
-  return { ...pregnancy };
-}
-
-/**
- * Weeks since conception (0 when not pregnant). Counted from conception, not from the last menstrual period, which
- * is where obstetric weeks and trimesters are conventionally counted from (about two weeks earlier). The second
- * trimester here therefore begins at 13 weeks after conception.
- */
-export function pregnancyWeeks(p: Person, now: Minute = p.now): number {
-  const pg = p.family?.pregnancy;
-  return pg ? Math.max(0, (now - pg.conceivedAt) / (7 * MINUTES_PER_DAY)) : 0;
-}
-
-/** True once an open pregnancy has reached its due minute. */
-export function pregnancyDue(p: Person, now: Minute = p.now): boolean {
-  const pg = p.family?.pregnancy;
-  return pg !== undefined && now >= pg.dueAt;
-}
-
-/** Life modifiers adjusted for pregnancy (metabolism in the second and third trimesters); unchanged otherwise. */
-export function pregnancyModifiers(p: Person, mods: LifeModifiers): LifeModifiers {
-  if (!p.family?.pregnancy || pregnancyWeeks(p) < 13) return mods;
-  return { ...mods, metabolism: mods.metabolism * FAMILY_DEFAULTS.pregnancyMetabolism };
-}
-
-/**
- * End `mother`'s pregnancy with a birth at `at` (default her `now`): clears it, records the birth as a strongly
- * positive episode, and returns the seed and birth minute for `createChild(mother, father, { id, name, ...spec })`.
- * Undefined when she is not pregnant. Emotions follow from the host's birth percept to whoever sees it.
- */
-export function deliver(
-  mother: Person,
-  child: { id: PersonId; name?: string },
-  at: Minute = mother.now,
-): { id: PersonId; name: string; seed: number; bornAt: Minute; fatherId: PersonId } | undefined {
-  const pg = mother.family?.pregnancy;
-  if (!pg) return undefined;
-  delete familyOf(mother).pregnancy;
-  remember(mother, {
-    at,
-    kind: 'family',
-    action: 'birth',
-    targetId: child.id,
-    valence: 0.9,
-    salience: 0.95,
-    summary: mother.lexicon?.plainEnglish ? 'I gave birth.' : 'gave birth',
-    tags: ['birth', 'family'],
-  });
-  return { id: child.id, name: child.name ?? child.id, seed: pg.seed, bornAt: at, fatherId: pg.fatherId };
-}
-
-// ---------------------------------------------------------------------------------------------
-// Upbringing
-// ---------------------------------------------------------------------------------------------
-
-/** Plasticity of values and norm understanding by age: 1 to 12, 0 at 25. */
-export function valuePlasticity(age: number): Unit {
-  if (age <= 12) return 1;
-  return clamp01(1 - (age - 12) / 13);
-}
-
-/** Plasticity of attachment by age: 1 to 3, falling to 0.1 at 12 and after. */
-export function attachmentPlasticity(age: number): Unit {
-  if (age <= 3) return 1;
-  return Math.max(0.1, 1 - (0.9 * (age - 3)) / 9);
-}
-
-export interface Household {
-  /** The adults raising the child (parents, grandparents, guardians). */
-  caregivers: readonly Person[];
-}
-
-export interface RaiseOptions {
-  /** Explicit household influence through young adulthood. Omit for exact legacy behavior. Pin in host saves. */
-  model?: 'warmth-through-25';
-  /** Also move the child's trust in voices the caregivers trust (default true). */
-  voices?: boolean;
-}
-
-const relax = (rate: number, years: number) => clamp01(1 - dpow(1 - clamp01(rate), years));
-
-/**
- * Apply `minutes` of upbringing in `household` to `child`, at `child.now`. Warmth-weighted: a caregiver with no
- * warmth toward the child transmits no values, norms or voice trust. In the opted-in model, attachment still
- * responds to living zero-warmth carers. Values, norm understanding, attachment and (optionally) trust in the
- * household's voices move by the age plasticities in the SCOPE paragraph. Returns the warmth-weighted
- * responsiveness the child experienced (0..1) in legacy mode. With `warmth-through-25`, returns effective
- * responsiveness weighted by mean warmth and age plasticity, approaching zero with either. The host supplies
- * this model again after restoring a save. Raised minutes count even when warmth or plasticity is zero.
- */
-export function raise(child: Person, household: Household, minutes: number, opts: RaiseOptions = {}): Unit {
-  assertUpbringing(opts);
-  if (!(minutes > 0) || !child.body.alive) return 0;
-  const F = FAMILY_DEFAULTS;
-  const continuous = opts.model === 'warmth-through-25';
-  const eligible = household.caregivers.filter((c) => c.id !== child.id && c.body.alive);
-  const carers = continuous ? [...new Map(eligible.map((c) => [c.id, c])).values()] : eligible;
-  const warmth = carers.map((c) => Math.max(0, relationshipWith(c, child.id).affection));
-  const total = warmth.reduce((s, w) => s + w, 0);
-  const fam = familyOf(child);
-  fam.raisedMinutes = (fam.raisedMinutes ?? 0) + minutes;
-  if (total <= 0) {
-    if (continuous && carers.length > 0 && valuePlasticity(ageYears(child)) > 0) {
-      // At zero warmth the existing target is 0.3 × normalized mood. Equal weighting
-      // when all weights vanish is an engineering boundary, not a fitted coefficient.
-      const response =
-        carers.reduce((sum, c) => sum + clamp01(0.3 * ((c.affect.mood.valence + 1) / 2)), 0) / carers.length;
-      const k = relax(
-        F.attachmentRatePerYear,
-        (minutes / MINUTES_PER_YEAR) *
-          attachmentPlasticity(ageYears(child)) *
-          valuePlasticity(ageYears(child)),
+  const edges = [
+    ...new Set([
+      ctx.from,
+      ctx.to,
+      ...relevant.flatMap((x) => [Math.max(ctx.from, x.from), Math.min(ctx.to, x.to)]),
+    ]),
+  ].sort((a, b) => a - b);
+  const upbringing: T.UpbringingExposure[] = [];
+  const p = ctx.effective.builtins.FAMILY_DEFAULTS;
+  for (let j = 0; j < edges.length - 1; j++) {
+    const from = required(edges[j]),
+      to = required(edges[j + 1]);
+    const active = relevant.filter((x) => x.from < to && x.to > from);
+    if (!active.length) continue;
+    const ids = [...new Set(active.map((x) => x.caregiver))].sort();
+    const caregivers = ids
+      .map((id) => ctx.caregivers.find((c) => c.id === id))
+      .filter((x): x is T.DeepReadonly<T.UpbringingExposure['caregivers'][number]> => x !== undefined);
+    minutes(from, to);
+    s.raisedMs = (s.raisedMs ?? 0) + (to - from);
+    if (caregivers.length) {
+      const total = caregivers.reduce((n, c) => n + c.warmth, 0);
+      const target =
+        total > 0
+          ? caregivers.reduce(
+              (n, c) => n + c.warmth * clip(0.7 * c.warmth + (0.3 * (c.moodValence + 1)) / 2),
+              0,
+            ) / total
+          : caregivers.reduce((n, c) => n + clip((0.3 * (c.moodValence + 1)) / 2), 0) / caregivers.length;
+      // Continuous age forcing, integrated exactly on each quadratic plasticity branch.
+      const breaks = [
+        from,
+        ...[3, 12, 25].map((age) => ctx.life.bornAt + age * YEAR).filter((t) => t > from && t < to),
+        to,
+      ].sort((a, b) => a - b);
+      let exposureYears = 0;
+      for (let n = 0; n < breaks.length - 1; n++) {
+        const left = required(breaks[n]),
+          right = required(breaks[n + 1]);
+        const f = (t: number) =>
+          attachmentPlasticity((t - ctx.life.bornAt) / YEAR) * valuePlasticity((t - ctx.life.bornAt) / YEAR);
+        exposureYears += (((right - left) / YEAR) * (f(left) + 4 * f((left + right) / 2) + f(right))) / 6;
+      }
+      const k = 1 - dpow(1 - p.attachmentRatePerYear, exposureYears);
+      s.attachment = clip(
+        (s.attachment ?? p.attachmentStart) + k * (target - (s.attachment ?? p.attachmentStart)),
       );
-      const att = fam.attachment ?? F.attachmentStart;
-      fam.attachment = clamp01(att + k * (response - att));
+      upbringing.push({
+        id: `contact:${ctx.person}:${from}:${to}:${active
+          .map((x) => x.evidenceId)
+          .sort()
+          .join(':')}`,
+        child: ctx.person,
+        from,
+        to,
+        contactEvidenceIds: [...new Set(active.map((x) => x.evidenceId))].sort(),
+        caregivers: copy<T.UpbringingExposure['caregivers']>(caregivers),
+      });
     }
+  }
+  return { ...output(s, ctx.to), upbringing };
+};
+export const familyOwner: T.FamilyOwner = {
+  initialize: (input, ctx) => {
+    const state = copy<T.FamilyState>(input);
+    state.contactCovered = normalizedCoverage(input.contactCovered, ctx.at);
+    const known = state.contactCovered.reduce((n, s) => n + s.to - s.from, 0);
+    if (state.raisedMs !== undefined && state.raisedMs < known)
+      throw new RangeError('family coverage exceeds authored raised time');
+    if (known && state.raisedMs === undefined) state.raisedMs = known;
+    return state;
+  },
+  receiveContacts,
+  receive,
+  advance: (state, ctx) => ({ ...output(copy<T.FamilyState>(state), ctx.to), upbringing: [] }),
+  deriveAptitudes,
+  validate: (s) => {
+    const issues = validateNumbers(s);
+    try {
+      const coverage = normalizedCoverage(s.contactCovered, Number.MAX_SAFE_INTEGER);
+      const known = coverage.reduce((n, x) => n + x.to - x.from, 0);
+      if (known > (s.raisedMs ?? 0))
+        issues.push({
+          path: 'family.contactCovered',
+          code: 'invalid-schema',
+          message: 'coverage exceeds charged time',
+        });
+    } catch {
+      issues.push({
+        path: 'family.contactCovered',
+        code: 'invalid-schema',
+        message: 'normalized exact contact coverage required',
+      });
+    }
+
+    for (const [id, x] of Object.entries(s.aptitudes))
+      if (x < 0.25 || x > 4)
+        issues.push({
+          path: `family.aptitudes.${id}`,
+          code: 'invalid-schema',
+          message: 'aptitude outside [.25,4]',
+        });
+    if (s.pregnancy && s.pregnancy.dueAt < s.pregnancy.conceivedAt)
+      issues.push({
+        path: 'family.pregnancy',
+        code: 'invalid-schema',
+        message: 'incoherent pregnancy times',
+      });
+    return issues;
+  },
+};
+export function conceptionChance(
+  mother: T.DeepReadonly<Pick<T.ActorState, 'body' | 'life' | 'family'>>,
+  father: T.DeepReadonly<Pick<T.ActorState, 'body' | 'life'>>,
+  at: number,
+  durationMs: number,
+  p: T.DeepReadonly<T.Effective_FAMILY_DEFAULTS>,
+): number {
+  if (
+    durationMs <= 0 ||
+    !mother.body.alive ||
+    !father.body.alive ||
+    mother.life.sex !== 'female' ||
+    father.life.sex !== 'male' ||
+    mother.family.pregnancy
+  )
     return 0;
-  }
-  const years = minutes / MINUTES_PER_YEAR;
-  const age = ageYears(child);
-  const meanWarmth = total / carers.length;
-  const vp = valuePlasticity(age);
-  if (continuous && vp <= 0) return 0;
-
-  // Values.
-  if (vp > 0) {
-    const k = relax(F.valueRatePerYear * meanWarmth, years * vp);
-    for (const key of VALUE_KEYS) {
-      let target = 0;
-      carers.forEach((c, i) => {
-        target += (warmth[i] ?? 0) * c.values[key];
-      });
-      target /= total;
-      child.values[key] = clamp01(child.values[key] + k * (target - child.values[key]));
-    }
-  }
-
-  // Norm understanding: the lived example.
-  if (vp > 0) {
-    const since = child.now - MINUTES_PER_YEAR;
-    const ids = [...new Set(carers.flatMap((c) => c.conscience.norms.map((n) => n.normId)))].sort();
-    const k = relax(continuous ? F.normRatePerYear * meanWarmth : F.normRatePerYear, years * vp);
-    for (const id of ids) {
-      let target = 0;
-      let standing: Person['conscience']['norms'][number]['standing'] | undefined;
-      let top = -1;
-      carers.forEach((c, i) => {
-        const held = c.conscience.norms.find((n) => n.normId === id);
-        if (!held) return;
-        const breaches = c.conscience.breaches.filter((b) => b.normId === id && b.at >= since).length;
-        const example = held.conviction * (1 - Math.min(1, breaches / F.breachSaturation));
-        target += (warmth[i] ?? 0) * example;
-        if ((warmth[i] ?? 0) * held.conviction > top) {
-          top = (warmth[i] ?? 0) * held.conviction;
-          standing = held.standing;
-        }
-      });
-      target /= total;
-      if (standing === undefined) continue;
-      const mine = child.conscience.norms.find((n) => n.normId === id);
-      const before = mine?.conviction ?? 0;
-      const next = before + k * (target - before);
-      if (!mine && next < 0.01) continue;
-      understandNorm(child, id, mine?.standing ?? standing, next);
-    }
-  }
-
-  // Attachment: toward the responsiveness the child meets.
-  let responsiveness = 0;
-  carers.forEach((c, i) => {
-    const w = warmth[i] ?? 0;
-    responsiveness += w * clamp01(0.7 * w + 0.3 * ((c.affect.mood.valence + 1) / 2));
+  const c =
+    p.peakCycleChance *
+    femaleFecundity((at - mother.life.bornAt) / YEAR) *
+    maleFertility((at - father.life.bornAt) / YEAR);
+  return c <= 0 ? 0 : clip(1 - dpow(1 - c, durationMs / DAY / p.cycleDays));
+}
+// Sole reached-contact learning route. This is discrete learning
+// from an actual received summary, never a rewind of body or the live owner clock.
+type ContactFamily = T.FamilyState;
+type ContactFrame = T.FrameContext & {
+  life: T.LifeCourse;
+  caregivers: readonly T.UpbringingExposure['caregivers'][number][];
+  knownVoices: readonly T.VoiceRelation[];
+};
+function normalizedCoverage(spans: readonly T.DeepReadonly<T.TimeSpan>[], at: number): T.TimeSpan[] {
+  let prior = -Infinity;
+  return spans.map((s) => {
+    if (
+      !Number.isSafeInteger(s.from) ||
+      !Number.isSafeInteger(s.to) ||
+      s.from >= s.to ||
+      s.to > at ||
+      s.from <= prior
+    )
+      throw new RangeError('invalid normalized family contact coverage');
+    prior = s.to;
+    return { from: s.from, to: s.to };
   });
-  responsiveness /= total;
-  const ka = continuous
-    ? relax(F.attachmentRatePerYear, years * attachmentPlasticity(age) * vp)
-    : relax(F.attachmentRatePerYear, years * attachmentPlasticity(age));
-  const att = fam.attachment ?? F.attachmentStart;
-  fam.attachment = clamp01(att + ka * (responsiveness - att));
-
-  // Trust in the household's voices (an elder, a teacher, a host's voice): not the caregivers themselves.
-  if ((opts.voices ?? true) && vp > 0) {
-    const kv = relax(F.voiceRatePerYear * meanWarmth, years * vp);
-    const ids = [...new Set(carers.flatMap((c) => c.will.voices.map((v) => v.voiceId)))]
-      .filter((id) => id !== child.id && !carers.some((c) => c.id === id))
-      .sort();
-    for (const id of ids) {
-      let target = 0;
-      let wsum = 0;
-      carers.forEach((c, i) => {
-        const v = c.will.voices.find((x) => x.voiceId === id);
-        if (!v) return;
-        target += (warmth[i] ?? 0) * v.trust;
-        wsum += warmth[i] ?? 0;
-      });
-      if (wsum > 0 && kv > 0) adoptVoiceTrust(child, id, target / wsum, kv);
-    }
+}
+function unionContact(spans: readonly T.TimeSpan[]): T.TimeSpan[] {
+  const out: T.TimeSpan[] = [];
+  for (const span of [...spans].sort((a, b) => a.from - b.from || a.to - b.to)) {
+    const last = out.at(-1);
+    if (last && span.from <= last.to) last.to = Math.max(last.to, span.to);
+    else out.push({ ...span });
   }
-  return clamp01(continuous ? responsiveness * meanWarmth * vp : responsiveness);
+  return out;
+}
+export function receiveContacts(
+  state: T.DeepReadonly<ContactFamily>,
+  contacts: T.DeepReadonly<readonly T.FamilyContactReceipt[]>,
+  ctx: T.DeepReadonly<ContactFrame>,
+): T.OwnerOutput<ContactFamily> & { upbringing: readonly T.UpbringingExposure[] } {
+  const covered = normalizedCoverage(state.contactCovered, ctx.at);
+  for (const c of contacts)
+    if (
+      c.person !== ctx.person ||
+      c.caregiver === ctx.person ||
+      !c.evidenceId ||
+      !ctx.caregivers.some((x) => x.id === c.caregiver) ||
+      !Number.isSafeInteger(c.from) ||
+      !Number.isSafeInteger(c.to) ||
+      c.from >= c.to ||
+      c.to > ctx.at
+    )
+      throw new RangeError('actual reached past family contact required');
+  const reported = unionContact(contacts.map((c) => ({ from: c.from, to: c.to })));
+  const fresh: T.TimeSpan[] = [];
+  for (const span of reported) {
+    let from = span.from;
+    for (const old of covered) {
+      if (old.to <= from) continue;
+      if (old.from >= span.to) break;
+      if (old.from > from) fresh.push({ from, to: Math.min(span.to, old.from) });
+      from = Math.max(from, old.to);
+      if (from >= span.to) break;
+    }
+    if (from < span.to) fresh.push({ from, to: span.to });
+  }
+  let current = copy<ContactFamily>(state);
+  const upbringing: T.UpbringingExposure[] = [];
+  for (const span of fresh) {
+    const r = contactMath(current, {
+      ...ctx,
+      from: span.from,
+      to: span.to,
+      phase: 1,
+      priorWorldRevision: ctx.worldRevision,
+      contact: copy<T.FamilyContactReceipt[]>(contacts),
+      life: copy<T.LifeCourse>(ctx.life),
+      caregivers: copy<T.UpbringingExposure['caregivers']>(ctx.caregivers),
+      knownVoices: copy<T.VoiceRelation[]>(ctx.knownVoices),
+    });
+    current = { ...r.state, contactCovered: current.contactCovered };
+    upbringing.push(...r.upbringing);
+  }
+  current.contactCovered = unionContact([...covered, ...fresh]);
+  return { ...output(current, ctx.at), upbringing };
 }

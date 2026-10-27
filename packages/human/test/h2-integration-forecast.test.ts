@@ -1,80 +1,72 @@
-/** Driver and observer wrappers must carry the per-call forecast choice without changing pure inputs. */
-import { expect, test, vi } from 'vitest';
-import { q26Offer, q26Person } from '../examples/q26-conditioned-forecast-control.ts';
-import * as bodyModule from '../src/body/index.ts';
-import { ambientBodyParams, ambientModifiers } from '../src/environment/index.ts';
-import { pregnancyModifiers } from '../src/family/index.ts';
-import { imagine, predictAs, previewCommandAs } from '../src/impression.ts';
-import { lifeModifiers, predict, previewCommand, snapshot } from '../src/index.ts';
-import { createCommunity, preview, stepCommunity } from '../src/sim/sim.ts';
+/** The single preview path uses the same received context and forecast terms as an actual decision. */
+import { expect, test } from 'vitest';
+import { exportRun, preview, step } from '../src/index.ts';
+import type { Input } from '../src/run-schema.ts';
+import {
+  actor,
+  authoredPerson,
+  exampleOffers,
+  MINUTE,
+  need,
+  openingInputs,
+  START,
+  setup,
+} from './support.ts';
 
-// Native ESM exports are immutable; auto-spy retains each real implementation.
-vi.mock('../src/body/index.ts', { spy: true });
-
-const conditioned = { forecastContext: 'conditioned' } as const;
-test('driver, preview and observer wrappers forward conditioned context through the existing partial model', () => {
-  const target = q26Person(true, true);
-  const observer = q26Person();
-  observer.id = 'observer';
-  target.body.sleepPressure = 0.9;
-  target.body.exertion = 0.8;
-  const before = snapshot(target);
-  const observerBefore = snapshot(observer);
-  const offers = [q26Offer];
-  const suggestion = { voiceId: 'v', affordanceId: q26Offer.id, strength: 0.5 };
-  const cmd = { voiceId: 'v', affordanceId: q26Offer.id, since: target.now };
-  const model = imagine(observer, target, target.now);
-  expect(model.body).not.toEqual(target.body);
-  const spy = vi.mocked(bodyModule.forecastBody);
-  const checkContext = (p: typeof target) => {
-    expect(spy).toHaveBeenCalled();
-    for (const args of spy.mock.calls) {
-      expect(args[2]).toEqual(ambientModifiers(p, pregnancyModifiers(p, lifeModifiers(p))));
-      expect(args[3]).toEqual(ambientBodyParams(p, bodyModule.BODY_DEFAULTS));
-    }
-    spy.mockClear();
+test('host preview and actual decision carry the same known cold context without mutating the previewed run', () => {
+  const person = authoredPerson('ada', 'Ada');
+  person.state.body.sleepPressure = 0.8;
+  person.state.body.exertion = 0.8;
+  const run = setup([person]);
+  const base = exampleOffers('ada', ['work'])[0];
+  if (!base) throw new Error('Missing authored offer');
+  const work = {
+    ...base,
+    durationMs: 120 * MINUTE,
+    expected: {
+      ...base.expected,
+      followedBy: [{ label: 'more work', durationMs: 480 * MINUTE, effort: 0.8, focus: 0.4 }],
+    },
   };
-  try {
-    const expectedPreview = predict(target, offers, suggestion, conditioned);
-    spy.mockClear();
-    expect(preview(target, offers, suggestion, conditioned)).toEqual(expectedPreview);
-    checkContext(target);
-    const expectedPrediction = predict(model, offers, suggestion, conditioned);
-    spy.mockClear();
-    expect(predictAs(observer, target, offers, suggestion, conditioned).resolution).toEqual(
-      expectedPrediction,
-    );
-    checkContext(model);
-    const expectedCommand = previewCommand(model, offers, cmd, conditioned);
-    spy.mockClear();
-    expect(previewCommandAs(observer, target, offers, cmd, target.now, conditioned).outcome).toEqual(
-      expectedCommand,
-    );
-    checkContext(model);
-    expect(target).toEqual(before);
-    expect(observer).toEqual(observerBefore);
-    // The driver mutates its own clone, while the pure wrappers above retain full state and RNG.
-    const driven = snapshot(target);
-    stepCommunity(
-      createCommunity([driven]),
-      {
-        now: () => driven.now,
-        affordancesFor: () => offers,
-        perceptsFor: () => [],
-        resolve: (p, a) => ({
-          at: p.now,
-          status: 'completed',
-          affordanceId: a.affordanceId,
-          action: a.action,
-        }),
+  const inputs: Input[] = [
+    {
+      id: 'host:cold',
+      at: START,
+      source: { type: 'host', id: 'world' },
+      kind: 'ambient.received',
+      payload: {
+        person: 'ada',
+        evidenceId: 'cold:received',
+        environment: {
+          contextId: 'outside',
+          readings: { cold: 1, dark: 1, outdoors: true },
+          basis: { kind: 'received', evidenceId: 'cold:received', at: START },
+        },
       },
-      driven.now,
-      conditioned,
-    );
-    checkContext(target);
-    expect(target).toEqual(before);
-    expect(observer).toEqual(observerBefore);
-  } finally {
-    spy.mockRestore();
-  }
+    },
+    ...openingInputs([{ id: 'ada', offers: [work] }]),
+  ];
+  const before = exportRun(run),
+    authored = structuredClone(inputs);
+  const hint = need(
+    preview(run, {
+      perspective: { kind: 'host' },
+      person: 'ada',
+      until: START,
+      inputs,
+    }),
+  );
+  expect(exportRun(run)).toStrictEqual(before);
+  expect(inputs).toStrictEqual(authored);
+  const projected = hint.possibilities.find((event) => event.data.kind === 'decision');
+  if (projected?.data.kind !== 'decision') throw new Error('Missing projected actual decision');
+  need(step(run, { until: START, inputs }));
+  const decision = actor(run).trace.at(-1);
+  if (!decision) throw new Error('Missing actual decision');
+  expect(projected.data.decision.considered).toStrictEqual(decision.considered);
+  expect(
+    decision.considered[0]?.terms.find((term) => term.source === 'forecast:body')?.value ?? 0,
+  ).toBeLessThan(0);
+  expect(actor(run).ambient.percept.cold).toBe(1);
+  expect(hint.boundary.type).toBe('world-required');
 });

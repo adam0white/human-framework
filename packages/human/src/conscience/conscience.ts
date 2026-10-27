@@ -1,49 +1,19 @@
-/**
- * SCOPE: Conscience models a person's *understanding* of norms (held standing and conviction), the pull
- * those understandings exert on options, a veto for firmly held prohibitions, the private record of
- * stated intentions, known breaches, repentance and repair. Shapes borrowed: Schwartz values
- * (tradition, conformity, universalism) and HEXACO honesty-humility act only as coefficients; guilt
- * as an action tendency toward repair follows OCC-style appraisal (praiseworthiness of own deeds).
- * The necessity exception follows Qur'an 2:173 as commonly understood: compulsion, not desire, and
- * not beyond need. Repentance is modelled as the person's acts (regret, stopping, resolve, and
- * restitution when another person was wronged); the framework records those acts and never computes
- * divine acceptance, reward, forgiveness or worth. The composite treats completing a worship or repent act while
- * holding an open breach without a victim as the person's turning back (the `conscience:repent` term in that
- * choice stands for the regret); the chronicle narrates it as "turned back from", never as amends or forgiveness
- * (review 2026-10-03). Standings are the common Sunni understanding and a
- * person's own understanding may differ. Observers have no effect here: reputation belongs to `social/`,
- * and intentions are private.
- *
- * SCOPE (abstention veto, lane agenda+conscience): a person who holds an obligatory norm with conviction at or
- * above `abstainVetoConviction` will not complete an action that breaks a linked, open, non-exempt `abstain`
- * commitment (e.g. eating during the fast): verdict willNot, reason `duty:<normId>`, which insisting cannot
- * override. The act's whole span counts, as in `agenda.violatesAbstention`: a meal that would run past dawn is
- * refused before dawn (integration, 2026-10-03). It lifts only under the capacity bound (Qur'an 2:286: obligation follows capacity) at the same
- * desperation threshold, and only for acts meeting a bodily need; this is not the fast's own exemption for
- * illness and travel (2:184-185, applied in the agenda) and not the 2:173 necessity exception for forbidden
- * food. Below the threshold the abstention acts only as a negative term (agenda), so a weakly convinced person
- * can be tempted. An opt-in `firm: true` self abstention without a linked obligatory norm instead vetoes
- * as `rule:<label>` (id fallback). It uses the same open-window, exemption and bodily survival checks,
- * including for self choice and insistence. It models a held rule, not a new religious ruling.
- * It does not model the person's later judgment of a broken fast beyond the recorded breach.
- */
-import { clamp01 } from '../core/index.ts';
+/** SCOPE: held understanding, private deeds, necessity and repair; never a ruling or acceptance. */
+import { cloneData } from '../core/clone.ts';
+import { clamp01, dpow } from '../core/index.ts';
 import type {
-  Affordance,
-  AppraisalEvent,
-  ConscienceState,
+  ActorState,
   HeldNorm,
-  Minute,
-  NormDefinition,
   NormStanding,
-  Person,
-  Term,
+  Offer,
+  TermData as Term,
+  Time,
   Unit,
-} from '../types.ts';
-import { DEFAULT_NORMS, NORM_SCOPE } from './catalog.ts';
+} from '../run-schema.ts';
+import { NORM_SCOPE } from './catalog.ts';
 
-type Breach = ConscienceState['breaches'][number];
-
+type NormActor = Pick<ActorState, 'id' | 'now' | 'traits' | 'values' | 'agenda' | 'conscience'>;
+type OwnedBreach = ActorState['conscience']['breaches'][number];
 export const CONSCIENCE_DEFAULTS = {
   /** Overall scale of norm terms relative to need terms (need terms are ~0..1). */
   termScale: 0.8,
@@ -98,78 +68,11 @@ export const CONSCIENCE_DEFAULTS = {
   maxBreaches: 50,
   maxIntentions: 50,
 };
-
 const VALID_STANDINGS: NormStanding[] = ['obligatory', 'recommended', 'permitted', 'disliked', 'forbidden'];
-
-/**
- * Convenience builder: religious-only norms are held with conviction proportional to practice; shared
- * ethical norms are held by everyone with moderate conviction that rises with practice. `extraNorms`
- * override or add entries by id.
- */
-export function heldNorms(
-  profile: { practice: Unit; extraNorms?: HeldNorm[] },
-  catalog: NormDefinition[] = DEFAULT_NORMS,
-): HeldNorm[] {
-  const practice = clamp01(profile.practice);
-  const out: HeldNorm[] = [];
-  for (const def of catalog) {
-    const scope = NORM_SCOPE[def.id] ?? 'shared';
-    let conviction: number;
-    if (scope === 'religious') conviction = 0.95 * practice;
-    else if (scope === 'core') conviction = 0.6 + 0.3 * practice;
-    else conviction = 0.4 + 0.4 * practice;
-    if (conviction < 0.05) continue;
-    out.push({ normId: def.id, standing: def.standing, conviction: clamp01(conviction) });
-  }
-  for (const extra of profile.extraNorms ?? []) {
-    const norm = { ...extra, conviction: clamp01(extra.conviction) };
-    const i = out.findIndex((n) => n.normId === extra.normId);
-    if (i >= 0) out[i] = norm;
-    else out.push(norm);
-  }
-  return out;
-}
-
-export function createConscience(norms: HeldNorm[]): ConscienceState {
-  const seen = new Set<string>();
-  const held: HeldNorm[] = [];
-  for (const n of norms) {
-    if (seen.has(n.normId) || !VALID_STANDINGS.includes(n.standing)) continue;
-    seen.add(n.normId);
-    held.push({ normId: n.normId, standing: n.standing, conviction: clamp01(n.conviction) });
-  }
-  return { norms: held, breaches: [], intentions: [], nextBreach: 0 };
-}
-
-const heldNorm = (p: Person, normId: string): HeldNorm | undefined =>
+const heldNorm = (p: NormActor, normId: string): HeldNorm | undefined =>
   p.conscience.norms.find((n) => n.normId === normId);
-
-/**
- * Set how firmly `p` holds an understanding of a norm (1.8.0): adds it if absent, else replaces standing and
- * conviction. Used by upbringing (`family.raise`) and by hosts; it records a person's understanding, not a
- * ruling. An invalid standing is ignored. Returns the held norm.
- */
-export function understandNorm(
-  p: Person,
-  normId: string,
-  standing: HeldNorm['standing'],
-  conviction: Unit,
-): HeldNorm | undefined {
-  if (!VALID_STANDINGS.includes(standing)) return undefined;
-  const c = clamp01(Number.isFinite(conviction) ? conviction : 0);
-  const held = heldNorm(p, normId);
-  if (held) {
-    held.standing = standing;
-    held.conviction = c;
-    return held;
-  }
-  const n: HeldNorm = { normId, standing, conviction: c };
-  p.conscience.norms.push(n);
-  return n;
-}
-
 /** Value/trait coefficient on a held norm's pull. Traits and values scale; they never branch. */
-function normCoefficient(p: Person, normId: string): number {
+function normCoefficient(p: NormActor, normId: string): number {
   const scope = NORM_SCOPE[normId] ?? 'shared';
   let k =
     scope === 'religious'
@@ -178,14 +81,18 @@ function normCoefficient(p: Person, normId: string): number {
   if (CONSCIENCE_DEFAULTS.honestyNorms.includes(normId)) k *= 0.5 + p.traits.honesty;
   return k;
 }
-
-const unrepaired = (p: Person): Breach[] => p.conscience.breaches.filter((b) => !b.repaired);
-
+const unrepaired = (p: NormActor): OwnedBreach[] => p.conscience.breaches.filter((b) => !b.repaired);
 /**
  * Utility terms from held norms. `aff.with` (who would see it) is deliberately ignored: conscience pulls
  * the same whether or not anyone is watching.
  */
-export function normTerms(p: Person, aff: Affordance, ctx: { desperation: Unit }): Term[] {
+export function normTerms(
+  p: NormActor,
+  aff: Offer,
+  ctx: {
+    desperation: Unit;
+  },
+): Term[] {
   const d = CONSCIENCE_DEFAULTS;
   const terms: Term[] = [];
   for (const tag of aff.norms ?? []) {
@@ -203,14 +110,13 @@ export function normTerms(p: Person, aff: Affordance, ctx: { desperation: Unit }
     }
     terms.push({ source: `norm:${tag.normId}`, value });
   }
-
   const open = unrepaired(p);
   if (open.length > 0) {
     const tags = aff.tags ?? [];
     if (tags.includes('repair') || tags.includes('apologize')) {
       const owed = open.filter((b) => b.victimId !== undefined);
-      const toTarget = aff.targetId === undefined ? owed : owed.filter((b) => b.victimId === aff.targetId);
-      const share = aff.targetId === undefined ? 0.5 : 1;
+      const toTarget = aff.target === undefined ? owed : owed.filter((b) => b.victimId === aff.target);
+      const share = aff.target === undefined ? 0.5 : 1;
       const load = 1 - toTarget.reduce((acc, b) => acc * (1 - b.weight), 1);
       if (load > 0) terms.push({ source: 'conscience:repair', value: d.repairScale * share * load });
     }
@@ -224,7 +130,6 @@ export function normTerms(p: Person, aff: Affordance, ctx: { desperation: Unit }
   }
   return terms;
 }
-
 /**
  * Whether an obligation the person keeps through timed commitments (e.g. salah through prayer windows) has no
  * instance due now: the person holds commitments linked to `normId`, and none is pending with `p.now` inside its
@@ -232,31 +137,37 @@ export function normTerms(p: Person, aff: Affordance, ctx: { desperation: Unit }
  * (review 2026-10-03: Dhuhr prayed twice back to back on the full obligatory weight). Norms with no linked
  * commitments are unaffected.
  */
-function obligationAnswered(p: Person, normId: string): boolean {
+function obligationAnswered(p: NormActor, normId: string): boolean {
   const list = p.agenda?.commitments;
   if (!list) return false;
   let linked = false;
   for (const c of list) {
     if (c.normId !== normId || c.kind === 'abstain' || c.makeUpOf !== undefined) continue;
     linked = true;
-    if (c.status === 'pending' && p.now >= c.from - 60 && p.now <= c.until) return false;
+    if (c.status === 'pending' && p.now >= c.from - 3600000 && p.now <= c.until) return false;
   }
   return linked;
 }
-
 /**
  * Will-not veto for a firmly held prohibition. Necessity (Qur'an 2:173): for eligible norms only, at
  * desperation >= threshold, and only when the act itself meets a bodily need (food or water) — the
  * exception covers survival, not desire or excess. The negative norm term is unaffected.
  */
 export function normVeto(
-  p: Person,
-  aff: Affordance,
+  p: NormActor,
+  aff: Offer,
   desperation: Unit,
-  opts: { necessity: boolean; now?: Minute } = { necessity: true },
-): { kind: 'willNot'; reason: string } | undefined {
+  opts: {
+    now?: Time;
+  } = {},
+):
+  | {
+      kind: 'willNot';
+      reason: string;
+    }
+  | undefined {
   const d = CONSCIENCE_DEFAULTS;
-  const meetsBodilyNeed = (aff.advertises.food ?? 0) > 0 || (aff.advertises.water ?? 0) > 0;
+  const meetsBodilyNeed = (aff.expected.needs.food ?? 0) > 0 || (aff.expected.needs.water ?? 0) > 0;
   for (const tag of aff.norms ?? []) {
     if (tag.relation !== 'violates') continue;
     const held = heldNorm(p, tag.normId);
@@ -264,37 +175,33 @@ export function normVeto(
     const effective = held.conviction * (0.7 + 0.6 * p.traits.honesty);
     if (effective < d.vetoConviction) continue;
     const necessity =
-      opts.necessity &&
-      desperation >= d.necessityThreshold &&
-      meetsBodilyNeed &&
-      d.necessityEligible.includes(tag.normId);
+      desperation >= d.necessityThreshold && meetsBodilyNeed && d.necessityEligible.includes(tag.normId);
     if (necessity) continue;
     return { kind: 'willNot', reason: `norm:${tag.normId}` };
   }
-  return abstentionVeto(
-    p,
-    aff,
-    opts.now ?? p.now,
-    opts.necessity && desperation >= d.necessityThreshold && meetsBodilyNeed,
-  );
+  return abstentionVeto(p, aff, opts.now ?? p.now, desperation >= d.necessityThreshold && meetsBodilyNeed);
 }
-
 /**
  * The open abstention a firmly convinced person will not break with `aff` (see the abstention SCOPE paragraph).
  * Applies when the act's span `[now, now + duration)` overlaps the window `[from, until)`, the same overlap rule
  * the agenda uses to break it. `capacityLifted` = the capacity bound applies.
  */
 export function abstentionVeto(
-  p: Person,
-  aff: Affordance,
-  now: Minute,
+  p: NormActor,
+  aff: Offer,
+  now: Time,
   capacityLifted = false,
-): { kind: 'willNot'; reason: string } | undefined {
+):
+  | {
+      kind: 'willNot';
+      reason: string;
+    }
+  | undefined {
   if (capacityLifted) return undefined;
-  const end = now + Math.max(0, aff.duration);
+  const end = now + Math.max(0, aff.durationMs);
   for (const c of p.agenda?.commitments ?? []) {
     if (c.kind !== 'abstain' || c.status !== 'pending' || c.exempt !== undefined) continue;
-    if (!(c.violatedBy?.includes(aff.action) ?? false) || now >= c.until || end <= c.from) continue;
+    if (!(c.violatedBy?.includes(aff.actionId) ?? false) || now >= c.until || end <= c.from) continue;
     const held = c.normId === undefined ? undefined : heldNorm(p, c.normId);
     if (
       c.firm === true &&
@@ -308,128 +215,257 @@ export function abstentionVeto(
   }
   return undefined;
 }
-
-/** `b<minute>-<normId>-<counter>`; the counter lives in `ConscienceState.nextBreach`. */
-function breachId(p: Person, at: Minute, normId: string): string {
-  const n = p.conscience.nextBreach;
-  p.conscience.nextBreach += 1;
-  return `b${at}-${normId}-${n}`;
-}
-
-function boundBreaches(c: ConscienceState): void {
-  while (c.breaches.length > CONSCIENCE_DEFAULTS.maxBreaches) {
-    const i = c.breaches.findIndex((b) => b.repaired);
-    c.breaches.splice(Math.max(i, 0), 1);
-  }
-}
-
-/**
- * Record a deed the person undertook. The stated intention is stored privately. Fulfilment requires
- * completion; a breach is recorded once the act is undertaken (responsibility attaches to assent and
- * action), at reduced weight if it did not complete. With `necessity` (the act was possible only because the
- * 2:173 exception lifted the veto) no breach is recorded for `necessityEligible` norms. Returns appraisal events
- * about the person's own deed.
- */
-export function recordDeed(
-  p: Person,
-  aff: Affordance,
-  intention: string,
-  now: Minute,
-  completed: boolean,
-  opts: { necessity?: boolean } = {},
-): { fulfilled: string[]; breached: string[]; appraisal: AppraisalEvent[] } {
-  const d = CONSCIENCE_DEFAULTS;
-  const c = p.conscience;
-  c.intentions.push({ at: now, action: aff.action, intention });
-  if (c.intentions.length > d.maxIntentions) c.intentions.splice(0, c.intentions.length - d.maxIntentions);
-
-  const fulfilled: string[] = [];
-  const breached: string[] = [];
-  const appraisal: AppraisalEvent[] = [];
-  for (const tag of aff.norms ?? []) {
-    const held = heldNorm(p, tag.normId);
-    if (!held) continue;
-    if (tag.relation === 'fulfills') {
-      if (!completed) continue;
-      fulfilled.push(held.normId);
-      if (held.standing === 'obligatory' || held.standing === 'recommended') {
-        const praise = (held.standing === 'obligatory' ? 0.6 : 0.3) * held.conviction;
-        appraisal.push({
-          at: now,
-          kind: 'deed',
-          desirability: 0.5 * praise,
-          praiseworthiness: praise,
-          agentId: p.id,
-          ...(aff.targetId !== undefined ? { targetId: aff.targetId } : {}),
-          normId: held.normId,
-          cause: `deed:fulfil:${held.normId}`,
-        });
-      }
-      continue;
-    }
-    if (!d.breachStandings.includes(held.standing)) continue;
-    // Qur'an 2:173: under necessity "they will not be sinful" (quran.com, checked 2026-10-03): no breach for an
-    // eligible norm when the act was possible only because necessity lifted its veto.
-    if (opts.necessity && d.necessityEligible.includes(held.normId)) continue;
-    const weight = clamp01(
-      d.violateWeight[held.standing] * held.conviction * (completed ? 1 : d.incompleteBreachFactor),
-    );
-    if (weight <= 0) continue;
-    const victimId =
-      d.victimNorms.includes(held.normId) && aff.targetId !== undefined ? aff.targetId : undefined;
-    const breach: Breach = {
-      id: breachId(p, now, held.normId),
-      normId: held.normId,
-      at: now,
-      weight,
-      repaired: false,
-      ...(victimId !== undefined ? { victimId } : {}),
+/** HF4 conscience records held understanding and acts, never acceptance. */
+export const conscienceOwner: import('../run-schema.ts').ConscienceOwner = {
+  initialize(input) {
+    return {
+      norms: input.map((n) => cloneData(n)) as import('../run-schema.ts').HeldNorm[],
+      breaches: [],
+      intentions: [],
+      nextBreach: 0,
     };
-    c.breaches.push(breach);
-    breached.push(held.normId);
-    appraisal.push({
-      at: now,
-      kind: 'deed',
-      desirability: -0.3 * weight,
-      praiseworthiness: -weight,
-      agentId: p.id,
-      ...(victimId !== undefined ? { targetId: victimId } : {}),
-      normId: held.normId,
-      cause: `breach:${held.normId}`,
-    });
-  }
-  boundBreaches(c);
-  return { fulfilled, breached, appraisal };
-}
-
-/**
- * The person repents a breach: regret, stopping and resolve. When another person was wronged,
- * restitution is also required, so the breach closes only after `recordRepair` for that victim.
- * Returns whether the breach is now closed. This records the person's acts, not acceptance.
- */
-export function repent(p: Person, id: string): boolean {
-  const breach = p.conscience.breaches.find((b) => b.id === id);
-  if (!breach) return false;
-  if (breach.victimId !== undefined) return breach.repaired;
-  breach.repaired = true;
-  return true;
-}
-
-/**
- * Restitution/apology delivered to a wronged person (host-attested): closes their open breaches.
- */
-export function recordRepair(p: Person, victimId: string): number {
-  let count = 0;
-  for (const b of p.conscience.breaches) {
-    if (!b.repaired && b.victimId === victimId) {
-      b.repaired = true;
-      count++;
+  },
+  receive: receiveConscienceEvidence,
+  receiveUpbringing(previous, input, context) {
+    const state = cloneData(previous) as import('../run-schema.ts').ConscienceState;
+    const d = context.effective.builtins.FAMILY_DEFAULTS;
+    const carers = input.caregivers.filter((c) => c.id !== context.person);
+    const total = carers.reduce((sum, c) => sum + Math.max(0, c.warmth), 0);
+    const age = (context.at - context.life.bornAt) / (365 * 86400000);
+    // Source valuePlasticity: full through 12, taper to zero at 25.
+    const plasticity = age <= 12 ? 1 : clamp01((25 - age) / 13);
+    const elapsed = BigInt(input.to) - BigInt(input.from);
+    if (elapsed < 0n || elapsed > BigInt(Number.MAX_SAFE_INTEGER))
+      throw new RangeError('Invalid upbringing duration');
+    if (total > 0 && plasticity > 0) {
+      const k = clamp01(
+        1 -
+          dpow(
+            1 - clamp01((d.normRatePerYear * total) / carers.length),
+            (Number(elapsed) / (365 * 86400000)) * plasticity,
+          ),
+      );
+      const ids = [...new Set(carers.flatMap((c) => c.norms.map((n) => n.normId)))].sort();
+      for (const id of ids) {
+        let target = 0,
+          top = -1;
+        let exemplar:
+          | import('../run-schema.ts').DeepReadonly<import('../run-schema.ts').HeldNorm>
+          | undefined;
+        for (const carer of carers) {
+          const held = carer.norms.find((n) => n.normId === id);
+          if (!held) continue;
+          const breaches = carer.breaches.filter(
+            (b) => b.normId === id && b.at >= context.at - 365 * 86400000,
+          ).length;
+          target +=
+            Math.max(0, carer.warmth) * held.conviction * (1 - Math.min(1, breaches / d.breachSaturation));
+          if (carer.warmth * held.conviction > top) {
+            top = carer.warmth * held.conviction;
+            exemplar = held;
+          }
+        }
+        const mine = state.norms.find((n) => n.normId === id);
+        const next = (mine?.conviction ?? 0) + k * (target / total - (mine?.conviction ?? 0));
+        if (mine) mine.conviction = clamp01(next);
+        else if (exemplar && next >= 0.01)
+          state.norms.push({
+            ...cloneData(exemplar),
+            conviction: clamp01(next),
+          } as import('../run-schema.ts').HeldNorm);
+      }
     }
+    return {
+      state,
+      effects: { terms: [], modifiers: [], appraisals: [] },
+      events: [],
+      nextBoundary: null,
+      advancedThrough: context.at,
+    };
+  },
+  validate(state) {
+    const issues: import('../run-schema.ts').ValidationIssue[] = [];
+    const fail = (path: string) =>
+      issues.push({ path, code: 'invalid-schema', message: 'Invalid conscience state' });
+    if (
+      !Number.isSafeInteger(state.nextBreach) ||
+      state.nextBreach < 0 ||
+      state.breaches.length > CONSCIENCE_DEFAULTS.maxBreaches ||
+      state.intentions.length > CONSCIENCE_DEFAULTS.maxIntentions ||
+      new Set(state.norms.map((n) => n.normId)).size !== state.norms.length ||
+      new Set(state.breaches.map((b) => b.id)).size !== state.breaches.length
+    )
+      fail('conscience');
+    for (const breach of state.breaches) {
+      const counter = /-([0-9]+)$/.exec(breach.id)?.[1];
+      if (counter !== undefined && Number(counter) >= state.nextBreach) fail('conscience.nextBreach');
+    }
+    for (const n of state.norms)
+      if (
+        !n.normId ||
+        !VALID_STANDINGS.includes(n.standing) ||
+        !Number.isFinite(n.conviction) ||
+        n.conviction < 0 ||
+        n.conviction > 1 ||
+        (n.provenance.kind === 'religious'
+          ? !n.provenance.researchRef || !n.provenance.interpretationRef
+          : !n.provenance.author || !n.provenance.ruleId || !n.provenance.edition)
+      )
+        fail('conscience.norms');
+    for (const b of state.breaches)
+      if (
+        !Number.isSafeInteger(b.at) ||
+        !Number.isFinite(b.weight) ||
+        b.weight < 0 ||
+        b.weight > 1 ||
+        !b.id ||
+        !b.normId
+      )
+        fail('conscience.breaches');
+    return issues;
+  },
+};
+export function receiveConscienceEvidence(
+  previous: import('../run-schema.ts').DeepReadonly<import('../run-schema.ts').ConscienceState>,
+  input: Parameters<import('../run-schema.ts').ConscienceOwner['receive']>[1],
+  context: Pick<import('../run-schema.ts').FrameContext, 'at' | 'person' | 'phase'> & {
+    effective: {
+      builtins: {
+        CONSCIENCE_DEFAULTS: import('../run-schema.ts').DeepReadonly<
+          import('../run-schema.ts').Effective_CONSCIENCE_DEFAULTS
+        >;
+      };
+    };
+  },
+): import('../run-schema.ts').OwnerOutput<import('../run-schema.ts').ConscienceState> {
+  const state = cloneData(previous) as import('../run-schema.ts').ConscienceState;
+  const d = context.effective.builtins.CONSCIENCE_DEFAULTS;
+  const appraisals: import('../run-schema.ts').AppraisalEffect[] = [];
+  if (input.kind === 'interpretation') {
+    const data = input.data;
+    const held = state.norms.find((n) => n.normId === data.normId);
+    const value = {
+      normId: data.normId,
+      standing: data.standing,
+      conviction: data.conviction,
+      provenance: cloneData(data.provenance),
+    } as import('../run-schema.ts').HeldNorm;
+    if (held) Object.assign(held, value);
+    else state.norms.push(value);
+  } else if (input.kind === 'repair') {
+    for (const b of state.breaches) if (b.victimId === input.data.victim) b.repaired = true;
+  } else if (input.kind === 'repent') {
+    const breach = state.breaches.find((b) => b.id === input.data.deedId);
+    if (breach && breach.victimId === undefined) breach.repaired = true;
+  } else {
+    // Emitted speech and a missed commitment use the same held-norm deed law without a physical activity.
+    const deed =
+      input.kind === 'communication-deed'
+        ? {
+            offer: { actionId: 'communicate', target: input.target, norms: input.norms },
+            completed: true,
+            intention: input.intention,
+            necessity: false,
+            evidenceId: input.evidenceId,
+          }
+        : input.kind === 'missed-commitment'
+          ? {
+              offer: {
+                actionId: input.action,
+                target: input.target,
+                norms: [{ normId: input.normId, relation: 'violates' as const }],
+              },
+              completed: true,
+              intention: 'missed',
+              necessity: false,
+              evidenceId: input.evidenceId,
+            }
+          : {
+              offer: input.activity.offer,
+              completed: input.outcome.status === 'completed',
+              intention: input.activity.intention,
+              necessity: input.activity.necessity === true,
+              evidenceId: input.outcome.evidenceId,
+            };
+    const { offer, completed, intention, necessity, evidenceId } = deed;
+    state.intentions.push({ at: context.at, action: offer.actionId, intention });
+    state.intentions = state.intentions.slice(-d.maxIntentions);
+    for (const tag of offer.norms) {
+      const held = state.norms.find((n) => n.normId === tag.normId);
+      if (!held) continue;
+      let appraisal: import('../run-schema.ts').AppraisalEvent | undefined;
+      if (tag.relation === 'fulfills') {
+        if (completed && (held.standing === 'obligatory' || held.standing === 'recommended')) {
+          const praise = (held.standing === 'obligatory' ? 0.6 : 0.3) * held.conviction;
+          appraisal = {
+            at: context.at,
+            kind: 'deed',
+            desirability: 0.5 * praise,
+            praiseworthiness: praise,
+            agentId: context.person,
+            normId: held.normId,
+            cause: `deed:fulfil:${held.normId}`,
+          };
+          if (offer.target !== undefined) appraisal.targetId = offer.target;
+        }
+      } else if (
+        d.breachStandings.includes(held.standing) &&
+        !(necessity && d.necessityEligible.includes(held.normId))
+      ) {
+        const weight = clamp01(
+          (d.violateWeight[held.standing] ?? 0) *
+            held.conviction *
+            (completed ? 1 : d.incompleteBreachFactor),
+        );
+        if (weight > 0) {
+          const breach: import('../run-schema.ts').ConscienceState['breaches'][number] = {
+            id: `b${context.at}-${held.normId}-${state.nextBreach++}`,
+            normId: held.normId,
+            at: context.at,
+            weight,
+            repaired: false,
+          };
+          if (d.victimNorms.includes(held.normId) && offer.target !== undefined)
+            breach.victimId = offer.target;
+          state.breaches.push(breach);
+          appraisal = {
+            at: context.at,
+            kind: 'deed',
+            desirability: -0.3 * weight,
+            praiseworthiness: -weight,
+            agentId: context.person,
+            normId: held.normId,
+            cause: `breach:${held.normId}`,
+          };
+          if (breach.victimId !== undefined) appraisal.targetId = breach.victimId;
+        }
+      }
+      if (appraisal)
+        appraisals.push({
+          id: `${evidenceId}:conscience:${appraisals.length}`,
+          cause: evidenceId,
+          person: context.person,
+          at: context.at,
+          applyPhase: context.phase,
+          from: 'conscience',
+          to: 'affect',
+          appraisal,
+        });
+    }
+    while (state.breaches.length > d.maxBreaches)
+      state.breaches.splice(
+        Math.max(
+          0,
+          state.breaches.findIndex((b) => b.repaired),
+        ),
+        1,
+      );
   }
-  return count;
-}
-
-/** Felt weight of open breaches, saturating: 1 - Π(1 - weight). Input for guilt in affect. */
-export function guiltLoad(p: Person): Unit {
-  return clamp01(1 - unrepaired(p).reduce((acc, b) => acc * (1 - b.weight), 1));
+  return {
+    state,
+    effects: { terms: [], modifiers: [], appraisals },
+    events: [],
+    nextBoundary: null,
+    advancedThrough: context.at,
+  };
 }

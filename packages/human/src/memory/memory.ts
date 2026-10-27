@@ -1,59 +1,25 @@
-/**
- * SCOPE: episodic memory and learned action expectations. Episodes carry a salience that decays
- * exponentially (Ebbinghaus-style forgetting curve, modelled as a single exponential per episode) with a
- * half-life that lengthens for emotionally strong episodes (emotional-enhancement of memory), and recall
- * slightly raises the salience of what is retrieved (testing effect). Expectations are cached action
- * values learned by a delta rule (prediction-error learning, Rescorla-Wagner shape) with a minimum
- * learning rate and a clamped step, blended with the host's advertisement by sample-based confidence.
- * It does NOT model reconsolidation, false memory, interference between similar episodes, sleep-dependent
- * consolidation, semantic abstraction, or model-based planning; parameters are engineering defaults for
- * game time scales, not calibrated estimates.
- *
- * SCOPE (lasting gists, 1.8.0, opt-in per person with `enableGists`): episodic detail does not last a life, but the
- * gist of what mattered does. An episode that leaves the episode list (evicted beyond the bound, or older than
- * `GIST_DEFAULTS.horizon` at a `foldGists` call, which the composite makes at each day's close) is folded into the
- * gist with the same kind, action, people and place when it was emotional enough (|valence| ≥ `minValence`, or a
- * loss); weaker ones are simply forgotten. A gist keeps the encoding-weighted mean valence, a count and the summary of
- * its strongest episode, and fades with half-lives of years (`halfLifeNeutral`..`halfLifeEmotional` by |valence|).
- * Gists answer `recall` and `recallByCue` like episodes (so a remembered fear or loss still comes back at its place,
- * person or anniversary), and `expectedEffect` reports the gists about an option's action or place, which cognition
- * weighs as a `memory` term that fades as fresh experience of the option accumulates. So a fear learned at 20 still
- * shapes choices at 40 after its episodes are gone, and enough good later visits outweigh it. Named shapes: the
- * fading of episodic detail while gist persists (fuzzy-trace theory, Brainerd & Reyna) and the long retention of
- * emotional autobiographical memories; the horizon, thresholds, half-lives and the bound of 64 are engineering
- * choices. It does not model reconstruction errors in gists, deliberate rehearsal beyond retelling (`recall`
- * boosts), or semantic knowledge abstracted from gists.
+/** SCOPE: episodic/gist memory, bounded retention and anchored decay. All coefficients are
+ * engineering priors (research/long-run-sources.md). No belief writes, save repair or RNG.
+ * Allocation validation includes C0 retained references/tombstones after eviction.
  */
 
-import {
-  clamp,
-  clamp01,
-  clampSigned,
-  decay,
-  hourOf,
-  isNum,
-  isObj,
-  lerp,
-  runningMean,
-} from '../core/index.ts';
-import { keysOf } from '../core/keys.ts';
+import { cloneData } from '../core/clone.ts';
+import { dexp } from '../core/libm.ts';
+import { EngineLimitError } from '../core/limit.ts';
+import { renderProjection } from '../narrate/literal.ts';
 import type {
-  ActionExpectation,
-  Affordance,
-  AppraisalEvent,
-  EntityId,
+  DeepReadonly,
   Episode,
   Gist,
-  MemoryState,
-  Minute,
-  NeedId,
-  Outcome,
-  Person,
-  Signed,
-  Unit,
-} from '../types.ts';
-import { DAYS_PER_YEAR, MINUTES_PER_DAY, MINUTES_PER_YEAR } from '../types.ts';
+  MemoryOwnedState,
+  MemoryOwner,
+  OwnerOutput,
+  Reference,
+  ValidationIssue,
+} from '../run-schema.ts';
 
+const MINUTES_PER_DAY = 1440;
+const MINUTES_PER_YEAR = 365 * MINUTES_PER_DAY;
 export const MEMORY_DEFAULTS = {
   maxEpisodes: 200,
   /** Loss episodes protected from eviction at most (the most salient ones); see `remember`. */
@@ -108,226 +74,6 @@ export const GIST_DEFAULTS = {
   placeWeight: 0.5,
 };
 
-export interface MemoryQuery {
-  action?: string;
-  actorId?: string;
-  targetId?: string;
-  placeId?: string;
-  tags?: string[];
-  limit?: number;
-}
-
-export interface ExpectedEffect {
-  needs: Partial<Record<NeedId, number>>;
-  successRate: Unit;
-  valence: Signed;
-  samples: number;
-  confidence: Unit;
-  recalled: string[];
-  /**
-   * Lasting gists about this option (1.8.0, present only with gists on and a match): their salience-weighted valence
-   * and total weight (capped at 1), with the ids, strongest first.
-   */
-  gist?: { valence: Signed; weight: Unit; ids: string[] };
-}
-
-export function createMemory(): MemoryState {
-  return { episodes: [], beliefs: [], expectations: [], sourceTrust: {}, nextEpisode: 0 };
-}
-
-/**
- * A well-formed gist (1.8.0) as `restore` accepts it, in place: every number finite and `weight` ≥ 0 (else the gist
- * is dropped), `salience` and `peak` clamped to 0..1 and `valence` to −1..1.
- */
-function validGist(g: unknown): boolean {
-  if (
-    !(
-      isObj(g) &&
-      typeof g.id === 'string' &&
-      typeof g.kind === 'string' &&
-      typeof g.summary === 'string' &&
-      Array.isArray(g.tags) &&
-      [g.at, g.valence, g.salience, g.count, g.firstAt, g.lastAt, g.weight, g.peak].every(isNum) &&
-      (g.weight as number) >= 0
-    )
-  )
-    return false;
-  for (const k of ['salience', 'peak'] as const)
-    if (g[k] !== clamp01(g[k] as number)) g[k] = clamp01(g[k] as number);
-  if (g.valence !== clampSigned(g.valence as number)) g.valence = clampSigned(g.valence as number);
-  return true;
-}
-
-/** The next free gist number: one past the largest `g<n>` id (0 when none is numbered). */
-function nextGistAfter(gists: readonly { id: string }[]): number {
-  let next = 0;
-  for (const g of gists) {
-    const m = /^g(\d+)$/.exec(g.id);
-    if (m) next = Math.max(next, Number(m[1]) + 1);
-  }
-  return next;
-}
-
-/**
- * Restore-time check of the 1.8.0 gists, in place: malformed gists are dropped (a non-array list turns gists off),
- * and `nextGist` never reuses a kept gist's id (ids are `g<n>` from a counter that only grows). The count bound is
- * applied by `restore`. A save the engine wrote is unchanged. @internal
- */
-export function sanitizeGists(m: MemoryState): void {
-  const gists = m.gists as unknown;
-  if (gists !== undefined) {
-    if (!Array.isArray(gists)) delete m.gists;
-    else m.gists = gists.filter(validGist);
-  }
-  if (m.gists) {
-    const free = nextGistAfter(m.gists);
-    const saved = m.nextGist;
-    if (!isNum(saved) || saved < free) m.nextGist = free;
-  }
-  if (!m.gists) delete m.nextGist;
-}
-
-/** Turn on lasting gists for this person (idempotent). Without it, forgotten episodes leave nothing. */
-export function enableGists(p: Person): void {
-  p.memory.gists ??= [];
-  p.memory.nextGist ??= 0;
-}
-
-/** Episodes and gists together, for recall (gists only when enabled). */
-function memories(p: Person): readonly Episode[] {
-  const g = p.memory.gists;
-  return g && g.length > 0 ? [...p.memory.episodes, ...g] : p.memory.episodes;
-}
-
-const sameKey = (g: Episode, e: Episode): boolean =>
-  g.kind === e.kind &&
-  g.action === e.action &&
-  g.actorId === e.actorId &&
-  g.targetId === e.targetId &&
-  g.placeId === e.placeId;
-
-/**
- * Fold an episode leaving the list into its gist (or a new one) when it is emotional enough or a loss; returns the
- * gist, or undefined when the episode is simply forgotten or gists are off.
- */
-function foldEpisode(p: Person, ep: Episode, dead: ReadonlySet<string>): Gist | undefined {
-  const mem = p.memory;
-  const list = mem.gists;
-  if (!list) return undefined;
-  const G = GIST_DEFAULTS;
-  if (!lossEpisode(ep, dead) && Math.abs(ep.valence) < G.minValence) return undefined;
-  const fresh = defaultSalience(ep.kind, ep.valence);
-  let g = list.find((x) => sameKey(x, ep));
-  if (!g) {
-    const id = `g${mem.nextGist ?? 0}`;
-    mem.nextGist = (mem.nextGist ?? 0) + 1;
-    g = {
-      id,
-      at: ep.at,
-      kind: ep.kind,
-      valence: ep.valence,
-      salience: clamp01(fresh),
-      summary: ep.summary,
-      tags: [],
-      count: 0,
-      firstAt: ep.at,
-      lastAt: ep.at,
-      weight: 0,
-      peak: fresh,
-    };
-    if (ep.action !== undefined) g.action = ep.action;
-    if (ep.actorId !== undefined) g.actorId = ep.actorId;
-    if (ep.targetId !== undefined) g.targetId = ep.targetId;
-    if (ep.placeId !== undefined) g.placeId = ep.placeId;
-    if (ep.voiceId !== undefined) g.voiceId = ep.voiceId;
-    list.push(g);
-  } else {
-    g.salience = clamp01(g.salience + (1 - g.salience) * G.foldGain * fresh);
-  }
-  g.valence = clampSigned((g.valence * g.weight + ep.valence * fresh) / (g.weight + fresh));
-  g.weight += fresh;
-  g.count += 1;
-  g.firstAt = Math.min(g.firstAt, ep.at);
-  g.lastAt = Math.max(g.lastAt, ep.at);
-  if (fresh > g.peak) {
-    g.peak = fresh;
-    g.at = ep.at;
-    g.summary = ep.summary;
-  }
-  const lossTags = CUE_RECALL_DEFAULTS.lossTags;
-  const tags = [...new Set([...g.tags, ...ep.tags])];
-  tags.sort((a, b) => Number(lossTags.includes(b)) - Number(lossTags.includes(a)));
-  g.tags = tags.slice(0, G.maxTags);
-  trimGists(p, dead);
-  return g;
-}
-
-function trimGists(p: Person, dead: ReadonlySet<string>): void {
-  const list = p.memory.gists;
-  if (!list || list.length <= GIST_DEFAULTS.maxGists) return;
-  const protectedIds = new Set(
-    list
-      .filter((g) => lossEpisode(g, dead))
-      .sort((a, b) => b.salience - a.salience || byId(b, a))
-      .slice(0, GIST_DEFAULTS.maxProtectedLoss)
-      .map((g) => g.id),
-  );
-  while (list.length > GIST_DEFAULTS.maxGists) {
-    let worst = 0;
-    let worstScore = Number.POSITIVE_INFINITY;
-    for (let i = 0; i < list.length; i++) {
-      const g = list[i] as Gist;
-      const score = g.salience + (protectedIds.has(g.id) ? 1 : 0);
-      if (score < worstScore) {
-        worstScore = score;
-        worst = i;
-      }
-    }
-    list.splice(worst, 1);
-  }
-}
-
-/**
- * Fold every episode older than `GIST_DEFAULTS.horizon` into gists and drop it from the episode list (gists on only;
- * otherwise nothing happens). The composite calls this at each day's close. Returns the number of episodes folded or
- * forgotten.
- */
-export function foldGists(p: Person, now: Minute = p.now): number {
-  if (!p.memory.gists) return 0;
-  const cutoff = now - GIST_DEFAULTS.horizon;
-  const eps = p.memory.episodes;
-  if (!eps.some((e) => e.at < cutoff)) return 0;
-  const dead = deceasedSet(p);
-  const keep: Episode[] = [];
-  let n = 0;
-  for (const ep of eps) {
-    if (ep.at < cutoff) {
-      foldEpisode(p, ep, dead);
-      n += 1;
-    } else keep.push(ep);
-  }
-  p.memory.episodes = keep;
-  return n;
-}
-
-/** The gists about an option: by action (and target when the option has one) or, at half weight, by place. */
-export function gistsFor(
-  p: Person,
-  aff: Pick<Affordance, 'action' | 'targetId' | 'placeId'>,
-): { gist: Gist; weight: number }[] {
-  const list = p.memory.gists;
-  if (!list || list.length === 0) return [];
-  const out: { gist: Gist; weight: number }[] = [];
-  for (const g of list) {
-    let w = 0;
-    if (g.action === aff.action && (aff.targetId === undefined || g.targetId === aff.targetId)) w = 1;
-    else if (aff.placeId !== undefined && g.placeId === aff.placeId) w = GIST_DEFAULTS.placeWeight;
-    if (w > 0) out.push({ gist: g, weight: w * g.salience });
-  }
-  return out;
-}
-
-/** Retelling (2.0, L2): how much of a teller's gist a listener keeps, before trust. */
 export const RETELL_DEFAULTS = {
   /** A told gist's salience is the teller's × trust × this: a story weighs less than having been there. */
   share: 0.6,
@@ -336,394 +82,6 @@ export const RETELL_DEFAULTS = {
   /** Gists weaker than this (teller's salience) are not worth telling. */
   minSalience: 0.1,
 };
-
-/** Optional knobs of `retell`: trust in the teller (default the listener's trust in them), how many gists, which places. */
-export interface RetellOptions {
-  trust?: Unit;
-  limit?: number;
-  placeIds?: readonly string[];
-}
-
-/**
- * `teller` tells `listener` at `at` the gist of what mattered to them (2.0, L2: stories passed in a household or around a
- * fire). The listener must have gists on (`enableGists`); otherwise nothing happens. The teller's strongest gists
- * (up to `limit`, optionally only those about `placeIds`) become the listener's own gists with the tag `told`, the
- * teller's valence and summary, and a salience of the teller's × `trust` × `RETELL_DEFAULTS.share`. A listener who
- * already holds a gist about the same thing (kind, action, target and place, whoever was there) from their own
- * experience keeps it unchanged; one told before keeps the
- * stronger telling (retelling the same story does not keep raising it). So a child of parents who fear a place
- * weighs that fear (cognition's `memory` term, by place at half weight) before ever standing there, and their own
- * later visits outweigh it as they would any gist. No randomness; returns the gists written or strengthened.
- * It does not model distortion in the retelling, the listener doubting the teller beyond `trust`, or retelling on
- * from the listener to others (a host may call it again with the listener as teller).
- */
-export function retell(teller: Person, listener: Person, at: Minute, opts: RetellOptions = {}): Gist[] {
-  if (!Number.isFinite(at)) throw new TypeError('retell requires a finite positional time');
-  const told = teller.memory.gists;
-  const list = listener.memory.gists;
-  if (!told || !list || teller.id === listener.id) return [];
-  const R = RETELL_DEFAULTS;
-  const trust = clamp01(opts.trust ?? trustOfSource(listener, teller.id));
-  const picks = told
-    .filter(
-      (g) =>
-        g.salience >= R.minSalience &&
-        (opts.placeIds === undefined || (g.placeId !== undefined && opts.placeIds.includes(g.placeId))),
-    )
-    .sort((a, b) => b.salience - a.salience || byId(a, b))
-    .slice(0, Math.max(0, Math.floor(opts.limit ?? R.limit)));
-  const out: Gist[] = [];
-  for (const src of picks) {
-    const salience = clamp01(src.salience * trust * R.share);
-    if (salience <= 0) continue;
-    const mine = list.find((x) => sameStory(x, src));
-    if (mine && !mine.tags.includes('told')) continue;
-    if (mine) {
-      if (salience > mine.salience) {
-        mine.salience = salience;
-        mine.weight = salience;
-        mine.lastAt = at;
-        out.push(mine);
-      }
-      continue;
-    }
-    const id = `g${listener.memory.nextGist ?? 0}`;
-    listener.memory.nextGist = (listener.memory.nextGist ?? 0) + 1;
-    const g: Gist = {
-      id,
-      at,
-      kind: src.kind,
-      valence: src.valence,
-      salience,
-      summary: src.summary,
-      tags: ['told', ...src.tags.filter((t) => t !== 'told')].slice(0, GIST_DEFAULTS.maxTags),
-      count: 0,
-      firstAt: at,
-      lastAt: at,
-      weight: salience,
-      peak: salience,
-    };
-    if (src.action !== undefined) g.action = src.action;
-    if (src.actorId !== undefined) g.actorId = src.actorId;
-    if (src.targetId !== undefined) g.targetId = src.targetId;
-    if (src.placeId !== undefined) g.placeId = src.placeId;
-    list.push(g);
-    out.push(g);
-  }
-  if (out.length > 0) trimGists(listener, deceasedSet(listener));
-  return out.filter((g) => list.includes(g));
-}
-
-/** The same thing happening, whoever it happened to (kind, action, target, place). */
-const sameStory = (g: Episode, e: Episode): boolean =>
-  g.kind === e.kind && g.action === e.action && g.targetId === e.targetId && g.placeId === e.placeId;
-
-const trustOfSource = (p: Person, id: EntityId): Unit => {
-  const own = Object.hasOwn(p.memory.sourceTrust, id) ? p.memory.sourceTrust[id] : undefined;
-  return typeof own === 'number' ? own : 0.5;
-};
-
-const idNum = (id: string): number => Number(id.slice(1)) || 0;
-const byId = (a: Episode, b: Episode): number => idNum(a.id) - idNum(b.id);
-
-function recency(now: Minute, at: Minute): number {
-  return 1 / (1 + Math.max(0, now - at) / MEMORY_DEFAULTS.recencyScale);
-}
-
-function defaultSalience(kind: string, valence: Signed): Unit {
-  const base = MEMORY_DEFAULTS.kindSalience[kind] ?? MEMORY_DEFAULTS.defaultKindSalience;
-  return clamp01(base + MEMORY_DEFAULTS.valenceSalience * Math.abs(valence));
-}
-
-/** Encode an episode. Evicts the weakest (salience × recency) episode beyond the bound. */
-export function remember(p: Person, e: Omit<Episode, 'id' | 'salience'> & { salience?: Unit }): Episode {
-  const mem = p.memory;
-  const valence = clampSigned(e.valence);
-  const episode: Episode = {
-    ...e,
-    id: `e${mem.nextEpisode}`,
-    valence,
-    salience: clamp01(e.salience ?? defaultSalience(e.kind, valence)),
-    tags: [...e.tags],
-  };
-  mem.nextEpisode += 1;
-  mem.episodes.push(episode);
-  // Loss memories (a death, a funeral, someone now deceased) are evicted only after every ordinary one: on
-  // salience × recency alone a months-old bereavement loses to this morning's meal within days (findings 2026-10-03).
-  // The protection is bounded: only the `maxProtectedLoss` most salient loss episodes keep it, so daily grave visits
-  // in a long run cannot crowd every ordinary episode out (review 2026-10-03).
-  if (mem.episodes.length > MEMORY_DEFAULTS.maxEpisodes) {
-    const dead = deceasedSet(p);
-    const protectedIds = new Set(
-      mem.episodes
-        .filter((ep) => lossEpisode(ep, dead))
-        .sort((a, b) => b.salience - a.salience || byId(b, a))
-        .slice(0, MEMORY_DEFAULTS.maxProtectedLoss)
-        .map((ep) => ep.id),
-    );
-    while (mem.episodes.length > MEMORY_DEFAULTS.maxEpisodes) {
-      let worst = 0;
-      let worstScore = Number.POSITIVE_INFINITY;
-      for (let i = 0; i < mem.episodes.length; i++) {
-        const ep = mem.episodes[i] as Episode;
-        const score = ep.salience * recency(p.now, ep.at) + (protectedIds.has(ep.id) ? 1 : 0);
-        // Ties evict the older episode (lower id number) — iteration order is insertion order.
-        if (score < worstScore) {
-          worstScore = score;
-          worst = i;
-        }
-      }
-      const [gone] = mem.episodes.splice(worst, 1);
-      if (gone && mem.gists) foldEpisode(p, gone, dead);
-    }
-  }
-  return episode;
-}
-
-function matchScore(ep: Episode, q: MemoryQuery): number {
-  let criteria = 0;
-  let matched = 0;
-  const exact: (keyof MemoryQuery & keyof Episode)[] = ['action', 'actorId', 'targetId', 'placeId'];
-  for (const k of exact) {
-    if (q[k] === undefined) continue;
-    criteria += 1;
-    if (ep[k] === q[k]) matched += 1;
-  }
-  if (q.tags && q.tags.length > 0) {
-    criteria += 1;
-    let hits = 0;
-    for (const t of q.tags) if (ep.tags.includes(t)) hits += 1;
-    matched += hits / q.tags.length;
-  }
-  return criteria === 0 ? 1 : matched / criteria;
-}
-
-/** Retrieve episodes by cue overlap × salience × recency. Retrieved episodes gain a little salience. */
-export function recall(p: Person, q: MemoryQuery): Episode[] {
-  const limit = q.limit ?? MEMORY_DEFAULTS.defaultRecallLimit;
-  const scored: { ep: Episode; score: number }[] = [];
-  for (const ep of memories(p)) {
-    const m = matchScore(ep, q);
-    if (m <= 0) continue;
-    scored.push({ ep, score: m * ep.salience * recency(p.now, ep.at) });
-  }
-  scored.sort((a, b) => b.score - a.score || byId(a.ep, b.ep));
-  const out = scored.slice(0, Math.max(0, limit)).map((s) => s.ep);
-  for (const ep of out) ep.salience = clamp01(ep.salience + MEMORY_DEFAULTS.recallBoost * (1 - ep.salience));
-  return out;
-}
-
-/** Exponential salience decay over dt minutes; emotional episodes fade more slowly. Exact for any dt. */
-export function advanceMemory(p: Person, dt: number): void {
-  if (dt <= 0) return;
-  for (const ep of p.memory.episodes) {
-    const halfLife = lerp(
-      MEMORY_DEFAULTS.halfLifeNeutral,
-      MEMORY_DEFAULTS.halfLifeEmotional,
-      Math.abs(ep.valence),
-    );
-    ep.salience = decay(ep.salience, dt, halfLife);
-  }
-  for (const g of p.memory.gists ?? []) {
-    const halfLife = lerp(
-      GIST_DEFAULTS.halfLifeNeutral,
-      GIST_DEFAULTS.halfLifeEmotional,
-      Math.abs(g.valence),
-    );
-    g.salience = decay(g.salience, dt, halfLife);
-  }
-}
-
-export function expectationKey(aff: Pick<Affordance, 'action' | 'targetId'>): string {
-  return aff.targetId === undefined ? aff.action : `${aff.action}@${aff.targetId}`;
-}
-
-function findExpectation(p: Person, key: string): ActionExpectation | undefined {
-  return p.memory.expectations.find((x) => x.key === key);
-}
-
-/**
- * Citable episodes grouped by action, rebuilt whenever membership could have changed (length or newest id; episodes
- * are only ever appended or removed). A derived read-only index, never saved: it only spares the per-option
- * scan of the whole list. Scores are still computed live from each episode.
- */
-const actionIndex = new WeakMap<Episode[], { key: string; byAction: Map<string, Episode[]> }>();
-function episodesByAction(p: Person, action: string): Episode[] {
-  const list = p.memory.episodes;
-  const key = `${list.length}|${list.at(-1)?.id ?? ''}`;
-  let entry = actionIndex.get(list);
-  if (!entry || entry.key !== key) {
-    const byAction = new Map<string, Episode[]>();
-    for (const ep of list) {
-      // Episode valence is fixed at creation, so the citation filter can be applied once here.
-      if (Math.abs(ep.valence) <= MEMORY_DEFAULTS.citeValence) continue;
-      const group = byAction.get(ep.action ?? '');
-      if (group) group.push(ep);
-      else byAction.set(ep.action ?? '', [ep]);
-    }
-    entry = { key, byAction };
-    actionIndex.set(list, entry);
-  }
-  return entry.byAction.get(action) ?? [];
-}
-
-/** Read-only: salient emotional episodes about this action (and target if given). Does not boost salience. */
-function citedEpisodes(p: Person, aff: Affordance): string[] {
-  const hits: { ep: Episode; score: number }[] = [];
-  for (const ep of episodesByAction(p, aff.action)) {
-    if (aff.targetId !== undefined && ep.targetId !== aff.targetId) continue;
-    hits.push({ ep, score: ep.salience * recency(p.now, ep.at) });
-  }
-  if (hits.length === 0) return [];
-  hits.sort((a, b) => b.score - a.score || byId(a.ep, b.ep));
-  return hits.slice(0, MEMORY_DEFAULTS.maxCited).map((h) => h.ep.id);
-}
-
-/**
- * Believed effect of an affordance: the advertisement blended with the learned expectation (target-specific
- * first, then action-wide) by confidence = samples / (samples + k). Pure; safe to call per decision pass.
- */
-export function expectedEffect(p: Person, aff: Affordance): ExpectedEffect {
-  const specific = aff.targetId === undefined ? undefined : findExpectation(p, expectationKey(aff));
-  const learned =
-    specific && specific.samples > 0 ? specific : findExpectation(p, expectationKey({ action: aff.action }));
-  const samples = learned?.samples ?? 0;
-  const confidence = samples / (samples + MEMORY_DEFAULTS.confidenceK);
-  const needs: Partial<Record<NeedId, number>> = {};
-  const keys = new Set<NeedId>([...keysOf(aff.advertises), ...(learned ? keysOf(learned.needs) : [])]);
-  for (const k of [...keys].sort()) {
-    const adv = aff.advertises[k] ?? 0;
-    const lv = learned?.needs[k];
-    needs[k] = lv === undefined ? adv : lerp(adv, lv, confidence);
-  }
-  const out: ExpectedEffect = {
-    needs,
-    successRate: clamp01(lerp(MEMORY_DEFAULTS.priorSuccess, learned?.successRate ?? 0, confidence)),
-    valence: clampSigned(lerp(0, learned?.valence ?? 0, confidence)),
-    samples,
-    confidence,
-    recalled: citedEpisodes(p, aff),
-  };
-  const gists = gistsFor(p, aff);
-  let w = 0;
-  let v = 0;
-  for (const x of gists) {
-    w += x.weight;
-    v += x.weight * x.gist.valence;
-  }
-  if (w > 0) {
-    gists.sort((a, b) => b.weight - a.weight || byId(a.gist, b.gist));
-    out.gist = { valence: clampSigned(v / w), weight: clamp01(w), ids: gists.map((x) => x.gist.id) };
-    if (out.recalled.length === 0 && Math.abs(v / w) > MEMORY_DEFAULTS.citeValence)
-      out.recalled = gists.slice(0, MEMORY_DEFAULTS.maxCited).map((x) => x.gist.id);
-  }
-  return out;
-}
-
-function step(mean: number, sample: number, n: number): number {
-  const target = runningMean(mean, sample, n, MEMORY_DEFAULTS.minLearningRate);
-  const max = MEMORY_DEFAULTS.maxStep;
-  return mean + clamp(target - mean, -max, max);
-}
-
-function updateExpectation(
-  p: Person,
-  key: string,
-  aff: Affordance,
-  success: boolean,
-  realized: Partial<Record<NeedId, number>>,
-  felt: Signed,
-): void {
-  let x = findExpectation(p, key);
-  if (!x) {
-    // Start at the advertisement so the first outcome deviates from it by a clamped step.
-    x = {
-      key,
-      needs: { ...aff.advertises },
-      successRate: MEMORY_DEFAULTS.priorSuccess,
-      samples: 0,
-      valence: 0,
-    };
-    p.memory.expectations.push(x);
-  }
-  x.samples += 1;
-  const n = x.samples;
-  const keys = new Set<NeedId>([...keysOf(x.needs), ...keysOf(aff.advertises), ...keysOf(realized)]);
-  for (const k of keys) {
-    const prior = x.needs[k] ?? aff.advertises[k] ?? 0;
-    x.needs[k] = step(prior, realized[k] ?? 0, n);
-  }
-  x.successRate = clamp01(step(x.successRate, success ? 1 : 0, n));
-  x.valence = clampSigned(step(x.valence, clampSigned(felt), n));
-}
-
-/**
- * Prediction-error update of the expectations for both 'action' and 'action@target'. Interrupted outcomes
- * are ignored (partial deltas are not evidence about the full activity).
- */
-export function learnOutcome(
-  p: Person,
-  aff: Affordance,
-  outcome: Outcome,
-  realized: Partial<Record<NeedId, number>>,
-  felt: Signed,
-): void {
-  if (outcome.status === 'interrupted') return;
-  // A declared voiding purpose succeeds only when the actual outcome confirms it.
-  const success =
-    outcome.status === 'completed' && (aff.voidsBladder !== true || outcome.voidedBladder === true);
-  const touched = new Set<string>([expectationKey({ action: aff.action })]);
-  if (aff.targetId !== undefined) touched.add(expectationKey(aff));
-  for (const key of touched) updateExpectation(p, key, aff, success, realized, felt);
-  const list = p.memory.expectations;
-  while (list.length > MEMORY_DEFAULTS.maxExpectations) {
-    let worst = -1;
-    let w: ActionExpectation | undefined;
-    for (const [i, x] of list.entries()) {
-      if (touched.has(x.key)) continue;
-      if (!w || x.samples < w.samples || (x.samples === w.samples && x.key < w.key)) {
-        worst = i;
-        w = x;
-      }
-    }
-    if (worst < 0) break;
-    list.splice(worst, 1);
-  }
-}
-
-// ---------------------------------------------------------------------------------------------
-// Cue-triggered recall (N11)
-// ---------------------------------------------------------------------------------------------
-
-/** The situation that may bring a memory back unbidden. Every field is optional. */
-export interface RecallCue {
-  /** Minute of the cue; defaults to `p.now`. Used for the hour and for anniversaries. */
-  at?: Minute;
-  placeId?: EntityId;
-  action?: string;
-  /** A person present, addressed or mentioned. Matches an episode's actor or target. */
-  personId?: EntityId;
-  /** Hour of day 0..23; defaults to the hour of `at`. Only ever a supporting feature. */
-  hour?: number;
-  tags?: string[];
-  /** At most this many episodes come back (default `CUE_RECALL_DEFAULTS.limit`). */
-  limit?: number;
-}
-
-export interface CueRecall {
-  /** Copies of the recalled episodes, strongest first. */
-  episodes: Episode[];
-  /** Their ids, for `Considered.recalled` / narration. */
-  recalled: string[];
-  /** Re-appraisal events at reduced intensity for non-loss memories; the composite passes each to `affect.appraise`. */
-  appraisals: AppraisalEvent[];
-  /**
-   * Grief for loss memories, intensity already scaled (reduced, trait-scaled like appraisal gain). The composite
-   * passes each to `affect.feel(p, 'grief', intensity, cause, at, targetId)`: `appraise` with `loss` would apply
-   * its grief floor, which is meant for the death itself, not for a remembered one.
-   */
-  grief: { at: Minute; intensity: Unit; cause: string; targetId?: EntityId }[];
-}
 
 export const CUE_RECALL_DEFAULTS = {
   /** Feature weights; the cue strength is the sum of matched weights, capped at 1. */
@@ -753,138 +111,744 @@ export const CUE_RECALL_DEFAULTS = {
   lossTags: ['death', 'loss', 'funeral', 'grave'],
 };
 
-/** Whether an episode is a loss: tagged as one, a death, or involving someone the person holds as deceased. */
-export function isLossEpisode(
-  p: Person,
-  ep: Pick<Episode, 'tags' | 'action' | 'actorId' | 'targetId'>,
-): boolean {
-  return lossEpisode(ep, deceasedSet(p));
-}
+const unit = (x: number) => Math.max(0, Math.min(1, x));
+const signed = (x: number) => Math.max(-1, Math.min(1, x));
+const numericId = (id: string, prefix: string): number | null => {
+  if (!new RegExp(`^${prefix}(0|[1-9][0-9]*)$`).test(id)) return null;
+  const n = Number(id.slice(1));
+  return Number.isSafeInteger(n) ? n : null;
+};
+const loss = (e: DeepReadonly<Episode>) =>
+  e.action === 'death' || e.tags.some((t) => CUE_RECALL_DEFAULTS.lossTags.includes(t));
+const sameStory = (a: DeepReadonly<Episode>, b: DeepReadonly<Episode>) =>
+  a.kind === b.kind && a.action === b.action && a.targetId === b.targetId && a.placeId === b.placeId;
+const output = <S>(state: S, at: number): OwnerOutput<S> => ({
+  state,
+  effects: { terms: [], modifiers: [], appraisals: [] },
+  events: [],
+  nextBoundary: null,
+  advancedThrough: at,
+});
 
-function lossEpisode(
-  ep: Pick<Episode, 'tags' | 'action' | 'actorId' | 'targetId'>,
-  dead: ReadonlySet<string>,
-): boolean {
-  return (
-    ep.tags.some((t) => CUE_RECALL_DEFAULTS.lossTags.includes(t)) ||
-    ep.action === 'death' ||
-    (ep.actorId !== undefined && dead.has(ep.actorId)) ||
-    (ep.targetId !== undefined && dead.has(ep.targetId))
+export function validateMemory(
+  state: DeepReadonly<MemoryOwnedState>,
+  allocations: readonly Reference[],
+): ValidationIssue[] {
+  const issues: ValidationIssue[] = validateNarrativeJson(state, 'memory');
+  issues.push(
+    ...validateNarrativeFields(
+      state,
+      ['episodes', 'gists', 'expectations', 'nextEpisode', 'nextGist'],
+      ['episodes', 'gists', 'expectations', 'nextEpisode', 'nextGist'],
+      'memory',
+    ),
   );
-}
-
-/** Deceased check inlined from `social.isDeceasedTie` (memory reads the social slice; it does not write it). */
-function deceasedSet(p: Person): Set<string> {
-  const out = new Set<string>();
-  for (const r of p.social?.relationships ?? []) {
-    if (r.deceasedAt !== undefined || r.roles.includes('deceased')) out.add(r.otherId);
+  const bad = (path: string, message: string, code: ValidationIssue['code'] = 'invalid-schema') =>
+    issues.push({ path, code, message });
+  if (
+    !state ||
+    !Array.isArray(state.episodes) ||
+    !Array.isArray(state.gists) ||
+    !Array.isArray(state.expectations)
+  )
+    return [{ path: 'memory', code: 'invalid-schema', message: 'Required memory containers are missing' }];
+  for (const [list, prefix, counter, limit] of [
+    [state.episodes, 'e', state.nextEpisode, 200],
+    [state.gists, 'g', state.nextGist, 64],
+  ] as const) {
+    const path = prefix === 'e' ? 'episodes' : 'gists';
+    if (!Number.isSafeInteger(counter) || counter < 0) bad(path, 'Invalid allocation counter');
+    if (list.length > limit) bad(path, 'Retention bound exceeded', 'limit-exceeded');
+    const ids = new Set<string>();
+    for (const e of list) {
+      if (!e || typeof e !== 'object') {
+        bad(path, 'Malformed memory');
+        continue;
+      }
+      const fields = [
+        'id',
+        'at',
+        'kind',
+        'action',
+        'actorId',
+        'targetId',
+        'placeId',
+        'valence',
+        'salience',
+        'summary',
+        'addressedSummary',
+        'tags',
+        'voiceId',
+        'recalledAt',
+      ];
+      issues.push(
+        ...validateNarrativeFields(
+          e,
+          prefix === 'g' ? [...fields, 'count', 'firstAt', 'lastAt', 'weight', 'peak'] : fields,
+          ['id', 'at', 'kind', 'valence', 'salience', 'summary', 'tags'],
+          path,
+        ),
+      );
+      if (typeof e.id !== 'string' || typeof e.kind !== 'string' || !e.kind) {
+        bad(path, 'Invalid memory identity/kind');
+        continue;
+      }
+      for (const key of ['action', 'actorId', 'targetId', 'placeId', 'addressedSummary', 'voiceId'] as const)
+        if (e[key] !== undefined && typeof e[key] !== 'string')
+          bad(`${path}.${key}`, 'Invalid optional text');
+      if (ids.has(e.id)) bad(`${path}.${e.id}`, 'Duplicate memory identity', 'duplicate-id');
+      ids.add(e.id);
+      const ordinal = numericId(e.id, prefix);
+      if (ordinal === null || ordinal >= counter)
+        bad(`${path}.${e.id}`, 'Counter must exceed every allocated ordinal');
+      if (
+        !Number.isSafeInteger(e.at) ||
+        !Number.isFinite(e.valence) ||
+        Math.abs(e.valence) > 1 ||
+        !Number.isFinite(e.salience) ||
+        e.salience < 0 ||
+        e.salience > 1 ||
+        typeof e.summary !== 'string' ||
+        !Array.isArray(e.tags) ||
+        !e.tags.every((t: unknown) => typeof t === 'string')
+      )
+        bad(`${path}.${e.id}`, 'Malformed episode');
+      if (e.recalledAt !== undefined && !Number.isSafeInteger(e.recalledAt))
+        bad(`${path}.${e.id}.recalledAt`, 'Invalid recall clock');
+    }
+    const kind = prefix === 'e' ? 'episode' : 'gist';
+    for (const ref of allocations)
+      if (ref.kind === kind) {
+        const ordinal = numericId(ref.id, prefix);
+        if (ordinal === null || ordinal >= counter) bad(path, 'Counter rewinds an allocated identity');
+      }
   }
-  return out;
+  for (const g of state.gists)
+    if (
+      !g ||
+      typeof g !== 'object' ||
+      !Number.isSafeInteger(g.count) ||
+      g.count < 0 ||
+      !Number.isSafeInteger(g.firstAt) ||
+      !Number.isSafeInteger(g.lastAt) ||
+      g.firstAt > g.lastAt ||
+      !Number.isFinite(g.weight) ||
+      g.weight < 0 ||
+      !Number.isFinite(g.peak) ||
+      g.peak < 0 ||
+      g.peak > 1
+    )
+      bad('gists', 'Malformed gist');
+  const keys = new Set<string>();
+  if (state.expectations.length > 150) bad('expectations', 'Retention bound exceeded', 'limit-exceeded');
+  for (const x of state.expectations) {
+    if (!x || typeof x !== 'object' || !x.needs || typeof x.needs !== 'object') {
+      bad('expectations', 'Malformed expectation');
+      continue;
+    }
+    issues.push(
+      ...validateNarrativeFields(
+        x,
+        ['key', 'needs', 'successRate', 'samples', 'valence'],
+        ['key', 'needs', 'successRate', 'samples', 'valence'],
+        'expectations',
+      ),
+    );
+    if (keys.has(x.key)) bad('expectations', 'Duplicate expectation key', 'duplicate-id');
+    keys.add(x.key);
+    if (
+      !x.key ||
+      !Number.isSafeInteger(x.samples) ||
+      x.samples < 0 ||
+      !Number.isFinite(x.successRate) ||
+      x.successRate < 0 ||
+      x.successRate > 1 ||
+      !Number.isFinite(x.valence) ||
+      Math.abs(x.valence) > 1 ||
+      !Object.values(x.needs).every(
+        (v: unknown) => typeof v === 'number' && Number.isFinite(v) && Math.abs(v) <= 1,
+      )
+    )
+      bad(`expectations.${x.key}`, 'Malformed expectation');
+  }
+  return issues;
 }
+function checked(
+  state: DeepReadonly<MemoryOwnedState>,
+  allocations: readonly Reference[] = [],
+): MemoryOwnedState {
+  const issues = validateMemory(state, allocations);
+  const [issue] = issues;
+  if (issue) throw new RangeError(issue.message);
+  return cloneData(state) as MemoryOwnedState;
+}
+function trim<T extends Episode>(
+  list: T[],
+  max: number,
+  protectedMax: number,
+  at: number,
+  recency: number,
+): T[] {
+  const protectedIds = new Set(
+    list
+      .filter(loss)
+      .sort((a, b) => b.salience - a.salience || Number(b.id.slice(1)) - Number(a.id.slice(1)))
+      .slice(0, protectedMax)
+      .map((e) => e.id),
+  );
+  const gone: T[] = [];
+  while (list.length > max) {
+    let worst = 0,
+      score = Infinity;
+    list.forEach((e, i) => {
+      const value = e.salience / (1 + Math.max(0, at - e.at) / recency) + (protectedIds.has(e.id) ? 1 : 0);
+      if (value < score) {
+        worst = i;
+        score = value;
+      }
+    });
+    gone.push(...list.splice(worst, 1));
+  }
+  return gone;
+}
+function fold(state: MemoryOwnedState, ep: Episode, at: number, K: DeepReadonly<typeof GIST_DEFAULTS>): void {
+  if (!loss(ep) && Math.abs(ep.valence) < K.minValence) return;
+  const fresh = unit(
+    (MEMORY_DEFAULTS.kindSalience[ep.kind] ?? MEMORY_DEFAULTS.defaultKindSalience) +
+      MEMORY_DEFAULTS.valenceSalience * Math.abs(ep.valence),
+  );
+  let g = state.gists.find((x) => sameStory(x, ep) && x.actorId === ep.actorId);
+  if (!g) {
+    if (!Number.isSafeInteger(state.nextGist + 1)) throw new EngineLimitError('Gist counter exhausted');
+    g = {
+      ...ep,
+      id: `g${state.nextGist++}`,
+      salience: fresh,
+      tags: [],
+      count: 0,
+      firstAt: ep.at,
+      lastAt: ep.at,
+      weight: 0,
+      peak: fresh,
+    };
+    state.gists.push(g);
+  } else g.salience = unit(g.salience + (1 - g.salience) * K.foldGain * fresh);
+  g.valence = signed((g.valence * g.weight + ep.valence * fresh) / (g.weight + fresh));
+  g.weight += fresh;
+  g.count++;
+  g.firstAt = Math.min(g.firstAt, ep.at);
+  g.lastAt = Math.max(g.lastAt, ep.at);
+  if (fresh > g.peak) {
+    g.peak = fresh;
+    g.at = ep.at;
+    g.summary = ep.summary;
+  }
+  g.tags = [...new Set([...g.tags, ...ep.tags])]
+    .sort(
+      (a, b) =>
+        Number(CUE_RECALL_DEFAULTS.lossTags.includes(b)) - Number(CUE_RECALL_DEFAULTS.lossTags.includes(a)),
+    )
+    .slice(0, K.maxTags);
+  trim(state.gists, K.maxGists, K.maxProtectedLoss, at, Infinity);
+}
+function encode(
+  state: MemoryOwnedState,
+  episode: DeepReadonly<Omit<Episode, 'id'>>,
+  at: number,
+  K: DeepReadonly<typeof MEMORY_DEFAULTS>,
+  G: DeepReadonly<typeof GIST_DEFAULTS>,
+): Episode {
+  if (!Number.isSafeInteger(state.nextEpisode + 1)) throw new EngineLimitError('Episode counter exhausted');
+  const ep = { ...cloneData(episode), id: `e${state.nextEpisode++}` } as Episode;
+  const issues = validateMemory({ ...state, episodes: [ep], gists: [] }, []);
+  if (issues.length) throw new RangeError(issues[0]?.message ?? 'Invalid episode');
+  state.episodes.push(ep);
+  for (const gone of trim(state.episodes, K.maxEpisodes, K.maxProtectedLoss, at, K.recencyScale * 60000))
+    fold(state, gone, at, G);
+  return ep;
+}
+export const memoryOwner: MemoryOwner = {
+  initialize(input, context) {
+    const state: MemoryOwnedState = {
+      episodes: [],
+      gists: [],
+      expectations: cloneData(input.expectations) as MemoryOwnedState['expectations'],
+      nextEpisode: 0,
+      nextGist: 0,
+    };
+    for (const authored of input.episodes) {
+      const { basis: _basis, provenance: _provenance, ...ep } = authored;
+      const n = numericId(ep.id, 'e');
+      if (n === null) throw new RangeError('Invalid authored episode identity');
+      state.episodes.push(cloneData(ep) as Episode);
+      state.nextEpisode = Math.max(state.nextEpisode, n + 1);
+    }
+    return checked(state, context.allocations);
+  },
+  validate: validateMemory,
+  expectedEffect(state, offer, context) {
+    return expectedEffect(state, offer, context.at, context.effective);
+  },
+  receiveCue(state, cue, context) {
+    if (cue.at !== context.at) throw new RangeError('Recall cue clock mismatch');
+    return receiveMemoryCue(
+      state,
+      { ...cue, deceased: context.deceased, emotionality: context.emotionality },
+      context,
+    );
+  },
+  receive(state, input, context) {
+    const out = checked(state, context.allocations),
+      K = context.effective.builtins.MEMORY_DEFAULTS,
+      G = context.effective.builtins.GIST_DEFAULTS;
+    if (input.kind === 'recall') {
+      if (new Set(input.episodeIds).size !== input.episodeIds.length)
+        throw new RangeError('Duplicate recall identity');
+      for (const id of input.episodeIds) {
+        const e = [...out.episodes, ...out.gists].find((e) => e.id === id);
+        if (!e) throw new RangeError('Unknown recall identity');
+        e.salience = unit(e.salience + K.recallBoost * (1 - e.salience));
+        e.recalledAt = context.at;
+      }
+    } else if (input.kind === 'outcome') {
+      encode(out, input.episode, context.at, K, G);
+      return output(learnMemoryOutcome(out, input, context), context.at);
+    } else if (input.kind === 'episode') {
+      if (!input.receiptId) throw new RangeError('Missing episode receipt');
+      encode(out, input.episode, context.at, K, G);
+    } else if (input.attention > 0) {
+      const p = input.percept;
+      const ep: Omit<Episode, 'id'> = {
+        at: p.occurredAt,
+        kind: p.kind,
+        valence: p.valence ?? 0,
+        salience: unit(p.salience * input.attention),
+        summary: p.summary,
+        tags: [],
+      };
+      for (const key of ['actorId', 'targetId', 'placeId', 'addressedSummary'] as const)
+        if (p[key] !== undefined) ep[key] = p[key];
+      encode(out, ep, context.at, K, G);
+    }
+    return output(out, context.at);
+  },
+  advance(state, context) {
+    checked(state, context.allocations);
+    const base = context.continuation;
+    if (context.from < base.anchor.at || context.to < context.from)
+      throw new RangeError('Memory clock rewound');
+    const out = checked(base.state, context.allocations),
+      K = context.effective.builtins.MEMORY_DEFAULTS,
+      G = context.effective.builtins.GIST_DEFAULTS;
+    const decay = (minutes: number) => {
+      for (const [list, k] of [
+        [out.episodes, K],
+        [out.gists, G],
+      ] as const)
+        for (const e of list) {
+          const half = k.halfLifeNeutral + (k.halfLifeEmotional - k.halfLifeNeutral) * Math.abs(e.valence);
+          e.salience *= dexp((-Math.LN2 * minutes) / half);
+        }
+    };
+    const horizon = G.horizon * 60000;
+    let anchor = { ...base.anchor },
+      folded = false;
+    // An episode already past the horizon when the span starts (authored history older than the horizon)
+    // folds at the span start, so the span still advances and the fold clock does not depend on chunking.
+    const overdue = out.episodes.filter((e) => context.from - e.at > horizon);
+    if (overdue.length) {
+      decay((context.from - anchor.at) / 60000);
+      for (const e of overdue) fold(out, e, context.from, G);
+      out.episodes = out.episodes.filter((e) => !overdue.includes(e));
+      anchor = { at: context.from, conditionId: `memory-fold:${context.from}` };
+      folded = true;
+    }
+    const firstFold = out.episodes.reduce<number>((next, e) => Math.min(next, e.at + horizon + 1), Infinity);
+    const through = Math.min(context.to, Math.max(context.from, firstFold));
+    const settled = folded ? checked(out) : checked(base.state);
+    decay((through - anchor.at) / 60000);
+    // Fold on the first integer millisecond beyond the horizon, not an arbitrary caller endpoint.
+    const due = out.episodes.filter((e) => through - e.at > horizon);
+    for (const e of due) fold(out, e, through, G);
+    out.episodes = out.episodes.filter((e) => !due.includes(e));
+    const next = out.episodes.reduce<number | null>((n, e) => {
+      const at = e.at + horizon + 1;
+      return n === null ? at : Math.min(n, at);
+    }, null);
+    return {
+      ...output(out, through),
+      nextBoundary: next,
+      continuation: due.length
+        ? { anchor: { at: through, conditionId: `memory-fold:${through}` }, state: checked(out) }
+        : { anchor, state: settled },
+    };
+  },
+  receiveMaternalBirth(state, input, context) {
+    if (input.mother !== context.person || input.at !== context.at)
+      throw new RangeError('Maternal receipt mismatch');
+    const out = checked(state, context.allocations);
+    encode(
+      out,
+      {
+        at: input.at,
+        kind: 'birth',
+        targetId: input.child.id,
+        valence: input.valence,
+        salience: input.salience,
+        summary: renderProjection({ kind: 'maternal-birth' }),
+        tags: ['birth'],
+      },
+      context.at,
+      context.effective.builtins.MEMORY_DEFAULTS,
+      context.effective.builtins.GIST_DEFAULTS,
+    );
+    return output(out, context.at);
+  },
+  receiveRetelling(state, input, context) {
+    const out = checked(state, context.allocations),
+      G = context.effective.builtins.GIST_DEFAULTS;
+    if (input.speaker === context.person || input.reception.recipient !== context.person)
+      throw new RangeError('Retelling recipient mismatch');
+    if (input.reception.attention <= 0) return output(out, context.at);
+    for (const item of input.items) {
+      const src = item.gist;
+      const salience = unit(src.salience * context.sourceTrust * RETELL_DEFAULTS.share);
+      if (salience <= 0) continue;
+      const mine = out.gists.find((x) => sameStory(x, src));
+      if (mine && !mine.tags.includes('told')) continue;
+      if (mine) {
+        if (salience > mine.salience) {
+          mine.salience = salience;
+          mine.weight = salience;
+          mine.lastAt = context.at;
+        }
+        continue;
+      }
+      if (!Number.isSafeInteger(out.nextGist + 1)) throw new EngineLimitError('Gist counter exhausted');
+      out.gists.push({
+        ...cloneData(src),
+        id: `g${out.nextGist++}`,
+        at: context.at,
+        firstAt: context.at,
+        lastAt: context.at,
+        count: 0,
+        weight: salience,
+        peak: salience,
+        salience,
+        tags: ['told', ...src.tags.filter((t) => t !== 'told')].slice(0, G.maxTags),
+      } as Gist);
+    }
+    trim(out.gists, G.maxGists, G.maxProtectedLoss, context.at, Infinity);
+    return output(out, context.at);
+  },
+};
 
-/**
- * SCOPE (cue-triggered recall): involuntary autobiographical memory. A situation (place, person, action,
- * tags, time of day, the date) brings back an emotional episode when the overlap of its retrieval cues with
- * the episode × the episode's current salience crosses a threshold; the memory is then re-appraised at reduced
- * intensity. Ordinary memories must be strongly emotional (|valence| ≥ `minValence`) and do not gain salience by
- * intruding (no self-sustaining loop); loss memories come back from a lower floor and do gain salience. Episodes involving someone the person holds as
- * deceased, or tagged as a loss, re-appraise as loss (grief), including warm memories of them; the yearly
- * anniversary of a loss episode is itself a cue. Named shapes: encoding specificity (Tulving & Thomson 1973),
- * involuntary autobiographical memories triggered by situational cues (Berntsen 1996, 2009), and anniversary
- * reactions in bereavement. Each episode has a refractory period so one cue does not replay it every minute.
- * It does NOT model rumination, deliberate reminiscence, mood-congruent retrieval, memory distortion on
- * re-telling, or the softening of grief over years beyond salience decay; weights are engineering defaults.
- */
-export function recallByCue(p: Person, cue: RecallCue): CueRecall {
-  const D = CUE_RECALL_DEFAULTS;
-  const W = D.weights;
-  const at = cue.at ?? p.now;
-  const hour = cue.hour ?? hourOf(at);
-  const dead = deceasedSet(p);
-  const scored: { ep: Episode; strength: number; score: number; loss: boolean; who?: string }[] = [];
-  for (const ep of memories(p)) {
-    if (ep.at >= at) continue;
-    if (Math.abs(ep.valence) < D.minLossValence) continue;
-    if (ep.recalledAt !== undefined && at - ep.recalledAt < D.refractory) continue;
-    let strength = 0;
-    let specific = false;
-    if (cue.placeId !== undefined && ep.placeId === cue.placeId) {
-      strength += W.place;
+/** Closed cue evidence. This receipt changes only this owner's memories; appraisal is returned. */
+export function receiveMemoryCue(
+  state: DeepReadonly<MemoryOwnedState>,
+  cue: {
+    placeId?: string;
+    personId?: string;
+    action?: string;
+    tags?: readonly string[];
+    deceased: readonly string[];
+    emotionality: number;
+    hour?: number;
+  },
+  context: DeepReadonly<import('../run-schema.ts').MemoryContext>,
+): ReturnType<MemoryOwner['receiveCue']> {
+  const s = checked(state, context.allocations),
+    K = context.effective.builtins.CUE_RECALL_DEFAULTS,
+    M = context.effective.builtins.MEMORY_DEFAULTS;
+  const scored: { e: Episode; strength: number; score: number; isLoss: boolean; who?: string }[] = [];
+  const hour = (at: number) => (((at % 86400000) + 86400000) % 86400000) / 3600000;
+  for (const e of [...s.episodes, ...s.gists]) {
+    if (
+      e.at >= context.at ||
+      Math.abs(e.valence) < K.minLossValence ||
+      (e.recalledAt !== undefined && context.at - e.recalledAt < K.refractory * 60000)
+    )
+      continue;
+    let strength = 0,
+      specific = false;
+    if (cue.placeId !== undefined && e.placeId === cue.placeId) {
+      strength += K.weights.place;
       specific = true;
     }
-    if (cue.personId !== undefined && (ep.actorId === cue.personId || ep.targetId === cue.personId)) {
-      strength += W.person;
+    if (cue.personId !== undefined && (e.actorId === cue.personId || e.targetId === cue.personId)) {
+      strength += K.weights.person;
       specific = true;
     }
-    if (cue.action !== undefined && ep.action === cue.action) {
-      strength += W.action;
+    if (cue.action !== undefined && e.action === cue.action) {
+      strength += K.weights.action;
       specific = true;
     }
-    if (cue.tags && cue.tags.length > 0) {
-      let hits = 0;
-      for (const t of cue.tags) if (ep.tags.includes(t)) hits += 1;
-      if (hits > 0) {
-        strength += (W.tags * hits) / cue.tags.length;
+    if (cue.tags?.length) {
+      const hits = cue.tags.filter((t) => e.tags.includes(t)).length;
+      if (hits) {
+        strength += (K.weights.tags * hits) / cue.tags.length;
         specific = true;
       }
     }
-    const isLossTagged = ep.tags.some((t) => D.lossTags.includes(t)) || ep.action === 'death';
-    const daysSince = Math.floor(at / MINUTES_PER_DAY) - Math.floor(ep.at / MINUTES_PER_DAY);
-    if (isLossTagged && daysSince > 0 && daysSince % DAYS_PER_YEAR === 0) {
-      strength += W.anniversary;
+    const tagged = e.action === 'death' || e.tags.some((t) => K.lossTags.includes(t)),
+      days = Math.floor(context.at / 86400000) - Math.floor(e.at / 86400000);
+    if (tagged && days > 0 && days % 365 === 0) {
+      strength += K.weights.anniversary;
       specific = true;
     }
-    // Time of day only supports a cue that already matched something specific.
     if (!specific) continue;
-    const epHour = hourOf(ep.at);
-    const dh = Math.min(Math.abs(epHour - hour), 24 - Math.abs(epHour - hour));
-    if (dh <= D.hourTolerance) strength += W.hour;
-    let who: string | undefined;
-    if (ep.actorId !== undefined && dead.has(ep.actorId)) who = ep.actorId;
-    else if (ep.targetId !== undefined && dead.has(ep.targetId)) who = ep.targetId;
-    if (who !== undefined) strength += D.deceasedBoost;
-    const loss = who !== undefined || isLossTagged;
-    if (!loss && Math.abs(ep.valence) < D.minValence) continue;
+    const dh = Math.abs((cue.hour ?? hour(context.at)) - hour(e.at));
+    if (Math.min(dh, 24 - dh) <= K.hourTolerance) strength += K.weights.hour;
+    const who =
+      e.actorId && cue.deceased.includes(e.actorId)
+        ? e.actorId
+        : e.targetId && cue.deceased.includes(e.targetId)
+          ? e.targetId
+          : undefined;
+    if (who !== undefined) strength += K.deceasedBoost;
+    const isLoss = tagged || who !== undefined;
+    if (!isLoss && Math.abs(e.valence) < K.minValence) continue;
     strength = Math.min(1, strength);
-    const score = strength * ep.salience;
-    if (score < D.threshold) continue;
-    const entry: { ep: Episode; strength: number; score: number; loss: boolean; who?: string } = {
-      ep,
-      strength,
-      score,
-      loss,
-    };
-    if (who !== undefined) entry.who = who;
-    scored.push(entry);
+    const score = strength * e.salience;
+    if (score < K.threshold) continue;
+    scored.push({ e, strength, score, isLoss, ...(who === undefined ? {} : { who }) });
   }
-  scored.sort((a, b) => b.score - a.score || byId(a.ep, b.ep));
-  const picked = scored.slice(0, Math.max(0, cue.limit ?? D.limit));
-  const appraisals: AppraisalEvent[] = [];
-  const grief: CueRecall['grief'] = [];
-  const gain = D.griefGainBase + D.griefGainSlope * clamp01(p.traits?.emotionality ?? 0.5);
-  for (const s of picked) {
-    // Only loss memories are strengthened by intruding; an ordinary memory coming back unbidden does not gain
-    // salience, so a daily cue cannot keep a routine episode alive against decay.
-    if (s.loss) s.ep.salience = clamp01(s.ep.salience + MEMORY_DEFAULTS.recallBoost * (1 - s.ep.salience));
-    s.ep.recalledAt = at;
-    const mag = Math.abs(s.ep.valence) * D.reappraisal * s.strength;
-    const cause = `recall:${s.ep.id}`;
-    const target = s.who ?? s.ep.targetId;
-    if (s.loss) {
-      // A warm memory of someone lost is felt as the loss, not as the old joy.
-      const g: CueRecall['grief'][number] = { at, intensity: clamp01(mag * gain), cause };
-      if (target !== undefined && target !== p.id) g.targetId = target;
-      grief.push(g);
+  const result = output(s, context.at);
+  const appraisals: import('../run-schema.ts').AppraisalEffect[] = [];
+  const affectReceipts: import('../run-schema.ts').AffectEndpoint[] = [];
+  const recalled: string[] = [];
+  for (const hit of scored
+    .sort((a, b) => b.score - a.score || Number(a.e.id.slice(1)) - Number(b.e.id.slice(1)))
+    .slice(0, K.limit)) {
+    if (hit.isLoss) hit.e.salience = unit(hit.e.salience + M.recallBoost * (1 - hit.e.salience));
+    hit.e.recalledAt = context.at;
+    const magnitude = Math.abs(hit.e.valence) * K.reappraisal * hit.strength,
+      target = hit.who ?? hit.e.targetId,
+      id = `recall:${context.causes[0] ?? context.at}:${hit.e.id}`;
+    recalled.push(hit.e.id);
+    if (hit.isLoss) {
+      affectReceipts.push({
+        kind: 'felt',
+        id: 'grief',
+        intensity: unit(magnitude * (K.griefGainBase + K.griefGainSlope * cue.emotionality)),
+        cause: `recall:${hit.e.id}`,
+        ...(target !== undefined && target !== context.person ? { targetId: target } : {}),
+      });
       continue;
     }
-    const ev: AppraisalEvent = { at, kind: 'event', desirability: Math.sign(s.ep.valence) * mag, cause };
-    if (target !== undefined && target !== p.id) ev.targetId = target;
-    appraisals.push(ev);
+    appraisals.push({
+      id,
+      cause: context.causes[0] ?? hit.e.id,
+      person: context.person,
+      at: context.at,
+      applyPhase: 5,
+      from: 'memory',
+      to: 'affect',
+      appraisal: {
+        at: context.at,
+        kind: 'event',
+        desirability: hit.isLoss ? -magnitude : Math.sign(hit.e.valence) * magnitude,
+        cause: `recall:${hit.e.id}`,
+        ...(hit.isLoss ? { loss: true } : {}),
+        ...(target !== undefined && target !== context.person ? { targetId: target } : {}),
+      },
+    });
   }
+  result.effects = { terms: [], modifiers: [], appraisals };
+  return { ...result, recalled, affectReceipts };
+}
+
+/** Pure learned expectation/gist projection used by cognition, with no recall reinforcement. */
+export function expectedEffect(
+  state: DeepReadonly<MemoryOwnedState>,
+  offer: DeepReadonly<import('../run-schema.ts').Offer>,
+  now: number,
+  effective: import('../run-schema.ts').EffectiveParameters,
+) {
+  const K = effective.builtins.MEMORY_DEFAULTS,
+    G = effective.builtins.GIST_DEFAULTS;
+  const specific =
+      offer.target === undefined
+        ? undefined
+        : state.expectations.find((x) => x.key === `${offer.actionId}@${offer.target}`),
+    learned =
+      specific && specific.samples > 0 ? specific : state.expectations.find((x) => x.key === offer.actionId);
+  const samples = learned?.samples ?? 0,
+    confidence = samples / (samples + K.confidenceK),
+    needs: Partial<Record<import('../run-schema.ts').NeedId, number>> = {};
+  for (const key of [
+    ...new Set([...Object.keys(offer.expected.needs), ...Object.keys(learned?.needs ?? {})]),
+  ].sort() as import('../run-schema.ts').NeedId[]) {
+    const advertised = offer.expected.needs[key] ?? 0,
+      value = learned?.needs[key];
+    needs[key] = value === undefined ? advertised : advertised + (value - advertised) * confidence;
+  }
+  const recalled = state.episodes
+    .filter(
+      (e) =>
+        e.action === offer.actionId &&
+        (offer.target === undefined || e.targetId === offer.target) &&
+        Math.abs(e.valence) > K.citeValence,
+    )
+    .map((e) => ({ e, weight: e.salience / (1 + Math.max(0, now - e.at) / (K.recencyScale * 60000)) }))
+    .sort((a, b) => b.weight - a.weight || Number(a.e.id.slice(1)) - Number(b.e.id.slice(1)))
+    .slice(0, K.maxCited)
+    .map((x) => x.e.id);
+  const gists = state.gists
+    .map((g) => ({
+      g,
+      weight:
+        g.salience *
+        (g.action === offer.actionId && (offer.target === undefined || g.targetId === offer.target)
+          ? 1
+          : offer.place !== undefined && g.placeId === offer.place
+            ? G.placeWeight
+            : 0),
+    }))
+    .filter((x) => x.weight > 0)
+    .sort((a, b) => b.weight - a.weight || Number(a.g.id.slice(1)) - Number(b.g.id.slice(1)));
+  const weight = gists.reduce((s, x) => s + x.weight, 0),
+    value = gists.reduce((s, x) => s + x.weight * x.g.valence, 0);
+  if (!recalled.length && weight > 0 && Math.abs(value / weight) > K.citeValence)
+    recalled.push(...gists.slice(0, K.maxCited).map((x) => x.g.id));
   return {
-    episodes: picked.map((s) => ({ ...s.ep, tags: [...s.ep.tags] })),
-    recalled: picked.map((s) => s.ep.id),
-    appraisals,
-    grief,
+    needs,
+    successRate: unit(K.priorSuccess + ((learned?.successRate ?? 0) - K.priorSuccess) * confidence),
+    valence: signed((learned?.valence ?? 0) * confidence),
+    samples,
+    confidence,
+    recalled,
+    ...(weight > 0
+      ? { gist: { valence: signed(value / weight), weight: unit(weight), ids: gists.map((x) => x.g.id) } }
+      : {}),
   };
+}
+
+/** Shared W3 admission primitive. Reject non-JSON values, unsafe keys and cycles; never repair. */
+export function validateNarrativeJson(value: unknown, path = ''): ValidationIssue[] {
+  const issues: ValidationIssue[] = [],
+    seen = new Set<object>();
+  const walk = (x: unknown, p: string): void => {
+    const fail = (message: string) => issues.push({ path: p, code: 'invalid-schema', message });
+    if (x === null || typeof x === 'boolean') return;
+    if (typeof x === 'number') {
+      if (!Number.isFinite(x)) fail('Nonfinite number');
+      return;
+    }
+    if (typeof x === 'string') {
+      if (x.normalize('NFC') !== x) fail('Noncanonical string');
+      return;
+    }
+    if (typeof x !== 'object') {
+      fail('Expected JSON data');
+      return;
+    }
+    if (seen.has(x)) {
+      fail('Cyclic or aliased data');
+      return;
+    }
+    seen.add(x);
+    if (
+      !Array.isArray(x) &&
+      Object.getPrototypeOf(x) !== Object.prototype &&
+      Object.getPrototypeOf(x) !== null
+    ) {
+      fail('Unexpected object prototype');
+      return;
+    }
+    for (const key of Object.keys(x)) {
+      if (['__proto__', 'constructor', 'prototype'].includes(key)) fail('Reserved property key');
+      walk((x as Record<string, unknown>)[key], p ? `${p}.${key}` : key);
+    }
+    seen.delete(x);
+  };
+  walk(value, path);
+  return issues;
+}
+Object.freeze(MEMORY_DEFAULTS.kindSalience);
+Object.freeze(MEMORY_DEFAULTS);
+Object.freeze(GIST_DEFAULTS);
+Object.freeze(RETELL_DEFAULTS);
+Object.freeze(CUE_RECALL_DEFAULTS.weights);
+Object.freeze(CUE_RECALL_DEFAULTS.lossTags);
+Object.freeze(CUE_RECALL_DEFAULTS);
+
+/** Actual outcome learning. Missing physical need deltas remain absent evidence;
+ * the dispatcher supplies the source reservoir delta, never an advertised outcome.
+ */
+export function learnMemoryOutcome(
+  state: DeepReadonly<MemoryOwnedState>,
+  input: {
+    offer: DeepReadonly<import('../run-schema.ts').Offer>;
+    outcome: DeepReadonly<import('../run-schema.ts').ObservedOutcome>;
+    realized: Partial<Record<import('../run-schema.ts').NeedId, number>>;
+    felt: number;
+  },
+  context: DeepReadonly<import('../run-schema.ts').MemoryContext>,
+): MemoryOwnedState {
+  const s = checked(state, context.allocations),
+    K = context.effective.builtins.MEMORY_DEFAULTS;
+  if (input.outcome.status === 'interrupted') return s;
+  const step = (mean: number, sample: number, n: number) =>
+    mean + Math.max(-K.maxStep, Math.min(K.maxStep, (sample - mean) * Math.max(K.minLearningRate, 1 / n)));
+  const touched = new Set([input.offer.actionId]);
+  if (input.offer.target !== undefined) touched.add(`${input.offer.actionId}@${input.offer.target}`);
+  const success =
+    input.outcome.status === 'completed' &&
+    (!input.offer.expected.voidsBladder || input.outcome.actual.voidedBladder === true);
+  for (const key of touched) {
+    let x = s.expectations.find((x) => x.key === key);
+    if (!x) {
+      x = {
+        key,
+        needs: { ...input.offer.expected.needs },
+        successRate: K.priorSuccess,
+        samples: 0,
+        valence: 0,
+      };
+      s.expectations.push(x);
+    }
+    x.samples++;
+    const keys = new Set([
+      ...Object.keys(x.needs),
+      ...Object.keys(input.offer.expected.needs),
+      ...Object.keys(input.realized),
+    ] as import('../run-schema.ts').NeedId[]);
+    for (const need of keys)
+      x.needs[need] = step(
+        x.needs[need] ?? input.offer.expected.needs[need] ?? 0,
+        input.realized[need] ?? 0,
+        x.samples,
+      );
+    x.successRate = unit(step(x.successRate, success ? 1 : 0, x.samples));
+    x.valence = signed(step(x.valence, signed(input.felt), x.samples));
+  }
+  while (s.expectations.length > K.maxExpectations) {
+    const candidate = s.expectations
+      .filter((x) => !touched.has(x.key))
+      .sort((a, b) => a.samples - b.samples || (a.key < b.key ? -1 : 1))[0];
+    if (!candidate) throw new RangeError('Expectation bound cannot retain touched actions');
+    s.expectations.splice(s.expectations.indexOf(candidate), 1);
+  }
+  return s;
+}
+
+/** Closed-key check shared by W3 slice validators; absence never becomes a repaired default. */
+export function validateNarrativeFields(
+  value: unknown,
+  allowed: readonly string[],
+  required: readonly string[],
+  path: string,
+): ValidationIssue[] {
+  if (!value || typeof value !== 'object' || Array.isArray(value))
+    return [{ path, code: 'invalid-schema', message: 'Expected record' }];
+  const keys = Object.keys(value),
+    issues: ValidationIssue[] = [];
+  for (const key of keys)
+    if (!allowed.includes(key))
+      issues.push({ path: `${path}.${key}`, code: 'invalid-schema', message: 'Unknown field' });
+  for (const key of required)
+    if (!Object.hasOwn(value, key))
+      issues.push({ path: `${path}.${key}`, code: 'invalid-schema', message: 'Missing field' });
+  return issues;
 }

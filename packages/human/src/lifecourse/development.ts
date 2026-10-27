@@ -11,9 +11,11 @@
  * with cohort effects. Nothing here is a destiny: hosts and experience (schooling, practice, health) remain the
  * main drivers, and individual variation is not modelled.
  */
-import { clamp, dexp, dpow, smoothstep } from '../core/index.ts';
-import type { LearningDomain, LifeStage, Person } from '../types.ts';
-import { ageYears, modifiersForAge, stageForAge } from './lifecourse.ts';
+
+import { clip as clamp, smooth as smoothstep } from '../body/span.ts';
+import { dexp, dpow } from '../core/libm.ts';
+import type { LearningDomain, LifeStage } from '../run-schema.ts';
+import { modifiersForAge, stageForAge } from './lifecourse.ts';
 
 export interface DevelopmentProfile {
   ageYears: number;
@@ -56,10 +58,6 @@ export function developmentForAge(age: number): DevelopmentProfile {
   };
 }
 
-export function development(p: Person): DevelopmentProfile {
-  return developmentForAge(ageYears(p));
-}
-
 /**
  * Domains with distinct age curves for learning rate (the type lives in types.ts). 'general' is
  * `LifeModifiers.learning`; 'language' is grammar/second-language learning (high until about 17, then declining);
@@ -81,7 +79,6 @@ export function learningMultiplier(age: number, domain: LearningDomain = 'genera
     case 'knowledge':
       return clamp(0.75 + 0.25 * smoothstep(3, 16, a) - 0.002 * Math.max(0, a - 60), 0.6, 1);
     default:
-      // An unknown domain from host JSON learns on the general curve (2.0.0; it used to zero the skill).
-      return modifiersForAge(a).learning;
+      throw new RangeError('unknown learning domain');
   }
 }

@@ -1,1 +1,0 @@
-export * from './curiosity.ts';

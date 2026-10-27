@@ -202,7 +202,7 @@ importers:
     dependencies:
       '@adam0white/human-framework':
         specifier: 3.2.0
-        version: link:../../packages/human
+        version: 3.2.0
       '@adam0white/lab-client':
         specifier: 0.4.15
         version: link:../../packages/lab-client
@@ -257,13 +257,17 @@ importers:
   packages/playtester:
     dependencies:
       '@adam0white/human-framework':
-        specifier: '*'
-        version: link:../human
+        specifier: 3.2.0
+        version: 3.2.0
 
 packages:
 
   '@adam0white/human-framework@3.0.0':
     resolution: {integrity: sha512-O0t7AytAqP3ZKNdNbyfJk4sSpeniQRJ6M29IPxXe9YQOaQVnr7C8VZ945PTkc6mao/zZpxPAjK0Cuuvz/0uR1A==}
+    engines: {node: '>=24'}
+
+  '@adam0white/human-framework@3.2.0':
+    resolution: {integrity: sha512-I/smuEJWiQPYd9rUEE4uhMNd48rEDX4VHDJxlixwQ/kAQJITNO3SCvKOJwlvsJXcqUjDstqUFeZnDifQFAWW4A==}
     engines: {node: '>=24'}
 
   '@babel/helper-string-parser@8.0.8':
@@ -1720,6 +1724,8 @@ packages:
 snapshots:
 
   '@adam0white/human-framework@3.0.0': {}
+
+  '@adam0white/human-framework@3.2.0': {}
 
   '@babel/helper-string-parser@8.0.8': {}
 

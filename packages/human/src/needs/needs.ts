@@ -11,24 +11,34 @@
  * body's fatigue already folds it in). Parameters are engineering defaults for game time scales; this does
  * not claim an exhaustive need list, calibrated rates, or a universal weighting between needs.
  */
-import { clamp, clamp01, decay, dpow } from '../core/index.ts';
+
+import { evaluateCell, initialWidth, integrateCell, required } from '../body/span.ts';
+import { characterTraitSegments, readCharacterTrajectory } from '../character/character.ts';
+import { cloneData } from '../core/clone.ts';
+import { clamp, clamp01, dexp, dlog, dpow } from '../core/index.ts';
+import { EngineLimitError } from '../core/limit.ts';
+import { keyOf, Memo } from '../core/memo.ts';
+import { readEnvironmentTrajectory } from '../environment/environment.ts';
+import { hashCanonical } from '../run-canonical.ts';
 import type {
-  BodyReadout,
+  ActorState,
   NeedId,
   NeedReading,
   NeedReservoirs,
-  Person,
-  PhysiologicalNeed,
   PsychologicalNeed,
   Unit,
-} from '../types.ts';
-import { PHYSIOLOGICAL_NEEDS, PSYCHOLOGICAL_NEEDS } from '../types.ts';
+} from '../run-schema.ts';
 
-export interface NeedsContext {
-  withOthers: boolean;
-  activityTags: string[];
-  asleep: boolean;
-}
+const PHYSIOLOGICAL_NEEDS = ['food', 'water', 'sleep', 'rest', 'relief'] as const;
+const PSYCHOLOGICAL_NEEDS = [
+  'safety',
+  'belonging',
+  'esteem',
+  'autonomy',
+  'competence',
+  'leisure',
+  'meaning',
+] as const;
 
 export const NEEDS_DEFAULTS = {
   /** Exponent on the relative deficit below threshold (2 = quadratic). */
@@ -101,16 +111,6 @@ export const DEFAULT_NEEDS: NeedReservoirs = {
   meaning: 0.6,
 };
 
-/** Fresh reservoirs, optionally overridden and clamped. */
-export function createNeeds(overrides: Partial<NeedReservoirs> = {}): NeedReservoirs {
-  const out = { ...DEFAULT_NEEDS };
-  for (const id of PSYCHOLOGICAL_NEEDS) {
-    const v = overrides[id];
-    if (v !== undefined) out[id] = clamp01(v);
-  }
-  return out;
-}
-
 /**
  * Super-linear urgency: exactly 1 at level 0, rising convexly as level falls below `threshold`, and only a
  * small residual tail above it (≈0.003 at level 0.8 with defaults).
@@ -124,9 +124,15 @@ export function urgency(level: Unit, threshold = 0.5, steepness = NEEDS_DEFAULTS
 }
 
 /** Per-person comfort threshold for a need: base plus trait/value coefficients. */
-export function needThreshold(p: Person, id: NeedId): Unit {
-  const base = NEEDS_DEFAULTS.thresholds[id];
-  const k = NEEDS_DEFAULTS.traitCoefficient;
+export function needThreshold(
+  p: Pick<ActorState, 'traits' | 'values'>,
+  id: NeedId,
+  defaults: import('../run-schema.ts').DeepReadonly<
+    import('../run-schema.ts').Effective_NEEDS_DEFAULTS
+  > = NEEDS_DEFAULTS,
+): Unit {
+  const base = defaults.thresholds[id];
+  const k = defaults.traitCoefficient;
   const t = p.traits;
   let shift = 0;
   switch (id) {
@@ -157,24 +163,9 @@ export function needThreshold(p: Person, id: NeedId): Unit {
     default:
       shift = 0;
   }
-  const [lo, hi] = NEEDS_DEFAULTS.thresholdRange;
+  const [lo, hi] = defaults.thresholdRange;
+  if (lo === undefined || hi === undefined) throw new RangeError('Invalid need threshold range');
   return clamp(base + shift, lo, hi);
-}
-
-function physiologicalLevel(id: PhysiologicalNeed, body: BodyReadout): Unit {
-  const s = body.perceived;
-  switch (id) {
-    case 'food':
-      return 1 - clamp01(s.hunger);
-    case 'water':
-      return 1 - clamp01(s.thirst);
-    case 'sleep':
-      return 1 - clamp01(s.sleepiness);
-    case 'rest':
-      return 1 - clamp01(s.fatigue - NEEDS_DEFAULTS.restSleepinessOverlap * s.sleepiness);
-    case 'relief':
-      return 1 - clamp01(s.pain);
-  }
 }
 
 /** A need's level in a reading (1 when absent). @internal */
@@ -184,90 +175,410 @@ export const levelOf = (needs: readonly NeedReading[], id: NeedId): number =>
 export const urgencyOf = (needs: readonly NeedReading[], id: NeedId): number =>
   needs.find((n) => n.id === id)?.urgency ?? 0;
 
-/** All needs in stable order: physiological (types.ts order) then psychological. */
-export function readNeeds(p: Person, body: BodyReadout): NeedReading[] {
-  const out: NeedReading[] = [];
-  for (const id of PHYSIOLOGICAL_NEEDS) {
-    const level = physiologicalLevel(id, body);
-    out.push({ id, level, urgency: urgency(level, needThreshold(p, id)) });
-  }
-  for (const id of PSYCHOLOGICAL_NEEDS) {
-    const level = clamp01(p.needs[id]);
-    out.push({ id, level, urgency: urgency(level, needThreshold(p, id)) });
-  }
-  return out;
-}
-
 const hasAny = (tags: readonly string[], set: readonly string[]): boolean =>
   tags.some((t) => set.includes(t));
 
-/**
- * Reservoir drift over `dt` minutes. Every need relaxes exponentially toward a target chosen by the
- * context, so the result is exact for any step size while the context is constant.
- */
-export function advanceNeeds(p: Person, dt: number, ctx: NeedsContext): void {
-  if (dt <= 0) return;
-  const D = NEEDS_DEFAULTS;
-  const m = ctx.asleep ? dt * D.asleepRate : dt;
-  const hl = (h: number) => Math.max(D.minHalfLife, h);
-  const n = p.needs;
-  const tags = ctx.activityTags;
-
-  // Belonging
-  const social = hasAny(tags, D.socialTags);
-  if (ctx.withOthers || social) {
-    const h = social ? D.belongingSocialHalfLife : D.belongingTogetherHalfLife;
-    n.belonging = decay(n.belonging, m, hl(h), D.belongingTogetherTarget);
-  } else {
-    const h = D.belongingAloneHalfLife / (0.5 + clamp01(p.traits.extraversion));
-    n.belonging = decay(n.belonging, m, hl(h), D.belongingAloneTarget);
+/** Internal ms trajectory projection. Missing body evidence is a contract error. */
+export function readNeedScalar(
+  path: import('../run-schema.ts').DeepReadonly<import('../run-schema.ts').ScalarTrajectory>,
+  at: number,
+): number {
+  const segment = path.segments.find((s) => s.from <= at && at <= s.to);
+  if (!segment) throw new RangeError('Need trajectory lacks body coverage');
+  const minutes = (at - segment.from) / 60000;
+  switch (segment.kind) {
+    case 'constant':
+      return segment.value;
+    case 'linear':
+      return segment.initial + segment.ratePerMinute * minutes;
+    case 'exponential':
+      return segment.target + (segment.initial - segment.target) * dexp(-segment.ratePerMinute * minutes);
+    case 'quartic': {
+      const c = segment.cell;
+      const theta =
+        ((at - c.originMs) / 60000 - c.leftOffsetMinutes) / (c.rightOffsetMinutes - c.leftOffsetMinutes);
+      const [a0, a1, a2, a3, a4] = c.coefficients;
+      if (a0 === undefined || a1 === undefined || a2 === undefined || a3 === undefined || a4 === undefined)
+        throw new RangeError('Invalid scalar coefficients');
+      return (((a4 * theta + a3) * theta + a2) * theta + a1) * theta + a0;
+    }
   }
-
-  // Leisure
-  const working = hasAny(tags, D.workTags);
-  const relaxing = hasAny(tags, D.leisureTags);
-  if (relaxing && !working) {
-    n.leisure = decay(n.leisure, m, hl(D.leisureRecoverHalfLife), D.leisureRecoverTarget);
-  } else if (working && !relaxing) {
-    n.leisure = decay(n.leisure, m, hl(D.leisureWorkHalfLife), D.leisureWorkTarget);
-  } else {
-    n.leisure = decay(n.leisure, m, hl(D.leisureIdleHalfLife), D.leisureIdleTarget);
-  }
-
-  // Meaning
-  if (hasAny(tags, D.meaningTags)) {
-    n.meaning = decay(n.meaning, m, hl(D.meaningRecoverHalfLife), D.meaningRecoverTarget);
-  } else {
-    n.meaning = decay(n.meaning, m, hl(D.meaningDecayHalfLife), D.meaningDecayTarget);
-  }
-
-  n.autonomy = decay(n.autonomy, m, hl(D.autonomyHalfLife), D.autonomyTarget);
-  n.competence = decay(n.competence, m, hl(D.competenceHalfLife), D.competenceTarget);
-  n.esteem = decay(n.esteem, m, hl(D.esteemHalfLife), D.esteemTarget);
-  n.safety = decay(n.safety, m, hl(D.safetyHalfLife), D.safetyTarget);
-
-  for (const id of PSYCHOLOGICAL_NEEDS) n[id] = clamp01(n[id]);
 }
 
-/** Add deltas to psychological reservoirs (positive satisfies), clamped to 0..1. */
-export function satisfy(p: Person, deltas: Partial<Record<PsychologicalNeed, number>>): void {
+type NeedSpan = Parameters<import('../run-schema.ts').NeedsOwner['advance']>[1];
+type NeedKernelContext = Pick<
+  NeedSpan,
+  | 'person'
+  | 'traits'
+  | 'values'
+  | 'character'
+  | 'environment'
+  | 'activity'
+  | 'continuation'
+  | 'body'
+  | 'forcingPerMinute'
+  | 'asleep'
+> & {
+  effective: {
+    builtins: Pick<
+      import('../run-schema.ts').DeepReadonly<import('../run-schema.ts').EffectiveBuiltins>,
+      'NEEDS_DEFAULTS' | 'ENVIRONMENT_DEFAULTS'
+    >;
+  };
+};
+/** Integrated trait-dependent coefficient. Each piece is affine, possibly capped by minHalfLife. */
+function belongingExposure(context: NeedKernelContext, at: number): number {
+  const d = context.effective.builtins.NEEDS_DEFAULTS;
+  const path = characterTraitSegments(context.character, 'extraversion', context.continuation.anchor.at, at);
+  const scale = dlog(2) * (context.asleep ? d.asleepRate : 1);
+  let integral = 0;
+  for (const segment of path.segments) {
+    if (segment.kind !== 'linear' && segment.kind !== 'constant')
+      throw new RangeError('Expected affine Character law');
+    const duration = (segment.to - segment.from) / 60000;
+    const initial = segment.kind === 'constant' ? segment.value : segment.initial;
+    const slope = segment.kind === 'constant' ? 0 : segment.ratePerMinute;
+    const a = (0.5 + initial) / d.belongingAloneHalfLife;
+    const b = slope / d.belongingAloneHalfLife;
+    const cap = 1 / d.minHalfLife;
+    const split = b === 0 ? duration : Math.max(0, Math.min(duration, (cap - a) / b));
+    const points = [0, split, duration];
+    for (let i = 1; i < points.length; i++) {
+      const left = required(points[i - 1]),
+        right = required(points[i]);
+      const middle = a + b * (left + (right - left) / 2);
+      integral +=
+        middle >= cap ? cap * (right - left) : (right - left) * (a + b * (left + (right - left) / 2));
+    }
+  }
+  return scale * integral;
+}
+/** Retained-anchor source relaxation with live trait rates and ambient forcing. */
+export function materializeNeeds(context: NeedKernelContext, at: number): NeedReservoirs {
+  const d = context.effective.builtins.NEEDS_DEFAULTS;
+  if (
+    !Number.isFinite(at) ||
+    !Number.isSafeInteger(Math.floor(at)) ||
+    !Number.isSafeInteger(context.continuation.anchor.at)
+  )
+    throw new RangeError('Invalid need clock');
+  const elapsed = BigInt(Math.floor(at)) - BigInt(context.continuation.anchor.at);
+  const elapsedMinutes = (Number(elapsed) + (at - Math.floor(at))) / 60000;
+  if (elapsed < 0n || elapsed > BigInt(Number.MAX_SAFE_INTEGER))
+    throw new RangeError('Invalid need duration');
+  const tags = context.activity?.offer.tags ?? [];
+  const social = hasAny(tags, d.socialTags);
+  const together = context.activity?.offer.participants.some((id) => id !== context.person) ?? false;
+  const work = hasAny(tags, d.workTags),
+    leisure = hasAny(tags, d.leisureTags),
+    meaning = hasAny(tags, d.meaningTags);
+  const live = readCharacterTrajectory(context.character, context.continuation.anchor.at);
+  const settings: Record<PsychologicalNeed, [number, number]> = {
+    belonging:
+      together || social
+        ? [social ? d.belongingSocialHalfLife : d.belongingTogetherHalfLife, d.belongingTogetherTarget]
+        : [d.belongingAloneHalfLife / (0.5 + clamp01(live.traits.extraversion)), d.belongingAloneTarget],
+    leisure:
+      leisure && !work
+        ? [d.leisureRecoverHalfLife, d.leisureRecoverTarget]
+        : work && !leisure
+          ? [d.leisureWorkHalfLife, d.leisureWorkTarget]
+          : [d.leisureIdleHalfLife, d.leisureIdleTarget],
+    meaning: meaning
+      ? [d.meaningRecoverHalfLife, d.meaningRecoverTarget]
+      : [d.meaningDecayHalfLife, d.meaningDecayTarget],
+    safety: [d.safetyHalfLife, d.safetyTarget],
+    autonomy: [d.autonomyHalfLife, d.autonomyTarget],
+    competence: [d.competenceHalfLife, d.competenceTarget],
+    esteem: [d.esteemHalfLife, d.esteemTarget],
+  };
+  const state = { ...context.continuation.state };
+  const environment = readEnvironmentTrajectory(
+    context.environment,
+    context.continuation.anchor.at,
+    context.effective,
+  );
   for (const id of PSYCHOLOGICAL_NEEDS) {
-    const d = deltas[id];
-    if (d !== undefined && Number.isFinite(d)) p.needs[id] = clamp01(p.needs[id] + d);
+    const [halfLife, target] = settings[id];
+    const rate = (dlog(2) / Math.max(d.minHalfLife, halfLife)) * (context.asleep ? d.asleepRate : 1);
+    const force = (environment.needsPerMinute[id] ?? 0) + (context.forcingPerMinute.command[id] ?? 0);
+    const varyingRate = id === 'belonging' && !together && !social;
+    const varyingForce = id === 'autonomy' && (context.environment.percept.crowding ?? 0) > 0;
+    if (varyingRate && force === 0) {
+      state[id] = clamp01(target + (state[id] - target) * dexp(-belongingExposure(context, at)));
+    } else if (varyingRate || varyingForce) {
+      // Recompute from the retained semantic anchor with target-independent canonical cells.
+      // Only the reached evaluation is returned. No actor/RNG work runs at these samples.
+      let left = context.continuation.anchor.at,
+        y = state[id],
+        width = initialWidth(halfLife),
+        calls = 0;
+      while (left < at) {
+        const cell = integrateCell(left, [y], width, (t, values) => {
+          const trait = readCharacterTrajectory(context.character, t).traits.extraversion;
+          const h = varyingRate ? d.belongingAloneHalfLife / (0.5 + clamp01(trait)) : halfLife;
+          const k = (dlog(2) / Math.max(d.minHalfLife, h)) * (context.asleep ? d.asleepRate : 1);
+          const forcing =
+            (readEnvironmentTrajectory(context.environment, t, context.effective).needsPerMinute[id] ?? 0) +
+            (context.forcingPerMinute.command[id] ?? 0);
+          return [k * (target - (values[0] ?? 0)) + forcing];
+        });
+        calls += cell.calls;
+        if (calls > 8192) throw new EngineLimitError('Need forced relaxation work limit exceeded');
+        y = evaluateCell(required(cell.cells[0]), Math.min(at, cell.to));
+        left = cell.to;
+        width = cell.nextWidth;
+      }
+      state[id] = clamp01(y);
+    } else {
+      const equilibrium = target + force / rate;
+      state[id] = clamp01(equilibrium + (state[id] - equilibrium) * dexp(-rate * elapsedMinutes));
+    }
   }
+  return state;
 }
 
-/**
- * Urgency-weighted mean satisfaction: urgent needs dominate, and a floor weight makes a well-satisfied
- * person degrade to a plain mean. Empty input reads as fully satisfied.
- */
-export function meanSatisfaction(readings: NeedReading[]): Unit {
-  let num = 0;
-  let den = 0;
-  for (const r of readings) {
-    const w = NEEDS_DEFAULTS.meanFloorWeight + r.urgency;
-    num += w * clamp01(r.level);
-    den += w;
+/** Both perceived physiological paths and psychological reservoirs force affect. */
+export function needSatisfactionAt(context: NeedKernelContext, at: number): number {
+  const d = context.effective.builtins.NEEDS_DEFAULTS;
+  const reservoirs = materializeNeeds(context, at);
+  const body = (field: import('../run-schema.ts').BodyTrajectory['readout'][number]['field']) => {
+    const row = context.body.readout.find((r) => r.field === field);
+    if (!row) throw new RangeError(`Need trajectory lacks ${field}`);
+    return readNeedScalar(row.path, at);
+  };
+  const sleepy = body('perceived-sleepiness');
+  const levels: Record<NeedId, number> = {
+    ...reservoirs,
+    food: 1 - clamp01(body('perceived-hunger')),
+    water: 1 - clamp01(body('perceived-thirst')),
+    sleep: 1 - clamp01(sleepy),
+    rest: 1 - clamp01(body('perceived-fatigue') - d.restSleepinessOverlap * sleepy),
+    relief: 1 - clamp01(body('perceived-pain')),
+  };
+  const [lowThreshold, highThreshold] = d.thresholdRange;
+  if (lowThreshold === undefined || highThreshold === undefined)
+    throw new RangeError('Invalid need threshold range');
+  let num = 0,
+    den = 0;
+  const { traits: t, values: v } = readCharacterTrajectory(context.character, at),
+    k = d.traitCoefficient;
+  for (const id of [...PHYSIOLOGICAL_NEEDS, ...PSYCHOLOGICAL_NEEDS]) {
+    const shifts: Partial<Record<NeedId, number>> = {
+      belonging: t.extraversion - 0.5,
+      safety: t.emotionality - 0.5,
+      leisure: 0.5 * (t.openness - 0.5) + 0.5 * (v.stimulation - 0.5),
+      competence: t.conscientiousness - 0.5,
+      meaning: v.tradition - 0.5,
+      autonomy: v.selfDirection - 0.5,
+      esteem: v.achievement - 0.5,
+      relief: 0.5 * (t.emotionality - 0.5),
+    };
+    const threshold = clamp(d.thresholds[id] + k * (shifts[id] ?? 0), lowThreshold, highThreshold);
+    const level = clamp01(levels[id]),
+      deficit = clamp01((threshold - level) / threshold);
+    const u = clamp01(
+      (1 - d.urgencyTail) * dpow(deficit, d.urgencySteepness) + d.urgencyTail * dpow(1 - level, 2),
+    );
+    const weight = d.meanFloorWeight + u;
+    num += weight * level;
+    den += weight;
   }
-  return den > 0 ? clamp01(num / den) : 1;
+  return clamp01(num / den);
 }
+
+/** Deterministic adaptive quartic projection; error values are estimates, not certificates. */
+export function projectNeedTrajectory(context: NeedKernelContext): import('../run-schema.ts').NeedTrajectory {
+  // Pure in the inputs below; frozen trajectory pieces (memo products) enter by identity.
+  // body.id names only the condition, so the readout segments themselves are keyed.
+  const d = context.effective.builtins;
+  return needPaths.get(
+    JSON.stringify([
+      context.person,
+      keyOf(context.character),
+      keyOf(context.environment),
+      context.body.id,
+      context.body.readout.map((r) => [r.field, r.path.segments.map((s) => keyOf(s))]),
+      context.continuation,
+      context.activity,
+      context.forcingPerMinute.command,
+      context.asleep,
+      keyOf(d.NEEDS_DEFAULTS),
+      keyOf(d.ENVIRONMENT_DEFAULTS),
+    ]),
+    () => buildNeedTrajectory(context),
+  );
+}
+const needPaths = new Memo<import('../run-schema.ts').NeedTrajectory>(256);
+function buildNeedTrajectory(context: NeedKernelContext): import('../run-schema.ts').NeedTrajectory {
+  // Body descriptors retain full canonical cells even when materialized inside one.
+  // Fit those cells, never a caller-clipped subinterval under the same identity.
+  const from = Math.max(
+      context.continuation.anchor.at,
+      context.character.continuation.state.character.agedTo,
+      ...context.body.readout.map((r) => Math.min(...r.path.segments.map((s) => s.from))),
+    ),
+    to = Math.min(...context.body.readout.map((r) => Math.max(...r.path.segments.map((s) => s.to))));
+  if (!Number.isFinite(from) || !Number.isFinite(to) || to < from)
+    throw new RangeError('Need trajectory lacks canonical body coverage');
+  const segments: import('../run-schema.ts').ScalarTrajectory['segments'][number][] = [];
+  let evaluations = 0;
+  const sample = (at: number) => {
+    if (++evaluations > 8192) throw new EngineLimitError('Need trajectory work limit exceeded');
+    return needSatisfactionAt(context, at);
+  };
+  const fit = (left: number, right: number): void => {
+    if (segments.length >= 1024) throw new EngineLimitError('Need trajectory segment limit exceeded');
+    const values = [0, 0.25, 0.5, 0.75, 1].map((x) => sample(left + (right - left) * x));
+    const coefficients = [0, 0, 0, 0, 0];
+    for (let i = 0; i < 5; i++) {
+      let basis = [1],
+        divisor = 1;
+      for (let j = 0; j < 5; j++)
+        if (i !== j) {
+          const next = Array<number>(basis.length + 1).fill(0);
+          for (let k = 0; k < basis.length; k++) {
+            next[k] = (next[k] ?? 0) - (j / 4) * (basis[k] ?? 0);
+            next[k + 1] = (next[k + 1] ?? 0) + (basis[k] ?? 0);
+          }
+          basis = next;
+          divisor *= i / 4 - j / 4;
+        }
+      for (let k = 0; k < 5; k++)
+        coefficients[k] = (coefficients[k] ?? 0) + ((values[i] ?? 0) * (basis[k] ?? 0)) / divisor;
+    }
+    const c = coefficients as [number, number, number, number, number];
+    let error = 0;
+    for (const x of [0.125, 0.375, 0.625, 0.875])
+      error = Math.max(
+        error,
+        Math.abs(
+          sample(left + (right - left) * x) - ((((c[4] * x + c[3]) * x + c[2]) * x + c[1]) * x + c[0]),
+        ),
+      );
+    // A kink (a pain or injury threshold) is isolated by bisection to one millisecond and kept there with
+    // its estimated error, as body readouts are (span.ts sampledPath); no wider residual is accepted.
+    if (error > 1e-12 && right - left > 1) {
+      const mid = left + Math.floor((right - left) / 2);
+      fit(left, mid);
+      fit(mid, right);
+      return;
+    }
+    segments.push({
+      kind: 'quartic',
+      from: left,
+      to: right,
+      cell: {
+        originMs: left,
+        leftOffsetMinutes: 0,
+        rightOffsetMinutes: (right - left) / 60000,
+        coefficients: c,
+        estimatedError: error,
+      },
+    });
+  };
+  if (from === to) segments.push({ kind: 'constant', from, to, value: sample(from) });
+  else {
+    const boundaries = [
+      ...new Set([
+        from,
+        to,
+        ...context.body.readout
+          .flatMap((r) => r.path.segments.flatMap((s) => [s.from, s.to]))
+          .filter((t) => t > from && t < to),
+      ]),
+    ].sort((a, b) => a - b);
+    for (let i = 1; i < boundaries.length; i++) {
+      const a = boundaries[i - 1],
+        b = boundaries[i];
+      if (a !== undefined && b !== undefined) fit(a, b);
+    }
+  }
+  return {
+    id: hashCanonical(
+      'need-path',
+      context.person,
+      context.continuation,
+      context.character.id,
+      context.environment.id,
+      context.body.id,
+      context.activity,
+      context.forcingPerMinute.command,
+      context.asleep,
+      context.effective.builtins.NEEDS_DEFAULTS,
+    ),
+    from,
+    to,
+    satisfaction: { from, to, segments },
+  };
+}
+
+export const needsOwner: import('../run-schema.ts').NeedsOwner = {
+  read(state, context) {
+    const d = context.effective.builtins.NEEDS_DEFAULTS,
+      perceived = context.body.perceived;
+    const levels: Record<NeedId, number> = {
+      ...state,
+      food: 1 - clamp01(perceived.hunger),
+      water: 1 - clamp01(perceived.thirst),
+      sleep: 1 - clamp01(perceived.sleepiness),
+      rest: 1 - clamp01(perceived.fatigue - d.restSleepinessOverlap * perceived.sleepiness),
+      relief: 1 - clamp01(perceived.pain),
+    };
+    return [...PHYSIOLOGICAL_NEEDS, ...PSYCHOLOGICAL_NEEDS].map((id) => {
+      const level = clamp01(levels[id]),
+        threshold = needThreshold(context, id, d),
+        deficit = clamp01((threshold - level) / threshold);
+      return {
+        id,
+        level,
+        urgency: clamp01(
+          (1 - d.urgencyTail) * dpow(deficit, d.urgencySteepness) + d.urgencyTail * dpow(1 - level, 2),
+        ),
+      };
+    });
+  },
+  initialize(input) {
+    return { ...input };
+  },
+  advance(_state, context) {
+    return {
+      state: materializeNeeds(context, context.to),
+      continuation: cloneData(context.continuation),
+      trajectory: projectNeedTrajectory(context),
+      effects: { terms: [], modifiers: [], appraisals: [] },
+      events: [],
+      nextBoundary: null,
+      advancedThrough: context.to,
+    };
+  },
+  receive(previous, input, context) {
+    const state = { ...previous };
+    if (input.kind === 'curiosity-reward') {
+      state.leisure = clamp01(state.leisure + input.leisure);
+      state.competence = clamp01(state.competence + input.competence);
+    } else if (input.kind === 'realized-outcome') {
+      for (const id of PSYCHOLOGICAL_NEEDS) {
+        const delta = input.needs[id];
+        if (delta !== undefined) state[id] = clamp01(state[id] + delta);
+      }
+    } else state.autonomy = clamp01(state.autonomy + input.autonomy);
+    return {
+      state,
+      continuation: { anchor: { at: context.at, conditionId: input.evidenceId }, state: { ...state } },
+      effects: { terms: [], modifiers: [], appraisals: [] },
+      events: [],
+      nextBoundary: null,
+      advancedThrough: context.at,
+    };
+  },
+  validate(state) {
+    return PSYCHOLOGICAL_NEEDS.filter(
+      (id) => !Number.isFinite(state[id]) || state[id] < 0 || state[id] > 1,
+    ).map((id) => ({
+      path: `needs.${id}`,
+      code: 'invalid-schema' as const,
+      message: 'Invalid need reservoir',
+    }));
+  },
+};

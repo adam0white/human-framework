@@ -4,10 +4,6 @@ export default defineConfig({
   resolve: {
     alias: [
       {
-        find: '@adam0white/human-framework',
-        replacement: resolve(import.meta.dirname, '../human/src/index.ts'),
-      },
-      {
         find: /^@adam0white\/lab-client$/,
         replacement: resolve(import.meta.dirname, '../lab-client/src/index.ts'),
       },

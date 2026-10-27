@@ -1,3 +1,65 @@
+/** SCOPE: one source of decision terms, composed from faculty-owned projections. */
+
+import * as affectModule from '../affect/affect.ts';
+import { agendaTermsWithGoalEstimates } from '../agenda/agenda.ts';
+import { trustOf } from '../beliefs/beliefs.ts';
+import { bodyOwner } from '../body/body.ts';
+import { normTerms } from '../conscience/conscience.ts';
+import { cloneData } from '../core/clone.ts';
+import { clamp01, cmpStr, dexp, round } from '../core/index.ts';
+import { keysOf } from '../core/keys.ts';
+import { curiosityTerms } from '../curiosity/curiosity.ts';
+import { type HabitContext, habitEase, habitPull } from '../habits/habits.ts';
+import * as memoryModule from '../memory/memory.ts';
+import { methodOwner } from '../methods/methods.ts';
+import { levelOf, needThreshold, urgencyOf } from '../needs/needs.ts';
+import * as partneringModule from '../partnering/partnering.ts';
+import { persistenceTerms } from '../persistence/persistence.ts';
+import * as promptingModule from '../promptings/promptings.ts';
+import { bodyForecastTerm, receivedGoalRoute } from '../prospection/index.ts';
+import * as reviewModule from '../review/review.ts';
+import type {
+  ActorState,
+  BodyProjectionContext,
+  BodyReadout,
+  Considered,
+  EffectiveParameters,
+  ExpectedEffect,
+  FrameContext,
+  LifeModifiers,
+  NeedReading,
+  Offer,
+  Suggestion,
+  TermData as Term,
+  TermSource,
+  Time,
+  Unit,
+  ValueId,
+} from '../run-schema.ts';
+import {
+  closeness,
+  companionSteadiness,
+  isDeceasedTie,
+  relationshipWith,
+  socialTerms,
+} from '../social/index.ts';
+import { adviceWeight, standingAdvice, suggestionTargets, voicesIn } from '../will/will.ts';
+
+type CognitiveActor = ActorState & { effective: EffectiveParameters };
+const PHYSIOLOGICAL_NEEDS = ['food', 'water', 'sleep', 'rest', 'relief'] as const;
+const VALUE_KEYS = [
+  'benevolence',
+  'universalism',
+  'tradition',
+  'conformity',
+  'security',
+  'achievement',
+  'power',
+  'hedonism',
+  'stimulation',
+  'selfDirection',
+] as const;
+const minuteOfDay = (at: number) => ((at % 86400000) + 86400000) % 86400000;
 /**
  * SCOPE: scoring of offered options. `consider` sums the utility terms listed in docs/framework.md
  * ("Utility of an option"): need terms use the person's need urgencies times the gain they *believe* an
@@ -29,65 +91,12 @@
  * pull is not to be left behind, which stays when the pair is together and belonging is full (The Rope's resting
  * partner, 2026-10-18 reproduction: belonging terms near 0.01 against inertia of 0.07-0.15). Shape only, after
  * joint commitment and the sense of commitment in joint action (Gilbert 1990; Michael and Pacherie 2015; cited unaudited, research/empirical-models.md §6b); it does
- * not model who leads, negotiation, or obligations between the partners. With opt-in `body.fullness`, an offer
+ * not model who leads, negotiation, or obligations between the partners. For fullness, an offer
  * that advertises food, water or relief while that need is past its comfort threshold gets `full:<need>` =
  * -fullnessScale × gain × over²: eating or drinking when full is mildly unpleasant (negative alliesthesia, unaudited citation, Cabanac
  * 1971), so idle choice stops cycling short consumption at full hydration (The Rope, owner Kestrel export
  * 2026-10-19). It models no bladder, sensory-specific satiety by food, or overeating for comfort.
  */
-
-import { emotionLevel, inBreak } from '../affect/index.ts';
-import { agendaTermsWithGoalEstimates } from '../agenda/index.ts';
-import { trustOf } from '../beliefs/index.ts';
-import { bladderMotivation } from '../body/bladder.ts';
-import type { BodyParams, BodyPerceptionContext } from '../body/index.ts';
-import { normTerms } from '../conscience/index.ts';
-import { clamp01, cmpStr, dexp, minuteOfDay, round } from '../core/index.ts';
-import { keysOf } from '../core/keys.ts';
-import { curiosityTerms } from '../curiosity/index.ts';
-import { type HabitContext, habitEase, habitPull } from '../habits/index.ts';
-import { expectedEffect } from '../memory/index.ts';
-import { methodEvidence } from '../methods/index.ts';
-import { levelOf, needThreshold, urgencyOf } from '../needs/index.ts';
-import { partneringTerms } from '../partnering/index.ts';
-import { persistenceTerms } from '../persistence/index.ts';
-import { type PromptingSeen, promptIn, promptingTerms } from '../promptings/index.ts';
-import { bodyForecastTerm, receivedGoalRoute } from '../prospection/index.ts';
-import { reviewTerms } from '../review/index.ts';
-import {
-  closeness,
-  companionSteadiness,
-  isDeceasedTie,
-  relationshipWith,
-  socialTerms,
-} from '../social/index.ts';
-import type {
-  Affordance,
-  BodyReadout,
-  Command,
-  Considered,
-  DecisionRecord,
-  LifeModifiers,
-  Minute,
-  NeedReading,
-  Person,
-  Suggestion,
-  Term,
-  Unit,
-  ValueId,
-} from '../types.ts';
-import { PHYSIOLOGICAL_NEEDS, VALUE_KEYS } from '../types.ts';
-import {
-  adviceWeight,
-  type CommandOutcome,
-  resolveChoice,
-  safeUtility,
-  standingAdvice,
-  suggestionTargets,
-  voicesIn,
-  type WillContext,
-} from '../will/index.ts';
-
 export const COGNITION_DEFAULTS = {
   /** Multiplier on urgency × believed gain. */
   needScale: 4,
@@ -120,7 +129,7 @@ export const COGNITION_DEFAULTS = {
   effortBase: 0.1,
   riskScale: 1.5,
   /**
-   * Companions in danger (HF 2.0 L6, opt-in through impressions): on a risky offer shared with people the person holds
+   * Companions in danger (held impressions): on a risky offer shared with people the person holds
    * impressions of, each adds 'companion:<id>' = companionScale × chance × severity × believed steadiness (−1..1,
    * `companionSteadiness`): a steady neighbour makes the danger easier to face, a frightened or hurt one harder.
    */
@@ -157,7 +166,7 @@ export const COGNITION_DEFAULTS = {
    */
   togetherScale: 0.12,
   /**
-   * Fullness (2.8.0, opt-in `body.fullness`): 'full:<need>' = -fullnessScale × gain × over², over = how far the
+   * Fullness: 'full:<need>' = -fullnessScale × gain × over², over = how far the
    * need's level is past its comfort threshold toward 1, for food, water and relief.
    */
   fullnessScale: 0.03,
@@ -176,9 +185,12 @@ export const COGNITION_DEFAULTS = {
   scarcityScaleShrink: 0.5,
   scarcitySafetyGain: 0.5,
 };
-
 export interface ConsiderContext {
-  now: Minute;
+  frame: FrameContext;
+  bodyProjection: BodyProjectionContext;
+  effective: EffectiveParameters;
+  noticed: import('../run-schema.ts').NoticedPrompt[];
+  now: Time;
   body: BodyReadout;
   needs: NeedReading[];
   mods: LifeModifiers;
@@ -200,20 +212,17 @@ export interface ConsiderContext {
    */
   scarcity?: Unit;
   /** The body's perception context now (an open fast), for the bodily forecast (2.6.0). */
-  perception?: BodyPerceptionContext;
-  /** Q26: held current conditions, used only by the bodily forecast, never other decision terms. */
-  forecastContext?: { mods: LifeModifiers; params: BodyParams };
-}
 
-function voiceTrust(p: Person, voiceId: string): number {
+  /** Q26: held current conditions, used only by the bodily forecast, never other decision terms. */
+}
+function voiceTrust(p: CognitiveActor, voiceId: string): number {
   return p.will.voices.find((v) => v.voiceId === voiceId)?.trust ?? 0.5;
 }
-
 /**
  * 'open' when a commitment tracking this norm has an open window, 'discharged' when commitments track it but
  * none is open, 'untracked' when no commitment tracks it.
  */
-function dutyTracking(p: Person, normId: string, now: Minute): 'open' | 'discharged' | 'untracked' {
+function dutyTracking(p: CognitiveActor, normId: string, now: Time): 'open' | 'discharged' | 'untracked' {
   let tracked = false;
   for (const c of p.agenda.commitments) {
     // A make-up (qada) is kept only by its own actions; it does not open the obligation itself (1.7.0).
@@ -223,37 +232,37 @@ function dutyTracking(p: Person, normId: string, now: Minute): 'open' | 'dischar
   }
   return tracked ? 'discharged' : 'untracked';
 }
-
 /** Satiation multiplier from the minutes since this action was last undertaken (bounded intention log). */
-function sinceFactor(p: Person, action: string, now: Minute): number {
-  const K = COGNITION_DEFAULTS;
+function sinceFactor(p: CognitiveActor, action: string, now: Time): number {
+  const K = p.effective.builtins.COGNITION_DEFAULTS;
   const log = p.conscience.intentions;
   for (let i = log.length - 1; i >= 0; i--) {
     const it = log[i];
     // Missed duties are logged with intention 'missed' (see person.ts recordMissed); they satisfy nothing.
     if (it?.action !== action || it.intention === 'missed') continue;
     const since = Math.max(0, now - it.at);
-    return K.normRefractoryFloor + (1 - K.normRefractoryFloor) * clamp01(since / K.normRefractoryMinutes);
+    return (
+      K.normRefractoryFloor + (1 - K.normRefractoryFloor) * clamp01(since / (K.normRefractoryMinutes * 60000))
+    );
   }
   return 1;
 }
-
 /**
  * Standing advice terms for one option: per source, the strongest matching entry's weight × trust in the source
  * (the voice relation when there is one, else belief source trust) × suggestionScale × rememberedScale.
  * Sources speaking now about this option are skipped. Sorted by source for stable traces.
  */
 export function rememberedTerms(
-  p: Person,
-  aff: Affordance,
-  now: Minute,
+  p: CognitiveActor,
+  aff: Offer,
+  now: Time,
   speaking: readonly Suggestion[] = [],
 ): Term[] {
-  const K = COGNITION_DEFAULTS;
-  if (!p.will.advice || p.will.advice.length === 0) return [];
+  const K = p.effective.builtins.COGNITION_DEFAULTS;
+  if (p.will.advice.length === 0) return [];
   const best = new Map<string, number>();
   for (const a of standingAdvice(p, now)) {
-    const hits = a.affordanceId !== undefined ? a.affordanceId === aff.id : a.action === aff.action;
+    const hits = a.affordanceId !== undefined ? a.affordanceId === aff.id : a.action === aff.actionId;
     if (!hits) continue;
     if (speaking.some((s) => s.voiceId === a.sourceId && suggestionTargets(s, aff))) continue;
     const w = adviceWeight(a, now);
@@ -268,16 +277,13 @@ export function rememberedTerms(
   }
   return out;
 }
-
 const isValueId = (x: string): x is ValueId => (VALUE_KEYS as readonly string[]).includes(x);
-
-function appealMatch(p: Person, s: Suggestion, needs: NeedReading[]): number {
+function appealMatch(p: CognitiveActor, s: Suggestion, needs: NeedReading[]): number {
   if (!s.appeal) return 0;
   if (s.appeal === 'duty') return clamp01(0.5 * p.values.conformity + 0.5 * p.values.tradition);
   if (isValueId(s.appeal)) return clamp01(p.values[s.appeal]);
   return urgencyOf(needs, s.appeal);
 }
-
 /** Per-decision social inputs shared by every option (`decide` computes them once). */
 export interface SocialContext {
   belongingUrgency: number;
@@ -285,9 +291,8 @@ export interface SocialContext {
   /** Multiplier on positive social pulls: floor + (1 - floor) × (1 - belonging level). */
   satiation: number;
 }
-
 export function socialContext(ctx: ConsiderContext): SocialContext {
-  const K = COGNITION_DEFAULTS;
+  const K = ctx.effective.builtins.COGNITION_DEFAULTS;
   const tendencies: Record<string, number> = {};
   for (const [k, v] of Object.entries(ctx.tendencies)) tendencies[k] = v * K.emotionScale;
   const belongingLevel = ctx.needs.find((n) => n.id === 'belonging')?.level ?? 0.5;
@@ -297,36 +302,38 @@ export function socialContext(ctx: ConsiderContext): SocialContext {
     satiation: K.socialSatiationFloor + (1 - K.socialSatiationFloor) * (1 - clamp01(belongingLevel)),
   };
 }
-
 /** Same perceived-body effort estimate for actual offers and received successors. @internal */
-function effortValue(p: Person, aff: Affordance, ctx: ConsiderContext): number {
-  const K = COGNITION_DEFAULTS;
+function effortValue(p: CognitiveActor, aff: Offer, ctx: ConsiderContext): number {
+  const K = p.effective.builtins.COGNITION_DEFAULTS;
   const per = ctx.body.perceived;
-  const effort = clamp01(aff.effort);
-  const focus = clamp01(aff.focus ?? 0);
+  const effort = clamp01(aff.demands.effort);
+  const focus = clamp01(aff.demands.focus ?? 0);
   // A cued habit eases initiation and attention (N4: the depleted fall back on habits), not physical exertion.
   const ease =
     p.habits.length === 0
       ? 1
-      : habitEase(p, aff, { ...ctx.habit, placeId: aff.placeId ?? ctx.habit.placeId });
+      : habitEase(
+          p.habits,
+          aff.actionId,
+          { ...ctx.habit, placeId: aff.place ?? ctx.habit.placeId },
+          p.effective.builtins.HABIT_DEFAULTS,
+        );
   const effortCost =
     (effort * K.effortBase + focus * per.sleepiness) * ease +
     effort * per.fatigue * (1 - clamp01(p.body.fitness));
   return -K.effortScale * effortCost;
 }
-
 /** Same material valuation for actual offers and received successor costs. @internal */
-function materialValue(p: Person, material: number, scarcity: number): number {
-  const K = COGNITION_DEFAULTS;
+function materialValue(p: CognitiveActor, material: number, scarcity: number): number {
+  const K = p.effective.builtins.COGNITION_DEFAULTS;
   const v = p.values;
   const weight = (v.security + v.achievement + v.power) / 3;
   const scale = K.materialScale * (1 - K.scarcityScaleShrink * scarcity);
   const sat = Math.sign(material) * (1 - dexp(-Math.abs(material) / scale));
   return K.materialWeight * sat * 2 * weight * (1 + K.scarcityMaterialGain * scarcity);
 }
-
 /** Shared whole-route valuation for scoring and the read-only plan readout. @internal */
-export function prospectiveRoute(p: Person, aff: Affordance, ctx: ConsiderContext) {
+export function prospectiveRoute(p: CognitiveActor, aff: Offer, ctx: ConsiderContext) {
   const scarcity = clamp01(Number.isFinite(ctx.scarcity) ? (ctx.scarcity as number) : 0);
   return receivedGoalRoute(
     p,
@@ -335,28 +342,26 @@ export function prospectiveRoute(p: Person, aff: Affordance, ctx: ConsiderContex
     0.5 + 0.5 * clamp01(ctx.mods.maturity),
     (successor) =>
       effortValue(p, successor, ctx) +
-      (successor.material ? materialValue(p, successor.material, scarcity) : 0),
+      (successor.expected.material ? materialValue(p, successor.expected.material, scarcity) : 0),
+    ctx.frame,
   );
 }
-
 /** Needs whose consumption can overfill (2.8.0 fullness): what `body.consume` feeds. */
 const FULL_NEEDS = ['food', 'water', 'relief'] as const;
-
 /** Score one option. Pure apart from reads; terms are rounded for stable snapshots. */
-export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Considered {
-  const K = COGNITION_DEFAULTS;
+export function consider(p: CognitiveActor, aff: Offer, ctx: ConsiderContext): Considered {
+  const K = p.effective.builtins.COGNITION_DEFAULTS;
   const scarcity = clamp01(Number.isFinite(ctx.scarcity) ? (ctx.scarcity as number) : 0);
   const terms: Term[] = [];
-  const push = (source: string, value: number, ref?: string) => {
+  const push = (source: TermSource, value: number, ref?: string) => {
     const v = round(value);
     // A non-finite term (bad host number) is dropped; the will vetoes the offer as invalid.
     if (v !== 0 && Number.isFinite(v))
       terms.push(ref === undefined ? { source, value: v } : { source, value: v, ref });
   };
-
   // Needs: urgency × believed gain × believed success.
-  const expected = expectedEffect(p, aff);
-  if (p.body.bladder) push('need:bladder', bladderMotivation(p, aff, expected.successRate));
+  const expected: ExpectedEffect = memoryModule.memoryOwner.expectedEffect(p.memory, aff, ctx.frame);
+  push('need:bladder', bodyOwner.bladderMotivation(p.body, aff, expected.successRate, ctx.frame));
   for (const id of keysOf(expected.needs)) {
     const gain = expected.needs[id] ?? 0;
     if (gain === 0) continue;
@@ -365,16 +370,13 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
     const scarce = id === 'safety' ? 1 + K.scarcitySafetyGain * scarcity : 1;
     push(`need:${id}`, K.needScale * u * gain * success * scarce);
   }
-  // Fullness (2.8.0, opt-in): consuming for a need already past comfort is mildly unpleasant (alliesthesia).
-  if (p.body.fullness) {
-    for (const id of FULL_NEEDS) {
-      const gain = aff.advertises[id] ?? 0;
-      if (!(gain > 0)) continue;
-      const level = levelOf(ctx.needs, id);
-      const comfort = needThreshold(p, id);
-      const over = clamp01((level - comfort) / Math.max(1e-6, 1 - comfort));
-      if (over > 0) push(`full:${id}`, -K.fullnessScale * Math.min(1, gain) * over * over);
-    }
+  for (const id of FULL_NEEDS) {
+    const gain = aff.expected.needs[id] ?? 0;
+    if (!(gain > 0)) continue;
+    const level = levelOf(ctx.needs, id);
+    const comfort = needThreshold(p, id, p.effective.builtins.NEEDS_DEFAULTS);
+    const over = clamp01((level - comfort) / Math.max(1e-6, 1 - comfort));
+    if (over > 0) push(`full:${id}`, -K.fullnessScale * Math.min(1, gain) * over * over);
   }
   if (expected.samples > 0) {
     let relevance = 1;
@@ -386,7 +388,7 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
     }
     push('expectation', K.expectationScale * expected.valence * expected.confidence * relevance);
   }
-  // Lasting gists (1.8.0, opt-in): what an old memory says about this option, fading as fresh experience of it
+  // Lasting gists: what an old memory says about this option, fading as fresh experience of it
   // (the learned expectation's confidence) takes over.
   if (expected.gist) {
     push(
@@ -394,15 +396,21 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
       K.expectationScale * expected.gist.valence * expected.gist.weight * (1 - expected.confidence),
     );
   }
-
   // Acquired cue-conditioned methods remain one pull among ordinary motives.
   if (aff.methodContext !== undefined)
-    for (const t of methodEvidence(p, aff.action, aff.methodContext).terms) push(t.source, t.value);
-
+    for (const t of methodOwner.evidence(p.methods, {
+      ...ctx.frame,
+      action: aff.actionId,
+      contextId: aff.methodContext,
+      available: p.body.alive && !p.body.asleep && !p.body.downed,
+      sourceTrust: Object.entries(p.memory.sourceTrust).map(([sourceId, trust]) => ({ sourceId, trust })),
+      voices: p.will.voices,
+    }).terms)
+      push(t.source, t.value);
   // Norms, commitments and goals. Planning terms scale with developmental maturity.
   let refractoryCache: number | undefined;
   const refractory = (): number => {
-    refractoryCache ??= sinceFactor(p, aff.action, ctx.now);
+    refractoryCache ??= sinceFactor(p, aff.actionId, ctx.now);
     return refractoryCache;
   };
   for (const t of normTerms(p, aff, { desperation: ctx.desperation })) {
@@ -421,17 +429,20 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
   const maturity = clamp01(ctx.mods.maturity);
   const maturityScale = 0.5 + 0.5 * maturity;
   const received = prospectiveRoute(p, aff, ctx);
-  for (const t of agendaTermsWithGoalEstimates(p, aff, ctx.now, received?.goals))
+  for (const t of agendaTermsWithGoalEstimates(p, aff, ctx.now, expected.successRate, received?.goals))
     push(t.source, t.value * maturityScale);
   if (received) push(received.cost.source, received.cost.value, received.cost.ref);
-
   // Habit: cue-matched automaticity (cued by the option's own place), stronger before planning matures.
   const habit =
     p.habits.length === 0
       ? 0
-      : habitPull(p, aff, { ...ctx.habit, placeId: aff.placeId ?? ctx.habit.placeId });
+      : habitPull(
+          p.habits,
+          aff.actionId,
+          { ...ctx.habit, placeId: aff.place ?? ctx.habit.placeId },
+          p.effective.builtins.HABIT_DEFAULTS,
+        );
   if (habit > 0) push('habit', K.habitScale * habit * (1.5 - 0.5 * maturity));
-
   // Emotion tendencies matched against tags.
   const social = ctx.social ?? socialContext(ctx);
   const tags = aff.tags ?? [];
@@ -443,13 +454,11 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
     const emotion = ctx.tendencyEmotions?.[tag];
     push(emotion ? `emotion:${emotion}:${tag}` : `emotion:${tag}`, K.emotionScale * t * sat);
   }
-
   // A place I fear (a threat aimed at it, 1.6.0): options there are avoided at the emotion scale.
-  if (aff.placeId !== undefined) {
-    const avoid = ctx.tendencies[`avoid:${aff.placeId}`];
-    if (avoid !== undefined && avoid > 0) push(`avoid:${aff.placeId}`, -K.emotionScale * avoid);
+  if (aff.place !== undefined) {
+    const avoid = ctx.tendencies[`avoid:${aff.place}`];
+    if (avoid !== undefined && avoid > 0) push(`avoid:${aff.place}`, -K.emotionScale * avoid);
   }
-
   // Social pulls. Per-person emotion tendencies enter at the same scale as tag tendencies.
   for (const t of socialTerms(p, aff, social))
     push(t.source, K.socialScale * (t.value > 0 ? social.satiation * refractory() : 1) * t.value);
@@ -463,70 +472,68 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
   }
   // Joint offers: whether I trust the partners to do their share.
   if (tags.includes('joint')) {
-    for (const id of [...(aff.with ?? [])].sort()) {
+    for (const id of [...(aff.participants ?? [])].sort()) {
       if (id === p.id) continue;
       const trust = p.social.relationships.find((r) => r.otherId === id)?.trust ?? 0.5;
       push(`joint:${id}`, K.jointTrust * (trust - 0.5));
     }
   }
-
   // Courtship and proposals (1.8.0, `partnering/`): only offers tagged 'partnering'.
-  if (tags.includes('partnering')) for (const t of partneringTerms(p, aff, ctx.now)) push(t.source, t.value);
-
+  if (tags.includes('partnering'))
+    for (const t of partneringModule.partneringOwner.terms(p.bonds, aff, { ...ctx.frame, social: p.social }))
+      push(t.source, t.value);
   // Promise inertia for the running activity (begin with { promise }).
   const act = p.activity;
-  if (act?.commitmentId !== undefined && act.affordanceId === aff.id) {
+  if (act?.commitmentId !== undefined && act.offer.id === aff.id) {
     const c = p.agenda.commitments.find((x) => x.id === act.commitmentId);
     if (c?.status === 'pending') {
       const fade = clamp01((ctx.desperation - K.commitmentInertiaFrom) / K.commitmentInertiaFade);
       push('commitment', K.commitmentInertia * c.importance * (1 - fade));
     }
   }
-
   // Effort and mental load, read from the perceived body.
   const effort = effortValue(p, aff, ctx);
   if (effort < 0) push('effort', effort);
   // Bodily forecast (2.5.0): only offers that declare known follow-on exertion.
-  if (aff.followedBy?.length) {
-    const t = bodyForecastTerm(
-      p,
-      aff,
-      ctx.forecastContext?.mods ?? ctx.mods,
-      ctx.perception,
-      ctx.forecastContext?.params,
-    );
+  if (aff.expected.followedBy?.length) {
+    const t = bodyForecastTerm(p.body, aff, { ...ctx.frame, ...ctx.bodyProjection });
     if (t) push(t.source, t.value);
   }
   // Risk: chance × severity × (fear + emotionality).
-  if (aff.risk && aff.risk.chance > 0 && aff.risk.severity > 0) {
-    const fear = emotionLevel(p, 'fear');
-    push('risk', -K.riskScale * aff.risk.chance * aff.risk.severity * (fear + p.traits.emotionality));
-    if (p.social.impressions && aff.with) {
-      for (const id of [...aff.with].sort()) {
+  if (aff.expected.risk && aff.expected.risk.chance > 0 && aff.expected.risk.severity > 0) {
+    const fear = clamp01(
+      p.affect.emotions.filter((e) => e.id === 'fear').reduce((sum, e) => sum + e.intensity, 0),
+    );
+    push(
+      'risk',
+      -K.riskScale * aff.expected.risk.chance * aff.expected.risk.severity * (fear + p.traits.emotionality),
+    );
+    if (p.social.impressions && aff.participants) {
+      for (const id of [...aff.participants].sort()) {
         const steady = companionSteadiness(p, id, p.now);
         if (steady !== 0)
-          push(`companion:${id}`, K.companionScale * aff.risk.chance * aff.risk.severity * steady);
+          push(
+            `companion:${id}`,
+            K.companionScale * aff.expected.risk.chance * aff.expected.risk.severity * steady,
+          );
       }
     }
   }
-
   // Material: saturating value of host units, scaled by security/achievement/power.
-  if (aff.material) push('material', materialValue(p, aff.material, scarcity));
-
+  if (aff.expected.material) push('material', materialValue(p, aff.expected.material, scarcity));
   // Precommitments inside their daily window.
   const mod = minuteOfDay(ctx.now);
   for (const pc of p.will.precommitments) {
-    if (pc.action !== aff.action) continue;
+    if (pc.action !== aff.actionId) continue;
     const inside =
-      pc.fromMinuteOfDay <= pc.toMinuteOfDay
-        ? mod >= pc.fromMinuteOfDay && mod < pc.toMinuteOfDay
-        : mod >= pc.fromMinuteOfDay || mod < pc.toMinuteOfDay;
+      pc.fromMsOfDay <= pc.toMsOfDay
+        ? mod >= pc.fromMsOfDay && mod < pc.toMsOfDay
+        : mod >= pc.fromMsOfDay || mod < pc.toMsOfDay;
     if (inside) push(`precommit:${pc.id}`, pc.bias);
   }
-
   // Suggestions: strength × voice trust × appeal match, one term per voice. Never bypasses vetoes (will enforces).
   // During a mental break no voice reaches them (crisis SCOPE): no live or remembered suggestion terms.
-  const voices = inBreak(p) ? [] : voicesIn(ctx.suggestion, ctx.suggestions);
+  const voices = p.affect.crisis.active ? [] : voicesIn(ctx.suggestion, ctx.suggestions);
   let reactance = 0;
   for (const s of voices) {
     if (!suggestionTargets(s, aff)) continue;
@@ -546,60 +553,53 @@ export function consider(p: Person, aff: Affordance, ctx: ConsiderContext): Cons
         K.reactanceScale * excess * p.values.selfDirection * (0.5 + urgencyOf(ctx.needs, 'autonomy'));
   }
   if (reactance > 0) push('autonomy', -reactance);
-
   // Standing advice (N9): remembered suggestions from told advice, by trust in the source. A source speaking
   // now about this option is counted once, through its live term above.
-  if (!inBreak(p)) for (const t of rememberedTerms(p, aff, ctx.now, voices)) push(t.source, t.value);
-
-  if (p.curiosity) for (const t of curiosityTerms(p, aff, ctx)) push(t.source, t.value);
-  if (p.pursuit) for (const t of persistenceTerms(p, terms, ctx)) push(t.source, t.value);
-
-  // Promptings (2.4.0, opt-in): a recurrence pull under `fault` and a practised turning-away from a noticed prompt.
-  if (p.promptings)
-    for (const t of promptingTerms(p, aff.action, terms, aff.tags, ctx.now, ctx.desperation))
-      push(t.source, t.value);
-
-  // Evening review (2.7.0, opt-in): a resolve formed after a lapse leans on that commitment's own term.
-  if (p.review) for (const t of reviewTerms(p, terms)) push(t.source, t.value, t.ref);
-
+  if (!p.affect.crisis.active)
+    for (const t of rememberedTerms(p, aff, ctx.now, voices)) push(t.source, t.value);
+  for (const t of curiosityTerms(p.curiosity, aff, {
+    needs: ctx.needs,
+    traits: p.traits,
+    life: ctx.mods,
+    fear: clamp01(p.affect.emotions.filter((e) => e.id === 'fear').reduce((sum, e) => sum + e.intensity, 0)),
+    at: ctx.now,
+    expected,
+    defaults: p.effective.builtins.CURIOSITY_DEFAULTS,
+  }))
+    push(t.source, t.value);
+  for (const t of persistenceTerms(p.pursuit, terms, {
+    at: ctx.now,
+    goals: p.agenda.goals,
+    needs: ctx.needs,
+    fear: clamp01(p.affect.emotions.filter((e) => e.id === 'fear').reduce((sum, e) => sum + e.intensity, 0)),
+    defaults: p.effective.builtins.PERSISTENCE_DEFAULTS,
+  }))
+    push(t.source, t.value);
+  // Promptings: a recurrence pull under `fault` and a practised turning-away from a noticed prompt.
+  const prompt = promptingModule.promptingsOwner.terms(p.promptings, {
+    ...ctx.frame,
+    offer: aff,
+    terms,
+    desperation: ctx.desperation,
+  });
+  for (const t of prompt.terms) push(t.source, t.value, t.ref);
+  if (prompt.noticed) ctx.noticed.push(cloneData(prompt.noticed));
+  for (const t of reviewModule.reviewOwner.terms(p.review, terms, { ...ctx.frame, agenda: p.agenda }))
+    push(t.source, t.value, t.ref);
   let utility = 0;
   for (const t of terms) utility += t.value;
   const out: Considered = {
     affordanceId: aff.id,
-    action: aff.action,
+    action: aff.actionId,
     label: aff.label,
     utility: round(utility),
     terms,
-    advertised: { ...aff.advertises },
+    advertised: { ...aff.expected.needs },
     believed: expected.needs,
   };
-  if (expected.recalled.length > 0) out.recalled = expected.recalled;
+  if (expected.recalled.length > 0) out.recalled = [...expected.recalled];
   return out;
 }
-
-export interface DecideContext extends ConsiderContext {
-  /** Decision id assigned by the composite. */
-  id: string;
-  /** Hosts can disable the necessity exception. */
-  necessity?: boolean;
-  /** A review of a running activity: if it continues, the suggestion verdict moves no voice counters. */
-  quiet?: boolean;
-  /** A host command in force (1.6.0); passed to the will. */
-  command?: Command;
-  /** Drop the running activity's inertia bonus (2.8.0); passed to the will. */
-  reconsider?: boolean;
-}
-
-export interface Decision {
-  record: DecisionRecord;
-  /** Need deltas the composite must apply (will does not write `p.needs`). */
-  needDeltas: Partial<Record<'autonomy', number>>;
-  /** How a command in force fared (absent when none). */
-  command?: CommandOutcome;
-  /** Prompts noticed at this decision point (only with `p.promptings`); the composite records them. */
-  prompts?: PromptingSeen[];
-}
-
 /** Highest physiological urgency: the input to the necessity exception. */
 export function desperationOf(needs: NeedReading[]): number {
   let d = 0;
@@ -608,78 +608,66 @@ export function desperationOf(needs: NeedReading[]): number {
   return d;
 }
 
-/** Score every affordance in stable id order without resolving; pure apart from reads. */
-export function scoreAll(
-  p: Person,
-  affordances: readonly Affordance[],
-  ctx: DecideContext,
-): { sorted: Affordance[]; considered: Considered[]; willCtx: WillContext } {
-  const sorted = [...affordances].sort((a, b) => cmpStr(a.id, b.id));
-  const shared: DecideContext = { ...ctx, social: ctx.social ?? socialContext(ctx) };
-  const considered = sorted.map((aff) => consider(p, aff, shared));
-  const willCtx: WillContext = {
-    now: ctx.now,
-    affordances: sorted,
-    body: ctx.body,
-    desperation: ctx.desperation,
-    necessity: ctx.necessity ?? true,
-    needs: ctx.needs,
-  };
-  if (ctx.command) willCtx.command = ctx.command;
-  if (ctx.reconsider) willCtx.reconsider = true;
-  return { sorted, considered, willCtx };
-}
-
-/**
- * Score every affordance (stable id order), resolve vetoes, selection and the suggestion verdict through
- * `will`. Narration and intention are filled in by the composite.
- */
-export function decide(p: Person, affordances: readonly Affordance[], ctx: DecideContext): Decision {
-  const { sorted, considered, willCtx } = scoreAll(p, affordances, ctx);
-  const voices = voicesIn(ctx.suggestion, ctx.suggestions);
-  const res = resolveChoice(p, considered, willCtx, voices, { quiet: ctx.quiet ?? false });
-  const chosen = res.chosenAffordanceId === null ? null : sorted.find((a) => a.id === res.chosenAffordanceId);
-  // Live options first by utility, then vetoed ones, ties by id.
-  const ranked = [...res.considered].sort(
-    (a, b) =>
-      Number(a.vetoed !== undefined) - Number(b.vetoed !== undefined) ||
-      safeUtility(b.utility) - safeUtility(a.utility) ||
-      (a.affordanceId < b.affordanceId ? -1 : 1),
-  );
-  const record: DecisionRecord = {
-    id: ctx.id,
-    at: ctx.now,
-    chosenAffordanceId: chosen?.id ?? null,
-    chosenAction: chosen?.action ?? null,
-    considered: ranked.slice(0, COGNITION_DEFAULTS.maxConsidered),
-    intention: '',
-    narration: '',
-  };
-  if (res.suggestion) record.suggestion = res.suggestion;
-  if (ctx.reconsider) record.reconsider = true;
-  if (res.suggestions && (res.suggestions.length > 1 || ctx.suggestions !== undefined))
-    record.suggestions = res.suggestions;
-  const needDeltas: Decision['needDeltas'] = {};
-  if (res.autonomyDelta !== 0) needDeltas.autonomy = res.autonomyDelta;
-  const out: Decision = { record, needDeltas };
-  if (res.command) out.command = res.command;
-  if (p.promptings) {
-    const prompts: PromptingSeen[] = [];
-    const tagsOf = new Map(sorted.map((a) => [a.id, a.tags]));
-    for (const c of res.considered) {
-      const tags = tagsOf.get(c.affordanceId);
-      const seen = promptIn(c.terms, tags);
-      if (seen)
-        prompts.push({
-          affordanceId: c.affordanceId,
-          action: c.action,
-          ...seen,
-          ...(tags !== undefined ? { tags } : {}),
-          // A vetoed option was not turned from: the will blocked it, so the response earns no practice.
-          turnApplied: c.vetoed === undefined && c.terms.some((t) => t.source === 'promptings:turn'),
+export const cognitionOwner: import('../run-schema.ts').CognitionOwner = {
+  terms(context) {
+    const actor = { ...context.actor, effective: context.effective } as CognitiveActor;
+    const tendencies = affectModule.affectOwner.tendencies(actor.affect, actor.traits, context);
+    const noticed: import('../run-schema.ts').NoticedPrompt[] = [],
+      effects: import('../run-schema.ts').TermEffect[] = [];
+    const scarcity = context.scarcity.kind === 'unobserved' ? 0 : context.scarcity.value;
+    const ctx: ConsiderContext = {
+      frame: context as FrameContext,
+      bodyProjection: context.bodyProjection as BodyProjectionContext,
+      effective: context.effective,
+      noticed,
+      now: context.at,
+      body: context.body as BodyReadout,
+      needs: context.needs.map((n) => ({ ...n })),
+      mods: context.life as LifeModifiers,
+      tendencies: { ...tendencies.values },
+      tendencyEmotions: { ...tendencies.emotions },
+      desperation: desperationOf(context.needs.map((n) => ({ ...n }))),
+      habit: { now: context.at, ...(actor.lastAction !== undefined ? { lastAction: actor.lastAction } : {}) },
+      suggestions: context.suggestions.map((s) => ({ ...s })),
+      scarcity,
+    };
+    for (const offer of [...context.offers].sort((a, b) => cmpStr(a.id, b.id))) {
+      const result = consider(actor, offer as Offer, ctx);
+      for (const [i, term] of result.terms.entries()) {
+        const cause = context.causes[0] ?? `decision:${context.person}:${actor.nextDecision}`;
+        effects.push({
+          id: `${cause}:term:${offer.id}:${i}`,
+          cause,
+          person: context.person,
+          at: context.at,
+          applyPhase: context.phase,
+          from: termFaculty(term.source),
+          to: 'will',
+          offerId: offer.id,
+          term: term as Term,
         });
+      }
     }
-    if (prompts.length > 0) out.prompts = prompts;
-  }
-  return out;
+    return { terms: effects, noticed };
+  },
+};
+function termFaculty(source: string): import('../run-schema.ts').FacultyId {
+  const prefix = source.split(':')[0];
+  if (prefix === 'norm' || prefix === 'conscience') return 'conscience';
+  if (prefix === 'goal' || prefix === 'abstain' || prefix === 'commitment') return 'agenda';
+  if (prefix === 'need' || prefix === 'full') return 'needs';
+  if (prefix === 'habit') return 'habits';
+  if (prefix === 'curiosity') return 'curiosity';
+  if (prefix === 'pursuit') return 'persistence';
+  if (prefix === 'method') return 'methods';
+  if (prefix === 'emotion' || prefix === 'avoid') return 'affect';
+  if (prefix === 'suggestion' || prefix === 'precommit' || prefix === 'autonomy') return 'will';
+  if (prefix === 'social' || prefix === 'regard' || prefix === 'together' || prefix === 'companion')
+    return 'social';
+  if (prefix === 'memory' || prefix === 'expectation') return 'memory';
+  if (prefix === 'partner') return 'partnering';
+  if (prefix === 'forecast' || prefix === 'prospection') return 'prospection';
+  if (prefix === 'promptings') return 'promptings';
+  if (prefix === 'review') return 'review';
+  return 'cognition';
 }

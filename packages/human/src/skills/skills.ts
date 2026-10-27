@@ -1,58 +1,9 @@
-/**
- * SCOPE: Learned competence per named skill and its momentary use. Borrows the power law of practice
- * (Newell & Rosenbloom 1981: learning rate falls with accumulated practice, so gains diminish), desirable
- * difficulty / zone of proximal development (practice pitched slightly above current level teaches most),
- * the finding that errors still carry information (failures teach at a reduced rate), and long-term
- * retention with a floor (Bahrick-style permastore: disuse erodes part of what was gained, not all of it).
- * Stored `level` is learned competence at `lastPracticed`; `skillLevel` applies forgetting since then, and
- * `successChance` applies momentary capacity and outside support without rewriting what was learned.
- * Does NOT claim: fitted human learning curves, or that one scalar per skill captures a real competence.
- *
- * SCOPE (transfer): sparse, explicit transfer only (research/empirical-models.md §2: related vocabulary
- * helps, strength training does not help diplomacy). A host-supplied `SkillTransfer` map names, per source
- * skill, related skills and a 0..1 fraction; practising the source also moves each related skill by that
- * fraction of the same learning exposure, without consuming the related skill's own practice minutes (so
- * its later practice is not slowed by the power law). Transfer is written at practice time, so stored
- * levels are what later practice builds on. Does not claim: measured transfer fractions, negative transfer,
- * or any default family structure; no map means no transfer. The composite applies a map the host passes to
- * `finish` (`opts.transfer`) or declares on its `World` (`World.skillTransfer`, 1.8.0).
- *
- * SCOPE (how practice is done, 1.8.0, all host opt-in through `PracticeConditions`): practice *quality* scales the
- * learning exposure from `qualityLow` (going through the motions) to `qualityHigh` (focused, with feedback), with
- * ordinary practice (0.5) unchanged; the direction follows deliberate practice (Ericsson, Krampe & Tesch-Römer
- * 1993), whose share of performance differences is real but domain-dependent and modest (Macnamara, Hambrick &
- * Oswald 2014: 26 % games, 21 % music, 18 % sports, 4 % education, < 1 % professions). *Instruction* from someone
- * more skilled raises how much practice teaches, by up to `instructionGain` when the teacher is at least
- * `instructionGapScale` above the learner and fully engaged, and not at all from a teacher no better than the
- * learner; the direction follows the tutoring literature (VanLehn 2011: human tutoring about d = 0.79 over no
- * tutoring, well below Bloom's 1984 two sigma), and the size is an engineering choice (v0 guided practice taught
- * twice as fast), not a conversion of d. *Observation* (`learnByWatching`) moves a watcher toward a fraction
- * (`observeCeiling`) of the model's level at `observeRate` of practice's rate, without adding practice minutes, so it
- * teaches the basics and never mastery; the direction follows observational modelling (Bandura 1977; Ashford,
- * Bennett & Davids 2006: larger effects on movement form, d ≈ 0.77, than on outcomes, d ≈ 0.17). Sources:
- * research/long-run-sources.md. Does not claim: calibrated sizes, teaching effects on the teacher, item-level
- * knowledge, or that watching an unskilled model teaches errors.
- *
- * SCOPE (consolidation, 1.8.0, opt-in per person with `enableSkillRetention`): without it, forgetting runs at one
- * half-life between any two sessions, so over decades of daily practice the shrinking power-law gains fall below a
- * day's forgetting and a lifelong farmer plateaus low and then declines (docs/findings.md). With it, the forgetting
- * half-life grows with accumulated practice hours, so well-practised skills barely rust between daily sessions and
- * decay slowly in disuse. This is an overlearning hypothesis: Arthur, Bennett, Stanush & McNelly 1998 (meta-analysis)
- * show decay growing with time of nonuse and moderated by task type, with only weak, data-limited evidence on
- * overlearning. The linear form and `consolidationHours` are engineering assumptions, not a fitted curve. Does not claim: different retention by skill
- * type (closed versus open, physical versus cognitive), or that spacing of sessions matters.
- */
-import { clamp01, decay, dexp, dlog, isNum, isObj, rowOf, sigmoid } from '../core/index.ts';
-import {
-  type EntityId,
-  MINUTES_PER_DAY,
-  type Minute,
-  type Person,
-  type PracticeConditions,
-  type Skill,
-  type Unit,
-} from '../types.ts';
+/** SCOPE: HF4 always-present owner. Source equations use immutable run parameters; no legacy continuation. */
+import { cloneData } from '../core/clone.ts';
+import { clamp01, decay, dexp, dlog, sigmoid } from '../core/index.ts';
+import { learningMultiplier } from '../lifecourse/development.ts';
 
+const MINUTES_PER_DAY = 1440;
 export const SKILL_DEFAULTS = {
   /** Level of an unknown/untrained skill. */
   base: 0.05,
@@ -90,226 +41,183 @@ export const SKILL_DEFAULTS = {
   observeRate: 0.3,
   observeCeiling: 0.6,
   /**
-   * Practice hours that double the forgetting half-life when consolidation is on (1.8.0, `enableSkillRetention`):
+   * Practice hours that double the forgetting half-life through consolidation:
    * half-life = forgetHalfLife × (1 + hours / consolidationHours). Engineering assumption (see SCOPE).
    */
   consolidationHours: 300,
 } as const;
 
-type SkillHolder = Pick<Person, 'skills' | 'now' | 'skillRetention'>;
-
-/** Source skill id -> related skill id -> fraction (0..1) of the source's learning exposure that transfers. */
-export type SkillTransfer = Record<string, Record<string, Unit>>;
-
-/** Symmetric transfer map from families (every member transfers `fraction` to every other member). */
-export function skillFamilies(families: Record<string, readonly string[]>, fraction: Unit): SkillTransfer {
-  const out: SkillTransfer = {};
-  const f = clamp01(fraction);
-  for (const fam of Object.keys(families).sort()) {
-    const members = families[fam] ?? [];
-    for (const a of members) {
-      for (const b of members) {
-        if (a === b) continue;
-        const row = rowOf(out, a);
-        row[b] = Math.max(row[b] ?? 0, f);
+/** HF4 learning and retention. Practice durations are milliseconds in state, minutes in equations. */
+export const skillsOwner: import('../run-schema.ts').SkillsOwner = {
+  initialize(input, context) {
+    return {
+      skills: Object.fromEntries(
+        input.map((s) => [
+          s.id,
+          { level: s.level, practicedMs: s.practicedMs, lastPracticed: s.lastPracticed },
+        ]),
+      ),
+      skillRetention: { consolidationHours: context.effective.builtins.SKILL_DEFAULTS.consolidationHours },
+    };
+  },
+  advance(_state, context) {
+    // Levels remain anchored at lastPracticed. Rust is read at use, never compounded at call targets.
+    return {
+      state: cloneData(context.continuation.state) as Record<string, import('../run-schema.ts').Skill>,
+      continuation: cloneData(
+        context.continuation,
+      ) as import('../run-schema.ts').DeliberationContinuation['skills'],
+      consolidationHours: context.consolidationHours,
+      effects: { terms: [], modifiers: [], appraisals: [] },
+      events: [],
+      nextBoundary: null,
+      advancedThrough: context.to,
+    };
+  },
+  learn(previous, input, context) {
+    const state = cloneData(previous) as Record<string, import('../run-schema.ts').Skill>;
+    const d = context.effective.builtins.SKILL_DEFAULTS;
+    const witness = input.kind === 'witness';
+    const skill = witness ? input.data.skill : input.activity.offer.demands.skill?.id;
+    if (skill !== undefined) {
+      const existing = state[skill];
+      const prior = existing?.practicedMs ?? 0;
+      const gained = Math.max(0, (existing?.level ?? d.base) - d.base);
+      const floor = d.base + d.retentionFloor * gained;
+      const before = existing
+        ? clamp01(
+            decay(
+              existing.level,
+              Math.max(0, context.at - existing.lastPracticed) / 60000,
+              d.forgetHalfLife * (1 + prior / 3600000 / Math.max(1, d.consolidationHours)),
+              Math.min(floor, existing.level),
+            ),
+          )
+        : d.base;
+      const rawDuration = witness ? input.data.durationMs : input.outcome.end - input.outcome.start;
+      if (!Number.isSafeInteger(rawDuration) || rawDuration < 0)
+        throw new RangeError('Invalid learning duration');
+      const minutes = rawDuration / 60000;
+      const domain = witness ? input.data.domain : (input.activity.offer.demands.skill?.domain ?? 'general');
+      const learning =
+        Math.max(0, learningMultiplier(context.ageYears, domain)) * (context.aptitude[skill] ?? 1);
+      const hours = prior / 3600000;
+      const exposure =
+        d.rate0 *
+        d.rateScaleHours *
+        dlog((1 + (hours + minutes / 60) / d.rateScaleHours) / (1 + hours / d.rateScaleHours));
+      let after = before;
+      let practiceExposure = 0;
+      if (witness) {
+        const ceiling = d.observeCeiling * clamp01(input.data.modelLevel);
+        if (ceiling > before && minutes > 0)
+          after = clamp01(before + (ceiling - before) * (1 - dexp(-learning * d.observeRate * exposure)));
+      } else {
+        const demand = input.activity.offer.demands.skill;
+        const gap = (demand?.difficulty ?? before) - before;
+        const z = (gap - d.challengeOptimum) / d.challengeWidth;
+        const challenge = d.challengeFloor + (1 - d.challengeFloor) * dexp(-0.5 * z * z);
+        let k =
+          learning * challenge * (input.outcome.status === 'completed' ? 1 : d.failureLearning) * exposure;
+        const practice = input.outcome.actual.practice;
+        if (practice?.quality !== undefined) {
+          const q = clamp01(practice.quality);
+          k *=
+            q <= 0.5
+              ? d.qualityLow + (1 - d.qualityLow) * (q / 0.5)
+              : 1 + (d.qualityHigh - 1) * ((q - 0.5) / 0.5);
+        }
+        if (practice?.instruction)
+          k *=
+            1 +
+            d.instructionGain *
+              clamp01(practice.instruction.engagement ?? 1) *
+              clamp01((clamp01(practice.instruction.level) - before) / d.instructionGapScale);
+        after = clamp01(1 - (1 - before) * dexp(-k));
+        practiceExposure = k;
       }
+      if (!witness || after > before)
+        state[skill] = {
+          level: after,
+          practicedMs: witness ? prior : prior + rawDuration,
+          lastPracticed: Math.max(context.at, existing?.lastPracticed ?? context.at),
+        };
+      if (!witness && practiceExposure > 0)
+        for (const transfer of [...context.transfers]
+          .filter((t) => t.from === skill)
+          .sort((a, b) => (a.to < b.to ? -1 : a.to > b.to ? 1 : 0))) {
+          const held = state[transfer.to];
+          const gained = Math.max(0, (held?.level ?? d.base) - d.base);
+          const floor = d.base + d.retentionFloor * gained;
+          const level = held
+            ? clamp01(
+                decay(
+                  held.level,
+                  Math.max(0, context.at - held.lastPracticed) / 60000,
+                  d.forgetHalfLife * (1 + held.practicedMs / 3600000 / Math.max(1, d.consolidationHours)),
+                  Math.min(floor, held.level),
+                ),
+              )
+            : d.base;
+          state[transfer.to] = {
+            level: clamp01(1 - (1 - level) * dexp(-clamp01(transfer.fraction) * practiceExposure)),
+            practicedMs: held?.practicedMs ?? 0,
+            lastPracticed: Math.max(context.at, held?.lastPracticed ?? context.at),
+          };
+        }
     }
-  }
-  return out;
-}
+    return {
+      state,
+      effects: { terms: [], modifiers: [], appraisals: [] },
+      events: [],
+      nextBoundary: null,
+      advancedThrough: context.at,
+    };
+  },
+  successChance(state, input, context) {
+    const d = context.effective.builtins.SKILL_DEFAULTS;
+    const cap = clamp01(input.capacity);
+    const effective =
+      skillLevel({ ...state, effective: context.effective }, input.skill) *
+        (d.capacityFloor + (1 - d.capacityFloor) * cap) +
+      d.supportBonus * clamp01(input.support);
+    return clamp01(sigmoid(d.successSlope * (effective - clamp01(input.difficulty)) + d.successBias));
+  },
+  validate(state) {
+    const issues: import('../run-schema.ts').ValidationIssue[] = [];
+    for (const [id, s] of Object.entries(state))
+      if (
+        !id ||
+        !Number.isFinite(s.level) ||
+        s.level < 0 ||
+        s.level > 1 ||
+        !Number.isSafeInteger(s.practicedMs) ||
+        s.practicedMs < 0 ||
+        !Number.isSafeInteger(s.lastPracticed)
+      )
+        issues.push({ path: `skills.${id}`, code: 'invalid-schema', message: 'Invalid skill state' });
+    return issues;
+  },
+};
 
-/**
- * Turn on practice consolidation for this person (1.8.0, idempotent; see the SCOPE on consolidation). Without it the
- * forgetting half-life is the same however long a skill was practised.
- */
-export function enableSkillRetention(p: Pick<Person, 'skillRetention'>): void {
-  p.skillRetention ??= { consolidationHours: SKILL_DEFAULTS.consolidationHours };
-}
-
-/** Restore-time check of `skillRetention` (1.8.0): undefined (off) unless `consolidationHours` is finite. @internal */
-export function sanitizeSkillRetention(x: unknown): Person['skillRetention'] {
-  return isObj(x) && isNum(x.consolidationHours) ? (x as Person['skillRetention']) : undefined;
-}
-
-/** Forgetting half-life of a skill (minutes): longer the more it was practised, when consolidation is on. */
-function halfLifeOf(s: Skill, retention: Person['skillRetention']): number {
-  const d = SKILL_DEFAULTS;
-  if (!retention) return d.forgetHalfLife;
-  return d.forgetHalfLife * (1 + s.practice / 60 / Math.max(1, retention.consolidationHours));
-}
-
-function retained(s: Skill, now: Minute, retention?: Person['skillRetention']): Unit {
-  const d = SKILL_DEFAULTS;
-  const gained = Math.max(0, s.level - d.base);
-  const floor = d.base + d.retentionFloor * gained;
-  const elapsed = Math.max(0, now - s.lastPracticed);
-  return clamp01(decay(s.level, elapsed, halfLifeOf(s, retention), Math.min(floor, s.level)));
-}
-
-/** Learned competence with forgetting applied up to `p.now`. Unknown skill -> base (0.05). */
-export function skillLevel(p: SkillHolder, id: string): Unit {
-  const s = p.skills[id];
-  return s ? retained(s, p.now, p.skillRetention) : SKILL_DEFAULTS.base;
-}
-
-/**
- * Chance of succeeding at a task of `difficulty`: sigmoid(slope * (effective - difficulty) + bias), where
- * effective = level * lerp(capacityFloor, 1, capacity) + supportBonus * support. Low capacity
- * (fatigue, pain, illness) lowers performance without lowering learned level.
- */
-export function successChance(
-  p: SkillHolder,
+/** Pure retained competence. The stored level remains anchored at actual practice. */
+export function skillLevel(
+  p: Pick<import('../run-schema.ts').ActorState, 'skills' | 'now' | 'skillRetention'> & {
+    effective: import('../run-schema.ts').EffectiveParameters;
+  },
   id: string,
-  difficulty: Unit,
-  capacity: Unit,
-  support = 0,
-): Unit {
-  const d = SKILL_DEFAULTS;
-  const cap = clamp01(capacity);
-  const effective =
-    skillLevel(p, id) * (d.capacityFloor + (1 - d.capacityFloor) * cap) + d.supportBonus * clamp01(support);
-  return clamp01(sigmoid(d.successSlope * (effective - clamp01(difficulty)) + d.successBias));
-}
-
-/** 0..1 bell centred slightly above current level, with a floor. */
-export function challengeFactor(level: Unit, difficulty: Unit): Unit {
-  const d = SKILL_DEFAULTS;
-  const z = (difficulty - level - d.challengeOptimum) / d.challengeWidth;
-  return d.challengeFloor + (1 - d.challengeFloor) * dexp(-0.5 * z * z);
-}
-
-/** Integrated learning exposure for practice from h0 to h1 hours (power-law rate k0 / (1 + h/scale)). */
-function exposure(h0: number, h1: number): number {
-  const d = SKILL_DEFAULTS;
-  return d.rate0 * d.rateScaleHours * dlog((1 + h1 / d.rateScaleHours) / (1 + h0 / d.rateScaleHours));
-}
-
-/** Learning multiplier for practice quality (1 when absent or 0.5). */
-function qualityFactor(quality: Unit | undefined): number {
-  if (quality === undefined) return 1;
-  const d = SKILL_DEFAULTS;
-  const q = clamp01(quality);
-  return q <= 0.5
-    ? d.qualityLow + (1 - d.qualityLow) * (q / 0.5)
-    : 1 + (d.qualityHigh - 1) * ((q - 0.5) / 0.5);
-}
-
-/** Learning multiplier from a teacher's guidance for a learner at `learner` (1 when absent or no better). */
-function instructionFactor(instruction: PracticeConditions['instruction'], learner: Unit): number {
-  if (!instruction) return 1;
-  const d = SKILL_DEFAULTS;
-  const gap = clamp01((clamp01(instruction.level) - learner) / d.instructionGapScale);
-  return 1 + d.instructionGain * clamp01(instruction.engagement ?? 1) * gap;
-}
-
-/** Instruction from `teacher` in skill `id` (their current level, with rust), for `Outcome.practice.instruction`. */
-export function instructionFrom(
-  teacher: SkillHolder & { id?: EntityId },
-  id: string,
-  engagement: Unit = 1,
-): NonNullable<PracticeConditions['instruction']> {
-  const out: NonNullable<PracticeConditions['instruction']> = { level: skillLevel(teacher, id), engagement };
-  if (teacher.id !== undefined) out.teacherId = teacher.id;
-  return out;
-}
-
-/**
- * Practise for `minutes`. Gain follows dL/dt = learning * k(practice) * challenge * outcome * (1 - L), integrated
- * in closed form so one long session ≈ many short ones. Forgetting since last practice is applied first.
- * With `transfer`, each related skill r gains L_r <- 1 - (1 - L_r) e^{-fraction × k} (see SCOPE, transfer).
- */
-export function practise(
-  p: SkillHolder,
-  id: string,
-  minutes: number,
-  difficulty: Unit,
-  succeeded: boolean,
-  learning: number,
-  now: Minute,
-  transfer?: SkillTransfer,
-  conditions?: PracticeConditions,
-): { before: Unit; after: Unit } {
-  const d = SKILL_DEFAULTS;
-  const existing = p.skills[id];
-  const before = existing ? retained(existing, now, p.skillRetention) : d.base;
-  const priorMinutes = existing?.practice ?? 0;
-  const mins = Math.max(0, minutes);
-  let k =
-    Math.max(0, learning) *
-    challengeFactor(before, clamp01(difficulty)) *
-    (succeeded ? 1 : d.failureLearning) *
-    exposure(priorMinutes / 60, (priorMinutes + mins) / 60);
-  // Only multiply when conditions are given, so a run without them keeps its exact bits.
-  if (conditions) k *= qualityFactor(conditions.quality) * instructionFactor(conditions.instruction, before);
-  const after = clamp01(1 - (1 - before) * dexp(-k));
-  p.skills[id] = {
-    level: after,
-    practice: priorMinutes + mins,
-    lastPracticed: Math.max(now, existing?.lastPracticed ?? now),
-  };
-  const related = transfer?.[id];
-  if (related && k > 0) {
-    for (const r of Object.keys(related).sort()) {
-      const f = clamp01(related[r] ?? 0);
-      if (r === id || f <= 0) continue;
-      const ex = p.skills[r];
-      const rb = ex ? retained(ex, now, p.skillRetention) : d.base;
-      p.skills[r] = {
-        level: clamp01(1 - (1 - rb) * dexp(-f * k)),
-        practice: ex?.practice ?? 0,
-        lastPracticed: Math.max(now, ex?.lastPracticed ?? now),
-      };
-    }
-  }
-  return { before, after };
-}
-
-/**
- * Learn by watching someone practise skill `id` at `modelLevel` for `minutes` (observational learning; see SCOPE).
- * The watcher moves toward `observeCeiling × modelLevel` at `observeRate` of what the same minutes of their own
- * practice would teach at ideal challenge. Practice minutes are not added (so their later practice is not slowed by
- * the power law); the stored level is re-anchored at `now` (rust counts from here). Watching someone no better than
- * that ceiling teaches nothing.
- */
-export function learnByWatching(
-  p: SkillHolder,
-  id: string,
-  minutes: number,
-  modelLevel: Unit,
-  learning: number,
-  now: Minute,
-): { before: Unit; after: Unit } {
-  const d = SKILL_DEFAULTS;
-  const existing = p.skills[id];
-  const before = existing ? retained(existing, now, p.skillRetention) : d.base;
-  const ceiling = d.observeCeiling * clamp01(modelLevel);
-  const mins = Math.max(0, minutes);
-  if (ceiling <= before || mins <= 0) return { before, after: before };
-  const prior = existing?.practice ?? 0;
-  const k = Math.max(0, learning) * d.observeRate * exposure(prior / 60, (prior + mins) / 60);
-  const after = clamp01(before + (ceiling - before) * (1 - dexp(-k)));
-  p.skills[id] = {
-    level: after,
-    practice: prior,
-    lastPracticed: Math.max(now, existing?.lastPracticed ?? now),
-  };
-  return { before, after };
-}
-
-/** Practice minutes an ideally-pitched learner would need to reach `level` from base (used for seeding). */
-function practiceFor(level: Unit): number {
-  const d = SKILL_DEFAULTS;
-  if (level <= d.base) return 0;
-  const need = dlog((1 - d.base) / Math.max(1e-6, 1 - level));
-  return Math.min(1e9, d.rateScaleHours * (dexp(need / (d.rate0 * d.rateScaleHours)) - 1) * 60);
-}
-
-/** Build a skills record from initial levels; practice minutes are back-filled so returns keep diminishing. */
-export function seedSkills(levels: Record<string, Unit>, now: Minute): Record<string, Skill> {
-  const out: Record<string, Skill> = {};
-  for (const [id, raw] of Object.entries(levels)) {
-    const level = clamp01(raw);
-    out[id] = { level, practice: Math.round(practiceFor(level)), lastPracticed: now };
-  }
-  return out;
+): number {
+  const d = p.effective.builtins.SKILL_DEFAULTS,
+    s = p.skills[id];
+  if (!s) return d.base;
+  const gained = Math.max(0, s.level - d.base),
+    floor = Math.min(s.level, d.base + d.retentionFloor * gained);
+  return clamp01(
+    decay(
+      s.level,
+      Math.max(0, p.now - s.lastPracticed) / 60000,
+      d.forgetHalfLife * (1 + s.practicedMs / 3600000 / Math.max(1, p.skillRetention.consolidationHours)),
+      floor,
+    ),
+  );
 }

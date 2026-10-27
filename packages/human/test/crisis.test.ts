@@ -1,185 +1,231 @@
-import { describe, expect, test } from 'vitest';
-import {
-  breakHazard,
-  command,
-  createCommunity,
-  createPerson,
-  createVillage,
-  decide,
-  enableBreaks,
-  feel,
-  inBreak,
-  MINUTES_PER_DAY,
-  perceive,
-  restore,
-  seedTie,
-  snapshot,
-  stepCommunity,
-  tick,
-  villagerSpec,
-  voiceOf,
-} from '../src/index.ts';
-import type { Affordance, BreakBehaviour, Person } from '../src/types.ts';
+import { expect, it } from 'vitest';
+import { crisisOwner } from '../src/affect/crisis.ts';
+import { required } from '../src/body/span.ts';
+import { createRng } from '../src/core/random.ts';
+import type { ActorRandomCursor, AffectTrajectory } from '../src/run-schema.ts';
+import { characterPath, effective, frame } from './w1-fixture.ts';
 
-const NOON = 12 * 60;
-const ids = ['a', 'b', 'c'];
-const BEHAVIOURS: BreakBehaviour[] = [
-  { id: 'wander', label: 'wanders off', actions: ['wait'], minutes: [180, 240] },
-  { id: 'hide', label: 'hides at home', tags: ['rest'], weight: 0.5, minutes: [180, 240] },
-];
-
-function villager(id: string, seed: number, opts: Parameters<typeof villagerSpec>[3] = {}): Person {
-  return createPerson(villagerSpec(id, id, seed, { now: NOON, others: ids, ...opts }));
-}
-function offers(p: Person): Affordance[] {
-  const others = ids.filter((id) => id !== p.id).map((id) => villager(id, 99));
-  return createVillage([p, ...others], { seed: 1 }).affordancesFor(p);
-}
-/** A person under heavy strain: breaks enabled, stress near the top, grieving. */
-function strained(seed: number): Person {
-  const p = villager('a', seed, { traits: { emotionality: 0.8 } });
-  enableBreaks(p, BEHAVIOURS);
-  if (p.affect.crisis) p.affect.crisis.stress = 0.95;
-  feel(p, 'grief', 0.9, 'event:death:b', p.now);
-  return p;
-}
-/** Tick hour by hour until a break starts (or `hours` pass). */
-function untilBreak(p: Person, hours = 48): boolean {
-  for (let h = 0; h < hours && !inBreak(p); h++) tick(p, p.now + 60);
-  return inBreak(p) !== undefined;
-}
-
-describe('mental breaks', () => {
-  test('without enableBreaks nothing changes and no hazard is read', () => {
-    const p = villager('a', 1);
-    expect(breakHazard(p)).toEqual({ pressure: 0, perHour: 0 });
-    tick(p, p.now + MINUTES_PER_DAY);
-    expect(p.affect.crisis).toBeUndefined();
+const mood: AffectTrajectory = {
+  id: 'low',
+  from: 0,
+  to: 1e9,
+  valence: { from: 0, to: 1e9, segments: [{ kind: 'constant', from: 0, to: 1e9, value: -1 }] },
+  arousal: { from: 0, to: 1e9, segments: [{ kind: 'constant', from: 0, to: 1e9, value: 0.5 }] },
+  emotions: [],
+};
+it('owns reached onset draws, comfort, sleep recovery and refractory state', () => {
+  let x = crisisOwner.initialize(frame());
+  x = crisisOwner.receive(
+    x.state,
+    { kind: 'strain', amount: 0.9, receiptId: 'strain' },
+    { ...frame(), continuation: x.continuation },
+  );
+  expect(x.state.stress).toBe(0.9);
+  const boundary = {
+    key: { kind: 'crisis' as const, channelId: 'onset' },
+    operation: 'allocate' as const,
+    at: 0,
+  };
+  const rng: ActorRandomCursor = {
+    words: createRng(1),
+    identity: {
+      id: 'a',
+      seed: 1,
+      uniformDraws: 12,
+      initializationDraws: 12,
+      origin: { runSeed: 1, person: 'a' },
+    },
+  };
+  const c = {
+    ...frame(),
+    continuation: x.continuation,
+    rng,
+    alive: true,
+    asleep: false,
+    commandStrainRatePerMinute: 0,
+    traits: {
+      honesty: 0.5,
+      emotionality: 0.5,
+      extraversion: 0.5,
+      agreeableness: 0.5,
+      conscientiousness: 0.5,
+      openness: 0.5,
+    },
+    mood,
+  };
+  const armed = crisisOwner.commitHazard(x.state, boundary, c);
+  expect(armed.rng.identity.uniformDraws).toBe(13);
+  const at = crisisOwner.advance(armed.state, {
+    effective,
+    effectiveParametersHash: '0'.repeat(64),
+    person: 'a',
+    from: 0,
+    to: 86400000,
+    phase: 1,
+    fidelity: { mode: 'fine' },
+    priorWorldRevision: 0,
+    causes: [],
+    continuation: armed.continuation,
+    body: { id: 'b', conditionId: 'b', from: 0, to: 1e9, fields: [], readout: [] },
+    mood,
+    traits: c.traits,
+    character: characterPath(c.traits),
+    alive: true,
+    asleep: false,
+    commandStrainRatePerMinute: 0,
   });
-
-  test('a calm person with breaks enabled has no hazard', () => {
-    const p = villager('a', 2);
-    enableBreaks(p, BEHAVIOURS);
-    expect(breakHazard(p).perHour).toBe(0);
-  });
-
-  test('strain and grief raise the hazard until a break starts; the break is remembered', () => {
-    const p = strained(3);
-    expect(breakHazard(p).perHour).toBeGreaterThan(0);
-    expect(untilBreak(p)).toBe(true);
-    const b = inBreak(p);
-    expect(BEHAVIOURS.map((x) => x.id)).toContain(b?.behaviourId);
-    expect(p.memory.episodes.some((e) => e.kind === 'break' && e.tags.includes('onset'))).toBe(true);
-    expect(p.affect.crisis?.breaks).toBe(1);
-  });
-
-  test('during a break only the behaviour is open and no voice reaches him', () => {
-    const p = strained(4);
-    untilBreak(p);
-    const b = inBreak(p);
-    const r = decide(p, offers(p), {
-      suggestion: { voiceId: 'player', action: 'work-field', strength: 1, insist: true },
-    });
-    const chosen = offers(p).find((a) => a.id === r.chosenAffordanceId);
-    if (b?.behaviourId === 'wander') expect(chosen?.action).toBe('wait');
-    else expect(chosen?.tags ?? []).toContain('rest');
-    expect(r.suggestion).toMatchObject({ verdict: 'refused', kind: 'cannot', reason: 'break' });
-    expect(r.suggestion?.says.length).toBeGreaterThan(0);
-    expect(voiceOf(p, 'player')?.refused ?? 0).toBe(0);
-    expect(voiceOf(p, 'player')?.pressure ?? 0).toBe(0);
-    expect(r.considered.filter((c) => c.vetoed?.reason === 'break').length).toBeGreaterThan(0);
-  });
-
-  test('a break ends direct control', () => {
-    const p = strained(5);
-    command(p, { voiceId: 'player', action: 'work-field', since: p.now, repeat: true });
-    untilBreak(p);
-    decide(p, offers(p));
-    expect(p.will.command).toBeUndefined();
-    expect(p.will.lastCommand?.reason).toBe('break');
-  });
-
-  test('it ends by itself, sooner with comfort from someone close, and leaves less stress', () => {
-    const a = strained(6);
-    untilBreak(a);
-    const b = structuredClone(a);
-    seedTie(b, { otherId: 'b', affection: 0.8, familiarity: 0.8, trust: 0.8 });
-    const stress = a.affect.crisis?.stress ?? 0;
-    const until = inBreak(a)?.until ?? 0;
-    perceive(b, [
-      {
-        at: b.now,
-        channel: 'social',
-        kind: 'comfort',
-        actorId: 'b',
-        targetId: 'a',
-        salience: 0.8,
-        valence: 0.5,
-        summary: 'b sat with me',
-      },
-    ]);
-    expect(inBreak(b)?.until ?? 0).toBeLessThan(until);
-    tick(a, until + 60);
-    expect(inBreak(a)).toBeUndefined();
-    expect(a.affect.crisis?.stress ?? 1).toBeLessThan(stress);
-    expect(a.memory.episodes.some((e) => e.kind === 'break' && e.tags.includes('recovered'))).toBe(true);
-  });
-
-  test('onset does not depend on how the host chunks its ticks', () => {
-    const coarse = strained(7);
-    const fine = strained(7);
-    tick(coarse, coarse.now + 2 * MINUTES_PER_DAY);
-    for (let m = 0; m < 2 * MINUTES_PER_DAY; m += 7) tick(fine, NOON + m + 7);
-    tick(fine, coarse.now);
-    expect(fine.affect.crisis?.breaks).toBe(coarse.affect.crisis?.breaks);
-    expect(fine.affect.crisis?.lastBreakAt).toBe(coarse.affect.crisis?.lastBreakAt);
-  });
-
-  test('a break in progress survives save and restore; a malformed crisis is dropped', () => {
-    const p = strained(8);
-    untilBreak(p);
-    const q = restore(JSON.parse(JSON.stringify(snapshot(p))));
-    expect(q.affect.crisis).toEqual(p.affect.crisis);
-    const bad = JSON.parse(JSON.stringify(snapshot(p)));
-    bad.affect.crisis.behaviours = 'x';
-    expect(restore(bad).affect.crisis).toBeUndefined();
-  });
+  expect(at.randomBoundary?.operation).toBe('fire');
+  const active = crisisOwner.commitHazard(
+    at.state,
+    { ...boundary, operation: 'fire', at: at.advancedThrough },
+    { ...c, at: at.advancedThrough, continuation: at.continuation, rng: armed.rng },
+  );
+  expect(active.rng.identity.uniformDraws).toBe(15);
+  expect(active.state.active?.repertoireId).toBe('unable-to-continue');
+  const eased = crisisOwner.receive(
+    active.state,
+    { kind: 'comfort', receiptId: 'comfort' },
+    { ...frame(at.advancedThrough), continuation: active.continuation },
+  );
+  expect(required(eased.state.active).until).toBeLessThan(required(active.state.active).until);
 });
 
-describe('crisis scenario (headless): a villager in a bad stretch over three days', () => {
-  // The host renews the loss each noon (a funeral, then the mourning days), so the strain is sustained, as a
-  // bad stretch is; a calm villager beside him is the control.
-  function run(strainedA: boolean) {
-    const people = ids.map((id, k) => createPerson(villagerSpec(id, id, k + 1, { others: ids, now: NOON })));
-    for (const p of people) enableBreaks(p, BEHAVIOURS);
-    const a = people[0] as Person;
-    const b = people[1] as Person;
-    if (strainedA && a.affect.crisis) a.affect.crisis.stress = 0.9;
-    const world = createVillage(people, { seed: 3 });
-    const c = createCommunity(people);
-    const events: ReturnType<typeof stepCommunity> = [];
-    for (let day = 0; day < 3; day++) {
-      if (strainedA) feel(a, 'grief', 0.9, 'event:death:c', a.now);
-      events.push(...stepCommunity(c, world, NOON + (day + 1) * MINUTES_PER_DAY));
+it('integrates ten actual command forcings over 24h with pinned changes and a closed-form oracle', () => {
+  const neutral: AffectTrajectory = {
+    ...mood,
+    id: 'neutral',
+    valence: { from: 0, to: 1e9, segments: [{ kind: 'constant', from: 0, to: 1e9, value: 0 }] },
+    emotions: [],
+  };
+  const hour = 3600000;
+  const run = (seed: number, step: number, daily: boolean) => {
+    let x = crisisOwner.initialize(frame()),
+      from = 0,
+      oracle = 0;
+    const checks = [];
+    for (let h = 1; h <= 24; h++) {
+      const rate = (seed + 1) * 0.000001 * (h <= 8 ? 1 : h <= 16 ? 2 : 0.5);
+      const k = Math.LN2 / effective.builtins.CRISIS_DEFAULTS.stressHalfLife;
+      oracle = oracle * Math.exp(-k * 60) + (rate / k) * (1 - Math.exp(-k * 60));
+      const end = h * hour;
+      while (from < end) {
+        const to = Math.min(end, from + step);
+        const r = crisisOwner.advance(x.state, {
+          effective,
+          effectiveParametersHash: frame().effectiveParametersHash,
+          person: 'a',
+          from,
+          to,
+          phase: 1,
+          fidelity: daily ? { mode: 'daily', dayMs: 86400000, anchor: 0 } : { mode: 'fine' },
+          priorWorldRevision: 0,
+          causes: [],
+          continuation: x.continuation,
+          body: { id: 'b', conditionId: 'b', from: 0, to: 1e9, fields: [], readout: [] },
+          mood: neutral,
+          alive: true,
+          asleep: false,
+          commandStrainRatePerMinute: rate,
+          character: characterPath(),
+          traits: {
+            honesty: 0.5,
+            emotionality: 0.5,
+            extraversion: 0.5,
+            agreeableness: 0.5,
+            conscientiousness: 0.5,
+            openness: 0.5,
+          },
+        });
+        expect(r.randomBoundary).toBeNull();
+        expect(r.advancedThrough).toBe(to);
+        x = r;
+        from = to;
+      }
+      expect(Math.abs(x.state.stress - oracle)).toBeLessThan(1e-9);
+      checks.push(x.state);
     }
-    return { a, b, events };
+    return checks;
+  };
+  for (let seed = 1; seed <= 10; seed++) {
+    const canonical = run(seed, hour, false);
+    expect(run(seed, hour, true)).toEqual(canonical);
+    const irregular = run(seed, 777777, false);
+    irregular.forEach((s, i) => {
+      expect(Math.abs(s.stress - required(canonical[i]).stress)).toBeLessThan(1e-9);
+    });
   }
+});
 
-  test('he breaks and recovers, acting the break out; the calm villager does not; the run replays exactly', () => {
-    const { a, b, events } = run(true);
-    expect(a.affect.crisis?.breaks ?? 0).toBeGreaterThanOrEqual(1);
-    expect(b.affect.crisis?.breaks).toBe(0);
-    expect(a.memory.episodes.some((e) => e.kind === 'break' && e.tags.includes('recovered'))).toBe(true);
-    // While a break ran, every option he began belonged to it (or was a bodily need at the edge).
-    const onset = a.memory.episodes.find((e) => e.kind === 'break' && e.tags.includes('onset'));
-    expect(onset).toBeDefined();
-    const from = onset?.at ?? 0;
-    const begun = events.filter(
-      (e) => e.personId === 'a' && e.kind === 'begin' && e.at >= from && e.at < from + 180,
-    );
-    expect(begun.length).toBeGreaterThan(0);
-    for (const e of begun) expect(['wait', 'rest', 'sleep', 'eat', 'drink']).toContain(e.action);
-    expect(a.body.alive).toBe(true);
-    expect(JSON.stringify(snapshot(run(true).a))).toBe(JSON.stringify(snapshot(a)));
-  });
+import { evaluateCell } from '../src/body/span.ts';
+import { readCharacterTrajectory } from '../src/character/character.ts';
+
+it('integrates eligible live emotionality and reaches the same first-ms onset after extra reads', () => {
+  const character = characterPath(),
+    initial = crisisOwner.initialize(frame());
+  const rng: ActorRandomCursor = {
+    words: createRng(1),
+    identity: {
+      id: 'a',
+      seed: 1,
+      uniformDraws: 0,
+      initializationDraws: 12,
+      origin: { runSeed: 1, person: 'a' },
+    },
+  };
+  const armed = crisisOwner.commitHazard(
+    initial.state,
+    { key: { kind: 'crisis', channelId: 'onset' }, operation: 'allocate', at: 0 },
+    {
+      ...frame(),
+      continuation: initial.continuation,
+      rng,
+      alive: true,
+      asleep: false,
+      traits: readCharacterTrajectory(character, 0).traits,
+      mood,
+    },
+  );
+  const run = (times: number[]) => {
+    let x = armed,
+      from = 0;
+    for (const to of times) {
+      const r = crisisOwner.advance(x.state, {
+        ...frame(),
+        from,
+        to,
+        phase: 1,
+        priorWorldRevision: 0,
+        continuation: x.continuation,
+        body: { id: 'b', conditionId: 'b', from: 0, to: 1e9, fields: [], readout: [] },
+        mood,
+        character,
+        traits: readCharacterTrajectory(character, from).traits,
+        alive: true,
+        asleep: false,
+        commandStrainRatePerMinute: 0,
+      });
+      x = { ...x, ...r };
+      from = r.advancedThrough;
+      if (r.randomBoundary) return r;
+    }
+    throw new Error('Expected positive-hazard onset');
+  };
+  const one = run([86400000]),
+    split = run([175, 120001, 1145222, 86400000]);
+  expect(split.randomBoundary).toEqual(one.randomBoundary);
+  expect(split.continuation.clock).toEqual(one.continuation.clock);
+  expect(one.randomBoundary?.operation).toBe('fire');
+  expect(one.advancedThrough).toBeGreaterThan(0);
+  const h = one.continuation.hazard,
+    cell = required(h.activeIntegralCell),
+    at = one.advancedThrough;
+  expect(evaluateCell(cell, at)).toBeGreaterThanOrEqual(required(h.threshold).exponentialBudget);
+  expect(evaluateCell(cell, at - 1)).toBeLessThan(required(h.threshold).exponentialBudget);
+  // Saturated negative mood makes pressure exactly one: independent trapezoidal intensity oracle.
+  const a = readCharacterTrajectory(character, 0).traits.emotionality;
+  const b = readCharacterTrajectory(character, at).traits.emotionality;
+  const expected = effective.builtins.CRISIS_DEFAULTS.baseHazard * (at / 3600000) * (0.5 + (a + b) / 2);
+  expect(Math.abs(evaluateCell(cell, at) - expected)).toBeLessThan(1e-9);
+  expect(armed.rng.identity.uniformDraws).toBe(1);
+  expect(rng.identity.uniformDraws).toBe(0);
 });

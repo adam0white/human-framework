@@ -1,59 +1,40 @@
 import { expect, it } from 'vitest';
-import { qalbControl } from '../examples/qalb-control.ts';
-import { createPerson } from '../src/person.ts';
 import { qalbReading } from '../src/qalb.ts';
-import { seedTie } from '../src/social/social.ts';
+import type { ActorState, Lexicon } from '../src/run-schema.ts';
 
-it('leaves state, RNG and next decision exactly unchanged', () => {
-  expect(qalbControl().continuationIdentical).toBe(true);
-});
-it('attributes categorical evidence without numbers or aliases, even for distress and low trust', () => {
-  const p = createPerson({
-    id: 'reader',
-    name: 'Reader',
-    seed: 13,
-    now: 0,
-    bornAt: -15768000,
-    sex: 'male',
-    norms: [{ normId: 'honesty', standing: 'forbidden', conviction: 0.9 }],
-    voices: [{ voiceId: 'advisor', trust: 0.1 }],
-  });
-  p.affect.mood.valence = -0.7;
-  p.memory.sourceTrust.teller = 0.8;
-  p.memory.episodes.push({
-    id: 'e1',
-    at: 0,
-    kind: 'told',
-    valence: 0,
-    salience: 1,
-    summary: 'News arrived.',
-    tags: [],
-  });
-  seedTie(p, { otherId: 'neighbor', trust: 0.5 });
-  const before = structuredClone(p);
-  const freeze = (value: object) => {
-    for (const child of Object.values(value)) if (child !== null && typeof child === 'object') freeze(child);
-    Object.freeze(value);
-  };
-  freeze(p);
-  const rows = qalbReading(p);
-  expect(rows.find((r) => r.facet === 'attention')?.evidence).toContain('memory:e1:told');
+it('attributes retained evidence and keeps the three trust stores separate without mutation', () => {
+  const actor = {
+    id: 'a',
+    rng: { a: 1, b: 2, c: 3, d: 4 },
+    memory: { episodes: [{ id: 'e0', kind: 'told' }], gists: [], sourceTrust: { teller: 0.8 } },
+    conscience: { norms: [{ normId: 'honesty', standing: 'forbidden', conviction: 0.9 }] },
+    affect: { mood: { valence: -0.7, arousal: 0.2 } },
+    social: { relationships: [{ otherId: 'neighbor', trust: 0.5 }] },
+    will: { voices: [{ voiceId: 'advisor', trust: 0.1 }] },
+  } as unknown as ActorState;
+  const lex: Lexicon = {
+      names: { neighbor: 'Sam', advisor: 'Mum', teller: 'Lee' },
+      roles: {},
+      actions: {},
+      prefer: 'name',
+    },
+    before = JSON.stringify(actor);
+  const rows = qalbReading(actor, [], lex);
+  expect(rows.find((r) => r.facet === 'attention')?.evidence).toContain('memory:e0:told');
   expect(rows.find((r) => r.facet === 'held-norm')?.evidence).toContain('norm:honesty');
   expect(rows.filter((r) => r.facet === 'trust').map((r) => r.evidence[0])).toEqual([
     'social.relationships:neighbor',
     'will.voices:advisor',
     'memory.sourceTrust:teller',
   ]);
-  expect(rows.every((r) => r.personId === p.id && r.sources.length === 3)).toBe(true);
-  const noNumbers = (value: unknown): boolean =>
-    typeof value !== 'number' &&
-    (typeof value !== 'object' || value === null || Object.values(value).every(noNumbers));
-  expect(noNumbers(rows)).toBe(true);
-  for (const row of rows) {
-    row.evidence.push('external');
-    row.sources.length = 0;
-    row.text = 'Changed';
-  }
-  expect(p).toEqual(before);
-  expect(qalbReading(p)).not.toEqual(rows);
+  expect(
+    rows
+      .filter((r) => r.facet === 'trust')
+      .map((r) => r.text)
+      .join(' '),
+  ).toContain('advising voice Mum');
+  const row = rows[0];
+  if (!row) throw new Error('Missing row');
+  row.evidence.push('changed');
+  expect(JSON.stringify(actor)).toBe(before);
 });
