@@ -935,3 +935,20 @@ From the code, not observed in that run: the post rule, the hit area and the dis
 The rule hash ignores alerts, so replay hashes do not move.
 
 **Deferred.** Target **2026-11-10**, **a taller phone map at dusk** (360 px wide). The watcher sheet covers the map at dusk, so posts cannot be tapped on the map. The post buttons in the sheet work. Also open from the retest, target 2026-11-10: the "in the new village" checkbox wording, and a raid headline beside "It was quiet enough."
+
+## Lab-panel round 2026-10-27 (retests-1027b)
+
+The first lab-panel round played live `cab6c9e` with 12 standing testers on a first visit and the cold pair Anika Bose and Erik Lind ([playtest](watch-playtest-2026-10-27-panel.md)). Verdict: **needs a fix cycle** and a same-tester retest (0 keep, 11 mixed, 3 quit). The blocking asks are F-1592 to F-1598.
+
+**Deferred** (to the fix cycle, then the retest):
+
+- Target **2026-11-03** (retests-1027b): F-1592, say why "On to dusk" waits while the refuge visit is open, or carry the visit forward.
+- Target **2026-11-03** (retests-1027b): F-1593, plain refuge text without "save", "quiet action boundary" or "snapshot"; separate the two buttons.
+- Target **2026-11-03** (retests-1027b): F-1594, at dusk name every empty wall, not only the scout's; at dawn say which post would have stopped the loss.
+- Target **2026-11-03** (retests-1027b): F-1595, each watcher's own wording for shared morning lines; no word-for-word repeats in one winter.
+- Target **2026-11-03** (retests-1027b): F-1596, remove or disable "Ring and call … by name" when the rope is broken.
+- Target **2026-11-03** (retests-1027b): F-1597, say what a morning question agreed ("keep the Gate one day").
+- Target **2026-11-03** (retests-1027b): F-1598, a fresh seed for each new game, kept in the export.
+- Target **2026-11-03** (retests-1027b): F-469 and F-309 still open, tiredness on dusk cards and why a night-off is greyed; F-470, say live when a watcher comes back; F-299 and F-351, shorter quiet stretches; F-359, name each night order's effect at dawn; F-347, help only when someone can be sent; F-290, grain needed to the harvest.
+- Target **2026-11-10** (retests-1027b): F-1599, a taller phone map at dusk (the existing deferral, now numbered); F-1600, the title boxes' wording (closed by removal if Watch moves to HF 4.0); F-1601, a raid headline beside "It was quiet enough".
+- Target **2026-11-10** (retests-1027b): smaller asks F-1602 to F-1620 (developer wording, distinct and stable button names, header count, speaker names, reply-preview punctuation, the hopes sheet, layout overlaps, scout reliability, night messages, silent lantern move, six-night sample, resume check, phone button fold, blessing reason, people leaving lists, covered title box). Details in the 2026-10-27 lab-panel round doc.
