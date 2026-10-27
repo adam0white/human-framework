@@ -143,7 +143,7 @@ export function numericalPerson(seed: number): PersonAuthoring {
         selfDirection: 0.5,
       },
       reserve: {},
-      retention: { trace: 64, chronicleDays: 31 },
+      retention: { trace: 32, chronicleDays: 31 },
       habits: [],
       expectations: [],
       affect: { mood: { valence: 0, arousal: 0.5 }, regulation: 0, emotions: [] },

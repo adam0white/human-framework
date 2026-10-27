@@ -115,6 +115,29 @@ export class Frame {
         : this.state.continuations,
     };
   }
+  /** A discrete Character change starts a new trait path at `context.at`. Needs
+   * integrate that path from their own anchor, so they restart from their value
+   * materialized now; otherwise the closed form would read the new path before
+   * it begins. */
+  installCharacter(
+    person: T.PersonId,
+    state: Partial<T.ActorState>,
+    character: T.ActorContinuation['narrative']['character'],
+    context: T.FrameContext,
+  ): void {
+    const continuation = this.continuation(person);
+    const needs =
+      continuation.deliberation.needs.anchor.at < context.at
+        ? {
+            anchor: { at: context.at, conditionId: context.causes[0] ?? person },
+            state: { ...this.actor(person).needs },
+          }
+        : continuation.deliberation.needs;
+    this.install(person, state, {
+      narrative: { ...continuation.narrative, character },
+      deliberation: { ...continuation.deliberation, needs },
+    });
+  }
   references(person: T.PersonId): readonly T.Reference[] {
     let added = this.addedReferences.get(person);
     if (!added) {
@@ -1669,9 +1692,7 @@ export class Frame {
           continuation: continuation.narrative.character,
         },
       );
-      this.install(person, character.state, {
-        narrative: { ...continuation.narrative, character: character.continuation },
-      });
+      this.installCharacter(person, character.state, character.continuation, context);
       this.output(person, 'character', character, context);
       current = this.actor(person);
       const conscience = OWNERS.conscience.receiveUpbringing(current.conscience, exposure, {
@@ -2103,9 +2124,7 @@ export class Frame {
       out.day,
       { ...context, socialMs: out.socialMs, continuation: continuation.narrative.character },
     );
-    this.install(person, changed.state, {
-      narrative: { ...continuation.narrative, character: changed.continuation },
-    });
+    this.installCharacter(person, changed.state, changed.continuation, context);
     this.output(person, 'character', changed, context);
   }
   hazard(person: T.PersonId, boundary: T.DeepReadonly<T.HazardBoundary>, mood?: T.AffectTrajectory): void {
