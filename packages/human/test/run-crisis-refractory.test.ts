@@ -33,6 +33,15 @@ it('advances past the refractory end and preserves reached crisis events across 
   const whole = timeline(48 * HOUR);
   const split = timeline(HOUR);
   const crises = whole.events.filter((event) => event.data.kind === 'crisis');
+  const firstRecovered = crises.find(
+    (event) => event.data.kind === 'crisis' && event.data.change === 'recovered',
+  );
+  const secondOnset = crises.filter(
+    (event) => event.data.kind === 'crisis' && event.data.change === 'onset',
+  )[1];
+  expect(firstRecovered).toBeDefined();
+  expect(secondOnset).toBeDefined();
+  expect(secondOnset?.at).toBeGreaterThanOrEqual((firstRecovered?.at ?? Infinity) + 12 * HOUR);
   expect(crises.map((event) => event.data.kind === 'crisis' && event.data.change)).toEqual([
     'onset',
     'recovered',

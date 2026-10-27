@@ -16,6 +16,7 @@ absolute links in sections, since they are copied into the release page.
 Engine: 4.0.2. Fix crisis advancement after recovery.
 
 - Stop crisis hazard integration at the end of its refractory period. Eligibility remains fixed within each numerical interval, then rebases at that boundary. A person with sustained grief can recover and later enter another crisis without stalling the run.
+- **Archives.** 4.0.2 refuses 4.0.1 saves with `unsupported-archive` at `$.engine`; games start fresh. Replay hashes change: on the same one-hour fixture inputs, `hashes.initial`, `hashes.current` and `hashes.full` differ from 4.0.1 because the engine stamp and stored crisis hazard identity changed. `hashes.history` matches in that control.
 - Pin a public 48-hour control with two onsets and recoveries. Whole and hourly stepping produce identical events and actor RNG; each current-version archive restores and replays exactly.
 - Qualify the architecture's retained 3.x reference so removed comfort percepts, body-threshold interrupts and default protest-quality penalties are not claimed as 4.x behavior. Distinguish ordinary suggestion inputs from the separate coercion route.
 
