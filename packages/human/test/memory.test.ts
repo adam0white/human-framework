@@ -96,7 +96,7 @@ it('advances decay from the same anchor across fine and daily endpoints', () => 
   });
   expect(split.state).toEqual(once.state);
   expect(daily.state).toEqual(once.state);
-  expect(once.state.episodes[0]!.salience).toBeCloseTo(0.8 * 2 ** (-1 / 3), 12);
+  expect(once.state.episodes[0]?.salience).toBeCloseTo(0.8 * 2 ** (-1 / 3), 12);
 });
 it('maternal delivery creates a bounded attributed memory without inventing a father', () => {
   const result = memoryOwner.receiveMaternalBirth(

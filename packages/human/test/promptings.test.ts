@@ -55,7 +55,9 @@ it('records only a noticed pull opposed by a held norm or goal and applies fault
     record: { outcome: 'assented', opposedBy: 'norm:backbiting' },
   });
   expect(s.echo).toEqual({});
-  decision.considered[0]!.terms.pop();
+  const first = decision.considered[0];
+  if (!first) throw new Error('Missing considered option');
+  first.terms.pop();
   expect(
     promptingsOwner.receive(state(), { decision, activity: null, noticed: [] }, ctx).state.recent,
   ).toEqual([]);

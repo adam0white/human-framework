@@ -55,16 +55,20 @@ it('recalls a matching emotional place without strengthening ordinary memories',
 it('hour alone supplies no specific cue and weak ordinary memories do not intrude', () => {
   expect(receiveMemoryCue(state(), { deceased: [], emotionality: 0.5 }, ctx).effects.appraisals).toEqual([]);
   const s = state();
-  s.episodes[0]!.valence = 0.3;
+  const episode = s.episodes[0];
+  if (!episode) throw new Error('Missing episode');
+  episode.valence = 0.3;
   expect(
     receiveMemoryCue(s, { placeId: 'bridge', deceased: [], emotionality: 0.5 }, ctx).effects.appraisals,
   ).toEqual([]);
 });
 it('a warm memory of someone held deceased is reappraised as loss', () => {
   const s = state();
-  s.episodes[0]!.valence = 0.8;
-  s.episodes[0]!.targetId = 'mother';
+  const episode = s.episodes[0];
+  if (!episode) throw new Error('Missing episode');
+  episode.valence = 0.8;
+  episode.targetId = 'mother';
   const out = receiveMemoryCue(s, { personId: 'mother', deceased: ['mother'], emotionality: 0.5 }, ctx);
   expect(out.affectReceipts[0]).toMatchObject({ kind: 'felt', id: 'grief', targetId: 'mother' });
-  expect(out.state.episodes[0]!.salience).toBeGreaterThan(0.8);
+  expect(out.state.episodes[0]?.salience).toBeGreaterThan(0.8);
 });

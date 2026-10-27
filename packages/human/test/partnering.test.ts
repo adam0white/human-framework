@@ -3,8 +3,8 @@ import { bodyOwner } from '../src/body/body.ts';
 import { createRng } from '../src/core/random.ts';
 import { canMarry, kinship, partneringOwner, widowhoodMortality } from '../src/partnering/partnering.ts';
 import type { KinSnapshot, PartneringContext } from '../src/run-schema.ts';
-import { person } from './w2-fixture.ts';
 import { effective, frame, initial } from './w1-fixture.ts';
+import { person } from './w2-fixture.ts';
 
 const snapshot: KinSnapshot = {
   at: 0,
@@ -134,13 +134,24 @@ it('requires custom only for marriage and preserves missing kin as unknown', () 
   ] as const;
   context.person = a.id;
   expect(
-    partneringOwner.receive(a.bonds, { type: 'courtship-meeting', partners, quality: 1, actionReceipt: 'meeting', basis }, context)
-      .state.courtships,
+    partneringOwner.receive(
+      a.bonds,
+      { type: 'courtship-meeting', partners, quality: 1, actionReceipt: 'meeting', basis },
+      context,
+    ).state.courtships,
   ).toHaveLength(1);
   expect(() =>
     partneringOwner.receive(
       a.bonds,
-      { type: 'marriage', customId: 'custom', kinScopeId: 'scope', acceptedProposal: 'proposal', partners, guardian: { kind: 'known', stance: 'consented', basis: { kind: 'evidence', id: 'guardian' } }, basis },
+      {
+        type: 'marriage',
+        customId: 'custom',
+        kinScopeId: 'scope',
+        acceptedProposal: 'proposal',
+        partners,
+        guardian: { kind: 'known', stance: 'consented', basis: { kind: 'evidence', id: 'guardian' } },
+        basis,
+      },
       context,
     ),
   ).toThrow('missing admitted marriage custom');
@@ -155,7 +166,13 @@ it('requires custom only for marriage and preserves missing kin as unknown', () 
     provenance: { kind: 'authored-world' as const, author: 'test', ruleId: 'custom', edition: '1' },
     engineeringPremises: [],
   };
-  expect(canMarry(a, b, 0, custom, { kind: 'known', stance: 'consented', basis: { kind: 'evidence', id: 'guardian' } })).toEqual({
+  expect(
+    canMarry(a, b, 0, custom, {
+      kind: 'known',
+      stance: 'consented',
+      basis: { kind: 'evidence', id: 'guardian' },
+    }),
+  ).toEqual({
     kind: 'unknown',
     missing: [
       { kind: 'person', id: a.id },

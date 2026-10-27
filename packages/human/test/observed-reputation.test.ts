@@ -1,43 +1,60 @@
-import { expect, it } from 'vitest';
-import { observedReputationControl } from '../examples/observed-reputation-control.ts';
-import { confirm, credence } from '../src/beliefs/beliefs.ts';
-import { confirmObservedReputation } from '../src/observed-reputation.ts';
-import { createPerson } from '../src/person.ts';
-import { applyReputationBelief, markDeceased } from '../src/social/social.ts';
+/** Directly received facts correct beliefs and their social effect through one input route. */
+import { expect, test } from 'vitest';
+import { exportRun, step } from '../src/index.ts';
+import type { Input } from '../src/run-schema.ts';
+import { actor, authoredPerson, need, START, setup } from './support.ts';
 
-it('confirms unknown or malformed traits without changing relationships', () => {
-  const p = createPerson({ id: 'reader', name: 'Reader', seed: 13, bornAt: 0, sex: 'male' });
-  for (const trait of ['toString', 'constructor', '__proto__'])
-    confirmObservedReputation(p, `neighbor:${trait}`, true, 1);
-  confirmObservedReputation(p, 'neighbor:bad', true, 1, {
-    bad: { affection: NaN, trust: 0.1, respect: 0.1 },
-  });
-  expect(p.social.relationships).toEqual([]);
-  expect(credence(p, 'neighbor:toString')).toBeGreaterThan(0.9);
+function fact(id: string, prop: string, value: boolean, at = START): Input<'fact.confirmed'> {
+  return {
+    id,
+    at,
+    source: { type: 'host', id: 'world' },
+    kind: 'fact.confirmed',
+    payload: { person: 'ada', evidenceId: `evidence:${id}`, observationId: `observation:${id}`, prop, value },
+  };
+}
+function residents() {
+  const person = authoredPerson('ada', 'Ada');
+  person.state.relationships = [
+    {
+      otherId: 'bora',
+      affection: 0.3,
+      trust: 0.3,
+      respect: 0.3,
+      familiarity: 1,
+      roles: ['neighbor'],
+      ledger: 0,
+      lastInteraction: START,
+    },
+  ];
+  return setup([person, authoredPerson('bora', 'Bora', 'male')]);
+}
+function trust(run: ReturnType<typeof residents>) {
+  const value = actor(run).social.relationships.find((tie) => tie.otherId === 'bora')?.trust;
+  if (value === undefined) throw new Error('Missing actual relationship');
+  return value;
+}
+
+test('a confirmed reputation corrects trust once; repeating the same fact adds no second relationship delta', () => {
+  const run = residents();
+  const initial = trust(run);
+  const first = fact('host:honest', 'bora:honest', true);
+  need(step(run, { until: START, inputs: [first] }));
+  const corrected = trust(run);
+  expect(corrected).toBeGreaterThan(initial);
+  need(step(run, { until: START + 1, inputs: [fact('host:honest-again', 'bora:honest', true, START + 1)] }));
+  expect(trust(run)).toBeCloseTo(corrected, 8);
+  const hash = exportRun(run).hashes.full;
+  expect(step(run, { until: START + 1, inputs: [first] }).ok).toBe(false);
+  expect(exportRun(run).hashes.full).toBe(hash);
+  need(step(run, { until: START + 2, inputs: [fact('host:correction', 'bora:honest', false, START + 2)] }));
+  expect(trust(run)).toBeLessThan(corrected);
 });
 
-it('matches the manual correction and isolates the stale-relationship ablation', () => {
-  expect(observedReputationControl().equivalent).toBe(true);
-});
-it('preserves primitive semantics for self, unknown, deceased, repeated and custom claims', () => {
-  const p = createPerson({ id: 'reader', name: 'Reader', seed: 13, now: 0, bornAt: -15768000, sex: 'male' });
-  markDeceased(p, 'dead', 0);
-  const manual = structuredClone(p);
-  const table = { careful: { affection: 0.01, trust: 0.02, respect: 0.03 } };
-  for (const [prop, truth, custom] of [
-    ['reader:honest', true, undefined],
-    ['weather', false, undefined],
-    ['dead:honest', true, undefined],
-    ['other:careful', true, table],
-    ['other:careful', true, table],
-    ['other:careful', false, table],
-  ] as const) {
-    const before = credence(manual, prop);
-    const expected = confirm(manual, prop, truth, 1);
-    applyReputationBelief(manual, prop, before, credence(manual, prop), 1, custom);
-    const ids = confirmObservedReputation(p, prop, truth, 1, custom);
-    expect(ids).toEqual(expected);
-    ids.push('external');
-    expect(p).toEqual(manual);
-  }
+test('a prototype property is ordinary belief text and cannot select a relationship formula', () => {
+  const run = residents();
+  const before = structuredClone(actor(run).social.relationships);
+  need(step(run, { until: START, inputs: [fact('host:unrecognized', 'bora:constructor', true)] }));
+  expect(actor(run).social.relationships).toStrictEqual(before);
+  expect(actor(run).memory.beliefs.find((belief) => belief.prop === 'bora:constructor')).toBeDefined();
 });

@@ -33,6 +33,8 @@ it('attributes retained evidence and keeps the three trust stores separate witho
       .map((r) => r.text)
       .join(' '),
   ).toContain('advising voice Mum');
-  rows[0]!.evidence.push('changed');
+  const row = rows[0];
+  if (!row) throw new Error('Missing row');
+  row.evidence.push('changed');
   expect(JSON.stringify(actor)).toBe(before);
 });

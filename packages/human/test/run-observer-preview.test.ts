@@ -1,14 +1,18 @@
 /** SCOPE: detached public preview uses held knowledge and cannot book a live act. */
 import { expect, it } from 'vitest';
 import { createPerson, createRun, exportRun, inspect, preview } from '../src/run.ts';
-import { accepted, numericalPerson as authoredNumericalPerson, numericalSpec } from './run-numerical-fixture.ts';
+import {
+  accepted,
+  numericalPerson as authoredNumericalPerson,
+  numericalSpec,
+} from './run-numerical-fixture.ts';
+
 // Explicit valid authoring for these integration controls; owner numerical fixture is separately reserved.
-function numericalPerson(seed:number) {
-  const person=authoredNumericalPerson(seed);
-  person.state.retention={...person.state.retention,trace:32};
+function numericalPerson(seed: number) {
+  const person = authoredNumericalPerson(seed);
+  person.state.retention = { ...person.state.retention, trace: 32 };
   return person;
 }
-
 
 it('keeps the live archive unchanged and omits hidden target simulation', () => {
   const make = (satiety: number) => {

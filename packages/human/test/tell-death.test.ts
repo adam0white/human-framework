@@ -1,69 +1,63 @@
-import { describe, expect, test } from 'vitest';
-import {
-  createCommunity,
-  createPerson,
-  die,
-  isDeceasedTie,
-  type Person,
-  seedTie,
-  snapshot,
-  tellDeath,
-} from '../src/index.ts';
+/** Death knowledge arrives as timestamped evidence. No listener clock is rewound. */
+import { expect, test } from 'vitest';
+import { exportRun, step } from '../src/index.ts';
+import type { Input } from '../src/run-schema.ts';
+import { actor, authoredPerson, MINUTE, need, START, setup } from './support.ts';
 
-const person = (id: string, now: number) =>
-  createPerson({ id, name: id, seed: 1, now, bornAt: -10000000, sex: 'female' });
-function community(lateAt = 100) {
-  const dead = person('dead', 50);
-  die(dead);
-  const before = person('before', 40);
-  const late = person('late', lateAt);
-  for (const p of [before, late])
-    seedTie(p, { otherId: dead.id, affection: 0.8, familiarity: 1, roles: ['friend'] });
-  return { dead, before, late, c: createCommunity([dead, before, late]) };
+function listeners() {
+  const person = authoredPerson('ada', 'Ada');
+  person.state.relationships = [
+    {
+      otherId: 'bora',
+      affection: 0.8,
+      trust: 0.7,
+      respect: 0.6,
+      familiarity: 1,
+      roles: ['friend'],
+      ledger: 0,
+      lastInteraction: START,
+    },
+  ];
+  return setup([person, authoredPerson('bora', 'Bora', 'male'), authoredPerson('cem', 'Cem', 'male')]);
 }
-function deathTie(p: Person) {
-  const tie = p.social.relationships.find((r) => r.otherId === 'dead');
-  if (!tie) throw new Error('missing test tie');
-  return tie;
+function notice(at: number): Input<'death.heard'> {
+  return {
+    id: 'host:death-news',
+    at,
+    source: { type: 'host', id: 'world' },
+    kind: 'death.heard',
+    payload: { person: 'ada', deceased: 'bora', reporter: 'world', evidenceId: 'heard:bora-death' },
+  };
 }
 
-describe('tellDeath late listeners', () => {
-  test('the existing default already permits late delivery and matches explicit now mode exactly', () => {
-    const a = community();
-    const b = community();
-    tellDeath(a.c, a.dead, 50);
-    tellDeath(b.c, b.dead, 50, { late: 'now' });
-    expect(a.c.people.map(snapshot)).toEqual(b.c.people.map(snapshot));
-    expect(a.late.now).toBe(100);
-    expect(isDeceasedTie(deathTie(a.late))).toBe(true);
-    expect(deathTie(a.late)?.deceasedAt).toBe(100);
-    expect(a.late.memory.episodes.some((e) => e.at === 100 && e.summary === 'dead died')).toBe(true);
-  });
+test('a later receipt changes only the addressed listener’s knowledge and settles once', () => {
+  const run = listeners(),
+    at = START + 10 * MINUTE;
+  need(step(run, { until: at - 1, inputs: [] }));
+  expect(actor(run).social.relationships[0]?.deceasedAt).toBeUndefined();
+  const control = listeners();
+  need(step(control, { until: at, inputs: [] }));
+  const unaddressed = structuredClone(actor(control, 'cem'));
+  const receipt = notice(at);
+  need(step(run, { until: at, inputs: [receipt] }));
+  expect(actor(run).now).toBe(at);
+  expect(actor(run).social.relationships[0]?.deceasedAt).toBe(at);
+  expect(actor(run, 'cem')).toStrictEqual(unaddressed);
+  // A report is knowledge, not an instruction to kill the reported actor.
+  expect(actor(run, 'bora').body.alive).toBe(true);
+  const hash = exportRun(run).hashes.full;
+  expect(step(run, { until: at, inputs: [receipt] }).ok).toBe(false);
+  expect(exportRun(run).hashes.full).toBe(hash);
+});
 
-  test('explicit strict mode throws before any listener is changed', () => {
-    const { c, dead } = community();
-    const before = c.people.map(snapshot);
-    expect(() => tellDeath(c, dead, 50, { late: 'throw' })).toThrow(/is past the death minute/);
-    expect(c.people.map(snapshot)).toEqual(before);
-  });
-
-  test('strict mode accepts listeners at or before the death minute without changing their clock', () => {
-    const { c, dead, before, late } = community(50);
-    tellDeath(c, dead, 50, { late: 'throw' });
-    expect(before.now).toBe(40);
-    // Existing perception clamps faculty time to now; tellDeath passes the declared receipt minute.
-    expect(isDeceasedTie(deathTie(before))).toBe(true);
-    expect(late.now).toBe(50);
-    expect(deathTie(late)?.deceasedAt).toBe(50);
-  });
-
-  test('strict mode ignores untied or dead people even if their clocks are ahead', () => {
-    const { c, dead, late } = community();
-    late.social.relationships = [];
-    const deceased = person('already-dead', 200);
-    seedTie(deceased, { otherId: dead.id });
-    die(deceased);
-    c.people.push(deceased);
-    expect(() => tellDeath(c, dead, 50, { late: 'throw' })).not.toThrow();
-  });
+test('past-dated death news rejects the whole batch without changing any listener', () => {
+  const run = listeners(),
+    at = START + 10 * MINUTE;
+  need(step(run, { until: at, inputs: [] }));
+  const before = exportRun(run);
+  const input = notice(START);
+  expect(step(run, { until: at, inputs: [input] }).ok).toBe(false);
+  expect(exportRun(run)).toStrictEqual(before);
+  need(step(run, { until: at + 1, inputs: [notice(at + 1)] }));
+  expect(actor(run).social.relationships[0]?.deceasedAt).toBe(at + 1);
 });

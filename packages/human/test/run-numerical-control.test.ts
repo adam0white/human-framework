@@ -271,7 +271,13 @@ type Difference = { path: string; expected: unknown; actual: unknown; absolute?:
 
 function differences(expected: unknown, actual: unknown, path = '$'): Difference[] {
   if (Object.is(expected, actual)) return [];
-  if (expected !== null && actual !== null && typeof expected === 'object' && typeof actual === 'object') {
+  if (
+    expected !== null &&
+    actual !== null &&
+    typeof expected === 'object' &&
+    typeof actual === 'object' &&
+    Array.isArray(expected) === Array.isArray(actual)
+  ) {
     const left = new Map(Object.entries(expected));
     const right = new Map(Object.entries(actual));
     return [...new Set([...left.keys(), ...right.keys()])]
@@ -386,7 +392,12 @@ it('preserves combined public Run numerics over ten actual 24h timelines', () =>
       expect(JSON.stringify(c), `${label}, canonical repeat`).toBe(JSON.stringify(f));
       // Extra targets never create same-fidelity decisions, events or random draws.
       expect(exact(r.state), `${label}, same fidelity`).toEqual(exact(f.state));
-      expect(r.events, `${label}, same fidelity`).toEqual(f.events);
+      // Ruling 26: the event set, order and identity stay exact across chunking;
+      // continuous payload fields (mood included) compare within absolute 1e-9.
+      expect(
+        differences(f.events, r.events).filter((d) => !(d.absolute !== undefined && d.absolute <= 1e-9)),
+        `${label}, same fidelity events`,
+      ).toEqual([]);
       compareValues(f, r, `${label}, same fidelity irregular`);
       // Fidelity may legitimately alter autonomous opportunities. This bounded
       // shared-input comparison is not a universal promise of identical choices.

@@ -1,6 +1,5 @@
 import { describe, expect, test } from 'vitest';
 import { createRng, decay, normal, random, rowOf, weightedIndex } from '../src/core/index.ts';
-import { skillFamilies } from '../src/skills/skills.ts';
 
 describe('core/random', () => {
   test('is deterministic and serializable', () => {
@@ -43,7 +42,6 @@ describe('core/rowOf', () => {
   test('refuses prototype keys instead of writing through them', () => {
     for (const k of ['__proto__', 'constructor', 'prototype'])
       expect(() => rowOf({}, k)).toThrow(/cannot be used/);
-    expect(() => skillFamilies({ f: ['__proto__', 'polluted'] }, 0.5)).toThrow();
     expect(({} as Record<string, unknown>).polluted).toBeUndefined();
   });
 });

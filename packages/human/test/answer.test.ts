@@ -1,90 +1,102 @@
-/**
- * `answerNow`: a refusal answered between decision points is booked as a decision would book it, and the running
- * activity is left alone. Any other verdict writes nothing (the host interrupts and the next decision resolves it).
- */
-import { describe, expect, test } from 'vitest';
-import { answerNow, begin, decide, predict, tick, WILL_DEFAULTS } from '../src/index.ts';
-import type { Person, Suggestion } from '../src/types.ts';
-import { devoutMaghrib, insist, PRAY, STRETCH, WORK } from './support.ts';
+/** Advice uses the ordinary reconsideration path, including during an activity. No answerNow wrapper. */
+import { expect, test } from 'vitest';
+import { exportRun, preview, step } from '../src/index.ts';
+import type { Input } from '../src/run-schema.ts';
+import {
+  actionRequest,
+  actor,
+  authoredPerson,
+  exampleOffers,
+  exampleSpec,
+  MINUTE,
+  need,
+  openingInputs,
+  resolutionInput,
+  START,
+  setup,
+} from './support.ts';
 
-const voice = (p: Person) => p.will.voices.find((v) => v.voiceId === 'player');
+function running() {
+  const person = authoredPerson('ada', 'Ada'),
+    spec = exampleSpec();
+  const provenance = {
+    kind: 'authored-world' as const,
+    author: 'world',
+    ruleId: 'damaged-equipment',
+    edition: 'control4',
+  };
+  spec.definitions.norms = [
+    {
+      id: 'unsafe-work',
+      label: 'Do not operate the damaged equipment.',
+      standing: 'forbidden',
+      sources: [{ kind: 'assumption', ref: 'authored:control-workshop' }],
+      provenance,
+      exemptions: [],
+    },
+  ];
+  person.state.heldNorms = [{ normId: 'unsafe-work', standing: 'forbidden', conviction: 1, provenance }];
+  const base = exampleOffers('ada', ['rest', 'work']);
+  const restBase = base.find((offer) => offer.actionId === 'rest'),
+    workBase = base.find((offer) => offer.actionId === 'work');
+  if (!restBase || !workBase) throw new Error('Missing authored offers');
+  const rest = { ...restBase, durationMs: 120 * MINUTE },
+    work = { ...workBase, norms: [{ normId: 'unsafe-work', relation: 'violates' as const }] };
+  const run = setup([person], spec);
+  const start = actionRequest(
+    need(step(run, { until: START, inputs: openingInputs([{ id: 'ada', offers: [rest, work] }]) })),
+    'start',
+  );
+  expect(start.offerId).toBe(rest.id);
+  need(
+    step(run, {
+      until: START,
+      inputs: [resolutionInput(start, 0, { disposition: 'accepted', observations: [] })],
+    }),
+  );
+  return { run, activityId: start.activityId, work };
+}
 
-describe('answerNow', () => {
-  test('a refusal is booked exactly as a decision point books it', () => {
-    const a = devoutMaghrib(STRETCH + 1);
-    const b = structuredClone(a);
-    const r = decide(a, [PRAY, WORK], { suggestion: insist('work') });
-    expect(r.suggestion?.verdict).toBe('refused');
-    const out = answerNow(b, [PRAY, WORK], insist('work'));
-    expect(out.booked).toBe(true);
-    expect(out.resolution.verdict).toBe('refused');
-    expect(out.resolution.reason).toBe(r.suggestion?.reason);
-    expect(out.resolution.says.length).toBeGreaterThan(0);
-    expect(b.will).toEqual(a.will);
-  });
-
-  test('while he prays: the prayer runs on, no randomness or trace is used, the chronicle counts the verdict', () => {
-    const p = devoutMaghrib(STRETCH);
-    begin(p, PRAY, decide(p, [PRAY]));
-    tick(p, STRETCH + 5);
-    // With a temperature the will could draw from the RNG; answering during an activity must not.
-    p.will.temperature = 0.3;
-    const activity = structuredClone(p.activity);
-    const rng = structuredClone(p.rng);
-    const trace = p.trace.length;
-    const decisions = p.chronicleDay?.decisions ?? 0;
-    const out = answerNow(p, [WORK], insist('work'));
-    expect(out.booked).toBe(true);
-    expect(out.resolution.kind).toBe('willNot');
-    expect(p.activity).toEqual(activity);
-    expect(p.rng).toEqual(rng);
-    expect(p.trace.length).toBe(trace);
-    expect(voice(p)?.refused).toBe(1);
-    expect(p.chronicleDay?.decisions ?? 0).toBe(decisions);
-    expect(p.chronicleDay?.verdicts).toContainEqual(
-      expect.objectContaining({ voiceId: 'player', verdict: 'refused', action: 'work', count: 1 }),
-    );
-  });
-
-  test('a voice crowded out by maxVoices is not heard, so nothing is booked or tallied (quality review H2 Q25)', () => {
-    const p = devoutMaghrib(STRETCH + 1);
-    const crowd: Suggestion[] = Array.from({ length: WILL_DEFAULTS.maxVoices }, (_, i) => ({
-      voiceId: `a${String(i).padStart(2, '0')}`,
-      action: 'pray',
-      strength: 0.2,
-    }));
-    const zz: Suggestion = { ...insist('work'), voiceId: 'zz' };
-    const will = structuredClone(p.will);
-    const out = answerNow(p, [PRAY, WORK], zz, { others: crowd });
-    expect(out.booked).toBe(false);
-    expect(p.will).toEqual(will);
-    expect(p.chronicleDay?.verdicts ?? []).not.toContainEqual(expect.objectContaining({ voiceId: 'zz' }));
-  });
-
-  test('insisting while already pressed costs trust, as at decisions', () => {
-    const p = devoutMaghrib(STRETCH);
-    begin(p, PRAY, decide(p, [PRAY]));
-    tick(p, STRETCH + 2);
-    answerNow(p, [WORK], insist('work'));
-    const v = voice(p);
-    if (!v) throw new Error('no voice');
-    // An omission refusal adds no pressure (only pushes and insists he takes up do), so set the prior pressure that
-    // earlier words would have left; the `pushed` cost needs it.
-    v.pressure = WILL_DEFAULTS.distrustPressure + 0.1;
-    const before = v.trust;
-    answerNow(p, [WORK], insist('work'));
-    expect(v.refused).toBe(2);
-    expect(v.trust).toBeLessThan(before);
-    expect(v.history?.some((t) => t.reason === 'pushed')).toBe(true);
-  });
-
-  test('any other verdict writes nothing and equals predict', () => {
-    const p = devoutMaghrib(STRETCH + 1);
-    const before = structuredClone(p);
-    const s: Suggestion = { voiceId: 'player', action: 'pray', strength: 1 };
-    const out = answerNow(p, [PRAY, WORK], s);
-    expect(out.booked).toBe(false);
-    expect(out.resolution).toEqual(predict(p, [PRAY, WORK], s));
-    expect(p).toEqual(before);
-  });
+test('received advice can be refused while rest continues, without another choice draw; preview stays detached', () => {
+  const { run, activityId, work } = running(),
+    control = running().run;
+  const at = START + MINUTE;
+  const input: Input<'suggestion.received'> = {
+    id: 'voice:unsafe-request',
+    at,
+    source: { type: 'voice', id: 'player' },
+    kind: 'suggestion.received',
+    payload: {
+      person: 'ada',
+      received: {
+        kind: 'ordinary',
+        suggestion: {
+          adviceId: 'unsafe-advice',
+          voiceId: 'player',
+          affordanceId: work.id,
+          strength: 1,
+          insist: true,
+        },
+      },
+    },
+  };
+  const before = exportRun(run);
+  const hint = need(
+    preview(run, { perspective: { kind: 'host' }, person: 'ada', until: at, inputs: [input] }),
+  );
+  expect(exportRun(run)).toStrictEqual(before);
+  const predicted = hint.possibilities.find((event) => event.data.kind === 'suggestion-resolved');
+  if (predicted?.data.kind !== 'suggestion-resolved') throw new Error('Missing predicted response');
+  need(step(run, { until: at, inputs: [input] }));
+  need(step(control, { until: at, inputs: [] }));
+  const response = exportRun(run).current.events.find((event) => event.data.kind === 'suggestion-resolved');
+  if (response?.data.kind !== 'suggestion-resolved') throw new Error('Missing actual response');
+  expect(response.data.resolution.verdict).toBe('refused');
+  expect(response.data.resolution).toStrictEqual(predicted.data.resolution);
+  expect(actor(run).activity?.id).toBe(activityId);
+  expect(actor(run).rng).toStrictEqual(actor(control).rng);
+  expect(actor(run).will.voices.find((voice) => voice.voiceId === 'player')?.refused).toBe(1);
+  const hash = exportRun(run).hashes.full;
+  expect(step(run, { until: at, inputs: [input] }).ok).toBe(false);
+  expect(exportRun(run).hashes.full).toBe(hash);
 });

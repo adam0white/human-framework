@@ -1,21 +1,21 @@
 /** SCOPE: actual public scheduler reaches its caller endpoint using owner kernels. */
 import { expect, it } from 'vitest';
-import { createPerson, createRun, exportRun, restoreRun, replay, step } from '../src/index.ts';
+import { createPerson, createRun, exportRun, replay, restoreRun, step } from '../src/index.ts';
 import {
   accepted,
-  DAY,
   numericalPerson as authoredNumericalPerson,
+  DAY,
   numericalSpec,
   semanticInputs,
   sleepOffer,
 } from './run-numerical-fixture.ts';
+
 // Explicit valid authoring for these integration controls; owner numerical fixture is separately reserved.
-function numericalPerson(seed:number) {
-  const person=authoredNumericalPerson(seed);
-  person.state.retention={...person.state.retention,trace:32};
+function numericalPerson(seed: number) {
+  const person = authoredNumericalPerson(seed);
+  person.state.retention = { ...person.state.retention, trace: 32 };
   return person;
 }
-
 
 it('advances a real authored actor and detaches returned events', () => {
   const run = accepted(createRun(numericalSpec(1)));
@@ -91,12 +91,12 @@ it('settles actual sleep requests through the complete 24h run', () => {
   }
   expect(result.at).toBe(DAY);
   expect(exportRun(run).current.pending).toHaveLength(0);
-  const archive=exportRun(run), restored=accepted(restoreRun(archive));
+  const archive = exportRun(run),
+    restored = accepted(restoreRun(archive));
   expect(exportRun(restored)).toEqual(archive);
-  const reproduced=accepted(replay(archive));
+  const reproduced = accepted(replay(archive));
   expect(reproduced.verified).toBe(true);
   expect(reproduced.fullHash).toBe(archive.hashes.full);
-
 });
 it('caller checkpoints preserve the reached physical state and random stream', () => {
   const make = () => {
@@ -183,14 +183,25 @@ it('chains two issued request receipts and rejects the whole batch atomically', 
   expect(exportRun(run)).toEqual(before);
   accepted(step(run, { until: 0, inputs: responses }));
   expect(exportRun(run).current.world.revision).toBe(2);
-  run=accepted(restoreRun(exportRun(run)));
-  const refresh={id:'refresh-only-a',at:1,source:{type:'host' as const,id:spec.host.id},kind:'offers.received' as const,
-    payload:{person:'a',revision:2,offers:[{...sleepOffer(),id:'new-a',person:'a',durationMs:1}]}};
+  run = accepted(restoreRun(exportRun(run)));
+  const refresh = {
+    id: 'refresh-only-a',
+    at: 1,
+    source: { type: 'host' as const, id: spec.host.id },
+    kind: 'offers.received' as const,
+    payload: {
+      person: 'a',
+      revision: 2,
+      offers: [{ ...sleepOffer(), id: 'new-a', person: 'a', durationMs: 1 }],
+    },
+  };
   const finishing = accepted(step(run, { until: 1, inputs: [refresh] }));
   if (finishing.boundary.type !== 'world-required') throw new Error('Missing actual finish boundary');
   expect(finishing.boundary.requests).toHaveLength(2);
   expect(exportRun(run).current.offers.a?.revision).toBe(2);
-  expect(finishing.boundary.requests.every(request=>request.kind==='action'&&request.offerRevision===1)).toBe(true);
+  expect(
+    finishing.boundary.requests.every((request) => request.kind === 'action' && request.offerRevision === 1),
+  ).toBe(true);
   const settlements = finishing.boundary.requests.map((request, index) => {
     if (request.kind !== 'action') throw new Error('Expected finish action');
     return {
@@ -228,10 +239,10 @@ it('chains two issued request receipts and rejects the whole batch atomically', 
   const partial = accepted(step(run, { until: finishing.at + 1, inputs: [first] }));
   expect(partial.at).toBe(finishing.at);
   expect(partial.boundary.type).toBe('world-required');
-  const rng = exportRun(run).current.people['a']?.rng;
+  const rng = exportRun(run).current.people.a?.rng;
   const waiting = accepted(step(run, { until: finishing.at + 1, inputs: [] }));
   expect(waiting.at).toBe(finishing.at);
-  expect(exportRun(run).current.people['a']?.rng).toEqual(rng);
+  expect(exportRun(run).current.people.a?.rng).toEqual(rng);
   const complete = accepted(step(run, { until: finishing.at, inputs: [second] }));
   expect(complete.boundary.type).toBe('until');
 });
@@ -395,52 +406,148 @@ it('materializes an inherited newborn with a separate recorded construction stre
 });
 
 it('admits multiple kin scopes for one current fact revision without duplicate scope authorities', () => {
-  const spec=numericalSpec(9),run=accepted(createRun(spec));accepted(createPerson(run,numericalPerson(9)));
-  const basis={evidence:{kind:'evidence' as const,id:'kin-proof'},worldRevision:0};
-  const people=[{kind:'entity' as const,id:'older'},{kind:'entity' as const,id:'younger'}] as const;
-  const scope={id:'scope',people,at:0,kinRevision:1,premiseIds:['parent-proof'],degrees:'source-two-step' as const,
-    completeness:'complete-for-source-degrees' as const,basis:basis.evidence};
-  const source={type:'host' as const,id:spec.host.id};
-  accepted(step(run,{until:0,inputs:[
-    {id:'0-kin',at:0,source,kind:'lifecycle.received',payload:{type:'kin-premise',basis,scope,
-      premises:[{id:'parent-proof',from:people[0],to:people[1],role:'parent',basis:basis.evidence}]}},
-    {id:'1-scope',at:0,source,kind:'lifecycle.received',payload:{type:'kin-premise',basis,
-      scope:{...scope,id:'second-scope'},premises:[]}},
-    {id:'2-reassert',at:0,source,kind:'lifecycle.received',payload:{type:'kin-premise',basis,scope,premises:[]}},
-  ]}));
-  const archive=exportRun(run);expect(archive.current.lifecycle.kinScopes).toHaveLength(2);
+  const spec = numericalSpec(9),
+    run = accepted(createRun(spec));
+  accepted(createPerson(run, numericalPerson(9)));
+  const basis = { evidence: { kind: 'evidence' as const, id: 'kin-proof' }, worldRevision: 0 };
+  const people = [
+    { kind: 'entity' as const, id: 'older' },
+    { kind: 'entity' as const, id: 'younger' },
+  ] as const;
+  const scope = {
+    id: 'scope',
+    people,
+    at: 0,
+    kinRevision: 1,
+    premiseIds: ['parent-proof'],
+    degrees: 'source-two-step' as const,
+    completeness: 'complete-for-source-degrees' as const,
+    basis: basis.evidence,
+  };
+  const source = { type: 'host' as const, id: spec.host.id };
+  accepted(
+    step(run, {
+      until: 0,
+      inputs: [
+        {
+          id: '0-kin',
+          at: 0,
+          source,
+          kind: 'lifecycle.received',
+          payload: {
+            type: 'kin-premise',
+            basis,
+            scope,
+            premises: [
+              { id: 'parent-proof', from: people[0], to: people[1], role: 'parent', basis: basis.evidence },
+            ],
+          },
+        },
+        {
+          id: '1-scope',
+          at: 0,
+          source,
+          kind: 'lifecycle.received',
+          payload: { type: 'kin-premise', basis, scope: { ...scope, id: 'second-scope' }, premises: [] },
+        },
+        {
+          id: '2-reassert',
+          at: 0,
+          source,
+          kind: 'lifecycle.received',
+          payload: { type: 'kin-premise', basis, scope, premises: [] },
+        },
+      ],
+    }),
+  );
+  const archive = exportRun(run);
+  expect(archive.current.lifecycle.kinScopes).toHaveLength(2);
   expect(archive.current.lifecycle.kinRevision).toBe(1);
   expect(exportRun(accepted(restoreRun(archive)))).toEqual(archive);
 });
 
 it('routes actual belief revisions into reputation once per changed credence', () => {
-  const make=()=>{
-    const spec=numericalSpec(10);spec.definitions={...spec.definitions,sources:[...spec.definitions.sources,{type:'person',id:'target'}]};
-    const run=accepted(createRun(spec)),person=numericalPerson(10);
-    person.state.relationships=[{otherId:'target',affection:0.3,trust:0.3,respect:0.3,familiarity:1,roles:['neighbor'],ledger:0,lastInteraction:0}];
-    accepted(createPerson(run,person));return {run,spec};
+  const make = () => {
+    const spec = numericalSpec(10);
+    spec.definitions = {
+      ...spec.definitions,
+      sources: [...spec.definitions.sources, { type: 'person', id: 'target' }],
+    };
+    const run = accepted(createRun(spec)),
+      person = numericalPerson(10);
+    person.state.relationships = [
+      {
+        otherId: 'target',
+        affection: 0.3,
+        trust: 0.3,
+        respect: 0.3,
+        familiarity: 1,
+        roles: ['neighbor'],
+        ledger: 0,
+        lastInteraction: 0,
+      },
+    ];
+    accepted(createPerson(run, person));
+    return { run, spec };
   };
-  const first=make(),second=make();
-  const fact=(id:string,value:boolean)=>({id,at:0,source:{type:'host' as const,id:first.spec.host.id},kind:'fact.confirmed' as const,
-    payload:{person:'numerical-person',evidenceId:`evidence-${id}`,observationId:`observation-${id}`,prop:'target:honest',value}});
-  accepted(step(first.run,{until:0,inputs:[fact('0-true',true)]}));
-  const trust=(run:Parameters<typeof exportRun>[0])=>exportRun(run).current.people['numerical-person']?.social.relationships.find(tie=>tie.otherId==='target')?.trust;
+  const first = make(),
+    second = make();
+  const fact = (id: string, value: boolean) => ({
+    id,
+    at: 0,
+    source: { type: 'host' as const, id: first.spec.host.id },
+    kind: 'fact.confirmed' as const,
+    payload: {
+      person: 'numerical-person',
+      evidenceId: `evidence-${id}`,
+      observationId: `observation-${id}`,
+      prop: 'target:honest',
+      value,
+    },
+  });
+  accepted(step(first.run, { until: 0, inputs: [fact('0-true', true)] }));
+  const trust = (run: Parameters<typeof exportRun>[0]) =>
+    exportRun(run).current.people['numerical-person']?.social.relationships.find(
+      (tie) => tie.otherId === 'target',
+    )?.trust;
   expect(trust(first.run)).toBeGreaterThan(0.3);
-  const result=accepted(step(second.run,{until:0,inputs:[fact('0-true',true),fact('1-again',true),fact('2-false',false)]}));
-  expect(trust(second.run)).toBeLessThan(trust(first.run)??0);
-  expect(result.events.filter(event=>event.data.kind==='belief-revised')).toHaveLength(2);
+  const result = accepted(
+    step(second.run, {
+      until: 0,
+      inputs: [fact('0-true', true), fact('1-again', true), fact('2-false', false)],
+    }),
+  );
+  expect(trust(second.run)).toBeLessThan(trust(first.run) ?? 0);
+  expect(result.events.filter((event) => event.data.kind === 'belief-revised')).toHaveLength(2);
   expect(accepted(replay(exportRun(second.run))).verified).toBe(true);
 });
 
 it('installs authored routine opportunities on real construction and replays their reached draw', () => {
-  const spec=numericalSpec(11),offer={...sleepOffer(),id:'scheduled-sleep',person:'numerical-person',durationMs:1};
-  spec.definitions={...spec.definitions,routines:[{id:'daily',entries:[{id:'opportunity',at:1,chance:1,offer}]}]};
-  let run=accepted(createRun(spec));accepted(createPerson(run,numericalPerson(11)));
-  expect(exportRun(run).current.routines[0]?.source).toEqual({kind:'definition',id:'daily'});
-  run=accepted(restoreRun(exportRun(run)));
-  const result=accepted(step(run,{until:1,inputs:[{id:'actual-offers',at:1,source:{type:'host',id:spec.host.id},kind:'offers.received',
-    payload:{person:'numerical-person',revision:1,offers:[offer]}}]}));
+  const spec = numericalSpec(11),
+    offer = { ...sleepOffer(), id: 'scheduled-sleep', person: 'numerical-person', durationMs: 1 };
+  spec.definitions = {
+    ...spec.definitions,
+    routines: [{ id: 'daily', entries: [{ id: 'opportunity', at: 1, chance: 1, offer }] }],
+  };
+  let run = accepted(createRun(spec));
+  accepted(createPerson(run, numericalPerson(11)));
+  expect(exportRun(run).current.routines[0]?.source).toEqual({ kind: 'definition', id: 'daily' });
+  run = accepted(restoreRun(exportRun(run)));
+  const result = accepted(
+    step(run, {
+      until: 1,
+      inputs: [
+        {
+          id: 'actual-offers',
+          at: 1,
+          source: { type: 'host', id: spec.host.id },
+          kind: 'offers.received',
+          payload: { person: 'numerical-person', revision: 1, offers: [offer] },
+        },
+      ],
+    }),
+  );
   expect(result.boundary.type).toBe('world-required');
-  expect(exportRun(run).current.queue.some(event=>event.data.kind==='routine-opportunity')).toBe(false);
+  expect(exportRun(run).current.queue.some((event) => event.data.kind === 'routine-opportunity')).toBe(false);
   expect(accepted(replay(exportRun(run))).verified).toBe(true);
 });
