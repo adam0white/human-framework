@@ -165,8 +165,28 @@ function sha256(input: Uint8Array): string {
   return Array.from(state, (x) => x.toString(16).padStart(8, '0')).join('');
 }
 
+/** UTF-8 bytes of a string; lone surrogates encode as U+FFFD, as TextEncoder does, without a host global. */
+export function utf8(text: string): Uint8Array {
+  const out: number[] = [];
+  for (let i = 0; i < text.length; i++) {
+    let c = text.charCodeAt(i);
+    if (c >= 0xd800 && c <= 0xdbff) {
+      const next = i + 1 < text.length ? text.charCodeAt(i + 1) : 0;
+      if (next >= 0xdc00 && next <= 0xdfff) {
+        c = 0x10000 + ((c - 0xd800) << 10) + (next - 0xdc00);
+        i++;
+      } else c = 0xfffd;
+    } else if (c >= 0xdc00 && c <= 0xdfff) c = 0xfffd;
+    if (c < 0x80) out.push(c);
+    else if (c < 0x800) out.push(0xc0 | (c >> 6), 0x80 | (c & 63));
+    else if (c < 0x10000) out.push(0xe0 | (c >> 12), 0x80 | ((c >> 6) & 63), 0x80 | (c & 63));
+    else out.push(0xf0 | (c >> 18), 0x80 | ((c >> 12) & 63), 0x80 | ((c >> 6) & 63), 0x80 | (c & 63));
+  }
+  return Uint8Array.from(out);
+}
+
 /** One wire contract: SHA256(UTF8(canonical JSON [domain,...parts])). */
 export function hashCanonical(domain: string, ...parts: readonly unknown[]): string {
   if (!domain) throw new TypeError('empty hash domain');
-  return sha256(new TextEncoder().encode(canonicalJson([domain, ...parts])));
+  return sha256(utf8(canonicalJson([domain, ...parts])));
 }

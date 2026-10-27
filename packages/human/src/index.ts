@@ -14,5 +14,5 @@ export type {
   Reference, ReferenceBinding, ProjectionExclusion, PortableUnknown, PortableProvenance,
   SourcedNorm, HeldNorm, NormProvenance, PerceptData, EvidenceRef, LifecycleReceipt,
   SkillDefinition, SkillReading, SkillSuccess, MethodEvidence, Lexicon,
-  RunOperations, ProjectionOperations,
+  RunOperations, ProjectionOperations, ActorActivity,
 } from './run-schema.ts';

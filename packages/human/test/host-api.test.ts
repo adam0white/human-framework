@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
-import { createPerson, createRun, exportRun, step } from '../src/index.ts';
-import type { ActionExpectation, Habit } from '../src/run-schema.ts';
+import { createPerson, createRun, exportRun, inspect, step } from '../src/index.ts';
+import type { ActionExpectation, Habit, PersonaAdmission } from '../src/run-schema.ts';
 import { actor, authoredPerson, DAY, exampleSpec, MINUTE, need, START } from './support.ts';
 
 const habit: Habit = {
@@ -122,4 +122,20 @@ test('received interpretation replaces held understanding with provenance rather
   expect(actor(run).conscience.norms).toStrictEqual([
     { normId: 'tidy', standing: 'obligatory', conviction: 0.8, provenance },
   ]);
+});
+
+test('portable admission and host persona reads are an explicit 4.0 rejection that changes nothing', () => {
+  const run = need(createRun(exampleSpec()));
+  need(createPerson(run, authoredPerson('ada', 'Ada')));
+  const before = exportRun(run).hashes.full;
+  const portable = { ...authoredPerson('bea', 'Bea'), admission: {} as PersonaAdmission };
+  const admitted = createPerson(run, portable);
+  expect(admitted.ok).toBe(false);
+  if (admitted.ok) throw new Error('Portable admission was accepted');
+  expect(admitted.error.code).toBe('invalid-admission');
+  const read = inspect(run, { perspective: { kind: 'host' }, people: ['ada'], select: ['persona'] });
+  expect(read.ok).toBe(false);
+  if (read.ok) throw new Error('Host persona read was accepted');
+  expect(read.error.message).toBe(admitted.error.message);
+  expect(exportRun(run).hashes.full).toBe(before);
 });

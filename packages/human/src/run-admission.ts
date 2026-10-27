@@ -43,6 +43,14 @@ export function compareInputs(a: DeepReadonly<Input>, b: DeepReadonly<Input>): n
   );
 }
 
+/**
+ * HF 4.0 rejects portable person admission (`PersonAuthoring.admission`) and the host persona, calendar
+ * and chapter-preparation reads by design (owner-approved scope, 2026-10-27): a person enters a run only
+ * as authored state. See the CHANGELOG 4.0.0 migration section.
+ */
+export const PORTABLE_ADMISSION_REJECTED =
+  'HF 4.0 does not admit portable persons; author the person with createPerson state instead';
+
 /** C0 constructor admission. Faculty validators still check their own retained
  * state. Known external identities permit forward cast ties without fake actors.
  */

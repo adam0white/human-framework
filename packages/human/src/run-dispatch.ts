@@ -8,7 +8,7 @@ import { ageYearsAt } from './body/span.ts';
 import { projectChapterClock } from './chapter-clock.ts';
 import { cognitionOwner } from './cognition/cognition.ts';
 import { conversationOwner } from './conversation/conversation.ts';
-import { checkPersonAuthoring, classifyQueuedInput } from './run-admission.ts';
+import { PORTABLE_ADMISSION_REJECTED, checkPersonAuthoring, classifyQueuedInput } from './run-admission.ts';
 
 export function copyOffer(offer: T.DeepReadonly<T.Offer>): T.Offer {
   const { promise, ...rest } = offer;
@@ -2471,7 +2471,7 @@ export class Frame {
   addPerson(input: T.DeepReadonly<T.PersonAuthoring>, cause: T.Id): void {
     const admitted = checkPersonAuthoring(this.state, this.record.spec.definitions, false, input);
     if (!admitted.ok) throw new RangeError(admitted.error.message);
-    if (input.admission) throw new RangeError('Portable admission composition is incomplete');
+    if (input.admission) throw new RangeError(PORTABLE_ADMISSION_REJECTED);
     const context = this.context(input.id, 1, [cause]);
     const built = constructAuthoredActor(admitted.value, context, this.record.spec.seed, OWNERS);
     const issues = validateActor(

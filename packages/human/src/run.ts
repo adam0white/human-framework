@@ -2,7 +2,7 @@
  * once. Full history materialization and canonical hashes belong to cold export.
  */
 import { cloneData } from './core/clone.ts';
-import { checkPersonAuthoring, checkRunSpec } from './run-admission.ts';
+import { PORTABLE_ADMISSION_REJECTED, checkPersonAuthoring, checkRunSpec } from './run-admission.ts';
 import { archiveHashes } from './run-archive.ts';
 import { hashCanonical } from './run-canonical.ts';
 import { Frame } from './run-dispatch.ts';
@@ -40,18 +40,19 @@ export function createRun(spec: T.RunSpec): T.Result<T.Run> {
 
 export function createPerson(run: T.Run, input: T.DeepReadonly<T.PersonAuthoring>): T.Result<T.PersonId> {
   const record = readKernel(run);
-  const admitted = checkPersonAuthoring(record.current, record.spec.definitions, record.started, input);
-  if (!admitted.ok) return admitted;
-  const person = admitted.value;
-  if (person.admission)
+  // Checked before the schema so every portable input, well-formed or not, gets the one documented rejection.
+  if (typeof input === 'object' && input !== null && Object.hasOwn(input, 'admission'))
     return {
       ok: false,
       error: {
         code: 'invalid-admission',
         path: '$.admission',
-        message: 'Portable admission composition is incomplete',
+        message: PORTABLE_ADMISSION_REJECTED,
       },
     };
+  const admitted = checkPersonAuthoring(record.current, record.spec.definitions, record.started, input);
+  if (!admitted.ok) return admitted;
+  const person = admitted.value;
   const context: T.FrameContext = {
     effective: record.parameters.effective,
     effectiveParametersHash: record.parameters.hash,

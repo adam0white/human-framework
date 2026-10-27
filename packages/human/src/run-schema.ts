@@ -5298,16 +5298,7 @@ export interface ProjectionOperations {
     clock: DeepReadonly<ChapterClock>,
     untilWallMs: number,
   ): Result<DeepReadonly<ChapterProjection>>;
-  projectPersona(
-    view: DeepReadonly<Inspection>,
-    mapping: DeepReadonly<PersonaMapping>,
-  ): Result<DeepReadonly<PersonaProjection>>;
-  projectCalendarPersona(
-    view: DeepReadonly<Inspection>,
-    mapping: DeepReadonly<CalendarMapping>,
-  ): Result<DeepReadonly<CalendarProjection>>;
-  validatePersonaProjection(input: unknown): Result<DeepReadonly<PersonaProjection>>;
-  validateCalendarPersona(input: unknown): Result<DeepReadonly<CalendarProjection>>;
+  // Portable persona and calendar projection are rejected in 4.0 (PORTABLE_ADMISSION_REJECTED).
 }
 
 // Concrete module initializer bindings. C0 composes owner results; it never initializes foreign slices.

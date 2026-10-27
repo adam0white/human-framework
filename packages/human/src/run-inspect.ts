@@ -3,6 +3,7 @@
 
 import { cloneData } from './core/clone.ts';
 import { exportRun } from './run.ts';
+import { PORTABLE_ADMISSION_REJECTED } from './run-admission.ts';
 import { freezeData, readKernel } from './run-kernel.ts';
 import { OWNERS } from './run-owners.ts';
 import { bodyPerception } from './run-person.ts';
@@ -40,7 +41,7 @@ export function inspectCurrentRun(
     q.perspective.kind === 'host' &&
     q.select.some((s) => s === 'persona' || s === 'calendar' || s === 'chapter')
   )
-    return fail('$.select', 'C0 portable candidate / chapter composition required');
+    return fail('$.select', PORTABLE_ADMISSION_REJECTED, 'invalid-admission');
   let start = 0;
   if (q.afterEvent !== undefined) {
     const index = state.events.findIndex((e) => e.id === q.afterEvent);
