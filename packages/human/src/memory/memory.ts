@@ -437,26 +437,39 @@ export const memoryOwner: MemoryOwner = {
     const out = checked(base.state, context.allocations),
       K = context.effective.builtins.MEMORY_DEFAULTS,
       G = context.effective.builtins.GIST_DEFAULTS;
-    const firstFold = out.episodes.reduce<number>(
-      (next, e) => Math.min(next, e.at + G.horizon * 60000 + 1),
-      Infinity,
-    );
+    const decay = (minutes: number) => {
+      for (const [list, k] of [
+        [out.episodes, K],
+        [out.gists, G],
+      ] as const)
+        for (const e of list) {
+          const half = k.halfLifeNeutral + (k.halfLifeEmotional - k.halfLifeNeutral) * Math.abs(e.valence);
+          e.salience *= dexp((-Math.LN2 * minutes) / half);
+        }
+    };
+    const horizon = G.horizon * 60000;
+    let anchor = { ...base.anchor },
+      folded = false;
+    // An episode already past the horizon when the span starts (authored history older than the horizon)
+    // folds at the span start, so the span still advances and the fold clock does not depend on chunking.
+    const overdue = out.episodes.filter((e) => context.from - e.at > horizon);
+    if (overdue.length) {
+      decay((context.from - anchor.at) / 60000);
+      for (const e of overdue) fold(out, e, context.from, G);
+      out.episodes = out.episodes.filter((e) => !overdue.includes(e));
+      anchor = { at: context.from, conditionId: `memory-fold:${context.from}` };
+      folded = true;
+    }
+    const firstFold = out.episodes.reduce<number>((next, e) => Math.min(next, e.at + horizon + 1), Infinity);
     const through = Math.min(context.to, Math.max(context.from, firstFold));
-    const minutes = (through - base.anchor.at) / 60000;
-    for (const [list, k] of [
-      [out.episodes, K],
-      [out.gists, G],
-    ] as const)
-      for (const e of list) {
-        const half = k.halfLifeNeutral + (k.halfLifeEmotional - k.halfLifeNeutral) * Math.abs(e.valence);
-        e.salience *= dexp((-Math.LN2 * minutes) / half);
-      }
+    const settled = folded ? checked(out) : checked(base.state);
+    decay((through - anchor.at) / 60000);
     // Fold on the first integer millisecond beyond the horizon, not an arbitrary caller endpoint.
-    const due = out.episodes.filter((e) => through - e.at > G.horizon * 60000);
+    const due = out.episodes.filter((e) => through - e.at > horizon);
     for (const e of due) fold(out, e, through, G);
     out.episodes = out.episodes.filter((e) => !due.includes(e));
     const next = out.episodes.reduce<number | null>((n, e) => {
-      const at = e.at + G.horizon * 60000 + 1;
+      const at = e.at + horizon + 1;
       return n === null ? at : Math.min(n, at);
     }, null);
     return {
@@ -464,7 +477,7 @@ export const memoryOwner: MemoryOwner = {
       nextBoundary: next,
       continuation: due.length
         ? { anchor: { at: through, conditionId: `memory-fold:${through}` }, state: checked(out) }
-        : { anchor: { ...base.anchor }, state: checked(base.state) },
+        : { anchor, state: settled },
     };
   },
   receiveMaternalBirth(state, input, context) {

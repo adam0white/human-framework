@@ -586,6 +586,29 @@ export const agendaOwner: import('../run-schema.ts').AgendaOwner = {
     const state = cloneData(previous) as import('../run-schema.ts').AgendaState;
     const d = context.effective.builtins.AGENDA_DEFAULTS,
       events: import('../run-schema.ts').EventData[] = [];
+    // A window that closes inside this span is a boundary: the scheduler re-probes at until + 1, so a
+    // commitment breaks (or a recurring one renews) at the same clock however the caller chunks steps.
+    const inside = state.commitments
+      .filter(
+        (c) =>
+          c.until + 1 > context.from &&
+          c.until + 1 < context.to &&
+          ((c.status === 'pending' && !isUnderWay({ activity: context.activity }, c, c.until + 1)) ||
+            (c.recurEveryMs !== undefined &&
+              chainLink(c) &&
+              (c.recurUntil === undefined || c.from + c.recurEveryMs <= c.recurUntil) &&
+              !hasSuccessor(state, c))),
+      )
+      .map((c) => c.until + 1)
+      .sort((a, b) => a - b)[0];
+    if (inside !== undefined)
+      return {
+        state: cloneData(previous) as import('../run-schema.ts').AgendaState,
+        effects: { terms: [], modifiers: [], appraisals: [] },
+        events: [],
+        nextBoundary: inside,
+        advancedThrough: context.to,
+      };
     const owe = (
       c: import('../run-schema.ts').Commitment,
       reason: import('../run-schema.ts').OwedMakeUp['reason'],

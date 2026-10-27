@@ -2072,6 +2072,8 @@ export type ActorActivity = {
   decisionId: Id;
   intention: string;
   suggestions: readonly SuggestionResolution[];
+  /** The one voice credited with this choice (will's creditedResolution), as 3.x Activity.suggestion. */
+  suggestion?: SuggestionResolution;
   protest?: boolean;
   reviewAt: Time;
   thresholdAt?: Time;
@@ -4435,6 +4437,8 @@ export interface ConscienceOwner {
           norms: readonly NormTag[];
           intention: string;
         }
+      // A broken commitment linked to a held norm: the same deed law, as a completed violation (3.x recordMissed).
+      | { kind: 'missed-commitment'; evidenceId: Id; action: Id; normId: Id; target?: Id }
       | { kind: 'interpretation'; data: Payloads['norm.interpretation-received'] }
       | { kind: 'repair'; data: Payloads['repair.received'] }
       | { kind: 'repent'; data: Payloads['repentance.requested'] }

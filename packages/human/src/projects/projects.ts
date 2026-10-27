@@ -288,8 +288,9 @@ export const projectsOwner: import('../run-schema.ts').ProjectsOwner = {
             },
           },
         });
+        // The agenda allocates the goal's id when it receives the adoption. Until the next consideration
+        // names it as current, history matches it by adoptedAt === lastAdoptedAt.
         state.lastAdoptedAt = context.at;
-        state.currentGoalId = `project-proposal:${prospect.id}:${context.at}`;
       }
     }
     return {

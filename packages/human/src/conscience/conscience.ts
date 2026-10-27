@@ -358,13 +358,36 @@ export function receiveConscienceEvidence(
     const breach = state.breaches.find((b) => b.id === input.data.deedId);
     if (breach && breach.victimId === undefined) breach.repaired = true;
   } else {
-    // Emitted speech uses the same held-norm deed law without a physical activity.
-    const speech = input.kind === 'communication-deed';
-    const offer = speech ? { actionId: 'communicate', target: input.target, norms: input.norms } : input.activity.offer;
-    const completed = speech || input.outcome.status === 'completed';
-    const intention = speech ? input.intention : input.activity.intention;
-    const necessity = !speech && input.activity.necessity;
-    const evidenceId = speech ? input.evidenceId : input.outcome.evidenceId;
+    // Emitted speech and a missed commitment use the same held-norm deed law without a physical activity.
+    const deed =
+      input.kind === 'communication-deed'
+        ? {
+            offer: { actionId: 'communicate', target: input.target, norms: input.norms },
+            completed: true,
+            intention: input.intention,
+            necessity: false,
+            evidenceId: input.evidenceId,
+          }
+        : input.kind === 'missed-commitment'
+          ? {
+              offer: {
+                actionId: input.action,
+                target: input.target,
+                norms: [{ normId: input.normId, relation: 'violates' as const }],
+              },
+              completed: true,
+              intention: 'missed',
+              necessity: false,
+              evidenceId: input.evidenceId,
+            }
+          : {
+              offer: input.activity.offer,
+              completed: input.outcome.status === 'completed',
+              intention: input.activity.intention,
+              necessity: input.activity.necessity === true,
+              evidenceId: input.outcome.evidenceId,
+            };
+    const { offer, completed, intention, necessity, evidenceId } = deed;
     state.intentions.push({ at: context.at, action: offer.actionId, intention });
     state.intentions = state.intentions.slice(-d.maxIntentions);
     for (const tag of offer.norms) {

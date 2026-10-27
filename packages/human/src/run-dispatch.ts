@@ -219,12 +219,21 @@ export class Frame {
         data,
         { ...context, snapshot: actor, settlement },
       );
-      const continuation=this.continuation(person);
-      this.install(person, {
-        chronicle: [...out.state.days],
-        chronicleYears: [...out.state.years],
-        chronicleDay: out.state.open,
-      },{narrative:{...continuation.narrative,chronicle:{anchor:{at:context.at,conditionId:event.id},open:out.state.open}}});
+      const continuation = this.continuation(person);
+      this.install(
+        person,
+        {
+          chronicle: [...out.state.days],
+          chronicleYears: [...out.state.years],
+          chronicleDay: out.state.open,
+        },
+        {
+          narrative: {
+            ...continuation.narrative,
+            chronicle: { anchor: { at: context.at, conditionId: event.id }, open: out.state.open },
+          },
+        },
+      );
       if (
         out.events.length ||
         out.effects.appraisals.length ||
@@ -232,8 +241,102 @@ export class Frame {
         out.effects.terms.length
       )
         this.output(person, 'chronicle', out, context);
+      // Every route that breaks a commitment (agenda receipts and retained agenda spans) passes here once.
+      // The chronicle notes the break before its consequences.
+      if (data.kind === 'commitment-changed' && data.after.status === 'broken' && data.before !== 'broken')
+        this.missed(person, data.after, event.id, context);
     }
     return event;
+  }
+  /**
+   * A broken commitment leaves a trace (3.x person.ts recordMissed): a 'missed' episode, distress and an
+   * esteem cost scaled by importance; a breach when it is linked to a held norm; a broken promise to another.
+   */
+  missed(person: T.PersonId, c: T.DeepReadonly<T.Commitment>, cause: T.Id, context: T.FrameContext): void {
+    const actor = this.actor(person);
+    if (!actor.body.alive) return;
+    const defaults = context.effective.builtins.PERSON_DEFAULTS;
+    // An abstention has no fulfilling action; the running act that violated it broke it.
+    const action =
+      c.actions[0] ??
+      (c.kind === 'abstain' ? (actor.activity?.offer.actionId ?? c.violatedBy?.[0]) : undefined) ??
+      c.kind;
+    // Keyed on the break event: a host may reuse a commitment id after the closed one is pruned.
+    const evidenceId = hashCanonical('hf-run4/missed-commitment', cause);
+    const other = c.toId !== undefined && c.toId !== 'self' ? c.toId : undefined;
+    this.memory(
+      person,
+      {
+        kind: 'episode',
+        receiptId: evidenceId,
+        episode: {
+          at: context.at,
+          kind: 'missed',
+          action,
+          actorId: person,
+          ...(other === undefined ? {} : { targetId: other }),
+          valence: -0.5 * c.importance,
+          // 3.x defaultSalience: 'missed' has no kind entry, so the default base plus the valence share.
+          salience: clamp01(
+            context.effective.builtins.MEMORY_DEFAULTS.defaultKindSalience +
+              context.effective.builtins.MEMORY_DEFAULTS.valenceSalience * 0.5 * c.importance,
+          ),
+          summary: '',
+          tags: ['missed', c.kind],
+        },
+      },
+      context,
+    );
+    this.effect(
+      {
+        id: hashCanonical('hf-run4/missed-appraisal', evidenceId),
+        cause: evidenceId,
+        person,
+        at: context.at,
+        applyPhase: context.phase,
+        from: 'run',
+        to: 'affect',
+        appraisal: {
+          at: context.at,
+          kind: 'event',
+          desirability: -defaults.missedDistress * c.importance,
+          cause: `missed:${c.kind}:${action}`,
+        },
+      },
+      context,
+    );
+    this.need(
+      person,
+      { kind: 'realized-outcome', evidenceId, needs: { esteem: -defaults.missedEsteemCost * c.importance } },
+      context,
+    );
+    // 3.x: only a commitment linked to a norm is a deed, a breach and, when owed to another, a broken promise.
+    if (c.normId === undefined) return;
+    this.conscience(
+      person,
+      {
+        kind: 'missed-commitment',
+        evidenceId,
+        action,
+        normId: c.normId,
+        ...(other === undefined ? {} : { target: other }),
+      },
+      context,
+    );
+    if (other !== undefined)
+      this.social(
+        person,
+        {
+          kind: 'event',
+          data: {
+            person,
+            evidenceId,
+            other,
+            event: { kind: 'promise-broken', byMe: true, magnitude: c.importance },
+          },
+        },
+        context,
+      );
   }
   output<S>(person: T.PersonId, owner: T.FacultyId, output: T.OwnerOutput<S>, context: T.FrameContext): void {
     if (output.advancedThrough !== this.state.at)
@@ -407,23 +510,37 @@ export class Frame {
     );
     // The owner returns authoritative before/after belief data. Compose receipt
     // events from those actual deltas; no belief or reputation law is repeated here.
-    const events:T.EventData[]=[...out.events];
-    const sourceTrustChanges=Object.keys(out.state.sourceTrust).sort(compareCodePoints).flatMap(sourceId=>{
-      const before=sourceTrust[sourceId]??context.effective.builtins.BELIEF_DEFAULTS.defaultTrust;
-      const after=out.state.sourceTrust[sourceId];
-      return after!==undefined&&after!==before?[{sourceId,before,after}]:[];
-    });
-    if(input.kind!=='contradiction') {
-      const affected=new Set(input.kind==='confirm'?[input.prop]:input.claims.map(claim=>claim.prop));
-      for(const after of out.state.beliefs) {
-        if(!affected.has(after.prop)||events.some(event=>event.kind==='belief-revised'&&event.prop===after.prop))continue;
-        const before=beliefs.find(belief=>belief.prop===after.prop);
-        if(!before||canonicalJson(before)!==canonicalJson(after)||sourceTrustChanges.length)
-          events.push({kind:'belief-revised',prop:after.prop,beforeLogOdds:before?.logOdds??null,
-            after,evidenceId:input.evidenceId,sourceTrustChanges});
+    const events: T.EventData[] = [...out.events];
+    const sourceTrustChanges = Object.keys(out.state.sourceTrust)
+      .sort(compareCodePoints)
+      .flatMap((sourceId) => {
+        const before = sourceTrust[sourceId] ?? context.effective.builtins.BELIEF_DEFAULTS.defaultTrust;
+        const after = out.state.sourceTrust[sourceId];
+        return after !== undefined && after !== before ? [{ sourceId, before, after }] : [];
+      });
+    if (input.kind !== 'contradiction') {
+      const affected = new Set(
+        input.kind === 'confirm' ? [input.prop] : input.claims.map((claim) => claim.prop),
+      );
+      for (const after of out.state.beliefs) {
+        if (
+          !affected.has(after.prop) ||
+          events.some((event) => event.kind === 'belief-revised' && event.prop === after.prop)
+        )
+          continue;
+        const before = beliefs.find((belief) => belief.prop === after.prop);
+        if (!before || canonicalJson(before) !== canonicalJson(after) || sourceTrustChanges.length)
+          events.push({
+            kind: 'belief-revised',
+            prop: after.prop,
+            beforeLogOdds: before?.logOdds ?? null,
+            after,
+            evidenceId: input.evidenceId,
+            sourceTrustChanges,
+          });
       }
     }
-    this.output(person, 'beliefs', {...out,events}, context);
+    this.output(person, 'beliefs', { ...out, events }, context);
     for (const event of events)
       if (event.kind === 'belief-revised')
         this.social(
@@ -590,6 +707,12 @@ export class Frame {
     this.output(person, 'projects', out, context);
     for (const receipt of out.agendaReceipts) this.agenda(person, receipt, context);
   }
+  considerProjects(person: T.PersonId, context: T.FrameContext): void {
+    const out = OWNERS.projects.consider(this.actor(person).projects, this.projectContext(person, context));
+    this.install(person, { projects: out.state });
+    this.output(person, 'projects', out, context);
+    for (const receipt of out.agendaReceipts) this.agenda(person, receipt, context);
+  }
   skills(person: T.PersonId, input: Parameters<T.SkillsOwner['learn']>[1], context: T.FrameContext): void {
     const actor = this.actor(person),
       continuation = this.continuation(person);
@@ -644,9 +767,17 @@ export class Frame {
       open: actor.chronicleDay,
       traits: actor.traits,
     });
-    const continuation=this.continuation(person);
-    this.install(person, { review: out.state },{narrative:{...continuation.narrative,
-      review:{anchor:{at:context.at,conditionId:context.causes[0]??person},state:out.state}}});
+    const continuation = this.continuation(person);
+    this.install(
+      person,
+      { review: out.state },
+      {
+        narrative: {
+          ...continuation.narrative,
+          review: { anchor: { at: context.at, conditionId: context.causes[0] ?? person }, state: out.state },
+        },
+      },
+    );
     this.output(person, 'review', out, context);
     for (const receipt of out.affectReceipts) this.affect(person, receipt, context);
   }
@@ -732,8 +863,9 @@ export class Frame {
     const ordinal = this.state.counters.nextRequest++;
     if (!Number.isSafeInteger(this.state.counters.nextRequest))
       throw new RunLimitError('Request counter exhausted');
-    const offerRevision=stage==='start'?this.state.offers[person]?.revision:this.record.activityOffers.get(activity.id);
-    if(offerRevision===undefined)throw new RangeError('Activity lacks its original offer revision');
+    const offerRevision =
+      stage === 'start' ? this.state.offers[person]?.revision : this.record.activityOffers.get(activity.id);
+    if (offerRevision === undefined) throw new RangeError('Activity lacks its original offer revision');
     const body: Omit<T.ActionRequest, 'requestHash'> = {
       kind: 'action',
       id: hashCanonical('hf-run4/request-id', this.record.spec.id, ordinal),
@@ -776,11 +908,12 @@ export class Frame {
   }
   choose(person: T.PersonId, treatment: 'ordinary' | 'reconsider', causes: readonly T.Id[]): void {
     let actor = this.actor(person);
-    if (
-      !actor.body.alive ||
-      this.state.pending.some((request) => request.kind === 'action' && request.person === person)
-    )
-      return;
+    if (!actor.body.alive) return;
+    // Project consideration runs at every decision point, before offers are read, as 3.x tick ran
+    // considerProjects: adoption, staleness and history need no offer and no free hand.
+    this.considerProjects(person, this.context(person, 5, causes));
+    actor = this.actor(person);
+    if (this.state.pending.some((request) => request.kind === 'action' && request.person === person)) return;
     const book = this.state.offers[person];
     const offers = (book?.offers ?? []).filter(
       (offer) =>
@@ -969,6 +1102,12 @@ export class Frame {
       decisionId: decision.id,
       intention: decision.intention,
       suggestions: out.resolutions,
+      // 3.x begin: only a voice the person went along with is credited with the activity.
+      ...(out.decision.suggestion?.verdict === 'assented' ||
+      out.decision.suggestion?.verdict === 'complied' ||
+      out.decision.suggestion?.verdict === 'commanded'
+        ? { suggestion: out.decision.suggestion }
+        : {}),
       reviewAt: Math.min(
         endsAt,
         out.nextBoundary ?? endsAt,
@@ -1211,6 +1350,8 @@ export class Frame {
       },
     );
     this.output(person, 'habits', habits, context);
+    // 3.x credited the episode to the one suggestion the decision credited (assented, complied or commanded).
+    const followed = activity.suggestion;
     this.memory(
       person,
       {
@@ -1219,12 +1360,15 @@ export class Frame {
         offer: activity.offer,
         realized,
         felt,
+        // One kind for a person's own settled action: 'outcome' (3.x person.ts finish). The after-action
+        // cue (run-person.ts) and the voice distrust rule (will.ts) read it, with the followed voice.
         episode: {
           at: context.at,
-          kind: 'act',
+          kind: 'outcome',
           action: outcome.actionId,
           actorId: person,
           ...(outcome.target === undefined ? {} : { targetId: outcome.target }),
+          ...(followed === undefined ? {} : { voiceId: followed.voiceId }),
           ...(activity.offer.place === undefined ? {} : { placeId: activity.offer.place }),
           valence: felt,
           salience: clamp01(Math.abs(felt)),
@@ -1908,9 +2052,43 @@ export class Frame {
       case 'groups.received':
         this.social(input.payload.person, { kind: 'groups', data: input.payload }, context);
         return;
-      case 'death.heard':
-        this.social(input.payload.person, { kind: 'death-heard', data: input.payload }, context);
+      case 'death.heard': {
+        // Hearing of a death is told news (3.x sim.ts tellDeath): attended like any told percept, so it
+        // leaves an episode and, for someone close, grief. The tie is then marked deceased.
+        const data = input.payload,
+          name = this.state.people[data.deceased]?.name,
+          tie = this.actor(data.person).social.relationships.find((r) => r.otherId === data.deceased);
+        // Only news of someone known, and only the first time, is news (3.x tellDeath and markDeceased).
+        if (tie && tie.deceasedAt === undefined)
+          this.observe(
+            data.person,
+            [
+              {
+                id: hashCanonical('hf-run4/death-heard', input.id),
+                occurredAt: context.at,
+                channel: 'told',
+                kind: 'death',
+                targetId: data.deceased,
+                valence: -0.8,
+                salience: 0.9,
+                summary: name === undefined ? '' : `${name} died.`,
+                claims: [],
+                norms: [],
+                advice: [],
+                consequences: [],
+                withdrawConsequences: [],
+                witnesses: [],
+                reports: [],
+                provenance: [data.evidenceId],
+              },
+            ],
+            data.evidenceId,
+            data.reporter,
+            context,
+          );
+        this.social(data.person, { kind: 'death-heard', data }, context);
         return;
+      }
       case 'contradiction.received':
         this.beliefs(input.payload.person, { kind: 'contradiction', ...input.payload }, context);
         return;
@@ -2018,8 +2196,15 @@ export class Frame {
         return;
       }
       case 'routine.authored': {
-        const data=input.payload;
-        this.installRoutine(data.person,data.scheduleId,data.entries,{kind:'input',inputId:input.id},input.id,false);
+        const data = input.payload;
+        this.installRoutine(
+          data.person,
+          data.scheduleId,
+          data.entries,
+          { kind: 'input', inputId: input.id },
+          input.id,
+          false,
+        );
         return;
       }
       case 'routine.withdrawn':
@@ -2052,32 +2237,73 @@ export class Frame {
     const unfinished: never = input;
     throw new TypeError(`Unimplemented input ${unfinished}`);
   }
-  installRoutine(person:T.PersonId,id:T.Id,entries:T.DeepReadonly<readonly T.RoutineEntry[]>,
-    source:T.ActiveRoutine['source'],cause:T.Id,allowPast:boolean):void {
+  installRoutine(
+    person: T.PersonId,
+    id: T.Id,
+    entries: T.DeepReadonly<readonly T.RoutineEntry[]>,
+    source: T.ActiveRoutine['source'],
+    cause: T.Id,
+    allowPast: boolean,
+  ): void {
     this.actor(person);
-    const ids=new Set<T.Id>();
-    for(const entry of entries) {
-      if(ids.has(entry.id)||entry.offer.person!==person||entry.offer.durationMs<1||
-        !Number.isSafeInteger(entry.offer.durationMs)||!this.record.spec.definitions.actions.some(action=>action.id===entry.offer.actionId))
+    const ids = new Set<T.Id>();
+    for (const entry of entries) {
+      if (
+        ids.has(entry.id) ||
+        entry.offer.person !== person ||
+        entry.offer.durationMs < 1 ||
+        !Number.isSafeInteger(entry.offer.durationMs) ||
+        !this.record.spec.definitions.actions.some((action) => action.id === entry.offer.actionId)
+      )
         throw new RangeError('Routine has duplicate, foreign or invalid action entries');
       ids.add(entry.id);
-      if(!allowPast&&entry.at<this.state.at)throw new RangeError('Routine entry precedes receipt');
+      if (!allowPast && entry.at < this.state.at) throw new RangeError('Routine entry precedes receipt');
     }
-    const copied=entries.map((entry):T.RoutineEntry=>{
-      const {received,...rest}=entry;
-      return {...rest,offer:copyOffer(entry.offer),...(received?{received:{...received,percepts:received.percepts.map(copyPercept)}}:{})};
+    const copied = entries.map((entry): T.RoutineEntry => {
+      const { received, ...rest } = entry;
+      return {
+        ...rest,
+        offer: copyOffer(entry.offer),
+        ...(received ? { received: { ...received, percepts: received.percepts.map(copyPercept) } } : {}),
+      };
     });
-    this.stage.current.routines=[...this.state.routines.filter(routine=>routine.person!==person||routine.id!==id),
-      {person,id,entries:copied,source}];
-    this.stage.current.queue=[...this.state.queue.filter(event=>event.data.kind!=='routine-opportunity'||event.data.person!==person||event.data.scheduleId!==id),
-      ...copied.filter(entry=>entry.at>=this.state.at).map((entry):T.ScheduledEvent=>({
-        id:hashCanonical('hf-run4/routine',person,id,entry.id,cause),at:entry.at,phase:2,person,causalId:cause,localOrdinal:0,
-        data:{kind:'routine-opportunity',person,scheduleId:id,entryId:entry.id}}))];
+    this.stage.current.routines = [
+      ...this.state.routines.filter((routine) => routine.person !== person || routine.id !== id),
+      { person, id, entries: copied, source },
+    ];
+    this.stage.current.queue = [
+      ...this.state.queue.filter(
+        (event) =>
+          event.data.kind !== 'routine-opportunity' ||
+          event.data.person !== person ||
+          event.data.scheduleId !== id,
+      ),
+      ...copied
+        .filter((entry) => entry.at >= this.state.at)
+        .map(
+          (entry): T.ScheduledEvent => ({
+            id: hashCanonical('hf-run4/routine', person, id, entry.id, cause),
+            at: entry.at,
+            phase: 2,
+            person,
+            causalId: cause,
+            localOrdinal: 0,
+            data: { kind: 'routine-opportunity', person, scheduleId: id, entryId: entry.id },
+          }),
+        ),
+    ];
   }
-  installDefinitionRoutines(person:T.PersonId):void {
-    for(const routine of this.record.spec.definitions.routines)
-      if(routine.entries[0]?.offer.person===person)
-        this.installRoutine(person,routine.id,routine.entries,{kind:'definition',id:routine.id},routine.id,true);
+  installDefinitionRoutines(person: T.PersonId): void {
+    for (const routine of this.record.spec.definitions.routines)
+      if (routine.entries[0]?.offer.person === person)
+        this.installRoutine(
+          person,
+          routine.id,
+          routine.entries,
+          { kind: 'definition', id: routine.id },
+          routine.id,
+          true,
+        );
   }
   routine(person: T.PersonId, entry: T.DeepReadonly<T.RoutineEntry>, cause: T.Id): void {
     const actor = this.actor(person);
@@ -2111,12 +2337,21 @@ export class Frame {
       { days: actor.chronicle, years: actor.chronicleYears, open: actor.chronicleDay },
       { ...context, snapshot: actor },
     );
-    const prior=this.continuation(person);
-    this.install(person, {
-      chronicle: [...out.state.days],
-      chronicleYears: [...out.state.years],
-      chronicleDay: out.state.open,
-    },{narrative:{...prior.narrative,chronicle:{anchor:{at:context.at,conditionId:cause},open:out.state.open}}});
+    const prior = this.continuation(person);
+    this.install(
+      person,
+      {
+        chronicle: [...out.state.days],
+        chronicleYears: [...out.state.years],
+        chronicleDay: out.state.open,
+      },
+      {
+        narrative: {
+          ...prior.narrative,
+          chronicle: { anchor: { at: context.at, conditionId: cause }, open: out.state.open },
+        },
+      },
+    );
     this.output(person, 'chronicle', out, context);
     const current = this.actor(person),
       continuation = this.continuation(person);
@@ -2381,10 +2616,14 @@ export class Frame {
     if (input.type === 'kin-premise') {
       if (
         input.scope.at !== this.state.at ||
-        !(input.scope.kinRevision === this.state.lifecycle.kinRevision + 1 ||
-          (input.scope.kinRevision === this.state.lifecycle.kinRevision && input.premises.length === 0))
+        !(
+          input.scope.kinRevision === this.state.lifecycle.kinRevision + 1 ||
+          (input.scope.kinRevision === this.state.lifecycle.kinRevision && input.premises.length === 0)
+        )
       )
-        throw new RangeError('Kin scope must describe the current facts or next authoritative revision at this frame');
+        throw new RangeError(
+          'Kin scope must describe the current facts or next authoritative revision at this frame',
+        );
       const premises = [...this.state.lifecycle.kinPremises];
       for (const premise of input.premises) {
         if (premises.some((old) => old.id === premise.id)) throw new RangeError('Duplicate kin premise');
@@ -2402,7 +2641,10 @@ export class Frame {
         ...this.state.lifecycle,
         kinRevision: input.scope.kinRevision,
         kinPremises: premises,
-        kinScopes: [...this.state.lifecycle.kinScopes.filter(scope=>scope.id!==input.scope.id), cloneData(input.scope)],
+        kinScopes: [
+          ...this.state.lifecycle.kinScopes.filter((scope) => scope.id !== input.scope.id),
+          cloneData(input.scope),
+        ],
         entities: [...entities.values()],
       };
       return;
@@ -2482,7 +2724,10 @@ export class Frame {
     const snapshot = this.state.people;
     const people =
       input.type === 'death' ? Object.keys(snapshot).sort() : input.partners.map((ref) => ref.id).sort();
-    const knownKin=input.type==='marriage'?kinSnapshot(this.state,input.kinScopeId,[input.partners[0].id,input.partners[1].id]):undefined;
+    const knownKin =
+      input.type === 'marriage'
+        ? kinSnapshot(this.state, input.kinScopeId, [input.partners[0].id, input.partners[1].id])
+        : undefined;
     for (const person of people) {
       const actor = this.actor(person),
         context = this.context(person, 1, [cause]);
