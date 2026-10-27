@@ -400,3 +400,9 @@ Coordinator reading: `gpt-6.1-terra` (through `codex exec -m`) and Claude Sonnet
 > "That's what I thought. The free quota isn't enough for a full play tester session, but can be a useful addition to enrich the games themselves. 23:50 may not give a model enough time to spend it all. I guess we can allow more tokens to a focused set of play testers, that way they'll be able to finish the task fully. I'm okay to switching it to more useful jobs such as reading, yeah. Make sure your terra/sonnet instruction is visible to the Opus and Sol agents you launch as well, so they can also choose those for their subagents."
 
 Coordinator reading: games may spend the free Workers AI pool during the day with no reserved split. The daily run moves from hourly to once a day at 16:00 America/Chicago, so it has several hours before the 00:00 UTC reset. It spends the remainder on reading jobs (plain-English checks of on-screen text, inbox triage) and on a few focused testers given enough budget to finish. The safety margin is set from a reconciliation of local and Cloudflare usage. Free-text stays an experiment. Of 28 tester sessions from 10-23 to 10-27, none completed. The model-choice rule goes in AGENTS.md and in the rule every brief includes.
+
+## 2026-10-27 — Pre-generated wording variants (Adam, verbatim)
+
+> "Yes. pre-generate only seems enough and a good direction."
+
+Coordinator reading: the question was whether Workers AI should vary persona replies and narration. The daily sweep pre-generates wording variants for persona lines and narration templates. Each variant is reviewed against the plain-English guide, the cast registry and the faith rules, then committed as game data. HF picks a variant with its seeded RNG, so exports replay exactly and players cost nothing. No live in-game rewriting.
