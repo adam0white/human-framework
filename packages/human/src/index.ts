@@ -1,3 +1,4 @@
+export { NARRATION_TEMPLATES } from './narrate/templates.ts';
 /** Human Framework 4: one run runtime and pure portable projections. */
 
 export { projectChapterClock } from './chapter-clock.ts';

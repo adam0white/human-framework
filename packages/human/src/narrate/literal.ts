@@ -1,5 +1,6 @@
 /** SCOPE: one pure renderer. Visibility is checked before deriving wording or variation.
- * Variation uses domain-separated event/meaning/audience identity, never actor RNG or read counts.
+ * Authored variation uses the event’s recorded choice; fallback keeps event/audience identity.
+ * Neither path advances actor RNG or read counts.
  * Authored names/actions remain data. No legacy packs or stored-text rewrites.
  */
 import { cloneData } from '../core/clone.ts';
@@ -12,6 +13,7 @@ import type {
   RunEvent,
 } from '../run-schema.ts';
 import { actionForms, displayName, stableHash } from './lexicon.ts';
+import { fillTemplate, NARRATION_TEMPLATES } from './templates.ts';
 
 const LABELS: Readonly<Record<string, string>> = {
   Fajr: 'the dawn prayer',
@@ -166,29 +168,38 @@ function visible(e: DeepReadonly<RunEvent>, p: DeepReadonly<Perspective>): boole
   if (e.data.kind === 'claim-told') return e.data.listener === p.observer || e.data.speaker === p.observer;
   return e.person === p.observer;
 }
-function wording(d: DeepReadonly<EventData>, lex: DeepReadonly<Lexicon>): readonly string[] {
+type WordingKey = keyof typeof NARRATION_TEMPLATES;
+export function describeWording(
+  d: DeepReadonly<EventData>,
+  lex: DeepReadonly<Lexicon>,
+): { key: string; slots: Record<string, string>; templates: readonly string[] } | undefined {
+  const describe = (key: WordingKey, slots: Record<string, string> = {}) => ({
+    key,
+    slots,
+    templates: NARRATION_TEMPLATES[key],
+  });
   switch (d.kind) {
     case 'review': {
       const r = d.record;
-      if (!r.missed.length) return r.kept.length ? [`Today I kept ${list(r.kept)}.`] : [];
-      if (!r.resolved.length) return [`I keep going back over ${list(r.missed)}.`];
-      const next = ' Next time I will be ready when it comes.';
-      return [`I did not keep ${list(r.missed)}.${next}`, `I missed ${list(r.missed)}.${next}`];
+      if (!r.missed.length)
+        return r.kept.length ? describe('review.kept', { items: list(r.kept) }) : undefined;
+      return describe(r.resolved.length ? 'review.resolved' : 'review.unresolved', { items: list(r.missed) });
     }
     case 'prompting': {
-      const act = actionForms(d.record.action, lex).base;
-      const end =
+      const action = actionForms(d.record.action, lex).base;
+      return describe(
         d.record.outcome === 'assented'
-          ? `I went on to ${act}.`
+          ? 'prompting.assented'
           : d.record.outcome === 'turned'
-            ? 'I used a practised response and turned away.'
-            : 'I let the thought pass.';
-      return [`I felt a pull to ${act}. ${end}`];
+            ? 'prompting.turned'
+            : 'prompting.other',
+        { action },
+      );
     }
     case 'decision': {
       const r = d.decision;
-      if (!r.chosenAction) return ['I will wait.'];
-      const act = actionForms(r.chosenAction, lex).base;
+      if (!r.chosenAction) return describe('decision.wait');
+      const action = actionForms(r.chosenAction, lex).base;
       const chosen = r.considered.find((c) => c.affordanceId === r.chosenAffordanceId);
       const motive = chosen?.terms.filter((t) => t.value > 0).sort((a, b) => b.value - a.value)[0];
       const why = motive?.source.startsWith('need:')
@@ -198,24 +209,31 @@ function wording(d: DeepReadonly<EventData>, lex: DeepReadonly<Lexicon>): readon
           : motive?.source === 'memory'
             ? ' I remember what happened before.'
             : '';
-      return [`I will ${act}.${why}`, `I have decided to ${act}.${why}`];
+      return describe('decision.act', { action, why });
     }
     case 'claim-told':
-      return [
-        `${displayName(d.speaker, lex)} said that ${d.claim.prop} is ${d.claim.value ? 'true' : 'false'}.`,
-      ];
+      return describe('claim.told', {
+        speaker: displayName(d.speaker, lex),
+        prop: d.claim.prop,
+        value: d.claim.value ? 'true' : 'false',
+      });
     case 'conversation':
-      return [
-        `${displayName(d.conversation.speaker, lex)} spoke with ${displayName(d.conversation.listener, lex)}.`,
-      ];
+      return describe('conversation', {
+        speaker: displayName(d.conversation.speaker, lex),
+        listener: displayName(d.conversation.listener, lex),
+      });
     case 'suggestion-resolved':
-      return [`I ${d.resolution.verdict} the advice.`];
-    case 'commitment-changed': {
-      const c = d.after;
-      return [`${c.label ?? c.kind}: ${c.status}.`];
-    }
+      return describe('suggestion.resolved', { verdict: d.resolution.verdict });
+    case 'commitment-changed':
+      return describe('commitment.changed', {
+        label: d.after.label ?? d.after.kind,
+        status: d.after.status,
+      });
     case 'goal-changed':
-      return [`${d.after.label}: ${d.after.status}.`];
+      return describe('goal.changed', {
+        label: d.after.label,
+        status: d.after.status,
+      });
     case 'day-closed': {
       const r = d.record,
         parts = [`Day ${r.day}.`];
@@ -246,52 +264,67 @@ function wording(d: DeepReadonly<EventData>, lex: DeepReadonly<Lexicon>): readon
         );
       parts.push(...r.episodes.map((e) => e.summary));
       if (!r.alive) parts.push('The person has died.');
-      return [parts.join(' ')];
+      return describe('day.closed', { summary: parts.join(' ') });
     }
     case 'year-closed':
-      return [
-        `Across ${d.record.days} recorded days, I kept ${d.record.kept} commitments and broke ${d.record.broken}.`,
-      ];
+      return describe('year.closed', {
+        days: String(d.record.days),
+        kept: String(d.record.kept),
+        broken: String(d.record.broken),
+      });
     case 'body-change': {
-      const c = d.change;
-      if (c.kind === 'died') return ['The person has died.'];
-      if (c.kind === 'dozed') return ['I fell asleep.'];
-      if (c.kind === 'woke') return ['I woke up.'];
-      if (c.kind === 'downed') return ['I cannot get up.'];
-      if (c.kind === 'stood') return ['I got up.'];
-      if (c.kind === 'injured') return ['I was injured.'];
-      if (c.kind === 'illness') return ['I became ill.'];
-      return [];
+      const kind = d.change.kind;
+      switch (kind) {
+        case 'died':
+        case 'dozed':
+        case 'woke':
+        case 'downed':
+        case 'stood':
+        case 'injured':
+        case 'illness':
+          return describe(`body.${kind}`);
+        default:
+          return undefined;
+      }
     }
     case 'crisis':
-      return [d.change === 'onset' ? 'I cannot continue what I was doing.' : 'I can continue again.'];
+      return describe(d.change === 'onset' ? 'crisis.onset' : 'crisis.other');
     case 'voice-promise':
-      return [`${displayName(d.voiceId, lex)} ${d.kept ? 'kept' : 'broke'} their word.`];
+      return describe('voice.promise', {
+        voice: displayName(d.voiceId, lex),
+        outcome: d.kept ? 'kept' : 'broke',
+      });
     case 'observation-attended':
-      if (d.summary) return [d.summary];
-      return d.died === undefined ? [] : [`I heard that ${displayName(d.died, lex)} died.`];
-    // Administrative events contain no invented subjective experience.
+      if (d.summary) return describe('observation.summary', { summary: d.summary });
+      return d.died === undefined
+        ? undefined
+        : describe('observation.death', { person: displayName(d.died, lex) });
     default:
-      return [];
+      return undefined;
   }
 }
 export const rendererOwner: RendererOwner = {
   render(event, perspective, lexicon, seed) {
     if (!visible(event, perspective)) return [];
-    const variants = wording(event.data, lexicon);
-    if (!variants.length) return [];
+    const descriptor = describeWording(event.data, lexicon);
+    if (!descriptor) return [];
+    const authored = event.wording?.key === descriptor.key ? lexicon.wordings?.[descriptor.key] : undefined;
+    const variants = authored ?? descriptor.templates;
     const audience = perspective.kind === 'host' ? 'host' : `person:${perspective.observer}`;
     const slot =
-      stableHash(JSON.stringify(['hf4:renderer:v1', seed, event.id, event.data.kind, audience])) %
-      variants.length;
-    const text = variants[slot];
-    if (text === undefined) return [];
+      authored && event.wording?.key === descriptor.key
+        ? event.wording.index
+        : stableHash(JSON.stringify(['hf4:renderer:v1', seed, event.id, event.data.kind, audience])) %
+          descriptor.templates.length;
+    const template = variants[slot];
+    if (template === undefined) return [];
+    const text = fillTemplate(template, descriptor.slots);
     return [
       {
         eventId: event.id,
         audience: cloneData(perspective),
         text,
-        variantId: `en:${event.data.kind}:${slot}`,
+        variantId: authored ? `wording:${descriptor.key}:${slot}` : `en:${event.data.kind}:${slot}`,
       },
     ];
   },

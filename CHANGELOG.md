@@ -11,6 +11,14 @@ version, stamped with build and schema hashes in `RUN_ENGINE`. See the version p
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
+## [4.1.0] - 2026-10-27
+
+Engine: 4.1.0.
+
+- Games can ship reviewed alternative wordings in `definitions.lexicon.wordings`. HF checks template keys and named slots before creating a run. Workers AI can generate these files offline; gameplay never calls a model.
+- Each person and template has a seeded wording stream. HF records the choice when an event happens, so repeated reads, paginated reads, restored runs and replays keep it. Two or more alternatives never repeat immediately. Missing entries keep today's wording.
+- The existing renderer handles both default and authored wording. Wording randomness stays separate from person and world randomness. Existing 4.0 archives must start fresh under the new engine stamp.
+
 ## [4.0.2] - 2026-10-27
 
 Engine: 4.0.2. Fix crisis advancement after recovery.

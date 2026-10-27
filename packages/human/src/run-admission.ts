@@ -3,6 +3,7 @@
  * Faculty/reference and lifecycle admission remains in the owning validators.
  */
 
+import { wordingIssue } from './narrate/variants.ts';
 import { compareCodePoints } from './run-canonical.ts';
 import { PERSON_DEFAULTS } from './run-person-priors.ts';
 import type {
@@ -349,6 +350,8 @@ export function checkRunSpec(input: unknown): Result<DeepReadonly<import('./run-
   const admitted = validateData('RunSpec', input);
   if (!admitted.ok) return admitted;
   const spec = admitted.value;
+  const wordingError = wordingIssue(spec.definitions.lexicon);
+  if (wordingError) return fail('invalid-schema', '$.definitions.lexicon.wordings', wordingError);
   if (!Number.isSafeInteger(spec.seed) || spec.seed < 0 || spec.seed > 0xffffffff)
     return fail('invalid-schema', '$.seed', 'seed must be an unsigned 32-bit integer');
   if (!Number.isSafeInteger(spec.world.revision) || spec.world.revision < 0)

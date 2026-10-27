@@ -789,9 +789,25 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
       entries: { optional: false, shape: { kind: 'array', element: { kind: 'ref', name: 'RoutineEntry' } } },
     },
   },
+  WordingSequence: {
+    kind: 'object',
+    fields: {
+      rng: { optional: false, shape: { kind: 'ref', name: 'RngState' } },
+      occurrence: { optional: false, shape: { kind: 'number' } },
+      last: { optional: false, shape: { kind: 'number' } },
+    },
+  },
   Lexicon: {
     kind: 'object',
     fields: {
+      wordings: {
+        optional: true,
+        shape: {
+          kind: 'dict',
+          key: { kind: 'string' },
+          value: { kind: 'array', element: { kind: 'string' } },
+        },
+      },
       locale: { optional: true, shape: { kind: 'string' } },
       materialMeaning: { optional: true, shape: { kind: 'string' } },
       names: {
@@ -9802,6 +9818,17 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
   RunEvent: {
     kind: 'object',
     fields: {
+      wording: {
+        optional: true,
+        shape: {
+          kind: 'object',
+          fields: {
+            key: { optional: false, shape: { kind: 'string' } },
+            occurrence: { optional: false, shape: { kind: 'number' } },
+            index: { optional: false, shape: { kind: 'number' } },
+          },
+        },
+      },
       id: { optional: false, shape: { kind: 'scalar', name: 'EventId' } },
       at: { optional: false, shape: { kind: 'scalar', name: 'Time' } },
       phase: { optional: false, shape: { kind: 'ref', name: 'Phase' } },
@@ -11892,6 +11919,10 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
   RunState: {
     kind: 'object',
     fields: {
+      wording: {
+        optional: false,
+        shape: { kind: 'dict', key: { kind: 'string' }, value: { kind: 'ref', name: 'WordingSequence' } },
+      },
       at: { optional: false, shape: { kind: 'scalar', name: 'Time' } },
       cursor: { optional: false, shape: { kind: 'ref', name: 'SchedulerCursor' } },
       ownerClocks: {
