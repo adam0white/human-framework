@@ -67,3 +67,13 @@ it('keeps the same readable node and once-origin fallback if the central claim f
   expect(document.querySelector('.lk-telemetry-notice')).toBe(notice);
   expect(telemetryNotice(storage)).toBeNull();
 });
+it('shows an informational preserving notice without claiming local or central notice state', async () => {
+  const setItem = vi.fn();
+  const storage = { getItem: () => '1', setItem };
+  const notice = telemetryNotice(storage, { preservation: 'preserve' });
+  expect(notice?.textContent).toBe(TELEMETRY_NOTICE);
+  expect(notice?.style.visibility).toBe('visible');
+  await Promise.resolve();
+  expect(setItem).not.toHaveBeenCalled();
+  expect(claim).not.toHaveBeenCalled();
+});

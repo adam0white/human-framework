@@ -37,7 +37,7 @@ beforeEach(() => {
         gunzipSync(new Uint8Array(await ((init?.body ?? new Blob()) as Blob).arrayBuffer())).toString(),
       ),
     );
-    return Response.json({ ok: true, id: 'r-control' });
+    return Response.json({ ok: true, id: envelopes.at(-1)?.id ?? 'r-control' });
   });
 });
 afterEach(() => {
@@ -144,7 +144,7 @@ describe('linked lab client', () => {
               gunzipSync(new Uint8Array(await ((init?.body ?? new Blob()) as Blob).arrayBuffer())).toString(),
             ),
           );
-          return Response.json({ ok: true, id: 'r-feedback' });
+          return Response.json({ ok: true, id: envelopes.at(-1)?.id ?? 'r-feedback' });
         });
         const lab = createLab({ game: 'voice', build: {} });
         if (choice === 'off') lab.setTelemetryOff(true);
@@ -193,7 +193,7 @@ describe('linked lab client', () => {
             gunzipSync(new Uint8Array(await ((init?.body ?? new Blob()) as Blob).arrayBuffer())).toString(),
           ),
         );
-        return Response.json({ id: 'r-feedback' });
+        return Response.json({ ok: true, id: envelopes.at(-1)?.id ?? 'r-feedback' });
       });
       const lab = createLab({ game: 'voice', build: {} });
       lab.setPersonaRecording('private-persona-key');
@@ -291,7 +291,7 @@ describe('linked lab client', () => {
           gunzipSync(new Uint8Array(await ((init?.body ?? new Blob()) as Blob).arrayBuffer())).toString(),
         ),
       );
-      return Response.json({ id: 'r-feedback' });
+      return Response.json({ ok: true, id: envelopes.at(-1)?.id ?? 'r-feedback' });
     });
     const lab = createLab({ game: 'voice', build: {} });
     lab.setPersonaRecording('private-persona-key');
@@ -340,7 +340,7 @@ describe('linked lab client', () => {
     await lab.sendRun(run);
     expect(envelopes).toHaveLength(3);
   });
-  it('queues one stable piece for polite retry and clears it on opt-out', async () => {
+  it('queues one stable piece for polite retry and preserves it across reset', async () => {
     let now = Date.now();
     vi.spyOn(Date, 'now').mockImplementation(() => now);
     const requests: RequestInit[] = [];
@@ -369,7 +369,8 @@ describe('linked lab client', () => {
     transport.clear();
     now += 1000000;
     await transport.drain();
-    expect(requests).toHaveLength(2);
+    expect(requests).toHaveLength(3);
+    transport.dispose();
   });
   it('attaches feedback to the linked run and scrubs common personal text in logs', async () => {
     const lab = createLab({ game: 'well', build: {} });
@@ -535,7 +536,9 @@ it('retries original pending source after reload without relabeling legacy piece
   vi.stubGlobal('fetch', async (_url: string, init: RequestInit) => {
     const text = gunzipSync(new Uint8Array(await (init.body as Blob).arrayBuffer())).toString();
     attempts.push({ text, value: JSON.parse(text) });
-    return new Response(null, { status });
+    return status === 200
+      ? Response.json({ ok: true, id: JSON.parse(text).id })
+      : new Response(null, { status });
   });
   const make = () =>
     linkedTransport({
@@ -549,7 +552,7 @@ it('retries original pending source after reload without relabeling legacy piece
     });
   const legacy = make();
   await legacy.send('run', { state: 'x'.repeat(LINKED_LIMITS.chunkChars + 1) });
-  await vi.waitFor(() => expect(attempts.length).toBe(1));
+  await vi.waitFor(() => expect(attempts.length).toBe(2));
   // Wait for the failed request to persist its backoff before opening another client.
   const db = await new Promise<IDBDatabase>((resolve, reject) => {
     const request = indexedDB.open('hf-lab-pending', 1);
@@ -566,22 +569,46 @@ it('retries original pending source after reload without relabeling legacy piece
   });
   db.close();
   source = 'agent';
+  legacy.dispose();
   const marked = make();
   await marked.send('note', { note: 'pending source fixture' }, undefined, undefined, true).catch(() => {});
-  await vi.waitFor(() => expect(attempts.length).toBe(2));
+  await vi.waitFor(() => expect(attempts.length).toBe(3));
   const failed = attempts.map((a) => a.text);
+  marked.dispose();
   status = 200;
   source = undefined;
   vi.spyOn(Date, 'now').mockReturnValue(Date.now() + 2 * 3600000);
   const recovered = make();
   await recovered.drain();
-  expect(attempts.slice(2).map((a) => a.text)).toEqual(expect.arrayContaining(failed));
-  const delivered = attempts.slice(2).map((a) => a.value);
+  expect(attempts.slice(3).map((a) => a.text)).toEqual(expect.arrayContaining(failed));
+  const delivered = attempts.slice(3).map((a) => a.value);
   expect(delivered.filter((r) => r.kind === 'run')).toHaveLength(2);
   expect(delivered.filter((r) => r.kind === 'run').every((r) => !Object.hasOwn(r, 'runSource'))).toBe(true);
   expect(delivered.find((r) => r.kind === 'note')?.runSource).toBe('agent');
   await recovered.send('run', { state: 'x'.repeat(LINKED_LIMITS.chunkChars + 1) });
   // Same legacy payload remains deduplicated after recovery.
   await recovered.drain();
-  expect(attempts).toHaveLength(5);
+  expect(attempts).toHaveLength(6);
+  recovered.dispose();
+});
+
+it('preserving explicit run APIs respect privacy and refuse missing identity without unlinked fallback', async () => {
+  values.set('hf-lab-player', id);
+  values.set('hf-lab-session:pass', `${id}:${Date.now()}`);
+  values.set('hf-lab-run:pass', id);
+  vi.stubGlobal('navigator', { globalPrivacyControl: true });
+  const lab = createLab({ game: 'pass', build: {}, preservation: 'preserve', runSource: 'agent' });
+  await expect(lab.sendRun({ seed: 17 })).rejects.toThrow('off');
+  await expect(lab.sendEnvelopeText(JSON.stringify(runEnvelope('pass', {}, { seed: 17 })))).rejects.toThrow(
+    'off',
+  );
+  expect(envelopes).toHaveLength(0);
+  lab.dispose();
+  values.clear();
+  const missing = createLab({ game: 'pass', build: {}, preservation: 'preserve' });
+  await expect(
+    missing.sendEnvelopeText(JSON.stringify(runEnvelope('pass', {}, { seed: 17 }))),
+  ).rejects.toThrow('preserv');
+  expect(envelopes).toHaveLength(0);
+  missing.dispose();
 });

@@ -59,6 +59,16 @@ import {
 } from '../../../../packages/lab-client/src/persona.ts';
 import { shelfRequest } from './persona-store.ts';
 
+// Missing consent uses the established default; explicit off and unknown bytes stay off.
+function continuityEnabled(): boolean {
+  try {
+    const value = localStorage.getItem(PERSONA_CONSENT_KEY);
+    return value === null || value === '1';
+  } catch {
+    return false;
+  }
+}
+
 function replyPersona(event: MessageEvent, data: unknown): void {
   const port = event.ports?.[0];
   if (port) {
@@ -78,13 +88,13 @@ window.addEventListener('message', (event: MessageEvent) => {
   replyPersona(event, {
     type: 'hf-persona-consent-reply',
     id,
-    value: readLocal(PERSONA_CONSENT_KEY) === '1',
+    value: continuityEnabled(),
   });
 });
 window.addEventListener('message', (event: MessageEvent) => {
   if (window.parent === window || !isPersonaMessage(event.origin, event.source, window.parent, event.data))
     return;
-  if (readLocal(PERSONA_CONSENT_KEY) !== '1') {
+  if (!continuityEnabled()) {
     replyPersona(event, {
       type: 'hf-persona-reply',
       id: event.data.id,

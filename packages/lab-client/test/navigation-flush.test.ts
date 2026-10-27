@@ -40,7 +40,7 @@ it('retains a pagehide event until a later document stores it', async () => {
   const received: Record<string, unknown>[] = [];
   vi.stubGlobal('fetch', async (_url: string, init: RequestInit) => {
     received.push(JSON.parse(gunzipSync(new Uint8Array(await (init.body as Blob).arrayBuffer())).toString()));
-    return Response.json({ ok: true, id: 'stored' });
+    return Response.json({ ok: true, id: (received.at(-1) as { id?: string })?.id });
   });
 
   const first = createLab({ game: 'pass', build: { a: 'synthetic' } });
@@ -59,11 +59,11 @@ it('retains a pagehide event until a later document stores it', async () => {
   await vi.waitFor(() =>
     expect([...values.keys()].some((key) => key.startsWith('hf-lab-navigation:pass:'))).toBe(false),
   );
-  second.milestone('erase this navigation copy');
+  second.milestone('preserve this navigation copy');
   listeners.pagehide?.[1]?.();
   expect([...values.keys()].some((key) => key.startsWith('hf-lab-navigation:pass:'))).toBe(true);
   second.setTelemetryOff(true);
-  expect([...values.keys()].some((key) => key.startsWith('hf-lab-navigation:pass:'))).toBe(false);
+  expect([...values.keys()].some((key) => key.startsWith('hf-lab-navigation:pass:'))).toBe(true);
 });
 
 it('keeps the navigation copy when IndexedDB cannot save the replacement', async () => {

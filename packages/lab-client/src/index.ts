@@ -3,7 +3,7 @@ export { claimLabNotice } from './notice.ts';
 
 /** Default-on linked lab telemetry. Games own their replay exports; this client owns consent and delivery.
  * Pseudonymous identity is shared by the lab identity frame, with an origin-scoped fallback if blocked.
- * Off deletes the local id, clears pending pieces and aborts active uploads. Browser privacy signals
+ * Off aborts active uploads; retained pending pieces require an exact stored receipt to retire. Browser privacy signals
  * suppress automatic linked data unless the player explicitly overrides them for this game.
  */
 
@@ -69,6 +69,8 @@ type JournalEntry = {
 export type LabOptions = {
   /** Self-declared agent source; absence is unattributed, never verified human. */
   runSource?: RunSource;
+  /** Reuse existing local identity/session without replacing storage or contacting the identity frame. */
+  preservation?: 'preserve';
   /** game id, the subdomain: 'pass', 'glance', 'murmur' */
   game: string;
   /** build info. Default: read from this site's /release.json (commit, framework, app). */
@@ -81,7 +83,17 @@ export type LabOptions = {
   sendFromLocalhost?: boolean;
 };
 
+export type PreservationStatus =
+  | 'standard'
+  | 'existing-local'
+  | 'missing-identity'
+  | 'incompatible-session'
+  | 'identity-mismatch';
+
 export type Lab = {
+  readonly preservationStatus: PreservationStatus;
+  /** Stop this client and its retry timers without deleting pending recording. */
+  dispose(): void;
   /** A milestone the game declares, e.g. 'service 3 done'. Each name counts once per session. */
   milestone(name: string): void;
   /** The screen the player is on now, e.g. 'night 2: service'. The last one before leaving is the quit point. */
@@ -195,7 +207,13 @@ const setItem = (s: Storage | undefined, k: string, v: string | null) => {
 
 export function createLab(options: LabOptions): Lab {
   const runSource = resolveRunSource(options.runSource);
-  acceptGameNavigation();
+  const preserve = options.preservation === 'preserve';
+  let preservationStatus: PreservationStatus = preserve ? 'existing-local' : 'standard';
+  try {
+    acceptGameNavigation(Date.now(), { preserve });
+  } catch {
+    preservationStatus = 'identity-mismatch';
+  }
   const game = options.game;
   const endpoint = (options.endpoint ?? DEFAULT_ENDPOINT).replace(/\/$/, '');
   const g = globalThis as unknown as Env & Window;
@@ -211,19 +229,53 @@ export function createLab(options: LabOptions): Lab {
   const queue: { event: Event; runId: string }[] = [];
   const logs: { level: 'error' | 'warn' | 'game'; message: string; at: number; runId: string }[] = [];
   const navigationKey = `hf-lab-navigation:${game}`;
-  const recordingStopped = () =>
-    off ||
-    getItem(local, offKey) === '1' ||
-    readLocal(RECORDING_OFF) === '1' ||
-    (privacySignal(g) && !override) ||
-    (local_ && !options.sendFromLocalhost);
+  let disposed = false;
+  const cleanup: (() => void)[] = [];
+  const initialPlayer = readLocal(PLAYER_KEY);
+  let acceptedSession: string | null = null;
+  let acceptedRun: string | null = null;
+  const recordingStopped = () => {
+    if (preserve && preservationStatus === 'existing-local' && readLocal(PLAYER_KEY) !== initialPlayer)
+      preservationStatus = 'identity-mismatch';
+    if (
+      preserve &&
+      preservationStatus === 'existing-local' &&
+      (getItem(session, `${SID_KEY}:${game}`) !== acceptedSession ||
+        getItem(session, `hf-lab-run:${game}`) !== acceptedRun)
+    )
+      preservationStatus = 'incompatible-session';
+    return (
+      disposed ||
+      (preserve && preservationStatus !== 'existing-local') ||
+      off ||
+      getItem(local, offKey) === '1' ||
+      readLocal(RECORDING_OFF) === '1' ||
+      (privacySignal(g) && !override) ||
+      (local_ && !options.sendFromLocalhost)
+    );
+  };
   const stopped = recordingStopped;
   const sessionKey = `${SID_KEY}:${game}`;
-  const stored = getItem(session, sessionKey)?.split(':');
+  const storedSession = getItem(session, sessionKey);
+  const stored = storedSession?.split(':');
   let sid = stored?.[0] ?? '';
   let started = Number(stored?.[1]);
   const fresh = !/^[a-f0-9]{32}$/.test(sid) || !Number.isFinite(started);
-  if (fresh) {
+  if (preserve && preservationStatus !== 'identity-mismatch') {
+    const existingPlayer = readLocal(PLAYER_KEY);
+    if (!existingPlayer || !/^[a-f0-9]{32}$/.test(existingPlayer)) preservationStatus = 'missing-identity';
+    else if (
+      (storedSession !== null && fresh) ||
+      (getItem(session, `hf-lab-run:${game}`) !== null &&
+        !/^[a-f0-9]{32}$/.test(getItem(session, `hf-lab-run:${game}`) ?? ''))
+    )
+      preservationStatus = 'incompatible-session';
+    else {
+      const central = readLocal('hf-lab-top-level-player');
+      if (central && central !== existingPlayer) preservationStatus = 'identity-mismatch';
+    }
+  }
+  if (fresh && (!preserve || preservationStatus === 'existing-local')) {
     sid = randomId();
     started = Date.now();
     setItem(session, sessionKey, `${sid}:${started}`);
@@ -231,7 +283,24 @@ export function createLab(options: LabOptions): Lab {
   const runStorageKey = `hf-lab-run:${game}`;
   let runId = getItem(session, runStorageKey) ?? randomId();
   if (!/^[a-f0-9]{32}$/.test(runId)) runId = randomId();
-  setItem(session, runStorageKey, runId);
+  const storedRun = getItem(session, runStorageKey);
+  if (
+    preserve &&
+    storedRun !== null &&
+    !/^[a-f0-9]{32}$/.test(storedRun) &&
+    preservationStatus === 'existing-local'
+  )
+    preservationStatus = 'incompatible-session';
+  if (!preserve || (storedRun === null && preservationStatus === 'existing-local'))
+    setItem(session, runStorageKey, runId);
+  acceptedSession = getItem(session, sessionKey);
+  acceptedRun = getItem(session, runStorageKey);
+  if (
+    preserve &&
+    preservationStatus === 'existing-local' &&
+    (acceptedSession !== `${sid}:${started}` || acceptedRun !== runId)
+  )
+    preservationStatus = 'incompatible-session';
   let build: Build = options.build ?? {};
   let buildKnown = Boolean(options.build);
   let transport: ReturnType<typeof linkedTransport>;
@@ -243,7 +312,6 @@ export function createLab(options: LabOptions): Lab {
     explicitUploads.clear();
     queue.length = 0;
     logs.length = 0;
-    clearJournal();
     transport?.clear();
   };
   const onIdentity = (id: string | null, value: boolean) => {
@@ -252,24 +320,31 @@ export function createLab(options: LabOptions): Lab {
     off = value;
     writeLocal(RECORDING_OFF, value ? '1' : null);
     writeLocal(PLAYER_KEY, id);
-    if (value) {
+    if (value && preserve) {
+      reset();
+    } else if (value) {
       sid = randomId();
       started = Date.now();
       runId = randomId();
       setItem(session, sessionKey, `${sid}:${started}`);
-      setItem(session, runStorageKey, runId);
+      if (!preserve) setItem(session, runStorageKey, runId);
       reset();
     }
     g.dispatchEvent?.(new Event('hf-lab-preference'));
   };
   const activate = () => {
     if (
+      disposed ||
       off ||
       readLocal(RECORDING_OFF) === '1' ||
       (privacySignal(g) && !override) ||
       (local_ && !options.sendFromLocalhost)
     )
       return;
+    if (preserve) {
+      if (preservationStatus === 'existing-local') player = readLocal(PLAYER_KEY);
+      return;
+    }
     player = localPlayer();
     identity ??= identityBridge(onIdentity);
   };
@@ -278,6 +353,7 @@ export function createLab(options: LabOptions): Lab {
     game,
     endpoint,
     runSource,
+    preserve,
     build: () => build,
     override: () => override,
     enabled: () => !stopped(),
@@ -287,6 +363,7 @@ export function createLab(options: LabOptions): Lab {
   // Each immutable chunk has its own key, so another tab cannot overwrite it
   // while appending or retiring a different chunk. Limits are checked after
   // writing; on contention only this append's new keys are rolled back.
+  let journalBlocked = false;
   const journalPrefix = `${navigationKey}:`;
   const journalKeys = () => {
     const keys: string[] = [];
@@ -296,13 +373,10 @@ export function createLab(options: LabOptions): Lab {
           const key = local.key(i);
           if (key?.startsWith(journalPrefix)) keys.push(key);
         }
-    } catch {}
+    } catch {
+      journalBlocked = true;
+    }
     return keys;
-  };
-  const clearJournal = () => {
-    for (const key of journalKeys()) setItem(local, key, null);
-    // Remove the old array format too; it must never be replayed.
-    setItem(local, navigationKey, null);
   };
   const validEntry = (entry: JournalEntry): boolean =>
     !!entry &&
@@ -334,6 +408,7 @@ export function createLab(options: LabOptions): Lab {
       : Array.isArray(entry.data) && entry.data.length === entry.count);
   const readJournal = (): JournalEntry[] => {
     const entries: JournalEntry[] = [];
+    journalBlocked = getItem(local, navigationKey) !== null;
     for (const key of journalKeys()) {
       const raw = getItem(local, key);
       try {
@@ -347,7 +422,7 @@ export function createLab(options: LabOptions): Lab {
           throw new Error('invalid chunk');
         entries.push(entry);
       } catch {
-        setItem(local, key, null);
+        journalBlocked = true;
       }
     }
     return entries;
@@ -359,7 +434,7 @@ export function createLab(options: LabOptions): Lab {
     new TextEncoder().encode(JSON.stringify(entries)).byteLength > 128 * 1024;
   const appendJournal = (entries: JournalEntry[]): 'saved' | 'full' | 'unavailable' => {
     if (!local) return 'unavailable';
-    if (overJournalLimit([...readJournal(), ...entries])) return 'full';
+    if (overJournalLimit([...readJournal(), ...entries]) || journalBlocked) return 'full';
     const written: string[] = [];
     try {
       for (const entry of entries) {
@@ -388,7 +463,7 @@ export function createLab(options: LabOptions): Lab {
     try {
       await (identity?.ready ?? Promise.resolve());
       if (epoch !== generation || stopped() || player !== entry.link.player) return;
-      await transport.send(entry.kind, entry.data, entry.link, undefined, false, true, {
+      await transport.send(entry.kind, entry.data, entry.link, undefined, 'due', true, {
         build: entry.build,
         privacyOverride: entry.override,
         runSource: entry.runSource,
@@ -402,10 +477,7 @@ export function createLab(options: LabOptions): Lab {
     }
   };
   const replayJournal = () => {
-    if (stopped()) {
-      clearJournal();
-      return;
-    }
+    if (stopped()) return;
     const epoch = generation;
     for (const entry of readJournal()) void sendEntry(entry, epoch);
   };
@@ -417,7 +489,7 @@ export function createLab(options: LabOptions): Lab {
     const next = runKey?.();
     if (observedKey !== undefined && next !== observedKey) {
       runId = randomId();
-      setItem(session, runStorageKey, runId);
+      if (!preserve) setItem(session, runStorageKey, runId);
     }
     observedKey = next;
   };
@@ -429,6 +501,7 @@ export function createLab(options: LabOptions): Lab {
       reset();
       return;
     }
+    void transport.drain();
     if (!buildKnown && !allowUnknownBuild) return;
     if (!queue.length && !logs.length) {
       replayJournal();
@@ -471,7 +544,7 @@ export function createLab(options: LabOptions): Lab {
       });
     }
     const result = appendJournal(entries);
-    if (result === 'full') {
+    if (result === 'full' || (preserve && result === 'unavailable')) {
       replayJournal();
       return;
     }
@@ -580,6 +653,8 @@ export function createLab(options: LabOptions): Lab {
         }
       }
       sinks.add(log);
+      const registeredSinks = sinks;
+      cleanup.push(() => registeredSinks.delete(log));
     }
     let ended = false;
     g.addEventListener('pagehide', () => {
@@ -593,7 +668,8 @@ export function createLab(options: LabOptions): Lab {
         flush(true);
       } else ended = false;
     });
-    setInterval(() => flush(), 20000);
+    const flushTimer = setInterval(() => flush(), 20000);
+    cleanup.push(() => clearInterval(flushTimer));
   }
   const setOff = (value: boolean) => {
     // The menu switch and feedback checkbox are explicit opt-in, including DNT/GPC.
@@ -604,12 +680,14 @@ export function createLab(options: LabOptions): Lab {
     off = value;
     setItem(local, offKey, value ? '1' : null);
     writeLocal(RECORDING_OFF, value ? '1' : null);
-    if (value) {
+    if (value && preserve) {
+      reset();
+    } else if (value) {
       sid = randomId();
       started = Date.now();
       runId = randomId();
       setItem(session, sessionKey, `${sid}:${started}`);
-      setItem(session, runStorageKey, runId);
+      if (!preserve) setItem(session, runStorageKey, runId);
       player = null;
       writeLocal(PLAYER_KEY, null);
       reset();
@@ -660,13 +738,23 @@ export function createLab(options: LabOptions): Lab {
   const lab: Lab = {
     game,
     endpoint,
+    get preservationStatus() {
+      if (preserve) recordingStopped();
+      return preservationStatus;
+    },
+    dispose() {
+      disposed = true;
+      reset();
+      transport.dispose();
+      for (const stop of cleanup) stop();
+    },
     build: () => build,
     setPersonaRecording(key) {
       if (key !== null && !/^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/.test(key))
         throw new Error('Invalid persona recording key.');
       // Compatibility with older hosts: first-visit disclosure now covers linkage.
       // Discard obsolete per-person decisions silently; recording is the only gate.
-      if (key) writeLocal(`hf-persona-recording:${key}`, null);
+      if (key && !preserve) writeLocal(`hf-persona-recording:${key}`, null);
     },
     get personaRecordingAllowed() {
       return true;
@@ -735,6 +823,10 @@ export function createLab(options: LabOptions): Lab {
       };
       snapshot = take;
       const timer = setInterval(() => void take(), 60000);
+      cleanup.push(() => {
+        disposed = true;
+        clearInterval(timer);
+      });
       void (identity?.ready ?? Promise.resolve()).then(take);
       return () => {
         disposed = true;
@@ -799,6 +891,9 @@ export function createLab(options: LabOptions): Lab {
       }
     },
     async sendRun(run, extra = {}) {
+      if (preserve && preservationStatus !== 'existing-local')
+        throw new Error(`Lab preservation blocked: ${preservationStatus}.`);
+      if (preserve && stopped()) throw new Error('Lab recording is off.');
       syncRun();
       if (!stopped()) {
         await (identity?.ready ?? Promise.resolve());
@@ -817,6 +912,9 @@ export function createLab(options: LabOptions): Lab {
       return lab.sendEnvelopeText(prepareRun(game, build, run, extra));
     },
     async sendEnvelopeText(text) {
+      if (preserve && preservationStatus !== 'existing-local')
+        throw new Error(`Lab preservation blocked: ${preservationStatus}.`);
+      if (preserve && stopped()) throw new Error('Lab recording is off.');
       if (off || readLocal(RECORDING_OFF) === '1') throw new Error('Lab recording is off.');
       if (!stopped()) {
         const envelope = JSON.parse(text) as { run: unknown; note?: string; name?: string };

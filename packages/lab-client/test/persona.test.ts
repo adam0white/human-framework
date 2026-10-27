@@ -114,7 +114,7 @@ describe('persona shelf contract', () => {
   });
 });
 
-it('shares only consent status before automatically enabling a fresh target origin', async () => {
+it('reads continuity consent without enabling it at construction and preserves local consent bytes', async () => {
   let centralEnabled = false;
   const messages: Record<string, unknown>[] = [];
   function browser(origin: string) {
@@ -159,14 +159,27 @@ it('shares only consent status before automatically enabling a fresh target orig
       addEventListener: (_kind: string, fn: (event: unknown) => void) => listeners.add(fn),
       removeEventListener: (_kind: string, fn: (event: unknown) => void) => listeners.delete(fn),
     });
-    return personaChannel();
+    local.set('hf-persona-opt-in', '0');
+    const channel = personaChannel({ preservation: 'preserve' });
+    return {
+      ...channel,
+      get ready() {
+        return channel.ready;
+      },
+      get enabled() {
+        return channel.enabled;
+      },
+      local,
+    };
   }
   const source = browser('https://pass.adamwhite.work');
-  expect(await source.ready).toBe(true);
+  expect(await source.ready).toBe(false);
+  expect(source.local.get('hf-persona-opt-in')).toBe('0');
+  expect(messages[0]?.action).toBe('get');
   source.setEnabled(true);
   expect(await source.ready).toBe(true);
   const target = browser('https://goodhands.adamwhite.work');
-  expect(target.enabled).toBe(true);
+  expect(target.enabled).toBe(false);
   expect(await target.ready).toBe(true);
   expect(messages.every((message) => message.type === 'hf-persona-consent')).toBe(true);
   expect(messages.every((message) => message.envelope === undefined && message.castId === undefined)).toBe(
@@ -176,7 +189,7 @@ it('shares only consent status before automatically enabling a fresh target orig
   target.setEnabled(false);
   await target.ready;
   const nextGame = browser('https://hearsay.adamwhite.work');
-  expect(await nextGame.ready).toBe(true);
+  expect(await nextGame.ready).toBe(false);
 });
 
 it('rejects consent status exchanges from unapproved origins, sibling frames and malformed choices', () => {

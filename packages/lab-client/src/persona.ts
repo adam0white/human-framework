@@ -253,13 +253,13 @@ export function isPersonaConsentMessage(
   );
 }
 /** Global browser continuity consent is read before hosts decide fresh-run admission. */
-export function personaChannel(): {
+export function personaChannel(options: { preservation?: 'preserve' } = {}): {
   readonly enabled: boolean;
   readonly ready: Promise<boolean>;
   setEnabled(value: boolean): void;
   request<T>(request: PersonaRequest): Promise<T>;
 } {
-  let enabled = true;
+  let enabled = false;
   let frame: HTMLIFrameElement | undefined;
   let loaded: Promise<void> | undefined;
   async function exchange<T>(message: Record<string, unknown>, replyType: string): Promise<T> {
@@ -322,14 +322,11 @@ export function personaChannel(): {
   const remember = (value: unknown): boolean => {
     if (typeof value !== 'boolean') throw new Error('Invalid continuity preference.');
     enabled = value;
-    writeLocal(PERSONA_CONSENT_KEY, value ? '1' : '0');
+    if (options.preservation !== 'preserve') writeLocal(PERSONA_CONSENT_KEY, value ? '1' : '0');
     return value;
   };
   // A failed bridge retains local/file play but cannot establish shared consent.
-  let pending = exchange<unknown>(
-    { type: 'hf-persona-consent', action: 'set', enabled: true },
-    'hf-persona-consent-reply',
-  )
+  let pending = exchange<unknown>({ type: 'hf-persona-consent', action: 'get' }, 'hf-persona-consent-reply')
     .then(remember)
     .catch(() => enabled);
   return {

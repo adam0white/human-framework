@@ -18,8 +18,12 @@ export function setTelemetryOff(lab: TelemetryLab, off: boolean): void {
 }
 
 /** One notice per origin, shared by all games. The caller mounts it on first visit. */
-export function telemetryNotice(storage?: FlagStorage | null): HTMLElement | null {
-  if (!once('telemetry-notice-v1', storage)) return null;
+export function telemetryNotice(
+  storage?: FlagStorage | null,
+  options: { preservation?: 'preserve' } = {},
+): HTMLElement | null {
+  const preserve = options.preservation === 'preserve';
+  if (!preserve && !once('telemetry-notice-v1', storage)) return null;
   const notice = document.createElement('p');
   notice.className = 'lk-telemetry-notice';
   notice.setAttribute('role', 'status');
@@ -35,6 +39,11 @@ export function telemetryNotice(storage?: FlagStorage | null): HTMLElement | nul
     border: '1px solid #6b6158',
     font: 'max(14px, 0.875rem)/1.35 system-ui',
   });
+  if (preserve) {
+    // Informational only: do not claim or rewrite an existing notice on either origin.
+    notice.style.visibility = 'visible';
+    return notice;
+  }
   // Await central notice state when the peer supports it; blocked frames use once/origin.
   notice.style.visibility = 'hidden';
   void import('@adam0white/lab-client')

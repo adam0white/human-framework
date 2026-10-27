@@ -18,7 +18,7 @@ export function gameNavigation(href: string, now = Date.now()): string {
 }
 
 /** Runs before local identity activation. Only a direct central navigation may supply a handoff. */
-export function acceptGameNavigation(now = Date.now()): boolean {
+export function acceptGameNavigation(now = Date.now(), options: { preserve?: boolean } = {}): boolean {
   if (typeof location === 'undefined' || typeof document === 'undefined' || typeof history === 'undefined')
     return false;
   const hash = new URLSearchParams(location.hash?.slice(1) ?? '');
@@ -51,6 +51,11 @@ export function acceptGameNavigation(now = Date.now()): boolean {
         : typeof value.player !== 'string' || !/^[a-f0-9]{32}$/.test(value.player)
     )
       return false;
+    if (options.preserve) {
+      if (readLocal(PLAYER_KEY) !== value.player || (readLocal(OFF_KEY) === '1') !== value.off)
+        throw new Error('Existing recording identity or preference differs from navigation.');
+      return true;
+    }
     if (!value.off && readLocal(OFF_KEY) === '1') return false;
     // Future records use the central identity. Existing uploaded records retain their old IDs.
     const prior = readLocal(PLAYER_KEY);
@@ -67,7 +72,8 @@ export function acceptGameNavigation(now = Date.now()): boolean {
       }
     }
     return true;
-  } catch {
+  } catch (error) {
+    if (options.preserve) throw error;
     return false;
   }
 }

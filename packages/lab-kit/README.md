@@ -1,8 +1,8 @@
 # @adam0white/lab-kit
 
-Small plain-DOM components for lab games. No framework, simulation logic, automatic telemetry or font downloads. This README describes the kit 0.5.15 candidate. The CSS-first phone stage and browser layout audit were added in 0.2.0. Kit distribution uses immutable GitHub release artifacts, not npm publication; use the [SDK adoption guide](../../docs/lab/navigation-journal-adoption-2026-10-25.md) and [release digests](../../docs/releases.md#lab-package-artifacts--2026-10-25).
+Small plain-DOM components for lab games. No framework, simulation logic, automatic telemetry or font downloads. This README describes the kit 0.5.16 candidate. The CSS-first phone stage and browser layout audit were added in 0.2.0. Kit distribution uses immutable GitHub release artifacts, not npm publication; use the [SDK adoption guide](../../docs/lab/navigation-journal-adoption-2026-10-25.md) and [release digests](../../docs/releases.md#lab-package-artifacts--2026-10-25).
 
-Workspace candidate version: **0.5.15**. This candidate retains optional client 0.4.11 and 0.4.12 support and adds 0.4.13 support. Kit code and scorer are unchanged. The **0.5.12** [GitHub artifact](https://github.com/adam0white/human-framework/releases/tag/lab-kit-v0.5.12) is published from separate source `569bfeed`, with exact CI 40241110596. Its source is integrated into this 3.2 candidate; live host adoption still needs deployment. See [SDK adoption](../../docs/lab/navigation-journal-adoption-2026-10-25.md) before using its opt-in Feedback choices.
+Workspace candidate version: **0.5.16** (unpublished). It retains optional client 0.4.11–0.4.13 compatibility and adds client 0.4.14 plus an explicit preserving notice. Existing 0.5.15 artifacts remain immutable. Candidate builds, publication, host adoption and browser admission are separate outcomes.
 
 Import the CSS once. JavaScript exports are tree-shakeable; CSS is explicitly marked as a side effect.
 
@@ -310,3 +310,7 @@ The client renders the two quiet choices and owns preview, submission, privacy,
 run linkage, byte limits and receipts. The default omits the option and preserves
 the old dialog. Older clients may ignore the flag; upgrade both artifacts before
 claiming adoption. No npm publication or host adoption is part of this candidate.
+
+## Informational preserving notice (new in this candidate)
+
+`telemetryNotice(storage, {preservation:'preserve'})` shows the normal recording disclosure without writing the local once flag or making a central notice claim. It may show again; visibility is informational, not an acknowledgment or permission change. Pair it with client `createLab({game, preservation:'preserve'})`. Normal `telemetryNotice(storage)` keeps its once-per-origin and asynchronous central-claim behavior. A preserving notice does not initialize identity, turn recording on, or protect host native/Shelf/service-worker state. Those require their own contracts and actual profile verification.

@@ -58,7 +58,7 @@ function harness(ready: boolean[] = []) {
   const received: { data?: { e?: unknown[][]; vp?: string }; build?: { a?: string } }[] = [];
   vi.stubGlobal('fetch', async (_url: string, init: RequestInit) => {
     received.push(JSON.parse(gunzipSync(new Uint8Array(await (init.body as Blob).arrayBuffer())).toString()));
-    return Response.json({ ok: true, id: 'stored' });
+    return Response.json({ ok: true, id: (received.at(-1) as { id?: string })?.id });
   });
   return { values, document, listeners, received, release };
 }
@@ -127,7 +127,7 @@ it('keeps the older journal through a second hide while its recovery waits', asy
   expect(h.received.flatMap((r) => r.data?.e ?? []).filter((e: unknown[]) => e[0] === 'end')).toHaveLength(2);
 });
 
-it('erases old chunks when recording resets during recovery', async () => {
+it('preserves old chunks when recording resets during recovery', async () => {
   const h = harness([false, false]);
   const first = createLab({ game: 'pass', build: { a: 'old' } });
   first.milestone('old private run');
@@ -136,7 +136,7 @@ it('erases old chunks when recording resets during recovery', async () => {
   second.setTelemetryOff(true);
   h.release[1]?.();
   await new Promise((resolve) => setTimeout(resolve, 20));
-  expect([...h.values.keys()].some((key) => key.startsWith('hf-lab-navigation:pass:'))).toBe(false);
+  expect([...h.values.keys()].some((key) => key.startsWith('hf-lab-navigation:pass:'))).toBe(true);
   expect(h.received).toHaveLength(0);
 });
 
@@ -169,7 +169,7 @@ it('retries an old full journal after the network returns even when new data can
     h.received.push(
       JSON.parse(gunzipSync(new Uint8Array(await (init.body as Blob).arrayBuffer())).toString()),
     );
-    return Response.json({ ok: true });
+    return Response.json({ ok: true, id: (h.received.at(-1) as { id?: string })?.id });
   });
   const lab = createLab({ game: 'pass', build: { a: 'offline' } });
   for (let i = 0; i < 255; i++) {
@@ -212,7 +212,7 @@ it('keeps two documents’ chunks independent while one retires its own entry', 
   );
 });
 
-it('expires a regular chunk older than seven days without uploading it', async () => {
+it('preserves a regular chunk older than seven days without uploading it', async () => {
   const h = harness([false]);
   const first = createLab({ game: 'pass', build: { a: 'old' } });
   first.milestone('expired private event');
@@ -223,7 +223,7 @@ it('expires a regular chunk older than seven days without uploading it', async (
   h.values.set(key, JSON.stringify(entry));
   createLab({ game: 'pass', build: { a: 'new' } });
   await Promise.resolve();
-  expect(h.values.has(key)).toBe(false);
+  expect(h.values.has(key)).toBe(true);
   expect(h.received).toHaveLength(0);
 });
 
@@ -272,4 +272,145 @@ it('preserves captured agent and legacy source across journal reload', async () 
   expect(records.find((r) => JSON.stringify(r.data).includes('legacy journal'))).not.toHaveProperty(
     'runSource',
   );
+});
+
+it('preserving initialization keeps existing identity session preferences and unknown journal bytes while off', async () => {
+  const h = harness();
+  const old = {
+    'hf-lab-player': 'a'.repeat(32),
+    'hf-lab-session:pass': `${'b'.repeat(32)}:123`,
+    'hf-lab-run:pass': 'c'.repeat(32),
+    'hf-lab-recording-off': '1',
+    'hf-persona-opt-in': '0',
+    'hf-lab-navigation:pass:unknown': 'unique malformed original journal bytes',
+  };
+  for (const [key, value] of Object.entries(old)) h.values.set(key, value);
+  const lab = createLab({ game: 'pass', build: {}, preservation: 'preserve' });
+  lab.flush();
+  lab.captureSave({ state: 'must not send' });
+  await new Promise((resolve) => setTimeout(resolve, 30));
+  expect(lab.preservationStatus).toBe('existing-local');
+  expect(Object.fromEntries(h.values)).toEqual(old);
+  expect(h.received).toHaveLength(0);
+  expect(identity.identityBridge).not.toHaveBeenCalled();
+  lab.dispose();
+});
+
+it('preserving initialization refuses missing identity and incompatible sessions without replacing keys', async () => {
+  const h = harness();
+  const missing = createLab({ game: 'pass', build: {}, preservation: 'preserve' });
+  expect(missing.preservationStatus).toBe('missing-identity');
+  expect(missing.telemetryOn).toBe(false);
+  await expect(missing.sendRun({ state: 'full' })).rejects.toThrow('preserv');
+  expect(h.values.size).toBe(0);
+  missing.dispose();
+  h.values.set('hf-lab-player', 'a'.repeat(32));
+  h.values.set('hf-lab-session:pass', 'unique-incompatible-session');
+  const noSession = createLab({ game: 'pass', build: {}, preservation: 'preserve' });
+  expect(noSession.preservationStatus).toBe('incompatible-session');
+  expect(h.values.get('hf-lab-session:pass')).toBe('unique-incompatible-session');
+  expect(h.values.size).toBe(2);
+  noSession.dispose();
+});
+
+it('preserving recording keeps identity session and journal across explicit off without creating bridge consent', async () => {
+  const h = harness();
+  h.values.set('hf-lab-player', 'a'.repeat(32));
+  h.values.set('hf-lab-session:pass', `${'b'.repeat(32)}:${Date.now()}`);
+  h.values.set('hf-lab-run:pass', 'c'.repeat(32));
+  h.values.set('hf-lab-navigation:pass:unknown', 'unique old bytes');
+  const lab = createLab({ game: 'pass', build: {}, preservation: 'preserve', runSource: 'agent' });
+  expect(lab.telemetryOn).toBe(true);
+  lab.setTelemetryOff(true);
+  lab.flush();
+  expect(h.values.get('hf-lab-player')).toBe('a'.repeat(32));
+  expect(h.values.get('hf-lab-run:pass')).toBe('c'.repeat(32));
+  expect(h.values.get('hf-lab-navigation:pass:unknown')).toBe('unique old bytes');
+  expect(identity.identityBridge).not.toHaveBeenCalled();
+  lab.dispose();
+});
+
+it('preserving initialization adds only absent fresh-tab session keys and keeps old records identities', async () => {
+  const h = harness();
+  h.values.set('hf-lab-player', 'a'.repeat(32));
+  const lab = createLab({ game: 'pass', build: {}, preservation: 'preserve', runSource: 'agent' });
+  expect(lab.preservationStatus).toBe('existing-local');
+  expect(lab.telemetryOn).toBe(true);
+  expect(h.values.get('hf-lab-session:pass')).toMatch(/^[a-f0-9]{32}:\d+$/);
+  expect(h.values.get('hf-lab-run:pass')).toMatch(/^[a-f0-9]{32}$/);
+  lab.milestone('fresh tab');
+  lab.flush();
+  await vi.waitFor(() =>
+    expect(h.received.some((r) => JSON.stringify(r.data).includes('fresh tab'))).toBe(true),
+  );
+  expect((h.received[0] as Record<string, unknown>).runSource).toBe('agent');
+  expect(h.values.get('hf-lab-player')).toBe('a'.repeat(32));
+  lab.dispose();
+});
+
+it('preserving navigation refuses a different central identity before changing storage and stops on later identity replacement', async () => {
+  const h = harness();
+  const existing = 'a'.repeat(32);
+  h.values.set('hf-lab-player', existing);
+  h.values.set('hf-lab-session:pass', `${'b'.repeat(32)}:${Date.now()}`);
+  h.values.set('hf-lab-run:pass', 'c'.repeat(32));
+  const before = Object.fromEntries(h.values);
+  const url = new URL('https://pass.adamwhite.work/play');
+  url.hash = `hf-lab-navigation=${encodeURIComponent(JSON.stringify({ v: 1, at: Date.now(), to: url.origin, player: 'd'.repeat(32), off: false, notice: true }))}`;
+  vi.stubGlobal('location', url);
+  vi.stubGlobal('document', { ...h.document, referrer: 'https://human.adamwhite.work/' });
+  vi.stubGlobal('history', {
+    state: null,
+    replaceState: (_state: unknown, _unused: string, href: string) => {
+      url.href = new URL(href, url).href;
+    },
+  });
+  const refused = createLab({ game: 'pass', build: {}, preservation: 'preserve' });
+  expect(refused.preservationStatus).toBe('identity-mismatch');
+  expect(refused.telemetryOn).toBe(false);
+  expect(Object.fromEntries(h.values)).toEqual(before);
+  expect(url.hash).toBe('');
+  refused.dispose();
+  const accepted = createLab({ game: 'pass', build: {}, preservation: 'preserve' });
+  expect(accepted.telemetryOn).toBe(true);
+  h.values.set('hf-lab-player', 'e'.repeat(32));
+  expect(accepted.telemetryOn).toBe(false);
+  expect(accepted.preservationStatus).toBe('identity-mismatch');
+  accepted.dispose();
+  h.values.set('hf-lab-player', existing);
+  const sessionChanged = createLab({ game: 'pass', build: {}, preservation: 'preserve' });
+  h.values.set('hf-lab-session:pass', 'foreign replacement');
+  expect(sessionChanged.telemetryOn).toBe(false);
+  expect(sessionChanged.preservationStatus).toBe('incompatible-session');
+  sessionChanged.dispose();
+});
+
+it('preserving backpressure keeps new memory events when both durable stores are unavailable', async () => {
+  const h = harness();
+  h.values.set('hf-lab-player', 'a'.repeat(32));
+  h.values.set('hf-lab-session:pass', `${'b'.repeat(32)}:${Date.now()}`);
+  h.values.set('hf-lab-run:pass', 'c'.repeat(32));
+  vi.stubGlobal('indexedDB', undefined);
+  let denied = true;
+  vi.stubGlobal('localStorage', {
+    get length() {
+      return h.values.size;
+    },
+    key: (index: number) => [...h.values.keys()][index] ?? null,
+    getItem: (key: string) => h.values.get(key) ?? null,
+    setItem: (key: string, value: string) => {
+      if (denied) throw new Error('Storage unavailable');
+      h.values.set(key, value);
+    },
+    removeItem: (key: string) => h.values.delete(key),
+  });
+  const lab = createLab({ game: 'pass', build: {}, preservation: 'preserve' });
+  lab.milestone('retain while denied');
+  lab.flush();
+  await new Promise((resolve) => setTimeout(resolve, 20));
+  denied = false;
+  lab.flush();
+  expect([...h.values.values()].some((value) => value.includes('retain while denied'))).toBe(true);
+  expect(h.received).toHaveLength(0);
+  lab.dispose();
 });
