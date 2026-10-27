@@ -1,8 +1,8 @@
 # @adam0white/lab-kit
 
-Small plain-DOM components for lab games. No framework, simulation logic, automatic telemetry or font downloads. This README describes kit 0.5.17. The CSS-first phone stage and browser layout audit were added in 0.2.0. Kit distribution uses immutable GitHub release artifacts, not npm publication; use the [SDK adoption guide](../../docs/lab/navigation-journal-adoption-2026-10-25.md) and [release digests](../../docs/releases.md#lab-package-artifacts--2026-10-25).
+Small plain-DOM components for lab games. No framework, simulation logic, automatic telemetry or font downloads. This README describes kit 0.5.18. The CSS-first phone stage and browser layout audit were added in 0.2.0. Kit distribution uses immutable GitHub release artifacts, not npm publication; use the [SDK adoption guide](../../docs/lab/navigation-journal-adoption-2026-10-25.md) and [release digests](../../docs/releases.md#lab-package-artifacts--2026-10-25).
 
-Workspace version: **0.5.17**. It retains optional client 0.4.11–0.4.14 compatibility and adds client 0.4.15. The recording notice no longer blocks game controls at phone width (818c352). Existing 0.5.16 artifacts remain immutable. Candidate builds, publication, host adoption and browser admission are separate outcomes.
+Workspace version: **0.5.18**. It adds the collapsed Debug footer and makes Save available without a query switch. It retains optional client 0.4.11–0.4.14 compatibility and adds client 0.4.15. The recording notice no longer blocks game controls at phone width (818c352). Existing 0.5.16 artifacts remain immutable. Candidate builds, publication, host adoption and browser admission are separate outcomes.
 
 Import the CSS once. JavaScript exports are tree-shakeable; CSS is explicitly marked as a side effect.
 
@@ -150,9 +150,9 @@ footer.append(
 );
 ```
 
-One Game menu button opens Feedback (when `lab` exists), the single Recording switch (when supported), and Resume. With `?lab=1`, it also exposes Save (when `onSave` exists), Download this run and Lab privacy. The menu closes before the client dialog opens. Save success and failures are announced. `getRun` is read at action time; download always includes the complete export, never the compact form. The game must provide seed, input log and state, prove replay, and offer Continue with a location summary on its returning-player screen.
+One Game menu button opens Feedback (when `lab` exists), the single Recording switch (when supported), and Resume. Save is available when `onSave` exists. Download this run is in a collapsed Debug item beside Lab privacy. The menu closes before the client dialog opens. Save success and failures are announced. `getRun` is read at action time; download always includes the complete export, never the compact form. The game must provide seed, input log and state, prove replay, and offer Continue with a location summary on its returning-player screen.
 
-The client is an **optional peer**, pinned to `@adam0white/lab-client 0.4.10` in kit 0.5.11. Pass an existing lab; the kit does not create one. Omitting `lab` keeps diagnostic download and Save available with `?lab=1` and explains why sending is unavailable. This also lets browser automation use the menu without initializing telemetry. Honor the client's privacy signals; never force telemetry on for a test.
+The client is an **optional peer**, pinned to `@adam0white/lab-client 0.4.10` in kit 0.5.11. Pass an existing lab; the kit does not create one. Omitting `lab` keeps diagnostic download and Save available and explains why sending is unavailable. This also lets browser automation use the menu without initializing telemetry. Honor the client's privacy signals; never force telemetry on for a test.
 
 Compaction options are forwarded only after a lazy import of the installed client's exported `package.json` confirms a stable version 0.1.2 or later. Missing or unrecognized metadata falls back to the legacy dialog options. No peer is loaded on kit import or download. A bundler using the send integration must be able to resolve that optional peer's JSON export. The client owns consent, compression, limits, transport and send error messages. Add the lab endpoint to the game's CSP as described in [lab-client](../lab-client/README.md).
 
@@ -314,3 +314,5 @@ claiming adoption. No npm publication or host adoption is part of this candidate
 ## Informational preserving notice (new in this candidate)
 
 `telemetryNotice(storage, {preservation:'preserve'})` shows the normal recording disclosure without writing the local once flag or making a central notice claim. It may show again; visibility is informational, not an acknowledgment or permission change. Pair it with client `createLab({game, preservation:'preserve'})`. Normal `telemetryNotice(storage)` keeps its once-per-origin and asynchronous central-claim behavior. A preserving notice does not initialize identity, turn recording on, or protect host native/Shelf/service-worker state. Those require their own contracts and actual profile verification.
+
+`debugFooter(...items)` returns a footer with Lab privacy and a collapsed Debug item. Pass DOM nodes for the few needed diagnostics; each new footer starts collapsed.

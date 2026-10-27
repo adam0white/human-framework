@@ -1,3 +1,4 @@
+export { debugFooter } from './debug-footer.ts';
 /**
  * Scope: framework-free lab UI primitives and an optional fixed forecast instrument. Import tokens.css explicitly for the Field Notebook look.
  * No client is created on import; game rules, simulation state and telemetry transport remain outside this kit.

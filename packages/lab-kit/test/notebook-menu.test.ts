@@ -3,7 +3,7 @@ import { downloadJson, notebookMenu } from '../src/notebook-menu.ts';
 
 const peer = vi.hoisted(() => ({ version: '0.1.2' }));
 vi.mock('@adam0white/lab-client/package.json', () => ({ default: peer }));
-beforeEach(() => history.replaceState(null, '', '/?lab=1'));
+beforeEach(() => history.replaceState(null, '', '/'));
 afterEach(() => {
   document.querySelectorAll('dialog').forEach((d) => {
     d.close();
@@ -143,11 +143,14 @@ it('does not open Send late if the player closes Notebook during peer detection'
   expect(openSendDialog).not.toHaveBeenCalled();
 });
 
-it('keeps saves and exports out of the ordinary notebook menu', () => {
-  history.replaceState(null, '', '/?lab=0');
+it('shows Save and puts the export in a collapsed Debug beside Lab privacy', () => {
   const sheet = open({ getRun: () => ({ seed: 1 }), filename: 'run.json', onSave: vi.fn() });
-  expect(sheet.textContent).not.toMatch(/Download this run|Save/);
-  expect(button(sheet, 'Resume')).toBeDefined();
+  const details = sheet.querySelector('details');
+  expect(details?.open).toBe(false);
+  expect(details?.querySelector('summary')?.textContent).toBe('Debug');
+  expect(details?.querySelector('button')?.textContent).toBe('Download this run');
+  expect(details?.parentElement?.querySelector('a')?.textContent).toBe('Lab privacy');
+  expect(button(sheet, 'Save')).toBeDefined();
 });
 
 it('passes the explicit feedback choices opt-in through the native sheet handoff', async () => {
