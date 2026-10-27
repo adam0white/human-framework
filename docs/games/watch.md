@@ -959,3 +959,19 @@ Each blocking ask from the lab-panel round, with its fate. Every change is words
 - **F-1598, confirmed and fixed.** Confirmed: without `?seed=`, every fresh page opened the fixed seed 20261004. "Go up to the wall" with the default title boxes started that run. Ticking a box restarted on a random seed, which is why only those testers saw different openings. Each fresh page now draws its own seed. The seed is in every export, so runs still replay, and `?seed=` still pins one.
 - **Also fixed:** two morning lines from Kian on one topic shared a React key (a console error).
 - **Not in this cycle:** Pavel's "Letting Kian go made no visible difference" stays with the smaller asks (target **2026-11-10**).
+
+## Same-tester retest 2026-10-27 (retests-1027c, iteration 2)
+
+Verdict: **finished** (iteration 2) on `6a389e0`; 0 keep, 12 mixed, 2 quit. Details in the [round doc](watch-playtest-2026-10-27-panel-retest.md). Remaining asks, each with a date:
+
+- Target **2026-11-03** (retests-1027c): F-2113, the night's result feels set whatever the player chooses; keep the difficulty, but say at dusk who is likely to leave and which wall cannot be held, and at dawn what each order kept.
+- Target **2026-11-03** (retests-1027c): F-2114, a morning question goes to a different person than the one chosen; keep the selection after a talk and name the person on each question.
+- Target **2026-11-03** (retests-1027c): F-2115, a discovery line joins an unrelated answer (Tamar's "old signal", Samira's paints); give it its own line with a lead-in.
+- Target **2026-11-03** (retests-1027c): F-2116, Kian and Ada's story has no step in normal play since the visit became lab-only; add a morning question about Ada, or bring the visit back (owner may decide).
+- Target **2026-11-03** (retests-1027c): F-309 and F-469, the dusk night-off button says "Move the lantern nearer" while the lantern is at the post; give the true reason or let the request reach. Tiredness for everyone who will give out, at dusk.
+- Target **2026-11-03** (retests-1027c, moved up from 2026-11-10): F-1599, the phone map at dusk at night height, with the scout's line, also while a watcher's sheet is open.
+- Target **2026-11-10** (retests-1027c, moved from 2026-11-03 because the fix cycle did not touch them): F-470 and F-1601, quotes and live lines that disagree with the account; F-299 and F-351, quiet stretches and nights that repeat; F-359 and F-362, say what each order did; F-347, "something close" against a wolf; F-290, what a winter costs in grain.
+- Target **2026-11-10** (retests-1027c): F-1595 open part, one person repeating a line, plus the cross-person repeat Maya still saw.
+- Target **2026-11-10** (retests-1027c): F-1592 and F-1593, check the visit's wording once in lab mode (`?lab=1`); the panel could not reach it.
+- Target **2026-11-10** (retests-1027c): F-1600, F-1602 to F-1606, F-1608, F-1610 to F-1617, F-1619 still open, F-1607 not raised this round, F-1618 partly met (title boxes, developer wording, button names, header count, speaker names, hopes sheet, overlaps, scout reliability, night messages, silent lantern move, six-night sample, resume check, controls under panels, people leaving lists).
+- Target **2026-11-10** (retests-1027c): smaller asks F-2117 to F-2129 (walking-to-post status, "is deciding" after "say nothing", night-off answer before the watch, Insist cost, dense help lines, small Today list, thaw wall falling unwarned, the stuck bell label, cover order naming an absent watcher, the same children story twice, dawn empty-wall line gaps, a caution with no answer, "full" wall found by trying). Details in the retests-1027c round doc.
