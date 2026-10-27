@@ -32,7 +32,11 @@ export function Intro({
             <li key={l}>{explainTerms(storyDates(l))}</li>
           ))}
         </ul>
-        {eid && <p className="v-hint">You are silent today. You can still open Why on any line in Today.</p>}
+        {eid && (
+          <p className="v-hint">
+            You are silent today. You can still tap i beside an action in Today to read his reasons.
+          </p>
+        )}
       </div>
       <div className="v-page-actions">
         <button ref={button} type="button" className="v-btn v-btn-primary v-btn-big" onClick={onContinue}>

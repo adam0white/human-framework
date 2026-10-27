@@ -69,10 +69,11 @@ it('keeps lab actions inside Game menu and synchronizes the event preference', a
   expect(container.textContent).not.toContain('Send this run');
   await act(() => toggle?.click());
   const menu = container.querySelector('.pt-menu-list');
-  expect(menu?.textContent).not.toContain('Download this run');
+  expect(menu?.querySelector('details')?.textContent).toContain('Download this run');
   expect(menu?.textContent).toContain('Feedback');
   expect(menu?.querySelector('a[href="/games/"]')?.textContent).toBe('All games');
-  expect(container.querySelector('details, .lab-controls')).toBeNull();
+  expect(container.querySelector('details')?.open).toBe(false);
+  expect(container.querySelector('.lab-controls')).toBeNull();
   const checkbox = menu?.querySelector<HTMLInputElement>('input[type="checkbox"]');
   expect(checkbox?.checked).toBe(true);
   await act(() => checkbox?.click());
@@ -86,7 +87,7 @@ it('keeps lab actions inside Game menu and synchronizes the event preference', a
   );
   await act(() => sendButton?.click());
   expect(send).toHaveBeenCalledOnce();
-  expect(menu?.querySelector('a[href$="/lab/privacy/"]')?.textContent).toBe('Privacy');
+  expect(menu?.querySelector('a[href$="/lab/privacy/"]')?.textContent).toBe('Lab privacy');
 });
 it('blocks duplicate preparation and reports a preparation failure inline', async () => {
   let reject: (error: Error) => void = () => {};

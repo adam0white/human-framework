@@ -105,14 +105,14 @@ const why: WhyView = {
 it('explains grief and reluctance in his words and reserves model values for exact lab=1', () => {
   history.replaceState(null, '', '/voice/?lab=0');
   const ordinaryView = render(createElement(Why, { why, onClose: () => {} }));
-  expect(ordinaryView.el.querySelector('.v-model-numbers')).toBeNull();
-  expect(ordinaryView.el.textContent).not.toContain('0.02');
+  expect(ordinaryView.el.querySelector('details')?.open).toBe(false);
+  expect(ordinaryView.el.querySelector('details')?.textContent).toContain('0.02');
   history.replaceState(null, '', '/voice/?lab=1');
   const { el } = render(createElement(Why, { why, onClose: () => {} }));
   history.replaceState(null, '', '/voice/');
   const details = el.querySelector('details');
   expect(details?.open).toBe(false);
-  expect(details?.querySelector('summary')?.textContent).toBe('Model numbers');
+  expect(details?.querySelector('summary')?.textContent).toBe('Debug');
   expect(details?.textContent).toContain('0.02');
   const ordinary = el.cloneNode(true) as HTMLElement;
   ordinary.querySelector('details')?.remove();

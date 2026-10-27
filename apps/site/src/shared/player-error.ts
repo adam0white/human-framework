@@ -1,4 +1,3 @@
-import { labMode } from './lab-mode.ts';
 /** Presentation only. Retain diagnostics for the lab; never reinterpret or repair saved state. */
 export function playerError(detail: string, action: 'start' | 'load' | 'play' = 'start'): string {
   if (
@@ -7,7 +6,6 @@ export function playerError(detail: string, action: 'start' | 'load' | 'play' = 
     )
   )
     return fileError(detail);
-  if (labMode()) return detail.replace(/^Error: /, '');
   if (action === 'load')
     return 'The saved game could not be opened. The saved copy has been kept. You can send Feedback or start a new game.';
   if (action === 'play')

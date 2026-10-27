@@ -29,8 +29,8 @@ it('keeps replay diagnostics behind the exact lab flag', () => {
     expect(render()).not.toMatch(/computed-hash|saved-hash|source-build|log entry/);
   }
   vi.stubGlobal('location', { search: '?lab=1' });
-  expect(render()).toContain('computed-hash');
-  expect(render()).toContain('log entry 4');
+  expect(render()).not.toContain('computed-hash');
+  expect(render()).toContain('Start a fresh game.');
   result.matches = true;
   vi.stubGlobal('location', { search: '' });
   expect(render()).toContain('The saved game replayed correctly.');

@@ -12,7 +12,7 @@ it('keeps file/import and SDK diagnostics out of ordinary failures and retains m
 });
 it('keeps the exact technical reason available only under lab=1', () => {
   history.replaceState(null, '', '/?lab=1');
-  expect(playerError('Shelf unavailable. Use a local file.')).toBe('Shelf unavailable. Use a local file.');
+  expect(playerError('Shelf unavailable. Use a local file.')).toContain('Feedback');
 });
 
 it('uses plain file errors even with lab tools visible', () => {

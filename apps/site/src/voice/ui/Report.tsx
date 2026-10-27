@@ -3,8 +3,9 @@
  * faith or acceptance. Keep listening resumes from Eid night; Replay restarts the seed; New town picks a new one.
  */
 import { useEffect, useRef } from 'react';
+import { CastOffer } from '../../shared/CastOffer.tsx';
+import { DebugMenu } from '../../shared/DebugMenu.tsx';
 import { EndTally } from '../../shared/EndTally.tsx';
-import { labMode } from '../../shared/lab-mode.ts';
 import type { ReportView, SceneWords } from '../protocol.ts';
 import { EndsList, UnaskedStrip } from './EndsPane.tsx';
 import { voiceTally } from './end-tally.ts';
@@ -209,6 +210,7 @@ export function Report({
 
           {tally ? <EndTally title="The notebook’s tally" lines={voiceTally(view, sceneWords)} /> : null}
         </div>
+        <CastOffer game="voice" />
         <footer className="v-report-actions v-page-actions">
           <div className="v-report-action-row">
             {onSendWord && (
@@ -216,18 +218,8 @@ export function Report({
                 Feedback
               </button>
             )}
-            {labMode() && onDownload && (
-              <button type="button" className="v-btn" onClick={onDownload}>
-                Download this run
-              </button>
-            )}
           </div>
           <div className="v-report-action-row">
-            {labMode() && onReplay && (
-              <button type="button" className="v-btn" onClick={onReplay}>
-                The same town again
-              </button>
-            )}
             {onNewTown && (
               <button type="button" className="v-btn" onClick={onNewTown}>
                 New game
@@ -237,6 +229,18 @@ export function Report({
           <button type="button" className="v-btn v-btn-primary v-btn-big" onClick={onKeepListening}>
             Keep listening
           </button>
+          <DebugMenu>
+            {onReplay && (
+              <button type="button" className="v-btn" onClick={onReplay}>
+                The same town again
+              </button>
+            )}
+            {onDownload && (
+              <button type="button" onClick={onDownload}>
+                Download this run
+              </button>
+            )}
+          </DebugMenu>
         </footer>
       </div>
     </section>

@@ -3,7 +3,7 @@
  * Model values stay in a closed secondary disclosure. This reads the view only; it never reweighs a decision.
  */
 import { useEffect, useRef } from 'react';
-import { labMode } from '../../shared/lab-mode.ts';
+import { DebugMenu } from '../../shared/DebugMenu.tsx';
 import type { WhyView } from '../protocol.ts';
 import { voiceWords as settingWords } from './words.ts';
 
@@ -183,9 +183,9 @@ export function Why({
               </li>
             ))}
           </ol>
-          {labMode() && (
-            <details className="v-model-numbers" key={why.decisionId}>
-              <summary>Model numbers</summary>
+          <DebugMenu key={why.decisionId}>
+            <div className="v-model-numbers" key={why.decisionId}>
+              <h3>Model numbers</h3>
               <p className="v-why-note">
                 Simulation terms for lab readers. These are model values, not measurements of Halil’s feelings
                 or faith.
@@ -210,8 +210,8 @@ export function Why({
                   </li>
                 ))}
               </ol>
-            </details>
-          )}
+            </div>
+          </DebugMenu>
         </div>
       )}
     </aside>

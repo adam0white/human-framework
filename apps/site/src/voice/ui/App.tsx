@@ -7,6 +7,7 @@ import { sceneKey } from '../../free-text/core.ts';
 import { RequestTranslator } from '../../free-text/RequestTranslator.tsx';
 import { CastLifeNote, CastStartGate } from '../../shared/CastMenu.tsx';
 import { fileSession, readGameFile } from '../../shared/cast-runtime.ts';
+import { DebugMenu } from '../../shared/DebugMenu.tsx';
 import { useWakeLock } from '../../shared/fullscreen.tsx';
 import { LabNotice } from '../../shared/LabNotice.tsx';
 import { gameLabs, useLabScreen } from '../../shared/lab.tsx';
@@ -365,17 +366,13 @@ export function App() {
             <div className="v-context-body">
               {tab === 'halil' ? (
                 <>
-                  <button
-                    type="button"
-                    className="v-current-why v-btn"
-                    onClick={() => {
+                  <HalilPane
+                    halil={frame.halil}
+                    onWhy={() => {
                       const id = frame.log.findLast((entry) => entry.decisionId)?.decisionId;
                       if (id) openWhy(id);
                     }}
-                  >
-                    Why is he doing this? ▸
-                  </button>
-                  <HalilPane halil={frame.halil} />
+                  />
                 </>
               ) : tab === 'ends' ? (
                 <>
@@ -545,6 +542,11 @@ export function App() {
       {voice.error && !feedbackOpen && (
         <div className="v-error" role="alert">
           {settingWords(fileSession ? gameFileError(voice.error) : playerError(voice.error, 'play'))}{' '}
+          {!fileSession && (
+            <DebugMenu>
+              <p>{voice.error}</p>
+            </DebugMenu>
+          )}
           {!fileSession && (
             <button type="button" className="v-btn v-btn-small" onClick={() => actions.replay()}>
               Start again
