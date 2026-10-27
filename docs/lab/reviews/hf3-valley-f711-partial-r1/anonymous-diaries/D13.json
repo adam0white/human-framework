@@ -1,0 +1,330 @@
+{
+  "diary": "D13",
+  "derivative": "Private command arguments and errors omitted; every words string, elapsed value and retrospective source label retained. Original anonymous bytes are separately hash-bound.",
+  "records": [
+    {
+      "elapsed_s": null,
+      "operation": "start",
+      "words": null
+    },
+    {
+      "elapsed_s": 0.109,
+      "operation": "open",
+      "words": null
+    },
+    {
+      "elapsed_s": 4.049,
+      "operation": "tap",
+      "words": "I remember the grain working and the waiting wearing me out. A spoken answer is something I wanted last time. I want to walk down and actually answer somebody."
+    },
+    {
+      "elapsed_s": 8.038,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 15.769,
+      "operation": "tap",
+      "words": "The map is still small, but the call is impossible to miss. I will call first, then hear the person who says no."
+    },
+    {
+      "elapsed_s": 48.636,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 52.984,
+      "operation": "tap",
+      "words": "Zehra again. I remember feeding her last time; I want to hear her before spending grain this time."
+    },
+    {
+      "elapsed_s": 56.632,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 60.058,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 62.144,
+      "operation": "log",
+      "words": "I called and went straight to Zehra. I know this food argument from last time, so I am holding off on grain to hear what a visit gives me. Twenty game minutes until arrival is clearer than just walking. I have not had a spoken answer yet."
+    },
+    {
+      "elapsed_s": 98.022,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 106.296,
+      "operation": "tap",
+      "words": "There it is. I came to listen is exactly what I want to say before asking for her day."
+    },
+    {
+      "elapsed_s": 139.506,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 173.371,
+      "operation": "wait",
+      "words": "I said I came to listen. Yusuf says Come in, but I cannot tell whether that answers me or is just the visit arriving. I will sit through it once."
+    },
+    {
+      "elapsed_s": 178.413,
+      "operation": "log",
+      "words": "Having one sentence to say helps, but I spent the visit watching Come in. I still want to answer her food problem with grain."
+    },
+    {
+      "elapsed_s": 182.51,
+      "operation": "tap",
+      "words": "One tap this time. I remember being unsure and paying twice. I will wait for the sack to arrive."
+    },
+    {
+      "elapsed_s": 186.043,
+      "operation": "tap",
+      "words": "Sent grain. Good. That is an answer I do not have to guess at."
+    },
+    {
+      "elapsed_s": 220.912,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 226.259,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 230.823,
+      "operation": "tap",
+      "words": "Zehra is off the delayed list, but I have not seen thanks for the grain. I am guessing she came. I want to hear another household rather than press everyone."
+    },
+    {
+      "elapsed_s": 234.356,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 270.233,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 275.244,
+      "operation": "tap",
+      "words": "Same sentence at Dere. I mean it, but I hope listening gives me more than an invitation to sit."
+    },
+    {
+      "elapsed_s": 309.039,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 315.4,
+      "operation": "resize",
+      "words": "Requested bigger-screen check now. Say what you came to say appeared after I had already said it. That feels like we are talking past each other."
+    },
+    {
+      "elapsed_s": 319.524,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 322.691,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 330.508,
+      "operation": "resize",
+      "words": "The larger map gives the valley room. The same line and my answer are both visible. Back to the phone; I am not getting another conversational choice here."
+    },
+    {
+      "elapsed_s": 333.635,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 367.217,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 371.077,
+      "operation": "log",
+      "words": "Two visits, the same listening sentence, and I am still mostly watching the old reply. Sending food is clearer than speaking."
+    },
+    {
+      "elapsed_s": 378.222,
+      "operation": "log",
+      "words": "I want to leave now. I have said I came to listen twice, but the visits still feel like waiting beside a sentence. I understand the grain choice; I do not want to repeat it house by house. I will keep playing for the time I set aside."
+    },
+    {
+      "elapsed_s": 382.068,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 386.3,
+      "operation": "tap",
+      "words": "Granary still says eighteen after my two gifts. I saw Sent grain, so I am not sending again to make the number move. I do not understand the accounting yet."
+    },
+    {
+      "elapsed_s": 392.414,
+      "operation": "tap",
+      "words": "They will keep it for spring. So my guess about hunger was only a guess. At least the grain reached them. I want to see whether I can do something besides another visit."
+    },
+    {
+      "elapsed_s": 396.099,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 430.749,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 436.313,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 441.215,
+      "operation": "tap",
+      "words": "Tepe has three delayed people. I want to try a visit without grain and see whether sitting and listening is enough. I do not want to repeat the insist-and-refuse from last time."
+    },
+    {
+      "elapsed_s": 477.265,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 480.426,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 516.995,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 550.264,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 554.326,
+      "operation": "log",
+      "words": "Sit down has stayed there for a minute. I do not feel I am listening to a person yet; I am waiting for the visit timer. My wish to leave has not passed."
+    },
+    {
+      "elapsed_s": 589.188,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 593.124,
+      "operation": "tap",
+      "words": "Tepe went hollow without grain or insistence. Maybe listening was enough, or maybe they finished their own work. I cannot separate those, but I am glad I did not force them."
+    },
+    {
+      "elapsed_s": 626.187,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 662.807,
+      "operation": "wait",
+      "words": "Twenty-three came, no refusals. I prefer this to buying a few hours with insistence. Now I want to let the others finish their own barley and see the evening."
+    },
+    {
+      "elapsed_s": 696.091,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 728.515,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 732.921,
+      "operation": "log",
+      "words": "Dere is delaying to talk at the spring now. Last time I pressed that person. Tonight I would rather let them have their evening. I am not eager to keep managing this."
+    },
+    {
+      "elapsed_s": 736.851,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 741.667,
+      "operation": "tap",
+      "words": "A hundred and twenty cut by evening. That is progress I can read, but it took me twelve minutes to get through one day. Three years is not something I want to promise this game."
+    },
+    {
+      "elapsed_s": 776.441,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 809.537,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 844.042,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 877.427,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 883.591,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 886.714,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 890.061,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 894.93,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 904.294,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 908.717,
+      "operation": "log",
+      "words": "I am done for tonight. The little gains did not overcome watching the same replies through the evening."
+    },
+    {
+      "elapsed_s": 916.661,
+      "operation": "log",
+      "words": "I am stopping here. I liked having a sentence to say, and I liked letting Tepe come without forcing them, though I do not know whether listening caused that. The visits still left me waiting beside Come in or Sit down. I would not return voluntarily at this pace, including another evening. I would not leave it running. Feedback had stopping and confused choices. I selected the stopping topic; it filled the note itself. I typed nothing and submitted nothing."
+    },
+    {
+      "source": "Post-stop report section3; retrospective, not a measured contemporaneous record. May repeat raw words.",
+      "words": "## 3. Verbatim\n\nThese are all my original logged reactions, unchanged. The existing **wall-clock.jsonl** preserves full raw input lines.\n\n**4.052s — Resume**\n\n> I remember the grain working and the waiting wearing me out. A spoken answer is something I wanted last time. I want to walk down and actually answer somebody.\n\n**15.769s — Call the hamlet**\n\n> The map is still small, but the call is impossible to miss. I will call first, then hear the person who says no.\n\n**52.984s — the Çoban house**\n\n> Zehra again. I remember feeding her last time; I want to hear her before spending grain this time.\n\n**62.145s — first_minute**\n\n> I called and went straight to Zehra. I know this food argument from last time, so I am holding off on grain to hear what a visit gives me. Twenty game minutes until arrival is clearer than just walking. I have not had a spoken answer yet.\n\n**106.296s — Say: I came to listen**\n\n> There it is. I came to listen is exactly what I want to say before asking for her day.\n\n**173.371s — wait**\n\n> I said I came to listen. Yusuf says Come in, but I cannot tell whether that answers me or is just the visit arriving. I will sit through it once.\n\n**178.413s — pulse, 3/5**\n\n> Having one sentence to say helps, but I spent the visit watching Come in. I still want to answer her food problem with grain.\n\n**182.510s — Send grain**\n\n> One tap this time. I remember being unsure and paying twice. I will wait for the sack to arrive.\n\n**186.043s — Back to the notebook**\n\n> Sent grain. Good. That is an answer I do not have to guess at.\n\n**230.823s — the Dere house**\n\n> Zehra is off the delayed list, but I have not seen thanks for the grain. I am guessing she came. I want to hear another household rather than press everyone.\n\n**275.247s — Say: I came to listen**\n\n> Same sentence at Dere. I mean it, but I hope listening gives me more than an invitation to sit.\n\n**315.401s — resize to desktop**\n\n> Requested bigger-screen check now. Say what you came to say appeared after I had already said it. That feels like we are talking past each other.\n\n**330.508s — return to phone**\n\n> The larger map gives the valley room. The same line and my answer are both visible. Back to the phone; I am not getting another conversational choice here.\n\n**371.077s — pulse, 2/5**\n\n> Two visits, the same listening sentence, and I am still mostly watching the old reply. Sending food is clearer than speaking.\n\n**378.222s — want_quit, BORED**\n\n> I want to leave now. I have said I came to listen twice, but the visits still feel like waiting beside a sentence. I understand the grain choice; I do not want to repeat it house by house. I will keep playing for the time I set aside.\n\n**386.300s — Back to the notebook**\n\n> Granary still says eighteen after my two gifts. I saw Sent grain, so I am not sending again to make the number move. I do not understand the accounting yet.\n\n**392.414s — Other orders**\n\n> They will keep it for spring. So my guess about hunger was only a guess. At least the grain reached them. I want to see whether I can do something besides another visit.\n\n**441.215s — Visit Tepe**\n\n> Tepe has three delayed people. I want to try a visit without grain and see whether sitting and listening is enough. I do not want to repeat the insist-and-refuse from last time.\n\n**554.327s — pulse, 2/5**\n\n> Sit down has stayed there for a minute. I do not feel I am listening to a person yet; I am waiting for the visit timer. My wish to leave has not passed.\n\n**593.124s — Back to the notebook**\n\n> Tepe went hollow without grain or insistence. Maybe listening was enough, or maybe they finished their own work. I cannot separate those, but I am glad I did not force them.\n\n**662.808s — wait**\n\n> Twenty-three came, no refusals. I prefer this to buying a few hours with insistence. Now I want to let the others finish their own barley and see the evening.\n\n**732.921s — pulse, 2/5**\n\n> Dere is delaying to talk at the spring now. Last time I pressed that person. Tonight I would rather let them have their evening. I am not eager to keep managing this.\n\n**741.667s — Back to the notebook**\n\n> A hundred and twenty cut by evening. That is progress I can read, but it took me twelve minutes to get through one day. Three years is not something I want to promise this game.\n\n**908.718s — pulse, 1/5**\n\n> I am done for tonight. The little gains did not overcome watching the same replies through the evening.\n\n**916.661s — stop, BORED**\n\n> I am stopping here. I liked having a sentence to say, and I liked letting Tepe come without forcing them, though I do not know whether listening caused that. The visits still left me waiting beside Come in or Sit down. I would not return voluntarily at this pace, including another evening. I would not leave it running. Feedback had stopping and confused choices. I selected the stopping topic; it filled the note itself. I typed nothing and submitted nothing.\n\n"
+    }
+  ]
+}

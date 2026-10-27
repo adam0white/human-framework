@@ -1,0 +1,140 @@
+{
+  "diary": "D09",
+  "derivative": "Private command arguments and errors omitted; every words string, elapsed value and retrospective source label retained. Original anonymous bytes are separately hash-bound.",
+  "records": [
+    {
+      "elapsed_s": null,
+      "operation": "start",
+      "words": null
+    },
+    {
+      "elapsed_s": 0.107,
+      "operation": "open",
+      "words": null
+    },
+    {
+      "elapsed_s": 5.551,
+      "operation": "tap",
+      "words": "I remember feeding Zehra and waiting too long. This time I want to actually answer someone when I visit."
+    },
+    {
+      "elapsed_s": 8.987,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 15.948,
+      "operation": "tap",
+      "words": "The map fits, but the news disappears behind the call area. I know the first move, so I am calling them."
+    },
+    {
+      "elapsed_s": 34.676,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 38.049,
+      "operation": "tap",
+      "words": "Zehra again. I remember that her own barley mattered. I am going there before I send anything."
+    },
+    {
+      "elapsed_s": 43.328,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 60.027,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 67.385,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 75.506,
+      "operation": "log",
+      "words": "I came back wanting a spoken answer. I called, found Zehra, and started walking. Twenty seconds later it still says twenty game minutes until arrival. I remember this waiting. The clock says replies slow it down; I am going back to the notebook to see if that helps. This note is late."
+    },
+    {
+      "elapsed_s": 79.893,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 85.707,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 89.726,
+      "operation": "tap",
+      "words": "There it is. I came to listen is a real answer to being at her door. I want to hear what she does with it."
+    },
+    {
+      "elapsed_s": 107.516,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 112.223,
+      "operation": "tap",
+      "words": "My sentence is confirmed, but I have not heard an answer. Maybe she needs the visit to continue. I do not want to buy a response with grain yet."
+    },
+    {
+      "elapsed_s": 145.484,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 149.892,
+      "operation": "tap",
+      "words": "Yusuf says Come in. I cannot tell whether that answers my listening sentence or just means the visit has started. I will look at the house again."
+    },
+    {
+      "elapsed_s": 155.228,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 164.961,
+      "operation": "log",
+      "words": "I want to leave. I got to say I came to listen, but now I am watching Come in and a disabled sentence. I do not feel a conversation developing, and I do not want another round of grain and waiting tonight."
+    },
+    {
+      "elapsed_s": 167.829,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 170.808,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 173.484,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 180.286,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 185.239,
+      "operation": "log",
+      "words": "The chance to speak briefly lifted me, but I am leaving with the same waiting feeling. I am not curious enough to start another visit."
+    },
+    {
+      "elapsed_s": 190.404,
+      "operation": "log",
+      "words": "I am stopping here. Saying I came to listen felt better than arriving with only grain or pressure, but I did not find enough conversation to stay. I would not return voluntarily to this session or another evening as it stands. I would not leave it running. I selected the stopping topic locally; it filled the note itself. I typed nothing and did not submit."
+    },
+    {
+      "source": "Post-stop report section3; retrospective, not a measured contemporaneous record. May repeat raw words.",
+      "words": "## 3. Verbatim\n\nThese are all my original local diary reactions, unchanged. The existing **wall-clock.jsonl** preserves full raw input lines.\n\n**5.551s — Resume**\n\n> I remember feeding Zehra and waiting too long. This time I want to actually answer someone when I visit.\n\n**15.948s — Call the hamlet**\n\n> The map fits, but the news disappears behind the call area. I know the first move, so I am calling them.\n\n**38.049s — the Çoban house**\n\n> Zehra again. I remember that her own barley mattered. I am going there before I send anything.\n\n**75.507s — first_minute**\n\n> I came back wanting a spoken answer. I called, found Zehra, and started walking. Twenty seconds later it still says twenty game minutes until arrival. I remember this waiting. The clock says replies slow it down; I am going back to the notebook to see if that helps. This note is late.\n\n**89.726s — Say: I came to listen**\n\n> There it is. I came to listen is a real answer to being at her door. I want to hear what she does with it.\n\n**112.224s — Back to the notebook**\n\n> My sentence is confirmed, but I have not heard an answer. Maybe she needs the visit to continue. I do not want to buy a response with grain yet.\n\n**149.893s — the Çoban house**\n\n> Yusuf says Come in. I cannot tell whether that answers my listening sentence or just means the visit has started. I will look at the house again.\n\n**164.961s — want_quit · BORED**\n\n> I want to leave. I got to say I came to listen, but now I am watching Come in and a disabled sentence. I do not feel a conversation developing, and I do not want another round of grain and waiting tonight.\n\n**185.239s — pulse · engagement 2/5**\n\n> The chance to speak briefly lifted me, but I am leaving with the same waiting feeling. I am not curious enough to start another visit.\n\n**190.405s — stop · BORED**\n\n> I am stopping here. Saying I came to listen felt better than arriving with only grain or pressure, but I did not find enough conversation to stay. I would not return voluntarily to this session or another evening as it stands. I would not leave it running. I selected the stopping topic locally; it filled the note itself. I typed nothing and did not submit.\n\n"
+    }
+  ]
+}

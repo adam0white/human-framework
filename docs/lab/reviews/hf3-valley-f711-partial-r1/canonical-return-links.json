@@ -1,0 +1,114 @@
+{
+  "nia-free": {
+    "existing_path": "../games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-nia-free",
+    "source_report_sha256": "868c9c8552703ac8a7e1076050c4a3cc00786d0d9bf01858cd96ffef18a015c7",
+    "original_full_return_section_sha256": "7537cd9a95374ba8b37b5e3c4e82dc8f8ecb96f7bc4987c70f2dc20a9faff611",
+    "existing_canonical_text_verified": true,
+    "new_return_sections_to_insert": 0
+  },
+  "rosa-free": {
+    "existing_path": "../games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-rosa-free",
+    "source_report_sha256": "95ce2c5a8b284f3bdf440e2d498847a34d0e566dc3524702b813c3d674753560",
+    "original_full_return_section_sha256": "87b264a6bd106b5fb7466defa800e3e476b70b39b9ec82379a37b5e73e9cf79d",
+    "existing_canonical_text_verified": true,
+    "new_return_sections_to_insert": 0
+  },
+  "emre-free": {
+    "existing_path": "../games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-emre-free",
+    "source_report_sha256": "70105a49974a63242034be37e85f604a5540ec80adce9a5e4afe951895c49b1a",
+    "original_full_return_section_sha256": "d3d7ede07856fae250f80953ac986bda21778f58d5606d22e35c6a2368a02744",
+    "existing_canonical_text_verified": true,
+    "new_return_sections_to_insert": 0
+  },
+  "rosa-continued": {
+    "existing_path": "../games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-rosa-continued",
+    "source_report_sha256": "dd88a4765ee2ed7f61ae8284ad40e7df319956b77434018547bbd787ec691440",
+    "original_full_return_section_sha256": "d90c7b811e314a34d4c7fe2c0e610b6fde5395cbeee7eefc432d0d9b4e01b5b8",
+    "existing_canonical_text_verified": true,
+    "new_return_sections_to_insert": 0
+  },
+  "mei-continued": {
+    "existing_path": "../games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-mei-continued",
+    "source_report_sha256": "d90b36f9e6e78b51f6ee323975904ecaf32491f1e2fe9167cba2c2409993b225",
+    "original_full_return_section_sha256": "4102b216f69ebe239f6affcef6c0b6a5d54f1b223d7a2a744bc19504237a5eb4",
+    "existing_canonical_text_verified": true,
+    "new_return_sections_to_insert": 0
+  },
+  "emre-continued": {
+    "existing_path": "../games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-emre-continued",
+    "source_report_sha256": "4bf25218ff905a100fe6f4f1fc694ab7e025f770980c8649c1867f7981ca434d",
+    "original_full_return_section_sha256": "9ad1bf523e5a07e79d8a06d711b7c1ea420dc2175a13f6b9889011f51e89a54a",
+    "existing_canonical_text_verified": true,
+    "new_return_sections_to_insert": 0
+  },
+  "aisha-continued": {
+    "existing_path": "../games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-aisha-continued",
+    "source_report_sha256": "a92bac0567796a482329adf778db09239a413cd8d6959b6b7519a4d75ea39ebb",
+    "original_full_return_section_sha256": "f17e1d0c2aafe8befaed007048773ea1eeabf9fd450ebc7b5e079c2625303c18",
+    "existing_canonical_text_verified": true,
+    "new_return_sections_to_insert": 0
+  },
+  "jonas-continued": {
+    "existing_path": "../games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-jonas-continued",
+    "source_report_sha256": "3b4920ae304064d9d6ecd249d4bd5e165ef2be61a6f46854ac339eb29287b064",
+    "original_full_return_section_sha256": "8b8faab17352e1dbda53cfe348916ea6dd2089f726ebf2af51d71f012750aebf",
+    "existing_canonical_text_verified": true,
+    "new_return_sections_to_insert": 0
+  },
+  "diego-free": {
+    "existing_path": "../games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-diego-free",
+    "source_report_sha256": "473287321b070fe30bca7291ca9cc764acd8057e92e9ae25502d9787ec3acca4",
+    "original_full_return_section_sha256": "4a42bad504ec6044445404cb451d66d8c42761563e5102b877be8a5be2cdd29b",
+    "existing_canonical_text_verified": true,
+    "new_return_sections_to_insert": 0
+  },
+  "mei-free": {
+    "existing_path": "../games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-mei-free",
+    "source_report_sha256": "0c7cf35126dbefb752db0a8d3f0e4bc633d1da3ca86c8f7cc8f3bb214b0a9e9a",
+    "original_full_return_section_sha256": "35acb61a811f95782f498b55a65b222a9bc164ac1927ec880204c2ead2189aae",
+    "existing_canonical_text_verified": true,
+    "new_return_sections_to_insert": 0
+  },
+  "maya-free": {
+    "existing_path": "../games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-maya-free",
+    "source_report_sha256": "0035ead5bdf675adccba2d602ce159eb71751eb82346c709a044c25caa3462bf",
+    "original_full_return_section_sha256": "61c5eb3c239a1d376e846e626777556207ed65cf79291145ccbf773349fb9bd9",
+    "existing_canonical_text_verified": true,
+    "new_return_sections_to_insert": 0
+  },
+  "nia-continued": {
+    "existing_path": "../games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-nia-continued",
+    "source_report_sha256": "50452bf33b9250a7ca839bb54d2b734f6257663cf0b4fbd33552a4f63eb65f10",
+    "original_full_return_section_sha256": "3d6d06a80346c55f7c990355c9a4949ac6dd82cf0bc0ffd297f60cbdb85b8f08",
+    "existing_canonical_text_verified": true,
+    "new_return_sections_to_insert": 0
+  },
+  "diego-continued": {
+    "existing_path": "../games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-diego-continued",
+    "source_report_sha256": "65a8310e83a6cca7b501625498c33284e8335fc797d12bd34452cea21138a1f7",
+    "original_full_return_section_sha256": "3943f5d265a35ec50802caefe2eea8856fa2133b695dc24e2a953ac2a64d29e0",
+    "existing_canonical_text_verified": true,
+    "new_return_sections_to_insert": 0
+  },
+  "aisha-free": {
+    "existing_path": "../games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-aisha-free",
+    "source_report_sha256": "32d2365bf4b9e1d9aa6301414351b2049e49b9b66b7ac2b971930356d4022889",
+    "original_full_return_section_sha256": "ff9dcde9e82467bf0dc8df29002cf82570b3adf2ab5a971167cb3d29ba6e79c3",
+    "existing_canonical_text_verified": true,
+    "new_return_sections_to_insert": 0
+  },
+  "jonas-free": {
+    "existing_path": "../games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-jonas-free",
+    "source_report_sha256": "a3e024d21fbf475035b706e2fbbb2215591db043a6c14a6566402aa70c629965",
+    "original_full_return_section_sha256": "b70b3dbccb77145d917bfa121b9f30bde04949ee8ef5cf4bd45b228ab28de625",
+    "existing_canonical_text_verified": true,
+    "new_return_sections_to_insert": 0
+  },
+  "maya-continued": {
+    "existing_path": "../games-deferred-intake-2026-10-26.md#valley-hf3-valley-r2-maya-continued",
+    "source_report_sha256": "b93822fe2117569d9969dba9b8e921357d67ccc582ebd821ba8284789c31e87f",
+    "original_full_return_section_sha256": "b3bdb8a8d973ec799d61bb9b0a69a72a01575a6b28884960f2bc3fffd7c54dbb",
+    "existing_canonical_text_verified": true,
+    "new_return_sections_to_insert": 0
+  }
+}

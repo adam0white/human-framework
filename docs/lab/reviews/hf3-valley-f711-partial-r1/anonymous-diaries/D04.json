@@ -1,0 +1,525 @@
+{
+  "diary": "D04",
+  "derivative": "Private command arguments and errors omitted; every words string, elapsed value and retrospective source label retained. Original anonymous bytes are separately hash-bound.",
+  "records": [
+    {
+      "elapsed_s": null,
+      "operation": "start",
+      "words": null
+    },
+    {
+      "elapsed_s": 0.11,
+      "operation": "open",
+      "words": null
+    },
+    {
+      "elapsed_s": 4.636,
+      "operation": "log",
+      "words": "I know this page from my last visit. The landowner’s due is grain; I learned that. Now there is a new first sentence about a spoken answer during visits. I read it twice: “This uses the original grain rules and local people, instead of the other editions below.” Reread 1. Original rules, editions? I do not know which edition I am in. I leave the boxes alone and press Resume as I was told. New concepts, 3: spoken answer during visits, editions, original grain rules."
+    },
+    {
+      "elapsed_s": 5.253,
+      "operation": "tap",
+      "words": "Resume, as prepared."
+    },
+    {
+      "elapsed_s": 8.226,
+      "operation": "tap",
+      "words": "Last time I read too long and the rain came. Time is moving, so I call at once and read afterwards."
+    },
+    {
+      "elapsed_s": 10.654,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 15.802,
+      "operation": "tap",
+      "words": "The big screen is pleasant and the text is readable. Now the screen says replies are at the houses. Kavak has a little circle, so I go there first. Still two days before rain this time."
+    },
+    {
+      "elapsed_s": 19.117,
+      "operation": "tap",
+      "words": "The same sentence about the call expiring that stopped me last time. Now I just let it pass: it means I cannot call this house twice. Last time I never pressed Visit. This time I do."
+    },
+    {
+      "elapsed_s": 22.047,
+      "operation": "tap",
+      "words": "I am walking. The clock stays at 07:30 while I read here, so I go back to the notebook to let the walk happen."
+    },
+    {
+      "elapsed_s": 44.212,
+      "operation": "wait",
+      "words": "I wait for the walk, without Skip."
+    },
+    {
+      "elapsed_s": 47.615,
+      "operation": "tap",
+      "words": "Five came! That is much better than last time. Zehra will come after her own barley; that is fair, she has her own family. I will not insist. I am at Kavak now, so I open it to hear them."
+    },
+    {
+      "elapsed_s": 50.356,
+      "operation": "tap",
+      "words": "Say: I came to listen. That is what I would say as a new steward. I like that it is a plain sentence."
+    },
+    {
+      "elapsed_s": 53.548,
+      "operation": "tap",
+      "words": "I said my words but I see no answer from them yet. Maybe it comes with time. I go back to the notebook."
+    },
+    {
+      "elapsed_s": 60.047,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 63.701,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 67.477,
+      "operation": "log",
+      "words": "Much better than last time: I called early, five people came, and I visited Kavak and said I came to listen. But the clock has stayed at 08:00. It says time moves slowly while a decision remains open. Is Zehra my open decision? I do not want to insist. New concepts, 6: replies at houses, walking minutes, Say during a visit, came/delayed/refused with names, Hold to insist, slowdown while a decision is open."
+    },
+    {
+      "elapsed_s": 100.053,
+      "operation": "wait",
+      "words": "I wait to see if the slow time moves at all."
+    },
+    {
+      "elapsed_s": 104.029,
+      "operation": "tap",
+      "words": "Ten came, seven will come after their own barley. Nobody refused. The Kavak overseer says sit down if you are staying. That is warm. I look whether they answered my words."
+    },
+    {
+      "elapsed_s": 106.734,
+      "operation": "tap",
+      "words": "My words are gone and no answer is shown. A little disappointing. I open About to know who lives here."
+    },
+    {
+      "elapsed_s": 110.762,
+      "operation": "tap",
+      "words": "The overseer has the only glass window, a nice detail. My record says I sat with them. The your guess lines are my own guesses, I think. I go back and let the visit finish."
+    },
+    {
+      "elapsed_s": 142.824,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 147.597,
+      "operation": "tap",
+      "words": "Half an hour of game time per half minute of mine. The rain is two days away; at this speed I would sit here all evening. I have a concrete question: what does Skip do, and is it safe? I open the i."
+    },
+    {
+      "elapsed_s": 152.572,
+      "operation": "log",
+      "words": "The help is plain and I understood it on first reading: refusals, insisting, the grain bar. But it does not tell me what Skip does, and only 5 of 360 measures are cut while ten people work. I am interested but worried it is slow. New concepts, 6: threshing from 5 August, collecting household shares from 9 August, reducing a household payment, neighbours noticing, grain bar parts, knocks at the door."
+    },
+    {
+      "elapsed_s": 156.293,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 157.412,
+      "operation": "tap",
+      "words": "I try Skip once, because waiting half a minute for half an hour is too slow for me. Its button says skip to the next event, so I hope it stops when something happens."
+    },
+    {
+      "elapsed_s": 170.003,
+      "operation": "wait",
+      "words": "Skip is grey now. I wait to see what it brings."
+    },
+    {
+      "elapsed_s": 203.628,
+      "operation": "wait",
+      "words": "Since I pressed Skip, the clock has not moved at all. Did Skip stop time? I wait longer."
+    },
+    {
+      "elapsed_s": 207.391,
+      "operation": "tap",
+      "words": "I am home, 14 came. Skip is still grey; I do not know why. Çoban had a black dot first, maybe something waits there. I visit them too; the overseer said some houses listen only if you visit."
+    },
+    {
+      "elapsed_s": 210.625,
+      "operation": "tap",
+      "words": "“Who will feed my family while I cut his barley?” That I understand completely. I will not insist. I go to sit with Zehra’s house instead."
+    },
+    {
+      "elapsed_s": 214.142,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 244.279,
+      "operation": "wait",
+      "words": "Walking to Çoban."
+    },
+    {
+      "elapsed_s": 247.021,
+      "operation": "tap",
+      "words": "I have arrived at Çoban. I open it to speak."
+    },
+    {
+      "elapsed_s": 249.989,
+      "operation": "tap",
+      "words": "Again only one thing to say. I came to listen. It fits here even better, after her question about feeding her family."
+    },
+    {
+      "elapsed_s": 254.34,
+      "operation": "tap",
+      "words": "Again my words show and nobody answers me. The first page promised a spoken answer during visits; where is it? Zehra asked who will feed her family. Maybe Send grain is my answer. I look what it asks first."
+    },
+    {
+      "elapsed_s": 258.276,
+      "operation": "log",
+      "words": "Oh! I only wanted to look, and it sent the grain at once. No question, no amount. I do not mind giving to Zehra, but I did not decide it. How much did I give? The rider will count it as missing. I feel a little tricked. New concepts, 1: gifts recorded in the ledger."
+    },
+    {
+      "elapsed_s": 258.909,
+      "operation": "tap",
+      "words": "I look in the ledger to see how much I gave."
+    },
+    {
+      "elapsed_s": 261.757,
+      "operation": "tap",
+      "words": "The ledger button is not here in the house view; I use the rain bar at the top, which says it opens the ledger."
+    },
+    {
+      "elapsed_s": 265.822,
+      "operation": "tap",
+      "words": "The ledger is a clear table, I like it. 15 cut, 350 in the field. But it does not say how much I gave Zehra. It said the gift is recorded in the ledger; I do not see it."
+    },
+    {
+      "elapsed_s": 291.141,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 295.544,
+      "operation": "log",
+      "words": "The clock has stood at 10:30 for half a minute, though nothing is open. Sometimes time moves, sometimes not. I am waiting, but for what? Now the requested layout check: I switch to the phone size briefly."
+    },
+    {
+      "elapsed_s": 295.692,
+      "operation": "resize",
+      "words": null
+    },
+    {
+      "elapsed_s": 298.541,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 304.088,
+      "operation": "tap",
+      "words": "Layout check on the phone: the map is very small, and the status line is cut off with three dots. The red Skip is big. Zehra is gone from the list; 15 came now. Yusuf says Come in. I open Çoban."
+    },
+    {
+      "elapsed_s": 307.263,
+      "operation": "resize",
+      "words": null
+    },
+    {
+      "elapsed_s": 308.623,
+      "operation": "log",
+      "words": "End of the phone layout check at 304 s, back to the wide screen. On the phone Çoban shows Yusuf: “Come in.” Only that. Is “Come in” the spoken answer? It answers my arrival, not my words. Zehra came to work after my grain, I think, but the game does not say why."
+    },
+    {
+      "elapsed_s": 312.155,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 342.57,
+      "operation": "wait",
+      "words": "Waiting to walk home."
+    },
+    {
+      "elapsed_s": 346.554,
+      "operation": "log",
+      "words": "Yusuf: “Tell the landowner we are grateful. Or thank God for us instead.” I smiled; a proud man, a little sharp. These people feel real. But I mostly wait for half a minute at a time, and I have one thing to say at every house."
+    },
+    {
+      "elapsed_s": 377.073,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 379.883,
+      "operation": "tap",
+      "words": "While I walk home I look at Other orders, in case there is something useful to do instead of waiting."
+    },
+    {
+      "elapsed_s": 383.883,
+      "operation": "tap",
+      "words": "Both orders are grey, but each says plainly why. Fine. Nothing to do but visit and wait. New concept, 1: writing to the landowner for grain."
+    },
+    {
+      "elapsed_s": 399.014,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 404.179,
+      "operation": "tap",
+      "words": "Ten minutes of walking takes me a whole real minute. I try Skip again; I am getting a little bored of waiting."
+    },
+    {
+      "elapsed_s": 424.312,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 427.58,
+      "operation": "tap",
+      "words": "Home. Skip did not seem faster; it is grey again. Dere has a red dot on the phone picture, so maybe they need me. I open Dere."
+    },
+    {
+      "elapsed_s": 431.082,
+      "operation": "tap",
+      "words": "Same polite delay. I visit Dere; it worked with Zehra after I sat with them and gave grain."
+    },
+    {
+      "elapsed_s": 431.748,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 464.122,
+      "operation": "wait",
+      "words": "Walking to Dere."
+    },
+    {
+      "elapsed_s": 466.746,
+      "operation": "tap",
+      "words": "Arrived at Dere."
+    },
+    {
+      "elapsed_s": 470.815,
+      "operation": "tap",
+      "words": "This time I only listen and do not give grain. I want to see if listening alone changes anything."
+    },
+    {
+      "elapsed_s": 471.029,
+      "operation": "tap",
+      "words": "Who lives here?"
+    },
+    {
+      "elapsed_s": 475.346,
+      "operation": "tap",
+      "words": "Two people by the stream, empty ox stall, low jars. Poor family. I feel I should give them grain, but I wait to see if listening is enough. Still no spoken answer to my words."
+    },
+    {
+      "elapsed_s": 505.652,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 510.58,
+      "operation": "log",
+      "words": "Dere says “Say what you came to say.” But I already said it, half an hour ago! The answer comes after my words and sounds like it came before. I do not feel heard. I wait half a minute, read one line, wait again. I am getting bored."
+    },
+    {
+      "elapsed_s": 511.044,
+      "operation": "tap",
+      "words": "Maybe I can say something now that they asked."
+    },
+    {
+      "elapsed_s": 515.245,
+      "operation": "tap",
+      "words": "They ask me to say what I came to say, and my only words are used up. So I answer with grain; their jars are low. This time I choose it knowingly."
+    },
+    {
+      "elapsed_s": 515.961,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 548.236,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 553.074,
+      "operation": "log",
+      "words": "Nine minutes, and the game day has gone from 7 to 2 in the afternoon. I have three buttons per house and the same one sentence each time. Dere has not even answered my grain. I understand everything now, but there is mostly waiting. I would like to stop here. I keep going because I set the time aside."
+    },
+    {
+      "elapsed_s": 583.504,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 587.655,
+      "operation": "log",
+      "words": "“That is kind of you. We’ll keep it for spring.” And the Dere person came to work: 16 came. That warmed me. So: sit, give, and they come. The wish to leave is smaller now, though the pattern is clear. Next I will try Tepe, which has three people waiting."
+    },
+    {
+      "elapsed_s": 608.189,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 612.323,
+      "operation": "tap",
+      "words": "19 came now. Home again. Tepe next."
+    },
+    {
+      "elapsed_s": 612.573,
+      "operation": "tap",
+      "words": "Visit Tepe."
+    },
+    {
+      "elapsed_s": 615.424,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 646.056,
+      "operation": "wait",
+      "words": "Walking to Tepe."
+    },
+    {
+      "elapsed_s": 648.854,
+      "operation": "tap",
+      "words": "At Tepe. One of them already came, 20 now."
+    },
+    {
+      "elapsed_s": 652.671,
+      "operation": "tap",
+      "words": "Same words again. I would like a second thing to say, like asking about their own harvest."
+    },
+    {
+      "elapsed_s": 653.339,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 657.538,
+      "operation": "tap",
+      "words": "The son spends more time at the coffeehouse than in the fields. Ha, I know families like that. I do not give grain here; I only listened. Let me see if they come anyway."
+    },
+    {
+      "elapsed_s": 687.675,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 691.881,
+      "operation": "log",
+      "words": "22 came now, 5 delayed, nobody refused. Tepe says “Sit down.” Things are going well in a quiet way. I like the people but the rhythm is slow: press three buttons, wait a minute and a half."
+    },
+    {
+      "elapsed_s": 692.602,
+      "operation": "tap",
+      "words": "How is the harvest going? I check the ledger."
+    },
+    {
+      "elapsed_s": 698.266,
+      "operation": "tap",
+      "words": "The granary went from 24 to 18; so my two gifts were about 3 each. I had to work that out myself. 70 cut, 290 still in the field, and the rain comes the day after tomorrow. I am worried we will not finish, but I do not know what else I can do except visit."
+    },
+    {
+      "elapsed_s": 728.492,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 761.049,
+      "operation": "wait",
+      "words": "Still at Tepe; waiting to leave."
+    },
+    {
+      "elapsed_s": 764.515,
+      "operation": "log",
+      "words": "Tepe’s people came too, 24 now, with only listening, no grain. Good. So listening is enough sometimes. Only Kuyucu and Demirci remain. I will visit Demirci next."
+    },
+    {
+      "elapsed_s": 790.199,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 794.115,
+      "operation": "tap",
+      "words": "Home. Demirci now."
+    },
+    {
+      "elapsed_s": 794.283,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 797.349,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 827.917,
+      "operation": "wait",
+      "words": "Walking to Demirci."
+    },
+    {
+      "elapsed_s": 831.296,
+      "operation": "tap",
+      "words": "At Demirci."
+    },
+    {
+      "elapsed_s": 832.113,
+      "operation": "tap",
+      "words": "I came to listen, the fifth time."
+    },
+    {
+      "elapsed_s": 835.58,
+      "operation": "tap",
+      "words": "Same routine. I go back and wait for their answer."
+    },
+    {
+      "elapsed_s": 866.406,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 871.148,
+      "operation": "log",
+      "words": "Demirci: “We weren’t expecting you.” Each house greets me with one line, a little different, and that is nice. But it is the same visit five times. Most of my time is waiting."
+    },
+    {
+      "elapsed_s": 901.639,
+      "operation": "wait",
+      "words": "One more wait to see whether Demirci comes."
+    },
+    {
+      "elapsed_s": 906.642,
+      "operation": "log",
+      "words": "This time I understood what to do: call early, visit, listen, sometimes give grain. 24 people came and nobody refused, and I liked Yusuf and the Dere family. But after fifteen minutes it is still the first day, and every visit is the same three buttons and a minute of waiting. I stop here. I would close it, not leave it running. I would come back another evening only if the days went faster when nothing is happening and I had more than one thing to say."
+    },
+    {
+      "elapsed_s": 907.229,
+      "operation": "tap",
+      "words": "After stopping: local Feedback inspection."
+    },
+    {
+      "elapsed_s": 909.563,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 912.141,
+      "operation": "tap",
+      "words": "I choose I am stopping. I will not type or submit."
+    },
+    {
+      "elapsed_s": 914.878,
+      "operation": "log",
+      "words": "After stopping I chose I am stopping in Feedback. It became pressed and put I am stopping into the note box itself. I typed nothing and did not submit. Feedback and menu are familiar from last time; no new concepts. The browser is no longer needed."
+    },
+    {
+      "source": "Post-stop report section3; retrospective, not a measured contemporaneous record. May repeat raw words.",
+      "words": "## 3. Verbatim (my own log words; the raw JSONL is kept separately)\n- **4.6 s, title screen:** \"I know this page from my last visit. The landowner's due is grain; I learned that. Now there is a new first sentence about a spoken answer during visits. I read it twice: 'This uses the original grain rules and local people, instead of the other editions below.' **Reread 1.** Original rules, editions? I do not know which edition I am in. I leave the boxes alone and press Resume as I was told. New concepts, 3.\"\n- **15.8 s, Kavak:** \"The same sentence about the call expiring that stopped me last time. Now I just let it pass: it means I cannot call this house twice. Last time I never pressed Visit. This time I do.\"\n- **47.6 s:** \"Five came! That is much better than last time. Zehra will come after her own barley; that is fair, she has her own family. I will not insist.\"\n- **53.5 s:** \"I said my words but I see no answer from them yet.\"\n- **147.6 s, Information:** \"The clock moves half an hour of game time for every half minute of mine. The rain is two days away… I have a concrete question: what does Skip do, and is it safe?\"\n- **152.6 s, pulse 3:** \"The help is plain and I understood it on first reading… But it does not tell me what Skip does, and only 5 of 360 measures are cut while ten people work.\"\n- **170–203.6 s:** \"Since I pressed Skip, the clock has not moved at all. Did Skip stop time?\"\n- **207.4 s, Çoban:** \"'Who will feed my family while I cut his barley?' That I understand completely. I will not insist.\"\n- **254.3 s:** \"Again my words show and nobody answers me. The first page promised a spoken answer during visits; where is it?\"\n- **258.3 s, after Send grain:** \"Oh! I only wanted to look, and it sent the grain at once. No question, no amount… I feel a little tricked.\"\n- **265.8 s, ledger:** \"It said the gift is recorded in the ledger; I do not see it.\"\n- **295.5 s:** \"The clock has stood at 10:30 for half a minute, though nothing is open… I am waiting, but for what?\"\n- **304.1 s, phone check:** \"The map is very small, and the status line is cut off with three dots. The red Skip is big. Zehra is gone from the list; 15 came now.\"\n- **308.6 s:** \"Is 'Come in' the spoken answer? It answers my arrival, not my words.\"\n- **346.6 s, pulse 3:** \"Yusuf: 'Tell the landowner we are grateful. Or thank God for us instead.' I smiled; a proud man, a little sharp. These people feel real. But I mostly wait for half a minute at a time, and I have one thing to say at every house.\"\n- **510.6 s, pulse 2:** \"Dere says 'Say what you came to say.' But I already said it, half an hour ago! … I do not feel heard… I am getting bored.\"\n- **553.1 s, want_quit, BORED:** \"Nine minutes, and the game day has gone from 7 to 2 in the afternoon. I have three buttons per house and the same one sentence each time. Dere has not even answered my grain. I understand everything now, but there is mostly waiting. I would like to stop here. I keep going because I set the time aside.\"\n- **587.7 s:** \"'That is kind of you. We'll keep it for spring.' And the Dere person came to work: 16 came. That warmed me… The wish to leave is smaller now, though the pattern is clear.\"\n- **657.5 s:** \"The son spends more time at the coffeehouse than in the fields. Ha, I know families like that.\"\n- **698.3 s:** \"The granary went from 24 to 18; so my two gifts were about 3 each. I had to work that out myself… I am worried we will not finish.\"\n- **764.5 s:** \"Tepe's people came too, 24 now, with only listening, no grain.\"\n- **871.1 s, pulse 2:** \"Demirci: 'We weren't expecting you.' … it is the same visit five times. Most of my time is waiting.\"\n- **903 s, stop, BORED:** quoted in section 7.\n- **914.9 s, after stopping:** \"I chose I am stopping in Feedback. It became pressed and put I am stopping into the note box itself. I typed nothing and did not submit.\"\n\nMy notes counted about **18 new concepts**. Only one sentence needed rereading, so the two-reread rule never applied.\n\n"
+    }
+  ]
+}

@@ -1,0 +1,345 @@
+{
+  "diary": "D08",
+  "derivative": "Private command arguments and errors omitted; every words string, elapsed value and retrospective source label retained. Original anonymous bytes are separately hash-bound.",
+  "records": [
+    {
+      "elapsed_s": null,
+      "operation": "start",
+      "words": null
+    },
+    {
+      "elapsed_s": 0.109,
+      "operation": "open",
+      "words": null
+    },
+    {
+      "elapsed_s": 5.933,
+      "operation": "tap",
+      "words": "I remember waiting for visits and finding their result in About. This time I want to visit before pressing anyone and see whether I can actually say what I came for."
+    },
+    {
+      "elapsed_s": 9.984,
+      "operation": "tap",
+      "words": "Call first. I want to visit an actual delay rather than make a visit with no purpose."
+    },
+    {
+      "elapsed_s": 42.54,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 46.932,
+      "operation": "tap",
+      "words": "Zehra again. I remember the birth from my own earlier visit. I will not press her this time; I want to hear what a visit permits."
+    },
+    {
+      "elapsed_s": 50.249,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 53.135,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 60.027,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 62.003,
+      "operation": "log",
+      "words": "I called and chose to visit Zehra rather than insist. I remember pressing her before learning she was pregnant in my earlier session. The phone shows her reason clearly, but the walking estimate is cut off. It now tells me the actual hour and that open replies slow time. I am waiting to arrive before deciding what to say."
+    },
+    {
+      "elapsed_s": 97.203,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 103.492,
+      "operation": "tap",
+      "words": "There is something to say this time. Listening is exactly what I want before deciding whether her delay needs an answer."
+    },
+    {
+      "elapsed_s": 137.836,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 173.145,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 180.677,
+      "operation": "tap",
+      "words": "I said I came to listen, but I have only heard Come in. I am checking About again because that is where my earlier visits left their result."
+    },
+    {
+      "elapsed_s": 187.245,
+      "operation": "log",
+      "words": "Almost no food left is a reason to do something different. Saying I came to listen felt better than pressing, but I still found the useful information in About rather than in an answer."
+    },
+    {
+      "elapsed_s": 187.456,
+      "operation": "tap",
+      "words": "I want to know the cost before sending. This household is the one I would help if I can spare it."
+    },
+    {
+      "elapsed_s": 191.74,
+      "operation": "tap",
+      "words": "That sent it immediately. I expected the explanation I saw last time, so that was an accidental commitment. I will own the gift and check how much it cost."
+    },
+    {
+      "elapsed_s": 198.705,
+      "operation": "tap",
+      "words": "Twenty-four left means the gift cost six from the starting thirty. About ten plus about 350 plus 24 is 384. I am on the edge again, but at least someone has food. I will let the cutters work before making another demand."
+    },
+    {
+      "elapsed_s": 234.083,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 267.331,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 272.923,
+      "operation": "tap",
+      "words": "Zehra came without pressure. The gift and the visit happened together, so I cannot say which mattered. The thanks for the grain is a better answer than the visit gave me."
+    },
+    {
+      "elapsed_s": 307.113,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 311.399,
+      "operation": "resize",
+      "words": "Requested desktop check now, after five minutes. This is the size I would normally use."
+    },
+    {
+      "elapsed_s": 316.792,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 317.009,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 324.723,
+      "operation": "resize",
+      "words": "Back to phone. On desktop the ledger and map fit side by side, but the household row still runs past Tepe. The ledger writing looks faint. I can read the totals in the driver."
+    },
+    {
+      "elapsed_s": 324.985,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 330.903,
+      "operation": "tap",
+      "words": "I will try listening at Dere without giving grain. One change at a time now. I want to see whether the spoken visit alone gets an answer beyond the greeting."
+    },
+    {
+      "elapsed_s": 364.294,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 372.529,
+      "operation": "log",
+      "words": "I have a test worth doing at Dere, but most of my time is still waiting. The hour moving makes the waiting less mysterious. I want a response to listening, not simply a record that I visited."
+    },
+    {
+      "elapsed_s": 372.746,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 405.635,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 412.98,
+      "operation": "log",
+      "words": "Say what you came to say arrives after I have already said it. That feels like we are speaking past each other. I will wait until I leave before calling it the whole answer."
+    },
+    {
+      "elapsed_s": 443.147,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 476.887,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 483.6,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 491.764,
+      "operation": "log",
+      "words": "I would stop here. Two visits gave me greetings and a line recording my own words, but no answer to those words that I can identify. I am not interested in repeating that trip. I will keep the time I set aside and watch whether the harvest changes the choice."
+    },
+    {
+      "elapsed_s": 491.975,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 498.04,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 528.185,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 537.563,
+      "operation": "log",
+      "words": "Fifty cut still leaves most of the field standing. I know the hour now, but I do not know whether the rate is enough. My wish to leave has not passed; I am checking the same totals instead of making a new choice."
+    },
+    {
+      "elapsed_s": 537.774,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 537.97,
+      "operation": "tap",
+      "words": "Before I settle into more waiting, I want to see whether I have another useful order besides calling the same people."
+    },
+    {
+      "elapsed_s": 545.655,
+      "operation": "tap",
+      "words": "The letter has a clear condition, so I know why I cannot use it yet. I am not going to give away more grain just to make another button available."
+    },
+    {
+      "elapsed_s": 575.8,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 609.896,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 646.685,
+      "operation": "wait",
+      "words": "I am leaving the delays alone. They all say they are reaping their own barley, and pressing them would repeat the test I already did last time."
+    },
+    {
+      "elapsed_s": 679.754,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 685.79,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 715.959,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 726.565,
+      "operation": "log",
+      "words": "Seventy cut is progress, but I am watching a slow total. I do not want another visit or another insist experiment. The useful part today was choosing to feed Çoban; the rest has not made me want to stay."
+    },
+    {
+      "elapsed_s": 726.876,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 729.918,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 734.343,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 738.847,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 746.154,
+      "operation": "tap",
+      "words": "The stopping topic pressed and filled those words into the box. I typed nothing and submitted nothing. My first tap used the wrong apostrophe; the exact name worked."
+    },
+    {
+      "elapsed_s": 746.347,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 746.568,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 776.748,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 785.011,
+      "operation": "log",
+      "words": "Twenty-two came without another demand. Waiting does change things, so my earlier idea that insist was the only useful move was too strong. I still do not feel like sitting through the rest of this day."
+    },
+    {
+      "elapsed_s": 815.189,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 849.659,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 891.129,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 907.233,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 915.448,
+      "operation": "log",
+      "words": "The extra time showed people coming without insistence, but it did not make another visit appealing. I am still ready to leave, rather than curious about the next reply."
+    },
+    {
+      "elapsed_s": 915.506,
+      "operation": "log",
+      "words": "I am stopping after the fifteen minutes I set aside. My wish to leave at 492 seconds did not pass. I would not return voluntarily now or another evening to repeat these visits. I would reconsider if a conversation gave me something specific to answer and I could see whether waiting would beat the rain. I would not leave it running. I selected the stopping topic locally, typed nothing, changed no consent and submitted nothing. The browser is no longer needed."
+    },
+    {
+      "source": "Post-stop report section3; retrospective, not a measured contemporaneous record. May repeat raw words.",
+      "words": "## 3. Verbatim\n\nThese are my original local reactions, unchanged. The existing **wall-clock.jsonl** preserves the full raw input lines. Times are driver elapsed seconds. Unreacted inputs and visible results are summarized separately below.\n\n**5.934 — Resume**\n\n> I remember waiting for visits and finding their result in About. This time I want to visit before pressing anyone and see whether I can actually say what I came for.\n\n**9.984 — Call the hamlet to cut the landowner’s barley; 07:00**\n\n> Call first. I want to visit an actual delay rather than make a visit with no purpose.\n\n**46.932 — the Çoban house; 08:00**\n\n> Zehra again. I remember the birth from my own earlier visit. I will not press her this time; I want to hear what a visit permits.\n\n**62.003 — first_minute; 08:00**\n\n> I called and chose to visit Zehra rather than insist. I remember pressing her before learning she was pregnant in my earlier session. The phone shows her reason clearly, but the walking estimate is cut off. It now tells me the actual hour and that open replies slow time. I am waiting to arrive before deciding what to say.\n\n**103.493 — Say: I came to listen; 08:30**\n\n> There is something to say this time. Listening is exactly what I want before deciding whether her delay needs an answer.\n\n**180.677 — About ▾; 10:00**\n\n> I said I came to listen, but I have only heard Come in. I am checking About again because that is where my earlier visits left their result.\n\n**187.245 — pulse, 3/5; 10:00**\n\n> Almost no food left is a reason to do something different. Saying I came to listen felt better than pressing, but I still found the useful information in About rather than in an answer.\n\n**187.456 — Send grain; 10:00**\n\n> I want to know the cost before sending. This household is the one I would help if I can spare it.\n\n**191.740 — Open the landowner’s ledger; 10:00**\n\n> That sent it immediately. I expected the explanation I saw last time, so that was an accidental commitment. I will own the gift and check how much it cost.\n\n**198.705 — Back to the notebook; 10:00**\n\n> Twenty-four left means the gift cost six from the starting thirty. About ten plus about 350 plus 24 is 384. I am on the edge again, but at least someone has food. I will let the cutters work before making another demand.\n\n**272.923 — the Çoban house; 11:00**\n\n> Zehra came without pressure. The gift and the visit happened together, so I cannot say which mattered. The thanks for the grain is a better answer than the visit gave me.\n\n**311.400 — resize to desktop**\n\n> Requested desktop check now, after five minutes. This is the size I would normally use.\n\n**324.723 — return to phone**\n\n> Back to phone. On desktop the ledger and map fit side by side, but the household row still runs past Tepe. The ledger writing looks faint. I can read the totals in the driver.\n\n**Dere Visit input, between 324.990 and 364.295 seconds; 11:30**\n\n> I will try listening at Dere without giving grain. One change at a time now. I want to see whether the spoken visit alone gets an answer beyond the greeting.\n\nThe exact input timestamp was not retained in my displayed tool output; the raw driver log holds it.\n\n**372.529 — pulse, 3/5; 12:00**\n\n> I have a test worth doing at Dere, but most of my time is still waiting. The hour moving makes the waiting less mysterious. I want a response to listening, not simply a record that I visited.\n\n**412.980 — note; 12:30**\n\n> Say what you came to say arrives after I have already said it. That feels like we are speaking past each other. I will wait until I leave before calling it the whole answer.\n\n**491.764 — want_quit, BORED; 14:00**\n\n> I would stop here. Two visits gave me greetings and a line recording my own words, but no answer to those words that I can identify. I am not interested in repeating that trip. I will keep the time I set aside and watch whether the harvest changes the choice.\n\n**537.563 — pulse, 2/5; 14:30**\n\n> Fifty cut still leaves most of the field standing. I know the hour now, but I do not know whether the rate is enough. My wish to leave has not passed; I am checking the same totals instead of making a new choice.\n\n**537.970 — Other orders ▸; 14:30**\n\n> Before I settle into more waiting, I want to see whether I have another useful order besides calling the same people.\n\n**545.656 — Back to the notebook; 14:30**\n\n> The letter has a clear condition, so I know why I cannot use it yet. I am not going to give away more grain just to make another button available.\n\n**646.687 — wait 30; 15:30 input clock**\n\n> I am leaving the delays alone. They all say they are reaping their own barley, and pressing them would repeat the test I already did last time.\n\n**726.566 — pulse, 2/5; 17:00**\n\n> Seventy cut is progress, but I am watching a slow total. I do not want another visit or another insist experiment. The useful part today was choosing to feed Çoban; the rest has not made me want to stay.\n\n**746.155 — Back to menu; 17:00**\n\n> The stopping topic pressed and filled those words into the box. I typed nothing and submitted nothing. My first tap used the wrong apostrophe; the exact name worked.\n\n**785.012 — note; 17:30**\n\n> Twenty-two came without another demand. Waiting does change things, so my earlier idea that insist was the only useful move was too strong. I still do not feel like sitting through the rest of this day.\n\n**915.449 — pulse, 2/5; 19:30**\n\n> The extra time showed people coming without insistence, but it did not make another visit appealing. I am still ready to leave, rather than curious about the next reply.\n\n**915.506 — stop, BORED; 19:30**\n\n> I am stopping after the fifteen minutes I set aside. My wish to leave at 492 seconds did not pass. I would not return voluntarily now or another evening to repeat these visits. I would reconsider if a conversation gave me something specific to answer and I could see whether waiting would beat the rain. I would not leave it running. I selected the stopping topic locally, typed nothing, changed no consent and submitted nothing. The browser is no longer needed.\n\n"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "at": "2026-10-26T23:32:49.068087+00:00",
+  "collection": "hf3-valley-r2",
+  "status": "CLOSED_PARTIAL_ADDITIONAL_R1_NOT_FIXED_BUILD_RETEST",
+  "accepted_reports": 16,
+  "asks": 45,
+  "ids": "F-1281 through F-1325",
+  "unstarted_sessions": "Not run; development cutover. No inferred verdict or allocated ask.",
+  "control": "Own additional-collection control not run; no balanced control comparison claimed.",
+  "old_target": "32 game arms plus own control; not completed and not relabelled as completed.",
+  "hold": "RETURNED: no in-flight player; no new f711 seats. Immutable1f15fb7-or-later cutover requires separate exact-tip release checks.",
+  "future": "Full same-tester fixed-build retest required after live grain check and native/SDK/SW admission gates.",
+  "diaries": "Eight completed pairs selected FREE only in shared indices; original prefixes unchanged. Canonical diary append remains due.",
+  "derivative": true,
+  "source_original_sha256": "d390202799719696177f363d8b4511b5c239c91cd2453e2936575155791d4cd2",
+  "unstarted_pairs": 8,
+  "unstarted_arms": 16,
+  "control_run": false,
+  "canonical_ledger_rows_to_insert": 0
+}

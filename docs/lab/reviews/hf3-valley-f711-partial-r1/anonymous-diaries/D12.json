@@ -1,0 +1,390 @@
+{
+  "diary": "D12",
+  "derivative": "Private command arguments and errors omitted; every words string, elapsed value and retrospective source label retained. Original anonymous bytes are separately hash-bound.",
+  "records": [
+    {
+      "elapsed_s": null,
+      "operation": "start",
+      "words": null
+    },
+    {
+      "elapsed_s": 0.111,
+      "operation": "open",
+      "words": null
+    },
+    {
+      "elapsed_s": 5.419,
+      "operation": "tap",
+      "words": "I remember sending two sacks by accident and never getting to answer at the fire. I want to try answering somebody this time."
+    },
+    {
+      "elapsed_s": 8.734,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 12.033,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 15.778,
+      "operation": "tap",
+      "words": "Straight to Çoban. I remember Yusuf being proud about the grain. No accidental sacks this time."
+    },
+    {
+      "elapsed_s": 18.861,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 21.894,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 30.31,
+      "operation": "tap",
+      "words": "The phone has a tiny map but big buttons. Now it actually says how long I am here. I want to open the house, not squeeze Zehra while she feeds her own family."
+    },
+    {
+      "elapsed_s": 35.621,
+      "operation": "tap",
+      "words": "Oh! A line I can actually say. Yes, I came to listen."
+    },
+    {
+      "elapsed_s": 60.04,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 63.278,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 69.771,
+      "operation": "log",
+      "words": "I got to say I came to listen at Çoban, which is what I wanted last visit. It displayed my fuller sentence, but I have not seen her answer it yet. The clock now says 08:30 and tells me reading slows time. The phone buttons are big; the map is tiny and my travel sentence gets cut off. This note is late after my wait crossed sixty seconds."
+    },
+    {
+      "elapsed_s": 75.875,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 109.679,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 114.306,
+      "operation": "tap",
+      "words": "Come in is in the notebook, not next to what I said. I cannot tell whether that is his answer or just the visit greeting. I am checking the house again."
+    },
+    {
+      "elapsed_s": 119.471,
+      "operation": "tap",
+      "words": "I will send one sack on purpose. She asked who feeds her family, and that is still a better answer than insisting."
+    },
+    {
+      "elapsed_s": 124.472,
+      "operation": "tap",
+      "words": "Sent grain. Good, that is clear immediately this time. I do not need to tap it again."
+    },
+    {
+      "elapsed_s": 158.244,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 164.236,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 190.822,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 195.634,
+      "operation": "log",
+      "words": "The gift was clearer, but my listening sentence has not led to a conversation. I am looking at two unavailable orders while the walk home crawls."
+    },
+    {
+      "elapsed_s": 199.368,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 204.684,
+      "operation": "log",
+      "words": "Or thank God for us instead. Ha, I like him swerving the landowner out of his thank-you. That has more personality than nine versions of after my own barley."
+    },
+    {
+      "elapsed_s": 208.534,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 213.202,
+      "operation": "tap",
+      "words": "Survey visitors sound different. Let me see if they have something other than barley to say."
+    },
+    {
+      "elapsed_s": 216.986,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 252.469,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 256.566,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 260.532,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 295.532,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 300.703,
+      "operation": "log",
+      "words": "I would leave now. I have said I came to listen twice, but I am not getting a conversation to play with. The visits feel like waiting for a greeting, then walking home. I will keep going for the time I set aside."
+    },
+    {
+      "elapsed_s": 304.757,
+      "operation": "resize",
+      "words": "Five minutes in, I am briefly checking the wider screen for the requested layout comparison."
+    },
+    {
+      "elapsed_s": 308.232,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 315.935,
+      "operation": "log",
+      "words": "Wait, Yusuf Usta is 74 and advises digging, and Meryem is here. That sounds like the old dig-master and the woman who rolled my door in Warren. I did not recognise Yusuf from the name alone. Now I am fairly sure, from the age and digging. Why are you calling me the landowner’s man? I made you a door! I am guessing these are the same people; I have not checked anything outside this page."
+    },
+    {
+      "elapsed_s": 320.172,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 330.714,
+      "operation": "resize",
+      "words": null
+    },
+    {
+      "elapsed_s": 338.996,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 345.275,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 349.647,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 372.992,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 378.251,
+      "operation": "log",
+      "words": "Recognising the possible Warren visitors woke me up for a moment. They still gave me one greeting, and I am back to the same barley replies. The quit wish has not passed."
+    },
+    {
+      "elapsed_s": 382.596,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 388.408,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 392.642,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 395.743,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 429.315,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 435.958,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 443.775,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 477.783,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 482.44,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 515.421,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 552.983,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 557.626,
+      "operation": "log",
+      "words": "I am waiting after Sit down and nothing more has followed. I understand the visit countdown now, but watching it run out is not interesting to me."
+    },
+    {
+      "elapsed_s": 561.238,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 594.738,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 603.189,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 611.034,
+      "operation": "tap",
+      "words": "One more house. I want to see whether I can answer somebody who is still refusing my timing, rather than a visitor who owes nothing."
+    },
+    {
+      "elapsed_s": 645.125,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 648.666,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 682.23,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 689.045,
+      "operation": "log",
+      "words": "Say what you came to say. I already did! My line is right there under it. I cannot tell if they heard it or whether these are two separate things happening beside each other."
+    },
+    {
+      "elapsed_s": 693.803,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 735.705,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 740.813,
+      "operation": "log",
+      "words": "Four visits have given me greetings and the same line to say. I am not curious about the next house now. I would still leave, even though I can finally see the day moving."
+    },
+    {
+      "elapsed_s": 748.595,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 784.483,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 820.58,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 856.184,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 890.47,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 905.564,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 911.944,
+      "operation": "log",
+      "words": "I have given it the fifteen minutes. I liked one grain reply and recognising possible familiar people, but I am ready to close this. Waiting longer did not make me want the next visit."
+    },
+    {
+      "elapsed_s": 915.504,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 919.858,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 924.351,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 932.167,
+      "operation": "log",
+      "words": "Stopping at home on 18 July at 20:00. My quit wish did not pass. I got to say I came to listen, but I never felt that somebody answered that sentence. I would close it, not leave it running. I would not return voluntarily tonight or plan another evening. Seeing possible Warren people was a nice surprise, but it did not make these visits feel like conversations. Feedback has both stopping and confused; I selected stopping locally and it filled the box itself. Nothing typed or submitted, and consent unchanged."
+    },
+    {
+      "source": "Post-stop report section3; retrospective, not a measured contemporaneous record. May repeat raw words.",
+      "words": "## 3. Verbatim\n\nEvery original local reaction follows unchanged. Full raw input lines remain in the existing **wall-clock.jsonl**.\n\n**5.419s — Resume**\n\n> I remember sending two sacks by accident and never getting to answer at the fire. I want to try answering somebody this time.\n\n**15.778s — Visit Çoban; 07:30**\n\n> Straight to Çoban. I remember Yusuf being proud about the grain. No accidental sacks this time.\n\n**30.311s — open Çoban; 08:00**\n\n> The phone has a tiny map but big buttons. Now it actually says how long I am here. I want to open the house, not squeeze Zehra while she feeds her own family.\n\n**35.622s — Say: I came to listen; 08:00**\n\n> Oh! A line I can actually say. Yes, I came to listen.\n\n**69.771s — first_minute; 08:30**\n\n> I got to say I came to listen at Çoban, which is what I wanted last visit. It displayed my fuller sentence, but I have not seen her answer it yet. The clock now says 08:30 and tells me reading slows time. The phone buttons are big; the map is tiny and my travel sentence gets cut off. This note is late after my wait crossed sixty seconds.\n\n**114.306s — open Çoban; 09:00**\n\n> Come in is in the notebook, not next to what I said. I cannot tell whether that is his answer or just the visit greeting. I am checking the house again.\n\n**119.472s — Send grain; 09:00**\n\n> I will send one sack on purpose. She asked who feeds her family, and that is still a better answer than insisting.\n\n**124.472s — Back to the notebook; 09:00**\n\n> Sent grain. Good, that is clear immediately this time. I do not need to tap it again.\n\n**195.635s — pulse, engagement 2; 09:30**\n\n> The gift was clearer, but my listening sentence has not led to a conversation. I am looking at two unavailable orders while the walk home crawls.\n\n**204.684s — note; 10:00**\n\n> Or thank God for us instead. Ha, I like him swerving the landowner out of his thank-you. That has more personality than nine versions of after my own barley.\n\n**213.202s — Visit survey visitors; 10:00**\n\n> Survey visitors sound different. Let me see if they have something other than barley to say.\n\n**300.703s — want_quit, BORED; 11:00**\n\n> I would leave now. I have said I came to listen twice, but I am not getting a conversation to play with. The visits feel like waiting for a greeting, then walking home. I will keep going for the time I set aside.\n\n**304.757s — resize to 1280×800; 11:00**\n\n> Five minutes in, I am briefly checking the wider screen for the requested layout comparison.\n\n**315.935s — note; 11:00**\n\n> Wait, Yusuf Usta is 74 and advises digging, and Meryem is here. That sounds like the old dig-master and the woman who rolled my door in Warren. I did not recognise Yusuf from the name alone. Now I am fairly sure, from the age and digging. Why are you calling me the landowner’s man? I made you a door! I am guessing these are the same people; I have not checked anything outside this page.\n\n**378.251s — pulse, engagement 2; 12:00**\n\n> Recognising the possible Warren visitors woke me up for a moment. They still gave me one greeting, and I am back to the same barley replies. The quit wish has not passed.\n\n**557.627s — pulse, engagement 1; 14:00**\n\n> I am waiting after Sit down and nothing more has followed. I understand the visit countdown now, but watching it run out is not interesting to me.\n\n**611.034s — Visit Dere; 15:00**\n\n> One more house. I want to see whether I can answer somebody who is still refusing my timing, rather than a visitor who owes nothing.\n\n**689.045s — note; 16:00**\n\n> Say what you came to say. I already did! My line is right there under it. I cannot tell if they heard it or whether these are two separate things happening beside each other.\n\n**740.814s — pulse, engagement 1; 17:00**\n\n> Four visits have given me greetings and the same line to say. I am not curious about the next house now. I would still leave, even though I can finally see the day moving.\n\n**911.945s — pulse, engagement 1; 20:00**\n\n> I have given it the fifteen minutes. I liked one grain reply and recognising possible familiar people, but I am ready to close this. Waiting longer did not make me want the next visit.\n\n**932.167s — stop, BORED; 20:00**\n\n> Stopping at home on 18 July at 20:00. My quit wish did not pass. I got to say I came to listen, but I never felt that somebody answered that sentence. I would close it, not leave it running. I would not return voluntarily tonight or plan another evening. Seeing possible Warren people was a nice surprise, but it did not make these visits feel like conversations. Feedback has both stopping and confused; I selected stopping locally and it filled the box itself. Nothing typed or submitted, and consent unchanged.\n\n"
+    }
+  ]
+}

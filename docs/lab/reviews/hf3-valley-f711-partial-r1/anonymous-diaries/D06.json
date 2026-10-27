@@ -1,0 +1,460 @@
+{
+  "diary": "D06",
+  "derivative": "Private command arguments and errors omitted; every words string, elapsed value and retrospective source label retained. Original anonymous bytes are separately hash-bound.",
+  "records": [
+    {
+      "elapsed_s": null,
+      "operation": "start",
+      "words": null
+    },
+    {
+      "elapsed_s": 0.109,
+      "operation": "open",
+      "words": null
+    },
+    {
+      "elapsed_s": 4.014,
+      "operation": "tap",
+      "words": "Spoken-answer edition this time. Same 18 July start I know. Resume."
+    },
+    {
+      "elapsed_s": 7.947,
+      "operation": "tap",
+      "words": "Third time at this morning. Call cutters first, as before. This time I want to find out if they finish before rain, not just give grain."
+    },
+    {
+      "elapsed_s": 11.933,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 19.382,
+      "operation": "tap",
+      "words": "Desktop map is roomy, the big red Skip is tempting but I will let the day run. Çoban first, the house I helped last time."
+    },
+    {
+      "elapsed_s": 22.548,
+      "operation": "tap",
+      "words": "Zehra again, same reason. This edition promises a spoken answer during visits, so I visit to see what is new."
+    },
+    {
+      "elapsed_s": 50.274,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 53.457,
+      "operation": "tap",
+      "words": "Seven postponed now, more than last time. There is a new spoken line: I came to listen. That is what I would say to her anyway."
+    },
+    {
+      "elapsed_s": 60.039,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 66.159,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 72.206,
+      "operation": "log",
+      "words": "Familiar problem: rain on 20 July, 384 owed. Seven people postponed this time, more than before. The new spoken line is there, I said I came to listen, but she has not answered yet and the clock still says 08:30 after ten seconds. I am waiting, but for what? On desktop everything is readable, nothing covered."
+    },
+    {
+      "elapsed_s": 75.327,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 79.128,
+      "operation": "tap",
+      "words": "No answer from Zehra to my words, as far as I can see. Same guess about no food. Before giving grain I check the ledger margin."
+    },
+    {
+      "elapsed_s": 83.908,
+      "operation": "tap",
+      "words": "30 plus 360 minus 384 = six spare, same as before. Last time I gave all six on a guess. This time I hold the grain until I hear more, and nobody has come at all yet, which worries me more than Zehra."
+    },
+    {
+      "elapsed_s": 117.041,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 120.909,
+      "operation": "tap",
+      "words": "Yusuf: Come in. That is his whole spoken answer? Half a game hour per thirty real seconds. 14 came, same as last time. I go back into the house to see if he says more."
+    },
+    {
+      "elapsed_s": 153.797,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 186.803,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 190.457,
+      "operation": "log",
+      "words": "The spoken answer was only Come in and I came to listen; nothing followed. I sat a whole visit watching the clock move half an hour per thirty seconds. Same 14 came as last visit. I held the grain this time, but I do not know if that was right."
+    },
+    {
+      "elapsed_s": 205.27,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 222.884,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 226.673,
+      "operation": "tap",
+      "words": "Home at 10:30. Tepe has three delayed, the most. I go there next; one visit costs two game hours, so I pick the biggest house."
+    },
+    {
+      "elapsed_s": 229.437,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 257.063,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 260.396,
+      "operation": "tap",
+      "words": "Only one spoken choice again, I came to listen. I look at who they are before I say it."
+    },
+    {
+      "elapsed_s": 265.086,
+      "operation": "tap",
+      "words": "Their jars low, and a son who sits at the coffeehouse. Three people all delayed for their own barley. I listen first, then maybe insist on one of them."
+    },
+    {
+      "elapsed_s": 292.819,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 297.677,
+      "operation": "log",
+      "words": "Sit down. That is all. The spoken answer is one short phrase after half an hour of game time, and nothing changes in their replies. I said I came to listen and they told me to sit. I expected them to tell me something I could plan with."
+    },
+    {
+      "elapsed_s": 298.119,
+      "operation": "resize",
+      "words": "Requested layout check at about five minutes, not my choice."
+    },
+    {
+      "elapsed_s": 301.468,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 301.854,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 309.14,
+      "operation": "resize",
+      "words": "Phone check: ledger readable but the table is below the fold, the location line is cut off with h..., the house strip is cut at both sides. Back to desktop. 25 cut by 11:30, 340 left, rain in two days - that rate worries me."
+    },
+    {
+      "elapsed_s": 314.067,
+      "operation": "tap",
+      "words": "My rough sum: 25 in four and a half hours with 14 people. At that rate 340 will not be cut before rain. So I must insist on someone. The coffeehouse son feels fairest."
+    },
+    {
+      "elapsed_s": 317.034,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 322.559,
+      "operation": "key",
+      "words": "It wants a hold, not a click. Fair, insisting should cost a moment. Holding."
+    },
+    {
+      "elapsed_s": 327.875,
+      "operation": "key",
+      "words": "Nothing changed after 1.5 s. Holding longer."
+    },
+    {
+      "elapsed_s": 331.668,
+      "operation": "tap",
+      "words": "The reply shown changed to another Tepe person. Did my insist work? Checking the counts."
+    },
+    {
+      "elapsed_s": 338.324,
+      "operation": "log",
+      "words": "Still 14 came, now 9 delayed. I held the insist button 2 seconds and the shown reply only switched to another Tepe person. I cannot tell whether anyone was insisted on. No message said he is coming. Also the clock has stayed at 11:30 for about forty real seconds."
+    },
+    {
+      "elapsed_s": 358.464,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 391.863,
+      "operation": "wait",
+      "words": "16 came now, 7 delayed. Maybe one is my insisted Tepe man, maybe people finishing their own barley. I cannot tell which."
+    },
+    {
+      "elapsed_s": 396.628,
+      "operation": "log",
+      "words": "Tepe is all cleared now, 17 came. Something I did may have moved them, which is the first sign my visits matter. But the numbers still creep. Now I want to check the cut rate and decide on Dere and Zehra."
+    },
+    {
+      "elapsed_s": 411.76,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 417.039,
+      "operation": "tap",
+      "words": "Home at 13:00. Walking to each house costs two hours. I try insisting straight from the list, on the first Kuyucu person."
+    },
+    {
+      "elapsed_s": 422.241,
+      "operation": "tap",
+      "words": "Six identical buttons. I pick the first Demirci person by position."
+    },
+    {
+      "elapsed_s": 424.505,
+      "operation": "key",
+      "words": null
+    },
+    {
+      "elapsed_s": 428.861,
+      "operation": "tap",
+      "words": "The Demirci person vanished from the delayed list. No sentence told me he agreed or that he resents it, the line just disappeared. I think it worked. Now ledger."
+    },
+    {
+      "elapsed_s": 437.408,
+      "operation": "tap",
+      "words": "40 cut by 13:00, about ten an hour. 320 left and maybe a day and a half of light. Even with more people that is short. I will insist on the Kuyucu and Demirci ones, but leave Zehra with her baby alone."
+    },
+    {
+      "elapsed_s": 445.016,
+      "operation": "tap",
+      "words": "Odd: list shows five but the count still says 6 delayed and 17 came. Insisting on the first Kuyucu person."
+    },
+    {
+      "elapsed_s": 447.556,
+      "operation": "key",
+      "words": null
+    },
+    {
+      "elapsed_s": 452.414,
+      "operation": "tap",
+      "words": "Gone from the list again, but counts still unchanged. Second Demirci next."
+    },
+    {
+      "elapsed_s": 454.715,
+      "operation": "key",
+      "words": null
+    },
+    {
+      "elapsed_s": 460.704,
+      "operation": "log",
+      "words": "This hold did not work, the Demirci line is still there. Same hold as before. I do not know why one hold works and the next does not. And the header still says 17 came, 6 delayed while the list is shrinking. The clock has been stuck at 13:00 for almost a minute. I feel I am fiddling with buttons instead of running a valley."
+    },
+    {
+      "elapsed_s": 491.072,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 495.908,
+      "operation": "tap",
+      "words": "19 came now, 4 delayed. So the counts catch up a bit later than the list. My insisting does seem to bring people. I visit Dere, a house I have not seen."
+    },
+    {
+      "elapsed_s": 499.405,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 524.713,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 558.058,
+      "operation": "wait",
+      "words": "Clock stayed at 14:00 through 25 real seconds; still 20 minutes from arrival. I am waiting, but for what?"
+    },
+    {
+      "elapsed_s": 562.604,
+      "operation": "tap",
+      "words": "Say what you came to say - a cooler welcome, this house is guarded. Still only one line offered to me. I would like to say: the rain is coming, I need your hands. I can only listen or insist."
+    },
+    {
+      "elapsed_s": 564.033,
+      "operation": "log",
+      "words": "Nine minutes in and still the first afternoon. The welcomes differ by house, Come in, Sit down, Say what you came to say, and I like that small flavour. But I have only one sentence to answer with, and the real choice is still insist or not. Watching counts catch up."
+    },
+    {
+      "elapsed_s": 596.895,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 602.57,
+      "operation": "log",
+      "words": "Ten minutes and it is 15:30 on the first day. The visit gave me one welcome line and nothing after I spoke. I understand the problem - not enough hands before rain - but my only real lever is the insist button, and the rest is waiting for counts. I would leave this now if I had not set the time aside. Keep going to see the evening tally."
+    },
+    {
+      "elapsed_s": 603.305,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 607.906,
+      "operation": "tap",
+      "words": "70 cut by 15:30, up 30 in two and a half hours. Faster than before, so the insisting shows in the numbers. 290 left. Still not enough by my sum, but now I can see the effect of a choice - that I like."
+    },
+    {
+      "elapsed_s": 612.22,
+      "operation": "tap",
+      "words": "What? 2 refused now, and: I came when you insisted. Look what happened to me. Something happened to the people I pressed and it does not say what. Injured? Their own crop lost? This is the setback I need explained. Looking in earlier replies."
+    },
+    {
+      "elapsed_s": 619.119,
+      "operation": "log",
+      "words": "The earlier replies list is honest about my actions: I pressed four people, two Tepe, one Demirci, one Kuyucu, so my second Tepe hold did work after all. Two said Im coming, dont stand over me - fair, I expected that. But then 2 people came when you pressed ... Look what happened to me. Which two, and what happened? Nothing tells me. This is the kind of loss I cannot explain and it bothers me. I stop pressing now."
+    },
+    {
+      "elapsed_s": 619.889,
+      "operation": "tap",
+      "words": "Maybe the Kuyucu house page tells me what happened to the man I pressed."
+    },
+    {
+      "elapsed_s": 629.552,
+      "operation": "tap",
+      "words": "Kuyucu page says nothing about what happened. I try the help."
+    },
+    {
+      "elapsed_s": 633.999,
+      "operation": "tap",
+      "words": "Help is about guesses and walking times, nothing on pressing. Upper hamlet visit takes most of a morning - good to know, Tepe was quick though. Closing."
+    },
+    {
+      "elapsed_s": 664.145,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 668.117,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 672.117,
+      "operation": "tap",
+      "words": "Yusuf now delayed too. The pressed two refused and say look what happened, still no clue what. I look for another lever than insisting."
+    },
+    {
+      "elapsed_s": 677.834,
+      "operation": "tap",
+      "words": "Both other orders disabled. Write to the landowner only when the estimate shows too little - by my sum it already does, but the game does not think so yet. Nothing else to do but wait for evening."
+    },
+    {
+      "elapsed_s": 708.056,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 713.916,
+      "operation": "tap",
+      "words": "Home 16:30. Pressing backfired on two people. Last time a grain gift got Yusuf to say he would not forget. Now Yusuf himself is delayed. I will try the gift instead of pressing, and accept the six measures cost."
+    },
+    {
+      "elapsed_s": 719.033,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 756.026,
+      "operation": "wait",
+      "words": "Sent. Again it does not say how much before or after. I will check the ledger later."
+    },
+    {
+      "elapsed_s": 765.16,
+      "operation": "log",
+      "words": "Gift sent at 16:30, no reaction yet at 17:00. I tried both levers today, pressing and giving. Pressing gave me cutters and then an unexplained complaint. I am mostly waiting now."
+    },
+    {
+      "elapsed_s": 795.292,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 799.944,
+      "operation": "tap",
+      "words": "Yusuf: Tell the landowner we are grateful. Or thank God for us instead. A little proud, a little bitter - I like that line. Their delay line is gone and the dot is empty. Did the gift bring them? Checking ledger."
+    },
+    {
+      "elapsed_s": 804.676,
+      "operation": "tap",
+      "words": "24 + 90 + 270 = 384 exactly. My margin is now zero, every measure in the field must be cut before rain. That I can explain - I chose it. 90 cut by 17:30, twenty in two hours. Back to the replies."
+    },
+    {
+      "elapsed_s": 811.457,
+      "operation": "log",
+      "words": "Now all 4 that I pressed count as refused, and will not come again on my word today. So pressing bought me a few hours from them and then lost them. Fine, that is a tradeoff I can accept - but I only learn it after, and look what happened to me still has no what. Yusuf and Zehra are no longer delayed after the grain; I guess they came, but nobody says so."
+    },
+    {
+      "elapsed_s": 841.741,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 875.723,
+      "operation": "wait",
+      "words": "18:00. Nothing new to decide. I wait to see if evening brings a summary."
+    },
+    {
+      "elapsed_s": 880.344,
+      "operation": "tap",
+      "words": "Evening is near and nothing changes. I look at the menu."
+    },
+    {
+      "elapsed_s": 884.624,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 888.038,
+      "operation": "tap",
+      "words": "Both topic choices are there. I select I am stopping. I will type nothing and not press Submit."
+    },
+    {
+      "elapsed_s": 891.88,
+      "operation": "log",
+      "words": "I'm stopping is pressed and it put those words into the box by itself. I typed nothing and will not press Submit. Time is stopped in this menu."
+    },
+    {
+      "elapsed_s": 904.659,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 910.804,
+      "operation": "log",
+      "words": "I am stopping on the first evening. This time I made real choices: I held the grain, then pressed four people and saw the cutting speed up, then gave grain to the Çoban house and watched my margin go to zero. That part I liked, because I could see the numbers move. But the spoken answer was one sentence, and the welcome lines were all I got back. The people I pressed said look what happened to me and I never learned what. Most of fifteen minutes was waiting through one day. I would return voluntarily another evening to see whether the barley is all in before the rain on 20 July, now that I have no margin left, and what the pressed people hold against me. I would not return just to sit through visits for a welcome line. I would leave it running if I could check back later, but I am not asking to keep this test browser open."
+    },
+    {
+      "source": "Post-stop report section3; retrospective, not a measured contemporaneous record. May repeat raw words.",
+      "words": "## 3. Verbatim\nThese are my original diary words; the raw JSONL is the authority.\n- **15.4 s:** \"Desktop map is roomy, the big red Skip is tempting but I will let the day run. Çoban first, the house I helped last time.\"\n- **22.5 s:** \"Zehra again, same reason. This edition promises a spoken answer during visits, so I visit to see what is new.\"\n- **53.5 s:** \"Seven postponed now, more than last time. There is a new spoken line: I came to listen. That is what I would say to her anyway.\"\n- **72.2 s, first_minute:** \"Familiar problem: rain on 20 July, 384 owed. Seven people postponed this time, more than before. The new spoken line is there, I said I came to listen, but she has not answered yet and the clock still says 08:30 after ten seconds. I am waiting, but for what? On desktop everything is readable, nothing covered.\"\n- **79.1 s:** \"No answer from Zehra to my words, as far as I can see. Same guess about no food. Before giving grain I check the ledger margin.\"\n- **83.9 s:** \"30 plus 360 minus 384 = six spare, same as before. Last time I gave all six on a guess. This time I hold the grain until I hear more, and nobody has come at all yet, which worries me more than Zehra.\"\n- **120.9 s:** \"Yusuf: Come in. That is his whole spoken answer? Half a game hour per thirty real seconds. 14 came, same as last time. I go back into the house to see if he says more.\"\n- **190.5 s, pulse 2:** \"The spoken answer was only Come in and I came to listen; nothing followed. I sat a whole visit watching the clock move half an hour per thirty seconds. Same 14 came as last visit. I held the grain this time, but I do not know if that was right.\"\n- **226.7 s:** \"Home at 10:30. Tepe has three delayed, the most. I go there next; one visit costs two game hours, so I pick the biggest house.\"\n- **260.4 s:** \"Only one spoken choice again, I came to listen. I look at who they are before I say it.\"\n- **265.1 s:** \"Their jars low, and a son who sits at the coffeehouse. Three people all delayed for their own barley. I listen first, then maybe insist on one of them.\"\n- **297.7 s:** \"Sit down. That is all. The spoken answer is one short phrase after half an hour of game time, and nothing changes in their replies. I said I came to listen and they told me to sit. I expected them to tell me something I could plan with.\"\n- **298.1 s:** \"Requested layout check at about five minutes, not my choice.\"\n- **309.1 s:** \"Phone check: ledger readable but the table is below the fold, the location line is cut off with h..., the house strip is cut at both sides. Back to desktop. 25 cut by 11:30, 340 left, rain in two days - that rate worries me.\"\n- **314.1 s:** \"My rough sum: 25 in four and a half hours with 14 people. At that rate 340 will not be cut before rain. So I must insist on someone. The coffeehouse son feels fairest.\"\n- **322.6 s:** \"It wants a hold, not a click. Fair, insisting should cost a moment. Holding.\"\n- **327.9 s:** \"Nothing changed after 1.5 s. Holding longer.\"\n- **331.7 s:** \"The reply shown changed to another Tepe person. Did my insist work? Checking the counts.\"\n- **338.3 s:** \"Still 14 came, now 9 delayed. I held the insist button 2 seconds and the shown reply only switched to another Tepe person. I cannot tell whether anyone was insisted on. No message said he is coming. Also the clock has stayed at 11:30 for about forty real seconds.\"\n- **358.5 s:** \"16 came now, 7 delayed. Maybe one is my insisted Tepe man, maybe people finishing their own barley. I cannot tell which.\"\n- **396.6 s, pulse 3:** \"Tepe is all cleared now, 17 came. Something I did may have moved them, which is the first sign my visits matter. But the numbers still creep. Now I want to check the cut rate and decide on Dere and Zehra.\"\n- **417.0 s:** \"Home at 13:00. Walking to each house costs two hours. I try insisting straight from the list, on the first Kuyucu person.\"\n- **422.2 s:** \"Six identical buttons. I pick the first Demirci person by position.\"\n- **428.9 s:** \"The Demirci person vanished from the delayed list. No sentence told me he agreed or that he resents it, the line just disappeared. I think it worked. Now ledger.\"\n- **437.4 s:** \"40 cut by 13:00, about ten an hour. 320 left and maybe a day and a half of light. Even with more people that is short. I will insist on the Kuyucu and Demirci ones, but leave Zehra with her baby alone.\"\n- **445.0 s:** \"Odd: list shows five but the count still says 6 delayed and 17 came. Insisting on the first Kuyucu person.\"\n- **452.4 s:** \"Gone from the list again, but counts still unchanged. Second Demirci next.\"\n- **460.7 s:** \"This hold did not work, the Demirci line is still there. Same hold as before. I do not know why one hold works and the next does not. And the header still says 17 came, 6 delayed while the list is shrinking. The clock has been stuck at 13:00 for almost a minute. I feel I am fiddling with buttons instead of running a valley.\"\n- **495.9 s:** \"19 came now, 4 delayed. So the counts catch up a bit later than the list. My insisting does seem to bring people. I visit Dere, a house I have not seen.\"\n- **524.7 s:** \"Clock stayed at 14:00 through 25 real seconds; still 20 minutes from arrival. I am waiting, but for what?\"\n- **562.6 s:** \"Say what you came to say - a cooler welcome, this house is guarded. Still only one line offered to me. I would like to say: the rain is coming, I need your hands. I can only listen or insist.\"\n- **564.0 s, pulse 2:** \"Nine minutes in and still the first afternoon. The welcomes differ by house, Come in, Sit down, Say what you came to say, and I like that small flavour. But I have only one sentence to answer with, and the real choice is still insist or not. Watching counts catch up.\"\n- **602.6 s, want_quit (BORED):** \"Ten minutes and it is 15:30 on the first day. The visit gave me one welcome line and nothing after I spoke. I understand the problem - not enough hands before rain - but my only real lever is the insist button, and the rest is waiting for counts. I would leave this now if I had not set the time aside. Keep going to see the evening tally.\"\n- **607.9 s:** \"70 cut by 15:30, up 30 in two and a half hours. Faster than before, so the insisting shows in the numbers. 290 left. Still not enough by my sum, but now I can see the effect of a choice - that I like.\"\n- **612.2 s:** \"What? 2 refused now, and: I came when you insisted. Look what happened to me. Something happened to the people I pressed and it does not say what. Injured? Their own crop lost? This is the setback I need explained. Looking in earlier replies.\"\n- **619.1 s:** \"The earlier replies list is honest about my actions: I pressed four people, two Tepe, one Demirci, one Kuyucu, so my second Tepe hold did work after all. Two said Im coming, dont stand over me - fair, I expected that. But then 2 people came when you pressed ... Look what happened to me. Which two, and what happened? Nothing tells me. This is the kind of loss I cannot explain and it bothers me. I stop pressing now.\"\n- **619.9 s:** \"Maybe the Kuyucu house page tells me what happened to the man I pressed.\"\n- **629.6 s:** \"Kuyucu page says nothing about what happened. I try the help.\"\n- **634.0 s:** \"Help is about guesses and walking times, nothing on pressing. Upper hamlet visit takes most of a morning - good to know, Tepe was quick though. Closing.\"\n- **672.1 s:** \"Yusuf now delayed too. The pressed two refused and say look what happened, still no clue what. I look for another lever than insisting.\"\n- **677.8 s:** \"Both other orders disabled. Write to the landowner only when the estimate shows too little - by my sum it already does, but the game does not think so yet. Nothing else to do but wait for evening.\"\n- **713.9 s:** \"Home 16:30. Pressing backfired on two people. Last time a grain gift got Yusuf to say he would not forget. Now Yusuf himself is delayed. I will try the gift instead of pressing, and accept the six measures cost.\"\n- **756.0 s:** \"Sent. Again it does not say how much before or after. I will check the ledger later.\"\n- **765.2 s, pulse 2:** \"Gift sent at 16:30, no reaction yet at 17:00. I tried both levers today, pressing and giving. Pressing gave me cutters and then an unexplained complaint. I am mostly waiting now.\"\n- **799.9 s:** \"Yusuf: Tell the landowner we are grateful. Or thank God for us instead. A little proud, a little bitter - I like that line. Their delay line is gone and the dot is empty. Did the gift bring them? Checking ledger.\"\n- **804.7 s:** \"24 + 90 + 270 = 384 exactly. My margin is now zero, every measure in the field must be cut before rain. That I can explain - I chose it. 90 cut by 17:30, twenty in two hours. Back to the replies.\"\n- **811.5 s:** \"Now all 4 that I pressed count as refused, and will not come again on my word today. So pressing bought me a few hours from them and then lost them. Fine, that is a tradeoff I can accept - but I only learn it after, and look what happened to me still has no what. Yusuf and Zehra are no longer delayed after the grain; I guess they came, but nobody says so.\"\n- **875.7 s:** \"18:00. Nothing new to decide. I wait to see if evening brings a summary.\"\n- **880.3 s:** \"Evening is near and nothing changes. I look at the menu.\"\n- **888.0 s:** \"Both topic choices are there. I select I am stopping. I will type nothing and not press Submit.\"\n- **891.9 s:** \"I'm stopping is pressed and it put those words into the box by itself. I typed nothing and will not press Submit. Time is stopped in this menu.\"\n- **910.8 s, stop (BORED):** given in full in section 7.\n\n"
+    }
+  ]
+}

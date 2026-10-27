@@ -1,0 +1,130 @@
+{
+  "diary": "D01",
+  "derivative": "Private command arguments and errors omitted; every words string, elapsed value and retrospective source label retained. Original anonymous bytes are separately hash-bound.",
+  "records": [
+    {
+      "elapsed_s": null,
+      "operation": "start",
+      "words": null
+    },
+    {
+      "elapsed_s": 0.11,
+      "operation": "open",
+      "words": null
+    },
+    {
+      "elapsed_s": 6.061,
+      "operation": "tap",
+      "words": "I remember sending two sacks by accident and walking to houses without getting a word in. This says spoken answer. That is what I want to try."
+    },
+    {
+      "elapsed_s": 9.169,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 12.875,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 17.12,
+      "operation": "tap",
+      "words": "Going straight to Çoban this time. I remember the proud grain reply, but I want to answer them instead of buying another sack."
+    },
+    {
+      "elapsed_s": 24.467,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 27.936,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 32.2,
+      "operation": "tap",
+      "words": "Yes, there is a sentence for me this time. I came to listen is softer than what I would say, but let us hear her."
+    },
+    {
+      "elapsed_s": 37.605,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 45.465,
+      "operation": "tap",
+      "words": "My words are there, but she has not answered them yet. The phone shows half her old reply above my words; I can read my sentence, though. I will get out of the reading view and give her time."
+    },
+    {
+      "elapsed_s": 58.934,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 60.03,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 67.485,
+      "operation": "log",
+      "words": "I got to say I came to listen at Çoban. My sentence appeared, but no answer to it yet; Yusuf has said Come in in the notebook. The clock and minutes-until-home make the waiting clearer than last time. I still want a reply I can play with. The phone has big buttons, but the fixed bottom area cuts through the old reply."
+    },
+    {
+      "elapsed_s": 70.765,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 74.299,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 98.864,
+      "operation": "wait",
+      "words": "Come in could just be the visit greeting. I am waiting for something after my sentence, not counting that as her answering me."
+    },
+    {
+      "elapsed_s": 108.246,
+      "operation": "tap",
+      "words": "Still fifty minutes here after that wait. Skip says it keeps the slowdown, but it is the only move that looks like moving on. I want to see whether my words left anything."
+    },
+    {
+      "elapsed_s": 126.792,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 131.825,
+      "operation": "log",
+      "words": "I would leave now. I said the listening line, but I have only got Come in and the same barley excuses back. The clock helps me understand the wait, but it does not make me want to sit through it. I wanted a conversation, not just proof that I spoke."
+    },
+    {
+      "elapsed_s": 135.782,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 139.672,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 144.127,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 149.564,
+      "operation": "log",
+      "words": "Stopping while walking home from Çoban. The quit wish did not pass. I would close it, not leave it running, and I would not return voluntarily tonight or plan another evening. Saying one listening line was better than saying nothing last time, but I still wanted somebody to answer me. Feedback has both stopping and confused; I selected stopping locally and it filled the box itself. Nothing typed or submitted, consent unchanged."
+    },
+    {
+      "source": "Post-stop report section3; retrospective, not a measured contemporaneous record. May repeat raw words.",
+      "words": "## 3. Verbatim\n\nEvery original local reaction follows unchanged. Full raw input lines remain in the existing **wall-clock.jsonl**.\n\n**6.062s — Resume**\n\n> I remember sending two sacks by accident and walking to houses without getting a word in. This says spoken answer. That is what I want to try.\n\n**17.120s — Visit; 18 July · year 1 · 07:30**\n\n> Going straight to Çoban this time. I remember the proud grain reply, but I want to answer them instead of buying another sack.\n\n**32.201s — Say: I came to listen; 08:00**\n\n> Yes, there is a sentence for me this time. I came to listen is softer than what I would say, but let us hear her.\n\n**45.466s — Back to the notebook; 08:00**\n\n> My words are there, but she has not answered them yet. The phone shows half her old reply above my words; I can read my sentence, though. I will get out of the reading view and give her time.\n\n**67.485s — first_minute; 08:30**\n\n> I got to say I came to listen at Çoban. My sentence appeared, but no answer to it yet; Yusuf has said Come in in the notebook. The clock and minutes-until-home make the waiting clearer than last time. I still want a reply I can play with. The phone has big buttons, but the fixed bottom area cuts through the old reply.\n\n**98.865s — twenty-second wait returned; input clock 08:30**\n\n> Come in could just be the visit greeting. I am waiting for something after my sentence, not counting that as her answering me.\n\n**108.246s — Skip to the next event; input clock 08:30**\n\n> Still fifty minutes here after that wait. Skip says it keeps the slowdown, but it is the only move that looks like moving on. I want to see whether my words left anything.\n\n**131.825s — want_quit; BORED; 09:00**\n\n> I would leave now. I said the listening line, but I have only got Come in and the same barley excuses back. The clock helps me understand the wait, but it does not make me want to sit through it. I wanted a conversation, not just proof that I spoke.\n\n**149.564s — stop; BORED; 09:30**\n\n> Stopping while walking home from Çoban. The quit wish did not pass. I would close it, not leave it running, and I would not return voluntarily tonight or plan another evening. Saying one listening line was better than saying nothing last time, but I still wanted somebody to answer me. Feedback has both stopping and confused; I selected stopping locally and it filled the box itself. Nothing typed or submitted, consent unchanged.\n\n"
+    }
+  ]
+}

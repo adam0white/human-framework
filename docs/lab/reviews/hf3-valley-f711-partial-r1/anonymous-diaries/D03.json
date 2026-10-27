@@ -1,0 +1,350 @@
+{
+  "diary": "D03",
+  "derivative": "Private command arguments and errors omitted; every words string, elapsed value and retrospective source label retained. Original anonymous bytes are separately hash-bound.",
+  "records": [
+    {
+      "elapsed_s": null,
+      "operation": "start",
+      "words": null
+    },
+    {
+      "elapsed_s": 0.12,
+      "operation": "open",
+      "words": null
+    },
+    {
+      "elapsed_s": 4.428,
+      "operation": "tap",
+      "words": "Same title. Resume the prepared spoken-answer edition. Last time the cutters and the six-measure gift; I want to see harvest vs rain this time."
+    },
+    {
+      "elapsed_s": 9.467,
+      "operation": "tap",
+      "words": "I know the job. Call the cutters first, then the ledger. This time I will hold the grain until I know whether the crop is enough."
+    },
+    {
+      "elapsed_s": 15.177,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 47.488,
+      "operation": "wait",
+      "words": "Desktop map is much clearer than my phone visit: houses, lines to the residence, the field. A big red Skip. I will not skip; I want to see replies come in."
+    },
+    {
+      "elapsed_s": 50.349,
+      "operation": "tap",
+      "words": "Zehra again delayed for her own barley. This time I check the numbers before I visit or give anything."
+    },
+    {
+      "elapsed_s": 54.298,
+      "operation": "tap",
+      "words": "30 plus about 360 against 384: six spare, same as before. If any barley is lost to rain, I am short. So the real problem is cutting speed, not gifts. I go to Zehra to hear her, and to try this spoken answer."
+    },
+    {
+      "elapsed_s": 57.812,
+      "operation": "tap",
+      "words": "Seven people postponed, not just Zehra. That is a lot of hands. I visit rather than insist."
+    },
+    {
+      "elapsed_s": 60.071,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 61.391,
+      "operation": "log",
+      "words": "Desktop is easier than my phone visit: map, news and controls all fit. I know the problem: six measures spare, rain on 20 July, seven people from Çoban delayed for their own barley. I am walking to Zehra now, 20 game minutes away. I have not yet seen the spoken answer this edition promises."
+    },
+    {
+      "elapsed_s": 93.466,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 96.107,
+      "operation": "tap",
+      "words": "There is the spoken answer: only one line, I came to listen. Fine, that is what I want."
+    },
+    {
+      "elapsed_s": 123.844,
+      "operation": "wait",
+      "words": "I said it. No answer from Zehra yet. I wait to see if she responds."
+    },
+    {
+      "elapsed_s": 126.757,
+      "operation": "tap",
+      "words": "Yusuf says Come in. That is all. I said I came to listen, but nobody tells me anything yet. I open About to see what I am supposed to have heard."
+    },
+    {
+      "elapsed_s": 130.858,
+      "operation": "tap",
+      "words": "Same picture as last time: almost no food, my guess, baby due. Last time I sent six measures. This time I keep them until I know whether the cutting will finish before rain. I feel a bit hard-hearted, but six spare is six spare."
+    },
+    {
+      "elapsed_s": 164.042,
+      "operation": "wait",
+      "words": "14 came, 8 delayed, all for their own barley. Delays are reasonable; their barley also faces the rain. I wait and then check how fast the cutting goes."
+    },
+    {
+      "elapsed_s": 167.006,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 171.036,
+      "operation": "log",
+      "words": "I can do the arithmetic now: about 10 measures cut in roughly an hour and a half with 14 people, 350 left, rain in two days. I cannot tell whether daylight hours make that enough, and the game does not say. About one real second per game minute, so the rain is far away in real time."
+    },
+    {
+      "elapsed_s": 173.722,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 206.477,
+      "operation": "wait",
+      "words": "Waiting to get home. The list of identical delayed replies grows; nine now."
+    },
+    {
+      "elapsed_s": 209.568,
+      "operation": "tap",
+      "words": "Nothing new in half an hour. I look at other orders for something to plan."
+    },
+    {
+      "elapsed_s": 213.727,
+      "operation": "tap",
+      "words": "Both other orders disabled. My only real levers are insist, visit, send grain. Kavak has a hollow circle; I want to know what that means."
+    },
+    {
+      "elapsed_s": 246.799,
+      "operation": "wait",
+      "words": "Kavak is the overseer house, they came. No explanation of the circle that I can see; I guess it marks the overseer. Waiting until I am home."
+    },
+    {
+      "elapsed_s": 250.419,
+      "operation": "tap",
+      "words": "Home. Tepe has three delayed. Visiting may be my only gentle lever; I will try them."
+    },
+    {
+      "elapsed_s": 252.919,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 285.595,
+      "operation": "wait",
+      "words": "Another two-hour walk. Two minutes of real time for each visit, and I have nothing to do while I walk."
+    },
+    {
+      "elapsed_s": 288.982,
+      "operation": "tap",
+      "words": "Again the only thing I can say is I came to listen. I would like to say: the rain is coming, help me and I will help you after. There is no such line."
+    },
+    {
+      "elapsed_s": 311.345,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 314.208,
+      "operation": "resize",
+      "words": "Requested layout check, not my own choice. Tepe only says Sit down. The visit gave me nothing new."
+    },
+    {
+      "elapsed_s": 316.983,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 317.334,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 322.486,
+      "operation": "resize",
+      "words": "Phone check: map shrinks to a strip, status line cut off with ..., house row scrolls sideways, the About text goes behind the bottom buttons. Back to desktop. Tepe jars looked low, my guess; son at the coffeehouse. Again a hunger hint."
+    },
+    {
+      "elapsed_s": 327.102,
+      "operation": "tap",
+      "words": "I want one real decision. The Tepe son sits at the coffeehouse; I will insist on this one person and see what it costs."
+    },
+    {
+      "elapsed_s": 331.559,
+      "operation": "key",
+      "words": "A click is not enough, it wants a hold. Fine, deliberate. I hold it."
+    },
+    {
+      "elapsed_s": 365.163,
+      "operation": "wait",
+      "words": "It went through: record says I pressed a household member, two delayed left, and my guess flipped to would come. Odd that the counter still says 0 came. Now I watch whether it costs me anything."
+    },
+    {
+      "elapsed_s": 368.507,
+      "operation": "log",
+      "words": "Interesting: I insisted on one and all three of Tepe came, 3 came 0 delayed. I did not expect the whole house. That is a lever I can use. But I do not yet see what pressing costs me; it says they will remember."
+    },
+    {
+      "elapsed_s": 400.728,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 402.994,
+      "operation": "tap",
+      "words": "Home again. Check the field."
+    },
+    {
+      "elapsed_s": 405.327,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 410.177,
+      "operation": "tap",
+      "words": "About 30 measures in three and a half hours, 320 left, rain in a day and a half. By my count that is not enough. So I will press more houses; I accept they will remember it. I try Demirci from here without walking."
+    },
+    {
+      "elapsed_s": 412.776,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 416.544,
+      "operation": "key",
+      "words": null
+    },
+    {
+      "elapsed_s": 435.039,
+      "operation": "wait",
+      "words": "Held the same way as at Tepe, but nothing changed on the page: no record line, the reply still there. Maybe insisting only works in person? It did not say."
+    },
+    {
+      "elapsed_s": 440.781,
+      "operation": "key",
+      "words": "Clock also seems stuck at 13:30. I try holding once more, longer."
+    },
+    {
+      "elapsed_s": 444.475,
+      "operation": "tap",
+      "words": "Demirci came: I will do as you say, steward. The first hold did nothing visible, the second, longer, worked. I could not see how full the button was. Now Kuyucu. I leave Zehra alone, she is about to give birth."
+    },
+    {
+      "elapsed_s": 446.906,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 451.414,
+      "operation": "key",
+      "words": null
+    },
+    {
+      "elapsed_s": 456.299,
+      "operation": "key",
+      "words": "Again the first hold shows nothing. I hold a second time, as with Demirci."
+    },
+    {
+      "elapsed_s": 459.459,
+      "operation": "tap",
+      "words": "Kuyucu circle turned hollow, no new reply. I guess hollow means they came. Now Dere."
+    },
+    {
+      "elapsed_s": 462.088,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 464.779,
+      "operation": "key",
+      "words": null
+    },
+    {
+      "elapsed_s": 467.943,
+      "operation": "tap",
+      "words": "Dere worked on the first hold this time. Now only Çoban is still delayed, and I am leaving Zehra. I have pressed four houses. I feel I bought speed with trust, and I do not know the price yet."
+    },
+    {
+      "elapsed_s": 500.958,
+      "operation": "wait",
+      "words": "19 came, 4 delayed, all Çoban I assume. Now I wait an hour of game time to see if the cutting rate rises."
+    },
+    {
+      "elapsed_s": 533.951,
+      "operation": "wait",
+      "words": "22 came, only Zehra left. Three of Çoban came by themselves without pressing. Good. Now I just want the cut number."
+    },
+    {
+      "elapsed_s": 536.437,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 540.737,
+      "operation": "log",
+      "words": "Pressing paid off on the numbers: 30 measures in the last hour and a half, double the morning rate. 290 left, about fifteen working hours, and all of tomorrow before rain. I think I will make it, and I kept the six measures. This is the planning I like. What the pressed houses will remember is the open question."
+    },
+    {
+      "elapsed_s": 543.705,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 576.336,
+      "operation": "wait",
+      "words": "25 came now. Nothing to decide. I wait for news, maybe of how the pressed people feel."
+    },
+    {
+      "elapsed_s": 581.03,
+      "operation": "log",
+      "words": "My plan is done for today; the field will cut itself. Half a real minute per half game hour, rain is a day and a half away, so that is about forty real minutes of watching the same reply list. I would leave this running. Before I go I will try the Skip button once, to see the next thing that happens rather than wait for it."
+    },
+    {
+      "elapsed_s": 583.618,
+      "operation": "tap",
+      "words": "Using the game own Skip once, by choice, because nothing is open for me to decide."
+    },
+    {
+      "elapsed_s": 601.104,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 605.783,
+      "operation": "log",
+      "words": "There is the price: someone I pressed refused, I did it your way once, and will not come again on my word today. 24 came, 1 refused. That is a cost I can explain, and I like that. Yusuf also went back to his own barley. Skip only moved half an hour, so it did not save me much."
+    },
+    {
+      "elapsed_s": 638.513,
+      "operation": "wait",
+      "words": "I will not press Yusuf; his wife is due and he came earlier. Watching a little longer to see if the refusals spread."
+    },
+    {
+      "elapsed_s": 641.36,
+      "operation": "tap",
+      "words": "Nothing changed in half an hour. I check Feedback before leaving."
+    },
+    {
+      "elapsed_s": 643.617,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 646.331,
+      "operation": "tap",
+      "words": "Both choices are here. I select I am stopping; I type nothing and will not submit."
+    },
+    {
+      "elapsed_s": 650.792,
+      "operation": "log",
+      "words": "I am stopping on the first afternoon. This visit was better than last time: I kept the six measures, pressed four houses, the cutting rate doubled, and I saw the price when one person refused me. That is a tradeoff I can explain. But now the plan runs by itself and the next real event, the rain, is about forty real minutes of the same reply list away. I would return voluntarily another evening to see whether the barley is in before the rain and what the pressed houses remember. I would leave it running if I could check back later, but I am not asking to keep this test browser open. Feedback: I selected I am stopping, it filled the box itself; I typed nothing and submitted nothing."
+    },
+    {
+      "source": "Post-stop report section3; retrospective, not a measured contemporaneous record. May repeat raw words.",
+      "words": "## 3. Verbatim\n- 9.5 s: \"I know the job. Call the cutters first, then the ledger. This time I will hold the grain until I know whether the crop is enough.\"\n- 54.3 s: \"30 plus about 360 against 384: six spare, same as before. If any barley is lost to rain, I am short. So the real problem is cutting speed, not gifts. I go to Zehra to hear her, and to try this spoken answer.\"\n- 57.8 s: \"Seven people postponed, not just Zehra. That is a lot of hands. I visit rather than insist.\"\n- 96.1 s: \"There is the spoken answer: only one line, I came to listen. Fine, that is what I want.\"\n- 126.8 s: \"Yusuf says Come in. That is all. I said I came to listen, but nobody tells me anything yet. I open About to see what I am supposed to have heard.\"\n- 130.9 s: \"Same picture as last time: almost no food, my guess, baby due. Last time I sent six measures. This time I keep them until I know whether the cutting will finish before rain. I feel a bit hard-hearted, but six spare is six spare.\"\n- 164 s: \"14 came, 8 delayed, all for their own barley. Delays are reasonable; their barley also faces the rain…\"\n- 171 s, pulse 3: \"I can do the arithmetic now: about 10 measures cut in roughly an hour and a half with 14 people, 350 left, rain in two days. I cannot tell whether daylight hours make that enough, and the game does not say. About one real second per game minute, so the rain is far away in real time.\"\n- 209.6 s: \"Nothing new in half an hour. I look at other orders for something to plan.\"\n- 213.7 s: \"Both other orders disabled. My only real levers are insist, visit, send grain. Kavak has a hollow circle; I want to know what that means.\"\n- 253 s: \"Another two-hour walk. Two minutes of real time for each visit, and I have nothing to do while I walk.\"\n- 289 s: \"Again the only thing I can say is I came to listen. I would like to say: the rain is coming, help me and I will help you after. There is no such line.\"\n- 314 s: \"Requested layout check, not my own choice. Tepe only says Sit down. The visit gave me nothing new.\"\n- 322.5 s: \"Phone check: map shrinks to a strip, status line cut off with ..., house row scrolls sideways, the About text goes behind the bottom buttons. Back to desktop. Tepe jars looked low, my guess; son at the coffeehouse. Again a hunger hint.\"\n- 327 s: \"I want one real decision. The Tepe son sits at the coffeehouse; I will insist on this one person and see what it costs.\"\n- 331.6 s: \"A click is not enough, it wants a hold. Fine, deliberate. I hold it.\"\n- 365 s: \"It went through: record says I pressed a household member, two delayed left, and my guess flipped to would come. Odd that the counter still says 0 came…\"\n- 368.5 s, pulse 3: \"Interesting: I insisted on one and all three of Tepe came, 3 came 0 delayed. I did not expect the whole house. That is a lever I can use. But I do not yet see what pressing costs me; it says they will remember.\"\n- 410 s: \"About 30 measures in three and a half hours, 320 left, rain in a day and a half. By my count that is not enough. So I will press more houses; I accept they will remember it…\"\n- 435 s: \"Held the same way as at Tepe, but nothing changed on the page… Maybe insisting only works in person? It did not say.\"\n- 440.8 s: \"Clock also seems stuck at 13:30. I try holding once more, longer.\"\n- 444.5 s: \"Demirci came: I will do as you say, steward. The first hold did nothing visible, the second, longer, worked. I could not see how full the button was. Now Kuyucu. I leave Zehra alone, she is about to give birth.\"\n- 459.5 s: \"Kuyucu circle turned hollow, no new reply. I guess hollow means they came. Now Dere.\"\n- 468 s: \"Dere worked on the first hold this time. Now only Çoban is still delayed, and I am leaving Zehra. I have pressed four houses. I feel I bought speed with trust, and I do not know the price yet.\"\n- 501 s: \"19 came, 4 delayed, all Çoban I assume. Now I wait an hour of game time to see if the cutting rate rises.\"\n- 534 s: \"22 came, only Zehra left. Three of Çoban came by themselves without pressing. Good…\"\n- 540.7 s, pulse 4: \"Pressing paid off on the numbers: 30 measures in the last hour and a half, double the morning rate. 290 left, about fifteen working hours, and all of tomorrow before rain. I think I will make it, and I kept the six measures. This is the planning I like. What the pressed houses will remember is the open question.\"\n- 581 s, want_quit (BORED): \"My plan is done for today; the field will cut itself. Half a real minute per half game hour, rain is a day and a half away, so that is about forty real minutes of watching the same reply list. I would leave this running. Before I go I will try the Skip button once, to see the next thing that happens rather than wait for it.\"\n- 605.8 s, note: \"There is the price: someone I pressed refused, I did it your way once, and will not come again on my word today. 24 came, 1 refused. That is a cost I can explain, and I like that. Yusuf also went back to his own barley. Skip only moved half an hour, so it did not save me much.\"\n- 638.5 s: \"I will not press Yusuf; his wife is due and he came earlier. Watching a little longer to see if the refusals spread.\"\n- 650.8 s, stop (BORED): \"I am stopping on the first afternoon. This visit was better than last time: I kept the six measures, pressed four houses, the cutting rate doubled, and I saw the price when one person refused me. That is a tradeoff I can explain. But now the plan runs by itself and the next real event, the rain, is about forty real minutes of the same reply list away. I would return voluntarily another evening to see whether the barley is in before the rain and what the pressed houses remember. I would leave it running if I could check back later, but I am not asking to keep this test browser open. Feedback: I selected I am stopping, it filled the box itself; I typed nothing and submitted nothing.\"\n\n"
+    }
+  ]
+}

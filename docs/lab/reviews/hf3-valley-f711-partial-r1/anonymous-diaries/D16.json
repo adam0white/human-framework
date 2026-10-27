@@ -1,0 +1,320 @@
+{
+  "diary": "D16",
+  "derivative": "Private command arguments and errors omitted; every words string, elapsed value and retrospective source label retained. Original anonymous bytes are separately hash-bound.",
+  "records": [
+    {
+      "elapsed_s": null,
+      "operation": "start",
+      "words": null
+    },
+    {
+      "elapsed_s": 0.149,
+      "operation": "open",
+      "words": null
+    },
+    {
+      "elapsed_s": 6.023,
+      "operation": "tap",
+      "words": "I remember walking for a single line and wanting to answer it. This prepared visit promises a spoken answer, so I want to meet someone before I decide whether it feels different."
+    },
+    {
+      "elapsed_s": 10.826,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 16.74,
+      "operation": "tap",
+      "words": "I will visit Yusuf and Meryem again. I remember guessing they were the people from Warren; I am carrying that guess, not recognising them afresh."
+    },
+    {
+      "elapsed_s": 26.202,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 50.749,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 60.066,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 64.42,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 73.447,
+      "operation": "log",
+      "words": "This note is late, after the wait returned at sixty-four seconds. I called for the barley and visited the survey visitors. Yusuf has called me the landowner’s man again. I want to answer, but the notebook only shows the call replies and insisting. The clock now says 08:30 and tells me fifty minutes remain here, which is much easier to follow than my earlier visits."
+    },
+    {
+      "elapsed_s": 76.632,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 80.667,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 91.281,
+      "operation": "tap",
+      "words": "There it is: I came to listen. That is exactly what I wanted to say to being called the landowner’s man. On the phone the long status fills the lower half and cuts off his sentence, but the answer button is clear."
+    },
+    {
+      "elapsed_s": 125.777,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 131.696,
+      "operation": "tap",
+      "words": "I have said that his words matter. I am waiting for his answer now, rather than just waiting for the walk. I hope he says something less guarded."
+    },
+    {
+      "elapsed_s": 166.422,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 186.68,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 191.51,
+      "operation": "log",
+      "words": "I liked finally saying I came to listen. Yusuf did not answer before I went home, so I am curious but less hopeful that this is a conversation."
+    },
+    {
+      "elapsed_s": 196.742,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 203.023,
+      "operation": "tap",
+      "words": "Who will feed my family while I cut his barley? That is a better question than the repeated task sentence. I want to hear Zehra before I offer grain; I remember accidentally sending it last time."
+    },
+    {
+      "elapsed_s": 237.656,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 243.556,
+      "operation": "tap",
+      "words": "The same answer is available for Zehra. I mean it, but I would rather answer her question about food than tell her only that it matters."
+    },
+    {
+      "elapsed_s": 276.392,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 308.189,
+      "operation": "wait",
+      "words": "Now Yusuf says Come in, after I already spoke to the house. I may have answered before the greeting arrived. That feels oddly out of order; I cannot tell whether anyone heard the answer."
+    },
+    {
+      "elapsed_s": 317.679,
+      "operation": "resize",
+      "words": "This is the requested desktop check, not a change in where I wanted to play."
+    },
+    {
+      "elapsed_s": 322.987,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 329.506,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 340.389,
+      "operation": "resize",
+      "words": "The desktop map gives the visit room to breathe. About says they have almost no food left, though it calls that my guess. Zehra will soon give birth. Now sending grain feels like an answer I can actually give."
+    },
+    {
+      "elapsed_s": 343.95,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 350.901,
+      "operation": "tap",
+      "words": "Sent grain to the Çoban house is clear this time. I chose it knowing it leaves less for the landowner. I want to see whether Zehra can put her family first without me insisting."
+    },
+    {
+      "elapsed_s": 370.726,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 376.18,
+      "operation": "log",
+      "words": "Choosing food for a family gave me a reason to stay beyond the greeting. I still have no reply to my spoken answer, and the long list of identical promises keeps pushing the people away."
+    },
+    {
+      "elapsed_s": 380.417,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 385.386,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 391.433,
+      "operation": "tap",
+      "words": "Or thank God for us instead. I smiled at that correction. He is not quite thanking the landowner, and I like him more for it. The grain got a particular answer; my listening sentence did not, as far as I can see."
+    },
+    {
+      "elapsed_s": 399.167,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 432.644,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 469.421,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 475.83,
+      "operation": "tap",
+      "words": "Have you come again, steward? He noticed. That is the little memory I wanted, though it sounds as if I may be bothering him. I will say I came to listen once more, now after the greeting."
+    },
+    {
+      "elapsed_s": 509.161,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 543.405,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 550.138,
+      "operation": "log",
+      "words": "He remembered my return, but my answer still sits there alone. I am watching visits finish rather than following a conversation now."
+    },
+    {
+      "elapsed_s": 556.315,
+      "operation": "log",
+      "words": "I would close the tab now. I have finally been able to answer, but it is the same listening sentence each time and nobody has visibly answered it. The grain thanks and the remembered repeat visit were worth seeing. I do not want another walk for another greeting. I will stay for the time I set aside."
+    },
+    {
+      "elapsed_s": 561.223,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 565.773,
+      "operation": "tap",
+      "words": "I remember Danyal bringing his own sickle. Since I am staying, I would rather sit with him than press people who are feeding their own families."
+    },
+    {
+      "elapsed_s": 599.416,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 637.064,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 641.904,
+      "operation": "tap",
+      "words": "Sit down. I can answer now, but saying What you said matters to me to those two words feels too solemn. I wanted to ask about his day or his sickle."
+    },
+    {
+      "elapsed_s": 675.265,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 709.552,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 727.888,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 733.754,
+      "operation": "log",
+      "words": "Danyal gave me a place to sit and I gave the same answer again. Nothing followed before I came home. I am staying because I promised the time, not because I have a new question I can ask."
+    },
+    {
+      "elapsed_s": 739.136,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 772.773,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 806.501,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 845.405,
+      "operation": "wait",
+      "words": "Twenty-two came without me insisting. I am glad I left them room, though I cannot say what made them come. The evening is quiet and my wish to leave has not passed."
+    },
+    {
+      "elapsed_s": 879.039,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 883.82,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 889.062,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 895.241,
+      "operation": "tap",
+      "words": "Feedback has both stopping and confused. Stopping fits me: I understand the visits now, but I do not want another one tonight. I am selecting it locally, typing nothing and submitting nothing."
+    },
+    {
+      "elapsed_s": 901.335,
+      "operation": "log",
+      "words": "The evening did not change my mind. I am glad I saw Yusuf remember a visit and answer the grain, but I am ready to leave the valley paused."
+    },
+    {
+      "elapsed_s": 909.535,
+      "operation": "log",
+      "words": "I am stopping at the residence at nine in the evening, after visiting Yusuf Usta, visiting Çoban twice, sending Çoban grain, and sitting with Danyal. Being able to say I came to listen felt better than silence, but the same sentence did not become a conversation. Yusuf thanking God instead of the landowner and noticing my return were my favourite moments. My wish to leave never passed. I would not leave this running or return voluntarily tonight. I might return another evening if I could follow up on what someone actually said, or see whether this family remembers the grain, but I would not return just to repeat the listening sentence. Feedback is selected locally; I typed nothing and pressed no Submit."
+    },
+    {
+      "source": "Post-stop report section3; retrospective, not a measured contemporaneous record. May repeat raw words.",
+      "words": "## 3. Verbatim\n\nEvery original recorded reaction follows unchanged. The existing `wall-clock.jsonl` preserves the full raw input lines.\n\n**6.024s — Resume**\n\n> I remember walking for a single line and wanting to answer it. This prepared visit promises a spoken answer, so I want to meet someone before I decide whether it feels different.\n\n**16.741s — the survey visitors’ lodging**\n\n> I will visit Yusuf and Meryem again. I remember guessing they were the people from Warren; I am carrying that guess, not recognising them afresh.\n\n**73.447s — first_minute**\n\n> This note is late, after the wait returned at sixty-four seconds. I called for the barley and visited the survey visitors. Yusuf has called me the landowner’s man again. I want to answer, but the notebook only shows the call replies and insisting. The clock now says 08:30 and tells me fifty minutes remain here, which is much easier to follow than my earlier visits.\n\n**91.282s — Say: I came to listen**\n\n> There it is: I came to listen. That is exactly what I wanted to say to being called the landowner’s man. On the phone the long status fills the lower half and cuts off his sentence, but the answer button is clear.\n\n**131.696s — Back to the notebook**\n\n> I have said that his words matter. I am waiting for his answer now, rather than just waiting for the walk. I hope he says something less guarded.\n\n**191.510s — pulse, engagement 3**\n\n> I liked finally saying I came to listen. Yusuf did not answer before I went home, so I am curious but less hopeful that this is a conversation.\n\n**203.024s — Visit**\n\n> Who will feed my family while I cut his barley? That is a better question than the repeated task sentence. I want to hear Zehra before I offer grain; I remember accidentally sending it last time.\n\n**243.556s — Say: I came to listen**\n\n> The same answer is available for Zehra. I mean it, but I would rather answer her question about food than tell her only that it matters.\n\n**308.190s — wait 25 seconds**\n\n> Now Yusuf says Come in, after I already spoke to the house. I may have answered before the greeting arrived. That feels oddly out of order; I cannot tell whether anyone heard the answer.\n\n**317.681s — desktop resize**\n\n> This is the requested desktop check, not a change in where I wanted to play.\n\n**340.390s — phone resize**\n\n> The desktop map gives the visit room to breathe. About says they have almost no food left, though it calls that my guess. Zehra will soon give birth. Now sending grain feels like an answer I can actually give.\n\n**350.901s — Back to the notebook**\n\n> Sent grain to the Çoban house is clear this time. I chose it knowing it leaves less for the landowner. I want to see whether Zehra can put her family first without me insisting.\n\n**376.180s — pulse, engagement 3**\n\n> Choosing food for a family gave me a reason to stay beyond the greeting. I still have no reply to my spoken answer, and the long list of identical promises keeps pushing the people away.\n\n**391.434s — the Çoban house**\n\n> Or thank God for us instead. I smiled at that correction. He is not quite thanking the landowner, and I like him more for it. The grain got a particular answer; my listening sentence did not, as far as I can see.\n\n**475.830s — Say: I came to listen**\n\n> Have you come again, steward? He noticed. That is the little memory I wanted, though it sounds as if I may be bothering him. I will say I came to listen once more, now after the greeting.\n\n**550.138s — pulse, engagement 2**\n\n> He remembered my return, but my answer still sits there alone. I am watching visits finish rather than following a conversation now.\n\n**556.315s — want_quit, BORED**\n\n> I would close the tab now. I have finally been able to answer, but it is the same listening sentence each time and nobody has visibly answered it. The grain thanks and the remembered repeat visit were worth seeing. I do not want another walk for another greeting. I will stay for the time I set aside.\n\n**565.773s — Visit**\n\n> I remember Danyal bringing his own sickle. Since I am staying, I would rather sit with him than press people who are feeding their own families.\n\n**641.905s — Say: I came to listen**\n\n> Sit down. I can answer now, but saying What you said matters to me to those two words feels too solemn. I wanted to ask about his day or his sickle.\n\n**733.755s — pulse, engagement 2**\n\n> Danyal gave me a place to sit and I gave the same answer again. Nothing followed before I came home. I am staying because I promised the time, not because I have a new question I can ask.\n\n**845.405s — wait 30 seconds**\n\n> Twenty-two came without me insisting. I am glad I left them room, though I cannot say what made them come. The evening is quiet and my wish to leave has not passed.\n\n**895.241s — I'm stopping**\n\n> Feedback has both stopping and confused. Stopping fits me: I understand the visits now, but I do not want another one tonight. I am selecting it locally, typing nothing and submitting nothing.\n\n**901.336s — pulse, engagement 2**\n\n> The evening did not change my mind. I am glad I saw Yusuf remember a visit and answer the grain, but I am ready to leave the valley paused.\n\n**909.535s — stop, BORED**\n\n> I am stopping at the residence at nine in the evening, after visiting Yusuf Usta, visiting Çoban twice, sending Çoban grain, and sitting with Danyal. Being able to say I came to listen felt better than silence, but the same sentence did not become a conversation. Yusuf thanking God instead of the landowner and noticing my return were my favourite moments. My wish to leave never passed. I would not leave this running or return voluntarily tonight. I might return another evening if I could follow up on what someone actually said, or see whether this family remembers the grain, but I would not return just to repeat the listening sentence. Feedback is selected locally; I typed nothing and pressed no Submit.\n\n"
+    }
+  ]
+}

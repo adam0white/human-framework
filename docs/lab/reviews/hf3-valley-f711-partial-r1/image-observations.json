@@ -1,0 +1,227 @@
+{
+  "nia-free": {
+    "original_sha256": "3fdb3967db1979bd3860ba9944edf9991f949582b808e53aff73d558d08b380a",
+    "events": [
+      {
+        "time": "2026-10-26T17:45:36.827Z",
+        "image_returned": true,
+        "filenames": ["current-phone.png"]
+      }
+    ],
+    "limit": "Returned-image metadata only; filename current.png has no independently inferred viewport. Missing event time remains null. Earlier overwritten pixels are not reconstructed."
+  },
+  "rosa-free": {
+    "original_sha256": "e00f91dfade2fb33712214e58f777ed034007188680911e947dbdd7c440d7aea",
+    "events": [
+      {
+        "time": null,
+        "image_returned": true,
+        "filenames": ["current-wide.png"]
+      },
+      {
+        "time": null,
+        "image_returned": true,
+        "filenames": ["current-phone.png"]
+      }
+    ],
+    "limit": "Returned-image metadata only; filename current.png has no independently inferred viewport. Missing event time remains null. Earlier overwritten pixels are not reconstructed."
+  },
+  "emre-free": {
+    "original_sha256": "b30f7220be1fd7f69e53cc28882a3a70cce0a1e0ae8c65d445f9e29ef3f88478",
+    "events": [
+      {
+        "time": null,
+        "image_returned": true,
+        "filenames": ["current-wide.png"]
+      },
+      {
+        "time": null,
+        "image_returned": true,
+        "filenames": ["current-phone.png"]
+      }
+    ],
+    "limit": "Returned-image metadata only; filename current.png has no independently inferred viewport. Missing event time remains null. Earlier overwritten pixels are not reconstructed."
+  },
+  "rosa-continued": {
+    "original_sha256": "0a6e7975b7a17ca4a254bbb7f0c26224ff07e2296b45c52a4551297c1b8d9e23",
+    "events": [
+      {
+        "time": null,
+        "image_returned": true,
+        "filenames": ["current.png"]
+      },
+      {
+        "time": null,
+        "image_returned": true,
+        "filenames": ["current-phone.png"]
+      }
+    ],
+    "limit": "Returned-image metadata only; filename current.png has no independently inferred viewport. Missing event time remains null. Earlier overwritten pixels are not reconstructed."
+  },
+  "mei-continued": {
+    "original_sha256": "030bb02a0f4ae7d8bd5273e8fcda566b8de676b3b62b4c6a5a75b6a1786e70a8",
+    "events": [
+      {
+        "time": null,
+        "image_returned": true,
+        "filenames": ["current.png"]
+      },
+      {
+        "time": null,
+        "image_returned": true,
+        "filenames": ["current-phone.png"]
+      }
+    ],
+    "limit": "Returned-image metadata only; filename current.png has no independently inferred viewport. Missing event time remains null. Earlier overwritten pixels are not reconstructed."
+  },
+  "emre-continued": {
+    "original_sha256": "29e7a76c1309edae5839c26c8ff0432f361c167dc1d725006b44a093e15b89fe",
+    "events": [
+      {
+        "time": null,
+        "image_returned": true,
+        "filenames": ["current-wide.png"]
+      },
+      {
+        "time": null,
+        "image_returned": true,
+        "filenames": ["current-phone.png"]
+      }
+    ],
+    "limit": "Returned-image metadata only; filename current.png has no independently inferred viewport. Missing event time remains null. Earlier overwritten pixels are not reconstructed."
+  },
+  "aisha-continued": {
+    "original_sha256": "fa7bacc38c34af8e3b40e31b6fc859f274c36582808a48f7917c0861b9fad9eb",
+    "events": [
+      {
+        "time": null,
+        "image_returned": true,
+        "filenames": ["current-phone.png"]
+      }
+    ],
+    "limit": "Returned-image metadata only; filename current.png has no independently inferred viewport. Missing event time remains null. Earlier overwritten pixels are not reconstructed."
+  },
+  "jonas-continued": {
+    "original_sha256": "f8a9efc1fde17c5204068b90c9d9f5c652daa77160cf9459206ee4c9b23dab87",
+    "events": [
+      {
+        "time": "2026-10-26T18:36:19.217Z",
+        "image_returned": true,
+        "filenames": ["current-phone.png"]
+      },
+      {
+        "time": "2026-10-26T18:40:42.941Z",
+        "image_returned": true,
+        "filenames": ["current-wide.png"]
+      }
+    ],
+    "limit": "Returned-image metadata only; filename current.png has no independently inferred viewport. Missing event time remains null. Earlier overwritten pixels are not reconstructed."
+  },
+  "diego-free": {
+    "original_sha256": "2c83d42a672827b0fc31b69f877d49580680932d21166f4c92c7264c699ee7b8",
+    "events": [
+      {
+        "time": "2026-10-26T19:37:09.279Z",
+        "image_returned": true,
+        "filenames": ["current-phone.png"]
+      },
+      {
+        "time": "2026-10-26T19:39:36.405Z",
+        "image_returned": true,
+        "filenames": ["current-phone.png"]
+      }
+    ],
+    "limit": "Returned-image metadata only; filename current.png has no independently inferred viewport. Missing event time remains null. Earlier overwritten pixels are not reconstructed."
+  },
+  "mei-free": {
+    "original_sha256": "37d0ce1d762e0efa238623c438bb99afbf962143a6db4f947bb588e4a135b864",
+    "events": [],
+    "limit": "Returned-image metadata only; filename current.png has no independently inferred viewport. Missing event time remains null. Earlier overwritten pixels are not reconstructed."
+  },
+  "maya-free": {
+    "original_sha256": "7c67ddd3d0c2a0b8ed0a49a9f530d2dc8696bcadd51fef7b87589012fefb30a9",
+    "events": [
+      {
+        "time": "2026-10-26T16:22:41.997Z",
+        "image_returned": true,
+        "filenames": ["current-phone.png"]
+      }
+    ],
+    "limit": "Returned-image metadata only; filename current.png has no independently inferred viewport. Missing event time remains null. Earlier overwritten pixels are not reconstructed."
+  },
+  "nia-continued": {
+    "original_sha256": "0fae7ee88b5b8c533778cda29bf892ed6539924c6ab28b2147df16b84d7e5b41",
+    "events": [
+      {
+        "time": "2026-10-26T17:48:50.487Z",
+        "image_returned": true,
+        "filenames": ["current-phone.png"]
+      },
+      {
+        "time": "2026-10-26T17:53:52.524Z",
+        "image_returned": true,
+        "filenames": ["current-wide.png"]
+      },
+      {
+        "time": "2026-10-26T18:00:05.016Z",
+        "image_returned": true,
+        "filenames": ["current-phone.png"]
+      }
+    ],
+    "limit": "Returned-image metadata only; filename current.png has no independently inferred viewport. Missing event time remains null. Earlier overwritten pixels are not reconstructed."
+  },
+  "diego-continued": {
+    "original_sha256": "223102c8a54c6c3ea51aa7c2b0f88f394b40ddf2ebdcd80fc42e3e992c0ae44d",
+    "events": [
+      {
+        "time": "2026-10-26T21:05:28.855Z",
+        "image_returned": true,
+        "filenames": ["current-phone.png"]
+      },
+      {
+        "time": "2026-10-26T21:10:43.587Z",
+        "image_returned": true,
+        "filenames": ["current-wide.png"]
+      }
+    ],
+    "limit": "Returned-image metadata only; filename current.png has no independently inferred viewport. Missing event time remains null. Earlier overwritten pixels are not reconstructed."
+  },
+  "aisha-free": {
+    "original_sha256": "4f4710dc71d6dae7b19688a411feb4d37034c629eb3305d171b82fbf63952b0e",
+    "events": [
+      {
+        "time": null,
+        "image_returned": true,
+        "filenames": ["current-phone.png"]
+      }
+    ],
+    "limit": "Returned-image metadata only; filename current.png has no independently inferred viewport. Missing event time remains null. Earlier overwritten pixels are not reconstructed."
+  },
+  "jonas-free": {
+    "original_sha256": "1df98947b4c04244b8b8c6159dcbfec53abe4314045aaa3c5e221c21ca697e0c",
+    "events": [
+      {
+        "time": "2026-10-26T18:30:07.702Z",
+        "image_returned": true,
+        "filenames": ["current-phone.png"]
+      }
+    ],
+    "limit": "Returned-image metadata only; filename current.png has no independently inferred viewport. Missing event time remains null. Earlier overwritten pixels are not reconstructed."
+  },
+  "maya-continued": {
+    "original_sha256": "5ee4c7e8cb18bf20fede844694231793109d83d1539e5088e8aa14b07fb0d677",
+    "events": [
+      {
+        "time": "2026-10-26T16:27:23.661Z",
+        "image_returned": true,
+        "filenames": ["current-phone.png"]
+      },
+      {
+        "time": "2026-10-26T16:31:31.173Z",
+        "image_returned": true,
+        "filenames": ["current-wide.png"]
+      }
+    ],
+    "limit": "Returned-image metadata only; filename current.png has no independently inferred viewport. Missing event time remains null. Earlier overwritten pixels are not reconstructed."
+  }
+}

@@ -1,0 +1,400 @@
+{
+  "diary": "D14",
+  "derivative": "Private command arguments and errors omitted; every words string, elapsed value and retrospective source label retained. Original anonymous bytes are separately hash-bound.",
+  "records": [
+    {
+      "elapsed_s": null,
+      "operation": "start",
+      "words": null
+    },
+    {
+      "elapsed_s": 0.115,
+      "operation": "open",
+      "words": null
+    },
+    {
+      "elapsed_s": 2.654,
+      "operation": "tap",
+      "words": "Back again. Last time I could not tell if grain reached the Ak family. This edition promises a spoken answer during visits, which is what I wanted."
+    },
+    {
+      "elapsed_s": 5.827,
+      "operation": "tap",
+      "words": "Same morning as last time. I go to the Ak family first, the boys shirts house; I left them unfed."
+    },
+    {
+      "elapsed_s": 8.217,
+      "operation": "tap",
+      "words": "Visit first this time, before any orders. I want the spoken answer."
+    },
+    {
+      "elapsed_s": 11.251,
+      "operation": "tap",
+      "words": "It says time is slow while I read, so I step back to let the walk happen."
+    },
+    {
+      "elapsed_s": 31.708,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 35.465,
+      "operation": "log",
+      "words": "Twenty seconds and it is 17:30. The whole visit happened while I waited. Someone from the Ak house: Steward, my wife is in the field. That is a spoken answer, and it is a nice small one, but I was not there for it and could not say anything back. Is the spoken answer their line, not mine?"
+    },
+    {
+      "elapsed_s": 36.671,
+      "operation": "tap",
+      "words": "Back to the Ak page to see if there is anything to answer."
+    },
+    {
+      "elapsed_s": 39.87,
+      "operation": "tap",
+      "words": "It is already 19 July, 03:30. Most of a day went in a few seconds. The rain is tomorrow and I have not asked anyone anything. Let me see about the Aks."
+    },
+    {
+      "elapsed_s": 42.506,
+      "operation": "tap",
+      "words": "Jars low, wife in the field. Last time I never knew if grain went. One press, and I will read what it says."
+    },
+    {
+      "elapsed_s": 45.197,
+      "operation": "log",
+      "words": "Sent grain to the Ak house. There it is, plainly. That is exactly what I wanted last time. It does not say how much, though, and it warns it leaves less for the landowner. Fair."
+    },
+    {
+      "elapsed_s": 49.39,
+      "operation": "tap",
+      "words": "Rain tomorrow. I suppose I do have to ask for the barley; better a general call they can refuse than picking on one house."
+    },
+    {
+      "elapsed_s": 51.804,
+      "operation": "tap",
+      "words": "6 measures carried to the Aks, in the news. Good. Now the call to the whole hamlet."
+    },
+    {
+      "elapsed_s": 60.046,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 68.842,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 72.638,
+      "operation": "log",
+      "words": "(logged at ~69 s, a little late) Much clearer this time: Sent grain, then 6 measures carried, then the Aks say Thank you, I will keep it for later. I feel I did something. Then the call: nine people, every one with the identical sentence, reap our own barley first, each with Hold to insist. Who will feed my family while I cut his barley? is a fair question and I am not going to insist. The clock races though; a day went by in seconds."
+    },
+    {
+      "elapsed_s": 76.668,
+      "operation": "tap",
+      "words": "The overseer says walk down and ask them yourself. Kara is the one house with no dot, no answer. I will go there."
+    },
+    {
+      "elapsed_s": 79.604,
+      "operation": "tap",
+      "words": "Visiting the Karas. This time I will stay on the page and watch for the spoken answer rather than miss it."
+    },
+    {
+      "elapsed_s": 94.893,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 98.034,
+      "operation": "tap",
+      "words": "Fifteen seconds and still 05:00, still 20 minutes away. Staying on the house page freezes my walk. So I must leave the page to arrive, and then I miss what they say. Hm."
+    },
+    {
+      "elapsed_s": 108.65,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 112.235,
+      "operation": "tap",
+      "words": "Twenty-five identical sentences in a column, each with Hold to insist. It reads like a wall of no. Children too. I am at the Kara house now; I want to see the visit itself."
+    },
+    {
+      "elapsed_s": 115.11,
+      "operation": "tap",
+      "words": "Say: I came to listen. That is exactly the line I would choose. Finally something to say back."
+    },
+    {
+      "elapsed_s": 127.345,
+      "operation": "wait",
+      "words": "I said it. Now I wait to see if they answer me, staying on their page."
+    },
+    {
+      "elapsed_s": 130.802,
+      "operation": "tap",
+      "words": "Nothing back, and time stands still while I sit on their page. I will step out and let the morning run."
+    },
+    {
+      "elapsed_s": 146.164,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 149.541,
+      "operation": "log",
+      "words": "I said I came to listen and they answered: The landowner’s man has come to our house. Ha. That is me. It stings a little, in a fair way, but it does not answer what I said; it reads like the same opening line any visit gives. I cannot reply again; the button is greyed. Still one sentence."
+    },
+    {
+      "elapsed_s": 177.53,
+      "operation": "wait",
+      "words": "Letting the visit run out and the morning go on. They said they will come after their own barley; I am content to let them."
+    },
+    {
+      "elapsed_s": 180.514,
+      "operation": "log",
+      "words": "Better than last time: grain plainly delivered and thanked, and I got to say I came to listen. But the reply list is a wall of twenty-five identical sentences, and now time crawls, half an hour of game time per fifteen seconds. I am sitting watching a list."
+    },
+    {
+      "elapsed_s": 184.584,
+      "operation": "tap",
+      "words": "Using the game’s own Skip once: I am just watching the list, and I want to see the next thing that actually happens, maybe the barley cut after their own."
+    },
+    {
+      "elapsed_s": 206.704,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 220.756,
+      "operation": "wait",
+      "words": "Skip greyed itself out and the clock still crawls; 07:00 now. The list reshuffled, a few dropped the I cannot do it now. Walking home."
+    },
+    {
+      "elapsed_s": 224.317,
+      "operation": "tap",
+      "words": "Still 07:00, still 10 minutes from home after 14 seconds. While I wait I want to see what the 6 measures cost the landowner’s count."
+    },
+    {
+      "elapsed_s": 228.734,
+      "operation": "log",
+      "words": "24 in the granary, about 360 in the field, 384 owed. That adds up to exactly what is owed, so my 6 to the Aks may be exactly the 6 the landowner is short, if I am reading it right. I do not regret it, but nobody said so at the time. And rain is tomorrow with nothing cut."
+    },
+    {
+      "elapsed_s": 229.53,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 256.954,
+      "operation": "wait",
+      "words": "Waiting to get home so I can visit the Aks properly and say something to them."
+    },
+    {
+      "elapsed_s": 260.512,
+      "operation": "tap",
+      "words": "17 came, 11 delayed, none refused, and I never insisted. That feels earned. Home now; going to the Aks."
+    },
+    {
+      "elapsed_s": 263.893,
+      "operation": "tap",
+      "words": "Visiting the Aks again; I want to say something to them now that I can."
+    },
+    {
+      "elapsed_s": 264.192,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 291.338,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 293.927,
+      "operation": "tap",
+      "words": "I have arrived at the Aks. Opening their page to speak."
+    },
+    {
+      "elapsed_s": 296.909,
+      "operation": "tap",
+      "words": "Only the one line again, I came to listen. I would have liked to ask about the wife in the field or the low jars. But it is the right thing to say."
+    },
+    {
+      "elapsed_s": 300.215,
+      "operation": "resize",
+      "words": "Requested layout check, not my own choice: switching to phone size briefly."
+    },
+    {
+      "elapsed_s": 302.977,
+      "operation": "tap",
+      "words": "Layout check tap: opening About on the Ak house at phone size."
+    },
+    {
+      "elapsed_s": 303.465,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 308.614,
+      "operation": "resize",
+      "words": "Layout check done (viewed current-phone.png: tidy, the house strip runs off the right edge again, buttons at the bottom readable). Back to my laptop size. In About I now see my own guess: enough food until spring, and the record says you gave (today). Good."
+    },
+    {
+      "elapsed_s": 309.126,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 341.268,
+      "operation": "wait",
+      "words": "Waiting to hear what the Aks say back to me."
+    },
+    {
+      "elapsed_s": 344.778,
+      "operation": "log",
+      "words": "You have visited twice in a week. That is them noticing me, which I like; it respects what happened. But it is not an answer to I came to listen, and they never say what is on their minds. 20 came to the barley now. I am starting to feel like a polite inspector rather than a neighbour."
+    },
+    {
+      "elapsed_s": 345.792,
+      "operation": "tap",
+      "words": "Checking whether there is anything new I can say now."
+    },
+    {
+      "elapsed_s": 350.242,
+      "operation": "tap",
+      "words": "Nothing more to say to them; the one line is used. Letting the day run toward the rain."
+    },
+    {
+      "elapsed_s": 351.479,
+      "operation": "log",
+      "words": "Small replies that notice me (twice in a week), and twenty came without insisting, which I am pleased about. But each visit is one fixed line from me and one from them, and most of the screen is the same barley sentence over and over."
+    },
+    {
+      "elapsed_s": 383.823,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 387.606,
+      "operation": "tap",
+      "words": "Thirty seconds for thirty game minutes. At this rate the rain is a quarter hour away and I have nothing to do but watch. Looking in Information for what I am missing."
+    },
+    {
+      "elapsed_s": 392.57,
+      "operation": "tap",
+      "words": "About 5 measures cut, 350 still standing, rain tomorrow. Twenty came and only five cut? And it seems time stays slow because those unanswered replies are open. So I am stuck in slow time unless I insist on somebody. That feels like the game nudging me to push people."
+    },
+    {
+      "elapsed_s": 422.779,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 445.83,
+      "operation": "wait",
+      "words": "24 came now, only four still finishing their own. The list is finally short. Walking home; I will try the Çoban house next, I have never been."
+    },
+    {
+      "elapsed_s": 449.254,
+      "operation": "tap",
+      "words": "Home. The Çoban house, a new family to me."
+    },
+    {
+      "elapsed_s": 449.49,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 455.45,
+      "operation": "log",
+      "words": "Recognition, unverified guess: at ~449 s the Çoban About reads Yusuf, 34, builder; mother Maryam; son Tariq away; Zehra pregnant, Tariq’s stepmother. In Warren I met a Yusuf who turned out to be Tariq’s father, and a Maryam who cooked. Confidence: moderate that it is the same family, low on details. My reaction: oh, it is them, and Zehra is about to give birth and I nearly let a call land on a pregnant woman. I am glad I did not insist. I will not hold her to the barley."
+    },
+    {
+      "elapsed_s": 456.604,
+      "operation": "tap",
+      "words": "Visiting the Çobans. I want to see Zehra is all right."
+    },
+    {
+      "elapsed_s": 459.052,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 489.602,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 492.283,
+      "operation": "tap",
+      "words": "At the Çobans. Yusuf went to the field after all. Zehra is still at home; good."
+    },
+    {
+      "elapsed_s": 495.467,
+      "operation": "tap",
+      "words": "I want to tell Zehra she need not come at all, she is about to give birth. The only line I have is I came to listen. I say it."
+    },
+    {
+      "elapsed_s": 496.183,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 528.293,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 532.272,
+      "operation": "log",
+      "words": "Yusuf said Come in. That is the whole visit. Zehra about to give birth and nobody mentions it; I could not ask. Each visit is two hours of game time and one sentence. The barley is going well without me."
+    },
+    {
+      "elapsed_s": 533.708,
+      "operation": "log",
+      "words": "I would close the laptop about here. I have fed the Aks, listened at three houses, and nobody pushed. That is what I wanted from coming back. But every visit gives me one fixed line and one short reply, and the clock crawls while I wait for it. I will keep going a little to see the rain come."
+    },
+    {
+      "elapsed_s": 566.802,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 569.432,
+      "operation": "tap",
+      "words": "Checking how much is cut with 26 in the field."
+    },
+    {
+      "elapsed_s": 573.347,
+      "operation": "tap",
+      "words": "55 cut, 300 standing, rain tomorrow. It is moving at least; about 50 an hour of their work in the morning. There is nothing for me to do about it except push people, which I will not."
+    },
+    {
+      "elapsed_s": 603.483,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 606.966,
+      "operation": "tap",
+      "words": "Noon, walking home, nothing new for a minute. The wish to leave has not passed. Looking at the menu."
+    },
+    {
+      "elapsed_s": 609.396,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 612.059,
+      "operation": "tap",
+      "words": "I'm stopping is the honest one. Pressing it; no note, no Submit."
+    },
+    {
+      "elapsed_s": 619.986,
+      "operation": "log",
+      "words": "Stopping here, noon on 19 July. This time the grain plainly reached the Aks and they thanked me, and I got to say I came to listen at three houses; nobody was forced and 26 came anyway. That is what I came back for. But each visit is two game hours for one fixed line from me and one short line back, Zehra about to give birth and nobody speaks of it, and the clock crawls while I wait. Feedback shows I am stopping pressed, which filled the box by itself; I typed nothing and did not Submit. I would not leave it running. I might come back another evening to see the rain and whether the Cobans are all right."
+    },
+    {
+      "source": "Post-stop report section3; retrospective, not a measured contemporaneous record. May repeat raw words.",
+      "words": "## 3. Verbatim\nThese are my original log lines, unchanged. The raw JSONL holds every line.\n\n- **35 s:** \"Twenty seconds and it is 17:30. The whole visit happened while I waited. Someone from the Ak house: Steward, my wife is in the field. That is a spoken answer, and it is a nice small one, but I was not there for it and could not say anything back. Is the spoken answer their line, not mine?\"\n- **36.7 s:** \"It is already 19 July, 03:30. Most of a day went in a few seconds. The rain is tomorrow and I have not asked anyone anything. Let me see about the Aks.\"\n- **45 s:** \"Sent grain to the Ak house. There it is, plainly. That is exactly what I wanted last time. It does not say how much, though, and it warns it leaves less for the landowner. Fair.\"\n- **About 69 s, first_minute:** \"(logged at ~69 s, a little late) Much clearer this time: Sent grain, then 6 measures carried, then the Aks say Thank you, I will keep it for later. I feel I did something. Then the call: nine people, every one with the identical sentence, reap our own barley first, each with Hold to insist. Who will feed my family while I cut his barley? is a fair question and I am not going to insist. The clock races though; a day went by in seconds.\"\n- **About 95 s:** \"Fifteen seconds and still 05:00, still 20 minutes away. Staying on the house page freezes my walk. So I must leave the page to arrive, and then I miss what they say. Hm.\"\n- **115 s:** \"Say: I came to listen. That is exactly the line I would choose. Finally something to say back.\"\n- **149 s:** \"I said I came to listen and they answered: The landowner’s man has come to our house. Ha. That is me. It stings a little, in a fair way, but it does not answer what I said; it reads like the same opening line any visit gives. I cannot reply again; the button is greyed. Still one sentence.\"\n- **180 s, pulse 3:** \"Better than last time: grain plainly delivered and thanked, and I got to say I came to listen. But the reply list is a wall of twenty-five identical sentences, and now time crawls, half an hour of game time per fifteen seconds. I am sitting watching a list.\"\n- **229 s:** \"24 in the granary, about 360 in the field, 384 owed. That adds up to exactly what is owed, so my 6 to the Aks may be exactly the 6 the landowner is short, if I am reading it right. I do not regret it, but nobody said so at the time. And rain is tomorrow with nothing cut.\"\n- **260 s:** \"17 came, 11 delayed, none refused, and I never insisted. That feels earned.\"\n- **297 s:** \"Only the one line again, I came to listen. I would have liked to ask about the wife in the field or the low jars. But it is the right thing to say.\"\n- **344 s:** \"You have visited twice in a week. That is them noticing me, which I like; it respects what happened. But it is not an answer to I came to listen, and they never say what is on their minds. 20 came to the barley now. I am starting to feel like a polite inspector rather than a neighbour.\"\n- **351 s, pulse 3:** \"Small replies that notice me (twice in a week), and twenty came without insisting, which I am pleased about. But each visit is one fixed line from me and one from them, and most of the screen is the same barley sentence over and over.\"\n- **392 s:** \"About 5 measures cut, 350 still standing, rain tomorrow. Twenty came and only five cut? And it seems time stays slow because those unanswered replies are open. So I am stuck in slow time unless I insist on somebody. That feels like the game nudging me to push people.\"\n- **455 s, recognition note:** \"Recognition, unverified guess: at ~449 s the Çoban About reads Yusuf, 34, builder; mother Maryam; son Tariq away; Zehra pregnant, Tariq’s stepmother. In Warren I met a Yusuf who turned out to be Tariq’s father, and a Maryam who cooked. Confidence: moderate that it is the same family, low on details. My reaction: oh, it is them, and Zehra is about to give birth and I nearly let a call land on a pregnant woman. I am glad I did not insist. I will not hold her to the barley.\"\n- **About 495 s:** \"I want to tell Zehra she need not come at all, she is about to give birth. The only line I have is I came to listen. I say it.\"\n- **532 s, pulse 2:** \"Yusuf said Come in. That is the whole visit. Zehra about to give birth and nobody mentions it; I could not ask. Each visit is two hours of game time and one sentence. The barley is going well without me.\"\n- **534 s, want_quit, BORED:** \"I would close the laptop about here. I have fed the Aks, listened at three houses, and nobody pushed. That is what I wanted from coming back. But every visit gives me one fixed line and one short reply, and the clock crawls while I wait for it. I will keep going a little to see the rain come.\"\n- **620 s, stop, BORED:** \"Stopping here, noon on 19 July. This time the grain plainly reached the Aks and they thanked me, and I got to say I came to listen at three houses; nobody was forced and 26 came anyway. That is what I came back for. But each visit is two game hours for one fixed line from me and one short line back, Zehra about to give birth and nobody speaks of it, and the clock crawls while I wait. Feedback shows I am stopping pressed, which filled the box by itself; I typed nothing and did not Submit. I would not leave it running. I might come back another evening to see the rain and whether the Cobans are all right.\"\n\n"
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "diary": "D11",
+  "derivative": "Private command arguments and errors omitted; every words string, elapsed value and retrospective source label retained. Original anonymous bytes are separately hash-bound.",
+  "records": [
+    {
+      "elapsed_s": null,
+      "operation": "start",
+      "words": null
+    },
+    {
+      "elapsed_s": 0.145,
+      "operation": "open",
+      "words": null
+    },
+    {
+      "elapsed_s": 6.497,
+      "operation": "tap",
+      "words": "I remember the walks and the single lines I could not answer. I want to visit someone before making the harvest call this time; I want to hear an answer to me."
+    },
+    {
+      "elapsed_s": 9.87,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 14.52,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 17.704,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 26.146,
+      "operation": "tap",
+      "words": "Twenty game minutes until arrival and 130 until home: now I can tell what the walk means. On the phone the walking sentence is cut short, but the house controls are easy to read. I will leave the reading view so I actually get there."
+    },
+    {
+      "elapsed_s": 59.551,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 60.043,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 67.429,
+      "operation": "log",
+      "words": "I went to Ak before calling the harvest, hoping to answer their greeting. One thirty-second wait has taken me home and into the storm two days later. I missed the entire visit. That is much faster than I remember, and I have not changed speed. I want to find what they said in Earlier replies."
+    },
+    {
+      "elapsed_s": 74.267,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 80.628,
+      "operation": "tap",
+      "words": "A baby, and an invitation rather than an order. Yes, I want to go. I will watch in shorter pieces this time; I do not want to miss this too."
+    },
+    {
+      "elapsed_s": 88.02,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 91.092,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 94.276,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 99.943,
+      "operation": "tap",
+      "words": "There it is: I came to listen. I am glad I opened the house again. Gülsüm has a name, and I would rather hear about her than make a demand while visiting a newborn."
+    },
+    {
+      "elapsed_s": 108.614,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 114.342,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 118.81,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 125.056,
+      "operation": "log",
+      "words": "I said I came to listen before I had heard him speak. Then God is generous appeared, and in the next few seconds I was already home. I cannot tell whether he heard my answer or whether I spoke too soon. I wanted a conversation, but I am chasing the clock and switching panels. I would stop here."
+    },
+    {
+      "elapsed_s": 128.815,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 133.174,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 138.805,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 146.785,
+      "operation": "log",
+      "words": "I am stopping at home after visiting the newborn at the Çoban house. I liked being invited and learning her name, Gülsüm. I finally had words to say, but I do not know whether Yusuf answered them, and the visit was over before I could follow it. I would not return voluntarily tonight or leave it running. I might return another evening if I could follow a visit without losing it between panels; I still want to know these people. I selected the confused choice locally; it filled the note box itself. I typed nothing and pressed no Submit."
+    },
+    {
+      "source": "Post-stop report section3; retrospective, not a measured contemporaneous record. May repeat raw words.",
+      "words": "## 3. Verbatim\n\nEvery original recorded reaction follows unchanged. The existing `wall-clock.jsonl` preserves the full raw input lines.\n\n**6.497s — Resume**\n\n> I remember the walks and the single lines I could not answer. I want to visit someone before making the harvest call this time; I want to hear an answer to me.\n\n**26.146s — Back to the notebook**\n\n> Twenty game minutes until arrival and 130 until home: now I can tell what the walk means. On the phone the walking sentence is cut short, but the house controls are easy to read. I will leave the reading view so I actually get there.\n\n**67.429s — first_minute**\n\n> I went to Ak before calling the harvest, hoping to answer their greeting. One thirty-second wait has taken me home and into the storm two days later. I missed the entire visit. That is much faster than I remember, and I have not changed speed. I want to find what they said in Earlier replies.\n\n**80.628s — Go**\n\n> A baby, and an invitation rather than an order. Yes, I want to go. I will watch in shorter pieces this time; I do not want to miss this too.\n\n**99.943s — Say: I came to listen**\n\n> There it is: I came to listen. I am glad I opened the house again. Gülsüm has a name, and I would rather hear about her than make a demand while visiting a newborn.\n\n**125.057s — want_quit, CONFUSED**\n\n> I said I came to listen before I had heard him speak. Then God is generous appeared, and in the next few seconds I was already home. I cannot tell whether he heard my answer or whether I spoke too soon. I wanted a conversation, but I am chasing the clock and switching panels. I would stop here.\n\n**146.786s — stop, CONFUSED**\n\n> I am stopping at home after visiting the newborn at the Çoban house. I liked being invited and learning her name, Gülsüm. I finally had words to say, but I do not know whether Yusuf answered them, and the visit was over before I could follow it. I would not return voluntarily tonight or leave it running. I might return another evening if I could follow a visit without losing it between panels; I still want to know these people. I selected the confused choice locally; it filled the note box itself. I typed nothing and pressed no Submit.\n\n"
+    }
+  ]
+}

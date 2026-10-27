@@ -1,0 +1,145 @@
+{
+  "diary": "D10",
+  "derivative": "Private command arguments and errors omitted; every words string, elapsed value and retrospective source label retained. Original anonymous bytes are separately hash-bound.",
+  "records": [
+    {
+      "elapsed_s": null,
+      "operation": "start",
+      "words": null
+    },
+    {
+      "elapsed_s": 0.11,
+      "operation": "open",
+      "words": null
+    },
+    {
+      "elapsed_s": 3.17,
+      "operation": "tap",
+      "words": "Back to Valley. Last time I left bored on 18 July with Zehra delaying. This is the spoken-answer edition, I gather. I want to see the barley cut before the rain."
+    },
+    {
+      "elapsed_s": 6.556,
+      "operation": "tap",
+      "words": "This is the start of 18 July again, not where I left. Not my saved place, but it is the prepared one. I know the call worked before, so I call first."
+    },
+    {
+      "elapsed_s": 29.06,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 32.655,
+      "operation": "tap",
+      "words": "Zehra again, same delay. Last time sitting at her house ate my afternoon. This edition promises a spoken answer during visits, so I will try visiting once more and see whether I can say something."
+    },
+    {
+      "elapsed_s": 35.921,
+      "operation": "tap",
+      "words": "Visiting. I will not send grain blind this time until I know the sack size."
+    },
+    {
+      "elapsed_s": 39.177,
+      "operation": "log",
+      "words": "Now it says 20 game minutes until arrival, 130 until home. That is the number I wanted last time. I can wait knowing what for."
+    },
+    {
+      "elapsed_s": 60.05,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 64.582,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 69.17,
+      "operation": "log",
+      "words": "Returning, I called the hamlet and went straight to Zehra. This time the walk shows game minutes until arrival and home, which answers what confused me last time. I have arrived and there is a new choice: Say: I came to listen. Seven people have now postponed, not one. That worries me with rain on the twentieth."
+    },
+    {
+      "elapsed_s": 69.55,
+      "operation": "tap",
+      "words": "I came to listen is what I would say. I will not insist."
+    },
+    {
+      "elapsed_s": 92.587,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 95.85,
+      "operation": "tap",
+      "words": "Yusuf says Come in. Zehra has not answered my words. I said I came to listen, but there is nothing to listen to yet. Checking how much barley is cut while I sit."
+    },
+    {
+      "elapsed_s": 99.497,
+      "operation": "tap",
+      "words": "About 1 cut, 360 standing, rain in two days. I cannot tell whether five reapers is enough pace. Same question I had last time."
+    },
+    {
+      "elapsed_s": 124.697,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 129.529,
+      "operation": "tap",
+      "words": "Twenty-five seconds and the clock did not move from 09:00. Eight copies of the same delay, each with Hold to insist. This is exactly where I got bored last time. I will not insist on eight people; I will try Skip instead, which says it keeps the slowdown."
+    },
+    {
+      "elapsed_s": 157.304,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 160.73,
+      "operation": "tap",
+      "words": "I am walking back already. Zehra never answered what I said; I only got Yusuf saying Come in. Did my listening do anything? Checking her house record."
+    },
+    {
+      "elapsed_s": 165.226,
+      "operation": "log",
+      "words": "The spoken answer was one fixed sentence, and nobody answered it; the record just says Yusuf: Come in. Now nine delays are piling up again and I can only insist. Knowing the walking minutes helped, but the afternoon is shaping up like last time."
+    },
+    {
+      "elapsed_s": 195.541,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 200.344,
+      "operation": "tap",
+      "words": "Home again at 10:30. Half a game hour per half minute of mine; rain is two days off, which would take far longer than my evening. I will look at Tepe, which has three delays, before deciding."
+    },
+    {
+      "elapsed_s": 204.64,
+      "operation": "log",
+      "words": "Same sentence from Tepe, and a Visit would be another two game hours of sitting with nobody answering me. I returned hoping the spoken answer would make visits a conversation; it was one line I said into the room. I would leave now, at 10:30 on the same 18 July where I left last time."
+    },
+    {
+      "elapsed_s": 205.033,
+      "operation": "tap",
+      "words": "Opening the menu to check Feedback before I go."
+    },
+    {
+      "elapsed_s": 207.795,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 210.375,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 214.673,
+      "operation": "log",
+      "words": "I am stopping at 10:30 on 18 July. Coming back, the walking minutes answered my old question, and the menu still holds time. But the spoken answer was a single line nobody replied to, and the same delays are stacking up with only Hold to insist offered. I selected I'm stopping; the game filled the note itself, and I typed and submitted nothing. I would return another evening only if I could tell whether five or fourteen reapers will beat the rain, and if visiting led to an actual reply. I would not leave it running."
+    },
+    {
+      "source": "Post-stop report section3; retrospective, not a measured contemporaneous record. May repeat raw words.",
+      "words": "## 3. Verbatim\nThese are all the reactions I logged, in order.\n- **32.655 s:** \"Zehra again, same delay. Last time sitting at her house ate my afternoon. This edition promises a spoken answer during visits, so I will try visiting once more and see whether I can say something.\"\n- **35.921 s:** \"Visiting. I will not send grain blind this time until I know the sack size.\"\n- **39.177 s:** \"Now it says 20 game minutes until arrival, 130 until home. That is the number I wanted last time. I can wait knowing what for.\"\n- **69.17 s, first_minute:** \"Returning, I called the hamlet and went straight to Zehra. This time the walk shows game minutes until arrival and home, which answers what confused me last time. I have arrived and there is a new choice: Say: I came to listen. Seven people have now postponed, not one. That worries me with rain on the twentieth.\"\n- **69.55 s:** \"I came to listen is what I would say. I will not insist.\"\n- **95.85 s:** \"Yusuf says Come in. Zehra has not answered my words. I said I came to listen, but there is nothing to listen to yet. Checking how much barley is cut while I sit.\"\n- **99.497 s:** \"About 1 cut, 360 standing, rain in two days. I cannot tell whether five reapers is enough pace. Same question I had last time.\"\n- **129.529 s:** \"Twenty-five seconds and the clock did not move from 09:00. Eight copies of the same delay, each with Hold to insist. This is exactly where I got bored last time. I will not insist on eight people; I will try Skip instead, which says it keeps the slowdown.\"\n- **160.73 s:** \"I am walking back already. Zehra never answered what I said; I only got Yusuf saying Come in. Did my listening do anything? Checking her house record.\"\n- **165.226 s, pulse, engagement 2:** \"The spoken answer was one fixed sentence, and nobody answered it; the record just says Yusuf: Come in. Now nine delays are piling up again and I can only insist. Knowing the walking minutes helped, but the afternoon is shaping up like last time.\"\n- **200.344 s:** \"Home again at 10:30. Half a game hour per half minute of mine; rain is two days off, which would take far longer than my evening. I will look at Tepe, which has three delays, before deciding.\"\n- **204.64 s, want_quit, BORED:** \"Same sentence from Tepe, and a Visit would be another two game hours of sitting with nobody answering me. I returned hoping the spoken answer would make visits a conversation; it was one line I said into the room. I would leave now, at 10:30 on the same 18 July where I left last time.\"\n- **205.034 s:** \"Opening the menu to check Feedback before I go.\"\n- **214.673 s, stop:** quoted in section 7.\n\n"
+    }
+  ]
+}

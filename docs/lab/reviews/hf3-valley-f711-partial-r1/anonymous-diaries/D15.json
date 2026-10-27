@@ -1,0 +1,170 @@
+{
+  "diary": "D15",
+  "derivative": "Private command arguments and errors omitted; every words string, elapsed value and retrospective source label retained. Original anonymous bytes are separately hash-bound.",
+  "records": [
+    {
+      "elapsed_s": null,
+      "operation": "start",
+      "words": null
+    },
+    {
+      "elapsed_s": 0.111,
+      "operation": "open",
+      "words": null
+    },
+    {
+      "elapsed_s": 5.362,
+      "operation": "tap",
+      "words": "I remember insist working and visits giving me a guess after a long walk. This edition says I can give a spoken answer. I want to try a visit and see whether I can actually answer this time."
+    },
+    {
+      "elapsed_s": 8.368,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 11.719,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 41.279,
+      "operation": "wait",
+      "words": "The phone has a small map and a row of houses running past the edge, but I can read the reply count. There is an actual 07:30 clock now. I will wait for the first delays before choosing a visit."
+    },
+    {
+      "elapsed_s": 45.334,
+      "operation": "tap",
+      "words": "Zehra is the first delay again. I remember learning too late that she was pregnant. I will visit her instead of pressing her this time."
+    },
+    {
+      "elapsed_s": 48.978,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 60.028,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 72.017,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 79.362,
+      "operation": "log",
+      "words": "This note is late, after the wait returned at 72 seconds. I called the hamlet and chose a visit to Zehra instead of insisting as I did before. The clock says 08:00 and twenty game minutes until arrival, unchanged after fifteen real seconds. The phone reply text is readable. I want the spoken answer, not another test of insist."
+    },
+    {
+      "elapsed_s": 84.684,
+      "operation": "tap",
+      "words": "The reading view said return to the notebook. I will do that rather than stare at an unchanged arrival estimate."
+    },
+    {
+      "elapsed_s": 88.346,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 92.876,
+      "operation": "tap",
+      "words": "There is something to say this time. I came to listen is exactly the alternative to pressing I wanted to test."
+    },
+    {
+      "elapsed_s": 97.043,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 130.764,
+      "operation": "wait",
+      "words": "My sentence is recorded, but nobody has answered it yet. I will leave the notebook open and wait for her reply."
+    },
+    {
+      "elapsed_s": 136.09,
+      "operation": "tap",
+      "words": "Come in arrived after I already said I came to listen. I cannot tell whether that is an answer to me or just the visit greeting. I will look at the house record."
+    },
+    {
+      "elapsed_s": 139.313,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 146.021,
+      "operation": "tap",
+      "words": "They have almost no food left, labelled as my guess. Listening has not changed Zehra’s delay. I want to see whether grain is a concrete offer I can weigh against the due."
+    },
+    {
+      "elapsed_s": 151.492,
+      "operation": "tap",
+      "words": "That sent it immediately. I expected the explanation I got last time, not a committed gift. I have spent grain without knowing how much. Checking the ledger now."
+    },
+    {
+      "elapsed_s": 156.586,
+      "operation": "tap",
+      "words": "Twenty-four in the granary now. My earlier diary had thirty at the start, so I think I gave six, but I did not check this world before sending. The total is about 385 against 384 again. I will wait to see whether the household answers the gift or my visit."
+    },
+    {
+      "elapsed_s": 190.52,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 195.501,
+      "operation": "log",
+      "words": "I could speak, but the visit still feels like waiting beside an unchanged greeting. The clock and time-until-home now tell me what I am waiting for. I want to see the visit finish before deciding whether listening did anything."
+    },
+    {
+      "elapsed_s": 231.372,
+      "operation": "wait",
+      "words": null
+    },
+    {
+      "elapsed_s": 238.568,
+      "operation": "tap",
+      "words": "The grain got a proper answer: thank the landowner or thank God. That feels directed at what I did. Zehra still delays, which is fair; I did not buy her work. I want to check whether my listening sentence left a record before I go."
+    },
+    {
+      "elapsed_s": 241.734,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 247.798,
+      "operation": "log",
+      "words": "I would stop here. I got to say I came to listen, but I have not seen an answer to that sentence or a record distinct from sitting. Giving grain produced a better reply, though I sent it without knowing the amount. I am still waiting through the same morning, and I do not want another visit just to repeat this experiment."
+    },
+    {
+      "elapsed_s": 252.76,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 257.087,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 260.779,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 264.83,
+      "operation": "tap",
+      "words": null
+    },
+    {
+      "elapsed_s": 269.722,
+      "operation": "log",
+      "words": "I stopped playing at 247.798 seconds. The wish did not pass. I would not return voluntarily now or another evening to repeat this visit. I would reconsider if I could see what my spoken answer changed, beyond having sat with them. The clock is clearer now, but I still do not want to wait through the harvest. I would not leave it running. I selected I'm stopping locally; it filled those words into the box. I typed nothing, changed no consent and submitted nothing. The browser is no longer needed."
+    },
+    {
+      "source": "Post-stop report section3; retrospective, not a measured contemporaneous record. May repeat raw words.",
+      "words": "## 3. Verbatim\n\nThese are all my original logged reactions, unchanged. The existing `wall-clock.jsonl` preserves full raw input lines.\n\n**5.363 s — Resume**\n\n> I remember insist working and visits giving me a guess after a long walk. This edition says I can give a spoken answer. I want to try a visit and see whether I can actually answer this time.\n\n**41.279 s — wait 20; input clock 07:30**\n\n> The phone has a small map and a row of houses running past the edge, but I can read the reply count. There is an actual 07:30 clock now. I will wait for the first delays before choosing a visit.\n\n**45.334 s — the Çoban house; input clock 08:00**\n\n> Zehra is the first delay again. I remember learning too late that she was pregnant. I will visit her instead of pressing her this time.\n\n**79.365 s — late first_minute; clock 08:00**\n\n> This note is late, after the wait returned at 72 seconds. I called the hamlet and chose a visit to Zehra instead of insisting as I did before. The clock says 08:00 and twenty game minutes until arrival, unchanged after fifteen real seconds. The phone reply text is readable. I want the spoken answer, not another test of insist.\n\n**84.685 s — Back to the notebook; input clock 08:00**\n\n> The reading view said return to the notebook. I will do that rather than stare at an unchanged arrival estimate.\n\n**92.876 s — Say: I came to listen; clock 08:30**\n\n> There is something to say this time. I came to listen is exactly the alternative to pressing I wanted to test.\n\n**130.765 s — wait 30; input clock 08:30**\n\n> My sentence is recorded, but nobody has answered it yet. I will leave the notebook open and wait for her reply.\n\n**136.090 s — the Çoban house; clock 09:00**\n\n> Come in arrived after I already said I came to listen. I cannot tell whether that is an answer to me or just the visit greeting. I will look at the house record.\n\n**146.022 s — Send grain; clock 09:00**\n\n> They have almost no food left, labelled as my guess. Listening has not changed Zehra’s delay. I want to see whether grain is a concrete offer I can weigh against the due.\n\n**151.492 s — Open the landowner’s ledger; clock 09:00**\n\n> That sent it immediately. I expected the explanation I got last time, not a committed gift. I have spent grain without knowing how much. Checking the ledger now.\n\n**156.586 s — Back to the notebook; clock 09:00**\n\n> Twenty-four in the granary now. My earlier diary had thirty at the start, so I think I gave six, but I did not check this world before sending. The total is about 385 against 384 again. I will wait to see whether the household answers the gift or my visit.\n\n**195.502 s — pulse, engagement 2/5; clock 09:30**\n\n> I could speak, but the visit still feels like waiting beside an unchanged greeting. The clock and time-until-home now tell me what I am waiting for. I want to see the visit finish before deciding whether listening did anything.\n\n**238.569 s — the Çoban house; clock 10:00**\n\n> The grain got a proper answer: thank the landowner or thank God. That feels directed at what I did. Zehra still delays, which is fair; I did not buy her work. I want to check whether my listening sentence left a record before I go.\n\n**247.798 s — want_quit, BORED; clock 10:00**\n\n> I would stop here. I got to say I came to listen, but I have not seen an answer to that sentence or a record distinct from sitting. Giving grain produced a better reply, though I sent it without knowing the amount. I am still waiting through the same morning, and I do not want another visit just to repeat this experiment.\n\n**269.722 s — stop, BORED; clock 10:00**\n\n> I stopped playing at 247.798 seconds. The wish did not pass. I would not return voluntarily now or another evening to repeat this visit. I would reconsider if I could see what my spoken answer changed, beyond having sat with them. The clock is clearer now, but I still do not want to wait through the harvest. I would not leave it running. I selected I'm stopping locally; it filled those words into the box. I typed nothing, changed no consent and submitted nothing. The browser is no longer needed.\n\n"
+    }
+  ]
+}

@@ -1,0 +1,320 @@
+{
+  "diary": "D02",
+  "derivative": "Private command arguments and errors omitted; every words string, elapsed value and retrospective source label retained. Original anonymous bytes are separately hash-bound.",
+  "records": [
+    {
+      "elapsed_s": null,
+      "operation": "start",
+      "words": null
+    },
+    {
+      "elapsed_s": 0.111,
+      "operation": "open",
+      "words": null
+    },
+    {
+      "elapsed_s": 4.595,
+      "operation": "log",
+      "words": "I know this title from last time; the landowner’s due is grain, I remember. But there is a new line about a spoken answer. Reread 1: “This uses the original grain rules and local people, instead of the other editions below.” Original rules compared to what? Which editions? I leave the boxes as they were set for me. New concepts, 3: spoken answer during visits, editions, original grain rules. I press Resume as I was told."
+    },
+    {
+      "elapsed_s": 5.739,
+      "operation": "tap",
+      "words": "Resume, the prepared term."
+    },
+    {
+      "elapsed_s": 9.326,
+      "operation": "tap",
+      "words": "Same morning as last time. I know this now; I call quickly so I am not too slow, and this time I will wait for answers instead of opening a house."
+    },
+    {
+      "elapsed_s": 13.396,
+      "operation": "log",
+      "words": "This time the line says it plainly: “replies are available at the houses.” And “Time moves slowly while you read” — that answers my question from last time about being too slow. Good. The call is open until 24 July, but rain is 20 July; I still do not like that. New concepts, 3: reading view slows time, replies at the houses, Skip to next event. Kavak has a little circle; I will try it now, it is still 18 July."
+    },
+    {
+      "elapsed_s": 14.624,
+      "operation": "tap",
+      "words": "I go to Kavak, the house with the circle."
+    },
+    {
+      "elapsed_s": 18.371,
+      "operation": "tap",
+      "words": "Same words as last time: no new reply. I remember that call sentence, I do not need it again. Last time I stopped here. Now there is Visit; I think a reply comes only if I sit with them. I press Visit."
+    },
+    {
+      "elapsed_s": 30.982,
+      "operation": "wait",
+      "words": "I am walking there; 20 game minutes. I wait for the visit."
+    },
+    {
+      "elapsed_s": 34.007,
+      "operation": "tap",
+      "words": "Five people came! “We’ll be there.” That is the answer I missed last time. Now I can say “I came to listen” — that suits me. New concepts, 2: a spoken line during the visit, a dot on Çoban. I say it."
+    },
+    {
+      "elapsed_s": 36.802,
+      "operation": "tap",
+      "words": "I said it; no answer from them yet, but it is kind. Çoban has a filled dot now. Maybe a reply waits there. I look."
+    },
+    {
+      "elapsed_s": 41.253,
+      "operation": "log",
+      "words": "Zehra: “Who will feed my family while I cut his barley?” I understand her completely. She will come after her own barley. I will not insist; she would remember it, and I would too. New concepts, 3: postponing, Zehra and her own harvest, hold to insist and being remembered. Clear sentences. I like this house."
+    },
+    {
+      "elapsed_s": 42.486,
+      "operation": "tap",
+      "words": "I leave Zehra in peace and go back to the notebook."
+    },
+    {
+      "elapsed_s": 60.072,
+      "operation": "shot",
+      "words": null
+    },
+    {
+      "elapsed_s": 65.442,
+      "operation": "wait",
+      "words": "5 came, 1 delayed. The overseer says some houses only listen if I visit. I am still at Kavak; I wait to come home."
+    },
+    {
+      "elapsed_s": 69.615,
+      "operation": "log",
+      "words": "Much better than last time. I called, visited Kavak, and five people came. Zehra will come after her own barley; I understood her at once. Only one reread so far, on the title. But now I waited twenty seconds and the clock still says 08:00 and “80 game minutes left here”. I am waiting, but for what? Maybe it waits for me to decide about Zehra. Skip says it keeps the slowdown; I may try Skip."
+    },
+    {
+      "elapsed_s": 70.883,
+      "operation": "tap",
+      "words": "Nothing is moving. The game offers Skip; I try it once."
+    },
+    {
+      "elapsed_s": 101.15,
+      "operation": "wait",
+      "words": "Skip moved half an hour. 10 came, 7 delayed — everyone wants their own barley first before the rain, of course. Same rain for them. I will not insist on anyone. I am a bit worried for the landowner’s barley, but I understand them. Skip is now greyed; I wait."
+    },
+    {
+      "elapsed_s": 104.352,
+      "operation": "tap",
+      "words": "The time moves slowly, good for reading. While I walk home I look at the ledger: how much barley is cut?"
+    },
+    {
+      "elapsed_s": 108.842,
+      "operation": "log",
+      "words": "The ledger is clear like a school register: less than 5 cut, about 360 still in the field, rain on 20 July. That worries me: ten people came but almost nothing is cut yet. Two days. New concepts, 6: threshing from 5 August, collecting households’ share from 9 August, granary 30, years with too little paid, elders’ gathering 16 December year three, prior volumes. No reread."
+    },
+    {
+      "elapsed_s": 109.767,
+      "operation": "tap",
+      "words": "Back to the notebook."
+    },
+    {
+      "elapsed_s": 142.395,
+      "operation": "wait",
+      "words": "14 came now. The list of the same sentence grows long; I stop reading each one. I wait to get home."
+    },
+    {
+      "elapsed_s": 165.859,
+      "operation": "wait",
+      "words": "Ten minutes to home. Then I want to visit Tepe, they have three people waiting."
+    },
+    {
+      "elapsed_s": 168.566,
+      "operation": "tap",
+      "words": "I am home. Now I go to Tepe; three of them waiting."
+    },
+    {
+      "elapsed_s": 171.548,
+      "operation": "tap",
+      "words": "I visit Tepe and sit with them. Maybe I can listen there too."
+    },
+    {
+      "elapsed_s": 173.102,
+      "operation": "log",
+      "words": "I am engaged: I understand the people and their own barley, and I know what to do now — call, visit, listen. Only worry: almost nothing cut and rain in two days."
+    },
+    {
+      "elapsed_s": 200.522,
+      "operation": "wait",
+      "words": "Walking to Tepe. I wait."
+    },
+    {
+      "elapsed_s": 203.197,
+      "operation": "tap",
+      "words": "I am at Tepe. I say I came to listen."
+    },
+    {
+      "elapsed_s": 231.438,
+      "operation": "wait",
+      "words": "I said it again, but there is no answer from them. Like with Halil last time: did they hear me? Does listening change anything? I wait a little to see."
+    },
+    {
+      "elapsed_s": 234.678,
+      "operation": "tap",
+      "words": "“Sit down.” A small answer, but warm. I feel welcome. Back to the notebook to see the replies."
+    },
+    {
+      "elapsed_s": 239.158,
+      "operation": "tap",
+      "words": "Tepe still says “after our own barley”. Listening was kind but changed nothing I can see. Zehra’s answer now says “I cannot do it now” — did my visit make her colder, or is it the same? I skip to see what happens next."
+    },
+    {
+      "elapsed_s": 272.486,
+      "operation": "wait",
+      "words": "Skip went grey and nothing changed. I thought that was a button that moves the day. I wait instead."
+    },
+    {
+      "elapsed_s": 276.912,
+      "operation": "tap",
+      "words": "Half an hour of the day takes half a minute of mine. The rain is two days away. Is the barley being cut at least? I check the ledger."
+    },
+    {
+      "elapsed_s": 280.428,
+      "operation": "tap",
+      "words": "About 25 cut now. Progress! Slow, but it is moving. Back to the notebook."
+    },
+    {
+      "elapsed_s": 281.204,
+      "operation": "shot",
+      "words": "I look at the screen as it is on my big screen."
+    },
+    {
+      "elapsed_s": 287.204,
+      "operation": "log",
+      "words": "On my big screen the replies are in large letters, good for me. The map names are small, and the residence and Danyal and Visitors labels sit on top of each other. The bottom row of houses is cut off at the left: I see “avako”. The big red Skip button looks like the main thing to do, but it did nothing before. The long list of the same sentence is tiring."
+    },
+    {
+      "elapsed_s": 288.436,
+      "operation": "resize",
+      "words": "Required layout check: I switch to the phone size briefly."
+    },
+    {
+      "elapsed_s": 291.345,
+      "operation": "tap",
+      "words": "Layout check interaction: I open Dere, the house with a new dot."
+    },
+    {
+      "elapsed_s": 292.264,
+      "operation": "shot",
+      "words": "Phone-size picture."
+    },
+    {
+      "elapsed_s": 294.988,
+      "operation": "resize",
+      "words": "Back to my own big screen."
+    },
+    {
+      "elapsed_s": 299.793,
+      "operation": "log",
+      "words": "Layout check at phone size (requested, not my own choice), 288–295 s: the map is squeezed to a thin strip, my status line is cut: “20 game minutes left h…”, and the house row is cut at the left (“vako”). The Dere words were big enough to read. Back on the big screen now. I keep thinking of Zehra: “Who will feed my family?” I want to see what Send grain means for her."
+    },
+    {
+      "elapsed_s": 300.96,
+      "operation": "tap",
+      "words": "Back to Zehra’s house."
+    },
+    {
+      "elapsed_s": 303.973,
+      "operation": "tap",
+      "words": "She asked who will feed her family. I will see what Send grain offers. I know the rider counts gifts as missing, so I will be careful."
+    },
+    {
+      "elapsed_s": 307.398,
+      "operation": "log",
+      "words": "Oh! It sent the grain at once. I thought it would ask me how much. I do not know how much I gave. I am not sorry for Zehra, but I wanted to choose. New concept, 1: gifts recorded against the landowner’s grain. I will look in the ledger how much it was."
+    },
+    {
+      "elapsed_s": 308.382,
+      "operation": "tap",
+      "words": "How much did I give?"
+    },
+    {
+      "elapsed_s": 311.225,
+      "operation": "tap",
+      "words": "The ledger button is not here in the house view; I use the rain bar at the top, it says it opens the ledger."
+    },
+    {
+      "elapsed_s": 315.013,
+      "operation": "tap",
+      "words": "Granary went from 30 to 24: I gave six measures. That I can live with. Back to the notebook to let the day go on."
+    },
+    {
+      "elapsed_s": 345.842,
+      "operation": "wait",
+      "words": "I wait to see if Zehra answers differently now."
+    },
+    {
+      "elapsed_s": 349.488,
+      "operation": "log",
+      "words": "I like the people, but now it is mostly waiting, and the same sentence nine times. Nothing seems to change after my gift."
+    },
+    {
+      "elapsed_s": 365.538,
+      "operation": "wait",
+      "words": "Ten minutes to home."
+    },
+    {
+      "elapsed_s": 368.52,
+      "operation": "tap",
+      "words": "I am tired of waiting on the road. I press the big red Skip again."
+    },
+    {
+      "elapsed_s": 373.768,
+      "operation": "log",
+      "words": "Skip went grey again and nothing moved; I am still 10 minutes from home. I know what I want — to get to the rain and see if the barley is saved — and the big red button does not take me there. I would like to leave. I give it one more half minute."
+    },
+    {
+      "elapsed_s": 404.592,
+      "operation": "wait",
+      "words": "One more wait."
+    },
+    {
+      "elapsed_s": 409.816,
+      "operation": "log",
+      "words": "Yusuf of the Çoban house: “Tell the landowner we are grateful. Or thank God for us instead.” Ha — he knows the grain came from me, not from the landowner. That made me smile. My wish to leave passes for now. And 16 came, 2 more. New concepts, 1: Yusuf of Çoban. I am home; I will let the afternoon go and watch the field."
+    },
+    {
+      "elapsed_s": 440.648,
+      "operation": "wait",
+      "words": "I let the afternoon pass."
+    },
+    {
+      "elapsed_s": 445.119,
+      "operation": "tap",
+      "words": "Half an hour of the day for every half minute of mine; the rain is a day and a half away. Skip is grey. I have a concrete question: why is Skip grey and how do I get to the rain? I open the i."
+    },
+    {
+      "elapsed_s": 450.864,
+      "operation": "log",
+      "words": "The help is plain and kind: 40 cut now, the bar explained, “Opening the menu or this information panel stops time.” But it does not answer my question. Nothing says why Skip is grey or how long the rain will take for me. New concepts, 3: reduce a household’s grain payment, neighbours notice, the grain bar parts. No reread."
+    },
+    {
+      "elapsed_s": 453.841,
+      "operation": "log",
+      "words": "This time I got much farther: five, then sixteen people came, Zehra told me her trouble, Yusuf thanked me with a joke, and the barley is being cut. I liked those people. But now I only wait. A day and a half until the rain, half an hour for every half minute, and the red Skip goes grey. I want to know if the barley is saved and I cannot get there tonight. I stop here. I would close it, not leave it running. I would come back another evening if I knew how long the waiting is, or if Skip took me to the rain."
+    },
+    {
+      "elapsed_s": 456.529,
+      "operation": "tap",
+      "words": "After stopping: I look at Feedback."
+    },
+    {
+      "elapsed_s": 459.088,
+      "operation": "tap",
+      "words": "Open Feedback to look only."
+    },
+    {
+      "elapsed_s": 461.7,
+      "operation": "tap",
+      "words": "I choose I am stopping. I will not type or submit."
+    },
+    {
+      "elapsed_s": 464.972,
+      "operation": "log",
+      "words": "After stopping I chose I’m stopping in Feedback. It became pressed and filled the note box with “I’m stopping” by itself. I typed nothing and did not submit. Menu, Feedback and help were familiar from last time; no new concepts. The browser is no longer needed."
+    },
+    {
+      "source": "Post-stop report section3; retrospective, not a measured contemporaneous record. May repeat raw words.",
+      "words": "## 3. Verbatim\nThese are my original log words. The raw JSONL is kept separately.\n- **4.6 s:** \"I know this title from last time; the landowner's due is grain, I remember. But there is a new line about a spoken answer. Reread 1: 'This uses the original grain rules and local people, instead of the other editions below.' Original rules compared to what? Which editions? I leave the boxes as they were set for me. New concepts, 3: spoken answer during visits, editions, original grain rules. I press Resume as I was told.\"\n- **9.3 s, Call the hamlet, 07:00:** \"Same morning as last time. I know this now; I call quickly so I am not too slow, and this time I will wait for answers instead of opening a house.\"\n- **13.4 s:** \"…The call is open until 24 July, but rain is 20 July; I still do not like that. New concepts, 3: reading view slows time, replies at the houses, Skip to next event. Kavak has a little circle; I will try it now, it is still 18 July.\"\n- **18.4 s, Visit Kavak:** \"Same words as last time: no new reply. I remember that call sentence, I do not need it again. Last time I stopped here. Now there is Visit; I think a reply comes only if I sit with them. I press Visit.\"\n- **34.0 s, Say: I came to listen, 08:00:** \"Five people came! 'We'll be there.' That is the answer I missed last time. Now I can say 'I came to listen' — that suits me. New concepts, 2: a spoken line during the visit, a dot on Çoban.\"\n- **41.3 s:** \"Zehra: 'Who will feed my family while I cut his barley?' I understand her completely. She will come after her own barley. I will not insist; she would remember it, and I would too. New concepts, 3: postponing, Zehra and her own harvest, hold to insist and being remembered. Clear sentences. I like this house.\"\n- **65.4 s, first_minute:** quoted in section 2.\n- **70.9 s, Skip, 08:00:** \"Nothing is moving. The game offers Skip; I try it once.\" The game moved to 08:30, and 10 came.\n- **108.8 s, ledger:** \"The ledger is clear like a school register: less than 5 cut, about 360 still in the field, rain on 20 July. That worries me: ten people came but almost nothing is cut yet. Two days. New concepts, 6: threshing from 5 August, collecting households' share from 9 August, granary 30, years with too little paid, elders' gathering 16 December year three, prior volumes. No reread.\"\n- **173.1 s, pulse 4:** \"I am engaged: I understand the people and their own barley, and I know what to do now — call, visit, listen. Only worry: almost nothing cut and rain in two days.\"\n- **231.4 s, after a wait at Tepe:** \"I said it again, but there is no answer from them. Like with Halil last time: did they hear me? Does listening change anything?\" The game then showed \"Sit down.\"\n- **234.7 s:** \"'Sit down.' A small answer, but warm. I feel welcome.\"\n- **239.2 s, Skip:** \"Tepe still says 'after our own barley'. Listening was kind but changed nothing I can see. Zehra's answer now says 'I cannot do it now' — did my visit make her colder, or is it the same?\"\n- **272.5 s:** \"Skip went grey and nothing changed. I thought that was a button that moves the day.\"\n- **287.2 s:** \"On my big screen the replies are in large letters, good for me. The map names are small, and the residence and Danyal and Visitors labels sit on top of each other. The bottom row of houses is cut off at the left: I see 'avako'. The big red Skip button looks like the main thing to do, but it did nothing before. The long list of the same sentence is tiring.\"\n- **303.9 s, Send grain:** \"Oh! It sent the grain at once. I thought it would ask me how much. I do not know how much I gave. I am not sorry for Zehra, but I wanted to choose.\" Then: \"Granary went from 30 to 24: I gave six measures. That I can live with.\"\n- **349.5 s, pulse 3:** \"I like the people, but now it is mostly waiting, and the same sentence nine times. Nothing seems to change after my gift.\"\n- **373.8 s, want_quit, FRUSTRATED:** \"Skip went grey again and nothing moved; I am still 10 minutes from home. I know what I want — to get to the rain and see if the barley is saved — and the big red button does not take me there. I would like to leave. I give it one more half minute.\"\n- **409.8 s:** \"Yusuf of the Çoban house: 'Tell the landowner we are grateful. Or thank God for us instead.' Ha — he knows the grain came from me, not from the landowner. That made me smile. My wish to leave passes for now.\"\n- **450.9 s, Information:** \"The help is plain and kind… But it does not answer my question. Nothing says why Skip is grey or how long the rain will take for me. New concepts, 3… No reread.\"\n- **453.8 s, stop, FRUSTRATED:** quoted in section 7.\n\nMy notes counted **22 new concepts** in this visit. Only **one** sentence needed a reread.\n\n"
+    }
+  ]
+}
