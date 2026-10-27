@@ -3,6 +3,7 @@
  * See W1 METHOD-INTERFACE.md for equation provenance and numerical limits. */
 import { cloneData } from '../core/clone.ts';
 import { dcos, dexp, dlog } from '../core/libm.ts';
+import { keyOf, Memo } from '../core/memo.ts';
 import { modifiersForAge } from '../lifecourse/lifecourse.ts';
 import type * as T from '../run-schema.ts';
 import { bladderMotivation } from './bladder.ts';
@@ -344,6 +345,31 @@ const analyticComponents = new Set<T.BodyComponent>([
   'exposure-cumulative-dose',
   'injury-bleeding-per-day',
 ]);
+const readoutNames = [
+  'hunger',
+  'thirst',
+  'sleepiness',
+  'fatigue',
+  'pain',
+  'capacity',
+  'alertness',
+  'perceived-hunger',
+  'perceived-thirst',
+  'perceived-sleepiness',
+  'perceived-fatigue',
+  'perceived-pain',
+  'moving',
+  'manipulation',
+  'sight',
+] as const;
+const cellPaths = new Memo<{
+  fields: readonly (readonly T.ScalarTrajectory['segments'][number][] | null)[];
+  readout: readonly (readonly T.ScalarTrajectory['segments'][number][])[];
+}>(256);
+/** Components whose only state dependence is the floor clamp at 0. */
+const floorComponents = new Set<T.BodyComponent>(['satiety', 'hydration']);
+const floorIndices = (keys: readonly T.DeepReadonly<T.BodyFieldKey>[]) =>
+  keys.flatMap((k, i) => (floorComponents.has(k.component) ? [i] : []));
 function exactState(
   b: T.BodyState,
   base: T.DeepReadonly<T.BodyVector>,
@@ -554,7 +580,15 @@ function rhs(
     };
     const d = keys.map((k, j) => {
       let v = analyticComponents.has(k.component) ? 0 : derivative(k);
-      const raw = y[j] ?? 0;
+      // Satiety and hydration fall at a state-independent rate, so their floor clamp
+      // is decided at the cell anchor and integrateCell ends the cell at the crossing.
+      // A per-stage clamp would put a derivative jump inside one millisecond that no
+      // integer-ms cell can resolve.
+      const raw = floorComponents.has(k.component)
+        ? k.component === 'satiety'
+          ? base.satiety
+          : base.hydration
+        : (y[j] ?? 0);
       const unbounded = [
         'illness-trend-per-day',
         'injury-bleeding-per-day',
@@ -698,10 +732,46 @@ function init(
     dozeContinuation: d,
   };
 }
+/** Satiety and hydration loss per minute at `at`: the rhs law without its floor clamp. */
+function floorRates(b: T.DeepReadonly<T.BodyState>, at: number, ctx: T.DeepReadonly<T.BodySpan>) {
+  const P = ctx.effective.builtins.BODY_DEFAULTS,
+    E = ctx.effective.builtins.ENVIRONMENT_DEFAULTS;
+  const mods = modifiersForAge(
+    ageYearsAt(ctx.life.birthAt, Math.floor(at)) + (at - Math.floor(at)) / YEAR,
+    ctx.effective.builtins.LIFE_DEFAULTS,
+  );
+  const effort = b.asleep ? 0 : clip(ctx.load.effort);
+  const pregnancy =
+    ctx.pregnancy && at - ctx.pregnancy.conceivedAt >= 13 * 7 * DAY
+      ? ctx.effective.builtins.FAMILY_DEFAULTS.pregnancyMetabolism
+      : 1;
+  const meta =
+    (b.asleep ? P.sleepMetabolism : 1) *
+    mods.metabolism *
+    (1 + E.coldMetabolism * (ctx.environment.cold ?? 0)) *
+    pregnancy;
+  return {
+    satiety: meta * (P.satietyPerMinute + P.satietyEffortPerMinute * effort),
+    hydration: meta * (P.hydrationPerMinute + P.hydrationEffortPerMinute * effort),
+  };
+}
+/** Engineering law at the 1 ms time resolution: a store that would empty within the
+ * next 2 ms of decline empties now. This drops at most 2 ms of loss (about 3e-8 at
+ * default rates) so the emptying lands on an integer millisecond and starts a new
+ * condition, instead of a sub-millisecond kink that no cell or readout can fit. */
+function floorsDue(b: T.DeepReadonly<T.BodyState>, at: number, ctx: T.DeepReadonly<T.BodySpan>) {
+  if (!b.alive) return [];
+  const rates = floorRates(b, at, ctx);
+  return (['satiety', 'hydration'] as const).filter((k) => b[k] > 0 && b[k] <= (2 * rates[k]) / 60000);
+}
+function snapFloors(b: T.BodyState, at: number, ctx: T.DeepReadonly<T.BodySpan>): void {
+  for (const k of floorsDue(b, at, ctx)) b[k] = 0;
+}
 function eventPredicate(b: T.DeepReadonly<T.BodyState>, ctx: T.DeepReadonly<T.BodySpan>): boolean {
   const p = ctx.effective.builtins;
   return (
     b.health <= 0 ||
+    floorsDue(b, ctx.to, ctx).length > 0 ||
     b.injuries.some(
       (i) => i.severity <= 0.001 || (i.bleeding !== undefined && i.bleeding <= p.INJURY_DEFAULTS.bleedStops),
     ) ||
@@ -982,6 +1052,7 @@ const advance: T.BodyOwner['advance'] = (state, ctx) => {
       ctx.effective.doze.hazardScale,
     );
   if (b.alive && eventPredicate(b, { ...ctx, to: at })) {
+    snapFloors(b, at, ctx);
     const physicalEvents = applyPhysical(b, at, ctx);
     c = continuation(b, at, conditionId, ctx.effectiveParametersHash);
     d = { ...d, hazard: rebaseHazard(d.hazard, at, conditionId, ctx.effectiveParametersHash) };
@@ -1068,6 +1139,7 @@ const advance: T.BodyOwner['advance'] = (state, ctx) => {
           )
           .concat(1),
         [f.values.length],
+        floorIndices(f.keys),
       );
       calls += result.calls;
       if (calls > 8192 || ++segments > 1024)
@@ -1104,10 +1176,20 @@ const advance: T.BodyOwner['advance'] = (state, ctx) => {
         t,
         ctx,
       );
+    // Read-only views share one materialization per sample time: the 15 readouts,
+    // analytic paths and boundary searches sample the same cell at the same times.
+    const views = new Map<number, T.BodyState>();
+    const viewAt = (t: number) => {
+      const hit = views.get(t);
+      if (hit) return hit;
+      const v = bodyAt(t);
+      views.set(t, v);
+      return v;
+    };
     const integral = (t: number) => (hazardCell ? evaluateCell(hazardCell, t) : d.hazard.acceptedIntegral);
     let stop = Math.min(ctx.to, end);
     let physical = false;
-    const physicalAt = firstPhysicalBoundary(at, stop, cells, keys, bodyAt, ctx);
+    const physicalAt = firstPhysicalBoundary(at, stop, cells, keys, viewAt, ctx);
     if (physicalAt !== null) {
       stop = physicalAt;
       physical = true;
@@ -1127,45 +1209,67 @@ const advance: T.BodyOwner['advance'] = (state, ctx) => {
       boundary = { key: h.key, at: stop, operation: 'allocate' };
     }
     // Cells cover the full canonical numerical dependency, not just the caller target.
+    // The sampled paths are a pure function of the cell and the body's non-integrated
+    // fields, so every probe of this cell reuses them (see core/memo.ts).
+    const derived = cellPaths.get(
+      JSON.stringify([
+        materialize(
+          b,
+          keys,
+          keys.map(() => 0),
+        ),
+        c.cells,
+        c.anchor,
+        start,
+        end,
+        ctx.environment,
+        ctx.life.birthAt,
+        ctx.perception,
+        ctx.pregnancy ?? null,
+        keyOf(ctx.effective.builtins),
+        ctx.effectiveParametersHash,
+      ]),
+      () => {
+        const reads = new Map<number, T.BodyReadout>();
+        const read = (t: number) => {
+          const hit = reads.get(t);
+          if (hit) return hit;
+          const r = readBody(viewAt(t), t, ctx.effective.builtins.BODY_DEFAULTS, ctx.perception);
+          reads.set(t, r);
+          return r;
+        };
+        return {
+          fields: keys.map((field, i) =>
+            analyticComponents.has(field.component)
+              ? sampledPath(start, end, (t) => required(flatten(bodyVector(viewAt(t))).values[i]))
+              : null,
+          ),
+          readout: readoutNames.map((name) =>
+            sampledPath(start, end, (t) => {
+              if (name === 'moving' || name === 'manipulation' || name === 'sight')
+                return readCapacities(viewAt(t))[name];
+              if (name.startsWith('perceived-'))
+                return read(t).perceived[name.slice(10) as keyof T.BodyReadout['perceived']];
+              return read(t)[name as Exclude<keyof T.BodyReadout, 'perceived'>];
+            }),
+          ),
+        };
+      },
+    );
     for (let i = 0; i < keys.length; i++) {
       const field = required(keys[i]);
       const id = JSON.stringify(field);
       const entry = paths.get(id) ?? { field, segments: [] };
       entry.segments.push(
-        ...(analyticComponents.has(field.component)
-          ? sampledPath(start, end, (t) => required(flatten(bodyVector(bodyAt(t))).values[i]))
-          : [{ kind: 'quartic' as const, from: start, to: end, cell: required(cells[i]) }]),
+        ...(derived.fields[i] ?? [
+          { kind: 'quartic' as const, from: start, to: end, cell: required(cells[i]) },
+        ]),
       );
       paths.set(id, entry);
     }
-    const read = (t: number) => readBody(bodyAt(t), t, ctx.effective.builtins.BODY_DEFAULTS, ctx.perception);
-    const names = [
-      'hunger',
-      'thirst',
-      'sleepiness',
-      'fatigue',
-      'pain',
-      'capacity',
-      'alertness',
-      'perceived-hunger',
-      'perceived-thirst',
-      'perceived-sleepiness',
-      'perceived-fatigue',
-      'perceived-pain',
-      'moving',
-      'manipulation',
-      'sight',
-    ] as const;
-    for (const name of names) {
-      const fn = (t: number) => {
-        if (name === 'moving' || name === 'manipulation' || name === 'sight')
-          return readCapacities(bodyAt(t))[name];
-        if (name.startsWith('perceived-'))
-          return read(t).perceived[name.slice(10) as keyof T.BodyReadout['perceived']];
-        return read(t)[name as Exclude<keyof T.BodyReadout, 'perceived'>];
-      };
-      readSegments.set(name, [...(readSegments.get(name) ?? []), ...sampledPath(start, end, fn)]);
-    }
+    readoutNames.forEach((name, i) => {
+      readSegments.set(name, [...(readSegments.get(name) ?? []), ...required(derived.readout[i])]);
+    });
     b = bodyAt(stop);
     at = stop;
     c = { ...c, clock: { ...c.clock, advancedThroughMs: at }, materializedAtMs: at };
@@ -1179,6 +1283,7 @@ const advance: T.BodyOwner['advance'] = (state, ctx) => {
       },
     };
     if (physical) {
+      snapFloors(b, at, ctx);
       events.push(...applyPhysical(b, at, ctx));
       c = continuation(b, at, `${c.clock.conditionId}:event:${at}`, ctx.effectiveParametersHash);
       d = {
@@ -1656,7 +1761,16 @@ function forecast(
           perception: copy<T.BodyPerceptionContext>(ctx.perception),
           ...(ctx.pregnancy ? { pregnancy: copy<T.Pregnancy>(ctx.pregnancy) } : {}),
         };
-        const r = integrateCell(at, [...flat.values, 0], width, rhs(base, flat.keys, context, at), 1e-12);
+        const r = integrateCell(
+          at,
+          [...flat.values, 0],
+          width,
+          rhs(base, flat.keys, context, at),
+          1e-12,
+          undefined,
+          [],
+          floorIndices(flat.keys),
+        );
         calls += r.calls;
         if (calls > 8192) return failure('forecast numerical work exhausted; shorten the declared spans');
         const start = at;
@@ -1714,6 +1828,7 @@ function forecast(
           b.alive = false;
           result.worst = 1;
         }
+        snapFloors(b, at, context);
         applyPhysical(b, at, context);
       }
       at = end;

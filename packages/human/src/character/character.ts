@@ -1,4 +1,5 @@
 import { cloneData } from '../core/clone.ts';
+import { Memo } from '../core/memo.ts';
 import { hashCanonical } from '../run-canonical.ts';
 /** SCOPE: always-present bounded maturation and annual sustained experience.
  * Rates and reversion are engineering assumptions, directions from research/long-run-sources.md.
@@ -216,6 +217,21 @@ export function projectCharacterTrajectory(
     effectiveParametersHash: string;
   }>,
 ): import('../run-schema.ts').CharacterTrajectory {
+  return characterPaths.get(
+    JSON.stringify([
+      context.person,
+      context.life.bornAt,
+      context.continuation,
+      context.effectiveParametersHash,
+      context.effective.builtins.CHARACTER_DEFAULTS,
+    ]),
+    () => buildCharacterTrajectory(context),
+  );
+}
+const characterPaths = new Memo<import('../run-schema.ts').CharacterTrajectory>(256);
+function buildCharacterTrajectory(
+  context: Parameters<typeof projectCharacterTrajectory>[0],
+): import('../run-schema.ts').CharacterTrajectory {
   const continuation = cloneData(context.continuation);
   checked(continuation.state);
   return freezeData({
@@ -236,9 +252,26 @@ export function readCharacterTrajectory(
   path: DeepReadonly<import('../run-schema.ts').CharacterTrajectory>,
   at: number,
 ): Pick<State, 'traits' | 'values'> {
-  const state = matureCharacter(path.continuation.state, path.bornAt, at, path.parameters);
-  return { traits: state.traits, values: state.values };
+  // A frozen trajectory's reading at one time is shared by every sampler.
+  if (!Object.isFrozen(path) || !Object.isFrozen(path.continuation.state)) {
+    const state = matureCharacter(path.continuation.state, path.bornAt, at, path.parameters);
+    return { traits: state.traits, values: state.values };
+  }
+  let times = readings.get(path);
+  if (!times) {
+    times = new Map();
+    readings.set(path, times);
+  }
+  let reading = times.get(at);
+  if (!reading) {
+    const state = matureCharacter(path.continuation.state, path.bornAt, at, path.parameters);
+    reading = Object.freeze({ traits: Object.freeze(state.traits), values: Object.freeze(state.values) });
+    if (times.size >= 4096) times.clear();
+    times.set(at, reading);
+  }
+  return reading;
 }
+const readings = new WeakMap<object, Map<number, Pick<State, 'traits' | 'values'>>>();
 
 /** Exact affine pieces of the existing doubly clipped trait law, for rate integration.
  * Boundaries are source age/clipping changes, never a compulsory execution grid. */

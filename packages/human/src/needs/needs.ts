@@ -11,10 +11,11 @@
  * body's fatigue already folds it in). Parameters are engineering defaults for game time scales; this does
  * not claim an exhaustive need list, calibrated rates, or a universal weighting between needs.
  */
-import { cloneData } from '../core/clone.ts';
 import { evaluateCell, initialWidth, integrateCell, required } from '../body/span.ts';
 import { characterTraitSegments, readCharacterTrajectory } from '../character/character.ts';
+import { cloneData } from '../core/clone.ts';
 import { clamp, clamp01, dexp, dlog, dpow } from '../core/index.ts';
+import { keyOf, Memo } from '../core/memo.ts';
 import { readEnvironmentTrajectory } from '../environment/environment.ts';
 import { hashCanonical } from '../run-canonical.ts';
 import type {
@@ -401,6 +402,28 @@ export function needSatisfactionAt(context: NeedKernelContext, at: number): numb
 
 /** Deterministic adaptive quartic projection; error values are estimates, not certificates. */
 export function projectNeedTrajectory(context: NeedKernelContext): import('../run-schema.ts').NeedTrajectory {
+  // Pure in the inputs below; frozen trajectory pieces (memo products) enter by identity.
+  // body.id names only the condition, so the readout segments themselves are keyed.
+  const d = context.effective.builtins;
+  return needPaths.get(
+    JSON.stringify([
+      context.person,
+      keyOf(context.character),
+      keyOf(context.environment),
+      context.body.id,
+      context.body.readout.map((r) => [r.field, r.path.segments.map((s) => keyOf(s))]),
+      context.continuation,
+      context.activity,
+      context.forcingPerMinute.command,
+      context.asleep,
+      keyOf(d.NEEDS_DEFAULTS),
+      keyOf(d.ENVIRONMENT_DEFAULTS),
+    ]),
+    () => buildNeedTrajectory(context),
+  );
+}
+const needPaths = new Memo<import('../run-schema.ts').NeedTrajectory>(256);
+function buildNeedTrajectory(context: NeedKernelContext): import('../run-schema.ts').NeedTrajectory {
   // Body descriptors retain full canonical cells even when materialized inside one.
   // Fit those cells, never a caller-clipped subinterval under the same identity.
   const from = Math.max(
