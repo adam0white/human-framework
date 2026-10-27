@@ -638,3 +638,30 @@ it('holds On to dusk beside the open visit choice and names every empty wall at 
   expect(gated.watchers.length).toBeGreaterThanOrEqual(3);
   expect(held.textContent).not.toContain('Nobody is posted');
 });
+
+it('drops the bell from an open night moment once the rope has snapped (F-1596)', () => {
+  const moment = {
+    id: 9,
+    kind: 'waver' as const,
+    who: 'kian',
+    section: 'gate' as const,
+    opened: 0,
+    until: 120,
+    text: 'Kian looks back at the steps.',
+    options: [
+      { id: 'let', label: 'Let Kian go' },
+      { id: 'bell', label: 'Ring and call Kian by name' },
+    ],
+  };
+  const at = (snapped: boolean) =>
+    render(
+      createElement(NightPanel, {
+        frame: { ...dusk, phase: 'night', moment, rope: { wear: snapped ? 1 : 0.2, snapped } },
+        actions,
+      }),
+    ).textContent ?? '';
+  expect(at(true)).not.toContain('Ring and call Kian by name');
+  expect(at(true)).toContain('The rope is broken tonight');
+  // Control: a sound rope keeps the choice.
+  expect(at(false)).toContain('Ring and call Kian by name');
+});
