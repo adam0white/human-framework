@@ -5,6 +5,7 @@
 
 import { projectChapterClock } from './chapter-clock.ts';
 import { cloneData } from './core/clone.ts';
+import { selectEventWording, wordingIssue } from './narrate/variants.ts';
 import { compareInputs } from './run-admission.ts';
 import { archiveHashes, checkArchiveEnvelope } from './run-archive.ts';
 import { canonicalJson, hashCanonical } from './run-canonical.ts';
@@ -51,6 +52,17 @@ function carriesEvidence(input: T.DeepReadonly<T.Input>, person: T.PersonId, id:
 function validateCurrent(archive: T.DeepReadonly<T.RunArchive>, parametersHash: T.Hash): T.Result<true> {
   const state = archive.current;
   const spec = archive.initial.spec;
+  const wordingError = wordingIssue(spec.definitions.lexicon);
+  if (wordingError) return reject('$.initial.spec.definitions.lexicon.wordings', wordingError);
+  const wordingState: Pick<T.RunState, 'wording'> = { wording: {} };
+  for (const event of state.events) {
+    const selected = { ...event, wording: undefined as T.RunEvent['wording'] };
+    selectEventWording(selected, spec.definitions.lexicon, spec.seed, wordingState);
+    if (!same(selected.wording, event.wording))
+      return reject('$.current.events', 'wording choice differs from its seeded occurrence');
+  }
+  if (!same(wordingState.wording, state.wording))
+    return reject('$.current.wording', 'wording streams differ from retained events');
   if (state.world.revision < spec.world.revision)
     return reject('$.current.world.revision', 'current world revision precedes its authored opening');
   const last = archive.history.at(-1);

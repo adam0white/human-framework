@@ -311,6 +311,7 @@ export type RunEvent = {
   causeIds: readonly Id[];
   data: EventData;
   narration: readonly RenderedLine[];
+  wording?: { key: string; occurrence: number; index: number };
 };
 
 export type Phase = 0 | 1 | 2 | 3 | 4 | 5 | 6;
@@ -425,6 +426,7 @@ export type RunState = {
   offers: Readonly<Record<PersonId, ReceivedOfferBook>>;
   routines: readonly ActiveRoutine[];
   rng: RunRngState;
+  wording: Readonly<Record<string, WordingSequence>>;
   queue: readonly ScheduledEvent[];
   pending: readonly HostRequest[];
   receipts: ReceiptLedger;
@@ -2012,7 +2014,10 @@ export type InitialPromptings = {
   responses: readonly PromptingResponse[];
 };
 export type InitialReview = { style: ReviewStyle; styleSource?: Id; atMsOfDay: DurationMs };
+export type WordingSequence = { rng: RngState; occurrence: number; last: number };
 export type Lexicon = {
+  /** Reviewed alternatives for keys in NARRATION_TEMPLATES; same named slots. */
+  wordings?: Record<string, readonly string[]>;
   locale?: string;
   materialMeaning?: string;
   names: Record<Id, string>;
@@ -2020,7 +2025,7 @@ export type Lexicon = {
   prefer: 'name' | 'role';
   actions: Record<Id, { base?: string; past?: string; gerund?: string }>;
 };
-// No arbitrary template packs. Semantic text goes through the one renderer.
+// Authored alternatives use the closed semantic catalog and the one renderer.
 export type CalendarDefinition = {
   id: Id;
   epoch: { id: Id; simulationAt: Time; dayIndex: number; msOfDay: DurationMs };

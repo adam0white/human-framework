@@ -10,6 +10,58 @@ This reference is being moved to HF **4.0.0**. In 4.0 a host uses eight calls (`
 
 The 3.x reference is kept at [v3.2.0](https://github.com/adam0white/human-framework/blob/v3.2.0/docs/framework.md).
 
+## Pre-generated wording variants (HF 4.1)
+
+Games put reviewed alternative lines in `RunSpec.definitions.lexicon.wordings`.
+This is plain JSON. Workers AI generates it offline. A person reviews meaning and
+voice, then commits it as game data. Runtime HF does not call a model.
+
+```json
+{
+  "wordings": {
+    "decision.act": [
+      "I will {action}.{why}",
+      "I have decided to {action}.{why}",
+      "My next step is to {action}.{why}"
+    ],
+    "decision.wait": ["I will wait.", "I will give it time."],
+    "voice.promise": ["{voice} {outcome} their word.", "The person called {voice} {outcome} their word."]
+  }
+}
+```
+
+The public `NARRATION_TEMPLATES` export is the complete key and default-template
+catalog. It is also in
+[`narrate/templates.ts`](../packages/human/src/narrate/templates.ts).
+A generation sweep should take each key and its default strings as input. Return a
+JSON object mapping those keys to arrays of distinct, nonempty strings. Every
+alternative must use exactly the same set of `{slot}` names as that key's default.
+Slot order and repetition may change. Unmatched braces, unknown keys, extra slots,
+missing slots and duplicate strings fail run admission. There is no brace escape
+syntax. Reviewers must check that each alternative preserves meaning; schema
+validation cannot establish that.
+
+Slots contain already admitted display text. For `decision.act`, `{action}` is the
+base action phrase; `{why}` includes its leading space and punctuation, or is empty.
+For `voice.promise`, `{outcome}` is “kept” or “broke”. Summary templates use the entire
+admitted `{summary}` rather than rewriting its contents. Slot insertion happens
+once, so braces or replacement characters inside a name or host summary stay literal.
+
+At event emission, HF selects once using a seeded RNG stream held in
+`RunState.wording`, separate for each `(person, key)`. Events without a person use a
+separate shared stream. The event's `wording` records `key`, one-based `occurrence`
+and zero-based `index`. Consecutive occurrences of the same person/key exclude the
+previous index when at least two alternatives exist. A singleton necessarily
+repeats. Interleaving other people or keys does not advance that stream.
+
+`inspect` and `preview` use the existing renderer after visibility admission. Reads
+never advance wording state. Host and person views use the same recorded choice;
+pagination does not reset it. Exported initial definitions retain the table, and
+exports retain both choices and stream state. Current-engine replay and restore
+preserve continuation. A missing table or key keeps existing wording and consumes
+no wording randomness. Portable persona inspection remains outside HF4's admitted
+surface; these keys cover the current persona-style event lines and narration.
+
 ## Capability evidence (2026-10-26)
 
 Read these bounded results instead of treating a faculty count as evidence of capability. **DEMONSTRATED mechanism** means the named engineering check passed; **FAILED fixed gate** means its fixed gate failed; **UNTESTED** means the claimed extension has no passing gate here; **HOST INFORMATION NEEDED** names an explicit input boundary. These labels do not rank research as accepted truth. Public API names below refer to published 3.2, including its opt-in switches. They do not describe a shipped 4.0 API. Under the [4.0 owner direction](owner-directions-2026-10-18.md#2026-10-26--hf-40-everything-on-holistic-bolder-games-adam-verbatim), new faculties are always on and concerns are consolidated; 3.x receives patches only. A scratch GO is input to that design, not permission for a 3.3 feature publication. This table is a selected evidence view, not a replacement for the complete implementation inventory or the [roadmap](roadmap.md).

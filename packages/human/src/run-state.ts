@@ -87,6 +87,7 @@ export function initialRunState(spec: DeepReadonly<RunSpec>): RunState {
     offers: {},
     routines: [],
     rng: createRng(spec.seed),
+    wording: {},
     queue: [],
     pending: [],
     receipts: {
