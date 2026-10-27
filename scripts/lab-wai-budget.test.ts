@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   admissionAllowed,
   DAILY_HARD_NEURONS,
+  headroomAllowed,
   reservation,
   usageNeurons,
   utcDate,
@@ -16,9 +17,20 @@ describe('Workers AI admission and response accounting', () => {
     expect(admissionAllowed(0, 9_850, 51)).toBe(false);
     expect(admissionAllowed(0, 11_900, 101)).toBe(false);
   });
+  it('preserves best-effort play and control headroom against both admission gates', () => {
+    expect(headroomAllowed('preplay', 4_300, 4_000, 100, 1)).toBe(true);
+    expect(headroomAllowed('preplay', 4_301, 4_000, 100, 1)).toBe(false);
+    expect(headroomAllowed('preplay', null, 2_401, 100, 1)).toBe(false);
+    expect(headroomAllowed('focused', 8_800, 8_000, 100, 1)).toBe(true);
+    expect(headroomAllowed('focused', 8_801, 8_000, 100, 1)).toBe(false);
+    expect(headroomAllowed('control', 9_800, 9_000, 100, 1)).toBe(true);
+    expect(headroomAllowed('preplay', 0, 0, 100, 3.96)).toBe(false);
+  });
   it('charges token usage at the published rate and rejects missing input usage', () => {
     expect(
-      usageNeurons('@cf/qwen/qwen3-30b-a3b-fp8', { usage: { prompt_tokens: 1000, completion_tokens: 100 } }),
+      usageNeurons('@cf/qwen/qwen3-30b-a3b-fp8', {
+        usage: { prompt_tokens: 1000, completion_tokens: 100 },
+      }),
     ).toBeCloseTo(7.6725);
     expect(() => usageNeurons('@cf/cloudflare/clef', { answers: {} })).toThrow('usage unreadable');
   });
@@ -72,7 +84,9 @@ function dailyBucket() {
     async put(
       key: string,
       value: string | ArrayBuffer | Uint8Array,
-      options?: { onlyIf?: { etagMatches?: string; etagDoesNotMatch?: string } },
+      options?: {
+        onlyIf?: { etagMatches?: string; etagDoesNotMatch?: string };
+      },
     ) {
       const old = values.get(key);
       if (options?.onlyIf?.etagMatches ? old?.etag !== options.onlyIf.etagMatches : old) return null;

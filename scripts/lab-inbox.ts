@@ -42,7 +42,7 @@ import {
   suggestionUsage,
   writeSuggestion,
 } from './lab-inbox-suggest.ts';
-import { waiRun } from './lab-wai-budget.ts';
+import { HEADROOM_STOP, waiRun } from './lab-wai-budget.ts';
 
 const suggest = process.argv.includes('--suggest');
 const expectedDay = process.argv
@@ -53,10 +53,14 @@ let cached = 0;
 let spent = 0;
 let spendStopped = false;
 let spendUnknown = false;
+let headroomStopped = false;
+const preplay = process.argv.includes('--budget-phase=preplay');
 const spendStop = () =>
-  spendUnknown
-    ? 'Clef spend stop: response usage unavailable; no more calls this invocation.'
-    : 'Clef spend stop: reached 0.05 USD at list price; no more calls this invocation.';
+  headroomStopped
+    ? 'Clef suggestions stopped at a local budget gate; smaller jobs may still fit.'
+    : spendUnknown
+      ? 'Clef spend stop: response usage unavailable; no more calls this invocation.'
+      : 'Clef spend stop: reached 0.05 USD at list price; no more calls this invocation.';
 
 async function suggestionLine(id: string, env: Envelope): Promise<string> {
   const request = buildNoteRequest(env.who, env.note);
@@ -68,14 +72,14 @@ async function suggestionLine(id: string, env: Envelope): Promise<string> {
       cached++;
       return renderSuggestion(saved);
     }
-    if (spendUnknown || !canSuggest(spent)) {
+    if (spendStopped || spendUnknown || !canSuggest(spent)) {
       spendStopped = true;
       return '';
     }
     failure = 'guarded Clef request could not complete';
     calls++;
     spendUnknown = true;
-    const { result } = await waiRun(MODEL, request, expectedDay);
+    const { result } = await waiRun(MODEL, request, expectedDay, preplay ? 'preplay' : 'control');
     const json = { result };
     spent += suggestionUsage(json.result).usd;
     spendUnknown = false;
@@ -84,7 +88,15 @@ async function suggestionLine(id: string, env: Envelope): Promise<string> {
     failure = 'could not save validated answer';
     writeSuggestion(dir, id, json.result);
     return renderSuggestion(answer);
-  } catch {
+  } catch (error) {
+    if (
+      error instanceof Error &&
+      (error.message === HEADROOM_STOP || error.message === 'STOP: daily neuron cap reached')
+    ) {
+      headroomStopped = true;
+      spendUnknown = false;
+      spendStopped = true;
+    }
     if (spendUnknown) spendStopped = true;
     return `<p class="soft">Clef suggestion failed: ${failure}</p>`;
   }
@@ -124,7 +136,9 @@ mkdirSync(join(dir, 'runs'), { recursive: true });
 mkdirSync(join(dir, 'replay'), { recursive: true });
 mkdirSync(join(dir, 'gz'), { recursive: true });
 get('private/index.json', join(dir, 'index.json'));
-const index = JSON.parse(readFileSync(join(dir, 'index.json'), 'utf8')) as { runs: Entry[] };
+const index = JSON.parse(readFileSync(join(dir, 'index.json'), 'utf8')) as {
+  runs: Entry[];
+};
 const since = new Date(Date.now() - days * 86_400_000).toISOString().slice(0, 10);
 const entries = index.runs
   .filter((r) => r.key.slice(5, 15) >= since)
@@ -160,7 +174,9 @@ try {
   const rootIndex = join(dir, 'linked-index.json');
   get('private/linked-index.json', rootIndex);
   if (existsSync(rootIndex)) {
-    const manifest = JSON.parse(readFileSync(rootIndex, 'utf8')) as { days: string[] };
+    const manifest = JSON.parse(readFileSync(rootIndex, 'utf8')) as {
+      days: string[];
+    };
     for (const day of manifest.days.filter((day) => /^\d{4}-\d{2}-\d{2}$/.test(day) && day >= since)) {
       const dayFile = join(dir, `linked-index-${day}.json`);
       try {
@@ -169,7 +185,9 @@ try {
         linkedWarning = 'Some linked receipt days were unavailable; later days are still shown.';
         continue;
       }
-      const dayIndex = JSON.parse(readFileSync(dayFile, 'utf8')) as { records: LinkedEntry[] };
+      const dayIndex = JSON.parse(readFileSync(dayFile, 'utf8')) as {
+        records: LinkedEntry[];
+      };
       for (const entry of dayIndex.records) {
         if (
           !/^[a-f0-9]{32}$/.test(entry.id) ||
@@ -180,7 +198,9 @@ try {
         if (!existsSync(file)) {
           const gz = join(dir, 'gz', `${entry.player}-${entry.id}.json.gz`);
           get(entry.key, gz);
-          const text = gunzipSync(readFileSync(gz), { maxOutputLength: 4 * 1024 * 1024 }).toString('utf8');
+          const text = gunzipSync(readFileSync(gz), {
+            maxOutputLength: 4 * 1024 * 1024,
+          }).toString('utf8');
           const record: unknown = JSON.parse(text);
           if (
             !linkedRecord(record) ||
@@ -324,4 +344,7 @@ console.log(
 if (suggest) {
   console.log(`Clef suggestions: ${calls} calls, ${cached} cached; ${spent.toFixed(8)} USD at list price.`);
   if (spendStopped) console.log(spendStop());
+  // A scheduled caller must not continue after a guarded request with unknown outcome.
+  if (expectedDay && spendUnknown) process.exitCode = 1;
+  else if (expectedDay && headroomStopped) process.exitCode = 2;
 }

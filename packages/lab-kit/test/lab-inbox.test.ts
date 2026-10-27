@@ -304,7 +304,9 @@ describe('lab:inbox entry point without network', () => {
     try {
       expect(fixture.run()).toContain('2 calls, 0 cached');
       expect(fixture.dispatches()).toBe(1);
-      expect(fixture.html()).toContain('Clef spend stop: response usage unavailable');
+      expect(fixture.html()).toContain(
+        'Clef suggestions stopped at a local budget gate; smaller jobs may still fit.',
+      );
       expect(fixture.html().match(/Suggested by Clef/g)).toHaveLength(1);
     } finally {
       fixture.cleanup();
@@ -336,7 +338,9 @@ describe('lab:inbox entry point without network', () => {
       const day = fixture.budget().days[new Date().toISOString().slice(0, 10)];
       expect(day.reservedNeurons).toBe(fixture.initialNeurons);
       expect(day.models).toEqual({});
-      expect(fixture.html()).toContain('Clef spend stop: response usage unavailable');
+      expect(fixture.html()).toContain(
+        'Clef suggestions stopped at a local budget gate; smaller jobs may still fit.',
+      );
     } finally {
       fixture.cleanup();
     }
@@ -443,7 +447,9 @@ describe('lab:inbox entry point without network', () => {
         fixture.initialNeurons + (1250 * 21818) / 1e6,
       );
       expect(fixture.html()).toContain('Clef suggestion failed:');
-      expect(fixture.html()).toContain('Clef spend stop: response usage unavailable');
+      expect(fixture.html()).toContain(
+        'Clef suggestions stopped at a local budget gate; smaller jobs may still fit.',
+      );
       expect(fixture.html()).not.toContain('Suggested by Clef');
       expect(existsSync(join(fixture.root, '.lab-inbox/suggest/two.json'))).toBe(false);
     } finally {
