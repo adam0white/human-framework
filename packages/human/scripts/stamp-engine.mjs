@@ -58,4 +58,5 @@ if (process.argv.includes('--check')) {
     process.exit(1);
   }
 } else if (committed !== text) await writeFile(target, text);
-process.stdout.write(`${JSON.stringify({ ...engine, sourceFiles: sources.length })}\n`);
+// stderr: npm pack --json captures stdout during prepack, and release.ts parses it.
+process.stderr.write(`${JSON.stringify({ ...engine, sourceFiles: sources.length })}\n`);
