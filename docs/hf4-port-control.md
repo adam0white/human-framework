@@ -1,17 +1,17 @@
-# G1 public-run control on published HF 4.1.0
+# G1 public-run control on published HF 4.2.0
 
 Protocol control for the [port recipe](hf4-port-recipe.md). This is not a Stairwell integration test.
 Work/rest are minimal-host actions, not a caretaker job or cast journey. Only public HF calls and
 the versioned minimal-host example are used.
 
-Run from an HF checkout with the v4.1.0 tag available, using an empty scratch directory:
+Run from an HF checkout with the v4.2.0 tag available, using an empty scratch directory:
 
 ````sh
 set -eu
 export PATH=/opt/homebrew/bin:$PATH
 hf_root=$(pwd)
 proof_dir=$(mktemp -d "$HOME/code/.lab-scratch/g1-proof.XXXXXX")
-git show v4.1.0:packages/human/examples/minimal.ts > "$proof_dir/minimal.ts"
+git show v4.2.0:packages/human/examples/minimal.ts > "$proof_dir/minimal.ts"
 python3 - "$hf_root/docs/hf4-port-control.md" "$proof_dir/proof.ts" <<'PY'
 import pathlib, sys
 text = pathlib.Path(sys.argv[1]).read_text()
@@ -19,7 +19,7 @@ pathlib.Path(sys.argv[2]).write_text(text.split('```typescript\n', 1)[1].split('
 PY
 cd "$proof_dir"
 printf '%s\n' '{"private":true,"type":"module"}' > package.json
-pnpm add --save-exact @adam0white/human-framework@4.1.0
+pnpm add --save-exact @adam0white/human-framework@4.2.0
 pnpm install --frozen-lockfile
 node proof.ts > result.json
 cat result.json
@@ -117,7 +117,7 @@ function arm(action: 'work' | 'rest') {
 const work = arm('work'),
   rest = arm('rest');
 assert.notDeepEqual(work.end.current.people.ada.body, rest.end.current.people.ada.body);
-assert.equal(work.end.engine.package, '@adam0white/human-framework@4.1.0');
+assert.equal(work.end.engine.package, '@adam0white/human-framework@4.2.0');
 console.log(
   JSON.stringify(
     {
@@ -144,15 +144,15 @@ console.log(
 
 ## Observed result, 2026-10-27
 
-Node 26.12.0, published package 4.1.0. Pending-boundary restore, active-work restore/continuation,
+Node 26.12.0, published package 4.2.0. Pending-boundary restore, active-work restore/continuation,
 JSON round-trip, complete archive equality, read-only inspection/preview and exact replay passed
 for both arms. Each completed one action. Work/rest body states differed.
 
-- Engine build: `9af2ceebbce3664b26bdc8996cd418f8ae39dbe251d1e920dcc6eda9eb9b27e6`.
-- Engine schema: `2ee210c9d00aa6691fe3947f7d6bb51bb2ce4e1697a86f48622a5e3c5319fcd1`.
-- Work full hash: `9162735f0c682d59507b5476916918cb4fa9b9884db5350f63580ee6df8cbac4`.
-- Rest full hash: `8c4f2e0e704e4b3ead432c897d067c5912a016ecdeed26543a09969769e9db29`.
+- Engine build: `c15e1236d89617ec4b824749ada5247b3aacbdfc70fd8e0424f9f4d20918ff2c`.
+- Engine schema: `015d9b1576d37d5f242825d97ff411dca00ba720e3f8288a255a0b695053aeab`.
+- Work full hash: `adc1158fc3c9010ada1da6f0a5fa7fcc5435463237fe5f88ce63b05a7e7c9671`.
+- Rest full hash: `c3b70b999ce3e1dca3ee10d3a052d9559f6c993fbb68a8b5cb19f8a09bea9d38`.
 
 Persona/calendar returned `invalid-admission` at `$.select`; admission-field presence returned
-`invalid-admission` at `$.admission`. The error text says HF 4.0; this is published 4.1.0.
+`invalid-admission` at `$.admission`. The error text says HF 4.0; this is published 4.2.0.
 These negative controls confirm G2 remains blocked. They do not prove general portable admission.
