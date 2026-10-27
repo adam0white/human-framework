@@ -4,7 +4,7 @@
  * Apple Silicon dev machine (docs/findings.md, "HF 4.0 step cost before release"); CI multiplies by BENCH_SCALE.
  */
 import { expect, test } from 'vitest';
-import { step } from '../src/index.ts';
+import { exportRun, step } from '../src/index.ts';
 import { benchRun } from './run-bench-fixture.ts';
 import { accepted, HOUR } from './run-numerical-fixture.ts';
 
@@ -44,8 +44,9 @@ function frameP50(run: ReturnType<typeof benchRun>, from: number, frames: number
   for (let i = 0; i < frames; i++) {
     at += 50;
     const t0 = performance.now();
-    accepted(step(run, { until: at, inputs: [] }));
+    const result = accepted(step(run, { until: at, inputs: [] }));
     times.push(performance.now() - t0);
+    expect(result.boundary.type).toBe('until');
   }
   times.sort((a, b) => a - b);
   return times[times.length >> 1] ?? Infinity;
@@ -55,11 +56,13 @@ function frameP50(run: ReturnType<typeof benchRun>, from: number, frames: number
 // accumulate events and receipts between the two samples; a step that copied or hashed them would slow down.
 test('a 50 ms step costs the same after three fed days as at the start (p50)', () => {
   const run = benchRun(1);
-  const early = frameP50(run, 0, 300);
-  let at = 300 * 50;
+  frameP50(run, 0, 100); // warm-up, discarded
+  const early = frameP50(run, 100 * 50, 300);
+  const before = exportRun(run);
+  let at = 400 * 50;
   for (let hour = 1; hour <= 72; hour++) {
     const next = hour * HOUR;
-    accepted(
+    const reached = accepted(
       step(run, {
         until: next,
         inputs: [
@@ -81,8 +84,13 @@ test('a 50 ms step costs the same after three fed days as at the start (p50)', (
         ],
       }),
     );
+    expect(reached.boundary.type).toBe('until');
     at = next;
   }
+  const after = exportRun(run);
+  // The late sample runs on a run that has kept everything since the early one.
+  expect(after.history.length).toBe(before.history.length + 72);
+  expect(after.current.events.length).toBeGreaterThan(before.current.events.length);
   const late = frameP50(run, at, 300);
   expect(late).toBeLessThan(early * 1.5 + 0.05);
 });
