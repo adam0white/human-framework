@@ -61,7 +61,7 @@ Slots contain admitted display text. Authors should preserve their grammatical r
 
 For `decision.act`, `{why}` is empty when no supported motive applies. Need motives can supply ` I need to eat first.`, ` I need to drink first.`, ` I need to sleep first.`, ` I need to rest first.`, ` I need to use the toilet first.`, or ` I need to meet an urgent bodily need first.` A norm motive supplies ` I want to act according to a rule I hold.` A memory motive supplies ` I remember what happened before.` An unrecognized `need:` source supplies a single space. Preserve the suffix as supplied; do not add punctuation around it.
 
-The Workers AI sweep uses [the cast registry](lab/cast-registry.md) for each person's voice and writes partial tables under that person's id in `lexicon.voices`. Both table levels follow the same admission rules above.
+The Workers AI sweep uses [the cast registry](lab/cast-registry.md) for each person's voice and writes partial tables under that person's id in `lexicon.voices`. Each voice id must be an own key in `lexicon.names` or `lexicon.roles`. Both table levels follow the same admission rules above.
 
 Display names and host text are data, not fixed vocabulary. Summary templates use the entire `{summary}` rather than rewriting its contents. Slot insertion happens once, so braces or replacement characters inside a name or host summary stay literal.
 

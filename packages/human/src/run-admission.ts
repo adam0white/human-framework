@@ -351,7 +351,8 @@ export function checkRunSpec(input: unknown): Result<DeepReadonly<import('./run-
   if (!admitted.ok) return admitted;
   const spec = admitted.value;
   const wordingError = wordingIssue(spec.definitions.lexicon);
-  if (wordingError) return fail('invalid-schema', '$.definitions.lexicon', wordingError);
+  if (wordingError)
+    return fail(wordingError.code, `$.definitions.lexicon${wordingError.path}`, wordingError.message);
   if (!Number.isSafeInteger(spec.seed) || spec.seed < 0 || spec.seed > 0xffffffff)
     return fail('invalid-schema', '$.seed', 'seed must be an unsigned 32-bit integer');
   if (!Number.isSafeInteger(spec.world.revision) || spec.world.revision < 0)

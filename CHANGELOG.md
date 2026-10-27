@@ -15,9 +15,9 @@ absolute links in sections, since they are copied into the release page.
 
 Engine: 4.2.0.
 
-- Games can give each person reviewed wording in `definitions.lexicon.voices[personId]`. Each missing template key falls back to `lexicon.wordings`, then built-in text. The same renderer, seeded per-person/template stream, replay recomputation and no-immediate-repeat rule serve all tables.
+- Games can give each person reviewed wording in `definitions.lexicon.voices[personId]`. Each missing template key falls back to `lexicon.wordings`, then built-in text. The same renderer serves all tables. Each person's choices for each line stay in their own seeded sequence, replay checks them, and alternatives do not repeat immediately.
 - Decision intention text depends on the selected wording and is stored in person state; it has no effect on behaviour. Wording randomness remains separate from actor randomness.
-- Document every template slot and its possible values for offline voice writers. No table preserves built-in narration byte for byte. Existing 4.1 archives must start fresh under the new engine stamp.
+- Every template slot and its possible values are documented for offline voice writers. No table preserves built-in narration byte for byte. Existing 4.1 archives must start fresh under the new engine stamp.
 
 ## [4.1.0] - 2026-10-27
 

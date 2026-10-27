@@ -84,9 +84,31 @@ it('rejects malformed wording data before a run is created', () => {
     Object.assign(spec.definitions.lexicon, { wordings: invalid });
     expect(createRun(spec).ok).toBe(false);
     delete spec.definitions.lexicon.wordings;
+    spec.definitions.lexicon.names = { ada: 'Ada' };
     Object.assign(spec.definitions.lexicon, { voices: { ada: invalid } });
     expect(createRun(spec).ok).toBe(false);
   }
+});
+it('rejects unknown voice ids and identifies invalid voice tables', () => {
+  const spec = exampleSpec();
+  spec.definitions.lexicon.voices = { nobody: { 'decision.wait': ['I wait.'] } };
+  expect(createRun(spec)).toMatchObject({
+    ok: false,
+    error: {
+      code: 'unknown-id',
+      path: '$.definitions.lexicon.voices.nobody',
+      message: expect.stringContaining('nobody'),
+    },
+  });
+  spec.definitions.lexicon.names = { ada: 'Ada' };
+  spec.definitions.lexicon.voices = { ada: { 'unknown.key': ['A.'] } };
+  expect(createRun(spec)).toMatchObject({
+    ok: false,
+    error: {
+      path: '$.definitions.lexicon.voices.ada',
+      message: expect.stringMatching(/ada.*unknown\.key|unknown\.key.*ada/),
+    },
+  });
 });
 it('headless control: reads, pagination, restore continuation and replay retain the event choices', () => {
   function setup(withVariants: boolean) {
@@ -96,6 +118,7 @@ it('headless control: reads, pagination, restore continuation and replay retain 
         'decision.act': ['My next step is to {action}.{why}'],
         'observation.summary': ['{summary}', 'I noticed this: {summary}', 'I saw this: {summary}'],
       };
+    if (withVariants) spec.definitions.lexicon.names = { ada: 'Ada' };
     if (withVariants)
       spec.definitions.lexicon.voices = {
         ada: {
