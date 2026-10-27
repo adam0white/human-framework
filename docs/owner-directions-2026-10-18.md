@@ -334,3 +334,9 @@ Answers on the decision desk, 03:28–03:33 UTC:
 - **First classic:** the wagon trail. Note: "Now that I think this through, the other 5 will be too difficult or involved to pull off nicely. They're classics because they have been carefully balanced and polished; we can't replicate that easily. Oregon Trail is maybe an easier one to attempt. "
 
 Coordinator reading: after HF 4.x, every game moves to its named approach in full, with no probe pair first. The site groups games into the five categories. The wagon trail is the only classic planned; the other five shortlisted classics are dropped.
+
+## 2026-10-27 — HF 4.0 scope rulings approved (Adam, verbatim)
+
+> "All good decisions (codex to 4.1, delete code, allow difference), keep going."
+
+Approves the coordinator's HF 4.0 rulings: the Codex additions (portable admission beyond an explicit rejection, the JSON wire adapter, the settlement ledger and the tuning surface) move to 4.1; legacy 3.x code, tests and examples are deleted rather than ported; continuous fields may differ within 1e-9 across chunking while clocks, counters, RNG and event order stay exact.
