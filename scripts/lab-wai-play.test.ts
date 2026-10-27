@@ -3,6 +3,7 @@ import {
   actionableNames,
   attemptDirectory,
   continueSweep,
+  dailyPlan,
   normalizeTapName,
   responseText,
   scheduledDirectory,
@@ -64,10 +65,24 @@ describe('visible accessible name transport', () => {
   });
 });
 
-it('runs at 17:50 Chicago across daylight saving time', () => {
-  expect(scheduledDue(new Date('2026-10-23T22:50:00Z'))).toBe(true);
-  expect(scheduledDue(new Date('2026-11-02T23:50:00Z'))).toBe(true);
-  expect(scheduledDue(new Date('2026-10-23T22:51:00Z'))).toBe(false);
+it('accepts the Chicago afternoon window through 23:30 UTC across DST', () => {
+  expect(scheduledDue(new Date('2026-10-23T21:00:00Z'))).toBe(true);
+  expect(scheduledDue(new Date('2026-11-02T22:00:00Z'))).toBe(true);
+  expect(scheduledDue(new Date('2026-10-23T21:01:00Z'))).toBe(true);
+  expect(scheduledDue(new Date('2026-10-23T20:59:59Z'))).toBe(false);
+  expect(scheduledDue(new Date('2026-11-02T21:59:59Z'))).toBe(false);
+  expect(scheduledDue(new Date('2026-10-23T23:30:00Z'))).toBe(true);
+  expect(scheduledDue(new Date('2026-10-23T23:30:01Z'))).toBe(false);
+  expect(scheduledDue(new Date('2026-10-24T00:00:00Z'))).toBe(false);
+  expect(scheduledDue(new Date('2026-11-03T01:00:00Z'))).toBe(false);
+});
+
+it('plans one rotating focused session and one control without repeated rounds', () => {
+  const first = dailyPlan(new Date('2026-10-23T21:00:00Z'));
+  const next = dailyPlan(new Date('2026-10-24T21:00:00Z'));
+  expect(first.filter((s) => !s.control)).toHaveLength(1);
+  expect(first.filter((s) => s.control)).toHaveLength(1);
+  expect(first[0]?.game).not.toBe(next[0]?.game);
 });
 
 it('continues a productive daily sweep only within its UTC day', () => {

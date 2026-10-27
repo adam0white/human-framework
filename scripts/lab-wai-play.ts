@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { GAMES } from '../apps/site/src/games.ts';
 import { buildNoteRequest, parseSuggestion } from './lab-inbox-suggest.ts';
 import { namedTapRoles, type PlayOp, validatePlayOp } from './lab-play-helpers.ts';
+import { type BudgetPhase, HEADROOM_STOP } from './lab-wai-budget.ts';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const BASE = join(homedir(), 'code/.lab-scratch/wai-daily');
@@ -24,7 +25,7 @@ export function attemptDirectory(date: Date, label?: string): string {
 }
 export const scheduledDirectory = (date: Date) => join(attemptDirectory(date), 'scheduled');
 export function sweepFailure(message: string): 'next' | 'stop' {
-  return message === 'STOP: daily neuron cap reached' ? 'next' : 'stop';
+  return message === HEADROOM_STOP || message === 'STOP: daily neuron cap reached' ? 'next' : 'stop';
 }
 export function responseText(result: Record<string, unknown>): string {
   if (typeof result.response === 'string' && result.response.trim()) return result.response;
@@ -72,41 +73,32 @@ function option(name: string): string | undefined {
 }
 export function dailyPlan(date: Date) {
   const day = Math.floor(date.getTime() / 86_400_000);
-  const week = Math.floor(day / 7);
-  const rotation = day % MODELS.length;
-  const models = [...MODELS.slice(rotation), ...MODELS.slice(0, rotation)];
-  return models
-    .flatMap((model, index) => {
-      const game = GAMES[(day * MODELS.length + index) % GAMES.length];
-      if (!game) throw new Error('Empty games registry');
-      const persona = PERSONAS[(week + index) % PERSONAS.length] ?? PERSONAS[0];
-      return [0, 15]
-        .map((floor) => ({
-          model,
-          game: game.id,
-          url: new URL(game.href, 'https://human.adamwhite.work').href,
-          persona,
-          floor,
-          ceiling: 25,
-          control: false,
-        }))
-        .concat(
-          index === 0
-            ? [
-                {
-                  model,
-                  game: 'darkroom',
-                  url: 'https://adarkroom.doublespeakgames.com/',
-                  persona,
-                  floor: 15,
-                  ceiling: 25,
-                  control: true,
-                },
-              ]
-            : [],
-        );
-    })
-    .sort((a, b) => Number(a.control) - Number(b.control) || a.floor - b.floor);
+  const game = GAMES[day % GAMES.length];
+  if (!game) throw new Error('Empty games registry');
+  const persona = PERSONAS[day % PERSONAS.length] ?? PERSONAS[0];
+  const model = MODELS[0] ?? '';
+  return [
+    {
+      model,
+      game: game.id,
+      url: new URL(game.href, 'https://human.adamwhite.work').href,
+      persona,
+      floor: 0,
+      ceiling: 25,
+      control: false,
+      task: 'Complete one meaningful decision and observe its consequence. Then stop with FINISHED and report the decision, consequence and any confusion. This is a focused task, not a whole-game completion claim.',
+    },
+    {
+      model,
+      game: 'darkroom',
+      url: 'https://adarkroom.doublespeakgames.com/',
+      persona,
+      floor: 0,
+      ceiling: 5,
+      control: true,
+      task: 'Complete one opening decision and observe its consequence, then stop with FINISHED and report. Use this to check the same visible-text, action and final-report path on an independent game; this is not a matched game-quality comparison.',
+    },
+  ];
 }
 async function diskGuard() {
   const disk = await statfs(BASE);
@@ -188,6 +180,7 @@ export interface PlayerBudget {
     maxTokens: number,
     image?: number[],
     expectedDay?: string,
+    phase?: BudgetPhase,
   ): Promise<string>;
   summary(): Promise<unknown>;
 }
@@ -219,10 +212,11 @@ export function continueSweep(start: Date, now: Date, successfulCalls: number, p
 export async function runDaily(budget: PlayerBudget, now = new Date()) {
   await mkdir(BASE, { recursive: true });
   await diskGuard();
-  const directory =
-    process.argv.includes('--scheduled') && !option('attempt') && !option('probe')
-      ? scheduledDirectory(now)
-      : attemptDirectory(now, option('attempt'));
+  if (process.argv.includes('--scheduled') && (option('attempt') || option('probe')))
+    throw new Error('Scheduled runs cannot use manual attempt or probe overrides');
+  const directory = process.argv.includes('--scheduled')
+    ? scheduledDirectory(now)
+    : attemptDirectory(now, option('attempt'));
   const expectedDay = now.toISOString().slice(0, 10);
   const lockPath = join(BASE, 'runner.lock');
   const lock = await open(lockPath, 'wx').catch(() => {
@@ -253,7 +247,7 @@ export async function runDaily(budget: PlayerBudget, now = new Date()) {
       JSON.stringify(
         {
           plan,
-          mode: probe ? 'format-and-feedback probe; not a protocol round' : 'daily round',
+          mode: probe ? 'format-and-report probe; not a protocol round' : 'daily round',
         },
         null,
         2,
@@ -263,269 +257,295 @@ export async function runDaily(budget: PlayerBudget, now = new Date()) {
     claimed = true;
     const available = await budget.models();
     await writeFile(join(directory, 'catalogue.json'), JSON.stringify(available));
+    if (!probe) {
+      try {
+        const { runReadingAndVariants } = await import('./lab-wai-reading.ts');
+        await runReadingAndVariants({
+          budget: {
+            ...budget,
+            infer: (model, messages, maxTokens, image, day) =>
+              budget.infer(model, messages, maxTokens, image, day, 'preplay'),
+          },
+          now,
+          directory: attemptDirectory(now, option('attempt')),
+          root: ROOT,
+        });
+        if (process.argv.includes('--suggest')) {
+          await new Promise<void>((done, reject) => {
+            const inbox = spawn(
+              '/opt/homebrew/bin/node',
+              [
+                'scripts/lab-inbox.ts',
+                '--suggest',
+                `--expected-day=${expectedDay}`,
+                '--budget-phase=preplay',
+              ],
+              { cwd: ROOT, stdio: 'ignore' },
+            );
+            inbox.once('error', reject);
+            inbox.once('exit', (code, signal) =>
+              code === 0 && !signal
+                ? done()
+                : reject(
+                    new Error(code === 2 && !signal ? HEADROOM_STOP : 'Inbox suggestion run incomplete'),
+                  ),
+            );
+          });
+        }
+      } catch (error) {
+        const reason = error instanceof Error ? error.message : 'Reading or inbox failed';
+        const protectedHeadroom = sweepFailure(reason) === 'next';
+        await appendFile(
+          join(directory, 'skipped.jsonl'),
+          `${JSON.stringify(protectedHeadroom ? { stage: 'remaining pre-play work', reason } : { remaining: plan, reason })}\n`,
+        );
+        if (!protectedHeadroom) {
+          halted = true;
+          return { halted, directory, now };
+        }
+      }
+    }
     const protocol = await readFile(join(ROOT, 'docs/lab/playtester-prompt.md'), 'utf8');
     const panel = await readFile(join(ROOT, 'docs/lab/lab-personas.md'), 'utf8');
-    let round = 0;
-    let successfulCalls: number;
-    const localReserved = async () => {
-      const summary = (await budget.summary()) as {
-        local?: { days?: Record<string, { reservedNeurons?: number }> };
-      };
-      return summary.local?.days?.[now.toISOString().slice(0, 10)]?.reservedNeurons ?? 0;
-    };
-    for (;;) {
-      successfulCalls = 0;
-      const startingReserved = await localReserved();
-      for (const [offset, session] of plan.entries()) {
-        const index = round * plan.length + offset;
-        if (new Date().toISOString().slice(0, 10) !== now.toISOString().slice(0, 10)) {
-          halted = true;
-          break;
-        }
-        await diskGuard();
-        if (!available.includes(session.model)) {
-          await appendFile(
-            join(directory, 'skipped.jsonl'),
-            `${JSON.stringify({ ...session, reason: 'Model absent from live catalogue' })}\n`,
-          );
-          continue;
-        }
-        const out = join(directory, `${index}-${session.game}-${session.floor}`);
-        await mkdir(out, { recursive: true });
-        let child: ChildProcess | undefined;
-        let port = 0;
-        let failure: string | undefined;
-        let budgetStop = false;
-        let invalidReplies = 0;
-        const start = Date.now();
-        let stop: ModelAnswer | undefined;
-        try {
-          ({ child, port } = await startDriver([
-            `url=${session.url}`,
-            `out=${out}`,
-            `port=${19370 + index}`,
-            'device=desktop',
-            `floor=${session.floor}`,
-            `ceiling=${session.ceiling + 3}`,
-          ]));
-          let reply: Reply;
-          reply = await driver(port, { op: 'open' });
-          const brief = panel.split(`### ${session.persona}\n`)[1]?.split('\n### ')[0]?.split('\n## ')[0];
-          if (!brief) throw new Error('Persona brief missing');
-          const system = `${protocol}\nYour own persona brief: ${brief}\nYou have set aside time to explore.\nAssignment: ${JSON.stringify(session)}\nDevice: desktop driver. You receive visible text and accessible controls only; ${session.model.includes('vision') ? 'A current viewport screenshot is supplied with each decision; only report visual checks you actually observe.' : 'Screenshots are NOT supplied, so visual-only checks are NOT TESTED.'} Output JSON only: {"op": <one valid lab:play operation>, "report": <optional final report>}. Ops: tap(name or text or x,y), select(name or label,option), type(name,text), key(key), scroll(dy), wait(s=1..30), shot(file), log(kind,reaction,reason,engagement). Include reaction metadata on actions. Never invent a control. Log first_minute after 60 seconds and pulses every three minutes. Stop via log(kind=stop,reason,reaction) and provide report. User authorization overrides the protocol telemetry prohibition: after stopping use the normal Send feedback UI, identify yourself as playtester ${session.persona}, submit your verbatim experience, and verify the visible receipt. Do not change consent settings. Do not claim submission without a visible receipt. During play you may not send feedback until asked in the closing stage.`;
-          let history: { role: string; content: string }[] = [];
-          let closing = false;
-          let closingActions = 0;
-          let closingDeadline = 0;
-          for (let turn = 0; turn < 500; turn++) {
-            if (new Date().toISOString().slice(0, 10) !== now.toISOString().slice(0, 10))
-              throw new Error('STOP: UTC day ended');
-            await diskGuard();
-            const elapsed = (Date.now() - start) / 60_000;
-            if (!closing && elapsed >= session.ceiling) {
-              await driver(port, {
-                op: 'log',
-                kind: 'stop',
-                reason: 'BUDGET',
-                reaction: 'Coordinator ceiling reached; no player verdict inferred.',
-              });
-              closing = true;
-              closingDeadline = Date.now() + 120_000;
-            }
-            if (closing && (Date.now() > closingDeadline || session.control)) break;
-            const user = JSON.stringify({
-              elapsed_minutes: elapsed,
-              floor: session.floor,
-              ceiling: session.ceiling,
-              stage: closing
-                ? 'Closing: send normal feedback and verify receipt; then log stop. No more gameplay.'
-                : 'Play',
-              snapshot: reply,
-              actionableNames: actionableNames(reply.controls ?? ''),
-              instruction:
-                'Return exactly one JSON object for the next operation, not a diary or report. For named taps use only the exact inner name from actionableNames: if controls show button "Begin", send name: "Begin", never name: "button \\"Begin\\"". Do not include the role in name. Example: {"op":{"op":"tap","name":"EXACT CURRENT CONTROL"},"report":null}. Replace the example name with an actual current control, or choose another documented operation. Do not claim a future input, result or elapsed checkpoint. A final report is allowed only with a stop operation. First-minute notes require actual elapsed_minutes >= 1; pulses require actual elapsed time, never invented future times.',
-            });
-            const image = session.model.includes('vision')
-              ? Array.from(
-                  await readFile(
-                    String(
-                      (
-                        await driver(port, {
-                          op: 'shot',
-                          file: `turn-${turn}.png`,
-                        })
-                      ).screenshot,
-                    ),
-                  ),
-                )
-              : undefined;
-            const raw = await budget.infer(
-              session.model,
-              [{ role: 'system', content: system }, ...history, { role: 'user', content: user }],
-              768,
-              image,
-              expectedDay,
-            );
-            successfulCalls++;
-            await appendFile(
-              join(out, 'model.jsonl'),
-              `${JSON.stringify({ t: new Date().toISOString(), snapshot: reply, response: raw })}\n`,
-            );
-            let parsed: ModelAnswer;
-            try {
-              parsed = answer(raw);
-              invalidReplies = 0;
-            } catch {
-              invalidReplies++;
-              if (invalidReplies > 1)
-                throw new Error('TOOL: model returned invalid operation twice; no input executed');
-              reply = {
-                ...reply,
-                coordinator:
-                  'Your last JSON operation was invalid. Retry once using only the documented operation schema and current controls.',
-              };
-              continue;
-            }
-            const op = normalizeTapName(parsed.op as PlayOp, reply.controls ?? '');
-            if ((op.kind === 'first_minute' && elapsed < 1) || (op.kind === 'pulse' && elapsed < 3)) {
-              reply = {
-                ...reply,
-                coordinator:
-                  'That elapsed checkpoint has not happened. Choose a real next input without inventing time or observations.',
-              };
-              continue;
-            }
-            if (op.op === 'log' && op.kind === 'stop') {
-              if (!closing && elapsed < session.floor && !['TOOL', 'FINISHED'].includes(op.reason ?? '')) {
-                reply = {
-                  ...reply,
-                  coordinator:
-                    'Floor not reached. Log want_quit and continue. Broken game or driver block must be described accurately.',
-                };
-                continue;
-              }
-              if (closing) {
-                if (closingActions === 0) {
-                  reply = {
-                    ...reply,
-                    coordinator:
-                      'Before ending, make one best-effort attempt to reach the normal feedback controls using the visible page. If no feedback control is visible, log that failure after inspecting the menu. Do not invent submission.',
-                  };
-                  closingActions++;
-                  continue;
-                }
-                await driver(port, {
-                  op: 'shot',
-                  file: 'feedback-receipt-or-failure.png',
-                });
-                stop = parsed;
-                break;
-              }
-              stop = parsed;
-              reply = await driver(port, op);
-              if (session.control) break;
-              closing = true;
-              closingDeadline = Date.now() + 120_000;
-            } else {
-              reply = await driver(port, op);
-              if (closing && op.op !== 'log') closingActions++;
-            }
-            history = [
-              ...history,
-              { role: 'user', content: user },
-              { role: 'assistant', content: raw },
-            ].slice(-8);
-            await sleep(1500);
-          }
-          if (process.argv.includes('--suggest') && stop?.report) {
-            const request = buildNoteRequest(`playtester ${session.persona}`, stop.report);
-            if (request) {
-              const { waiRun } = await import('./lab-wai-budget.ts');
-              const suggested = await waiRun('@cf/cloudflare/clef', request, expectedDay);
-              await writeFile(
-                join(out, 'suggestion.json'),
-                JSON.stringify(parseSuggestion(suggested.result), null, 2),
-              );
-            }
-          }
-        } catch (error) {
-          failure = error instanceof Error ? error.message : 'Session failed';
-          budgetStop =
-            /STOP:|USAGE LIMIT|reservation retained|Budget |budget |authentication|HTTP 429/iu.test(failure);
-          if (port)
+    const round = 0;
+    for (const [offset, session] of plan.entries()) {
+      const index = round * plan.length + offset;
+      if (new Date().toISOString().slice(0, 10) !== now.toISOString().slice(0, 10)) {
+        halted = true;
+        break;
+      }
+      await diskGuard();
+      if (!available.includes(session.model)) {
+        await appendFile(
+          join(directory, 'skipped.jsonl'),
+          `${JSON.stringify({ ...session, reason: 'Model absent from live catalogue' })}\n`,
+        );
+        continue;
+      }
+      const out = join(directory, `${index}-${session.game}-${session.floor}`);
+      await mkdir(out, { recursive: true });
+      let child: ChildProcess | undefined;
+      let port = 0;
+      let failure: string | undefined;
+      let budgetStop = false;
+      let invalidReplies = 0;
+      const start = Date.now();
+      let stop: ModelAnswer | undefined;
+      try {
+        ({ child, port } = await startDriver([
+          `url=${session.url}`,
+          `out=${out}`,
+          `port=${19370 + index}`,
+          'device=desktop',
+          `floor=${session.floor}`,
+          `ceiling=${session.ceiling + 3}`,
+        ]));
+        let reply: Reply;
+        reply = await driver(port, { op: 'open' });
+        const brief = panel.split(`### ${session.persona}\n`)[1]?.split('\n### ')[0]?.split('\n## ')[0];
+        if (!brief) throw new Error('Persona brief missing');
+        const system = `${protocol}\nYour own persona brief: ${brief}\nYou have set aside time to explore.\nAssignment: ${JSON.stringify(session)}\nDevice: desktop driver. You receive visible text and accessible controls only; ${session.model.includes('vision') ? 'A current viewport screenshot is supplied with each decision; only report visual checks you actually observe.' : 'Screenshots are NOT supplied, so visual-only checks are NOT TESTED.'} Output JSON only: {"op": <one valid lab:play operation>, "report": <optional final report>}. Ops: tap(name or text or x,y), select(name or label,option), type(name,text), key(key), scroll(dy), wait(s=1..30), shot(file), log(kind,reaction,reason,engagement). Include reaction metadata on actions. Never invent a control. Log first_minute after 60 seconds and pulses every three minutes. Stop via log(kind=stop,reason,reaction) and provide report. Do not send feedback or change consent settings. When you stop, include your final report in the same JSON response; it is saved locally.`;
+        let history: { role: string; content: string }[] = [];
+        let closing = false;
+        let closingDeadline = 0;
+        for (let turn = 0; turn < 500; turn++) {
+          if (new Date().toISOString().slice(0, 10) !== now.toISOString().slice(0, 10))
+            throw new Error('STOP: UTC day ended');
+          await diskGuard();
+          const elapsed = (Date.now() - start) / 60_000;
+          if (!closing && elapsed >= session.ceiling) {
             await driver(port, {
               op: 'log',
               kind: 'stop',
-              reason: budgetStop ? 'BUDGET' : 'TOOL',
-              reaction: `Coordinator interruption: ${failure}. No player verdict inferred.`,
-            }).catch(() => {});
-        } finally {
-          if (port && !session.control)
-            await driver(port, {
-              op: 'shot',
-              file: 'feedback-receipt-or-failure.png',
-            }).catch(() => {});
-          await writeFile(
-            join(out, 'report.json'),
-            JSON.stringify(
-              {
-                session,
-                stop: stop ?? null,
-                status: failure ? 'incomplete' : stop ? 'model-report' : 'incomplete',
-                failure: failure ?? null,
-                feedback:
-                  'Inspect visible receipt in model.jsonl and feedback-receipt-or-failure.png; no automatic sent claim',
-                timing: {
-                  started: new Date(start).toISOString(),
-                  ended: new Date().toISOString(),
-                },
-              },
-              null,
-              2,
-            ),
-          );
-          if (child) {
-            const running = child;
-            running.kill('SIGTERM');
-            await new Promise<void>((done) => {
-              if (running.exitCode !== null) done();
-              else {
-                running.once('exit', () => done());
-                setTimeout(() => {
-                  running.kill('SIGKILL');
-                  done();
-                }, 5000).unref();
-              }
+              reason: 'BUDGET',
+              reaction: 'Coordinator ceiling reached; no player verdict inferred.',
             });
+            closing = true;
+            closingDeadline = Date.now() + 120_000;
+          }
+          if (closing && Date.now() > closingDeadline) break;
+          const user = JSON.stringify({
+            elapsed_minutes: elapsed,
+            floor: session.floor,
+            ceiling: session.ceiling,
+            stage: closing
+              ? 'Closing: log stop with your final report. No more gameplay or feedback submission.'
+              : 'Play',
+            snapshot: reply,
+            actionableNames: actionableNames(reply.controls ?? ''),
+            instruction:
+              'Return exactly one JSON object for the next operation, not a diary or report. For named taps use only the exact inner name from actionableNames: if controls show button "Begin", send name: "Begin", never name: "button \\"Begin\\"". Do not include the role in name. Example: {"op":{"op":"tap","name":"EXACT CURRENT CONTROL"},"report":null}. Replace the example name with an actual current control, or choose another documented operation. Do not claim a future input, result or elapsed checkpoint. A final report is allowed only with a stop operation. First-minute notes require actual elapsed_minutes >= 1; pulses require actual elapsed time, never invented future times.',
+          });
+          if (!probe && !session.control && reply.visible?.trim()) {
+            await appendFile(
+              join(attemptDirectory(now, option('attempt')), 'live-text.jsonl'),
+              `${JSON.stringify({ game: session.game, url: session.url, text: reply.visible, timestamp: new Date().toISOString() })}\n`,
+            );
+          }
+          const image = session.model.includes('vision')
+            ? Array.from(
+                await readFile(
+                  String(
+                    (
+                      await driver(port, {
+                        op: 'shot',
+                        file: `turn-${turn}.png`,
+                      })
+                    ).screenshot,
+                  ),
+                ),
+              )
+            : undefined;
+          const raw = await budget.infer(
+            session.model,
+            [{ role: 'system', content: system }, ...history, { role: 'user', content: user }],
+            768,
+            image,
+            expectedDay,
+            probe ? 'control' : session.control ? 'control' : 'focused',
+          );
+          await appendFile(
+            join(out, 'model.jsonl'),
+            `${JSON.stringify({ t: new Date().toISOString(), snapshot: reply, response: raw })}\n`,
+          );
+          let parsed: ModelAnswer;
+          try {
+            parsed = answer(raw);
+            invalidReplies = 0;
+          } catch {
+            invalidReplies++;
+            if (invalidReplies > 1)
+              throw new Error('TOOL: model returned invalid operation twice; no input executed');
+            reply = {
+              ...reply,
+              coordinator:
+                'Your last JSON operation was invalid. Retry once using only the documented operation schema and current controls.',
+            };
+            continue;
+          }
+          const op = normalizeTapName(parsed.op as PlayOp, reply.controls ?? '');
+          if ((op.kind === 'first_minute' && elapsed < 1) || (op.kind === 'pulse' && elapsed < 3)) {
+            reply = {
+              ...reply,
+              coordinator:
+                'That elapsed checkpoint has not happened. Choose a real next input without inventing time or observations.',
+            };
+            continue;
+          }
+          if (op.op === 'log' && op.kind === 'stop') {
+            if (!closing && elapsed < session.floor && !['TOOL', 'FINISHED'].includes(op.reason ?? '')) {
+              reply = {
+                ...reply,
+                coordinator:
+                  'Floor not reached. Log want_quit and continue. Broken game or driver block must be described accurately.',
+              };
+              continue;
+            }
+            stop = parsed;
+            reply = await driver(port, op);
+            break;
+          } else {
+            reply = await driver(port, op);
+          }
+          history = [...history, { role: 'user', content: user }, { role: 'assistant', content: raw }].slice(
+            -8,
+          );
+          await sleep(1500);
+        }
+        if (process.argv.includes('--suggest') && stop?.report) {
+          const request = buildNoteRequest(`playtester ${session.persona}`, stop.report);
+          if (request) {
+            const { waiRun } = await import('./lab-wai-budget.ts');
+            const suggested = await waiRun(
+              '@cf/cloudflare/clef',
+              request,
+              expectedDay,
+              probe || session.control ? 'control' : 'focused',
+            );
+            await writeFile(
+              join(out, 'suggestion.json'),
+              JSON.stringify(parseSuggestion(suggested.result), null, 2),
+            );
           }
         }
-        if (budgetStop && process.argv.includes('--scheduled') && sweepFailure(failure ?? '') === 'next') {
-          await appendFile(
-            join(directory, 'skipped.jsonl'),
-            `${JSON.stringify({ session, reason: failure })}\n`,
-          );
-          continue;
+      } catch (error) {
+        failure = error instanceof Error ? error.message : 'Session failed';
+        budgetStop = /STOP:|USAGE LIMIT|reservation retained|Budget |budget |authentication|HTTP 429/iu.test(
+          failure,
+        );
+        if (port)
+          await driver(port, {
+            op: 'log',
+            kind: 'stop',
+            reason: budgetStop ? 'BUDGET' : 'TOOL',
+            reaction: `Coordinator interruption: ${failure}. No player verdict inferred.`,
+          }).catch(() => {});
+      } finally {
+        await writeFile(
+          join(out, 'report.json'),
+          JSON.stringify(
+            {
+              session,
+              stop: stop ?? null,
+              status: failure ? 'incomplete' : stop ? 'model-report' : 'incomplete',
+              failure: failure ?? null,
+              feedback: 'Not submitted; report retained locally',
+              timing: {
+                started: new Date(start).toISOString(),
+                ended: new Date().toISOString(),
+              },
+            },
+            null,
+            2,
+          ),
+        );
+        if (child) {
+          const running = child;
+          running.kill('SIGTERM');
+          await new Promise<void>((done) => {
+            if (running.exitCode !== null) done();
+            else {
+              running.once('exit', () => done());
+              setTimeout(() => {
+                running.kill('SIGKILL');
+                done();
+              }, 5000).unref();
+            }
+          });
         }
-        if (budgetStop) {
-          halted = true;
-          await appendFile(
-            join(directory, 'skipped.jsonl'),
-            `${JSON.stringify({ remaining: plan.slice(offset + 1), reason: failure })}\n`,
-          );
-          break;
-        }
-        await writeFile(join(directory, 'usage.json'), JSON.stringify(await budget.summary(), null, 2));
       }
-      round++;
-      const endingReserved = await localReserved();
-      if (
-        !halted &&
-        endingReserved > startingReserved &&
-        process.argv.includes('--scheduled') &&
-        continueSweep(now, new Date(), successfulCalls, !!probe)
-      ) {
-        await appendFile(join(directory, 'rounds.jsonl'), `${JSON.stringify({ round, plan })}\n`);
-      } else break;
+      if (budgetStop && failure && sweepFailure(failure) === 'next') {
+        await appendFile(
+          join(directory, 'skipped.jsonl'),
+          `${JSON.stringify({ session, reason: failure })}\n`,
+        );
+        continue;
+      }
+      if (budgetStop) {
+        halted = true;
+        await appendFile(
+          join(directory, 'skipped.jsonl'),
+          `${JSON.stringify({ remaining: plan.slice(offset + 1), reason: failure })}\n`,
+        );
+        break;
+      }
+      await writeFile(join(directory, 'usage.json'), JSON.stringify(await budget.summary(), null, 2));
+    }
+    if (!halted && !probe && process.argv.includes('--scheduled')) {
+      try {
+        const { refillReading } = await import('./lab-wai-reading.ts');
+        await refillReading({
+          budget,
+          now,
+          directory: attemptDirectory(now),
+          root: ROOT,
+        });
+      } catch (error) {
+        await appendFile(
+          join(directory, 'skipped.jsonl'),
+          `${JSON.stringify({ stage: 'reading refill', reason: error instanceof Error ? error.message : 'Refill failed' })}\n`,
+        );
+      }
     }
   } finally {
     if (claimed) {
@@ -540,17 +560,21 @@ export async function runDaily(budget: PlayerBudget, now = new Date()) {
   }
   return { halted, directory, now };
 }
+/** Same UTC date as the Chicago afternoon, with at least 30 minutes before reset. */
 export function scheduledDue(now = new Date()): boolean {
   const parts = new Intl.DateTimeFormat('en-GB', {
     timeZone: 'America/Chicago',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
     hour: '2-digit',
-    minute: '2-digit',
     hourCycle: 'h23',
   }).formatToParts(now);
-  return (
-    parts.find((p) => p.type === 'hour')?.value === '17' &&
-    parts.find((p) => p.type === 'minute')?.value === '50'
-  );
+  const part = (type: Intl.DateTimeFormatPartTypes) => parts.find((p) => p.type === type)?.value;
+  const utcDay = now.toISOString().slice(0, 10);
+  const localDay = `${part('year')}-${part('month')}-${part('day')}`;
+  const reset = Date.parse(`${utcDay}T00:00:00Z`) + 86_400_000;
+  return localDay === utcDay && Number(part('hour')) >= 16 && reset - now.getTime() >= 1_800_000;
 }
 async function main() {
   if (process.argv.includes('--scheduled') && !scheduledDue()) return;
@@ -563,7 +587,7 @@ async function main() {
   const before = await waiUsage();
   const budget: PlayerBudget = {
     models: waiModels,
-    infer: async (model, messages, maxTokens, image, expectedDay) => {
+    infer: async (model, messages, maxTokens, image, expectedDay, phase) => {
       const { result } = await waiRun(
         model,
         image
@@ -579,6 +603,7 @@ async function main() {
               ...(model.includes('/qwen/') ? { enable_thinking: false } : {}),
             },
         expectedDay,
+        phase,
       );
       return responseText(result);
     },
@@ -602,35 +627,7 @@ async function main() {
       note: 'Projected paid USD conservatively adds local recorded usage to the starting account total and may double-count; dollar figures are estimates, never billing receipts; shared account usage includes other callers.',
     }),
   };
-  const outcome = await runDaily(budget);
-  if (
-    !outcome.halted &&
-    process.argv.includes('--suggest') &&
-    new Date().toISOString().slice(0, 10) === outcome.now.toISOString().slice(0, 10)
-  ) {
-    await new Promise<void>((done) => {
-      const inbox = spawn(
-        '/opt/homebrew/bin/node',
-        ['scripts/lab-inbox.ts', '--suggest', `--expected-day=${outcome.now.toISOString().slice(0, 10)}`],
-        {
-          cwd: ROOT,
-          stdio: 'ignore',
-        },
-      );
-      inbox.once('error', () => {
-        console.error('Inbox suggestions unavailable; existing reports preserved');
-        done();
-      });
-      inbox.once('exit', (code, signal) => {
-        if (code !== 0 || signal)
-          console.error('Inbox suggestion run incomplete; existing reports preserved');
-        done();
-      });
-    });
-    await writeDailySummary(budget, outcome.directory, outcome.now).catch(() =>
-      console.error('Final inbox accounting unavailable; inspect budget reservations'),
-    );
-  }
+  await runDaily(budget);
 }
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url))
   main().catch((error: unknown) => {

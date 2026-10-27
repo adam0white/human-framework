@@ -3,7 +3,15 @@
  * bounds this tool's paid usage even if account analytics lies. It cannot cap unrelated callers.
  */
 import { execFileSync } from 'node:child_process';
-import { mkdirSync, readFileSync, renameSync, statfsSync, unlinkSync, writeFileSync } from 'node:fs';
+import {
+  appendFileSync,
+  mkdirSync,
+  readFileSync,
+  renameSync,
+  statfsSync,
+  unlinkSync,
+  writeFileSync,
+} from 'node:fs';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -50,7 +58,9 @@ export function waiAuth(): string {
         encoding: 'utf8',
         stdio: ['ignore', 'pipe', 'ignore'],
       });
-      const value = JSON.parse(raw.slice(raw.indexOf('{'))) as { token?: unknown };
+      const value = JSON.parse(raw.slice(raw.indexOf('{'))) as {
+        token?: unknown;
+      };
       if (typeof value.token !== 'string' || !value.token) throw new Error();
       token = value.token;
     } catch {
@@ -103,14 +113,21 @@ export async function waiUsage(): Promise<AccountUsage | null> {
   try {
     const response = await fetch('https://api.cloudflare.com/client/v4/graphql', {
       method: 'POST',
-      headers: { authorization: `Bearer ${waiAuth()}`, 'content-type': 'application/json' },
+      headers: {
+        authorization: `Bearer ${waiAuth()}`,
+        'content-type': 'application/json',
+      },
       body: JSON.stringify({ query }),
       signal: AbortSignal.timeout(30_000),
     });
     const json = (await response.json()) as {
       errors?: unknown;
       data?: {
-        viewer?: { accounts?: { aiInferenceAdaptiveGroups?: { sum?: { totalNeurons?: number } }[] }[] };
+        viewer?: {
+          accounts?: {
+            aiInferenceAdaptiveGroups?: { sum?: { totalNeurons?: number } }[];
+          }[];
+        };
       };
     };
     if (!response.ok || json.errors) return null;
@@ -134,7 +151,10 @@ export async function waiModels(): Promise<string[]> {
         signal: AbortSignal.timeout(30_000),
       },
     );
-    const json = (await response.json()) as { success?: boolean; result?: { name?: string }[] };
+    const json = (await response.json()) as {
+      success?: boolean;
+      result?: { name?: string }[];
+    };
     if (!response.ok || json.success === false || !Array.isArray(json.result)) throw new Error();
     return json.result.flatMap((m) => (typeof m.name === 'string' ? [m.name] : []));
   } catch {
@@ -193,10 +213,27 @@ export function admissionAllowed(
     localReserved + reserve <= DAILY_HARD_NEURONS
   );
 }
+// Best-effort local headroom; other account callers and shared admission can still consume capacity.
+export type BudgetPhase = 'preplay' | 'focused' | 'control';
+export const HEADROOM_STOP = 'STOP: protected play headroom';
+export function headroomAllowed(
+  phase: BudgetPhase,
+  accountNeurons: number | null,
+  localReserved: number,
+  reserve: number,
+  reservedUSD: number,
+): boolean {
+  const headroom = phase === 'preplay' ? 5_500 : phase === 'focused' ? 1_000 : 0;
+  return (
+    admissionAllowed(accountNeurons, localReserved, reserve + headroom) &&
+    reservedUSD + (reserve + headroom) * 0.000011 <= LOCAL_BUDGET_USD
+  );
+}
 export async function waiRun(
   model: string,
   body: Record<string, unknown>,
   expectedDay?: string,
+  phase: BudgetPhase = 'control',
 ): Promise<{ result: Record<string, unknown>; neurons: number; usd: number }> {
   diskCheck();
   mkdirSync(ROOT, { recursive: true, mode: 0o700 });
@@ -221,6 +258,8 @@ export async function waiRun(
     const usdReserve = reserve * 0.000011;
     if (state.reservedUSD + usdReserve > LOCAL_BUDGET_USD)
       throw new Error('STOP: $4 local experiments allocation exhausted');
+    if (!headroomAllowed(phase, account?.neurons ?? null, day.reservedNeurons, reserve, state.reservedUSD))
+      throw new Error(HEADROOM_STOP);
     state.reservedUSD += usdReserve;
     day.reservedNeurons += reserve;
     day.models[model] ??= { neurons: 0, reservedNeurons: 0, usd: 0, calls: 0 };
@@ -228,13 +267,23 @@ export async function waiRun(
     spend.reservedNeurons += reserve;
     spend.calls++;
     save(state); // Retain reservations for timeout, crash or invalid answers.
+    const receipt = join(ROOT, `${date}-inference.jsonl`);
+    const requestId = `${process.pid}-${Date.now()}-${spend.calls}`;
+    appendFileSync(
+      receipt,
+      `${JSON.stringify({ requestId, model, phase, reserve, status: 'reserved', timestamp: new Date().toISOString() })}\n`,
+      { mode: 0o600 },
+    );
     // Persist locally first: an ambiguous remote admission must never permit a retry to reclaim spend.
     try {
       const key = readFileSync(join(ROOT, 'admission-key'), 'utf8').trim();
       if (!key) throw new Error();
       const admission = await fetch('https://human.adamwhite.work/lab/api/wai-budget', {
         method: 'POST',
-        headers: { authorization: `Bearer ${key}`, 'content-type': 'application/json' },
+        headers: {
+          authorization: `Bearer ${key}`,
+          'content-type': 'application/json',
+        },
         body: JSON.stringify({ day: date, neurons: day.reservedNeurons }),
         signal: AbortSignal.timeout(30_000),
       });
@@ -250,7 +299,10 @@ export async function waiRun(
       if (utcDate() !== date) throw new Error('STOP: UTC day ended; reservation retained');
       response = await fetch(`https://api.cloudflare.com/client/v4/accounts/${ACCOUNT}/ai/run/${model}`, {
         method: 'POST',
-        headers: { authorization: `Bearer ${auth}`, 'content-type': 'application/json' },
+        headers: {
+          authorization: `Bearer ${auth}`,
+          'content-type': 'application/json',
+        },
         body: JSON.stringify(body),
         signal: AbortSignal.timeout(60_000),
       });
@@ -282,6 +334,11 @@ export async function waiRun(
     day.reservedNeurons -= refund;
     state.reservedUSD -= refund * 0.000011;
     save(state);
+    appendFileSync(
+      receipt,
+      `${JSON.stringify({ requestId, model, phase, reserve, neurons, status: 'complete', timestamp: new Date().toISOString() })}\n`,
+      { mode: 0o600 },
+    );
     return { result: json.result, neurons, usd };
   } finally {
     unlinkSync(lockPath);
