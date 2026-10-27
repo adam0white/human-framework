@@ -21,7 +21,7 @@ Engine: 4.0.2. Fix crisis advancement after recovery.
 
 Use the exact package version for saved-run replay. These are engineering controls, not clinical validation. No playtest or panel run is included.
 
-## [4.0.1] - Unreleased
+## [4.0.1] - 2026-10-27
 
 Engine: 4.0.1. A speed patch with no change in behaviour: every decision, `hashes.current` and `hashes.history` match 4.0.0 on the same inputs.
 
