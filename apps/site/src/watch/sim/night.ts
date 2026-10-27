@@ -539,7 +539,11 @@ function enterDawn(s: WatchState): void {
     const parts: string[] = [];
     // `posted` is who stands there at dawn; someone who drove a threat off earlier stood it for a while.
     if (gotKinds.length > 0 && posted.length === 0)
-      parts.push(heroes.length > 0 ? `Nobody stayed to guard ${the} until dawn.` : `Nobody watched ${the}.`);
+      parts.push(
+        heroes.length > 0
+          ? `Nobody stayed to guard ${the} until dawn.`
+          : `Nobody watched ${the}. A watcher posted there could have stopped the raiders.`,
+      );
     for (const kind of gotKinds) {
       const g = got[kind] ?? 0;
       parts.push(
@@ -581,6 +585,16 @@ function enterDawn(s: WatchState): void {
     grainAfter: s.grain,
     ropeSnapped: s.rope.snapped,
     crossed: SECTION_IDS.some((id) => (t.got[id].wolf ?? 0) + (t.got[id].thief ?? 0) > 0),
+    ...(t.grainAtDusk > s.grain
+      ? {
+          unwatched: SECTION_IDS.filter(
+            (id) =>
+              (t.got[id].wolf ?? 0) + (t.got[id].thief ?? 0) > 0 &&
+              postedIn(s, id).length === 0 &&
+              t.heroes[id].length === 0,
+          ),
+        }
+      : {}),
     voices: [],
   };
   rememberTheNight(s);
@@ -607,7 +621,13 @@ function enterDawn(s: WatchState): void {
       q.met = (t.got.gate.wolf ?? 0) + (t.got.gate.thief ?? 0) === 0;
   }
   for (const p of s.community.people) if (isWatcher(s, p)) maybeLimp(s, p);
-  s.talks = { left: TALKS_PER_DAY, said: [], asked: s.talks.asked };
+  // A discovery is told once a game (F-1595: Kian's map line came back every dawn).
+  s.talks = {
+    left: TALKS_PER_DAY,
+    said: [],
+    asked: s.talks.asked,
+    ...(s.talks.discovered ? { discovered: s.talks.discovered } : {}),
+  };
   s.tokens = [];
   s.throws = [];
   s.commands = {};
@@ -1772,8 +1792,8 @@ function prepareRefugeDeparture(s: WatchState): boolean {
     who: 'kian',
     topic: 'home',
     text: s.refugeDeparture
-      ? 'Kian and Ada shared food, water and quiet rest. A quiet departure snapshot is ready; their return duty remains open. Save Kian, or choose to stay together.'
-      : 'They spent real daylight here. No eligible quiet departure was captured yet; save is unavailable. Choose to stay if they cannot leave before dusk.',
+      ? 'Kian and Ada shared food, water and quiet rest. They are ready to go, and Kian still owes Ada the trip back.'
+      : 'Kian and Ada spent the daylight together, but they were not ready to go before dusk. Choose Stay here together to go on with the watch.',
   });
   return true;
 }

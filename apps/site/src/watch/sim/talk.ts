@@ -84,6 +84,27 @@ export function topicsFor(s: WatchState, who: string): Topic[] {
   );
 }
 
+/**
+ * Each watcher's own wording of a shared answer (F-1595: different people gave the very same sentence). The
+ * phrasing is fixed by the run's seed and the speaker's place in the village, so two people in one game differ
+ * while there are enough phrasings, and one already spoken this dawn is skipped. No RNG is drawn.
+ */
+function own(s: WatchState, who: string, key: string, lines: string[]): string {
+  let h = 0x811c9dc5;
+  for (const c of `${s.seed}|${key}`) h = Math.imul(h ^ c.charCodeAt(0), 0x01000193);
+  const start =
+    (h >>> 0) +
+    Math.max(
+      0,
+      s.community.people.findIndex((p) => p.id === who),
+    );
+  for (let k = 0; k < lines.length; k++) {
+    const line = lines[(start + k) % lines.length] ?? '';
+    if (!s.talks.said.some((x) => x.text.startsWith(line))) return line;
+  }
+  return lines[start % lines.length] ?? lines[0] ?? '';
+}
+
 /** Holds a talk. Returns false when it cannot be held. */
 export function talk(s: WatchState, who: string, topic: Topic): boolean {
   if (!canTalk(s, who) || !TOPICS.includes(topic)) return false;
@@ -104,41 +125,108 @@ export function talk(s: WatchState, who: string, topic: Topic): boolean {
       (n) => n.who === who && (n.kind === 'fled' || n.kind === 'ran' || n.kind === 'slept'),
     );
     const top = fears[0];
-    if (left?.section)
+    if (left?.section) {
+      const at = theSection(left.section);
       text =
         left.kind === 'slept'
-          ? `“I went home to sleep. I’m sorry. I couldn’t stand up straight at ${theSection(left.section)}.”`
+          ? own(s, who, 'left-slept', [
+              `“I went home to sleep. I’m sorry. I couldn’t stand up straight at ${at}.”`,
+              `“My legs gave out at ${at}, so I went home to sleep. I’m sorry.”`,
+              `“I couldn’t keep my eyes open at ${at}. I went to my bed.”`,
+              `“I left ${at} to sleep. It was wrong of me.”`,
+            ])
           : said.fear > 0.3
-            ? `“I left ${theSection(left.section)}. I couldn’t stand it up there.”`
-            : `“I left ${theSection(left.section)}. I was very cold. It won’t happen again.”`;
-    else if (top && top[1] > 0.45)
-      text = `“I keep seeing ${theSection(top[0] as SectionId)} when I shut my eyes.”`;
-    else if (top) text = `“It was all right. I don’t love ${theSection(top[0] as SectionId)}.”`;
-    else if (worst?.kind === 'carrier') text = '“I got someone down off the wall. That’s what I remember.”';
+            ? own(s, who, 'left-afraid', [
+                `“I left ${at}. I couldn’t stand it up there.”`,
+                `“I came down from ${at}. I was too frightened to stay.”`,
+                `“${capitalised(at)} was too much for me. I left it.”`,
+                `“I ran from ${at}. I am ashamed of it.”`,
+              ])
+            : own(s, who, 'left-cold', [
+                `“I left ${at}. I was very cold. It won’t happen again.”`,
+                `“The cold drove me off ${at}. Next time I’ll bring another coat.”`,
+                `“I couldn’t feel my hands, so I came down from ${at}.”`,
+                `“I left ${at} to get warm. I should have stayed.”`,
+              ]);
+    } else if (top && top[1] > 0.45) {
+      const at = theSection(top[0] as SectionId);
+      text = own(s, who, 'feared', [
+        `“I keep seeing ${at} when I shut my eyes.”`,
+        `“I don’t want to go back to ${at}.”`,
+        `“${capitalised(at)} frightens me now.”`,
+        `“I still hear the noises from ${at} when it is quiet.”`,
+      ]);
+    } else if (top) {
+      const at = theSection(top[0] as SectionId);
+      text = own(s, who, 'uneasy', [
+        `“It was all right. I don’t love ${at}.”`,
+        `“It was fine, but ${at} makes me uneasy.”`,
+        `“I managed. I would rather not stand at ${at} again.”`,
+        `“Nothing much. ${capitalised(at)} is not my favourite place.”`,
+      ]);
+    } else if (worst?.kind === 'carrier') text = '“I got someone down off the wall. That’s what I remember.”';
     else if (said.fear > 0.35) text = '“I don’t want to talk about it.”';
     else
       text =
         p.traits.emotionality > 0.6
-          ? '“I jumped at every owl. Nothing came, though.”'
+          ? own(s, who, 'jumpy', [
+              '“I jumped at every owl. Nothing came, though.”',
+              '“Every sound made me jump, but nothing came.”',
+            ])
           : p.traits.extraversion > 0.6
-            ? '“The night was long and cold. I talked to the stones.”'
-            : '“The night was long and cold, but I could stand it.”';
+            ? own(s, who, 'chatty', [
+                '“The night was long and cold. I talked to the stones.”',
+                '“Long and cold. I sang under my breath to stay awake.”',
+              ])
+            : own(s, who, 'steady', [
+                '“The night was long and cold, but I could stand it.”',
+                '“Cold, but I have stood worse nights.”',
+                '“Long and quiet. I could stand it.”',
+              ]);
   } else if (topic === 'body') {
     hear(s.keeper, who, 'pain', said.pain, at, TALK_WEIGHT);
     hear(s.keeper, who, 'fatigue', said.fatigue, at, TALK_WEIGHT);
-    if (said.pain > 0.45) text = '“It’s bad. I won’t lie to you.”';
-    else if (said.pain > 0.15) text = '“It aches, but I can still use it.”';
-    else if (said.fatigue > 0.5) text = '“I am very tired, that is all.”';
+    if (said.pain > 0.45)
+      text = own(s, who, 'pain', [
+        '“It’s bad. I won’t lie to you.”',
+        '“It hurts a lot. I will not pretend it doesn’t.”',
+        '“It is bad. I can barely use it.”',
+      ]);
+    else if (said.pain > 0.15)
+      text = own(s, who, 'ache', [
+        '“It aches, but I can still use it.”',
+        '“It is sore. I can manage.”',
+        '“It hurts when I move, but it works.”',
+      ]);
+    else if (said.fatigue > 0.5)
+      text = own(s, who, 'tired', [
+        '“I am very tired, that is all.”',
+        '“Only tired. Very tired.”',
+        '“I need sleep more than anything.”',
+      ]);
     // Pain they won't own to still shows in how they stand: the one "fine" worth noticing.
     else if (outwardSigns(p).pain > 0.15)
       text = '“I am fine. I really am.” (The watcher avoids putting weight on one leg.)';
     else
       text =
         p.traits.conscientiousness > 0.65
-          ? '“I am fit enough to stand watch tonight.”'
+          ? own(s, who, 'fit', [
+              '“I am fit enough to stand watch tonight.”',
+              '“I can stand watch tonight. Put me where you need me.”',
+              '“I’m well. I will be on the wall tonight.”',
+              '“Ready for tonight. Nothing is wrong.”',
+            ])
           : p.traits.emotionality > 0.6
-            ? '“I feel well enough, but I could use more sleep.”'
-            : '“There is nothing wrong with me.”';
+            ? own(s, who, 'well-enough', [
+                '“I feel well enough, but I could use more sleep.”',
+                '“Well enough. A little more sleep would help.”',
+                '“I’m all right, only short of sleep.”',
+              ])
+            : own(s, who, 'fine', [
+                '“There is nothing wrong with me.”',
+                '“I’m fine.”',
+                '“Nothing to report. I’m well.”',
+              ]);
   } else if (topic === 'home') {
     text = homeWords(s, who);
     const spouse = spouseOf(s, who);
@@ -154,11 +242,23 @@ export function talk(s: WatchState, who: string, topic: Topic): boolean {
     s.gateWilling[who] = willing;
     text = willing
       ? c > 0.7
-        ? '“If you asked me, I would do the job well.”'
-        : '“I would try if you chose me. Someone has to.”'
+        ? own(s, who, 'gate-sure', [
+            '“If you asked me, I would do the job well.”',
+            '“Choose me and I will keep it well.”',
+          ])
+        : own(s, who, 'gate-try', [
+            '“I would try if you chose me. Someone has to.”',
+            '“If nobody better comes forward, I will.”',
+          ])
       : c < 0.3
         ? '“I am not sure I can manage the Gate.”'
         : '“Do not choose me. Ask someone steadier.”';
+    // F-1597: say what the answer settled, outside the quotes.
+    const name = s.cast[who]?.name ?? who;
+    const their = s.cast[who]?.sex === 'female' ? 'her' : 'his';
+    text += willing
+      ? ` ${name} said yes. When you choose who keeps the Gate next, at an autumn fair, ${their} name comes first.`
+      : ` ${name} said no. When you choose who keeps the Gate next, at an autumn fair, ${their} name comes last.`;
   }
   if (
     topic === 'night' &&
@@ -177,6 +277,8 @@ export function talk(s: WatchState, who: string, topic: Topic): boolean {
   if (!s.talks.asked.includes(`${who}:${topic}`)) s.talks.asked.push(`${who}:${topic}`);
   return true;
 }
+
+const capitalised = (x: string) => x.charAt(0).toUpperCase() + x.slice(1);
 
 /** Their household, in their words. */
 function homeWords(s: WatchState, who: string): string {

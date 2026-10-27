@@ -2804,3 +2804,25 @@
     line-height: 1.4;
   }
 }
+
+/* F-1592/F-1593: an open visit holds the dawn; its choice sits in the footer beside the held button, two
+   clearly separate buttons, and the visit text above is marked as waiting. */
+.w-open-choice {
+  margin: 0.6rem 0;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--w-accent);
+  border-radius: 10px;
+}
+.w-visit-choice .w-grain-warning {
+  margin: 0 0 0.4rem;
+}
+.w-choice-pair {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.w-choice-pair > .w-secondary {
+  flex: 1 1 12rem;
+  width: auto;
+  margin-top: 0;
+}

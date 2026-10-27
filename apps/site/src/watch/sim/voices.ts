@@ -282,6 +282,8 @@ export function dawnVoices(s: WatchState): { voices: { who: WatcherId; text: str
       say('cry', [
         '“You rang the bell when there was nothing there.”',
         '“If you ring at nothing, we stop listening.”',
+        '“The bell rang and there was nothing out there.”',
+        '“Ring it for nothing again and nobody will run next time.”',
       ]);
       cryTold = true;
     }

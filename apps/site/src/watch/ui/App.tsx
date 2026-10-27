@@ -73,6 +73,9 @@ const PRESSES: Press[] = ['ask', 'urge', 'insist'];
 
 const nameIn = (f: Frame, id: WatcherId) => f.watchers.find((w) => w.id === id)?.name ?? '';
 const sectionName = (id: SectionId) => SECTIONS.find((s) => s.id === id)?.name ?? '';
+/** "a", "a and b", "a, b and c". */
+const listWords = (xs: string[]) =>
+  xs.length < 2 ? (xs[0] ?? '') : `${xs.slice(0, -1).join(', ')} and ${xs.at(-1)}`;
 /** "the Gate", "the East wall". */
 const theSectionName = (id: SectionId) =>
   id === 'gate' ? 'the Gate' : `the ${sectionName(id).toLowerCase()}`;
@@ -850,14 +853,23 @@ export function DuskPanel({
     !warnedSection.fallen &&
     warnedSection.posts.length > 0 &&
     !frame.watchers.some((w) => w.posted && postSection(w.posted) === frame.warned);
+  // F-1594: every wall nobody holds, not only the scout's; a raid can come where the scout did not look.
+  const emptyWalls = sel
+    ? []
+    : frame.sections.filter(
+        (x) =>
+          !x.fallen &&
+          x.posts.length > 0 &&
+          x.id !== (tracksUnwatched ? frame.warned : null) &&
+          !frame.watchers.some((w) => w.posted && postSection(w.posted) === x.id),
+      );
   return (
     <div className="w-dusk">
       {frame.refugeVisit?.status === 'agreed' ? (
         <section aria-label="Kian and Ada’s pending visit">
           <p>
-            Kian and Ada still have their prepared visit and return promise. Their earlier meal stays kept.
-            Opening this chapter did not take them to the refuge, a safe place to stay. Choose to stay before
-            beginning the watch.
+            Kian and Ada’s visit to the refuge, a safe place down the valley, is still open. Begin the watch
+            waits until you choose Stay here together. Kian then keeps his place on the wall.
           </p>
           <button
             type="button"
@@ -1052,9 +1064,14 @@ export function DuskPanel({
             >
               Begin the watch
             </button>
-            {tracksUnwatched ? (
+            {tracksUnwatched || emptyWalls.length > 0 ? (
               <p className="w-grain-warning" role="status">
-                Nobody is posted on {theSectionName(frame.warned)}, where the scout warned of trouble.
+                {tracksUnwatched
+                  ? `Nobody is posted on ${theSectionName(frame.warned)}, where the scout warned of trouble${emptyWalls.length > 0 ? `, or on ${listWords(emptyWalls.map((x) => theSectionName(x.id)))}` : ''}.`
+                  : `Nobody is posted on ${listWords(emptyWalls.map((x) => theSectionName(x.id)))}.`}
+                {emptyWalls.length > 0
+                  ? ' Raids can come where the scout did not look, and an empty wall can lose grain.'
+                  : ''}
               </p>
             ) : null}
             <p className="w-note">Tap a watcher to post them.</p>
@@ -1068,20 +1085,25 @@ export function DuskPanel({
 function MomentCard({
   m,
   seconds,
+  ropeSnapped,
   actions,
   onLet,
 }: {
   m: Moment;
   seconds: number | null;
+  ropeSnapped: boolean;
   actions: WatchActions;
   onLet: () => void;
 }) {
+  // F-1596: a moment opened before the rope snapped still lists the bell; it cannot ring now, so it goes.
+  const options = ropeSnapped ? m.options.filter((o) => o.id !== 'bell') : m.options;
+  const bellGone = options.length < m.options.length;
   return (
     <section className="w-moment" aria-label="A moment on the wall">
       <p className="w-moment-text">{watchWords(m.text)}</p>
       <progress className="w-decision-bar" max={120} value={seconds ?? 120} aria-label="Time to decide" />
       <div className="w-moment-options">
-        {m.options.map((o) => (
+        {options.map((o) => (
           <button
             key={o.id}
             type="button"
@@ -1093,6 +1115,7 @@ function MomentCard({
           </button>
         ))}
       </div>
+      {bellGone ? <p className="w-note">The rope is broken tonight, so the bell cannot call them.</p> : null}
       <button type="button" className="w-moment-let" onClick={onLet}>
         …or say nothing. The watcher decides without your advice.
       </button>
@@ -1239,7 +1262,7 @@ export function NightPanel({
           type="button"
           className={`w-bellbtn${ringing === 0 ? '' : ringing % 2 ? ' is-ring-a' : ' is-ring-b'}`}
           aria-label={settingWords(
-            `${frame.bellSwinging ? 'Bell swinging' : 'Ring the bell'}. ${frame.bellRead ?? ''}. ${ropeWords(frame.rope.wear, frame.rope.snapped)}`,
+            `${frame.rope.snapped ? 'The bell is silent' : frame.bellSwinging ? 'Bell swinging' : 'Ring the bell'}. ${frame.bellRead ?? ''}. ${ropeWords(frame.rope.wear, frame.rope.snapped)}`,
           )}
           disabled={frame.rope.snapped || frame.bellSwinging}
           onClick={() => actions.input({ k: 'bell' })}
@@ -1479,6 +1502,7 @@ function NightMoment({
       key={m.id}
       m={m}
       seconds={frame.decisionSeconds}
+      ropeSnapped={frame.rope.snapped}
       actions={actions}
       onLet={() => onDismiss(m.id)}
     />
@@ -1528,7 +1552,7 @@ function Talks({ frame, actions }: { frame: Frame; actions: WatchActions }) {
           <summary>Earlier this morning ▸</summary>
           <ul className="w-voices">
             {t.said.slice(0, -1).map((x) => (
-              <li key={`${x.who}-${x.topic}`}>
+              <li key={`${x.who}-${x.topic}-${x.text}`}>
                 <blockquote>{x.text}</blockquote>
                 <span>{settingWords(x.name)}</span>
               </li>
@@ -1585,9 +1609,19 @@ export function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActi
   const d = frame.dawn;
   if (!d) return null;
   const last = frame.winter !== null && frame.winter.night >= frame.winter.nights;
+  // F-1592: an open visit holds the dawn, so its choice sits beside the held button. The visit only matters for
+  // keeping Kian and Ada for another game, which the lab menu does; elsewhere it is not offered.
+  const visitOpen = frame.refugeVisit?.status === 'agreed';
+  const canAskVisit = labMode() && frame.watchers.some((w) => w.id === 'kian');
   return (
     <div className="w-page w-dawn">
       <h2 className="w-dawn-outcome">{dawnOutcome(d)}</h2>
+      {d.unwatched?.length ? (
+        <p className="w-grain-warning">
+          Raiders got over {listWords(d.unwatched.map((id) => theSectionName(id)))} while nobody was posted
+          there. A watcher there could have stopped them.
+        </p>
+      ) : null}
       {frame.watchers
         .filter((w) => w.duskRest?.account)
         .map((w) => (
@@ -1604,42 +1638,33 @@ export function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActi
         The night's account — what happened on the wall
       </button>
       <Talks frame={frame} actions={actions} />
-      {frame.watchers.some((w) => w.id === 'kian') ? (
+      {visitOpen ? (
+        <section aria-label="Kian and Ada’s visit" className="w-open-choice">
+          <p>
+            Kian and his little sister Ada agreed to spend one day at the refuge, a safe place down the
+            valley, and to come back by the next dawn.
+          </p>
+          <p>
+            {frame.refugeReady
+              ? 'They spent today together. Ada ate and rested, and a little grain was used. To take them into another game, open the Menu and choose “Save this person for another chapter”. In this village Kian stays on the watch.'
+              : labMode()
+                ? 'Choose below before the next watch. If they care for each other today, they get ready to go. If they stay, the visit is off.'
+                : 'Choose Stay here together below to go on. Kian keeps his place on the wall.'}
+          </p>
+        </section>
+      ) : canAskVisit ? (
         <section aria-label="A visit together">
           <p>
-            A one-day visit to the refuge, a safe place to stay, needs both Kian and his little sister Ada to
-            agree. Kian remains responsible for Ada’s care; a home threat or unfinished duty keeps them here.
+            Kian could take his little sister Ada to the refuge, a safe place down the valley, for one day.
+            Both must agree. A threat at home or an unfinished task keeps them here.
           </p>
-          {frame.refugeVisit?.status === 'agreed' ? (
-            <>
-              <p>
-                They agreed to stay together and return by the next dawn. Save Kian at a quiet action
-                boundary, or choose to stay before the next watch.
-              </p>
-              <button
-                type="button"
-                className="w-secondary"
-                onClick={() => actions.input({ k: 'refugeVisit', choice: 'prepare' })}
-              >
-                Spend daylight caring for Ada and prepare a quiet departure
-              </button>
-              <button
-                type="button"
-                className="w-secondary"
-                onClick={() => actions.input({ k: 'refugeVisit', choice: 'stay' })}
-              >
-                Stay here together
-              </button>
-            </>
-          ) : (
-            <button
-              type="button"
-              className="w-secondary"
-              onClick={() => actions.input({ k: 'refugeVisit', choice: 'ask' })}
-            >
-              Ask Kian and Ada about visiting the refuge together
-            </button>
-          )}
+          <button
+            type="button"
+            className="w-secondary"
+            onClick={() => actions.input({ k: 'refugeVisit', choice: 'ask' })}
+          >
+            Ask Kian and Ada about visiting the refuge together
+          </button>
         </section>
       ) : null}
       {d.scout ? <p className="w-scoutline">{d.scout}</p> : null}
@@ -1698,7 +1723,37 @@ export function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActi
         </div>
       ) : null}
       <PageActions>
-        <button type="button" className="w-primary" onClick={() => actions.input({ k: 'toDusk' })}>
+        {visitOpen ? (
+          <div className="w-visit-choice">
+            <p className="w-grain-warning" role="status">
+              {last ? 'Into the thaw' : 'On to dusk'} waits until you choose for Kian and Ada.
+            </p>
+            <div className="w-choice-pair">
+              {frame.refugeReady || !labMode() ? null : (
+                <button
+                  type="button"
+                  className="w-secondary"
+                  onClick={() => actions.input({ k: 'refugeVisit', choice: 'prepare' })}
+                >
+                  Let them care for each other today
+                </button>
+              )}
+              <button
+                type="button"
+                className="w-secondary"
+                onClick={() => actions.input({ k: 'refugeVisit', choice: 'stay' })}
+              >
+                Stay here together
+              </button>
+            </div>
+          </div>
+        ) : null}
+        <button
+          type="button"
+          className="w-primary"
+          disabled={visitOpen}
+          onClick={() => actions.input({ k: 'toDusk' })}
+        >
           {last ? 'Into the thaw' : 'On to dusk'}
         </button>
       </PageActions>

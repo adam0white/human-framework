@@ -159,6 +159,8 @@ export interface Frame {
   slowed: boolean;
   alerts: Alert[];
   refugeVisit?: import('./refuge-visit.ts').RefugeVisit;
+  /** Kian and Ada spent the day together and are ready to be kept for another game (F-1592). */
+  refugeReady?: boolean;
   dawn: DawnPage | null;
   // G3-3: the year.
   year: number;
@@ -621,6 +623,7 @@ export function buildFrame(s: WatchState, sub: number, slowed: boolean, rate = 0
     // Only what is still news: alerts from the last hour of the night.
     alerts: s.alerts.filter((a) => s.minute - a.minute < 60).slice(-6),
     ...(s.refugeVisit ? { refugeVisit: structuredClone(s.refugeVisit) } : {}),
+    ...(s.refugeDeparture ? { refugeReady: true } : {}),
     // Keep authored phrases in state: lastVoices uses them to avoid repeats next dawn.
     dawn: s.dawn
       ? { ...s.dawn, voices: s.dawn.voices.map((v) => ({ ...v, text: dawnSpeech(v.text) })) }

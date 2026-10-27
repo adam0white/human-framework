@@ -249,6 +249,8 @@ export interface DawnPage {
   ropeSnapped: boolean;
   /** Something got over the wall tonight (even if it found no grain to take). */
   crossed: boolean;
+  /** Walls a threat got over while nobody was posted there and grain was lost (F-1594: what a post would have stopped). */
+  unwatched?: SectionId[];
   /** What the watchers say at dawn, in their own words. */
   voices: { who: WatcherId; text: string }[];
 }
