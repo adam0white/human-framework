@@ -14,7 +14,6 @@ import {
   freezeData,
   historyEntries,
   makeKernel,
-  readChapterProjection,
   readKernel,
   stageTransaction,
 } from './run-kernel.ts';
@@ -179,47 +178,9 @@ export function inspect(
       ok: false,
       error: { code: 'duplicate-id', path: '$.select', message: 'Duplicate inspection selection' },
     };
-  const chapter = query.perspective.kind === 'host' && query.select.includes('chapter');
-  const result = inspectCurrentRun(
-    run,
-    chapter ? { ...query, select: query.select.filter((select) => select !== 'chapter') } : query,
-  );
+  const result = inspectCurrentRun(run, query);
   if (!result.ok) return result;
   let value: T.DeepReadonly<T.Inspection> = result.value;
-  if (chapter) {
-    const people: T.DeepReadonly<T.PersonView>[] = [];
-    for (const person of value.people) {
-      if (person.kind !== 'host')
-        return {
-          ok: false,
-          error: {
-            code: 'invalid-admission',
-            path: '$.perspective',
-            message: 'Host chapter requires a host view',
-          },
-        };
-      const projection = readChapterProjection(run, person.id);
-      if (!projection)
-        return {
-          ok: false,
-          error: {
-            code: 'invalid-admission',
-            path: '$.select.chapter',
-            message: `No admitted chapter preparation for ${person.id}`,
-          },
-        };
-      const parts: T.DeepReadonly<T.SelectedPart<T.HostParts>>[] = [];
-      for (const select of query.select) {
-        if (select === 'chapter') parts.push({ select: 'chapter', value: projection });
-        else {
-          const part = person.parts.find((part) => part.select === select);
-          if (part) parts.push(part);
-        }
-      }
-      people.push({ ...person, parts });
-    }
-    value = { ...value, people };
-  }
   if (lifecycle) {
     const life = inspectLifecycle(run, lifecycle, query.perspective);
     if (!life.ok) return life;

@@ -72,7 +72,7 @@ export const BODY_DEFAULTS = freezeData({
   exertionRiseHalfLife: 40,
   exertionRecoverHalfLife: 45,
   exertionRecoverHalfLifeAsleep: 25,
-  /** Fatigue store (2.6.0, opt-in): depletion per hour at full effort (× (1 - 0.5 fitness) × (1 - depletion)). */
+  /** Fatigue store: depletion per hour at full effort (× (1 - 0.5 fitness) × (1 - depletion)). */
   depletionPerHour: 0.3,
   /** Effort below which the store does not fill and recovers while awake. */
   depletionFloor: 0.3,

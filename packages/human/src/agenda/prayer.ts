@@ -1,6 +1,25 @@
-/** SCOPE: pure calendar projections of sourced held worship schedules, never astronomy or rulings.
- * Prayer boundaries follow research/prayer-times-sources.md and research/decisions.md.
- * Fasting windows are explicit authored data carrying their own provenance. */
+/** SCOPE: pure calendar projections of sourced held worship schedules, never astronomy or rulings. Prayer
+ * and fasting times come from the host calendar (location and date dependent); this module only shapes them
+ * into windows. Fasting windows are explicit authored data carrying their own provenance; the fast runs
+ * fajr..maghrib after Qur'an 2:187. Suhoor and iftar lengths are engineering defaults.
+ *
+ * Window boundaries follow research/decisions.md, which records the default understanding where schools differ
+ * (the most common position overall; engineering choices, not rulings):
+ * - Fajr runs from true dawn until sunrise (agreed across schools; research/prayer-times-sources.md §1).
+ * - Asr begins when a shadow equals its object's length plus the noon shadow (the majority position;
+ *   prayer-times-sources.md §1), and Maghrib ends when the red twilight goes (the majority; §2). The engine
+ *   computes no astronomy: a host's `asr` and `isha` times carry these positions, and a host that tabulates by
+ *   another position (two shadow lengths, the white twilight) has chosen differently.
+ * - Isha is valid until true dawn (prayer-times-sources.md §1), so its window runs to the next day's Fajr. Its
+ *   preferred end (midnight, decisions.md) is not distinguished from its valid end.
+ * - Disliked (makruh) times: sunrise until `MAKRUH_DEFAULTS.afterSunrise` minutes after, the minutes before
+ *   Dhuhr and the last minutes before sunset (prayer-times-sources.md §3; decisions.md). The 20 minutes after
+ *   sunrise is a labelled simplification. Nothing vetoes prayer in them; the day's own Asr may still be prayed
+ *   before sunset.
+ * - The Eid al-Fitr prayer: from `afterSunrise` minutes after sunrise until the makruh before Dhuhr,
+ *   congregational, strongly emphasised, no individual make-up (research/eid-and-mourning-sources.md §1;
+ *   decisions.md). Missing it is no breach and owes nothing.
+ * Nothing here models local moon sighting. */
 import type {
   CalendarDay,
   CalendarDefinition,

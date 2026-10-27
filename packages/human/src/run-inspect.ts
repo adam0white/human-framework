@@ -36,7 +36,6 @@ export function inspectCurrentRun(
     return fail('$.perspective.observer', 'unknown observer', 'unknown-id');
   if (q.diagnostic && q.perspective.kind !== 'host')
     return fail('$.diagnostic', 'full hash requires privileged host perspective');
-  if (q.lifecycle) return fail('$.lifecycle', 'C0 lifecycle reader composition required');
   if (
     q.perspective.kind === 'host' &&
     q.select.some((s) => s === 'persona' || s === 'calendar' || s === 'chapter')

@@ -258,17 +258,17 @@ export function firstMs(lo: number, hi: number, predicate: (at: number) => boole
   }
   return lo;
 }
-/** Quartic interpolation for closed readout algebra; refine by midpoint residual.
- * A kink (a clip or a max) is isolated by bisection down to the 1 ms floor, so the depth
- * limit scales with the span: 20 levels reach 1 ms only for spans up to 2^20 ms, and a
- * daily cell is hours wide. Work is bounded separately: one path fits at most 8192
- * intervals. Neither limit ever accepts a wider residual. */
 /** Exact integer ceil(log2(span)) without a platform transcendental (libm rule). */
 function halvingsToOneMs(span: number): number {
   let halvings = 0;
   for (let width = 1; width < span; width *= 2) halvings++;
   return halvings;
 }
+/** Quartic interpolation for closed readout algebra; refine by midpoint residual.
+ * A kink (a clip or a max) is isolated by bisection down to the 1 ms floor, so the depth
+ * limit scales with the span: 20 levels reach 1 ms only for spans up to 2^20 ms, and a
+ * daily cell is hours wide. Work is bounded separately: one path fits at most 8192
+ * intervals. Neither limit ever accepts a wider residual. */
 export function sampledPath(
   from: number,
   to: number,
@@ -435,7 +435,6 @@ export function required<T>(value: T | null | undefined): T {
   if (value === null || value === undefined) throw new RangeError('missing required owner datum');
   return value;
 }
-/** Canonical forcing segmentation, never the requested materialization target. */
 /**
  * Work budget for one integrated span. A cell cut short by a forcing boundary (a segment end of an upstream
  * trajectory) is bounded by that trajectory's own budget, so only cells whose width the integrator chose
@@ -445,6 +444,7 @@ export function required<T>(value: T | null | undefined): T {
 export const SPAN_CELLS = 1024;
 export const spanBudgetExceeded = (calls: number, ownCells: number, forcedCells: number): boolean =>
   ownCells > SPAN_CELLS || calls > 8 * (SPAN_CELLS + forcedCells);
+/** Canonical forcing segmentation, never the requested materialization target. */
 export function nextPathBoundary(at: number, paths: readonly DeepReadonly<ScalarTrajectory>[]): number {
   let end = Infinity;
   for (const p of paths) {

@@ -30,8 +30,6 @@ export type RunRecord = {
   allocations: Map<T.PersonId, T.Reference[]>;
   effectIds: Set<T.Id>;
   evidenceIds: Set<string>;
-  admissions: Map<T.PersonId, T.DeepReadonly<T.PersonaAdmission>>;
-  chapterProjections: Map<T.Id, T.DeepReadonly<T.ChapterProjection>>;
   activityOffers: Map<T.Id, number>; // current activities only; derived from original start requests
 };
 // Only cold construction/restore/preview copies existing journals. Hot transactions
@@ -58,7 +56,8 @@ export function freezeData<T>(value: T): T.DeepReadonly<T> {
     const item = pending.pop();
     if (item !== null && typeof item === 'object' && !visited.has(item)) {
       visited.add(item);
-      pending.push(...Object.values(item));
+      // One push per value: spreading a long array (history, events) overflows the call stack.
+      for (const child of Object.values(item)) pending.push(child);
       Object.freeze(item);
     }
   }
@@ -97,56 +96,6 @@ function activityOfferIndex(state: T.DeepReadonly<T.RunState>): Map<T.Id, number
       offers.set(event.data.request.activityId, event.data.request.offerRevision);
   return offers;
 }
-function authoringInInput(input: T.DeepReadonly<T.Input>): T.DeepReadonly<T.PersonAuthoring> | undefined {
-  if (input.kind === 'person.arrived') return input.payload.authored;
-  if (
-    input.kind === 'lifecycle.received' &&
-    input.payload.type === 'birth' &&
-    input.payload.child.kind === 'create' &&
-    input.payload.child.newborn.kind === 'authored'
-  )
-    return input.payload.child.newborn.person;
-  return undefined;
-}
-function admissionIndexes(archive: T.DeepReadonly<T.RunArchive>) {
-  const admissions = new Map<T.PersonId, T.DeepReadonly<T.PersonaAdmission>>();
-  const retain = (person: T.DeepReadonly<T.PersonAuthoring>) => {
-    if (person.admission && archive.current.people[person.id]) admissions.set(person.id, person.admission);
-  };
-  for (const person of archive.initial.people) retain(person);
-  const consumed = new Set(
-    archive.current.receipts.dispositions
-      .filter((receipt) => receipt.kind === 'consumed')
-      .map((receipt) => receipt.inputId),
-  );
-  for (const transaction of archive.history)
-    for (const input of transaction.inputs)
-      if (consumed.has(input.id)) {
-        const person = authoringInInput(input);
-        if (person) retain(person);
-      }
-  const chapterProjections = new Map<T.Id, T.DeepReadonly<T.ChapterProjection>>();
-  for (const admission of admissions.values())
-    chapterProjections.set(admission.preparation.id, admission.preparation.chapter);
-  for (const event of archive.current.events)
-    if (event.data.kind === 'chapter-change')
-      chapterProjections.set(event.data.chapterId, event.data.projection);
-  return { admissions, chapterProjections };
-}
-export function readPersonaAdmission(
-  run: T.Run,
-  person: T.PersonId,
-): T.DeepReadonly<T.PersonaAdmission> | undefined {
-  return Kernel.read(run).admissions.get(person);
-}
-export function readChapterProjection(
-  run: T.Run,
-  person: T.PersonId,
-): T.DeepReadonly<T.ChapterProjection> | undefined {
-  const record = Kernel.read(run),
-    admission = record.admissions.get(person);
-  return admission ? record.chapterProjections.get(admission.preparation.id) : undefined;
-}
 export function makeKernel(
   spec: T.DeepReadonly<T.RunSpec>,
   parameters: T.DeepReadonly<DerivedParameters>,
@@ -166,8 +115,6 @@ export function makeKernel(
     effectIds: new Set(),
     evidenceIds: new Set(),
     activityOffers: new Map(),
-    admissions: new Map(),
-    chapterProjections: new Map(),
   });
 }
 export function readKernel(run: T.Run): RunRecord {
@@ -216,7 +163,6 @@ export function restoreKernel(
       current.receipts.evidence.map((receipt) => JSON.stringify([receipt.person, receipt.id])),
     ),
     activityOffers: activityOfferIndex(current),
-    ...admissionIndexes(archive),
   });
 }
 export function forkKernel(run: T.Run): T.Run {
@@ -235,8 +181,6 @@ export function forkKernel(run: T.Run): T.Run {
     effectIds: new Set(source.effectIds),
     evidenceIds: new Set(source.evidenceIds),
     activityOffers: new Map(source.activityOffers),
-    admissions: new Map(source.admissions),
-    chapterProjections: new Map(source.chapterProjections),
   });
 }
 
@@ -245,7 +189,6 @@ export type TransactionStage = {
   current: T.RunState;
   events: T.RunEvent[];
   receipts: ReceiptJournal;
-  admissions: Map<T.PersonId, T.DeepReadonly<T.PersonaAdmission>>;
 };
 export function stageTransaction(run: T.Run): TransactionStage {
   const base = Kernel.read(run).current;
@@ -255,7 +198,6 @@ export function stageTransaction(run: T.Run): TransactionStage {
     // index are cloned, and handlers never mutate a shared slice in place.
     current: { ...base, counters: { ...base.counters } },
     events: [],
-    admissions: new Map(),
     receipts: {
       dispositions: [],
       communications: [],
@@ -313,17 +255,6 @@ export function commitTransaction(
       activityOffers.set(event.data.request.activityId, event.data.request.offerRevision);
   if ([...active].some((id) => !activityOffers.has(id)))
     throw new TypeError('Activity lacks its original start offer revision');
-  const admissions = new Map(record.admissions),
-    chapterProjections = new Map(record.chapterProjections);
-  for (const [person, admission] of stage.admissions) {
-    if (!stage.current.people[person] || admissions.has(person))
-      throw new TypeError('Admission metadata lacks a new actual actor');
-    admissions.set(person, admission);
-    chapterProjections.set(admission.preparation.id, admission.preparation.chapter);
-  }
-  for (const event of events)
-    if (event.data.kind === 'chapter-change')
-      chapterProjections.set(event.data.chapterId, event.data.projection);
   for (const event of events) record.journal.events.push(event);
   const append = <K extends keyof ReceiptJournal>(key: K) => {
     for (const receipt of receipts[key]) record.journal.receipts[key].push(receipt);
@@ -352,8 +283,6 @@ export function commitTransaction(
   record.current = stage.current;
   record.history = history;
   record.activityOffers = activityOffers;
-  record.admissions = admissions;
-  record.chapterProjections = chapterProjections;
   record.started ||= startsRun;
 }
 export function appendHistory(run: T.Run, transaction: T.DeepReadonly<T.AcceptedTransaction>): void {

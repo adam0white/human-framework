@@ -167,22 +167,44 @@ function sha256(input: Uint8Array): string {
 
 /** UTF-8 bytes of a string; lone surrogates encode as U+FFFD, as TextEncoder does, without a host global. */
 export function utf8(text: string): Uint8Array {
-  const out: number[] = [];
-  for (let i = 0; i < text.length; i++) {
-    let c = text.charCodeAt(i);
+  // Two passes: count the bytes, then fill a typed array, so no intermediate array caps the length.
+  const codePoint = (i: number): [number, number] => {
+    const c = text.charCodeAt(i);
     if (c >= 0xd800 && c <= 0xdbff) {
       const next = i + 1 < text.length ? text.charCodeAt(i + 1) : 0;
-      if (next >= 0xdc00 && next <= 0xdfff) {
-        c = 0x10000 + ((c - 0xd800) << 10) + (next - 0xdc00);
-        i++;
-      } else c = 0xfffd;
-    } else if (c >= 0xdc00 && c <= 0xdfff) c = 0xfffd;
-    if (c < 0x80) out.push(c);
-    else if (c < 0x800) out.push(0xc0 | (c >> 6), 0x80 | (c & 63));
-    else if (c < 0x10000) out.push(0xe0 | (c >> 12), 0x80 | ((c >> 6) & 63), 0x80 | (c & 63));
-    else out.push(0xf0 | (c >> 18), 0x80 | ((c >> 12) & 63), 0x80 | ((c >> 6) & 63), 0x80 | (c & 63));
+      return next >= 0xdc00 && next <= 0xdfff
+        ? [0x10000 + ((c - 0xd800) << 10) + (next - 0xdc00), 2]
+        : [0xfffd, 1];
+    }
+    return [c >= 0xdc00 && c <= 0xdfff ? 0xfffd : c, 1];
+  };
+  let length = 0;
+  for (let i = 0; i < text.length; ) {
+    const [c, width] = codePoint(i);
+    length += c < 0x80 ? 1 : c < 0x800 ? 2 : c < 0x10000 ? 3 : 4;
+    i += width;
   }
-  return Uint8Array.from(out);
+  const out = new Uint8Array(length);
+  let o = 0;
+  for (let i = 0; i < text.length; ) {
+    const [c, width] = codePoint(i);
+    i += width;
+    if (c < 0x80) out[o++] = c;
+    else if (c < 0x800) {
+      out[o++] = 0xc0 | (c >> 6);
+      out[o++] = 0x80 | (c & 63);
+    } else if (c < 0x10000) {
+      out[o++] = 0xe0 | (c >> 12);
+      out[o++] = 0x80 | ((c >> 6) & 63);
+      out[o++] = 0x80 | (c & 63);
+    } else {
+      out[o++] = 0xf0 | (c >> 18);
+      out[o++] = 0x80 | ((c >> 12) & 63);
+      out[o++] = 0x80 | ((c >> 6) & 63);
+      out[o++] = 0x80 | (c & 63);
+    }
+  }
+  return out;
 }
 
 /** One wire contract: SHA256(UTF8(canonical JSON [domain,...parts])). */

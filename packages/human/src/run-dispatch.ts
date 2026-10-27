@@ -834,8 +834,11 @@ export class Frame {
       input.kind === 'decision.requested'
     )
       phase = 4;
-    if (phase === 0) this.applyInput(input);
-    else this.ingress.push({ phase, input });
+    if (phase === 0) {
+      // A phase-0 input applies on receipt, so its events carry phase 0 whatever frame ran before.
+      this.phase = 0;
+      this.applyInput(input);
+    } else this.ingress.push({ phase, input });
   }
   runIngress(phase: T.Phase): void {
     this.phase = phase;
@@ -1115,6 +1118,7 @@ export class Frame {
         ? { suggestion: out.decision.suggestion }
         : {}),
       reviewAt: this.nextReviewAt(chosen, endsAt, out.nextBoundary),
+      ...(out.necessity ? { necessity: true } : {}),
       ...(chosen.promise ? { commitmentId: chosen.promise.id } : {}),
       ...(chosen.jointId === undefined ? {} : { jointId: chosen.jointId }),
       ...(out.resolutions.some(
@@ -2096,7 +2100,6 @@ export class Frame {
         // Hearing of a death is told news (3.x sim.ts tellDeath): attended like any told percept, so it
         // leaves an episode and, for someone close, grief. The tie is then marked deceased.
         const data = input.payload,
-          name = this.state.people[data.deceased]?.name,
           tie = this.actor(data.person).social.relationships.find((r) => r.otherId === data.deceased);
         // Only news of someone known, and only the first time, is news (3.x tellDeath and markDeceased).
         if (tie && tie.deceasedAt === undefined)
@@ -2111,7 +2114,8 @@ export class Frame {
                 targetId: data.deceased,
                 valence: -0.8,
                 salience: 0.9,
-                summary: name === undefined ? '' : `${name} died.`,
+                // Structured news (kind death, target): the renderer words it, not the engine.
+                summary: '',
                 claims: [],
                 norms: [],
                 advice: [],

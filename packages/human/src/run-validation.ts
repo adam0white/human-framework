@@ -188,7 +188,7 @@ function freeze(value: unknown): void {
   while (stack.length) {
     const item = stack.pop();
     if (item !== null && typeof item === 'object') {
-      stack.push(...Object.values(item));
+      for (const child of Object.values(item)) stack.push(child);
       Object.freeze(item);
     }
   }

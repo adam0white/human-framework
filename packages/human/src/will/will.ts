@@ -190,7 +190,6 @@ interface WillContext {
   body: BodyReadout;
   /** Max physiological urgency. */
   desperation: number;
-  /** Hosts can turn the necessity exception off. */
 
   /** Need urgencies (optional; used for the survival check on insisting). */
   needs?: readonly {
@@ -1633,6 +1632,12 @@ export const willOwner: import('../run-schema.ts').WillOwner = {
     };
     if (result.suggestion) decision.suggestion = result.suggestion;
     if (result.suggestions) decision.suggestions = result.suggestions;
+    // 3.x begin: an act a held prohibition vetoes, whose veto lifts only under the current
+    // desperation, is done under necessity (Qur'an 2:173); conscience and agenda read the flag.
+    const necessity =
+      chosen !== undefined &&
+      normVeto(actor, chosen as Offer, 0, { now: context.at }) !== undefined &&
+      normVeto(actor, chosen as Offer, desperation, { now: context.at }) === undefined;
     const needReceipts: import('../run-schema.ts').WillAutonomyReceipt[] =
       result.autonomyDelta !== 0
         ? [{ kind: 'will-autonomy', evidenceId: decision.id, autonomy: result.autonomyDelta }]
@@ -1662,6 +1667,7 @@ export const willOwner: import('../run-schema.ts').WillOwner = {
       events: [],
       nextBoundary: reviewBoundaries.length ? Math.min(...reviewBoundaries) : null,
       advancedThrough: context.at,
+      necessity,
     };
   },
   receive(previous, input, context) {

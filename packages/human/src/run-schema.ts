@@ -4342,6 +4342,8 @@ export interface WillOwner {
     resolutions: readonly SuggestionResolution[];
     needReceipts: readonly WillAutonomyReceipt[];
     command: CommandDecision | null;
+    /** The chosen act is done under necessity: a held veto lifts only at the current desperation. */
+    necessity: boolean;
   };
 }
 export type MemoryOwnedState = Omit<MemoryState, 'beliefs' | 'sourceTrust' | 'contradictions'>;

@@ -48,6 +48,8 @@ const stamped = /package: '@adam0white\/human-framework@([^']+)'/.exec(
   read('packages/human/src/run-engine.ts'),
 )?.[1];
 if (stamped !== version) fail(`RUN_ENGINE package ${stamped} != package version ${version}; run the build`);
+// The build and schema hashes must match the sources too, or the tarball's prepack restamp differs from the tag.
+run('node', ['packages/human/scripts/stamp-engine.mjs', '--check']);
 const engine = version;
 
 const tag = `v${version}`;
@@ -67,7 +69,7 @@ const section = changelog
 if (!section) fail(`CHANGELOG.md section ${version} is empty`);
 // The version policy lists the ENGINE_VERSION in every release's notes: the section must open with it.
 if (!section.startsWith(`Engine: ${engine}.`)) {
-  fail(`CHANGELOG.md section ${version} must open with "Engine: ${engine}." (ENGINE_VERSION in types.ts)`);
+  fail(`CHANGELOG.md section ${version} must open with "Engine: ${engine}." (RUN_ENGINE in run-engine.ts)`);
 }
 const notes = `${section}\n`;
 

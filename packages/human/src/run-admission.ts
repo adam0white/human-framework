@@ -430,6 +430,16 @@ export function checkRunSpec(input: unknown): Result<DeepReadonly<import('./run-
   const calendar = spec.definitions.calendar;
   if (!Number.isSafeInteger(calendar.epoch.dayIndex) || calendar.epoch.msOfDay >= calendar.dayMs)
     return fail('invalid-schema', '$.definitions.calendar.epoch', 'invalid calendar epoch');
+  // 4.0 reads time of day from simulation time: day boundaries fall on multiples of 86400000 ms.
+  if (
+    calendar.dayMs !== 86400000 ||
+    (BigInt(calendar.epoch.msOfDay) - BigInt(calendar.epoch.simulationAt)) % 86400000n !== 0n
+  )
+    return fail(
+      'invalid-admission',
+      '$.definitions.calendar.epoch',
+      'calendar days must be 86400000 ms and simulation time 0 must fall at midnight',
+    );
   const days = new Set<number>();
   for (const day of calendar.days) {
     const elapsed = day.start - calendar.epoch.simulationAt;

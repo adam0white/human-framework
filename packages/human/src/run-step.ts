@@ -1,8 +1,10 @@
 /** SCOPE: one reached-frame scheduler for all run calls. Proposals never consume
  * randomness. Only a reached hazard commits its owning stream. */
+
+import { cloneData } from './core/clone.ts';
 import { checkBatchEnvelope } from './run-admission.ts';
 import { materializePhysiology, materializeRetained, probePhysiology, probeRetained } from './run-advance.ts';
-import { hashCanonical } from './run-canonical.ts';
+import { canonicalJson, hashCanonical } from './run-canonical.ts';
 import { Frame } from './run-dispatch.ts';
 import { validateActor } from './run-integrity.ts';
 import { commitTransaction, freezeData, RunLimitError, readKernel, stageTransaction } from './run-kernel.ts';
@@ -32,6 +34,21 @@ export function step(run: T.Run, input: T.DeepReadonly<T.StepBatch>): T.Result<T
   const batch = admitted.value,
     stage = stageTransaction(run),
     frame = new Frame(record, stage);
+  // A batch that resolves pending requests continues the paused frame at its fidelity; a different one is refused.
+  if (
+    initial.pending.length &&
+    batch.fidelity !== undefined &&
+    canonicalJson(batch.fidelity) !== canonicalJson(initial.cursor.fidelity)
+  )
+    return {
+      ok: false,
+      error: {
+        code: 'invalid-admission',
+        path: '$.fidelity',
+        message:
+          'a batch that resolves pending requests keeps the paused fidelity; omit fidelity or repeat it',
+      },
+    };
   const fidelity = initial.pending.length ? initial.cursor.fidelity : (batch.fidelity ?? { mode: 'fine' });
   stage.current.cursor = { ...initial.cursor, fidelity };
   try {
@@ -346,7 +363,7 @@ export function step(run: T.Run, input: T.DeepReadonly<T.StepBatch>): T.Result<T
           null,
         );
     const result = freezeData(
-      structuredClone({
+      cloneData({
         at: state.at,
         reachedUntil: state.at === batch.until,
         events: stage.events,
@@ -358,7 +375,7 @@ export function step(run: T.Run, input: T.DeepReadonly<T.StepBatch>): T.Result<T
     if (!Number.isSafeInteger(state.counters.nextTransaction))
       throw new RunLimitError('Transaction counter exhausted');
     const transaction = freezeData(
-      structuredClone({
+      cloneData({
         ordinal,
         until: batch.until,
         inputs: batch.inputs,
@@ -371,11 +388,14 @@ export function step(run: T.Run, input: T.DeepReadonly<T.StepBatch>): T.Result<T
     commitTransaction(run, stage, true, transaction);
     return { ok: true, value: result };
   } catch (error) {
-    if (!(error instanceof TypeError || error instanceof RangeError)) throw error;
+    // An engine budget (numerical cell, work, segment or counter limit) is limit-exceeded; any other
+    // RangeError is a host input the engine refuses. A TypeError is an engine fault, not a host error.
+    if (!(error instanceof RangeError)) throw error;
+    const limit = error instanceof RunLimitError || /limit[- ]exceeded/i.test(error.message);
     return {
       ok: false,
       error: {
-        code: error instanceof RunLimitError ? 'limit-exceeded' : 'invalid-admission',
+        code: limit ? 'limit-exceeded' : 'invalid-admission',
         path: '$.runtime',
         message: error.message,
       },
