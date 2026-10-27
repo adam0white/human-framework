@@ -1610,7 +1610,7 @@ export function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActi
   const visitCapture = useRef<Promise<boolean> | null>(null);
   // biome-ignore lint/correctness/useExhaustiveDependencies: retry requests another capture.
   useEffect(() => {
-    if (!frame.refugeReady) {
+    if (fileSession || !frame.refugeReady) {
       visitCapture.current = null;
       setVisitSave('idle');
       return;
@@ -1751,8 +1751,10 @@ export function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActi
             <p className="w-grain-warning" role="status">
               {last ? 'Into the thaw' : 'On to dusk'} waits until you choose for Kian and Ada.
             </p>
-            {frame.refugeReady && visitSave === 'saving' && <p role="status">Saving Kian and Ada’s visit…</p>}
-            {frame.refugeReady && visitSave === 'failed' && (
+            {!fileSession && frame.refugeReady && visitSave === 'saving' && (
+              <p role="status">Saving Kian and Ada’s visit…</p>
+            )}
+            {!fileSession && frame.refugeReady && visitSave === 'failed' && (
               <p role="alert">
                 The visit could not be saved for another game.{' '}
                 <button
@@ -1766,7 +1768,7 @@ export function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActi
                 </button>
               </p>
             )}
-            {frame.refugeReady && visitSave === 'saved' && (
+            {!fileSession && frame.refugeReady && visitSave === 'saved' && (
               <p role="status">Kian and Ada’s visit is saved for another game.</p>
             )}
             <div className="w-choice-pair">
@@ -1782,7 +1784,9 @@ export function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActi
               <button
                 type="button"
                 className="w-secondary"
-                disabled={frame.refugeReady && (visitSave === 'idle' || visitSave === 'saving')}
+                disabled={
+                  !fileSession && frame.refugeReady && (visitSave === 'idle' || visitSave === 'saving')
+                }
                 onClick={() => actions.input({ k: 'refugeVisit', choice: 'stay' })}
               >
                 Stay here together
