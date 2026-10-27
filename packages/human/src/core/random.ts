@@ -31,20 +31,11 @@ export function random(rng: RngState): number {
   return t / 4294967296;
 }
 
-export function chance(rng: RngState, p: number): boolean {
-  return random(rng) < p;
-}
-
 /** Standard normal via Box–Muller (consumes two draws). */
 export function normal(rng: RngState, mean = 0, sd = 1): number {
   const u = Math.max(random(rng), 1e-12);
   const v = random(rng);
   return mean + sd * Math.sqrt(-2 * dlog(u)) * dcos(2 * Math.PI * v);
-}
-
-export function pick<T>(rng: RngState, items: readonly T[]): T {
-  if (items.length === 0) throw new Error('pick from empty list');
-  return items[Math.floor(random(rng) * items.length)] as T;
 }
 
 /** Index sampled proportionally to non-negative weights; -1 when all weights are zero. */

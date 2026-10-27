@@ -156,14 +156,6 @@ const hasSuccessor = (state: AgendaState, c: Commitment): boolean =>
 /** Closed instances that carry their chain on: kept, broken, or released by an exemption (not by the other party). */
 const chainLink = (c: Commitment): boolean =>
   c.status === 'kept' || c.status === 'broken' || (c.status === 'released' && c.exempt !== undefined);
-/** Whether an instance still owns a pending duty or a recurrence that can produce its next window. Read-only. */
-export const isContinuingCommitment = (state: AgendaState, c: Commitment): boolean =>
-  c.status === 'pending' ||
-  (c.recurEveryMs !== undefined &&
-    c.recurEveryMs > 0 &&
-    chainLink(c) &&
-    (c.recurUntil === undefined || c.from + c.recurEveryMs <= c.recurUntil) &&
-    !hasSuccessor(state, c));
 /**
  * Whether an activity that would keep `c` is under way at `now`: begun no later than the window's end
  * (`spanMeetsWindow`), not yet ended, not sleep, and serving `c` (listed in `fulfills` or matching its action and

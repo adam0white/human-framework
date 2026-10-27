@@ -454,7 +454,6 @@ export type WireArgs = {
   restoreRun: { archive: RunArchive };
   replay: { archive: RunArchive };
 };
-export type WireRequest = { [K in keyof WireArgs]: { id: Id; op: K; args: WireArgs[K] } }[keyof WireArgs];
 export type WireValues = {
   createRun: { run: RunHandle };
   createPerson: PersonId;
@@ -465,9 +464,6 @@ export type WireValues = {
   restoreRun: { run: RunHandle };
   replay: { run: RunHandle; verified: true; fullHash: Hash; transactions: number; hostEdition: Id };
 };
-export type WireResponse = {
-  [K in keyof WireValues]: { id: Id; op: K; result: Result<WireValues[K]> };
-}[keyof WireValues];
 
 export type PortablePersonEnvelope = {
   format: 'hf-person';
@@ -3255,16 +3251,6 @@ export type Effective_CARE_DEFAULTS = {
   action: string;
   needs: readonly string[];
 };
-// packages/human/src/agenda/prayer.ts:62
-export type Effective_RAMADAN_DEFAULTS = {
-  fastImportance: number;
-  suhoorLead: number;
-  iftarLength: number;
-  mealImportance: number;
-  violatedBy: readonly string[];
-};
-// packages/human/src/agenda/prayer.ts:23
-export type Effective_MAKRUH_DEFAULTS = { afterSunrise: number; beforeDhuhr: number; beforeSunset: number };
 // packages/human/src/beliefs/beliefs.ts:41
 export type Effective_BELIEF_DEFAULTS = {
   maxBeliefs: number;
@@ -3752,26 +3738,15 @@ export type Effective_PERSISTENCE_DEFAULTS = {
 export type Effective_PERSON_DEFAULTS = {
   idleLoad: BodyLoad;
   reviewInterval: number;
-  comfortCloseness: number;
   sleepReviewInterval: number;
-  interruptThresholds: { hunger: number; thirst: number; sleepiness: number };
   maxTrace: number;
-  lonelinessFrom: number;
-  boredomFrom: number;
-  moodEmotionGain: number;
   feltBase: number;
   feltGain: number;
   failedPenalty: number;
   missedDistress: number;
   missedEsteemCost: number;
-  voiceHarmGain: number;
-  voiceHarmUrgency: number;
   participationMagnitude: number;
-  protestQuality: number;
   qualityPenalty: number;
-  promiseSlack: number;
-  nightFrom: number;
-  nightTo: number;
 };
 // packages/human/src/projects/projects.ts:28
 export type Effective_PROJECTS_DEFAULTS = {
@@ -4007,8 +3982,6 @@ export type EffectiveBuiltins = RetellEffectiveRecord & {
   EXEMPTION_DEFAULTS: Effective_EXEMPTION_DEFAULTS;
   PURPOSE_DEFAULTS: Effective_PURPOSE_DEFAULTS;
   CARE_DEFAULTS: Effective_CARE_DEFAULTS;
-  RAMADAN_DEFAULTS: Effective_RAMADAN_DEFAULTS;
-  MAKRUH_DEFAULTS: Effective_MAKRUH_DEFAULTS;
   BELIEF_DEFAULTS: Effective_BELIEF_DEFAULTS;
   BLADDER_DEFAULTS: Effective_BLADDER_DEFAULTS;
   BODY_DEFAULTS: Effective_BODY_DEFAULTS;

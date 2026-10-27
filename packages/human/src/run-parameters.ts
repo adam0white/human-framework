@@ -6,7 +6,6 @@
 import { AFFECT_DEFAULTS } from './affect/affect.ts';
 import { CRISIS_DEFAULTS } from './affect/crisis.ts';
 import { AGENDA_DEFAULTS, CARE_DEFAULTS, EXEMPTION_DEFAULTS, PURPOSE_DEFAULTS } from './agenda/agenda.ts';
-import { MAKRUH_DEFAULTS, RAMADAN_DEFAULTS } from './agenda/prayer.ts';
 import { BELIEF_DEFAULTS } from './beliefs/beliefs.ts';
 import { BLADDER_DEFAULTS } from './body/bladder.ts';
 import { BODY_DEFAULTS } from './body/body.ts';
@@ -99,8 +98,6 @@ const ENGINE_BUILTINS = freeze(
     EXEMPTION_DEFAULTS,
     PURPOSE_DEFAULTS,
     CARE_DEFAULTS,
-    RAMADAN_DEFAULTS,
-    MAKRUH_DEFAULTS,
     BELIEF_DEFAULTS,
     BLADDER_DEFAULTS,
     BODY_DEFAULTS: {
@@ -213,26 +210,15 @@ const ENGINE_BUILTINS = freeze(
     PERSON_DEFAULTS: {
       idleLoad: PERSON_DEFAULTS.idleLoad,
       reviewInterval: PERSON_DEFAULTS.reviewInterval,
-      comfortCloseness: PERSON_DEFAULTS.comfortCloseness,
       sleepReviewInterval: PERSON_DEFAULTS.sleepReviewInterval,
-      interruptThresholds: PERSON_DEFAULTS.interruptThresholds,
       maxTrace: PERSON_DEFAULTS.maxTrace,
-      lonelinessFrom: PERSON_DEFAULTS.lonelinessFrom,
-      boredomFrom: PERSON_DEFAULTS.boredomFrom,
-      moodEmotionGain: PERSON_DEFAULTS.moodEmotionGain,
       feltBase: PERSON_DEFAULTS.feltBase,
       feltGain: PERSON_DEFAULTS.feltGain,
       failedPenalty: PERSON_DEFAULTS.failedPenalty,
       missedDistress: PERSON_DEFAULTS.missedDistress,
       missedEsteemCost: PERSON_DEFAULTS.missedEsteemCost,
-      voiceHarmGain: PERSON_DEFAULTS.voiceHarmGain,
-      voiceHarmUrgency: PERSON_DEFAULTS.voiceHarmUrgency,
       participationMagnitude: PERSON_DEFAULTS.participationMagnitude,
-      protestQuality: PERSON_DEFAULTS.protestQuality,
       qualityPenalty: PERSON_DEFAULTS.qualityPenalty,
-      promiseSlack: PERSON_DEFAULTS.promiseSlack,
-      nightFrom: PERSON_DEFAULTS.nightFrom,
-      nightTo: PERSON_DEFAULTS.nightTo,
     },
     PROJECTS_DEFAULTS,
     PROMPTINGS_DEFAULTS,

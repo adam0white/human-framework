@@ -1,6 +1,5 @@
 import { expect, it } from 'vitest';
-import { renderProjection } from '../src/narrate/literal.ts';
-import { labelLine, reasonLine } from '../src/presentation.ts';
+import { labelLine, reasonLine, renderProjection } from '../src/narrate/literal.ts';
 
 it('explains known prayer tokens and bodily refusal without rewriting authored labels', () => {
   expect(labelLine('Fajr')).toBe('the dawn prayer');

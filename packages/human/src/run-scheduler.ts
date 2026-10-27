@@ -54,41 +54,6 @@ export function nextDailyAt(after: T.Time, anchor: T.Time): T.Result<T.Time> {
     };
   return { ok: true, value: Number(next) };
 }
-export function nextFrameAt(
-  at: T.Time,
-  until: T.Time,
-  queue: readonly T.DeepReadonly<T.ScheduledEvent>[],
-  pending: readonly T.DeepReadonly<T.HostRequest>[],
-): T.Result<T.Time> {
-  if (until < at || !Number.isSafeInteger(until - at))
-    return { ok: false, error: { code: 'past-input', path: '$.until', message: 'invalid target span' } };
-  let next = until;
-  for (const request of pending) {
-    if (request.boundaryAt !== at)
-      return {
-        ok: false,
-        error: {
-          code: 'invalid-admission',
-          path: '$.pending',
-          message: 'pending request is not at the suspended frame',
-        },
-      };
-    next = at;
-  }
-  for (const event of queue) {
-    if (event.at < at)
-      return {
-        ok: false,
-        error: {
-          code: 'invalid-admission',
-          path: '$.queue',
-          message: 'scheduled event precedes current frame',
-        },
-      };
-    if (event.at < next) next = event.at;
-  }
-  return { ok: true, value: next };
-}
 export function queuedInputs(
   runId: T.Id,
   inputs: readonly T.DeepReadonly<T.Input>[],

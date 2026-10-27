@@ -51,9 +51,6 @@ export function validateNumbers(value: unknown, path = 'state'): ValidationIssue
   walk(value, path);
   return out;
 }
-export function assertValid(value: unknown): void {
-  if (validateNumbers(value).length) throw new RangeError('nonfinite owner state');
-}
 export function evaluateCell(c: DeepReadonly<ScalarCell>, at: number): number {
   const x = ((at - c.originMs) / 60000 - c.leftOffsetMinutes) / (c.rightOffsetMinutes - c.leftOffsetMinutes);
   const q = c.coefficients;

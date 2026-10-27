@@ -20,13 +20,7 @@
  *   congregational, strongly emphasised, no individual make-up (research/eid-and-mourning-sources.md §1;
  *   decisions.md). Missing it is no breach and owes nothing.
  * Nothing here models local moon sighting. */
-import type {
-  CalendarDay,
-  CalendarDefinition,
-  CommitmentData,
-  DeepReadonly,
-  Effective_RAMADAN_DEFAULTS,
-} from '../run-schema.ts';
+import type { CalendarDay, CalendarDefinition, CommitmentData, DeepReadonly } from '../run-schema.ts';
 export const MAKRUH_DEFAULTS = { afterSunrise: 20, beforeDhuhr: 10, beforeSunset: 20 };
 export const RAMADAN_DEFAULTS = {
   fastImportance: 0.9,
@@ -99,21 +93,21 @@ export function fastWindow(day: DeepReadonly<CalendarDay>): { from: number; unti
 }
 export function suhoorWindow(
   day: DeepReadonly<CalendarDay>,
-  defaults: DeepReadonly<Effective_RAMADAN_DEFAULTS>,
+  defaults: typeof RAMADAN_DEFAULTS,
 ): { from: number; until: number } | undefined {
   const fast = fastWindow(day);
   return fast ? { from: fast.from - defaults.suhoorLead * 60000, until: fast.from } : undefined;
 }
 export function iftarWindow(
   day: DeepReadonly<CalendarDay>,
-  defaults: DeepReadonly<Effective_RAMADAN_DEFAULTS>,
+  defaults: typeof RAMADAN_DEFAULTS,
 ): { from: number; until: number } | undefined {
   const fast = fastWindow(day);
   return fast ? { from: fast.until, until: fast.until + defaults.iftarLength * 60000 } : undefined;
 }
 export function ramadanFast(
   days: DeepReadonly<readonly CalendarDay[]>,
-  defaults: DeepReadonly<Effective_RAMADAN_DEFAULTS>,
+  defaults: typeof RAMADAN_DEFAULTS,
 ): CommitmentData[] {
   return days.flatMap((day) =>
     day.fasting
@@ -138,7 +132,7 @@ export function ramadanFast(
 }
 export function ramadanMeals(
   days: DeepReadonly<readonly CalendarDay[]>,
-  defaults: DeepReadonly<Effective_RAMADAN_DEFAULTS>,
+  defaults: typeof RAMADAN_DEFAULTS,
 ): CommitmentData[] {
   return days.flatMap((day) => {
     const before = suhoorWindow(day, defaults),

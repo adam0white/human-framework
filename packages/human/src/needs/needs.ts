@@ -176,21 +176,6 @@ export const urgencyOf = (needs: readonly NeedReading[], id: NeedId): number =>
 const hasAny = (tags: readonly string[], set: readonly string[]): boolean =>
   tags.some((t) => set.includes(t));
 
-/**
- * Urgency-weighted mean satisfaction: urgent needs dominate, and a floor weight makes a well-satisfied
- * person degrade to a plain mean. Empty input reads as fully satisfied.
- */
-export function meanSatisfaction(readings: NeedReading[]): Unit {
-  let num = 0;
-  let den = 0;
-  for (const r of readings) {
-    const w = NEEDS_DEFAULTS.meanFloorWeight + r.urgency;
-    num += w * clamp01(r.level);
-    den += w;
-  }
-  return den > 0 ? clamp01(num / den) : 1;
-}
-
 /** Internal ms trajectory projection. Missing body evidence is a contract error. */
 export function readNeedScalar(
   path: import('../run-schema.ts').DeepReadonly<import('../run-schema.ts').ScalarTrajectory>,

@@ -27,7 +27,7 @@ A host uses eight calls. Each takes and returns plain data, and each failure is 
 | `createPerson(run, authoring)`            | Adds one person from authored state. Portable admission is rejected in 4.0.                                                                                              |
 | `step(run, { until, fidelity?, inputs })` | Advances to `until`, applying the timestamped inputs. It stops early at a `world-required` boundary when people need the host to resolve their actions or communication. |
 | `inspect(run, query)`                     | Reads actual state, from the host's view or from one person's own view. It never changes the run.                                                                        |
-| `preview(run, query)`                     | Answers "what would happen if": the same step on a detached copy. It never changes the run.                                                                              |
+| `preview(run, query)`                     | Answers "what would happen if": the same step on a detached copy, with its own ids and wording. It never changes the run.                                                |
 | `exportRun(run)`                          | Returns the archive: spec, input log, current state and hashes. It is the save and the playtest export.                                                                  |
 | `restoreRun(archive)`                     | Rebuilds a run from an archive after checking it.                                                                                                                        |
 | `replay(archive)`                         | Re-runs the input log from the spec and checks every hash.                                                                                                               |
@@ -77,7 +77,8 @@ The [examples README](https://github.com/adam0white/human-framework/blob/main/pa
 ## One clock, two fidelities
 
 A batch chooses its fidelity. `{ mode: 'fine' }`, the default, follows every decision and request.
-`{ mode: 'daily', dayMs: 86400000, anchor }` is a first-class larger step for long runs: the same owners
+`{ mode: 'daily', dayMs: 86400000, anchor }` is a first-class larger step for long runs (a batch that resolves pending
+requests keeps the paused fidelity): the same owners
 advance the person a day at a time, with bodily stores integrated in closed form. There is no separate
 simulation loop for long runs.
 
@@ -88,9 +89,11 @@ simulation loop for long runs.
   platform's math library.
 - Replaying the same input log with the same step chunking is byte-exact. Different chunkings of the same
   inputs keep clocks, counters, RNG, the set of events and their order exact; continuous values such as mood
-  and needs agree within 1e-9.
+  and needs agree within 1e-9. Fields that count step calls (`counters.nextTransaction`, `cursor.frameOrdinal`,
+  `history`), the order of `receipts.inputs` and `queue`, and hashed trajectory condition ids differ by chunking, so
+  the archive hashes do too; `replay` of the same log is what is promised.
 - The archive is the save. Every game offers it as the playtest export: it carries the seed, the input log
-  and the state, and `replay` reproduces the run.
+  and the state, and `replay` reproduces the run. Each accepted step adds about 240 bytes of history.
 
 ## What it models
 
@@ -128,7 +131,7 @@ verdict (`SuggestionResolution`):
 Insisting (`insist: true`) turns only a `notNow` into compliance, and not when a bodily need is pressing. It
 never overrides `cannot` or `willNot`.
 Every resolution also carries a machine-readable `reason` (`need:food`, `norm:theft`, `asleep`, `distrust`,
-...) and a line in the person's voice (`says`).
+...), which the renderer turns into a line in the person's voice.
 
 ## Versions
 
