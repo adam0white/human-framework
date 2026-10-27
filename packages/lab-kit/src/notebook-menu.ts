@@ -2,6 +2,7 @@
  * Scope: one Game menu entry (DL-26) for saving, full JSON download, privacy and the client's send dialog.
  * The game owns export/replay correctness and saves. This never sends a run itself or creates a lab client.
  */
+import { debugFooter } from './debug-footer.ts';
 import { showSheet } from './dialog.ts';
 import { type TelemetryLab, telemetryToggle } from './telemetry.ts';
 
@@ -92,14 +93,12 @@ export function notebookMenu(options: NotebookMenuOptions): HTMLButtonElement {
       return node;
     };
     sheet.append(title);
-    const labTools =
-      new URLSearchParams(typeof location === 'undefined' ? '' : location.search).get('lab') === '1';
-    if (labTools && options.onSave)
+    if (options.onSave)
       button('Save', async () => {
         await options.onSave?.();
         status.textContent = 'Saved.';
       });
-    if (labTools) button('Download this run', () => downloadJson(options.filename, options.getRun()));
+    const download = button('Download this run', () => downloadJson(options.filename, options.getRun()));
     if (options.lab) {
       const lab = options.lab;
       button('Feedback', async () => {
@@ -136,12 +135,9 @@ export function notebookMenu(options: NotebookMenuOptions): HTMLButtonElement {
       unavailable.textContent = 'Sending is unavailable here. The downloaded export still has everything.';
       sheet.append(unavailable);
     }
-    const privacy = document.createElement('a');
-    privacy.href = 'https://human.adamwhite.work/lab/privacy/';
-    privacy.textContent = 'Lab privacy';
-    if (labTools) sheet.append(privacy);
     sheet.append(status);
     button('Resume', () => sheet.close());
+    sheet.append(debugFooter(download));
     showSheet(sheet);
   });
   return entry;
