@@ -2,6 +2,8 @@
 
 This is the design reference for `packages/human` (`@adam0white/human-framework`). For installation, a quick start and the host contract in brief, see the [package README](../packages/human/README.md). The [API reference](api.md) lists every export. The shared data contract lives in [`packages/human/src/run-schema.ts`](../packages/human/src/run-schema.ts). Modules expose deterministic readers and mutators over a `Person`. Faculty modules mutate only their owned slices; composites coordinate calls across faculties.
 
+For a game port, follow the [4.x run bridge and replay recipe](hf4-port-recipe.md). It records the first candidate, executable control and unresolved delivery gates.
+
 ## HF 4.2 contract
 
 HF **4.2** retains the HF 4 host contract. A host uses eight calls (`createRun`, `createPerson`, `step`, `inspect`, `preview`, `exportRun`, `restoreRun`, `replay`); the [package README](../packages/human/README.md) describes them. Every faculty is always on, every host change is a timestamped input to `step`, and every reading leaves through `inspect` or `preview`. The data contract is [`packages/human/src/run-schema.ts`](../packages/human/src/run-schema.ts). The [CHANGELOG](../CHANGELOG.md) 4.0.0 section lists what was removed and what moved to 4.1.
