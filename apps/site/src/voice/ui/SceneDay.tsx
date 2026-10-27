@@ -116,7 +116,7 @@ function SceneDayContent(
     ? 'Day over · See recap and next day'
     : accountFrame.phase === 'report'
       ? 'See the ending'
-      : 'Back to now';
+      : 'Continue';
   const derived = deriveScene(frame);
   // Freeze a scene's words for its occasion; a later body reading cannot rewrite the exchange.
   const cache = useRef<{ id: string; scene: NonNullable<typeof derived> } | null>(null);
@@ -187,7 +187,8 @@ function SceneDayContent(
             JSON.stringify(line) !== leftReply &&
             line === frame.sceneWords?.at(-1) &&
             (line.kind !== 'suggestion' || line.said === false)) ||
-          (line.kind === 'suggestion' &&
+          (!account &&
+            line.kind === 'suggestion' &&
             line.day === frame.day &&
             line.minute === lastRequest?.minute &&
             !!currentReply(frame, scene ?? null)),
@@ -220,12 +221,49 @@ function SceneDayContent(
     (entry) =>
       entry.day === frame.day &&
       entry.minute <= frame.minute &&
-      entry.kind === 'note' &&
       !dismissedOutcomes.has(entry.id) &&
-      ((entry.who === 'you' && /Your suggestion (?:has (?:now )?ended|fades)/.test(entry.text)) ||
-        /Osman’s payment deadline has passed/.test(entry.text)),
+      ((entry.kind === 'note' &&
+        ((entry.who === 'you' &&
+          /Your suggestion (?:has (?:now )?ended|fades)|^He did what you suggested/.test(entry.text)) ||
+          /Osman’s payment deadline has passed|^He paid Osman/.test(entry.text))) ||
+        (entry.kind === 'act' && /^I (?:visit|visited) Nuran['’]s grave/.test(entry.text))),
   );
-  const reading = (expanded && canSpeak && !heldPersonal) || editor || answerHold || outcomes.length > 0;
+  // R2: a fast stretch moved the clock hours with no reason given. Say where the time went, once per stretch.
+  // The run starts where the clock last moved quickly in real time, so a stretch slowed for reading is not counted.
+  // A new reason (busy, then asleep) is a new run; a finished run of an hour or more is said once.
+  const fastRun = useRef<{ from: number; clock: string; label: string; at: number; seen: number } | null>(
+    null,
+  );
+  const [jump, setJump] = useState<{ from: string; to: string; label: string; day: number } | null>(null);
+  const live = props.liveFrame ?? frame;
+  useEffect(() => {
+    const now = performance.now();
+    const run = fastRun.current;
+    const close = () => {
+      if (run && live.minute - run.from >= 60)
+        setJump({ from: run.clock, to: live.clock, label: run.label, day: live.day });
+    };
+    const label = live.fastForward?.replace(/ until \d\d:\d\d$/, '');
+    if (!label) {
+      close();
+      fastRun.current = null;
+      return;
+    }
+    const slow = run && (live.minute - run.seen) / Math.max(0.001, (now - run.at) / 1000) < 60;
+    if (run && run.label !== label) close();
+    if (!run || run.label !== label || (slow && live.minute - run.from < 60))
+      fastRun.current = { from: live.minute, clock: live.clock, label, at: now, seen: live.minute };
+    else fastRun.current = { ...run, at: now, seen: live.minute };
+  }, [live.fastForward, live.minute, live.clock, live.day]);
+  // A jump line belongs to the stretch it names: a new day or an open choice replaces it.
+  const jumpLine =
+    jump?.day === frame.day &&
+    `The clock moved quickly from ${jump.from} to ${jump.to} because ${jump.label.startsWith('he sleeps') ? 'he was asleep' : `he was busy (${jump.label})`}. It slows down shortly before he next chooses, so you can speak then.`;
+  const reading =
+    (expanded && canSpeak && !heldPersonal) || editor || answerHold || outcomes.length > 0 || !!jumpLine;
+  useEffect(() => {
+    if (expanded && canSpeak) setJump(null);
+  }, [expanded, canSpeak]);
   const requested = useRef(props.speakRequest);
   useEffect(() => {
     if (props.speakRequest === requested.current) return;
@@ -296,7 +334,8 @@ function SceneDayContent(
     /^(Talk with Hacer at the door|Have tea with Rıza|Call Selin)\?\s*/,
     '',
   );
-  const reply = answer && !response?.answer && (
+  // The account card above already shows this answer beside your words (R2: one place, right away).
+  const reply = answer && !response?.answer && account?.answer?.id !== answer.id && (
     <div className="v-scene-answer" aria-live="polite">
       <small>His answer · {answer.clock}</small>
       <p>Halil: {explainTerms(replyText ?? '')}</p>
@@ -327,44 +366,36 @@ function SceneDayContent(
       )}
       <div className="v-scene-reading">
         {account && (
-          <aside className="v-scene-answer" aria-label="Your latest suggestion" role="status">
+          <aside
+            className="v-scene-answer v-request-account"
+            aria-label="Your latest suggestion"
+            role="status"
+          >
             <p>
-              <small>
-                Day {account.sent.day} · {account.sent.clock}
-              </small>{' '}
-              · {settingWords(account.sent.text)}
+              <small>{account.sent.clock}</small> <strong>You:</strong> {explainTerms(account.words)}
             </p>
             {account.answer && (
               <p>
-                <small>
-                  Day {account.answer.day} · {account.answer.clock}
-                </small>{' '}
-                · {settingWords(account.answer.text)}
+                <small>{account.answer.clock}</small> <strong>Halil:</strong>{' '}
+                {explainTerms(account.answer.text)}
               </p>
             )}
-            <p>{settingWords(account.status)}</p>
+            <p>{explainTerms(account.status)}</p>
             {account.window && <p>{settingWords(account.window)}</p>}
-            {accountFrame.halil.doing && (
-              <p>
-                Now: {settingWords(accountFrame.halil.doing.label)}. This does not establish why he chose it.
-              </p>
-            )}
           </aside>
         )}
         {calls.length > 0 && (
           <aside className="v-scene-answer" aria-label="Recorded calls">
             {calls.map((call) => (
               <p key={call.id}>
-                <small>
-                  Day {call.day} · recorded at {call.clock}
-                </small>{' '}
-                · {settingWords(call.text)}
+                <small>{call.clock}</small> · {settingWords(call.text)}
               </p>
             ))}
           </aside>
         )}
-        {outcomes.length > 0 && (
-          <aside className="v-scene-answer" aria-label="What happened" role="status">
+        {(outcomes.length > 0 || jumpLine) && (
+          <aside className="v-scene-answer" aria-label="While you waited" role="status">
+            {jumpLine && <p>{settingWords(jumpLine)}</p>}
             {outcomes.map((entry) => (
               <p key={entry.id}>
                 <small>{entry.clock}</small> · {settingWords(entry.text)}
@@ -373,11 +404,12 @@ function SceneDayContent(
             <button
               type="button"
               className="v-btn v-btn-quiet"
-              onClick={() =>
+              onClick={() => {
+                setJump(null);
                 setDismissedOutcomes(
                   (previous) => new Set([...previous, ...outcomes.map((entry) => entry.id)]),
-                )
-              }
+                );
+              }}
             >
               Continue
             </button>
@@ -609,7 +641,10 @@ function SceneDayContent(
               </fieldset>
             )}
             {!available && (
-              <p className="v-scene-wait">He is occupied. Suggestions wait until he is choosing.</p>
+              <p className="v-scene-wait">
+                He is busy. You can still talk with him; a suggestion of what to do next waits until he is
+                choosing.
+              </p>
             )}
             <div className="v-scene-choice-tools">
               {available && !moreWords && (

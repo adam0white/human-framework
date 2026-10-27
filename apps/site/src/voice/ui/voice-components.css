@@ -130,7 +130,7 @@
 }
 .v-scene-day .v-plan-sheet .v-composer-scroll {
   flex: 1;
-  min-height: 0;
+  min-height: 96px;
   overflow-y: auto;
   overscroll-behavior: contain;
   padding: 4px 0;
@@ -151,11 +151,10 @@
   gap: 3px;
   padding: 0;
 }
+/* R2: the likely reply was cut by a 112px box on a phone. It shows in full; the action list scrolls instead. */
 .v-scene-day .v-plan-sheet .v-preview {
   padding: 5px 8px;
   min-height: 0;
-  max-height: 112px;
-  overflow-y: auto;
 }
 .v-scene-day .v-plan-sheet .v-draft-summary,
 .v-scene-day .v-plan-sheet .v-telegraph {

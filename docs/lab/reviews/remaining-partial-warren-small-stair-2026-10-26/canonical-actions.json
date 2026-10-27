@@ -1,0 +1,87 @@
+{
+  "baseline": {
+    "base": "d5f39a4e12935cc36512b6dd1d6d0681a3c8c92e",
+    "feedback_ledger_sha256": "e5b8309e8fb5914e5481aa33a95b052f5bca3b90f519a3dcaa307b57bac1e13d",
+    "companion_sha256": "08e36f0a441955494ca9fb321c3de9779ec3d6f0839b951671b185f1e7d96b9f"
+  },
+  "new_ledger_rows": 18,
+  "new_full_returns": 6,
+  "preserved_ask_ids": [
+    "F-1476",
+    "F-1477",
+    "F-1478",
+    "F-1485",
+    "F-1486",
+    "F-1487",
+    "F-1572",
+    "F-1573",
+    "F-1574",
+    "F-1482",
+    "F-1483",
+    "F-1484",
+    "F-1479",
+    "F-1480",
+    "F-1481",
+    "F-1569",
+    "F-1570",
+    "F-1571",
+    "F-1473",
+    "F-1474",
+    "F-1475"
+  ],
+  "preserved_return_sessions": [
+    "hf3-repair-r1/maya-continued",
+    "hf3-repair-r1/nia-free",
+    "hf3-stairwell-r1/maya-continued",
+    "hf3-repair-r1/emre-continued",
+    "hf3-repair-r1/emre-free",
+    "hf3-stairwell-r1/maya-free",
+    "hf3-repair-r1/maya-free"
+  ],
+  "new_return_sources": {
+    "hf3-warren-r2/emre-continued": {
+      "original_full_return_sha256": "96a651d418514430d7cf06b892e029e484ecd3caa4d5ace4196ea3fad204cfaf",
+      "bytes": 805,
+      "fence": "```",
+      "canonical_action": "insert once",
+      "limits": "FRUSTRATED wish533.273 eased after dig finished573.630 and nine beds591.378; BORED wish773.243 persisted to904.922 stop. Firstminute61.725late; both actual phone and desktop images/inputs. Unsupported furnish/look requests were corrected own command errors, not game TOOL failures. Scouts caused no harm; no later damaging attack or proven door closure under attack. Water and bell explanation useful; actor choices preserved. Native0.6; optional0.7 untested. Both feedback topics, stopping local, empty note/no Submit/consent change. All 24 raw reactions preserved in companion; 0 not exact substrings in original report; original bytes unchanged."
+    },
+    "hf3-warren-r2/emre-free": {
+      "original_full_return_sha256": "bc1361fe9c3eb42fe19d12c839cf8df4adb712091d9b14a49ef6500b11ba0c3e",
+      "bytes": 709,
+      "fence": "```",
+      "canonical_action": "insert once",
+      "limits": "Natural BORED276.199 before riders, wish253.043persisted. All9raw reactions exact in originalreport+companion. Firstminute65.354late; pulse179.144=3. Actual3phoneimages6.838/144.748/236.426 andphoneposition+namedinputs; no desktop before5minute naturalstop, CONTneeded. Laterperson/Feedbacktext-only. Invitationinitiallythoughtpending but reopenedandfoundactualanswer; route visibility/practicalmeaning, notmissinganswer claim. Store/lamp/chalksmallprogressobserved; no beds/door/riders thisrun, prior remembereddoorfailure not anewcurrenttest. No workcause established or forcedactorworkauthorized. Native0.6/optional0.7untested. Bothquietlabelsavailable/stoppinglocal/noteboxempty/no typing/Submit/consent. ActualcapturedPID/profile/portclosure rootverified."
+    },
+    "hf3-warren-r2/maya-continued": {
+      "original_full_return_sha256": "fbfdd02e5e54d9cd274ba9859e6e2bc6daf1f2cb2cb633d3d1d501b3fd5efcd3",
+      "bytes": 1206,
+      "fence": "```",
+      "canonical_action": "insert once",
+      "limits": "Actual stop913.065s CONFUSED meets900floor; reportabout909 retained. Firstminutejustafter61late, approximate pulse/wish times retained without fabricated precision. Original report explicitly omits input reactions; exact companion retains all71raw reactions. Both actual image/tap sizes, phone sheet obscures hill/clippedwater; no source/hidden-state causalclaim. Same0.6savedcondition excludesoptional0.7mechanics. LowconfidenceZehra/sharedname recognition guess only; no castidentity established. BothYusufs distinguished in ownreport. No imposed obedience or universalworkblocker inferred. Confusedchiplocal, noteboxempty (different fromFREEautofill); no typing/Submit/consent. Actual captured driver/browser trees/profilegone andportclosed rootverified."
+    },
+    "hf3-warren-r2/maya-free": {
+      "original_full_return_sha256": "6b2ca0d9f313f6604391885824343dab5ab7ca5726a9192c553f02838ea236ea",
+      "bytes": 1266,
+      "fence": "```",
+      "canonical_action": "insert once",
+      "limits": "Natural FREE FRUSTRATED raw685.620/report685.6. First wish532.3; pulses191.0=4/376.8=3/570.8=2. Firstminute69.4late, no backfill. Both actualsizes/image+tap; phoneview/map slid, cannot infer cause. Older native0.6 condition cannotacceptoptional0.7mechanics. Raw48reactions preserved in companion: report changed one curly possessive apostrophe at570.798, so raw companion governs exact punctuation. No demand for obedience or inferred loose-stone causalbug. Stopping local/autofilled, no typing/Submit/consent."
+    },
+    "hf3-warren-r2/nia-continued": {
+      "original_full_return_sha256": "22b279ccde481073a436c91f22ac594fb88abd3adab6ecbb6c0a1ac7a95a828a",
+      "bytes": 917,
+      "fence": "```",
+      "canonical_action": "insert once",
+      "limits": "Actual raw BORED stop913.904 versus report913.905/913.9; FRUSTRATED wish565.637 persisted into boredom. Firstminute actual70.223 versus self-labelled/reportabout66, late not60s. Pulses165.774=3/359.493=4/543.770=3/705.864=2/870.335=2. All86raw reactions retained in full companion; 70 not exact originalreport substrings due pre-compaction omissions/partial quotation. Full companion REQUIRED in blind coding and evidence packet. Originalreport/raw unchanged. Actual desktop and one brief299–305phone check; automaticfirstminute image notviewed. Several changing-name/position taps retried, no driverblock. Player perceived clock/fast/pause issues, not established clock defect. End optional work initially appeared unresponsive then confirmed after current activity; not ignored-action claim. Initial Riza recognition guess withdrawn after child age; Zehra/Yusuf low-medium common-name guess unverified. Newhill quiet-door mode read notentered; native0.6/optional0.7untested. Scouts noharm; no actual damaging rider strike; doorstateclaims remain player observations not proof ofenginefailure. Both quietfeedback topics/localstopping/no typed note/Submit/consent edit. Actual resourceclosure separatelyverified."
+    },
+    "hf3-warren-r2/nia-free": {
+      "original_full_return_sha256": "5ffa2a05b0b514b9b21b3c52f15076b32eee6f3a59226c1429bb548f2312d705",
+      "bytes": 813,
+      "fence": "```",
+      "canonical_action": "insert once",
+      "limits": "Natural FRUSTRATED109.45; wish98.354 persisted; no pulse due. Firstminute67.181late. Actual desktop image7.439 and ordinary named/position inputs; phone not reached before early stop. Switched Fast25.774; knowingly rang false alarm76.923 and accepted trust cost. Six game hours elapsed in about10real seconds. Door actual state unknown; no proved closure failure, no riders. New hill quiet-test mode read only, not tested. Feedback stopping local/no typing/Submit/consent; no driver error. All 11 raw reactions preserved in companion; 1 not exact substrings in original report; original bytes unchanged."
+    }
+  },
+  "new_rows_have_reserved_existing_ids": true,
+  "no_CONT_autobiography": true
+}

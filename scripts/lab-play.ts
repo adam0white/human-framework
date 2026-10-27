@@ -203,12 +203,14 @@ async function main() {
       started: number,
       error?: string,
       requestedControlPresentBefore: boolean | null = null,
+      resolved?: { name: string; matched_by: string },
     ) => {
       const line = makeLogLine(
         op,
         { now: Date.now(), openedAt, op_ms: Date.now() - started },
         error,
         requestedControlPresentBefore,
+        resolved,
       );
       logQueue = logQueue
         .catch(() => {})
@@ -409,7 +411,7 @@ async function main() {
               : { op: 'invalid' };
           const result = await runPlayOperation(raw, {
             previous: cached,
-            act: async () => {
+            act: async (resolvedName) => {
               // A malformed request or a spent session is not a driver block: say so, so testers do not stop as TOOL.
               const requestError = (message: string) =>
                 new Error(`${message} (invalid request, not a driver failure)`);
@@ -430,6 +432,11 @@ async function main() {
                   );
                 if (op.op !== 'open' && openedAt === null) throw requestError('Call open first');
               }
+              // A resolved tap uses the full current control name, exactly, never the tester's fragment.
+              if (resolvedName !== undefined && op.op === 'tap') {
+                const { text: _text, ...named } = op as PlayOp & { text?: string };
+                op = { ...named, name: resolvedName } as PlayOp;
+              }
               const shot = await act(op);
               if (op.op !== 'log') await sleep(100);
               return shot;
@@ -441,7 +448,13 @@ async function main() {
             }),
           });
           cached = result.snapshot;
-          await log(raw, started, result.error, result.requested_control_present_before).catch(console.error);
+          await log(
+            raw,
+            started,
+            result.error,
+            result.requested_control_present_before,
+            result.error === undefined ? result.resolved : undefined,
+          ).catch(console.error);
           response.writeHead(result.status, {
             'Content-Type': 'application/json; charset=utf-8',
             'Cache-Control': 'no-store',

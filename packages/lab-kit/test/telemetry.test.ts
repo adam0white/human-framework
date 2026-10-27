@@ -77,3 +77,24 @@ it('shows an informational preserving notice without claiming local or central n
   expect(setItem).not.toHaveBeenCalled();
   expect(claim).not.toHaveBeenCalled();
 });
+it('lets clicks reach controls first and leaves on a click after it has been seen, with Recording unchanged', async () => {
+  const notice = telemetryNotice(memoryStorage());
+  if (!notice) throw Error('Missing disclosure');
+  const control = document.createElement('button');
+  let pressed = 0;
+  control.addEventListener('click', () => pressed++);
+  document.body.append(control, notice);
+  expect(notice.style.pointerEvents).toBe('none');
+  await vi.waitFor(() => expect(notice.style.visibility).toBe('visible'));
+  control.click();
+  await new Promise(requestAnimationFrame);
+  expect(notice.isConnected).toBe(true);
+  const now = performance.now();
+  vi.spyOn(performance, 'now').mockReturnValue(now + 4000);
+  control.click();
+  expect(notice.isConnected).toBe(true);
+  await new Promise(requestAnimationFrame);
+  expect(pressed).toBe(2);
+  expect(notice.isConnected).toBe(false);
+  vi.restoreAllMocks();
+});

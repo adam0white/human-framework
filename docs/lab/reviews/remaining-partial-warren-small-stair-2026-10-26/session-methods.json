@@ -1,0 +1,236 @@
+[
+  {
+    "session": "hf3-repair-r1/maya-continued",
+    "diary": "D01",
+    "method": {
+      "started": "2026-10-26T18:51:55.320796+00:00",
+      "ended": "2026-10-26T19:07:53.629871+00:00",
+      "first_player_clock_observed": "2026-10-26T18:52:02.276188+00:00",
+      "floor_minutes": 15,
+      "ceiling_minutes": 25,
+      "floor_met": true,
+      "status": "report-ready",
+      "backend": "claude",
+      "model": "opus",
+      "effort": "low"
+    },
+    "source_supervisor_sha256": "8654a09b93af86eef3cab0b2caa30ea7b9bb8dc9ed1ba462287aadfb2d35f019",
+    "limits": "Original report remains verbatim; source/raw governs exact times and words. Floor continuation is protocol exposure, not voluntary retention. Historical profile/API conditions and queue-at-close uncertainty are not repaired or reclassified by publication."
+  },
+  {
+    "session": "hf3-repair-r1/nia-free",
+    "diary": "D02",
+    "method": {
+      "started": "2026-10-26T21:30:08.787269+00:00",
+      "ended": "2026-10-26T21:35:36.564903+00:00",
+      "first_player_clock_observed": "2026-10-26T21:30:15.846931+00:00",
+      "floor_minutes": 0,
+      "ceiling_minutes": 25,
+      "floor_met": true,
+      "status": "report-ready",
+      "backend": "claude",
+      "model": "opus",
+      "effort": "low"
+    },
+    "source_supervisor_sha256": "e43470f5a8d0ea6b043855b59c4d776b3c52e0747f7e286915bf6398576a2049",
+    "limits": "Original report remains verbatim; source/raw governs exact times and words. Floor continuation is protocol exposure, not voluntary retention. Historical profile/API conditions and queue-at-close uncertainty are not repaired or reclassified by publication."
+  },
+  {
+    "session": "hf3-warren-r2/nia-continued",
+    "diary": "D03",
+    "method": {
+      "started": "2026-10-26T16:59:34.748550+00:00",
+      "ended": "2026-10-26T17:15:27.608443+00:00",
+      "first_player_clock_observed": "2026-10-26T16:59:40.969687+00:00",
+      "floor_minutes": 15,
+      "ceiling_minutes": 25,
+      "floor_met": true,
+      "status": "report-ready",
+      "backend": "claude",
+      "model": "opus",
+      "effort": "low"
+    },
+    "source_supervisor_sha256": "df268bfc0d36e200aca55b407e66f8d37ebad9e1817954535c3604a4c8400e61",
+    "limits": "Original report remains verbatim; source/raw governs exact times and words. Floor continuation is protocol exposure, not voluntary retention. Historical profile/API conditions and queue-at-close uncertainty are not repaired or reclassified by publication."
+  },
+  {
+    "session": "hf3-stairwell-r1/maya-continued",
+    "diary": "D04",
+    "method": {
+      "started": "2026-10-26T19:56:33.358812+00:00",
+      "ended": "2026-10-26T20:12:22.051629+00:00",
+      "first_player_clock_observed": "2026-10-26T19:56:40.447950+00:00",
+      "floor_minutes": 15,
+      "ceiling_minutes": 25,
+      "floor_met": true,
+      "status": "report-ready",
+      "backend": "claude",
+      "model": "opus",
+      "effort": "low"
+    },
+    "source_supervisor_sha256": "cd48f07fd188441f2a3d7f7435039fc2a32a7307dc8832bf76d785aad05feba4",
+    "limits": "Original report remains verbatim; source/raw governs exact times and words. Floor continuation is protocol exposure, not voluntary retention. Historical profile/API conditions and queue-at-close uncertainty are not repaired or reclassified by publication."
+  },
+  {
+    "session": "hf3-warren-r2/emre-free",
+    "diary": "D05",
+    "method": {
+      "started": "2026-10-26T16:34:21.267540+00:00",
+      "ended": "2026-10-26T16:39:48.535703+00:00",
+      "first_player_clock_observed": "2026-10-26T16:34:32.918452+00:00",
+      "floor_minutes": 0,
+      "ceiling_minutes": 25,
+      "floor_met": true,
+      "status": "report-ready",
+      "backend": "codex",
+      "model": "gpt-6.1-sol",
+      "effort": "low"
+    },
+    "source_supervisor_sha256": "6022c306aae3c58122c045266f2d9030c8be869f5cc502c1265c36b4e39a786e",
+    "limits": "Original report remains verbatim; source/raw governs exact times and words. Floor continuation is protocol exposure, not voluntary retention. Historical profile/API conditions and queue-at-close uncertainty are not repaired or reclassified by publication."
+  },
+  {
+    "session": "hf3-repair-r1/emre-continued",
+    "diary": "D06",
+    "method": {
+      "started": "2026-10-26T20:59:32.659349+00:00",
+      "ended": "2026-10-26T21:17:46.323113+00:00",
+      "first_player_clock_observed": "2026-10-26T20:59:49.462801+00:00",
+      "floor_minutes": 15,
+      "ceiling_minutes": 25,
+      "floor_met": true,
+      "status": "report-ready",
+      "backend": "claude",
+      "model": "opus",
+      "effort": "low"
+    },
+    "source_supervisor_sha256": "a83245351987a1df4b46358058a03102eb158034387ed3006ca37facbe4f600e",
+    "limits": "Original report remains verbatim; source/raw governs exact times and words. Floor continuation is protocol exposure, not voluntary retention. Historical profile/API conditions and queue-at-close uncertainty are not repaired or reclassified by publication."
+  },
+  {
+    "session": "hf3-warren-r2/maya-free",
+    "diary": "D07",
+    "method": {
+      "started": "2026-10-26T16:05:21.089424+00:00",
+      "ended": "2026-10-26T16:17:50.059880+00:00",
+      "first_player_clock_observed": "2026-10-26T16:05:27.347529+00:00",
+      "floor_minutes": 0,
+      "ceiling_minutes": 25,
+      "floor_met": true,
+      "status": "report-ready",
+      "backend": "claude",
+      "model": "opus",
+      "effort": "low"
+    },
+    "source_supervisor_sha256": "cf0a5ff1e5fc07f13f594f51175833b70d7c1daf938a7d0b7d156056466d92ed",
+    "limits": "Original report remains verbatim; source/raw governs exact times and words. Floor continuation is protocol exposure, not voluntary retention. Historical profile/API conditions and queue-at-close uncertainty are not repaired or reclassified by publication."
+  },
+  {
+    "session": "hf3-repair-r1/emre-free",
+    "diary": "D08",
+    "method": {
+      "started": "2026-10-26T20:43:59.156409+00:00",
+      "ended": "2026-10-26T20:59:27.742006+00:00",
+      "first_player_clock_observed": "2026-10-26T20:44:06.113728+00:00",
+      "floor_minutes": 0,
+      "ceiling_minutes": 25,
+      "floor_met": true,
+      "status": "report-ready",
+      "backend": "claude",
+      "model": "opus",
+      "effort": "low"
+    },
+    "source_supervisor_sha256": "3c6db267718bcf7686a8c85bf77b8813a3f0b9c6060dfe63677e551763e1cac1",
+    "limits": "Original report remains verbatim; source/raw governs exact times and words. Floor continuation is protocol exposure, not voluntary retention. Historical profile/API conditions and queue-at-close uncertainty are not repaired or reclassified by publication."
+  },
+  {
+    "session": "hf3-warren-r2/nia-free",
+    "diary": "D09",
+    "method": {
+      "started": "2026-10-26T16:57:09.389547+00:00",
+      "ended": "2026-10-26T16:59:31.045705+00:00",
+      "first_player_clock_observed": "2026-10-26T16:57:20.663408+00:00",
+      "floor_minutes": 0,
+      "ceiling_minutes": 25,
+      "floor_met": true,
+      "status": "report-ready",
+      "backend": "claude",
+      "model": "opus",
+      "effort": "low"
+    },
+    "source_supervisor_sha256": "d4c9429fb8916b942a1b7ee0e38390614fbcefa0834303ec80beed19f6ad1418",
+    "limits": "Original report remains verbatim; source/raw governs exact times and words. Floor continuation is protocol exposure, not voluntary retention. Historical profile/API conditions and queue-at-close uncertainty are not repaired or reclassified by publication."
+  },
+  {
+    "session": "hf3-stairwell-r1/maya-free",
+    "diary": "D10",
+    "method": {
+      "started": "2026-10-26T19:45:40.920844+00:00",
+      "ended": "2026-10-26T19:56:29.532456+00:00",
+      "first_player_clock_observed": "2026-10-26T19:45:48.329390+00:00",
+      "floor_minutes": 0,
+      "ceiling_minutes": 25,
+      "floor_met": true,
+      "status": "report-ready",
+      "backend": "claude",
+      "model": "opus",
+      "effort": "low"
+    },
+    "source_supervisor_sha256": "05930427afa7374dcc2e596eeadd7597c9d04b988434f260a05963a93039d8b7",
+    "limits": "Original report remains verbatim; source/raw governs exact times and words. Floor continuation is protocol exposure, not voluntary retention. Historical profile/API conditions and queue-at-close uncertainty are not repaired or reclassified by publication."
+  },
+  {
+    "session": "hf3-repair-r1/maya-free",
+    "diary": "D11",
+    "method": {
+      "started": "2026-10-26T18:48:14.163543+00:00",
+      "ended": "2026-10-26T18:53:01.952140+00:00",
+      "first_player_clock_observed": "2026-10-26T18:48:26.327502+00:00",
+      "floor_minutes": 0,
+      "ceiling_minutes": 25,
+      "floor_met": true,
+      "status": "report-ready",
+      "backend": "claude",
+      "model": "opus",
+      "effort": "low"
+    },
+    "source_supervisor_sha256": "01c174689e5f9124e989ad1211353d0d0996f38887e541679775ac082fd72569",
+    "limits": "Original report remains verbatim; source/raw governs exact times and words. Floor continuation is protocol exposure, not voluntary retention. Historical profile/API conditions and queue-at-close uncertainty are not repaired or reclassified by publication."
+  },
+  {
+    "session": "hf3-warren-r2/maya-continued",
+    "diary": "D12",
+    "method": {
+      "started": "2026-10-26T16:17:54.248757+00:00",
+      "ended": "2026-10-26T16:34:16.298809+00:00",
+      "first_player_clock_observed": "2026-10-26T16:18:19.910144+00:00",
+      "floor_minutes": 15,
+      "ceiling_minutes": 25,
+      "floor_met": true,
+      "status": "report-ready",
+      "backend": "claude",
+      "model": "opus",
+      "effort": "low"
+    },
+    "source_supervisor_sha256": "7abbe6b6644edeeab15a649c790dd3b80ec5b5c0d2d105b2c78add86231c7951",
+    "limits": "Original report remains verbatim; source/raw governs exact times and words. Floor continuation is protocol exposure, not voluntary retention. Historical profile/API conditions and queue-at-close uncertainty are not repaired or reclassified by publication."
+  },
+  {
+    "session": "hf3-warren-r2/emre-continued",
+    "diary": "D13",
+    "method": {
+      "started": "2026-10-26T16:39:52.138080+00:00",
+      "ended": "2026-10-26T16:57:05.162810+00:00",
+      "first_player_clock_observed": "2026-10-26T16:41:13.646482+00:00",
+      "floor_minutes": 15,
+      "ceiling_minutes": 25,
+      "floor_met": true,
+      "status": "report-ready",
+      "backend": "codex",
+      "model": "gpt-6.1-sol",
+      "effort": "low"
+    },
+    "source_supervisor_sha256": "826d7fcfb92141060bf9f5e822523ec0d8df85b1575d6d3174f2ed0de225416d",
+    "limits": "Original report remains verbatim; source/raw governs exact times and words. Floor continuation is protocol exposure, not voluntary retention. Historical profile/API conditions and queue-at-close uncertainty are not repaired or reclassified by publication."
+  }
+]

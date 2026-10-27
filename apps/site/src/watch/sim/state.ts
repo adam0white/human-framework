@@ -249,6 +249,8 @@ export interface DawnPage {
   ropeSnapped: boolean;
   /** Something got over the wall tonight (even if it found no grain to take). */
   crossed: boolean;
+  /** Walls a threat got over while nobody was posted there and grain was lost (F-1594: what a post would have stopped). */
+  unwatched?: SectionId[];
   /** What the watchers say at dawn, in their own words. */
   voices: { who: WatcherId; text: string }[];
 }
@@ -292,6 +294,8 @@ export interface Villager {
   until?: number;
   /** A wound that ended their time on the wall (a limp for life). */
   limp?: boolean;
+  /** The year of a lean winter they went into weak from hunger (hardship rules). */
+  thin?: number;
   /** Whether they have stood the wall on a played night. */
   stood?: boolean;
   /** Born to, for the chronicle (founders' kin carry their parents too). */
@@ -328,6 +332,12 @@ export interface WatchState {
   version: 4;
   /** Scenario 13: accepted cross-post night help costs a small burst of exertion. Absent keeps legacy rules. */
   nightDepartureEffort?: true;
+  /**
+   * Scenarios 17–19: loss carries across the year (WATCH-cold-loss). The spring sowing takes seed from the granary,
+   * so a thin granary gives a thin harvest; a hungry spring can kill the frail; a lean winter sends the watchers up
+   * the wall weak; wounds heal slowly; a second hungry spring running ends the village. Absent keeps legacy rules.
+   */
+  hardship?: true;
   /** Absent means hard winter, preserving the exact legacy state. Next applies at the next dusk. */
   winterSetting?: { active: import('./config.ts').WinterChoice; next: import('./config.ts').WinterChoice };
   seed: number;
@@ -408,6 +418,8 @@ export interface WatchState {
     /** The granary at the winter's first dusk. */
     atWinter: number;
     hungry: boolean;
+    /** Share of the fields sown at the thaw (hardship rules; absent: all of them). */
+    sown?: number;
     /** Quiet stints stood in the routine part of the winter, by `${who}@${section}` (G3-4: told at the thaw). */
     stints: Record<string, number>;
   };
@@ -493,7 +505,15 @@ export function mixSeed(...xs: number[]): number {
 }
 
 /** What a world draw is for: each gets its own stream per year (and per winter night, for the night's plan). */
-export const WORLD_DRAW = { night: 1, winter: 2, weather: 3, fair: 4, collapse: 5, refugees: 6 } as const;
+export const WORLD_DRAW = {
+  night: 1,
+  winter: 2,
+  weather: 3,
+  fair: 4,
+  collapse: 5,
+  refugees: 6,
+  hunger: 7,
+} as const;
 
 /**
  * The world stream for one purpose at the current date, reseeded from the seed (§12 T1). The returned object is
@@ -544,6 +564,7 @@ export function createState(seed: number): WatchState {
   return {
     version: 4,
     nightDepartureEffort: true,
+    hardship: true,
     seed,
     rng: seed | 0,
     world: { rng: mixSeed(seed) },

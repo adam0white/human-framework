@@ -21,6 +21,8 @@ export interface Standing {
   lastKey?: string;
   /** Decision id of the activity he began for it; the suggestion stands until that activity ends. */
   going?: string;
+  /** What he began for it, when that was a close match rather than the option itself (pray at home for the mosque). */
+  servedAs?: string;
   /** Its option has left the offer set: the framework holds it back until it returns (said once, plainly). */
   away?: boolean;
 }

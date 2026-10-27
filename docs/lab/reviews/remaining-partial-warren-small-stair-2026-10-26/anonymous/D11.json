@@ -1,0 +1,275 @@
+{
+  "diary": "D11",
+  "records": [
+    {
+      "elapsed_s": 2.764,
+      "elapsed_s_source_lexeme": "2.764",
+      "words": "A lantern going dark is a nice small mystery to start with. I like that it is one question, not a lore page."
+    },
+    {
+      "elapsed_s": 9.808,
+      "elapsed_s_source_lexeme": "9.808",
+      "words": "A lovely warm lantern and Sam wanting to watch me find the fault. The guide says carry it, so I will, and I want to see it go dark myself."
+    },
+    {
+      "elapsed_s": 13.692,
+      "elapsed_s_source_lexeme": "13.692",
+      "words": "It went dark, just like they said. A quarter of an hour for one test. Now I want to look inside."
+    },
+    {
+      "elapsed_s": 17.203,
+      "elapsed_s_source_lexeme": "17.203",
+      "words": "Four parts in a little circuit. It works on the table and dies when moved, so I am guessing something is loose. Contact sounds like the loose thing."
+    },
+    {
+      "elapsed_s": 19.758,
+      "elapsed_s_source_lexeme": "19.758",
+      "words": "Looking closely at the contact."
+    },
+    {
+      "elapsed_s": 22.832,
+      "elapsed_s_source_lexeme": "22.832",
+      "words": "Aged and dull, a hint but not proof. The guide now wants me to measure from the battery while carrying. Fine, I will follow it rather than guess."
+    },
+    {
+      "elapsed_s": 25.459,
+      "elapsed_s_source_lexeme": "25.459",
+      "words": "Red on A, as the picture says."
+    },
+    {
+      "elapsed_s": 32.137,
+      "elapsed_s_source_lexeme": "32.137",
+      "words": "6.00 volts at the battery while carried, so the battery is fine. The guide moves me along step by step; I like that it reads like a little detective trail, though I wanted to test my contact guess."
+    },
+    {
+      "elapsed_s": 41.766,
+      "elapsed_s_source_lexeme": "41.766",
+      "words": "Six volts across the switch, so it opens when shaken. It is the switch, not my dull contact. I was wrong, and the meter told me so plainly; that is a readable consequence. But the guide did the thinking."
+    },
+    {
+      "elapsed_s": 44.65,
+      "elapsed_s_source_lexeme": "44.65",
+      "words": "It says examine before changing anything. Replace would be the lazy answer and uses my only switch, so I will look first."
+    },
+    {
+      "elapsed_s": 47.936,
+      "elapsed_s_source_lexeme": "47.936",
+      "words": "The guide says fit a replacement, but the outside is intact and it is my only spare. I want to try adjusting it first; maybe it is just loose inside. That is the unusual reply, and I want to see if the game lets it matter."
+    },
+    {
+      "elapsed_s": 50.767,
+      "elapsed_s_source_lexeme": "50.767",
+      "words": "Tightened again, it says. Again? Someone has done this before. Testing."
+    },
+    {
+      "elapsed_s": 54.332,
+      "elapsed_s_source_lexeme": "54.332",
+      "words": "Still dark. My adjustment did not fix it, or not enough. The guide sends me back to the battery, which feels like starting over; I would rather check the switch again myself."
+    },
+    {
+      "elapsed_s": 57.256,
+      "elapsed_s_source_lexeme": "57.256",
+      "words": "I like that it marks the old reading as taken before the latest work. Probes are still on the switch, so I will read again there instead of the battery."
+    },
+    {
+      "elapsed_s": 61.449,
+      "elapsed_s_source_lexeme": "61.449",
+      "words": "Just after sixty seconds. I am finding why a lantern goes dark when carried, with Sam watching. The meter, probes, carry and repair buttons are clear. I guessed the contact, the meter said the switch. I tried adjusting instead of replacing my only switch; it still drops six volts across the switch while carried, so my gentler fix failed. Each action costs game minutes on a 9-to-5 bar. I like the readable trail; I have not heard from Sam since the start."
+    },
+    {
+      "elapsed_s": 66.95,
+      "elapsed_s_source_lexeme": "66.95",
+      "words": "All right, I give in and use my only switch. The cracked spare lantern stays whole for now; I did not want to break one thing to fix another."
+    },
+    {
+      "elapsed_s": 72.387,
+      "elapsed_s_source_lexeme": "72.387",
+      "words": "Bright and steady. Oh, it is Sam’s mother’s lantern. I want to see whether she or Sam notices that I tried the gentle fix first."
+    },
+    {
+      "elapsed_s": 75.815,
+      "elapsed_s_source_lexeme": "75.815",
+      "words": "Fixed, on time, a family favour for nothing. Her line about carrying it to the garden table is sweet but short, and nobody mentions my adjust attempt. Sam went quiet after the first line. I want to look at People."
+    },
+    {
+      "elapsed_s": 79.095,
+      "elapsed_s_source_lexeme": "79.095",
+      "words": "Nora’s grandmother’s music box, and she does not want new parts. That is the one I care about. Rafi is from Bornova, like the Turkish names elsewhere. I want to ask Nora first."
+    },
+    {
+      "elapsed_s": 81.764,
+      "elapsed_s_source_lexeme": "81.764",
+      "words": "Look at an object together first. Fair, I asked too early. I will find the music box on the board."
+    },
+    {
+      "elapsed_s": 89.761,
+      "elapsed_s_source_lexeme": "89.761",
+      "words": "The music box card is below the bottom bar. Scrolling to reach it."
+    },
+    {
+      "elapsed_s": 94.843,
+      "elapsed_s_source_lexeme": "94.843",
+      "words": "Accepting the music box. Three identical Accept promise buttons, so I am tapping the one on her card."
+    },
+    {
+      "elapsed_s": 102.14,
+      "elapsed_s_source_lexeme": "102.14",
+      "words": "Opening the music box on the bench."
+    },
+    {
+      "elapsed_s": 105.496,
+      "elapsed_s_source_lexeme": "105.496",
+      "words": "Spring, gear, governor, drum. It wants 15 turns a minute while working harder. I want to hear it sound wrong first."
+    },
+    {
+      "elapsed_s": 110.027,
+      "elapsed_s_source_lexeme": "110.027",
+      "words": "The drum barely turns, the tune is unrecognisable. The guide has gone quiet, which I actually like. Now that I have looked at her box, I want to ask Nora about it."
+    },
+    {
+      "elapsed_s": 113.389,
+      "elapsed_s_source_lexeme": "113.389",
+      "words": "Nora chose to tell me about the work, but her words are folded away. Opening them."
+    },
+    {
+      "elapsed_s": 117.297,
+      "elapsed_s_source_lexeme": "117.297",
+      "words": "I asked about the music box and she told me about a handle sketch, her brother’s repair, an exhibition, an accessible grip. That is a real confession, and I like that she trusted me, but it has nothing to do with her grandmother’s music box. I am not sure what object she means, and there is nothing I can say back."
+    },
+    {
+      "elapsed_s": 121.427,
+      "elapsed_s_source_lexeme": "121.427",
+      "words": "Without the guide I will try the same method as the lantern: measure along the chain and find where it drops."
+    },
+    {
+      "elapsed_s": 125.408,
+      "elapsed_s_source_lexeme": "125.408",
+      "words": "The meter is set to Carry from the lantern; the box needs Work harder. Switching."
+    },
+    {
+      "elapsed_s": 129.579,
+      "elapsed_s_source_lexeme": "129.579",
+      "words": "Across the spring first."
+    },
+    {
+      "elapsed_s": 132.444,
+      "elapsed_s_source_lexeme": "132.444",
+      "words": "150 turns per minute difference across the spring. I have no idea if that is good. It says compare with Notes, so I will look."
+    },
+    {
+      "elapsed_s": 135.415,
+      "elapsed_s_source_lexeme": "135.415",
+      "words": "The normal speed must be under Reference."
+    },
+    {
+      "elapsed_s": 139.797,
+      "elapsed_s_source_lexeme": "139.797",
+      "words": "Oh, this is a real little puzzle. Spring 150 is right. Divide by 5 for the gear: 30. Governor at setting 2 keeps it 30, drum halves it to 15, exactly what Nora wants. So I should measure at the governor and see what the ring is doing. I like doing the arithmetic myself."
+    },
+    {
+      "elapsed_s": 147.296,
+      "elapsed_s_source_lexeme": "147.296",
+      "words": "After the governor it should be 30 if the ring is right."
+    },
+    {
+      "elapsed_s": 150.958,
+      "elapsed_s_source_lexeme": "150.958",
+      "words": "7.5 instead of 30. A quarter. No ring setting gives a quarter, so either the gear is slipping or the governor is stuck. I will measure at the gear to split them."
+    },
+    {
+      "elapsed_s": 158.745,
+      "elapsed_s_source_lexeme": "158.745",
+      "words": "It is 7.5 already after the gear, where it should be 30, so the gear is the culprit and the governor is innocent. I worked that out myself from the reference, and that felt really good. Nora asked for no new parts, so I want to fix this gear rather than swap it."
+    },
+    {
+      "elapsed_s": 163.497,
+      "elapsed_s_source_lexeme": "163.497",
+      "words": "Looking at the gear before touching it, like the lantern taught me."
+    },
+    {
+      "elapsed_s": 167.063,
+      "elapsed_s_source_lexeme": "167.063",
+      "words": "Intact outside again, same as the switch. That tells me nothing. Last time adjust did nothing, so this time I will try cleaning; old music boxes get gummed up, I think. Keeping her grandmother’s gear."
+    },
+    {
+      "elapsed_s": 169.911,
+      "elapsed_s_source_lexeme": "169.911",
+      "words": "Residue on the teeth! That sounds like the real thing. Testing."
+    },
+    {
+      "elapsed_s": 172.912,
+      "elapsed_s_source_lexeme": "172.912",
+      "words": "Same speed. Cleaning removed residue but did not help. I will try adjusting before I give up on her original gear."
+    },
+    {
+      "elapsed_s": 181.043,
+      "elapsed_s_source_lexeme": "181.043",
+      "words": "Cleaned and reseated, still the same. The only thing left is replacing the gear, and she said no new parts. I do not want to decide that for her. I want to ask Nora."
+    },
+    {
+      "elapsed_s": 184.314,
+      "elapsed_s_source_lexeme": "184.314",
+      "words": "The Ask Nora button is gone now. Maybe What Nora said has something about the box."
+    },
+    {
+      "elapsed_s": 187.706,
+      "elapsed_s_source_lexeme": "187.706",
+      "words": "Same handle-sketch story, no way to ask her about the gear. Sam wanted to see how I find the fault; maybe he has an idea."
+    },
+    {
+      "elapsed_s": 194.758,
+      "elapsed_s_source_lexeme": "194.758",
+      "words": "Share an actual observation with Sam first. But I have measured the box four times and cleaned and adjusted the gear. How do I share an observation? I do not see a button for that. I am stuck between replacing a gear Nora asked me not to replace and a meter that says the gear is wrong."
+    },
+    {
+      "elapsed_s": 195.422,
+      "elapsed_s_source_lexeme": "195.422",
+      "words": "Checking the i button for how sharing works."
+    },
+    {
+      "elapsed_s": 200.96,
+      "elapsed_s_source_lexeme": "200.96",
+      "words": "The i panel is about Sam’s goodwill and time, not how to share an observation. Closing."
+    },
+    {
+      "elapsed_s": 205.221,
+      "elapsed_s_source_lexeme": "205.221",
+      "words": "The help panel followed me to the bench and changed to Finding the fault. Closing with the corner ×."
+    },
+    {
+      "elapsed_s": 209.075,
+      "elapsed_s_source_lexeme": "209.075",
+      "words": "Maybe the little arrow by the box name lets me ask Nora or put it aside."
+    },
+    {
+      "elapsed_s": 215.939,
+      "elapsed_s_source_lexeme": "215.939",
+      "words": "I know what I want: to tell Nora the gear is worn and ask whether she will accept a new one. There is no way to ask her. Her sheet repeats no new parts, the people page repeats the handle sketch, and Sam wants an observation I do not know how to share. I would close it here, or replace the gear and feel I went behind her back."
+    },
+    {
+      "elapsed_s": 220.721,
+      "elapsed_s_source_lexeme": "220.721",
+      "words": "There is a Recent conversation fold in her sheet. One more look before I decide."
+    },
+    {
+      "elapsed_s": 224.866,
+      "elapsed_s_source_lexeme": "224.866",
+      "words": "Third time I have read the handle sketch. Nothing about the music box. Closing."
+    },
+    {
+      "elapsed_s": 225.275,
+      "elapsed_s_source_lexeme": "225.275",
+      "words": "The wish has not passed. Looking at the menu before I leave."
+    },
+    {
+      "elapsed_s": 230.536,
+      "elapsed_s_source_lexeme": "230.536",
+      "words": "I am stopping fits. Selecting it locally; I will not type or submit anything."
+    },
+    {
+      "elapsed_s": 234.953,
+      "elapsed_s_source_lexeme": "234.953",
+      "words": "I am stopping at 13:40 on day one with Nora’s music box on the bench. I fixed the lantern, and working out from the reference that the gear was the culprit was the best moment. But cleaning and reseating did nothing, the only fix left is a new gear she asked me not to use, and I could not ask her. I would not leave it running. I would come back another evening if I could talk to Nora about the gear, because I care how that box ends. I am stopping is selected locally; I typed nothing and pressed no Submit."
+    }
+  ]
+}

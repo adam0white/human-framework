@@ -304,3 +304,71 @@ Coordinator reading: after HF 4.x, alongside the classics work, the lab defines 
 > "Wait, why do your agents need to block recording? Wasn't getting more data from them the whole point? Yes, I'm okay with default-on recording and linking all the things. Keep friends paused. It looks like we have quite a few tasks building up, even some for post-v4, let's lean more on the dev side to clean all that up nicely, holding play testers tokens as secondary to that."
 
 Coordinator reading: agent players (panel, cold plays, bots, verification runs) leave recording and linking on, as any player would; where the lab can label a record as an agent run, they set that label so human records stay separable. Blocking the lab API in harness runs ends. Friends' playtests stay paused. Allowance order: development work (HF 4.0, game fixes, the roadmap backlog, post-v4 preparation) comes first; panel and playtester runs use what remains.
+
+## 2026-10-27 — Pause Codex; use Claude liberally (Adam, verbatim)
+
+> "Alright, once the current codex runners come back, stop codex usage until further notice. However, we have much Claude usage left expiring at 2 am today. Use those liberally"
+
+Coordinator reading: Codex runs already in flight finish; no new Codex processes start until the owner lifts the pause. Claude subagents take building, reviews and play in the meantime, under the same delivery rules (one worktree per agent, check:lane, signed commits, one independent review, exact green CI before deploy). "2 am today" is read as Central time, 2026-10-27 07:00 UTC.
+
+## 2026-10-27 — Bold classic names; proposals on the decision desk (Adam, verbatim)
+
+> "I like the approaches and direction so far. I mean, it sounds good on paper, gotta see it. I think we can approach our classic redos with a bold approach, such as "Orion Trail" (I see this one wasn't picked though). No one is gonna sue us for some rip offs of nostalgia. Instead of an md file, reuse decisions artifact to propose for me to review. I ain't gonna answer the current pending decisions anyway. I'm reading through your other messages in the meantime"
+
+Coordinator reading: the named approaches and categories are accepted in direction; the owner judges them by playing a probe. Classic rebuilds may carry bold parody titles that openly nod to the original. Proposals for owner review go on the decision-desk artifact, not in markdown files. The pending desk slips (easier opt-ins, Othram IP) stop waiting: the opt-ins stay as built, and outside publishing stays paused until the owner checks the IP question. The wagon trail is on the shortlist in both drafts; "Orion Trail" itself is an existing game, so ours gets its own title.
+
+## 2026-10-27 — Thaw games; analytics everywhere; difficulty aim approved (Adam, verbatim)
+
+> "We can thaw games. Love the upcoming reorg of games. Oh wagon trail is much better lol. I like your difficulty aim. Allow cloudflare analytics everywhere, whitelist or whatever. I'll check your decisions deck now. Can't wait for you to push the rest of the work out and then play test them!"
+
+Coordinator reading: Small Works, Neighbours and The Rope are no longer frozen; they take ordinary work like any game. The wagon trail is the first classic. The difficulty aim (careless play loses well over half the time; careless spam costs something visible) stands across games. Every site on `adamwhite.work`, central and each game, loads Cloudflare Web Analytics: its CSP allows `https://static.cloudflareinsights.com` in `script-src` and `https://cloudflareinsights.com` in `connect-src`. Then the in-flight fixes ship and go to the panel.
+
+## 2026-10-27 — Decision desk: approaches, categories, first classic (Adam, verbatim)
+
+Answers on the decision desk, 03:28–03:33 UTC:
+
+- **Approach set:** adopt all four (Chronicle, Inner Voice, Desk, Clock).
+- **Reach:** the whole game (type, palette, renderer, menu and title card).
+- **Probe:** none; move all games after 4.x. Note: "Only one way forward, no easy exit! "
+- **Site categories:** adopt the five (Keep a village, Live one life, Read people, Against the clock, Make the journey).
+- **First classic:** the wagon trail. Note: "Now that I think this through, the other 5 will be too difficult or involved to pull off nicely. They're classics because they have been carefully balanced and polished; we can't replicate that easily. Oregon Trail is maybe an easier one to attempt. "
+
+Coordinator reading: after HF 4.x, every game moves to its named approach in full, with no probe pair first. The site groups games into the five categories. The wagon trail is the only classic planned; the other five shortlisted classics are dropped.
+
+## 2026-10-27 — HF 4.0 scope rulings approved (Adam, verbatim)
+
+> "All good decisions (codex to 4.1, delete code, allow difference), keep going."
+
+Approves the coordinator's HF 4.0 rulings: the Codex additions (portable admission beyond an explicit rejection, the JSON wire adapter, the settlement ledger and the tuning surface) move to 4.1; legacy 3.x code, tests and examples are deleted rather than ported; continuous fields may differ within 1e-9 across chunking while clocks, counters, RNG and event order stay exact.
+
+## 2026-10-27 — Soft stop on new Claude agents (Adam, verbatim)
+
+> "Alright let's soft stop launching new Claude agents as well. Thanks"
+
+Coordinator reading: no new Claude agents start. Agents already running finish their current task at a clean checkpoint and do not fan out further. Heartbeats keep doing the checks, the coordinator's own deploys and the report. Codex stays paused.
+
+## 2026-10-27 — Finish HF 4.0 despite the soft stop (Adam, verbatim)
+
+> "Let's resume the hf4 agent to let it run reviewers and fully finish the v4 work"
+
+Coordinator reading: the soft stop on new Claude agents is lifted for HF 4.0 only. The HF 4.0 lead may start the two release reviewers and per-game migration builders, and carries 4.0 to its done-means: release, docs and site, and every game moved to 4.0 or recorded as staying on 3.x. Everything else stays under the soft stop.
+
+## 2026-10-27 — Abolish feature flags; automatic carryover (Adam, verbatim)
+
+> "Okay why the carryover isn't public, and what other features are we holding behind the flag? I thought we would use the flag only for a few basic, permanently testing-only things; I never imagined it to become a feature flag for actual features being held back. I think this is hurting the dev process. Convince me otherwise. Jokes are fine."
+
+> "Well we need much more automatic carryover. You see, a lot of the things are basically opinionated decisions we make and enforce. Lab is giving a way out on those and others, just for debugging.
+> I don't understand why we can't make it automatic to simply carryover people across the games, the personas that exist on multiple games. The cast controls and more precise persona experiments, some intentionally picked ones, can be exposed on the public personas page where it lists from your browser, the shelf which is public and central. I like your suggestion, but let's go further. Abolish flags altogether. Whatever we need must be public. Hide some needed features by lab into a small, always collapsed "Debug" menu at the bottom of the menus. Not even an extra line, same line with lab privacy. However, we still need to be careful of the scope of extra things we offer there. Move cast controls to the shelf. I'd like to experiment with offering that at the end screen of games: it's a natural stopping point, an option to move a character you know into another game or two would keep the player hooked. The pace and extra speed controls; if your testers need them, the players do too. We can bring them back for those games. The why's can be extra I buttons after their source, not on a new line by themselves.
+> Once we confirm this direction is working, we'll remove the mentions of a lab flag or any query string altogether, keeping history in agents and other popular MD files isn't a good idea. I'll let you know once soft stops are lifted. For now, focus on making sure to not lose tasks, and finishing v4 properly. Thanks"
+
+Coordinator reading:
+- No feature flags and no query-string switches. Every gameplay feature is public.
+- People who appear in more than one game carry over automatically, with no opt-in.
+- Cast controls and chosen persona experiments move to the public, central shelf (the personas page that lists people from this browser).
+- Experiment: the end screen of each game offers to move a known person into one or two other games.
+- Pace and speed controls come back for players in the games where testers use them.
+- The "why" explanations become small "i" buttons right after the thing they explain, not on a line of their own.
+- The few diagnostics that are still needed (export, verify, import, seed, replay, error detail) sit in an always-collapsed "Debug" item on the same line as Lab privacy, at the bottom of the menus. Keep that list small.
+- Left Hand F-1631: a joke reply is approved.
+- After the direction is confirmed, remove every mention of the lab flag and query strings from AGENTS.md and other widely read docs.
+- The work waits for the soft stop to lift; until then, keep the task list whole and finish HF 4.0.

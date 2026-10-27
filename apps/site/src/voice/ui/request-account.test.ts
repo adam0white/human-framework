@@ -30,7 +30,7 @@ test('keeps the actual sent line and answer together, without turning agreement 
   const account = requestAccount(f);
   expect(account?.id).toBe('sent');
   expect(account?.answer?.text).toBe('“After I rest.”');
-  expect(account?.status).toContain('end or result is not recorded');
+  expect(account?.status).toBe('Your suggestion has ended.');
   expect(JSON.stringify(f)).toBe(before);
 });
 
@@ -45,9 +45,9 @@ test('reports waiting, actual begun fact and offered window separately', () => {
     offered: false,
   };
   expect(requestAccount(f)?.status).toContain('Waiting for his answer');
-  expect(requestAccount(f)?.window).toContain('not among his current offers');
+  expect(requestAccount(f)?.window).toContain('He cannot do it just now');
   f.standing.begun = { clock: '11:35', label: 'call Selin' };
-  expect(requestAccount(f)?.status).toContain('Began at 11:35: call Selin');
+  expect(requestAccount(f)?.status).toBe('He started at 11:35.');
   expect(requestAccount(f)?.status).not.toContain('completed');
 });
 
@@ -69,7 +69,7 @@ test('uses actual refusal, expiry, sleep and withdrawal receipts and never takes
     row('sent', 'you', 'You: mention · call Selin'),
     row('reply', 'answer', '“No.”', { tone: 'willNot' }),
   ]);
-  expect(requestAccount(f)?.status).toContain('declined');
+  expect(requestAccount(f)?.status).toContain('He said no');
   f.log.push(row('new', 'you', 'You: mention · rest at home', { minute: 620 }));
   expect(requestAccount(f)?.id).toBe('new');
   expect(requestAccount(f)?.answer).toBeUndefined();
@@ -83,7 +83,7 @@ test('call activity alone proves neither connection nor a missed call', () => {
     missed: { minute: 650, day: 1, clock: '10:50' },
   };
   expect(callAccount(f).map((x) => x.text)).toEqual([
-    'Halil’s call to Selin connected. No conversation ending is recorded here.',
+    'Halil called Selin, and they talked.',
     'Selin called, but Halil did not answer. No conversation took place.',
   ]);
 });

@@ -548,8 +548,20 @@ export const TRUST_REASON: Record<string, string> = {
 };
 
 /** Display account only; the trust record and its numeric delta stay unchanged. */
-export function trustHistoryWords(delta: number, reason: string, action?: string, count = 1): string {
-  const label = action ? ACTION_LABEL[action] : undefined;
+export function trustHistoryWords(
+  delta: number,
+  reason: string,
+  action?: string,
+  count = 1,
+  shift = false,
+): string {
+  // The afternoon shift is the same 'work-repair' action as the morning: name it as the player suggested it (R2).
+  const label =
+    shift && action === 'work-repair'
+      ? ACTION_LABEL['work-extra']
+      : action
+        ? ACTION_LABEL[action]
+        : undefined;
   const advice = label ? `Your suggestion to ${label}` : 'Your suggestion';
   const result = TRUST_REASON[reason] ?? reason.replace(/-/g, ' ');
   const frequency = count > 1 ? ` ${count} times` : '';
@@ -560,7 +572,12 @@ export function trustHistoryWords(delta: number, reason: string, action?: string
   return `${event} He trusts you ${delta >= 0 ? 'a little more' : 'a little less'}.`;
 }
 
-export function voicesView(h: Person, t: number, conflict?: string): VoiceView[] {
+export function voicesView(
+  h: Person,
+  t: number,
+  conflict?: string,
+  shiftAt: (at: number) => boolean = () => false,
+): VoiceView[] {
   const advice = standingAdvice(h, t);
   return VOICE_IDS.map((id) => {
     const meta = VOICE_META[id];
@@ -580,7 +597,7 @@ export function voicesView(h: Person, t: number, conflict?: string): VoiceView[]
               .slice(-3)
               .map((e) => ({
                 delta: round(e.delta),
-                text: trustHistoryWords(e.delta, e.reason, e.action),
+                text: trustHistoryWords(e.delta, e.reason, e.action, 1, shiftAt(e.at)),
               }))
           : [],
     };

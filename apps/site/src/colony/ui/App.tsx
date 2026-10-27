@@ -6,7 +6,7 @@ import { FullscreenButton, useWakeLock } from '../../shared/fullscreen.tsx';
 import { LabNotice } from '../../shared/LabNotice.tsx';
 import { gameLabs, useLabScreen } from '../../shared/lab.tsx';
 import { labMode } from '../../shared/lab-mode.ts';
-import { playerError } from '../../shared/player-error.ts';
+import { fileError as gameFileError, playerError } from '../../shared/player-error.ts';
 import type { PlaytestFile } from '../../shared/playtest.ts';
 import type { HurtNews, MomentRecord } from '../sim/game.ts';
 import type { PlaceId } from '../sim/map.ts';
@@ -218,7 +218,11 @@ export function App() {
   }, [shelf]);
   const errorDetail =
     colony.error ?? (colony.playtest && 'error' in colony.playtest ? colony.playtest.error : null);
-  const notice = errorDetail ? playerError(errorDetail, colony.error ? 'play' : 'load') : null;
+  const notice = errorDetail
+    ? fileSession
+      ? gameFileError(errorDetail)
+      : playerError(errorDetail, colony.error ? 'play' : 'load')
+    : null;
   const loadedNotice = loaded
     ? labMode()
       ? `Playtest ${loaded.matches ? 'matches' : 'does not match'} · ${dayClock(loaded.minute)}`
@@ -655,7 +659,7 @@ export function App() {
                 setShelf(false);
               })
               .catch((error) => {
-                if (request === fileRead.current) setFileError(String(error));
+                if (request === fileRead.current) setFileError(gameFileError(error));
               });
             event.target.value = '';
           }}
@@ -673,10 +677,7 @@ export function App() {
       )}
       {(fileError ||
         (colony.playtest && 'error' in colony.playtest ? colony.playtest.error : colony.error)) && (
-        <p role="alert">
-          {fileError ||
-            (colony.playtest && 'error' in colony.playtest ? colony.playtest.error : colony.error)}
-        </p>
+        <p role="alert">{gameFileError(fileError || colony.playtest || colony.error)}</p>
       )}
     </section>
   ) : null;

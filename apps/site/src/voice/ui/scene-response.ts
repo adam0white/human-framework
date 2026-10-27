@@ -67,37 +67,125 @@ const MEMORY: Record<Companion, readonly [string, string]> = {
     'I hear you, old friend. There is room for that at this table.',
   ],
 };
-const ORDINARY: Record<Companion, readonly [string, string]> = {
+type Pairs = Record<Companion, readonly (readonly [string, string])[]>;
+// R2 (8 of 16 players): each person keeps their own words, and a later visit picks the next pair, so no friend
+// borrows another's sentence and the same pair does not come back on the next visit.
+const ORDINARY: Pairs = {
   Selin: [
-    'The house has been quiet, love. Hearing you call me Dad is good.',
-    'It is good to hear you too, Dad. I can stay on the phone a little.',
+    [
+      'The house has been quiet, love. Hearing you call me Dad is good.',
+      'It is good to hear you too, Dad. I can stay on the phone a little.',
+    ],
+    ['I wanted to hear how the city is treating you.', 'Busy, Dad. But I have time for this call.'],
   ],
   Hacer: [
-    'It was quiet inside, Hacer. I am glad I opened the door.',
-    'So am I, Halil. I can stand here a little.',
+    [
+      'It was quiet inside, Hacer. I am glad I opened the door.',
+      'So am I, Halil. I can stand here a little.',
+    ],
+    ['You always knock just when the house is too still.', 'I listen for it, Halil. Old neighbours do.'],
   ],
   Rıza: [
-    'I wanted the company, Rıza. I do not have much news.',
-    'You do not need news to sit beside me, Halil.',
+    ['I wanted the company, Rıza. I do not have much news.', 'You do not need news to sit beside me, Halil.'],
+    ['Is the tea any good tonight?', 'Same as every night, my friend. Too strong. Sit.'],
   ],
 };
-const MORE: Record<Companion, readonly [string, string]> = {
-  Selin: ['I am glad I said that aloud, love.', 'I am glad you told me, Dad. We can be quiet for a moment.'],
-  Hacer: ['The house feels less quiet with you at the door.', 'We need not fill every silence, Halil.'],
+const RENT: Pairs = {
+  Selin: [
+    [
+      'I am still thinking about what I owe Osman. I cannot put it out of my mind.',
+      'Tell me the numbers, Dad. Saying them to me might make them smaller.',
+    ],
+    [
+      'I keep counting what is left before Osman’s date.',
+      'Then count it out loud with me, Dad. We will see what fits.',
+    ],
+  ],
+  Hacer: [
+    [
+      'Osman will knock again soon. I can feel it.',
+      'Then let us think about it before he does. What do you have?',
+    ],
+    [
+      'I hate owing anyone, Hacer.',
+      'Owing is heavy. You do not have to carry the whole weight on this step.',
+    ],
+  ],
   Rıza: [
-    'It is easier sitting here than sitting on my own.',
-    'It is good to have you beside me too, old friend.',
+    [
+      'Osman again. The rent sits on me like a stone.',
+      'Then lift it a little with tea. How short are you, really?',
+    ],
+    [
+      'I keep doing sums in my head, Rıza.',
+      'Do them on the table instead. My head is no good for sums, but I can watch.',
+    ],
   ],
 };
-const RETURNING: Record<Companion, readonly [string, string]> = {
-  Hacer: ['It is good to talk again, Hacer.', 'You can take your time at the door, Halil.'],
-  Rıza: ['I wanted a little more company, Rıza.', 'Then sit beside me. We do not need a new subject.'],
-  Selin: ['I am glad we are talking again, love.', 'So am I, Dad. We do not need to fill every moment.'],
+const TIRED: Pairs = {
+  Selin: [
+    [
+      'I am tired, love. I wanted to hear you more than talk.',
+      'Then rest while I talk, Dad. I can tell you about my week.',
+    ],
+  ],
+  Hacer: [['I am tired, Hacer. Forgive me if I am slow.', 'We can stand here quietly for a moment, Halil.']],
+  Rıza: [['I am worn out, Rıza. I came for the chair.', 'Then sit. I will do the talking for us both.']],
 };
-const RETURNING_MORE: Record<Companion, readonly [string, string]> = {
-  Hacer: ['A short talk is enough for me just now.', 'We can leave it there, Halil.'],
-  Rıza: ['I do not have much else to say, Rıza.', 'That is all right. You can just sit with me.'],
-  Selin: ['I do not have much news, love.', 'You do not need news to talk to me, Dad.'],
+const MORE: Pairs = {
+  Selin: [
+    ['I am glad I said that aloud, love.', 'I am glad you told me, Dad. We can be quiet for a moment.'],
+    ['I like hearing your voice in this quiet house.', 'Then I will keep talking, Dad.'],
+  ],
+  Hacer: [
+    ['The house feels less quiet with you at the door.', 'We need not fill every silence, Halil.'],
+    ['I like hearing the street from the door.', 'Then stand with me and listen to it a while.'],
+  ],
+  Rıza: [
+    [
+      'It is easier sitting here than sitting on my own.',
+      'It is good to have you beside me too, old friend.',
+    ],
+    ['You never ask me to talk, Rıza. I like that.', 'Talking is overrated. Tea is not.'],
+  ],
+};
+const RETURNING: Pairs = {
+  Hacer: [
+    ['It is good to talk again, Hacer.', 'You can take your time at the door, Halil.'],
+    ['Back at the door again, Hacer.', 'I was passing anyway. That is my story, at least.'],
+    ['Have you been well since we talked?', 'My knees complain, my heart does not. Thank you for asking.'],
+  ],
+  Rıza: [
+    ['I wanted a little more company, Rıza.', 'Then sit beside me. We do not need a new subject.'],
+    ['The same chair, Rıza?', 'It is yours now. Nobody else dares sit in it.'],
+    ['Anything new at the tea house?', 'Only the same old men. You make it one more.'],
+  ],
+  Selin: [
+    ['I am glad we are talking again, love.', 'So am I, Dad. We do not need to fill every moment.'],
+    ['I called again. I hope you do not mind.', 'Mind? I like it, Dad.'],
+    ['How was work today, love?', 'Long. Better now I am talking to you.'],
+  ],
+};
+const RETURNING_MORE: Pairs = {
+  Hacer: [
+    ['A short talk is enough for me just now.', 'We can leave it there, Halil.'],
+    ['I should let you get on with your evening.', 'Mine is not going anywhere. But go, if you need to.'],
+    ['Thank you for knocking, Hacer.', 'I will knock again. You know that.'],
+  ],
+  Rıza: [
+    ['I do not have much else to say, Rıza.', 'That is all right. You can just sit with me.'],
+    ['One more glass and I will go.', 'You always say that. Have two.'],
+    ['It helps, sitting here.', 'I know, old friend. That is why I keep the chair.'],
+  ],
+  Selin: [
+    ['I do not have much news, love.', 'You do not need news to talk to me, Dad.'],
+    ['I should let you go, love.', 'Not yet, Dad. One more minute.'],
+    ['Call me when you get home safe.', 'I will, Dad. Look after yourself too.'],
+  ],
+};
+const pick = (pairs: Pairs, who: Companion, n: number) => {
+  const list = pairs[who];
+  return list[n % list.length] ?? list[0] ?? (['', ''] as const);
 };
 export function sceneResponse(frame: Frame, scene: DayScene | null) {
   if (!scene?.current || !['call', 'door', 'tea'].includes(scene.kind)) return null;
@@ -130,37 +218,28 @@ export function sceneResponse(frame: Frame, scene: DayScene | null) {
   const rent = frame.halil.onMind.some(
     (c) => (c.state === 'open' || c.state === 'closing') && /rent|Osman/.test(c.label),
   );
+  const anchor = frame.log.findIndex((entry) => `scene:${entry.id}` === scene.id);
+  const visits =
+    anchor >= 0
+      ? frame.log
+          .slice(0, anchor)
+          .filter((entry) => entry.kind === 'act' && entry.who === 'halil' && ACTION[who].test(entry.text))
+          .length
+      : 0;
+  const returning = visits > 0;
   const opening = /Nuran|Mum|your mum/.test(words)
     ? /table|meal/.test(words)
       ? TABLE[who]
       : MEMORY[who]
     : tired
-      ? ([
-          'I am tired. I wanted company more than a long conversation.',
-          who === 'Selin'
-            ? 'Then rest while I keep you company, Dad.'
-            : who === 'Hacer'
-              ? 'Then we can stand here quietly for a moment, Halil.'
-              : 'Then we can sit quietly for a moment, Halil.',
-        ] as const)
+      ? pick(TIRED, who, visits)
       : rent
-        ? ([
-            'I am still thinking about what I owe Osman. I cannot put it out of my mind.',
-            who === 'Selin'
-              ? 'I hear you, Dad. I can listen while you go through it.'
-              : 'I hear you, Halil. I can listen while you go through it.',
-          ] as const)
-        : ORDINARY[who];
-  const anchor = frame.log.findIndex((entry) => `scene:${entry.id}` === scene.id);
-  const returning =
-    anchor >= 0 &&
-    frame.log
-      .slice(0, anchor)
-      .some((entry) => entry.kind === 'act' && entry.who === 'halil' && ACTION[who].test(entry.text));
+        ? pick(RENT, who, visits)
+        : pick(ORDINARY, who, visits);
   return {
     answer,
     accepted: !!answer,
-    lines: pair(who, returning ? RETURNING[who] : opening),
-    more: pair(who, returning ? RETURNING_MORE[who] : MORE[who]),
+    lines: pair(who, returning && !rent && !tired ? pick(RETURNING, who, visits - 1) : opening),
+    more: pair(who, returning ? pick(RETURNING_MORE, who, visits - 1) : pick(MORE, who, visits)),
   };
 }

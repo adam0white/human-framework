@@ -14,7 +14,7 @@
 
 /lab/identity/*
   ! Content-Security-Policy
-  Content-Security-Policy: default-src 'none'; script-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors https://adamwhite.work https://*.adamwhite.work; object-src 'none'
+  Content-Security-Policy: default-src 'none'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com; base-uri 'none'; form-action 'none'; frame-ancestors https://adamwhite.work https://*.adamwhite.work; object-src 'none'
   ! X-Frame-Options
   ! Cross-Origin-Resource-Policy
   Cross-Origin-Resource-Policy: same-site

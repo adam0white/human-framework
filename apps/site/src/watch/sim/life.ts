@@ -27,6 +27,7 @@ import {
   courtshipStage,
   createPerson,
   decide,
+  die,
   familyVoices,
   GENERIC_CUSTOM,
   gestureVoiceTrust,
@@ -45,6 +46,7 @@ import {
   retell,
   skillLevel,
   spousesOf,
+  tellDeath,
 } from '@adam0white/human-framework';
 import {
   DAY,
@@ -553,6 +555,26 @@ function deathLine(s: WatchState, p: Person): string {
   if (age >= 60)
     return `${v.name} died ${when}, at ${age}. ${v.home === 'gate' ? 'The Gate' : 'The house'} is quiet.`;
   return `${v.name} died ${when}, at ${age}, of a sickness that would not go away.`;
+}
+
+/**
+ * A death from hunger in a hungry spring (hardship rules). The game rolls it, so it goes the framework's way for a
+ * host-rolled death: `die`, then the news to everyone tied to them (grief, a widow), then the chronicle.
+ */
+export function starve(s: WatchState, p: Person): void {
+  const v = villager(s, p.id);
+  const age = Math.floor(ageOf(p, s.minute));
+  die(p);
+  tellDeath(s.community, p, s.minute);
+  chronicle(
+    s,
+    'death',
+    age < 15
+      ? `${v.name} died of hunger in the spring, a child of ${age}. The village buried ${them(s, p.id)} by the mill.`
+      : `${v.name} did not live to see the new grain. The hunger took ${them(s, p.id)} in the spring, at ${age}.`,
+    p.id,
+  );
+  gone(s, p.id, 'dead');
 }
 
 /** Reads a liveCommunity result's deaths into the chronicle. */
@@ -1155,8 +1177,16 @@ export function maybePartner(s: WatchState): void {
 export function maybeLimp(s: WatchState, p: Person): void {
   const v = s.cast[p.id];
   if (!v || v.limp) return;
-  const worst = Math.max(0, ...p.body.injuries.map((i) => i.severity));
-  if (worst < 0.55 || nextRandom(s) >= 0.3) return;
+  // Hardship rules: wounds heal slowly, so only tonight's wounds are rolled (one roll per wound, as before), and a
+  // watcher bitten who went down and was carried by nobody is likelier lamed.
+  const wounds = s.hardship ? p.body.injuries.filter((i) => i.since >= s.nightStart) : p.body.injuries;
+  const worst = Math.max(0, ...wounds.map((i) => i.severity));
+  const left =
+    !!s.hardship &&
+    wounds.some((i) => i.part === 'leg') &&
+    s.notes.some((n) => n.who === p.id && n.kind === 'downed') &&
+    !s.carried[p.id];
+  if (worst < (left ? 0.4 : 0.55) || nextRandom(s) >= (left ? 0.6 : 0.3)) return;
   v.limp = true;
   // Off the wall for good, so no standing posting either (owner's year-4 export: lamed Tamar kept gate-1 for a
   // year, and a second watcher was posted on top of her).
@@ -1164,7 +1194,7 @@ export function maybeLimp(s: WatchState, p: Person): void {
   chronicle(
     s,
     'loss',
-    `${v.name}’s leg did not heal straight. ${v.sex === 'female' ? 'She' : 'He'} will limp for life and can no longer climb the wall stairs.`,
+    `${left ? `${v.name} went down on the wall and nobody carried ${them(s, p.id)} down. ` : ''}${v.name}’s leg did not heal straight. ${v.sex === 'female' ? 'She' : 'He'} will limp for life and can no longer climb the wall stairs.`,
     p.id,
   );
 }

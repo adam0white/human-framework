@@ -21,7 +21,16 @@ import {
   type SuggestionResolution,
 } from '@adam0white/human-framework';
 import { type PostId, postSection, type SectionId, type WatcherId } from './config.ts';
-import { fearAt, litSection, PRESS_STRENGTH, presentIds, ringBell } from './night.ts';
+import {
+  alert,
+  fearAt,
+  litSection,
+  PRESS_STRENGTH,
+  presentIds,
+  ringBell,
+  theSection,
+  wordAnswer,
+} from './night.ts';
 import { familyWords, isPost, KEEPER_ID, nameOf, personOf, them, villager, WatchWorld } from './people.ts';
 import type { Press, WatchState } from './state.ts';
 
@@ -367,8 +376,25 @@ export function answerMoment(s: WatchState, id: number, choice: string): boolean
   if (s.phase !== 'night' || !m || m.id !== id || !m.options.some((o) => o.id === choice)) return false;
   const who = m.who;
   const pl = s.place[who];
-  if (choice === 'urge' && (isPost(pl) || m.post)) ask(s, who, `post:${isPost(pl) ? pl : m.post}`);
-  else if (choice === 'bell') {
+  if (choice === 'urge') {
+    const post = isPost(pl) ? pl : m.post;
+    const name = nameOf(s, who);
+    if (post) {
+      const { word } = readPosting(s, who, post, 'urge');
+      ask(s, who, `post:${post}`);
+      const at = theSection(postSection(post));
+      const said = isPost(pl) ? `You urge ${name} to hold ${at}.` : `You call ${name} back to ${at}.`;
+      const text = wordAnswer(s, who, said, word, !isPost(pl));
+      alert(s, { section: m.section, kind: 'person', who, slowed: false, text });
+    } else
+      alert(s, {
+        section: m.section,
+        kind: 'person',
+        who,
+        slowed: false,
+        text: `${name} has no post to go back to, so your words change nothing.`,
+      });
+  } else if (choice === 'bell') {
     if (!ringBell(s, who)) return false;
   } else if (choice === 'let') {
     const post = s.posts[who];
@@ -376,10 +402,18 @@ export function answerMoment(s: WatchState, id: number, choice: string): boolean
     s.posts[who] = null;
   } else if (choice.startsWith('send:') && isPost(pl)) {
     const sub = choice.slice(5);
+    const { word } = readPosting(s, sub, pl, 'urge', who);
     const post = s.posts[who];
     if (post) s.letGo[who] = post;
     s.posts[who] = null;
     ask(s, sub, `post:${pl}`);
+    alert(s, {
+      section: postSection(pl),
+      kind: 'person',
+      who: sub,
+      slowed: false,
+      text: wordAnswer(s, sub, `You send ${nameOf(s, sub)} to ${theSection(postSection(pl))}.`, word, true),
+    });
   } else if (choice.startsWith('carry:')) {
     ask(s, choice.slice(6), `carry:${who}`);
   }

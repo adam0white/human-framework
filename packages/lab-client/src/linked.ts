@@ -14,7 +14,18 @@ export const LINKED_LIMITS = {
   chunks: 128,
   queued: 256,
   queueBytes: 16 * 1024 * 1024,
+  /** Automatic deliveries in flight at once. An explicit note is not counted. */
+  inFlight: 2,
+  /** Longest whole-queue wait after a failed delivery, including Retry-After. */
+  pauseMs: 15 * 60 * 1000,
 } as const;
+/** Retry-After as milliseconds from now: delta seconds or an HTTP date. */
+export function retryAfterMs(value: string | null, now = Date.now()): number {
+  if (!value) return 0;
+  const seconds = Number(value.trim());
+  const ms = Number.isFinite(seconds) ? seconds * 1000 : Date.parse(value) - now;
+  return Number.isFinite(ms) ? Math.max(0, Math.min(LINKED_LIMITS.pauseMs, ms)) : 0;
+}
 export type LinkedKind = 'events' | 'run' | 'save' | 'logs' | 'note';
 export type Link = { player: string; session: string; runId: string };
 type Pending = {
@@ -70,7 +81,33 @@ export function linkedTransport(options: {
   let busy = false;
   let generation = 0;
   const active = new Map<AbortController, ReturnType<typeof setTimeout>>();
-  const deliveries = new Map<string, Promise<boolean>>();
+  const deliveries = new Map<string, { task: Promise<boolean>; explicit: boolean }>();
+  // Whole-queue backoff. Any automatic failure (429, 5xx, refusal, network error)
+  // pauses every automatic delivery: drain, journal replay and navigation batches.
+  // A stored receipt resets the growth; the current pause still runs out.
+  let pausedUntil = 0;
+  let queueFailures = 0;
+  let inFlight = 0;
+  const waiting: (() => void)[] = [];
+  const paused = () => Date.now() < pausedUntil;
+  const acquire = async () => {
+    // A woken waiter re-checks; a newer caller may take the slot first. Nothing leaks.
+    while (inFlight >= LINKED_LIMITS.inFlight) await new Promise<void>((resolve) => waiting.push(resolve));
+    inFlight++;
+  };
+  const release = () => {
+    inFlight--;
+    waiting.shift()?.();
+  };
+  const pause = (retryAfter = 0) => {
+    queueFailures++;
+    const backoff = Math.min(LINKED_LIMITS.pauseMs, 2000 * 2 ** Math.min(10, queueFailures - 1));
+    const wait = Math.max(retryAfter, backoff);
+    pausedUntil = Math.max(
+      pausedUntil,
+      Date.now() + Math.min(LINKED_LIMITS.pauseMs, wait + Math.random() * wait * 0.25),
+    );
+  };
   const db = database();
   const persist = async (record: Pending | string) => {
     const connection = await db;
@@ -153,16 +190,28 @@ export function linkedTransport(options: {
           }
         }),
     );
-  function deliver(record: Pending): Promise<boolean> {
+  /** `explicit` is a player's own Send: it skips the queue pause and the in-flight cap. */
+  function deliver(record: Pending, explicit = false): Promise<boolean> {
     if (disposed || !options.enabled() || !eligible(record)) return Promise.resolve(false);
+    if (!explicit && paused()) return Promise.resolve(false);
     const existing = deliveries.get(record.id);
-    if (existing) return existing;
+    // An explicit Send never waits behind an automatic attempt; the server dedupes by content id.
+    if (existing && (existing.explicit || !explicit)) return existing.task;
     const task = (async () => {
       const epoch = generation;
+      if (!explicit) {
+        await acquire();
+        // Another delivery may have paused the queue while this one waited.
+        if (paused() || epoch !== generation || disposed || !options.enabled()) {
+          release();
+          return false;
+        }
+      }
       const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(), 15000);
       active.set(controller, timeout);
       let stored = false;
+      let throttle: number | undefined;
       try {
         const response = await fetch(`${options.endpoint}/linked`, {
           method: 'POST',
@@ -176,13 +225,17 @@ export function linkedTransport(options: {
         if (response.status === 200) {
           const receipt = (await response.json().catch(() => null)) as { ok?: unknown; id?: unknown } | null;
           stored = receipt?.ok === true && receipt.id === record.id;
-        }
+        } else throttle = retryAfterMs(response.headers.get('Retry-After'));
       } catch {
+        // A network error or the 15 s timeout. A reset's abort is dropped by the epoch check below.
       } finally {
         clearTimeout(timeout);
         active.delete(controller);
+        if (!explicit) release();
       }
       if (epoch !== generation) return false;
+      if (stored) queueFailures = 0;
+      else pause(throttle);
       // Only the Worker's stored receipt acknowledges a linked object. A privacy
       // 204 is a refusal, not a receipt. Explicit notes must survive every refusal.
       if (stored) {
@@ -191,19 +244,25 @@ export function linkedTransport(options: {
         remove(record);
         return true;
       }
+      // An overlapping explicit Send may already have stored and removed it.
+      if (!pending.has(record.id)) return false;
       record.attempts++;
       record.next =
         Date.now() + Math.min(3600000, 60000 * 2 ** Math.min(6, record.attempts - 1)) + Math.random() * 5000;
       await persist(record);
       return false;
     })();
-    deliveries.set(record.id, task);
-    void task.finally(() => deliveries.delete(record.id));
+    const entry = { task, explicit };
+    deliveries.set(record.id, entry);
+    void task.finally(() => {
+      if (deliveries.get(record.id) === entry) deliveries.delete(record.id);
+    });
     return task;
   }
   async function drain() {
     await ready;
     if (disposed || busy || blocked || !options.enabled()) return;
+    if (paused()) return schedule();
     busy = true;
     const drainingGeneration = generation;
     try {
@@ -213,6 +272,7 @@ export function linkedTransport(options: {
         if (!options.enabled()) break;
         if (!eligible(record)) continue;
         if (record.next > Date.now()) continue;
+        // One pass stops at its first failure; the queue pause decides when the next pass runs.
         if (!(await deliver(record))) break;
       }
     } finally {
@@ -228,7 +288,7 @@ export function linkedTransport(options: {
     clearTimeout(retryTimer);
     retryTimer = undefined;
     if (disposed || blocked || !options.enabled()) return;
-    const due = [...pending.values()].filter(eligible).map((record) => record.next);
+    const due = [...pending.values()].filter(eligible).map((record) => Math.max(record.next, pausedUntil));
     if (!due.length) return;
     retryTimer = setTimeout(
       () => {
@@ -343,7 +403,7 @@ export function linkedTransport(options: {
       const records = [...pending.values()].filter(
         (record) => ids.includes(record.id) && record.next <= Date.now(),
       );
-      await Promise.all(records.map(deliver));
+      await Promise.all(records.map((record) => deliver(record)));
       if (!ids.every((id) => durable.has(id) || acknowledged.has(id)))
         throw new Error('The navigation batch could not be saved on this device.');
     }
@@ -353,10 +413,10 @@ export function linkedTransport(options: {
       const records = [...pending.values()].filter(
         (record) => ids.includes(record.id) && (confirm !== 'due' || record.next <= Date.now()),
       );
-      const results = await Promise.all(records.map(deliver));
+      await Promise.all(records.map((record) => deliver(record, confirm === true)));
       if (epoch !== generation || !options.enabled() || options.link()?.player !== link.player)
         throw new Error('Lab recording is off.');
-      if (results.some((stored) => !stored) || !ids.every((id) => acknowledged.has(id))) {
+      if (!ids.every((id) => acknowledged.has(id))) {
         throw new Error(
           records.every((record) => durable.has(record.id))
             ? 'A copy is saved on this device. It will retry while recording is on; you can also try Send again.'

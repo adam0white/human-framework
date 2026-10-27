@@ -74,7 +74,11 @@ describe('playtest fixes (2026-10-05 export)', () => {
     if (!a || !b) return;
     const pa = personOf(s, a);
     if (!pa) return;
-    pa.body.injuries.push({ part: 'leftLeg', severity: 0.9 } as (typeof pa.body.injuries)[number]);
+    pa.body.injuries.push({
+      part: 'leftLeg',
+      severity: 0.9,
+      since: s.nightStart,
+    } as (typeof pa.body.injuries)[number]);
     for (let k = 0; k < 200 && !s.cast[a]?.limp; k++) maybeLimp(s, pa);
     expect(s.cast[a]?.limp).toBe(true);
     expect(s.posts[a]).toBeNull();

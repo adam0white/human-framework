@@ -21,6 +21,8 @@ import {
   castRole,
   chapterPeople,
 } from '../shared/cast-chapter.ts';
+import { type FileImport, importedFileRecord, recordFile } from '../shared/file-record.ts';
+import { checkGameFile } from '../shared/file-sources.ts';
 import {
   decodeSnapshot,
   makePlaytestFile,
@@ -60,39 +62,10 @@ import {
   voiceState,
 } from './sim/record.ts';
 
-/** Imported receipt archives are provenance only; validate their binding without any Shelf access. */
-async function validateFileSources(raw: Record<string, unknown>): Promise<void> {
-  const ownership = raw.castOwnership;
-  const sources = raw.castSources;
-  if (ownership !== undefined && (!ownership || typeof ownership !== 'object' || Array.isArray(ownership)))
-    throw new Error('Invalid imported ownership provenance.');
-  if (sources !== undefined && (!sources || typeof sources !== 'object' || Array.isArray(sources)))
-    throw new Error('Invalid imported source archive.');
-  const heads = Object.entries((ownership ?? {}) as Record<string, unknown>);
-  if (heads.length > 8) throw new Error('Too many imported ownership receipts.');
-  for (const [id, value] of heads) {
-    const head = await validatePersona(value);
-    if (id !== head.castId) throw new Error('Imported receipt identity differs.');
-  }
-  for (const [id, source] of Object.entries((sources ?? {}) as Record<string, unknown>)) {
-    const head = (
-      ownership as Record<string, { transfer: { checkpoint?: { sha256?: string } } }> | undefined
-    )?.[id];
-    if (!head?.transfer.checkpoint?.sha256 || !source || typeof source !== 'object')
-      throw new Error('Imported source has no bound full-source receipt.');
-    const digest = Array.from(
-      new Uint8Array(
-        await crypto.subtle.digest('SHA-256', new TextEncoder().encode(canonicalPersona(source))),
-      ),
-      (byte) => byte.toString(16).padStart(2, '0'),
-    ).join('');
-    if (digest !== head.transfer.checkpoint.sha256) throw new Error('Imported source checksum differs.');
-  }
-}
-
 let rec: RecordedGame | null = null;
 let fileMode = false;
 let imported: Record<string, unknown> = {};
+let fileImport: FileImport | undefined;
 let loadOperation = 0;
 let initializing = false;
 let checkpointError = '';
@@ -179,6 +152,7 @@ function flush(force = false): void {
 
 async function voiceFile(r: RecordedGame, full = false) {
   const g = r.game;
+  const source = fileImport;
   const file = await makePlaytestFile({
     game: 'voice',
     seed: g.seed,
@@ -190,13 +164,17 @@ async function voiceFile(r: RecordedGame, full = false) {
     snapshot: full ? voiceState(g) : voiceSnapshot(g),
     ...(full ? { plainSnapshot: true } : {}),
   });
-  return {
-    ...file,
-    ...(g.castChapter ? { castChapter: structuredClone(g.castChapter) } : {}),
-    ...(r.chapter ? { voicePersona: structuredClone(r.chapter) } : {}),
-    ...(r.personaHead ? { voicePersonaHead: structuredClone(r.personaHead) } : {}),
-    ...(r.oneCast.length ? { oneCast: structuredClone(r.oneCast) } : {}),
-  };
+  return recordFile(
+    r,
+    {
+      ...file,
+      ...(g.castChapter ? { castChapter: structuredClone(g.castChapter) } : {}),
+      ...(r.chapter ? { voicePersona: structuredClone(r.chapter) } : {}),
+      ...(r.personaHead ? { voicePersonaHead: structuredClone(r.personaHead) } : {}),
+      ...(r.oneCast.length ? { oneCast: structuredClone(r.oneCast) } : {}),
+    },
+    source,
+  );
 }
 async function exportPlaytest(r: RecordedGame, full = false): Promise<void> {
   const gen = host.gen;
@@ -267,8 +245,7 @@ function publishBoundary(): void {
 /** Validate and replay a file; only then does it replace the current run (a bad file leaves the run as it was). */
 async function loadPlaytest(text: string, nextGen: number): Promise<void> {
   const operation = ++loadOperation;
-  const raw = fileMode ? (JSON.parse(text) as Record<string, unknown>) : undefined;
-  if (raw) await validateFileSources(raw);
+  const raw = fileMode ? await checkGameFile(text) : undefined;
   // A file replays under its own scenario's rules (voice-1 files from before the 2026-10-19 level-up included).
   const { file: f, rules, chapter, rows, head } = parseVoicePlaytest(text);
   if (chapter) await validatePersona(chapter.admission);
@@ -287,8 +264,10 @@ async function loadPlaytest(text: string, nextGen: number): Promise<void> {
       stableStringify(await decodeSnapshot(raw as never)) !== stableStringify(voiceState(g)))
   )
     throw new Error('The complete Voice state does not replay. Keep the original file.');
+  const source = raw ? await importedFileRecord(raw, text) : undefined;
   if (fileMode && operation !== loadOperation) return;
   if (raw) imported = structuredClone(raw);
+  fileImport = source;
   rec = replayed;
   host.gen = nextGen;
   lastFields = new Map();

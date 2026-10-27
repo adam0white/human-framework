@@ -54,8 +54,11 @@ export const DayLog = memo(function DayLog({
   selected,
   onRetainWhy,
   moment,
+  day,
 }: {
   log: LogEntry[];
+  /** R2 (Aisha): Today shows today. Earlier days stay in the log for conversation context only. */
+  day?: number;
   moment?: ConversationMoment;
   pauseBeat?: { kind: BeatKind; text: string };
   paused: boolean;
@@ -73,7 +76,10 @@ export const DayLog = memo(function DayLog({
   for (const entry of log) {
     if (!scenes.current.has(entry.id)) scenes.current.set(entry.id, conversationFor(entry, log, moment));
   }
-  const rows = useMemo(() => collapse(visible), [visible]);
+  const rows = useMemo(
+    () => collapse(day === undefined ? visible : visible.filter((e) => e.day >= day)),
+    [visible, day],
+  );
   useLayoutEffect(() => {
     const previous = seen.current;
     seen.current = log.at(-1)?.id;

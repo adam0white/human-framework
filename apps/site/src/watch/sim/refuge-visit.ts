@@ -27,24 +27,24 @@ function participants(s: WatchState) {
 function obstacle(s: WatchState): string | undefined {
   const { kian, ada } = participants(s);
   if (s.phase !== 'dawn' || !kian?.body.alive || !ada?.body.alive || s.cast.ada?.status !== 'here')
-    return 'Discuss the visit together at a living, off-duty dawn.';
+    return 'They can talk about the visit only at dawn, while both are here and well.';
   if (!ada.social.relationships.some((r) => r.otherId === 'kian' && r.roles.includes('guardian')))
-    return 'Ada’s actual guardian arrangement does not match this visit.';
+    return 'Kian is not the one looking after Ada now, so they cannot agree to this visit.';
   if (
     kian.agenda.commitments.some((c) => isContinuingCommitment(kian.agenda, c) && c.kind !== 'worship') ||
     (kian.agenda.owed?.length ?? 0) > 0 ||
     kian.agenda.lapse ||
     (s.homeThreat.west ?? -1e9) > s.minute - 90
   )
-    return 'An existing home, care or work duty still needs Kian here. No visit replaces it.';
+    return 'Kian still has a duty at home or on the wall. The visit must wait.';
   if (kian.agenda.goals.some((g) => g.status === 'active') || kian.projects?.currentGoalId)
-    return 'Finish the current project before discussing departure.';
+    return 'Kian is in the middle of a task. The visit must wait until it is done.';
   return undefined;
 }
 /** The dialogue observes actual fear/pain and the child's guardian tie. No RNG draw or forced assent. */
 export function agreeRefugeVisit(s: WatchState): string {
   if (s.refugeVisit?.status === 'agreed')
-    return 'Kian and Ada already have this bounded agreement. Keep it or choose to stay.';
+    return 'Kian and Ada have already agreed to the visit. Choose whether they get ready or stay.';
   const blocked = obstacle(s);
   if (blocked) return blocked;
   const { kian, ada } = participants(s);
@@ -89,7 +89,7 @@ export function agreeRefugeVisit(s: WatchState): string {
   }
   s.refugeVisit = agreement;
   return agreement.status === 'agreed'
-    ? 'Kian: “Only together, and back by the next dawn.” Ada: “I want to go with you. Stay with me.” They agree to a one-day refuge visit. Ada remains his ward. Save Kian at a quiet action boundary, or choose to stay. No journey or care is completed by this agreement.'
+    ? 'Kian: “Only together, and back by the next dawn.” Ada: “I want to go with you. Stay with me.” They agree to a one-day visit to the refuge. Kian still looks after Ada. They have not left yet. Now choose: they care for each other today and get ready, or they stay here.'
     : `Kian: “${kianAssented ? 'I could go, if Ada wants to.' : 'I need to stay today.'}” Ada: “${adaAssented ? 'Together, perhaps.' : 'I want to stay home today.'}” They stay. No care agreement is created.`;
 }
 export function stayRefugeVisit(s: WatchState): boolean {

@@ -185,6 +185,10 @@ export function Between({
                           </button>
                         ))}
                       </fieldset>
+                      <p className="v-whisper-hint">
+                        He hears this only when he is choosing while it is open. Urge weighs more than
+                        Mention, but he still decides.
+                      </p>
                       <fieldset className="v-whisper-reasons" aria-label={settingWords(`Reason: ${c.label}`)}>
                         <button
                           type="button"

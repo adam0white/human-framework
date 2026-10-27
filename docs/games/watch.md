@@ -885,3 +885,93 @@ F-299's reference to F-290 is a stale umbrella, not a new failure of the three c
 ### Source delivery pending — 2026-10-26
 
 Source now implements an explicit new-village dusk night-off option (scenario15); omitted selection keeps14. Actual HF decisions and events own refusal, rest, expiry and observed return. Dawn does not guarantee a return. This is the bounded F469 dusk capability, not guaranteed obedience or a full request-history faculty. Normal related checks and raw legacy/export controls passed at author handback. Independent source review and exact CI remain required before integration. Public deployment is held with the Voice round; follow-up target 2026-10-27 after the hold clears. Browser verification, same-tester observations and Adam’s 2026-11-03 acceptance remain separate.
+
+## Design change 2026-10-27: loss carries across the year (owner may veto)
+
+Cold play (2026-10-26, 3d199d8): a careless Keeper lost "much of the granary" and heard "someone is down", then autumn brought "An ordinary harvest". Nobody died and no winter failed. Headless, a passive or wrong-end Keeper emptied all 20 sacks every winter for three years and kept the same village; the harvest (18–29) refilled the granary each autumn. Owner directions: death is allowed where the design needs it; bold over safe; keep difficulty edges; show rather than count.
+
+New villages get the **hardship rules** (`WatchState.hardship`, scenarios 17, 18 and 19 for the three editions 14, 15 and 16). Each consequence is a chronicle line or a roster note:
+
+- **Seed for sowing.** After the spring's eating, the sowing takes up to 4 sacks. Unsown fields cost the harvest: it is 70% (kitchen gardens and what was sown anyway) plus the other 30% in proportion to the seed. The thaw says "There was no seed grain left to sow…", and the harvest line says why it is poor.
+- **The hunger can kill.** In a hungry spring, the frailest face the thaw already names (the oldest from fifty, else the youngest under six) dies with a chance of 75% times how short the granary fell. The shortfall is measured before households leave, so a spring that also loses a family still counts its full hunger. At most one death a spring. It is a world draw, so nothing else moves it. The death goes through HF `die` and `tellDeath`, so the bereaved grieve and a spouse is widowed.
+- **A lean winter.** A winter is lean when it opens with less grain than the spring will eat plus the seed, or after a hungry spring. Every watcher's fitness drops to 60% of what it was, so they tire sooner. The roster says "weak from hunger", and the winter opens with a line saying so.
+- **Wounds last.** Bites heal at 0.035 a day (was 0.12) and blows to the head at 0.08 (was 0.2). A watcher bitten early is still hurt at the last played night, and the roster says "still hurt". The limp roll at dawn reads only the night's new wounds, so an old wound is not rolled again. A watcher with a leg wound who went down and lay on the wall until dawn, carried by nobody, is lamed at severity 0.4 with a 60% chance (otherwise 0.55 and 30%).
+- **The fall.** A second hungry spring in a row ends the village when it runs half short or worse: "A second hungry spring in a row. The families could not stay to starve, and the village went down the valley." This is the fall at the thaw from spec §3. A milder second hungry spring is survived, so one bad winter followed by careful play can still recover.
+- **Plain warnings (F-290).** The granary line on the dusk and dawn pages names what the grain left can still do. It says when the granary cannot feed the village to the harvest, when there will be no seed, and, after a hungry spring, that another short spring will end the village. The thaw headline says when next winter will start thin.
+
+Saves and exports: a page saved under 14–16 has no `hardship` and keeps its rules exactly. A 14–16 export still replays under its own rules (`replay` drops `hardship` for it). Nothing old is refused.
+
+Headless evidence (scripted Keeper, seeds 1, 2, 3, 5, 7, 9, 11, 23, 4 years, no fair purchases):
+
+| Keeper                             | Before                                               | After                                                                                                                                           |
+| ---------------------------------- | ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| Matched (careful) every winter     | never hungry                                         | 7 of 8 standing after 4 years, never hungry. Seed 9 (the hard seed) had a hungry spring in year 2, lost one person and fell at the year-3 thaw. |
+| Mismatched or passive every winter | hungry most springs, 0–1 households left, never fell | 20 of 20 sacks lost in winter 1; the hungry spring killed the frailest in 14 of 16 runs; the harvest was 13–21; all 16 fell at the year-2 thaw  |
+| Passive in winter 1, matched after | not measured                                         | 2 of 8 standing after 4 years (seeds 3 and 5); seed 7 recovered and fell in year 4; 5 fell at the year-2 thaw                                   |
+
+The third row is the difficulty edge: one careless winter is usually fatal, but not always. Tuning constants (`SOWN_FLOOR`, `FALL_SHORT`, `LEAN_FITNESS`, `HUNGER_DEATH` in `sim/season.ts`) are the levers if the owner wants it gentler.
+
+Not covered: eating the seed or keeping it as a Keeper's choice; hunger in the routine days of winter; a death on the wall from a wound. The scenario 13 departure cost and the night acts (F-423, kept by the owner) are unchanged.
+
+WATCH-cold-timing: the downloaded playtest file now carries `clock`, kept by the worker outside the game state. It holds the ticks the page sent, the real milliseconds offered and admitted (each tick capped at 250 ms), the capped and held ticks, and the same counts for the timed decision open at export. Replay ignores it. It covers this page session only: a run loaded from a file starts a fresh count. The foreground decision timeout is still undecided; this field is the evidence for that decision.
+
+## Retest fix 2026-10-27: posts and Urge say they worked
+
+The [2026-10-27 retest](watch-playtest-2026-10-27-retest.md) asked that "my taps on Urge and the posts tell me they worked".
+
+**What went wrong (confirmed from the driver log).** Neither the east-wall post nor the Urge reached the game. The tester's taps were refused by the lab driver, not by the game:
+- At dusk of night 2 the button read "East wall · tracks", because the scout found tracks there. The tap asked for "East wall", so the driver found no such control. The tester then pressed Done and Begin the watch, so no post was sent.
+- Each Urge option carries its likely answer ("Urge Kian to hold The watcher will probably agree."). Two taps by the name "Urge Kian to hold" matched nothing. The tap that worked, "Ring and call Kian by name The watcher will stay.", used the full name. A third Urge tap, by text, was refused as "not on the page now" although the control was there just before. Its cause is not confirmed.
+- Assumed, not confirmed: the tester's helper script dropped the driver's error replies, so the failures looked silent.
+
+From the code, not observed in that run: the post rule, the hit area and the disabled state work, and a tap on "East wall · tracks" posts the watcher. After deploy, a live tap on a tracks-labelled button ("Gate · tracks") posted the watcher at 360x690 and 1280x800.
+
+**What changed (words only; rules and difficulty unchanged).**
+- An Urge or call-back answer now puts the watcher's reply in the ticker, as a named bell call does: "You urge Kian to hold the Gate. “I’ll hold,” Kian answers." The reply follows the same read the card's option shows, so "will not agree" is answered "Kian does not answer." It is not a promise; they still decide. Sending someone else to the post says so too ("“I’ll go,”"). An Urge with no post to go back to says that it changes nothing; it used to close silently.
+- After a post at dusk, the roster says "Idris is posted on the east wall (asked)", or that the post did not take.
+- Beside Begin the watch, a line warns when nobody is posted on the stretch where the scout warned of trouble.
+- The night-off and refuge buttons no longer render as a white box with pale text.
+
+The rule hash ignores alerts, so replay hashes do not move.
+
+**Deferred.** Target **2026-11-10**, **a taller phone map at dusk** (360 px wide). The watcher sheet covers the map at dusk, so posts cannot be tapped on the map. The post buttons in the sheet work. Also open from the retest, target 2026-11-10: the "in the new village" checkbox wording, and a raid headline beside "It was quiet enough."
+
+## Lab-panel round 2026-10-27 (retests-1027b)
+
+The first lab-panel round played live `cab6c9e` with 12 standing testers on a first visit and the cold pair Anika Bose and Erik Lind ([playtest](watch-playtest-2026-10-27-panel.md)). Verdict: **needs a fix cycle** and a same-tester retest (0 keep, 11 mixed, 3 quit). The blocking asks are F-1592 to F-1598.
+
+**Deferred** (to the fix cycle, then the retest):
+
+- Target **2026-11-03** (retests-1027b): F-469 and F-309 still open, tiredness on dusk cards and why a night-off is greyed; F-470, say live when a watcher comes back; F-299 and F-351, shorter quiet stretches; F-359, name each night order's effect at dawn; F-347, help only when someone can be sent; F-290, grain needed to the harvest.
+- Target **2026-11-10** (retests-1027b): F-1599, a taller phone map at dusk (the existing deferral, now numbered); F-1600, the title boxes' wording (closed by removal if Watch moves to HF 4.0); F-1601, a raid headline beside "It was quiet enough".
+- Target **2026-11-10** (retests-1027b): smaller asks F-1602 to F-1620 (developer wording, distinct and stable button names, header count, speaker names, reply-preview punctuation, the hopes sheet, layout overlaps, scout reliability, night messages, silent lantern move, six-night sample, resume check, phone button fold, blessing reason, people leaving lists, covered title box). Details in the 2026-10-27 lab-panel round doc.
+
+## Panel fix cycle 2026-10-27 (watch-panel-fixes)
+
+Each blocking ask from the lab-panel round, with its fate. Every change is words, layout or the starting seed. No rule changed: headless careful and careless runs on seeds 1, 2, 3, 5, 7, 9, 11 and 23 over four years give the same rule hash before and after (careful: 7 of 8 standing, seed 9 falls in year 3; careless: all 8 fall at the year-2 thaw). The scenario stays at 17–19, and current exports replay.
+
+- **F-1592, fixed.** While Kian and Ada's visit is agreed, "On to dusk" (and "Into the thaw") is disabled. A line beside it says "On to dusk waits until you choose for Kian and Ada". The two choices sit in the same footer, next to the held button. Before, the choice sat below the fold and the button looked live. The visit is offered only in lab mode (`?lab=1`). That is the only place where the Menu's "Save this person for another chapter" exists, and keeping Kian and Ada for another game is the visit's only purpose. A visit agreed on an older page still shows "Stay here together". After "Let them care for each other today", that choice goes away and the text says what happened.
+- **F-1593, fixed.** The visit text no longer says "save", "quiet action boundary" or "snapshot". It says what was agreed, what each choice does, and where the Menu control is. The obstacle lines are plain too. The two buttons are separate controls with a gap, and their names no longer run together.
+- **F-1594, fixed.** At dusk one line names every empty wall: the scout's wall first, then the others, and it adds "Raids can come where the scout did not look, and an empty wall can lose grain." At dawn, if grain was lost over a wall nobody held and nobody drove a raid off there, the page says "Raiders got over the east wall while nobody was posted there. A watcher there could have stopped them." The night's account says the same.
+- **F-1595, fixed in part.** Morning talk answers now have two to four phrasings each. Each watcher's phrasing follows from the run's seed and their place in the village, so two people in one game differ, and a phrasing already said that morning is skipped. A cast discovery (Kian's inn-and-map line) is told once a game. Before, it came back every dawn, because the morning reset dropped the record. The false-alarm voice has four lines instead of two. Several reports compared a phone run with a desktop run that shared the fixed seed (see F-1598). Still open: a person can repeat their own line on another morning. Deferred to the retest (target **2026-11-10**).
+- **F-1596, fixed.** A night moment opened before the rope snapped no longer offers "Ring and call … by name" once it has snapped. It says "The rope is broken tonight, so the bell cannot call them." The bell button reads "The bell is silent" instead of "Bell swinging".
+- **F-1597, fixed.** The Gate question ends with what it settled: "Samira said yes. When you choose who keeps the Gate next, at an autumn fair, her name comes first." On a no, the name comes last.
+- **F-1598, confirmed and fixed.** Confirmed: without `?seed=`, every fresh page opened the fixed seed 20261004. "Go up to the wall" with the default title boxes started that run. Ticking a box restarted on a random seed, which is why only those testers saw different openings. Each fresh page now draws its own seed. The seed is in every export, so runs still replay, and `?seed=` still pins one.
+- **Also fixed:** two morning lines from Kian on one topic shared a React key (a console error).
+- **Not in this cycle:** Pavel's "Letting Kian go made no visible difference" stays with the smaller asks (target **2026-11-10**).
+
+## Same-tester retest 2026-10-27 (retests-1027c, iteration 2)
+
+Verdict: **finished** (iteration 2) on `6a389e0`; 0 keep, 12 mixed, 2 quit. Details in the [round doc](watch-playtest-2026-10-27-panel-retest.md). Remaining asks, each with a date:
+
+- Target **2026-11-03** (retests-1027c): F-2113, the night's result feels set whatever the player chooses; keep the difficulty, but say at dusk who is likely to leave and which wall cannot be held, and at dawn what each order kept.
+- Target **2026-11-03** (retests-1027c): F-2114, a morning question goes to a different person than the one chosen; keep the selection after a talk and name the person on each question.
+- Target **2026-11-03** (retests-1027c): F-2115, a discovery line joins an unrelated answer (Tamar's "old signal", Samira's paints); give it its own line with a lead-in.
+- Target **2026-11-03** (retests-1027c): F-2116, Kian and Ada's story has no step in normal play since the visit became lab-only; add a morning question about Ada, or bring the visit back (owner may decide).
+- Target **2026-11-03** (retests-1027c): F-309 and F-469, the dusk night-off button says "Move the lantern nearer" while the lantern is at the post; give the true reason or let the request reach. Tiredness for everyone who will give out, at dusk.
+- Target **2026-11-03** (retests-1027c, moved up from 2026-11-10): F-1599, the phone map at dusk at night height, with the scout's line, also while a watcher's sheet is open.
+- Target **2026-11-10** (retests-1027c, moved from 2026-11-03 because the fix cycle did not touch them): F-470 and F-1601, quotes and live lines that disagree with the account; F-299 and F-351, quiet stretches and nights that repeat; F-359 and F-362, say what each order did; F-347, "something close" against a wolf; F-290, what a winter costs in grain.
+- Target **2026-11-10** (retests-1027c): F-1595 open part, one person repeating a line, plus the cross-person repeat Maya still saw.
+- Target **2026-11-10** (retests-1027c): F-1592 and F-1593, check the visit's wording once in lab mode (`?lab=1`); the panel could not reach it.
+- Target **2026-11-10** (retests-1027c): F-1600, F-1602 to F-1606, F-1608, F-1610 to F-1617, F-1619 still open, F-1607 not raised this round, F-1618 partly met (title boxes, developer wording, button names, header count, speaker names, hopes sheet, overlaps, scout reliability, night messages, silent lantern move, six-night sample, resume check, controls under panels, people leaving lists).
+- Target **2026-11-10** (retests-1027c): smaller asks F-2117 to F-2129 (walking-to-post status, "is deciding" after "say nothing", night-off answer before the watch, Insist cost, dense help lines, small Today list, thaw wall falling unwarned, the stuck bell label, cover order naming an absent watcher, the same children story twice, dawn empty-wall line gaps, a caution with no answer, "full" wall found by trying). Details in the retests-1027c round doc.

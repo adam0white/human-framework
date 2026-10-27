@@ -103,7 +103,7 @@ import {
 import { takeOffer } from './fair.ts';
 import { fillLeaf, maybeLimp } from './life.ts';
 import { applyLocalWarning, deliverLocalWarnings, type LocalWarningInput } from './local-warning.ts';
-import { answerMoment, catchLeaving, checkMoments } from './moments.ts';
+import { answerMoment, catchLeaving, checkMoments, type Read } from './moments.ts';
 import { applyNightAct, type NightInput, resolveNightRequest } from './night-actions.ts';
 import {
   addVillager,
@@ -539,7 +539,11 @@ function enterDawn(s: WatchState): void {
     const parts: string[] = [];
     // `posted` is who stands there at dawn; someone who drove a threat off earlier stood it for a while.
     if (gotKinds.length > 0 && posted.length === 0)
-      parts.push(heroes.length > 0 ? `Nobody stayed to guard ${the} until dawn.` : `Nobody watched ${the}.`);
+      parts.push(
+        heroes.length > 0
+          ? `Nobody stayed to guard ${the} until dawn.`
+          : `Nobody watched ${the}. A watcher posted there could have stopped the raiders.`,
+      );
     for (const kind of gotKinds) {
       const g = got[kind] ?? 0;
       parts.push(
@@ -581,6 +585,16 @@ function enterDawn(s: WatchState): void {
     grainAfter: s.grain,
     ropeSnapped: s.rope.snapped,
     crossed: SECTION_IDS.some((id) => (t.got[id].wolf ?? 0) + (t.got[id].thief ?? 0) > 0),
+    ...(t.grainAtDusk > s.grain
+      ? {
+          unwatched: SECTION_IDS.filter(
+            (id) =>
+              (t.got[id].wolf ?? 0) + (t.got[id].thief ?? 0) > 0 &&
+              postedIn(s, id).length === 0 &&
+              t.heroes[id].length === 0,
+          ),
+        }
+      : {}),
     voices: [],
   };
   rememberTheNight(s);
@@ -607,7 +621,13 @@ function enterDawn(s: WatchState): void {
       q.met = (t.got.gate.wolf ?? 0) + (t.got.gate.thief ?? 0) === 0;
   }
   for (const p of s.community.people) if (isWatcher(s, p)) maybeLimp(s, p);
-  s.talks = { left: TALKS_PER_DAY, said: [], asked: s.talks.asked };
+  // A discovery is told once a game (F-1595: Kian's map line came back every dawn).
+  s.talks = {
+    left: TALKS_PER_DAY,
+    said: [],
+    asked: s.talks.asked,
+    ...(s.talks.discovered ? { discovered: s.talks.discovered } : {}),
+  };
   s.tokens = [];
   s.throws = [];
   s.commands = {};
@@ -876,6 +896,33 @@ function bellAnswer(s: WatchState, targets: WatcherId[], named: boolean): string
   if (fear > 0.5) return `${name} answers, in a weak voice: “I hear it.”`;
   if (low >= 0.35) return `“We heard you,” ${name} calls, not warmly.`;
   return `${name} does not answer.`;
+}
+
+/**
+ * What the Keeper hears back after a spoken word from a card (urge, call back, send): 2026-10-27 retest, "my taps
+ * on Urge ... tell me they worked". Words only (an alert; the rule hash ignores alerts). The reply follows the
+ * Keeper's read of the same ask (`readPosting`, as the card's option shows it), so it never contradicts the card.
+ * It is not a promise: they still decide.
+ */
+export function wordAnswer(
+  s: WatchState,
+  who: WatcherId,
+  said: string,
+  word: Read['word'],
+  going: boolean,
+): string {
+  const name = nameOf(s, who);
+  const reply =
+    word === 'likely'
+      ? `\u201c${going ? 'I\u2019ll go' : 'I\u2019ll hold'},\u201d ${name} answers.`
+      : word === 'grudging'
+        ? `\u201cIf I must,\u201d ${name} answers.`
+        : word === 'unsure'
+          ? `\u201c${going ? 'I\u2019ll see' : 'For a while'},\u201d ${name} answers.`
+          : word === "won't"
+            ? `${name} does not answer.`
+            : `You cannot tell what ${name} will do.`;
+  return `${said} ${reply}`;
 }
 
 /** The Keeper's standing suggestions: the posting, and a one-shot ask from a card while it lasts. */
@@ -1614,11 +1661,23 @@ function warnWatchers(s: WatchState, t: Token, severity: number): void {
   }
 }
 
+/**
+ * Hardship rules (WATCH-cold-loss): wounds heal at these rates (severity per day) instead of 0.12 and 0.2, so a
+ * watcher bitten early in the played nights is still hurt at the last of them (a bite of 0.5 takes about two weeks).
+ */
+const BITE_HEAL_HARD = 0.035;
+const STRIKE_HEAL_HARD = 0.08;
+
 function bite(s: WatchState, id: WatcherId, t: Token): void {
   const p = personOf(s, id);
   if (!p) return;
   const severity = 0.3 + 0.35 * nextRandom(s);
-  injure(p, { part: 'leg', severity, healRatePerDay: 0.12, bleeding: 0.25 + 0.3 * nextRandom(s) });
+  injure(p, {
+    part: 'leg',
+    severity,
+    healRatePerDay: s.hardship ? BITE_HEAL_HARD : 0.12,
+    bleeding: 0.25 + 0.3 * nextRandom(s),
+  });
   strain(p, 0.3 * severity);
   note(s, { who: id, kind: 'bitten', section: t.section });
   tell(
@@ -1653,7 +1712,7 @@ function bite(s: WatchState, id: WatcherId, t: Token): void {
 function strike(s: WatchState, id: WatcherId, section: SectionId): void {
   const p = personOf(s, id);
   if (!p) return;
-  injure(p, { part: 'head', severity: 0.4, healRatePerDay: 0.2 });
+  injure(p, { part: 'head', severity: 0.4, healRatePerDay: s.hardship ? STRIKE_HEAL_HARD : 0.2 });
   knockDown(p, { reason: 'struck', until: s.minute + 120 });
   strain(p, 0.15);
   downed(s, id, section);
@@ -1733,8 +1792,8 @@ function prepareRefugeDeparture(s: WatchState): boolean {
     who: 'kian',
     topic: 'home',
     text: s.refugeDeparture
-      ? 'Kian and Ada shared food, water and quiet rest. A quiet departure snapshot is ready; their return duty remains open. Save Kian, or choose to stay together.'
-      : 'They spent real daylight here. No eligible quiet departure was captured yet; save is unavailable. Choose to stay if they cannot leave before dusk.',
+      ? 'Kian and Ada shared food, water and quiet rest. They are ready to go, and Kian still owes Ada the trip back.'
+      : 'Kian and Ada spent the daylight together, but they were not ready to go before dusk. Choose Stay here together to go on with the watch.',
   });
   return true;
 }

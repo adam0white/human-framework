@@ -661,7 +661,7 @@ it('keeps expired advice and the rent outcome visible beside an ongoing scene un
   });
   props.frame.minute = 601;
   update();
-  expect(el.querySelector('[aria-label="What happened"]')?.textContent).toContain(
+  expect(el.querySelector('[aria-label="While you waited"]')?.textContent).toContain(
     'Your suggestion has now ended.',
   );
   expect(props.onReading).toHaveBeenLastCalledWith(true);
@@ -676,7 +676,7 @@ it('keeps expired advice and the rent outcome visible beside an ongoing scene un
   });
   props.frame.minute = 602;
   update();
-  expect(el.querySelector('[aria-label="What happened"]')?.textContent).toContain(
+  expect(el.querySelector('[aria-label="While you waited"]')?.textContent).toContain(
     'Your suggestion has now ended.',
   );
   props.frame.log.push({
@@ -691,11 +691,11 @@ it('keeps expired advice and the rent outcome visible beside an ongoing scene un
   });
   props.frame.minute = 603;
   update();
-  expect(el.querySelector('[aria-label="What happened"]')?.textContent).toContain(
+  expect(el.querySelector('[aria-label="While you waited"]')?.textContent).toContain(
     'Halil paid nothing by 20:00.',
   );
-  click(el, '[aria-label="What happened"] button');
-  expect(el.querySelector('[aria-label="What happened"]')).toBeNull();
+  click(el, '[aria-label="While you waited"] button');
+  expect(el.querySelector('[aria-label="While you waited"]')).toBeNull();
 });
 
 it('keeps the open choice through queued frames, then explains an ended occasion instead of sending to a later one', () => {

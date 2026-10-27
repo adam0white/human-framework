@@ -557,3 +557,111 @@ it('file entry renders the ordinary chooser with no authored worker or native sh
     window.history.replaceState(null, '', '/');
   }
 });
+
+it('holds On to dusk beside the open visit choice and names every empty wall at dusk (F-1592, F-1594)', () => {
+  const base = buildFrame(state, 0, false);
+  const visit = {
+    version: 'watch-warren-ada/1' as const,
+    guardian: 'kian' as const,
+    dependent: 'ada' as const,
+    sourceMinute: 0,
+    returnBy: 1440,
+    kianAssented: true,
+    adaAssented: true,
+    commitmentId: 'c1',
+    returnCommitmentId: 'c2',
+    status: 'agreed' as const,
+  };
+  const frame = {
+    ...base,
+    phase: 'dawn' as const,
+    refugeVisit: visit,
+    dawn: {
+      night: 1,
+      grainBefore: 20,
+      grainAfter: 16,
+      crossed: true,
+      unwatched: ['east' as const],
+      voices: [],
+      lines: [],
+      scout: null,
+      ropeSnapped: false,
+    },
+  };
+  const page = render(createElement(DawnPanel, { frame, actions }));
+  const toDusk = [...page.querySelectorAll('button')].find((b) => b.textContent === 'On to dusk');
+  expect(toDusk?.hasAttribute('disabled')).toBe(true);
+  expect(page.textContent).toContain('On to dusk waits until you choose for Kian and Ada.');
+  expect([...page.querySelectorAll('.w-choice-pair button')].map((b) => b.textContent)).toContain(
+    'Stay here together',
+  );
+  expect(page.textContent).not.toMatch(/quiet action boundary|snapshot/i);
+  expect(page.textContent).toContain('Raiders got over the east wall while nobody was posted there.');
+  // Control: with no open visit, On to dusk is live and nothing waits.
+  const free = render(createElement(DawnPanel, { frame: { ...frame, refugeVisit: undefined }, actions }));
+  const live = [...free.querySelectorAll('button')].find((b) => b.textContent === 'On to dusk');
+  expect(live?.hasAttribute('disabled')).toBe(false);
+  expect(free.textContent).not.toContain('waits until you choose');
+
+  // Everyone at the Gate, tracks at the east wall: the warned wall and both other walls are named, once.
+  const gated = {
+    ...base,
+    warned: 'east' as const,
+    watchers: base.watchers.map((w) => ({ ...w, posted: 'gate-1' as const })),
+  };
+  const duskProps = {
+    actions,
+    selected: null,
+    setSelected: vi.fn(),
+    press: 'ask' as const,
+    setPress: vi.fn(),
+    post: vi.fn(),
+  };
+  const duskPage = render(createElement(DuskPanel, { ...duskProps, frame: gated }));
+  expect(duskPage.textContent).toContain(
+    'Nobody is posted on the east wall, where the scout warned of trouble, or on the west wall and the mill wall. Raids can come where the scout did not look',
+  );
+  // Control: every open wall held (the Gate left out of this fixture), no warning.
+  const held = render(
+    createElement(DuskPanel, {
+      ...duskProps,
+      frame: {
+        ...gated,
+        sections: gated.sections.filter((x) => x.id !== 'gate'),
+        watchers: gated.watchers.map((w, i) => ({
+          ...w,
+          posted: (['west-1', 'mill-1', 'east-1'] as const)[i % 3] ?? 'east-1',
+        })),
+      },
+    }),
+  );
+  expect(gated.watchers.length).toBeGreaterThanOrEqual(3);
+  expect(held.textContent).not.toContain('Nobody is posted');
+});
+
+it('drops the bell from an open night moment once the rope has snapped (F-1596)', () => {
+  const moment = {
+    id: 9,
+    kind: 'waver' as const,
+    who: 'kian',
+    section: 'gate' as const,
+    opened: 0,
+    until: 120,
+    text: 'Kian looks back at the steps.',
+    options: [
+      { id: 'let', label: 'Let Kian go' },
+      { id: 'bell', label: 'Ring and call Kian by name' },
+    ],
+  };
+  const at = (snapped: boolean) =>
+    render(
+      createElement(NightPanel, {
+        frame: { ...dusk, phase: 'night', moment, rope: { wear: snapped ? 1 : 0.2, snapped } },
+        actions,
+      }),
+    ).textContent ?? '';
+  expect(at(true)).not.toContain('Ring and call Kian by name');
+  expect(at(true)).toContain('The rope is broken tonight');
+  // Control: a sound rope keeps the choice.
+  expect(at(false)).toContain('Ring and call Kian by name');
+});

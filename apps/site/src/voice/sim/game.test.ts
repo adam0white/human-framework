@@ -226,7 +226,9 @@ describe('Game 2 sim on the shipped seed', () => {
     // Ramadan 15: the 17:00 beat is Osman's date (pinned in the running-late test). Digests: firsts, then totals.
     const intros = seen.introByDay;
     expect(intros[2]?.some((l) => /Selin often calls after the sunset meal/.test(l))).toBe(true);
-    expect(intros[15]?.[0]).toBe('He did not do anything new toward his goals since Ramadan 2.');
+    expect(intros[15]?.[0]).toBe(
+      'Nothing he did was a first for this month since Ramadan 2. What he kept doing is counted below.',
+    );
     expect(intros[30]?.[0]).toMatch(/^For the first time, he paid Osman, on Ramadan \d+, on his own\./);
   });
 

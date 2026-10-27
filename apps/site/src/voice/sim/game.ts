@@ -775,8 +775,14 @@ export class VoiceGame {
           heard === 0
             ? ' He never had the chance to act on it when he heard it.'
             : ` When he heard it, he said yes ${times(a.yes)}${a.off > 0 ? `, asked you to wait ${times(a.off)}` : ''}${a.no > 0 ? `, refused ${times(a.no)}` : ''}${a.off + a.no === 0 ? ' and never asked you to wait' : ''}.`;
+        // R2 ("1 of 12 days" after Urge read as being ignored): say when it can happen and what the strength does.
+        const rule = WHY_AWAY[id];
+        const why =
+          did < days
+            ? ` He hears it only when he is choosing while it is open${rule ? ` (${rule})` : ''}${heard > 0 ? `, and that happened ${times(heard)}` : ''}. A stronger word weighs more each time he hears it, but he still decides.`
+            : '';
         lines.push(
-          `“${WHISPERS[w.choiceId].label}” (${w.strength}${i === 0 && chosen.length > 1 ? ', in turn with the other' : ''}): he did it on ${did} of ${days} days${onWord > 0 ? `, ${times(onWord)} because you suggested it` : ''}${own > 0 ? `${onWord > 0 ? ' and' : ','} ${times(own)} on his own` : ''}.${said}`,
+          `“${WHISPERS[w.choiceId].label}” (${w.strength}${i === 0 && chosen.length > 1 ? ', in turn with the other' : ''}): he did it on ${did} of ${days} days${onWord > 0 ? `, ${times(onWord)} because you suggested it` : ''}${own > 0 ? `${onWord > 0 ? ' and' : ','} ${times(own)} on his own` : ''}.${said}${why}`,
         );
       }
       if (chosen.length === 0) lines.push('You left no suggestions. He made these choices on his own.');
@@ -809,7 +815,11 @@ export class VoiceGame {
         `For the first time, ${what}, on ${dayLabel(dayOf(first.from))}${first.promptedBy === 'you' ? ', because you suggested it' : ', on his own'}.`,
       );
     }
-    return out.length > 0 ? out : [`He did not do anything new toward his goals since ${dayLabel(fromDay)}.`];
+    return out.length > 0
+      ? out
+      : [
+          `Nothing he did was a first for this month since ${dayLabel(fromDay)}. What he kept doing is counted below.`,
+        ];
   }
 
   /** The open questions of a played day, from his ends: Osman's money, the clinic, Selin, and Eid ahead. */
@@ -1136,7 +1146,8 @@ export class VoiceGame {
     this.onPayments(events);
     for (const r of fresh) this.onDecision(r);
     if (this.cut) {
-      if (this.standing === this.cut && !this.cut.going) this.endStanding('expired');
+      if (this.standing === this.cut && !this.cut.going)
+        this.endStanding('stopped', this.halil.activity?.affordance.label);
       this.cut = undefined;
     }
     this.onAdvice();
@@ -1157,8 +1168,22 @@ export class VoiceGame {
     const fin = events.filter(
       (e) => e.personId === 'halil' && e.kind === 'finish' && e.action === 'pay-rent',
     );
-    this.payments.push({ at: fin.at(-1)?.at ?? this.t, amount: paid - this.rentSeen });
+    const at = fin.at(-1)?.at ?? this.t;
+    const amount = Math.round(paid - this.rentSeen);
+    this.payments.push({ at, amount: paid - this.rentSeen });
     this.rentSeen = paid;
+    // R2: the payment was the payoff players waited for, and it happened in a log line. Say it in the main view.
+    if (!this.quiet && !this.muted) {
+      const owed = Math.round(this.run.town.state.rentOwed);
+      this.push(
+        {
+          kind: 'note',
+          who: 'halil',
+          text: `He paid Osman ${amount} lira. ${owed > 0 ? `${owed} is still owed.` : 'Nothing more is owed.'}`,
+        },
+        at,
+      );
+    }
   }
 
   /** One minute before a night sleep ends: the wake line and beat, before he chooses (see `nightSleep`). */
@@ -1451,8 +1476,16 @@ export class VoiceGame {
     if (this.cells.length > 3000) this.cells.splice(0, this.cells.length - 3000);
     this.open = cell;
     if (this.standing && e.at >= this.standing.since) {
-      if (this.servesStanding(e.affordanceId, e.action)) this.standing.going = e.decisionId ?? 'begun';
-      else if (this.standing.going) this.endStanding('expired');
+      const s = this.standing;
+      if (this.servesStanding(e.affordanceId, e.action)) {
+        s.going = e.decisionId ?? 'begun';
+        if (e.affordanceId !== s.draft.optionId) s.servedAs = label;
+      } else if (s.going)
+        // Its finish was not seen first (no decision id, or one step held both): what he began for it is over.
+        this.endStanding(
+          s.going === 'begun' ? 'begun' : 'movedOn',
+          ACTION_LABEL[e.affordanceId ?? ''] ?? label,
+        );
     }
     if (this.quiet) return;
     // Eid (round 3, defect 5): the first cigarette is a beat of its own, after his first daylight meal in a month.
@@ -1761,7 +1794,13 @@ export class VoiceGame {
     }
   }
 
+  /** Whether an afternoon shift was under way (or just ended) at this minute: the outcome it names. */
+  private shiftAt(at: number): boolean {
+    return this.cells.some((c) => c.affordanceId === 'work-extra' && c.from <= at && at <= c.to + 5);
+  }
+
   /** He is doing what the standing suggestion asked, or the same action (pray at home for the mosque). */
+
   private servesStanding(affordanceId: string | undefined, action: string | undefined): boolean {
     const s = this.standing;
     if (!s || !affordanceId) return false;
@@ -1769,17 +1808,47 @@ export class VoiceGame {
     return this.suggestedAction !== undefined && action === this.suggestedAction;
   }
 
-  private endStanding(_why: 'begun' | 'refused' | 'expired' | 'asleep' | 'withdrawn' | 'replaced'): void {
+  /**
+   * The word ends. A lapse always says why, in his words where he has them (R2: 12 of 16 players asked what
+   * "after X" committed him to and why it lapsed). `detail` names what he moved on to, when there is one.
+   */
+  private endStanding(
+    why: 'begun' | 'refused' | 'expired' | 'asleep' | 'withdrawn' | 'replaced' | 'stopped' | 'movedOn',
+    detail?: string,
+  ): void {
     const s = this.standing;
     if (!s) return;
     this.standing = undefined;
-    if (this.quiet || _why === 'begun' || _why === 'refused' || _why === 'replaced') return;
-    const text =
-      _why === 'withdrawn'
-        ? 'You withdraw your suggestion.'
-        : _why === 'asleep'
-          ? 'He is asleep. Your suggestion fades.'
-          : 'Your suggestion fades.';
+    if (this.quiet || why === 'refused' || why === 'replaced') return;
+    const what = ACTION_LABEL[s.draft.optionId] ?? s.draft.optionId.replace(/[-:]/g, ' ');
+    // R2 (Aisha, Emre): a word kept is a payoff too. It ends only when the activity he began for it finished.
+    if (why === 'begun') {
+      const text = s.servedAs
+        ? `He did something close to what you suggested: ${s.servedAs}.`
+        : `He did what you suggested: ${what}.`;
+      this.push({ kind: 'note', who: 'you', text });
+      return;
+    }
+    const later = s.lastAnswer?.tone === 'notNow' ? s.lastAnswer.counter : undefined;
+    const ended = 'Your suggestion has ended. Say it again if you still want him to hear it.';
+    const span = Math.round((s.expires - s.since) / 60);
+    const hours =
+      span >= 1 ? `${span === 1 ? 'An hour has' : `${span} hours have`} passed.` : 'Its time has run out.';
+    let text: string;
+    if (why === 'withdrawn') text = 'You withdraw your suggestion.';
+    else if (why === 'asleep')
+      text = `He fell asleep before he got to ${what}. Your suggestion has ended. Say it again when he wakes if you still want him to hear it.`;
+    else if (why === 'stopped')
+      text = `He began ${s.servedAs ?? what} but stopped partway${detail ? ` to ${detail}` : ''}. ${ended}`;
+    else if (why === 'movedOn')
+      text = `He began ${s.servedAs ?? what}, then moved on to ${detail ?? 'something else'}. ${ended}`;
+    else if (s.away) {
+      const rule = WHY_AWAY[s.draft.optionId];
+      text = `Halil: “${later ? 'By the time I was done, it' : 'It'} was too late to ${what}.”${rule ? ` (${capital(rule)}.)` : ''} ${ended}`;
+    } else
+      text = later
+        ? `Halil: “I meant to, ${later}. Then other things came first.” ${hours} ${ended}`
+        : `${hours.replace(/\.$/, '')}, and he chose other things. ${ended}`;
     this.push({ kind: 'note', who: 'you', text });
   }
 
@@ -1830,7 +1899,7 @@ export class VoiceGame {
     // earlier day is not stamped on today's last act (playtest: "+0.14 went well" on a nap).
     const events = (you?.history ?? [])
       .filter((e) => (e.from ?? e.at) >= dayStart && e.at <= this.t && Math.abs(e.delta) >= 0.005)
-      .map((e) => trustHistoryWords(e.delta, e.reason, e.action, e.count ?? 1));
+      .map((e) => trustHistoryWords(e.delta, e.reason, e.action, e.count ?? 1, this.shiftAt(e.at)));
     let next: BetweenView['next'];
     if (this.free) next = { label: dayLabel(d + 1), day: d + 1, skipped: 0 };
     else {
@@ -2142,32 +2211,17 @@ export class VoiceGame {
   private outcomeLog(): LogEntry[] {
     let shiftSuggested = false;
     let shiftExplained = false;
-    let deferred = false;
     return this.log
       .map((entry) => {
         if (entry.kind === 'you') {
           shiftSuggested = /take an afternoon shift/.test(entry.text);
           shiftExplained = false;
-          deferred = false;
         }
         let text = entry.text;
         if (entry.kind === 'answer') {
-          deferred = entry.tone === 'notNow';
           if (shiftSuggested && !shiftExplained && (entry.tone === 'notNow' || entry.tone === 'willNot')) {
             text += ' He also doubts the afternoon shift will pay.';
             shiftExplained = true;
-          }
-        }
-        if (entry.kind === 'note' && entry.who === 'you') {
-          if (text === 'Your suggestion fades.') {
-            text = `${deferred ? 'He asked you to wait. ' : ''}Your suggestion has now ended. Say it again if you still want him to hear it.`;
-            shiftSuggested = false;
-            deferred = false;
-          } else if (text === 'He is asleep. Your suggestion fades.') {
-            text =
-              'He is asleep. Your suggestion has ended. Say it again when he wakes if you still want him to hear it.';
-            shiftSuggested = false;
-            deferred = false;
           }
         }
         if (entry.kind === 'note' && text.startsWith('Osman’s payment deadline has passed,')) {
@@ -2223,7 +2277,7 @@ export class VoiceGame {
       log: this.outcomeLog(),
       ends: this.ends(),
       unasked: this.unaskedNow(),
-      voices: voicesView(h, t),
+      voices: voicesView(h, t, undefined, (at) => this.shiftAt(at)),
       muted: this.muted || this.phase === 'eid',
     };
     // Presentation only: copy existing host receipts. No new saved state, inference or RNG.

@@ -1,6 +1,7 @@
 import { ENGINE_VERSION } from '@adam0white/human-framework';
-import { canonicalPersona, validatePersona } from '@adam0white/lab-client';
 import { castRole, chapterPeople, siteCastCheckpoint } from '../shared/cast-chapter.ts';
+import { type FileImport, importedFileRecord, recordFile } from '../shared/file-record.ts';
+import { checkGameFile } from '../shared/file-sources.ts';
 import { FRAMEWORK_PACKAGE_VERSION, stableStringify } from '../shared/playtest.ts';
 import { requireValue } from '../shared/require-value.ts';
 /**
@@ -33,39 +34,10 @@ import { buildFrame, ordinal } from './sim/view.ts';
 import { roman } from './sim/volume.ts';
 import { listPages, loadPage, type PageInfo, savePage } from './store.ts';
 
-/** Imported receipt archives are provenance only; validate their binding without any Shelf access. */
-async function validateFileSources(raw: Record<string, unknown>): Promise<void> {
-  const ownership = raw.castOwnership;
-  const sources = raw.castSources;
-  if (ownership !== undefined && (!ownership || typeof ownership !== 'object' || Array.isArray(ownership)))
-    throw new Error('Invalid imported ownership provenance.');
-  if (sources !== undefined && (!sources || typeof sources !== 'object' || Array.isArray(sources)))
-    throw new Error('Invalid imported source archive.');
-  const heads = Object.entries((ownership ?? {}) as Record<string, unknown>);
-  if (heads.length > 8) throw new Error('Too many imported ownership receipts.');
-  for (const [id, value] of heads) {
-    const head = await validatePersona(value);
-    if (id !== head.castId) throw new Error('Imported receipt identity differs.');
-  }
-  for (const [id, source] of Object.entries((sources ?? {}) as Record<string, unknown>)) {
-    const head = (
-      ownership as Record<string, { transfer: { checkpoint?: { sha256?: string } } }> | undefined
-    )?.[id];
-    if (!head?.transfer.checkpoint?.sha256 || !source || typeof source !== 'object')
-      throw new Error('Imported source has no bound full-source receipt.');
-    const digest = Array.from(
-      new Uint8Array(
-        await crypto.subtle.digest('SHA-256', new TextEncoder().encode(canonicalPersona(source))),
-      ),
-      (byte) => byte.toString(16).padStart(2, '0'),
-    ).join('');
-    if (digest !== head.transfer.checkpoint.sha256) throw new Error('Imported source checksum differs.');
-  }
-}
-
 let run: WatchRun | null = null;
 let fileMode = false;
 let imported: Record<string, unknown> = {};
+let fileImport: FileImport | undefined;
 /** Only the latest explicit init/load may install a run after storage awaits. */
 let loadOperation = 0;
 let castOwnership: import('../shared/cast-runtime.ts').CastHeads = {};
@@ -75,6 +47,21 @@ let sinceFrame = 0;
 const FRAME_MS = 50;
 /** The most real time one tick may carry (a stalled tab or a long GC pause). */
 const MAX_TICK_MS = 250;
+/**
+ * WATCH-cold-timing diagnostic: real time offered by the page against real time admitted to the clock, over the
+ * run and over the open timed decision. Kept here, outside the game state, and added to the playtest file only, so
+ * it changes no rule, hash or replay. A decision that seems stuck shows whether ticks stopped coming (few ticks),
+ * came coarse (raw far above admitted), or the clock was held.
+ */
+const clock = {
+  ticks: 0,
+  rawMs: 0,
+  admittedMs: 0,
+  cappedTicks: 0,
+  maxRawMs: 0,
+  heldTicks: 0,
+  moment: null as null | { id: number; ticks: number; rawMs: number; admittedMs: number },
+};
 /**
  * Write the running page at most this often after an input, and this often while the clock runs. During a night
  * both wait `NIGHT_SAVE_MS`: writing the page stops the clock for a moment (the snapshot is taken between minutes),
@@ -177,6 +164,15 @@ function maybeSave(): void {
 
 function begin(r: WatchRun, id: string): void {
   run = r;
+  Object.assign(clock, {
+    ticks: 0,
+    rawMs: 0,
+    admittedMs: 0,
+    cappedTicks: 0,
+    maxRawMs: 0,
+    heldTicks: 0,
+    moment: null,
+  });
   pacer.adopt(r);
   chronicleId = id;
   savedSeason = seasonMark(r.state);
@@ -238,12 +234,12 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
     if (!fileMode) throw new Error('Open a file session first.');
     const operation = ++loadOperation;
     void (async () => {
-      if (new TextEncoder().encode(msg.text).length > 5 * 1024 * 1024)
-        throw new Error('This file is too large.');
-      const raw = JSON.parse(msg.text) as PlaytestExport & { snapshot: Snapshot; fileOrigin?: true };
+      const raw = (await checkGameFile(msg.text)) as unknown as PlaytestExport & {
+        snapshot: Snapshot;
+        fileOrigin?: true;
+      };
       if (raw.game !== 'the-night-watch' || raw.framework !== FRAMEWORK_PACKAGE_VERSION || !raw.snapshot)
         throw new Error('A complete current Watch native file is required.');
-      await validateFileSources(raw as unknown as Record<string, unknown>);
       const state = replay(raw);
       const expected = {
         scenario: raw.scenario,
@@ -262,7 +258,9 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
       )
         throw new Error('The Watch native envelope differs from its complete state.');
       buildFrame(next.state, 0, false);
+      const source = await importedFileRecord(raw as unknown as Record<string, unknown>, msg.text);
       if (operation !== loadOperation) return;
+      fileImport = source;
       imported = structuredClone(raw) as unknown as Record<string, unknown>;
       castOwnership = {};
       host.gen = msg.gen;
@@ -360,6 +358,21 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
     case 'tick': {
       if (!run) return;
       const dt = Math.min(MAX_TICK_MS, Math.max(0, msg.dtMs));
+      const raw = Math.max(0, msg.dtMs);
+      clock.ticks += 1;
+      clock.rawMs += raw;
+      clock.admittedMs += dt;
+      if (raw > MAX_TICK_MS) clock.cappedTicks += 1;
+      clock.maxRawMs = Math.max(clock.maxRawMs, raw);
+      if (pacer.held) clock.heldTicks += 1;
+      const open = run.state.moment;
+      if (!open) clock.moment = null;
+      else {
+        if (clock.moment?.id !== open.id) clock.moment = { id: open.id, ticks: 0, rawMs: 0, admittedMs: 0 };
+        clock.moment.ticks += 1;
+        clock.moment.rawMs += raw;
+        clock.moment.admittedMs += dt;
+      }
       sinceFrame += dt;
       sinceSave += dt;
       pacer.tick(run, dt);
@@ -393,7 +406,7 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
         host.post({
           type: 'telemetry',
           requestId: msg.requestId,
-          run: { ...run.export(), snapshot: run.snapshot() },
+          run: recordFile(run, { ...run.export(), snapshot: run.snapshot() }, fileImport),
           logs: run.state.chronicle,
         });
       return;
@@ -402,14 +415,21 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
         host.post({
           type: 'exported',
           requestId: msg.requestId,
-          data: fileMode
-            ? {
-                ...imported,
-                ...run.export(),
-                snapshot: run.snapshot(),
-                build: typeof imported.build === 'string' ? imported.build : 'dev',
-              }
-            : run.export(),
+          data: {
+            ...recordFile(
+              run,
+              fileMode
+                ? {
+                    ...imported,
+                    ...run.export(),
+                    snapshot: run.snapshot(),
+                    build: typeof imported.build === 'string' ? imported.build : 'dev',
+                  }
+                : run.export(),
+              fileImport,
+            ),
+            clock: structuredClone(clock),
+          },
         });
       return;
     case 'shelf':

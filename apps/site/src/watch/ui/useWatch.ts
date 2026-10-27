@@ -53,7 +53,9 @@ export function initialSeed(): number {
   } catch {
     // No URL access: fall through.
   }
-  return 20261004;
+  // F-1598: each fresh page draws its own village, so two new games do not open on the same nights. The seed is
+  // in every export, so the run still replays; `?seed=` pins one.
+  return Math.floor(Math.random() * 1e9);
 }
 
 export function useWatch(): Watch {

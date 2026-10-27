@@ -1,6 +1,17 @@
 import { describe, expect, it } from 'vitest';
 import { driverCheck, makePlayReply, runPlayOperation } from './lab-play-helpers.ts';
 
+const dusk = {
+  visible: 'Dusk',
+  controls: [
+    '- button "East wall · tracks"',
+    '- button "East gate"',
+    '- button "West wall"',
+    '- button "Urge Kian to hold — The watcher will probably agree."',
+    '- button "Restart"',
+  ].join('\n'),
+};
+
 const previous = { visible: 'Before dawn\nRest', controls: '- button "Rest"', takenAt: 1000 };
 const fresh = { visible: 'Dawn\nOn to dusk', controls: '- button "On to dusk"' };
 const reply = (result: Awaited<ReturnType<typeof runPlayOperation>>, now = 6000) =>
@@ -137,5 +148,71 @@ describe('lab:play operation replies', () => {
     );
     expect(reply(result).snapshot_ms).toBe(5000);
     expect(reply(result).requested_control_present_before).toBeNull();
+  });
+});
+
+describe('lab:play tap name resolution', () => {
+  // Runs one tap against the dusk controls and records which name the browser step received.
+  const tap = async (op: Record<string, unknown>) => {
+    const tapped: (string | undefined)[] = [];
+    const result = await runPlayOperation(op, {
+      previous: { ...dusk, takenAt: 1000 },
+      snapshot: async () => dusk,
+      act: async (resolvedName) => {
+        tapped.push(resolvedName);
+        return undefined;
+      },
+    });
+    return { result, tapped, body: reply(result) };
+  };
+  it('taps an exact name as given', async () => {
+    const { result, tapped, body } = await tap({ op: 'tap', name: 'East gate' });
+    expect(result.status).toBe(200);
+    expect(tapped).toEqual([undefined]);
+    expect(body).not.toHaveProperty('tapped');
+  });
+  it('resolves a unique prefix past a separator or a read, and says which control it tapped', async () => {
+    const wall = await tap({ op: 'tap', name: 'east WALL' });
+    expect(wall.tapped).toEqual(['East wall · tracks']);
+    expect(wall.body).toMatchObject({ tapped: { name: 'East wall · tracks', matched_by: 'prefix' } });
+    const urge = await tap({ op: 'tap', text: 'Urge Kian to hold' });
+    expect(urge.tapped).toEqual(['Urge Kian to hold — The watcher will probably agree.']);
+  });
+  it('refuses an ambiguous name, lists every candidate in full and taps nothing', async () => {
+    const { result, tapped, body } = await tap({ op: 'tap', name: 'East' });
+    expect(tapped).toEqual([]);
+    expect(result.status).toBe(500);
+    expect(result.error).toContain('"East wall · tracks", "East gate"');
+    expect(result.error).toContain('ambiguous target, not a driver failure');
+    expect(body.clickable).toHaveLength(5);
+  });
+  it('refuses a name with no match, never a word fragment, and returns the clickable names', async () => {
+    const { result, tapped, body } = await tap({ op: 'tap', name: 'Rest' });
+    expect(tapped).toEqual([]);
+    expect(result.error).toContain('Rest is not on the page now');
+    expect(body.clickable).toEqual([
+      'East wall · tracks',
+      'East gate',
+      'West wall',
+      'Urge Kian to hold — The watcher will probably agree.',
+      'Restart',
+    ]);
+  });
+  it('refuses a name that was exact in the last reply instead of re-aiming it at a newer control', async () => {
+    let actions = 0;
+    const result = await runPlayOperation(
+      { op: 'tap', name: 'East wall' },
+      {
+        previous: { visible: 'Dusk', controls: '- button "East wall"', takenAt: 1000 },
+        now: () => 5000,
+        snapshot: async () => dusk,
+        act: async () => {
+          actions++;
+          return undefined;
+        },
+      },
+    );
+    expect(actions).toBe(0);
+    expect(result.error).toContain('it was listed 4 s ago');
   });
 });

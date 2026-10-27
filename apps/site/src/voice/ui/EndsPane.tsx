@@ -6,9 +6,9 @@ import type { EndView, UnaskedItem } from '../protocol.ts';
 import { storyDates } from './dates.ts';
 
 const UNASKED_WORD: Record<UnaskedItem['state'], string> = {
-  yes: 'chose it',
-  no: 'chose something else',
-  unknown: 'no choice observed yet',
+  yes: 'without your advice, he chose it the last time it was open',
+  no: 'without your advice, he chose something else the last time it was open',
+  unknown: 'not seen yet without your advice',
 };
 
 /**
@@ -17,7 +17,7 @@ const UNASKED_WORD: Record<UnaskedItem['state'], string> = {
  */
 export function UnaskedStrip({
   items,
-  lead = 'These are estimates of what he would choose without your advice. They do not show completed actions:',
+  lead = 'What he would choose without your advice. These are guesses from his last choices, not things he has done:',
 }: {
   items?: UnaskedItem[];
   lead?: string;

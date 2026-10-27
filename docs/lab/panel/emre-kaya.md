@@ -630,3 +630,243 @@ I stopped at **650.8 s (10 min 51 s)** because I got **BORED**. I did not write 
 2. Give me more to say on a visit than "I came to listen", for example asking for help before the rain in exchange for help afterwards.
 3. Show the insist hold filling, and show the reply count update straight away.
 ```
+
+
+## hf3-warren-r2 partial evidence — selected FREE
+
+Selected own FREE report only. Both archived alternatives: [emre-free](../reviews/remaining-partial-warren-small-stair-2026-10-26/reports/hf3-warren-r2--emre-free.md), [emre-continued](../reviews/remaining-partial-warren-small-stair-2026-10-26/reports/hf3-warren-r2--emre-continued.md). Source report SHA256 `59c96bdce1feaecfaa8a6db669172cf36c120f507264afb88e636d3a787a8365`. CONT is an alternative report, not personal history. This append does not select any new record.
+
+```text
+## 1. Session
+
+Emre Kaya, 37, Ankara electrical technician and parent. **Declared return**, using only the supplied selected history: Voice R1, Commonstead R1, Voice R2, Valley hold-tail, A Dark Room desktop control and Warren R1 matched. No additional history was opened. No cross-game recognition occurred.
+
+**Round/arm:** hf3-warren-r2 / free.  
+**Paired session:** hf3-warren-r2-emre-kaya.  
+**URL:** https://warren.adamwhite.work.
+
+I chose **Resume · 19 August** on the prepared hill. I used the supplied curl POST driver at **360×690**, with named and position taps. Actual duration: **276.199 seconds — 4:36.199**. Floor 0; ceiling 25 minutes. Final game clock: **Morning · 27 Aug · year 1**, paused in Feedback.
+
+Steady speed, recording and consent remained unchanged. Release commit is for the coordinator. No source, hidden state, exports or additional reports were inspected.
+
+## 2. First impressions
+
+At **4.022s**, I wanted to recover the failed shelter plan from my supplied Warren history.
+
+At **17.538s**, I could distinguish the cellar from the surrounding stone on the phone and marked its right-hand extension.
+
+My first-minute note came at **65.354s**, about five seconds late. Storage gave me an immediate practical job, but I was already thinking about whether this attempt would produce a different shelter outcome.
+
+## 3. Verbatim
+
+Every original local diary reaction follows unchanged. Full raw input lines remain in the existing **wall-clock.jsonl**.
+
+**4.022s — input**
+> I remember getting the beds and door ready but nobody shutting it. I want to see whether I can make that shelter work this time.
+
+**17.538s — input**
+> I will extend the cellar to the right first. On this phone I can still distinguish the room from the stone.
+
+**65.354s — first_minute**
+> The first square is dug and I know the next practical job: storage. I am following that prompt before going deeper. I still remember the door failing me last time; I want a different outcome, not just more rooms.
+
+**100.211s — input**
+> There is an actual invitation to Yusuf now. Comparing the map with a stopping line sounds useful when the stone may be loose. I will ask before marking more.
+
+**179.144s — pulse, engagement 3**
+> I still have a shelter plan, but Yusuf has spent several days discussing the marks while my invitation waits. I want his answer more than another repeated route report.
+
+**189.022s — note**
+> Correction: he did answer. I only found it by reopening him. He admits keeping people working on unstable ground; that matters to me as a technician. But I cannot tell where this stopping line is on my hill, or what I should do with the answer.
+
+**253.043s — want_quit, BORED**
+> I am back to checking what everyone is doing while the marked room waits. Yusuf gave me an interesting admission, but it did not give me a shelter decision. I do not want another evening of waiting for people to choose the work. I would stop now.
+
+**269.503s — note**
+> Feedback has both stopping and confused choices. I selected stopping; it is pressed and the note stays empty. I typed nothing and submitted nothing.
+
+**276.199s — stop, BORED**
+> I am stopping before the riders come. I made a store, lit the deeper passage and marked another square, but I am tired of checking people while the work waits. Yusuf admitting his mistake interested me; I did not find a practical use for it tonight. I would return voluntarily only when I feel like waiting to see the actual attack, not another evening just to repeat this preparation. I would not leave it running.
+
+## 4. Moments
+
+| Elapsed · visible game clock before input | Input and visible answer |
+|---|---|
+| 17.538s · Morning, 19 Aug | Chalk tap right of the cellar marked **1 new square**, with about three potential sleeping places. |
+| 54.917s · Morning, 20 Aug returned | A real 30-second wait ended with Meryem’s breakthrough reported and a prompt to mark storage. |
+| 75.066s · Morning, 21 Aug | Store tap returned: “The store is marked.” The jars remained empty. |
+| 82.195s · Morning, 21 Aug | Chalk tap below the cellar marked another square. |
+| 100.211s · Morning, 22 Aug | Asked Yusuf to compare the old map with today’s stopping line. The invitation became pending. |
+| 158.774s · Morning, 24 Aug | Hung a lamp in the deeper passage. |
+| 167.159s · Night, 24 Aug | Chalk tap beside that passage marked one more square. |
+| 182.758s · Morning, 25 Aug | Reopened Yusuf. His invitation had been answered; he described unstable ground and keeping people working past the agreed time. |
+| 248.006s · Morning, 27 Aug | Opened Meryem. She was harvesting barley. Her available invitation concerned marking a short route; I did not select it. |
+| 265.588s · Morning, 27 Aug | Selected **“I'm stopping”** locally in Feedback. It became pressed; the textbox stayed empty. |
+
+The invitation briefly interested me because it concerned a recognizable work responsibility. Finding its answer required reopening Yusuf. My only pulse was **3/5 at 179.144s**. My only quit wish was **BORED at 253.043s** and persisted to stopping.
+
+## 5. What confused me or became clear
+
+The chalk response now explicitly counted **one new square**, which let me know my taps registered. The first extension was dug, the store was accepted and the lamp was hung.
+
+I initially thought Yusuf’s invitation was still waiting. Reopening him corrected that impression. His admission meant something to me, but I did not understand how its stopping line related to the hill I was building.
+
+The next marked square remained visible while people pursued other tasks. I knew they chose their own work. I did not establish why that square remained undug or whether the invitation affected anything practical.
+
+Time advanced between commands and during three documented 30-second waits. Reading panels paused it; some new text slowed it. This was not frozen-time play. I did not reach the riders, build beds or test a door in this session.
+
+## 6. Actual device use
+
+I stayed at **360×690**. I actually viewed **current-phone.png** from shots at **6.838, 144.748 and 236.426 seconds**. These showed the initial cellar, the dug lower passage and the later marked square.
+
+The phone’s hill was small, but I could distinguish the squares and successfully tap them. The bottom tools remained visible. Later person panels and Feedback were **driver-only reading**; I did not inspect their screenshots.
+
+Normal controls used included Resume, chalk, furnish, store, lamp, The village, Master Yusuf, his invitation, Meryem, panel closes, Game menu and Feedback. No keyboard or drag input was used. No driver operation failed or blocked play.
+
+**1280×800 was not visited.** I stopped naturally before five minutes, so the requested second-viewport check remains unmet. I reused one manual screenshot file and did not view the automatic first-minute image.
+
+Feedback contained both stopping and confused choices. I selected stopping, typed nothing, submitted nothing and changed no consent setting. There is no production feedback receipt.
+
+## 7. Stop and return
+
+Final reason: **BORED**, voluntary, at **276.199s**.
+
+> I am stopping before the riders come. I made a store, lit the deeper passage and marked another square, but I am tired of checking people while the work waits. Yusuf admitting his mistake interested me; I did not find a practical use for it tonight. I would return voluntarily only when I feel like waiting to see the actual attack, not another evening just to repeat this preparation. I would not leave it running.
+
+The browser is no longer needed. The coordinator owns its cleanup and saves this report. I created no workers, browsers, servers, branches or worktrees. No repository was touched, so no worktree listing was run.
+
+## 8. Changes I would want
+
+1. Tell me why a marked square is still waiting and whether I can do anything useful about it.
+2. Make an invitation’s answer noticeable without requiring me to reopen the person.
+3. Let me understand how Yusuf’s stopping line applies to the work I am planning.
+```
+
+
+## hf3-repair-r1 partial evidence — selected FREE
+
+Selected own FREE report only. Both archived alternatives: [emre-free](../reviews/remaining-partial-warren-small-stair-2026-10-26/reports/hf3-repair-r1--emre-free.md), [emre-continued](../reviews/remaining-partial-warren-small-stair-2026-10-26/reports/hf3-repair-r1--emre-continued.md). Source report SHA256 `2872aebc47212c358214515cfb643a528166eeeb472cdaa208e4f93316e5431f`. CONT is an alternative report, not personal history. This append does not select any new record.
+
+```text
+# Small Works playtest: Emre Kaya, hf3-repair-r1, free arm
+
+I stopped at 885.8 s (about 14 min 46 s) because I got bored (`BORED`). Every job was returned and the board was empty. I could not save `report.md`: I have no file-writing tool, and the brief allows Bash only for curl. This message is the report for the coordinator to save. The browser is no longer needed.
+
+## 1. Session
+- **Persona:** Emre Kaya, 37, electrical technician from Ankara and a parent, playing as himself.
+- **Exposure:** first visit to Small Works, with no exposure to it before.
+  - **History supplied to me:** my own diaries from Warren (twice), Voice (twice), Commonstead, Valley and A Dark Room.
+- **Round / arm / paired session:** hf3-repair-r1 / free / hf3-repair-r1-emre-kaya.
+- **URL:** https://repair.adamwhite.work, played through the local curl driver at http://127.0.0.1:19722/.
+- **Start:** I pressed Resume on the prepared workshop. I made no reset and changed no consent or recording setting; Recording stayed on.
+- **Device:** 1280x800 with mouse-style taps, by name or by coordinates. I made one requested layout check at 360x690 at about 286 s.
+- **Time:** floor 0, ceiling 25 min, actual 885.8 s.
+- **Game clock:** the earliest Day 1 times are in the raw log. By the end it was Day 5 · 09:30.
+- **Game time:** the clock moves only when I act. Each action costs the game minutes it shows on its button. "Wait 30 min", "Wait until the site opens" and "Close for the day" are the game's own controls, and I used them.
+- **Real-time claims:** time did not run between my commands, so I make no claims about live timing.
+- **Release commit:** left for the coordinator.
+
+## 2. First impressions
+- My earliest reactions and the first-minute note (logged after 60 s) are in the raw JSONL.
+- I can no longer quote those lines word for word, so I will not rewrite them from memory. Please use the raw log for this section.
+
+## 3. Verbatim
+These are the lines I can still quote exactly, all from the last part of the session. Everything earlier is in the raw JSONL.
+
+- **~708 s, note:** "Adjusting the switch did nothing, the light still goes out while carried. Twenty minutes for a fix that was never going to work - the meter said switch, but not that adjusting cannot fix it. I will buy a switch for nine pounds."
+- **~720 s, input:** "Steady while carried. The new switch did it; adjusting was a wasted twenty minutes but I can explain it. Returning to Halil."
+- **~742 s, input:** "Same symptom as the community fan. I will measure the battery first this time."
+- **~752 s, input:** "Battery low again, 1.54 V. Now I know the pattern: fans come in with weak cells. Buy a cell, six pounds, fitting cost is clear."
+- **~771 s, note:** "Second fan, same fault, fixed in under a minute of my time. £119 now. It feels good but also a bit like a routine: test, meter A to 0, buy cell, replace. Only the winding toy is left."
+- **~788 s, input:** "I tapped the wrong card - the page was a different height than I thought. Second try on the winding toy."
+- **~811 s, pulse 4:** "The toy is a proper puzzle again: spring reads 31.5 slow against 90, and even with a good spring the ring at 2 gives 15, so I need ring 3 for 18. Two faults, I can see both on paper. This is what I like."
+- **~834 s, note:** "Not enough time to set the ring today - fair, it is 16:45 and the day ends at 17. It said so clearly. I close the day and finish the toy tomorrow morning; it is due Day 4 17:00."
+- **~843 s, note:** "107 became 103 overnight again. Four pounds every night and still nothing tells me what for - rent? I can guess but I do not like guessing about money. The community afternoon is now open: three activities, my theatre could be used. Interesting, but first the toy."
+- **~852 s, input:** "Passed first try. My arithmetic was right: new spring plus ring 3. That is the satisfying kind of repair."
+- **~860 s, input:** "My own theatre on the stage - that is a nice use for the thing I fixed. Nothing else to repair, so I wait for the site to open."
+- **~868 s, input:** "Everyone chose my paper theatre - all five. Including Halil. I am pleased, honestly."
+- **~871 s, input:** "All five came and watched the theatre I repaired. That closes the circle nicely. I close the day to see if there is more."
+- **~874 s, input:** "Day 5, minus four pounds again, no new requests on the board. I wait once to see if anyone brings work."
+- **~877 s, want_quit (BORED):** "Every job is returned, the theatre show went well, and now the board is empty and the money just drips four pounds a night. I have nothing to plan. This is a good place to leave."
+- **885.8 s, stop (BORED):** "I am stopping on Day 5 with every promise kept and the paper theatre shown to all five neighbours. The meter puzzles - the governor sums, the spring and ring together - were the best part, and I could explain every setback except the four pounds that vanish each night and the recovered cell that never reached the drawer. Now the board is empty. I would return voluntarily another evening if new objects arrive with puzzles like the theatre and the toy; I would not come back just to repeat the battery swap on fans. I would not leave it running. Feedback: I selected I am stopping, typed nothing, submitted nothing."
+
+## 4. Moments
+**Pulses**
+
+| Elapsed | Engagement |
+|---|---|
+| 155 s | 4 |
+| 302 s | 4 |
+| 465 s | 5 (paper theatre: I worked out from the governor table that the ring should be 1, set it, and it passed) |
+| 649 s | 3 |
+| ~811 s | 4 (winding toy) |
+
+**Quit wishes**
+- **603 s, FRUSTRATED:** I recovered a cell from the cracked spare lantern. The game said "You finished recovering the part", but the drawer still showed 0 cells and Replace said "No cell stocked". I bought a cell for £6 instead. The wish passed once the fan worked.
+- **~877 s, BORED:** this one did not pass, and I stopped.
+
+**What kept me in**
+- I could do the gear and governor arithmetic myself from the Notes reference.
+- Halil's lantern: the readings while carried showed it was the switch (D and C at 0 V, B at 6 V). Adjusting it failed and replacing it worked.
+- All five people chose my paper theatre for the community afternoon.
+
+**What lost me**
+- £4 disappeared each night (£100→96, £107→103, £125→121) with no explanation.
+- The recovered part never showed up in the drawer.
+- The second fan was the same battery swap as the first, which made it feel like routine.
+- On Day 5 the board was empty.
+
+**Recognition**
+- **Cue:** a 61-year-old repairman named Halil, calling his daughter Selin. I saw it at about 490 s.
+- **Match:** Halil from my Voice sessions.
+- **Confidence:** fairly confident, but it stays a guess. I did not verify it.
+
+## 5. What confused me or became clear
+**Became clear through play**
+- Measure terminal by terminal, under the condition the owner uses it in, and compare with the Notes reference.
+- Adjust is not the same as Replace.
+- The day ends at 17:00, and the game clearly refuses actions that would run past it.
+- Each object's card has a "More" text. That is where I found out the cracked lantern only supplies parts.
+
+**Stayed unclear**
+- The nightly £4. I guess it is rent or upkeep, but nothing told me.
+- Why a recovered part never reached the drawer.
+- Sam's odd story about copying another player's bug report.
+- The meter keeps the last condition used (On table, Carry or Work harder). I had to check it every time I measured.
+
+## 6. Actual device use
+**Screenshots I viewed**
+- `current-wide.png` at 1280x800, several times. The ones in this part of the session were at about 726, 733 and 783 s; earlier views are listed in the raw log.
+- `current-phone.png` at 360x690, about 286 s.
+- I did not view `first-minute.png`.
+
+**Controls I used**
+- Named taps on Bench/Board/People, the object, meter, repair and notes tabs, the probe and terminal buttons, Read meter, Replace, Adjust, the ring setting buttons and Apply setting.
+- The Test/Try/Play buttons, Return to the owner, the drawer's Buy buttons, the community-afternoon tabs and its prepare and wait buttons.
+- Wait 30 min, Close for the day, Menu and Feedback.
+- Coordinate taps on board cards at x≈442, and on Close sheet at (1253,83) because two controls shared that name.
+
+**Trouble I actually saw**
+- Board cards shift up and down, so I opened the wrong card's More sheet once.
+- The list of objects in the object sheet would not scroll.
+
+**My own driver mistakes**
+- I sent parallel curl calls several times, at about 23, 102, 214, 409, 533, 580, 598, 708, 745, 811 and 877 s. All of them except the four at about 745 s paired a log line with one tap. At about 745 s I sent four probe and condition taps together, and they happened to work in order.
+
+**Driver and feedback**
+- There was no driver block.
+- In Feedback I selected "I'm stopping". I typed nothing and pressed neither Submit nor Send.
+
+## 7. Stop and return
+- **Stop:** 885.8 s, `BORED`, my own choice. The game itself had not ended.
+- **Would I return voluntarily?** In my words: "I would return voluntarily another evening if new objects arrive with puzzles like the theatre and the toy; I would not come back just to repeat the battery swap on fans. I would not leave it running."
+- **Leave it running?** No. Coming back another evening is conditional on new puzzle objects.
+- **Cleanup:**
+  - I made no worktrees, branches, servers or workers, and touched no repository, so there is no `git worktree list` to show.
+  - The screenshots are `current-wide.png` and `current-phone.png`, plus the driver's own `first-minute.png`.
+
+## 8. Changes I would want
+1. Tell me what the nightly £4 is for, at the moment it is taken.
+2. When I recover a part from the donor lantern, put it in the drawer, or tell me why it is not there.
+3. Vary the faults, so the second fan is not the same battery swap as the first.
+```
