@@ -1,3 +1,4 @@
+import { gunzipSync } from 'node:zlib';
 import { afterEach, expect, it, vi } from 'vitest';
 import { linkedTransport, retryAfterMs } from '../src/linked.ts';
 
@@ -32,9 +33,10 @@ it('pauses the whole queue after a 429, honours Retry-After and stops each pass 
       // The first requests stay open until every replayed send is waiting for a slot.
       if (held) await new Promise<void>((resolve) => held?.push(resolve));
       if (throttled) return new Response(null, { status: 429, headers: { 'Retry-After': '30' } });
-      const value = await new Response(
-        (init.body as Blob).stream().pipeThrough(new DecompressionStream('gzip')),
-      ).json();
+      // Synchronous decode keeps the receipt independent of runner speed.
+      const value = JSON.parse(
+        gunzipSync(new Uint8Array(await (init.body as Blob).arrayBuffer())).toString(),
+      );
       return Response.json({ ok: true, id: value.id });
     } finally {
       open--;
@@ -52,6 +54,7 @@ it('pauses the whole queue after a 429, honours Retry-After and stops each pass 
   const replay = Array.from({ length: 12 }, (_, i) =>
     transport.send('events', { e: [i] }, undefined, undefined, 'due').catch(() => 'kept'),
   );
+  for (let turn = 0; turn < 1000 && posts.length < 2; turn++) await pass(0);
   await pass(200);
   expect(posts).toHaveLength(2);
   const release = held ?? [];
