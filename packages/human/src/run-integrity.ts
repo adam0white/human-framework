@@ -2,6 +2,7 @@
  * C0 checks actor identity/clock/RNG provenance; faculty validators own numerical
  * continuations, behavioral ranges, bounded queues and their local references.
  */
+import { Memo } from './core/memo.ts';
 import { hashCanonical } from './run-canonical.ts';
 import type * as T from './run-schema.ts';
 import { actorStream } from './run-state.ts';
@@ -33,6 +34,8 @@ export type IntegrityOwners = {
   chronicle: Pick<T.ChronicleOwner, 'validate'>;
   environment: Pick<T.EnvironmentOwner, 'validate'>;
 };
+/** Stream identity is a pure hash of (run seed, person); a step re-checks it for every actor. */
+const streamOrigins = new Memo<{ id: string; seed: number }>(256);
 export function validateActor(
   actor: T.DeepReadonly<T.ActorState>,
   continuation: T.DeepReadonly<T.ActorContinuation>,
@@ -55,7 +58,10 @@ export function validateActor(
   if (!Number.isSafeInteger(actor.nextDecision) || actor.nextDecision < 1)
     own(`$.people.${actor.id}.nextDecision`, 'invalid decision counter');
   const identity = actor.randomIdentity;
-  const origin = actorStream(identity.origin.runSeed, identity.origin.person).identity;
+  const origin = streamOrigins.get(JSON.stringify([identity.origin.runSeed, identity.origin.person]), () => {
+    const { id, seed } = actorStream(identity.origin.runSeed, identity.origin.person).identity;
+    return { id, seed };
+  });
   if (
     identity.id !== origin.id ||
     identity.seed !== origin.seed ||

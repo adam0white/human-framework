@@ -62,7 +62,20 @@ export function step(run: T.Run, input: T.DeepReadonly<T.StepBatch>): T.Result<T
     stage.current.queue = [...stage.current.queue, ...queuedInputs(record.spec.id, batch.inputs)].sort(
       compareScheduled,
     );
+    // A reached-hazard probe reads only the time, people, continuations, world revision and fidelity, and
+    // handlers replace a slice rather than edit it. When none of those changed since a probe that found no
+    // hazard, a repeat probe would find none again, so it is skipped. A cache, not state: no draw or event moves.
+    let quiet: readonly unknown[] | undefined;
+    const quietKey = () => [
+      stage.current.at,
+      stage.current.people,
+      stage.current.continuations,
+      stage.current.world.revision,
+      stage.current.cursor.fidelity,
+    ];
     const drainReachedHazards = () => {
+      const key = quietKey();
+      if (quiet?.every((value, index) => value === key[index])) return;
       for (let work = 0; work < 10000; work++) {
         const allocations = Object.fromEntries(
           Object.keys(stage.current.people).map((person) => [person, frame.references(person)]),
@@ -86,7 +99,10 @@ export function step(run: T.Run, input: T.DeepReadonly<T.StepBatch>): T.Result<T
         const reached = probe.boundaries.find(
           (boundary) => boundary.kind === 'hazard' && boundary.at === stage.current.at,
         );
-        if (reached?.kind !== 'hazard') return;
+        if (reached?.kind !== 'hazard') {
+          quiet = quietKey();
+          return;
+        }
         frame.hazard(
           reached.person,
           reached.boundary,
@@ -277,7 +293,15 @@ export function step(run: T.Run, input: T.DeepReadonly<T.StepBatch>): T.Result<T
         );
       // What a span delivers is caused by reaching `to`, not by where the step call
       // began, so its cause names the reached time and stays the same under any chunking.
-      const reachedCauses = (person: T.PersonId) => [hashCanonical('hf-run4/reached-span', person, to)];
+      const reachedIds = new Map<T.PersonId, string>();
+      const reachedCauses = (person: T.PersonId) => {
+        let id = reachedIds.get(person);
+        if (id === undefined) {
+          id = hashCanonical('hf-run4/reached-span', person, to);
+          reachedIds.set(person, id);
+        }
+        return [id];
+      };
       for (const delivery of [...physicalResult.deliveries, ...mentalResult.deliveries]) {
         const context = frame.context(delivery.person, 1, reachedCauses(delivery.person));
         for (const event of delivery.events) frame.emit(delivery.person, event, context);

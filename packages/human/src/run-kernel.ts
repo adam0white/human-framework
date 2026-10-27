@@ -306,3 +306,11 @@ export function historyEntries(run: T.Run): readonly T.DeepReadonly<T.AcceptedTr
   }
   return Object.freeze(entries);
 }
+/** The transaction at 1-based `ordinal` when it is the newest one, without materializing the history. */
+export function newestTransaction(
+  run: T.Run,
+  ordinal: number,
+): T.DeepReadonly<T.AcceptedTransaction> | undefined {
+  const node = Kernel.read(run).history;
+  return node?.length === ordinal ? node.transaction : undefined;
+}
