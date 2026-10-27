@@ -40,6 +40,7 @@ const session = new PersonaSession((key) => {
 let checkReturn: ((header: SelinReturn) => Promise<SelinReturn>) | undefined;
 let status = 'Selin can make a household enquiry after work.';
 let pending = false;
+let sessionGeneration = 0;
 let published = '';
 const listeners = new Set<() => void>();
 const changed = () => {
@@ -82,6 +83,7 @@ export function bindVoicePersona(
 }
 export function resetVoicePersona(): void {
   if (fileSession) return;
+  sessionGeneration += 1;
   session.reset();
   published = '';
   pending = false;
@@ -181,15 +183,21 @@ export async function receiveVoicePersona(reply: WorkerToMain): Promise<void> {
 export async function prepareVoiceReturn(
   automatic = false,
   imported?: PersonaEnvelope,
+  isCurrent: () => boolean = () => true,
 ): Promise<{ header: SelinReturn; seed: number } | null> {
   if (fileSession) return null;
   await requireValue(shelf).ready;
   if (!requireValue(shelf).enabled || pending || session.loading) return null;
   pending = true;
+  const generation = sessionGeneration;
+  const ensureCurrent = () => {
+    if (generation !== sessionGeneration || !isCurrent()) throw new Error('This return was cancelled.');
+  };
   try {
     const envelope =
       imported ??
       (await requireValue(shelf).request<PersonaEnvelope | null>({ action: 'get', castId: SELIN_CAST }));
+    ensureCurrent();
     if (envelope?.source.game !== 'goodhands') {
       if (automatic) return null;
       throw new Error('No returned enquiry from Good Hands is on this browser’s shelf.');
@@ -208,6 +216,7 @@ export async function prepareVoiceReturn(
           action: 'prepare',
           castId: SELIN_CAST,
         });
+    ensureCurrent();
     if (life.parent.revision !== envelope.revision)
       throw new Error('Selin’s active head changed. Export or choose again.');
     const base: SelinReturn = {
@@ -219,6 +228,7 @@ export async function prepareVoiceReturn(
       rows: file.oneCast ?? [],
     };
     const checked = await claimAfterValidation(base, checkReturn, async () => {
+      ensureCurrent();
       const { revision: _oldRevision, ...body } = envelope;
       const claim = await createPersona({
         ...body,
@@ -231,10 +241,12 @@ export async function prepareVoiceReturn(
           rules: 'voice-4',
         },
       });
+      ensureCurrent();
       return imported
         ? claim
         : await requireValue(shelf).request<PersonaEnvelope>({ action: 'put', envelope: claim });
     });
+    ensureCurrent();
     const accepted = checked.head;
     const row: OneCastRow = {
       v: 1,
@@ -260,10 +272,12 @@ export async function prepareVoiceReturn(
     );
     return { header, seed: file.seed };
   } catch (error) {
-    session.finish(false);
-    message(error instanceof Error ? error.message : String(error));
+    if (generation === sessionGeneration) {
+      session.finish(false);
+      message(error instanceof Error ? error.message : String(error));
+    }
   } finally {
-    pending = false;
+    if (generation === sessionGeneration) pending = false;
     changed();
   }
   return null;

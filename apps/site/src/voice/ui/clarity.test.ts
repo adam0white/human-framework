@@ -207,7 +207,7 @@ it('counts free-play days from Eid in the top bar', () => {
   expect(query(el, '.v-shell-when').textContent).toBe('After Eid · day 3 · 10:40');
 });
 
-it('the lab menu retains canonical continuity and explicit fresh play', () => {
+it('the menu links to the public people shelf', () => {
   history.replaceState(null, '', '/?lab=1');
   const markup = renderToStaticMarkup(
     createElement(MenuPanel, {
@@ -222,9 +222,6 @@ it('the lab menu retains canonical continuity and explicit fresh play', () => {
       canReturn: false,
     }),
   );
-  expect(markup).toContain('Keep fictional people and between-game life');
-  expect(markup).toContain('Rıza');
-  expect(markup).toContain('Save this person for another chapter');
-  expect(markup).toContain('Save this played person as an explicit fresh branch');
-  expect(markup).toContain('Use fresh local play');
+  expect(markup).toContain('href="/lab/people/"');
+  expect(markup).toContain('Your people on this browser');
 });

@@ -48,7 +48,32 @@ export const fileSession =
   typeof window !== 'undefined' &&
   /^\/(?:colony|voice|watch)\/?$/.test(window.location?.pathname ?? '') &&
   new URLSearchParams(window.location?.search ?? '').get('file') === '1';
-export const sitePersonaShelf = fileSession ? undefined : personaChannel();
+const nativeShelf = fileSession ? undefined : personaChannel();
+// Test the bridge before admitting a chapter. A failed bridge leaves fresh local play available.
+const shelfReady =
+  nativeShelf &&
+  (async () => {
+    await nativeShelf.ready;
+    nativeShelf.setEnabled(true);
+    await nativeShelf.ready;
+    try {
+      await nativeShelf.request({ action: 'list' });
+    } catch {
+      nativeShelf.setEnabled(false);
+      await nativeShelf.ready;
+    }
+    return nativeShelf.enabled;
+  })();
+export const sitePersonaShelf = nativeShelf && {
+  get enabled() {
+    return nativeShelf.enabled;
+  },
+  get ready() {
+    return shelfReady?.then(() => nativeShelf.ready) ?? Promise.resolve(false);
+  },
+  setEnabled: (value: boolean) => nativeShelf.setEnabled(value),
+  request: <T>(request: Parameters<typeof nativeShelf.request>[0]) => nativeShelf.request<T>(request),
+};
 // Every entry into native orchestration checks fileSession before using this native-only value.
 const shelf = sitePersonaShelf;
 function requireNativeSession(): void {
@@ -144,7 +169,7 @@ export function castState(game: string) {
     enabled: fileSession ? false : requireValue(shelf).enabled,
     ready: fileSession ? Promise.resolve(false) : requireValue(shelf).ready,
     line: s?.line,
-    status: s?.status ?? 'Local play. Between-game life is optional.',
+    status: s?.status ?? 'People carry between compatible games on this browser.',
     busy: s?.busy ?? false,
     people: castForGame(game),
     selected: s?.selected ?? castForGame(game)[0]?.castId ?? '',
@@ -319,7 +344,7 @@ export function bindCastWorker(worker: Worker, game: string, lab: Lab): () => vo
     sources: {},
     histories: {},
     busy: false,
-    status: 'Local play. Between-game life is optional.',
+    status: 'People carry between compatible games on this browser.',
     selected: castForGame(game)[0]?.castId ?? '',
     pending: new Map(),
     seq: 0,
@@ -753,10 +778,19 @@ async function checkpointPerson(s: State, selectedCastId: string, fork: boolean)
     changed();
   }
 }
-export async function checkpointCast(game: string, fork = false): Promise<void> {
+export async function checkpointCast(game: string, fork = false): Promise<boolean> {
   requireNativeSession();
   const s = states.get(game);
-  if (s) await checkpointPerson(s, s.selected, fork);
+  if (!s || s.busy) return false;
+  const id = s.selected;
+  const prior = s.heads[id]?.revision;
+  await checkpointPerson(s, id, fork);
+  return Boolean(
+    s.heads[id]?.revision &&
+      !s.heads[id]?.terminal &&
+      s.heads[id]?.revision !== prior &&
+      s.status === `${canonicalCast(id).name} is saved for another chapter. Loaded play stays pinned.`,
+  );
 }
 /** Compatibility entry point: the single recording switch covers every history. */
 export async function chooseCastRecording(game: string, allow: boolean) {

@@ -7,7 +7,7 @@ const fixture = vi.hoisted(() => {
   let key: string | null = null;
   let resolve: (value: unknown) => void = () => {};
   const request = vi.fn(
-    () =>
+    (_request?: { action: string }) =>
       new Promise((done) => {
         resolve = done;
       }),
@@ -37,7 +37,13 @@ const fixture = vi.hoisted(() => {
 vi.mock('../../shared/lab.tsx', () => ({ gameLabs: { voice: fixture.lab } }));
 vi.mock('@adam0white/lab-client', async (original) => ({
   ...(await original<typeof import('@adam0white/lab-client')>()),
-  personaChannel: () => ({ ready: Promise.resolve(true), enabled: true, request: fixture.request }),
+  personaChannel: () => ({
+    ready: Promise.resolve(true),
+    enabled: true,
+    setEnabled: () => {},
+    request: (request: { action: string }) =>
+      request.action === 'list' ? Promise.resolve([]) : fixture.request(request),
+  }),
 }));
 
 import { gateVoiceFile, resetVoicePersona, settleVoiceFileGate } from './persona.tsx';

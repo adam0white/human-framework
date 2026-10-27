@@ -93,6 +93,7 @@ it.each([false, true])(
   async (foreign) => {
     vi.resetModules();
     window.history.replaceState(null, '', foreign ? '/colony/?file=1' : '/colony/');
+    vi.stubGlobal('localStorage', window.localStorage);
     const { useColony: useCurrent } = await import('./useColony.ts');
     const post = vi.fn();
     vi.stubGlobal(
@@ -104,7 +105,7 @@ it.each([false, true])(
         terminate() {}
       },
     );
-    const writes = vi.spyOn(Storage.prototype, 'setItem');
+    const writes = vi.spyOn(window.localStorage, 'setItem');
     let current: Colony | undefined;
     usePolicyColony = useCurrent;
     const root = createRoot(document.createElement('div'));
