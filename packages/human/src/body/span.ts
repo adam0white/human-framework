@@ -2,8 +2,10 @@
  * DP5(4) with Shampine quartic extension; estimates are not certified global error bounds.
  * Integer-ms adaptive mesh is anchored to physical conditions, never caller targets.
  */
+
 import { cloneData } from '../core/clone.ts';
 import { dexp, dlog } from '../core/libm.ts';
+import { EngineLimitError } from '../core/limit.ts';
 import { random } from '../core/random.ts';
 import type {
   ActorRandomCursor,
@@ -161,7 +163,7 @@ export function integrateCell(
         }),
       );
       if (monotoneIndices.some((i) => !monotoneCell(required(cells[i])))) {
-        if (w === 1) throw new RangeError('limit-exceeded: nonmonotone hazard cell');
+        if (w === 1) throw new EngineLimitError('limit-exceeded: nonmonotone hazard cell');
         w = Math.max(1, Math.floor(w / 2));
         continue;
       }
@@ -193,7 +195,7 @@ export function integrateCell(
       };
     }
     if (w === 1 || calls >= 8192)
-      throw new RangeError('limit-exceeded: numerical cell unresolved; use shorter span');
+      throw new EngineLimitError('limit-exceeded: numerical cell unresolved; use shorter span');
     w = Math.max(1, Math.floor(w / 2));
   }
 }
@@ -227,7 +229,7 @@ export function draw(cursor: DeepReadonly<ActorRandomCursor>): { value: number; 
     !Number.isSafeInteger(rng.identity.uniformDraws) ||
     rng.identity.uniformDraws >= Number.MAX_SAFE_INTEGER
   )
-    throw new RangeError('limit-exceeded: actor random draw counter');
+    throw new EngineLimitError('limit-exceeded: actor random draw counter');
   const value = random(rng.words);
   rng.identity.uniformDraws++;
   return { value, rng };
@@ -275,7 +277,7 @@ export function sampledPath(
   work = { fits: 0 },
 ): ScalarTrajectory['segments'] {
   if (to === from) return [{ kind: 'constant', from, to, value: f(from) }];
-  if (++work.fits > 8192) throw new RangeError('limit-exceeded: readout interpolation');
+  if (++work.fits > 8192) throw new EngineLimitError('limit-exceeded: readout interpolation');
   const xs = [0, 0.25, 0.5, 0.75, 1],
     ys = xs.map((x) => f(from + x * (to - from)));
   const coefficients = [0, 0, 0, 0, 0];
@@ -308,7 +310,7 @@ export function sampledPath(
     ),
   );
   if (error > 1e-12 && to - from > 1) {
-    if (depth >= maxDepth) throw new RangeError('limit-exceeded: readout interpolation');
+    if (depth >= maxDepth) throw new EngineLimitError('limit-exceeded: readout interpolation');
     const mid = from + Math.floor((to - from) / 2);
     return [
       ...sampledPath(from, mid, f, depth + 1, maxDepth, work),
@@ -354,7 +356,7 @@ export function advanceHazard(
       const r = integrateCell(start, [h.acceptedIntegral], width, (t) => [lambda(t)], 1e-12, [1], [0]);
       calls += r.calls;
       if (spanBudgetExceeded(calls, ownCells, forcedCells))
-        throw new RangeError('limit-exceeded: hazard span');
+        throw new EngineLimitError('limit-exceeded: hazard span');
       cell = required(r.cells[0]);
       end = r.to;
       h = {

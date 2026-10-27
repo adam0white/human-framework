@@ -2,6 +2,7 @@
  * randomness. Only a reached hazard commits its owning stream. */
 
 import { cloneData } from './core/clone.ts';
+import { EngineLimitError } from './core/limit.ts';
 import { checkBatchEnvelope } from './run-admission.ts';
 import { materializePhysiology, materializeRetained, probePhysiology, probeRetained } from './run-advance.ts';
 import { canonicalJson, hashCanonical } from './run-canonical.ts';
@@ -264,7 +265,7 @@ export function step(run: T.Run, input: T.DeepReadonly<T.StepBatch>): T.Result<T
         );
         continue;
       }
-      if (to === stage.current.at) throw new RangeError('Owner span failed to make progress');
+      if (to === stage.current.at) throw new EngineLimitError('Owner span failed to make progress');
       const physicalResult = materializePhysiology(stage.current, physical);
       stage.current = physicalResult.state;
       const mentalResult = materializeRetained(stage.current, mental);
@@ -391,7 +392,7 @@ export function step(run: T.Run, input: T.DeepReadonly<T.StepBatch>): T.Result<T
     // An engine budget (numerical cell, work, segment or counter limit) is limit-exceeded; any other
     // RangeError is a host input the engine refuses. A TypeError is an engine fault, not a host error.
     if (!(error instanceof RangeError)) throw error;
-    const limit = error instanceof RunLimitError || /limit[- ]exceeded/i.test(error.message);
+    const limit = error instanceof EngineLimitError;
     return {
       ok: false,
       error: {

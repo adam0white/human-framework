@@ -3,7 +3,9 @@
  * Export/replay materializes that history. Preview clones only its current branch
  * state, and shares immutable definitions/parameters/history nodes.
  */
+
 import { cloneData } from './core/clone.ts';
+import { EngineLimitError } from './core/limit.ts';
 import type { DerivedParameters } from './run-parameters.ts';
 import type * as T from './run-schema.ts';
 import { initialRunState } from './run-state.ts';
@@ -16,7 +18,7 @@ type HistoryNode = Readonly<{
 type ReceiptJournal = { [K in keyof T.ReceiptLedger]: T.ReceiptLedger[K][number][] };
 type RunJournal = { events: T.RunEvent[]; receipts: ReceiptJournal };
 /** Internal exact counter/work exhaustion; callers receive a structured limit error. */
-export class RunLimitError extends RangeError {}
+export class RunLimitError extends EngineLimitError {}
 
 export type RunRecord = {
   spec: T.DeepReadonly<T.RunSpec>;

@@ -39,7 +39,11 @@ test('a later receipt changes only the addressed listener’s knowledge and sett
   need(step(control, { until: at, inputs: [] }));
   const unaddressed = structuredClone(actor(control, 'cem'));
   const receipt = notice(at);
-  need(step(run, { until: at, inputs: [receipt] }));
+  const heard = need(step(run, { until: at, inputs: [receipt] })).events.find(
+    (e) => e.data.kind === 'observation-attended',
+  );
+  // The news names who died as data; the renderer words it.
+  expect(heard?.data.kind === 'observation-attended' && heard.data.died).toBe('bora');
   expect(actor(run).now).toBe(at);
   expect(actor(run).social.relationships[0]?.deceasedAt).toBe(at);
   expect(actor(run, 'cem')).toStrictEqual(unaddressed);

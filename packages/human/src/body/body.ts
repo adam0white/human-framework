@@ -1,8 +1,10 @@
 /** SCOPE: always-present body owner. Continuous engineering laws replace the 3.x
  * ordered 15-minute recurrence. Parameters are run-local; no clinical calibration.
  * See W1 METHOD-INTERFACE.md for equation provenance and numerical limits. */
+
 import { cloneData } from '../core/clone.ts';
 import { dcos, dexp, dlog } from '../core/libm.ts';
+import { EngineLimitError } from '../core/limit.ts';
 import { keyOf, Memo } from '../core/memo.ts';
 import { modifiersForAge } from '../lifecourse/lifecourse.ts';
 import type * as T from '../run-schema.ts';
@@ -320,7 +322,9 @@ function materialize(
   }
   for (const i of o.illnesses) {
     i.severity = clip(get('illness-severity', i.id));
-    i.trendPerDay = get('illness-trend-per-day', i.id);
+    // The floor ends a cell at its crossing; the last millisecond may step a hair past it.
+    const trend = get('illness-trend-per-day', i.id);
+    i.trendPerDay = i.chronic ? trend : Math.max(BODY_DEFAULTS.minIllnessTrend, trend);
   }
   for (const [id, e] of Object.entries(o.exposures)) {
     e.recent = clip(get('exposure-recent', id));
@@ -385,7 +389,11 @@ function branches(satiety: number, hydration: number, health: number, acute: num
     (acute < 0.3 ? 32 : 0)
   );
 }
-const branchGate = (keys: readonly T.DeepReadonly<T.BodyFieldKey>[], base: T.DeepReadonly<T.BodyState>) => {
+const branchGate = (
+  keys: readonly T.DeepReadonly<T.BodyFieldKey>[],
+  base: T.DeepReadonly<T.BodyState>,
+  minTrend: number,
+) => {
   const at = (c: T.BodyComponent) => keys.findIndex((k) => k.component === c && k.recordId === null);
   const satiety = at('satiety'),
     hydration = at('hydration'),
@@ -412,7 +420,21 @@ const branchGate = (keys: readonly T.DeepReadonly<T.BodyFieldKey>[], base: T.Dee
     base.illnesses.filter((i) => !i.chronic).reduce((s, i) => s + i.severity, 0),
   );
   const mask = ~(held & 15);
-  return (v: readonly number[]) => read(v) & mask;
+  // An illness trend held at its floor is a bound clamp too: one digit per acute trend, arrivals only.
+  const trends = keys.flatMap((k, i) =>
+    k.component === 'illness-trend-per-day'
+      ? [{ i, held: (base.illnesses.find((x) => x.id === k.recordId)?.trendPerDay ?? 0) <= minTrend }]
+      : [],
+  );
+  return (v: readonly number[]) => {
+    let code = read(v) & mask,
+      digit = 64;
+    for (const t of trends) {
+      if (!t.held && (v[t.i] ?? 0) <= minTrend) code += digit;
+      digit *= 2;
+    }
+    return code;
+  };
 };
 function exactState(
   b: T.BodyState,
@@ -590,8 +612,10 @@ function rhs(
             : 0;
         }
         case 'illness-trend-per-day': {
-          const i = b.illnesses.find((i) => i.id === id);
-          if (!i || i.chronic || i.trendPerDay <= P.minIllnessTrend) return 0;
+          const i = b.illnesses.find((i) => i.id === id),
+            anchorTrend = base.illnesses.find((x) => x.id === id)?.trendPerDay;
+          // The trend floor is decided at the cell anchor, like the other bound clamps.
+          if (!i || i.chronic || (anchorTrend ?? i.trendPerDay) <= P.minIllnessTrend) return 0;
           const behaviour =
             (!b.asleep && effort <= P.restEffort ? 1 + P.restDriftBonus : 1) *
             (1 - P.underfedDriftLoss * underfed) *
@@ -634,7 +658,9 @@ function rhs(
           : k.component === 'hydration'
             ? base.hydration
             : base.health
-        : (y[j] ?? 0);
+        : k.component === 'illness-trend-per-day'
+          ? (base.illnesses.find((x) => x.id === k.recordId)?.trendPerDay ?? y[j] ?? 0)
+          : (y[j] ?? 0);
       const unbounded = [
         'illness-trend-per-day',
         'injury-bleeding-per-day',
@@ -936,7 +962,7 @@ function firstPhysicalBoundary(
       const hi = Math.min(stop, Math.ceil(t));
       if (!pred(hi)) {
         const floor = Math.max(at, Math.floor(t));
-        if (!pred(floor)) throw new RangeError('limit-exceeded: unresolved sub-ms physical transition');
+        if (!pred(floor)) throw new EngineLimitError('limit-exceeded: unresolved sub-ms physical transition');
         return firstMs(Math.max(at, Math.floor(previous)), floor, pred);
       }
       return firstMs(Math.max(at, Math.floor(previous)), hi, pred);
@@ -1168,7 +1194,7 @@ const advance: T.BodyOwner['advance'] = (state, ctx) => {
         )
       ) {
         if (trialWidth <= 1 || ++isolation > 32)
-          throw new RangeError('limit-exceeded: unresolved positive doze eligibility');
+          throw new EngineLimitError('limit-exceeded: unresolved positive doze eligibility');
         trialWidth = Math.max(1, Math.floor(trialWidth / 2));
       }
       const result = integrateCell(
@@ -1185,11 +1211,11 @@ const advance: T.BodyOwner['advance'] = (state, ctx) => {
           )
           .concat(1),
         [f.values.length],
-        branchGate(f.keys, base),
+        branchGate(f.keys, base, ctx.effective.builtins.BODY_DEFAULTS.minIllnessTrend),
       );
       calls += result.calls;
       if (calls > 8192 || ++segments > 1024)
-        throw new RangeError('limit-exceeded: body span; use shorter span');
+        throw new EngineLimitError('limit-exceeded: body span; use shorter span');
       cells = result.cells.slice(0, -1);
       hazardCell = result.cells.at(-1) ?? null;
       start = baseAt;
@@ -1815,7 +1841,7 @@ function forecast(
           1e-12,
           undefined,
           [],
-          branchGate(flat.keys, base),
+          branchGate(flat.keys, base, context.effective.builtins.BODY_DEFAULTS.minIllnessTrend),
         );
         calls += r.calls;
         if (calls > 8192) return failure('forecast numerical work exhausted; shorten the declared spans');

@@ -1654,7 +1654,12 @@ export const willOwner: import('../run-schema.ts').WillOwner = {
         : null;
     const reviewBoundaries = [
       wakeReviewAt(actor, context.at),
-      chosen ? dutyReviewAt(actor, chosen, context.at, context.at + chosen.durationMs) : undefined,
+      chosen
+        ? dutyReviewAt(actor, chosen, context.at, context.at + chosen.durationMs)
+        : // Going on with the running activity keeps its duty boundary.
+          actor.activity
+          ? dutyReviewAt(actor, actor.activity.offer as Offer, context.at, actor.activity.endsAt)
+          : undefined,
     ].filter((at): at is number => at !== undefined && at > context.at);
     return {
       state,

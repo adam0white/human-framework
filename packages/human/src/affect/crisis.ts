@@ -1,4 +1,5 @@
 import { freezeData, rebaseHazard, required, spanBudgetExceeded } from '../body/span.ts';
+
 /** SCOPE: uncalibrated crisis onset, generic restricted assent and source recovery.
  * No invented world action, psychiatric diagnosis or spontaneous comfort. */
 
@@ -23,6 +24,7 @@ import {
   validateNumbers,
 } from '../body/span.ts';
 import { readCharacterTrajectory } from '../character/character.ts';
+import { EngineLimitError } from '../core/limit.ts';
 import type * as T from '../run-schema.ts';
 export const CRISIS_DEFAULTS = freezeData({
   /** Felt valence below which mood pressure starts. */
@@ -184,7 +186,7 @@ const advance: T.CrisisOwner['advance'] = (state, ctx) => {
       });
       calls += r.calls;
       if (spanBudgetExceeded(calls, ownCells, forcedCells))
-        throw new RangeError('limit-exceeded: stress span');
+        throw new EngineLimitError('limit-exceeded: stress span');
       cell = required(r.cells[0]);
       end = r.to;
       c = {

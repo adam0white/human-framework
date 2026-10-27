@@ -15,6 +15,29 @@ test('a person below full health drains through the fed threshold without stalli
   expect(exportRun(run).current.people[PERSON]?.body.satiety).toBeLessThan(0.3);
 }, 60_000);
 
+test('an acute illness whose trend falls to its floor keeps the run advancing', () => {
+  const run = accepted(createRun(numericalSpec(1)));
+  const person = numericalPerson(1);
+  person.state.body.health = 0.9;
+  person.state.body.illnesses = [
+    { id: 'flu', kind: 'flu', severity: 0.35, trendPerDay: -0.29, contagious: false, since: 0 },
+  ];
+  accepted(createPerson(run, person));
+  for (let h = 1; h <= 24; h++) accepted(step(run, { until: h * HOUR, inputs: [] }));
+  expect(exportRun(run).current.people[PERSON]?.body.illnesses[0]?.trendPerDay).toBeGreaterThanOrEqual(-0.3);
+}, 60_000);
+
+test('an injured person keeps the run advancing', () => {
+  const run = accepted(createRun(numericalSpec(1)));
+  const person = numericalPerson(1);
+  person.state.body.injuries = [
+    { id: 'cut', part: 'arm', severity: 0.2, healRatePerDay: 0.5, since: 0, bleeding: 0.05 },
+  ];
+  accepted(createPerson(run, person));
+  for (let h = 1; h <= 24; h++) accepted(step(run, { until: h * HOUR, inputs: [] }));
+  expect(exportRun(run).current.at).toBe(24 * HOUR);
+}, 60_000);
+
 test('a person with no food starves to death at the same time under any step size', () => {
   const deathAt = (chunk: number) => {
     const spec = exampleSpec();

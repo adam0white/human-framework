@@ -2,8 +2,10 @@
  * engineering priors (research/long-run-sources.md). No belief writes, save repair or RNG.
  * Allocation validation includes C0 retained references/tombstones after eviction.
  */
+
 import { cloneData } from '../core/clone.ts';
 import { dexp } from '../core/libm.ts';
+import { EngineLimitError } from '../core/limit.ts';
 import { renderProjection } from '../narrate/literal.ts';
 import type {
   DeepReadonly,
@@ -317,7 +319,7 @@ function fold(state: MemoryOwnedState, ep: Episode, at: number, K: DeepReadonly<
   );
   let g = state.gists.find((x) => sameStory(x, ep) && x.actorId === ep.actorId);
   if (!g) {
-    if (!Number.isSafeInteger(state.nextGist + 1)) throw new RangeError('Gist counter exhausted');
+    if (!Number.isSafeInteger(state.nextGist + 1)) throw new EngineLimitError('Gist counter exhausted');
     g = {
       ...ep,
       id: `g${state.nextGist++}`,
@@ -356,7 +358,7 @@ function encode(
   K: DeepReadonly<typeof MEMORY_DEFAULTS>,
   G: DeepReadonly<typeof GIST_DEFAULTS>,
 ): Episode {
-  if (!Number.isSafeInteger(state.nextEpisode + 1)) throw new RangeError('Episode counter exhausted');
+  if (!Number.isSafeInteger(state.nextEpisode + 1)) throw new EngineLimitError('Episode counter exhausted');
   const ep = { ...cloneData(episode), id: `e${state.nextEpisode++}` } as Episode;
   const issues = validateMemory({ ...state, episodes: [ep], gists: [] }, []);
   if (issues.length) throw new RangeError(issues[0]?.message ?? 'Invalid episode');
@@ -522,7 +524,7 @@ export const memoryOwner: MemoryOwner = {
         }
         continue;
       }
-      if (!Number.isSafeInteger(out.nextGist + 1)) throw new RangeError('Gist counter exhausted');
+      if (!Number.isSafeInteger(out.nextGist + 1)) throw new EngineLimitError('Gist counter exhausted');
       out.gists.push({
         ...cloneData(src),
         id: `g${out.nextGist++}`,

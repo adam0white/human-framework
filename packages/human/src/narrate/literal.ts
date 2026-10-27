@@ -268,7 +268,8 @@ function wording(d: DeepReadonly<EventData>, lex: DeepReadonly<Lexicon>): readon
     case 'voice-promise':
       return [`${displayName(d.voiceId, lex)} ${d.kept ? 'kept' : 'broke'} their word.`];
     case 'observation-attended':
-      return d.summary ? [d.summary] : [];
+      if (d.summary) return [d.summary];
+      return d.died === undefined ? [] : [`I heard that ${displayName(d.died, lex)} died.`];
     // Administrative events contain no invented subjective experience.
     default:
       return [];

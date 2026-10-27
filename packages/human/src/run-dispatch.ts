@@ -2902,6 +2902,7 @@ export class Frame {
           deliveredAt: context.at,
           occurredAt: percept.occurredAt,
           ...(percept.summary ? { summary: percept.summary } : {}),
+          ...(percept.kind === 'death' && percept.targetId !== undefined ? { died: percept.targetId } : {}),
         },
         context,
       );

@@ -18,7 +18,8 @@
  *   before sunset.
  * - The Eid al-Fitr prayer: from `afterSunrise` minutes after sunrise until the makruh before Dhuhr,
  *   congregational, strongly emphasised, no individual make-up (research/eid-and-mourning-sources.md §1;
- *   decisions.md). Missing it is no breach and owes nothing.
+ *   decisions.md). Its standing is the host's to author; authored as recommended (sunnah mu'akkada for most
+ *   schools, wajib for Hanafis), missing it is no breach and owes nothing.
  * Nothing here models local moon sighting. */
 import type { CalendarDay, CalendarDefinition, CommitmentData, DeepReadonly } from '../run-schema.ts';
 export const MAKRUH_DEFAULTS = { afterSunrise: 20, beforeDhuhr: 10, beforeSunset: 20 };

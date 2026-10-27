@@ -2072,7 +2072,6 @@ export type ActorActivity = {
   suggestion?: SuggestionResolution;
   protest?: boolean;
   reviewAt: Time;
-  thresholdAt?: Time;
   commitmentId?: Id;
   jointId?: Id;
   interrupt?: { at: Time; reason: string };
@@ -2250,6 +2249,8 @@ export type EventData =
       occurredAt: Time;
       /** The host's own prose for what was perceived, kept verbatim. */
       summary?: string;
+      /** For news of a death, who died; the renderer words it from the lexicon. */
+      died?: PersonId;
     }
   | { kind: 'make-ups-retired'; receipts: readonly MakeUpRetirementReceipt[] }
   | { kind: 'suggestion-resolved'; adviceId: Id; decisionId: Id; resolution: SuggestionResolution }

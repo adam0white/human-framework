@@ -1,6 +1,8 @@
 /** SCOPE: one always-present agenda; commitments, sourced make-up debt and temporal goals. */
+
 import { cloneData } from '../core/clone.ts';
 import { clamp01, dpow } from '../core/index.ts';
+import { EngineLimitError } from '../core/limit.ts';
 import { projectDiminishes } from '../projects/projects.ts';
 import type { ActorState, AgendaState, Commitment, NeedId, PsychologicalNeed, Time } from '../run-schema.ts';
 
@@ -710,7 +712,7 @@ export const agendaOwner: import('../run-schema.ts').AgendaOwner = {
       }
       if (c.status !== before)
         events.push({ kind: 'commitment-changed', commitmentId: c.id, before, after: cloneData(c) });
-      if (work === 9999) throw new RangeError('Agenda advancement work limit exceeded');
+      if (work === 9999) throw new EngineLimitError('Agenda advancement work limit exceeded');
     }
     applyAgendaExemptions(state, context.to, context.catalog, context.effective, events);
     const p = context.effective.builtins.PURPOSE_DEFAULTS;
@@ -881,7 +883,7 @@ export const agendaOwner: import('../run-schema.ts').AgendaOwner = {
 };
 function allocateAgendaId(state: import('../run-schema.ts').AgendaState, prefix: 'c' | 'g'): string {
   for (;;) {
-    if (!Number.isSafeInteger(state.nextId)) throw new RangeError('Agenda identities exhausted');
+    if (!Number.isSafeInteger(state.nextId)) throw new EngineLimitError('Agenda identities exhausted');
     const id = `${prefix}${state.nextId++}`;
     if (!state.commitments.some((c) => c.id === id) && !state.goals.some((g) => g.id === id)) return id;
   }

@@ -1,4 +1,5 @@
 import { freezeData, required, spanBudgetExceeded } from '../body/span.ts';
+
 /** SCOPE: source OCC appraisal, exact emotion decay and continuously forced mood.
  * No clinical prediction or spiritual assessment. */
 
@@ -18,6 +19,7 @@ import {
   validateNumbers,
 } from '../body/span.ts';
 import { dexp, dlog } from '../core/libm.ts';
+import { EngineLimitError } from '../core/limit.ts';
 import { readEnvironmentTrajectory } from '../environment/environment.ts';
 import type * as T from '../run-schema.ts';
 
@@ -284,7 +286,7 @@ const advance: T.AffectOwner['advance'] = (state, ctx) => {
       });
       calls += cell.calls;
       if (spanBudgetExceeded(calls, ownCells, forcedCells))
-        throw new RangeError('limit-exceeded: affect span');
+        throw new EngineLimitError('limit-exceeded: affect span');
       c = {
         ...c,
         anchorMood: { valence: required(y[0]), arousal: required(y[1]) },

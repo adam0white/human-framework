@@ -11,10 +11,12 @@
  * body's fatigue already folds it in). Parameters are engineering defaults for game time scales; this does
  * not claim an exhaustive need list, calibrated rates, or a universal weighting between needs.
  */
+
 import { evaluateCell, initialWidth, integrateCell, required } from '../body/span.ts';
 import { characterTraitSegments, readCharacterTrajectory } from '../character/character.ts';
 import { cloneData } from '../core/clone.ts';
 import { clamp, clamp01, dexp, dlog, dpow } from '../core/index.ts';
+import { EngineLimitError } from '../core/limit.ts';
 import { keyOf, Memo } from '../core/memo.ts';
 import { readEnvironmentTrajectory } from '../environment/environment.ts';
 import { hashCanonical } from '../run-canonical.ts';
@@ -322,7 +324,7 @@ export function materializeNeeds(context: NeedKernelContext, at: number): NeedRe
           return [k * (target - (values[0] ?? 0)) + forcing];
         });
         calls += cell.calls;
-        if (calls > 8192) throw new RangeError('Need forced relaxation work limit exceeded');
+        if (calls > 8192) throw new EngineLimitError('Need forced relaxation work limit exceeded');
         y = evaluateCell(required(cell.cells[0]), Math.min(at, cell.to));
         left = cell.to;
         width = cell.nextWidth;
@@ -422,11 +424,11 @@ function buildNeedTrajectory(context: NeedKernelContext): import('../run-schema.
   const segments: import('../run-schema.ts').ScalarTrajectory['segments'][number][] = [];
   let evaluations = 0;
   const sample = (at: number) => {
-    if (++evaluations > 8192) throw new RangeError('Need trajectory work limit exceeded');
+    if (++evaluations > 8192) throw new EngineLimitError('Need trajectory work limit exceeded');
     return needSatisfactionAt(context, at);
   };
   const fit = (left: number, right: number): void => {
-    if (segments.length >= 1024) throw new RangeError('Need trajectory segment limit exceeded');
+    if (segments.length >= 1024) throw new EngineLimitError('Need trajectory segment limit exceeded');
     const values = [0, 0.25, 0.5, 0.75, 1].map((x) => sample(left + (right - left) * x));
     const coefficients = [0, 0, 0, 0, 0];
     for (let i = 0; i < 5; i++) {
@@ -454,8 +456,9 @@ function buildNeedTrajectory(context: NeedKernelContext): import('../run-schema.
           sample(left + (right - left) * x) - ((((c[4] * x + c[3]) * x + c[2]) * x + c[1]) * x + c[0]),
         ),
       );
-    if (error > 1e-12) {
-      if (right - left <= 1) throw new RangeError('Need trajectory unresolved within one millisecond');
+    // A kink (a pain or injury threshold) is isolated by bisection to one millisecond and kept there with
+    // its estimated error, as body readouts are (span.ts sampledPath); no wider residual is accepted.
+    if (error > 1e-12 && right - left > 1) {
       const mid = left + Math.floor((right - left) / 2);
       fit(left, mid);
       fit(mid, right);

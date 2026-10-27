@@ -9466,6 +9466,7 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
           deliveredAt: { optional: false, shape: { kind: 'scalar', name: 'Time' } },
           occurredAt: { optional: false, shape: { kind: 'scalar', name: 'Time' } },
           summary: { optional: true, shape: { kind: 'string' } },
+          died: { optional: true, shape: { kind: 'scalar', name: 'PersonId' } },
         },
       },
       {
@@ -10168,7 +10169,6 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
       suggestion: { optional: true, shape: { kind: 'ref', name: 'SuggestionResolution' } },
       protest: { optional: true, shape: { kind: 'boolean' } },
       reviewAt: { optional: false, shape: { kind: 'scalar', name: 'Time' } },
-      thresholdAt: { optional: true, shape: { kind: 'scalar', name: 'Time' } },
       commitmentId: { optional: true, shape: { kind: 'scalar', name: 'Id' } },
       jointId: { optional: true, shape: { kind: 'scalar', name: 'Id' } },
       interrupt: {
