@@ -310,3 +310,9 @@ Coordinator reading: agent players (panel, cold plays, bots, verification runs) 
 > "Alright, once the current codex runners come back, stop codex usage until further notice. However, we have much Claude usage left expiring at 2 am today. Use those liberally"
 
 Coordinator reading: Codex runs already in flight finish; no new Codex processes start until the owner lifts the pause. Claude subagents take building, reviews and play in the meantime, under the same delivery rules (one worktree per agent, check:lane, signed commits, one independent review, exact green CI before deploy). "2 am today" is read as Central time, 2026-10-27 07:00 UTC.
+
+## 2026-10-27 — Bold classic names; proposals on the decision desk (Adam, verbatim)
+
+> "I like the approaches and direction so far. I mean, it sounds good on paper, gotta see it. I think we can approach our classic redos with a bold approach, such as "Orion Trail" (I see this one wasn't picked though). No one is gonna sue us for some rip offs of nostalgia. Instead of an md file, reuse decisions artifact to propose for me to review. I ain't gonna answer the current pending decisions anyway. I'm reading through your other messages in the meantime"
+
+Coordinator reading: the named approaches and categories are accepted in direction; the owner judges them by playing a probe. Classic rebuilds may carry bold parody titles that openly nod to the original. Proposals for owner review go on the decision-desk artifact, not in markdown files. The pending desk slips (easier opt-ins, Othram IP) stop waiting: the opt-ins stay as built, and outside publishing stays paused until the owner checks the IP question. The wagon trail is on the shortlist in both drafts; "Orion Trail" itself is an existing game, so ours gets its own title.
