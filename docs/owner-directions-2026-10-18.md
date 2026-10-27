@@ -378,3 +378,9 @@ Coordinator reading:
 > "Codex limit is lifted fully. Go back to your original vision of running many of them in parallel in order to speed up the progress here. Yes death from natural causes can give a story stakes. Keep that seed so we track what happens. Codex PR reviewers should also work now. I'd get reviews and fixes on your merger v4 work, just so we're safe."
 
 Coordinator reading: Codex runs many workers in parallel again; Claude stays at one agent. Always-on old-age death in 4.0 is accepted, including an authored grandparent in What the Child Saw dying before the child is grown; the seeds where it happens are kept and tracked. The merged HF 4.0 work gets Codex PR reviews and an independent Codex review, and its findings are fixed.
+
+## 2026-10-27 — Every game on 4.x, one game at a time (Adam, verbatim)
+
+> "Cool thanks, keep going. I'd like all games to work 1:1 on improving HF for their needs so everyone can upgrade to v4 properly without compromising much. Eventually."
+
+Coordinator reading: staying on 3.x is no longer an end state. Each game works with HF, one game at a time, to name what it needs from 4.x; HF gains those as ordinary faculties or fixes, and the game then moves to 4.x with little compromise. This changes the 4.0 done-means clause "each existing game on 4.0 or recorded as staying on 3.x with a reason": a recorded reason now becomes a list of HF needs with targets, and the end point is every game on 4.x.
