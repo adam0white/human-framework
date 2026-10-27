@@ -1,6 +1,6 @@
 /** SCOPE: generated closed structural data validators from run-schema.ts.
- * Regenerate through C0 after shared schema changes. No actor handler dispatch.
- * Source SHA256 debf2d504769d33fb2b16a33be4c70a679d3ce5cf2305c319760fb8a623771db. Runtime semantic/owner validation is separate.
+ * Generated through C0, then edited by hand with run-schema.ts for 4.0; keep the two in step. No actor
+ * handler dispatch. Runtime semantic/owner validation is separate.
  */
 import type { DataShape } from './run-validation.ts';
 export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
