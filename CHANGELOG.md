@@ -11,6 +11,14 @@ version, stamped with build and schema hashes in `RUN_ENGINE`. See the version p
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
+## [4.2.0] - 2026-10-27
+
+Engine: 4.2.0.
+
+- Games can give each person reviewed wording in `definitions.lexicon.voices[personId]`. Each missing template key falls back to `lexicon.wordings`, then built-in text. The same renderer serves all tables. Each person's choices for each line stay in their own seeded sequence, replay checks them, and alternatives do not repeat immediately.
+- Decision intention text depends on the selected wording and is stored in person state; it has no effect on behaviour. Wording randomness remains separate from actor randomness.
+- Every template slot and its possible values are documented for offline voice writers. No table preserves built-in narration byte for byte. Existing 4.1 archives must start fresh under the new engine stamp.
+
 ## [4.1.0] - 2026-10-27
 
 Engine: 4.1.0.

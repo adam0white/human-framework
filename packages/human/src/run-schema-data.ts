@@ -800,6 +800,18 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
   Lexicon: {
     kind: 'object',
     fields: {
+      voices: {
+        optional: true,
+        shape: {
+          kind: 'dict',
+          key: { kind: 'scalar', name: 'Id' },
+          value: {
+            kind: 'dict',
+            key: { kind: 'string' },
+            value: { kind: 'array', element: { kind: 'string' } },
+          },
+        },
+      },
       wordings: {
         optional: true,
         shape: {

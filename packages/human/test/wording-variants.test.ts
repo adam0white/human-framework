@@ -83,7 +83,32 @@ it('rejects malformed wording data before a run is created', () => {
     // Exercise untrusted JSON rather than only the TypeScript authoring contract.
     Object.assign(spec.definitions.lexicon, { wordings: invalid });
     expect(createRun(spec).ok).toBe(false);
+    delete spec.definitions.lexicon.wordings;
+    spec.definitions.lexicon.names = { ada: 'Ada' };
+    Object.assign(spec.definitions.lexicon, { voices: { ada: invalid } });
+    expect(createRun(spec).ok).toBe(false);
   }
+});
+it('rejects unknown voice ids and identifies invalid voice tables', () => {
+  const spec = exampleSpec();
+  spec.definitions.lexicon.voices = { nobody: { 'decision.wait': ['I wait.'] } };
+  expect(createRun(spec)).toMatchObject({
+    ok: false,
+    error: {
+      code: 'unknown-id',
+      path: '$.definitions.lexicon.voices.nobody',
+      message: expect.stringContaining('nobody'),
+    },
+  });
+  spec.definitions.lexicon.names = { ada: 'Ada' };
+  spec.definitions.lexicon.voices = { ada: { 'unknown.key': ['A.'] } };
+  expect(createRun(spec)).toMatchObject({
+    ok: false,
+    error: {
+      path: '$.definitions.lexicon.voices.ada',
+      message: expect.stringMatching(/ada.*unknown\.key|unknown\.key.*ada/),
+    },
+  });
 });
 it('headless control: reads, pagination, restore continuation and replay retain the event choices', () => {
   function setup(withVariants: boolean) {
@@ -92,6 +117,14 @@ it('headless control: reads, pagination, restore continuation and replay retain 
       spec.definitions.lexicon.wordings = {
         'decision.act': ['My next step is to {action}.{why}'],
         'observation.summary': ['{summary}', 'I noticed this: {summary}', 'I saw this: {summary}'],
+      };
+    if (withVariants) spec.definitions.lexicon.names = { ada: 'Ada' };
+    if (withVariants)
+      spec.definitions.lexicon.voices = {
+        ada: {
+          'decision.act': ['My own next step is to {action}.{why}'],
+          'observation.summary': ['Ada noticed: {summary}', 'Ada saw: {summary}'],
+        },
       };
     const run = need(createRun(spec));
     need(createPerson(run, authoredPerson('ada', 'Ada')));
@@ -161,6 +194,77 @@ it('headless control: reads, pagination, restore continuation and replay retain 
   expect(decisionEvent.wording?.key).toBe('decision.act');
   expect(decisionEvent.wording?.occurrence).toBe(1);
   expect(decisionEvent.data.decision.intention).toBe(decisionEvent.narration[0]?.text);
-  expect(decisionEvent.data.decision.intention).toContain('My next step is to');
+  expect(decisionEvent.data.decision.intention).toContain('My own next step is to');
   expect(need(replay(exportRun(decisionRun))).verified).toBe(true);
+  expect(exportRun(need(restoreRun(exportRun(decisionRun))))).toEqual(exportRun(decisionRun));
+});
+
+it('uses each person override, then the run table, then built-ins with the same stream', () => {
+  const voiced: Lexicon = {
+    ...lex,
+    voices: {
+      ada: { 'decision.wait': ['Ada waits.', 'Ada pauses.', 'Ada gives it time.'] },
+      bea: { 'decision.wait': ['Bea waits.'] },
+    },
+  };
+  const state = { wording: {} };
+  const events = Array.from({ length: 12 }, (_, i) => wait(String(i)));
+  for (const event of events) {
+    selectEventWording(wait(`bea-${event.id}`, 'bea'), voiced, 7, state);
+    selectEventWording(event, voiced, 7, state);
+    expect(rendererOwner.render(event, { kind: 'host' }, voiced, 7)[0]?.text).toMatch(/^Ada /);
+  }
+  expect(events.map((event) => event.wording?.index)).toEqual(sequence(7).indices);
+  for (const [person, expected] of [
+    ['bea', 'Bea waits.'],
+    ['cora', 'I will '],
+  ]) {
+    const event = wait(person ?? '', person);
+    selectEventWording(event, voiced, 7, state);
+    expect(rendererOwner.render(event, { kind: 'host' }, voiced, 7)[0]?.text).toContain(expected);
+  }
+  const partial: Lexicon = { ...lex, voices: { ada: { 'body.woke': ['Ada wakes.'] } } };
+  const inherited = wait('inherited');
+  selectEventWording(inherited, partial, 7, { wording: {} });
+  expect(rendererOwner.render(inherited, { kind: 'host' }, partial, 7)[0]?.text).toBe(
+    rendererOwner.render(inherited, { kind: 'host' }, lex, 7)[0]?.text,
+  );
+  const bare = { ...partial, wordings: undefined };
+  const fallback = wait('bare');
+  const untouched = { wording: {} };
+  selectEventWording(fallback, bare, 7, untouched);
+  expect(fallback.wording).toBeUndefined();
+  expect(untouched.wording).toEqual({});
+  expect(rendererOwner.render(fallback, { kind: 'host' }, bare, 7)[0]?.text).toBe('I will wait.');
+});
+
+it('pins no-table narration byte for byte to the 4.1 built-in text', () => {
+  const event: RunEvent = {
+    ...wait('golden-promise'),
+    data: { kind: 'voice-promise', voiceId: 'bea', kept: false, before: 0.5, after: 0.4 },
+  };
+  const plain = { ...lex, wordings: undefined };
+  const empty = { ...plain, wordings: {}, voices: {} };
+  const review: RunEvent = {
+    ...wait('golden-review'),
+    data: { kind: 'review', record: { day: 1, missed: ['Fajr'], kept: [], resolved: ['Fajr'] } },
+  };
+  expect(rendererOwner.render(review, { kind: 'host' }, plain, 7)[0]).toMatchObject({
+    text: 'I did not keep the dawn prayer. Next time I will be ready when it comes.',
+    variantId: 'en:review:0',
+  });
+  const expected = [
+    {
+      eventId: 'golden-promise',
+      audience: { kind: 'host' },
+      text: 'bea broke their word.',
+      variantId: 'en:voice-promise:0',
+    },
+  ];
+  for (const lexicon of [plain, empty]) {
+    const state = { wording: {} };
+    selectEventWording(event, lexicon, 7, state);
+    expect(state.wording).toEqual({});
+    expect(rendererOwner.render(event, { kind: 'host' }, lexicon, 7)).toEqual(expected);
+  }
 });

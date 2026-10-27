@@ -53,7 +53,8 @@ function validateCurrent(archive: T.DeepReadonly<T.RunArchive>, parametersHash: 
   const state = archive.current;
   const spec = archive.initial.spec;
   const wordingError = wordingIssue(spec.definitions.lexicon);
-  if (wordingError) return reject('$.initial.spec.definitions.lexicon.wordings', wordingError);
+  if (wordingError)
+    return reject(`$.initial.spec.definitions.lexicon${wordingError.path}`, wordingError.message);
   const wordingState: Pick<T.RunState, 'wording'> = { wording: {} };
   for (const event of state.events) {
     const selected = { ...event, wording: undefined as T.RunEvent['wording'] };
