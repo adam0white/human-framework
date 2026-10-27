@@ -18,6 +18,7 @@ import {
   validateNumbers,
 } from '../body/span.ts';
 import { dexp, dlog } from '../core/libm.ts';
+import { readEnvironmentTrajectory } from '../environment/environment.ts';
 import type * as T from '../run-schema.ts';
 
 type EmotionId = T.EmotionId;
@@ -201,7 +202,7 @@ const initialize: T.AffectOwner['initialize'] = (input, ctx) => {
 const advance: T.AffectOwner['advance'] = (state, ctx) => {
   const p = ctx.effective.builtins.AFFECT_DEFAULTS;
   let c = copy<T.AffectContinuation>(ctx.continuation);
-  const offsetId = `offset:${ctx.moodOffset}`;
+  const offsetId = ctx.environment.id;
   if (c.needTrajectoryId !== ctx.needs.id || c.moodOffsetConditionId !== offsetId) {
     c = {
       ...reanchor(
@@ -266,7 +267,7 @@ const advance: T.AffectOwner['advance'] = (state, ctx) => {
         }
         const vt = clip(
           (clip(scalarAt(ctx.needs.satisfaction, t)) - 0.5) * p.moodNeedGain +
-            ctx.moodOffset +
+            readEnvironmentTrajectory(ctx.environment, t, ctx.effective).moodOffset +
             p.moodEmotionGain * clip(v, -1, 1),
           -1,
           1,

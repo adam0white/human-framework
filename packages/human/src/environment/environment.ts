@@ -1,8 +1,10 @@
 import { freezeData } from '../body/span.ts';
+import { hashCanonical } from '../run-canonical.ts';
 /** SCOPE: actual received surroundings. Missing observations remain unknown;
  * coefficient magnitudes are engineering priors (research/family-environment-sources.md). */
 
 import { clip, copy, output, validateNumbers } from '../body/span.ts';
+import { readCharacterTrajectory } from '../character/character.ts';
 import type * as T from '../run-schema.ts';
 export const ENVIRONMENT_DEFAULTS = freezeData({
   coldMood: 0.08,
@@ -65,7 +67,34 @@ export function ambientNeedRates(
     leisure: beauty > 0 ? (p.beautyLeisurePerHour * beauty) / 60 : 0,
   };
 }
+/** Evaluate the same immutable received premises at the solver's actual sample time. */
+export function readEnvironmentTrajectory(
+  path: T.DeepReadonly<T.EnvironmentTrajectory>,
+  at: number,
+  effective: T.DeepReadonly<{ builtins: Pick<T.EffectiveBuiltins, 'ENVIRONMENT_DEFAULTS'> }>,
+): { moodOffset: number; needsPerMinute: Partial<Record<T.PsychologicalNeed, number>> } {
+  const { traits } = readCharacterTrajectory(path.character, at);
+  const p = effective.builtins.ENVIRONMENT_DEFAULTS;
+  return {
+    moodOffset: ambientMood(path.percept, traits, path.asleep, p),
+    needsPerMinute: ambientNeedRates(path.percept, traits, p),
+  };
+}
 export const environmentOwner: T.EnvironmentOwner = {
+  trajectory: (state, ctx) =>
+    freezeData({
+      id: hashCanonical(
+        'environment-path',
+        state,
+        ctx.character.id,
+        ctx.asleep,
+        ctx.effectiveParametersHash,
+        ctx.effective.builtins.ENVIRONMENT_DEFAULTS,
+      ),
+      character: copy<T.CharacterTrajectory>(ctx.character),
+      percept: copy<T.AmbientPercept>(state.percept),
+      asleep: ctx.asleep,
+    }),
   forcing: (state, ctx) => ({
     moodOffset: ambientMood(
       state.percept,

@@ -2,7 +2,7 @@ import { expect, it } from 'vitest';
 import { affectOwner, appraiseWithTraits } from '../src/affect/affect.ts';
 import { required } from '../src/body/span.ts';
 import type { Traits } from '../src/run-schema.ts';
-import { effective, frame } from './w1-fixture.ts';
+import { characterPath, effective, environmentPath, frame } from './w1-fixture.ts';
 
 const traits: Traits = {
   honesty: 0.8,
@@ -83,6 +83,7 @@ it('uses continuous need forcing and exact emotion decay across materialization 
           satisfaction: { from: 0, to: 1e8, segments: [{ kind: 'constant', from: 0, to: 1e8, value: 0.8 }] },
         },
         moodOffset: 0,
+        environment: environmentPath(),
       });
       x = r;
       from = r.advancedThrough;
@@ -120,4 +121,43 @@ it('keeps direct feelings, action tendencies, regulation and repair separate fro
     { ...frame(), traits, continuation: regulated.continuation },
   );
   expect(repaired.state.emotions).toEqual([]);
+});
+
+it('integrates live ambient mood with exact retained cells across extra read targets', () => {
+  const environment = environmentPath(characterPath(traits), { crowding: 0.9, dayLengthHours: 6 });
+  const run = (times: number[]) => {
+    let x = affectOwner.initialize(
+        { mood: { valence: 0, arousal: 0.3 }, regulation: 0.1, emotions: [] },
+        frame(),
+      ),
+      from = 0;
+    for (const to of times) {
+      const r = affectOwner.advance(x.state, {
+        ...frame(),
+        from,
+        to,
+        phase: 1,
+        priorWorldRevision: 0,
+        continuation: x.continuation,
+        traits,
+        environment,
+        moodOffset: from / 1e8,
+        body: { id: 'b', conditionId: 'b', from: 0, to: 1e8, fields: [], readout: [] },
+        needs: {
+          id: 'n',
+          from: 0,
+          to: 1e8,
+          satisfaction: { from: 0, to: 1e8, segments: [{ kind: 'constant', from: 0, to: 1e8, value: 0.8 }] },
+        },
+      });
+      x = r;
+      from = r.advancedThrough;
+    }
+    return x;
+  };
+  const one = run([86400000]),
+    split = run([175, 120001, 1145222, 86400000]);
+  expect(split.state).toEqual(one.state);
+  expect(split.continuation).toEqual(one.continuation);
+  expect(one.continuation.moodOffsetConditionId).toBe(environment.id);
 });

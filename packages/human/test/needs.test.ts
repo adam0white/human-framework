@@ -10,7 +10,7 @@ import {
   urgency,
 } from '../src/needs/needs.ts';
 import type { BodyTrajectory, ScalarTrajectory } from '../src/run-schema.ts';
-import { frame } from './w2-fixture.ts';
+import { characterPath, environmentPath, frame } from './w2-fixture.ts';
 
 const constant = (value: number): ScalarTrajectory => ({
   from: 0,
@@ -31,6 +31,8 @@ const body = (hunger: ScalarTrajectory = constant(0.2)): BodyTrajectory => ({
   ],
 });
 const context = () => ({
+  character: characterPath(),
+  environment: environmentPath(),
   person: 'person',
   traits: {
     honesty: 0.5,
@@ -57,7 +59,7 @@ const context = () => ({
   body: body(),
   forcingPerMinute: { environment: {}, command: {} },
   asleep: false,
-  effective: { builtins: { NEEDS_DEFAULTS } },
+  effective: frame().effective,
 });
 
 describe('HF4 concurrent needs', () => {
@@ -73,7 +75,7 @@ describe('HF4 concurrent needs', () => {
   test('ambient forcing joins the relaxation equation and materializations preserve the anchor', () => {
     const c = {
       ...context(),
-      forcingPerMinute: { environment: { leisure: 0.001, autonomy: -0.001 }, command: {} },
+      environment: environmentPath(characterPath(), { beauty: 1, crowding: 1 }),
     };
     const original = structuredClone(c);
     const plain = materializeNeeds(context(), 86400000);
@@ -88,10 +90,13 @@ describe('HF4 concurrent needs', () => {
     const plain = context();
     const c = {
       ...plain,
-      forcingPerMinute: { environment: { autonomy: -0.0001 }, command: { autonomy: -0.0002 } },
+      environment: environmentPath(characterPath(), { crowding: 1 }),
+      forcingPerMinute: { environment: {}, command: { autonomy: -0.0002 } },
     };
     const rate = Math.LN2 / NEEDS_DEFAULTS.autonomyHalfLife,
-      target = NEEDS_DEFAULTS.autonomyTarget - 0.0003 / rate;
+      target =
+        NEEDS_DEFAULTS.autonomyTarget -
+        (frame().effective.builtins.ENVIRONMENT_DEFAULTS.crowdingAutonomyPerHour / 60 + 0.0002) / rate;
     const expected = Math.max(
       0,
       Math.min(1, target + (DEFAULT_NEEDS.autonomy - target) * Math.exp(-rate * 60)),
@@ -166,4 +171,56 @@ test('realized signed rewards change only named reservoirs and reanchor their co
   const c = { ...context(), continuation: result.continuation };
   expect(materializeNeeds(c, 3600000)).toEqual(result.state);
   expect(materializeNeeds(c, 7200000).belonging).toBeLessThan(result.state.belonging);
+});
+
+import { readCharacterTrajectory } from '../src/character/character.ts';
+
+test('integrates live extraversion rather than substituting an endpoint coefficient', () => {
+  const c = context(),
+    at = 86400000;
+  const start = readCharacterTrajectory(c.character, 0).traits.extraversion;
+  const end = readCharacterTrajectory(c.character, at).traits.extraversion;
+  const exposure =
+    ((Math.LN2 * (at / 60000)) / NEEDS_DEFAULTS.belongingAloneHalfLife) * (0.5 + (start + end) / 2);
+  const expected = DEFAULT_NEEDS.belonging * Math.exp(-exposure);
+  const actual = materializeNeeds(c, at).belonging;
+  expect(Math.abs(actual - expected)).toBeLessThan(1e-12);
+  const endpoint =
+    DEFAULT_NEEDS.belonging *
+    Math.exp(((-Math.LN2 * (at / 60000)) / NEEDS_DEFAULTS.belongingAloneHalfLife) * (0.5 + end));
+  expect(Math.abs(actual - endpoint)).toBeGreaterThan(1e-9);
+  // Arbitrary materialized snapshots cannot change either the function or its ID.
+  const sampled = {
+    ...c,
+    traits: { ...c.traits, extraversion: end },
+    values: readCharacterTrajectory(c.character, 175).values,
+  };
+  expect(materializeNeeds(sampled, at)).toEqual(materializeNeeds(c, at));
+  expect(projectNeedTrajectory(sampled)).toEqual(projectNeedTrajectory(c));
+  const changed = { ...c, character: characterPath(frame(), { ...c.traits, extraversion: 0.8 }) };
+  expect(projectNeedTrajectory(changed).id).not.toBe(projectNeedTrajectory(c).id);
+});
+
+test('keeps actual varying command-forced belonging and crowded autonomy deterministic', () => {
+  const c = {
+    ...context(),
+    environment: environmentPath(characterPath(), { crowding: 0.9 }),
+    forcingPerMinute: { environment: {}, command: { belonging: 0.0001 } },
+  };
+  const before = structuredClone(c),
+    final = materializeNeeds(c, 86400000);
+  for (const at of [175, 120001, 1145222]) materializeNeeds(c, at);
+  expect(materializeNeeds(c, 86400000)).toEqual(final);
+  expect(final.belonging).toBeGreaterThan(materializeNeeds(context(), 86400000).belonging);
+  expect(final.autonomy).toBeLessThan(materializeNeeds(context(), 86400000).autonomy);
+  expect(c).toEqual(before);
+});
+
+test('same path identity exposes byte-identical canonical need cells after extra caller targets', () => {
+  const c = context(),
+    original = projectNeedTrajectory(c);
+  const later = projectNeedTrajectory({ ...c, body: { ...c.body, from: 1145222 } });
+  expect(later.id).toBe(original.id);
+  for (const at of [1145222, 3600000, 80000000])
+    expect(readNeedScalar(later.satisfaction, at)).toBe(readNeedScalar(original.satisfaction, at));
 });

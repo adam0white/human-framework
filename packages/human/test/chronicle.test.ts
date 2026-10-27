@@ -291,3 +291,47 @@ it('compares trust from an older slice using its latest logged change', () => {
     after: 0.9,
   });
 });
+
+import { scalarAt } from '../src/body/span.ts';
+import {
+  characterTraitSegments,
+  projectCharacterTrajectory,
+  readCharacterTrajectory,
+} from '../src/character/character.ts';
+
+it('reads the extracted Character law across an age boundary and both clipping stages', () => {
+  const year = 365 * 86400000;
+  const initial = characterOwner.initialize({ traits, values }, frame);
+  initial.traits.honesty = 0.649;
+  initial.character.experience.honesty = 0.01;
+  const context = {
+    ...frame,
+    life: { bornAt: -17 * year, sex: 'female' as const },
+    continuation: { anchor: { at: 0, conditionId: 'authored' }, state: initial },
+  };
+  const path = projectCharacterTrajectory(context),
+    original = JSON.stringify(path);
+  const samples = [0, year - 1, year, year + 1, 3 * year, 7 * year, 50 * year];
+  for (const at of samples) {
+    const actual = characterOwner.advance(initial, {
+      ...context,
+      from: 0,
+      to: at,
+      phase: 1,
+      priorWorldRevision: 0,
+      days: [],
+    });
+    expect(readCharacterTrajectory(path, at)).toEqual({
+      traits: actual.state.traits,
+      values: actual.state.values,
+    });
+  }
+  const affine = characterTraitSegments(path, 'honesty', 0, 50 * year);
+  for (const at of [...samples, ...affine.segments.flatMap((s) => [s.from, s.to, (s.from + s.to) / 2])])
+    expect(Math.abs(scalarAt(affine, at) - readCharacterTrajectory(path, at).traits.honesty)).toBeLessThan(
+      1e-12,
+    );
+  const caller = { ...context, at: 1234567 };
+  expect(projectCharacterTrajectory(caller).id).toBe(path.id);
+  expect(JSON.stringify(path)).toBe(original);
+});

@@ -68,3 +68,24 @@ it('owns exact awe intensity and expires only the matching received context', ()
   expect(expired.state.percept).toEqual({});
   expect(expired.affectReceipts).toEqual([]);
 });
+
+import { readCharacterTrajectory } from '../src/character/character.ts';
+import { readEnvironmentTrajectory } from '../src/environment/environment.ts';
+import { characterPath, environmentPath } from './w1-fixture.ts';
+
+it('reads received crowding and season against the same live Character path', () => {
+  const character = characterPath(),
+    percept = { crowding: 0.9, dayLengthHours: 6 };
+  const path = environmentPath(character, percept);
+  const original = JSON.stringify(path),
+    at = 100 * 365 * 86400000;
+  const actual = readEnvironmentTrajectory(path, at, effective),
+    traits = readCharacterTrajectory(character, at).traits;
+  expect(actual).toEqual({
+    moodOffset: ambientMood(percept, traits, false, effective.builtins.ENVIRONMENT_DEFAULTS),
+    needsPerMinute: ambientNeedRates(percept, traits, effective.builtins.ENVIRONMENT_DEFAULTS),
+  });
+  expect(actual).not.toEqual(readEnvironmentTrajectory(path, 0, effective));
+  expect(environmentPath(character, { crowding: 0.8 }).id).not.toBe(path.id);
+  expect(JSON.stringify(path)).toBe(original);
+});

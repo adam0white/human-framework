@@ -22,6 +22,7 @@ import {
   scalarAt,
   validateNumbers,
 } from '../body/span.ts';
+import { readCharacterTrajectory } from '../character/character.ts';
 import type * as T from '../run-schema.ts';
 export const CRISIS_DEFAULTS = freezeData({
   /** Felt valence below which mood pressure starts. */
@@ -108,7 +109,6 @@ const advance: T.CrisisOwner['advance'] = (state, ctx) => {
     ctx.body.conditionId,
     ctx.asleep,
     ctx.alive,
-    ctx.traits.emotionality,
     ctx.commandStrainRatePerMinute,
   ]);
   if (c.clock.conditionId !== conditionId) {
@@ -119,9 +119,12 @@ const advance: T.CrisisOwner['advance'] = (state, ctx) => {
       stressCell: null,
       acceptedThroughMs: ctx.from,
       materializedAtMs: ctx.from,
-      hazard: rebaseHazard(c.hazard, ctx.from, conditionId, ctx.effectiveParametersHash),
     };
   }
+  // Emotionality changes onset intensity, never the stress derivative.
+  const hazardId = JSON.stringify([conditionId, ctx.character.id]);
+  if (c.hazard.clock.conditionId !== hazardId)
+    c = { ...c, hazard: rebaseHazard(c.hazard, ctx.from, hazardId, ctx.effectiveParametersHash) };
   const rate = ctx.asleep ? 2 : 1;
   if (c.recovery && c.recovery.sleepRate !== rate) {
     const r = c.recovery;
@@ -204,7 +207,11 @@ const advance: T.CrisisOwner['advance'] = (state, ctx) => {
       clip((stressAt(t) - p.breakStress) / (1 - p.breakStress)),
     );
     return (
-      (p.baseHazard * ctx.effective.crisis.hazardScale * pressure * (0.5 + ctx.traits.emotionality)) / 60
+      (p.baseHazard *
+        ctx.effective.crisis.hazardScale *
+        pressure *
+        (0.5 + readCharacterTrajectory(ctx.character, t).traits.emotionality)) /
+      60
     );
   };
   const h = advanceHazard(

@@ -1,3 +1,4 @@
+import { environmentOwner } from '../src/environment/environment.ts';
 /** Complete canonical owner fixtures. Parameters come from the real C0 constructor.
  * No root3 API, repair, absent faculty containers or incomplete parameter assertions. */
 
@@ -474,4 +475,30 @@ export function agendaContext(p: ReturnType<typeof person>) {
     norms: p.actor.conscience.norms,
     catalog: p.actor.conscience.norms.map((n) => catalog(n.normId, n.standing)),
   };
+}
+
+/** Use the actual owner law for elapsed trait/value forcing; no test equations. */
+export function characterPath(
+  ctx = frame(),
+  inputTraits = traits,
+  inputValues = values,
+  bornAt = -30 * 365 * 86400000,
+) {
+  const state = characterModule.characterOwner.initialize({ traits: inputTraits, values: inputValues }, ctx);
+  return characterModule.projectCharacterTrajectory({
+    ...ctx,
+    life: { bornAt },
+    continuation: { anchor: { at: ctx.at, conditionId: 'initial' }, state },
+  });
+}
+export function environmentPath(
+  character = characterPath(),
+  percept: import('../src/run-schema.ts').AmbientPercept = {},
+  ctx = frame(),
+  asleep = false,
+) {
+  return environmentOwner.trajectory(
+    { percept, contextId: 'room', basis: null, since: ctx.at },
+    { ...ctx, character, asleep },
+  );
 }

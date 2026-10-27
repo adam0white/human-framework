@@ -1,3 +1,5 @@
+import { characterOwner, projectCharacterTrajectory } from '../src/character/character.ts';
+import { environmentOwner } from '../src/environment/environment.ts';
 import type { EffectiveParameters, FrameContext, InitialBody } from '../src/run-schema.ts';
 export const effective: EffectiveParameters = {
   builtins: {
@@ -1216,3 +1218,45 @@ export const initial = (): InitialBody => ({
   illnesses: [],
   exposures: [],
 });
+
+/** Real Character source path for elapsed owner controls. */
+export function characterPath(
+  traits: import('../src/run-schema.ts').Traits = {
+    honesty: 0.5,
+    emotionality: 0.5,
+    extraversion: 0.5,
+    agreeableness: 0.5,
+    conscientiousness: 0.5,
+    openness: 0.5,
+  },
+  bornAt = -30 * 365 * 86400000,
+) {
+  const values = {
+    benevolence: 0.5,
+    universalism: 0.5,
+    tradition: 0.5,
+    conformity: 0.5,
+    security: 0.5,
+    achievement: 0.5,
+    power: 0.5,
+    hedonism: 0.5,
+    stimulation: 0.5,
+    selfDirection: 0.5,
+  };
+  const state = characterOwner.initialize({ traits, values }, frame());
+  return projectCharacterTrajectory({
+    ...frame(),
+    life: { bornAt },
+    continuation: { anchor: { at: 0, conditionId: 'initial' }, state },
+  });
+}
+export function environmentPath(
+  character = characterPath(),
+  percept: import('../src/run-schema.ts').AmbientPercept = {},
+  asleep = false,
+) {
+  return environmentOwner.trajectory(
+    { percept, contextId: 'room', basis: null, since: 0 },
+    { ...frame(), character, asleep },
+  );
+}

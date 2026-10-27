@@ -1,8 +1,10 @@
+import { hashCanonical } from '../run-canonical.ts';
 /** SCOPE: always-present bounded maturation and annual sustained experience.
  * Rates and reversion are engineering assumptions, directions from research/long-run-sources.md.
  * Received caregiver contact changes values only through its actual exposure. No inherited norms.
  */
 
+import { freezeData, required } from '../body/span.ts';
 import { dexp, dlog } from '../core/libm.ts';
 import { normal } from '../core/random.ts';
 import { validateNarrativeFields, validateNarrativeJson } from '../memory/memory.ts';
@@ -169,6 +171,120 @@ const checked = (s: DeepReadonly<State>): State => {
   if (issues.length) throw new RangeError(issues[0]!.message);
   return structuredClone(s) as State;
 };
+/** Pure source maturation from a retained semantic anchor. No RNG or caller endpoint. */
+function matureCharacter(
+  state: DeepReadonly<State>,
+  bornAt: number,
+  at: number,
+  K: DeepReadonly<import('../run-schema.ts').Effective_CHARACTER_DEFAULTS>,
+): State {
+  const out = structuredClone(state) as State,
+    c = out.character;
+  if (!Number.isFinite(at) || at < c.agedTo) throw new RangeError('Character clock rewound');
+  const fromAge = (c.agedTo - bornAt) / YEAR,
+    toAge = (at - bornAt) / YEAR;
+  const overlap = (lo: number, hi: number) => Math.max(0, Math.min(toAge, hi) - Math.max(fromAge, lo));
+  const years = overlap(K.maturationFrom, K.maturationTo),
+    cyears = overlap(K.maturationFrom, Math.min(K.maturationTo, K.conscientiousnessUntil));
+  const bounded = (value: number, base: number) =>
+    clamp(value, Math.max(0, base - K.maxDrift), Math.min(1, base + K.maxDrift));
+  for (const key of TRAIT_KEYS) {
+    const span = key === 'conscientiousness' ? cyears : years;
+    const offset = c.experience[key] ?? 0;
+    const path = bounded(out.traits[key] - offset + K.traitPerYear[key] * span, c.baseTraits[key]);
+    const next = offset;
+    out.traits[key] = bounded(path + next, c.baseTraits[key]);
+    const kept = out.traits[key] - path;
+    if (kept) c.experience[key] = kept;
+    else delete c.experience[key];
+  }
+  if (fromAge < K.maturationFrom && toAge >= K.maturationFrom) c.baseValues = { ...out.values };
+  for (const key of VALUE_KEYS)
+    out.values[key] = bounded(out.values[key] + K.valuePerYear[key] * years, c.baseValues[key]);
+  c.agedTo = at;
+  return out;
+}
+
+/** Immutable internal source-law path. C0 constructs this before downstream physics. */
+export function projectCharacterTrajectory(
+  context: DeepReadonly<{
+    person: string;
+    life: { bornAt: number };
+    continuation: import('../run-schema.ts').NarrativeContinuation['character'];
+    effective: { builtins: { CHARACTER_DEFAULTS: import('../run-schema.ts').Effective_CHARACTER_DEFAULTS } };
+    effectiveParametersHash: string;
+  }>,
+): import('../run-schema.ts').CharacterTrajectory {
+  const continuation = structuredClone(context.continuation);
+  checked(continuation.state);
+  return freezeData({
+    id: hashCanonical(
+      'character-path',
+      context.person,
+      context.life.bornAt,
+      continuation,
+      context.effectiveParametersHash,
+      context.effective.builtins.CHARACTER_DEFAULTS,
+    ),
+    bornAt: context.life.bornAt,
+    continuation,
+    parameters: structuredClone(context.effective.builtins.CHARACTER_DEFAULTS),
+  });
+}
+export function readCharacterTrajectory(
+  path: DeepReadonly<import('../run-schema.ts').CharacterTrajectory>,
+  at: number,
+): Pick<State, 'traits' | 'values'> {
+  const state = matureCharacter(path.continuation.state, path.bornAt, at, path.parameters);
+  return { traits: state.traits, values: state.values };
+}
+
+/** Exact affine pieces of the existing doubly clipped trait law, for rate integration.
+ * Boundaries are source age/clipping changes, never a compulsory execution grid. */
+export function characterTraitSegments(
+  path: DeepReadonly<import('../run-schema.ts').CharacterTrajectory>,
+  key: keyof Traits,
+  from: number,
+  to: number,
+): import('../run-schema.ts').ScalarTrajectory {
+  const s = path.continuation.state,
+    k = path.parameters;
+  if (from < s.character.agedTo || to < from) throw new RangeError('Invalid character path interval');
+  const startAge = (s.character.agedTo - path.bornAt) / YEAR;
+  const endAge =
+    key === 'conscientiousness' ? Math.min(k.maturationTo, k.conscientiousnessUntil) : k.maturationTo;
+  const activeFrom = Math.max(startAge, k.maturationFrom);
+  const rate = k.traitPerYear[key];
+  const base = s.character.baseTraits[key],
+    offset = s.character.experience[key] ?? 0;
+  const lo = Math.max(0, base - k.maxDrift),
+    hi = Math.min(1, base + k.maxDrift);
+  const points = [from, to, path.bornAt + k.maturationFrom * YEAR, path.bornAt + endAge * YEAR];
+  if (rate !== 0)
+    for (const level of [lo, hi, lo - offset, hi - offset]) {
+      const age = activeFrom + (level - (s.traits[key] - offset)) / rate;
+      if (age >= activeFrom && age <= endAge) points.push(path.bornAt + age * YEAR);
+    }
+  const boundaries = [...new Set(points.filter((t) => t >= from && t <= to))].sort((a, b) => a - b);
+  const segments: import('../run-schema.ts').ScalarTrajectory['segments'][number][] = [];
+  for (let i = 1; i < boundaries.length; i++) {
+    const a = required(boundaries[i - 1]),
+      b = required(boundaries[i]);
+    const initial = readCharacterTrajectory(path, a).traits[key];
+    const age = (a + (b - a) / 2 - path.bornAt) / YEAR;
+    const raw = s.traits[key] - offset + rate * Math.max(0, Math.min(age, endAge) - activeFrom);
+    const inner = clamp(raw, lo, hi);
+    const slope =
+      age > activeFrom && age < endAge && raw > lo && raw < hi && inner + offset > lo && inner + offset < hi
+        ? (rate * 60000) / YEAR
+        : 0;
+    segments.push({ kind: 'linear', from: a, to: b, initial, ratePerMinute: slope });
+  }
+  if (from === to)
+    segments.push({ kind: 'constant', from, to, value: readCharacterTrajectory(path, from).traits[key] });
+  return { from, to, segments };
+}
+
 export const characterOwner: CharacterOwner = {
   initialize(input, context) {
     return checked({
@@ -191,27 +307,8 @@ export const characterOwner: CharacterOwner = {
       c = out.character,
       K = context.effective.builtins.CHARACTER_DEFAULTS;
     if (context.to < c.agedTo || context.to < context.from) throw new RangeError('Character clock rewound');
-    const fromAge = (c.agedTo - context.life.bornAt) / YEAR,
-      toAge = (context.to - context.life.bornAt) / YEAR;
-    const overlap = (lo: number, hi: number) => Math.max(0, Math.min(toAge, hi) - Math.max(fromAge, lo));
-    const years = overlap(K.maturationFrom, K.maturationTo),
-      cyears = overlap(K.maturationFrom, Math.min(K.maturationTo, K.conscientiousnessUntil));
-    const bounded = (value: number, base: number) =>
-      clamp(value, Math.max(0, base - K.maxDrift), Math.min(1, base + K.maxDrift));
-    for (const key of TRAIT_KEYS) {
-      const span = key === 'conscientiousness' ? cyears : years;
-      const offset = c.experience[key] ?? 0;
-      const path = bounded(out.traits[key] - offset + K.traitPerYear[key] * span, c.baseTraits[key]);
-      const next = offset;
-      out.traits[key] = bounded(path + next, c.baseTraits[key]);
-      const kept = out.traits[key] - path;
-      if (kept) c.experience[key] = kept;
-      else delete c.experience[key];
-    }
-    if (fromAge < K.maturationFrom && toAge >= K.maturationFrom) c.baseValues = { ...out.values };
-    for (const key of VALUE_KEYS)
-      out.values[key] = bounded(out.values[key] + K.valuePerYear[key] * years, c.baseValues[key]);
-    c.agedTo = context.to;
+    const materialized = matureCharacter(context.continuation.state, context.life.bornAt, context.to, K);
+    Object.assign(out, materialized);
     return {
       state: out,
       effects: { terms: [], modifiers: [], appraisals: [] },

@@ -11,7 +11,11 @@
  * body's fatigue already folds it in). Parameters are engineering defaults for game time scales; this does
  * not claim an exhaustive need list, calibrated rates, or a universal weighting between needs.
  */
+import { evaluateCell, initialWidth, integrateCell, required } from '../body/span.ts';
+import { characterTraitSegments, readCharacterTrajectory } from '../character/character.ts';
 import { clamp, clamp01, dexp, dlog, dpow } from '../core/index.ts';
+import { readEnvironmentTrajectory } from '../environment/environment.ts';
+import { hashCanonical } from '../run-canonical.ts';
 import type {
   ActorState,
   NeedId,
@@ -215,16 +219,52 @@ export function readNeedScalar(
 type NeedSpan = Parameters<import('../run-schema.ts').NeedsOwner['advance']>[1];
 type NeedKernelContext = Pick<
   NeedSpan,
-  'person' | 'traits' | 'values' | 'activity' | 'continuation' | 'body' | 'forcingPerMinute' | 'asleep'
+  | 'person'
+  | 'traits'
+  | 'values'
+  | 'character'
+  | 'environment'
+  | 'activity'
+  | 'continuation'
+  | 'body'
+  | 'forcingPerMinute'
+  | 'asleep'
 > & {
   effective: {
     builtins: Pick<
       import('../run-schema.ts').DeepReadonly<import('../run-schema.ts').EffectiveBuiltins>,
-      'NEEDS_DEFAULTS'
+      'NEEDS_DEFAULTS' | 'ENVIRONMENT_DEFAULTS'
     >;
   };
 };
-/** Constant-context source relaxation plus continuous ambient forcing (HF4 C law). */
+/** Integrated trait-dependent coefficient. Each piece is affine, possibly capped by minHalfLife. */
+function belongingExposure(context: NeedKernelContext, at: number): number {
+  const d = context.effective.builtins.NEEDS_DEFAULTS;
+  const path = characterTraitSegments(context.character, 'extraversion', context.continuation.anchor.at, at);
+  const scale = dlog(2) * (context.asleep ? d.asleepRate : 1);
+  let integral = 0;
+  for (const segment of path.segments) {
+    if (segment.kind !== 'linear' && segment.kind !== 'constant')
+      throw new RangeError('Expected affine Character law');
+    const duration = (segment.to - segment.from) / 60000;
+    const initial = segment.kind === 'constant' ? segment.value : segment.initial;
+    const slope = segment.kind === 'constant' ? 0 : segment.ratePerMinute;
+    const a = (0.5 + initial) / d.belongingAloneHalfLife;
+    const b = slope / d.belongingAloneHalfLife;
+    const cap = 1 / d.minHalfLife;
+    const split = b === 0 ? duration : Math.max(0, Math.min(duration, (cap - a) / b));
+    const points = [0, split, duration];
+    for (let i = 1; i < points.length; i++) {
+      const left = required(points[i - 1]),
+        right = required(points[i]);
+      const middle = a + b * (left + (right - left) / 2);
+      integral +=
+        middle >= cap ? cap * (right - left) : (right - left) * (a + b * (left + (right - left) / 2));
+    }
+  }
+  return scale * integral;
+}
+/** Retained-anchor source relaxation with live trait rates and ambient forcing. */
 export function materializeNeeds(context: NeedKernelContext, at: number): NeedReservoirs {
   const d = context.effective.builtins.NEEDS_DEFAULTS;
   if (
@@ -243,11 +283,12 @@ export function materializeNeeds(context: NeedKernelContext, at: number): NeedRe
   const work = hasAny(tags, d.workTags),
     leisure = hasAny(tags, d.leisureTags),
     meaning = hasAny(tags, d.meaningTags);
+  const live = readCharacterTrajectory(context.character, context.continuation.anchor.at);
   const settings: Record<PsychologicalNeed, [number, number]> = {
     belonging:
       together || social
         ? [social ? d.belongingSocialHalfLife : d.belongingTogetherHalfLife, d.belongingTogetherTarget]
-        : [d.belongingAloneHalfLife / (0.5 + clamp01(context.traits.extraversion)), d.belongingAloneTarget],
+        : [d.belongingAloneHalfLife / (0.5 + clamp01(live.traits.extraversion)), d.belongingAloneTarget],
     leisure:
       leisure && !work
         ? [d.leisureRecoverHalfLife, d.leisureRecoverTarget]
@@ -263,13 +304,47 @@ export function materializeNeeds(context: NeedKernelContext, at: number): NeedRe
     esteem: [d.esteemHalfLife, d.esteemTarget],
   };
   const state = { ...context.continuation.state };
+  const environment = readEnvironmentTrajectory(
+    context.environment,
+    context.continuation.anchor.at,
+    context.effective,
+  );
   for (const id of PSYCHOLOGICAL_NEEDS) {
     const [halfLife, target] = settings[id];
     const rate = (dlog(2) / Math.max(d.minHalfLife, halfLife)) * (context.asleep ? d.asleepRate : 1);
-    const force =
-      (context.forcingPerMinute.environment[id] ?? 0) + (context.forcingPerMinute.command[id] ?? 0);
-    const equilibrium = target + force / rate;
-    state[id] = clamp01(equilibrium + (state[id] - equilibrium) * dexp(-rate * elapsedMinutes));
+    const force = (environment.needsPerMinute[id] ?? 0) + (context.forcingPerMinute.command[id] ?? 0);
+    const varyingRate = id === 'belonging' && !together && !social;
+    const varyingForce = id === 'autonomy' && (context.environment.percept.crowding ?? 0) > 0;
+    if (varyingRate && force === 0) {
+      state[id] = clamp01(target + (state[id] - target) * dexp(-belongingExposure(context, at)));
+    } else if (varyingRate || varyingForce) {
+      // Recompute from the retained semantic anchor with target-independent canonical cells.
+      // Only the reached evaluation is returned. No actor/RNG work runs at these samples.
+      let left = context.continuation.anchor.at,
+        y = state[id],
+        width = initialWidth(halfLife),
+        calls = 0;
+      while (left < at) {
+        const cell = integrateCell(left, [y], width, (t, values) => {
+          const trait = readCharacterTrajectory(context.character, t).traits.extraversion;
+          const h = varyingRate ? d.belongingAloneHalfLife / (0.5 + clamp01(trait)) : halfLife;
+          const k = (dlog(2) / Math.max(d.minHalfLife, h)) * (context.asleep ? d.asleepRate : 1);
+          const forcing =
+            (readEnvironmentTrajectory(context.environment, t, context.effective).needsPerMinute[id] ?? 0) +
+            (context.forcingPerMinute.command[id] ?? 0);
+          return [k * (target - (values[0] ?? 0)) + forcing];
+        });
+        calls += cell.calls;
+        if (calls > 8192) throw new RangeError('Need forced relaxation work limit exceeded');
+        y = evaluateCell(required(cell.cells[0]), Math.min(at, cell.to));
+        left = cell.to;
+        width = cell.nextWidth;
+      }
+      state[id] = clamp01(y);
+    } else {
+      const equilibrium = target + force / rate;
+      state[id] = clamp01(equilibrium + (state[id] - equilibrium) * dexp(-rate * elapsedMinutes));
+    }
   }
   return state;
 }
@@ -297,10 +372,9 @@ export function needSatisfactionAt(context: NeedKernelContext, at: number): numb
     throw new RangeError('Invalid need threshold range');
   let num = 0,
     den = 0;
+  const { traits: t, values: v } = readCharacterTrajectory(context.character, at),
+    k = d.traitCoefficient;
   for (const id of [...PHYSIOLOGICAL_NEEDS, ...PSYCHOLOGICAL_NEEDS]) {
-    const t = context.traits,
-      v = context.values,
-      k = d.traitCoefficient;
     const shifts: Partial<Record<NeedId, number>> = {
       belonging: t.extraversion - 0.5,
       safety: t.emotionality - 0.5,
@@ -326,8 +400,16 @@ export function needSatisfactionAt(context: NeedKernelContext, at: number): numb
 
 /** Deterministic adaptive quartic projection; error values are estimates, not certificates. */
 export function projectNeedTrajectory(context: NeedKernelContext): import('../run-schema.ts').NeedTrajectory {
-  const from = context.body.from,
-    to = context.body.to;
+  // Body descriptors retain full canonical cells even when materialized inside one.
+  // Fit those cells, never a caller-clipped subinterval under the same identity.
+  const from = Math.max(
+      context.continuation.anchor.at,
+      context.character.continuation.state.character.agedTo,
+      ...context.body.readout.map((r) => Math.min(...r.path.segments.map((s) => s.from))),
+    ),
+    to = Math.min(...context.body.readout.map((r) => Math.max(...r.path.segments.map((s) => s.to))));
+  if (!Number.isFinite(from) || !Number.isFinite(to) || to < from)
+    throw new RangeError('Need trajectory lacks canonical body coverage');
   const segments: import('../run-schema.ts').ScalarTrajectory['segments'][number][] = [];
   let evaluations = 0;
   const sample = (at: number) => {
@@ -401,7 +483,18 @@ export function projectNeedTrajectory(context: NeedKernelContext): import('../ru
     }
   }
   return {
-    id: `needs:${context.person}:${context.continuation.anchor.conditionId}:${context.continuation.anchor.at}`,
+    id: hashCanonical(
+      'need-path',
+      context.person,
+      context.continuation,
+      context.character.id,
+      context.environment.id,
+      context.body.id,
+      context.activity,
+      context.forcingPerMinute.command,
+      context.asleep,
+      context.effective.builtins.NEEDS_DEFAULTS,
+    ),
     from,
     to,
     satisfaction: { from, to, segments },
