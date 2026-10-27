@@ -322,3 +322,15 @@ Coordinator reading: the named approaches and categories are accepted in directi
 > "We can thaw games. Love the upcoming reorg of games. Oh wagon trail is much better lol. I like your difficulty aim. Allow cloudflare analytics everywhere, whitelist or whatever. I'll check your decisions deck now. Can't wait for you to push the rest of the work out and then play test them!"
 
 Coordinator reading: Small Works, Neighbours and The Rope are no longer frozen; they take ordinary work like any game. The wagon trail is the first classic. The difficulty aim (careless play loses well over half the time; careless spam costs something visible) stands across games. Every site on `adamwhite.work`, central and each game, loads Cloudflare Web Analytics: its CSP allows `https://static.cloudflareinsights.com` in `script-src` and `https://cloudflareinsights.com` in `connect-src`. Then the in-flight fixes ship and go to the panel.
+
+## 2026-10-27 — Decision desk: approaches, categories, first classic (Adam, verbatim)
+
+Answers on the decision desk, 03:28–03:33 UTC:
+
+- **Approach set:** adopt all four (Chronicle, Inner Voice, Desk, Clock).
+- **Reach:** the whole game (type, palette, renderer, menu and title card).
+- **Probe:** none; move all games after 4.x. Note: "Only one way forward, no easy exit! "
+- **Site categories:** adopt the five (Keep a village, Live one life, Read people, Against the clock, Make the journey).
+- **First classic:** the wagon trail. Note: "Now that I think this through, the other 5 will be too difficult or involved to pull off nicely. They're classics because they have been carefully balanced and polished; we can't replicate that easily. Oregon Trail is maybe an easier one to attempt. "
+
+Coordinator reading: after HF 4.x, every game moves to its named approach in full, with no probe pair first. The site groups games into the five categories. The wagon trail is the only classic planned; the other five shortlisted classics are dropped.
