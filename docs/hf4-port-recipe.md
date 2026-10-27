@@ -16,6 +16,9 @@ The control is not evidence that Stairwell, carryover, or all games have upgrade
 ## Establish the host boundary
 
 Create one managed worktree per repo. Check processes and worktrees before choosing a game.
+Pass the repository's absolute path to the worktree helper, for example
+`npm run wt -- add ~/code/stairwell g1b` from the HF checkout; a relative `stairwell`
+path is resolved from the current directory.
 Install with `pnpm install --frozen-lockfile` and `/opt/homebrew/bin` first on PATH.
 Inventory every HF import, direct Person read/write, save/export consumer, cast admission and
 publication path before changing the pin. The
@@ -134,6 +137,7 @@ No framework source or game logic changed for this audit. No 4.x game deployment
 
 Done: the owner accepts the game’s 4.x release receipt; nothing else counts.
 
+- Preserve Hearsay garden replay artifacts with a separately isolated historical HF 3 runtime for its exact peer and direct legacy imports; do not bypass the peer constraint.
 - Replace old calls and direct actor mutations with supported routes. Pin the released package exactly, regenerate the pnpm lockfile, then freeze-install.
 - Prove a normal game action/control, active-work and pending-boundary restore, read-only preview, exact HF replay and complete game-log replay. Preserve supported continuing people or record a blocking G-item.
 - Run `check:lane` before each signed commit; gated paths run full `check`. Use the repo's suite lock. Include the Codex trailer. Obtain one independent review, open a PR, request `@codex review` and fix verified findings.
