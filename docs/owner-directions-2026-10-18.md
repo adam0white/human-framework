@@ -352,3 +352,23 @@ Coordinator reading: no new Claude agents start. Agents already running finish t
 > "Let's resume the hf4 agent to let it run reviewers and fully finish the v4 work"
 
 Coordinator reading: the soft stop on new Claude agents is lifted for HF 4.0 only. The HF 4.0 lead may start the two release reviewers and per-game migration builders, and carries 4.0 to its done-means: release, docs and site, and every game moved to 4.0 or recorded as staying on 3.x. Everything else stays under the soft stop.
+
+## 2026-10-27 — Abolish feature flags; automatic carryover (Adam, verbatim)
+
+> "Okay why the carryover isn't public, and what other features are we holding behind the flag? I thought we would use the flag only for a few basic, permanently testing-only things; I never imagined it to become a feature flag for actual features being held back. I think this is hurting the dev process. Convince me otherwise. Jokes are fine."
+
+> "Well we need much more automatic carryover. You see, a lot of the things are basically opinionated decisions we make and enforce. Lab is giving a way out on those and others, just for debugging.
+> I don't understand why we can't make it automatic to simply carryover people across the games, the personas that exist on multiple games. The cast controls and more precise persona experiments, some intentionally picked ones, can be exposed on the public personas page where it lists from your browser, the shelf which is public and central. I like your suggestion, but let's go further. Abolish flags altogether. Whatever we need must be public. Hide some needed features by lab into a small, always collapsed "Debug" menu at the bottom of the menus. Not even an extra line, same line with lab privacy. However, we still need to be careful of the scope of extra things we offer there. Move cast controls to the shelf. I'd like to experiment with offering that at the end screen of games: it's a natural stopping point, an option to move a character you know into another game or two would keep the player hooked. The pace and extra speed controls; if your testers need them, the players do too. We can bring them back for those games. The why's can be extra I buttons after their source, not on a new line by themselves.
+> Once we confirm this direction is working, we'll remove the mentions of a lab flag or any query string altogether, keeping history in agents and other popular MD files isn't a good idea. I'll let you know once soft stops are lifted. For now, focus on making sure to not lose tasks, and finishing v4 properly. Thanks"
+
+Coordinator reading:
+- No feature flags and no query-string switches. Every gameplay feature is public.
+- People who appear in more than one game carry over automatically, with no opt-in.
+- Cast controls and chosen persona experiments move to the public, central shelf (the personas page that lists people from this browser).
+- Experiment: the end screen of each game offers to move a known person into one or two other games.
+- Pace and speed controls come back for players in the games where testers use them.
+- The "why" explanations become small "i" buttons right after the thing they explain, not on a line of their own.
+- The few diagnostics that are still needed (export, verify, import, seed, replay, error detail) sit in an always-collapsed "Debug" item on the same line as Lab privacy, at the bottom of the menus. Keep that list small.
+- Left Hand F-1631: a joke reply is approved.
+- After the direction is confirmed, remove every mention of the lab flag and query strings from AGENTS.md and other widely read docs.
+- The work waits for the soft stop to lift; until then, keep the task list whole and finish HF 4.0.
