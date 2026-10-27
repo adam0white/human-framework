@@ -2,10 +2,10 @@ import { setTelemetryOff, telemetryOn } from '@adam0white/lab-kit';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { CastLifeNote, CastMenu, CastStartGate } from '../../shared/CastMenu.tsx';
 import { fileSession, readGameFile } from '../../shared/cast-runtime.ts';
+import { DebugMenu } from '../../shared/DebugMenu.tsx';
 import { FullscreenButton, useWakeLock } from '../../shared/fullscreen.tsx';
 import { LabNotice } from '../../shared/LabNotice.tsx';
 import { gameLabs, useLabScreen } from '../../shared/lab.tsx';
-import { labMode } from '../../shared/lab-mode.ts';
 import { fileError as gameFileError, playerError } from '../../shared/player-error.ts';
 import type { PlaytestFile } from '../../shared/playtest.ts';
 import type { HurtNews, MomentRecord } from '../sim/game.ts';
@@ -143,7 +143,7 @@ export function App() {
     });
   }, [actions, person, sheet, pending, info, buildingDetails]);
   useEffect(() => {
-    if (!inspect || !labMode()) {
+    if (!inspect) {
       actions.clearWhy();
       return;
     }
@@ -224,11 +224,9 @@ export function App() {
       : playerError(errorDetail, colony.error ? 'play' : 'load')
     : null;
   const loadedNotice = loaded
-    ? labMode()
-      ? `Playtest ${loaded.matches ? 'matches' : 'does not match'} · ${dayClock(loaded.minute)}`
-      : loaded.matches
-        ? 'Your saved game is open.'
-        : playerError('The restored game does not match.', 'load')
+    ? loaded.matches
+      ? 'Your saved game is open.'
+      : playerError('The restored game does not match.', 'load')
     : null;
   const resetHow = () => {
     setDraft(null);
@@ -742,45 +740,38 @@ export function App() {
                 <h2 className="well-desktop-title">Twice at the Well</h2>
                 <p>Two villages hear every order you give. One obeys. One decides.</p>
                 <p>Build a roof and store 12 meals before the storm. Keep all six villagers alive.</p>
-                {labMode() && (
-                  <fieldset className="well-village-choice" disabled={Boolean(save)}>
-                    <legend>Words by the well</legend>
-                    {(['default', 'early-warning'] as const).map((v) => (
-                      <label key={v}>
-                        <input
-                          type="radio"
-                          name="village"
-                          checked={
-                            (save
-                              ? save.log.some(
-                                  (entry) =>
-                                    typeof entry === 'object' &&
-                                    entry !== null &&
-                                    'kind' in entry &&
-                                    entry.kind === 'village' &&
-                                    'village' in entry &&
-                                    entry.village === 'early-warning',
-                                )
-                                ? 'early-warning'
-                                : 'default'
-                              : (frame?.village ?? 'default')) === v
-                          }
-                          onChange={() => actions.restart(v)}
-                        />
-                        <span>
-                          {VILLAGE_WORDS[v].choice}
-                          <small>{VILLAGE_WORDS[v].reply}</small>
-                        </span>
-                      </label>
-                    ))}
-                  </fieldset>
-                )}
-                {labMode() && save && <p>Choose again with A new run.</p>}
-                {labMode() && (
-                  <button type="button" className="well-other" onClick={() => setOther(true)}>
-                    Lab tools ›
-                  </button>
-                )}
+                <fieldset className="well-village-choice" disabled={Boolean(save)}>
+                  <legend>Words by the well</legend>
+                  {(['default', 'early-warning'] as const).map((v) => (
+                    <label key={v}>
+                      <input
+                        type="radio"
+                        name="village"
+                        checked={
+                          (save
+                            ? save.log.some(
+                                (entry) =>
+                                  typeof entry === 'object' &&
+                                  entry !== null &&
+                                  'kind' in entry &&
+                                  entry.kind === 'village' &&
+                                  'village' in entry &&
+                                  entry.village === 'early-warning',
+                              )
+                              ? 'early-warning'
+                              : 'default'
+                            : (frame?.village ?? 'default')) === v
+                        }
+                        onChange={() => actions.restart(v)}
+                      />
+                      <span>
+                        {VILLAGE_WORDS[v].choice}
+                        <small>{VILLAGE_WORDS[v].reply}</small>
+                      </span>
+                    </label>
+                  ))}
+                </fieldset>
+                {save && <p>Choose again with A new run.</p>}
                 {newConfirm && (
                   <div className="well-new-confirm">
                     <p>Starting again replaces your saved game.</p>
@@ -812,6 +803,11 @@ export function App() {
                   {save ? `Continue · ${dayClock(save.minute)}` : 'Begin the first morning'}
                 </button>
               </footer>
+              <DebugMenu>
+                <button type="button" onClick={() => setOther(true)}>
+                  Load a playtest run
+                </button>
+              </DebugMenu>
             </>
           ) : interstitial ? (
             <>
@@ -1114,33 +1110,27 @@ export function App() {
                 />{' '}
                 Show building details
               </label>
-              {labMode() && (
-                <fieldset className="well-menu-pace">
-                  <legend>The village's pace</legend>
-                  {(['auto', 0.5, 1, 2] as const).map((s, i) => (
-                    <button
-                      type="button"
-                      key={s}
-                      aria-pressed={
-                        s === 'auto'
-                          ? playback.automatic !== false
-                          : playback.automatic === false && playback.speed === s
-                      }
-                      onClick={() => actions.setPace?.(s)}
-                    >
-                      {settingWords(['Automatic', 'Slow', 'Steady', 'Fast'][i])}
-                    </button>
-                  ))}
-                </fieldset>
-              )}
+              <fieldset className="well-menu-pace">
+                <legend>The village's pace</legend>
+                {(['auto', 0.5, 1, 2] as const).map((s, i) => (
+                  <button
+                    type="button"
+                    key={s}
+                    aria-pressed={
+                      s === 'auto'
+                        ? playback.automatic !== false
+                        : playback.automatic === false && playback.speed === s
+                    }
+                    onClick={() => actions.setPace?.(s)}
+                  >
+                    {settingWords(['Automatic', 'Slow', 'Steady', 'Fast'][i])}
+                  </button>
+                ))}
+              </fieldset>
               <button type="button" onClick={() => setFeedback('menu')}>
                 Feedback
               </button>
-              {labMode() && (
-                <button type="button" onClick={actions.exportPlaytest}>
-                  Keep a copy of this run
-                </button>
-              )}
+
               <FullscreenButton variant="item" className="well-menu-fullscreen" />
               {!fileSession && (
                 <button
@@ -1169,7 +1159,6 @@ export function App() {
                 />
                 Recording
               </label>
-              {labMode() && <a href="/lab/privacy/">Lab privacy</a>}
               {!fileSession && <CastMenu game="well" />}
             </div>
             <footer className="well-actions">
@@ -1177,6 +1166,11 @@ export function App() {
                 Resume
               </button>
             </footer>
+            <DebugMenu>
+              <button type="button" onClick={actions.exportPlaytest}>
+                Keep a copy of this run
+              </button>
+            </DebugMenu>
           </section>
         </div>
       )}

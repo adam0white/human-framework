@@ -1,8 +1,8 @@
 /** The menu reads the chronicle. Continuing saved pages belongs to the title's shelf. */
 import { useEffect, useState } from 'react';
 import { CastMenu } from '../../shared/CastMenu.tsx';
+import { DebugMenu } from '../../shared/DebugMenu.tsx';
 import { FullscreenButton } from '../../shared/fullscreen.tsx';
-import { labMode } from '../../shared/lab-mode.ts';
 import type { PageInfo } from '../protocol.ts';
 import type { Frame, FrameVolume } from '../sim/view.ts';
 import { DownloadRun, FeedbackScreen, RecordingPreference } from './exporting.tsx';
@@ -303,7 +303,6 @@ export function Chronicle({
         >
           Feedback <span aria-hidden="true">▸</span>
         </button>
-        {labMode() && <DownloadRun actions={actions} label="Keep a copy of this run" />}
         <FullscreenButton variant="item" className="w-menu-row w-fs-item" />
         <button
           type="button"
@@ -330,6 +329,9 @@ export function Chronicle({
           Resume
         </button>
       </div>
+      <DebugMenu>
+        <DownloadRun actions={actions} label="Keep a copy of this run" />
+      </DebugMenu>
     </div>
   );
 }

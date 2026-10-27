@@ -6,11 +6,10 @@
 import { phoneStage } from '@adam0white/lab-kit';
 import { type ReactNode, useCallback, useEffect, useId, useRef, useState } from 'react';
 import { CastLifeNote, CastStartGate } from '../../shared/CastMenu.tsx';
-import { fileSession, readGameFile } from '../../shared/cast-runtime.ts';
+import { checkpointCast, fileSession, readGameFile, selectCast } from '../../shared/cast-runtime.ts';
 import { useWakeLock } from '../../shared/fullscreen.tsx';
 import { LabNotice } from '../../shared/LabNotice.tsx';
 import { gameLabs } from '../../shared/lab.tsx';
-import { labMode } from '../../shared/lab-mode.ts';
 import { fileError as gameFileError, playerError } from '../../shared/player-error.ts';
 import { downloadJson } from '../../shared/playtest.ts';
 import { settingWords } from '../../shared/setting-words.ts';
@@ -744,7 +743,7 @@ export function GoalPage({
           : 'Take the winter as it comes.'}
         ” ▸
       </button>
-      {labMode() && shelf.length ? (
+      {shelf.length ? (
         <button type="button" className="w-menu-row" onClick={() => setSheet('shelf')}>
           The shelf · {new Set(shelf.map((p) => p.chronicle)).size} chronicles ▸
         </button>
@@ -1606,13 +1605,39 @@ function Talks({ frame, actions }: { frame: Frame; actions: WatchActions }) {
 
 export function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActions }) {
   const [account, setAccount] = useState(false);
+  const [visitSave, setVisitSave] = useState<'idle' | 'saving' | 'saved' | 'failed'>('idle');
+  const [visitRetry, setVisitRetry] = useState(0);
+  const visitCapture = useRef<Promise<boolean> | null>(null);
+  // biome-ignore lint/correctness/useExhaustiveDependencies: retry requests another capture.
+  useEffect(() => {
+    if (!frame.refugeReady) {
+      visitCapture.current = null;
+      setVisitSave('idle');
+      return;
+    }
+    let current = true;
+    setVisitSave('saving');
+    if (!visitCapture.current) {
+      selectCast('watch', 'hf.cast.kian.watch');
+      visitCapture.current = checkpointCast('watch');
+    }
+    void visitCapture.current
+      .then((ok) => {
+        if (current) setVisitSave(ok ? 'saved' : 'failed');
+      })
+      .catch(() => {
+        if (current) setVisitSave('failed');
+      });
+    return () => {
+      current = false;
+    };
+  }, [frame.refugeReady, visitRetry]);
   const d = frame.dawn;
   if (!d) return null;
   const last = frame.winter !== null && frame.winter.night >= frame.winter.nights;
-  // F-1592: an open visit holds the dawn, so its choice sits beside the held button. The visit only matters for
-  // keeping Kian and Ada for another game, which the lab menu does; elsewhere it is not offered.
+  // F-1592: an open visit holds the dawn until the player chooses.
   const visitOpen = frame.refugeVisit?.status === 'agreed';
-  const canAskVisit = labMode() && frame.watchers.some((w) => w.id === 'kian');
+  const canAskVisit = frame.watchers.some((w) => w.id === 'kian');
   return (
     <div className="w-page w-dawn">
       <h2 className="w-dawn-outcome">{dawnOutcome(d)}</h2>
@@ -1646,10 +1671,8 @@ export function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActi
           </p>
           <p>
             {frame.refugeReady
-              ? 'They spent today together. Ada ate and rested, and a little grain was used. To take them into another game, open the Menu and choose “Save this person for another chapter”. In this village Kian stays on the watch.'
-              : labMode()
-                ? 'Choose below before the next watch. If they care for each other today, they get ready to go. If they stay, the visit is off.'
-                : 'Choose Stay here together below to go on. Kian keeps his place on the wall.'}
+              ? 'They spent today together. Ada ate and rested, and a little grain was used. In this village Kian stays on the watch.'
+              : 'Choose below before the next watch. If they care for each other today, they get ready to go. If they stay, the visit is off.'}
           </p>
         </section>
       ) : canAskVisit ? (
@@ -1728,8 +1751,26 @@ export function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActi
             <p className="w-grain-warning" role="status">
               {last ? 'Into the thaw' : 'On to dusk'} waits until you choose for Kian and Ada.
             </p>
+            {frame.refugeReady && visitSave === 'saving' && <p role="status">Saving Kian and Ada’s visit…</p>}
+            {frame.refugeReady && visitSave === 'failed' && (
+              <p role="alert">
+                The visit could not be saved for another game.{' '}
+                <button
+                  type="button"
+                  onClick={() => {
+                    visitCapture.current = null;
+                    setVisitRetry((n) => n + 1);
+                  }}
+                >
+                  Try saving again
+                </button>
+              </p>
+            )}
+            {frame.refugeReady && visitSave === 'saved' && (
+              <p role="status">Kian and Ada’s visit is saved for another game.</p>
+            )}
             <div className="w-choice-pair">
-              {frame.refugeReady || !labMode() ? null : (
+              {frame.refugeReady ? null : (
                 <button
                   type="button"
                   className="w-secondary"
@@ -1741,6 +1782,7 @@ export function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActi
               <button
                 type="button"
                 className="w-secondary"
+                disabled={frame.refugeReady && (visitSave === 'idle' || visitSave === 'saving')}
                 onClick={() => actions.input({ k: 'refugeVisit', choice: 'stay' })}
               >
                 Stay here together

@@ -5,7 +5,6 @@ import { useEffect, useRef, useState } from 'react';
 import { FeedbackChoices, feedbackMessage } from '../../shared/FeedbackChoices.tsx';
 import { optionalFeedbackRun } from '../../shared/feedback-run.ts';
 import { gameLabs } from '../../shared/lab.tsx';
-import { labMode } from '../../shared/lab-mode.ts';
 import type { WatchActions } from './useWatch.ts';
 
 const PRIVACY = 'https://human.adamwhite.work/lab/privacy/';
@@ -142,7 +141,6 @@ export function RunSecondaries({ actions, onFeedback }: { actions: WatchActions;
         >
           Feedback
         </button>
-        {labMode() && <DownloadRun actions={actions} />}
       </div>
       {feedback ? <FeedbackScreen actions={actions} onBack={() => setFeedback(false)} /> : null}
     </>

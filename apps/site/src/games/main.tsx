@@ -1,7 +1,6 @@
 import { FRAMEWORK_VERSION } from '@adam0white/human-framework';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { labMode } from '../shared/lab-mode.ts';
 import '../home/home.css';
 import { GAMES } from '../games.ts';
 import { GameList } from '../shared/GameList.tsx';
@@ -21,24 +20,7 @@ function Collection() {
           <p className="lede">
             Choose a game. Each story puts you alongside people who make their own choices.
           </p>
-          {labMode() && (
-            <p>
-              <a
-                className="ranking-link"
-                href="https://github.com/adam0white/human-framework/blob/main/docs/lab/ranking-2026-10-20.md"
-              >
-                Why this order
-              </a>
-            </p>
-          )}
           <GameList games={GAMES} />
-          {labMode() && (
-            <p className="note">
-              All games remain playable. Framework upgrades and maintenance are in progress. HF 4.0.0 is
-              published; each game names the HF version it runs on. Lab panel rounds are allowed. Friends’
-              playtests and Show HN remain paused.
-            </p>
-          )}
         </section>
       </main>
       <footer className="foot">

@@ -15,6 +15,7 @@ import { flushSync } from 'react-dom';
 import { createRoot } from 'react-dom/client';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { expect, it, vi } from 'vitest';
+import * as castRuntime from '../../shared/cast-runtime.ts';
 import { requireValue } from '../../shared/require-value.ts';
 import { applyInput, newGame, stepMinute } from '../sim/night.ts';
 import { buildFrame } from '../sim/view.ts';
@@ -558,7 +559,7 @@ it('file entry renders the ordinary chooser with no authored worker or native sh
   }
 });
 
-it('holds On to dusk beside the open visit choice and names every empty wall at dusk (F-1592, F-1594)', () => {
+it('holds On to dusk beside the open visit choice and names every empty wall at dusk (F-1592, F-1594)', async () => {
   const base = buildFrame(state, 0, false);
   const visit = {
     version: 'watch-warren-ada/1' as const,
@@ -592,6 +593,33 @@ it('holds On to dusk beside the open visit choice and names every empty wall at 
   const toDusk = [...page.querySelectorAll('button')].find((b) => b.textContent === 'On to dusk');
   expect(toDusk?.hasAttribute('disabled')).toBe(true);
   expect(page.textContent).toContain('On to dusk waits until you choose for Kian and Ada.');
+  expect(page.textContent).toContain('Let them care for each other today');
+  // Preparing a visit must capture the departure before Stay can clear it.
+  let finishCapture: (saved: boolean) => void = () => {};
+  const capture = new Promise<boolean>((resolve) => {
+    finishCapture = resolve;
+  });
+  const select = vi.spyOn(castRuntime, 'selectCast').mockImplementation(() => {});
+  const checkpoint = vi.spyOn(castRuntime, 'checkpointCast').mockReturnValue(capture);
+  const host = document.createElement('div');
+  document.body.append(host);
+  const root = createRoot(host);
+  await act(async () =>
+    root.render(createElement(DawnPanel, { frame: { ...frame, refugeReady: true }, actions })),
+  );
+  expect(select).toHaveBeenCalledWith('watch', 'hf.cast.kian.watch');
+  expect(checkpoint).toHaveBeenCalledOnce();
+  const stay = [...host.querySelectorAll('button')].find(
+    (button) => button.textContent === 'Stay here together',
+  );
+  expect(stay?.disabled).toBe(true);
+  await act(async () => finishCapture(true));
+  expect(stay?.disabled).toBe(false);
+  expect(host.textContent).toContain('Kian and Ada’s visit is saved for another game.');
+  await act(async () => root.unmount());
+  host.remove();
+  select.mockRestore();
+  checkpoint.mockRestore();
   expect([...page.querySelectorAll('.w-choice-pair button')].map((b) => b.textContent)).toContain(
     'Stay here together',
   );
