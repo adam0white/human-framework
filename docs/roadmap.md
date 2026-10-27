@@ -18,6 +18,12 @@ The version labels above describe the original backlog classification, not a pro
 
 **Seven later one-day gates, 2026-10-26.** [Results, finite methods and provenance](lab/experiments/hf4-gates-2026-10-26.md) are separate from the eight first H3 bets dated 2026-10-25. Purpose, fiction, sleep proxy and shared-plan advantage failed; causal relations passed only the authored toy gate; depth-2 attribution passed only the finite scratch gate; portable execution passed but third-world admission failed. Preserve those outcomes before designing 4.0. Generic integration, host contracts and withheld-case evidence remain active 4.0 engineering; this is not a date-only deferral.
 
+## Every game on 4.x
+
+The [2026-10-27 owner direction](owner-directions-2026-10-18.md#2026-10-27--every-game-on-4x-one-game-at-a-time-adam-verbatim) makes 3.x dispositions temporary. The [per-game HF 4.x needs list](hf4-game-needs.md) covers all fifteen existing games plus Smoke, Child and Left Hand, with source pins, concrete contracts, owner areas and grouped work ordered by games served. Every faculty stays on; game rules stay outside `packages/human`.
+
+Targets: existing `hf401` step-cost patch **2026-11-03**; run bridge/replay recipe **2026-11-10**; existing 4.1 contract checkpoints and Child's cheaper daily clock **2026-11-17**. Proposed game port candidates **2026-11-24**, first delivery/blocker review **2026-12-01**. Portable admission still needs a passing third-world gate and a delivery date after its design checkpoint. Valley keeps the semantic-memory review **2027-01-15**; proposed all-eighteen acceptance review **2027-01-22**, conditional on the shared contracts. These are engineering targets, not permission for deferred panels or claims that games have moved. Each game maintainer owns its exact 4.x pin, replaying export, exact green CI and clean deployed receipt; the owner accepts the all-games outcome.
+
 ## Queue held by the soft stop (2026-10-27)
 
 Owner, 2026-10-27: no new Claude agents until the owner lifts the soft stop; Codex is paused. HF 4.0 is the exception and runs to its done-means. Each item below starts when the stop lifts, in this order.
