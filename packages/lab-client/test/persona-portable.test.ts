@@ -92,4 +92,15 @@ describe('portable shelf contract', () => {
     person.body.injuries.push({} as never);
     expect(() => project(person)).toThrow(/cannot continue/);
   });
+  it('refuses an active mourning period and permits its retained record after the source deadline', () => {
+    const person = actor();
+    person.bonds = {
+      courtships: [],
+      marriages: [{ spouseId: 'former-spouse', since: -100, endedAt: -10, end: 'widowed' }],
+      mourning: { forId: 'former-spouse', since: -10, until: 1 },
+    };
+    expect(() => project(person)).toThrow(/cannot continue/);
+    person.now = 1;
+    expect(() => project(person)).not.toThrow();
+  });
 });

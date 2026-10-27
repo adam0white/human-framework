@@ -160,9 +160,12 @@ function quiet(person: Data): void {
     fail();
   const family = person.family === undefined ? undefined : object(person.family),
     bonds = person.bonds === undefined ? undefined : object(person.bonds);
+  const mourning = bonds?.mourning === undefined ? undefined : object(bonds.mourning);
   if (
     family?.pregnancy ||
-    bonds?.mourning ||
+    (mourning &&
+      number(person.now, -Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER) <
+        number(mourning.until, -Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER)) ||
     (bonds && array(bonds.courtships).length) ||
     (bonds && array(bonds.marriages).some((m) => object(m).endedAt === undefined))
   )

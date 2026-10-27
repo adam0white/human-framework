@@ -72,6 +72,8 @@ jobs:
           node-version-file: .node-version
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - name: Build workspace portable dependency
+        run: npm run build -w packages/human
       - name: Runner
         run: echo "$(nproc) CPUs, Node $(node --version)"
       - run: npx vitest run --shard=${{ matrix.shard }}/6
