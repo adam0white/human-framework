@@ -474,6 +474,30 @@ Shipped in the R2 cycle: every lapse of a suggestion says why; "after X" says it
 - Showing whether he later chooses the shift himself (F-928) and naming Eid's test in the help (F-980). Target: 2026-11-30.
 - Smaller asks, each needing an export check or new content: the day planner's money line (F-904), later Hacer endings (F-898), a new thread sooner on return (F-897), asking why he dreads the clinic (F-900), Selin outside the planner (F-906), goals-panel counts and credit (F-962), and the "day 2" versus "12 mornings" line (F-968). Target: 2026-11-30.
 
+**Same-tester retest after the R2 cycle (2026-10-27; [playtest](voice-playtest-2026-10-27-retest.md))**
+
+The retest is the second iteration after R2, so the playtest goal is finished. Sixteen testers replayed 82135ac. These asks are deferred:
+
+- "Say it again" appears when the option is not in his list. The "stands until 15:45" end time is not true when sleep ends the plan earlier. Raised by Pavel, Emre and Leila. Target: 2026-11-10.
+- The clock crawl:
+  - A stale or doubled Continue holds the clock.
+  - Skip does nothing visible.
+  - Ten testers raised it.
+  - Fix: one Continue at a time. Skip says why it is off.
+  - Target: 2026-11-10.
+- Speak is missing at a decision stop (Kwame at 10:00, Mei at 12:45 and 14:19). Target: 2026-11-10.
+- Text that contradicts state, target 2026-11-15:
+  - The mosque suggestion is credited while he slept (Elena).
+  - The "listens less closely" verdict contradicts the tally (Leila).
+  - The shift pay is not shown (Emre).
+- Smaller asks, target 2026-11-30:
+  - Shorter planner sentences (Rosa).
+  - Free text (Tessa).
+  - A "play on until he next chooses" control (Aisha).
+  - Continue showing beside New game on the title page.
+  - Feedback dark in light mode on the phone.
+- Repeated companion lines, reaching Selin sooner and booking the shift from the morning were raised again. They stay under the R2 items above.
+
 **Framework seams the game exposed**
 
 - Joint activities are one-sided: a joint-activity handshake (`proposeJoint`) is the fix; co-present-only talk (W8) silenced the voices. Unscheduled.
