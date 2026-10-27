@@ -6,24 +6,17 @@ import { GAMES } from '../games.ts';
 import { GameList } from './GameList.tsx';
 
 afterEach(() => history.replaceState(null, '', '/games/'));
-function shelf(search: string) {
-  history.replaceState(null, '', `/games/${search}`);
+function shelf() {
+  history.replaceState(null, '', '/games/');
   const node = document.createElement('div');
   node.innerHTML = renderToStaticMarkup(createElement(GameList, { games: GAMES }));
   return node;
 }
-it('shows the same game information without a query flag', () => {
-  const ordinary = shelf('?lab=0');
-  const lab = shelf('?lab=1');
+it('shows public game descriptions and faculty labels', () => {
+  const ordinary = shelf();
   expect(ordinary.querySelectorAll('li')).toHaveLength(GAMES.length);
-  expect([...ordinary.querySelectorAll('.game-name')].map((n) => n.textContent)).toEqual(
-    [...lab.querySelectorAll('.game-name')].map((n) => n.textContent),
-  );
   expect(ordinary.querySelector('.game-shows')).not.toBeNull();
   expect(ordinary.textContent).not.toMatch(/Owner acceptance pending|Frozen experiment/);
-  expect(lab.querySelector('.game-shows')).not.toBeNull();
-  expect(lab.textContent).not.toContain('Owner acceptance pending');
-  expect(lab.textContent).not.toContain('Frozen experiment');
   expect(ordinary.textContent).toContain('four weeks');
   expect(ordinary.textContent).toContain('caretaker');
   expect(ordinary.textContent).toContain('landlord');

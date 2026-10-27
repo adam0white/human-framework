@@ -59,7 +59,7 @@ it('repairs first-person memory prose without changing its source', () => {
   expect(memoryText('I remember: i ate a meal.')).toBe('I remember: I ate a meal.');
 });
 
-it('opens the decision explanation from the inline control without a query flag', () => {
+it('opens the decision explanation from the inline i control', () => {
   const frame = new ColonyGame(7, createFrameworkHumanSide).frame();
   const host = document.createElement('div');
   document.body.append(host);

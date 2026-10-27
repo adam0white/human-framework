@@ -209,7 +209,7 @@ it('counts free-play days from Eid in the top bar', () => {
 });
 
 it('the menu links to the public people shelf', () => {
-  history.replaceState(null, '', '/?lab=1');
+  history.replaceState(null, '', '/');
   const markup = renderToStaticMarkup(
     createElement(MenuPanel, {
       freeText: false,

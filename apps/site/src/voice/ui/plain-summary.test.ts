@@ -7,14 +7,9 @@ import { InfoPanel } from './ShellPanels.tsx';
 
 afterEach(() => history.replaceState(null, '', '/'));
 
-it('keeps research notes behind the exact lab flag on the premise and report screens', () => {
-  for (const search of ['', '?lab=0', '?lab=true', '?lab=1']) {
-    history.replaceState(null, '', `/${search}`);
-    for (const phase of ['premise', 'report']) {
-      const info = renderToStaticMarkup(createElement(InfoPanel, { phase, onClose() {} }));
-      expect(info.includes('empirical citation')).toBe(false);
-    }
-  }
+it('keeps the premise information focused on the story', () => {
+  const info = renderToStaticMarkup(createElement(InfoPanel, { phase: 'premise', onClose() {} }));
+  expect(info).not.toContain('empirical citation');
 });
 
 it('describes repeated trust events in sentences while retaining their reason', () => {

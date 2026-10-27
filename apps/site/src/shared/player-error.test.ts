@@ -10,13 +10,8 @@ it('keeps file/import and SDK diagnostics out of ordinary failures and retains m
   expect(playerError('unsupported authored role')).toContain('current chapter');
   expect(playerError('parse error', 'load')).toContain('saved copy has been kept');
 });
-it('keeps the exact technical reason available only under lab=1', () => {
-  history.replaceState(null, '', '/?lab=1');
-  expect(playerError('Shelf unavailable. Use a local file.')).toContain('Feedback');
-});
-
-it('uses plain file errors even with lab tools visible', () => {
-  history.replaceState(null, '', '/?lab=1');
+it('uses plain file errors for rejected imports', () => {
+  history.replaceState(null, '', '/');
   expect(fileError(new Error('checksum differs'))).toBe(
     'This file could not be opened here. Keep the original file.',
   );

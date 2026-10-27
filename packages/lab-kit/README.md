@@ -193,7 +193,7 @@ Missing package versions fail the build. Missing Git evidence produces `commit: 
 | What-next line             | DL-5, DL-8, DL-9, DL-22                  | Updating instructions and reserving visible space                                |
 | Notebook and JSON          | DL-24, DL-26, DL-28                      | Resume (DL-27), replayable exports (DL-29), send client                          |
 
-The table follows the revised 2026-10-20 checklist ids. Current labels are Game menu, Feedback and Resume; Download this run is diagnostic-only (`?lab=1`).
+The table follows the revised 2026-10-20 checklist ids. Current labels are Game menu, Feedback and Resume; Download this run sits in the collapsed Debug item beside Lab privacy.
 
 The kit does not certify any game against the full checklist.
 

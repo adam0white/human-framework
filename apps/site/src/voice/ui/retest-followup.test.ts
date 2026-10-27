@@ -102,12 +102,8 @@ const why: WhyView = {
     { label: 'talk with Hacer', total: -0.01, terms: [{ label: 'grieving', value: -0.02 }] },
   ],
 };
-it('explains grief and reluctance in his words and reserves model values for exact lab=1', () => {
-  history.replaceState(null, '', '/voice/?lab=0');
-  const ordinaryView = render(createElement(Why, { why, onClose: () => {} }));
-  expect(ordinaryView.el.querySelector('details')?.open).toBe(false);
-  expect(ordinaryView.el.querySelector('details')?.textContent).toContain('0.02');
-  history.replaceState(null, '', '/voice/?lab=1');
+it('explains grief and reluctance in his words and keeps model values in Debug', () => {
+  history.replaceState(null, '', '/voice/');
   const { el } = render(createElement(Why, { why, onClose: () => {} }));
   history.replaceState(null, '', '/voice/');
   const details = el.querySelector('details');
