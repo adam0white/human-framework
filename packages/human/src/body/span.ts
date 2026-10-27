@@ -131,7 +131,7 @@ export function integrateCell(
   tolerance = 1e-12,
   scales: readonly number[] = y.map(() => 1),
   monotoneIndices: readonly number[] = [],
-  floorIndices: readonly number[] = [],
+  gate: ((values: readonly number[]) => number) | null = null,
 ) {
   let w = Math.max(1, Math.floor(widthMs));
   if (!Number.isSafeInteger(at)) throw new RangeError('safe numerical anchor required');
@@ -168,16 +168,19 @@ export function integrateCell(
         w = Math.max(1, Math.floor(w / 2));
         continue;
       }
-      // A floor component decides its clamp once, from the anchor (see body rhs), so
-      // a positive anchor integrates unclamped. End the cell at the last millisecond
-      // still above the floor; a crossing inside the first millisecond gets one
-      // 1 ms cell, the time-resolution floor, whose end value readers clip to 0.
+      // The caller decides every discrete branch of its right-hand side (floor and
+      // ceiling clamps, threshold gates) once, from the anchor, and `gate` names that
+      // branch set. End the cell at the last millisecond whose accepted values keep the
+      // anchor's branch set; a change inside the first millisecond gets one 1 ms cell,
+      // the time-resolution floor, and the next anchor decides the new branch set.
       let cut = w;
-      for (const i of floorIndices) {
-        const cell = required(cells[i]);
-        if ((y[i] ?? 0) <= 0 || evaluateCell(cell, at + w) > 0) continue;
-        const crossing = firstMs(at + 1, at + w, (t) => evaluateCell(cell, t) <= 0);
-        cut = Math.min(cut, Math.max(1, crossing - 1 - at));
+      if (gate) {
+        const g0 = gate(y),
+          valuesAt = (t: number) => cells.map((c) => evaluateCell(c, t));
+        if (gate(valuesAt(at + w)) !== g0) {
+          const crossing = firstMs(at + 1, at + w, (t) => gate(valuesAt(t)) !== g0);
+          cut = Math.max(1, crossing - 1 - at);
+        }
       }
       if (cut < w) {
         w = cut;

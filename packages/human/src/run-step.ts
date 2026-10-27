@@ -257,8 +257,11 @@ export function step(run: T.Run, input: T.DeepReadonly<T.StepBatch>): T.Result<T
           allocation.scope.kind === 'person' ? allocation.scope.person : record.spec.id,
           allocation.reference,
         );
+      // What a span delivers is caused by reaching `to`, not by where the step call
+      // began, so its cause names the reached time and stays the same under any chunking.
+      const reachedCauses = (person: T.PersonId) => [hashCanonical('hf-run4/reached-span', person, to)];
       for (const delivery of [...physicalResult.deliveries, ...mentalResult.deliveries]) {
-        const context = frame.context(delivery.person, 1, causes[delivery.person] ?? []);
+        const context = frame.context(delivery.person, 1, reachedCauses(delivery.person));
         for (const event of delivery.events) frame.emit(delivery.person, event, context);
         for (const effect of [
           ...delivery.effects.terms,
@@ -271,19 +274,19 @@ export function step(run: T.Run, input: T.DeepReadonly<T.StepBatch>): T.Result<T
         frame.upbringing(
           receipt.person,
           receipt.receipts,
-          frame.context(receipt.person, 3, causes[receipt.person] ?? []),
+          frame.context(receipt.person, 3, reachedCauses(receipt.person)),
         );
       for (const receipt of mentalResult.willReceipts)
         frame.willReceipts(
           receipt.person,
           receipt.output,
-          frame.context(receipt.person, 1, causes[receipt.person] ?? []),
+          frame.context(receipt.person, 1, reachedCauses(receipt.person)),
         );
       for (const receipt of physicalResult.lifeReceipts)
         frame.lifeReceipts(
           receipt.person,
           receipt.receipts,
-          frame.context(receipt.person, 1, causes[receipt.person] ?? []),
+          frame.context(receipt.person, 1, reachedCauses(receipt.person)),
         );
       for (const boundary of physical.boundaries)
         if (boundary.kind === 'hazard' && boundary.at === to)

@@ -366,10 +366,54 @@ const cellPaths = new Memo<{
   fields: readonly (readonly T.ScalarTrajectory['segments'][number][] | null)[];
   readout: readonly (readonly T.ScalarTrajectory['segments'][number][])[];
 }>(256);
-/** Components whose only state dependence is the floor clamp at 0. */
-const floorComponents = new Set<T.BodyComponent>(['satiety', 'hydration']);
-const floorIndices = (keys: readonly T.DeepReadonly<T.BodyFieldKey>[]) =>
-  keys.flatMap((k, i) => (floorComponents.has(k.component) ? [i] : []));
+/**
+ * Components whose bound clamp the right-hand side decides at the cell anchor. Satiety
+ * and hydration fall at a state-independent rate; health moves at a rate that does not
+ * depend on health. Clamping them per stage would put a derivative jump inside one
+ * millisecond that no integer-ms cell can resolve, so integrateCell ends the cell where
+ * the branch set (`branchGate`) changes instead.
+ */
+const anchorClamped = new Set<T.BodyComponent>(['satiety', 'hydration', 'health']);
+/** The discrete branches of `rhs` that the anchor decides: bound clamps, fed, acute. */
+function branches(satiety: number, hydration: number, health: number, acute: number): number {
+  return (
+    (satiety <= 0 ? 1 : 0) |
+    (hydration <= 0 ? 2 : 0) |
+    (health <= 0 ? 4 : 0) |
+    (health >= 1 ? 8 : 0) |
+    (satiety > 0.3 && hydration > 0.3 ? 16 : 0) |
+    (acute < 0.3 ? 32 : 0)
+  );
+}
+const branchGate = (keys: readonly T.DeepReadonly<T.BodyFieldKey>[], base: T.DeepReadonly<T.BodyState>) => {
+  const at = (c: T.BodyComponent) => keys.findIndex((k) => k.component === c && k.recordId === null);
+  const satiety = at('satiety'),
+    hydration = at('hydration'),
+    health = at('health');
+  const acute = keys.flatMap((k, i) =>
+    k.component === 'illness-severity' && base.illnesses.some((x) => x.id === k.recordId && !x.chronic)
+      ? [i]
+      : [],
+  );
+  const read = (v: readonly number[]) =>
+    branches(
+      v[satiety] ?? 0,
+      v[hydration] ?? 0,
+      v[health] ?? 0,
+      acute.reduce((s, i) => s + clip(v[i] ?? 0), 0),
+    );
+  // A bound clamp the anchor already applies only zeroes motion past the bound, so
+  // leaving the bound changes no branch; only arriving at one does. Masking the
+  // anchor's held bounds keeps a slow departure from cutting millisecond cells.
+  const held = branches(
+    base.satiety,
+    base.hydration,
+    base.health,
+    base.illnesses.filter((i) => !i.chronic).reduce((s, i) => s + i.severity, 0),
+  );
+  const mask = ~(held & 15);
+  return (v: readonly number[]) => read(v) & mask;
+};
 function exactState(
   b: T.BodyState,
   base: T.DeepReadonly<T.BodyVector>,
@@ -454,7 +498,9 @@ function rhs(
     const starve = clip((0.1 - b.satiety) / 0.1),
       dry = clip((0.1 - b.hydration) / 0.1),
       exhausted = Math.max(smooth(0.8, 1, b.exertion), smooth(16, 32, b.sleepDebtHours));
-    const fed = b.satiety > 0.3 && b.hydration > 0.3,
+    // `fed` and the acute gate are branches the anchor decides (see `branches`).
+    const fed = base.satiety > 0.3 && base.hydration > 0.3,
+      acuteGate = base.illnesses.filter((i) => !i.chronic).reduce((s, i) => s + i.severity, 0) < 0.3,
       underfed = smooth(P.underfedFrom, P.underfedFull, Math.min(b.satiety, b.hydration)),
       stress = Math.max(starve, dry, exhausted);
     const target = clip(effort * (1 - 0.5 * b.fitness) * P.exertionGain);
@@ -511,7 +557,7 @@ function rhs(
                 ((b.asleep ? P.depletionSleepHalfLife : P.depletionRestHalfLife) / recovery);
         case 'health':
           return (
-            ((fed && acute < 0.3 ? P.healthRecoveryPerDay * recovery * (b.asleep ? 1.5 : 1) : 0) -
+            ((fed && acuteGate ? P.healthRecoveryPerDay * recovery * (b.asleep ? 1.5 : 1) : 0) -
               P.starvationPerDay * starve -
               P.dehydrationPerDay * dry -
               P.illnessHealthPerDay * acute -
@@ -580,14 +626,14 @@ function rhs(
     };
     const d = keys.map((k, j) => {
       let v = analyticComponents.has(k.component) ? 0 : derivative(k);
-      // Satiety and hydration fall at a state-independent rate, so their floor clamp
-      // is decided at the cell anchor and integrateCell ends the cell at the crossing.
-      // A per-stage clamp would put a derivative jump inside one millisecond that no
-      // integer-ms cell can resolve.
-      const raw = floorComponents.has(k.component)
+      // Anchor-clamped components take their bound clamp from the anchor (see
+      // `anchorClamped`); integrateCell ends the cell at the crossing.
+      const raw = anchorClamped.has(k.component)
         ? k.component === 'satiety'
           ? base.satiety
-          : base.hydration
+          : k.component === 'hydration'
+            ? base.hydration
+            : base.health
         : (y[j] ?? 0);
       const unbounded = [
         'illness-trend-per-day',
@@ -1139,7 +1185,7 @@ const advance: T.BodyOwner['advance'] = (state, ctx) => {
           )
           .concat(1),
         [f.values.length],
-        floorIndices(f.keys),
+        branchGate(f.keys, base),
       );
       calls += result.calls;
       if (calls > 8192 || ++segments > 1024)
@@ -1769,7 +1815,7 @@ function forecast(
           1e-12,
           undefined,
           [],
-          floorIndices(flat.keys),
+          branchGate(flat.keys, base),
         );
         calls += r.calls;
         if (calls > 8192) return failure('forecast numerical work exhausted; shorten the declared spans');

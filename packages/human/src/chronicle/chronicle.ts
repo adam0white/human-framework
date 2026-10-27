@@ -603,10 +603,13 @@ export const chronicleOwner: ChronicleOwner = {
       else if (c.status === 'broken') pushNote(o.broken, noteOf(c));
       else if (c.status === 'released') pushNote(o.released, noteOf(c));
     }
-    if (input.kind === 'decision' && !input.decision.review) {
-      o.decisions++;
+    if (input.kind === 'decision') {
+      // A quiet review books only the refusals it answered (3.x noteAnswer) and is not a decision.
+      const review = input.decision.review === true;
+      if (!review) o.decisions++;
       for (const r of input.decision.suggestions ??
         (input.decision.suggestion ? [input.decision.suggestion] : [])) {
+        if (review && r.verdict !== 'refused') continue;
         const t = o.verdicts.find(
           (t) => t.voiceId === r.voiceId && t.verdict === r.verdict && t.reason === r.reason,
         );

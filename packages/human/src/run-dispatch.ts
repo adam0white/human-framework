@@ -1023,8 +1023,14 @@ export class Frame {
       data: { kind: 'decision', decision: out.decision },
       narration: [],
     };
+    // A review that goes on with the running activity is a review, not a fresh decision (3.x `reviewed`).
+    const running = this.actor(person).activity;
     const decision: T.DecisionRecord = {
       ...out.decision,
+      ...(running &&
+      (out.decision.chosenAffordanceId === null || out.decision.chosenAffordanceId === running.offer.id)
+        ? { review: true }
+        : {}),
       intention:
         rendererOwner.render(
           provisional,
@@ -1081,12 +1087,13 @@ export class Frame {
     this.output(person, 'promptings', prompting, context);
     for (const receipt of prompting.affectReceipts) this.affect(person, receipt, context);
     const chosen = offers.find((offer) => offer.id === decision.chosenAffordanceId);
-    if (!chosen) return;
     const active = this.actor(person).activity;
     if (active) {
-      if (active.offer.id !== chosen.id) this.interrupt(person, active.id, 'reconsidered', context);
+      if (chosen && active.offer.id !== chosen.id) this.interrupt(person, active.id, 'reconsidered', context);
+      else this.armReview(person, active, out.nextBoundary, decision.id);
       return;
     }
+    if (!chosen) return;
     const endsAt = context.at + chosen.durationMs;
     if (!Number.isSafeInteger(endsAt)) throw new RangeError('Activity exceeds exact clock range');
     const ordinal = this.state.counters.nextActivity++;
@@ -1107,11 +1114,7 @@ export class Frame {
       out.decision.suggestion?.verdict === 'commanded'
         ? { suggestion: out.decision.suggestion }
         : {}),
-      reviewAt: Math.min(
-        endsAt,
-        out.nextBoundary ?? endsAt,
-        context.at + context.effective.builtins.PERSON_DEFAULTS.reviewInterval * 60000,
-      ),
+      reviewAt: this.nextReviewAt(chosen, endsAt, out.nextBoundary),
       ...(chosen.promise ? { commitmentId: chosen.promise.id } : {}),
       ...(chosen.jointId === undefined ? {} : { jointId: chosen.jointId }),
       ...(out.resolutions.some(
@@ -1122,6 +1125,45 @@ export class Frame {
     };
     this.install(person, { activity });
     this.issueAction(person, 'start', context);
+  }
+  /**
+   * When a running activity is next reviewed (3.x `reviewed`): after the review interval (the sleep
+   * interval while asleep), earlier if the will names a duty or wake boundary, never past the end.
+   */
+  nextReviewAt(offer: T.DeepReadonly<T.Offer>, endsAt: T.Time, boundary: T.Time | null): T.Time {
+    const d = this.record.parameters.effective.builtins.PERSON_DEFAULTS;
+    const interval = offer.demands.mode === 'sleep' ? d.sleepReviewInterval : d.reviewInterval;
+    return Math.max(
+      this.state.at + 1,
+      Math.min(endsAt, boundary ?? endsAt, this.state.at + interval * 60000),
+    );
+  }
+  /** A decision to go on with a started activity re-arms its review, as 3.x `reviewed` did. */
+  armReview(
+    person: T.PersonId,
+    activity: T.DeepReadonly<T.ActorActivity>,
+    boundary: T.Time | null,
+    cause: T.Id,
+  ) {
+    const own = (event: T.DeepReadonly<T.ScheduledEvent>, kind: 'activity-finish' | 'activity-review') =>
+      event.data.kind === kind && event.data.activityId === activity.id;
+    if (activity.interrupt || !this.state.queue.some((event) => own(event, 'activity-finish'))) return;
+    const reviewAt = this.nextReviewAt(activity.offer, activity.endsAt, boundary);
+    this.install(person, { activity: { ...(cloneData(activity) as T.ActorActivity), reviewAt } });
+    this.stage.current.queue = this.state.queue.filter((event) => !own(event, 'activity-review'));
+    if (reviewAt < activity.endsAt)
+      this.stage.current.queue = [
+        ...this.state.queue,
+        {
+          id: hashCanonical('hf-run4/activity-review', activity.id, reviewAt),
+          at: reviewAt,
+          phase: 4,
+          person,
+          causalId: cause,
+          localOrdinal: 0,
+          data: { kind: 'activity-review', person, activityId: activity.id, reason: 'scheduled-review' },
+        },
+      ];
   }
   scheduleDecision(person: T.PersonId, cause: T.Id): void {
     const at = this.state.at + 1;
