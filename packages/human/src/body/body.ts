@@ -1,82 +1,46 @@
-/**
- * SCOPE: a compact physiological state for game time scales: energy (satiety), hydration, sleep, short-term
- * exertion, trained fitness, injuries, illnesses, pain and a health reserve. Sleep follows the two-process
- * model of sleep regulation (Borbély): a homeostatic pressure (Process S) that rises exponentially toward a
- * ceiling while awake and decays exponentially during sleep, read against a circadian alertness rhythm
- * (Process C) with a night trough and a mild post-lunch dip. Chronic sleep debt accumulates when wake
- * extends past the normal saturation point, is repaid slowly by extra sleep, impairs objective capacity
- * and is under-perceived (cumulative-cost-of-wakefulness pattern, Van Dongen et al. 2003). Satiety and
- * hydration fall linearly with metabolic rate and effort. Fitness relaxes exponentially toward a training
- * target or a detraining floor. All rates are engineering defaults; none is a calibrated physiological
- * prediction. Not modelled: temperature, specific nutrients, endocrine and immune detail,
- * stress physiology, and masking of hunger or pain by emotion or focus (that belongs to other faculties).
- * `advanceBody` integrates in deterministic sub-steps of at most 15 minutes, using the exact solution
- * within each sub-step where the dynamics are linear, so one long step matches many short ones closely.
- *
- * SCOPE (fasting perception, N2b): while the host reports an open fast (`BodyPerceptionContext`), perceived
- * hunger is damped and the true body, capacity and health are untouched. Empirical shape: in a controlled
- * longitudinal study of Ramadan (Fleischmann et al. 2026, Frontiers in Nutrition, doi:10.3389/fnut.2026.1859780;
- * 287 fasting, 76 controls) the share reporting moderate-to-strong daily peak hunger fell from 60.7% at
- * baseline to 46.7% by day 7 and was 42.0% at day 24 (whether the day-7 to day-24 change was significant was
- * not confirmed in review, 2026-10-03), while peak *thirst* rose (48% to 57.5%). So hunger is damped and thirst is not (`fastingThirstDamp` = 0). The ramp over the first days
- * (part of the damping at once, the rest with a ~2.5-day time constant) is an assumption consistent with,
- * not shown by, those two time points; the damping magnitude is an engineering default, not a fitted rating
- * drop. Severe true deprivation breaks through the damping. Does not claim: a mechanism (ghrelin, routine,
- * meaning), sex differences, or post-fast persistence.
- *
- * SCOPE (illness and behaviour, N12): acute illness recovery (the immune drift of `trendPerDay`) is slowed
- * by being underfed or dehydrated in the ordinary range (satiety/hydration below 0.3, e.g. the afternoon
- * of a fast), by heavy effort and by sleep debt, and sped by rest; being underfed also adds slow worsening.
- * Shape: rest, food and sleep support recovery and their lack slows it (common clinical advice; qualitative
- * only). Chronic conditions (`Illness.chronic`, e.g. hypertension) have no drift: severity relaxes toward a
- * baseline raised by sleep debt and by host-driven exposures (`expose`), and costs health slowly, so a
- * moderate chronic condition is a slope over months, not a crisis in a week. Exposures keep a recent load
- * (days) and a cumulative dose (years) whose illness hazard the host reads with `exposureChance`.
- * Contagion is a host-called helper: transmission chance rises with contact minutes and source severity
- * (1 - e^{-k·severity·minutes}). Does not claim: calibrated recovery times, blood-pressure values, dose-
- * response curves for any real exposure, or epidemiological transmission rates.
- *
- * SCOPE (pinned rates, integration 2026-10-03): `BodyState.rates` lets a host replace the four depletion
- * rates for one body, so a scenario tuned on a different time scale (a scenario whose whole life spans two days) keeps the
- * cadence it was built on after the defaults were recalibrated (see docs/findings.md). It is a scenario
- * knob, not a physiological trait and not a life-course effect (`LifeModifiers.metabolism` is that), and
- * `readBody` thresholds ignore it.
- */
+/** SCOPE: always-present body owner. Continuous engineering laws replace the 3.x
+ * ordered 15-minute recurrence. Parameters are run-local; no clinical calibration.
+ * See W1 METHOD-INTERFACE.md for equation provenance and numerical limits. */
+import { dcos, dexp, dlog } from '../core/libm.ts';
+import { modifiersForAge } from '../lifecourse/lifecourse.ts';
+import type * as T from '../run-schema.ts';
+import { bladderMotivation } from './bladder.ts';
+import { dozeIntensity } from './doze.ts';
+import { downedAllows, readCapacities } from './injury.ts';
 import {
-  chance,
-  clamp,
-  clamp01,
-  dcos,
-  decay,
-  dexp,
-  dlog,
-  hasNumbers,
-  isNum,
-  isObj,
-  minuteOfDay,
-  smoothstep,
-} from '../core/index.ts';
-import type {
-  BodyLoad,
-  BodyRates,
-  BodyReadout,
-  BodyState,
-  Exposure,
-  Illness,
-  Injury,
-  LifeModifiers,
-  Minute,
-  Person,
-  PersonSpec,
-  Unit,
-} from '../types.ts';
-import { MINUTES_PER_DAY, MINUTES_PER_YEAR } from '../types.ts';
-import { advanceBladder, intakeBladder, sanitizeBladder } from './bladder.ts';
-import { sanitizeDoze } from './doze.ts';
-import { bleedStep, INJURY_DEFAULTS } from './injury.ts';
+  ageYearsAt,
+  arm,
+  clip,
+  clock,
+  copy,
+  DAY,
+  draw,
+  evaluateCell,
+  firstMs,
+  freezeData,
+  hazardIssues,
+  initialWidth,
+  integrateCell,
+  issue,
+  LN2,
+  maximumCell,
+  minutes,
+  newHazard,
+  numericalIssues,
+  output,
+  rebaseHazard,
+  required,
+  sampledPath,
+  scalarAt,
+  smooth,
+  thresholdTimes,
+  validateNumbers,
+  YEAR,
+} from './span.ts';
 
-export const BODY_DEFAULTS = {
-  maxSubStep: 15,
+const MINUTES_PER_DAY = 1440,
+  MINUTES_PER_YEAR = 365.25 * 1440;
+export const BODY_DEFAULTS = freezeData({
   /**
    * Satiety lost per minute awake at rest (adult): from 0.8 to hunger threshold 0.3 in ~10 h. Recalibrated
    * 2026-10-03 (was 0.0015, ~5.5 h): with the old pace a dawn-to-dusk fast from a full stomach reached the
@@ -155,7 +119,7 @@ export const BODY_DEFAULTS = {
   /** Time constant (days) of the remaining adaptation (~94% by day 7). */
   fastingAdaptDays: 2.5,
   /** Damping fades out as true satiety falls from `fastingBreakthrough[1]` to `[0]`. */
-  fastingBreakthrough: [0.03, 0.12] as const,
+  fastingBreakthrough: [0.03, 0.12],
   // --- illness and behaviour (N12) ---
   /** Satiety/hydration below which an acute illness feels the lack of fuel (graded down to underfedFull). */
   underfedFrom: 0.3,
@@ -172,7 +136,7 @@ export const BODY_DEFAULTS = {
   heavyEffort: 0.4,
   heavyEffortDriftLoss: 0.4,
   /** Sleep debt (hours) range over which up to `debtDriftLoss` of drift is lost. */
-  debtDriftRange: [4, 16] as const,
+  debtDriftRange: [4, 16],
   debtDriftLoss: 0.3,
   // --- chronic conditions and exposures ---
   /** Half-life (min) of a chronic condition's relaxation toward its target. */
@@ -196,780 +160,1566 @@ export const BODY_DEFAULTS = {
   transmissionPerMinute: 0.004,
   contractedSeverity: 0.1,
   contractedTrendPerDay: 0.15,
-};
+});
 
-/** What the host knows about the person's practice that shapes interoception. */
-export interface BodyPerceptionContext {
-  /** An open fast (an abstention covering eating) is in force now. */
-  fasting: boolean;
-  /** Consecutive fasting days completed before today (0 on the first day; fractions allowed). */
-  fastingDays: number;
+export function circadianAlertness(at: number, peakMs: number): number {
+  const m = (((at % DAY) + DAY) % DAY) / 60000,
+    peak = peakMs / 60000;
+  const d = ((((m - (peak - 120) + 720) % 1440) + 1440) % 1440) - 720;
+  return clip(0.5 + 0.5 * dcos((2 * Math.PI * (m - peak)) / 1440) - 0.12 * dexp((-d * d) / (2 * 60 * 60)));
 }
-
-export type BodyParams = typeof BODY_DEFAULTS;
-
-const RATE_KEYS = [
-  'satietyPerMinute',
-  'satietyEffortPerMinute',
-  'hydrationPerMinute',
-  'hydrationEffortPerMinute',
-] as const satisfies readonly (keyof BodyRates)[];
-
-/** Keep only finite, non-negative pinned rates; undefined when nothing usable remains (used by `createBody` and `restore`). @internal */
-export function sanitizeRates(input: unknown): BodyRates | undefined {
-  if (typeof input !== 'object' || input === null) return undefined;
-  const src = input as Record<string, unknown>;
-  const rates: BodyRates = {};
-  for (const k of RATE_KEYS) {
-    const v = src[k];
-    if (isNum(v) && v >= 0) rates[k] = v;
-  }
-  return Object.keys(rates).length > 0 ? rates : undefined;
-}
-
-/**
- * Keep only well-formed exposures: finite numbers, `recent` clamped to 0..1, `cumulative` non-negative.
- * Undefined when nothing usable remains (used by `createBody` and `restore`).
- * @internal
- */
-export function sanitizeExposures(input: unknown, now: Minute): Record<string, Exposure> | undefined {
-  if (!isObj(input)) return undefined;
-  const out: Record<string, Exposure> = {};
-  let n = 0;
-  for (const [k, raw] of Object.entries(input as Record<string, unknown>)) {
-    if (n >= BODY_DEFAULTS.maxExposures) break;
-    if (typeof raw !== 'object' || raw === null) continue;
-    const e = raw as Record<string, unknown>;
-    const recent = isNum(e.recent) ? clamp01(e.recent) : undefined;
-    const cumulative = isNum(e.cumulative) ? Math.max(0, e.cumulative) : undefined;
-    if (recent === undefined || cumulative === undefined) continue;
-    const lastAt = isNum(e.lastAt) ? e.lastAt : now;
-    out[k] = { recent, cumulative, lastAt };
-    n++;
-  }
-  return n > 0 ? out : undefined;
-}
-
-/**
- * Restore-time check of the body's optional fields, in place: pinned rates and exposures (1.2.0), illnesses' chronic
- * fields, and the last sleep and downing spans (1.7.0). Malformed ones are dropped, never filled; injuries and
- * downing are checked by `sanitizeInjuries`. A save the engine wrote is unchanged. @internal
- */
-export function sanitizeBody(b: BodyState, now: Minute): void {
-  if (b.doze !== undefined) {
-    const d = sanitizeDoze(b.doze, b, now);
-    if (d) b.doze = d;
-    else delete b.doze;
-  }
-  if (b.bladder !== undefined) {
-    const bladder = sanitizeBladder(b.bladder);
-    if (bladder) b.bladder = bladder;
-    else delete b.bladder;
-  }
-  if (b.rates !== undefined) {
-    const rates = sanitizeRates(b.rates);
-    if (rates) b.rates = rates;
-    else delete b.rates;
-  }
-  if (b.exposures !== undefined) {
-    const ex = sanitizeExposures(b.exposures, now);
-    if (ex) b.exposures = ex;
-    else delete b.exposures;
-  }
-  sanitizeIllnesses(b);
-  const span = (x: unknown) => isObj(x) && hasNumbers(x, 'from', 'to');
-  if (b.lastSleep !== undefined && !span(b.lastSleep)) delete b.lastSleep;
-  if (b.lastDowned !== undefined && !span(b.lastDowned)) delete b.lastDowned;
-  if (b.fullness !== undefined && b.fullness !== true) delete b.fullness;
-  if (b.depletion !== undefined)
-    b.depletion = typeof b.depletion === 'number' && Number.isFinite(b.depletion) ? clamp01(b.depletion) : 0;
-}
-
-/**
- * Turn on fullness (2.8.0): consumption for a need already past its comfort level carries a small cost in choice
- * (see the fullness SCOPE in `cognition/`). Idempotent; off by default so existing hosts replay exactly.
- */
-export function enableFullness(p: Person): void {
-  p.body.fullness = true;
-}
-
-/** Turn on the fatigue store (2.6.0): accumulated exertion that recovers with rest and sleep. Idempotent. */
-export function enableFatigueStore(p: Person): void {
-  if (p.body.depletion === undefined) p.body.depletion = 0;
-}
-
-/**
- * Repair the optional chronic fields of saved illnesses in place: a non-finite or out-of-range `baseline` is
- * clamped (non-finite falls back to the severity), non-string `aggravatedBy` entries are dropped, and an
- * illness whose core numbers are not finite is removed. Used by `restore`.
- * @internal
- */
-export function sanitizeIllnesses(b: BodyState): void {
-  if (!Array.isArray(b.illnesses)) {
-    b.illnesses = [];
-    return;
-  }
-  b.illnesses = b.illnesses.filter(
-    (i) =>
-      typeof i === 'object' &&
-      i !== null &&
-      typeof i.severity === 'number' &&
-      Number.isFinite(i.severity) &&
-      typeof i.trendPerDay === 'number' &&
-      Number.isFinite(i.trendPerDay),
-  );
-  for (const i of b.illnesses) {
-    i.severity = clamp01(i.severity);
-    if (i.baseline !== undefined) i.baseline = isNum(i.baseline) ? clamp01(i.baseline) : i.severity;
-    if (i.aggravatedBy !== undefined) {
-      if (!Array.isArray(i.aggravatedBy)) delete i.aggravatedBy;
-      else i.aggravatedBy = i.aggravatedBy.filter((k): k is string => typeof k === 'string');
-    }
-  }
-}
-
-const LN2 = Math.LN2;
-
-export function createBody(init: PersonSpec['body'] | undefined, now: Minute): BodyState {
-  const b: BodyState = {
-    satiety: 0.8,
-    hydration: 0.85,
-    sleepPressure: 0.2,
-    exertion: 0,
-    circadianPeak: 960,
-    pain: 0,
-    health: 1,
-    fitness: 0.5,
-    sleepDebt: 0,
-    alive: true,
-    asleep: false,
-    since: now,
-    ...init,
-    injuries: [],
-    illnesses: [],
-    nextId: 0,
-  };
-  delete b.doze;
-  delete b.bladder;
-  b.satiety = clamp01(b.satiety);
-  b.hydration = clamp01(b.hydration);
-  b.sleepPressure = clamp01(b.sleepPressure);
-  b.exertion = clamp01(b.exertion);
-  b.pain = clamp01(b.pain);
-  b.health = clamp01(b.health);
-  b.fitness = clamp01(b.fitness);
-  b.sleepDebt = clamp(b.sleepDebt, 0, BODY_DEFAULTS.maxSleepDebt);
-  b.circadianPeak = minuteOfDay(b.circadianPeak);
-  if (init?.rates !== undefined) {
-    const rates = sanitizeRates(init.rates);
-    if (rates) b.rates = rates;
-    else delete b.rates;
-  }
-  if (init?.exposures) {
-    const ex = sanitizeExposures(init.exposures, now);
-    if (ex) b.exposures = ex;
-  }
-  return b;
-}
-
-/** Pain implied by current injuries, illnesses and deprivation (before relaxation and relief). */
-function sourcePain(b: BodyState): number {
-  let none = 1;
-  for (const inj of b.injuries) none *= 1 - inj.severity;
-  for (const ill of b.illnesses)
-    none *= 1 - (ill.chronic ? BODY_DEFAULTS.chronicPainWeight : 0.6) * ill.severity;
-  none *= 1 - 0.4 * smoothstep(0.15, 0, b.satiety);
-  none *= 1 - 0.5 * smoothstep(0.15, 0, b.hydration);
-  return clamp01(1 - none);
-}
-
-/** Minutes within [0,h] that awake S(t) = 1 - (1 - s0) e^{-t/tau} spends above th. */
-function awakeAbove(s0: number, h: number, tau: number, th: number): number {
-  if (s0 >= th) return h;
-  const tc = tau * dlog((1 - s0) / (1 - th));
-  return Math.max(0, h - tc);
-}
-
-/** Minutes within [0,h] that asleep S(t) = s0 e^{-t/tau} spends below th. */
-function asleepBelow(s0: number, h: number, tau: number, th: number): number {
-  if (s0 <= th) return h;
-  const tc = tau * dlog(s0 / th);
-  return Math.max(0, h - tc);
-}
-
-function subStep(b: BodyState, h: number, load: BodyLoad, mods: LifeModifiers, P: BodyParams): void {
-  const effort = clamp01(load.effort);
-  const asleep = b.asleep;
-  const meta = (asleep ? P.sleepMetabolism : 1) * mods.metabolism;
-  const effortUsed = asleep ? 0 : effort;
-
-  // Rates evaluated at the start of the sub-step for nonlinear couplings.
-  const starving = clamp01((0.1 - b.satiety) / 0.1);
-  const dehydrated = clamp01((0.1 - b.hydration) / 0.1);
-  const exhausted = Math.max(smoothstep(0.8, 1, b.exertion), smoothstep(16, 32, b.sleepDebt));
-  const fed = b.satiety > 0.3 && b.hydration > 0.3;
-  const underfed = smoothstep(P.underfedFrom, P.underfedFull, Math.min(b.satiety, b.hydration));
-  const debtSlow = smoothstep(P.debtDriftRange[0], P.debtDriftRange[1], b.sleepDebt);
-  const debt0 = b.sleepDebt;
-
-  // Energy and water: linear, exact. A host may pin this body's rates (`BodyState.rates`).
-  const R = b.rates;
-  const satietyRate = R?.satietyPerMinute ?? P.satietyPerMinute;
-  const satietyEffortRate = R?.satietyEffortPerMinute ?? P.satietyEffortPerMinute;
-  const hydrationRate = R?.hydrationPerMinute ?? P.hydrationPerMinute;
-  const hydrationEffortRate = R?.hydrationEffortPerMinute ?? P.hydrationEffortPerMinute;
-  b.satiety = clamp01(b.satiety - h * meta * (satietyRate + satietyEffortRate * effortUsed));
-  b.hydration = clamp01(b.hydration - h * meta * (hydrationRate + hydrationEffortRate * effortUsed));
-
-  // Process S and sleep debt: exact exponential solutions.
-  const s0 = b.sleepPressure;
-  if (asleep) {
-    const below = asleepBelow(s0, h, P.sleepTau, P.repayThreshold);
-    b.sleepDebt = Math.max(0, b.sleepDebt - (P.debtRepayPerHour * below) / 60);
-    b.sleepPressure = clamp01(s0 * dexp(-h / P.sleepTau));
-  } else {
-    const above = awakeAbove(s0, h, P.wakeTau, P.debtThreshold);
-    b.sleepDebt = Math.min(P.maxSleepDebt, b.sleepDebt + (P.debtPerHourAbove * above) / 60);
-    b.sleepPressure = clamp01(1 - (1 - s0) * dexp(-h / P.wakeTau));
-  }
-
-  // Exertion relaxes toward an effort-dependent target.
-  const target = clamp01(effortUsed * (1 - 0.5 * b.fitness) * P.exertionGain);
-  const recovery = Math.max(0.05, mods.recovery);
-  const hl =
-    target > b.exertion
-      ? P.exertionRiseHalfLife
-      : (asleep ? P.exertionRecoverHalfLifeAsleep : P.exertionRecoverHalfLife) / recovery;
-  b.exertion = clamp01(decay(b.exertion, h, hl, target));
-
-  // Fatigue store (2.6.0, opt-in): fills with sustained effort above the floor, empties with rest and sleep.
-  if (b.depletion !== undefined) {
-    const d = clamp01(Number.isFinite(b.depletion) ? b.depletion : 0);
-    if (effortUsed > P.depletionFloor) {
-      const rate = (P.depletionPerHour * (effortUsed - P.depletionFloor)) / (1 - P.depletionFloor);
-      b.depletion = clamp01(d + (rate * (1 - 0.5 * b.fitness) * (1 - d) * h) / 60);
-    } else {
-      const half = (asleep ? P.depletionSleepHalfLife : P.depletionRestHalfLife) / recovery;
-      b.depletion = clamp01(decay(d, h, half, 0));
-    }
-  }
-
-  // Fitness: dF/dt = -kd (F - floor) + kt (max - F), exact for constant load.
-  const maxFit = clamp01(mods.maxFitness);
-  const kd = LN2 / P.detrainHalfLife;
-  const kt =
-    effortUsed > P.trainingEffort ? (kd * P.trainingRatio * (effortUsed - P.trainingEffort)) / 0.6 : 0;
-  const floor = Math.min(P.fitnessFloor, maxFit);
-  const fStar = (kd * floor + kt * maxFit) / (kd + kt);
-  b.fitness = clamp(fStar + (b.fitness - fStar) * dexp(-(kd + kt) * h), 0, maxFit);
-
-  // Injuries heal; faster asleep and fed, slower when exhausted.
-  const healFactor = recovery * (asleep ? 1.5 : 1) * (fed ? 1 : 0.5) * (1 - 0.5 * exhausted);
-  for (const inj of b.injuries) {
-    const tended = inj.tendedAt !== undefined ? INJURY_DEFAULTS.tendedHeal : 1;
-    inj.severity = clamp01(inj.severity - (inj.healRatePerDay * healFactor * tended * h) / MINUTES_PER_DAY);
-  }
-  // Bleeding (1.6.0, host-set): exact drain over the sub-step, measured before healed injuries are dropped.
-  const bled = bleedStep(b, h);
-  b.injuries = b.injuries.filter((inj) => inj.severity > 0.001);
-
-  // Illnesses: severity follows the trend; the trend drifts toward recovery (immune response), and
-  // deprivation or exhaustion both slow that drift and add worsening.
-  // Behaviour couples in: rest speeds the drift; being underfed, heavy effort and sleep debt slow it.
-  const stress = Math.max(starving, dehydrated, exhausted);
-  const resting = asleep || effortUsed <= P.restEffort;
-  const behaviour =
-    (resting && !asleep ? 1 + P.restDriftBonus : 1) *
-    (1 - P.underfedDriftLoss * underfed) *
-    (1 - P.heavyEffortDriftLoss * clamp01((effortUsed - P.heavyEffort) / (1 - P.heavyEffort))) *
-    (1 - P.debtDriftLoss * debtSlow);
-  const debtGain = P.chronicDebtGain * smoothstep(0, 16, debt0);
-  for (const ill of b.illnesses) {
-    if (ill.chronic) {
-      // No immune drift: relax toward a baseline raised by sleep debt and aggravating exposures, plus any
-      // slow host-set trend (e.g. ageing).
-      let target = (ill.baseline ?? ill.severity) + debtGain;
-      for (const k of ill.aggravatedBy ?? [])
-        target += P.chronicExposureGain * (b.exposures?.[k]?.recent ?? 0);
-      const relaxed = decay(ill.severity, h, P.chronicHalfLife, clamp01(target));
-      ill.severity = clamp01(relaxed + (ill.trendPerDay * h) / MINUTES_PER_DAY);
-      continue;
-    }
-    const drift = P.immuneResponsePerDay * recovery * (1 - 0.7 * stress) * (asleep ? 1.3 : 1) * behaviour;
-    ill.trendPerDay = Math.max(P.minIllnessTrend, ill.trendPerDay - (drift * h) / MINUTES_PER_DAY);
-    const trend = ill.trendPerDay + P.illnessStressPerDay * stress + P.underfedWorsenPerDay * underfed;
-    ill.severity = clamp01(ill.severity + (trend * h) / MINUTES_PER_DAY);
-  }
-  b.illnesses = b.illnesses.filter((ill) => ill.chronic || ill.severity > 0.001 || ill.trendPerDay > 0);
-
-  // Exposures: recent load fades over days, cumulative dose over years.
-  if (b.exposures) {
-    for (const [k, e] of Object.entries(b.exposures)) {
-      e.recent = clamp01(decay(e.recent, h, P.exposureRecentHalfLife));
-      e.cumulative = decay(e.cumulative, h, P.exposureCumulativeHalfLife);
-      if (e.cumulative < 1e-3 && e.recent < 1e-3) delete b.exposures[k];
-    }
-  }
-
-  // Health reserve. Chronic conditions cost health slowly and do not block recovery.
-  let illnessLoad = 0;
-  let chronicLoad = 0;
-  for (const ill of b.illnesses) {
-    if (ill.chronic) chronicLoad += ill.severity;
-    else illnessLoad += ill.severity;
-  }
-  const loss =
-    P.starvationPerDay * starving +
-    P.dehydrationPerDay * dehydrated +
-    P.illnessHealthPerDay * illnessLoad +
-    P.chronicHealthPerDay * chronicLoad;
-  const gain = fed && illnessLoad < 0.3 ? P.healthRecoveryPerDay * recovery * (asleep ? 1.5 : 1) : 0;
-  b.health = clamp01(b.health + ((gain - loss) * h) / MINUTES_PER_DAY);
-  if (bled > 0) b.health = clamp01(b.health - bled);
-
-  // Pain relaxes toward its sources (relief from consume() therefore fades over ~1 h).
-  b.pain = clamp01(decay(b.pain, h, P.painHalfLife, sourcePain(b)));
-
-  if (b.health <= 0) b.alive = false;
-}
-
-/**
- * Advance `p.body` over `dt` minutes under `load`. Call with `p.now` at the start of the interval: a mode
- * change sets `asleep` and `since = p.now`. Does not change `p.now`.
- */
-export function advanceBody(
-  p: Person,
-  dt: number,
-  load: BodyLoad,
-  mods: LifeModifiers,
-  params: BodyParams = BODY_DEFAULTS,
-): void {
-  const b = p.body;
-  if (!b.alive) return;
-  const wantAsleep = load.mode === 'sleep' || b.doze?.since !== undefined;
-  if (wantAsleep !== b.asleep) {
-    if (b.asleep) b.lastSleep = { from: b.since, to: p.now };
-    b.asleep = wantAsleep;
-    b.since = p.now;
-  }
-  if (!(dt > 0)) return;
-  const n = Math.ceil(dt / params.maxSubStep);
-  const h = dt / n;
-  for (let i = 0; i < n && b.alive; i++) {
-    if (b.bladder) advanceBladder(b.bladder, h);
-    subStep(b, h, load, mods, params);
-  }
-  if (!b.alive && b.doze?.since !== undefined) {
-    delete b.doze.since;
-    b.asleep = false;
-  }
-}
-
-/** Circadian alertness 0..1 (Process C): cosine peaking at `circadianPeak`, trough 12 h earlier, post-lunch dip. */
-export function circadianAlertness(now: Minute, circadianPeak: number): number {
-  const delta = minuteOfDay(now) - circadianPeak;
-  const base = 0.5 + 0.5 * dcos((2 * Math.PI * delta) / MINUTES_PER_DAY);
-  // Post-lunch dip centred ~2 h before the peak (14:00 for a 16:00 peak).
-  let d = minuteOfDay(now - (circadianPeak - 120));
-  if (d > MINUTES_PER_DAY / 2) d -= MINUTES_PER_DAY;
-  const dip = 0.12 * dexp(-(d * d) / (2 * 60 * 60));
-  return clamp01(base - dip);
-}
-
-/**
- * Fraction of true hunger and thirst not felt under `ctx` (0 when not fasting). Exposed for explanation UI.
- * Damping = max × (onsetShare + (1 - onsetShare)(1 - e^{-days/adaptDays})), faded out by severe true
- * deprivation so starvation is still felt.
- */
-export function fastingDamping(
-  b: Pick<BodyState, 'satiety' | 'hydration'>,
-  ctx: BodyPerceptionContext | undefined,
-  params: BodyParams = BODY_DEFAULTS,
-): { hunger: Unit; thirst: Unit } {
-  if (!ctx?.fasting) return { hunger: 0, thirst: 0 };
-  const days = Math.max(0, Number.isFinite(ctx.fastingDays) ? ctx.fastingDays : 0);
-  const adapt =
-    params.fastingOnsetShare + (1 - params.fastingOnsetShare) * (1 - dexp(-days / params.fastingAdaptDays));
-  const [lo, hi] = params.fastingBreakthrough;
-  return {
-    hunger: clamp01(params.fastingHungerDamp * adapt * smoothstep(lo, hi, b.satiety)),
-    thirst: clamp01(params.fastingThirstDamp * adapt * smoothstep(lo, hi, b.hydration)),
-  };
-}
-
-/**
- * Physiological readout. `ctx` (optional) carries practice that shapes interoception, currently an open
- * fast: perceived hunger is damped (see SCOPE, N2b); true values, capacity and health are unchanged.
- */
 export function readBody(
-  p: Person,
-  params: BodyParams = BODY_DEFAULTS,
-  ctx?: BodyPerceptionContext,
-): BodyReadout {
-  const b = p.body;
-  const alertness = circadianAlertness(p.now, b.circadianPeak);
-  const debtTerm = params.sleepinessDebtWeight * (1 - dexp(-b.sleepDebt / 8));
-  const sleepiness = clamp01(
-    params.sleepinessPressureWeight * b.sleepPressure +
-      params.sleepinessCircadianWeight * (1 - alertness) +
-      debtTerm,
+  b: T.DeepReadonly<T.BodyState>,
+  at: number,
+  p: T.DeepReadonly<T.Effective_BODY_DEFAULTS>,
+  perception: T.DeepReadonly<T.BodyPerceptionContext> = { fasting: false, fastingDays: 0 },
+): T.BodyReadout {
+  const alertness = circadianAlertness(at, b.circadianPeakMs),
+    debt = p.sleepinessDebtWeight * (1 - dexp(-b.sleepDebtHours / 8));
+  const sleepiness = clip(
+    p.sleepinessPressureWeight * b.sleepPressure + p.sleepinessCircadianWeight * (1 - alertness) + debt,
   );
-  const store = b.depletion === undefined ? 1 : 1 - params.depletionFatigueWeight * clamp01(b.depletion);
-  const fatigueOf = (s: number) => clamp01(1 - (1 - b.exertion) * (1 - 0.5 * s) * store);
-  const fatigue = fatigueOf(sleepiness);
-  const hunger = clamp01(1 - b.satiety);
-  const thirst = clamp01(1 - b.hydration);
-  const pain = b.pain;
-  // Objective impairment from chronic debt is not felt (see perceived.sleepiness).
-  const debtImpair = 1 - 0.3 * (1 - dexp(-b.sleepDebt / 16));
-  const capacity = b.alive
-    ? clamp01(
-        (1 - 0.5 * fatigue) *
-          (1 - 0.6 * pain) *
-          (0.4 + 0.6 * b.health) *
-          debtImpair *
-          (1 - 0.2 * smoothstep(0.2, 0, b.satiety)),
-      )
+  const fatigueOf = (s: number) =>
+    clip(1 - (1 - b.exertion) * (1 - 0.5 * s) * (1 - p.depletionFatigueWeight * clip(b.depletion)));
+  const fatigue = fatigueOf(sleepiness),
+    capacity = b.alive
+      ? clip(
+          (1 - 0.5 * fatigue) *
+            (1 - 0.6 * b.pain) *
+            (0.4 + 0.6 * b.health) *
+            (1 - 0.3 * (1 - dexp(-b.sleepDebtHours / 16))) *
+            (1 - 0.2 * smooth(0.2, 0, b.satiety)),
+        )
+      : 0;
+  const oldest = b.injuries
+    .filter((i) => i.severity > 0.05)
+    .reduce((a, i) => Math.max(a, (at - i.since) / 60000), 0);
+  const adapt = p.painAdaptation * smooth(0, 4320, oldest);
+  const fa = perception.fasting
+    ? p.fastingOnsetShare +
+      (1 - p.fastingOnsetShare) * (1 - dexp(-Math.max(0, perception.fastingDays) / p.fastingAdaptDays))
     : 0;
-
-  const perceivedSleepiness = clamp01(sleepiness - params.debtUnderperception * debtTerm);
-  // Slight adaptation to long-standing injury pain (the oldest relevant injury's age).
-  let oldest = 0;
-  for (const inj of b.injuries) if (inj.severity > 0.05) oldest = Math.max(oldest, p.now - inj.since);
-  const adapt = params.painAdaptation * smoothstep(0, 3 * MINUTES_PER_DAY, oldest);
-  const fast = fastingDamping(b, ctx, params);
+  const damp = (v: number, k: number) =>
+    clip(k * fa * smooth(required(p.fastingBreakthrough[0]), required(p.fastingBreakthrough[1]), v));
+  const ps = clip(sleepiness - p.debtUnderperception * debt);
   return {
-    hunger,
-    thirst,
+    hunger: 1 - b.satiety,
+    thirst: 1 - b.hydration,
     sleepiness,
     fatigue,
-    pain,
+    pain: b.pain,
     capacity,
     alertness,
     perceived: {
-      hunger: clamp01(hunger * (1 - fast.hunger)),
-      thirst: clamp01(thirst * (1 - fast.thirst)),
-      sleepiness: perceivedSleepiness,
-      fatigue: fatigueOf(perceivedSleepiness),
-      pain: clamp01(pain * (1 - adapt)),
+      hunger: clip((1 - b.satiety) * (1 - damp(b.satiety, p.fastingHungerDamp))),
+      thirst: clip((1 - b.hydration) * (1 - damp(b.hydration, p.fastingThirstDamp))),
+      sleepiness: ps,
+      fatigue: fatigueOf(ps),
+      pain: clip(b.pain * (1 - adapt)),
     },
   };
 }
-
-/**
- * SCOPE (host-caused tiredness): add nonnegative sleep-pressure and exertion costs, clamped to 0..1.
- * The host supplies magnitudes; these are not calibrated claims. Absent, negative and non-finite costs
- * do nothing. A dead body is unchanged, as with consume. Writes only these two body fields: no ticking,
- * sleep transition, depletion, memory, RNG or other effects. Recovery remains with the existing body APIs.
- */
-export function addTiredness(p: Person, costs: { sleepPressure?: number; exertion?: number }): void {
-  if (!p.body.alive) return;
-  for (const key of ['sleepPressure', 'exertion'] as const) {
-    const amount = costs[key];
-    if (amount !== undefined && Number.isFinite(amount) && amount > 0)
-      p.body[key] = clamp01(p.body[key] + amount);
-  }
-}
-
-/** Eat, drink or take pain relief. `relief` lowers current pain; it then relaxes back toward its sources. */
-export function consume(p: Person, deltas: { food?: number; water?: number; relief?: number }): void {
-  const b = p.body;
-  if (!b.alive) return;
-  intakeBladder(p, deltas.water);
-  if (deltas.food) b.satiety = clamp01(b.satiety + deltas.food);
-  if (deltas.water) b.hydration = clamp01(b.hydration + deltas.water);
-  if (deltas.relief) b.pain = clamp01(b.pain - deltas.relief);
-}
-
-/** `<prefix>:<minute>:<counter>`; the counter lives in `BodyState.nextId`, so ids stay unique after eviction. */
-function freshId(b: BodyState, prefix: string, now: Minute): string {
-  const id = `${prefix}:${now}:${b.nextId}`;
-  b.nextId += 1;
-  return id;
-}
-
-/**
- * `skip`'s side of the body: the body is not advanced over a skipped interval, so its current state simply
- * holds from `to` on.
- */
-export function skipBody(p: Person, to: Minute): void {
-  p.body.since = to;
-  if (p.body.doze?.since !== undefined) p.body.doze.since = to;
-}
-
-/**
- * The body-owned death setter for host-rolled deaths (`lifecourse.mortalityEvent`): health 0, not alive, awake.
- * Idempotent. The composite clears the activity on its next tick.
- */
-export function die(p: Person): void {
-  const b = p.body;
-  if (!b.alive) return;
-  b.alive = false;
-  b.health = 0;
-  b.asleep = false;
-  if (b.doze) delete b.doze.since;
-  b.since = p.now;
-}
-
-export function injure(p: Person, injury: Omit<Injury, 'id' | 'since'>): Injury {
-  const b = p.body;
-  const inj: Injury = {
-    ...injury,
-    severity: clamp01(injury.severity),
-    id: freshId(b, 'injury', p.now),
-    since: p.now,
+export function bodyVector(b: T.DeepReadonly<T.BodyState>): T.BodyVector {
+  return {
+    satiety: b.satiety,
+    hydration: b.hydration,
+    sleepPressure: b.sleepPressure,
+    sleepDebtHours: b.sleepDebtHours,
+    fitness: b.fitness,
+    exertion: b.exertion,
+    depletion: b.depletion,
+    health: b.health,
+    pain: b.pain,
+    bladderFill: b.bladder.fill,
+    bladderPending: b.bladder.pending,
+    injuries: b.injuries.map((i) => ({ id: i.id, severity: i.severity, bleedingPerDay: i.bleeding ?? null })),
+    illnesses: b.illnesses.map((i) => ({
+      id: i.id,
+      severity: i.severity,
+      trendPerDay: i.trendPerDay,
+      baseline: i.baseline ?? null,
+      chronic: i.chronic ?? false,
+    })),
+    exposures: Object.entries(b.exposures)
+      .sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))
+      .map(([kind, e]) => ({ kind, recent: e.recent, cumulativeDose: e.cumulative })),
   };
-  b.injuries.push(inj);
-  if (b.injuries.length > BODY_DEFAULTS.maxInjuries) {
-    // Drop the least severe so the collection stays bounded.
-    let min = 0;
-    for (let i = 1; i < b.injuries.length; i++) {
-      if ((b.injuries[i]?.severity ?? 1) < (b.injuries[min]?.severity ?? 1)) min = i;
+}
+const components = [
+  'satiety',
+  'hydration',
+  'sleep-pressure',
+  'sleep-debt-hours',
+  'fitness',
+  'exertion',
+  'depletion',
+  'health',
+  'pain',
+  'bladder-fill',
+  'bladder-pending',
+] as const;
+function flatten(v: T.DeepReadonly<T.BodyVector>): { keys: T.BodyFieldKey[]; values: number[] } {
+  const keys: T.BodyFieldKey[] = components.map((component) => ({ component, recordId: null }));
+  const values = [
+    v.satiety,
+    v.hydration,
+    v.sleepPressure,
+    v.sleepDebtHours,
+    v.fitness,
+    v.exertion,
+    v.depletion,
+    v.health,
+    v.pain,
+    v.bladderFill,
+    v.bladderPending,
+  ];
+  const add = (component: T.BodyComponent, recordId: string, n: number) => {
+    keys.push({ component, recordId });
+    values.push(n);
+  };
+  for (const i of v.injuries) {
+    add('injury-severity', i.id, i.severity);
+    if (i.bleedingPerDay !== null) add('injury-bleeding-per-day', i.id, i.bleedingPerDay);
+  }
+  for (const i of v.illnesses) {
+    add('illness-severity', i.id, i.severity);
+    add('illness-trend-per-day', i.id, i.trendPerDay);
+  }
+  for (const e of v.exposures) {
+    add('exposure-recent', e.kind, e.recent);
+    add('exposure-cumulative-dose', e.kind, e.cumulativeDose);
+  }
+  return { keys, values };
+}
+function materialize(
+  b: T.DeepReadonly<T.BodyState>,
+  keys: readonly T.DeepReadonly<T.BodyFieldKey>[],
+  y: readonly number[],
+): T.BodyState {
+  const o: T.BodyState = structuredClone(b) as T.BodyState;
+  const get = (component: T.BodyComponent, recordId: string | null = null) => {
+    const n = keys.findIndex((k) => k.component === component && k.recordId === recordId);
+    if (n < 0) throw new RangeError('missing body component');
+    return y[n] ?? 0;
+  };
+  o.satiety = clip(get('satiety'));
+  o.hydration = clip(get('hydration'));
+  o.sleepPressure = clip(get('sleep-pressure'));
+  o.sleepDebtHours = Math.max(0, get('sleep-debt-hours'));
+  o.fitness = clip(get('fitness'));
+  o.exertion = clip(get('exertion'));
+  o.depletion = clip(get('depletion'));
+  o.health = clip(get('health'));
+  o.pain = clip(get('pain'));
+  o.bladder = { fill: clip(get('bladder-fill')), pending: Math.max(0, get('bladder-pending')) };
+  for (const i of o.injuries) {
+    i.severity = clip(get('injury-severity', i.id));
+    if (i.bleeding !== undefined) i.bleeding = Math.max(0, get('injury-bleeding-per-day', i.id));
+  }
+  for (const i of o.illnesses) {
+    i.severity = clip(get('illness-severity', i.id));
+    i.trendPerDay = get('illness-trend-per-day', i.id);
+  }
+  for (const [id, e] of Object.entries(o.exposures)) {
+    e.recent = clip(get('exposure-recent', id));
+    e.cumulative = Math.max(0, get('exposure-cumulative-dose', id));
+  }
+  return o;
+}
+function sourcePain(b: T.DeepReadonly<T.BodyState>, p: T.DeepReadonly<T.Effective_BODY_DEFAULTS>) {
+  let safe = 1;
+  for (const i of b.injuries) safe *= 1 - i.severity;
+  for (const i of b.illnesses) safe *= 1 - (i.chronic ? p.chronicPainWeight : 0.6) * i.severity;
+  safe *= 1 - 0.4 * smooth(0.15, 0, b.satiety);
+  safe *= 1 - 0.5 * smooth(0.15, 0, b.hydration);
+  return clip(1 - safe);
+}
+const analyticComponents = new Set<T.BodyComponent>([
+  'sleep-pressure',
+  'sleep-debt-hours',
+  'bladder-fill',
+  'bladder-pending',
+  'exposure-recent',
+  'exposure-cumulative-dose',
+  'injury-bleeding-per-day',
+]);
+function exactState(
+  b: T.BodyState,
+  base: T.DeepReadonly<T.BodyVector>,
+  start: number,
+  at: number,
+  ctx: T.DeepReadonly<T.BodySpan>,
+): T.BodyState {
+  const t = (at - start) / 60000,
+    p = ctx.effective.builtins.BODY_DEFAULTS,
+    e = ctx.effective.builtins.ENVIRONMENT_DEFAULTS,
+    q = ctx.effective.builtins.BLADDER_DEFAULTS;
+  const tau = b.asleep
+    ? p.sleepTau * (1 + e.coldSleep * (ctx.environment.cold ?? 0))
+    : p.wakeTau * (1 - e.darkWake * (ctx.environment.dark ?? 0));
+  const age = ageYearsAt(ctx.life.birthAt, start) + (at - start) / YEAR;
+  b.fitness = Math.min(b.fitness, modifiersForAge(age, ctx.effective.builtins.LIFE_DEFAULTS).maxFitness);
+  const s0 = base.sleepPressure;
+  b.sleepPressure = b.asleep ? s0 * dexp(-t / tau) : 1 - (1 - s0) * dexp(-t / tau);
+  if (b.asleep) {
+    const crossing = s0 <= p.repayThreshold ? 0 : tau * dlog(s0 / p.repayThreshold);
+    b.sleepDebtHours = Math.max(
+      0,
+      base.sleepDebtHours - (p.debtRepayPerHour * Math.max(0, t - crossing)) / 60,
+    );
+  } else {
+    const crossing = s0 >= p.debtThreshold ? 0 : tau * dlog((1 - s0) / (1 - p.debtThreshold));
+    b.sleepDebtHours = Math.min(
+      p.maxSleepDebt,
+      base.sleepDebtHours + (p.debtPerHourAbove * Math.max(0, t - crossing)) / 60,
+    );
+  }
+  b.bladder.pending = base.bladderPending * dexp((-LN2 * t) / q.halfLife);
+  b.bladder.fill = clip(base.bladderFill + q.basePerMinute * t + base.bladderPending - b.bladder.pending);
+  for (const i of b.injuries) {
+    const x = base.injuries.find((x) => x.id === i.id);
+    if (x?.bleedingPerDay !== null && x?.bleedingPerDay !== undefined)
+      i.bleeding =
+        x.bleedingPerDay *
+        dexp(
+          (-LN2 * t) /
+            (i.tendedAt === undefined
+              ? ctx.effective.builtins.INJURY_DEFAULTS.clotHalfLife
+              : ctx.effective.builtins.INJURY_DEFAULTS.tendedClotHalfLife),
+        );
+  }
+  for (const [kind, x] of Object.entries(b.exposures)) {
+    const a = base.exposures.find((x) => x.kind === kind);
+    if (a) {
+      x.recent = a.recent * dexp((-LN2 * t) / p.exposureRecentHalfLife);
+      x.cumulative = a.cumulativeDose * dexp((-LN2 * t) / p.exposureCumulativeHalfLife);
     }
-    b.injuries.splice(min, 1);
   }
-  b.pain = Math.max(b.pain, sourcePain(b));
-  return inj;
+  return b;
 }
-
-export function sicken(p: Person, illness: Omit<Illness, 'id' | 'since'>): Illness {
-  const b = p.body;
-  const ill: Illness = {
-    ...illness,
-    severity: clamp01(illness.severity),
-    id: freshId(b, 'illness', p.now),
-    since: p.now,
-  };
-  if (ill.chronic && ill.baseline === undefined) ill.baseline = ill.severity;
-  if (ill.baseline !== undefined) ill.baseline = clamp01(ill.baseline);
-  b.illnesses.push(ill);
-  if (b.illnesses.length > BODY_DEFAULTS.maxIllnesses) {
-    // Evict the least severe acute illness; chronic conditions only when nothing else is left.
-    let min = -1;
-    for (let pass = 0; pass < 2 && min < 0; pass++) {
-      for (let i = 0; i < b.illnesses.length; i++) {
-        const x = b.illnesses[i];
-        if (!x || (pass === 0 && x.chronic)) continue;
-        const m = min < 0 ? undefined : b.illnesses[min];
-        if (!m || x.severity < m.severity) min = i;
+function rhs(
+  base: T.DeepReadonly<T.BodyState>,
+  keys: readonly T.BodyFieldKey[],
+  ctx: T.DeepReadonly<T.BodySpan>,
+  start: number,
+) {
+  const P = ctx.effective.builtins.BODY_DEFAULTS,
+    I = ctx.effective.builtins.INJURY_DEFAULTS,
+    B = ctx.effective.builtins.BLADDER_DEFAULTS,
+    E = ctx.effective.builtins.ENVIRONMENT_DEFAULTS;
+  return (at: number, y: readonly number[]) => {
+    const b = exactState(materialize(base, keys, y), bodyVector(base), start, at, ctx),
+      mods = modifiersForAge(
+        ageYearsAt(ctx.life.birthAt, start) + (at - start) / YEAR,
+        ctx.effective.builtins.LIFE_DEFAULTS,
+      );
+    const cold = ctx.environment.cold ?? 0,
+      dark = ctx.environment.dark ?? 0;
+    const effort = b.asleep ? 0 : clip(ctx.load.effort),
+      recovery = Math.max(0.05, mods.recovery);
+    const pregnancy =
+      ctx.pregnancy && at - ctx.pregnancy.conceivedAt >= 13 * 7 * DAY
+        ? ctx.effective.builtins.FAMILY_DEFAULTS.pregnancyMetabolism
+        : 1;
+    const meta =
+      (b.asleep ? P.sleepMetabolism : 1) * mods.metabolism * (1 + E.coldMetabolism * cold) * pregnancy;
+    const tau = b.asleep ? P.sleepTau * (1 + E.coldSleep * cold) : P.wakeTau * (1 - E.darkWake * dark);
+    const starve = clip((0.1 - b.satiety) / 0.1),
+      dry = clip((0.1 - b.hydration) / 0.1),
+      exhausted = Math.max(smooth(0.8, 1, b.exertion), smooth(16, 32, b.sleepDebtHours));
+    const fed = b.satiety > 0.3 && b.hydration > 0.3,
+      underfed = smooth(P.underfedFrom, P.underfedFull, Math.min(b.satiety, b.hydration)),
+      stress = Math.max(starve, dry, exhausted);
+    const target = clip(effort * (1 - 0.5 * b.fitness) * P.exertionGain);
+    const half =
+      target > b.exertion
+        ? P.exertionRiseHalfLife
+        : ((b.asleep ? P.exertionRecoverHalfLifeAsleep : P.exertionRecoverHalfLife) *
+            (1 + E.coldRecovery * cold)) /
+          recovery;
+    const kd = LN2 / P.detrainHalfLife,
+      kt = effort > P.trainingEffort ? (kd * P.trainingRatio * (effort - P.trainingEffort)) / 0.6 : 0;
+    const acute = b.illnesses.filter((i) => !i.chronic).reduce((s, i) => s + i.severity, 0),
+      chronic = b.illnesses.filter((i) => i.chronic).reduce((s, i) => s + i.severity, 0);
+    const derivative = (key: T.BodyFieldKey): number => {
+      const id = key.recordId;
+      switch (key.component) {
+        case 'satiety':
+          return -meta * (P.satietyPerMinute + P.satietyEffortPerMinute * effort);
+        case 'hydration':
+          return -meta * (P.hydrationPerMinute + P.hydrationEffortPerMinute * effort);
+        case 'sleep-pressure':
+          return (b.asleep ? -b.sleepPressure : 1 - b.sleepPressure) / tau;
+        case 'sleep-debt-hours':
+          return b.asleep
+            ? b.sleepPressure < P.repayThreshold
+              ? -P.debtRepayPerHour / 60
+              : 0
+            : b.sleepPressure > P.debtThreshold
+              ? P.debtPerHourAbove / 60
+              : 0;
+        case 'fitness': {
+          const normal =
+            -kd * (b.fitness - Math.min(P.fitnessFloor, mods.maxFitness)) +
+            kt * (mods.maxFitness - b.fitness);
+          const age = mods.ageYears;
+          const q = clip(age / 20);
+          const limitRate =
+            age < 20
+              ? (0.7 * 6 * q * (1 - q)) / (20 * (YEAR / 60000))
+              : age > ctx.effective.builtins.LIFE_DEFAULTS.fitnessPlateauEnd && mods.maxFitness > 0.15
+                ? -ctx.effective.builtins.LIFE_DEFAULTS.fitnessDeclinePerYear / (YEAR / 60000)
+                : 0;
+          return b.fitness >= mods.maxFitness ? Math.min(normal, limitRate) : normal;
+        }
+        case 'exertion':
+          return (LN2 * (target - b.exertion)) / half;
+        case 'depletion':
+          return effort > P.depletionFloor
+            ? (((P.depletionPerHour * (effort - P.depletionFloor)) / (1 - P.depletionFloor)) *
+                (1 - 0.5 * b.fitness) *
+                (1 - b.depletion)) /
+                60
+            : (-LN2 * b.depletion) /
+                ((b.asleep ? P.depletionSleepHalfLife : P.depletionRestHalfLife) / recovery);
+        case 'health':
+          return (
+            ((fed && acute < 0.3 ? P.healthRecoveryPerDay * recovery * (b.asleep ? 1.5 : 1) : 0) -
+              P.starvationPerDay * starve -
+              P.dehydrationPerDay * dry -
+              P.illnessHealthPerDay * acute -
+              P.chronicHealthPerDay * chronic -
+              b.injuries.reduce((s, i) => s + (i.bleeding ?? 0), 0)) /
+            1440
+          );
+        case 'pain':
+          return (LN2 * (sourcePain(b, P) - b.pain)) / P.painHalfLife;
+        case 'bladder-fill':
+          return B.basePerMinute + (LN2 * b.bladder.pending) / B.halfLife;
+        case 'bladder-pending':
+          return (-LN2 * b.bladder.pending) / B.halfLife;
+        case 'injury-severity': {
+          const i = b.injuries.find((i) => i.id === id);
+          return i
+            ? (-i.healRatePerDay *
+                recovery *
+                (b.asleep ? 1.5 : 1) *
+                (fed ? 1 : 0.5) *
+                (1 - 0.5 * exhausted) *
+                (i.tendedAt === undefined ? 1 : I.tendedHeal)) /
+                1440
+            : 0;
+        }
+        case 'injury-bleeding-per-day': {
+          const i = b.injuries.find((i) => i.id === id);
+          return i
+            ? (-LN2 * (i.bleeding ?? 0)) / (i.tendedAt === undefined ? I.clotHalfLife : I.tendedClotHalfLife)
+            : 0;
+        }
+        case 'illness-trend-per-day': {
+          const i = b.illnesses.find((i) => i.id === id);
+          if (!i || i.chronic || i.trendPerDay <= P.minIllnessTrend) return 0;
+          const behaviour =
+            (!b.asleep && effort <= P.restEffort ? 1 + P.restDriftBonus : 1) *
+            (1 - P.underfedDriftLoss * underfed) *
+            (1 - P.heavyEffortDriftLoss * clip((effort - P.heavyEffort) / (1 - P.heavyEffort))) *
+            (1 -
+              P.debtDriftLoss *
+                smooth(required(P.debtDriftRange[0]), required(P.debtDriftRange[1]), b.sleepDebtHours));
+          return (
+            (-P.immuneResponsePerDay * recovery * (1 - 0.7 * stress) * (b.asleep ? 1.3 : 1) * behaviour) /
+            1440
+          );
+        }
+        case 'illness-severity': {
+          const i = b.illnesses.find((i) => i.id === id);
+          if (!i) return 0;
+          if (i.chronic) {
+            const q = clip(
+              (i.baseline ?? i.severity) +
+                P.chronicDebtGain * smooth(0, 16, b.sleepDebtHours) +
+                P.chronicExposureGain *
+                  (i.aggravatedBy ?? []).reduce((s, k) => s + (b.exposures[k]?.recent ?? 0), 0),
+            );
+            return (LN2 * (q - i.severity)) / P.chronicHalfLife + i.trendPerDay / 1440;
+          }
+          return (i.trendPerDay + P.illnessStressPerDay * stress + P.underfedWorsenPerDay * underfed) / 1440;
+        }
+        case 'exposure-recent':
+          return (-LN2 * (b.exposures[id ?? '']?.recent ?? 0)) / P.exposureRecentHalfLife;
+        case 'exposure-cumulative-dose':
+          return (-LN2 * (b.exposures[id ?? '']?.cumulative ?? 0)) / P.exposureCumulativeHalfLife;
       }
-    }
-    if (min >= 0) b.illnesses.splice(min, 1);
-  }
-  return ill;
+    };
+    const d = keys.map((k, j) => {
+      let v = analyticComponents.has(k.component) ? 0 : derivative(k);
+      const raw = y[j] ?? 0;
+      const unbounded = [
+        'illness-trend-per-day',
+        'injury-bleeding-per-day',
+        'exposure-cumulative-dose',
+        'bladder-pending',
+        'sleep-debt-hours',
+      ].includes(k.component);
+      const lo = k.component === 'illness-trend-per-day' ? P.minIllnessTrend : 0;
+      const hi =
+        k.component === 'sleep-debt-hours'
+          ? P.maxSleepDebt
+          : k.component === 'bladder-pending'
+            ? B.maxPending
+            : unbounded
+              ? Infinity
+              : 1;
+      if ((raw <= lo && v < 0) || (raw >= hi && v > 0)) v = 0;
+      return v;
+    });
+    const s = readBody(b, at, P).sleepiness;
+    d.push(
+      dozeIntensity(
+        s,
+        b.doze.context,
+        b.alive && !b.asleep && !b.downed,
+        ctx.effective.builtins.DOZE_DEFAULTS,
+        ctx.effective.doze.hazardScale,
+      ),
+    );
+    return d;
+  };
 }
-
-/**
- * Record `amount` units of a host-defined exposure (e.g. one dose of a substance). Raises the saturating recent load
- * (aggravates chronic conditions listed in their `aggravatedBy`) and the cumulative dose (read by
- * `exposureChance`). Bounded: beyond `maxExposures` kinds the smallest cumulative dose is dropped.
- */
-export function expose(
-  p: Person,
-  kind: string,
-  amount = 1,
-  params: BodyParams = BODY_DEFAULTS,
-): Exposure | null {
-  const b = p.body;
-  if (!b.alive || !kind || !(amount > 0) || !Number.isFinite(amount)) return null;
-  b.exposures ??= {};
-  const e: Exposure = b.exposures[kind] ?? { recent: 0, cumulative: 0, lastAt: p.now };
-  e.recent = clamp01(e.recent + params.exposureRecentGain * amount * (1 - e.recent));
-  e.cumulative += amount;
-  e.lastAt = Math.max(e.lastAt, p.now);
-  b.exposures[kind] = e;
-  const keys = Object.keys(b.exposures);
-  if (keys.length > params.maxExposures) {
-    let drop: string | undefined;
-    for (const k of keys) {
-      if (k === kind) continue;
-      if (drop === undefined || (b.exposures[k]?.cumulative ?? 0) < (b.exposures[drop]?.cumulative ?? 0))
-        drop = k;
+// A local analytic upper bound prevents a narrow positive doze window from being
+// discarded merely because all Runge–Kutta samples were closed. This is local
+// branch isolation, not a global error certificate.
+function possibleDoze(
+  base: T.BodyState,
+  start: number,
+  end: number,
+  ctx: T.DeepReadonly<T.BodySpan>,
+): boolean {
+  const p = ctx.effective.builtins.BODY_DEFAULTS,
+    d = ctx.effective.builtins.DOZE_DEFAULTS;
+  if (
+    !base.alive ||
+    base.asleep ||
+    base.downed ||
+    base.doze.context.posture === 'upright' ||
+    base.doze.context.stimulation >= d.stimulation
+  )
+    return false;
+  const v = bodyVector(base),
+    a = readBody(base, start, p),
+    b = readBody(exactState(copy<T.BodyState>(base), v, start, end, ctx), end, p);
+  const phase = (((start - base.circadianPeakMs) % DAY) + DAY) % DAY;
+  const width = end - start;
+  const c0 = dcos((2 * Math.PI * phase) / DAY),
+    c1 = dcos((2 * Math.PI * (phase + width)) / DAY);
+  const nextTrough = phase <= DAY / 2 ? DAY / 2 - phase : DAY * 1.5 - phase;
+  const minCos = width >= DAY || nextTrough <= width ? -1 : Math.min(c0, c1);
+  const dip = (((base.circadianPeakMs - 120 * 60000) % DAY) + DAY) % DAY;
+  const dayStart = start - (((start % DAY) + DAY) % DAY);
+  let distance = Infinity;
+  for (const shift of [-1, 0, 1, 2]) {
+    const center = dayStart + dip + shift * DAY;
+    distance = Math.min(distance, center < start ? start - center : center > end ? center - end : 0);
+  }
+  const minimumAlert = clip(
+    0.5 + 0.5 * minCos - 0.12 * dexp((-distance * distance) / (2 * 3600000 * 3600000)),
+  );
+  const last = exactState(copy<T.BodyState>(base), v, start, end, ctx);
+  const upper = clip(
+    p.sleepinessPressureWeight * Math.max(base.sleepPressure, last.sleepPressure) +
+      p.sleepinessCircadianWeight * (1 - minimumAlert) +
+      p.sleepinessDebtWeight * (1 - dexp(-Math.max(base.sleepDebtHours, last.sleepDebtHours) / 8)),
+  );
+  return upper > d.sleepiness || a.sleepiness > d.sleepiness || b.sleepiness > d.sleepiness;
+}
+function continuation(
+  b: T.DeepReadonly<T.BodyState>,
+  at: number,
+  id: string,
+  hash: string,
+): T.BodyContinuation {
+  return {
+    clock: clock(at, id, hash),
+    anchor: bodyVector(b),
+    acceptedThroughMs: at,
+    materializedAtMs: at,
+    nextTrialWidthMinutes: initialWidth(20) / 60000,
+    cells: [],
+    errors: [],
+    circadian: { epochMs: 0, peakOffsetMs: b.circadianPeakMs },
+    sleep: {
+      asleep: b.asleep,
+      sinceMs: b.since,
+      dozeSinceMs: b.doze.since ?? null,
+      lastSleep: b.lastSleep ? { fromMs: b.lastSleep.from, toMs: b.lastSleep.to } : null,
+    },
+    clipping: [],
+    pendingRoots: [],
+  };
+}
+function init(
+  input: T.DeepReadonly<T.InitialBody>,
+  c: T.DeepReadonly<T.FrameContext>,
+): ReturnType<T.BodyOwner['initialize']> {
+  const b: T.BodyState = {
+    satiety: input.satiety,
+    hydration: input.hydration,
+    sleepPressure: input.sleepPressure,
+    exertion: input.exertion,
+    fitness: input.fitness,
+    health: input.health,
+    pain: input.pain,
+    sleepDebtHours: input.sleepDebtHours,
+    depletion: input.depletion,
+    circadianPeakMs: input.circadianPeakMs,
+    asleep: input.asleep,
+    since: input.since,
+    alive: input.health > 0,
+    nextId: 0,
+    doze: structuredClone(input.doze),
+    bladder: structuredClone(input.bladder),
+    injuries: structuredClone(input.injuries) as T.Injury[],
+    illnesses: structuredClone(input.illnesses) as T.Illness[],
+    exposures: Object.fromEntries(
+      input.exposures.map((e) => [e.agent, { recent: e.recent, cumulative: e.cumulative, lastAt: e.lastAt }]),
+    ),
+  };
+  if (input.downed) b.downed = structuredClone(input.downed);
+  for (const i of b.illnesses) if (i.chronic && i.baseline === undefined) i.baseline = i.severity;
+  const id = `body:${c.person}:${c.at}`;
+  const d: T.DozeContinuation = {
+    hazard: newHazard({ kind: 'doze', channelId: 'onset' }, c.at, id, c.effectiveParametersHash),
+    context: { ...b.doze.context, basis: 'authored', atMs: b.doze.basis.at, conditionId: id },
+  };
+  return {
+    state: b,
+    continuation: continuation(b, c.at, id, c.effectiveParametersHash),
+    dozeContinuation: d,
+  };
+}
+function eventPredicate(b: T.DeepReadonly<T.BodyState>, ctx: T.DeepReadonly<T.BodySpan>): boolean {
+  const p = ctx.effective.builtins;
+  return (
+    b.health <= 0 ||
+    b.injuries.some(
+      (i) => i.severity <= 0.001 || (i.bleeding !== undefined && i.bleeding <= p.INJURY_DEFAULTS.bleedStops),
+    ) ||
+    b.illnesses.some((i) => !i.chronic && i.severity <= 0.001 && i.trendPerDay <= 0) ||
+    Object.values(b.exposures).some((e) => e.recent < 0.001 && e.cumulative < 0.001) ||
+    (!b.downed &&
+      (b.health < ctx.effective.fixedPriors.downing.health ||
+        readCapacities(b).moving < ctx.effective.fixedPriors.downing.moving)) ||
+    !!(
+      b.downed &&
+      (b.downed.until !== undefined
+        ? b.downed.until <= ctx.to
+        : (b.downed.reason === 'health' || b.downed.reason === 'capacity') &&
+          b.health >= ctx.effective.fixedPriors.downing.health + p.INJURY_DEFAULTS.standMargin &&
+          readCapacities(b).moving >=
+            ctx.effective.fixedPriors.downing.moving + p.INJURY_DEFAULTS.standMargin)
+    )
+  );
+}
+function applyPhysical(
+  b: T.BodyState,
+  at: number,
+  ctx: T.DeepReadonly<Pick<T.BodySpan, 'effective'>>,
+): T.EventData[] {
+  const e: T.EventData[] = [];
+  const emit = (change: T.BodyChange) => e.push({ kind: 'body-change', change });
+  if (b.health <= 0 && b.alive) {
+    b.alive = false;
+    b.asleep = false;
+    delete b.doze.since;
+    emit({ kind: 'died', discoveredAt: at });
+  }
+  b.injuries = b.injuries.filter((i) => i.severity > 0.001);
+  for (const i of b.injuries)
+    if (i.bleeding !== undefined && i.bleeding <= ctx.effective.builtins.INJURY_DEFAULTS.bleedStops)
+      delete i.bleeding;
+  b.illnesses = b.illnesses.filter((i) => i.chronic || i.severity > 0.001 || i.trendPerDay > 0);
+  for (const [k, v] of Object.entries(b.exposures))
+    if (v.recent < 0.001 && v.cumulative < 0.001) delete b.exposures[k];
+  if (b.alive && !b.downed) {
+    const reason =
+      b.health < ctx.effective.fixedPriors.downing.health
+        ? 'health'
+        : readCapacities(b).moving < ctx.effective.fixedPriors.downing.moving
+          ? 'capacity'
+          : null;
+    if (reason) {
+      b.downed = { since: at, reason };
+      emit({ kind: 'downed', since: at, reason });
     }
-    if (drop !== undefined) delete b.exposures[drop];
+  } else if (
+    b.alive &&
+    b.downed &&
+    ((b.downed.until !== undefined && b.downed.until <= at) ||
+      ((b.downed.reason === 'health' || b.downed.reason === 'capacity') &&
+        b.health >= ctx.effective.fixedPriors.downing.health + 0.05 &&
+        readCapacities(b).moving >= ctx.effective.fixedPriors.downing.moving + 0.05))
+  ) {
+    const ended = { from: b.downed.since, to: at };
+    b.lastDowned = ended;
+    delete b.downed;
+    emit({ kind: 'stood', ended });
   }
   return e;
 }
-
-/**
- * Probability that a host-defined illness starts within `days` given an exposure's cumulative dose:
- * 1 - e^{-hazardPerUnitDay × cumulative × days}. Pure; the host rolls (e.g. `chance(p.rng, ...)`) and calls
- * `sicken`. 0 when the exposure is absent.
- */
-export function exposureChance(
-  b: Pick<BodyState, 'exposures'>,
-  kind: string,
-  days: number,
-  hazardPerUnitDay: number,
-): Unit {
-  const cum = b.exposures?.[kind]?.cumulative ?? 0;
-  if (!(cum > 0) || !(days > 0) || !(hazardPerUnitDay > 0)) return 0;
-  return clamp01(1 - dexp(-hazardPerUnitDay * cum * days));
-}
-
-/** Transmission chance for `contactMinutes` of contact with someone carrying `source` (0 if not contagious). */
-export function transmissionChance(
-  source: Pick<Illness, 'contagious' | 'severity'>,
-  contactMinutes: number,
-  params: BodyParams = BODY_DEFAULTS,
-): Unit {
-  if (!source.contagious || !(contactMinutes > 0) || !(source.severity > 0)) return 0;
-  return clamp01(1 - dexp(-params.transmissionPerMinute * clamp01(source.severity) * contactMinutes));
-}
-
-/**
- * Host-called contagion roll for `target` after contact with `source`. Draws from `target.rng`; on
- * transmission adds a mild, worsening illness of the same kind and returns it. A target already ill with
- * that kind, or dead, is not re-infected (returns null, no draw).
- */
-export function contagionRoll(
-  target: Person,
-  source: Pick<Illness, 'kind' | 'contagious' | 'severity'>,
-  contactMinutes: number,
-  params: BodyParams = BODY_DEFAULTS,
-): Illness | null {
-  const b = target.body;
-  if (!b.alive || b.illnesses.some((i) => i.kind === source.kind)) return null;
-  const pr = transmissionChance(source, contactMinutes, params);
-  if (pr <= 0 || !chance(target.rng, pr)) return null;
-  return sicken(target, {
-    kind: source.kind,
-    severity: params.contractedSeverity,
-    trendPerDay: params.contractedTrendPerDay,
-    contagious: true,
-  });
-}
-
-export interface BodyThresholds {
-  hunger: number;
-  thirst: number;
-  sleepiness: number;
-}
-
-/** Plain copy of a body (injuries and illnesses copied too); far cheaper than structuredClone in hot loops. */
-const cloneBody = (b: BodyState): BodyState => {
-  const out: BodyState = {
-    ...b,
-    injuries: b.injuries.map((i) => (i.affects ? { ...i, affects: { ...i.affects } } : { ...i })),
-    illnesses: b.illnesses.map((i) =>
-      i.aggravatedBy ? { ...i, aggravatedBy: [...i.aggravatedBy] } : { ...i },
-    ),
-  };
-  if (b.exposures) {
-    const ex: Record<string, Exposure> = {};
-    for (const [k, e] of Object.entries(b.exposures)) ex[k] = { ...e };
-    out.exposures = ex;
+function firstPhysicalBoundary(
+  at: number,
+  stop: number,
+  cells: readonly T.ScalarCell[],
+  keys: readonly T.BodyFieldKey[],
+  bodyAt: (t: number) => T.BodyState,
+  ctx: T.DeepReadonly<T.BodySpan>,
+): number | null {
+  const pred = (t: number) => eventPredicate(bodyAt(t), { ...ctx, to: t });
+  if (pred(at)) return at;
+  const points = [at, stop];
+  for (let i = 0; i < keys.length; i++) {
+    const k = required(keys[i]),
+      cell = required(cells[i]);
+    const thresholds =
+      k.component === 'health'
+        ? [
+            0,
+            ctx.effective.fixedPriors.downing.health,
+            ctx.effective.fixedPriors.downing.health + ctx.effective.builtins.INJURY_DEFAULTS.standMargin,
+          ]
+        : k.component === 'illness-severity'
+          ? [0.001]
+          : k.component === 'illness-trend-per-day'
+            ? [0]
+            : k.component === 'injury-severity'
+              ? [0.001]
+              : [];
+    for (const value of thresholds) points.push(...thresholdTimes(cell, at, stop, value));
   }
-  if (b.doze) out.doze = { ...b.doze, context: { ...b.doze.context } };
-  if (b.bladder) out.bladder = { ...b.bladder };
-  if (b.rates) out.rates = { ...b.rates };
-  if (b.downed) out.downed = { ...b.downed };
-  if (b.lastSleep) out.lastSleep = { ...b.lastSleep };
-  if (b.lastDowned) out.lastDowned = { ...b.lastDowned };
-  if (b.downedBelow) out.downedBelow = { ...b.downedBelow };
-  return out;
+  if (bodyAt(at).downed) {
+    const moving = sampledPath(at, stop, (t) => readCapacities(bodyAt(t)).moving);
+    for (const segment of moving)
+      if (segment.kind === 'quartic')
+        for (const value of [
+          ctx.effective.fixedPriors.downing.moving,
+          ctx.effective.fixedPriors.downing.moving + ctx.effective.builtins.INJURY_DEFAULTS.standMargin,
+        ])
+          points.push(...thresholdTimes(segment.cell, segment.from, segment.to, value));
+    const until = bodyAt(at).downed?.until;
+    if (until !== undefined && until >= at && until <= stop) points.push(until);
+  }
+  const sorted = [...new Set(points)].sort((a, b) => a - b),
+    probes = [...sorted, ...sorted.slice(0, -1).map((t, i) => (t + required(sorted[i + 1])) / 2)].sort(
+      (a, b) => a - b,
+    );
+  let previous = at;
+  for (const t of probes) {
+    if (t < at || t > stop) continue;
+    if (pred(t)) {
+      const hi = Math.min(stop, Math.ceil(t));
+      if (!pred(hi)) {
+        const floor = Math.max(at, Math.floor(t));
+        if (!pred(floor)) throw new RangeError('limit-exceeded: unresolved sub-ms physical transition');
+        return firstMs(Math.max(at, Math.floor(previous)), floor, pred);
+      }
+      return firstMs(Math.max(at, Math.floor(previous)), hi, pred);
+    }
+    previous = t;
+  }
+  return null;
+}
+function constantBodyTrajectory(
+  b: T.DeepReadonly<T.BodyState>,
+  from: number,
+  to: number,
+  id: string,
+  ctx: T.DeepReadonly<T.BodySpan>,
+): T.BodyTrajectory {
+  const v = flatten(bodyVector(b));
+  const names = [
+    'hunger',
+    'thirst',
+    'sleepiness',
+    'fatigue',
+    'pain',
+    'capacity',
+    'alertness',
+    'perceived-hunger',
+    'perceived-thirst',
+    'perceived-sleepiness',
+    'perceived-fatigue',
+    'perceived-pain',
+    'moving',
+    'manipulation',
+    'sight',
+  ] as const;
+  return {
+    id,
+    conditionId: id,
+    from,
+    to,
+    fields: v.keys.map((field, i) => ({
+      field,
+      path: { from, to, segments: [{ kind: 'constant', from, to, value: required(v.values[i]) }] },
+    })),
+    readout: names.map((field) => {
+      const f = (at: number) => {
+        if (field === 'moving' || field === 'manipulation' || field === 'sight')
+          return readCapacities(b)[field];
+        const r = readBody(b, at, ctx.effective.builtins.BODY_DEFAULTS, ctx.perception);
+        return field.startsWith('perceived-')
+          ? r.perceived[field.slice(10) as keyof T.BodyReadout['perceived']]
+          : r[field as Exclude<keyof T.BodyReadout, 'perceived'>];
+      };
+      return { field, path: { from, to, segments: sampledPath(from, to, f) } };
+    }),
+  };
+}
+const advance: T.BodyOwner['advance'] = (state, ctx) => {
+  minutes(ctx.from, ctx.to);
+  let b: T.BodyState = structuredClone(state) as T.BodyState,
+    c: T.BodyContinuation = copy<T.BodyContinuation>(ctx.continuation),
+    d: T.DozeContinuation = copy<T.DozeContinuation>(ctx.dozeContinuation);
+  if (!b.alive)
+    return {
+      ...output(b, ctx.to),
+      continuation: {
+        ...c,
+        clock: { ...c.clock, advancedThroughMs: ctx.to },
+        materializedAtMs: ctx.to,
+        acceptedThroughMs: ctx.to,
+      },
+      // A dead body covers this elapsed span with zero doze hazard and no draw.
+      dozeContinuation: {
+        ...d,
+        hazard: {
+          ...d.hazard,
+          clock: { ...d.hazard.clock, advancedThroughMs: ctx.to },
+          materializedAtMs: ctx.to,
+          acceptedThroughMs: ctx.to,
+          eligibility: 'closed',
+        },
+      },
+      randomBoundary: null,
+      trajectory: constantBodyTrajectory(
+        b,
+        ctx.from,
+        ctx.to,
+        `${c.clock.conditionId}:${c.clock.conditionAnchorMs}`,
+        ctx,
+      ),
+    };
+  // Voluntary sleep takes over an existing doze without restarting sleep time.
+  if (ctx.load.mode === 'sleep' && b.asleep) delete b.doze.since;
+  if (
+    (ctx.load.mode === 'sleep' && !b.asleep) ||
+    (ctx.load.mode === 'awake' && b.asleep && b.doze.since === undefined)
+  ) {
+    if (b.asleep) b.lastSleep = { from: b.since, to: ctx.from };
+    b.asleep = ctx.load.mode === 'sleep';
+    b.since = ctx.from;
+    delete b.doze.since;
+    c = continuation(b, ctx.from, `body:${ctx.person}:mode:${ctx.from}`, ctx.effectiveParametersHash);
+    const h = d.hazard;
+    const integral = h.activeIntegralCell ? evaluateCell(h.activeIntegralCell, ctx.from) : h.acceptedIntegral;
+    d = {
+      ...d,
+      hazard: {
+        ...h,
+        clock: clock(ctx.from, c.clock.conditionId, ctx.effectiveParametersHash),
+        activeIntegralCell: null,
+        anchorIntegral: integral,
+        acceptedIntegral: integral,
+        acceptedThroughMs: ctx.from,
+      },
+    };
+  }
+  const conditionId = JSON.stringify([
+    'body',
+    ctx.effectiveParametersHash,
+    ctx.life.birthAt,
+    ctx.load.effort,
+    ctx.load.focus,
+    ctx.load.mode,
+    ctx.environment.cold ?? null,
+    ctx.environment.dark ?? null,
+    ctx.environment.crowding ?? null,
+    ctx.environment.beauty ?? null,
+    ctx.environment.weather ?? null,
+    ctx.environment.dayLengthHours ?? null,
+    ctx.environment.outdoors ?? null,
+    ctx.pregnancy?.id ?? null,
+    ctx.pregnancy?.conceivedAt ?? null,
+    ctx.perception.fasting,
+    ctx.perception.fastingDays,
+    b.doze.context.posture,
+    b.doze.context.stimulation,
+  ]);
+  if (c.clock.conditionId !== conditionId) {
+    c = continuation(b, ctx.from, conditionId, ctx.effectiveParametersHash);
+    d = { ...d, hazard: rebaseHazard(d.hazard, ctx.from, conditionId, ctx.effectiveParametersHash) };
+  }
+  let at = ctx.from;
+  let boundary: T.HazardBoundary | null = null;
+  const events: T.EventData[] = [];
+  const paths = new Map<
+    string,
+    { field: T.BodyFieldKey; segments: T.ScalarTrajectory['segments'][number][] }
+  >();
+  const readSegments = new Map<
+    T.BodyTrajectory['readout'][number]['field'],
+    T.ScalarTrajectory['segments'][number][]
+  >();
+  let calls = 0,
+    segments = 0;
+  const lambda = (body: T.DeepReadonly<T.BodyState>, t: number) =>
+    dozeIntensity(
+      readBody(body, t, ctx.effective.builtins.BODY_DEFAULTS).sleepiness,
+      body.doze.context,
+      body.alive && !body.asleep && !body.downed,
+      ctx.effective.builtins.DOZE_DEFAULTS,
+      ctx.effective.doze.hazardScale,
+    );
+  if (b.alive && eventPredicate(b, { ...ctx, to: at })) {
+    const physicalEvents = applyPhysical(b, at, ctx);
+    c = continuation(b, at, conditionId, ctx.effectiveParametersHash);
+    d = { ...d, hazard: rebaseHazard(d.hazard, at, conditionId, ctx.effectiveParametersHash) };
+    return {
+      ...output(b, at),
+      events: physicalEvents,
+      nextBoundary: at,
+      continuation: c,
+      dozeContinuation: d,
+      randomBoundary: null,
+      trajectory: constantBodyTrajectory(b, at, at, `${conditionId}:${at}`, ctx),
+    };
+  }
+  if (!d.hazard.threshold && lambda(b, at) > 0) {
+    boundary = { key: d.hazard.key, at, operation: 'allocate' };
+    return {
+      ...output(b, at),
+      continuation: c,
+      dozeContinuation: d,
+      randomBoundary: boundary,
+      trajectory: constantBodyTrajectory(
+        b,
+        at,
+        at,
+        `${c.clock.conditionId}:${c.clock.conditionAnchorMs}`,
+        ctx,
+      ),
+    };
+  }
+  if (ctx.to === ctx.from)
+    return {
+      ...output(b, ctx.from),
+      continuation: c,
+      dozeContinuation: d,
+      randomBoundary: null,
+      trajectory: constantBodyTrajectory(
+        b,
+        ctx.from,
+        ctx.to,
+        `${c.clock.conditionId}:${c.clock.conditionAnchorMs}`,
+        ctx,
+      ),
+    };
+  while (at < ctx.to) {
+    const flat = flatten(c.anchor);
+    let cells = c.cells.map((x) => x.cell);
+    let end = c.acceptedThroughMs;
+    let start = cells[0]?.originMs ?? at;
+    let hazardCell = d.hazard.activeIntegralCell;
+    if (!cells.length || at >= end) {
+      const baseAt = cells.length ? end : c.clock.conditionAnchorMs;
+      const values = cells.length ? cells.map((x) => evaluateCell(x, end)) : flat.values;
+      const base = exactState(materialize(b, flat.keys, values), c.anchor, start, baseAt, ctx);
+      c = { ...c, anchor: bodyVector(base) };
+      const f = flatten(c.anchor);
+      const initial = d.hazard.acceptedIntegral;
+      let trialWidth = Math.min(Math.max(1, c.nextTrialWidthMinutes * 60000), initialWidth(1440));
+      let isolation = 0;
+      while (
+        possibleDoze(base, baseAt, baseAt + trialWidth, ctx) &&
+        [0, 0.2, 0.3, 0.5, 0.8, 8 / 9, 1].every(
+          (q) =>
+            lambda(
+              exactState(copy<T.BodyState>(base), c.anchor, baseAt, baseAt + q * trialWidth, ctx),
+              baseAt + q * trialWidth,
+            ) === 0,
+        )
+      ) {
+        if (trialWidth <= 1 || ++isolation > 32)
+          throw new RangeError('limit-exceeded: unresolved positive doze eligibility');
+        trialWidth = Math.max(1, Math.floor(trialWidth / 2));
+      }
+      const result = integrateCell(
+        baseAt,
+        [...f.values, initial],
+        trialWidth,
+        rhs(base, f.keys, ctx, baseAt),
+        1e-12,
+        f.values
+          .map((_, i) =>
+            f.keys[i]?.component === 'sleep-debt-hours'
+              ? ctx.effective.builtins.BODY_DEFAULTS.maxSleepDebt
+              : 1,
+          )
+          .concat(1),
+        [f.values.length],
+      );
+      calls += result.calls;
+      if (calls > 8192 || ++segments > 1024)
+        throw new RangeError('limit-exceeded: body span; use shorter span');
+      cells = result.cells.slice(0, -1);
+      hazardCell = result.cells.at(-1) ?? null;
+      start = baseAt;
+      end = result.to;
+      c = {
+        ...c,
+        acceptedThroughMs: end,
+        nextTrialWidthMinutes: result.nextWidth / 60000,
+        errors: f.keys.map((field) => ({
+          field,
+          absoluteNormalizedErrorEstimate:
+            (c.errors.find(
+              (x) => x.field.component === field.component && x.field.recordId === field.recordId,
+            )?.absoluteNormalizedErrorEstimate ?? 0) + result.error,
+        })),
+        cells: f.keys.map((field, i) => ({ field, cell: required(cells[i]) })),
+      };
+      d = { ...d, hazard: { ...d.hazard, activeIntegralCell: hazardCell, acceptedThroughMs: end } };
+    }
+    const keys = c.cells.map((x) => x.field);
+    const bodyAt = (t: number) =>
+      exactState(
+        materialize(
+          b,
+          keys,
+          cells.map((cell) => evaluateCell(cell, t)),
+        ),
+        c.anchor,
+        start,
+        t,
+        ctx,
+      );
+    const integral = (t: number) => (hazardCell ? evaluateCell(hazardCell, t) : d.hazard.acceptedIntegral);
+    let stop = Math.min(ctx.to, end);
+    let physical = false;
+    const physicalAt = firstPhysicalBoundary(at, stop, cells, keys, bodyAt, ctx);
+    if (physicalAt !== null) {
+      stop = physicalAt;
+      physical = true;
+    }
+    const h = d.hazard;
+    if (h.threshold) {
+      if (integral(stop) >= h.threshold.exponentialBudget) {
+        const time = firstMs(at, stop, (t) => integral(t) >= required(h.threshold).exponentialBudget);
+        if (time < stop) physical = false;
+        stop = time;
+        boundary = { key: h.key, at: time, operation: 'fire' };
+      }
+    } else if (integral(stop) > h.anchorIntegral) {
+      const eligibleAt = firstMs(at, stop, (t) => integral(t) > h.anchorIntegral);
+      if (eligibleAt < stop) physical = false;
+      stop = eligibleAt;
+      boundary = { key: h.key, at: stop, operation: 'allocate' };
+    }
+    // Cells cover the full canonical numerical dependency, not just the caller target.
+    for (let i = 0; i < keys.length; i++) {
+      const field = required(keys[i]);
+      const id = JSON.stringify(field);
+      const entry = paths.get(id) ?? { field, segments: [] };
+      entry.segments.push(
+        ...(analyticComponents.has(field.component)
+          ? sampledPath(start, end, (t) => required(flatten(bodyVector(bodyAt(t))).values[i]))
+          : [{ kind: 'quartic' as const, from: start, to: end, cell: required(cells[i]) }]),
+      );
+      paths.set(id, entry);
+    }
+    const read = (t: number) => readBody(bodyAt(t), t, ctx.effective.builtins.BODY_DEFAULTS, ctx.perception);
+    const names = [
+      'hunger',
+      'thirst',
+      'sleepiness',
+      'fatigue',
+      'pain',
+      'capacity',
+      'alertness',
+      'perceived-hunger',
+      'perceived-thirst',
+      'perceived-sleepiness',
+      'perceived-fatigue',
+      'perceived-pain',
+      'moving',
+      'manipulation',
+      'sight',
+    ] as const;
+    for (const name of names) {
+      const fn = (t: number) => {
+        if (name === 'moving' || name === 'manipulation' || name === 'sight')
+          return readCapacities(bodyAt(t))[name];
+        if (name.startsWith('perceived-'))
+          return read(t).perceived[name.slice(10) as keyof T.BodyReadout['perceived']];
+        return read(t)[name as Exclude<keyof T.BodyReadout, 'perceived'>];
+      };
+      readSegments.set(name, [...(readSegments.get(name) ?? []), ...sampledPath(start, end, fn)]);
+    }
+    b = bodyAt(stop);
+    at = stop;
+    c = { ...c, clock: { ...c.clock, advancedThroughMs: at }, materializedAtMs: at };
+    d = {
+      ...d,
+      hazard: {
+        ...d.hazard,
+        clock: { ...d.hazard.clock, advancedThroughMs: at },
+        materializedAtMs: at,
+        acceptedIntegral: integral(end),
+      },
+    };
+    if (physical) {
+      events.push(...applyPhysical(b, at, ctx));
+      c = continuation(b, at, `${c.clock.conditionId}:event:${at}`, ctx.effectiveParametersHash);
+      d = {
+        ...d,
+        hazard: {
+          ...d.hazard,
+          clock: clock(at, c.clock.conditionId, ctx.effectiveParametersHash),
+          anchorIntegral: integral(at),
+          acceptedIntegral: integral(at),
+          activeIntegralCell: null,
+          acceptedThroughMs: at,
+        },
+      };
+      break;
+    }
+    if (boundary) break;
+    if (at === end) {
+      d = { ...d, hazard: { ...d.hazard, anchorIntegral: integral(end) } };
+    }
+  }
+  const trajectory: T.BodyTrajectory = {
+    id: `${c.clock.conditionId}:${c.clock.conditionAnchorMs}`,
+    conditionId: c.clock.conditionId,
+    from: ctx.from,
+    to: [...paths.values()].reduce((end, x) => x.segments.reduce((end, s) => Math.max(end, s.to), end), at),
+    fields: [...paths.values()].map((x) => ({
+      field: x.field,
+      path: {
+        from: ctx.from,
+        to: x.segments.reduce((end, s) => Math.max(end, s.to), at),
+        segments: x.segments,
+      },
+    })),
+    readout: [...readSegments].map(([field, s]) => ({
+      field,
+      path: { from: ctx.from, to: s.reduce((end, x) => Math.max(end, x.to), at), segments: s },
+    })),
+  };
+  return {
+    ...output(b, at),
+    events,
+    nextBoundary: boundary?.at ?? (at < ctx.to ? at : null),
+    continuation: c,
+    dozeContinuation: d,
+    randomBoundary: boundary,
+    trajectory,
+  };
+};
+const receive: T.BodyOwner['receive'] = (state, input, ctx) => {
+  const b: T.BodyState = structuredClone(state) as T.BodyState;
+  const events: T.EventData[] = [];
+  const emit = (change: T.BodyChange) => events.push({ kind: 'body-change', change });
+  const id = (prefix: string) => {
+    let v: string;
+    do {
+      v = `${prefix}:${ctx.at}:${b.nextId++}`;
+    } while (b.injuries.some((i) => i.id === v) || b.illnesses.some((i) => i.id === v));
+    return v;
+  };
+  const receipt = (
+    r: T.DeepReadonly<Exclude<T.BodyReceipt, { type: 'physical-contact' }>>,
+    receiptId: string,
+  ) => {
+    if (!b.alive) return;
+    switch (r.type) {
+      case 'consumed': {
+        const q = r.received;
+        for (const x of Object.values(q))
+          if (!Number.isFinite(x)) throw new RangeError('invalid consumed amount');
+        if (q.food) b.satiety = clip(b.satiety + q.food);
+        if (q.water) {
+          b.hydration = clip(b.hydration + q.water);
+          if (q.water > 0)
+            b.bladder.pending = Math.min(
+              ctx.effective.builtins.BLADDER_DEFAULTS.maxPending,
+              b.bladder.pending + ctx.effective.builtins.BLADDER_DEFAULTS.intakeScale * clip(q.water),
+            );
+        }
+        if (q.relief) b.pain = clip(b.pain - q.relief);
+        emit({ kind: 'consumed', received: structuredClone(q), receiptId });
+        break;
+      }
+      case 'exerted':
+        for (const k of ['sleepPressure', 'exertion'] as const) {
+          const v = r.costs[k];
+          if (v !== undefined && Number.isFinite(v) && v > 0) b[k] = clip(b[k] + v);
+        }
+        emit({ kind: 'exerted', costs: structuredClone(r.costs), receiptId });
+        break;
+      case 'injured': {
+        const injury: T.Injury = { ...structuredClone(r.injury), id: id('injury'), since: ctx.at };
+        b.injuries.push(injury);
+        if (b.injuries.length > ctx.effective.builtins.BODY_DEFAULTS.maxInjuries) {
+          let min = 0;
+          for (let j = 1; j < b.injuries.length; j++)
+            if (required(b.injuries[j]).severity < required(b.injuries[min]).severity) min = j;
+          b.injuries.splice(min, 1);
+        }
+        b.pain = Math.max(b.pain, sourcePain(b, ctx.effective.builtins.BODY_DEFAULTS));
+        emit({ kind: 'injured', injury });
+        break;
+      }
+      case 'illness': {
+        const illness: T.Illness = {
+          ...structuredClone(r.illness),
+          aggravatedBy: r.illness.aggravatedBy ? [...r.illness.aggravatedBy] : undefined,
+          id: id('illness'),
+          since: ctx.at,
+        } as T.Illness;
+        if (illness.chronic && illness.baseline === undefined) illness.baseline = illness.severity;
+        b.illnesses.push(illness);
+        if (b.illnesses.length > ctx.effective.builtins.BODY_DEFAULTS.maxIllnesses) {
+          const acute = b.illnesses.filter((i) => !i.chronic);
+          const drop = [...(acute.length ? acute : b.illnesses)].sort((a, b) => a.severity - b.severity)[0];
+          b.illnesses = b.illnesses.filter((i) => i !== drop);
+        }
+        emit({ kind: 'illness', illness });
+        break;
+      }
+      case 'exposed': {
+        if (!Number.isFinite(r.amount) || r.amount <= 0)
+          throw new RangeError('positive actual exposure required');
+        const e = b.exposures[r.agent] ?? { recent: 0, cumulative: 0, lastAt: ctx.at };
+        e.recent = clip(
+          e.recent + ctx.effective.builtins.BODY_DEFAULTS.exposureRecentGain * r.amount * (1 - e.recent),
+        );
+        e.cumulative += r.amount;
+        e.lastAt = ctx.at;
+        b.exposures[r.agent] = e;
+        const keys = Object.keys(b.exposures);
+        if (keys.length > ctx.effective.builtins.BODY_DEFAULTS.maxExposures) {
+          const drop = keys
+            .filter((k) => k !== r.agent)
+            .sort((a, c) => required(b.exposures[a]).cumulative - required(b.exposures[c]).cumulative)[0];
+          if (drop) delete b.exposures[drop];
+        }
+        break;
+      }
+      case 'treated': {
+        const i = b.injuries.find((i) => i.id === r.injuryId);
+        if (i) {
+          i.tendedAt = ctx.at;
+          if (i.bleeding !== undefined)
+            i.bleeding *= 1 - ctx.effective.builtins.INJURY_DEFAULTS.tendBleedCut * r.quality;
+        }
+        break;
+      }
+      case 'fallen':
+        b.downed = {
+          since: ctx.at,
+          reason: r.cause,
+          ...(r.observedUntil === undefined ? {} : { until: r.observedUntil }),
+        };
+        emit({ kind: 'downed', ...b.downed });
+        break;
+      case 'stood':
+        if (b.downed) {
+          b.lastDowned = { from: b.downed.since, to: ctx.at };
+          delete b.downed;
+          emit({ kind: 'stood', ended: b.lastDowned });
+        }
+        break;
+      case 'voided':
+        if (!b.asleep) {
+          b.bladder.fill = 0;
+          emit({ kind: 'voided', receiptId });
+        }
+        break;
+    }
+  };
+  if (input.kind === 'receipt') receipt(input.receipt, input.id);
+  else if (input.kind === 'actual-death') {
+    if (b.alive) {
+      b.alive = false;
+      b.health = 0;
+      b.asleep = false;
+      delete b.doze.since;
+      emit({ kind: 'died', discoveredAt: ctx.at });
+    }
+  } else if (input.kind === 'ambient-context') {
+    b.doze = { ...b.doze, context: structuredClone(input.context), basis: structuredClone(input.basis) };
+  } else if (input.kind === 'wake') {
+    const e = input.evidence;
+    if (
+      b.doze.since !== undefined &&
+      e.occurredAt >= b.doze.since &&
+      e.occurredAt <= ctx.at &&
+      e.salience >= ctx.effective.builtins.DOZE_DEFAULTS.wakeSalience &&
+      e.near !== false &&
+      (e.targetId === ctx.person || e.near === true) &&
+      ['heard', 'felt', 'social'].includes(e.channel)
+    ) {
+      const slept = { from: b.since, to: ctx.at };
+      delete b.doze.since;
+      b.asleep = false;
+      b.lastSleep = slept;
+      b.since = ctx.at;
+      emit({ kind: 'woke', slept, evidenceId: e.id });
+    }
+  } else {
+    const a = input.outcome.actual;
+    const rid = input.outcome.evidenceId;
+    if (a.consumed) receipt({ type: 'consumed', actionReceipt: rid, received: a.consumed }, rid);
+    if (a.exerted) receipt({ type: 'exerted', actionReceipt: rid, costs: a.exerted }, rid);
+    if (a.injury) receipt({ type: 'injured', injury: a.injury }, rid);
+    if (a.illness) receipt({ type: 'illness', illness: a.illness }, rid);
+    for (const e of a.exposures) receipt({ type: 'exposed', ...e }, rid);
+    if (a.voidedBladder && input.outcome.status === 'completed')
+      receipt({ type: 'voided', actionReceipt: rid }, rid);
+  }
+  events.push(...applyPhysical(b, ctx.at, ctx));
+  const c = continuation(
+    b,
+    ctx.at,
+    `body:${ctx.person}:${ctx.at}:${ctx.causes.join(':')}`,
+    ctx.effectiveParametersHash,
+  );
+  const old = ctx.dozeContinuation.hazard;
+  const integral = old.activeIntegralCell
+    ? evaluateCell(old.activeIntegralCell, ctx.at)
+    : old.acceptedIntegral;
+  const d: T.DozeContinuation = {
+    ...copy<T.DozeContinuation>(ctx.dozeContinuation),
+    context: {
+      ...b.doze.context,
+      basis: b.doze.basis.kind,
+      atMs: b.doze.basis.at,
+      conditionId: c.clock.conditionId,
+    },
+    hazard: {
+      ...structuredClone(old),
+      clock: clock(ctx.at, c.clock.conditionId, ctx.effectiveParametersHash),
+      anchorIntegral: integral,
+      acceptedIntegral: integral,
+      acceptedThroughMs: ctx.at,
+      materializedAtMs: ctx.at,
+      activeIntegralCell: null,
+    },
+  };
+  return { ...output(b, ctx.at), events, continuation: c, dozeContinuation: d };
+};
+const commitHazard: T.BodyOwner['commitHazard'] = (state, boundary, ctx) => {
+  let b: T.BodyState = structuredClone(state) as T.BodyState;
+  let d: T.DozeContinuation = copy<T.DozeContinuation>(ctx.dozeContinuation),
+    rng: T.ActorRandomCursor = structuredClone(ctx.rng);
+  const c = ctx.continuation;
+  const intensity = dozeIntensity(
+    readBody(b, ctx.at, ctx.effective.builtins.BODY_DEFAULTS).sleepiness,
+    b.doze.context,
+    true,
+    ctx.effective.builtins.DOZE_DEFAULTS,
+    ctx.effective.doze.hazardScale,
+  );
+  const prefix = d.hazard.activeIntegralCell
+    ? evaluateCell(d.hazard.activeIntegralCell, ctx.at)
+    : d.hazard.acceptedIntegral;
+  const eligibleInterval = d.hazard.clock.conditionAnchorMs < ctx.at && prefix > d.hazard.anchorIntegral;
+  if (boundary.at !== ctx.at || !b.alive || b.asleep || b.downed || (intensity <= 0 && !eligibleInterval))
+    throw new RangeError('ineligible doze boundary');
+  if (boundary.operation === 'allocate') {
+    if (d.hazard.threshold) throw new RangeError('duplicate doze budget');
+    const a = arm(d.hazard, rng, ctx.at);
+    d = { ...d, hazard: a.hazard };
+    rng = a.rng;
+    return { ...output(b, ctx.at), continuation: copy<T.BodyContinuation>(c), dozeContinuation: d, rng };
+  }
+  if (!d.hazard.threshold) throw new RangeError('missing doze budget');
+  const reached = d.hazard.activeIntegralCell
+    ? evaluateCell(d.hazard.activeIntegralCell, ctx.at)
+    : d.hazard.acceptedIntegral;
+  if (reached < d.hazard.threshold.exponentialBudget) throw new RangeError('unreached doze threshold');
+  b = { ...b, asleep: true, since: ctx.at, doze: { ...b.doze, since: ctx.at } };
+  d = {
+    ...d,
+    hazard: {
+      ...newHazard(d.hazard.key, ctx.at, c.clock.conditionId, ctx.effectiveParametersHash),
+      episodeOrdinal: d.hazard.episodeOrdinal + 1,
+    },
+  };
+  return {
+    ...output(b, ctx.at),
+    events: [{ kind: 'body-change', change: { kind: 'dozed', since: ctx.at } }],
+    continuation: continuation(b, ctx.at, `doze:${ctx.person}:${ctx.at}`, ctx.effectiveParametersHash),
+    dozeContinuation: d,
+    rng,
+  };
+};
+/** Actual one-shot physical contact. Parent/C0 freezes the closed receipt route.
+ * No future/contact-free roll, and no host RNG. */
+export const receiveContact: T.BodyOwner['receiveContact'] = (
+  state: T.DeepReadonly<T.BodyState>,
+  input: T.DeepReadonly<T.PhysicalContactReceipt>,
+  ctx: T.DeepReadonly<
+    T.FrameContext & {
+      continuation: T.BodyContinuation;
+      dozeContinuation: T.DozeContinuation;
+      rng: T.ActorRandomCursor;
+    }
+  >,
+) => {
+  const rng = copy<T.ActorRandomCursor>(ctx.rng);
+  if (!Number.isSafeInteger(input.durationMs) || input.durationMs < 0)
+    throw new RangeError('invalid physical contact duration');
+  if (
+    !state.alive ||
+    state.illnesses.some((i) => i.kind === input.carrier.kind) ||
+    !input.carrier.contagious ||
+    input.carrier.severity <= 0 ||
+    input.durationMs <= 0
+  )
+    return {
+      ...output(copy<T.BodyState>(state), ctx.at),
+      continuation: copy<T.BodyContinuation>(ctx.continuation),
+      dozeContinuation: copy<T.DozeContinuation>(ctx.dozeContinuation),
+      rng,
+    };
+  const p = ctx.effective.builtins.BODY_DEFAULTS;
+  const probability =
+    1 - dexp((-p.transmissionPerMinute * clip(input.carrier.severity) * input.durationMs) / 60000);
+  if (probability <= 0)
+    return {
+      ...output(copy<T.BodyState>(state), ctx.at),
+      continuation: copy<T.BodyContinuation>(ctx.continuation),
+      dozeContinuation: copy<T.DozeContinuation>(ctx.dozeContinuation),
+      rng,
+    };
+  const d = draw(rng);
+  if (d.value >= probability)
+    return {
+      ...output(copy<T.BodyState>(state), ctx.at),
+      continuation: copy<T.BodyContinuation>(ctx.continuation),
+      dozeContinuation: copy<T.DozeContinuation>(ctx.dozeContinuation),
+      rng: d.rng,
+    };
+  return {
+    ...receive(
+      state,
+      {
+        kind: 'receipt',
+        id: input.contactId,
+        receipt: {
+          type: 'illness',
+          illness: {
+            kind: input.carrier.kind,
+            severity: p.contractedSeverity,
+            trendPerDay: p.contractedTrendPerDay,
+            contagious: true,
+          },
+        },
+      },
+      ctx,
+    ),
+    rng: d.rng,
+  };
 };
 
-/**
- * Minutes until any perceived readout (hunger, thirst, sleepiness) rises across its threshold under a
- * constant `load` (read under `perception`, so a fast's damped hunger schedules the same interrupt the
- * decision sees), or Infinity if none does within `horizon`. Readouts already at or above their threshold
- * are ignored (they are already part of the current decision). Simulates a cloned body in 30-minute steps,
- * then refines minute by minute inside the crossing step. Does not mutate `p`.
+export const bodyOwner: T.BodyOwner = {
+  initialize: init,
+  capacities: (state) => readCapacities(state),
+  downedAllows,
+  bladderMotivation: (state, offer, success, ctx) =>
+    bladderMotivation(state.bladder, offer, success, ctx.effective.builtins.BLADDER_DEFAULTS),
+  receiveContact,
+  read: (state, ctx) => readBody(state, ctx.at, ctx.effective.builtins.BODY_DEFAULTS, ctx.perception),
+  forecast,
+  advance,
+  receive,
+  commitHazard,
+  validate(state, c, d) {
+    const issues = validateNumbers({ state, c, d });
+    for (const key of [
+      'satiety',
+      'hydration',
+      'sleepPressure',
+      'exertion',
+      'fitness',
+      'health',
+      'pain',
+      'depletion',
+    ] as const)
+      if (state[key] < 0 || state[key] > 1)
+        issues.push({ path: `body.${key}`, code: 'invalid-schema', message: 'Unit required' });
+    issues.push(
+      ...numericalIssues(c.clock, c.materializedAtMs, c.acceptedThroughMs),
+      ...hazardIssues(d.hazard),
+    );
+    if (
+      state.sleepDebtHours < 0 ||
+      state.bladder.fill < 0 ||
+      state.bladder.fill > 1 ||
+      state.bladder.pending < 0 ||
+      state.bladder.pending > 4
+    )
+      issues.push(issue('body.storage', 'invalid physical storage bounds'));
+    const ids = [...state.injuries.map((i) => i.id), ...state.illnesses.map((i) => i.id)];
+    if (new Set(ids).size !== ids.length) issues.push(issue('body.records', 'duplicate record id'));
+    for (const i of [...state.injuries, ...state.illnesses])
+      if (i.severity < 0 || i.severity > 1 || !Number.isSafeInteger(i.since))
+        issues.push(issue('body.records', 'invalid severity/time'));
+    for (const i of state.illnesses)
+      if (
+        (i.chronic && i.baseline === undefined) ||
+        (!i.chronic && i.trendPerDay < BODY_DEFAULTS.minIllnessTrend)
+      )
+        issues.push(issue('body.illnesses', 'missing chronic baseline or invalid acute trend'));
+    for (const e of Object.values(state.exposures))
+      if (e.recent < 0 || e.recent > 1 || e.cumulative < 0)
+        issues.push(issue('body.exposures', 'invalid exposure'));
+    for (const x of c.cells)
+      if (x.cell.coefficients.length !== 5 || x.cell.rightOffsetMinutes <= x.cell.leftOffsetMinutes)
+        issues.push(issue('body.cells', 'invalid dense cell'));
+    if (new Set(c.cells.map((x) => JSON.stringify(x.field))).size !== c.cells.length)
+      issues.push(issue('body.cells', 'duplicate continuous component'));
+    if (!Number.isSafeInteger(state.nextId) || state.nextId < 0)
+      issues.push(issue('body.nextId', 'invalid allocation counter'));
+    return issues;
+  },
+};
+/** Conditional physical forecast: declared loads and held evidence, without a
+ * prediction of future autonomous onset, illness or successful host actions.
+ * Same exactState/rhs/DP cells as advance; this detached read commits no RNG/events.
  */
-export function nextBodyThreshold(
-  p: Person,
-  load: BodyLoad,
-  mods: LifeModifiers,
-  thresholds: BodyThresholds = { hunger: 0.7, thirst: 0.7, sleepiness: 0.85 },
-  horizon = 720,
-  params: BodyParams = BODY_DEFAULTS,
-  perception?: BodyPerceptionContext,
-): number {
-  if (!p.body.alive) return Number.POSITIVE_INFINITY;
-  const keys = ['hunger', 'thirst', 'sleepiness'] as const;
-  const start = readBody(p, params, perception).perceived;
-  const watch = keys.filter((k) => start[k] < thresholds[k]);
-  if (watch.length === 0) return Number.POSITIVE_INFINITY;
-  const crossed = (q: Person) => {
-    const r = readBody(q, params, perception).perceived;
-    return watch.some((k) => r[k] >= thresholds[k]);
-  };
-  const sim: Person = { ...p, body: cloneBody(p.body) };
-  if (sim.body.doze) delete sim.body.doze.since;
-  advanceBody(sim, 0, load, mods, params); // apply mode change
-  const coarse = 30;
-  let t = 0;
-  while (t < horizon) {
-    const step = Math.min(coarse, horizon - t);
-    const before: Person = { ...sim, body: cloneBody(sim.body) };
-    advanceBody(sim, step, load, mods, params);
-    sim.now += step;
-    if (!sim.body.alive || crossed(sim)) {
-      // Refine inside this step.
-      const fine = before;
-      for (let m = 1; m <= step; m++) {
-        advanceBody(fine, 1, load, mods, params);
-        fine.now += 1;
-        if (!fine.body.alive || crossed(fine)) return t + m;
-      }
-      return t + step;
-    }
-    t += step;
-  }
-  return Number.POSITIVE_INFINITY;
-}
-
-/** One forecast span: where it ends and the worst perceived readout during it. */
-export interface BodyForecastSpan {
-  label: string;
-  endsAt: Minute;
-  /** Worst perceived fatigue, sleepiness, hunger or thirst during the span (0..1), and which. */
-  worst: Unit;
-  worstOf: 'fatigue' | 'sleepiness' | 'hunger' | 'thirst';
-}
-
-/**
- * The person's own forecast of their body through consecutive spans of known exertion, read as they perceive it
- * (2.5.0). Simulates a cloned body in steps of at most `step` minutes; pure (does not mutate `p`).
- */
-export function forecastBody(
-  p: Person,
-  spans: readonly { label: string; duration: number; load: BodyLoad }[],
-  mods: LifeModifiers,
-  params: BodyParams = BODY_DEFAULTS,
-  step = 30,
-  perception?: BodyPerceptionContext,
-): BodyForecastSpan[] {
-  const out: BodyForecastSpan[] = [];
-  const sim: Person = { ...p, body: cloneBody(p.body) };
-  if (sim.body.doze) delete sim.body.doze.since;
-  for (const s of spans) {
-    const span: BodyForecastSpan = { label: s.label, endsAt: sim.now, worst: 0, worstOf: 'fatigue' };
-    // Hard internal cap (a week) so a hostile span cannot stall a decision.
-    let left = Math.min(7 * MINUTES_PER_DAY, Math.max(0, Number.isFinite(s.duration) ? s.duration : 0));
-    advanceBody(sim, 0, s.load, mods, params);
-    const r0 = readBody(sim, params, perception).perceived;
-    for (const k of ['fatigue', 'sleepiness', 'hunger', 'thirst'] as const)
-      if (r0[k] > span.worst) {
-        span.worst = r0[k];
-        span.worstOf = k;
-      }
-    while (left > 0 && sim.body.alive) {
-      const dt = Math.min(step, left);
-      advanceBody(sim, dt, s.load, mods, params);
-      sim.now += dt;
-      left -= dt;
-      const r = readBody(sim, params, perception).perceived;
-      for (const k of ['fatigue', 'sleepiness', 'hunger', 'thirst'] as const)
-        if (r[k] > span.worst) {
-          span.worst = r[k];
-          span.worstOf = k;
+function forecast(
+  state: T.DeepReadonly<T.BodyState>,
+  spans: T.DeepReadonly<readonly { label: string; durationMs: number; load: T.BodyLoad }[]>,
+  ctx: T.DeepReadonly<T.FrameContext & T.BodyProjectionContext>,
+): ReturnType<T.BodyOwner['forecast']> {
+  const failure = (message: string): ReturnType<T.BodyOwner['forecast']> => ({
+    ok: false,
+    error: { code: 'limit-exceeded', path: 'body.forecast', message },
+  });
+  const p = ctx.effective.builtins.FORECAST_DEFAULTS;
+  if (
+    spans.length > p.maxSpans ||
+    spans.reduce((s, x) => s + x.durationMs, 0) > Math.min(7 * DAY, p.maxMinutes * 60000)
+  )
+    return failure('unsupported forecast span; maximum is the bounded source horizon');
+  if (spans.some((s) => !Number.isSafeInteger(s.durationMs) || s.durationMs < 0))
+    return {
+      ok: false,
+      error: { code: 'invalid-schema', path: 'body.forecast', message: 'safe nonnegative duration required' },
+    };
+  let b = copy<T.BodyState>(state),
+    at = ctx.at,
+    calls = 0;
+  const out: T.BodyForecastSpan[] = [];
+  try {
+    for (const span of spans) {
+      const end = at + span.durationMs;
+      if (!Number.isSafeInteger(end)) return failure('forecast time overflow');
+      b.asleep = span.load.mode === 'sleep';
+      const result: T.BodyForecastSpan = {
+        label: span.label,
+        endsAt: end,
+        worst: 0,
+        worstOf: 'fatigue',
+        basis: 'conditional-load-projection',
+      };
+      let width = initialWidth(20);
+      while (at < end && b.alive) {
+        const base = copy<T.BodyState>(b),
+          anchor = bodyVector(base),
+          flat = flatten(anchor);
+        const context: T.BodySpan = {
+          ...ctx,
+          from: at,
+          to: end,
+          phase: 1,
+          priorWorldRevision: ctx.worldRevision,
+          load: copy<T.BodyLoad>(span.load),
+          life: copy<{ birthAt: number }>(ctx.life),
+          environment: copy<T.AmbientPercept>(ctx.environment),
+          continuation: copy<T.BodyContinuation>(ctx.continuation),
+          dozeContinuation: copy<T.DozeContinuation>(ctx.dozeContinuation),
+          perception: copy<T.BodyPerceptionContext>(ctx.perception),
+          ...(ctx.pregnancy ? { pregnancy: copy<T.Pregnancy>(ctx.pregnancy) } : {}),
+        };
+        const r = integrateCell(at, [...flat.values, 0], width, rhs(base, flat.keys, context, at), 1e-12);
+        calls += r.calls;
+        if (calls > 8192) return failure('forecast numerical work exhausted; shorten the declared spans');
+        const start = at;
+        let stop = Math.min(end, r.to);
+        const bodyAt = (t: number) =>
+          exactState(
+            materialize(
+              base,
+              flat.keys,
+              r.cells.slice(0, -1).map((c) => evaluateCell(c, t)),
+            ),
+            anchor,
+            start,
+            t,
+            context,
+          );
+        const physicalAt = firstPhysicalBoundary(
+          start,
+          stop,
+          r.cells.slice(0, -1),
+          flat.keys,
+          bodyAt,
+          context,
+        );
+        const physical = physicalAt !== null;
+        if (physicalAt !== null) stop = physicalAt;
+        for (const key of ['fatigue', 'sleepiness', 'hunger', 'thirst'] as const) {
+          const segments = sampledPath(
+            start,
+            stop,
+            (t) =>
+              readBody(bodyAt(t), t, ctx.effective.builtins.BODY_DEFAULTS, ctx.perception).perceived[key],
+          );
+          const worst = Math.max(
+            ...segments.map((s) =>
+              s.kind === 'quartic'
+                ? maximumCell(s.cell, s.from, s.to)
+                : s.kind === 'constant'
+                  ? s.value
+                  : Math.max(
+                      scalarAt({ from: s.from, to: s.to, segments: [s] }, s.from),
+                      scalarAt({ from: s.from, to: s.to, segments: [s] }, s.to),
+                    ),
+            ),
+          );
+          if (worst > result.worst) {
+            result.worst = clip(worst);
+            result.worstOf = key;
+          }
         }
+        b = bodyAt(stop);
+        at = stop;
+        width = physical ? initialWidth(20) : r.nextWidth;
+        if (b.health <= 0) {
+          b.alive = false;
+          result.worst = 1;
+        }
+        applyPhysical(b, at, context);
+      }
+      at = end;
+      out.push(result);
     }
-    if (!sim.body.alive) span.worst = 1;
-    span.endsAt = sim.now;
-    out.push(span);
+    return { ok: true, value: out };
+  } catch (error) {
+    return failure(error instanceof Error ? error.message : 'unsupported numerical forecast');
   }
-  return out;
 }

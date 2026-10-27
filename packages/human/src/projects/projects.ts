@@ -1,30 +1,5 @@
-/**
- * SCOPE: self-set, bounded pursuits from host-shown, attended prospects. Fit to temperament and
- * relaxed needs chooses one project; perceived progress or completed acts advances it; neglect drops
- * it. Shapes, not fitted values: Little's personal projects (1983), Locke & Latham's goal setting
- * (2002), autonomy/competence in Deci & Ryan and Ryan & Deci (2000), constructive play (Smilansky
- * 1968; Burghardt 2005), and interrupted-task resumption (Ovsiankina 1928). The resumption bonus
- * models a pull to continue, not a Zeigarnik memory advantage. See research/projects-and-persistence.md.
- * All thresholds and coefficients are engineering defaults. This owns only p.projects; agenda owns
- * goals. All kinds serve competence and leisure: making is chosen as a free-time pursuit, not duty.
- * Behaviour 2 credits only new perceived highs; event-credited projects cannot observe reversals and stay unchanged.
- * Restore recovers one active project, keeping the newest (id breaks ties) and abandoning extras.
- * Explicit protectProgress blocks goal credit for host-declared reductions and exact contextual acts
- * followed within five minutes by an attended drop after one's own completion. This is a bounded
- * causal assumption, not proof of causation. Only direct saw/outcome readings without another actor
- * can teach that link. It learns no effects from unattended world state or testimony.
- * adoptProjectTask reuses an active project goal, preserving net credit and pursuit identity.
- * No invented prospects, implicit host task interpretation, world search, persistence, shielding, faith lens,
- * LLM or RNG. Without the slice, perception and minute bookkeeping write nothing.
- */
-import { emotionLevel } from '../affect/index.ts';
-import { AGENDA_DEFAULTS, abandonGoal, adoptGoal, perceiveProjectProgress } from '../agenda/index.ts';
-import { clamp01, cmpStr, isNum, isObj, round } from '../core/index.ts';
-import { curiosityOf } from '../curiosity/index.ts';
-import { readPerson } from '../person.ts';
-import type { Affordance, Goal, Minute, Person, ProjectsSpec, ProjectsState, Prospect } from '../types.ts';
-import { MAX_MINUTE, PHYSIOLOGICAL_NEEDS } from '../types.ts';
-
+/** SCOPE: HF4 always-present owner. Source equations use immutable run parameters; no legacy continuation. */
+import { clamp01, cmpStr, round } from '../core/index.ts';
 export const PROJECTS_DEFAULTS = {
   maxProspects: 8,
   maxHistory: 8,
@@ -37,443 +12,361 @@ export const PROJECTS_DEFAULTS = {
   halfLifeMinutes: 120,
   staleMinutes: 180,
 } as const;
-const KEYS = [
-  'forgetMinutes',
-  'calmUrgency',
-  'fearBelow',
-  'adoptEveryMinutes',
-  'cooldownMinutes',
-  'adoptAppeal',
-  'halfLifeMinutes',
-  'staleMinutes',
-] as const;
-function cleanSpec(input: unknown): ProjectsSpec {
-  const out: ProjectsSpec = {};
-  if (!isObj(input)) return out;
-  if (typeof input.protectProgress === 'boolean') out.protectProgress = input.protectProgress;
-  for (const key of KEYS) {
-    const x = input[key];
-    const unit = key === 'calmUrgency' || key === 'fearBelow' || key === 'adoptAppeal';
-    if (isNum(x) && x >= (unit ? 0 : 1) && x <= (unit ? 1 : 525600)) out[key] = x;
-  }
-  return out;
-}
-const setting = (s: ProjectsState, key: (typeof KEYS)[number]): number =>
-  s.spec?.[key] ?? PROJECTS_DEFAULTS[key];
-const str = (x: unknown): x is string => typeof x === 'string' && x.length > 0 && x.length <= 512;
-const unit = (x: unknown): x is number => isNum(x) && x >= 0 && x <= 1;
-const minute = (x: unknown, now: number): x is number => isNum(x) && Math.abs(x) <= MAX_MINUTE && x <= now;
-function cleanProspect(x: unknown): Prospect | undefined {
-  if (
-    !isObj(x) ||
-    !str(x.id) ||
-    !str(x.label) ||
-    !['make', 'arrange', 'gather', 'finish'].includes(x.kind as string) ||
-    (x.placeId !== undefined && !str(x.placeId)) ||
-    (x.progress !== undefined && !unit(x.progress)) ||
-    (x.materialIds !== undefined &&
-      (!Array.isArray(x.materialIds) || x.materialIds.length > 256 || !x.materialIds.every(str)))
-  )
-    return undefined;
-  const p: Prospect = { id: x.id, label: x.label, kind: x.kind as Prospect['kind'] };
-  if (x.placeId !== undefined) p.placeId = x.placeId as string;
-  if (x.progress !== undefined) p.progress = x.progress as number;
-  // A long list is kept, not rejected: the first eight distinct ids in the host's order (host rerun, 2026-10-20).
-  if (x.materialIds !== undefined) p.materialIds = [...new Set(x.materialIds as string[])].slice(0, 8);
-  return p;
-}
 
-/** Enable or reconfigure without discarding retained prospects and history. */
-export function enableProjects(p: Person, spec: ProjectsSpec = {}): ProjectsState {
-  const state = p.projects ?? { prospects: [], history: [] };
-  for (const g of p.agenda.goals)
-    if (g.status === 'active' && g.project?.perceivedProgress && g.project.peak === undefined)
-      g.project.peak = g.progress;
-  state.behaviour = 2;
-  const clean = cleanSpec(spec);
-  delete state.spec;
-  if (Object.keys(clean).length) state.spec = clean;
-  p.projects = state;
-  return state;
-}
+/** HF4: project changes cross to agenda only as closed receipts. */
+export const projectsOwner: import('../run-schema.ts').ProjectsOwner = {
+  initialize() {
+    return { prospects: [], history: [], contributions: [], setbacks: [] };
+  },
+  receive(previous, input, context) {
+    const state = structuredClone(previous) as import('../run-schema.ts').ProjectsState;
+    const agendaReceipts: import('../run-schema.ts').ProjectAgendaReceipt[] = [];
+    const d = context.effective.builtins.PROJECTS_DEFAULTS;
+    const observe = (
+      prospect: import('../run-schema.ts').DeepReadonly<import('../run-schema.ts').Prospect>,
+      at: number,
+      evidenceId: string,
+      own: boolean,
+    ) => {
+      if (at > context.at || context.at - at > d.forgetMinutes * 60000) return;
+      const old = state.prospects.find((p) => p.id === prospect.id);
+      if (old && old.lastSeenAt > at) return;
+      const pending = state.pendingAct;
+      if (prospect.progress !== undefined && pending && at >= pending.at) {
+        const before = pending.readings.find((r) => r.prospectId === prospect.id);
+        if (before && own && at - pending.at <= 300000)
+          for (const g of context.goals.filter(
+            (g) => g.status === 'active' && g.project?.prospectId === prospect.id,
+          )) {
+            const amount = Math.max(
+                0,
+                prospect.progress - Math.max(g.project?.peak ?? g.progress, g.progress),
+              ),
+              id = `${pending.completedReceipt}:project:${g.id}`;
+            if (amount > 0 && !state.contributions.some((c) => c.id === id))
+              state.contributions.push({
+                id,
+                goalId: g.id,
+                prospectId: prospect.id,
+                actionReceipt: pending.completedReceipt,
+                at: context.at,
+                amount,
+                basis: 'completed-action',
+              });
+          }
 
-/** Whether this offer is understood to undo this prospect. Read-only; exact context, no action-only generalisation. @internal */
-export function diminishesProject(p: Person, aff: Affordance, prospectId: string): boolean {
-  const s = p.projects;
-  return (
-    s?.spec?.protectProgress === true &&
-    ((aff.diminishes?.includes(prospectId) ?? false) ||
-      (s.setbacks?.some(
-        (x) =>
-          x.prospectId === prospectId &&
-          x.action === aff.action &&
-          x.targetId === aff.targetId &&
-          x.placeId === aff.placeId,
-      ) ??
-        false))
-  );
-}
-
-/** Own completed acts alone can explain the next attended drop. Failed/interrupted acts clear attribution. @internal */
-export function noteProjectAct(p: Person, aff: Affordance, completed: boolean, at: Minute): void {
-  const s = p.projects;
-  if (!s?.spec?.protectProgress) return;
-  delete s.pendingAct;
-  if (
-    !completed ||
-    !str(aff.action) ||
-    (aff.targetId !== undefined && !str(aff.targetId)) ||
-    (aff.placeId !== undefined && !str(aff.placeId))
-  )
-    return;
-  const readings = s.prospects
-    .filter(
-      (x) =>
-        x.progress !== undefined &&
-        p.agenda.goals.some((g) => g.status === 'active' && g.project?.prospectId === x.id),
-    )
-    .map((x) => ({ prospectId: x.id, progress: x.progress as number }));
-  if (!readings.length) return;
-  s.pendingAct = {
-    action: aff.action,
-    at,
-    readings,
-    ...(aff.targetId !== undefined ? { targetId: aff.targetId } : {}),
-    ...(aff.placeId !== undefined ? { placeId: aff.placeId } : {}),
-  };
-}
-
-/** Turn an active held project into a host task. Undefined means there is no active held project.
- * Reuses identity, adoption time, progress, peak and progress clock; never revives an abandoned project.
- * Retains its temporal horizon unless the task supplies a valid replacement.
- * The caller supplies task meaning and deadlines. No second goal or fresh progress is created.
- */
-export function adoptProjectTask(
-  p: Person,
-  prospectId: string,
-  task: Omit<Goal, 'id' | 'status' | 'progress' | 'adoptedAt' | 'project' | 'lastAdvancedAt'>,
-  now: Minute = p.now,
-): Goal | undefined {
-  if (!p.projects || !minute(now, p.now)) return undefined;
-  const held = p.agenda.goals.find((g) => g.status === 'active' && g.project?.prospectId === prospectId);
-  if (!held) return undefined;
-  // Use agenda's copying and sanitization, then retain the existing goal rather than allocating a new id.
-  const nextId = p.agenda.nextId;
-  const staged = adoptGoal(p, task, now);
-  p.agenda.goals.pop();
-  p.agenda.nextId = nextId;
-  held.label = staged.label;
-  held.serves = staged.serves;
-  held.advancedBy = staged.advancedBy;
-  held.importance = staged.importance;
-  held.baseImportance = staged.baseImportance;
-  delete held.deadline;
-  if (staged.deadline !== undefined) held.deadline = staged.deadline;
-  if (staged.temporal !== undefined) held.temporal = staged.temporal;
-  return held;
-}
-
-function relaxed(p: Person): { urgency: number; fear: number; interest: number } {
-  const needs = readPerson(p).needs;
-  return {
-    urgency: Math.max(
-      0,
-      ...needs
-        .filter((n) => n.id === 'safety' || (PHYSIOLOGICAL_NEEDS as readonly string[]).includes(n.id))
-        .map((n) => n.urgency),
-    ),
-    fear: emotionLevel(p, 'fear'),
-    interest: Math.max(
-      0,
-      ...needs.filter((n) => ['leisure', 'competence', 'autonomy'].includes(n.id)).map((n) => n.urgency),
-    ),
-  };
-}
-
-/** Read-only, deterministic appeal. Thresholds close the relaxed gate before the bounded bonus. */
-export function projectAppeal(p: Person, prospect: Prospect, now: Minute = p.now): number {
-  const s = p.projects;
-  if (
-    !s ||
-    !cleanProspect(prospect) ||
-    prospect.progress === 1 ||
-    p.body.asleep ||
-    p.activity?.mode === 'sleep' ||
-    !p.body.alive
-  )
-    return 0;
-  const { urgency, fear, interest } = relaxed(p);
-  if (urgency >= setting(s, 'calmUrgency') || fear >= setting(s, 'fearBelow')) return 0;
-  const gate = (1 - urgency) * (1 - fear);
-  const fit = 0.25 + 0.75 * (prospect.kind === 'finish' ? p.traits.conscientiousness : p.traits.openness);
-  const resume = prospect.progress !== undefined && prospect.progress > 0 && prospect.progress < 1 ? 0.1 : 0;
-  const bonus = p.curiosity
-    ? 0.05 *
-      clamp01(
-        curiosityOf(
-          p,
-          {
-            id: prospect.id,
-            action: prospect.kind,
-            label: prospect.label,
-            duration: 1,
-            effort: 0,
-            advertises: {},
-          },
-          now,
-        ).drive,
-      )
-    : 0;
-  return round(clamp01(gate * (fit * (0.5 + 0.5 * interest) + resume + bonus)));
-}
-
-function recordProjectStatus(p: Person, g: Goal, now: Minute): void {
-  const s = p.projects;
-  if (!s || !g.project || g.status === 'active') return;
-  if (!s.history.some((h) => h.goalId === g.id))
-    s.history.push({
-      prospectId: g.project.prospectId,
-      goalId: g.id,
-      adoptedAt: g.adoptedAt,
-      outcome: g.status,
-      at: now,
-    });
-  if (g.status === 'abandoned') s.lastAbandonedAt = now;
-  else {
-    // Completed event-progress projects have no host progress reading: retain the known completion.
-    const prospect = s.prospects.find((x) => x.id === g.project?.prospectId);
-    if (prospect) prospect.progress = 1;
-  }
-  if (s.history.length > PROJECTS_DEFAULTS.maxHistory) s.history.shift();
-  if (s.currentGoalId === g.id) delete s.currentGoalId;
-}
-
-/** Record the adopted project's terminal state once, even after history eviction. @internal */
-export function noteProjectStatus(p: Person, now: Minute): void {
-  const s = p.projects;
-  if (!s?.currentGoalId) return;
-  const g = p.agenda.goals.find((g) => g.id === s.currentGoalId);
-  if (!g?.project) delete s.currentGoalId;
-  else recordProjectStatus(p, g, now);
-}
-
-/** Only the composite calls this, after attention. Newest event minute wins; equal-minute input order wins. */
-export function perceiveProspect(p: Person, input: Prospect, at: Minute, attributeOwnAct = false): void {
-  const s = p.projects;
-  if (!s || !minute(at, p.now)) return;
-  const prospect = cleanProspect(input);
-  if (!prospect) return;
-  const old = s.prospects.find((x) => x.id === prospect.id);
-  if (old && old.lastSeenAt > at) return;
-  if (p.now - at > setting(s, 'forgetMinutes')) return;
-  const act = s.pendingAct;
-  if (s.spec?.protectProgress && act && at >= act.at) {
-    const before = act.readings.find((x) => x.prospectId === prospect.id);
-    if (before && prospect.progress !== undefined) {
-      if (attributeOwnAct && at - act.at <= 5 && prospect.progress < before.progress) {
-        const learned = {
-          prospectId: prospect.id,
-          action: act.action,
-          ...(act.targetId !== undefined ? { targetId: act.targetId } : {}),
-          ...(act.placeId !== undefined ? { placeId: act.placeId } : {}),
-        };
-        const list = s.setbacks ?? [];
-        if (
-          !list.some(
-            (x) =>
-              x.prospectId === learned.prospectId &&
-              x.action === learned.action &&
-              x.targetId === learned.targetId &&
-              x.placeId === learned.placeId,
+        if (before && own && at - pending.at <= 300000 && prospect.progress < before.progress) {
+          const setback = {
+            prospectId: prospect.id,
+            action: pending.action,
+            ...(pending.targetId !== undefined ? { targetId: pending.targetId } : {}),
+            ...(pending.placeId !== undefined ? { placeId: pending.placeId } : {}),
+          };
+          if (
+            !state.setbacks.some(
+              (s) =>
+                s.prospectId === setback.prospectId &&
+                s.action === setback.action &&
+                s.targetId === setback.targetId &&
+                s.placeId === setback.placeId,
+            )
           )
-        )
-          list.push(learned);
-        s.setbacks = list.slice(-16);
+            state.setbacks.push(setback);
+          state.setbacks = state.setbacks.slice(-16);
+        }
+        pending.readings = pending.readings.filter((r) => r.prospectId !== prospect.id);
+        if (!pending.readings.length || at - pending.at > 300000) delete state.pendingAct;
       }
-      act.readings = act.readings.filter((x) => x.prospectId !== prospect.id);
-      if (!act.readings.length) delete s.pendingAct;
-    }
-    if (at - act.at > 5) delete s.pendingAct;
-  }
-  const held = { ...prospect, lastSeenAt: at };
-  if (old) s.prospects[s.prospects.indexOf(old)] = held;
-  else {
-    if (s.prospects.length >= PROJECTS_DEFAULTS.maxProspects) {
-      let oldest = 0;
-      for (const [i, entry] of s.prospects.entries())
-        if (entry.lastSeenAt < (s.prospects[oldest]?.lastSeenAt ?? Infinity)) oldest = i;
-      s.prospects.splice(oldest, 1);
-    }
-    s.prospects.push(held);
-  }
-  if (prospect.progress !== undefined) perceiveProjectProgress(p, prospect.id, prospect.progress, p.now);
-  noteProjectStatus(p, p.now);
-}
-
-/** Called on each tick segment, including one-minute begin/tick/finish host loops. No RNG. */
-export function considerProjects(p: Person, now: Minute): void {
-  const s = p.projects;
-  if (!s || !minute(now, p.now)) return;
-  s.prospects = s.prospects.filter((x) => now - x.lastSeenAt <= setting(s, 'forgetMinutes'));
-  for (const g of p.agenda.goals)
-    if (
-      g.project &&
-      g.status === 'active' &&
-      now - (g.lastAdvancedAt ?? g.adoptedAt) >= setting(s, 'staleMinutes')
-    ) {
-      abandonGoal(p, g.id);
-      recordProjectStatus(p, g, now);
-    }
-  noteProjectStatus(p, now);
-  const active = p.agenda.goals.filter((g) => g.status === 'active');
-  if (
-    active.some((g) => g.project) ||
-    active.length >= AGENDA_DEFAULTS.maxActiveGoals ||
-    p.agenda.commitments.some((c) => c.status === 'pending' && c.from <= now && c.until >= now) ||
-    (s.lastAdoptedAt !== undefined && now - s.lastAdoptedAt < setting(s, 'adoptEveryMinutes')) ||
-    (s.lastAbandonedAt !== undefined && now - s.lastAbandonedAt < setting(s, 'cooldownMinutes'))
-  )
-    return;
-  const best = s.prospects
-    .map((prospect) => ({ prospect, appeal: projectAppeal(p, prospect, now) }))
-    .filter((x) => x.appeal > setting(s, 'adoptAppeal'))
-    .sort((a, b) => b.appeal - a.appeal || cmpStr(a.prospect.id, b.prospect.id))[0];
-  if (!best) return;
-  const { prospect, appeal } = best;
-  const g = adoptGoal(
-    p,
-    {
-      label: prospect.label,
-      serves: ['competence', 'leisure'],
-      advancedBy: [],
-      importance: Math.max(0.3, Math.min(0.7, appeal)),
-      temporal: { halfLifeMinutes: setting(s, 'halfLifeMinutes') },
-      project: { prospectId: prospect.id, perceivedProgress: prospect.progress !== undefined },
-    },
-    now,
-  );
-  if (prospect.progress !== undefined) perceiveProjectProgress(p, prospect.id, prospect.progress, now);
-  if (s.behaviour === 2 && g.project) g.project.peak = g.progress;
-  s.lastAdoptedAt = now;
-  s.currentGoalId = g.id;
-}
-
-/** Conservative restore: bounded fields, finite past timestamps, and no ambiguous duplicate ids. */
-export function sanitizeProjects(input: unknown, now: Minute): ProjectsState | undefined {
-  if (!isObj(input) || !Array.isArray(input.prospects) || !Array.isArray(input.history)) return undefined;
-  if (input.behaviour !== undefined && input.behaviour !== 2) return undefined;
-  const out: ProjectsState = { prospects: [], history: [] };
-  if (input.behaviour === 2) out.behaviour = 2;
-  if (input.spec !== undefined) {
-    if (!isObj(input.spec)) return undefined;
-    const spec = cleanSpec(input.spec);
-    if (Object.keys(spec).length !== Object.keys(input.spec).length) return undefined;
-    if (Object.keys(spec).length) out.spec = spec;
-  }
-  for (const key of ['lastAdoptedAt', 'lastAbandonedAt'] as const) {
-    if (input[key] === undefined) continue;
-    if (!minute(input[key], now)) return undefined;
-    out[key] = input[key];
-  }
-  if (input.currentGoalId !== undefined) {
-    if (!str(input.currentGoalId)) return undefined;
-    out.currentGoalId = input.currentGoalId;
-  }
-  if (input.setbacks !== undefined) {
-    if (!Array.isArray(input.setbacks) || input.setbacks.length > 16) return undefined;
-    out.setbacks = [];
-    for (const x of input.setbacks) {
-      if (
-        !isObj(x) ||
-        !str(x.prospectId) ||
-        !str(x.action) ||
-        (x.targetId !== undefined && !str(x.targetId)) ||
-        (x.placeId !== undefined && !str(x.placeId))
-      )
-        return undefined;
-      out.setbacks.push({
-        prospectId: x.prospectId,
-        action: x.action,
-        ...(x.targetId !== undefined ? { targetId: x.targetId as string } : {}),
-        ...(x.placeId !== undefined ? { placeId: x.placeId as string } : {}),
-      });
-    }
-  }
-  const act = input.pendingAct;
-  if (act !== undefined) {
-    if (
-      !isObj(act) ||
-      !str(act.action) ||
-      !minute(act.at, now) ||
-      (act.targetId !== undefined && !str(act.targetId)) ||
-      (act.placeId !== undefined && !str(act.placeId)) ||
-      !Array.isArray(act.readings) ||
-      act.readings.length > PROJECTS_DEFAULTS.maxProspects
-    )
-      return undefined;
-    const readings: { prospectId: string; progress: number }[] = [];
-    for (const x of act.readings) {
-      if (!isObj(x) || !str(x.prospectId) || !unit(x.progress)) return undefined;
-      readings.push({ prospectId: x.prospectId, progress: x.progress });
-    }
-    out.pendingAct = {
-      action: act.action,
-      at: act.at,
-      readings,
-      ...(act.targetId !== undefined ? { targetId: act.targetId as string } : {}),
-      ...(act.placeId !== undefined ? { placeId: act.placeId as string } : {}),
+      const held = {
+        ...structuredClone(prospect),
+        lastSeenAt: at,
+      } as import('../run-schema.ts').ProjectsState['prospects'][number];
+      if (old) state.prospects[state.prospects.indexOf(old)] = held;
+      else {
+        if (state.prospects.length >= d.maxProspects) {
+          let oldest = 0;
+          for (let i = 1; i < state.prospects.length; i++)
+            if ((state.prospects[i]?.lastSeenAt ?? 0) < (state.prospects[oldest]?.lastSeenAt ?? 0))
+              oldest = i;
+          state.prospects.splice(oldest, 1);
+        }
+        state.prospects.push(held);
+      }
+      if (prospect.progress !== undefined)
+        agendaReceipts.push({
+          kind: 'project-progress',
+          evidenceId,
+          prospectId: prospect.id,
+          progress: prospect.progress,
+          ownContribution: own,
+        });
     };
-  }
-  const seen = new Set<string>();
-  for (const entry of input.prospects.slice(0, PROJECTS_DEFAULTS.maxProspects)) {
-    const prospect = cleanProspect(entry);
-    if (!prospect || !isObj(entry) || !minute(entry.lastSeenAt, now)) continue;
-    if (seen.has(prospect.id)) return undefined;
-    seen.add(prospect.id);
-    if (now - entry.lastSeenAt <= setting(out, 'forgetMinutes'))
-      out.prospects.push({ ...prospect, lastSeenAt: entry.lastSeenAt });
-  }
-  seen.clear();
-  for (const h of input.history.slice(-PROJECTS_DEFAULTS.maxHistory)) {
+    if (input.kind === 'attended') {
+      if (input.percept.prospect)
+        observe(
+          input.percept.prospect,
+          input.percept.occurredAt,
+          input.percept.id,
+          (input.percept.channel === 'saw' || input.percept.channel === 'outcome') &&
+            (input.percept.actorId === undefined || input.percept.actorId === context.person),
+        );
+    } else {
+      delete state.pendingAct;
+      const { activity, outcome } = input,
+        offer = activity.offer;
+      if (outcome.status === 'completed') {
+        const readings = state.prospects
+          .filter(
+            (p) =>
+              p.progress !== undefined &&
+              context.goals.some((g) => g.status === 'active' && g.project?.prospectId === p.id),
+          )
+          .map((p) => ({ prospectId: p.id, progress: p.progress as number, evidenceId: outcome.evidenceId }));
+        if (readings.length)
+          state.pendingAct = {
+            action: offer.actionId,
+            at: context.at,
+            completedReceipt: outcome.evidenceId,
+            readings,
+            ...(offer.target !== undefined ? { targetId: offer.target } : {}),
+            ...(offer.place !== undefined ? { placeId: offer.place } : {}),
+          };
+        for (const reading of outcome.actual.observedProgress) {
+          const prospect = state.prospects.find((p) => p.id === reading.prospectId);
+          if (prospect)
+            observe({ ...prospect, progress: reading.progress }, outcome.end, reading.evidenceId, true);
+          for (const goal of context.goals.filter(
+            (g) => g.status === 'active' && g.project?.prospectId === reading.prospectId,
+          )) {
+            const amount = Math.max(
+              0,
+              reading.progress - Math.max(goal.project?.peak ?? goal.progress, goal.progress),
+            );
+            const id = `${outcome.evidenceId}:project:${goal.id}`;
+            if (amount > 0 && !state.contributions.some((c) => c.id === id))
+              state.contributions.push({
+                id,
+                goalId: goal.id,
+                prospectId: reading.prospectId,
+                actionReceipt: outcome.evidenceId,
+                at: context.at,
+                amount,
+                basis: 'completed-action',
+              });
+          }
+        }
+      }
+    }
+    return {
+      state,
+      agendaReceipts,
+      effects: { terms: [], modifiers: [], appraisals: [] },
+      events: [],
+      nextBoundary: null,
+      advancedThrough: context.at,
+    };
+  },
+  consider(previous, context) {
+    const state = structuredClone(previous) as import('../run-schema.ts').ProjectsState;
+    const agendaReceipts: import('../run-schema.ts').ProjectAgendaReceipt[] = [];
+    const d = context.effective.builtins.PROJECTS_DEFAULTS;
+    state.prospects = state.prospects.filter((p) => context.at - p.lastSeenAt <= d.forgetMinutes * 60000);
+    const record = (
+      g: import('../run-schema.ts').DeepReadonly<import('../run-schema.ts').Goal>,
+      outcome: 'achieved' | 'abandoned',
+    ) => {
+      if (!g.project || state.history.some((h) => h.goalId === g.id)) return;
+      state.history.push({
+        prospectId: g.project.prospectId,
+        goalId: g.id,
+        adoptedAt: g.adoptedAt,
+        outcome,
+        at: context.at,
+      });
+      state.history = state.history.slice(-d.maxHistory);
+      if (outcome === 'abandoned') state.lastAbandonedAt = context.at;
+      else {
+        const prospect = state.prospects.find((p) => p.id === g.project?.prospectId);
+        if (prospect) prospect.progress = 1;
+      }
+      if (state.currentGoalId === g.id) delete state.currentGoalId;
+    };
+    const abandoned = new Set<string>();
+    for (const g of context.goals)
+      if (g.project) {
+        if (g.status !== 'active') {
+          if (
+            state.currentGoalId === g.id ||
+            (state.currentGoalId === undefined && g.adoptedAt === state.lastAdoptedAt)
+          )
+            record(g, g.status);
+        } else if (context.at - g.lastAdvancedAt >= d.staleMinutes * 60000) {
+          agendaReceipts.push({
+            kind: 'project-abandon',
+            evidenceId: `project-stale:${g.id}:${context.at}`,
+            goalId: g.id,
+          });
+          abandoned.add(g.id);
+          record(g, 'abandoned');
+        }
+      }
+    const active = context.goals.filter((g) => g.status === 'active' && !abandoned.has(g.id));
+    const existing = active.find((g) => g.project);
+    if (existing) state.currentGoalId = existing.id;
+    const allowed =
+      !existing &&
+      active.length < context.effective.builtins.AGENDA_DEFAULTS.maxActiveGoals &&
+      !context.commitments.some(
+        (c) => c.status === 'pending' && c.from <= context.at && c.until >= context.at,
+      ) &&
+      (state.lastAdoptedAt === undefined ||
+        context.at - state.lastAdoptedAt >= d.adoptEveryMinutes * 60000) &&
+      (state.lastAbandonedAt === undefined ||
+        context.at - state.lastAbandonedAt >= d.cooldownMinutes * 60000);
+    if (allowed) {
+      let urgency = 0,
+        interest = 0;
+      for (const n of context.needs) {
+        if (['safety', 'food', 'water', 'sleep', 'rest', 'relief'].includes(n.id))
+          urgency = Math.max(urgency, n.urgency);
+        if (['leisure', 'competence', 'autonomy'].includes(n.id)) interest = Math.max(interest, n.urgency);
+      }
+      const fear = clamp01(
+        context.affect.emotions.filter((e) => e.id === 'fear').reduce((sum, e) => sum + e.intensity, 0),
+      );
+      const best = state.prospects
+        .map((prospect) => {
+          const fit =
+            0.25 +
+            0.75 * (prospect.kind === 'finish' ? context.traits.conscientiousness : context.traits.openness);
+          const resume =
+            prospect.progress !== undefined && prospect.progress > 0 && prospect.progress < 1 ? 0.1 : 0;
+          // The same pre-outcome drive used by curiosity, including the life factor, is supplied below.
+          const curiosityDrive =
+            (1 - clamp01(urgency)) *
+            (1 - fear) *
+            (0.25 + 0.75 * context.traits.openness) *
+            (1.25 - 0.5 * context.life.maturity);
+          const appeal =
+            prospect.progress === 1 ||
+            !context.alive ||
+            context.asleep ||
+            context.activity?.offer.demands.mode === 'sleep' ||
+            urgency >= d.calmUrgency ||
+            fear >= d.fearBelow
+              ? 0
+              : round(
+                  clamp01(
+                    (1 - urgency) *
+                      (1 - fear) *
+                      (fit * (0.5 + 0.5 * interest) + resume + 0.05 * clamp01(curiosityDrive)),
+                  ),
+                );
+          return { prospect, appeal };
+        })
+        .filter((c) => c.appeal > d.adoptAppeal)
+        .sort((a, b) => b.appeal - a.appeal || cmpStr(a.prospect.id, b.prospect.id))[0];
+      if (best) {
+        const { prospect, appeal } = best,
+          importance = Math.max(0.3, Math.min(0.7, appeal));
+        agendaReceipts.push({
+          kind: 'project-adopt',
+          evidenceId: `project-proposal:${prospect.id}:${context.at}`,
+          goal: {
+            id: `project-proposal:${prospect.id}:${context.at}`,
+            label: prospect.label,
+            serves: ['competence', 'leisure'],
+            advancedBy: [],
+            importance,
+            baseImportance: importance,
+            progress: prospect.progress ?? 0,
+            completionHalfLifeMs: d.halfLifeMinutes * 60000,
+            project: {
+              prospectId: prospect.id,
+              ...(prospect.progress !== undefined ? { peak: prospect.progress } : {}),
+            },
+          },
+        });
+        state.lastAdoptedAt = context.at;
+        state.currentGoalId = `project-proposal:${prospect.id}:${context.at}`;
+      }
+    }
+    return {
+      state,
+      agendaReceipts,
+      effects: { terms: [], modifiers: [], appraisals: [] },
+      events: [],
+      nextBoundary: null,
+      advancedThrough: context.at,
+    };
+  },
+  validate(state) {
+    const issues: import('../run-schema.ts').ValidationIssue[] = [];
+    const fail = (path: string) =>
+      issues.push({ path, code: 'invalid-schema', message: 'Invalid project state' });
     if (
-      !isObj(h) ||
-      !str(h.prospectId) ||
-      !str(h.goalId) ||
-      !minute(h.at, now) ||
-      !minute(h.adoptedAt, h.at) ||
-      (h.outcome !== 'achieved' && h.outcome !== 'abandoned')
+      state.prospects.length > PROJECTS_DEFAULTS.maxProspects ||
+      state.history.length > PROJECTS_DEFAULTS.maxHistory ||
+      state.setbacks.length > 16 ||
+      new Set(state.prospects.map((p) => p.id)).size !== state.prospects.length ||
+      new Set(state.contributions.map((c) => c.id)).size !== state.contributions.length
     )
-      continue;
-    if (seen.has(h.goalId)) return undefined;
-    seen.add(h.goalId);
-    out.history.push({
-      prospectId: h.prospectId,
-      goalId: h.goalId,
-      adoptedAt: h.adoptedAt,
-      outcome: h.outcome,
-      at: h.at,
-    });
-  }
-  return out;
-}
+      fail('projects');
+    for (const p of state.prospects)
+      if (
+        !p.id ||
+        !p.label ||
+        !['make', 'arrange', 'gather', 'finish'].includes(p.kind) ||
+        !Number.isSafeInteger(p.lastSeenAt) ||
+        (p.progress !== undefined && (!Number.isFinite(p.progress) || p.progress < 0 || p.progress > 1))
+      )
+        fail('projects.prospects');
+    for (const c of state.contributions)
+      if (
+        !c.id ||
+        !c.goalId ||
+        !c.prospectId ||
+        !c.actionReceipt ||
+        !Number.isSafeInteger(c.at) ||
+        !Number.isFinite(c.amount) ||
+        c.amount <= 0 ||
+        c.basis !== 'completed-action'
+      )
+        fail('projects.contributions');
+    return issues;
+  },
+  validatePortable(state, goals, allocated) {
+    const issues = [...projectsOwner.validate(state)];
+    for (const c of state.contributions)
+      if (
+        !goals.some((g) => g.id === c.goalId) ||
+        !allocated.some((r) => r.kind === 'goal' && r.id === c.goalId) ||
+        !allocated.some((r) => r.kind === 'receipt' && r.id === c.actionReceipt)
+      )
+        issues.push({
+          path: 'projects.contributions',
+          code: 'unknown-id',
+          message: 'Unmapped project contribution',
+        });
+    if (state.currentGoalId !== undefined && !goals.some((g) => g.id === state.currentGoalId))
+      issues.push({ path: 'projects.currentGoalId', code: 'unknown-id', message: 'Unknown project goal' });
+    return issues;
+  },
+};
 
-/** Sanitize and reconcile agenda ownership deterministically, without RNG. @internal */
-export function restoreProjects(p: Person): void {
-  const s = sanitizeProjects(p.projects, p.now);
-  if (!s) {
-    delete p.projects;
-    return;
-  }
-  p.projects = s;
-  noteProjectStatus(p, p.now);
-  const active = p.agenda.goals
-    .filter((g) => g.project && g.status === 'active')
-    .sort((a, b) => b.adoptedAt - a.adoptedAt || cmpStr(a.id, b.id));
-  for (const g of active.slice(1)) {
-    abandonGoal(p, g.id);
-    recordProjectStatus(p, g, p.now);
-  }
-  const kept = active[0];
-  if (kept) s.currentGoalId = kept.id;
-  else delete s.currentGoalId;
+export function projectDiminishes(
+  state: import('../run-schema.ts').DeepReadonly<import('../run-schema.ts').ProjectsState>,
+  offer: import('../run-schema.ts').DeepReadonly<import('../run-schema.ts').Offer>,
+  prospectId: string,
+): boolean {
+  return (
+    offer.diminishes.includes(prospectId) ||
+    state.setbacks.some(
+      (s) =>
+        s.prospectId === prospectId &&
+        s.action === offer.actionId &&
+        s.targetId === offer.target &&
+        s.placeId === offer.place,
+    )
+  );
 }

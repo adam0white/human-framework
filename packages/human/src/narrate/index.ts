@@ -1,2 +1,3 @@
-export * from './lexicon.ts';
-export * from './narrate.ts';
+export { actionForms, displayName } from './lexicon.ts';
+export { rendererOwner } from './literal.ts';
+export { narrate } from './narrate.ts';

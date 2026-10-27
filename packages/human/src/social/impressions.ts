@@ -1,3 +1,33 @@
+import type {
+  ActorState,
+  EntityId,
+  Impression,
+  ImpressionCue,
+  NormTag,
+  PersonId,
+  Signed,
+  StateCue,
+  Time,
+  Traits,
+  Unit,
+} from '../run-schema.ts';
+
+type SocialActor = Pick<ActorState, 'id' | 'now' | 'traits' | 'values' | 'social'> & {
+  conscience: Pick<ActorState['conscience'], 'norms'>;
+  memory: Pick<ActorState['memory'], 'sourceTrust'>;
+};
+
+const MINUTES_PER_DAY = 1440,
+  MINUTES_PER_YEAR = 525600;
+const TRAIT_KEYS = [
+  'honesty',
+  'emotionality',
+  'extraversion',
+  'agreeableness',
+  'conscientiousness',
+  'openness',
+] as const;
+
 /**
  * SCOPE (impressions, HF 2.0 L6): what one person believes about another — their state (fatigue, pain, fear,
  * mood), their fear of particular places, their HEXACO traits, their ties to third people and their trust in a voice
@@ -9,7 +39,7 @@
  * known each other). Nothing reads the target's true state here: the composite (`impression.ts`) turns a target into
  * outward signs, applying the target's reserve — how much they keep from showing (a proud person hides pain; the
  * default rises as emotionality falls) — and words hide more than faces. Weight decays by kind: state within hours,
- * place fears over weeks, ties and trust over months, a seen skill (`skill:<id>`, opt-in by key) over a year; traits
+ * place fears over weeks, ties and trust over months, a seen skill (`skill:<id>`, when observed) over a year; traits
  * do not decay. Observation error is a deterministic hash
  * of (observer, target, key, minute), scaled by 1 − clarity: no person's RNG is drawn. Shapes borrowed qualitatively:
  * Brunswik's lens model (judgements from cues of varying validity), Funder's realistic accuracy model (accuracy needs
@@ -17,7 +47,7 @@
  * pain and fear), and the familiar finding that self-reports of pain understate what observers see in a limp. Every
  * number is an engineering default.
  *
- * Read by: cognition (opt-in, a risky offer shared with people I hold impressions of weighs their believed fear and
+ * Read by: cognition ( a risky offer shared with people I hold impressions of weighs their believed fear and
  * pain: `companionSteadiness`), and the composite's `imagine` / `predictAs` / `previewCommandAs`, which predict a
  * person's answer from the observer's estimates instead of the truth, so a UI (a host's read of a person) and one person's
  * judgement of another use the same function. Without an observation call nothing is written and no decision
@@ -26,21 +56,7 @@
  * impressions (conversation carries reputation beliefs separately, `social.ts`).
  */
 import { testimonyWeight, trustOf } from '../beliefs/beliefs.ts';
-import { clamp, clamp01, cmpStr, decay, latestPerId, newestN, round } from '../core/index.ts';
-import type {
-  EntityId,
-  Impression,
-  ImpressionCue,
-  Minute,
-  NormTag,
-  Person,
-  PersonId,
-  Signed,
-  StateCue,
-  Traits,
-  Unit,
-} from '../types.ts';
-import { MINUTES_PER_DAY, MINUTES_PER_YEAR, TRAIT_KEYS } from '../types.ts';
+import { clamp, clamp01, cmpStr, decay, round } from '../core/index.ts';
 import { judge, SOCIAL_DEFAULTS } from './social.ts';
 
 export type CueKind = 'state' | 'place' | 'trait' | 'tie' | 'trust' | 'skill' | 'regard';
@@ -116,12 +132,12 @@ export interface Estimate {
   value: number;
   /** 0..1: how much has been seen, after decay. */
   confidence: Unit;
-  /** Minute of the last observation, absent when nothing has been seen (the value is the prior). */
-  seenAt?: Minute;
+  /** Time of the last observation, absent when nothing has been seen (the value is the prior). */
+  seenAt?: Time;
 }
 
 export interface ObservedAct {
-  at: Minute;
+  at: Time;
   /** 0..1, default 1. */
   clarity?: Unit;
   /**
@@ -176,8 +192,8 @@ function hash01(s: string): number {
 }
 
 /** How much `p` keeps `cue` from showing (0..1). */
-export function reserveOf(p: Person, cue: StateCue): Unit {
-  const own = p.social.reserve?.[cue];
+export function reserveOf(p: SocialActor, cue: StateCue): Unit {
+  const own = p.social.reserve[cue];
   if (own !== undefined) return clamp01(own);
   const R = IMPRESSION_DEFAULTS.reserve;
   if (cue === 'fatigue') return R.fatigue;
@@ -185,25 +201,17 @@ export function reserveOf(p: Person, cue: StateCue): Unit {
   return clamp01(R.base + R.emotionalityCoef * (1 - p.traits.emotionality));
 }
 
-/** Set (merge) how much `p` keeps each cue from showing; `undefined` values remove an override. */
-export function setReserve(p: Person, reserve: Partial<Record<StateCue, Unit | undefined>>): void {
-  const out: Partial<Record<StateCue, Unit>> = { ...(p.social.reserve ?? {}) };
-  for (const cue of STATE_CUES) {
-    if (!(cue in reserve)) continue;
-    const v = reserve[cue];
-    if (v === undefined) delete out[cue];
-    else out[cue] = clamp01(v);
-  }
-  if (Object.keys(out).length === 0) delete p.social.reserve;
-  else p.social.reserve = out;
-}
-
-function impressionFor(p: Person, targetId: PersonId, create: boolean, now: Minute): Impression | undefined {
+function impressionFor(
+  p: SocialActor,
+  targetId: PersonId,
+  create: boolean,
+  now: Time,
+): Impression | undefined {
   const list = p.social.impressions;
-  const found = list?.find((i) => i.targetId === targetId);
+  const found = list.find((i) => i.targetId === targetId);
   if (found || !create) return found;
   const imp: Impression = { targetId, cues: [], seenAt: now };
-  const next = [...(list ?? []), imp];
+  const next = [...list, imp];
   if (next.length > IMPRESSION_DEFAULTS.maxImpressions) {
     // Forget the person least recently seen (never the one just added).
     let worst = 0;
@@ -215,14 +223,14 @@ function impressionFor(p: Person, targetId: PersonId, create: boolean, now: Minu
   return imp;
 }
 
-function decayedWeight(c: ImpressionCue, now: Minute): number {
+function decayedWeight(c: ImpressionCue, now: Time): number {
   const hl = IMPRESSION_DEFAULTS.halfLife[cueKind(c.key)];
   if (hl <= 0 || now <= c.at) return c.weight;
-  return decay(c.weight, now - c.at, hl);
+  return decay(c.weight, (now - c.at) / 60000, hl);
 }
 
 /** Fold one sample into a cue. */
-function sample(imp: Impression, key: string, value: number, weight: number, at: Minute): void {
+function sample(imp: Impression, key: string, value: number, weight: number, at: Time): void {
   if (!(weight > 0) || !Number.isFinite(value)) return;
   const [lo, hi] = rangeOf(key);
   const v = clamp(value, lo, hi);
@@ -248,7 +256,14 @@ function sample(imp: Impression, key: string, value: number, weight: number, at:
   imp.seenAt = Math.max(imp.seenAt, at);
 }
 
-function erred(observer: Person, targetId: PersonId, key: string, at: Minute, value: number, clarity: Unit) {
+function erred(
+  observer: SocialActor,
+  targetId: PersonId,
+  key: string,
+  at: Time,
+  value: number,
+  clarity: Unit,
+) {
   const e = (hash01(`${observer.id}|${targetId}|${key}|${at}`) - 0.5) * IMPRESSION_DEFAULTS.noise;
   return value + e * (1 - clamp01(clarity));
 }
@@ -258,10 +273,10 @@ function erred(observer: Person, targetId: PersonId, key: string, at: Minute, va
  * the evidence and how true it is (a figure in the dark tells little and tells it wrong).
  */
 export function glimpse(
-  observer: Person,
+  observer: SocialActor,
   targetId: PersonId,
   signs: OutwardSigns,
-  at: Minute,
+  at: Time,
   clarity?: Unit,
 ): void {
   if (!Number.isFinite(at)) throw new TypeError('glimpse requires a finite positional time');
@@ -281,7 +296,7 @@ export function glimpse(
 
 /** What someone was seen to do: place fear, ties, trust in a voice and trait evidence (see `ObservedAct`). */
 export function observeAct(
-  observer: Person,
+  observer: SocialActor,
   targetId: PersonId,
   act: ObservedAct,
   table: Record<string, Partial<Record<keyof Traits, Unit>>> = IMPRESSION_DEFAULTS.actTraits,
@@ -310,11 +325,11 @@ export function observeAct(
 
 /** Testimony about someone (their own words, or another's): `value` on `key`, weighted (e.g. by trust in the teller). */
 export function hear(
-  observer: Person,
+  observer: SocialActor,
   targetId: PersonId,
   key: string,
   value: number,
-  at: Minute,
+  at: Time,
   weight?: Unit,
 ): void {
   if (!Number.isFinite(at)) throw new TypeError('hear requires a finite positional time');
@@ -325,46 +340,16 @@ export function hear(
   sample(imp, key, value, w, at);
 }
 
-/**
- * Years of history condensed (host call, e.g. at the start of a run for people who already know each other): one
- * sample per trait from `traits` with an error that shrinks with familiarity, at weight
- * `acquaintWeight × familiarity`, and one sample per known tie of the target (`ties`, closeness −1..1).
- */
-export function acquaint(
-  observer: Person,
-  targetId: PersonId,
-  familiarity: Unit,
-  facts: { traits: Traits; ties?: Record<PersonId, Signed> },
-  at: Minute,
-): void {
-  if (targetId === observer.id) return;
-  const f = clamp01(familiarity);
-  if (f <= 0) return;
-  const A = IMPRESSION_DEFAULTS;
-  const imp = impressionFor(observer, targetId, true, at) as Impression;
-  for (const t of TRAIT_KEYS) {
-    const key = `trait:${t}`;
-    const e = (hash01(`${observer.id}|${targetId}|${key}|acquaint`) - 0.5) * A.acquaintNoise * (1 - f);
-    sample(imp, key, facts.traits[t] + e, A.acquaintWeight * f, at);
-  }
-  for (const id of Object.keys(facts.ties ?? {}).sort()) {
-    if (id === observer.id || id === targetId) continue;
-    sample(imp, `tie:${id}`, facts.ties?.[id] ?? 0, 2 * f, at);
-  }
-}
-
 /** The observer's estimate of `key` about `targetId` at `now` (the prior with confidence 0 when nothing is known). */
-export function estimate(observer: Person, targetId: PersonId, key: string, now: Minute): Estimate {
-  const c = observer.social.impressions
-    ?.find((i) => i.targetId === targetId)
-    ?.cues.find((x) => x.key === key);
+export function estimate(observer: SocialActor, targetId: PersonId, key: string, now: Time): Estimate {
+  const c = observer.social.impressions.find((i) => i.targetId === targetId)?.cues.find((x) => x.key === key);
   if (!c) return { value: priorOf(key), confidence: 0 };
   const w = decayedWeight(c, now);
   return { value: c.mean, confidence: round(w / (w + IMPRESSION_DEFAULTS.priorWeight)), seenAt: c.at };
 }
 
 /** The estimate pulled toward the prior by its uncertainty: what to act on when unsure. */
-export function believedValue(observer: Person, targetId: PersonId, key: string, now: Minute): number {
+export function believedValue(observer: SocialActor, targetId: PersonId, key: string, now: Time): number {
   const e = estimate(observer, targetId, key, now);
   const prior = priorOf(key);
   return prior + (e.value - prior) * e.confidence;
@@ -372,14 +357,14 @@ export function believedValue(observer: Person, targetId: PersonId, key: string,
 
 export interface ImpressionReadout {
   targetId: PersonId;
-  /** Minute of the last observation of anything, absent when the observer holds no impression. */
-  seenAt?: Minute;
+  /** Time of the last observation of anything, absent when the observer holds no impression. */
+  seenAt?: Time;
   cues: ({ key: string } & Estimate)[];
 }
 
 /** Every cue the observer holds about `targetId`, sorted by key (read-only). */
-export function impressionOf(observer: Person, targetId: PersonId, now: Minute): ImpressionReadout {
-  const imp = observer.social.impressions?.find((i) => i.targetId === targetId);
+export function impressionOf(observer: SocialActor, targetId: PersonId, now: Time): ImpressionReadout {
+  const imp = observer.social.impressions.find((i) => i.targetId === targetId);
   if (!imp) return { targetId, cues: [] };
   const cues = [...imp.cues]
     .sort((a, b) => cmpStr(a.key, b.key))
@@ -388,15 +373,15 @@ export function impressionOf(observer: Person, targetId: PersonId, now: Minute):
 }
 
 /** Whether `p` holds any impression of `targetId`. */
-function hasImpression(p: Person, targetId: PersonId): boolean {
-  return p.social.impressions?.some((i) => i.targetId === targetId) ?? false;
+function hasImpression(p: SocialActor, targetId: PersonId): boolean {
+  return p.social.impressions.some((i) => i.targetId === targetId);
 }
 
 /**
  * How steady `p` believes `otherId` to be in danger, −1..1 scaled by confidence (0 when nothing is known): calm
  * and unhurt reads positive, frightened or hurt negative. Cognition weighs it on risky offers shared with them.
  */
-export function companionSteadiness(p: Person, otherId: PersonId, now: Minute): Signed {
+export function companionSteadiness(p: SocialActor, otherId: PersonId, now: Time): Signed {
   if (!hasImpression(p, otherId)) return 0;
   const fear = estimate(p, otherId, 'fear', now);
   const pain = estimate(p, otherId, 'pain', now);
@@ -405,72 +390,6 @@ export function companionSteadiness(p: Person, otherId: PersonId, now: Minute): 
   if (conf <= 0) return 0;
   const shaky = 0.5 * fear.value + 0.3 * pain.value + 0.4 * (emo.value - 0.5);
   return round(clamp((0.25 - shaky) * 2, -1, 1) * conf);
-}
-
-/**
- * Drop malformed impressions or reserve on restore (absent means none), and hold the rest to the live bounds: every
- * cue needs a finite mean and minute and a finite weight ≥ 0 (else its impression is dropped); a mean outside its
- * key's range is clamped; a repeated target or cue key keeps the one seen latest; past `maxImpressions` impressions
- * or `maxCues` cues the most recently seen are kept, in saved order. A save the engine wrote is already within this.
- * @internal
- */
-export function sanitizeImpressions(social: Person['social']): void {
-  const r = social.reserve as unknown;
-  if (r !== undefined) {
-    const ok =
-      typeof r === 'object' &&
-      r !== null &&
-      !Array.isArray(r) &&
-      Object.entries(r as Record<string, unknown>).every(
-        ([k, v]) => (STATE_CUES as readonly string[]).includes(k) && Number.isFinite(v),
-      );
-    if (!ok) delete social.reserve;
-  }
-  const list = social.impressions as unknown;
-  if (list === undefined) return;
-  if (!Array.isArray(list)) {
-    delete social.impressions;
-    return;
-  }
-  const good = list.filter(
-    (i): i is Impression =>
-      typeof i === 'object' &&
-      i !== null &&
-      typeof i.targetId === 'string' &&
-      Number.isFinite(i.seenAt) &&
-      Array.isArray(i.cues) &&
-      i.cues.every(
-        (c: unknown) =>
-          typeof c === 'object' &&
-          c !== null &&
-          typeof (c as ImpressionCue).key === 'string' &&
-          Number.isFinite((c as ImpressionCue).mean) &&
-          Number.isFinite((c as ImpressionCue).weight) &&
-          (c as ImpressionCue).weight >= 0 &&
-          Number.isFinite((c as ImpressionCue).at),
-      ),
-  );
-  const A = IMPRESSION_DEFAULTS;
-  for (const imp of good) {
-    for (const c of imp.cues) {
-      const [lo, hi] = rangeOf(c.key);
-      if (c.mean < lo || c.mean > hi) c.mean = clamp(c.mean, lo, hi);
-    }
-    const cues = latestPerId(
-      imp.cues,
-      (c) => c.key,
-      (c) => c.at,
-    );
-    imp.cues = newestN(cues, A.maxCues, (c) => c.at);
-  }
-  const one = latestPerId(
-    good,
-    (i) => i.targetId,
-    (i) => i.seenAt,
-  );
-  const kept = newestN(one, A.maxImpressions, (i) => i.seenAt);
-  if (kept.length === 0) delete social.impressions;
-  else social.impressions = kept;
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -499,8 +418,8 @@ export interface KnownAct {
  * told they heard (`via: 'told'`, weighted by trust in `sourceId`). Moves the believed regard cue. See the SCOPE.
  */
 export function noteKnownBy(
-  p: Person,
-  ev: { otherId: PersonId; act: KnownAct; at?: Minute; via: 'seen' | 'told'; sourceId?: EntityId },
+  p: SocialActor,
+  ev: { otherId: PersonId; act: KnownAct; at?: Time; via: 'seen' | 'told'; sourceId?: EntityId },
 ): Estimate | undefined {
   if (ev.otherId === p.id) return undefined;
   const weight =
@@ -529,6 +448,32 @@ export function noteKnownBy(
 }
 
 /** How `p` believes `otherId` regards them; the neutral prior has zero confidence. Pure and RNG-free. */
-export function regardOf(p: Person, otherId: PersonId, now: Minute): Estimate {
+export function regardOf(p: SocialActor, otherId: PersonId, now: Time): Estimate {
   return estimate(p, otherId, 'regard', now);
+}
+
+/** Acquire only the explicitly delivered facts; absent traits and ties stay unknown. */
+export function acquaintKnown(
+  observer: SocialActor,
+  targetId: string,
+  familiarity: number,
+  facts: import('../run-schema.ts').DeepReadonly<readonly import('../run-schema.ts').KnownPersonFact[]>,
+  at: number,
+): void {
+  if (targetId === observer.id) return;
+  const f = clamp01(familiarity);
+  if (f <= 0) return;
+  const imp = impressionFor(observer, targetId, true, at);
+  if (!imp) throw new RangeError('Missing acquaintance impression');
+  for (const fact of facts) {
+    if (fact.kind === 'trait') {
+      const key = `trait:${fact.trait}`;
+      const error =
+        (hash01(`${observer.id}|${targetId}|${key}|acquaint`) - 0.5) *
+        IMPRESSION_DEFAULTS.acquaintNoise *
+        (1 - f);
+      sample(imp, key, fact.value + error, IMPRESSION_DEFAULTS.acquaintWeight * f, at);
+    } else if (fact.other !== observer.id && fact.other !== targetId)
+      sample(imp, `tie:${fact.other}`, fact.closeness, 2 * f, at);
+  }
 }

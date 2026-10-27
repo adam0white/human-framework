@@ -1,4 +1,4 @@
-export * from './birth.ts';
-export * from './development.ts';
-export * from './health.ts';
-export * from './lifecourse.ts';
+export { deriveAptitudes } from './birth.ts';
+export { developmentForAge, learningMultiplier } from './development.ts';
+export { CHRONIC_CONDITIONS, chronicHazard, chronicRiskPerYear, HEALTH_DEFAULTS } from './health.ts';
+export { LIFE_DEFAULTS, lifecycleOwner, modifiersForAge, stageForAge } from './lifecourse.ts';

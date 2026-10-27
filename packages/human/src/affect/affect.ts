@@ -1,38 +1,31 @@
-/**
- * SCOPE: Discrete emotions from an OCC-lite appraisal (Ortony, Clore & Collins 1988): event desirability
- * gives joy/distress, prospects give hope/fear scaled by likelihood, confirmed prospects give
- * relief/disappointment, own deeds give pride/guilt/shame, others' deeds give anger/gratitude, affection
- * plus a good event gives love, and loss gives grief. Each emotion decays exponentially with a
- * type-specific half-life; a slow mood (valence, arousal) relaxes toward need satisfaction plus the current
- * emotions. Emotions map to action tendencies (Frijda) that `consider()` matches against affordance tags.
- * Traits enter only as coefficients: HEXACO emotionality scales intensity (fear most), agreeableness lowers
- * anger and its confront share, honesty-humility raises guilt. Regulation is a practiced capacity that
- * shortens negative half-lives modestly; guilt is exempt and is cleared by repair through `release`.
- * Prospect matching ("same cause prefix"): a leading `outcome:|event:|prospect:|deed:` segment is stripped
- * from both causes and one remainder must start with the other. Guilt rather than shame is chosen when the
- * cause contains `norm:` or the deed has a target (someone was wronged). Loneliness, boredom and awe have no
- * appraisal rule; the composite injects them with `feel` (e.g. from belonging or leisure urgency). This
- * keeps appraisal and constructed-emotion variants swappable; it does not claim that these sixteen
- * categories or two mood dimensions exhaust emotional experience, nor calibrated intensities or durations.
- */
-import { clamp01, clampSigned, cmpStr, decay, dexp } from '../core/index.ts';
-import type {
-  AffectState,
-  AppraisalEvent,
-  Emotion,
-  EmotionId,
-  EntityId,
-  Minute,
-  Person,
-  Signed,
-  Unit,
-} from '../types.ts';
-import { MINUTES_PER_DAY, MINUTES_PER_HOUR } from '../types.ts';
+import { freezeData, required } from '../body/span.ts';
+/** SCOPE: source OCC appraisal, exact emotion decay and continuously forced mood.
+ * No clinical prediction or spiritual assessment. */
 
-const H = MINUTES_PER_HOUR;
-const D = MINUTES_PER_DAY;
+import {
+  clip,
+  clock,
+  copy,
+  evaluateCell,
+  initialWidth,
+  integrateCell,
+  issue,
+  LN2,
+  nextPathBoundary,
+  numericalIssues,
+  output,
+  scalarAt,
+  validateNumbers,
+} from '../body/span.ts';
+import { dexp, dlog } from '../core/libm.ts';
+import type * as T from '../run-schema.ts';
 
-export const AFFECT_DEFAULTS = {
+type EmotionId = T.EmotionId;
+type Signed = T.Signed;
+type Unit = T.Unit;
+const H = 60,
+  D = 1440;
+export const AFFECT_DEFAULTS = freezeData({
   maxEmotions: 12,
   dropBelow: 0.02,
   /** Half-lives in minutes. */
@@ -124,8 +117,6 @@ export const AFFECT_DEFAULTS = {
   baselineArousal: 0.3,
   baselineArousalWeight: 0.5,
   /** Substep cap for mood integration (minutes); long steps use at most `maxSubsteps`. */
-  substep: 30,
-  maxSubsteps: 64,
   /** Readout: felt valence = mood + this * emotion valence. */
   feltEmotionWeight: 0.5,
   /** Regulation training: asymptotic rate per practiced minute. */
@@ -135,258 +126,442 @@ export const AFFECT_DEFAULTS = {
   soothe: { reflection: 0.2, worship: 0.2, rest: 0.15 },
   sootheMinutes: 30,
   initialRegulation: 0.3,
-};
-
-export type PracticeKind = 'reflection' | 'worship' | 'rest';
-
-export function createAffect(now: Minute): AffectState {
-  return {
-    mood: { valence: 0, arousal: AFFECT_DEFAULTS.baselineArousal },
-    emotions: [],
-    regulation: AFFECT_DEFAULTS.initialRegulation,
-    lastUpdated: now,
-  };
-}
-
-const KIND_PREFIX = /^(outcome|event|prospect|deed):/;
-const causeCore = (cause: string): string => cause.replace(KIND_PREFIX, '');
-const sameCause = (a: string, b: string): boolean => {
-  const x = causeCore(a);
-  const y = causeCore(b);
-  return x.length > 0 && y.length > 0 && (x.startsWith(y) || y.startsWith(x));
-};
-
-const isNegative = (id: EmotionId): boolean => AFFECT_DEFAULTS.negative.includes(id);
-
-function sortEmotions(list: Emotion[]): void {
-  list.sort(
-    (a, b) => b.intensity - a.intensity || cmpStr(a.id, b.id) || cmpStr(a.targetId ?? '', b.targetId ?? ''),
-  );
-}
-
-function bound(p: Person): void {
-  const list = p.affect.emotions;
-  sortEmotions(list);
-  if (list.length > AFFECT_DEFAULTS.maxEmotions) list.length = AFFECT_DEFAULTS.maxEmotions;
-}
-
-/** Merge one emotion into state (max-ish), without bounding. Returns the stored emotion. */
-function merge(
-  p: Person,
-  id: EmotionId,
-  intensity: Unit,
-  cause: string,
-  at: Minute,
-  targetId?: EntityId,
-): Emotion | null {
-  const i = clamp01(intensity);
-  if (i < AFFECT_DEFAULTS.dropBelow) return null;
-  const list = p.affect.emotions;
-  const existing = list.find((e) => e.id === id && e.targetId === targetId);
-  if (existing) {
-    const hi = Math.max(existing.intensity, i);
-    const lo = Math.min(existing.intensity, i);
-    if (i >= existing.intensity) {
-      existing.cause = cause;
-      existing.since = at;
-    }
-    existing.intensity = clamp01(hi + AFFECT_DEFAULTS.mergeBlend * lo * (1 - hi));
-    existing.halfLife = Math.max(existing.halfLife, AFFECT_DEFAULTS.halfLife[id]);
-    return existing;
-  }
-  const e: Emotion = { id, intensity: i, cause, since: at, halfLife: AFFECT_DEFAULTS.halfLife[id] };
-  if (targetId !== undefined) e.targetId = targetId;
-  list.push(e);
-  return e;
-}
-
-/**
- * Directly add an emotion that appraisal does not produce (loneliness, boredom, awe), merged and bounded
- * the same way. Intensity is used as given (callers scale it).
- */
-export function feel(
-  p: Person,
-  id: EmotionId,
-  intensity: Unit,
-  cause: string,
-  at: Minute = p.affect.lastUpdated,
-  targetId?: EntityId,
-): Emotion | null {
-  const e = merge(p, id, intensity, cause, at, targetId);
-  bound(p);
-  return e && p.affect.emotions.includes(e) ? { ...e } : null;
-}
-
-/**
- * OCC-lite appraisal. Mutates `p.affect.emotions` (merge, consume confirmed prospects, bound to 12) and
- * returns copies of the emotions created or updated that survived bounding.
- */
-export function appraise(p: Person, ev: AppraisalEvent): Emotion[] {
-  const A = AFFECT_DEFAULTS;
-  const t = p.traits;
-  const gain = A.gainBase + A.gainSlope * clamp01(t.emotionality);
-  const fearGain = A.fearGainBase + A.fearGainSlope * clamp01(t.emotionality);
-  const des = clampSigned(ev.desirability);
-  const mag = Math.abs(des);
-  const touched: Emotion[] = [];
-  const add = (id: EmotionId, intensity: number, targetId?: EntityId) => {
-    const e = merge(p, id, intensity, ev.cause, ev.at, targetId);
-    if (e && !touched.includes(e)) touched.push(e);
-  };
-  const otherAgent = ev.agentId !== undefined && ev.agentId !== p.id ? ev.agentId : undefined;
-
-  if (ev.kind === 'prospect') {
-    const likelihood = clamp01(ev.likelihood ?? 0.5);
-    if (des > 0) add('hope', mag * likelihood * gain);
-    else if (des < 0) add('fear', mag * likelihood * fearGain, ev.threatFrom);
-  } else if (ev.kind === 'deed') {
-    const pw = clampSigned(ev.praiseworthiness ?? 0);
-    const strength = Math.max(Math.abs(pw), mag);
-    if (ev.agentId === p.id) {
-      if (pw > 0) add('pride', strength * gain);
-      else if (pw < 0) {
-        const normRelated = ev.cause.includes('norm:') || ev.targetId !== undefined;
-        if (normRelated) add('guilt', strength * gain * (0.7 + 0.6 * clamp01(t.honesty)), ev.targetId);
-        else add('shame', strength * gain);
-      }
-    } else if (otherAgent !== undefined) {
-      if (pw < 0 && des < 0)
-        add('anger', strength * gain * (1.3 - 0.6 * clamp01(t.agreeableness)), otherAgent);
-      else if (pw > 0 && des > 0) add('gratitude', strength * gain, otherAgent);
-      else if (des !== 0) add(des > 0 ? 'joy' : 'distress', mag * gain);
-    } else if (des !== 0) {
-      add(des > 0 ? 'joy' : 'distress', mag * gain);
-    }
-  } else {
-    // outcome / event: resolve matching prospects first.
-    const list = p.affect.emotions;
-    for (let i = list.length - 1; i >= 0; i--) {
-      const e = list[i];
-      if (!e || (e.id !== 'hope' && e.id !== 'fear') || !sameCause(e.cause, ev.cause)) continue;
-      list.splice(i, 1);
-      if (e.id === 'fear' && des > 0) add('relief', Math.max(e.intensity, mag * gain));
-      else if (e.id === 'hope' && des < 0) add('disappointment', Math.max(e.intensity, mag * gain));
-      else if (e.id === 'hope' && des > 0) add('joy', e.intensity * 0.5);
-      else if (e.id === 'fear' && des < 0) add('distress', e.intensity * 0.5);
-    }
-    if (ev.loss) add('grief', Math.max(mag, A.griefFloor) * gain, ev.targetId);
-    else if (des > 0) add('joy', mag * gain);
-    else if (des < 0) add('distress', mag * gain);
-  }
-
-  if (otherAgent !== undefined && des > 0 && (ev.affectionToAgent ?? 0) > A.loveAffection) {
-    add('love', mag * clamp01(ev.affectionToAgent ?? 0) * gain, otherAgent);
-  }
-
-  bound(p);
-  return touched.filter((e) => p.affect.emotions.includes(e)).map((e) => ({ ...e }));
-}
-
-/** Effective half-life of an emotion under the person's current regulation. */
-function effectiveHalfLife(p: Person, e: Emotion): number {
-  const A = AFFECT_DEFAULTS;
-  const shorten =
-    isNegative(e.id) && !A.regulationExempt.includes(e.id)
-      ? A.regulationShortening * clamp01(p.affect.regulation)
-      : 0;
-  return Math.max(1, e.halfLife * (1 - shorten));
-}
-
-function emotionValence(emotions: readonly Emotion[]): Signed {
-  let v = 0;
-  for (const e of emotions) v += AFFECT_DEFAULTS.valence[e.id] * e.intensity;
-  return clampSigned(v);
-}
-
-function emotionArousal(emotions: readonly Emotion[]): Unit {
-  const A = AFFECT_DEFAULTS;
-  let num = A.baselineArousalWeight * A.baselineArousal;
-  let den = A.baselineArousalWeight;
-  for (const e of emotions) {
-    num += e.intensity * A.arousal[e.id];
+});
+type State = Omit<T.AffectState, 'crisis'>;
+export function feltAffect(state: T.DeepReadonly<State>, p: T.DeepReadonly<T.Effective_AFFECT_DEFAULTS>) {
+  let v = 0,
+    num = p.baselineArousalWeight * p.baselineArousal,
+    den = p.baselineArousalWeight;
+  for (const e of state.emotions) {
+    v += p.valence[e.id] * e.intensity;
+    num += p.arousal[e.id] * e.intensity;
     den += e.intensity;
   }
-  return clamp01(num / den);
-}
-
-/** `skip`'s side of affect: after `advanceAffect` over the gap, affect is current as of `to`. */
-export function skipAffect(p: Person, to: Minute): void {
-  p.affect.lastUpdated = to;
-}
-
-/**
- * Advance affect by `dt` minutes. Emotion decay is exact; mood relaxes toward
- * (needSatisfaction - 0.5) * gain + emotion valence over substeps (≤ 30 min, at most 64), so step-size
- * consistency is exact without emotions and approximate with them. Advances `lastUpdated` by `dt`. `maxSteps` caps the
- * substeps below `AFFECT_DEFAULTS.maxSubsteps` (1.8.0: routine days use a few per day, trading the mood path within
- * the day for speed; the decay of each emotion stays exact).
- */
-export function advanceAffect(
-  p: Person,
-  dt: number,
-  needSatisfaction: Unit,
-  moodOffset?: Signed,
-  maxSteps?: number,
-): void {
-  if (dt <= 0) return;
-  const A = AFFECT_DEFAULTS;
-  const a = p.affect;
-  const cap =
-    maxSteps === undefined ? A.maxSubsteps : Math.max(1, Math.min(A.maxSubsteps, Math.floor(maxSteps)));
-  const steps = Math.min(cap, Math.max(1, Math.ceil(dt / A.substep)));
-  const h = dt / steps;
-  let needTerm = (clamp01(needSatisfaction) - 0.5) * A.moodNeedGain;
-  // An outside offset on the mood target (1.8.0: the surroundings, `environment/`); added only when given.
-  if (moodOffset !== undefined && moodOffset !== 0 && Number.isFinite(moodOffset)) needTerm += moodOffset;
-  const halfLives = a.emotions.map((e) => effectiveHalfLife(p, e));
-  for (let s = 0; s < steps; s++) {
-    const before = a.emotions.map((e) => e.intensity);
-    a.emotions.forEach((e, i) => {
-      e.intensity = decay(e.intensity, h, halfLives[i] ?? e.halfLife);
-    });
-    // Mood target uses the emotions averaged over the substep (midpoint of start/end intensities).
-    const mid = a.emotions.map((e, i) => ({ ...e, intensity: ((before[i] ?? 0) + e.intensity) / 2 }));
-    const vTarget = clampSigned(needTerm + A.moodEmotionGain * emotionValence(mid));
-    const arTarget = emotionArousal(mid);
-    a.mood.valence = clampSigned(decay(a.mood.valence, h, A.moodValenceHalfLife, vTarget));
-    a.mood.arousal = clamp01(decay(a.mood.arousal, h, A.moodArousalHalfLife, arTarget));
-  }
-  a.emotions = a.emotions.filter((e) => e.intensity >= A.dropBelow);
-  sortEmotions(a.emotions);
-  a.lastUpdated += dt;
-}
-
-/**
- * How strongly one emotion is felt now, 0..1: the summed intensity of its instances (only those toward `targetId`,
- * when given), clamped. Read only.
- */
-export function emotionLevel(p: Pick<Person, 'affect'>, id: EmotionId, targetId?: EntityId): Unit {
-  let s = 0;
-  for (const e of p.affect.emotions)
-    if (e.id === id && (targetId === undefined || e.targetId === targetId)) s += e.intensity;
-  return clamp01(s);
-}
-
-/** Felt state: mood shifted by current emotions, plus the three strongest emotions (copies). */
-export function readAffect(p: Person): { valence: Signed; arousal: Unit; dominant: Emotion[] } {
-  const A = AFFECT_DEFAULTS;
-  const a = p.affect;
-  const sorted = a.emotions.map((e) => ({ ...e }));
-  sortEmotions(sorted);
-  const ev = emotionValence(a.emotions);
-  const ea = emotionArousal(a.emotions);
   return {
-    valence: clampSigned(a.mood.valence + A.feltEmotionWeight * ev),
-    arousal: clamp01(0.5 * a.mood.arousal + 0.5 * ea),
-    dominant: sorted.slice(0, 3),
+    valence: clip(state.mood.valence + p.feltEmotionWeight * clip(v, -1, 1), -1, 1),
+    arousal: (1 - p.feltEmotionWeight) * state.mood.arousal + p.feltEmotionWeight * clip(num / den),
   };
 }
+function key(e: T.DeepReadonly<T.Emotion>): string {
+  return JSON.stringify([e.id, e.targetId ?? null, e.cause, e.since]);
+}
+function reanchor(
+  s: T.DeepReadonly<State>,
+  at: number,
+  id: string,
+  p: T.DeepReadonly<T.Effective_AFFECT_DEFAULTS>,
+  hash: string,
+): T.AffectContinuation {
+  return {
+    clock: clock(at, id, hash),
+    materializedAtMs: at,
+    acceptedThroughMs: at,
+    anchorMood: { ...s.mood },
+    emotions: s.emotions.map((e) => ({
+      id: key(e),
+      intensityAtAnchor: e.intensity,
+      effectiveHalfLifeMinutes: Math.max(
+        1,
+        (e.halfLifeMs / 60000) *
+          (1 -
+            (p.negative.includes(e.id) && !p.regulationExempt.includes(e.id)
+              ? p.regulationShortening * s.regulation
+              : 0)),
+      ),
+      dropBracket: null,
+    })),
+    regulationAtAnchor: s.regulation,
+    needTrajectoryId: id,
+    moodOffsetConditionId: id,
+    valenceCell: null,
+    arousalCell: null,
+    valenceError: 0,
+    arousalError: 0,
+    nextTrialWidthMinutes: initialWidth(Math.min(p.moodValenceHalfLife, p.moodArousalHalfLife)) / 60000,
+  };
+}
+const initialize: T.AffectOwner['initialize'] = (input, ctx) => {
+  const state: State = {
+    mood: { ...input.mood },
+    emotions: copy<T.Emotion[]>(input.emotions),
+    regulation: input.regulation,
+    lastUpdated: ctx.at,
+  };
+  return {
+    state,
+    continuation: reanchor(
+      state,
+      ctx.at,
+      `affect:${ctx.person}:${ctx.at}`,
+      ctx.effective.builtins.AFFECT_DEFAULTS,
+      ctx.effectiveParametersHash,
+    ),
+  };
+};
+const advance: T.AffectOwner['advance'] = (state, ctx) => {
+  const p = ctx.effective.builtins.AFFECT_DEFAULTS;
+  let c = copy<T.AffectContinuation>(ctx.continuation);
+  const offsetId = `offset:${ctx.moodOffset}`;
+  if (c.needTrajectoryId !== ctx.needs.id || c.moodOffsetConditionId !== offsetId) {
+    c = {
+      ...reanchor(
+        state,
+        ctx.from,
+        `affect:${ctx.person}:${ctx.from}:${ctx.needs.id}:${offsetId}`,
+        p,
+        ctx.effectiveParametersHash,
+      ),
+      needTrajectoryId: ctx.needs.id,
+      moodOffsetConditionId: offsetId,
+    };
+  }
+  const emotionAt = (t: number) =>
+    state.emotions.map((e) => {
+      const anchor = c.emotions.find((x) => x.id === key(e));
+      if (!anchor) throw new RangeError('missing retained emotion anchor');
+      return {
+        ...e,
+        intensity:
+          anchor.intensityAtAnchor *
+          dexp((-LN2 * (t - c.clock.conditionAnchorMs)) / 60000 / anchor.effectiveHalfLifeMinutes),
+      };
+    });
+  let to = c.emotions.some((e) => e.intensityAtAnchor < p.dropBelow) ? ctx.from : ctx.to;
+  for (const e of c.emotions) {
+    if (e.intensityAtAnchor >= p.dropBelow) {
+      const drop =
+        c.clock.conditionAnchorMs +
+        Math.floor(e.effectiveHalfLifeMinutes * (dlog(e.intensityAtAnchor / p.dropBelow) / LN2) * 60000) +
+        1;
+      if (drop > ctx.from && drop < to) to = drop;
+    }
+  }
+  const pathsV: T.ScalarTrajectory['segments'][number][] = [],
+    pathsA: T.ScalarTrajectory['segments'][number][] = [];
+  let at = ctx.from,
+    calls = 0,
+    mood = { ...state.mood };
+  while (at < to) {
+    let end = c.acceptedThroughMs;
+    if (!c.valenceCell || !c.arousalCell || at >= end) {
+      const start = c.valenceCell ? end : c.clock.conditionAnchorMs;
+      const y =
+        c.valenceCell && c.arousalCell
+          ? [evaluateCell(c.valenceCell, end), evaluateCell(c.arousalCell, end)]
+          : [c.anchorMood.valence, c.anchorMood.arousal];
+      const width = Math.min(
+        c.nextTrialWidthMinutes * 60000,
+        nextPathBoundary(start, [ctx.needs.satisfaction, ...ctx.body.fields.map((f) => f.path)]) - start,
+      );
+      if (start + width > ctx.needs.to) throw new RangeError('NeedTrajectory must cover canonical mood cell');
+      const cell = integrateCell(start, y, width, (t, y) => {
+        const es = emotionAt(t);
+        let v = 0,
+          n = p.baselineArousalWeight * p.baselineArousal,
+          d = p.baselineArousalWeight;
+        for (const e of es) {
+          v += p.valence[e.id] * e.intensity;
+          n += p.arousal[e.id] * e.intensity;
+          d += e.intensity;
+        }
+        const vt = clip(
+          (clip(scalarAt(ctx.needs.satisfaction, t)) - 0.5) * p.moodNeedGain +
+            ctx.moodOffset +
+            p.moodEmotionGain * clip(v, -1, 1),
+          -1,
+          1,
+        );
+        return [
+          (LN2 * (vt - (y[0] ?? 0))) / p.moodValenceHalfLife,
+          (LN2 * (clip(n / d) - (y[1] ?? 0))) / p.moodArousalHalfLife,
+        ];
+      });
+      calls += cell.calls;
+      if (calls > 8192 || pathsV.length >= 1024) throw new RangeError('limit-exceeded: affect span');
+      c = {
+        ...c,
+        anchorMood: { valence: required(y[0]), arousal: required(y[1]) },
+        acceptedThroughMs: cell.to,
+        valenceError: c.valenceError + cell.error,
+        arousalError: c.arousalError + cell.error,
+        valenceCell: required(cell.cells[0]),
+        arousalCell: required(cell.cells[1]),
+        nextTrialWidthMinutes: cell.nextWidth / 60000,
+        needTrajectoryId: ctx.needs.id,
+      };
+      end = cell.to;
+    }
+    const v = required(c.valenceCell),
+      a = required(c.arousalCell);
+    pathsV.push({ kind: 'quartic', from: v.originMs, to: end, cell: v });
+    pathsA.push({ kind: 'quartic', from: a.originMs, to: end, cell: a });
+    at = Math.min(to, end);
+    mood = { valence: clip(evaluateCell(v, at), -1, 1), arousal: clip(evaluateCell(a, at)) };
+  }
+  const emotions = emotionAt(to).filter((e) => e.intensity >= p.dropBelow);
+  const out: State = {
+    mood,
+    emotions: copy<T.Emotion[]>(emotions),
+    regulation: state.regulation,
+    lastUpdated: to,
+  };
+  c = { ...c, materializedAtMs: to, clock: { ...c.clock, advancedThroughMs: to } };
+  if (emotions.length !== state.emotions.length)
+    c = reanchor(out, to, `${c.clock.conditionId}:drop:${to}`, p, ctx.effectiveParametersHash);
+  const end = Math.max(to, ...pathsV.map((s) => s.to));
+  const trajectory: T.AffectTrajectory = {
+    id: c.clock.conditionId,
+    from: ctx.from,
+    to: end,
+    valence: {
+      from: ctx.from,
+      to: end,
+      segments: pathsV.length ? pathsV : [{ kind: 'constant', from: ctx.from, to: end, value: mood.valence }],
+    },
+    arousal: {
+      from: ctx.from,
+      to: end,
+      segments: pathsA.length ? pathsA : [{ kind: 'constant', from: ctx.from, to: end, value: mood.arousal }],
+    },
+    emotions: state.emotions.map((e) => {
+      const a = required(ctx.continuation.emotions.find((x) => x.id === key(e)));
+      return {
+        identity: {
+          kind: e.id,
+          ...(e.targetId === undefined ? {} : { target: e.targetId }),
+          cause: e.cause,
+          since: e.since,
+        },
+        intensity: {
+          from: ctx.from,
+          to: end,
+          segments: [
+            {
+              kind: 'exponential',
+              from: ctx.from,
+              to: end,
+              initial:
+                a.intensityAtAnchor *
+                dexp(
+                  (-LN2 * (ctx.from - ctx.continuation.clock.conditionAnchorMs)) /
+                    60000 /
+                    a.effectiveHalfLifeMinutes,
+                ),
+              target: 0,
+              ratePerMinute: LN2 / a.effectiveHalfLifeMinutes,
+            },
+          ],
+        },
+      };
+    }),
+  };
+  return { ...output(out, to), nextBoundary: to < ctx.to ? to : null, continuation: c, trajectory };
+};
+export function appraiseWithTraits(
+  state: T.DeepReadonly<State>,
+  ev: T.DeepReadonly<T.AppraisalEvent>,
+  traits: T.DeepReadonly<T.Traits>,
+  person: string,
+  p: T.DeepReadonly<T.Effective_AFFECT_DEFAULTS>,
+): State {
+  const s = copy<State>(state);
+  const gain = p.gainBase + p.gainSlope * clip(traits.emotionality),
+    fearGain = p.fearGainBase + p.fearGainSlope * clip(traits.emotionality),
+    des = clip(ev.desirability, -1, 1),
+    mag = Math.abs(des);
+  const add = (id: T.EmotionId, intensity: number, targetId?: string) => {
+    if (intensity < p.dropBelow) return;
+    const old = s.emotions.find((e) => e.id === id && e.targetId === targetId);
+    if (old) {
+      const hi = Math.max(old.intensity, intensity),
+        lo = Math.min(old.intensity, intensity);
+      const before = old.intensity;
+      old.intensity = clip(hi + p.mergeBlend * lo * (1 - hi));
+      if (intensity >= before) {
+        old.cause = ev.cause;
+        old.since = ev.at;
+      }
+      old.halfLifeMs = Math.max(old.halfLifeMs, p.halfLife[id] * 60000);
+    } else
+      s.emotions.push({
+        id,
+        intensity: clip(intensity),
+        cause: ev.cause,
+        since: ev.at,
+        halfLifeMs: p.halfLife[id] * 60000,
+        ...(targetId === undefined ? {} : { targetId }),
+      });
+  };
+  const other = ev.agentId !== undefined && ev.agentId !== person ? ev.agentId : undefined;
+  if (ev.kind === 'prospect') {
+    if (des > 0) add('hope', mag * clip(ev.likelihood ?? 0.5) * gain);
+    else if (des < 0) add('fear', mag * clip(ev.likelihood ?? 0.5) * fearGain, ev.threatFrom);
+  } else if (ev.kind === 'deed') {
+    const pw = clip(ev.praiseworthiness ?? 0, -1, 1),
+      strength = Math.max(Math.abs(pw), mag);
+    if (ev.agentId === person) {
+      if (pw > 0) add('pride', strength * gain);
+      else if (pw < 0) {
+        if (ev.cause.includes('norm:') || ev.targetId !== undefined)
+          add('guilt', strength * gain * (0.7 + 0.6 * clip(traits.honesty)), ev.targetId);
+        else add('shame', strength * gain);
+      }
+    } else if (other !== undefined) {
+      if (pw < 0 && des < 0) add('anger', strength * gain * (1.3 - 0.6 * clip(traits.agreeableness)), other);
+      else if (pw > 0 && des > 0) add('gratitude', strength * gain, other);
+      else if (des !== 0) add(des > 0 ? 'joy' : 'distress', mag * gain);
+    } else if (des !== 0) add(des > 0 ? 'joy' : 'distress', mag * gain);
+  } else {
+    for (const e of [...s.emotions]) {
+      const a = e.cause.replace(/^(outcome|event|prospect|deed):/, ''),
+        b = ev.cause.replace(/^(outcome|event|prospect|deed):/, '');
+      if (
+        (e.id === 'hope' || e.id === 'fear') &&
+        a.length > 0 &&
+        b.length > 0 &&
+        (a.startsWith(b) || b.startsWith(a))
+      ) {
+        s.emotions.splice(s.emotions.indexOf(e), 1);
+        if (e.id === 'fear' && des > 0) add('relief', Math.max(e.intensity, mag * gain));
+        else if (e.id === 'hope' && des < 0) add('disappointment', Math.max(e.intensity, mag * gain));
+        else add(des > 0 ? 'joy' : 'distress', e.intensity * 0.5);
+      }
+    }
+    if (ev.loss) add('grief', Math.max(mag, p.griefFloor) * gain, ev.targetId);
+    else if (des !== 0) add(des > 0 ? 'joy' : 'distress', mag * gain);
+  }
+  if (other !== undefined && des > 0 && (ev.affectionToAgent ?? 0) > p.loveAffection)
+    add('love', mag * clip(ev.affectionToAgent ?? 0) * gain, other);
+  s.emotions.sort((a, b) => b.intensity - a.intensity || (key(a) < key(b) ? -1 : key(a) > key(b) ? 1 : 0));
+  s.emotions = s.emotions.slice(0, p.maxEmotions);
+  return s;
+}
+// Traits are actual admitted actor premises; no default trait snapshot.
+const appraise: T.AffectOwner['appraise'] = (state, input, ctx) => {
+  const traits = ctx.traits;
+  const s = appraiseWithTraits(
+    state,
+    input.appraisal,
+    traits,
+    ctx.person,
+    ctx.effective.builtins.AFFECT_DEFAULTS,
+  );
+  return {
+    ...output(s, ctx.at),
+    continuation: reanchor(
+      s,
+      ctx.at,
+      `affect:${ctx.person}:${ctx.at}:${input.id}`,
+      ctx.effective.builtins.AFFECT_DEFAULTS,
+      ctx.effectiveParametersHash,
+    ),
+  };
+};
+const receive: T.AffectOwner['receive'] = (state, input, ctx) => {
+  const s = copy<State>(state),
+    p = ctx.effective.builtins.AFFECT_DEFAULTS;
+  if (input.kind === 'felt') {
+    const intensity = clip(input.intensity);
+    if (intensity >= p.dropBelow) {
+      const old = s.emotions.find((e) => e.id === input.id && e.targetId === input.targetId);
+      if (old) {
+        const before = old.intensity,
+          hi = Math.max(before, intensity),
+          lo = Math.min(before, intensity);
+        old.intensity = clip(hi + p.mergeBlend * lo * (1 - hi));
+        if (intensity >= before) {
+          old.cause = input.cause;
+          old.since = ctx.at;
+        }
+        old.halfLifeMs = Math.max(old.halfLifeMs, p.halfLife[input.id] * 60000);
+      } else
+        s.emotions.push({
+          id: input.id,
+          intensity,
+          cause: input.cause,
+          since: ctx.at,
+          halfLifeMs: p.halfLife[input.id] * 60000,
+          ...(input.targetId === undefined ? {} : { targetId: input.targetId }),
+        });
+    }
+  } else if (input.kind === 'regulated') {
+    const minutes = input.durationMs / 60000;
+    if (!Number.isFinite(minutes) || minutes < 0) throw new RangeError('invalid settled regulation duration');
+    const reg = clip(s.regulation),
+      relief = p.soothe[input.practice] * (1 - dexp(-minutes / p.sootheMinutes)) * (0.5 + reg);
+    for (const e of s.emotions)
+      if (p.negative.includes(e.id) && !p.regulationExempt.includes(e.id))
+        e.intensity = clip(e.intensity * (1 - relief));
+    s.regulation = clip(
+      p.regulationCeiling -
+        Math.max(0, p.regulationCeiling - reg) * dexp(-p.regulationRate[input.practice] * minutes),
+    );
+  } else {
+    const f = input.filter;
+    for (const e of s.emotions) {
+      if ((f.id !== undefined && e.id !== f.id) || (f.targetId !== undefined && e.targetId !== f.targetId))
+        continue;
+      if (f.causePrefix !== undefined) {
+        const a = e.cause.replace(/^(outcome|event|prospect|deed):/, ''),
+          b = f.causePrefix.replace(/^(outcome|event|prospect|deed):/, '');
+        if (!a || !b || !(a.startsWith(b) || b.startsWith(a))) continue;
+      }
+      e.intensity = clip(e.intensity * (1 - clip(input.fraction)));
+    }
+  }
+  s.emotions = s.emotions
+    .filter((e) => e.intensity >= p.dropBelow)
+    .sort(
+      (a, b) =>
+        b.intensity - a.intensity ||
+        (a.id < b.id ? -1 : a.id > b.id ? 1 : 0) ||
+        ((a.targetId ?? '') < (b.targetId ?? '') ? -1 : (a.targetId ?? '') > (b.targetId ?? '') ? 1 : 0),
+    )
+    .slice(0, p.maxEmotions);
+  s.lastUpdated = ctx.at;
+  return {
+    ...output(s, ctx.at),
+    continuation: reanchor(
+      s,
+      ctx.at,
+      `affect:${ctx.person}:${ctx.at}:${ctx.causes.join(':')}`,
+      p,
+      ctx.effectiveParametersHash,
+    ),
+  };
+};
+export const affectOwner: T.AffectOwner = {
+  initialize,
+  tendencies: (state, traits, ctx) => ({
+    values: actionTendencies(state, traits, ctx.effective.builtins.AFFECT_DEFAULTS),
+    emotions: tendencyEmotions(state),
+  }),
+  advance,
+  appraise,
+  receive,
+  validate: (s, c) => {
+    const issues = validateNumbers({ s, c });
+    issues.push(...numericalIssues(c.clock, c.materializedAtMs, c.acceptedThroughMs));
+    if (
+      s.regulation < 0 ||
+      s.regulation > 1 ||
+      s.mood.valence < -1 ||
+      s.mood.valence > 1 ||
+      s.mood.arousal < 0 ||
+      s.mood.arousal > 1 ||
+      s.emotions.length > AFFECT_DEFAULTS.maxEmotions
+    )
+      issues.push(issue('affect', 'invalid affect bounds'));
+    for (const e of s.emotions)
+      if (e.intensity < 0 || e.intensity > 1 || e.halfLifeMs <= 0 || !Number.isSafeInteger(e.since))
+        issues.push(issue('affect.emotions', 'invalid emotion'));
+    if (new Set(c.emotions.map((e) => e.id)).size !== c.emotions.length)
+      issues.push(issue('affect.continuation', 'duplicate emotion anchor'));
+    return issues;
+  },
+};
 
-/**
- * Coefficients of each emotion on each tag tendency. 'love' here is untargeted love only: love toward a
- * particular person already pulls through `approach:<id>`, so the same feeling is not counted twice
- * (review 2026-10-03).
- */
+const signed = (n: number) => clip(n, -1, 1);
 const TENDENCY_WEIGHTS: Record<string, readonly (readonly [EmotionId, number])[]> = {
   risky: [
     ['fear', -1],
@@ -430,20 +605,20 @@ const TENDENCY_WEIGHTS: Record<string, readonly (readonly [EmotionId, number])[]
 };
 
 /** Clamped summed intensity per emotion, with love counted only when untargeted (see TENDENCY_WEIGHTS). */
-function tendencyInputs(p: Person): (id: EmotionId) => number {
+function tendencyInputs(p: T.DeepReadonly<State>): (id: EmotionId) => number {
   const sum: Partial<Record<EmotionId, number>> = {};
-  for (const e of p.affect.emotions) {
+  for (const e of p.emotions) {
     if (e.id === 'love' && e.targetId !== undefined) continue;
     sum[e.id] = (sum[e.id] ?? 0) + e.intensity;
   }
-  return (id) => clamp01(sum[id] ?? 0);
+  return (id) => clip(sum[id] ?? 0);
 }
 
 /**
  * The emotion contributing most (by |coefficient × intensity|) to each non-zero tag tendency, so utility terms
  * can name it ('emotion:fear:risky'). Ties break by emotion id.
  */
-export function tendencyEmotions(p: Person): Record<string, EmotionId> {
+export function tendencyEmotions(p: T.DeepReadonly<State>): Record<string, EmotionId> {
   const g = tendencyInputs(p);
   const out: Record<string, EmotionId> = {};
   for (const [tag, weights] of Object.entries(TENDENCY_WEIGHTS)) {
@@ -462,7 +637,11 @@ export function tendencyEmotions(p: Person): Record<string, EmotionId> {
  * 'rest', 'comfort') plus per-target keys 'approach:<id>', 'avoid:<id>', 'confront:<id>', 'repair:<id>'.
  * Values are clamped to -1..1.
  */
-export function actionTendencies(p: Person): Record<string, number> {
+function actionTendencies(
+  p: T.DeepReadonly<State>,
+  traits: T.DeepReadonly<T.Traits>,
+  effective: T.DeepReadonly<T.Effective_AFFECT_DEFAULTS>,
+): Record<string, number> {
   const g = tendencyInputs(p);
   const fear = g('fear');
   const out: Record<string, number> = {};
@@ -472,14 +651,19 @@ export function actionTendencies(p: Person): Record<string, number> {
     out[tag] = v;
   }
   // Share of anger that becomes confrontation rather than avoidance (coefficient, not a branch).
-  const confrontShare = clamp01(0.5 + 0.8 * (0.5 - clamp01(p.traits.agreeableness)) - 0.5 * fear);
-  const targeted = p.affect.emotions.filter((e) => e.targetId !== undefined);
-  sortEmotions(targeted);
+  const confrontShare = clip(0.5 + 0.8 * (0.5 - clip(traits.agreeableness)) - 0.5 * fear);
+  const targeted = p.emotions.filter((e) => e.targetId !== undefined);
+  targeted.sort(
+    (a, b) =>
+      b.intensity - a.intensity ||
+      (a.id < b.id ? -1 : a.id > b.id ? 1 : 0) ||
+      ((a.targetId ?? '') < (b.targetId ?? '') ? -1 : (a.targetId ?? '') > (b.targetId ?? '') ? 1 : 0),
+  );
   const bump = (key: string, v: number) => {
     out[key] = (out[key] ?? 0) + v;
   };
   for (const e of targeted) {
-    const id = e.targetId as EntityId;
+    const id = e.targetId as T.EntityId;
     const i = e.intensity;
     switch (e.id) {
       case 'anger':
@@ -501,53 +685,9 @@ export function actionTendencies(p: Person): Record<string, number> {
       case 'grief':
         break;
       default:
-        bump(`approach:${id}`, 0.3 * AFFECT_DEFAULTS.valence[e.id] * i);
+        bump(`approach:${id}`, 0.3 * effective.valence[e.id] * i);
     }
   }
-  for (const k of Object.keys(out)) out[k] = clampSigned(out[k] ?? 0);
+  for (const k of Object.keys(out)) out[k] = signed(out[k] ?? 0);
   return out;
-}
-
-/**
- * Practice of reflection, worship or rest. Trains `regulation` asymptotically toward a ceiling
- * (patience as a practiced capacity) and immediately soothes active negative emotions a little (guilt
- * excepted: it is resolved by repair via `release`). This is one modeled effect of these practices; it
- * makes no claim that worship's value or purpose is emotion regulation.
- */
-export function regulate(p: Person, minutes: number, practiceKind: PracticeKind): void {
-  if (minutes <= 0) return;
-  const A = AFFECT_DEFAULTS;
-  const a = p.affect;
-  const reg = clamp01(a.regulation);
-  const relief = A.soothe[practiceKind] * (1 - dexp(-minutes / A.sootheMinutes)) * (0.5 + reg);
-  for (const e of a.emotions) {
-    if (isNegative(e.id) && !A.regulationExempt.includes(e.id))
-      e.intensity = clamp01(e.intensity * (1 - relief));
-  }
-  a.emotions = a.emotions.filter((e) => e.intensity >= A.dropBelow);
-  const ceiling = A.regulationCeiling;
-  const gap = Math.max(0, ceiling - reg);
-  a.regulation = clamp01(ceiling - gap * dexp(-A.regulationRate[practiceKind] * minutes));
-}
-
-/**
- * Reduce (fraction 1 = remove) emotions matching a filter, e.g. guilt toward a victim after repair, or
- * anger after forgiveness. Returns how many emotions were affected.
- */
-export function release(
-  p: Person,
-  filter: { id?: EmotionId; targetId?: EntityId; causePrefix?: string },
-  fraction: Unit = 1,
-): number {
-  const f = clamp01(fraction);
-  let n = 0;
-  for (const e of p.affect.emotions) {
-    if (filter.id !== undefined && e.id !== filter.id) continue;
-    if (filter.targetId !== undefined && e.targetId !== filter.targetId) continue;
-    if (filter.causePrefix !== undefined && !sameCause(e.cause, filter.causePrefix)) continue;
-    e.intensity = clamp01(e.intensity * (1 - f));
-    n++;
-  }
-  p.affect.emotions = p.affect.emotions.filter((e) => e.intensity >= AFFECT_DEFAULTS.dropBelow);
-  return n;
 }

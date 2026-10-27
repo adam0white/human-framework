@@ -1,3 +1,30 @@
+import type {
+  ActorState,
+  BodyReadout,
+  Command,
+  Commitment,
+  Considered,
+  EffectiveParameters,
+  EntityId,
+  Offer,
+  PerceptData,
+  RefusalKind,
+  Signed,
+  StandingAdvice,
+  Suggestion,
+  SuggestionResolution,
+  SuggestionVerdict,
+  Time,
+  Unit,
+  VoiceRelation,
+  WillState,
+} from '../run-schema.ts';
+
+type WillActor = ActorState & { effective: EffectiveParameters };
+type WillMutable = Pick<WillActor, 'will' | 'now'>;
+const MINUTES_PER_DAY = 1440,
+  MINUTES_PER_HOUR = 60;
+
 /**
  * SCOPE: assent. Given scored options, the will applies hard vetoes (capacity: dead, asleep, effort beyond
  * capacity, skill far below difficulty; conscience: firmly held prohibitions, with the necessity exception
@@ -32,38 +59,13 @@
  * voice kept its own promise; a decision with `reconsider` (WillContext) gives the running activity no inertia
  * bonus, for a review the host forces because something changed (promise inertia, a cognition term, stays).
  */
-
-import { breakAllows, inBreak } from '../affect/index.ts';
+import { crisisOwner } from '../affect/crisis.ts';
 import { commitmentPressure, isUnderWay, pressureReachedAt, spanMeetsWindow } from '../agenda/index.ts';
-import { downedAllows, readCapacities } from '../body/index.ts';
+import { bodyOwner } from '../body/body.ts';
 import { CONSCIENCE_DEFAULTS, normVeto } from '../conscience/index.ts';
-import { clamp01, cmpStr, decay, dexp, dpow, hasNumbers, isObj, random, round } from '../core/index.ts';
-import { commitmentLabel } from '../presentation.ts';
-import { skillLevel } from '../skills/index.ts';
-import type {
-  Affordance,
-  AssentCostSpec,
-  BodyReadout,
-  Command,
-  Commitment,
-  Considered,
-  EntityId,
-  Minute,
-  Percept,
-  Person,
-  RefusalKind,
-  Signed,
-  StandingAdvice,
-  Suggestion,
-  SuggestionResolution,
-  SuggestionVerdict,
-  Unit,
-  VoiceConflict,
-  VoiceRelation,
-  WillState,
-} from '../types.ts';
-import { MINUTES_PER_DAY, MINUTES_PER_HOUR } from '../types.ts';
+import { clamp01, cmpStr, decay, dexp, dpow, random, round } from '../core/index.ts';
 
+import { skillLevel } from '../skills/index.ts';
 export const WILL_DEFAULTS = {
   switchMargin: 0.15,
   temperature: 0,
@@ -180,29 +182,31 @@ export const WILL_DEFAULTS = {
   /** Share of trust lost per controlled hour, scaled by min(1, margin): being made to do what they did not want. */
   commandTrustPerHour: 0.02,
 };
-
-export interface WillContext {
-  now: Minute;
-  affordances: readonly Affordance[];
+interface WillContext {
+  frame: import('../run-schema.ts').FrameContext;
+  now: Time;
+  affordances: readonly Offer[];
   body: BodyReadout;
   /** Max physiological urgency. */
   desperation: number;
   /** Hosts can turn the necessity exception off. */
-  necessity?: boolean;
+
   /** Need urgencies (optional; used for the survival check on insisting). */
-  needs?: readonly { id: string; urgency: number }[];
+  needs?: readonly {
+    id: string;
+    urgency: number;
+  }[];
   /** A host command in force (1.6.0); see the command SCOPE on `commandOutcome`. */
   command?: Command;
   /** No inertia bonus for the running activity in this decision (2.8.0, `DecideOptions.reconsider`). */
   reconsider?: boolean;
 }
-
 /**
  * How a command fared in one decision. `holds`: the commanded option was chosen. Otherwise `ends` says whether
  * control is lost (dead, a break, downed, or an act they will not do) or only suspended for this decision (the
  * target is not on offer, or they cannot right now: asleep, beyond capacity, a pressing bodily need).
  */
-export interface CommandOutcome {
+interface CommandOutcome {
   holds: boolean;
   ends: boolean;
   reason: string;
@@ -215,8 +219,7 @@ export interface CommandOutcome {
   /** For an omission end: the closing duty they will not miss. */
   commitmentId?: string;
 }
-
-export interface ChoiceResolution {
+interface ChoiceResolution {
   chosenAffordanceId: string | null;
   /** The input list with `vetoed` filled in (same order). */
   considered: Considered[];
@@ -229,52 +232,10 @@ export interface ChoiceResolution {
   /** How a command in force fared (absent when none). */
   command?: CommandOutcome;
 }
-
-/**
- * Restore-time check of the will's optional fields, in place: a non-list `advice` (1.2.0), and a malformed `command`
- * or `lastCommand` (1.6.0, 1.7.0) are dropped (absent means none). A save the engine wrote is unchanged. @internal
- */
-export function sanitizeWill(w: WillState): void {
-  if (!validAssentCost(w.assentCost)) delete w.assentCost;
-  if (w.suggestionReasons !== true) delete w.suggestionReasons;
-  if (w.advice !== undefined && !Array.isArray(w.advice)) delete w.advice;
-  const cmd = w.command as unknown;
-  if (
-    cmd !== undefined &&
-    !(
-      isObj(cmd) &&
-      typeof cmd.voiceId === 'string' &&
-      hasNumbers(cmd, 'since', 'startedAt', 'chargedAt', 'margin')
-    )
-  )
-    delete w.command;
-  const last = w.lastCommand as unknown;
-  if (last !== undefined && !(isObj(last) && typeof last.voiceId === 'string' && hasNumbers(last, 'since')))
-    delete w.lastCommand;
-}
-
-export function createWill(voices: { voiceId: EntityId; trust?: number }[] = []): WillState {
-  return {
-    voices: voices.slice(0, WILL_DEFAULTS.maxVoices).map((v) => ({
-      voiceId: v.voiceId,
-      trust: clamp01(v.trust ?? WILL_DEFAULTS.defaultVoiceTrust),
-      pressure: 0,
-      accepted: 0,
-      refused: 0,
-      history: [],
-      seeded: true,
-    })),
-    precommitments: [],
-    switchMargin: WILL_DEFAULTS.switchMargin,
-    temperature: WILL_DEFAULTS.temperature,
-  };
-}
-
-export function voiceOf(p: Person, voiceId: EntityId): VoiceRelation | undefined {
+function voiceOf(p: WillMutable, voiceId: EntityId): VoiceRelation | undefined {
   return p.will.voices.find((v) => v.voiceId === voiceId);
 }
-
-function ensureVoice(p: Person, voiceId: EntityId): VoiceRelation {
+function ensureVoice(p: WillMutable, voiceId: EntityId): VoiceRelation {
   const existing = voiceOf(p, voiceId);
   if (existing) return existing;
   const v: VoiceRelation = {
@@ -303,40 +264,18 @@ function ensureVoice(p: Person, voiceId: EntityId): VoiceRelation {
   p.will.voices.push(v);
   return v;
 }
-
 /**
  * Move `p`'s trust in a voice a fraction `rate` (0..1) of the way toward `target` (1.8.0), adding the voice if
  * absent (bounded like any new voice). Used by upbringing: a child comes to trust whom the household trusts. It
  * records no history event and no credit, since no suggestion of that voice was weighed.
  */
-export function adoptVoiceTrust(p: Person, voiceId: EntityId, target: Unit, rate: Unit): VoiceRelation {
+function adoptVoiceTrust(p: WillMutable, voiceId: EntityId, target: Unit, rate: Unit): VoiceRelation {
   const v = ensureVoice(p, voiceId);
   const r = clamp01(Number.isFinite(rate) ? rate : 0);
   const t = clamp01(Number.isFinite(target) ? target : v.trust);
   v.trust = clamp01(v.trust + r * (t - v.trust));
   return v;
 }
-
-/**
- * Give `p` an authored starting trust in a voice after creation (2.8.0), marked `seeded` as `PersonSpec.voices`
- * would (a seeded voice is never evicted to make room). A no-op returning the existing relation when the voice is
- * already known, unless `replace` is set; replacing keeps counters and history and marks the voice seeded. Records
- * no history event: no suggestion was weighed. A non-finite trust falls back to `defaultVoiceTrust`.
- */
-export function seedVoice(
-  p: Person,
-  voiceId: EntityId,
-  trust: Unit,
-  opts: { replace?: boolean } = {},
-): VoiceRelation {
-  const existing = voiceOf(p, voiceId);
-  if (existing && !opts.replace) return existing;
-  const v = existing ?? ensureVoice(p, voiceId);
-  v.trust = clamp01(Number.isFinite(trust) ? trust : WILL_DEFAULTS.defaultVoiceTrust);
-  v.seeded = true;
-  return v;
-}
-
 /**
  * SCOPE (a voice's own promise, 2.8.0): the voice said it would do something ("I will carry food up by 18:00") and
  * the host reports whether it did. This is evidence about the voice's word, separate from how following its advice
@@ -349,10 +288,14 @@ export function seedVoice(
  * `promise-kept` and `promise-broken`. The voice is added if absent (bounded like any new voice). Does not model
  * excuses, partial keeping, apology, or the size of what was promised; the host judges kept or broken.
  */
-export function noteVoicePromise(
-  p: Person,
+function noteVoicePromise(
+  p: WillActor,
   voiceId: EntityId,
-  event: { kept: boolean; at?: Minute; action?: string },
+  event: {
+    kept: boolean;
+    at?: Time;
+    action?: string;
+  },
 ): VoiceRelation {
   const W = WILL_DEFAULTS;
   const v = ensureVoice(p, voiceId);
@@ -363,7 +306,7 @@ export function noteVoicePromise(
     v.credited ??= [];
     const list = v.credited;
     const prior = list.find((c) => c.action === key);
-    const n = prior ? decay(prior.n, Math.max(0, at - prior.at), W.creditHalfLife) : 0;
+    const n = prior ? decay(prior.n, Math.max(0, at - prior.at), W.creditHalfLife * 60000) : 0;
     v.trust = clamp01(v.trust + (W.promiseKeptGain * (1 - v.trust)) / (1 + n));
     if (prior) {
       prior.n = n + 1;
@@ -377,50 +320,25 @@ export function noteVoicePromise(
   noteTrust(v, v.trust - before, event.kept ? 'promise-kept' : 'promise-broken', at, event.action);
   return v;
 }
-
-/**
- * SCOPE (host trust gesture): add a host-supplied signed amount to an existing advising voice's trust,
- * clamped to 0..1, and record the realized change in the usual bounded history. Magnitudes and reason
- * are host premises, not calibrated claims. Missing voices return undefined without creating a voice.
- * Non-finite amounts are ignored. No pressure, credit, counters, memory, time or RNG changes occur.
- * Empty/non-string reasons and non-string actions reject before mutation with RangeError.
- */
-export function gestureVoiceTrust(
-  p: Person,
-  voiceId: EntityId,
-  amount: number,
-  event: { reason: string; at?: Minute; action?: string },
-): VoiceRelation | undefined {
-  if (!event || typeof event.reason !== 'string' || event.reason.length === 0)
-    throw new RangeError('A trust gesture needs a reason');
-  if (event.action !== undefined && typeof event.action !== 'string')
-    throw new RangeError('Invalid trust gesture action');
-  const v = voiceOf(p, voiceId);
-  if (!v || !Number.isFinite(amount)) return v;
-  const before = v.trust;
-  v.trust = clamp01(before + amount);
-  const at = event.at !== undefined && Number.isFinite(event.at) ? event.at : p.now;
-  noteTrust(v, v.trust - before, event.reason, at, event.action);
-  return v;
-}
-
 const finite = (x: number | undefined): boolean => x === undefined || Number.isFinite(x);
-
 /** Host numbers the framework computes with must be finite; a NaN offer is vetoed, never chosen. */
-function wellFormed(aff: Affordance): boolean {
-  if (!Number.isFinite(aff.effort) || !Number.isFinite(aff.duration) || !finite(aff.focus)) return false;
-  if (!finite(aff.material)) return false;
-  for (const v of Object.values(aff.advertises)) if (!finite(v)) return false;
-  if (aff.risk && (!Number.isFinite(aff.risk.chance) || !Number.isFinite(aff.risk.severity))) return false;
+function wellFormed(aff: Offer): boolean {
+  if (!Number.isFinite(aff.demands.effort) || !Number.isFinite(aff.durationMs) || !finite(aff.demands.focus))
+    return false;
+  if (!finite(aff.expected.material)) return false;
+  for (const v of Object.values(aff.expected.needs)) if (!finite(v)) return false;
+  if (
+    aff.expected.risk &&
+    (!Number.isFinite(aff.expected.risk.chance) || !Number.isFinite(aff.expected.risk.severity))
+  )
+    return false;
   return true;
 }
-
-const servesCommitment = (c: Commitment, aff: Affordance): boolean =>
+const servesCommitment = (c: Commitment, aff: import('../run-schema.ts').DeepReadonly<Offer>): boolean =>
   (aff.fulfills?.includes(c.id) ?? false) ||
-  (c.actions.includes(aff.action) && (c.targetId === undefined || c.targetId === aff.targetId));
-
+  (c.actions.includes(aff.actionId) && (c.targetId === undefined || c.targetId === aff.target));
 /** Whether `aff` serves a pending commitment whose window is about to close (pressure ≥ wake level). */
-function pressingCommitment(p: Person, aff: Affordance, now: Minute): boolean {
+function pressingCommitment(p: WillActor, aff: Offer, now: Time): boolean {
   for (const c of p.agenda.commitments) {
     if (c.status !== 'pending') continue;
     if (servesCommitment(c, aff) && commitmentPressure(c, now) >= WILL_DEFAULTS.wakeCommitmentPressure)
@@ -428,15 +346,14 @@ function pressingCommitment(p: Person, aff: Affordance, now: Minute): boolean {
   }
   return false;
 }
-
 /**
  * The next minute after `now` at which a pending commitment reaches `wakeCommitmentPressure`, the level at which a
  * sleeper may wake to serve it (the asleep veto lifts). The composite caps a sleeper's review there so a duty whose
  * closing stretch is shorter than the sleep review interval is not slept through (review 2026-10-03: a person who
  * naps through an afternoon prayer window most days, reviewed every 120 minutes). Undefined when none is ahead.
  */
-export function wakeReviewAt(p: Person, now: Minute): Minute | undefined {
-  let best: Minute | undefined;
+function wakeReviewAt(p: WillActor, now: Time): Time | undefined {
+  let best: Time | undefined;
   for (const c of p.agenda.commitments) {
     if (c.status !== 'pending' || c.kind === 'abstain' || c.exempt !== undefined || now >= c.until) continue;
     const at = pressureReachedAt(c, WILL_DEFAULTS.wakeCommitmentPressure);
@@ -445,32 +362,28 @@ export function wakeReviewAt(p: Person, now: Minute): Minute | undefined {
   }
   return best;
 }
-
 /** A pending commitment linked to a held obligatory norm with conviction >= `omissionConviction` (no time test). */
-function protectedDuty(p: Person, c: Commitment): boolean {
+function protectedDuty(p: WillActor, c: Commitment): boolean {
   if (c.status !== 'pending' || c.normId === undefined) return false;
   const held = p.conscience.norms.find((n) => n.normId === c.normId);
   return held?.standing === 'obligatory' && held.conviction >= WILL_DEFAULTS.omissionConviction;
 }
-
 /** The first minute of a commitment's protected closing stretch (the last 1 - omissionFraction of the window). */
-const stretchStart = (c: Commitment): Minute => c.from + WILL_DEFAULTS.omissionFraction * (c.until - c.from);
-
+const stretchStart = (c: Commitment): Time => c.from + WILL_DEFAULTS.omissionFraction * (c.until - c.from);
 /**
  * Whether `aff` would keep duty `c` if chosen at `now`. Inside the window: any option serving it. Past the window's
  * end (1.9.0): only continuing the running activity that began inside the window (`agenda.isUnderWay`); a fresh start
  * after `until` would not count, so it does not exempt. Explicit completion-time commitments also require
  * the offered completion minute to fit; their underway activity never extends the deadline.
  */
-function keepsDuty(p: Person, c: Commitment, aff: Affordance, now: Minute): boolean {
+function keepsDuty(p: WillActor, c: Commitment, aff: Offer, now: Time): boolean {
   if (now <= c.until)
     return (
-      (c.completion !== 'end' || spanMeetsWindow(c, now, now + Math.max(0, aff.duration))) &&
+      (c.completion !== 'end' || spanMeetsWindow(c, now, now + Math.max(0, aff.durationMs))) &&
       servesCommitment(c, aff)
     );
-  return p.activity?.affordance.id === aff.id && isUnderWay(p, c, now);
+  return p.activity?.offer.id === aff.id && isUnderWay(p, c, now);
 }
-
 /**
  * Pending commitments protected by the omission rule right now: linked to a held obligatory norm with conviction
  * ≥ `omissionConviction`, in the last (1 - omissionFraction) of the window, with at least one offered option
@@ -480,35 +393,29 @@ function keepsDuty(p: Person, c: Commitment, aff: Affordance, now: Minute): bool
  * is then the only option that keeps it. Empty under desperation ≥ necessity threshold.
  * @internal
  */
-export function closingDuties(
-  p: Person,
-  ctx: Pick<WillContext, 'now' | 'affordances' | 'body' | 'desperation' | 'necessity'>,
-): Commitment[] {
+function closingDuties(p: WillActor, ctx: WillContext): Commitment[] {
   if (ctx.desperation >= CONSCIENCE_DEFAULTS.necessityThreshold) return [];
   const out: Commitment[] = [];
   for (const c of p.agenda.commitments) {
     if (!protectedDuty(p, c) || ctx.now < stretchStart(c)) continue;
     if (ctx.now > c.until && !isUnderWay(p, c, ctx.now)) continue;
-    const wctx = ctx as WillContext;
-    if (!ctx.affordances.some((a) => keepsDuty(p, c, a, ctx.now) && vetoFor(p, a, wctx) === undefined))
+    if (!ctx.affordances.some((a) => keepsDuty(p, c, a, ctx.now) && vetoFor(p, a, ctx) === undefined))
       continue;
     out.push(c);
   }
   return out;
 }
-
 /** The closing duty this option would make the person miss, if any (options keeping another duty are exempt). */
 function omissionFor(
-  p: Person,
+  p: WillActor,
   duties: readonly Commitment[],
-  aff: Affordance,
-  now: Minute,
+  aff: Offer,
+  now: Time,
 ): Commitment | undefined {
   if (duties.length === 0 || duties.some((c) => keepsDuty(p, c, aff, now))) return undefined;
-  const end = now + Math.max(0, aff.duration);
+  const end = now + Math.max(0, aff.durationMs);
   return duties.find((c) => end > c.until);
 }
-
 /**
  * The start of the next protected closing stretch that an activity running until `endsAt` would cover entirely
  * without keeping the duty (1.9.0): a protected duty (see `closingDuties`) whose stretch begins after `now` and whose
@@ -517,8 +424,13 @@ function omissionFor(
  * again when the stretch begins, under the omission rule. Capacity and necessity are judged at that review, as for
  * any decision: a sleeper who cannot yet wake for the duty sleeps on. Undefined when none is ahead.
  */
-export function dutyReviewAt(p: Person, aff: Affordance, now: Minute, endsAt: Minute): Minute | undefined {
-  let best: Minute | undefined;
+function dutyReviewAt(
+  p: WillActor,
+  aff: import('../run-schema.ts').DeepReadonly<Offer>,
+  now: Time,
+  endsAt: Time,
+): Time | undefined {
+  let best: Time | undefined;
   for (const c of p.agenda.commitments) {
     if (c.kind === 'abstain' || c.exempt !== undefined || !protectedDuty(p, c)) continue;
     if (c.until >= endsAt || servesCommitment(c, aff)) continue;
@@ -528,45 +440,47 @@ export function dutyReviewAt(p: Person, aff: Affordance, now: Minute, endsAt: Mi
   }
   return best;
 }
-
 /**
  * The remembered episode that makes this person refuse `voiceId` at `action` (episode distrust rule), if any.
  * @internal
  */
-export function distrustEpisode(
-  p: Person,
-  voiceId: EntityId,
-  action: string,
-  now: Minute,
-): string | undefined {
+function distrustEpisode(p: WillActor, voiceId: EntityId, action: string, now: Time): string | undefined {
   const W = WILL_DEFAULTS;
   const trust = voiceOf(p, voiceId)?.trust ?? W.defaultVoiceTrust;
   if (trust >= W.distrustEpisodeTrust) return undefined;
   const eps = p.memory.episodes;
   for (let i = eps.length - 1; i >= 0; i--) {
     const e = eps[i];
-    if (!e || now - e.at > W.distrustWindow) continue;
+    if (!e || now - e.at > W.distrustWindow * 60000) continue;
     if (e.kind !== 'outcome' || e.voiceId !== voiceId || e.action !== action) continue;
     if (e.valence <= W.distrustValence && e.salience >= W.distrustSalience) return e.id;
   }
   return undefined;
 }
-
 /** Capacity and conscience vetoes for one option. */
-export function vetoFor(
-  p: Person,
-  aff: Affordance,
+function vetoFor(
+  p: WillActor,
+  aff: Offer,
   ctx: WillContext,
-): { kind: 'cannot' | 'willNot'; reason: string } | undefined {
+):
+  | {
+      kind: 'cannot' | 'willNot';
+      reason: string;
+    }
+  | undefined {
   const W = WILL_DEFAULTS;
   if (!p.body.alive) return { kind: 'cannot', reason: 'dead' };
   if (!wellFormed(aff)) return { kind: 'cannot', reason: 'invalid' };
   // A mental break narrows what they will do to its behaviour; a body at the edge may still eat, drink or sleep.
-  if (inBreak(p) && !breakAllows(p, aff) && !(ctx.desperation >= W.survivalDesperation && servesBody(aff)))
+  if (
+    crisisOwner.inBreak(p.affect.crisis, ctx.frame) &&
+    !crisisOwner.allows(p.affect.crisis, aff, ctx.frame) &&
+    !(ctx.desperation >= W.survivalDesperation && servesBody(aff))
+  )
     return { kind: 'cannot', reason: 'break' };
   // Downed (body, 1.6.0): only lying, resting or sleeping where they are.
-  if (p.body.downed && !downedAllows(aff)) return { kind: 'cannot', reason: 'downed' };
-  const mode = aff.mode ?? 'awake';
+  if (p.body.downed && !bodyOwner.downedAllows(aff)) return { kind: 'cannot', reason: 'downed' };
+  const mode = aff.demands.mode ?? 'awake';
   if (
     p.body.asleep &&
     mode === 'awake' &&
@@ -576,58 +490,65 @@ export function vetoFor(
     return { kind: 'cannot', reason: 'asleep' };
   if (mode === 'sleep' && !p.body.asleep && ctx.body.perceived.sleepiness < W.sleepinessFloor)
     return { kind: 'cannot', reason: 'not-sleepy' };
-  if (mode === 'awake' && clamp01(aff.effort) > ctx.body.capacity * W.effortCapacityRatio)
+  if (mode === 'awake' && clamp01(aff.demands.effort) > ctx.body.capacity * W.effortCapacityRatio)
     return { kind: 'cannot', reason: 'capacity' };
-  if (aff.requires) {
-    const caps = readCapacities(p);
-    for (const [c, need] of Object.entries(aff.requires) as [keyof typeof caps, number][])
+  if (aff.demands.requires) {
+    const caps = bodyOwner.capacities(p.body, ctx.frame);
+    for (const [c, need] of Object.entries(aff.demands.requires) as [keyof typeof caps, number][])
       if (caps[c] < need) return { kind: 'cannot', reason: `capacity:${c}` };
   }
   // A joint activity lends the partner's support, so the skill veto allows a wider gap.
-  const support = aff.tags?.includes('joint') && (aff.with?.length ?? 0) > 0 ? W.jointSkillSupport : 0;
-  if (aff.skill && clamp01(aff.skill.difficulty) - skillLevel(p, aff.skill.id) > W.skillGap + support)
-    return { kind: 'cannot', reason: `skill:${aff.skill.id}` };
-  const norm = normVeto(p, aff, ctx.desperation, { necessity: ctx.necessity ?? true, now: ctx.now });
+  const support =
+    aff.tags?.includes('joint') && (aff.participants?.length ?? 0) > 0 ? W.jointSkillSupport : 0;
+  if (
+    aff.demands.skill &&
+    clamp01(aff.demands.skill.difficulty) - skillLevel(p, aff.demands.skill.id) > W.skillGap + support
+  )
+    return { kind: 'cannot', reason: `skill:${aff.demands.skill.id}` };
+  const norm = normVeto(p, aff, ctx.desperation, { now: ctx.now });
   if (norm) return norm;
   return undefined;
 }
-
 /**
  * Whether suggestion `s` names offer `aff` (by affordance id, or by action class when it names no affordance); false
  * when there is no suggestion.
  */
-export function suggestionTargets(s: Suggestion | undefined, aff: Affordance): boolean {
+export function suggestionTargets(s: Suggestion | undefined, aff: Offer): boolean {
   if (!s) return false;
   if (s.affordanceId !== undefined) return s.affordanceId === aff.id;
-  return s.action !== undefined && s.action === aff.action;
+  return s.action !== undefined && s.action === aff.actionId;
 }
-
 /** NaN-safe utility: a non-finite score never wins. @internal */
 export const safeUtility = (u: number): number => (Number.isNaN(u) ? Number.NEGATIVE_INFINITY : u);
-
 const byUtilityThenId = (a: Considered, b: Considered): number =>
   safeUtility(b.utility) - safeUtility(a.utility) || cmpStr(a.affordanceId, b.affordanceId);
-
 /** Dominant positive term of an option, or 'preference'. */
 export function dominantTerm(c: Considered | undefined): string {
   if (!c) return 'preference';
-  let best: { source: string; value: number } | undefined;
+  let best:
+    | {
+        source: string;
+        value: number;
+      }
+    | undefined;
   for (const t of c.terms) if (t.value > 0 && (!best || t.value > best.value)) best = t;
   return best?.source ?? 'preference';
 }
-
 /** Largest advertised positive need of an option (the aim a near alternative may share). */
-function mainAim(aff: Affordance | undefined): string | undefined {
+function mainAim(aff: Offer | undefined): string | undefined {
   if (!aff) return undefined;
-  let best: { id: string; v: number } | undefined;
-  for (const [id, v] of Object.entries(aff.advertises)) {
+  let best:
+    | {
+        id: string;
+        v: number;
+      }
+    | undefined;
+  for (const [id, v] of Object.entries(aff.expected.needs)) {
     if (v !== undefined && v > 0 && (!best || v > best.v)) best = { id, v };
   }
   return best?.id;
 }
-
 const BODILY_TERMS = ['need:food', 'need:water', 'need:sleep', 'need:rest'];
-
 /** The bodily need that overrides an insisted request, if any. */
 function survivalReason(winnerTerm: string, ctx: WillContext): string | undefined {
   const W = WILL_DEFAULTS;
@@ -636,14 +557,18 @@ function survivalReason(winnerTerm: string, ctx: WillContext): string | undefine
     if (urgency >= W.survivalNeedUrgency || ctx.desperation >= W.survivalDesperation) return winnerTerm;
   }
   if (ctx.desperation >= W.survivalDesperation) {
-    let top: { id: string; urgency: number } | undefined;
+    let top:
+      | {
+          id: string;
+          urgency: number;
+        }
+      | undefined;
     for (const n of ctx.needs ?? [])
       if (BODILY_TERMS.includes(`need:${n.id}`) && (!top || n.urgency > top.urgency)) top = n;
     return top ? `need:${top.id}` : 'need:survival';
   }
   return undefined;
 }
-
 interface VoiceSide {
   id: EntityId;
   pressure: number;
@@ -651,7 +576,6 @@ interface VoiceSide {
   refused: number;
   assentPressure?: number;
 }
-
 interface Evaluation {
   chosenId: string | null;
   considered: Considered[];
@@ -664,7 +588,6 @@ interface Evaluation {
   voices: VoiceSide[];
   command?: CommandOutcome;
 }
-
 /**
  * The voices speaking in one decision: `list` plus `single` (sugar), one per voice id (the first given wins),
  * sorted by voice id and bounded by `maxVoices`, so the outcome never depends on the host's argument order.
@@ -683,11 +606,9 @@ export function voicesIn(
   out.sort((a, b) => cmpStr(a.voiceId, b.voiceId));
   return out.slice(0, WILL_DEFAULTS.maxVoices);
 }
-
 /** Value of `voiceId`'s own suggestion term on an option (0 when absent). */
 const voiceTerm = (c: Considered | undefined, voiceId: EntityId): number =>
   c?.terms.find((t) => t.source === `suggestion:${voiceId}`)?.value ?? 0;
-
 /**
  * Shared verdict logic for any number of voices. `draw` is a uniform sample for softmax (undefined = argmax);
  * `predictResponse` always passes undefined so no RNG is consumed.
@@ -711,18 +632,19 @@ const voiceTerm = (c: Considered | undefined, voiceId: EntityId): number =>
  * group-advice findings only in shape (advice is weighed by trust in each adviser, not by headcount); it does not model conformity to a majority, persuasion between the voices, or the person asking for advice.
  */
 function evaluate(
-  p: Person,
+  p: WillActor,
   input: readonly Considered[],
   ctx: WillContext,
   given: readonly Suggestion[],
-  draw: number | undefined,
+  draw: (() => number) | undefined,
 ): Evaluation {
   const cmd = ctx.command;
   // A commanding voice is not also weighed as a suggestion in the same decision.
   const suggestions = cmd ? given.filter((s) => s.voiceId !== cmd.voiceId) : given;
   const prepared = prepareVetoes(p, input, ctx, suggestions);
   const { considered, affById } = prepared;
-  const selection = selectOption(p, considered, ctx, draw);
+  const selection = selectOption(p, considered, ctx,
+    considered.some((c) => !c.vetoed) ? draw?.() : undefined);
   const ev: Evaluation = {
     chosenId: selection.winner?.affordanceId ?? null,
     considered,
@@ -732,23 +654,20 @@ function evaluate(
   };
   if (cmd && arbitrateCommand(p, ctx, cmd, suggestions, prepared, selection, ev)) return ev;
   if (suggestions.length === 0) return withCommandRefusal(ev, cmd);
-  if (inBreak(p)) {
+  if (crisisOwner.inBreak(p.affect.crisis, ctx.frame)) {
     // During a mental break no voice reaches them; nothing is counted for or against any of them.
     ev.resolutions = suggestions.map((s) => ({
       voiceId: s.voiceId,
       verdict: 'refused' as const,
       kind: 'cannot' as const,
       reason: 'break',
-      says: '',
     }));
     ev.voices = suggestions.map((s) => ({ id: s.voiceId, pressure: 0, accepted: 0, refused: 0 }));
     if (ev.resolutions.length === 1) ev.suggestion = ev.resolutions[0];
     return withCommandRefusal(ev, cmd);
   }
-
   const judged = judgeVoices(p, ctx, suggestions, prepared, selection);
   arbitrateInsistence(p, judged, considered, affById, ev);
-
   ev.resolutions = judged.map((j) => j.res);
   ev.voices = judged.map((j) => j.side);
   const chosen = considered.find((c) => c.affordanceId === ev.chosenId);
@@ -757,25 +676,23 @@ function evaluate(
     (ev.resolutions.length === 1 ? ev.resolutions[0] : undefined);
   return withCommandRefusal(ev, cmd);
 }
-
 interface VetoPreparation {
-  affById: ReadonlyMap<string, Affordance>;
+  affById: ReadonlyMap<string, Offer>;
   duties: readonly Commitment[];
   baseVeto: ReadonlyMap<string, Considered['vetoed']>;
   distrustOf: ReadonlyMap<EntityId, string | undefined>;
   considered: Considered[];
 }
-
 /** Apply capacity, conscience, per-voice distrust and omission vetoes, in that order. */
 function prepareVetoes(
-  p: Person,
+  p: WillActor,
   input: readonly Considered[],
   ctx: WillContext,
   suggestions: readonly Suggestion[],
 ): VetoPreparation {
   const affById = new Map(ctx.affordances.map((a) => [a.id, a]));
   const duties = closingDuties(p, ctx);
-  const servesDuty = (aff: Affordance): boolean => duties.some((c) => keepsDuty(p, c, aff, ctx.now));
+  const servesDuty = (aff: Offer): boolean => duties.some((c) => keepsDuty(p, c, aff, ctx.now));
   // Per-voice distrust episode, over the voice's targets that pass the capacity/conscience vetoes.
   const baseVeto = new Map<string, Considered['vetoed']>();
   for (const c of input) {
@@ -791,10 +708,10 @@ function prepareVetoes(
     const tried = new Set<string>();
     for (const c of input) {
       const aff = affById.get(c.affordanceId);
-      if (!aff || !suggestionTargets(s, aff) || baseVeto.get(c.affordanceId) || tried.has(aff.action))
+      if (!aff || !suggestionTargets(s, aff) || baseVeto.get(c.affordanceId) || tried.has(aff.actionId))
         continue;
-      tried.add(aff.action);
-      ep = distrustEpisode(p, s.voiceId, aff.action, ctx.now);
+      tried.add(aff.actionId);
+      ep = distrustEpisode(p, s.voiceId, aff.actionId, ctx.now);
       if (ep !== undefined) break;
     }
     distrustOf.set(s.voiceId, ep);
@@ -816,20 +733,17 @@ function prepareVetoes(
     if (veto) out.vetoed = veto;
     return out;
   });
-
   return { affById, duties, baseVeto, distrustOf, considered };
 }
-
 interface Selection {
   winner: Considered | undefined;
   ranked: readonly Considered[];
   /** Inertia-adjusted score; target ranking still uses raw utility. */
   score: (c: Considered) => number;
 }
-
 /** Select once using the supplied draw; prediction passes no draw and stays deterministic. */
 function selectOption(
-  p: Person,
+  p: WillActor,
   considered: readonly Considered[],
   ctx: WillContext,
   draw: number | undefined,
@@ -839,7 +753,7 @@ function selectOption(
   const live = considered.filter((c) => !c.vetoed);
   const current = p.activity;
   const score = (c: Considered): number => {
-    if (!current || c.affordanceId !== current.affordanceId || ctx.reconsider) return safeUtility(c.utility);
+    if (!current || c.affordanceId !== current.offer.id || ctx.reconsider) return safeUtility(c.utility);
     const span = Math.max(1, current.endsAt - current.startedAt);
     const remaining = clamp01((current.endsAt - ctx.now) / span);
     return c.utility + p.will.switchMargin * (W.inertiaFloor + (1 - W.inertiaFloor) * remaining);
@@ -862,10 +776,9 @@ function selectOption(
   }
   return { winner, ranked, score };
 }
-
 /** Return true when a command holds and completes the evaluation ahead of all suggestions. */
 function arbitrateCommand(
-  p: Person,
+  p: WillActor,
   ctx: WillContext,
   cmd: Command,
   suggestions: readonly Suggestion[],
@@ -886,7 +799,6 @@ function arbitrateCommand(
       voiceId: cmd.voiceId,
       verdict: 'commanded',
       reason: 'command',
-      says: '',
       margin: co.margin,
     };
     if (co.ownAffordanceId !== null && co.ownAffordanceId !== co.targetAffordanceId)
@@ -899,7 +811,6 @@ function arbitrateCommand(
           verdict: 'refused',
           kind: 'cannot',
           reason: 'commanded',
-          says: '',
         }),
       ),
     ].sort((a, b) => cmpStr(a.voiceId, b.voiceId));
@@ -910,54 +821,17 @@ function arbitrateCommand(
   }
   return false;
 }
-
 interface Judged {
   s: Suggestion;
   res: SuggestionResolution;
   side: VoiceSide;
   /** Insisted and would be complied with: the option and the utility gap it trailed by. */
-  comply?: { target: Considered; gap: number };
+  comply?: {
+    target: Considered;
+    gap: number;
+  };
   targetIds: Set<string>;
 }
-
-/**
- * SCOPE (RM-130): explicit host-authored pressure from strong outside advice even when accepted willingly.
- * This engineering assumption adds at most 0.15 to that voice's bounded, normally decaying pressure per
- * booked final assent, including ordinary advice promoted during insistence arbitration. Existing reactance
- * can then make repeated urging less attractive. It does not charge
- * internal promptings, ordinary mentions below the host threshold, displaced assents, quiet continuation,
- * previews, or insistence (which already has its own cost). No direct trust/autonomy loss, moral judgement,
- * willpower fuel, RNG draw or game rule is added. Absent this opt-in, exact legacy behavior remains.
- */
-export function enableAssentCost(p: Person, spec: AssentCostSpec): void {
-  if (!validAssentCost(spec))
-    throw new RangeError('Assent cost needs provenance, strength in (0,1], pressure in (0,0.15].');
-  p.will.assentCost = { provenance: spec.provenance, minStrength: spec.minStrength, pressure: spec.pressure };
-}
-
-function validAssentCost(spec: unknown): spec is AssentCostSpec {
-  return (
-    isObj(spec) &&
-    typeof spec.provenance === 'string' &&
-    spec.provenance.trim().length > 0 &&
-    hasNumbers(spec, 'minStrength', 'pressure') &&
-    (spec.minStrength as number) > 0 &&
-    (spec.minStrength as number) <= 1 &&
-    (spec.pressure as number) > 0 &&
-    (spec.pressure as number) <= 0.15
-  );
-}
-
-/**
- * SCOPE (suggestion reasons): opt-in read-only explanations of score-based deferrals and modifications.
- * The gap includes running-activity inertia; source differences aggregate like-labelled terms and tie by
- * source string. This does not change selection, voice wording, counters or RNG, explain vetoes, or claim
- * a score caused a lower-scoring stochastic choice. Legacy resolutions have no additional keys.
- */
-export function enableSuggestionReasons(p: Person): void {
-  p.will.suggestionReasons = true;
-}
-
 function scoreReason(
   selection: Selection,
   live: readonly Considered[],
@@ -986,10 +860,9 @@ function scoreReason(
     .sort((a, b) => b[1] - a[1] || cmpStr(a[0], b[0]))[0];
   return { kind: 'term', ...(term ? { source: term[0] } : {}), margin };
 }
-
 /** Judge each voice against the same selected option before resolving competing insistence. */
 function judgeVoices(
-  p: Person,
+  p: WillActor,
   ctx: WillContext,
   suggestions: readonly Suggestion[],
   prepared: VetoPreparation,
@@ -1020,29 +893,24 @@ function judgeVoices(
     }
     const side: VoiceSide = { id: s.voiceId, pressure: 0, accepted: 0, refused: 0 };
     // Eligibility follows the request; booking follows the final arbitrated verdict.
-    if (
-      !s.insist &&
-      p.will.assentCost &&
-      Number.isFinite(s.strength) &&
-      s.strength >= p.will.assentCost.minStrength
-    )
-      side.assentPressure = p.will.assentCost.pressure;
+    if (!s.insist && Number.isFinite(s.strength) && s.strength >= p.effective.assent.minStrength)
+      side.assentPressure = p.effective.assent.pressure;
     const resolution = (
       verdict: SuggestionVerdict,
       why: string,
-      extra: Partial<SuggestionResolution> & { kind?: RefusalKind } = {},
+      extra: Partial<SuggestionResolution> & {
+        kind?: RefusalKind;
+      } = {},
     ): SuggestionResolution => ({
       voiceId: s.voiceId,
       verdict,
       reason: why,
-      says: '',
       ...extra,
       ...(likelihood !== undefined ? { likelihood } : {}),
       ...(s.insist ? { insisted: true } : {}),
     });
     const out = (res: SuggestionResolution, comply?: Judged['comply']): Judged =>
       comply ? { s, res, side, comply, targetIds } : { s, res, side, targetIds };
-
     // `cannot` refusals are facts about the situation, not resistance to the voice: they move no counters.
     if (suggested.length === 0) return out(resolution('refused', 'unavailable', { kind: 'cannot' }));
     const distrustEp = distrustOf.get(s.voiceId);
@@ -1124,12 +992,12 @@ function judgeVoices(
     }
     side.pressure = W.pressurePush * clamp01(s.strength);
     side.refused = 1;
-    const decidedBy = p.will.suggestionReasons ? scoreReason(selection, liveSuggested, targetIds) : undefined;
+    const decidedBy = scoreReason(selection, liveSuggested, targetIds);
     const explanation = decidedBy ? { decidedBy } : {};
     const near =
       winnerAff !== undefined &&
       suggestedAff !== undefined &&
-      (winnerAff.action === suggestedAff.action ||
+      (winnerAff.actionId === suggestedAff.actionId ||
         (mainAim(suggestedAff) !== undefined && mainAim(suggestedAff) === mainAim(winnerAff)));
     if (near && winnerAff)
       return out(
@@ -1155,13 +1023,12 @@ function judgeVoices(
     );
   });
 }
-
 /** Settle competing insistence in the existing voice order, preserving equal-trust/strength ties. */
 function arbitrateInsistence(
-  p: Person,
+  p: WillActor,
   judged: Judged[],
   considered: readonly Considered[],
-  affById: ReadonlyMap<string, Affordance>,
+  affById: ReadonlyMap<string, Offer>,
   ev: Evaluation,
 ): void {
   const W = WILL_DEFAULTS;
@@ -1202,7 +1069,6 @@ function arbitrateInsistence(
           verdict: 'deferred',
           kind: 'notNow',
           reason: behind,
-          says: '',
           insteadAffordanceId: forced,
           counterOffer: {
             ...(firstTarget !== undefined ? { affordanceId: firstTarget } : {}),
@@ -1220,7 +1086,6 @@ function arbitrateInsistence(
           voiceId: j.s.voiceId,
           verdict: 'assented',
           reason: behind,
-          says: '',
         };
         if (j.res.likelihood !== undefined) res.likelihood = j.res.likelihood;
         j.res = res;
@@ -1228,7 +1093,6 @@ function arbitrateInsistence(
     }
   }
 }
-
 /** Add the commanding voice's refusal (a command that did not hold) to the resolutions, in voice-id order. */
 function withCommandRefusal(ev: Evaluation, cmd: Command | undefined): Evaluation {
   const co = ev.command;
@@ -1238,7 +1102,6 @@ function withCommandRefusal(ev: Evaluation, cmd: Command | undefined): Evaluatio
     verdict: 'refused',
     kind: co.kind ?? 'cannot',
     reason: co.reason,
-    says: '',
   };
   if (co.commitmentId !== undefined) res.commitmentId = co.commitmentId;
   if (co.ownAffordanceId !== null) res.insteadAffordanceId = co.ownAffordanceId;
@@ -1249,7 +1112,6 @@ function withCommandRefusal(ev: Evaluation, cmd: Command | undefined): Evaluatio
   if (ev.suggestion === undefined && ev.resolutions.length === 1) ev.suggestion = res;
   return ev;
 }
-
 /**
  * SCOPE (commanded control, 1.6.0): a host voice may take direct control of a person (an order that is not a request,
  * as in drafting a unit). While a command is in force the person does the commanded offer (the best-scoring
@@ -1265,7 +1127,7 @@ function withCommandRefusal(ev: Evaluation, cmd: Command | undefined): Evaluatio
  * partial obedience (doing it badly on purpose), or orders addressed to several people at once.
  */
 function commandOutcome(
-  p: Person,
+  p: WillActor,
   considered: readonly Considered[],
   ctx: WillContext,
   cmd: Command,
@@ -1276,14 +1138,16 @@ function commandOutcome(
 ): CommandOutcome {
   const own = winner?.affordanceId ?? null;
   const out = (
-    o: Omit<CommandOutcome, 'ownAffordanceId' | 'margin'> & { margin?: number },
+    o: Omit<CommandOutcome, 'ownAffordanceId' | 'margin'> & {
+      margin?: number;
+    },
   ): CommandOutcome => ({
     margin: 0,
     ownAffordanceId: own,
     ...o,
   });
   if (!p.body.alive) return out({ holds: false, ends: true, reason: 'dead', kind: 'cannot' });
-  const blocked = controlBlock(p);
+  const blocked = controlBlock(p, ctx);
   if (blocked) return out({ holds: false, ends: true, reason: blocked, kind: 'cannot' });
   const affById = new Map(ctx.affordances.map((a) => [a.id, a]));
   const named = considered.filter((c) => {
@@ -1326,31 +1190,27 @@ function commandOutcome(
     targetAffordanceId: target.affordanceId,
   });
 }
-
 /** Whether a command names offer `aff` (by affordance id, or by action class when it names no affordance). */
-export const commandTargets = (cmd: Command, aff: Affordance): boolean =>
+const commandTargets = (cmd: Command, aff: Offer): boolean =>
   cmd.affordanceId !== undefined
     ? cmd.affordanceId === aff.id
-    : cmd.action !== undefined && cmd.action === aff.action;
-
+    : cmd.action !== undefined && cmd.action === aff.actionId;
 /** A state that ends direct control whatever the target: a mental break (affect) or being downed (body). */
-function controlBlock(p: Person): string | undefined {
-  if (inBreak(p)) return 'break';
+function controlBlock(p: WillActor, ctx: WillContext): string | undefined {
+  if (crisisOwner.inBreak(p.affect.crisis, ctx.frame)) return 'break';
   if (p.body.downed) return 'downed';
   return undefined;
 }
-
 /** Whether an offer serves a bodily need (positive food, water, sleep or rest advertisement). */
-function servesBody(aff: Affordance): boolean {
-  const a = aff.advertises;
+function servesBody(aff: Offer): boolean {
+  const a = aff.expected.needs;
   return (a.food ?? 0) > 0 || (a.water ?? 0) > 0 || (a.sleep ?? 0) > 0 || (a.rest ?? 0) > 0;
 }
-
 /**
  * The resolution credited with the chosen option: a complied one first (the person did it because that voice
  * insisted), else the assented one whose suggestion term on the chosen option was largest, ties by voice id.
  */
-export function creditedResolution(
+function creditedResolution(
   resolutions: readonly SuggestionResolution[],
   chosen: Considered | undefined,
 ): SuggestionResolution | undefined {
@@ -1365,91 +1225,42 @@ export function creditedResolution(
   }
   return best;
 }
-
 /** Resolutions whose voice should learn from how the chosen activity went (assented, complied or commanded). */
-export function creditedVoices(resolutions: readonly SuggestionResolution[]): SuggestionResolution[] {
+function creditedVoices(resolutions: readonly SuggestionResolution[]): SuggestionResolution[] {
   return resolutions.filter(
     (r) => r.verdict === 'assented' || r.verdict === 'complied' || r.verdict === 'commanded',
   );
 }
-
-/**
- * Which voice prevailed and why, for narration ("I went with my sister; my friend can wait"). Pure and cheap: reads
- * only the decision's considered list and resolutions. Undefined when no voice spoke.
- */
-export function conflictBetweenVoices(
-  considered: readonly Considered[],
-  resolutions: readonly SuggestionResolution[],
-  chosenAffordanceId: string | null,
-): VoiceConflict | undefined {
-  if (resolutions.length === 0) return undefined;
-  const chosen = considered.find((c) => c.affordanceId === chosenAffordanceId);
-  const credited = creditedResolution(resolutions, chosen);
-  return {
-    creditedVoiceId: credited?.voiceId ?? null,
-    chosenAffordanceId,
-    reason: dominantTerm(chosen),
-    voices: resolutions.map((r) => {
-      let best: Considered | undefined;
-      for (const c of considered) {
-        const t = voiceTerm(c, r.voiceId);
-        if (t !== 0 && (!best || t > voiceTerm(best, r.voiceId))) best = c;
-      }
-      const v: VoiceConflict['voices'][number] = {
-        voiceId: r.voiceId,
-        verdict: r.verdict,
-        term: voiceTerm(best, r.voiceId),
-      };
-      if (best) {
-        v.targetAffordanceId = best.affordanceId;
-        v.targetUtility = best.utility;
-      }
-      return v;
-    }),
-  };
-}
-
 /**
  * Literal-v1 contains arbitrary labels without inferring verbs or changing their bytes.
  * Only new counter-offers opt in; existing labels, rules, IDs and RNG remain unchanged.
  */
-function afterTask(p: Person, label: string, kind: 'task' | 'duty' = 'task'): string {
-  if (p.lexicon?.plainEnglish) {
-    return p.lexicon.wording === 'literal-v1'
-      ? `after I finish the ${kind} called “${label}”`
-      : `after I finish this ${kind} (${label})`;
-  }
-  return `after I ${label}`;
+function afterTask(_p: WillActor, label: string): string {
+  return label;
 }
-
 /** Counter-offer for a request deferred behind a duty: "after I pray", "after I feed the children". */
-function dutyLabel(duty: Commitment | undefined, winner: Affordance | undefined, p: Person): string {
-  if (p.lexicon?.plainEnglish) {
-    if (duty) return afterTask(p, commitmentLabel(duty, p.lexicon), 'duty');
-    return winner ? afterTask(p, winner.label) : 'after my duty';
-  }
-  if (duty?.kind === 'worship') return duty.label ? `after I pray ${duty.label}` : 'after I pray';
-  if (duty?.label) return `after I ${duty.label}`;
-  return winner ? `after I ${winner.label}` : 'after my duty';
+function dutyLabel(duty: Commitment | undefined, winner: Offer | undefined, _p: WillActor): string {
+  return duty?.label ?? winner?.label ?? 'duty';
 }
-
 /**
  * Resolve a choice. `suggestion` is one voice or several (N1); with several, `suggestions` holds one resolution
  * per voice and `suggestion` the credited one. Writes voice pressure and counters (will-owned) unless `quiet`
  * (a review that keeps the running activity), and consumes RNG only when `temperature > 0`. The autonomy delta
  * is returned for the composite.
  */
-export function resolveChoice(
-  p: Person,
+function resolveChoice(
+  p: WillActor,
   considered: readonly Considered[],
   ctx: WillContext,
   suggestion?: Suggestion | readonly Suggestion[],
-  opts: { quiet?: boolean } = {},
+  opts: {
+    quiet?: boolean;
+  } = {},
 ): ChoiceResolution {
   const list = asList(suggestion);
-  const draw = p.will.temperature > 0 ? random(p.rng) : undefined;
+  const draw = p.will.temperature > 0 ? () => random(p.rng) : undefined;
   const ev = evaluate(p, considered, ctx, list, draw);
-  if (opts.quiet && (ev.chosenId === null || ev.chosenId === p.activity?.affordanceId)) {
+  if (opts.quiet && (ev.chosenId === null || ev.chosenId === p.activity?.offer.id)) {
     // A review that continues the running activity re-weighs standing requests: same verdicts, but no
     // counters, pressure or autonomy cost. A review that switches activity is a new choice and counts.
     ev.voices = [];
@@ -1466,22 +1277,21 @@ export function resolveChoice(
   if (ev.resolutions.length > 0) out.suggestions = ev.resolutions;
   return out;
 }
-
 /** Write each voice's side of a resolution: pressure, counters, and the `pushed`/`worn` trust costs. */
 function bookVoices(
-  p: Person,
+  p: WillActor,
   voices: Evaluation['voices'],
   resolutions: readonly SuggestionResolution[],
-  now: Minute,
+  now: Time,
 ): void {
   const W = WILL_DEFAULTS;
   for (const [i, side] of voices.entries()) {
     const v = ensureVoice(p, side.id);
     const res = resolutions[i];
-    if (res?.verdict === 'assented' && side.accepted > 0 && side.assentPressure && p.will.assentCost) {
+    if (res?.verdict === 'assented' && side.accepted > 0 && side.assentPressure) {
       const pressure = clamp01(v.pressure + side.assentPressure) - v.pressure;
       v.pressure += pressure;
-      res.assentCost = { pressure, provenance: p.will.assentCost.provenance };
+      res.assentCost = { pressure, provenance: 'engineering:hf4-assent-unfitted' };
     }
     v.pressure = clamp01(v.pressure + side.pressure);
     v.accepted += side.accepted;
@@ -1499,7 +1309,7 @@ function bookVoices(
       res.reason !== 'distrust' &&
       (res.verdict === 'deferred' || res.verdict === 'modified' || res.verdict === 'refused') &&
       v.pressure >= W.distrustPressure &&
-      (v.lastWornAt === undefined || now - v.lastWornAt >= W.wornInterval)
+      (v.lastWornAt === undefined || now - v.lastWornAt >= W.wornInterval * 60000)
     ) {
       v.lastWornAt = now;
       const before = v.trust;
@@ -1508,98 +1318,14 @@ function bookVoices(
     }
   }
 }
-
-/**
- * Answer one voice now, outside a decision point, when the answer leaves the person doing what they are doing: a
- * refusal is booked as it would be at a decision (pressure, refused counter, `pushed`/`worn` trust costs) and
- * returned with `booked: true`. Any other verdict would mean switching activity, so nothing is written and the
- * host should interrupt and let the next decision resolve it. Always uses the argmax outcome (no RNG), so the
- * verdict equals `predictResponse` on the same input. The composite `answerNow` in person.ts builds the context.
- */
-export function answerSuggestion(
-  p: Person,
-  considered: readonly Considered[],
-  ctx: WillContext,
-  suggestion: Suggestion,
-  others: readonly Suggestion[] = [],
-): { resolution: SuggestionResolution; booked: boolean } {
-  const list = voicesIn(
-    suggestion,
-    others.filter((s) => s.voiceId !== suggestion.voiceId),
-  );
-  const ev = evaluate(p, considered, ctx, list, undefined);
-  const i = ev.resolutions.findIndex((r) => r.voiceId === suggestion.voiceId);
-  const resolution: SuggestionResolution = ev.resolutions[i] ?? {
-    voiceId: suggestion.voiceId,
-    verdict: 'refused',
-    reason: 'unavailable',
-    says: '',
-  };
-  // Not heard at all (dropped by `maxVoices`, or the commanding voice): nothing to book (2.0.0).
-  if (i < 0 || resolution.verdict !== 'refused') return { resolution, booked: false };
-  const side = ev.voices[i];
-  if (side) bookVoices(p, [side], [resolution], ctx.now);
-  return { resolution, booked: true };
-}
-
 const asList = (s: Suggestion | readonly Suggestion[] | undefined): Suggestion[] =>
   s === undefined
     ? []
     : Array.isArray(s)
       ? voicesIn(undefined, s as readonly Suggestion[])
       : [s as Suggestion];
-
-/**
- * The verdict a suggestion would get now, without writing state or consuming RNG (for UI telegraphing).
- * With `others`, the verdict for `suggestion` amid those voices (N1); `considered` must then already carry
- * every voice's terms (score with `suggestions: [...others, suggestion]`). With `temperature > 0` the verdict
- * is the argmax outcome and `likelihood` gives the chance the suggested option is actually drawn; the
- * composite `predict` in person.ts builds the context for hosts.
- */
-export function predictResponse(
-  p: Person,
-  considered: readonly Considered[],
-  ctx: WillContext,
-  suggestion: Suggestion,
-  others: readonly Suggestion[] = [],
-): SuggestionResolution {
-  const list = voicesIn(
-    suggestion,
-    others.filter((s) => s.voiceId !== suggestion.voiceId),
-  );
-  const ev = evaluate(p, considered, ctx, list, undefined);
-  return (
-    ev.resolutions.find((r) => r.voiceId === suggestion.voiceId) ?? {
-      voiceId: suggestion.voiceId,
-      verdict: 'refused',
-      reason: 'unavailable',
-      says: '',
-    }
-  );
-}
-
-/** Every voice's predicted verdict at once (same rules as `predictResponse`, voice-id order). */
-export function predictResponses(
-  p: Person,
-  considered: readonly Considered[],
-  ctx: WillContext,
-  suggestions: readonly Suggestion[],
-): SuggestionResolution[] {
-  return evaluate(p, considered, ctx, voicesIn(undefined, suggestions), undefined).resolutions;
-}
-
-/** How a command would fare against these scored options, without writing state or consuming RNG. */
-export function resolveCommand(
-  p: Person,
-  considered: readonly Considered[],
-  ctx: WillContext,
-): CommandOutcome {
-  const ev = evaluate(p, considered, ctx, [], undefined);
-  return ev.command ?? { holds: false, ends: false, reason: 'none', margin: 0, ownAffordanceId: ev.chosenId };
-}
-
 /** Put a command in force (writes `p.will` only; the composite's `command` adds the memory and the interrupt). */
-export function takeCommand(p: Person, cmd: Command, now: Minute): void {
+function takeCommand(p: WillActor, cmd: Command, now: Time): void {
   ensureVoice(p, cmd.voiceId);
   const c: NonNullable<WillState['command']> = {
     voiceId: cmd.voiceId,
@@ -1613,12 +1339,11 @@ export function takeCommand(p: Person, cmd: Command, now: Minute): void {
   if (cmd.repeat) c.repeat = true;
   p.will.command = c;
 }
-
 /**
  * Note a decision's command outcome while the command stays in force: whether it was obeyed and, if so, by what
  * margin. Returns true the first time it is obeyed, so the composite can charge autonomy and remember it once.
  */
-export function noteCommandOutcome(p: Person, holds: boolean, margin: number): boolean {
+function noteCommandOutcome(p: WillActor, holds: boolean, margin: number): boolean {
   const c = p.will.command;
   if (!c) return false;
   c.obeyed = holds;
@@ -1628,46 +1353,26 @@ export function noteCommandOutcome(p: Person, holds: boolean, margin: number): b
   c.remembered = true;
   return true;
 }
-
-/** End the command in force, recording why (`lastCommand`). Charge it first (`chargeCommand`). */
-export function endCommand(p: Person, reason: string, now: Minute): void {
+/** End the command in force, recording why (`lastCommand`). The composite materializes its time law before this boundary. */
+function endCommand(p: WillMutable, reason: string, now: Time): void {
   const c = p.will.command;
   if (!c) return;
   p.will.lastCommand = { voiceId: c.voiceId, since: c.since, endedAt: now, reason };
   delete p.will.command;
 }
-
-/**
- * Charge the controlled time since the last charge, if the command was being obeyed: voice pressure per hour and,
- * scaled by the margin, a trust loss ('commanded'). Returns the autonomy delta (<= 0) for the composite to apply.
- */
-export function chargeCommand(p: Person, now: Minute): number {
-  const W = WILL_DEFAULTS;
-  const c = p.will.command;
-  if (!c) return 0;
-  const hours = Math.max(0, now - c.chargedAt) / MINUTES_PER_HOUR;
-  c.chargedAt = Math.max(c.chargedAt, now);
-  if (!c.obeyed || hours <= 0) return 0;
-  const v = ensureVoice(p, c.voiceId);
-  v.pressure = clamp01(v.pressure + W.commandPressurePerHour * hours);
-  const loss = clamp01(W.commandTrustPerHour * hours * Math.min(1, c.margin));
-  if (loss > 0) {
-    const before = v.trust;
-    v.trust = clamp01(v.trust * (1 - loss));
-    noteTrust(v, v.trust - before, 'commanded', now);
-  }
-  return -W.commandAutonomyPerHour * hours * clamp01(0.5 + c.margin);
-}
-
 /**
  * After a suggested activity finished: how it felt updates trust in the voice. Harm from followed advice
  * costs more than benefit earns. Only assented, complied or commanded resolutions carry information about the advice.
  */
-export function learnFromVoice(
-  p: Person,
+function learnFromVoice(
+  p: WillActor,
   resolution: SuggestionResolution,
   felt: Signed,
-  event: { at?: Minute; action?: string; reason?: string } = {},
+  event: {
+    at?: Time;
+    action?: string;
+    reason?: string;
+  } = {},
 ): void {
   const verdict = resolution.verdict;
   if (verdict !== 'assented' && verdict !== 'complied' && verdict !== 'commanded') return;
@@ -1685,7 +1390,7 @@ export function learnFromVoice(
     v.credited ??= [];
     const list = v.credited;
     const prior = list.find((c) => c.action === key);
-    const n = prior ? decay(prior.n, Math.max(0, at - prior.at), W.creditHalfLife) : 0;
+    const n = prior ? decay(prior.n, Math.max(0, at - prior.at), W.creditHalfLife * 60000) : 0;
     v.trust = clamp01(v.trust + (W.trustGain * f * (1 - v.trust)) / (1 + n));
     if (prior) {
       prior.n = n + 1;
@@ -1700,9 +1405,8 @@ export function learnFromVoice(
   const reason = event.reason ?? (delta > 0 ? 'went-well' : complied ? 'harm-under-protest' : 'went-badly');
   noteTrust(v, delta, reason, event.at ?? p.now, event.action);
 }
-
 /** Append a trust change to a voice's history (small changes fold into the latest same-reason entry). */
-function noteTrust(v: VoiceRelation, delta: number, reason: string, at: Minute, action?: string): void {
+function noteTrust(v: VoiceRelation, delta: number, reason: string, at: Time, action?: string): void {
   const W = WILL_DEFAULTS;
   if (Math.abs(delta) < 1e-9) return;
   v.history ??= [];
@@ -1723,57 +1427,29 @@ function noteTrust(v: VoiceRelation, delta: number, reason: string, at: Minute, 
   v.history.push(entry);
   if (v.history.length > W.maxVoiceHistory) v.history.splice(0, v.history.length - W.maxVoiceHistory);
 }
-
-/**
- * SCOPE (precommitment, owner API): the person binds their own future choice ("no work after the evening prayer",
- * "walk instead of eating when bored"): a `precommit:<id>` term of `bias` (negative = against, positive = toward) on the
- * action inside a daily window of minutes-of-day (`from` > `to` wraps midnight). Shape: self-imposed
- * restraint as a standing cost on the tempting option (Ariely & Wertenbroch 2002, qualitative effect only); the
- * bias is the host's number, not fitted. It never vetoes, so need and duty still win when strong.
- * A precommitment with the same action and window replaces the earlier one; at most `maxPrecommitments` are
- * held (oldest dropped). Does not model forgetting, renegotiation or lapse-then-abandon dynamics.
- */
-export function precommit(
-  p: Person,
-  pc: { action: string; bias: number; from: number; to: number },
-): WillState['precommitments'][number] {
-  const W = WILL_DEFAULTS;
-  const norm = (m: number) => ((Math.round(m) % MINUTES_PER_DAY) + MINUTES_PER_DAY) % MINUTES_PER_DAY;
-  const bias = Number.isFinite(pc.bias) ? Math.max(-1, Math.min(1, pc.bias)) : 0;
-  const fromMinuteOfDay = norm(Number.isFinite(pc.from) ? pc.from : 0);
-  const toMinuteOfDay = norm(Number.isFinite(pc.to) ? pc.to : 0);
-  const list = p.will.precommitments;
-  const i = list.findIndex(
-    (x) =>
-      x.action === pc.action && x.fromMinuteOfDay === fromMinuteOfDay && x.toMinuteOfDay === toMinuteOfDay,
-  );
-  if (i >= 0) list.splice(i, 1);
-  const entry = { id: `pc${p.now}-${pc.action}`, action: pc.action, bias, fromMinuteOfDay, toMinuteOfDay };
-  list.push(entry);
-  if (list.length > W.maxPrecommitments) list.splice(0, list.length - W.maxPrecommitments);
-  return entry;
-}
-
-/** Drop a precommitment by id; returns whether one was held. */
-export function releasePrecommitment(p: Person, id: string): boolean {
-  const i = p.will.precommitments.findIndex((x) => x.id === id);
-  if (i < 0) return false;
-  p.will.precommitments.splice(i, 1);
-  return true;
-}
-
 /**
  * Voice pressure decays over hours. Exact for any dt. Standing advice is not decayed here (its weight is read
  * in closed form from its `at`); entries already below the floor at `p.now + dt` are dropped to bound the list.
  */
-export function advanceWill(p: Person, dt: number): void {
-  if (dt <= 0) return;
-  for (const v of p.will.voices) v.pressure = decay(v.pressure, dt, WILL_DEFAULTS.pressureHalfLife);
-  if (p.will.advice && p.will.advice.length > 0) pruneAdvice(p, p.now + dt);
+function advanceWill(p: WillMutable, dt: number, d: EffectiveParameters['builtins']['WILL_DEFAULTS']): void {
+  if (dt < 0 || !Number.isSafeInteger(dt)) throw new RangeError('Invalid Will duration');
+  const k = Math.LN2 / (d.pressureHalfLife * 60000),
+    attenuation = dexp(-k * dt);
+  const command = p.will.command;
+  for (const voice of p.will.voices) {
+    const forcing =
+      command?.obeyed && command.voiceId === voice.voiceId ? d.commandPressurePerHour / 3600000 : 0;
+    voice.pressure = clamp01(voice.pressure * attenuation + (forcing / k) * (1 - attenuation));
+    if (command?.obeyed && command.voiceId === voice.voiceId) {
+      const before = voice.trust;
+      voice.trust = clamp01(before * dexp((-d.commandTrustPerHour * clamp01(command.margin) * dt) / 3600000));
+      noteTrust(voice, voice.trust - before, 'commanded', p.now + dt);
+    }
+  }
+  if (command) command.chargedAt = p.now + dt;
+  if (p.will.advice.length > 0) pruneAdvice(p, p.now + dt);
 }
-
 // --- lane will+cognition: standing advice (N9) ---
-
 /**
  * SCOPE: standing advice. A `told` percept whose `advice` names an action ("see the doctor this week") leaves
  * a remembered suggestion from the speaker. Its weight is strength × the telling's salience × 0.5^(elapsed /
@@ -1785,39 +1461,42 @@ export function advanceWill(p: Person, dt: number): void {
  * persuasion by repetition beyond the refresh, nagging (no pressure or reactance is added: the voice is not
  * speaking now), or advice the person argues back against; it yields no verdict and moves no voice counters.
  */
-export function adviceWeight(a: StandingAdvice, now: Minute): number {
+export function adviceWeight(a: StandingAdvice, now: Time): number {
   const dt = Math.max(0, now - a.at);
-  return clamp01(a.strength) * clamp01(a.salience) * dpow(0.5, dt / WILL_DEFAULTS.adviceHalfLife);
+  return clamp01(a.strength) * clamp01(a.salience) * dpow(0.5, dt / (WILL_DEFAULTS.adviceHalfLife * 60000));
 }
-
 /** Standing advice still above the floor at `now` (read only; stable stored order). */
-export function standingAdvice(p: Person, now: Minute): StandingAdvice[] {
-  return (p.will.advice ?? []).filter((a) => adviceWeight(a, now) >= WILL_DEFAULTS.adviceFloor);
+export function standingAdvice(p: WillMutable, now: Time): StandingAdvice[] {
+  return p.will.advice.filter((a) => adviceWeight(a, now) >= WILL_DEFAULTS.adviceFloor);
 }
-
-function pruneAdvice(p: Person, now: Minute): void {
+function pruneAdvice(p: WillMutable, now: Time): void {
   const kept = standingAdvice(p, now);
-  if (kept.length === 0) delete p.will.advice;
+  if (kept.length === 0) p.will.advice = [];
   else p.will.advice = kept;
 }
-
-const sameAdvice = (a: StandingAdvice, b: { sourceId: EntityId; action: string; affordanceId?: string }) =>
-  a.sourceId === b.sourceId && a.action === b.action && a.affordanceId === b.affordanceId;
-
+const sameAdvice = (
+  a: StandingAdvice,
+  b: {
+    sourceId: EntityId;
+    action: string;
+    affordanceId?: string;
+  },
+) => a.sourceId === b.sourceId && a.action === b.action && a.affordanceId === b.affordanceId;
 /**
  * Store the advice carried by an attended percept (only `told` percepts with an `actorId` other than the
  * person). Returns the entries written. Writes only `p.will.advice`.
  */
-export function rememberAdvice(p: Person, pc: Percept): StandingAdvice[] {
+function rememberAdvice(p: WillActor, pc: PerceptData): StandingAdvice[] {
   const W = WILL_DEFAULTS;
-  if (pc.channel !== 'told' || pc.actorId === undefined || pc.actorId === p.id || !pc.advice) return [];
+  if (pc.channel !== 'told' || pc.actorId === undefined || pc.actorId === p.id) return [];
   const written: StandingAdvice[] = [];
-  const at = Number.isFinite(pc.at) ? Math.min(pc.at, p.now) : p.now;
-  const list = p.will.advice ?? [];
+  const at = Number.isFinite(pc.occurredAt) ? Math.min(pc.occurredAt, p.now) : p.now;
+  const list = p.will.advice;
   for (const item of pc.advice) {
     if (typeof item.action !== 'string' || item.action.length === 0) continue;
     const strength = clamp01(Number.isFinite(item.strength) ? (item.strength as number) : W.adviceStrength);
     const entry: StandingAdvice = {
+      adviceId: item.adviceId,
       sourceId: pc.actorId,
       action: item.action,
       strength,
@@ -1843,11 +1522,359 @@ export function rememberAdvice(p: Person, pc: Percept): StandingAdvice[] {
   if (list.length > 0) p.will.advice = list;
   return written;
 }
-
 /** The advised action was done: its standing advice (from every source) stops pulling. */
-export function dischargeAdvice(p: Person, action: string): void {
-  if (!p.will.advice) return;
+function dischargeAdvice(p: WillMutable, action: string): void {
   const kept = p.will.advice.filter((a) => a.action !== action);
-  if (kept.length === 0) delete p.will.advice;
+  if (kept.length === 0) p.will.advice = [];
   else p.will.advice = kept;
 }
+
+/** The canonical actor view is shallow: only this owner's state and cursor are copied. */
+export const willOwner: import('../run-schema.ts').WillOwner = {
+  commandForcing(state, context) {
+    const command = state.command;
+    if (!command?.obeyed) return { crisisStrainPerMinute: 0, needsPerMinute: {} };
+    return {
+      crisisStrainPerMinute: context.effective.builtins.CRISIS_DEFAULTS.commandStrainPerHour / 60,
+      needsPerMinute: {
+        autonomy:
+          (-context.effective.builtins.WILL_DEFAULTS.commandAutonomyPerHour * clamp01(0.5 + command.margin)) /
+          60,
+      },
+    };
+  },
+  initialize(input, context) {
+    const d = context.effective.builtins.WILL_DEFAULTS;
+    return {
+      voices: input.voices.map((v) => ({
+        voiceId: v.voiceId,
+        trust: v.trust,
+        pressure: 0,
+        accepted: 0,
+        refused: 0,
+        history: [],
+        seeded: true,
+      })),
+      precommitments: input.precommitments.map((p) => ({ ...p })),
+      switchMargin: d.switchMargin,
+      temperature: d.temperature,
+      advice: [],
+    };
+  },
+  decide(previous, context) {
+    const state = structuredClone(previous) as WillState;
+    const cursor = {
+      words: { ...context.rng.words },
+      identity: { ...context.rng.identity, origin: { ...context.rng.identity.origin } },
+    };
+    const actor = {
+      ...context.actor,
+      will: state,
+      rng: cursor.words,
+      effective: context.effective,
+    } as WillActor;
+    const considered: Considered[] = context.offers.map((offer) => {
+      const terms = context.terms.filter((t) => t.offerId === offer.id).map((t) => ({ ...t.term }));
+      return {
+        affordanceId: offer.id,
+        action: offer.actionId,
+        label: offer.label,
+        utility: round(terms.reduce((sum, t) => sum + t.value, 0)),
+        terms,
+      };
+    });
+    const desperation = Math.max(
+      0,
+      ...context.needs
+        .filter((n) => ['food', 'water', 'sleep', 'rest', 'relief'].includes(n.id))
+        .map((n) => n.urgency),
+    );
+    const ctx: WillContext = {
+      frame: context as import('../run-schema.ts').FrameContext,
+      now: context.at,
+      affordances: context.offers.map((o) => structuredClone(o)) as Offer[],
+      body: context.body as BodyReadout,
+      desperation,
+      reconsider: context.treatment === 'reconsider',
+      needs: context.needs.map((n) => ({ ...n })),
+      ...(state.command ? { command: state.command } : {}),
+    };
+    const result = resolveChoice(
+      actor,
+      considered,
+      ctx,
+      context.suggestions.map((s) => ({ ...s })),
+      { quiet: context.actor.activity !== null },
+    );
+    // sfc32 advances d exactly once per consumed uniform, including uint32 wrap.
+    cursor.identity.uniformDraws += (cursor.words.d - context.rng.words.d) >>> 0;
+    const chosen = context.offers.find((o) => o.id === result.chosenAffordanceId);
+    const decision: import('../run-schema.ts').DecisionRecord = {
+      id: `d${context.person}-${context.actor.nextDecision}`,
+      at: context.at,
+      chosenAffordanceId: result.chosenAffordanceId,
+      chosenAction: chosen?.actionId ?? null,
+      considered: result.considered,
+      intention: chosen?.actionId ?? 'wait',
+    };
+    if (result.suggestion) decision.suggestion = result.suggestion;
+    if (result.suggestions) decision.suggestions = result.suggestions;
+    const needReceipts: import('../run-schema.ts').WillAutonomyReceipt[] =
+      result.autonomyDelta !== 0
+        ? [{ kind: 'will-autonomy', evidenceId: decision.id, autonomy: result.autonomyDelta }]
+        : [];
+    const command =
+      result.command && state.command
+        ? {
+            holds: result.command.holds,
+            margin: result.command.margin,
+            voiceId: state.command.voiceId,
+            ends: result.command.ends,
+            reason: result.command.reason,
+          }
+        : null;
+    const reviewBoundaries = [
+      wakeReviewAt(actor, context.at),
+      chosen ? dutyReviewAt(actor, chosen, context.at, context.at + chosen.durationMs) : undefined,
+    ].filter((at): at is number => at !== undefined && at > context.at);
+    return {
+      state,
+      decision,
+      rng: cursor,
+      resolutions: result.suggestions ?? [],
+      needReceipts,
+      command,
+      effects: { terms: [], modifiers: [], appraisals: [] },
+      events: [],
+      nextBoundary: reviewBoundaries.length ? Math.min(...reviewBoundaries) : null,
+      advancedThrough: context.at,
+    };
+  },
+  receive(previous, input, context) {
+    const state = structuredClone(previous) as WillState;
+    const actor = { ...context.actor, will: state, effective: context.effective } as WillActor;
+    const needReceipts: import('../run-schema.ts').WillAutonomyReceipt[] = [];
+    const crisisReceipts: import('../run-schema.ts').WillMutationOutput['crisisReceipts'][number][] = [];
+    if ('type' in input) {
+      if (input.type === 'precommit') {
+        const pc = input.precommitment;
+        state.precommitments = state.precommitments.filter(
+          (p) =>
+            !(p.action === pc.action && p.fromMsOfDay === pc.fromMsOfDay && p.toMsOfDay === pc.toMsOfDay),
+        );
+        state.precommitments.push({ ...pc });
+        state.precommitments = state.precommitments.slice(
+          -context.effective.builtins.WILL_DEFAULTS.maxPrecommitments,
+        );
+      } else state.precommitments = state.precommitments.filter((p) => p.id !== input.precommitmentId);
+    } else
+      switch (input.kind) {
+        case 'suggestion':
+          ensureVoice(
+            actor,
+            input.received.kind === 'ordinary' ? input.received.suggestion.voiceId : input.received.voiceId,
+          );
+          break;
+        case 'advice':
+          rememberAdvice(actor, input.percept as PerceptData);
+          break;
+        case 'advice-withdrawn':
+          state.advice = state.advice.filter(
+            (a) => !(a.sourceId === input.data.voiceId && a.adviceId === input.data.adviceId),
+          );
+          break;
+        case 'coercion': {
+          takeCommand(
+            actor,
+            {
+              voiceId: input.data.voiceId,
+              affordanceId: input.data.offerId,
+              since: context.at,
+              repeat: input.data.repeat,
+            },
+            context.at,
+          );
+          break;
+        }
+        case 'coercion-withdrawn': {
+          endCommand(actor, input.data.reason, context.at);
+          break;
+        }
+        case 'promise':
+          noteVoicePromise(actor, input.data.voiceId, { ...input.data.promise, at: context.at });
+          break;
+        case 'settled':
+          for (const resolution of creditedVoices(input.activity.suggestions))
+            learnFromVoice(actor, resolution, input.felt, {
+              at: context.at,
+              action: input.activity.offer.actionId,
+            });
+          break;
+        case 'action-started':
+          dischargeAdvice(actor, input.activity.offer.actionId);
+          break;
+        case 'command-decision': {
+          if (state.command && state.command.voiceId === input.decision.voiceId) {
+            const first = noteCommandOutcome(actor, input.decision.holds, input.decision.margin);
+            if (first)
+              needReceipts.push({
+                kind: 'will-autonomy',
+                evidenceId: input.evidenceId,
+                autonomy: -context.effective.builtins.WILL_DEFAULTS.commandAutonomyCost,
+              });
+          }
+          if (input.decision.ends && state.command?.voiceId === input.decision.voiceId)
+            endCommand(actor, input.decision.reason, context.at);
+          break;
+        }
+      }
+    return {
+      state,
+      resolutions: [],
+      needReceipts,
+      crisisReceipts,
+      effects: { terms: [], modifiers: [], appraisals: [] },
+      events: [],
+      nextBoundary: null,
+      advancedThrough: context.at,
+    };
+  },
+  advance(_previous, context) {
+    const state = structuredClone(context.continuation.state) as WillState;
+    const elapsed = BigInt(context.to) - BigInt(context.continuation.anchor.at);
+    if (elapsed < 0n || elapsed > BigInt(Number.MAX_SAFE_INTEGER)) throw new RangeError('Invalid will span');
+    const actor = { will: state, now: context.continuation.anchor.at };
+    advanceWill(actor, Number(elapsed), context.effective.builtins.WILL_DEFAULTS);
+    const needReceipts: import('../run-schema.ts').WillAutonomyReceipt[] = [];
+    const crisisReceipts: import('../run-schema.ts').WillMutationOutput['crisisReceipts'][number][] = [];
+    return {
+      state,
+      continuation: structuredClone(
+        context.continuation,
+      ) as import('../run-schema.ts').DeliberationContinuation['will'],
+      resolutions: [],
+      needReceipts,
+      crisisReceipts,
+      effects: { terms: [], modifiers: [], appraisals: [] },
+      events: [],
+      nextBoundary: null,
+      advancedThrough: context.to,
+    };
+  },
+  receiveUpbringing(previous, input, context) {
+    const state = structuredClone(previous) as WillState;
+    const carers = input.caregivers.filter((c) => c.id !== context.person),
+      total = carers.reduce((sum, c) => sum + Math.max(0, c.warmth), 0);
+    const age = (context.at - context.life.bornAt) / (365 * 86400000),
+      plasticity = age <= 12 ? 1 : clamp01((25 - age) / 13);
+    if (total > 0 && plasticity > 0) {
+      const years = Number(BigInt(input.to) - BigInt(input.from)) / (365 * 86400000);
+      const k = clamp01(
+        1 -
+          dpow(
+            1 -
+              clamp01((context.effective.builtins.FAMILY_DEFAULTS.voiceRatePerYear * total) / carers.length),
+            years * plasticity,
+          ),
+      );
+      const actor = { will: state, now: context.at };
+      for (const id of [...new Set(carers.flatMap((c) => c.voices.map((v) => v.voiceId)))].sort(cmpStr)) {
+        let target = 0,
+          weight = 0;
+        for (const carer of carers) {
+          const voice = carer.voices.find((v) => v.voiceId === id);
+          if (voice) {
+            target += carer.warmth * voice.trust;
+            weight += carer.warmth;
+          }
+        }
+        if (weight > 0 && k > 0) adoptVoiceTrust(actor, id, target / weight, k);
+      }
+    }
+    return {
+      state,
+      effects: { terms: [], modifiers: [], appraisals: [] },
+      events: [],
+      nextBoundary: null,
+      advancedThrough: context.at,
+    };
+  },
+  validate(state) {
+    const issues: import('../run-schema.ts').ValidationIssue[] = [];
+    const fail = (path: string) =>
+      issues.push({ path, code: 'invalid-schema', message: 'Invalid will state' });
+    if (
+      state.voices.length > WILL_DEFAULTS.maxVoices ||
+      state.advice.length > WILL_DEFAULTS.maxAdvice ||
+      state.precommitments.length > WILL_DEFAULTS.maxPrecommitments ||
+      new Set(state.voices.map((v) => v.voiceId)).size !== state.voices.length ||
+      !Number.isFinite(state.temperature) ||
+      state.temperature < 0 ||
+      !Number.isFinite(state.switchMargin) ||
+      state.switchMargin < 0
+    )
+      fail('will');
+    for (const v of state.voices) {
+      if (
+        !v.voiceId ||
+        !Number.isFinite(v.trust) ||
+        v.trust < 0 ||
+        v.trust > 1 ||
+        !Number.isFinite(v.pressure) ||
+        v.pressure < 0 ||
+        v.pressure > 1 ||
+        !Number.isSafeInteger(v.accepted) ||
+        v.accepted < 0 ||
+        !Number.isSafeInteger(v.refused) ||
+        v.refused < 0 ||
+        v.history.length > WILL_DEFAULTS.maxVoiceHistory
+      )
+        fail('will.voices');
+      for (const h of v.history)
+        if (!Number.isSafeInteger(h.at) || !Number.isFinite(h.delta) || !h.reason)
+          fail('will.voices.history');
+    }
+    for (const advice of state.advice)
+      if (
+        !advice.adviceId ||
+        !advice.sourceId ||
+        !advice.action ||
+        !Number.isSafeInteger(advice.at) ||
+        !Number.isFinite(advice.strength) ||
+        advice.strength < 0 ||
+        advice.strength > 1 ||
+        !Number.isFinite(advice.salience) ||
+        advice.salience < 0 ||
+        advice.salience > 1
+      )
+        fail('will.advice');
+    if (
+      new Set(state.advice.map((a) => JSON.stringify([a.sourceId, a.adviceId]))).size !== state.advice.length
+    )
+      fail('will.advice');
+    if (
+      state.command &&
+      (!state.command.voiceId ||
+        !Number.isSafeInteger(state.command.since) ||
+        !Number.isSafeInteger(state.command.startedAt) ||
+        !Number.isSafeInteger(state.command.chargedAt) ||
+        state.command.chargedAt < state.command.startedAt ||
+        !Number.isFinite(state.command.margin))
+    )
+      fail('will.command');
+    for (const p of state.precommitments)
+      if (
+        !p.id ||
+        !p.action ||
+        !Number.isFinite(p.bias) ||
+        !Number.isSafeInteger(p.fromMsOfDay) ||
+        p.fromMsOfDay < 0 ||
+        p.fromMsOfDay >= 86400000 ||
+        !Number.isSafeInteger(p.toMsOfDay) ||
+        p.toMsOfDay < 0 ||
+        p.toMsOfDay >= 86400000
+      )
+        fail('will.precommitments');
+    return issues;
+  },
+};

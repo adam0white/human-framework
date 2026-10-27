@@ -1,6 +1,6 @@
 {
   "name": "@adam0white/human-framework",
-  "version": "3.2.0",
+  "version": "4.0.0",
   "description": "Deterministic, explainable simulated people: body, needs, affect, memory, beliefs, skills, habits, relationships, values and a will that can refuse a suggestion",
   "keywords": [
     "simulation",
@@ -42,7 +42,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "rm -rf dist && tsc -p tsconfig.build.json",
+    "build": "node scripts/stamp-engine.mjs && rm -rf dist && tsc -p tsconfig.build.json",
     "prepack": "npm run build",
     "examples": "npm run build && node examples/minimal.ts && node examples/suggestions.ts && node examples/community.ts"
   }

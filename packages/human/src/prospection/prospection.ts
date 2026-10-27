@@ -1,39 +1,22 @@
-/**
- * SCOPE: retained current-action → successor claims, acquired through attended external
- * testimony or host-seeded prior knowledge. Knowledge is person-owned, source-labelled,
- * bounded and saved. Opt-in planning searches chains of retained claims, depth first in
- * stable source/id order, with total depth 2..5 and 64 feasible node expansions.
- * Shapes: depth limits and pruning (Huys et al. 2012; Keramati et al. 2016), resource-rational
- * planning (Callaway et al. 2022), quasi-hyperbolic present bias (Laibson 1997;
- * O'Donoghue and Rabin 1999); see research/curiosity-and-play.md §Planning.
- * Parameters are engineering bounds, not fitted psychological estimates.
- * Without planning, only one successor is considered. One coherent route contributes;
- * it never executes actions, grants consent or advances goals. Actual completed triggers
- * consume opportunities. This is not a general planner: it does not search the host's
- * world, infer procedures, execute plans or model another person's agency, future bodies
- * or waiting opportunity cost. Revision memory is bounded, not an audit.
- */
+/** SCOPE: one always-present bounded route from attended, source-labelled consequence claims.
+ * No action execution, world facts, old planning selector or legacy restoration. */
+
 import { temporalGoalValue } from '../agenda/agenda.ts';
-import { trustOf } from '../beliefs/index.ts';
-import { cmpStr, isNum, isObj, round } from '../core/index.ts';
-import { expectedEffect } from '../memory/index.ts';
-import { diminishesProject } from '../projects/index.ts';
+import { trustOf } from '../beliefs/beliefs.ts';
+import { cmpStr, round } from '../core/index.ts';
+import * as memoryModule from '../memory/memory.ts';
+import { projectDiminishes } from '../projects/projects.ts';
 import type {
-  Affordance,
-  ConsequenceAction,
-  ConsequenceRevision,
-  Minute,
-  Percept,
-  Person,
-  PlanningSpec,
-  PlanningState,
-  ProspectionState,
+  ActorState,
+  EffectiveParameters,
+  FrameContext,
+  Offer,
   ReceivedConsequence,
   RetainedConsequence,
-  Term,
-} from '../types.ts';
-import { MAX_MINUTE, MINUTES_PER_DAY } from '../types.ts';
+  TermData,
+} from '../run-schema.ts';
 
+const MINUTES_PER_DAY = 1440;
 export const PROSPECTION_DEFAULTS = {
   maxEntries: 16,
   maxRevisions: 64,
@@ -42,390 +25,239 @@ export const PROSPECTION_DEFAULTS = {
   horizon: 7 * MINUTES_PER_DAY,
   maxMaterialCost: 1_000_000,
 };
-/** Validate the optional planning configuration. Malformed saved state is dropped. @internal */
-export function sanitizePlanning(input: unknown): PlanningState | undefined {
-  if (
-    !isObj(input) ||
-    !Number.isInteger(input.depth) ||
-    !isNum(input.depth) ||
-    input.depth < 2 ||
-    input.depth > 5
-  )
-    return undefined;
-  if (
-    input.presentBias !== undefined &&
-    (!isNum(input.presentBias) || input.presentBias <= 0 || input.presentBias > 1)
-  )
-    return undefined;
-  return {
-    depth: input.depth,
-    ...(input.presentBias !== undefined ? { presentBias: input.presentBias } : {}),
-  };
-}
-
-/** Enable bounded planning. Invalid configuration throws without changing the person. */
-export function enablePlanning(p: Person, spec: PlanningSpec = {}): void {
-  const state = sanitizePlanning({ ...spec, depth: spec.depth ?? 4 });
-  if (!state) throw new RangeError('Planning requires depth 2..5 and presentBias in (0, 1]');
-  p.planning = state;
-}
-const maxEntries = (planning: boolean) => (planning ? 64 : PROSPECTION_DEFAULTS.maxEntries);
-const maxBatch = (p: Person) => (p.planning ? 16 : PROSPECTION_DEFAULTS.maxBatch);
-const reliability = (p: Person, e: RetainedConsequence) =>
-  e.channel === 'known' ? 1 : trustOf(p, e.sourceId);
-
-const id = (x: unknown): x is string =>
-  typeof x === 'string' &&
-  x.length > 0 &&
-  x.length <= PROSPECTION_DEFAULTS.maxIdentifierLength &&
-  x !== '__proto__' &&
-  x !== 'constructor' &&
-  x !== 'prototype';
-const minute = (x: unknown): x is number => isNum(x) && Math.abs(x) <= MAX_MINUTE;
-const unit = (x: unknown): x is number => isNum(x) && x >= 0 && x <= 1;
-const revision = (x: unknown): x is number => typeof x === 'number' && Number.isSafeInteger(x) && x >= 0;
-const identity = (a: { sourceId: string; id: string }, b: { sourceId: string; id: string }) =>
-  a.sourceId === b.sourceId && a.id === b.id;
-const order = (a: ConsequenceRevision, b: ConsequenceRevision) =>
-  a.receivedAt - b.receivedAt || cmpStr(a.sourceId, b.sourceId) || cmpStr(a.id, b.id);
-function action(x: unknown): ConsequenceAction | undefined {
-  if (
-    !isObj(x) ||
-    !id(x.action) ||
-    (x.targetId !== undefined && !id(x.targetId)) ||
-    (x.placeId !== undefined && !id(x.placeId))
-  )
-    return undefined;
-  return {
-    action: x.action,
-    ...(x.targetId !== undefined ? { targetId: x.targetId } : {}),
-    ...(x.placeId !== undefined ? { placeId: x.placeId } : {}),
-  };
-}
-function consequence(x: unknown, receivedAt: number): ReceivedConsequence | undefined {
-  if (!isObj(x) || !id(x.id) || !revision(x.revision)) return undefined;
-  const trigger = action(x.trigger);
-  const successorAction = action(x.successor);
-  const s = x.successor;
-  if (
-    !trigger ||
-    !successorAction ||
-    !isObj(s) ||
-    !isNum(s.duration) ||
-    s.duration < 0 ||
-    s.duration > PROSPECTION_DEFAULTS.horizon ||
-    !unit(s.effort) ||
-    (s.advances !== undefined &&
-      (!Array.isArray(s.advances) ||
-        s.advances.length > 8 ||
-        !s.advances.every((x) => typeof x === 'string' && x.length > 0 && x.length <= 512))) ||
-    (s.diminishes !== undefined &&
-      (!Array.isArray(s.diminishes) ||
-        s.diminishes.length > 8 ||
-        !s.diminishes.every((x) => typeof x === 'string' && x.length > 0 && x.length <= 512))) ||
-    (s.focus !== undefined && !unit(s.focus)) ||
-    (s.materialCost !== undefined &&
-      (!isNum(s.materialCost) || s.materialCost < 0 || s.materialCost > PROSPECTION_DEFAULTS.maxMaterialCost))
-  )
-    return undefined;
-  if (
-    !minute(x.availableFrom) ||
-    !minute(x.availableUntil) ||
-    !minute(x.expiresAt) ||
-    x.availableFrom > x.availableUntil ||
-    x.availableUntil > x.expiresAt ||
-    x.expiresAt < receivedAt ||
-    x.expiresAt > receivedAt + PROSPECTION_DEFAULTS.horizon ||
-    !unit(x.chance) ||
-    !unit(x.confidence)
-  )
-    return undefined;
-  return {
-    id: x.id,
-    revision: x.revision,
-    trigger,
-    successor: {
-      ...successorAction,
-      duration: s.duration,
-      effort: s.effort,
-      ...(s.advances !== undefined ? { advances: [...(s.advances as string[])] } : {}),
-      ...(s.diminishes !== undefined ? { diminishes: [...(s.diminishes as string[])] } : {}),
-      ...(s.focus !== undefined ? { focus: s.focus } : {}),
-      ...(s.materialCost !== undefined ? { materialCost: s.materialCost } : {}),
-    },
-    availableFrom: x.availableFrom,
-    availableUntil: x.availableUntil,
-    expiresAt: x.expiresAt,
-    chance: x.chance,
-    confidence: x.confidence,
-  };
-}
-function retained(x: unknown, now: number): RetainedConsequence | undefined {
-  if (
-    !isObj(x) ||
-    !id(x.sourceId) ||
-    (x.channel !== 'told' && x.channel !== 'known') ||
-    !minute(x.receivedAt) ||
-    x.receivedAt > now
-  )
-    return undefined;
-  const c = consequence(x, x.receivedAt);
-  if (
-    !c ||
-    (x.triggeredAt !== undefined &&
-      (!minute(x.triggeredAt) || x.triggeredAt < x.receivedAt || x.triggeredAt > now))
-  )
-    return undefined;
-  return {
-    ...c,
-    sourceId: x.sourceId,
-    channel: x.channel,
-    receivedAt: x.receivedAt,
-    ...(x.triggeredAt !== undefined ? { triggeredAt: x.triggeredAt } : {}),
-  };
-}
-function cleaned(state: ProspectionState, now: number): ProspectionState {
-  const revisions = state.revisions.filter((r) => now - r.receivedAt <= PROSPECTION_DEFAULTS.horizon);
-  return {
-    entries: state.entries.filter(
-      (e) => e.expiresAt >= now && revisions.some((r) => identity(r, e) && r.revision === e.revision),
-    ),
-    revisions,
-  };
-}
-function store(p: Person, s: ProspectionState): void {
-  if (s.entries.length || s.revisions.length) p.prospection = s;
-  else delete p.prospection;
-}
-/** Expiry changes only existing optional state. @internal */
-export function pruneConsequences(p: Person, now: Minute = p.now): void {
-  if (p.prospection) store(p, cleaned(p.prospection, now));
-}
-/** Called only for an attended percept. Invalid combined batches mutate no prospection state. @internal */
-export function receiveConsequences(p: Person, pc: Percept): boolean {
-  if (pc.consequences === undefined && pc.withdrawConsequences === undefined) return false;
-  if (
-    pc.channel !== 'told' ||
-    !id(pc.actorId) ||
-    pc.actorId === p.id ||
-    (pc.targetId !== undefined && pc.targetId !== p.id)
-  )
-    return false;
-  return acceptConsequences(p, pc.actorId, pc.consequences ?? [], pc.withdrawConsequences ?? [], 'told');
-}
-
-/** Seed what the person already knows. Uses claim confidence/chance, without source trust or attention. */
-export function seedConsequences(
-  p: Person,
-  sourceId: string,
-  claims: readonly ReceivedConsequence[],
-): boolean {
-  if (!id(sourceId) || sourceId === p.id) return false;
-  return acceptConsequences(p, sourceId, claims, [], 'known');
-}
-
-function acceptConsequences(
-  p: Person,
-  sourceId: string,
-  adds: unknown,
-  removes: unknown,
-  channel: RetainedConsequence['channel'],
-): boolean {
-  if (
-    !Array.isArray(adds) ||
-    !Array.isArray(removes) ||
-    adds.length + removes.length > maxBatch(p) ||
-    adds.length + removes.length === 0
-  )
-    return false;
-  const additions = adds.map((x) => consequence(x, p.now));
-  if (
-    additions.some((x) => x === undefined) ||
-    removes.some((x) => !isObj(x) || !id(x.id) || !revision(x.revision))
-  )
-    return false;
-  const withdrawals = removes as { id: string; revision: number }[];
-  const batch = [...additions.map((x) => ({ id: x?.id, revision: x?.revision })), ...withdrawals];
-  if (new Set(batch.map((x) => x.id)).size !== batch.length) return false;
-  const state = cleaned(structuredClone(p.prospection ?? { entries: [], revisions: [] }), p.now);
-  const updates = batch.filter(
-    (b) =>
-      !state.revisions.some(
-        (r) => r.sourceId === sourceId && r.id === b.id && r.revision >= (b.revision ?? 0),
-      ),
-  );
-  const newIds = updates.filter(
-    (b) => !state.revisions.some((r) => r.sourceId === sourceId && r.id === b.id),
-  );
-  // Never evict a still-valid tombstone to admit a batch; dedup holds within the stated horizon.
-  if (state.revisions.length + newIds.length > PROSPECTION_DEFAULTS.maxRevisions) return false;
-  for (const b of updates) {
-    state.entries = state.entries.filter((e) => !(e.sourceId === sourceId && e.id === b.id));
-    state.revisions = state.revisions.filter((r) => !(r.sourceId === sourceId && r.id === b.id));
-    const addition = additions.find((a) => a?.id === b.id);
-    if (addition) state.entries.push({ ...addition, sourceId, channel, receivedAt: p.now });
-    state.revisions.push({ sourceId, id: b.id as string, revision: b.revision as number, receivedAt: p.now });
-  }
-  if (state.entries.length > maxEntries(p.planning !== undefined)) {
-    const oldest = [...state.entries]
-      .sort(
-        (a, b) => Number(b.triggeredAt !== undefined) - Number(a.triggeredAt !== undefined) || order(a, b),
+/** HF4: always-present retained consequences; reception never consults world facts. */
+export const prospectionOwner: import('../run-schema.ts').ProspectionOwner = {
+  initialize() {
+    return { entries: [], revisions: [] };
+  },
+  initializePlanning(context) {
+    return { depth: context.effective.planning.depth, presentBias: context.effective.planning.presentBias };
+  },
+  receive(previous, input, context) {
+    const d = context.effective.builtins.PROSPECTION_DEFAULTS;
+    const state = structuredClone(previous) as import('../run-schema.ts').ProspectionState;
+    state.revisions = state.revisions.filter((r) => context.at - r.receivedAt <= d.horizon * 60000);
+    state.entries = state.entries.filter(
+      (e) =>
+        e.expiresAt >= context.at &&
+        state.revisions.some((r) => r.sourceId === e.sourceId && r.id === e.id && r.revision === e.revision),
+    );
+    if (input.kind === 'completed-trigger') {
+      if (input.outcome.status === 'completed')
+        for (const entry of state.entries)
+          if (
+            entry.triggeredAt === undefined &&
+            entry.trigger.action === input.activity.offer.actionId &&
+            entry.trigger.targetId === input.activity.offer.target &&
+            entry.trigger.placeId === input.activity.offer.place
+          )
+            entry.triggeredAt = context.at;
+    } else {
+      const sourceId = input.data.sourceId;
+      const batch = [...input.data.claims, ...input.data.withdrawals];
+      const updates = batch.filter(
+        (c) =>
+          !state.revisions.some((r) => r.sourceId === sourceId && r.id === c.id && r.revision >= c.revision),
+      );
+      const newIds = updates.filter(
+        (c) => !state.revisions.some((r) => r.sourceId === sourceId && r.id === c.id),
+      );
+      if (new Set(updates.map((c) => c.id)).size !== updates.length)
+        throw new RangeError('Duplicate consequence in received batch');
+      if (state.revisions.length + newIds.length > d.maxRevisions)
+        throw new RangeError('Consequence revision capacity exceeded');
+      for (const c of updates) {
+        state.entries = state.entries.filter((e) => !(e.sourceId === sourceId && e.id === c.id));
+        state.revisions = state.revisions.filter((r) => !(r.sourceId === sourceId && r.id === c.id));
+        const addition = input.data.claims.find((claim) => claim.id === c.id);
+        if (addition)
+          state.entries.push({
+            ...structuredClone(addition),
+            sourceId,
+            channel: input.kind === 'authored' ? 'known' : 'told',
+            receivedAt: context.at,
+          } as import('../run-schema.ts').RetainedConsequence);
+        state.revisions.push({ sourceId, id: c.id, revision: c.revision, receivedAt: context.at });
+      }
+      // The all-on planning capacity is the source planning branch's 64 entries.
+      if (state.entries.length > 64) {
+        state.entries.sort(
+          (a, b) =>
+            Number(a.triggeredAt !== undefined) - Number(b.triggeredAt !== undefined) ||
+            b.receivedAt - a.receivedAt ||
+            cmpStr(a.sourceId, b.sourceId) ||
+            cmpStr(a.id, b.id),
+        );
+        state.entries = state.entries.slice(0, 64);
+      }
+    }
+    return {
+      state,
+      effects: { terms: [], modifiers: [], appraisals: [] },
+      events: [],
+      nextBoundary: null,
+      advancedThrough: context.at,
+    };
+  },
+  validate(state) {
+    const issues: import('../run-schema.ts').ValidationIssue[] = [];
+    const fail = (path: string) =>
+      issues.push({ path, code: 'invalid-schema', message: 'Invalid retained consequence' });
+    if (
+      state.entries.length > 64 ||
+      state.revisions.length > PROSPECTION_DEFAULTS.maxRevisions ||
+      new Set(state.entries.map((e) => JSON.stringify([e.sourceId, e.id]))).size !== state.entries.length ||
+      new Set(state.revisions.map((e) => JSON.stringify([e.sourceId, e.id]))).size !== state.revisions.length
+    )
+      fail('prospection');
+    for (const [i, e] of state.entries.entries()) {
+      if (
+        !Number.isSafeInteger(e.receivedAt) ||
+        !Number.isSafeInteger(e.availableFrom) ||
+        !Number.isSafeInteger(e.availableUntil) ||
+        !Number.isSafeInteger(e.expiresAt) ||
+        e.availableUntil < e.availableFrom ||
+        e.expiresAt < e.receivedAt ||
+        !Number.isSafeInteger(e.successor.durationMs) ||
+        e.successor.durationMs <= 0 ||
+        !Number.isFinite(e.chance) ||
+        e.chance < 0 ||
+        e.chance > 1 ||
+        !Number.isFinite(e.confidence) ||
+        e.confidence < 0 ||
+        e.confidence > 1 ||
+        !state.revisions.some((r) => r.id === e.id && r.sourceId === e.sourceId && r.revision === e.revision)
       )
-      .slice(0, state.entries.length - maxEntries(p.planning !== undefined));
-    state.entries = state.entries.filter((e) => !oldest.includes(e));
-  }
-  store(p, state);
-  return true;
-}
-const matches = (a: ConsequenceAction, b: ConsequenceAction): boolean =>
-  a.action === b.action && a.targetId === b.targetId && a.placeId === b.placeId;
-/** Own actual completed trigger consumes an opportunity, without predicting consent. @internal */
-export function consumeConsequences(p: Person, completed: ConsequenceAction): void {
-  for (const e of p.prospection?.entries ?? [])
-    if (e.triggeredAt === undefined && matches(e.trigger, completed)) e.triggeredAt = p.now;
-}
-export interface ConsequenceEvidence {
-  entry: RetainedConsequence;
-  matches: boolean;
-  feasible: boolean;
-  successorStartsAt: Minute;
-  successorEndsAt: Minute;
-  accessProbability: number;
-  terminalProbability: number;
-}
-/** Read current retained knowledge and feasibility. Does not mutate, prune or consume RNG. */
-export function consequenceEvidence(
-  p: Person,
-  aff: Affordance,
-  now: Minute = p.now,
-): { entries: ConsequenceEvidence[]; revisions: ConsequenceRevision[] } {
-  return {
-    entries: (p.prospection?.entries ?? []).map((entry) => {
-      const start = Math.max(now + Math.max(0, aff.duration), entry.availableFrom);
-      const end = start + entry.successor.duration;
-      const match = matches(entry.trigger, aff);
-      const feasible =
-        match &&
-        entry.triggeredAt === undefined &&
-        now <= entry.expiresAt &&
-        end <= entry.availableUntil &&
-        Number.isFinite(end);
-      const accessProbability =
-        expectedEffect(p, aff).successRate * entry.chance * entry.confidence * reliability(p, entry);
-      return {
-        entry: structuredClone(entry),
-        matches: match,
-        feasible,
-        successorStartsAt: start,
-        successorEndsAt: end,
-        accessProbability,
-        terminalProbability: accessProbability * expectedEffect(p, successorOffer(entry)).successRate,
-      };
-    }),
-    revisions: structuredClone(
-      (p.prospection?.revisions ?? []).filter((r) => now - r.receivedAt <= PROSPECTION_DEFAULTS.horizon),
-    ),
-  };
-}
-function successorOffer(e: RetainedConsequence): Affordance {
-  const { materialCost, ...rest } = e.successor;
-  return {
-    ...rest,
-    id: 'prospective-successor',
-    label: 'Received successor',
-    advertises: {},
-    ...(materialCost !== undefined ? { material: -materialCost } : {}),
-  };
-}
-/** One successor in a selected route. Times and access are unrounded estimates. */
-export interface PlanStep {
-  successor: ReceivedConsequence['successor'];
-  start: Minute;
-  end: Minute;
-  access: number;
-}
-/** Plain JSON readout of the best whole route; goals are unscaled per-goal values. */
-export interface PlanRoute {
-  steps: PlanStep[];
-  goals: Record<string, number>;
-}
+        fail(`prospection.entries.${i}`);
+    }
+    for (const r of state.revisions)
+      if (
+        !r.id ||
+        !r.sourceId ||
+        !Number.isSafeInteger(r.revision) ||
+        r.revision < 0 ||
+        !Number.isSafeInteger(r.receivedAt)
+      )
+        fail('prospection.revisions');
+    return issues;
+  },
+};
 
-/** Select a whole route in the exact rounded units cognition emits. @internal */
+export type PlanStep = {
+  successor: ReceivedConsequence['successor'];
+  start: number;
+  end: number;
+  access: number;
+};
+export type PlanRoute = { steps: PlanStep[]; goals: Record<string, number> };
+export function successorOffer(entry: RetainedConsequence, person: string): Offer {
+  const next = entry.successor;
+  return {
+    id: 'prospective-successor',
+    actionId: next.action,
+    label: 'received-successor',
+    person,
+    durationMs: next.durationMs,
+    ...(next.targetId !== undefined ? { target: next.targetId } : {}),
+    ...(next.placeId !== undefined ? { place: next.placeId } : {}),
+    participants: [],
+    alongside: [],
+    demands: { effort: next.effort, focus: next.focus ?? 0, mode: 'awake', requires: {} },
+    tags: [],
+    norms: [],
+    expected: {
+      needs: {},
+      followedBy: [],
+      provenance: [entry.sourceId],
+      ...(next.materialCost !== undefined ? { material: -next.materialCost } : {}),
+    },
+    fulfills: [],
+    advances: [...(next.advances ?? [])],
+    diminishes: [...(next.diminishes ?? [])],
+  };
+}
+/** Whole-route selection uses the same rounded goal values as actual cognition. */
 export function receivedGoalRoute(
-  p: Person,
-  aff: Affordance,
-  now: Minute,
+  p: ActorState & { effective: EffectiveParameters },
+  offer: Offer,
+  now: number,
   maturityScale: number,
-  costs: (successor: Affordance) => number,
-): { goals: Map<string, number>; cost: Term; route: PlanRoute } | undefined {
+  costs: (successor: Offer) => number,
+  frame: FrameContext,
+): { goals: Map<string, number>; cost: TermData; route: PlanRoute } | undefined {
   const goals = p.agenda.goals.filter(
     (g) =>
-      g.status === 'active' &&
-      g.temporal !== undefined &&
-      !(g.project && diminishesProject(p, aff, g.project.prospectId)),
+      g.status === 'active' && !(g.project && projectDiminishes(p.projects, offer, g.project.prospectId)),
   );
-  if (!goals.length || !p.prospection?.entries.length) return undefined;
-  const direct = goals.map((g) => temporalGoalValue(p, g, aff, now, now + Math.max(0, aff.duration)));
-  const baseline = direct.reduce((sum, value) => sum + round(value * maturityScale), 0);
-  let bestScore = baseline;
-  let best: ReturnType<typeof receivedGoalRoute>;
+  if (!goals.length || !p.prospection.entries.length) return undefined;
+  const expected = (offer: Offer) => memoryModule.memoryOwner.expectedEffect(p.memory, offer, frame);
+  const direct = goals.map((g) =>
+    temporalGoalValue(p, g, offer, now, now + offer.durationMs, expected(offer).successRate),
+  );
+  let bestScore = direct.reduce((sum, value) => sum + round(value * maturityScale), 0),
+    best: ReturnType<typeof receivedGoalRoute>;
   const entries = [...p.prospection.entries].sort(
     (a, b) => cmpStr(a.sourceId, b.sourceId) || cmpStr(a.id, b.id),
   );
-  const beta = p.planning?.presentBias ?? 1;
-  let remaining = p.planning ? 64 : Infinity;
-  function visit(
-    previous: Affordance,
+  let remaining = 64;
+  const beta = p.planning.presentBias;
+  const matches = (entry: RetainedConsequence, offer: Offer) =>
+    entry.trigger.action === offer.actionId &&
+    entry.trigger.targetId === offer.target &&
+    entry.trigger.placeId === offer.place;
+  const visit = (
+    previous: Offer,
     previousEnd: number,
     access: number,
     path: RetainedConsequence[],
     steps: PlanStep[],
     values: number[],
     accumulatedCost: number,
-    done: readonly Affordance[],
-  ): void {
-    if (path.length >= (p.planning?.depth ?? 2) - 1 || remaining <= 0) return;
+    done: readonly Offer[],
+  ): void => {
+    if (path.length >= p.planning.depth - 1 || remaining <= 0) return;
     for (const entry of entries) {
       if (remaining <= 0) return;
-      // Completing an action consumes every open opportunity it triggers, so a
-      // link whose trigger an earlier simulated step already performed is gone.
       if (
         path.includes(entry) ||
-        !matches(entry.trigger, previous) ||
-        done.some((a) => matches(entry.trigger, a)) ||
+        !matches(entry, previous) ||
+        done.some((offer) => matches(entry, offer)) ||
         entry.triggeredAt !== undefined ||
         now > entry.expiresAt
       )
         continue;
-      const start = Math.max(previousEnd, entry.availableFrom);
-      const end = start + entry.successor.duration;
-      if (!Number.isFinite(end) || end > entry.availableUntil) continue;
-      remaining -= 1;
+      const start = Math.max(previousEnd, entry.availableFrom),
+        end = start + entry.successor.durationMs;
+      if (!Number.isSafeInteger(end) || end > entry.availableUntil) continue;
+      remaining--;
+      const reliability = entry.channel === 'known' ? 1 : trustOf(p, entry.sourceId);
       const nextAccess =
-        access *
-        expectedEffect(p, previous).successRate *
-        entry.chance *
-        entry.confidence *
-        reliability(p, entry);
-      const successor = successorOffer(entry);
+        access * expected(previous).successRate * entry.chance * entry.confidence * reliability;
+      const successor = successorOffer(entry, p.id);
       const nextValues = goals.map((g, i) => {
         const prospectId = g.project?.prospectId;
-        return prospectId && [...done, previous, successor].some((a) => diminishesProject(p, a, prospectId))
+        return prospectId &&
+          [...done, previous, successor].some((offer) => projectDiminishes(p.projects, offer, prospectId))
           ? 0
-          : Math.max(values[i] ?? 0, nextAccess * beta * temporalGoalValue(p, g, successor, now, end));
+          : Math.max(
+              values[i] ?? 0,
+              nextAccess *
+                beta *
+                temporalGoalValue(p, g, successor, now, end, expected(successor).successRate),
+            );
       });
-      const nextCost = accumulatedCost + beta * nextAccess * Math.min(0, costs(successor));
-      const cost = round(nextCost);
-      const total = nextValues.reduce((sum, value) => sum + round(value * maturityScale), 0) + cost;
-      const nextPath = [...path, entry];
-      const nextSteps = [
-        ...steps,
-        { successor: structuredClone(entry.successor), start, end, access: nextAccess },
-      ];
+      const nextCost = accumulatedCost + beta * nextAccess * Math.min(0, costs(successor)),
+        cost = round(nextCost);
+      const total = nextValues.reduce((sum, value) => sum + round(value * maturityScale), 0) + cost,
+        nextPath = [...path, entry],
+        nextSteps = [
+          ...steps,
+          { successor: structuredClone(entry.successor), start, end, access: nextAccess },
+        ];
       if (round(total - bestScore) > 0) {
         bestScore = total;
-        // Keep the original root's source string; the ref explains longer routes.
-        const root = nextPath[0] as RetainedConsequence;
+        const root = nextPath[0];
+        if (!root) throw new RangeError('Missing route root');
         best = {
           goals: new Map(goals.map((g, i) => [g.id, nextValues[i] ?? 0])),
           cost: {
@@ -441,54 +273,7 @@ export function receivedGoalRoute(
       }
       visit(successor, end, nextAccess, nextPath, nextSteps, nextValues, nextCost, [...done, previous]);
     }
-  }
-  visit(aff, now + Math.max(0, aff.duration), 1, [], [], direct, 0, []);
+  };
+  visit(offer, now + offer.durationMs, 1, [], [], direct, 0, []);
   return best;
-}
-/** Conservative optional-slice restore; ambiguous identities drop the slice. @internal */
-export function sanitizeProspection(
-  input: unknown,
-  now: Minute,
-  personId: string,
-  planning = false,
-): ProspectionState | undefined {
-  if (
-    !isObj(input) ||
-    !Array.isArray(input.entries) ||
-    !Array.isArray(input.revisions) ||
-    input.entries.length > maxEntries(planning) ||
-    input.revisions.length > PROSPECTION_DEFAULTS.maxRevisions
-  )
-    return undefined;
-  const entries = input.entries.map((x) => retained(x, now)).filter((e) => e?.sourceId !== personId);
-  const revisions: ConsequenceRevision[] = [];
-  for (const r of input.revisions) {
-    if (
-      !isObj(r) ||
-      !id(r.sourceId) ||
-      r.sourceId === personId ||
-      !id(r.id) ||
-      !revision(r.revision) ||
-      !minute(r.receivedAt) ||
-      r.receivedAt > now
-    )
-      continue;
-    const validated: ConsequenceRevision = {
-      sourceId: r.sourceId,
-      id: r.id,
-      revision: r.revision,
-      receivedAt: r.receivedAt,
-    };
-    if (revisions.some((old) => identity(old, validated))) return undefined;
-    revisions.push(validated);
-  }
-  const valid: RetainedConsequence[] = [];
-  for (const e of entries) {
-    if (!e) continue;
-    if (valid.some((old) => identity(old, e))) return undefined;
-    if (revisions.some((r) => identity(r, e) && r.revision === e.revision && r.receivedAt === e.receivedAt))
-      valid.push(e);
-  }
-  const state = cleaned({ entries: valid, revisions }, now);
-  return state.entries.length || state.revisions.length ? state : undefined;
 }

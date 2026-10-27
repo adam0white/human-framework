@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
 import { keysOf } from '../src/core/keys.ts';
-import type { NeedId } from '../src/types.ts';
+import type { NeedId } from '../src/run-schema.ts';
 
 test('enumerates own string keys with Object.keys ordering and exclusions', () => {
   const record = Object.assign(Object.create({ inherited: 1 }), {

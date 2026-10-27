@@ -2,7 +2,7 @@
  * Seeded, serializable PRNG (sfc32). State lives in plain JSON on the owner (`person.rng` or host state)
  * and is advanced in place, so identical seeds and call sequences give identical results.
  */
-import type { RngState } from '../types.ts';
+import type { RngState } from '../run-schema.ts';
 import { dcos, dlog } from './libm.ts';
 
 export function createRng(seed: number): RngState {

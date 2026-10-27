@@ -1,40 +1,21 @@
-/**
- * SCOPE: slow change of HEXACO traits and Schwartz values over adult life (1.8.0, opt-in per person with
- * `enableCharacterChange`; without it traits and values stay as set at birth). Two channels, both small and bounded:
- *
- * - **Maturation** (age only), from 18 to 65, at fixed yearly rates in the directions of the age trends:
- *   Honesty-Humility rises most, Emotionality falls, Extraversion rises a little, Conscientiousness rises until about
- *   40, Agreeableness and Openness stay level (Ashton & Lee 2016, HEXACO, cross-sectional; Roberts, Walton &
- *   Viechtbauer 2006, longitudinal Big Five: conscientiousness and emotional stability rise most between 20 and 40;
- *   Bleidorn et al. 2022: mean-level change is real but small). Values: benevolence and tradition rise, power,
- *   achievement, stimulation and self-direction fall (Milfont, Milojev & Sibley 2016: older adults emphasise others'
- *   welfare and tradition, younger ones status, power and independent thought; values are largely stable).
- * - **Sustained experience**, once a year from that year's days: a year lived in low mood raises Emotionality and a
- *   good year lowers it (Jeronimus et al. 2014: lasting difficulties and life quality, not single events, move
- *   neuroticism a little and lastingly); a year of commitments kept far more than broken raises Conscientiousness
- *   (social investment: Roberts, Wood & Smith 2005; Lodi-Smith & Roberts 2007, cross-sectional); much time with
- *   others raises Extraversion and little lowers it; a varied year raises Openness and a narrow one lowers it. Each
- *   push is at most `CHARACTER_DEFAULTS.maxExperiencePerYear`. Single events change nothing directly. What experience
- *   adds is an offset from the maturation path that fades by `experienceReversion` a year, so a life that stays the
- *   same settles instead of drifting to the bound, and a change in life quality moves traits again. Ormel, Riese &
- *   Rosmalen 2012 favour experience-dependent set points over a fixed one people return to; the fade toward the
- *   maturation path is an engineering assumption, not their model.
- *
- * Every trait and value stays within `maxDrift` of where it stood when drift was enabled (the value anchor is
- * re-set when age crosses 18, where maturation begins), so rank order mostly holds
- * (high adult rank-order stability, Bleidorn et al. 2022). All rates, thresholds and caps are engineering assumptions
- * chosen for these directions (research/long-run-sources.md); none converts a published effect size. It does not
- * model childhood or adolescent personality development, change in honesty or agreeableness from experience,
- * therapy, cohort effects, individual differences in plasticity, or norm conviction (owned by `conscience/`).
- * Traits never branch logic (framework.md, locked decisions): this module only moves the coefficients.
+/** SCOPE: always-present bounded maturation and annual sustained experience.
+ * Rates and reversion are engineering assumptions, directions from research/long-run-sources.md.
+ * Received caregiver contact changes values only through its actual exposure. No inherited norms.
  */
-import { clamp, clamp01, dayOf, dpow, isNum, isObj } from '../core/index.ts';
-import { ageAt } from '../lifecourse/index.ts';
-import type { CharacterState, Minute, Person, Signed, Traits, Values } from '../types.ts';
-import { DAYS_PER_YEAR, TRAIT_KEYS, VALUE_KEYS } from '../types.ts';
 
+import { dexp, dlog } from '../core/libm.ts';
+import { normal } from '../core/random.ts';
+import { validateNarrativeFields, validateNarrativeJson } from '../memory/memory.ts';
+import type {
+  CharacterOwner,
+  CharacterState,
+  DeepReadonly,
+  Traits,
+  ValidationIssue,
+  Values,
+} from '../run-schema.ts';
 export const CHARACTER_DEFAULTS = {
-  /** Largest distance any trait or value may drift from its value when drift was enabled. */
+  /** Largest distance any trait or value may drift from its value at construction. */
   maxDrift: 0.15,
   /** Ages (years) between which maturation applies. */
   maturationFrom: 18,
@@ -86,180 +67,264 @@ export const CHARACTER_DEFAULTS = {
   varietyBaseline: 5,
 };
 
-const yearOf = (now: Minute): number => Math.floor(dayOf(now) / DAYS_PER_YEAR);
+const YEAR = 365 * 86400000;
+const TRAIT_KEYS = [
+  'honesty',
+  'emotionality',
+  'extraversion',
+  'agreeableness',
+  'conscientiousness',
+  'openness',
+] as const;
+const VALUE_KEYS = [
+  'benevolence',
+  'universalism',
+  'tradition',
+  'conformity',
+  'security',
+  'achievement',
+  'power',
+  'hedonism',
+  'stimulation',
+  'selfDirection',
+] as const;
 const emptyAcc = (): CharacterState['acc'] => ({
   days: 0,
   mood: 0,
   kept: 0,
   broken: 0,
-  social: 0,
+  socialMs: 0,
   variety: 0,
 });
-
-/**
- * Validate a saved character slice (used by `restore`); undefined when it cannot be trusted. Every trait and value
- * key must be present with a finite number (else the slice is dropped; unknown keys are removed) and is clamped to
- * 0..1; `year` and `agedTo` must be finite; `acc` needs all six counters finite, negatives become 0 (mood is a
- * signed sum and stays as is); `experience` keeps only trait keys with finite numbers, clamped to ±`maxDrift`.
- * A save the engine wrote is already within all of this. @internal
- */
-export function sanitizeCharacter(x: unknown): CharacterState | undefined {
-  if (!isObj(x) || !isNum(x.year) || !isNum(x.agedTo)) return undefined;
-  const unitRecord = <K extends string>(o: unknown, keys: readonly K[]): Record<K, number> | undefined => {
-    if (!isObj(o) || !keys.every((k) => isNum(o[k]))) return undefined;
-    const out = {} as Record<K, number>;
-    for (const k of Object.keys(o))
-      if ((keys as readonly string[]).includes(k)) out[k as K] = clamp01(o[k] as number);
-    return out;
-  };
-  const baseTraits = unitRecord(x.baseTraits, TRAIT_KEYS);
-  const baseValues = unitRecord(x.baseValues, VALUE_KEYS);
-  const accKeys = ['days', 'mood', 'kept', 'broken', 'social', 'variety'] as const;
-  const a = x.acc;
-  if (!baseTraits || !baseValues || !isObj(a) || !accKeys.every((k) => isNum(a[k]))) return undefined;
-  const acc = {} as CharacterState['acc'];
-  for (const k of Object.keys(a)) {
-    if (!(accKeys as readonly string[]).includes(k)) continue;
-    const v = a[k] as number;
-    acc[k as keyof CharacterState['acc']] = k === 'mood' || v >= 0 ? v : 0;
-  }
-  const experience: CharacterState['experience'] = {};
-  const D = CHARACTER_DEFAULTS.maxDrift;
-  if (isObj(x.experience))
-    for (const [k, v] of Object.entries(x.experience))
-      if ((TRAIT_KEYS as readonly string[]).includes(k) && isNum(v))
-        experience[k as keyof Traits] = clamp(v, -D, D);
-  const fields: Record<keyof CharacterState, unknown> = {
-    baseTraits,
-    baseValues,
-    year: x.year,
-    acc,
-    agedTo: x.agedTo,
-    experience,
-  };
-  // Known fields only, in the saved key order (a save the engine wrote serializes the same).
-  const out: Record<string, unknown> = {};
-  for (const k of Object.keys(x)) if (Object.hasOwn(fields, k)) out[k] = fields[k as keyof CharacterState];
-  for (const k of Object.keys(fields)) if (!(k in out)) out[k] = fields[k as keyof CharacterState];
-  return out as unknown as CharacterState;
-}
-
-/** Turn on slow trait and value change for this person (idempotent); the current values become the anchor. */
-export function enableCharacterChange(p: Person): void {
-  if (p.character) return;
-  p.character = {
-    baseTraits: { ...p.traits },
-    baseValues: { ...p.values },
-    year: yearOf(p.now),
-    acc: emptyAcc(),
-    agedTo: p.now,
-    experience: {},
-  };
-}
-
-/** What one day contributes to the year's experience. */
-export interface CharacterDay {
-  /** Mean (or end-of-day) mood valence. */
-  mood: Signed;
-  kept?: number;
-  broken?: number;
-  /** Minutes spent with others. */
-  socialMinutes?: number;
-  /** Distinct actions done. */
-  variety?: number;
-}
-
-/** Add a day to the current year's experience (drift on only). */
-export function noteCharacterDay(p: Person, d: CharacterDay): void {
-  const acc = p.character?.acc;
-  if (!acc) return;
-  acc.days += 1;
-  acc.mood += d.mood;
-  acc.kept += d.kept ?? 0;
-  acc.broken += d.broken ?? 0;
-  acc.social += d.socialMinutes ?? 0;
-  acc.variety += d.variety ?? 0;
-}
-
-/** Add minutes spent with others to the current year's experience (drift on only); `finish` calls it. */
-export function noteCharacterSocial(p: Person, minutes: number): void {
-  const acc = p.character?.acc;
-  if (acc && minutes > 0) acc.social += minutes;
-}
-
-/** Years of age lived in [from, to] that fall inside [lo, hi]. */
-function overlap(fromAge: number, toAge: number, lo: number, hi: number): number {
-  return Math.max(0, Math.min(toAge, hi) - Math.max(fromAge, lo));
-}
-
-/** The experience pushes a year's accumulator implies, per trait (pure). */
-function experiencePush(acc: CharacterState['acc']): Partial<Record<keyof Traits, number>> {
-  const K = CHARACTER_DEFAULTS;
-  if (acc.days < K.minDays) return {};
-  const cap = (x: number) => clamp(x, -K.maxExperiencePerYear, K.maxExperiencePerYear);
-  const out: Partial<Record<keyof Traits, number>> = {};
-  const mood = acc.mood / acc.days;
-  out.emotionality = cap(-K.moodGain * mood);
-  const duties = acc.kept + acc.broken;
-  if (duties >= K.minCommitments)
-    out.conscientiousness = cap((K.dutyGain * (acc.kept - acc.broken)) / duties);
-  const share = acc.social / (acc.days * K.wakingMinutes);
-  out.extraversion = cap(K.socialGain * (share - K.socialBaseline));
-  out.openness = cap(K.varietyGain * (acc.variety / acc.days - K.varietyBaseline));
-  return out;
-}
-
-function bounded(value: number, base: number): number {
-  const K = CHARACTER_DEFAULTS;
-  return clamp01(clamp(value, base - K.maxDrift, base + K.maxDrift));
-}
-
-/**
- * Apply maturation from `agedTo` to `to` and, for every year boundary crossed, the closed year's experience push
- * (drift on only). The composite calls it at midnight and from `skip` (which lives no experience, so only maturation
- * applies across a skipped gap). Returns whether anything changed.
- */
-export function ageCharacter(p: Person, to: Minute): boolean {
-  const c = p.character;
-  if (!c || to <= c.agedTo) return false;
-  const K = CHARACTER_DEFAULTS;
-  const fromAge = ageAt(p, c.agedTo);
-  const toAge = ageAt(p, to);
-  const years = overlap(fromAge, toAge, K.maturationFrom, K.maturationTo);
-  const cYears = overlap(
-    fromAge,
-    toAge,
-    K.maturationFrom,
-    Math.min(K.maturationTo, K.conscientiousnessUntil),
+type State = ReturnType<CharacterOwner['initialize']>;
+const clamp = (x: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, x));
+function validate(s: DeepReadonly<State>): ValidationIssue[] {
+  const issues: ValidationIssue[] = validateNarrativeJson(s);
+  issues.push(
+    ...validateNarrativeFields(
+      s,
+      ['character', 'traits', 'values'],
+      ['character', 'traits', 'values'],
+      'character',
+    ),
   );
-  const push: Partial<Record<keyof Traits, number>> = {};
-  const crossed = Math.max(0, yearOf(to) - c.year);
-  const closed = crossed > 0;
-  if (closed) {
-    Object.assign(push, experiencePush(c.acc));
-    c.year = yearOf(to);
-    c.acc = emptyAcc();
+  const bad = (path: string) =>
+    issues.push({ path, code: 'invalid-schema', message: 'Invalid character state' });
+  if (!s || !s.character || !s.traits || !s.values)
+    return [{ path: 'character', code: 'invalid-schema', message: 'Required character state missing' }];
+  for (const [record, keys, path] of [
+    [s.traits, TRAIT_KEYS, 'traits'],
+    [s.values, VALUE_KEYS, 'values'],
+    [s.character.baseTraits, TRAIT_KEYS, 'baseTraits'],
+    [s.character.baseValues, VALUE_KEYS, 'baseValues'],
+  ] as const) {
+    if (!record) {
+      bad(path);
+      continue;
+    }
+    for (const key of keys) {
+      const value = (record as Readonly<Record<string, number>>)[key];
+      if (value === undefined || !Number.isFinite(value) || value < 0 || value > 1) bad(`${path}.${key}`);
+    }
   }
-  for (const k of TRAIT_KEYS) {
-    const span = k === 'conscientiousness' ? cYears : years;
-    if (span === 0 && !closed) continue;
-    const offset = c.experience[k] ?? 0;
-    // The maturation path (trait without its experience offset) moves with age; the offset fades and takes the push.
-    const path = bounded(p.traits[k] - offset + K.traitPerYear[k] * span, c.baseTraits[k]);
-    const next = closed ? offset * dpow(1 - K.experienceReversion, crossed) + (push[k] ?? 0) : offset;
-    const value = bounded(path + next, c.baseTraits[k]);
-    if (value !== p.traits[k]) p.traits[k] = value;
-    const kept = value - path;
-    if (kept !== 0) c.experience[k] = kept;
-    else delete c.experience[k];
+  const c = s.character;
+  issues.push(
+    ...validateNarrativeFields(
+      c,
+      ['baseTraits', 'baseValues', 'year', 'acc', 'agedTo', 'experience'],
+      ['baseTraits', 'baseValues', 'year', 'acc', 'agedTo', 'experience'],
+      'character',
+    ),
+  );
+  issues.push(...validateNarrativeFields(s.traits, TRAIT_KEYS, TRAIT_KEYS, 'traits'));
+  issues.push(...validateNarrativeFields(s.values, VALUE_KEYS, VALUE_KEYS, 'values'));
+  issues.push(...validateNarrativeFields(c.baseTraits, TRAIT_KEYS, TRAIT_KEYS, 'baseTraits'));
+  issues.push(...validateNarrativeFields(c.baseValues, VALUE_KEYS, VALUE_KEYS, 'baseValues'));
+  if (!Number.isSafeInteger(c.year) || !Number.isSafeInteger(c.agedTo)) bad('character.clock');
+  if (!c.acc || !c.experience) {
+    bad('character.acc');
+    return issues;
   }
-  // Values are the household's to shape until adulthood (`family.raise`); the anchor is taken again at 18 so the
-  // drift band starts from the values upbringing left.
-  if (fromAge < K.maturationFrom && toAge >= K.maturationFrom) c.baseValues = { ...p.values };
-  for (const k of VALUE_KEYS) {
-    const delta = K.valuePerYear[k] * years;
-    if (delta !== 0) p.values[k] = bounded(p.values[k] + delta, c.baseValues[k]);
-  }
-  c.agedTo = to;
-  return true;
+  issues.push(
+    ...validateNarrativeFields(
+      c.acc,
+      ['days', 'mood', 'kept', 'broken', 'socialMs', 'variety'],
+      ['days', 'mood', 'kept', 'broken', 'socialMs', 'variety'],
+      'character.acc',
+    ),
+  );
+  for (const key of ['days', 'mood', 'kept', 'broken', 'socialMs', 'variety'] as const)
+    if (!Number.isFinite(c.acc[key]) || (key !== 'mood' && c.acc[key] < 0)) bad(`character.acc.${key}`);
+  for (const [key, value] of Object.entries(c.experience))
+    if (
+      !TRAIT_KEYS.includes(key as keyof Traits) ||
+      !Number.isFinite(value) ||
+      Math.abs(value) > 0.15 + 1e-15
+    )
+      bad('character.experience');
+  return issues;
 }
+const checked = (s: DeepReadonly<State>): State => {
+  const issues = validate(s);
+  if (issues.length) throw new RangeError(issues[0]!.message);
+  return structuredClone(s) as State;
+};
+export const characterOwner: CharacterOwner = {
+  initialize(input, context) {
+    return checked({
+      traits: structuredClone(input.traits),
+      values: structuredClone(input.values),
+      character: {
+        baseTraits: structuredClone(input.traits),
+        baseValues: structuredClone(input.values),
+        year: Math.floor(context.at / YEAR),
+        acc: emptyAcc(),
+        agedTo: context.at,
+        experience: {},
+      },
+    });
+  },
+  validate,
+  advance(state, context) {
+    checked(state);
+    const out = checked(context.continuation.state),
+      c = out.character,
+      K = context.effective.builtins.CHARACTER_DEFAULTS;
+    if (context.to < c.agedTo || context.to < context.from) throw new RangeError('Character clock rewound');
+    const fromAge = (c.agedTo - context.life.bornAt) / YEAR,
+      toAge = (context.to - context.life.bornAt) / YEAR;
+    const overlap = (lo: number, hi: number) => Math.max(0, Math.min(toAge, hi) - Math.max(fromAge, lo));
+    const years = overlap(K.maturationFrom, K.maturationTo),
+      cyears = overlap(K.maturationFrom, Math.min(K.maturationTo, K.conscientiousnessUntil));
+    const bounded = (value: number, base: number) =>
+      clamp(value, Math.max(0, base - K.maxDrift), Math.min(1, base + K.maxDrift));
+    for (const key of TRAIT_KEYS) {
+      const span = key === 'conscientiousness' ? cyears : years;
+      const offset = c.experience[key] ?? 0;
+      const path = bounded(out.traits[key] - offset + K.traitPerYear[key] * span, c.baseTraits[key]);
+      const next = offset;
+      out.traits[key] = bounded(path + next, c.baseTraits[key]);
+      const kept = out.traits[key] - path;
+      if (kept) c.experience[key] = kept;
+      else delete c.experience[key];
+    }
+    if (fromAge < K.maturationFrom && toAge >= K.maturationFrom) c.baseValues = { ...out.values };
+    for (const key of VALUE_KEYS)
+      out.values[key] = bounded(out.values[key] + K.valuePerYear[key] * years, c.baseValues[key]);
+    c.agedTo = context.to;
+    return {
+      state: out,
+      effects: { terms: [], modifiers: [], appraisals: [] },
+      events: [],
+      nextBoundary: (Math.floor(context.to / YEAR) + 1) * YEAR,
+      advancedThrough: context.to,
+      continuation: {
+        anchor: { ...context.continuation.anchor },
+        state: checked(context.continuation.state),
+      },
+    };
+  },
+  receiveDay(state, day, context) {
+    const out = checked(state),
+      c = out.character,
+      K = context.effective.builtins.CHARACTER_DEFAULTS;
+    if (
+      context.at !== (day.day + 1) * 86400000 ||
+      Math.floor(day.day / 365) !== c.year ||
+      !Number.isSafeInteger(context.socialMs) ||
+      context.socialMs < 0
+    )
+      throw new RangeError('Character day receipt mismatch');
+    const acc = c.acc;
+    acc.days++;
+    acc.mood += day.mood;
+    acc.kept += day.kept.length;
+    acc.broken += day.broken.length;
+    acc.variety += day.actions.length;
+    acc.socialMs += context.socialMs;
+    const endYear = Math.floor(context.at / YEAR),
+      crossed = Math.max(0, endYear - c.year);
+    if (crossed) {
+      const pushes: Partial<Record<keyof Traits, number>> = {};
+      if (acc.days >= K.minDays) {
+        const cap = (x: number) => clamp(x, -K.maxExperiencePerYear, K.maxExperiencePerYear);
+        pushes.emotionality = cap((-K.moodGain * acc.mood) / acc.days);
+        const duties = acc.kept + acc.broken;
+        if (duties >= K.minCommitments)
+          pushes.conscientiousness = cap((K.dutyGain * (acc.kept - acc.broken)) / duties);
+        pushes.extraversion = cap(
+          K.socialGain * (acc.socialMs / (acc.days * K.wakingMinutes * 60000) - K.socialBaseline),
+        );
+        pushes.openness = cap(K.varietyGain * (acc.variety / acc.days - K.varietyBaseline));
+      }
+      const bounded = (x: number, base: number) =>
+        clamp(x, Math.max(0, base - K.maxDrift), Math.min(1, base + K.maxDrift));
+      for (const key of TRAIT_KEYS) {
+        const offset = c.experience[key] ?? 0,
+          path = bounded(out.traits[key] - offset, c.baseTraits[key]),
+          next = offset * dexp(dlog(1 - K.experienceReversion) * crossed) + (pushes[key] ?? 0);
+        out.traits[key] = bounded(path + next, c.baseTraits[key]);
+        const kept = out.traits[key] - path;
+        if (kept) c.experience[key] = kept;
+        else delete c.experience[key];
+      }
+      c.acc = emptyAcc();
+      c.year = endYear;
+    }
+    return {
+      state: out,
+      effects: { terms: [], modifiers: [], appraisals: [] },
+      events: [],
+      nextBoundary: (Math.floor(context.at / YEAR) + 1) * YEAR,
+      advancedThrough: context.at,
+      continuation: {
+        anchor: { at: context.at, conditionId: `character-day:${day.day}` },
+        state: checked(out),
+      },
+    };
+  },
+  receiveUpbringing(state, input, context) {
+    const out = checked(state);
+    if (input.child !== context.person || input.to !== context.at || input.from > input.to)
+      throw new RangeError('Upbringing receipt mismatch');
+    const carers = input.caregivers.filter((c) => c.id !== context.person);
+    if (new Set(carers.map((c) => c.id)).size !== carers.length) throw new RangeError('Duplicate caregiver');
+    const total = carers.reduce((s, c) => s + c.warmth, 0),
+      age = (context.at - context.life.bornAt) / YEAR,
+      plasticity = clamp((25 - age) / 13, 0, 1);
+    if (total > 0 && plasticity > 0) {
+      const mean = total / carers.length,
+        rate = context.effective.builtins.FAMILY_DEFAULTS.valueRatePerYear;
+      const k = 1 - dexp(((-rate * mean * (input.to - input.from)) / YEAR) * plasticity);
+      for (const key of VALUE_KEYS) {
+        const target = carers.reduce((s, c) => s + c.warmth * c.values[key], 0) / total;
+        out.values[key] = clamp(out.values[key] + k * (target - out.values[key]), 0, 1);
+      }
+    }
+    return {
+      state: out,
+      effects: { terms: [], modifiers: [], appraisals: [] },
+      events: [],
+      nextBoundary: null,
+      advancedThrough: context.at,
+      continuation: { anchor: { at: context.at, conditionId: input.id }, state: checked(out) },
+    };
+  },
+  deriveTraits(parents, cursor) {
+    if (parents.length !== 2) throw new RangeError('Two parents required');
+    const rng = structuredClone(cursor);
+    if (cursor.status !== 'active') throw new RangeError('Completed inheritance cursor');
+    const traits = {} as Traits;
+    const h = 0.3,
+      sd = 0.15 * Math.sqrt(1 - (h * h) / 2);
+    for (const key of TRAIT_KEYS) {
+      const mid = (parents[0]![key] + parents[1]![key]) / 2;
+      traits[key] = clamp(0.5 + h * (mid - 0.5) + normal(rng.words, 0, sd), 0.02, 0.98);
+    }
+    rng.uniformDraws += 12;
+    return { traits, rng };
+  },
+};
+Object.freeze(CHARACTER_DEFAULTS.traitPerYear);
+Object.freeze(CHARACTER_DEFAULTS.valuePerYear);
+Object.freeze(CHARACTER_DEFAULTS);

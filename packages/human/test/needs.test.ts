@@ -1,191 +1,169 @@
 import { describe, expect, test } from 'vitest';
-import { createRng } from '../src/core/index.ts';
 import {
-  advanceNeeds,
-  createNeeds,
-  meanSatisfaction,
-  type NeedsContext,
-  needThreshold,
-  readNeeds,
-  satisfy,
+  DEFAULT_NEEDS,
+  materializeNeeds,
+  NEEDS_DEFAULTS,
+  needSatisfactionAt,
+  needsOwner,
+  projectNeedTrajectory,
+  readNeedScalar,
   urgency,
-} from '../src/needs/index.ts';
-import type { BodyReadout, NeedReading, NeedReservoirs, Person } from '../src/types.ts';
-import { PHYSIOLOGICAL_NEEDS, PSYCHOLOGICAL_NEEDS } from '../src/types.ts';
-import { fullPerson } from './support.ts';
+} from '../src/needs/needs.ts';
+import type { BodyTrajectory, ScalarTrajectory } from '../src/run-schema.ts';
+import { frame } from './w2-fixture.ts';
 
-function body(perceived: Partial<BodyReadout['perceived']> = {}): BodyReadout {
-  const pr = { hunger: 0, thirst: 0, sleepiness: 0, fatigue: 0, pain: 0, ...perceived };
-  return { ...pr, capacity: 1, alertness: 1, perceived: pr };
-}
+const constant = (value: number): ScalarTrajectory => ({
+  from: 0,
+  to: 86400000,
+  segments: [{ kind: 'constant', from: 0, to: 86400000, value }],
+});
+const body = (hunger: ScalarTrajectory = constant(0.2)): BodyTrajectory => ({
+  id: 'body:condition',
+  conditionId: 'condition',
+  from: 0,
+  to: 86400000,
+  fields: [],
+  readout: [
+    { field: 'perceived-hunger', path: hunger },
+    ...(['perceived-thirst', 'perceived-sleepiness', 'perceived-fatigue', 'perceived-pain'] as const).map(
+      (field) => ({ field, path: constant(0.2) }),
+    ),
+  ],
+});
+const context = () => ({
+  person: 'person',
+  traits: {
+    honesty: 0.5,
+    emotionality: 0.5,
+    extraversion: 0.5,
+    agreeableness: 0.5,
+    conscientiousness: 0.5,
+    openness: 0.5,
+  },
+  values: {
+    benevolence: 0.5,
+    universalism: 0.5,
+    tradition: 0.5,
+    conformity: 0.5,
+    security: 0.5,
+    achievement: 0.5,
+    power: 0.5,
+    hedonism: 0.5,
+    stimulation: 0.5,
+    selfDirection: 0.5,
+  },
+  activity: null,
+  continuation: { anchor: { at: 0, conditionId: 'condition' }, state: { ...DEFAULT_NEEDS } },
+  body: body(),
+  forcingPerMinute: { environment: {}, command: {} },
+  asleep: false,
+  effective: { builtins: { NEEDS_DEFAULTS } },
+});
 
-const alone: NeedsContext = { withOthers: false, activityTags: [], asleep: false };
-
-describe('needs/urgency', () => {
-  test('is 1 at empty, ~0 well above threshold, monotone and convex below threshold', () => {
-    expect(urgency(0)).toBeCloseTo(1);
-    expect(urgency(0.9)).toBeLessThan(0.02);
-    expect(urgency(1)).toBe(0);
-    let prev = 1;
-    for (let l = 0; l <= 1.0001; l += 0.05) {
-      const u = urgency(l);
-      expect(u).toBeLessThanOrEqual(prev + 1e-12);
-      expect(u).toBeGreaterThanOrEqual(0);
-      prev = u;
-    }
-    // Convex: the second half of the deficit adds more than the first half.
-    expect(urgency(0) - urgency(0.25)).toBeGreaterThan(urgency(0.25) - urgency(0.5));
+describe('HF4 concurrent needs', () => {
+  test('urgency rises with deprivation; every reservoir stays present', () => {
+    expect(urgency(0)).toBe(1);
+    expect(urgency(0.2)).toBeGreaterThan(urgency(0.6));
+    const c = context();
+    const state = materializeNeeds(c, 86400000);
+    expect(needsOwner.validate(state)).toEqual([]);
+    expect(Object.keys(state)).toEqual(Object.keys(DEFAULT_NEEDS));
+    expect(state.belonging).toBeLessThan(DEFAULT_NEEDS.belonging);
   });
-  test('higher threshold means more urgency at the same level', () => {
-    expect(urgency(0.4, 0.6)).toBeGreaterThan(urgency(0.4, 0.4));
+  test('ambient forcing joins the relaxation equation and materializations preserve the anchor', () => {
+    const c = {
+      ...context(),
+      forcingPerMinute: { environment: { leisure: 0.001, autonomy: -0.001 }, command: {} },
+    };
+    const original = structuredClone(c);
+    const plain = materializeNeeds(context(), 86400000);
+    const final = materializeNeeds(c, 86400000);
+    expect(final.leisure).toBeGreaterThan(plain.leisure);
+    expect(final.autonomy).toBeLessThan(plain.autonomy);
+    for (const t of [1000, 15001, 3600000]) materializeNeeds(c, t);
+    expect(materializeNeeds(c, 86400000)).toEqual(final);
+    expect(c).toEqual(original);
+  });
+  test('command and environment forcing share one anchored relaxation law', () => {
+    const plain = context();
+    const c = {
+      ...plain,
+      forcingPerMinute: { environment: { autonomy: -0.0001 }, command: { autonomy: -0.0002 } },
+    };
+    const rate = Math.LN2 / NEEDS_DEFAULTS.autonomyHalfLife,
+      target = NEEDS_DEFAULTS.autonomyTarget - 0.0003 / rate;
+    const expected = Math.max(
+      0,
+      Math.min(1, target + (DEFAULT_NEEDS.autonomy - target) * Math.exp(-rate * 60)),
+    );
+    expect(materializeNeeds(c, 3600000).autonomy).toBeCloseTo(expected, 12);
+    for (const at of [1, 1001, 15000, 1000000]) materializeNeeds(c, at);
+    expect(materializeNeeds(c, 3600000).autonomy).toBeCloseTo(expected, 12);
+  });
+  test('satisfaction follows received perceived body paths and psychological state', () => {
+    const c = context();
+    const well = needSatisfactionAt(c, 0);
+    const hungry = { ...c, body: body(constant(0.99)) };
+    expect(needSatisfactionAt(hungry, 0)).toBeLessThan(well);
+    const lonely = {
+      ...c,
+      continuation: { ...c.continuation, state: { ...DEFAULT_NEEDS, belonging: 0.01 } },
+    };
+    expect(needSatisfactionAt(lonely, 0)).toBeLessThan(well);
+  });
+  test('quartic path agrees with actual source forcing over changing body conditions', () => {
+    const c = {
+      ...context(),
+      body: body({
+        from: 0,
+        to: 86400000,
+        segments: [{ kind: 'linear', from: 0, to: 86400000, initial: 0.05, ratePerMinute: 0.8 / 1440 }],
+      }),
+    };
+    const trajectory = projectNeedTrajectory(c);
+    for (const t of [0, 1001, 1000000, 36000000, 80000000, 86400000])
+      expect(Math.abs(readNeedScalar(trajectory.satisfaction, t) - needSatisfactionAt(c, t))).toBeLessThan(
+        1e-9,
+      );
+    expect(projectNeedTrajectory(structuredClone(c))).toEqual(trajectory);
+  });
+  test('missing perceived body evidence rejects; unknown is not fabricated', () => {
+    const c = context();
+    expect(() => needSatisfactionAt({ ...c, body: { ...c.body, readout: [] } }, 0)).toThrow(/coverage|lacks/);
+    expect(() => materializeNeeds(c, -1)).toThrow(RangeError);
   });
 });
 
-describe('needs/readNeeds', () => {
-  test('stable order and physiological mapping from perceived body', () => {
-    const p = fullPerson();
-    const r = readNeeds(p, body({ hunger: 0.7, pain: 0.2 }));
-    expect(r.map((x) => x.id)).toEqual([...PHYSIOLOGICAL_NEEDS, ...PSYCHOLOGICAL_NEEDS]);
-    expect(r[0]?.level).toBeCloseTo(0.3);
-    expect(r.find((x) => x.id === 'relief')?.level).toBeCloseTo(0.8);
+test('realized signed rewards change only named reservoirs and reanchor their continuation', () => {
+  const previous = { ...DEFAULT_NEEDS };
+  const before = structuredClone(previous);
+  const receipt = {
+    kind: 'realized-outcome' as const,
+    evidenceId: 'settled-reward',
+    needs: { belonging: 0.2, esteem: -0.1, safety: 1, leisure: -1 },
+  };
+  const result = needsOwner.receive(previous, receipt, {
+    ...frame(3600000),
+    continuation: context().continuation,
   });
-  test('reads perceived, not true, body values', () => {
-    const p = fullPerson();
-    const b = body({ sleepiness: 0.2 });
-    b.sleepiness = 0.9;
-    expect(readNeeds(p, b).find((x) => x.id === 'sleep')?.level).toBeCloseTo(0.8);
+  expect(result.state).toEqual({
+    ...previous,
+    belonging: 0.7 + 0.2,
+    esteem: 0.5,
+    safety: 1,
+    leisure: 0,
   });
-  test('rest does not double-count sleepiness', () => {
-    const p = fullPerson();
-    const sleepyOnly = readNeeds(p, body({ sleepiness: 0.8, fatigue: 0.4 }));
-    const exerted = readNeeds(p, body({ sleepiness: 0, fatigue: 0.8 }));
-    const rest = (r: NeedReading[]) => r.find((x) => x.id === 'rest')?.level ?? 0;
-    expect(rest(sleepyOnly)).toBeCloseTo(1);
-    expect(rest(exerted)).toBeCloseTo(0.2);
+  expect(previous).toEqual(before);
+  expect(result.continuation).toEqual({
+    anchor: { at: 3600000, conditionId: 'settled-reward' },
+    state: result.state,
   });
-  test('traits raise thresholds as coefficients', () => {
-    const intro = fullPerson({ traits: { extraversion: 0.1 } });
-    const extro = fullPerson({ traits: { extraversion: 0.9 }, needs: {} });
-    intro.needs.belonging = 0.35;
-    extro.needs.belonging = 0.35;
-    const u = (p: Person) => readNeeds(p, body()).find((x) => x.id === 'belonging')?.urgency ?? 0;
-    expect(u(extro)).toBeGreaterThan(u(intro));
-    expect(needThreshold(fullPerson({ traits: { emotionality: 0.9 } }), 'safety')).toBeGreaterThan(
-      needThreshold(fullPerson(), 'safety'),
-    );
-    expect(needThreshold(fullPerson({ values: { tradition: 0.9 } }), 'meaning')).toBeGreaterThan(
-      needThreshold(fullPerson(), 'meaning'),
-    );
-    expect(needThreshold(fullPerson({ traits: { openness: 0.9 } }), 'leisure')).toBeGreaterThan(
-      needThreshold(fullPerson(), 'leisure'),
-    );
-    expect(needThreshold(fullPerson({ traits: { conscientiousness: 0.9 } }), 'competence')).toBeGreaterThan(
-      needThreshold(fullPerson(), 'competence'),
-    );
-  });
-});
-
-describe('needs/advanceNeeds', () => {
-  test('belonging falls alone (faster for extraverts) and recovers with others', () => {
-    const intro = fullPerson({ traits: { extraversion: 0.1 } });
-    const extro = fullPerson({ traits: { extraversion: 0.9 } });
-    advanceNeeds(intro, 12 * 60, alone);
-    advanceNeeds(extro, 12 * 60, alone);
-    expect(intro.needs.belonging).toBeLessThan(0.7);
-    expect(extro.needs.belonging).toBeLessThan(intro.needs.belonging);
-    const before = extro.needs.belonging;
-    advanceNeeds(extro, 120, { withOthers: true, activityTags: ['chat'], asleep: false });
-    expect(extro.needs.belonging).toBeGreaterThan(before + 0.2);
-  });
-  test('a full day alone brings an average person near the belonging threshold', () => {
-    const p = fullPerson();
-    advanceNeeds(p, 24 * 60, alone);
-    expect(p.needs.belonging).toBeGreaterThan(0.3);
-    expect(p.needs.belonging).toBeLessThan(0.55);
-  });
-  test('work drains leisure, leisure restores it, worship restores meaning', () => {
-    const p = fullPerson();
-    advanceNeeds(p, 8 * 60, { withOthers: false, activityTags: ['work'], asleep: false });
-    expect(p.needs.leisure).toBeLessThan(0.4);
-    advanceNeeds(p, 90, { withOthers: false, activityTags: ['leisure'], asleep: false });
-    expect(p.needs.leisure).toBeGreaterThan(0.6);
-    p.needs.meaning = 0.3;
-    advanceNeeds(p, 30, { withOthers: false, activityTags: ['worship'], asleep: false });
-    expect(p.needs.meaning).toBeGreaterThan(0.4);
-  });
-  test('drifts toward set points', () => {
-    const p = fullPerson({ needs: { autonomy: 0.1, safety: 0.2, competence: 0.9, esteem: 0.1 } });
-    advanceNeeds(p, 10 * 24 * 60, { withOthers: true, activityTags: [], asleep: false });
-    expect(p.needs.autonomy).toBeCloseTo(0.7, 2);
-    expect(p.needs.safety).toBeCloseTo(0.8, 2);
-    expect(p.needs.competence).toBeCloseTo(0.5, 1);
-    expect(p.needs.esteem).toBeCloseTo(0.5, 1);
-  });
-  test('little changes while asleep', () => {
-    const awake = fullPerson();
-    const asleep = fullPerson();
-    advanceNeeds(awake, 480, alone);
-    advanceNeeds(asleep, 480, { ...alone, asleep: true });
-    expect(0.7 - asleep.needs.belonging).toBeLessThan(0.25 * (0.7 - awake.needs.belonging));
-  });
-  test('closed form: 1 x 600 min equals 600 x 1 min', () => {
-    const a = fullPerson({ needs: { autonomy: 0.2, meaning: 0.9 } });
-    const b = fullPerson({ needs: { autonomy: 0.2, meaning: 0.9 } });
-    const ctx: NeedsContext = { withOthers: false, activityTags: ['work'], asleep: false };
-    advanceNeeds(a, 600, ctx);
-    for (let i = 0; i < 600; i++) advanceNeeds(b, 1, ctx);
-    for (const id of PSYCHOLOGICAL_NEEDS) expect(a.needs[id]).toBeCloseTo(b.needs[id], 9);
-  });
-  test('deterministic and bounded', () => {
-    const a = fullPerson();
-    const b = fullPerson();
-    for (const p of [a, b]) {
-      advanceNeeds(p, 1e7, alone);
-      satisfy(p, { belonging: 5, meaning: -5, leisure: Number.NaN });
-    }
-    expect(JSON.stringify(a)).toBe(JSON.stringify(b));
-    for (const id of PSYCHOLOGICAL_NEEDS) {
-      expect(a.needs[id]).toBeGreaterThanOrEqual(0);
-      expect(a.needs[id]).toBeLessThanOrEqual(1);
-    }
-    expect(a.needs.belonging).toBe(1);
-    expect(a.needs.meaning).toBe(0);
-    expect(a.rng).toEqual(createRng(1));
-  });
-});
-
-describe('needs/createNeeds and meanSatisfaction', () => {
-  test('createNeeds clamps overrides', () => {
-    const n: NeedReservoirs = createNeeds({ safety: 2 });
-    expect(n.safety).toBe(1);
-  });
-  test('well-satisfied person reads as plain mean; empty reads as 1', () => {
-    const r: NeedReading[] = [
-      { id: 'food', level: 0.9, urgency: 0 },
-      { id: 'water', level: 0.7, urgency: 0 },
-    ];
-    expect(meanSatisfaction(r)).toBeCloseTo(0.8);
-    expect(meanSatisfaction([])).toBe(1);
-  });
-  test('headless control: one near-empty need dominates, unlike a plain linear mean', () => {
-    const p = fullPerson({
-      needs: {
-        safety: 0.9,
-        belonging: 0.9,
-        esteem: 0.9,
-        autonomy: 0.9,
-        competence: 0.9,
-        leisure: 0.9,
-        meaning: 0.9,
-      },
-    });
-    const r = readNeeds(p, body({ thirst: 0.95 }));
-    const plain = r.reduce((s, x) => s + x.level, 0) / r.length;
-    const weighted = meanSatisfaction(r);
-    expect(plain).toBeGreaterThan(0.85);
-    expect(weighted).toBeLessThan(plain - 0.25);
-    // Control: linear urgency (1 - level) gives a much weaker pull for the same thirst.
-    const linear = r.map((x) => ({ ...x, urgency: 1 - x.level }));
-    expect(meanSatisfaction(linear)).toBeGreaterThan(weighted);
-  });
+  expect(result.continuation.state).not.toBe(result.state);
+  expect(result.effects).toEqual({ terms: [], modifiers: [], appraisals: [] });
+  expect(result.events).toEqual([]);
+  expect(result.nextBoundary).toBeNull();
+  expect(result.advancedThrough).toBe(3600000);
+  const c = { ...context(), continuation: result.continuation };
+  expect(materializeNeeds(c, 3600000)).toEqual(result.state);
+  expect(materializeNeeds(c, 7200000).belonging).toBeLessThan(result.state.belonging);
 });

@@ -1,43 +1,7 @@
-/**
- * SCOPE: selective attention, propositional beliefs and trust in information sources. Attention is a
- * limited-capacity filter (a small working-memory-like budget of a few items that shrinks with mental load
- * and fatigue) with priority for self-relevant, socially relevant and, under fear, threat-related percepts.
- * Beliefs are log-odds credences updated additively by testimony weighted by source reliability
- * (Bayesian-style evidence accumulation in log-odds form), drifting slowly toward uncertainty. Direct
- * observation resets a belief and recalibrates source trust asymmetrically (trust is lost faster than it is
- * gained, the trust-asymmetry finding). It does NOT model motivated reasoning, belief networks or
- * inference between propositions, source memory errors, or social consensus effects; parameters are
- * engineering defaults for game time scales.
- *
- * Three independent stores: `social.relationships[].trust` moves through authored ties, social events
- * (including forgiveness), judged acts and reputation; `will.voices[].trust` moves through followed-advice
- * outcomes, insisting, commands, `noteVoicePromise`, `seedVoice` and `adoptVoiceTrust` (also used by upbringing).
- * This module owns `memory.sourceTrust`: `seedSourceTrust` authors it, `confirm` recalibrates it and
- * `contradicted` reduces it when one source gives incompatible accounts.
- * `believe`, including testimony delivered by `perceive`, weights claims by source trust, read by `trustOf`.
- *
- * SCOPE (Word and witness): optional provenance records the first known origin, direct teller and opaque
- * host lineage of a belief. It does not change credence or decisions, reconstruct a relay graph, verify an
- * origin, or survive belief eviction. Contradiction reduces information-source trust only when a retained
- * first-hand account from that source opposes the newly learned account. Independent sources disagreeing
- * are not a contradiction here. A third-party report is weighted by the reporter's source trust; this does
- * not prove deceit, change the belief, or change relationship or voice trust. Loss and retention limits are
- * engineering defaults, not calibrated effect sizes. Deduplication lasts only while its bounded record stays.
- */
-import { clamp, clamp01, decay, dpow, isNum, isObj, logit, sigmoid } from '../core/index.ts';
-import type {
-  Belief,
-  BeliefProvenance,
-  EntityId,
-  Minute,
-  NotedContradiction,
-  Percept,
-  PerceptClaim,
-  Person,
-  Unit,
-} from '../types.ts';
-import { MAX_MINUTE, MINUTES_PER_DAY } from '../types.ts';
+/** SCOPE: HF4 always-present owner. Source equations use immutable run parameters; no legacy continuation. */
+import { clamp, clamp01, decay, dpow, logit } from '../core/index.ts';
 
+const MINUTES_PER_DAY = 1440;
 export const BELIEF_DEFAULTS = {
   maxBeliefs: 300,
   maxSources: 6,
@@ -86,377 +50,267 @@ export const BELIEF_DEFAULTS = {
   ],
 };
 
-export interface AttendContext {
-  focus: Unit;
-  fatigue: Unit;
-  fear: Unit;
-  interests?: string[];
-}
-
-function affectionWith(p: Person, id: EntityId | undefined): number {
-  if (id === undefined) return 0;
-  const r = p.social.relationships.find((x) => x.otherId === id);
-  return r ? Math.abs(r.affection) : 0;
-}
-
-/** Attention as limited capacity: keep the K most relevant percepts plus any that cannot be ignored. */
-export function attend(p: Person, percepts: Percept[], ctx: AttendContext): Percept[] {
-  const d = BELIEF_DEFAULTS;
-  const capacity = Math.round(
-    d.attentionBase + d.attentionRange * (1 - clamp01(ctx.focus)) * (1 - clamp01(ctx.fatigue)),
-  );
-  const scored = percepts.map((pc, index) => {
-    const v = Math.abs(pc.valence ?? 0);
-    let score = pc.salience;
-    const aboutSelf = pc.targetId === p.id;
-    if (aboutSelf) score += d.selfRelevance + d.selfValenceRelevance * v;
-    const aff = Math.max(affectionWith(p, pc.actorId), affectionWith(p, pc.targetId));
-    if (aff >= d.affectionThreshold) score += d.socialRelevance * aff;
-    if (d.threatKinds.includes(pc.kind)) score += d.threatRelevance * clamp01(ctx.fear);
-    const interests = ctx.interests ?? [];
+/** HF4 source trust is separate from relationship and advising-voice trust. */
+export const beliefOwner: import('../run-schema.ts').BeliefOwner = {
+  initialize(input) {
+    return {
+      beliefs: input.beliefs.map((b) => structuredClone(b)) as import('../run-schema.ts').Belief[],
+      sourceTrust: Object.fromEntries(input.sourceTrust.map((s) => [s.sourceId, s.trust])),
+      contradictions: [],
+    };
+  },
+  receive: receiveBeliefEvidence,
+  advance(_state, context) {
+    const state = structuredClone(context.continuation.state) as import('../run-schema.ts').BeliefOwnedState;
+    const duration = BigInt(context.to) - BigInt(context.continuation.anchor.at);
+    if (duration < 0n || duration > BigInt(Number.MAX_SAFE_INTEGER))
+      throw new RangeError('Invalid belief span');
+    for (const b of state.beliefs)
+      b.logOdds = decay(
+        b.logOdds,
+        Number(duration) / 60000,
+        context.effective.builtins.BELIEF_DEFAULTS.driftHalfLife,
+      );
+    return {
+      state,
+      continuation: structuredClone(
+        context.continuation,
+      ) as import('../run-schema.ts').DeliberationContinuation['beliefs'],
+      effects: { terms: [], modifiers: [], appraisals: [] },
+      events: [],
+      nextBoundary: null,
+      advancedThrough: context.to,
+    };
+  },
+  validate(state) {
+    const issues: import('../run-schema.ts').ValidationIssue[] = [];
+    const fail = (path: string) =>
+      issues.push({ path, code: 'invalid-schema', message: 'Invalid belief state' });
     if (
-      interests.length > 0 &&
-      [pc.kind, pc.actorId, pc.targetId, pc.placeId].some((x) => x !== undefined && interests.includes(x))
-    ) {
-      score += d.interestRelevance;
-    }
-    const mustKeep = pc.salience >= d.alwaysSalience || (aboutSelf && v >= d.alwaysSelfValence);
-    return { pc, index, score, mustKeep };
-  });
-  scored.sort((a, b) => b.score - a.score || a.index - b.index);
-  const out: Percept[] = [];
-  let used = 0;
-  for (const s of scored) {
-    if (s.mustKeep) out.push(s.pc);
-    else if (used < capacity) {
-      out.push(s.pc);
-      used += 1;
-    }
-  }
-  return out;
-}
-
-/** Information-source trust, independent of relationship trust and advising-voice trust. */
-export function trustOf(p: Person, sourceId: EntityId): Unit {
-  if (sourceId === p.id || sourceId === 'self') return BELIEF_DEFAULTS.selfTrust;
-  // Own entries only: an id such as `constructor` or `__proto__` must not read an inherited property.
-  const own = Object.hasOwn(p.memory.sourceTrust, sourceId) ? p.memory.sourceTrust[sourceId] : undefined;
-  return typeof own === 'number' ? own : BELIEF_DEFAULTS.defaultTrust;
-}
-
-/**
- * Set authored trust in an information source, clamped to 0..1. Writes only `memory.sourceTrust`;
- * it does not change relationship trust or advising-voice trust. Nonfinite trust and self ids throw.
- * Later `believe` (including testimony through `perceive`) reads this trust; `confirm` recalibrates it.
- */
-export function seedSourceTrust(p: Person, sourceId: EntityId, trust: Unit): Unit {
-  if (!Number.isFinite(trust)) throw new Error('human: source trust must be finite');
-  if (sourceId === p.id || sourceId === 'self') throw new Error('human: self trust cannot be seeded');
-  const value = clamp01(trust);
-  Object.defineProperty(p.memory.sourceTrust, sourceId, {
-    value,
-    writable: true,
-    enumerable: true,
-    configurable: true,
-  });
-  return value;
-}
-
-/** Testimony weight from trust: 0 at or below the floor, never negative, so low trust alone never flips a claim. @internal */
-export function testimonyWeight(trust: Unit): Unit {
-  const d = BELIEF_DEFAULTS;
-  return dpow(clamp01((trust - d.trustFloor) / (1 - d.trustFloor)), d.trustExponent);
-}
-
-function findBelief(p: Person, prop: string): Belief | undefined {
-  return p.memory.beliefs.find((b) => b.prop === prop);
-}
-
-function evictBeliefs(p: Person, keep: string): void {
-  const list = p.memory.beliefs;
-  while (list.length > BELIEF_DEFAULTS.maxBeliefs) {
-    let worst = -1;
-    let w: Belief | undefined;
-    for (const [i, b] of list.entries()) {
-      if (b.prop === keep) continue;
-      const strength = Math.abs(b.logOdds);
+      state.beliefs.length > BELIEF_DEFAULTS.maxBeliefs ||
+      new Set(state.beliefs.map((b) => b.prop)).size !== state.beliefs.length
+    )
+      fail('beliefs');
+    for (const [i, b] of state.beliefs.entries()) {
       if (
-        !w ||
-        strength < Math.abs(w.logOdds) - 1e-9 ||
-        (Math.abs(strength - Math.abs(w.logOdds)) <= 1e-9 &&
-          (b.updatedAt < w.updatedAt || (b.updatedAt === w.updatedAt && b.prop < w.prop)))
-      ) {
-        worst = i;
-        w = b;
+        !b.prop ||
+        !Number.isFinite(b.logOdds) ||
+        Math.abs(b.logOdds) > BELIEF_DEFAULTS.maxLogOdds ||
+        !Number.isSafeInteger(b.updatedAt) ||
+        b.sources.some((s) => !s.id) ||
+        b.sources.length > BELIEF_DEFAULTS.maxSources ||
+        new Set(b.sources.map((s) => s.id)).size !== b.sources.length
+      )
+        fail(`beliefs.${i}`);
+      if (
+        b.provenance &&
+        (!Number.isSafeInteger(b.provenance.at) || (b.provenance.lineage?.length ?? 0) > 64)
+      )
+        fail(`beliefs.${i}.provenance`);
+    }
+    for (const [id, t] of Object.entries(state.sourceTrust))
+      if (!Number.isFinite(t) || t < 0 || t > 1) fail(`sourceTrust.${id}`);
+    if (
+      state.contradictions.length > BELIEF_DEFAULTS.maxContradictions ||
+      new Set(state.contradictions.map((c) => JSON.stringify([c.sourceId, c.prop]))).size !==
+        state.contradictions.length
+    )
+      fail('contradictions');
+    for (const c of state.contradictions)
+      if (
+        !Number.isSafeInteger(c.at) ||
+        (c.weight !== undefined && (!Number.isFinite(c.weight) || c.weight <= 0 || c.weight > 1))
+      )
+        fail('contradictions');
+    return issues;
+  },
+};
+
+export function receiveBeliefEvidence(
+  previous: import('../run-schema.ts').DeepReadonly<import('../run-schema.ts').BeliefOwnedState>,
+  input: import('../run-schema.ts').DeepReadonly<import('../run-schema.ts').BeliefInput>,
+  context: {
+    person: string;
+    at: number;
+    effective: {
+      builtins: {
+        BELIEF_DEFAULTS: import('../run-schema.ts').DeepReadonly<
+          import('../run-schema.ts').Effective_BELIEF_DEFAULTS
+        >;
+      };
+    };
+  },
+): import('../run-schema.ts').OwnerOutput<import('../run-schema.ts').BeliefOwnedState> {
+  const state = structuredClone(previous) as import('../run-schema.ts').BeliefOwnedState;
+  const d = context.effective.builtins.BELIEF_DEFAULTS;
+  const trust = (id: string) =>
+    id === context.person || id === 'self'
+      ? d.selfTrust
+      : Object.hasOwn(state.sourceTrust, id)
+        ? (state.sourceTrust[id] ?? d.defaultTrust)
+        : d.defaultTrust;
+  const weight = (t: number) => dpow(clamp01((t - d.trustFloor) / (1 - d.trustFloor)), d.trustExponent);
+  const ensure = (prop: string) => {
+    let b = state.beliefs.find((b) => b.prop === prop);
+    if (!b) {
+      b = { prop, logOdds: 0, updatedAt: context.at, sources: [] };
+      state.beliefs.push(b);
+      if (state.beliefs.length > d.maxBeliefs) {
+        const candidates = state.beliefs
+          .filter((v) => v !== b)
+          .sort(
+            (a, b) =>
+              Math.abs(a.logOdds) - Math.abs(b.logOdds) ||
+              a.updatedAt - b.updatedAt ||
+              (a.prop < b.prop ? -1 : 1),
+          );
+        const worst = candidates[0];
+        if (worst) state.beliefs.splice(state.beliefs.indexOf(worst), 1);
       }
     }
-    if (worst < 0) break;
-    list.splice(worst, 1);
+    return b;
+  };
+  if (input.kind === 'claims' && input.attention > 0) {
+    for (const claim of input.claims) {
+      const b = ensure(claim.prop);
+      let w = weight(trust(claim.sourceId)) * clamp01(input.attention);
+      if (b.sources.some((s) => s.id === claim.sourceId && s.value === claim.value)) w *= d.repeatDiscount;
+      if (
+        claim.sourceId !== context.person &&
+        claim.sourceId !== 'self' &&
+        b.sources.some((s) => (s.id === context.person || s.id === 'self') && s.value !== claim.value)
+      )
+        w *= d.observedDiscount;
+      b.logOdds = clamp(
+        b.logOdds + (claim.value ? 1 : -1) * logit(0.5 + (clamp01(claim.confidence) - 0.5) * w),
+        -d.maxLogOdds,
+        d.maxLogOdds,
+      );
+      b.updatedAt = context.at;
+      b.sources = [
+        ...b.sources.filter((s) => s.id !== claim.sourceId),
+        { id: claim.sourceId, value: claim.value },
+      ].slice(-d.maxSources);
+      if (!b.provenance && (claim.origin !== undefined || claim.lineage !== undefined)) {
+        b.provenance = { origin: claim.origin ?? input.teller, firstFrom: input.teller, at: context.at };
+        if (claim.lineage !== undefined && claim.lineage.length <= 64) b.provenance.lineage = claim.lineage;
+      }
+    }
+  } else if (input.kind === 'confirm') {
+    const b = ensure(input.prop);
+    const sign = input.value ? 1 : -1;
+    b.logOdds =
+      sign *
+      (Math.sign(b.logOdds) === sign ? Math.max(d.confirmLogOdds, Math.abs(b.logOdds)) : d.confirmLogOdds);
+    for (const source of b.sources)
+      if (source.id !== context.person && source.id !== 'self') {
+        const t = trust(source.id);
+        state.sourceTrust[source.id] = clamp01(
+          source.value === input.value ? t + d.trustGain * (1 - t) : t - d.trustLoss * t,
+        );
+      }
+    b.sources = [{ id: context.person, value: input.value }];
+    b.updatedAt = context.at;
+  } else if (
+    input.kind === 'contradiction' &&
+    input.sourceId !== context.person &&
+    input.sourceId !== 'self'
+  ) {
+    const w = input.reporterId === undefined ? 1 : weight(trust(input.reporterId));
+    const prior = state.contradictions.find((v) => v.sourceId === input.sourceId && v.prop === input.prop);
+    const oldWeight = prior ? (prior.weight ?? 1) : 0;
+    const account = state.beliefs
+      .find((b) => b.prop === input.prop)
+      ?.sources.find((s) => s.id === input.sourceId);
+    if (w > oldWeight && account && account.value !== input.value) {
+      state.sourceTrust[input.sourceId] = clamp01(
+        (trust(input.sourceId) * (1 - d.contradictionLoss * w)) / (1 - d.contradictionLoss * oldWeight),
+      );
+      if (prior) prior.weight = w;
+      else
+        state.contradictions.push({ sourceId: input.sourceId, prop: input.prop, at: context.at, weight: w });
+      state.contradictions.sort((a, b) => a.at - b.at);
+      state.contradictions = state.contradictions.slice(-d.maxContradictions);
+    }
   }
+  return {
+    state,
+    effects: { terms: [], modifiers: [], appraisals: [] },
+    events: [],
+    nextBoundary: null,
+    advancedThrough: context.at,
+  };
 }
 
-function ensureBelief(p: Person, prop: string, now: Minute): Belief {
-  let b = findBelief(p, prop);
-  if (!b) {
-    b = { prop, logOdds: 0, updatedAt: now, sources: [] };
-    p.memory.beliefs.push(b);
-    evictBeliefs(p, prop);
-  }
-  return b;
+/** Pure information-source reliability; it never reads relationship/voice trust. */
+export function trustOf(
+  p: Pick<import('../run-schema.ts').ActorState, 'id'> & {
+    memory: Pick<import('../run-schema.ts').MemoryState, 'sourceTrust'>;
+  },
+  sourceId: string,
+): number {
+  if (sourceId === p.id || sourceId === 'self') return BELIEF_DEFAULTS.selfTrust;
+  return Object.hasOwn(p.memory.sourceTrust, sourceId)
+    ? (p.memory.sourceTrust[sourceId] ?? BELIEF_DEFAULTS.defaultTrust)
+    : BELIEF_DEFAULTS.defaultTrust;
+}
+export function testimonyWeight(trust: number): number {
+  return dpow(
+    clamp01((trust - BELIEF_DEFAULTS.trustFloor) / (1 - BELIEF_DEFAULTS.trustFloor)),
+    BELIEF_DEFAULTS.trustExponent,
+  );
 }
 
-/**
- * Set or replace an authored belief without applying source trust or recording an observation.
- * `credence` is the probability that `value` holds, clamped to 0..1 and stored as bounded signed
- * log-odds. `at` defaults to the person's current minute. Nonfinite credence or time throws.
- * Only `memory.beliefs` changes, with ordinary belief eviction. An omitted source leaves no sources;
- * a named source records its claim for later `confirm`, without changing any trust store now. The person's own id
- * and 'self' are refused (they mark observation): use `confirm` for something the person saw.
- * It does not apply reputation to relationships; use `seedTie` to author a relationship.
- */
-export function seedBelief(
-  p: Person,
-  prop: string,
-  spec: { value: boolean; credence: Unit; at?: Minute; source?: EntityId },
-): Belief {
-  const at = spec.at ?? p.now;
-  if (!Number.isFinite(spec.credence)) throw new Error('human: belief credence must be finite');
-  if (!Number.isFinite(at)) throw new Error('human: belief time must be finite');
-  // The person's own id and 'self' mark direct observation (`observedDiscount`, `confirm`); authoring is not seeing.
-  if (spec.source === p.id || spec.source === 'self')
-    throw new Error(
-      'human: an authored belief cannot name the person as its source; use confirm for an observation',
+/** Pure source attention budget, before any belief/memory/social reception. */
+export function attendEvidence(
+  actor: import('../run-schema.ts').DeepReadonly<
+    Pick<import('../run-schema.ts').ActorState, 'id' | 'social'>
+  >,
+  percepts: import('../run-schema.ts').DeepReadonly<readonly import('../run-schema.ts').PerceptData[]>,
+  context: import('../run-schema.ts').DeepReadonly<{
+    focus: number;
+    fatigue: number;
+    fear: number;
+    interests: readonly string[];
+    defaults: import('../run-schema.ts').Effective_BELIEF_DEFAULTS;
+  }>,
+): readonly import('../run-schema.ts').DeepReadonly<import('../run-schema.ts').PerceptData>[] {
+  const d = context.defaults,
+    capacity = Math.round(
+      d.attentionBase + d.attentionRange * (1 - clamp01(context.focus)) * (1 - clamp01(context.fatigue)),
     );
-  const b = ensureBelief(p, prop, at);
-  const limit = BELIEF_DEFAULTS.maxLogOdds;
-  b.logOdds = clamp((spec.value ? 1 : -1) * logit(clamp01(spec.credence)), -limit, limit);
-  b.updatedAt = at;
-  b.sources = spec.source === undefined ? [] : [{ id: spec.source, value: spec.value }];
-  return b;
-}
-
-/** Testimony or inference: add reliability-weighted log-odds evidence for (or against) `prop`. */
-export function believe(
-  p: Person,
-  prop: string,
-  value: boolean,
-  confidence: Unit,
-  sourceId: EntityId,
-  now: Minute,
-): Belief {
-  const d = BELIEF_DEFAULTS;
-  const b = ensureBelief(p, prop, now);
-  const prior = b.sources.find((s) => s.id === sourceId);
-  let w = testimonyWeight(trustOf(p, sourceId));
-  if (prior && prior.value === value) w *= d.repeatDiscount;
-  // Testimony against what I saw for myself counts for little (see the revision SCOPE below).
-  const observed = b.sources.find((s) => s.id === p.id || s.id === 'self');
-  if (observed && observed.value !== value && sourceId !== p.id && sourceId !== 'self')
-    w *= d.observedDiscount;
-  const delta = logit(0.5 + (clamp01(confidence) - 0.5) * w);
-  b.logOdds = clamp(b.logOdds + (value ? delta : -delta), -d.maxLogOdds, d.maxLogOdds);
-  b.updatedAt = now;
-  b.sources = b.sources.filter((s) => s.id !== sourceId);
-  b.sources.push({ id: sourceId, value });
-  if (b.sources.length > d.maxSources) b.sources.splice(0, b.sources.length - d.maxSources);
-  return b;
-}
-
-export function credence(p: Person, prop: string): Unit {
-  const b = findBelief(p, prop);
-  return b ? sigmoid(b.logOdds) : 0.5;
-}
-
-/**
- * Direct observation of the truth: set the belief firmly and recalibrate the sources that spoke on it.
- * Returns the sources whose claim turned out false (`misled`), sorted; the person knows only that they were
- * told wrong, not whether it was a lie, so the caller decides what social consequence, if any, follows.
- */
-export function confirm(p: Person, prop: string, truth: boolean, now: Minute): EntityId[] {
-  const misled: EntityId[] = [];
-  const d = BELIEF_DEFAULTS;
-  const b = ensureBelief(p, prop, now);
-  const sign = truth ? 1 : -1;
-  const sameSide = Math.sign(b.logOdds) === sign;
-  b.logOdds = sign * (sameSide ? Math.max(d.confirmLogOdds, Math.abs(b.logOdds)) : d.confirmLogOdds);
-  for (const s of b.sources) {
-    if (s.id === p.id || s.id === 'self') continue;
-    const t = trustOf(p, s.id);
-    // An own data property even for ids such as `__proto__` (plain assignment would set the prototype).
-    Object.defineProperty(p.memory.sourceTrust, s.id, {
-      value: clamp01(s.value === truth ? t + d.trustGain * (1 - t) : t - d.trustLoss * t),
-      writable: true,
-      enumerable: true,
-      configurable: true,
-    });
-    if (s.value !== truth) misled.push(s.id);
-  }
-  // The belief now rests on observation; earlier claims are settled and are not judged twice.
-  b.sources = [{ id: p.id, value: truth }];
-  b.updatedAt = now;
-  return misled.sort();
-}
-
-/** Unrefreshed beliefs drift toward 50/50 (closed-form exponential; exact for any dt). */
-export function advanceBeliefs(p: Person, dt: number): void {
-  if (dt <= 0) return;
-  for (const b of p.memory.beliefs) b.logOdds = decay(b.logOdds, dt, BELIEF_DEFAULTS.driftHalfLife);
-}
-
-/**
- * SCOPE (revision under conflicting testimony): sources that disagree about a proposition add opposing
- * reliability-weighted evidence, so a contested belief sits nearer 50/50 and `contested` reports who said
- * what. Once the person has observed the truth, testimony against that observation is discounted
- * (`observedDiscount`), so a rumour confirmed false does not simply return with the next telling; it only
- * creeps back as the observed belief drifts toward uncertainty over weeks. Named shape: corrections reduce
- * misinformation's influence without being instantaneous for testimony-only corrections (the continued-
- * influence literature, Lewandowsky et al. 2012), while first-hand evidence is weighted above hearsay. It
- * does NOT model the continued-influence effect after observation (correction here is complete), memory of
- * which source was retracted, or backfire effects; the discount is an engineering default.
- */
-export function contested(
-  p: Person,
-  prop: string,
-): { for: EntityId[]; against: EntityId[]; contested: boolean } {
-  const b = findBelief(p, prop);
-  const pro: EntityId[] = [];
-  const con: EntityId[] = [];
-  for (const s of b?.sources ?? []) (s.value ? pro : con).push(s.id);
-  pro.sort();
-  con.sort();
-  return { for: pro, against: con, contested: pro.length > 0 && con.length > 0 };
-}
-
-// Remembered advice (N9) is owned by `will/` (`standingAdvice`, fed from `Percept.advice`); review 2026-10-03
-// removed a second, unused belief-based implementation here so the two could not drift apart.
-
-// ---------------------------------------------------------------------------------------------
-// Word and witness (2.10.0): provenance and contradiction.
-// ---------------------------------------------------------------------------------------------
-
-const validId = (x: unknown): x is string => typeof x === 'string' && x.length > 0;
-const validMinute = (x: unknown): x is Minute => isNum(x) && Math.abs(x) <= MAX_MINUTE;
-
-function cleanProvenance(x: unknown): BeliefProvenance | undefined {
-  if (!isObj(x) || !validId(x.origin) || !validId(x.firstFrom) || !validMinute(x.at)) return undefined;
-  if (x.lineage !== undefined && typeof x.lineage !== 'string') return undefined;
-  const out: BeliefProvenance = { origin: x.origin, firstFrom: x.firstFrom, at: x.at };
-  if (typeof x.lineage === 'string' && x.lineage.length <= 64) out.lineage = x.lineage;
-  return out;
-}
-
-/** Record where a belief came from, if it has no provenance yet (first acquisition wins). @internal */
-export function noteProvenance(p: Person, claim: PerceptClaim, teller: EntityId, at: Minute): void {
-  if (claim.origin === undefined && claim.lineage === undefined) return;
-  const b = findBelief(p, claim.prop);
-  if (!b || b.provenance !== undefined) return;
-  const input: BeliefProvenance = { origin: claim.origin ?? teller, firstFrom: teller, at };
-  if (claim.lineage !== undefined) input.lineage = claim.lineage;
-  const meta = cleanProvenance(input);
-  if (meta !== undefined) b.provenance = meta;
-}
-
-/** Where this person first got the belief on `prop`, or undefined. */
-export function provenanceOf(p: Person, prop: string): BeliefProvenance | undefined {
-  return findBelief(p, prop)?.provenance;
-}
-
-export interface ContradictionResult {
-  applied: boolean;
-  reason?: 'no-account' | 'same-account' | 'already-noted' | 'self' | 'untrusted-reporter';
-  before: Unit;
-  after: Unit;
-}
-
-/**
- * The person learns that `sourceId` also gave the account `prop = value` elsewhere, against what that source told
- * them. See the contradiction SCOPE.
- */
-export function contradicted(
-  p: Person,
-  ev: { sourceId: EntityId; prop: string; value: boolean; reporterId?: EntityId; at?: Minute },
-): ContradictionResult {
-  return applyContradiction(p, ev, ev.reporterId === undefined ? undefined : trustOf(p, ev.reporterId));
-}
-
-/**
- * `contradicted` with the reporter's trust given, so that several reports delivered together share one trust basis
- * (`perceive` reads it once per percept, before any report applies). @internal
- */
-export function applyContradiction(
-  p: Person,
-  ev: { sourceId: EntityId; prop: string; value: boolean; reporterId?: EntityId; at?: Minute },
-  reporterTrust: Unit | undefined,
-): ContradictionResult {
-  const t = trustOf(p, ev.sourceId);
-  const refused = (reason: ContradictionResult['reason']): ContradictionResult => ({
-    applied: false,
-    reason,
-    before: t,
-    after: t,
-  });
-  if (ev.sourceId === p.id || ev.sourceId === 'self') return refused('self');
-  const weight = reporterTrust === undefined ? 1 : testimonyWeight(reporterTrust);
-  // One loss per (source, proposition), at the strongest evidence: a weaker earlier report leaves room for the rest.
-  const prior = p.memory.contradictions?.find((x) => x.sourceId === ev.sourceId && x.prop === ev.prop);
-  const priorWeight = prior === undefined ? 0 : (prior.weight ?? 1);
-  if (prior !== undefined && priorWeight >= weight) return refused('already-noted');
-  const account = findBelief(p, ev.prop)?.sources.find((s) => s.id === ev.sourceId);
-  if (!account) return refused('no-account');
-  if (account.value === ev.value) return refused('same-account');
-  // A reporter at or below the trust floor carries no weight and must not use up the pair.
-  if (weight <= 0) return refused('untrusted-reporter');
-  const at = ev.at ?? p.now;
-  if (!validMinute(at)) throw new Error('human: contradiction time must be a finite supported minute');
-  const loss = BELIEF_DEFAULTS.contradictionLoss;
-  // Multiplicative, so the total over a pair is `1 - loss * strongest weight` whatever the arrival order.
-  const after = seedSourceTrust(p, ev.sourceId, (t * (1 - loss * weight)) / (1 - loss * priorWeight));
-  if (prior !== undefined) {
-    if (weight >= 1) delete prior.weight;
-    else prior.weight = weight;
-  } else {
-    const noted = p.memory.contradictions ?? [];
-    const row: NotedContradiction = { sourceId: ev.sourceId, prop: ev.prop, at };
-    if (weight < 1) row.weight = weight;
-    noted.push(row);
-    noted.sort((a, b) => a.at - b.at);
-    p.memory.contradictions = noted.slice(-BELIEF_DEFAULTS.maxContradictions);
-  }
-  return { applied: true, before: t, after };
-}
-
-/**
- * Restore (2.10.0): drop malformed provenance (lineage over 64 characters is dropped, not truncated) and bound and
- * validate `contradictions`. A save the engine wrote is unchanged. @internal
- */
-export function sanitizeBeliefMeta(memory: Person['memory']): void {
-  for (const b of memory.beliefs) {
-    if (!isObj(b) || b.provenance === undefined) continue;
-    const meta = cleanProvenance(b.provenance);
-    if (meta === undefined) delete b.provenance;
-    else b.provenance = meta;
-  }
-  if (memory.contradictions === undefined) return;
-  if (!Array.isArray(memory.contradictions)) {
-    delete memory.contradictions;
-    return;
-  }
-  const clean: NotedContradiction[] = [];
-  const seen = new Map<EntityId, Set<string>>();
-  for (const x of memory.contradictions as unknown[]) {
-    if (!isObj(x) || typeof x.sourceId !== 'string' || typeof x.prop !== 'string' || !validMinute(x.at))
-      continue;
-    const props = seen.get(x.sourceId) ?? new Set<string>();
-    if (props.has(x.prop)) continue;
-    props.add(x.prop);
-    seen.set(x.sourceId, props);
-    const row: NotedContradiction = { sourceId: x.sourceId, prop: x.prop, at: x.at };
-    // A malformed weight reads as 1 (fully applied): restore never reopens a pair to a further loss.
-    if (typeof x.weight === 'number' && Number.isFinite(x.weight) && x.weight > 0 && x.weight < 1)
-      row.weight = x.weight;
-    clean.push(row);
-  }
-  clean.sort((a, b) => a.at - b.at);
-  if (clean.length === 0) delete memory.contradictions;
-  else memory.contradictions = clean.slice(-BELIEF_DEFAULTS.maxContradictions);
+  const affection = (id: string | undefined) =>
+    id === undefined ? 0 : Math.abs(actor.social.relationships.find((r) => r.otherId === id)?.affection ?? 0);
+  const scored = percepts
+    .map((percept, index) => {
+      const valence = Math.abs(percept.valence ?? 0),
+        self = percept.targetId === actor.id;
+      let score = percept.salience;
+      if (self) score += d.selfRelevance + d.selfValenceRelevance * valence;
+      const care = Math.max(affection(percept.actorId), affection(percept.targetId));
+      if (care >= d.affectionThreshold) score += d.socialRelevance * care;
+      if (d.threatKinds.includes(percept.kind)) score += d.threatRelevance * clamp01(context.fear);
+      if (
+        [percept.kind, percept.actorId, percept.targetId, percept.placeId].some(
+          (id) => id !== undefined && context.interests.includes(id),
+        )
+      )
+        score += d.interestRelevance;
+      return {
+        percept,
+        index,
+        score,
+        mustKeep: percept.salience >= d.alwaysSalience || (self && valence >= d.alwaysSelfValence),
+      };
+    })
+    .sort((a, b) => b.score - a.score || a.index - b.index);
+  let used = 0;
+  const selected: (typeof scored)[number]['percept'][] = [];
+  for (const item of scored)
+    if (item.mustKeep) selected.push(item.percept);
+    else if (used < capacity) {
+      selected.push(item.percept);
+      used++;
+    }
+  return selected;
 }

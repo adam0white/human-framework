@@ -1,36 +1,27 @@
-/**
- * SCOPE: autobiographical consolidation (N3). Each simulated day is folded into one bounded `DayRecord`:
- * commitments kept, broken and released by kind (worship commitments by label), completed actions and how
- * many of them an outside voice had suggested, habit strengths that crossed 0.25 / 0.5 / 0.75, trust changes per
- * voice, the most salient episodes, breaches of the person's own understood norms and repairs, net material,
- * illness onsets and recoveries, mean mood, and suggestion verdicts. The composite feeds a plain-JSON
- * accumulator (`p.chronicleDay`) through `note*` calls and closes it at the day boundary; `consolidateDay` is
- * pure. The named shape is the distinction between episodic traces and a consolidated, schematic
- * autobiographical record (a life story is built from day-level summaries, not from every event); the
- * thresholds, the two-episode limit and the day bound (`maxDays`, default 120, and `Retention.chronicleDays`) are engineering choices, not a model of sleep
- * consolidation or of what people actually remember. The record describes behaviour; it scores no worth,
- * piety or acceptance, and a kept worship commitment is recorded as a kept commitment, nothing more.
+/** SCOPE: bounded autobiographical day/year consolidation. Descriptive records,
+ * never devotion or acceptance scores. C0 supplies actual actor snapshots and outcomes
+ * through closed evidence ports; missing samples are not fabricated observations.
  */
-import { cmpStr, dayOf, isNum, isObj } from '../core/index.ts';
+import { validateNarrativeFields, validateNarrativeJson } from '../memory/memory.ts';
 import type {
+  ActorState,
   ChronicleCommitmentNote,
   ChronicleDay,
+  ChronicleOwner,
+  ChronicleSnapshot,
   ChronicleState,
-  ChronicleVerdictTally,
   Commitment,
   DayRecord,
-  DecisionRecord,
-  Habit,
-  Outcome,
-  Person,
-  Signed,
-  Suggestion,
+  DeepReadonly,
+  FrameContext,
+  ObservedOutcome,
   SuggestionResolution,
-  Unit,
+  ValidationIssue,
   YearRecord,
-} from '../types.ts';
-import { DAYS_PER_YEAR, MINUTES_PER_DAY } from '../types.ts';
+} from '../run-schema.ts';
 
+const DAY = 86400000;
+const compare = (a: string, b: string) => (a < b ? -1 : a > b ? 1 : 0);
 export const CHRONICLE_DEFAULTS = {
   /** Day records kept; the oldest are dropped first. */
   maxDays: 120,
@@ -59,34 +50,33 @@ export const CHRONICLE_DEFAULTS = {
   yearIllnesses: 6,
 };
 
-/** Stable key for a habit: action plus its cue. */
-function habitKey(h: Pick<Habit, 'action' | 'cue'>): string {
-  const cue: string[] = [];
-  if (h.cue.hour !== undefined) cue.push(`h${h.cue.hour}`);
-  if (h.cue.placeId !== undefined) cue.push(`p:${h.cue.placeId}`);
-  if (h.cue.after !== undefined) cue.push(`a:${h.cue.after}`);
-  return `${h.action}@${cue.join(',')}`;
-}
-
-/** The state a day record diffs against (read only). */
-export function chronicleState(p: Person): ChronicleState {
+type State = ReturnType<ChronicleOwner['initialize']>;
+export function chronicleState(p: DeepReadonly<ChronicleSnapshot>): ChronicleState {
   const habits: Record<string, number> = {};
   for (const h of p.habits) {
-    const k = habitKey(h);
-    habits[k] = Math.max(habits[k] ?? 0, h.strength);
+    const cue = [
+      h.cue.hour === undefined ? '' : `h${h.cue.hour}`,
+      h.cue.placeId ?? '',
+      h.cue.after ?? '',
+    ].join(':');
+    const key = `${h.action}@${cue}`;
+    habits[key] = Math.max(habits[key] ?? 0, h.strength);
   }
   const trust: Record<string, number> = {};
   for (const v of p.will.voices) trust[v.voiceId] = v.trust;
   const illnesses: ChronicleState['illnesses'] = {};
-  for (const ill of p.body.illnesses) illnesses[ill.id] = { kind: ill.kind, severity: ill.severity };
-  const openBreaches = p.conscience.breaches.filter((b) => !b.repaired).map((b) => b.id);
-  return { habits, trust, illnesses, openBreaches };
+  for (const i of p.body.illnesses) illnesses[i.id] = { kind: i.kind, severity: i.severity };
+  return {
+    habits,
+    trust,
+    illnesses,
+    openBreaches: p.conscience.breaches.filter((b) => !b.repaired).map((b) => b.id),
+  };
 }
-
-function emptyDay(day: number, baseline: ChronicleState): ChronicleDay {
+export function openDay(day: number, baseline: DeepReadonly<ChronicleState>): ChronicleDay {
   return {
     day,
-    baseline,
+    baseline: structuredClone(baseline) as ChronicleState,
     kept: [],
     broken: [],
     released: [],
@@ -96,181 +86,37 @@ function emptyDay(day: number, baseline: ChronicleState): ChronicleDay {
     moodSum: 0,
     moodSamples: 0,
     decisions: 0,
+    socialMs: 0,
   };
 }
-
-/**
- * Open the accumulator for `day` (default: the person's current day). The baseline is the last record's end
- * state when there is one, else a snapshot of the person now. Replaces any open accumulator without closing it.
- */
-export function openDay(p: Person, day: number = dayOf(p.now)): ChronicleDay {
-  const last = p.chronicle?.[p.chronicle.length - 1];
-  const acc = emptyDay(day, last?.state ? structuredClone(last.state) : chronicleState(p));
-  p.chronicleDay = acc;
-  return acc;
-}
-
-/** The open accumulator for the current day; closes a stale one first (if the composite missed the boundary). */
-function current(p: Person): ChronicleDay {
-  let acc = p.chronicleDay;
-  // Events at exactly midnight (commitments closed on the grid boundary) still belong to the open previous day,
-  // which the composite closes right after them.
-  const boundary = p.now % MINUTES_PER_DAY === 0 && acc?.day === dayOf(p.now) - 1;
-  const day = boundary && acc ? acc.day : dayOf(p.now);
-  if (acc && acc.day < day) {
-    closeDay(p);
-    acc = p.chronicleDay;
-  }
-  if (!acc || acc.day !== day) acc = openDay(p, day);
-  return acc;
-}
-
-function noteOf(c: Commitment, extra: Partial<ChronicleCommitmentNote> = {}): ChronicleCommitmentNote {
-  const n: ChronicleCommitmentNote = { id: c.id, kind: c.kind };
-  if (c.label !== undefined) n.label = c.label;
-  if (c.actions[0] !== undefined) n.action = c.actions[0];
-  if (c.toId !== undefined) n.toId = c.toId;
-  return { ...n, ...extra };
-}
-
-function pushNote(list: ChronicleCommitmentNote[], n: ChronicleCommitmentNote): void {
-  if (list.some((x) => x.id === n.id)) return;
-  if (list.length >= CHRONICLE_DEFAULTS.maxNotes) return;
-  list.push(n);
-}
-
-const PROMPTED = new Set(['assented', 'complied', 'commanded']);
-
-/**
- * Tally a decision's suggestion verdicts (all voices: `record.suggestions`, else `record.suggestion`). Reviews
- * are skipped: a review re-resolves a standing suggestion quietly and would inflate the counts. Pass the
- * decision's `suggestions` input so refused suggestions carry the suggested action.
- */
-export function noteDecision(p: Person, record: DecisionRecord, suggested: readonly Suggestion[] = []): void {
-  if (record.review) return;
-  const acc = current(p);
-  acc.decisions += 1;
-  const resolutions: SuggestionResolution[] =
-    record.suggestions && record.suggestions.length > 0
-      ? record.suggestions
-      : record.suggestion
-        ? [record.suggestion]
-        : [];
-  for (const res of resolutions) {
-    const s = suggested.find((x) => x.voiceId === res.voiceId);
-    let action = s?.action;
-    if (action === undefined && s?.affordanceId !== undefined)
-      action = record.considered.find((c) => c.affordanceId === s.affordanceId)?.action;
-    if (action === undefined && PROMPTED.has(res.verdict)) action = record.chosenAction ?? undefined;
-    tally(acc.verdicts, res, action);
-  }
-}
-
-/**
- * Tally one verdict given outside a decision point (the composite `answerNow`): counted like a decision's
- * verdict, without counting a decision.
- */
-export function noteAnswer(p: Person, res: SuggestionResolution, action?: string): void {
-  tally(current(p).verdicts, res, action);
-}
-
-function tally(
-  verdicts: ChronicleVerdictTally[],
-  res: SuggestionResolution,
-  action: string | undefined,
-): void {
-  const same = verdicts.find(
-    (v) =>
-      v.voiceId === res.voiceId &&
-      v.verdict === res.verdict &&
-      v.reason === res.reason &&
-      v.action === action,
-  );
-  if (same) {
-    same.count += 1;
-    return;
-  }
-  if (verdicts.length >= CHRONICLE_DEFAULTS.maxVerdicts) return;
-  verdicts.push({
-    voiceId: res.voiceId,
-    verdict: res.verdict,
-    ...(res.kind !== undefined ? { kind: res.kind } : {}),
-    reason: res.reason,
-    ...(action !== undefined ? { action } : {}),
-    count: 1,
-  });
-}
-
-/**
- * Record a finished activity: material (any status), the completed action and whether a voice had prompted it,
- * and the commitments it kept. Call inside `finish` while `p.activity` still holds the activity, passing
- * `FinishReport.kept` and `activity.suggestion`.
- */
-export function noteOutcome(
-  p: Person,
-  outcome: Outcome,
-  info: { kept?: readonly string[]; suggestion?: SuggestionResolution } = {},
-): void {
-  const acc = current(p);
-  acc.material += outcome.material ?? 0;
-  if (outcome.status !== 'completed') return;
-  const prompted = info.suggestion !== undefined && PROMPTED.has(info.suggestion.verdict);
-  let tally = acc.actions.find((a) => a.action === outcome.action);
-  if (!tally && acc.actions.length < CHRONICLE_DEFAULTS.maxActions) {
-    tally = { action: outcome.action, done: 0, prompted: 0, by: {} };
-    acc.actions.push(tally);
-  }
-  if (tally) {
-    tally.done += 1;
-    if (prompted && info.suggestion) {
-      tally.prompted += 1;
-      tally.by[info.suggestion.voiceId] = (tally.by[info.suggestion.voiceId] ?? 0) + 1;
-    }
-  }
-  for (const id of info.kept ?? []) {
-    const c = p.agenda.commitments.find((x) => x.id === id);
-    if (!c) continue;
-    pushNote(
-      acc.kept,
-      noteOf(c, prompted && info.suggestion ? { prompted: true, voiceId: info.suggestion.voiceId } : {}),
-    );
-  }
-}
-
-/** Record commitments that closed outside an outcome: broken at window end (from `advanceAgenda`), or released. */
-export function noteCommitments(
-  p: Person,
-  status: 'broken' | 'released' | 'kept',
-  list: readonly Commitment[],
-): void {
-  const acc = current(p);
-  for (const c of list) pushNote(acc[status], noteOf(c));
-}
-
-/** Sample mood for the day's average (call on the 60-minute grid). */
-export function noteMood(p: Person): void {
-  const acc = current(p);
-  acc.moodSum += p.affect.mood.valence;
-  acc.moodSamples += 1;
-}
-
-const countBy = (notes: readonly ChronicleCommitmentNote[]): Record<string, number> => {
-  const out: Record<string, number> = {};
-  for (const n of notes) out[n.kind] = (out[n.kind] ?? 0) + 1;
+function noteOf(c: DeepReadonly<Commitment>): ChronicleCommitmentNote {
+  const out: ChronicleCommitmentNote = { id: c.id, kind: c.kind };
+  if (c.label !== undefined) out.label = c.label;
+  if (c.actions[0] !== undefined) out.action = c.actions[0];
+  if (c.toId !== undefined) out.toId = c.toId;
   return out;
-};
-
-const prayerName = (n: ChronicleCommitmentNote): string => n.label ?? n.action ?? n.id;
-
-/**
- * Fold the accumulator into a day record against the person's current state. Pure: reads `p` and `acc`, writes
- * nothing. Broken and released commitments whose window ended in the day are also read from the agenda, so a
- * missed `noteCommitments` call does not lose them (as long as the agenda has not pruned them yet).
- */
-export function consolidateDay(p: Person, day: number, acc: ChronicleDay): DayRecord {
-  const D = CHRONICLE_DEFAULTS;
-  const start = day * MINUTES_PER_DAY;
-  const end = start + MINUTES_PER_DAY;
+}
+function pushNote(xs: ChronicleCommitmentNote[], n: ChronicleCommitmentNote): void {
+  if (xs.length < CHRONICLE_DEFAULTS.maxNotes && !xs.some((x) => x.id === n.id)) xs.push(n);
+}
+function countBy(xs: readonly DeepReadonly<ChronicleCommitmentNote>[]): DayRecord['keptByKind'] {
+  const out: DayRecord['keptByKind'] = {};
+  for (const x of xs) {
+    const k = x.kind as Commitment['kind'];
+    out[k] = (out[k] ?? 0) + 1;
+  }
+  return out;
+}
+const prayerName = (n: DeepReadonly<ChronicleCommitmentNote>) => n.label ?? n.action ?? n.kind;
+export function consolidateDay(
+  p: DeepReadonly<ChronicleSnapshot>,
+  day: number,
+  acc: DeepReadonly<ChronicleDay>,
+  parameters: DeepReadonly<typeof CHRONICLE_DEFAULTS> = CHRONICLE_DEFAULTS,
+): DayRecord {
+  const D = parameters;
+  const start = day * DAY;
+  const end = start + DAY;
   const kept = acc.kept.map((n) => ({ ...n }));
   const broken = acc.broken.map((n) => ({ ...n }));
   const released = acc.released.map((n) => ({ ...n }));
@@ -326,7 +172,7 @@ export function consolidateDay(p: Person, day: number, acc: ChronicleDay): DayRe
       ...(e.targetId !== undefined ? { targetId: e.targetId } : {}),
     }));
 
-  const breachNote = (b: Person['conscience']['breaches'][number]) => ({
+  const breachNote = (b: ActorState['conscience']['breaches'][number]) => ({
     id: b.id,
     normId: b.normId,
     ...(b.victimId !== undefined ? { victimId: b.victimId } : {}),
@@ -353,7 +199,7 @@ export function consolidateDay(p: Person, day: number, acc: ChronicleDay): DayRe
     keptByKind: countBy(kept),
     brokenByKind: countBy(broken),
     prayers,
-    actions: acc.actions.map((a) => ({ ...a, by: { ...a.by } })).sort((a, b) => cmpStr(a.action, b.action)),
+    actions: acc.actions.map((a) => ({ ...a, by: { ...a.by } })).sort((a, b) => compare(a.action, b.action)),
     habits,
     trust,
     episodes,
@@ -369,145 +215,13 @@ export function consolidateDay(p: Person, day: number, acc: ChronicleDay): DayRe
   };
 }
 
-/**
- * Append a record to `p.chronicle`, dropping the oldest beyond `CHRONICLE_DEFAULTS.maxDays`. Only the newest
- * record keeps its end-of-day `state` (the baseline the next day diffs against); older ones drop it.
- */
-export function appendDay(p: Person, record: DayRecord): void {
-  const list = p.chronicle ?? [];
-  for (const r of list) delete r.state;
-  list.push(record);
-  p.chronicle = list;
-  trimChronicle(p);
-}
-
-/**
- * Drop the oldest day records beyond `CHRONICLE_DEFAULTS.maxDays`, and (2.0.0) those more than
- * `Retention.chronicleDays` older than the newest. The newest record always stays. A dropped day folds into its
- * year's summary when the yearbook is on.
- */
-export function trimChronicle(p: Person): void {
-  const list = p.chronicle;
-  if (!list || list.length === 0) return;
-  let drop = Math.max(0, list.length - CHRONICLE_DEFAULTS.maxDays);
-  const age = p.retention?.chronicleDays;
-  const newestDay = list[list.length - 1]?.day ?? 0;
-  if (age !== undefined)
-    while (drop < list.length - 1 && newestDay - (list[drop]?.day ?? newestDay) > age) drop += 1;
-  if (drop === 0) return;
-  const dropped = list.splice(0, drop);
-  // 1.8.0 yearbook (opt-in): a day leaving the chronicle folds into its year's summary.
-  if (p.chronicleYears) for (const r of dropped) foldDay(p, dayFold(r));
-}
-
-// ---------------------------------------------------------------------------------------------
-// Yearbook (1.8.0): life-level summaries
-// ---------------------------------------------------------------------------------------------
-
-/**
- * SCOPE (yearbook, 1.8.0, opt-in per person with `enableYearbook`): the day chronicle holds months; a life needs
- * years. Each day record that leaves the bounded chronicle, and each routine day a long-run stretch summarizes
- * (`foldDay` from the composite's `liveRoutine`), folds into one `YearRecord` per year: day counts, mean and range of
- * mood, commitment tallies, breaches and repairs, material, the most frequent actions, the strongest episodes and
- * illness onsets, all bounded. It is a descriptive summary for narration and hosts (a volume of a life), not a model
- * of what people recall about a year; the bounds are engineering choices.
- */
-
-/** What one day contributes to its year record. */
-export interface DayFold {
-  day: number;
-  mood: Signed;
-  kept?: number;
-  broken?: number;
-  released?: number;
-  breaches?: number;
-  repairs?: number;
-  material?: number;
-  decisions?: number;
-  /** Actions done that day (each counts once per day). */
-  actions?: readonly string[];
-  episodes?: readonly { id: string; summary: string; valence: Signed; salience: Unit }[];
-  illness?: readonly string[];
-  alive?: boolean;
-  /** A summarized, not lived, day. */
-  routine?: boolean;
-}
-
-/** A well-formed year record (1.8.0) as `restore` accepts it. */
-function validYear(y: unknown): boolean {
-  return (
-    isObj(y) &&
-    [y.year, y.days, y.routineDays, y.mood, y.moodLow, y.moodHigh, y.kept, y.broken, y.released].every(
-      isNum,
-    ) &&
-    [y.breaches, y.repairs, y.material, y.decisions].every(isNum) &&
-    Array.isArray(y.actions) &&
-    Array.isArray(y.episodes) &&
-    Array.isArray(y.illness) &&
-    typeof y.alive === 'boolean'
-  );
-}
-
-/**
- * Restore-time check of a saved yearbook (1.8.0): malformed year records and malformed entries inside them are
- * dropped, each record's lists held to their live bounds, and one record kept per year (the later), in year order.
- * Undefined when the yearbook is not a list (it is then off). The count bound is applied by `restore`. A save the
- * engine wrote is unchanged. @internal
- */
-export function sanitizeYears(x: unknown): YearRecord[] | undefined {
-  if (!Array.isArray(x)) return undefined;
-  const C = CHRONICLE_DEFAULTS;
-  const byYear = new Map<number, YearRecord>();
-  for (const y of x.filter(validYear) as YearRecord[]) {
-    y.actions = y.actions
-      .filter((a) => isObj(a) && typeof a.action === 'string' && isNum(a.days))
-      .slice(0, 4 * C.yearActions);
-    y.episodes = y.episodes
-      .filter(
-        (e) =>
-          isObj(e) &&
-          typeof e.id === 'string' &&
-          typeof e.summary === 'string' &&
-          [e.day, e.valence, e.salience].every(isNum),
-      )
-      .slice(0, C.yearEpisodes);
-    y.illness = y.illness.filter((k) => typeof k === 'string').slice(0, C.yearIllnesses);
-    byYear.set(y.year, y);
-  }
-  return [...byYear.values()].sort((a, b) => a.year - b.year);
-}
-
-/** Turn on year summaries for this person (idempotent). */
-export function enableYearbook(p: Person): void {
-  p.chronicleYears ??= [];
-}
-
-/** The fold of a lived day record. */
-function dayFold(r: DayRecord): DayFold {
-  return {
-    day: r.day,
-    mood: r.mood,
-    kept: r.kept.length,
-    broken: r.broken.length,
-    released: r.released.length,
-    breaches: r.breaches.length,
-    repairs: r.repairs.length,
-    material: r.material,
-    decisions: r.decisions,
-    actions: r.actions.map((a) => a.action),
-    episodes: r.episodes,
-    illness: r.illness.onset,
-    alive: r.alive,
-  };
-}
-
-/** Fold one day into its year record (yearbook on only; otherwise nothing happens). Returns the record. */
-export function foldDay(p: Person, d: DayFold): YearRecord | undefined {
-  const years = p.chronicleYears;
-  if (!years) return undefined;
-  const C = CHRONICLE_DEFAULTS;
-  const year = Math.floor(d.day / DAYS_PER_YEAR);
-  let y = years.find((x) => x.year === year);
+function foldDay(
+  years: YearRecord[],
+  d: DeepReadonly<DayRecord>,
+  K: DeepReadonly<typeof CHRONICLE_DEFAULTS>,
+): void {
+  const year = Math.floor(d.day / 365);
+  let y = years.find((y) => y.year === year);
   if (!y) {
     y = {
       year,
@@ -526,79 +240,384 @@ export function foldDay(p: Person, d: DayFold): YearRecord | undefined {
       actions: [],
       episodes: [],
       illness: [],
-      alive: true,
+      alive: d.alive,
     };
-    for (const old of years)
-      if (old.year < year && old.actions.length > C.yearActions) old.actions.length = C.yearActions;
+    for (const old of years) if (old.year < year) old.actions = old.actions.slice(0, K.yearActions);
     years.push(y);
     years.sort((a, b) => a.year - b.year);
-    if (years.length > C.maxYears) years.splice(0, years.length - C.maxYears);
+    if (years.length > K.maxYears) years.splice(0, years.length - K.maxYears);
   }
   y.mood = (y.mood * y.days + d.mood) / (y.days + 1);
-  y.days += 1;
-  if (d.routine) y.routineDays += 1;
+  y.days++;
   y.moodLow = Math.min(y.moodLow, d.mood);
   y.moodHigh = Math.max(y.moodHigh, d.mood);
-  y.kept += d.kept ?? 0;
-  y.broken += d.broken ?? 0;
-  y.released += d.released ?? 0;
-  y.breaches += d.breaches ?? 0;
-  y.repairs += d.repairs ?? 0;
-  y.material += d.material ?? 0;
-  y.decisions += d.decisions ?? 0;
-  if (d.alive !== undefined) y.alive = d.alive;
-  for (const action of new Set(d.actions ?? [])) {
+  y.kept += d.kept.length;
+  y.broken += d.broken.length;
+  y.released += d.released.length;
+  y.breaches += d.breaches.length;
+  y.repairs += d.repairs.length;
+  y.material += d.material;
+  y.decisions += d.decisions;
+  y.alive = d.alive;
+  for (const action of new Set(d.actions.map((a) => a.action))) {
     const t = y.actions.find((a) => a.action === action);
-    if (t) t.days += 1;
+    if (t) t.days++;
     else y.actions.push({ action, days: 1 });
   }
-  y.actions.sort((a, b) => b.days - a.days || cmpStr(a.action, b.action));
-  // Keep a few more than shown so a later-frequent action can climb; trimmed to the bound.
-  if (y.actions.length > 4 * C.yearActions) y.actions.length = 4 * C.yearActions;
-  for (const e of d.episodes ?? []) {
-    if (y.episodes.some((x) => x.id === e.id)) continue;
-    y.episodes.push({ id: e.id, day: d.day, summary: e.summary, valence: e.valence, salience: e.salience });
+  y.actions.sort((a, b) => b.days - a.days || compare(a.action, b.action));
+  y.actions = y.actions.slice(0, 4 * K.yearActions);
+  for (const e of d.episodes)
+    if (!y.episodes.some((x) => x.id === e.id)) y.episodes.push({ ...structuredClone(e), day: d.day });
+  y.episodes.sort(
+    (a, b) => Math.abs(b.valence) * b.salience - Math.abs(a.valence) * a.salience || a.day - b.day,
+  );
+  y.episodes = y.episodes.slice(0, K.yearEpisodes);
+  y.illness.push(...d.illness.onset.slice(0, Math.max(0, K.yearIllnesses - y.illness.length)));
+}
+function append(
+  state: State,
+  record: DayRecord,
+  K: DeepReadonly<typeof CHRONICLE_DEFAULTS>,
+  retention: number,
+): void {
+  if (record.day !== state.open.day || state.days.some((d) => d.day >= record.day))
+    throw new RangeError('Duplicate or rewound closed day');
+  for (const d of state.days) delete d.state;
+  state.days.push(record);
+  const newest = record.day;
+  while (state.days.length > 1 && (state.days.length > K.maxDays || newest - state.days[0]!.day > retention))
+    foldDay(state.years, state.days.shift()!, K);
+  state.open = openDay(record.day + 1, record.state ?? state.open.baseline);
+}
+function validate(s: DeepReadonly<State>): ValidationIssue[] {
+  const issues: ValidationIssue[] = validateNarrativeJson(s);
+  issues.push(
+    ...validateNarrativeFields(s, ['days', 'years', 'open'], ['days', 'years', 'open'], 'chronicle'),
+  );
+  const bad = (path: string, message: string, code: ValidationIssue['code'] = 'invalid-schema') =>
+    issues.push({ path, code, message });
+  if (!s || !Array.isArray(s.days) || !Array.isArray(s.years) || !s.open)
+    return [{ path: 'chronicle', code: 'invalid-schema', message: 'Required chronicle state missing' }];
+  if (s.days.length > 120 || s.years.length > 150)
+    bad('chronicle', 'Retention bound exceeded', 'limit-exceeded');
+  const days = new Set<number>(),
+    years = new Set<number>();
+  let previous = -Infinity;
+  for (const d of s.days) {
+    if (!d || typeof d !== 'object') {
+      bad('days', 'Malformed day');
+      continue;
+    }
+    issues.push(
+      ...validateNarrativeFields(
+        d,
+        [
+          'day',
+          'kept',
+          'broken',
+          'released',
+          'keptByKind',
+          'brokenByKind',
+          'prayers',
+          'actions',
+          'habits',
+          'trust',
+          'episodes',
+          'breaches',
+          'repairs',
+          'material',
+          'illness',
+          'mood',
+          'verdicts',
+          'decisions',
+          'alive',
+          'state',
+        ],
+        [
+          'day',
+          'kept',
+          'broken',
+          'released',
+          'keptByKind',
+          'brokenByKind',
+          'prayers',
+          'actions',
+          'habits',
+          'trust',
+          'episodes',
+          'breaches',
+          'repairs',
+          'material',
+          'illness',
+          'mood',
+          'verdicts',
+          'decisions',
+          'alive',
+        ],
+        'day',
+      ),
+    );
+    if (
+      ![
+        d.kept,
+        d.broken,
+        d.released,
+        d.actions,
+        d.habits,
+        d.trust,
+        d.episodes,
+        d.breaches,
+        d.repairs,
+        d.verdicts,
+      ].every(Array.isArray) ||
+      typeof d.alive !== 'boolean'
+    )
+      bad('days', 'Invalid day containers');
+    if (days.has(d.day)) bad('days', 'Duplicate day', 'duplicate-id');
+    days.add(d.day);
+    if (!Number.isSafeInteger(d.day) || d.day <= previous || d.day >= s.open.day)
+      bad('days', 'Nonmonotone day');
+    previous = d.day;
+    if (
+      !Number.isFinite(d.mood) ||
+      Math.abs(d.mood) > 1 ||
+      !Number.isFinite(d.material) ||
+      !Number.isSafeInteger(d.decisions) ||
+      d.decisions < 0
+    )
+      bad('days', 'Malformed day');
   }
-  const strength = (e: { valence: Signed; salience: Unit }) => Math.abs(e.valence) * e.salience;
-  y.episodes.sort((a, b) => strength(b) - strength(a) || a.day - b.day);
-  if (y.episodes.length > C.yearEpisodes) y.episodes.length = C.yearEpisodes;
-  for (const kind of d.illness ?? []) if (y.illness.length < C.yearIllnesses) y.illness.push(kind);
-  return y;
+  previous = -Infinity;
+  for (const y of s.years) {
+    if (
+      !y ||
+      typeof y !== 'object' ||
+      !Array.isArray(y.actions) ||
+      !Array.isArray(y.episodes) ||
+      !Array.isArray(y.illness)
+    ) {
+      bad('years', 'Malformed year');
+      continue;
+    }
+    if (years.has(y.year)) bad('years', 'Duplicate year', 'duplicate-id');
+    years.add(y.year);
+    if (
+      !Number.isSafeInteger(y.year) ||
+      y.year <= previous ||
+      !Number.isSafeInteger(y.days) ||
+      y.days < 1 ||
+      y.actions.length > 32 ||
+      y.episodes.length > 4 ||
+      y.illness.length > 6
+    )
+      bad('years', 'Malformed year');
+    previous = y.year;
+  }
+  const o = s.open;
+  issues.push(
+    ...validateNarrativeFields(
+      o,
+      [
+        'day',
+        'baseline',
+        'kept',
+        'broken',
+        'released',
+        'actions',
+        'verdicts',
+        'material',
+        'moodSum',
+        'moodSamples',
+        'decisions',
+        'socialMs',
+      ],
+      [
+        'day',
+        'baseline',
+        'kept',
+        'broken',
+        'released',
+        'actions',
+        'verdicts',
+        'material',
+        'moodSum',
+        'moodSamples',
+        'decisions',
+        'socialMs',
+      ],
+      'open',
+    ),
+  );
+  if (
+    !Array.isArray(o.actions) ||
+    !Array.isArray(o.verdicts) ||
+    !o.baseline ||
+    typeof o.baseline !== 'object'
+  ) {
+    bad('open', 'Invalid accumulator containers');
+    return issues;
+  }
+  if (!Number.isSafeInteger(o.socialMs) || o.socialMs < 0)
+    bad('open.socialMs', 'Invalid actual social duration');
+  if (
+    !Number.isSafeInteger(o.day) ||
+    !Number.isSafeInteger(o.moodSamples) ||
+    o.moodSamples < 0 ||
+    !Number.isFinite(o.moodSum) ||
+    !Number.isSafeInteger(o.decisions) ||
+    o.decisions < 0 ||
+    !Number.isFinite(o.material)
+  )
+    bad('open', 'Malformed accumulator');
+  for (const key of ['kept', 'broken', 'released'] as const) {
+    const ids = new Set<string>();
+    if (!Array.isArray(o[key]) || o[key].length > 24) {
+      bad(key, 'Invalid notes');
+      continue;
+    }
+    for (const n of o[key]) {
+      if (!n || typeof n !== 'object' || typeof n.id !== 'string' || !n.id || typeof n.kind !== 'string') {
+        bad(key, 'Invalid note');
+        continue;
+      }
+      if (ids.has(n.id)) bad(key, 'Duplicate note', 'duplicate-id');
+      ids.add(n.id);
+    }
+  }
+  if (o.actions.length > 32 || o.verdicts.length > 16)
+    bad('open', 'Retention bound exceeded', 'limit-exceeded');
+  return issues;
 }
-
-/** The year record for `year`, if any. */
-export function yearRecord(p: Person, year: number): YearRecord | undefined {
-  return p.chronicleYears?.find((y) => y.year === year);
+function checked(s: DeepReadonly<State>): State {
+  const issues = validate(s);
+  if (issues.length) throw new RangeError(issues[0]!.message);
+  return structuredClone(s) as State;
 }
-
-/**
- * Close the open day: consolidate, append, and open the next day with this record's end state as its baseline.
- * Without an open accumulator, closes the day before `p.now` from an empty one. Returns the new record.
- */
-export function closeDay(p: Person): DayRecord {
-  const acc = p.chronicleDay ?? openDay(p, dayOf(p.now) - 1);
-  const record = consolidateDay(p, acc.day, acc);
-  const state = record.state ?? chronicleState(p);
-  appendDay(p, record);
-  p.chronicleDay = emptyDay(acc.day + 1, structuredClone(state));
-  return record;
+const result = (state: State, at: number): ReturnType<ChronicleOwner['receive']> => ({
+  state,
+  effects: { terms: [], modifiers: [], appraisals: [] },
+  events: [],
+  nextBoundary: (state.open.day + 1) * DAY,
+  advancedThrough: at,
+});
+/** Complete source closure; C0 must supply the actual actor snapshot. */
+export function closeChronicleDay(
+  state: DeepReadonly<State>,
+  actor: DeepReadonly<ChronicleSnapshot>,
+  context: DeepReadonly<FrameContext>,
+): ReturnType<ChronicleOwner['close']> {
+  const s = checked(state);
+  const socialMs = s.open.socialMs;
+  if (context.at !== (s.open.day + 1) * DAY) throw new RangeError('Day closure clock mismatch');
+  const record = consolidateDay(actor, s.open.day, s.open, context.effective.builtins.CHRONICLE_DEFAULTS);
+  append(s, record, context.effective.builtins.CHRONICLE_DEFAULTS, actor.retention.chronicleDays);
+  return {
+    ...result(s, context.at),
+    events: [{ kind: 'day-closed', record: structuredClone(record) }],
+    day: structuredClone(record),
+    socialMs,
+  };
 }
-
-/**
- * Close the open day and leave none open (`skip`): the next event opens the day it falls in, instead of the
- * day after the closed one.
- */
-export function endDay(p: Person): void {
-  if (!p.chronicleDay) return;
-  closeDay(p);
-  delete p.chronicleDay;
+export function noteChronicleOutcome(
+  state: DeepReadonly<State>,
+  outcome: DeepReadonly<ObservedOutcome>,
+  suggestions: readonly DeepReadonly<SuggestionResolution>[],
+): State {
+  const s = checked(state);
+  s.open.material += outcome.actual.material ?? 0;
+  if (outcome.status !== 'completed') return s;
+  let t = s.open.actions.find((a) => a.action === outcome.actionId);
+  if (!t && s.open.actions.length < 32) {
+    t = { action: outcome.actionId, done: 0, prompted: 0, by: {} };
+    s.open.actions.push(t);
+  }
+  if (t) {
+    t.done++;
+    const voices = [
+      ...new Set(
+        suggestions
+          .filter((r) => ['assented', 'complied', 'commanded'].includes(r.verdict))
+          .map((r) => r.voiceId),
+      ),
+    ];
+    if (voices.length) t.prompted++;
+    for (const voice of voices) t.by[voice] = (t.by[voice] ?? 0) + 1;
+  }
+  return s;
 }
-
-/** Records with `from <= day <= to` (either bound optional). */
-export function chronicleBetween(
-  chronicle: readonly DayRecord[],
-  from = Number.NEGATIVE_INFINITY,
-  to = Number.POSITIVE_INFINITY,
-): DayRecord[] {
-  return chronicle.filter((r) => r.day >= from && r.day <= to);
-}
+export const chronicleOwner: ChronicleOwner = {
+  initialize(context) {
+    return {
+      days: [],
+      years: [],
+      open: openDay(Math.floor(context.at / DAY), chronicleState(context.snapshot)),
+    };
+  },
+  validate,
+  close(state, context) {
+    return closeChronicleDay(state, context.snapshot, context);
+  },
+  receive(state, input, context) {
+    let s = checked(state);
+    if (context.settlement && input.kind === 'action-settled') {
+      if (
+        input.activityId !== context.settlement.activity.id ||
+        context.settlement.outcome.activityId !== input.activityId
+      )
+        throw new RangeError('Chronicle settlement mismatch');
+      s = noteChronicleOutcome(s, context.settlement.outcome, context.settlement.activity.suggestions);
+      if (
+        context.settlement.outcome.status === 'completed' &&
+        context.settlement.activity.offer.participants.some((id) => id !== context.person)
+      )
+        s.open.socialMs += context.settlement.outcome.end - context.settlement.outcome.start;
+    }
+    const o = s.open;
+    if (
+      context.settlement &&
+      input.kind === 'action-settled' &&
+      context.settlement.outcome.status === 'completed'
+    ) {
+      for (const id of context.settlement.kept) {
+        const c = context.snapshot.agenda.commitments.find((c) => c.id === id);
+        if (!c) throw new RangeError('Unknown kept commitment');
+        const n = noteOf(c),
+          suggestion = context.settlement.suggestion;
+        if (suggestion && ['assented', 'complied', 'commanded'].includes(suggestion.verdict)) {
+          n.prompted = true;
+          n.voiceId = suggestion.voiceId;
+        }
+        pushNote(o.kept, n);
+      }
+    }
+    o.moodSum += context.snapshot.affect.mood.valence;
+    o.moodSamples++;
+    if (input.kind === 'commitment-changed') {
+      const c = input.after;
+      if (c.status === 'kept') pushNote(o.kept, noteOf(c));
+      else if (c.status === 'broken') pushNote(o.broken, noteOf(c));
+      else if (c.status === 'released') pushNote(o.released, noteOf(c));
+    }
+    if (input.kind === 'decision' && !input.decision.review) {
+      o.decisions++;
+      for (const r of input.decision.suggestions ??
+        (input.decision.suggestion ? [input.decision.suggestion] : [])) {
+        const t = o.verdicts.find(
+          (t) => t.voiceId === r.voiceId && t.verdict === r.verdict && t.reason === r.reason,
+        );
+        if (t) t.count++;
+        else if (o.verdicts.length < 16)
+          o.verdicts.push({
+            voiceId: r.voiceId,
+            verdict: r.verdict,
+            reason: r.reason,
+            count: 1,
+            ...(r.kind === undefined ? {} : { kind: r.kind }),
+          });
+      }
+    }
+    return result(s, context.at);
+  },
+};
+Object.freeze(CHRONICLE_DEFAULTS.habitThresholds);
+Object.freeze(CHRONICLE_DEFAULTS);

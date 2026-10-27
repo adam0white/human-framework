@@ -1,3 +1,27 @@
+import type {
+  ActorState,
+  HeldNorm,
+  NormStanding,
+  NormTag,
+  Offer,
+  PersonId,
+  Relationship,
+  Signed,
+  SocialEventKind,
+  SocialState,
+  TermData as Term,
+  Time,
+  Unit,
+} from '../run-schema.ts';
+export type SocialActor = Pick<ActorState, 'id' | 'now' | 'traits' | 'values' | 'social'> & {
+  conscience: Pick<ActorState['conscience'], 'norms'>;
+  memory: Pick<ActorState['memory'], 'sourceTrust'>;
+};
+type SocialEvent = import('../run-schema.ts').SocialEventData & { otherId: PersonId; at: Time };
+const MINUTES_PER_DAY = 1440,
+  MINUTES_PER_YEAR = 525600;
+
+import { testimonyWeight, trustOf } from '../beliefs/beliefs.ts';
 /**
  * SCOPE: Dyadic relationships held by one person (affection, trust, respect, familiarity, roles, a favour
  * ledger), updated by experienced social events, by observing others' acts against the observer's own held
@@ -6,32 +30,24 @@
  * helps), reciprocity as a favour ledger (Gouldner 1960), the mere-exposure / familiarity growth with
  * diminishing returns, HEXACO agreeableness as tolerance of provocation and honesty-humility as sensitivity
  * to deceit (Ashton & Lee), Schwartz benevolence as care for close others. Observers judge only the outward
- * act and never see intentions. An opt-in `regard` impression estimates the other's view of me and adds a bounded
+ * act and never see intentions. A `regard` impression estimates the other's view of me and adds a bounded
  * repair term; it never reads the other's actual view. It does NOT model attachment styles
  * (gossip, reputation and bereavement are in the SCOPE paragraphs
  * further down; insiders, outsiders and threats in `groups.ts`); the
  * coefficients are engineering defaults, not calibrated estimates.
  */
 import { clamp, clamp01, clampSigned, cmpStr, decay, dlog, round, sigmoid } from '../core/index.ts';
-import type {
-  Affordance,
-  HeldNorm,
-  Minute,
-  NormStanding,
-  NormTag,
-  Person,
-  PersonId,
-  Relationship,
-  Signed,
-  SocialEvent,
-  SocialEventKind,
-  SocialState,
-  Term,
-  Unit,
-} from '../types.ts';
-import { MINUTES_PER_DAY, MINUTES_PER_YEAR } from '../types.ts';
-import { careFor } from './groups.ts';
-import { regardOf } from './impressions.ts';
+import type { OutwardSigns } from '../run-schema.ts';
+import { careFor, GROUP_DEFAULTS, meet, threatAppraisal } from './groups.ts';
+import {
+  acquaintKnown,
+  glimpse,
+  hear,
+  IMPRESSION_DEFAULTS,
+  noteKnownBy,
+  observeAct,
+  regardOf,
+} from './impressions.ts';
 
 const WEEK = 7 * MINUTES_PER_DAY;
 
@@ -152,7 +168,7 @@ function roleBaseline(roles: readonly string[]): RoleBaseline | undefined {
   return out;
 }
 
-export function defaultRelationship(otherId: PersonId, now: Minute): Relationship {
+export function defaultRelationship(otherId: PersonId, now: Time): Relationship {
   return {
     otherId,
     affection: 0,
@@ -166,7 +182,7 @@ export function defaultRelationship(otherId: PersonId, now: Minute): Relationshi
 }
 
 /** Read-only lookup: the stored relationship, or a fresh default that is NOT inserted. */
-export function relationshipWith(p: Person, otherId: PersonId): Relationship {
+export function relationshipWith(p: SocialActor, otherId: PersonId): Relationship {
   return p.social.relationships.find((r) => r.otherId === otherId) ?? defaultRelationship(otherId, p.now);
 }
 
@@ -201,7 +217,7 @@ function insertBounded(rels: Relationship[], rel: Relationship): void {
 }
 
 /** Returns the stored relationship, inserting a default one (bounded, evicting) if absent. */
-export function ensureRelationship(p: Person, otherId: PersonId, now: Minute): Relationship {
+export function ensureRelationship(p: SocialActor, otherId: PersonId, now: Time): Relationship {
   const existing = p.social.relationships.find((r) => r.otherId === otherId);
   if (existing) return existing;
   const rel = defaultRelationship(otherId, now);
@@ -209,44 +225,28 @@ export function ensureRelationship(p: Person, otherId: PersonId, now: Minute): R
   return rel;
 }
 
-/** Builds initial social state. Roles imply baseline affection/trust/familiarity/respect unless given. */
-export function seedRelationships(
-  specs: readonly (Partial<Relationship> & { otherId: PersonId })[],
-  now: Minute,
-): SocialState {
-  const relationships: Relationship[] = [];
-  for (const spec of specs) {
-    const roles = [...(spec.roles ?? [])];
-    const base = roleBaseline(roles);
-    const d = defaultRelationship(spec.otherId, now);
-    const rel: Relationship = {
-      otherId: spec.otherId,
-      affection: clampSigned(spec.affection ?? base?.affection ?? d.affection),
-      trust: clamp01(spec.trust ?? base?.trust ?? d.trust),
-      respect: clampSigned(spec.respect ?? base?.respect ?? d.respect),
-      familiarity: clamp01(spec.familiarity ?? base?.familiarity ?? d.familiarity),
-      roles,
-      ledger: clamp(spec.ledger ?? 0, -SOCIAL_DEFAULTS.ledgerLimit, SOCIAL_DEFAULTS.ledgerLimit),
-      lastInteraction: spec.lastInteraction ?? now,
-    };
-    if (spec.deceasedAt !== undefined) rel.deceasedAt = spec.deceasedAt;
-    const dup = relationships.findIndex((r) => r.otherId === rel.otherId);
-    if (dup >= 0) relationships.splice(dup, 1);
-    insertBounded(relationships, rel);
-  }
-  return { relationships };
-}
-
 /**
  * Add or merge one tie after creation (a birth, an arrival): the tie is built like `seedRelationships` (roles
  * imply baselines, values clamped); when a relationship with that id already exists, roles are unioned and the
  * given fields replace the stored ones (clamped), the rest are kept. Bounded insertion as `ensureRelationship`.
  */
-export function seedTie(p: Person, spec: Partial<Relationship> & { otherId: PersonId }): Relationship {
+export function seedTie(p: SocialActor, spec: Partial<Relationship> & { otherId: PersonId }): Relationship {
   const existing = p.social.relationships.find((r) => r.otherId === spec.otherId);
   if (!existing) {
-    const seeded = seedRelationships([spec], p.now).relationships[0];
-    if (!seeded) return ensureRelationship(p, spec.otherId, p.now);
+    const roles = [...(spec.roles ?? [])],
+      base = roleBaseline(roles),
+      ordinary = defaultRelationship(spec.otherId, p.now);
+    const seeded: Relationship = {
+      ...ordinary,
+      roles,
+      affection: clampSigned(spec.affection ?? base?.affection ?? ordinary.affection),
+      trust: clamp01(spec.trust ?? base?.trust ?? ordinary.trust),
+      respect: clampSigned(spec.respect ?? base?.respect ?? ordinary.respect),
+      familiarity: clamp01(spec.familiarity ?? base?.familiarity ?? ordinary.familiarity),
+      ledger: clamp(spec.ledger ?? 0, -SOCIAL_DEFAULTS.ledgerLimit, SOCIAL_DEFAULTS.ledgerLimit),
+      lastInteraction: spec.lastInteraction ?? p.now,
+    };
+    if (spec.deceasedAt !== undefined) seeded.deceasedAt = spec.deceasedAt;
     insertBounded(p.social.relationships, seeded);
     return seeded;
   }
@@ -279,7 +279,7 @@ function growFamiliarity(rel: Relationship, amount: number): void {
  * affection loss from provocations by (1.5 - A); honesty-humility scales the trust loss from discovered
  * deceit by (0.5 + H). Negative deltas are multiplied by the negativity bias.
  */
-export function socialEvent(p: Person, ev: SocialEvent): Relationship {
+export function socialEvent(p: SocialActor, ev: SocialEvent): Relationship {
   const existing = p.social.relationships.find((r) => r.otherId === ev.otherId);
   // Interaction with someone who has died is impossible: the tie is kept exactly as it was.
   if (existing && isDeceasedTie(existing)) return existing;
@@ -317,21 +317,8 @@ export function socialEvent(p: Person, ev: SocialEvent): Relationship {
   return rel;
 }
 
-/**
- * Closed-form drift over `dt` minutes: non-family familiarity decays with a two-year half-life; affection
- * of ties with no role drifts toward 0 by 1% per week. Exact for any split of dt.
- */
-export function advanceSocial(p: Person, dt: number): void {
-  if (dt <= 0) return;
-  for (const rel of p.social.relationships) {
-    if (!isFamily(rel) && !isDeceasedTie(rel))
-      rel.familiarity = decay(rel.familiarity, dt, SOCIAL_DEFAULTS.familiarityHalfLife);
-    if (rel.roles.length === 0) rel.affection = decay(rel.affection, dt, SOCIAL_DEFAULTS.affectionHalfLife);
-  }
-}
-
 /** Composite closeness 0..1 from warmth, familiarity, trust above neutral, and family role. */
-export function closeness(p: Person, otherId: PersonId): Unit {
+export function closeness(p: SocialActor, otherId: PersonId): Unit {
   const rel = relationshipWith(p, otherId);
   return clamp01(
     0.45 * Math.max(0, rel.affection) +
@@ -344,28 +331,28 @@ export function closeness(p: Person, otherId: PersonId): Unit {
 const CARE_TAGS = ['help', 'gift'];
 
 /**
- * Social utility terms for one option. One `social:<id>` term per participant (aff.with, plus aff.targetId
+ * Social utility terms for one option. One `social:<id>` term per participant (aff.participants, plus aff.target
  * when it is a known person and the option is tagged social/help/gift), plus `social:group` for groups of
  * `groupFrom` or more others, positive for extraverts and negative for introverts.
  */
 export function socialTerms(
-  p: Person,
-  aff: Affordance,
+  p: SocialActor,
+  aff: Offer,
   ctx: { belongingUrgency: Unit; tendencies: Record<string, number> },
 ): Term[] {
   const W = SOCIAL_DEFAULTS.terms;
   const tags = aff.tags ?? [];
-  const ids = new Set<PersonId>(aff.with ?? []);
+  const ids = new Set<PersonId>(aff.participants ?? []);
   const known = (id: string) => p.social.relationships.some((r) => r.otherId === id);
   if (
-    aff.targetId !== undefined &&
-    known(aff.targetId) &&
+    aff.target !== undefined &&
+    known(aff.target) &&
     (tags.includes('social') || tags.some((t) => CARE_TAGS.includes(t)))
   ) {
-    ids.add(aff.targetId);
+    ids.add(aff.target);
   }
   ids.delete(p.id);
-  const caring = tags.some((t) => CARE_TAGS.includes(t)) || CARE_TAGS.includes(aff.action);
+  const caring = tags.some((t) => CARE_TAGS.includes(t)) || CARE_TAGS.includes(aff.actionId);
   const terms: Term[] = [];
   for (const id of [...ids].sort()) {
     const rel = relationshipWith(p, id);
@@ -379,27 +366,27 @@ export function socialTerms(
       (0.3 + 0.7 * rel.familiarity) *
       clamp01(0.5 + rel.affection);
     v += (ctx.tendencies[`approach:${id}`] ?? 0) - (ctx.tendencies[`avoid:${id}`] ?? 0);
-    if (caring && aff.targetId === id) {
+    if (caring && aff.target === id) {
       const care = Math.max(Math.max(0, rel.affection), isFamily(rel) ? 1 : 0);
       v += p.values.benevolence * W.benevolence * care;
     }
     terms.push({ source: `social:${id}`, value: round(v) });
   }
-  const others = (aff.with ?? []).filter((id) => id !== p.id).length;
+  const others = (aff.participants ?? []).filter((id) => id !== p.id).length;
   if (others >= W.groupFrom) {
     const size = clamp01((others - W.groupFrom + 1) / 6);
     terms.push({ source: 'social:group', value: round(W.group * (p.traits.extraversion - 0.5) * 2 * size) });
   }
   if (
-    aff.targetId !== undefined &&
-    aff.targetId !== p.id &&
-    (tags.includes('repair') || aff.action === 'apology' || aff.action === 'amends') &&
-    !isDeceased(p, aff.targetId)
+    aff.target !== undefined &&
+    aff.target !== p.id &&
+    (tags.includes('repair') || aff.actionId === 'apology' || aff.actionId === 'amends') &&
+    !isDeceased(p, aff.target)
   ) {
-    const regard = regardOf(p, aff.targetId, p.now);
+    const regard = regardOf(p, aff.target, p.now);
     if (regard.value < 0 && regard.confidence > 0) {
       terms.push({
-        source: `regard:${aff.targetId}`,
+        source: `regard:${aff.target}`,
         value: round(
           Math.min(
             W.regardRepairMax,
@@ -435,10 +422,10 @@ const FULFILMENT_WEIGHT: Record<NormStanding, number> = {
  * Returns praiseworthiness -1..1 for affect appraisal. Self-judgement returns a score but changes nothing.
  */
 export function judge(
-  p: Person,
+  p: SocialActor,
   observed: { actorId: string; norms: NormTag[]; targetId?: string; valence?: number },
   held: readonly HeldNorm[],
-  now: Minute,
+  now: Time,
 ): { praiseworthiness: number } {
   let score = 0;
   for (const tag of observed.norms) {
@@ -492,13 +479,13 @@ export function isDeceasedTie(rel: Relationship): boolean {
 }
 
 /** Read-only: does `p` hold `otherId` as someone who has died? */
-export function isDeceased(p: Person, otherId: PersonId): boolean {
+export function isDeceased(p: SocialActor, otherId: PersonId): boolean {
   const rel = p.social.relationships.find((r) => r.otherId === otherId);
   return rel !== undefined && isDeceasedTie(rel);
 }
 
 /** Ids `p` holds as deceased, sorted. */
-export function deceasedIds(p: Person): PersonId[] {
+export function deceasedIds(p: SocialActor): PersonId[] {
   return p.social.relationships
     .filter(isDeceasedTie)
     .map((r) => r.otherId)
@@ -509,7 +496,7 @@ export function deceasedIds(p: Person): PersonId[] {
  * Record that `otherId` has died. Keeps every existing role (a spouse stays a spouse) and all values; adds
  * the 'deceased' role and `deceasedAt`. Idempotent: an earlier `deceasedAt` is kept.
  */
-export function markDeceased(p: Person, otherId: PersonId, at: Minute): Relationship {
+export function markDeceased(p: SocialActor, otherId: PersonId, at: Time): Relationship {
   const rel = ensureRelationship(p, otherId, at);
   if (!rel.roles.includes(DECEASED_ROLE)) rel.roles.push(DECEASED_ROLE);
   if (rel.deceasedAt === undefined || at < rel.deceasedAt) rel.deceasedAt = at;
@@ -588,11 +575,11 @@ export function parseTraitProp(
  * proposition is not a character claim, is about myself or someone who has died, or did not move.
  */
 export function applyReputationBelief(
-  p: Person,
+  p: SocialActor,
   prop: string,
   before: Unit,
   after: Unit,
-  now: Minute,
+  now: Time,
   table: Record<string, TraitEffect> = REPUTATION_TRAITS,
 ): Relationship | null {
   const parsed = parseTraitProp(prop, table);
@@ -644,7 +631,7 @@ export interface Reputation {
  * deceased still count (a reputation outlives a person).
  */
 export function reputation(
-  people: readonly Person[],
+  people: readonly (SocialActor & { memory: Pick<ActorState['memory'], 'sourceTrust' | 'beliefs'> })[],
   targetId: PersonId,
   table: Record<string, TraitEffect> = REPUTATION_TRAITS,
 ): Reputation {
@@ -691,3 +678,269 @@ export function reputation(
     traits,
   };
 }
+
+/** Canonical owner; received signs remain estimates and never access the target. */
+export const socialOwner: import('../run-schema.ts').SocialOwner = {
+  initialize(input) {
+    return {
+      relationships: input.relationships.map((r) => structuredClone(r)) as Relationship[],
+      groups: { memberOf: [...input.groups] },
+      impressions: [],
+      reserve: { ...input.reserve },
+    };
+  },
+  advance(_state, context) {
+    const state = structuredClone(context.continuation.state) as SocialState;
+    const elapsed = BigInt(context.to) - BigInt(context.continuation.anchor.at);
+    if (elapsed < 0n || elapsed > BigInt(Number.MAX_SAFE_INTEGER))
+      throw new RangeError('Invalid social span');
+    const d = context.effective.builtins.SOCIAL_DEFAULTS;
+    for (const rel of state.relationships) {
+      if (!rel.roles.some((role) => d.familyRoles.includes(role)) && !isDeceasedTie(rel))
+        rel.familiarity = decay(rel.familiarity, Number(elapsed) / 60000, d.familiarityHalfLife);
+      if (rel.roles.length === 0)
+        rel.affection = decay(rel.affection, Number(elapsed) / 60000, d.affectionHalfLife);
+    }
+    return {
+      state,
+      continuation: structuredClone(
+        context.continuation,
+      ) as import('../run-schema.ts').DeliberationContinuation['social'],
+      effects: { terms: [], modifiers: [], appraisals: [] },
+      events: [],
+      nextBoundary: null,
+      advancedThrough: context.to,
+    };
+  },
+  receive(previous, input, context) {
+    const state = structuredClone(previous) as SocialState;
+    const actor: SocialActor = {
+      id: context.person,
+      now: context.at,
+      traits: { ...context.traits },
+      values: { ...context.values },
+      social: state,
+      conscience: { norms: context.norms.map((n) => structuredClone(n)) as HeldNorm[] },
+      memory: { sourceTrust: Object.fromEntries(context.sourceTrust.map((t) => [t.sourceId, t.trust])) },
+    };
+    const events: import('../run-schema.ts').EventData[] = [];
+    const appraisals: import('../run-schema.ts').AppraisalEffect[] = [];
+    switch (input.kind) {
+      case 'reputation':
+        applyReputationBelief(actor, input.prop, input.before, input.credence, context.at);
+        break;
+      case 'attended': {
+        const pc = input.percept,
+          at = context.at,
+          byMe = pc.actorId === actor.id;
+        const push = (appraisal: import('../run-schema.ts').AppraisalData) =>
+          appraisals.push({
+            id: `${pc.id}:social:${appraisals.length}`,
+            cause: pc.id,
+            person: actor.id,
+            at,
+            applyPhase: context.phase,
+            from: 'social',
+            to: 'affect',
+            appraisal,
+          });
+        if (byMe)
+          for (const otherId of pc.witnesses.slice(0, 8))
+            noteKnownBy(actor, {
+              otherId,
+              act: {
+                kind: pc.kind,
+                norms: [...pc.norms],
+                ...(pc.targetId !== undefined ? { targetId: pc.targetId } : {}),
+                ...(pc.valence !== undefined ? { valence: pc.valence } : {}),
+              },
+              at,
+              via: 'seen',
+            });
+        const alias: Record<string, SocialEventKind> = { theft: 'harm', attack: 'harm', steal: 'harm' };
+        const socialKind = Object.hasOwn(SOCIAL_EVENT_EFFECTS, pc.kind)
+          ? (pc.kind as SocialEventKind)
+          : alias[pc.kind];
+        if (
+          socialKind &&
+          pc.actorId !== undefined &&
+          pc.targetId !== undefined &&
+          pc.actorId !== pc.targetId
+        ) {
+          if (pc.targetId === actor.id && !byMe)
+            socialEvent(actor, {
+              kind: socialKind,
+              otherId: pc.actorId,
+              byMe: false,
+              magnitude: clamp01(Math.abs(pc.valence ?? pc.salience)),
+              at,
+            });
+          else if (byMe)
+            socialEvent(actor, {
+              kind: socialKind,
+              otherId: pc.targetId,
+              byMe: true,
+              magnitude: clamp01(Math.abs(pc.valence ?? pc.salience)),
+              at,
+            });
+        }
+        const praiseworthiness =
+          !byMe && pc.actorId !== undefined && pc.norms.length > 0
+            ? judge(
+                actor,
+                {
+                  actorId: pc.actorId,
+                  norms: [...pc.norms],
+                  ...(pc.targetId !== undefined ? { targetId: pc.targetId } : {}),
+                  ...(pc.valence !== undefined ? { valence: pc.valence } : {}),
+                },
+                actor.conscience.norms,
+                at,
+              ).praiseworthiness
+            : 0;
+        const valence = clampSigned(pc.valence ?? 0);
+        const desirability =
+          pc.targetId === actor.id
+            ? valence
+            : pc.targetId !== undefined && pc.targetId !== pc.actorId
+              ? valence * careFor(actor, pc.targetId)
+              : pc.targetId === undefined
+                ? 0.3 * valence
+                : 0;
+        const loss =
+          pc.kind === 'death' &&
+          pc.targetId !== undefined &&
+          pc.targetId !== actor.id &&
+          closeness(actor, pc.targetId) > 0.3;
+        if (!byMe && (desirability !== 0 || praiseworthiness !== 0 || loss))
+          push({
+            at,
+            kind: praiseworthiness !== 0 ? 'deed' : 'event',
+            desirability,
+            cause: `event:${pc.kind}:${pc.actorId ?? pc.placeId ?? 'world'}`,
+            ...(praiseworthiness !== 0 ? { praiseworthiness } : {}),
+            ...(pc.actorId !== undefined
+              ? { agentId: pc.actorId, affectionToAgent: relationshipWith(actor, pc.actorId).affection }
+              : {}),
+            ...(pc.targetId !== undefined ? { targetId: pc.targetId } : {}),
+            ...(loss ? { loss: true } : {}),
+          });
+        const threat = pc.threat && !byMe ? threatAppraisal(actor, pc.threat, pc.actorId) : undefined;
+        if (threat)
+          push({
+            at,
+            kind: 'prospect',
+            desirability: threat.desirability,
+            likelihood: threat.likelihood,
+            cause: threat.cause,
+            ...(threat.sourceId !== undefined ? { threatFrom: threat.sourceId } : {}),
+          });
+        break;
+      }
+      case 'event': {
+        const existing = state.relationships.find((r) => r.otherId === input.data.other);
+        const applied = !existing || !isDeceasedTie(existing);
+        socialEvent(actor, { ...input.data.event, otherId: input.data.other, at: context.at });
+        events.push({
+          kind: 'social-received',
+          evidenceId: input.data.evidenceId,
+          other: input.data.other,
+          event: { ...input.data.event },
+          applied,
+        });
+        break;
+      }
+      case 'glimpse':
+        glimpse(actor, input.data.target, input.data.signs as OutwardSigns, context.at, input.data.clarity);
+        break;
+      case 'report':
+        hear(
+          actor,
+          input.data.target,
+          input.data.key,
+          input.data.value,
+          context.at,
+          input.data.weight * testimonyWeight(trustOf(actor, input.data.teller)),
+        );
+        break;
+      case 'act':
+        observeAct(actor, input.data.actor, {
+          ...input.data.act,
+          tags: [...input.data.act.tags],
+          at: context.at,
+        });
+        break;
+      case 'acquaintance':
+        acquaintKnown(actor, input.data.target, input.data.familiarity, input.data.known, context.at);
+        break;
+      case 'groups':
+        state.groups.memberOf = [...input.data.self];
+        for (const other of input.data.others) meet(actor, other.person, other.groups, context.at);
+        break;
+      case 'death-heard':
+        if (state.relationships.some((r) => r.otherId === input.data.deceased))
+          markDeceased(actor, input.data.deceased, context.at);
+        break;
+      case 'spouse-role':
+        seedTie(actor, { otherId: input.other, roles: ['spouse'] });
+        break;
+    }
+    return {
+      state,
+      rng: structuredClone(context.rng),
+      effects: { terms: [], modifiers: [], appraisals },
+      events,
+      nextBoundary: null,
+      advancedThrough: context.at,
+    };
+  },
+  validate(state) {
+    const issues: import('../run-schema.ts').ValidationIssue[] = [];
+    const fail = (path: string) =>
+      issues.push({ path, code: 'invalid-schema', message: 'Invalid social evidence' });
+    if (
+      state.relationships.length > SOCIAL_DEFAULTS.maxRelationships ||
+      new Set(state.relationships.map((r) => r.otherId)).size !== state.relationships.length ||
+      state.groups.memberOf.length > GROUP_DEFAULTS.maxGroups ||
+      new Set(state.groups.memberOf).size !== state.groups.memberOf.length ||
+      new Set(state.impressions.map((i) => i.targetId)).size !== state.impressions.length ||
+      (state.groups.outsiderStance !== undefined &&
+        (!Number.isFinite(state.groups.outsiderStance) || Math.abs(state.groups.outsiderStance) > 1)) ||
+      state.impressions.length > IMPRESSION_DEFAULTS.maxImpressions
+    )
+      fail('social');
+    for (const r of state.relationships)
+      if (
+        !r.otherId ||
+        ![r.affection, r.respect, r.trust, r.familiarity, r.ledger].every(Number.isFinite) ||
+        Math.abs(r.affection) > 1 ||
+        Math.abs(r.respect) > 1 ||
+        r.trust < 0 ||
+        r.trust > 1 ||
+        r.familiarity < 0 ||
+        r.familiarity > 1 ||
+        !Number.isSafeInteger(r.lastInteraction) ||
+        (r.deceasedAt !== undefined && !Number.isSafeInteger(r.deceasedAt))
+      )
+        fail('social.relationships');
+    for (const i of state.impressions) {
+      if (
+        !i.targetId ||
+        !Number.isSafeInteger(i.seenAt) ||
+        i.cues.length > IMPRESSION_DEFAULTS.maxCues ||
+        new Set(i.cues.map((c) => c.key)).size !== i.cues.length
+      )
+        fail('social.impressions');
+      for (const c of i.cues)
+        if (
+          !c.key ||
+          !Number.isFinite(c.mean) ||
+          !Number.isFinite(c.weight) ||
+          c.weight < 0 ||
+          !Number.isSafeInteger(c.at)
+        )
+          fail('social.impressions.cues');
+    }
+    return issues;
+  },
+};
