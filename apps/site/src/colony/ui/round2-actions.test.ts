@@ -127,7 +127,7 @@ it('starts on the shelf with one primary, default village and folded import', as
   expect(container.textContent).not.toContain('Lab tools');
 });
 it('copies the current run directly from the game menu without opening feedback', async () => {
-  history.replaceState(null, '', '/?lab=1');
+  history.replaceState(null, '', '/');
   await begin();
   const menu = container.querySelector<HTMLButtonElement>('button[aria-label="Game menu"]');
   await act(() => menu?.click());

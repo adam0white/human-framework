@@ -50,26 +50,24 @@ it('offers gameplay controls publicly and confirms a new game inline', () => {
       onSendWord: vi.fn(),
       canReturn: true,
     });
-  history.replaceState(null, '', '/?lab=0');
+  history.replaceState(null, '', '/');
   const ordinary = mount(render());
   expect(ordinary.textContent).not.toMatch(/cast tools|persona tools/);
   expect(ordinary.textContent).toContain('How the day passes');
   expect(ordinary.textContent).toContain('Experimental');
   expect(ordinary.querySelector('details')?.open).toBe(false);
   expect(ordinary.textContent).toContain('Feedback');
+  expect(ordinary.textContent).toContain('People from this browser');
   const next = [...ordinary.querySelectorAll('button')].find((b) => b.textContent === 'New game');
   flushSync(() => next?.click());
   expect(onTitle).not.toHaveBeenCalled();
   expect(next?.textContent).toContain('Replace');
   flushSync(() => next?.click());
   expect(onTitle).toHaveBeenCalledOnce();
-  history.replaceState(null, '', '/?lab=1');
-  const lab = mount(render());
-  expect(lab.textContent).toContain('People from this browser');
-  expect(lab.textContent).toMatch(/Experimental/);
+  history.replaceState(null, '', '/');
 });
 it('cancels a pending file read through the mounted file input and keeps Feedback reachable', async () => {
-  history.replaceState(null, '', '/voice/?file=1&lab=1');
+  history.replaceState(null, '', '/voice/?file=1');
   let loadedFrame: Frame | null = null;
   let displayedError: string | null = null;
   const cancelFileLoad = vi.fn();

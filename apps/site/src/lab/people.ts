@@ -21,7 +21,11 @@ async function render() {
   for (const summary of list) {
     const article = document.createElement('article');
     const title = document.createElement('h2');
-    title.textContent = summary.castId;
+    try {
+      title.textContent = canonicalCast(summary.castId).name;
+    } catch {
+      title.textContent = summary.castId;
+    }
     article.append(title);
     if (summary.terminal) {
       const closed = document.createElement('p');

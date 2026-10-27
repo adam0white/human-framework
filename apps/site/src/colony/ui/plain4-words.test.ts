@@ -84,7 +84,7 @@ it('renders actual person-sheet risk, prayer and forecast boundaries once', () =
 });
 
 it('names Maryam in the actual Inspector narration and empty-memory line', () => {
-  history.replaceState(null, '', '/?lab=1');
+  history.replaceState(null, '', '/');
   const frame = new ColonyGame(7, createFrameworkHumanSide).frame();
   const why = {
     personId: 'maryam' as const,

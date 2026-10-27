@@ -10,7 +10,7 @@ Write for a busy reader who uses English as a second language. Target grade 7 fo
 6. Describe approximate state clearly: “Ali looks tired.”
 7. Cut words the player does not need.
 
-Use Feedback for feedback. Menus expose Resume, Feedback, Full screen, All games, one Recording switch and New game with inline confirmation. Diagnostic imports, seeds, replay, verification, editions and continuity controls require `?lab=1`. Continuity runs automatically in ordinary play. Keep recording consent separate from fictional continuity. Follow F-491 for one-page feedback and sharing.
+Use Feedback for feedback. Menus expose Resume, Feedback, Full screen, All games, one Recording switch and New game with inline confirmation. Diagnostic imports, seeds, replay, verification and provenance sit in collapsed Debug beside Lab privacy. Cast controls and chosen persona experiments live on the public people shelf. Continuity runs automatically in ordinary play. Keep recording consent separate from fictional continuity. Follow F-491 for one-page feedback and sharing.
 
 ## Source reading check
 

@@ -6,7 +6,7 @@ import type { ReplayResult } from './playtest.ts';
 
 afterEach(() => vi.unstubAllGlobals());
 
-it('keeps replay diagnostics behind the exact lab flag', () => {
+it('keeps the initial replay notice understandable', () => {
   const result: ReplayResult = {
     matches: false,
     hash: 'computed-hash',
@@ -23,14 +23,8 @@ it('keeps replay diagnostics behind the exact lab flag', () => {
         onClose: () => {},
       }),
     );
-  for (const search of ['', '?lab=0']) {
-    vi.stubGlobal('location', { search });
-    expect(render()).toContain('Start a fresh game.');
-    expect(render()).not.toMatch(/computed-hash|saved-hash|source-build|log entry/);
-  }
-  vi.stubGlobal('location', { search: '?lab=1' });
-  expect(render()).not.toContain('computed-hash');
   expect(render()).toContain('Start a fresh game.');
+  expect(render()).not.toMatch(/computed-hash|saved-hash|source-build|log entry/);
   result.matches = true;
   vi.stubGlobal('location', { search: '' });
   expect(render()).toContain('The saved game replayed correctly.');

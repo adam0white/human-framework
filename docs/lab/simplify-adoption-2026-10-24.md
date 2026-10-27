@@ -23,7 +23,7 @@ The compact0.5.7 disclosure is “We record and link play across games on this d
 
 - Mount the actual `telemetryNotice()` node in a stable footer. Do not turn it into a boolean, copy its HTML or replace its text. Central notice state may asynchronously remove that node. Blocked/partitioned frames retain once/origin fallback.
 - Send All games links to `https://human.adamwhite.work/games/` as ordinary top-level navigation. Central outgoing clicks use `gameNavigation(href)`. `createLab` consumes the fresh handoff before recording session initialization and strips the fragment.
-- Keep diagnostic imports, seed/version choices, replay, export, verify and continuity controls behind exact `?lab=1`. `personaChannel` starts continuity automatically. Loaded state stays pinned. No hidden import of people or new cross-device service is added.
+- Keep diagnostic imports, seed/version choices, replay, export and verification in collapsed Debug beside Lab privacy. Put cast controls and chosen persona experiments on the public central shelf. `personaChannel` starts continuity automatically. Loaded state stays pinned. No hidden import of people or new cross-device service is added.
 - Keep one Recording switch. Local Recording off and DNT/GPC remain respected. F-491 automatic linkage and one-page Feedback with optional sharing remain the authority. The default SDK dialog title is Feedback.
 
 A top-level handoff changes future recording identity only. Earlier server records are neither merged nor relabeled. It transfers notice status, not fictional shelf history. Copied/stale/noncentral-referrer/unapproved-destination handoffs are rejected. A later partitioned iframe reply cannot replace the accepted future identity.
