@@ -902,5 +902,17 @@
       "postformat_destination_bytes": 49442
     }
   },
-  "postformat_predicates": "PASS: all977 records/546 reaction strings/times/lexemes,16anonymous vectors and fenced bodies,8prefixes and existing45ask/16return companion preserved."
+  "postformat_predicates": "PASS: all977 records/546 reaction strings/times/lexemes,16anonymous vectors and fenced bodies,8prefixes and existing45ask/16return companion preserved.",
+  "owner_profile_protocol_timing_error": {
+    "participant_arm": "Mei CONT",
+    "actual_supervisor_started": "2026-10-26T21:36:51.839235+00:00",
+    "first_player_clock_observed": "2026-10-26T21:36:58.790367+00:00",
+    "coordination_ruling_entry_timestamp": "2026-10-26T21:34:27.879688+00:00",
+    "B_read_time": "approximately 21:39Z, as recorded in the coordination correction",
+    "B_correction_entry_timestamp": "2026-10-26T21:40:24.745208+00:00",
+    "qualification": "This isolated-profile launch began after the existing signed-in Chrome ruling entry and before B read that ruling. It was a profile-protocol timing error. The historical attempt is retained without restamping and is not evidence of compliance with that profile rule.",
+    "separate_recording_limit": "Recording-on transport conditions and permitted attribution gaps are separate; they do not cure the profile-protocol timing error.",
+    "supervisor_original_sha256": "135c8a84002502fb8cb9fc3377a0c2bf8bfd3856d4588fc959a96d1deaad3e45",
+    "coordination_excerpt_sha256": "2acf22bcf2ac0b522f5859328cdea10b931da8310f6cc01fc010b15e478280bc"
+  }
 }
