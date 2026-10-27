@@ -150,6 +150,7 @@ function inboxFixture(
     accountNeurons?: number | null;
     note?: string;
     overReserveBy?: number;
+    remoteAdditional?: number;
   } = {},
 ) {
   const root = mkdtempSync(join(tmpdir(), 'lab-inbox-script-'));
@@ -179,7 +180,7 @@ function inboxFixture(
   mkdirSync(budgetDir, { recursive: true });
   writeFileSync(join(budgetDir, 'admission-key'), 'test-admission-key');
   const initialNeurons = options.nearDailyCap
-    ? 12_000 - reserve + (options.overReserveBy ?? 0)
+    ? 9_900 - reserve + (options.overReserveBy ?? 0)
     : (options.used ?? 0);
   writeFileSync(
     join(budgetDir, 'budget.json'),
@@ -229,7 +230,7 @@ function inboxFixture(
     globalThis.fetch = async (url, options) => {
       if (String(url) === 'https://human.adamwhite.work/lab/api/wai-budget') {
         const request = JSON.parse(options.body);
-        return Response.json({ admitted: request.neurons <= 12000 });
+        return Response.json({ admitted: request.neurons + ${options.remoteAdditional ?? 0} <= 12000 });
       }
       if (String(url) === 'https://api.cloudflare.com/client/v4/graphql' && ${options.accountNeurons === null}) return Response.json({ errors: [{ message: 'unavailable' }] });
       if (String(url) === 'https://api.cloudflare.com/client/v4/graphql') return Response.json({ data: { viewer: { accounts: [{ aiInferenceAdaptiveGroups: [{ sum: { totalNeurons: ${options.accountNeurons ?? 0} } }] }] } } });
@@ -274,8 +275,12 @@ function inboxFixture(
   };
 }
 describe('lab:inbox entry point without network', () => {
-  it('keeps the 9,500 account stop and 8,000 unknown-account stop', () => {
-    for (const options of [{ accountNeurons: 9500 }, { accountNeurons: null, used: 8000 }]) {
+  it('stops at 9,900 using the greater of account and local usage, or 8,000 when account usage is unknown', () => {
+    for (const options of [
+      { accountNeurons: 9900 },
+      { accountNeurons: 0, used: 9900 },
+      { accountNeurons: null, used: 8000 },
+    ]) {
       const fixture = inboxFixture(1250, undefined, options);
       try {
         fixture.run();
@@ -294,13 +299,26 @@ describe('lab:inbox entry point without network', () => {
       fixture.cleanup();
     }
   });
-  it('stops real request dispatch at the shared 12,000-neuron cap before the old invocation dollar cap', () => {
+  it('stops another request at the 9,900-neuron gate before the invocation dollar cap', () => {
     const fixture = inboxFixture(1250, undefined, { nearDailyCap: true });
     try {
       expect(fixture.run()).toContain('2 calls, 0 cached');
       expect(fixture.dispatches()).toBe(1);
       expect(fixture.html()).toContain('Clef spend stop: response usage unavailable');
       expect(fixture.html().match(/Suggested by Clef/g)).toHaveLength(1);
+    } finally {
+      fixture.cleanup();
+    }
+  });
+  it('stops dispatch if the shared 12,000-neuron cap includes other callers', () => {
+    const fixture = inboxFixture(1250, undefined, { remoteAdditional: 12_000 });
+    try {
+      fixture.run();
+      expect(fixture.dispatches()).toBe(0);
+      expect(fixture.budget().days[new Date().toISOString().slice(0, 10)].reservedNeurons).toBe(
+        fixture.reserve,
+      );
+      expect(fixture.html()).toContain('Clef spend stop: response usage unavailable');
     } finally {
       fixture.cleanup();
     }
@@ -312,7 +330,7 @@ describe('lab:inbox entry point without network', () => {
       const request = JSON.stringify(buildNoteRequest('agent name', note));
       const wrongCharacterReserve = Math.ceil(((request.length + 1024) * 21818) / 1e6);
       expect(fixture.reserve).toBeGreaterThan(wrongCharacterReserve);
-      expect(fixture.initialNeurons + wrongCharacterReserve).toBeLessThanOrEqual(12_000);
+      expect(fixture.initialNeurons + wrongCharacterReserve).toBeLessThanOrEqual(9_900);
       expect(fixture.run()).toContain('1 calls, 0 cached; 0.00000000 USD');
       expect(fixture.dispatches()).toBe(0);
       const day = fixture.budget().days[new Date().toISOString().slice(0, 10)];
@@ -416,7 +434,7 @@ describe('lab:inbox entry point without network', () => {
       }
     },
   );
-  it('does not retry a bad answer and counts known usage toward the shared daily cap', () => {
+  it('does not retry a bad answer and counts known usage toward the daily gate', () => {
     const fixture = inboxFixture(1250, 'answer', { nearDailyCap: true });
     try {
       expect(fixture.run()).toContain('2 calls, 0 cached; 0.00030000 USD');
