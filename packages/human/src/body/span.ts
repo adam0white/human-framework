@@ -332,7 +332,8 @@ export function advanceHazard(
   let h = copy<HazardContinuation>(input),
     at = from,
     calls = 0,
-    cells = 0;
+    ownCells = 0,
+    forcedCells = 0;
   if (!h.threshold && lambda(from) > 0)
     return {
       hazard: { ...h, materializedAtMs: from, clock: { ...h.clock, advancedThroughMs: from } },
@@ -344,12 +345,16 @@ export function advanceHazard(
       end = h.acceptedThroughMs;
     if (!cell || at >= end) {
       const start = cell ? end : h.clock.conditionAnchorMs;
-      const width = Math.min(Math.max(1, h.nextTrialWidthMinutes * 60000), coverageAt(start) - start);
+      const trial = Math.max(1, h.nextTrialWidthMinutes * 60000),
+        width = Math.min(trial, coverageAt(start) - start);
+      if (width < trial) forcedCells++;
+      else ownCells++;
       if (width < 1) throw new RangeError('missing canonical hazard forcing interval');
       if (start + width > coverageTo) throw new RangeError('trajectory does not cover canonical hazard cell');
       const r = integrateCell(start, [h.acceptedIntegral], width, (t) => [lambda(t)], 1e-12, [1], [0]);
       calls += r.calls;
-      if (calls > 8192 || ++cells > 1024) throw new RangeError('limit-exceeded: hazard span');
+      if (spanBudgetExceeded(calls, ownCells, forcedCells))
+        throw new RangeError('limit-exceeded: hazard span');
       cell = required(r.cells[0]);
       end = r.to;
       h = {
@@ -428,6 +433,15 @@ export function required<T>(value: T | null | undefined): T {
   return value;
 }
 /** Canonical forcing segmentation, never the requested materialization target. */
+/**
+ * Work budget for one integrated span. A cell cut short by a forcing boundary (a segment end of an upstream
+ * trajectory) is bounded by that trajectory's own budget, so only cells whose width the integrator chose
+ * count against `CELLS`; the call budget grows with every cell. A fixed cap on all cells failed ordinary
+ * 24-hour fine steps whose needs and body paths carry several hundred segments.
+ */
+export const SPAN_CELLS = 1024;
+export const spanBudgetExceeded = (calls: number, ownCells: number, forcedCells: number): boolean =>
+  ownCells > SPAN_CELLS || calls > 8 * (SPAN_CELLS + forcedCells);
 export function nextPathBoundary(at: number, paths: readonly DeepReadonly<ScalarTrajectory>[]): number {
   let end = Infinity;
   for (const p of paths) {

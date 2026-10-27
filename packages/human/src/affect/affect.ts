@@ -1,4 +1,4 @@
-import { freezeData, required } from '../body/span.ts';
+import { freezeData, required, spanBudgetExceeded } from '../body/span.ts';
 /** SCOPE: source OCC appraisal, exact emotion decay and continuously forced mood.
  * No clinical prediction or spiritual assessment. */
 
@@ -241,6 +241,8 @@ const advance: T.AffectOwner['advance'] = (state, ctx) => {
     pathsA: T.ScalarTrajectory['segments'][number][] = [];
   let at = ctx.from,
     calls = 0,
+    ownCells = 0,
+    forcedCells = 0,
     mood = { ...state.mood };
   while (at < to) {
     let end = c.acceptedThroughMs;
@@ -250,10 +252,13 @@ const advance: T.AffectOwner['advance'] = (state, ctx) => {
         c.valenceCell && c.arousalCell
           ? [evaluateCell(c.valenceCell, end), evaluateCell(c.arousalCell, end)]
           : [c.anchorMood.valence, c.anchorMood.arousal];
-      const width = Math.min(
-        c.nextTrialWidthMinutes * 60000,
-        nextPathBoundary(start, [ctx.needs.satisfaction, ...ctx.body.fields.map((f) => f.path)]) - start,
-      );
+      const trial = c.nextTrialWidthMinutes * 60000,
+        width = Math.min(
+          trial,
+          nextPathBoundary(start, [ctx.needs.satisfaction, ...ctx.body.fields.map((f) => f.path)]) - start,
+        );
+      if (width < trial) forcedCells++;
+      else ownCells++;
       if (start + width > ctx.needs.to) throw new RangeError('NeedTrajectory must cover canonical mood cell');
       const cell = integrateCell(start, y, width, (t, y) => {
         const es = emotionAt(t);
@@ -278,7 +283,8 @@ const advance: T.AffectOwner['advance'] = (state, ctx) => {
         ];
       });
       calls += cell.calls;
-      if (calls > 8192 || pathsV.length >= 1024) throw new RangeError('limit-exceeded: affect span');
+      if (spanBudgetExceeded(calls, ownCells, forcedCells))
+        throw new RangeError('limit-exceeded: affect span');
       c = {
         ...c,
         anchorMood: { valence: required(y[0]), arousal: required(y[1]) },

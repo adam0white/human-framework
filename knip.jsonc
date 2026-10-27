@@ -9,7 +9,7 @@
   "workspaces": {
     ".": {
       "entry": [
-        "scripts/{api-doc,bench-thousand-lives,bench-village,continue-old-engine,deploy,install-wai-daily,lab-inbox,lab-ledger,lab-phone,lab-plain-english,lab-play,lab-wai-budget,lab-wai-play,lane,lockfile-sync,make-engine-fixture,pack-smoke,release,site-smoke,suite-lock}.ts",
+        "scripts/{api-doc,bench-run,continue-old-engine,deploy,install-wai-daily,lab-inbox,lab-ledger,lab-phone,lab-plain-english,lab-play,lab-wai-budget,lab-wai-play,lane,lockfile-sync,pack-smoke,release,site-smoke,suite-lock}.ts",
         "scripts/**/*.test.ts",
         "docs/lab/experiments/clairic-triage-2026-10-20/{bakeoff,score}.ts",
         "docs/lab/experiments/free-text-2026-10-23/{benchmark,score}.ts",

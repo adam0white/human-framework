@@ -21,16 +21,16 @@ The HF games are at [adamwhite.work](https://adamwhite.work). Each one names the
 A host uses eight calls. Each takes and returns plain data, and each failure is a `Result` with a typed
 `ContractError` rather than an exception.
 
-| Call | What it does |
-| --- | --- |
-| `createRun(spec)` | Starts a run from a seed, a start time, the host's definitions (actions, norms, skills, methods, calendar), the lifecycle and the world. |
-| `createPerson(run, authoring)` | Adds one person from authored state. Portable admission is rejected in 4.0. |
+| Call                                      | What it does                                                                                                                                                             |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `createRun(spec)`                         | Starts a run from a seed, a start time, the host's definitions (actions, norms, skills, methods, calendar), the lifecycle and the world.                                 |
+| `createPerson(run, authoring)`            | Adds one person from authored state. Portable admission is rejected in 4.0.                                                                                              |
 | `step(run, { until, fidelity?, inputs })` | Advances to `until`, applying the timestamped inputs. It stops early at a `world-required` boundary when people need the host to resolve their actions or communication. |
-| `inspect(run, query)` | Reads actual state, from the host's view or from one person's own view. It never changes the run. |
-| `preview(run, query)` | Answers "what would happen if": the same step on a detached copy. It never changes the run. |
-| `exportRun(run)` | Returns the archive: spec, input log, current state and hashes. It is the save and the playtest export. |
-| `restoreRun(archive)` | Rebuilds a run from an archive after checking it. |
-| `replay(archive)` | Re-runs the input log from the spec and checks every hash. |
+| `inspect(run, query)`                     | Reads actual state, from the host's view or from one person's own view. It never changes the run.                                                                        |
+| `preview(run, query)`                     | Answers "what would happen if": the same step on a detached copy. It never changes the run.                                                                              |
+| `exportRun(run)`                          | Returns the archive: spec, input log, current state and hashes. It is the save and the playtest export.                                                                  |
+| `restoreRun(archive)`                     | Rebuilds a run from an archive after checking it.                                                                                                                        |
+| `replay(archive)`                         | Re-runs the input log from the spec and checks every hash.                                                                                                               |
 
 `projectChapterClock(clock, untilWallMs)` is a pure helper for hosts that pace a story by wall time.
 
@@ -44,7 +44,15 @@ the only writer of the world.
 [`examples/minimal.ts`](https://github.com/adam0white/human-framework/blob/main/packages/human/examples/minimal.ts) is a complete host in one file. Its shape is:
 
 ```ts
-import { createPerson, createRun, exportRun, inspect, replay, restoreRun, step } from '@adam0white/human-framework';
+import {
+  createPerson,
+  createRun,
+  exportRun,
+  inspect,
+  replay,
+  restoreRun,
+  step,
+} from '@adam0white/human-framework';
 
 const run = need(createRun(spec)); // seed, start, definitions, lifecycle, world
 need(createPerson(run, ada)); // authored state: body, character, agenda, habits, norms...
@@ -54,7 +62,13 @@ while (result.boundary.type === 'world-required') {
   const resolutions = result.boundary.requests.map((request) => resolve(request, world));
   result = need(step(run, { until, inputs: resolutions }));
 }
-const view = need(inspect(run, { perspective: { kind: 'person', observer: 'ada' }, people: ['ada'], select: ['summary', 'events'] }));
+const view = need(
+  inspect(run, {
+    perspective: { kind: 'person', observer: 'ada' },
+    people: ['ada'],
+    select: ['summary', 'events'],
+  }),
+);
 const save = exportRun(run); // JSON; restoreRun(save) continues it, replay(save) verifies it
 ```
 
@@ -102,14 +116,14 @@ A suggestion is one urge among many. Its weight is strength × trust in the voic
 fits the person's motives, and a suggestion alone never overrides a veto. Each one resolves to a typed
 verdict (`SuggestionResolution`):
 
-| verdict     | meaning                                                                                                                         | `kind`               |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
-| `assented`  | the suggested option won                                                                                                        | none                 |
-| `deferred`  | the person's own preference won; carries a `counterOffer` ("after I eat lunch")                                                 | `notNow`             |
-| `modified`  | a near alternative with the same action or aim won; the `counterOffer` names it                                                 | `notNow`             |
-| `refused`   | cannot (asleep, exhausted, skill far too low, a pressing bodily need) or will not (a firmly held norm, broken trust)            | `cannot` / `willNot` |
-| `complied`  | the voice insisted on a "not now"; done under protest (`activity.protest`), at a cost to autonomy and trust                     | `notNow`             |
-| `commanded` | the host gave a direct order (`coercion.received`); the person does the order whatever they would have chosen | none                 |
+| verdict     | meaning                                                                                                              | `kind`               |
+| ----------- | -------------------------------------------------------------------------------------------------------------------- | -------------------- |
+| `assented`  | the suggested option won                                                                                             | none                 |
+| `deferred`  | the person's own preference won; carries a `counterOffer` ("after I eat lunch")                                      | `notNow`             |
+| `modified`  | a near alternative with the same action or aim won; the `counterOffer` names it                                      | `notNow`             |
+| `refused`   | cannot (asleep, exhausted, skill far too low, a pressing bodily need) or will not (a firmly held norm, broken trust) | `cannot` / `willNot` |
+| `complied`  | the voice insisted on a "not now"; done under protest (`activity.protest`), at a cost to autonomy and trust          | `notNow`             |
+| `commanded` | the host gave a direct order (`coercion.received`); the person does the order whatever they would have chosen        | none                 |
 
 Insisting (`insist: true`) turns only a `notNow` into compliance, and not when a bodily need is pressing. It
 never overrides `cannot` or `willNot`.

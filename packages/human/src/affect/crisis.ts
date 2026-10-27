@@ -1,4 +1,4 @@
-import { freezeData, rebaseHazard, required } from '../body/span.ts';
+import { freezeData, rebaseHazard, required, spanBudgetExceeded } from '../body/span.ts';
 /** SCOPE: uncalibrated crisis onset, generic restricted assent and source recovery.
  * No invented world action, psychiatric diagnosis or spontaneous comfort. */
 
@@ -151,7 +151,9 @@ const advance: T.CrisisOwner['advance'] = (state, ctx) => {
       c.recovery.anchorMs + Math.ceil((c.recovery.remainingWorkMinutesAtAnchor / rate) * 60000),
     );
   let at = ctx.from,
-    calls = 0;
+    calls = 0,
+    ownCells = 0,
+    forcedCells = 0;
   const stressCells: T.ScalarCell[] = [];
   while (at < to) {
     let cell = c.stressCell,
@@ -159,14 +161,17 @@ const advance: T.CrisisOwner['advance'] = (state, ctx) => {
     if (!cell || at >= end) {
       const start = cell ? end : c.clock.conditionAnchorMs;
       const y = cell ? evaluateCell(cell, end) : c.stressAtAnchor;
-      const width = Math.min(
-        c.nextTrialWidthMinutes * 60000,
-        nextPathBoundary(start, [
-          ctx.mood.valence,
-          ctx.mood.arousal,
-          ...ctx.mood.emotions.map((e) => e.intensity),
-        ]) - start,
-      );
+      const trial = c.nextTrialWidthMinutes * 60000,
+        width = Math.min(
+          trial,
+          nextPathBoundary(start, [
+            ctx.mood.valence,
+            ctx.mood.arousal,
+            ...ctx.mood.emotions.map((e) => e.intensity),
+          ]) - start,
+        );
+      if (width < trial) forcedCells++;
+      else ownCells++;
       if (start + width > ctx.mood.to) throw new RangeError('mood path must cover canonical stress cell');
       const r = integrateCell(start, [y], width, (t, y) => {
         const q =
@@ -178,7 +183,8 @@ const advance: T.CrisisOwner['advance'] = (state, ctx) => {
         return [(y[0] ?? 0) >= 1 && q > 0 ? 0 : q];
       });
       calls += r.calls;
-      if (calls > 8192 || stressCells.length > 1024) throw new RangeError('limit-exceeded: stress span');
+      if (spanBudgetExceeded(calls, ownCells, forcedCells))
+        throw new RangeError('limit-exceeded: stress span');
       cell = required(r.cells[0]);
       end = r.to;
       c = {
