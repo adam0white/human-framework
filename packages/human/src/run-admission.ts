@@ -2,8 +2,9 @@
  * snapshot and returns detached canonical inputs. It never mutates run state.
  * Faculty/reference and lifecycle admission remains in the owning validators.
  */
-import { PERSON_DEFAULTS } from './run-person-priors.ts';
+
 import { compareCodePoints } from './run-canonical.ts';
+import { PERSON_DEFAULTS } from './run-person-priors.ts';
 import type {
   ContractError,
   DeepReadonly,
@@ -63,9 +64,18 @@ export function checkPersonAuthoring(
   const parsed = validateData('PersonAuthoring', input);
   if (!parsed.ok) return parsed;
   const person = parsed.value;
-  if(!Number.isSafeInteger(person.state.retention.trace)||person.state.retention.trace<0||person.state.retention.trace>PERSON_DEFAULTS.maxTrace||
-    !Number.isSafeInteger(person.state.retention.chronicleDays)||person.state.retention.chronicleDays<31)
-    return fail('invalid-admission','$.state.retention','trace must be within the source bound and chronicleDays must retain at least31 days');
+  if (
+    !Number.isSafeInteger(person.state.retention.trace) ||
+    person.state.retention.trace < 0 ||
+    person.state.retention.trace > PERSON_DEFAULTS.maxTrace ||
+    !Number.isSafeInteger(person.state.retention.chronicleDays) ||
+    person.state.retention.chronicleDays < 31
+  )
+    return fail(
+      'invalid-admission',
+      '$.state.retention',
+      'trace must be within the source bound and chronicleDays must retain at least31 days',
+    );
   if (started) return fail('closed-time', '$', 'authored people must be constructed before the first step');
   if (Object.hasOwn(state.people, person.id)) return fail('duplicate-id', '$.id', 'person already exists');
   if (person.identity.birthAt > state.at || !Number.isSafeInteger(state.at - person.identity.birthAt))
@@ -361,12 +371,23 @@ export function checkRunSpec(input: unknown): Result<DeepReadonly<import('./run-
       ids.add(row.id);
     }
   }
-  for(const routine of spec.definitions.routines) {
-    const person=routine.entries[0]?.offer.person,ids=new Set<Id>();
-    for(const entry of routine.entries) {
-      if(ids.has(entry.id)||entry.offer.person!==person||entry.at<spec.start||entry.offer.durationMs<1||
-        !Number.isSafeInteger(entry.offer.durationMs)||!spec.definitions.actions.some(action=>action.id===entry.offer.actionId))
-        return fail('invalid-admission','$.definitions.routines','Each routine belongs to one actor and has distinct valid future entries');
+  for (const routine of spec.definitions.routines) {
+    const person = routine.entries[0]?.offer.person,
+      ids = new Set<Id>();
+    for (const entry of routine.entries) {
+      if (
+        ids.has(entry.id) ||
+        entry.offer.person !== person ||
+        entry.at < spec.start ||
+        entry.offer.durationMs < 1 ||
+        !Number.isSafeInteger(entry.offer.durationMs) ||
+        !spec.definitions.actions.some((action) => action.id === entry.offer.actionId)
+      )
+        return fail(
+          'invalid-admission',
+          '$.definitions.routines',
+          'Each routine belongs to one actor and has distinct valid future entries',
+        );
       ids.add(entry.id);
     }
   }

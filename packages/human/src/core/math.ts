@@ -1,5 +1,6 @@
 /** Internal minute-based arithmetic; public run clocks remain milliseconds. */
 const MINUTES_PER_DAY = 24 * 60;
+
 import { dexp, dlog, dpow } from './libm.ts';
 
 /** Clamp into [min, max]. NaN maps to `min`, so one bad host number cannot propagate through state. */

@@ -1,7 +1,8 @@
 /** SCOPE: pure lifecycle inspection from current model or held evidence.
  * No source equations live here. Customs and kin completeness remain premises. */
-import { cloneData } from './core/clone.ts';
+
 import { ageYearsAt } from './body/span.ts';
+import { cloneData } from './core/clone.ts';
 import * as family from './family/family.ts';
 import { developmentForAge, learningMultiplier } from './lifecourse/development.ts';
 import { chronicHazard, chronicRiskPerYear } from './lifecourse/health.ts';
@@ -11,10 +12,15 @@ import { hashCanonical } from './run-canonical.ts';
 import { freezeData, readKernel } from './run-kernel.ts';
 import { OWNERS } from './run-owners.ts';
 import type * as T from './run-schema.ts';
-export function knownKin(state: T.DeepReadonly<T.RunState>, scopeId: T.Id, people:readonly[T.Id,T.Id]): T.KinSnapshot {
+export function knownKin(
+  state: T.DeepReadonly<T.RunState>,
+  scopeId: T.Id,
+  people: readonly [T.Id, T.Id],
+): T.KinSnapshot {
   const scope = state.lifecycle.kinScopes.find((scope) => scope.id === scopeId);
   if (!scope) throw new RangeError('Unknown declared kin scope');
-  if(new Set(people).size!==2||!people.every(id=>scope.people.some(person=>person.id===id)))throw new RangeError('Kin scope does not certify the requested pair');
+  if (new Set(people).size !== 2 || !people.every((id) => scope.people.some((person) => person.id === id)))
+    throw new RangeError('Kin scope does not certify the requested pair');
   if (scope.kinRevision !== state.lifecycle.kinRevision || scope.at !== state.at)
     throw new RangeError('Kin scope is not current');
   return {
@@ -221,7 +227,7 @@ export function inspectLifecycle(
         value = {
           ...base,
           query: { ...q, kind: 'kinship' },
-          value: partnering.kinship(knownKin(state, q.kinScopeId,[q.a,q.b]), q.a, q.b),
+          value: partnering.kinship(knownKin(state, q.kinScopeId, [q.a, q.b]), q.a, q.b),
         };
         break;
       case 'age':
@@ -301,7 +307,7 @@ export function inspectLifecycle(
       case 'can-marry': {
         const custom = record.spec.definitions.marriageCustoms.find((custom) => custom.id === q.customId);
         if (!custom) throw new RangeError('Unknown marriage custom');
-        const kin = knownKin(state, q.kinScopeId,[q.a,q.b]);
+        const kin = knownKin(state, q.kinScopeId, [q.a, q.b]);
         value = {
           ...base,
           query: q,

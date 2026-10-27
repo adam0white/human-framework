@@ -216,7 +216,8 @@ function validate(s: DeepReadonly<PromptingsState>): ValidationIssue[] {
 }
 function checked(s: DeepReadonly<PromptingsState>): PromptingsState {
   const issues = validate(s);
-  if (issues.length) throw new RangeError(issues[0]!.message);
+  const [issue] = issues;
+  if (issue) throw new RangeError(issue.message);
   return cloneData(s) as PromptingsState;
 }
 export const promptingsOwner: PromptingsOwner = {
@@ -330,13 +331,15 @@ export const promptingsOwner: PromptingsOwner = {
       }
     }
     for (const [id, gain] of gains) {
-      const r = s.responses.find((r) => r.id === id)!;
+      const r = s.responses.find((r) => r.id === id);
+      if (!r) throw new RangeError(`Missing prompting response ${id}`);
       const value = practiceAt(r, context.at, context.effective.promptings.practiceHalfLifeDays);
       r.practice = round(unit(value + gain * (1 - value)));
       r.lastUsedAt = context.at;
     }
     s.recent = s.recent.slice(-K.maxRecent);
-    const keys = Object.keys(s.echo).sort((a, b) => s.echo[a]!.at - s.echo[b]!.at || (a < b ? -1 : 1));
+    const at = (key: string) => s.echo[key]?.at ?? 0;
+    const keys = Object.keys(s.echo).sort((a, b) => at(a) - at(b) || (a < b ? -1 : 1));
     for (const key of keys.slice(0, Math.max(0, keys.length - K.maxEcho))) delete s.echo[key];
     return {
       state: s,

@@ -3,8 +3,8 @@
  * No host adapter, migration, repair, or archived-state execution shortcut.
  */
 
-import { cloneData } from './core/clone.ts';
 import { projectChapterClock } from './chapter-clock.ts';
+import { cloneData } from './core/clone.ts';
 import { compareInputs } from './run-admission.ts';
 import { archiveHashes, checkArchiveEnvelope } from './run-archive.ts';
 import { canonicalJson, hashCanonical } from './run-canonical.ts';

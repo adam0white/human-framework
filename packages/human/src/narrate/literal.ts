@@ -29,7 +29,8 @@ const LABELS: Readonly<Record<string, string>> = {
   'make-up': 'a missed commitment to complete later',
 };
 export function labelLine(label: string): string {
-  if (Object.hasOwn(LABELS, label)) return LABELS[label]!;
+  const known = Object.hasOwn(LABELS, label) ? LABELS[label] : undefined;
+  if (known !== undefined) return known;
   if (label.startsWith('make-up ')) {
     const name = label.slice(8);
     if (Object.hasOwn(LABELS, name)) return `${LABELS[name]}, performed later because it was missed`;
@@ -57,7 +58,8 @@ const REASONS: Readonly<Record<string, string>> = {
   'need:survival': 'I need to meet an urgent bodily need first.',
 };
 export function reasonLine(reason: string): string {
-  if (Object.hasOwn(REASONS, reason)) return REASONS[reason]!;
+  const known = Object.hasOwn(REASONS, reason) ? REASONS[reason] : undefined;
+  if (known !== undefined) return known;
   const key = reason.split(':')[0];
   switch (key) {
     case 'duty':
@@ -281,11 +283,13 @@ export const rendererOwner: RendererOwner = {
     const slot =
       stableHash(JSON.stringify(['hf4:renderer:v1', seed, event.id, event.data.kind, audience])) %
       variants.length;
+    const text = variants[slot];
+    if (text === undefined) return [];
     return [
       {
         eventId: event.id,
         audience: cloneData(perspective),
-        text: variants[slot]!,
+        text,
         variantId: `en:${event.data.kind}:${slot}`,
       },
     ];

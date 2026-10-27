@@ -114,7 +114,7 @@ function validate(s: DeepReadonly<State>): ValidationIssue[] {
   );
   const bad = (path: string) =>
     issues.push({ path, code: 'invalid-schema', message: 'Invalid character state' });
-  if (!s || !s.character || !s.traits || !s.values)
+  if (!s?.character || !s.traits || !s.values)
     return [{ path: 'character', code: 'invalid-schema', message: 'Required character state missing' }];
   for (const [record, keys, path] of [
     [s.traits, TRAIT_KEYS, 'traits'],
@@ -170,7 +170,8 @@ function validate(s: DeepReadonly<State>): ValidationIssue[] {
 }
 const checked = (s: DeepReadonly<State>): State => {
   const issues = validate(s);
-  if (issues.length) throw new RangeError(issues[0]!.message);
+  const [issue] = issues;
+  if (issue) throw new RangeError(issue.message);
   return cloneData(s) as State;
 };
 /** Pure source maturation from a retained semantic anchor. No RNG or caller endpoint. */
@@ -442,14 +443,15 @@ export const characterOwner: CharacterOwner = {
     };
   },
   deriveTraits(parents, cursor) {
-    if (parents.length !== 2) throw new RangeError('Two parents required');
+    const [mother, father] = parents;
+    if (parents.length !== 2 || !mother || !father) throw new RangeError('Two parents required');
     const rng = cloneData(cursor);
     if (cursor.status !== 'active') throw new RangeError('Completed inheritance cursor');
     const traits = {} as Traits;
     const h = 0.3,
       sd = 0.15 * Math.sqrt(1 - (h * h) / 2);
     for (const key of TRAIT_KEYS) {
-      const mid = (parents[0]![key] + parents[1]![key]) / 2;
+      const mid = (mother[key] + father[key]) / 2;
       traits[key] = clamp(0.5 + h * (mid - 0.5) + normal(rng.words, 0, sd), 0.02, 0.98);
     }
     rng.uniformDraws += 12;

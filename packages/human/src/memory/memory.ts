@@ -276,7 +276,8 @@ function checked(
   allocations: readonly Reference[] = [],
 ): MemoryOwnedState {
   const issues = validateMemory(state, allocations);
-  if (issues.length) throw new RangeError(issues[0]!.message);
+  const [issue] = issues;
+  if (issue) throw new RangeError(issue.message);
   return cloneData(state) as MemoryOwnedState;
 }
 function trim<T extends Episode>(
@@ -304,7 +305,7 @@ function trim<T extends Episode>(
         score = value;
       }
     });
-    gone.push(list.splice(worst, 1)[0]!);
+    gone.push(...list.splice(worst, 1));
   }
   return gone;
 }

@@ -106,10 +106,10 @@ export function prepareConversation(
     const parsed = parseTraitProp(prop),
       about = parsed?.personId,
       backbiting =
-        about !== undefined &&
+        parsed !== undefined &&
         about !== s.id &&
         about !== input.listener &&
-        isUnfavourableTrait(parsed!.trait, value);
+        isUnfavourableTrait(parsed.trait, value);
     let score = base;
     if (input.topicIds.some((t) => prop === t || prop.startsWith(`${t}:`))) score += R.topic;
     if (about) score += R.feeling * Math.abs(affection(about));

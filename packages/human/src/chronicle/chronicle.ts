@@ -286,8 +286,11 @@ function append(
   for (const d of state.days) delete d.state;
   state.days.push(record);
   const newest = record.day;
-  while (state.days.length > 1 && (state.days.length > K.maxDays || newest - state.days[0]!.day > retention))
-    foldDay(state.years, state.days.shift()!, K);
+  for (let oldest = state.days[0]; oldest && state.days.length > 1; oldest = state.days[0]) {
+    if (state.days.length <= K.maxDays && newest - oldest.day <= retention) break;
+    state.days.shift();
+    foldDay(state.years, oldest, K);
+  }
   state.open = openDay(record.day + 1, record.state ?? state.open.baseline);
 }
 function validate(s: DeepReadonly<State>): ValidationIssue[] {
@@ -491,7 +494,8 @@ function validate(s: DeepReadonly<State>): ValidationIssue[] {
 }
 function checked(s: DeepReadonly<State>): State {
   const issues = validate(s);
-  if (issues.length) throw new RangeError(issues[0]!.message);
+  const [issue] = issues;
+  if (issue) throw new RangeError(issue.message);
   return cloneData(s) as State;
 }
 const result = (state: State, at: number): ReturnType<ChronicleOwner['receive']> => ({

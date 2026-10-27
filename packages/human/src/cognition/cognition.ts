@@ -1,11 +1,11 @@
 /** SCOPE: one source of decision terms, composed from faculty-owned projections. */
 
-import { cloneData } from '../core/clone.ts';
 import * as affectModule from '../affect/affect.ts';
 import { agendaTermsWithGoalEstimates } from '../agenda/agenda.ts';
 import { trustOf } from '../beliefs/beliefs.ts';
 import { bodyOwner } from '../body/body.ts';
 import { normTerms } from '../conscience/conscience.ts';
+import { cloneData } from '../core/clone.ts';
 import { clamp01, cmpStr, dexp, round } from '../core/index.ts';
 import { keysOf } from '../core/keys.ts';
 import { curiosityTerms } from '../curiosity/curiosity.ts';

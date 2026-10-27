@@ -1,9 +1,9 @@
 /** SCOPE: one always-present bounded route from attended, source-labelled consequence claims.
  * No action execution, world facts, old planning selector or legacy restoration. */
 
-import { cloneData } from '../core/clone.ts';
 import { temporalGoalValue } from '../agenda/agenda.ts';
 import { trustOf } from '../beliefs/beliefs.ts';
+import { cloneData } from '../core/clone.ts';
 import { cmpStr, round } from '../core/index.ts';
 import * as memoryModule from '../memory/memory.ts';
 import { projectDiminishes } from '../projects/projects.ts';
@@ -251,10 +251,7 @@ export function receivedGoalRoute(
         cost = round(nextCost);
       const total = nextValues.reduce((sum, value) => sum + round(value * maturityScale), 0) + cost,
         nextPath = [...path, entry],
-        nextSteps = [
-          ...steps,
-          { successor: cloneData(entry.successor), start, end, access: nextAccess },
-        ];
+        nextSteps = [...steps, { successor: cloneData(entry.successor), start, end, access: nextAccess }];
       if (round(total - bestScore) > 0) {
         bestScore = total;
         const root = nextPath[0];

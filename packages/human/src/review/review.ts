@@ -65,7 +65,8 @@ export function reviewTerms(
   value = round(Math.max(-REVIEW_DEFAULTS.resolveScale, Math.min(REVIEW_DEFAULTS.resolveScale, value)));
   if (!value) return [];
   const term: Term = { source: 'review:resolve', value };
-  if (used.size === 1) term.ref = [...used][0]!;
+  const [only] = used;
+  if (used.size === 1 && only !== undefined) term.ref = only;
   return [term];
 }
 function validate(s: DeepReadonly<ReviewState>): ValidationIssue[] {
@@ -137,7 +138,8 @@ function validate(s: DeepReadonly<ReviewState>): ValidationIssue[] {
 }
 function checked(s: DeepReadonly<ReviewState>): ReviewState {
   const issues = validate(s);
-  if (issues.length) throw new RangeError(issues[0]!.message);
+  const [issue] = issues;
+  if (issue) throw new RangeError(issue.message);
   return cloneData(s) as ReviewState;
 }
 /** Closed evidence port including the current day; requested for C0 schema routing. */

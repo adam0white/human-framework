@@ -57,7 +57,7 @@ function signs(
       if (e.targetId !== undefined) fearOf[e.targetId] = unit((fearOf[e.targetId] ?? 0) + e.intensity);
     }
   const shown: Record<string, number> = {};
-  for (const id of Object.keys(fearOf).sort()) shown[id] = round(fearOf[id]! * (1 - reserve('fear')));
+  for (const id of Object.keys(fearOf).sort()) shown[id] = round((fearOf[id] ?? 0) * (1 - reserve('fear')));
   return {
     fatigue: round(body.perceived.fatigue * (1 - reserve('fatigue'))),
     pain: round(

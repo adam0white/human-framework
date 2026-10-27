@@ -2,13 +2,11 @@
  * once. Full history materialization and canonical hashes belong to cold export.
  */
 import { cloneData } from './core/clone.ts';
-import { PORTABLE_ADMISSION_REJECTED, checkPersonAuthoring, checkRunSpec } from './run-admission.ts';
+import { checkPersonAuthoring, checkRunSpec, PORTABLE_ADMISSION_REJECTED } from './run-admission.ts';
 import { archiveHashes } from './run-archive.ts';
 import { hashCanonical } from './run-canonical.ts';
 import { Frame } from './run-dispatch.ts';
 import { RUN_ENGINE } from './run-engine.ts';
-import { restoreCurrentRun,replayCurrentRun } from './run-recovery.ts';
-import { step } from './run-step.ts';
 import { inspectCurrentRun } from './run-inspect.ts';
 import { validateActor } from './run-integrity.ts';
 import {
@@ -16,16 +14,18 @@ import {
   freezeData,
   historyEntries,
   makeKernel,
-  readKernel,
   readChapterProjection,
+  readKernel,
   stageTransaction,
 } from './run-kernel.ts';
 import { inspectLifecycle } from './run-lifecycle.ts';
 import { OWNERS } from './run-owners.ts';
 import { buildParameters } from './run-parameters.ts';
 import { constructAuthoredActor } from './run-person.ts';
+import { replayCurrentRun, restoreCurrentRun } from './run-recovery.ts';
 import { calendarSchedule } from './run-scheduler.ts';
 import type * as T from './run-schema.ts';
+import { step } from './run-step.ts';
 import { validateData } from './run-validation.ts';
 
 export function createRun(spec: T.RunSpec): T.Result<T.Run> {
@@ -141,7 +141,7 @@ export function createPerson(run: T.Run, input: T.DeepReadonly<T.PersonAuthoring
   ];
   // This is still the authored opening, so further declared cast members may be
   // constructed. No accepted transaction or fake social observation is recorded.
-  new Frame(record,stage).installDefinitionRoutines(person.id);
+  new Frame(record, stage).installDefinitionRoutines(person.id);
   commitTransaction(run, stage, false);
   record.initialPeople = [...record.initialPeople, person];
   return { ok: true, value: person.id };
@@ -174,45 +174,78 @@ export function inspect(
   const parsed = validateData('InspectQuery', input);
   if (!parsed.ok) return parsed;
   const { lifecycle, ...query } = parsed.value;
-  if(new Set(query.select).size!==query.select.length)
-    return {ok:false,error:{code:'duplicate-id',path:'$.select',message:'Duplicate inspection selection'}};
-  const chapter=query.perspective.kind==='host'&&query.select.includes('chapter');
-  const result = inspectCurrentRun(run,chapter?{...query,select:query.select.filter(select=>select!=='chapter')}:query);
-  if(!result.ok)return result;
-  let value:T.DeepReadonly<T.Inspection>=result.value;
-  if(chapter) {
-    const people:T.DeepReadonly<T.PersonView>[]=[];
-    for(const person of value.people) {
-      if(person.kind!=='host')return {ok:false,error:{code:'invalid-admission',path:'$.perspective',message:'Host chapter requires a host view'}};
-      const projection=readChapterProjection(run,person.id);
-      if(!projection)return {ok:false,error:{code:'invalid-admission',path:'$.select.chapter',message:`No admitted chapter preparation for ${person.id}`}};
-      const parts:T.DeepReadonly<T.SelectedPart<T.HostParts>>[]=[];
-      for(const select of query.select) {
-        if(select==='chapter')parts.push({select:'chapter',value:projection});
-        else {const part=person.parts.find(part=>part.select===select);if(part)parts.push(part);}
+  if (new Set(query.select).size !== query.select.length)
+    return {
+      ok: false,
+      error: { code: 'duplicate-id', path: '$.select', message: 'Duplicate inspection selection' },
+    };
+  const chapter = query.perspective.kind === 'host' && query.select.includes('chapter');
+  const result = inspectCurrentRun(
+    run,
+    chapter ? { ...query, select: query.select.filter((select) => select !== 'chapter') } : query,
+  );
+  if (!result.ok) return result;
+  let value: T.DeepReadonly<T.Inspection> = result.value;
+  if (chapter) {
+    const people: T.DeepReadonly<T.PersonView>[] = [];
+    for (const person of value.people) {
+      if (person.kind !== 'host')
+        return {
+          ok: false,
+          error: {
+            code: 'invalid-admission',
+            path: '$.perspective',
+            message: 'Host chapter requires a host view',
+          },
+        };
+      const projection = readChapterProjection(run, person.id);
+      if (!projection)
+        return {
+          ok: false,
+          error: {
+            code: 'invalid-admission',
+            path: '$.select.chapter',
+            message: `No admitted chapter preparation for ${person.id}`,
+          },
+        };
+      const parts: T.DeepReadonly<T.SelectedPart<T.HostParts>>[] = [];
+      for (const select of query.select) {
+        if (select === 'chapter') parts.push({ select: 'chapter', value: projection });
+        else {
+          const part = person.parts.find((part) => part.select === select);
+          if (part) parts.push(part);
+        }
       }
-      people.push({...person,parts});
+      people.push({ ...person, parts });
     }
-    value={...value,people};
+    value = { ...value, people };
   }
-  if(lifecycle) {
-    const life=inspectLifecycle(run,lifecycle,query.perspective);
-    if(!life.ok)return life;
-    value={...value,lifecycle:life.value};
+  if (lifecycle) {
+    const life = inspectLifecycle(run, lifecycle, query.perspective);
+    if (!life.ok) return life;
+    value = { ...value, lifecycle: life.value };
   }
-  return {ok:true,value:freezeData(cloneData(value))};
+  return { ok: true, value: freezeData(cloneData(value)) };
 }
 export { preview } from './run-preview.ts';
 export { step } from './run-step.ts';
 
-export function restoreRun(input:unknown):T.Result<T.Run> {
-  const restored=restoreCurrentRun(input,{createRun,createPerson,step,exportRun});
-  if(!restored.ok)return restored;
-  const record=readKernel(restored.value);
-  for(const actor of Object.values(record.current.people))if(actor.activity&&!record.activityOffers.has(actor.activity.id))
-    return {ok:false,error:{code:'invalid-admission',path:`$.current.people.${actor.id}.activity`,message:'Activity lacks an original start offer revision'}};
+export function restoreRun(input: unknown): T.Result<T.Run> {
+  const restored = restoreCurrentRun(input, { createRun, createPerson, step, exportRun });
+  if (!restored.ok) return restored;
+  const record = readKernel(restored.value);
+  for (const actor of Object.values(record.current.people))
+    if (actor.activity && !record.activityOffers.has(actor.activity.id))
+      return {
+        ok: false,
+        error: {
+          code: 'invalid-admission',
+          path: `$.current.people.${actor.id}.activity`,
+          message: 'Activity lacks an original start offer revision',
+        },
+      };
   return restored;
 }
-export function replay(input:unknown):T.Result<T.DeepReadonly<T.ReplayResult>> {
-  return replayCurrentRun(input,{createRun,createPerson,step,exportRun});
+export function replay(input: unknown): T.Result<T.DeepReadonly<T.ReplayResult>> {
+  return replayCurrentRun(input, { createRun, createPerson, step, exportRun });
 }

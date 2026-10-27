@@ -101,8 +101,7 @@ const receive: T.PartneringOwner['receive'] = (state, input, ctx) => {
       s.marriages.push({
         spouseId: other.id,
         since: ctx.at,
-        mourningDays:
-          ctx.life.sex === 'female' ? custom.mourningDays.widow : custom.mourningDays.widower,
+        mourningDays: ctx.life.sex === 'female' ? custom.mourningDays.widow : custom.mourningDays.widower,
       });
       s.courtships = custom.maxSpouses <= 1 ? [] : s.courtships.filter((c) => c.withId !== other.id);
       delete s.mourning;
@@ -286,10 +285,13 @@ export function canMarry(
     return no('already-married');
   if (inMourning(a.bonds, at) || inMourning(b.bonds, at)) return no('mourning');
   if (!a.knownKin)
-    return { kind: 'unknown', missing: [
-      { kind: 'person', id: a.id },
-      { kind: 'person', id: b.id },
-    ] };
+    return {
+      kind: 'unknown',
+      missing: [
+        { kind: 'person', id: a.id },
+        { kind: 'person', id: b.id },
+      ],
+    };
   const k = kinship(a.knownKin, a.id, b.id);
   if (k.kind === 'unknown') uncertainty.push('kin-incomplete');
   else if (k.value && custom.forbiddenKin.includes(k.value)) return no(`kin:${k.value}`);

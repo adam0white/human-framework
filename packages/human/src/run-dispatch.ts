@@ -2,13 +2,13 @@
  * Journals remain append deltas until the complete transaction succeeds.
  */
 
-import { cloneData } from './core/clone.ts';
 import { attendEvidence } from './beliefs/beliefs.ts';
 import { ageYearsAt } from './body/span.ts';
 import { projectChapterClock } from './chapter-clock.ts';
 import { cognitionOwner } from './cognition/cognition.ts';
 import { conversationOwner } from './conversation/conversation.ts';
-import { PORTABLE_ADMISSION_REJECTED, checkPersonAuthoring, classifyQueuedInput } from './run-admission.ts';
+import { cloneData } from './core/clone.ts';
+import { checkPersonAuthoring, classifyQueuedInput, PORTABLE_ADMISSION_REJECTED } from './run-admission.ts';
 
 export function copyOffer(offer: T.DeepReadonly<T.Offer>): T.Offer {
   const { promise, ...rest } = offer;
@@ -49,12 +49,12 @@ export function copyPercept(percept: T.DeepReadonly<T.PerceptData>): T.PerceptDa
 import { clamp01, clampSigned, sigmoid } from './core/index.ts';
 import { random } from './core/random.ts';
 import { rendererOwner } from './narrate/literal.ts';
-import { levelOf, urgencyOf } from './needs/needs.ts';
+import { levelOf } from './needs/needs.ts';
 import { canonicalJson, compareCodePoints, hashCanonical } from './run-canonical.ts';
 import { validateActor } from './run-integrity.ts';
 import type { RunRecord, TransactionStage } from './run-kernel.ts';
-import { knownKin as kinSnapshot } from './run-lifecycle.ts';
 import { RunLimitError } from './run-kernel.ts';
+import { knownKin as kinSnapshot } from './run-lifecycle.ts';
 import { OWNERS } from './run-owners.ts';
 import { bodyPerception, constructAuthoredActor } from './run-person.ts';
 import { joinedReferences } from './run-references.ts';
@@ -462,8 +462,7 @@ export class Frame {
     this.output(person, 'affect', out, context);
   }
   memory(person: T.PersonId, input: T.DeepReadonly<T.MemoryInput>, context: T.FrameContext): void {
-    const actor = this.actor(person),
-      continuation = this.continuation(person);
+    const actor = this.actor(person);
     const { beliefs, sourceTrust, contradictions, ...memory } = actor.memory;
     const out = OWNERS.memory.receive(memory, input, { ...context, allocations: this.references(person) });
     this.memoryOutput(person, out, context);
@@ -1145,7 +1144,7 @@ export class Frame {
       person = resolution.person,
       actor = this.actor(person);
     const request = this.resolvedRequests.get(input.id);
-    if (!request || request.kind !== 'action') throw new RangeError('Missing admitted action request');
+    if (request?.kind !== 'action') throw new RangeError('Missing admitted action request');
     const activity = actor.activity;
     if (!activity || activity.id !== resolution.activityId)
       throw new RangeError('Settled activity is not current');
@@ -1566,8 +1565,7 @@ export class Frame {
   ): void {
     const request = this.resolvedRequests.get(input.id),
       receipt = input.payload;
-    if (!request || request.kind !== 'communication')
-      throw new RangeError('Missing admitted communication request');
+    if (request?.kind !== 'communication') throw new RangeError('Missing admitted communication request');
     const emitted = request.items.filter((item) => receipt.emittedItemIds.includes(item.id));
     this.stage.receipts.communications.push({
       requestId: request.id,
@@ -1788,7 +1786,7 @@ export class Frame {
       const ids = [...new Set(inputs.map((input) => input.payload.caregiver))];
       const caregivers = ids.flatMap((id): T.UpbringingExposure['caregivers'][number][] => {
         const caregiver = this.commonPeople[id];
-        if (!caregiver || !caregiver.body.alive) return [];
+        if (!caregiver?.body.alive) return [];
         return [
           {
             id,

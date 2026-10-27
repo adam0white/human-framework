@@ -644,8 +644,12 @@ function evaluate(
   const suggestions = cmd ? given.filter((s) => s.voiceId !== cmd.voiceId) : given;
   const prepared = prepareVetoes(p, input, ctx, suggestions);
   const { considered, affById } = prepared;
-  const selection = selectOption(p, considered, ctx,
-    considered.some((c) => !c.vetoed) ? draw?.() : undefined);
+  const selection = selectOption(
+    p,
+    considered,
+    ctx,
+    considered.some((c) => !c.vetoed) ? draw?.() : undefined,
+  );
   const ev: Evaluation = {
     chosenId: selection.winner?.affordanceId ?? null,
     considered,

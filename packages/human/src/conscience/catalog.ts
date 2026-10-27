@@ -1,4 +1,21 @@
-import type { NormDefinition } from '../types.ts';
+import type { NormStanding } from '../run-schema.ts';
+
+type CatalogSource = {
+  kind: 'revelation' | 'hadith' | 'interpretation' | 'empirical' | 'assumption';
+  ref: string;
+};
+/**
+ * The 3.x catalogue shape, kept as sourced reference data. 4.0 does not export these norms: a 4.0
+ * `SourcedNorm` also needs `provenance` (research and interpretation references), which is a 4.1 item
+ * so that no reference is invented here.
+ */
+type NormDefinition = {
+  id: string;
+  label: string;
+  standing: NormStanding;
+  sources?: CatalogSource[];
+  exemptions?: { when: 'illness' | 'travel'; makeUp: boolean; sources: CatalogSource[] }[];
+};
 
 /**
  * Default norm catalog. Standings record the common Sunni understanding (Hanafi–Maturidi starting point)

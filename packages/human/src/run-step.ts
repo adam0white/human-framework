@@ -92,7 +92,7 @@ export function step(run: T.Run, input: T.DeepReadonly<T.StepBatch>): T.Result<T
         for (const phase of [0, 1, 2, 3, 4, 5, 6] as const) {
           frame.runIngress(phase);
           if (phase === 3) frame.flushContacts();
-          if(phase===2&&!unresolvedIngress())drainReachedHazards();
+          if (phase === 2 && !unresolvedIngress()) drainReachedHazards();
           const emitted = stage.current.queue.filter((event) => event.at === at && event.phase === phase);
           stage.current.queue = stage.current.queue.filter(
             (event) => !(event.at === at && event.phase === phase),
@@ -102,8 +102,7 @@ export function step(run: T.Run, input: T.DeepReadonly<T.StepBatch>): T.Result<T
             ...emitted,
           ].sort(compareScheduled);
           for (const event of phaseEntries) {
-            const data = event.data,
-              person = event.person;
+            const data = event.data;
             if (data.kind === 'effect')
               frame.effect(data.effect, frame.context(data.effect.person, phase, [event.causalId]));
             else if (data.kind === 'activity-finish') {
