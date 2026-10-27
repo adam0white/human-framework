@@ -131,6 +131,7 @@ export function integrateCell(
   tolerance = 1e-12,
   scales: readonly number[] = y.map(() => 1),
   monotoneIndices: readonly number[] = [],
+  floorIndices: readonly number[] = [],
 ) {
   let w = Math.max(1, Math.floor(widthMs));
   if (!Number.isSafeInteger(at)) throw new RangeError('safe numerical anchor required');
@@ -165,6 +166,21 @@ export function integrateCell(
       if (monotoneIndices.some((i) => !monotoneCell(required(cells[i])))) {
         if (w === 1) throw new RangeError('limit-exceeded: nonmonotone hazard cell');
         w = Math.max(1, Math.floor(w / 2));
+        continue;
+      }
+      // A floor component decides its clamp once, from the anchor (see body rhs), so
+      // a positive anchor integrates unclamped. End the cell at the last millisecond
+      // still above the floor; a crossing inside the first millisecond gets one
+      // 1 ms cell, the time-resolution floor, whose end value readers clip to 0.
+      let cut = w;
+      for (const i of floorIndices) {
+        const cell = required(cells[i]);
+        if ((y[i] ?? 0) <= 0 || evaluateCell(cell, at + w) > 0) continue;
+        const crossing = firstMs(at + 1, at + w, (t) => evaluateCell(cell, t) <= 0);
+        cut = Math.min(cut, Math.max(1, crossing - 1 - at));
+      }
+      if (cut < w) {
+        w = cut;
         continue;
       }
       return {
@@ -239,14 +255,21 @@ export function firstMs(lo: number, hi: number, predicate: (at: number) => boole
   }
   return lo;
 }
-/** Quartic interpolation for closed readout algebra; refine by midpoint residual. */
+/** Quartic interpolation for closed readout algebra; refine by midpoint residual.
+ * A kink (a clip or a max) is isolated by bisection down to the 1 ms floor, so the depth
+ * limit scales with the span: 20 levels reach 1 ms only for spans up to 2^20 ms, and a
+ * daily cell is hours wide. Work is bounded separately: one path fits at most 8192
+ * intervals. Neither limit ever accepts a wider residual. */
 export function sampledPath(
   from: number,
   to: number,
   f: (at: number) => number,
   depth = 0,
+  maxDepth = Math.max(20, Math.ceil(Math.log2(Math.max(1, to - from))) + 1),
+  work = { fits: 0 },
 ): ScalarTrajectory['segments'] {
   if (to === from) return [{ kind: 'constant', from, to, value: f(from) }];
+  if (++work.fits > 8192) throw new RangeError('limit-exceeded: readout interpolation');
   const xs = [0, 0.25, 0.5, 0.75, 1],
     ys = xs.map((x) => f(from + x * (to - from)));
   const coefficients = [0, 0, 0, 0, 0];
@@ -279,9 +302,12 @@ export function sampledPath(
     ),
   );
   if (error > 1e-12 && to - from > 1) {
-    if (depth >= 20) throw new RangeError('limit-exceeded: readout interpolation');
+    if (depth >= maxDepth) throw new RangeError('limit-exceeded: readout interpolation');
     const mid = from + Math.floor((to - from) / 2);
-    return [...sampledPath(from, mid, f, depth + 1), ...sampledPath(mid, to, f, depth + 1)];
+    return [
+      ...sampledPath(from, mid, f, depth + 1, maxDepth, work),
+      ...sampledPath(mid, to, f, depth + 1, maxDepth, work),
+    ];
   }
   return [{ kind: 'quartic', from, to, cell: { ...cell, estimatedError: error } }];
 }

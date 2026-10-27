@@ -1,4 +1,5 @@
 import { freezeData } from '../body/span.ts';
+import { keyOf, Memo } from '../core/memo.ts';
 import { hashCanonical } from '../run-canonical.ts';
 /** SCOPE: actual received surroundings. Missing observations remain unknown;
  * coefficient magnitudes are engineering priors (research/family-environment-sources.md). */
@@ -80,21 +81,37 @@ export function readEnvironmentTrajectory(
     needsPerMinute: ambientNeedRates(path.percept, traits, p),
   };
 }
+const environmentPaths = new Memo<T.EnvironmentTrajectory>(256);
+function buildEnvironmentTrajectory(
+  state: Parameters<T.EnvironmentOwner['trajectory']>[0],
+  ctx: Parameters<T.EnvironmentOwner['trajectory']>[1],
+): T.EnvironmentTrajectory {
+  return freezeData({
+    id: hashCanonical(
+      'environment-path',
+      state,
+      ctx.character.id,
+      ctx.asleep,
+      ctx.effectiveParametersHash,
+      ctx.effective.builtins.ENVIRONMENT_DEFAULTS,
+    ),
+    character: copy<T.CharacterTrajectory>(ctx.character),
+    percept: copy<T.AmbientPercept>(state.percept),
+    asleep: ctx.asleep,
+  });
+}
 export const environmentOwner: T.EnvironmentOwner = {
   trajectory: (state, ctx) =>
-    freezeData({
-      id: hashCanonical(
-        'environment-path',
+    environmentPaths.get(
+      JSON.stringify([
         state,
-        ctx.character.id,
+        keyOf(ctx.character),
         ctx.asleep,
         ctx.effectiveParametersHash,
         ctx.effective.builtins.ENVIRONMENT_DEFAULTS,
-      ),
-      character: copy<T.CharacterTrajectory>(ctx.character),
-      percept: copy<T.AmbientPercept>(state.percept),
-      asleep: ctx.asleep,
-    }),
+      ]),
+      () => buildEnvironmentTrajectory(state, ctx),
+    ),
   forcing: (state, ctx) => ({
     moodOffset: ambientMood(
       state.percept,
