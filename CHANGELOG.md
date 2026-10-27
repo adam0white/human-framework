@@ -11,6 +11,16 @@ version, stamped with build and schema hashes in `RUN_ENGINE`. See the version p
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
+## [4.0.2] - 2026-10-27
+
+Engine: 4.0.2. Fix crisis advancement after recovery.
+
+- Stop crisis hazard integration at the end of its refractory period. Eligibility remains fixed within each numerical interval, then rebases at that boundary. A person with sustained grief can recover and later enter another crisis without stalling the run.
+- Pin a public 48-hour control with two onsets and recoveries. Whole and hourly stepping produce identical events and actor RNG; each current-version archive restores and replays exactly.
+- Qualify the architecture's retained 3.x reference so removed comfort percepts, body-threshold interrupts and default protest-quality penalties are not claimed as 4.x behavior. Distinguish ordinary suggestion inputs from the separate coercion route.
+
+Use the exact package version for saved-run replay. These are engineering controls, not clinical validation. No playtest or panel run is included.
+
 ## [4.0.1] - Unreleased
 
 Engine: 4.0.1. A speed patch with no change in behaviour: every decision, `hashes.current` and `hashes.history` match 4.0.0 on the same inputs.

@@ -123,8 +123,12 @@ const advance: T.CrisisOwner['advance'] = (state, ctx) => {
       materializedAtMs: ctx.from,
     };
   }
+  // Eligibility changes at a semantic clock, never inside a numerical cell.
+  const refractory = c.refractoryUntilMs !== null && ctx.from < c.refractoryUntilMs;
+  const eligibilityEnd = refractory ? required(c.refractoryUntilMs) : Infinity;
+  to = Math.min(to, eligibilityEnd);
   // Emotionality changes onset intensity, never the stress derivative.
-  const hazardId = JSON.stringify([conditionId, ctx.character.id]);
+  const hazardId = JSON.stringify([conditionId, ctx.character.id, refractory]);
   if (c.hazard.clock.conditionId !== hazardId)
     c = { ...c, hazard: rebaseHazard(c.hazard, ctx.from, hazardId, ctx.effectiveParametersHash) };
   const rate = ctx.asleep ? 2 : 1;
@@ -207,8 +211,7 @@ const advance: T.CrisisOwner['advance'] = (state, ctx) => {
     return cell ? clip(evaluateCell(cell, t)) : state.stress;
   };
   const lambda = (t: number) => {
-    if (!ctx.alive || ctx.asleep || state.active || (c.refractoryUntilMs !== null && t < c.refractoryUntilMs))
-      return 0;
+    if (!ctx.alive || ctx.asleep || state.active || refractory) return 0;
     const v = trajectoryFeltValence(ctx.mood, t, ctx.effective.builtins.AFFECT_DEFAULTS);
     const pressure = Math.max(
       clip((p.breakMood - v) / (1 + p.breakMood)),
@@ -227,9 +230,10 @@ const advance: T.CrisisOwner['advance'] = (state, ctx) => {
     ctx.from,
     to,
     lambda,
-    Math.min(ctx.mood.to, c.acceptedThroughMs || ctx.mood.to),
+    Math.min(ctx.mood.to, c.acceptedThroughMs || ctx.mood.to, eligibilityEnd),
     (t) =>
       Math.min(
+        eligibilityEnd,
         nextPathBoundary(t, [
           ctx.mood.valence,
           ctx.mood.arousal,

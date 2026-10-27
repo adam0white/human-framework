@@ -4,6 +4,12 @@ Short records of results that cut against expectations. Keep them; do not tune t
 
 Each entry describes its dated source or artifact. Historical defects do not describe the current SDK. Horizon 3 results and limits remain in the linked experiments.
 
+## HF 4.0 crisis refractory expiry (2026-10-27)
+
+A public Run with sustained authored grief could reach a crisis and recover, then become unsteppable when its 12-hour refractory period ended. With numerical fixture seed 1, grief intensity 1 and a seven-day half-life, upright posture and low initial sleep pressure, onset was at 54,350,069 ms and recovery at 73,790,069 ms. At 116,990,069 ms, crisis eligibility changed from zero to positive inside a hazard integration cell. Even a one-millisecond cell failed with `limit-exceeded: numerical cell unresolved`; shorter caller steps could not resolve the discontinuity.
+
+HF 4.0.2 fixes eligibility within each numerical interval, stops at refractory expiry and rebases the hazard there. The [public regression](../packages/human/test/run-crisis-refractory.test.ts) reaches two onsets and recoveries in 48 hours. Whole and hourly steps produce identical full events and actor RNG; both current-version archives restore and replay exactly. The test failed before the fix. This is an engineering control, not evidence for a clinical rate or grief model.
+
 ## HF 4.0.1 step cost (2026-10-27)
 
 Scratch measurements on one Apple Silicon machine while other agents ran (load average 9 to 45, stated per pair). Each pair alternates 4.0.0 and 4.0.1 on the same inputs. They are exploratory engineering proxies from one matched pair or a best of three, not stable speedup estimates or a budget proof. Harnesses, raw output and commands are kept outside the repository in `.lab-scratch/hf4/hf401-receipts/`. An independent review reproduced flat, cheaper fixed step cost and identical hashes on its own engine control, but not the game figures.

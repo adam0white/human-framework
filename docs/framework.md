@@ -6,7 +6,7 @@ This is the design reference for `packages/human` (`@adam0white/human-framework`
 
 This reference is being moved to HF **4.0.0**. In 4.0 a host uses eight calls (`createRun`, `createPerson`, `step`, `inspect`, `preview`, `exportRun`, `restoreRun`, `replay`); the [package README](../packages/human/README.md) describes them. Every faculty is always on, every host change is a timestamped input to `step`, and every reading leaves through `inspect` or `preview`. The data contract is [`packages/human/src/run-schema.ts`](../packages/human/src/run-schema.ts). The [CHANGELOG](../CHANGELOG.md) 4.0.0 section lists what was removed and what moved to 4.1.
 
-**How to read the sections below.** The faculty rules, terms, limits and evidence still describe the 4.0 people. The function names, `enable*` options and "opt-in" labels are the 3.x host surface: in 4.0 the faculty is on, and the host reaches it through an input kind (for example `observation.received`, `suggestion.received`, `agenda.received`, `testimony.received`) instead of a call. Links to deleted examples point to the v3.2.0 tag. Rewriting these sections in 4.0 terms is open work with a target of 2026-11-10.
+**How to read the sections below.** The sections below retain the 3.x faculty reference. Only rules retained in 4.0 apply; the [CHANGELOG Removed list](../CHANGELOG.md#removed) names removed behavior, including comfort percepts, body-threshold interrupts and the default protest-quality penalty. The function names, `enable*` options and "opt-in" labels are the 3.x host surface: in 4.0 the faculty is on, and the host reaches it through an input kind (for example `observation.received`, `suggestion.received`, `agenda.received`, `testimony.received`) instead of a call. Links to deleted examples point to the v3.2.0 tag. Rewriting these sections in 4.0 terms is open work with a target of 2026-11-10.
 
 The 3.x reference is kept at [v3.2.0](https://github.com/adam0white/human-framework/blob/v3.2.0/docs/framework.md).
 
@@ -33,7 +33,7 @@ H2 Replication engineering proof, scratch prototype GO, shipped API, host adopti
 
 ## The spine: Urge → Assent → Act
 
-A person does not execute commands. At each decision point, many pulls act on them at once:
+Ordinary suggestions add urges. At each decision point, many pulls act on a person at once:
 
 - bodily needs (hunger, thirst, sleep, pain)
 - psychological needs (belonging, autonomy, competence, meaning, ...)
@@ -48,7 +48,7 @@ These pulls are _urges_. The person weighs them and _assents_ to one course of a
 
 This structure follows a distinction in the project's [Islamic foundations](../research/islamic-foundations.md) (§3–4). An internal suggestion is not yet a deed (Bukhari 5269). Responsibility attaches to deliberate assent and action, and it is bounded by capacity (Qur'an 2:286). Intention is recorded separately from the outward act (Bukhari 1).
 
-In the software, a player's input is therefore one urge among many: a push, not a command. This is the framework's signature mechanic, and it is useful outside games too. The same machinery models a manager directing workers, a parent instructing a child, or public-health advice reaching a population.
+In the software, ordinary `suggestion.received` inputs join those urges. The separate `coercion.received` route models direct control, subject to capacity and firm-refusal limits. Suggestion and refusal are the framework's signature mechanic, and they are useful outside games too. The same machinery models a manager directing workers, a parent instructing a child, or public-health advice reaching a population.
 
 Boundaries the software never crosses: it does not compute divine acceptance, assign quantities to the ruh, or call the RNG "qadar". Norms come from a host catalog with provenance. The person holds an _understanding_ of each norm, and that understanding is not a ruling.
 
