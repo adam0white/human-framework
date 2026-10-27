@@ -11,7 +11,7 @@
     "rewriteRelativeImportExtensions": false,
     "paths": {
       "@adam0white/lab-client": ["../lab-client/src/index.ts"],
-      "@adam0white/human-framework": ["../human/src/index.ts"]
+      "@adam0white/human-framework": ["../lab-client/node_modules/@adam0white/human-framework/dist/index.d.ts"]
     }
   },
   "include": ["src", "test", "../../scripts/lab-phone-helpers.ts"],
