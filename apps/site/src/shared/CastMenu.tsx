@@ -3,57 +3,16 @@ import { settingWords } from './setting-words.ts';
 import './cast-life.css';
 import { type Lab, openSendDialog } from '@adam0white/lab-client';
 import { useEffect, useState } from 'react';
-import {
-  castChanges,
-  castState,
-  checkpointCast,
-  selectCast,
-  setCastEnabled,
-  startCastFresh,
-} from './cast-runtime.ts';
+import { castChanges, castState, startCastFresh } from './cast-runtime.ts';
 import { gameLabs } from './lab.tsx';
-import { labMode } from './lab-mode.ts';
-export function CastMenu({ game }: { game: string }) {
-  const [, refresh] = useState(0);
-  useEffect(() => castChanges(() => refresh((n) => n + 1)), []);
-  const s = castState(game);
-  if (!labMode()) return null;
+export function CastMenu(_props: { game: string }) {
   return (
-    <section className="cast-life-menu">
-      <label>
-        <input type="checkbox" checked={s.enabled} onChange={(e) => setCastEnabled(e.target.checked)} /> Keep
-        fictional people and between-game life in this browser
-      </label>
-      <p>
-        Life advances only when starting a new chapter. Every compatible saved person enters a fresh chapter
-        together. Loaded play stays pinned. No full days, healing or completed duties are inferred.
-      </p>
-      <label>
-        Person to save{' '}
-        <select value={s.selected} onChange={(e) => selectCast(game, e.target.value)}>
-          {s.people.map((p) => (
-            <option key={p.castId} value={p.castId}>
-              {settingWords(p.name)}
-            </option>
-          ))}
-        </select>
-      </label>
-      <button type="button" disabled={s.busy || !s.enabled} onClick={() => void checkpointCast(game)}>
-        Save this person for another chapter
-      </button>
-      <button type="button" disabled={s.busy || !s.enabled} onClick={() => void checkpointCast(game, true)}>
-        Save this played person as an explicit fresh branch
-      </button>
-      <button type="button" onClick={() => startCastFresh(game)}>
-        Use fresh local play
-      </button>
-      <p role="status">{s.status}</p>
-      <a href="/lab/people/" target="_blank" rel="noopener">
-        Inspect, export, delete or explicitly branch people
-      </a>
-    </section>
+    <p>
+      <a href="/lab/people/">Your people on this browser</a>
+    </p>
   );
 }
+
 export function CastLifeNote({ game }: { game: string }) {
   const [, refresh] = useState(0);
   useEffect(() => castChanges(() => refresh((n) => n + 1)), []);
@@ -103,7 +62,7 @@ export function CastStartGate({ game }: { game: string }) {
       <button type="button" onClick={() => openCastFeedback(game)}>
         Feedback
       </button>
-      {labMode() && <a href="/lab/people/">Inspect or export the existing people</a>}
+      <a href="/lab/people/">Open your people shelf</a>
       <a href="/games/">All games</a>
     </section>
   );

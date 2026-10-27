@@ -55,7 +55,7 @@ async function render() {
     if (currentCast && currentCast.revision !== summary.castRevision) {
       const note = document.createElement('p');
       note.textContent =
-        'Older cast edition. Inspect or download it here. To replace it, play a fresh local chapter, enable continuity, and choose Save this played person as an explicit fresh branch in that game’s menu.';
+        'Older cast edition. Inspect or download it here. To replace it, import a new branch here after exporting a fresh chapter.';
       article.append(note);
     }
     button('Earlier retained revisions', async () => {
@@ -99,8 +99,7 @@ async function render() {
     });
     people.append(article);
   }
-  if (!list.length)
-    report('No people on this browser shelf. Enable continuity in a participating game or import a file.');
+  if (!list.length) report('No people on this browser shelf. Play a participating game or import a file.');
 }
 document.querySelector<HTMLInputElement>('#file')?.addEventListener('change', (event) => {
   void (async () => {
