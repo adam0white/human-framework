@@ -47,7 +47,8 @@ Done means (coordinator proposals, owner may change):
 
 ## Work rules
 
-- **Allowance (owner, 2026-10-25):** "Keep using our allowance across codex, Claude, and workers AI every heartbeat." Codex builds; Claude reads and judges taste; Workers AI plays.
+- **Allowance (owner, 2026-10-25, 2026-10-27):** "Keep using our allowance across codex, Claude, and workers AI every heartbeat." Codex builds; Claude reads and judges taste. Workers AI enriches the games first; a once-daily run spends the rest of the free quota on reading jobs and a few focused testers given enough to finish ([OD](docs/owner-directions-2026-10-18.md#2026-10-27--workers-ai-for-games-first-reading-sweep-adam-verbatim)).
+- **Model choice (owner, 2026-10-27):** every agent, including Opus and Codex agents choosing their own sub-agents, picks the cheapest model that fits. Terra 6.1 or Sonnet 5.5 for short docs, bounded implementation, reading and cautious synthetic play; default Codex or Opus for final review, hard implementation and taste ([experiment](docs/lab/experiments/model-roles-2026-10-27.md)).
 - **Reviews (owner, 2026-10-20, "Use fewer reviews"):** one independent review per change (Codex, or Opus for design). Two for a behaviour-changing HF release or a new game concept.
 - **Tests (owner, 2026-10-20, "focused/less tests"):** tests pin a faculty's own behaviour, plus one headless control. No matrices or tests that restate code. Keep replay-hash and control tests.
 - **Build first, prove after.** A faculty lands with tests, a control and a scope comment. Negative findings go to [findings](docs/findings.md); deferrals to the roadmap or a Deferred list, with a target.

@@ -390,3 +390,13 @@ Coordinator reading: staying on 3.x is no longer an end state. Each game works w
 > "Just like how we sporadically get Fable or Astra reviews, it's also fair to sometimes use chatgpt's new Terra 6.1 and your Sonnet 5.5 for speedier work. These shouldn't count towards your agents limit as these are cheaper. I'd welcome some experiments about how these compare as a code reviewer, documentation writer, play tester, easy implementation dev. This way we can go both faster and further with existing allowance."
 
 Coordinator reading: `gpt-6.1-terra` (through `codex exec -m`) and Claude Sonnet 5.5 may be used for faster work and do not count toward the agent limit. A first experiment compares them on four roles with identical packets and known answers; results go to `docs/lab/experiments/model-roles-2026-10-27.md`.
+
+## 2026-10-27 — Workers AI for games first; reading sweep (Adam, verbatim)
+
+> "No need to have a split or precise calculation. I'm not sure of the benefit of the free-text; though I allow it since it's an experiment anyway. What value were we able to extract so far from the free WAI testers? I guess you can set a scheduled reminder for yourself to spend the remaining amount every day an hour before experimentation; that way games can be allowed to spend it fully, and you'll always finish the quota every day."
+
+> "The safety gap can also be shrank much more, by just reconciling our historical calculated usage so far with the actual usage."
+
+> "That's what I thought. The free quota isn't enough for a full play tester session, but can be a useful addition to enrich the games themselves. 23:50 may not give a model enough time to spend it all. I guess we can allow more tokens to a focused set of play testers, that way they'll be able to finish the task fully. I'm okay to switching it to more useful jobs such as reading, yeah. Make sure your terra/sonnet instruction is visible to the Opus and Sol agents you launch as well, so they can also choose those for their subagents."
+
+Coordinator reading: games may spend the free Workers AI pool during the day with no reserved split. The daily run moves from hourly to once a day at 16:00 America/Chicago, so it has several hours before the 00:00 UTC reset. It spends the remainder on reading jobs (plain-English checks of on-screen text, inbox triage) and on a few focused testers given enough budget to finish. The safety margin is set from a reconciliation of local and Cloudflare usage. Free-text stays an experiment. Of 28 tester sessions from 10-23 to 10-27, none completed. The model-choice rule goes in AGENTS.md and in the rule every brief includes.
