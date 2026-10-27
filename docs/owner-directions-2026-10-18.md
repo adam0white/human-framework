@@ -372,3 +372,9 @@ Coordinator reading:
 - Left Hand F-1631: a joke reply is approved.
 - After the direction is confirmed, remove every mention of the lab flag and query strings from AGENTS.md and other widely read docs.
 - The work waits for the soft stop to lift; until then, keep the task list whole and finish HF 4.0.
+
+## 2026-10-27 — Codex limit lifted; natural death kept (Adam, verbatim)
+
+> "Codex limit is lifted fully. Go back to your original vision of running many of them in parallel in order to speed up the progress here. Yes death from natural causes can give a story stakes. Keep that seed so we track what happens. Codex PR reviewers should also work now. I'd get reviews and fixes on your merger v4 work, just so we're safe."
+
+Coordinator reading: Codex runs many workers in parallel again; Claude stays at one agent. Always-on old-age death in 4.0 is accepted, including an authored grandparent in What the Child Saw dying before the child is grown; the seeds where it happens are kept and tracked. The merged HF 4.0 work gets Codex PR reviews and an independent Codex review, and its findings are fixed.
