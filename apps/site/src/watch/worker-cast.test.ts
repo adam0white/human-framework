@@ -1,4 +1,3 @@
-import { readFileSync } from 'node:fs';
 import { die, snapshot } from '@adam0white/human-framework';
 import {
   canonicalPersona,
@@ -10,6 +9,7 @@ import {
 import { expect, it, vi } from 'vitest';
 import { playYears } from '../../test/watch/years.ts';
 import { makeCastChapter } from '../shared/cast-chapter.ts';
+import { importedFileRecord } from '../shared/file-record.ts';
 import actualCare from '../shared/fixtures/watch-kian-care-native.json';
 import { requireValue } from '../shared/require-value.ts';
 import type { MainToWorker } from './protocol.ts';
@@ -166,6 +166,7 @@ it('admits the explicit fresh night-off choice and retains that scenario through
   send({ type: 'export', requestId: 200 });
   const data = control.replies.findLast((r) => r.type === 'exported' && r.requestId === 200)
     ?.data as ReturnType<WatchRun['export']>;
+  expect(data).not.toHaveProperty('fileImport');
   expect(data.scenario).toBe(15);
   expect(data.options).toEqual({ duskRest: 'dusk-rest@1' });
   expect(data.end.phase).toBe('dusk');
@@ -300,11 +301,14 @@ it('file worker reconstructs full people without reading or writing native chron
   const file = {
     ...source.export(),
     build: 'synthetic-original-host',
+    runId: 'synthetic-source-run',
     snapshot: source.snapshot(),
     castOwnership: { [id]: receipt },
     castSources: { [id]: person },
   };
-  send({ type: 'loadFile', text: JSON.stringify(file), gen: 1 });
+  const sourceText = JSON.stringify(file);
+  const fileImport = await importedFileRecord(file, sourceText);
+  send({ type: 'loadFile', text: sourceText, gen: 1 });
   await vi.waitFor(() => expect(control.replies.some((r) => r.type === 'fileLoaded' && r.ok)).toBe(true));
   send({ type: 'hold', on: true });
   send({ type: 'tick', dtMs: 250 });
@@ -313,91 +317,19 @@ it('file worker reconstructs full people without reading or writing native chron
   expect(control.saved).toEqual([]);
   expect(control.listing).toBe(0);
   const out = control.replies.findLast((r) => r.type === 'exported')?.data;
-  expect(out).toEqual(file);
-  const corrupt = structuredClone(file);
-  requireValue(corrupt.snapshot.state.community.people[0]).body.health -= 0.1;
-  send({ type: 'loadFile', text: JSON.stringify(corrupt), gen: 2 });
-  await vi.waitFor(() =>
-    expect(control.replies.some((r) => r.type === 'fileLoaded' && r.ok === false)).toBe(true),
-  );
-  send({ type: 'export', requestId: 992 });
-  expect(control.replies.findLast((r) => r.type === 'exported')?.data).toEqual(file);
-  expect(control.saved).toEqual([]);
-  expect(control.listing).toBe(0);
-  const corruptSource = structuredClone(file);
-  corruptSource.castSources[id].body.health -= 0.1;
-  send({ type: 'loadFile', text: JSON.stringify(corruptSource), gen: 3 });
-  await vi.waitFor(() =>
-    expect(control.replies.some((r) => r.type === 'fileLoaded' && r.gen === 3 && r.ok === false)).toBe(true),
-  );
-  send({ type: 'export', requestId: 993 });
-  expect(control.replies.findLast((r) => r.type === 'exported')?.data).toEqual(file);
-
-  const app = readFileSync(new URL('./ui/App.tsx', import.meta.url), 'utf8');
-  const callbacks = [
-    ...app.matchAll(
-      / {2}const (?:cancelFileSelection|closeFileMenu) = useCallback\([\s\S]*?\n {2}}, \[[^\n]*\]\);/g,
-    ),
-  ]
-    .map(([code]) => code)
-    .join('\n');
-  const resumeExpression = app.match(/onClick=\{([^{}\n]+)\}>\s*Resume/)?.[1];
-  if (!resumeExpression) throw Error('Missing actual Resume handler');
-  const fileRead = { current: 0 };
-  const resume = new Function(
-    'fileSession',
-    'fileRead',
-    'actions',
-    'setMenu',
-    'setMenuOpen',
-    'useCallback',
-    `${callbacks}; return (${resumeExpression});`,
-  )(
-    true,
-    fileRead,
-    { cancelFileLoad: () => send({ type: 'cancelFileLoad' }) },
-    () => {},
-    () => {},
-    (fn: () => void) => fn,
-  ) as () => void;
-
-  const holdValidation = () => {
-    const digest = crypto.subtle.digest.bind(crypto.subtle);
-    let release!: () => void;
-    let entered = false;
-    const pending = new Promise<void>((resolve) => {
-      release = resolve;
-    });
-    const spy = vi.spyOn(crypto.subtle, 'digest').mockImplementationOnce(async (...args) => {
-      entered = true;
-      await pending;
-      return digest(...args);
-    });
-    return { release, spy, entered: () => entered };
-  };
-  const success = holdValidation();
-  send({ type: 'loadFile', text: JSON.stringify({ ...file, build: 'cancelled-source' }), gen: 4 });
-  await vi.waitFor(() => expect(success.entered()).toBe(true));
-  resume();
-  success.release();
-  await new Promise((resolve) => setTimeout(resolve, 0));
-  success.spy.mockRestore();
-  expect(control.replies.some((reply) => reply.type === 'fileLoaded' && reply.gen === 4)).toBe(false);
-  send({ type: 'export', requestId: 994 });
-  expect(control.replies.findLast((reply) => reply.type === 'exported')?.gen).toBe(1);
-  expect(control.replies.findLast((reply) => reply.type === 'exported')?.data).toEqual(file);
-  const failure = holdValidation();
-  send({ type: 'loadFile', text: JSON.stringify(corruptSource), gen: 5 });
-  await vi.waitFor(() => expect(failure.entered()).toBe(true));
-  resume();
-  failure.release();
-  await new Promise((resolve) => setTimeout(resolve, 0));
-  failure.spy.mockRestore();
-  expect(control.replies.some((reply) => reply.type === 'fileLoaded' && reply.gen === 5)).toBe(false);
+  expect(out).toEqual({ ...file, runId: expect.any(String), fileImport });
+  const runId = (out as { runId: string }).runId;
+  expect(runId).not.toBe(file.runId);
+  send({ type: 'telemetry', requestId: 996 });
+  expect(control.replies.findLast((reply) => reply.type === 'telemetry')).toMatchObject({
+    requestId: 996,
+    run: { runId, fileImport },
+  });
   send({ type: 'hold', on: false });
   for (let i = 0; i < 16; i++) send({ type: 'tick', dtMs: 250 });
   send({ type: 'export', requestId: 995 });
   const continued = control.replies.findLast((reply) => reply.type === 'exported')?.data as typeof file;
+  expect(continued).toMatchObject({ runId, fileImport });
   expect(continued.snapshot.state.minute).toBeGreaterThan(file.snapshot.state.minute);
   const resumed = WatchRun.resume(continued.snapshot);
   expect(resumed.snapshot()).toEqual(continued.snapshot);

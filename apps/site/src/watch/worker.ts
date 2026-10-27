@@ -1,6 +1,7 @@
 import { ENGINE_VERSION } from '@adam0white/human-framework';
-import { canonicalPersona, validatePersona } from '@adam0white/lab-client';
 import { castRole, chapterPeople, siteCastCheckpoint } from '../shared/cast-chapter.ts';
+import { type FileImport, importedFileRecord, recordFile } from '../shared/file-record.ts';
+import { checkGameFile } from '../shared/file-sources.ts';
 import { FRAMEWORK_PACKAGE_VERSION, stableStringify } from '../shared/playtest.ts';
 import { requireValue } from '../shared/require-value.ts';
 /**
@@ -33,39 +34,10 @@ import { buildFrame, ordinal } from './sim/view.ts';
 import { roman } from './sim/volume.ts';
 import { listPages, loadPage, type PageInfo, savePage } from './store.ts';
 
-/** Imported receipt archives are provenance only; validate their binding without any Shelf access. */
-async function validateFileSources(raw: Record<string, unknown>): Promise<void> {
-  const ownership = raw.castOwnership;
-  const sources = raw.castSources;
-  if (ownership !== undefined && (!ownership || typeof ownership !== 'object' || Array.isArray(ownership)))
-    throw new Error('Invalid imported ownership provenance.');
-  if (sources !== undefined && (!sources || typeof sources !== 'object' || Array.isArray(sources)))
-    throw new Error('Invalid imported source archive.');
-  const heads = Object.entries((ownership ?? {}) as Record<string, unknown>);
-  if (heads.length > 8) throw new Error('Too many imported ownership receipts.');
-  for (const [id, value] of heads) {
-    const head = await validatePersona(value);
-    if (id !== head.castId) throw new Error('Imported receipt identity differs.');
-  }
-  for (const [id, source] of Object.entries((sources ?? {}) as Record<string, unknown>)) {
-    const head = (
-      ownership as Record<string, { transfer: { checkpoint?: { sha256?: string } } }> | undefined
-    )?.[id];
-    if (!head?.transfer.checkpoint?.sha256 || !source || typeof source !== 'object')
-      throw new Error('Imported source has no bound full-source receipt.');
-    const digest = Array.from(
-      new Uint8Array(
-        await crypto.subtle.digest('SHA-256', new TextEncoder().encode(canonicalPersona(source))),
-      ),
-      (byte) => byte.toString(16).padStart(2, '0'),
-    ).join('');
-    if (digest !== head.transfer.checkpoint.sha256) throw new Error('Imported source checksum differs.');
-  }
-}
-
 let run: WatchRun | null = null;
 let fileMode = false;
 let imported: Record<string, unknown> = {};
+let fileImport: FileImport | undefined;
 /** Only the latest explicit init/load may install a run after storage awaits. */
 let loadOperation = 0;
 let castOwnership: import('../shared/cast-runtime.ts').CastHeads = {};
@@ -238,12 +210,12 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
     if (!fileMode) throw new Error('Open a file session first.');
     const operation = ++loadOperation;
     void (async () => {
-      if (new TextEncoder().encode(msg.text).length > 5 * 1024 * 1024)
-        throw new Error('This file is too large.');
-      const raw = JSON.parse(msg.text) as PlaytestExport & { snapshot: Snapshot; fileOrigin?: true };
+      const raw = (await checkGameFile(msg.text)) as unknown as PlaytestExport & {
+        snapshot: Snapshot;
+        fileOrigin?: true;
+      };
       if (raw.game !== 'the-night-watch' || raw.framework !== FRAMEWORK_PACKAGE_VERSION || !raw.snapshot)
         throw new Error('A complete current Watch native file is required.');
-      await validateFileSources(raw as unknown as Record<string, unknown>);
       const state = replay(raw);
       const expected = {
         scenario: raw.scenario,
@@ -262,7 +234,9 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
       )
         throw new Error('The Watch native envelope differs from its complete state.');
       buildFrame(next.state, 0, false);
+      const source = await importedFileRecord(raw as unknown as Record<string, unknown>, msg.text);
       if (operation !== loadOperation) return;
+      fileImport = source;
       imported = structuredClone(raw) as unknown as Record<string, unknown>;
       castOwnership = {};
       host.gen = msg.gen;
@@ -393,7 +367,7 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
         host.post({
           type: 'telemetry',
           requestId: msg.requestId,
-          run: { ...run.export(), snapshot: run.snapshot() },
+          run: recordFile(run, { ...run.export(), snapshot: run.snapshot() }, fileImport),
           logs: run.state.chronicle,
         });
       return;
@@ -402,14 +376,18 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
         host.post({
           type: 'exported',
           requestId: msg.requestId,
-          data: fileMode
-            ? {
-                ...imported,
-                ...run.export(),
-                snapshot: run.snapshot(),
-                build: typeof imported.build === 'string' ? imported.build : 'dev',
-              }
-            : run.export(),
+          data: recordFile(
+            run,
+            fileMode
+              ? {
+                  ...imported,
+                  ...run.export(),
+                  snapshot: run.snapshot(),
+                  build: typeof imported.build === 'string' ? imported.build : 'dev',
+                }
+              : run.export(),
+            fileImport,
+          ),
         });
       return;
     case 'shelf':

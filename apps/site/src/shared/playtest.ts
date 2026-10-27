@@ -20,6 +20,9 @@ export interface PlaytestFile<L = unknown> {
   castEdition?: 'one-cast-1';
   castOwnership?: import('./cast-runtime.ts').CastHeads;
   castChapter?: import('./cast-chapter.ts').CastChapter;
+  /** Export identity, independent of the lab client's private recording identity. Older files may lack it. */
+  runId?: string;
+  fileImport?: import('./file-record.ts').FileImport;
   kind: 'human-playtest';
   format: 1;
   game: GameId;
@@ -170,9 +173,33 @@ export async function gzipBase64(text: string): Promise<string> {
   return toBase64(new Uint8Array(await new Response(stream).arrayBuffer()));
 }
 
-export async function gunzipBase64(b64: string): Promise<string> {
+/** Stop decoding before an untrusted compressed snapshot can fill worker memory. */
+export const MAX_SNAPSHOT_BYTES = 20 * 1024 * 1024;
+
+export async function gunzipBase64(b64: string, maxBytes = MAX_SNAPSHOT_BYTES): Promise<string> {
   const stream = new Blob([fromBase64(b64)]).stream().pipeThrough(new DecompressionStream('gzip'));
-  return new Response(stream).text();
+  const reader = stream.getReader();
+  const decoder = new TextDecoder();
+  const chunks: string[] = [];
+  let bytes = 0;
+  try {
+    for (;;) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      bytes += value.byteLength;
+      if (bytes > maxBytes) {
+        await reader.cancel();
+        throw new PlaytestError(
+          'This file opens into too large a game. Keep the original file and choose a smaller export.',
+        );
+      }
+      chunks.push(decoder.decode(value, { stream: true }));
+    }
+    chunks.push(decoder.decode());
+    return chunks.join('');
+  } finally {
+    reader.releaseLock();
+  }
 }
 
 /** Snapshots above this many characters of JSON are stored gzipped. */

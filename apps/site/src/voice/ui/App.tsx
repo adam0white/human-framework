@@ -11,7 +11,7 @@ import { useWakeLock } from '../../shared/fullscreen.tsx';
 import { LabNotice } from '../../shared/LabNotice.tsx';
 import { gameLabs, useLabScreen } from '../../shared/lab.tsx';
 import { PlaytestNotice } from '../../shared/PlaytestMenu.tsx';
-import { playerError } from '../../shared/player-error.ts';
+import { fileError as gameFileError, playerError } from '../../shared/player-error.ts';
 import type { Draft } from '../protocol.ts';
 import { Between } from './Between.tsx';
 import { DayLog } from './DayLog.tsx';
@@ -21,7 +21,7 @@ import { Intro } from './Intro.tsx';
 import { Premise } from './Premise.tsx';
 import { Report } from './Report.tsx';
 import { SceneDay } from './SceneDay.tsx';
-import { SendWord } from './SendWord.tsx';
+import { RecordingPreference, SendWord } from './SendWord.tsx';
 import { InfoPanel, MenuPanel, OtherWays } from './ShellPanels.tsx';
 import { useStableSpeechFrame } from './stable-speech-frame.ts';
 import { TopBar } from './TopBar.tsx';
@@ -191,6 +191,11 @@ export function App() {
 
   const fileControls = fileSession ? (
     <section aria-label="Game file">
+      <button type="button" onClick={() => setFeedbackOpen(true)}>
+        Feedback
+      </button>
+      <RecordingPreference />
+      {!frame && feedbackOpen && <SendWord actions={actions} onBack={() => setFeedbackOpen(false)} />}
       <p>This file stays in this tab. Download it before closing.</p>
       <label>
         Open a game file{' '}
@@ -219,7 +224,7 @@ export function App() {
                 actions.loadPlaytest(text);
               })
               .catch((error) => {
-                if (request === fileRead.current) setFileError(String(error));
+                if (request === fileRead.current) setFileError(gameFileError(error));
               });
             event.target.value = '';
           }}
@@ -236,9 +241,7 @@ export function App() {
         </button>
       )}
       {(fileError || (voice.playtest && 'error' in voice.playtest ? voice.playtest.error : voice.error)) && (
-        <p role="alert">
-          {fileError || (voice.playtest && 'error' in voice.playtest ? voice.playtest.error : voice.error)}
-        </p>
+        <p role="alert">{gameFileError(fileError || voice.playtest || voice.error)}</p>
       )}
     </section>
   ) : null;
@@ -533,7 +536,7 @@ export function App() {
       )}
       {voice.error && !feedbackOpen && (
         <div className="v-error" role="alert">
-          {settingWords(playerError(voice.error, 'play'))}{' '}
+          {settingWords(fileSession ? gameFileError(voice.error) : playerError(voice.error, 'play'))}{' '}
           {!fileSession && (
             <button type="button" className="v-btn v-btn-small" onClick={() => actions.replay()}>
               Start again
@@ -544,7 +547,7 @@ export function App() {
           </button>
         </div>
       )}
-      <PlaytestNotice status={voice.playtest} onClose={actions.clearPlaytest} />
+      {!fileSession && <PlaytestNotice status={voice.playtest} onClose={actions.clearPlaytest} />}
       {voice.mock && (
         <div className="v-mockflag" title="The page is running on sample data, not the simulation.">
           sample data

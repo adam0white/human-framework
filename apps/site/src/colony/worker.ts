@@ -5,8 +5,9 @@
  * made and replayed here (a loaded file is replayed from its seed and log; its snapshot is never loaded).
  */
 import { ENGINE_VERSION } from '@adam0white/human-framework';
-import { canonicalPersona, validatePersona } from '@adam0white/lab-client';
 import { chapterPeople } from '../shared/cast-chapter.ts';
+import { type FileImport, importedFileRecord, recordFile } from '../shared/file-record.ts';
+import { checkGameFile } from '../shared/file-sources.ts';
 import { decodeSnapshot, PlaytestError, stableStringify } from '../shared/playtest.ts';
 import { requireValue } from '../shared/require-value.ts';
 import { hostWorker } from '../shared/worker-host.ts';
@@ -16,39 +17,10 @@ import { createFrameworkHumanSide } from './sim/human.ts';
 import { Playback } from './sim/playback.ts';
 import { colonyState } from './sim/playtest.ts';
 
-/** Imported receipt archives are provenance only; validate their binding without any Shelf access. */
-async function validateFileSources(raw: Record<string, unknown>): Promise<void> {
-  const ownership = raw.castOwnership;
-  const sources = raw.castSources;
-  if (ownership !== undefined && (!ownership || typeof ownership !== 'object' || Array.isArray(ownership)))
-    throw new Error('Invalid imported ownership provenance.');
-  if (sources !== undefined && (!sources || typeof sources !== 'object' || Array.isArray(sources)))
-    throw new Error('Invalid imported source archive.');
-  const heads = Object.entries((ownership ?? {}) as Record<string, unknown>);
-  if (heads.length > 8) throw new Error('Too many imported ownership receipts.');
-  for (const [id, value] of heads) {
-    const head = await validatePersona(value);
-    if (id !== head.castId) throw new Error('Imported receipt identity differs.');
-  }
-  for (const [id, source] of Object.entries((sources ?? {}) as Record<string, unknown>)) {
-    const head = (
-      ownership as Record<string, { transfer: { checkpoint?: { sha256?: string } } }> | undefined
-    )?.[id];
-    if (!head?.transfer.checkpoint?.sha256 || !source || typeof source !== 'object')
-      throw new Error('Imported source has no bound full-source receipt.');
-    const digest = Array.from(
-      new Uint8Array(
-        await crypto.subtle.digest('SHA-256', new TextEncoder().encode(canonicalPersona(source))),
-      ),
-      (byte) => byte.toString(16).padStart(2, '0'),
-    ).join('');
-    if (digest !== head.transfer.checkpoint.sha256) throw new Error('Imported source checksum differs.');
-  }
-}
-
 let playback = new Playback(createFrameworkHumanSide);
 let fileMode = false;
 let imported: Record<string, unknown> = {};
+let fileImport: FileImport | undefined;
 let loadOperation = 0;
 
 hostWorker<MainToWorker | FileSessionRequest, WorkerReply>((msg, host) => {
@@ -104,28 +76,41 @@ hostWorker<MainToWorker | FileSessionRequest, WorkerReply>((msg, host) => {
   if (msg.type === 'telemetry') {
     const gen = host.gen;
     const logs = structuredClone(playback.game?.frame().news ?? []);
+    const owner = playback.game ?? playback;
+    const source = fileImport;
     playback
       .playtestFile(ENGINE_VERSION, true)
-      .then((run) => host.post({ type: 'telemetry', requestId: msg.requestId, run, logs }, gen))
+      .then((run) =>
+        host.post(
+          { type: 'telemetry', requestId: msg.requestId, run: recordFile(owner, run, source), logs },
+          gen,
+        ),
+      )
       .catch(() => host.post({ type: 'telemetry', requestId: msg.requestId, error: 'No run yet' }, gen));
     return;
   }
   if (msg.type === 'exportPlaytest') {
     const gen = host.gen;
     const provenance = imported;
+    const source = fileImport;
+    const owner = playback.game ?? playback;
     playback
       .playtestFile(ENGINE_VERSION, fileMode || msg.full === true)
       .then((file) =>
         host.post(
           {
             type: 'playtest',
-            file: fileMode
-              ? {
-                  ...provenance,
-                  ...file,
-                  build: typeof provenance.build === 'string' ? provenance.build : file.build,
-                }
-              : file,
+            file: recordFile(
+              owner,
+              fileMode
+                ? {
+                    ...provenance,
+                    ...file,
+                    build: typeof provenance.build === 'string' ? provenance.build : file.build,
+                  }
+                : file,
+              source,
+            ),
             ...(msg.requestId !== undefined ? { requestId: msg.requestId } : {}),
           },
           gen,
@@ -162,8 +147,7 @@ hostWorker<MainToWorker | FileSessionRequest, WorkerReply>((msg, host) => {
     const operation = ++loadOperation;
     void (async () => {
       const target = fileMode ? new Playback(createFrameworkHumanSide) : playback;
-      const raw = fileMode ? (JSON.parse(msg.text) as Record<string, unknown>) : undefined;
-      if (raw) await validateFileSources(raw);
+      const raw = fileMode ? await checkGameFile(msg.text) : undefined;
       const { result, replies } = target.load(msg.text, ENGINE_VERSION);
       if (fileMode) {
         if (
@@ -174,8 +158,10 @@ hostWorker<MainToWorker | FileSessionRequest, WorkerReply>((msg, host) => {
         )
           throw new Error('The complete game state does not replay. Keep the original file.');
       }
+      const source = raw ? await importedFileRecord(raw, msg.text) : undefined;
       if (operation !== loadOperation) return;
       if (raw) imported = structuredClone(raw);
+      fileImport = source;
       playback = target;
       host.gen = msg.gen;
       host.post({ type: 'replayed', result });

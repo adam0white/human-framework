@@ -11,7 +11,7 @@ import { useWakeLock } from '../../shared/fullscreen.tsx';
 import { LabNotice } from '../../shared/LabNotice.tsx';
 import { gameLabs } from '../../shared/lab.tsx';
 import { labMode } from '../../shared/lab-mode.ts';
-import { playerError } from '../../shared/player-error.ts';
+import { fileError as gameFileError, playerError } from '../../shared/player-error.ts';
 import { downloadJson } from '../../shared/playtest.ts';
 import { settingWords } from '../../shared/setting-words.ts';
 import type { PageInfo } from '../protocol.ts';
@@ -22,7 +22,7 @@ import type { Press } from '../sim/state.ts';
 import { TALKS_PER_DAY, type Topic } from '../sim/talk.ts';
 import type { Frame, FrameWatcher } from '../sim/view.ts';
 import { Chronicle, HopesSheet, Shelf } from './chronicle.tsx';
-import { FeedbackScreen } from './exporting.tsx';
+import { FeedbackScreen, RecordingPreference } from './exporting.tsx';
 import { Icon } from './icons.tsx';
 import { MapCanvas } from './MapCanvas.tsx';
 import type { Hit } from './map.ts';
@@ -194,6 +194,11 @@ export function App() {
 
   const fileControls = fileSession ? (
     <section aria-label="Game file">
+      <button type="button" onClick={() => setFeedback(true)}>
+        Feedback
+      </button>
+      <RecordingPreference />
+      {!frame && feedback && <FeedbackScreen actions={actions} onBack={() => setFeedback(false)} />}
       <p>This file stays in this tab. Download it before closing.</p>
       <label>
         Open a game file{' '}
@@ -222,7 +227,7 @@ export function App() {
                 actions.loadFile(text);
               })
               .catch((error) => {
-                if (request === fileRead.current) setFileError(String(error));
+                if (request === fileRead.current) setFileError(gameFileError(error));
               });
             event.target.value = '';
           }}
@@ -235,7 +240,7 @@ export function App() {
             void actions
               .exportRun()
               .then((data) => downloadJson('watch.playtest.json', data))
-              .catch((error) => setFileError(String(error)));
+              .catch((error) => setFileError(gameFileError(error)));
           }}
         >
           Download complete game file
@@ -246,14 +251,14 @@ export function App() {
           Go up to the wall
         </button>
       )}
-      {(fileError || error) && <p role="alert">{fileError || error}</p>}
+      {(fileError || error) && <p role="alert">{gameFileError(fileError || error)}</p>}
     </section>
   ) : null;
   if (fileSession && !frame) return <main>{fileControls}</main>;
   if (error && !fileSession) {
     return (
       <div className="watch watch-error">
-        <p>{playerError(error, 'play')}</p>
+        <p>{fileSession ? gameFileError(error) : playerError(error, 'play')}</p>
         <button type="button" onClick={() => setFeedback(true)}>
           Feedback
         </button>
