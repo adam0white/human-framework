@@ -914,3 +914,24 @@ The third row is the difficulty edge: one careless winter is usually fatal, but 
 Not covered: eating the seed or keeping it as a Keeper's choice; hunger in the routine days of winter; a death on the wall from a wound. The scenario 13 departure cost and the night acts (F-423, kept by the owner) are unchanged.
 
 WATCH-cold-timing: the downloaded playtest file now carries `clock`, kept by the worker outside the game state. It holds the ticks the page sent, the real milliseconds offered and admitted (each tick capped at 250 ms), the capped and held ticks, and the same counts for the timed decision open at export. Replay ignores it. It covers this page session only: a run loaded from a file starts a fresh count. The foreground decision timeout is still undecided; this field is the evidence for that decision.
+
+## Retest fix 2026-10-27: posts and Urge say they worked
+
+The [2026-10-27 retest](watch-playtest-2026-10-27-retest.md) asked that "my taps on Urge and the posts tell me they worked".
+
+**What went wrong (confirmed from the driver log).** Neither the east-wall post nor the Urge reached the game. The tester's taps were refused by the lab driver, not by the game:
+- At dusk of night 2 the button read "East wall · tracks", because the scout found tracks there. The tap asked for "East wall", so the driver found no such control. The tester then pressed Done and Begin the watch, so no post was sent.
+- Each Urge option carries its likely answer ("Urge Kian to hold The watcher will probably agree."). Two taps by the name "Urge Kian to hold" matched nothing. The tap that worked, "Ring and call Kian by name The watcher will stay.", used the full name. A third Urge tap, by text, was refused as "not on the page now" although the control was there just before. Its cause is not confirmed.
+- Assumed, not confirmed: the tester's helper script dropped the driver's error replies, so the failures looked silent.
+
+From the code, not observed in that run: the post rule, the hit area and the disabled state work, and a tap on "East wall · tracks" posts the watcher. The live check below confirms it at 360x690.
+
+**What changed (words only; rules and difficulty unchanged).**
+- An Urge or call-back answer now puts the watcher's reply in the ticker, as a named bell call does: "You urge Kian to hold the Gate. “I’ll hold,” Kian answers." The reply follows the same read the card's option shows, so "will not agree" is answered "Kian does not answer." It is not a promise; they still decide. Sending someone else to the post says so too ("“I’ll go,”"). An Urge with no post to go back to says that it changes nothing; it used to close silently.
+- After a post at dusk, the roster says "Idris is posted on the east wall (asked)", or that the post did not take.
+- Beside Begin the watch, a line warns when nobody is posted on the stretch where the scout warned of trouble.
+- The night-off and refuge buttons no longer render as a white box with pale text.
+
+The rule hash ignores alerts, so replay hashes do not move.
+
+**Deferred.** Target **2026-11-10**, **a taller phone map at dusk** (360 px wide). The watcher sheet covers the map at dusk, so posts cannot be tapped on the map. The post buttons in the sheet work. Also open from the retest, target 2026-11-10: the "in the new village" checkbox wording, and a raid headline beside "It was quiet enough."

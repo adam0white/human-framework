@@ -19,6 +19,8 @@ Return sentence (mixed): "Yes, I would come back for one more night to see wheth
 1. **A post fails silently on the phone.** "I tapped "East wall" for Idris and he did not move. The panel still said "Mill wall, asked · At the assigned post now." and showed no error. The dawn account then said "Nobody watched the east wall. Wolves got over the east wall during the raid.""
    - **Proposed fix:** apply the post or show why it was refused in the watcher panel. Keep the phone map tall enough at dusk and night to see the posts.
 
+- **Correction (2026-10-27, from the driver log):** the post did not fail in the game. The tap asked for "East wall", but that night the button read "East wall · tracks", so the driver refused it. The tester then pressed Done and Begin the watch. Two Urge taps were refused the same way: the option's name includes its read ("…The watcher will probably agree."). A third, by text, was refused for a reason not confirmed. This is a TOOL finding. The game change that answers the ask is in [watch.md](watch.md#retest-fix-2026-10-27-posts-and-urge-say-they-worked).
+
 ### Other asks
 
 - "Tapping Urge Kian to hold twice gave no visible response and the prompt stayed". Proposed fix: show his answer to every Urge.

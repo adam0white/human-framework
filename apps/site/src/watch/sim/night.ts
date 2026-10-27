@@ -103,7 +103,7 @@ import {
 import { takeOffer } from './fair.ts';
 import { fillLeaf, maybeLimp } from './life.ts';
 import { applyLocalWarning, deliverLocalWarnings, type LocalWarningInput } from './local-warning.ts';
-import { answerMoment, catchLeaving, checkMoments } from './moments.ts';
+import { answerMoment, catchLeaving, checkMoments, type Read } from './moments.ts';
 import { applyNightAct, type NightInput, resolveNightRequest } from './night-actions.ts';
 import {
   addVillager,
@@ -876,6 +876,33 @@ function bellAnswer(s: WatchState, targets: WatcherId[], named: boolean): string
   if (fear > 0.5) return `${name} answers, in a weak voice: “I hear it.”`;
   if (low >= 0.35) return `“We heard you,” ${name} calls, not warmly.`;
   return `${name} does not answer.`;
+}
+
+/**
+ * What the Keeper hears back after a spoken word from a card (urge, call back, send): 2026-10-27 retest, "my taps
+ * on Urge ... tell me they worked". Words only (an alert; the rule hash ignores alerts). The reply follows the
+ * Keeper's read of the same ask (`readPosting`, as the card's option shows it), so it never contradicts the card.
+ * It is not a promise: they still decide.
+ */
+export function wordAnswer(
+  s: WatchState,
+  who: WatcherId,
+  said: string,
+  word: Read['word'],
+  going: boolean,
+): string {
+  const name = nameOf(s, who);
+  const reply =
+    word === 'likely'
+      ? `\u201c${going ? 'I\u2019ll go' : 'I\u2019ll hold'},\u201d ${name} answers.`
+      : word === 'grudging'
+        ? `\u201cIf I must,\u201d ${name} answers.`
+        : word === 'unsure'
+          ? `\u201c${going ? 'I\u2019ll see' : 'For a while'},\u201d ${name} answers.`
+          : word === "won't"
+            ? `${name} does not answer.`
+            : `You cannot tell what ${name} will do.`;
+  return `${said} ${reply}`;
 }
 
 /** The Keeper's standing suggestions: the posting, and a one-shot ask from a card while it lasts. */

@@ -73,6 +73,9 @@ const PRESSES: Press[] = ['ask', 'urge', 'insist'];
 
 const nameIn = (f: Frame, id: WatcherId) => f.watchers.find((w) => w.id === id)?.name ?? '';
 const sectionName = (id: SectionId) => SECTIONS.find((s) => s.id === id)?.name ?? '';
+/** "the Gate", "the East wall". */
+const theSectionName = (id: SectionId) =>
+  id === 'gate' ? 'the Gate' : `the ${sectionName(id).toLowerCase()}`;
 
 /** The post `who` is posted to in a section, else the first post there nobody is posted to. */
 function freePost(f: Frame, section: SectionId, who: WatcherId): PostId | null {
@@ -820,6 +823,33 @@ export function DuskPanel({
   const sel = frame.watchers.find((w) => w.id === selected);
   const reads = selected ? frame.postingReads?.[selected] : undefined;
   const [picker, setPicker] = useState(false);
+  // 2026-10-27 retest: a post must say it took. The line reads the frame, so it shows what the run holds.
+  // It waits for the first frame after the tap (the worker answers with a new frame), so it never reads the old one.
+  const [asked, setAsked] = useState<{ who: WatcherId; section: SectionId | null; frame: Frame } | null>(
+    null,
+  );
+  const place = (who: WatcherId, at: PostId | null) => {
+    setAsked({ who, section: at ? postSection(at) : null, frame });
+    post(who, at);
+  };
+  const askedWatcher = asked ? frame.watchers.find((w) => w.id === asked.who) : undefined;
+  const postedLine =
+    !sel && asked && asked.frame !== frame && askedWatcher
+      ? asked.section === null
+        ? askedWatcher.posted
+          ? null
+          : `${settingWords(askedWatcher.name)} has no post now and chooses where to stand.`
+        : askedWatcher.posted && postSection(askedWatcher.posted) === asked.section
+          ? `${settingWords(askedWatcher.name)} is posted on ${theSectionName(asked.section)} (${PRESS_WORDS[askedWatcher.press].done}).`
+          : `${settingWords(askedWatcher.name)} was not posted on ${theSectionName(asked.section)}.`
+      : null;
+  const warnedSection = frame.sections.find((x) => x.id === frame.warned);
+  const tracksUnwatched =
+    !sel &&
+    warnedSection !== undefined &&
+    !warnedSection.fallen &&
+    warnedSection.posts.length > 0 &&
+    !frame.watchers.some((w) => w.posted && postSection(w.posted) === frame.warned);
   return (
     <div className="w-dusk">
       {frame.refugeVisit?.status === 'agreed' ? (
@@ -829,7 +859,11 @@ export function DuskPanel({
             Opening this chapter did not take them to the refuge, a safe place to stay. Choose to stay before
             beginning the watch.
           </p>
-          <button type="button" onClick={() => actions.input({ k: 'refugeVisit', choice: 'stay' })}>
+          <button
+            type="button"
+            className="w-secondary"
+            onClick={() => actions.input({ k: 'refugeVisit', choice: 'stay' })}
+          >
             Stay here together
           </button>
         </section>
@@ -927,6 +961,7 @@ export function DuskPanel({
                 {sel.duskRest.account ? <p role="status">{sel.duskRest.account}</p> : null}
                 <button
                   type="button"
+                  className="w-secondary"
                   disabled={!!sel.duskRest.unavailable}
                   onClick={() => actions.input({ k: 'dusk-rest', who: sel.id, until: 'dawn' })}
                 >
@@ -938,24 +973,31 @@ export function DuskPanel({
             <Impressions impressions={sel.impressions} />
           </>
         ) : (
-          <ul className="w-roster">
-            {frame.watchers.map((w) => (
-              <li key={w.id}>
-                <button
-                  type="button"
-                  className={`w-person w-person-${w.id}`}
-                  onClick={() => setSelected(w.id)}
-                >
-                  <span className="w-person-head">
-                    <strong>{settingWords(w.name)}</strong>
-                    <span>{w.note}</span>
-                  </span>
-                  <span className="w-person-post">{whereWords(w, frame.phase)}</span>
-                  <Impressions impressions={w.impressions} />
-                </button>
-              </li>
-            ))}
-          </ul>
+          <>
+            {postedLine ? (
+              <p className="w-posted-line" role="status">
+                {postedLine}
+              </p>
+            ) : null}
+            <ul className="w-roster">
+              {frame.watchers.map((w) => (
+                <li key={w.id}>
+                  <button
+                    type="button"
+                    className={`w-person w-person-${w.id}`}
+                    onClick={() => setSelected(w.id)}
+                  >
+                    <span className="w-person-head">
+                      <strong>{settingWords(w.name)}</strong>
+                      <span>{w.note}</span>
+                    </span>
+                    <span className="w-person-post">{whereWords(w, frame.phase)}</span>
+                    <Impressions impressions={w.impressions} />
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </>
         )}
       </div>
       <footer className="lk-commit">
@@ -981,7 +1023,7 @@ export function DuskPanel({
                     disabled={!at}
                     aria-pressed={sel.posted !== null && postSection(sel.posted) === section.id}
                     onClick={() => {
-                      if (at) post(sel.id, at);
+                      if (at) place(sel.id, at);
                     }}
                   >
                     {section.name}
@@ -992,7 +1034,7 @@ export function DuskPanel({
               })}
             </div>
             <div className="w-post-bottom">
-              <button type="button" className="w-secondary" onClick={() => post(sel.id, null)}>
+              <button type="button" className="w-secondary" onClick={() => place(sel.id, null)}>
                 {settingWords(sel.name)} Choose a post (still on watch)
               </button>
               <button type="button" className="w-primary" onClick={() => setSelected(null)}>
@@ -1010,6 +1052,11 @@ export function DuskPanel({
             >
               Begin the watch
             </button>
+            {tracksUnwatched ? (
+              <p className="w-grain-warning" role="status">
+                Nobody is posted on {theSectionName(frame.warned)}, where the scout warned of trouble.
+              </p>
+            ) : null}
             <p className="w-note">Tap a watcher to post them.</p>
           </>
         )}
@@ -1569,15 +1616,27 @@ export function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActi
                 They agreed to stay together and return by the next dawn. Save Kian at a quiet action
                 boundary, or choose to stay before the next watch.
               </p>
-              <button type="button" onClick={() => actions.input({ k: 'refugeVisit', choice: 'prepare' })}>
+              <button
+                type="button"
+                className="w-secondary"
+                onClick={() => actions.input({ k: 'refugeVisit', choice: 'prepare' })}
+              >
                 Spend daylight caring for Ada and prepare a quiet departure
               </button>
-              <button type="button" onClick={() => actions.input({ k: 'refugeVisit', choice: 'stay' })}>
+              <button
+                type="button"
+                className="w-secondary"
+                onClick={() => actions.input({ k: 'refugeVisit', choice: 'stay' })}
+              >
                 Stay here together
               </button>
             </>
           ) : (
-            <button type="button" onClick={() => actions.input({ k: 'refugeVisit', choice: 'ask' })}>
+            <button
+              type="button"
+              className="w-secondary"
+              onClick={() => actions.input({ k: 'refugeVisit', choice: 'ask' })}
+            >
               Ask Kian and Ada about visiting the refuge together
             </button>
           )}
