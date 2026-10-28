@@ -82,29 +82,23 @@ Trial configs and command logs: `~/code/.lab-scratch/cfcli/evidence/`; mapping a
 
 ## G2/G3/G4 and Stairwell — 2026-10-27
 
-Remaining: the 4.5 vocabulary and live-inspection contracts, preservation-contract audit, reviews/publication, then the complete Stairwell bridge, retained
-journeys, game-log replay, exact green merged CI and a clean game deployment. The owner accepts the
-cross-game feel separately. Preserve difficulty and No-flags.
+Remaining: complete the Stairwell bridge and phase-clock mapping, retained journeys, game-log replay,
+exact green merged CI and a clean game deployment. The owner accepts the cross-game feel separately.
+Preserve difficulty and No-flags.
 
-- Done and verified: HF 4.4.0/client 0.5.2/kit 0.5.19 published after both requested reviews, exact green
-  main CI 40622739835, signed tags and source bd8e46b. Registry signature/attestation and registry-vs-GitHub
-  tar contents verified. Strict frozen published consumer passed without overrides. Source DEFAULT_NORMS,
-  inspect sourceTrust, preview bodyForecast and retained v2 route deliver the confirmed Stairwell subset.
-  Actual native 2.21/2.23 and bounded independent adoption controls pass. Central receiver is live at
-  bd8e46b, dirty:false, actor 3.2/library 4.4. Original failed VM adapter evidence is unchanged.
-- Done but awaiting verification: PR 42 vocabulary candidate, package 4.5.0, adds immutable authored traits
-  through Definitions and the existing social/speech routes. Full reconciled lane 1,878 passed/seven skips;
-  exact candidate CI 40625069049 passed at dfcb6d49af3150aabb84c4b6dc66dd0bc0c39e3c. Codex found no findings on that head. Opus 5.5 then found no vocabulary blockers on that head. Lab-client deliberately retains its published 4.4 bridge. Further traits/heldNorms selections and preservation inputs are in progress and require fresh reviews. This candidate is not published. Client keeps exact registry 4.4 bridge dependency;
-  stale workspace link was reconciled in the lockfile. Do not publish without two reviews and final CI.
-- In progress: worker-owned Stairwell g3g4-port tree from origin/main329919a. Historical dependencies are
-  isolated with strict peers; public bridge controls pass but game.ts is not yet migrated. No game merge,
-  deployment or live peer journey exists. New final game pin follows the published vocabulary release.
+- HF 4.4.0 and its client 0.5.2 / kit 0.5.19 companions are verified; central receiver is live at
+  bd8e46b, dirty:false, actor 3.2 / library 4.4. The original failed VM adapter remains historical evidence.
+- HF 4.5.0 is published from signed source b293ef3235a56985c14db7fb7bfb76a120b122d0 after
+  exact green main CI 40628498340 and trusted npm publication 40628971458. Registry signatures,
+  attestation, artifact contents and a strict published consumer were verified. It supplies authored
+  reputation vocabulary, host traits and held-norm inspection, and authored source-trust response and
+  conversation confidence through existing routes. These cover the confirmed Stairwell subset; broader
+  G2, G3 and G4 work and the first integrated G1 game remain open. Client 0.5.2 and kit 0.5.19 are unchanged;
+  the client intentionally keeps its exact registry 4.4 bridge dependency.
+- The Stairwell bridge and phase-clock mapping are under implementation. The ordinary game is not yet
+  wired, merged or deployed on 4.x. Historical dependency isolation and public controls do not prove a
+  game port or a live peer journey. Raw historical memory requires checkpoint-matching verified source;
+  otherwise refuse and keep the file.
 
-Next action: read `~/code/.lab-scratch/codex/hf-g3g4.md` and
-`~/code/.lab-scratch/codex/stairwell-vocabulary.md`, check PR 42 reviews/CI and finish the candidate.
-Root owns the serialization lock for 4.5. The coordinator's original
-`~/code/.lab-scratch/v3/claude-g3g4-read.md` was read and its B1/S1 fixed before 4.4 publication;
-it does not review new vocabulary code. The followup has a separate Opus review.
-The old resume brief's 4.2 pin is superseded; never silently run old whole-game data on a new engine.
-Raw historical memory requires checkpoint-matching verified source, otherwise refuse and keep the file.
-The live audit also found fixed source-trust penalties and per-conversation confidence thresholds without equivalent public 4.4 inputs. Their owner-route extensions are under audit before finalizing 4.5. No user-only open question. Receipts and cleanup remain in the task report.
+Next: complete and verify the actual game bridge, including pending and active work, retained-person
+journeys and complete game-log replay. See `~/code/.lab-scratch/codex/hf-g3g4.md` for receipts.

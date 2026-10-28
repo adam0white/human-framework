@@ -3,7 +3,7 @@
 G1 recipe, 2026-10-27. Target: **`@adam0white/human-framework@4.4.0`**, an exact pin.
 The [needs inventory](hf4-game-needs.md) owns framework gaps and dates.
 The owner accepts the all-games outcome; each host maintainer supplies delivery receipts.
-This recipe is documented and its published 4.4 public-run control passes. **The first whole-game port remains unproved.** Stairwell's earlier catalogue, trust and forecast prerequisites are published; its additional authored reputation vocabulary is G17.
+This recipe is documented and its published 4.4 public-run control passes. **The first whole-game port remains unproved.** Stairwell's catalogue, trust, forecast and G17 authored vocabulary prerequisites are published; the game bridge remains unproved.
 The control is not evidence that Stairwell, carryover, or all games have upgraded.
 
 ## Glossary
@@ -146,14 +146,14 @@ completion. The headless control offers rest with the same seed. The
 published 4.4.0, including source-trust and conditional body forecasts. It **does not execute Stairwell's game loop**. The actual caretaker action, month,
 cast journeys, game export, deployment and owner acceptance remain unproved on HF 4.
 
-| Numbered gap                        | Evidence and required resolution                                                                                                                                                                                                                                                                                 |
-| ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| G2: portable admission              | Published 4.4 provides retained v2 host projection and pre-step admission through the sole portable route. Replace the old one-cast DTO in the current public new-opening route; verify raw historical source instead of inventing omitted memory. Actual game journey proof remains.                            |
-| G3: sourced norms                   | Published 4.4 exports sourced DEFAULT_NORMS with research/interpretation provenance. Use that catalogue for cast/calendar validation; do not copy defaults into the game. Wider worship scheduling remains its separate need.                                                                                    |
-| G4: source trust and forecast       | Published 4.4 supports inspect sourceTrust and preview bodyForecast with existing visibility limits. Adopt these readings; broader observer signs are separate.                                                                                                                                                  |
-| G17: authored reputation vocabulary | Stairwell authors nosy with -0.03 affection/trust/respect. Published 4.4 changes the belief but has no authored vocabulary route for its relationship effect. Add immutable run-scoped vocabulary through the existing social route, with correction/isolation/replay controls; no game-side reputation formula. |
+| Numbered gap                        | Evidence and required resolution                                                                                                                                                                                                                                                      |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| G2: portable admission              | Published 4.4 provides retained v2 host projection and pre-step admission through the sole portable route. Replace the old one-cast DTO in the current public new-opening route; verify raw historical source instead of inventing omitted memory. Actual game journey proof remains. |
+| G3: sourced norms                   | Published 4.4 exports sourced DEFAULT_NORMS with research/interpretation provenance. Use that catalogue for cast/calendar validation; do not copy defaults into the game. Wider worship scheduling remains its separate need.                                                         |
+| G4: source trust and forecast       | Published 4.4 supports inspect sourceTrust and preview bodyForecast with existing visibility limits. Adopt these readings; broader observer signs are separate.                                                                                                                       |
+| G17: authored reputation vocabulary | Stairwell authors nosy with -0.03 affection/trust/respect. Published 4.5 adds immutable run-scoped vocabulary through the existing social route, with correction/isolation/replay controls; adopt it without a game-side reputation formula.                                          |
 
-Recommendation: adopt the published 4.4 G2/G3/G4 subset, resolve G17, then implement the bridge and run the actual host proof. The final exact game pin follows the published G17 minor; its 4.5 candidate is not yet a release. G1 stays open for the first integrated game and delivery.
+Recommendation: adopt the published 4.4 G2/G3/G4 subset and 4.5 G17 contracts, then finish the bridge and run the actual host proof. The current Stairwell target is exact 4.5.0. G1 stays open for the first integrated game and delivery.
 Existing targets remain recipe 2026-11-10, candidate 2026-11-24 and blocker review 2026-12-01.
 The original audit changed no game logic. Framework 4.4 is now published and the game bridge is being implemented; no 4.x Stairwell deployment is claimed.
 
