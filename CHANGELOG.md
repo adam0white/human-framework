@@ -20,7 +20,7 @@ Engine: 4.8.1.
 - `person.arrived` accepts the same validated portable admission used by `createPerson`. Hosts can keep an uninvited visitor outside the Run until an actual decision admits them. Invalid references, future mapped sources and duplicate actors refuse the complete transaction.
 - Runtime arrival preserves the original source clock mapping and duty timestamps. It does not simulate actions or body changes during the person's absence. The arriving actor begins at the actual arrival time; normal faculties then own elapsed duties.
 - Public persona projection retains previous portable history and omitted-history counts for runtime arrivals by reading the accepted arrival input. The complete source admission remains in the replay log. Restore and replay retain the same projection.
-- Client 0.5.6 pins this HF patch; kit 0.5.24 adds that client peer and includes the already merged resumable recipe traversal. Existing SDK and game publication receipts remain separate.
+- Client 0.5.7 pins this HF patch and retains the released portable-write rollout gate; kit 0.5.24 adds that client peer and includes the already merged resumable recipe traversal. Existing SDK and game publication receipts remain separate.
 
 ## [4.8.0] — 2026-10-28
 
