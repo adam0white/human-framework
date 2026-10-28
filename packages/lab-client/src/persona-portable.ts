@@ -11,7 +11,14 @@ import {
 import { canonicalCast } from './cast.ts';
 import { boundedPersonaJson, type PersonaEnvelope } from './persona.ts';
 
+// SCOPE: roles bind identity only; clinical, departure and ownership checks still apply.
 const SOURCE_ROLES: Record<string, Record<string, string>> = {
+  lefthand: {
+    'hf.cast.yusuf.well': 'yusuf',
+    'hf.cast.idris.well': 'idris',
+    'hf.cast.samira.well': 'samira',
+    'hf.cast.danyal.well': 'danyal',
+  },
   goodhands: {
     'hf.cast.nermin.goodhands': 'nermin',
     'hf.cast.hatice.hearsay': 'hatice',

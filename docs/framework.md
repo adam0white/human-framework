@@ -656,8 +656,14 @@ empty HF agenda does not prove that an account, delivery or borrowed object is
 settled. Days checks Burak's notebook, mistaken payment and agreed delivery.
 Commonstead keeps its existing unfinished-construction departure gate.
 
-For this increment the finite role map admits Days' Hacer, Selin and Burak,
-and Commonstead's Burak role. Voice's portable Hacer/Selin routes are withheld
+The finite role map admits Days' Hacer, Selin and Burak, Commonstead's Burak,
+Stairwell's Hacer/Sevim/Burak/Derya/Tarik, Good Hands' Nermin/Hatice/Hulya/Aylin/Derya/Zeynep/Selin,
+Pass' Selim/Dilek/Rafi/Zeynep/Hulya/Murat/Sam and Murmur's Dilan/Aylin/Ece/Murat.
+Client 0.5.4 adds Left Hand's existing Yusuf/Idris/Samira/Danyal identities
+as both source and receiving local roles through these same functions. Tariq stays local until Warren is live on HF 4 with per-person skips; review 2026-11-03. This grants
+no departure from uncompleted host work or incompatible clinical premises. The
+receiving host validates and pins every skipped identity; source routines in
+Well or Valley still require their own adoption proof. Voice's portable Hacer/Selin routes are withheld
 until their routines have a supported departure contract; neither prayer nor
 work can become a one-way trap. Existing full-calendar dialects keep their
 established routes. The next route review is 2026-11-17. Other identities and

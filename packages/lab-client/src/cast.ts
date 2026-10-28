@@ -1045,7 +1045,7 @@ export const CANONICAL_CAST: readonly CanonicalCast[] = [
     age: 34,
     cohort: 'valley',
     revision: '1',
-    games: ['well', 'valley'],
+    games: ['lefthand', 'well', 'valley'],
     traits: {
       honesty: 0.75,
       emotionality: 0.4,
@@ -1078,7 +1078,7 @@ export const CANONICAL_CAST: readonly CanonicalCast[] = [
     age: 16,
     cohort: 'valley',
     revision: '1',
-    games: ['well', 'warren'],
+    games: ['lefthand', 'well', 'warren'],
     traits: {
       honesty: 0.6,
       emotionality: 0.3,
@@ -1111,7 +1111,7 @@ export const CANONICAL_CAST: readonly CanonicalCast[] = [
     age: 41,
     cohort: 'valley',
     revision: '1',
-    games: ['well', 'watch'],
+    games: ['lefthand', 'well', 'watch'],
     traits: {
       honesty: 0.6,
       emotionality: 0.15,
@@ -1144,7 +1144,7 @@ export const CANONICAL_CAST: readonly CanonicalCast[] = [
     age: 29,
     cohort: 'valley',
     revision: '1',
-    games: ['well', 'valley', 'watch'],
+    games: ['lefthand', 'well', 'valley', 'watch'],
     traits: {
       honesty: 0.7,
       emotionality: 0.85,
@@ -1177,7 +1177,7 @@ export const CANONICAL_CAST: readonly CanonicalCast[] = [
     age: 52,
     cohort: 'valley',
     revision: '1',
-    games: ['well', 'valley', 'watch'],
+    games: ['lefthand', 'well', 'valley', 'watch'],
     traits: {
       honesty: 0.9,
       emotionality: 0.4,
