@@ -40,12 +40,12 @@ it('gives two watchers different words for the same answer', () => {
 
 it('tells a discovery once a game, not every dawn', () => {
   const s = firstDawn(1);
-  expect(talk(s, 'kian', 'night')).toBe(true);
+  expect(talk(s, 'kian', 'home')).toBe(true);
   expect(s.talks.said.at(-1)?.text).toContain(WATCH_DISCOVERIES.kian);
   applyInput(s, { k: 'toDusk' });
   applyInput(s, { k: 'begin' });
   while (s.phase === 'night') stepMinute(s);
-  expect(talk(s, 'kian', 'night')).toBe(true);
+  expect(talk(s, 'kian', 'home')).toBe(true);
   expect(s.talks.said.at(-1)?.text).not.toContain(WATCH_DISCOVERIES.kian);
 });
 
@@ -57,4 +57,22 @@ it('confirms a Gate answer in plain words', () => {
   if (!who) throw new Error('nobody can be asked about the Gate');
   expect(talk(s, who, 'gate')).toBe(true);
   expect(s.talks.said.at(-1)?.text).toMatch(/said (yes|no)\. When you choose who keeps the Gate next/);
+});
+
+// F-2114: a second question stays with the chosen person and still spends the same daylight.
+it('allows two different questions to the same person and refuses a repeated question', () => {
+  const s = firstDawn(1);
+  expect(talk(s, 'kian', 'night')).toBe(true);
+  expect(canTalk(s, 'kian')).toBe(true);
+  expect(talk(s, 'kian', 'night')).toBe(false);
+  expect(talk(s, 'kian', 'body')).toBe(true);
+  expect(s.talks.said.map((x) => x.who)).toEqual(['kian', 'kian']);
+  expect(s.talks.left).toBe(0);
+});
+it('separates home discoveries from the answer and keeps them out of night testimony', () => {
+  const s = firstDawn(1);
+  expect(talk(s, 'kian', 'night')).toBe(true);
+  expect(s.talks.said.at(-1)?.text).not.toContain(WATCH_DISCOVERIES.kian);
+  expect(talk(s, 'kian', 'home')).toBe(true);
+  expect(s.talks.said.at(-1)?.text).toContain('\nAbout life away from the wall, Kian adds:');
 });

@@ -37,13 +37,7 @@ const HOME_WARMTH = 0.02;
 
 export function canTalk(s: WatchState, who: string): boolean {
   const p = personOf(s, who);
-  return (
-    s.phase === 'dawn' &&
-    s.talks.left > 0 &&
-    !!p &&
-    isWatcher(s, p) &&
-    !s.talks.said.some((x) => x.who === who)
-  );
+  return s.phase === 'dawn' && s.talks.left > 0 && !!p && isWatcher(s, p);
 }
 
 function spouseOf(s: WatchState, who: string) {
@@ -77,11 +71,15 @@ export function topicsFor(s: WatchState, who: string): Topic[] {
   const kids = childrenOf(s, p).filter((c) => ageOf(c, s.minute) < 6).length;
   const spouse = spouseOf(s, who);
   if (kids > 0 || spouse) score.home = 0.6 + 0.4 * kids;
+  else if (WATCH_DISCOVERIES[who] && !s.talks.discovered?.includes(who)) score.home = 0.4;
   if (!s.talks.asked.includes(`${who}:home`) && score.home > 0) score.home += 0.5;
   if (gateAsk(s, who)) score.gate = 0.7 + (s.gateKeeper && s.gateKeeper !== who ? 0.3 : 0);
-  return TOPICS.filter((t) => score[t] > 0 && (t !== 'gate' || gateAsk(s, who))).sort(
-    (a, b) => score[b] - score[a] || TOPICS.indexOf(a) - TOPICS.indexOf(b),
-  );
+  return TOPICS.filter(
+    (t) =>
+      score[t] > 0 &&
+      (t !== 'gate' || gateAsk(s, who)) &&
+      !s.talks.said.some((x) => x.who === who && x.topic === t),
+  ).sort((a, b) => score[b] - score[a] || TOPICS.indexOf(a) - TOPICS.indexOf(b));
 }
 
 /**
@@ -108,6 +106,7 @@ function own(s: WatchState, who: string, key: string, lines: string[]): string {
 /** Holds a talk. Returns false when it cannot be held. */
 export function talk(s: WatchState, who: string, topic: Topic): boolean {
   if (!canTalk(s, who) || !TOPICS.includes(topic)) return false;
+  if (s.talks.said.some((x) => x.who === who && x.topic === topic)) return false;
   if (topic === 'gate' && !gateAsk(s, who)) return false;
   const p = personOf(s, who);
   if (!p) return false;
@@ -261,12 +260,12 @@ export function talk(s: WatchState, who: string, topic: Topic): boolean {
       : ` ${name} said no. When you choose who keeps the Gate next, at an autumn fair, ${their} name comes last.`;
   }
   if (
-    topic === 'night' &&
+    topic === 'home' &&
     !text.includes('don’t want to talk') &&
     !s.talks.discovered?.includes(who) &&
     WATCH_DISCOVERIES[who]
   ) {
-    text += ` ${WATCH_DISCOVERIES[who]}`;
+    text += `\nAbout life away from the wall, ${s.cast[who]?.name ?? who} adds: ${WATCH_DISCOVERIES[who]}`;
     s.talks.discovered ??= [];
     s.talks.discovered.push(who);
   }

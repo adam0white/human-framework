@@ -64,7 +64,7 @@ it('saves the old run with its exact accepted ownership before a fresh init and 
       post: (message: Record<string, unknown>, gen = control.gen) =>
         control.replies.push({ ...message, gen }),
     });
-  send({ type: 'init', seed: 1, gen: 1, scenarioVersion: 17 });
+  send({ type: 'init', seed: 1, gen: 1, scenarioVersion: 20 });
   send({ type: 'input', input: { k: 'start' } });
   const castId = 'hf.cast.tamar.watch';
   const branchId = 'worker-owned';
@@ -80,7 +80,7 @@ it('saves the old run with its exact accepted ownership before a fresh init and 
   });
   send({ type: 'castOwnership', heads: { [castId]: head } });
   send({ type: 'input', input: { k: 'begin' } });
-  send({ type: 'init', seed: 2, gen: 2, scenarioVersion: 17 });
+  send({ type: 'init', seed: 2, gen: 2, scenarioVersion: 20 });
   const old = JSON.parse(requireValue(control.saved.at(-1)));
   expect(old.seed).toBe(1);
   expect(old.castOwnership[castId]).toEqual(head);
@@ -122,7 +122,7 @@ it('saves the old run with its exact accepted ownership before a fresh init and 
   send({ type: 'load', gen: 5, id: 'owned:1:winter' });
   await vi.waitFor(() => expect(control.listing).toBeGreaterThan(listing));
   control.pendingPages = undefined;
-  send({ type: 'init', seed: 3, gen: 6, scenarioVersion: 17 });
+  send({ type: 'init', seed: 3, gen: 6, scenarioVersion: 20 });
   release([
     {
       id: 'owned:1:winter',
@@ -159,7 +159,7 @@ it('admits the explicit fresh night-off choice and retains that scenario through
     type: 'init',
     seed: 2026,
     gen: 20,
-    scenarioVersion: 18,
+    scenarioVersion: 21,
     options: { duskRest: 'dusk-rest@1' },
     startAtDusk: true,
   });
@@ -167,12 +167,12 @@ it('admits the explicit fresh night-off choice and retains that scenario through
   const data = control.replies.findLast((r) => r.type === 'exported' && r.requestId === 200)
     ?.data as ReturnType<WatchRun['export']>;
   expect(data).not.toHaveProperty('fileImport');
-  expect(data.scenario).toBe(18);
+  expect(data.scenario).toBe(21);
   expect(data.options).toEqual({ duskRest: 'dusk-rest@1' });
   expect(data.end.phase).toBe('dusk');
   expect(data.inputs).toEqual([{ m: 1020, i: { k: 'start' } }]);
   send({ type: 'save' });
-  expect(JSON.parse(requireValue(control.saved.at(-1))).scenario).toBe(18);
+  expect(JSON.parse(requireValue(control.saved.at(-1))).scenario).toBe(21);
   // The existing loader retains the saved state; no fresh-run checkbox is applied to it.
   control.pendingPages = undefined;
   send({ type: 'load', id: 'saved:auto', gen: 21 });
@@ -182,9 +182,9 @@ it('admits the explicit fresh night-off choice and retains that scenario through
   send({ type: 'export', requestId: 201 });
   const restored = control.replies.findLast((r) => r.type === 'exported' && r.requestId === 201)
     ?.data as typeof data;
-  expect(restored.scenario).toBe(18);
+  expect(restored.scenario).toBe(21);
   expect(restored.end.fullHash).toBe(data.end.fullHash);
-  send({ type: 'init', seed: 2026, gen: 22, scenarioVersion: 18 });
+  send({ type: 'init', seed: 2026, gen: 22, scenarioVersion: 21 });
   expect(control.replies.findLast((r) => r.gen === 22)?.type).toBe('error');
 });
 
@@ -205,7 +205,7 @@ it('native worker saves first season, due input/timer, hold/hide and a real term
       },
       post: (reply: Record<string, unknown>, gen = control.gen) => control.replies.push({ ...reply, gen }),
     });
-  send({ type: 'init', seed: 1, gen: 101, scenarioVersion: 17 });
+  send({ type: 'init', seed: 1, gen: 101, scenarioVersion: 20 });
   expect(control.saved).toEqual([]);
   send({ type: 'input', input: { k: 'start' } });
   expect(control.infos.map((info) => info.kind)).toEqual(['season', 'auto']);

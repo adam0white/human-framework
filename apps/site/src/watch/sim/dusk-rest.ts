@@ -5,7 +5,8 @@
  */
 import { interruptPerson, type SimEvent, type Suggestion } from '@adam0white/human-framework';
 import type { PostId, WatcherId } from './config.ts';
-import { inVoice, nightEnd, presentIds } from './night.ts';
+import { postSection } from './config.ts';
+import { inVoice, nightEnd, presentIds, voiceReach } from './night.ts';
 import { KEEPER_ID, personOf } from './people.ts';
 import type { WatchState } from './state.ts';
 
@@ -49,7 +50,12 @@ export function duskRestUnavailable(s: WatchState, who: WatcherId): string | nul
   if (!presentIds(s).includes(who)) return 'This watcher is not here for tonight’s watch.';
   const p = personOf(s, who);
   if (!p || p.body.downed || p.body.asleep) return 'They cannot answer a spoken request now.';
-  if (!inVoice(s, who)) return 'Your voice cannot reach them from here. Move the lantern nearer.';
+  // At dusk the map shows planned posts. A villager can be addressed at their planned post.
+  const planned = s.place[who] === 'village' ? s.posts[who] : null;
+  if (!inVoice(s, who) && !(planned && voiceReach(s).includes(postSection(planned))))
+    return planned
+      ? 'Your voice cannot reach their planned post. Move the lantern nearer.'
+      : 'They are away from the wall. Ask them when they are at a post or in the hall.';
   if (activeRest(s.duskRest.requests[who], s.minute))
     return 'They are already answering your night-off request.';
   if (

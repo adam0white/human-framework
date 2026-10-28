@@ -5,13 +5,13 @@ import { replay, WatchRun } from './run.ts';
 
 it('admits only a fresh explicit warning edition, with optional night-off coexistence', () => {
   const r = new WatchRun(2026, undefined, undefined, { localWarning: 'local-warning@1' });
-  expect(r.export().scenario).toBe(19);
+  expect(r.export().scenario).toBe(22);
   expect(r.export().options).toEqual({ localWarning: 'local-warning@1' });
   const both = new WatchRun(2026, undefined, undefined, {
     localWarning: 'local-warning@1',
     duskRest: 'dusk-rest@1',
   });
-  expect(both.export().scenario).toBe(19);
+  expect(both.export().scenario).toBe(22);
   expect(() => new WatchRun(1, undefined, undefined, { localWarning: 'wrong' } as never)).toThrow();
   expect(() => new WatchRun(1, undefined, undefined, [] as never)).toThrow();
   expect(() => new WatchRun(1, undefined, undefined, { localWarning: null } as never)).toThrow();

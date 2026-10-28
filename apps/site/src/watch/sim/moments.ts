@@ -276,7 +276,7 @@ export function checkMoments(s: WatchState): void {
       const r = q ? readPosting(s, sub, pl, 'urge', who) : { word: "can't tell" as const, confidence: 0 };
       options.push({
         id: `send:${sub}`,
-        label: `Let ${them(s, who)} go; send ${nameOf(s, sub)} to the post`,
+        label: `Let ${them(s, who)} go; send ${nameOf(s, sub)}${s.place[sub] === 'village' ? ' from the village' : ''} to the post`,
         read: readWords(r),
       });
     }
@@ -373,7 +373,13 @@ export function ask(s: WatchState, who: WatcherId, affordanceId: string): void {
 /** The Keeper answers the open card. Returns false when there is no such card or choice. */
 export function answerMoment(s: WatchState, id: number, choice: string): boolean {
   const m = s.moment;
-  if (s.phase !== 'night' || !m || m.id !== id || !m.options.some((o) => o.id === choice)) return false;
+  if (
+    s.phase !== 'night' ||
+    !m ||
+    m.id !== id ||
+    (choice !== 'silence' && !m.options.some((o) => o.id === choice))
+  )
+    return false;
   const who = m.who;
   const pl = s.place[who];
   if (choice === 'urge') {
@@ -394,6 +400,14 @@ export function answerMoment(s: WatchState, id: number, choice: string): boolean
         slowed: false,
         text: `${name} has no post to go back to, so your words change nothing.`,
       });
+  } else if (choice === 'silence') {
+    alert(s, {
+      section: m.section,
+      kind: 'person',
+      who,
+      slowed: false,
+      text: `You said nothing. ${nameOf(s, who)} continues without your advice.`,
+    });
   } else if (choice === 'bell') {
     if (!ringBell(s, who)) return false;
   } else if (choice === 'let') {

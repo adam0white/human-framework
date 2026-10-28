@@ -198,7 +198,7 @@ describe('night asks on a watcher', () => {
     const { s, target } = night();
     expect(act(s, 'relieve')?.available).toBe(true);
     expect(act(s, 'relieve')?.read).toMatch(/leaves .*mill.* empty/);
-    expect(act(s, 'relieve')?.read).toMatch(/helper takes over before.*sleep/);
+    expect(act(s, 'relieve')?.read).toMatch(/helper must take over first.*sleep/);
     expect(act(s, 'help')).toBeUndefined();
     hurt(target);
     expect(act(s, 'help')?.available).toBe(true);
