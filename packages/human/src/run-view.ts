@@ -86,6 +86,7 @@ export function projectEvents(
       case 'review':
       case 'voice-evidence':
       case 'voice-promise':
+      case 'quantity-estimated':
       case 'observation-attended':
         visible.push({
           ...base,

@@ -49,6 +49,26 @@ Engine: 4.6.0.
 
 Migration: format-4 archives, including 4.5 saves, are refused with `invalid-admission` at `$.version`. Format-5 archives with a different package/build/schema are refused with `unsupported-archive` at `$.engine`. Both refusals require starting fresh; no archive conversion is provided. Hosts must treat exported journals as recent diagnostics and keep complete replay inputs in `history`. Journal length no longer equals a lifetime allocation counter. No game upgrade or deployment is included in package publication.
 
+### G10
+
+- Prove addressed retelling and testimony through `communication.resolved`, source provenance, contradiction and direct correction. Add host-only `testimony.withdrawn` to remove a named source's recorded applied log-odds contribution. Contributions drift with beliefs; authored priors without recorded contributions refuse withdrawal rather than invent a subtraction. The existing six-source history bounds withdrawal; evicted evidence cannot be reconstructed, and a returning source tracks new contributions only. A retained withdrawal base prevents clipping from inventing evidence when several accounts are removed. When withdrawal clips the remaining balance, retained effects scale together to that bounded posterior so later testimony still changes it. This subtracts recorded applied effects, not an unsaturated counterfactual. Direct confirmation replaces earlier testimony. Joint work releases through the existing host interruption boundary when a required participant dies; this does not give survivors death knowledge. `death.heard` remains the explicit news boundary for grief and relationship death knowledge. Limit: objective widowhood/mourning already affect marriage admission and lifecourse mortality before news; they are not knowledge-bounded. Authored and physiological joint-death release both have run controls.
+
+### G11
+
+- Extend immutable `RunSpec.tuning` with `will.temperature` (0–1), `cognition.needScale` (2–8) and `cognition.effortScale` (0.5–2). Temperature zero keeps deterministic assent; it never disables the will. Record every supported tuning leaf's effective value and authored/default provenance for replay, including omitted siblings of partial overrides. Effort remains a per-decision intensity cost; elapsed physical demand belongs to the body owner. These are bounded engineering parameters, not fitted human measurements or a measured Warren defect.
+
+### G13
+
+- Add host-only `quantity.observed` (`person`, `evidenceId`, nonnegative finite `truth`, unit `difficulty`) and `quantity-estimated` events (`value`, `confidence`). Restore Glance's shipped algorithm: true sleepiness increases error, perceived sleepiness changes confidence, and a nonzero truth/difficulty consumes exactly one actor draw, advancing both RNG words and the recorded uniform-draw ordinal through the shared draw owner. Zero truth/difficulty consumes none. Invalid or overflowing observations refuse atomically. A dead reader uses the existing run admission refusal (`inapplicable`/`actor-dead`) with no estimate or draw. Self inspection exposes the estimate, never an exact gauge.
+
+### G14
+
+- Add `runWire(run, json)` with the closed `hf-run-wire` version 1 envelope over the existing `step` and `inspect` routes. Unknown versions/operations/fields, malformed JSON and duplicate keys (including escaped equivalents) refuse before mutation. Replies carry the existing typed `Result`. Native/WASM and Python/Pyodide bridge parity remain separate host proofs.
+
+### G10–14 migration
+
+- The engine identity changes; older engine archives are refused. Current exports restore and replay exactly. Beliefs can now include a withdrawal base and recorded source contributions, and tuning provenance paths now name the coefficient. Keep replay hashes. No game port or host parity is claimed by this framework release.
+
 ## [4.5.3] - 2026-10-28
 
 Engine: 4.5.3.

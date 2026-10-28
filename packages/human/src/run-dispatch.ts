@@ -6,6 +6,7 @@ import { attendEvidence } from './beliefs/beliefs.ts';
 import { ageYearsAt } from './body/span.ts';
 import { projectChapterClock } from './chapter-clock.ts';
 import { cognitionOwner } from './cognition/cognition.ts';
+import { estimateQuantity } from './cognition/quantity.ts';
 import { conversationOwner } from './conversation/conversation.ts';
 import { cloneData } from './core/clone.ts';
 import { checkPersonAuthoring, classifyQueuedInput, PORTABLE_ADMISSION_REJECTED } from './run-admission.ts';
@@ -452,6 +453,21 @@ export class Frame {
     });
     this.install(person, { body: out.state }, { body: out.continuation, doze: out.dozeContinuation });
     this.output(person, 'body', out, context);
+    if (input.kind !== 'actual-death' && actor.body.alive && !out.state.alive)
+      this.physicalDeath(person, context.causes[0] ?? person);
+  }
+  physicalDeath(person: T.PersonId, cause: T.Id): void {
+    this.lifecycle(
+      {
+        type: 'death',
+        person: { kind: 'actor', id: person },
+        basis: {
+          evidence: { kind: 'evidence', id: hashCanonical('hf-run4/physical-death', person, this.state.at) },
+          worldRevision: this.state.world.revision,
+        },
+      },
+      cause,
+    );
   }
   affect(person: T.PersonId, input: T.DeepReadonly<T.AffectEndpoint>, context: T.FrameContext): void {
     const actor = this.actor(person),
@@ -523,7 +539,9 @@ export class Frame {
       });
     if (input.kind !== 'contradiction' && input.kind !== 'source-trust-response') {
       const affected = new Set(
-        input.kind === 'confirm' ? [input.prop] : input.claims.map((claim) => claim.prop),
+        input.kind === 'confirm' || input.kind === 'withdraw'
+          ? [input.prop]
+          : input.claims.map((claim) => claim.prop),
       );
       for (const after of out.state.beliefs) {
         if (
@@ -926,6 +944,7 @@ export class Frame {
     const book = this.state.offers[person];
     const offers = (book?.offers ?? []).filter(
       (offer) =>
+        !offer.participants.some((id) => this.state.people[id]?.body.alive === false) &&
         !book?.rejected.some(
           (rejected) => rejected.offerId === offer.id && rejected.offerRevision === book.revision,
         ),
@@ -1930,6 +1949,34 @@ export class Frame {
     const person = 'person' in payload && typeof payload.person === 'string' ? payload.person : undefined;
     const context = this.context(person ?? this.record.spec.id, this.phase, [input.id]);
     switch (input.kind) {
+      case 'quantity.observed': {
+        // SCOPE: one seeded actor reading, never an exact host gauge.
+        const { person, evidenceId, truth, difficulty } = input.payload;
+        const actor = this.actor(person);
+        const body = OWNERS.body.read(actor.body, {
+          ...context,
+          perception: bodyPerception(actor, context.at),
+        });
+        const reading = estimateQuantity(
+          body,
+          { words: actor.rng, identity: actor.randomIdentity },
+          { truth, difficulty },
+        );
+        this.receipt(person, 'cognition', evidenceId, input.id, input.payload);
+        this.install(person, { rng: reading.rng.words, randomIdentity: reading.rng.identity });
+        this.emit(
+          person,
+          {
+            kind: 'quantity-estimated',
+            person,
+            evidenceId,
+            value: reading.value,
+            confidence: reading.confidence,
+          },
+          context,
+        );
+        return;
+      }
       case 'person.arrived':
         this.addPerson(input.payload.authored, input.id);
         return;
@@ -1970,6 +2017,9 @@ export class Frame {
           },
           context,
         );
+        return;
+      case 'testimony.withdrawn':
+        this.beliefs(input.payload.person, { kind: 'withdraw', ...input.payload }, context);
         return;
       case 'activity.interrupted':
         this.interrupt(input.payload.person, input.payload.activityId, input.payload.reason, context);
@@ -2796,6 +2846,21 @@ export class Frame {
     if (input.type === 'death') {
       const context = this.context(input.person.id, 1, [cause]);
       this.body(input.person.id, { kind: 'actual-death', evidenceId: input.basis.evidence.id }, context);
+      // A joint activity cannot continue once a required participant dies. The host still
+      // settles the interrupted action; this physical release does not convey death news.
+      for (const person of Object.keys(this.state.people).sort()) {
+        const actor = this.actor(person);
+        const activity = actor.activity;
+        if (
+          person !== input.person.id &&
+          actor.body.alive &&
+          activity &&
+          !activity.interrupt &&
+          activity.offer.participants.includes(input.person.id) &&
+          !this.state.pending.some((request) => request.kind === 'action' && request.person === person)
+        )
+          this.interrupt(person, activity.id, 'participant-unavailable', this.context(person, 1, [cause]));
+      }
     }
     const snapshot = this.state.people;
     const people =

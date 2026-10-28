@@ -89,6 +89,8 @@ export type WorldChange = {
 };
 export type EffectiveParameters = DeepReadonly<FacultyParameters>;
 export type RunTuning = {
+  will?: { temperature?: Unit };
+  cognition?: { needScale?: number; effortScale?: number };
   planning?: { depth?: 2 | 3 | 4 | 5; presentBias?: Unit };
   assent?: { minStrength?: Unit; pressure?: Unit };
   doze?: { hazardScale?: number };
@@ -170,6 +172,8 @@ export type Payloads = {
   'action.resolved': ActionResolution;
   'communication.resolved': CommunicationResolution;
   'testimony.received': PersonEvidence & { teller: Id; claims: readonly Claim[] };
+  /** Host evidence that a named source has withdrawn its account; untracked contributions are refused. */
+  'testimony.withdrawn': PersonEvidence & { sourceId: Id; prop: Id };
   'conversation.requested': {
     speaker: PersonId;
     listener: PersonId;
@@ -230,6 +234,7 @@ export type Payloads = {
     modelLevel: Unit;
     domain: LearningDomain;
   };
+  'quantity.observed': PersonEvidence & { truth: number; difficulty: Unit };
   'body.received': PersonEvidence & { receipt: BodyReceipt };
   'family.contact': FamilyContactReceipt;
   'lifecycle.received': LifecycleReceipt;
@@ -602,7 +607,9 @@ export interface Belief {
   logOdds: number;
   updatedAt: Time;
 
-  sources: { id: EntityId; value: boolean }[];
+  sources: { id: EntityId; value: boolean; contribution?: number }[];
+  /** Untracked/evicted applied evidence; retained so clipping cannot invent evidence on withdrawal. */
+  withdrawalBase?: number;
 
   provenance?: BeliefProvenance;
 }
@@ -2286,6 +2293,7 @@ export type AppraisalEffect = EffectIdentity & {
 export type ScheduledEffect = TermEffect | ModifierEffect | AppraisalEffect;
 
 export type EventData =
+  | { kind: 'quantity-estimated'; person: PersonId; evidenceId: Id; value: number; confidence: Unit }
   | {
       kind: 'observation-attended';
       evidenceId: Id;
@@ -3129,8 +3137,10 @@ export type SourceFor<K extends keyof Payloads> = K extends
   | 'context.received'
   | 'body.received'
   | 'voice.evidence-received'
+  | 'quantity.observed'
   | 'action.resolved'
   | 'communication.resolved'
+  | 'testimony.withdrawn'
   | 'lifecycle.received'
   | 'person.arrived'
   | 'family.contact'
@@ -3173,6 +3183,7 @@ export type SelfEventData =
           | 'review'
           | 'voice-evidence'
           | 'voice-promise'
+          | 'quantity-estimated'
           | 'observation-attended';
       }
     >
@@ -3186,7 +3197,7 @@ export type ParameterProvenance = {
 export type ParameterPath =
   | { kind: 'builtin'; record: keyof EffectiveBuiltins }
   | { kind: 'fixed-prior'; field: keyof FacultyParameters['fixedPriors'] }
-  | { kind: 'tuning'; field: keyof RunTuning };
+  | { kind: 'tuning'; field: keyof RunTuning; coefficient: Id };
 
 // One W2-owned portable motivation path; no active-status refusal or duplicate goals.
 export type ProjectContributionReceipt = {
@@ -4301,6 +4312,7 @@ export type BeliefOwnedState = Pick<MemoryState, 'beliefs' | 'sourceTrust' | 'co
 export type BeliefInput =
   | { kind: 'claims'; teller: Id; claims: readonly Claim[]; attention: Unit; evidenceId: Id }
   | { kind: 'confirm'; prop: Id; value: boolean; observationId: Id; evidenceId: Id }
+  | { kind: 'withdraw'; sourceId: Id; prop: Id; evidenceId: Id }
   | { kind: 'contradiction'; sourceId: Id; prop: Id; value: boolean; reporterId?: Id; evidenceId: Id }
   | { kind: 'source-trust-response'; evidenceId: Id; response: SourceTrustResponse };
 export interface BeliefOwner {

@@ -290,6 +290,11 @@ export function buildParameters(input?: unknown): Result<DeepReadonly<DerivedPar
   const effective: FacultyParameters = {
     builtins: {
       ...copy(ENGINE_BUILTINS),
+      WILL_DEFAULTS: {
+        ...copy(ENGINE_BUILTINS.WILL_DEFAULTS),
+        temperature: tuning.will?.temperature ?? ENGINE_BUILTINS.WILL_DEFAULTS.temperature,
+      },
+      COGNITION_DEFAULTS: { ...copy(ENGINE_BUILTINS.COGNITION_DEFAULTS), ...tuning.cognition },
       PROMPTINGS_DEFAULTS: {
         ...copy(ENGINE_BUILTINS.PROMPTINGS_DEFAULTS),
         practiceHalfLifeDays,
@@ -337,17 +342,29 @@ export function buildParameters(input?: unknown): Result<DeepReadonly<DerivedPar
       },
       status: field === 'downing' ? 'provisional-unfitted' : 'source-engineering',
     });
-  for (const field of ['planning', 'assent', 'doze', 'crisis', 'promptings'] as const)
-    provenance.push({
-      path: { kind: 'tuning', field },
-      source: {
-        kind: 'assumption',
-        ref: Object.hasOwn(tuning, field)
-          ? 'authored:hf4-run-tuning'
-          : 'engineering:hf4-provisional-unfitted',
-      },
-      status: Object.hasOwn(tuning, field) ? 'authored-tuning' : 'provisional-unfitted',
-    });
+  // SCOPE: each leaf has provenance, including default siblings in partial overrides.
+  const leaves = {
+    will: ['temperature'],
+    cognition: ['needScale', 'effortScale'],
+    planning: ['depth', 'presentBias'],
+    assent: ['minStrength', 'pressure'],
+    doze: ['hazardScale'],
+    crisis: ['hazardScale'],
+    promptings: ['practiceHalfLifeDays', 'echoRate'],
+  } as const;
+  for (const field of Object.keys(leaves) as (keyof typeof leaves)[]) {
+    for (const coefficient of leaves[field]) {
+      const authored = Object.hasOwn(tuning[field] ?? {}, coefficient);
+      provenance.push({
+        path: { kind: 'tuning', field, coefficient },
+        source: {
+          kind: 'assumption',
+          ref: authored ? 'authored:hf4-run-tuning' : 'engineering:hf4-provisional-unfitted',
+        },
+        status: authored ? 'authored-tuning' : 'provisional-unfitted',
+      });
+    }
+  }
   return {
     ok: true,
     value: freeze({

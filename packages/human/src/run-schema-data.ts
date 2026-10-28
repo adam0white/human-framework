@@ -1049,6 +1049,23 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
   RunTuning: {
     kind: 'object',
     fields: {
+      will: {
+        optional: true,
+        shape: {
+          kind: 'object',
+          fields: { temperature: { optional: true, shape: { kind: 'scalar', name: 'Unit' } } },
+        },
+      },
+      cognition: {
+        optional: true,
+        shape: {
+          kind: 'object',
+          fields: {
+            needScale: { optional: true, shape: { kind: 'number' } },
+            effortScale: { optional: true, shape: { kind: 'number' } },
+          },
+        },
+      },
       planning: {
         optional: true,
         shape: {
@@ -1540,6 +1557,7 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
     fields: {
       prop: { optional: false, shape: { kind: 'string' } },
       logOdds: { optional: false, shape: { kind: 'number' } },
+      withdrawalBase: { optional: true, shape: { kind: 'number' } },
       updatedAt: { optional: false, shape: { kind: 'scalar', name: 'Time' } },
       sources: {
         optional: false,
@@ -1550,6 +1568,7 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
             fields: {
               id: { optional: false, shape: { kind: 'ref', name: 'EntityId' } },
               value: { optional: false, shape: { kind: 'boolean' } },
+              contribution: { optional: true, shape: { kind: 'number' } },
             },
           },
         },
@@ -5113,6 +5132,18 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
     kind: 'object',
     fields: {
       'voice.evidence-received': { optional: false, shape: { kind: 'ref', name: 'VoiceEvidencePayload' } },
+      'quantity.observed': {
+        optional: false,
+        shape: {
+          kind: 'object',
+          fields: {
+            person: { optional: false, shape: { kind: 'scalar', name: 'PersonId' } },
+            evidenceId: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
+            truth: { optional: false, shape: { kind: 'number' } },
+            difficulty: { optional: false, shape: { kind: 'scalar', name: 'Unit' } },
+          },
+        },
+      },
       'world.changed': { optional: false, shape: { kind: 'ref', name: 'WorldChange' } },
       'offers.received': {
         optional: false,
@@ -5291,6 +5322,18 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
             evidenceId: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
             teller: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
             claims: { optional: false, shape: { kind: 'array', element: { kind: 'ref', name: 'Claim' } } },
+          },
+        },
+      },
+      'testimony.withdrawn': {
+        optional: false,
+        shape: {
+          kind: 'object',
+          fields: {
+            person: { optional: false, shape: { kind: 'scalar', name: 'PersonId' } },
+            evidenceId: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
+            sourceId: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
+            prop: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
           },
         },
       },
@@ -5846,6 +5889,27 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
           id: { optional: false, shape: { kind: 'scalar', name: 'InputId' } },
           at: { optional: false, shape: { kind: 'scalar', name: 'Time' } },
           source: { optional: false, shape: { kind: 'ref', name: 'SourceFor$216' } },
+          kind: { optional: false, shape: { kind: 'literal', value: 'quantity.observed' } },
+          payload: {
+            optional: false,
+            shape: {
+              kind: 'object',
+              fields: {
+                person: { optional: false, shape: { kind: 'scalar', name: 'PersonId' } },
+                evidenceId: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
+                truth: { optional: false, shape: { kind: 'number' } },
+                difficulty: { optional: false, shape: { kind: 'scalar', name: 'Unit' } },
+              },
+            },
+          },
+        },
+      },
+      {
+        kind: 'object',
+        fields: {
+          id: { optional: false, shape: { kind: 'scalar', name: 'InputId' } },
+          at: { optional: false, shape: { kind: 'scalar', name: 'Time' } },
+          source: { optional: false, shape: { kind: 'ref', name: 'SourceFor$216' } },
           kind: { optional: false, shape: { kind: 'literal', value: 'world.changed' } },
           payload: { optional: false, shape: { kind: 'ref', name: 'WorldChange' } },
         },
@@ -6166,6 +6230,27 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
                   optional: false,
                   shape: { kind: 'array', element: { kind: 'ref', name: 'Claim' } },
                 },
+              },
+            },
+          },
+        },
+      },
+      {
+        kind: 'object',
+        fields: {
+          id: { optional: false, shape: { kind: 'scalar', name: 'InputId' } },
+          at: { optional: false, shape: { kind: 'scalar', name: 'Time' } },
+          source: { optional: false, shape: { kind: 'ref', name: 'SourceFor$230' } },
+          kind: { optional: false, shape: { kind: 'literal', value: 'testimony.withdrawn' } },
+          payload: {
+            optional: false,
+            shape: {
+              kind: 'object',
+              fields: {
+                person: { optional: false, shape: { kind: 'scalar', name: 'PersonId' } },
+                evidenceId: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
+                sourceId: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
+                prop: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
               },
             },
           },
@@ -9011,12 +9096,15 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
         kind: 'object',
         fields: {
           kind: { optional: false, shape: { kind: 'literal', value: 'tuning' } },
+          coefficient: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
           field: {
             optional: false,
             shape: {
               kind: 'union',
               options: [
                 { kind: 'literal', value: 'planning' },
+                { kind: 'literal', value: 'will' },
+                { kind: 'literal', value: 'cognition' },
                 { kind: 'literal', value: 'assent' },
                 { kind: 'literal', value: 'doze' },
                 { kind: 'literal', value: 'crisis' },
@@ -9730,6 +9818,16 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
           evidence: { optional: false, shape: { kind: 'ref', name: 'VoiceEvidence' } },
           before: { optional: false, shape: { kind: 'scalar', name: 'Unit' } },
           after: { optional: false, shape: { kind: 'scalar', name: 'Unit' } },
+        },
+      },
+      {
+        kind: 'object',
+        fields: {
+          kind: { optional: false, shape: { kind: 'literal', value: 'quantity-estimated' } },
+          person: { optional: false, shape: { kind: 'scalar', name: 'PersonId' } },
+          evidenceId: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
+          value: { optional: false, shape: { kind: 'number' } },
+          confidence: { optional: false, shape: { kind: 'scalar', name: 'Unit' } },
         },
       },
       {

@@ -480,3 +480,8 @@ Published `@adam0white/human-framework@3.2.0`, actor source tree `6cbebaf02c908f
 These are shared Apple M4/16 GiB Node 26.12.0 timings, with up to four benchmark processes and other machine activity. Recorded one-minute load reached 39.97. Mortality stays on. Actor counts do not identify death causes. Requested/effective retention is qualified above. Raw actor bytes are not a portable shelf envelope or a transfer admission verdict.
 
 The full result table, quick source/package comparisons, doze and long-run cases, exact enable/selector inventory, proposed frame/shelf budgets and remaining gates are in `~/code/.lab-scratch/hf4/baseline-report.md`. Budget acceptance, integrated game/browser/frame measurements, actual portable-envelope/storage admission, HF4 adapter comparison and parent review/integration remain open. This closes the ten-fine-year measurement requirement; it does not authorize a coarse-fidelity change.
+
+
+## Physiological span progress limit (2026-10-28)
+
+A valid two-person run with one actor at health 0.1, satiety 0 and hydration 0 refuses advancement with `limit-exceeded` at `$.runtime`: "Owner span failed to make progress". It occurs both with and without joint work at base `f71cd0f`, and persists after integrating G6/G7 at `5eb87b9` with the G10–14 candidate. The ordinary physiological-death and actual joint-work-release controls pass. This extreme fixture is a pre-existing numerical progress limit; the cause remains unknown. Recheck at the existing G6 step-cost/clock checkpoint on **2026-11-03**. It does not establish a joint-work regression or a fix in this release.

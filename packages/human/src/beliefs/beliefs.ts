@@ -3,6 +3,23 @@ import { cloneData } from '../core/clone.ts';
 import { clamp, clamp01, decay, dpow, logit } from '../core/index.ts';
 
 const MINUTES_PER_DAY = 1440;
+const contributions = (b: { readonly sources: readonly { readonly contribution?: number }[] }) =>
+  b.sources.reduce((sum, source) => sum + (source.contribution ?? 0), 0);
+function retainWithdrawalBase(b: import('../run-schema.ts').Belief): void {
+  b.withdrawalBase ??= b.logOdds - contributions(b);
+}
+function recount(b: import('../run-schema.ts').Belief, bound: number): void {
+  const balance = (b.withdrawalBase ?? 0) + contributions(b);
+  b.logOdds = clamp(balance, -bound, bound);
+  // SCOPE: retained effects represent the bounded posterior. After withdrawal
+  // clips it, scale the remaining effects together so new testimony still uses
+  // the ordinary equation and removing all tracked sources invents no evidence.
+  if (Math.abs(balance) > bound) {
+    const scale = b.logOdds / balance;
+    b.withdrawalBase = (b.withdrawalBase ?? 0) * scale;
+    for (const source of b.sources) if (source.contribution !== undefined) source.contribution *= scale;
+  }
+}
 export const BELIEF_DEFAULTS = {
   maxBeliefs: 300,
   maxSources: 6,
@@ -66,12 +83,28 @@ export const beliefOwner: import('../run-schema.ts').BeliefOwner = {
     const duration = BigInt(context.to) - BigInt(context.continuation.anchor.at);
     if (duration < 0n || duration > BigInt(Number.MAX_SAFE_INTEGER))
       throw new RangeError('Invalid belief span');
-    for (const b of state.beliefs)
+    for (const b of state.beliefs) {
       b.logOdds = decay(
         b.logOdds,
         Number(duration) / 60000,
         context.effective.builtins.BELIEF_DEFAULTS.driftHalfLife,
       );
+      for (const source of b.sources)
+        if (source.contribution !== undefined)
+          source.contribution = decay(
+            source.contribution,
+            Number(duration) / 60000,
+            context.effective.builtins.BELIEF_DEFAULTS.driftHalfLife,
+          );
+      if (b.withdrawalBase !== undefined) {
+        b.withdrawalBase = decay(
+          b.withdrawalBase,
+          Number(duration) / 60000,
+          context.effective.builtins.BELIEF_DEFAULTS.driftHalfLife,
+        );
+        recount(b, context.effective.builtins.BELIEF_DEFAULTS.maxLogOdds);
+      }
+    }
     return {
       state,
       continuation: cloneData(
@@ -98,7 +131,16 @@ export const beliefOwner: import('../run-schema.ts').BeliefOwner = {
         !Number.isFinite(b.logOdds) ||
         Math.abs(b.logOdds) > BELIEF_DEFAULTS.maxLogOdds ||
         !Number.isSafeInteger(b.updatedAt) ||
-        b.sources.some((s) => !s.id) ||
+        (b.withdrawalBase !== undefined &&
+          (!Number.isFinite(b.withdrawalBase + contributions(b)) ||
+            Math.abs(
+              clamp(
+                b.withdrawalBase + contributions(b),
+                -BELIEF_DEFAULTS.maxLogOdds,
+                BELIEF_DEFAULTS.maxLogOdds,
+              ) - b.logOdds,
+            ) > 1e-9)) ||
+        b.sources.some((s) => !s.id || (s.contribution !== undefined && !Number.isFinite(s.contribution))) ||
         b.sources.length > BELIEF_DEFAULTS.maxSources ||
         new Set(b.sources.map((s) => s.id)).size !== b.sources.length
       )
@@ -183,21 +225,51 @@ export function receiveBeliefEvidence(
         b.sources.some((s) => (s.id === context.person || s.id === 'self') && s.value !== claim.value)
       )
         w *= d.observedDiscount;
+      const prior = b.sources.find((s) => s.id === claim.sourceId);
+      const before = b.logOdds;
+      retainWithdrawalBase(b);
       b.logOdds = clamp(
         b.logOdds + (claim.value ? 1 : -1) * logit(0.5 + (clamp01(claim.confidence) - 0.5) * w),
         -d.maxLogOdds,
         d.maxLogOdds,
       );
       b.updatedAt = context.at;
-      b.sources = [
+      const applied = b.logOdds - before;
+      if (prior && prior.contribution === undefined) b.withdrawalBase = (b.withdrawalBase ?? 0) + applied;
+      const sources = [
         ...b.sources.filter((s) => s.id !== claim.sourceId),
-        { id: claim.sourceId, value: claim.value },
-      ].slice(-d.maxSources);
+        {
+          id: claim.sourceId,
+          value: claim.value,
+          ...(!prior || prior.contribution !== undefined
+            ? { contribution: (prior?.contribution ?? 0) + b.logOdds - before }
+            : {}),
+        },
+      ];
+      // Fold evicted source effects into the unwithdrawable base, preserving the
+      // existing six-source bound. Keep the balance before clipping: clipping
+      // after each subtraction otherwise creates evidence when both accounts go.
+      b.withdrawalBase =
+        (b.withdrawalBase ?? 0) +
+        sources
+          .slice(0, Math.max(0, sources.length - d.maxSources))
+          .reduce((sum, source) => sum + (source.contribution ?? 0), 0);
+      b.sources = sources.slice(-d.maxSources);
+      recount(b, d.maxLogOdds);
       if (!b.provenance && (claim.origin !== undefined || claim.lineage !== undefined)) {
         b.provenance = { origin: claim.origin ?? input.teller, firstFrom: input.teller, at: context.at };
         if (claim.lineage !== undefined && claim.lineage.length <= 64) b.provenance.lineage = claim.lineage;
       }
     }
+  } else if (input.kind === 'withdraw') {
+    const b = state.beliefs.find((item) => item.prop === input.prop);
+    const source = b?.sources.find((item) => item.id === input.sourceId);
+    if (!b || source?.contribution === undefined)
+      throw new RangeError('Testimony contribution is unavailable');
+    retainWithdrawalBase(b);
+    b.sources = b.sources.filter((item) => item.id !== input.sourceId);
+    recount(b, d.maxLogOdds);
+    b.updatedAt = context.at;
   } else if (input.kind === 'source-trust-response') {
     const response = input.response;
     if (
@@ -232,6 +304,7 @@ export function receiveBeliefEvidence(
         );
       }
     b.sources = [{ id: context.person, value: input.value }];
+    delete b.withdrawalBase;
     b.updatedAt = context.at;
   } else if (
     input.kind === 'contradiction' &&
