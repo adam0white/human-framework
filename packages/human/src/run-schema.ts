@@ -4129,8 +4129,9 @@ export type BodySpan = SpanContext & {
   dozeContinuation: DozeContinuation;
 };
 export type BodyEndpoint =
+  | { kind: 'activity-started'; activityMode: BodyLoad['mode']; evidenceId: Id }
   | { kind: 'receipt'; id: Id; receipt: Exclude<BodyReceipt, { type: 'physical-contact' }> }
-  | { kind: 'outcome'; outcome: ObservedOutcome }
+  | { kind: 'outcome'; outcome: ObservedOutcome; activityMode: BodyLoad['mode'] }
   | { kind: 'ambient-context'; context: DozeContext; basis: ContextBasis }
   | { kind: 'wake'; evidence: PerceptData }
   | { kind: 'actual-death'; evidenceId: Id };

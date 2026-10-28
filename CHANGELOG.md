@@ -11,6 +11,15 @@ version, stamped with build and schema hashes in `RUN_ENGINE`. See the version p
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
+## [4.5.2] — 2026-10-28
+
+Engine: 4.5.2.
+
+- End voluntary sleep when its actual completed, interrupted or failed activity outcome settles. The body owner records the existing wake event with actual outcome evidence, preserves the sleep interval and permits ordinary awake choices afterward. Ongoing sleep and rejected starts do not wake early.
+- Preserve an involuntary doze through idle advancement so actual attended wake evidence still works after a quiet interval. An actually accepted awake activity ends sleep or doze with the real start receipt as wake evidence; pending or rejected starts do not wake. Deliberate sleep retains its existing activity load.
+- Apply the ended activity's actual receipts before waking, preserving sleeping-interval semantics for awake-only bladder voiding. No new public call or input is introduced.
+- Replay correction: affected 4.5.1 sleep and doze histories change under these fixes. The new engine identity explicitly refuses older archives; start fresh. Current-version exports restore and replay exactly.
+
 ## [4.5.1] — 2026-10-28
 
 Engine: 4.5.1.

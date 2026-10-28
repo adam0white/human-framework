@@ -215,7 +215,11 @@ function loadFor(actor: T.DeepReadonly<T.ActorState>, effective: T.EffectivePara
       focus: actor.activity.offer.demands.focus,
       mode: actor.activity.offer.demands.mode,
     };
-  return { ...effective.builtins.PERSON_DEFAULTS.idleLoad, mode: actor.body.asleep ? 'sleep' : 'awake' };
+  // An idle involuntary doze is not a newly chosen voluntary sleep interval.
+  return {
+    ...effective.builtins.PERSON_DEFAULTS.idleLoad,
+    mode: actor.body.asleep && actor.body.doze.since === undefined ? 'sleep' : 'awake',
+  };
 }
 export function probePhysiology(
   state: T.DeepReadonly<Pick<T.RunState, 'at' | 'people' | 'continuations' | 'world'>>,

@@ -1527,7 +1527,17 @@ const receive: T.BodyOwner['receive'] = (state, input, ctx) => {
     }
   };
   if (input.kind === 'receipt') receipt(input.receipt, input.id);
-  else if (input.kind === 'actual-death') {
+  else if (input.kind === 'activity-started') {
+    // An actually accepted awake action ends sleep; merely offering or choosing it does not.
+    if (input.activityMode === 'awake' && b.alive && b.asleep) {
+      const slept = { from: b.since, to: ctx.at };
+      b.asleep = false;
+      delete b.doze.since;
+      b.lastSleep = slept;
+      b.since = ctx.at;
+      emit({ kind: 'woke', slept, evidenceId: input.evidenceId });
+    }
+  } else if (input.kind === 'actual-death') {
     if (b.alive) {
       b.alive = false;
       b.health = 0;
@@ -1565,6 +1575,22 @@ const receive: T.BodyOwner['receive'] = (state, input, ctx) => {
     for (const e of a.exposures) receipt({ type: 'exposed', ...e }, rid);
     if (a.voidedBladder && input.outcome.status === 'completed')
       receipt({ type: 'voided', actionReceipt: rid }, rid);
+    // Receipts describe the elapsed interval; keep its sleep state until they are applied.
+    // An actual terminal outcome ends voluntary sleep. An unrelated awake
+    // activity's outcome cannot supply the percept needed to end involuntary doze.
+    if (
+      input.activityMode === 'sleep' &&
+      input.outcome.end === ctx.at &&
+      b.alive &&
+      b.asleep &&
+      b.doze.since === undefined
+    ) {
+      const slept = { from: b.since, to: ctx.at };
+      b.asleep = false;
+      b.lastSleep = slept;
+      b.since = ctx.at;
+      emit({ kind: 'woke', slept, evidenceId: input.outcome.evidenceId });
+    }
   }
   events.push(...applyPhysical(b, ctx.at, ctx));
   const c = continuation(
