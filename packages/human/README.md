@@ -133,7 +133,7 @@ never overrides `cannot` or `willNot`.
 Every resolution also carries a machine-readable `reason` (`need:food`, `norm:theft`, `asleep`, `distrust`,
 ...), which the renderer turns into a line in the person's voice.
 
-## Actual voice evidence (4.8)
+## Actual voice evidence (4.6)
 
 Send `voice.evidence-received` through `step` from the registered host. Its payload is
 `{person, voiceId, evidenceId, evidence}`. Register `voiceId` as a voice source. Use
