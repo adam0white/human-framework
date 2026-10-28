@@ -568,6 +568,7 @@ export class Frame {
       sourceTrust: Object.entries(actor.memory.sourceTrust).map(([sourceId, trust]) => ({ sourceId, trust })),
       norms: actor.conscience.norms,
       catalog: this.record.spec.definitions.norms,
+      reputationTraits: this.record.spec.definitions.reputationTraits,
       rng: { words: actor.rng, identity: actor.randomIdentity },
     });
     this.install(
@@ -1563,6 +1564,7 @@ export class Frame {
       person: data.speaker,
       speaker,
       norms: this.record.spec.definitions.norms,
+      reputationTraits: this.record.spec.definitions.reputationTraits,
       listenerKnown: {
         social: speaker.social,
         beliefs: { kind: 'unobserved' },

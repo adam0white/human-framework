@@ -133,6 +133,21 @@ never overrides `cannot` or `willNot`.
 Every resolution also carries a machine-readable `reason` (`need:food`, `norm:theft`, `asleep`, `distrust`,
 ...), which the renderer turns into a line in the person's voice.
 
+## Authored reputation vocabulary (4.5)
+
+Add character words through the optional `definitions.reputationTraits` array:
+
+```ts
+reputationTraits: [
+  { id: 'nosy', affection: -0.03, trust: -0.03, respect: -0.03 },
+  { id: 'sweet', affection: 0, trust: 0, respect: 0 },
+];
+```
+
+Each coefficient is finite and between −1 and 1. IDs are nonempty NFC strings without colons or reserved prototype names. Duplicate IDs and replacement of builtin traits refuse run construction. Omit the array when no additional words are needed. Builtin character words always remain active.
+
+This immutable, run-scoped vocabulary is retained in exports and replay. An ordinary claim such as `person:nosy` updates the person's belief through `testimony.received` or `fact.confirmed`. The existing reputation owner applies the actual credence change to affection, trust and respect, damped by familiarity and negative weighting. A correction moves those relationships back toward their prior state; it does not invent a separate social event. Prepared conversation uses the same vocabulary to identify character claims, classify unfavourable speech and offer loyal warnings. Zero coefficients recognize a character word without a relationship effect. Coefficients are authored engineering assumptions about relationships, not measures of moral worth or religious rulings.
+
 ## Source trust and bodily forecasts (4.4)
 
 Use `inspect(run, {perspective, people, select: ['sourceTrust']})` to read held source trust. Host and self perspectives receive the person's source-id-to-trust map. Another observer receives `{kind: 'unobserved'}`. These numbers describe held evidence, not whether a source is objectively truthful.
@@ -185,7 +200,7 @@ biography: [
 
 ## Versions
 
-The release version is the package version (`package.json`, currently `4.4.0`). From 4.0.0 the engine version is
+The release version is the package version (`package.json`, currently `4.5.0`). From 4.0.0 the engine version is
 the same string; `RUN_ENGINE` in each archive adds a build hash and a schema hash, so a host can tell exactly
 which engine wrote a save. The public API follows [semver](https://semver.org/). Each release is a tag `vX.Y.Z`
 and a GitHub release whose notes are that version's section of the root

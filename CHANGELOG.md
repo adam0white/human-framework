@@ -11,6 +11,14 @@ version, stamped with build and schema hashes in `RUN_ENGINE`. See the version p
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
+## [4.5.0] — 2026-10-27
+
+Engine: 4.5.0.
+
+- Add optional immutable `definitions.reputationTraits` authoring. Additional character words use the existing belief-reputation owner and conversation classification; builtin traits remain active and cannot be replaced. Finite signed coefficients, distinct IDs and valid trait names are required before a run is constructed.
+- Belief corrections reverse the corresponding relationship effect through the same received-evidence route. Run archives retain the vocabulary for exact replay; concurrent runs do not share it. Coefficients are engineering assumptions, not moral worth or religious rulings.
+- Migration: add `{id, affection, trust, respect}` rows for host-authored character words. No new input kind, setter or runtime call is introduced. Current engine identity changes; older run archives require the existing explicit start-fresh refusal.
+
 ## [4.4.0] — 2026-10-27
 
 Engine: 4.4.0.

@@ -20,6 +20,7 @@ import type {
   WorldChange,
 } from './run-schema.ts';
 import { validateData } from './run-validation.ts';
+import { REPUTATION_TRAITS } from './social/social.ts';
 
 export type BoundaryAdmission = {
   at: Time;
@@ -354,6 +355,18 @@ export function checkRunSpec(input: unknown): Result<DeepReadonly<import('./run-
   const admitted = validateData('RunSpec', input);
   if (!admitted.ok) return admitted;
   const spec = admitted.value;
+  const reputationIds = new Set(Object.keys(REPUTATION_TRAITS));
+  for (const trait of spec.definitions.reputationTraits ?? []) {
+    if (reputationIds.has(trait.id))
+      return fail('duplicate-id', '$.definitions.reputationTraits', 'duplicate or builtin reputation trait');
+    if (trait.id.includes(':'))
+      return fail(
+        'invalid-schema',
+        '$.definitions.reputationTraits',
+        'reputation trait IDs cannot contain a colon',
+      );
+    reputationIds.add(trait.id);
+  }
   const wordingError = wordingIssue(spec.definitions.lexicon);
   if (wordingError)
     return fail(wordingError.code, `$.definitions.lexicon${wordingError.path}`, wordingError.message);

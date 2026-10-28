@@ -991,6 +991,21 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
   Definitions: {
     kind: 'object',
     fields: {
+      reputationTraits: {
+        optional: true,
+        shape: {
+          kind: 'array',
+          element: {
+            kind: 'object',
+            fields: {
+              id: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
+              affection: { optional: false, shape: { kind: 'scalar', name: 'Signed' } },
+              trust: { optional: false, shape: { kind: 'scalar', name: 'Signed' } },
+              respect: { optional: false, shape: { kind: 'scalar', name: 'Signed' } },
+            },
+          },
+        },
+      },
       actions: {
         optional: false,
         shape: { kind: 'array', element: { kind: 'ref', name: 'ActionDefinition' } },

@@ -66,7 +66,11 @@ export type Definitions = {
   routines: readonly RoutineDefinition[];
   lexicon: Lexicon;
   sources: readonly Source[];
+  /** Additional character words; builtin traits remain active and cannot be replaced. */
+  reputationTraits?: readonly ReputationTraitDefinition[];
 };
+/** Relationship deltas per unit of credence change in `<person>:<id>`. Engineering vocabulary, not moral worth. */
+export type ReputationTraitDefinition = { id: Id; affection: Signed; trust: Signed; respect: Signed };
 export type WorldSnapshot = { revision: number; facts: readonly WorldFact[]; hostState: Json };
 export type WorldFact = {
   id: Id;
@@ -4289,6 +4293,7 @@ export interface SocialOwner {
         sourceTrust: readonly InitialSourceTrust[];
         norms: readonly HeldNorm[];
         catalog: readonly SourcedNorm[];
+        reputationTraits?: Definitions['reputationTraits'];
         values: Values;
         rng: ActorRandomCursor;
       }
@@ -4366,7 +4371,12 @@ export interface ConversationOwner {
   prepare(
     input: DeepReadonly<Payloads['conversation.requested']>,
     context: DeepReadonly<
-      FrameContext & { speaker: ActorState; listenerKnown: ListenerKnowledge; norms: readonly SourcedNorm[] }
+      FrameContext & {
+        speaker: ActorState;
+        listenerKnown: ListenerKnowledge;
+        norms: readonly SourcedNorm[];
+        reputationTraits?: Definitions['reputationTraits'];
+      }
     >,
   ): ConversationData;
 }

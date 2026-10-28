@@ -64,6 +64,7 @@ export type {
   Reference,
   ReferenceBinding,
   ReplayResult,
+  ReputationTraitDefinition,
   Result,
   Run,
   RunArchive,
