@@ -292,6 +292,8 @@ function retainedState(
     };
     retained.at = ms(retained.at);
     retained.bornAt = ms(retained.bornAt);
+    const exemptions = object(retained.agenda.exemptions);
+    if (exemptions.validUntil !== undefined) exemptions.validUntil = ms(exemptions.validUntil);
     for (const v of [...array(memory.episodes), ...array(memory.gists)]) {
       const episode = object(v);
       episode.at = ms(episode.at);

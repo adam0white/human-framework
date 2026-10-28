@@ -322,6 +322,50 @@ test('actual native legacy source retains age, minute-based prayer duty, belief,
   expect(() => projectPortablePerson({ ...input, legacyNormCatalogue: divergent })).toThrow();
 });
 
+test('legacy optional exemption expiry converts minutes before shifted admission', () => {
+  const native = JSON.parse(
+    readFileSync(new URL('./fixtures/portable-legacy-2.23.json', import.meta.url), 'utf8'),
+  );
+  // A bounded legacy optional-field control; the actual native fixture is unchanged.
+  native.person.agenda.exemptions = {
+    traveling: { kind: 'known', value: true, evidenceIds: ['trip-legacy'] },
+    illnessSeverity: { kind: 'unobserved' },
+    validUntil: 1060,
+  };
+  const passport = projectPortablePerson({
+    castId: 'cast.legacy',
+    castRevision: '1',
+    game: 'legacy-source',
+    engine: native.engineVersion,
+    person: native.person,
+    history: [],
+    calendar: { definition: exampleSpec().definitions.calendar, norms: DEFAULT_NORMS },
+    legacyNormProvenance: Object.fromEntries(DEFAULT_NORMS.map((n) => [n.id, n.provenance])),
+    legacyNormCatalogue: native.sourceNorms,
+  });
+  if (passport.version !== 2) throw Error('missing retained projection');
+  expect(passport.retained.agenda.exemptions.validUntil).toBe(63600000);
+  const spec = exampleSpec();
+  spec.definitions.norms = structuredClone(DEFAULT_NORMS);
+  spec.definitions.sources = [...spec.definitions.sources, { type: 'person', id: 'neighbor' }];
+  const opening = authoredPerson('arrival', 'Arrival');
+  opening.portable = {
+    person: passport,
+    mapping: {
+      offsetMs: START - passport.retained.at,
+      references: [{ kind: 'action', source: 'pray', target: 'work' }],
+    },
+  };
+  const run = need(createRun(spec));
+  need(createPerson(run, opening));
+  expect(actor(run, 'arrival').agenda.exemptions).toMatchObject({
+    traveling: { kind: 'known', value: true, evidenceIds: ['trip-legacy'] },
+    validUntil: START + 3600000,
+  });
+  const archive = exportRun(run);
+  expect(need(replay(archive)).fullHash).toBe(archive.hashes.full);
+});
+
 test('released approximate v1 still accepts an actual quiet native legacy shape with optional stores absent', () => {
   const native = JSON.parse(
     readFileSync(new URL('./fixtures/portable-legacy-2.23.json', import.meta.url), 'utf8'),
