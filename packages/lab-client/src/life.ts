@@ -181,8 +181,7 @@ export async function claimCastChapter<T>(
   const claim = await createPersona({
     ...body,
     parentRevision: revision,
-    source,
-    transfer: projectCastClaimTransfer(input.parent, source, body.transfer, input.life),
+    ...copyCastArrival(input, source),
   });
   requireCurrent();
   await shelf.request({ action: 'put', envelope: claim });
@@ -194,6 +193,18 @@ export interface LifeBatchPreparation {
   expectedHeads: Record<string, string | null>;
   inputs: LifePreparation[];
   blocked: { castId: string; reason: string }[];
+}
+/** Without a current-actor projection, source provenance remains unchanged.
+ * Ownership names the receiver separately and cannot impersonate a departure. */
+function copyCastArrival(input: LifePreparation, receiving: PersonaEnvelope['source']) {
+  const portable = portablePassport(input.parent);
+  return {
+    source: portable ? input.parent.source : receiving,
+    transfer: {
+      ...(portable ? claimPortablePerson(input.parent, receiving.game) : input.parent.transfer),
+      life: input.life,
+    },
+  };
 }
 /** An arrival owns its portable checkpoint until its actual actor can depart.
  * Hosts project receiving state; the shelf owns this lock, including failed endings. */
@@ -241,13 +252,17 @@ export async function claimCastChapterBatch<T>(
       return createPersona({
         ...body,
         parentRevision: revision,
-        source,
-        transfer: projectCastClaimTransfer(
-          input.parent,
-          source,
-          options.claimTransfer ? options.claimTransfer(initial, input) : body.transfer,
-          input.life,
-        ),
+        ...(options.claimTransfer
+          ? {
+              source,
+              transfer: projectCastClaimTransfer(
+                input.parent,
+                source,
+                options.claimTransfer(initial, input),
+                input.life,
+              ),
+            }
+          : copyCastArrival(input, source)),
       });
     }),
   );

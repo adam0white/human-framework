@@ -663,7 +663,8 @@ provenance. Every portable arrival is locked to its receiving game until an actu
 current-actor checkpoint passes departure. A refused ending keeps that lock.
 Central receiving chapters add local routines: their arrival claim
 retains the original source projection and locks it to the receiving game until
-an actual current-actor checkpoint can pass departure again. Such an arrival is
+an actual current-actor checkpoint can pass departure again. Generic claim APIs
+keep this original provenance when no current-actor projection is supplied. Such an arrival is
 not an outgoing source checkpoint and cannot become a pass-through. A checkpoint projects actual
 current actors and appends history. A loaded game or replay reads only pinned
 inputs. It does not read the shelf, wall clock or a newer registry head. A CAS

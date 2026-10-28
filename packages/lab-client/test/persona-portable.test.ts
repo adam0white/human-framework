@@ -98,17 +98,32 @@ describe('portable shelf contract', () => {
       previous: parent,
     });
     const input = preparePersonaLife(parent, 3600000);
-    const single = await claimCastChapter(
-      {
-        async request<T>(request: import('../src/persona.ts').PersonaRequest) {
-          return (request.action === 'prepare' ? input : undefined) as T;
-        },
+    const receiving = { ...source, game: 'days', engine: '4.0.0' };
+    const shelf = {
+      async request<T>(request: import('../src/persona.ts').PersonaRequest) {
+        if (request.action === 'prepare') return input as T;
+        if (request.action === 'prepareBatch')
+          return {
+            expectedHeads: { [castId]: parent.revision },
+            inputs: [input],
+            blocked: [],
+          } as T;
+        return undefined as T;
       },
-      castId,
-      source,
-      async () => arrival,
+    };
+    const single = await claimCastChapter(shelf, castId, receiving, async () =>
+      admitPortablePerson(parent, receiving.game, actor()),
     );
-    expect(single?.claim.transfer.portableClaim).toEqual({ game: source.game });
+    const defaultBatch = await claimCastChapterBatch(shelf, [castId], receiving, async () =>
+      admitPortablePerson(parent, receiving.game, actor()),
+    );
+    for (const claim of [single?.claim, defaultBatch?.claims[0]]) {
+      if (!claim) throw new Error('The copied arrival was not claimed.');
+      expect(claim.source).toEqual(parent.source);
+      expect(claim.transfer.portableClaim).toEqual({ game: receiving.game });
+      expect(() => admitPortablePerson(claim, 'commonstead', actor())).toThrow();
+      expect(() => admitPortablePerson(claim, 'days', actor())).not.toThrow();
+    }
     const result = await claimCastChapterBatch(
       {
         async request<T>(request: import('../src/persona.ts').PersonaRequest) {
