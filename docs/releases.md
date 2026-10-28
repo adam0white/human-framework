@@ -205,3 +205,42 @@ Fresh downloaded-artifact JavaScript and strict TypeScript 7.0.2 consumers passe
 [Client publish workflow 40329397394](https://github.com/adam0white/human-framework/actions/runs/40329397394) succeeded by detecting that the package is absent on npm and skipping publication. The core workflow and the client workflow for the kit release skipped on their tag guards. There is no dedicated kit publish workflow. No npm SDK publication or SLSA provenance is claimed. The owned shared release lock was removed after verification. Source receipt and raw proofs are in `~/code/.lab-scratch/hf4/sdk/`.
 
 Central deployment and host adoption remain pending. Shared origin admission is not browser navigation, iframe-storage, player-panel or owner-acceptance proof. No browser, devserver, screenshot, synthetic production data or feedback was used in this SDK task. This later documentation receipt does not change the immutable release source or tags.
+
+## HF 4.4 Stairwell contracts — 2026-10-27
+
+[HF 4.4.0](https://github.com/adam0white/human-framework/releases/tag/v4.4.0) ships public sourced
+`DEFAULT_NORMS`, source-trust inspection, conditional structured bodily forecasts and retained
+v2 portable people through the existing public routes. Norms preserve research/interpretation
+provenance and pending source-review limits; they describe a person's understanding, never a ruling.
+Broader worship-calendar and observer-sign work remains in the needs inventory.
+
+- Source: signed task commits merged in [PR 41](https://github.com/adam0white/human-framework/pull/41),
+  GitHub-verified merge `bd8e46bbee2f1e68d7e8fdcbf4dcc57d44087faf`.
+- Exact merged [CI 40622739835](https://github.com/adam0white/human-framework/actions/runs/40622739835)
+  passed. Local and release checks passed 1,875 tests, seven existing skips. Hosted Codex review
+  cleared final source 510f11b; coordinator Opus findings and later Codex findings were reproduced and fixed.
+- Engine build `46ffd721860c4b85e77250b64c7c756d6f1213c8c311c448f911c8efe43b81ed`,
+  schema `c8dfe9d9479c26019e2537f695be9d99f15d6ca1eb30ed054562ad5dcee132e0`.
+- Signed `v4.4.0` and [trusted npm publication 40623095913](https://github.com/adam0white/human-framework/actions/runs/40623095913)
+  succeeded. Exact registry installation and `npm audit signatures` verified one registry signature
+  and one attestation. Decoded SLSA v1 binds the registry SHA512 subject to the source commit,
+  `refs/tags/v4.4.0`, `publish.yml` and that run.
+- Official GitHub tar SHA256 `57bd4758a65faeef0ba14225405303f14bf3878cfc6e4a0d3505e4583fe6d549`.
+  Registry tar SHA256 `1aa783c5322224e42a8bc88093d7323f579ee4260647cc671181bcfff9e43181`,
+  437,595 bytes; decompressed tar exactly equals the GitHub artifact.
+
+Companion [client 0.5.2](https://github.com/adam0white/human-framework/releases/tag/lab-client-v0.5.2)
+and [kit 0.5.19](https://github.com/adam0white/human-framework/releases/tag/lab-kit-v0.5.19) are signed
+GitHub release artifacts from the same exact green source, with manifests, member digests and
+SHA256SUMS. They remain artifact distribution, without an npm/SDK provenance claim. Client SHA256
+`08b4c0e30d9f0def5c5855597954e5a9f0c0df0dca97a063bb52a804b0b9c62d`; kit SHA256
+`5602a8755f83644c05c5b1c95e94ede32fccd7b35aa7eb13369c2f7a4ad91b13`.
+A fresh strict-peer/frozen consumer used registry HF 4.4 and official SDK URLs without overrides:
+admission/claim, v1 controls, active restore, exact replay, isolation and actual native 2.21 admission passed.
+The public example authoring scaffold is an engineering control, not a live person or peer journey.
+
+The central receiver deployed source bd8e46b with actor 3.2.0/library 4.4.0 and `dirty:false`.
+Cloudflare version `a17b8e00-dadf-406c-ad10-1e3bb46aa719`; served main and People assets match the clean
+source build. This is central delivery, not a Stairwell port or owner acceptance. Stairwell's actual
+bridge is in progress; its newly confirmed authored reputation vocabulary is G17. Keep the earlier
+failed VM adapter result separate from new bounded adoption controls.
