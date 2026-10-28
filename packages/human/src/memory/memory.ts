@@ -3,6 +3,7 @@
  * Allocation validation includes C0 retained references/tombstones after eviction.
  */
 
+import { copyContinuation } from '../body/span.ts';
 import { cloneData } from '../core/clone.ts';
 import { dexp } from '../core/libm.ts';
 import { EngineLimitError } from '../core/limit.ts';
@@ -279,18 +280,27 @@ export function validateMemory(
   }
   return issues;
 }
-function copyMemory(state: DeepReadonly<MemoryOwnedState>): MemoryOwnedState {
-  return cloneData(state) as MemoryOwnedState;
+// Elapsed decay/folding changes only episode/gist records and their containers.
+// Tags are replaced when folded; expectations are read-only until a real receipt.
+function elapsedMemory(state: DeepReadonly<MemoryOwnedState>): MemoryOwnedState {
+  return {
+    ...copyContinuation<MemoryOwnedState>(state),
+    episodes: state.episodes.map((episode) => ({ ...episode, tags: [...episode.tags] })),
+    gists: state.gists.map((gist) => ({ ...gist, tags: [...gist.tags] })),
+  };
+}
+function checkMemory(state: DeepReadonly<MemoryOwnedState>, allocations: readonly Reference[]): void {
+  const [issue] = validateMemory(state, allocations);
+  if (issue) throw new RangeError(issue.message);
 }
 function checked(
   state: DeepReadonly<MemoryOwnedState>,
   allocations: readonly Reference[] = [],
 ): MemoryOwnedState {
-  const issues = validateMemory(state, allocations);
-  const [issue] = issues;
-  if (issue) throw new RangeError(issue.message);
+  checkMemory(state, allocations);
   return cloneData(state) as MemoryOwnedState;
 }
+
 function trim<T extends Episode>(
   list: T[],
   max: number,
@@ -442,12 +452,14 @@ export const memoryOwner: MemoryOwner = {
     return output(out, context.at);
   },
   advance(state, context) {
-    checked(state, context.allocations);
+    // Validate the reached state without allocating a copy that no proposal uses.
+    checkMemory(state, context.allocations);
     const base = context.continuation;
     if (context.from < base.anchor.at || context.to < context.from)
       throw new RangeError('Memory clock rewound');
     // Validation is pure, so a state this call has already validated is copied, not validated again.
-    const out = base.state === state ? copyMemory(state) : checked(base.state, context.allocations),
+    if (base.state !== state) checkMemory(base.state, context.allocations);
+    const out = elapsedMemory(base.state),
       K = context.effective.builtins.MEMORY_DEFAULTS,
       G = context.effective.builtins.GIST_DEFAULTS;
     const decay = (minutes: number) => {
@@ -476,7 +488,7 @@ export const memoryOwner: MemoryOwner = {
     const firstFold = out.episodes.reduce<number>((next, e) => Math.min(next, e.at + horizon + 1), Infinity);
     const through = Math.min(context.to, Math.max(context.from, firstFold));
     // base.state passed above with the allocations, a stricter check than this one without them.
-    const settled = folded ? checked(out) : copyMemory(base.state);
+    const settled = folded ? checked(out) : copyContinuation<MemoryOwnedState>(base.state);
     decay((through - anchor.at) / 60000);
     // Fold on the first integer millisecond beyond the horizon, not an arbitrary caller endpoint.
     const due = out.episodes.filter((e) => through - e.at > horizon);

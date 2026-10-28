@@ -230,7 +230,13 @@ export function constructAuthoredActor(
   return { actor, continuation, clocks, allocations, constructionEvents, constructionEffects };
 }
 
-export function bodyPerception(actor: T.DeepReadonly<T.ActorState>, at: T.Time): T.BodyPerceptionContext {
+export function bodyPerception(
+  actor: T.DeepReadonly<{
+    agenda: Pick<T.ActorState['agenda'], 'commitments'>;
+    chronicle: T.ActorState['chronicle'];
+  }>,
+  at: T.Time,
+): T.BodyPerceptionContext {
   const open = actor.agenda.commitments.find(
     (c) =>
       c.kind === 'abstain' &&

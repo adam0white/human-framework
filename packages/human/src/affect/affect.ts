@@ -1,13 +1,19 @@
-import { freezeData, required, spanBudgetExceeded } from '../body/span.ts';
-
 /** SCOPE: source OCC appraisal, exact emotion decay and continuously forced mood.
  * No clinical prediction or spiritual assessment. */
 
 import {
+  DAILY_NUMERICAL_POLICY,
+  dailyPolicy,
+  numericalTolerance,
+  numericalWidth,
+} from '../body/daily-policy.ts';
+import {
   clip,
   clock,
   copy,
+  copyContinuation,
   evaluateCell,
+  freezeData,
   initialWidth,
   integrateCell,
   issue,
@@ -15,7 +21,9 @@ import {
   nextPathBoundary,
   numericalIssues,
   output,
+  required,
   scalarAt,
+  spanBudgetExceeded,
   validateNumbers,
 } from '../body/span.ts';
 import { dexp, dlog } from '../core/libm.ts';
@@ -203,8 +211,8 @@ const initialize: T.AffectOwner['initialize'] = (input, ctx) => {
 };
 const advance: T.AffectOwner['advance'] = (state, ctx) => {
   const p = ctx.effective.builtins.AFFECT_DEFAULTS;
-  let c = copy<T.AffectContinuation>(ctx.continuation);
-  const offsetId = ctx.environment.id;
+  let c = copyContinuation<T.AffectContinuation>(ctx.continuation);
+  const offsetId = ctx.environment.id + (dailyPolicy(ctx.fidelity) ? `:${DAILY_NUMERICAL_POLICY}` : '');
   if (c.needTrajectoryId !== ctx.needs.id || c.moodOffsetConditionId !== offsetId) {
     c = {
       ...reanchor(
@@ -254,7 +262,7 @@ const advance: T.AffectOwner['advance'] = (state, ctx) => {
         c.valenceCell && c.arousalCell
           ? [evaluateCell(c.valenceCell, end), evaluateCell(c.arousalCell, end)]
           : [c.anchorMood.valence, c.anchorMood.arousal];
-      const trial = c.nextTrialWidthMinutes * 60000,
+      const trial = numericalWidth(c.nextTrialWidthMinutes * 60000, ctx.fidelity, !c.valenceCell),
         width = Math.min(
           trial,
           nextPathBoundary(start, [ctx.needs.satisfaction, ...ctx.body.fields.map((f) => f.path)]) - start,
@@ -262,28 +270,34 @@ const advance: T.AffectOwner['advance'] = (state, ctx) => {
       if (width < trial) forcedCells++;
       else ownCells++;
       if (start + width > ctx.needs.to) throw new RangeError('NeedTrajectory must cover canonical mood cell');
-      const cell = integrateCell(start, y, width, (t, y) => {
-        const es = emotionAt(t);
-        let v = 0,
-          n = p.baselineArousalWeight * p.baselineArousal,
-          d = p.baselineArousalWeight;
-        for (const e of es) {
-          v += p.valence[e.id] * e.intensity;
-          n += p.arousal[e.id] * e.intensity;
-          d += e.intensity;
-        }
-        const vt = clip(
-          (clip(scalarAt(ctx.needs.satisfaction, t)) - 0.5) * p.moodNeedGain +
-            readEnvironmentTrajectory(ctx.environment, t, ctx.effective).moodOffset +
-            p.moodEmotionGain * clip(v, -1, 1),
-          -1,
-          1,
-        );
-        return [
-          (LN2 * (vt - (y[0] ?? 0))) / p.moodValenceHalfLife,
-          (LN2 * (clip(n / d) - (y[1] ?? 0))) / p.moodArousalHalfLife,
-        ];
-      });
+      const cell = integrateCell(
+        start,
+        y,
+        width,
+        (t, y) => {
+          const es = emotionAt(t);
+          let v = 0,
+            n = p.baselineArousalWeight * p.baselineArousal,
+            d = p.baselineArousalWeight;
+          for (const e of es) {
+            v += p.valence[e.id] * e.intensity;
+            n += p.arousal[e.id] * e.intensity;
+            d += e.intensity;
+          }
+          const vt = clip(
+            (clip(scalarAt(ctx.needs.satisfaction, t)) - 0.5) * p.moodNeedGain +
+              readEnvironmentTrajectory(ctx.environment, t, ctx.effective).moodOffset +
+              p.moodEmotionGain * clip(v, -1, 1),
+            -1,
+            1,
+          );
+          return [
+            (LN2 * (vt - (y[0] ?? 0))) / p.moodValenceHalfLife,
+            (LN2 * (clip(n / d) - (y[1] ?? 0))) / p.moodArousalHalfLife,
+          ];
+        },
+        numericalTolerance(ctx.fidelity),
+      );
       calls += cell.calls;
       if (spanBudgetExceeded(calls, ownCells, forcedCells))
         throw new EngineLimitError('limit-exceeded: affect span');

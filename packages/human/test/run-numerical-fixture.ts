@@ -7,7 +7,7 @@
 import { feltAffect } from '../src/affect/affect.ts';
 import { circadianAlertness, readBody } from '../src/body/body.ts';
 import { readCapacities } from '../src/body/injury.ts';
-import { ageYearsAt } from '../src/body/span.ts';
+import { ageYearsAt, evaluateCell } from '../src/body/span.ts';
 import { pregnancyWeeks } from '../src/family/family.ts';
 import { modifiersForAge } from '../src/lifecourse/lifecourse.ts';
 import { bodyPerception } from '../src/run-person.ts';
@@ -334,11 +334,13 @@ export function measureNumerical(archive: DeepReadonly<RunArchive>) {
     uncovered.push(
       'continuation.crisis.remainingWorkMinutes: serialized anchor is not current; no pure remaining-work reader exists',
     );
-  values['continuation.doze.integratedIntensity'] = c.doze.hazard.acceptedIntegral;
-  values['continuation.crisis.integratedIntensity'] = c.crisis.hazard.acceptedIntegral;
+  const intensity = (hazard: typeof c.doze.hazard) =>
+    hazard.activeIntegralCell ? evaluateCell(hazard.activeIntegralCell, s.at) : hazard.acceptedIntegral;
+  values['continuation.doze.integratedIntensity'] = intensity(c.doze.hazard);
+  values['continuation.crisis.integratedIntensity'] = intensity(c.crisis.hazard);
   for (const hazard of c.life.hazards)
     values[`continuation.${hazard.key.kind}[${hazard.key.channelId}].integratedIntensity`] =
-      hazard.acceptedIntegral;
+      intensity(hazard);
   return {
     values,
     body,

@@ -72,8 +72,22 @@ export function evaluateCell(c: DeepReadonly<ScalarCell>, at: number): number {
     (((required(q[4]) * x + required(q[3])) * x + required(q[2])) * x + required(q[1])) * x + required(q[0])
   );
 }
+// Generated trajectories append ordered, non-overlapping cells. Select the first
+// cell whose end covers the clock, preserving the earlier cell at shared ends.
+function trajectorySegment(p: DeepReadonly<ScalarTrajectory>, at: number, inclusive: boolean) {
+  let lo = 0,
+    hi = p.segments.length;
+  while (lo < hi) {
+    const mid = lo + Math.floor((hi - lo) / 2);
+    const segment = required(p.segments[mid]);
+    if (inclusive ? segment.to < at : segment.to <= at) lo = mid + 1;
+    else hi = mid;
+  }
+  const segment = p.segments[lo];
+  return segment && segment.from <= at ? segment : undefined;
+}
 export function scalarAt(p: DeepReadonly<ScalarTrajectory>, at: number): number {
-  const s = p.segments.find((s) => at >= s.from && at <= s.to);
+  const s = trajectorySegment(p, at, true);
   if (!s) throw new RangeError('trajectory does not cover numerical dependency');
   const h = (at - s.from) / 60000;
   switch (s.kind) {
@@ -249,7 +263,7 @@ export function arm(h: DeepReadonly<HazardContinuation>, rng: DeepReadonly<Actor
   const d = draw(rng);
   return {
     hazard: {
-      ...copy<HazardContinuation>(h),
+      ...copyContinuation<HazardContinuation>(h),
       threshold: {
         exponentialBudget: -dlog(1 - d.value),
         drawOrdinal: d.rng.identity.uniformDraws,
@@ -286,6 +300,7 @@ export function sampledPath(
   depth = 0,
   maxDepth = Math.max(20, halvingsToOneMs(to - from) + 1),
   work = { fits: 0 },
+  tolerance = 1e-12,
 ): ScalarTrajectory['segments'] {
   if (to === from) return [{ kind: 'constant', from, to, value: f(from) }];
   if (++work.fits > 8192) throw new EngineLimitError('limit-exceeded: readout interpolation');
@@ -320,12 +335,12 @@ export function sampledPath(
       Math.abs(f(from + x * (to - from)) - evaluateCell(cell, from + x * (to - from))),
     ),
   );
-  if (error > 1e-12 && to - from > 1) {
+  if (error > tolerance && to - from > 1) {
     if (depth >= maxDepth) throw new EngineLimitError('limit-exceeded: readout interpolation');
     const mid = from + Math.floor((to - from) / 2);
     return [
-      ...sampledPath(from, mid, f, depth + 1, maxDepth, work),
-      ...sampledPath(mid, to, f, depth + 1, maxDepth, work),
+      ...sampledPath(from, mid, f, depth + 1, maxDepth, work, tolerance),
+      ...sampledPath(mid, to, f, depth + 1, maxDepth, work, tolerance),
     ];
   }
   return [{ kind: 'quartic', from, to, cell: { ...cell, estimatedError: error } }];
@@ -333,6 +348,14 @@ export function sampledPath(
 /** Detached data clone; DeepReadonly maps tuple arrays to readonly arrays in v3. */
 export function copy<T>(value: DeepReadonly<T>): T {
   return cloneData(value) as T;
+}
+/** SCOPE: private proposal continuations use copy-on-write nested records. Owners
+ * replace every changed clock, cell and threshold; they never mutate a shared child.
+ * Public exports still detach all data. This assertion removes readonly only at
+ * that internal ownership boundary, rather than recursively copying numerical cells.
+ */
+export function copyContinuation<T extends object>(value: DeepReadonly<T>): T {
+  return { ...value } as T;
 }
 export function advanceHazard(
   input: DeepReadonly<HazardContinuation>,
@@ -342,11 +365,20 @@ export function advanceHazard(
   coverageTo = Infinity,
   coverageAt: (at: number) => number = () => coverageTo,
 ): { hazard: HazardContinuation; at: number; boundary: import('../run-schema.ts').HazardBoundary | null } {
-  let h = copy<HazardContinuation>(input),
+  let h = copyContinuation<HazardContinuation>(input),
     at = from,
     calls = 0,
     ownCells = 0,
     forcedCells = 0;
+  // A threshold already reached needs no future quadrature cell. In particular,
+  // zero-duration phase-two revalidation must still see that boundary.
+  const prefix = h.activeIntegralCell ? evaluateCell(h.activeIntegralCell, from) : h.acceptedIntegral;
+  if (h.threshold && prefix >= h.threshold.exponentialBudget)
+    return {
+      hazard: { ...h, materializedAtMs: from, clock: { ...h.clock, advancedThroughMs: from } },
+      at: from,
+      boundary: { key: h.key, at: from, operation: 'fire' },
+    };
   if (!h.threshold && lambda(from) > 0)
     return {
       hazard: { ...h, materializedAtMs: from, clock: { ...h.clock, advancedThroughMs: from } },
@@ -458,7 +490,7 @@ export const spanBudgetExceeded = (calls: number, ownCells: number, forcedCells:
 export function nextPathBoundary(at: number, paths: readonly DeepReadonly<ScalarTrajectory>[]): number {
   let end = Infinity;
   for (const p of paths) {
-    const segment = p.segments.find((s) => s.from <= at && s.to > at);
+    const segment = trajectorySegment(p, at, false);
     if (!segment) throw new RangeError('trajectory lacks next canonical forcing cell');
     end = Math.min(end, segment.to);
   }
@@ -532,7 +564,7 @@ export function rebaseHazard(
 ): HazardContinuation {
   const integral = h.activeIntegralCell ? evaluateCell(h.activeIntegralCell, at) : h.acceptedIntegral;
   return {
-    ...copy<HazardContinuation>(h),
+    ...copyContinuation<HazardContinuation>(h),
     clock: clock(at, id, hash),
     anchorIntegral: integral,
     acceptedIntegral: integral,

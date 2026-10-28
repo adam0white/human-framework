@@ -1,6 +1,6 @@
 /** SCOPE: current4 archive envelope, export-time canonical hashes and C0-owned
  * infrastructure admission. Owners still validate their slices and continuations;
- * replay still executes accepted transactions through the same run dispatcher.
+ * format five bounds duplicated journals; cold recovery executes complete inputs.
  * No repair, migration, historical hash on every frame or legacy fallback.
  */
 import { checkRunSpec } from './run-admission.ts';
@@ -10,6 +10,7 @@ import type { ContractError, DeepReadonly, Id, Result, RunArchive } from './run-
 import { validateData } from './run-validation.ts';
 
 type ArchiveBody = Omit<RunArchive, 'hashes'>;
+const JOURNAL_LIMIT = 64;
 export function archiveHashes(body: DeepReadonly<ArchiveBody>): RunArchive['hashes'] {
   const initial = hashCanonical('hf-run4/initial', body.engine, body.host, body.initial);
   const history = hashCanonical('hf-run4/history', body.history);
@@ -109,6 +110,20 @@ export function checkArchiveEnvelope(
     priorAt = transaction.reachedAt;
   }
   if (priorAt !== state.at) return error('$.current.at', 'current clock differs from accepted history');
+  if (
+    state.events.length > JOURNAL_LIMIT ||
+    Object.values(state.receipts).some((entries) => entries.length > JOURNAL_LIMIT)
+  )
+    return error('$.current', 'archive journals exceed their retention bound');
+  return admitted;
+}
+
+/** Full journal checks run only on history reconstructed by the dispatcher. */
+export function checkReconstructedJournals(archive: DeepReadonly<RunArchive>): Result<true> {
+  const state = archive.current;
+  const inputIds = new Set(
+    archive.history.flatMap((transaction) => transaction.inputs.map((input) => input.id)),
+  );
   const ledgerInputs = new Map<Id, string>();
   for (const [index, receipt] of state.receipts.inputs.entries()) {
     if (!inputIds.has(receipt.id) || ledgerInputs.has(receipt.id) || receipt.ordinal !== index + 1)
@@ -235,5 +250,28 @@ export function checkArchiveEnvelope(
     effects.add(effect.id);
     causes.add(effect.causalEffectKey);
   }
-  return admitted;
+  return { ok: true, value: true };
+}
+
+/** SCOPE: export-only retention. Live journals and private deduplication indexes
+ * remain complete; accepted input history is never trimmed. This bounds duplicate
+ * diagnostics, not actor memory or the input log, and never changes a reached step.
+ */
+export function archiveSnapshot(
+  state: DeepReadonly<import('./run-schema.ts').RunState>,
+): DeepReadonly<import('./run-schema.ts').RunState> {
+  const receipts = state.receipts;
+  return {
+    ...state,
+    events: state.events.slice(-JOURNAL_LIMIT),
+    receipts: {
+      inputs: receipts.inputs.slice(-JOURNAL_LIMIT),
+      dispositions: receipts.dispositions.slice(-JOURNAL_LIMIT),
+      settlements: receipts.settlements.slice(-JOURNAL_LIMIT),
+      communications: receipts.communications.slice(-JOURNAL_LIMIT),
+      evidence: receipts.evidence.slice(-JOURNAL_LIMIT),
+      effects: receipts.effects.slice(-JOURNAL_LIMIT),
+      allocated: receipts.allocated.slice(-JOURNAL_LIMIT),
+    },
+  };
 }

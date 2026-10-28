@@ -4,7 +4,7 @@
 import { cloneData } from './core/clone.ts';
 import { installPortable, preparePortable } from './portable-admission.ts';
 import { checkPersonAuthoring, checkRunSpec, PORTABLE_ADMISSION_REJECTED } from './run-admission.ts';
-import { archiveHashes } from './run-archive.ts';
+import { archiveHashes, archiveSnapshot } from './run-archive.ts';
 import { hashCanonical } from './run-canonical.ts';
 import { Frame } from './run-dispatch.ts';
 import { RUN_ENGINE } from './run-engine.ts';
@@ -175,7 +175,7 @@ export function exportRun(run: T.Run): T.DeepReadonly<T.RunArchive> {
   const record = readKernel(run);
   const body = {
     format: 'hf-run' as const,
-    version: 4 as const,
+    version: 5 as const,
     engine: RUN_ENGINE,
     host: record.spec.host,
     initial: {
@@ -185,7 +185,7 @@ export function exportRun(run: T.Run): T.DeepReadonly<T.RunArchive> {
       people: record.initialPeople,
     },
     history: historyEntries(run),
-    current: record.current,
+    current: archiveSnapshot(record.current),
   };
   // The caller cannot freeze or mutate private live state through an export.
   return freezeData(cloneData({ ...body, hashes: archiveHashes(body) }));

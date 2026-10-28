@@ -1,16 +1,17 @@
-import { freezeData, rebaseHazard, required, spanBudgetExceeded } from '../body/span.ts';
-
 /** SCOPE: uncalibrated crisis onset, generic restricted assent and source recovery.
  * No invented world action, psychiatric diagnosis or spontaneous comfort. */
 
+import { numericalTolerance, numericalWidth } from '../body/daily-policy.ts';
 import {
   advanceHazard,
   arm,
   clip,
   clock,
   copy,
+  copyContinuation,
   draw,
   evaluateCell,
+  freezeData,
   hazardIssues,
   initialWidth,
   integrateCell,
@@ -20,7 +21,10 @@ import {
   nextPathBoundary,
   numericalIssues,
   output,
+  rebaseHazard,
+  required,
   scalarAt,
+  spanBudgetExceeded,
   validateNumbers,
 } from '../body/span.ts';
 import { readCharacterTrajectory } from '../character/character.ts';
@@ -102,7 +106,7 @@ const advance: T.CrisisOwner['advance'] = (state, ctx) => {
   const p = ctx.effective.builtins.CRISIS_DEFAULTS;
   if (!Number.isFinite(ctx.commandStrainRatePerMinute) || ctx.commandStrainRatePerMinute < 0)
     throw new RangeError('invalid actual command forcing');
-  let c = copy<T.CrisisContinuation>(ctx.continuation),
+  let c = copyContinuation<T.CrisisContinuation>(ctx.continuation),
     s = copy<T.CrisisState>(state),
     to = ctx.to;
   const conditionId = JSON.stringify([
@@ -167,7 +171,7 @@ const advance: T.CrisisOwner['advance'] = (state, ctx) => {
     if (!cell || at >= end) {
       const start = cell ? end : c.clock.conditionAnchorMs;
       const y = cell ? evaluateCell(cell, end) : c.stressAtAnchor;
-      const trial = c.nextTrialWidthMinutes * 60000,
+      const trial = numericalWidth(c.nextTrialWidthMinutes * 60000, ctx.fidelity, !cell),
         width = Math.min(
           trial,
           nextPathBoundary(start, [
@@ -179,15 +183,21 @@ const advance: T.CrisisOwner['advance'] = (state, ctx) => {
       if (width < trial) forcedCells++;
       else ownCells++;
       if (start + width > ctx.mood.to) throw new RangeError('mood path must cover canonical stress cell');
-      const r = integrateCell(start, [y], width, (t, y) => {
-        const q =
-          (-LN2 * (y[0] ?? 0)) / p.stressHalfLife +
-          (p.stressMoodRate *
-            Math.max(0, -trajectoryFeltValence(ctx.mood, t, ctx.effective.builtins.AFFECT_DEFAULTS))) /
-            1440 +
-          ctx.commandStrainRatePerMinute;
-        return [(y[0] ?? 0) >= 1 && q > 0 ? 0 : q];
-      });
+      const r = integrateCell(
+        start,
+        [y],
+        width,
+        (t, y) => {
+          const q =
+            (-LN2 * (y[0] ?? 0)) / p.stressHalfLife +
+            (p.stressMoodRate *
+              Math.max(0, -trajectoryFeltValence(ctx.mood, t, ctx.effective.builtins.AFFECT_DEFAULTS))) /
+              1440 +
+            ctx.commandStrainRatePerMinute;
+          return [(y[0] ?? 0) >= 1 && q > 0 ? 0 : q];
+        },
+        numericalTolerance(ctx.fidelity),
+      );
       calls += r.calls;
       if (spanBudgetExceeded(calls, ownCells, forcedCells))
         throw new EngineLimitError('limit-exceeded: stress span');

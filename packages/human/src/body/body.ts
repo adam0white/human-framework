@@ -9,6 +9,13 @@ import { keyOf, Memo } from '../core/memo.ts';
 import { modifiersForAge } from '../lifecourse/lifecourse.ts';
 import type * as T from '../run-schema.ts';
 import { bladderMotivation } from './bladder.ts';
+import {
+  DAILY_NUMERICAL_POLICY,
+  dailyPolicy,
+  numericalPath,
+  numericalTolerance,
+  numericalWidth,
+} from './daily-policy.ts';
 import { dozeIntensity } from './doze.ts';
 import { downedAllows, readCapacities } from './injury.ts';
 import {
@@ -17,6 +24,7 @@ import {
   clip,
   clock,
   copy,
+  copyContinuation,
   DAY,
   draw,
   evaluateCell,
@@ -940,7 +948,7 @@ function firstPhysicalBoundary(
     for (const value of thresholds) points.push(...thresholdTimes(cell, at, stop, value));
   }
   if (bodyAt(at).downed) {
-    const moving = sampledPath(at, stop, (t) => readCapacities(bodyAt(t)).moving);
+    const moving = numericalPath(at, stop, (t) => readCapacities(bodyAt(t)).moving, ctx.fidelity);
     for (const segment of moving)
       if (segment.kind === 'quartic')
         for (const value of [
@@ -1014,15 +1022,15 @@ function constantBodyTrajectory(
           ? r.perceived[field.slice(10) as keyof T.BodyReadout['perceived']]
           : r[field as Exclude<keyof T.BodyReadout, 'perceived'>];
       };
-      return { field, path: { from, to, segments: sampledPath(from, to, f) } };
+      return { field, path: { from, to, segments: numericalPath(from, to, f, ctx.fidelity) } };
     }),
   };
 }
 const advance: T.BodyOwner['advance'] = (state, ctx) => {
   minutes(ctx.from, ctx.to);
   let b: T.BodyState = cloneData(state) as T.BodyState,
-    c: T.BodyContinuation = copy<T.BodyContinuation>(ctx.continuation),
-    d: T.DozeContinuation = copy<T.DozeContinuation>(ctx.dozeContinuation);
+    c: T.BodyContinuation = copyContinuation<T.BodyContinuation>(ctx.continuation),
+    d: T.DozeContinuation = copyContinuation<T.DozeContinuation>(ctx.dozeContinuation);
   if (!b.alive)
     return {
       ...output(b, ctx.to),
@@ -1079,6 +1087,7 @@ const advance: T.BodyOwner['advance'] = (state, ctx) => {
   }
   const conditionId = JSON.stringify([
     'body',
+    ...(dailyPolicy(ctx.fidelity) ? [DAILY_NUMERICAL_POLICY] : []),
     ctx.effectiveParametersHash,
     ctx.life.birthAt,
     ctx.load.effort,
@@ -1154,6 +1163,23 @@ const advance: T.BodyOwner['advance'] = (state, ctx) => {
       ),
     };
   }
+  const reachedIntegral = d.hazard.activeIntegralCell
+    ? evaluateCell(d.hazard.activeIntegralCell, at)
+    : d.hazard.acceptedIntegral;
+  if (d.hazard.threshold && reachedIntegral >= d.hazard.threshold.exponentialBudget)
+    return {
+      ...output(b, at),
+      continuation: c,
+      dozeContinuation: d,
+      randomBoundary: { key: d.hazard.key, at, operation: 'fire' },
+      trajectory: constantBodyTrajectory(
+        b,
+        at,
+        at,
+        `${c.clock.conditionId}:${c.clock.conditionAnchorMs}`,
+        ctx,
+      ),
+    };
   if (ctx.to === ctx.from)
     return {
       ...output(b, ctx.from),
@@ -1181,7 +1207,14 @@ const advance: T.BodyOwner['advance'] = (state, ctx) => {
       c = { ...c, anchor: bodyVector(base) };
       const f = flatten(c.anchor);
       const initial = d.hazard.acceptedIntegral;
-      let trialWidth = Math.min(Math.max(1, c.nextTrialWidthMinutes * 60000), initialWidth(1440));
+      let trialWidth = numericalWidth(
+        Math.min(
+          Math.max(1, c.nextTrialWidthMinutes * 60000),
+          dailyPolicy(ctx.fidelity) ? DAY : initialWidth(1440),
+        ),
+        ctx.fidelity,
+        !cells.length,
+      );
       let isolation = 0;
       while (
         possibleDoze(base, baseAt, baseAt + trialWidth, ctx) &&
@@ -1202,7 +1235,7 @@ const advance: T.BodyOwner['advance'] = (state, ctx) => {
         [...f.values, initial],
         trialWidth,
         rhs(base, f.keys, ctx, baseAt),
-        1e-12,
+        numericalTolerance(ctx.fidelity),
         f.values
           .map((_, i) =>
             f.keys[i]?.component === 'sleep-debt-hours'
@@ -1313,17 +1346,27 @@ const advance: T.BodyOwner['advance'] = (state, ctx) => {
         return {
           fields: keys.map((field, i) =>
             analyticComponents.has(field.component)
-              ? sampledPath(start, end, (t) => required(flatten(bodyVector(viewAt(t))).values[i]))
+              ? numericalPath(
+                  start,
+                  end,
+                  (t) => required(flatten(bodyVector(viewAt(t))).values[i]),
+                  ctx.fidelity,
+                )
               : null,
           ),
           readout: readoutNames.map((name) =>
-            sampledPath(start, end, (t) => {
-              if (name === 'moving' || name === 'manipulation' || name === 'sight')
-                return readCapacities(viewAt(t))[name];
-              if (name.startsWith('perceived-'))
-                return read(t).perceived[name.slice(10) as keyof T.BodyReadout['perceived']];
-              return read(t)[name as Exclude<keyof T.BodyReadout, 'perceived'>];
-            }),
+            numericalPath(
+              start,
+              end,
+              (t) => {
+                if (name === 'moving' || name === 'manipulation' || name === 'sight')
+                  return readCapacities(viewAt(t))[name];
+                if (name.startsWith('perceived-'))
+                  return read(t).perceived[name.slice(10) as keyof T.BodyReadout['perceived']];
+                return read(t)[name as Exclude<keyof T.BodyReadout, 'perceived'>];
+              },
+              ctx.fidelity,
+            ),
           ),
         };
       },

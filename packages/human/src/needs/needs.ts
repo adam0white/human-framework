@@ -12,6 +12,13 @@
  * not claim an exhaustive need list, calibrated rates, or a universal weighting between needs.
  */
 
+import {
+  DAILY_NUMERICAL_POLICY,
+  dailyPolicy,
+  numericalTolerance,
+  numericalWidth,
+} from '../body/daily-policy.ts';
+
 import { evaluateCell, initialWidth, integrateCell, required } from '../body/span.ts';
 import { characterTraitSegments, readCharacterTrajectory } from '../character/character.ts';
 import { cloneData } from '../core/clone.ts';
@@ -219,6 +226,7 @@ type NeedKernelContext = Pick<
   | 'forcingPerMinute'
   | 'asleep'
 > & {
+  fidelity?: NeedSpan['fidelity'];
   effective: {
     builtins: Pick<
       import('../run-schema.ts').DeepReadonly<import('../run-schema.ts').EffectiveBuiltins>,
@@ -311,18 +319,26 @@ export function materializeNeeds(context: NeedKernelContext, at: number): NeedRe
       // Only the reached evaluation is returned. No actor/RNG work runs at these samples.
       let left = context.continuation.anchor.at,
         y = state[id],
-        width = initialWidth(halfLife),
+        width = context.fidelity
+          ? numericalWidth(initialWidth(halfLife), context.fidelity, true)
+          : initialWidth(halfLife),
         calls = 0;
       while (left < at) {
-        const cell = integrateCell(left, [y], width, (t, values) => {
-          const trait = readCharacterTrajectory(context.character, t).traits.extraversion;
-          const h = varyingRate ? d.belongingAloneHalfLife / (0.5 + clamp01(trait)) : halfLife;
-          const k = (dlog(2) / Math.max(d.minHalfLife, h)) * (context.asleep ? d.asleepRate : 1);
-          const forcing =
-            (readEnvironmentTrajectory(context.environment, t, context.effective).needsPerMinute[id] ?? 0) +
-            (context.forcingPerMinute.command[id] ?? 0);
-          return [k * (target - (values[0] ?? 0)) + forcing];
-        });
+        const cell = integrateCell(
+          left,
+          [y],
+          width,
+          (t, values) => {
+            const trait = readCharacterTrajectory(context.character, t).traits.extraversion;
+            const h = varyingRate ? d.belongingAloneHalfLife / (0.5 + clamp01(trait)) : halfLife;
+            const k = (dlog(2) / Math.max(d.minHalfLife, h)) * (context.asleep ? d.asleepRate : 1);
+            const forcing =
+              (readEnvironmentTrajectory(context.environment, t, context.effective).needsPerMinute[id] ?? 0) +
+              (context.forcingPerMinute.command[id] ?? 0);
+            return [k * (target - (values[0] ?? 0)) + forcing];
+          },
+          numericalTolerance(context.fidelity),
+        );
         calls += cell.calls;
         if (calls > 8192) throw new EngineLimitError('Need forced relaxation work limit exceeded');
         y = evaluateCell(required(cell.cells[0]), Math.min(at, cell.to));
@@ -398,6 +414,7 @@ export function projectNeedTrajectory(context: NeedKernelContext): import('../ru
       keyOf(context.character),
       keyOf(context.environment),
       context.body.id,
+      numericalTolerance(context.fidelity),
       context.body.readout.map((r) => [r.field, r.path.segments.map((s) => keyOf(s))]),
       context.continuation,
       context.activity,
@@ -458,7 +475,7 @@ function buildNeedTrajectory(context: NeedKernelContext): import('../run-schema.
       );
     // A kink (a pain or injury threshold) is isolated by bisection to one millisecond and kept there with
     // its estimated error, as body readouts are (span.ts sampledPath); no wider residual is accepted.
-    if (error > 1e-12 && right - left > 1) {
+    if (error > numericalTolerance(context.fidelity) && right - left > 1) {
       const mid = left + Math.floor((right - left) / 2);
       fit(left, mid);
       fit(mid, right);
@@ -541,11 +558,44 @@ export const needsOwner: import('../run-schema.ts').NeedsOwner = {
   initialize(input) {
     return { ...input };
   },
-  advance(_state, context) {
+  advance(priorState, context) {
+    const wasDaily = context.continuation.numericalPolicy === DAILY_NUMERICAL_POLICY;
+    const isDaily = dailyPolicy(context.fidelity);
+    // Rebase only a fidelity transition from the state already reached. In
+    // particular, daily accuracy must never be applied to a preceding fine span.
+    const kernel: typeof context =
+      wasDaily === isDaily
+        ? context
+        : {
+            ...context,
+            continuation: {
+              anchor: {
+                at: context.from,
+                conditionId: context.continuation.anchor.conditionId,
+              },
+              state: cloneData(priorState),
+              ...(isDaily ? { numericalPolicy: DAILY_NUMERICAL_POLICY } : {}),
+            },
+          };
+    const state = materializeNeeds(kernel, context.to);
+    // Every daily boundary is already a semantic scheduler boundary. Retaining
+    // its reached reservoir values bounds varying-force integration to one day
+    // instead of reintegrating the entire chapter at every trajectory sample.
+    const atDailyBoundary =
+      context.fidelity.mode === 'daily' &&
+      (context.to - context.fidelity.anchor) % context.fidelity.dayMs === 0;
+    const continuation =
+      atDailyBoundary && context.to > kernel.continuation.anchor.at
+        ? {
+            ...kernel.continuation,
+            anchor: { at: context.to, conditionId: kernel.continuation.anchor.conditionId },
+            state: cloneData(state),
+          }
+        : cloneData(kernel.continuation);
     return {
-      state: materializeNeeds(context, context.to),
-      continuation: cloneData(context.continuation),
-      trajectory: projectNeedTrajectory(context),
+      state,
+      continuation,
+      trajectory: projectNeedTrajectory(kernel),
       effects: { terms: [], modifiers: [], appraisals: [] },
       events: [],
       nextBoundary: null,
@@ -565,7 +615,11 @@ export const needsOwner: import('../run-schema.ts').NeedsOwner = {
     } else state.autonomy = clamp01(state.autonomy + input.autonomy);
     return {
       state,
-      continuation: { anchor: { at: context.at, conditionId: input.evidenceId }, state: { ...state } },
+      continuation: {
+        anchor: { at: context.at, conditionId: input.evidenceId },
+        state: { ...state },
+        ...(dailyPolicy(context.fidelity) ? { numericalPolicy: DAILY_NUMERICAL_POLICY } : {}),
+      },
       effects: { terms: [], modifiers: [], appraisals: [] },
       events: [],
       nextBoundary: null,

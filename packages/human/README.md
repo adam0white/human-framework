@@ -148,6 +148,16 @@ Each coefficient is finite and between −1 and 1. IDs are nonempty NFC strings 
 
 This immutable, run-scoped vocabulary is retained in exports and replay. An ordinary claim such as `person:nosy` updates the person's belief through `testimony.received` or `fact.confirmed`. The existing reputation owner applies the actual credence change to affection, trust and respect, damped by familiarity and negative weighting. A correction moves those relationships back toward their prior state; it does not invent a separate social event. Prepared conversation uses the same vocabulary to identify character claims, classify unfavourable speech and offer loyal warnings. Zero coefficients recognize a character word without a relationship effect. Coefficients are authored engineering assumptions about relationships, not measures of moral worth or religious rulings. Within a run, reputation applies only to subjects that name people in that run. Authoring a trait named `open` does not create a relationship with the non-person subject of `door:open`.
 
+## Archives and daily steps (4.6)
+
+`exportRun` writes archive format 5. Each event and receipt journal in `current` contains its newest 64 entries. The complete accepted input log remains in `history`; actor memory keeps its own retention policy. A snapshot's journals are recent diagnostics, so their lengths do not equal lifetime allocation counters. Live `step` results and inspections keep their ordinary semantics.
+
+`restoreRun` reconstructs complete private journals and deduplication indexes by executing the accepted history. It checks the reconstructed actor, pending requests, active work, continuations and retained snapshot before returning a run. Restore therefore costs approximately a replay, and its cost grows with total accepted history. `replay` still reproduces a current-version export exactly. Archives from another package/build/schema are refused; no old-export conversion is provided.
+
+The existing daily fidelity uses larger adaptive cells with the same faculty equations, physical branch checks and hazard roots. Its local normalized numerical estimate is `1e-7`; fine-only runs retain their existing `1e-12` policy. Cells reanchor when fidelity changes, so a new daily policy never recomputes an earlier fine span. Needs retain reached reservoir values at canonical daily boundaries, keeping varying-force work bounded to a day. This introduces no faculty switch and skips no host input or reached semantic boundary.
+
+The local estimate is not a certified global error bound. This release loosens the ten-seed fine/daily comparison limit from `1e-9` to `1e-5`. The control covers 24 hours only and measured a maximum current-state difference of `7.44e-6`; fine repeat and irregular-read limits remain `1e-9`. Physical events matched exactly in that fixture. A different daily path can approximate a fine path differently; each current-version archive still replays its own path exactly.
+
 ## Live traits, held norms and authored social responses (4.5)
 
 Use `inspect(run, {perspective, people, select: ['traits', 'heldNorms']})` for live rules. Host perspective receives actual HEXACO traits and the current `HeldNorm[]`, including standing, conviction and provenance. Self perspective receives `unobserved` for raw traits; an authored personality model does not imply accurate selfknowledge. Self held norms expose the person's own understanding. Other-person readings return `unobserved` for both selections. These detached reads work during pending and active actions without portable projection, state changes or RNG changes. Held norms model a person's current understanding, never a religious ruling.
@@ -220,12 +230,12 @@ biography: [
 
 ## Versions
 
-The release version is the package version (`package.json`, currently `4.5.2`). From 4.0.0 the engine version is
+The release version is the package version (`package.json`, currently `4.6.0`). From 4.0.0 the engine version is
 the same string; `RUN_ENGINE` in each archive adds a build hash and a schema hash, so a host can tell exactly
 which engine wrote a save. The public API follows [semver](https://semver.org/). Each release is a tag `vX.Y.Z`
 and a GitHub release whose notes are that version's section of the root
 [CHANGELOG.md](https://github.com/adam0white/human-framework/blob/main/CHANGELOG.md), with the package tarball
-attached (`npm run release`, from a clean checkout of pushed `origin/main`). A 4.x minor adds faculties; an
+attached (`npm run release`, from a clean checkout of pushed `origin/main`). A 4.x minor can add faculties or change numerical policy; an
 archive from another 4.x version may be refused with a start-fresh message.
 
 ## What it does not model

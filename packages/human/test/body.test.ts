@@ -91,7 +91,7 @@ it('agrees over 24h at common hourly checkpoints with ten seeds, live doze and p
       },
     };
     const events: unknown[] = [];
-    const checkpoints: unknown[] = [];
+    const checkpoints: { state: typeof x.state; rng: typeof rng; events: unknown[] }[] = [];
     for (const target of chunks) {
       let guard = 0;
       while (from < target) {
@@ -169,7 +169,27 @@ it('agrees over 24h at common hourly checkpoints with ten seeds, live doze and p
         hourly.flatMap((t) => [t - 3599993, t - 3000017, t - 70123, t]),
         false,
       );
-    expect(daily).toEqual(fine);
+    // Daily policy approximates continuous state; reached events and seeded
+    // draws stay exact. Fine-only chunking keeps its original exact control.
+    const compareState = (actual: unknown, expected: unknown): void => {
+      if (typeof actual === 'number' && typeof expected === 'number') {
+        expect(Math.abs(actual - expected)).toBeLessThan(1e-5);
+      } else if (actual && expected && typeof actual === 'object' && typeof expected === 'object') {
+        expect(Object.keys(actual)).toEqual(Object.keys(expected));
+        for (const key of Object.keys(expected))
+          compareState(Reflect.get(actual, key), Reflect.get(expected, key));
+      } else expect(actual).toEqual(expected);
+    };
+    compareState(daily.state, fine.state);
+    expect(daily.rng).toEqual(fine.rng);
+    expect(daily.events).toEqual(fine.events);
+    expect(daily.checkpoints).toHaveLength(fine.checkpoints.length);
+    daily.checkpoints.forEach((checkpoint, index) => {
+      const expected = required(fine.checkpoints[index]);
+      compareState(checkpoint.state, expected.state);
+      expect(checkpoint.rng).toEqual(expected.rng);
+      expect(checkpoint.events).toEqual(expected.events);
+    });
     expect(irregular).toEqual(fine);
     expect(fine.rng.identity.uniformDraws).toBeGreaterThan(12);
   }

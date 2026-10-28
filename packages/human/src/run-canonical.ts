@@ -19,7 +19,11 @@ export function compareCodePoints(a: string, b: string): number {
 type Work =
   | { kind: 'value'; value: unknown }
   | { kind: 'text'; text: string }
-  | { kind: 'leave'; value: object };
+  | { kind: 'leave'; value: object; start: number; frozen: boolean; children: readonly unknown[] };
+// Weak identities retain no state. Cache only proven deeply frozen, small JSON
+// fragments. The token cap bounds first-pass copying even for very deep host JSON.
+const immutableJson = new WeakMap<object, string>();
+const deeplyFrozen = new WeakSet<object>();
 const forbiddenKeys = new Set(['__proto__', 'prototype', 'constructor']);
 
 /** Validates JSON representation without invoking getters or accepting silent loss.
@@ -39,6 +43,18 @@ export function canonicalJson(value: unknown): string {
     }
     if (item.kind === 'leave') {
       ancestors.delete(item.value);
+      if (
+        item.frozen &&
+        item.children.every((child) => child === null || typeof child !== 'object' || deeplyFrozen.has(child))
+      ) {
+        deeplyFrozen.add(item.value);
+        if (output.length - item.start <= 256) {
+          let length = 0;
+          for (let i = item.start; i < output.length && length <= 16384; i++)
+            length += output[i]?.length ?? 0;
+          if (length <= 16384) immutableJson.set(item.value, output.slice(item.start).join(''));
+        }
+      }
       continue;
     }
     const current = item.value;
@@ -53,16 +69,30 @@ export function canonicalJson(value: unknown): string {
     }
     if (typeof current !== 'object') throw new TypeError('non-JSON value');
     if (ancestors.has(current)) throw new TypeError('cyclic JSON');
+    const cached = immutableJson.get(current);
+    if (cached !== undefined) {
+      output.push(cached);
+      continue;
+    }
     const array = Array.isArray(current);
     const prototype = Object.getPrototypeOf(current);
     if (array ? prototype !== Array.prototype : prototype !== Object.prototype && prototype !== null) {
       throw new TypeError('nonplain JSON object');
     }
+    const frozen = Object.isFrozen(current);
     const descriptors = Object.getOwnPropertyDescriptors(current);
     const ownKeys = Reflect.ownKeys(current);
     if (ownKeys.some((key) => typeof key !== 'string')) throw new TypeError('symbol JSON key');
     ancestors.add(current);
-    work.push({ kind: 'leave', value: current });
+    work.push({
+      kind: 'leave',
+      value: current,
+      start: output.length,
+      frozen,
+      children: Object.values(descriptors).flatMap((descriptor) =>
+        'value' in descriptor ? [descriptor.value] : [],
+      ),
+    });
     if (array) {
       if (ownKeys.length !== current.length + 1) throw new TypeError('sparse or decorated JSON array');
       work.push({ kind: 'text', text: ']' });
@@ -173,46 +203,13 @@ function sha256(input: Uint8Array): string {
   return hex(h0) + hex(h1) + hex(h2) + hex(h3) + hex(h4) + hex(h5) + hex(h6) + hex(h7);
 }
 
-/** UTF-8 bytes of a string; lone surrogates encode as U+FFFD, as TextEncoder does, without a host global. */
+// Node 24+ and the supported browsers provide the same standard UTF-8 encoder.
+// Supported runtimes provide the standard UTF-8 encoder; the core TS lib excludes DOM types.
+declare const TextEncoder: { new (): { encode(input: string): Uint8Array } };
+const encoder = new TextEncoder();
+/** UTF-8 bytes; the standard encoder replaces lone surrogates with U+FFFD. */
 export function utf8(text: string): Uint8Array {
-  // Two passes: count the bytes, then fill a typed array, so no intermediate array caps the length.
-  const codePoint = (i: number): [number, number] => {
-    const c = text.charCodeAt(i);
-    if (c >= 0xd800 && c <= 0xdbff) {
-      const next = i + 1 < text.length ? text.charCodeAt(i + 1) : 0;
-      return next >= 0xdc00 && next <= 0xdfff
-        ? [0x10000 + ((c - 0xd800) << 10) + (next - 0xdc00), 2]
-        : [0xfffd, 1];
-    }
-    return [c >= 0xdc00 && c <= 0xdfff ? 0xfffd : c, 1];
-  };
-  let length = 0;
-  for (let i = 0; i < text.length; ) {
-    const [c, width] = codePoint(i);
-    length += c < 0x80 ? 1 : c < 0x800 ? 2 : c < 0x10000 ? 3 : 4;
-    i += width;
-  }
-  const out = new Uint8Array(length);
-  let o = 0;
-  for (let i = 0; i < text.length; ) {
-    const [c, width] = codePoint(i);
-    i += width;
-    if (c < 0x80) out[o++] = c;
-    else if (c < 0x800) {
-      out[o++] = 0xc0 | (c >> 6);
-      out[o++] = 0x80 | (c & 63);
-    } else if (c < 0x10000) {
-      out[o++] = 0xe0 | (c >> 12);
-      out[o++] = 0x80 | ((c >> 6) & 63);
-      out[o++] = 0x80 | (c & 63);
-    } else {
-      out[o++] = 0xf0 | (c >> 18);
-      out[o++] = 0x80 | ((c >> 12) & 63);
-      out[o++] = 0x80 | ((c >> 6) & 63);
-      out[o++] = 0x80 | (c & 63);
-    }
-  }
-  return out;
+  return encoder.encode(text);
 }
 
 /** One wire contract: SHA256(UTF8(canonical JSON [domain,...parts])). */

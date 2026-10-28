@@ -11879,6 +11879,7 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
           fields: {
             anchor: { optional: false, shape: { kind: 'ref', name: 'ContinuousAnchor' } },
             state: { optional: false, shape: { kind: 'ref', name: 'NeedReservoirs' } },
+            numericalPolicy: { optional: true, shape: { kind: 'literal', value: 'daily-cells-v1' } },
           },
         },
       },
@@ -12166,7 +12167,7 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
     kind: 'object',
     fields: {
       format: { optional: false, shape: { kind: 'literal', value: 'hf-run' } },
-      version: { optional: false, shape: { kind: 'literal', value: 4 } },
+      version: { optional: false, shape: { kind: 'literal', value: 5 } },
       engine: {
         optional: false,
         shape: {

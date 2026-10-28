@@ -8,6 +8,7 @@ import {
   clip as clamp,
   clock,
   copy,
+  copyContinuation,
   evaluateCell,
   hazardIssues,
   issue,
@@ -15,6 +16,7 @@ import {
   nextPathBoundary,
   output,
   rebaseHazard,
+  required,
   scalarAt,
   smooth as smoothstep,
   validateNumbers,
@@ -108,7 +110,7 @@ const initialize: T.LifecycleOwner['initialize'] = (input, ctx) => {
   };
 };
 const advance: T.LifecycleOwner['advance'] = (state, ctx) => {
-  let c = copy<T.LifeContinuation>(ctx.continuation);
+  let c = copyContinuation<T.LifeContinuation>(ctx.continuation);
   const conditionId = JSON.stringify([
     'life',
     ctx.body.id,
@@ -175,6 +177,7 @@ const advance: T.LifecycleOwner['advance'] = (state, ctx) => {
   };
   let stop = ctx.to,
     boundary: T.HazardBoundary | null = null;
+  const proposed: ReturnType<typeof advanceHazard>[] = [];
   for (const h of c.hazards) {
     const r = advanceHazard(
       h,
@@ -188,24 +191,30 @@ const advance: T.LifecycleOwner['advance'] = (state, ctx) => {
           ctx.body.fields.map((f) => f.path),
         ),
     );
+    proposed.push(r);
     if (r.boundary && (r.at < stop || (r.at === stop && boundary === null))) {
       stop = r.at;
       boundary = r.boundary;
     }
   }
   const hazards = c.hazards.map(
-    (h) =>
-      advanceHazard(
-        h,
-        ctx.from,
-        stop,
-        (t) => lambda(h.key, t),
-        ctx.body.to,
-        (t) =>
-          nextPathBoundary(
-            t,
-            ctx.body.fields.map((f) => f.path),
-          ),
+    (h, index) =>
+      // The first proposal already covers the reached endpoint unless an earlier
+      // channel shortened the span. Reusing it consumes no extra work or draw.
+      (stop === ctx.to
+        ? required(proposed[index])
+        : advanceHazard(
+            h,
+            ctx.from,
+            stop,
+            (t) => lambda(h.key, t),
+            ctx.body.to,
+            (t) =>
+              nextPathBoundary(
+                t,
+                ctx.body.fields.map((f) => f.path),
+              ),
+          )
       ).hazard,
   );
   c = { ...c, hazards, clock: { ...c.clock, advancedThroughMs: stop }, bodyTrajectoryId: ctx.body.id };
