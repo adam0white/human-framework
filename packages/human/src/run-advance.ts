@@ -208,7 +208,10 @@ export function compareSpanBoundaries(a: SpanBoundary, b: SpanBoundary): number 
   if (b.kind === 'hazard') return 1;
   return compareCodePoints(a.owner, b.owner);
 }
-function loadFor(actor: T.DeepReadonly<T.ActorState>, effective: T.EffectiveParameters): T.BodyLoad {
+function loadFor(
+  actor: T.DeepReadonly<Pick<T.ActorState, 'activity' | 'body'>>,
+  effective: T.EffectiveParameters,
+): T.BodyLoad {
   if (actor.activity && actor.activity.dozedAt === undefined && actor.activity.interrupt === undefined)
     return {
       effort: actor.activity.offer.demands.effort,
@@ -219,6 +222,58 @@ function loadFor(actor: T.DeepReadonly<T.ActorState>, effective: T.EffectivePara
   return {
     ...effective.builtins.PERSON_DEFAULTS.idleLoad,
     mode: actor.body.asleep && actor.body.doze.since === undefined ? 'sleep' : 'awake',
+  };
+}
+/** The exact actor and continuation inputs read by physiology. The probe uses
+ * these views too, so a future dependency must join the quiet-cache key here. */
+export function physiologyView(actor: T.DeepReadonly<T.ActorState>) {
+  const {
+    id,
+    body,
+    life,
+    ambient,
+    traits,
+    values,
+    needs,
+    activity,
+    social,
+    affect,
+    bonds,
+    context,
+    family,
+    agenda,
+    chronicle,
+    will,
+  } = actor;
+  return {
+    id,
+    body,
+    life,
+    ambient,
+    traits,
+    values,
+    needs,
+    activity,
+    social,
+    affect,
+    bonds,
+    smoking: context.smoking,
+    pregnancy: family.pregnancy,
+    commitments: agenda.commitments,
+    chronicle,
+    will,
+  };
+}
+export function physiologyContinuation(c: T.DeepReadonly<T.ActorContinuation>) {
+  return {
+    person: c.person,
+    body: c.body,
+    doze: c.doze,
+    affect: c.affect,
+    crisis: c.crisis,
+    life: c.life,
+    needs: c.deliberation.needs,
+    character: c.narrative.character,
   };
 }
 export function probePhysiology(
@@ -259,8 +314,10 @@ export function probePhysiology(
     }
   };
   for (const person of Object.keys(state.people).sort(compareCodePoints)) {
-    const actor = state.people[person];
-    const continuation = state.continuations.find((item) => item.person === person);
+    const sourceActor = state.people[person];
+    const sourceContinuation = state.continuations.find((item) => item.person === person);
+    const actor = sourceActor && physiologyView(sourceActor);
+    const continuation = sourceContinuation && physiologyContinuation(sourceContinuation);
     const refs = allocations[person];
     const causes = conditionCauses[person];
     if (!actor || !continuation || refs === undefined || causes === undefined)
@@ -290,7 +347,7 @@ export function probePhysiology(
     const character = projectCharacterTrajectory({
       person,
       life: { bornAt: actor.life.bornAt },
-      continuation: continuation.narrative.character,
+      continuation: continuation.character,
       effective,
       effectiveParametersHash,
     });
@@ -312,8 +369,11 @@ export function probePhysiology(
       load: loadFor(actor, effective),
       life: { birthAt: actor.life.bornAt },
       environment: actor.ambient.percept,
-      ...(actor.family.pregnancy ? { pregnancy: actor.family.pregnancy } : {}),
-      perception: bodyPerception(actor, state.at),
+      ...(actor.pregnancy ? { pregnancy: actor.pregnancy } : {}),
+      perception: bodyPerception(
+        { agenda: { commitments: actor.commitments }, chronicle: actor.chronicle },
+        state.at,
+      ),
     });
     note(person, 'body', body, to);
     hazard(person, body.randomBoundary);
@@ -332,7 +392,7 @@ export function probePhysiology(
       values: actor.values,
       activity: actor.activity,
       socialContext: actor.social,
-      continuation: continuation.deliberation.needs,
+      continuation: continuation.needs,
       body: body.trajectory,
       forcingPerMinute: { environment: environment.needsPerMinute, command: command.needsPerMinute },
       asleep: actor.body.asleep,
@@ -378,7 +438,7 @@ export function probePhysiology(
       alive: actor.body.alive,
       heldConditionKinds: actor.body.illnesses.map((illness) => illness.kind),
       bonds: actor.bonds,
-      smoking: actor.context.smoking,
+      smoking: actor.smoking,
       conditions: effective.fixedPriors.chronicConditions,
     });
     proposal.life = life;

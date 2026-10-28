@@ -1,5 +1,5 @@
 /** SCOPE: strict current-version cold recovery. Reconstruct through the actual
- * constructor/dispatcher so only the kernel owns journals and private indexes.
+ * constructor/dispatcher so only the kernel owns complete journals and private indexes.
  * No host adapter, migration, repair, or archived-state execution shortcut.
  */
 
@@ -7,7 +7,12 @@ import { projectChapterClock } from './chapter-clock.ts';
 import { cloneData } from './core/clone.ts';
 import { selectEventWording, wordingIssue } from './narrate/variants.ts';
 import { compareInputs } from './run-admission.ts';
-import { archiveHashes, checkArchiveEnvelope } from './run-archive.ts';
+import {
+  archiveHashes,
+  archiveSnapshot,
+  checkArchiveEnvelope,
+  checkReconstructedJournals,
+} from './run-archive.ts';
 import { canonicalJson, hashCanonical } from './run-canonical.ts';
 import { RUN_ENGINE } from './run-engine.ts';
 import { validateActor, validateRequestHash } from './run-integrity.ts';
@@ -69,7 +74,10 @@ function validateCurrent(archive: T.DeepReadonly<T.RunArchive>, parametersHash: 
   const last = archive.history.at(-1);
   if (last && !same(last.cursor, state.cursor))
     return reject('$.current.cursor', 'current cursor differs from last accepted cursor');
-  if (last?.stateHash !== undefined && last.stateHash !== hashCanonical('hf-run4/current', state))
+  if (
+    last?.stateHash !== undefined &&
+    last.stateHash !== hashCanonical('hf-run4/current', archiveSnapshot(state))
+  )
     return reject('$.current', 'current state differs from its recorded checkpoint');
   if (state.counters.nextEvent !== state.events.length + 1)
     return reject('$.current.counters.nextEvent', 'event counter differs from retained event ledger');
@@ -622,8 +630,6 @@ function admit(
   const archive = cloneData(checked.value);
   const parameters = buildParameters(archive.initial.spec.tuning);
   if (!parameters.ok) return parameters;
-  const current = validateCurrent(archive, parameters.value.hash);
-  if (!current.ok) return current;
   const spec: T.RunSpec = JSON.parse(canonicalJson(archive.initial.spec));
   const created = operations.createRun(spec);
   if (!created.ok) return created;
@@ -670,7 +676,7 @@ function reconstruct(input: unknown, operations: RecoveryOperations): T.Result<T
       return reject(`${path}.eventHash`, 'executed event checkpoint differs');
     if (
       transaction.stateHash !== undefined &&
-      transaction.stateHash !== hashCanonical('hf-run4/current', current)
+      transaction.stateHash !== hashCanonical('hf-run4/current', archiveSnapshot(current))
     )
       return reject(`${path}.stateHash`, 'executed state checkpoint differs');
     const { eventHash: _actualEvents, stateHash: _actualState, ...actualAccepted } = actual;
@@ -690,19 +696,20 @@ function reconstruct(input: unknown, operations: RecoveryOperations): T.Result<T
   const verified = { ...verifiedBody, hashes: archiveHashes(verifiedBody) };
   if (!same(verified, archive))
     return reject('$.current', 'executed initial state, history or current archive differs');
-  // Revalidate the actual result, including all ledger/reference/cursor checks.
-  const valid = checkArchiveEnvelope(verified, RUN_ENGINE);
+  // Validate complete executed journals before retaining only their archive window.
+  const expanded = { ...verified, current: readKernel(run).current };
+  const journals = checkReconstructedJournals(expanded);
+  if (!journals.ok) return journals;
+  const valid = validateCurrent(expanded, admitted.value.parameters.hash);
   if (!valid.ok) return valid;
   return {
     ok: true,
-    value: same(reached, verified) ? run : kernel.restoreKernel(verified, admitted.value.parameters),
+    value: same(reached, verified) ? run : kernel.restoreKernel(expanded, admitted.value.parameters),
   };
 }
 
 export function restoreCurrentRun(input: unknown, operations: RecoveryOperations): T.Result<T.Run> {
-  const admitted = admit(input, operations);
-  if (!admitted.ok) return admitted;
-  return { ok: true, value: kernel.restoreKernel(admitted.value.archive, admitted.value.parameters) };
+  return reconstruct(input, operations);
 }
 export function replayCurrentRun(
   input: unknown,

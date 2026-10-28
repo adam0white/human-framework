@@ -45,7 +45,7 @@ test('strict archive admission rejects altered bytes, stale engines and rewound 
   };
   const body = {
     format: 'hf-run' as const,
-    version: 4 as const,
+    version: 5 as const,
     engine,
     host: spec.host,
     initial: {

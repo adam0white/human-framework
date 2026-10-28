@@ -4,14 +4,24 @@
 import { cloneData } from './core/clone.ts';
 import { EngineLimitError } from './core/limit.ts';
 import { checkBatchEnvelope } from './run-admission.ts';
-import { materializePhysiology, materializeRetained, probePhysiology, probeRetained } from './run-advance.ts';
-import { canonicalJson, hashCanonical } from './run-canonical.ts';
+import {
+  materializePhysiology,
+  materializeRetained,
+  physiologyContinuation,
+  physiologyView,
+  probePhysiology,
+  probeRetained,
+} from './run-advance.ts';
+import { canonicalJson, compareCodePoints, hashCanonical } from './run-canonical.ts';
 import { Frame } from './run-dispatch.ts';
 import { validateActor } from './run-integrity.ts';
 import { commitTransaction, freezeData, RunLimitError, readKernel, stageTransaction } from './run-kernel.ts';
 import { OWNERS } from './run-owners.ts';
 import { compareScheduled, frameEntries, nextDailyAt, queuedInputs } from './run-scheduler.ts';
 import type * as T from './run-schema.ts';
+
+// A quiet result is private derived data, never archived or shared between runs.
+const quietActors = new WeakMap<T.Run, Map<T.PersonId, readonly unknown[]>>();
 
 export function step(run: T.Run, input: T.DeepReadonly<T.StepBatch>): T.Result<T.DeepReadonly<T.StepResult>> {
   const record = readKernel(run),
@@ -62,52 +72,56 @@ export function step(run: T.Run, input: T.DeepReadonly<T.StepBatch>): T.Result<T
     stage.current.queue = [...stage.current.queue, ...queuedInputs(record.spec.id, batch.inputs)].sort(
       compareScheduled,
     );
-    // A reached-hazard probe reads only the time, people, continuations, world revision and fidelity, and
-    // handlers replace a slice rather than edit it. When none of those changed since a probe that found no
-    // hazard, a repeat probe would find none again, so it is skipped. A cache, not state: no draw or event moves.
-    let quiet: readonly unknown[] | undefined;
-    const quietKey = () => [
-      stage.current.at,
-      stage.current.people,
-      stage.current.continuations,
-      stage.current.world.revision,
-      stage.current.cursor.fidelity,
-    ];
+    // Reuse only the absence of a reached hazard under identical physical inputs.
+    // Narrative reviews can replace an actor without changing those inputs. The
+    // same views feed the probe itself, keeping dependency selection in one place.
+    // World revision is carrier provenance; these kernels read actor conditions,
+    // never opaque host world data, so a revision alone cannot create a hazard.
+    let quiet = quietActors.get(run);
+    if (!quiet) {
+      quiet = new Map();
+      quietActors.set(run, quiet);
+    }
     const drainReachedHazards = () => {
-      const key = quietKey();
-      if (quiet?.every((value, index) => value === key[index])) return;
       for (let work = 0; work < 10000; work++) {
-        const allocations = Object.fromEntries(
-          Object.keys(stage.current.people).map((person) => [person, frame.references(person)]),
-        );
-        const causes = Object.fromEntries(
-          Object.keys(stage.current.people).map((person) => [
-            person,
-            [hashCanonical('hf-run4/reached-hazard', person, stage.current.at)],
-          ]),
-        );
-        const probe = probePhysiology(
-          stage.current,
-          Math.min(Number.MAX_SAFE_INTEGER, stage.current.at + 1),
-          stage.current.cursor.fidelity,
-          record.parameters.effective,
-          record.parameters.hash,
-          allocations,
-          causes,
-          OWNERS,
-        );
-        const reached = probe.boundaries.find(
-          (boundary) => boundary.kind === 'hazard' && boundary.at === stage.current.at,
-        );
-        if (reached?.kind !== 'hazard') {
-          quiet = quietKey();
-          return;
+        let fired = false;
+        for (const person of Object.keys(stage.current.people).sort(compareCodePoints)) {
+          const state = stage.current;
+          const actor = state.people[person];
+          const continuation = state.continuations.find((item) => item.person === person);
+          if (!actor || !continuation) throw new TypeError('Missing reached actor continuation');
+          const fidelity = state.cursor.fidelity;
+          const key = [
+            state.at,
+            fidelity.mode,
+            fidelity.mode === 'daily' ? fidelity.anchor : null,
+            ...Object.values(physiologyView(actor)),
+            ...Object.values(physiologyContinuation(continuation)),
+          ];
+          const prior = quiet.get(person);
+          if (prior?.length === key.length && prior.every((value, index) => value === key[index])) continue;
+          const probe = probePhysiology(
+            { at: state.at, people: { [person]: actor }, continuations: [continuation], world: state.world },
+            state.at,
+            fidelity,
+            record.parameters.effective,
+            record.parameters.hash,
+            { [person]: frame.references(person) },
+            { [person]: [hashCanonical('hf-run4/reached-hazard', person, state.at)] },
+            OWNERS,
+          );
+          const reached = probe.boundaries.find(
+            (boundary) => boundary.kind === 'hazard' && boundary.at === state.at,
+          );
+          if (reached?.kind !== 'hazard') {
+            quiet.set(person, key);
+            continue;
+          }
+          frame.hazard(reached.person, reached.boundary, probe.proposals[0]?.affect?.trajectory);
+          fired = true;
+          break; // Person order, then doze/crisis/life order, matches the combined probe.
         }
-        frame.hazard(
-          reached.person,
-          reached.boundary,
-          probe.proposals.find((proposal) => proposal.person === reached.person)?.affect?.trajectory,
-        );
+        if (!fired) return;
       }
       throw new RunLimitError('Reached hazard work limit exceeded');
     };

@@ -10,7 +10,7 @@ import {
   urgency,
 } from '../src/needs/needs.ts';
 import type { BodyTrajectory, ScalarTrajectory } from '../src/run-schema.ts';
-import { characterPath, environmentPath, frame } from './w2-fixture.ts';
+import { characterPath, environmentPath, frame, person, span } from './w2-fixture.ts';
 
 const constant = (value: number): ScalarTrajectory => ({
   from: 0,
@@ -223,4 +223,29 @@ test('same path identity exposes byte-identical canonical need cells after extra
   expect(later.id).toBe(original.id);
   for (const at of [1145222, 3600000, 80000000])
     expect(readNeedScalar(later.satisfaction, at)).toBe(readNeedScalar(original.satisfaction, at));
+});
+
+// SCOPE: host evidence identifiers are opaque; they cannot select numerical policy.
+test('keeps policy provenance separate from an authored evidence suffix', () => {
+  const c = context();
+  c.continuation.anchor.conditionId = 'outcome:daily-cells-v1';
+  const reached = materializeNeeds(c, 3600000);
+  const fine = needsOwner.advance(reached, {
+    ...span(3600000, 7200000),
+    socialContext: person().actor.social,
+    ...c,
+    from: 3600000,
+    to: 7200000,
+  });
+  expect(fine.continuation.anchor).toEqual(c.continuation.anchor);
+  expect(fine.state).toEqual(materializeNeeds(c, 7200000));
+  const daily = needsOwner.advance(reached, {
+    ...span(3600000, 7200000),
+    socialContext: person().actor.social,
+    ...c,
+    from: 3600000,
+    to: 7200000,
+    fidelity: { mode: 'daily', dayMs: 86400000, anchor: 0 },
+  });
+  expect(daily.continuation.anchor.at).toBe(3600000);
 });

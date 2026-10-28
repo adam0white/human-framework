@@ -7,7 +7,7 @@ import { main as suggestions } from '../examples/suggestions.ts';
 test('the packed minimal host settles actual actions and replays its current archive', () => {
   const result = minimal();
   expect(result.completed).toBeGreaterThan(0);
-  expect(result.archive.version).toBe(4);
+  expect(result.archive.version).toBe(5);
   expect(result.archive.current.pending).toEqual([]);
   expect(result.replayVerified).toBe(true);
 });

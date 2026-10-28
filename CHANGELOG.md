@@ -11,6 +11,25 @@ version, stamped with build and schema hashes in `RUN_ENGINE`. See the version p
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
+## [4.6.0] — Unreleased
+
+Engine: 4.6.0.
+
+### G6: step cost and archive
+
+- Write archive format 5 with the newest 64 records in each duplicated event and receipt journal. Keep every accepted transaction and input for exact current-version replay. Actor memory retains its existing policy; input history and live journals still grow.
+- Reconstruct complete private journals and deduplication indexes during cold restore. Restore checks the executed state, pending requests, active work and retained archive before returning. This trades restore time for smaller archives; restore now costs approximately a replay, and that cost grows with total accepted history.
+- Avoid discarded memory copies, share unchanged private numerical continuation cells through copy-on-write, reuse reached-hazard absence under identical physical inputs, and reuse unchanged lifecycle proposals. Canonical JSON memoizes only deeply frozen fragments and uses the standard UTF-8 encoder. Reached state and history hashes remain identical in the six-person fine-frame control; public exports still detach all data.
+- Replace repeated linear trajectory scans with exact binary lookup. Shared endpoints keep the earlier cell for a read and the later cell for a future boundary. The same kernels, reached events and fine-step semantics remain in use.
+
+### G7: cheaper larger daily step
+
+- Give daily fidelity larger adaptive numerical cells using the same faculty equations, physical branch checks and hazard roots. Daily local normalized estimates use `1e-7`; fine-only runs keep `1e-12`. Rebase retained numerical policy at fidelity transitions and Needs reservoir anchors at canonical daily boundaries. This release loosens the ten-seed fine/daily comparison limit from `1e-9` to `1e-5`. The control covers 24 hours only and measures `7.44e-6` maximum current-state difference. Fine repeat and irregular-read limits remain `1e-9`. This is finite engineering evidence, not a certified global error bound.
+
+### Migration
+
+Migration: format-4 archives, including 4.5 saves, are refused with `invalid-admission` at `$.version`. Format-5 archives with a different package/build/schema are refused with `unsupported-archive` at `$.engine`. Both refusals require starting fresh; no archive conversion is provided. Hosts must treat exported journals as recent diagnostics and keep complete replay inputs in `history`. Journal length no longer equals a lifetime allocation counter. No game upgrade or deployment is included in package publication.
+
 ## [4.5.3] - 2026-10-28
 
 Engine: 4.5.3.

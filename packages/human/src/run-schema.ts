@@ -416,7 +416,7 @@ export type PersonaAdmission = {
 
 export type RunArchive = {
   format: 'hf-run';
-  version: 4;
+  version: 5;
   engine: { package: string; build: Hash; schema: Hash };
   host: { id: Id; edition: Id; schema: Id };
   initial: {
@@ -426,6 +426,8 @@ export type RunArchive = {
     people: readonly PersonAuthoring[];
   };
   history: readonly AcceptedTransaction[];
+  /** Complete actor snapshot; duplicated event/receipt journals retain their newest 64 entries.
+   * Complete accepted inputs remain in history. Restore reconstructs full private journals by replay. */
   current: RunState;
   hashes: { initial: Hash; history: Hash; current: Hash; full: Hash };
 };
@@ -5276,7 +5278,7 @@ export interface LifecycleOwner {
 
 // W2/W3 anchors preserve exact source-owned state, never a generic residual dictionary.
 export type DeliberationContinuation = {
-  needs: { anchor: ContinuousAnchor; state: NeedReservoirs };
+  needs: { anchor: ContinuousAnchor; state: NeedReservoirs; numericalPolicy?: 'daily-cells-v1' };
   beliefs: { anchor: ContinuousAnchor; state: BeliefOwnedState };
   social: { anchor: ContinuousAnchor; state: SocialState };
   habits: { anchor: ContinuousAnchor; state: readonly Habit[] };
