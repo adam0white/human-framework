@@ -10,7 +10,7 @@ for line in text.splitlines():
  m=re.match(r'\| `(hf\.cast\.[^`]+)` \| ([^|]+) \| (\d+) \| (Coast|Valley) \| (\d+) \| ([^|]+) \|',line)
  if m:
   cid,name,age,cohort,rev,games=m.groups()
-  rows[cid]=dict(castId=cid,name=name.strip(),age=int(age),cohort=cohort.lower(),revision=rev,games=[{'The Rope':'rope','Murmur':'murmur','Voice':'voice','Well':'well','Watch':'watch','Small Works':'repair','Good Hands':'goodhands'}.get(g.strip(),g.strip().lower()) for g in games.split(';')])
+  rows[cid]=dict(castId=cid,name=name.strip(),age=int(age),cohort=cohort.lower(),revision=rev,games=[{'The Left Hand':'lefthand','The Rope':'rope','Murmur':'murmur','Voice':'voice','Well':'well','Watch':'watch','Small Works':'repair','Good Hands':'goodhands'}.get(g.strip(),g.strip().lower()) for g in games.split(';')])
 for section in re.split(r'\n### \d+\. ',text)[1:41]:
  cid=re.search(r'\*\*Identity:\*\* `(hf\.cast\.[^`]+)`',section).group(1)
  row=rows[cid]

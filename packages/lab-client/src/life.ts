@@ -245,7 +245,16 @@ export async function claimCastChapterBatch<T>(
     reason: `${canonicalCast(p.castId).name}: ${p.reason}`,
   }));
   const candidates = batch.inputs.filter((input) => {
-    const owner = portablePassport(input.parent) ? portablePersonOwner(input.parent) : undefined;
+    let owner: string | undefined;
+    try {
+      owner = portablePassport(input.parent) ? portablePersonOwner(input.parent) : undefined;
+    } catch (error) {
+      blocked.push({
+        castId: input.parent.castId,
+        reason: `${canonicalCast(input.parent.castId).name}: ${String(error)}`,
+      });
+      return false;
+    }
     if (!owner || owner === source.game) return true;
     const name = canonicalCast(input.parent.castId).name;
     const game = owner === 'days' ? 'Days' : owner === 'commonstead' ? 'Commonstead' : owner;
