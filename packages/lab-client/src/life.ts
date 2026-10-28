@@ -227,6 +227,8 @@ export async function claimCastChapterBatch<T>(
   options: {
     isCurrent?: () => boolean;
     claimTransfer?: (initial: T, input: LifePreparation) => Record<string, unknown>;
+    /** Validate one host arrival before the atomic whole-cast opening. Refusals skip only that person. */
+    admitPerson?: (input: LifePreparation) => void | Promise<void>;
   } = {},
 ) {
   const current = () => {
@@ -238,9 +240,11 @@ export async function claimCastChapterBatch<T>(
   current();
   if (!batch.expectedHeads || castIds.some((id) => !Object.hasOwn(batch.expectedHeads, id)))
     throw new Error('The batch omitted expected cast parents.');
-  if (batch.blocked.length) throw new Error(batch.blocked.map((p) => `${p.castId}: ${p.reason}`).join(' '));
-  const blocked: LifeBatchPreparation['blocked'] = [];
-  const inputs = batch.inputs.filter((input) => {
+  const blocked = batch.blocked.map((p) => ({
+    ...p,
+    reason: `${canonicalCast(p.castId).name}: ${p.reason}`,
+  }));
+  const candidates = batch.inputs.filter((input) => {
     const owner = portablePassport(input.parent) ? portablePersonOwner(input.parent) : undefined;
     if (!owner || owner === source.game) return true;
     const name = canonicalCast(input.parent.castId).name;
@@ -251,12 +255,26 @@ export async function claimCastChapterBatch<T>(
     });
     return false;
   });
+  const inputs: LifePreparation[] = [];
+  for (const input of candidates) {
+    current();
+    try {
+      lifeAdmission(input, source.game);
+      await options.admitPerson?.(structuredClone(input));
+      inputs.push(input);
+    } catch (error) {
+      blocked.push({
+        castId: input.parent.castId,
+        reason: `${canonicalCast(input.parent.castId).name}: ${String(error)}`,
+      });
+    }
+    current();
+  }
   if (!inputs.length && !blocked.length) {
     await shelf.request({ action: 'putBatch', envelopes: [], expectedHeads: batch.expectedHeads });
     current();
     return null;
   }
-  for (const input of inputs) lifeAdmission(input, source.game);
   const initial = await admit(structuredClone(inputs));
   const claims = await Promise.all(
     inputs.map(async (input) => {

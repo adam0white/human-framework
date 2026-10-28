@@ -18,12 +18,17 @@ export function CastLifeNote({ game }: { game: string }) {
   const [, refresh] = useState(0);
   useEffect(() => castChanges(() => refresh((n) => n + 1)), []);
   const s = castState(game);
-  return s.line ? (
-    <details className="cast-life-note">
-      <summary>Before this chapter</summary>
-      <p>{settingWords(s.line)}</p>
-    </details>
-  ) : null;
+  return (
+    <>
+      {s.localNotice ? <p role="status">{s.localNotice}</p> : null}
+      {s.line ? (
+        <details className="cast-life-note">
+          <summary>Before this chapter</summary>
+          <p>{settingWords(s.line)}</p>
+        </details>
+      ) : null}
+    </>
+  );
 }
 
 /** Explicit feedback must not request a snapshot from a worker that could not initialize. */
@@ -56,9 +61,9 @@ export function CastStartGate({ game }: { game: string }) {
     <section className="cast-start-gate" role="dialog" aria-label="Continuing cast unavailable">
       <h2>These people cannot begin together yet</h2>
       <p>{playerError(s.status)}</p>
-      <p>You can return to an earlier game, or begin a separate local game here.</p>
+      <p>You can return to an earlier game, or start this game with local people.</p>
       <button type="button" onClick={() => startCastFresh(game)}>
-        Start a separate local game
+        Start this game with local people
       </button>
       <button type="button" onClick={() => openCastFeedback(game)}>
         Feedback

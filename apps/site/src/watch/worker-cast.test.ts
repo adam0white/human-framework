@@ -78,12 +78,19 @@ it('saves the old run with its exact accepted ownership before a fresh init and 
     transfer: { life: initialPersonaLife(castId, branchId, 0) },
     limitations: [],
   });
-  send({ type: 'castOwnership', heads: { [castId]: head } });
+  send({
+    type: 'castOwnership',
+    heads: { [castId]: head },
+    localOnly: true,
+    skipped: ['Samira: unavailable'],
+  } as MainToWorker);
   send({ type: 'input', input: { k: 'begin' } });
   send({ type: 'init', seed: 2, gen: 2, scenarioVersion: 20 });
   const old = JSON.parse(requireValue(control.saved.at(-1)));
   expect(old.seed).toBe(1);
   expect(old.castOwnership[castId]).toEqual(head);
+  expect(old.castLocalOnly).toBe(true);
+  expect(old.castSkipped).toEqual(['Samira: unavailable']);
   send({ type: 'load', gen: 3, id: 'old:auto' });
   await vi.waitFor(() =>
     expect(
@@ -95,12 +102,20 @@ it('saves the old run with its exact accepted ownership before a fresh init and 
   expect(control.replies.find((r) => r.type === 'castReady' && r.gen === 3)?.ownership).toEqual({
     [castId]: head,
   });
+  expect(control.replies.find((r) => r.type === 'castReady' && r.gen === 3)).toMatchObject({
+    localOnly: true,
+    skipped: ['Samira: unavailable'],
+  });
   control.saved.push(JSON.stringify({ ...old, fileOrigin: true }));
   send({ type: 'load', gen: 4, id: 'file:auto' });
   await vi.waitFor(() =>
     expect(control.replies.some((r) => r.type === 'castReady' && r.gen === 4)).toBe(true),
   );
-  expect(control.replies.find((r) => r.type === 'castReady' && r.gen === 4)?.ownership).toEqual({});
+  expect(control.replies.find((r) => r.type === 'castReady' && r.gen === 4)).toMatchObject({
+    ownership: {},
+    localOnly: true,
+    skipped: [],
+  });
 
   // A real local backup shape waits for eligibility; a newer init owns the worker meanwhile.
   const parent = actualCare as unknown as PersonaEnvelope;
