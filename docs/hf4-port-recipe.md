@@ -40,6 +40,13 @@ Every faculty remains on. Delete every `enable*` option and legacy-continuation 
 HF 4 time and durations use **integer milliseconds**. Convert game minutes once at the bridge
 (`minute * 60_000`); preserve calendar epochs and birth times in the same units.
 
+When `step` reaches `until: t`, later new host inputs must have timestamps strictly after `t`.
+A pending resolution stays at its request boundary and settles before time advances. Hosts displaying
+minutes must batch same-time inputs before closing the timestamp or record an explicit, persisted
+millisecond ingress phase. Preserve exact authored durations and actual timestamps in archives,
+portable mappings and replay. Do not backdate inputs, reopen a closed timestamp, patch private state
+or silently retry.
+
 | 3.x operation                                                      | 4.4 route and host obligation                                                                                                                                                                                                                                                                                                                          |
 | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `createPerson`, initial `seedTie`, `seedBelief`, `seedSourceTrust` | `createRun(RunSpec)`, then `createPerson(run, PersonAuthoring)`. Author relationships, beliefs, source trust, held norms and provenance in state. Register referenced definitions and sources. No later direct actor mutation.                                                                                                                         |
