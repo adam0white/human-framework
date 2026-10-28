@@ -1,0 +1,133 @@
+/** The existing shelf owns transport, registry and CAS. HF owns projection and
+ * admission. Games pass actors and keep the complete input in their replay file.
+ */
+import {
+  admitPortablePerson as admit,
+  projectPortablePerson as project,
+  validatePortablePerson,
+} from '@adam0white/human-framework/portable';
+import { canonicalCast } from './cast.ts';
+import { boundedPersonaJson, type PersonaEnvelope } from './persona.ts';
+
+const SOURCE_ROLES: Record<string, Record<string, string>> = {
+  commonstead: { 'hf.cast.burak.stairwell': 'hf.cast.burak.stairwell' },
+  days: {
+    'hf.cast.hacer.voice': 'hf.cast.hacer.voice',
+    'hf.cast.selin.voice': 'hf.cast.selin.voice',
+    'hf.cast.burak.stairwell': 'hf.cast.burak.stairwell',
+  },
+};
+function role(game: string, castId: string, actorId: unknown): boolean {
+  return SOURCE_ROLES[game]?.[castId] === actorId;
+}
+export const PORTABLE_PASSPORT = 'hf-portable-person/1';
+const limitation =
+  'Approximate chapter state: traits, values, body resources and mood continue. History is a bounded source summary, not new memories or proof of events. Local roles, skills, ties, beliefs, age, clocks and RNG are authored by the receiving game. Depletion is represented conservatively as sleep pressure; clinical conflicts and unresolved duties refuse entry.';
+/** A marker is not admission. Unknown portable versions are refused, never sent
+ * through a legacy adapter by accident. */
+export function portablePassport(parent: PersonaEnvelope): boolean {
+  return String(parent.transfer.castPassport).startsWith('hf-portable-person/');
+}
+function read(parent: PersonaEnvelope) {
+  boundedPersonaJson(parent);
+  const p = validatePortablePerson(parent.transfer.portable);
+  const cast = canonicalCast(parent.castId);
+  const claim = parent.transfer.portableClaim;
+  if (
+    claim !== undefined &&
+    (!claim ||
+      typeof claim !== 'object' ||
+      Array.isArray(claim) ||
+      Object.keys(claim).join(',') !== 'game' ||
+      !cast.games.includes(String((claim as { game: unknown }).game)))
+  )
+    throw new Error('This saved arrival has an incompatible receiving chapter. Keep or export it there.');
+  if (
+    parent.transfer.castPassport !== PORTABLE_PASSPORT ||
+    parent.terminal ||
+    p.castId !== parent.castId ||
+    p.castRevision !== parent.castRevision ||
+    parent.castRevision !== cast.revision ||
+    p.source.game !== parent.source.game ||
+    p.source.engine !== parent.source.engine ||
+    !cast.games.includes(parent.source.game) ||
+    !role(parent.source.game, p.castId, p.source.personId)
+  )
+    throw new Error(
+      'This saved person has an incompatible identity or source chapter. Keep the source chapter or export it.',
+    );
+  return p;
+}
+/** One shelf identity/source validator. Ownership is separate from provenance. */
+export function portablePersonOwner(parent: PersonaEnvelope): string | undefined {
+  read(parent);
+  return (parent.transfer.portableClaim as { game: string } | undefined)?.game;
+}
+export function portablePersonRole(parent: PersonaEnvelope, game: string): string {
+  read(parent);
+  const target = SOURCE_ROLES[game]?.[parent.castId];
+  if (!target)
+    throw new Error('This person has no matching authored role here. Keep the source chapter or export it.');
+  if (parent.transfer.portableClaim)
+    throw new Error('This person still belongs to the receiving chapter. Continue or export it there.');
+  return target;
+}
+export function projectPortablePerson(input: {
+  castId: string;
+  game: string;
+  engine: string;
+  person: unknown;
+  history: string[];
+  previous?: PersonaEnvelope;
+  hostObligations?: string[];
+}): Record<string, unknown> {
+  const cast = canonicalCast(input.castId);
+  if (
+    input.hostObligations !== undefined &&
+    (!Array.isArray(input.hostObligations) || input.hostObligations.length)
+  )
+    throw new Error(
+      'This person still has unfinished responsibilities in this chapter. Finish them here before continuing elsewhere. Your saved history has not been replaced.',
+    );
+  if (
+    !cast.games.includes(input.game) ||
+    !role(input.game, input.castId, (input.person as { id?: unknown })?.id)
+  )
+    throw new Error('This person has no authored chapter in this game.');
+  if (
+    input.previous &&
+    (input.previous.castId !== input.castId ||
+      (input.previous.transfer.portableClaim &&
+        (input.previous.transfer.portableClaim as { game?: unknown }).game !== input.game))
+  )
+    throw new Error('This person still belongs to another chapter. Continue or export it there.');
+  const previous = input.previous && portablePassport(input.previous) ? read(input.previous) : undefined;
+  return {
+    castPassport: PORTABLE_PASSPORT,
+    portable: project({ ...input, castRevision: cast.revision, previous }),
+    portableLimitations: limitation,
+  };
+}
+export function admitPortablePerson<T>(parent: PersonaEnvelope, game: string, opening: T): T {
+  const expected = portablePersonRole(parent, game);
+  const p = read(parent);
+  const o = opening as { id?: string; identity?: { castId?: string } };
+  const target = o.identity?.castId ?? o.id;
+  if (target !== expected)
+    throw new Error(
+      'This person has no matching authored role here. Your saved history has not been replaced.',
+    );
+  return admit(p, opening);
+}
+/** Ownership at arrival is not a source checkpoint. A host with new local
+ * routines keeps the original projection and locks it to this receiving game
+ * until a genuine current-actor departure can pass the projector again. */
+export function claimPortablePerson(parent: PersonaEnvelope, game: string): Record<string, unknown> {
+  read(parent);
+  const cast = canonicalCast(parent.castId);
+  const prior = parent.transfer.portableClaim as { game?: unknown } | undefined;
+  if (!cast.games.includes(game) || (prior && prior.game !== game))
+    throw new Error('This person still belongs to the receiving chapter. Continue or export it there.');
+  return { ...parent.transfer, portableClaim: { game } };
+}
+export { validatePortablePerson };

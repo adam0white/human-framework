@@ -2,6 +2,8 @@
 
 export { projectChapterClock } from './chapter-clock.ts';
 export { NARRATION_TEMPLATES } from './narrate/templates.ts';
+export type { PortablePerson } from './portable-person.ts';
+export { admitPortablePerson, projectPortablePerson, validatePortablePerson } from './portable-person.ts';
 export { createPerson, createRun, exportRun, inspect, preview, replay, restoreRun, step } from './run.ts';
 export type {
   ActionRequest,

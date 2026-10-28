@@ -1,0 +1,73 @@
+{
+  "format": "hf-persona/1",
+  "castId": "hf.cast.hacer.voice",
+  "castRevision": "1",
+  "branchId": "days-played-control",
+  "parentRevision": null,
+  "source": {
+    "game": "days",
+    "engine": "4.3.0",
+    "build": "control",
+    "rules": "three-days-3"
+  },
+  "transfer": {
+    "castPassport": "hf-portable-person/1",
+    "portable": {
+      "format": "hf-portable-person",
+      "version": 1,
+      "castId": "hf.cast.hacer.voice",
+      "castRevision": "1",
+      "source": {
+        "game": "days",
+        "engine": "4.3.0",
+        "personId": "hf.cast.hacer.voice"
+      },
+      "state": {
+        "traits": {
+          "honesty": 0.5000016666666667,
+          "emotionality": 0.5999991666666666,
+          "extraversion": 0.8000005555555556,
+          "agreeableness": 0.45,
+          "conscientiousness": 0.5,
+          "openness": 0.5
+        },
+        "values": {
+          "benevolence": 0.5000008333333333,
+          "universalism": 0.5,
+          "tradition": 0.5000008333333333,
+          "conformity": 0.5,
+          "security": 0.5,
+          "achievement": 0.49999944444444444,
+          "power": 0.49999944444444444,
+          "hedonism": 0.5,
+          "stimulation": 0.49999916666666666,
+          "selfDirection": 0.49999944444444444
+        },
+        "body": {
+          "satiety": 0.5583229592811005,
+          "hydration": 0.6054796999785257,
+          "sleepPressure": 0.4384659947829955,
+          "exertion": 0.048450836478207006,
+          "fitness": 0.49960987458786643,
+          "health": 1,
+          "pain": 0,
+          "sleepDebtHours": 0
+        },
+        "mood": {
+          "valence": 0.0846351921547835,
+          "arousal": 0.3
+        }
+      },
+      "history": [
+        {
+          "game": "days",
+          "summary": "Visited Leyla during her leave. Exact events remain in Days export."
+        }
+      ],
+      "omittedHistory": 0
+    },
+    "portableLimitations": "Approximate chapter state: traits, values, body resources and mood continue. History is a bounded source summary, not new memories or proof of events. Local roles, skills, ties, beliefs, age, clocks and RNG are authored by the receiving game. Depletion is represented conservatively as sleep pressure; clinical conflicts and unresolved duties refuse entry."
+  },
+  "limitations": [],
+  "revision": "02c336dccdea3cd5d51885a6daab442eff053599bde18cbdf9b870709b1d2a4b"
+}

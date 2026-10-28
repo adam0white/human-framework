@@ -4,11 +4,13 @@
  */
 import {
   type CastShelf,
+  claimPortablePerson,
   createPersona,
   type LifeBatchPreparation,
   type LifePreparation,
   lifeAdmission,
   type PersonaEnvelope,
+  portablePassport,
 } from '@adam0white/lab-client';
 import { nativeCastSource } from './cast-native-sources.ts';
 export async function claimSiteCastBatch<T>(
@@ -43,14 +45,16 @@ export async function claimSiteCastBatch<T>(
       const prior = body.transfer.siteNativeClaim as
         | { source: PersonaEnvelope['source']; revision: string }
         | undefined;
+      const portable = portablePassport(input.parent);
+      const transfer = portable ? claimPortablePerson(input.parent, source.game) : body.transfer;
       return createPersona({
         ...body,
         parentRevision: revision,
-        source,
+        source: portable ? body.source : source,
         transfer: {
-          ...body.transfer,
+          ...transfer,
           life: input.life,
-          ...(native
+          ...(native && !portable
             ? { siteNativeClaim: prior ?? { version: 'site-native-claim/1', source: body.source, revision } }
             : {}),
         },

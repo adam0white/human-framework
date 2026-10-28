@@ -1,6 +1,6 @@
 {
   "name": "@adam0white/lab-client",
-  "version": "0.4.15",
+  "version": "0.5.0",
   "description": "The Human Framework game lab client: default-on pseudonymous linked play recording",
   "keywords": [
     "playtest",
@@ -39,7 +39,8 @@
     "prepack": "npm run build"
   },
   "dependencies": {
-    "@adam0white/human-framework": "3.0.0"
+    "@adam0white/human-framework": "4.3.0",
+    "@adam0white/hf-legacy": "npm:@adam0white/human-framework@3.0.0"
   },
   "devDependencies": {
     "fake-indexeddb": "6.2.6"

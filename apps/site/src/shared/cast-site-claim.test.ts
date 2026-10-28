@@ -7,12 +7,42 @@ import {
   preparePersonaLife,
 } from '@adam0white/lab-client';
 import { describe, expect, it } from 'vitest';
+import daysHacer from '../../test/fixtures/portable-days-hacer.json';
+import { newRun } from '../voice/sim/game.ts';
+import { makeCastChapter } from './cast-chapter.ts';
 import { nativeCastSource } from './cast-native-sources.ts';
 import { claimSiteCastBatch } from './cast-site-claim.ts';
 import { requireValue } from './require-value.ts';
 
 /** Transaction orchestration control; not a fabricated native played-source receipt. */
 describe('same-site native claim provenance', () => {
+  it('refuses the played Days HF4 route into Voice until its routines can depart', async () => {
+    const head = daysHacer as PersonaEnvelope;
+    const original = structuredClone(head);
+    let writes = 0;
+    const shelf = {
+      request: async (message: Record<string, unknown>) => {
+        if (message.action === 'prepareBatch')
+          return {
+            expectedHeads: { [head.castId]: head.revision },
+            blocked: [],
+            inputs: [preparePersonaLife(head, 0)],
+          };
+        writes++;
+        return {};
+      },
+    } as unknown as CastShelf;
+    await expect(
+      claimSiteCastBatch(
+        shelf,
+        [head.castId],
+        { game: 'voice', engine: '2.23.0', build: 'control', rules: 'cast-1' },
+        async (inputs) => newRun(771, {}, makeCastChapter(inputs)),
+      ),
+    ).rejects.toThrow(/authored role/);
+    expect(writes).toBe(0);
+    expect(head).toEqual(original);
+  });
   it('preserves original native source across same-site claims and refuses an external pass-through claim', async () => {
     let head = await createPersona({
       format: 'hf-persona/1',

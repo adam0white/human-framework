@@ -595,3 +595,98 @@ Hosts pin each option in their saved-run configuration and supply it again after
 `upbringing: { model: 'warmth-through-25' }` includes living parents and guardians in the community through age24. Caregiver-to-child warmth scales norm and attachment change continuously; roles supply no affection. Marriage, parenthood and co-residence do not change eligibility. Rates, age taper and minutes are authored engineering assumptions, not religious age rules or validated developmental predictions. Default routine upbringing remains parents-only and under18.
 
 `forecastContext: 'conditioned'` carries current pregnancy and surroundings modifiers plus effective body parameters through the bounded bodily forecast. It changes only that forecast term. No future weather or pregnancy progression is predicted. Observer calls retain the existing partial `imagine` model, which copies pregnancy and surroundings from the target; those fields are not inferred observer knowledge. Route planning and begin's pursuit fallback have no bodily forecast term. Omitted options preserve the prior continuation apart from the engine metadata stamp.
+
+## Portable people across engine versions — 4.3.0
+
+The browser shelf still uses `hf-persona/1`, its checksum, canonical registry edition,
+branch lineage and atomic compare-and-swap. There is no second store or transport.
+HF's `portable-person.ts` owns the approximate projection. The existing shelf client
+`persona-portable.ts` owns registry and source/target role admission. Games supply
+actors, authored history summaries and unfinished host responsibilities. They do
+not translate HF state. `@adam0white/human-framework/portable` is a pure subpath so
+an HF3 game can use it without replacing its actor engine. The shelf client's
+explicit HF3 clock dependency preserves the existing between-chapters clock.
+
+```mermaid
+flowchart LR
+  A[Actual source actor] --> B[HF projectPortablePerson]
+  B --> C[Existing persona shelf and atomic claim]
+  C --> D[HF admitPortablePerson]
+  D --> E[Receiving authored opening]
+  E --> F[Pinned game replay input]
+  E --> A
+```
+
+`transfer.castPassport = hf-portable-person/1` carries a validated
+`hf-portable-person`, version 1, payload. Contract version and engine version have
+different meanings: the contract describes the projection; the source engine
+identifies its units. Supported package generations are HF3 and HF4. Released HF3 packages identify their actor engine as `2.23.0`; this engine id is preserved on the wire. An
+unknown contract, engine generation, identity revision or source role refuses
+before the shelf changes. A valid marker alone grants no admission.
+
+| Carries                                                                            | Receiving meaning                                                                    |
+| ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| Registry id and edition, exact source role/game/engine                             | The same living canonical person in an authored role                                 |
+| All six traits and ten values                                                      | Actual carried profile, independent of opening priors                                |
+| Satiety, hydration, sleep pressure, exertion, fitness, health, pain and sleep debt | Approximate current body resources; HF3 minutes and HF4 milliseconds never mix       |
+| Mood valence and arousal                                                           | Current mood, without inventing emotional episodes                                   |
+| Up to 16 source-labelled summaries and an omitted count                            | Retained source history in the replay input; summaries are not new memories or proof |
+
+HF4 depletion becomes at least that much sleep pressure. This conservative
+projection does not recover the person. Sleep debt is expressed in hours on the
+wire. Exact clocks, RNG, event logs, skills, local ties, beliefs and age remain in
+the source archive or the receiving authored chapter. This is approximate chapter
+continuity, not conversion of an HF3 save to HF4. HF4's unsupported lossless
+`PersonAuthoring.admission` DTO remains refused. The portable admission function
+returns ordinary validated authoring for the existing `createPerson` entry.
+`hf-portable-person/1` is the sole runtime portable route that G2 will extend.
+The public `hf-person/4` `PortablePersonEnvelope` and `PersonaAdmission` types
+remain archived schema descriptions; they are not a second admission path.
+HF4.3 is an approximate-chapter step under G2. Beliefs, active obligations,
+memory/calendar provenance and the third-world gate remain at the existing
+2026-11-17 checkpoint in `docs/hf4-game-needs.md` and the roadmap.
+
+The source must be awake, idle and alive. Unresolved commitments, recurring
+commitments, owed duties, lapse, precommitments, active projects, pregnancy,
+active marriage/courtship/mourning, injury, illness, toxic exposure and a downed
+body refuse this projection. Receiving clinical health and pain must match; the
+receiving chapter keeps its authored routines. Games must pass unfinished host
+responsibilities to the projector. The projector refuses a nonempty list: the
+empty HF agenda does not prove that an account, delivery or borrowed object is
+settled. Days checks Burak's notebook, mistaken payment and agreed delivery.
+Commonstead keeps its existing unfinished-construction departure gate.
+
+For this increment the finite role map admits Days' Hacer, Selin and Burak,
+and Commonstead's Burak role. Voice's portable Hacer/Selin routes are withheld
+until their routines have a supported departure contract; neither prayer nor
+work can become a one-way trap. Existing full-calendar dialects keep their
+established routes. The next route review is 2026-11-17. Other identities and
+dialects fail plainly.
+
+A fresh game prepares the complete cast. A person locked in another game is
+skipped with a named message; other people continue. The skipped identity is
+pinned in replay and cannot be checkpointed by this chapter. A lock in the same
+game refuses a fresh chapter and directs the player to resume. It validates
+every available arrival and pins the
+full input and resulting initial actors before one atomic shelf claim. Days and Commonstead claims project the actual admitted actor with the receiving
+provenance. Every portable arrival is locked to its receiving game until an actual
+current-actor checkpoint passes departure. A refused ending keeps that lock. Every fresh admission from a locked claim is
+refused, including another chapter in the same game. Resume and replay use the
+saved chapter with its pinned inputs.
+Central receiving chapters add local routines: their arrival claim
+retains the original source projection and locks it to the receiving game until
+an actual current-actor checkpoint can pass departure again. Generic claim APIs
+keep this original provenance when no current-actor projection is supplied. Such an arrival is
+not an outgoing source checkpoint and cannot become a pass-through. A checkpoint projects actual
+current actors and appends history. A loaded game or replay reads only pinned
+inputs. It does not read the shelf, wall clock or a newer registry head. A CAS
+conflict is not retried automatically. A missing write reply means the result
+is unconfirmed; it does not prove that no write occurred.
+
+Delivery acceptance for this request: HF4 Days and HF3 Commonstead carry Burak
+both ways with one actual headless control each, current replay verified,
+framework/site and game checks green, signed PRs with exact green CI, two release
+reviews, published HF4.3.0 and client artifact, changed apps deployed with exact
+`release.json` commits and `dirty:false`. The owner accepts the result. The
+coordinator's Opus verdict at `~/code/.lab-scratch/v3/claude-carryover-read.md`
+must exist and be recorded in the worker report before publication.

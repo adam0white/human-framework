@@ -2,9 +2,10 @@
  * Bounded host-authored coarse life. No Person mutation, health recovery, duty settlement, secret
  * disclosure, qualification or full lived-day claim. Only new chapters consume this pinned input. Assignment changes stay inside the authored occupation and qualifications; minors remain supervised. No work completion or payment is asserted. Existing obligations still take precedence.
  */
-import { advanceChapterClock, type ChapterClock, createChapterClock } from '@adam0white/human-framework';
+import { advanceChapterClock, type ChapterClock, createChapterClock } from '@adam0white/hf-legacy';
 import { CANONICAL_CAST, canonicalCast } from './cast.ts';
 import { boundedPersonaJson, createPersona, type PersonaEnvelope, type PersonaRequest } from './persona.ts';
+import { claimPortablePerson, portablePassport, portablePersonOwner } from './persona-portable.ts';
 
 export interface PersonaLife {
   version: 'hf-coarse-life/1';
@@ -180,8 +181,7 @@ export async function claimCastChapter<T>(
   const claim = await createPersona({
     ...body,
     parentRevision: revision,
-    source,
-    transfer: { ...body.transfer, life: input.life },
+    ...copyCastArrival(input, source),
   });
   requireCurrent();
   await shelf.request({ action: 'put', envelope: claim });
@@ -194,13 +194,40 @@ export interface LifeBatchPreparation {
   inputs: LifePreparation[];
   blocked: { castId: string; reason: string }[];
 }
+/** Without a current-actor projection, source provenance remains unchanged.
+ * Ownership names the receiver separately and cannot impersonate a departure. */
+function copyCastArrival(input: LifePreparation, receiving: PersonaEnvelope['source']) {
+  const portable = portablePassport(input.parent);
+  return {
+    source: portable ? input.parent.source : receiving,
+    transfer: {
+      ...(portable ? claimPortablePerson(input.parent, receiving.game) : input.parent.transfer),
+      life: input.life,
+    },
+  };
+}
+/** An arrival owns its portable checkpoint until its actual actor can depart.
+ * Hosts project receiving state; the shelf owns this lock, including failed endings. */
+export function projectCastClaimTransfer(
+  parent: PersonaEnvelope,
+  source: PersonaEnvelope['source'],
+  transfer: Record<string, unknown>,
+  life: PersonaLife,
+): Record<string, unknown> {
+  if (portablePassport(parent)) claimPortablePerson(parent, source.game);
+  const staged = { ...parent, source, transfer: { ...transfer, life } };
+  return portablePassport(staged) ? claimPortablePerson(staged, source.game) : staged.transfer;
+}
 /** Fresh whole-cast admission: semantic validation precedes one atomic acceptance. */
 export async function claimCastChapterBatch<T>(
   shelf: CastShelf,
   castIds: string[],
   source: PersonaEnvelope['source'],
   admit: (inputs: LifePreparation[]) => Promise<T>,
-  options: { isCurrent?: () => boolean } = {},
+  options: {
+    isCurrent?: () => boolean;
+    claimTransfer?: (initial: T, input: LifePreparation) => Record<string, unknown>;
+  } = {},
 ) {
   const current = () => {
     if (options.isCurrent && !options.isCurrent())
@@ -212,26 +239,47 @@ export async function claimCastChapterBatch<T>(
   if (!batch.expectedHeads || castIds.some((id) => !Object.hasOwn(batch.expectedHeads, id)))
     throw new Error('The batch omitted expected cast parents.');
   if (batch.blocked.length) throw new Error(batch.blocked.map((p) => `${p.castId}: ${p.reason}`).join(' '));
-  if (!batch.inputs.length) {
+  const blocked: LifeBatchPreparation['blocked'] = [];
+  const inputs = batch.inputs.filter((input) => {
+    const owner = portablePassport(input.parent) ? portablePersonOwner(input.parent) : undefined;
+    if (!owner || owner === source.game) return true;
+    const name = canonicalCast(input.parent.castId).name;
+    const game = owner === 'days' ? 'Days' : owner === 'commonstead' ? 'Commonstead' : owner;
+    blocked.push({
+      castId: input.parent.castId,
+      reason: `${name} is still in ${game}. Continue or export that chapter. Other people can continue here.`,
+    });
+    return false;
+  });
+  if (!inputs.length && !blocked.length) {
     await shelf.request({ action: 'putBatch', envelopes: [], expectedHeads: batch.expectedHeads });
     current();
     return null;
   }
-  for (const input of batch.inputs) lifeAdmission(input, source.game);
-  const initial = await admit(structuredClone(batch.inputs));
+  for (const input of inputs) lifeAdmission(input, source.game);
+  const initial = await admit(structuredClone(inputs));
   const claims = await Promise.all(
-    batch.inputs.map(async (input) => {
+    inputs.map(async (input) => {
       const { revision, ...body } = input.parent;
       return createPersona({
         ...body,
         parentRevision: revision,
-        source,
-        transfer: { ...body.transfer, life: input.life },
+        ...(options.claimTransfer
+          ? {
+              source,
+              transfer: projectCastClaimTransfer(
+                input.parent,
+                source,
+                options.claimTransfer(initial, input),
+                input.life,
+              ),
+            }
+          : copyCastArrival(input, source)),
       });
     }),
   );
   current();
   await shelf.request({ action: 'putBatch', envelopes: claims, expectedHeads: batch.expectedHeads });
   current();
-  return { initial, claims, inputs: batch.inputs };
+  return { initial, claims, inputs, blocked };
 }

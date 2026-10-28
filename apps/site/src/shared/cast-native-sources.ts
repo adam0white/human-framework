@@ -3,7 +3,7 @@ import { ENGINE_VERSION } from '@adam0white/human-framework';
  * Host-specific episodes remain source-local. Calendar actions are retained only when the
  * target actually implements them; clinical/family/project gates remain HF's responsibility.
  */
-import type { PersonaEnvelope } from '@adam0white/lab-client';
+import { type PersonaEnvelope, portablePassport, portablePersonRole } from '@adam0white/lab-client';
 
 // Portable fields keep their semantics across the 2.23 doze/narration corrections.
 const compatibleEngine = (engine: string) =>
@@ -14,6 +14,9 @@ export function nativeCastSource(
   parent: PersonaEnvelope,
 ): { mapping: string; role: string } | undefined {
   const { transfer, castId } = parent;
+  if (portablePassport(parent)) {
+    return { mapping: 'hf-portable-person/1', role: portablePersonRole(parent, target) };
+  }
   let source = parent.source;
   if (transfer.siteNativeClaim !== undefined) {
     const receipt = transfer.siteNativeClaim as {
