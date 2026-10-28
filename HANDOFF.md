@@ -1,6 +1,6 @@
 ## UNBLOCK-B runtime portable arrival — 2026-10-28
 
-Remaining: gated source checks, signed PR and sole hosted review, coordinator Opus re-check, exact source/main CI, serialized HF4.8.1/client0.5.5/kit0.5.23 release, registry/artifact verification, central deployment, then Pass adoption and its existing PR delivery. Source completion is accepted through those release receipts; game/player acceptance stays separate.
+Remaining: gated source checks, signed PR and sole hosted review, coordinator Opus re-check, exact source/main CI, serialized HF4.8.1/client0.5.6/kit0.5.24 release, registry/artifact verification, central deployment, then Pass adoption and its existing PR delivery. Source completion is accepted through those release receipts; game/player acceptance stays separate.
 
 Pass's sole hosted review found retained visitors were admitted and given routines before accepting work. Public4.8 `person.arrived` refused genuine portable admission. Runtime arrival now reuses opening validation/installation, permits an original mapped source clock at or before actual arrival, preserves obligations and accepted-input provenance, and retains prior portable summaries on projection. No per-actor suspension API is added. One behavior control covers atomic refusal, future clocks, elapsed duty timestamps, history, restore and replay. Original HF PR52/release receipts remain unchanged.
 

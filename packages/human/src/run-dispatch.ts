@@ -2654,7 +2654,7 @@ export class Frame {
         ...this.state.lifecycle.entities.map((entity) => entity.id),
       ]);
     } catch (error) {
-      if (!(error instanceof TypeError || error instanceof RangeError)) throw error;
+      if (!(error instanceof Error)) throw error;
       throw new RangeError(error.message);
     }
     const admitted = checkPersonAuthoring(this.state, this.record.spec.definitions, false, prepared.authored);

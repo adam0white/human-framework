@@ -218,7 +218,12 @@ export function inspectCurrentRun(
             // cold portable projection; ordinary reads do not scan history.
             for (let node = record.history; initial === undefined && node; node = node.previous) {
               const arrival = node.transaction.inputs.find(
-                (input) => input.kind === 'person.arrived' && input.payload.authored.id === id,
+                (input) =>
+                  input.kind === 'person.arrived' &&
+                  input.payload.authored.id === id &&
+                  state.receipts.dispositions.some(
+                    (receipt) => receipt.inputId === input.id && receipt.kind === 'consumed',
+                  ),
               );
               if (arrival?.kind === 'person.arrived') initial = arrival.payload.authored;
             }
