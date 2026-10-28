@@ -1,4 +1,6 @@
+import { readFileSync } from 'node:fs';
 import { createPerson, promise } from '@adam0white/hf-legacy';
+import type { PersonAuthoring, Result, RunSpec } from '@adam0white/human-framework';
 import { describe, expect, it } from 'vitest';
 import { canonicalCast } from '../src/cast.ts';
 import {
@@ -227,4 +229,115 @@ describe('portable shelf contract', () => {
     person.now = 1;
     expect(() => project(person)).not.toThrow();
   });
+});
+
+it('carries retained Stairwell history through an authored opening and replay', async () => {
+  const {
+    createPerson: createModernPerson,
+    createRun,
+    exportRun,
+    replay,
+  } = await import('@adam0white/human-framework');
+  const fixture = JSON.parse(
+    readFileSync(new URL('./fixtures/retained-authoring.json', import.meta.url), 'utf8'),
+  ) as { spec: RunSpec; person: PersonAuthoring };
+  const need = <T>(result: Result<T>): T => {
+    if (!result.ok) throw new Error(result.error.message);
+    return result.value;
+  };
+  const spec = structuredClone(fixture.spec);
+  const source = structuredClone(fixture.person);
+  source.identity.castId = castId;
+  source.biography = [
+    {
+      id: 'e0',
+      at: spec.start - 1000,
+      kind: 'observation',
+      valence: 0.2,
+      salience: 0.8,
+      summary: 'Checked the stair rail.',
+      tags: ['stairs'],
+      basis: { kind: 'authored', author: 'world' },
+      provenance: ['rail-check'],
+    },
+  ];
+  source.state.beliefs = [
+    { prop: 'rail-safe', logOdds: 1.3, updatedAt: spec.start - 500, sources: [{ id: 'world', value: true }] },
+  ];
+  source.state.sourceTrust = [{ sourceId: 'world', trust: 0.7 }];
+  source.state.agenda.commitments = [
+    {
+      id: 'rail-duty',
+      kind: 'duty',
+      actions: ['work'],
+      from: spec.start,
+      until: spec.start + 60000,
+      importance: 0.8,
+    },
+  ];
+  const day = spec.definitions.calendar.days[0];
+  if (!day) throw new Error('Missing source calendar day');
+  day.windows = [{ commitmentId: 'rail-duty', from: spec.start, until: spec.start + 60000 }];
+  const run = need(createRun(spec));
+  need(createModernPerson(run, source));
+  const transfer = projectPortablePerson({
+    castId,
+    game: 'stairwell',
+    engine: '4.4.0',
+    person: exportRun(run).current.people.burak,
+    calendar: { definition: spec.definitions.calendar, norms: spec.definitions.norms },
+    history: ['Worked on the stairs.'],
+  });
+  expect(transfer.castPassport).toBe('hf-portable-person/2');
+  const parent = await createPersona({
+    format: 'hf-persona/1',
+    castId,
+    castRevision: '1',
+    branchId: 'retained-control',
+    parentRevision: null,
+    source: { game: 'stairwell', engine: '4.4.0', build: 'control', rules: 'portable-2' },
+    transfer,
+    limitations: [],
+  });
+  const opening = structuredClone(fixture.person);
+  opening.identity.castId = castId;
+  const mapping = { offsetMs: 0, references: [] };
+  const before = structuredClone(parent);
+  expect(() => admitPortablePerson(parent, 'stairwell', opening)).toThrow(/mapped authored/);
+  expect(() => admitPortablePerson(parent, 'stairwell', actor(), mapping)).toThrow();
+  expect(() => admitPortablePerson(parent, 'stairwell', { ...opening, id: 'tarik' }, mapping)).toThrow();
+  expect(() =>
+    admitPortablePerson(
+      parent,
+      'stairwell',
+      { ...opening, identity: { ...opening.identity, castId: 'wrong' } },
+      mapping,
+    ),
+  ).toThrow();
+  expect(() =>
+    admitPortablePerson(
+      { ...parent, transfer: { ...transfer, castPassport: 'hf-portable-person/1' } },
+      'stairwell',
+      opening,
+      mapping,
+    ),
+  ).toThrow();
+  expect(() =>
+    admitPortablePerson(
+      { ...parent, transfer: { ...transfer, portableClaim: { game: 'stairwell' } } },
+      'stairwell',
+      opening,
+      mapping,
+    ),
+  ).toThrow(/receiving chapter/);
+  const admitted = admitPortablePerson(parent, 'stairwell', opening, mapping);
+  const target = need(createRun(spec));
+  need(createModernPerson(target, admitted));
+  const archive = exportRun(target);
+  expect(archive.current.people.burak?.memory.episodes[0]?.summary).toBe('Checked the stair rail.');
+  expect(archive.current.people.burak?.memory.beliefs[0]?.logOdds).toBe(1.3);
+  expect(archive.current.people.burak?.memory.sourceTrust.world).toBe(0.7);
+  expect(archive.current.people.burak?.agenda.commitments[0]?.id).toBe('rail-duty');
+  expect(need(replay(archive)).fullHash).toBe(archive.hashes.full);
+  expect(parent).toEqual(before);
 });

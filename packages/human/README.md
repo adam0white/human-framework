@@ -24,7 +24,7 @@ A host uses eight calls. Each takes and returns plain data, and each failure is 
 | Call                                      | What it does                                                                                                                                                             |
 | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `createRun(spec)`                         | Starts a run from a seed, a start time, the host's definitions (actions, norms, skills, methods, calendar), the lifecycle and the world.                                 |
-| `createPerson(run, authoring)`            | Adds authored state or a versioned portable person with explicit mappings before the first step.                                                                                              |
+| `createPerson(run, authoring)`            | Adds authored state or a versioned portable person with explicit mappings before the first step.                                                                         |
 | `step(run, { until, fidelity?, inputs })` | Advances to `until`, applying the timestamped inputs. It stops early at a `world-required` boundary when people need the host to resolve their actions or communication. |
 | `inspect(run, query)`                     | Reads actual state, from the host's view or from one person's own view. It never changes the run.                                                                        |
 | `preview(run, query)`                     | Answers "what would happen if": the same step on a detached copy, with its own ids and wording. It never changes the run.                                                |
@@ -156,24 +156,32 @@ For a current run, call `inspect` with host perspective, one person, `select: ['
 Authored biography episodes use unique `eN` ids, where `N` is a nonnegative integer (`e0`, `e1`, …). The memory owner advances its next episode counter beyond the greatest authored id. An arbitrary label such as `hull-event` is a summary or tag, not an episode id. For example:
 
 ```ts
-biography: [{
-  id: 'e0', at: start - 5_000, kind: 'observation',
-  valence: 0.2, salience: 0.8, summary: 'Inspected the hull.', tags: ['hull-event'],
-  basis: {kind: 'authored', author: 'world'}, provenance: ['inspection-1'],
-}]
+biography: [
+  {
+    id: 'e0',
+    at: start - 5_000,
+    kind: 'observation',
+    valence: 0.2,
+    salience: 0.8,
+    summary: 'Inspected the hull.',
+    tags: ['hull-event'],
+    basis: { kind: 'authored', author: 'world' },
+    provenance: ['inspection-1'],
+  },
+];
 ```
 
 `RunTuning` accepts the following ranges, inclusive. Omitted fields use the recorded defaults. Values outside these ranges refuse admission; the `Unit` type alone does not express every supported range.
 
-| Field | Supported values |
-| --- | --- |
-| `planning.depth` | integers 2–5 |
-| `planning.presentBias` | 0.5–1 |
-| `assent.minStrength` | 0.5–0.9 |
-| `assent.pressure` | 0.05–0.15 |
-| `doze.hazardScale`, `crisis.hazardScale` | 0.5–1.5 |
-| `promptings.practiceHalfLifeDays` | 30–120 |
-| `promptings.echoRate` | 0.05–0.15 |
+| Field                                    | Supported values |
+| ---------------------------------------- | ---------------- |
+| `planning.depth`                         | integers 2–5     |
+| `planning.presentBias`                   | 0.5–1            |
+| `assent.minStrength`                     | 0.5–0.9          |
+| `assent.pressure`                        | 0.05–0.15        |
+| `doze.hazardScale`, `crisis.hazardScale` | 0.5–1.5          |
+| `promptings.practiceHalfLifeDays`        | 30–120           |
+| `promptings.echoRate`                    | 0.05–0.15        |
 
 ## Versions
 
