@@ -51,8 +51,6 @@ export function preparePortable(
   }
   const entities = new Set([
     authored.id,
-    'god',
-    'Allah',
     ...knownEntities,
     ...definitions.sources.filter((x) => x.type === 'person').map((x) => x.id),
   ]);

@@ -10,6 +10,7 @@ import {
   projectPortablePerson,
   replay,
   restoreRun,
+  step,
 } from '../src/index.ts';
 import { actor, authoredPerson, exampleSpec, need, START, setup } from './support.ts';
 
@@ -269,6 +270,9 @@ test('actual native legacy source retains age, minute-based prayer duty, belief,
   expect(passport.retained.at).toBe(60000000);
   expect(passport.retained.bornAt).toBe(native.person.life.bornAt * 60000);
   const opening = authoredPerson('arrival', 'Arrival');
+  opening.identity.birthAt = -500000000000;
+  opening.identity.sex = passport.retained.sex === 'female' ? 'male' : 'female';
+  const originalIdentity = structuredClone(opening.identity);
   opening.portable = {
     person: passport,
     mapping: {
@@ -300,7 +304,16 @@ test('actual native legacy source retains age, minute-based prayer duty, belief,
     at: START - 600000,
     summary: 'Visited the well.',
   });
+  const initialArchive = exportRun(run);
+  expect(opening.identity).toEqual(originalIdentity);
+  expect(initialArchive.initial.people[0]?.identity.birthAt).toBe(arrival.life.bornAt);
+  expect(initialArchive.initial.people[0]?.identity.sex).toBe(passport.retained.sex);
+  expect(exportRun(need(restoreRun(JSON.parse(JSON.stringify(initialArchive))))).hashes).toEqual(
+    initialArchive.hashes,
+  );
+  need(step(run, { until: START + 1000, inputs: [] }));
   const archive = exportRun(run);
+  expect(exportRun(need(restoreRun(JSON.parse(JSON.stringify(archive))))).hashes).toEqual(archive.hashes);
   expect(need(replay(archive)).fullHash).toBe(archive.hashes.full);
   expect(() => projectPortablePerson({ ...input, legacyNormProvenance: undefined })).toThrow();
   expect(() => projectPortablePerson({ ...input, engine: '2.21.0' })).toThrow();

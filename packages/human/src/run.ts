@@ -161,7 +161,12 @@ export function createPerson(run: T.Run, input: T.DeepReadonly<T.PersonAuthoring
   // constructed. No accepted transaction or fake social observation is recorded.
   new Frame(record, stage).installDefinitionRoutines(person.id);
   commitTransaction(run, stage, false);
-  record.initialPeople = [...record.initialPeople, input.portable ? cloneData(input) : person];
+  // Keep the portable input for replay, with the identity actually admitted.
+  // Retained birth date and sex replace the receiving opening's placeholders.
+  record.initialPeople = [
+    ...record.initialPeople,
+    input.portable ? { ...cloneData(input), identity: cloneData(person.identity) } : person,
+  ];
   return { ok: true, value: person.id };
 }
 
