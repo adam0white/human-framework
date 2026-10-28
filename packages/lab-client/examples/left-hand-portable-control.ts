@@ -54,25 +54,26 @@ const parent = await createPersona({
 const admitted = admitPortablePerson(parent, 'lefthand', opening, { offsetMs: 0, references: [] });
 const target = need(createRun(spec));
 need(createPerson(target, admitted));
-const held = { ...parent, transfer: claimPortablePerson(parent, 'lefthand') };
-let locked = false;
-try {
-  admitPortablePerson(held, 'lefthand', opening, { offsetMs: 0, references: [] });
-} catch {
-  locked = true;
-}
-if (!locked) throw new Error('Arrival was not locked');
 const archive = exportRun(target);
-const transfer = projectPortablePerson({
-  castId,
-  game: 'lefthand',
-  engine: portable.source.engine,
-  person: archive.current.people.yusuf,
-  history: ['Completed the chapter.'],
-  previous: held,
-  calendar: { definition: spec.definitions.calendar, norms: spec.definitions.norms },
-});
-const departed = { ...held, transfer };
-admitPortablePerson(departed, 'lefthand', opening, { offsetMs: 0, references: [] });
+for (const write of [
+  () => claimPortablePerson(parent, 'lefthand'),
+  () =>
+    projectPortablePerson({
+      castId,
+      game: 'lefthand',
+      engine: portable.source.engine,
+      person: archive.current.people.yusuf,
+      history: ['Completed the chapter.'],
+      calendar: { definition: spec.definitions.calendar, norms: spec.definitions.norms },
+    }),
+]) {
+  let refused = false;
+  try {
+    write();
+  } catch (error) {
+    refused = String(error).includes('read-only');
+  }
+  if (!refused) throw new Error('Closed write gate did not refuse');
+}
 if (need(replay(archive)).fullHash !== archive.hashes.full) throw new Error('Replay differs');
-console.log('Left Hand projection, admission, lock, departure and replay passed');
+console.log('Left Hand read-only admission, claim/departure refusal and replay passed');

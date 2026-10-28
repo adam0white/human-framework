@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { createPerson, promise } from '@adam0white/hf-legacy';
 import type { PersonAuthoring, Result, RunSpec } from '@adam0white/human-framework';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { canonicalCast } from '../src/cast.ts';
 import {
   claimCastChapter,
@@ -415,4 +415,17 @@ it('continues Aylin from Murmur into Good Hands through the existing v2 shelf fo
   const archive = exportRun(target);
   expect(archive.current.people.aylin?.memory.episodes[0]?.summary).toBe('Aylin spoke with her sister.');
   expect(need(replay(archive)).fullHash).toBe(archive.hashes.full);
+});
+
+// Simulated live peers isolate projection and ownership from deployment state.
+vi.mock('../src/portable-readers.ts', async () => {
+  const { CANONICAL_CAST } = await import('../src/cast.ts');
+  return {
+    PORTABLE_READERS: Object.fromEntries(
+      CANONICAL_CAST.flatMap((person) => person.games).map((game) => [
+        game,
+        { client: '0.5.5', perPersonSkips: true },
+      ]),
+    ),
+  };
 });

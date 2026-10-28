@@ -61,27 +61,31 @@ targetSpec.definitions.sources = targetSpec.definitions.sources.map((s) =>
 const admitted = admitPortablePerson(parent, 'valley', targetOpening, { offsetMs: 0, references: [] });
 const target = need(createRun(targetSpec));
 need(createPerson(target, admitted));
-const held = { ...parent, transfer: claimPortablePerson(parent, 'valley') };
-let locked = false;
-try {
-  admitPortablePerson(held, 'warren', opening, { offsetMs: 0, references: [] });
-} catch {
-  locked = true;
-}
-if (!locked) throw new Error('Arrival was not locked');
+const before = JSON.stringify(parent);
 need(step(target, { until: targetSpec.start + 1, inputs: [] }));
 const archive = exportRun(target);
-const transfer = projectPortablePerson({
-  castId,
-  game: 'valley',
-  engine: portable.source.engine,
-  person: archive.current.people['yusuf-usta'],
-  history: ['Completed the chapter.'],
-  previous: held,
-  calendar: { definition: targetSpec.definitions.calendar, norms: targetSpec.definitions.norms },
-});
-const departed = { ...held, source: { ...held.source, game: 'valley' }, transfer };
-admitPortablePerson(departed, 'warren', opening, { offsetMs: 0, references: [] });
+for (const write of [
+  () => claimPortablePerson(parent, 'valley'),
+  () =>
+    projectPortablePerson({
+      castId,
+      game: 'valley',
+      engine: portable.source.engine,
+      person: archive.current.people['yusuf-usta'],
+      history: ['Completed the chapter.'],
+      previous: parent,
+      calendar: { definition: targetSpec.definitions.calendar, norms: targetSpec.definitions.norms },
+    }),
+]) {
+  let refused = false;
+  try {
+    write();
+  } catch (error) {
+    refused = String(error).includes('read-only');
+  }
+  if (!refused) throw new Error('Closed write gate did not refuse');
+}
+if (JSON.stringify(parent) !== before) throw new Error('Refusal changed the source');
 if (need(replay(archive)).fullHash !== archive.hashes.full) throw new Error('Replay differs');
 console.log(
   JSON.stringify({
@@ -90,8 +94,8 @@ console.log(
     fullHash: archive.hashes.full,
     projection: true,
     admission: true,
-    ownership: true,
-    departure: true,
+    claimRefused: true,
+    departureRefused: true,
     replay: true,
   }),
 );
