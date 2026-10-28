@@ -194,6 +194,31 @@ export function checkBatchEnvelope(
   const sorted = [...batch.inputs].sort(compareInputs);
   for (const [index, entry] of sorted.entries()) {
     const path = `$.inputs[${index}]`;
+    if (
+      entry.kind === 'conversation.requested' &&
+      entry.payload.confidentMin !== undefined &&
+      entry.payload.confidentMin > 0.5
+    )
+      return fail(
+        'invalid-schema',
+        `${path}.payload.confidentMin`,
+        'confidence distance must be between 0 and 0.5',
+      );
+    if (entry.kind === 'social.received' && entry.payload.sourceTrustResponse) {
+      const response = entry.payload.sourceTrustResponse;
+      if (response.sourceId === entry.payload.person || response.sourceId === 'self')
+        return fail(
+          'invalid-admission',
+          `${path}.payload.sourceTrustResponse.sourceId`,
+          'authored source trust responses cannot target self',
+        );
+      if (!state.sources.some((source) => source.id === response.sourceId))
+        return fail(
+          'unknown-id',
+          `${path}.payload.sourceTrustResponse.sourceId`,
+          'source trust response requires a registered source',
+        );
+    }
     if (seen.has(entry.id) || state.acceptedInputIds.has(entry.id))
       return fail('duplicate-id', `${path}.id`, 'input ID already accepted');
     seen.add(entry.id);

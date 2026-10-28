@@ -143,6 +143,7 @@ export function receiveBeliefEvidence(
   },
 ): import('../run-schema.ts').OwnerOutput<import('../run-schema.ts').BeliefOwnedState> {
   const state = cloneData(previous) as import('../run-schema.ts').BeliefOwnedState;
+  const events: import('../run-schema.ts').EventData[] = [];
   const d = context.effective.builtins.BELIEF_DEFAULTS;
   const trust = (id: string) =>
     id === context.person || id === 'self'
@@ -197,6 +198,26 @@ export function receiveBeliefEvidence(
         if (claim.lineage !== undefined && claim.lineage.length <= 64) b.provenance.lineage = claim.lineage;
       }
     }
+  } else if (input.kind === 'source-trust-response') {
+    const response = input.response;
+    if (
+      response.sourceId === context.person ||
+      response.sourceId === 'self' ||
+      !Number.isFinite(response.multiplier) ||
+      response.multiplier < 0 ||
+      response.multiplier > 1
+    )
+      throw new RangeError('Invalid authored source trust response');
+    const before = trust(response.sourceId),
+      after = clamp01(before * response.multiplier);
+    state.sourceTrust[response.sourceId] = after;
+    events.push({
+      kind: 'source-trust-responded',
+      evidenceId: input.evidenceId,
+      response: cloneData(response),
+      before,
+      after,
+    });
   } else if (input.kind === 'confirm') {
     const b = ensure(input.prop);
     const sign = input.value ? 1 : -1;
@@ -237,7 +258,7 @@ export function receiveBeliefEvidence(
   return {
     state,
     effects: { terms: [], modifiers: [], appraisals: [] },
-    events: [],
+    events,
     nextBoundary: null,
     advancedThrough: context.at,
   };

@@ -175,6 +175,8 @@ export type Payloads = {
     listener: PersonId;
     topicIds: readonly Id[];
     maxClaims: number;
+    /** Minimum distance from 0.5 for a held belief to be offered; absent uses the builtin 0.2. */
+    confidentMin?: number;
     temptations: readonly { prop: Id; value: boolean; gain: Unit }[];
     loyalWarning: boolean;
   };
@@ -186,7 +188,11 @@ export type Payloads = {
   };
   'contradiction.received': PersonEvidence & { sourceId: Id; prop: Id; value: boolean; reporterId?: Id };
   'fact.confirmed': PersonEvidence & { prop: Id; value: boolean; observationId: Id };
-  'social.received': PersonEvidence & { other: Id; event: SocialEventData };
+  'social.received': PersonEvidence & {
+    other: Id;
+    event: SocialEventData;
+    sourceTrustResponse?: SourceTrustResponse;
+  };
   'person.glimpsed': PersonEvidence & { target: PersonId; signs: OutwardSigns; clarity: Unit };
   'person.reported': PersonEvidence & {
     target: PersonId;
@@ -340,6 +346,8 @@ export type InspectQuery = {
     | 'body'
     | 'beliefs'
     | 'sourceTrust'
+    | 'traits'
+    | 'heldNorms'
     | 'relationships'
     | 'methods'
     | 'agenda'
@@ -1931,6 +1939,12 @@ export type AmbientEvidence = {
 };
 export type SuggestionData = Suggestion & { adviceId: Id };
 export type SocialEventData = { kind: SocialEventKind; byMe: boolean; magnitude: Unit };
+/** An authored response to this social evidence, not a factual correction or an empirical trust rate. */
+export type SourceTrustResponse = {
+  sourceId: Id;
+  multiplier: Unit;
+  basis: { author: Id; ruleId: Id; edition: Id };
+};
 export type ImpressionKey =
   | StateCue
   | 'regard'
@@ -2334,6 +2348,13 @@ export type EventData =
   | { kind: 'input-disposed'; disposition: InputDisposition }
   | { kind: 'effect-applied'; effectId: Id; owner: FacultyId }
   | { kind: 'social-received'; evidenceId: Id; other: Id; event: SocialEventData; applied: boolean }
+  | {
+      kind: 'source-trust-responded';
+      evidenceId: Id;
+      response: SourceTrustResponse;
+      before: Unit;
+      after: Unit;
+    }
   | { kind: 'conversation'; conversation: ConversationData }
   | { kind: 'prompting'; record: PromptingRecord }
   | { kind: 'review'; record: ReviewRecord }
@@ -2654,6 +2675,8 @@ export type Knowledge<T> =
   | { kind: 'unobserved' };
 export type InspectSelection = InspectQuery['select'][number];
 export type HostParts = {
+  traits: Traits;
+  heldNorms: readonly HeldNorm[];
   skills: readonly SkillReading[];
   summary: { name: string; alive: boolean; activity: { id: Id; actionId: Id } | null };
   body: { state: BodyState; readout: BodyReadout };
@@ -2669,6 +2692,8 @@ export type HostParts = {
 };
 export type SelfBody = { perceived: BodyReadout['perceived'] };
 export type SelfParts = {
+  traits: Knowledge<Traits>;
+  heldNorms: readonly HeldNorm[];
   skills: readonly SkillReading[];
   summary: { name: string; mood: AffectState['mood'] };
   body: SelfBody;
@@ -2683,6 +2708,8 @@ export type SelfParts = {
   chapter: { kind: 'unavailable'; reason: 'host-narrative-clock' };
 };
 export type OtherParts = {
+  traits: Knowledge<Traits>;
+  heldNorms: Knowledge<readonly HeldNorm[]>;
   skills: Knowledge<readonly SkillReading[]>;
   summary: { signs: Knowledge<OutwardSigns>; impressions: readonly ImpressionCue[] };
   body: Knowledge<OutwardSigns>;
@@ -4253,7 +4280,8 @@ export type BeliefOwnedState = Pick<MemoryState, 'beliefs' | 'sourceTrust' | 'co
 export type BeliefInput =
   | { kind: 'claims'; teller: Id; claims: readonly Claim[]; attention: Unit; evidenceId: Id }
   | { kind: 'confirm'; prop: Id; value: boolean; observationId: Id; evidenceId: Id }
-  | { kind: 'contradiction'; sourceId: Id; prop: Id; value: boolean; reporterId?: Id; evidenceId: Id };
+  | { kind: 'contradiction'; sourceId: Id; prop: Id; value: boolean; reporterId?: Id; evidenceId: Id }
+  | { kind: 'source-trust-response'; evidenceId: Id; response: SourceTrustResponse };
 export interface BeliefOwner {
   receive(
     state: DeepReadonly<BeliefOwnedState>,

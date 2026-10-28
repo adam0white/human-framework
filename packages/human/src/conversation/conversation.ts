@@ -65,6 +65,9 @@ export function prepareConversation(
     C = context.effective.builtins.CONVERSATION_DEFAULTS,
     R = C.relevance,
     vocabulary = reputationVocabulary(context.reputationTraits);
+  const confidentMin = input.confidentMin ?? C.confidentMin;
+  if (!Number.isFinite(confidentMin) || confidentMin < 0 || confidentMin > 0.5)
+    throw new RangeError('Confidence distance must be between 0 and 0.5');
   const out: ConversationData = {
     speaker: input.speaker,
     listener: input.listener,
@@ -143,7 +146,7 @@ export function prepareConversation(
     const subject = b.prop.split(':')[0];
     if (subject === s.id) continue;
     const cred = sigmoid(b.logOdds);
-    if (Math.abs(cred - 0.5) < C.confidentMin) continue;
+    if (Math.abs(cred - 0.5) < confidentMin) continue;
     const value = cred > 0.5;
     if (subject === input.listener) {
       const trait = parseTraitProp(b.prop, vocabulary)?.trait;

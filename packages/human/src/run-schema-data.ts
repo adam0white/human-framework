@@ -5248,6 +5248,7 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
             listener: { optional: false, shape: { kind: 'scalar', name: 'PersonId' } },
             topicIds: { optional: false, shape: { kind: 'array', element: { kind: 'scalar', name: 'Id' } } },
             maxClaims: { optional: false, shape: { kind: 'number' } },
+            confidentMin: { optional: true, shape: { kind: 'scalar', name: 'Unit' } },
             temptations: {
               optional: false,
               shape: {
@@ -5314,6 +5315,7 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
             evidenceId: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
             other: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
             event: { optional: false, shape: { kind: 'ref', name: 'SocialEventData' } },
+            sourceTrustResponse: { optional: true, shape: { kind: 'ref', name: 'SourceTrustResponse' } },
           },
         },
       },
@@ -6114,6 +6116,7 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
                   shape: { kind: 'array', element: { kind: 'scalar', name: 'Id' } },
                 },
                 maxClaims: { optional: false, shape: { kind: 'number' } },
+                confidentMin: { optional: true, shape: { kind: 'scalar', name: 'Unit' } },
                 temptations: {
                   optional: false,
                   shape: {
@@ -6222,6 +6225,7 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
                 evidenceId: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
                 other: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
                 event: { optional: false, shape: { kind: 'ref', name: 'SocialEventData' } },
+                sourceTrustResponse: { optional: true, shape: { kind: 'ref', name: 'SourceTrustResponse' } },
               },
             },
           },
@@ -7093,6 +7097,8 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
               { kind: 'literal', value: 'body' },
               { kind: 'literal', value: 'beliefs' },
               { kind: 'literal', value: 'sourceTrust' },
+              { kind: 'literal', value: 'traits' },
+              { kind: 'literal', value: 'heldNorms' },
               { kind: 'literal', value: 'relationships' },
               { kind: 'literal', value: 'methods' },
               { kind: 'literal', value: 'agenda' },
@@ -9620,9 +9626,37 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
       alive: { optional: false, shape: { kind: 'boolean' } },
     },
   },
+  SourceTrustResponse: {
+    kind: 'object',
+    fields: {
+      sourceId: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
+      multiplier: { optional: false, shape: { kind: 'scalar', name: 'Unit' } },
+      basis: {
+        optional: false,
+        shape: {
+          kind: 'object',
+          fields: {
+            author: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
+            ruleId: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
+            edition: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
+          },
+        },
+      },
+    },
+  },
   EventData: {
     kind: 'union',
     options: [
+      {
+        kind: 'object',
+        fields: {
+          kind: { optional: false, shape: { kind: 'literal', value: 'source-trust-responded' } },
+          evidenceId: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
+          response: { optional: false, shape: { kind: 'ref', name: 'SourceTrustResponse' } },
+          before: { optional: false, shape: { kind: 'scalar', name: 'Unit' } },
+          after: { optional: false, shape: { kind: 'scalar', name: 'Unit' } },
+        },
+      },
       {
         kind: 'object',
         fields: {
