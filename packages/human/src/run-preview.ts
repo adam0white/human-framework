@@ -105,6 +105,7 @@ export function preview(
           impression: conditionImpression(observer, query.person, record.current.at),
           knowledgeLimit: [
             'This answer uses only the observer’s held impressions and explicit hypothetical offers and suggestions.',
+            'The target’s age and sex are unknown. A 30-year-old female constructor prior is required by the actor schema and can affect this conditional forecast.',
             'Unknown faculties use neutral engineering priors. Current hidden state, target RNG and future host evidence are never read. Confidence describes evidence, not a calibrated probability of the answer.',
             ...result.value.knowledgeLimit,
           ],

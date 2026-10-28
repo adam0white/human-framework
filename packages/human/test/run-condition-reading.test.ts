@@ -173,6 +173,7 @@ it('forecasts another person from held evidence and never from their hidden body
   const answer = accepted(preview(first, query));
   expect(answer).toEqual(accepted(preview(second, query)));
   expect(answer.impression?.cues).toContainEqual({ key: 'pain', value: 0, confidence: 0 });
+  expect(answer.knowledgeLimit.some((line) => line.includes('age and sex are unknown'))).toBe(true);
   expect(answer.possibilities.some((event) => event.data.kind === 'decision')).toBe(true);
   const self = accepted(preview(first, { ...query, perspective: { kind: 'person', observer: 'cook' } }));
   expect(self.possibilities.some((event) => event.data.kind === 'decision')).toBe(true);
@@ -229,7 +230,7 @@ it('forecasts another person from held evidence and never from their hidden body
       bodyForecast: [{ label: 'leak', durationMs: 1, load: { effort: 0, focus: 0, mode: 'awake' } }],
     }).ok,
   ).toBe(false);
-  for (const key of ['tie:third', `trust:${HOST.id}`, 'skill:undefined-skill'] as const) {
+  for (const key of ['tie:third', 'tie:cook', `trust:${HOST.id}`, 'skill:undefined-skill'] as const) {
     const referenced = setup();
     const third = numericalPerson(3);
     third.id = 'third';

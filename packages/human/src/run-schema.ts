@@ -256,7 +256,7 @@ export type Payloads = {
   };
   'review.requested': { person: PersonId; reason: string };
   'voice.evidence-received': PersonEvidence & { voiceId: Id; evidence: VoiceEvidence };
-  /** Learn a response at the input time, with host-authored initial practice. */
+  /** Learn a response at the input time, with source-authored initial practice. */
   'prompting.response-learned': {
     person: PersonId;
     response: { id: Id; kind: PromptingResponseKind; practice: Unit; cue?: string };

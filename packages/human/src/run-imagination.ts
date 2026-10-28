@@ -88,7 +88,7 @@ export function imaginedPerson(
       sourceTrust: [],
       context: { scarcity: { kind: 'unobserved' }, smoking: { kind: 'unobserved' } },
       relationships: held.cues
-        .filter((c) => c.key.startsWith('tie:'))
+        .filter((c) => c.key.startsWith('tie:') && c.key.slice(4) !== targetId)
         .map((c) => ({
           ...defaultRelationship(c.key.slice(4), at),
           affection: value(c.key),
