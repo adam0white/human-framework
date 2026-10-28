@@ -11,9 +11,28 @@ version, stamped with build and schema hashes in `RUN_ENGINE`. See the version p
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
-## [4.6.0] — Unreleased
+## [4.6.0] — 2026-10-28
 
 Engine: 4.6.0.
+
+### G5 — bodily review and delivery
+
+- Schedule ordinary reconsideration at rising perceived hunger, thirst and sleepiness thresholds during ongoing work. Retain protest evidence and settled advice's trust effects. Universal protest quality stays with the host; removed urgency feedback and night tags are deliberately given up.
+- Retain the 4.5.2 observation-to-body wake route and preserved doze marker. The source-authored seed-7 recipient naturally dozes at tick 57, then wakes at an actual nearby knock after quiet advancement; JSON restore and replay retain the result. No duplicate wake input or host wake rule is added.
+
+### G8 — actual voice acts and answered requests
+
+- Add host-only `voice.evidence-received` through `step`. Actual acts and granted/refused requests retain their stable outcome identity, occurrence time and action in the existing evidence/event ledgers and `inspect`. Will derives trust from the person's experienced valence with its existing assumed asymmetry and repetition discount. A promise, grant or refusal alone does not establish benefit.
+- Use the same recipient-specific stable id for input, evidence and actual outcome; repeated delivery is rejected. These are ordinary host-world requests, never divine acceptance or answered prayer. Deliver after occurrence and include `felt` valence for acts/requests.
+
+### G9 — received support
+
+- The same evidence route records acknowledged care or accompaniment without a numerical effect. Reported actual comfort reaches the existing crisis recovery owner and halves remaining recovery on the millisecond clock, capped at its old end. A sub-minute receipt can no longer extend recovery through a one-minute floor.
+- Support creates neither assent, orders, another Person nor a voice-trust coefficient. Trust learning and comfort recovery remain explicit engineering assumptions, not calibrated causal claims or religious outcomes.
+
+### G15 — focused-work bodily fatigue
+
+- Sustained awake focus contributes to the existing bodily depletion store at an assumed 0.03 per hour of the remaining store. Existing rest/sleep recovery remains; sleep suppresses focus load. Physical repair stays with the host.
 
 ### G6: step cost and archive
 

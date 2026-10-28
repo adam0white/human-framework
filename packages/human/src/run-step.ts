@@ -279,6 +279,11 @@ export function step(run: T.Run, input: T.DeepReadonly<T.StepBatch>): T.Result<T
         continue;
       }
       const reached = Math.min(to, physical.through, mental.through);
+      // Keep the crossing from the original proposal: restaging to the crossing
+      // can fit the final readout cell differently at its endpoint.
+      const bodyReviews = physical.boundaries.filter(
+        (boundary) => boundary.kind === 'body-review' && boundary.at === reached,
+      );
       if (reached !== to) {
         to = reached;
         physical = physics(to);
@@ -358,6 +363,12 @@ export function step(run: T.Run, input: T.DeepReadonly<T.StepBatch>): T.Result<T
               data: { kind: 'hazard-boundary', person: boundary.person, boundary: boundary.boundary },
             },
           ];
+      for (const boundary of bodyReviews) {
+        if (boundary.kind !== 'body-review') continue;
+        const activity = stage.current.people[boundary.person]?.activity;
+        if (!activity || activity.id !== boundary.activityId || activity.interrupt) continue;
+        frame.armReview(boundary.person, activity, to, hashCanonical('hf-run4/body-review', boundary));
+      }
       if (to === midnight.value)
         for (const person of Object.keys(stage.current.people).sort()) {
           const cause = hashCanonical('hf-run4/day-boundary', record.spec.id, person, to);

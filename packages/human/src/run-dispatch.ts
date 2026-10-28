@@ -2202,6 +2202,9 @@ export class Frame {
       case 'coercion.withdrawn':
         this.will(input.payload.person, { kind: 'coercion-withdrawn', data: input.payload }, context);
         return;
+      case 'voice.evidence-received':
+        this.will(input.payload.person, { kind: 'voice-evidence', data: input.payload }, context);
+        return;
       case 'voice.promise-received':
         this.will(input.payload.person, { kind: 'promise', data: input.payload }, context);
         return;

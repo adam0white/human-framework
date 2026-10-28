@@ -4,7 +4,9 @@
  * Caller targets do not create decisions, semantic events or random draws.
  */
 
+import { thresholdTimes } from './body/span.ts';
 import { projectCharacterTrajectory } from './character/character.ts';
+import { readNeedScalar } from './needs/needs.ts';
 import { compareCodePoints } from './run-canonical.ts';
 import { bodyPerception } from './run-person.ts';
 import type * as T from './run-schema.ts';
@@ -178,6 +180,7 @@ export function probeRetained(
 }
 export type SpanBoundary =
   | { kind: 'hazard'; at: T.Time; person: T.PersonId; boundary: T.HazardBoundary }
+  | { kind: 'body-review'; at: T.Time; person: T.PersonId; activityId: T.Id }
   | { kind: 'owner'; at: T.Time; person: T.PersonId; owner: T.FacultyId };
 export type PhysicsProposal = {
   person: T.PersonId;
@@ -206,7 +209,34 @@ export function compareSpanBoundaries(a: SpanBoundary, b: SpanBoundary): number 
     );
   if (a.kind === 'hazard') return -1;
   if (b.kind === 'hazard') return 1;
+  if (a.kind === 'body-review') return b.kind === 'body-review' ? 0 : -1;
+  if (b.kind === 'body-review') return 1;
   return compareCodePoints(a.owner, b.owner);
+}
+
+/** The 3.x thresholds are engineering defaults, not physiological diagnoses.
+ * Follow the perceived path so fasting and other perception modifiers apply.
+ * A need already above its threshold was available at the preceding decision. */
+function bodyReviewAt(trajectory: T.DeepReadonly<T.BodyTrajectory>, from: T.Time): T.Time | null {
+  let earliest: number | null = null;
+  for (const [field, threshold] of [
+    ['perceived-hunger', 0.7],
+    ['perceived-thirst', 0.7],
+    ['perceived-sleepiness', 0.85],
+  ] as const) {
+    const path = trajectory.readout.find((entry) => entry.field === field)?.path;
+    if (!path || path.to <= from || readNeedScalar(path, from) >= threshold) continue;
+    for (const segment of path.segments) {
+      if (segment.kind !== 'quartic' || segment.to <= from) continue;
+      for (const root of thresholdTimes(segment.cell, Math.max(from, segment.from), segment.to, threshold)) {
+        let at = Math.max(from + 1, Math.ceil(root));
+        if (at < path.to && readNeedScalar(path, at) < threshold) at++;
+        if (at <= path.to && readNeedScalar(path, at) >= threshold && (earliest === null || at < earliest))
+          earliest = at;
+      }
+    }
+  }
+  return earliest;
 }
 function loadFor(
   actor: T.DeepReadonly<Pick<T.ActorState, 'activity' | 'body'>>,
@@ -377,6 +407,11 @@ export function probePhysiology(
     });
     note(person, 'body', body, to);
     hazard(person, body.randomBoundary);
+    if (actor.activity && !actor.activity.interrupt && actor.activity.dozedAt === undefined) {
+      const at = bodyReviewAt(body.trajectory, state.at);
+      if (at !== null && at < actor.activity.reviewAt && at < actor.activity.endsAt)
+        boundaries.push({ kind: 'body-review', at, person, activityId: actor.activity.id });
+    }
     const proposal: PhysicsProposal = { person, body, needs: null, affect: null, crisis: null, life: null };
     proposals.push(proposal);
     // An unarmed body boundary must commit first. Same-person crisis/life probes

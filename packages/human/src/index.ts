@@ -82,6 +82,7 @@ export type {
   Time,
   Unit,
   VisibleEvent,
+  VoiceEvidence,
   WorldChange,
   WorldFact,
   WorldSnapshot,

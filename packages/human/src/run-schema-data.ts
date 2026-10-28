@@ -5055,9 +5055,64 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
       action: { optional: true, shape: { kind: 'scalar', name: 'Id' } },
     },
   },
+  VoiceEvidence: {
+    kind: 'union',
+    options: [
+      {
+        kind: 'object',
+        fields: {
+          id: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
+          occurredAt: { optional: false, shape: { kind: 'scalar', name: 'Time' } },
+          action: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
+          kind: { optional: false, shape: { kind: 'literal', value: 'act' } },
+          felt: { optional: false, shape: { kind: 'scalar', name: 'Signed' } },
+        },
+      },
+      {
+        kind: 'object',
+        fields: {
+          id: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
+          occurredAt: { optional: false, shape: { kind: 'scalar', name: 'Time' } },
+          action: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
+          kind: { optional: false, shape: { kind: 'literal', value: 'request' } },
+          granted: { optional: false, shape: { kind: 'boolean' } },
+          felt: { optional: false, shape: { kind: 'scalar', name: 'Signed' } },
+        },
+      },
+      {
+        kind: 'object',
+        fields: {
+          id: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
+          occurredAt: { optional: false, shape: { kind: 'scalar', name: 'Time' } },
+          action: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
+          kind: { optional: false, shape: { kind: 'literal', value: 'support' } },
+          effect: {
+            optional: false,
+            shape: {
+              kind: 'union',
+              options: [
+                { kind: 'literal', value: 'acknowledged' },
+                { kind: 'literal', value: 'comfort' },
+              ],
+            },
+          },
+        },
+      },
+    ],
+  },
+  VoiceEvidencePayload: {
+    kind: 'object',
+    fields: {
+      person: { optional: false, shape: { kind: 'scalar', name: 'PersonId' } },
+      evidenceId: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
+      voiceId: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
+      evidence: { optional: false, shape: { kind: 'ref', name: 'VoiceEvidence' } },
+    },
+  },
   Payloads: {
     kind: 'object',
     fields: {
+      'voice.evidence-received': { optional: false, shape: { kind: 'ref', name: 'VoiceEvidencePayload' } },
       'world.changed': { optional: false, shape: { kind: 'ref', name: 'WorldChange' } },
       'offers.received': {
         optional: false,
@@ -5766,6 +5821,25 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
   Input: {
     kind: 'union',
     options: [
+      {
+        kind: 'object',
+        fields: {
+          id: { optional: false, shape: { kind: 'scalar', name: 'InputId' } },
+          at: { optional: false, shape: { kind: 'scalar', name: 'Time' } },
+          source: {
+            optional: false,
+            shape: {
+              kind: 'object',
+              fields: {
+                type: { optional: false, shape: { kind: 'literal', value: 'host' } },
+                id: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
+              },
+            },
+          },
+          kind: { optional: false, shape: { kind: 'literal', value: 'voice.evidence-received' } },
+          payload: { optional: false, shape: { kind: 'ref', name: 'VoiceEvidencePayload' } },
+        },
+      },
       {
         kind: 'object',
         fields: {
@@ -9647,6 +9721,17 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
   EventData: {
     kind: 'union',
     options: [
+      {
+        kind: 'object',
+        fields: {
+          kind: { optional: false, shape: { kind: 'literal', value: 'voice-evidence' } },
+          evidenceId: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
+          voiceId: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
+          evidence: { optional: false, shape: { kind: 'ref', name: 'VoiceEvidence' } },
+          before: { optional: false, shape: { kind: 'scalar', name: 'Unit' } },
+          after: { optional: false, shape: { kind: 'scalar', name: 'Unit' } },
+        },
+      },
       {
         kind: 'object',
         fields: {
