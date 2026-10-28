@@ -76,4 +76,17 @@ test('support evidence does not direct a person or change voice trust', () => {
   if (!receipt) throw new Error('Missing comfort receipt');
   const eased = crisisOwner.receive(active, receipt, { ...frame(), continuation });
   expect(eased.state.active?.until).toBe(60 * 60000);
+  // Receiving comfort cannot extend recovery when less than a minute remains.
+  const nearEnd = crisisOwner.receive(
+    { ...active, active: { repertoireId: 'break', since: 0, until: 30000 } },
+    receipt,
+    {
+      ...frame(),
+      continuation: {
+        ...continuation,
+        recovery: { ...continuation.recovery, remainingWorkMinutesAtAnchor: 0.5 },
+      },
+    },
+  );
+  expect(nearEnd.state.active?.until).toBe(15000);
 });

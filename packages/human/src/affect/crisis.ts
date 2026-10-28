@@ -383,14 +383,16 @@ export const crisisOwner: T.CrisisOwner = {
         0,
         r.remainingWorkMinutesAtAnchor - ((ctx.at - r.anchorMs) / 60000) * r.sleepRate,
       );
-      const eased = Math.max(1, Math.round((remaining / r.sleepRate) * 0.5));
-      s.active.until = ctx.at + eased * 60000;
+      // SCOPE G9: halve actual remaining time on the run's millisecond clock.
+      // A whole-minute minimum could extend a break with less than a minute left.
+      const easedMs = Math.max(1, Math.round(((remaining / r.sleepRate) * 60000) / 2));
+      s.active.until = Math.min(s.active.until, ctx.at + easedMs);
       c = {
         ...c,
         recovery: {
           ...r,
           anchorMs: ctx.at,
-          remainingWorkMinutesAtAnchor: eased * r.sleepRate,
+          remainingWorkMinutesAtAnchor: ((s.active.until - ctx.at) / 60000) * r.sleepRate,
           lastComfortReceiptId: input.receiptId,
         },
       };
