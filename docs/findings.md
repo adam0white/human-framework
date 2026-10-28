@@ -4,6 +4,43 @@ Short records of results that cut against expectations. Keep them; do not tune t
 
 Each entry describes its dated source or artifact. Historical defects do not describe the current SDK. Horizon 3 results and limits remain in the linked experiments.
 
+## Island on published HF 4.5.1: ten-seed negative rerun (2026-10-28)
+
+**No sustained building or carry-task success was demonstrated by this adapter.** Seeds **1–10** each finished with **0 task cubes, 0 free-time Spire objects and 0 repeated-pursuit bouts**. Each adopted one supplied project prospect; none recorded positive project progress. Small free-time stacks reached two in three seeds. Project adoption is exercised; these zero-progress runs do not establish successful undo protection or net-credit behavior. The task asks for as many cubes as possible, so final physical cube count is the outcome, not a fabricated binary completion threshold.
+
+The registry's latest published package was **4.5.1** when the batch began at **2026-10-28T05:46:31.220Z**; it ended at **05:49:14.149Z**. Island adds a separate exact npm alias, `hf4: npm:@adam0white/human-framework@4.5.1`, retaining its original 2.9.0 dependency and recordings. This is a new canonical Run-API adapter, not an engine-only substitution into the historical HF5/HF6 adapters. See [Island HF4 report and host decisions](https://github.com/adam0white/island/blob/main/HF4.md).
+
+Each seed has three 60-action free episodes and one 60-action task episode: **240 actions per seed**, **2,400 HF actions** in total. Actions take one minute, with a 1 ms host gap between closed decision lanes (239 ms per run). Observations, legal offers, actual outcomes, visible project prospects, placement advances and pickup diminishes enter through the public Run inputs. No hidden world access, task executor or LLM provider is used. This adapter omits historical remembered-target navigation and received successor chains. Those differences prevent attributing the negative outcome to a framework regression or treating it as a general limit on HF planning. No framework code was changed or tuned from the result.
+
+| Seed | Free cells | Free max stack | Free Spire objects | Repeated pursuit | Task cubes | Project adoptions | Max project progress |
+| ---- | ---------- | -------------- | ------------------ | ---------------- | ---------- | ----------------- | -------------------- |
+| 1    | 26         | 1              | 0                  | 0                | 0          | 1                 | 0                    |
+| 2    | 24         | 2              | 0                  | 0                | 0          | 1                 | 0                    |
+| 3    | 26         | 1              | 0                  | 0                | 0          | 1                 | 0                    |
+| 4    | 29         | 1              | 0                  | 0                | 0          | 1                 | 0                    |
+| 5    | 26         | 1              | 0                  | 0                | 0          | 1                 | 0                    |
+| 6    | 28         | 1              | 0                  | 0                | 0          | 1                 | 0                    |
+| 7    | 26         | 1              | 0                  | 0                | 0          | 1                 | 0                    |
+| 8    | 27         | 1              | 0                  | 0                | 0          | 1                 | 0                    |
+| 9    | 33         | 2              | 0                  | 0                | 0          | 1                 | 0                    |
+| 10   | 28         | 2              | 0                  | 0                | 0          | 1                 | 0                    |
+
+Against ten same-seed random headless controls, HF medians were **26.5 vs 41.5** free cells, **2.531723 vs 1.985654** action-kind entropy, **0.200000 vs 0.038889** manipulation share and **0.455556 vs 0.216667** idle share. Exact unpaired permutation tests with inclusive ties and one exploratory eight-measure Holm family give corrected p values **0.005088, 0.000087, 0.000152 and 0.000779**, respectively. Free Spire objects, maximum free stack, repeated pursuit and task cubes each have corrected p = 1. These are descriptive differences under this adapter; they do not establish play, equivalence or engine-only causation. Derived metrics were recomputed from frames for both arms, including legacy-shaped random recordings.
+
+**Verification.** All ten HF archives replayed through the published public API with matching full hashes; all ten HF and ten random recordings passed physical-world replay. A fresh independent seed-1 run matched recording SHA256 `58b9fcf86894f327b32f962a1be28cf92f9a8f8bd56b3fd80ae48fb27f32be0d` and archive full hash `20ffc21f3c3eb7b8879d8194976404d842923f8f8863993459a2a5de27549047`. Raw recordings, per-seed hashes, summary and the seed-1 archive are retained in `~/code/.lab-scratch/codex/island-rerun/`. Historical recordings were preserved.
+
+Commands, from the Island checkout containing `HF4.md`:
+
+```sh
+export PATH=/opt/homebrew/bin:$PATH
+pnpm install --frozen-lockfile
+npm view @adam0white/human-framework version
+npm run rerun:hf4 -- /Users/abdul/code/.lab-scratch/codex/island-rerun
+npm run rerun:hf4 -- /Users/abdul/code/.lab-scratch/codex/island-rerun --summarize
+```
+
+The batch command asserts that registry latest is exactly 4.5.1 before running seeds 1–10, repeats seed 1 and runs all replay controls. If registry latest has moved, it deliberately refuses: use the exact pinned single-arm command for historical reproduction, `node src/run.ts --mind hf4 --seed 1 --out /absolute/scratch/hf4-1.json`, changing `--seed` through 10. `--summarize` re-reads the retained recordings without changing actor traces. This records the roadmap-sweep ten-seed rerun even though the result is negative; publication, framework integration work, host adoption and player acceptance remain separate.
+
 ## HF 4.0.3 widowhood boundary probe: no reproduced failure (2026-10-27)
 
 The independent 4.0.2 read suspected that the day-182 widowhood mortality drop could cause the same numerical-cell failure as crisis refractory expiry. On unmodified 4.0.2, the [public control](../packages/human/test/run-widowhood-boundary.test.ts) starts one hour before day 182, with widowhood beginning at 123 ms and an authored woman aged about 114 years. Her early mortality is near its one-per-year cap. A whole four-hour step and hourly steps both finish, produce identical events and actor RNG, and restore and replay exactly. Their accepted mortality integrals differ by about 1e-19, within the 1e-12 numerical tolerance. An initial age-110 control also completed. An exact comparison of all continuation coefficients was rejected: continuous floating-point values may differ across chunkings under the existing contract.

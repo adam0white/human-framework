@@ -414,6 +414,8 @@ Cost/risk: displayed state can lag live state by up to 600 ms without a held ges
 
 ## Deferred
 
+**2026-10-28 sweep.** The [routing inventory](../roadmap-sweep-2026-10-28.md) records open items, reasons, targets and later superseding dispositions. Unscheduled ordinary work routes by 2026-11-03; existing future implementation dates remain. Explicit owner, player and device gates remain. Historical findings require current verification before a duplicate fix.
+
 Open, unbuilt or unconfirmed items from the design, the build plan and its fourteen passes. Target is "unscheduled" unless stated.
 
 **Questions for the user**
