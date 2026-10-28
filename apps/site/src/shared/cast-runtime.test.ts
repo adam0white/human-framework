@@ -730,6 +730,24 @@ describe('whole-cast browser continuity', () => {
     await checkpointCast('voice');
     expect(worker.requests('castCheckpoint')).toHaveLength(0);
   });
+  it('restores Watch local-only identities from the native ownership reply', async () => {
+    const worker = new FakeWorker();
+    close = bindCastWorker(worker as unknown as Worker, 'watch', lab as never);
+    postCastMessage(worker as unknown as Worker, 'watch', { type: 'load', id: 'local:auto', gen: 4 });
+    worker.reply({
+      type: 'castReady',
+      requestId: 0,
+      gen: 4,
+      ownership: {},
+      localOnly: true,
+      skipped: ['hf.cast.kian.watch'],
+    });
+    await vi.waitFor(() => expect(castState('watch').localNotice).toContain('This game uses local people'));
+    selectCast('watch', 'hf.cast.kian.watch');
+    await checkpointCast('watch');
+    expect(worker.requests('castCheckpoint')).toHaveLength(0);
+    expect(control.enabled).toBe(true);
+  });
   it('an allocated person created during preflight conflicts with the expected-absent parent', async () => {
     const first = await head();
     control.state = acceptPersona(control.state, first);

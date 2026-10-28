@@ -41,6 +41,8 @@ let fileImport: FileImport | undefined;
 /** Only the latest explicit init/load may install a run after storage awaits. */
 let loadOperation = 0;
 let castOwnership: import('../shared/cast-runtime.ts').CastHeads = {};
+let castLocalOnly = false;
+let castSkipped: string[] = [];
 const pacer = new Pacer();
 let lastKey = '';
 let sinceFrame = 0;
@@ -128,7 +130,7 @@ function save(kind: PageInfo['kind']): void {
     savedInputs = run.log.length;
     sinceSave = 0;
   }
-  const text = JSON.stringify({ ...run.snapshot(), castOwnership });
+  const text = JSON.stringify({ ...run.snapshot(), castOwnership, castLocalOnly, castSkipped });
   const gen = host.gen;
   void savePage(info, text).then((ok) => {
     if (!ok) saving = false;
@@ -207,6 +209,8 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
   };
   if (msg.type === 'castOwnership') {
     castOwnership = structuredClone(msg.heads);
+    castLocalOnly = msg.localOnly ?? false;
+    castSkipped = structuredClone(msg.skipped ?? []);
     deaths();
     if (run && run.state.phase !== 'goal') save('auto');
     return;
@@ -263,6 +267,8 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
       fileImport = source;
       imported = structuredClone(raw) as unknown as Record<string, unknown>;
       castOwnership = {};
+      castLocalOnly = true;
+      castSkipped = [];
       host.gen = msg.gen;
       begin(next, '');
       host.post({ type: 'fileLoaded', ok: true, seed: next.seed });
@@ -349,6 +355,8 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
       }
       if (run && behind()) save('auto');
       castOwnership = {};
+      castLocalOnly = false;
+      castSkipped = [];
       host.gen = msg.gen;
       begin(new WatchRun(msg.seed, undefined, msg.castChapter, msg.options), newChronicleId());
       if (msg.startAtDusk) run?.input({ k: 'start' });
@@ -469,10 +477,19 @@ const host = hostWorker<MainToWorker, WorkerReply>((msg, host) => {
         // A closed volume taken up again is a new chronicle; a running page continues its own.
         const fork = id.includes(':vol:');
         begin(next, fork ? newChronicleId() : (id.split(':')[0] ?? id));
-        if (fork) save('auto');
+        const metadata = snap as typeof snap & { castLocalOnly?: boolean; castSkipped?: string[] };
         castOwnership = snap?.fileOrigin ? {} : structuredClone(snap?.castOwnership ?? {});
+        castLocalOnly = snap?.fileOrigin ? true : (metadata?.castLocalOnly ?? false);
+        castSkipped = snap?.fileOrigin ? [] : structuredClone(metadata?.castSkipped ?? []);
+        if (fork) save('auto');
         host.post({ type: 'loaded', ok: true, id, seed: next.seed });
-        host.post({ type: 'castReady', requestId: 0, ownership: castOwnership });
+        host.post({
+          type: 'castReady',
+          requestId: 0,
+          ownership: castOwnership,
+          localOnly: castLocalOnly,
+          skipped: castSkipped,
+        });
         flush(true);
         postShelf();
       });

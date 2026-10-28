@@ -34,7 +34,7 @@ export type CastHeads = Record<string, PersonaEnvelope>;
 export type CastRequest =
   | { type: 'castPreflight'; requestId: number; seed: number; chapter: CastChapter }
   | { type: 'castCheckpoint'; requestId: number; castId: string }
-  | { type: 'castOwnership'; heads: CastHeads };
+  | { type: 'castOwnership'; heads: CastHeads; localOnly?: boolean; skipped?: string[] };
 export type CastReply = {
   type: 'castReady';
   requestId: number;
@@ -42,6 +42,8 @@ export type CastReply = {
   transfer?: Record<string, unknown>;
   terminal?: { castId: string; at: number };
   ownership?: CastHeads;
+  localOnly?: boolean;
+  skipped?: string[];
   initials?: Record<string, string>;
   sourceSnapshot?: unknown;
 };
@@ -252,7 +254,12 @@ function startWorker(s: State, message: Record<string, unknown>) {
   }
 }
 function pinOwnership(s: State) {
-  s.worker.postMessage({ type: 'castOwnership', heads: structuredClone(s.heads) } satisfies CastRequest);
+  s.worker.postMessage({
+    type: 'castOwnership',
+    heads: structuredClone(s.heads),
+    localOnly: s.localOnly ?? false,
+    skipped: [...(s.skipped ?? [])],
+  } satisfies CastRequest);
 }
 async function validHeads(game: string, value: unknown): Promise<CastHeads> {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return {};
@@ -397,11 +404,14 @@ export function bindCastWorker(worker: Worker, game: string, lab: Lab): () => vo
           s.status = String(e);
           changed();
         });
-      if (r.ownership && s.localLoad && m.gen === s.runGen)
+      if (r.ownership && s.localLoad && m.gen === s.runGen) {
+        if (typeof r.localOnly === 'boolean') s.localOnly = r.localOnly;
+        if (r.skipped) s.skipped = r.skipped.filter((id) => castForGame(game).some((p) => p.castId === id));
         void restoreOwnership(s, r.ownership, s.generation).catch((e) => {
           s.status = String(e);
           changed();
         });
+      }
       const pending = s.pending.get(r.requestId);
       s.pending.delete(r.requestId);
       pending?.resolve(r);
