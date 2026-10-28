@@ -111,7 +111,6 @@ export function preview(
         !(
           entry.source.type === 'host' &&
           entry.source.id === record.spec.host.id &&
-          entry.at === record.current.at &&
           'person' in entry.payload &&
           entry.payload.person === query.person &&
           ['offers.received', 'suggestion.received', 'decision.requested'].includes(entry.kind)
@@ -123,7 +122,7 @@ export function preview(
             code: 'invalid-admission',
             path: '$.inputs',
             message:
-              'Person preview accepts own inputs or scoped current hypothetical host offers, suggestions and decisions',
+              'Person preview accepts own inputs or scoped hypothetical host offers, suggestions and decisions',
           },
         };
   }

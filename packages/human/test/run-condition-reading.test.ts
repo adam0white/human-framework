@@ -229,6 +229,18 @@ it('forecasts another person from held evidence and never from their hidden body
       bodyForecast: [{ label: 'leak', durationMs: 1, load: { effort: 0, focus: 0, mode: 'awake' } }],
     }).ok,
   ).toBe(false);
+  const closed = setup();
+  accepted(step(closed, { until: 0, inputs: [] }));
+  const closedBefore = exportRun(closed);
+  const laterSelf = accepted(
+    preview(closed, {
+      ...query,
+      perspective: { kind: 'person', observer: 'cook' },
+      inputs: query.inputs.map((entry) => ({ ...entry, at: 1 })),
+    }),
+  );
+  expect(laterSelf.possibilities.some((event) => event.data.kind === 'decision')).toBe(true);
+  expect(exportRun(closed)).toEqual(closedBefore);
 });
 
 it('headless control keeps real choice settlement and replay separate from the observer forecast', () => {
