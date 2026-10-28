@@ -3,6 +3,7 @@
  * Faculty/reference and lifecycle admission remains in the owning validators.
  */
 
+import { prayerWindows } from './agenda/prayer.ts';
 import { wordingIssue } from './narrate/variants.ts';
 import { compareCodePoints } from './run-canonical.ts';
 import { PERSON_DEFAULTS } from './run-person-priors.ts';
@@ -504,6 +505,12 @@ export function checkRunSpec(input: unknown): Result<DeepReadonly<import('./run-
     )
       return fail('invalid-schema', '$.definitions.calendar.days', 'duplicate or inconsistent calendar day');
     days.add(day.dayIndex);
+    try {
+      prayerWindows(day);
+    } catch (error) {
+      if (!(error instanceof RangeError)) throw error;
+      return fail('invalid-schema', '$.definitions.calendar.days', error.message);
+    }
     for (const window of day.windows)
       if (window.until < window.from)
         return fail('invalid-schema', '$.definitions.calendar.days', 'reversed commitment window');

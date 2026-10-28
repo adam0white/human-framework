@@ -49,5 +49,7 @@ export const minuteOfDay = (now: number): number =>
 /** Round to a fixed number of decimals to keep snapshots stable and readable. */
 export const round = (value: number, places = 4): number => {
   const f = dpow(10, places);
-  return Math.round(value * f) / f;
+  const rounded = Math.round(value * f) / f;
+  // JSON cannot preserve signed zero; arithmetic cancellation must stay exportable.
+  return rounded === 0 ? 0 : rounded;
 };

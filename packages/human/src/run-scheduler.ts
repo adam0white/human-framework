@@ -2,6 +2,7 @@
  * not become opportunities. Owners supply their actual analytic boundaries.
  * No minute/50ms polling, host callbacks, hidden world reads or global scheduler.
  */
+import { prayerWindows } from './agenda/prayer.ts';
 import { compareInputs } from './run-admission.ts';
 import { canonicalJson, compareCodePoints, hashCanonical } from './run-canonical.ts';
 import type * as T from './run-schema.ts';
@@ -91,6 +92,10 @@ export function calendarSchedule(spec: T.DeepReadonly<T.RunSpec>): readonly T.Sc
   };
   for (const day of spec.definitions.calendar.days) {
     add(day.start, day.dayIndex, 'day', []);
+    for (const duty of prayerWindows(day)) {
+      add(duty.from, day.dayIndex, 'prayer-open', [duty.id]);
+      add(duty.until, day.dayIndex, 'prayer-close', [duty.id]);
+    }
     for (const window of day.windows) {
       add(window.from, day.dayIndex, 'window-open', [window.commitmentId]);
       add(window.until, day.dayIndex, 'window-close', [window.commitmentId]);

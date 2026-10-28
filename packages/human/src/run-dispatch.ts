@@ -57,7 +57,7 @@ import type { RunRecord, TransactionStage } from './run-kernel.ts';
 import { RunLimitError } from './run-kernel.ts';
 import { knownKin as kinSnapshot } from './run-lifecycle.ts';
 import { OWNERS } from './run-owners.ts';
-import { bodyPerception, constructAuthoredActor } from './run-person.ts';
+import { bodyPerception, constructAuthoredActor, installPrayerCalendar } from './run-person.ts';
 import { joinedReferences } from './run-references.ts';
 import type * as T from './run-schema.ts';
 import { constructionStream } from './run-state.ts';
@@ -2546,6 +2546,7 @@ export class Frame {
     if (input.admission) throw new RangeError(PORTABLE_ADMISSION_REJECTED);
     const context = this.context(input.id, 1, [cause]);
     const built = constructAuthoredActor(admitted.value, context, this.record.spec.seed, OWNERS);
+    installPrayerCalendar(built, this.record.spec.definitions, context.at);
     const issues = validateActor(
       built.actor,
       built.continuation,

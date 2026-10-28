@@ -21,7 +21,7 @@ import {
 import { inspectLifecycle } from './run-lifecycle.ts';
 import { OWNERS } from './run-owners.ts';
 import { buildParameters } from './run-parameters.ts';
-import { constructAuthoredActor } from './run-person.ts';
+import { constructAuthoredActor, installPrayerCalendar } from './run-person.ts';
 import { replayCurrentRun, restoreCurrentRun } from './run-recovery.ts';
 import { calendarSchedule } from './run-scheduler.ts';
 import type * as T from './run-schema.ts';
@@ -85,6 +85,7 @@ export function createPerson(run: T.Run, input: T.DeepReadonly<T.PersonAuthoring
   try {
     built = constructAuthoredActor(person, context, record.spec.seed, OWNERS);
     if (prepared.retained) installPortable(built, prepared.retained);
+    installPrayerCalendar(built, record.spec.definitions, context.at);
     const issues = validateActor(
       built.actor,
       built.continuation,

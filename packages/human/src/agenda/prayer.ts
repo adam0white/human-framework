@@ -37,6 +37,20 @@ export function prayerWindows(day: DeepReadonly<CalendarDay>): CommitmentData[] 
   const t = day.prayers;
   if (!t) return [];
   if (day.nextFajrMs === undefined) throw new RangeError('Isha requires the next supplied dawn');
+  const times = [t.fajrMs, t.sunriseMs, t.dhuhrMs, t.asrMs, t.maghribMs, t.ishaMs];
+  if (
+    times.some(
+      (time, i) =>
+        !Number.isSafeInteger(time) ||
+        time < 0 ||
+        time >= 86400000 ||
+        (i > 0 && time <= (times[i - 1] ?? time)),
+    ) ||
+    !Number.isSafeInteger(day.nextFajrMs) ||
+    day.nextFajrMs < 0 ||
+    day.nextFajrMs >= 86400000
+  )
+    throw new RangeError('Invalid supplied prayer times');
   const starts = [t.fajrMs, t.dhuhrMs, t.asrMs, t.maghribMs, t.ishaMs],
     ends = [t.sunriseMs, t.asrMs, t.maghribMs, t.ishaMs, 86400000 + day.nextFajrMs];
   return names.map((name, i) => {
