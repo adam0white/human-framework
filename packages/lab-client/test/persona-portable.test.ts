@@ -122,8 +122,31 @@ describe('portable shelf contract', () => {
       expect(claim.source).toEqual(parent.source);
       expect(claim.transfer.portableClaim).toEqual({ game: receiving.game });
       expect(() => admitPortablePerson(claim, 'commonstead', actor())).toThrow();
-      expect(() => admitPortablePerson(claim, 'days', actor())).not.toThrow();
+      expect(() => admitPortablePerson(claim, 'days', actor())).toThrow(/receiving chapter/);
     }
+    const held = single?.claim;
+    if (!held) throw new Error('Missing held arrival');
+    const skipped = await claimCastChapterBatch(
+      {
+        async request<T>(request: import('../src/persona.ts').PersonaRequest) {
+          if (request.action === 'prepareBatch')
+            return {
+              expectedHeads: { [castId]: held.revision },
+              inputs: [preparePersonaLife(held, 3600000)],
+              blocked: [],
+            } as T;
+          return undefined as T;
+        },
+      },
+      [castId],
+      source,
+      async (available) => {
+        expect(available).toEqual([]);
+        return 'local opening';
+      },
+    );
+    expect(skipped?.claims).toEqual([]);
+    expect(skipped?.blocked).toEqual([{ castId, reason: expect.stringContaining('Days') }]);
     const result = await claimCastChapterBatch(
       {
         async request<T>(request: import('../src/persona.ts').PersonaRequest) {
@@ -143,7 +166,7 @@ describe('portable shelf contract', () => {
     );
     const claimed = result?.claims[0];
     if (!claimed) throw new Error('The portable arrival was not claimed.');
-    expect(() => admitPortablePerson(claimed, 'days', actor())).toThrow(/matching authored role/);
+    expect(() => admitPortablePerson(claimed, 'days', actor())).toThrow(/receiving chapter/);
     expect(() => projectCastClaimTransfer(claimed, { ...source, game: 'days' }, arrival, input.life)).toThrow(
       /still belongs/,
     );

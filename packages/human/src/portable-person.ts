@@ -130,9 +130,26 @@ function array(v: unknown): unknown[] {
 /** Refuse source state that this approximate contract cannot honour. Unknown
  * clinical or temporal state is never converted into a healthy, debt-free arrival.
  */
-function quiet(person: Data): void {
+function quiet(person: Data, modern: boolean): void {
   const body = object(person.body),
     agenda = object(person.agenda);
+  if (modern) {
+    number(body.depletion);
+    array(agenda.owed);
+    array(object(person.will).precommitments);
+    const projects = object(person.projects);
+    array(projects.contributions);
+    array(projects.setbacks);
+    array(projects.prospects);
+    array(projects.history);
+    if (projects.pendingAct) fail();
+    object(person.family);
+    const bonds = object(person.bonds);
+    array(bonds.courtships);
+    array(bonds.marriages);
+    object(body.exposures);
+    if (person.activity !== null) fail();
+  }
   if (
     body.alive !== true ||
     body.asleep !== false ||
@@ -193,7 +210,7 @@ export function projectPortablePerson(input: {
   previous?: PortablePerson;
 }): PortablePerson {
   const p = object(input.person);
-  quiet(p);
+  quiet(p, engine(input.engine).startsWith('4.'));
   const b = object(p.body),
     affect = object(p.affect);
   const prior = input.previous === undefined ? undefined : validatePortablePerson(input.previous);

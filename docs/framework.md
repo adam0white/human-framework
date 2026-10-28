@@ -639,6 +639,12 @@ the source archive or the receiving authored chapter. This is approximate chapte
 continuity, not conversion of an HF3 save to HF4. HF4's unsupported lossless
 `PersonAuthoring.admission` DTO remains refused. The portable admission function
 returns ordinary validated authoring for the existing `createPerson` entry.
+`hf-portable-person/1` is the sole runtime portable route that G2 will extend.
+The public `hf-person/4` `PortablePersonEnvelope` and `PersonaAdmission` types
+remain archived schema descriptions; they are not a second admission path.
+HF4.3 is an approximate-chapter step under G2. Beliefs, active obligations,
+memory/calendar provenance and the third-world gate remain at the existing
+2026-11-17 checkpoint in `docs/hf4-game-needs.md` and the roadmap.
 
 The source must be awake, idle and alive. Unresolved commitments, recurring
 commitments, owed duties, lapse, precommitments, active projects, pregnancy,
@@ -651,16 +657,22 @@ settled. Days checks Burak's notebook, mistaken payment and agreed delivery.
 Commonstead keeps its existing unfinished-construction departure gate.
 
 For this increment the finite role map admits Days' Hacer, Selin and Burak,
-Voice's Hacer/Selin receiving roles, and Commonstead's Burak role. Existing
-full-calendar dialects remain available for their established routes. Voice's
-continuing prayers and work cannot depart through the approximate contract.
-That refusal is deliberate; a receiving game must implement a fuller contract
-before those duties can travel. Other identities and dialects fail plainly.
+and Commonstead's Burak role. Voice's portable Hacer/Selin routes are withheld
+until their routines have a supported departure contract; neither prayer nor
+work can become a one-way trap. Existing full-calendar dialects keep their
+established routes. The next route review is 2026-11-17. Other identities and
+dialects fail plainly.
 
-A fresh game prepares the complete cast, validates every arrival and pins the
+A fresh game prepares the complete cast. A person locked in another game is
+skipped with a named message; other people continue. The skipped identity is
+pinned in replay and cannot be checkpointed by this chapter. A lock in the same
+game refuses a fresh chapter and directs the player to resume. It validates
+every available arrival and pins the
 full input and resulting initial actors before one atomic shelf claim. Days and Commonstead claims project the actual admitted actor with the receiving
 provenance. Every portable arrival is locked to its receiving game until an actual
-current-actor checkpoint passes departure. A refused ending keeps that lock.
+current-actor checkpoint passes departure. A refused ending keeps that lock. Every fresh admission from a locked claim is
+refused, including another chapter in the same game. Resume and replay use the
+saved chapter with its pinned inputs.
 Central receiving chapters add local routines: their arrival claim
 retains the original source projection and locks it to the receiving game until
 an actual current-actor checkpoint can pass departure again. Generic claim APIs

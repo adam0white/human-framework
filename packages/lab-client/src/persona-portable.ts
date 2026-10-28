@@ -11,7 +11,6 @@ import { boundedPersonaJson, type PersonaEnvelope } from './persona.ts';
 
 const SOURCE_ROLES: Record<string, Record<string, string>> = {
   commonstead: { 'hf.cast.burak.stairwell': 'hf.cast.burak.stairwell' },
-  voice: { 'hf.cast.hacer.voice': 'hacer', 'hf.cast.selin.voice': 'selin' },
   days: {
     'hf.cast.hacer.voice': 'hf.cast.hacer.voice',
     'hf.cast.selin.voice': 'hf.cast.selin.voice',
@@ -59,6 +58,20 @@ function read(parent: PersonaEnvelope) {
     );
   return p;
 }
+/** One shelf identity/source validator. Ownership is separate from provenance. */
+export function portablePersonOwner(parent: PersonaEnvelope): string | undefined {
+  read(parent);
+  return (parent.transfer.portableClaim as { game: string } | undefined)?.game;
+}
+export function portablePersonRole(parent: PersonaEnvelope, game: string): string {
+  read(parent);
+  const target = SOURCE_ROLES[game]?.[parent.castId];
+  if (!target)
+    throw new Error('This person has no matching authored role here. Keep the source chapter or export it.');
+  if (parent.transfer.portableClaim)
+    throw new Error('This person still belongs to the receiving chapter. Continue or export it there.');
+  return target;
+}
 export function projectPortablePerson(input: {
   castId: string;
   game: string;
@@ -96,14 +109,11 @@ export function projectPortablePerson(input: {
   };
 }
 export function admitPortablePerson<T>(parent: PersonaEnvelope, game: string, opening: T): T {
-  const p = read(parent),
-    cast = canonicalCast(parent.castId);
+  const expected = portablePersonRole(parent, game);
+  const p = read(parent);
   const o = opening as { id?: string; identity?: { castId?: string } };
   const target = o.identity?.castId ?? o.id;
-  const claim = parent.transfer.portableClaim as { game?: unknown } | undefined;
-  // HF3 host roles are local names; only the canonical final identity component
-  // is accepted, never an arbitrary person with a matching profile.
-  if (!cast.games.includes(game) || !role(game, cast.castId, target) || (claim && claim.game !== game))
+  if (target !== expected)
     throw new Error(
       'This person has no matching authored role here. Your saved history has not been replaced.',
     );

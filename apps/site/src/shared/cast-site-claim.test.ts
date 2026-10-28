@@ -16,9 +16,10 @@ import { requireValue } from './require-value.ts';
 
 /** Transaction orchestration control; not a fabricated native played-source receipt. */
 describe('same-site native claim provenance', () => {
-  it('admits a played Days HF4 person into Voice HF3 and keeps its arrival claim in that host', async () => {
-    let head = daysHacer as PersonaEnvelope;
+  it('refuses the played Days HF4 route into Voice until its routines can depart', async () => {
+    const head = daysHacer as PersonaEnvelope;
     const original = structuredClone(head);
+    let writes = 0;
     const shelf = {
       request: async (message: Record<string, unknown>) => {
         if (message.action === 'prepareBatch')
@@ -27,32 +28,20 @@ describe('same-site native claim provenance', () => {
             blocked: [],
             inputs: [preparePersonaLife(head, 0)],
           };
-        head = requireValue((message.envelopes as PersonaEnvelope[])[0]);
+        writes++;
         return {};
       },
     } as unknown as CastShelf;
-    const result = await claimSiteCastBatch(
-      shelf,
-      [head.castId],
-      { game: 'voice', engine: '2.23.0', build: 'control', rules: 'cast-1' },
-      async (inputs) => {
-        const chapter = makeCastChapter(inputs);
-        const run = newRun(771, {}, chapter);
-        expect(run.ppl.hacer.body.satiety).toBe(
-          (original.transfer.portable as { state: { body: { satiety: number } } }).state.body.satiety,
-        );
-        return chapter;
-      },
-    );
-    expect(result?.initial.people?.[head.castId]?.initial).toBeTruthy();
-    expect(head.source).toEqual(original.source);
-    expect(head.transfer.portableClaim).toEqual({ game: 'voice' });
-    expect(nativeCastSource('voice', head)?.role).toBe('hacer');
-    expect(() => nativeCastSource('days', head)).toThrow(/receiving chapter/);
-    const repeat = makeCastChapter([preparePersonaLife(head, 0)]);
-    expect(newRun(771, {}, repeat).ppl.hacer.traits).toEqual(
-      newRun(771, {}, result?.initial).ppl.hacer.traits,
-    );
+    await expect(
+      claimSiteCastBatch(
+        shelf,
+        [head.castId],
+        { game: 'voice', engine: '2.23.0', build: 'control', rules: 'cast-1' },
+        async (inputs) => newRun(771, {}, makeCastChapter(inputs)),
+      ),
+    ).rejects.toThrow(/authored role/);
+    expect(writes).toBe(0);
+    expect(head).toEqual(original);
   });
   it('preserves original native source across same-site claims and refuses an external pass-through claim', async () => {
     let head = await createPersona({

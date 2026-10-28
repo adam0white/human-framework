@@ -5,7 +5,7 @@
 import { advanceChapterClock, type ChapterClock, createChapterClock } from '@adam0white/hf-legacy';
 import { CANONICAL_CAST, canonicalCast } from './cast.ts';
 import { boundedPersonaJson, createPersona, type PersonaEnvelope, type PersonaRequest } from './persona.ts';
-import { claimPortablePerson, portablePassport } from './persona-portable.ts';
+import { claimPortablePerson, portablePassport, portablePersonOwner } from './persona-portable.ts';
 
 export interface PersonaLife {
   version: 'hf-coarse-life/1';
@@ -239,15 +239,27 @@ export async function claimCastChapterBatch<T>(
   if (!batch.expectedHeads || castIds.some((id) => !Object.hasOwn(batch.expectedHeads, id)))
     throw new Error('The batch omitted expected cast parents.');
   if (batch.blocked.length) throw new Error(batch.blocked.map((p) => `${p.castId}: ${p.reason}`).join(' '));
-  if (!batch.inputs.length) {
+  const blocked: LifeBatchPreparation['blocked'] = [];
+  const inputs = batch.inputs.filter((input) => {
+    const owner = portablePassport(input.parent) ? portablePersonOwner(input.parent) : undefined;
+    if (!owner || owner === source.game) return true;
+    const name = canonicalCast(input.parent.castId).name;
+    const game = owner === 'days' ? 'Days' : owner === 'commonstead' ? 'Commonstead' : owner;
+    blocked.push({
+      castId: input.parent.castId,
+      reason: `${name} is still in ${game}. Continue or export that chapter. Other people can continue here.`,
+    });
+    return false;
+  });
+  if (!inputs.length && !blocked.length) {
     await shelf.request({ action: 'putBatch', envelopes: [], expectedHeads: batch.expectedHeads });
     current();
     return null;
   }
-  for (const input of batch.inputs) lifeAdmission(input, source.game);
-  const initial = await admit(structuredClone(batch.inputs));
+  for (const input of inputs) lifeAdmission(input, source.game);
+  const initial = await admit(structuredClone(inputs));
   const claims = await Promise.all(
-    batch.inputs.map(async (input) => {
+    inputs.map(async (input) => {
       const { revision, ...body } = input.parent;
       return createPersona({
         ...body,
@@ -269,5 +281,5 @@ export async function claimCastChapterBatch<T>(
   current();
   await shelf.request({ action: 'putBatch', envelopes: claims, expectedHeads: batch.expectedHeads });
   current();
-  return { initial, claims, inputs: batch.inputs };
+  return { initial, claims, inputs, blocked };
 }
