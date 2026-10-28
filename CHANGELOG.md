@@ -11,6 +11,16 @@ version, stamped with build and schema hashes in `RUN_ENGINE`. See the version p
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
+## [4.5.3] - 2026-10-28
+
+Engine: 4.5.3.
+
+### Fixed
+
+- Give each person's decision terms distinct effect IDs when a shared calendar event asks several people to choose from identically named offers. This fixes the Hearsay port's first-midnight duplicate-effect refusal.
+- Normalize rounded zero after signed utility terms cancel. This keeps later Hearsay decisions exportable instead of leaking negative zero into the archive.
+- Project supplied daily prayer times into duties for people who hold the sourced salah norm as obligatory or recommended. The existing calendar route supplies opening/closing opportunities; retained duties remain authoritative. This models the person's understanding, never divine acceptance. Games supply times and a `pray` action; no astronomy or host copy of the schedule is needed.
+
 ## [4.5.2] — 2026-10-28
 
 Engine: 4.5.2.

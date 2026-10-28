@@ -1,4 +1,5 @@
 import { expect, test } from 'vitest';
+import { canonicalJson } from '../src/run-canonical.ts';
 import { willOwner } from '../src/will/will.ts';
 import { activity, decisionContext, offer, person } from './w2-fixture.ts';
 
@@ -78,4 +79,24 @@ test('no legal candidate consumes no uniform, including all capacity vetoes', ()
   const result = willOwner.decide(p.actor.will, context);
   expect(result.decision.chosenAffordanceId).toBeNull();
   expect(result.rng).toEqual(p.cursor);
+});
+
+/** Hearsay's third-day export found -0 after signed terms cancel within floating error. */
+test('a cancelling decision utility remains canonical JSON', () => {
+  const p = person();
+  const context = decisionContext(p, [offer('a')]);
+  context.terms = [-0.1, -0.2, 0.3].map((value, i) => ({
+    id: `term:${i}`,
+    cause: 'input',
+    person: 'person',
+    at: 0,
+    applyPhase: 5 as const,
+    from: 'needs' as const,
+    to: 'will' as const,
+    offerId: 'a',
+    term: { source: 'need:food' as const, value },
+  }));
+  const result = willOwner.decide(p.actor.will, context);
+  expect(result.decision.considered[0]?.utility).toBe(0);
+  expect(JSON.parse(canonicalJson(result.decision))).toEqual(result.decision);
 });

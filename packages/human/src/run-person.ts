@@ -2,6 +2,8 @@
  * Portable admission and two-parent construction prepare distinct validated owner
  * inputs upstream. This helper does not infer genetics, norms, kin or memories.
  */
+import { prayerWindows } from './agenda/prayer.ts';
+import { DEFAULT_NORMS } from './conscience/catalog.ts';
 import { cloneData } from './core/clone.ts';
 import { canonicalJson, hashCanonical } from './run-canonical.ts';
 import type * as T from './run-schema.ts';
@@ -268,4 +270,54 @@ export function restoreAfterActionCue(actor: T.ActorState): void {
       break;
     }
   }
+}
+
+/** SCOPE: add the sourced daily schedule for a holder, without inventing earlier debt.
+ * Existing retained or authored windows and their debts remain authoritative. */
+export function installPrayerCalendar(
+  built: ConstructedActor,
+  definitions: T.DeepReadonly<T.RunSpec['definitions']>,
+  at: T.Time,
+): void {
+  const actor = built.actor;
+  if (
+    !actor.conscience.norms.some(
+      (norm) => norm.normId === 'salah' && ['obligatory', 'recommended'].includes(norm.standing),
+    ) ||
+    !definitions.calendar.days.some((day) => day.prayers)
+  )
+    return;
+  const sourced = DEFAULT_NORMS.find((norm) => norm.id === 'salah');
+  const norm = definitions.norms.find((item) => item.id === 'salah');
+  if (
+    !sourced ||
+    !norm ||
+    canonicalJson(norm.provenance) !== canonicalJson(sourced.provenance) ||
+    !sourced.sources.every((source) =>
+      norm.sources.some((item) => canonicalJson(item) === canonicalJson(source)),
+    )
+  )
+    throw new RangeError('Daily prayer calendar requires the sourced salah definition');
+  if (!definitions.actions.some((action) => action.id === 'pray'))
+    throw new RangeError('Daily prayer calendar requires the pray action');
+  for (const day of definitions.calendar.days)
+    for (const duty of prayerWindows(day)) {
+      if (duty.until <= at || actor.agenda.owed.some((owed) => owed.ofId === duty.id)) continue;
+      const named = actor.agenda.commitments.find((existing) => existing.id === duty.id);
+      if (named && (named.normId !== duty.normId || named.from !== duty.from || named.until !== duty.until))
+        throw new RangeError('Prayer calendar commitment ID conflicts with an existing commitment');
+      if (
+        named ||
+        actor.agenda.commitments.some(
+          (existing) =>
+            existing.kind === 'worship' &&
+            existing.normId === duty.normId &&
+            existing.from === duty.from &&
+            existing.until === duty.until,
+        )
+      )
+        continue;
+      actor.agenda.commitments.push({ ...duty, status: 'pending' });
+    }
+  built.continuation.deliberation.agenda.state = cloneData(actor.agenda);
 }
