@@ -229,6 +229,9 @@ export const reviewOwner: ReviewOwner = {
     return checked({ ...cloneData(input), resolves: [], seen: [] });
   },
   validate,
+  changeStyle(state, style, source) {
+    return checked({ ...cloneData(state), style, styleSource: source });
+  },
   terms(state, terms, context) {
     const agenda = context.agenda;
     return reviewTerms(state, agenda, terms) as ReturnType<ReviewOwner['terms']>;

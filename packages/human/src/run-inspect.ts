@@ -1,11 +1,16 @@
 /** SCOPE: detached current reads. Subjective views use only the observer's own
  * stores. Unknown other-person facts stay unknown. No RNG or normal-read hash. */
 
+import { readCapacities } from './body/injury.ts';
 import { cloneData } from './core/clone.ts';
+import { sigmoid } from './core/index.ts';
+import { outwardSigns, selfReport } from './impression.ts';
 import { projectPortablePerson } from './portable-person.ts';
+import { practiceAt } from './promptings/promptings.ts';
 import { exportRun } from './run.ts';
 import { PORTABLE_ADMISSION_REJECTED } from './run-admission.ts';
 import { RUN_ENGINE } from './run-engine.ts';
+import { conditionImpression } from './run-imagination.ts';
 import { freezeData, readKernel } from './run-kernel.ts';
 import { OWNERS } from './run-owners.ts';
 import { bodyPerception } from './run-person.ts';
@@ -13,6 +18,7 @@ import type * as T from './run-schema.ts';
 import { validateData } from './run-validation.ts';
 import { projectEvents } from './run-view.ts';
 import { skillLevel } from './skills/skills.ts';
+import { adviceWeight, standingAdvice } from './will/will.ts';
 
 function fail(
   path: string,
@@ -94,6 +100,30 @@ export function inspectCurrentRun(
     }));
   const body = (actor: T.ActorState) =>
     OWNERS.body.read(actor.body, { ...context(actor.id), perception: bodyPerception(actor, state.at) });
+  const condition = (actor: T.ActorState): T.ConditionReading => {
+    const readout = body(actor),
+      moving = readCapacities(actor.body).moving;
+    return {
+      outwardSigns: outwardSigns(actor, readout, moving, record.parameters.effective),
+      selfReport: selfReport(actor, readout, moving, record.parameters.effective),
+    };
+  };
+  const promptings = (actor: T.ActorState): T.PromptingsReading => ({
+    ...actor.promptings,
+    responses: actor.promptings.responses.map((response) => ({
+      ...response,
+      effectivePractice: practiceAt(
+        response,
+        state.at,
+        record.parameters.effective.promptings.practiceHalfLifeDays,
+      ),
+    })),
+  });
+  const advice = (actor: T.ActorState): T.AdviceReading =>
+    standingAdvice({ will: actor.will, now: state.at }, state.at).map((item) => ({
+      ...item,
+      effectiveWeight: adviceWeight(item, state.at),
+    }));
   const people: T.DeepReadonly<T.PersonView>[] = [];
   for (const id of q.people) {
     const actor = state.people[id];
@@ -114,6 +144,20 @@ export function inspectCurrentRun(
               },
             });
             break;
+          case 'needs':
+            parts.push({
+              select,
+              value: OWNERS.needs.read(actor.needs, {
+                ...context(id),
+                body: body(actor),
+                traits: actor.traits,
+                values: actor.values,
+              }),
+            });
+            break;
+          case 'condition':
+            parts.push({ select, value: condition(actor) });
+            break;
           case 'skills':
             parts.push({ select, value: readings(actor) });
             break;
@@ -121,10 +165,25 @@ export function inspectCurrentRun(
             parts.push({ select, value: { state: actor.body, readout: body(actor) } });
             break;
           case 'beliefs':
-            parts.push({ select, value: actor.memory.beliefs });
+            parts.push({
+              select,
+              value: actor.memory.beliefs.map(({ logOdds, ...belief }) => ({
+                ...belief,
+                credence: sigmoid(logOdds),
+              })),
+            });
             break;
           case 'sourceTrust':
             parts.push({ select, value: actor.memory.sourceTrust });
+            break;
+          case 'promptings':
+            parts.push({ select, value: promptings(actor) });
+            break;
+          case 'review':
+            parts.push({ select, value: actor.review });
+            break;
+          case 'advice':
+            parts.push({ select, value: advice(actor) });
             break;
           case 'traits':
             parts.push({ select, value: actor.traits });
@@ -200,6 +259,20 @@ export function inspectCurrentRun(
           case 'summary':
             parts.push({ select, value: { name: actor.name, mood: actor.affect.mood } });
             break;
+          case 'needs':
+            parts.push({
+              select,
+              value: OWNERS.needs.read(actor.needs, {
+                ...context(id),
+                body: body(actor),
+                traits: actor.traits,
+                values: actor.values,
+              }),
+            });
+            break;
+          case 'condition':
+            parts.push({ select, value: condition(actor) });
+            break;
           case 'skills':
             parts.push({ select, value: readings(actor) });
             break;
@@ -207,10 +280,25 @@ export function inspectCurrentRun(
             parts.push({ select, value: { perceived: body(actor).perceived } });
             break;
           case 'beliefs':
-            parts.push({ select, value: actor.memory.beliefs });
+            parts.push({
+              select,
+              value: actor.memory.beliefs.map(({ logOdds, ...belief }) => ({
+                ...belief,
+                credence: sigmoid(logOdds),
+              })),
+            });
             break;
           case 'sourceTrust':
             parts.push({ select, value: actor.memory.sourceTrust });
+            break;
+          case 'promptings':
+            parts.push({ select, value: promptings(actor) });
+            break;
+          case 'review':
+            parts.push({ select, value: actor.review });
+            break;
+          case 'advice':
+            parts.push({ select, value: advice(actor) });
             break;
           case 'relationships':
             parts.push({ select, value: { ties: actor.social.relationships, voices: actor.will.voices } });
@@ -242,17 +330,24 @@ export function inspectCurrentRun(
       // Never read target faculties to estimate what the observer has learned.
       // There is no admitted observation-to-skill/body/agenda projector yet.
       const observer = state.people[q.perspective.observer];
-      const impressions = observer?.social.impressions.find((i) => i.targetId === id)?.cues ?? [];
       const parts: T.DeepReadonly<T.SelectedPart<T.OtherParts>>[] = [];
       for (const select of q.select)
         switch (select) {
-          case 'summary':
-            parts.push({ select, value: { signs: { kind: 'unobserved' }, impressions } });
+          case 'condition':
+            if (!observer) throw new TypeError('Missing observer');
+            parts.push({ select, value: conditionImpression(observer, id, state.at) });
             break;
+          case 'summary':
+            parts.push({ select, value: { kind: 'unobserved' } });
+            break;
+          case 'needs':
           case 'skills':
           case 'body':
           case 'beliefs':
           case 'sourceTrust':
+          case 'promptings':
+          case 'review':
+          case 'advice':
           case 'relationships':
           case 'traits':
           case 'heldNorms':

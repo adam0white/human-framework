@@ -231,6 +231,14 @@ export const promptingsOwner: PromptingsOwner = {
     return checked(s);
   },
   validate,
+  learn(state, response, at) {
+    const s = checked(state);
+    if (s.responses.some((r) => r.id === response.id)) throw new RangeError('Duplicate prompting response');
+    if (s.responses.length >= PROMPTINGS_DEFAULTS.maxResponses)
+      throw new RangeError('Prompting response limit exceeded');
+    s.responses.push({ ...cloneData(response), lastUsedAt: at });
+    return checked(s);
+  },
   terms(state, context) {
     const terms = promptingTerms(
       state,

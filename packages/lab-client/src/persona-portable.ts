@@ -12,6 +12,30 @@ import { canonicalCast } from './cast.ts';
 import { boundedPersonaJson, type PersonaEnvelope } from './persona.ts';
 
 const SOURCE_ROLES: Record<string, Record<string, string>> = {
+  goodhands: {
+    'hf.cast.nermin.goodhands': 'nermin',
+    'hf.cast.hatice.hearsay': 'hatice',
+    'hf.cast.hulya.pass': 'hulya',
+    'hf.cast.aylin.murmur': 'aylin',
+    'hf.cast.derya.stairwell': 'derya',
+    'hf.cast.zeynep.pass': 'zeynep-pass',
+    'hf.cast.selin.voice': 'selin-voice',
+  },
+  pass: {
+    'hf.cast.selim.pass': 'selim',
+    'hf.cast.dilek.pass': 'dilek',
+    'hf.cast.rafi.pass': 'rafi',
+    'hf.cast.zeynep.pass': 'zeynep',
+    'hf.cast.hulya.pass': 'hulya',
+    'hf.cast.murat.murmur': 'murat',
+    'hf.cast.sam.smallworks': 'sam',
+  },
+  murmur: {
+    'hf.cast.dilan.murmur': 'dilan',
+    'hf.cast.aylin.murmur': 'aylin',
+    'hf.cast.ece.murmur': 'ece',
+    'hf.cast.murat.murmur': 'murat',
+  },
   stairwell: {
     'hf.cast.hacer.voice': 'hacer',
     'hf.cast.sevim.stairwell': 'sevim',
