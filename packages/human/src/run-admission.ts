@@ -205,6 +205,23 @@ export function checkBatchEnvelope(
         `${path}.payload.confidentMin`,
         'confidence distance must be between 0 and 0.5',
       );
+    if (entry.kind === 'voice.evidence-received') {
+      const { evidence, evidenceId, voiceId } = entry.payload;
+      if (entry.id !== evidenceId || evidenceId !== evidence.id)
+        return fail(
+          'invalid-admission',
+          `${path}.id`,
+          'use the stable outcome identity as input and evidence id',
+        );
+      if (evidence.occurredAt > entry.at)
+        return fail(
+          'invalid-admission',
+          `${path}.payload.evidence.occurredAt`,
+          'actual evidence cannot occur in the future',
+        );
+      if (!state.sources.some((source) => source.type === 'voice' && source.id === voiceId))
+        return fail('unknown-id', `${path}.payload.voiceId`, 'evidence requires a registered voice');
+    }
     if (entry.kind === 'social.received' && entry.payload.sourceTrustResponse) {
       const response = entry.payload.sourceTrustResponse;
       if (response.sourceId !== entry.payload.other)

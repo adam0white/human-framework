@@ -250,6 +250,7 @@ export type Payloads = {
     withdrawals: readonly { id: Id; revision: number }[];
   };
   'review.requested': { person: PersonId; reason: string };
+  'voice.evidence-received': PersonEvidence & { voiceId: Id; evidence: VoiceEvidence };
   'voice.promise-received': PersonEvidence & { voiceId: Id; promise: VoicePromiseData };
   'routine.authored': { person: PersonId; scheduleId: Id; entries: readonly RoutineEntry[] };
   'routine.withdrawn': { person: PersonId; scheduleId: Id };
@@ -1975,6 +1976,13 @@ export type ObservedActData = {
 export type KnownPersonFact =
   | { kind: 'trait'; trait: keyof Traits; value: Unit }
   | { kind: 'tie'; other: PersonId; closeness: Signed };
+/** Actual received evidence. The stable outcome id is also the input/evidence id.
+ * Valence describes this person's experience, never moral worth or divine response. */
+export type VoiceEvidence = { id: Id; occurredAt: Time; action: Id } & (
+  | { kind: 'act'; felt: Signed }
+  | { kind: 'request'; granted: boolean; felt: Signed }
+  | { kind: 'support'; effect: 'acknowledged' | 'comfort' }
+);
 export type VoicePromiseData = { kept: boolean; action?: Id };
 export type PracticeKind = 'reflection' | 'worship' | 'rest';
 export type CommitmentData = Omit<Commitment, 'status' | 'exempt'>;
@@ -2363,6 +2371,14 @@ export type EventData =
   | { kind: 'day-closed'; record: DayRecord }
   | { kind: 'year-closed'; record: YearRecord }
   | { kind: 'crisis'; change: 'onset' | 'recovered'; repertoireId: Id; until?: Time }
+  | {
+      kind: 'voice-evidence';
+      evidenceId: Id;
+      voiceId: Id;
+      evidence: VoiceEvidence;
+      before: Unit;
+      after: Unit;
+    }
   | { kind: 'voice-promise'; voiceId: Id; kept: boolean; before: Unit; after: Unit }
   | { kind: 'admission'; person: Id; castId?: Id; projectionHash?: Hash };
 export type BodyChange =
@@ -3112,6 +3128,7 @@ export type SourceFor<K extends keyof Payloads> = K extends
   | 'offers.received'
   | 'context.received'
   | 'body.received'
+  | 'voice.evidence-received'
   | 'action.resolved'
   | 'communication.resolved'
   | 'lifecycle.received'
@@ -3154,6 +3171,7 @@ export type SelfEventData =
           | 'goal-changed'
           | 'prompting'
           | 'review'
+          | 'voice-evidence'
           | 'voice-promise'
           | 'observation-attended';
       }
@@ -5607,6 +5625,7 @@ export type WillInput =
   | { kind: 'advice-withdrawn'; data: Payloads['advice.withdrawn'] }
   | { kind: 'coercion'; data: Payloads['coercion.received'] }
   | { kind: 'coercion-withdrawn'; data: Payloads['coercion.withdrawn'] }
+  | { kind: 'voice-evidence'; data: Payloads['voice.evidence-received'] }
   | { kind: 'promise'; data: Payloads['voice.promise-received'] }
   | { kind: 'settled'; activity: ActorActivity; outcome: ObservedOutcome; felt: Signed }
   | { kind: 'command-decision'; decision: CommandDecision; evidenceId: Id }

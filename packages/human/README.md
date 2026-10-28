@@ -133,6 +133,30 @@ never overrides `cannot` or `willNot`.
 Every resolution also carries a machine-readable `reason` (`need:food`, `norm:theft`, `asleep`, `distrust`,
 ...), which the renderer turns into a line in the person's voice.
 
+## Actual voice evidence (4.6)
+
+Send `voice.evidence-received` through `step` from the registered host. Its payload is
+`{person, voiceId, evidenceId, evidence}`. Register `voiceId` as a voice source. Use
+one stable, recipient-specific outcome identity for input `id`, `evidenceId` and
+`evidence.id`; redelivery of that identity is rejected, including after restore.
+
+Every evidence variant includes `{id, occurredAt, action}`. `occurredAt` may precede
+delivery but cannot be in its future. Add one of:
+
+- `{kind: 'act', felt}` for an actual voice act experienced by the person.
+- `{kind: 'request', granted, felt}` for the outcome of this person's request to the voice.
+- `{kind: 'support', effect: 'acknowledged'}` for received care or accompaniment without a claimed effect.
+- `{kind: 'support', effect: 'comfort'}` when the host asserts an actual comforting effect was received.
+
+`felt` is the person's experienced valence in [-1, 1]. A grant need not feel good;
+a refusal need not feel bad. Will derives trust using the existing assumed
+asymmetry and repetition discount; hosts cannot assign a trust target here.
+Support changes neither trust nor assent. Actual comfort uses the existing crisis
+recovery convention; mere narration cannot assert it. This contract concerns
+ordinary host-world acts, never divine acceptance or answered prayer. Read the
+structured `voice-evidence` event through `inspect` as host or recipient; other
+people do not gain access to it. A voice promise remains separate evidence.
+
 ## Authored reputation vocabulary (4.5)
 
 Add character words through the optional `definitions.reputationTraits` array:

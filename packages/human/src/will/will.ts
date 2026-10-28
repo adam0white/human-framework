@@ -1389,17 +1389,34 @@ function learnFromVoice(
 ): void {
   const verdict = resolution.verdict;
   if (verdict !== 'assented' && verdict !== 'complied' && verdict !== 'commanded') return;
+  learnVoiceOutcome(
+    p,
+    resolution.voiceId,
+    felt,
+    event,
+    verdict === 'complied' || verdict === 'commanded',
+    resolution.insisted === true,
+  );
+}
+/** One trust-learning kernel for experienced advice and actual voice outcomes. */
+function learnVoiceOutcome(
+  p: WillActor,
+  voiceId: EntityId,
+  felt: Signed,
+  event: { at?: Time; action?: string; reason?: string; creditKey?: string } = {},
+  complied = false,
+  insisted = false,
+): void {
   const W = WILL_DEFAULTS;
-  const v = ensureVoice(p, resolution.voiceId);
+  const v = ensureVoice(p, voiceId);
   const f = Math.max(-1, Math.min(1, felt));
   const before = v.trust;
   // A commanded activity is learned from as a complied one: no credit when it goes well, the faster loss when not.
-  const complied = verdict === 'complied' || verdict === 'commanded';
   // A coerced or insisted activity that went well earns no trust: the person did not choose to follow the
   // advice freely (insisting on what they would have done anyway takes the credit away too).
-  if (f > 0 && !complied && !resolution.insisted) {
+  if (f > 0 && !complied && !insisted) {
     const at = event.at ?? p.now;
-    const key = event.action ?? '';
+    const key = event.creditKey ?? event.action ?? '';
     v.credited ??= [];
     const list = v.credited;
     const prior = list.find((c) => c.action === key);
@@ -1680,6 +1697,7 @@ export const willOwner: import('../run-schema.ts').WillOwner = {
     const actor = { ...context.actor, will: state, effective: context.effective } as WillActor;
     const needReceipts: import('../run-schema.ts').WillAutonomyReceipt[] = [];
     const crisisReceipts: import('../run-schema.ts').WillMutationOutput['crisisReceipts'][number][] = [];
+    const events: import('../run-schema.ts').EventData[] = [];
     if ('type' in input) {
       if (input.type === 'precommit') {
         const pc = input.precommitment;
@@ -1725,6 +1743,38 @@ export const willOwner: import('../run-schema.ts').WillOwner = {
           endCommand(actor, input.data.reason, context.at);
           break;
         }
+        // SCOPE G8/G9: actual acts, answered requests and received support share
+        // will's existing evidence owner. No synthetic assent, new trust rate or Person.
+        case 'voice-evidence': {
+          const { voiceId, evidence, evidenceId } = input.data;
+          const voice = ensureVoice(actor, voiceId);
+          const before = voice.trust;
+          if (evidence.kind === 'support') {
+            if (evidence.effect === 'comfort')
+              crisisReceipts.push({ kind: 'comfort', receiptId: evidenceId });
+          } else {
+            learnVoiceOutcome(actor, voiceId, evidence.felt, {
+              at: context.at,
+              action: evidence.action,
+              creditKey: `evidence:${evidence.kind}:${evidence.action}`,
+              reason:
+                evidence.kind === 'request'
+                  ? evidence.granted
+                    ? 'request-granted'
+                    : 'request-refused'
+                  : 'voice-act',
+            });
+          }
+          events.push({
+            kind: 'voice-evidence',
+            voiceId,
+            evidenceId,
+            evidence: cloneData(evidence),
+            before,
+            after: voice.trust,
+          });
+          break;
+        }
         case 'promise':
           noteVoicePromise(actor, input.data.voiceId, { ...input.data.promise, at: context.at });
           break;
@@ -1759,7 +1809,7 @@ export const willOwner: import('../run-schema.ts').WillOwner = {
       needReceipts,
       crisisReceipts,
       effects: { terms: [], modifiers: [], appraisals: [] },
-      events: [],
+      events,
       nextBoundary: null,
       advancedThrough: context.at,
     };

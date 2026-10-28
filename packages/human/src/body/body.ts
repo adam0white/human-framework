@@ -577,14 +577,20 @@ function rhs(
         }
         case 'exertion':
           return (LN2 * (target - b.exertion)) / half;
-        case 'depletion':
-          return effort > P.depletionFloor
-            ? (((P.depletionPerHour * (effort - P.depletionFloor)) / (1 - P.depletionFloor)) *
-                (1 - 0.5 * b.fitness) *
-                (1 - b.depletion)) /
+        case 'depletion': {
+          // Assumption for game time: full focus fills 3% of the remaining store per hour.
+          // Low-effort work still recovers at the existing awake rest half-life; sleep has no focus load.
+          const focusLoad = b.asleep ? 0 : (0.03 * clip(ctx.load.focus) * (1 - b.depletion)) / 60;
+          const physical =
+            effort > P.depletionFloor
+              ? (((P.depletionPerHour * (effort - P.depletionFloor)) / (1 - P.depletionFloor)) *
+                  (1 - 0.5 * b.fitness) *
+                  (1 - b.depletion)) /
                 60
-            : (-LN2 * b.depletion) /
+              : (-LN2 * b.depletion) /
                 ((b.asleep ? P.depletionSleepHalfLife : P.depletionRestHalfLife) / recovery);
+          return physical + focusLoad;
+        }
         case 'health':
           return (
             ((fed && acuteGate ? P.healthRecoveryPerDay * recovery * (b.asleep ? 1.5 : 1) : 0) -

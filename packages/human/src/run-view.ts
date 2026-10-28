@@ -84,6 +84,7 @@ export function projectEvents(
       case 'goal-changed':
       case 'prompting':
       case 'review':
+      case 'voice-evidence':
       case 'voice-promise':
       case 'observation-attended':
         visible.push({

@@ -1,0 +1,297 @@
+{
+  "spec": {
+    "definitions": {
+      "actions": [
+        {
+          "demands": {
+            "effort": 0,
+            "focus": 0,
+            "mode": "awake",
+            "requires": {}
+          },
+          "id": "check-well",
+          "label": "check-well",
+          "norms": [],
+          "tags": []
+        },
+        {
+          "demands": {
+            "effort": 0,
+            "focus": 0,
+            "mode": "awake",
+            "requires": {}
+          },
+          "id": "walk-lane",
+          "label": "walk-lane",
+          "norms": [],
+          "tags": []
+        },
+        {
+          "demands": {
+            "effort": 0,
+            "focus": 0,
+            "mode": "sleep",
+            "requires": {}
+          },
+          "id": "sleep",
+          "label": "sleep",
+          "norms": [],
+          "tags": []
+        }
+      ],
+      "calendar": {
+        "dayMs": 86400000,
+        "days": [
+          {
+            "dayIndex": 0,
+            "start": 0,
+            "windows": []
+          },
+          {
+            "dayIndex": 1,
+            "start": 86400000,
+            "windows": []
+          },
+          {
+            "dayIndex": 2,
+            "start": 172800000,
+            "windows": []
+          },
+          {
+            "dayIndex": 3,
+            "start": 259200000,
+            "windows": []
+          }
+        ],
+        "epoch": {
+          "dayIndex": 0,
+          "id": "winter-epoch",
+          "msOfDay": 0,
+          "simulationAt": 0
+        },
+        "id": "winter"
+      },
+      "lexicon": {
+        "actions": {},
+        "names": {
+          "danyal": "Danyal",
+          "idris": "Idris",
+          "samira": "Samira",
+          "tariq": "Tariq",
+          "yusuf": "Yusuf"
+        },
+        "prefer": "name",
+        "roles": {}
+      },
+      "marriageCustoms": [],
+      "methods": [],
+      "norms": [],
+      "routines": [],
+      "skillTransfers": [],
+      "skills": [],
+      "sources": [
+        {
+          "id": "lefthand",
+          "type": "host"
+        },
+        {
+          "id": "player",
+          "type": "voice"
+        },
+        {
+          "id": "yusuf",
+          "type": "person"
+        },
+        {
+          "id": "idris",
+          "type": "person"
+        },
+        {
+          "id": "samira",
+          "type": "person"
+        },
+        {
+          "id": "danyal",
+          "type": "person"
+        },
+        {
+          "id": "tariq",
+          "type": "person"
+        }
+      ]
+    },
+    "host": {
+      "edition": "left-hand@5",
+      "id": "lefthand",
+      "schema": "left-hand@5"
+    },
+    "id": "lefthand",
+    "lifecycle": {
+      "kinPremises": [],
+      "kinScopes": []
+    },
+    "seed": 7,
+    "start": 72000000,
+    "world": {
+      "facts": [],
+      "hostState": {
+        "active": []
+      },
+      "revision": 0
+    }
+  },
+  "person": {
+    "biography": [],
+    "id": "samira",
+    "identity": {
+      "birthAt": -914472000000,
+      "name": "Samira",
+      "sex": "female"
+    },
+    "origin": {
+      "basis": {
+        "id": "author:samira",
+        "kind": "evidence"
+      },
+      "kind": "authored",
+      "traits": {
+        "evidence": {
+          "id": "traits:samira",
+          "kind": "evidence"
+        },
+        "kind": "explicit-authoring"
+      }
+    },
+    "state": {
+      "affect": {
+        "emotions": [],
+        "mood": {
+          "arousal": 0.3,
+          "valence": 0
+        },
+        "regulation": 0.3
+      },
+      "agenda": {
+        "commitments": [],
+        "exemptions": {
+          "illnessSeverity": {
+            "kind": "unobserved"
+          },
+          "traveling": {
+            "kind": "unobserved"
+          }
+        },
+        "goals": [],
+        "owed": [],
+        "precommitments": []
+      },
+      "beliefs": [],
+      "body": {
+        "asleep": false,
+        "bladder": {
+          "fill": 0,
+          "pending": 0
+        },
+        "circadianPeakMs": 28800000,
+        "depletion": 0,
+        "doze": {
+          "basis": {
+            "at": 72000000,
+            "author": "world",
+            "kind": "authored"
+          },
+          "context": {
+            "posture": "reclined",
+            "stimulation": 0.1
+          }
+        },
+        "exertion": 0,
+        "exposures": [],
+        "fitness": 0.5,
+        "health": 1,
+        "hydration": 0.85,
+        "illnesses": [],
+        "injuries": [],
+        "pain": 0,
+        "satiety": 0.8,
+        "since": 72000000,
+        "sleepDebtHours": 0,
+        "sleepPressure": 0.85
+      },
+      "bonds": {
+        "courtships": [],
+        "marriages": []
+      },
+      "consequences": [],
+      "context": {
+        "scarcity": {
+          "basis": "engineering:source-zero-context",
+          "kind": "prior",
+          "value": 0
+        },
+        "smoking": {
+          "kind": "unobserved"
+        }
+      },
+      "expectations": [],
+      "family": {
+        "aptitudes": {},
+        "contactCovered": []
+      },
+      "groups": [],
+      "habits": [],
+      "heldNorms": [],
+      "needs": {
+        "autonomy": 0.7,
+        "belonging": 0.7,
+        "competence": 0.6,
+        "esteem": 0.6,
+        "leisure": 0.6,
+        "meaning": 0.6,
+        "safety": 0.8
+      },
+      "promptings": {
+        "reading": "none",
+        "responses": []
+      },
+      "relationships": [],
+      "reserve": {},
+      "retention": {
+        "chronicleDays": 120,
+        "trace": 32
+      },
+      "review": {
+        "atMsOfDay": 75600000,
+        "style": "accounting"
+      },
+      "skills": [],
+      "sourceTrust": [],
+      "traits": {
+        "agreeableness": 0.5,
+        "conscientiousness": 0.5,
+        "emotionality": 0.5,
+        "extraversion": 0.5,
+        "honesty": 0.5,
+        "openness": 0.5
+      },
+      "values": {
+        "achievement": 0.5,
+        "benevolence": 0.5,
+        "conformity": 0.5,
+        "hedonism": 0.5,
+        "power": 0.5,
+        "security": 0.5,
+        "selfDirection": 0.5,
+        "stimulation": 0.5,
+        "tradition": 0.5,
+        "universalism": 0.5
+      },
+      "voices": [
+        {
+          "trust": 0.5,
+          "voiceId": "player"
+        }
+      ]
+    }
+  }
+}
