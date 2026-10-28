@@ -400,3 +400,55 @@ test('released approximate v1 still accepts an actual quiet native legacy shape 
   expect(passport.version).toBe(1);
   expect(passport.history[0]?.summary).toContain('full source memory remains archived');
 });
+
+test('runtime portable arrival preserves prior history and refuses invalid admission atomically', () => {
+  const { passport } = source();
+  passport.history = [{ game: 'prior-world', summary: 'Finished the earlier repair.' }];
+  passport.omittedHistory = 3;
+  const { spec, opening } = destination(passport);
+  const run = need(createRun(spec));
+  need(createPerson(run, authoredPerson('resident', 'Resident')));
+  need(step(run, { until: START + 61000, inputs: [] }));
+  opening.portable!.mapping.offsetMs = 0;
+  const input = {
+    id: 'retained-arrival',
+    at: START + 61001,
+    source: { type: 'host' as const, id: spec.host.id },
+    kind: 'person.arrived' as const,
+    payload: { authored: opening, arrivalEvidenceId: 'accepted-job' },
+  };
+  const before = exportRun(run);
+  const future = structuredClone(input);
+  future.payload.authored.portable!.mapping.offsetMs = 61002;
+  expect(step(run, { until: START + 61001, inputs: [future] }).ok).toBe(false);
+  expect(exportRun(run)).toEqual(before);
+  const invalid = structuredClone(input);
+  invalid.payload.authored.portable!.mapping.references = [];
+  expect(step(run, { until: START + 61001, inputs: [invalid] }).ok).toBe(false);
+  expect(exportRun(run)).toEqual(before);
+  need(step(run, { until: START + 61001, inputs: [input] }));
+  expect(actor(run, 'guest').memory.beliefs[0]?.prop).toBe('stairs-safe');
+  expect(actor(run, 'guest').agenda.commitments[0]).toMatchObject({
+    from: START,
+    until: START + 60000,
+    status: 'pending',
+  });
+  const query = {
+    perspective: { kind: 'host' as const },
+    people: ['guest'],
+    select: ['persona' as const],
+    portable: { person: 'guest', castId: 'cast.ada', castRevision: '1' },
+  };
+  const projected = need(inspect(run, query)).people[0];
+  if (projected?.kind !== 'host') throw Error('missing host');
+  const part = projected.parts.find((p) => p.select === 'persona');
+  if (part?.select !== 'persona') throw Error('missing passport');
+  expect(part.value.history).toEqual(passport.history);
+  expect(part.value.omittedHistory).toBe(3);
+  expect(inspect(run, { ...query, portable: { ...query.portable, castId: 'forged' } }).ok).toBe(false);
+  const archive = exportRun(run);
+  const restored = need(restoreRun(JSON.parse(JSON.stringify(archive))));
+  expect(exportRun(restored)).toEqual(archive);
+  expect(inspect(restored, query)).toEqual(inspect(run, query));
+  expect(need(replay(archive)).fullHash).toBe(archive.hashes.full);
+});

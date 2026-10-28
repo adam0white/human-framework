@@ -11,6 +11,17 @@ version, stamped with build and schema hashes in `RUN_ENGINE`. See the version p
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
+## [4.8.1] — 2026-10-28
+
+Engine: 4.8.1.
+
+### Portable runtime arrivals
+
+- `person.arrived` accepts the same validated portable admission used by `createPerson`. Hosts can keep an uninvited visitor outside the Run until an actual decision admits them. Invalid references, future mapped sources and duplicate actors refuse the complete transaction.
+- Runtime arrival preserves the original source clock mapping and duty timestamps. It does not simulate actions or body changes during the person's absence. The arriving actor begins at the actual arrival time; normal faculties then own elapsed duties.
+- Public persona projection retains previous portable history and omitted-history counts for runtime arrivals by reading the accepted arrival input. The complete source admission remains in the replay log. Restore and replay retain the same projection.
+- Client 0.5.5 pins this HF patch; kit 0.5.23 adds that client peer and includes the already merged resumable recipe traversal. Existing SDK and game publication receipts remain separate.
+
 ## [4.8.0] — 2026-10-28
 
 Engine: 4.8.0.

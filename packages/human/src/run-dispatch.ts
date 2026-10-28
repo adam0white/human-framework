@@ -9,6 +9,7 @@ import { cognitionOwner } from './cognition/cognition.ts';
 import { estimateQuantity } from './cognition/quantity.ts';
 import { conversationOwner } from './conversation/conversation.ts';
 import { cloneData } from './core/clone.ts';
+import { installPortable, preparePortable } from './portable-admission.ts';
 import { checkPersonAuthoring, classifyQueuedInput, PORTABLE_ADMISSION_REJECTED } from './run-admission.ts';
 
 export function copyOffer(offer: T.DeepReadonly<T.Offer>): T.Offer {
@@ -2634,11 +2635,33 @@ export class Frame {
     }
   }
   addPerson(input: T.DeepReadonly<T.PersonAuthoring>, cause: T.Id): void {
-    const admitted = checkPersonAuthoring(this.state, this.record.spec.definitions, false, input);
-    if (!admitted.ok) throw new RangeError(admitted.error.message);
     if (input.admission) throw new RangeError(PORTABLE_ADMISSION_REJECTED);
+    // Runtime arrivals use the same portable validation and faculty installation
+    // as authored openings. The accepted input retains the original passport.
+    let prepared: ReturnType<typeof preparePortable>;
+    try {
+      const portable = input.portable;
+      const mappedAt =
+        portable?.person.version === 2
+          ? portable.person.retained.at + portable.mapping.offsetMs
+          : this.state.at;
+      if (!Number.isSafeInteger(mappedAt) || mappedAt > this.state.at)
+        throw new RangeError('Portable arrival cannot come from a future mapped source');
+      // Preserve the admitted source clock and duties. Absent actors acquire no
+      // simulated actions; construction installs them at the actual arrival time.
+      prepared = preparePortable(input, this.record.spec.definitions, mappedAt, [
+        ...Object.keys(this.state.people),
+        ...this.state.lifecycle.entities.map((entity) => entity.id),
+      ]);
+    } catch (error) {
+      if (!(error instanceof TypeError || error instanceof RangeError)) throw error;
+      throw new RangeError(error.message);
+    }
+    const admitted = checkPersonAuthoring(this.state, this.record.spec.definitions, false, prepared.authored);
+    if (!admitted.ok) throw new RangeError(admitted.error.message);
     const context = this.context(input.id, 1, [cause]);
     const built = constructAuthoredActor(admitted.value, context, this.record.spec.seed, OWNERS);
+    if (prepared.retained) installPortable(built, prepared.retained);
     installPrayerCalendar(built, this.record.spec.definitions, context.at);
     const issues = validateActor(
       built.actor,

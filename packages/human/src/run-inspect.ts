@@ -212,7 +212,16 @@ export function inspectCurrentRun(
                 '$.portable',
                 'Portable projection requires one person and explicit cast identity/revision',
               );
-            const initial = record.initialPeople.find((p) => p.id === id);
+            let initial = record.initialPeople.find((p) => p.id === id);
+            // Arrived actors retain their admission in accepted transactions,
+            // never in the authored opening. Walk immutable nodes only for this
+            // cold portable projection; ordinary reads do not scan history.
+            for (let node = record.history; initial === undefined && node; node = node.previous) {
+              const arrival = node.transaction.inputs.find(
+                (input) => input.kind === 'person.arrived' && input.payload.authored.id === id,
+              );
+              if (arrival?.kind === 'person.arrived') initial = arrival.payload.authored;
+            }
             if (initial?.identity.castId !== undefined && initial.identity.castId !== q.portable.castId)
               return fail('$.portable.castId', 'Cast identity differs from the admitted person');
             try {
