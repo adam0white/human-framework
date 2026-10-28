@@ -630,6 +630,8 @@ Three reviews of the endless-play draft, 2026-10-04.
 
 ## 12. After graduation: deferred features
 
+**2026-10-28 sweep.** The [routing inventory](../roadmap-sweep-2026-10-28.md) records open items, reasons, targets and later superseding dispositions. Unscheduled ordinary work routes by 2026-11-03; existing future implementation dates remain. Explicit owner, player and device gates remain. Historical findings require current verification before a duplicate fix.
+
 The owner graduated Game 3 at the 2026-10-05 playtest. This is the one list of deferred game work; earlier sections point here. Targets:
 - **T1:** the first pass if Game 3 is picked up again.
 - **T2:** needs a framework (HF) release first.
