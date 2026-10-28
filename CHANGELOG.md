@@ -61,7 +61,7 @@ Engine: 4.6.0.
 
 ### Migration
 
-Migration: format-4 archives, including 4.5 saves, are refused with `invalid-admission` at `$.version`. Format-5 archives with a different package/build/schema are refused with `unsupported-archive` at `$.engine`. Both refusals require starting fresh; no archive conversion is provided. Hosts must treat exported journals as recent diagnostics and keep complete replay inputs in `history`. Journal length no longer equals a lifetime allocation counter. No game upgrade or deployment is included in package publication.
+Migration: format-4 archives, including 4.5 saves, are refused with `invalid-schema` at `$.version`. Format-5 archives with a different package/build/schema are refused with `unsupported-archive` at `$.engine`. Both refusals require starting fresh; no archive conversion is provided. Hosts must treat exported journals as recent diagnostics and keep complete replay inputs in `history`. Journal length no longer equals a lifetime allocation counter. No game upgrade or deployment is included in package publication.
 
 ### G10
 
