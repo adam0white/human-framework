@@ -157,15 +157,7 @@ export function constructAuthoredActor(
     ambient,
     retention,
   };
-  // Only completed actual/authored outcome history supplies the after-action cue.
-  // A request, intention, failure or interruption is not the previous completed act.
-  for (let index = actor.memory.episodes.length - 1; index >= 0; index--) {
-    const episode = actor.memory.episodes[index];
-    if (episode?.kind === 'outcome' && episode.actorId === actor.id && episode.tags.includes('completed')) {
-      if (episode.action !== undefined) actor.lastAction = episode.action;
-      break;
-    }
-  }
+  restoreAfterActionCue(actor);
   const anchor = (owner: T.FacultyId): T.ContinuousAnchor => ({
     at: context.at,
     conditionId: hashCanonical(
@@ -262,4 +254,18 @@ export function bodyPerception(actor: T.DeepReadonly<T.ActorState>, at: T.Time):
     fastingDays++;
   }
   return { fasting: true, fastingDays };
+}
+
+/** Restore the same completed-action cue after either authored or retained memory installation. */
+export function restoreAfterActionCue(actor: T.ActorState): void {
+  delete actor.lastAction;
+  // Only completed actual/authored outcome history supplies the after-action cue.
+  // A request, intention, failure or interruption is not the previous completed act.
+  for (let index = actor.memory.episodes.length - 1; index >= 0; index--) {
+    const episode = actor.memory.episodes[index];
+    if (episode?.kind === 'outcome' && episode.actorId === actor.id && episode.tags.includes('completed')) {
+      if (episode.action !== undefined) actor.lastAction = episode.action;
+      break;
+    }
+  }
 }

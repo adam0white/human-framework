@@ -13,9 +13,12 @@ import {
 } from '../src/index.ts';
 import { actor, authoredPerson, exampleSpec, need, START, setup } from './support.ts';
 
-function source() {
+function source(actionId = 'work') {
   const spec = exampleSpec();
   spec.definitions.norms = structuredClone(DEFAULT_NORMS);
+  spec.definitions.actions = spec.definitions.actions.map((a) =>
+    a.id === 'work' ? { ...a, id: actionId } : a,
+  );
   const person = authoredPerson('ada', 'Ada');
   person.identity.castId = 'cast.ada';
   person.state.beliefs = [
@@ -44,14 +47,14 @@ function source() {
     },
   ];
   person.state.expectations = [
-    { key: 'work', needs: { competence: 0.1 }, successRate: 0.7, samples: 3, valence: 0.2 },
+    { key: actionId, needs: { competence: 0.1 }, successRate: 0.7, samples: 3, valence: 0.2 },
   ];
   person.biography = [
     {
       id: 'e0',
       at: START - 200,
       kind: 'outcome',
-      action: 'work',
+      action: actionId,
       actorId: 'ada',
       valence: 0.3,
       salience: 0.6,
@@ -65,7 +68,7 @@ function source() {
     {
       id: 'c3',
       kind: 'duty',
-      actions: ['work'],
+      actions: [actionId],
       from: START,
       until: START + 60000,
       importance: 0.8,
@@ -76,7 +79,7 @@ function source() {
     {
       ofId: 'old-prayer',
       kind: 'worship',
-      actions: ['work'],
+      actions: [actionId],
       reason: 'missed',
       at: START - 1000,
       normId: 'salah',
@@ -124,7 +127,8 @@ function destination(passport: PortablePerson) {
 }
 
 test('supported public projection admits remembered beliefs, trust, duties and sourced calendar into a third world and replays', () => {
-  const { passport } = source();
+  const { run: sourceRun, passport } = source();
+  expect(actor(sourceRun, 'ada').lastAction).toBe('work');
   expect(passport.version).toBe(2);
   expect(passport.retained?.calendar.norms.find((n) => n.id === 'salah')?.provenance.kind).toBe('religious');
   const { spec, opening } = destination(passport),
@@ -133,6 +137,7 @@ test('supported public projection admits remembered beliefs, trust, duties and s
   need(createPerson(run, opening));
   expect(opening).toEqual(before);
   const arrived = actor(run, 'guest');
+  expect(arrived.lastAction).toBe('help');
   expect(arrived.memory.beliefs[0]).toMatchObject({
     prop: 'stairs-safe',
     logOdds: 1.2,
@@ -161,6 +166,31 @@ test('supported public projection admits remembered beliefs, trust, duties and s
   expect(arrived.agenda.owed[0]).toMatchObject({ ofId: 'old-prayer', actions: ['help'], normId: 'salah' });
   const archive = exportRun(run);
   expect(exportRun(need(restoreRun(JSON.parse(JSON.stringify(archive))))).hashes).toEqual(archive.hashes);
+  expect(need(replay(archive)).fullHash).toBe(archive.hashes.full);
+});
+
+test('retained expectations resolve complete action IDs containing @ before targeted keys', () => {
+  const { passport } = source('work@stairs');
+  if (passport.version !== 2) throw Error('expected retained passport');
+  passport.retained.memory.expectations.push({
+    ...passport.retained.memory.expectations[0]!,
+    key: 'work@stairs@ada',
+  });
+  const { spec, opening } = destination(passport);
+  spec.definitions.actions = spec.definitions.actions.map((a) =>
+    a.id === 'help' ? { ...a, id: 'help@landing' } : a,
+  );
+  opening.portable!.mapping.references = [
+    { kind: 'action', source: 'work@stairs', target: 'help@landing' },
+    { kind: 'source', source: 'world', target: 'third-world' },
+  ];
+  const run = need(createRun(spec));
+  need(createPerson(run, opening));
+  expect(actor(run, 'guest').memory.expectations.map((e) => e.key)).toEqual([
+    'help@landing',
+    'help@landing@guest',
+  ]);
+  const archive = exportRun(run);
   expect(need(replay(archive)).fullHash).toBe(archive.hashes.full);
 });
 

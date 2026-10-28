@@ -10,7 +10,7 @@ import {
   validatePortablePerson,
 } from './portable-person.ts';
 import { canonicalJson } from './run-canonical.ts';
-import type { ConstructedActor } from './run-person.ts';
+import { type ConstructedActor, restoreAfterActionCue } from './run-person.ts';
 import type * as T from './run-schema.ts';
 
 const refuse = (): never => {
@@ -63,12 +63,13 @@ export function preparePortable(
     entity: entities,
     proposition: undefined,
   };
+  const mappedId = (kind: keyof typeof allowed, id: string): string =>
+    maps.get(`${kind}:${id}`) ??
+    ((kind === 'entity' || kind === 'source') && (id === passport.source.personId || id === 'self')
+      ? authored.id
+      : id);
   const map = (kind: keyof typeof allowed, id: string): string => {
-    const mapped =
-      maps.get(`${kind}:${id}`) ??
-      ((kind === 'entity' || kind === 'source') && (id === passport.source.personId || id === 'self')
-        ? authored.id
-        : id);
+    const mapped = mappedId(kind, id);
     const destination = `${kind}:${mapped}`;
     const source = (kind === 'entity' || kind === 'source') && id === 'self' ? passport.source.personId : id;
     if (resolvedTargets.has(destination) && resolvedTargets.get(destination) !== source) refuse();
@@ -112,12 +113,25 @@ export function preparePortable(
     gist.lastAt = clock(gist.lastAt);
   }
   for (const expectation of retained.memory.expectations) {
-    const at = expectation.key.indexOf('@');
-    if (at < 0) expectation.key = map('action', expectation.key);
-    else {
-      if (expectation.key.indexOf('@', at + 1) >= 0) refuse();
-      expectation.key = `${map('action', expectation.key.slice(0, at))}@${map('entity', expectation.key.slice(at + 1))}`;
+    const key = expectation.key;
+    // Memory uses a complete action ID for an untargeted expectation. IDs may
+    // contain @, so only interpret a separator after resolving that whole ID.
+    if (maps.has(`action:${key}`) || allowed.action.has(key)) {
+      expectation.key = map('action', key);
+      continue;
     }
+    const pairs: { action: string; target: string }[] = [];
+    for (let at = key.indexOf('@'); at >= 0; at = key.indexOf('@', at + 1)) {
+      const action = key.slice(0, at),
+        target = key.slice(at + 1);
+      if (allowed.action.has(mappedId('action', action)) && allowed.entity.has(mappedId('entity', target)))
+        pairs.push({ action, target });
+    }
+    // The flat memory key cannot distinguish multiple valid action/target
+    // decompositions. Refuse ambiguity rather than change its remembered meaning.
+    if (pairs.length !== 1) refuse();
+    const pair = pairs[0]!;
+    expectation.key = `${map('action', pair.action)}@${map('entity', pair.target)}`;
   }
   for (const contradiction of retained.memory.contradictions) {
     contradiction.sourceId = map('source', contradiction.sourceId);
@@ -187,6 +201,7 @@ export function preparePortable(
 }
 export function installPortable(built: ConstructedActor, retained: PortableRetainedState): void {
   built.actor.memory = cloneData(retained.memory);
+  restoreAfterActionCue(built.actor);
   built.actor.agenda.commitments = cloneData(retained.agenda.commitments);
   built.actor.agenda.owed = cloneData(retained.agenda.owed);
   built.actor.agenda.nextId = retained.agenda.nextId;
