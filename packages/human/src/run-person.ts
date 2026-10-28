@@ -304,8 +304,10 @@ export function installPrayerCalendar(
     for (const duty of prayerWindows(day)) {
       if (duty.until <= at || actor.agenda.owed.some((owed) => owed.ofId === duty.id)) continue;
       const named = actor.agenda.commitments.find((existing) => existing.id === duty.id);
-      if (named && (named.normId !== duty.normId || named.from !== duty.from || named.until !== duty.until))
+      if (named && (named.kind !== 'worship' || named.normId !== duty.normId))
         throw new RangeError('Prayer calendar commitment ID conflicts with an existing commitment');
+      // Portable admission already mapped a retained duty's clock. Keep that
+      // window authoritative even when the receiving calendar uses other times.
       if (
         named ||
         actor.agenda.commitments.some(

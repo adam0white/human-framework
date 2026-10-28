@@ -19,7 +19,7 @@ Engine: 4.5.3.
 
 - Give each person's decision terms distinct effect IDs when a shared calendar event asks several people to choose from identically named offers. This fixes the Hearsay port's first-midnight duplicate-effect refusal.
 - Normalize rounded zero after signed utility terms cancel. This keeps later Hearsay decisions exportable instead of leaking negative zero into the archive.
-- Project supplied daily prayer times into duties for people who hold the sourced salah norm as obligatory or recommended. The existing calendar route supplies opening/closing opportunities; retained duties remain authoritative. This models the person's understanding, never divine acceptance. Games supply times and a `pray` action; no astronomy or host copy of the schedule is needed.
+- Project supplied daily prayer times into duties for people who hold the sourced salah norm as obligatory or recommended. The existing calendar route supplies opening/closing opportunities; retained duties remain authoritative, including their mapped windows on portable admission. This models the person's understanding, never divine acceptance. Games supply times and a `pray` action; no astronomy or host copy of the schedule is needed.
 
 ## [4.5.2] — 2026-10-28
 

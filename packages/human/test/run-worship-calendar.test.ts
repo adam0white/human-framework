@@ -67,11 +67,19 @@ test('supplied prayer times give a holder five sourced worship duties and replay
   const arriving = authoredPerson('guest', 'Guest');
   arriving.portable = {
     person: JSON.parse(JSON.stringify(persona.value)),
-    mapping: { offsetMs: 0, references: [] },
+    mapping: { offsetMs: MINUTE, references: [] },
   };
-  const receiving = need(createRun(spec));
+  const receiving = need(createRun({ ...spec, start: spec.start + MINUTE }));
   need(createPerson(receiving, arriving));
-  expect(exportRun(receiving).current.people.guest?.agenda.commitments).toHaveLength(5);
+  const retained = exportRun(receiving);
+  expect(retained.current.people.guest?.agenda.commitments).toEqual(
+    archive.current.people.ada?.agenda.commitments.map((duty) => ({
+      ...duty,
+      from: duty.from + MINUTE,
+      until: duty.until + MINUTE,
+    })),
+  );
+  expect(need(replay(retained)).fullHash).toBe(retained.hashes.full);
 
   need(step(run, { until: 9 * 60 * MINUTE + 1, inputs: [] }));
   expect(exportRun(run).current.people.ada?.agenda.owed.some((item) => item.ofId === 'salah:0:fajr')).toBe(
