@@ -229,6 +229,40 @@ it('forecasts another person from held evidence and never from their hidden body
       bodyForecast: [{ label: 'leak', durationMs: 1, load: { effort: 0, focus: 0, mode: 'awake' } }],
     }).ok,
   ).toBe(false);
+  for (const key of ['tie:third', `trust:${HOST.id}`, 'skill:undefined-skill'] as const) {
+    const referenced = setup();
+    const third = numericalPerson(3);
+    third.id = 'third';
+    accepted(createPerson(referenced, third));
+    accepted(
+      step(referenced, {
+        until: 0,
+        inputs: [
+          {
+            id: 'held-reference',
+            at: 0,
+            source: HOST,
+            kind: 'person.reported',
+            payload: {
+              person: 'chef',
+              target: 'cook',
+              teller: 'chef',
+              evidenceId: 'held-reference',
+              key,
+              value: 0.8,
+              weight: 1,
+            },
+          },
+        ],
+      }),
+    );
+    const referenceBefore = exportRun(referenced);
+    const heldAnswer = accepted(preview(referenced, { ...query, inputs: [] }));
+    expect(heldAnswer.impression?.cues).toContainEqual(
+      expect.objectContaining({ key, confidence: expect.any(Number) }),
+    );
+    expect(exportRun(referenced)).toEqual(referenceBefore);
+  }
   const closed = setup();
   accepted(step(closed, { until: 0, inputs: [] }));
   const closedBefore = exportRun(closed);

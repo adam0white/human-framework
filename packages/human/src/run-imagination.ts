@@ -14,7 +14,18 @@ export function conditionImpression(observer: T.ActorState, targetId: T.Id, at: 
   };
 }
 
-export function imaginedPerson(observer: T.ActorState, targetId: T.Id, at: T.Time): T.PersonAuthoring {
+export function imaginedPerson(
+  observer: T.ActorState,
+  targetId: T.Id,
+  at: T.Time,
+  definitions: T.DeepReadonly<T.Definitions>,
+): T.PersonAuthoring {
+  const skills = new Set(definitions.skills.map((skill) => skill.id));
+  const voices = new Set(
+    definitions.sources
+      .filter((source) => source.type === 'voice' || source.type === 'person')
+      .map((source) => source.id),
+  );
   const value = (key: string) => believedValue(observer, targetId, key, at);
   const held = conditionImpression(observer, targetId, at);
   return {
@@ -68,14 +79,13 @@ export function imaginedPerson(observer: T.ActorState, targetId: T.Id, at: T.Tim
         meaning: 0.5,
       },
       skills: held.cues
-        .filter((c) => c.key.startsWith('skill:'))
+        .filter((c) => c.key.startsWith('skill:') && skills.has(c.key.slice(6)))
         .map((c) => ({ id: c.key.slice(6), level: value(c.key), practicedMs: 0, lastPracticed: at })),
       heldNorms: [],
       beliefs: [],
       consequences: [],
-      sourceTrust: held.cues
-        .filter((c) => c.key.startsWith('trust:'))
-        .map((c) => ({ sourceId: c.key.slice(6), trust: value(c.key) })),
+      // trust:<id> cues concern heeding advice, not credibility of information.
+      sourceTrust: [],
       context: { scarcity: { kind: 'unobserved' }, smoking: { kind: 'unobserved' } },
       relationships: held.cues
         .filter((c) => c.key.startsWith('tie:'))
@@ -84,7 +94,7 @@ export function imaginedPerson(observer: T.ActorState, targetId: T.Id, at: T.Tim
           affection: value(c.key),
         })),
       voices: held.cues
-        .filter((c) => c.key.startsWith('trust:'))
+        .filter((c) => c.key.startsWith('trust:') && voices.has(c.key.slice(6)))
         .map((c) => ({ voiceId: c.key.slice(6), trust: value(c.key) })),
       agenda: {
         exemptions: { traveling: { kind: 'unobserved' }, illnessSeverity: { kind: 'unobserved' } },

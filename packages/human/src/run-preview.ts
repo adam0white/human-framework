@@ -62,6 +62,15 @@ export function preview(
         };
       const observer = record.current.people[query.perspective.observer];
       if (!observer) throw new TypeError('Preview observer disappeared');
+      const actor = imaginedPerson(observer, query.person, record.current.at, record.spec.definitions);
+      const heldReferences = actor.state.relationships.map((tie) => ({
+        id: hashCanonical('hf-run4/held-reference', tie.otherId),
+        subject: tie.otherId,
+        predicate: 'observer-held-reference',
+        value: true,
+        at: record.current.at,
+        provenance: { source: record.spec.host.id, evidenceId: 'observer-impression-prior' },
+      }));
       const imagined = createRun({
         ...(cloneData(record.spec) as T.RunSpec),
         id: hashCanonical(
@@ -74,13 +83,10 @@ export function preview(
         start: record.current.at,
         lifecycle: { kinPremises: [], kinScopes: [] },
         definitions: { ...(cloneData(record.spec.definitions) as T.Definitions), routines: [] },
-        world: { revision: 0, facts: [], hostState: null },
+        world: { revision: 0, facts: heldReferences, hostState: null },
       });
       if (!imagined.ok) return imagined;
-      const authored = createPerson(
-        imagined.value,
-        imaginedPerson(observer, query.person, record.current.at),
-      );
+      const authored = createPerson(imagined.value, actor);
       if (!authored.ok) return authored;
       const result = preview(imagined.value, {
         ...query,
