@@ -39,7 +39,7 @@
     "prepack": "npm run build"
   },
   "dependencies": {
-    "@adam0white/human-framework": "4.9.0",
+    "@adam0white/human-framework": "4.6.0",
     "@adam0white/hf-legacy": "npm:@adam0white/human-framework@3.0.0"
   },
   "devDependencies": {
