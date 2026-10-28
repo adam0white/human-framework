@@ -3,6 +3,7 @@
 
 import { readCapacities } from './body/injury.ts';
 import { cloneData } from './core/clone.ts';
+import { sigmoid } from './core/index.ts';
 import { outwardSigns, selfReport } from './impression.ts';
 import { projectPortablePerson } from './portable-person.ts';
 import { practiceAt } from './promptings/promptings.ts';
@@ -164,7 +165,13 @@ export function inspectCurrentRun(
             parts.push({ select, value: { state: actor.body, readout: body(actor) } });
             break;
           case 'beliefs':
-            parts.push({ select, value: actor.memory.beliefs });
+            parts.push({
+              select,
+              value: actor.memory.beliefs.map(({ logOdds, ...belief }) => ({
+                ...belief,
+                credence: sigmoid(logOdds),
+              })),
+            });
             break;
           case 'sourceTrust':
             parts.push({ select, value: actor.memory.sourceTrust });
@@ -273,7 +280,13 @@ export function inspectCurrentRun(
             parts.push({ select, value: { perceived: body(actor).perceived } });
             break;
           case 'beliefs':
-            parts.push({ select, value: actor.memory.beliefs });
+            parts.push({
+              select,
+              value: actor.memory.beliefs.map(({ logOdds, ...belief }) => ({
+                ...belief,
+                credence: sigmoid(logOdds),
+              })),
+            });
             break;
           case 'sourceTrust':
             parts.push({ select, value: actor.memory.sourceTrust });

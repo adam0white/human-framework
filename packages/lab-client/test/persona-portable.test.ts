@@ -341,3 +341,78 @@ it('carries retained Stairwell history through an authored opening and replay', 
   expect(need(replay(archive)).fullHash).toBe(archive.hashes.full);
   expect(parent).toEqual(before);
 });
+
+it('continues Aylin from Murmur into Good Hands through the existing v2 shelf format', async () => {
+  const {
+    createPerson: createModernPerson,
+    createRun,
+    inspect,
+    exportRun,
+    replay,
+  } = await import('@adam0white/human-framework');
+  const fixture = JSON.parse(
+    readFileSync(new URL('./fixtures/retained-authoring.json', import.meta.url), 'utf8'),
+  ) as { spec: RunSpec; person: PersonAuthoring };
+  const need = <T>(result: Result<T>): T => {
+    if (!result.ok) throw new Error(result.error.message);
+    return result.value;
+  };
+  const id = 'hf.cast.aylin.murmur',
+    cast = canonicalCast(id);
+  const spec = structuredClone(fixture.spec);
+  spec.host.id = 'murmur';
+  spec.definitions.sources = spec.definitions.sources.map((source) =>
+    source.type === 'host' ? { ...source, id: 'murmur' } : source,
+  );
+  const source = structuredClone(fixture.person);
+  source.id = 'aylin';
+  source.identity.castId = id;
+  source.biography = [
+    {
+      id: 'e0',
+      at: spec.start - 1000,
+      kind: 'observation',
+      valence: 0.2,
+      salience: 0.8,
+      summary: 'Aylin spoke with her sister.',
+      tags: ['family'],
+      basis: { kind: 'authored', author: 'murmur' },
+      provenance: ['family-note'],
+    },
+  ];
+  const run = need(createRun(spec));
+  need(createModernPerson(run, source));
+  const projection = need(
+    inspect(run, {
+      perspective: { kind: 'host' },
+      people: ['aylin'],
+      select: ['persona'],
+      portable: { person: 'aylin', castId: id, castRevision: cast.revision },
+    }),
+  );
+  const person = projection.people[0]?.parts[0];
+  if (person?.select !== 'persona' || !('format' in person.value)) throw new Error('Missing v2 person');
+  const portable = person.value;
+  expect(portable.version).toBe(2);
+  const parent = await createPersona({
+    format: 'hf-persona/1',
+    castId: id,
+    castRevision: cast.revision,
+    branchId: 'murmur-goodhands-control',
+    parentRevision: null,
+    source: { game: 'murmur', engine: portable.source.engine, build: 'control', rules: 'portable-2' },
+    transfer: { castPassport: 'hf-portable-person/2', portable },
+    limitations: [],
+  });
+  const prepared = preparePersonaLife(parent, 0);
+  expect(prepared.parent).toEqual(parent);
+  const opening = structuredClone(fixture.person);
+  opening.id = 'aylin';
+  opening.identity.castId = id;
+  const admitted = admitPortablePerson(parent, 'goodhands', opening, { offsetMs: 0, references: [] });
+  const target = need(createRun(fixture.spec));
+  need(createModernPerson(target, admitted));
+  const archive = exportRun(target);
+  expect(archive.current.people.aylin?.memory.episodes[0]?.summary).toBe('Aylin spoke with her sister.');
+  expect(need(replay(archive)).fullHash).toBe(archive.hashes.full);
+});

@@ -2719,6 +2719,7 @@ export type Knowledge<T> =
   | { kind: 'prior'; value: T; basis: Id }
   | { kind: 'unobserved' };
 export type InspectSelection = InspectQuery['select'][number];
+export type BeliefReading = Omit<Belief, 'logOdds'> & { credence: Unit };
 export type HostParts = {
   needs: readonly NeedReading[];
   condition: ConditionReading;
@@ -2727,7 +2728,7 @@ export type HostParts = {
   skills: readonly SkillReading[];
   summary: { name: string; alive: boolean; activity: { id: Id; actionId: Id } | null };
   body: { state: BodyState; readout: BodyReadout };
-  beliefs: readonly Belief[];
+  beliefs: readonly BeliefReading[];
   sourceTrust: Readonly<Record<Id, Unit>>;
   promptings: PromptingsReading;
   review: ReviewState;
@@ -2753,7 +2754,7 @@ export type SelfParts = {
   skills: readonly SkillReading[];
   summary: { name: string; mood: AffectState['mood'] };
   body: SelfBody;
-  beliefs: readonly Belief[];
+  beliefs: readonly BeliefReading[];
   sourceTrust: Readonly<Record<Id, Unit>>;
   promptings: PromptingsReading;
   review: ReviewState;
@@ -2774,7 +2775,7 @@ export type OtherParts = {
   skills: Knowledge<readonly SkillReading[]>;
   summary: { kind: 'unobserved' };
   body: Knowledge<OutwardSigns>;
-  beliefs: Knowledge<readonly Belief[]>;
+  beliefs: Knowledge<readonly BeliefReading[]>;
   sourceTrust: Knowledge<Readonly<Record<Id, Unit>>>;
   promptings: Knowledge<PromptingsReading>;
   review: Knowledge<ReviewState>;

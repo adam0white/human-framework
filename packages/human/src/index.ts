@@ -18,6 +18,7 @@ export type {
   ActualConsequences,
   AdviceReading,
   AuthoredPersonState,
+  BeliefReading,
   BodyForecastLoad,
   BodyForecastSpan,
   CalendarMapping,

@@ -5,6 +5,23 @@ import { accepted, HOST, numericalPerson, numericalSpec, sleepOffer } from './ru
 
 function setup(pain = 0.8, seed = 7) {
   const spec = numericalSpec(seed);
+  spec.definitions.skills = [{ id: 'cooking', label: 'Cooking', domain: 'general' }];
+  spec.definitions.actions = [
+    ...spec.definitions.actions,
+    {
+      id: 'cook',
+      label: 'Cook',
+      demands: {
+        effort: 0.1,
+        focus: 0.1,
+        mode: 'awake',
+        requires: {},
+        skill: { id: 'cooking', difficulty: 0.8, domain: 'general' },
+      },
+      tags: [],
+      norms: [],
+    },
+  ];
   spec.definitions.sources = [HOST, { type: 'person', id: 'chef' }, { type: 'person', id: 'cook' }];
   const run = accepted(createRun(spec));
   for (const id of ['chef', 'cook']) {
@@ -12,6 +29,7 @@ function setup(pain = 0.8, seed = 7) {
     person.id = id;
     person.state.body.pain = id === 'cook' ? pain : 0;
     person.state.reserve = { pain: 0.5 };
+    person.state.beliefs = [{ prop: 'work-reliable', logOdds: 0, updatedAt: 0, sources: [] }];
     accepted(createPerson(run, person));
   }
   return run;
@@ -21,8 +39,16 @@ it('projects reserve-filtered signs and spoken condition; held readings carry pr
   const run = setup();
   const before = exportRun(run);
   const host = accepted(
-    inspect(run, { perspective: { kind: 'host' }, people: ['cook'], select: ['condition', 'needs'] }),
+    inspect(run, {
+      perspective: { kind: 'host' },
+      people: ['cook'],
+      select: ['condition', 'needs', 'beliefs'],
+    }),
   );
+  expect(host.people[0]?.parts[2]).toEqual({
+    select: 'beliefs',
+    value: [{ prop: 'work-reliable', credence: 0.5, updatedAt: 0, sources: [] }],
+  });
   const part = host.people[0]?.parts[0];
   if (part?.select !== 'condition' || !('outwardSigns' in part.value)) throw new Error('Missing condition');
   expect(part.value.outwardSigns.pain).toBeGreaterThan(part.value.selfReport.pain);
@@ -101,7 +127,22 @@ it('projects reserve-filtered signs and spoken condition; held readings carry pr
 it('forecasts another person from held evidence and never from their hidden body or target RNG', () => {
   const first = setup(0.1),
     second = setup(0.9, 19);
-  const offers = [{ ...sleepOffer(), person: 'cook' }];
+  const offers = [
+    {
+      ...sleepOffer(),
+      id: 'cook-now',
+      actionId: 'cook',
+      label: 'Cook',
+      durationMs: 60000,
+      person: 'cook',
+      demands: {
+        ...sleepOffer().demands,
+        mode: 'awake' as const,
+        skill: { id: 'cooking', difficulty: 0.8, domain: 'general' as const },
+      },
+      expected: { needs: { competence: 1 }, followedBy: [], provenance: ['authored-cooking-control'] },
+    },
+  ];
   const query = {
     perspective: { kind: 'person' as const, observer: 'chef' },
     person: 'cook',
@@ -133,6 +174,23 @@ it('forecasts another person from held evidence and never from their hidden body
   expect(answer).toEqual(accepted(preview(second, query)));
   expect(answer.impression?.cues).toContainEqual({ key: 'pain', value: 0, confidence: 0 });
   expect(answer.possibilities.some((event) => event.data.kind === 'decision')).toBe(true);
+  const self = accepted(preview(first, { ...query, perspective: { kind: 'person', observer: 'cook' } }));
+  expect(self.possibilities.some((event) => event.data.kind === 'decision')).toBe(true);
+  expect(
+    preview(first, {
+      ...query,
+      perspective: { kind: 'person', observer: 'cook' },
+      inputs: [
+        {
+          id: 'forged',
+          at: 0,
+          source: { type: 'host', id: 'wrong' },
+          kind: 'decision.requested',
+          payload: { person: 'cook', reason: 'forged', treatment: 'ordinary', offerRevision: 1 },
+        },
+      ],
+    }).ok,
+  ).toBe(false);
   expect(exportRun(first)).toEqual(before);
   accepted(
     step(second, {
@@ -147,8 +205,8 @@ it('forecasts another person from held evidence and never from their hidden body
             person: 'chef',
             evidenceId: 'heard',
             target: 'cook',
-            key: 'pain',
-            value: 0.9,
+            key: 'skill:cooking',
+            value: 1,
             weight: 1,
             teller: 'cook',
           },
@@ -158,6 +216,13 @@ it('forecasts another person from held evidence and never from their hidden body
   );
   const informed = accepted(preview(second, query));
   expect(informed.impression).not.toEqual(answer.impression);
+  expect(informed.possibilities).not.toEqual(answer.possibilities);
+  expect(answer.possibilities.find((event) => event.data.kind === 'decision')?.data).toMatchObject({
+    decision: { chosenAction: null },
+  });
+  expect(informed.possibilities.find((event) => event.data.kind === 'decision')?.data).toMatchObject({
+    decision: { chosenAction: 'cook' },
+  });
   expect(
     preview(first, {
       ...query,

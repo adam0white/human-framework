@@ -106,13 +106,24 @@ export function preview(
       };
     }
     for (const entry of query.inputs)
-      if (entry.source.type !== 'person' || entry.source.id !== query.person)
+      if (
+        !(entry.source.type === 'person' && entry.source.id === query.person) &&
+        !(
+          entry.source.type === 'host' &&
+          entry.source.id === record.spec.host.id &&
+          entry.at === record.current.at &&
+          'person' in entry.payload &&
+          entry.payload.person === query.person &&
+          ['offers.received', 'suggestion.received', 'decision.requested'].includes(entry.kind)
+        )
+      )
         return {
           ok: false,
           error: {
             code: 'invalid-admission',
             path: '$.inputs',
-            message: 'Person preview accepts only the observer’s own inputs',
+            message:
+              'Person preview accepts own inputs or scoped current hypothetical host offers, suggestions and decisions',
           },
         };
   }
