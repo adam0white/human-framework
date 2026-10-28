@@ -178,7 +178,7 @@ function tuningRanges(tuning: RunTuning, path: string): ContractError | null {
     ['assent.pressure', tuning.assent?.pressure, 0.05, 0.15],
     ['doze.hazardScale', tuning.doze?.hazardScale, 0.5, 1.5],
     ['crisis.hazardScale', tuning.crisis?.hazardScale, 0.5, 1.5],
-    ['promptings.practiceHalfLifeDays', tuning.promptings?.practiceHalfLifeDays, 30, 120],
+    ['promptings.practiceHalfLifeDays', tuning.promptings?.practiceHalfLifeDays, 1, 120],
     ['promptings.echoRate', tuning.promptings?.echoRate, 0.05, 0.15],
   ];
   for (const [field, value, low, high] of ranges) {

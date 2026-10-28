@@ -68,6 +68,14 @@ Migration: format-4 archives, including 4.5 saves, are refused with `invalid-adm
 ### G10–14 migration
 
 - The engine identity changes; older engine archives are refused. Current exports restore and replay exactly. Beliefs can now include a withdrawal base and recorded source contributions, and tuning provenance paths now name the coefficient. Keep replay hashes. No game port or host parity is claimed by this framework release.
+## [4.9.0] — 2026-10-28
+
+Engine: 4.9.0.
+
+- Extend `inspect` with reserve-filtered outward/spoken condition, confidence-bearing observer impressions, and faculty-owned needs, prompting practice, review state and retained-advice readings. Another observer never receives the target's hidden state. Custom authored `trait:<id>` assessments enter through existing reported evidence.
+- Support another-person answer preview by constructing a detached prior actor from the observer's held impressions and explicit hypothetical current offers and suggestions. The ordinary runtime evaluates it with a fixed separate RNG; target state and RNG are never consulted. Return cue confidence and unknown-faculty limitations. Host outcomes remain unresolved.
+- Add timestamped `prompting.response-learned` and `review.style-changed` inputs through the existing faculties. Keep response bounds, existing review history and source provenance. Allow the same practice-decay half-life to range from 1 to 120 days, including 3.106; no fast switch or alternate kernel.
+- Migration: other-person `summary` is `unobserved`; `condition` replaces its raw stored-cue output with the supported decayed reading. The engine identity changes. Older archives are refused explicitly; start fresh. Current-version exports restore and replay exactly. The three game integrations remain separate delivery work.
 
 ## [4.5.3] - 2026-10-28
 

@@ -1,6 +1,9 @@
 /** SCOPE: detached execution of the same runtime, stopping at actual host truth.
  * A person may propose only its own actions and receives only its visible events. */
+import { cloneData } from './core/clone.ts';
+import { createPerson, createRun } from './run.ts';
 import { hashCanonical } from './run-canonical.ts';
+import { conditionImpression, imaginedPerson } from './run-imagination.ts';
 import { forkKernel, freezeData, readKernel } from './run-kernel.ts';
 import { OWNERS } from './run-owners.ts';
 import { bodyPerception } from './run-person.ts';
@@ -19,15 +22,89 @@ export function preview(
   if (!record.current.people[query.person])
     return { ok: false, error: { code: 'unknown-id', path: '$.person', message: 'Unknown preview actor' } };
   if (query.perspective.kind === 'person') {
-    if (query.perspective.observer !== query.person)
+    if (!record.current.people[query.perspective.observer])
       return {
         ok: false,
-        error: {
-          code: 'invalid-admission',
-          path: '$.perspective',
-          message: 'Person preview requires the same observer',
-        },
+        error: { code: 'unknown-id', path: '$.perspective.observer', message: 'Unknown observer' },
       };
+    const observerId = query.perspective.observer;
+    if (observerId !== query.person) {
+      // A new run contains only an imagined actor. Its constructor never receives
+      // the target. Explicit hypothetical offers are premises, never target truth.
+      if (query.bodyForecast !== undefined)
+        return {
+          ok: false,
+          error: {
+            code: 'invalid-admission',
+            path: '$.bodyForecast',
+            message: 'Another person’s body is unknown',
+          },
+        };
+      if (
+        query.inputs.some(
+          (entry) =>
+            entry.at !== record.current.at ||
+            !('person' in entry.payload) ||
+            entry.payload.person !== query.person ||
+            !['offers.received', 'suggestion.received', 'decision.requested'].includes(entry.kind) ||
+            (!(entry.source.type === 'host' && entry.source.id === record.spec.host.id) &&
+              !(entry.source.type === 'person' && entry.source.id === observerId)),
+        )
+      )
+        return {
+          ok: false,
+          error: {
+            code: 'invalid-admission',
+            path: '$.inputs',
+            message:
+              'Another-person preview accepts only current hypothetical offers, suggestions and decisions; future state is unknown',
+          },
+        };
+      const observer = record.current.people[query.perspective.observer];
+      if (!observer) throw new TypeError('Preview observer disappeared');
+      const imagined = createRun({
+        ...(cloneData(record.spec) as T.RunSpec),
+        id: hashCanonical(
+          'hf-run4/observer-preview',
+          query.person,
+          query.perspective.observer,
+          record.current.at,
+        ),
+        seed: 0,
+        start: record.current.at,
+        lifecycle: { kinPremises: [], kinScopes: [] },
+        definitions: { ...(cloneData(record.spec.definitions) as T.Definitions), routines: [] },
+        world: { revision: 0, facts: [], hostState: null },
+      });
+      if (!imagined.ok) return imagined;
+      const authored = createPerson(
+        imagined.value,
+        imaginedPerson(observer, query.person, record.current.at),
+      );
+      if (!authored.ok) return authored;
+      const result = preview(imagined.value, {
+        ...query,
+        perspective: { kind: 'host' },
+        inputs: query.inputs.map((entry) => ({
+          ...entry,
+          source: { type: 'host', id: record.spec.host.id },
+        })),
+      });
+      if (!result.ok) return result;
+      return {
+        ok: true,
+        value: freezeData({
+          ...result.value,
+          perspective: query.perspective,
+          impression: conditionImpression(observer, query.person, record.current.at),
+          knowledgeLimit: [
+            'This answer uses only the observer’s held impressions and explicit hypothetical offers and suggestions.',
+            'Unknown faculties use neutral engineering priors. Current hidden state, target RNG and future host evidence are never read. Confidence describes evidence, not a calibrated probability of the answer.',
+            ...result.value.knowledgeLimit,
+          ],
+        }),
+      };
+    }
     for (const entry of query.inputs)
       if (entry.source.type !== 'person' || entry.source.id !== query.person)
         return {

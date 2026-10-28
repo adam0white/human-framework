@@ -4544,7 +4544,7 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
       { kind: 'pattern', pattern: '^fear@.*$' },
       {
         kind: 'pattern',
-        pattern: '^trait:(?:honesty|emotionality|extraversion|agreeableness|conscientiousness|openness)$',
+        pattern: '^trait:.+$',
       },
       { kind: 'pattern', pattern: '^tie:.*$' },
       { kind: 'pattern', pattern: '^trust:.*$' },
@@ -5674,6 +5674,11 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
           },
         },
       },
+      'prompting.response-learned': {
+        optional: false,
+        shape: { kind: 'ref', name: 'PromptingResponseLearnedPayload' },
+      },
+      'review.style-changed': { optional: false, shape: { kind: 'ref', name: 'ReviewStyleChangedPayload' } },
       'review.requested': {
         optional: false,
         shape: {
@@ -5831,6 +5836,31 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
   SourceFor$253: { kind: 'ref', name: 'Source' },
   SourceFor$254: { kind: 'ref', name: 'Source' },
   SourceFor$255: { kind: 'ref', name: 'Source' },
+  PromptingResponseLearnedPayload: {
+    kind: 'object',
+    fields: {
+      person: { optional: false, shape: { kind: 'scalar', name: 'PersonId' } },
+      response: {
+        optional: false,
+        shape: {
+          kind: 'object',
+          fields: {
+            id: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
+            kind: { optional: false, shape: { kind: 'ref', name: 'PromptingResponseKind' } },
+            practice: { optional: false, shape: { kind: 'scalar', name: 'Unit' } },
+            cue: { optional: true, shape: { kind: 'string' } },
+          },
+        },
+      },
+    },
+  },
+  ReviewStyleChangedPayload: {
+    kind: 'object',
+    fields: {
+      person: { optional: false, shape: { kind: 'scalar', name: 'PersonId' } },
+      style: { optional: false, shape: { kind: 'ref', name: 'ReviewStyle' } },
+    },
+  },
   SourceFor$256: { kind: 'ref', name: 'Source' },
   SourceFor$257: { kind: 'ref', name: 'Source' },
   SourceFor$258: {
@@ -6826,6 +6856,26 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
         fields: {
           id: { optional: false, shape: { kind: 'scalar', name: 'InputId' } },
           at: { optional: false, shape: { kind: 'scalar', name: 'Time' } },
+          source: { optional: false, shape: { kind: 'ref', name: 'Source' } },
+          kind: { optional: false, shape: { kind: 'literal', value: 'prompting.response-learned' } },
+          payload: { optional: false, shape: { kind: 'ref', name: 'PromptingResponseLearnedPayload' } },
+        },
+      },
+      {
+        kind: 'object',
+        fields: {
+          id: { optional: false, shape: { kind: 'scalar', name: 'InputId' } },
+          at: { optional: false, shape: { kind: 'scalar', name: 'Time' } },
+          source: { optional: false, shape: { kind: 'ref', name: 'Source' } },
+          kind: { optional: false, shape: { kind: 'literal', value: 'review.style-changed' } },
+          payload: { optional: false, shape: { kind: 'ref', name: 'ReviewStyleChangedPayload' } },
+        },
+      },
+      {
+        kind: 'object',
+        fields: {
+          id: { optional: false, shape: { kind: 'scalar', name: 'InputId' } },
+          at: { optional: false, shape: { kind: 'scalar', name: 'Time' } },
           source: { optional: false, shape: { kind: 'ref', name: 'SourceFor$256' } },
           kind: { optional: false, shape: { kind: 'literal', value: 'review.requested' } },
           payload: {
@@ -7254,8 +7304,13 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
               { kind: 'literal', value: 'summary' },
               { kind: 'literal', value: 'skills' },
               { kind: 'literal', value: 'body' },
+              { kind: 'literal', value: 'condition' },
+              { kind: 'literal', value: 'needs' },
               { kind: 'literal', value: 'beliefs' },
               { kind: 'literal', value: 'sourceTrust' },
+              { kind: 'literal', value: 'promptings' },
+              { kind: 'literal', value: 'review' },
+              { kind: 'literal', value: 'advice' },
               { kind: 'literal', value: 'traits' },
               { kind: 'literal', value: 'heldNorms' },
               { kind: 'literal', value: 'relationships' },

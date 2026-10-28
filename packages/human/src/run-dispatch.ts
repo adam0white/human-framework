@@ -2312,6 +2312,46 @@ export class Frame {
       case 'review.requested':
         this.review(input.payload.person, context);
         return;
+      case 'prompting.response-learned': {
+        const person = input.payload.person;
+        const state = OWNERS.promptings.learn(
+          this.actor(person).promptings,
+          input.payload.response,
+          context.at,
+        );
+        const continuation = this.continuation(person);
+        this.install(
+          person,
+          { promptings: state },
+          {
+            narrative: {
+              ...continuation.narrative,
+              promptings: { anchor: { at: context.at, conditionId: input.id }, state },
+            },
+          },
+        );
+        return;
+      }
+      case 'review.style-changed': {
+        const person = input.payload.person;
+        const state = OWNERS.review.changeStyle(
+          this.actor(person).review,
+          input.payload.style,
+          input.source.id,
+        );
+        const continuation = this.continuation(person);
+        this.install(
+          person,
+          { review: state },
+          {
+            narrative: {
+              ...continuation.narrative,
+              review: { anchor: { at: context.at, conditionId: input.id }, state },
+            },
+          },
+        );
+        return;
+      }
       case 'consequences.received': {
         const data = input.payload,
           actor = this.actor(data.person);

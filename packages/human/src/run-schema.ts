@@ -256,6 +256,13 @@ export type Payloads = {
   };
   'review.requested': { person: PersonId; reason: string };
   'voice.evidence-received': PersonEvidence & { voiceId: Id; evidence: VoiceEvidence };
+  /** Learn a response at the input time, with host-authored initial practice. */
+  'prompting.response-learned': {
+    person: PersonId;
+    response: { id: Id; kind: PromptingResponseKind; practice: Unit; cue?: string };
+  };
+  /** Change the person's held review style; source is the input source. */
+  'review.style-changed': { person: PersonId; style: ReviewStyle };
   'voice.promise-received': PersonEvidence & { voiceId: Id; promise: VoicePromiseData };
   'routine.authored': { person: PersonId; scheduleId: Id; entries: readonly RoutineEntry[] };
   'routine.withdrawn': { person: PersonId; scheduleId: Id };
@@ -350,8 +357,13 @@ export type InspectQuery = {
     | 'summary'
     | 'skills'
     | 'body'
+    | 'condition'
+    | 'needs'
     | 'beliefs'
     | 'sourceTrust'
+    | 'promptings'
+    | 'review'
+    | 'advice'
     | 'traits'
     | 'heldNorms'
     | 'relationships'
@@ -399,7 +411,14 @@ export type PreviewQuery = {
   fidelity?: Fidelity;
   inputs: readonly Input[];
 };
+export type ImpressionReading = {
+  targetId: PersonId;
+  cues: readonly { key: string; value: number; confidence: Unit; seenAt?: Time }[];
+};
+export type ConditionReading = { outwardSigns: OutwardSigns; selfReport: OutwardSigns };
 export type PreviewResult = {
+  /** Observer-held cues, including zero-confidence priors for missing condition cues. */
+  impression?: ImpressionReading;
   bodyForecast?: { person: PersonId; from: Time; spans: readonly BodyForecastSpan[] };
   at: Time;
   hypothetical: true;
@@ -1959,7 +1978,7 @@ export type ImpressionKey =
   | StateCue
   | 'regard'
   | `fear@${Id}`
-  | `trait:${keyof Traits}`
+  | `trait:${Id}`
   | `tie:${PersonId}`
   | `trust:${Id}`
   | `skill:${Id}`;
@@ -2701,6 +2720,8 @@ export type Knowledge<T> =
   | { kind: 'unobserved' };
 export type InspectSelection = InspectQuery['select'][number];
 export type HostParts = {
+  needs: readonly NeedReading[];
+  condition: ConditionReading;
   traits: Traits;
   heldNorms: readonly HeldNorm[];
   skills: readonly SkillReading[];
@@ -2708,6 +2729,9 @@ export type HostParts = {
   body: { state: BodyState; readout: BodyReadout };
   beliefs: readonly Belief[];
   sourceTrust: Readonly<Record<Id, Unit>>;
+  promptings: PromptingsReading;
+  review: ReviewState;
+  advice: AdviceReading;
   relationships: { ties: readonly Relationship[]; voices: readonly VoiceRelation[] };
   methods: MethodsState;
   agenda: AgendaState;
@@ -2716,8 +2740,14 @@ export type HostParts = {
   calendar: PortableCalendar;
   chapter: ChapterProjection;
 };
+export type PromptingsReading = Omit<PromptingsState, 'responses'> & {
+  responses: readonly (PromptingResponse & { effectivePractice: Unit })[];
+};
+export type AdviceReading = readonly (StandingAdvice & { effectiveWeight: Unit })[];
 export type SelfBody = { perceived: BodyReadout['perceived'] };
 export type SelfParts = {
+  needs: readonly NeedReading[];
+  condition: ConditionReading;
   traits: Knowledge<Traits>;
   heldNorms: readonly HeldNorm[];
   skills: readonly SkillReading[];
@@ -2725,6 +2755,9 @@ export type SelfParts = {
   body: SelfBody;
   beliefs: readonly Belief[];
   sourceTrust: Readonly<Record<Id, Unit>>;
+  promptings: PromptingsReading;
+  review: ReviewState;
+  advice: AdviceReading;
   relationships: { ties: readonly Relationship[]; voices: readonly VoiceRelation[] };
   methods: MethodsState;
   agenda: AgendaState;
@@ -2734,13 +2767,18 @@ export type SelfParts = {
   chapter: { kind: 'unavailable'; reason: 'host-narrative-clock' };
 };
 export type OtherParts = {
+  needs: Knowledge<readonly NeedReading[]>;
+  condition: ImpressionReading;
   traits: Knowledge<Traits>;
   heldNorms: Knowledge<readonly HeldNorm[]>;
   skills: Knowledge<readonly SkillReading[]>;
-  summary: { signs: Knowledge<OutwardSigns>; impressions: readonly ImpressionCue[] };
+  summary: { kind: 'unobserved' };
   body: Knowledge<OutwardSigns>;
   beliefs: Knowledge<readonly Belief[]>;
   sourceTrust: Knowledge<Readonly<Record<Id, Unit>>>;
+  promptings: Knowledge<PromptingsReading>;
+  review: Knowledge<ReviewState>;
+  advice: Knowledge<AdviceReading>;
   relationships: Knowledge<Relationship>;
   methods: Knowledge<MethodsState>;
   agenda: Knowledge<AgendaState>;
@@ -4549,6 +4587,11 @@ export interface PersistenceOwner {
   ): OwnerOutput<PursuitState>;
 }
 export interface PromptingsOwner {
+  learn(
+    state: DeepReadonly<PromptingsState>,
+    response: DeepReadonly<Payloads['prompting.response-learned']['response']>,
+    at: Time,
+  ): PromptingsState;
   receive(
     state: DeepReadonly<PromptingsState>,
     input: DeepReadonly<{
@@ -4560,6 +4603,7 @@ export interface PromptingsOwner {
   ): OwnerOutput<PromptingsState> & { affectReceipts: readonly AffectEndpoint[] };
 }
 export interface ReviewOwner {
+  changeStyle(state: DeepReadonly<ReviewState>, style: ReviewStyle, source: Id): ReviewState;
   review(
     state: DeepReadonly<ReviewState>,
     context: DeepReadonly<
