@@ -223,6 +223,22 @@ test('missing action map, changed norm provenance, cast mismatch and memory coun
   }
 });
 
+test('future retained recall refuses atomically while a present recall restores and replays', () => {
+  const { passport } = source();
+  if (passport.version !== 2) throw Error('expected retained passport');
+  passport.retained.memory.episodes[0]!.recalledAt = passport.retained.at + 1;
+  const { spec, opening } = destination(passport);
+  const run = need(createRun(spec)),
+    before = exportRun(run).hashes.full;
+  expect(createPerson(run, opening).ok).toBe(false);
+  expect(exportRun(run).hashes.full).toBe(before);
+  passport.retained.memory.episodes[0]!.recalledAt = passport.retained.at;
+  need(createPerson(run, opening));
+  const archive = exportRun(run);
+  expect(exportRun(need(restoreRun(JSON.parse(JSON.stringify(archive))))).hashes).toEqual(archive.hashes);
+  expect(need(replay(archive)).fullHash).toBe(archive.hashes.full);
+});
+
 test('unsupported active work refuses projection without changing the run and a calm control succeeds', () => {
   const run = setup();
   const before = exportRun(run).hashes.full;

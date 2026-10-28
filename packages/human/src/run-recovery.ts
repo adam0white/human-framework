@@ -405,17 +405,6 @@ function validateCurrent(archive: T.DeepReadonly<T.RunArchive>, parametersHash: 
     if (!actor) return reject('$.current.continuations', 'continuation has no actor');
     if (actor.randomIdentity.origin.runSeed !== spec.seed || actor.randomIdentity.origin.person !== actor.id)
       return reject('$.current.people', 'actor random stream belongs to another run or person');
-    if (
-      actor.memory.episodes.some(
-        (episode) =>
-          episode.at > state.at || (episode.recalledAt !== undefined && episode.recalledAt > state.at),
-      ) ||
-      actor.memory.gists.some(
-        (gist) => gist.at > state.at || gist.firstAt > state.at || gist.lastAt > state.at,
-      ) ||
-      Object.values(actor.skills).some((skill) => skill.lastPracticed > state.at)
-    )
-      return reject(`$.current.people.${actor.id}`, 'retained experience or practice is future-dated');
     const drawOrdinals = new Set<number>();
     for (const hazard of [
       continuation.doze.hazard,

@@ -99,7 +99,6 @@ export function preparePortable(
   retained.memory.sourceTrust = trust;
   for (const episode of [...retained.memory.episodes, ...retained.memory.gists]) {
     episode.at = clock(episode.at);
-    if (episode.at > at) refuse();
     if (episode.recalledAt !== undefined) episode.recalledAt = clock(episode.recalledAt);
     if (episode.action !== undefined) episode.action = map('action', episode.action);
     for (const key of ['actorId', 'targetId', 'placeId'] as const)
