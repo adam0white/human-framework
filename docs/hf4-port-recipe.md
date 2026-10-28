@@ -1,6 +1,6 @@
 # Port one game to HF 4.x
 
-G1 recipe, 2026-10-27. Protocol control: exact **`@adam0white/human-framework@4.4.0`**. Current Stairwell integration target: exact **`@adam0white/human-framework@4.5.0`**.
+G1 recipe, 2026-10-27. Protocol control: exact **`@adam0white/human-framework@4.4.0`**. Current Stairwell integration target: exact **`@adam0white/human-framework@4.6.0`**.
 The [needs inventory](hf4-game-needs.md) owns framework gaps and dates.
 The owner accepts the all-games outcome; each host maintainer supplies delivery receipts.
 This recipe is documented and its published 4.4 public-run control passes. **The first whole-game port remains unproved.** Stairwell's catalogue, trust, forecast and G17 authored vocabulary prerequisites are published; the game bridge remains unproved.
@@ -141,6 +141,15 @@ This proves the recorded step chunking; new chunking need not produce the same f
 HF replay alone does not prove an outer game log: rebuild the game from that log and compare its
 complete state/export too.
 
+Measure cold restore and complete outer replay on an actual complete game archive.
+HF 4.6 format 5 bounds the exported diagnostic journals and reconstructs the full live
+journals from accepted history during restore. Background verification does not make
+a second main-thread restore cheap. Keep the authoritative Run in a worker when these
+operations block the page. Send game commands, public readings and complete snapshots
+through a serialized, revision-bound interface. Keep the current Run until a candidate
+passes validation; cancellation must discard only the candidate. Prove actual reload,
+cancellation and continued play separately from headless replay correctness.
+
 ## First candidate: Stairwell
 
 Audited source: [stairwell@329919a](https://github.com/adam0white/stairwell/tree/329919a).
@@ -160,7 +169,7 @@ cast journeys, game export, deployment and owner acceptance remain unproved on H
 | G4: source trust and forecast       | Published 4.4 supports inspect sourceTrust and preview bodyForecast. Published 4.5 adds host traits and heldNorms inspection during pending or active work. Adopt these readings; broader observer signs are separate.                                                                |
 | G17: authored reputation vocabulary | Stairwell authors nosy with -0.03 affection/trust/respect. Published 4.5 adds immutable run-scoped vocabulary through the existing social route, with correction/isolation/replay controls; adopt it without a game-side reputation formula.                                          |
 
-Recommendation: adopt the published 4.4 G2/G3/G4 subset and 4.5 G17 contracts, then finish the bridge and run the actual host proof. The current Stairwell target is exact 4.5.0. G1 stays open for the first integrated game and delivery.
+Recommendation: adopt the published 4.4 G2/G3/G4 subset and 4.5 G17 contracts, then finish the bridge and run the actual host proof. The current Stairwell target is exact 4.6.0. G1 stays open for the first integrated game and delivery.
 Existing targets remain recipe 2026-11-10, candidate 2026-11-24 and blocker review 2026-12-01.
 The original audit changed no game logic. Framework 4.4 is now published and the game bridge is being implemented; no 4.x Stairwell deployment is claimed.
 
@@ -171,6 +180,6 @@ Done: the owner accepts the game’s 4.x release receipt; nothing else counts.
 - Preserve Hearsay garden replay artifacts with a separately isolated historical HF 3 runtime for its exact peer and direct legacy imports; do not bypass the peer constraint.
 - Replace old calls and direct actor mutations with supported routes. Pin the released package exactly, regenerate the pnpm lockfile, then freeze-install.
 - Prove a normal game action/control, active-work and pending-boundary restore, read-only preview, exact HF replay and complete game-log replay. Preserve supported continuing people or record a blocking G-item.
-- Run `check:lane` before each signed commit; gated paths run full `check`. Use the repo's suite lock. Include the Codex trailer. Obtain one independent review, open a PR, request `@codex review` and fix verified findings.
+- Run `check:lane` before each signed commit; gated paths run full `check`. Use the repo's suite lock. Include the Codex trailer. Open a PR, request its one hosted `@codex review` and fix verified findings in the same PR.
 - Merge without `--delete-branch`. Require green `ci` on the exact merged commit before deploying. Verify live `/release.json` commit, framework pin and `dirty:false`. Keep the receipt separate from tests and owner acceptance.
 - Remove merged/pushed task worktrees and their merged local/origin branches. Stop only task-owned exact PIDs. Preserve patches and untracked files before removing dirty or unmerged work. End the report with each touched repo's worktree list.
