@@ -17,9 +17,10 @@ Engine: 4.8.0.
 
 ### G2 — Left Hand portable shelf roles
 
-- Register Left Hand's five existing canonical people and their local actor ids in the existing portable shelf source/target map. Both approximate v1 and retained v2 use the same HF-owned projection and admission functions. No second passport, transport, admission DTO or actor mutation route is added.
+- Register Left Hand's existing Yusuf, Idris, Samira and Danyal canonical identities and their local actor ids in the existing portable shelf source/target map. Both approximate v1 and retained v2 use the same HF-owned projection and admission functions. No second passport, transport, admission DTO or actor mutation route is added.
 - Publish companion client 0.5.4 with the exact HF 4.8 reader and kit 0.5.22 with its compatible peer declaration. Preserve source identity, cast revision, current-actor departure, unfinished host responsibilities, clinical conflicts, receiving ownership and atomic shelf claims. A role entry grants no clinical recovery or departure from active work. Other games must still adopt supported source and receiving routines before a cross-game journey is established.
 - Treat an invalid portable source or ownership record as a named per-person refusal during batch preparation. Other eligible people continue, while the final atomic claim still checks every original parent.
+- Withhold Tariq's Left Hand shelf role until Warren is live on HF 4 with per-person skips (client 0.5.1+); review 2026-11-03. Hosts on client 0.4.x refuse the whole cast batch when one shelf person has a foreign portable head. Tariq remains a local actor.
 - Keep current-version replay exact. The package version changes the engine identity; older run archives refuse with the existing start-fresh message. The Left Hand port, deployment and actual shelf journey have separate delivery evidence.
 
 ## [4.7.0] — 2026-10-28

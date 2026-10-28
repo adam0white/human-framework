@@ -257,7 +257,14 @@ export async function claimCastChapterBatch<T>(
     }
     if (!owner || owner === source.game) return true;
     const name = canonicalCast(input.parent.castId).name;
-    const game = owner === 'days' ? 'Days' : owner === 'commonstead' ? 'Commonstead' : owner;
+    const game =
+      owner === 'days'
+        ? 'Days'
+        : owner === 'commonstead'
+          ? 'Commonstead'
+          : owner === 'lefthand'
+            ? 'Left Hand'
+            : owner;
     blocked.push({
       castId: input.parent.castId,
       reason: `${name} is still in ${game}. Continue or export that chapter. Other people can continue here.`,

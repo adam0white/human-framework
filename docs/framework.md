@@ -659,8 +659,8 @@ Commonstead keeps its existing unfinished-construction departure gate.
 The finite role map admits Days' Hacer, Selin and Burak, Commonstead's Burak,
 Stairwell's Hacer/Sevim/Burak/Derya/Tarik, Good Hands' Nermin/Hatice/Hulya/Aylin/Derya/Zeynep/Selin,
 Pass' Selim/Dilek/Rafi/Zeynep/Hulya/Murat/Sam and Murmur's Dilan/Aylin/Ece/Murat.
-Client 0.5.4 adds Left Hand's existing Yusuf/Idris/Samira/Danyal/Tariq identities
-as both source and receiving local roles through these same functions. This grants
+Client 0.5.4 adds Left Hand's existing Yusuf/Idris/Samira/Danyal identities
+as both source and receiving local roles through these same functions. Tariq stays local until Warren is live on HF 4 with per-person skips; review 2026-11-03. This grants
 no departure from uncompleted host work or incompatible clinical premises. The
 receiving host validates and pins every skipped identity; source routines in
 Well or Valley still require their own adoption proof. Voice's portable Hacer/Selin routes are withheld

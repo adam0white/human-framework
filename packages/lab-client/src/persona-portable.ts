@@ -15,7 +15,6 @@ import { boundedPersonaJson, type PersonaEnvelope } from './persona.ts';
 const SOURCE_ROLES: Record<string, Record<string, string>> = {
   lefthand: {
     'hf.cast.yusuf.well': 'yusuf',
-    'hf.cast.tariq.well': 'tariq',
     'hf.cast.idris.well': 'idris',
     'hf.cast.samira.well': 'samira',
     'hf.cast.danyal.well': 'danyal',
