@@ -8,7 +8,7 @@ import {
   type Result,
   type RunSpec,
 } from '@adam0white/human-framework';
-import { expect, it } from 'vitest';
+import { expect, it, vi } from 'vitest';
 import { canonicalCast } from '../src/cast.ts';
 import { claimCastChapterBatch, preparePersonaLife } from '../src/life.ts';
 import { createPersona, type PersonaEnvelope, type PersonaRequest } from '../src/persona.ts';
@@ -146,4 +146,17 @@ it('continues the Left Hand cast through an authored shelf chapter and refuses i
   expect(writes).toHaveLength(1);
   expect(writes[0]).toMatchObject({ action: 'putBatch', expectedHeads: heads });
   expect(result?.claims.map((p) => p.castId)).toEqual([good.castId]);
+});
+
+// Simulated live peers isolate projection and ownership from deployment state.
+vi.mock('../src/portable-readers.ts', async () => {
+  const { CANONICAL_CAST } = await import('../src/cast.ts');
+  return {
+    PORTABLE_READERS: Object.fromEntries(
+      CANONICAL_CAST.flatMap((person) => person.games).map((game) => [
+        game,
+        { client: '0.5.5', perPersonSkips: true },
+      ]),
+    ),
+  };
 });

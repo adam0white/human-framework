@@ -22,13 +22,13 @@ path is resolved from the current directory.
 Install with `pnpm install --frozen-lockfile` and `/opt/homebrew/bin` first on PATH.
 
 Check the HF version resolved inside the modern SDK as well as the game's direct pin.
-Lab-client0.5.2 depends on HF4.4.0; its retained-state validator refuses genuine
-Stairwell4.6 month departures. For this target, pin the narrow pnpm override
+Lab client 0.5.2 depends on HF 4.4.0; its retained-state validator refuses genuine
+Stairwell 4.6 month departures. For this target, pin the narrow pnpm override
 `@adam0white/lab-client@0.5.2>@adam0white/human-framework: 4.6.0`, update the lockfile,
 and repeat the frozen install. Keep historical SDKs and the explicit HF3 alias on
 their original engines. Prove admission of actual complete-game departures through
 the normal SDK path; short opening-only controls did not expose this incompatibility.
-Retain the tested HF4.6.0 / client0.5.2 / kit0.5.19 tuple for this port. HF4.8.0
+Retain the tested HF 4.6.0 / client 0.5.2 / kit 0.5.19 tuple for this port. HF 4.8.0
 refuses older run archives; a later upgrade needs fresh complete-game behavioral,
 restore and replay proof for the new engine before replacing this evidence.
 

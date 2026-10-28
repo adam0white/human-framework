@@ -1,8 +1,15 @@
 import { createPerson } from '@adam0white/hf-legacy';
-import { expect, it } from 'vitest';
+import { expect, it, vi } from 'vitest';
 import { canonicalCast } from '../src/cast.ts';
+import { claimCastChapterBatch, preparePersonaLife } from '../src/life.ts';
 import { createPersona } from '../src/persona.ts';
-import { admitPortablePerson, projectPortablePerson } from '../src/persona-portable.ts';
+import {
+  admitPortablePerson,
+  claimPortablePerson,
+  portableWriteBlockers,
+  projectPortablePerson,
+} from '../src/persona-portable.ts';
+import { PORTABLE_READERS } from '../src/portable-readers.ts';
 
 // Synthetic bodies isolate binding from biography. No second cast table or actor matrix.
 function actor(castId: string, id: string) {
@@ -32,76 +39,110 @@ async function departure(game: string, castId: string, id: string) {
   });
 }
 
-it('continues Master Yusuf from Warren in Valley under its different authored role', async () => {
+it.each([
+  ['hf.cast.yusuf.warren', 'warren', 'yusuf', 'valley', 'yusuf-usta'],
+  ['hf.cast.bilal.rope', 'rope', 'bilal', 'glance', 'bilal'],
+])('continues %s from %s under its authored receiving role', async (castId, source, id, target, targetId) => {
+  const parent = await departure(source, castId, id);
+  const opening = actor(castId, targetId);
+  const before = structuredClone(parent);
+  expect(admitPortablePerson(parent, target, opening).body.satiety).toBe(0.41);
+  expect(opening.body.satiety).toBe(0.8);
+  expect(parent).toEqual(before);
+});
+
+it('refuses to swap Master Yusuf and builder Yusuf in Valley', async () => {
+  const master = await departure('warren', 'hf.cast.yusuf.warren', 'yusuf');
+  const builder = await departure('well', 'hf.cast.yusuf.well', 'yusuf');
+  for (const [parent, wrongRole] of [
+    [master, 'yusuf'],
+    [builder, 'yusuf-usta'],
+  ] as const) {
+    const before = structuredClone(parent);
+    expect(() => admitPortablePerson(parent, 'valley', actor(parent.castId, wrongRole))).toThrow(
+      /matching authored role/,
+    );
+    expect(parent).toEqual(before);
+  }
+});
+
+it('keeps the role readable but refuses departure and claims until every peer is safe', async () => {
   const castId = 'hf.cast.yusuf.warren';
   const parent = await departure('warren', castId, 'yusuf');
-  const opening = actor(castId, 'yusuf-usta');
-  expect(admitPortablePerson(parent, 'valley', opening).body.satiety).toBe(0.41);
-  expect(opening.body.satiety).toBe(0.8);
+  const before = structuredClone(parent);
+  const deployments = PORTABLE_READERS as Record<string, { client: string; perPersonSkips: boolean }>;
+  const ready = deployments.warren;
+  const source = { ...parent.source, game: 'valley' };
+  const writes: string[] = [];
+  try {
+    // Threshold, skip capability and unknown deployment all keep the same peer closed.
+    for (const unsafe of [
+      { client: '0.5.4', perPersonSkips: true },
+      { client: '0.5.5', perPersonSkips: false },
+      { client: '0.5.5-rc.1', perPersonSkips: true },
+      undefined,
+    ]) {
+      if (unsafe) deployments.warren = unsafe;
+      else delete deployments.warren;
+      expect(portableWriteBlockers(castId, 'valley')).toEqual(['warren']);
+      expect(admitPortablePerson(parent, 'valley', actor(castId, 'yusuf-usta')).body.satiety).toBe(0.41);
+      expect(() =>
+        projectPortablePerson({
+          castId,
+          game: 'valley',
+          engine: '2.23.0',
+          person: actor(castId, 'yusuf-usta'),
+          history: [],
+        }),
+      ).toThrow(/read-only.*warren/);
+      expect(() => claimPortablePerson(parent, 'valley')).toThrow(/read-only.*warren/);
+    }
+    const result = await claimCastChapterBatch(
+      {
+        async request<T>(request: import('../src/persona.ts').PersonaRequest): Promise<T> {
+          if (request.action === 'prepareBatch')
+            return {
+              expectedHeads: { [castId]: parent.revision },
+              inputs: [preparePersonaLife(parent, 0)],
+              blocked: [],
+            } as T;
+          writes.push(request.action);
+          return undefined as T;
+        },
+      },
+      [castId],
+      source,
+      async (inputs) => inputs.map((input) => input.parent.castId),
+    );
+    expect(result?.claims).toEqual([]);
+    expect(result?.initial).toEqual([]);
+    expect(result?.blocked).toEqual([{ castId, reason: expect.stringContaining('read-only') }]);
+    expect(parent).toEqual(before);
+  } finally {
+    if (ready) deployments.warren = ready;
+  }
+  expect(writes).toEqual(['putBatch']); // Empty atomic batch preserves expected-head CAS.
+  expect(portableWriteBlockers(castId, 'valley')).toEqual([]);
+  expect(
+    projectPortablePerson({
+      castId,
+      game: 'valley',
+      engine: '2.23.0',
+      person: actor(castId, 'yusuf-usta'),
+      history: [],
+    }).castPassport,
+  ).toBe('hf-portable-person/1');
 });
 
-it('continues Bilal from Rope in Glance', async () => {
-  const castId = 'hf.cast.bilal.rope';
-  const parent = await departure('rope', castId, 'bilal');
-  expect(admitPortablePerson(parent, 'glance', actor(castId, 'bilal')).body.satiety).toBe(0.41);
-});
-
-it('continues Wren from Glance in Rope', async () => {
-  const castId = 'hf.cast.wren.rope';
-  const parent = await departure('glance', castId, 'wren');
-  expect(admitPortablePerson(parent, 'rope', actor(castId, 'wren')).body.satiety).toBe(0.41);
-});
-
-it('continues Tariq from Well in Warren', async () => {
-  const castId = 'hf.cast.tariq.well';
-  const parent = await departure('well', castId, 'tariq');
-  expect(admitPortablePerson(parent, 'warren', actor(castId, 'tariq')).body.satiety).toBe(0.41);
-});
-
-it('continues Nermin from Good Hands in Hearsay', async () => {
-  const castId = 'hf.cast.nermin.goodhands';
-  const parent = await departure('goodhands', castId, 'nermin');
-  expect(admitPortablePerson(parent, 'hearsay', actor(castId, 'nermin')).body.satiety).toBe(0.41);
-});
-
-it('continues Rafi from Pass in Small Works', async () => {
-  const castId = 'hf.cast.rafi.pass';
-  const parent = await departure('pass', castId, 'rafi');
-  expect(admitPortablePerson(parent, 'repair', actor(castId, 'rafi')).body.satiety).toBe(0.41);
-});
-
-it('continues Maryam from Valley in Well', async () => {
-  const castId = 'hf.cast.maryam.well';
-  const parent = await departure('valley', castId, 'maryam');
-  expect(admitPortablePerson(parent, 'well', actor(castId, 'maryam')).body.satiety).toBe(0.41);
-});
-
-it('continues Samira from Well in Watch', async () => {
-  const castId = 'hf.cast.samira.well';
-  const parent = await departure('well', castId, 'samira');
-  expect(admitPortablePerson(parent, 'watch', actor(castId, 'samira')).body.satiety).toBe(0.41);
-});
-
-it('continues Zeynep from Pass under the Good Hands role', async () => {
-  const castId = 'hf.cast.zeynep.pass';
-  const parent = await departure('pass', castId, 'zeynep');
-  expect(admitPortablePerson(parent, 'goodhands', actor(castId, 'zeynep-pass')).body.satiety).toBe(0.41);
-});
-
-it('continues Sam from Small Works in Pass', async () => {
-  const castId = 'hf.cast.sam.smallworks';
-  const parent = await departure('repair', castId, 'sam');
-  expect(admitPortablePerson(parent, 'pass', actor(castId, 'sam')).body.satiety).toBe(0.41);
-});
-
-it('continues Dilan from Hearsay in Murmur', async () => {
-  const castId = 'hf.cast.dilan.murmur';
-  const parent = await departure('hearsay', castId, 'dilan');
-  expect(admitPortablePerson(parent, 'murmur', actor(castId, 'dilan')).body.satiety).toBe(0.41);
-});
-
-it('continues Burak from Commonstead in Stairwell', async () => {
-  const castId = 'hf.cast.burak.stairwell';
-  const parent = await departure('commonstead', castId, castId);
-  expect(admitPortablePerson(parent, 'stairwell', actor(castId, 'burak')).body.satiety).toBe(0.41);
+// Simulated live peers isolate projection and ownership from deployment state.
+vi.mock('../src/portable-readers.ts', async () => {
+  const { CANONICAL_CAST } = await import('../src/cast.ts');
+  return {
+    PORTABLE_READERS: Object.fromEntries(
+      CANONICAL_CAST.flatMap((person) => person.games).map((game) => [
+        game,
+        { client: '0.5.5', perPersonSkips: true },
+      ]),
+    ),
+  };
 });

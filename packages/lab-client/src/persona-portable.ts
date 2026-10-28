@@ -10,6 +10,7 @@ import {
 } from '@adam0white/human-framework/portable';
 import { canonicalCast } from './cast.ts';
 import { boundedPersonaJson, type PersonaEnvelope } from './persona.ts';
+import { PORTABLE_READERS } from './portable-readers.ts';
 
 // SCOPE: roles bind identity only; clinical, departure and ownership checks still apply.
 const SOURCE_ROLES: Record<string, Record<string, string>> = {
@@ -122,6 +123,30 @@ const SOURCE_ROLES: Record<string, Record<string, string>> = {
 function role(game: string, castId: string, actorId: unknown): boolean {
   return SOURCE_ROLES[game]?.[castId] === actorId;
 }
+/** Registry peers count even when their SDK source binding is still absent.
+ * Adding a binding or registry peer automatically closes the gate for that person.
+ */
+export function portableWriteBlockers(castId: string, game: string): string[] {
+  const peers = new Set([
+    ...canonicalCast(castId).games,
+    ...Object.keys(SOURCE_ROLES).filter((key) => Object.hasOwn(SOURCE_ROLES[key] ?? {}, castId)),
+  ]);
+  return [...peers].filter((peer) => {
+    if (peer === game) return false;
+    const deployment = PORTABLE_READERS[peer];
+    const version = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/.exec(deployment?.client ?? '');
+    if (!deployment?.perPersonSkips || !version) return true;
+    const [major, minor, patch] = version.slice(1).map(Number);
+    return !((major ?? 0) > 0 || (minor ?? 0) > 5 || (minor === 5 && (patch ?? 0) >= 5));
+  });
+}
+function requirePortableWrite(castId: string, game: string): void {
+  const blocked = portableWriteBlockers(castId, game);
+  if (blocked.length)
+    throw new Error(
+      `This role is read-only until ${blocked.join(', ')} runs client 0.5.5 or later with per-person skips. Your saved history has not been replaced.`,
+    );
+}
 export const PORTABLE_PASSPORT = 'hf-portable-person/1';
 const limitation =
   'Approximate chapter state: traits, values, body resources and mood continue. History is a bounded source summary, not new memories or proof of events. Local roles, skills, ties, beliefs, age, clocks and RNG are authored by the receiving game. Depletion is represented conservatively as sleep pressure; clinical conflicts and unresolved duties refuse entry.';
@@ -206,6 +231,7 @@ export function projectPortablePerson(input: {
         (input.previous.transfer.portableClaim as { game?: unknown }).game !== input.game))
   )
     throw new Error('This person still belongs to another chapter. Continue or export it there.');
+  requirePortableWrite(input.castId, input.game);
   const previous = input.previous && portablePassport(input.previous) ? read(input.previous) : undefined;
   const portable = project({ ...input, castRevision: cast.revision, previous });
   return {
@@ -246,6 +272,7 @@ export function claimPortablePerson(parent: PersonaEnvelope, game: string): Reco
   const prior = parent.transfer.portableClaim as { game?: unknown } | undefined;
   if (!cast.games.includes(game) || (prior && prior.game !== game))
     throw new Error('This person still belongs to the receiving chapter. Continue or export it there.');
+  requirePortableWrite(parent.castId, game);
   return { ...parent.transfer, portableClaim: { game } };
 }
 export { validatePortablePerson };

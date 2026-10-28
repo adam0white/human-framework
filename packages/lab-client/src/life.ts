@@ -276,6 +276,7 @@ export async function claimCastChapterBatch<T>(
     current();
     try {
       lifeAdmission(input, source.game);
+      if (portablePassport(input.parent)) claimPortablePerson(input.parent, source.game);
       await options.admitPerson?.(structuredClone(input));
       inputs.push(input);
     } catch (error) {
