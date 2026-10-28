@@ -14,7 +14,8 @@ vi.mock('../../shared/lab.tsx', () => ({
   gameLabs: { well: { recordingAllowed: () => false } },
   useLabScreen: () => {},
 }));
-vi.mock('@adam0white/lab-kit', () => ({
+vi.mock('@adam0white/lab-kit', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@adam0white/lab-kit')>()),
   telemetryOn: () => false,
   setTelemetryOff: () => {},
   telemetryNotice: () => null,

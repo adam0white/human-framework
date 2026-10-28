@@ -224,5 +224,5 @@ it('the menu links to the public people shelf', () => {
     }),
   );
   expect(markup).toContain('href="/lab/people/"');
-  expect(markup).toContain('People from this browser');
+  expect(markup).toContain('People across games');
 });

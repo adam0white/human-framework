@@ -57,7 +57,7 @@ it('offers gameplay controls publicly and confirms a new game inline', () => {
   expect(ordinary.textContent).toContain('Experimental');
   expect(ordinary.querySelector('details')?.open).toBe(false);
   expect(ordinary.textContent).toContain('Feedback');
-  expect(ordinary.textContent).toContain('People from this browser');
+  expect(ordinary.textContent).toContain('People across games');
   const next = [...ordinary.querySelectorAll('button')].find((b) => b.textContent === 'New game');
   flushSync(() => next?.click());
   expect(onTitle).not.toHaveBeenCalled();

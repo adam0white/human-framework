@@ -1,3 +1,4 @@
+import { PEOPLE_ACROSS_GAMES } from '@adam0white/lab-kit';
 import { useEffect, useRef, useState } from 'react';
 import { DebugMenu } from '../../shared/DebugMenu.tsx';
 import { FullscreenButton } from '../../shared/fullscreen.tsx';
@@ -173,7 +174,7 @@ export function MenuPanel({
         <a href="/games/">All games</a>
         <footer>
           <RecordingPreference privacy={false} />
-          <a href="/lab/people/">People from this browser</a>
+          <a href="/lab/people/">{PEOPLE_ACROSS_GAMES}</a>
         </footer>
         <button type="button" className="v-btn v-btn-primary" onClick={onClose}>
           Resume

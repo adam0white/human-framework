@@ -1,4 +1,4 @@
-import { downloadJson } from '@adam0white/lab-kit';
+import { downloadJson, PEOPLE_ACROSS_GAMES } from '@adam0white/lab-kit';
 import { canonicalCast } from '../../../../packages/lab-client/src/cast.ts';
 import {
   createPersona,
@@ -8,6 +8,10 @@ import {
   validatePersona,
 } from '../../../../packages/lab-client/src/persona.ts';
 import { shelfRequest } from './persona-store.ts';
+
+document.title = `${PEOPLE_ACROSS_GAMES} · HF lab`;
+const heading = document.querySelector('h1');
+if (heading) heading.textContent = PEOPLE_ACROSS_GAMES;
 
 const status = document.querySelector<HTMLElement>('#status');
 const people = document.querySelector<HTMLElement>('#people');
