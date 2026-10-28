@@ -1,3 +1,4 @@
+import { PEOPLE_ACROSS_GAMES } from '@adam0white/lab-kit';
 import { DebugMenu } from './DebugMenu.tsx';
 import { playerError } from './player-error.ts';
 import { settingWords } from './setting-words.ts';
@@ -9,7 +10,7 @@ import { gameLabs } from './lab.tsx';
 export function CastMenu(_props: { game: string }) {
   return (
     <p>
-      <a href="/lab/people/">Your people on this browser</a>
+      <a href="/lab/people/">{PEOPLE_ACROSS_GAMES}</a>
     </p>
   );
 }
@@ -68,7 +69,7 @@ export function CastStartGate({ game }: { game: string }) {
       <button type="button" onClick={() => openCastFeedback(game)}>
         Feedback
       </button>
-      <a href="/lab/people/">Open your people shelf</a>
+      <a href="/lab/people/">{PEOPLE_ACROSS_GAMES}</a>
       <a href="/games/">All games</a>
       <DebugMenu>
         <p>{s.status}</p>

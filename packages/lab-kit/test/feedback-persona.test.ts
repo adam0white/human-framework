@@ -18,6 +18,7 @@ it('keeps continuity controls without separate recording linkage consent', () =>
     recordingAllowed: false,
     allowRecording,
   });
+  expect(panel.querySelector('a')?.textContent).toBe('People across games');
   expect(panel.querySelectorAll('input')).toHaveLength(1);
   expect(panel.querySelectorAll('button')).toHaveLength(0);
   expect(allowRecording).not.toHaveBeenCalled();

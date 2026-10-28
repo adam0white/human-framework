@@ -1,3 +1,6 @@
+/** Shared label for the central page for continuing people. */
+export const PEOPLE_ACROSS_GAMES = 'People across games';
+
 /** Separate fictional continuity and historical recording choices. The host owns admission and snapshots. */
 export type PersonaControls = {
   enabled: boolean;
@@ -18,7 +21,7 @@ export function personaControls(options: PersonaControls): HTMLElement {
   shelf.href = 'https://human.adamwhite.work/lab/people/';
   shelf.target = '_blank';
   shelf.rel = 'noopener';
-  shelf.textContent = 'Inspect, download or delete your people';
+  shelf.textContent = PEOPLE_ACROSS_GAMES;
   panel.append(shelf);
   return panel;
 }

@@ -31,6 +31,7 @@ export {
   type FeedbackPersonaLab,
   feedbackPersonaControl,
   feedbackSharePlay,
+  PEOPLE_ACROSS_GAMES,
   type PersonaControls,
   personaControls,
 } from './persona.ts';
