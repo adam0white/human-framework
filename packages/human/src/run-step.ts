@@ -324,6 +324,11 @@ export function step(run: T.Run, input: T.DeepReadonly<T.StepBatch>): T.Result<T
       for (const delivery of [...physicalResult.deliveries, ...mentalResult.deliveries]) {
         const context = frame.context(delivery.person, 1, reachedCauses(delivery.person));
         for (const event of delivery.events) frame.emit(delivery.person, event, context);
+        if (
+          delivery.owner === 'body' &&
+          delivery.events.some((event) => event.kind === 'body-change' && event.change.kind === 'died')
+        )
+          frame.physicalDeath(delivery.person, reachedCauses(delivery.person)[0] ?? delivery.person);
         for (const effect of [
           ...delivery.effects.terms,
           ...delivery.effects.modifiers,

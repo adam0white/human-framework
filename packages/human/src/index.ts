@@ -87,3 +87,4 @@ export type {
   WorldFact,
   WorldSnapshot,
 } from './run-schema.ts';
+export { RUN_WIRE_VERSION, runWire } from './run-wire.ts';

@@ -15,10 +15,12 @@ test('the public run contract has eight operations and archive identity matches 
     replay: api.replay,
   };
   for (const [name, operation] of Object.entries(operations)) expect(typeof operation, name).toBe('function');
-  // Eight run calls, pure projections and sourced authoring catalogues.
+  // Eight simulation calls, one wire transport, pure projections and sourced authoring catalogues.
   expect(Object.keys(api).sort()).toEqual(
     [
       ...Object.keys(operations),
+      'runWire',
+      'RUN_WIRE_VERSION',
       'projectChapterClock',
       'projectPortablePerson',
       'admitPortablePerson',

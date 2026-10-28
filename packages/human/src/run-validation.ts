@@ -171,6 +171,8 @@ function check(schema: DataShape, value: unknown, path: string): ContractError |
 }
 function tuningRanges(tuning: RunTuning, path: string): ContractError | null {
   const ranges: readonly [string, number | undefined, number, number][] = [
+    ['cognition.needScale', tuning.cognition?.needScale, 2, 8],
+    ['cognition.effortScale', tuning.cognition?.effortScale, 0.5, 2],
     ['planning.presentBias', tuning.planning?.presentBias, 0.5, 1],
     ['assent.minStrength', tuning.assent?.minStrength, 0.5, 0.9],
     ['assent.pressure', tuning.assent?.pressure, 0.05, 0.15],
