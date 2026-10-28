@@ -137,6 +137,78 @@ test('custom negative claims receive the same speech classification as builtins'
   expect(claim(false, 'bora', true)).toBeUndefined();
 });
 
+test('a trait proposition about a nonperson does not create a tie or a character claim', () => {
+  const run = residents(true);
+  const input = testimony();
+  const heard = input.payload.claims[0];
+  if (!heard) throw new Error('Missing testimony claim');
+  heard.prop = 'door:nosy';
+  need(step(run, { until: START, inputs: [input] }));
+  expect(actor(run).social.relationships.some((r) => r.otherId === 'door')).toBe(false);
+  const result = need(
+    step(run, {
+      until: START + 1,
+      inputs: [
+        {
+          id: 'talk-door',
+          at: START + 1,
+          source: { type: 'host', id: 'world' },
+          kind: 'conversation.requested',
+          payload: {
+            speaker: 'ada',
+            listener: 'cem',
+            topicIds: ['door:nosy'],
+            maxClaims: 2,
+            temptations: [],
+            loyalWarning: false,
+          },
+        },
+      ],
+    }),
+  );
+  if (result.boundary.type !== 'world-required') throw new Error('Missing boundary');
+  const request = result.boundary.requests.find((r) => r.kind === 'communication');
+  if (request?.kind !== 'communication') throw new Error('Missing communication');
+  const claim = request.items.find((item) => item.data.kind === 'claim');
+  expect(claim?.data).toMatchObject({ kind: 'claim', private: { prop: 'door:nosy', backbiting: false } });
+  if (claim?.data.kind !== 'claim') throw new Error('Missing claim');
+  expect(claim.data.private.about).toBeUndefined();
+});
+
+test('headless control replays a valid social response and character claim', () => {
+  const run = residents(true);
+  need(
+    step(run, {
+      until: START,
+      inputs: [
+        testimony(),
+        {
+          id: 'social',
+          at: START,
+          source: { type: 'host', id: 'world' },
+          kind: 'social.received',
+          payload: {
+            person: 'ada',
+            other: 'cem',
+            evidenceId: 'interaction',
+            event: { kind: 'insult', byMe: false, magnitude: 0.25 },
+            sourceTrustResponse: {
+              sourceId: 'cem',
+              multiplier: 0.8,
+              basis: { author: 'world', ruleId: 'response', edition: 'control' },
+            },
+          },
+        },
+      ],
+    }),
+  );
+  expect(tie(run).trust).toBeLessThan(0.5);
+  expect(actor(run).memory.sourceTrust.cem).toBeCloseTo(0.64);
+  const archive = exportRun(run);
+  expect(exportRun(need(restoreRun(archive)))).toStrictEqual(archive);
+  expect(need(replay(archive)).fullHash).toBe(archive.hashes.full);
+});
+
 test('malformed reputation authoring refuses before run construction', () => {
   for (const rows of [
     [...vocabulary, ...vocabulary],

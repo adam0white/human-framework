@@ -365,6 +365,7 @@ export function goal(
 export function socialContext(p: ReturnType<typeof person>) {
   return {
     ...p.frame,
+    personIds: [p.actor.id, 'other', 'friend'],
     traits: p.actor.traits,
     values: p.actor.values,
     norms: p.actor.conscience.norms,

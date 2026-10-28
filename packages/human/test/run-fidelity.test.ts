@@ -488,6 +488,9 @@ it('routes actual belief revisions into reputation once per changed credence', (
       },
     ];
     accepted(createPerson(run, person));
+    const target = numericalPerson(10);
+    target.id = 'target';
+    accepted(createPerson(run, target));
     return { run, spec };
   };
   const first = make(),

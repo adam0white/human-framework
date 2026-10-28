@@ -4322,6 +4322,7 @@ export interface SocialOwner {
         norms: readonly HeldNorm[];
         catalog: readonly SourcedNorm[];
         reputationTraits?: Definitions['reputationTraits'];
+        personIds: readonly PersonId[];
         values: Values;
         rng: ActorRandomCursor;
       }
@@ -4404,6 +4405,7 @@ export interface ConversationOwner {
         listenerKnown: ListenerKnowledge;
         norms: readonly SourcedNorm[];
         reputationTraits?: Definitions['reputationTraits'];
+        personIds: readonly PersonId[];
       }
     >,
   ): ConversationData;

@@ -107,7 +107,8 @@ export function prepareConversation(
     deceit: boolean,
     base: number,
   ) => {
-    const parsed = parseTraitProp(prop, vocabulary),
+    const candidate = parseTraitProp(prop, vocabulary),
+      parsed = candidate && context.personIds.includes(candidate.personId) ? candidate : undefined,
       about = parsed?.personId,
       backbiting =
         parsed !== undefined &&

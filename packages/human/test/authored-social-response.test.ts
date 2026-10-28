@@ -116,6 +116,50 @@ test('a duplicate response late in a batch rolls back both relationship and trus
   expect(actor(run).memory.sourceTrust.bora).toBeCloseTo(0.584, 14);
 });
 
+test('plain and response copies share one social evidence receipt', () => {
+  const run = residents();
+  const plain = response('plain');
+  delete plain.payload.sourceTrustResponse;
+  need(step(run, { until: START, inputs: [plain] }));
+  const before = exportRun(run);
+  expect(step(run, { until: START, inputs: [response('response')] }).ok).toBe(false);
+  expect(exportRun(run)).toStrictEqual(before);
+  const reverse = residents();
+  need(step(reverse, { until: START, inputs: [response()] }));
+  const after = exportRun(reverse);
+  expect(step(reverse, { until: START, inputs: [{ ...plain, id: 'plain-second' }] }).ok).toBe(false);
+  expect(exportRun(reverse)).toStrictEqual(after);
+});
+
+test('trust response requires an applied event from its named other', () => {
+  const ada = authoredPerson('ada', 'Ada');
+  ada.state.sourceTrust = [{ sourceId: 'bora', trust: 0.73 }];
+  ada.state.relationships = [
+    {
+      otherId: 'bora',
+      affection: 0,
+      trust: 0.5,
+      respect: 0,
+      familiarity: 0.2,
+      roles: ['deceased'],
+      ledger: 0,
+      lastInteraction: START,
+    },
+  ];
+  const run = setup([ada, authoredPerson('bora', 'Bora'), authoredPerson('cem', 'Cem')]);
+  const wrong = response('wrong');
+  if (!wrong.payload.sourceTrustResponse) throw new Error('Missing response');
+  wrong.payload.sourceTrustResponse.sourceId = 'cem';
+  const before = exportRun(run);
+  expect(step(run, { until: START, inputs: [wrong] }).ok).toBe(false);
+  expect(exportRun(run)).toStrictEqual(before);
+  need(step(run, { until: START, inputs: [response()] }));
+  expect(actor(run).memory.sourceTrust.bora).toBe(0.73);
+  expect(exportRun(run).current.events.some((event) => event.data.kind === 'source-trust-responded')).toBe(
+    false,
+  );
+});
+
 test('malformed policies and unknown or self sources refuse atomically', () => {
   const run = residents(),
     before = exportRun(run);

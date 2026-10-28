@@ -206,6 +206,12 @@ export function checkBatchEnvelope(
       );
     if (entry.kind === 'social.received' && entry.payload.sourceTrustResponse) {
       const response = entry.payload.sourceTrustResponse;
+      if (response.sourceId !== entry.payload.other)
+        return fail(
+          'invalid-admission',
+          `${path}.payload.sourceTrustResponse.sourceId`,
+          'response source must be the other person',
+        );
       if (response.sourceId === entry.payload.person || response.sourceId === 'self')
         return fail(
           'invalid-admission',
