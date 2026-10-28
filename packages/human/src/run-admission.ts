@@ -45,13 +45,11 @@ export function compareInputs(a: DeepReadonly<Input>, b: DeepReadonly<Input>): n
   );
 }
 
-/**
- * HF 4.0 rejects portable person admission (`PersonAuthoring.admission`) and the host persona, calendar
- * and chapter-preparation reads by design (owner-approved scope, 2026-10-27): a person enters a run only
- * as authored state. See the CHANGELOG 4.0.0 migration section.
+/** The archived hf-person/4 DTO and chapter projection remain unsupported.
+ * Retained people use the versioned PortablePerson route through createPerson.
  */
 export const PORTABLE_ADMISSION_REJECTED =
-  'HF 4.0 does not admit portable persons; author the person with createPerson state instead';
+  'Archived persona admission and chapter projection are unsupported; use the versioned portable route through createPerson';
 
 /** C0 constructor admission. Faculty validators still check their own retained
  * state. Known external identities permit forward cast ties without fake actors.
@@ -65,6 +63,12 @@ export function checkPersonAuthoring(
   const parsed = validateData('PersonAuthoring', input);
   if (!parsed.ok) return parsed;
   const person = parsed.value;
+  if (person.portable !== undefined)
+    return fail(
+      'invalid-admission',
+      '$.portable',
+      'Portable admission uses createPerson before the first step',
+    );
   if (
     !Number.isSafeInteger(person.state.retention.trace) ||
     person.state.retention.trace < 0 ||

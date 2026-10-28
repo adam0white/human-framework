@@ -2,6 +2,7 @@
  * once. Full history materialization and canonical hashes belong to cold export.
  */
 import { cloneData } from './core/clone.ts';
+import { installPortable, preparePortable } from './portable-admission.ts';
 import { checkPersonAuthoring, checkRunSpec, PORTABLE_ADMISSION_REJECTED } from './run-admission.ts';
 import { archiveHashes } from './run-archive.ts';
 import { hashCanonical } from './run-canonical.ts';
@@ -49,7 +50,24 @@ export function createPerson(run: T.Run, input: T.DeepReadonly<T.PersonAuthoring
         message: PORTABLE_ADMISSION_REJECTED,
       },
     };
-  const admitted = checkPersonAuthoring(record.current, record.spec.definitions, record.started, input);
+  let prepared: ReturnType<typeof preparePortable>;
+  try {
+    const structural = validateData('PersonAuthoring', input);
+    if (!structural.ok) return structural;
+    prepared = preparePortable(structural.value, record.spec.definitions, record.current.at, [
+      ...Object.keys(record.current.people),
+      ...record.current.lifecycle.entities.map((e) => e.id),
+    ]);
+  } catch (error) {
+    if (!(error instanceof Error)) throw error;
+    return { ok: false, error: { code: 'invalid-admission', path: '$.portable', message: error.message } };
+  }
+  const admitted = checkPersonAuthoring(
+    record.current,
+    record.spec.definitions,
+    record.started,
+    prepared.authored,
+  );
   if (!admitted.ok) return admitted;
   const person = admitted.value;
   const context: T.FrameContext = {
@@ -66,6 +84,7 @@ export function createPerson(run: T.Run, input: T.DeepReadonly<T.PersonAuthoring
   let built: ReturnType<typeof constructAuthoredActor>;
   try {
     built = constructAuthoredActor(person, context, record.spec.seed, OWNERS);
+    if (prepared.retained) installPortable(built, prepared.retained);
     const issues = validateActor(
       built.actor,
       built.continuation,
@@ -142,7 +161,7 @@ export function createPerson(run: T.Run, input: T.DeepReadonly<T.PersonAuthoring
   // constructed. No accepted transaction or fake social observation is recorded.
   new Frame(record, stage).installDefinitionRoutines(person.id);
   commitTransaction(run, stage, false);
-  record.initialPeople = [...record.initialPeople, person];
+  record.initialPeople = [...record.initialPeople, input.portable ? cloneData(input) : person];
   return { ok: true, value: person.id };
 }
 

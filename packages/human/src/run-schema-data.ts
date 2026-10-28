@@ -4,6 +4,104 @@
  */
 import type { DataShape } from './run-validation.ts';
 export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
+  PortableRetainedState: {
+    kind: 'object',
+    fields: {
+      sex: {
+        optional: false,
+        shape: {
+          kind: 'union',
+          options: [
+            { kind: 'literal', value: 'female' },
+            { kind: 'literal', value: 'male' },
+          ],
+        },
+      },
+      bornAt: { optional: false, shape: { kind: 'scalar', name: 'Time' } },
+      at: { optional: false, shape: { kind: 'scalar', name: 'Time' } },
+      memory: { optional: false, shape: { kind: 'ref', name: 'MemoryState' } },
+      heldNorms: { optional: false, shape: { kind: 'array', element: { kind: 'ref', name: 'HeldNorm' } } },
+      agenda: {
+        optional: false,
+        shape: {
+          kind: 'object',
+          fields: {
+            exemptions: { optional: false, shape: { kind: 'ref', name: 'ExemptionPremises' } },
+            commitments: {
+              optional: false,
+              shape: { kind: 'array', element: { kind: 'ref', name: 'Commitment' } },
+            },
+            owed: { optional: false, shape: { kind: 'array', element: { kind: 'ref', name: 'OwedMakeUp' } } },
+            lapse: {
+              optional: true,
+              shape: {
+                kind: 'object',
+                fields: {
+                  since: { optional: false, shape: { kind: 'scalar', name: 'Time' } },
+                  missed: { optional: false, shape: { kind: 'number' } },
+                },
+              },
+            },
+            nextId: { optional: false, shape: { kind: 'number' } },
+          },
+        },
+      },
+      calendar: {
+        optional: false,
+        shape: {
+          kind: 'object',
+          fields: {
+            definition: { optional: false, shape: { kind: 'ref', name: 'CalendarDefinition' } },
+            norms: {
+              optional: false,
+              shape: { kind: 'array', element: { kind: 'ref', name: 'SourcedNorm' } },
+            },
+          },
+        },
+      },
+    },
+  },
+  PortableAdmission: {
+    kind: 'object',
+    fields: {
+      person: { optional: false, shape: { kind: 'scalar', name: 'Json' } },
+      mapping: {
+        optional: false,
+        shape: {
+          kind: 'object',
+          fields: {
+            offsetMs: { optional: false, shape: { kind: 'scalar', name: 'Time' } },
+            references: {
+              optional: false,
+              shape: {
+                kind: 'array',
+                element: {
+                  kind: 'object',
+                  fields: {
+                    kind: {
+                      optional: false,
+                      shape: {
+                        kind: 'union',
+                        options: [
+                          { kind: 'literal', value: 'action' },
+                          { kind: 'literal', value: 'entity' },
+                          { kind: 'literal', value: 'source' },
+                          { kind: 'literal', value: 'norm' },
+                          { kind: 'literal', value: 'proposition' },
+                        ],
+                      },
+                    },
+                    source: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
+                    target: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  },
   Capacity: {
     kind: 'union',
     options: [
@@ -3924,6 +4022,7 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
   PersonAuthoring: {
     kind: 'object',
     fields: {
+      portable: { optional: true, shape: { kind: 'ref', name: 'PortableAdmission' } },
       id: { optional: false, shape: { kind: 'scalar', name: 'PersonId' } },
       identity: {
         optional: false,
@@ -6953,6 +7052,17 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
   InspectQuery: {
     kind: 'object',
     fields: {
+      portable: {
+        optional: true,
+        shape: {
+          kind: 'object',
+          fields: {
+            person: { optional: false, shape: { kind: 'scalar', name: 'PersonId' } },
+            castId: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
+            castRevision: { optional: false, shape: { kind: 'scalar', name: 'Id' } },
+          },
+        },
+      },
       lifecycle: { optional: true, shape: { kind: 'ref', name: 'LifecycleQuery' } },
       perspective: { optional: false, shape: { kind: 'ref', name: 'Perspective' } },
       people: { optional: false, shape: { kind: 'array', element: { kind: 'scalar', name: 'PersonId' } } },
@@ -6967,6 +7077,7 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
               { kind: 'literal', value: 'skills' },
               { kind: 'literal', value: 'body' },
               { kind: 'literal', value: 'beliefs' },
+              { kind: 'literal', value: 'sourceTrust' },
               { kind: 'literal', value: 'relationships' },
               { kind: 'literal', value: 'methods' },
               { kind: 'literal', value: 'agenda' },
@@ -7008,6 +7119,20 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
   PreviewQuery: {
     kind: 'object',
     fields: {
+      bodyForecast: {
+        optional: true,
+        shape: {
+          kind: 'array',
+          element: {
+            kind: 'object',
+            fields: {
+              label: { optional: false, shape: { kind: 'string' } },
+              durationMs: { optional: false, shape: { kind: 'scalar', name: 'DurationMs' } },
+              load: { optional: false, shape: { kind: 'ref', name: 'BodyLoad' } },
+            },
+          },
+        },
+      },
       perspective: { optional: false, shape: { kind: 'ref', name: 'Perspective' } },
       person: { optional: false, shape: { kind: 'scalar', name: 'PersonId' } },
       until: { optional: false, shape: { kind: 'scalar', name: 'Time' } },
@@ -12099,6 +12224,7 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
   },
 };
 export const ROOT_SHAPES = {
+  PortableRetainedState: { kind: 'ref', name: 'PortableRetainedState' },
   RunSpec: { kind: 'ref', name: 'RunSpec' },
   RunTuning: { kind: 'ref', name: 'RunTuning' },
   PersonAuthoring: { kind: 'ref', name: 'PersonAuthoring' },

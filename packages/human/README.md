@@ -4,11 +4,11 @@ HF is a TypeScript library for simulated people in games and headless simulation
 possible actions. Each person weighs needs, habits, duties, goals and suggestions, then chooses.
 A player can suggest an action; the person can defer or refuse it.
 
-HF 4.0 uses utility scoring and seeded randomness, with no LLM in the actor loop and no runtime
+HF 4 uses utility scoring and seeded randomness, with no LLM in the actor loop and no runtime
 dependencies. Every faculty is always on: people differ through their state, never through switches.
 Run state is plain JSON. This is an authored simulation model, not a validated predictor of real people.
 
-HF 4.0 does not read 3.x saves, exports or option selectors. Hosts that need the 3.x API stay on 3.2.x; its
+HF 4 does not restore 3.x run saves or option selectors. Bounded portable-person projection is a separate contract; it preserves its original source archive. Hosts that need the 3.x API stay on 3.2.x; its
 README is at [v3.2.0](https://github.com/adam0white/human-framework/blob/v3.2.0/packages/human/README.md).
 The [CHANGELOG](https://github.com/adam0white/human-framework/blob/main/CHANGELOG.md) 4.0.0 section lists every removal.
 
@@ -24,7 +24,7 @@ A host uses eight calls. Each takes and returns plain data, and each failure is 
 | Call                                      | What it does                                                                                                                                                             |
 | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `createRun(spec)`                         | Starts a run from a seed, a start time, the host's definitions (actions, norms, skills, methods, calendar), the lifecycle and the world.                                 |
-| `createPerson(run, authoring)`            | Adds one person from authored state. Portable admission is rejected in 4.0.                                                                                              |
+| `createPerson(run, authoring)`            | Adds authored state or a versioned portable person with explicit mappings before the first step.                                                                                              |
 | `step(run, { until, fidelity?, inputs })` | Advances to `until`, applying the timestamped inputs. It stops early at a `world-required` boundary when people need the host to resolve their actions or communication. |
 | `inspect(run, query)`                     | Reads actual state, from the host's view or from one person's own view. It never changes the run.                                                                        |
 | `preview(run, query)`                     | Answers "what would happen if": the same step on a detached copy, with its own ids and wording. It never changes the run.                                                |
@@ -133,9 +133,51 @@ never overrides `cannot` or `willNot`.
 Every resolution also carries a machine-readable `reason` (`need:food`, `norm:theft`, `asleep`, `distrust`,
 ...), which the renderer turns into a line in the person's voice.
 
+## Source trust and bodily forecasts (4.4)
+
+Use `inspect(run, {perspective, people, select: ['sourceTrust']})` to read held source trust. Host and self perspectives receive the person's source-id-to-trust map. Another observer receives `{kind: 'unobserved'}`. These numbers describe held evidence, not whether a source is objectively truthful.
+
+`preview` accepts optional `bodyForecast` spans, such as `{label: 'climb', durationMs: 600_000, load: {effort: 0.85, focus: 0, mode: 'awake'}}`. A following span can describe later errands. The result's `bodyForecast` contains `person`, `from` (the live run time) and `spans`. Each span contains `label`, `endsAt`, `worst`, `worstOf` and `basis: 'conditional-load-projection'`. `worst` is the maximum perceived need during that span, not only its endpoint. The existing body owner bounds the horizon and number of spans and returns a structured error for unsupported work. The forecast conditions on declared loads and current ambient evidence. It does not predict host outcomes or action admission. `until` still controls the detached run preview; body spans begin at `from` and have their own declared durations. Preview changes no live state or RNG and never reads another person's hidden body in a person perspective.
+
+`DEFAULT_NORMS` supplies sourced authoring defaults for `definitions.norms` and calendar validation. Its research and interpretation references retain pending review status and modelling limitations. A held norm is a person's understanding, never a ruling. The catalogue does not add worship windows automatically; hosts still author the single run calendar.
+
+
+## Retained portable people (4.4)
+
+`hf-portable-person/1` remains the approximate profile/body/mood passport. `hf-portable-person/2` additionally retains beliefs, source trust, episodes, gists, expectations, contradictions, held norm provenance, continuing commitments, owed duties, exemption evidence, age and the source calendar definition. Runtime clocks, scheduler continuations and RNG remain in the source archive. Unsupported active activities, clinical state, ongoing goals and other unsupported obligations refuse projection instead of disappearing.
+
+For a current run, call `inspect` with host perspective, one person, `select: ['persona', 'calendar']`, and `portable: {person, castId, castRevision}`. Keep cast registry validation and claim ownership in the host. For admission, pass an otherwise empty authored memory/agenda opening to `createPerson` with `portable: {person: passport, mapping: {offsetMs, references}}`. Each reference has `kind` (`action`, `entity`, `source`, `norm` or `proposition`), `source` and `target`. The offset must align the source instant with the receiving run. Time-bearing records and age shift together. The referenced receiving actions, people, sources and sourced norms must exist. Missing mappings, collisions, conflicting opening duties and incompatible norm claims refuse the complete admission. The original portable input is retained for exact run replay. Portable admission occurs before the first step; an arriving-person input cannot silently bypass it.
+
+`projectPortablePerson` can project a restored native legacy person with an explicit source `calendar` expressed in milliseconds. Legacy engine 2.21/2.23 and 3.x actor clocks use minutes; the adapter converts their semantic times once. Legacy held norms without provenance require explicit `legacyNormProvenance` plus the actual `legacyNormCatalogue`; the claims must match the sourced receiving catalogue apart from the added provenance. A biography-only or calendar-only historical passport cannot recover memories that it never contained. Preserve the original source archive and use its verified historical replay boundary. This is a bounded retained-state transfer, not an old-save converter or a claim of arbitrary-world portability.
+
+
+## Authoring identifiers and tuning bounds
+
+Authored biography episodes use unique `eN` ids, where `N` is a nonnegative integer (`e0`, `e1`, …). The memory owner advances its next episode counter beyond the greatest authored id. An arbitrary label such as `hull-event` is a summary or tag, not an episode id. For example:
+
+```ts
+biography: [{
+  id: 'e0', at: start - 5_000, kind: 'observation',
+  valence: 0.2, salience: 0.8, summary: 'Inspected the hull.', tags: ['hull-event'],
+  basis: {kind: 'authored', author: 'world'}, provenance: ['inspection-1'],
+}]
+```
+
+`RunTuning` accepts the following ranges, inclusive. Omitted fields use the recorded defaults. Values outside these ranges refuse admission; the `Unit` type alone does not express every supported range.
+
+| Field | Supported values |
+| --- | --- |
+| `planning.depth` | integers 2–5 |
+| `planning.presentBias` | 0.5–1 |
+| `assent.minStrength` | 0.5–0.9 |
+| `assent.pressure` | 0.05–0.15 |
+| `doze.hazardScale`, `crisis.hazardScale` | 0.5–1.5 |
+| `promptings.practiceHalfLifeDays` | 30–120 |
+| `promptings.echoRate` | 0.05–0.15 |
+
 ## Versions
 
-The release version is the package version (`package.json`, currently `4.0.2`). From 4.0.0 the engine version is
+The release version is the package version (`package.json`, currently `4.4.0`). From 4.0.0 the engine version is
 the same string; `RUN_ENGINE` in each archive adds a build hash and a schema hash, so a host can tell exactly
 which engine wrote a save. The public API follows [semver](https://semver.org/). Each release is a tag `vX.Y.Z`
 and a GitHub release whose notes are that version's section of the root

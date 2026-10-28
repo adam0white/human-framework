@@ -11,6 +11,16 @@ version, stamped with build and schema hashes in `RUN_ENGINE`. See the version p
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
+## [4.4.0] — 2026-10-27
+
+Engine: 4.4.0.
+
+- Extend the existing portable route with `hf-portable-person/2`. Host `inspect` projects retained beliefs, trust, memory, duties, exemptions, age and calendar provenance; `createPerson` admits them through explicit clock and reference mappings. Unsupported active work, missing references, conflicting duties and incompatible source norms refuse atomically. Native legacy engine 2.21 and 2.23 controls preserve minute-based duties and history through millisecond conversion and exact replay. The approximate v1 passport remains supported.
+- Export `DEFAULT_NORMS` as sourced working understandings, retaining research records, interpretation references, exemptions and pending source-review limitations. These describe a person's understanding, never a ruling.
+- Admit `sourceTrust` in `inspect`. Host and self readings expose the person's held source trust; other observers receive `unobserved`.
+- Add optional declared body-load spans to `preview` and return structured conditional bodily forecasts through the existing body owner. Every span records its end, worst perceived need and severity. Forecast reads preserve the live run and keep unknown host outcomes explicit.
+- Migration: use `preview(..., {bodyForecast: [{label, durationMs, load}], ...})` for bodily forecasts and `inspect(..., {select: ['sourceTrust'], ...})` for source trust. Current engine identity changes; old run archives still require an explicit start-fresh refusal.
+
 ## [4.3.1] — 2026-10-27
 
 Engine: 4.3.1.

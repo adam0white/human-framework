@@ -1,8 +1,14 @@
 /** Human Framework 4: one run runtime and pure portable projections. */
 
 export { projectChapterClock } from './chapter-clock.ts';
+export { DEFAULT_NORMS } from './conscience/catalog.ts';
 export { NARRATION_TEMPLATES } from './narrate/templates.ts';
-export type { PortablePerson } from './portable-person.ts';
+export type {
+  PortableAdmission,
+  PortableCalendar,
+  PortablePerson,
+  PortableRetainedState,
+} from './portable-person.ts';
 export { admitPortablePerson, projectPortablePerson, validatePortablePerson } from './portable-person.ts';
 export { createPerson, createRun, exportRun, inspect, preview, replay, restoreRun, step } from './run.ts';
 export type {
@@ -11,6 +17,8 @@ export type {
   ActorActivity,
   ActualConsequences,
   AuthoredPersonState,
+  BodyForecastLoad,
+  BodyForecastSpan,
   CalendarMapping,
   CalendarProjection,
   ChapterClock,

@@ -1,3 +1,4 @@
+import type { PortableRetainedState } from './portable-person.ts';
 /** SCOPE: closed HF4 structural admission and narrow tuning. This is only the
  * first admission layer; the run and faculty owners validate clock order, IDs,
  * references, current requests, counters, effective coefficients and owned bounds.
@@ -34,6 +35,7 @@ export type DataShape =
   | { kind: 'pattern'; pattern: string };
 
 type RootData = {
+  PortableRetainedState: PortableRetainedState;
   RunSpec: RunSpec;
   RunTuning: RunTuning;
   PersonAuthoring: PersonAuthoring;

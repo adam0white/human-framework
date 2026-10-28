@@ -124,7 +124,7 @@ test('received interpretation replaces held understanding with provenance rather
   ]);
 });
 
-test('portable admission and host persona reads are an explicit 4.0 rejection that changes nothing', () => {
+test('archived admission and a portable projection without cast metadata refuse without changes', () => {
   const run = need(createRun(exampleSpec()));
   need(createPerson(run, authoredPerson('ada', 'Ada')));
   const before = exportRun(run).hashes.full;
@@ -136,6 +136,6 @@ test('portable admission and host persona reads are an explicit 4.0 rejection th
   const read = inspect(run, { perspective: { kind: 'host' }, people: ['ada'], select: ['persona'] });
   expect(read.ok).toBe(false);
   if (read.ok) throw new Error('Host persona read was accepted');
-  expect(read.error.message).toBe(admitted.error.message);
+  expect(read.error.path).toBe('$.portable');
   expect(exportRun(run).hashes.full).toBe(before);
 });

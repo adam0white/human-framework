@@ -1,13 +1,11 @@
-import type { NormStanding } from '../run-schema.ts';
+import type { NormProvenance, NormStanding, SourcedNorm } from '../run-schema.ts';
 
 type CatalogSource = {
   kind: 'revelation' | 'hadith' | 'interpretation' | 'empirical' | 'assumption';
   ref: string;
 };
 /**
- * The 3.x catalogue shape, kept as sourced reference data. 4.0 does not export these norms: a 4.0
- * `SourcedNorm` also needs `provenance` (research and interpretation references), which is a 4.1 item
- * so that no reference is invented here.
+ * The original catalog entries are retained as source data and adapted to the 4.0 sourced shape below.
  */
 type NormDefinition = {
   id: string;
@@ -28,7 +26,7 @@ type NormDefinition = {
  *
  * Forbidden norms are named after the act (`theft`, `lying`) so that `violates` reads naturally.
  */
-export const DEFAULT_NORMS: NormDefinition[] = [
+const DEFAULT_NORM_ENTRIES: NormDefinition[] = [
   {
     id: 'salah',
     label: 'Perform the daily prayers',
@@ -243,6 +241,29 @@ export const DEFAULT_NORMS: NormDefinition[] = [
     ],
   },
 ];
+
+/** The references identify the record and the catalog's interpretation, not a reviewed ruling. */
+function defaultProvenance(id: string): NormProvenance {
+  if (id === 'punctuality') {
+    return { kind: 'authored-world', author: 'human-framework', ruleId: id, edition: 'engineering-default' };
+  }
+  return {
+    kind: 'religious',
+    researchRef: id === 'eid-prayer' ? 'research/eid-and-mourning-sources.md §1' : 'research/norm-sources.md',
+    interpretationRef: `packages/human/src/conscience/catalog.ts#${id}`,
+  };
+}
+
+/** Sourced working understandings. Review status and limitations remain in the referenced research. */
+export const DEFAULT_NORMS: SourcedNorm[] = DEFAULT_NORM_ENTRIES.map((entry) => ({
+  ...entry,
+  sources: entry.sources ?? [],
+  provenance: defaultProvenance(entry.id),
+  exemptions: (entry.exemptions ?? []).map((exemption) => ({
+    ...exemption,
+    provenance: defaultProvenance(entry.id),
+  })),
+}));
 
 /**
  * Marriage norms (1.8.0), a separate catalog so that `heldNorms` with the default catalog, and every existing run,
