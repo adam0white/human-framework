@@ -659,7 +659,9 @@ before those duties can travel. Other identities and dialects fail plainly.
 
 A fresh game prepares the complete cast, validates every arrival and pins the
 full input and resulting initial actors before one atomic shelf claim. Days and Commonstead claims project the actual admitted actor with the receiving
-provenance. Central receiving chapters add local routines: their arrival claim
+provenance. Every portable arrival is locked to its receiving game until an actual
+current-actor checkpoint passes departure. A refused ending keeps that lock.
+Central receiving chapters add local routines: their arrival claim
 retains the original source projection and locks it to the receiving game until
 an actual current-actor checkpoint can pass departure again. Such an arrival is
 not an outgoing source checkpoint and cannot become a pass-through. A checkpoint projects actual

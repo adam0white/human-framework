@@ -5,6 +5,7 @@
 import { advanceChapterClock, type ChapterClock, createChapterClock } from '@adam0white/hf-legacy';
 import { CANONICAL_CAST, canonicalCast } from './cast.ts';
 import { boundedPersonaJson, createPersona, type PersonaEnvelope, type PersonaRequest } from './persona.ts';
+import { claimPortablePerson, portablePassport } from './persona-portable.ts';
 
 export interface PersonaLife {
   version: 'hf-coarse-life/1';
@@ -181,7 +182,7 @@ export async function claimCastChapter<T>(
     ...body,
     parentRevision: revision,
     source,
-    transfer: { ...body.transfer, life: input.life },
+    transfer: projectCastClaimTransfer(input.parent, source, body.transfer, input.life),
   });
   requireCurrent();
   await shelf.request({ action: 'put', envelope: claim });
@@ -193,6 +194,18 @@ export interface LifeBatchPreparation {
   expectedHeads: Record<string, string | null>;
   inputs: LifePreparation[];
   blocked: { castId: string; reason: string }[];
+}
+/** An arrival owns its portable checkpoint until its actual actor can depart.
+ * Hosts project receiving state; the shelf owns this lock, including failed endings. */
+export function projectCastClaimTransfer(
+  parent: PersonaEnvelope,
+  source: PersonaEnvelope['source'],
+  transfer: Record<string, unknown>,
+  life: PersonaLife,
+): Record<string, unknown> {
+  if (portablePassport(parent)) claimPortablePerson(parent, source.game);
+  const staged = { ...parent, source, transfer: { ...transfer, life } };
+  return portablePassport(staged) ? claimPortablePerson(staged, source.game) : staged.transfer;
 }
 /** Fresh whole-cast admission: semantic validation precedes one atomic acceptance. */
 export async function claimCastChapterBatch<T>(
@@ -229,10 +242,12 @@ export async function claimCastChapterBatch<T>(
         ...body,
         parentRevision: revision,
         source,
-        transfer: {
-          ...(options.claimTransfer ? options.claimTransfer(initial, input) : body.transfer),
-          life: input.life,
-        },
+        transfer: projectCastClaimTransfer(
+          input.parent,
+          source,
+          options.claimTransfer ? options.claimTransfer(initial, input) : body.transfer,
+          input.life,
+        ),
       });
     }),
   );

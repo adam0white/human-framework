@@ -1,6 +1,12 @@
 import { createPerson, promise } from '@adam0white/hf-legacy';
 import { describe, expect, it } from 'vitest';
 import { canonicalCast } from '../src/cast.ts';
+import {
+  claimCastChapter,
+  claimCastChapterBatch,
+  preparePersonaLife,
+  projectCastClaimTransfer,
+} from '../src/life.ts';
 import { createPersona } from '../src/persona.ts';
 import { admitPortablePerson, projectPortablePerson } from '../src/persona-portable.ts';
 
@@ -70,6 +76,86 @@ describe('portable shelf contract', () => {
       }),
     ).toThrow(/unfinished responsibilities/);
     expect(p).toEqual(frozen);
+  });
+  it('locks projected arrivals until a genuine current-actor departure succeeds', async () => {
+    const parent = await createPersona({
+      format: 'hf-persona/1',
+      castId,
+      castRevision: '1',
+      branchId: 'claim-control',
+      parentRevision: null,
+      source: { game: 'commonstead', engine: '2.23.0', build: 'control', rules: 'portable-1' },
+      transfer: project(),
+      limitations: [],
+    });
+    const source = { ...parent.source, game: 'commonstead', engine: '2.23.0' };
+    const arrival = projectPortablePerson({
+      castId,
+      game: 'commonstead',
+      engine: '2.23.0',
+      person: actor(),
+      history: [],
+      previous: parent,
+    });
+    const input = preparePersonaLife(parent, 3600000);
+    const single = await claimCastChapter(
+      {
+        async request<T>(request: import('../src/persona.ts').PersonaRequest) {
+          return (request.action === 'prepare' ? input : undefined) as T;
+        },
+      },
+      castId,
+      source,
+      async () => arrival,
+    );
+    expect(single?.claim.transfer.portableClaim).toEqual({ game: source.game });
+    const result = await claimCastChapterBatch(
+      {
+        async request<T>(request: import('../src/persona.ts').PersonaRequest) {
+          if (request.action === 'prepareBatch')
+            return {
+              expectedHeads: { [castId]: parent.revision },
+              inputs: [input],
+              blocked: [],
+            } as T;
+          return undefined as T;
+        },
+      },
+      [castId],
+      source,
+      async () => arrival,
+      { claimTransfer: (initial) => initial },
+    );
+    const claimed = result?.claims[0];
+    if (!claimed) throw new Error('The portable arrival was not claimed.');
+    expect(() => admitPortablePerson(claimed, 'days', actor())).toThrow(/matching authored role/);
+    expect(() => projectCastClaimTransfer(claimed, { ...source, game: 'days' }, arrival, input.life)).toThrow(
+      /still belongs/,
+    );
+    expect(() =>
+      projectPortablePerson({
+        castId,
+        game: 'commonstead',
+        engine: '2.23.0',
+        person: actor(),
+        history: [],
+        previous: claimed,
+        hostObligations: ['Unfinished delivery'],
+      }),
+    ).toThrow(/unfinished responsibilities/);
+    expect(() => admitPortablePerson(claimed, 'days', actor())).toThrow();
+    const departed = {
+      ...claimed,
+      transfer: projectPortablePerson({
+        castId,
+        game: 'commonstead',
+        engine: '2.23.0',
+        person: actor(),
+        history: ['Finished the chapter.'],
+        previous: claimed,
+      }),
+    };
+    expect(() => admitPortablePerson(departed, 'days', actor())).not.toThrow();
   });
   it('refuses all recurring chain states, precommitments and clinical injuries', () => {
     const person = actor();
