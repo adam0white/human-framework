@@ -1527,7 +1527,17 @@ const receive: T.BodyOwner['receive'] = (state, input, ctx) => {
     }
   };
   if (input.kind === 'receipt') receipt(input.receipt, input.id);
-  else if (input.kind === 'actual-death') {
+  else if (input.kind === 'activity-started') {
+    // An actually accepted awake action ends sleep; merely offering or choosing it does not.
+    if (input.activityMode === 'awake' && b.alive && b.asleep) {
+      const slept = { from: b.since, to: ctx.at };
+      b.asleep = false;
+      delete b.doze.since;
+      b.lastSleep = slept;
+      b.since = ctx.at;
+      emit({ kind: 'woke', slept, evidenceId: input.evidenceId });
+    }
+  } else if (input.kind === 'actual-death') {
     if (b.alive) {
       b.alive = false;
       b.health = 0;

@@ -1230,6 +1230,12 @@ export class Frame {
         } else {
           if (activity.offer.promise)
             this.agenda(person, { type: 'commit', commitment: activity.offer.promise }, context);
+          if (activity.offer.demands.mode === 'awake' && this.actor(person).body.asleep)
+            this.body(
+              person,
+              { kind: 'activity-started', activityMode: activity.offer.demands.mode, evidenceId: input.id },
+              context,
+            );
           this.will(person, { kind: 'action-started', activity, evidenceId: input.id }, context);
           this.stage.current.queue = [
             ...this.state.queue,

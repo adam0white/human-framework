@@ -16,7 +16,7 @@ import {
   setup,
 } from './support.ts';
 
-function resident(mode: 'sleep' | 'awake' = 'sleep', exhausted = false, asleep = false) {
+function resident(mode: 'sleep' | 'awake' = 'sleep', exhausted = false, asleep = false, duty = false) {
   const person = authoredPerson('ada', 'Ada');
   person.state.body.sleepPressure = exhausted ? 1 : 0.6;
   person.state.body.asleep = asleep;
@@ -24,6 +24,17 @@ function resident(mode: 'sleep' | 'awake' = 'sleep', exhausted = false, asleep =
     person.state.body.sleepDebtHours = 48;
     person.state.body.doze.context = { posture: 'seated', stimulation: 0 };
   }
+  if (duty)
+    person.state.agenda.commitments = [
+      {
+        id: 'work-duty',
+        kind: 'duty',
+        actions: ['work'],
+        from: START,
+        until: START + 90 * MINUTE,
+        importance: 1,
+      },
+    ];
   const run = setup([person], exampleSpec(7));
   const offer = exampleOffers('ada', ['rest'])[0];
   if (!offer) throw new Error('Missing authored offer');
@@ -288,6 +299,97 @@ test('sleep outcome receipts keep their sleeping-interval semantics before wakin
       result.events.some((event) => event.data.kind === 'body-change' && event.data.change.kind === 'voided'),
     ).toBe(mode === 'awake');
     const archive = exportRun(run);
+    expect(need(replay(archive)).fullHash).toBe(archive.hashes.full);
+  }
+});
+
+test('an actually accepted awake choice ends genuine doze for a pressing duty', () => {
+  const { run, offer } = resident('awake', true, false, true);
+  begin(run, offer);
+  const interrupted = actionRequest(
+    need(step(run, { until: START + 120 * MINUTE, inputs: [] })),
+    'interrupt',
+  );
+  settle(run, interrupted, 'interrupted');
+  const quietAt = interrupted.boundaryAt + MINUTE;
+  need(step(run, { until: quietAt, inputs: [] }));
+  const before = actor(run).body;
+  expect(before.asleep).toBe(true);
+  expect(before.doze.since).toBeDefined();
+  const work = exampleOffers('ada', ['work'])[0];
+  if (!work) throw new Error('Missing awake offer');
+  work.durationMs = MINUTE;
+  work.demands.effort = 0;
+  work.fulfills = ['work-duty'];
+  work.expected.needs = { esteem: 1, competence: 1 };
+  const at = quietAt + 1;
+  const start = actionRequest(
+    need(
+      step(run, {
+        until: at,
+        inputs: [
+          {
+            id: 'work-book',
+            at,
+            source: { type: 'host', id: 'world' },
+            kind: 'offers.received',
+            payload: { person: 'ada', revision: 3, offers: [work] },
+          },
+          {
+            id: 'work-choice',
+            at,
+            source: { type: 'host', id: 'world' },
+            kind: 'decision.requested',
+            payload: { person: 'ada', offerRevision: 3, reason: 'pressing duty', treatment: 'ordinary' },
+          },
+        ],
+      }),
+    ),
+    'start',
+  );
+  expect(actor(run).body.asleep).toBe(true);
+  const checkpoint = exportRun(run),
+    restored = need(restoreRun(JSON.parse(JSON.stringify(checkpoint))));
+  const rejected = need(restoreRun(JSON.parse(JSON.stringify(checkpoint))));
+  const rejection = need(
+    step(rejected, {
+      until: at,
+      inputs: [resolutionInput(start, 0, { disposition: 'rejected', observations: [] })],
+    }),
+  );
+  expect(actor(rejected).body.asleep).toBe(true);
+  expect(actor(rejected).body.doze.since).toBe(before.doze.since);
+  expect(rejection.events.some((e) => e.data.kind === 'body-change' && e.data.change.kind === 'woke')).toBe(
+    false,
+  );
+  const acceptance = resolutionInput(start, 0, { disposition: 'accepted', observations: [] });
+  const accepted = need(step(run, { until: at, inputs: [acceptance] }));
+  need(step(restored, { until: at, inputs: [acceptance] }));
+  expect(actor(run).body.asleep).toBe(false);
+  expect(actor(run).body.doze.since).toBeUndefined();
+  expect(actor(run).body.lastSleep).toStrictEqual({ from: before.since, to: at });
+  expect(actor(run).body.since).toBe(at);
+  expect(
+    accepted.events.some(
+      (e) =>
+        e.data.kind === 'body-change' &&
+        e.data.change.kind === 'woke' &&
+        e.data.change.evidenceId === acceptance.id,
+    ),
+  ).toBe(true);
+  expect(exportRun(restored)).toStrictEqual(exportRun(run));
+  const finish = actionRequest(need(step(run, { until: at + MINUTE, inputs: [] })), 'finish');
+  expect(actor(run).body.asleep).toBe(false);
+  const receipt = settlement(finish, 'completed');
+  if (!receipt.payload.outcome) throw new Error('Missing outcome');
+  receipt.payload.outcome.actionId = 'work';
+  receipt.payload.outcome.start = at;
+  receipt.payload.outcome.fulfills = ['work-duty'];
+  need(step(run, { until: finish.boundaryAt, inputs: [receipt] }));
+  expect(actor(run).body.asleep).toBe(false);
+  expect(actor(run).agenda.commitments.find((c) => c.id === 'work-duty')?.status).toBe('kept');
+  for (const current of [run, rejected]) {
+    const archive = exportRun(current);
     expect(need(replay(archive)).fullHash).toBe(archive.hashes.full);
   }
 });
