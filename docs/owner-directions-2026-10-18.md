@@ -406,3 +406,9 @@ Coordinator reading: games may spend the free Workers AI pool during the day wit
 > "Yes. pre-generate only seems enough and a good direction."
 
 Coordinator reading: the question was whether Workers AI should vary persona replies and narration. The daily sweep pre-generates wording variants for persona lines and narration templates. Each variant is reviewed against the plain-English guide, the cast registry and the faith rules, then committed as game data. HF picks a variant with its seeded RNG, so exports replay exactly and players cost nothing. No live in-game rewriting.
+
+## 2026-10-28 — Spend the Codex week; fewer reviews, combined PRs (Adam, verbatim)
+
+> "Just a reminder that we have 25% of weekly limits left in Codex. The reset is coming around midnight PST. I'd appreciate it if you can actually exhaust the limits by then, then still keep going with your regular good pace afterwards. I think having less code reviews and combining PRs and addressing work together in one coding sessions and whatever else are good ways to speed up and parallelize work here."
+
+Coordinator reading: before a Codex reset, launch enough parallel workers to use the remaining allowance. Each worker combines related work into one session and one PR per repo. Game work takes one hosted Codex review per PR; behaviour-changing HF releases keep their two reviews.
