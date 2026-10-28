@@ -198,3 +198,49 @@ it('retains a terminal receipt and refuses preparation or living continuation of
   const alternate = await createPersona({ ...body, branchId: 'explicit-alternate', parentRevision: null });
   expect(acceptPersona(state, alternate, true).heads[alive.castId]).toBe(alternate.revision);
 });
+
+it('skips a dead preparation and a host refusal while claiming eligible people atomically', async () => {
+  const a = await envelope();
+  const id = 'hf.cast.idris.well';
+  const { revision: _revision, ...body } = a;
+  const b = await createPersona({
+    ...body,
+    castId: id,
+    branchId: 'other',
+    transfer: {
+      life: initialPersonaLife(id, 'other', 0),
+    },
+  });
+  const deadId = 'hf.cast.danyal.well';
+  let written: unknown;
+  const shelf = {
+    async request<T>(r: import('../src/persona.ts').PersonaRequest): Promise<T> {
+      if (r.action === 'prepareBatch')
+        return {
+          expectedHeads: { [a.castId]: a.revision, [id]: b.revision, [deadId]: 'closed' },
+          inputs: [a, b].map((p) => preparePersonaLife(p, hour)),
+          blocked: [{ castId: deadId, reason: 'This branch ended in death.' }],
+        } as T;
+      written = r;
+      return r.envelopes as T;
+    },
+  };
+  const result = await claimCastChapterBatch(
+    shelf,
+    [a.castId, id, deadId],
+    { ...a.source, game: 'watch' },
+    async (inputs) => inputs.length,
+    {
+      admitPerson(input) {
+        if (input.parent.castId === id) throw new Error('Unsupported host passport.');
+      },
+    },
+  );
+  expect(result?.initial).toBe(1);
+  expect(result?.claims.map((p) => p.castId)).toEqual([a.castId]);
+  expect(result?.blocked).toEqual([
+    { castId: deadId, reason: expect.stringContaining('Danyal') },
+    { castId: id, reason: expect.stringContaining('Idris') },
+  ]);
+  expect(written).toMatchObject({ expectedHeads: { [deadId]: 'closed', [id]: b.revision } });
+});

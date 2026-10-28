@@ -56,9 +56,9 @@ export function CastStartGate({ game }: { game: string }) {
     <section className="cast-start-gate" role="dialog" aria-label="Continuing cast unavailable">
       <h2>These people cannot begin together yet</h2>
       <p>{playerError(s.status)}</p>
-      <p>You can return to an earlier game, or begin a separate local game here.</p>
+      <p>You can return to an earlier game, or start this game with local people.</p>
       <button type="button" onClick={() => startCastFresh(game)}>
-        Start a separate local game
+        Start this game with local people
       </button>
       <button type="button" onClick={() => openCastFeedback(game)}>
         Feedback

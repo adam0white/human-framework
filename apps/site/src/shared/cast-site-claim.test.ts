@@ -24,7 +24,15 @@ describe('same-site native claim provenance', () => {
       request: async (message: Record<string, unknown>) => {
         if (message.action === 'prepareBatch')
           return {
-            expectedHeads: { [head.castId]: head.revision },
+            expectedHeads: Object.fromEntries(
+              [
+                'hf.cast.halil.voice',
+                'hf.cast.selin.voice',
+                'hf.cast.riza.voice',
+                head.castId,
+                'hf.cast.osman.voice',
+              ].map((id) => [id, id === head.castId ? head.revision : null]),
+            ),
             blocked: [],
             inputs: [preparePersonaLife(head, 0)],
           };
@@ -32,15 +40,23 @@ describe('same-site native claim provenance', () => {
         return {};
       },
     } as unknown as CastShelf;
-    await expect(
-      claimSiteCastBatch(
-        shelf,
-        [head.castId],
-        { game: 'voice', engine: '2.23.0', build: 'control', rules: 'cast-1' },
-        async (inputs) => newRun(771, {}, makeCastChapter(inputs)),
-      ),
-    ).rejects.toThrow(/authored role/);
-    expect(writes).toBe(0);
+    const result = await claimSiteCastBatch(
+      shelf,
+      [
+        'hf.cast.halil.voice',
+        'hf.cast.selin.voice',
+        'hf.cast.riza.voice',
+        head.castId,
+        'hf.cast.osman.voice',
+      ],
+      { game: 'voice', engine: '2.23.0', build: 'control', rules: 'cast-1' },
+      async (inputs) => (inputs.length ? newRun(771, {}, makeCastChapter(inputs)) : newRun(771)),
+    );
+    expect(result?.blocked[0]?.castId).toBe(head.castId);
+    expect(result?.blocked[0]?.reason).toMatch(/Hacer/);
+    expect(result?.claims).toEqual([]);
+    expect(result?.initial).toBeDefined();
+    expect(writes).toBe(1);
     expect(head).toEqual(original);
   });
   it('preserves original native source across same-site claims and refuses an external pass-through claim', async () => {

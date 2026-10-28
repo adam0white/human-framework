@@ -262,8 +262,8 @@ export function prepareSiteInitial(game: string, opening: Person, single: CastPe
     const pinned = restore(JSON.parse(single.initial));
     target = { ...opening };
     const lexicon = { ...opening.lexicon };
-    delete lexicon.plainEnglish;
     if (pinned.lexicon?.plainEnglish !== undefined) lexicon.plainEnglish = pinned.lexicon.plainEnglish;
+    else delete lexicon.plainEnglish;
     if (Object.keys(lexicon).length) target.lexicon = lexicon;
     else delete target.lexicon;
   }

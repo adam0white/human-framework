@@ -52,20 +52,7 @@ export const fileSession =
   new URLSearchParams(window.location?.search ?? '').get('file') === '1';
 const nativeShelf = fileSession ? undefined : personaChannel();
 // Test the bridge before admitting a chapter. A failed bridge leaves fresh local play available.
-const shelfReady =
-  nativeShelf &&
-  (async () => {
-    await nativeShelf.ready;
-    nativeShelf.setEnabled(true);
-    await nativeShelf.ready;
-    try {
-      await nativeShelf.request({ action: 'list' });
-    } catch {
-      nativeShelf.setEnabled(false);
-      await nativeShelf.ready;
-    }
-    return nativeShelf.enabled;
-  })();
+const shelfReady = nativeShelf?.ready;
 export const sitePersonaShelf = nativeShelf && {
   get enabled() {
     return nativeShelf.enabled;
@@ -121,6 +108,8 @@ type State = {
   localLoad: boolean;
   auto: boolean;
   blocked?: boolean;
+  skipped?: string[];
+  localOnly?: boolean;
   pendingInit?: Record<string, unknown>;
   startupQueue?: Record<string, unknown>[];
   previewInit?: Record<string, unknown>;
@@ -148,6 +137,8 @@ const RUN_FIELDS = [
   'pendingInit',
   'line',
   'status',
+  'skipped',
+  'localOnly',
 ] as const;
 type RunState = Pick<State, (typeof RUN_FIELDS)[number]>;
 function savedRun(s: State): RunState {
@@ -238,6 +229,8 @@ function reset(s: State, gen?: number) {
   s.startupQueue = undefined;
   s.localLoad = false;
   s.blocked = false;
+  s.skipped = [];
+  s.localOnly = false;
   for (const p of s.pending.values()) p.reject(new Error('This chapter was replaced.'));
   s.pending.clear();
   s.previewInit = undefined;
@@ -437,6 +430,8 @@ export function bindCastWorker(worker: Worker, game: string, lab: Lab): () => vo
       ) {
         file.castOwnership = structuredClone(s.heads);
         file.castSources = structuredClone(s.sources);
+        file.castLocalOnly = s.localOnly ?? false;
+        file.castSkipped = [...(s.skipped ?? [])];
       }
     if (m.type === 'replayed' && m.result?.matches && s.localRestore)
       void restoreOwnership(s, s.localRestore, s.generation).catch((e) => {
@@ -551,6 +546,12 @@ export function postCastMessage(worker: Worker, game: string, message: Record<st
         const saved = JSON.parse(message.text);
         s.localRestore = saved.castOwnership;
         s.localSources = saved.castSources;
+        s.localOnly = saved.castLocalOnly === true;
+        s.skipped = Array.isArray(saved.castSkipped)
+          ? saved.castSkipped.filter(
+              (id: unknown) => typeof id === 'string' && castForGame(game).some((p) => p.castId === id),
+            )
+          : [];
       } catch {
         /* Worker rejects malformed file. */
       }
@@ -600,6 +601,7 @@ export function postCastMessage(worker: Worker, game: string, message: Record<st
       castForGame(game).map((p) => p.castId),
       source,
       async (inputs) => {
+        if (!inputs.length) return undefined;
         const chapter = makeCastChapter(inputs);
         const checked = await ask(s, { type: 'castPreflight', seed: Number(message.seed), chapter });
         if (checked.error) throw new Error(checked.error);
@@ -611,6 +613,16 @@ export function postCastMessage(worker: Worker, game: string, message: Record<st
         return chapter;
       },
       {
+        admitPerson: async (input) => {
+          const checked = await ask(s, {
+            type: 'castPreflight',
+            seed: Number(message.seed),
+            chapter: makeCastChapter([input]),
+          });
+          if (checked.error) throw new Error(checked.error);
+          if (!checked.initials?.[input.parent.castId])
+            throw new Error('Preflight omitted a complete initial actor.');
+        },
         isCurrent: () => generation === s.generation && requireValue(shelf).enabled,
         onDispatch: () => {
           s.claiming = generation;
@@ -627,12 +639,24 @@ export function postCastMessage(worker: Worker, game: string, message: Record<st
     }
     s.heads = Object.fromEntries(admitted.claims.map((p) => [p.castId, p]));
     s.histories = { ...s.heads };
+    s.skipped = admitted.blocked.map((p) => p.castId);
+    const skipped = admitted.blocked
+      .map((p) => `${canonicalCast(p.castId).name} could not carry over. Local people take their place.`)
+      .join(' ');
+    if (!admitted.inputs.length) {
+      gate(s, null);
+      s.line = skipped;
+      s.status = skipped;
+      startWorker(s, message);
+      return;
+    }
     const chapter = makeCastChapter(admitted.inputs, admitted.claims);
     for (const [id, person] of Object.entries(requireValue(chapter.people)))
-      person.initial = requireValue(requireValue(admitted.initial.people)[id]).initial;
-    s.line = admitted.inputs.map((p) => lifeAdmission(p, game).line).join(' ');
+      person.initial = requireValue(requireValue(requireValue(admitted.initial).people)[id]).initial;
+    s.line = [skipped, ...admitted.inputs.map((p) => lifeAdmission(p, game).line)].filter(Boolean).join(' ');
     gate(s, `cast-group-${crypto.randomUUID()}`);
-    s.status = `${admitted.claims.length} continuing people begin together. Their initial state and life are pinned.`;
+    s.status =
+      `${skipped} ${admitted.claims.length} continuing people begin together. Their initial state and life are pinned.`.trim();
     startWorker(s, { ...message, castChapter: chapter });
     await recording(s, generation);
   })()
@@ -660,17 +684,25 @@ export function startCastFresh(game: string) {
   requireNativeSession();
   const s = states.get(game);
   if (!s) return;
-  requireValue(shelf).setEnabled(false);
-  if (s.blocked && s.pendingInit) {
+  if (s.pendingInit && !s.busy) {
     const message = s.pendingInit;
-    postCastMessage(s.worker, game, message);
-    return;
+    reset(s, typeof message.gen === 'number' ? message.gen : undefined);
+    s.localOnly = true;
+    s.line = 'This game uses local people. Carryover remains available in other games.';
+    s.status = s.line;
+    gate(s, null);
+    startWorker(s, message);
   }
-  s.status = 'Continuity is off. Use the game’s new-run control for deliberate fresh local play.';
   changed();
 }
+
 async function checkpointPerson(s: State, selectedCastId: string, fork: boolean): Promise<void> {
   if (s.busy) return;
+  if (s.localOnly || s.skipped?.includes(selectedCastId)) {
+    s.status = `${canonicalCast(selectedCastId).name} is local in this game. Their saved history stays unchanged.`;
+    changed();
+    return;
+  }
   s.busy = true;
   const generation = s.generation;
   s.status = `Waiting for ${canonicalCast(selectedCastId).name}'s actual action to finish. Close the menu and continue play.`;

@@ -4,6 +4,7 @@
  */
 import {
   type CastShelf,
+  canonicalCast,
   claimPortablePerson,
   createPersona,
   type LifeBatchPreparation,
@@ -18,7 +19,11 @@ export async function claimSiteCastBatch<T>(
   castIds: string[],
   source: PersonaEnvelope['source'],
   admit: (inputs: LifePreparation[]) => Promise<T>,
-  options: { isCurrent?: () => boolean; onDispatch?: () => void } = {},
+  options: {
+    isCurrent?: () => boolean;
+    onDispatch?: () => void;
+    admitPerson?: (input: LifePreparation) => Promise<void>;
+  } = {},
 ) {
   const current = () => {
     if (options.isCurrent && !options.isCurrent())
@@ -29,17 +34,36 @@ export async function claimSiteCastBatch<T>(
   current();
   if (!batch.expectedHeads || castIds.some((id) => !Object.hasOwn(batch.expectedHeads, id)))
     throw new Error('The batch omitted expected cast parents.');
-  if (batch.blocked.length) throw new Error(batch.blocked.map((p) => `${p.castId}: ${p.reason}`).join(' '));
-  if (!batch.inputs.length) {
+  const blocked = batch.blocked.map((p) => ({
+    ...p,
+    reason: `${canonicalCast(p.castId).name}: ${p.reason}`,
+  }));
+  const inputs: LifePreparation[] = [];
+  // Host validation is per person; shelf acceptance still checks every original parent.
+  for (const input of batch.inputs) {
+    current();
+    try {
+      lifeAdmission(input, source.game);
+      nativeCastSource(source.game, input.parent);
+      await options.admitPerson?.(structuredClone(input));
+      inputs.push(input);
+    } catch (error) {
+      blocked.push({
+        castId: input.parent.castId,
+        reason: `${canonicalCast(input.parent.castId).name}: ${String(error)}`,
+      });
+    }
+    current();
+  }
+  if (!inputs.length && !blocked.length) {
     options.onDispatch?.();
     await shelf.request({ action: 'putBatch', envelopes: [], expectedHeads: batch.expectedHeads });
     current();
     return null;
   }
-  for (const input of batch.inputs) lifeAdmission(input, source.game);
-  const initial = await admit(structuredClone(batch.inputs));
+  const initial = await admit(structuredClone(inputs));
   const claims = await Promise.all(
-    batch.inputs.map(async (input) => {
+    inputs.map(async (input) => {
       const { revision, ...body } = input.parent;
       const native = nativeCastSource(source.game, input.parent);
       const prior = body.transfer.siteNativeClaim as
@@ -65,5 +89,5 @@ export async function claimSiteCastBatch<T>(
   options.onDispatch?.();
   await shelf.request({ action: 'putBatch', envelopes: claims, expectedHeads: batch.expectedHeads });
   current();
-  return { initial, claims, inputs: batch.inputs };
+  return { initial, claims, inputs, blocked };
 }

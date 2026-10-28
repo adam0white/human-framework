@@ -11,6 +11,13 @@ version, stamped with build and schema hashes in `RUN_ENGINE`. See the version p
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
+## [4.3.1] — 2026-10-27
+
+Engine: 4.3.1.
+
+- Patch the companion shelf client and central host admission: an unsupported or dead person is named and skipped while eligible people continue. The full original cast remains in the atomic parent check. The actor and portable projection rules are unchanged.
+- A local start belongs to this game and preserves the shared carryover preference. Skipped people keep their saved histories through play and local reload.
+
 ## [4.3.0] — 2026-10-27
 
 Engine: 4.3.0.

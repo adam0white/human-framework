@@ -690,3 +690,9 @@ reviews, published HF4.3.0 and client artifact, changed apps deployed with exact
 `release.json` commits and `dirty:false`. The owner accepts the result. The
 coordinator's Opus verdict at `~/code/.lab-scratch/v3/claude-carryover-read.md`
 must exist and be recorded in the worker report before publication.
+
+### Per-person fresh admission — 4.3.1
+
+The shelf prepares each person separately. Preparation refusals, including death and older cast editions, become named skipped entries. Hosts use `claimCastChapterBatch`’s `admitPerson` callback to validate each receiving role. The final opening receives eligible people only. Acceptance still checks every original parent, including skipped people and absent heads. A game must pin skipped identities and refuse their checkpoint, fork and terminal writes. A local start changes only that game; it never writes the shared carryover preference.
+
+Hotfix done means focused regressions, one played control per game, signed reviewed PRs with exact green CI, the 4.3.1/client patch release, clean central and Days deployments, and a live Days → Voice play. The owner accepts the result after the Opus re-check.

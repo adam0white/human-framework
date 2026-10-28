@@ -621,6 +621,7 @@ describe('whole-cast browser continuity', () => {
     close = bindCastWorker(worker as unknown as Worker, 'voice', lab as never);
     for (const cancellation of ['load', 'conflict'] as const) {
       control.beforeBatch = undefined;
+      control.autoPreflight = false;
       const preflightCount = worker.requests('castPreflight').length;
       postCastMessage(worker as unknown as Worker, 'voice', { type: 'init', seed: 1, gen: 1 });
       postCastMessage(worker as unknown as Worker, 'voice', { type: 'begin', gen: 1 });
@@ -638,6 +639,7 @@ describe('whole-cast browser continuity', () => {
             await createPersona({ ...body, parentRevision: revision }),
           );
         };
+      control.autoPreflight = true;
       worker.reply({
         type: 'castReady',
         requestId: request.requestId,
@@ -688,12 +690,44 @@ describe('whole-cast browser continuity', () => {
     const { createElement } = await import('react');
     const { CastStartGate } = await import('./CastMenu.tsx');
     expect(renderToStaticMarkup(createElement(CastStartGate, { game: 'voice' }))).toContain(
-      'Start a separate local game',
+      'Start this game with local people',
     );
     startCastFresh('voice');
     await vi.waitFor(() => expect(worker.requests('init')).toHaveLength(1));
     expect(worker.requests('init')[0]?.castChapter).toBeUndefined();
     expect(control.state).toEqual(before);
+    expect(control.enabled).toBe(true);
+    const other = new FakeWorker();
+    const unbind = bindCastWorker(other as unknown as Worker, 'watch', lab as never);
+    postCastMessage(other as unknown as Worker, 'watch', { type: 'init', seed: 2, gen: 1 });
+    await vi.waitFor(() => expect(other.requests('init')).toHaveLength(1));
+    expect(control.enabled).toBe(true);
+    unbind();
+  });
+  it('starts around a dead person and preserves their head through checkpoint and local reload', async () => {
+    const { closePersonaBranch } = await import('@adam0white/lab-client');
+    const alive = await head('hf.cast.hacer.voice');
+    const dead = await closePersonaBranch(alive, alive.source, 1);
+    control.state = acceptPersona(acceptPersona(control.state, alive), dead);
+    const eligible = await head();
+    control.state = acceptPersona(control.state, eligible);
+    const worker = new FakeWorker();
+    await begin(worker);
+    expect(worker.requests('init')).toHaveLength(1);
+    expect(castState('voice').blocked).toBe(false);
+    expect(castState('voice').line).toContain('Hacer could not carry over');
+    expect(control.puts.map((p) => p.castId)).toEqual([eligible.castId]);
+    selectCast('voice', dead.castId);
+    await checkpointCast('voice');
+    expect(worker.requests('castCheckpoint')).toHaveLength(0);
+    expect(control.state.heads[dead.castId]).toBe(dead.revision);
+    postCastMessage(worker as unknown as Worker, 'voice', {
+      type: 'load',
+      gen: 2,
+      text: JSON.stringify({ castSkipped: [dead.castId] }),
+    });
+    await checkpointCast('voice');
+    expect(worker.requests('castCheckpoint')).toHaveLength(0);
   });
   it('an allocated person created during preflight conflicts with the expected-absent parent', async () => {
     const first = await head();
