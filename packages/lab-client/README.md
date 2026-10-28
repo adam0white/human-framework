@@ -1,6 +1,6 @@
 # Lab client
 
-This README describes client 0.5.4. Client distribution uses immutable GitHub release artifacts, not npm publication. The pure portable-person bridge depends on exact HF 4.8.0; the existing coarse clock uses the explicit HF 3.0.0 legacy alias. Receiving games keep their actor engine. Use the [SDK adoption guide](../../docs/lab/navigation-journal-adoption-2026-10-25.md) and verify the [release digests](../../docs/releases.md#lab-package-artifacts--2026-10-25).
+This README describes client 0.5.5. Client distribution uses immutable GitHub release artifacts, not npm publication. The pure portable-person bridge depends on exact HF 4.8.0; the existing coarse clock uses the explicit HF 3.0.0 legacy alias. Receiving games keep their actor engine. Use the [SDK adoption guide](../../docs/lab/navigation-journal-adoption-2026-10-25.md) and verify the [release digests](../../docs/releases.md#lab-package-artifacts--2026-10-25).
 
 Workspace version: **0.5.4**. Per-person preparation and host admission refusals return named `blocked` entries. Hosts validate each arrival with `claimCastChapterBatch`’s `admitPerson` callback before the final opening and atomic full-parent acceptance. It supports retained v2 passports and explicit mapped authoring for Stairwell through the same HF-owned portable route. It adds the [HF-owned portable-person contract](../../docs/framework.md#portable-people-across-engine-versions--430) within the existing shelf. It retains 0.4.15 whole-queue backoff and 0.4.14 (explicit preserving initialization, retained recording with backpressure, idle retries and exact stored receipts) and adds whole-queue backoff: after a 429 (Retry-After is honoured), a server error, a refusal or a network error, every automatic delivery waits with capped exponential backoff and jitter; each retry pass stops at its first failure; at most two automatic deliveries are in flight. An explicit Send of a note still goes at once. Published 0.4.14 remains immutable; neither this source nor its tests establish host adoption or ingestion. The **0.4.11** [GitHub artifact](https://github.com/adam0white/human-framework/releases/tag/lab-client-v0.4.11) is published from separate source `569bfeed`, with exact CI 40241110596. Its source is integrated into this 3.2 candidate; live host adoption still needs deployment. See [SDK adoption](../../docs/lab/navigation-journal-adoption-2026-10-25.md) before using its opt-in Feedback choices.
 
@@ -159,3 +159,16 @@ For a restored native source, pass `calendar` and any required legacy norm attri
 The finite `lefthand` role map binds `hf.cast.{yusuf,idris,samira,danyal}.well` to the matching local id. These are the existing registry people, revision 1. `projectPortablePerson` and `admitPortablePerson` remain the only shelf source/target route. Supply the actual idle actor and unfinished host responsibilities when departing; admit into the actual authored opening before the first step. V2 requires explicit clock/reference mapping. Wrong identities, active work, incompatible clinical premises and already claimed arrivals refuse before replacing inputs. A clinical conflict with Idris's authored episode is skipped and pinned by the host, never healed by transfer. No Well or Valley portable routine is enabled by this map. Tariq's Left Hand role is withheld until Warren is live on HF 4 with per-person skips (client 0.5.1+), target 2026-11-03. Hosts on client 0.4.x refuse the whole cast batch when one shelf person has a foreign portable head.
 
 Run the bounded control with `node packages/lab-client/examples/left-hand-portable-control.ts` after building HF. It proves public-run admission, receiving ownership, real actor departure and replay, independently of deployed-game delivery.
+
+## HF4 portable role coverage (0.5.5)
+
+The portable shelf route binds every registry actor in Valley, Glance, Rope,
+Warren, Hearsay and Small Works (`repair`), alongside existing Good Hands,
+Pass, Murmur and Stairwell roles. Well and Watch bind genuine source and
+receiving roles too. Actor IDs are exact: Valley uses `yusuf-usta` for Master
+Yusuf and `meryem-visitor` for Meryem; Warren uses `yusuf` and `meryem`.
+
+These bindings do not port a host or interpret its references. Hosts retain
+public HF admission, clinical and unfinished-duty refusals, ownership checks,
+reference mapping and complete replay inputs. See the
+[coverage and adoption boundary](../../docs/lab/portable-role-bindings.md).

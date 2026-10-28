@@ -316,3 +316,5 @@ claiming adoption. No npm publication or host adoption is part of this candidate
 `telemetryNotice(storage, {preservation:'preserve'})` shows the normal recording disclosure without writing the local once flag or making a central notice claim. It may show again; visibility is informational, not an acknowledgment or permission change. Pair it with client `createLab({game, preservation:'preserve'})`. Normal `telemetryNotice(storage)` keeps its once-per-origin and asynchronous central-claim behavior. A preserving notice does not initialize identity, turn recording on, or protect host native/Shelf/service-worker state. Those require their own contracts and actual profile verification.
 
 `debugFooter(...items)` returns a footer with Lab privacy and a collapsed Debug item. Pass DOM nodes for the few needed diagnostics; each new footer starts collapsed.
+
+Client 0.5.5 is accepted by kit 0.5.23 through the optional client peer. Portable role coverage is supplied by the client; host admission remains separate.

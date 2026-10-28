@@ -13,6 +13,68 @@ import { boundedPersonaJson, type PersonaEnvelope } from './persona.ts';
 
 // SCOPE: roles bind identity only; clinical, departure and ownership checks still apply.
 const SOURCE_ROLES: Record<string, Record<string, string>> = {
+  valley: {
+    'hf.cast.yusuf.warren': 'yusuf-usta',
+    'hf.cast.meryem.warren': 'meryem-visitor',
+    'hf.cast.yusuf.well': 'yusuf',
+    'hf.cast.samira.well': 'samira',
+    'hf.cast.maryam.well': 'maryam',
+    'hf.cast.danyal.well': 'danyal',
+  },
+  glance: {
+    'hf.cast.dai.glance': 'dai',
+    'hf.cast.callum.glance': 'callum',
+    'hf.cast.nerys.glance': 'nerys',
+    'hf.cast.bilal.rope': 'bilal',
+    'hf.cast.wren.rope': 'wren',
+  },
+  rope: {
+    'hf.cast.tamar.rope': 'tamar',
+    'hf.cast.oskar.rope': 'oskar',
+    'hf.cast.nell.rope': 'nell',
+    'hf.cast.bilal.rope': 'bilal',
+    'hf.cast.wren.rope': 'wren',
+  },
+  warren: {
+    'hf.cast.yusuf.warren': 'yusuf',
+    'hf.cast.meryem.warren': 'meryem',
+    'hf.cast.maryam.well': 'maryam',
+    'hf.cast.tariq.well': 'tariq',
+    'hf.cast.kian.watch': 'kian',
+    'hf.cast.tamar.watch': 'tamar',
+  },
+  hearsay: {
+    'hf.cast.hatice.hearsay': 'hatice',
+    'hf.cast.derya.stairwell': 'derya',
+    'hf.cast.dilan.murmur': 'dilan',
+    'hf.cast.nermin.goodhands': 'nermin',
+    'hf.cast.aylin.murmur': 'aylin',
+    'hf.cast.ece.murmur': 'ece',
+    'hf.cast.riza.voice': 'riza',
+    'hf.cast.osman.voice': 'osman',
+  },
+  repair: {
+    'hf.cast.sam.smallworks': 'sam',
+    'hf.cast.nora.smallworks': 'nora',
+    'hf.cast.halil.voice': 'halil',
+    'hf.cast.rafi.pass': 'rafi',
+  },
+  well: {
+    'hf.cast.maryam.well': 'maryam',
+    'hf.cast.yusuf.well': 'yusuf',
+    'hf.cast.tariq.well': 'tariq',
+    'hf.cast.idris.well': 'idris',
+    'hf.cast.samira.well': 'samira',
+    'hf.cast.danyal.well': 'danyal',
+  },
+  watch: {
+    'hf.cast.tamar.watch': 'tamar',
+    'hf.cast.kian.watch': 'kian',
+    'hf.cast.idris.well': 'idris',
+    'hf.cast.samira.well': 'samira',
+    'hf.cast.danyal.well': 'danyal',
+    'hf.cast.meryem.warren': 'meryem',
+  },
   lefthand: {
     'hf.cast.yusuf.well': 'yusuf',
     'hf.cast.idris.well': 'idris',
