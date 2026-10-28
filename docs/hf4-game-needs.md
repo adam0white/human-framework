@@ -71,6 +71,20 @@ Recorded stay reason: Keep delivered disclosure and resident-trust rules while t
 | Supply the sourced default norm catalogue used by current authoring or cast calendar validation, with research and interpretation references; copied unsourced defaults cannot replace this admission dependency.                                          | HF conscience/research; game cast integration | Existing 2026-11-17                                           | G3          |
 | Replace direct 3.x calls and snapshots with the run bridge and host world state; reject unsupported old saves explicitly. Keep a complete current-version export that replays the same seed, ordered inputs, state and RNG.                                | Stairwell integration; HF run/docs            | Port candidate 2026-11-24; delivery/blocker review 2026-12-01 | G1          |
 
+#### G2–G4 Stairwell contract candidate, 2026-10-27
+
+The 4.4 candidate exports the existing `DEFAULT_NORMS` catalogue as `SourcedNorm` values. Research records, interpretation references, exemptions and pending qualified-review limitations travel with the definitions. This resolves the catalogue authoring dependency in G3 at source; it does not supply the wider worship-schedule work in that row. Norms describe a person's understanding, never a ruling.
+
+For Stairwell's confirmed G4 reads, `inspect` admits `sourceTrust`: host and self receive held source trust; another observer receives `unobserved`. Optional `preview.bodyForecast` takes labelled, bounded load spans and returns each span's end, worst perceived need and severity through the existing body owner. It starts at the live run time, leaves the live run unchanged, and conditions on declared loads and current ambient evidence. It does not supply another actor's hidden state, predict host outcomes or imply that an action will be admitted. Broader observer-sign and narration requests in G4 remain separate.
+
+Merged PR #38's 4.3 passport carries profile/body/mood and bounded summaries. It does not resolve G2's retained beliefs, duties, memory and calendar provenance. The 4.4 candidate extends the same versioned portable route; its exact supported sources, mapping refusals and independent adoption evidence must be recorded before G2 can close. The historical failed orbital adapter gate remains a failed historical result. A new independently authored third-world integration is separate evidence.
+
+The candidate also updates lab-client 0.5.2 through the existing shelf helpers: v2 marker/identity validation, finite Stairwell roles and explicitly mapped authoring before HF admission. Lab kit 0.5.19 declares exact client compatibility; source pins for the central receiver follow these artifacts. Publication, central deployment and the actual game port remain separate.
+
+The bounded candidate passes actual native engine 2.21 and 2.23 snapshot admission/replay controls, retaining age, prayer duties, belief/trust and remembered episodes. A fresh reader used the public package and minimal-host example to build a separate lighthouse world within two hours, without core edits: nonempty memory/belief/duty/calendar provenance, mapped references and clocks, accepted work, active-work JSON restore, exact replay, isolated/interleaved state and RNG, and separate portable/host-version refusals passed. This is a new bounded adoption control, not a rerun or reversal of the archived failed VM adapter, a general portability claim or an empirical result. The full repository lane passes 1,875 tests with seven existing skips.
+
+These are candidate contracts, not a publication, Stairwell port, deployed release or owner acceptance. G1 remains open until the complete game proof and delivery receipts exist.
+
 #### G1 candidate audit, 2026-10-27
 
 Current candidate source: `stairwell@329919a`, production pin 3.0.0. The

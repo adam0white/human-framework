@@ -2,6 +2,8 @@
  * A person may propose only its own actions and receives only its visible events. */
 import { hashCanonical } from './run-canonical.ts';
 import { forkKernel, freezeData, readKernel } from './run-kernel.ts';
+import { OWNERS } from './run-owners.ts';
+import { bodyPerception } from './run-person.ts';
 import type * as T from './run-schema.ts';
 import { step } from './run-step.ts';
 import { validateData } from './run-validation.ts';
@@ -36,6 +38,31 @@ export function preview(
             message: 'Person preview accepts only the observer’s own inputs',
           },
         };
+  }
+  let bodyForecast: T.DeepReadonly<NonNullable<T.PreviewResult['bodyForecast']>> | undefined;
+  if (query.bodyForecast !== undefined) {
+    const actor = record.current.people[query.person];
+    const continuation = record.current.continuations.find((c) => c.person === query.person);
+    if (!actor || !continuation) throw new TypeError('Preview actor continuation disappeared');
+    const forecast = OWNERS.body.forecast(actor.body, query.bodyForecast, {
+      effective: record.parameters.effective,
+      effectiveParametersHash: record.parameters.hash,
+      person: query.person,
+      at: record.current.at,
+      priorAt: record.current.at,
+      phase: record.current.cursor.phase,
+      fidelity: record.current.cursor.fidelity,
+      worldRevision: record.current.world.revision,
+      causes: [],
+      continuation: continuation.body,
+      dozeContinuation: continuation.doze,
+      life: { birthAt: actor.life.bornAt },
+      environment: actor.ambient.percept,
+      ...(actor.family.pregnancy ? { pregnancy: actor.family.pregnancy } : {}),
+      perception: bodyPerception(actor, record.current.at),
+    });
+    if (!forecast.ok) return forecast;
+    bodyForecast = { person: query.person, from: record.current.at, spans: forecast.value };
   }
   const fork = forkKernel(run);
   const hypothetical = readKernel(fork);
@@ -117,11 +144,17 @@ export function preview(
     value: freezeData({
       at: result.value.at,
       hypothetical: true,
+      ...(bodyForecast ? { bodyForecast } : {}),
       perspective: query.perspective,
       possibilities,
       boundary,
       knowledgeLimit: [
         'Host outcomes remain unresolved until actual host evidence is received.',
+        ...(bodyForecast
+          ? [
+              'Body spans condition on declared loads and current ambient evidence; they do not promise action admission, host outcomes or other people’s behavior.',
+            ]
+          : []),
         ...(query.perspective.kind === 'person'
           ? [
               'Other people are represented only by the observer’s held evidence. Unknown bodies, motives and autonomous actions are not simulated. Future host evidence is unknown.',

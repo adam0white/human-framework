@@ -1,3 +1,4 @@
+import type { PortableAdmission, PortableCalendar, PortablePerson } from './portable-person.ts';
 /** SCOPE: HF4 canonical data-only run contracts and exact internal owner ports.
  * Source implementation authorization: C0 at d87c7b2. No callable implementation,
  * registry, constructor side effect or legacy compatibility path is installed here.
@@ -98,6 +99,7 @@ export type PersonAuthoring = {
   origin: { kind: 'authored'; basis: EvidenceRef; traits: TraitBasis };
   state: AuthoredPersonState; // validated facet data, no clock/RNG/enable overrides
   admission?: PersonaAdmission;
+  portable?: PortableAdmission;
 };
 export type AuthoredPersonState = {
   traits: Traits;
@@ -324,6 +326,7 @@ export type FacultyEffects = {
 
 export type Perspective = { kind: 'person'; observer: PersonId } | { kind: 'host' };
 export type InspectQuery = {
+  portable?: { person: PersonId; castId: Id; castRevision: Id };
   lifecycle?: LifecycleQuery;
   perspective: Perspective;
   people: readonly PersonId[];
@@ -332,6 +335,7 @@ export type InspectQuery = {
     | 'skills'
     | 'body'
     | 'beliefs'
+    | 'sourceTrust'
     | 'relationships'
     | 'methods'
     | 'agenda'
@@ -363,7 +367,14 @@ export type Inspection = {
   skill?: SkillSuccess;
   fullHash?: Hash;
 };
+export type BodyForecastLoad = {
+  label: string;
+  durationMs: DurationMs;
+  load: BodyLoad;
+};
 export type PreviewQuery = {
+  /** Conditional declared loads, starting at the live run time; bounded by the body owner. */
+  bodyForecast?: readonly BodyForecastLoad[];
   perspective: Perspective;
   person: PersonId;
   until: Time;
@@ -371,6 +382,7 @@ export type PreviewQuery = {
   inputs: readonly Input[];
 };
 export type PreviewResult = {
+  bodyForecast?: { person: PersonId; from: Time; spans: readonly BodyForecastSpan[] };
   at: Time;
   hypothetical: true;
   perspective: Perspective;
@@ -2642,12 +2654,13 @@ export type HostParts = {
   summary: { name: string; alive: boolean; activity: { id: Id; actionId: Id } | null };
   body: { state: BodyState; readout: BodyReadout };
   beliefs: readonly Belief[];
+  sourceTrust: Readonly<Record<Id, Unit>>;
   relationships: { ties: readonly Relationship[]; voices: readonly VoiceRelation[] };
   methods: MethodsState;
   agenda: AgendaState;
   events: readonly VisibleEvent[];
-  persona: PersonaProjection;
-  calendar: CalendarProjection;
+  persona: PortablePerson;
+  calendar: PortableCalendar;
   chapter: ChapterProjection;
 };
 export type SelfBody = { perceived: BodyReadout['perceived'] };
@@ -2656,6 +2669,7 @@ export type SelfParts = {
   summary: { name: string; mood: AffectState['mood'] };
   body: SelfBody;
   beliefs: readonly Belief[];
+  sourceTrust: Readonly<Record<Id, Unit>>;
   relationships: { ties: readonly Relationship[]; voices: readonly VoiceRelation[] };
   methods: MethodsState;
   agenda: AgendaState;
@@ -2669,6 +2683,7 @@ export type OtherParts = {
   summary: { signs: Knowledge<OutwardSigns>; impressions: readonly ImpressionCue[] };
   body: Knowledge<OutwardSigns>;
   beliefs: Knowledge<readonly Belief[]>;
+  sourceTrust: Knowledge<Readonly<Record<Id, Unit>>>;
   relationships: Knowledge<Relationship>;
   methods: Knowledge<MethodsState>;
   agenda: Knowledge<AgendaState>;

@@ -3,6 +3,8 @@
  */
 import {
   admitPortablePerson as admit,
+  type PortableAdmission,
+  type PortableCalendar,
   projectPortablePerson as project,
   validatePortablePerson,
 } from '@adam0white/human-framework/portable';
@@ -10,6 +12,13 @@ import { canonicalCast } from './cast.ts';
 import { boundedPersonaJson, type PersonaEnvelope } from './persona.ts';
 
 const SOURCE_ROLES: Record<string, Record<string, string>> = {
+  stairwell: {
+    'hf.cast.hacer.voice': 'hacer',
+    'hf.cast.sevim.stairwell': 'sevim',
+    'hf.cast.burak.stairwell': 'burak',
+    'hf.cast.derya.stairwell': 'derya',
+    'hf.cast.tarik.stairwell': 'tarik',
+  },
   commonstead: { 'hf.cast.burak.stairwell': 'hf.cast.burak.stairwell' },
   days: {
     'hf.cast.hacer.voice': 'hf.cast.hacer.voice',
@@ -43,7 +52,7 @@ function read(parent: PersonaEnvelope) {
   )
     throw new Error('This saved arrival has an incompatible receiving chapter. Keep or export it there.');
   if (
-    parent.transfer.castPassport !== PORTABLE_PASSPORT ||
+    parent.transfer.castPassport !== `hf-portable-person/${p.version}` ||
     parent.terminal ||
     p.castId !== parent.castId ||
     p.castRevision !== parent.castRevision ||
@@ -80,6 +89,9 @@ export function projectPortablePerson(input: {
   history: string[];
   previous?: PersonaEnvelope;
   hostObligations?: string[];
+  calendar?: PortableCalendar;
+  legacyNormProvenance?: Parameters<typeof project>[0]['legacyNormProvenance'];
+  legacyNormCatalogue?: readonly unknown[];
 }): Record<string, unknown> {
   const cast = canonicalCast(input.castId);
   if (
@@ -102,21 +114,34 @@ export function projectPortablePerson(input: {
   )
     throw new Error('This person still belongs to another chapter. Continue or export it there.');
   const previous = input.previous && portablePassport(input.previous) ? read(input.previous) : undefined;
+  const portable = project({ ...input, castRevision: cast.revision, previous });
   return {
-    castPassport: PORTABLE_PASSPORT,
-    portable: project({ ...input, castRevision: cast.revision, previous }),
-    portableLimitations: limitation,
+    castPassport: `hf-portable-person/${portable.version}`,
+    portable,
+    portableLimitations:
+      portable.version === 1
+        ? limitation
+        : 'Supported history and responsibilities continue with explicit calendar and reference mapping. The source runtime and RNG stay archived.',
   };
 }
-export function admitPortablePerson<T>(parent: PersonaEnvelope, game: string, opening: T): T {
+export function admitPortablePerson<T>(
+  parent: PersonaEnvelope,
+  game: string,
+  opening: T,
+  mapping?: PortableAdmission['mapping'],
+): T {
   const expected = portablePersonRole(parent, game);
   const p = read(parent);
   const o = opening as { id?: string; identity?: { castId?: string } };
-  const target = o.identity?.castId ?? o.id;
-  if (target !== expected)
+  if (o.id !== expected || (o.identity?.castId !== undefined && o.identity.castId !== parent.castId))
     throw new Error(
       'This person has no matching authored role here. Your saved history has not been replaced.',
     );
+  if (p.version === 2) {
+    if (!mapping || !opening || typeof opening !== 'object' || !('state' in opening))
+      throw new Error('This retained history needs a mapped authored opening.');
+    return { ...structuredClone(opening), portable: { person: p, mapping: structuredClone(mapping) } };
+  }
   return admit(p, opening);
 }
 /** Ownership at arrival is not a source checkpoint. A host with new local

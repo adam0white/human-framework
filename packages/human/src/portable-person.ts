@@ -1,10 +1,40 @@
-/** SCOPE: approximate person exchange across HF engine generations. This is a
- * chapter projection, not a save converter. Runtime clocks, RNG and exact history
- * remain in their source archive. No recovery, debt settlement or travel is implied.
+/** SCOPE: versioned person exchange across HF engine generations. Version 1 is
+ * approximate; version 2 retains supported memory and obligations with explicit
+ * calendar/provenance mapping. Source runtime continuations and RNG stay archived.
+ * Unsupported active work refuses admission; no recovery or settlement is implied.
  */
-export interface PortablePerson {
+
+import { canonicalJson } from './run-canonical.ts';
+import type * as T from './run-schema.ts';
+import { validateData } from './run-validation.ts';
+
+export type PortableCalendar = {
+  definition: T.CalendarDefinition;
+  norms: T.DeepReadonly<readonly T.SourcedNorm[]>;
+};
+export type PortableRetainedState = {
+  at: T.Time;
+  bornAt: T.Time;
+  sex: T.LifeCourse['sex'];
+  memory: T.MemoryState;
+  heldNorms: readonly T.HeldNorm[];
+  agenda: Pick<T.AgendaState, 'commitments' | 'owed' | 'lapse' | 'nextId' | 'exemptions'>;
+  calendar: PortableCalendar;
+};
+export type PortableAdmission = {
+  person: PortablePerson;
+  mapping: {
+    offsetMs: number;
+    references: readonly {
+      kind: 'action' | 'entity' | 'source' | 'norm' | 'proposition';
+      source: string;
+      target: string;
+    }[];
+  };
+};
+
+interface PortablePersonBase {
   format: 'hf-portable-person';
-  version: 1;
   castId: string;
   castRevision: string;
   source: { game: string; engine: string; personId: string };
@@ -26,6 +56,8 @@ export interface PortablePerson {
   history: { game: string; summary: string }[];
   omittedHistory: number;
 }
+export type PortablePerson = PortablePersonBase &
+  ({ version: 1; retained?: never } | { version: 2; retained: PortableRetainedState });
 type Data = Record<string, unknown>;
 const TRAITS = ['honesty', 'emotionality', 'extraversion', 'agreeableness', 'conscientiousness', 'openness'];
 const VALUES = [
@@ -87,13 +119,24 @@ function token(v: unknown): string {
   return v;
 }
 function engine(v: unknown): string {
-  if (typeof v !== 'string' || !/^(?:2\.23\.0|[34]\.\d+\.\d+)$/.test(v)) fail();
+  if (typeof v !== 'string' || !/^(?:2\.(?:21|23)\.0|[34]\.\d+\.\d+)$/.test(v)) fail();
   return v;
 }
 export function validatePortablePerson(input: unknown): PortablePerson {
   const p = object(input);
-  keys(p, ['format', 'version', 'castId', 'castRevision', 'source', 'state', 'history', 'omittedHistory']);
-  if (p.format !== 'hf-portable-person' || p.version !== 1) fail();
+  keys(p, [
+    'format',
+    'version',
+    'castId',
+    'castRevision',
+    'source',
+    'state',
+    'history',
+    'omittedHistory',
+    ...(p.version === 2 ? ['retained'] : []),
+  ]);
+  if (p.format !== 'hf-portable-person' || ![1, 2].includes(p.version as number)) fail();
+  if (p.version === 2 && !validateData('PortableRetainedState', p.retained).ok) fail();
   token(p.castId);
   token(p.castRevision);
   const source = object(p.source);
@@ -130,7 +173,7 @@ function array(v: unknown): unknown[] {
 /** Refuse source state that this approximate contract cannot honour. Unknown
  * clinical or temporal state is never converted into a healthy, debt-free arrival.
  */
-function quiet(person: Data, modern: boolean): void {
+function quiet(person: Data, modern: boolean, retained = false): void {
   const body = object(person.body),
     agenda = object(person.agenda);
   if (modern) {
@@ -157,21 +200,24 @@ function quiet(person: Data, modern: boolean): void {
     body.downed ||
     array(body.injuries).length ||
     array(body.illnesses).length ||
-    array(agenda.commitments).some((c) => {
-      const duty = object(c);
-      return (
-        !['kept', 'broken', 'released'].includes(String(duty.status)) ||
-        duty.recurEvery !== undefined ||
-        duty.recurEveryMs !== undefined
-      );
-    }) ||
-    (agenda.owed !== undefined && array(agenda.owed).length) ||
-    agenda.lapse ||
+    (!retained &&
+      array(agenda.commitments).some((c) => {
+        const duty = object(c);
+        return (
+          !['kept', 'broken', 'released'].includes(String(duty.status)) ||
+          duty.recurEvery !== undefined ||
+          duty.recurEveryMs !== undefined
+        );
+      })) ||
+    (!retained && agenda.owed !== undefined && array(agenda.owed).length) ||
+    (!retained && agenda.lapse) ||
     array(agenda.goals).some((g) => object(g).status === 'active') ||
     (agenda.precommitments !== undefined && array(agenda.precommitments).length)
   )
     fail();
   if (person.will && array(object(person.will).precommitments).length) fail();
+  if (person.pursuit && object(person.pursuit).current) fail();
+  if (person.conscience && array(object(person.conscience).breaches).some((b) => !object(b).repaired)) fail();
   const projects = person.projects === undefined ? undefined : object(person.projects);
   if (projects && (projects.currentGoalId || (Array.isArray(projects.goals) && projects.goals.length)))
     fail();
@@ -200,6 +246,114 @@ function quiet(person: Data, modern: boolean): void {
 function bodyDepletion(b: Data): number {
   return b.depletion === undefined ? 0 : number(b.depletion);
 }
+/** Legacy 2.21/2.23/3.x source clocks are minutes. This explicit projection
+ * converts semantic times, never scheduler continuations or RNG. Missing optional
+ * legacy stores mean empty stores; missing held-norm provenance requires a caller
+ * supplied sourced attribution, not a guessed ruling.
+ */
+function retainedState(
+  person: Data,
+  calendar: PortableCalendar,
+  sourceEngine: string,
+  normProvenance?: Record<string, T.NormProvenance>,
+  legacyCatalogue?: readonly unknown[],
+): PortableRetainedState {
+  const modern = sourceEngine.startsWith('4.');
+  const memory = structuredClone(object(person.memory));
+  const agenda = object(person.agenda);
+  if (!modern) {
+    memory.gists ??= [];
+    memory.nextGist ??= 0;
+    memory.contradictions ??= [];
+  }
+  const heldNorms = structuredClone(array(object(person.conscience).norms));
+  const retained = {
+    at: person.now,
+    bornAt: object(person.life).bornAt,
+    sex: object(person.life).sex,
+    memory,
+    heldNorms,
+    agenda: {
+      exemptions: structuredClone(
+        agenda.exemptions ?? { traveling: { kind: 'unobserved' }, illnessSeverity: { kind: 'unobserved' } },
+      ),
+      commitments: structuredClone(array(agenda.commitments)),
+      owed: structuredClone(agenda.owed ?? []),
+      nextId: agenda.nextId,
+      ...(agenda.lapse === undefined ? {} : { lapse: structuredClone(agenda.lapse) }),
+    },
+    calendar,
+  };
+  if (!modern) {
+    const ms = (time: unknown) => {
+      const value = number(time, -Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER) * 60000;
+      if (!Number.isSafeInteger(value)) fail();
+      return value;
+    };
+    retained.at = ms(retained.at);
+    retained.bornAt = ms(retained.bornAt);
+    const exemptions = object(retained.agenda.exemptions);
+    if (exemptions.validUntil !== undefined) exemptions.validUntil = ms(exemptions.validUntil);
+    for (const v of [...array(memory.episodes), ...array(memory.gists)]) {
+      const episode = object(v);
+      episode.at = ms(episode.at);
+      if (episode.recalledAt !== undefined) episode.recalledAt = ms(episode.recalledAt);
+      for (const key of ['firstAt', 'lastAt'])
+        if (episode[key] !== undefined) episode[key] = ms(episode[key]);
+    }
+    for (const v of array(memory.beliefs)) {
+      const belief = object(v);
+      belief.updatedAt = ms(belief.updatedAt);
+      if (belief.provenance) object(belief.provenance).at = ms(object(belief.provenance).at);
+    }
+    for (const v of array(memory.contradictions)) object(v).at = ms(object(v).at);
+    for (const v of retained.agenda.commitments) {
+      const commitment = object(v);
+      commitment.from = ms(commitment.from);
+      commitment.until = ms(commitment.until);
+      if (commitment.recurEvery !== undefined) {
+        commitment.recurEveryMs = ms(commitment.recurEvery);
+        delete commitment.recurEvery;
+      }
+      if (commitment.recurUntil !== undefined) commitment.recurUntil = ms(commitment.recurUntil);
+      if (commitment.exempt) object(commitment.exempt).at = ms(object(commitment.exempt).at);
+    }
+    for (const v of array(retained.agenda.owed)) {
+      const owed = object(v);
+      owed.at = ms(owed.at);
+      if (owed.lapseSince !== undefined) owed.lapseSince = ms(owed.lapseSince);
+    }
+    if (retained.agenda.lapse) object(retained.agenda.lapse).since = ms(object(retained.agenda.lapse).since);
+    for (const v of heldNorms) {
+      const held = object(v);
+      if (held.provenance === undefined) {
+        const provenance = normProvenance?.[String(held.normId)];
+        const sourced = calendar.norms.find((n) => n.id === held.normId);
+        if (!provenance || !sourced || canonicalJson(provenance) !== canonicalJson(sourced.provenance))
+          fail();
+        const legacy = legacyCatalogue?.find((n) => object(n).id === held.normId);
+        const { provenance: _provenance, ...claim } = sourced;
+        const comparable = {
+          ...claim,
+          exemptions: claim.exemptions.map(({ provenance: _p, ...exemption }) => exemption),
+        };
+        if (
+          !legacy ||
+          canonicalJson({
+            ...object(legacy),
+            sources: object(legacy).sources ?? [],
+            exemptions: object(legacy).exemptions ?? [],
+          }) !== canonicalJson(comparable)
+        )
+          fail();
+        held.provenance = structuredClone(provenance);
+      }
+    }
+  }
+  const parsed = validateData('PortableRetainedState', retained);
+  if (!parsed.ok) fail();
+  return structuredClone(parsed.value) as PortableRetainedState;
+}
 export function projectPortablePerson(input: {
   castId: string;
   castRevision: string;
@@ -207,14 +361,23 @@ export function projectPortablePerson(input: {
   engine: string;
   person: unknown;
   history: string[];
-  previous?: PortablePerson;
+  previous?: T.DeepReadonly<PortablePerson>;
+  calendar?: PortableCalendar;
+  legacyNormProvenance?: Record<string, T.NormProvenance>;
+  legacyNormCatalogue?: readonly unknown[];
 }): PortablePerson {
   const p = object(input.person);
-  quiet(p, engine(input.engine).startsWith('4.'));
+  if (p.engine !== undefined && p.engine !== input.engine) fail();
+  quiet(p, engine(input.engine).startsWith('4.'), input.calendar !== undefined);
   const b = object(p.body),
     affect = object(p.affect);
   const prior = input.previous === undefined ? undefined : validatePortablePerson(input.previous);
+  if (prior?.version === 2 && input.calendar === undefined) fail();
   if (prior && (prior.castId !== input.castId || prior.castRevision !== input.castRevision)) fail();
+  const retained =
+    input.calendar === undefined
+      ? undefined
+      : retainedState(p, input.calendar, input.engine, input.legacyNormProvenance, input.legacyNormCatalogue);
   const entries = [
     ...(prior?.history ?? []),
     ...input.history.map((summary) => ({ game: input.game, summary })),
@@ -222,7 +385,8 @@ export function projectPortablePerson(input: {
   if (input.history.length > 16) fail();
   return validatePortablePerson({
     format: 'hf-portable-person',
-    version: 1,
+    version: input.calendar === undefined ? 1 : 2,
+    ...(retained === undefined ? {} : { retained }),
     castId: input.castId,
     castRevision: input.castRevision,
     source: { game: input.game, engine: engine(input.engine), personId: token(p.id) },
@@ -235,7 +399,7 @@ export function projectPortablePerson(input: {
           k === 'sleepDebtHours'
             ? input.engine.startsWith('4.')
               ? b.sleepDebtHours
-              : b.sleepDebt
+              : (b.sleepDebt ?? 0)
             : k === 'sleepPressure'
               ? Math.max(number(b.sleepPressure), bodyDepletion(b))
               : b[k],
@@ -252,8 +416,9 @@ export function projectPortablePerson(input: {
  * The receiving host owns local roles, biographies and clock/RNG construction.
  */
 export function admitPortablePerson<T>(input: unknown, opening: T): T {
-  const portable = validatePortablePerson(input),
-    target = structuredClone(opening);
+  const portable = validatePortablePerson(input);
+  if (portable.version === 2) fail();
+  const target = structuredClone(opening);
   const p = object(target),
     modern = Object.hasOwn(p, 'state');
   const state = modern ? object(p.state) : p;

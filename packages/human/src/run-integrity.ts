@@ -55,6 +55,16 @@ export function validateActor(
   const own = (path: string, message: string) => issues.push({ path, code: 'invalid-admission', message });
   if (actor.id !== continuation.person || actor.now !== at || actor.life.bornAt > at)
     own(`$.people.${actor.id}`, 'actor identity, continuation or clock mismatch');
+  // Admission, transaction validation and cold recovery share the same causal
+  // clock check; a saved actor cannot remember an experience from its future.
+  if (
+    [...actor.memory.episodes, ...actor.memory.gists].some(
+      (episode) => episode.at > at || (episode.recalledAt !== undefined && episode.recalledAt > at),
+    ) ||
+    actor.memory.gists.some((gist) => gist.firstAt > at || gist.lastAt > at) ||
+    Object.values(actor.skills).some((skill) => skill.lastPracticed > at)
+  )
+    own(`$.people.${actor.id}`, 'retained experience or practice is future-dated');
   if (!Number.isSafeInteger(actor.nextDecision) || actor.nextDecision < 1)
     own(`$.people.${actor.id}.nextDecision`, 'invalid decision counter');
   const identity = actor.randomIdentity;

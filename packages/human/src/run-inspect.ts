@@ -2,8 +2,10 @@
  * stores. Unknown other-person facts stay unknown. No RNG or normal-read hash. */
 
 import { cloneData } from './core/clone.ts';
+import { projectPortablePerson } from './portable-person.ts';
 import { exportRun } from './run.ts';
 import { PORTABLE_ADMISSION_REJECTED } from './run-admission.ts';
+import { RUN_ENGINE } from './run-engine.ts';
 import { freezeData, readKernel } from './run-kernel.ts';
 import { OWNERS } from './run-owners.ts';
 import { bodyPerception } from './run-person.ts';
@@ -36,10 +38,7 @@ export function inspectCurrentRun(
     return fail('$.perspective.observer', 'unknown observer', 'unknown-id');
   if (q.diagnostic && q.perspective.kind !== 'host')
     return fail('$.diagnostic', 'full hash requires privileged host perspective');
-  if (
-    q.perspective.kind === 'host' &&
-    q.select.some((s) => s === 'persona' || s === 'calendar' || s === 'chapter')
-  )
+  if (q.perspective.kind === 'host' && q.select.some((s) => s === 'chapter'))
     return fail('$.select', PORTABLE_ADMISSION_REJECTED, 'invalid-admission');
   let start = 0;
   if (q.afterEvent !== undefined) {
@@ -124,6 +123,9 @@ export function inspectCurrentRun(
           case 'beliefs':
             parts.push({ select, value: actor.memory.beliefs });
             break;
+          case 'sourceTrust':
+            parts.push({ select, value: actor.memory.sourceTrust });
+            break;
           case 'relationships':
             parts.push({ select, value: { ties: actor.social.relationships, voices: actor.will.voices } });
             break;
@@ -133,6 +135,44 @@ export function inspectCurrentRun(
           case 'agenda':
             parts.push({ select, value: actor.agenda });
             break;
+          case 'calendar':
+            parts.push({
+              select,
+              value: { definition: record.spec.definitions.calendar, norms: record.spec.definitions.norms },
+            });
+            break;
+          case 'persona': {
+            if (!q.portable || q.people.length !== 1 || q.portable.person !== id)
+              return fail(
+                '$.portable',
+                'Portable projection requires one person and explicit cast identity/revision',
+              );
+            const initial = record.initialPeople.find((p) => p.id === id);
+            if (initial?.identity.castId !== undefined && initial.identity.castId !== q.portable.castId)
+              return fail('$.portable.castId', 'Cast identity differs from the admitted person');
+            try {
+              parts.push({
+                select,
+                value: projectPortablePerson({
+                  castId: q.portable.castId,
+                  castRevision: q.portable.castRevision,
+                  game: record.spec.host.id,
+                  engine: RUN_ENGINE.package.split('@').at(-1) ?? '',
+                  person: actor,
+                  previous: initial?.portable?.person,
+                  history: [],
+                  calendar: {
+                    definition: record.spec.definitions.calendar,
+                    norms: record.spec.definitions.norms,
+                  },
+                }),
+              });
+            } catch (error) {
+              if (!(error instanceof Error)) throw error;
+              return fail('$.select', error.message);
+            }
+            break;
+          }
           case 'events':
             parts.push({
               select,
@@ -156,6 +196,9 @@ export function inspectCurrentRun(
             break;
           case 'beliefs':
             parts.push({ select, value: actor.memory.beliefs });
+            break;
+          case 'sourceTrust':
+            parts.push({ select, value: actor.memory.sourceTrust });
             break;
           case 'relationships':
             parts.push({ select, value: { ties: actor.social.relationships, voices: actor.will.voices } });
@@ -197,6 +240,7 @@ export function inspectCurrentRun(
           case 'skills':
           case 'body':
           case 'beliefs':
+          case 'sourceTrust':
           case 'relationships':
           case 'methods':
           case 'agenda':
