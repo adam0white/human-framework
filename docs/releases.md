@@ -244,3 +244,14 @@ Cloudflare version `a17b8e00-dadf-406c-ad10-1e3bb46aa719`; served main and Peopl
 source build. This is central delivery, not a Stairwell port or owner acceptance. Stairwell's actual
 bridge is in progress; its newly confirmed authored reputation vocabulary is G17. Keep the earlier
 failed VM adapter result separate from new bounded adoption controls.
+
+
+## HF 4.5 Stairwell contracts — 2026-10-27
+
+[HF 4.5.0](https://github.com/adam0white/human-framework/releases/tag/v4.5.0) adds authored reputation vocabulary through existing social and speech routes, host traits and held-norm inspection during pending or active work, and authored source-trust response and conversation confidence through existing inputs. These deliver the measured Stairwell subset; broader G2/G3/G4 work and the first integrated G1 game remain open. The ordinary Stairwell game and phase-clock mapping are still under implementation, with no 4.x game merge or deployment claimed.
+
+- Signed source `b293ef3235a56985c14db7fb7bfb76a120b122d0` merged in [PR 42](https://github.com/adam0white/human-framework/pull/42); exact merged [CI 40628498340](https://github.com/adam0white/human-framework/actions/runs/40628498340) passed. Release checks passed 1,883 tests, seven existing skips. Signed `v4.5.0` targets that source.
+- [Trusted npm publication 40628971458](https://github.com/adam0white/human-framework/actions/runs/40628971458) passed. `npm audit signatures` verified one registry signature and one attestation; the decoded SLSA subject matches the registry bytes, source, tag, publish workflow and run. The registry tar SHA256 `66192f9b9d81e8b1333e20752385332d96f3c509a03963e132fc0e14a3fc5291` and GitHub tar SHA256 `c69fd2212360b0a180a0f1d00c05840926b766f8f15a2e523404f29464d18536` have identical decompressed tar contents.
+- Engine build `111b9093e112495da8da40253911e44f60eca56930e6f19de39e5bce592cbacf`, schema `9e1fcbbcd2556c330bc406f7bd6b9877fc10b8fbff956c29e6797b4cdd04588b`. A fresh strict-peer frozen consumer passed the published public controls, including pending and active reads, knowledge limits, social response and rollback, confidence thresholds, reputation correction, restore and replay. The public example authoring scaffold is an engineering control, not a game or peer journey.
+
+Client 0.5.2 and kit 0.5.19 remain unchanged GitHub artifacts; the client intentionally retains its exact registry HF 4.4 bridge dependency. This does not claim SDK npm publication. The 4.4 protocol control remains passing evidence for that exact version; the failed VM adapter evidence remains unchanged historical evidence.
