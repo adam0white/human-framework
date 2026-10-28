@@ -240,7 +240,7 @@ importers:
         specifier: npm:@adam0white/human-framework@3.0.0
         version: '@adam0white/human-framework@3.0.0'
       '@adam0white/human-framework':
-        specifier: 4.6.0
+        specifier: 4.7.0
         version: link:../human
     devDependencies:
       fake-indexeddb:

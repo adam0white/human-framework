@@ -212,7 +212,7 @@ The source must be registered, must equal the social event's `other` person, and
 
 The released lab client 0.5.2 deliberately retains its exact HF 4.4.0 portable bridge dependency. HF 4.5 does not add a companion SDK feature or change the central site's HF 3.2.0 actor pin.
 
-## Condition, observer forecasts and learned practice (4.6)
+## Condition, observer forecasts and learned practice (4.7)
 
 All readings leave through `inspect` or `preview`. Select `condition` to read `{outwardSigns, selfReport}` as host or self. Both use the existing reserve filter; spoken condition can conceal more than visible signs. A host may deliver visible signs through `person.glimpsed` and spoken evidence through `person.reported`. Inspection itself creates no observation. Other-person `summary` is now `unobserved`; use `condition` for the single supported impression reading instead of raw summary cue storage. Another person's `condition` is an `ImpressionReading`: `targetId` and sorted `cues`, each with `key`, `value`, decayed `confidence` and optional `seenAt`. Missing fatigue, pain, fear and mood cues return their engineering prior with confidence zero. `person.reported` also admits host-authored assessment keys such as `trait:household:warm`. These are held assessments, not new actor traits or factual corrections. Interpret a witnessed custom act through that same reported-evidence route with an identified source; do not copy impression weighting into a host.
 
