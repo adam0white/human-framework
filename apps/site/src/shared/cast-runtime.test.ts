@@ -716,6 +716,7 @@ describe('whole-cast browser continuity', () => {
     expect(worker.requests('init')).toHaveLength(1);
     expect(castState('voice').blocked).toBe(false);
     expect(castState('voice').line).toContain('Hacer could not carry over');
+    expect(castState('voice').localNotice).toContain('Hacer could not carry over');
     expect(control.puts.map((p) => p.castId)).toEqual([eligible.castId]);
     selectCast('voice', dead.castId);
     await checkpointCast('voice');

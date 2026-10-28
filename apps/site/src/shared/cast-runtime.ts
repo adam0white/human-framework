@@ -162,6 +162,11 @@ export function castState(game: string) {
     enabled: fileSession ? false : requireValue(shelf).enabled,
     ready: fileSession ? Promise.resolve(false) : requireValue(shelf).ready,
     line: s?.line,
+    localNotice: s?.localOnly
+      ? 'This game uses local people. Carryover remains available in other games.'
+      : s?.skipped
+          ?.map((id) => `${canonicalCast(id).name} could not carry over. Local people take their place.`)
+          .join(' '),
     status: s?.status ?? 'People carry between compatible games on this browser.',
     busy: s?.busy ?? false,
     people: castForGame(game),

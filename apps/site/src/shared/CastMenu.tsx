@@ -18,12 +18,17 @@ export function CastLifeNote({ game }: { game: string }) {
   const [, refresh] = useState(0);
   useEffect(() => castChanges(() => refresh((n) => n + 1)), []);
   const s = castState(game);
-  return s.line ? (
-    <details className="cast-life-note">
-      <summary>Before this chapter</summary>
-      <p>{settingWords(s.line)}</p>
-    </details>
-  ) : null;
+  return (
+    <>
+      {s.localNotice ? <p role="status">{s.localNotice}</p> : null}
+      {s.line ? (
+        <details className="cast-life-note">
+          <summary>Before this chapter</summary>
+          <p>{settingWords(s.line)}</p>
+        </details>
+      ) : null}
+    </>
+  );
 }
 
 /** Explicit feedback must not request a snapshot from a worker that could not initialize. */
