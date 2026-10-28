@@ -143,7 +143,38 @@ describe('watchers are people', () => {
   });
 });
 
+describe('family accounts', () => {
+  it('names the children shared by both parents', () => {
+    const s = new WatchRun(1).state;
+    expect(familyWords(s, 'samira')).toContain('Lena and Pell');
+    expect(familyWords(s, 'idris')).toContain('Lena and Pell');
+  });
+});
+
 describe('answering a card', () => {
+  it('records silence and closes the card without changing the posting', () => {
+    const run = new WatchRun(1);
+    run.input({ k: 'start' });
+    run.input({ k: 'begin' });
+    const s = run.state;
+    const who = 'tamar';
+    const post = s.posts[who];
+    s.moment = {
+      id: 123,
+      kind: 'waver',
+      who,
+      section: 'gate',
+      opened: s.minute,
+      until: s.minute + 3,
+      text: 'Tamar waits.',
+      options: [{ id: 'let', label: 'Let Tamar go' }],
+    };
+    s.momentLog.push({ kind: 'waver', who, minute: s.minute, choice: null });
+    expect(run.input({ k: 'answer', id: 123, choice: 'silence' })).toBe(true);
+    expect(s.moment).toBeNull();
+    expect(s.posts[who]).toBe(post);
+    expect(s.momentLog.at(-1)?.choice).toBe('silence');
+  });
   it('ringing the bell from a card commands that watcher', () => {
     let rung = 0;
     for (const seed of SEEDS) {

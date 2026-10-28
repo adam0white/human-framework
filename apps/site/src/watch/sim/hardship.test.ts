@@ -51,21 +51,15 @@ describe('hardship rules', () => {
     expect(s.year).toBe(2);
     expect(s.chronicle.at(-1)?.text).toMatch(/second hungry spring/);
     const exp = run.export();
-    expect(exp.scenario).toBe(17);
+    expect(exp.scenario).toBe(20);
     expect(ruleHash(replay(exp))).toBe(exp.end.ruleHash);
   }, 120_000);
 
-  it('control: the same seed under the legacy rules is still standing, and its export replays as scenario 14', () => {
-    const legacy = new WatchRun(1);
-    delete legacy.state.hardship;
-    passive(legacy, 2);
-    expect(legacy.state.phase).not.toBe('fallen');
-    expect(legacy.state.year).toBe(3);
-    const exp = legacy.export();
-    expect(exp.scenario).toBe(14);
-    expect(ruleHash(replay(exp))).toBe(exp.end.ruleHash);
-    const resumed = WatchRun.resume(JSON.parse(legacy.snapshotText()));
-    expect(resumed.state.hardship).toBeUndefined();
-    expect(resumed.export().scenario).toBe(14);
-  }, 120_000);
+  it('refuses pre-change saves and exports', () => {
+    const run = new WatchRun(1);
+    for (const scenario of [14, 15, 16, 17, 18, 19]) {
+      expect(() => WatchRun.resume({ ...run.snapshot(), scenario })).toThrow(/Start a new game/);
+      expect(() => replay({ ...run.export(), scenario })).toThrow(/Start a new game/);
+    }
+  });
 });

@@ -351,21 +351,33 @@ export function isWatcher(s: WatchState, p: Person, now: number = s.minute): boo
  * under `HOME_CHILD_AGE`, alive and here. In words ("her two children", "his little sister"), or null.
  */
 export function familyWords(s: WatchState, id: WatcherId): string | null {
-  const kids: { sibling: boolean; female: boolean }[] = [];
+  const kids: { sibling: boolean; female: boolean; parent: boolean; name: string }[] = [];
   for (const q of s.community.people) {
     if (q.id === id || !isHere(s, q) || ageAt(q, s.minute) >= HOME_CHILD_AGE) continue;
     const tie = q.social.relationships.find((r) => r.otherId === id);
     if (!tie) continue;
     const female = q.life.sex === 'female';
-    if (tie.roles.includes('parent')) kids.push({ sibling: false, female });
-    else if (tie.roles.includes('guardian')) kids.push({ sibling: tie.roles.includes('sibling'), female });
+    if (tie.roles.includes('parent'))
+      kids.push({ sibling: false, female, parent: true, name: nameOf(s, q.id) });
+    else if (tie.roles.includes('guardian'))
+      kids.push({ sibling: tie.roles.includes('sibling'), female, parent: false, name: nameOf(s, q.id) });
   }
   const my = their(s, id);
   const k = kids[0];
   if (!k) return null;
-  if (kids.length > 1) return `${my} ${['two', 'three', 'four', 'five'][kids.length - 2] ?? 'many'} children`;
-  if (k.sibling) return `${my} little ${k.female ? 'sister' : 'brother'}`;
-  return `${my} ${k.female ? 'daughter' : 'son'}`;
+  if (kids.length > 1) {
+    const names = `${kids
+      .slice(0, -1)
+      .map((child) => child.name)
+      .join(', ')} and ${kids.at(-1)?.name}`;
+    return kids.every((child) => child.parent)
+      ? `${my} children, ${names}`
+      : `${names}, the children in ${my} care`;
+  }
+  if (k.sibling) return `${my} little ${k.female ? 'sister' : 'brother'}, ${k.name}`;
+  return k.parent
+    ? `${my} ${k.female ? 'daughter' : 'son'}, ${k.name}`
+    : `${k.name}, the child in ${my} care`;
 }
 
 /** The Keeper: holds impressions; never stepped. */

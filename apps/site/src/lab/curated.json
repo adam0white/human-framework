@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-26",
+ "generated": "2026-10-27",
  "ledger": [
   {
    "id": "F-001",
@@ -4355,7 +4355,8 @@
    "routes": [
     "fix:watch a verb to relieve, rotate or replace a tired watcher during the night (done, HF 0a1c9e1 and 43ba4c8, retested at F-348 and F-351)",
     "lesson:L19",
-    "lesson:L22"
+    "lesson:L22",
+    "fix:watch dusk reach and immediate voluntary answer (done, watch-fix 2026-10-27, no new panel)"
    ],
    "source": "docs/lab/reviews/calibration-2026-10-20/e-free1.md"
   },
@@ -14933,6 +14934,242 @@
     "fix:warren OPEN source engineering (target 2026-10-27, partial evidence and full qualifications in companion)"
    ],
    "source": "reviews/remaining-partial-warren-small-stair-2026-10-26/reports/hf3-warren-r2--nia-continued.md"
+  },
+  {
+   "id": "F-1599",
+   "date": "2026-10-27",
+   "game": "watch",
+   "kind": "playtester",
+   "who": "Fictional panel: Aisha",
+   "words": "only if the dusk wall picture works on the phone",
+   "verdict": "mixed",
+   "routes": [
+    "fix:watch production CSS reserves the dusk map with a sheet open (done)"
+   ],
+   "source": "docs/games/watch-playtest-2026-10-27-panel-retest.md"
+  },
+  {
+   "id": "F-2113",
+   "date": "2026-10-27",
+   "game": "watch",
+   "kind": "playtester",
+   "who": "Fictional panel: Diego",
+   "words": "But the grain still drains whatever I choose, and I cannot tell whether my choices change anything.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:watch dusk risks and dawn outcomes clarified (done)",
+    "hf:W1/W2 docs/hf4-game-needs.md (open, review 2026-11-17, keep difficulty)"
+   ],
+   "source": "docs/games/watch-playtest-2026-10-27-panel-retest.md"
+  },
+  {
+   "id": "F-2114",
+   "date": "2026-10-27",
+   "game": "watch",
+   "kind": "playtester",
+   "who": "Fictional panel: Aisha",
+   "words": "I meant to ask Kian how he is holding up, but the answer came from Tamar and the talks are now used up.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:watch keep selected person for a second different question and name each question (done)"
+   ],
+   "source": "docs/games/watch-playtest-2026-10-27-panel-retest.md"
+  },
+  {
+   "id": "F-2115",
+   "date": "2026-10-27",
+   "game": "watch",
+   "kind": "playtester",
+   "who": "Fictional panel: Maya",
+   "words": "A second sentence about paints and yellow dries is in the same bubble under her name, and it sounds like someone else.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:watch home discoveries on a separate introduced line (done)"
+   ],
+   "source": "docs/games/watch-playtest-2026-10-27-panel-retest.md"
+  },
+  {
+   "id": "F-2116",
+   "date": "2026-10-27",
+   "game": "watch",
+   "kind": "playtester",
+   "who": "Fictional panel: Samir",
+   "words": "It is nice but I still have no way to ask him about Ada or why he leaves.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:watch public visit exists in current source, automated control, same-tester wording retest remains (open, target 2026-11-10)"
+   ],
+   "source": "docs/games/watch-playtest-2026-10-27-panel-retest.md"
+  },
+  {
+   "id": "F-2117",
+   "date": "2026-10-27",
+   "game": "watch",
+   "kind": "playtester",
+   "who": "Fictional panel: Pavel",
+   "words": "Nothing told me walking takes time.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:watch describe requested post and travel without promising arrival (done)"
+   ],
+   "source": "docs/games/watch-playtest-2026-10-27-panel-retest.md"
+  },
+  {
+   "id": "F-2118",
+   "date": "2026-10-27",
+   "game": "watch",
+   "kind": "playtester",
+   "who": "Fictional panel: Jonas",
+   "words": "the screen kept saying Samira is deciding for about 60 s with no controls and the clock looked stalled at midnight",
+   "verdict": "mixed",
+   "routes": [
+    "fix:watch record silence answer and close moment immediately (done)"
+   ],
+   "source": "docs/games/watch-playtest-2026-10-27-panel-retest.md"
+  },
+  {
+   "id": "F-2119",
+   "date": "2026-10-27",
+   "game": "watch",
+   "kind": "playtester",
+   "who": "Fictional panel: Maya",
+   "words": "at dusk I just saw Waiting for their answer.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:watch process voluntary HF answer at dusk (done)"
+   ],
+   "source": "docs/games/watch-playtest-2026-10-27-panel-retest.md"
+  },
+  {
+   "id": "F-2120",
+   "date": "2026-10-27",
+   "game": "watch",
+   "kind": "playtester",
+   "who": "Fictional panel: Maya",
+   "words": "Insist shows no cost line at all, unlike Urge last time.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:watch always show firm-order goodwill and refusal explanation (done)"
+   ],
+   "source": "docs/games/watch-playtest-2026-10-27-panel-retest.md"
+  },
+  {
+   "id": "F-2121",
+   "date": "2026-10-27",
+   "game": "watch",
+   "kind": "playtester",
+   "who": "Fictional panel: Rosa",
+   "words": "Choosing a post does not give a night off. At night, select the watcher and choose Rest when offered.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:watch one instruction per sentence in rest and relief help (done)"
+   ],
+   "source": "docs/games/watch-playtest-2026-10-27-panel-retest.md"
+  },
+  {
+   "id": "F-2122",
+   "date": "2026-10-27",
+   "game": "watch",
+   "kind": "playtester",
+   "who": "Fictional panel: Rosa",
+   "words": "The Today list is still in small letters",
+   "verdict": "mixed",
+   "routes": [
+    "fix:watch normal body font for Today (done)"
+   ],
+   "source": "docs/games/watch-playtest-2026-10-27-panel-retest.md"
+  },
+  {
+   "id": "F-2123",
+   "date": "2026-10-27",
+   "game": "watch",
+   "kind": "playtester",
+   "who": "Fictional panel: Emre",
+   "words": "I did not know a wall could fall; it says why, but I only learn it after.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:watch existing fair offer warns repeated attacks can bring a raised wall down at thaw (done, current-source verification)"
+   ],
+   "source": "docs/games/watch-playtest-2026-10-27-panel-retest.md"
+  },
+  {
+   "id": "F-2124",
+   "date": "2026-10-27",
+   "game": "watch",
+   "kind": "playtester",
+   "who": "Fictional panel: Tessa",
+   "words": "After the first ring on the phone the button says 'Bell swinging' even when it is not ringing.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:watch name bell cooldown as waiting before ringing again (done)"
+   ],
+   "source": "docs/games/watch-playtest-2026-10-27-panel-retest.md"
+  },
+  {
+   "id": "F-2125",
+   "date": "2026-10-27",
+   "game": "watch",
+   "kind": "playtester",
+   "who": "Fictional panel: Tessa",
+   "words": "the choice 'Let him go; send Tamar of the Wall to the post' was offered while Tamar was off the wall.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:watch name relief coming from village (done)"
+   ],
+   "source": "docs/games/watch-playtest-2026-10-27-panel-retest.md"
+  },
+  {
+   "id": "F-2126",
+   "date": "2026-10-27",
+   "game": "watch",
+   "kind": "playtester",
+   "who": "Fictional panel: Maya",
+   "words": "Idris had two children like Samira, which felt like the same story twice.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:watch name actual children and guardianship (done, recurring family decisions retained by taste)"
+   ],
+   "source": "docs/games/watch-playtest-2026-10-27-panel-retest.md"
+  },
+  {
+   "id": "F-2127",
+   "date": "2026-10-27",
+   "game": "watch",
+   "kind": "playtester",
+   "who": "Fictional panel: Rosa",
+   "words": "It says nobody was posted at the mill wall, but Kian fell asleep there, so I do not understand.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:watch name breached walls and distinguish dawn position from all-night guarding (done)"
+   ],
+   "source": "docs/games/watch-playtest-2026-10-27-panel-retest.md"
+  },
+  {
+   "id": "F-2128",
+   "date": "2026-10-27",
+   "game": "watch",
+   "kind": "playtester",
+   "who": "Fictional panel: Jonas",
+   "words": "It does not tell me what the caution did.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:watch explain attention-only caution and actual hearing receipt (done)",
+    "hf:W2 docs/hf4-game-needs.md (open, review 2026-11-17)"
+   ],
+   "source": "docs/games/watch-playtest-2026-10-27-panel-retest.md"
+  },
+  {
+   "id": "F-2129",
+   "date": "2026-10-27",
+   "game": "watch",
+   "kind": "playtester",
+   "who": "Fictional panel: Emre",
+   "words": "a wall showed 'full' with two on it, and I had to find that out by trying.",
+   "verdict": "mixed",
+   "routes": [
+    "fix:watch explain ordinary and raised wall capacities at dusk (done)"
+   ],
+   "source": "docs/games/watch-playtest-2026-10-27-panel-retest.md"
   }
  ],
  "lessons": [
@@ -15536,12 +15773,30 @@
    "games": [
     "voice"
    ]
+  },
+  {
+   "ref": "W1/W2 docs/hf4-game-needs.md (open, review 2026-11-17, keep difficulty)",
+   "from": [
+    "F-2113"
+   ],
+   "games": [
+    "watch"
+   ]
+  },
+  {
+   "ref": "W2 docs/hf4-game-needs.md (open, review 2026-11-17)",
+   "from": [
+    "F-2128"
+   ],
+   "games": [
+    "watch"
+   ]
   }
  ],
  "routes": {
-  "fix": 1320,
+  "fix": 1339,
   "lesson": 291,
-  "hf": 12,
+  "hf": 14,
   "calibration": 42,
   "none": 8
  }

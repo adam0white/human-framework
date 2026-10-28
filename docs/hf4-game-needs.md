@@ -39,6 +39,7 @@ Counts are named consumers, not claims that one change completes their migration
 | G16 / 1           | **Semantic household-memory retention (contract).** Reuse Valley's existing memory request: bound growth while retaining relevant acts, relationships and household history through a full term and replay. Distinguish archive bookkeeping from semantic memory. Before a bounded policy exists, publish measured growth and label it unbounded; compression alone does not close this need.                                                                                                                                                                                                                                                                                                                              | Valley                                                                                                                          | HF memory/retention                                          | Existing review 2027-01-15; 4.x term measurement 2026-11-24; proposed delivery review 2027-01-22                                  |
 
 
+
 ## Per-game needs
 
 Each table contains its concrete contract or proof needs. Shared item IDs identify the one HF work item to use. All games also need the G1 export and bridge gate; it is repeated so that a game's table can be used independently. Game ports target 2026-11-24 after their contracts land; the first all-eighteen delivery/blocker review targets 2026-12-01. A failed contract gate keeps a named blocker and a revised date, rather than counting the game as moved. Existing comparison holds remain in force until their owner releases them; this task runs no new panels.
@@ -76,9 +77,9 @@ Current candidate source: `stairwell@329919a`, production pin 3.0.0. The
 [recipe](hf4-port-recipe.md#first-candidate-stairwell) records the exact bridge blockers.
 The published 4.1.0 [control](hf4-port-control.md) passes settlement, active-work restore/continuation
 and exact replay in the minimal host; it is not an integrated game proof.
-G2 admission/projection is still rejected. G3 owns the sourced-default catalogue.
+Published 4.2.0 rejects the admission-field probe and valid host persona/calendar inspection with `invalid-admission`. G3 owns the sourced-default catalogue, which is absent from the 4.2.0 public exports.
 **G4 now includes Stairwell:** `src/sim/game.ts:3193` needs source trust for `readOf`,
-and `:683` needs structured bodily forecast evidence for climb guidance. Add supported
+and `:683` needs structured bodily forecast evidence for climb guidance. Published 4.2.0 inspection and preview still lack these readings. Add supported
 inspection/preview readings; do not use archive internals or host trust/body calculations.
 Target remains 2026-11-17 for shared contracts, candidate 2026-11-24 conditional on delivery,
 blocker review 2026-12-01. The host stays on its current release pending those contracts.
@@ -127,6 +128,14 @@ Recorded stay reason: Fine/daily generations need daily-clock, mortality and lea
 | Prove death discovery, grief/widowhood and joint/care-work release through the run boundary; preserve the host's authored mortality policy as state/modeling policy, not an enable switch.                                                                                                       | HF lifecycle/settlement; Watch integration    | 2026-11-17                                                    | G10         |
 | Supply the sourced default norm catalogue used by current authoring or cast calendar validation, with research and interpretation references; copied unsourced defaults cannot replace this admission dependency.                                                                                | HF conscience/research; game cast integration | Existing 2026-11-17                                           | G3          |
 | Replace direct 3.x calls and snapshots with the run bridge and host world state; reject unsupported old saves explicitly. Keep a complete current-version export that replays the same seed, ordered inputs, state and RNG.                                                                      | The Night Watch integration; HF run/docs      | Port candidate 2026-11-24; delivery/blocker review 2026-12-01 | G1          |
+
+
+#### Watch fix follow-up 2026-10-27
+
+These are numbered acceptance needs from F-2113/F-2128, not new host-side rules. Keep Watch on HF 3.2.0 until its existing port gates pass.
+
+1. **W1 — Knowledge-bounded whole-watch risk (G4).** Give the Keeper a supported forecast of fatigue and departure risk over the coming watch, with uncertainty and evidence age. Current impressions can name who looks tired or afraid; they cannot identify everyone who will leave later. Prove a tired-watcher contrast and an unseen-state control without exposing hidden true state or promising compliance. Contract review: **2026-11-17**.
+2. **W2 — Caution and order outcomes (G1/G4).** Expose actual attention, reply if any, request decision, arrival, handover, departure and expiry through the run's ordinary events and inspection. Keep hearing, assent and completed work separate. A caution is currently an informational percept; the host must not invent a spoken reaction or a new choice. Prove a refused order and an accepted-but-uncompleted order through replay. Contract review: **2026-11-17**.
 
 ### Hearsay
 

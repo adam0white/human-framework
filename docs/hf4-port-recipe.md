@@ -1,19 +1,29 @@
 # Port one game to HF 4.x
 
-G1 recipe, 2026-10-27. Target: **`@adam0white/human-framework@4.1.0`**, an exact pin.
+G1 recipe, 2026-10-27. Target: **`@adam0white/human-framework@4.2.0`**, an exact pin.
 The [needs inventory](hf4-game-needs.md) owns framework gaps and dates.
 The owner accepts the all-games outcome; each host maintainer supplies delivery receipts.
 This recipe is documented and its public-run control passes. **The first whole-game port is blocked.**
 The control is not evidence that Stairwell, carryover, or all games have upgraded.
 
+## Glossary
+
+- **Host:** the game code that runs HF and handles its requests.
+- **Receipt:** the host’s reply that a requested action happened or failed.
+- **Boundary:** the point where HF stops and asks the host to respond.
+- **Admission:** bringing an existing person into a run.
+
 ## Establish the host boundary
 
 Create one managed worktree per repo. Check processes and worktrees before choosing a game.
+Pass the repository's absolute path to the worktree helper, for example
+`npm run wt -- add ~/code/stairwell g1b` from the HF checkout; a relative `stairwell`
+path is resolved from the current directory.
 Install with `pnpm install --frozen-lockfile` and `/opt/homebrew/bin` first on PATH.
 Inventory every HF import, direct Person read/write, save/export consumer, cast admission and
 publication path before changing the pin. The
-[4.1.0 public exports](https://github.com/adam0white/human-framework/blob/v4.1.0/packages/human/src/index.ts)
-and [data contract](https://github.com/adam0white/human-framework/blob/v4.1.0/packages/human/src/run-schema.ts)
+[4.2.0 public exports](https://github.com/adam0white/human-framework/blob/v4.2.0/packages/human/src/index.ts)
+and [data contract](https://github.com/adam0white/human-framework/blob/v4.2.0/packages/human/src/run-schema.ts)
 are the authority. A type declaration does not prove its runtime route is implemented.
 
 The game owns places, tasks, inventory, transport, authored dialogue and actual world outcomes.
@@ -26,31 +36,36 @@ admission; fresh authored replacements do not preserve them.
 ## Map calls and reads
 
 These are routes to implement and prove, not promises of identical 3.x numerical behavior.
-Every faculty remains on. Remove `enable*` selectors; author differences as state.
+Every faculty remains on. Delete every `enable*` option and legacy-continuation call; list each in the port report. Author differences as state.
 HF 4 time and durations use **integer milliseconds**. Convert game minutes once at the bridge
 (`minute * 60_000`); preserve calendar epochs and birth times in the same units.
 
-| 3.x operation                                                      | 4.1 route and host obligation                                                                                                                                                                                                                                                              |
+| 3.x operation                                                      | 4.2 route and host obligation                                                                                                                                                                                                                                                              |
 | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `createPerson`, initial `seedTie`, `seedBelief`, `seedSourceTrust` | `createRun(RunSpec)`, then `createPerson(run, PersonAuthoring)`. Author relationships, beliefs, source trust, held norms and provenance in state. Register referenced definitions and sources. No later direct actor mutation.                                                             |
 | `decide`                                                           | `offers.received` with a new revision; `suggestion.received` when applicable; `decision.requested` naming the offer revision. Preserve suggestion identity, source and time. Read admitted events and requests.                                                                            |
 | `begin` / `finish`                                                 | Settle HF action requests at stage `start`, `finish` or `interrupt` using `action.resolved`. Check world availability, then record accepted/rejected start or actual completed/failed/interrupted outcome. `activity.interrupted` requests interruption; it does not fabricate completion. |
+| Authored dialogue and narration                                    | Use `definitions.lexicon.wordings` and `definitions.lexicon.voices`; keep HF narration in HF.                                                                                                                                                                                              |
 | `tick`                                                             | `step(run, {until, inputs})`; serve every `world-required` boundary. Daily fidelity is a separate workload gate, not a conversion of minutes to days.                                                                                                                                      |
 | `perceive`, `told`, `confirm`, `contradicted`                      | `observation.received`, `testimony.received`, `fact.confirmed`, `contradiction.received`. Retain evidence ids, teller/source identity, proposition and direct/heard provenance. Submit observed consequences, not a desired trust target.                                                  |
 | `converse` / retelling                                             | `conversation.requested` / `retelling.requested`, followed by `communication.resolved` with actual transport and attention evidence. Emission alone is not receipt.                                                                                                                        |
 | `socialEvent`                                                      | `social.received` with actual event evidence. Initial ties belong in person authoring. Do not replace relationship mutation with a local coefficient.                                                                                                                                      |
 | `readBody`, `credence`, `relationshipWith`, event reads            | `inspect` with explicit perspective, people and selections (`body`, `beliefs`, `relationships`, `events`, etc.). Beliefs are structured evidence, not the old scalar API. Any new projection needed by a UI belongs in HF.                                                                 |
-| `trustOf` in Stairwell UI                                          | No source-trust inspection selection in 4.1.0. G4 owns the required reading. Do not use archive internals as the permanent UI interface.                                                                                                                                                   |
+| `trustOf` in Stairwell UI                                          | No source-trust inspection selection in 4.2.0. G4 owns the required reading. Do not use archive internals as the permanent UI interface.                                                                                                                                                   |
 | `predict`, `bodyForecast`                                          | `preview` returns hypothetical visible possibilities, a boundary and knowledge limits. It is not a drop-in quantitative prediction or bodily forecast. G4 owns missing forecast evidence.                                                                                                  |
-| `snapshot` / `restore`, whole-game export                          | `exportRun`, `restoreRun`, `replay` for the run, plus validated host data. Portable cast projections are a different contract; G2 remains blocked in 4.1.0.                                                                                                                                |
+| `snapshot` / `restore`, whole-game export                          | `exportRun`, `restoreRun`, `replay` for the run, plus validated host data. Portable cast projections are a different contract; G2 remains blocked in 4.2.0.                                                                                                                                |
+
+For wording tables, use keys from `NARRATION_TEMPLATES` and matching slots. Each voice id must occur in `lexicon.names` or `lexicon.roles`. HF validates these tables at `createRun`. Voices fall back to wordings, then built-in text. Editing wordings can change replay hashes: keep the tables with the archive spec and re-record golden hashes after edits.
+
+For month-long runs, `StepBatch.fidelity` supports `{mode: 'daily', dayMs, anchor}`, but no month-long game workload has been proved here.
 
 Inputs carry `{id, at, source, kind, payload}`. Use unique, stable ids and registered sources.
 Retain accepted batch boundaries and order: replay uses the archive's accepted transactions.
 Keep the player's timed input log and the host schema/edition alongside the HF archive.
 
-## Settle before advancing
+## Answer HF’s requests before moving time
 
-The public [minimal host](https://github.com/adam0white/human-framework/blob/v4.1.0/packages/human/examples/minimal.ts)
+The public [minimal host](https://github.com/adam0white/human-framework/blob/v4.2.0/packages/human/examples/minimal.ts)
 provides the complete protocol loop, staging and restored-host decoder. Its communication resolver
 delivers nothing because the example has no transport. Real games resolve actual communication.
 
@@ -65,7 +80,7 @@ and actual outcomes. Communication settlement supplies requested items, recipien
 and attention. Preserve disclosure/transmission chains in the host.
 Use stable receipt ids and HF's settled-request ledger to prevent duplicate effects.
 These games use deterministic local world state; irreversible external effects would additionally
-require durable idempotency outside this recipe.
+require a durable way to prevent a repeated receipt from applying twice outside this recipe.
 
 ## Inspect and preview
 
@@ -85,7 +100,7 @@ host RNG state too. Materialize archives at save/export checkpoints, not every r
 
 Validate the outer schema/edition and input contract, then check `restoreRun` and decode the host
 state strictly. Pending requests and active activities must survive. Refuse unsupported versions
-with a keep-file/start-fresh message. Never silently replace refused runs or finish active work.
+with a keep-file/start-fresh message. An archive restores only under the exact HF package, build and schema that wrote it. Every HF upgrade, even a patch, refuses older archives. Show the start-fresh message and keep the old file. Never silently replace refused runs or finish active work.
 
 Save after an accepted start and before finish. JSON round-trip the archive. Continue both original
 and restored runs with identical target times and inputs. Require equal complete archives and
@@ -104,14 +119,14 @@ Hearsay had a running Vite preview. The deferred director's named games were exc
 The intended normal action is a caretaker job: accept start, save the active task, then record
 completion. The headless control offers rest with the same seed. The
 [executable public-run control](hf4-port-control.md) proves this protocol in the minimal host on
-published 4.1.0. It **does not execute Stairwell's game loop**. The actual caretaker action, month,
+published 4.2.0. It **does not execute Stairwell's game loop**. The actual caretaker action, month,
 cast journeys, game export, deployment and owner acceptance remain unproved on HF 4.
 
 | Numbered gap                  | Evidence and required resolution                                                                                                                                                                                                                                                                             |
 | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| G2: portable admission        | `src/sim/one-cast.ts` uses `projectPersona`, `validatePersonaProjection` and `admitPersona`; cast/native routes also use portable contracts. Published 4.1.0 rejects any `createPerson` input containing `admission` and host inspection of `persona`/`calendar`. Ship supported admission/projection first. |
-| G3: sourced norms             | `src/sim/cast-life.ts` imports the sourced default norm catalogue for cast/calendar validation. That export is absent from 4.1.0. Resolve the shared catalogue contract; copying framework defaults into the game is not the port.                                                                           |
-| G4: source trust and forecast | `src/sim/game.ts:3193` exposes `trustOf` through `readOf`; `:683` uses `bodyForecast` for climb guidance. 4.1.0 inspection lacks source trust and preview lacks that forecast reading. Add supported readings with the existing visibility restrictions and forecast gate.                                   |
+| G2: portable admission        | `src/sim/one-cast.ts` uses `projectPersona`, `validatePersonaProjection` and `admitPersona`; cast/native routes also use portable contracts. Published 4.2.0 rejects any `createPerson` input containing `admission` and host inspection of `persona`/`calendar`. Ship supported admission/projection first. |
+| G3: sourced norms             | `src/sim/cast-life.ts` imports the sourced default norm catalogue for cast/calendar validation. That export is absent from 4.2.0. Resolve the shared catalogue contract; copying framework defaults into the game is not the port.                                                                           |
+| G4: source trust and forecast | `src/sim/game.ts:3193` exposes `trustOf` through `readOf`; `:683` uses `bodyForecast` for climb guidance. 4.2.0 inspection lacks source trust and preview lacks that forecast reading. Add supported readings with the existing visibility restrictions and forecast gate.                                   |
 
 Recommendation: the HF director resolves G2/G3/G4; the Stairwell maintainer then implements the
 bridge and runs the actual host proof. G1 stays open for the first integrated game and delivery.
@@ -120,6 +135,9 @@ No framework source or game logic changed for this audit. No 4.x game deployment
 
 ## Per-game delivery gate
 
+Done: the owner accepts the game’s 4.x release receipt; nothing else counts.
+
+- Preserve Hearsay garden replay artifacts with a separately isolated historical HF 3 runtime for its exact peer and direct legacy imports; do not bypass the peer constraint.
 - Replace old calls and direct actor mutations with supported routes. Pin the released package exactly, regenerate the pnpm lockfile, then freeze-install.
 - Prove a normal game action/control, active-work and pending-boundary restore, read-only preview, exact HF replay and complete game-log replay. Preserve supported continuing people or record a blocking G-item.
 - Run `check:lane` before each signed commit; gated paths run full `check`. Use the repo's suite lock. Include the Codex trailer. Obtain one independent review, open a PR, request `@codex review` and fix verified findings.

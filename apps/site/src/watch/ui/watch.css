@@ -2826,3 +2826,15 @@
   width: auto;
   margin-top: 0;
 }
+
+/* Reserve the dusk scene even when the shared stage CSS loads after this sheet. */
+@media (max-width: 899px) {
+  .phase-dusk .w-stage {
+    grid-template-rows: 44px 208px minmax(0, 1fr);
+  }
+}
+
+/* Today is a reading list, including on the wider layout. */
+.w-dusk .w-day {
+  font-size: 1rem;
+}

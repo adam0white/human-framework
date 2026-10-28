@@ -537,23 +537,14 @@ function enterDawn(s: WatchState): void {
     const gotKinds = (['wolf', 'thief'] as const).filter((k) => (got[k] ?? 0) > 0);
     const drivenKinds = (['wolf', 'thief'] as const).filter((k) => (driven[k] ?? 0) > 0);
     const parts: string[] = [];
-    // `posted` is who stands there at dawn; someone who drove a threat off earlier stood it for a while.
-    if (gotKinds.length > 0 && posted.length === 0)
-      parts.push(
-        heroes.length > 0
-          ? `Nobody stayed to guard ${the} until dawn.`
-          : `Nobody watched ${the}. A watcher posted there could have stopped the raiders.`,
-      );
+    // The current post shows who is there at dawn, not who guarded earlier in the night.
+    if (gotKinds.length > 0 && posted.length === 0) parts.push(`Nobody was at ${the} at dawn.`);
     for (const kind of gotKinds) {
       const g = got[kind] ?? 0;
       parts.push(
         t.grainAtDusk === s.grain
           ? `${capital(plural(kind, g))} got over ${the}, but took no grain.`
-          : s.proposalHolds
-            ? `${capital(plural(kind, g))} got over ${the} during the raid.`
-            : kind === 'wolf'
-              ? `${capital(plural(kind, g))} got over ${the} and broke into the grain store.`
-              : `${capital(plural(kind, g))} got over ${the} and carried sacks off.`,
+          : `${capital(plural(kind, g))} got over ${the} during the raid.`,
       );
     }
     if (drivenKinds.length > 0) {
@@ -565,7 +556,9 @@ function enterDawn(s: WatchState): void {
       );
     }
     if (parts.length === 0) {
-      parts.push(posted.length === 0 ? `Nobody watched ${the}. Nothing came.` : `It was quiet at ${the}.`);
+      parts.push(
+        posted.length === 0 ? `Nobody was at ${the} at dawn. Nothing came.` : `It was quiet at ${the}.`,
+      );
     }
     lines.push({ section: id, text: parts.join(' ') });
   }
@@ -585,16 +578,8 @@ function enterDawn(s: WatchState): void {
     grainAfter: s.grain,
     ropeSnapped: s.rope.snapped,
     crossed: SECTION_IDS.some((id) => (t.got[id].wolf ?? 0) + (t.got[id].thief ?? 0) > 0),
-    ...(t.grainAtDusk > s.grain
-      ? {
-          unwatched: SECTION_IDS.filter(
-            (id) =>
-              (t.got[id].wolf ?? 0) + (t.got[id].thief ?? 0) > 0 &&
-              postedIn(s, id).length === 0 &&
-              t.heroes[id].length === 0,
-          ),
-        }
-      : {}),
+    // This list records crossings, not who was guarding when each crossing happened.
+    breached: SECTION_IDS.filter((id) => (t.got[id].wolf ?? 0) + (t.got[id].thief ?? 0) > 0),
     voices: [],
   };
   rememberTheNight(s);
@@ -655,8 +640,12 @@ export function applyInput(s: WatchState, input: Input): boolean {
       return true;
     case 'local-warning':
       return applyLocalWarning(s, input);
-    case 'dusk-rest':
-      return applyDuskRest(s, input);
+    case 'dusk-rest': {
+      if (!applyDuskRest(s, input)) return false;
+      // Process the interrupted decision now, before the player starts the watch.
+      stepPeople(s, s.minute);
+      return true;
+    }
     case 'post': {
       if (s.phase !== 'dusk' && s.phase !== 'goal') return false;
       const who = personOf(s, input.watcher);

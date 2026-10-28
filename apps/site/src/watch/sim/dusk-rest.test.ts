@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { duskRestAccount, resolveDuskRest } from './dusk-rest.ts';
+import { applyDuskRest, duskRestAccount, resolveDuskRest } from './dusk-rest.ts';
 import { nightEnd, suggestions } from './night.ts';
 import { personOf, WatchWorld } from './people.ts';
 import { replay, WatchRun } from './run.ts';
@@ -32,10 +32,10 @@ describe('explicit dusk night off', () => {
     const before = JSON.stringify(legacy.snapshot());
     expect(legacy.input({ k: 'dusk-rest', who: 'tamar', until: 'dawn' })).toBe(false);
     expect(JSON.stringify(legacy.snapshot())).toBe(before);
-    expect(legacy.export().scenario).toBe(17);
+    expect(legacy.export().scenario).toBe(20);
     expect(legacy.state).not.toHaveProperty('duskRest');
     const r = fresh();
-    expect(r.export().scenario).toBe(18);
+    expect(r.export().scenario).toBe(21);
     expect(() => WatchRun.resume({ ...r.snapshot(), scenario: 17 })).toThrow();
     expect(() => WatchRun.resume({ ...legacy.snapshot(), scenario: 18 })).toThrow();
     expect(() => replay({ ...r.export(), options: undefined })).toThrow();
@@ -96,9 +96,17 @@ describe('explicit dusk night off', () => {
     expect(s.duskRest?.requests.tamar?.status).toBe('returned');
     expect(s.duskRest?.requests.tamar?.returnedAt).toBeGreaterThanOrEqual(1800);
   });
+  it('reaches a villager at the planned post and answers before night', () => {
+    const r = fresh();
+    r.state.place.tamar = 'village';
+    r.input({ k: 'lantern', section: 'gate' });
+    expect(r.input({ k: 'dusk-rest', who: 'tamar', until: 'dawn' })).toBe(true);
+    expect(r.state.duskRest?.requests.tamar?.status).not.toBe('pending');
+    expect(r.state.phase).toBe('dusk');
+  });
   it('expires unanswered requests and never reports a return without begun rest', () => {
     const r = fresh();
-    r.input({ k: 'dusk-rest', who: 'tamar', until: 'dawn' });
+    applyDuskRest(r.state, { k: 'dusk-rest', who: 'tamar', until: 'dawn' });
     const request = r.state.duskRest!.requests.tamar!;
     resolveDuskRest(r.state, [], request.until);
     expect(request.status).toBe('expired');

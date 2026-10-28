@@ -207,23 +207,19 @@ export function endState(s: WatchState): EndState {
  * 12: an opt-in milder winter, applied from the next dusk.
  * 11: in-person relief, help and rest asks at night.
  * 10: each pair waits one year after a proposal; legacy pages without proposalHolds retain the old rules.
- * 17–19 (2026-10-27, WATCH-cold-loss): the hardship rules (`WatchState.hardship`) for each edition of 14–16. Pages
- * saved under 14–16 have no `hardship` and keep their rules exactly, and their exports still replay.
+ * 20–22: immediate dusk decisions and an explicit silence input. Older pages and exports must start fresh.
  */
-export const WATCH_SCENARIO_VERSION = 17;
-export const WATCH_DUSK_REST_SCENARIO_VERSION = 18;
-export const WATCH_LOCAL_WARNING_SCENARIO_VERSION = 19;
-/** What the hardship rules add to each edition's scenario number (14 → 17, 15 → 18, 16 → 19). */
-const HARDSHIP_STEP = 3;
-const LEGACY_SCENARIOS = [14, 15, 16];
+export const WATCH_SCENARIO_VERSION = 20;
+export const WATCH_DUSK_REST_SCENARIO_VERSION = 21;
+export const WATCH_LOCAL_WARNING_SCENARIO_VERSION = 22;
 export function scenarioForOptions(options?: WatchOptions): number {
   if (!validWatchOptions(options)) throw new Error('Unknown watch option');
   if (options?.localWarning) return WATCH_LOCAL_WARNING_SCENARIO_VERSION;
   return options?.duskRest ? WATCH_DUSK_REST_SCENARIO_VERSION : WATCH_SCENARIO_VERSION;
 }
 export function scenarioForState(s: WatchState): number {
-  const n = editionForState(s);
-  return s.hardship ? n : n - HARDSHIP_STEP;
+  if (!s.hardship) throw new Error('This village uses older rules. Start a new game.');
+  return editionForState(s);
 }
 function editionForState(s: WatchState): number {
   validateLocalWarningState(s);
@@ -264,7 +260,7 @@ function editionForState(s: WatchState): number {
 }
 
 /** The oldest scenario whose saved pages still load (`migrateSnapshot`). */
-export const OLDEST_LOADABLE_SCENARIO = 14;
+export const OLDEST_LOADABLE_SCENARIO = 20;
 
 /**
  * Where a run's log stops replaying from its seed: it was resumed from a page saved under an older scenario at this
@@ -329,7 +325,7 @@ export interface Snapshot {
 }
 
 /**
- * Validate the saved scenario against its admitted state. Both supported scenarios resume unchanged.
+ * Validate the saved scenario against its admitted state. All supported scenarios resume unchanged.
  * No new-run option is applied here, and no migration or origin stamp is inserted. Pure.
  */
 export function migrateSnapshot(snap: Snapshot): Snapshot {
@@ -337,13 +333,12 @@ export function migrateSnapshot(snap: Snapshot): Snapshot {
     snap.scenario !== scenarioForState(snap.state) ||
     snap.scenario < OLDEST_LOADABLE_SCENARIO ||
     ![
-      ...LEGACY_SCENARIOS,
       WATCH_SCENARIO_VERSION,
       WATCH_DUSK_REST_SCENARIO_VERSION,
       WATCH_LOCAL_WARNING_SCENARIO_VERSION,
     ].includes(snap.scenario)
   )
-    throw new Error(`save scenario ${snap.scenario} does not match its admitted night-off choice`);
+    throw new Error(`save scenario ${snap.scenario} uses different rules. Start a new game.`);
   if (
     snap.log.some(
       (e) =>
@@ -473,25 +468,18 @@ export function replay(
   >,
 ): WatchState {
   const edition = scenarioForOptions(exp.options);
-  const legacy = exp.scenario === edition - HARDSHIP_STEP;
-  if (exp.scenario !== edition && !legacy)
-    throw new Error(`export is scenario ${exp.scenario}, this build is ${WATCH_SCENARIO_VERSION}`);
+  if (exp.scenario !== edition)
+    throw new Error(`export scenario ${exp.scenario} uses different rules. Start a new game.`);
   if (exp.origin)
     throw new Error(
       `export was resumed from a scenario ${exp.origin.scenario} page; it does not replay from its seed`,
     );
   const run = new WatchRun(exp.seed, undefined, exp.castChapter, exp.options);
   const s = run.state;
-  // A 14–16 export replays under the rules it was played by.
-  if (legacy) delete s.hardship;
 
   let idx = 0;
   for (let guard = 0; guard < 10_000_000; guard++) {
     for (let e = exp.inputs[idx]; e !== undefined && e.m === s.minute; e = exp.inputs[idx]) {
-      if (exp.scenario < 12 && e.i.k === 'winter')
-        throw new Error(`input ${idx} (winter) is not in scenario ${exp.scenario}'s vocabulary`);
-      if (exp.scenario < 11 && ['relieve', 'help', 'down'].includes(e.i.k))
-        throw new Error(`input ${idx} (${e.i.k}) is not in scenario ${exp.scenario}'s vocabulary`);
       if (!applyInput(s, e.i)) throw new Error(`input ${idx} (${e.i.k}) did not apply at minute ${e.m}`);
       idx += 1;
     }
