@@ -1565,6 +1565,22 @@ const receive: T.BodyOwner['receive'] = (state, input, ctx) => {
     for (const e of a.exposures) receipt({ type: 'exposed', ...e }, rid);
     if (a.voidedBladder && input.outcome.status === 'completed')
       receipt({ type: 'voided', actionReceipt: rid }, rid);
+    // Receipts describe the elapsed interval; keep its sleep state until they are applied.
+    // An actual terminal outcome ends voluntary sleep. An unrelated awake
+    // activity's outcome cannot supply the percept needed to end involuntary doze.
+    if (
+      input.activityMode === 'sleep' &&
+      input.outcome.end === ctx.at &&
+      b.alive &&
+      b.asleep &&
+      b.doze.since === undefined
+    ) {
+      const slept = { from: b.since, to: ctx.at };
+      b.asleep = false;
+      b.lastSleep = slept;
+      b.since = ctx.at;
+      emit({ kind: 'woke', slept, evidenceId: input.outcome.evidenceId });
+    }
   }
   events.push(...applyPhysical(b, ctx.at, ctx));
   const c = continuation(

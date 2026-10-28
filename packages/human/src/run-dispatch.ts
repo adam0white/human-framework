@@ -1296,7 +1296,7 @@ export class Frame {
           valence: effect.valence,
         },
       });
-      this.body(person, { kind: 'outcome', outcome }, context);
+      this.body(person, { kind: 'outcome', outcome, activityMode: activity.offer.demands.mode }, context);
       this.ingress.push({ phase: 6, input });
       return;
     }

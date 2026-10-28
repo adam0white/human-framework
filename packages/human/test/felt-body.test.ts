@@ -142,6 +142,7 @@ it('rolls physical transmission once, and never rolls without eligible contact',
     x.state,
     {
       kind: 'outcome',
+      activityMode: 'awake',
       outcome: {
         activityId: 'phone',
         offerId: 'phone',
