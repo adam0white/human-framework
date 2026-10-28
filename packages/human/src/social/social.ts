@@ -7,6 +7,7 @@ import type {
   Offer,
   PersonId,
   Relationship,
+  ReputationTraitDefinition,
   Signed,
   SocialEventKind,
   SocialState,
@@ -509,11 +510,7 @@ export function markDeceased(p: SocialActor, otherId: PersonId, at: Time): Relat
 // ---------------------------------------------------------------------------------------------
 
 /** Relationship deltas per unit of credence change in `<personId>:<trait>`. Hosts may pass their own table. */
-export interface TraitEffect {
-  affection: number;
-  trust: number;
-  respect: number;
-}
+export type TraitEffect = Omit<ReputationTraitDefinition, 'id'>;
 
 /**
  * SCOPE (hearsay → relationship): a belief about a person's character, stored as the proposition
@@ -540,6 +537,17 @@ export const REPUTATION_TRAITS: Record<string, TraitEffect> = {
   /** 'p:owes:<creditor>' maps to this entry: owing money lowers expected reliability a little. */
   owes: { affection: 0, trust: -0.04, respect: -0.03 },
 };
+
+/** A fresh vocabulary per owner call. Authoring is fixed by run admission; no shared mutation or replacement. */
+export function reputationVocabulary(
+  authored: readonly Readonly<ReputationTraitDefinition>[] = [],
+): Record<string, TraitEffect> {
+  return Object.assign(
+    {},
+    REPUTATION_TRAITS,
+    Object.fromEntries(authored.map(({ id, ...effect }) => [id, effect])),
+  );
+}
 
 export const REPUTATION_DEFAULTS = {
   /** First-hand familiarity damps hearsay: scale = 1 - familiarityDamping × familiarity. */
@@ -728,7 +736,14 @@ export const socialOwner: import('../run-schema.ts').SocialOwner = {
     const appraisals: import('../run-schema.ts').AppraisalEffect[] = [];
     switch (input.kind) {
       case 'reputation':
-        applyReputationBelief(actor, input.prop, input.before, input.credence, context.at);
+        applyReputationBelief(
+          actor,
+          input.prop,
+          input.before,
+          input.credence,
+          context.at,
+          reputationVocabulary(context.reputationTraits),
+        );
         break;
       case 'attended': {
         const pc = input.percept,

@@ -20,6 +20,7 @@ import type {
   WorldChange,
 } from './run-schema.ts';
 import { validateData } from './run-validation.ts';
+import { REPUTATION_TRAITS } from './social/social.ts';
 
 export type BoundaryAdmission = {
   at: Time;
@@ -193,6 +194,31 @@ export function checkBatchEnvelope(
   const sorted = [...batch.inputs].sort(compareInputs);
   for (const [index, entry] of sorted.entries()) {
     const path = `$.inputs[${index}]`;
+    if (
+      entry.kind === 'conversation.requested' &&
+      entry.payload.confidentMin !== undefined &&
+      entry.payload.confidentMin > 0.5
+    )
+      return fail(
+        'invalid-schema',
+        `${path}.payload.confidentMin`,
+        'confidence distance must be between 0 and 0.5',
+      );
+    if (entry.kind === 'social.received' && entry.payload.sourceTrustResponse) {
+      const response = entry.payload.sourceTrustResponse;
+      if (response.sourceId === entry.payload.person || response.sourceId === 'self')
+        return fail(
+          'invalid-admission',
+          `${path}.payload.sourceTrustResponse.sourceId`,
+          'authored source trust responses cannot target self',
+        );
+      if (!state.sources.some((source) => source.id === response.sourceId))
+        return fail(
+          'unknown-id',
+          `${path}.payload.sourceTrustResponse.sourceId`,
+          'source trust response requires a registered source',
+        );
+    }
     if (seen.has(entry.id) || state.acceptedInputIds.has(entry.id))
       return fail('duplicate-id', `${path}.id`, 'input ID already accepted');
     seen.add(entry.id);
@@ -354,6 +380,18 @@ export function checkRunSpec(input: unknown): Result<DeepReadonly<import('./run-
   const admitted = validateData('RunSpec', input);
   if (!admitted.ok) return admitted;
   const spec = admitted.value;
+  const reputationIds = new Set(Object.keys(REPUTATION_TRAITS));
+  for (const trait of spec.definitions.reputationTraits ?? []) {
+    if (reputationIds.has(trait.id))
+      return fail('duplicate-id', '$.definitions.reputationTraits', 'duplicate or builtin reputation trait');
+    if (trait.id.includes(':'))
+      return fail(
+        'invalid-schema',
+        '$.definitions.reputationTraits',
+        'reputation trait IDs cannot contain a colon',
+      );
+    reputationIds.add(trait.id);
+  }
   const wordingError = wordingIssue(spec.definitions.lexicon);
   if (wordingError)
     return fail(wordingError.code, `$.definitions.lexicon${wordingError.path}`, wordingError.message);

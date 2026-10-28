@@ -521,7 +521,7 @@ export class Frame {
         const after = out.state.sourceTrust[sourceId];
         return after !== undefined && after !== before ? [{ sourceId, before, after }] : [];
       });
-    if (input.kind !== 'contradiction') {
+    if (input.kind !== 'contradiction' && input.kind !== 'source-trust-response') {
       const affected = new Set(
         input.kind === 'confirm' ? [input.prop] : input.claims.map((claim) => claim.prop),
       );
@@ -568,6 +568,7 @@ export class Frame {
       sourceTrust: Object.entries(actor.memory.sourceTrust).map(([sourceId, trust]) => ({ sourceId, trust })),
       norms: actor.conscience.norms,
       catalog: this.record.spec.definitions.norms,
+      reputationTraits: this.record.spec.definitions.reputationTraits,
       rng: { words: actor.rng, identity: actor.randomIdentity },
     });
     this.install(
@@ -1563,6 +1564,7 @@ export class Frame {
       person: data.speaker,
       speaker,
       norms: this.record.spec.definitions.norms,
+      reputationTraits: this.record.spec.definitions.reputationTraits,
       listenerKnown: {
         social: speaker.social,
         beliefs: { kind: 'unobserved' },
@@ -2084,7 +2086,19 @@ export class Frame {
         return;
       }
       case 'social.received':
+        if (input.payload.sourceTrustResponse)
+          this.receipt(input.payload.person, 'social', input.payload.evidenceId, input.id, input.payload);
         this.social(input.payload.person, { kind: 'event', data: input.payload }, context);
+        if (input.payload.sourceTrustResponse)
+          this.beliefs(
+            input.payload.person,
+            {
+              kind: 'source-trust-response',
+              evidenceId: input.payload.evidenceId,
+              response: input.payload.sourceTrustResponse,
+            },
+            context,
+          );
         return;
       case 'person.glimpsed':
         this.social(input.payload.person, { kind: 'glimpse', data: input.payload }, context);

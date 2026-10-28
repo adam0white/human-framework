@@ -241,7 +241,7 @@ importers:
         version: '@adam0white/human-framework@3.0.0'
       '@adam0white/human-framework':
         specifier: 4.4.0
-        version: link:../human
+        version: 4.4.0
     devDependencies:
       fake-indexeddb:
         specifier: 6.2.6
@@ -271,6 +271,10 @@ packages:
 
   '@adam0white/human-framework@3.2.0':
     resolution: {integrity: sha512-I/smuEJWiQPYd9rUEE4uhMNd48rEDX4VHDJxlixwQ/kAQJITNO3SCvKOJwlvsJXcqUjDstqUFeZnDifQFAWW4A==}
+    engines: {node: '>=24'}
+
+  '@adam0white/human-framework@4.4.0':
+    resolution: {integrity: sha512-4+DgBQitSTfgWMSPOeiZe6OY3Dd5tv5lM2u/rOHdsG6WySIy7bkxE5dn8onGqtgXOZRr92H6oEjUHhu6BK8OXQ==}
     engines: {node: '>=24'}
 
   '@babel/helper-string-parser@8.0.8':
@@ -1729,6 +1733,8 @@ snapshots:
   '@adam0white/human-framework@3.0.0': {}
 
   '@adam0white/human-framework@3.2.0': {}
+
+  '@adam0white/human-framework@4.4.0': {}
 
   '@babel/helper-string-parser@8.0.8': {}
 

@@ -126,6 +126,12 @@ export function inspectCurrentRun(
           case 'sourceTrust':
             parts.push({ select, value: actor.memory.sourceTrust });
             break;
+          case 'traits':
+            parts.push({ select, value: actor.traits });
+            break;
+          case 'heldNorms':
+            parts.push({ select, value: actor.conscience.norms });
+            break;
           case 'relationships':
             parts.push({ select, value: { ties: actor.social.relationships, voices: actor.will.voices } });
             break;
@@ -185,6 +191,12 @@ export function inspectCurrentRun(
       const parts: T.DeepReadonly<T.SelectedPart<T.SelfParts>>[] = [];
       for (const select of q.select)
         switch (select) {
+          case 'traits':
+            parts.push({ select, value: { kind: 'unobserved' } });
+            break;
+          case 'heldNorms':
+            parts.push({ select, value: actor.conscience.norms });
+            break;
           case 'summary':
             parts.push({ select, value: { name: actor.name, mood: actor.affect.mood } });
             break;
@@ -242,6 +254,8 @@ export function inspectCurrentRun(
           case 'beliefs':
           case 'sourceTrust':
           case 'relationships':
+          case 'traits':
+          case 'heldNorms':
           case 'methods':
           case 'agenda':
           case 'calendar':

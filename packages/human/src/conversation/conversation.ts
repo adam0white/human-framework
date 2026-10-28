@@ -13,7 +13,7 @@ import type {
   PerceptData,
   ToldClaimData,
 } from '../run-schema.ts';
-import { isUnfavourableTrait, parseTraitProp } from '../social/social.ts';
+import { isUnfavourableTrait, parseTraitProp, reputationVocabulary } from '../social/social.ts';
 export const CONVERSATION_DEFAULTS = {
   /** A belief is told only when |credence − 0.5| ≥ this (credence ≥ 0.7 or ≤ 0.3). */
   confidentMin: 0.2,
@@ -63,7 +63,11 @@ export function prepareConversation(
 ): ConversationData {
   const s = context.speaker,
     C = context.effective.builtins.CONVERSATION_DEFAULTS,
-    R = C.relevance;
+    R = C.relevance,
+    vocabulary = reputationVocabulary(context.reputationTraits);
+  const confidentMin = input.confidentMin ?? C.confidentMin;
+  if (!Number.isFinite(confidentMin) || confidentMin < 0 || confidentMin > 0.5)
+    throw new RangeError('Confidence distance must be between 0 and 0.5');
   const out: ConversationData = {
     speaker: input.speaker,
     listener: input.listener,
@@ -103,13 +107,13 @@ export function prepareConversation(
     deceit: boolean,
     base: number,
   ) => {
-    const parsed = parseTraitProp(prop),
+    const parsed = parseTraitProp(prop, vocabulary),
       about = parsed?.personId,
       backbiting =
         parsed !== undefined &&
         about !== s.id &&
         about !== input.listener &&
-        isUnfavourableTrait(parsed.trait, value);
+        isUnfavourableTrait(parsed.trait, value, vocabulary);
     let score = base;
     if (input.topicIds.some((t) => prop === t || prop.startsWith(`${t}:`))) score += R.topic;
     if (about) score += R.feeling * Math.abs(affection(about));
@@ -142,15 +146,15 @@ export function prepareConversation(
     const subject = b.prop.split(':')[0];
     if (subject === s.id) continue;
     const cred = sigmoid(b.logOdds);
-    if (Math.abs(cred - 0.5) < C.confidentMin) continue;
+    if (Math.abs(cred - 0.5) < confidentMin) continue;
     const value = cred > 0.5;
     if (subject === input.listener) {
-      const trait = parseTraitProp(b.prop)?.trait;
+      const trait = parseTraitProp(b.prop, vocabulary)?.trait;
       if (
         !evidence.loyalWarning ||
         affection(input.listener) < 0.5 ||
         trait === undefined ||
-        !isUnfavourableTrait(trait, value)
+        !isUnfavourableTrait(trait, value, vocabulary)
       )
         continue;
     }
