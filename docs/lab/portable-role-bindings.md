@@ -28,8 +28,9 @@ replay inputs. Old saves and HF3 links may be refused by the HF4 ports.
 Well and Watch are included because Valley and Warren need genuine passports
 from those sources. A target binding without its source binding still refuses
 that source. Other games outside this port brief retain their existing coverage.
-One behaviour control per family proves projection, admission of changed body
-state, wrong-actor refusal, unchanged input and ownership refusal. A retained-v2
+One focused cross-game bridge control per family proves projection and
+admission of changed body state. Existing portable and Left Hand controls retain
+wrong-actor, ownership, clinical and unchanged-input checks. A retained-v2
 headless control carries Master Yusuf from Warren to Valley under its different
 role ID, claims and departs the chapter, and verifies the exact HF replay hash.
 These are synthetic mechanism controls, not completed gameplay or player evidence.

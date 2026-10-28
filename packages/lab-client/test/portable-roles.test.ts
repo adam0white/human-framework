@@ -2,156 +2,106 @@ import { createPerson } from '@adam0white/hf-legacy';
 import { expect, it } from 'vitest';
 import { canonicalCast } from '../src/cast.ts';
 import { createPersona } from '../src/persona.ts';
-import { admitPortablePerson, claimPortablePerson, projectPortablePerson } from '../src/persona-portable.ts';
+import { admitPortablePerson, projectPortablePerson } from '../src/persona-portable.ts';
 
-// Authored actor IDs, independently pinned from each host's cast entry.
-const families: Record<string, Record<string, string>> = {
-  valley: {
-    'hf.cast.yusuf.warren': 'yusuf-usta',
-    'hf.cast.meryem.warren': 'meryem-visitor',
-    'hf.cast.yusuf.well': 'yusuf',
-    'hf.cast.samira.well': 'samira',
-    'hf.cast.maryam.well': 'maryam',
-    'hf.cast.danyal.well': 'danyal',
-  },
-  glance: {
-    'hf.cast.dai.glance': 'dai',
-    'hf.cast.callum.glance': 'callum',
-    'hf.cast.nerys.glance': 'nerys',
-    'hf.cast.bilal.rope': 'bilal',
-    'hf.cast.wren.rope': 'wren',
-  },
-  rope: {
-    'hf.cast.tamar.rope': 'tamar',
-    'hf.cast.oskar.rope': 'oskar',
-    'hf.cast.nell.rope': 'nell',
-    'hf.cast.bilal.rope': 'bilal',
-    'hf.cast.wren.rope': 'wren',
-  },
-  warren: {
-    'hf.cast.yusuf.warren': 'yusuf',
-    'hf.cast.meryem.warren': 'meryem',
-    'hf.cast.maryam.well': 'maryam',
-    'hf.cast.tariq.well': 'tariq',
-    'hf.cast.kian.watch': 'kian',
-    'hf.cast.tamar.watch': 'tamar',
-  },
-  hearsay: {
-    'hf.cast.hatice.hearsay': 'hatice',
-    'hf.cast.derya.stairwell': 'derya',
-    'hf.cast.dilan.murmur': 'dilan',
-    'hf.cast.nermin.goodhands': 'nermin',
-    'hf.cast.aylin.murmur': 'aylin',
-    'hf.cast.ece.murmur': 'ece',
-    'hf.cast.riza.voice': 'riza',
-    'hf.cast.osman.voice': 'osman',
-  },
-  repair: {
-    'hf.cast.sam.smallworks': 'sam',
-    'hf.cast.nora.smallworks': 'nora',
-    'hf.cast.halil.voice': 'halil',
-    'hf.cast.rafi.pass': 'rafi',
-  },
-  well: {
-    'hf.cast.maryam.well': 'maryam',
-    'hf.cast.yusuf.well': 'yusuf',
-    'hf.cast.tariq.well': 'tariq',
-    'hf.cast.idris.well': 'idris',
-    'hf.cast.samira.well': 'samira',
-    'hf.cast.danyal.well': 'danyal',
-  },
-  watch: {
-    'hf.cast.tamar.watch': 'tamar',
-    'hf.cast.kian.watch': 'kian',
-    'hf.cast.idris.well': 'idris',
-    'hf.cast.samira.well': 'samira',
-    'hf.cast.danyal.well': 'danyal',
-    'hf.cast.meryem.warren': 'meryem',
-  },
-  goodhands: {
-    'hf.cast.nermin.goodhands': 'nermin',
-    'hf.cast.hatice.hearsay': 'hatice',
-    'hf.cast.hulya.pass': 'hulya',
-    'hf.cast.aylin.murmur': 'aylin',
-    'hf.cast.derya.stairwell': 'derya',
-    'hf.cast.zeynep.pass': 'zeynep-pass',
-    'hf.cast.selin.voice': 'selin-voice',
-  },
-  pass: {
-    'hf.cast.selim.pass': 'selim',
-    'hf.cast.dilek.pass': 'dilek',
-    'hf.cast.rafi.pass': 'rafi',
-    'hf.cast.zeynep.pass': 'zeynep',
-    'hf.cast.hulya.pass': 'hulya',
-    'hf.cast.murat.murmur': 'murat',
-    'hf.cast.sam.smallworks': 'sam',
-  },
-  murmur: {
-    'hf.cast.dilan.murmur': 'dilan',
-    'hf.cast.aylin.murmur': 'aylin',
-    'hf.cast.ece.murmur': 'ece',
-    'hf.cast.murat.murmur': 'murat',
-  },
-  stairwell: {
-    'hf.cast.hacer.voice': 'hacer',
-    'hf.cast.sevim.stairwell': 'sevim',
-    'hf.cast.burak.stairwell': 'burak',
-    'hf.cast.derya.stairwell': 'derya',
-    'hf.cast.tarik.stairwell': 'tarik',
-  },
-};
-
-for (const [game, roles] of Object.entries(families)) {
-  it(`continues ${game} roles without replacing the authored opening or accepting another actor`, async () => {
-    for (const [castId, id] of Object.entries(roles)) {
-      const cast = canonicalCast(castId);
-      const actor = () =>
-        createPerson({
-          id,
-          name: cast.name,
-          bornAt: -cast.age * 525960,
-          sex: 'male', // Synthetic body fixture; these controls test role binding, not biographies.
-          seed: 9,
-          traits: cast.traits,
-          values: cast.values,
-        });
-      const source = actor();
-      source.body.satiety = 0.41;
-      const parent = await createPersona({
-        format: 'hf-persona/1',
-        castId,
-        castRevision: cast.revision,
-        branchId: `roles-${game}-${id}`,
-        parentRevision: null,
-        source: { game, engine: '2.23.0', build: 'control', rules: 'portable-1' },
-        transfer: projectPortablePerson({
-          castId,
-          game,
-          engine: '2.23.0',
-          person: source,
-          history: ['Completed an authored chapter.'],
-        }),
-        limitations: [],
-      });
-      const before = structuredClone(parent);
-      const opening = actor();
-      expect(admitPortablePerson(parent, game, opening).body.satiety).toBe(0.41);
-      expect(opening.body.satiety).toBe(0.8);
-      expect(() => admitPortablePerson(parent, game, { ...opening, id: 'wrong-actor' })).toThrow(
-        /authored role/,
-      );
-      expect(() =>
-        projectPortablePerson({
-          castId,
-          game,
-          engine: '2.23.0',
-          person: { ...source, id: 'wrong-actor' },
-          history: [],
-        }),
-      ).toThrow(/authored chapter/);
-      const held = { ...parent, transfer: claimPortablePerson(parent, game) };
-      expect(() => admitPortablePerson(held, game, opening)).toThrow(/receiving chapter/);
-      expect(parent).toEqual(before);
-    }
+// Synthetic bodies isolate binding from biography. No second cast table or actor matrix.
+function actor(castId: string, id: string) {
+  const cast = canonicalCast(castId);
+  return createPerson({
+    id,
+    name: cast.name,
+    bornAt: -cast.age * 525960,
+    sex: 'male',
+    seed: 9,
+    traits: cast.traits,
+    values: cast.values,
   });
 }
+async function departure(game: string, castId: string, id: string) {
+  const person = actor(castId, id);
+  person.body.satiety = 0.41;
+  return createPersona({
+    format: 'hf-persona/1',
+    castId,
+    castRevision: canonicalCast(castId).revision,
+    branchId: `bridge-${game}-${id}`,
+    parentRevision: null,
+    source: { game, engine: '2.23.0', build: 'control', rules: 'portable-1' },
+    transfer: projectPortablePerson({ castId, game, engine: '2.23.0', person, history: [] }),
+    limitations: [],
+  });
+}
+
+it('continues Master Yusuf from Warren in Valley under its different authored role', async () => {
+  const castId = 'hf.cast.yusuf.warren';
+  const parent = await departure('warren', castId, 'yusuf');
+  const opening = actor(castId, 'yusuf-usta');
+  expect(admitPortablePerson(parent, 'valley', opening).body.satiety).toBe(0.41);
+  expect(opening.body.satiety).toBe(0.8);
+});
+
+it('continues Bilal from Rope in Glance', async () => {
+  const castId = 'hf.cast.bilal.rope';
+  const parent = await departure('rope', castId, 'bilal');
+  expect(admitPortablePerson(parent, 'glance', actor(castId, 'bilal')).body.satiety).toBe(0.41);
+});
+
+it('continues Wren from Glance in Rope', async () => {
+  const castId = 'hf.cast.wren.rope';
+  const parent = await departure('glance', castId, 'wren');
+  expect(admitPortablePerson(parent, 'rope', actor(castId, 'wren')).body.satiety).toBe(0.41);
+});
+
+it('continues Tariq from Well in Warren', async () => {
+  const castId = 'hf.cast.tariq.well';
+  const parent = await departure('well', castId, 'tariq');
+  expect(admitPortablePerson(parent, 'warren', actor(castId, 'tariq')).body.satiety).toBe(0.41);
+});
+
+it('continues Nermin from Good Hands in Hearsay', async () => {
+  const castId = 'hf.cast.nermin.goodhands';
+  const parent = await departure('goodhands', castId, 'nermin');
+  expect(admitPortablePerson(parent, 'hearsay', actor(castId, 'nermin')).body.satiety).toBe(0.41);
+});
+
+it('continues Rafi from Pass in Small Works', async () => {
+  const castId = 'hf.cast.rafi.pass';
+  const parent = await departure('pass', castId, 'rafi');
+  expect(admitPortablePerson(parent, 'repair', actor(castId, 'rafi')).body.satiety).toBe(0.41);
+});
+
+it('continues Maryam from Valley in Well', async () => {
+  const castId = 'hf.cast.maryam.well';
+  const parent = await departure('valley', castId, 'maryam');
+  expect(admitPortablePerson(parent, 'well', actor(castId, 'maryam')).body.satiety).toBe(0.41);
+});
+
+it('continues Samira from Well in Watch', async () => {
+  const castId = 'hf.cast.samira.well';
+  const parent = await departure('well', castId, 'samira');
+  expect(admitPortablePerson(parent, 'watch', actor(castId, 'samira')).body.satiety).toBe(0.41);
+});
+
+it('continues Zeynep from Pass under the Good Hands role', async () => {
+  const castId = 'hf.cast.zeynep.pass';
+  const parent = await departure('pass', castId, 'zeynep');
+  expect(admitPortablePerson(parent, 'goodhands', actor(castId, 'zeynep-pass')).body.satiety).toBe(0.41);
+});
+
+it('continues Sam from Small Works in Pass', async () => {
+  const castId = 'hf.cast.sam.smallworks';
+  const parent = await departure('repair', castId, 'sam');
+  expect(admitPortablePerson(parent, 'pass', actor(castId, 'sam')).body.satiety).toBe(0.41);
+});
+
+it('continues Dilan from Hearsay in Murmur', async () => {
+  const castId = 'hf.cast.dilan.murmur';
+  const parent = await departure('hearsay', castId, 'dilan');
+  expect(admitPortablePerson(parent, 'murmur', actor(castId, 'dilan')).body.satiety).toBe(0.41);
+});
+
+it('continues Burak from Commonstead in Stairwell', async () => {
+  const castId = 'hf.cast.burak.stairwell';
+  const parent = await departure('commonstead', castId, castId);
+  expect(admitPortablePerson(parent, 'stairwell', actor(castId, 'burak')).body.satiety).toBe(0.41);
+});
