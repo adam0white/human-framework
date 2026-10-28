@@ -71,7 +71,7 @@ describe('site cast chapters', () => {
     expect(run.state.talks.discovered).toBeUndefined();
     run.state.talks.said = [];
     p.affect.emotions = [];
-    expect(talk(run.state, 'kian', 'night')).toBe(true);
+    expect(talk(run.state, 'kian', 'home')).toBe(true);
     expect(run.state.talks.said.at(-1)?.text).toContain(WATCH_DISCOVERIES.kian);
   });
 

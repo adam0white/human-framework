@@ -121,7 +121,7 @@ export function localWarningAccount(s: WatchState, who: WatcherId): string | nul
           : 'Their attention did not take in the caution.';
   return `You said to ${nameOf(s, who)}: “Keep an eye on this stretch.” ${result} ${
     pending ? `${pending} spoken caution${pending === 1 ? '' : 's'} await the next whole actor minute. ` : ''
-  }No reply or new choice is recorded by this caution. Hearing you does not mean they agreed or that this stretch is safe.`;
+  }The caution may draw their attention to this stretch. It does not ask them to change posts or stay awake. No reply or new choice is recorded by this caution. Hearing you does not mean they agreed or that this stretch is safe.`;
 }
 export function validateLocalWarningState(s: WatchState): void {
   const w = s.localWarning;

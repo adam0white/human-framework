@@ -195,7 +195,8 @@ export function nightActs(s: WatchState, who: WatcherId): NightAct[] {
       s.nightDepartureEffort && input.k !== 'down' && isPost(old) && old !== s.place[who]
         ? ' I think leaving another post will also tire the relief watcher a little.'
         : '';
-    const cover = input.k === 'relieve' ? ` The helper takes over before you ask ${name} to sleep.` : '';
+    const cover =
+      input.k === 'relieve' ? ` The helper must take over first. Then you ask ${name} to sleep.` : '';
     return {
       input,
       label,

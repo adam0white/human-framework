@@ -32,6 +32,7 @@ it('a night-wide loss does not assign stolen grain to every breach', () => {
   const lines = s.dawn?.lines ?? [];
   expect(lines.filter((line) => /tore into the store|carried sacks off/.test(line.text))).toHaveLength(0);
   expect(lines.filter((line) => /got over/.test(line.text))).toHaveLength(2);
+  expect(s.dawn?.breached).toEqual(['west', 'east']);
 });
 
 it('the thaw question and chronicle account for households who left', async () => {
@@ -81,7 +82,7 @@ it('new proposal holds survive current save/restore and replay; older cast pages
   const restored = WatchRun.resume(JSON.parse(run.snapshotText()));
   expect(restored.state.proposalHolds).toEqual({});
   const exp = run.export();
-  expect(exp.scenario).toBe(17);
+  expect(exp.scenario).toBe(20);
   expect(ruleHash(replay(exp))).toBe(exp.end.ruleHash);
   const legacy = run.snapshot();
   legacy.scenario = 9;

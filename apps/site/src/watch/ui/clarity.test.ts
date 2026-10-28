@@ -65,7 +65,7 @@ it('separates starting lantern from the selected person’s post actions', () =>
   expect(selected.querySelectorAll('.w-place')).toHaveLength(4);
   expect(selected.querySelector('.w-press[aria-pressed=true]')?.textContent).toBe('Urge');
   expect(selected.textContent).toContain('Choosing a post does not give a night off.');
-  expect(selected.textContent).toContain('At night, select the watcher and choose Rest');
+  expect(selected.textContent).toContain('At night, select the watcher. Choose Rest');
   expect(selected.querySelectorAll('.game-help-button')).toHaveLength(0);
 });
 it('keeps lantern and bell in the night action bar and people in the sheet', () => {
@@ -449,14 +449,13 @@ it('offers night off separately from posting only in the admitted village, with 
   const el = render(createElement(DuskPanel, props));
   expect(el.textContent).toContain('Ask Tamar of the Wall to take tonight off');
   expect(el.textContent).toContain('until dawn');
-  expect(el.textContent).toContain('Choosing a post stays separate');
+  expect(el.textContent).toContain('Choosing a post does not give a night off');
   expect(el.textContent).not.toMatch(/dusk-rest@|scenario 15/);
   const title = render(
     createElement(GoalPage, { frame, actions, shelf: [], current: 'new', onNew: vi.fn() }),
   );
-  const checkbox = title.querySelector('input[type=checkbox]') as HTMLInputElement;
-  expect(checkbox.checked).toBe(false);
-  expect(title.textContent).toContain('Offer night-off requests at dusk in the new village');
+  expect(title.querySelector('input[type=checkbox]')).toBeNull();
+  expect(title.textContent).not.toContain('Offer night-off requests');
 });
 
 it('explains stairs in saved volume endings and epilogues without changing saved prose', async () => {
@@ -582,7 +581,7 @@ it('holds On to dusk beside the open visit choice and names every empty wall at 
       grainBefore: 20,
       grainAfter: 16,
       crossed: true,
-      unwatched: ['east' as const],
+      breached: ['east' as const],
       voices: [],
       lines: [],
       scout: null,
@@ -624,7 +623,7 @@ it('holds On to dusk beside the open visit choice and names every empty wall at 
     'Stay here together',
   );
   expect(page.textContent).not.toMatch(/quiet action boundary|snapshot/i);
-  expect(page.textContent).toContain('Raiders got over the east wall while nobody was posted there.');
+  expect(page.textContent).toContain('Raiders got over the east wall during the night.');
   // Control: with no open visit, On to dusk is live and nothing waits.
   const free = render(createElement(DawnPanel, { frame: { ...frame, refugeVisit: undefined }, actions }));
   const live = [...free.querySelectorAll('button')].find((b) => b.textContent === 'On to dusk');
@@ -692,4 +691,56 @@ it('drops the bell from an open night moment once the rope has snapped (F-1596)'
   expect(at(true)).toContain('The rope is broken tonight');
   // Control: a sound rope keeps the choice.
   expect(at(false)).toContain('Ring and call Kian by name');
+});
+
+it('keeps two morning questions with the selected person after a worker frame arrives', async () => {
+  const s = newGame(1);
+  applyInput(s, { k: 'start' });
+  applyInput(s, { k: 'begin' });
+  while (s.phase === 'night') stepMinute(s);
+  const container = document.createElement('div');
+  document.body.append(container);
+  const root = createRoot(container);
+  const received: string[] = [];
+  const active = {
+    ...actions,
+    input: (input: Parameters<WatchActions['input']>[0]) => {
+      if (input.k === 'talk') received.push(input.who);
+      applyInput(s, input);
+      root.render(createElement(DawnPanel, { frame: buildFrame(s, 0, false), actions: active }));
+    },
+  } as WatchActions;
+  const click = async (text: string) =>
+    act(() => {
+      const button = [...container.querySelectorAll('button')].find((b) => b.textContent?.trim() === text);
+      if (!button) throw new Error(`Missing ${text}`);
+      button.click();
+    });
+  await act(() => root.render(createElement(DawnPanel, { frame: buildFrame(s, 0, false), actions: active })));
+  await click('Kian');
+  await click('Ask Kian: Tell me about last night');
+  const followup = [...container.querySelectorAll<HTMLButtonElement>('.w-ask-btns button')][0];
+  expect(followup?.textContent).toMatch(/^Ask Kian:/);
+  await act(() => followup?.click());
+  expect(received).toEqual(['kian', 'kian']);
+  expect(s.talks.left).toBe(0);
+  await act(() => root.unmount());
+  container.remove();
+});
+
+it('starts a normal new village with both public requests available', async () => {
+  const container = document.createElement('div');
+  const root = createRoot(container);
+  const onNew = vi.fn();
+  await act(() =>
+    root.render(createElement(GoalPage, { frame: dusk, actions, shelf: [], current: 'new', onNew })),
+  );
+  expect(container.querySelector('input[type=checkbox]')).toBeNull();
+  const begin = [...container.querySelectorAll('button')].find((b) =>
+    b.textContent?.includes('Go up to the wall'),
+  );
+  expect(begin).toBeDefined();
+  await act(() => begin?.click());
+  expect(onNew).toHaveBeenCalledWith({ duskRest: 'dusk-rest@1', localWarning: 'local-warning@1' });
+  await act(() => root.unmount());
 });

@@ -690,6 +690,8 @@ function whereWords(w: FrameWatcher, phase: Frame['phase']): string {
       ? 'No post assigned. Free to choose an open post.'
       : 'No post assigned';
   if (!w.posted && phase === 'dusk' && !w.post) return posted;
+  if (phase === 'dusk' && w.posted && w.post !== w.posted)
+    return `${posted} · Asked to travel to ${theSectionName(postSection(w.posted))} when the watch begins. They may rest or refuse.`;
   const stands = w.post ? `on the ${sectionName(postSection(w.post))}` : awayWords(w.place, phase);
   if (w.post && w.post === w.posted) return `${posted} · At the assigned post now.`;
   return `${posted} · ${stands}`;
@@ -719,18 +721,9 @@ export function GoalPage({
     else if (saved && !(await actions.load(saved.id)))
       setNote('That page could not be read. You can begin a new village.');
   };
-  const [nightOff, setNightOff] = useState(false);
-  const [localWarning, setLocalWarning] = useState(false);
   const begin = () =>
     onNew
-      ? onNew(
-          nightOff || localWarning
-            ? {
-                ...(nightOff ? { duskRest: 'dusk-rest@1' as const } : {}),
-                ...(localWarning ? { localWarning: 'local-warning@1' as const } : {}),
-              }
-            : undefined,
-        )
+      ? onNew({ duskRest: 'dusk-rest@1', localWarning: 'local-warning@1' })
       : actions.input({ k: 'start' });
   return (
     <div className="w-page w-goal">
@@ -747,18 +740,6 @@ export function GoalPage({
         <button type="button" className="w-menu-row" onClick={() => setSheet('shelf')}>
           The shelf · {new Set(shelf.map((p) => p.chronicle)).size} chronicles ▸
         </button>
-      ) : null}
-      {onNew ? (
-        <label>
-          <input type="checkbox" checked={nightOff} onChange={(e) => setNightOff(e.target.checked)} /> Offer
-          night-off requests at dusk in the new village
-        </label>
-      ) : null}
-      {onNew ? (
-        <label>
-          <input type="checkbox" checked={localWarning} onChange={(e) => setLocalWarning(e.target.checked)} />{' '}
-          Offer spoken cautions at night in the new village
-        </label>
       ) : null}
       {note ? <p className="w-soft-fail">{note}</p> : null}
       <PageActions>
@@ -906,6 +887,11 @@ export function DuskPanel({
               ))}
             </fieldset>
             {reads ? <p className="w-posting-read">{watchWords(reads[press])}</p> : null}
+            {press === 'insist' ? (
+              <p className="w-note">
+                Insist gives a firm order. It earns no goodwill. They may still refuse.
+              </p>
+            ) : null}
           </>
         ) : (
           <>
@@ -941,6 +927,24 @@ export function DuskPanel({
       </header>
       <div className="lk-sheet-body">
         {frame.grainWarning ? <p className="w-grain-warning">{frame.grainWarning}</p> : null}
+        {!sel ? (
+          <p className="w-note">
+            A posting asks someone to guard a wall. It does not make them stay. Tired watchers may sleep or go
+            home. Frightened watchers may leave. Use the lantern, bell and relief requests during the night.
+          </p>
+        ) : null}
+        {!sel &&
+        frame.watchers.some((w) => w.impressions.some((i) => /tired|afraid|frightened/.test(i.text))) ? (
+          <p className="w-grain-warning">
+            May need relief tonight:{' '}
+            {listWords(
+              frame.watchers
+                .filter((w) => w.impressions.some((i) => /tired|afraid|frightened/.test(i.text)))
+                .map((w) => settingWords(w.name)),
+            )}
+            . These are the Keeper’s impressions. Others may tire as the night goes on.
+          </p>
+        ) : null}
         {!sel && frame.winter && frame.winter.night <= 2 ? (
           <p className="w-winter-q">{watchWords(frame.winter.question?.text ?? '')}</p>
         ) : null}
@@ -960,15 +964,12 @@ export function DuskPanel({
               Choosing a post does not give a night off.{' '}
               {frame.duskRest
                 ? 'Use the separate night-off request below.'
-                : 'At night, select the watcher and choose Rest when offered.'}{' '}
+                : 'At night, select the watcher. Choose Rest when it is offered.'}{' '}
               The account explains when a request is unavailable.
             </p>
             {sel.duskRest ? (
               <div>
-                <p>
-                  Ask them to take tonight off, until dawn. They may decline or return sooner. Choosing a post
-                  stays separate.
-                </p>
+                <p>Ask them to take tonight off, until dawn. They may decline. They may return sooner.</p>
                 {sel.duskRest.account ? <p role="status">{sel.duskRest.account}</p> : null}
                 <button
                   type="button"
@@ -1073,7 +1074,10 @@ export function DuskPanel({
                   : ''}
               </p>
             ) : null}
-            <p className="w-note">Tap a watcher to post them.</p>
+            <p className="w-note">
+              Tap a watcher to post them. Each ordinary wall has room for two watchers. A raised wall has room
+              for three.
+            </p>
           </>
         )}
       </footer>
@@ -1115,7 +1119,14 @@ function MomentCard({
         ))}
       </div>
       {bellGone ? <p className="w-note">The rope is broken tonight, so the bell cannot call them.</p> : null}
-      <button type="button" className="w-moment-let" onClick={onLet}>
+      <button
+        type="button"
+        className="w-moment-let"
+        onClick={() => {
+          actions.input({ k: 'answer', id: m.id, choice: 'silence' });
+          onLet();
+        }}
+      >
         …or say nothing. The watcher decides without your advice.
       </button>
     </section>
@@ -1261,14 +1272,14 @@ export function NightPanel({
           type="button"
           className={`w-bellbtn${ringing === 0 ? '' : ringing % 2 ? ' is-ring-a' : ' is-ring-b'}`}
           aria-label={settingWords(
-            `${frame.rope.snapped ? 'The bell is silent' : frame.bellSwinging ? 'Bell swinging' : 'Ring the bell'}. ${frame.bellRead ?? ''}. ${ropeWords(frame.rope.wear, frame.rope.snapped)}`,
+            `${frame.rope.snapped ? 'The bell is silent' : frame.bellSwinging ? 'Wait before ringing again' : 'Ring the bell'}. ${frame.bellRead ?? ''}. ${ropeWords(frame.rope.wear, frame.rope.snapped)}`,
           )}
           disabled={frame.rope.snapped || frame.bellSwinging}
           onClick={() => actions.input({ k: 'bell' })}
         >
           <span>
             <Icon name="bell" size={20} />
-            {frame.bellSwinging ? 'Bell swinging' : 'Ring the bell'}
+            {frame.bellSwinging ? 'Wait before ringing again' : 'Ring the bell'}
           </span>
           <small>{frame.bellRead ?? 'It calls watchers who hear it.'}</small>
           <Rope wear={frame.rope.wear} snapped={frame.rope.snapped} />
@@ -1540,7 +1551,13 @@ function Talks({ frame, actions }: { frame: Frame; actions: WatchActions }) {
         <ul className="w-voices">
           {t.said.slice(-1).map((x) => (
             <li key={`${x.who}-${x.topic}`}>
-              <blockquote>{x.text}</blockquote>
+              <blockquote>{x.text.split('\n')[0]}</blockquote>
+              {x.text
+                .split('\n')
+                .slice(1)
+                .map((line) => (
+                  <p key={line}>{line}</p>
+                ))}
               <span className="w-voice-who">{settingWords(x.name)}</span>
             </li>
           ))}
@@ -1552,7 +1569,13 @@ function Talks({ frame, actions }: { frame: Frame; actions: WatchActions }) {
           <ul className="w-voices">
             {t.said.slice(0, -1).map((x) => (
               <li key={`${x.who}-${x.topic}-${x.text}`}>
-                <blockquote>{x.text}</blockquote>
+                <blockquote>{x.text.split('\n')[0]}</blockquote>
+                {x.text
+                  .split('\n')
+                  .slice(1)
+                  .map((line) => (
+                    <p key={line}>{line}</p>
+                  ))}
                 <span>{settingWords(x.name)}</span>
               </li>
             ))}
@@ -1590,7 +1613,7 @@ function Talks({ frame, actions }: { frame: Frame; actions: WatchActions }) {
                         className="w-chip"
                         onClick={() => actions.input({ k: 'talk', who: id, topic })}
                       >
-                        {askWords(topic, w)}
+                        Ask {settingWords(w?.name ?? id)}: {askWords(topic, w)}
                       </button>
                     ))}
                   </span>
@@ -1641,10 +1664,10 @@ export function DawnPanel({ frame, actions }: { frame: Frame; actions: WatchActi
   return (
     <div className="w-page w-dawn">
       <h2 className="w-dawn-outcome">{dawnOutcome(d)}</h2>
-      {d.unwatched?.length ? (
+      {d.breached?.length ? (
         <p className="w-grain-warning">
-          Raiders got over {listWords(d.unwatched.map((id) => theSectionName(id)))} while nobody was posted
-          there. A watcher there could have stopped them.
+          Raiders got over {listWords(d.breached.map((id) => theSectionName(id)))} during the night. The
+          account below names the people who drove attackers off. Other attackers may still have crossed.
         </p>
       ) : null}
       {frame.watchers

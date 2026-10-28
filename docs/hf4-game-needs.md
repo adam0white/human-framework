@@ -128,6 +128,14 @@ Recorded stay reason: Fine/daily generations need daily-clock, mortality and lea
 | Supply the sourced default norm catalogue used by current authoring or cast calendar validation, with research and interpretation references; copied unsourced defaults cannot replace this admission dependency.                                                                                | HF conscience/research; game cast integration | Existing 2026-11-17                                           | G3          |
 | Replace direct 3.x calls and snapshots with the run bridge and host world state; reject unsupported old saves explicitly. Keep a complete current-version export that replays the same seed, ordered inputs, state and RNG.                                                                      | The Night Watch integration; HF run/docs      | Port candidate 2026-11-24; delivery/blocker review 2026-12-01 | G1          |
 
+
+#### Watch fix follow-up 2026-10-27
+
+These are numbered acceptance needs from F-2113/F-2128, not new host-side rules. Keep Watch on HF 3.2.0 until its existing port gates pass.
+
+1. **W1 — Knowledge-bounded whole-watch risk (G4).** Give the Keeper a supported forecast of fatigue and departure risk over the coming watch, with uncertainty and evidence age. Current impressions can name who looks tired or afraid; they cannot identify everyone who will leave later. Prove a tired-watcher contrast and an unseen-state control without exposing hidden true state or promising compliance. Contract review: **2026-11-17**.
+2. **W2 — Caution and order outcomes (G1/G4).** Expose actual attention, reply if any, request decision, arrival, handover, departure and expiry through the run's ordinary events and inspection. Keep hearing, assent and completed work separate. A caution is currently an informational percept; the host must not invent a spoken reaction or a new choice. Prove a refused order and an accepted-but-uncompleted order through replay. Contract review: **2026-11-17**.
+
 ### Hearsay
 
 Source: `hearsay@2cd5479e`; exact HF pin **3.0.0** in `package.json`. Bridge: [`src/sim/garden.ts`](https://github.com/adam0white/hearsay/blob/2cd5479e/src/sim/garden.ts), [`src/sim/garden-visit.ts`](https://github.com/adam0white/hearsay/blob/2cd5479e/src/sim/garden-visit.ts), [`src/sim/garden-dialogue.ts`](https://github.com/adam0white/hearsay/blob/2cd5479e/src/sim/garden-dialogue.ts), [`src/sim/garden-continuity.ts`](https://github.com/adam0white/hearsay/blob/2cd5479e/src/sim/garden-continuity.ts). The current garden entry uses conversation, beliefs and source trust; `testimony.ts` owns the host graph. The older `one-cast.ts` shell is not the production consumer.
