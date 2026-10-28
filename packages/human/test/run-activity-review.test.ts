@@ -58,4 +58,19 @@ test('a rising perceived hunger triggers a review before the regular interval', 
       .current.events.filter((e) => e.data.kind === 'decision')
       .map((e) => e.at),
   ).toEqual(decisions.map((e) => e.at));
+  // Dense body output may extend past the host's requested endpoint. A future
+  // sleepiness crossing must wait for a later step, not become a reached boundary.
+  const short = need(createRun(exampleSpec()));
+  const sleepy = authoredPerson('ada', 'Ada');
+  sleepy.state.body.sleepPressure = 1;
+  sleepy.state.body.circadianPeakMs = START - 350 * MINUTE;
+  need(createPerson(short, sleepy));
+  serve(
+    short,
+    freshHost(),
+    new Map([['ada', offers]]),
+    START + 525000,
+    openingInputs([{ id: 'ada', offers }]),
+  );
+  expect(exportRun(short).current.at).toBe(START + 525000);
 });

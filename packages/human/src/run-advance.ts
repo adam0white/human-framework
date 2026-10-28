@@ -217,7 +217,7 @@ export function compareSpanBoundaries(a: SpanBoundary, b: SpanBoundary): number 
 /** The 3.x thresholds are engineering defaults, not physiological diagnoses.
  * Follow the perceived path so fasting and other perception modifiers apply.
  * A need already above its threshold was available at the preceding decision. */
-function bodyReviewAt(trajectory: T.DeepReadonly<T.BodyTrajectory>, from: T.Time): T.Time | null {
+function bodyReviewAt(trajectory: T.DeepReadonly<T.BodyTrajectory>, from: T.Time, to: T.Time): T.Time | null {
   let earliest: number | null = null;
   for (const [field, threshold] of [
     ['perceived-hunger', 0.7],
@@ -227,11 +227,12 @@ function bodyReviewAt(trajectory: T.DeepReadonly<T.BodyTrajectory>, from: T.Time
     const path = trajectory.readout.find((entry) => entry.field === field)?.path;
     if (!path || path.to <= from || readNeedScalar(path, from) >= threshold) continue;
     for (const segment of path.segments) {
-      if (segment.kind !== 'quartic' || segment.to <= from) continue;
-      for (const root of thresholdTimes(segment.cell, Math.max(from, segment.from), segment.to, threshold)) {
+      if (segment.kind !== 'quartic' || segment.to <= from || segment.from >= to) continue;
+      const end = Math.min(to, segment.to);
+      for (const root of thresholdTimes(segment.cell, Math.max(from, segment.from), end, threshold)) {
         let at = Math.max(from + 1, Math.ceil(root));
-        if (at < path.to && readNeedScalar(path, at) < threshold) at++;
-        if (at <= path.to && readNeedScalar(path, at) >= threshold && (earliest === null || at < earliest))
+        if (at < end && readNeedScalar(path, at) < threshold) at++;
+        if (at <= end && readNeedScalar(path, at) >= threshold && (earliest === null || at < earliest))
           earliest = at;
       }
     }
@@ -408,7 +409,7 @@ export function probePhysiology(
     note(person, 'body', body, to);
     hazard(person, body.randomBoundary);
     if (actor.activity && !actor.activity.interrupt && actor.activity.dozedAt === undefined) {
-      const at = bodyReviewAt(body.trajectory, state.at);
+      const at = bodyReviewAt(body.trajectory, state.at, body.advancedThrough);
       if (at !== null && at < actor.activity.reviewAt && at < actor.activity.endsAt)
         boundaries.push({ kind: 'body-review', at, person, activityId: actor.activity.id });
     }
