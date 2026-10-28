@@ -11,6 +11,15 @@ version, stamped with build and schema hashes in `RUN_ENGINE`. See the version p
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
+## [4.5.1] — 2026-10-28
+
+Engine: 4.5.1.
+
+- Deduplicate every `social.received` transaction by recipient and evidence ID, including a plain copy followed by a source-trust response copy, or the reverse.
+- Apply an authored source-trust response only when the social owner applies the event. The response must name the event's `other` person.
+- Ignore reputation propositions whose subject is not a person in the run. Authored trait words such as `open` no longer turn `door:open` into a character claim or create a non-person tie.
+- 4.5.x correction: affected 4.5.0 input logs produce corrected social and trust results under 4.5.1. The engine identity changes, so 4.5.0 archives retain the explicit incompatible-engine refusal. Current 4.5.1 exports must restore and replay exactly; replay-hash tests remain in place.
+
 ## [4.5.0] — 2026-10-27
 
 Engine: 4.5.0.

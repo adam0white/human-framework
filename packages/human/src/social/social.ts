@@ -735,7 +735,9 @@ export const socialOwner: import('../run-schema.ts').SocialOwner = {
     const events: import('../run-schema.ts').EventData[] = [];
     const appraisals: import('../run-schema.ts').AppraisalEffect[] = [];
     switch (input.kind) {
-      case 'reputation':
+      case 'reputation': {
+        const subject = parseTraitProp(input.prop, reputationVocabulary(context.reputationTraits))?.personId;
+        if (!subject || !context.personIds.includes(subject)) break;
         applyReputationBelief(
           actor,
           input.prop,
@@ -745,6 +747,7 @@ export const socialOwner: import('../run-schema.ts').SocialOwner = {
           reputationVocabulary(context.reputationTraits),
         );
         break;
+      }
       case 'attended': {
         const pc = input.percept,
           at = context.at,

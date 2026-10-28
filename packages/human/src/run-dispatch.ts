@@ -558,7 +558,7 @@ export class Frame {
           context,
         );
   }
-  social(person: T.PersonId, input: T.DeepReadonly<T.SocialInput>, context: T.FrameContext): void {
+  social(person: T.PersonId, input: T.DeepReadonly<T.SocialInput>, context: T.FrameContext): boolean {
     const actor = this.actor(person),
       continuation = this.continuation(person);
     const out = OWNERS.social.receive(actor.social, input, {
@@ -569,6 +569,7 @@ export class Frame {
       norms: actor.conscience.norms,
       catalog: this.record.spec.definitions.norms,
       reputationTraits: this.record.spec.definitions.reputationTraits,
+      personIds: Object.keys(this.state.people),
       rng: { words: actor.rng, identity: actor.randomIdentity },
     });
     this.install(
@@ -582,6 +583,7 @@ export class Frame {
       },
     );
     this.output(person, 'social', out, context);
+    return out.events.some((event) => event.kind === 'social-received' && event.applied);
   }
   need(
     person: T.PersonId,
@@ -1565,6 +1567,7 @@ export class Frame {
       speaker,
       norms: this.record.spec.definitions.norms,
       reputationTraits: this.record.spec.definitions.reputationTraits,
+      personIds: Object.keys(this.state.people),
       listenerKnown: {
         social: speaker.social,
         beliefs: { kind: 'unobserved' },
@@ -2085,11 +2088,10 @@ export class Frame {
         } else this.body(person, { kind: 'receipt', id: input.payload.evidenceId, receipt }, context);
         return;
       }
-      case 'social.received':
-        if (input.payload.sourceTrustResponse)
-          this.receipt(input.payload.person, 'social', input.payload.evidenceId, input.id, input.payload);
-        this.social(input.payload.person, { kind: 'event', data: input.payload }, context);
-        if (input.payload.sourceTrustResponse)
+      case 'social.received': {
+        this.receipt(input.payload.person, 'social', input.payload.evidenceId, input.id, input.payload);
+        const applied = this.social(input.payload.person, { kind: 'event', data: input.payload }, context);
+        if (applied && input.payload.sourceTrustResponse)
           this.beliefs(
             input.payload.person,
             {
@@ -2100,6 +2102,7 @@ export class Frame {
             context,
           );
         return;
+      }
       case 'person.glimpsed':
         this.social(input.payload.person, { kind: 'glimpse', data: input.payload }, context);
         return;

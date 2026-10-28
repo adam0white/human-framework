@@ -40,6 +40,7 @@ it('prepares attributed claims without mutating people or delivering evidence', 
     { speaker: 'a', listener: 'b', topicIds: ['bridge'], maxClaims: 2, temptations: [], loyalWarning: false },
     {
       ...frame,
+      personIds: ['a', 'b'],
       speaker,
       listenerKnown: {
         social: { relationships: [], groups: { memberOf: [] }, impressions: [], reserve: {} },
@@ -113,11 +114,18 @@ it('withholds a known repeated telling and keeps unknown listener beliefs unknow
     deceased: [],
   };
   expect(
-    conversationOwner.prepare(request, { ...frame, speaker, listenerKnown: known, norms: [] }).claims,
+    conversationOwner.prepare(request, {
+      ...frame,
+      personIds: ['a', 'b'],
+      speaker,
+      listenerKnown: known,
+      norms: [],
+    }).claims,
   ).toEqual([]);
   expect(
     conversationOwner.prepare(request, {
       ...frame,
+      personIds: ['a', 'b'],
       speaker,
       listenerKnown: { ...known, beliefs: { kind: 'unobserved' } },
       norms: [],
