@@ -65,3 +65,46 @@ it('rejects forward, duplicate, unreachable, reordered and expanding dictionary 
   for (let index = 1; index < 25; index++) pool.push([0, index - 1, index - 1]);
   expect(() => unpackHistory({ root: pool.length - 1, pool })).toThrow('history exceeds expansion budget');
 });
+
+it('exports accepted repetitive host state through literal history and replays it exactly', () => {
+  const run = accepted(createRun(emptyRunSpec()));
+  const hostState = Array(1100).fill(Array(10).fill('x'.repeat(1000)));
+  accepted(
+    step(run, {
+      until: 1,
+      inputs: [
+        {
+          id: 'large-world',
+          at: 1,
+          source: { type: 'host', id: 'world' },
+          kind: 'world.changed',
+          payload: { expectedRevision: 0, revision: 1, put: [], remove: [], hostState },
+        },
+      ],
+    }),
+  );
+  const archive = exportRun(run);
+  expect(archive.history.root).toBe(0);
+  expect(archive.history.pool).toHaveLength(1);
+  expect(archive.history.pool[0]).toHaveProperty('json');
+  const history = readRunHistory(archive);
+  expect(history[0]?.inputs[0]?.payload).toMatchObject({ hostState });
+  expect(exportRun(accepted(restoreRun(archive))).hashes).toEqual(archive.hashes);
+  expect(accepted(replay(archive)).fullHash).toBe(archive.hashes.full);
+  const literal = archive.history.pool[0];
+  if (literal === null || typeof literal !== 'object' || !('json' in literal))
+    throw new Error('expected literal history');
+  expect(() =>
+    readRunHistory({
+      ...archive,
+      history: { root: 0, pool: [{ json: literal.json.replace('world.changed', 'invented.kind') }] },
+    }),
+  ).toThrow();
+  for (const pool of [
+    { root: 0, pool: [{ json: '[' }] },
+    { root: 0, pool: [{ json: ' []' }] },
+    { root: 0, pool: [{ json: '[]' }] },
+    { root: 1, pool: [{ json: '[]' }, [0, 0]] },
+  ])
+    expect(() => unpackHistory(pool)).toThrow();
+}, 30_000);

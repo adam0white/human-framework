@@ -83,7 +83,7 @@ rules: [framework.md](framework.md). Package overview: [README](../packages/huma
 - `EvidenceRef` — `{ kind: 'evidence'; id: Id; }`
 - `Fidelity` — `{ mode: 'fine'; } | { mode: 'daily'; dayMs: 86400000; anchor: Time; }`
 - `Hash` — `string`
-- `HistoryPool` — `{ root: number; pool: readonly (null | boolean | number | string | readonly number[])[]; }`
+- `HistoryPool` — `{ root: number; /** The sole root may contain explicit canonical JSON when interning would exceed the amplification bound. */ pool: reado...`
 - `HostRequest` — `ActionRequest | CommunicationRequest`
 - `Id` — `string`
 - `ImpressionReading` — `{ targetId: PersonId; cues: readonly { key: string; value: number; confidence: Unit; seenAt?: Time; }[]; }`

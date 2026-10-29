@@ -12417,6 +12417,7 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
               { kind: 'number' },
               { kind: 'string' },
               { kind: 'array', element: { kind: 'number' } },
+              { kind: 'object', fields: { json: { optional: false, shape: { kind: 'string' } } } },
             ],
           },
         },

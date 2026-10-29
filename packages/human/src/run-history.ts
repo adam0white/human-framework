@@ -2,7 +2,7 @@
  * structural node has one canonical backward reference; no input is discarded.
  * Admission bounds expanded work before traversing shared decoded subtrees.
  */
-import { compareCodePoints } from './run-canonical.ts';
+import { canonicalJson, compareCodePoints } from './run-canonical.ts';
 import type { AcceptedTransaction, DeepReadonly, HistoryPool } from './run-schema.ts';
 
 // The cap scales with encoded size rather than elapsed game time. It bounds
@@ -16,8 +16,10 @@ function withinBudget(units: number, encodedUnits: number): boolean {
   );
 }
 
-export function packHistory(history: DeepReadonly<readonly AcceptedTransaction[]>): HistoryPool {
-  const pool: HistoryPool['pool'][number][] = [];
+type DictionaryNode = null | boolean | number | string | readonly number[];
+type DictionaryHistory = { root: number; pool: DictionaryNode[] };
+function dictionaryHistory(history: unknown): { value: DictionaryHistory; withinBudget: boolean } {
+  const pool: DictionaryNode[] = [];
   const indexes = new Map<string, number>();
   const weights: number[] = [];
   const references: number[] = [];
@@ -25,7 +27,7 @@ export function packHistory(history: DeepReadonly<readonly AcceptedTransaction[]
   const ancestors = new Set<object>();
   const work: Work[] = [{ value: history }];
   let encodedUnits = 0;
-  function add(node: HistoryPool['pool'][number]): void {
+  function add(node: DictionaryNode): void {
     const key = JSON.stringify(node);
     const prior = indexes.get(key);
     if (prior !== undefined) {
@@ -75,20 +77,45 @@ export function packHistory(history: DeepReadonly<readonly AcceptedTransaction[]
     else throw new TypeError('non-JSON history value');
   }
   const root = references[0];
-  if (root === undefined || !withinBudget(weights[root] ?? Infinity, encodedUnits))
-    throw new TypeError('history exceeds expansion budget');
-  return { root, pool };
+  if (root === undefined) throw new TypeError('invalid history root');
+  return { value: { root, pool }, withinBudget: withinBudget(weights[root] ?? Infinity, encodedUnits) };
+}
+
+/** Valid highly repetitive history uses its explicit canonical JSON bytes when
+ * a dictionary would exceed admission's amplification bound. The literal contains
+ * every expanded byte, so it cannot hide decompression work behind references.
+ */
+export function packHistory(history: DeepReadonly<readonly AcceptedTransaction[]>): HistoryPool {
+  const dictionary = dictionaryHistory(history);
+  return dictionary.withinBudget ? dictionary.value : { root: 0, pool: [{ json: canonicalJson(history) }] };
 }
 
 /** Structural pool checks happen before closed AcceptedTransaction admission.
  * Sharing decoded values does not bypass the budget: weights count each use.
  */
 export function unpackHistory(input: DeepReadonly<HistoryPool>): unknown {
+  const literal = input.pool[0];
+  if (literal !== null && typeof literal === 'object' && !Array.isArray(literal)) {
+    if (
+      input.root !== 0 ||
+      input.pool.length !== 1 ||
+      Object.keys(literal).join(',') !== 'json' ||
+      !('json' in literal) ||
+      typeof literal.json !== 'string'
+    )
+      throw new TypeError('invalid literal history');
+    const history: unknown = JSON.parse(literal.json);
+    if (canonicalJson(history) !== literal.json) throw new TypeError('noncanonical literal history');
+    if (dictionaryHistory(history).withinBudget) throw new TypeError('unnecessary literal history');
+    return history;
+  }
   const values: unknown[] = [];
   const weights: number[] = [];
   let encodedUnits = 0;
   const signatures = new Set<string>();
   for (const [index, node] of input.pool.entries()) {
+    if (node !== null && typeof node === 'object' && !Array.isArray(node))
+      throw new TypeError('literal history must be the sole root');
     const signature = JSON.stringify(node);
     if (signatures.has(signature)) throw new TypeError('duplicate history pool node');
     signatures.add(signature);

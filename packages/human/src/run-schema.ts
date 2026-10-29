@@ -441,7 +441,8 @@ export type PersonaAdmission = {
 
 export type HistoryPool = {
   root: number;
-  pool: readonly (null | boolean | number | string | readonly number[])[];
+  /** The sole root may contain explicit canonical JSON when interning would exceed the amplification bound. */
+  pool: readonly (null | boolean | number | string | readonly number[] | { json: string })[];
 };
 
 export type RunArchive = {
