@@ -1,19 +1,32 @@
 /** SCOPE: current4 archive envelope, export-time canonical hashes and C0-owned
  * infrastructure admission. Owners still validate their slices and continuations;
- * format five bounds duplicated journals; cold recovery executes complete inputs.
+ * format six interns complete history and bounds duplicated journals; cold recovery
+ * executes complete inputs.
  * No repair, migration, historical hash on every frame or legacy fallback.
  */
 import { checkRunSpec } from './run-admission.ts';
 import { canonicalJson, hashCanonical } from './run-canonical.ts';
+import { packHistory, unpackHistory } from './run-history.ts';
 import { buildParameters } from './run-parameters.ts';
 import type { ContractError, DeepReadonly, Id, Result, RunArchive } from './run-schema.ts';
 import { validateData } from './run-validation.ts';
 
-type ArchiveBody = Omit<RunArchive, 'hashes'>;
+export type ExpandedRunArchive = Omit<RunArchive, 'history'> & {
+  history: readonly import('./run-schema.ts').AcceptedTransaction[];
+};
+type ArchiveBody = Omit<RunArchive, 'hashes'> | Omit<ExpandedRunArchive, 'hashes'>;
+export function expandedArchive(archive: DeepReadonly<RunArchive>): DeepReadonly<ExpandedRunArchive> {
+  const history = validateData('RunHistory', unpackHistory(archive.history));
+  if (!history.ok) throw new TypeError(history.error.message);
+  return { ...archive, history: history.value };
+}
 const JOURNAL_LIMIT = 64;
 export function archiveHashes(body: DeepReadonly<ArchiveBody>): RunArchive['hashes'] {
   const initial = hashCanonical('hf-run4/initial', body.engine, body.host, body.initial);
-  const history = hashCanonical('hf-run4/history', body.history);
+  const history = hashCanonical(
+    'hf-run4/history',
+    Array.isArray(body.history) ? packHistory(body.history) : body.history,
+  );
   const current = hashCanonical('hf-run4/current', body.current);
   return {
     initial,
@@ -47,10 +60,16 @@ function nonnegativeInteger(value: number): boolean {
 export function checkArchiveEnvelope(
   input: unknown,
   engine: DeepReadonly<RunArchive['engine']>,
-): Result<DeepReadonly<RunArchive>> {
+): Result<DeepReadonly<ExpandedRunArchive>> {
   const admitted = validateData('RunArchive', input);
   if (!admitted.ok) return admitted;
-  const archive = admitted.value;
+  const wire = admitted.value;
+  let archive: DeepReadonly<ExpandedRunArchive>;
+  try {
+    archive = expandedArchive(wire);
+  } catch (failure) {
+    return error('$.history', failure instanceof Error ? failure.message : 'invalid history pool');
+  }
   if (canonicalJson(archive.engine) !== canonicalJson(engine))
     return error('$.engine', 'archive requires this exact package, build and schema', 'unsupported-archive');
   if (canonicalJson(archive.host) !== canonicalJson(archive.initial.spec.host))
@@ -115,11 +134,11 @@ export function checkArchiveEnvelope(
     Object.values(state.receipts).some((entries) => entries.length > JOURNAL_LIMIT)
   )
     return error('$.current', 'archive journals exceed their retention bound');
-  return admitted;
+  return { ok: true, value: archive };
 }
 
 /** Full journal checks run only on history reconstructed by the dispatcher. */
-export function checkReconstructedJournals(archive: DeepReadonly<RunArchive>): Result<true> {
+export function checkReconstructedJournals(archive: DeepReadonly<ExpandedRunArchive>): Result<true> {
   const state = archive.current;
   const inputIds = new Set(
     archive.history.flatMap((transaction) => transaction.inputs.map((input) => input.id)),

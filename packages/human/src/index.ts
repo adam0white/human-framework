@@ -10,8 +10,19 @@ export type {
   PortableRetainedState,
 } from './portable-person.ts';
 export { admitPortablePerson, projectPortablePerson, validatePortablePerson } from './portable-person.ts';
-export { createPerson, createRun, exportRun, inspect, preview, replay, restoreRun, step } from './run.ts';
+export {
+  createPerson,
+  createRun,
+  exportRun,
+  inspect,
+  preview,
+  readRunHistory,
+  replay,
+  restoreRun,
+  step,
+} from './run.ts';
 export type {
+  AcceptedTransaction,
   ActionRequest,
   ActionResolution,
   ActorActivity,
@@ -36,6 +47,7 @@ export type {
   Fidelity,
   Hash,
   HeldNorm,
+  HistoryPool,
   HostRequest,
   Id,
   ImpressionReading,

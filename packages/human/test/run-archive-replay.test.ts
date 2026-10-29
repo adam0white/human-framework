@@ -2,6 +2,7 @@ import { expect, test } from 'vitest';
 import * as actualRun from '../src/run.ts';
 import { archiveHashes, checkArchiveEnvelope } from '../src/run-archive.ts';
 import { canonicalJson, hashCanonical } from '../src/run-canonical.ts';
+import { packHistory } from '../src/run-history.ts';
 import { buildParameters } from '../src/run-parameters.ts';
 import { type RecoveryOperations, replayCurrentRun, restoreCurrentRun } from '../src/run-recovery.ts';
 import type { PersonAuthoring, RunArchive } from '../src/run-schema.ts';
@@ -45,7 +46,7 @@ test('strict archive admission rejects altered bytes, stale engines and rewound 
   };
   const body = {
     format: 'hf-run' as const,
-    version: 5 as const,
+    version: 6 as const,
     engine,
     host: spec.host,
     initial: {
@@ -54,7 +55,7 @@ test('strict archive admission rejects altered bytes, stale engines and rewound 
       parameterProvenance: parameters.value.provenance,
       people: [],
     },
-    history: [],
+    history: packHistory([]),
     current: initialRunState(spec),
   };
   const archive: RunArchive = { ...body, hashes: archiveHashes(body) };
@@ -246,11 +247,13 @@ test('current run restore/replay rejects tampering and preserves accepted contin
     2,
   );
   const checkpointed = structuredClone(archive) as RunArchive;
-  checkpointed.history = checkpointed.history.map((transaction) => ({
-    ...transaction,
-    stateHash: archive.hashes.current,
-    eventHash: hashCanonical('hf-run4/events', first.value.events),
-  }));
+  checkpointed.history = packHistory(
+    actualRun.readRunHistory(checkpointed).map((transaction) => ({
+      ...transaction,
+      stateHash: archive.hashes.current,
+      eventHash: hashCanonical('hf-run4/events', first.value.events),
+    })),
+  );
   checkpointed.hashes = archiveHashes(checkpointed);
   const verifiedCheckpoint = replayCurrentRun(checkpointed, operations);
   if (!verifiedCheckpoint.ok) throw new Error(JSON.stringify(verifiedCheckpoint.error));

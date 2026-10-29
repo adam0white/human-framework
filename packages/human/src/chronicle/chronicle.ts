@@ -2,8 +2,13 @@
  * never devotion or acceptance scores. C0 supplies actual actor snapshots and outcomes
  * through closed evidence ports; missing samples are not fabricated observations.
  */
+import { freezeData } from '../body/span.ts';
 import { cloneData } from '../core/clone.ts';
-import { validateNarrativeFields, validateNarrativeJson } from '../memory/memory.ts';
+import {
+  isValidatedFrozenNarrativeJson,
+  validateNarrativeFields,
+  validateNarrativeJson,
+} from '../memory/memory.ts';
 import type {
   ActorState,
   ChronicleCommitmentNote,
@@ -283,8 +288,13 @@ function append(
 ): void {
   if (record.day !== state.open.day || state.days.some((d) => d.day >= record.day))
     throw new RangeError('Duplicate or rewound closed day');
-  for (const d of state.days) delete d.state;
-  state.days.push(record);
+  state.days = state.days.map((d) => {
+    if (d.state === undefined) return d;
+    const closed = { ...d };
+    delete closed.state;
+    return freezeData(closed) as DayRecord;
+  });
+  state.days.push(freezeData(cloneData(record)) as DayRecord);
   const newest = record.day;
   for (let oldest = state.days[0]; oldest && state.days.length > 1; oldest = state.days[0]) {
     if (state.days.length <= K.maxDays && newest - oldest.day <= retention) break;
@@ -293,6 +303,7 @@ function append(
   }
   state.open = openDay(record.day + 1, record.state ?? state.open.baseline);
 }
+const validatedDays = new WeakSet<object>();
 function validate(s: DeepReadonly<State>): ValidationIssue[] {
   const issues: ValidationIssue[] = validateNarrativeJson(s);
   issues.push(
@@ -312,84 +323,90 @@ function validate(s: DeepReadonly<State>): ValidationIssue[] {
       bad('days', 'Malformed day');
       continue;
     }
-    issues.push(
-      ...validateNarrativeFields(
-        d,
-        [
+    const before = issues.length;
+    if (!validatedDays.has(d)) {
+      issues.push(
+        ...validateNarrativeFields(
+          d,
+          [
+            'day',
+            'kept',
+            'broken',
+            'released',
+            'keptByKind',
+            'brokenByKind',
+            'prayers',
+            'actions',
+            'habits',
+            'trust',
+            'episodes',
+            'breaches',
+            'repairs',
+            'material',
+            'illness',
+            'mood',
+            'verdicts',
+            'decisions',
+            'alive',
+            'state',
+          ],
+          [
+            'day',
+            'kept',
+            'broken',
+            'released',
+            'keptByKind',
+            'brokenByKind',
+            'prayers',
+            'actions',
+            'habits',
+            'trust',
+            'episodes',
+            'breaches',
+            'repairs',
+            'material',
+            'illness',
+            'mood',
+            'verdicts',
+            'decisions',
+            'alive',
+          ],
           'day',
-          'kept',
-          'broken',
-          'released',
-          'keptByKind',
-          'brokenByKind',
-          'prayers',
-          'actions',
-          'habits',
-          'trust',
-          'episodes',
-          'breaches',
-          'repairs',
-          'material',
-          'illness',
-          'mood',
-          'verdicts',
-          'decisions',
-          'alive',
-          'state',
-        ],
-        [
-          'day',
-          'kept',
-          'broken',
-          'released',
-          'keptByKind',
-          'brokenByKind',
-          'prayers',
-          'actions',
-          'habits',
-          'trust',
-          'episodes',
-          'breaches',
-          'repairs',
-          'material',
-          'illness',
-          'mood',
-          'verdicts',
-          'decisions',
-          'alive',
-        ],
-        'day',
-      ),
-    );
-    if (
-      ![
-        d.kept,
-        d.broken,
-        d.released,
-        d.actions,
-        d.habits,
-        d.trust,
-        d.episodes,
-        d.breaches,
-        d.repairs,
-        d.verdicts,
-      ].every(Array.isArray) ||
-      typeof d.alive !== 'boolean'
-    )
-      bad('days', 'Invalid day containers');
+        ),
+      );
+      if (
+        ![
+          d.kept,
+          d.broken,
+          d.released,
+          d.actions,
+          d.habits,
+          d.trust,
+          d.episodes,
+          d.breaches,
+          d.repairs,
+          d.verdicts,
+        ].every(Array.isArray) ||
+        typeof d.alive !== 'boolean'
+      )
+        bad('days', 'Invalid day containers');
+    }
     if (days.has(d.day)) bad('days', 'Duplicate day', 'duplicate-id');
     days.add(d.day);
     if (!Number.isSafeInteger(d.day) || d.day <= previous || d.day >= s.open.day)
       bad('days', 'Nonmonotone day');
     previous = d.day;
-    if (
-      !Number.isFinite(d.mood) ||
-      Math.abs(d.mood) > 1 ||
-      !Number.isFinite(d.material) ||
-      !Number.isSafeInteger(d.decisions) ||
-      d.decisions < 0
-    )
-      bad('days', 'Malformed day');
+    if (!validatedDays.has(d)) {
+      if (
+        !Number.isFinite(d.mood) ||
+        Math.abs(d.mood) > 1 ||
+        !Number.isFinite(d.material) ||
+        !Number.isSafeInteger(d.decisions) ||
+        d.decisions < 0
+      )
+        bad('days', 'Malformed day');
+      if (issues.length === before && isValidatedFrozenNarrativeJson(d)) validatedDays.add(d);
+    }
   }
   previous = -Infinity;
   for (const y of s.years) {
@@ -496,7 +513,13 @@ function checked(s: DeepReadonly<State>): State {
   const issues = validate(s);
   const [issue] = issues;
   if (issue) throw new RangeError(issue.message);
-  return cloneData(s) as State;
+  return {
+    days: s.days.map((day) =>
+      isValidatedFrozenNarrativeJson(day) ? (day as DayRecord) : (cloneData(day) as DayRecord),
+    ),
+    years: cloneData(s.years) as YearRecord[],
+    open: cloneData(s.open) as ChronicleDay,
+  };
 }
 const result = (state: State, at: number): ReturnType<ChronicleOwner['receive']> => ({
   state,

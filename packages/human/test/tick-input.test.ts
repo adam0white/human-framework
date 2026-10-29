@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { exportRun, step } from '../src/index.ts';
+import { exportRun, readRunHistory, step } from '../src/index.ts';
 import type { Input, PerceptData } from '../src/run-schema.ts';
 import {
   actor,
@@ -57,7 +57,7 @@ test('ordinary queued inputs remain behind their time and canonical order ignore
   expect(notes).toStrictEqual(callerBefore);
   const archive = exportRun(run);
   expect(
-    archive.history
+    readRunHistory(archive)
       .flatMap((transaction) => transaction.inputs)
       .filter((input) => ['ä', 'a', 'B'].includes(input.id))
       .map((input) => input.id),

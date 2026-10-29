@@ -11,6 +11,15 @@ version, stamped with build and schema hashes in `RUN_ENGINE`. See the version p
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
+## [4.9.0] — 2026-10-28
+
+Engine: 4.9.0.
+
+- Reduce numerical allocation while preserving exact operation order: reuse fixed quartic interpolation bases, replace integrator callback chains with same-order loops, and avoid copying discarded Character sampler metadata. Canonical JSON uses fewer temporary objects with identical bytes and refusal rules. Chronicle updates share only validated deeply frozen closed-day records; mutable inputs and descendants still receive all validation.
+- **Archive format 6 (deliberate 4.x format change):** accepted history is a canonical dictionary of scalar and structural nodes instead of repeated JSON subtrees. Every accepted input and optional checkpoint remains present. `readRunHistory(archive)` is the single pure decoder for tools that inspect accepted transactions. Restore and replay still execute the complete decoded history. The current actor snapshot and the format-5 journal retention policy remain. Format 5 and prior engine builds are refused; start a fresh run. This changes archive hashes and shape, not simulation results or the canonical hash algorithm.
+- Dictionary admission rejects forward references, duplicates, unreachable nodes, invalid keys and noncanonical order. Expanded work is bounded by safe-integer arithmetic and an amplification limit of the larger of 10 million canonical text units or 1,024 times the encoded pool units. The limit scales with history length; no term-length cap or semantic memory trimming is introduced.
+- Add opt-in headless Child and Valley workloads (`node scripts/bench-g7.ts`). Timings, archive sizes and unresolved game budgets are recorded in `docs/findings.md` and `docs/hf4-game-needs.md`; microbenchmarks alone do not establish port acceptance.
+
 ## [4.8.1] — 2026-10-28
 
 Engine: 4.8.1.

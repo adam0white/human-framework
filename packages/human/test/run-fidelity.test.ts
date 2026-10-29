@@ -1,6 +1,14 @@
 /** SCOPE: actual public scheduler reaches its caller endpoint using owner kernels. */
 import { expect, it } from 'vitest';
-import { createPerson, createRun, exportRun, replay, restoreRun, step } from '../src/index.ts';
+import {
+  createPerson,
+  createRun,
+  exportRun,
+  readRunHistory,
+  replay,
+  restoreRun,
+  step,
+} from '../src/index.ts';
 import {
   accepted,
   numericalPerson as authoredNumericalPerson,
@@ -25,7 +33,7 @@ it('advances a real authored actor and detaches returned events', () => {
   expect(result.reachedUntil).toBe(true);
   const archive = exportRun(run);
   expect(archive.current.people['numerical-person']?.now).toBe(60000);
-  expect(archive.history).toHaveLength(1);
+  expect(readRunHistory(archive)).toHaveLength(1);
 });
 
 it('reaches the first sixteen hours before host settlement is required', () => {

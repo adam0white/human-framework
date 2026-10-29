@@ -1,3 +1,4 @@
+import type { ExpandedRunArchive } from './run-archive.ts';
 /** SCOPE: opaque per-run storage. No process-wide handle map or instance methods.
  * Transaction history uses immutable append nodes; frames never copy prior history.
  * Export/replay materializes that history. Preview clones only its current branch
@@ -127,7 +128,7 @@ export function readKernel(run: T.Run): RunRecord {
  * it supplies no missing field, migration, repair or counter reset.
  */
 export function restoreKernel(
-  archive: T.DeepReadonly<T.RunArchive>,
+  archive: T.DeepReadonly<ExpandedRunArchive>,
   parameters: T.DeepReadonly<DerivedParameters>,
 ): T.Run {
   const current = cloneData(archive.current) as T.RunState;
