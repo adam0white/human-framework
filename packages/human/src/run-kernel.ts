@@ -11,7 +11,7 @@ import type { DerivedParameters } from './run-parameters.ts';
 import type * as T from './run-schema.ts';
 import { initialRunState } from './run-state.ts';
 
-type HistoryNode = Readonly<{
+export type HistoryNode = Readonly<{
   previous: HistoryNode | null;
   transaction: T.DeepReadonly<T.AcceptedTransaction>;
   length: number;
@@ -315,4 +315,36 @@ export function newestTransaction(
 ): T.DeepReadonly<T.AcceptedTransaction> | undefined {
   const node = Kernel.read(run).history;
   return node?.length === ordinal ? node.transaction : undefined;
+}
+
+/** New accepted nodes only. Identity proves that the cursor is an actual prefix;
+ * elapsed history is never scanned beyond that retained immutable node.
+ */
+export function historySince(
+  run: T.Run,
+  position: HistoryNode | null,
+): readonly T.DeepReadonly<T.AcceptedTransaction>[] | null {
+  let node = Kernel.read(run).history;
+  const entries: T.DeepReadonly<T.AcceptedTransaction>[] = [];
+  while (node !== position) {
+    if (!node) return null;
+    entries.push(node.transaction);
+    node = node.previous;
+  }
+  entries.reverse();
+  return entries;
+}
+
+/** Recovery may retain independently verified optional checkpoint metadata on the
+ * transaction it just executed. This never substitutes archived execution state.
+ */
+export function retainNewestTransaction(
+  run: T.Run,
+  transaction: T.DeepReadonly<T.AcceptedTransaction>,
+): void {
+  const record = Kernel.read(run);
+  const node = record.history;
+  if (!node || node.length !== transaction.ordinal)
+    throw new TypeError('expected newest executed transaction');
+  record.history = Object.freeze({ ...node, transaction: freezeData(cloneData(transaction)) });
 }

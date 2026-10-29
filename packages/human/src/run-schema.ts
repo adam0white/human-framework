@@ -463,6 +463,45 @@ export type RunArchive = {
   current: RunState;
   hashes: { initial: Hash; history: Hash; current: Hash; full: Hash };
 };
+/** Append-only accepted-history recovery protocol. Persist opening, all chunks
+ * through head, and the matching host snapshot atomically. No current actor
+ * snapshot is trusted by this protocol; cold restore executes every transaction.
+ */
+export type RunJournalOpening = {
+  format: 'hf-run-journal';
+  version: 1;
+  engine: RunArchive['engine'];
+  initial: RunArchive['initial'];
+  digest: Hash;
+};
+export type RunJournalChunk = {
+  format: 'hf-run-journal-chunk';
+  version: 1;
+  lineage: Hash;
+  previous: Hash;
+  first: number;
+  last: number;
+  at: Time;
+  history: HistoryPool;
+  digest: Hash;
+};
+export type RunJournalHead = { lineage: Hash; digest: Hash; ordinal: number; at: Time };
+export type RunJournalArchive = {
+  opening: RunJournalOpening;
+  chunks: readonly RunJournalChunk[];
+  head: RunJournalHead;
+};
+declare const journalCursorBrand: unique symbol;
+/** An in-memory capability for one exact run and initial authoring. Never persist it. */
+export type RunJournalCursor = { readonly [journalCursorBrand]: true };
+export type RunJournalExport = {
+  opening?: RunJournalOpening;
+  chunk: RunJournalChunk | null;
+  head: RunJournalHead;
+  cursor: RunJournalCursor;
+};
+export type RunJournalRestored = { run: Run; head: RunJournalHead; cursor: RunJournalCursor };
+
 export type AcceptedTransaction = {
   ordinal: number;
   until: Time;

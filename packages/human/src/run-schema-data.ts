@@ -12433,6 +12433,77 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
       },
     },
   },
+  RunJournalOpening: {
+    kind: 'object',
+    fields: {
+      format: { optional: false, shape: { kind: 'literal', value: 'hf-run-journal' } },
+      version: { optional: false, shape: { kind: 'literal', value: 1 } },
+      engine: {
+        optional: false,
+        shape: {
+          kind: 'object',
+          fields: {
+            package: { optional: false, shape: { kind: 'string' } },
+            build: { optional: false, shape: { kind: 'scalar', name: 'Hash' } },
+            schema: { optional: false, shape: { kind: 'scalar', name: 'Hash' } },
+          },
+        },
+      },
+      initial: {
+        optional: false,
+        shape: {
+          kind: 'object',
+          fields: {
+            spec: { optional: false, shape: { kind: 'ref', name: 'RunSpec' } },
+            effective: { optional: false, shape: { kind: 'ref', name: 'EffectiveParameters' } },
+            parameterProvenance: {
+              optional: false,
+              shape: { kind: 'array', element: { kind: 'ref', name: 'ParameterProvenance' } },
+            },
+            people: {
+              optional: false,
+              shape: { kind: 'array', element: { kind: 'ref', name: 'PersonAuthoring' } },
+            },
+          },
+        },
+      },
+      digest: { optional: false, shape: { kind: 'scalar', name: 'Hash' } },
+    },
+  },
+  RunJournalChunk: {
+    kind: 'object',
+    fields: {
+      format: { optional: false, shape: { kind: 'literal', value: 'hf-run-journal-chunk' } },
+      version: { optional: false, shape: { kind: 'literal', value: 1 } },
+      lineage: { optional: false, shape: { kind: 'scalar', name: 'Hash' } },
+      previous: { optional: false, shape: { kind: 'scalar', name: 'Hash' } },
+      first: { optional: false, shape: { kind: 'number' } },
+      last: { optional: false, shape: { kind: 'number' } },
+      at: { optional: false, shape: { kind: 'scalar', name: 'Time' } },
+      history: { optional: false, shape: { kind: 'ref', name: 'HistoryPool' } },
+      digest: { optional: false, shape: { kind: 'scalar', name: 'Hash' } },
+    },
+  },
+  RunJournalHead: {
+    kind: 'object',
+    fields: {
+      lineage: { optional: false, shape: { kind: 'scalar', name: 'Hash' } },
+      digest: { optional: false, shape: { kind: 'scalar', name: 'Hash' } },
+      ordinal: { optional: false, shape: { kind: 'number' } },
+      at: { optional: false, shape: { kind: 'scalar', name: 'Time' } },
+    },
+  },
+  RunJournalArchive: {
+    kind: 'object',
+    fields: {
+      opening: { optional: false, shape: { kind: 'ref', name: 'RunJournalOpening' } },
+      chunks: {
+        optional: false,
+        shape: { kind: 'array', element: { kind: 'ref', name: 'RunJournalChunk' } },
+      },
+      head: { optional: false, shape: { kind: 'ref', name: 'RunJournalHead' } },
+    },
+  },
   RunArchive: {
     kind: 'object',
     fields: {
@@ -12552,6 +12623,7 @@ export const ROOT_SHAPES = {
   InspectQuery: { kind: 'ref', name: 'InspectQuery' },
   PreviewQuery: { kind: 'ref', name: 'PreviewQuery' },
   RunArchive: { kind: 'ref', name: 'RunArchive' },
+  RunJournalArchive: { kind: 'ref', name: 'RunJournalArchive' },
   RunHistory: { kind: 'array', element: { kind: 'ref', name: 'AcceptedTransaction' } },
   PersonaProjection: { kind: 'ref', name: 'PersonaProjection' },
   CalendarProjection: { kind: 'ref', name: 'CalendarProjection' },

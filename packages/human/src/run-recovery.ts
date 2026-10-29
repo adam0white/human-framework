@@ -650,6 +650,58 @@ function admit(
   return { ok: true, value: { archive, opening: run, parameters: parameters.value } };
 }
 
+/** One executed accepted-transaction verifier for native archives and append-only journals.
+ * Optional checkpoints are verified against the actual reached dispatcher state.
+ */
+export function executeAcceptedTransaction(
+  run: T.Run,
+  transaction: T.DeepReadonly<T.AcceptedTransaction>,
+  operations: RecoveryOperations,
+  path: string,
+): T.Result<T.DeepReadonly<T.AcceptedTransaction>> {
+  const reached = operations.step(run, {
+    until: transaction.until,
+    inputs: cloneData(transaction.inputs),
+    fidelity: cloneData(transaction.fidelity),
+  });
+  if (!reached.ok) return reached;
+  const current = readKernel(run).current;
+  if (
+    reached.value.at !== transaction.reachedAt ||
+    (transaction.boundary.type === 'until' && !reached.value.reachedUntil) ||
+    !same(reached.value.boundary, transaction.boundary) ||
+    !same(current.cursor, transaction.cursor)
+  )
+    return reject(path, 'executed boundary or scheduler cursor differs from accepted history');
+  // The newest node is this transaction; materializing the whole history here made replay quadratic.
+  const actual = newestTransaction(run, transaction.ordinal);
+  if (!actual) return reject(path, 'dispatcher did not record the accepted transaction');
+  if (
+    transaction.eventHash !== undefined &&
+    transaction.eventHash !== hashCanonical('hf-run4/events', reached.value.events)
+  )
+    return reject(`${path}.eventHash`, 'executed event checkpoint differs');
+  if (
+    transaction.stateHash !== undefined &&
+    transaction.stateHash !== hashCanonical('hf-run4/current', archiveSnapshot(current))
+  )
+    return reject(`${path}.stateHash`, 'executed state checkpoint differs');
+  const { eventHash: _actualEvents, stateHash: _actualState, ...actualAccepted } = actual;
+  const { eventHash: _events, stateHash: _state, ...accepted } = transaction;
+  if (!same(actualAccepted, accepted))
+    return reject(path, 'executed accepted transaction differs from history');
+  // These are the actual accepted semantics plus independently verified optional
+  // checkpoint metadata. They never replace executed outcome or current state.
+  const verified = {
+    ...actualAccepted,
+    ...(transaction.eventHash === undefined ? {} : { eventHash: transaction.eventHash }),
+    ...(transaction.stateHash === undefined ? {} : { stateHash: transaction.stateHash }),
+  };
+  if (transaction.eventHash !== undefined || transaction.stateHash !== undefined)
+    kernel.retainNewestTransaction(run, verified);
+  return { ok: true, value: verified };
+}
+
 function reconstruct(input: unknown, operations: RecoveryOperations): T.Result<T.Run> {
   const admitted = admit(input, operations);
   if (!admitted.ok) return admitted;
@@ -657,44 +709,9 @@ function reconstruct(input: unknown, operations: RecoveryOperations): T.Result<T
   const verifiedHistory: T.DeepReadonly<T.AcceptedTransaction>[] = [];
   for (const [index, transaction] of archive.history.entries()) {
     const path = `$.history[${index}]`;
-    const reached = operations.step(run, {
-      until: transaction.until,
-      inputs: cloneData(transaction.inputs),
-      fidelity: cloneData(transaction.fidelity),
-    });
-    if (!reached.ok) return reached;
-    const current = readKernel(run).current;
-    if (
-      reached.value.at !== transaction.reachedAt ||
-      (transaction.boundary.type === 'until' && !reached.value.reachedUntil) ||
-      !same(reached.value.boundary, transaction.boundary) ||
-      !same(current.cursor, transaction.cursor)
-    )
-      return reject(path, 'executed boundary or scheduler cursor differs from accepted history');
-    // The newest node is this transaction; materializing the whole history here made replay quadratic.
-    const actual = newestTransaction(run, index + 1);
-    if (!actual) return reject(path, 'dispatcher did not record the accepted transaction');
-    if (
-      transaction.eventHash !== undefined &&
-      transaction.eventHash !== hashCanonical('hf-run4/events', reached.value.events)
-    )
-      return reject(`${path}.eventHash`, 'executed event checkpoint differs');
-    if (
-      transaction.stateHash !== undefined &&
-      transaction.stateHash !== hashCanonical('hf-run4/current', archiveSnapshot(current))
-    )
-      return reject(`${path}.stateHash`, 'executed state checkpoint differs');
-    const { eventHash: _actualEvents, stateHash: _actualState, ...actualAccepted } = actual;
-    const { eventHash: _events, stateHash: _state, ...accepted } = transaction;
-    if (!same(actualAccepted, accepted))
-      return reject(path, 'executed accepted transaction differs from history');
-    // These are the actual accepted semantics plus independently verified optional
-    // checkpoint metadata. They never replace executed outcome or current state.
-    verifiedHistory.push({
-      ...actualAccepted,
-      ...(transaction.eventHash === undefined ? {} : { eventHash: transaction.eventHash }),
-      ...(transaction.stateHash === undefined ? {} : { stateHash: transaction.stateHash }),
-    });
+    const verified = executeAcceptedTransaction(run, transaction, operations, path);
+    if (!verified.ok) return verified;
+    verifiedHistory.push(verified.value);
   }
   const reached = expandedArchive(operations.exportRun(run));
   const verifiedBody = { ...reached, history: verifiedHistory };

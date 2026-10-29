@@ -11,6 +11,16 @@ version, stamped with build and schema hashes in `RUN_ENGINE`. See the version p
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
+## [4.10.0] — 2026-10-29
+
+Engine: 4.10.0.
+
+- Add a separately tagged append-only recovery journal. `exportRunJournal` emits complete initial authoring once, then only new accepted transactions. A run-bound cursor refuses another run, fork or changed opening. Each chunk binds its predecessor, inclusive transaction range and digest; the committed head refuses incomplete or reordered prefixes. Hosts must atomically commit chunks, matching host snapshot and head before advancing the cursor.
+- `restoreRunJournal` executes the entire committed history through the same constructors and transaction verifier as native recovery. Optional event/state checkpoints remain verified and retained. This does not introduce trusted-snapshot restore, discard accepted inputs or bound semantic history. Native archive format 7 remains complete and self-contained; the journal is a separate persistence protocol. Previous exact engine builds remain refused under the existing 4.x policy.
+- Avoid repeated construction of trait-shift data inside the need loop while preserving its exact arithmetic and iteration order. Frozen JSON validation checks descriptor membership directly instead of searching each array index in all prior keys. Canonical replay-hash expectations and mutable admission remain unchanged.
+- Add the opt-in `node scripts/bench-journal.ts [--full]` headless control. It reports newly written and cumulative bytes, checkpoint costs, complete native recovery and continuation. It is synthetic evidence, separate from Valley's day-12/881-day gates and Child's chapter budgets.
+- Prepare client 0.5.9 with exact HF 4.10.0 and kit 0.5.26 with the compatible client peer. Publication and game adoption require separate receipts.
+
 ## [4.9.0] — 2026-10-29
 
 Engine: 4.9.0.

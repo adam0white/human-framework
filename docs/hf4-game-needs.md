@@ -70,6 +70,16 @@ Counts are named consumers, not claims that one change completes their migration
 
 
 
+## G6/G7 published retry and append-only checkpoints (2026-10-29)
+
+Remaining: Child's 2,000 ms step and restore gates, Valley's 120-second original day-12 gate, and its full 881-day term. Neither G6 nor G7 is closed. Published HF 4.9.0 takes 58,884.70 ms to step Child's six people through 1,096 days, or 3,270.63 ms per actual year per person. The native archive is 4,282,497 bytes. Exact restore takes 64,871.45 ms; exact replay takes 67,658.64 ms. Child remains on 3.2.0. Snapshot-only recovery is a separate owner proposal. This reduced control omits lessons, relationships and explicit sleep. It does not establish a full upbringing or phone budget.
+
+Valley's original day-12 test failed its unchanged 120-second deadline on published HF 4.9.0 before reaching its first fingerprint assertion. Its short control reaches minute 450 with all 53 people in 1,389.88 ms of whole-host time. Its native archive is 3,397,417 bytes; exact restore takes 1,720.92 ms and exact replay takes 1,844.77 ms. This is not full-term acceptance. The partial original replay profile attributes 26.78% of cumulative weighted samples to memory validation and 0.082% to full exports. Overlapping samples are diagnostic, not a speed estimate.
+
+The 4.10 continuation exposes an append-only recovery journal. An attempted private-memory validation cache showed no material first-day runtime benefit and was removed; its negative finding remains recorded. Journal export work and bytes scale with newly accepted transactions, aside from complete initial authoring once. Every accepted input and optional checkpoint remains. Cold restore still replays all of them. A host must commit new chunks, matching host snapshot and head atomically, then acknowledge its opaque cursor. Full native archives remain self-contained. Total retained input growth is still unbounded, so G16 stays open. Neither compression nor chunking establishes semantic retention. The synthetic headless checkpoint control does not replace the actual 881-day term or browser persistence proof. See findings for source identity and measured limits.
+
+The final local synthetic journal control has one person and 256 one-second transactions. It writes a 32,265-byte opening and 230,876 bytes of chunks; the complete journal is 263,610 bytes. Journal exports total 14.529 ms; cold recovery takes 121.428 ms and matches the complete native file and next step exactly. A full native file grows from 59,098 to 150,135 bytes. Independent chunks can cost more total bytes than one compact file. The measured benefit is incremental writing. These are diagnostic observations, not new owner budgets or actual game persistence acceptance.
+
 ## G6/G7 performance baseline (2026-10-29)
 
 HF 4.8.1 remains over the existing Child and Valley runtime gates. These measurements do not close either need. The [headless benchmark](../scripts/bench-g7.ts) uses the retained [Child host fixture](../scripts/bench-g7-child-host.ts). Run it with Node 26 after installing the workspace dependencies:

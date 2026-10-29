@@ -21,6 +21,8 @@ test('the public run contract has eight operations and archive identity matches 
       ...Object.keys(operations),
       'runWire',
       'readRunHistory',
+      'exportRunJournal',
+      'restoreRunJournal',
       'RUN_WIRE_VERSION',
       'projectChapterClock',
       'projectPortablePerson',
