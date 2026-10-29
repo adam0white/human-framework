@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest';
 import { actionForms } from '../src/narrate/lexicon.ts';
-import { describeWording } from '../src/narrate/literal.ts';
+import { describeWording, renderProjection } from '../src/narrate/literal.ts';
 import { fillTemplate, NARRATION_TEMPLATES, templateSlots } from '../src/narrate/templates.ts';
 import type { Lexicon, SuggestionVerdict } from '../src/run-schema.ts';
 
@@ -30,7 +30,27 @@ it('renders suggestion verdicts as grammatical first-person outcomes and inflect
   }
   expect(actionForms('stop', lex)).toEqual({ base: 'stop', past: 'stopped', gerund: 'stopping' });
   expect(actionForms('plan', lex)).toEqual({ base: 'plan', past: 'planned', gerund: 'planning' });
+  expect(actionForms('get-up', lex)).toEqual({ base: 'get up', past: 'got up', gerund: 'getting up' });
+  expect(actionForms('run', lex)).toEqual({ base: 'run', past: 'ran', gerund: 'running' });
   expect(actionForms('pray', lex)).toEqual({ base: 'pray', past: 'prayed', gerund: 'praying' });
+  expect(
+    renderProjection({
+      kind: 'chronicle-change',
+      change: 'unprompted',
+      subject: 'working',
+      before: 0,
+      after: 1,
+    }),
+  ).toBe('By the end, I was working without being told.');
+  expect(
+    renderProjection({
+      kind: 'chronicle-change',
+      change: 'still-prompted',
+      subject: 'praying the dawn prayer',
+      before: 0,
+      after: 1,
+    }),
+  ).toBe('I was still praying the dawn prayer after being prompted.');
   for (const key of [
     'review.kept',
     'review.unresolved',

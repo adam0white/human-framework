@@ -21,7 +21,7 @@ describe('daily reading jobs', () => {
     const source = [
       {
         file: 'src/lexicon.ts',
-        text: "const lexicon = { wordings: { 'decision.act': ['I will {action}.{why}'], 'decision.wait': ['I will wait.'] } }",
+        text: "const lexicon = { wordings: { 'decision.act': ['I will {action}.{why}', 'I choose to {action}.{why}', 'My next step is to {action}.{why}', 'I plan to {action}.{why}'], 'decision.wait': ['I will wait.', 'I will give it time.', 'I will pause.', 'I will wait a little longer.'] } }",
       },
     ];
     expect(Object.keys(selectGameTemplates(source, templates, 0, 1))).toEqual(['decision.act']);
@@ -60,22 +60,30 @@ describe('daily reading jobs', () => {
     expect(prompt).toContain('REGISTRY');
     expect(prompt).toContain('FAITH');
     expect(prompt).toContain('{action}');
+    expect(prompt).toContain('at least four distinct variants per key');
     expect(prompt).toContain('Do not generate persona voices');
   });
   it('rejects malformed, unknown, repeated, or slot-changing variants', () => {
     const templates = { 'decision.act': ['I will {action}.{why}'] };
-    expect(
-      validateWordings({ wordings: { 'decision.act': ['I choose to {action}.{why}'] } }, templates),
-    ).toEqual({ 'decision.act': ['I choose to {action}.{why}'] });
+    const valid = [
+      'I choose to {action}.{why}',
+      'I will {action}.{why}',
+      'I plan to {action}.{why}',
+      'My next step is to {action}.{why}',
+    ];
+    expect(validateWordings({ wordings: { 'decision.act': valid } }, templates)).toEqual({
+      'decision.act': valid,
+    });
+    expect(() => validateWordings({ wordings: { 'decision.act': valid.slice(0, 3) } }, templates)).toThrow();
     expect(() =>
-      validateWordings({ wordings: { 'decision.act': ['I choose {action}.'] } }, templates),
+      validateWordings(
+        { wordings: { 'decision.act': [...valid.slice(0, 3), 'I choose {action}.'] } },
+        templates,
+      ),
     ).toThrow();
     expect(() => validateWordings({ wordings: { 'decision.wait': ['Wait.'] } }, templates)).toThrow();
     expect(() =>
-      validateWordings(
-        { wordings: { 'decision.act': ['I choose {action}.{why}', 'I choose {action}.{why}'] } },
-        templates,
-      ),
+      validateWordings({ wordings: { 'decision.act': [...valid.slice(0, 3), valid[0]] } }, templates),
     ).toThrow();
   });
   it('persists observed text and provenance in a safe indented JSON block', () => {

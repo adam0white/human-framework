@@ -51,8 +51,8 @@ function sequence(seed: number, interleave = false, context = { mood: 0, trust: 
   }
   return { events, state, indices: events.map((e) => e.wording?.index) };
 }
-it('avoids recent alternatives where possible, including built-in fallback and singleton tables', () => {
-  for (const variants of [wordings['decision.wait'], wordings['decision.wait'].slice(0, 3), ['Wait.']]) {
+it('never repeats an alternative within two choices, including built-in fallback', () => {
+  for (const variants of [wordings['decision.wait']]) {
     const table = { ...lex, wordings: { 'decision.wait': variants } };
     const state: Pick<RunState, 'wording'> = { wording: {} };
     const indices: number[] = [];
@@ -60,7 +60,7 @@ it('avoids recent alternatives where possible, including built-in fallback and s
       const event = wait(String(i));
       selectEventWording(event, table, 7, state);
       if (!event.wording) throw new Error('Missing wording');
-      const window = Math.min(3, variants.length - 1);
+      const window = 2;
       if (window) expect(indices.slice(-window)).not.toContain(event.wording.index);
       indices.push(event.wording.index);
       expect(rendererOwner.render(event, { kind: 'host' }, table, 7)[0]?.text).toBe(
@@ -111,6 +111,8 @@ it('rejects malformed wording data before a run is created', () => {
   for (const invalid of [
     { 'unknown.key': ['A.'] },
     { 'decision.wait': [] },
+    { 'decision.wait': ['Wait.'] },
+    { 'decision.wait': ['Wait.', 'Pause.', 'Stay.'] },
     { 'decision.wait': ['A.', 'A.'] },
     { 'decision.wait': [' '] },
     { 'decision.act': ['I will {action}.'] },
@@ -154,15 +156,35 @@ it('headless control: reads, pagination, restore continuation and replay retain 
     const spec = exampleSpec(7);
     if (withVariants)
       spec.definitions.lexicon.wordings = {
-        'decision.act': ['My next step is to {action}.{why}'],
-        'observation.summary': ['{summary}', 'I noticed this: {summary}', 'I saw this: {summary}'],
+        'decision.act': [
+          'My next step is to {action}.{why}',
+          'I will {action}.{why}',
+          'I choose to {action}.{why}',
+          'I intend to {action}.{why}',
+        ],
+        'observation.summary': [
+          '{summary}',
+          'I noticed this: {summary}',
+          'I saw this: {summary}',
+          'I observed this: {summary}',
+        ],
       };
     if (withVariants) spec.definitions.lexicon.names = { ada: 'Ada' };
     if (withVariants)
       spec.definitions.lexicon.voices = {
         ada: {
-          'decision.act': ['My own next step is to {action}.{why}'],
-          'observation.summary': ['Ada noticed: {summary}', 'Ada saw: {summary}'],
+          'decision.act': [
+            'My own next step is to {action}.{why}',
+            'My own choice is to {action}.{why}',
+            'I plan to {action}.{why}',
+            'I choose to {action}.{why}',
+          ],
+          'observation.summary': [
+            'I noticed: {summary}',
+            'I saw: {summary}',
+            'I observed: {summary}',
+            'I remember this: {summary}',
+          ],
         },
       };
     const run = need(createRun(spec));
@@ -245,7 +267,9 @@ it('headless control: reads, pagination, restore continuation and replay retain 
   expect(decisionEvent.wording?.key).toBe('decision.act');
   expect(decisionEvent.wording?.occurrence).toBe(1);
   expect(decisionEvent.data.decision.intention).toBe(decisionEvent.narration[0]?.text);
-  expect(decisionEvent.data.decision.intention).toContain('My own next step is to');
+  expect(decisionEvent.data.decision.intention).toMatch(
+    /My own next step is to|My own choice is to|I plan to|I choose to/,
+  );
   expect(need(replay(exportRun(decisionRun))).verified).toBe(true);
   expect(exportRun(need(restoreRun(exportRun(decisionRun))))).toEqual(exportRun(decisionRun));
 });

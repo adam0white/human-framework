@@ -356,8 +356,18 @@ plain-English defaults through the same selection route. For example:
 ```ts
 lexicon.voices = {
   selim: {
-    'decision.act': ['I will {action}.{why}', 'I choose to {action}.{why}'],
-    'suggestion.resolved': ['I {verdict}.', 'After considering it, I {verdict}.'],
+    'decision.act': [
+      'I will {action}.{why}',
+      'I choose to {action}.{why}',
+      'I intend to {action}.{why}',
+      'I have decided to {action}.{why}',
+    ],
+    'suggestion.resolved': [
+      'I {verdict}.',
+      'After considering it, I {verdict}.',
+      'This time, I {verdict}.',
+      'I {verdict} after thinking it over.',
+    ],
   },
 };
 ```
@@ -368,10 +378,13 @@ advice` again. Host phrases should speak in the person's first person and must
 not claim divine acceptance or a religious ruling. Norm reasons describe only
 the person's own understanding.
 
-The window excludes three previous alternatives, or `n-1` when a phrasebook has
-fewer than four. A singleton necessarily repeats. Use at least four distinct
-alternatives for a full three-choice window. Repetition is tracked per person
-and meaning, so unrelated events do not clear that person's window.
+The window excludes the two previous alternatives for each person and meaning.
+Every built-in key has at least four alternatives. Authored tables must also
+contain at least four distinct variants; shorter tables are refused at admission.
+With four variants, excluding two leaves at least two choices on every draw;
+excluding three would force a repeating four-line cycle. Unrelated events do not
+clear a person's window. This is a deliberate change
+from older versions that admitted one- or two-line tables.
 
 At emission, mood, trust in the advising voice and strength of the habit for the
 chosen act are captured in broad tenth bands. Low mood, distrust and practised

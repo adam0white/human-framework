@@ -3,7 +3,7 @@
  */
 
 import { actionForms, displayName } from '../narrate/lexicon.ts';
-import { renderProjection } from '../narrate/literal.ts';
+import { labelLine, renderProjection } from '../narrate/literal.ts';
 import { narrate } from '../narrate/narrate.ts';
 import type { DayRecord, DeepReadonly, Lexicon, Perspective, RunEvent } from '../run-schema.ts';
 export const STORY_DEFAULTS = {
@@ -163,7 +163,7 @@ export function diffChronicle(
         c.kind === 'trust'
           ? displayName(c.subject, lexicon)
           : c.subject.startsWith('prayer:')
-            ? c.subject.slice(7)
+            ? `praying ${labelLine(c.subject.slice(7))}`
             : c.subject.startsWith('action:')
               ? actionForms(c.subject.slice(7), lexicon).gerund
               : c.subject,

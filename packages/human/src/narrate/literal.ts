@@ -125,9 +125,9 @@ export function renderProjection(meaning: ProjectionMeaning): string {
       const m = meaning;
       switch (m.change) {
         case 'unprompted':
-          return `By the end, I did ${labelLine(m.subject)} without being told.`;
+          return `By the end, I was ${labelLine(m.subject)} without being told.`;
         case 'still-prompted':
-          return `I still did ${labelLine(m.subject)} after being prompted.`;
+          return `I was still ${labelLine(m.subject)} after being prompted.`;
         case 'started':
           return `I began ${labelLine(m.subject)}.`;
         case 'stopped':
