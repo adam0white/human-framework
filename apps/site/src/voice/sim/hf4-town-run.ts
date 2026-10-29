@@ -77,24 +77,24 @@ export function mount(c: Community, world: World, spec: RunSpec, opening?: Perso
   c.runtime = new VoiceRun(spec, c.openings);
   refresh(c);
 }
+// Only temporal DTO fields change units.
+const temporalKeys = new Set([
+  'at',
+  'from',
+  'until',
+  'since',
+  'lastAt',
+  'lastWornAt',
+  'lastPracticed',
+  'adoptedAt',
+  'lastAdvancedAt',
+  'deceasedAt',
+  'bornAt',
+  'recurUntil',
+]);
 function minutes<T>(value: T): T {
-  // Only temporal DTO fields change units. Utility, trust, durations in prose and host facts do not.
-  const keys = new Set([
-    'at',
-    'from',
-    'until',
-    'since',
-    'lastAt',
-    'lastWornAt',
-    'lastPracticed',
-    'adoptedAt',
-    'lastAdvancedAt',
-    'deceasedAt',
-    'bornAt',
-    'recurUntil',
-  ]);
   const visit = (v: unknown, k = ''): unknown =>
-    typeof v === 'number' && keys.has(k)
+    typeof v === 'number' && temporalKeys.has(k)
       ? v / MINUTE_MS
       : Array.isArray(v)
         ? v.map((x) => visit(x))
@@ -124,6 +124,33 @@ function displayDecision(
     ...(d.suggestion ? { suggestion: display(d.suggestion) } : {}),
     ...(d.suggestions ? { suggestions: d.suggestions.map(display) } : {}),
   } as DecisionRecord;
+}
+// Retained history is immutable display data, just like its public native events.
+// Convert and freeze each event once; refresh replaces arrays, never their records.
+const decisionTemplates = new WeakMap<object, DecisionRecord>();
+function freezeHistory<T>(value: T): T {
+  if (value && typeof value === 'object' && !Object.isFrozen(value)) {
+    for (const child of Object.values(value)) freezeHistory(child);
+    Object.freeze(value);
+  }
+  return value;
+}
+function retainedDecision(d: Parameters<typeof displayDecision>[0]): DecisionRecord {
+  let template = decisionTemplates.get(d);
+  if (!template) {
+    template = freezeHistory(displayDecision(minutes(d)));
+    decisionTemplates.set(d, template);
+  }
+  return template;
+}
+const dayTemplates = new WeakMap<object, unknown>();
+function retainedDay<T extends object>(day: T): T {
+  let template = dayTemplates.get(day) as T | undefined;
+  if (!template) {
+    template = freezeHistory(minutes(day));
+    dayTemplates.set(day, template);
+  }
+  return template;
 }
 function activity(c: Community, id: string): Activity | null {
   const active = c.runtime?.active.get(id);
@@ -169,6 +196,13 @@ function refresh(c: Community) {
       'skills',
     ],
   });
+  const recentByPerson = new Map<string, typeof runtime.events>();
+  for (const event of runtime.events.slice(-2048)) {
+    if (!event.person || event.data.kind !== 'observation-attended') continue;
+    const events = recentByPerson.get(event.person) ?? [];
+    events.push(event);
+    recentByPerson.set(event.person, events);
+  }
   for (let i = 0; i < c.people.length; i++) {
     const previous = c.people[i]!;
     const opening = c.openings.find((p) => p.id === previous.id)!;
@@ -194,7 +228,7 @@ function refresh(c: Community) {
       will: { voices: minutes(r.voices), advice: minutes(r.advice) },
       agenda: minutes(r.agenda),
       conscience: { norms: r.heldNorms, breaches: [] },
-      receivedTexts: runtime.events.slice(-2048).flatMap((e) => {
+      receivedTexts: (recentByPerson.get(r.id) ?? []).flatMap((e) => {
         if (e.person !== r.id || e.data.kind !== 'observation-attended' || e.data.attention <= 0) return [];
         const source = runtime.textSource(e.data.perceptId, e.data.evidenceId);
         if (source?.channel !== 'told' || !e.data.summary) return [];
@@ -212,7 +246,7 @@ function refresh(c: Community) {
       memory: {
         episodes: [
           ...opening.biography.map((e) => minutes(e)),
-          ...runtime.events.slice(-2048).flatMap((e) => {
+          ...(recentByPerson.get(r.id) ?? []).flatMap((e) => {
             if (e.person !== r.id || e.data.kind !== 'observation-attended' || !e.data.episodeId) return [];
             const source = runtime.textSource(e.data.perceptId, e.data.evidenceId);
             return [
@@ -234,8 +268,8 @@ function refresh(c: Community) {
         expectations: r.expectations,
         beliefs: r.beliefs,
       },
-      trace: r.trace.map((d) => displayDecision(minutes(d))),
-      chronicle: minutes(r.days),
+      trace: r.trace.map(retainedDecision),
+      chronicle: r.days.map(retainedDay),
       activity: activity(c, r.id),
       lexicon: previous.lexicon,
       habits: opening.state.habits,

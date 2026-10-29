@@ -1023,7 +1023,8 @@ export function stepPeople(s: WatchState, until: number, world = new WatchWorld(
         }),
       ],
     });
-  const ledger = structuredClone(physicalLedger(s));
+  // physicalLedger already returns a detached host-state copy.
+  const ledger = physicalLedger(s);
   ledger.care =
     s.refugeVisit?.status === 'agreed'
       ? {
@@ -1153,9 +1154,10 @@ export function stepPeople(s: WatchState, until: number, world = new WatchWorld(
       const pl = placeOfActivity(p.activity);
       if (pl !== undefined) s.place[p.id] = pl;
     }
-  const actualCare = physicalLedger(s).care?.completedAt;
-  if (actualCare && s.refugeVisit?.status === 'agreed' && s.refugeVisit.careCompletedAt === undefined)
-    completedAdaCare(s, actualCare / 60_000);
+  if (s.refugeVisit?.status === 'agreed' && s.refugeVisit.careCompletedAt === undefined) {
+    const actualCare = physicalLedger(s).care?.completedAt;
+    if (actualCare) completedAdaCare(s, actualCare / 60_000);
+  }
   if (s.duskRest) resolveDuskRest(s, events, until);
   if (s.localWarning) deliverLocalWarnings(s, until);
   if (s.phase === 'night') {

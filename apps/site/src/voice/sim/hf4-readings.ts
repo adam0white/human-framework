@@ -34,25 +34,8 @@ export interface VoicePersonReading {
   active: VoiceActiveWork | undefined;
   days: readonly VoiceDay[];
   trace: readonly VoiceDecision[];
-  episodeText: ReadonlyMap<string, { id: string; summary: string }>;
-  narration: readonly VoiceEvent[];
 }
 
-/** Known authored text and actually attended summary events, never private memory snapshots. */
-export function episodeText(
-  opening: DeepReadonly<PersonAuthoring>,
-  events: readonly VoiceEvent[],
-): ReadonlyMap<string, { id: string; summary: string }> {
-  const text = new Map(
-    opening.biography.map((episode) => [episode.id, { id: episode.id, summary: episode.summary }]),
-  );
-  for (const event of events) {
-    if (event.person !== opening.id || event.data.kind !== 'observation-attended') continue;
-    const { episodeId, summary } = event.data;
-    if (episodeId && summary) text.set(episodeId, { id: episodeId, summary });
-  }
-  return text;
-}
 function selected<K extends Parts['select']>(parts: readonly Parts[], key: K): DeepReadonly<Part<K>> {
   const part = parts.find((item) => item.select === key);
   if (!part) throw new Error(`Voice requested ${key} but HF did not return it.`);
@@ -89,7 +72,6 @@ export function voiceReadings(
   const body = selected(person.parts, 'body');
   const relations = selected(person.parts, 'relationships');
   const { trace, days } = runtime.history(opening.id);
-  const texts = episodeText(opening, runtime.events.slice(-2048));
   const active = runtime.active.get(opening.id);
   return {
     id: opening.id,
@@ -115,7 +97,5 @@ export function voiceReadings(
     active,
     days,
     trace,
-    episodeText: texts,
-    narration: runtime.events.slice(-256).filter((event) => event.person === opening.id),
   } as const;
 }

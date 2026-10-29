@@ -42,6 +42,13 @@ test('coarse and fine town ingress preserve midnight opportunities and active co
   expect(coarse.town.state.money).toEqual(fine.town.state.money);
   expect(coarse.town.state.rentOwed).toBe(rentBefore + 300);
   expect(coarse.town.state.days.halil).toEqual([0, 1]);
+  // Retained display history is immutable and cannot contaminate another refresh/fork.
+  const record = coarse.community.people.flatMap((p) => p.trace)[0];
+  expect(record).toBeDefined();
+  expect(Object.isFrozen(record)).toBe(true);
+  const historical = JSON.stringify(record);
+  expect(() => Object.assign(record!, { at: -1 })).toThrow(TypeError);
+  expect(JSON.stringify(record)).toBe(historical);
   const restored = cloneCommunity(coarse.community);
   restored.runtime = VoiceRun.restore(JSON.parse(JSON.stringify(coarse.community.runtime!.save())));
   const restoredTown = createTown(restored.people, {
