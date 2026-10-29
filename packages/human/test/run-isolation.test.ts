@@ -1,5 +1,6 @@
 import { expect, test } from 'vitest';
 import { random } from '../src/core/random.ts';
+import { selectEventWording } from '../src/narrate/variants.ts';
 import {
   appendHistory,
   commitTransaction,
@@ -10,6 +11,7 @@ import {
   stageTransaction,
 } from '../src/run-kernel.ts';
 import { buildParameters } from '../src/run-parameters.ts';
+import type { RunEvent } from '../src/run-schema.ts';
 import { actorStream, constructionStream } from '../src/run-state.ts';
 import { emptyRunSpec } from './run-fixture.ts';
 
@@ -20,6 +22,28 @@ test('discarded staging leaves live journals unchanged and committed deltas pres
   const record = readKernel(run);
   const inputs = record.current.receipts.inputs;
   const discarded = stageTransaction(run);
+  const event: RunEvent = {
+    id: 'wording',
+    at: 0,
+    phase: 5,
+    person: 'ada',
+    causeIds: [],
+    narration: [],
+    data: {
+      kind: 'decision',
+      decision: {
+        id: 'choice',
+        at: 0,
+        considered: [],
+        intention: '',
+        chosenAction: null,
+        chosenAffordanceId: null,
+      },
+    },
+  };
+  selectEventWording(event, record.spec.definitions.lexicon, record.spec.seed, discarded.current);
+  expect(record.current.wording).toEqual({});
+  expect(record.current.events).toEqual([]);
   discarded.current.at = 10;
   discarded.receipts.inputs.push({ id: 'discarded', hash: '0'.repeat(64), ordinal: 1 });
   expect(record.current.at).toBe(0);
@@ -27,6 +51,9 @@ test('discarded staging leaves live journals unchanged and committed deltas pres
   expect(record.inputIds.has('discarded')).toBe(false);
 
   const accepted = stageTransaction(run);
+  const acceptedEvent = { ...event, wording: undefined };
+  selectEventWording(acceptedEvent, record.spec.definitions.lexicon, record.spec.seed, accepted.current);
+  expect(acceptedEvent.wording).toEqual(event.wording);
   accepted.receipts.inputs.push({ id: 'accepted', hash: '1'.repeat(64), ordinal: 1 });
   commitTransaction(run, accepted);
   expect(record.current.receipts.inputs).toBe(inputs);

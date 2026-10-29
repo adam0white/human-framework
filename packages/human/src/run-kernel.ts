@@ -198,8 +198,9 @@ export function stageTransaction(run: T.Run): TransactionStage {
   return {
     base,
     // Frame handlers replace changed slices. No prior events, receipts or input
-    // index are cloned, and handlers never mutate a shared slice in place.
-    current: { ...base, counters: { ...base.counters } },
+    // index are cloned. Wording draws update their own detached map; other
+    // handlers replace changed slices without mutating shared state.
+    current: { ...base, counters: { ...base.counters }, wording: { ...base.wording } },
     events: [],
     receipts: {
       dispositions: [],
