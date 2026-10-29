@@ -1,4 +1,4 @@
-/** SCOPE: format-six lossless accepted-history interning. Every scalar and
+/** SCOPE: Current-format lossless accepted-history interning. Every scalar and
  * structural node has one canonical backward reference; no input is discarded.
  * Admission bounds expanded work before traversing shared decoded subtrees.
  */

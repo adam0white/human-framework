@@ -21,7 +21,6 @@ Engine: 4.9.0.
 - Dictionary admission rejects forward references, duplicates, unreachable nodes, invalid keys and noncanonical order. Expanded work is bounded by safe-integer arithmetic and an amplification limit of the larger of 10 million canonical text units or 1,024 times the encoded pool units. The limit scales with history length; no term-length cap or semantic memory trimming is introduced.
 - Add opt-in headless Child and Valley workloads (`node scripts/bench-g7.ts`). Timings, archive sizes and unresolved game budgets are recorded in `docs/findings.md` and `docs/hf4-game-needs.md`; microbenchmarks alone do not establish port acceptance.
 
-
 ### Always-on narration
 
 - Prepare companion client 0.5.8 (exact HF 4.9.0) and kit 0.5.25 (client 0.5.8 peer) for one current framework graph. Package/artifact publication and game adoption remain separate receipts.
@@ -31,7 +30,6 @@ Engine: 4.9.0.
 - Replace raw advice verdicts with first-person English, including “I accepted the advice” and “I refused the advice.” Compliance and command responses describe the decision to follow; they do not claim that the host settled an act. Daily chronicles include recorded advice responses. Faith wording describes the person's held understanding; it computes no divine acceptance and issues no ruling.
 
 Migration: archive format **7** records default choices, the recent-choice window and event-time wording context, following G7-PERF's format 6 history codec. Replay hashes and engine identity deliberately change. Older archives require a fresh start. Current-format continuation and replay remain exact; canonical hashing itself does not change. The `suggestion.resolved` slot `{verdict}` now contains the complete predicate (for example `accepted the advice`); host templates should say `I {verdict}.`, without adding another object. No legacy wording path is retained.
-
 
 ## [4.8.1] — 2026-10-28
 
@@ -410,7 +408,6 @@ Engine: 2.14.1.
 - Opt-in `retirePaidMakeUps` archives only a recorded kept make-up and returns detached frozen receipts. Unpaid or unproven obligations still block travel. Pregnancy and temporal relationship stores are outside passport v1.
 - One cast browser shelf through the existing identity frame, with versioned checksummed envelopes, atomic parent revision checks, explicit conflict forks and inspect/export/delete controls. Client 0.3.0 and kit 0.4.0 ship as local tarballs.
 - Canonical first-wave cast registry and private inbox measurement from complete received exports. Same-epoch continuity retains normal recording. Changed recording identities require explicit historical-linkage consent before any persona-derived upload.
-
 
 ## [Unreleased]
 
