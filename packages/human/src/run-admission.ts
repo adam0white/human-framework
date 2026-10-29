@@ -205,6 +205,12 @@ export function checkBatchEnvelope(
         `${path}.payload.confidentMin`,
         'confidence distance must be between 0 and 0.5',
       );
+    if (
+      entry.kind === 'retelling.requested' &&
+      entry.payload.limit !== undefined &&
+      (!Number.isInteger(entry.payload.limit) || entry.payload.limit < 0 || entry.payload.limit > 3)
+    )
+      return fail('invalid-schema', `${path}.payload.limit`, 'limit must be an integer from 0 through 3');
     if (entry.kind === 'voice.evidence-received') {
       const { evidence, evidenceId, voiceId } = entry.payload;
       if (entry.id !== evidenceId || evidenceId !== evidence.id)

@@ -187,8 +187,11 @@ export type Payloads = {
   'retelling.requested': {
     teller: PersonId;
     listener: PersonId;
-    gistIds: readonly Id[];
+    /** Omit to select the teller’s salient gists; an empty list selects none. */
+    gistIds?: readonly Id[];
     placeIds?: readonly Id[];
+    /** Maximum items, an integer from 0 through 3; defaults to 3. */
+    limit?: number;
   };
   'contradiction.received': PersonEvidence & { sourceId: Id; prop: Id; value: boolean; reporterId?: Id };
   'fact.confirmed': PersonEvidence & { prop: Id; value: boolean; observationId: Id };
@@ -2988,10 +2991,12 @@ export type GeneticOrigin =
 export type TraitBasis =
   | { kind: 'explicit-authoring'; evidence: EvidenceRef }
   | { kind: 'unknown-genetics-prior'; prior: 'source-population-midpoint' };
+// Initial social ties and voices are authored premises, never inferred from genetic parents.
 export type NewbornContext = Pick<
   AuthoredPersonState,
   'body' | 'needs' | 'reserve' | 'retention' | 'affect' | 'promptings' | 'review'
->;
+> &
+  Partial<Pick<AuthoredPersonState, 'relationships' | 'voices'>>;
 export type InheritedNewborn = {
   kind: 'two-parent-derived';
   id: PersonId;

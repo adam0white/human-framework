@@ -111,6 +111,10 @@ simulation loop for long runs.
 - Values, held moral norms, commitments, goals, review of the day, promptings and trust in outside voices.
 - Aging, family, upbringing and character change; curiosity, bounded planning, projects and pursuit.
 
+A `family.contact` input may report a factual span that ended before its admission time. Upbringing applies
+the uncovered duration when the input is admitted, using the child’s current age and current caregiver readings.
+It does not reconstruct historical state. Overlapping contact is counted once.
+
 The host supplies the available actions and their meaning. Projects and planning do not invent actions
 or solve arbitrary tasks.
 

@@ -4731,6 +4731,14 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
       affect: { optional: false, shape: { kind: 'ref', name: 'InitialAffect' } },
       promptings: { optional: false, shape: { kind: 'ref', name: 'InitialPromptings' } },
       review: { optional: false, shape: { kind: 'ref', name: 'InitialReview' } },
+      relationships: {
+        optional: true,
+        shape: { kind: 'array', element: { kind: 'ref', name: 'InitialRelationship' } },
+      },
+      voices: {
+        optional: true,
+        shape: { kind: 'array', element: { kind: 'ref', name: 'InitialVoice' } },
+      },
     },
   },
   InheritedNewborn: {
@@ -5380,8 +5388,9 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
           fields: {
             teller: { optional: false, shape: { kind: 'scalar', name: 'PersonId' } },
             listener: { optional: false, shape: { kind: 'scalar', name: 'PersonId' } },
-            gistIds: { optional: false, shape: { kind: 'array', element: { kind: 'scalar', name: 'Id' } } },
+            gistIds: { optional: true, shape: { kind: 'array', element: { kind: 'scalar', name: 'Id' } } },
             placeIds: { optional: true, shape: { kind: 'array', element: { kind: 'scalar', name: 'Id' } } },
+            limit: { optional: true, shape: { kind: 'number' } },
           },
         },
       },
@@ -6349,13 +6358,14 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
                 teller: { optional: false, shape: { kind: 'scalar', name: 'PersonId' } },
                 listener: { optional: false, shape: { kind: 'scalar', name: 'PersonId' } },
                 gistIds: {
-                  optional: false,
+                  optional: true,
                   shape: { kind: 'array', element: { kind: 'scalar', name: 'Id' } },
                 },
                 placeIds: {
                   optional: true,
                   shape: { kind: 'array', element: { kind: 'scalar', name: 'Id' } },
                 },
+                limit: { optional: true, shape: { kind: 'number' } },
               },
             },
           },

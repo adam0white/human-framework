@@ -426,7 +426,7 @@ export const characterOwner: CharacterOwner = {
   },
   receiveUpbringing(state, input, context) {
     const out = checked(state);
-    if (input.child !== context.person || input.to !== context.at || input.from > input.to)
+    if (input.child !== context.person || input.to > context.at || input.from > input.to)
       throw new RangeError('Upbringing receipt mismatch');
     const carers = input.caregivers.filter((c) => c.id !== context.person);
     if (new Set(carers.map((c) => c.id)).size !== carers.length) throw new RangeError('Duplicate caregiver');

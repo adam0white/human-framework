@@ -11,6 +11,18 @@ version, stamped with build and schema hashes in `RUN_ENGINE`. See the version p
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
+## [4.11.0] — 2026-10-29
+
+Engine: 4.11.0.
+
+- Extend the existing `retelling.requested` input: omit `gistIds` to select the teller’s salient gists, or pass an explicit list (including an empty list). `placeIds` still filters them. `limit` is an integer from 0 through 3, defaulting to 3. Communication still reaches a listener only after the host resolves the actual emission and reception.
+- Preserve optional authored initial relationships and voices in the existing inherited-newborn context. Omitting them retains the empty social default. Genetic parents do not imply known caregivers or authorities; trait and aptitude inheritance remains framework-owned.
+- Give each decision’s term effects an identity that includes its persisted decision number, so recurring opportunities can reconsider the same offer without colliding with earlier effects.
+- Accept factual family-contact spans that ended before admission, matching the existing family owner contract. Apply only uncovered duration at the current clock; retain future-span refusal and overlap protection.
+- Prepare client 0.5.11 with exact HF 4.11.0 and kit 0.5.28 with that client peer. The central site retains its HF 3.2.0 runtime until its separate port.
+
+Migration: the engine and schema identities change. Start a fresh run for archives from earlier engine builds. Watch can request ordinary retelling without reading private gist IDs from an archive; its adoption and release remain separate.
+
 ## [4.10.0] — 2026-10-29
 
 Engine: 4.10.0.

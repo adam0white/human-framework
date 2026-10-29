@@ -16,6 +16,10 @@ The 3.x reference is kept at [v3.2.0](https://github.com/adam0white/human-framew
 
 `inspect` selects `affect` (mood and current named emotions) and `expectations` (learned action/target expectations) during pending or active work. Host and self receive detached readings. Other observers receive `unobserved`. `preview.select` requests these same faculties at its conditional endpoint through the inspection projector; another-person previews keep private faculties unobserved. No read changes state or draws RNG.
 
+## Retelling
+
+`retelling.requested` uses the existing communication boundary. Omit `gistIds` to select the teller’s own salient gists; an explicit empty list selects none. `placeIds` filters eligible gists and `limit` accepts an integer from 0 through 3, defaulting to 3. A request alone does not make anyone hear it: the host reports actual emission and reception through `communication.resolved`. Duplicate or unknown explicit gist IDs are refused.
+
 ## Narration and portable roles
 
 HF records wording when an event happens. A separate seeded stream for each person and meaning chooses a phrase, excluding the last two choices. The person's mood, trust in the advising voice and habit strength shape the length of the phrase. This is an authored style heuristic; it does not change decisions or the actor's random stream. Reading or previewing a run does not draw new wording.
@@ -23,6 +27,8 @@ HF records wording when an event happens. A separate seeded stream for each pers
 Games may supply reviewed phrasebooks in `definitions.lexicon.wordings` and partial person-specific phrasebooks in `definitions.lexicon.voices`. Each voice ID must appear in `lexicon.names` or `lexicon.roles`. Each supplied key needs at least four distinct alternatives, with exactly the slots in `NARRATION_TEMPLATES`. Person phrases fall back to game phrases, then to built-in English. For `suggestion.resolved`, `{verdict}` is a complete predicate, such as `accepted the advice`; use `I {verdict}.` Review wording for meaning as well as validity. Built-in verdicts, reasons, labels and summaries remain plain English; broader game vocabulary has a 2026-11-03 checkpoint. The [4.9 migration](../CHANGELOG.md#490--2026-10-29) describes archive format 7 and the fresh-start requirement.
 
 A portable role identifies a canonical person in a particular game. The shared shelf checks the source and receiving roles before a game admits that person. The game supplies its local role and remains responsible for its world, unfinished work and ownership. A registered role does not prove a journey between games; each host needs its own admission and delivery evidence. The portable admission details below describe the state and checks.
+
+An inherited newborn's `NewbornContext` may supply initial `relationships` and `voices` using the ordinary authored person types and validation. Omitted fields start empty. Genetic parents establish genetic origin and derived traits and aptitudes; they do not establish social ties or voice authority. The host authors those premises explicitly. Birth does not add reciprocal ties to parents, and learned values keep their neutral prior.
 
 ## Capability evidence (2026-10-26)
 

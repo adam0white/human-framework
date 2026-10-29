@@ -82,6 +82,32 @@ it('retelling chooses strongest eligible gists as detached communication items',
     gist: { summary: 'The bridge shook.' },
   });
   expect(items[0]?.data).not.toBe(gist);
+  const broader = {
+    ...speaker,
+    memory: {
+      gists: [
+        { ...gist, id: 'g0', placeId: 'road', salience: 0.8 },
+        { ...gist, id: 'g1', placeId: 'road', salience: 0.7 },
+        { ...gist, id: 'g2', placeId: 'field', salience: 0.99 },
+        { ...gist, id: 'g3', placeId: 'road', salience: 0.6 },
+        { ...gist, id: 'g4', placeId: 'road', salience: 0.5 },
+      ],
+    },
+  } as unknown as ActorState;
+  const ctx = { ...frame, speaker: broader };
+  expect(
+    conversationOwner
+      .prepareRetelling({ teller: 'a', listener: 'b', placeIds: ['road'], limit: 2 }, ctx)
+      .map((x) => x.data.kind === 'gist' && x.data.sourceGistId),
+  ).toEqual(['g0', 'g1']);
+  expect(conversationOwner.prepareRetelling({ teller: 'a', listener: 'b' }, ctx)).toHaveLength(3);
+  expect(conversationOwner.prepareRetelling({ teller: 'a', listener: 'b', gistIds: [] }, ctx)).toEqual([]);
+  expect(() =>
+    conversationOwner.prepareRetelling({ teller: 'a', listener: 'b', gistIds: ['g0', 'g0'] }, ctx),
+  ).toThrow('Duplicate requested gist');
+  expect(() =>
+    conversationOwner.prepareRetelling({ teller: 'a', listener: 'b', gistIds: ['g9'] }, ctx),
+  ).toThrow('Unknown gist');
 });
 
 it('withholds a known repeated telling and keeps unknown listener beliefs unknown', () => {
