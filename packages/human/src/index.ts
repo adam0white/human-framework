@@ -16,6 +16,7 @@ export {
   createRun,
   exportRun,
   exportRunJournal,
+  forkRun,
   inspect,
   preview,
   readRunHistory,

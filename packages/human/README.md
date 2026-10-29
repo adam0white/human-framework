@@ -28,8 +28,8 @@ The HF games are at [adamwhite.work](https://adamwhite.work). Each one names the
 
 ## The run API
 
-A host uses eight calls. Each takes and returns plain data, and each failure is a `Result` with a typed
-`ContractError` rather than an exception.
+A host uses nine calls. Run handles are opaque; data inputs and readings are plain data.
+Admission failures return a `Result` with a typed `ContractError`. Operations on an invalid run handle throw.
 
 | Call                                      | What it does                                                                                                                                                             |
 | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -39,6 +39,7 @@ A host uses eight calls. Each takes and returns plain data, and each failure is 
 | `inspect(run, query)`                     | Reads actual state, from the host's view or from one person's own view. It never changes the run.                                                                        |
 | `preview(run, query)`                     | Answers "what would happen if": the same step on a detached copy, with its own ids and wording. It never changes the run.                                                |
 | `exportRun(run)`                          | Returns the archive: spec, input log, current state and hashes. It is the save and the playtest export.                                                                  |
+| `forkRun(run)`                            | Copies an existing live run into an independent opaque branch, retaining its complete history without replaying it.                                                      |
 | `restoreRun(archive)`                     | Rebuilds a run from an archive after checking it.                                                                                                                        |
 | `replay(archive)`                         | Re-runs the input log from the spec and checks every hash.                                                                                                               |
 
@@ -190,7 +191,7 @@ This immutable, run-scoped vocabulary is retained in exports and replay. An ordi
 
 `exportRun` writes archive format 7. Each event and receipt journal in `current` contains its newest 64 entries. The complete accepted input log remains in `history` as a lossless dictionary; `readRunHistory(archive)` is its single public decoder. Actor memory keeps its own retention policy. A snapshot's journals are recent diagnostics, so their lengths do not equal lifetime allocation counters. Live `step` results and inspections keep their ordinary semantics.
 
-`restoreRun` reconstructs complete private journals and deduplication indexes by executing the accepted history. It checks the reconstructed actor, pending requests, active work, continuations and retained snapshot before returning a run. Restore therefore costs approximately a replay, and its cost grows with total accepted history. `replay` still reproduces a current-version export exactly. Archives from another package/build/schema are refused; no old-export conversion is provided.
+`restoreRun` reconstructs complete private journals and deduplication indexes by executing the accepted history. It checks the reconstructed actor, pending requests, active work, continuations and retained snapshot before returning a run. Restore therefore costs approximately a replay, and its cost grows with total accepted history. `forkRun(run)` branches an already admitted live run without this cold replay. It detaches current state, pending requests, mutable journals and indexes; it retains the complete immutable accepted history. Both runs continue through the same `step` boundary. Forking changes neither source state nor randomness and grants no actor-reading access. Host-owned world state must be copied separately. Journal cursors belong to one live run and cannot cross a fork. Use `restoreRun` for files and `forkRun` for a live branch. `replay` still reproduces a current-version export exactly. Archives from another package/build/schema are refused; no old-export conversion is provided.
 
 The existing daily fidelity uses larger adaptive cells with the same faculty equations, physical branch checks and hazard roots. Its local normalized numerical estimate is `1e-7`; fine-only runs retain their existing `1e-12` policy. Cells reanchor when fidelity changes, so a new daily policy never recomputes an earlier fine span. Needs retain reached reservoir values at canonical daily boundaries, keeping varying-force work bounded to a day. This introduces no faculty switch and skips no host input or reached semantic boundary.
 

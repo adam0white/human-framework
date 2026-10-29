@@ -14,6 +14,7 @@ import { validateActor } from './run-integrity.ts';
 import { exportJournal, restoreJournal } from './run-journal.ts';
 import {
   commitTransaction,
+  forkKernel,
   freezeData,
   historyEntries,
   makeKernel,
@@ -230,6 +231,14 @@ export function inspect(
 }
 export { preview } from './run-preview.ts';
 export { step } from './run-step.ts';
+
+/** Branch an existing live run without replaying its accepted past. The opaque branch
+ * retains the complete history and detaches mutable state, journals and indexes.
+ * This is a host lifetime operation; it admits no actor data or alternative mutation path.
+ */
+export function forkRun(run: T.Run): T.Run {
+  return forkKernel(run);
+}
 
 export function restoreRun(input: unknown): T.Result<T.Run> {
   const restored = restoreCurrentRun(input, { createRun, createPerson, step, exportRun });

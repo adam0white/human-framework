@@ -3,7 +3,7 @@ import { expect, test } from 'vitest';
 import * as api from '../src/index.ts';
 import { exampleSpec, need } from './support.ts';
 
-test('the public run contract has eight operations and archive identity matches the actual package', () => {
+test('the public run contract has nine operations and archive identity matches the actual package', () => {
   const operations = {
     createRun: api.createRun,
     createPerson: api.createPerson,
@@ -11,11 +11,12 @@ test('the public run contract has eight operations and archive identity matches 
     inspect: api.inspect,
     preview: api.preview,
     exportRun: api.exportRun,
+    forkRun: api.forkRun,
     restoreRun: api.restoreRun,
     replay: api.replay,
   };
   for (const [name, operation] of Object.entries(operations)) expect(typeof operation, name).toBe('function');
-  // Eight simulation calls, one wire transport, pure projections and sourced authoring catalogues.
+  // Nine run operations, one wire transport, pure projections and sourced authoring catalogues.
   expect(Object.keys(api).sort()).toEqual(
     [
       ...Object.keys(operations),

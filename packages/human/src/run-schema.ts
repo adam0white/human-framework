@@ -5481,6 +5481,7 @@ export interface RunOperations {
   inspect(run: Run, query: DeepReadonly<InspectQuery>): Result<DeepReadonly<Inspection>>;
   preview(run: Run, query: DeepReadonly<PreviewQuery>): Result<DeepReadonly<PreviewResult>>;
   exportRun(run: Run): DeepReadonly<RunArchive>;
+  forkRun(run: Run): Run;
   restoreRun(input: unknown): Result<Run>;
   replay(input: unknown): Result<DeepReadonly<ReplayResult>>;
 }
