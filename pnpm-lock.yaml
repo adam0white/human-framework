@@ -204,10 +204,10 @@ importers:
         specifier: 3.2.0
         version: 3.2.0
       '@adam0white/lab-client':
-        specifier: 0.5.9
+        specifier: 0.5.10
         version: link:../../packages/lab-client
       '@adam0white/lab-kit':
-        specifier: 0.5.26
+        specifier: 0.5.27
         version: link:../../packages/lab-kit
       react:
         specifier: 19.3.1
@@ -250,7 +250,7 @@ importers:
   packages/lab-kit:
     dependencies:
       '@adam0white/lab-client':
-        specifier: 0.4.11 || 0.4.12 || 0.4.13 || 0.4.14 || 0.4.15 || 0.5.0 || 0.5.1 || 0.5.2 || 0.5.3 || 0.5.4 || 0.5.5 || 0.5.6 || 0.5.7 || 0.5.8 || 0.5.9
+        specifier: 0.4.11 || 0.4.12 || 0.4.13 || 0.4.14 || 0.4.15 || 0.5.0 || 0.5.1 || 0.5.2 || 0.5.3 || 0.5.4 || 0.5.5 || 0.5.6 || 0.5.7 || 0.5.8 || 0.5.9 || 0.5.10
         version: link:../lab-client
     devDependencies:
       happy-dom:

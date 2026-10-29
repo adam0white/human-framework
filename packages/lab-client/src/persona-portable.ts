@@ -84,6 +84,7 @@ const SOURCE_ROLES: Record<string, Record<string, string>> = {
     'hf.cast.meryem.warren': 'meryem',
   },
   lefthand: {
+    'hf.cast.tariq.well': 'tariq',
     'hf.cast.yusuf.well': 'yusuf',
     'hf.cast.idris.well': 'idris',
     'hf.cast.samira.well': 'samira',

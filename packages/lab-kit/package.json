@@ -1,6 +1,6 @@
 {
   "name": "@adam0white/lab-kit",
-  "version": "0.5.26",
+  "version": "0.5.27",
   "private": false,
   "description": "Small plain-DOM Field Notebook components for lab games",
   "license": "MIT",
@@ -36,7 +36,7 @@
     "prepack": "npm run build"
   },
   "peerDependencies": {
-    "@adam0white/lab-client": "0.4.11 || 0.4.12 || 0.4.13 || 0.4.14 || 0.4.15 || 0.5.0 || 0.5.1 || 0.5.2 || 0.5.3 || 0.5.4 || 0.5.5 || 0.5.6 || 0.5.7 || 0.5.8 || 0.5.9"
+    "@adam0white/lab-client": "0.4.11 || 0.4.12 || 0.4.13 || 0.4.14 || 0.4.15 || 0.5.0 || 0.5.1 || 0.5.2 || 0.5.3 || 0.5.4 || 0.5.5 || 0.5.6 || 0.5.7 || 0.5.8 || 0.5.9 || 0.5.10"
   },
   "peerDependenciesMeta": {
     "@adam0white/lab-client": {
