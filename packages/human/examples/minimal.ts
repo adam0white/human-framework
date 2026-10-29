@@ -14,6 +14,7 @@ import {
   exportRun,
   type HostRequest,
   type Input,
+  type Inspection,
   inspect,
   type Offer,
   type PersonAuthoring,
@@ -389,7 +390,12 @@ export function serve(
   }
   throw new Error('Example host boundary admission budget exhausted');
 }
-export function main() {
+export function main(): {
+  archive: DeepReadonly<RunArchive>;
+  view: DeepReadonly<Inspection>;
+  completed: number;
+  replayVerified: true;
+} {
   const run = need(createRun(exampleSpec()));
   need(createPerson(run, authoredPerson('ada', 'Ada')));
   const offers = exampleOffers('ada'),

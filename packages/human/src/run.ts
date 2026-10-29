@@ -207,6 +207,7 @@ export function exportRun(run: T.Run): T.DeepReadonly<T.RunArchive> {
   return freezeData(cloneData({ ...body, hashes: archiveHashes(body) }));
 }
 
+/** Read selected detached data; host-only current equals the exported current slice without cold history or hashes. */
 export function inspect(
   run: T.Run,
   input: T.DeepReadonly<T.InspectQuery>,
