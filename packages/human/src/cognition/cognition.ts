@@ -637,8 +637,8 @@ export const cognitionOwner: import('../run-schema.ts').CognitionOwner = {
       for (const [i, term] of result.terms.entries()) {
         const cause = context.causes[0] ?? `decision:${context.person}:${actor.nextDecision}`;
         effects.push({
-          // Calendar causes and offer IDs can be shared by several people.
-          id: hashCanonical('hf-run4/decision-term', cause, context.person, offer.id, i),
+          // People can share calendar causes; one routine cause can also prompt later decisions.
+          id: hashCanonical('hf-run4/decision-term', cause, context.person, actor.nextDecision, offer.id, i),
           cause,
           person: context.person,
           at: context.at,
