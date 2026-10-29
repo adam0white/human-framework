@@ -399,10 +399,10 @@ const fragments = {
     'will do as you ask, despite my doubts',
   ],
   'verdict.deferred': [
-    'will consider it after I {alternative}',
-    'will first {alternative}',
-    'have decided to {alternative} first',
-    'will {alternative} before considering it again',
+    'will consider it after dealing with “{alternative}”',
+    'will first attend to “{alternative}”',
+    'have put “{alternative}” ahead of the request',
+    'will deal with “{alternative}” before considering it again',
   ],
   'reason.need:rest': [
     'I need rest.',
@@ -418,7 +418,11 @@ Verdict keys are `verdict.assented`, `verdict.complied`, `verdict.deferred`,
 `verdict.modified`, `verdict.refused`, `verdict.commanded` and `verdict.cannot`.
 The last describes recorded inability; ordinary refusal uses `verdict.refused`.
 Deferred and modified predicates require `{alternative}`. It contains the recorded
-counter-offer label, with a neutral fallback when no label was recorded. Other
+counter-offer label only when a selected alternative or commitment was recorded.
+Placeholder labels such as `later` use the neutral `do something else` fallback.
+Known labels expand to plain English (for example, `Fajr` becomes `the dawn
+prayer`). Labels can be noun phrases; use a frame such as the quoted-label
+examples above rather than assuming they follow `I` as a verb. Other
 verdicts have no slots. Reason keys use `reason.` followed by a catalogued exact
 reason or family, such as `reason.need:rest`, `reason.distrust`, `reason.norm` or
 `reason.skill`. The exported `NARRATION_FRAGMENTS` catalog lists every admitted key and its slots.
@@ -436,8 +440,11 @@ Migration: add `{reason}` to existing `suggestion.resolved` templates. Move host
 verdict and reason tables into the lexicon and remove the host adapter. Keep the
 predicate grammar (`I {verdict}.`), including `{alternative}` where required.
 Current engine archives replay exactly; archives from older engine builds require
-a fresh run under the existing 4.x policy. Label expansions, other daily-summary
-fragments and inspection/chronicle-change projections remain built-in English.
+a fresh run under the existing 4.x policy. Decision motives and aggregate daily
+verdicts keep their built-in wording: a motive is not an objection, and an
+aggregate does not retain each reply’s alternative. Label expansions, other
+daily-summary fragments and inspection/chronicle-change projections remain
+built-in English.
 
 The window excludes the two previous alternatives for each person and meaning.
 Every built-in event frame has at least four alternatives. Authored tables must also

@@ -233,6 +233,7 @@ it('uses authored semantic fragments with voice precedence and the recorded even
     resolution: {
       ...event.data.resolution,
       verdict: 'deferred' as const,
+      insteadAffordanceId: 'wall',
       counterOffer: { label: 'climb the wall' },
     },
   };
@@ -264,12 +265,66 @@ it('uses authored semantic fragments with voice precedence and the recorded even
       'reason.need:food': index,
       'verdict.deferred': index,
     })?.slots.why,
-  ).toBe(` ${reasons[index]}`);
+  ).toBe(' I need to eat first.');
   spec.definitions.lexicon.wordings = { 'reason.imaginary': predicates };
   expect(createRun(spec)).toMatchObject({
     ok: false,
     error: { code: 'invalid-schema', message: expect.stringContaining('reason.imaginary') },
   });
+});
+it('keeps a missing winning alternative neutral and an authored objection out of decision motives', () => {
+  const table: Lexicon = {
+    ...lex,
+    wordings: {
+      'verdict.deferred': [
+        'will first {alternative}',
+        'will wait until I {alternative}',
+        'will consider it after I {alternative}',
+        'must first {alternative}',
+      ],
+      'reason.norm': [
+        'This conflicts with my rule.',
+        'My rule forbids this.',
+        'I object because of my rule.',
+        'That breaks a rule I hold.',
+      ],
+    },
+  };
+  const deferred: RunEvent['data'] = {
+    kind: 'suggestion-resolved',
+    adviceId: 'a',
+    decisionId: 'd',
+    resolution: { voiceId: 'v', verdict: 'deferred', reason: 'preference', counterOffer: { label: 'later' } },
+  };
+  expect(describeWording(deferred, table)?.slots.verdict).toBe('will first do something else');
+  expect(
+    describeWording(
+      {
+        ...deferred,
+        resolution: { ...deferred.resolution, commitmentId: 'prayer', counterOffer: { label: 'Fajr' } },
+      },
+      table,
+    )?.slots.verdict,
+  ).toContain('the dawn prayer');
+  const event = wait('motive');
+  event.data = {
+    kind: 'decision',
+    decision: {
+      id: 'motive',
+      at: 0,
+      intention: '',
+      chosenAction: 'pray',
+      chosenAffordanceId: 'prayer',
+      considered: [
+        { affordanceId: 'prayer', action: 'pray', utility: 1, terms: [{ source: 'norm:prayer', value: 1 }] },
+      ],
+    },
+  };
+  selectEventWording(event, table, 7, { wording: {} });
+  expect(event.wording?.fragments).toBeUndefined();
+  const text = rendererOwner.render(event, { kind: 'host' }, table, 7)[0]?.text;
+  expect(text).toContain('I want to act according to a rule I hold.');
+  expect(text).not.toContain('conflicts');
 });
 it('records a separate choice for every authored fragment and can reach all variants', () => {
   const variants = ['accepted one', 'accepted two', 'accepted three', 'accepted four', 'accepted five'];
@@ -410,6 +465,30 @@ it('headless control: reads, pagination, restore continuation and replay retain 
   const daily = need(step(restored, { until: START + 86400000, inputs: [] }));
   const dayEvents = daily.events.filter((event) => event.data.kind === 'day-closed');
   expect(dayEvents.length).toBeGreaterThan(0);
+  const closed = dayEvents[0];
+  if (closed?.data.kind !== 'day-closed') throw new Error('Missing daily record');
+  const summary = describeWording(
+    {
+      ...closed.data,
+      record: {
+        ...closed.data.record,
+        verdicts: [{ voiceId: 'player', verdict: 'deferred', reason: 'preference', count: 2 }],
+      },
+    },
+    {
+      ...lex,
+      wordings: {
+        'verdict.deferred': [
+          'will first {alternative}',
+          'must first {alternative}',
+          'need to {alternative}',
+          'intend to {alternative}',
+        ],
+      },
+    },
+  )?.slots.summary;
+  expect(summary).toContain('I put off acting on the advice from player 2 times.');
+  expect(summary).not.toContain('something else');
   expect(narrateChronicle(daily.events, { kind: 'host' }, exampleSpec(7).definitions.lexicon, 7)).toEqual(
     dayEvents.flatMap((event) => event.narration.map((line) => line.text)),
   );

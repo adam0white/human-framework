@@ -102,31 +102,29 @@ export function reasonLine(reason: string): string {
       return '';
   }
 }
-/** Closed semantic fragment catalog. Slots describe authored variants; defaults remain context-sensitive. */
-export const NARRATION_FRAGMENTS: Readonly<
-  Record<string, Readonly<{ default: string; slots: readonly string[] }>>
-> = Object.freeze(
-  Object.fromEntries([
-    ...Object.entries(SUGGESTION_VERDICTS).map(([key, value]) => [
-      `verdict.${key}`,
-      Object.freeze({
-        default: value,
-        slots: Object.freeze(key === 'deferred' || key === 'modified' ? ['alternative'] : []),
-      }),
+/** Closed semantic reply fragment catalog; each entry states its required authored slots. */
+export const NARRATION_FRAGMENTS: Readonly<Record<string, Readonly<{ slots: readonly string[] }>>> =
+  Object.freeze(
+    Object.fromEntries([
+      ...Object.keys(SUGGESTION_VERDICTS).map((key) => [
+        `verdict.${key}`,
+        Object.freeze({
+          slots: Object.freeze(key === 'deferred' || key === 'modified' ? ['alternative'] : []),
+        }),
+      ]),
+      ['verdict.cannot', Object.freeze({ slots: Object.freeze([]) })],
+      ...[
+        ...Object.keys(REASONS),
+        ...EXTRA_REASON_KEYS,
+        'duty',
+        'norm',
+        'rule',
+        'skill',
+        'voice',
+        'memory',
+      ].map((key) => [`reason.${key}`, Object.freeze({ slots: Object.freeze([]) })]),
     ]),
-    ['verdict.cannot', Object.freeze({ default: 'could not follow the advice', slots: Object.freeze([]) })],
-    ...[
-      ...Object.keys(REASONS),
-      ...EXTRA_REASON_KEYS,
-      'duty',
-      'norm',
-      'rule',
-      'skill',
-      'voice',
-      'memory',
-    ].map((key) => [`reason.${key}`, Object.freeze({ default: reasonLine(key), slots: Object.freeze([]) })]),
-  ]),
-);
+  );
 /** Closed projection meanings. Callers must pass only the admitted perspective's evidence. */
 export type ProjectionMeaning =
   | { kind: 'maternal-birth' }
@@ -235,10 +233,6 @@ export function describeWording(
     used?.add(key);
     return variants[fragments[key] ?? 0] ?? fallback;
   };
-  const verdict = (value: SuggestionVerdict) =>
-    fillTemplate(fragment(`verdict.${value}`, SUGGESTION_VERDICTS[value]), {
-      alternative: 'do something else',
-    });
   const reason = (value: string) => {
     const key =
       Object.hasOwn(REASONS, value) || (EXTRA_REASON_KEYS as readonly string[]).includes(value)
@@ -271,11 +265,11 @@ export function describeWording(
       const chosen = r.considered.find((c) => c.affordanceId === r.chosenAffordanceId);
       const motive = chosen?.terms.filter((t) => t.value > 0).sort((a, b) => b.value - a.value)[0];
       const why = motive?.source.startsWith('need:')
-        ? ` ${reason(motive.source)}`
+        ? ` ${reasonLine(motive.source)}`
         : motive?.source.startsWith('norm:')
-          ? ` ${fragment('reason.norm', 'I want to act according to a rule I hold.')}`
+          ? ' I want to act according to a rule I hold.'
           : motive?.source === 'memory'
-            ? ` ${fragment('reason.memory', 'I remember what happened before.')}`
+            ? ' I remember what happened before.'
             : '';
       return describe('decision.act', { action, why });
     }
@@ -299,7 +293,12 @@ export function describeWording(
       );
       const explanation = reason(r.reason);
       return describe('suggestion.resolved', {
-        verdict: fillTemplate(predicate, { alternative: r.counterOffer?.label ?? 'do something else' }),
+        verdict: fillTemplate(predicate, {
+          alternative:
+            (r.insteadAffordanceId || r.commitmentId) && r.counterOffer?.label
+              ? labelLine(r.counterOffer.label)
+              : 'do something else',
+        }),
         reason: explanation ? ` ${explanation}` : '',
       });
     }
@@ -334,7 +333,7 @@ export function describeWording(
         );
       for (const v of r.verdicts)
         parts.push(
-          `I ${verdict(v.verdict)} from ${displayName(v.voiceId, lex)}${v.count > 1 ? ` ${v.count} times` : ''}.`,
+          `I ${SUGGESTION_VERDICTS[v.verdict]} from ${displayName(v.voiceId, lex)}${v.count > 1 ? ` ${v.count} times` : ''}.`,
         );
       for (const h of r.habits)
         parts.push(

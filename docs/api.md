@@ -25,7 +25,7 @@ rules: [framework.md](framework.md). Package overview: [README](../packages/huma
 
 ### Constants
 
-- `NARRATION_FRAGMENTS` — Closed semantic fragment catalog.
+- `NARRATION_FRAGMENTS` — Closed semantic reply fragment catalog; each entry states its required authored slots.
 - `NARRATION_TEMPLATES` — Closed fallback templates for event meanings.
 
 ## portable-person.ts

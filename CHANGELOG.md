@@ -16,8 +16,8 @@ absolute links in sections, since they are copied into the release page.
 Engine: 4.12.0.
 
 - Extend the existing `lexicon.wordings` and per-person `lexicon.voices` route with closed `verdict.*` predicate and `reason.*` sentence keys. Missing entries use English defaults; unknown semantic keys refuse admission with a named `invalid-schema` error. There is no enable switch or second narration route.
-- Render suggestion reasons and distinguish recorded inability from refusal. Deferred and modified predicates receive the recorded alternative label; absent evidence uses neutral wording. The same renderer uses recorded fragment choices without read-time randomness or actor RNG changes.
-
+- Render suggestion reasons and distinguish recorded inability from refusal. Deferred and modified predicates receive the recorded alternative or commitment label in plain English; absent evidence uses neutral wording. The same renderer uses recorded fragment choices without read-time randomness or actor RNG changes.
+- Keep decision motives and aggregate daily verdicts in their built-in wording so reply objections cannot replace motives or invent an aggregate alternative. The public fragment catalog states required slots without claiming context-dependent defaults.
 - Prepare companion client 0.5.12 with exact HF 4.12.0 and kit 0.5.29 with that client peer. The central site runtime remains on its separately owned port.
 
 Migration: `suggestion.resolved` templates must retain both `{verdict}` and `{reason}`. Verdicts remain first-person predicates, with `{alternative}` required for deferred/modified entries; reasons are complete sentences. Move host verdict/reason tables into the phrasebook and remove index-based host selection. Older engine builds require a fresh run under the existing 4.x policy. Publication and Rope adoption require separate receipts.
