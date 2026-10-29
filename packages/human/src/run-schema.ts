@@ -187,8 +187,11 @@ export type Payloads = {
   'retelling.requested': {
     teller: PersonId;
     listener: PersonId;
-    gistIds: readonly Id[];
+    /** Omit to select the teller’s salient gists; an empty list selects none. */
+    gistIds?: readonly Id[];
     placeIds?: readonly Id[];
+    /** Maximum items, an integer from 0 through 3; defaults to 3. */
+    limit?: number;
   };
   'contradiction.received': PersonEvidence & { sourceId: Id; prop: Id; value: boolean; reporterId?: Id };
   'fact.confirmed': PersonEvidence & { prop: Id; value: boolean; observationId: Id };

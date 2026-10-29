@@ -5380,8 +5380,9 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
           fields: {
             teller: { optional: false, shape: { kind: 'scalar', name: 'PersonId' } },
             listener: { optional: false, shape: { kind: 'scalar', name: 'PersonId' } },
-            gistIds: { optional: false, shape: { kind: 'array', element: { kind: 'scalar', name: 'Id' } } },
+            gistIds: { optional: true, shape: { kind: 'array', element: { kind: 'scalar', name: 'Id' } } },
             placeIds: { optional: true, shape: { kind: 'array', element: { kind: 'scalar', name: 'Id' } } },
+            limit: { optional: true, shape: { kind: 'number' } },
           },
         },
       },
@@ -6349,13 +6350,14 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
                 teller: { optional: false, shape: { kind: 'scalar', name: 'PersonId' } },
                 listener: { optional: false, shape: { kind: 'scalar', name: 'PersonId' } },
                 gistIds: {
-                  optional: false,
+                  optional: true,
                   shape: { kind: 'array', element: { kind: 'scalar', name: 'Id' } },
                 },
                 placeIds: {
                   optional: true,
                   shape: { kind: 'array', element: { kind: 'scalar', name: 'Id' } },
                 },
+                limit: { optional: true, shape: { kind: 'number' } },
               },
             },
           },

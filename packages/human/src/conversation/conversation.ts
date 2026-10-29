@@ -294,20 +294,20 @@ export const conversationOwner: ConversationOwner = {
     if (input.teller !== context.speaker.id || context.person !== input.teller)
       throw new RangeError('Retelling speaker mismatch');
     if (input.teller === input.listener) return [];
-    if (new Set(input.gistIds).size !== input.gistIds.length)
+    if (input.gistIds && new Set(input.gistIds).size !== input.gistIds.length)
       throw new RangeError('Duplicate requested gist');
-    const requested = new Set(input.gistIds);
-    for (const id of requested)
+    const requested = input.gistIds === undefined ? undefined : new Set(input.gistIds);
+    for (const id of requested ?? [])
       if (!context.speaker.memory.gists.some((g) => g.id === id)) throw new RangeError('Unknown gist');
     return context.speaker.memory.gists
       .filter(
         (g) =>
-          requested.has(g.id) &&
+          (requested === undefined || requested.has(g.id)) &&
           g.salience >= 0.1 &&
           (!input.placeIds || (g.placeId !== undefined && input.placeIds.includes(g.placeId))),
       )
       .sort((a, b) => b.salience - a.salience || Number(a.id.slice(1)) - Number(b.id.slice(1)))
-      .slice(0, 3)
+      .slice(0, input.limit ?? 3)
       .map((g) => ({
         id: `${context.causes[0] ?? input.teller}:gist:${g.id}`,
         data: { kind: 'gist', sourceGistId: g.id, gist: cloneData(g) as Gist },

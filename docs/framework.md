@@ -16,6 +16,10 @@ The 3.x reference is kept at [v3.2.0](https://github.com/adam0white/human-framew
 
 `inspect` selects `affect` (mood and current named emotions) and `expectations` (learned action/target expectations) during pending or active work. Host and self receive detached readings. Other observers receive `unobserved`. `preview.select` requests these same faculties at its conditional endpoint through the inspection projector; another-person previews keep private faculties unobserved. No read changes state or draws RNG.
 
+## Retelling
+
+`retelling.requested` uses the existing communication boundary. Omit `gistIds` to select the teller’s own salient gists; an explicit empty list selects none. `placeIds` filters eligible gists and `limit` accepts an integer from 0 through 3, defaulting to 3. A request alone does not make anyone hear it: the host reports actual emission and reception through `communication.resolved`. Duplicate or unknown explicit gist IDs are refused.
+
 ## Narration and portable roles
 
 HF records wording when an event happens. A separate seeded stream for each person and meaning chooses a phrase, excluding the last two choices. The person's mood, trust in the advising voice and habit strength shape the length of the phrase. This is an authored style heuristic; it does not change decisions or the actor's random stream. Reading or previewing a run does not draw new wording.
