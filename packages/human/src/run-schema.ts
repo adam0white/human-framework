@@ -339,7 +339,13 @@ export type RunEvent = {
   causeIds: readonly Id[];
   data: EventData;
   narration: readonly RenderedLine[];
-  wording?: { key: string; occurrence: number; index: number; context: WordingContext };
+  wording?: {
+    key: string;
+    occurrence: number;
+    index: number;
+    context: WordingContext;
+    fragments?: Record<string, number>;
+  };
 };
 
 export type Phase = 0 | 1 | 2 | 3 | 4 | 5 | 6;
@@ -2143,7 +2149,7 @@ export type InitialReview = { style: ReviewStyle; styleSource?: Id; atMsOfDay: D
 export type WordingContext = { mood: Signed; trust: Unit; habit: Unit };
 export type WordingSequence = { rng: RngState; occurrence: number; recent: readonly number[] };
 export type Lexicon = {
-  /** Reviewed alternatives for keys in NARRATION_TEMPLATES; same named slots. */
+  /** Reviewed alternatives for keys in NARRATION_TEMPLATES or NARRATION_FRAGMENTS; same named slots. */
   wordings?: Record<string, readonly string[]>;
   /** Per-person partial overrides; missing keys use wordings, then built-in templates. */
   voices?: Record<Id, Record<string, readonly string[]>>;

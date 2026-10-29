@@ -2,6 +2,7 @@
 
 export { projectChapterClock } from './chapter-clock.ts';
 export { DEFAULT_NORMS } from './conscience/catalog.ts';
+export { NARRATION_FRAGMENTS } from './narrate/literal.ts';
 export { NARRATION_TEMPLATES } from './narrate/templates.ts';
 export type {
   PortableAdmission,

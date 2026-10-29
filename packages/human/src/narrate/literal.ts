@@ -31,7 +31,7 @@ const LABELS: Readonly<Record<string, string>> = {
   serve: 'helping others',
   'make-up': 'a missed commitment to complete later',
 };
-const SUGGESTION_VERDICTS: Readonly<Record<SuggestionVerdict, string>> = {
+export const SUGGESTION_VERDICTS: Readonly<Record<SuggestionVerdict, string>> = {
   assented: 'accepted the advice',
   complied: 'decided to follow the advice',
   deferred: 'put off acting on the advice',
@@ -48,7 +48,7 @@ export function labelLine(label: string): string {
   }
   return label;
 }
-const REASONS: Readonly<Record<string, string>> = {
+export const REASONS: Readonly<Record<string, string>> = {
   dead: 'The person has died.',
   invalid: 'That action does not make sense.',
   break: 'I cannot do that during this breakdown.',
@@ -68,6 +68,19 @@ const REASONS: Readonly<Record<string, string>> = {
   'need:bladder': 'I need to use the toilet first.',
   'need:survival': 'I need to meet an urgent bodily need first.',
 };
+export const EXTRA_REASON_KEYS = [
+  'need:relief',
+  'need:safety',
+  'need:belonging',
+  'need:autonomy',
+  'need:esteem',
+  'need:competence',
+  'need:leisure',
+  'need:meaning',
+  'forecast:body',
+  'commitment',
+  'goal',
+] as const;
 export function reasonLine(reason: string): string {
   const known = Object.hasOwn(REASONS, reason) ? REASONS[reason] : undefined;
   if (known !== undefined) return known;
@@ -89,6 +102,29 @@ export function reasonLine(reason: string): string {
       return '';
   }
 }
+/** Closed semantic reply fragment catalog; each entry states its required authored slots. */
+export const NARRATION_FRAGMENTS: Readonly<Record<string, Readonly<{ slots: readonly string[] }>>> =
+  Object.freeze(
+    Object.fromEntries([
+      ...Object.keys(SUGGESTION_VERDICTS).map((key) => [
+        `verdict.${key}`,
+        Object.freeze({
+          slots: Object.freeze(key === 'deferred' || key === 'modified' ? ['alternative'] : []),
+        }),
+      ]),
+      ['verdict.cannot', Object.freeze({ slots: Object.freeze([]) })],
+      ...[
+        ...Object.keys(REASONS),
+        ...EXTRA_REASON_KEYS,
+        'duty',
+        'norm',
+        'rule',
+        'skill',
+        'voice',
+        'memory',
+      ].map((key) => [`reason.${key}`, Object.freeze({ slots: Object.freeze([]) })]),
+    ]),
+  );
 /** Closed projection meanings. Callers must pass only the admitted perspective's evidence. */
 export type ProjectionMeaning =
   | { kind: 'maternal-birth' }
@@ -181,12 +217,29 @@ type WordingKey = keyof typeof NARRATION_TEMPLATES;
 export function describeWording(
   d: DeepReadonly<EventData>,
   lex: DeepReadonly<Lexicon>,
+  person?: string,
+  fragments: Readonly<Record<string, number>> = {},
+  used?: Set<string>,
 ): { key: string; slots: Record<string, string>; templates: readonly string[] } | undefined {
   const describe = (key: WordingKey, slots: Record<string, string> = {}) => ({
     key,
     slots,
     templates: NARRATION_TEMPLATES[key],
   });
+  // Semantic fragments use recorded event choices; rendering draws no randomness.
+  const fragment = (key: string, fallback: string) => {
+    const variants = authoredWordings(lex, person, key);
+    if (!variants) return fallback;
+    used?.add(key);
+    return variants[fragments[key] ?? 0] ?? fallback;
+  };
+  const reason = (value: string) => {
+    const key =
+      Object.hasOwn(REASONS, value) || (EXTRA_REASON_KEYS as readonly string[]).includes(value)
+        ? value
+        : (value.split(':')[0] ?? value);
+    return fragment(`reason.${key}`, reasonLine(value));
+  };
   switch (d.kind) {
     case 'review': {
       const r = d.record;
@@ -231,8 +284,24 @@ export function describeWording(
         speaker: displayName(d.conversation.speaker, lex),
         listener: displayName(d.conversation.listener, lex),
       });
-    case 'suggestion-resolved':
-      return describe('suggestion.resolved', { verdict: SUGGESTION_VERDICTS[d.resolution.verdict] });
+    case 'suggestion-resolved': {
+      const r = d.resolution;
+      const key = r.verdict === 'refused' && r.kind === 'cannot' ? 'verdict.cannot' : `verdict.${r.verdict}`;
+      const predicate = fragment(
+        key,
+        key === 'verdict.cannot' ? 'could not follow the advice' : SUGGESTION_VERDICTS[r.verdict],
+      );
+      const explanation = reason(r.reason);
+      return describe('suggestion.resolved', {
+        verdict: fillTemplate(predicate, {
+          alternative:
+            (r.insteadAffordanceId || r.commitmentId) && r.counterOffer?.label
+              ? labelLine(r.counterOffer.label)
+              : 'do something else',
+        }),
+        reason: explanation ? ` ${explanation}` : '',
+      });
+    }
     case 'commitment-changed':
       return describe('commitment.changed', {
         label: labelLine(d.after.label ?? d.after.kind),
@@ -328,7 +397,7 @@ export function describeWording(
 export const rendererOwner: RendererOwner = {
   render(event, perspective, lexicon) {
     if (!visible(event, perspective)) return [];
-    const descriptor = describeWording(event.data, lexicon);
+    const descriptor = describeWording(event.data, lexicon, event.person, event.wording?.fragments);
     if (!descriptor) return [];
     const authored =
       event.wording?.key === descriptor.key

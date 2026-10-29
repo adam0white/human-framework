@@ -353,8 +353,9 @@ one seeded stream and a recent-choice window for each person and semantic key.
 paginating does not consume randomness. Choices never consume actor RNG.
 
 Games pass reviewed phrasebooks in `RunSpec.definitions.lexicon.wordings` and
-partial per-person overrides in `lexicon.voices`. Both use the keys exported by
-`NARRATION_TEMPLATES` and must retain the exact named slots. Missing keys use the
+partial per-person overrides in `lexicon.voices`. Both use the closed keys exported by
+`NARRATION_TEMPLATES` (event frames) and `NARRATION_FRAGMENTS` (predicates and
+reasons), and must retain the exact named slots. Missing keys use the
 plain-English defaults through the same selection route. For example:
 
 ```ts
@@ -367,10 +368,10 @@ lexicon.voices = {
       'I have decided to {action}.{why}',
     ],
     'suggestion.resolved': [
-      'I {verdict}.',
-      'After considering it, I {verdict}.',
-      'This time, I {verdict}.',
-      'I {verdict} after thinking it over.',
+      'I {verdict}.{reason}',
+      'After considering it, I {verdict}.{reason}',
+      'This time, I {verdict}.{reason}',
+      'I {verdict} after thinking it over.{reason}',
     ],
   },
 };
@@ -382,15 +383,71 @@ advice` again. Host phrases should speak in the person's first person and must
 not claim divine acceptance or a religious ruling. Norm reasons describe only
 the person's own understanding.
 
-Phrasebooks replace the outer event templates and action forms. They do not yet
-replace the built-in verdict predicates, label expansions, reason sentences,
-daily-summary fragments or inspection/chronicle-change projections. Those remain
-plain English from the same renderer. Extending that vocabulary through the
-existing lexicon is a dated follow-up under the roadmap's display-module item,
-with a 2026-11-03 checkpoint; there is no second narration route or opt-in switch.
+Phrasebooks also replace verdict predicates and reason sentences through the same
+`wordings` and `voices` tables. This faculty is always on. Add at least four
+distinct alternatives under a closed semantic key; omitted keys use plain English.
+Unknown keys refuse admission with `invalid-schema` and a message naming the key.
+For example, a person's table may contain:
+
+```ts
+// Add these fragments to the same person's table.
+const fragments = {
+  'verdict.complied': [
+    'will do it if you insist',
+    'will do it, though I disagree',
+    'will follow your request reluctantly',
+    'will do as you ask, despite my doubts',
+  ],
+  'verdict.deferred': [
+    'will consider it after dealing with “{alternative}”',
+    'will first attend to “{alternative}”',
+    'have put “{alternative}” ahead of the request',
+    'will deal with “{alternative}” before considering it again',
+  ],
+  'reason.need:rest': [
+    'I need rest.',
+    'I need to rest first.',
+    'I need time to recover.',
+    'I need a pause to recover.',
+  ],
+};
+lexicon.voices = { ...lexicon.voices, selim: { ...lexicon.voices?.selim, ...fragments } };
+```
+
+Verdict keys are `verdict.assented`, `verdict.complied`, `verdict.deferred`,
+`verdict.modified`, `verdict.refused`, `verdict.commanded` and `verdict.cannot`.
+The last describes recorded inability; ordinary refusal uses `verdict.refused`.
+Deferred and modified predicates require `{alternative}`. It contains the recorded
+counter-offer label only when a selected alternative or commitment was recorded.
+Placeholder labels such as `later` use the neutral `do something else` fallback.
+Known labels expand to plain English (for example, `Fajr` becomes `the dawn
+prayer`). Labels can be noun phrases; use a frame such as the quoted-label
+examples above rather than assuming they follow `I` as a verb. Other
+verdicts have no slots. Reason keys use `reason.` followed by a catalogued exact
+reason or family, such as `reason.need:rest`, `reason.distrust`, `reason.norm` or
+`reason.skill`. The exported `NARRATION_FRAGMENTS` catalog lists every admitted key and its slots.
+Reason variants are complete sentences without slots.
+
+The outer `suggestion.resolved` template must now retain both `{verdict}` and
+`{reason}`. The renderer adds a leading space to a nonempty reason; an unknown
+engine reason renders as an empty string. Game text never needs to parse reason
+codes or choose a phrase from an event index. Each used fragment receives a
+recorded choice through the event-time selector. Reads reuse those choices and
+consume no randomness. Partial person voices fall through to run wordings and
+then the English defaults for each fragment.
+
+Migration: add `{reason}` to existing `suggestion.resolved` templates. Move host
+verdict and reason tables into the lexicon and remove the host adapter. Keep the
+predicate grammar (`I {verdict}.`), including `{alternative}` where required.
+Current engine archives replay exactly; archives from older engine builds require
+a fresh run under the existing 4.x policy. Decision motives and aggregate daily
+verdicts keep their built-in wording: a motive is not an objection, and an
+aggregate does not retain each reply’s alternative. Label expansions, other
+daily-summary fragments and inspection/chronicle-change projections remain
+built-in English.
 
 The window excludes the two previous alternatives for each person and meaning.
-Every built-in key has at least four alternatives. Authored tables must also
+Every built-in event frame has at least four alternatives. Authored tables must also
 contain at least four distinct variants; shorter tables are refused at admission.
 With four variants, excluding two leaves at least two choices on every draw;
 excluding three would force a repeating four-line cycle. Unrelated events do not

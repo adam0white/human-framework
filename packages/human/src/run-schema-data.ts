@@ -10281,6 +10281,10 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
           kind: 'object',
           fields: {
             context: { optional: false, shape: { kind: 'ref', name: 'WordingContext' } },
+            fragments: {
+              optional: true,
+              shape: { kind: 'dict', key: { kind: 'string' }, value: { kind: 'number' } },
+            },
             key: { optional: false, shape: { kind: 'string' } },
             occurrence: { optional: false, shape: { kind: 'number' } },
             index: { optional: false, shape: { kind: 'number' } },
