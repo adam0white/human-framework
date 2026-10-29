@@ -65,7 +65,7 @@ rules: [framework.md](framework.md). Package overview: [README](../packages/huma
 - `ActorActivity` — `{ id: Id; offer: Offer; needsAtStart: Partial<Record<NeedId, Unit>>; startedAt: Time; endsAt: Time; decisionId: Id; intention: string; su...`
 - `ActualConsequences` — `{ psychological?: Partial<Record<PsychologicalNeed, Signed>>; consumed?: ConsumedAmounts; exerted?: ExertionAmounts; injury?: InjuryEvide...`
 - `AdviceReading` — `readonly (StandingAdvice & { effectiveWeight: Unit; })[]`
-- `AffectReading` — `Pick<AffectState, 'mood' | 'emotions'>`
+- `AffectReading` — Felt condition, without internal decay timestamps or parameters.
 - `AuthoredPersonState` — `{ traits: Traits; body: InitialBody; needs: InitialNeeds; skills: readonly InitialSkill[]; heldNorms: readonly HeldNorm[]; beliefs: reado...`
 - `BeliefReading` — `Omit<Belief, 'logOdds'> & { credence: Unit; }`
 - `BodyForecastLoad` — `{ label: string; durationMs: DurationMs; load: BodyLoad; }`

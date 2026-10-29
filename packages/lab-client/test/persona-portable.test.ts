@@ -124,6 +124,9 @@ describe('portable shelf contract', () => {
     try {
       delete readers.goodhands;
       expect(() => claimPortablePerson(parent, 'voice')).toThrow(/read-only.*goodhands/);
+      readers.goodhands = { client: '0.5.5', perPersonSkips: true };
+      expect(claimPortablePerson(parent, 'voice').portableClaim).toStrictEqual({ game: 'voice' });
+      expect(parent.transfer.portableClaim).toBeUndefined();
     } finally {
       if (ready) readers.goodhands = ready;
     }

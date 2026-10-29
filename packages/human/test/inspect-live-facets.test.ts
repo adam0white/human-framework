@@ -137,7 +137,12 @@ test('live affect and expectations use detached host/self reads and keep other m
         select: 'affect',
         value: {
           mood: before.current.people.ada?.affect.mood,
-          emotions: before.current.people.ada?.affect.emotions,
+          emotions: before.current.people.ada?.affect.emotions.map(({ id, intensity, cause, targetId }) => ({
+            id,
+            intensity,
+            cause,
+            targetId,
+          })),
         },
       },
       { select: 'expectations', value: before.current.people.ada?.memory.expectations },
@@ -149,6 +154,14 @@ test('live affect and expectations use detached host/self reads and keep other m
       inspect(current, { perspective: { kind: 'person', observer: 'ada' }, people: ['ada'], select }),
     );
     expect(self.people[0]?.parts).toStrictEqual(parts);
+    const selfSummary = need(
+      inspect(current, {
+        perspective: { kind: 'person', observer: 'ada' },
+        people: ['ada'],
+        select: ['summary', 'affect'],
+      }),
+    );
+    expect(selfSummary.people[0]?.parts[0]?.value).toStrictEqual({ name: 'Ada' });
     const other = need(
       inspect(current, { perspective: { kind: 'person', observer: 'bora' }, people: ['ada'], select }),
     );

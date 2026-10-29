@@ -419,7 +419,11 @@ export type ImpressionReading = {
   targetId: PersonId;
   cues: readonly { key: string; value: number; confidence: Unit; seenAt?: Time }[];
 };
-export type AffectReading = Pick<AffectState, 'mood' | 'emotions'>;
+/** Felt condition, without internal decay timestamps or parameters. */
+export type AffectReading = {
+  mood: AffectState['mood'];
+  emotions: readonly Pick<Emotion, 'id' | 'intensity' | 'cause' | 'targetId'>[];
+};
 export type ConditionReading = { outwardSigns: OutwardSigns; selfReport: OutwardSigns };
 export type PreviewResult = {
   reading?: PersonView;
@@ -2810,7 +2814,7 @@ export type SelfParts = {
   traits: Knowledge<Traits>;
   heldNorms: readonly HeldNorm[];
   skills: readonly SkillReading[];
-  summary: { name: string; mood: AffectState['mood'] };
+  summary: { name: string };
   body: SelfBody;
   beliefs: readonly BeliefReading[];
   sourceTrust: Readonly<Record<Id, Unit>>;
