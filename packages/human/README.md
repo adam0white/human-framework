@@ -184,7 +184,7 @@ This immutable, run-scoped vocabulary is retained in exports and replay. An ordi
 
 ## Archives and daily steps (4.6)
 
-`exportRun` writes archive format 5. Each event and receipt journal in `current` contains its newest 64 entries. The complete accepted input log remains in `history`; actor memory keeps its own retention policy. A snapshot's journals are recent diagnostics, so their lengths do not equal lifetime allocation counters. Live `step` results and inspections keep their ordinary semantics.
+`exportRun` writes archive format 7. Each event and receipt journal in `current` contains its newest 64 entries. The complete accepted input log remains in `history`; actor memory keeps its own retention policy. A snapshot's journals are recent diagnostics, so their lengths do not equal lifetime allocation counters. Live `step` results and inspections keep their ordinary semantics.
 
 `restoreRun` reconstructs complete private journals and deduplication indexes by executing the accepted history. It checks the reconstructed actor, pending requests, active work, continuations and retained snapshot before returning a run. Restore therefore costs approximately a replay, and its cost grows with total accepted history. `replay` still reproduces a current-version export exactly. Archives from another package/build/schema are refused; no old-export conversion is provided.
 
@@ -339,3 +339,48 @@ Sources: [Netlib fdlibm](https://netlib.org/fdlibm/) and
  * ====================================================
 
 ```
+
+
+### Narration and game phrasebooks
+
+Every narrated live event receives its wording choice when emitted. The Run owns
+one seeded stream and a recent-choice window for each person and semantic key.
+`inspect`, detached `preview` and chronicle output share the renderer. Reading or
+paginating does not consume randomness. Choices never consume actor RNG.
+
+Games pass reviewed phrasebooks in `RunSpec.definitions.lexicon.wordings` and
+partial per-person overrides in `lexicon.voices`. Both use the keys exported by
+`NARRATION_TEMPLATES` and must retain the exact named slots. Missing keys use the
+plain-English defaults through the same selection route. For example:
+
+```ts
+lexicon.voices = {
+  selim: {
+    'decision.act': ['I will {action}.{why}', 'I choose to {action}.{why}'],
+    'suggestion.resolved': ['I {verdict}.', 'After considering it, I {verdict}.'],
+  },
+};
+```
+
+The `{verdict}` slot is a complete grammatical predicate, such as `accepted the
+advice`, `complied with the advice` or `refused the advice`. Do not append `the
+advice` again. Host phrases should speak in the person's first person and must
+not claim divine acceptance or a religious ruling. Norm reasons describe only
+the person's own understanding.
+
+The window excludes three previous alternatives, or `n-1` when a phrasebook has
+fewer than four. A singleton necessarily repeats. Use at least four distinct
+alternatives for a full three-choice window. Repetition is tracked per person
+and meaning, so unrelated events do not clear that person's window.
+
+At emission, mood, trust in the advising voice and strength of the habit for the
+chosen act are captured in broad tenth bands. Low mood, distrust and practised
+acts favour shorter alternatives; the converse favours longer ones. This is a
+bounded style heuristic, not a claim about psychology. It changes narration only.
+The captured evidence travels with the chosen phrase for exact replay; readers
+never consult later or hidden actor state. Cross-person forecasts still use
+only the observer's admitted impressions.
+
+Archive format 7 deliberately changes replay identity after format 6. Start
+fresh for older archives. The canonical hash algorithm and its golden tests
+remain unchanged.

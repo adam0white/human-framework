@@ -45,14 +45,34 @@ const IRREGULAR_PAST: Record<string, string> = {
   wake: 'woke',
 };
 
+// Only double final consonants for known single-syllable verbs; spelling alone
+// cannot reliably distinguish stressed endings such as "open" and "plan".
+const DOUBLED_FINAL = new Set([
+  'beg',
+  'chat',
+  'drop',
+  'grab',
+  'hop',
+  'hug',
+  'jog',
+  'nod',
+  'plan',
+  'shop',
+  'skip',
+  'slip',
+  'stop',
+  'tap',
+]);
 function regularPast(verb: string): string {
   if (IRREGULAR_PAST[verb]) return IRREGULAR_PAST[verb] as string;
   if (verb.endsWith('e')) return `${verb}d`;
   if (/[^aeiou]y$/.test(verb)) return `${verb.slice(0, -1)}ied`;
+  if (DOUBLED_FINAL.has(verb)) return `${verb}${verb.at(-1)}ed`;
   return `${verb}ed`;
 }
 
 function regularGerund(verb: string): string {
+  if (DOUBLED_FINAL.has(verb)) return `${verb}${verb.at(-1)}ing`;
   if (verb.endsWith('ie')) return `${verb.slice(0, -2)}ying`;
   if (verb.endsWith('e') && !verb.endsWith('ee') && verb.length > 2) return `${verb.slice(0, -1)}ing`;
   return `${verb}ing`;

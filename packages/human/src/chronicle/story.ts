@@ -13,25 +13,21 @@ export const STORY_DEFAULTS = {
   moodDelta: 0.1,
   maxLines: 12,
 };
+/** Project retained day events, preserving their event-time wording choices. */
 export function narrateChronicle(
-  records: readonly DeepReadonly<DayRecord>[],
-  person: string,
+  events: readonly DeepReadonly<RunEvent>[],
   perspective: DeepReadonly<Perspective>,
   lexicon: DeepReadonly<Lexicon>,
   seed: number,
 ): readonly string[] {
-  const events: DeepReadonly<RunEvent>[] = records.map((record) => ({
-    id: `chronicle:${person}:${record.day}`,
-    at: (record.day + 1) * 86400000,
-    phase: 6,
-    person,
-    causeIds: [],
-    data: { kind: 'day-closed', record },
-    narration: [],
-  }));
-  return narrate(events, perspective, lexicon, seed)
+  return narrate(
+    events.filter((event) => event.data.kind === 'day-closed'),
+    perspective,
+    lexicon,
+    seed,
+  )
     .slice(0, STORY_DEFAULTS.maxLines)
-    .map((l) => l.text);
+    .map((line) => line.text);
 }
 export interface ChronicleChange {
   kind: 'unprompted' | 'still-prompted' | 'started' | 'stopped' | 'trust' | 'mood';

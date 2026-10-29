@@ -336,7 +336,7 @@ export type RunEvent = {
   causeIds: readonly Id[];
   data: EventData;
   narration: readonly RenderedLine[];
-  wording?: { key: string; occurrence: number; index: number };
+  wording?: { key: string; occurrence: number; index: number; context: WordingContext };
 };
 
 export type Phase = 0 | 1 | 2 | 3 | 4 | 5 | 6;
@@ -447,7 +447,7 @@ export type HistoryPool = {
 
 export type RunArchive = {
   format: 'hf-run';
-  version: 6;
+  version: 7;
   engine: { package: string; build: Hash; schema: Hash };
   host: { id: Id; edition: Id; schema: Id };
   initial: {
@@ -2087,7 +2087,9 @@ export type InitialPromptings = {
   responses: readonly PromptingResponse[];
 };
 export type InitialReview = { style: ReviewStyle; styleSource?: Id; atMsOfDay: DurationMs };
-export type WordingSequence = { rng: RngState; occurrence: number; last: number };
+/** Event-time evidence used only for wording, never for actor decisions. */
+export type WordingContext = { mood: Signed; trust: Unit; habit: Unit };
+export type WordingSequence = { rng: RngState; occurrence: number; recent: readonly number[] };
 export type Lexicon = {
   /** Reviewed alternatives for keys in NARRATION_TEMPLATES; same named slots. */
   wordings?: Record<string, readonly string[]>;

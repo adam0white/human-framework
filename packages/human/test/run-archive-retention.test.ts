@@ -1,4 +1,4 @@
-/** SCOPE: format-six cold archives bound duplicated journals, preserve every
+/** SCOPE: Current-format cold archives bound duplicated journals, preserve every
  * accepted input, reconstruct exact replay and continue with complete deduplication.
  */
 import { expect, it } from 'vitest';
@@ -18,7 +18,7 @@ it('bounds duplicate journals while retaining the complete replay and continuati
   for (let revision = 1; revision <= 192; revision++)
     accepted(step(run, { until: revision, inputs: [change(revision)] }));
   const archive = JSON.parse(JSON.stringify(exportRun(run)));
-  expect(archive.version).toBe(6);
+  expect(archive.version).toBe(7);
   expect(readRunHistory(archive).flatMap((transaction) => transaction.inputs)).toHaveLength(192);
   expect(archive.current.receipts.inputs.length).toBeLessThanOrEqual(64);
   expect(archive.current.receipts.dispositions.length).toBeLessThanOrEqual(64);

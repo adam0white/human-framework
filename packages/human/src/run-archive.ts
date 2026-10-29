@@ -1,7 +1,7 @@
 /** SCOPE: current4 archive envelope, export-time canonical hashes and C0-owned
  * infrastructure admission. Owners still validate their slices and continuations;
- * format six interns complete history and bounds duplicated journals; cold recovery
- * executes complete inputs.
+ * format seven interns complete history, bounds duplicated journals and records
+ * always-on wording; cold recovery executes complete inputs.
  * No repair, migration, historical hash on every frame or legacy fallback.
  */
 import { checkRunSpec } from './run-admission.ts';

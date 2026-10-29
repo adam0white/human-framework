@@ -17,7 +17,7 @@ describe('one semantic renderer', () => {
     const before = JSON.stringify(event);
     const first = rendererOwner.render(event, { kind: 'person', observer: 'a' }, lexicon, 42);
     expect(first[0]?.text).toContain('my call');
-    expect(first[0]?.text).toMatch(/Next time/);
+    expect(first[0]?.text).toMatch(/[Nn]ext time/);
     expect(rendererOwner.render(event, { kind: 'person', observer: 'a' }, lexicon, 42)).toEqual(first);
     expect(JSON.stringify(event)).toBe(before);
   });

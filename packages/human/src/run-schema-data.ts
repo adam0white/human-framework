@@ -887,12 +887,20 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
       entries: { optional: false, shape: { kind: 'array', element: { kind: 'ref', name: 'RoutineEntry' } } },
     },
   },
+  WordingContext: {
+    kind: 'object',
+    fields: {
+      mood: { optional: false, shape: { kind: 'scalar', name: 'Signed' } },
+      trust: { optional: false, shape: { kind: 'scalar', name: 'Unit' } },
+      habit: { optional: false, shape: { kind: 'scalar', name: 'Unit' } },
+    },
+  },
   WordingSequence: {
     kind: 'object',
     fields: {
       rng: { optional: false, shape: { kind: 'ref', name: 'RngState' } },
       occurrence: { optional: false, shape: { kind: 'number' } },
-      last: { optional: false, shape: { kind: 'number' } },
+      recent: { optional: false, shape: { kind: 'array', element: { kind: 'number' } } },
     },
   },
   Lexicon: {
@@ -10247,6 +10255,7 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
         shape: {
           kind: 'object',
           fields: {
+            context: { optional: false, shape: { kind: 'ref', name: 'WordingContext' } },
             key: { optional: false, shape: { kind: 'string' } },
             occurrence: { optional: false, shape: { kind: 'number' } },
             index: { optional: false, shape: { kind: 'number' } },
@@ -12428,7 +12437,7 @@ export const DATA_SHAPES: Readonly<Record<string, DataShape>> = {
     kind: 'object',
     fields: {
       format: { optional: false, shape: { kind: 'literal', value: 'hf-run' } },
-      version: { optional: false, shape: { kind: 'literal', value: 6 } },
+      version: { optional: false, shape: { kind: 'literal', value: 7 } },
       engine: {
         optional: false,
         shape: {

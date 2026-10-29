@@ -188,7 +188,7 @@ export function exportRun(run: T.Run): T.DeepReadonly<T.RunArchive> {
   const record = readKernel(run);
   const body = {
     format: 'hf-run' as const,
-    version: 6 as const,
+    version: 7 as const,
     engine: RUN_ENGINE,
     host: record.spec.host,
     initial: {
