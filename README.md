@@ -6,12 +6,12 @@ HF is a deterministic, explainable model of a simulated person, written in TypeS
 
 ## Status
 
-- **HF 4.0.0** is published ([GitHub release](https://github.com/adam0white/human-framework/releases/tag/v4.0.0), [release receipts](docs/releases.md)). It is one run API with every faculty always on; 3.x saves and exports are not read. Read the [CHANGELOG 4.0.0 migration section](CHANGELOG.md) before upgrading. HF 3.2.0 stays published for games that stay on 3.x.
+- **HF 4.x** uses one run API with every faculty always on. See the [changelog](CHANGELOG.md) and [release receipts](docs/releases.md) for version and publication details. Older archives can require a fresh start.
 - **Three in-site example games**, live at [human.adamwhite.work](https://human.adamwhite.work); more games built on HF are listed on [/games/](https://human.adamwhite.work/games/):
   - [Twice at the Well](https://human.adamwhite.work/colony/): a colony sim played side by side without and with HF.
   - [The Day You Say Nothing](https://human.adamwhite.work/voice/): you are a voice in one man's head; he may refuse you.
   - [The Night Watch](https://human.adamwhite.work/watch/): a village's night watch over generations, endless.
-- The central site's three games run on **HF 3.2.0**; the site's library version is 4.0.0. The live [release.json](https://human.adamwhite.work/release.json) names the deployed commit, both versions and `dirty:false`; receipts are in [docs/releases.md](docs/releases.md). Each external game names its own HF pin.
+- A 2026-10-29 audit of 20 live release manifests found 14 games reporting HF 4.x and six reporting 3.x. All audited manifests reported `dirty:false`. The next live audit is due 2026-11-03. Central Watch, Voice and Well report 3.2.0; Neighbours and Valley report 3.0.0; Child reports 3.2.0. See the [live status and remaining work](docs/hf4-game-needs.md#current-live-status).
 
 ## Quick start
 
@@ -32,24 +32,33 @@ npm install ./adam0white-human-framework-<version>.tgz
 
 ```ts
 import {
-  createCommunity,
   createPerson,
-  createVillage,
-  predict,
-  stepCommunity,
-  villagerSpec,
+  createRun,
+  exportRun,
+  inspect,
+  replay,
+  restoreRun,
+  step,
 } from '@adam0white/human-framework';
 
-const ids = ['ada', 'bora'];
-const people = ids.map((id, i) => createPerson(villagerSpec(id, id, 1 + i, { now: 6 * 60, others: ids })));
-const world = createVillage(people, { seed: 7 }); // a bundled example World
-const community = createCommunity(people);
-const ada = community.people[0]!;
-
-const ask = { voiceId: 'player', action: 'chat', strength: 0.6 };
-console.log(predict(ada, world.affordancesFor(ada), ask).verdict); // pure: no state change
-stepCommunity(community, world, 6 * 60 + 24 * 60, { suggestions: { ada: ask } });
-console.log(ada.trace.at(-1)?.narration); // why she did what she did
+// Outline: spec, ada, offers, morningNote, until, world and resolve are host-authored.
+// need() unwraps a successful { ok, value } result or throws on refusal.
+const run = need(createRun(spec)); // seed, start, definitions, lifecycle, world
+need(createPerson(run, ada)); // authored state: body, character, agenda, habits, norms...
+let result = need(step(run, { until, inputs: [offers, morningNote] }));
+while (result.boundary.type === 'world-required') {
+  // Ada chose an action. The host decides what actually happened and says so.
+  const resolutions = result.boundary.requests.map((request) => resolve(request, world));
+  result = need(step(run, { until, inputs: resolutions }));
+}
+const view = need(
+  inspect(run, {
+    perspective: { kind: 'person', observer: 'ada' },
+    people: ['ada'],
+    select: ['summary', 'events'],
+  }),
+);
+const save = exportRun(run); // JSON; restoreRun(save) continues it, replay(save) verifies it
 ```
 
 The [package README](packages/human/README.md) covers the host contract (your `World` offers actions, HF chooses, your world resolves outcomes), saves, versions and runnable [examples](packages/human/examples).

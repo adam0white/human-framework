@@ -22,3 +22,21 @@ it('shows public game descriptions and faculty labels', () => {
   expect(ordinary.textContent).toContain('landlord');
   expect(ordinary.textContent).toContain('Izmir');
 });
+
+it('shows each live pin and explains every retained 3.x game', async () => {
+  const { default: releases } = await import('../game-releases.json');
+  const ordinary = shelf();
+  for (const game of GAMES) {
+    const receipt = releases[game.id as keyof typeof releases];
+    expect(receipt.commit).toMatch(/^[a-f0-9]{40}$/);
+    const card = ordinary.querySelector(`li[value="${game.rank}"]`);
+    if (!card) throw new Error(`Missing card: ${game.id}`);
+    expect(card.textContent).toContain(`HF ${receipt.framework}`);
+    expect(card.querySelector('a[href*="release.json"]')?.getAttribute('href')).toBe(receipt.release);
+    if (receipt.framework.startsWith('3.')) {
+      expect('reason' in receipt && receipt.reason.length > 20).toBe(true);
+    }
+  }
+  expect(ordinary.textContent).toContain('HF 4.9/4.10 speed-up');
+  expect(ordinary.textContent).toContain('November 24, 2026');
+});

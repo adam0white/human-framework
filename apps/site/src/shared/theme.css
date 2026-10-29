@@ -159,3 +159,11 @@ button {
 html {
   font-size: clamp(16px, 12px + 0.75vw, 19px);
 }
+
+.game-release {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+}
+.game-release .game-line {
+  display: block;
+}

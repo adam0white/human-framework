@@ -1,10 +1,8 @@
 # Port one game to HF 4.x
 
-G1 recipe, 2026-10-27. Protocol control: exact **`@adam0white/human-framework@4.4.0`**. Current Stairwell integration target: exact **`@adam0white/human-framework@4.6.0`**.
-The [needs inventory](hf4-game-needs.md) owns framework gaps and dates.
-The owner accepts the all-games outcome; each host maintainer supplies delivery receipts.
-This recipe is documented and its published 4.4 public-run control passes. **The first whole-game port remains unproved.** Stairwell's catalogue, trust, forecast and G17 authored vocabulary prerequisites are published; the game bridge remains unproved.
-The control is not evidence that Stairwell, carryover, or all games have upgraded.
+G1 recipe, first written 2026-10-27. A 2026-10-29 audit of 20 live release manifests found 14 games reporting HF 4.x and six reporting 3.x. All audited manifests reported `dirty:false`. The next live audit is due 2026-11-03. See the [live status and remaining work](hf4-game-needs.md#current-live-status) and [performance findings](findings.md#hf-49-g7-perf-exact-simulation-lossless-history-encoding-2026-10-29). Game adoption, deployment and player acceptance have separate receipts.
+
+The 4.4 control and Stairwell 4.6 tuple below are historical examples, not current version recommendations. Use the target game's exact current package and SDK versions and prove their complete runtime graph. Current 4.9 archives use format 7; older archives require a fresh run.
 
 ## Glossary
 
@@ -14,6 +12,8 @@ The control is not evidence that Stairwell, carryover, or all games have upgrade
 - **Admission:** bringing an existing person into a run.
 
 ## Establish the host boundary
+
+The specific Stairwell version instructions in this section record the historical port evidence.
 
 Create one managed worktree per repo. Check processes and worktrees before choosing a game.
 Pass the repository's absolute path to the worktree helper, for example
@@ -195,3 +195,13 @@ Done: the owner accepts the game’s 4.x release receipt; nothing else counts.
 - Run `check:lane` before each signed commit; gated paths run full `check`. Use the repo's suite lock. Include the Codex trailer. Open a PR, request its one hosted `@codex review` and fix verified findings in the same PR.
 - Merge without `--delete-branch`. Require green `ci` on the exact merged commit before deploying. Verify live `/release.json` commit, framework pin and `dirty:false`. Keep the receipt separate from tests and owner acceptance.
 - Remove merged/pushed task worktrees and their merged local/origin branches. Stop only task-owned exact PIDs. Preserve patches and untracked files before removing dirty or unmerged work. End the report with each touched repo's worktree list.
+
+## Keep the central site pin table current
+
+The central listing and About pages read [`game-releases.json`](../apps/site/src/game-releases.json).
+It records each game's exact live HF pin, deployed commit, release URL and audit date.
+Read each host's `/release.json` after delivery. Hosts currently name the pin `framework`,
+`humanFramework` or `hf`; use the actual actor pin, not `frameworkLibrary`.
+Update the matching row and its audit date. Every retained 3.x row needs a plain-English
+reason and a dated next check when delivery is unverified. Central game pages read the same table.
+The build uses this checked-in snapshot and does not depend on live game hosts responding.

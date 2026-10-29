@@ -2,7 +2,36 @@
 
 Snapshot: 2026-10-27. Owner direction: [every game on 4.x, one game at a time](owner-directions-2026-10-18.md#2026-10-27--every-game-on-4x-one-game-at-a-time-adam-verbatim). Staying on 3.x is a temporary disposition. This inventory covers the fifteen games in the original disposition list, plus Smoke, Child and Left Hand. His Word and Three Days already run on 4.0.0 and are outside these eighteen.
 
-**What remains:** adopt the published 4.4 and 4.5 Stairwell contracts, finish the other shared needs below, then prove each game bridge and current-version export. G17 is delivered in 4.5; game adoption remains. This document is the needs inventory, not a migration or a release receipt. The owner accepts the eventual all-games outcome; each game's maintainer owns its port and delivery receipts. The HF director owns the framework contracts. Dates added here are proposed engineering targets, not accepted release promises. Existing roadmap dates retain their meaning.
+## Current live status
+
+A 2026-10-29 audit of 20 live release manifests found 14 games reporting HF 4.x and six reporting 3.x. All audited manifests reported `dirty:false`. The next live audit is due 2026-11-03.
+
+| Game        | Live HF pin                                              | Status / remaining work                                               |
+| ----------- | -------------------------------------------------------- | --------------------------------------------------------------------- |
+| murmur      | [4.8.0](https://murmur.adamwhite.work/release.json)      | On HF 4.x; player acceptance remains separate.                        |
+| stairwell   | [4.8.1](https://stairwell.adamwhite.work/release.json)   | On HF 4.x; player acceptance remains separate.                        |
+| pass        | [4.8.1](https://pass.adamwhite.work/release.json)        | On HF 4.x; player acceptance remains separate.                        |
+| glance      | [4.8.0](https://glance.adamwhite.work/release.json)      | On HF 4.x; player acceptance remains separate.                        |
+| watch       | [3.2.0](https://human.adamwhite.work/release.json)       | Central 4.x bridge and deployment unverified; audit again 2026-11-03. |
+| hearsay     | [4.8.0](https://hearsay.adamwhite.work/release.json)     | On HF 4.x; player acceptance remains separate.                        |
+| goodhands   | [4.8.1](https://goodhands.adamwhite.work/release.json)   | On HF 4.x; player acceptance remains separate.                        |
+| valley      | [3.0.0](https://valley.adamwhite.work/release.json)      | Stays on 3.x pending HF 4.9/4.10 speed-up.                            |
+| voice       | [3.2.0](https://human.adamwhite.work/release.json)       | Central 4.x bridge and deployment unverified; audit again 2026-11-03. |
+| well        | [3.2.0](https://human.adamwhite.work/release.json)       | Central 4.x bridge and deployment unverified; audit again 2026-11-03. |
+| warren      | [4.8.1](https://warren.adamwhite.work/release.json)      | On HF 4.x; player acceptance remains separate.                        |
+| repair      | [4.8.0](https://repair.adamwhite.work/release.json)      | On HF 4.x; player acceptance remains separate.                        |
+| neighbours  | [3.0.0](https://neighbours.adamwhite.work/release.json)  | 4.x deployment unverified; audit again 2026-11-03.                    |
+| rope        | [4.8.1](https://rope.adamwhite.work/release.json)        | On HF 4.x; player acceptance remains separate.                        |
+| commonstead | [4.8.1](https://commonstead.adamwhite.work/release.json) | On HF 4.x; player acceptance remains separate.                        |
+| smoke       | [4.8.0](https://smoke.adamwhite.work/release.json)       | On HF 4.x; player acceptance remains separate.                        |
+| word        | [4.0.0](https://word.adamwhite.work/release.json)        | On HF 4.x; player acceptance remains separate.                        |
+| child       | [3.2.0](https://child.adamwhite.work/release.json)       | Blocked until 2026-11-24 workload review.                             |
+| days        | [4.8.1](https://days.adamwhite.work/release.json)        | On HF 4.x; player acceptance remains separate.                        |
+| lefthand    | [4.8.0](https://lefthand.adamwhite.work/release.json)    | On HF 4.x; player acceptance remains separate.                        |
+
+The [4.9 measurements](findings.md#hf-49-g7-perf-exact-simulation-lossless-history-encoding-2026-10-29) missed the Child and Valley time budgets. A manifest reports a deployment's version; it does not establish player acceptance.
+
+The inventory below preserves the 2026-10-27 source snapshots, work items and proposed dates as historical evidence. Its version pins, status language and candidate targets are not a current deployment audit. The owner accepts the all-games outcome; each game maintainer owns its delivery receipts.
 
 ## Rules and evidence
 
@@ -15,7 +44,7 @@ Snapshot: 2026-10-27. Owner direction: [every game on 4.x, one game at a time](o
 
 A cheap scratch consumer used the actual npm 4.0.0 tarball and the unchanged runtime import lists from Voice's `sim/game.ts` and Watch's `sim/night.ts`. Voice lacks 18 of 19 imported runtime names; Watch lacks all 18. Module loading fails before game execution (`MINUTES_PER_DAY` and `finish`, respectively). This is a narrow API compatibility check, not a port or a performance proof. No probe is merged. The observer and quantity gaps are independently visible in [`run-preview.ts`](../packages/human/src/run-preview.ts), [`run-inspect.ts`](../packages/human/src/run-inspect.ts) and the published root exports. Smoke and Child already have stronger scratch migration evidence recorded in [findings](findings.md#hf-40-step-cost-before-release-2026-10-27); their known failures are reused. Other bridges receive source inspection only where a useful executable probe would require a full port. No playtests or panel runs were performed.
 
-## Shared work, ordered by games served
+## Historical shared work, ordered by games served
 
 Counts are named consumers, not claims that one change completes their migration. **Contract** means missing or incomplete HF surface; **proof** means the faculty exists and needs a focused run-level control or host adoption. Each behavior change gets its own behavior test and one headless control, with replay-hash coverage retained. No matrices.
 

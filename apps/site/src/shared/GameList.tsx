@@ -2,6 +2,7 @@ import { gameNavigation } from '@adam0white/lab-client';
 import { telemetryNotice } from '@adam0white/lab-kit';
 import { useEffect, useRef } from 'react';
 import { type Game, isExternal } from '../games.ts';
+import { GameVersion } from './GameVersion.tsx';
 import { sketchFor } from './sketches.tsx';
 
 /** The notebook cards for a list of games (home.css). */
@@ -45,6 +46,8 @@ export function GameList({ games }: { games: Game[] }) {
                 <span className="game-shows">{g.faculties.join(' · ')}</span>
               </span>
             </a>
+            <GameVersion id={g.id as Parameters<typeof GameVersion>[0]['id']} />
+            <a href={`/games/?game=${encodeURIComponent(g.id)}`}>About {g.name}</a>
           </li>
         ))}
       </ol>
