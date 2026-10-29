@@ -68,7 +68,7 @@ function validateCurrent(
   const wordingState: Pick<T.RunState, 'wording'> = { wording: {} };
   for (const event of state.events) {
     const selected = { ...event, wording: undefined as T.RunEvent['wording'] };
-    selectEventWording(selected, spec.definitions.lexicon, spec.seed, wordingState);
+    selectEventWording(selected, spec.definitions.lexicon, spec.seed, wordingState, event.wording?.context);
     if (!same(selected.wording, event.wording))
       return reject('$.current.events', 'wording choice differs from its seeded occurrence');
   }

@@ -11,15 +11,26 @@ version, stamped with build and schema hashes in `RUN_ENGINE`. See the version p
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
-## [4.9.0] — 2026-10-28
+## [4.9.0] — 2026-10-29
 
 Engine: 4.9.0.
 
 - Reduce numerical allocation while preserving exact operation order: reuse fixed quartic interpolation bases, replace integrator callback chains with same-order loops, and avoid copying discarded Character sampler metadata. Canonical JSON uses fewer temporary objects with identical bytes and refusal rules. Chronicle updates share only validated deeply frozen closed-day records; mutable inputs and descendants still receive all validation.
 - Host event inspection indexes first-match event ownership once per query while retaining complete history, projection order and cursor behavior.
-- **Archive format 6 (deliberate 4.x format change):** accepted history is a canonical dictionary of scalar and structural nodes instead of repeated JSON subtrees. Every accepted input and optional checkpoint remains present. Highly repetitive histories that exceed the dictionary amplification limit use a canonical literal root, so admitted runs stay exportable without weakening decoder limits. `readRunHistory(archive)` is the single pure decoder for tools that inspect accepted transactions. Restore and replay still execute the complete decoded history. The current actor snapshot and the format-5 journal retention policy remain. Format 5 and prior engine builds are refused; start a fresh run. This changes archive hashes and shape, not simulation results or the canonical hash algorithm.
+- **History codec (introduced during format 6 development; shipped in archive format 7):** accepted history is a canonical dictionary of scalar and structural nodes instead of repeated JSON subtrees. Every accepted input and optional checkpoint remains present. Highly repetitive histories that exceed the dictionary amplification limit use a canonical literal root, so admitted runs stay exportable without weakening decoder limits. `readRunHistory(archive)` is the single pure decoder for tools that inspect accepted transactions. Restore and replay still execute the complete decoded history. The current actor snapshot and the format-5 journal retention policy remain. Format 5 and prior engine builds are refused; start a fresh run. This changes archive hashes and shape, not simulation results or the canonical hash algorithm.
 - Dictionary admission rejects forward references, duplicates, unreachable nodes, invalid keys and noncanonical order. Expanded work is bounded by safe-integer arithmetic and an amplification limit of the larger of 10 million canonical text units or 1,024 times the encoded pool units. The limit scales with history length; no term-length cap or semantic memory trimming is introduced.
 - Add opt-in headless Child and Valley workloads (`node scripts/bench-g7.ts`). Timings, archive sizes and unresolved game budgets are recorded in `docs/findings.md` and `docs/hf4-game-needs.md`; microbenchmarks alone do not establish port acceptance.
+
+### Always-on narration
+
+- Prepare companion client 0.5.8 (exact HF 4.9.0) and kit 0.5.25 (client 0.5.8 peer) for one current framework graph. Package/artifact publication and game adoption remain separate receipts.
+- Game phrasebooks replace event frames and action forms. Built-in verdict, reason, label and summary/projection fragments remain plain English; extending that vocabulary through the same lexicon has a 2026-11-03 roadmap checkpoint.
+- Select plain-English defaults and game-authored phrases through the same event-time wording owner. Record one seeded stream per person and meaning in Run state; inspect, preview and chronicles use the single renderer without read-time draws.
+- Exclude the last two alternatives for each person and meaning. All default and authored phrasebooks have at least four distinct alternatives; shorter authored tables are refused at admission. Partial person voices still fall through to the run phrasebook and then the English defaults.
+- Shape wording length preference with the person's event-time mood, trust in the advising voice and habit strength for the act. Broad tenth bands avoid narrating numerical integration noise. This is an authored style heuristic, not a psychological finding; it never changes an actor's choices or RNG.
+- Replace raw advice verdicts with first-person English, including “I accepted the advice” and “I refused the advice.” Compliance and command responses describe the decision to follow; they do not claim that the host settled an act. Daily chronicles include recorded advice responses. Faith wording describes the person's held understanding; it computes no divine acceptance and issues no ruling.
+
+Migration: archive format **7** records default choices, the recent-choice window and event-time wording context, following G7-PERF's format 6 history codec. Replay hashes and engine identity deliberately change. Older archives require a fresh start. Current-format continuation and replay remain exact; canonical hashing itself does not change. The `suggestion.resolved` slot `{verdict}` now contains the complete predicate (for example `accepted the advice`); host templates should say `I {verdict}.`, without adding another object. No legacy wording path is retained.
 
 ## [4.8.1] — 2026-10-28
 
@@ -398,7 +409,6 @@ Engine: 2.14.1.
 - Opt-in `retirePaidMakeUps` archives only a recorded kept make-up and returns detached frozen receipts. Unpaid or unproven obligations still block travel. Pregnancy and temporal relationship stores are outside passport v1.
 - One cast browser shelf through the existing identity frame, with versioned checksummed envelopes, atomic parent revision checks, explicit conflict forks and inspect/export/delete controls. Client 0.3.0 and kit 0.4.0 ship as local tarballs.
 - Canonical first-wave cast registry and private inbox measurement from complete received exports. Same-epoch continuity retains normal recording. Changed recording identities require explicit historical-linkage consent before any persona-derived upload.
-
 
 ## [Unreleased]
 

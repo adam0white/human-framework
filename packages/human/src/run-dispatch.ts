@@ -51,7 +51,7 @@ export function copyPercept(percept: T.DeepReadonly<T.PerceptData>): T.PerceptDa
 import { clamp01, clampSigned, sigmoid } from './core/index.ts';
 import { random } from './core/random.ts';
 import { rendererOwner } from './narrate/literal.ts';
-import { selectEventWording } from './narrate/variants.ts';
+import { selectEventWording, wordingContext } from './narrate/variants.ts';
 import { levelOf } from './needs/needs.ts';
 import { canonicalJson, compareCodePoints, hashCanonical } from './run-canonical.ts';
 import { validateActor } from './run-integrity.ts';
@@ -210,7 +210,14 @@ export class Frame {
       narration: [],
     };
     if (wording) event.wording = wording;
-    else selectEventWording(event, this.record.spec.definitions.lexicon, this.record.spec.seed, this.state);
+    else
+      selectEventWording(
+        event,
+        this.record.spec.definitions.lexicon,
+        this.record.spec.seed,
+        this.state,
+        wordingContext(person === undefined ? undefined : this.actor(person), event.data),
+      );
     event.narration = rendererOwner.render(
       event,
       { kind: 'host' },
@@ -1053,7 +1060,13 @@ export class Frame {
       data: { kind: 'decision', decision: out.decision },
       narration: [],
     };
-    selectEventWording(provisional, this.record.spec.definitions.lexicon, this.record.spec.seed, this.state);
+    selectEventWording(
+      provisional,
+      this.record.spec.definitions.lexicon,
+      this.record.spec.seed,
+      this.state,
+      wordingContext(this.actor(person), provisional.data),
+    );
     // A review that goes on with the running activity is a review, not a fresh decision (3.x `reviewed`).
     const running = this.actor(person).activity;
     const decision: T.DecisionRecord = {

@@ -1,4 +1,4 @@
-/** SCOPE: format-six accepted history is lossless and canonical, remains fully
+/** SCOPE: Current-format accepted history is lossless and canonical, remains fully
  * replayed, and refuses corrupt or exponentially expanding dictionary inputs.
  */
 import { expect, it } from 'vitest';

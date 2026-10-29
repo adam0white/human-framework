@@ -43,16 +43,75 @@ const IRREGULAR_PAST: Record<string, string> = {
   pay: 'paid',
   steal: 'stole',
   wake: 'woke',
+  get: 'got',
+  feel: 'felt',
+  keep: 'kept',
+  leave: 'left',
+  stand: 'stood',
+  be: 'was',
+  come: 'came',
+  find: 'found',
+  hear: 'heard',
+  hold: 'held',
+  lose: 'lost',
+  say: 'said',
+  send: 'sent',
+  spend: 'spent',
+  break: 'broke',
+  choose: 'chose',
+  cut: 'cut',
+  hit: 'hit',
+  let: 'let',
+  put: 'put',
+  set: 'set',
+  shut: 'shut',
+  quit: 'quit',
+  swim: 'swam',
+  win: 'won',
+  dig: 'dug',
 };
 
+// Only double final consonants for known single-syllable verbs; spelling alone
+// cannot reliably distinguish stressed endings such as "open" and "plan".
+const DOUBLED_FINAL = new Set([
+  'beg',
+  'chat',
+  'drop',
+  'grab',
+  'hop',
+  'hug',
+  'jog',
+  'nod',
+  'plan',
+  'shop',
+  'skip',
+  'slip',
+  'stop',
+  'tap',
+  'get',
+  'run',
+  'sit',
+  'cut',
+  'hit',
+  'let',
+  'put',
+  'set',
+  'shut',
+  'quit',
+  'swim',
+  'win',
+  'dig',
+]);
 function regularPast(verb: string): string {
   if (IRREGULAR_PAST[verb]) return IRREGULAR_PAST[verb] as string;
   if (verb.endsWith('e')) return `${verb}d`;
   if (/[^aeiou]y$/.test(verb)) return `${verb.slice(0, -1)}ied`;
+  if (DOUBLED_FINAL.has(verb)) return `${verb}${verb.at(-1)}ed`;
   return `${verb}ed`;
 }
 
 function regularGerund(verb: string): string {
+  if (DOUBLED_FINAL.has(verb)) return `${verb}${verb.at(-1)}ing`;
   if (verb.endsWith('ie')) return `${verb.slice(0, -2)}ying`;
   if (verb.endsWith('e') && !verb.endsWith('ee') && verb.length > 2) return `${verb.slice(0, -1)}ing`;
   return `${verb}ing`;

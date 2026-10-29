@@ -119,7 +119,7 @@ rules: [framework.md](framework.md). Package overview: [README](../packages/huma
 - `ReputationTraitDefinition` — Relationship deltas per unit of credence change in `<person>:<id>`.
 - `Result` — `{ ok: true; value: T; } | { ok: false; error: ContractError; }`
 - `Run` — `{ readonly [runBrand]: true; }`
-- `RunArchive` — `{ format: 'hf-run'; version: 6; engine: { package: string; build: Hash; schema: Hash; }; host: { id: Id; edition: Id; schema: Id; }; init...`
+- `RunArchive` — `{ format: 'hf-run'; version: 7; engine: { package: string; build: Hash; schema: Hash; }; host: { id: Id; edition: Id; schema: Id; }; init...`
 - `RunSpec` — `{ id: Id; seed: number; start: Time; host: { id: Id; edition: Id; schema: Id; }; definitions: Definitions; tuning?: RunTuning; lifecycle:...`
 - `RunTuning` — `{ will?: { temperature?: Unit; }; cognition?: { needScale?: number; effortScale?: number; }; planning?: { depth?: 2 | 3 | 4 | 5; presentB...`
 - `Signed` — `number`

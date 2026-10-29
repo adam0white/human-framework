@@ -31,6 +31,6 @@ it('renders a prompting as a thought and response without assigning an external 
   };
   const text = rendererOwner.render(event, { kind: 'person', observer: 'a' }, lex, 1)[0]?.text;
   expect(text).toContain('repeat the story');
-  expect(text).toContain('practised response');
+  expect(text).toContain('practiced response');
   expect(text).not.toMatch(/Satan|divine|sinful|accepted/i);
 });

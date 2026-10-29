@@ -3,7 +3,7 @@
  */
 
 import { actionForms, displayName } from '../narrate/lexicon.ts';
-import { renderProjection } from '../narrate/literal.ts';
+import { labelLine, renderProjection } from '../narrate/literal.ts';
 import { narrate } from '../narrate/narrate.ts';
 import type { DayRecord, DeepReadonly, Lexicon, Perspective, RunEvent } from '../run-schema.ts';
 export const STORY_DEFAULTS = {
@@ -13,25 +13,21 @@ export const STORY_DEFAULTS = {
   moodDelta: 0.1,
   maxLines: 12,
 };
+/** Project retained day events, preserving their event-time wording choices. */
 export function narrateChronicle(
-  records: readonly DeepReadonly<DayRecord>[],
-  person: string,
+  events: readonly DeepReadonly<RunEvent>[],
   perspective: DeepReadonly<Perspective>,
   lexicon: DeepReadonly<Lexicon>,
   seed: number,
 ): readonly string[] {
-  const events: DeepReadonly<RunEvent>[] = records.map((record) => ({
-    id: `chronicle:${person}:${record.day}`,
-    at: (record.day + 1) * 86400000,
-    phase: 6,
-    person,
-    causeIds: [],
-    data: { kind: 'day-closed', record },
-    narration: [],
-  }));
-  return narrate(events, perspective, lexicon, seed)
+  return narrate(
+    events.filter((event) => event.data.kind === 'day-closed'),
+    perspective,
+    lexicon,
+    seed,
+  )
     .slice(0, STORY_DEFAULTS.maxLines)
-    .map((l) => l.text);
+    .map((line) => line.text);
 }
 export interface ChronicleChange {
   kind: 'unprompted' | 'still-prompted' | 'started' | 'stopped' | 'trust' | 'mood';
@@ -167,9 +163,11 @@ export function diffChronicle(
         c.kind === 'trust'
           ? displayName(c.subject, lexicon)
           : c.subject.startsWith('prayer:')
-            ? c.subject.slice(7)
+            ? `${c.kind === 'unprompted' || c.kind === 'still-prompted' ? 'prayed' : 'praying'} ${labelLine(c.subject.slice(7))}`
             : c.subject.startsWith('action:')
-              ? actionForms(c.subject.slice(7), lexicon).gerund
+              ? actionForms(c.subject.slice(7), lexicon)[
+                  c.kind === 'unprompted' || c.kind === 'still-prompted' ? 'past' : 'gerund'
+                ]
               : c.subject,
       before: c.before,
       after: c.after,

@@ -1,5 +1,5 @@
 /** SCOPE: one pure renderer. Visibility is checked before deriving wording or variation.
- * Authored variation uses the event’s recorded choice; fallback keeps event/audience identity.
+ * All live variation uses the event’s recorded choice; synthetic events use the first template.
  * Neither path advances actor RNG or read counts.
  * Authored names/actions remain data. No legacy packs or stored-text rewrites.
  */
@@ -11,8 +11,9 @@ import type {
   Perspective,
   RendererOwner,
   RunEvent,
+  SuggestionVerdict,
 } from '../run-schema.ts';
-import { actionForms, authoredWordings, displayName, stableHash } from './lexicon.ts';
+import { actionForms, authoredWordings, displayName } from './lexicon.ts';
 import { fillTemplate, NARRATION_TEMPLATES } from './templates.ts';
 
 const LABELS: Readonly<Record<string, string>> = {
@@ -30,12 +31,20 @@ const LABELS: Readonly<Record<string, string>> = {
   serve: 'helping others',
   'make-up': 'a missed commitment to complete later',
 };
+const SUGGESTION_VERDICTS: Readonly<Record<SuggestionVerdict, string>> = {
+  assented: 'accepted the advice',
+  complied: 'decided to follow the advice',
+  deferred: 'put off acting on the advice',
+  modified: 'adapted the advice',
+  refused: 'refused the advice',
+  commanded: 'decided to follow the order',
+};
 export function labelLine(label: string): string {
   const known = Object.hasOwn(LABELS, label) ? LABELS[label] : undefined;
   if (known !== undefined) return known;
   if (label.startsWith('make-up ')) {
     const name = label.slice(8);
-    if (Object.hasOwn(LABELS, name)) return `${LABELS[name]}, performed later because it was missed`;
+    if (Object.hasOwn(LABELS, name)) return `completing ${LABELS[name]} after missing it`;
   }
   return label;
 }
@@ -116,17 +125,17 @@ export function renderProjection(meaning: ProjectionMeaning): string {
       const m = meaning;
       switch (m.change) {
         case 'unprompted':
-          return `By the end, they did ${labelLine(m.subject)} without being told.`;
+          return `By the end, I ${labelLine(m.subject)} without being told.`;
         case 'still-prompted':
-          return `They still did ${labelLine(m.subject)} after being prompted.`;
+          return `I still ${labelLine(m.subject)} after being prompted.`;
         case 'started':
-          return `They began ${labelLine(m.subject)}.`;
+          return `I began ${labelLine(m.subject)}.`;
         case 'stopped':
-          return `They stopped ${labelLine(m.subject)}.`;
+          return `I stopped ${labelLine(m.subject)}.`;
         case 'trust':
-          return `Their trust in ${m.subject} grew ${m.after > m.before ? 'stronger' : 'weaker'}.`;
+          return `My trust in ${m.subject} grew ${m.after > m.before ? 'stronger' : 'weaker'}.`;
         case 'mood':
-          return `Their recorded mood became ${m.after > m.before ? 'more pleasant' : 'less pleasant'}.`;
+          return `My recorded mood became ${m.after > m.before ? 'more pleasant' : 'less pleasant'}.`;
       }
       throw new RangeError('Unknown chronicle change');
     }
@@ -223,28 +232,39 @@ export function describeWording(
         listener: displayName(d.conversation.listener, lex),
       });
     case 'suggestion-resolved':
-      return describe('suggestion.resolved', { verdict: d.resolution.verdict });
+      return describe('suggestion.resolved', { verdict: SUGGESTION_VERDICTS[d.resolution.verdict] });
     case 'commitment-changed':
       return describe('commitment.changed', {
-        label: d.after.label ?? d.after.kind,
+        label: labelLine(d.after.label ?? d.after.kind),
         status: d.after.status,
       });
     case 'goal-changed':
       return describe('goal.changed', {
-        label: d.after.label,
+        label: labelLine(d.after.label),
         status: d.after.status,
       });
     case 'day-closed': {
       const r = d.record,
         parts = [`Day ${r.day}.`];
-      if (r.kept.length) parts.push(`I kept ${list(r.kept.map((n) => n.label ?? n.action ?? n.kind))}.`);
+      if (r.kept.length)
+        parts.push(
+          `I kept ${r.kept.length === 1 ? 'this commitment' : 'these commitments'}: ${list(r.kept.map((n) => n.label ?? n.action ?? n.kind))}.`,
+        );
       if (r.broken.length)
-        parts.push(`I did not keep ${list(r.broken.map((n) => n.label ?? n.action ?? n.kind))}.`);
+        parts.push(
+          `I did not keep ${r.broken.length === 1 ? 'this commitment' : 'these commitments'}: ${list(r.broken.map((n) => n.label ?? n.action ?? n.kind))}.`,
+        );
       if (r.released.length)
-        parts.push(`I was released from ${list(r.released.map((n) => n.label ?? n.action ?? n.kind))}.`);
+        parts.push(
+          `I understood that I was released from ${r.released.length === 1 ? 'this commitment' : 'these commitments'}: ${list(r.released.map((n) => n.label ?? n.action ?? n.kind))}.`,
+        );
       for (const a of r.actions)
         parts.push(
           `I ${actionForms(a.action, lex).past}${a.prompted === 0 ? ' without being told' : a.prompted === a.done ? ' after being prompted' : ''}.`,
+        );
+      for (const v of r.verdicts)
+        parts.push(
+          `I ${SUGGESTION_VERDICTS[v.verdict]} from ${displayName(v.voiceId, lex)}${v.count > 1 ? ` ${v.count} times` : ''}.`,
         );
       for (const h of r.habits)
         parts.push(
@@ -254,8 +274,10 @@ export function describeWording(
         parts.push(`I trusted ${displayName(t.voiceId, lex)} ${t.delta > 0 ? 'more' : 'less'}.`);
       if (r.illness.onset.length) parts.push(`I became ill with ${list(r.illness.onset)}.`);
       if (r.illness.recovered.length) parts.push(`I recovered from ${list(r.illness.recovered)}.`);
-      if (r.illness.worse.length) parts.push(`${list(r.illness.worse)} became worse.`);
-      if (r.illness.better.length) parts.push(`${list(r.illness.better)} became easier to bear.`);
+      if (r.illness.worse.length)
+        parts.push(`My illness record shows worsening of ${list(r.illness.worse)}.`);
+      if (r.illness.better.length)
+        parts.push(`My illness record shows improvement in ${list(r.illness.better)}.`);
       if (r.breaches.length) parts.push('I acted against rules I hold.');
       if (r.repairs.length) parts.push('I made repairs for past harm.');
       if (r.material !== 0)
@@ -263,14 +285,14 @@ export function describeWording(
           `My recorded material balance ${r.material > 0 ? 'rose' : 'fell'} by ${Math.abs(r.material)}.`,
         );
       parts.push(...r.episodes.map((e) => e.summary));
-      if (!r.alive) parts.push('The person has died.');
+      if (!r.alive) parts.push('My life ended during this day.');
       return describe('day.closed', { summary: parts.join(' ') });
     }
     case 'year-closed':
       return describe('year.closed', {
         days: String(d.record.days),
-        kept: String(d.record.kept),
-        broken: String(d.record.broken),
+        kept: `${d.record.kept} commitment${d.record.kept === 1 ? '' : 's'}`,
+        broken: `${d.record.broken} commitment${d.record.broken === 1 ? '' : 's'}`,
       });
     case 'body-change': {
       const kind = d.change.kind;
@@ -304,7 +326,7 @@ export function describeWording(
   }
 }
 export const rendererOwner: RendererOwner = {
-  render(event, perspective, lexicon, seed) {
+  render(event, perspective, lexicon) {
     if (!visible(event, perspective)) return [];
     const descriptor = describeWording(event.data, lexicon);
     if (!descriptor) return [];
@@ -313,12 +335,7 @@ export const rendererOwner: RendererOwner = {
         ? authoredWordings(lexicon, event.person, descriptor.key)
         : undefined;
     const variants = authored ?? descriptor.templates;
-    const audience = perspective.kind === 'host' ? 'host' : `person:${perspective.observer}`;
-    const slot =
-      authored && event.wording?.key === descriptor.key
-        ? event.wording.index
-        : stableHash(JSON.stringify(['hf4:renderer:v1', seed, event.id, event.data.kind, audience])) %
-          descriptor.templates.length;
+    const slot = event.wording?.key === descriptor.key ? event.wording.index : 0;
     const template = variants[slot];
     if (template === undefined) return [];
     const text = fillTemplate(template, descriptor.slots);
@@ -327,7 +344,7 @@ export const rendererOwner: RendererOwner = {
         eventId: event.id,
         audience: cloneData(perspective),
         text,
-        variantId: authored ? `wording:${descriptor.key}:${slot}` : `en:${event.data.kind}:${slot}`,
+        variantId: `wording:${descriptor.key}:${slot}`,
       },
     ];
   },

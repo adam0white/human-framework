@@ -180,11 +180,11 @@ reputationTraits: [
 
 Each coefficient is finite and between −1 and 1. IDs are nonempty NFC strings without colons or reserved prototype names. Duplicate IDs and replacement of builtin traits refuse run construction. Omit the array when no additional words are needed. Builtin character words always remain active.
 
-This immutable, run-scoped vocabulary is retained in exports and replay. An ordinary claim such as `person:nosy` updates the person's belief through `testimony.received` or `fact.confirmed`. The existing reputation owner applies the actual credence change to affection, trust and respect, damped by familiarity and negative weighting. A correction moves those relationships back toward their prior state; it does not invent a separate social event. Prepared conversation uses the same vocabulary to identify character claims, classify unfavourable speech and offer loyal warnings. Zero coefficients recognize a character word without a relationship effect. Coefficients are authored engineering assumptions about relationships, not measures of moral worth or religious rulings. Within a run, reputation applies only to subjects that name people in that run. Authoring a trait named `open` does not create a relationship with the non-person subject of `door:open`.
+This immutable, run-scoped vocabulary is retained in exports and replay. An ordinary claim such as `person:nosy` updates the person's belief through `testimony.received` or `fact.confirmed`. The existing reputation owner applies the actual credence change to affection, trust and respect, damped by familiarity and negative weighting. A correction moves those relationships back toward their prior state; it does not invent a separate social event. Prepared conversation uses the same vocabulary to identify character claims, classify unfavorable speech and offer loyal warnings. Zero coefficients recognize a character word without a relationship effect. Coefficients are authored engineering assumptions about relationships, not measures of moral worth or religious rulings. Within a run, reputation applies only to subjects that name people in that run. Authoring a trait named `open` does not create a relationship with the non-person subject of `door:open`.
 
-## Archives and daily steps (4.6)
+## Archives and daily steps (4.9)
 
-`exportRun` writes archive format 5. Each event and receipt journal in `current` contains its newest 64 entries. The complete accepted input log remains in `history`; actor memory keeps its own retention policy. A snapshot's journals are recent diagnostics, so their lengths do not equal lifetime allocation counters. Live `step` results and inspections keep their ordinary semantics.
+`exportRun` writes archive format 7. Each event and receipt journal in `current` contains its newest 64 entries. The complete accepted input log remains in `history` as a lossless dictionary; `readRunHistory(archive)` is its single public decoder. Actor memory keeps its own retention policy. A snapshot's journals are recent diagnostics, so their lengths do not equal lifetime allocation counters. Live `step` results and inspections keep their ordinary semantics.
 
 `restoreRun` reconstructs complete private journals and deduplication indexes by executing the accepted history. It checks the reconstructed actor, pending requests, active work, continuations and retained snapshot before returning a run. Restore therefore costs approximately a replay, and its cost grows with total accepted history. `replay` still reproduces a current-version export exactly. Archives from another package/build/schema are refused; no old-export conversion is provided.
 
@@ -339,3 +339,68 @@ Sources: [Netlib fdlibm](https://netlib.org/fdlibm/) and
  * ====================================================
 
 ```
+
+
+### Narration and game phrasebooks
+
+Every narrated live event receives its wording choice when emitted. The Run owns
+one seeded stream and a recent-choice window for each person and semantic key.
+`inspect`, detached `preview` and chronicle output share the renderer. Reading or
+paginating does not consume randomness. Choices never consume actor RNG.
+
+Games pass reviewed phrasebooks in `RunSpec.definitions.lexicon.wordings` and
+partial per-person overrides in `lexicon.voices`. Both use the keys exported by
+`NARRATION_TEMPLATES` and must retain the exact named slots. Missing keys use the
+plain-English defaults through the same selection route. For example:
+
+```ts
+lexicon.voices = {
+  selim: {
+    'decision.act': [
+      'I will {action}.{why}',
+      'I choose to {action}.{why}',
+      'I intend to {action}.{why}',
+      'I have decided to {action}.{why}',
+    ],
+    'suggestion.resolved': [
+      'I {verdict}.',
+      'After considering it, I {verdict}.',
+      'This time, I {verdict}.',
+      'I {verdict} after thinking it over.',
+    ],
+  },
+};
+```
+
+The `{verdict}` slot is a complete grammatical predicate, such as `accepted the
+advice`, `decided to follow the advice` or `refused the advice`. Do not append `the
+advice` again. Host phrases should speak in the person's first person and must
+not claim divine acceptance or a religious ruling. Norm reasons describe only
+the person's own understanding.
+
+Phrasebooks replace the outer event templates and action forms. They do not yet
+replace the built-in verdict predicates, label expansions, reason sentences,
+daily-summary fragments or inspection/chronicle-change projections. Those remain
+plain English from the same renderer. Extending that vocabulary through the
+existing lexicon is a dated follow-up under the roadmap's display-module item,
+with a 2026-11-03 checkpoint; there is no second narration route or opt-in switch.
+
+The window excludes the two previous alternatives for each person and meaning.
+Every built-in key has at least four alternatives. Authored tables must also
+contain at least four distinct variants; shorter tables are refused at admission.
+With four variants, excluding two leaves at least two choices on every draw;
+excluding three would force a repeating four-line cycle. Unrelated events do not
+clear a person's window. This is a deliberate change
+from older versions that admitted one- or two-line tables.
+
+At emission, mood, trust in the advising voice and strength of the habit for the
+chosen act are captured in broad tenth bands. Low mood, distrust and practiced
+acts favor shorter alternatives; the converse favors longer ones. This is a
+bounded style heuristic, not a claim about psychology. It changes narration only.
+The captured evidence travels with the chosen phrase for exact replay; readers
+never consult later or hidden actor state. Cross-person forecasts still use
+only the observer's admitted impressions.
+
+Archive format 7 deliberately changes replay identity after format 6. Start
+fresh for older archives. The canonical hash algorithm and its golden tests
+remain unchanged.

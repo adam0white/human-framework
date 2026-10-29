@@ -39,7 +39,7 @@ test('the public run contract has eight operations and archive identity matches 
   const archive = api.exportRun(run);
   const pkg = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
   expect(pkg.version).toMatch(/^4\./);
-  expect(archive.version).toBe(6);
+  expect(archive.version).toBe(7);
   expect(archive.engine.package).toBe(`${pkg.name}@${pkg.version}`);
   expect(archive.engine.build).toMatch(/^[a-f0-9]{64}$/);
   expect(archive.engine.schema).toMatch(/^[a-f0-9]{64}$/);

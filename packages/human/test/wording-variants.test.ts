@@ -8,13 +8,25 @@ import {
   openingInputs,
   START,
 } from '../examples/minimal.ts';
+import { narrateChronicle } from '../src/chronicle/story.ts';
 import { rendererOwner } from '../src/narrate/literal.ts';
 import { fillTemplate } from '../src/narrate/templates.ts';
 import { selectEventWording } from '../src/narrate/variants.ts';
-import { createPerson, createRun, exportRun, inspect, replay, restoreRun, step } from '../src/run.ts';
+import {
+  createPerson,
+  createRun,
+  exportRun,
+  inspect,
+  preview,
+  replay,
+  restoreRun,
+  step,
+} from '../src/run.ts';
 import type { Input, Lexicon, RunEvent, RunState } from '../src/run-schema.ts';
 
-const wordings = { 'decision.wait': ['I will wait.', 'I will give it time.', 'I will wait a little.'] };
+const wordings = {
+  'decision.wait': ['Wait.', 'I will wait.', 'I will give it time.', 'I will wait a little longer.'],
+};
 const lex: Lexicon = { names: {}, roles: {}, actions: {}, prefer: 'name', wordings };
 function wait(id: string, person = 'ada'): RunEvent {
   return {
@@ -30,22 +42,76 @@ function wait(id: string, person = 'ada'): RunEvent {
     },
   };
 }
-function sequence(seed: number, interleave = false) {
+function sequence(seed: number, interleave = false, context = { mood: 0, trust: 0.5, habit: 0 }) {
   const state: Pick<RunState, 'wording'> = { wording: {} };
   const events = Array.from({ length: 12 }, (_, i) => wait(String(i)));
   for (const event of events) {
-    if (interleave) selectEventWording(wait(`other-${event.id}`, 'bea'), lex, seed, state);
-    selectEventWording(event, lex, seed, state);
+    if (interleave) selectEventWording(wait(`other-${event.id}`, 'bea'), lex, seed, state, context);
+    selectEventWording(event, lex, seed, state, context);
   }
   return { events, state, indices: events.map((e) => e.wording?.index) };
 }
-it('seeds a separate stream per person/key and excludes the previous wording', () => {
+it('never repeats an alternative within two choices, including built-in fallback', () => {
+  for (const variants of [wordings['decision.wait']]) {
+    const table = { ...lex, wordings: { 'decision.wait': variants } };
+    const state: Pick<RunState, 'wording'> = { wording: {} };
+    const indices: number[] = [];
+    for (let i = 0; i < 12; i++) {
+      const event = wait(String(i));
+      selectEventWording(event, table, 7, state);
+      if (!event.wording) throw new Error('Missing wording');
+      expect(indices.slice(-2)).not.toContain(event.wording.index);
+      indices.push(event.wording.index);
+      expect(rendererOwner.render(event, { kind: 'host' }, table, 7)[0]?.text).toBe(
+        variants[event.wording.index],
+      );
+    }
+  }
+  for (const table of [
+    { ...lex, wordings: undefined },
+    { ...lex, wordings: {}, voices: {} },
+  ]) {
+    const event = wait('fallback');
+    const state: Pick<RunState, 'wording'> = { wording: {} };
+    selectEventWording(event, table, 7, state);
+    expect(event.wording).toMatchObject({ key: 'decision.wait', occurrence: 1 });
+    expect(Object.values(state.wording)).toHaveLength(1);
+    expect(rendererOwner.render(event, { kind: 'host' }, table, 7)[0]?.text).toBeTruthy();
+  }
+  const own = ['Own A.', 'Own B.', 'Own C.', 'Own D.'];
+  const precedence: Lexicon = { ...lex, names: { ada: 'Ada' }, voices: { ada: { 'decision.wait': own } } };
+  for (const [person, table, expected] of [
+    ['ada', precedence, own],
+    ['bea', precedence, wordings['decision.wait']],
+    ['ada', { ...precedence, wordings: {}, voices: { ada: {} } }, undefined],
+  ] as const) {
+    const event = wait('precedence', person);
+    const state: Pick<RunState, 'wording'> = { wording: {} };
+    const ownedMap = state.wording;
+    selectEventWording(event, table, 7, state);
+    expect(state.wording).toBe(ownedMap);
+    const text = rendererOwner.render(event, { kind: 'host' }, table, 7)[0]?.text;
+    if (expected) expect(expected).toContain(text);
+    else expect(text).toMatch(/I .*wait/);
+  }
+  expect(fillTemplate('{action} {why}', { action: 'read {why}', why: '$&' })).toBe('read {why} $&');
+});
+it('reproduces choices from seed and context, isolates people, and responds to context', () => {
   const first = sequence(7);
-  expect(sequence(7).indices).toEqual(first.indices);
+  expect(sequence(7)).toEqual(first);
   expect(sequence(7, true).indices).toEqual(first.indices);
   expect(sequence(8).indices).not.toEqual(first.indices);
-  for (let i = 1; i < first.indices.length; i++) expect(first.indices[i]).not.toBe(first.indices[i - 1]);
   expect(first.events.map((e) => e.wording?.occurrence)).toEqual(Array.from({ length: 12 }, (_, i) => i + 1));
+  const terse = { mood: -1, trust: 0, habit: 1 };
+  const expansive = { mood: 1, trust: 1, habit: 0 };
+  const lengths = (context: typeof terse) =>
+    Array.from({ length: 200 }, (_, seed) => {
+      const event = wait(String(seed));
+      selectEventWording(event, lex, seed, { wording: {} }, context);
+      expect(event.wording?.context).toEqual(context);
+      return wordings['decision.wait'][event.wording?.index ?? 0]!.length;
+    }).reduce((sum, length) => sum + length, 0);
+  expect(lengths(terse)).toBeLessThan(lengths(expansive));
   const event = first.events[0];
   if (!event) throw new Error('Missing event');
   const before = JSON.stringify(first);
@@ -56,22 +122,12 @@ it('seeds a separate stream per person/key and excludes the previous wording', (
   expect(rendererOwner.render(event, { kind: 'person', observer: 'bea' }, lex, 7)).toEqual([]);
   expect(JSON.stringify(first)).toBe(before);
 });
-it('keeps fallback and singleton text and substitutes slots only once', () => {
-  const event = wait('fallback');
-  const state = { wording: {} };
-  selectEventWording(event, { ...lex, wordings: undefined }, 7, state);
-  expect(event.wording).toBeUndefined();
-  expect(state.wording).toEqual({});
-  expect(rendererOwner.render(event, { kind: 'host' }, lex, 7)[0]?.text).toBe('I will wait.');
-  const singleton = { ...lex, wordings: { 'decision.wait': ['I can wait.'] } };
-  selectEventWording(event, singleton, 7, state);
-  expect(rendererOwner.render(event, { kind: 'host' }, singleton, 7)[0]?.text).toBe('I can wait.');
-  expect(fillTemplate('{action} {why}', { action: 'read {why}', why: '$&' })).toBe('read {why} $&');
-});
 it('rejects malformed wording data before a run is created', () => {
   for (const invalid of [
     { 'unknown.key': ['A.'] },
     { 'decision.wait': [] },
+    { 'decision.wait': ['Wait.'] },
+    { 'decision.wait': ['Wait.', 'Pause.', 'Stay.'] },
     { 'decision.wait': ['A.', 'A.'] },
     { 'decision.wait': [' '] },
     { 'decision.act': ['I will {action}.'] },
@@ -115,15 +171,35 @@ it('headless control: reads, pagination, restore continuation and replay retain 
     const spec = exampleSpec(7);
     if (withVariants)
       spec.definitions.lexicon.wordings = {
-        'decision.act': ['My next step is to {action}.{why}'],
-        'observation.summary': ['{summary}', 'I noticed this: {summary}', 'I saw this: {summary}'],
+        'decision.act': [
+          'My next step is to {action}.{why}',
+          'I will {action}.{why}',
+          'I choose to {action}.{why}',
+          'I intend to {action}.{why}',
+        ],
+        'observation.summary': [
+          '{summary}',
+          'I noticed this: {summary}',
+          'I saw this: {summary}',
+          'I observed this: {summary}',
+        ],
       };
     if (withVariants) spec.definitions.lexicon.names = { ada: 'Ada' };
     if (withVariants)
       spec.definitions.lexicon.voices = {
         ada: {
-          'decision.act': ['My own next step is to {action}.{why}'],
-          'observation.summary': ['Ada noticed: {summary}', 'Ada saw: {summary}'],
+          'decision.act': [
+            'My own next step is to {action}.{why}',
+            'My own choice is to {action}.{why}',
+            'I plan to {action}.{why}',
+            'I choose to {action}.{why}',
+          ],
+          'observation.summary': [
+            'I noticed: {summary}',
+            'I saw: {summary}',
+            'I observed: {summary}',
+            'I remember this: {summary}',
+          ],
         },
       };
     const run = need(createRun(spec));
@@ -181,10 +257,22 @@ it('headless control: reads, pagination, restore continuation and replay retain 
   expect(need(replay(archive)).fullHash).toBe(archive.hashes.full);
   const restored = need(restoreRun(JSON.parse(JSON.stringify(archive))));
   const continuation = { until: START + 300_000, inputs: inputs.slice(3) };
-  need(step(run, continuation));
+  const prediction = need(preview(run, { perspective: { kind: 'host' }, person: 'ada', ...continuation }));
+  expect(exportRun(run)).toEqual(archive);
+  const actual = need(step(run, continuation));
+  expect(prediction.possibilities.map((e) => e.narration.map((line) => line.text))).toEqual(
+    actual.events.map((e) => e.narration.map((line) => line.text)),
+  );
   need(step(restored, continuation));
   expect(exportRun(restored)).toEqual(exportRun(run));
   expect(need(replay(exportRun(run))).verified).toBe(true);
+  const daily = need(step(restored, { until: START + 86400000, inputs: [] }));
+  const dayEvents = daily.events.filter((event) => event.data.kind === 'day-closed');
+  expect(dayEvents.length).toBeGreaterThan(0);
+  expect(narrateChronicle(daily.events, { kind: 'host' }, exampleSpec(7).definitions.lexicon, 7)).toEqual(
+    dayEvents.flatMap((event) => event.narration.map((line) => line.text)),
+  );
+  expect(need(replay(exportRun(restored))).verified).toBe(true);
   const decisionRun = setup(true);
   need(
     step(decisionRun, { until: START, inputs: openingInputs([{ id: 'ada', offers: exampleOffers('ada') }]) }),
@@ -194,77 +282,9 @@ it('headless control: reads, pagination, restore continuation and replay retain 
   expect(decisionEvent.wording?.key).toBe('decision.act');
   expect(decisionEvent.wording?.occurrence).toBe(1);
   expect(decisionEvent.data.decision.intention).toBe(decisionEvent.narration[0]?.text);
-  expect(decisionEvent.data.decision.intention).toContain('My own next step is to');
+  expect(decisionEvent.data.decision.intention).toMatch(
+    /My own next step is to|My own choice is to|I plan to|I choose to/,
+  );
   expect(need(replay(exportRun(decisionRun))).verified).toBe(true);
   expect(exportRun(need(restoreRun(exportRun(decisionRun))))).toEqual(exportRun(decisionRun));
-});
-
-it('uses each person override, then the run table, then built-ins with the same stream', () => {
-  const voiced: Lexicon = {
-    ...lex,
-    voices: {
-      ada: { 'decision.wait': ['Ada waits.', 'Ada pauses.', 'Ada gives it time.'] },
-      bea: { 'decision.wait': ['Bea waits.'] },
-    },
-  };
-  const state = { wording: {} };
-  const events = Array.from({ length: 12 }, (_, i) => wait(String(i)));
-  for (const event of events) {
-    selectEventWording(wait(`bea-${event.id}`, 'bea'), voiced, 7, state);
-    selectEventWording(event, voiced, 7, state);
-    expect(rendererOwner.render(event, { kind: 'host' }, voiced, 7)[0]?.text).toMatch(/^Ada /);
-  }
-  expect(events.map((event) => event.wording?.index)).toEqual(sequence(7).indices);
-  for (const [person, expected] of [
-    ['bea', 'Bea waits.'],
-    ['cora', 'I will '],
-  ]) {
-    const event = wait(person ?? '', person);
-    selectEventWording(event, voiced, 7, state);
-    expect(rendererOwner.render(event, { kind: 'host' }, voiced, 7)[0]?.text).toContain(expected);
-  }
-  const partial: Lexicon = { ...lex, voices: { ada: { 'body.woke': ['Ada wakes.'] } } };
-  const inherited = wait('inherited');
-  selectEventWording(inherited, partial, 7, { wording: {} });
-  expect(rendererOwner.render(inherited, { kind: 'host' }, partial, 7)[0]?.text).toBe(
-    rendererOwner.render(inherited, { kind: 'host' }, lex, 7)[0]?.text,
-  );
-  const bare = { ...partial, wordings: undefined };
-  const fallback = wait('bare');
-  const untouched = { wording: {} };
-  selectEventWording(fallback, bare, 7, untouched);
-  expect(fallback.wording).toBeUndefined();
-  expect(untouched.wording).toEqual({});
-  expect(rendererOwner.render(fallback, { kind: 'host' }, bare, 7)[0]?.text).toBe('I will wait.');
-});
-
-it('pins no-table narration byte for byte to the 4.1 built-in text', () => {
-  const event: RunEvent = {
-    ...wait('golden-promise'),
-    data: { kind: 'voice-promise', voiceId: 'bea', kept: false, before: 0.5, after: 0.4 },
-  };
-  const plain = { ...lex, wordings: undefined };
-  const empty = { ...plain, wordings: {}, voices: {} };
-  const review: RunEvent = {
-    ...wait('golden-review'),
-    data: { kind: 'review', record: { day: 1, missed: ['Fajr'], kept: [], resolved: ['Fajr'] } },
-  };
-  expect(rendererOwner.render(review, { kind: 'host' }, plain, 7)[0]).toMatchObject({
-    text: 'I did not keep the dawn prayer. Next time I will be ready when it comes.',
-    variantId: 'en:review:0',
-  });
-  const expected = [
-    {
-      eventId: 'golden-promise',
-      audience: { kind: 'host' },
-      text: 'bea broke their word.',
-      variantId: 'en:voice-promise:0',
-    },
-  ];
-  for (const lexicon of [plain, empty]) {
-    const state = { wording: {} };
-    selectEventWording(event, lexicon, 7, state);
-    expect(state.wording).toEqual({});
-    expect(rendererOwner.render(event, { kind: 'host' }, lexicon, 7)).toEqual(expected);
-  }
 });
