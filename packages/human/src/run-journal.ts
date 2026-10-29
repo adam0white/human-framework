@@ -8,8 +8,12 @@ import { cloneData } from './core/clone.ts';
 import { canonicalJson, hashCanonical } from './run-canonical.ts';
 import { RUN_ENGINE } from './run-engine.ts';
 import { packHistory, unpackHistory } from './run-history.ts';
-import { freezeData, type HistoryNode, historySince, readKernel } from './run-kernel.ts';
-import { executeAcceptedTransaction, type RecoveryOperations } from './run-recovery.ts';
+import { freezeData, type HistoryNode, historyEntries, historySince, readKernel } from './run-kernel.ts';
+import {
+  executeAcceptedTransaction,
+  type RecoveryOperations,
+  validateReconstructedState,
+} from './run-recovery.ts';
 import type * as T from './run-schema.ts';
 import { validateData } from './run-validation.ts';
 
@@ -191,16 +195,22 @@ export function restoreJournal(
   if (openingFor(run).digest !== openingDigest)
     return reject('$.opening.initial', 'effective parameters or authoring differ from constructors');
   for (const [index, history] of histories.entries())
-    for (const transaction of history) {
+    for (const [transactionIndex, transaction] of history.entries()) {
       const reached = executeAcceptedTransaction(
         run,
         transaction,
         operations,
-        `$.chunks[${index}].history[${transaction.ordinal}]`,
+        `$.chunks[${index}].history[${transactionIndex}]`,
       );
       if (!reached.ok) return reached;
     }
   if (readKernel(run).current.at !== head.at) return reject('$.head.at', 'executed journal clock differs');
+  const record = readKernel(run);
+  const valid = validateReconstructedState(
+    { current: record.current, initial: opening.initial, history: historyEntries(run) },
+    record.parameters.hash,
+  );
+  if (!valid.ok) return valid;
   const frozenHead = freezeData({ ...head });
   return { ok: true, value: Object.freeze({ run, head: frozenHead, cursor: cursorFor(run, frozenHead) }) };
 }

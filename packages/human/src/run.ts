@@ -185,6 +185,7 @@ export function readRunHistory(
   return freezeData(expandedArchive(admitted.value).history);
 }
 
+/** Complete native archive for downloads and playtest replay exports. */
 export function exportRun(run: T.Run): T.DeepReadonly<T.RunArchive> {
   const record = readKernel(run);
   const body = {
@@ -250,7 +251,7 @@ export function replay(input: unknown): T.Result<T.DeepReadonly<T.ReplayResult>>
   return replayCurrentRun(input, { createRun, createPerson, step, exportRun });
 }
 
-/** Persist the returned head and chunks atomically with the matching host snapshot
+/** Autosave only: persist the returned head and chunks atomically with the matching host snapshot
  * before replacing a prior cursor. A retained cursor supports deterministic retry. */
 export function exportRunJournal(
   run: T.Run,
@@ -258,7 +259,7 @@ export function exportRunJournal(
 ): T.Result<T.DeepReadonly<T.RunJournalExport>> {
   return exportJournal(run, cursor);
 }
-/** Reconstruct the complete committed journal prefix by actual dispatch. */
+/** Recover an autosave by executing and validating its complete committed journal prefix. */
 export function restoreRunJournal(input: unknown): T.Result<T.DeepReadonly<T.RunJournalRestored>> {
   return restoreJournal(input, { createRun, createPerson, step, exportRun });
 }

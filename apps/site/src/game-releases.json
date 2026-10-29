@@ -47,7 +47,7 @@
     "commit": "4c6a57bac99b1ac2f60fac08f811fd9593a8811a",
     "release": "https://valley.adamwhite.work/release.json",
     "checked": "2026-10-29",
-    "reason": "Stays on HF 3.x while it waits for the HF 4.9/4.10 speed-up."
+    "reason": "Stays on HF 3.0.0. HF 4 still exceeds its simulation and saved-history budgets. Recheck November 24, 2026."
   },
   "voice": {
     "framework": "3.2.0",

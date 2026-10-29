@@ -138,7 +138,9 @@ export function checkArchiveEnvelope(
 }
 
 /** Full journal checks run only on history reconstructed by the dispatcher. */
-export function checkReconstructedJournals(archive: DeepReadonly<ExpandedRunArchive>): Result<true> {
+export function checkReconstructedJournals(
+  archive: Pick<DeepReadonly<ExpandedRunArchive>, 'current' | 'history'>,
+): Result<true> {
   const state = archive.current;
   const inputIds = new Set(
     archive.history.flatMap((transaction) => transaction.inputs.map((input) => input.id)),

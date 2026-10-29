@@ -167,10 +167,10 @@ rules: [framework.md](framework.md). Package overview: [README](../packages/huma
 
 - `createPerson` — `(run: T.Run, input: T.DeepReadonly<T.PersonAuthoring>): T.Result<T.PersonId>`
 - `createRun` — `(spec: T.RunSpec): T.Result<T.Run>`
-- `exportRun` — `(run: T.Run): T.DeepReadonly<T.RunArchive>`
-- `exportRunJournal` — Persist the returned head and chunks atomically with the matching host snapshot before replacing a prior cursor.
+- `exportRun` — Complete native archive for downloads and playtest replay exports.
+- `exportRunJournal` — Autosave only: persist the returned head and chunks atomically with the matching host snapshot before replacing a prior cursor.
 - `inspect` — `(run: T.Run, input: T.DeepReadonly<T.InspectQuery>): T.Result<T.DeepReadonly<T.Inspection>>`
 - `readRunHistory` — Decode a current archive's complete accepted inputs for tools and host evidence.
 - `replay` — `(input: unknown): T.Result<T.DeepReadonly<T.ReplayResult>>`
 - `restoreRun` — `(input: unknown): T.Result<T.Run>`
-- `restoreRunJournal` — Reconstruct the complete committed journal prefix by actual dispatch.
+- `restoreRunJournal` — Recover an autosave by executing and validating its complete committed journal prefix.

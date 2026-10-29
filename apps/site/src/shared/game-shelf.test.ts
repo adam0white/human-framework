@@ -37,6 +37,6 @@ it('shows each live pin and explains every retained 3.x game', async () => {
       expect('reason' in receipt && receipt.reason.length > 20).toBe(true);
     }
   }
-  expect(ordinary.textContent).toContain('HF 4.9/4.10 speed-up');
+  expect(ordinary.textContent).toContain('HF 4 still exceeds its simulation and saved-history budgets.');
   expect(ordinary.textContent).toContain('November 24, 2026');
 });
