@@ -11,6 +11,13 @@ version, stamped with build and schema hashes in `RUN_ENGINE`. See the version p
 Each released section opens with `Engine: X.Y.Z.` matching `ENGINE_VERSION`; the script refuses otherwise. Use
 absolute links in sections, since they are copied into the release page.
 
+## [Unreleased] — phrasebook verdicts and reasons
+
+- Extend the existing `lexicon.wordings` and per-person `lexicon.voices` route with closed `verdict.*` predicate and `reason.*` sentence keys. Missing entries use English defaults; unknown semantic keys refuse admission with a named `invalid-schema` error. There is no enable switch or second narration route.
+- Render suggestion reasons and distinguish recorded inability from refusal. Deferred and modified predicates receive the recorded alternative label; absent evidence uses neutral wording. The same renderer uses recorded fragment choices without read-time randomness or actor RNG changes.
+
+Migration: `suggestion.resolved` templates must retain both `{verdict}` and `{reason}`. Verdicts remain first-person predicates, with `{alternative}` required for deferred/modified entries; reasons are complete sentences. Move host verdict/reason tables into the phrasebook and remove index-based host selection. Older engine builds require a fresh run under the existing 4.x policy. This source is queued for the next minor after 4.11; publication and Rope adoption require separate receipts.
+
 ## [4.11.0] — 2026-10-29
 
 Engine: 4.11.0.
@@ -22,6 +29,7 @@ Engine: 4.11.0.
 - Prepare client 0.5.11 with exact HF 4.11.0 and kit 0.5.28 with that client peer. The central site retains its HF 3.2.0 runtime until its separate port.
 
 Migration: the engine and schema identities change. Start a fresh run for archives from earlier engine builds. Watch can request ordinary retelling without reading private gist IDs from an archive; its adoption and release remain separate.
+
 
 ## [4.10.0] — 2026-10-29
 

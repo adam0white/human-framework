@@ -9,7 +9,7 @@ import {
   START,
 } from '../examples/minimal.ts';
 import { narrateChronicle } from '../src/chronicle/story.ts';
-import { rendererOwner } from '../src/narrate/literal.ts';
+import { describeWording, rendererOwner } from '../src/narrate/literal.ts';
 import { fillTemplate } from '../src/narrate/templates.ts';
 import { selectEventWording } from '../src/narrate/variants.ts';
 import {
@@ -23,6 +23,7 @@ import {
   step,
 } from '../src/run.ts';
 import type { Input, Lexicon, RunEvent, RunState } from '../src/run-schema.ts';
+import { actionRequest, resolutionInput } from './support.ts';
 
 const wordings = {
   'decision.wait': ['Wait.', 'I will wait.', 'I will give it time.', 'I will wait a little longer.'],
@@ -166,11 +167,151 @@ it('rejects unknown voice ids and identifies invalid voice tables', () => {
     },
   });
 });
+it('uses authored semantic fragments with voice precedence and the recorded event choice', () => {
+  const spec = exampleSpec();
+  spec.definitions.lexicon.names = { ada: 'Ada' };
+  const predicates = ['took the advice', 'followed the advice', 'heeded the advice', 'acted on the advice'];
+  const own = ['agreed to it', 'accepted it', 'went along with it', 'chose to follow it'];
+  const reasons = ['I need a meal.', 'I am hungry.', 'Food comes first.', 'I need food.'];
+  spec.definitions.lexicon.wordings = {
+    'verdict.assented': predicates,
+    'reason.need:food': reasons,
+    'verdict.cannot': ['cannot act', 'cannot manage it', 'cannot do it', 'am unable to act'],
+    'verdict.deferred': [
+      'will first {alternative}',
+      'must first {alternative}',
+      'need to {alternative} first',
+      'will wait until I {alternative}',
+    ],
+  };
+  spec.definitions.lexicon.voices = { ada: { 'verdict.assented': own } };
+  expect(createRun(spec).ok).toBe(true);
+  const event: RunEvent = {
+    id: 'verdict',
+    person: 'ada',
+    at: 0,
+    phase: 4,
+    causeIds: [],
+    narration: [],
+    data: {
+      kind: 'suggestion-resolved',
+      adviceId: 'a',
+      decisionId: 'd',
+      resolution: { voiceId: 'v', verdict: 'assented', reason: '' },
+    },
+  };
+  selectEventWording(event, spec.definitions.lexicon, 7, { wording: {} });
+  const index = event.wording?.fragments?.['verdict.assented'];
+  if (index === undefined) throw new Error('Missing recorded verdict');
+  expect(rendererOwner.render(event, { kind: 'host' }, spec.definitions.lexicon, 7)[0]?.text).toContain(
+    own[index],
+  );
+  expect(
+    describeWording(event.data, spec.definitions.lexicon, 'other', { 'verdict.assented': index })?.slots
+      .verdict,
+  ).toBe(predicates[index]);
+  if (event.data.kind !== 'suggestion-resolved') throw new Error('Missing suggestion');
+  const cannot = {
+    ...event.data,
+    resolution: {
+      ...event.data.resolution,
+      verdict: 'refused' as const,
+      kind: 'cannot' as const,
+      reason: 'need:food',
+    },
+  };
+  const cannotLine = describeWording(cannot, spec.definitions.lexicon, 'ada', {
+    'verdict.assented': index,
+    'verdict.cannot': index,
+    'reason.need:food': index,
+    'verdict.deferred': index,
+  });
+  expect(cannotLine?.slots.verdict).toContain('cannot');
+  expect(cannotLine?.slots.reason).toBe(` ${reasons[index]}`);
+  const deferred = {
+    ...event.data,
+    resolution: {
+      ...event.data.resolution,
+      verdict: 'deferred' as const,
+      counterOffer: { label: 'climb the wall' },
+    },
+  };
+  expect(
+    describeWording(deferred, spec.definitions.lexicon, 'ada', {
+      'verdict.assented': index,
+      'verdict.cannot': index,
+      'reason.need:food': index,
+      'verdict.deferred': index,
+    })?.slots.verdict,
+  ).toContain('climb the wall');
+  const decision = {
+    kind: 'decision' as const,
+    decision: {
+      id: 'd',
+      at: 0,
+      intention: '',
+      chosenAction: 'eat',
+      chosenAffordanceId: 'meal',
+      considered: [
+        { affordanceId: 'meal', action: 'eat', utility: 1, terms: [{ source: 'need:food', value: 1 }] },
+      ],
+    },
+  };
+  expect(
+    describeWording(decision, spec.definitions.lexicon, 'ada', {
+      'verdict.assented': index,
+      'verdict.cannot': index,
+      'reason.need:food': index,
+      'verdict.deferred': index,
+    })?.slots.why,
+  ).toBe(` ${reasons[index]}`);
+  spec.definitions.lexicon.wordings = { 'reason.imaginary': predicates };
+  expect(createRun(spec)).toMatchObject({
+    ok: false,
+    error: { code: 'invalid-schema', message: expect.stringContaining('reason.imaginary') },
+  });
+});
+it('records a separate choice for every authored fragment and can reach all variants', () => {
+  const variants = ['accepted one', 'accepted two', 'accepted three', 'accepted four', 'accepted five'];
+  const table: Lexicon = { ...lex, wordings: { 'verdict.assented': variants } };
+  const seen = new Set<number>();
+  const state: Pick<RunState, 'wording'> = { wording: {} };
+  const previous: number[] = [];
+  for (let i = 0; i < 30; i++) {
+    const event: RunEvent = {
+      id: String(i),
+      person: 'ada',
+      at: 0,
+      phase: 4,
+      causeIds: [],
+      narration: [],
+      data: {
+        kind: 'suggestion-resolved',
+        adviceId: 'a',
+        decisionId: 'd',
+        resolution: { voiceId: 'v', verdict: 'assented', reason: '' },
+      },
+    };
+    selectEventWording(event, table, 7, state);
+    const index = event.wording?.fragments?.['verdict.assented'];
+    if (index === undefined) throw new Error('Missing fragment choice');
+    expect(previous.slice(-2)).not.toContain(index);
+    previous.push(index);
+    seen.add(index);
+    const before = JSON.stringify({ event, state });
+    expect(rendererOwner.render(event, { kind: 'host' }, table, 7)[0]?.text).toContain(variants[index]);
+    expect(JSON.stringify({ event, state })).toBe(before);
+  }
+  expect(seen.size).toBe(5);
+});
 it('headless control: reads, pagination, restore continuation and replay retain the event choices', () => {
   function setup(withVariants: boolean) {
     const spec = exampleSpec(7);
     if (withVariants)
       spec.definitions.lexicon.wordings = {
+        'verdict.refused': ['refused it', 'declined it', 'said no to it', 'would not do it'],
+        'verdict.cannot': ['cannot act', 'cannot manage it', 'cannot do it', 'am unable to act'],
+        'reason.need:food': ['I need a meal.', 'I am hungry.', 'Food comes first.', 'I need food.'],
         'decision.act': [
           'My next step is to {action}.{why}',
           'I will {action}.{why}',
@@ -277,6 +418,41 @@ it('headless control: reads, pagination, restore continuation and replay retain 
   need(
     step(decisionRun, { until: START, inputs: openingInputs([{ id: 'ada', offers: exampleOffers('ada') }]) }),
   );
+  const voiceRun = setup(true);
+  const offers = exampleOffers('ada', ['rest', 'work']);
+  const started = need(step(voiceRun, { until: START, inputs: openingInputs([{ id: 'ada', offers }]) }));
+  const request = actionRequest(started, 'start');
+  need(
+    step(voiceRun, {
+      until: START,
+      inputs: [resolutionInput(request, 0, { disposition: 'accepted', observations: [] })],
+    }),
+  );
+  const suggestion: Input<'suggestion.received'> = {
+    id: 'missing-offer-suggestion',
+    at: START + 60_000,
+    source: { type: 'voice', id: 'player' },
+    kind: 'suggestion.received',
+    payload: {
+      person: 'ada',
+      received: {
+        kind: 'ordinary',
+        suggestion: {
+          adviceId: 'missing',
+          voiceId: 'player',
+          affordanceId: 'missing-offer',
+          strength: 1,
+          insist: true,
+        },
+      },
+    },
+  };
+  need(step(voiceRun, { until: START + 60_000, inputs: [suggestion] }));
+  const suggestionEvent = exportRun(voiceRun).current.events.find(
+    (e) => e.data.kind === 'suggestion-resolved',
+  );
+  expect(suggestionEvent?.wording?.fragments?.['verdict.cannot']).toEqual(expect.any(Number));
+  expect(need(replay(exportRun(voiceRun))).verified).toBe(true);
   const decisionEvent = exportRun(decisionRun).current.events.find((e) => e.data.kind === 'decision');
   if (decisionEvent?.data.kind !== 'decision') throw new Error('Missing actual decision');
   expect(decisionEvent.wording?.key).toBe('decision.act');

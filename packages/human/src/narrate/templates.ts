@@ -56,10 +56,10 @@ export const NARRATION_TEMPLATES = {
     'There was a conversation between {speaker} and {listener}.',
   ],
   'suggestion.resolved': [
-    'I {verdict}.',
-    'After considering it, I {verdict}.',
-    'I {verdict} after thinking it over.',
-    'This time, I {verdict}.',
+    'I {verdict}.{reason}',
+    'After considering it, I {verdict}.{reason}',
+    'I {verdict} after thinking it over.{reason}',
+    'This time, I {verdict}.{reason}',
   ],
   'commitment.changed': [
     'My commitment “{label}” is now {status}.',

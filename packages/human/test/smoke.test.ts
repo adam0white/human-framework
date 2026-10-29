@@ -29,6 +29,7 @@ test('the public run contract has eight operations and archive identity matches 
       'admitPortablePerson',
       'validatePortablePerson',
       'NARRATION_TEMPLATES',
+      'NARRATION_FRAGMENTS',
       'DEFAULT_NORMS',
     ].sort(),
   );

@@ -6,7 +6,7 @@ import { EngineLimitError } from '../core/limit.ts';
 import { createRng, random } from '../core/random.ts';
 import type { ActorState, DeepReadonly, Lexicon, RunEvent, RunState, WordingContext } from '../run-schema.ts';
 import { authoredWordings, stableHash } from './lexicon.ts';
-import { describeWording } from './literal.ts';
+import { describeWording, NARRATION_FRAGMENTS } from './literal.ts';
 import { NARRATION_TEMPLATES, templateSlots } from './templates.ts';
 
 export function wordingIssue(
@@ -30,9 +30,11 @@ export function wordingIssue(
     for (const [key, variants] of Object.entries(table)) {
       const label = person === undefined ? `Wording ${key}` : `Wording ${key} in voice ${person}`;
       const issue = (message: string) => ({ code: 'invalid-schema' as const, path, message });
-      if (!Object.hasOwn(NARRATION_TEMPLATES, key)) return issue(`${label} has an unknown key`);
+      const fragment = NARRATION_FRAGMENTS[key];
+      if (!Object.hasOwn(NARRATION_TEMPLATES, key) && !Object.hasOwn(NARRATION_FRAGMENTS, key))
+        return issue(`${label} has an unknown key`);
       const defaults = NARRATION_TEMPLATES[key as keyof typeof NARRATION_TEMPLATES];
-      const expected = JSON.stringify(templateSlots(defaults[0] ?? ''));
+      const expected = JSON.stringify(fragment?.slots ?? templateSlots(defaults?.[0] ?? ''));
       if (variants.length < 4 || new Set(variants).size !== variants.length)
         return issue(`${label} needs at least four distinct strings`);
       for (const variant of variants)
@@ -50,41 +52,50 @@ export function selectEventWording(
   state: Pick<RunState, 'wording'>,
   context: WordingContext = { mood: 0, trust: 0.5, habit: 0 },
 ): void {
-  const line = describeWording(event.data, lexicon);
+  const used = new Set<string>();
+  const line = describeWording(event.data, lexicon, event.person, {}, used);
   if (!line) return;
-  const variants = authoredWordings(lexicon, event.person, line.key) ?? line.templates;
-  const identity = JSON.stringify([event.person ?? null, line.key]);
-  const prior = state.wording[identity];
-  const rng = prior
-    ? { ...prior.rng }
-    : createRng(stableHash(JSON.stringify(['hf:wording:2', seed, identity])));
-  const occurrence = (prior?.occurrence ?? 0) + 1;
-  if (!Number.isSafeInteger(occurrence)) throw new EngineLimitError('Wording occurrence exhausted');
-  // Every admitted phrasebook has at least four alternatives. Keep the last
-  // two choices out of the next draw, leaving at least two candidates. Context changes the preference for concise wording:
-  // low mood, distrust and well-practised acts favour shorter alternatives.
-  const excluded = new Set(prior?.recent ?? []);
-  const candidates = variants.map((text, index) => ({ text, index })).filter((v) => !excluded.has(v.index));
-  const shortest = Math.min(...variants.map((text) => text.length));
-  const longest = Math.max(...variants.map((text) => text.length));
-  const brevity = ((1 - context.mood) / 2 + (1 - context.trust) + context.habit) / 3;
-  const weights = candidates.map(({ text }) => {
-    const length = longest === shortest ? 0.5 : (text.length - shortest) / (longest - shortest);
-    return 1 + 3 * (brevity * (1 - length) + (1 - brevity) * length);
-  });
-  let draw = random(rng) * weights.reduce((sum, weight) => sum + weight, 0);
-  let index = candidates.at(-1)?.index ?? 0;
-  for (let i = 0; i < candidates.length; i++) {
-    draw -= weights[i] ?? 0;
-    if (draw < 0) {
-      index = candidates[i]?.index ?? 0;
-      break;
+  function choose(key: string, variants: readonly string[]): { occurrence: number; index: number } {
+    const identity = JSON.stringify([event.person ?? null, key]);
+    const prior = state.wording[identity];
+    const rng = prior
+      ? { ...prior.rng }
+      : createRng(stableHash(JSON.stringify(['hf:wording:2', seed, identity])));
+    const occurrence = (prior?.occurrence ?? 0) + 1;
+    if (!Number.isSafeInteger(occurrence)) throw new EngineLimitError('Wording occurrence exhausted');
+    // Every admitted phrasebook has at least four alternatives. Keep the last
+    // two choices out of the next draw, leaving at least two candidates. Context changes the preference for concise wording:
+    // low mood, distrust and well-practised acts favour shorter alternatives.
+    const excluded = new Set(prior?.recent ?? []);
+    const candidates = variants.map((text, index) => ({ text, index })).filter((v) => !excluded.has(v.index));
+    const shortest = Math.min(...variants.map((text) => text.length));
+    const longest = Math.max(...variants.map((text) => text.length));
+    const brevity = ((1 - context.mood) / 2 + (1 - context.trust) + context.habit) / 3;
+    const weights = candidates.map(({ text }) => {
+      const length = longest === shortest ? 0.5 : (text.length - shortest) / (longest - shortest);
+      return 1 + 3 * (brevity * (1 - length) + (1 - brevity) * length);
+    });
+    let draw = random(rng) * weights.reduce((sum, weight) => sum + weight, 0);
+    let index = candidates.at(-1)?.index ?? 0;
+    for (let i = 0; i < candidates.length; i++) {
+      draw -= weights[i] ?? 0;
+      if (draw < 0) {
+        index = candidates[i]?.index ?? 0;
+        break;
+      }
     }
+    const recent = [...(prior?.recent ?? []), index].slice(-2);
+    // The dispatcher owns a detached mutable Run state; recovery owns its fresh map.
+    state.wording[identity] = { rng, occurrence, recent };
+    return { occurrence, index };
   }
-  const recent = [...(prior?.recent ?? []), index].slice(-2);
-  // The dispatcher owns a detached mutable Run state; recovery owns its fresh map.
-  state.wording[identity] = { rng, occurrence, recent };
-  event.wording = { key: line.key, occurrence, index, context: { ...context } };
+  const choice = choose(line.key, authoredWordings(lexicon, event.person, line.key) ?? line.templates);
+  const fragments: Record<string, number> = {};
+  for (const key of used) {
+    const variants = authoredWordings(lexicon, event.person, key);
+    if (variants) fragments[key] = choose(key, variants).index;
+  }
+  event.wording = { key: line.key, ...choice, context: { ...context }, ...(used.size ? { fragments } : {}) };
 }
 
 /** Capture the person's evidence at emission; readers never consult later state. */
