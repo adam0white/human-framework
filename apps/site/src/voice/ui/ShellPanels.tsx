@@ -2,6 +2,7 @@ import { PEOPLE_ACROSS_GAMES } from '@adam0white/lab-kit';
 import { useEffect, useRef, useState } from 'react';
 import { DebugMenu } from '../../shared/DebugMenu.tsx';
 import { FullscreenButton } from '../../shared/fullscreen.tsx';
+import { GameVersion } from '../../shared/GameVersion.tsx';
 import { MODEL_NOTES, type Pace } from '../protocol.ts';
 import { RecordingPreference } from './SendWord.tsx';
 import type { VoiceActions } from './useVoice.ts';
@@ -131,6 +132,9 @@ export function MenuPanel({
           </button>
         </header>
         <p className="v-hint">The day waits while this is open.</p>
+        <aside className="game-release">
+          <GameVersion id="voice" />
+        </aside>
         {
           <fieldset className="v-menu-pace">
             <legend>How the day passes</legend>

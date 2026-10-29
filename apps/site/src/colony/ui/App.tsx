@@ -4,6 +4,7 @@ import { CastLifeNote, CastMenu, CastStartGate } from '../../shared/CastMenu.tsx
 import { fileSession, readGameFile } from '../../shared/cast-runtime.ts';
 import { DebugMenu } from '../../shared/DebugMenu.tsx';
 import { FullscreenButton, useWakeLock } from '../../shared/fullscreen.tsx';
+import { GameVersion } from '../../shared/GameVersion.tsx';
 import { LabNotice } from '../../shared/LabNotice.tsx';
 import { gameLabs, useLabScreen } from '../../shared/lab.tsx';
 import { fileError as gameFileError, playerError } from '../../shared/player-error.ts';
@@ -1102,6 +1103,9 @@ export function App() {
             </header>
             <div className="well-menu-body">
               <p>The game is paused while this menu is open.</p>
+              <aside className="game-release">
+                <GameVersion id="well" />
+              </aside>
               <label>
                 <input
                   type="checkbox"

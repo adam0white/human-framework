@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { CastMenu } from '../../shared/CastMenu.tsx';
 import { DebugMenu } from '../../shared/DebugMenu.tsx';
 import { FullscreenButton } from '../../shared/fullscreen.tsx';
+import { GameVersion } from '../../shared/GameVersion.tsx';
 import type { PageInfo } from '../protocol.ts';
 import type { Frame, FrameVolume } from '../sim/view.ts';
 import { DownloadRun, FeedbackScreen, RecordingPreference } from './exporting.tsx';
@@ -322,6 +323,9 @@ export function Chronicle({
           All games
         </a>
         <RecordingPreference privacy={false} />
+        <aside className="game-release">
+          <GameVersion id="watch" />
+        </aside>
         <CastMenu game="watch" />
       </div>
       <div className="w-sheet-actions">
