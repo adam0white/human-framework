@@ -23,7 +23,7 @@ it('continues the Left Hand cast through an authored shelf chapter and refuses i
     return r.value;
   };
   const parents: PersonaEnvelope[] = [];
-  for (const id of ['yusuf', 'idris', 'samira', 'danyal']) {
+  for (const id of ['yusuf', 'idris', 'samira', 'danyal', 'tariq']) {
     const castId = `hf.cast.${id}.well`;
     const spec = structuredClone(fixture.spec);
     spec.host.id = 'lefthand';
@@ -103,16 +103,6 @@ it('continues the Left Hand cast through an authored shelf chapter and refuses i
     ).toThrow(/unfinished responsibilities/);
     expect(parent).toEqual(before);
   }
-  // Warren's deployed old client cannot skip a foreign portable Tariq head.
-  expect(() =>
-    projectPortablePerson({
-      castId: 'hf.cast.tariq.well',
-      game: 'lefthand',
-      engine: '4.8.0',
-      person: { id: 'tariq' },
-      history: [],
-    }),
-  ).toThrow(/no authored chapter/);
   const good = parents.find((p) => p.castId === 'hf.cast.samira.well');
   const bad = parents.find((p) => p.castId === 'hf.cast.yusuf.well');
   if (!good || !bad) throw new Error('Missing source fixtures');
